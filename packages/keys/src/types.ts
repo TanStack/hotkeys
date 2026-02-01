@@ -235,7 +235,7 @@ export interface ParsedHotkey {
   /** Whether the Meta (Command) key is required */
   meta: boolean
   /** List of canonical modifier names that are required */
-  modifiers: CanonicalModifier[]
+  modifiers: Array<CanonicalModifier>
 }
 
 /**
@@ -253,9 +253,9 @@ export interface ValidationResult {
   /** Whether the hotkey is valid (can still have warnings) */
   valid: boolean
   /** Warning messages about potential issues */
-  warnings: string[]
+  warnings: Array<string>
   /** Error messages about invalid syntax */
-  errors: string[]
+  errors: Array<string>
 }
 
 // =============================================================================
@@ -327,7 +327,7 @@ export interface HotkeyOptions {
  * const deleteWord: HotkeySequence = ['D', 'I', 'W']  // diw
  * ```
  */
-export type HotkeySequence = Hotkey[]
+export type HotkeySequence = Array<Hotkey>
 
 /**
  * Options for hotkey sequence matching.

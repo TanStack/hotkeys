@@ -1,4 +1,3 @@
-import type { CanonicalModifier, ParsedHotkey } from './types'
 import {
   MODIFIER_ALIASES,
   MODIFIER_ORDER,
@@ -6,6 +5,7 @@ import {
   normalizeKeyName,
   resolveModifier,
 } from './constants'
+import type { CanonicalModifier, ParsedHotkey } from './types'
 
 /**
  * Parses a hotkey string into its component parts.
@@ -93,7 +93,7 @@ export function normalizeHotkey(
   platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
 ): string {
   const parsed = parseHotkey(hotkey, platform)
-  const parts: string[] = []
+  const parts: Array<string> = []
 
   // Add modifiers in canonical order
   for (const modifier of MODIFIER_ORDER) {

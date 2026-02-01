@@ -190,7 +190,7 @@ export const ALL_KEYS = new Set<Key>([
  * Maps key aliases to their canonical form.
  * This handles common variations like 'Esc' for 'Escape'.
  */
-export const KEY_ALIASES: Record<string, string> = {
+const KEY_ALIASES: Record<string, string> = {
   // Escape variants
   Esc: 'Escape',
   esc: 'Escape',
@@ -310,7 +310,7 @@ export const KEY_DISPLAY_SYMBOLS: Record<string, string> = {
  * Canonical order for modifiers in normalized strings.
  * This ensures consistent output: Control+Alt+Shift+Meta+Key
  */
-export const MODIFIER_ORDER: CanonicalModifier[] = [
+export const MODIFIER_ORDER: Array<CanonicalModifier> = [
   'Control',
   'Alt',
   'Shift',

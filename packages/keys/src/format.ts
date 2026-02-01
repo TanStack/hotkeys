@@ -1,4 +1,3 @@
-import type { FormatDisplayOptions, ParsedHotkey } from './types'
 import {
   KEY_DISPLAY_SYMBOLS,
   MAC_MODIFIER_SYMBOLS,
@@ -7,6 +6,7 @@ import {
   detectPlatform,
 } from './constants'
 import { parseHotkey } from './parse'
+import type { FormatDisplayOptions, ParsedHotkey } from './types'
 
 /**
  * Converts a ParsedHotkey back to a hotkey string.
@@ -21,7 +21,7 @@ import { parseHotkey } from './parse'
  * ```
  */
 export function formatHotkey(parsed: ParsedHotkey): string {
-  const parts: string[] = []
+  const parts: Array<string> = []
 
   // Add modifiers in canonical order
   for (const modifier of MODIFIER_ORDER) {
@@ -77,7 +77,7 @@ export function formatForDisplay(
  * Formats a hotkey for macOS display using symbols.
  */
 function formatForMac(parsed: ParsedHotkey): string {
-  const parts: string[] = []
+  const parts: Array<string> = []
 
   // Add modifiers in macOS order (typically Control, Option, Shift, Command)
   // But we'll use our canonical order and just use symbols
@@ -99,7 +99,7 @@ function formatForMac(parsed: ParsedHotkey): string {
  * Formats a hotkey for Windows/Linux display using text labels.
  */
 function formatForStandard(parsed: ParsedHotkey): string {
-  const parts: string[] = []
+  const parts: Array<string> = []
 
   // Add modifiers in canonical order
   for (const modifier of MODIFIER_ORDER) {
@@ -130,7 +130,7 @@ export function formatWithLabels(
 ): string {
   const parsed =
     typeof hotkey === 'string' ? parseHotkey(hotkey, platform) : hotkey
-  const parts: string[] = []
+  const parts: Array<string> = []
 
   // Custom labels for more readable output
   const labels: Record<string, string> = {

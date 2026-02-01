@@ -21,6 +21,7 @@
   ],
   "scripts": {
     "clean": "premove ./build ./dist",
+    "lint": "eslint ./src",
     "lint:fix": "eslint ./src --fix",
     "test:eslint": "eslint ./src",
     "test:lib": "vitest --passWithNoTests",
@@ -46,8 +47,5 @@
   "files": [
     "dist/",
     "src"
-  ],
-  "dependencies": {
-    "@tanstack/keys": "workspace:*"
-  }
+  ]
 }

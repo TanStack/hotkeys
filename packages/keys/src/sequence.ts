@@ -1,3 +1,6 @@
+import { detectPlatform } from './constants'
+import { parseHotkey } from './parse'
+import { matchesKeyboardEvent } from './match'
 import type {
   Hotkey,
   HotkeyCallback,
@@ -6,9 +9,6 @@ import type {
   ParsedHotkey,
   SequenceOptions,
 } from './types'
-import { detectPlatform } from './constants'
-import { parseHotkey } from './parse'
-import { matchesKeyboardEvent } from './match'
 
 /**
  * Default timeout between keys in a sequence (in milliseconds).
@@ -30,7 +30,7 @@ function generateSequenceId(): string {
 interface SequenceRegistration {
   id: string
   sequence: HotkeySequence
-  parsedSequence: ParsedHotkey[]
+  parsedSequence: Array<ParsedHotkey>
   callback: HotkeyCallback
   options: SequenceOptions
   currentIndex: number

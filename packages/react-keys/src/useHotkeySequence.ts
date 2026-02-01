@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react'
-import {
-  type HotkeyCallback,
-  type HotkeySequence,
-  type SequenceOptions,
-  getSequenceManager,
+import { getSequenceManager } from '@tanstack/keys'
+import type {
+  HotkeyCallback,
+  HotkeySequence,
+  SequenceOptions,
 } from '@tanstack/keys'
 
 export interface UseHotkeySequenceOptions extends Omit<

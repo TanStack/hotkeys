@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react'
-import {
-  type Hotkey,
-  type HotkeyCallback,
-  type HotkeyOptions,
-  type ParsedHotkey,
-  getHotkeyManager,
+import { getHotkeyManager } from '@tanstack/keys'
+import type {
+  Hotkey,
+  HotkeyCallback,
+  HotkeyOptions,
+  ParsedHotkey,
 } from '@tanstack/keys'
 
 export interface UseHotkeyOptions extends Omit<HotkeyOptions, 'enabled'> {
@@ -112,7 +112,7 @@ export function useHotkey(
  * Formats a ParsedHotkey back to a hotkey string.
  */
 function formatParsedHotkey(parsed: ParsedHotkey): Hotkey {
-  const parts: string[] = []
+  const parts: Array<string> = []
 
   if (parsed.ctrl) parts.push('Control')
   if (parsed.alt) parts.push('Alt')

@@ -1,4 +1,3 @@
-import type { ValidationResult } from './types'
 import {
   ALL_KEYS,
   LETTER_KEYS,
@@ -6,6 +5,7 @@ import {
   NUMBER_KEYS,
 } from './constants'
 import { parseHotkey } from './parse'
+import type { ValidationResult } from './types'
 
 /**
  * Validates a hotkey string and returns any warnings or errors.
@@ -35,8 +35,8 @@ import { parseHotkey } from './parse'
  * ```
  */
 export function validateHotkey(hotkey: string): ValidationResult {
-  const warnings: string[] = []
-  const errors: string[] = []
+  const warnings: Array<string> = []
+  const errors: Array<string> = []
 
   // Check for empty string
   if (!hotkey || hotkey.trim() === '') {

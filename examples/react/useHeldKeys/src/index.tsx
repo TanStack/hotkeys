@@ -1,12 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { useHeldKeys } from '@tanstack/react-keys'
+import './index.css'
 
 function App() {
   const heldKeys = useHeldKeys()
 
   // Track history of key combinations
-  const [history, setHistory] = React.useState<string[]>([])
+  const [history, setHistory] = React.useState<Array<string>>([])
 
   React.useEffect(() => {
     if (heldKeys.length > 0) {
@@ -102,125 +103,6 @@ function KeyDisplay() {
           </ul>
         </section>
       </main>
-
-      <style>{`
-        * { box-sizing: border-box; }
-        body {
-          margin: 0;
-          font-family: system-ui, -apple-system, sans-serif;
-          background: #f5f5f5;
-          color: #333;
-        }
-        .app {
-          max-width: 800px;
-          margin: 0 auto;
-          padding: 20px;
-        }
-        header {
-          text-align: center;
-          margin-bottom: 40px;
-        }
-        header h1 {
-          margin: 0 0 10px;
-          color: #0066cc;
-        }
-        header p {
-          color: #666;
-          margin: 0;
-          max-width: 500px;
-          margin: 0 auto;
-        }
-        .demo-section {
-          background: white;
-          border-radius: 12px;
-          padding: 24px;
-          margin-bottom: 24px;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        }
-        .demo-section h2 {
-          margin: 0 0 16px;
-          font-size: 20px;
-        }
-        .demo-section ul {
-          margin: 0;
-          padding-left: 20px;
-        }
-        .demo-section li {
-          margin-bottom: 8px;
-        }
-        kbd {
-          background: linear-gradient(180deg, #f8f8f8 0%, #e8e8e8 100%);
-          border: 1px solid #ccc;
-          border-bottom-width: 2px;
-          border-radius: 4px;
-          padding: 2px 8px;
-          font-family: monospace;
-          font-size: 13px;
-        }
-        kbd.large {
-          font-size: 24px;
-          padding: 8px 16px;
-        }
-        .key-display {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 12px;
-          min-height: 80px;
-          flex-wrap: wrap;
-          background: #f8f9fa;
-          border-radius: 8px;
-          padding: 20px;
-        }
-        .key-display .plus {
-          font-size: 24px;
-          color: #666;
-        }
-        .placeholder {
-          color: #999;
-          font-style: italic;
-        }
-        .stats {
-          text-align: center;
-          margin-top: 16px;
-          font-size: 16px;
-          color: #666;
-        }
-        .code-block {
-          background: #1e1e1e;
-          color: #d4d4d4;
-          padding: 16px;
-          border-radius: 8px;
-          overflow-x: auto;
-          font-size: 13px;
-          line-height: 1.5;
-        }
-        .history-list {
-          list-style: none;
-          padding: 0;
-          margin: 0 0 16px;
-        }
-        .history-list li {
-          padding: 8px 12px;
-          background: #f0f0f0;
-          border-radius: 4px;
-          margin-bottom: 4px;
-          font-family: monospace;
-          font-size: 14px;
-        }
-        button {
-          background: #0066cc;
-          color: white;
-          border: none;
-          padding: 10px 20px;
-          border-radius: 6px;
-          cursor: pointer;
-          font-size: 14px;
-        }
-        button:hover {
-          background: #0052a3;
-        }
-      `}</style>
     </div>
   )
 }

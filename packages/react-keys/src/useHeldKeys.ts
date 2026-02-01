@@ -23,7 +23,7 @@ import { getKeyStateTracker } from '@tanstack/keys'
  * }
  * ```
  */
-export function useHeldKeys(): string[] {
+export function useHeldKeys(): Array<string> {
   const tracker = getKeyStateTracker()
   return useStore(tracker.store, (state) => state.heldKeys)
 }

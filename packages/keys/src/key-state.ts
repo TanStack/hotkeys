@@ -8,7 +8,7 @@ export interface KeyStateTrackerState {
   /**
    * Array of currently held key names.
    */
-  heldKeys: string[]
+  heldKeys: Array<string>
 }
 
 /**
@@ -24,7 +24,7 @@ function getDefaultKeyStateTrackerState(): KeyStateTrackerState {
  * Listener function type for key state changes.
  * @deprecated Use `store.subscribe()` or `useStore()` from `@tanstack/react-store` instead.
  */
-export type KeyStateListener = (keys: string[]) => void
+export type KeyStateListener = (keys: Array<string>) => void
 
 /**
  * Singleton tracker for currently held keyboard keys.
@@ -175,7 +175,7 @@ export class KeyStateTracker {
    *
    * @returns Array of key names currently being pressed
    */
-  getHeldKeys(): string[] {
+  getHeldKeys(): Array<string> {
     return this.store.state.heldKeys
   }
 
@@ -196,7 +196,7 @@ export class KeyStateTracker {
    * @param keys - Array of key names to check
    * @returns True if any of the keys are currently held
    */
-  isAnyKeyHeld(keys: string[]): boolean {
+  isAnyKeyHeld(keys: Array<string>): boolean {
     return keys.some((key) => this.isKeyHeld(key))
   }
 
@@ -206,7 +206,7 @@ export class KeyStateTracker {
    * @param keys - Array of key names to check
    * @returns True if all of the keys are currently held
    */
-  areAllKeysHeld(keys: string[]): boolean {
+  areAllKeysHeld(keys: Array<string>): boolean {
     return keys.every((key) => this.isKeyHeld(key))
   }
 

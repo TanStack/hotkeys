@@ -1,3 +1,6 @@
+import { detectPlatform } from './constants'
+import { parseHotkey } from './parse'
+import { matchesKeyboardEvent } from './match'
 import type {
   Hotkey,
   HotkeyCallback,
@@ -5,9 +8,6 @@ import type {
   HotkeyOptions,
   HotkeyRegistration,
 } from './types'
-import { detectPlatform } from './constants'
-import { parseHotkey } from './parse'
-import { matchesKeyboardEvent } from './match'
 
 let registrationIdCounter = 0
 

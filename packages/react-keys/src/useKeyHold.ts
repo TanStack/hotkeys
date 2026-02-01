@@ -1,5 +1,6 @@
 import { useStore } from '@tanstack/react-store'
-import { getKeyStateTracker, type HeldKey } from '@tanstack/keys'
+import { getKeyStateTracker } from '@tanstack/keys'
+import type { HeldKey } from '@tanstack/keys'
 
 /**
  * React hook that returns whether a specific key is currently being held.
