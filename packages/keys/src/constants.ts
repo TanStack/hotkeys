@@ -13,8 +13,8 @@ export function detectPlatform(): 'mac' | 'windows' | 'linux' {
     return 'linux' // Default for SSR
   }
 
-  const platform = navigator.platform?.toLowerCase() ?? ''
-  const userAgent = navigator.userAgent?.toLowerCase() ?? ''
+  const platform = navigator.platform.toLowerCase()
+  const userAgent = navigator.userAgent.toLowerCase()
 
   if (platform.includes('mac') || userAgent.includes('mac')) {
     return 'mac'

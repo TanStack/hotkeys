@@ -2,12 +2,8 @@
   "$schema": "https://unpkg.com/knip@5/schema.json",
   "ignoreDependencies": ["@faker-js/faker"],
   "ignoreWorkspaces": ["examples/**"],
-  "ignore": ["**/eslint.config.js"],
-  "eslint": {
-    "config": []
-  },
   "workspaces": {
-    "packages/react-pacer": {
+    "packages/react-keys": {
       "ignore": []
     }
   }

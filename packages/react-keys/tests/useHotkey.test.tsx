@@ -1,8 +1,18 @@
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
 import { renderHook } from '@testing-library/react'
+import { HotkeyManager } from '@tanstack/keys'
 import { useHotkey } from '../src/useHotkey'
 
 describe('useHotkey', () => {
+  // Reset the HotkeyManager singleton between tests
+  beforeEach(() => {
+    HotkeyManager.resetInstance()
+  })
+
+  afterEach(() => {
+    HotkeyManager.resetInstance()
+  })
+
   it('should register a hotkey handler', () => {
     const callback = vi.fn()
     const addEventListenerSpy = vi.spyOn(document, 'addEventListener')
@@ -57,6 +67,7 @@ describe('useHotkey', () => {
     const event = new KeyboardEvent('keydown', {
       key: 's',
       metaKey: true,
+      bubbles: true,
     })
     document.dispatchEvent(event)
 
@@ -72,6 +83,7 @@ describe('useHotkey', () => {
     const event = new KeyboardEvent('keydown', {
       key: 'a',
       metaKey: true,
+      bubbles: true,
     })
     document.dispatchEvent(event)
 

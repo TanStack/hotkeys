@@ -96,9 +96,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^5.1.2
         version: 5.1.2(vite@7.3.1(@types/node@25.1.0)(jiti@2.6.1)(yaml@2.8.2))
-      eslint:
-        specifier: ^9.39.2
-        version: 9.39.2(jiti@2.6.1)
       typescript:
         specifier: 5.9.3
         version: 5.9.3
@@ -127,9 +124,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^5.1.2
         version: 5.1.2(vite@7.3.1(@types/node@25.1.0)(jiti@2.6.1)(yaml@2.8.2))
-      eslint:
-        specifier: ^9.39.2
-        version: 9.39.2(jiti@2.6.1)
       typescript:
         specifier: 5.9.3
         version: 5.9.3
@@ -158,9 +152,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^5.1.2
         version: 5.1.2(vite@7.3.1(@types/node@25.1.0)(jiti@2.6.1)(yaml@2.8.2))
-      eslint:
-        specifier: ^9.39.2
-        version: 9.39.2(jiti@2.6.1)
       typescript:
         specifier: 5.9.3
         version: 5.9.3
@@ -189,9 +180,6 @@ importers:
       '@vitejs/plugin-react':
         specifier: ^5.1.2
         version: 5.1.2(vite@7.3.1(@types/node@25.1.0)(jiti@2.6.1)(yaml@2.8.2))
-      eslint:
-        specifier: ^9.39.2
-        version: 9.39.2(jiti@2.6.1)
       typescript:
         specifier: 5.9.3
         version: 5.9.3
@@ -205,11 +193,7 @@ importers:
         specifier: ^0.8.0
         version: 0.8.0
 
-  packages/keys-devtools:
-    dependencies:
-      '@tanstack/keys':
-        specifier: workspace:*
-        version: link:../keys
+  packages/keys-devtools: {}
 
   packages/react-keys:
     dependencies:
@@ -218,17 +202,14 @@ importers:
         version: link:../keys
       '@tanstack/react-store':
         specifier: ^0.8.0
-        version: 0.8.0(react-dom@19.2.3(react@19.2.4))(react@19.2.4)
-      react-dom:
-        specifier: '>=16.8'
-        version: 19.2.3(react@19.2.4)
+        version: 0.8.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
     devDependencies:
       '@eslint-react/eslint-plugin':
         specifier: ^2.8.1
         version: 2.8.1(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
       '@testing-library/react':
         specifier: ^16.3.2
-        version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.10))(@types/react@19.2.10)(react-dom@19.2.3(react@19.2.4))(react@19.2.4)
+        version: 16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.10))(@types/react@19.2.10)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)
       '@types/react':
         specifier: ^19.2.10
         version: 19.2.10
@@ -244,22 +225,31 @@ importers:
       react:
         specifier: ^19.2.4
         version: 19.2.4
+      react-dom:
+        specifier: ^19.2.4
+        version: 19.2.4(react@19.2.4)
 
   packages/react-keys-devtools:
     dependencies:
-      '@tanstack/keys-devtools':
-        specifier: workspace:*
-        version: link:../keys-devtools
       react-dom:
         specifier: '>=16.8'
         version: 19.2.3(react@19.2.4)
     devDependencies:
+      '@eslint-react/eslint-plugin':
+        specifier: ^2.8.1
+        version: 2.8.1(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3)
       '@types/react':
         specifier: ^19.2.10
         version: 19.2.10
       '@vitejs/plugin-react':
         specifier: ^5.1.2
         version: 5.1.2(vite@7.3.1(@types/node@25.1.0)(jiti@2.6.1)(yaml@2.8.2))
+      eslint-plugin-react-compiler:
+        specifier: 19.1.0-rc.2
+        version: 19.1.0-rc.2(eslint@9.39.2(jiti@2.6.1))
+      eslint-plugin-react-hooks:
+        specifier: ^7.0.1
+        version: 7.0.1(eslint@9.39.2(jiti@2.6.1))
       react:
         specifier: ^19.2.4
         version: 19.2.4
@@ -4334,11 +4324,11 @@ snapshots:
       - supports-color
       - typescript
 
-  '@tanstack/react-store@0.8.0(react-dom@19.2.3(react@19.2.4))(react@19.2.4)':
+  '@tanstack/react-store@0.8.0(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     dependencies:
       '@tanstack/store': 0.8.0
       react: 19.2.4
-      react-dom: 19.2.3(react@19.2.4)
+      react-dom: 19.2.4(react@19.2.4)
       use-sync-external-store: 1.6.0(react@19.2.4)
 
   '@tanstack/store@0.8.0': {}
@@ -4371,12 +4361,12 @@ snapshots:
       picocolors: 1.1.1
       redent: 3.0.0
 
-  '@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.10))(@types/react@19.2.10)(react-dom@19.2.3(react@19.2.4))(react@19.2.4)':
+  '@testing-library/react@16.3.2(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.2.10))(@types/react@19.2.10)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)':
     dependencies:
       '@babel/runtime': 7.28.6
       '@testing-library/dom': 10.4.1
       react: 19.2.4
-      react-dom: 19.2.3(react@19.2.4)
+      react-dom: 19.2.4(react@19.2.4)
     optionalDependencies:
       '@types/react': 19.2.10
       '@types/react-dom': 19.2.3(@types/react@19.2.10)

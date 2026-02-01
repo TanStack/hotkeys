@@ -67,12 +67,25 @@ export function useHotkey(
 ): void {
   const { enabled = true, ...hotkeyOptions } = options
 
+  // Extract options for stable dependencies
+  const {
+    preventDefault,
+    stopPropagation,
+    platform,
+    eventType,
+    requireReset,
+  } = hotkeyOptions
+
   // Use refs to keep callback and hotkey stable across renders
   const callbackRef = useRef(callback)
   callbackRef.current = callback
 
   const hotkeyRef = useRef(hotkey)
   hotkeyRef.current = hotkey
+
+  // Serialize hotkey for dependency comparison
+  const hotkeyKey =
+    typeof hotkey === 'string' ? hotkey : JSON.stringify(hotkey)
 
   useEffect(() => {
     if (!enabled) {
@@ -86,25 +99,33 @@ export function useHotkey(
         : formatParsedHotkey(hotkeyValue)
 
     const manager = getHotkeyManager()
+
+    // Build options object, only including defined values to avoid
+    // overwriting manager defaults with undefined
+    const registerOptions: HotkeyOptions = { enabled: true }
+    if (preventDefault !== undefined)
+      registerOptions.preventDefault = preventDefault
+    if (stopPropagation !== undefined)
+      registerOptions.stopPropagation = stopPropagation
+    if (platform !== undefined) registerOptions.platform = platform
+    if (eventType !== undefined) registerOptions.eventType = eventType
+    if (requireReset !== undefined) registerOptions.requireReset = requireReset
+
     const unregister = manager.register(
       hotkeyString,
       (event, context) => callbackRef.current(event, context),
-      {
-        ...hotkeyOptions,
-        enabled: true,
-      },
+      registerOptions,
     )
 
     return unregister
   }, [
     enabled,
-    hotkeyOptions.preventDefault,
-    hotkeyOptions.stopPropagation,
-    hotkeyOptions.platform,
-    hotkeyOptions.eventType,
-    hotkeyOptions.requireReset,
-    // Re-register if hotkey changes (serialize for comparison)
-    typeof hotkey === 'string' ? hotkey : JSON.stringify(hotkey),
+    preventDefault,
+    stopPropagation,
+    platform,
+    eventType,
+    requireReset,
+    hotkeyKey,
   ])
 }
 

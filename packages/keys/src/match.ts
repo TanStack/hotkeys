@@ -152,7 +152,7 @@ export function createMultiHotkeyHandler(
   // Pre-parse all hotkeys for efficiency
   const parsedHandlers = Object.entries(handlers)
     .filter(
-      (entry): entry is [string, HotkeyCallback] => entry[1] !== undefined,
+      (entry): entry is [string, HotkeyCallback] => Boolean(entry[1]),
     )
     .map(([hotkey, handler]) => {
       const parsed = parseHotkey(hotkey as Hotkey, resolvedPlatform)

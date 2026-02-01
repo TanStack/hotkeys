@@ -53,6 +53,9 @@ export function useHotkeySequence(
 ): void {
   const { enabled = true, ...sequenceOptions } = options
 
+  // Extract options for stable dependencies
+  const { timeout, platform } = sequenceOptions
+
   // Use refs to keep callback stable
   const callbackRef = useRef(callback)
   callbackRef.current = callback
@@ -66,16 +69,18 @@ export function useHotkeySequence(
     }
 
     const manager = getSequenceManager()
+
+    // Build options object conditionally to avoid overwriting manager defaults with undefined
+    const registerOptions: SequenceOptions = { enabled: true }
+    if (timeout !== undefined) registerOptions.timeout = timeout
+    if (platform !== undefined) registerOptions.platform = platform
+
     const unregister = manager.register(
       sequence,
       (event, context) => callbackRef.current(event, context),
-      {
-        ...sequenceOptions,
-        enabled: true,
-      },
+      registerOptions,
     )
 
     return unregister
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [enabled, sequenceKey, sequenceOptions.timeout, sequenceOptions.platform])
+  }, [enabled, sequence, sequenceKey, timeout, platform])
 }
