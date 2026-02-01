@@ -1863,6 +1863,214 @@ A map of hotkey strings to their handlers
 
 [`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
 
+#### Control+Alt+Shift+Meta+A?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+ArrowDown?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+ArrowLeft?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+ArrowRight?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+ArrowUp?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+B?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+Backspace?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+C?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+D?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+Delete?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+E?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+End?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+Enter?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+Escape?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+F?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+F1?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+F10?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+F11?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+F12?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+F2?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+F3?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+F4?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+F5?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+F6?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+F7?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+F8?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+F9?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+G?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+H?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+Home?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+I?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+J?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+K?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+L?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+M?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+N?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+O?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+P?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+PageDown?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+PageUp?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+Q?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+R?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+S?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+Space?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+T?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+Tab?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+U?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+V?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+W?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+X?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+Y?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
+#### Control+Alt+Shift+Meta+Z?
+
+[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
+
 #### Control+Alt+Shift+N?
 
 [`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
@@ -3863,498 +4071,6 @@ A map of hotkey strings to their handlers
 
 [`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
 
-#### Mod+Control+-?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+,?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+.?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+[?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+]?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+/?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+\?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+`?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+=?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+0?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+1?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+2?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+3?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+4?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+5?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+6?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+7?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+8?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+9?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+A?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+ArrowDown?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+ArrowLeft?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+ArrowRight?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+ArrowUp?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+B?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Backspace?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+C?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+D?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Delete?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+E?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+End?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Enter?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Escape?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+F?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+F1?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+F10?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+F11?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+F12?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+F2?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+F3?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+F4?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+F5?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+F6?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+F7?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+F8?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+F9?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+G?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+H?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Home?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+I?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+J?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+K?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+L?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+M?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+N?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+O?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+P?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+PageDown?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+PageUp?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Q?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+R?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+S?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+A?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+ArrowDown?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+ArrowLeft?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+ArrowRight?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+ArrowUp?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+B?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+Backspace?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+C?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+D?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+Delete?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+E?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+End?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+Enter?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+Escape?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+F?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+F1?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+F10?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+F11?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+F12?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+F2?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+F3?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+F4?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+F5?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+F6?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+F7?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+F8?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+F9?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+G?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+H?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+Home?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+I?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+J?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+K?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+L?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+M?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+N?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+O?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+P?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+PageDown?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+PageUp?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+Q?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+R?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+S?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+Space?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+T?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+Tab?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+U?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+V?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+W?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+X?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+Y?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Shift+Z?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Space?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+T?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Tab?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+U?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+V?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+W?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+X?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Y?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Control+Z?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
 #### Mod+D?
 
 [`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
@@ -4460,290 +4176,6 @@ A map of hotkey strings to their handlers
 [`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
 
 #### Mod+M?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+-?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+,?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+.?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+[?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+]?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+/?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+\?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+`?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+=?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+0?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+1?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+2?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+3?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+4?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+5?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+6?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+7?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+8?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+9?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+A?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+ArrowDown?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+ArrowLeft?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+ArrowRight?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+ArrowUp?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+B?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+Backspace?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+C?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+D?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+Delete?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+E?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+End?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+Enter?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+Escape?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+F?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+F1?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+F10?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+F11?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+F12?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+F2?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+F3?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+F4?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+F5?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+F6?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+F7?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+F8?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+F9?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+G?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+H?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+Home?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+I?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+J?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+K?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+L?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+M?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+N?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+O?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+P?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+PageDown?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+PageUp?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+Q?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+R?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+S?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+Space?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+T?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+Tab?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+U?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+V?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+W?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+X?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+Y?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Meta+Z?
 
 [`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
 
@@ -4916,214 +4348,6 @@ A map of hotkey strings to their handlers
 [`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
 
 #### Mod+Shift+M?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+A?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+ArrowDown?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+ArrowLeft?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+ArrowRight?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+ArrowUp?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+B?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+Backspace?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+C?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+D?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+Delete?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+E?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+End?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+Enter?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+Escape?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+F?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+F1?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+F10?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+F11?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+F12?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+F2?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+F3?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+F4?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+F5?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+F6?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+F7?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+F8?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+F9?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+G?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+H?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+Home?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+I?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+J?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+K?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+L?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+M?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+N?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+O?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+P?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+PageDown?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+PageUp?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+Q?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+R?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+S?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+Space?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+T?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+Tab?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+U?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+V?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+W?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+X?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+Y?
-
-[`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
-
-#### Mod+Shift+Meta+Z?
 
 [`HotkeyCallback`](../type-aliases/HotkeyCallback.md)
 

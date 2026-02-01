@@ -5,7 +5,7 @@ title: SequenceOptions
 
 # Interface: SequenceOptions
 
-Defined in: [types.ts:374](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L374)
+Defined in: [types.ts:433](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L433)
 
 Options for hotkey sequence matching.
 
@@ -21,7 +21,7 @@ Options for hotkey sequence matching.
 optional enabled: boolean;
 ```
 
-Defined in: [types.ts:352](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L352)
+Defined in: [types.ts:411](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L411)
 
 Whether the hotkey is enabled. Defaults to true
 
@@ -37,7 +37,7 @@ Whether the hotkey is enabled. Defaults to true
 optional eventType: "keydown" | "keyup";
 ```
 
-Defined in: [types.ts:348](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L348)
+Defined in: [types.ts:407](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L407)
 
 The event type to listen for. Defaults to 'keydown'
 
@@ -53,7 +53,7 @@ The event type to listen for. Defaults to 'keydown'
 optional platform: "mac" | "windows" | "linux";
 ```
 
-Defined in: [types.ts:346](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L346)
+Defined in: [types.ts:405](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L405)
 
 The target platform for resolving 'Mod'
 
@@ -69,7 +69,7 @@ The target platform for resolving 'Mod'
 optional preventDefault: boolean;
 ```
 
-Defined in: [types.ts:342](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L342)
+Defined in: [types.ts:401](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L401)
 
 Prevent the default browser action when the hotkey matches
 
@@ -85,7 +85,7 @@ Prevent the default browser action when the hotkey matches
 optional requireReset: boolean;
 ```
 
-Defined in: [types.ts:350](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L350)
+Defined in: [types.ts:409](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L409)
 
 If true, only trigger once until all keys are released. Default: false
 
@@ -101,7 +101,7 @@ If true, only trigger once until all keys are released. Default: false
 optional stopPropagation: boolean;
 ```
 
-Defined in: [types.ts:344](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L344)
+Defined in: [types.ts:403](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L403)
 
 Stop event propagation when the hotkey matches
 
@@ -117,6 +117,6 @@ Stop event propagation when the hotkey matches
 optional timeout: number;
 ```
 
-Defined in: [types.ts:376](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L376)
+Defined in: [types.ts:435](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L435)
 
 Timeout between keys in milliseconds. Default: 1000

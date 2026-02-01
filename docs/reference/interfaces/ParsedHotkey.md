@@ -5,7 +5,7 @@ title: ParsedHotkey
 
 # Interface: ParsedHotkey
 
-Defined in: [types.ts:265](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L265)
+Defined in: [types.ts:324](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L324)
 
 A parsed representation of a hotkey string.
 
@@ -33,7 +33,7 @@ useHotkey(parsed, handler) // Works even if userInput isn't in Hotkey type
 alt: boolean;
 ```
 
-Defined in: [types.ts:273](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L273)
+Defined in: [types.ts:332](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L332)
 
 Whether the Alt key is required
 
@@ -45,7 +45,7 @@ Whether the Alt key is required
 ctrl: boolean;
 ```
 
-Defined in: [types.ts:269](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L269)
+Defined in: [types.ts:328](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L328)
 
 Whether the Control key is required
 
@@ -57,7 +57,7 @@ Whether the Control key is required
 key: Key | string & object;
 ```
 
-Defined in: [types.ts:267](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L267)
+Defined in: [types.ts:326](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L326)
 
 The non-modifier key (e.g., 'S', 'Escape', 'F1', '/', '['). Can be any string for flexibility.
 
@@ -69,7 +69,7 @@ The non-modifier key (e.g., 'S', 'Escape', 'F1', '/', '['). Can be any string fo
 meta: boolean;
 ```
 
-Defined in: [types.ts:275](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L275)
+Defined in: [types.ts:334](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L334)
 
 Whether the Meta (Command) key is required
 
@@ -81,7 +81,7 @@ Whether the Meta (Command) key is required
 modifiers: CanonicalModifier[];
 ```
 
-Defined in: [types.ts:277](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L277)
+Defined in: [types.ts:336](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L336)
 
 List of canonical modifier names that are required, in canonical order
 
@@ -93,6 +93,6 @@ List of canonical modifier names that are required, in canonical order
 shift: boolean;
 ```
 
-Defined in: [types.ts:271](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L271)
+Defined in: [types.ts:330](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L330)
 
 Whether the Shift key is required

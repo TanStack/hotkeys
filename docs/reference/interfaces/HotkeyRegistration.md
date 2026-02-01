@@ -5,7 +5,7 @@ title: HotkeyRegistration
 
 # Interface: HotkeyRegistration
 
-Defined in: [types.ts:386](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L386)
+Defined in: [types.ts:445](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L445)
 
 A registered hotkey handler in the HotkeyManager.
 
@@ -17,7 +17,7 @@ A registered hotkey handler in the HotkeyManager.
 callback: HotkeyCallback;
 ```
 
-Defined in: [types.ts:394](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L394)
+Defined in: [types.ts:453](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L453)
 
 The callback to invoke
 
@@ -29,7 +29,7 @@ The callback to invoke
 hasFired: boolean;
 ```
 
-Defined in: [types.ts:398](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L398)
+Defined in: [types.ts:457](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L457)
 
 Whether this registration has fired and needs reset (for requireReset)
 
@@ -41,7 +41,7 @@ Whether this registration has fired and needs reset (for requireReset)
 hotkey: Hotkey;
 ```
 
-Defined in: [types.ts:390](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L390)
+Defined in: [types.ts:449](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L449)
 
 The original hotkey string
 
@@ -53,7 +53,7 @@ The original hotkey string
 id: string;
 ```
 
-Defined in: [types.ts:388](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L388)
+Defined in: [types.ts:447](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L447)
 
 Unique identifier for this registration
 
@@ -65,7 +65,7 @@ Unique identifier for this registration
 options: HotkeyOptions;
 ```
 
-Defined in: [types.ts:396](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L396)
+Defined in: [types.ts:455](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L455)
 
 Options for this registration
 
@@ -77,6 +77,6 @@ Options for this registration
 parsedHotkey: ParsedHotkey;
 ```
 
-Defined in: [types.ts:392](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L392)
+Defined in: [types.ts:451](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L451)
 
 The parsed hotkey

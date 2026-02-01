@@ -177,11 +177,11 @@ export type HeldKey = CanonicalModifier | Key
  * Single modifier + key combinations.
  * Uses canonical modifiers (4) + Mod (1) = 5 modifiers.
  * Shift combinations exclude PunctuationKey to avoid layout-dependent issues.
- * 
+ *
  * The `Mod` modifier is platform-adaptive:
  * - **macOS**: Resolves to `Meta` (Command key ⌘)
  * - **Windows/Linux**: Resolves to `Control` (Ctrl key)
- * 
+ *
  * This enables cross-platform hotkey definitions that automatically adapt to the platform.
  * For example, `Mod+S` becomes `Command+S` on Mac and `Ctrl+S` on Windows/Linux.
  */
@@ -234,7 +234,7 @@ type ThreeModifierHotkey =
  * Shift combinations exclude Numbers and PunctuationKeys to avoid layout-dependent issues.
  *
  * Only the canonical `Control+Alt+Shift+Meta` combination is included.
- * 
+ *
  * **Why no `Mod` combinations?**
  * Since `Mod` resolves to either `Control` (Windows/Linux) or `Meta` (macOS), any
  * four-modifier combination with `Mod` would create duplicate modifiers on one platform.
