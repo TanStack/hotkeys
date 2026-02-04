@@ -1,7 +1,9 @@
+// @vitest-environment happy-dom
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
-import { renderHook } from '@testing-library/react'
+import { renderHook, act } from '@testing-library/react'
 import { HotkeyManager } from '@tanstack/keys'
 import { useHotkey } from '../src/useHotkey'
+import { useState, useRef } from 'react'
 
 describe('useHotkey', () => {
   // Reset the HotkeyManager singleton between tests
@@ -43,19 +45,6 @@ describe('useHotkey', () => {
     )
 
     removeEventListenerSpy.mockRestore()
-  })
-
-  it('should not register handler when disabled', () => {
-    const callback = vi.fn()
-    const addEventListenerSpy = vi.spyOn(document, 'addEventListener')
-
-    renderHook(() =>
-      useHotkey('Mod+S', callback, { platform: 'mac', enabled: false }),
-    )
-
-    expect(addEventListenerSpy).not.toHaveBeenCalled()
-
-    addEventListenerSpy.mockRestore()
   })
 
   it('should call callback when hotkey matches', () => {
@@ -102,5 +91,141 @@ describe('useHotkey', () => {
     )
 
     addEventListenerSpy.mockRestore()
+  })
+
+  describe('stale closure prevention', () => {
+    it('should have access to latest state values in callback', () => {
+      // This tests that the callback is synced on every render to avoid stale closures
+      const capturedValues: Array<number> = []
+
+      const { result, rerender } = renderHook(() => {
+        const [count, setCount] = useState(0)
+
+        useHotkey(
+          'Mod+S',
+          () => {
+            capturedValues.push(count)
+          },
+          { platform: 'mac' },
+        )
+
+        return { count, setCount }
+      })
+
+      // Trigger hotkey - should capture count = 0
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', {
+          key: 's',
+          metaKey: true,
+          bubbles: true,
+        }),
+      )
+      expect(capturedValues).toEqual([0])
+
+      // Update state
+      act(() => {
+        result.current.setCount(5)
+      })
+
+      // Rerender to sync the callback
+      rerender()
+
+      // Trigger hotkey again - should capture count = 5 (not stale 0)
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', {
+          key: 's',
+          metaKey: true,
+          bubbles: true,
+        }),
+      )
+      expect(capturedValues).toEqual([0, 5])
+
+      // Update state again
+      act(() => {
+        result.current.setCount(10)
+      })
+
+      rerender()
+
+      // Trigger again - should capture count = 10
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', {
+          key: 's',
+          metaKey: true,
+          bubbles: true,
+        }),
+      )
+      expect(capturedValues).toEqual([0, 5, 10])
+    })
+
+    it('should sync enabled option on every render', () => {
+      const callback = vi.fn()
+
+      const { rerender } = renderHook(
+        ({ enabled }: { enabled: boolean }) =>
+          useHotkey('Mod+S', callback, { platform: 'mac', enabled }),
+        { initialProps: { enabled: true } },
+      )
+
+      // Should fire when enabled
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', {
+          key: 's',
+          metaKey: true,
+          bubbles: true,
+        }),
+      )
+      expect(callback).toHaveBeenCalledTimes(1)
+
+      // Disable the hotkey
+      rerender({ enabled: false })
+
+      // Should not fire when disabled
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', {
+          key: 's',
+          metaKey: true,
+          bubbles: true,
+        }),
+      )
+      expect(callback).toHaveBeenCalledTimes(1) // unchanged
+
+      // Re-enable
+      rerender({ enabled: true })
+
+      // Should fire again
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', {
+          key: 's',
+          metaKey: true,
+          bubbles: true,
+        }),
+      )
+      expect(callback).toHaveBeenCalledTimes(2)
+    })
+  })
+
+  describe('target handling', () => {
+    it('should wait for ref to be attached', () => {
+      const callback = vi.fn()
+
+      renderHook(() => {
+        const ref = useRef<HTMLDivElement | null>(null)
+        useHotkey('Mod+S', callback, { target: ref, platform: 'mac' })
+        return ref
+      })
+
+      // Trigger on document - should not fire (target is ref, not document)
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', {
+          key: 's',
+          metaKey: true,
+          bubbles: true,
+        }),
+      )
+
+      // Callback should not have been called (ref.current is null)
+      expect(callback).not.toHaveBeenCalled()
+    })
   })
 })

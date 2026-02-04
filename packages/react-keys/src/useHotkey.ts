@@ -1,23 +1,25 @@
 import { useEffect, useRef } from 'react'
-import { getHotkeyManager } from '@tanstack/keys'
+import { formatHotkey, getHotkeyManager } from '@tanstack/keys'
 import type {
   Hotkey,
   HotkeyCallback,
   HotkeyOptions,
+  HotkeyRegistrationHandle,
   ParsedHotkey,
 } from '@tanstack/keys'
 
-export interface UseHotkeyOptions extends Omit<HotkeyOptions, 'enabled' | 'target'> {
-  /** Whether the hotkey is enabled. Defaults to true. */
-  enabled?: boolean
-  /** The DOM element or React ref to attach the event listener to. Defaults to document. */
+export interface UseHotkeyOptions extends Omit<HotkeyOptions, 'target'> {
+  /**
+   * The DOM element to attach the event listener to.
+   * Can be a React ref, direct DOM element, or null.
+   * Defaults to document.
+   */
   target?:
   | React.RefObject<HTMLElement | null>
   | HTMLElement
   | Document
   | Window
   | null
-  | undefined
 }
 
 /**
@@ -27,26 +29,34 @@ export interface UseHotkeyOptions extends Omit<HotkeyOptions, 'enabled' | 'targe
  * The callback receives both the keyboard event and a context object
  * containing the hotkey string and parsed hotkey.
  *
- * @param hotkey - The hotkey string (e.g., 'Mod+S', 'Escape')
+ * This hook syncs the callback and options on every render to avoid
+ * stale closures, similar to TanStack Pacer's pattern. This means
+ * callbacks that reference React state will always have access to
+ * the latest values.
+ *
+ * @param hotkey - The hotkey string (e.g., 'Mod+S', 'Escape') or ParsedHotkey object
  * @param callback - The function to call when the hotkey is pressed
  * @param options - Options for the hotkey behavior
  *
  * @example
  * ```tsx
  * function SaveButton() {
- *   useHotkey('Mod+S', (event, { hotkey, parsedHotkey }) => {
- *     console.log(`${hotkey} was pressed`)
+ *   const [count, setCount] = useState(0)
+ *
+ *   // Callback always has access to latest count value
+ *   useHotkey('Mod+S', (event, { hotkey }) => {
+ *     console.log(`Save triggered, count is ${count}`)
  *     handleSave()
  *   }, { preventDefault: true })
  *
- *   return <button>Save</button>
+ *   return <button onClick={() => setCount(c => c + 1)}>Count: {count}</button>
  * }
  * ```
  *
  * @example
  * ```tsx
  * function Modal({ isOpen, onClose }) {
- *   // Only active when modal is open
+ *   // enabled option is synced on every render
  *   useHotkey('Escape', () => {
  *     onClose()
  *   }, { enabled: isOpen })
@@ -59,12 +69,14 @@ export interface UseHotkeyOptions extends Omit<HotkeyOptions, 'enabled' | 'targe
  * @example
  * ```tsx
  * function Editor() {
- *   // Prevent repeated triggering while holding
+ *   const editorRef = useRef<HTMLDivElement>(null)
+ *
+ *   // Scoped to a specific element
  *   useHotkey('Mod+S', () => {
  *     save()
- *   }, { preventDefault: true, requireReset: true })
+ *   }, { target: editorRef, preventDefault: true })
  *
- *   return <div>...</div>
+ *   return <div ref={editorRef}>...</div>
  * }
  * ```
  */
@@ -73,147 +85,96 @@ export function useHotkey(
   callback: HotkeyCallback,
   options: UseHotkeyOptions = {},
 ): void {
-  const { enabled = true, ...hotkeyOptions } = options
+  const manager = getHotkeyManager()
 
-  // Extract options for stable dependencies
-  const {
-    preventDefault,
-    stopPropagation,
-    platform,
-    eventType,
-    requireReset,
-    ignoreInputs,
-    target,
-  } = hotkeyOptions
+  // Stable ref for registration handle
+  const registrationRef = useRef<HotkeyRegistrationHandle | null>(null)
 
-  // Use refs to keep callback and hotkey stable across renders
+  // Refs to capture current values for use in effect without adding dependencies
+  // This follows TanStack Pacer's pattern - values are synced on every render
   const callbackRef = useRef(callback)
+  const optionsRef = useRef(options)
+  const managerRef = useRef(manager)
+
+  // Update refs on every render
   callbackRef.current = callback
+  optionsRef.current = options
+  managerRef.current = manager
 
-  const hotkeyRef = useRef(hotkey)
-  hotkeyRef.current = hotkey
+  // Track previous target and hotkey to detect changes requiring re-registration
+  const prevTargetRef = useRef<HTMLElement | Document | Window | null>(null)
+  const prevHotkeyRef = useRef<string | null>(null)
 
-  // Serialize hotkey for dependency comparison
-  const hotkeyKey = typeof hotkey === 'string' ? hotkey : JSON.stringify(hotkey)
+  // Resolve target - unwrap React refs
+  const resolvedTarget = isRef(options.target)
+    ? options.target.current
+    : (options.target ?? (typeof document !== 'undefined' ? document : null))
 
-  // Resolve target for dependency tracking
-  // For refs, we need to check current value, but we can't put ref.current in deps directly
-  // So we'll resolve it inside the effect and track the resolved value
-  const targetRef = useRef(target)
-  targetRef.current = target
+  // Format hotkey string
+  const hotkeyString: Hotkey =
+    typeof hotkey === 'string' ? hotkey : (formatHotkey(hotkey) as Hotkey)
 
-  // Track resolved target to detect when ref.current changes
-  const resolvedTargetRef = useRef<HTMLElement | Document | Window | null>(
-    null,
-  )
+  // Extract options without target (target is handled separately)
+  const { target: _target, ...optionsWithoutTarget } = options
 
   useEffect(() => {
-    if (!enabled) {
-      return
-    }
-
-    // Resolve target: handle refs, elements, or default to document
-    let resolvedTarget: HTMLElement | Document | Window | null = null
-
-    const currentTarget = targetRef.current
-
-    if (currentTarget) {
-      // Check if it's a React ref
-      if (
-        typeof currentTarget === 'object' &&
-        'current' in currentTarget &&
-        currentTarget.current !== null &&
-        currentTarget.current instanceof HTMLElement
-      ) {
-        resolvedTarget = currentTarget.current
-      } else if (
-        currentTarget instanceof HTMLElement ||
-        currentTarget === document ||
-        currentTarget === window
-      ) {
-        // It's already a DOM element
-        resolvedTarget = currentTarget
-      }
-    }
-
-    // Default to document if no target provided or ref is null
-    if (!resolvedTarget && typeof document !== 'undefined') {
-      resolvedTarget = document
-    }
-
-    // Skip if target is still null (SSR)
+    // Skip if no valid target (ref not attached yet, or SSR)
     if (!resolvedTarget) {
       return
     }
 
-    // Check if target has changed (important for refs)
-    const previousTarget = resolvedTargetRef.current
-    if (previousTarget === resolvedTarget) {
-      // Target hasn't changed, but we still need to re-register if other deps changed
-      // This will be handled by the unregister/register cycle below
+    // Check if we need to re-register (target or hotkey changed)
+    const targetChanged =
+      prevTargetRef.current !== null && prevTargetRef.current !== resolvedTarget
+    const hotkeyChanged =
+      prevHotkeyRef.current !== null && prevHotkeyRef.current !== hotkeyString
+
+    // If we have an active registration and target/hotkey changed, unregister first
+    if (registrationRef.current?.isActive && (targetChanged || hotkeyChanged)) {
+      registrationRef.current.unregister()
+      registrationRef.current = null
     }
 
-    const hotkeyValue = hotkeyRef.current
-    const hotkeyString: Hotkey =
-      typeof hotkeyValue === 'string'
-        ? hotkeyValue
-        : formatParsedHotkey(hotkeyValue)
+    // Register if needed (no active registration)
+    // Use refs to access current values without adding them to dependencies
+    if (!registrationRef.current || !registrationRef.current.isActive) {
+      registrationRef.current = managerRef.current.register(
+        hotkeyString,
+        callbackRef.current,
+        {
+          ...optionsRef.current,
+          target: resolvedTarget,
+        },
+      )
+    }
 
-    const manager = getHotkeyManager()
+    // Update tracking refs
+    prevTargetRef.current = resolvedTarget
+    prevHotkeyRef.current = hotkeyString
 
-    // Build options object, only including defined values to avoid
-    // overwriting manager defaults with undefined
-    const registerOptions: HotkeyOptions = {
-      enabled: true,
-      target: resolvedTarget,
-    } as HotkeyOptions
-    if (preventDefault !== undefined)
-      registerOptions.preventDefault = preventDefault
-    if (stopPropagation !== undefined)
-      registerOptions.stopPropagation = stopPropagation
-    if (platform !== undefined) registerOptions.platform = platform
-    if (eventType !== undefined) registerOptions.eventType = eventType
-    if (requireReset !== undefined) registerOptions.requireReset = requireReset
-    if (ignoreInputs !== undefined) registerOptions.ignoreInputs = ignoreInputs
+    // Cleanup on unmount
+    return () => {
+      if (registrationRef.current?.isActive) {
+        registrationRef.current.unregister()
+        registrationRef.current = null
+      }
+    }
+  }, [resolvedTarget, hotkeyString])
 
-    const unregister = manager.register(
-      hotkeyString,
-      (event, context) => callbackRef.current(event, context),
-      registerOptions,
-    )
-
-    // Track the resolved target
-    resolvedTargetRef.current = resolvedTarget
-
-    return unregister
-  }, [
-    enabled,
-    preventDefault,
-    stopPropagation,
-    platform,
-    eventType,
-    requireReset,
-    ignoreInputs,
-    hotkeyKey,
-    // Note: For refs, changes to ref.current won't trigger this effect.
-    // This is a React limitation - refs don't trigger re-renders.
-    // Users should ensure their component re-renders when ref.current changes
-    // if they need the hotkey to update (e.g., by using state).
-    target,
-  ])
+  // Sync callback and options on EVERY render (outside useEffect)
+  // This avoids stale closures - the callback always has access to latest state
+  // Similar to TanStack Pacer's pattern: debouncer.fn = fn; debouncer.setOptions(options)
+  if (registrationRef.current?.isActive) {
+    registrationRef.current.callback = callback
+    registrationRef.current.setOptions(optionsWithoutTarget)
+  }
 }
 
 /**
- * Formats a ParsedHotkey back to a hotkey string.
+ * Type guard to check if a value is a React ref-like object.
  */
-function formatParsedHotkey(parsed: ParsedHotkey): Hotkey {
-  const parts: Array<string> = []
-
-  if (parsed.ctrl) parts.push('Control')
-  if (parsed.alt) parts.push('Alt')
-  if (parsed.shift) parts.push('Shift')
-  if (parsed.meta) parts.push('Meta')
-  parts.push(parsed.key)
-
-  return parts.join('+') as Hotkey
+function isRef(
+  value: unknown,
+): value is React.RefObject<HTMLElement | null> {
+  return value !== null && typeof value === 'object' && 'current' in value
 }

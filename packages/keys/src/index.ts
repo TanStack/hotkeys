@@ -30,6 +30,7 @@ export type {
   SequenceOptions,
   // Registration types
   HotkeyRegistration,
+  HotkeyRegistrationHandle,
 } from './types'
 
 // =============================================================================

@@ -462,3 +462,52 @@ export interface HotkeyRegistration {
   /** The resolved target element for this registration */
   target: HTMLElement | Document | Window
 }
+
+/**
+ * A handle returned from HotkeyManager.register() that allows updating
+ * the callback and options without re-registering the hotkey.
+ *
+ * This pattern is similar to TanStack Pacer's Debouncer, where the function
+ * and options can be synced on every render to avoid stale closures.
+ *
+ * @example
+ * ```ts
+ * const handle = manager.register('Mod+S', callback, options)
+ *
+ * // Update callback without re-registering (avoids stale closures)
+ * handle.callback = newCallback
+ *
+ * // Update options without re-registering
+ * handle.setOptions({ enabled: false })
+ *
+ * // Check if still active
+ * if (handle.isActive) {
+ *   // ...
+ * }
+ *
+ * // Unregister when done
+ * handle.unregister()
+ * ```
+ */
+export interface HotkeyRegistrationHandle {
+  /** Unique identifier for this registration */
+  readonly id: string
+
+  /** Unregister this hotkey */
+  unregister: () => void
+
+  /**
+   * The callback function. Can be set directly to update without re-registering.
+   * This avoids stale closures when the callback references React state.
+   */
+  callback: HotkeyCallback
+
+  /**
+   * Update options (merged with existing options).
+   * Useful for updating `enabled`, `preventDefault`, etc. without re-registering.
+   */
+  setOptions: (options: Partial<HotkeyOptions>) => void
+
+  /** Check if this registration is still active (not unregistered) */
+  readonly isActive: boolean
+}

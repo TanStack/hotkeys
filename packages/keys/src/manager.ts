@@ -7,7 +7,23 @@ import type {
   HotkeyCallbackContext,
   HotkeyOptions,
   HotkeyRegistration,
+  HotkeyRegistrationHandle,
 } from './types'
+
+/**
+ * Default options for hotkey registration.
+ */
+const defaultHotkeyOptions: Omit<
+  Required<HotkeyOptions>,
+  'platform' | 'target'
+> = {
+  preventDefault: false,
+  stopPropagation: false,
+  eventType: 'keydown',
+  requireReset: false,
+  enabled: true,
+  ignoreInputs: true,
+}
 
 let registrationIdCounter = 0
 
@@ -79,18 +95,35 @@ export class HotkeyManager {
   }
 
   /**
-   * Registers a hotkey handler.
+   * Registers a hotkey handler and returns a handle for updating the registration.
+   *
+   * The returned handle allows updating the callback and options without
+   * re-registering, which is useful for avoiding stale closures in React.
    *
    * @param hotkey - The hotkey string to listen for
    * @param callback - The function to call when the hotkey is pressed
    * @param options - Options for the hotkey behavior
-   * @returns A function to unregister the hotkey
+   * @returns A handle for managing the registration
+   *
+   * @example
+   * ```ts
+   * const handle = manager.register('Mod+S', callback, { preventDefault: true })
+   *
+   * // Update callback without re-registering (avoids stale closures)
+   * handle.callback = newCallback
+   *
+   * // Update options
+   * handle.setOptions({ enabled: false })
+   *
+   * // Unregister when done
+   * handle.unregister()
+   * ```
    */
   register(
     hotkey: Hotkey,
     callback: HotkeyCallback,
     options: HotkeyOptions = {},
-  ): () => void {
+  ): HotkeyRegistrationHandle {
     const id = generateId()
     const platform = options.platform ?? this.platform
     const parsedHotkey = parseHotkey(hotkey, platform)
@@ -105,12 +138,7 @@ export class HotkeyManager {
       parsedHotkey,
       callback,
       options: {
-        preventDefault: false,
-        stopPropagation: false,
-        eventType: 'keydown',
-        requireReset: false,
-        enabled: true,
-        ignoreInputs: true,
+        ...defaultHotkeyOptions,
         ...options,
         platform,
       },
@@ -129,9 +157,37 @@ export class HotkeyManager {
     // Ensure listeners are attached for this target
     this.ensureListenersForTarget(target)
 
-    return () => {
-      this.unregister(id)
+    // Create and return the handle
+    const manager = this
+    const handle: HotkeyRegistrationHandle = {
+      get id() {
+        return id
+      },
+      unregister: () => {
+        manager.unregister(id)
+      },
+      get callback() {
+        const reg = manager.registrations.get(id)
+        return reg?.callback ?? callback
+      },
+      set callback(newCallback: HotkeyCallback) {
+        const reg = manager.registrations.get(id)
+        if (reg) {
+          reg.callback = newCallback
+        }
+      },
+      setOptions: (newOptions: Partial<HotkeyOptions>) => {
+        const reg = manager.registrations.get(id)
+        if (reg) {
+          reg.options = { ...reg.options, ...newOptions }
+        }
+      },
+      get isActive() {
+        return manager.registrations.has(id)
+      },
     }
+
+    return handle
   }
 
   /**
@@ -443,11 +499,18 @@ export class HotkeyManager {
 
   /**
    * Checks if a specific hotkey is registered.
+   *
+   * @param hotkey - The hotkey string to check
+   * @param target - Optional target element to match (if provided, both hotkey and target must match)
+   * @returns True if a matching registration exists
    */
-  isRegistered(hotkey: Hotkey): boolean {
+  isRegistered(hotkey: Hotkey, target?: HTMLElement | Document | Window): boolean {
     for (const registration of this.registrations.values()) {
       if (registration.hotkey === hotkey) {
-        return true
+        // If target is specified, both must match
+        if (target === undefined || registration.target === target) {
+          return true
+        }
       }
     }
     return false

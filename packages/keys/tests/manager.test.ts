@@ -63,10 +63,10 @@ describe('HotkeyManager', () => {
       const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
-      const unregister = manager.register('Mod+S', callback)
+      const handle = manager.register('Mod+S', callback)
       expect(manager.getRegistrationCount()).toBe(1)
 
-      unregister()
+      handle.unregister()
       expect(manager.getRegistrationCount()).toBe(0)
       expect(manager.isRegistered('Mod+S')).toBe(false)
     })
@@ -80,6 +80,150 @@ describe('HotkeyManager', () => {
       manager.register('Mod+Z', callback2)
 
       expect(manager.getRegistrationCount()).toBe(2)
+    })
+  })
+
+  describe('HotkeyRegistrationHandle', () => {
+    it('should return a handle with id', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      const handle = manager.register('Mod+S', callback)
+
+      expect(handle.id).toBeDefined()
+      expect(typeof handle.id).toBe('string')
+    })
+
+    it('should allow updating callback via handle.callback', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback1 = vi.fn()
+      const callback2 = vi.fn()
+
+      const handle = manager.register('Mod+S', callback1, { platform: 'mac' })
+
+      // Trigger with first callback
+      const event1 = createKeyboardEvent('keydown', 's', { metaKey: true })
+      document.dispatchEvent(event1)
+      expect(callback1).toHaveBeenCalledTimes(1)
+      expect(callback2).not.toHaveBeenCalled()
+
+      // Update callback
+      handle.callback = callback2
+
+      // Trigger again - should call new callback
+      const event2 = createKeyboardEvent('keydown', 's', { metaKey: true })
+      document.dispatchEvent(event2)
+      expect(callback1).toHaveBeenCalledTimes(1) // unchanged
+      expect(callback2).toHaveBeenCalledTimes(1) // now called
+    })
+
+    it('should allow updating options via handle.setOptions', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      const handle = manager.register('Mod+S', callback, { platform: 'mac' })
+
+      // Should trigger initially
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 's', { metaKey: true }),
+      )
+      expect(callback).toHaveBeenCalledTimes(1)
+
+      // Disable via setOptions
+      handle.setOptions({ enabled: false })
+
+      // Should not trigger when disabled
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 's', { metaKey: true }),
+      )
+      expect(callback).toHaveBeenCalledTimes(1) // unchanged
+
+      // Re-enable
+      handle.setOptions({ enabled: true })
+
+      // Should trigger again
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 's', { metaKey: true }),
+      )
+      expect(callback).toHaveBeenCalledTimes(2)
+    })
+
+    it('should report isActive correctly', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      const handle = manager.register('Mod+S', callback)
+
+      expect(handle.isActive).toBe(true)
+
+      handle.unregister()
+
+      expect(handle.isActive).toBe(false)
+    })
+
+    it('should safely handle operations after unregister', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback1 = vi.fn()
+      const callback2 = vi.fn()
+
+      const handle = manager.register('Mod+S', callback1, { platform: 'mac' })
+      handle.unregister()
+
+      // These should not throw
+      expect(() => {
+        handle.callback = callback2
+      }).not.toThrow()
+      expect(() => {
+        handle.setOptions({ enabled: false })
+      }).not.toThrow()
+      expect(() => {
+        handle.unregister()
+      }).not.toThrow()
+    })
+
+    it('should get current callback via handle.callback getter', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      const handle = manager.register('Mod+S', callback)
+
+      expect(handle.callback).toBe(callback)
+
+      const newCallback = vi.fn()
+      handle.callback = newCallback
+      expect(handle.callback).toBe(newCallback)
+    })
+  })
+
+  describe('isRegistered with target', () => {
+    it('should check registration with specific target', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+      const div = document.createElement('div')
+      document.body.appendChild(div)
+
+      manager.register('Mod+S', callback, { target: div })
+
+      expect(manager.isRegistered('Mod+S')).toBe(true)
+      expect(manager.isRegistered('Mod+S', div)).toBe(true)
+      expect(manager.isRegistered('Mod+S', document)).toBe(false)
+
+      document.body.removeChild(div)
+    })
+
+    it('should return true without target if any registration exists', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+      const div = document.createElement('div')
+      document.body.appendChild(div)
+
+      manager.register('Mod+S', callback, { target: div })
+
+      // Without target, should return true if hotkey is registered anywhere
+      expect(manager.isRegistered('Mod+S')).toBe(true)
+      expect(manager.isRegistered('Mod+Z')).toBe(false)
+
+      document.body.removeChild(div)
     })
   })
 
