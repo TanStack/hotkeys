@@ -145,4 +145,29 @@ describe('checkHotkey', () => {
 
     errorSpy.mockRestore()
   })
+
+  it('should not log warnings when silent option is true', () => {
+    const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
+
+    checkHotkey('Alt+C', { silent: true })
+
+    expect(warnSpy).not.toHaveBeenCalled()
+
+    warnSpy.mockRestore()
+  })
+
+  it('should not log errors when silent option is true', () => {
+    const errorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
+
+    checkHotkey('', { silent: true })
+
+    expect(errorSpy).not.toHaveBeenCalled()
+
+    errorSpy.mockRestore()
+  })
+
+  it('should still return correct validation result when silent', () => {
+    expect(checkHotkey('Control+A', { silent: true })).toBe(true)
+    expect(checkHotkey('', { silent: true })).toBe(false)
+  })
 })

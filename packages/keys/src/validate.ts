@@ -202,6 +202,8 @@ export function assertValidHotkey(hotkey: Hotkey | (string & {})): void {
  * Useful for development-time feedback.
  *
  * @param hotkey - The hotkey string to validate
+ * @param options - Optional configuration
+ * @param options.silent - If true, suppresses console output (default: false)
  * @returns True if the hotkey is valid (may still have warnings)
  *
  * @example
@@ -209,17 +211,26 @@ export function assertValidHotkey(hotkey: Hotkey | (string & {})): void {
  * checkHotkey('Alt+C')
  * // Console: Warning: Alt+C may not work reliably on macOS...
  * // Returns: true
+ *
+ * checkHotkey('Alt+C', { silent: true })
+ * // No console output
+ * // Returns: true
  * ```
  */
-export function checkHotkey(hotkey: Hotkey | (string & {})): boolean {
+export function checkHotkey(
+  hotkey: Hotkey | (string & {}),
+  options?: { silent?: boolean },
+): boolean {
   const result = validateHotkey(hotkey)
 
-  if (result.errors.length > 0) {
-    console.error(`Hotkey '${hotkey}' errors:`, result.errors.join('; '))
-  }
+  if (!options?.silent) {
+    if (result.errors.length > 0) {
+      console.error(`Hotkey '${hotkey}' errors:`, result.errors.join('; '))
+    }
 
-  if (result.warnings.length > 0) {
-    console.warn(`Hotkey '${hotkey}' warnings:`, result.warnings.join('; '))
+    if (result.warnings.length > 0) {
+      console.warn(`Hotkey '${hotkey}' warnings:`, result.warnings.join('; '))
+    }
   }
 
   return result.valid
