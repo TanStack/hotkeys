@@ -52,6 +52,7 @@ title: "@tanstack/keys"
 - [KEY\_DISPLAY\_SYMBOLS](variables/KEY_DISPLAY_SYMBOLS.md)
 - [LETTER\_KEYS](variables/LETTER_KEYS.md)
 - [MAC\_MODIFIER\_SYMBOLS](variables/MAC_MODIFIER_SYMBOLS.md)
+- [MODIFIER\_ALIASES](variables/MODIFIER_ALIASES.md)
 - [MODIFIER\_ORDER](variables/MODIFIER_ORDER.md)
 - [NAVIGATION\_KEYS](variables/NAVIGATION_KEYS.md)
 - [NUMBER\_KEYS](variables/NUMBER_KEYS.md)
@@ -82,4 +83,5 @@ title: "@tanstack/keys"
 - [normalizeKeyName](functions/normalizeKeyName.md)
 - [parseHotkey](functions/parseHotkey.md)
 - [parseKeyboardEvent](functions/parseKeyboardEvent.md)
+- [resolveModifier](functions/resolveModifier.md)
 - [validateHotkey](functions/validateHotkey.md)

@@ -9,7 +9,7 @@ title: KeyStateListener
 type KeyStateListener = (keys) => void;
 ```
 
-Defined in: [key-state.ts:27](https://github.com/TanStack/keys/blob/main/packages/keys/src/key-state.ts#L27)
+Defined in: [key-state-tracker.ts:27](https://github.com/TanStack/keys/blob/main/packages/keys/src/key-state-tracker.ts#L27)
 
 Listener function type for key state changes.
 

@@ -9,6 +9,6 @@ title: CanonicalModifier
 type CanonicalModifier = "Control" | "Shift" | "Alt" | "Meta";
 ```
 
-Defined in: [types.ts:27](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L27)
+Defined in: [hotkey.ts:23](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey.ts#L23)
 
 Canonical modifier names that map to KeyboardEvent properties.

@@ -35,6 +35,6 @@ type LetterKey =
   | "Z";
 ```
 
-Defined in: [types.ts:36](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L36)
+Defined in: [hotkey.ts:28](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey.ts#L28)
 
 Letter keys A-Z (case-insensitive in matching).

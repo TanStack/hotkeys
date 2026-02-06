@@ -6,7 +6,7 @@ import {
   isModifierKey,
   keyboardEventToHotkey,
 } from './parse'
-import type { Hotkey } from './types'
+import type { Hotkey } from './hotkey'
 
 /**
  * State interface for the HotkeyRecorder.
@@ -163,7 +163,9 @@ export class HotkeyRecorder {
       // Validate: must have at least one non-modifier key
       if (hasNonModifierKey(finalHotkey, this.#platform)) {
         // Remove listener FIRST to prevent any additional events
-        const handlerToRemove = this.#keydownHandler as ((event: KeyboardEvent) => void) | null
+        const handlerToRemove = this.#keydownHandler as
+          | ((event: KeyboardEvent) => void)
+          | null
         if (handlerToRemove) {
           this.#removeListener(handlerToRemove)
           this.#keydownHandler = null

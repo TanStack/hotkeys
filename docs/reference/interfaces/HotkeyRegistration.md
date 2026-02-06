@@ -5,7 +5,7 @@ title: HotkeyRegistration
 
 # Interface: HotkeyRegistration
 
-Defined in: [types.ts:449](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L449)
+Defined in: [hotkey-manager.ts:36](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L36)
 
 A registered hotkey handler in the HotkeyManager.
 
@@ -17,7 +17,7 @@ A registered hotkey handler in the HotkeyManager.
 callback: HotkeyCallback;
 ```
 
-Defined in: [types.ts:457](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L457)
+Defined in: [hotkey-manager.ts:44](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L44)
 
 The callback to invoke
 
@@ -29,7 +29,7 @@ The callback to invoke
 hasFired: boolean;
 ```
 
-Defined in: [types.ts:461](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L461)
+Defined in: [hotkey-manager.ts:48](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L48)
 
 Whether this registration has fired and needs reset (for requireReset)
 
@@ -41,7 +41,7 @@ Whether this registration has fired and needs reset (for requireReset)
 hotkey: Hotkey;
 ```
 
-Defined in: [types.ts:453](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L453)
+Defined in: [hotkey-manager.ts:40](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L40)
 
 The original hotkey string
 
@@ -53,7 +53,7 @@ The original hotkey string
 id: string;
 ```
 
-Defined in: [types.ts:451](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L451)
+Defined in: [hotkey-manager.ts:38](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L38)
 
 Unique identifier for this registration
 
@@ -65,7 +65,7 @@ Unique identifier for this registration
 options: HotkeyOptions;
 ```
 
-Defined in: [types.ts:459](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L459)
+Defined in: [hotkey-manager.ts:46](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L46)
 
 Options for this registration
 
@@ -77,7 +77,7 @@ Options for this registration
 parsedHotkey: ParsedHotkey;
 ```
 
-Defined in: [types.ts:455](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L455)
+Defined in: [hotkey-manager.ts:42](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L42)
 
 The parsed hotkey
 
@@ -86,9 +86,9 @@ The parsed hotkey
 ### target
 
 ```ts
-target: HTMLElement | Document | Window;
+target: Document | Window | HTMLElement;
 ```
 
-Defined in: [types.ts:463](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L463)
+Defined in: [hotkey-manager.ts:50](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L50)
 
 The resolved target element for this registration

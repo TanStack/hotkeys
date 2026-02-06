@@ -87,7 +87,7 @@ Use this to subscribe to state changes or access current state.
 cancel(): void;
 ```
 
-Defined in: [recorder.ts:212](https://github.com/TanStack/keys/blob/main/packages/keys/src/recorder.ts#L212)
+Defined in: [recorder.ts:214](https://github.com/TanStack/keys/blob/main/packages/keys/src/recorder.ts#L214)
 
 Cancel recording without saving.
 
@@ -106,7 +106,7 @@ the onCancel callback if provided.
 destroy(): void;
 ```
 
-Defined in: [recorder.ts:257](https://github.com/TanStack/keys/blob/main/packages/keys/src/recorder.ts#L257)
+Defined in: [recorder.ts:259](https://github.com/TanStack/keys/blob/main/packages/keys/src/recorder.ts#L259)
 
 Clean up event listeners and reset state.
 
@@ -168,7 +168,7 @@ a valid hotkey is recorded, Escape is pressed, or stop/cancel is called.
 stop(): void;
 ```
 
-Defined in: [recorder.ts:192](https://github.com/TanStack/keys/blob/main/packages/keys/src/recorder.ts#L192)
+Defined in: [recorder.ts:194](https://github.com/TanStack/keys/blob/main/packages/keys/src/recorder.ts#L194)
 
 Stop recording (same as cancel, but doesn't call onCancel).
 

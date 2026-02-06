@@ -5,7 +5,7 @@ title: HotkeyRegistrationHandle
 
 # Interface: HotkeyRegistrationHandle
 
-Defined in: [types.ts:492](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L492)
+Defined in: [hotkey-manager.ts:79](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L79)
 
 A handle returned from HotkeyManager.register() that allows updating
 the callback and options without re-registering the hotkey.
@@ -41,7 +41,7 @@ handle.unregister()
 callback: HotkeyCallback;
 ```
 
-Defined in: [types.ts:503](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L503)
+Defined in: [hotkey-manager.ts:90](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L90)
 
 The callback function. Can be set directly to update without re-registering.
 This avoids stale closures when the callback references React state.
@@ -54,7 +54,7 @@ This avoids stale closures when the callback references React state.
 readonly id: string;
 ```
 
-Defined in: [types.ts:494](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L494)
+Defined in: [hotkey-manager.ts:81](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L81)
 
 Unique identifier for this registration
 
@@ -66,7 +66,7 @@ Unique identifier for this registration
 readonly isActive: boolean;
 ```
 
-Defined in: [types.ts:512](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L512)
+Defined in: [hotkey-manager.ts:99](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L99)
 
 Check if this registration is still active (not unregistered)
 
@@ -78,7 +78,7 @@ Check if this registration is still active (not unregistered)
 setOptions: (options) => void;
 ```
 
-Defined in: [types.ts:509](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L509)
+Defined in: [hotkey-manager.ts:96](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L96)
 
 Update options (merged with existing options).
 Useful for updating `enabled`, `preventDefault`, etc. without re-registering.
@@ -101,7 +101,7 @@ Useful for updating `enabled`, `preventDefault`, etc. without re-registering.
 unregister: () => void;
 ```
 
-Defined in: [types.ts:497](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L497)
+Defined in: [hotkey-manager.ts:84](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L84)
 
 Unregister this hotkey
 

@@ -1,7 +1,3 @@
-// =============================================================================
-// Modifier Types
-// =============================================================================
-
 /**
  * All supported modifier key names, including aliases.
  * - Control/Ctrl: The Control key
@@ -25,10 +21,6 @@ export type Modifier =
  * Canonical modifier names that map to KeyboardEvent properties.
  */
 export type CanonicalModifier = 'Control' | 'Shift' | 'Alt' | 'Meta'
-
-// =============================================================================
-// Key Types
-// =============================================================================
 
 /**
  * Letter keys A-Z (case-insensitive in matching).
@@ -143,25 +135,17 @@ export type PunctuationKey =
  * Used in hotkey type definitions to prevent layout-dependent issues when Shift
  * is part of the modifier combination.
  */
-type ShiftUnaffectedKey = LetterKey | EditingKey | NavigationKey | FunctionKey
-
-/**
- * Keys whose value changes when Shift is pressed.
- * These keys produce different `KeyboardEvent.key` values when Shift is held.
- *
- * Examples:
- * - NumberKey: Shift+1 → '!' (on US layout)
- * - PunctuationKey: Shift+',' → '<' (on US layout)
- *
- * These keys are excluded from Shift-based hotkey combinations to avoid
- * layout-dependent behavior, but can be used with other modifiers (Control, Alt, Meta, Mod).
- */
-type ShiftAffectedKey = NumberKey | PunctuationKey
+type NonPunctuationKey =
+  | LetterKey
+  | NumberKey
+  | EditingKey
+  | NavigationKey
+  | FunctionKey
 
 /**
  * All supported non-modifier keys.
  */
-export type Key = ShiftUnaffectedKey | ShiftAffectedKey
+export type Key = NonPunctuationKey | PunctuationKey
 
 /**
  * Keys that can be tracked as "held" (pressed down).
@@ -188,7 +172,7 @@ export type HeldKey = CanonicalModifier | Key
 type SingleModifierHotkey =
   | `Control+${Key}`
   | `Alt+${Key}`
-  | `Shift+${ShiftUnaffectedKey}`
+  | `Shift+${NonPunctuationKey}`
   | `Meta+${Key}`
   | `Mod+${Key}`
 
@@ -204,13 +188,13 @@ type SingleModifierHotkey =
  */
 type TwoModifierHotkey =
   | `Control+Alt+${Key}`
-  | `Control+Shift+${ShiftUnaffectedKey}`
+  | `Control+Shift+${NonPunctuationKey}`
   | `Control+Meta+${Key}`
-  | `Alt+Shift+${ShiftUnaffectedKey}`
+  | `Alt+Shift+${NonPunctuationKey}`
   | `Alt+Meta+${Key}`
-  | `Shift+Meta+${ShiftUnaffectedKey}`
+  | `Shift+Meta+${NonPunctuationKey}`
   | `Mod+Alt+${Key}`
-  | `Mod+Shift+${ShiftUnaffectedKey}`
+  | `Mod+Shift+${NonPunctuationKey}`
 
 /**
  * Three modifier + key combinations.
@@ -223,11 +207,11 @@ type TwoModifierHotkey =
  *   - `Mod+Shift+Meta` duplicates `Meta` on macOS (Mod = Meta)
  */
 type ThreeModifierHotkey =
-  | `Control+Alt+Shift+${ShiftUnaffectedKey}`
+  | `Control+Alt+Shift+${NonPunctuationKey}`
   | `Control+Alt+Meta+${Key}`
-  | `Control+Shift+Meta+${ShiftUnaffectedKey}`
-  | `Alt+Shift+Meta+${ShiftUnaffectedKey}`
-  | `Mod+Alt+Shift+${ShiftUnaffectedKey}`
+  | `Control+Shift+Meta+${NonPunctuationKey}`
+  | `Alt+Shift+Meta+${NonPunctuationKey}`
+  | `Mod+Alt+Shift+${NonPunctuationKey}`
 
 /**
  * Four modifier + key combinations.
@@ -242,7 +226,7 @@ type ThreeModifierHotkey =
  * - `Mod+Control+Alt+Shift` → duplicates `Control` on Windows/Linux
  * - `Mod+Alt+Shift+Meta` → duplicates `Meta` on macOS
  */
-type FourModifierHotkey = `Control+Alt+Shift+Meta+${ShiftUnaffectedKey}`
+type FourModifierHotkey = `Control+Alt+Shift+Meta+${NonPunctuationKey}`
 
 /**
  * A type-safe hotkey string.
@@ -356,10 +340,6 @@ export interface ValidationResult {
   errors: Array<string>
 }
 
-// =============================================================================
-// Callback Types
-// =============================================================================
-
 /**
  * Context passed to hotkey callbacks along with the keyboard event.
  */
@@ -388,126 +368,3 @@ export type HotkeyCallback = (
   event: KeyboardEvent,
   context: HotkeyCallbackContext,
 ) => void
-
-// =============================================================================
-// Options Types
-// =============================================================================
-
-/**
- * Options for registering a hotkey.
- */
-export interface HotkeyOptions {
-  /** Prevent the default browser action when the hotkey matches */
-  preventDefault?: boolean
-  /** Stop event propagation when the hotkey matches */
-  stopPropagation?: boolean
-  /** The target platform for resolving 'Mod' */
-  platform?: 'mac' | 'windows' | 'linux'
-  /** The event type to listen for. Defaults to 'keydown' */
-  eventType?: 'keydown' | 'keyup'
-  /** If true, only trigger once until all keys are released. Default: false */
-  requireReset?: boolean
-  /** Whether the hotkey is enabled. Defaults to true */
-  enabled?: boolean
-  /** Whether to ignore hotkeys when keyboard events originate from input-like elements (input, textarea, select, contenteditable). Defaults to true */
-  ignoreInputs?: boolean
-  /** The DOM element to attach the event listener to. Defaults to document. */
-  target?: HTMLElement | Document | Window | null
-}
-
-// =============================================================================
-// Sequence Types
-// =============================================================================
-
-/**
- * A sequence of hotkeys for Vim-style shortcuts.
- *
- * @example
- * ```ts
- * const gotoTop: HotkeySequence = ['G', 'G']  // gg
- * const deleteLine: HotkeySequence = ['D', 'D']  // dd
- * const deleteWord: HotkeySequence = ['D', 'I', 'W']  // diw
- * ```
- */
-export type HotkeySequence = Array<Hotkey>
-
-/**
- * Options for hotkey sequence matching.
- */
-export interface SequenceOptions extends HotkeyOptions {
-  /** Timeout between keys in milliseconds. Default: 1000 */
-  timeout?: number
-}
-
-// =============================================================================
-// Registration Types
-// =============================================================================
-
-/**
- * A registered hotkey handler in the HotkeyManager.
- */
-export interface HotkeyRegistration {
-  /** Unique identifier for this registration */
-  id: string
-  /** The original hotkey string */
-  hotkey: Hotkey
-  /** The parsed hotkey */
-  parsedHotkey: ParsedHotkey
-  /** The callback to invoke */
-  callback: HotkeyCallback
-  /** Options for this registration */
-  options: HotkeyOptions
-  /** Whether this registration has fired and needs reset (for requireReset) */
-  hasFired: boolean
-  /** The resolved target element for this registration */
-  target: HTMLElement | Document | Window
-}
-
-/**
- * A handle returned from HotkeyManager.register() that allows updating
- * the callback and options without re-registering the hotkey.
- *
- * This pattern is similar to TanStack Pacer's Debouncer, where the function
- * and options can be synced on every render to avoid stale closures.
- *
- * @example
- * ```ts
- * const handle = manager.register('Mod+S', callback, options)
- *
- * // Update callback without re-registering (avoids stale closures)
- * handle.callback = newCallback
- *
- * // Update options without re-registering
- * handle.setOptions({ enabled: false })
- *
- * // Check if still active
- * if (handle.isActive) {
- *   // ...
- * }
- *
- * // Unregister when done
- * handle.unregister()
- * ```
- */
-export interface HotkeyRegistrationHandle {
-  /** Unique identifier for this registration */
-  readonly id: string
-
-  /** Unregister this hotkey */
-  unregister: () => void
-
-  /**
-   * The callback function. Can be set directly to update without re-registering.
-   * This avoids stale closures when the callback references React state.
-   */
-  callback: HotkeyCallback
-
-  /**
-   * Update options (merged with existing options).
-   * Useful for updating `enabled`, `preventDefault`, etc. without re-registering.
-   */
-  setOptions: (options: Partial<HotkeyOptions>) => void
-
-  /** Check if this registration is still active (not unregistered) */
-  readonly isActive: boolean
-}

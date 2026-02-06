@@ -5,10 +5,99 @@ import type {
   Hotkey,
   HotkeyCallback,
   HotkeyCallbackContext,
-  HotkeyOptions,
-  HotkeyRegistration,
-  HotkeyRegistrationHandle,
-} from './types'
+  ParsedHotkey,
+} from './hotkey'
+
+/**
+ * Options for registering a hotkey.
+ */
+export interface HotkeyOptions {
+  /** Whether the hotkey is enabled. Defaults to true */
+  enabled?: boolean
+  /** The event type to listen for. Defaults to 'keydown' */
+  eventType?: 'keydown' | 'keyup'
+  /** Whether to ignore hotkeys when keyboard events originate from input-like elements (input, textarea, select, contenteditable). Defaults to true */
+  ignoreInputs?: boolean
+  /** The target platform for resolving 'Mod' */
+  platform?: 'mac' | 'windows' | 'linux'
+  /** Prevent the default browser action when the hotkey matches */
+  preventDefault?: boolean
+  /** If true, only trigger once until all keys are released. Default: false */
+  requireReset?: boolean
+  /** Stop event propagation when the hotkey matches */
+  stopPropagation?: boolean
+  /** The DOM element to attach the event listener to. Defaults to document. */
+  target?: HTMLElement | Document | Window | null
+}
+
+/**
+ * A registered hotkey handler in the HotkeyManager.
+ */
+export interface HotkeyRegistration {
+  /** Unique identifier for this registration */
+  id: string
+  /** The original hotkey string */
+  hotkey: Hotkey
+  /** The parsed hotkey */
+  parsedHotkey: ParsedHotkey
+  /** The callback to invoke */
+  callback: HotkeyCallback
+  /** Options for this registration */
+  options: HotkeyOptions
+  /** Whether this registration has fired and needs reset (for requireReset) */
+  hasFired: boolean
+  /** The resolved target element for this registration */
+  target: HTMLElement | Document | Window
+}
+
+/**
+ * A handle returned from HotkeyManager.register() that allows updating
+ * the callback and options without re-registering the hotkey.
+ *
+ * This pattern is similar to TanStack Pacer's Debouncer, where the function
+ * and options can be synced on every render to avoid stale closures.
+ *
+ * @example
+ * ```ts
+ * const handle = manager.register('Mod+S', callback, options)
+ *
+ * // Update callback without re-registering (avoids stale closures)
+ * handle.callback = newCallback
+ *
+ * // Update options without re-registering
+ * handle.setOptions({ enabled: false })
+ *
+ * // Check if still active
+ * if (handle.isActive) {
+ *   // ...
+ * }
+ *
+ * // Unregister when done
+ * handle.unregister()
+ * ```
+ */
+export interface HotkeyRegistrationHandle {
+  /** Unique identifier for this registration */
+  readonly id: string
+
+  /** Unregister this hotkey */
+  unregister: () => void
+
+  /**
+   * The callback function. Can be set directly to update without re-registering.
+   * This avoids stale closures when the callback references React state.
+   */
+  callback: HotkeyCallback
+
+  /**
+   * Update options (merged with existing options).
+   * Useful for updating `enabled`, `preventDefault`, etc. without re-registering.
+   */
+  setOptions: (options: Partial<HotkeyOptions>) => void
+
+  /** Check if this registration is still active (not unregistered) */
+  readonly isActive: boolean
+}
 
 /**
  * Default options for hotkey registration.

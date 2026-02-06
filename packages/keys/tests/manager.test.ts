@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { HotkeyManager } from '../src/manager'
+import { HotkeyManager } from '../src/hotkey-manager'
 
 /**
  * Helper to create a mock KeyboardEvent

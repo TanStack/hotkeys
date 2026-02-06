@@ -9,6 +9,6 @@ title: EditingKey
 type EditingKey = "Enter" | "Escape" | "Space" | "Tab" | "Backspace" | "Delete";
 ```
 
-Defined in: [types.ts:112](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L112)
+Defined in: [hotkey.ts:104](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey.ts#L104)
 
 Editing and special keys.

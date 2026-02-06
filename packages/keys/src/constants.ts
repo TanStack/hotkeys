@@ -6,7 +6,7 @@ import type {
   NavigationKey,
   NumberKey,
   PunctuationKey,
-} from './types'
+} from './hotkey'
 
 // =============================================================================
 // Platform Detection

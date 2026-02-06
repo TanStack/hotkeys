@@ -41,7 +41,7 @@ Type-safe keyboard shortcuts for the web. Template strings, parsed objects, cros
 > [!NOTE]
 > TanStack Keys is pre-alpha (prototyping phase). We are actively developing the library and are open to feedback and contributions.
 
-## Goals
+## Features
 
 - **Key Bindings**
   - Template strings as the primary syntax: `Mod+Shift+S`, `Control+Shift+A`, `Escape`
@@ -67,11 +67,15 @@ Type-safe keyboard shortcuts for the web. Template strings, parsed objects, cros
   - `SequenceManager`, `createSequenceMatcher` for Vim-style multi-key shortcuts (e.g. `['G','G']`, `['D','I','W']`)
 - **Key State**
   - `KeyStateTracker`, `getKeyStateTracker` for held-key tracking
+- **Hotkey Recorder**
+  - `HotkeyRecorder` class for capturing keyboard shortcuts interactively
+  - Supports live preview, cancellation, and clearing during recording
 - **React Hooks**
   - `useHotkey` – register a keyboard shortcut (global, via singleton manager)
   - `useHotkeySequence` – detect keys pressed in order within a timeout
   - `useHeldKeys` – reactive list of currently held keys
   - `useKeyHold` – reactive boolean for whether a given key is held
+  - `useHotkeyRecorder` – record keyboard shortcuts interactively with live preview
 - **Devtools**
   - Devtools are a core focus: visibility into all registered hotkeys, scopes, and options
   - `@tanstack/keys-devtools` and `@tanstack/react-keys-devtools` (in active development)
@@ -121,7 +125,7 @@ function Editor() {
 ## Packages
 
 - **`@tanstack/keys`** – Core: parse, format, match, validate, manager, sequence, key-state
-- **`@tanstack/react-keys`** – React: `useHotkey`, `useHotkeySequence`, `useHeldKeys`, `useKeyHold`
+- **`@tanstack/react-keys`** – React: `useHotkey`, `useHotkeySequence`, `useHeldKeys`, `useKeyHold`, `useHotkeyRecorder`
 - **`@tanstack/keys-devtools`** – Base devtools (in development)
 - **`@tanstack/react-keys-devtools`** – React devtools (in development)
 

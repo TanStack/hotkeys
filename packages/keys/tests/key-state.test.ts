@@ -1,6 +1,6 @@
 /// <reference lib="dom" />
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { KeyStateTracker } from '../src/key-state'
+import { KeyStateTracker } from '../src/key-state-tracker'
 
 /**
  * Helper to create and dispatch a KeyboardEvent

@@ -1,14 +1,33 @@
 import { detectPlatform } from './constants'
 import { parseHotkey } from './parse'
 import { matchesKeyboardEvent } from './match'
+import type { HotkeyOptions } from './hotkey-manager'
 import type {
   Hotkey,
   HotkeyCallback,
   HotkeyCallbackContext,
-  HotkeySequence,
   ParsedHotkey,
-  SequenceOptions,
-} from './types'
+} from './hotkey'
+
+/**
+ * Options for hotkey sequence matching.
+ */
+export interface SequenceOptions extends HotkeyOptions {
+  /** Timeout between keys in milliseconds. Default: 1000 */
+  timeout?: number
+}
+
+/**
+ * A sequence of hotkeys for Vim-style shortcuts.
+ *
+ * @example
+ * ```ts
+ * const gotoTop: HotkeySequence = ['G', 'G']  // gg
+ * const deleteLine: HotkeySequence = ['D', 'D']  // dd
+ * const deleteWord: HotkeySequence = ['D', 'I', 'W']  // diw
+ * ```
+ */
+export type HotkeySequence = Array<Hotkey>
 
 /**
  * Default timeout between keys in a sequence (in milliseconds).

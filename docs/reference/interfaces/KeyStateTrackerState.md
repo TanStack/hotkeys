@@ -5,7 +5,7 @@ title: KeyStateTrackerState
 
 # Interface: KeyStateTrackerState
 
-Defined in: [key-state.ts:7](https://github.com/TanStack/keys/blob/main/packages/keys/src/key-state.ts#L7)
+Defined in: [key-state-tracker.ts:7](https://github.com/TanStack/keys/blob/main/packages/keys/src/key-state-tracker.ts#L7)
 
 State interface for the KeyStateTracker.
 
@@ -17,6 +17,6 @@ State interface for the KeyStateTracker.
 heldKeys: string[];
 ```
 
-Defined in: [key-state.ts:11](https://github.com/TanStack/keys/blob/main/packages/keys/src/key-state.ts#L11)
+Defined in: [key-state-tracker.ts:11](https://github.com/TanStack/keys/blob/main/packages/keys/src/key-state-tracker.ts#L11)
 
 Array of currently held key names.

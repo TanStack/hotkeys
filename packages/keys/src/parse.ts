@@ -5,7 +5,7 @@ import {
   normalizeKeyName,
   resolveModifier,
 } from './constants'
-import type { CanonicalModifier, Hotkey, Key, ParsedHotkey } from './types'
+import type { CanonicalModifier, Hotkey, Key, ParsedHotkey } from './hotkey'
 
 /**
  * Parses a hotkey string into its component parts.

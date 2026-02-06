@@ -4,6 +4,7 @@ import {
   createMultiHotkeyHandler,
   matchesKeyboardEvent,
 } from '../src/match'
+import { Hotkey } from '../src'
 
 /**
  * Helper to create a mock KeyboardEvent
@@ -15,10 +16,22 @@ function createKeyboardEvent(
     shiftKey?: boolean
     altKey?: boolean
     metaKey?: boolean
+    code?: string
   } = {},
 ): KeyboardEvent {
+  // Auto-generate code for letters and digits if not provided
+  let code = options.code
+  if (code === undefined) {
+    if (key.length === 1 && /^[a-zA-Z]$/.test(key)) {
+      code = `Key${key.toUpperCase()}`
+    } else if (key.length === 1 && /^[0-9]$/.test(key)) {
+      code = `Digit${key}`
+    }
+  }
+
   return {
     key,
+    code,
     ctrlKey: options.ctrlKey ?? false,
     shiftKey: options.shiftKey ?? false,
     altKey: options.altKey ?? false,
@@ -150,6 +163,173 @@ describe('matchesKeyboardEvent', () => {
         modifiers: ['Meta'] as ('Control' | 'Shift' | 'Alt' | 'Meta')[],
       }
       expect(matchesKeyboardEvent(event, parsed)).toBe(true)
+    })
+  })
+
+  describe('event.code fallback for letter keys', () => {
+    it('should fallback to event.code when event.key produces special character (macOS Option+T)', () => {
+      // Simulate macOS Option+T where event.key is '†' but event.code is 'KeyT'
+      const event = createKeyboardEvent('†', {
+        altKey: true,
+        metaKey: true,
+        code: 'KeyT',
+      })
+      expect(matchesKeyboardEvent(event, 'Mod+Alt+T', 'mac')).toBe(true)
+    })
+
+    it('should still match normally when event.key matches', () => {
+      // Normal case - event.key matches, no fallback needed
+      const event = createKeyboardEvent('t', {
+        altKey: true,
+        metaKey: true,
+        code: 'KeyT',
+      })
+      expect(matchesKeyboardEvent(event, 'Mod+Alt+T', 'mac')).toBe(true)
+    })
+
+    it('should not use fallback for non-letter keys', () => {
+      // Special keys should not use code fallback
+      const event = createKeyboardEvent('Escape', {
+        code: 'Escape',
+      })
+      expect(matchesKeyboardEvent(event, 'Escape')).toBe(true)
+
+      // If event.key doesn't match for special keys, it should fail
+      const mismatchedEvent = createKeyboardEvent('Enter', {
+        code: 'Escape',
+      })
+      expect(matchesKeyboardEvent(mismatchedEvent, 'Escape')).toBe(false)
+    })
+
+    it('should handle fallback with different modifiers', () => {
+      // Test with Alt modifier
+      const altEvent = createKeyboardEvent('´', {
+        altKey: true,
+        code: 'KeyE',
+      })
+      expect(matchesKeyboardEvent(altEvent, 'Alt+E')).toBe(true)
+
+      // Test with Control modifier
+      const ctrlEvent = createKeyboardEvent('†', {
+        ctrlKey: true,
+        code: 'KeyT',
+      })
+      expect(matchesKeyboardEvent(ctrlEvent, 'Control+T')).toBe(true)
+
+      // Test with Shift modifier
+      const shiftEvent = createKeyboardEvent('∑', {
+        shiftKey: true,
+        code: 'KeyS',
+      })
+      expect(matchesKeyboardEvent(shiftEvent, 'Shift+S')).toBe(true)
+    })
+
+    it('should not match if event.code is missing or invalid', () => {
+      // Missing code - should fail
+      const event = createKeyboardEvent('†', {
+        altKey: true,
+        metaKey: true,
+        code: undefined,
+      })
+      expect(matchesKeyboardEvent(event, 'Mod+Alt+T', 'mac')).toBe(false)
+
+      // Invalid code format - should fail
+      const invalidCodeEvent = createKeyboardEvent('†', {
+        altKey: true,
+        metaKey: true,
+        code: 'InvalidCode',
+      })
+      expect(matchesKeyboardEvent(invalidCodeEvent, 'Mod+Alt+T', 'mac')).toBe(
+        false,
+      )
+    })
+
+    it('should handle case-insensitive matching with code fallback', () => {
+      // Lowercase code should still match uppercase hotkey
+      const event = createKeyboardEvent('†', {
+        altKey: true,
+        metaKey: true,
+        code: 'Keyt', // lowercase
+      })
+      expect(matchesKeyboardEvent(event, 'Mod+Alt+T', 'mac')).toBe(true)
+
+      // Uppercase code should match lowercase hotkey
+      const event2 = createKeyboardEvent('†', {
+        altKey: true,
+        metaKey: true,
+        code: 'KeyT', // uppercase
+      })
+      expect(matchesKeyboardEvent(event2, 'Mod+Alt+t' as Hotkey, 'mac')).toBe(true)
+    })
+  })
+
+  describe('event.code fallback for digit keys', () => {
+    it('should fallback to event.code when event.key produces special character (Shift+4 -> $)', () => {
+      // Simulate Shift+4 where event.key is '$' but event.code is 'Digit4'
+      const event = createKeyboardEvent('$', {
+        shiftKey: true,
+        code: 'Digit4',
+      })
+      expect(matchesKeyboardEvent(event, 'Shift+4')).toBe(true)
+    })
+
+    it('should still match normally when event.key matches digit', () => {
+      // Normal case - event.key matches, no fallback needed
+      const event = createKeyboardEvent('4', {
+        ctrlKey: true,
+        code: 'Digit4',
+      })
+      expect(matchesKeyboardEvent(event, 'Control+4')).toBe(true)
+    })
+
+    it('should handle fallback with different modifiers', () => {
+      // Test with Alt modifier
+      const altEvent = createKeyboardEvent('¢', {
+        altKey: true,
+        code: 'Digit4',
+      })
+      expect(matchesKeyboardEvent(altEvent, 'Alt+4')).toBe(true)
+
+      // Test with Control+Shift modifier
+      const ctrlShiftEvent = createKeyboardEvent('$', {
+        ctrlKey: true,
+        shiftKey: true,
+        code: 'Digit4',
+      })
+      expect(matchesKeyboardEvent(ctrlShiftEvent, 'Control+Shift+4')).toBe(true)
+
+      // Test with Meta modifier (macOS)
+      const metaEvent = createKeyboardEvent('©', {
+        metaKey: true,
+        code: 'Digit4',
+      })
+      expect(matchesKeyboardEvent(metaEvent, 'Meta+4')).toBe(true)
+    })
+
+    it('should not match if event.code is missing or invalid', () => {
+      // Missing code - should fail
+      const event = createKeyboardEvent('$', {
+        shiftKey: true,
+        code: undefined,
+      })
+      expect(matchesKeyboardEvent(event, 'Shift+4')).toBe(false)
+
+      // Invalid code format - should fail
+      const invalidCodeEvent = createKeyboardEvent('$', {
+        shiftKey: true,
+        code: 'InvalidCode',
+      })
+      expect(matchesKeyboardEvent(invalidCodeEvent, 'Shift+4')).toBe(false)
+    })
+
+    it('should match all digits 0-9', () => {
+      for (let i = 0; i <= 9; i++) {
+        const event = createKeyboardEvent('!', {
+          shiftKey: true,
+          code: `Digit${i}`,
+        })
+        expect(matchesKeyboardEvent(event, `Shift+${i}` as Hotkey)).toBe(true)
+      }
     })
   })
 })

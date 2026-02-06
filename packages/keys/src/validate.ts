@@ -5,7 +5,7 @@ import {
   NUMBER_KEYS,
 } from './constants'
 import { parseHotkey } from './parse'
-import type { Hotkey, ValidationResult } from './types'
+import type { Hotkey, ValidationResult } from './hotkey'
 
 /**
  * Validates a hotkey string and returns any warnings or errors.

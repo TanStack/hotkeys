@@ -5,7 +5,7 @@ title: HotkeyCallbackContext
 
 # Interface: HotkeyCallbackContext
 
-Defined in: [types.ts:366](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L366)
+Defined in: [hotkey.ts:346](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey.ts#L346)
 
 Context passed to hotkey callbacks along with the keyboard event.
 
@@ -17,7 +17,7 @@ Context passed to hotkey callbacks along with the keyboard event.
 hotkey: Hotkey;
 ```
 
-Defined in: [types.ts:368](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L368)
+Defined in: [hotkey.ts:348](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey.ts#L348)
 
 The original hotkey string that was registered
 
@@ -29,6 +29,6 @@ The original hotkey string that was registered
 parsedHotkey: ParsedHotkey;
 ```
 
-Defined in: [types.ts:370](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L370)
+Defined in: [hotkey.ts:350](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey.ts#L350)
 
 The parsed representation of the hotkey

@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { formatForDisplay, formatHotkey, formatWithLabels } from '../src/format'
-import type { ParsedHotkey } from '../src/types'
+import type { ParsedHotkey } from '../src/hotkey'
 
 describe('formatHotkey', () => {
   it('should format a simple key', () => {

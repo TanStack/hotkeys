@@ -5,13 +5,14 @@ import type {
   HotkeyCallback,
   HotkeyCallbackContext,
   ParsedHotkey,
-} from './types'
+} from './hotkey'
 
 /**
  * Checks if a KeyboardEvent matches a hotkey.
  *
- * Uses the `key` property from KeyboardEvent for matching (not `code`).
- * Letter keys are matched case-insensitively.
+ * Uses the `key` property from KeyboardEvent for matching, with a fallback to `code`
+ * for letter keys (A-Z) and digit keys (0-9) when `key` produces special characters
+ * (e.g., macOS Option+letter or Shift+number). Letter keys are matched case-insensitively.
  *
  * @param event - The KeyboardEvent to check
  * @param hotkey - The hotkey string or ParsedHotkey to match against
@@ -56,7 +57,32 @@ export function matchesKeyboardEvent(
 
   // For single letters, compare case-insensitively
   if (eventKey.length === 1 && hotkeyKey.length === 1) {
-    return eventKey.toUpperCase() === hotkeyKey.toUpperCase()
+    // First try matching with event.key
+    if (eventKey.toUpperCase() === hotkeyKey.toUpperCase()) {
+      return true
+    }
+
+    // Fallback to event.code for letter keys when event.key doesn't match
+    // This handles cases like Command+Option+T on macOS where event.key is '†' instead of 'T'
+    // event.code format for letter keys is "KeyA", "KeyB", etc. (always uppercase in browsers)
+    if (event.code && event.code.startsWith('Key')) {
+      const codeLetter = event.code.slice(3) // Remove "Key" prefix
+      if (codeLetter.length === 1 && /^[A-Za-z]$/.test(codeLetter)) {
+        return codeLetter.toUpperCase() === hotkeyKey.toUpperCase()
+      }
+    }
+
+    // Fallback to event.code for digit keys when event.key doesn't match
+    // This handles cases like Shift+4 where event.key is '$' instead of '4'
+    // event.code format for digit keys is "Digit0", "Digit1", etc.
+    if (event.code && event.code.startsWith('Digit')) {
+      const codeDigit = event.code.slice(5) // Remove "Digit" prefix
+      if (codeDigit.length === 1 && /^[0-9]$/.test(codeDigit)) {
+        return codeDigit === hotkeyKey
+      }
+    }
+
+    return false
   }
 
   // For special keys, compare exactly (after normalization)

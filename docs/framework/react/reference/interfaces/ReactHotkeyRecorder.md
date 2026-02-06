@@ -5,7 +5,7 @@ title: ReactHotkeyRecorder
 
 # Interface: ReactHotkeyRecorder
 
-Defined in: [useHotkeyRecorder.ts:9](https://github.com/TanStack/keys/blob/main/packages/react-keys/src/useHotkeyRecorder.ts#L9)
+Defined in: [useHotkeyRecorder.ts:6](https://github.com/TanStack/keys/blob/main/packages/react-keys/src/useHotkeyRecorder.ts#L6)
 
 ## Properties
 
@@ -15,7 +15,7 @@ Defined in: [useHotkeyRecorder.ts:9](https://github.com/TanStack/keys/blob/main/
 cancelRecording: () => void;
 ```
 
-Defined in: [useHotkeyRecorder.ts:19](https://github.com/TanStack/keys/blob/main/packages/react-keys/src/useHotkeyRecorder.ts#L19)
+Defined in: [useHotkeyRecorder.ts:16](https://github.com/TanStack/keys/blob/main/packages/react-keys/src/useHotkeyRecorder.ts#L16)
 
 Cancel recording without saving
 
@@ -31,7 +31,7 @@ Cancel recording without saving
 isRecording: boolean;
 ```
 
-Defined in: [useHotkeyRecorder.ts:11](https://github.com/TanStack/keys/blob/main/packages/react-keys/src/useHotkeyRecorder.ts#L11)
+Defined in: [useHotkeyRecorder.ts:8](https://github.com/TanStack/keys/blob/main/packages/react-keys/src/useHotkeyRecorder.ts#L8)
 
 Whether recording is currently active
 
@@ -43,7 +43,7 @@ Whether recording is currently active
 recordedHotkey: Hotkey | null;
 ```
 
-Defined in: [useHotkeyRecorder.ts:13](https://github.com/TanStack/keys/blob/main/packages/react-keys/src/useHotkeyRecorder.ts#L13)
+Defined in: [useHotkeyRecorder.ts:10](https://github.com/TanStack/keys/blob/main/packages/react-keys/src/useHotkeyRecorder.ts#L10)
 
 The currently recorded hotkey (for live preview)
 
@@ -55,7 +55,7 @@ The currently recorded hotkey (for live preview)
 startRecording: () => void;
 ```
 
-Defined in: [useHotkeyRecorder.ts:15](https://github.com/TanStack/keys/blob/main/packages/react-keys/src/useHotkeyRecorder.ts#L15)
+Defined in: [useHotkeyRecorder.ts:12](https://github.com/TanStack/keys/blob/main/packages/react-keys/src/useHotkeyRecorder.ts#L12)
 
 Start recording a new hotkey
 
@@ -71,7 +71,7 @@ Start recording a new hotkey
 stopRecording: () => void;
 ```
 
-Defined in: [useHotkeyRecorder.ts:17](https://github.com/TanStack/keys/blob/main/packages/react-keys/src/useHotkeyRecorder.ts#L17)
+Defined in: [useHotkeyRecorder.ts:14](https://github.com/TanStack/keys/blob/main/packages/react-keys/src/useHotkeyRecorder.ts#L14)
 
 Stop recording (same as cancel)
 

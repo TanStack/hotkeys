@@ -21,6 +21,6 @@ type FunctionKey =
   | "F12";
 ```
 
-Defined in: [types.ts:82](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L82)
+Defined in: [hotkey.ts:74](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey.ts#L74)
 
 Function keys F1-F12.

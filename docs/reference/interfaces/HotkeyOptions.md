@@ -5,7 +5,7 @@ title: HotkeyOptions
 
 # Interface: HotkeyOptions
 
-Defined in: [types.ts:399](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L399)
+Defined in: [hotkey-manager.ts:14](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L14)
 
 Options for registering a hotkey.
 
@@ -21,7 +21,7 @@ Options for registering a hotkey.
 optional enabled: boolean;
 ```
 
-Defined in: [types.ts:411](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L411)
+Defined in: [hotkey-manager.ts:16](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L16)
 
 Whether the hotkey is enabled. Defaults to true
 
@@ -33,7 +33,7 @@ Whether the hotkey is enabled. Defaults to true
 optional eventType: "keydown" | "keyup";
 ```
 
-Defined in: [types.ts:407](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L407)
+Defined in: [hotkey-manager.ts:18](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L18)
 
 The event type to listen for. Defaults to 'keydown'
 
@@ -45,7 +45,7 @@ The event type to listen for. Defaults to 'keydown'
 optional ignoreInputs: boolean;
 ```
 
-Defined in: [types.ts:413](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L413)
+Defined in: [hotkey-manager.ts:20](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L20)
 
 Whether to ignore hotkeys when keyboard events originate from input-like elements (input, textarea, select, contenteditable). Defaults to true
 
@@ -57,7 +57,7 @@ Whether to ignore hotkeys when keyboard events originate from input-like element
 optional platform: "mac" | "windows" | "linux";
 ```
 
-Defined in: [types.ts:405](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L405)
+Defined in: [hotkey-manager.ts:22](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L22)
 
 The target platform for resolving 'Mod'
 
@@ -69,7 +69,7 @@ The target platform for resolving 'Mod'
 optional preventDefault: boolean;
 ```
 
-Defined in: [types.ts:401](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L401)
+Defined in: [hotkey-manager.ts:24](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L24)
 
 Prevent the default browser action when the hotkey matches
 
@@ -81,7 +81,7 @@ Prevent the default browser action when the hotkey matches
 optional requireReset: boolean;
 ```
 
-Defined in: [types.ts:409](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L409)
+Defined in: [hotkey-manager.ts:26](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L26)
 
 If true, only trigger once until all keys are released. Default: false
 
@@ -93,7 +93,7 @@ If true, only trigger once until all keys are released. Default: false
 optional stopPropagation: boolean;
 ```
 
-Defined in: [types.ts:403](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L403)
+Defined in: [hotkey-manager.ts:28](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L28)
 
 Stop event propagation when the hotkey matches
 
@@ -102,9 +102,9 @@ Stop event propagation when the hotkey matches
 ### target?
 
 ```ts
-optional target: HTMLElement | Document | Window | null;
+optional target: Document | Window | HTMLElement | null;
 ```
 
-Defined in: [types.ts:415](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L415)
+Defined in: [hotkey-manager.ts:30](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey-manager.ts#L30)
 
 The DOM element to attach the event listener to. Defaults to document.

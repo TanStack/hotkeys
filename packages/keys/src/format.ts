@@ -6,7 +6,7 @@ import {
   detectPlatform,
 } from './constants'
 import { parseHotkey } from './parse'
-import type { FormatDisplayOptions, Hotkey, ParsedHotkey } from './types'
+import type { FormatDisplayOptions, Hotkey, ParsedHotkey } from './hotkey'
 
 /**
  * Converts a ParsedHotkey back to a hotkey string.

@@ -5,7 +5,7 @@ title: FormatDisplayOptions
 
 # Interface: FormatDisplayOptions
 
-Defined in: [types.ts:342](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L342)
+Defined in: [hotkey.ts:326](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey.ts#L326)
 
 Options for formatting hotkeys for display.
 
@@ -17,6 +17,6 @@ Options for formatting hotkeys for display.
 optional platform: "mac" | "windows" | "linux";
 ```
 
-Defined in: [types.ts:344](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L344)
+Defined in: [hotkey.ts:328](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey.ts#L328)
 
 The target platform. Defaults to auto-detection.

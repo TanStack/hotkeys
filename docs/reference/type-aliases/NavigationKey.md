@@ -17,6 +17,6 @@ type NavigationKey =
   | "PageDown";
 ```
 
-Defined in: [types.ts:99](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L99)
+Defined in: [hotkey.ts:91](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey.ts#L91)
 
 Navigation keys for cursor movement.

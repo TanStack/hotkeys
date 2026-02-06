@@ -6,9 +6,9 @@ title: Key
 # Type Alias: Key
 
 ```ts
-type Key = ShiftUnaffectedKey | ShiftAffectedKey;
+type Key = NonPunctuationKey | PunctuationKey;
 ```
 
-Defined in: [types.ts:164](https://github.com/TanStack/keys/blob/main/packages/keys/src/types.ts#L164)
+Defined in: [hotkey.ts:148](https://github.com/TanStack/keys/blob/main/packages/keys/src/hotkey.ts#L148)
 
 All supported non-modifier keys.

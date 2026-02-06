@@ -42,10 +42,6 @@
       "require": "./dist/index.cjs",
       "import": "./dist/index.js"
     },
-    "./types": {
-      "require": "./dist/types.cjs",
-      "import": "./dist/types.js"
-    },
     "./package.json": "./package.json"
   },
   "sideEffects": false,
