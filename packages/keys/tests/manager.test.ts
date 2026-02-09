@@ -339,6 +339,114 @@ describe('HotkeyManager', () => {
       )
       expect(callback).toHaveBeenCalledTimes(2)
     })
+
+    it('should call preventDefault even when requireReset is active and has already fired', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Mod+S', callback, {
+        platform: 'mac',
+        preventDefault: true,
+        requireReset: true,
+      })
+
+      // First keydown - should call preventDefault and callback
+      const event1 = createKeyboardEvent('keydown', 's', { metaKey: true })
+      const preventDefaultSpy1 = vi.spyOn(event1, 'preventDefault')
+      document.dispatchEvent(event1)
+
+      expect(preventDefaultSpy1).toHaveBeenCalled()
+      expect(callback).toHaveBeenCalledTimes(1)
+
+      // Second keydown while keys still held - should call preventDefault but NOT callback
+      const event2 = createKeyboardEvent('keydown', 's', { metaKey: true })
+      const preventDefaultSpy2 = vi.spyOn(event2, 'preventDefault')
+      document.dispatchEvent(event2)
+
+      expect(preventDefaultSpy2).toHaveBeenCalled()
+      expect(callback).toHaveBeenCalledTimes(1) // Callback should not be called again
+    })
+
+    it('should call stopPropagation even when requireReset is active and has already fired', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Mod+S', callback, {
+        platform: 'mac',
+        stopPropagation: true,
+        requireReset: true,
+      })
+
+      // First keydown - should call stopPropagation and callback
+      const event1 = createKeyboardEvent('keydown', 's', { metaKey: true })
+      const stopPropagationSpy1 = vi.spyOn(event1, 'stopPropagation')
+      document.dispatchEvent(event1)
+
+      expect(stopPropagationSpy1).toHaveBeenCalled()
+      expect(callback).toHaveBeenCalledTimes(1)
+
+      // Second keydown while keys still held - should call stopPropagation but NOT callback
+      const event2 = createKeyboardEvent('keydown', 's', { metaKey: true })
+      const stopPropagationSpy2 = vi.spyOn(event2, 'stopPropagation')
+      document.dispatchEvent(event2)
+
+      expect(stopPropagationSpy2).toHaveBeenCalled()
+      expect(callback).toHaveBeenCalledTimes(1) // Callback should not be called again
+    })
+
+    it('should reset correctly when modifier key is released on Windows/Linux', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Control+S', callback, {
+        platform: 'windows',
+        requireReset: true,
+      })
+
+      // First press
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 's', { ctrlKey: true }),
+      )
+      expect(callback).toHaveBeenCalledTimes(1)
+
+      // Release Control key (using normalized key name 'Control')
+      document.dispatchEvent(
+        createKeyboardEvent('keyup', 'Control', { ctrlKey: false }),
+      )
+
+      // Second press should fire after reset
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 's', { ctrlKey: true }),
+      )
+      expect(callback).toHaveBeenCalledTimes(2)
+    })
+
+    it('should reset correctly when main key is released', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Mod+S', callback, {
+        platform: 'mac',
+        requireReset: true,
+      })
+
+      // First press
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 's', { metaKey: true }),
+      )
+      expect(callback).toHaveBeenCalledTimes(1)
+
+      // Release the main key
+      document.dispatchEvent(
+        createKeyboardEvent('keyup', 's', { metaKey: true }),
+      )
+
+      // Second press should fire after reset
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 's', { metaKey: true }),
+      )
+      expect(callback).toHaveBeenCalledTimes(2)
+    })
   })
 
   describe('preventDefault and stopPropagation', () => {

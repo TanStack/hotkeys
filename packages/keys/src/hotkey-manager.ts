@@ -1,5 +1,5 @@
 import { Store } from '@tanstack/store'
-import { detectPlatform } from './constants'
+import { detectPlatform, normalizeKeyName } from './constants'
 import { parseHotkey } from './parse'
 import { matchesKeyboardEvent } from './match'
 import type {
@@ -452,23 +452,31 @@ export class HotkeyManager {
           continue
         }
 
-        // Check if requireReset is active and the hotkey has already fired
-        if (registration.options.requireReset && registration.hasFired) {
-          continue
-        }
+        // Check if the hotkey matches first
+        const matches = matchesKeyboardEvent(
+          event,
+          registration.parsedHotkey,
+          registration.options.platform,
+        )
 
-        if (
-          matchesKeyboardEvent(
-            event,
-            registration.parsedHotkey,
-            registration.options.platform,
-          )
-        ) {
-          this.#executeHotkeyCallback(registration, event)
+        if (matches) {
+          // Always apply preventDefault/stopPropagation if the hotkey matches,
+          // even when requireReset is active and has already fired
+          if (registration.options.preventDefault) {
+            event.preventDefault()
+          }
+          if (registration.options.stopPropagation) {
+            event.stopPropagation()
+          }
 
-          // Mark as fired if requireReset is enabled
-          if (registration.options.requireReset) {
-            registration.hasFired = true
+          // Only execute callback if requireReset is not active or hasn't fired yet
+          if (!registration.options.requireReset || !registration.hasFired) {
+            this.#executeHotkeyCallback(registration, event)
+
+            // Mark as fired if requireReset is enabled
+            if (registration.options.requireReset) {
+              registration.hasFired = true
+            }
           }
         }
       }
@@ -665,24 +673,31 @@ export class HotkeyManager {
     event: KeyboardEvent,
   ): boolean {
     const parsed = registration.parsedHotkey
-    const releasedKey = event.key.toLowerCase()
+    const releasedKey = normalizeKeyName(event.key)
 
     // Reset if the main key is released
-    if (releasedKey === parsed.key.toLowerCase()) {
+    // Compare case-insensitively for single-letter keys
+    const parsedKeyNormalized =
+      parsed.key.length === 1 ? parsed.key.toUpperCase() : parsed.key
+    const releasedKeyNormalized =
+      releasedKey.length === 1 ? releasedKey.toUpperCase() : releasedKey
+
+    if (releasedKeyNormalized === parsedKeyNormalized) {
       return true
     }
 
     // Reset if any required modifier is released
-    if (parsed.ctrl && (releasedKey === 'control' || releasedKey === 'ctrl')) {
+    // Use normalized key names and check against canonical modifier names
+    if (parsed.ctrl && releasedKey === 'Control') {
       return true
     }
-    if (parsed.shift && releasedKey === 'shift') {
+    if (parsed.shift && releasedKey === 'Shift') {
       return true
     }
-    if (parsed.alt && (releasedKey === 'alt' || releasedKey === 'option')) {
+    if (parsed.alt && releasedKey === 'Alt') {
       return true
     }
-    if (parsed.meta && (releasedKey === 'meta' || releasedKey === 'command')) {
+    if (parsed.meta && releasedKey === 'Meta') {
       return true
     }
 
