@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/hotkeys-devtools",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Devtools for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",

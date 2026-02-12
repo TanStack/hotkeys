@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/hotkeys",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Type-safe, framework-agnostic keyboard hotkey management for the browser",
   "author": "Tanner Linsley",
   "license": "MIT",

@@ -84,7 +84,7 @@ importers:
   examples/react/useHeldKeys:
     dependencies:
       '@tanstack/react-hotkeys':
-        specifier: ^0.0.0
+        specifier: ^0.0.1
         version: link:../../../packages/react-hotkeys
       react:
         specifier: ^19.2.4
@@ -118,7 +118,7 @@ importers:
   examples/react/useHotkey:
     dependencies:
       '@tanstack/react-hotkeys':
-        specifier: ^0.0.0
+        specifier: ^0.0.1
         version: link:../../../packages/react-hotkeys
       react:
         specifier: ^19.2.4
@@ -152,7 +152,7 @@ importers:
   examples/react/useHotkeyRecorder:
     dependencies:
       '@tanstack/react-hotkeys':
-        specifier: ^0.0.0
+        specifier: ^0.0.1
         version: link:../../../packages/react-hotkeys
       react:
         specifier: ^19.2.4
@@ -186,7 +186,7 @@ importers:
   examples/react/useHotkeySequence:
     dependencies:
       '@tanstack/react-hotkeys':
-        specifier: ^0.0.0
+        specifier: ^0.0.1
         version: link:../../../packages/react-hotkeys
       react:
         specifier: ^19.2.4
@@ -220,7 +220,7 @@ importers:
   examples/react/useKeyhold:
     dependencies:
       '@tanstack/react-hotkeys':
-        specifier: ^0.0.0
+        specifier: ^0.0.1
         version: link:../../../packages/react-hotkeys
       react:
         specifier: ^19.2.4

@@ -11,7 +11,7 @@
     "test:types": "tsc"
   },
   "dependencies": {
-    "@tanstack/react-hotkeys": "^0.0.0",
+    "@tanstack/react-hotkeys": "^0.0.1",
     "react": "^19.2.4",
     "react-dom": "^19.2.4"
   },
