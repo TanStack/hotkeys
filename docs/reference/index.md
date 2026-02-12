@@ -25,6 +25,7 @@ title: "@tanstack/hotkeys"
 - [HotkeyRegistrationHandle](interfaces/HotkeyRegistrationHandle.md)
 - [KeyStateTrackerState](interfaces/KeyStateTrackerState.md)
 - [ParsedHotkey](interfaces/ParsedHotkey.md)
+- [RawHotkey](interfaces/RawHotkey.md)
 - [SequenceOptions](interfaces/SequenceOptions.md)
 - [ValidationResult](interfaces/ValidationResult.md)
 
@@ -44,6 +45,7 @@ title: "@tanstack/hotkeys"
 - [NavigationKey](type-aliases/NavigationKey.md)
 - [NumberKey](type-aliases/NumberKey.md)
 - [PunctuationKey](type-aliases/PunctuationKey.md)
+- [RegisterableHotkey](type-aliases/RegisterableHotkey.md)
 
 ## Variables
 
@@ -86,5 +88,6 @@ title: "@tanstack/hotkeys"
 - [normalizeKeyName](functions/normalizeKeyName.md)
 - [parseHotkey](functions/parseHotkey.md)
 - [parseKeyboardEvent](functions/parseKeyboardEvent.md)
+- [rawHotkeyToParsedHotkey](functions/rawHotkeyToParsedHotkey.md)
 - [resolveModifier](functions/resolveModifier.md)
 - [validateHotkey](functions/validateHotkey.md)

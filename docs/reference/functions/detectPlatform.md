@@ -9,7 +9,7 @@ title: detectPlatform
 function detectPlatform(): "mac" | "windows" | "linux";
 ```
 
-Defined in: [constants.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L30)
+Defined in: [constants.ts:30](https://github.com/TanStack/keys/blob/main/packages/hotkeys/src/constants.ts#L30)
 
 Detects the current platform based on browser navigator properties.
 

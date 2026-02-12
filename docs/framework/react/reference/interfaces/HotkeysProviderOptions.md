@@ -5,7 +5,7 @@ title: HotkeysProviderOptions
 
 # Interface: HotkeysProviderOptions
 
-Defined in: [HotkeysProvider.tsx:7](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L7)
+Defined in: [HotkeysProvider.tsx:7](https://github.com/TanStack/keys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L7)
 
 ## Properties
 
@@ -15,7 +15,7 @@ Defined in: [HotkeysProvider.tsx:7](https://github.com/TanStack/hotkeys/blob/mai
 optional hotkey: Partial<UseHotkeyOptions>;
 ```
 
-Defined in: [HotkeysProvider.tsx:8](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L8)
+Defined in: [HotkeysProvider.tsx:8](https://github.com/TanStack/keys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L8)
 
 ***
 
@@ -25,7 +25,7 @@ Defined in: [HotkeysProvider.tsx:8](https://github.com/TanStack/hotkeys/blob/mai
 optional hotkeyRecorder: Partial<HotkeyRecorderOptions>;
 ```
 
-Defined in: [HotkeysProvider.tsx:9](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L9)
+Defined in: [HotkeysProvider.tsx:9](https://github.com/TanStack/keys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L9)
 
 ***
 
@@ -35,4 +35,4 @@ Defined in: [HotkeysProvider.tsx:9](https://github.com/TanStack/hotkeys/blob/mai
 optional hotkeySequence: Partial<UseHotkeySequenceOptions>;
 ```
 
-Defined in: [HotkeysProvider.tsx:10](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L10)
+Defined in: [HotkeysProvider.tsx:10](https://github.com/TanStack/keys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L10)

@@ -9,7 +9,7 @@ title: HotkeySequence
 type HotkeySequence = Hotkey[];
 ```
 
-Defined in: [sequence.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence.ts#L30)
+Defined in: [sequence.ts:30](https://github.com/TanStack/keys/blob/main/packages/hotkeys/src/sequence.ts#L30)
 
 A sequence of hotkeys for Vim-style shortcuts.
 

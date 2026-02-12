@@ -5,7 +5,7 @@ title: FormatKeyDebuggingOptions
 
 # Interface: FormatKeyDebuggingOptions
 
-Defined in: [format.ts:171](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L171)
+Defined in: [format.ts:171](https://github.com/TanStack/keys/blob/main/packages/hotkeys/src/format.ts#L171)
 
 Options for formatting a single key for debugging display.
 
@@ -17,7 +17,7 @@ Options for formatting a single key for debugging display.
 optional platform: "mac" | "windows" | "linux";
 ```
 
-Defined in: [format.ts:173](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L173)
+Defined in: [format.ts:173](https://github.com/TanStack/keys/blob/main/packages/hotkeys/src/format.ts#L173)
 
 The target platform. Defaults to auto-detection.
 
@@ -29,7 +29,7 @@ The target platform. Defaults to auto-detection.
 optional source: "key" | "code";
 ```
 
-Defined in: [format.ts:182](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L182)
+Defined in: [format.ts:182](https://github.com/TanStack/keys/blob/main/packages/hotkeys/src/format.ts#L182)
 
 Whether the input value comes from `event.key` or `event.code`.
 

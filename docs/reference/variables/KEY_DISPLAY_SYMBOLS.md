@@ -9,7 +9,7 @@ title: KEY_DISPLAY_SYMBOLS
 const KEY_DISPLAY_SYMBOLS: Record<string, string>;
 ```
 
-Defined in: [constants.ts:503](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L503)
+Defined in: [constants.ts:503](https://github.com/TanStack/keys/blob/main/packages/hotkeys/src/constants.ts#L503)
 
 Special key symbols for display formatting.
 

@@ -5,7 +5,13 @@ import {
   normalizeKeyName,
   resolveModifier,
 } from './constants'
-import type { CanonicalModifier, Hotkey, Key, ParsedHotkey } from './hotkey'
+import type {
+  CanonicalModifier,
+  Hotkey,
+  Key,
+  ParsedHotkey,
+  RawHotkey,
+} from './hotkey'
 
 /**
  * Parses a hotkey string into its component parts.
@@ -65,6 +71,69 @@ export function parseHotkey(
     alt: modifiers.has('Alt'),
     meta: modifiers.has('Meta'),
     modifiers: MODIFIER_ORDER.filter((m) => modifiers.has(m)),
+  }
+}
+
+/**
+ * Converts a RawHotkey object to a ParsedHotkey.
+ * Optional modifier booleans default to false; modifiers array is derived from them.
+ * When `mod` is true, it is resolved to Control or Meta based on platform.
+ *
+ * @param raw - The raw hotkey object
+ * @param platform - The target platform for resolving 'Mod' (defaults to auto-detection)
+ * @returns A ParsedHotkey suitable for matching and formatting
+ *
+ * @example
+ * ```ts
+ * rawHotkeyToParsedHotkey({ key: 'Escape' })
+ * // { key: 'Escape', ctrl: false, shift: false, alt: false, meta: false, modifiers: [] }
+ *
+ * rawHotkeyToParsedHotkey({ key: 'S', mod: true }, 'mac')
+ * // { key: 'S', ctrl: false, shift: false, alt: false, meta: true, modifiers: ['Meta'] }
+ *
+ * rawHotkeyToParsedHotkey({ key: 'S', mod: true, shift: true }, 'windows')
+ * // { key: 'S', ctrl: true, shift: true, alt: false, meta: false, modifiers: ['Control', 'Shift'] }
+ * ```
+ */
+export function rawHotkeyToParsedHotkey(
+  raw: RawHotkey,
+  platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
+): ParsedHotkey {
+  let ctrl = raw.ctrl ?? false
+  const shift = raw.shift ?? false
+  const alt = raw.alt ?? false
+  let meta = raw.meta ?? false
+
+  if (raw.mod) {
+    const resolved = resolveModifier('Mod', platform)
+    if (resolved === 'Control') {
+      ctrl = true
+    } else {
+      meta = true
+    }
+  }
+
+  const modifiers: Array<CanonicalModifier> = MODIFIER_ORDER.filter((m) => {
+    switch (m) {
+      case 'Control':
+        return ctrl
+      case 'Shift':
+        return shift
+      case 'Alt':
+        return alt
+      case 'Meta':
+        return meta
+      default:
+        return false
+    }
+  })
+  return {
+    key: raw.key,
+    ctrl,
+    shift,
+    alt,
+    meta,
+    modifiers,
   }
 }
 

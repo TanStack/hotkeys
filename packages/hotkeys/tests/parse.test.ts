@@ -1,5 +1,10 @@
 import { describe, expect, it } from 'vitest'
-import { isModifier, normalizeHotkey, parseHotkey } from '../src/parse'
+import {
+  isModifier,
+  normalizeHotkey,
+  parseHotkey,
+  rawHotkeyToParsedHotkey,
+} from '../src/parse'
 
 describe('parseHotkey', () => {
   describe('single keys', () => {
@@ -224,5 +229,81 @@ describe('isModifier', () => {
     expect(isModifier('Enter')).toBe(false)
     expect(isModifier('F1')).toBe(false)
     expect(isModifier('Space')).toBe(false)
+  })
+})
+
+describe('rawHotkeyToParsedHotkey', () => {
+  it('should convert minimal RawHotkey (key only)', () => {
+    const result = rawHotkeyToParsedHotkey({ key: 'Escape' })
+    expect(result).toEqual({
+      key: 'Escape',
+      ctrl: false,
+      shift: false,
+      alt: false,
+      meta: false,
+      modifiers: [],
+    })
+  })
+
+  it('should convert RawHotkey with modifiers', () => {
+    const result = rawHotkeyToParsedHotkey({ key: 'S', ctrl: true, shift: true })
+    expect(result).toEqual({
+      key: 'S',
+      ctrl: true,
+      shift: true,
+      alt: false,
+      meta: false,
+      modifiers: ['Control', 'Shift'],
+    })
+  })
+
+  it('should default optional booleans to false', () => {
+    const result = rawHotkeyToParsedHotkey({ key: 'A', meta: true })
+    expect(result).toEqual({
+      key: 'A',
+      ctrl: false,
+      shift: false,
+      alt: false,
+      meta: true,
+      modifiers: ['Meta'],
+    })
+  })
+
+  it('should resolve mod to Meta on Mac', () => {
+    const result = rawHotkeyToParsedHotkey({ key: 'S', mod: true }, 'mac')
+    expect(result).toEqual({
+      key: 'S',
+      ctrl: false,
+      shift: false,
+      alt: false,
+      meta: true,
+      modifiers: ['Meta'],
+    })
+  })
+
+  it('should resolve mod to Control on Windows/Linux', () => {
+    const result = rawHotkeyToParsedHotkey({ key: 'S', mod: true }, 'windows')
+    expect(result).toEqual({
+      key: 'S',
+      ctrl: true,
+      shift: false,
+      alt: false,
+      meta: false,
+      modifiers: ['Control'],
+    })
+  })
+
+  it('should resolve mod+shift to Mod+Shift+S', () => {
+    const macResult = rawHotkeyToParsedHotkey(
+      { key: 'S', mod: true, shift: true },
+      'mac',
+    )
+    expect(macResult.modifiers).toEqual(['Shift', 'Meta'])
+
+    const winResult = rawHotkeyToParsedHotkey(
+      { key: 'S', mod: true, shift: true },
+      'windows',
+    )
+    expect(winResult.modifiers).toEqual(['Control', 'Shift'])
   })
 })

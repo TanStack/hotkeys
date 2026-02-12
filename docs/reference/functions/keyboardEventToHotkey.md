@@ -9,7 +9,7 @@ title: keyboardEventToHotkey
 function keyboardEventToHotkey(event): Hotkey;
 ```
 
-Defined in: [parse.ts:179](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L179)
+Defined in: [parse.ts:248](https://github.com/TanStack/keys/blob/main/packages/hotkeys/src/parse.ts#L248)
 
 Converts a KeyboardEvent directly to a hotkey string.
 

@@ -179,7 +179,7 @@ function App() {
     setMultiModifierCount((c) => c + 1)
   })
 
-  useHotkey('Control+Alt+A', () => {
+  useHotkey({ key: 'A', ctrl: true, alt: true }, () => {
     setLastHotkey('Control+Alt+A')
     setMultiModifierCount((c) => c + 1)
   })
@@ -242,8 +242,8 @@ function App() {
   // Single Keys
   // ============================================================================
 
-  // Clear with Escape
-  useHotkey('Escape', () => {
+  // Clear with Escape (RawHotkey object form)
+  useHotkey({ key: 'Escape' }, () => {
     setLastHotkey(null)
     setSaveCount(0)
     setIncrementCount(0)
@@ -425,8 +425,7 @@ useHotkey(
           <div className="counter">Active Tab: {activeTab}</div>
           <pre className="code-block">{`useHotkey('Mod+1', () => setActiveTab(1))
 useHotkey('Mod+2', () => setActiveTab(2))
-useHotkey('Control+0', () => setActiveTab(0))
-useHotkey('Alt+9', () => setActiveTab(9))`}</pre>
+`}</pre>
         </section>
 
         <section className="demo-section">

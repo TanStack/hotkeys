@@ -28,6 +28,16 @@ useHotkey('Mod+S', (event, context) => {
 })
 ```
 
+You can pass a hotkey as a string or as a `RawHotkey` object (modifier booleans optional). Use `mod` for cross-platform shortcuts (Command on Mac, Control elsewhere):
+
+```tsx
+useHotkey('Mod+S', () => save())
+useHotkey({ key: 'S', mod: true }, () => save())           // Same as above
+useHotkey({ key: 'Escape' }, () => closeModal())
+useHotkey({ key: 'S', ctrl: true, shift: true }, () => saveAs())
+useHotkey({ key: 'S', mod: true, shift: true }, () => saveAs())
+```
+
 ## Default Options
 
 When you register a hotkey without passing options, or when you omit specific options, the following defaults apply:

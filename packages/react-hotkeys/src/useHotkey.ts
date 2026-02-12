@@ -1,12 +1,17 @@
 import { useEffect, useRef } from 'react'
-import { formatHotkey, getHotkeyManager } from '@tanstack/hotkeys'
+import {
+  detectPlatform,
+  formatHotkey,
+  getHotkeyManager,
+  rawHotkeyToParsedHotkey,
+} from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import type {
   Hotkey,
   HotkeyCallback,
   HotkeyOptions,
   HotkeyRegistrationHandle,
-  ParsedHotkey,
+  RegisterableHotkey,
 } from '@tanstack/hotkeys'
 
 export interface UseHotkeyOptions extends Omit<HotkeyOptions, 'target'> {
@@ -35,7 +40,7 @@ export interface UseHotkeyOptions extends Omit<HotkeyOptions, 'target'> {
  * callbacks that reference React state will always have access to
  * the latest values.
  *
- * @param hotkey - The hotkey string (e.g., 'Mod+S', 'Escape') or ParsedHotkey object
+ * @param hotkey - The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object (supports `mod` for cross-platform)
  * @param callback - The function to call when the hotkey is pressed
  * @param options - Options for the hotkey behavior
  *
@@ -82,7 +87,7 @@ export interface UseHotkeyOptions extends Omit<HotkeyOptions, 'target'> {
  * ```
  */
 export function useHotkey(
-  hotkey: Hotkey | ParsedHotkey,
+  hotkey: RegisterableHotkey,
   callback: HotkeyCallback,
   options: UseHotkeyOptions = {},
 ): void {
@@ -111,9 +116,12 @@ export function useHotkey(
   const prevTargetRef = useRef<HTMLElement | Document | Window | null>(null)
   const prevHotkeyRef = useRef<string | null>(null)
 
-  // Format hotkey string
+  // Normalize to hotkey string
+  const platform = mergedOptions.platform ?? detectPlatform()
   const hotkeyString: Hotkey =
-    typeof hotkey === 'string' ? hotkey : (formatHotkey(hotkey) as Hotkey)
+    typeof hotkey === 'string'
+      ? hotkey
+      : (formatHotkey(rawHotkeyToParsedHotkey(hotkey, platform)) as Hotkey)
 
   // Extract options without target (target is handled separately)
   const { target: _target, ...optionsWithoutTarget } = mergedOptions

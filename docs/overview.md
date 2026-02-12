@@ -21,6 +21,7 @@ Surprisingly, in our experience, even AI often struggles to get hotkey managemen
 
 - **Type-Safe Hotkey Strings**
   - Full autocomplete for valid modifier - e.g. `Control+A`, `Alt+S`, `Shift+D`, `Mod+Shift+G`, etc.
+  - Alternatively, you can use a raw `RawHotkey` object to register hotkeys: `useHotkey({ key: 'S', mod: true }, handler)`
 
 - **Cross-Platform Compatibility**
   - `Mod` resolves to `Meta` (Cmd) on macOS and `Control` on Windows/Linux

@@ -9,7 +9,7 @@ title: useDefaultHotkeysOptions
 function useDefaultHotkeysOptions(): HotkeysProviderOptions;
 ```
 
-Defined in: [HotkeysProvider.tsx:48](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L48)
+Defined in: [HotkeysProvider.tsx:48](https://github.com/TanStack/keys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L48)
 
 ## Returns
 

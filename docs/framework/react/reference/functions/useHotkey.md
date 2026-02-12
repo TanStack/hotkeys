@@ -12,7 +12,7 @@ function useHotkey(
    options): void;
 ```
 
-Defined in: [useHotkey.ts:84](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L84)
+Defined in: [useHotkey.ts:89](https://github.com/TanStack/keys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L89)
 
 React hook for registering a keyboard hotkey.
 
@@ -29,9 +29,9 @@ the latest values.
 
 ### hotkey
 
-The hotkey string (e.g., 'Mod+S', 'Escape') or ParsedHotkey object
+`RegisterableHotkey`
 
-`Hotkey` | `ParsedHotkey`
+The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object (supports `mod` for cross-platform)
 
 ### callback
 

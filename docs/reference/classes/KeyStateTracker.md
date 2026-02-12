@@ -5,7 +5,7 @@ title: KeyStateTracker
 
 # Class: KeyStateTracker
 
-Defined in: [key-state-tracker.ts:63](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L63)
+Defined in: [key-state-tracker.ts:63](https://github.com/TanStack/keys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L63)
 
 Singleton tracker for currently held keyboard keys.
 
@@ -49,7 +49,7 @@ unsubscribe()
 readonly store: Store<KeyStateTrackerState>;
 ```
 
-Defined in: [key-state-tracker.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L70)
+Defined in: [key-state-tracker.ts:70](https://github.com/TanStack/keys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L70)
 
 The TanStack Store instance containing the tracker state.
 Use this to subscribe to state changes or access current state.
@@ -62,7 +62,7 @@ Use this to subscribe to state changes or access current state.
 areAllKeysHeld(keys): boolean;
 ```
 
-Defined in: [key-state-tracker.ts:228](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L228)
+Defined in: [key-state-tracker.ts:228](https://github.com/TanStack/keys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L228)
 
 Checks if all of the given keys are currently held.
 
@@ -88,7 +88,7 @@ True if all of the keys are currently held
 destroy(): void;
 ```
 
-Defined in: [key-state-tracker.ts:235](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L235)
+Defined in: [key-state-tracker.ts:235](https://github.com/TanStack/keys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L235)
 
 Destroys the tracker and removes all listeners.
 
@@ -104,7 +104,7 @@ Destroys the tracker and removes all listeners.
 getHeldKeys(): string[];
 ```
 
-Defined in: [key-state-tracker.ts:197](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L197)
+Defined in: [key-state-tracker.ts:197](https://github.com/TanStack/keys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L197)
 
 Gets an array of currently held key names.
 
@@ -122,7 +122,7 @@ Array of key names currently being pressed
 isAnyKeyHeld(keys): boolean;
 ```
 
-Defined in: [key-state-tracker.ts:218](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L218)
+Defined in: [key-state-tracker.ts:218](https://github.com/TanStack/keys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L218)
 
 Checks if any of the given keys are currently held.
 
@@ -148,7 +148,7 @@ True if any of the keys are currently held
 isKeyHeld(key): boolean;
 ```
 
-Defined in: [key-state-tracker.ts:207](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L207)
+Defined in: [key-state-tracker.ts:207](https://github.com/TanStack/keys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L207)
 
 Checks if a specific key is currently being held.
 
@@ -174,7 +174,7 @@ True if the key is currently held
 static getInstance(): KeyStateTracker;
 ```
 
-Defined in: [key-state-tracker.ts:87](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L87)
+Defined in: [key-state-tracker.ts:87](https://github.com/TanStack/keys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L87)
 
 Gets the singleton instance of KeyStateTracker.
 
@@ -190,7 +190,7 @@ Gets the singleton instance of KeyStateTracker.
 static resetInstance(): void;
 ```
 
-Defined in: [key-state-tracker.ts:97](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L97)
+Defined in: [key-state-tracker.ts:97](https://github.com/TanStack/keys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L97)
 
 Resets the singleton instance. Useful for testing.
 

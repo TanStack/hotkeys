@@ -9,7 +9,7 @@ title: useHotkeyRecorder
 function useHotkeyRecorder(options): ReactHotkeyRecorder;
 ```
 
-Defined in: [useHotkeyRecorder.ts:58](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeyRecorder.ts#L58)
+Defined in: [useHotkeyRecorder.ts:58](https://github.com/TanStack/keys/blob/main/packages/react-hotkeys/src/useHotkeyRecorder.ts#L58)
 
 React hook for recording keyboard shortcuts.
 

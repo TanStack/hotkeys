@@ -61,7 +61,7 @@ Type-safe keyboard shortcuts for the web. Template strings, parsed objects, cros
   - `formatForDisplay(hotkey)` for cheatsheet UIs (symbols on Mac, labels on Windows/Linux)
   - `formatWithLabels`, `formatHotkey` for flexible output
 - **Validation & Matching**
-  - `validateHotkey`, `assertValidHotkey`, `checkHotkey` for correctness and layout warnings
+  - `validateHotkey`, `assertValidHotkey`, `checkHotkey` for correctness validation
   - `matchesKeyboardEvent`, `createHotkeyHandler`, `createMultiHotkeyHandler`
 - **Sequences**
   - `SequenceManager`, `createSequenceMatcher` for Vim-style multi-key shortcuts (e.g. `['G','G']`, `['D','I','W']`)

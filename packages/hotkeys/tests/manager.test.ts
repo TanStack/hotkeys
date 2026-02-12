@@ -81,6 +81,47 @@ describe('HotkeyManager', () => {
 
       expect(manager.getRegistrationCount()).toBe(2)
     })
+
+    it('should register with RawHotkey object', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register({ key: 'S', ctrl: true, shift: true }, callback, {
+        platform: 'windows',
+      })
+
+      expect(manager.getRegistrationCount()).toBe(1)
+      expect(manager.isRegistered('Control+Shift+S')).toBe(true)
+
+      // Trigger the hotkey
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 's', { ctrlKey: true, shiftKey: true }),
+      )
+      expect(callback).toHaveBeenCalledTimes(1)
+    })
+
+    it('should register with minimal RawHotkey (key only)', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register({ key: 'Escape' }, callback)
+
+      expect(manager.getRegistrationCount()).toBe(1)
+      document.dispatchEvent(createKeyboardEvent('keydown', 'Escape'))
+      expect(callback).toHaveBeenCalledTimes(1)
+    })
+
+    it('should register with RawHotkey mod (platform-adaptive)', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register({ key: 'S', mod: true }, callback, { platform: 'mac' })
+
+      expect(manager.getRegistrationCount()).toBe(1)
+      expect(manager.isRegistered('Meta+S')).toBe(true)
+      document.dispatchEvent(createKeyboardEvent('keydown', 's', { metaKey: true }))
+      expect(callback).toHaveBeenCalledTimes(1)
+    })
   })
 
   describe('HotkeyRegistrationHandle', () => {

@@ -9,7 +9,7 @@ title: formatKeyForDebuggingDisplay
 function formatKeyForDebuggingDisplay(key, options): string;
 ```
 
-Defined in: [format.ts:227](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L227)
+Defined in: [format.ts:227](https://github.com/TanStack/keys/blob/main/packages/hotkeys/src/format.ts#L227)
 
 Formats a single key name for debugging/devtools display.
 
