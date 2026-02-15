@@ -1,5 +1,5 @@
-import { createSignal, createEffect, onCleanup } from "solid-js";
-import { getKeyStateTracker } from "@tanstack/hotkeys";
+import { createEffect, createSignal, onCleanup } from 'solid-js'
+import { getKeyStateTracker } from '@tanstack/hotkeys'
 
 /**
  * SolidJS primitive that returns a signal of currently held keyboard keys.
@@ -23,20 +23,20 @@ import { getKeyStateTracker } from "@tanstack/hotkeys";
  * ```
  */
 export function createHeldKeys(): () => Array<string> {
-  const tracker = getKeyStateTracker();
-  const [heldKeys, setHeldKeys] = createSignal<Array<string>>([]);
+  const tracker = getKeyStateTracker()
+  const [heldKeys, setHeldKeys] = createSignal<Array<string>>([])
 
   createEffect(() => {
     // Subscribe to store changes
     const unsubscribe = tracker.store.subscribe(() => {
-      setHeldKeys([...tracker.store.state.heldKeys]);
-    });
+      setHeldKeys([...tracker.store.state.heldKeys])
+    })
 
     // Initialize with current state
-    setHeldKeys([...tracker.store.state.heldKeys]);
+    setHeldKeys([...tracker.store.state.heldKeys])
 
-    onCleanup(unsubscribe);
-  });
+    onCleanup(unsubscribe)
+  })
 
-  return heldKeys;
+  return heldKeys
 }

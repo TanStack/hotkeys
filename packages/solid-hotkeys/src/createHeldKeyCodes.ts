@@ -1,5 +1,5 @@
-import { createSignal, createEffect, onCleanup } from "solid-js";
-import { getKeyStateTracker } from "@tanstack/hotkeys";
+import { createEffect, createSignal, onCleanup } from 'solid-js'
+import { getKeyStateTracker } from '@tanstack/hotkeys'
 
 /**
  * SolidJS primitive that returns a signal of a map from currently held key names to their physical `event.code` values.
@@ -30,20 +30,20 @@ import { getKeyStateTracker } from "@tanstack/hotkeys";
  * ```
  */
 export function createHeldKeyCodes(): () => Record<string, string> {
-  const tracker = getKeyStateTracker();
-  const [heldCodes, setHeldCodes] = createSignal<Record<string, string>>({});
+  const tracker = getKeyStateTracker()
+  const [heldCodes, setHeldCodes] = createSignal<Record<string, string>>({})
 
   createEffect(() => {
     // Subscribe to store changes
     const unsubscribe = tracker.store.subscribe(() => {
-      setHeldCodes({ ...tracker.store.state.heldCodes });
-    });
+      setHeldCodes({ ...tracker.store.state.heldCodes })
+    })
 
     // Initialize with current state
-    setHeldCodes({ ...tracker.store.state.heldCodes });
+    setHeldCodes({ ...tracker.store.state.heldCodes })
 
-    onCleanup(unsubscribe);
-  });
+    onCleanup(unsubscribe)
+  })
 
-  return heldCodes;
+  return heldCodes
 }

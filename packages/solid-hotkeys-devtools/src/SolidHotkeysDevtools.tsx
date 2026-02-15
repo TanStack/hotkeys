@@ -1,15 +1,10 @@
-import type { Component } from 'solid-js'
+import { createSolidPanel } from '@tanstack/devtools-utils/solid'
+import { HotkeysDevtoolsCore } from '@tanstack/hotkeys-devtools'
+import type { DevtoolsPanelProps } from '@tanstack/devtools-utils/solid'
 
-export interface HotkeysDevtoolsSolidInit {
-  initialIsOpen?: boolean
-  position?: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right'
-}
+export interface HotkeysDevtoolsSolidInit extends DevtoolsPanelProps {}
 
-// TODO: Implement full devtools panel once @tanstack/devtools-utils supports SolidJS
-export const HotkeysDevtoolsPanel: Component<HotkeysDevtoolsSolidInit> = () => {
-  return null
-}
+const [HotkeysDevtoolsPanel, HotkeysDevtoolsPanelNoOp] =
+  createSolidPanel(HotkeysDevtoolsCore)
 
-export const HotkeysDevtoolsPanelNoOp: Component<HotkeysDevtoolsSolidInit> = () => {
-  return null
-}
+export { HotkeysDevtoolsPanel, HotkeysDevtoolsPanelNoOp }

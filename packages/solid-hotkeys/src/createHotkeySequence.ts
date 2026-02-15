@@ -1,10 +1,18 @@
-import { createEffect, onCleanup } from "solid-js";
-import { getSequenceManager, type HotkeyCallback, type HotkeySequence, type SequenceOptions } from "@tanstack/hotkeys";
-import { useDefaultHotkeysOptions } from "./HotkeysProvider";
+import { createEffect, onCleanup } from 'solid-js'
+import { getSequenceManager } from '@tanstack/hotkeys'
+import { useDefaultHotkeysOptions } from './HotkeysProvider'
+import type {
+  HotkeyCallback,
+  HotkeySequence,
+  SequenceOptions,
+} from '@tanstack/hotkeys'
 
-export interface CreateHotkeySequenceOptions extends Omit<SequenceOptions, "enabled"> {
+export interface CreateHotkeySequenceOptions extends Omit<
+  SequenceOptions,
+  'enabled'
+> {
   /** Whether the sequence is enabled. Defaults to true. */
-  enabled?: boolean;
+  enabled?: boolean
 }
 
 /**
@@ -42,37 +50,44 @@ export interface CreateHotkeySequenceOptions extends Omit<SequenceOptions, "enab
 export function createHotkeySequence(
   sequence: HotkeySequence | (() => HotkeySequence),
   callback: HotkeyCallback,
-  options: CreateHotkeySequenceOptions | (() => CreateHotkeySequenceOptions) = {}
+  options:
+    | CreateHotkeySequenceOptions
+    | (() => CreateHotkeySequenceOptions) = {},
 ): void {
-  const defaultOptions = useDefaultHotkeysOptions();
+  const defaultOptions = useDefaultHotkeysOptions()
 
   createEffect(() => {
     // Resolve reactive values
-    const resolvedSequence = typeof sequence === "function" ? sequence() : sequence;
-    const resolvedOptions = typeof options === "function" ? options() : options;
+    const resolvedSequence =
+      typeof sequence === 'function' ? sequence() : sequence
+    const resolvedOptions = typeof options === 'function' ? options() : options
 
     const mergedOptions = {
       ...defaultOptions.hotkeySequence,
       ...resolvedOptions,
-    } as CreateHotkeySequenceOptions;
+    } as CreateHotkeySequenceOptions
 
-    const { enabled = true, ...sequenceOptions } = mergedOptions;
+    const { enabled = true, ...sequenceOptions } = mergedOptions
 
     if (!enabled || resolvedSequence.length === 0) {
-      return;
+      return
     }
 
-    const manager = getSequenceManager();
+    const manager = getSequenceManager()
 
     // Build options object conditionally to avoid overwriting manager defaults with undefined
-    const registerOptions: SequenceOptions = { enabled: true };
+    const registerOptions: SequenceOptions = { enabled: true }
     if (sequenceOptions.timeout !== undefined)
-      registerOptions.timeout = sequenceOptions.timeout;
+      registerOptions.timeout = sequenceOptions.timeout
     if (sequenceOptions.platform !== undefined)
-      registerOptions.platform = sequenceOptions.platform;
+      registerOptions.platform = sequenceOptions.platform
 
-    const unregister = manager.register(resolvedSequence, callback, registerOptions);
+    const unregister = manager.register(
+      resolvedSequence,
+      callback,
+      registerOptions,
+    )
 
-    onCleanup(unregister);
-  });
+    onCleanup(unregister)
+  })
 }

@@ -37,7 +37,6 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
-    "./production": "./dist/production.js",
     "./package.json": "./package.json"
   },
   "sideEffects": false,
@@ -51,8 +50,12 @@
   "peerDependencies": {
     "solid-js": ">=1.7.0"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@tanstack/devtools-utils": "^0.3.0",
+    "@tanstack/hotkeys-devtools": "workspace:*"
+  },
   "devDependencies": {
-    "solid-js": "^1.9.0"
+    "solid-js": "^1.9.11",
+    "vite-plugin-solid": "^2.11.10"
   }
 }

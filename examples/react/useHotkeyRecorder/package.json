@@ -18,7 +18,7 @@
   "devDependencies": {
     "@tanstack/react-devtools": "0.9.5",
     "@tanstack/react-hotkeys-devtools": "^0.1.0",
-    "@types/react": "^19.2.13",
+    "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.4",
     "typescript": "5.9.3",

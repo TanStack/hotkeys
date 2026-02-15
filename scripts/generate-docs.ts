@@ -24,18 +24,18 @@ await generateReferenceDocs({
       outputDir: resolve(__dirname, '../docs/framework/react/reference'),
       exclude: ['packages/hotkeys/**/*'],
     },
-    // {
-    //   name: 'solid-hotkeys',
-    //   entryPoints: [
-    //     resolve(__dirname, '../packages/solid-hotkeys/src/index.ts'),
-    //   ],
-    //   tsconfig: resolve(
-    //     __dirname,
-    //     '../packages/solid-hotkeys/tsconfig.docs.json',
-    //   ),
-    //   outputDir: resolve(__dirname, '../docs/framework/solid/reference'),
-    //   exclude: ['packages/hotkeys/**/*'],
-    // },
+    {
+      name: 'solid-hotkeys',
+      entryPoints: [
+        resolve(__dirname, '../packages/solid-hotkeys/src/index.ts'),
+      ],
+      tsconfig: resolve(
+        __dirname,
+        '../packages/solid-hotkeys/tsconfig.docs.json',
+      ),
+      outputDir: resolve(__dirname, '../docs/framework/solid/reference'),
+      exclude: ['packages/hotkeys/**/*'],
+    },
   ],
 })
 

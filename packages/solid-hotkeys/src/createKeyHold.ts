@@ -1,6 +1,6 @@
-import { createMemo } from "solid-js";
-import { createHeldKeys } from "./createHeldKeys";
-import type { HeldKey } from "@tanstack/hotkeys";
+import { createMemo } from 'solid-js'
+import { createHeldKeys } from './createHeldKeys'
+import type { HeldKey } from '@tanstack/hotkeys'
 
 /**
  * SolidJS primitive that returns whether a specific key is currently being held.
@@ -41,14 +41,12 @@ import type { HeldKey } from "@tanstack/hotkeys";
  * }
  * ```
  */
-export function createKeyHold(
-  key: HeldKey | (() => HeldKey)
-): () => boolean {
-  const heldKeys = createHeldKeys();
+export function createKeyHold(key: HeldKey | (() => HeldKey)): () => boolean {
+  const heldKeys = createHeldKeys()
 
   return createMemo(() => {
-    const resolvedKey = typeof key === "function" ? key() : key;
-    const normalizedKey = resolvedKey.toLowerCase();
-    return heldKeys().some((heldKey) => heldKey.toLowerCase() === normalizedKey);
-  });
+    const resolvedKey = typeof key === 'function' ? key() : key
+    const normalizedKey = resolvedKey.toLowerCase()
+    return heldKeys().some((heldKey) => heldKey.toLowerCase() === normalizedKey)
+  })
 }

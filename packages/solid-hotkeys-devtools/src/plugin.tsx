@@ -1,8 +1,9 @@
-import { createDevtoolsPlugin } from '@tanstack/hotkeys-devtools'
+import { createSolidPlugin } from '@tanstack/devtools-utils/solid'
+import { HotkeysDevtoolsPanel } from './SolidHotkeysDevtools'
 
-export const hotkeysDevtoolsPlugin = createDevtoolsPlugin()
+const [hotkeysDevtoolsPlugin, hotkeysDevtoolsNoOpPlugin] = createSolidPlugin({
+  name: 'TanStack Hotkeys',
+  Component: HotkeysDevtoolsPanel,
+})
 
-export const hotkeysDevtoolsNoOpPlugin = {
-  name: 'HotkeysDevtools',
-  init: () => {},
-}
+export { hotkeysDevtoolsPlugin, hotkeysDevtoolsNoOpPlugin }

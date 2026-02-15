@@ -1,24 +1,28 @@
-import { createEffect, onCleanup } from "solid-js";
+import { createEffect, onCleanup } from 'solid-js'
 import {
   detectPlatform,
   formatHotkey,
   getHotkeyManager,
   rawHotkeyToParsedHotkey,
-  type Hotkey,
-  type HotkeyCallback,
-  type HotkeyOptions,
-  type HotkeyRegistrationHandle,
-  type RegisterableHotkey,
-} from "@tanstack/hotkeys";
-import { useDefaultHotkeysOptions } from "./HotkeysProvider";
+} from '@tanstack/hotkeys'
+import { useDefaultHotkeysOptions } from './HotkeysProvider'
+import type {
+  Hotkey,
+  HotkeyCallback,
+  HotkeyOptions,
+  HotkeyRegistrationHandle,
+  RegisterableHotkey,
+} from '@tanstack/hotkeys'
 
-export interface CreateHotkeyOptions extends Omit<HotkeyOptions, "target"> {
+export interface CreateHotkeyOptions extends Omit<HotkeyOptions, 'target'> {
   /**
    * The DOM element to attach the event listener to.
-   * Can be a direct DOM element, or null.
-   * Defaults to document.
+   * Can be a direct DOM element, an accessor (for reactive targets that become
+   * available after mount), or null. Defaults to document.
+   * When using scoped targets, pass an accessor: () => ({ target: elementSignal() })
+   * so the hotkey waits for the element to be attached before registering.
    */
-  target?: HTMLElement | Document | Window | null;
+  target?: HTMLElement | Document | Window | null
 }
 
 /**
@@ -67,85 +71,84 @@ export interface CreateHotkeyOptions extends Omit<HotkeyOptions, "target"> {
  * @example
  * ```tsx
  * function Editor() {
- *   let editorRef: HTMLDivElement | undefined
+ *   const [editorRef, setEditorRef] = createSignal<HTMLDivElement | null>(null)
  *
- *   // Scoped to a specific element
- *   createHotkey('Mod+S', () => {
- *     save()
- *   }, { target: editorRef })
+ *   // Scoped to a specific element - use accessor so hotkey waits for ref
+ *   createHotkey('Mod+S', save, () => ({ target: editorRef() }))
  *
- *   return <div ref={editorRef}>...</div>
+ *   return <div ref={setEditorRef}>...</div>
  * }
  * ```
  */
 export function createHotkey(
   hotkey: RegisterableHotkey | (() => RegisterableHotkey),
   callback: HotkeyCallback,
-  options: CreateHotkeyOptions | (() => CreateHotkeyOptions) = {}
+  options: CreateHotkeyOptions | (() => CreateHotkeyOptions) = {},
 ): void {
-  const defaultOptions = useDefaultHotkeysOptions();
-  const manager = getHotkeyManager();
+  const defaultOptions = useDefaultHotkeysOptions()
+  const manager = getHotkeyManager()
 
-  let registration: HotkeyRegistrationHandle | null = null;
+  let registration: HotkeyRegistrationHandle | null = null
 
   createEffect(() => {
     // Resolve reactive values
-    const resolvedHotkey =
-      typeof hotkey === "function" ? hotkey() : hotkey;
-    const resolvedOptions =
-      typeof options === "function" ? options() : options;
+    const resolvedHotkey = typeof hotkey === 'function' ? hotkey() : hotkey
+    const resolvedOptions = typeof options === 'function' ? options() : options
 
     const mergedOptions = {
       ...defaultOptions.hotkey,
       ...resolvedOptions,
-    } as CreateHotkeyOptions;
+    } as CreateHotkeyOptions
 
     // Normalize to hotkey string
-    const platform = mergedOptions.platform ?? detectPlatform();
+    const platform = mergedOptions.platform ?? detectPlatform()
     const hotkeyString: Hotkey =
-      typeof resolvedHotkey === "string"
+      typeof resolvedHotkey === 'string'
         ? resolvedHotkey
         : (formatHotkey(
-            rawHotkeyToParsedHotkey(resolvedHotkey, platform)
-          ) as Hotkey);
+            rawHotkeyToParsedHotkey(resolvedHotkey, platform),
+          ) as Hotkey)
 
-    // Resolve target (defaults to document)
+    // Resolve target: when explicitly provided (even as null), use it and skip if null.
+    // When not provided, default to document. Matches React's ref handling.
     const resolvedTarget =
-      mergedOptions.target ??
-      (typeof document !== "undefined" ? document : null);
+      'target' in mergedOptions
+        ? (mergedOptions.target ?? null)
+        : typeof document !== 'undefined'
+          ? document
+          : null
 
-    // Skip if no valid target (SSR)
     if (!resolvedTarget) {
-      return;
+      return
     }
 
     // Unregister previous registration if it exists
     if (registration?.isActive) {
-      registration.unregister();
-      registration = null;
+      registration.unregister()
+      registration = null
     }
 
     // Extract options without target (target is handled separately)
-    const { target: _target, ...optionsWithoutTarget } = mergedOptions;
+    const { target: _target, ...optionsWithoutTarget } = mergedOptions
 
     // Register the hotkey
     registration = manager.register(hotkeyString, callback, {
       ...optionsWithoutTarget,
       target: resolvedTarget,
-    });
+    })
 
     // Update callback and options on every effect run
-    if (registration?.isActive) {
-      registration.callback = callback;
-      registration.setOptions(optionsWithoutTarget);
+    if (registration.isActive) {
+      registration.callback = callback
+      registration.setOptions(optionsWithoutTarget)
     }
 
     // Cleanup on disposal
     onCleanup(() => {
       if (registration?.isActive) {
-        registration.unregister();
-        registration = null;
+        registration.unregister()
+        registration = null
       }
-    });
-  });
+    })
+  })
 }

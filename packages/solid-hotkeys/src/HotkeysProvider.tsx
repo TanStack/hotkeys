@@ -1,46 +1,47 @@
-import { createContext, useContext, type JSX, type ParentComponent } from "solid-js";
-import type { HotkeyRecorderOptions } from "@tanstack/hotkeys";
-import type { CreateHotkeyOptions } from "./createHotkey";
-import type { CreateHotkeySequenceOptions } from "./createHotkeySequence";
+import { createContext, useContext } from 'solid-js'
+import type { JSX, ParentComponent } from 'solid-js'
+import type { HotkeyRecorderOptions } from '@tanstack/hotkeys'
+import type { CreateHotkeyOptions } from './createHotkey'
+import type { CreateHotkeySequenceOptions } from './createHotkeySequence'
 
 export interface HotkeysProviderOptions {
-  hotkey?: Partial<CreateHotkeyOptions>;
-  hotkeyRecorder?: Partial<HotkeyRecorderOptions>;
-  hotkeySequence?: Partial<CreateHotkeySequenceOptions>;
+  hotkey?: Partial<CreateHotkeyOptions>
+  hotkeyRecorder?: Partial<HotkeyRecorderOptions>
+  hotkeySequence?: Partial<CreateHotkeySequenceOptions>
 }
 
 interface HotkeysContextValue {
-  defaultOptions: HotkeysProviderOptions;
+  defaultOptions: HotkeysProviderOptions
 }
 
-const HotkeysContext = createContext<HotkeysContextValue | null>(null);
+const HotkeysContext = createContext<HotkeysContextValue | null>(null)
 
 export interface HotkeysProviderProps {
-  children: JSX.Element;
-  defaultOptions?: HotkeysProviderOptions;
+  children: JSX.Element
+  defaultOptions?: HotkeysProviderOptions
 }
 
-const DEFAULT_OPTIONS: HotkeysProviderOptions = {};
+const DEFAULT_OPTIONS: HotkeysProviderOptions = {}
 
 export const HotkeysProvider: ParentComponent<HotkeysProviderProps> = (
-  props
+  props,
 ) => {
   const contextValue: HotkeysContextValue = {
     defaultOptions: props.defaultOptions ?? DEFAULT_OPTIONS,
-  };
+  }
 
   return (
     <HotkeysContext.Provider value={contextValue}>
       {props.children}
     </HotkeysContext.Provider>
-  );
-};
+  )
+}
 
 export function useHotkeysContext() {
-  return useContext(HotkeysContext);
+  return useContext(HotkeysContext)
 }
 
 export function useDefaultHotkeysOptions() {
-  const context = useContext(HotkeysContext);
-  return context?.defaultOptions ?? {};
+  const context = useContext(HotkeysContext)
+  return context?.defaultOptions ?? {}
 }
