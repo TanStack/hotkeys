@@ -9,12 +9,13 @@ title: createKeyHold
 function createKeyHold(key): () => boolean;
 ```
 
-Defined in: [createKeyHold.ts:44](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createKeyHold.ts#L44)
+Defined in: [createKeyHold.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createKeyHold.ts#L46)
 
 SolidJS primitive that returns whether a specific key is currently being held.
 
-This primitive subscribes to the global KeyStateTracker and returns a
-signal accessor that evaluates to true when the specified key is held.
+This primitive uses `useStore` from `@tanstack/solid-store` to subscribe
+to the global KeyStateTracker and uses a selector to determine if the
+specified key is held.
 
 ## Parameters
 

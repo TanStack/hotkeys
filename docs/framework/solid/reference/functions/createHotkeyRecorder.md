@@ -9,7 +9,7 @@ title: createHotkeyRecorder
 function createHotkeyRecorder(options): SolidHotkeyRecorder;
 ```
 
-Defined in: [createHotkeyRecorder.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L57)
+Defined in: [createHotkeyRecorder.ts:61](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L61)
 
 SolidJS primitive for recording keyboard shortcuts.
 
@@ -17,6 +17,9 @@ This primitive provides a thin wrapper around the framework-agnostic `HotkeyReco
 class, managing all the complexity of capturing keyboard events, converting them
 to hotkey strings, and handling edge cases like Escape to cancel or Backspace/Delete
 to clear.
+
+This primitive uses `useStore` from `@tanstack/solid-store` to subscribe
+to the recorder's store state (same pattern as useHotkeyRecorder in React).
 
 ## Parameters
 
