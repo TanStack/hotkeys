@@ -9,7 +9,7 @@ title: MODIFIER_ORDER
 const MODIFIER_ORDER: CanonicalModifier[];
 ```
 
-Defined in: [constants.ts:65](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L65)
+Defined in: [constants.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L69)
 
 Canonical order for modifiers in normalized hotkey strings.
 

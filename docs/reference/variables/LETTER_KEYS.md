@@ -9,7 +9,7 @@ title: LETTER_KEYS
 const LETTER_KEYS: Set<LetterKey>;
 ```
 
-Defined in: [constants.ts:173](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L173)
+Defined in: [constants.ts:177](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L177)
 
 Set of all valid letter keys (A-Z).
 

@@ -15,7 +15,7 @@ const ALL_KEYS: Set<
 | PunctuationKey>;
 ```
 
-Defined in: [constants.ts:315](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L315)
+Defined in: [constants.ts:319](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L319)
 
 Set of all valid non-modifier keys.
 

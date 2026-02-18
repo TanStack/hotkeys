@@ -9,7 +9,7 @@ title: NAVIGATION_KEYS
 const NAVIGATION_KEYS: Set<NavigationKey>;
 ```
 
-Defined in: [constants.ts:250](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L250)
+Defined in: [constants.ts:254](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L254)
 
 Set of all valid navigation keys for cursor movement and document navigation.
 
