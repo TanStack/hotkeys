@@ -1,5 +1,11 @@
 # @tanstack/hotkeys
 
+## 0.1.1
+
+### Patch Changes
+
+- fix detectPlatform SSR pass on WinterTC runtime with partial navigator implementation (e.g: Deno, Cloudflare workers) ([#14](https://github.com/TanStack/hotkeys/pull/14))
+
 ## 0.1.0
 
 ### Minor Changes

@@ -9,7 +9,7 @@ title: EDITING_KEYS
 const EDITING_KEYS: Set<EditingKey>;
 ```
 
-Defined in: [constants.ts:268](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L268)
+Defined in: [constants.ts:270](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L270)
 
 Set of all valid editing and special keys.
 

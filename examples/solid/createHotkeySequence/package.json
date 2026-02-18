@@ -1,0 +1,21 @@
+{
+  "name": "@tanstack/hotkeys-example-solid-create-hotkey-sequence",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3069",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@tanstack/devtools-utils": "^0.3.0",
+    "@tanstack/solid-devtools": "0.7.25",
+    "@tanstack/solid-hotkeys": "workspace:*",
+    "@tanstack/solid-hotkeys-devtools": "workspace:*",
+    "solid-js": "^1.9.11"
+  },
+  "devDependencies": {
+    "vite": "^7.3.1",
+    "vite-plugin-solid": "^2.11.10"
+  }
+}

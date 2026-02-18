@@ -253,6 +253,25 @@ export class HotkeyManager {
     callback: HotkeyCallback,
     options: HotkeyOptions = {},
   ): HotkeyRegistrationHandle {
+    // In SSR environments, return a no-op handle since there's no DOM to attach listeners to
+    if (typeof document === 'undefined' && !options.target) {
+      let currentCallback = callback
+      return {
+        id: generateId(),
+        unregister: () => {},
+        get callback() {
+          return currentCallback
+        },
+        set callback(newCallback: HotkeyCallback) {
+          currentCallback = newCallback
+        },
+        setOptions: () => {},
+        get isActive() {
+          return false
+        },
+      }
+    }
+
     const id = generateId()
     const platform = options.platform ?? this.#platform
     const parsedHotkey =
@@ -263,10 +282,9 @@ export class HotkeyManager {
       typeof hotkey === 'string' ? hotkey : formatHotkey(parsedHotkey)
     ) as Hotkey
 
-    // Resolve target: default to document if not provided or null
-    const target =
-      options.target ??
-      (typeof document !== 'undefined' ? document : ({} as Document))
+    // Resolve target: default to document if not provided
+    // Note: SSR case without explicit target is handled above
+    const target = options.target ?? document
 
     // Resolve conflict behavior
     const conflictBehavior = options.conflictBehavior ?? 'warn'

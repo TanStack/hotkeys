@@ -32,8 +32,10 @@ export function detectPlatform(): 'mac' | 'windows' | 'linux' {
     return 'linux' // Default for SSR
   }
 
-  const platform = navigator.platform.toLowerCase()
-  const userAgent = navigator.userAgent.toLowerCase()
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  const platform = navigator.platform?.toLowerCase() ?? ''
+  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+  const userAgent = navigator.userAgent?.toLowerCase() ?? ''
 
   if (platform.includes('mac') || userAgent.includes('mac')) {
     return 'mac'

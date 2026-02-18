@@ -1,0 +1,61 @@
+{
+  "name": "@tanstack/solid-hotkeys-devtools",
+  "version": "0.1.1",
+  "description": "SolidJS devtools for TanStack Hotkeys",
+  "author": "Tanner Linsley",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TanStack/hotkeys.git",
+    "directory": "packages/solid-hotkeys-devtools"
+  },
+  "homepage": "https://tanstack.com/hotkeys",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/tannerlinsley"
+  },
+  "keywords": [
+    "solid",
+    "solidjs",
+    "tanstack",
+    "keys",
+    "devtools",
+    "hotkeys",
+    "keyboard"
+  ],
+  "scripts": {
+    "clean": "premove ./build ./dist",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "test:eslint": "eslint ./src",
+    "test:lib": "vitest --passWithNoTests",
+    "test:lib:dev": "pnpm test:lib --watch",
+    "test:types": "tsc",
+    "build": "tsdown"
+  },
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist/",
+    "src"
+  ],
+  "peerDependencies": {
+    "solid-js": ">=1.7.0"
+  },
+  "dependencies": {
+    "@tanstack/devtools-utils": "^0.3.0",
+    "@tanstack/hotkeys-devtools": "workspace:*"
+  },
+  "devDependencies": {
+    "solid-js": "^1.9.11",
+    "vite-plugin-solid": "^2.11.10"
+  }
+}

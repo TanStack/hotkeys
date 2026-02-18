@@ -7,8 +7,8 @@ export default defineConfig({
       './packages/hotkeys-devtools/vitest.config.ts',
       './packages/react-hotkeys/vitest.config.ts',
       './packages/react-hotkeys-devtools/vitest.config.ts',
-      // './packages/solid-hotkeys/vitest.config.ts',
-      // './packages/solid-hotkeys-devtools/vitest.config.ts',
+      './packages/solid-hotkeys/vitest.config.ts',
+      './packages/solid-hotkeys-devtools/vitest.config.ts',
     ],
   },
 })

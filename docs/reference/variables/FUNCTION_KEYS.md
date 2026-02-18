@@ -9,7 +9,7 @@ title: FUNCTION_KEYS
 const FUNCTION_KEYS: Set<FunctionKey>;
 ```
 
-Defined in: [constants.ts:228](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L228)
+Defined in: [constants.ts:230](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L230)
 
 Set of all valid function keys (F1-F12).
 
