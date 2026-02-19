@@ -116,6 +116,7 @@ export type EditingKey =
  */
 export type PunctuationKey =
   | '/'
+  | '?'
   | '['
   | ']'
   | '\\'
