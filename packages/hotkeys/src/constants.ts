@@ -5,6 +5,7 @@ import type {
   LetterKey,
   NavigationKey,
   NumberKey,
+  NumpadKey,
   PunctuationKey,
 } from './hotkey'
 
@@ -301,6 +302,35 @@ export const PUNCTUATION_KEYS = new Set<PunctuationKey>([
 ])
 
 /**
+ * Set of all valid numpad keys.
+ *
+ * Numpad keys are commonly used for data entry and calculator-style input.
+ * They produce distinct `event.key` values from the main number row:
+ * - `Numpad0`-`Numpad9` for digits
+ * - `NumpadAdd`, `NumpadSubtract`, `NumpadMultiply`, `NumpadDivide` for operators
+ * - `NumpadDecimal` for the decimal point
+ * - `NumpadEnter` for the numpad enter key
+ */
+export const NUMPAD_KEYS = new Set<NumpadKey>([
+  'Numpad0',
+  'Numpad1',
+  'Numpad2',
+  'Numpad3',
+  'Numpad4',
+  'Numpad5',
+  'Numpad6',
+  'Numpad7',
+  'Numpad8',
+  'Numpad9',
+  'NumpadAdd',
+  'NumpadSubtract',
+  'NumpadMultiply',
+  'NumpadDivide',
+  'NumpadDecimal',
+  'NumpadEnter',
+])
+
+/**
  * Set of all valid non-modifier keys.
  *
  * This is the union of all key type sets (letters, numbers, function keys, navigation,
@@ -321,6 +351,7 @@ export const ALL_KEYS = new Set([
   ...NAVIGATION_KEYS,
   ...EDITING_KEYS,
   ...PUNCTUATION_KEYS,
+  ...NUMPAD_KEYS,
 ])
 
 /**
@@ -393,6 +424,24 @@ const KEY_ALIASES: Record<string, string> = {
   PgDn: 'PageDown',
   pgup: 'PageUp',
   pgdn: 'PageDown',
+
+  // Numpad variants (lowercase aliases)
+  numpad0: 'Numpad0',
+  numpad1: 'Numpad1',
+  numpad2: 'Numpad2',
+  numpad3: 'Numpad3',
+  numpad4: 'Numpad4',
+  numpad5: 'Numpad5',
+  numpad6: 'Numpad6',
+  numpad7: 'Numpad7',
+  numpad8: 'Numpad8',
+  numpad9: 'Numpad9',
+  numpadadd: 'NumpadAdd',
+  numpadsubtract: 'NumpadSubtract',
+  numpadmultiply: 'NumpadMultiply',
+  numpaddivide: 'NumpadDivide',
+  numpaddecimal: 'NumpadDecimal',
+  numpadenter: 'NumpadEnter',
 }
 
 /**
