@@ -60,6 +60,10 @@
             {
               "label": "Formatting & Display",
               "to": "framework/react/guides/formatting-display"
+            },
+            {
+              "label": "Troubleshooting",
+              "to": "framework/react/guides/troubleshooting"
             }
           ]
         }
