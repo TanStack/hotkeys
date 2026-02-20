@@ -36,6 +36,18 @@ await generateReferenceDocs({
       outputDir: resolve(__dirname, '../docs/framework/solid/reference'),
       exclude: ['packages/hotkeys/**/*'],
     },
+    {
+      name: 'angular-hotkeys',
+      entryPoints: [
+        resolve(__dirname, '../packages/angular-hotkeys/src/index.ts'),
+      ],
+      tsconfig: resolve(
+        __dirname,
+        '../packages/angular-hotkeys/tsconfig.docs.json',
+      ),
+      outputDir: resolve(__dirname, '../docs/framework/angular/reference'),
+      exclude: ['packages/hotkeys/**/*'],
+    }
   ],
 })
 

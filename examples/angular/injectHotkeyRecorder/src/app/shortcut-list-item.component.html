@@ -1,0 +1,38 @@
+<div class="shortcut-item" [class.recording]="isRecording()">
+  <div class="shortcut-item-content">
+    <div class="shortcut-action">{{ actionName() }}</div>
+    <div class="shortcut-hotkey">
+      @if (isRecording()) {
+        <div class="recording-indicator">
+          @if (heldKeys().length > 0) {
+            <div class="held-hotkeys">
+              @for (key of heldKeys(); track key; let i = $index) {
+                @if (i > 0) {
+                  <span class="plus">+</span>
+                }
+                <kbd>{{ formatKey(key) }}</kbd>
+              }
+            </div>
+          } @else {
+            <span class="recording-text">Press any key combination...</span>
+          }
+        </div>
+      } @else if (hotkey()) {
+        <kbd>{{ formatForDisplay(hotkey()) }}</kbd>
+      } @else {
+        <span class="no-shortcut">No shortcut</span>
+      }
+    </div>
+  </div>
+  <div class="shortcut-actions">
+    @if (isRecording()) {
+      <button type="button" class="cancel-button" (click)="cancel.emit()">
+        Cancel
+      </button>
+    } @else {
+      <button type="button" class="edit-button" (click)="edit.emit()">
+        Edit
+      </button>
+    }
+  </div>
+</div>
