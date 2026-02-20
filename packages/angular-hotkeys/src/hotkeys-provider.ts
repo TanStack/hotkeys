@@ -1,7 +1,7 @@
-import { inject, InjectionToken } from '@angular/core'
+import { InjectionToken, inject } from '@angular/core'
 import type { HotkeyRecorderOptions } from '@tanstack/hotkeys'
-import { InjectHotkeyOptions } from './injectHotkey'
-import { InjectHotkeySequenceOptions } from './injectHotkeySequence'
+import type { InjectHotkeyOptions } from './injectHotkey'
+import type { InjectHotkeySequenceOptions } from './injectHotkeySequence'
 
 export interface HotkeysProviderOptions {
   hotkey?: Partial<InjectHotkeyOptions>

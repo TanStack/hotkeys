@@ -20,7 +20,7 @@ import type { Signal } from '@angular/core'
  * }
  * ```
  */
-export function injectHeldKeys(): Signal<string[]> {
+export function injectHeldKeys(): Signal<Array<string>> {
   const tracker = getKeyStateTracker()
   return injectStore(tracker.store, (state) => state.heldKeys)
 }

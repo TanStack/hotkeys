@@ -1,8 +1,8 @@
-import { DestroyRef, effect, inject, type Signal } from '@angular/core'
+import { injectStore } from '@tanstack/angular-store'
+import { DestroyRef, effect, inject } from '@angular/core'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { injectDefaultHotkeysOptions } from './hotkeys-provider'
 import type { Hotkey, HotkeyRecorderOptions } from '@tanstack/hotkeys'
-import { injectStore } from '@tanstack/angular-store'
 
 export interface AngularHotkeyRecorder {
   /** Whether recording is currently active */
@@ -24,7 +24,7 @@ export interface AngularHotkeyRecorder {
  * keyboard events, converts them to hotkey strings, and handles Escape to
  * cancel or Backspace/Delete to clear.
  *
- * @param options - Configuration options for the recorder (or signal/getter)
+ * @param options - Configuration options for the recorder (or getter)
  * @returns Object with recording state signals and control functions
  *
  * @example
@@ -48,7 +48,7 @@ export interface AngularHotkeyRecorder {
  * ```
  */
 export function injectHotkeyRecorder(
-  options: HotkeyRecorderOptions | Signal<HotkeyRecorderOptions>,
+  options: HotkeyRecorderOptions | (() => HotkeyRecorderOptions),
 ): AngularHotkeyRecorder {
   const defaultOptions = injectDefaultHotkeysOptions()
   const destroyRef = inject(DestroyRef)
@@ -66,7 +66,7 @@ export function injectHotkeyRecorder(
   const isRecording = injectStore(recorder.store, (state) => state.isRecording)
   const recordedHotkey = injectStore(
     recorder.store,
-    (state) => state.recordedHotkey
+    (state) => state.recordedHotkey,
   )
 
   // Sync options on every effect run (matches React's sync on render)

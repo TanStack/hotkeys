@@ -1,7 +1,8 @@
-import { computed, type Signal } from '@angular/core'
+import { computed } from '@angular/core'
 import { injectStore } from '@tanstack/angular-store'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
 import type { HeldKey } from '@tanstack/hotkeys'
+import type { Signal } from '@angular/core'
 
 /**
  * Angular inject-based API that returns a signal that is true when the given key is held.
