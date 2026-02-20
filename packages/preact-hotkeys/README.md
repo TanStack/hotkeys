@@ -44,7 +44,7 @@ Type-safe keyboard shortcuts for the web. Template-string bindings, parsed objec
 - Type-safe bindings — template strings (`Mod+Shift+S`, `Escape`) or parsed objects for full control
 - Flexible options — `keydown`/`keyup`, `preventDefault`, `stopPropagation`, conditional enabled, `requireReset`
 - Cross-platform Mod — maps to Cmd on macOS and Ctrl on Windows/Linux
-- Batteries included — validation + matching, sequences (Vim-style), key-state tracking, recorder UI helpers, React hooks, and devtools (in progress)
+- Batteries included — validation + matching, sequences (Vim-style), key-state tracking, recorder UI helpers, Preact hooks, and devtools (in progress)
 
 ### <a href="https://tanstack.com/hotkeys">Read the docs →</a>
 
@@ -54,7 +54,6 @@ Type-safe keyboard shortcuts for the web. Template-string bindings, parsed objec
 > You may know **TanStack Hotkeys** by our adapter names, too!
 >
 > - [**React Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/react/react-hotkeys)
-> - Preact Hotkeys
 > - Solid Hotkeys – needs a contributor!
 > - Angular Hotkeys – needs a contributor!
 > - Svelte Hotkeys – needs a contributor!

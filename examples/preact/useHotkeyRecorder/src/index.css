@@ -1,0 +1,256 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background: #f5f5f5;
+  color: #333;
+}
+.app {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+header h1 {
+  margin: 0 0 10px;
+  color: #0066cc;
+}
+header p {
+  color: #666;
+  margin: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.demo-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.demo-section h2 {
+  margin: 0 0 16px;
+  font-size: 20px;
+}
+.demo-section p {
+  margin: 0 0 16px;
+}
+kbd {
+  background: linear-gradient(180deg, #f8f8f8 0%, #e8e8e8 100%);
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-family: monospace;
+  font-size: 13px;
+}
+button {
+  background: #0066cc;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+button:hover {
+  background: #0052a3;
+}
+button:active {
+  background: #004080;
+}
+.cancel-button {
+  background: #dc3545;
+}
+.cancel-button:hover {
+  background: #c82333;
+}
+.edit-button {
+  background: #28a745;
+}
+.edit-button:hover {
+  background: #218838;
+}
+.code-block {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 16px;
+}
+.info-box {
+  background: #e3f2fd;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 20px 0;
+}
+.recording-notice {
+  background: #fff3cd;
+  border: 2px solid #ffc107;
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+/* Shortcuts List */
+.shortcuts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.shortcut-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  background: #f8f9fa;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.shortcut-item:hover {
+  background: #f0f0f0;
+}
+.shortcut-item.recording {
+  background: #fff3cd;
+  border-color: #ffc107;
+  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.2);
+  animation: recordingPulse 1.5s ease-in-out infinite;
+}
+@keyframes recordingPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(255, 193, 7, 0.1);
+  }
+}
+.shortcut-item-content {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex: 1;
+}
+.shortcut-action {
+  font-weight: 500;
+  min-width: 80px;
+  font-size: 15px;
+}
+.shortcut-hotkey {
+  display: flex;
+  align-items: center;
+  min-height: 32px;
+}
+.shortcut-hotkey kbd {
+  font-size: 14px;
+}
+.no-shortcut {
+  color: #999;
+  font-style: italic;
+  font-size: 14px;
+}
+.shortcut-actions {
+  display: flex;
+  gap: 8px;
+}
+
+/* Recording Indicator */
+.recording-indicator {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.recording-text {
+  color: #856404;
+  font-style: italic;
+  font-size: 14px;
+}
+.held-hotkeys {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.held-hotkeys .plus {
+  color: #856404;
+  font-size: 16px;
+  margin: 0 4px;
+}
+.held-hotkeys kbd {
+  background: #ffc107;
+  border-color: #ff9800;
+  color: #856404;
+  font-weight: 600;
+}
+
+/* Demo Stats */
+.demo-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin-top: 20px;
+}
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  gap: 8px;
+}
+.stat-label {
+  font-size: 13px;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.stat-value {
+  font-size: 32px;
+  font-weight: bold;
+  color: #0066cc;
+}
+.stat-item kbd {
+  margin-top: 4px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .shortcut-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .shortcut-item-content {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .shortcut-actions {
+    width: 100%;
+    justify-content: flex-end;
+  }
+  .demo-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

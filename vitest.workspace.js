@@ -5,6 +5,7 @@ export default defineConfig({
     projects: [
       './packages/hotkeys/vitest.config.ts',
       './packages/hotkeys-devtools/vitest.config.ts',
+      './packages/preact-hotkeys-devtools/vitest.config.ts',
       './packages/react-hotkeys/vitest.config.ts',
       './packages/react-hotkeys-devtools/vitest.config.ts',
       './packages/solid-hotkeys/vitest.config.ts',

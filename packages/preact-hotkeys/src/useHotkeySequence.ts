@@ -1,0 +1,92 @@
+import { useEffect, useRef } from 'preact/hooks'
+import { getSequenceManager } from '@tanstack/hotkeys'
+import { useDefaultHotkeysOptions } from './HotkeysProvider'
+import type {
+  HotkeyCallback,
+  HotkeySequence,
+  SequenceOptions,
+} from '@tanstack/hotkeys'
+
+export interface UseHotkeySequenceOptions extends Omit<
+  SequenceOptions,
+  'enabled'
+> {
+  /** Whether the sequence is enabled. Defaults to true. */
+  enabled?: boolean
+}
+
+/**
+ * Preact hook for registering a keyboard shortcut sequence (Vim-style).
+ *
+ * This hook allows you to register multi-key sequences like 'g g' or 'd d'
+ * that trigger when the full sequence is pressed within a timeout.
+ *
+ * @param sequence - Array of hotkey strings that form the sequence
+ * @param callback - Function to call when the sequence is completed
+ * @param options - Options for the sequence behavior
+ *
+ * @example
+ * ```tsx
+ * function VimEditor() {
+ *   // 'g g' to go to top
+ *   useHotkeySequence(['G', 'G'], () => {
+ *     scrollToTop()
+ *   })
+ *
+ *   // 'd d' to delete line
+ *   useHotkeySequence(['D', 'D'], () => {
+ *     deleteLine()
+ *   })
+ *
+ *   // 'd i w' to delete inner word
+ *   useHotkeySequence(['D', 'I', 'W'], () => {
+ *     deleteInnerWord()
+ *   }, { timeout: 500 })
+ *
+ *   return <div>...</div>
+ * }
+ * ```
+ */
+export function useHotkeySequence(
+  sequence: HotkeySequence,
+  callback: HotkeyCallback,
+  options: UseHotkeySequenceOptions = {},
+): void {
+  const mergedOptions = {
+    ...useDefaultHotkeysOptions().hotkeySequence,
+    ...options,
+  } as UseHotkeySequenceOptions
+
+  const { enabled = true, ...sequenceOptions } = mergedOptions
+
+  // Extract options for stable dependencies
+  const { timeout, platform } = sequenceOptions
+
+  // Use refs to keep callback stable
+  const callbackRef = useRef(callback)
+  callbackRef.current = callback
+
+  // Serialize sequence for dependency comparison
+  const sequenceKey = sequence.join('|')
+
+  useEffect(() => {
+    if (!enabled || sequence.length === 0) {
+      return
+    }
+
+    const manager = getSequenceManager()
+
+    // Build options object conditionally to avoid overwriting manager defaults with undefined
+    const registerOptions: SequenceOptions = { enabled: true }
+    if (timeout !== undefined) registerOptions.timeout = timeout
+    if (platform !== undefined) registerOptions.platform = platform
+
+    const unregister = manager.register(
+      sequence,
+      (event, context) => callbackRef.current(event, context),
+      registerOptions,
+    )
+
+    return unregister
+  }, [enabled, sequence, sequenceKey, timeout, platform])
+}

@@ -1,0 +1,63 @@
+{
+  "name": "@tanstack/preact-hotkeys",
+  "version": "0.1.3",
+  "description": "Preact adapter for TanStack Hotkeys",
+  "author": "Tanner Linsley",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TanStack/hotkeys.git",
+    "directory": "packages/preact-hotkeys"
+  },
+  "homepage": "https://tanstack.com/hotkeys",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/tannerlinsley"
+  },
+  "keywords": [
+    "preact",
+    "tanstack",
+    "keys"
+  ],
+  "scripts": {
+    "clean": "premove ./build ./dist",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "test:eslint": "eslint ./src",
+    "test:lib": "vitest --passWithNoTests",
+    "test:lib:dev": "pnpm test:lib --watch",
+    "test:types": "tsc",
+    "build": "tsdown"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "dependencies": {
+    "@tanstack/hotkeys": "workspace:*",
+    "@tanstack/preact-store": "^0.11.0"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.10.2",
+    "@testing-library/preact": "^3.2.4",
+    "preact": "^10.27.2"
+  },
+  "peerDependencies": {
+    "preact": ">=10.0.0"
+  }
+}

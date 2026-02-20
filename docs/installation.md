@@ -8,6 +8,7 @@ TanStack Hotkeys is compatible with various front-end frameworks. Install the co
 <!-- ::start:tabs variant="package-managers" -->
 
 react: @tanstack/react-hotkeys
+preact: @tanstack/preact-hotkeys
 
 <!-- ::end:tabs -->
 
@@ -40,3 +41,4 @@ react: @tanstack/react-hotkeys-devtools
 See the [devtools](./devtools) documentation for more information on how to set up and use the Hotkeys devtools.
 
 <!-- ::end:framework -->
+
