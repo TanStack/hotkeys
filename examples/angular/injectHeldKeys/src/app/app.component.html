@@ -36,14 +36,18 @@
 
     <section class="demo-section">
       <h2>Usage</h2>
-      <pre class="code-block">import {{ '{' }} injectHeldKeys {{ '}' }} from '&#64;tanstack/angular-hotkeys'
+      <pre class="code-block">
+import {{ '{' }} injectHeldKeys {{ '}' }} from '&#64;tanstack/angular-hotkeys'
 
 &#64;Component({{ '{' }} ... {{ '}' }})
 export class KeyDisplayComponent {{ '{' }}
   heldKeys = injectHeldKeys()
 
-  // Template: Currently pressed: {{ '{{' }} heldKeys().join(' + ') || 'None' {{ '}}' }}
-{{ '}' }}</pre>
+  // Template: Currently pressed: {{
+          '{{'
+        }} heldKeys().join(' + ') || 'None' {{ '}}' }}
+{{ '}' }}</pre
+      >
     </section>
 
     <section class="demo-section">

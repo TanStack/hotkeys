@@ -30,22 +30,22 @@ pnpm add @tanstack/angular-hotkeys @tanstack/hotkeys
 
 ```ts
 // app.config.ts
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
-import { provideHotkeys } from '@tanstack/angular-hotkeys';
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core'
+import { provideHotkeys } from '@tanstack/angular-hotkeys'
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideHotkeys(),
   ],
-};
+}
 ```
 
 **2. Register a hotkey in a component (injection context):**
 
 ```ts
-import { Component } from '@angular/core';
-import { injectHotkey } from '@tanstack/angular-hotkeys';
+import { Component } from '@angular/core'
+import { injectHotkey } from '@tanstack/angular-hotkeys'
 
 @Component({
   selector: 'app-root',
@@ -55,9 +55,9 @@ import { injectHotkey } from '@tanstack/angular-hotkeys';
 export class AppComponent {
   constructor() {
     injectHotkey('Mod+S', (event) => {
-      event.preventDefault();
-      console.log('Save!');
-    });
+      event.preventDefault()
+      console.log('Save!')
+    })
   }
 }
 ```
@@ -67,8 +67,8 @@ export class AppComponent {
 ### Basic Hotkey
 
 ```ts
-import { Component, signal } from '@angular/core';
-import { injectHotkey } from '@tanstack/angular-hotkeys';
+import { Component, signal } from '@angular/core'
+import { injectHotkey } from '@tanstack/angular-hotkeys'
 
 @Component({
   selector: 'app-save-button',
@@ -76,13 +76,13 @@ import { injectHotkey } from '@tanstack/angular-hotkeys';
   template: `<button>Save (Cmd/Ctrl+S)</button>`,
 })
 export class SaveButtonComponent {
-  private readonly saveCount = signal(0);
+  private readonly saveCount = signal(0)
 
   constructor() {
     injectHotkey('Mod+S', (event, { hotkey }) => {
-      event.preventDefault();
-      this.saveCount.update((c) => c + 1);
-    });
+      event.preventDefault()
+      this.saveCount.update((c) => c + 1)
+    })
   }
 }
 ```
@@ -90,8 +90,8 @@ export class SaveButtonComponent {
 ### Conditional Hotkeys
 
 ```ts
-import { Component, signal } from '@angular/core';
-import { injectHotkey } from '@tanstack/angular-hotkeys';
+import { Component, signal } from '@angular/core'
+import { injectHotkey } from '@tanstack/angular-hotkeys'
 
 @Component({
   selector: 'app-modal',
@@ -103,14 +103,18 @@ import { injectHotkey } from '@tanstack/angular-hotkeys';
   `,
 })
 export class ModalComponent {
-  isOpen = signal(true);
+  isOpen = signal(true)
 
   constructor() {
-    injectHotkey('Escape', () => this.close(), () => ({ enabled: this.isOpen() }));
+    injectHotkey(
+      'Escape',
+      () => this.close(),
+      () => ({ enabled: this.isOpen() }),
+    )
   }
 
   close() {
-    this.isOpen.set(false);
+    this.isOpen.set(false)
   }
 }
 ```
@@ -120,8 +124,8 @@ export class ModalComponent {
 Use a getter for `target` so the hotkey waits for the element (e.g. from `viewChild`):
 
 ```ts
-import { Component, viewChild, ElementRef } from '@angular/core';
-import { injectHotkey } from '@tanstack/angular-hotkeys';
+import { Component, viewChild, ElementRef } from '@angular/core'
+import { injectHotkey } from '@tanstack/angular-hotkeys'
 
 @Component({
   selector: 'app-editor',
@@ -129,18 +133,19 @@ import { injectHotkey } from '@tanstack/angular-hotkeys';
   template: `<div #editorRef contenteditable></div>`,
 })
 export class EditorComponent {
-  private readonly editorRef = viewChild<ElementRef<HTMLDivElement>>('editorRef');
+  private readonly editorRef =
+    viewChild<ElementRef<HTMLDivElement>>('editorRef')
 
   constructor() {
     injectHotkey(
       'Mod+B',
       () => this.toggleBold(),
       () => ({ target: this.editorRef()?.nativeElement ?? null }),
-    );
+    )
   }
 
   toggleBold() {
-    document.execCommand('bold');
+    document.execCommand('bold')
   }
 }
 ```
@@ -148,8 +153,8 @@ export class EditorComponent {
 ### Hotkey Sequences (Vim-style)
 
 ```ts
-import { Component, signal } from '@angular/core';
-import { injectHotkeySequence, injectHotkey } from '@tanstack/angular-hotkeys';
+import { Component, signal } from '@angular/core'
+import { injectHotkeySequence, injectHotkey } from '@tanstack/angular-hotkeys'
 
 @Component({
   selector: 'app-vim-editor',
@@ -157,17 +162,21 @@ import { injectHotkeySequence, injectHotkey } from '@tanstack/angular-hotkeys';
   template: `<div>Try Vim shortcuts! Last: {{ lastSequence() }}</div>`,
 })
 export class VimEditorComponent {
-  lastSequence = signal<string | null>(null);
+  lastSequence = signal<string | null>(null)
 
   constructor() {
-    injectHotkeySequence(['G', 'G'], () => this.lastSequence.set('gg → Go to top'));
-    injectHotkeySequence(['D', 'D'], () => this.lastSequence.set('dd → Delete line'));
+    injectHotkeySequence(['G', 'G'], () =>
+      this.lastSequence.set('gg → Go to top'),
+    )
+    injectHotkeySequence(['D', 'D'], () =>
+      this.lastSequence.set('dd → Delete line'),
+    )
     injectHotkeySequence(
       ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown'],
       () => this.lastSequence.set('Konami!'),
       { timeout: 1500 },
-    );
-    injectHotkey('Escape', () => this.lastSequence.set(null));
+    )
+    injectHotkey('Escape', () => this.lastSequence.set(null))
   }
 }
 ```
@@ -175,28 +184,33 @@ export class VimEditorComponent {
 ### Track Held Keys
 
 ```ts
-import { Component } from '@angular/core';
-import { injectHeldKeys, injectKeyHold } from '@tanstack/angular-hotkeys';
+import { Component } from '@angular/core'
+import { injectHeldKeys, injectKeyHold } from '@tanstack/angular-hotkeys'
 
 @Component({
   selector: 'app-key-tracker',
   standalone: true,
   template: `
     <div>Shift: {{ isShiftHeld() ? 'Pressed' : 'Not pressed' }}</div>
-    <div>All held: @for (key of heldKeys(); track key) { <kbd>{{ key }}</kbd> }</div>
+    <div>
+      All held:
+      @for (key of heldKeys(); track key) {
+        <kbd>{{ key }}</kbd>
+      }
+    </div>
   `,
 })
 export class KeyTrackerComponent {
-  heldKeys = injectHeldKeys();
-  isShiftHeld = injectKeyHold('Shift');
+  heldKeys = injectHeldKeys()
+  isShiftHeld = injectKeyHold('Shift')
 }
 ```
 
 ### Hotkey Recorder
 
 ```ts
-import { Component, signal } from '@angular/core';
-import { injectHotkey, injectHotkeyRecorder } from '@tanstack/angular-hotkeys';
+import { Component, signal } from '@angular/core'
+import { injectHotkey, injectHotkeyRecorder } from '@tanstack/angular-hotkeys'
 
 @Component({
   selector: 'app-shortcut-settings',
@@ -209,18 +223,18 @@ import { injectHotkey, injectHotkeyRecorder } from '@tanstack/angular-hotkeys';
   `,
 })
 export class ShortcutSettingsComponent {
-  shortcut = signal('Mod+S');
+  shortcut = signal('Mod+S')
   recorder = injectHotkeyRecorder({
     onRecord: (hotkey) => this.shortcut.set(hotkey),
     onCancel: () => console.log('Recording cancelled'),
-  });
+  })
 
   constructor() {
     injectHotkey(
       () => this.shortcut(),
       () => this.handleSave(),
       () => ({ enabled: !this.recorder.isRecording() }),
-    );
+    )
   }
 
   handleSave() {
@@ -233,7 +247,7 @@ export class ShortcutSettingsComponent {
 
 ```ts
 // app.config.ts
-import { provideHotkeys } from '@tanstack/angular-hotkeys';
+import { provideHotkeys } from '@tanstack/angular-hotkeys'
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -247,7 +261,7 @@ export const appConfig: ApplicationConfig = {
       },
     }),
   ],
-};
+}
 ```
 
 ## API
@@ -277,7 +291,7 @@ Register a multi-key sequence (Vim-style).
 Returns a signal of currently held key names.
 
 ```ts
-const heldKeys = injectHeldKeys();
+const heldKeys = injectHeldKeys()
 // heldKeys() => ['Shift', 'A']
 ```
 
@@ -286,7 +300,7 @@ const heldKeys = injectHeldKeys();
 Returns a signal of a map from held key names to their physical `event.code` values.
 
 ```ts
-const heldCodes = injectHeldKeyCodes();
+const heldCodes = injectHeldKeyCodes()
 // heldCodes() => { Shift: 'ShiftLeft', A: 'KeyA' }
 ```
 
@@ -295,7 +309,7 @@ const heldCodes = injectHeldKeyCodes();
 Returns a signal that is true when the given key is held.
 
 ```ts
-const isShiftHeld = injectKeyHold('Shift');
+const isShiftHeld = injectKeyHold('Shift')
 // isShiftHeld() => true | false
 ```
 

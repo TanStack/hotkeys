@@ -37,9 +37,7 @@ import type { Signal } from '@angular/core'
  * }
  * ```
  */
-export function injectKeyHold(
-  key: HeldKey | (() => HeldKey),
-): Signal<boolean> {
+export function injectKeyHold(key: HeldKey | (() => HeldKey)): Signal<boolean> {
   const tracker = getKeyStateTracker()
   const heldKeysSelector = injectStore(tracker.store, (state) => state.heldKeys)
 

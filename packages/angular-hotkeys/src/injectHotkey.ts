@@ -107,8 +107,8 @@ export function injectHotkey(
       typeof resolvedHotkey === 'string'
         ? resolvedHotkey
         : (formatHotkey(
-          rawHotkeyToParsedHotkey(resolvedHotkey, platform),
-        ) as Hotkey)
+            rawHotkeyToParsedHotkey(resolvedHotkey, platform),
+          ) as Hotkey)
 
     // Resolve target: when explicitly provided (even as null), use it and skip if null.
     // When not provided, default to document. Matches React's ref handling.
@@ -152,5 +152,4 @@ export function injectHotkey(
       }
     })
   })
-
 }

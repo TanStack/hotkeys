@@ -1,1 +1,29 @@
-{"compileOnSave":false,"compilerOptions":{"outDir":"./out-tsc/app","lib":["ES2022","dom"],"strict":true,"noImplicitOverride":true,"noPropertyAccessFromIndexSignature":true,"noImplicitReturns":true,"noFallthroughCasesInSwitch":true,"skipLibCheck":true,"isolatedModules":true,"esModuleInterop":true,"experimentalDecorators":true,"moduleResolution":"bundler","importHelpers":true,"target":"ES2022","module":"ES2022","types":[]},"angularCompilerOptions":{"enableI18nLegacyMessageIdFormat":false,"strictInjectionParameters":true,"strictInputAccessModifiers":true,"strictTemplates":true},"files":["src/main.ts"],"include":["src/**/*.d.ts"]}
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "outDir": "./out-tsc/app",
+    "lib": ["ES2022", "dom"],
+    "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "moduleResolution": "bundler",
+    "importHelpers": true,
+    "target": "ES2022",
+    "module": "ES2022",
+    "types": []
+  },
+  "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
+    "strictInjectionParameters": true,
+    "strictInputAccessModifiers": true,
+    "strictTemplates": true
+  },
+  "files": ["src/main.ts"],
+  "include": ["src/**/*.d.ts"]
+}

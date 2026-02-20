@@ -70,14 +70,15 @@
     </section>
 
     @if (lastSequence(); as seq) {
-      <div class="info-box success">
-        <strong>Triggered:</strong> {{ seq }}
-      </div>
+      <div class="info-box success"><strong>Triggered:</strong> {{ seq }}</div>
     }
 
     <section class="demo-section">
       <h2>Usage</h2>
-      <pre class="code-block">import {{ '{' }} injectHotkeySequence {{ '}' }} from '&#64;tanstack/angular-hotkeys'
+      <pre class="code-block">
+import {{ '{' }} injectHotkeySequence {{
+          '}'
+        }} from '&#64;tanstack/angular-hotkeys'
 
 // In constructor or injection context:
 injectHotkeySequence(['G', 'G'], () => scrollToTop())
@@ -88,7 +89,8 @@ injectHotkeySequence(
   {{ '{' }} timeout: 1500 {{ '}' }}
 )
 
-injectHotkeySequence(['C', 'I', 'W'], () => changeInnerWord())</pre>
+injectHotkeySequence(['C', 'I', 'W'], () => changeInnerWord())</pre
+      >
     </section>
 
     @if (history().length > 0) {

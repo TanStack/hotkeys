@@ -17,7 +17,9 @@
         </div>
         <div class="modifier-indicator" [class.active]="isControlHeld()">
           <span class="key-name">Control</span>
-          <span class="status">{{ isControlHeld() ? 'HELD' : 'Released' }}</span>
+          <span class="status">{{
+            isControlHeld() ? 'HELD' : 'Released'
+          }}</span>
         </div>
         <div class="modifier-indicator" [class.active]="isAltHeld()">
           <span class="key-name">Alt / Option</span>
@@ -39,13 +41,17 @@
 
     <section class="demo-section">
       <h2>Usage</h2>
-      <pre class="code-block">import {{ '{' }} injectKeyHold {{ '}' }} from '&#64;tanstack/angular-hotkeys'
+      <pre class="code-block">
+import {{ '{' }} injectKeyHold {{ '}' }} from '&#64;tanstack/angular-hotkeys'
 
 &#64;Component({{ '{' }} ... {{ '}' }})
 export class ShiftIndicatorComponent {{ '{' }}
   isShiftHeld = injectKeyHold('Shift')
-  // Template: {{ '{{' }} isShiftHeld() ? 'Shift is pressed!' : 'Press Shift' {{ '}}' }}
-{{ '}' }}</pre>
+  // Template: {{
+          '{{'
+        }} isShiftHeld() ? 'Shift is pressed!' : 'Press Shift' {{ '}}' }}
+{{ '}' }}</pre
+      >
     </section>
 
     <section class="demo-section">

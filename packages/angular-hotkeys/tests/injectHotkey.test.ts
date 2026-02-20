@@ -1,5 +1,8 @@
 // @vitest-environment happy-dom
-import { provideExperimentalZonelessChangeDetection, signal } from '@angular/core'
+import {
+  provideExperimentalZonelessChangeDetection,
+  signal,
+} from '@angular/core'
 import { TestBed } from '@angular/core/testing'
 import { HotkeyManager } from '@tanstack/hotkeys'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'

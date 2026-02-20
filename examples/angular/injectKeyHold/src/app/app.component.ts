@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { injectKeyHold } from '@tanstack/angular-hotkeys';
+import { Component } from '@angular/core'
+import { injectKeyHold } from '@tanstack/angular-hotkeys'
 
 @Component({
   selector: 'app-root',
@@ -8,9 +8,9 @@ import { injectKeyHold } from '@tanstack/angular-hotkeys';
   styleUrl: './app.component.css',
 })
 export class AppComponent {
-  isShiftHeld = injectKeyHold('Shift');
-  isControlHeld = injectKeyHold('Control');
-  isAltHeld = injectKeyHold('Alt');
-  isMetaHeld = injectKeyHold('Meta');
-  isSpaceHeld = injectKeyHold('Space');
+  isShiftHeld = injectKeyHold('Shift')
+  isControlHeld = injectKeyHold('Control')
+  isAltHeld = injectKeyHold('Alt')
+  isMetaHeld = injectKeyHold('Meta')
+  isSpaceHeld = injectKeyHold('Space')
 }

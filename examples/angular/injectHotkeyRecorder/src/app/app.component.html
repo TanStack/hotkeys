@@ -46,19 +46,25 @@
 
     <section class="demo-section">
       <h2>Usage</h2>
-      <pre class="code-block">import {{ '{' }} injectHotkey, injectHotkeyRecorder {{ '}' }} from '&#64;tanstack/angular-hotkeys'
+      <pre class="code-block">
+import {{ '{' }} injectHotkey, injectHotkeyRecorder {{
+          '}'
+        }} from '&#64;tanstack/angular-hotkeys'
 
 // In your component:
 shortcuts = signal({{ '{' }} save: 'Mod+K', open: 'Mod+E' {{ '}' }})
 recorder = injectHotkeyRecorder({{ '{' }}
-  onRecord: (hotkey) => this.shortcuts.update(prev => ({{ '{' }} ...prev, save: hotkey {{ '}' }}))
+  onRecord: (hotkey) => this.shortcuts.update(prev => ({{
+          '{'
+        }} ...prev, save: hotkey {{ '}' }}))
 {{ '}' }})
 
 injectHotkey(
   () => this.shortcuts().save,
   () => this.handleSave(),
   () => ({{ '{' }} enabled: !this.recorder.isRecording() {{ '}' }})
-)</pre>
+)</pre
+      >
     </section>
   </main>
 </div>

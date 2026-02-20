@@ -7,7 +7,6 @@ import type {
   SequenceOptions,
 } from '@tanstack/hotkeys'
 
-
 export interface InjectHotkeySequenceOptions extends Omit<
   SequenceOptions,
   'enabled'
@@ -15,7 +14,6 @@ export interface InjectHotkeySequenceOptions extends Omit<
   /** Whether the sequence is enabled. Defaults to true. */
   enabled?: boolean
 }
-
 
 /**
  * Angular inject-based API for registering a keyboard shortcut sequence (Vim-style).
