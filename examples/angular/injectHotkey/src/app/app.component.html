@@ -1,0 +1,373 @@
+<div class="app">
+  <header>
+    <h1>injectHotkey</h1>
+    <p>
+      Register keyboard shortcuts with callback context containing the hotkey
+      and parsed hotkey information.
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section">
+      <h2>Basic Hotkey</h2>
+      <p>
+        Press <kbd>{{ formatForDisplay('Mod+S') }}</kbd> to trigger
+      </p>
+      <div class="counter">Save triggered: {{ saveCount() }}x</div>
+      <pre class="code-block">
+injectHotkey('Mod+S', (_event, &#123; hotkey, parsedHotkey &#125;) => &#123;
+  console.log('Hotkey:', hotkey)
+  console.log('Parsed:', parsedHotkey)
+&#125;)</pre
+      >
+    </section>
+
+    <section class="demo-section">
+      <h2>With requireReset</h2>
+      <p>
+        Hold <kbd>{{ formatForDisplay('Mod+K') }}</kbd> — only increments once
+        until you release all keys
+      </p>
+      <div class="counter">Increment: {{ incrementCount() }}</div>
+      <p class="hint">
+        This prevents repeated triggering while holding the keys down. Release
+        all keys to allow re-triggering.
+      </p>
+      <pre class="code-block">
+injectHotkey(
+  'Mod+K',
+  (event, &#123; hotkey &#125;) => &#123;
+    this.incrementCount.update(c => c + 1)
+  &#125;,
+  &#123; requireReset: true &#125;
+)</pre
+      >
+    </section>
+
+    <section class="demo-section">
+      <h2>Conditional Hotkey</h2>
+      <p>
+        <kbd>{{ formatForDisplay('Mod+E') }}</kbd> is currently
+        <strong>{{ enabled() ? 'enabled' : 'disabled' }}</strong>
+      </p>
+      <button type="button" (click)="enabled.set(!enabled())">
+        {{ enabled() ? 'Disable' : 'Enable' }} Hotkey
+      </button>
+      <pre class="code-block">
+protected readonly enabled = signal(true)
+protected readonly modEOptions = computed(() => (&#123; enabled: this.enabled() &#125;))
+
+injectHotkey(
+  'Mod+E',
+  (event, &#123; hotkey &#125;) => &#123; alert('Triggered!') &#125;,
+  this.modEOptions
+)</pre
+      >
+    </section>
+
+    <section class="demo-section">
+      <h2>Number Key Combinations</h2>
+      <p>Common for tab/section switching:</p>
+      <div class="hotkey-grid">
+        <div>
+          <kbd>{{ formatForDisplay('Mod+1') }}</kbd> → Tab 1
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Mod+2') }}</kbd> → Tab 2
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Mod+3') }}</kbd> → Tab 3
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Mod+4') }}</kbd> → Tab 4
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Mod+5') }}</kbd> → Tab 5
+        </div>
+      </div>
+      <div class="counter">Active Tab: {{ activeTab() }}</div>
+      <pre class="code-block">
+injectHotkey('Mod+1', () => this.activeTab.set(1))
+injectHotkey('Mod+2', () => this.activeTab.set(2))</pre
+      >
+    </section>
+
+    <section class="demo-section">
+      <h2>Navigation Key Combinations</h2>
+      <p>Selection and navigation shortcuts:</p>
+      <div class="hotkey-grid">
+        <div>
+          <kbd>{{ formatForDisplay('Shift+ArrowUp') }}</kbd> — Select up
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Shift+ArrowDown') }}</kbd> — Select down
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Alt+ArrowLeft') }}</kbd> — Navigate back
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Alt+ArrowRight') }}</kbd> — Navigate forward
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Mod+Home') }}</kbd> — Go to start
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Mod+End') }}</kbd> — Go to end
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Control+PageUp') }}</kbd> — Previous page
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Control+PageDown') }}</kbd> — Next page
+        </div>
+      </div>
+      <div class="counter">Navigation triggered: {{ navigationCount() }}x</div>
+      <pre class="code-block">
+injectHotkey('Shift+ArrowUp', () => selectUp())
+injectHotkey('Alt+ArrowLeft', () => navigateBack())
+injectHotkey('Mod+Home', () => goToStart())
+injectHotkey('Control+PageUp', () => previousPage())</pre
+      >
+    </section>
+
+    <section class="demo-section">
+      <h2>Function Key Combinations</h2>
+      <p>System and application shortcuts:</p>
+      <div class="hotkey-grid">
+        <div>
+          <kbd>{{ formatForDisplay('Alt+F4') }}</kbd> — Close window
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Control+F5') }}</kbd> — Hard refresh
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Mod+F1') }}</kbd> — Help
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Shift+F10') }}</kbd> — Context menu
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('F12') }}</kbd> — DevTools
+        </div>
+      </div>
+      <div class="counter">
+        Function keys triggered: {{ functionKeyCount() }}x
+      </div>
+      <pre class="code-block">
+injectHotkey('Alt+F4', () => closeWindow())
+injectHotkey('Control+F5', () => hardRefresh())
+injectHotkey('Mod+F1', () => showHelp())
+injectHotkey('F12', () => openDevTools())</pre
+      >
+    </section>
+
+    <section class="demo-section">
+      <h2>Multi-Modifier Combinations</h2>
+      <p>Complex shortcuts with multiple modifiers:</p>
+      <div class="hotkey-grid">
+        <div>
+          <kbd>{{ formatForDisplay('Mod+Shift+S') }}</kbd> — Save As
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Mod+Shift+Z') }}</kbd> — Redo
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Control+Alt+A') }}</kbd> — Special action
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Control+Shift+N') }}</kbd> — New incognito
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Mod+Alt+T') }}</kbd> — Toggle theme
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Control+Alt+Shift+X') }}</kbd> — Triple
+          modifier
+        </div>
+      </div>
+      <div class="counter">
+        Multi-modifier triggered: {{ multiModifierCount() }}x
+      </div>
+      <pre class="code-block">
+injectHotkey('Mod+Shift+S', () => saveAs())
+injectHotkey('Mod+Shift+Z', () => redo())
+injectHotkey('Control+Alt+A', () => specialAction())
+injectHotkey('Control+Alt+Shift+X', () => complexAction())</pre
+      >
+    </section>
+
+    <section class="demo-section">
+      <h2>Editing Key Combinations</h2>
+      <p>Text editing and form shortcuts:</p>
+      <div class="hotkey-grid">
+        <div>
+          <kbd>{{ formatForDisplay('Mod+Enter') }}</kbd> — Submit form
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Shift+Enter') }}</kbd> — New line
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Mod+Backspace') }}</kbd> — Delete word
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Mod+Delete') }}</kbd> — Delete forward
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Control+Tab') }}</kbd> — Next tab
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Shift+Tab') }}</kbd> — Previous field
+        </div>
+        <div>
+          <kbd>{{ formatForDisplay('Mod+Space') }}</kbd> — Toggle
+        </div>
+      </div>
+      <div class="counter">
+        Editing keys triggered: {{ editingKeyCount() }}x
+      </div>
+      <pre class="code-block">
+injectHotkey('Mod+Enter', () => submitForm())
+injectHotkey('Shift+Enter', () => insertNewline())
+injectHotkey('Mod+Backspace', () => deleteWord())
+injectHotkey('Control+Tab', () => nextTab())
+injectHotkey('Mod+Space', () => toggle())</pre
+      >
+    </section>
+
+    @if (lastHotkey()) {
+      <div class="info-box">
+        <strong>Last triggered:</strong> {{ formatForDisplay(lastHotkey()!) }}
+      </div>
+    }
+
+    <p class="hint">Press <kbd>Escape</kbd> to reset all counters</p>
+
+    <section class="demo-section scoped-section">
+      <h2>Scoped Keyboard Shortcuts</h2>
+      <p>
+        Shortcuts can be scoped to specific DOM elements using the
+        <code>target</code> option. Use a getter for reactive targets (like
+        Solid):
+        <code
+          >() =&gt; (&#123; target: this.sidebarRef()?.nativeElement ?? null
+          &#125;)</code
+        >
+      </p>
+
+      <div class="scoped-grid">
+        <div class="scoped-area" #sidebarRef tabindex="0">
+          <h3>Sidebar (Scoped Area)</h3>
+          <p>Click here to focus, then try:</p>
+          <div class="hotkey-list">
+            <div>
+              <kbd>{{ formatForDisplay('Mod+B') }}</kbd> — Trigger sidebar
+              action
+            </div>
+            <div>
+              <kbd>{{ formatForDisplay('Mod+N') }}</kbd> — New item
+            </div>
+          </div>
+          <div class="counter">
+            Sidebar shortcuts: {{ sidebarShortcutCount() }}x
+          </div>
+          <p class="hint">
+            These shortcuts only work when this sidebar area is focused or
+            contains focus.
+          </p>
+        </div>
+
+        <div class="scoped-area">
+          <h3>Modal Dialog</h3>
+          <button type="button" (click)="openModal()">Open Modal</button>
+          @if (modalOpen()) {
+            <div class="modal-overlay" (click)="closeModalOverlay()">
+              <div
+                class="modal-content"
+                #modalRef
+                tabindex="0"
+                (click)="onModalContentClick($event)"
+              >
+                <h3>Modal Dialog (Scoped)</h3>
+                <p>Try these shortcuts while modal is open:</p>
+                <div class="hotkey-list">
+                  <div>
+                    <kbd>{{ formatForDisplay('Escape') }}</kbd> — Close modal
+                  </div>
+                  <div>
+                    <kbd>{{ formatForDisplay('Mod+Enter') }}</kbd> — Submit
+                  </div>
+                </div>
+                <div class="counter">
+                  Modal shortcuts: {{ modalShortcutCount() }}x
+                </div>
+                <p class="hint">
+                  These shortcuts only work when the modal is open and focused.
+                  The Escape key here won't conflict with the global Escape
+                  handler.
+                </p>
+                <button type="button" (click)="closeModal()">Close</button>
+              </div>
+            </div>
+          }
+        </div>
+
+        <div class="scoped-area">
+          <h3>Text Editor (Scoped)</h3>
+          <p>Focus the editor below and try:</p>
+          <div class="hotkey-list">
+            <div>
+              <kbd>{{ formatForDisplay('Mod+S') }}</kbd> — Save editor content
+            </div>
+            <div>
+              <kbd>{{ formatForDisplay('Mod+/') }}</kbd> — Add comment
+            </div>
+            <div>
+              <kbd>{{ formatForDisplay('Mod+K') }}</kbd> — Clear editor
+            </div>
+          </div>
+          <textarea
+            #editorRef
+            class="scoped-editor"
+            [value]="editorContent()"
+            (input)="onEditorInput($event)"
+            placeholder="Focus here and try the shortcuts above..."
+            rows="8"
+          ></textarea>
+          <div class="counter">
+            Editor shortcuts: {{ editorShortcutCount() }}x
+          </div>
+          <p class="hint">
+            These shortcuts only work when the editor is focused. Notice that
+            <kbd>{{ formatForDisplay('Mod+S') }}</kbd> here doesn't conflict
+            with the global <kbd>{{ formatForDisplay('Mod+S') }}</kbd> shortcut.
+          </p>
+        </div>
+      </div>
+
+      <pre class="code-block">
+// Scoped to viewChild (Solid-style getter, like Solid's () =&gt; (&#123; target: ref() &#125;))
+private readonly sidebarRef = viewChild&lt;ElementRef&lt;HTMLDivElement&gt;&gt;('sidebarRef')
+
+injectHotkey(
+  'Mod+B',
+  () => console.log('Sidebar shortcut!'),
+  () => (&#123; target: this.sidebarRef()?.nativeElement ?? null &#125;)
+)
+
+// Scoped to modal (only when open)
+injectHotkey(
+  'Escape',
+  () => this.modalOpen.set(false),
+  () => (&#123; target: this.modalRef()?.nativeElement ?? null, enabled: this.modalOpen() &#125;)
+)
+
+// Scoped to editor
+injectHotkey(
+  'Mod+S',
+  () => saveEditorContent(),
+  () => (&#123; target: this.editorRef()?.nativeElement ?? null &#125;)
+)</pre
+      >
+    </section>
+  </main>
+</div>

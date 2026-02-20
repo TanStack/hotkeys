@@ -1,0 +1,67 @@
+{
+  "name": "@tanstack/angular-hotkeys",
+  "version": "0.1.3",
+  "description": "Angular adapter for TanStack Hotkeys",
+  "author": "Tanner Linsley",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TanStack/hotkeys.git",
+    "directory": "packages/angular-hotkeys"
+  },
+  "homepage": "https://tanstack.com/hotkeys",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/tannerlinsley"
+  },
+  "keywords": [
+    "angular",
+    "tanstack",
+    "hotkeys",
+    "keyboard",
+    "shortcuts"
+  ],
+  "scripts": {
+    "clean": "premove ./build ./dist",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "test:eslint": "eslint ./src",
+    "test:lib": "vitest --passWithNoTests",
+    "test:lib:dev": "pnpm test:lib --watch",
+    "test:types": "tsc",
+    "build": "tsdown"
+  },
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "dependencies": {
+    "@tanstack/angular-store": "^0.8.0",
+    "@tanstack/hotkeys": "workspace:*"
+  },
+  "peerDependencies": {
+    "@angular/common": ">=19.0.0",
+    "@angular/core": ">=19.0.0"
+  },
+  "devDependencies": {
+    "@angular/common": "^19.2.0",
+    "@angular/core": "^19.2.0",
+    "@angular/platform-browser-dynamic": "^19.2.0",
+    "typescript": "5.8.3"
+  }
+}

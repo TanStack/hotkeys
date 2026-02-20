@@ -82,6 +82,15 @@
               "to": "framework/react/reference/index"
             }
           ]
+        },
+        {
+          "label": "angular",
+          "children": [
+            {
+              "label": "Angular Inject APIs",
+              "to": "framework/angular/reference/index"
+            }
+          ]
         }
       ]
     },
@@ -136,6 +145,27 @@
               "to": "framework/react/reference/interfaces/UseHotkeyOptions"
             }
           ]
+        },
+        {
+          "label": "angular",
+          "children": [
+            {
+              "label": "injectHotkey",
+              "to": "framework/angular/reference/functions/injectHotkey"
+            },
+            {
+              "label": "InjectHotkeyOptions",
+              "to": "framework/angular/reference/interfaces/InjectHotkeyOptions"
+            },
+            {
+              "label": "provideHotkeys",
+              "to": "framework/angular/reference/functions/provideHotkeys"
+            },
+            {
+              "label": "HotkeysProviderOptions",
+              "to": "framework/angular/reference/interfaces/HotkeysProviderOptions"
+            }
+          ]
         }
       ]
     },
@@ -178,6 +208,19 @@
               "to": "framework/react/reference/interfaces/UseHotkeySequenceOptions"
             }
           ]
+        },
+        {
+          "label": "angular",
+          "children": [
+            {
+              "label": "injectHotkeySequence",
+              "to": "framework/angular/reference/functions/injectHotkeySequence"
+            },
+            {
+              "label": "InjectHotkeySequenceOptions",
+              "to": "framework/angular/reference/interfaces/InjectHotkeySequenceOptions"
+            }
+          ]
         }
       ]
     },
@@ -210,6 +253,15 @@
             {
               "label": "useKeyHold",
               "to": "framework/react/reference/functions/useKeyHold"
+            }
+          ]
+        },
+        {
+          "label": "angular",
+          "children": [
+            {
+              "label": "injectKeyHold",
+              "to": "framework/angular/reference/functions/injectKeyHold"
             }
           ]
         }
@@ -250,6 +302,19 @@
               "to": "framework/react/reference/functions/useHeldKeyCodes"
             }
           ]
+        },
+        {
+          "label": "angular",
+          "children": [
+            {
+              "label": "injectHeldKeys",
+              "to": "framework/angular/reference/functions/injectHeldKeys"
+            },
+            {
+              "label": "injectHeldKeyCodes",
+              "to": "framework/angular/reference/functions/injectHeldKeyCodes"
+            }
+          ]
         }
       ]
     },
@@ -282,6 +347,19 @@
             {
               "label": "ReactHotkeyRecorder",
               "to": "framework/react/reference/interfaces/ReactHotkeyRecorder"
+            }
+          ]
+        },
+        {
+          "label": "angular",
+          "children": [
+            {
+              "label": "injectHotkeyRecorder",
+              "to": "framework/angular/reference/functions/injectHotkeyRecorder"
+            },
+            {
+              "label": "AngularHotkeyRecorder",
+              "to": "framework/angular/reference/interfaces/AngularHotkeyRecorder"
             }
           ]
         }

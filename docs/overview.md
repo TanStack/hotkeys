@@ -46,7 +46,7 @@ Surprisingly, in our experience, even AI often struggles to get hotkey managemen
   - Platform-aware formatting (e.g., `⌘⇧S` on Mac vs `Ctrl+Shift+S` on Windows) for cheatsheet UIs
 
 - **Framework Adapters**
-  - React hooks: `useHotkey`, `useHotkeySequence`, `useHotkeyRecorder`, `useHeldKeys`, and more
+  - React hooks, Solid primitives, and Angular inject APIs
 
 - **Awesome Devtools!**
   - See all currently registered hotkeys, held keys, and more in real-time.

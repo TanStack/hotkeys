@@ -1,0 +1,70 @@
+<div class="app">
+  <header>
+    <h1>Keyboard Shortcuts Settings</h1>
+    <p>
+      Customize your keyboard shortcuts. Click "Edit" to record a new shortcut,
+      or press Escape to cancel.
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section">
+      <h2>Shortcuts</h2>
+      <div class="shortcuts-list">
+        @for (entry of actionEntries; track entry[0]) {
+          <app-shortcut-list-item
+            [actionName]="entry[1].name"
+            [hotkey]="shortcuts()[entry[0]] || ''"
+            [isRecording]="isRecording() && recordingActionId() === entry[0]"
+            (edit)="handleEdit(entry[0])"
+            (cancel)="handleCancel()"
+          />
+        }
+      </div>
+    </section>
+
+    <section class="demo-section">
+      <h2>Demo Actions</h2>
+      <p>Try your shortcuts! Actions will trigger when you press them.</p>
+      <div class="demo-stats">
+        @for (entry of actionEntries; track entry[0]) {
+          <div class="stat-item">
+            <div class="stat-label">{{ entry[1].name }}</div>
+            <div class="stat-value">{{ countFor(entry[0]) }}</div>
+            <kbd>{{ formatForDisplay(shortcutDisplay(entry[0])) }}</kbd>
+          </div>
+        }
+      </div>
+    </section>
+
+    @if (isRecording()) {
+      <div class="info-box recording-notice">
+        <strong>Recording shortcut...</strong> Press any key combination or
+        Escape to cancel. Press Backspace/Delete to clear the shortcut.
+      </div>
+    }
+
+    <section class="demo-section">
+      <h2>Usage</h2>
+      <pre class="code-block">
+import {{ '{' }} injectHotkey, injectHotkeyRecorder {{
+          '}'
+        }} from '&#64;tanstack/angular-hotkeys'
+
+// In your component:
+shortcuts = signal({{ '{' }} save: 'Mod+K', open: 'Mod+E' {{ '}' }})
+recorder = injectHotkeyRecorder({{ '{' }}
+  onRecord: (hotkey) => this.shortcuts.update(prev => ({{
+          '{'
+        }} ...prev, save: hotkey {{ '}' }}))
+{{ '}' }})
+
+injectHotkey(
+  () => this.shortcuts().save,
+  () => this.handleSave(),
+  () => ({{ '{' }} enabled: !this.recorder.isRecording() {{ '}' }})
+)</pre
+      >
+    </section>
+  </main>
+</div>
