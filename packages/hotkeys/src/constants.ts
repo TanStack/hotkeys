@@ -290,6 +290,7 @@ export const EDITING_KEYS = new Set<EditingKey>([
  */
 export const PUNCTUATION_KEYS = new Set<PunctuationKey>([
   '/',
+  '?',
   '[',
   ']',
   '\\',
