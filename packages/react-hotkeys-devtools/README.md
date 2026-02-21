@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./media/header_hotkeys.png" alt="TanStack Hotkeys" />
+  <img src="../../media/header_hotkeys.png" alt="TanStack Hotkeys" />
 </div>
 
 <br />
@@ -94,7 +94,7 @@ Type-safe keyboard shortcuts for the web. Template-string bindings, parsed objec
 </table>
 
 <div align="center">
-<img src="media/partner_logo.svg" alt="Keys & you?" height="65">
+<img src="../../media/partner_logo.svg" alt="Keys & you?" height="65">
 <p>
 We're looking for TanStack Hotkeys Partners to join our mission! Partner with us to push the boundaries of TanStack Hotkeys and build amazing things together.
 </p>
