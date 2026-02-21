@@ -44,6 +44,7 @@ title: "@tanstack/hotkeys"
 - [Modifier](type-aliases/Modifier.md)
 - [NavigationKey](type-aliases/NavigationKey.md)
 - [NumberKey](type-aliases/NumberKey.md)
+- [NumpadKey](type-aliases/NumpadKey.md)
 - [PunctuationKey](type-aliases/PunctuationKey.md)
 - [RegisterableHotkey](type-aliases/RegisterableHotkey.md)
 
@@ -60,6 +61,7 @@ title: "@tanstack/hotkeys"
 - [MODIFIER\_ORDER](variables/MODIFIER_ORDER.md)
 - [NAVIGATION\_KEYS](variables/NAVIGATION_KEYS.md)
 - [NUMBER\_KEYS](variables/NUMBER_KEYS.md)
+- [NUMPAD\_KEYS](variables/NUMPAD_KEYS.md)
 - [PUNCTUATION\_KEYS](variables/PUNCTUATION_KEYS.md)
 - [STANDARD\_MODIFIER\_LABELS](variables/STANDARD_MODIFIER_LABELS.md)
 

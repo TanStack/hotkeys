@@ -5,7 +5,7 @@ title: ParsedHotkey
 
 # Interface: ParsedHotkey
 
-Defined in: [hotkey.ts:308](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L308)
+Defined in: [hotkey.ts:331](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L331)
 
 A parsed representation of a hotkey string.
 
@@ -33,7 +33,7 @@ useHotkey(parsed, handler) // Works even if userInput isn't in Hotkey type
 alt: boolean;
 ```
 
-Defined in: [hotkey.ts:316](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L316)
+Defined in: [hotkey.ts:339](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L339)
 
 Whether the Alt key is required
 
@@ -45,7 +45,7 @@ Whether the Alt key is required
 ctrl: boolean;
 ```
 
-Defined in: [hotkey.ts:312](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L312)
+Defined in: [hotkey.ts:335](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L335)
 
 Whether the Control key is required
 
@@ -57,7 +57,7 @@ Whether the Control key is required
 key: Key | string & object;
 ```
 
-Defined in: [hotkey.ts:310](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L310)
+Defined in: [hotkey.ts:333](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L333)
 
 The non-modifier key (e.g., 'S', 'Escape', 'F1', '/', '['). Can be any string for flexibility.
 
@@ -69,7 +69,7 @@ The non-modifier key (e.g., 'S', 'Escape', 'F1', '/', '['). Can be any string fo
 meta: boolean;
 ```
 
-Defined in: [hotkey.ts:318](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L318)
+Defined in: [hotkey.ts:341](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L341)
 
 Whether the Meta (Command) key is required
 
@@ -81,7 +81,7 @@ Whether the Meta (Command) key is required
 modifiers: CanonicalModifier[];
 ```
 
-Defined in: [hotkey.ts:320](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L320)
+Defined in: [hotkey.ts:343](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L343)
 
 List of canonical modifier names that are required, in canonical order
 
@@ -93,6 +93,6 @@ List of canonical modifier names that are required, in canonical order
 shift: boolean;
 ```
 
-Defined in: [hotkey.ts:314](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L314)
+Defined in: [hotkey.ts:337](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L337)
 
 Whether the Shift key is required

@@ -5,7 +5,7 @@ title: ValidationResult
 
 # Interface: ValidationResult
 
-Defined in: [hotkey.ts:375](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L375)
+Defined in: [hotkey.ts:398](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L398)
 
 Result of validating a hotkey string.
 
@@ -17,7 +17,7 @@ Result of validating a hotkey string.
 errors: string[];
 ```
 
-Defined in: [hotkey.ts:381](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L381)
+Defined in: [hotkey.ts:404](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L404)
 
 Error messages about invalid syntax
 
@@ -29,7 +29,7 @@ Error messages about invalid syntax
 valid: boolean;
 ```
 
-Defined in: [hotkey.ts:377](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L377)
+Defined in: [hotkey.ts:400](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L400)
 
 Whether the hotkey is valid (can still have warnings)
 
@@ -41,6 +41,6 @@ Whether the hotkey is valid (can still have warnings)
 warnings: string[];
 ```
 
-Defined in: [hotkey.ts:379](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L379)
+Defined in: [hotkey.ts:402](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L402)
 
 Warning messages about potential issues

@@ -126,6 +126,28 @@ export type PunctuationKey =
   | '`'
 
 /**
+ * Numpad keys for numeric keypad operations.
+ * These keys are commonly used for data entry and calculator-style input.
+ */
+export type NumpadKey =
+  | 'Numpad0'
+  | 'Numpad1'
+  | 'Numpad2'
+  | 'Numpad3'
+  | 'Numpad4'
+  | 'Numpad5'
+  | 'Numpad6'
+  | 'Numpad7'
+  | 'Numpad8'
+  | 'Numpad9'
+  | 'NumpadAdd'
+  | 'NumpadSubtract'
+  | 'NumpadMultiply'
+  | 'NumpadDivide'
+  | 'NumpadDecimal'
+  | 'NumpadEnter'
+
+/**
  * Keys that don't change their value when Shift is pressed.
  * These keys produce the same `KeyboardEvent.key` value whether Shift is held or not.
  *
@@ -141,6 +163,7 @@ type NonPunctuationKey =
   | EditingKey
   | NavigationKey
   | FunctionKey
+  | NumpadKey
 
 /**
  * All supported non-modifier keys.
