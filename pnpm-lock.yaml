@@ -97,7 +97,7 @@ importers:
         specifier: 0.9.6
         version: 0.9.6(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solid-js@1.9.11)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.1.4
+        specifier: ^0.2.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -131,7 +131,7 @@ importers:
         specifier: 0.9.6
         version: 0.9.6(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solid-js@1.9.11)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.1.4
+        specifier: ^0.2.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -165,7 +165,7 @@ importers:
         specifier: 0.9.6
         version: 0.9.6(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solid-js@1.9.11)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.1.4
+        specifier: ^0.2.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -199,7 +199,7 @@ importers:
         specifier: 0.9.6
         version: 0.9.6(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solid-js@1.9.11)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.1.4
+        specifier: ^0.2.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -233,7 +233,7 @@ importers:
         specifier: 0.9.6
         version: 0.9.6(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solid-js@1.9.11)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.1.4
+        specifier: ^0.2.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -1250,7 +1250,7 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@publint/pack@0.1.4':
+  '@publint/pack@0.2.0':
     resolution: {integrity: sha512-HDVTWq3H0uTXiU0eeSQntcVUTPP3GamzeXI41+x7uU9J65JgWQh3qWZHblR1i0npXfFtF+mxBiU2nJH8znxWnQ==}
     engines: {node: '>=18'}
 
@@ -2200,7 +2200,7 @@ packages:
       supports-color:
         optional: true
 
-  deep-is@0.1.4:
+  deep-is@0.2.0:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
 
   defaults@1.0.4:
@@ -2752,7 +2752,7 @@ packages:
     resolution: {integrity: sha512-B6Lc2s6yApwnD2/pMzFh/d5AVjdsDXjgkeJ766FmFuJELIGHNycKRj+l3A39yZPM4CchqNCB4RITEAYB1KUM6A==}
     engines: {node: '>=20.19.0'}
 
-  imurmurhash@0.1.4:
+  imurmurhash@0.2.0:
     resolution: {integrity: sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA==}
     engines: {node: '>=0.8.19'}
 
@@ -4642,7 +4642,7 @@ snapshots:
   '@oxc-resolver/binding-win32-x64-msvc@11.17.1':
     optional: true
 
-  '@publint/pack@0.1.4': {}
+  '@publint/pack@0.2.0': {}
 
   '@quansync/fs@1.0.0':
     dependencies:
@@ -5526,7 +5526,7 @@ snapshots:
     dependencies:
       ms: 2.1.3
 
-  deep-is@0.1.4: {}
+  deep-is@0.2.0: {}
 
   defaults@1.0.4:
     dependencies:
@@ -5900,7 +5900,7 @@ snapshots:
       find-up: 5.0.0
       glob-parent: 6.0.2
       ignore: 5.3.2
-      imurmurhash: 0.1.4
+      imurmurhash: 0.2.0
       is-glob: 4.0.3
       json-stable-stringify-without-jsonify: 1.0.1
       lodash.merge: 4.6.2
@@ -6171,7 +6171,7 @@ snapshots:
 
   import-without-cache@0.2.5: {}
 
-  imurmurhash@0.1.4: {}
+  imurmurhash@0.2.0: {}
 
   indent-string@4.0.0: {}
 
@@ -6497,7 +6497,7 @@ snapshots:
 
   optionator@0.9.4:
     dependencies:
-      deep-is: 0.1.4
+      deep-is: 0.2.0
       fast-levenshtein: 2.0.6
       levn: 0.4.1
       prelude-ls: 1.2.1
@@ -6638,7 +6638,7 @@ snapshots:
 
   publint@0.3.17:
     dependencies:
-      '@publint/pack': 0.1.4
+      '@publint/pack': 0.2.0
       package-manager-detector: 1.6.0
       picocolors: 1.1.1
       sade: 1.8.1
