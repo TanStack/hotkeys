@@ -147,6 +147,180 @@ describe('SequenceManager', () => {
     })
   })
 
+  describe('ignoreInputs option', () => {
+    /**
+     * Helper to dispatch a keyboard event from a specific element
+     */
+    function dispatchKeyFromElement(
+      element: HTMLElement,
+      key: string,
+      options: {
+        ctrlKey?: boolean
+        shiftKey?: boolean
+        altKey?: boolean
+        metaKey?: boolean
+      } = {},
+    ): KeyboardEvent {
+      const event = new KeyboardEvent('keydown', {
+        key,
+        ctrlKey: options.ctrlKey ?? false,
+        shiftKey: options.shiftKey ?? false,
+        altKey: options.altKey ?? false,
+        metaKey: options.metaKey ?? false,
+        bubbles: true,
+      })
+      Object.defineProperty(event, 'target', {
+        value: element,
+        writable: false,
+        configurable: true,
+      })
+      Object.defineProperty(event, 'currentTarget', {
+        value: document,
+        writable: false,
+        configurable: true,
+      })
+      document.dispatchEvent(event)
+      return event
+    }
+
+    it('should ignore single-key sequences in input elements by default', () => {
+      const manager = SequenceManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register(['G', 'G'], callback)
+
+      const input = document.createElement('input')
+      document.body.appendChild(input)
+
+      dispatchKeyFromElement(input, 'g')
+      dispatchKeyFromElement(input, 'g')
+
+      expect(callback).not.toHaveBeenCalled()
+
+      document.body.removeChild(input)
+    })
+
+    it('should ignore single-key sequences in textarea elements by default', () => {
+      const manager = SequenceManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register(['G', 'G'], callback)
+
+      const textarea = document.createElement('textarea')
+      document.body.appendChild(textarea)
+
+      dispatchKeyFromElement(textarea, 'g')
+      dispatchKeyFromElement(textarea, 'g')
+
+      expect(callback).not.toHaveBeenCalled()
+
+      document.body.removeChild(textarea)
+    })
+
+    it('should ignore single-key sequences in contenteditable elements by default', () => {
+      const manager = SequenceManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register(['G', 'G'], callback)
+
+      const div = document.createElement('div')
+      div.contentEditable = 'true'
+      document.body.appendChild(div)
+
+      dispatchKeyFromElement(div, 'g')
+      dispatchKeyFromElement(div, 'g')
+
+      expect(callback).not.toHaveBeenCalled()
+
+      document.body.removeChild(div)
+    })
+
+    it('should fire sequences starting with Mod key in inputs by default', () => {
+      const manager = SequenceManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register(['Mod+K', 'S'], callback, { platform: 'mac' })
+
+      const input = document.createElement('input')
+      document.body.appendChild(input)
+
+      dispatchKeyFromElement(input, 'k', { metaKey: true })
+      dispatchKeyFromElement(input, 's')
+
+      expect(callback).toHaveBeenCalledTimes(1)
+
+      document.body.removeChild(input)
+    })
+
+    it('should respect explicit ignoreInputs: true even for Mod sequences', () => {
+      const manager = SequenceManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register(['Mod+K', 'S'], callback, {
+        platform: 'mac',
+        ignoreInputs: true,
+      })
+
+      const input = document.createElement('input')
+      document.body.appendChild(input)
+
+      dispatchKeyFromElement(input, 'k', { metaKey: true })
+      dispatchKeyFromElement(input, 's')
+
+      expect(callback).not.toHaveBeenCalled()
+
+      document.body.removeChild(input)
+    })
+
+    it('should respect explicit ignoreInputs: false for single-key sequences', () => {
+      const manager = SequenceManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register(['G', 'G'], callback, { ignoreInputs: false })
+
+      const input = document.createElement('input')
+      document.body.appendChild(input)
+
+      dispatchKeyFromElement(input, 'g')
+      dispatchKeyFromElement(input, 'g')
+
+      expect(callback).toHaveBeenCalledTimes(1)
+
+      document.body.removeChild(input)
+    })
+
+    it('should fire single-key sequences outside of input elements', () => {
+      const manager = SequenceManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register(['G', 'G'], callback)
+
+      // dispatch from a non-input element
+      dispatchKey('g')
+      dispatchKey('g')
+
+      expect(callback).toHaveBeenCalledTimes(1)
+    })
+
+    it('should not ignore button-type inputs', () => {
+      const manager = SequenceManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register(['G', 'G'], callback)
+
+      const button = document.createElement('input')
+      button.type = 'button'
+      document.body.appendChild(button)
+
+      dispatchKeyFromElement(button, 'g')
+      dispatchKeyFromElement(button, 'g')
+
+      expect(callback).toHaveBeenCalledTimes(1)
+
+      document.body.removeChild(button)
+    })
+  })
+
   describe('longer sequences', () => {
     it('should match three-key sequences', () => {
       const manager = SequenceManager.getInstance()

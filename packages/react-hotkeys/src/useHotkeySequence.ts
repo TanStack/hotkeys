@@ -60,7 +60,7 @@ export function useHotkeySequence(
   const { enabled = true, ...sequenceOptions } = mergedOptions
 
   // Extract options for stable dependencies
-  const { timeout, platform } = sequenceOptions
+  const { timeout, platform, ignoreInputs } = sequenceOptions
 
   // Use refs to keep callback stable
   const callbackRef = useRef(callback)
@@ -80,6 +80,7 @@ export function useHotkeySequence(
     const registerOptions: SequenceOptions = { enabled: true }
     if (timeout !== undefined) registerOptions.timeout = timeout
     if (platform !== undefined) registerOptions.platform = platform
+    if (ignoreInputs !== undefined) registerOptions.ignoreInputs = ignoreInputs
 
     const unregister = manager.register(
       sequence,
@@ -88,5 +89,5 @@ export function useHotkeySequence(
     )
 
     return unregister
-  }, [enabled, sequence, sequenceKey, timeout, platform])
+  }, [enabled, sequence, sequenceKey, timeout, platform, ignoreInputs])
 }

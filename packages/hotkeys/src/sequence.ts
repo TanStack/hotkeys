@@ -44,6 +44,21 @@ function generateSequenceId(): string {
 }
 
 /**
+ * Computes the default ignoreInputs value for a sequence based on its first step.
+ * Uses the same logic as HotkeyManager: Ctrl/Meta combos and Escape fire in inputs;
+ * single keys and Shift/Alt combos are ignored.
+ */
+function getDefaultIgnoreInputsForSequence(
+  parsedSequence: Array<ParsedHotkey>,
+): boolean {
+  const firstStep = parsedSequence[0]
+  if (!firstStep) return true
+  if (firstStep.ctrl || firstStep.meta) return false
+  if (firstStep.key === 'Escape') return false
+  return true
+}
+
+/**
  * Internal representation of a sequence registration.
  */
 interface SequenceRegistration {
@@ -130,6 +145,9 @@ export class SequenceManager {
       parseHotkey(hotkey, platform),
     )
 
+    const resolvedIgnoreInputs =
+      options.ignoreInputs ?? getDefaultIgnoreInputsForSequence(parsedSequence)
+
     const registration: SequenceRegistration = {
       id,
       sequence,
@@ -142,6 +160,7 @@ export class SequenceManager {
         enabled: true,
         ...options,
         platform,
+        ignoreInputs: resolvedIgnoreInputs,
       },
       currentIndex: 0,
       lastKeyTime: 0,
@@ -195,6 +214,39 @@ export class SequenceManager {
   }
 
   /**
+   * Checks if an element is an input-like element that should be ignored.
+   */
+  #isInputElement(element: EventTarget | null): boolean {
+    if (!element) {
+      return false
+    }
+
+    if (element instanceof HTMLInputElement) {
+      const type = element.type.toLowerCase()
+      if (type === 'button' || type === 'submit' || type === 'reset') {
+        return false
+      }
+      return true
+    }
+
+    if (
+      element instanceof HTMLTextAreaElement ||
+      element instanceof HTMLSelectElement
+    ) {
+      return true
+    }
+
+    if (element instanceof HTMLElement) {
+      const contentEditable = element.contentEditable
+      if (contentEditable === 'true' || contentEditable === '') {
+        return true
+      }
+    }
+
+    return false
+  }
+
+  /**
    * Handles keydown events for sequence matching.
    */
   #handleKeyDown(event: KeyboardEvent): void {
@@ -203,6 +255,13 @@ export class SequenceManager {
     for (const registration of this.#registrations.values()) {
       if (!registration.options.enabled) {
         continue
+      }
+
+      // Check if we should ignore input elements
+      if (registration.options.ignoreInputs !== false) {
+        if (this.#isInputElement(event.target)) {
+          continue
+        }
       }
 
       const timeout = registration.options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT
