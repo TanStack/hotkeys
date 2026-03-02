@@ -60,52 +60,29 @@ export function matchesKeyboardEvent(
   const eventKey = normalizeKeyName(event.key)
   const hotkeyKey = parsed.key
 
-  // Handle dead keys: certain modifier+letter combos produce event.key === 'Dead'
-  // (e.g., macOS Option+E, or international layouts on Windows/Linux).
-  // In this case, event.key is unusable but event.code still identifies the physical key.
-  if (eventKey === 'Dead') {
-    if (event.code && event.code.startsWith('Key')) {
+  // For single-character keys (not dead keys), try direct event.key match first
+  if (eventKey !== 'Dead' && eventKey.length === 1 && hotkeyKey.length === 1) {
+    if (eventKey.toUpperCase() === hotkeyKey.toUpperCase()) {
+      return true
+    }
+  }
+
+  // Fallback to event.code for dead keys or single-char mismatches.
+  // Dead keys: Option+letter on macOS, international layouts produce event.key === 'Dead'
+  // Single-char mismatches: Cmd+Option+T gives '†' instead of 'T', Shift+4 gives '$'
+  if (eventKey === 'Dead' || (eventKey.length === 1 && hotkeyKey.length === 1)) {
+    if (event.code?.startsWith('Key')) {
       const codeLetter = event.code.slice(3)
       if (codeLetter.length === 1 && /^[A-Za-z]$/.test(codeLetter)) {
         return codeLetter.toUpperCase() === hotkeyKey.toUpperCase()
       }
     }
-    if (event.code && event.code.startsWith('Digit')) {
+    if (event.code?.startsWith('Digit')) {
       const codeDigit = event.code.slice(5)
       if (codeDigit.length === 1 && /^[0-9]$/.test(codeDigit)) {
         return codeDigit === hotkeyKey
       }
     }
-    return false
-  }
-
-  // For single letters, compare case-insensitively
-  if (eventKey.length === 1 && hotkeyKey.length === 1) {
-    // First try matching with event.key
-    if (eventKey.toUpperCase() === hotkeyKey.toUpperCase()) {
-      return true
-    }
-
-    // Fallback to event.code for letter keys when event.key doesn't match
-    // This handles cases like Command+Option+T on macOS where event.key is '†' instead of 'T'
-    // event.code format for letter keys is "KeyA", "KeyB", etc. (always uppercase in browsers)
-    if (event.code && event.code.startsWith('Key')) {
-      const codeLetter = event.code.slice(3) // Remove "Key" prefix
-      if (codeLetter.length === 1 && /^[A-Za-z]$/.test(codeLetter)) {
-        return codeLetter.toUpperCase() === hotkeyKey.toUpperCase()
-      }
-    }
-
-    // Fallback to event.code for digit keys when event.key doesn't match
-    // This handles cases like Shift+4 where event.key is '$' instead of '4'
-    // event.code format for digit keys is "Digit0", "Digit1", etc.
-    if (event.code && event.code.startsWith('Digit')) {
-      const codeDigit = event.code.slice(5) // Remove "Digit" prefix
-      if (codeDigit.length === 1 && /^[0-9]$/.test(codeDigit)) {
-        return codeDigit === hotkeyKey
-      }
-    }
-
     return false
   }
 
