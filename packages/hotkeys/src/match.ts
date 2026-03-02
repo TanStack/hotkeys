@@ -70,7 +70,10 @@ export function matchesKeyboardEvent(
   // Fallback to event.code for dead keys or single-char mismatches.
   // Dead keys: Option+letter on macOS, international layouts produce event.key === 'Dead'
   // Single-char mismatches: Cmd+Option+T gives '†' instead of 'T', Shift+4 gives '$'
-  if (eventKey === 'Dead' || (eventKey.length === 1 && hotkeyKey.length === 1)) {
+  if (
+    eventKey === 'Dead' ||
+    (eventKey.length === 1 && hotkeyKey.length === 1)
+  ) {
     if (event.code?.startsWith('Key')) {
       const codeLetter = event.code.slice(3)
       if (codeLetter.length === 1 && /^[A-Za-z]$/.test(codeLetter)) {
