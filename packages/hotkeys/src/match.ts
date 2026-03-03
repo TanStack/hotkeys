@@ -74,12 +74,14 @@ export function matchesKeyboardEvent(
     eventKey === 'Dead' ||
     (eventKey.length === 1 && hotkeyKey.length === 1)
   ) {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- event.code can be undefined in older browsers/mobile
     if (event.code?.startsWith('Key')) {
       const codeLetter = event.code.slice(3)
       if (codeLetter.length === 1 && /^[A-Za-z]$/.test(codeLetter)) {
         return codeLetter.toUpperCase() === hotkeyKey.toUpperCase()
       }
     }
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- event.code can be undefined in older browsers/mobile
     if (event.code?.startsWith('Digit')) {
       const codeDigit = event.code.slice(5)
       if (codeDigit.length === 1 && /^[0-9]$/.test(codeDigit)) {
