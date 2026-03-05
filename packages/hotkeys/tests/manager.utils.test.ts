@@ -1,4 +1,5 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
+
 import {
   defaultHotkeyOptions,
   getDefaultIgnoreInputs,
@@ -51,6 +52,22 @@ describe('manager.utils', () => {
       const div = document.createElement('div')
       div.contentEditable = 'true'
       expect(isInputElement(div)).toBe(true)
+    })
+
+    it('should return true for contenteditable plaintext-only elements', () => {
+      const div = document.createElement('div')
+      div.contentEditable = 'plaintext-only'
+      expect(isInputElement(div)).toBe(true)
+    })
+
+    it('should return true for inherited contenteditable', () => {
+      const parent = document.createElement('div')
+      parent.contentEditable = 'true'
+      const child = document.createElement('span')
+      parent.appendChild(child)
+      document.body.appendChild(parent)
+      expect(isInputElement(child)).toBe(true)
+      document.body.removeChild(parent)
     })
 
     it('should return false for contenteditable false', () => {

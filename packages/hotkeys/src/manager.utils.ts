@@ -65,12 +65,10 @@ export function isInputElement(element: EventTarget | null): boolean {
     return true
   }
 
-  // Check for contenteditable elements
-  if (element instanceof HTMLElement) {
-    const contentEditable = element.contentEditable
-    if (contentEditable === 'true' || contentEditable === '') {
-      return true
-    }
+  // Check for contenteditable elements (includes "true", "", "plaintext-only",
+  // and inherited contenteditable from ancestor elements)
+  if (element instanceof HTMLElement && element.isContentEditable) {
+    return true
   }
 
   return false
