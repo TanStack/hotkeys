@@ -12,10 +12,11 @@ const ALL_KEYS: Set<
   | FunctionKey
   | NavigationKey
   | EditingKey
-| PunctuationKey>;
+  | PunctuationKey
+| NumpadKey>;
 ```
 
-Defined in: [constants.ts:317](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L317)
+Defined in: [constants.ts:347](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L347)
 
 Set of all valid non-modifier keys.
 
