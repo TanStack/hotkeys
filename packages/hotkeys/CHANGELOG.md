@@ -1,5 +1,11 @@
 # @tanstack/hotkeys
 
+## 0.3.2
+
+### Patch Changes
+
+- fix(isInputElement): recognize contenteditable="plaintext-only" and inherited contenteditable ([#51](https://github.com/TanStack/hotkeys/pull/51))
+
 ## 0.3.1
 
 ### Patch Changes
