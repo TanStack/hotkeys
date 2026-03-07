@@ -313,6 +313,28 @@ describe('matchesKeyboardEvent', () => {
       })
       expect(matchesKeyboardEvent(event, 'Mod+Alt+T', 'mac')).toBe(true)
     })
+
+    it('should NOT match Control+A when a non-ASCII letter comes from a different physical key', () => {
+      // Russian layout: event.key reflects the logical key, event.code the physical one.
+      const event = createKeyboardEvent('ф', {
+        ctrlKey: true,
+        code: 'KeyA',
+      })
+      expect(matchesKeyboardEvent(event, 'Control+A', 'windows')).toBe(false)
+    })
+
+    it('should match a non-ASCII hotkey string case-insensitively', () => {
+      const event = createKeyboardEvent('ф', {
+        ctrlKey: true,
+        code: 'KeyA',
+      })
+      expect(
+        matchesKeyboardEvent(event, 'Control+ф' as Hotkey, 'windows'),
+      ).toBe(true)
+      expect(
+        matchesKeyboardEvent(event, 'Control+Ф' as Hotkey, 'windows'),
+      ).toBe(true)
+    })
   })
 
   describe('dead key fallback (macOS Option+letter)', () => {
