@@ -1,4 +1,8 @@
-import { detectPlatform, normalizeKeyName } from './constants'
+import {
+  detectPlatform,
+  isSingleLetterKey,
+  normalizeKeyName,
+} from './constants'
 import { parseHotkey } from './parse'
 import type {
   Hotkey,
@@ -11,7 +15,7 @@ import type {
  * Checks if a KeyboardEvent matches a hotkey.
  *
  * Uses the `key` property from KeyboardEvent for matching, with a fallback to `code`
- * for letter keys (A-Z) and digit keys (0-9) when `key` produces special characters
+ * for letter keys and digit keys (0-9) when `key` produces special characters
  * (e.g., macOS Option+letter or Shift+number). Letter keys are matched case-insensitively.
  *
  * Also handles "dead key" events where `event.key` is `'Dead'` instead of the expected
@@ -65,9 +69,19 @@ export function matchesKeyboardEvent(
     if (eventKey.toUpperCase() === hotkeyKey.toUpperCase()) {
       return true
     }
+
+    // If event.key is already a letter, trust the keyboard layout.
+    // Do NOT fall through to the event.code fallback, which matches based on
+    // physical key position and would break non-QWERTY layouts (Dvorak, Colemak,
+    // AZERTY, etc.). The code fallback is only needed when event.key produces a
+    // non-letter character (e.g., '†' from Option+T on macOS).
+    if (isSingleLetterKey(eventKey)) {
+      return false
+    }
   }
 
-  // Fallback to event.code for dead keys or single-char mismatches.
+  // Fallback to event.code for dead keys or single-char mismatches where
+  // event.key is a non-letter special character.
   // Dead keys: Option+letter on macOS, international layouts produce event.key === 'Dead'
   // Single-char mismatches: Cmd+Option+T gives '†' instead of 'T', Shift+4 gives '$'
   if (

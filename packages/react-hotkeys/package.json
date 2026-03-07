@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/react-hotkeys",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "React adapter for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",

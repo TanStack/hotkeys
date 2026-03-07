@@ -85,6 +85,7 @@ title: "@tanstack/hotkeys"
 - [hasNonModifierKey](functions/hasNonModifierKey.md)
 - [isModifier](functions/isModifier.md)
 - [isModifierKey](functions/isModifierKey.md)
+- [isSingleLetterKey](functions/isSingleLetterKey.md)
 - [keyboardEventToHotkey](functions/keyboardEventToHotkey.md)
 - [matchesKeyboardEvent](functions/matchesKeyboardEvent.md)
 - [normalizeHotkey](functions/normalizeHotkey.md)

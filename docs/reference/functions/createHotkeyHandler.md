@@ -12,7 +12,7 @@ function createHotkeyHandler(
    options): (event) => void;
 ```
 
-Defined in: [match.ts:128](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L128)
+Defined in: [match.ts:142](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L142)
 
 Creates a keyboard event handler that calls the callback when the hotkey matches.
 

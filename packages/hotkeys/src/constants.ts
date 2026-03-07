@@ -419,6 +419,10 @@ const KEY_ALIASES: Record<string, string> = {
  * normalizeKeyName('ArrowUp') // 'ArrowUp' (already canonical)
  * ```
  */
+export function isSingleLetterKey(key: string): boolean {
+  return /^\p{Letter}$/u.test(key)
+}
+
 export function normalizeKeyName(key: string): string {
   // Check aliases first
   if (key in KEY_ALIASES) {
@@ -426,7 +430,7 @@ export function normalizeKeyName(key: string): string {
   }
 
   // Check if it's a single letter (normalize to uppercase)
-  if (key.length === 1 && /^[a-zA-Z]$/.test(key)) {
+  if (isSingleLetterKey(key)) {
     return key.toUpperCase()
   }
 
