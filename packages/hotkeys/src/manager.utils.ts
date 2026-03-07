@@ -2,7 +2,7 @@ import type { ParsedHotkey } from './hotkey'
 
 type CustomConflictHandler = (
   keyDisplay: string,
-  unregisterAnotherConflictingId: () => void
+  unregisterAnotherConflictingId: () => void,
 ) => void
 
 /**
@@ -13,7 +13,12 @@ type CustomConflictHandler = (
  * - `'replace'` - Unregister the existing registration and register the new one
  * - `'allow'` - Allow multiple registrations without warning
  */
-export type ConflictBehavior = 'warn' | 'error' | 'replace' | 'allow' | CustomConflictHandler
+export type ConflictBehavior =
+  | 'warn'
+  | 'error'
+  | 'replace'
+  | 'allow'
+  | CustomConflictHandler
 
 /**
  * Default options for hotkey/sequence registration.
@@ -170,8 +175,8 @@ export function handleConflict(
   }
 
   if (typeof conflictBehavior === 'function') {
-      conflictBehavior(keyDisplay, () => unregister(conflictingId))
-      return
+    conflictBehavior(keyDisplay, () => unregister(conflictingId))
+    return
   }
 
   // At this point, conflictBehavior must be 'replace'

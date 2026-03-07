@@ -123,9 +123,7 @@ function getConflictLabel(
   return 'callback handled conflict with'
 }
 
-function serializeConflictBehavior(
-  behavior: ConflictBehavior
-): string {
+function serializeConflictBehavior(behavior: ConflictBehavior): string {
   if (typeof behavior === 'string') {
     return behavior
   }
@@ -296,7 +294,9 @@ function HotkeyDetails(props: {
             </div>
             <div class={styles().optionRow}>
               <span class={styles().optionLabel}>conflictBehavior</span>
-              <span class={styles().optionValue}>{serializeConflictBehavior(conflictBehavior())}</span>
+              <span class={styles().optionValue}>
+                {serializeConflictBehavior(conflictBehavior())}
+              </span>
             </div>
             <div class={styles().optionRow}>
               <span class={styles().optionLabel}>hasFired</span>
@@ -509,7 +509,9 @@ function SequenceDetails(props: {
             </div>
             <div class={styles().optionRow}>
               <span class={styles().optionLabel}>conflictBehavior</span>
-              <span class={styles().optionValue}>{serializeConflictBehavior(conflictBehavior())}</span>
+              <span class={styles().optionValue}>
+                {serializeConflictBehavior(conflictBehavior())}
+              </span>
             </div>
           </div>
         </div>
