@@ -1,5 +1,10 @@
 import type { ParsedHotkey } from './hotkey'
 
+type CustomConflictHandler = (
+  keyDisplay: string,
+  unregisterAnotherConflictingId: () => void
+) => void
+
 /**
  * Behavior when registering a hotkey/sequence that conflicts with an existing registration.
  *
@@ -8,7 +13,7 @@ import type { ParsedHotkey } from './hotkey'
  * - `'replace'` - Unregister the existing registration and register the new one
  * - `'allow'` - Allow multiple registrations without warning
  */
-export type ConflictBehavior = 'warn' | 'error' | 'replace' | 'allow'
+export type ConflictBehavior = 'warn' | 'error' | 'replace' | 'allow' | CustomConflictHandler
 
 /**
  * Default options for hotkey/sequence registration.
@@ -162,6 +167,11 @@ export function handleConflict(
         `Use conflictBehavior: 'replace' to replace the existing handler, ` +
         `or conflictBehavior: 'allow' to allow multiple registrations.`,
     )
+  }
+
+  if (typeof conflictBehavior === 'function') {
+      conflictBehavior(keyDisplay, () => unregister(conflictingId))
+      return
   }
 
   // At this point, conflictBehavior must be 'replace'

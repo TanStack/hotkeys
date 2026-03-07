@@ -286,5 +286,20 @@ describe('manager.utils', () => {
 
       expect(unregister).toHaveBeenCalledWith('id-1')
     })
+
+    it('should call custom callback if passed as conflictBehaviour', () => {
+      const unregister = vi.fn()
+      const handleConflictCallback = vi.fn()
+
+      handleConflict('id-1', 'Mod+S', handleConflictCallback, unregister)
+
+      expect(unregister).not.toHaveBeenCalledWith()
+      expect(handleConflictCallback).toHaveBeenCalledWith(
+        'Mod+S',
+        expect.any(Function),
+      )
+      handleConflictCallback.mock.calls[0]?.[1]()
+      expect(unregister).toHaveBeenCalledWith('id-1')
+    })
   })
 })
