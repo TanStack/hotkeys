@@ -27,6 +27,26 @@ Install the devtools packages for your framework:
 npm install @tanstack/react-devtools @tanstack/react-hotkeys-devtools
 ```
 
+### Preact
+
+```sh
+npm install @tanstack/preact-devtools @tanstack/preact-hotkeys-devtools
+```
+
+### Solid
+
+```sh
+npm install @tanstack/solid-devtools @tanstack/solid-hotkeys-devtools
+```
+
+### Vue
+
+```sh
+npm install @tanstack/vue-hotkeys-devtools
+```
+
+Angular does not currently ship a dedicated hotkeys devtools adapter.
+
 ## Setup
 
 ### React Setup
@@ -36,32 +56,53 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
 
 function App() {
-  return (
-    <div>
-      {/* Your app content */}
-
-      <TanStackDevtools
-        plugins={[hotkeysDevtoolsPlugin()]}
-      />
-    </div>
-  )
+  return <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
 }
 ```
 
-The devtools panel will appear as a tab in the TanStack Devtools UI, alongside any other TanStack devtools plugins you may have installed (e.g., Query devtools, Pacer devtools).
+### Preact Setup
+
+```tsx
+import { TanStackDevtools } from '@tanstack/preact-devtools'
+import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools'
+
+export function App() {
+  return <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
+}
+```
+
+### Solid Setup
+
+```tsx
+import { TanStackDevtools } from '@tanstack/solid-devtools'
+import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
+
+export function App() {
+  return <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
+}
+```
+
+### Vue Setup
+
+```vue
+<script setup lang="ts">
+import { HotkeysDevtoolsPanel } from '@tanstack/vue-hotkeys-devtools'
+</script>
+
+<template>
+  <AppContent />
+  <HotkeysDevtoolsPanel />
+</template>
+```
+
+For React, Preact, and Solid, the Hotkeys panel appears alongside any other TanStack devtools plugins you have installed.
 
 ## Production Builds
 
-By default, devtools are excluded from production builds to minimize bundle size. The default imports will return no-op implementations in production:
+By default, the framework devtools adapters return no-op implementations in production builds so they do not affect your production bundle behavior.
+
+React additionally exposes a production import when you explicitly want to include the plugin in production:
 
 ```tsx
-// This will be a no-op in production builds
-import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
-```
-
-If you need to include devtools in production builds (e.g., for debugging production issues), use the production-specific imports:
-
-```tsx
-// This will include full devtools even in production builds
 import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools/production'
 ```

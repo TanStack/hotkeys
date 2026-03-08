@@ -1,0 +1,110 @@
+<div class="app">
+  <header>
+    <h1>injectHotkeySequence</h1>
+    <p>
+      Register multi-key sequences (like Vim commands). Keys must be pressed
+      within the timeout window (default: 1000ms).
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section">
+      <h2>Vim-Style Commands</h2>
+      <table class="sequence-table">
+        <thead>
+          <tr>
+            <th>Sequence</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><kbd>g</kbd> <kbd>g</kbd></td>
+            <td>Go to top</td>
+          </tr>
+          <tr>
+            <td><kbd>G</kbd> (Shift+G)</td>
+            <td>Go to bottom</td>
+          </tr>
+          <tr>
+            <td><kbd>d</kbd> <kbd>d</kbd></td>
+            <td>Delete line</td>
+          </tr>
+          <tr>
+            <td><kbd>y</kbd> <kbd>y</kbd></td>
+            <td>Yank (copy) line</td>
+          </tr>
+          <tr>
+            <td><kbd>d</kbd> <kbd>w</kbd></td>
+            <td>Delete word</td>
+          </tr>
+          <tr>
+            <td><kbd>c</kbd> <kbd>i</kbd> <kbd>w</kbd></td>
+            <td>Change inner word</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="demo-section">
+      <h2>Fun Sequences</h2>
+      <div class="fun-sequences">
+        <div class="sequence-card">
+          <h3>Konami Code (Partial)</h3>
+          <p><kbd>↑</kbd> <kbd>↑</kbd> <kbd>↓</kbd> <kbd>↓</kbd></p>
+          <span class="hint">Use arrow keys within 1.5 seconds</span>
+        </div>
+        <div class="sequence-card">
+          <h3>Side to Side</h3>
+          <p><kbd>←</kbd> <kbd>→</kbd> <kbd>←</kbd> <kbd>→</kbd></p>
+          <span class="hint">Arrow keys within 1.5 seconds</span>
+        </div>
+        <div class="sequence-card">
+          <h3>Spell It Out</h3>
+          <p>
+            <kbd>h</kbd> <kbd>e</kbd> <kbd>l</kbd> <kbd>l</kbd> <kbd>o</kbd>
+          </p>
+          <span class="hint">Type "hello" quickly</span>
+        </div>
+      </div>
+    </section>
+
+    @if (lastSequence(); as seq) {
+      <div class="info-box success"><strong>Triggered:</strong> {{ seq }}</div>
+    }
+
+    <section class="demo-section">
+      <h2>Usage</h2>
+      <pre class="code-block">
+import {{ '{' }} injectHotkeySequence {{
+          '}'
+        }} from '&#64;tanstack/angular-hotkeys'
+
+// In constructor or injection context:
+injectHotkeySequence(['G', 'G'], () => scrollToTop())
+
+injectHotkeySequence(
+  ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown'],
+  () => activateCheatMode(),
+  {{ '{' }} timeout: 1500 {{ '}' }}
+)
+
+injectHotkeySequence(['C', 'I', 'W'], () => changeInnerWord())</pre
+      >
+    </section>
+
+    @if (history().length > 0) {
+      <section class="demo-section">
+        <h2>History</h2>
+        <ul class="history-list">
+          @for (item of history(); track item) {
+            <li>{{ item }}</li>
+          }
+        </ul>
+        <button type="button" (click)="clearHistory()">Clear History</button>
+      </section>
+    }
+
+    <p class="hint">Press <kbd>Escape</kbd> to clear history</p>
+  </main>
+</div>

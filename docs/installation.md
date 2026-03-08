@@ -7,8 +7,11 @@ TanStack Hotkeys is compatible with various front-end frameworks. Install the co
 
 <!-- ::start:tabs variant="package-managers" -->
 
-react: @tanstack/react-hotkeys
+angular: @tanstack/angular-hotkeys
 preact: @tanstack/preact-hotkeys
+react: @tanstack/react-hotkeys
+solid: @tanstack/solid-hotkeys
+vue: @tanstack/vue-hotkeys
 
 <!-- ::end:tabs -->
 
@@ -21,16 +24,55 @@ Each framework package re-exports everything from the core `@tanstack/hotkeys` p
 
 # React
 
-## Devtools
+Start with the [Quick Start](./framework/react/quick-start) guide. If you want the integrated devtools panel, also install:
 
-Developer tools are available using [TanStack Devtools](https://tanstack.com/devtools/latest). Install the devtools adapter and the Hotkeys devtools plugin as dev dependencies to inspect registered hotkeys and monitor key state.
+<!-- ::end:framework -->
+
+<!-- ::start:framework -->
+
+# Preact
+
+Start with the [API reference](./framework/preact/reference/index) and [guides](./framework/preact/guides/hotkeys). If you want the integrated devtools panel, also install:
+
+<!-- ::end:framework -->
+
+<!-- ::start:framework -->
+
+# Solid
+
+Start with the [API reference](./framework/solid/reference/index) and [guides](./framework/solid/guides/hotkeys). If you want the integrated devtools panel, also install:
+
+<!-- ::end:framework -->
+
+<!-- ::start:framework -->
+
+# Angular
+
+Start with the [Quick Start](./framework/angular/quick-start) guide and the Angular-specific [guides](./framework/angular/guides/hotkeys).
+
+Angular currently ships the hotkeys adapter only, so no dedicated Angular devtools package is required.
+
+<!-- ::end:framework -->
+
+<!-- ::start:framework -->
+
+# Vue
+
+Start with the [Quick Start](./framework/vue/quick-start) guide and the Vue-specific [guides](./framework/vue/guides/hotkeys).
+
+If you want the Vue devtools panel component, also install:
 
 <!-- ::end:framework -->
 
 <!-- ::start:tabs variant="package-manager" -->
 
+preact: @tanstack/preact-devtools
+preact: @tanstack/preact-hotkeys-devtools
 react: @tanstack/react-devtools
 react: @tanstack/react-hotkeys-devtools
+solid: @tanstack/solid-devtools
+solid: @tanstack/solid-hotkeys-devtools
+vue: @tanstack/vue-hotkeys-devtools
 
 <!-- ::end:tabs -->
 
@@ -38,7 +80,31 @@ react: @tanstack/react-hotkeys-devtools
 
 # React
 
-See the [devtools](./devtools) documentation for more information on how to set up and use the Hotkeys devtools.
+See the [devtools](./devtools) documentation for setup details.
+
+<!-- ::end:framework -->
+
+<!-- ::start:framework -->
+
+# Preact
+
+See the [devtools](./devtools) documentation for setup details.
+
+<!-- ::end:framework -->
+
+<!-- ::start:framework -->
+
+# Solid
+
+See the [devtools](./devtools) documentation for setup details.
+
+<!-- ::end:framework -->
+
+<!-- ::start:framework -->
+
+# Vue
+
+See the [devtools](./devtools) documentation for setup details.
 
 <!-- ::end:framework -->
 

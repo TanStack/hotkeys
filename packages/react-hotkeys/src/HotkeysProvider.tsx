@@ -35,6 +35,7 @@ export function HotkeysProvider({
   )
 
   return (
+    // eslint-disable-next-line @eslint-react/no-context-provider -- React 19+ only; we support React >=16.8
     <HotkeysContext.Provider value={contextValue}>
       {children}
     </HotkeysContext.Provider>
@@ -42,10 +43,12 @@ export function HotkeysProvider({
 }
 
 export function useHotkeysContext() {
+  // eslint-disable-next-line @eslint-react/no-use-context -- React 19+ only; we support React >=16.8
   return useContext(HotkeysContext)
 }
 
 export function useDefaultHotkeysOptions() {
+  // eslint-disable-next-line @eslint-react/no-use-context -- React 19+ only; we support React >=16.8
   const context = useContext(HotkeysContext)
   return context?.defaultOptions ?? {}
 }

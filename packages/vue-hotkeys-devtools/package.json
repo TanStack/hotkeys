@@ -1,0 +1,70 @@
+{
+  "name": "@tanstack/vue-hotkeys-devtools",
+  "version": "0.4.0",
+  "description": "Vue devtools for TanStack Hotkeys",
+  "author": "Tanner Linsley",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TanStack/hotkeys.git",
+    "directory": "packages/vue-hotkeys-devtools"
+  },
+  "homepage": "https://tanstack.com/hotkeys",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/tannerlinsley"
+  },
+  "keywords": [
+    "vue",
+    "vuejs",
+    "tanstack",
+    "keys",
+    "devtools",
+    "hotkeys",
+    "keyboard"
+  ],
+  "scripts": {
+    "clean": "premove ./build ./dist",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "test:eslint": "eslint ./src",
+    "test:lib": "vitest --passWithNoTests",
+    "test:lib:dev": "pnpm test:lib --watch",
+    "test:types": "tsc",
+    "build": "tsdown"
+  },
+  "type": "module",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./production": {
+      "import": "./dist/production.js",
+      "require": "./dist/production.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist/",
+    "src"
+  ],
+  "peerDependencies": {
+    "vue": ">=3.0.0"
+  },
+  "dependencies": {
+    "@tanstack/devtools-utils": "^0.3.2",
+    "@tanstack/hotkeys-devtools": "workspace:*"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.4",
+    "vue": "^3.5.29"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js"
+}

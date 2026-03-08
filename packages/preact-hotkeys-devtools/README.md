@@ -44,7 +44,7 @@ Type-safe keyboard shortcuts for the web. Template-string bindings, parsed objec
 - Type-safe bindings — template strings (`Mod+Shift+S`, `Escape`) or parsed objects for full control
 - Flexible options — `keydown`/`keyup`, `preventDefault`, `stopPropagation`, conditional enabled, `requireReset`
 - Cross-platform Mod — maps to Cmd on macOS and Ctrl on Windows/Linux
-- Batteries included — validation + matching, sequences (Vim-style), key-state tracking, recorder UI helpers, React hooks, and devtools (in progress)
+- Batteries included — validation + matching, sequences (Vim-style), key-state tracking, recorder UI helpers, framework adapters, and devtools
 
 ### <a href="https://tanstack.com/hotkeys">Read the docs →</a>
 
@@ -55,10 +55,10 @@ Type-safe keyboard shortcuts for the web. Template-string bindings, parsed objec
 >
 > - [**React Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/react/react-hotkeys)
 > - [**Preact Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/preact/preact-hotkeys)
-> - [**Solid Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/solid/solid-hotkeys)
-> - Angular Hotkeys – needs a contributor!
+> - [**Solid Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/solid/reference)
+> - [**Angular Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/angular/reference)
+> - [**Vue Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/vue/reference)
 > - Svelte Hotkeys – needs a contributor!
-> - Vue Hotkeys – needs a contributor!
 
 ## Get Involved
 

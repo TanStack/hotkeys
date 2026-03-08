@@ -265,6 +265,161 @@ describe('matchesKeyboardEvent', () => {
     })
   })
 
+  describe('non-QWERTY keyboard layout handling', () => {
+    it('should NOT match Mod+B when Dvorak layout produces event.key="x" on physical B key', () => {
+      // Dvorak: physical B position produces 'x'. With macOS "Use keyboard layout
+      // for shortcuts" enabled, Cmd+physical-B gives event.key='x', event.code='KeyB'.
+      // The library should trust event.key ('x') and NOT fall back to event.code ('KeyB').
+      const event = createKeyboardEvent('x', {
+        metaKey: true,
+        code: 'KeyB',
+      })
+      expect(matchesKeyboardEvent(event, 'Mod+B', 'mac')).toBe(false)
+    })
+
+    it('should match Mod+X when Dvorak layout produces event.key="x" on physical B key', () => {
+      // Same physical key press as above, but hotkey is Mod+X which matches event.key
+      const event = createKeyboardEvent('x', {
+        metaKey: true,
+        code: 'KeyB',
+      })
+      expect(matchesKeyboardEvent(event, 'Mod+X', 'mac')).toBe(true)
+    })
+
+    it('should NOT match Mod+A when Colemak layout produces event.key="r" on physical A-row key', () => {
+      // Colemak: event.key reflects the layout, event.code reflects physical position
+      const event = createKeyboardEvent('r', {
+        metaKey: true,
+        code: 'KeyS',
+      })
+      expect(matchesKeyboardEvent(event, 'Mod+S', 'mac')).toBe(false)
+    })
+
+    it('should NOT match Mod+Q when AZERTY layout produces event.key="a" on physical Q key', () => {
+      // AZERTY: physical Q position produces 'a'
+      const event = createKeyboardEvent('a', {
+        ctrlKey: true,
+        code: 'KeyQ',
+      })
+      expect(matchesKeyboardEvent(event, 'Control+Q', 'windows')).toBe(false)
+    })
+
+    it('should still fall back to event.code when event.key is a non-letter character', () => {
+      // Option+T on macOS producing '†' should still fall back to event.code
+      const event = createKeyboardEvent('†', {
+        altKey: true,
+        metaKey: true,
+        code: 'KeyT',
+      })
+      expect(matchesKeyboardEvent(event, 'Mod+Alt+T', 'mac')).toBe(true)
+    })
+
+    it('should NOT match Control+A when a non-ASCII letter comes from a different physical key', () => {
+      // Russian layout: event.key reflects the logical key, event.code the physical one.
+      const event = createKeyboardEvent('ф', {
+        ctrlKey: true,
+        code: 'KeyA',
+      })
+      expect(matchesKeyboardEvent(event, 'Control+A', 'windows')).toBe(false)
+    })
+
+    it('should match a non-ASCII hotkey string case-insensitively', () => {
+      const event = createKeyboardEvent('ф', {
+        ctrlKey: true,
+        code: 'KeyA',
+      })
+      expect(
+        matchesKeyboardEvent(event, 'Control+ф' as Hotkey, 'windows'),
+      ).toBe(true)
+      expect(
+        matchesKeyboardEvent(event, 'Control+Ф' as Hotkey, 'windows'),
+      ).toBe(true)
+    })
+  })
+
+  describe('dead key fallback (macOS Option+letter)', () => {
+    it('should match Alt+E when event.key is Dead (macOS dead key for accent)', () => {
+      const event = createKeyboardEvent('Dead', {
+        altKey: true,
+        code: 'KeyE',
+      })
+      expect(matchesKeyboardEvent(event, 'Alt+E')).toBe(true)
+    })
+
+    it('should match Alt+I when event.key is Dead', () => {
+      const event = createKeyboardEvent('Dead', {
+        altKey: true,
+        code: 'KeyI',
+      })
+      expect(matchesKeyboardEvent(event, 'Alt+I')).toBe(true)
+    })
+
+    it('should match Alt+U when event.key is Dead', () => {
+      const event = createKeyboardEvent('Dead', {
+        altKey: true,
+        code: 'KeyU',
+      })
+      expect(matchesKeyboardEvent(event, 'Alt+U')).toBe(true)
+    })
+
+    it('should match Alt+N when event.key is Dead', () => {
+      const event = createKeyboardEvent('Dead', {
+        altKey: true,
+        code: 'KeyN',
+      })
+      expect(matchesKeyboardEvent(event, 'Alt+N')).toBe(true)
+    })
+
+    it('should match Mod+Alt with dead key on Mac', () => {
+      const event = createKeyboardEvent('Dead', {
+        altKey: true,
+        metaKey: true,
+        code: 'KeyE',
+      })
+      expect(matchesKeyboardEvent(event, 'Mod+Alt+E', 'mac')).toBe(true)
+    })
+
+    it('should not match dead key when code does not match hotkey', () => {
+      const event = createKeyboardEvent('Dead', {
+        altKey: true,
+        code: 'KeyE',
+      })
+      expect(matchesKeyboardEvent(event, 'Alt+T')).toBe(false)
+    })
+
+    it('should not match dead key when modifiers do not match', () => {
+      const event = createKeyboardEvent('Dead', {
+        altKey: true,
+        code: 'KeyE',
+      })
+      expect(matchesKeyboardEvent(event, 'Control+E')).toBe(false)
+    })
+
+    it('should not match dead key when event.code is missing', () => {
+      const event = createKeyboardEvent('Dead', {
+        altKey: true,
+        code: undefined,
+      })
+      expect(matchesKeyboardEvent(event, 'Alt+E')).toBe(false)
+    })
+
+    it('should not match dead key when event.code has invalid format', () => {
+      const event = createKeyboardEvent('Dead', {
+        altKey: true,
+        code: 'InvalidCode',
+      })
+      expect(matchesKeyboardEvent(event, 'Alt+E')).toBe(false)
+    })
+
+    it('should handle dead key with digit code fallback', () => {
+      const event = createKeyboardEvent('Dead', {
+        altKey: true,
+        code: 'Digit4',
+      })
+      expect(matchesKeyboardEvent(event, 'Alt+4')).toBe(true)
+    })
+  })
+
   describe('event.code fallback for digit keys', () => {
     it('should fallback to event.code when event.key produces special character (Shift+4 -> $)', () => {
       // Simulate Shift+4 where event.key is '$' but event.code is 'Digit4'

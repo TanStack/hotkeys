@@ -12,13 +12,18 @@ function matchesKeyboardEvent(
    platform): boolean;
 ```
 
-Defined in: [match.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L32)
+Defined in: [match.ts:41](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L41)
 
 Checks if a KeyboardEvent matches a hotkey.
 
 Uses the `key` property from KeyboardEvent for matching, with a fallback to `code`
-for letter keys (A-Z) and digit keys (0-9) when `key` produces special characters
+for letter keys and digit keys (0-9) when `key` produces special characters
 (e.g., macOS Option+letter or Shift+number). Letter keys are matched case-insensitively.
+
+Also handles "dead key" events where `event.key` is `'Dead'` instead of the expected
+character. This commonly occurs on macOS with Option+letter combinations (e.g., Option+E,
+Option+I, Option+U, Option+N) and on Windows/Linux with international keyboard layouts.
+In these cases, `event.code` is used to determine the physical key.
 
 ## Parameters
 

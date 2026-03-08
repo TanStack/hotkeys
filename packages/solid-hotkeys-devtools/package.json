@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/solid-hotkeys-devtools",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "SolidJS devtools for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",
@@ -51,7 +51,7 @@
     "solid-js": ">=1.7.0"
   },
   "dependencies": {
-    "@tanstack/devtools-utils": "^0.3.0",
+    "@tanstack/devtools-utils": "^0.3.2",
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {

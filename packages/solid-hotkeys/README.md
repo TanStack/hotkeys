@@ -1,305 +1,122 @@
-# @tanstack/solid-hotkeys
-
-> SolidJS adapter for [TanStack Hotkeys](https://tanstack.com/hotkeys) - keyboard shortcuts made easy
-
-[![npm version](https://img.shields.io/npm/v/@tanstack/solid-hotkeys.svg)](https://www.npmjs.com/package/@tanstack/solid-hotkeys)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-
-## Features
-
-✅ **Type-safe hotkey bindings** - Template strings (`Mod+Shift+S`, `Escape`) or parsed objects
-✅ **Cross-platform** - `Mod` key automatically maps to Cmd on macOS, Ctrl on Windows/Linux
-✅ **Sequence support** - Vim-style multi-key sequences (`g g`, `d d`)
-✅ **Key state tracking** - Track which keys are currently held down
-✅ **Hotkey recording** - Built-in UI helpers for letting users define their own shortcuts
-✅ **SolidJS primitives** - Reactive primitives that work seamlessly with SolidJS
-
-## Installation
-
-```bash
-npm install @tanstack/solid-hotkeys @tanstack/hotkeys
-# or
-bun add @tanstack/solid-hotkeys @tanstack/hotkeys
-# or
-pnpm add @tanstack/solid-hotkeys @tanstack/hotkeys
-```
-
-## Quick Start
-
-```tsx
-import { createHotkey } from '@tanstack/solid-hotkeys'
-
-function App() {
-  createHotkey('Mod+S', (event) => {
-    event.preventDefault()
-    console.log('Save!')
-  })
-
-  return <div>Press Cmd/Ctrl+S to save</div>
-}
-```
-
-## Usage
-
-### Basic Hotkey
-
-```tsx
-import { createHotkey } from '@tanstack/solid-hotkeys'
-
-function SaveButton() {
-  createHotkey('Mod+S', (event, { hotkey }) => {
-    event.preventDefault()
-    handleSave()
-  })
-
-  return <button>Save (Cmd/Ctrl+S)</button>
-}
-```
-
-### Conditional Hotkeys
-
-```tsx
-import { createHotkey } from '@tanstack/solid-hotkeys'
-import { Show, createSignal } from 'solid-js'
-
-function Modal(props) {
-  // Hotkey only active when modal is open
-  createHotkey(
-    'Escape',
-    () => props.onClose(),
-    () => ({
-      enabled: props.isOpen,
-    }),
-  )
-
-  return (
-    <Show when={props.isOpen}>
-      <div class="modal">Press Escape to close</div>
-    </Show>
-  )
-}
-```
-
-### Scoped Hotkeys
-
-```tsx
-import { createHotkey } from '@tanstack/solid-hotkeys'
-
-function Editor() {
-  let editorRef: HTMLDivElement | undefined
-
-  // Hotkey only works when editor is focused
-  createHotkey(
-    'Mod+B',
-    () => {
-      toggleBold()
-    },
-    { target: editorRef },
-  )
-
-  return <div ref={editorRef} contentEditable />
-}
-```
-
-### Hotkey Sequences (Vim-style)
-
-```tsx
-import { createHotkeySequence } from '@tanstack/solid-hotkeys'
-
-function VimEditor() {
-  // 'g g' to go to top
-  createHotkeySequence(['G', 'G'], () => {
-    scrollToTop()
-  })
-
-  // 'd d' to delete line
-  createHotkeySequence(['D', 'D'], () => {
-    deleteLine()
-  })
-
-  // 'd i w' to delete inner word
-  createHotkeySequence(
-    ['D', 'I', 'W'],
-    () => {
-      deleteInnerWord()
-    },
-    { timeout: 500 },
-  )
-
-  return <div>Try Vim shortcuts!</div>
-}
-```
-
-### Track Held Keys
-
-```tsx
-import { createHeldKeys, createKeyHold } from '@tanstack/solid-hotkeys'
-import { For } from 'solid-js'
-
-function KeyTracker() {
-  const heldKeys = createHeldKeys()
-  const shiftHeld = createKeyHold('Shift')
-
-  return (
-    <div>
-      <div>Shift: {shiftHeld() ? 'Pressed' : 'Not pressed'}</div>
-      <div>
-        All held keys:
-        <For each={heldKeys()}>{(key) => <kbd>{key}</kbd>}</For>
-      </div>
-    </div>
-  )
-}
-```
-
-### Hotkey Recorder
-
-```tsx
-import { createHotkeyRecorder } from '@tanstack/solid-hotkeys'
-import { createSignal, Show } from 'solid-js'
-
-function ShortcutSettings() {
-  const [shortcut, setShortcut] = createSignal('Mod+S')
-
-  const recorder = createHotkeyRecorder({
-    onRecord: (hotkey) => {
-      setShortcut(hotkey)
-    },
-    onCancel: () => {
-      console.log('Recording cancelled')
-    },
-  })
-
-  return (
-    <div>
-      <div>Current shortcut: {shortcut()}</div>
-      <button onClick={recorder.startRecording}>
-        {recorder.isRecording() ? 'Recording...' : 'Edit Shortcut'}
-      </button>
-      <Show when={recorder.recordedHotkey()}>
-        <div>Preview: {recorder.recordedHotkey()}</div>
-      </Show>
-    </div>
-  )
-}
-```
-
-### Global Configuration
-
-```tsx
-import { HotkeysProvider } from '@tanstack/solid-hotkeys'
-
-function App() {
-  return (
-    <HotkeysProvider
-      defaultOptions={{
-        hotkey: {
-          preventDefault: true,
-          enabled: true,
-        },
-        hotkeySequence: {
-          timeout: 1000,
-        },
-      }}
-    >
-      <YourApp />
-    </HotkeysProvider>
-  )
-}
-```
-
-## API
-
-### `createHotkey(hotkey, callback, options?)`
-
-Register a keyboard hotkey.
-
-- `hotkey`: String like `"Mod+S"` or `"Escape"`, or accessor function
-- `callback`: Function called when hotkey is pressed
-- `options`: Optional configuration (or accessor function for reactive options)
-
-**Options:**
-
-- `enabled`: Whether the hotkey is active (default: `true`)
-- `preventDefault`: Prevent default browser behavior (default: `false`)
-- `stopPropagation`: Stop event propagation (default: `false`)
-- `target`: DOM element to attach listener to (default: `document`)
-- `platform`: Override platform detection
-
-### `createHotkeySequence(sequence, callback, options?)`
-
-Register a multi-key sequence (Vim-style).
-
-- `sequence`: Array of hotkey strings like `["G", "G"]`, or accessor function
-- `callback`: Function called when sequence completes
-- `options`: Optional configuration (or accessor function)
-
-**Options:**
-
-- `enabled`: Whether sequence detection is active (default: `true`)
-- `timeout`: Max time between keys in ms (default: `1000`)
-- `platform`: Override platform detection
-
-### `createHeldKeys()`
-
-Returns a signal accessor for array of currently held keys.
-
-```tsx
-const heldKeys = createHeldKeys()
-// heldKeys() => ["Shift", "A"]
-```
-
-### `createHeldKeyCodes()`
-
-Returns a signal accessor for map of held keys to their physical key codes.
-
-```tsx
-const heldCodes = createHeldKeyCodes()
-// heldCodes() => { "Shift": "ShiftLeft", "A": "KeyA" }
-```
-
-### `createKeyHold(key)`
-
-Returns a signal accessor that's true when specific key is held.
-
-```tsx
-const isShiftHeld = createKeyHold('Shift')
-// isShiftHeld() => true/false
-```
-
-### `createHotkeyRecorder(options)`
-
-Hotkey recording interface.
-
-**Options:**
-
-- `onRecord`: Callback when hotkey is recorded
-- `onCancel`: Callback when recording is cancelled
-
-**Returns:**
-
-- `isRecording`: Signal accessor for recording state
-- `recordedHotkey`: Signal accessor for current hotkey preview
-- `startRecording`: Function to start recording
-- `stopRecording`: Function to stop recording
-- `cancelRecording`: Function to cancel recording
-
-### `HotkeysProvider`
-
-Optional provider for global configuration.
-
-## Cross-Platform Keys
-
-Use `Mod` for cross-platform modifier:
-
-- `Mod+S` → `Cmd+S` on macOS, `Ctrl+S` on Windows/Linux
-- `Mod+Shift+P` → `Cmd+Shift+P` on macOS, `Ctrl+Shift+P` elsewhere
-
-## Related
-
-- [TanStack Hotkeys](https://tanstack.com/hotkeys) - The core library
-- [@tanstack/react-hotkeys](https://tanstack.com/hotkeys) - React adapter
-
-## License
-
-MIT
+<div align="center">
+  <img src="./media/header_hotkeys.png" alt="TanStack Hotkeys" />
+</div>
+
+<br />
+
+<div align="center">
+	<a href="https://www.npmjs.com/package/@tanstack/hotkeys" target="\_parent">
+	  <img alt="" src="https://img.shields.io/npm/dm/@tanstack/hotkeys.svg" alt="npm downloads" />
+	</a>
+	<a href="https://github.com/TanStack/hotkeys" target="\_parent">
+	  <img alt="" src="https://img.shields.io/github/stars/TanStack/hotkeys.svg?style=social&label=Star" alt="GitHub stars" />
+	</a>
+	<a href="https://bundlephobia.com/result?p=@tanstack/react-hotkeys@latest" target="\_parent">
+	  <img alt="" src="https://badgen.net/bundlephobia/minzip/@tanstack/react-hotkeys@latest" alt="Bundle size" />
+	</a>
+</div>
+
+<div align="center">
+	<a href="#badge">
+	  <img alt="semantic-release" src="https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg">
+	</a>
+	<a href="#badge">
+	  <img src="https://img.shields.io/github/v/release/tanstack/hotkeys" alt="Release"/>
+	</a>
+	<a href="https://twitter.com/tan_stack">
+	  <img src="https://img.shields.io/twitter/follow/tan_stack.svg?style=social" alt="Follow @TanStack"/>
+	</a>
+</div>
+
+<div align="center">
+
+### [Become a Sponsor!](https://github.com/sponsors/tannerlinsley/)
+
+</div>
+
+# TanStack Hotkeys
+
+> [!NOTE]
+> TanStack Hotkeys is pre-alpha (prototyping phase). We are actively developing the library and are open to feedback and contributions.
+
+Type-safe keyboard shortcuts for the web. Template-string bindings, parsed objects, a cross-platform `Mod` key, a singleton Hotkey Manager, and utilities for cheatsheet UIs—built to stay SSR-friendly.
+
+- Type-safe bindings — template strings (`Mod+Shift+S`, `Escape`) or parsed objects for full control
+- Flexible options — `keydown`/`keyup`, `preventDefault`, `stopPropagation`, conditional enabled, `requireReset`
+- Cross-platform Mod — maps to Cmd on macOS and Ctrl on Windows/Linux
+- Batteries included — validation + matching, sequences (Vim-style), key-state tracking, recorder UI helpers, framework adapters, and devtools
+
+### <a href="https://tanstack.com/hotkeys">Read the docs →</a>
+
+<br />
+
+> [!NOTE]
+> You may know **TanStack Hotkeys** by our adapter names, too!
+>
+> - [**React Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/react/react-hotkeys)
+> - [**Preact Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/preact/preact-hotkeys)
+> - [**Solid Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/solid/reference)
+> - [**Angular Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/angular/reference)
+> - [**Vue Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/vue/reference)
+> - Svelte Hotkeys – needs a contributor!
+
+## Get Involved
+
+- We welcome issues and pull requests!
+- Participate in [GitHub discussions](https://github.com/TanStack/hotkeys/discussions)
+- Chat with the community on [Discord](https://discord.com/invite/WrRKjPJ)
+- See [CONTRIBUTING.md](./CONTRIBUTING.md) for setup instructions
+
+## Partners
+
+<div align="center">
+
+<table align="center">
+  <tr>
+    <td>
+      <a href="https://www.coderabbit.ai/?via=tanstack&dub_id=aCcEEdAOqqutX6OS" >
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://tanstack.com/assets/coderabbit-dark-D643Zkrv.svg" height="40" />
+          <source media="(prefers-color-scheme: light)" srcset="https://tanstack.com/assets/coderabbit-light-CIzGLYU_.svg" height="40" />
+          <img src="https://tanstack.com/assets/coderabbit-light-DVMJ2jHi.svg" height="40" alt="CodeRabbit" />
+        </picture>
+      </a>
+    </td>
+    <td>
+      <a href="https://www.cloudflare.com?utm_source=tanstack">
+        <picture>
+          <source media="(prefers-color-scheme: dark)" srcset="https://tanstack.com/assets/cloudflare-white-Co-Tyjbl.svg" height="60" />
+          <source media="(prefers-color-scheme: light)" srcset="https://tanstack.com/assets/cloudflare-black-6Ojsn8yh.svg" height="60" />
+          <img src="https://tanstack.com/assets/cloudflare-black-CPufaW0B.svg" height="60" alt="Cloudflare" />
+        </picture>
+      </a>
+    </td>
+  </tr>
+</table>
+
+<div align="center">
+<img src="media/partner_logo.svg" alt="Keys & you?" height="65">
+<p>
+We're looking for TanStack Hotkeys Partners to join our mission! Partner with us to push the boundaries of TanStack Hotkeys and build amazing things together.
+</p>
+<a href="mailto:partners@tanstack.com?subject=TanStack Hotkeys Partnership"><b>LET'S CHAT</b></a>
+</div>
+
+</div>
+
+## Explore the TanStack Ecosystem
+
+- <a href="https://github.com/tanstack/config"><b>TanStack Config</b></a> – Tooling for JS/TS packages
+- <a href="https://github.com/tanstack/db"><b>TanStack DB</b></a> – Reactive sync client store
+- <a href="https://github.com/tanstack/devtools"><b>TanStack DevTools</b></a> – Unified devtools panel
+- <a href="https://github.com/tanstack/form"><b>TanStack Form</b></a> – Type‑safe form state
+- <a href="https://github.com/tanstack/hotkeys"><b>TanStack Hotkeys</b></a> – Type‑safe keyboard shortcuts
+- <a href="https://github.com/tanstack/query"><b>TanStack Query</b></a> – Async state & caching
+- <a href="https://github.com/tanstack/ranger"><b>TanStack Ranger</b></a> – Range & slider primitives
+- <a href="https://github.com/tanstack/router"><b>TanStack Router</b></a> – Type‑safe routing, caching & URL state
+- <a href="https://github.com/tanstack/start"><b>TanStack Start</b></a> – Full‑stack SSR & streaming
+- <a href="https://github.com/tanstack/store"><b>TanStack Store</b></a> – Reactive data store
+- <a href="https://github.com/tanstack/table"><b>TanStack Table</b></a> – Headless datagrids
+- <a href="https://github.com/tanstack/virtual"><b>TanStack Virtual</b></a> – Virtualized rendering
+
+… and more at <a href="https://tanstack.com"><b>TanStack.com »</b></a>

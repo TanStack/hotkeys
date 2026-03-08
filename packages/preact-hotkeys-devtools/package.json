@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/preact-hotkeys-devtools",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Preact devtools for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",
@@ -50,11 +50,11 @@
     "preact": ">=10.0.0"
   },
   "dependencies": {
-    "@tanstack/devtools-utils": "^0.3.0",
+    "@tanstack/devtools-utils": "^0.3.2",
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {
-    "@preact/preset-vite": "^2.10.2",
-    "preact": "^10.27.2"
+    "@preact/preset-vite": "^2.10.3",
+    "preact": "^10.28.4"
   }
 }

@@ -1,11 +1,10 @@
 import { constructCoreClass } from '@tanstack/devtools-utils/solid'
-import { lazy } from 'solid-js'
 
-const Component = lazy(() => import('./HotkeysDevtools'))
+const loadComponent = () => import('./HotkeysDevtools')
 
 export interface HotkeysDevtoolsInit {}
 
 const [HotkeysDevtoolsCore, HotkeysDevtoolsCoreNoOp] =
-  constructCoreClass(Component)
+  constructCoreClass(loadComponent)
 
 export { HotkeysDevtoolsCore, HotkeysDevtoolsCoreNoOp }

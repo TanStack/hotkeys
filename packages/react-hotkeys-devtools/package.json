@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/react-hotkeys-devtools",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "React devtools for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",
@@ -54,7 +54,7 @@
     "react-dom": ">=16.8"
   },
   "dependencies": {
-    "@tanstack/devtools-utils": "^0.3.0",
+    "@tanstack/devtools-utils": "^0.3.2",
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {

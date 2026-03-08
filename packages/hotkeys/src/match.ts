@@ -1,4 +1,8 @@
-import { detectPlatform, normalizeKeyName } from './constants'
+import {
+  detectPlatform,
+  isSingleLetterKey,
+  normalizeKeyName,
+} from './constants'
 import { parseHotkey } from './parse'
 import type {
   Hotkey,
@@ -11,8 +15,13 @@ import type {
  * Checks if a KeyboardEvent matches a hotkey.
  *
  * Uses the `key` property from KeyboardEvent for matching, with a fallback to `code`
- * for letter keys (A-Z) and digit keys (0-9) when `key` produces special characters
+ * for letter keys and digit keys (0-9) when `key` produces special characters
  * (e.g., macOS Option+letter or Shift+number). Letter keys are matched case-insensitively.
+ *
+ * Also handles "dead key" events where `event.key` is `'Dead'` instead of the expected
+ * character. This commonly occurs on macOS with Option+letter combinations (e.g., Option+E,
+ * Option+I, Option+U, Option+N) and on Windows/Linux with international keyboard layouts.
+ * In these cases, `event.code` is used to determine the physical key.
  *
  * @param event - The KeyboardEvent to check
  * @param hotkey - The hotkey string or ParsedHotkey to match against
@@ -55,33 +64,44 @@ export function matchesKeyboardEvent(
   const eventKey = normalizeKeyName(event.key)
   const hotkeyKey = parsed.key
 
-  // For single letters, compare case-insensitively
-  if (eventKey.length === 1 && hotkeyKey.length === 1) {
-    // First try matching with event.key
+  // For single-character keys (not dead keys), try direct event.key match first
+  if (eventKey !== 'Dead' && eventKey.length === 1 && hotkeyKey.length === 1) {
     if (eventKey.toUpperCase() === hotkeyKey.toUpperCase()) {
       return true
     }
 
-    // Fallback to event.code for letter keys when event.key doesn't match
-    // This handles cases like Command+Option+T on macOS where event.key is '†' instead of 'T'
-    // event.code format for letter keys is "KeyA", "KeyB", etc. (always uppercase in browsers)
-    if (event.code && event.code.startsWith('Key')) {
-      const codeLetter = event.code.slice(3) // Remove "Key" prefix
+    // If event.key is already a letter, trust the keyboard layout.
+    // Do NOT fall through to the event.code fallback, which matches based on
+    // physical key position and would break non-QWERTY layouts (Dvorak, Colemak,
+    // AZERTY, etc.). The code fallback is only needed when event.key produces a
+    // non-letter character (e.g., '†' from Option+T on macOS).
+    if (isSingleLetterKey(eventKey)) {
+      return false
+    }
+  }
+
+  // Fallback to event.code for dead keys or single-char mismatches where
+  // event.key is a non-letter special character.
+  // Dead keys: Option+letter on macOS, international layouts produce event.key === 'Dead'
+  // Single-char mismatches: Cmd+Option+T gives '†' instead of 'T', Shift+4 gives '$'
+  if (
+    eventKey === 'Dead' ||
+    (eventKey.length === 1 && hotkeyKey.length === 1)
+  ) {
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- event.code can be undefined in older browsers/mobile
+    if (event.code?.startsWith('Key')) {
+      const codeLetter = event.code.slice(3)
       if (codeLetter.length === 1 && /^[A-Za-z]$/.test(codeLetter)) {
         return codeLetter.toUpperCase() === hotkeyKey.toUpperCase()
       }
     }
-
-    // Fallback to event.code for digit keys when event.key doesn't match
-    // This handles cases like Shift+4 where event.key is '$' instead of '4'
-    // event.code format for digit keys is "Digit0", "Digit1", etc.
-    if (event.code && event.code.startsWith('Digit')) {
-      const codeDigit = event.code.slice(5) // Remove "Digit" prefix
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition -- event.code can be undefined in older browsers/mobile
+    if (event.code?.startsWith('Digit')) {
+      const codeDigit = event.code.slice(5)
       if (codeDigit.length === 1 && /^[0-9]$/.test(codeDigit)) {
         return codeDigit === hotkeyKey
       }
     }
-
     return false
   }
 
