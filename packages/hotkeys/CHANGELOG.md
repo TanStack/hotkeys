@@ -1,5 +1,11 @@
 # @tanstack/hotkeys
 
+## 0.4.0
+
+### Minor Changes
+
+- add angular adapter and upgrade packages ([#31](https://github.com/TanStack/hotkeys/pull/31))
+
 ## 0.3.3
 
 ### Patch Changes

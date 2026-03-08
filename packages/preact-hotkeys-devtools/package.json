@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/preact-hotkeys-devtools",
-  "version": "0.3.3",
+  "version": "0.4.0",
   "description": "Preact devtools for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",
