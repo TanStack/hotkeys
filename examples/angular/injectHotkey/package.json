@@ -1,6 +1,5 @@
 {
   "name": "inject-hotkey",
-  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port=3069",
