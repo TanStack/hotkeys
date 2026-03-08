@@ -5,7 +5,7 @@ title: CreateHotkeySequenceOptions
 
 # Interface: CreateHotkeySequenceOptions
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts#L14)
+Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts#L12)
 
 ## Extends
 
@@ -19,7 +19,7 @@ Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:14](http
 optional target: Target;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts#L23)
+Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts#L21)
 
 The DOM element to attach the event listener to.
 Can be a Svelte ref, direct DOM element, or null.
