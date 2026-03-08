@@ -25,6 +25,8 @@
   "scripts": {
     "clean": "premove ./dist ./coverage",
     "test:eslint": "eslint ./src",
+    "test:lib": "vitest --passWithNoTests",
+    "test:lib:dev": "pnpm test:lib --watch",
     "test:types": "tsc",
     "test:build": "publint --strict",
     "build": "svelte-package --input ./src --output ./dist"
@@ -53,10 +55,9 @@
   "devDependencies": {
     "@sveltejs/package": "^2.5.7",
     "@sveltejs/vite-plugin-svelte": "^6.2.4",
+    "@typescript-eslint/parser": "^8.56.1",
     "eslint-plugin-svelte": "^3.15.0",
-    "svelte": "^5.53.7",
-    "svelte-check": "^4.4.5",
-    "@typescript-eslint/parser": "^8.56.1"
+    "svelte": "^5.53.7"
   },
   "peerDependencies": {
     "svelte": "^5.25.0"

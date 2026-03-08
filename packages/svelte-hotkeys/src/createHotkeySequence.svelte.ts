@@ -1,13 +1,13 @@
-import {
-  formatHotkeySequence,
-  getSequenceManager,
+import { formatHotkeySequence, getSequenceManager } from '@tanstack/hotkeys'
+import { getDefaultHotkeysOptions } from './HotkeysCtx'
+import type {
   HotkeyCallback,
   HotkeyCallbackContext,
   HotkeySequence,
   SequenceOptions,
   SequenceRegistrationHandle,
 } from '@tanstack/hotkeys'
-import { getDefaultHotkeysOptions, ResolvedTarget, Target } from './HotkeysCtx'
+import type { ResolvedTarget, Target } from './HotkeysCtx'
 
 export interface CreateHotkeySequenceOptions extends Omit<
   SequenceOptions,
@@ -82,12 +82,10 @@ export function createHotkeySequence(
   // Refs to capture current values for use in effect without adding dependencies
   let callbackRef = callback
   let optionsRef = mergedOptions
-  let managerRef = manager
 
   $effect(() => {
     callbackRef = callback
     optionsRef = mergedOptions
-    managerRef = manager
   })
 
   // Track previous target and sequence to detect changes requiring re-registration
@@ -95,10 +93,10 @@ export function createHotkeySequence(
   let prevSequenceRef: string | null = null
 
   // Normalize to hotkey sequence string (join with spaces)
-  let hotkeySequenceString = $derived.by(() => formatHotkeySequence(sequence))
+  const hotkeySequenceString = $derived.by(() => formatHotkeySequence(sequence))
 
   // Extract options without target (target is handled separately)
-  let { target: _target, ...optionsWithoutTarget } = $derived(mergedOptions)
+  const { target: _target, ...optionsWithoutTarget } = $derived(mergedOptions)
 
   $effect(() => {
     if (sequence.length === 0) {
@@ -106,7 +104,7 @@ export function createHotkeySequence(
     }
 
     // Resolve target inside the effect so refs are already attached after mount
-    const resolvedTarget = optionsRef?.target
+    const resolvedTarget = optionsRef.target
       ? resolveTarget(optionsRef.target)
       : typeof document !== 'undefined'
         ? document

@@ -70,6 +70,18 @@ await generateReferenceDocs({
       outputDir: resolve(__dirname, '../docs/framework/vue/reference'),
       exclude: ['packages/hotkeys/**/*'],
     },
+    {
+      name: 'svelte-hotkeys',
+      entryPoints: [
+        resolve(__dirname, '../packages/svelte-hotkeys/src/index.ts'),
+      ],
+      tsconfig: resolve(
+        __dirname,
+        '../packages/svelte-hotkeys/tsconfig.docs.json',
+      ),
+      outputDir: resolve(__dirname, '../docs/framework/svelte/reference'),
+      exclude: ['packages/hotkeys/**/*'],
+    },
   ],
 })
 

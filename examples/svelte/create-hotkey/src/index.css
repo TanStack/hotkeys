@@ -1,0 +1,212 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background: #f5f5f5;
+  color: #333;
+}
+.app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+header h1 {
+  margin: 0 0 10px;
+  color: #0066cc;
+}
+header p {
+  color: #666;
+  margin: 0;
+}
+.demo-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.demo-section h2 {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+.demo-section p {
+  margin: 0 0 12px;
+}
+kbd {
+  background: linear-gradient(180deg, #f8f8f8 0%, #e8e8e8 100%);
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-family: monospace;
+  font-size: 13px;
+}
+.counter {
+  font-size: 28px;
+  font-weight: bold;
+  color: #0066cc;
+  margin: 16px 0;
+}
+.hint {
+  font-size: 13px;
+  color: #888;
+  font-style: italic;
+}
+.info-box {
+  background: #e3f2fd;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 20px 0;
+}
+button {
+  background: #0066cc;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+button:hover {
+  background: #0052a3;
+}
+.code-block {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 16px;
+}
+.hotkey-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+.hotkey-grid > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.hotkey-grid kbd {
+  flex-shrink: 0;
+}
+
+/* Scoped shortcuts section */
+.scoped-section {
+  margin-top: 40px;
+}
+
+.scoped-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+  margin: 24px 0;
+}
+
+.scoped-area {
+  background: #f8f9fa;
+  border: 2px dashed #0066cc;
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+}
+
+.scoped-area:focus-within {
+  border-color: #0052a3;
+  border-style: solid;
+  background: #f0f7ff;
+  box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+}
+
+.scoped-area h3 {
+  margin: 0 0 12px;
+  font-size: 18px;
+  color: #0066cc;
+}
+
+.scoped-area .hotkey-list {
+  margin: 12px 0;
+}
+
+.scoped-area .hotkey-list > div {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 0;
+  font-size: 14px;
+}
+
+.scoped-editor {
+  width: 100%;
+  margin: 12px 0;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  resize: vertical;
+  min-height: 120px;
+}
+
+.scoped-editor:focus {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+  border-color: #0066cc;
+}
+
+/* Modal styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.modal-content:focus {
+  outline: 3px solid #0066cc;
+  outline-offset: 2px;
+}
+
+.modal-content h3 {
+  margin: 0 0 16px;
+  font-size: 20px;
+  color: #0066cc;
+}
+
+.modal-content button {
+  margin-top: 16px;
+}

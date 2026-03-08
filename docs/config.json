@@ -67,6 +67,15 @@
               "to": "framework/vue/quick-start"
             }
           ]
+        },
+        {
+          "label": "svelte",
+          "children": [
+            {
+              "label": "Quick Start",
+              "to": "framework/svelte/quick-start"
+            }
+          ]
         }
       ]
     },
@@ -198,6 +207,31 @@
               "to": "framework/vue/guides/formatting-display"
             }
           ]
+        },
+        {
+          "label": "svelte",
+          "children": [
+            {
+              "label": "Hotkeys",
+              "to": "framework/svelte/guides/hotkeys"
+            },
+            {
+              "label": "Sequences",
+              "to": "framework/svelte/guides/sequences"
+            },
+            {
+              "label": "Hotkey Recording",
+              "to": "framework/svelte/guides/hotkey-recording"
+            },
+            {
+              "label": "Key State Tracking",
+              "to": "framework/svelte/guides/key-state-tracking"
+            },
+            {
+              "label": "Formatting & Display",
+              "to": "framework/svelte/guides/formatting-display"
+            }
+          ]
         }
       ]
     },
@@ -252,6 +286,15 @@
             {
               "label": "Vue Composables",
               "to": "framework/vue/reference/index"
+            }
+          ]
+        },
+        {
+          "label": "svelte",
+          "children": [
+            {
+              "label": "Svelte APIs",
+              "to": "framework/svelte/reference/index"
             }
           ]
         }
@@ -376,6 +419,23 @@
               "to": "framework/vue/reference/interfaces/HotkeysProviderOptions"
             }
           ]
+        },
+        {
+          "label": "svelte",
+          "children": [
+            {
+              "label": "createHotkey",
+              "to": "framework/svelte/reference/functions/createHotkey"
+            },
+            {
+              "label": "CreateHotkeyOptions",
+              "to": "framework/svelte/reference/interfaces/CreateHotkeyOptions"
+            },
+            {
+              "label": "HotkeysProviderOptions",
+              "to": "framework/svelte/reference/interfaces/HotkeysProviderOptions"
+            }
+          ]
         }
       ]
     },
@@ -470,6 +530,19 @@
               "to": "framework/vue/reference/interfaces/UseHotkeySequenceOptions"
             }
           ]
+        },
+        {
+          "label": "svelte",
+          "children": [
+            {
+              "label": "createHotkeySequence",
+              "to": "framework/svelte/reference/functions/createHotkeySequence"
+            },
+            {
+              "label": "CreateHotkeySequenceOptions",
+              "to": "framework/svelte/reference/interfaces/CreateHotkeySequenceOptions"
+            }
+          ]
         }
       ]
     },
@@ -538,6 +611,15 @@
             {
               "label": "useKeyHold",
               "to": "framework/vue/reference/functions/useKeyHold"
+            }
+          ]
+        },
+        {
+          "label": "svelte",
+          "children": [
+            {
+              "label": "getIsKeyHeld",
+              "to": "framework/svelte/reference/functions/getIsKeyHeld"
             }
           ]
         }
@@ -630,6 +712,23 @@
               "to": "framework/vue/reference/functions/useHeldKeyCodes"
             }
           ]
+        },
+        {
+          "label": "svelte",
+          "children": [
+            {
+              "label": "getHeldKeys",
+              "to": "framework/svelte/reference/functions/getHeldKeys"
+            },
+            {
+              "label": "getHeldKeyCodesMap",
+              "to": "framework/svelte/reference/functions/getHeldKeyCodesMap"
+            },
+            {
+              "label": "getIsKeyHeld",
+              "to": "framework/svelte/reference/functions/getIsKeyHeld"
+            }
+          ]
         }
       ]
     },
@@ -714,6 +813,19 @@
             {
               "label": "VueHotkeyRecorder",
               "to": "framework/vue/reference/interfaces/VueHotkeyRecorder"
+            }
+          ]
+        },
+        {
+          "label": "svelte",
+          "children": [
+            {
+              "label": "createHotkeyRecorder",
+              "to": "framework/svelte/reference/functions/createHotkeyRecorder"
+            },
+            {
+              "label": "SvelteHotkeyRecorder",
+              "to": "framework/svelte/reference/interfaces/SvelteHotkeyRecorder"
             }
           ]
         }
@@ -904,6 +1016,31 @@
             {
               "label": "useKeyHold",
               "to": "framework/vue/examples/useKeyhold"
+            }
+          ]
+        },
+        {
+          "label": "svelte",
+          "children": [
+            {
+              "label": "createHotkey",
+              "to": "framework/svelte/examples/create-hotkey"
+            },
+            {
+              "label": "createHotkeySequence",
+              "to": "framework/svelte/examples/create-hotkey-sequence"
+            },
+            {
+              "label": "createHotkeyRecorder",
+              "to": "framework/svelte/examples/create-hotkey-recorder"
+            },
+            {
+              "label": "getHeldKeys",
+              "to": "framework/svelte/examples/get-held-keys"
+            },
+            {
+              "label": "getIsKeyHeld",
+              "to": "framework/svelte/examples/get-is-key-held"
             }
           ]
         }

@@ -58,7 +58,7 @@ Type-safe keyboard shortcuts for the web. Template-string bindings, parsed objec
 > - [**Solid Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/solid/reference)
 > - [**Angular Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/angular/reference)
 > - [**Vue Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/vue/reference)
-> - Svelte Hotkeys – needs a contributor!
+> - [**Svelte Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference)
 
 ## Get Involved
 

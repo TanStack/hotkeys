@@ -27,8 +27,10 @@ import { useStore } from '@tanstack/svelte-store'
 export function getHeldKeyCodesMap(): Record<string, string> {
   const tracker = getKeyStateTracker()
 
-  const heldKeyCodesMap = useStore(tracker.store, (state) => state.heldCodes)
-    .current as Record<string, string>
+  const heldKeyCodesMap = useStore(
+    tracker.store,
+    (state) => state.heldCodes,
+  ).current
 
   return heldKeyCodesMap
 }

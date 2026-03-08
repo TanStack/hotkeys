@@ -1,7 +1,8 @@
-import { createContext, Snippet } from 'svelte'
-import { CreateHotkeyOptions } from './createHotkey.svelte'
-import { HotkeyRecorderOptions } from '@tanstack/hotkeys'
-import { CreateHotkeySequenceOptions } from './createHotkeySequence.svelte'
+import { createContext } from 'svelte'
+import type { HotkeyRecorderOptions } from '@tanstack/hotkeys'
+import type { CreateHotkeyOptions } from './createHotkey.svelte'
+import type { Snippet } from 'svelte'
+import type { CreateHotkeySequenceOptions } from './createHotkeySequence.svelte'
 
 export type Target = ResolvedTarget | (() => ResolvedTarget)
 

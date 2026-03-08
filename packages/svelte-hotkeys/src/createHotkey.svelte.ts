@@ -4,6 +4,8 @@ import {
   getHotkeyManager,
   rawHotkeyToParsedHotkey,
 } from '@tanstack/hotkeys'
+import { getDefaultHotkeysOptions } from './HotkeysCtx'
+import type { ResolvedTarget, Target } from './HotkeysCtx'
 import type {
   Hotkey,
   HotkeyCallback,
@@ -11,7 +13,6 @@ import type {
   HotkeyRegistrationHandle,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
-import { getDefaultHotkeysOptions, ResolvedTarget, Target } from './HotkeysCtx'
 
 export interface CreateHotkeyOptions extends Omit<HotkeyOptions, 'target'> {
   /**
@@ -122,7 +123,7 @@ export function createHotkey(
 
   $effect(() => {
     // Resolve target inside the effect so refs are already attached after mount
-    const resolvedTarget = optionsRef?.target
+    const resolvedTarget = optionsRef.target
       ? resolveTarget(optionsRef.target)
       : typeof document !== 'undefined'
         ? document

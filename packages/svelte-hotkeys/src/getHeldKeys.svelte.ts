@@ -24,8 +24,7 @@ import { useStore } from '@tanstack/svelte-store'
 export function getHeldKeys(): Array<string> {
   const tracker = getKeyStateTracker()
 
-  const heldKeys = useStore(tracker.store, (state) => state.heldKeys)
-    .current as Array<string>
+  const heldKeys = useStore(tracker.store, (state) => state.heldKeys).current
 
   return heldKeys
 }

@@ -1,26 +1,17 @@
 {
-  "name": "create-hotkey-recorder",
+  "name": "@tanstack/hotkeys-example-svelte-create-hotkey-recorder",
   "private": true,
-  "version": "0.0.1",
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "preview": "vite preview",
-    "prepare": "svelte-kit sync || echo ''",
-    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+    "dev": "vite --port=3069"
   },
   "dependencies": {
-    "@tanstack/svelte-hotkeys": "workspace:*"
+    "@tanstack/svelte-hotkeys": "workspace:*",
+    "svelte": "^5.53.7"
   },
   "devDependencies": {
-    "@sveltejs/adapter-auto": "^7.0.1",
-    "@sveltejs/kit": "^2.53.4",
     "@sveltejs/vite-plugin-svelte": "^6.2.4",
-    "svelte": "^5.53.7",
-    "svelte-check": "^4.4.5",
-    "typescript": "^5.9.3",
+    "typescript": "5.9.3",
     "vite": "^7.3.1"
   }
 }

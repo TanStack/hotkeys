@@ -1,6 +1,6 @@
-import { HeldKey } from '@tanstack/hotkeys'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
 import { useStore } from '@tanstack/svelte-store'
+import type { HeldKey } from '@tanstack/hotkeys'
 
 /**
  * Svelte function that returns whether a specific key is currently being held.
@@ -48,7 +48,7 @@ export function getIsKeyHeld(key: HeldKey): boolean {
 
   const isKeyHeld = useStore(tracker.store, (state) =>
     state.heldKeys.some((heldKey) => heldKey.toLowerCase() === normalizedKey),
-  ).current as boolean
+  ).current
 
   return isKeyHeld
 }
