@@ -3,7 +3,6 @@
     createHotkey,
     createHotkeySequence,
     formatForDisplay,
-    HotkeysProvider,
   } from '@tanstack/svelte-hotkeys'
 
   let lastSequence = $state<string | null>(null)
@@ -46,125 +45,124 @@
   })
 </script>
 
-<HotkeysProvider>
-  <div class="app">
-    <header>
-      <h1>createHotkeySequence</h1>
+<div class="app">
+  <header>
+    <h1>createHotkeySequence</h1>
+    <p>
+      Register multi-key sequences (like Vim commands). Keys must be pressed
+      within the timeout window (default: 1000ms).
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section">
+      <h2>Vim-Style Commands</h2>
+      <table class="sequence-table">
+        <thead>
+          <tr>
+            <th>Sequence</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <kbd>g</kbd> <kbd>g</kbd>
+            </td>
+            <td>Go to top</td>
+          </tr>
+          <tr>
+            <td>
+              <kbd>G</kbd> (Shift+G)
+            </td>
+            <td>Go to bottom</td>
+          </tr>
+          <tr>
+            <td>
+              <kbd>d</kbd> <kbd>d</kbd>
+            </td>
+            <td>Delete line</td>
+          </tr>
+          <tr>
+            <td>
+              <kbd>y</kbd> <kbd>y</kbd>
+            </td>
+            <td>Yank (copy) line</td>
+          </tr>
+          <tr>
+            <td>
+              <kbd>d</kbd> <kbd>w</kbd>
+            </td>
+            <td>Delete word</td>
+          </tr>
+          <tr>
+            <td>
+              <kbd>c</kbd> <kbd>i</kbd> <kbd>w</kbd>
+            </td>
+            <td>Change inner word</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="demo-section">
+      <h2>Fun Sequences</h2>
+      <div class="fun-sequences">
+        <div class="sequence-card">
+          <h3>Konami Code (Partial)</h3>
+          <p>
+            <kbd>↑</kbd> <kbd>↑</kbd> <kbd>↓</kbd> <kbd>↓</kbd>
+          </p>
+          <span class="hint">Use arrow keys within 1.5 seconds</span>
+        </div>
+        <div class="sequence-card">
+          <h3>Side to Side</h3>
+          <p>
+            <kbd>←</kbd> <kbd>→</kbd> <kbd>←</kbd> <kbd>→</kbd>
+          </p>
+          <span class="hint">Arrow keys within 1.5 seconds</span>
+        </div>
+        <div class="sequence-card">
+          <h3>Spell It Out</h3>
+          <p>
+            <kbd>h</kbd> <kbd>e</kbd> <kbd>l</kbd> <kbd>l</kbd> <kbd>o</kbd>
+          </p>
+          <span class="hint">Type "hello" quickly</span>
+        </div>
+      </div>
+    </section>
+
+    {#if lastSequence}
+      <div class="info-box success">
+        <strong>Triggered:</strong>
+        {lastSequence}
+      </div>
+    {/if}
+
+    <section class="demo-section">
+      <h2>Input handling</h2>
       <p>
-        Register multi-key sequences (like Vim commands). Keys must be pressed
-        within the timeout window (default: 1000ms).
+        Sequences are not detected when typing in text inputs, textareas,
+        selects, or contenteditable elements. Button-type inputs (
+        <code>type="button"</code>, <code>submit</code>, <code>reset</code>)
+        still receive sequences. Focus the input below and try <kbd>g</kbd>
+        <kbd>g</kbd> or <kbd>h</kbd>
+        <kbd>e</kbd>
+        <kbd>l</kbd>
+        <kbd>l</kbd>
+        <kbd>o</kbd> — nothing will trigger. Click outside to try again.
       </p>
-    </header>
+      <input
+        type="text"
+        class="demo-input"
+        placeholder="Focus here – sequences won't trigger while typing..."
+      />
+    </section>
 
-    <main>
-      <section class="demo-section">
-        <h2>Vim-Style Commands</h2>
-        <table class="sequence-table">
-          <thead>
-            <tr>
-              <th>Sequence</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <kbd>g</kbd> <kbd>g</kbd>
-              </td>
-              <td>Go to top</td>
-            </tr>
-            <tr>
-              <td>
-                <kbd>G</kbd> (Shift+G)
-              </td>
-              <td>Go to bottom</td>
-            </tr>
-            <tr>
-              <td>
-                <kbd>d</kbd> <kbd>d</kbd>
-              </td>
-              <td>Delete line</td>
-            </tr>
-            <tr>
-              <td>
-                <kbd>y</kbd> <kbd>y</kbd>
-              </td>
-              <td>Yank (copy) line</td>
-            </tr>
-            <tr>
-              <td>
-                <kbd>d</kbd> <kbd>w</kbd>
-              </td>
-              <td>Delete word</td>
-            </tr>
-            <tr>
-              <td>
-                <kbd>c</kbd> <kbd>i</kbd> <kbd>w</kbd>
-              </td>
-              <td>Change inner word</td>
-            </tr>
-          </tbody>
-        </table>
-      </section>
-
-      <section class="demo-section">
-        <h2>Fun Sequences</h2>
-        <div class="fun-sequences">
-          <div class="sequence-card">
-            <h3>Konami Code (Partial)</h3>
-            <p>
-              <kbd>↑</kbd> <kbd>↑</kbd> <kbd>↓</kbd> <kbd>↓</kbd>
-            </p>
-            <span class="hint">Use arrow keys within 1.5 seconds</span>
-          </div>
-          <div class="sequence-card">
-            <h3>Side to Side</h3>
-            <p>
-              <kbd>←</kbd> <kbd>→</kbd> <kbd>←</kbd> <kbd>→</kbd>
-            </p>
-            <span class="hint">Arrow keys within 1.5 seconds</span>
-          </div>
-          <div class="sequence-card">
-            <h3>Spell It Out</h3>
-            <p>
-              <kbd>h</kbd> <kbd>e</kbd> <kbd>l</kbd> <kbd>l</kbd> <kbd>o</kbd>
-            </p>
-            <span class="hint">Type "hello" quickly</span>
-          </div>
-        </div>
-      </section>
-
-      {#if lastSequence}
-        <div class="info-box success">
-          <strong>Triggered:</strong>
-          {lastSequence}
-        </div>
-      {/if}
-
-      <section class="demo-section">
-        <h2>Input handling</h2>
-        <p>
-          Sequences are not detected when typing in text inputs, textareas,
-          selects, or contenteditable elements. Button-type inputs (
-          <code>type="button"</code>, <code>submit</code>, <code>reset</code>)
-          still receive sequences. Focus the input below and try <kbd>g</kbd>
-          <kbd>g</kbd> or <kbd>h</kbd>
-          <kbd>e</kbd>
-          <kbd>l</kbd>
-          <kbd>l</kbd>
-          <kbd>o</kbd> — nothing will trigger. Click outside to try again.
-        </p>
-        <input
-          type="text"
-          class="demo-input"
-          placeholder="Focus here – sequences won't trigger while typing..."
-        />
-      </section>
-
-      <section class="demo-section">
-        <h2>Usage</h2>
-        <pre
-          class="code-block">{`import { createHotkeySequence } from '@tanstack/svelte-hotkeys'
+    <section class="demo-section">
+      <h2>Usage</h2>
+      <pre
+        class="code-block">{`import { createHotkeySequence } from '@tanstack/svelte-hotkeys'
 
 function VimEditor() {
   // Basic sequence
@@ -184,23 +182,22 @@ function VimEditor() {
     changeInnerWord()
   })
 }`}</pre>
+    </section>
+
+    {#if history.length > 0}
+      <section class="demo-section">
+        <h2>History</h2>
+        <ul class="history-list">
+          {#each history as item}
+            <li>{item}</li>
+          {/each}
+        </ul>
+        <button onclick={() => (history = [])}>Clear History</button>
       </section>
+    {/if}
 
-      {#if history.length > 0}
-        <section class="demo-section">
-          <h2>History</h2>
-          <ul class="history-list">
-            {#each history as item}
-              <li>{item}</li>
-            {/each}
-          </ul>
-          <button onclick={() => (history = [])}>Clear History</button>
-        </section>
-      {/if}
-
-      <p class="hint">
-        Press <kbd>Escape</kbd> to clear history
-      </p>
-    </main>
-  </div>
-</HotkeysProvider>
+    <p class="hint">
+      Press <kbd>Escape</kbd> to clear history
+    </p>
+  </main>
+</div>
