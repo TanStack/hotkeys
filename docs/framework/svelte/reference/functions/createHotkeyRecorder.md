@@ -9,7 +9,7 @@ title: createHotkeyRecorder
 function createHotkeyRecorder(options): SvelteHotkeyRecorder;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:56](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L56)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L57)
 
 Svelte function for recording keyboard shortcuts.
 

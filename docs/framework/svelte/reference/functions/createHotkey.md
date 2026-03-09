@@ -29,7 +29,7 @@ the latest values.
 
 ### hotkey
 
-`RegisterableHotkey`
+`RegisterableHotkey` | () => `RegisterableHotkey`
 
 ### callback
 
@@ -37,7 +37,7 @@ the latest values.
 
 ### options
 
-[`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md) = `{}`
+[`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md) | () => [`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md)
 
 ## Returns
 

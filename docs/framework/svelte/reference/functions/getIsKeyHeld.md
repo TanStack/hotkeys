@@ -6,15 +6,15 @@ title: getIsKeyHeld
 # Function: getIsKeyHeld()
 
 ```ts
-function getIsKeyHeld(key): boolean;
+function getIsKeyHeld(key): object;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts#L45)
+Defined in: [packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts#L46)
 
-Svelte function that returns whether a specific key is currently being held.
+Svelte function that returns a reactive reference to whether a specific key is currently being held.
 
 This function uses the global KeyStateTracker and updates whenever keys are pressed
-or released.
+or released. Use `$derived(getIsKeyHeld('Shift').current)` for reactive access in templates.
 
 ## Parameters
 
@@ -26,9 +26,15 @@ The key to check (e.g., 'Shift', 'Control', 'A')
 
 ## Returns
 
-`boolean`
+`object`
 
-True if the key is currently held down
+Object with `current` property - true if the key is currently held down
+
+### current
+
+```ts
+readonly current: boolean;
+```
 
 ## Examples
 
@@ -36,7 +42,8 @@ True if the key is currently held down
 <script>
   import { getIsKeyHeld } from '@tanstack/svelte-hotkeys'
 
-  const isShiftHeld = getIsKeyHeld('Shift')
+  const isShiftHeldRef = getIsKeyHeld('Shift')
+  const isShiftHeld = $derived(isShiftHeldRef.current)
 </script>
 
 <div>
@@ -48,9 +55,9 @@ True if the key is currently held down
 <script>
   import { getIsKeyHeld } from '@tanstack/svelte-hotkeys'
 
-  const isCtrlHeld = getIsKeyHeld('Control')
-  const isShiftHeld = getIsKeyHeld('Shift')
-  const isAltHeld = getIsKeyHeld('Alt')
+  const isCtrlHeld = $derived(getIsKeyHeld('Control').current)
+  const isShiftHeld = $derived(getIsKeyHeld('Shift').current)
+  const isAltHeld = $derived(getIsKeyHeld('Alt').current)
 </script>
 
 <div>

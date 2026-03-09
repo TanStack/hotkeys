@@ -6,21 +6,27 @@ title: getHeldKeys
 # Function: getHeldKeys()
 
 ```ts
-function getHeldKeys(): string[];
+function getHeldKeys(): object;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/getHeldKeys.svelte.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHeldKeys.svelte.ts#L24)
+Defined in: [packages/svelte-hotkeys/src/getHeldKeys.svelte.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHeldKeys.svelte.ts#L25)
 
-Svelte function that returns an array of currently held keyboard keys.
+Svelte function that returns a reactive reference to currently held keyboard keys.
 
 This function uses the global KeyStateTracker and updates whenever keys are pressed
-or released.
+or released. Use `$derived(getHeldKeys().current)` for reactive access in templates.
 
 ## Returns
 
-`string`[]
+`object`
 
-Array of currently held key names
+Object with `current` property containing the array of held key names
+
+### current
+
+```ts
+readonly current: string[];
+```
 
 ## Example
 
@@ -28,9 +34,10 @@ Array of currently held key names
 <script>
   import { getHeldKeys } from '@tanstack/svelte-hotkeys'
 
-  const heldKeys = getHeldKeys()
+  const heldKeysRef = getHeldKeys()
+  const heldKeys = $derived(heldKeysRef.current)
 </script>
 <div>
-  Currently pressed: {getHeldKeys().join(' + ') || 'None'}
+  Currently pressed: {heldKeys.join(' + ') || 'None'}
 </div>
 ```
