@@ -3,20 +3,21 @@ import { useStore } from '@tanstack/svelte-store'
 import type { HeldKey } from '@tanstack/hotkeys'
 
 /**
- * Svelte function that returns whether a specific key is currently being held.
+ * Svelte function that returns a reactive reference to whether a specific key is currently being held.
  *
  * This function uses the global KeyStateTracker and updates whenever keys are pressed
- * or released.
+ * or released. Use `$derived(getIsKeyHeld('Shift').current)` for reactive access in templates.
  *
  * @param key - The key to check (e.g., 'Shift', 'Control', 'A')
- * @returns True if the key is currently held down
+ * @returns Object with `current` property - true if the key is currently held down
  *
  * @example
  * ```svelte
  * <script>
  *   import { getIsKeyHeld } from '@tanstack/svelte-hotkeys'
  *
- *   const isShiftHeld = getIsKeyHeld('Shift')
+ *   const isShiftHeldRef = getIsKeyHeld('Shift')
+ *   const isShiftHeld = $derived(isShiftHeldRef.current)
  * </script>
  *
  * <div>
@@ -29,9 +30,9 @@ import type { HeldKey } from '@tanstack/hotkeys'
  * <script>
  *   import { getIsKeyHeld } from '@tanstack/svelte-hotkeys'
  *
- *   const isCtrlHeld = getIsKeyHeld('Control')
- *   const isShiftHeld = getIsKeyHeld('Shift')
- *   const isAltHeld = getIsKeyHeld('Alt')
+ *   const isCtrlHeld = $derived(getIsKeyHeld('Control').current)
+ *   const isShiftHeld = $derived(getIsKeyHeld('Shift').current)
+ *   const isAltHeld = $derived(getIsKeyHeld('Alt').current)
  * </script>
  *
  * <div>
@@ -42,13 +43,11 @@ import type { HeldKey } from '@tanstack/hotkeys'
  * ```
  */
 
-export function getIsKeyHeld(key: HeldKey): boolean {
+export function getIsKeyHeld(key: HeldKey): { readonly current: boolean } {
   const tracker = getKeyStateTracker()
   const normalizedKey = key.toLowerCase()
 
-  const isKeyHeld = useStore(tracker.store, (state) =>
+  return useStore(tracker.store, (state) =>
     state.heldKeys.some((heldKey) => heldKey.toLowerCase() === normalizedKey),
-  ).current
-
-  return isKeyHeld
+  )
 }

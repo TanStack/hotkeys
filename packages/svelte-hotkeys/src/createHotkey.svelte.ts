@@ -82,15 +82,10 @@ function resolveTarget(target: Target): ResolvedTarget {
  */
 
 export function createHotkey(
-  hotkey: RegisterableHotkey,
+  hotkey: RegisterableHotkey | (() => RegisterableHotkey),
   callback: HotkeyCallback,
-  options: CreateHotkeyOptions = {},
+  options: CreateHotkeyOptions | (() => CreateHotkeyOptions) = {},
 ): void {
-  const mergedOptions = {
-    ...getDefaultHotkeysOptions().hotkey,
-    ...options,
-  } as CreateHotkeyOptions
-
   const manager = getHotkeyManager()
 
   // Stable ref for registration handle
@@ -98,12 +93,10 @@ export function createHotkey(
 
   // Refs to capture current values for use in effect without adding dependencies
   let callbackRef = callback
-  let optionsRef = mergedOptions
   let managerRef = manager
 
   $effect(() => {
     callbackRef = callback
-    optionsRef = mergedOptions
     managerRef = manager
   })
 
@@ -111,20 +104,28 @@ export function createHotkey(
   let prevTargetRef: ResolvedTarget = null
   let prevHotkeyRef: string | null = null
 
-  // Normalize to hotkey string
-  const platform = mergedOptions.platform ?? detectPlatform()
-  const hotkeyString: Hotkey =
-    typeof hotkey === 'string'
-      ? hotkey
-      : (formatHotkey(rawHotkeyToParsedHotkey(hotkey, platform)) as Hotkey)
-
-  // Extract options without target (target is handled separately)
-  const { target: _target, ...optionsWithoutTarget } = mergedOptions
-
   $effect(() => {
+    // Resolve reactive values (support getters for dynamic shortcuts)
+    const resolvedHotkey = typeof hotkey === 'function' ? hotkey() : hotkey
+    const resolvedOptions = typeof options === 'function' ? options() : options
+
+    const mergedOptions = {
+      ...getDefaultHotkeysOptions().hotkey,
+      ...resolvedOptions,
+    } as CreateHotkeyOptions
+
+    // Normalize to hotkey string
+    const platform = mergedOptions.platform ?? detectPlatform()
+    const hotkeyString: Hotkey =
+      typeof resolvedHotkey === 'string'
+        ? resolvedHotkey
+        : (formatHotkey(
+            rawHotkeyToParsedHotkey(resolvedHotkey, platform),
+          ) as Hotkey)
+
     // Resolve target inside the effect so refs are already attached after mount
-    const resolvedTarget = optionsRef.target
-      ? resolveTarget(optionsRef.target)
+    const resolvedTarget = mergedOptions.target
+      ? resolveTarget(mergedOptions.target)
       : typeof document !== 'undefined'
         ? document
         : null
@@ -133,6 +134,9 @@ export function createHotkey(
     if (!resolvedTarget) {
       return
     }
+
+    // Extract options without target (target is handled separately)
+    const { target: _target, ...optionsWithoutTarget } = mergedOptions
 
     // Check if we need to re-register (target or hotkey changed)
     const targetChanged =
@@ -147,12 +151,17 @@ export function createHotkey(
     }
 
     // Register if needed (no active registration)
-    // Use refs to access current values without adding them to dependencies
     if (!registrationRef || !registrationRef.isActive) {
       registrationRef = managerRef.register(hotkeyString, callbackRef, {
-        ...optionsRef,
+        ...optionsWithoutTarget,
         target: resolvedTarget,
       })
+    }
+
+    // Update callback and options
+    if (registrationRef.isActive) {
+      registrationRef.callback = callbackRef
+      registrationRef.setOptions(optionsWithoutTarget)
     }
 
     // Update tracking refs
@@ -165,15 +174,6 @@ export function createHotkey(
         registrationRef.unregister()
         registrationRef = null
       }
-    }
-  })
-
-  // Sync callback and options on EVERY render (outside useEffect)
-  // This avoids stale closures - the callback always has access to latest state
-  $effect(() => {
-    if (registrationRef?.isActive) {
-      registrationRef.callback = callbackRef
-      registrationRef.setOptions(optionsWithoutTarget)
     }
   })
 }

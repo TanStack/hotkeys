@@ -41,13 +41,14 @@
     },
   }
 
-  let shortcuts = $state<Record<string, Hotkey | ''>>(() => {
-    const defaults: Record<string, Hotkey> = {}
-    for (const [id, action] of Object.entries(DEFAULT_SHORTCUT_ACTIONS)) {
-      defaults[id] = action.defaultHotkey
-    }
-    return defaults
-  })
+  let shortcuts = $state<Record<string, Hotkey | ''>>(
+    Object.fromEntries(
+      Object.entries(DEFAULT_SHORTCUT_ACTIONS).map(([id, action]) => [
+        id,
+        action.defaultHotkey,
+      ]),
+    ),
+  )
 
   let saveCount = $state(0)
   let openCount = $state(0)
@@ -82,85 +83,70 @@
     },
   })
 
-  const isRecording = recorder.isRecording
-
-  const saveHotkey: Hotkey =
-    shortcuts.save || DEFAULT_SHORTCUT_ACTIONS.save.defaultHotkey
-  const openHotkey: Hotkey =
-    shortcuts.open || DEFAULT_SHORTCUT_ACTIONS.open.defaultHotkey
-  const newHotkey: Hotkey =
-    shortcuts.new || DEFAULT_SHORTCUT_ACTIONS.new.defaultHotkey
-  const closeHotkey: Hotkey =
-    shortcuts.close || DEFAULT_SHORTCUT_ACTIONS.close.defaultHotkey
-  const undoHotkey: Hotkey =
-    shortcuts.undo || DEFAULT_SHORTCUT_ACTIONS.undo.defaultHotkey
-  const redoHotkey: Hotkey =
-    shortcuts.redo || DEFAULT_SHORTCUT_ACTIONS.redo.defaultHotkey
-
   createHotkey(
-    saveHotkey,
+    () => shortcuts.save || DEFAULT_SHORTCUT_ACTIONS.save.defaultHotkey,
     () => {
-      console.log('Save triggered:', saveHotkey)
+      console.log('Save triggered:', shortcuts.save)
       saveCount++
     },
-    {
-      enabled: !isRecording && shortcuts.save !== '',
-    },
+    () => ({
+      enabled: !recorder.isRecording && shortcuts.save !== '',
+    }),
   )
 
   createHotkey(
-    openHotkey,
+    () => shortcuts.open || DEFAULT_SHORTCUT_ACTIONS.open.defaultHotkey,
     () => {
-      console.log('Open triggered:', openHotkey)
+      console.log('Open triggered:', shortcuts.open)
       openCount++
     },
-    {
-      enabled: !isRecording && shortcuts.open !== '',
-    },
+    () => ({
+      enabled: !recorder.isRecording && shortcuts.open !== '',
+    }),
   )
 
   createHotkey(
-    newHotkey,
+    () => shortcuts.new || DEFAULT_SHORTCUT_ACTIONS.new.defaultHotkey,
     () => {
-      console.log('New triggered:', newHotkey)
+      console.log('New triggered:', shortcuts.new)
       newCount++
     },
-    {
-      enabled: !isRecording && shortcuts.new !== '',
-    },
+    () => ({
+      enabled: !recorder.isRecording && shortcuts.new !== '',
+    }),
   )
 
   createHotkey(
-    closeHotkey,
+    () => shortcuts.close || DEFAULT_SHORTCUT_ACTIONS.close.defaultHotkey,
     () => {
-      console.log('Close triggered:', closeHotkey)
+      console.log('Close triggered:', shortcuts.close)
       closeCount++
     },
-    {
-      enabled: !isRecording && shortcuts.close !== '',
-    },
+    () => ({
+      enabled: !recorder.isRecording && shortcuts.close !== '',
+    }),
   )
 
   createHotkey(
-    undoHotkey,
+    () => shortcuts.undo || DEFAULT_SHORTCUT_ACTIONS.undo.defaultHotkey,
     () => {
-      console.log('Undo triggered:', undoHotkey)
+      console.log('Undo triggered:', shortcuts.undo)
       undoCount++
     },
-    {
-      enabled: !isRecording && shortcuts.undo !== '',
-    },
+    () => ({
+      enabled: !recorder.isRecording && shortcuts.undo !== '',
+    }),
   )
 
   createHotkey(
-    redoHotkey,
+    () => shortcuts.redo || DEFAULT_SHORTCUT_ACTIONS.redo.defaultHotkey,
     () => {
-      console.log('Redo triggered:', redoHotkey)
+      console.log('Redo triggered:', shortcuts.redo)
       redoCount++
     },
-    {
-      enabled: !isRecording && shortcuts.redo !== '',
-    },
+    () => ({
+      enabled: !recorder.isRecording && shortcuts.redo !== '',
+    }),
   )
 
   function handleEdit(actionId: string) {

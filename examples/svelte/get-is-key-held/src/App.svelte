@@ -1,11 +1,17 @@
 <script lang="ts">
   import { getIsKeyHeld } from '@tanstack/svelte-hotkeys'
 
-  const isShiftHeld = getIsKeyHeld('Shift')
-  const isControlHeld = getIsKeyHeld('Control')
-  const isAltHeld = getIsKeyHeld('Alt')
-  const isMetaHeld = getIsKeyHeld('Meta')
-  const isSpaceHeld = getIsKeyHeld('Space')
+  const isShiftHeldRef = getIsKeyHeld('Shift')
+  const isControlHeldRef = getIsKeyHeld('Control')
+  const isAltHeldRef = getIsKeyHeld('Alt')
+  const isMetaHeldRef = getIsKeyHeld('Meta')
+  const isSpaceHeldRef = getIsKeyHeld('Space')
+
+  const isShiftHeld = $derived(isShiftHeldRef.current)
+  const isControlHeld = $derived(isControlHeldRef.current)
+  const isAltHeld = $derived(isAltHeldRef.current)
+  const isMetaHeld = $derived(isMetaHeldRef.current)
+  const isSpaceHeld = $derived(isSpaceHeldRef.current)
 </script>
 
 <div class="app">
@@ -56,7 +62,8 @@
       <pre
         class="code-block">{`import { getIsKeyHeld } from '@tanstack/svelte-hotkeys'
 
-const isShiftHeld = getIsKeyHeld('Shift')
+const isShiftHeldRef = getIsKeyHeld('Shift')
+const isShiftHeld = $derived(isShiftHeldRef.current)
 
 // In template:
 // <div style="opacity: isShiftHeld ? 1 : 0.5">

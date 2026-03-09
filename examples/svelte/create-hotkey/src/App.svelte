@@ -49,7 +49,7 @@
       lastHotkey = 'Mod+E'
       alert('This hotkey can be toggled!')
     },
-    { enabled: () => enabled },
+    () => ({ enabled }),
   )
 
   createHotkey('Mod+1', () => {
@@ -203,7 +203,7 @@
         'Sidebar shortcut triggered! This only works when the sidebar area is focused.',
       )
     },
-    { target: () => sidebarRef },
+    () => ({ target: sidebarRef }),
   )
 
   createHotkey(
@@ -212,7 +212,7 @@
       lastHotkey = 'Mod+N'
       sidebarShortcutCount++
     },
-    { target: () => sidebarRef },
+    () => ({ target: sidebarRef }),
   )
 
   createHotkey(
@@ -222,7 +222,7 @@
       modalShortcutCount++
       modalOpen = false
     },
-    { target: () => modalRef, enabled: () => modalOpen },
+    () => ({ target: modalRef, enabled: modalOpen }),
   )
 
   createHotkey(
@@ -232,7 +232,7 @@
       modalShortcutCount++
       alert('Modal submit shortcut!')
     },
-    { target: () => modalRef, enabled: () => modalOpen },
+    () => ({ target: modalRef, enabled: modalOpen }),
   )
 
   createHotkey(
@@ -244,7 +244,7 @@
         `Editor content saved: "${editorContent.substring(0, 50)}${editorContent.length > 50 ? '...' : ''}"`,
       )
     },
-    { target: () => editorRef },
+    () => ({ target: editorRef }),
   )
 
   createHotkey(
@@ -254,7 +254,7 @@
       editorShortcutCount++
       editorContent += '\n// Comment added via shortcut'
     },
-    { target: () => editorRef },
+    () => ({ target: editorRef }),
   )
 
   createHotkey(
@@ -264,7 +264,7 @@
       editorShortcutCount++
       editorContent = ''
     },
-    { target: () => editorRef },
+    () => ({ target: editorRef }),
   )
 </script>
 

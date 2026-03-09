@@ -1,4 +1,5 @@
 import { HotkeyRecorder } from '@tanstack/hotkeys'
+import { useStore } from '@tanstack/svelte-store'
 import { onDestroy } from 'svelte'
 import { getDefaultHotkeysOptions } from './HotkeysCtx'
 import type { Hotkey, HotkeyRecorderOptions } from '@tanstack/hotkeys'
@@ -69,8 +70,11 @@ export function createHotkeyRecorder(
     recorder.setOptions(mergedOptions)
   })
 
-  const isRecording = $derived.by(() => recorder.store.state.isRecording)
-  const recordedHotkey = $derived.by(() => recorder.store.state.recordedHotkey)
+  const isRecordingRef = useStore(recorder.store, (state) => state.isRecording)
+  const recordedHotkeyRef = useStore(
+    recorder.store,
+    (state) => state.recordedHotkey,
+  )
 
   onDestroy(() => {
     recorder.destroy()
@@ -78,10 +82,10 @@ export function createHotkeyRecorder(
 
   return {
     get isRecording() {
-      return isRecording
+      return isRecordingRef.current
     },
     get recordedHotkey() {
-      return recordedHotkey
+      return recordedHotkeyRef.current
     },
     startRecording: () => recorder.start(),
     stopRecording: () => recorder.stop(),

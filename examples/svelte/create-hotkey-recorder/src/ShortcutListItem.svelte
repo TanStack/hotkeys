@@ -12,10 +12,11 @@
 
   let { actionName, hotkey, isRecording, onEdit, onCancel }: Props = $props()
 
-  const heldKeys = getHeldKeys()
+  const heldKeysRef = getHeldKeys()
+  const heldKeys = $derived(heldKeysRef.current)
 </script>
 
-<div class="shortcut-item" class:recording>
+<div class="shortcut-item" class:recording={isRecording}>
   <div class="shortcut-item-content">
     <div class="shortcut-action">{actionName}</div>
     <div class="shortcut-hotkey">

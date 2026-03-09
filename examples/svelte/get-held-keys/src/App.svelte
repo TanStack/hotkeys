@@ -5,8 +5,10 @@
     getHeldKeyCodesMap,
   } from '@tanstack/svelte-hotkeys'
 
-  const heldKeys = getHeldKeys()
-  const heldKeyCodesMap = getHeldKeyCodesMap()
+  const heldKeysRef = getHeldKeys()
+  const heldKeyCodesMapRef = getHeldKeyCodesMap()
+  const heldKeys = $derived(heldKeysRef.current)
+  const heldKeyCodesMap = $derived(heldKeyCodesMapRef.current)
 
   let history = $state<Array<string>>([])
 
@@ -66,7 +68,8 @@
       <pre
         class="code-block">{`import { getHeldKeys } from '@tanstack/svelte-hotkeys'
 
-const heldKeys = getHeldKeys()
+const heldKeysRef = getHeldKeys()
+const heldKeys = $derived(heldKeysRef.current)
 
 // In template:
 // Currently pressed: {heldKeys.join(' + ') || 'None'}`}</pre>
