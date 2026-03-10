@@ -860,7 +860,7 @@ importers:
   examples/svelte/create-hotkey:
     dependencies:
       '@tanstack/svelte-hotkeys':
-        specifier: 0.0.1
+        specifier: 0.4.1
         version: link:../../../packages/svelte-hotkeys
       svelte:
         specifier: ^5.53.7
@@ -879,7 +879,7 @@ importers:
   examples/svelte/create-hotkey-recorder:
     dependencies:
       '@tanstack/svelte-hotkeys':
-        specifier: 0.0.1
+        specifier: 0.4.1
         version: link:../../../packages/svelte-hotkeys
       svelte:
         specifier: ^5.53.7
@@ -898,7 +898,7 @@ importers:
   examples/svelte/create-hotkey-sequence:
     dependencies:
       '@tanstack/svelte-hotkeys':
-        specifier: 0.0.1
+        specifier: 0.4.1
         version: link:../../../packages/svelte-hotkeys
       svelte:
         specifier: ^5.53.7
@@ -917,7 +917,7 @@ importers:
   examples/svelte/get-held-keys:
     dependencies:
       '@tanstack/svelte-hotkeys':
-        specifier: 0.0.1
+        specifier: 0.4.1
         version: link:../../../packages/svelte-hotkeys
       svelte:
         specifier: ^5.53.7
@@ -936,7 +936,7 @@ importers:
   examples/svelte/get-is-key-held:
     dependencies:
       '@tanstack/svelte-hotkeys':
-        specifier: 0.0.1
+        specifier: 0.4.1
         version: link:../../../packages/svelte-hotkeys
       svelte:
         specifier: ^5.53.7
