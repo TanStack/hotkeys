@@ -15,7 +15,9 @@ import type {
 import type { MaybeGetter } from './internal.svelte'
 import type { Attachment } from 'svelte/attachments'
 
-export interface CreateHotkeyOptions extends Omit<HotkeyOptions, 'target'> {}
+export interface CreateHotkeyOptions extends Omit<HotkeyOptions, 'target'> {
+  target?: Document | Window // not html elements, use attachment instead
+}
 
 function normalizeHotkey(
   hotkey: RegisterableHotkey,

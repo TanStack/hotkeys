@@ -10,3 +10,13 @@ Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:12](http
 ## Extends
 
 - `Omit`\<`SequenceOptions`, `"target"`\>
+
+## Properties
+
+### target?
+
+```ts
+optional target: Document | Window;
+```
+
+Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts#L16)

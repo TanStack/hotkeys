@@ -12,7 +12,7 @@ function createHotkeySequenceAttachment(
 options): Attachment<HTMLElement>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:111](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts#L111)
+Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:113](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts#L113)
 
 Create an attachment for element-scoped keyboard sequences.
 

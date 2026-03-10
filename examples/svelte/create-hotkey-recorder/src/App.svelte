@@ -14,7 +14,7 @@
     }
   }
 
-  const DEFAULT_SHORTCUT_ACTIONS: ShortcutActions = {
+  const DEFAULT_SHORTCUT_ACTIONS = {
     save: {
       name: 'Save',
       defaultHotkey: 'Mod+K',
@@ -39,7 +39,7 @@
       name: 'Redo',
       defaultHotkey: 'Mod+Shift+G',
     },
-  }
+  } as const satisfies ShortcutActions
 
   let shortcuts = $state<Record<string, Hotkey | ''>>(
     Object.fromEntries(

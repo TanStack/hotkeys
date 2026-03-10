@@ -428,12 +428,40 @@
               "to": "framework/svelte/reference/functions/createHotkey"
             },
             {
+              "label": "createHotkeyAttachment",
+              "to": "framework/svelte/reference/functions/createHotkeyAttachment"
+            },
+            {
               "label": "CreateHotkeyOptions",
               "to": "framework/svelte/reference/interfaces/CreateHotkeyOptions"
             },
             {
+              "label": "HotkeysProvider",
+              "to": "framework/svelte/reference/variables/HotkeysProvider"
+            },
+            {
               "label": "HotkeysProviderOptions",
               "to": "framework/svelte/reference/interfaces/HotkeysProviderOptions"
+            },
+            {
+              "label": "HotkeysProviderProps",
+              "to": "framework/svelte/reference/interfaces/HotkeysProviderProps"
+            },
+            {
+              "label": "DEFAULT_OPTIONS",
+              "to": "framework/svelte/reference/variables/DEFAULT_OPTIONS"
+            },
+            {
+              "label": "getDefaultHotkeysOptions",
+              "to": "framework/svelte/reference/functions/getDefaultHotkeysOptions"
+            },
+            {
+              "label": "getHotkeysContext",
+              "to": "framework/svelte/reference/functions/getHotkeysContext"
+            },
+            {
+              "label": "setHotkeysContext",
+              "to": "framework/svelte/reference/functions/setHotkeysContext"
             }
           ]
         }
@@ -539,6 +567,10 @@
               "to": "framework/svelte/reference/functions/createHotkeySequence"
             },
             {
+              "label": "createHotkeySequenceAttachment",
+              "to": "framework/svelte/reference/functions/createHotkeySequenceAttachment"
+            },
+            {
               "label": "CreateHotkeySequenceOptions",
               "to": "framework/svelte/reference/interfaces/CreateHotkeySequenceOptions"
             }
@@ -620,6 +652,10 @@
             {
               "label": "getIsKeyHeld",
               "to": "framework/svelte/reference/functions/getIsKeyHeld"
+            },
+            {
+              "label": "SvelteHeldKeyState",
+              "to": "framework/svelte/reference/interfaces/SvelteHeldKeyState"
             }
           ]
         }
@@ -721,12 +757,16 @@
               "to": "framework/svelte/reference/functions/getHeldKeys"
             },
             {
+              "label": "SvelteHeldKeys",
+              "to": "framework/svelte/reference/interfaces/SvelteHeldKeys"
+            },
+            {
               "label": "getHeldKeyCodesMap",
               "to": "framework/svelte/reference/functions/getHeldKeyCodesMap"
             },
             {
-              "label": "getIsKeyHeld",
-              "to": "framework/svelte/reference/functions/getIsKeyHeld"
+              "label": "SvelteHeldKeyCodesMap",
+              "to": "framework/svelte/reference/interfaces/SvelteHeldKeyCodesMap"
             }
           ]
         }

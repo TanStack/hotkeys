@@ -12,7 +12,9 @@ import type { Attachment } from 'svelte/attachments'
 export interface CreateHotkeySequenceOptions extends Omit<
   SequenceOptions,
   'target'
-> {}
+> {
+  target?: Document | Window // not html elements, use attachment instead
+}
 
 function registerHotkeySequence(
   target: HTMLElement | Document | Window,
