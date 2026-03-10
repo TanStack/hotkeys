@@ -119,6 +119,16 @@ describe('matchesKeyboardEvent', () => {
       const event = createKeyboardEvent('s', { metaKey: true })
       expect(matchesKeyboardEvent(event, 'Mod+S', 'windows')).toBe(false)
     })
+
+    it('should match Mod as Control on Linux', () => {
+      const event = createKeyboardEvent('s', { ctrlKey: true })
+      expect(matchesKeyboardEvent(event, 'Mod+S', 'linux')).toBe(true)
+    })
+
+    it('should not match Mod as Meta on Linux', () => {
+      const event = createKeyboardEvent('s', { metaKey: true })
+      expect(matchesKeyboardEvent(event, 'Mod+S', 'linux')).toBe(false)
+    })
   })
 
   describe('multiple modifiers', () => {
@@ -148,6 +158,16 @@ describe('matchesKeyboardEvent', () => {
         altKey: true,
       })
       expect(matchesKeyboardEvent(event, 'Control+Alt+Shift+A')).toBe(true)
+    })
+
+    it('should match all four modifiers', () => {
+      const event = createKeyboardEvent('a', {
+        ctrlKey: true,
+        shiftKey: true,
+        altKey: true,
+        metaKey: true,
+      })
+      expect(matchesKeyboardEvent(event, 'Control+Alt+Shift+Meta+A')).toBe(true)
     })
   })
 
@@ -335,6 +355,66 @@ describe('matchesKeyboardEvent', () => {
         matchesKeyboardEvent(event, 'Control+Ф' as Hotkey, 'windows'),
       ).toBe(true)
     })
+
+    it('should fall back to event.code for macOS Option+letter producing non-ASCII letters (Alt+A → å)', () => {
+      // macOS: Option+A produces 'å' in event.key, but event.code is 'KeyA'
+      const event = createKeyboardEvent('å', {
+        altKey: true,
+        code: 'KeyA',
+      })
+      expect(matchesKeyboardEvent(event, 'Alt+A')).toBe(true)
+    })
+
+    it('should fall back to event.code for macOS Option+letter combinations (various chars)', () => {
+      const cases: Array<[string, string, string]> = [
+        ['π', 'KeyP', 'P'], // Option+P → π
+        ['ø', 'KeyO', 'O'], // Option+O → ø
+        ['ƒ', 'KeyF', 'F'], // Option+F → ƒ
+        ['ç', 'KeyC', 'C'], // Option+C → ç
+        ['ß', 'KeyS', 'S'], // Option+S → ß
+        ['µ', 'KeyM', 'M'], // Option+M → µ
+        ['œ', 'KeyQ', 'Q'], // Option+Q → œ
+      ]
+
+      for (const [char, code, letter] of cases) {
+        const event = createKeyboardEvent(char, {
+          altKey: true,
+          code,
+        })
+        expect(matchesKeyboardEvent(event, `Alt+${letter}` as Hotkey)).toBe(
+          true,
+        )
+      }
+    })
+
+    it('should fall back to event.code for macOS Option+Shift+letter combinations', () => {
+      const cases: Array<[string, string, string]> = [
+        ['Á', 'KeyY', 'Y'], // Option+Shift+Y → Á
+        ['Ç', 'KeyC', 'C'], // Option+Shift+C → Ç
+        ['Å', 'KeyA', 'A'], // Option+Shift+A → Å
+        ['Ø', 'KeyO', 'O'], // Option+Shift+O → Ø
+        ['Œ', 'KeyQ', 'Q'], // Option+Shift+Q → Œ
+      ]
+
+      for (const [char, code, letter] of cases) {
+        const event = createKeyboardEvent(char, {
+          altKey: true,
+          shiftKey: true,
+          code,
+        })
+        expect(
+          matchesKeyboardEvent(event, `Alt+Shift+${letter}` as Hotkey),
+        ).toBe(true)
+      }
+    })
+
+    it('should NOT fall back for non-ASCII letters without Alt key (keyboard layout letters)', () => {
+      // Russian layout without Alt key: ф on KeyA should not match 'A'
+      const event = createKeyboardEvent('ф', {
+        code: 'KeyA',
+      })
+      expect(matchesKeyboardEvent(event, 'A')).toBe(false)
+    })
   })
 
   describe('dead key fallback (macOS Option+letter)', () => {
@@ -488,6 +568,94 @@ describe('matchesKeyboardEvent', () => {
         expect(matchesKeyboardEvent(event, `Shift+${i}` as Hotkey)).toBe(true)
       }
     })
+
+    it('should match a digit key directly without fallback', () => {
+      const event = createKeyboardEvent('4', { code: 'Digit4' })
+      expect(matchesKeyboardEvent(event, '4')).toBe(true)
+    })
+  })
+
+  describe('Unicode normalization edge cases', () => {
+    it('should match ß key despite toUpperCase expanding to multi-char', () => {
+      const event = createKeyboardEvent('ß', { code: 'KeyS' })
+      expect(matchesKeyboardEvent(event, 'ß' as Hotkey)).toBe(true)
+    })
+
+    it('should match ß with Alt+S via code fallback', () => {
+      const event = createKeyboardEvent('ß', {
+        altKey: true,
+        code: 'KeyS',
+      })
+      expect(matchesKeyboardEvent(event, 'Alt+S')).toBe(true)
+    })
+  })
+
+  describe('macOS Cmd+Option combinations', () => {
+    it('should fall back to event.code for macOS Cmd+Option+letter producing non-ASCII', () => {
+      const event = createKeyboardEvent('å', {
+        altKey: true,
+        metaKey: true,
+        code: 'KeyA',
+      })
+      expect(matchesKeyboardEvent(event, 'Mod+Alt+A', 'mac')).toBe(true)
+    })
+
+    it('should fall back to event.code for Ctrl+Alt+letter producing non-ASCII', () => {
+      const event = createKeyboardEvent('å', {
+        altKey: true,
+        ctrlKey: true,
+        code: 'KeyA',
+      })
+      expect(matchesKeyboardEvent(event, 'Control+Alt+A')).toBe(true)
+    })
+  })
+
+  describe('key alias matching', () => {
+    it('should match aliased key names', () => {
+      const event = createKeyboardEvent('Escape')
+      expect(matchesKeyboardEvent(event, 'Esc' as Hotkey)).toBe(true)
+    })
+
+    it('should match arrow key aliases', () => {
+      const event = createKeyboardEvent('ArrowUp')
+      expect(matchesKeyboardEvent(event, 'Up' as Hotkey)).toBe(true)
+    })
+
+    it('should match function keys case-insensitively', () => {
+      const event = createKeyboardEvent('F5')
+      expect(matchesKeyboardEvent(event, 'f5' as Hotkey)).toBe(true)
+    })
+  })
+
+  describe('dead key with non-Key/Digit codes', () => {
+    it('should not match dead key with non-letter, non-digit code', () => {
+      const event = createKeyboardEvent('Dead', {
+        altKey: true,
+        code: 'BracketLeft',
+      })
+      expect(matchesKeyboardEvent(event, 'Alt+[' as Hotkey)).toBe(false)
+    })
+  })
+
+  describe('edge cases', () => {
+    it('should not match when event.key is Unidentified', () => {
+      const event = createKeyboardEvent('Unidentified', { code: 'KeyA' })
+      expect(matchesKeyboardEvent(event, 'A')).toBe(false)
+    })
+
+    it('should trust event.key for ASCII letters with Alt on Windows (no fallback needed)', () => {
+      const event = createKeyboardEvent('a', {
+        altKey: true,
+        code: 'KeyA',
+      })
+      expect(matchesKeyboardEvent(event, 'Alt+A', 'windows')).toBe(true)
+      expect(matchesKeyboardEvent(event, 'Alt+B', 'windows')).toBe(false)
+    })
+
+    it('should not match a letter hotkey when event.key is a modifier name', () => {
+      const event = createKeyboardEvent('Control', { ctrlKey: true })
+      expect(matchesKeyboardEvent(event, 'Control+A')).toBe(false)
+    })
   })
 })
 
@@ -568,6 +736,27 @@ describe('createHotkeyHandler', () => {
 
     expect(event.preventDefault).not.toHaveBeenCalled()
     expect(event.stopPropagation).not.toHaveBeenCalled()
+  })
+
+  it('should accept ParsedHotkey and provide formatted hotkey string in context', () => {
+    const callback = vi.fn()
+    const parsed = {
+      key: 'S',
+      ctrl: false,
+      shift: false,
+      alt: false,
+      meta: true,
+      modifiers: ['Meta'] as ('Control' | 'Shift' | 'Alt' | 'Meta')[],
+    }
+    const handler = createHotkeyHandler(parsed, callback, { platform: 'mac' })
+
+    const event = createKeyboardEvent('s', { metaKey: true })
+    handler(event)
+
+    expect(callback).toHaveBeenCalledWith(event, {
+      hotkey: 'Meta+S',
+      parsedHotkey: parsed,
+    })
   })
 })
 
@@ -655,5 +844,20 @@ describe('createMultiHotkeyHandler', () => {
     handler(event)
 
     expect(event.preventDefault).toHaveBeenCalled()
+  })
+
+  it('should skip undefined handler values without crashing', () => {
+    const saveHandler = vi.fn()
+    const handler = createMultiHotkeyHandler(
+      {
+        'Mod+S': saveHandler,
+        'Mod+Z': undefined as unknown as () => void,
+      },
+      { platform: 'mac' },
+    )
+
+    const event = createKeyboardEvent('z', { metaKey: true })
+    handler(event)
+    expect(saveHandler).not.toHaveBeenCalled()
   })
 })

@@ -5,7 +5,7 @@ title: CreateHotkeyHandlerOptions
 
 # Interface: CreateHotkeyHandlerOptions
 
-Defined in: [match.ts:115](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L115)
+Defined in: [match.ts:122](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L122)
 
 Options for creating a hotkey handler.
 
@@ -17,7 +17,7 @@ Options for creating a hotkey handler.
 optional platform: "mac" | "windows" | "linux";
 ```
 
-Defined in: [match.ts:121](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L121)
+Defined in: [match.ts:128](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L128)
 
 The target platform for resolving 'Mod'
 
@@ -29,7 +29,7 @@ The target platform for resolving 'Mod'
 optional preventDefault: boolean;
 ```
 
-Defined in: [match.ts:117](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L117)
+Defined in: [match.ts:124](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L124)
 
 Prevent the default browser action when the hotkey matches. Defaults to true
 
@@ -41,6 +41,6 @@ Prevent the default browser action when the hotkey matches. Defaults to true
 optional stopPropagation: boolean;
 ```
 
-Defined in: [match.ts:119](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L119)
+Defined in: [match.ts:126](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L126)
 
 Stop event propagation when the hotkey matches. Defaults to true

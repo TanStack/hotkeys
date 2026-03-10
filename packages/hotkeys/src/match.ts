@@ -70,12 +70,19 @@ export function matchesKeyboardEvent(
       return true
     }
 
-    // If event.key is already a letter, trust the keyboard layout.
-    // Do NOT fall through to the event.code fallback, which matches based on
-    // physical key position and would break non-QWERTY layouts (Dvorak, Colemak,
-    // AZERTY, etc.). The code fallback is only needed when event.key produces a
-    // non-letter character (e.g., '†' from Option+T on macOS).
-    if (isSingleLetterKey(eventKey)) {
+    // If event.key is a letter, we usually trust the keyboard layout.
+    // For ASCII letters: always trust layout (Dvorak, Colemak, AZERTY support).
+    // For non-ASCII letters without Alt: trust layout (e.g., Cyrillic keyboards).
+    //
+    // For non-ASCII letters WITH Alt held down: fall through to the event.code
+    // fallback. macOS Option+letter combinations produce non-ASCII letters as
+    // event.key (e.g., Option+A → 'å', Option+' → 'æ', Option+P → 'π'), but
+    // event.code still reflects the physical key. We want Alt+A to match even
+    // when Option+A fires event.key='å'.
+    if (
+      isSingleLetterKey(eventKey) &&
+      (/^[A-Za-z]$/.test(eventKey) || !event.altKey)
+    ) {
       return false
     }
   }

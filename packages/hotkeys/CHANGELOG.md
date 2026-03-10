@@ -1,5 +1,11 @@
 # @tanstack/hotkeys
 
+## 0.4.1
+
+### Patch Changes
+
+- fix: option+letter combos on mac layouts ([#61](https://github.com/TanStack/hotkeys/pull/61))
+
 ## 0.4.0
 
 ### Minor Changes
