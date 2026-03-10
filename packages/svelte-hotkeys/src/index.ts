@@ -8,4 +8,10 @@ export * from './getHeldKeys.svelte'
 export * from './getHeldKeyCodesMap.svelte'
 export * from './getIsKeyHeld.svelte'
 export { default as HotkeysProvider } from './HotkeysProvider.svelte'
-export * from './HotkeysCtx'
+export {
+  DEFAULT_OPTIONS,
+  getDefaultHotkeysOptions,
+  getHotkeysContext,
+  setHotkeysContext,
+} from './HotkeysCtx'
+export type { HotkeysProviderOptions, HotkeysProviderProps } from './HotkeysCtx'

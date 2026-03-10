@@ -11,27 +11,30 @@ title: "@tanstack/svelte-hotkeys"
 - [CreateHotkeySequenceOptions](interfaces/CreateHotkeySequenceOptions.md)
 - [HotkeysProviderOptions](interfaces/HotkeysProviderOptions.md)
 - [HotkeysProviderProps](interfaces/HotkeysProviderProps.md)
+- [SvelteHeldKeyCodesMap](interfaces/SvelteHeldKeyCodesMap.md)
+- [SvelteHeldKeys](interfaces/SvelteHeldKeys.md)
+- [SvelteHeldKeyState](interfaces/SvelteHeldKeyState.md)
 - [SvelteHotkeyRecorder](interfaces/SvelteHotkeyRecorder.md)
 
 ## Type Aliases
 
 - [HotkeysProvider](type-aliases/HotkeysProvider.md)
-- [ResolvedTarget](type-aliases/ResolvedTarget.md)
-- [Target](type-aliases/Target.md)
 
 ## Variables
 
 - [DEFAULT\_OPTIONS](variables/DEFAULT_OPTIONS.md)
-- [getHotkeysContext](variables/getHotkeysContext.md)
 - [HotkeysProvider](variables/HotkeysProvider.md)
-- [setHotkeysContext](variables/setHotkeysContext.md)
 
 ## Functions
 
 - [createHotkey](functions/createHotkey.md)
+- [createHotkeyAttachment](functions/createHotkeyAttachment.md)
 - [createHotkeyRecorder](functions/createHotkeyRecorder.md)
 - [createHotkeySequence](functions/createHotkeySequence.md)
+- [createHotkeySequenceAttachment](functions/createHotkeySequenceAttachment.md)
 - [getDefaultHotkeysOptions](functions/getDefaultHotkeysOptions.md)
 - [getHeldKeyCodesMap](functions/getHeldKeyCodesMap.md)
 - [getHeldKeys](functions/getHeldKeys.md)
+- [getHotkeysContext](functions/getHotkeysContext.md)
 - [getIsKeyHeld](functions/getIsKeyHeld.md)
+- [setHotkeysContext](functions/setHotkeysContext.md)

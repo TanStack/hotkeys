@@ -1,28 +1,40 @@
 import { getKeyStateTracker } from '@tanstack/hotkeys'
-import { useStore } from '@tanstack/svelte-store'
+import { createStoreSubscriber } from './internal.svelte'
+
+export interface SvelteHeldKeys {
+  readonly keys: Array<string>
+}
+
+class HeldKeysState implements SvelteHeldKeys {
+  #tracker = getKeyStateTracker()
+  #subscribe = createStoreSubscriber(this.#tracker.store)
+
+  get keys(): Array<string> {
+    this.#subscribe()
+    return this.#tracker.store.state.heldKeys
+  }
+}
 
 /**
- * Svelte function that returns a reactive reference to currently held keyboard keys.
+ * Svelte function that returns reactive access to currently held keyboard keys.
  *
  * This function uses the global KeyStateTracker and updates whenever keys are pressed
- * or released. Use `$derived(getHeldKeys().current)` for reactive access in templates.
+ * or released.
  *
- * @returns Object with `current` property containing the array of held key names
+ * @returns Object with a reactive `keys` property
  *
  * @example
  * ```svelte
  * <script>
  *   import { getHeldKeys } from '@tanstack/svelte-hotkeys'
  *
- *   const heldKeysRef = getHeldKeys()
- *   const heldKeys = $derived(heldKeysRef.current)
+ *   const heldKeys = getHeldKeys()
  * </script>
  * <div>
- *   Currently pressed: {heldKeys.join(' + ') || 'None'}
+ *   Currently pressed: {heldKeys.keys.join(' + ') || 'None'}
  * </div>
  * ```
  */
-export function getHeldKeys(): { readonly current: Array<string> } {
-  const tracker = getKeyStateTracker()
-  return useStore(tracker.store, (state) => state.heldKeys)
+export function getHeldKeys(): SvelteHeldKeys {
+  return new HeldKeysState()
 }

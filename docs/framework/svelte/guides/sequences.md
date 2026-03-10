@@ -5,7 +5,7 @@ id: sequences
 
 TanStack Hotkeys supports multi-key sequences in Svelte, where keys are pressed one after another rather than simultaneously.
 
-## Basic Usage
+## Global sequences
 
 ```svelte
 <script lang="ts">
@@ -17,7 +17,25 @@ TanStack Hotkeys supports multi-key sequences in Svelte, where keys are pressed 
 </script>
 ```
 
-## Sequence Options
+## Scoped sequences
+
+Use `createHotkeySequenceAttachment` when a sequence should only be active while a specific element owns focus.
+
+```svelte
+<script lang="ts">
+  import { createHotkeySequenceAttachment } from '@tanstack/svelte-hotkeys'
+
+  const editorSequences = createHotkeySequenceAttachment(['G', 'G'], () => {
+    scrollToTop()
+  })
+</script>
+
+<div tabindex="0" {@attach editorSequences}>
+  Focus here, then press g then g
+</div>
+```
+
+## Sequence options
 
 ```ts
 createHotkeySequence(['G', 'G'], callback, {
@@ -34,26 +52,24 @@ createHotkeySequence(['G', 'G'], callback, {
 
   let isVimMode = $state(true)
 
-  createHotkeySequence(['G', 'G'], () => scrollToTop(), {
-    enabled: () => isVimMode,
-  })
+  createHotkeySequence(
+    ['G', 'G'],
+    () => scrollToTop(),
+    () => ({ enabled: isVimMode }),
+  )
 </script>
 ```
 
-## Global Default Options via Provider
+## Default options
 
 ```svelte
 <script lang="ts">
-  import { HotkeysProvider } from '@tanstack/svelte-hotkeys'
-</script>
+  import { setHotkeysContext } from '@tanstack/svelte-hotkeys'
 
-<HotkeysProvider
-  defaultOptions={{
+  setHotkeysContext({
     hotkeySequence: { timeout: 1500 },
-  }}
->
-  <AppContent />
-</HotkeysProvider>
+  })
+</script>
 ```
 
 ## Common Patterns

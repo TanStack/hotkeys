@@ -1,5 +1,9 @@
 <script lang="ts">
-  import { createHotkey, formatForDisplay } from '@tanstack/svelte-hotkeys'
+  import {
+    createHotkey,
+    createHotkeyAttachment,
+    formatForDisplay,
+  } from '@tanstack/svelte-hotkeys'
   import type { Hotkey } from '@tanstack/svelte-hotkeys'
 
   let lastHotkey = $state<Hotkey | null>(null)
@@ -18,9 +22,7 @@
   let modalShortcutCount = $state(0)
   let editorShortcutCount = $state(0)
 
-  let sidebarRef = $state<HTMLDivElement | null>(null)
   let modalRef = $state<HTMLDivElement | null>(null)
-  let editorRef = $state<HTMLTextAreaElement | null>(null)
 
   $effect(() => {
     if (modalOpen && modalRef) {
@@ -194,78 +196,58 @@
     functionKeyCount++
   })
 
-  createHotkey(
-    'Mod+B',
-    () => {
-      lastHotkey = 'Mod+B'
-      sidebarShortcutCount++
-      alert(
-        'Sidebar shortcut triggered! This only works when the sidebar area is focused.',
-      )
-    },
-    () => ({ target: sidebarRef }),
-  )
+  const sidebarBoldHotkey = createHotkeyAttachment('Mod+B', () => {
+    lastHotkey = 'Mod+B'
+    sidebarShortcutCount++
+    alert(
+      'Sidebar shortcut triggered! This only works when the sidebar area is focused.',
+    )
+  })
 
-  createHotkey(
-    'Mod+N',
-    () => {
-      lastHotkey = 'Mod+N'
-      sidebarShortcutCount++
-    },
-    () => ({ target: sidebarRef }),
-  )
+  const sidebarNewItemHotkey = createHotkeyAttachment('Mod+N', () => {
+    lastHotkey = 'Mod+N'
+    sidebarShortcutCount++
+  })
 
-  createHotkey(
+  const closeModalHotkey = createHotkeyAttachment(
     'Escape',
     () => {
       lastHotkey = 'Escape'
       modalShortcutCount++
       modalOpen = false
     },
-    () => ({ target: modalRef, enabled: modalOpen }),
+    () => ({ enabled: modalOpen }),
   )
 
-  createHotkey(
+  const submitModalHotkey = createHotkeyAttachment(
     'Mod+Enter',
     () => {
       lastHotkey = 'Mod+Enter'
       modalShortcutCount++
       alert('Modal submit shortcut!')
     },
-    () => ({ target: modalRef, enabled: modalOpen }),
+    () => ({ enabled: modalOpen }),
   )
 
-  createHotkey(
-    'Mod+S',
-    () => {
-      lastHotkey = 'Mod+S'
-      editorShortcutCount++
-      alert(
-        `Editor content saved: "${editorContent.substring(0, 50)}${editorContent.length > 50 ? '...' : ''}"`,
-      )
-    },
-    () => ({ target: editorRef }),
-  )
+  const saveEditorHotkey = createHotkeyAttachment('Mod+S', () => {
+    lastHotkey = 'Mod+S'
+    editorShortcutCount++
+    alert(
+      `Editor content saved: "${editorContent.substring(0, 50)}${editorContent.length > 50 ? '...' : ''}"`,
+    )
+  })
 
-  createHotkey(
-    'Mod+/',
-    () => {
-      lastHotkey = 'Mod+/'
-      editorShortcutCount++
-      editorContent += '\n// Comment added via shortcut'
-    },
-    () => ({ target: editorRef }),
-  )
+  const addEditorCommentHotkey = createHotkeyAttachment('Mod+/', () => {
+    lastHotkey = 'Mod+/'
+    editorShortcutCount++
+    editorContent += '\n// Comment added via shortcut'
+  })
 
-  createHotkey(
-    'Mod+K',
-    () => {
-      lastHotkey = 'Mod+K'
-      editorShortcutCount++
-      editorContent = ''
-    },
-    () => ({ target: editorRef }),
-  )
+  const clearEditorHotkey = createHotkeyAttachment('Mod+K', () => {
+    lastHotkey = 'Mod+K'
+    editorShortcutCount++
+    editorContent = ''
+  })
 </script>
 
 <div class="app">
@@ -327,7 +309,7 @@ createHotkey(
   (event, { hotkey }) => {
     alert('Triggered!')
   },
-  { enabled }
+  () => ({ enabled })
 )`}</pre>
     </section>
 
@@ -449,10 +431,11 @@ createHotkey('Mod+2', () => activeTab = 2)`}</pre>
         <!-- svelte-ignore a11y_no_noninteractive_tabindex -->
         <div
           class="scoped-area"
-          bind:this={sidebarRef}
           tabindex="0"
           role="region"
           aria-label="Sidebar scoped area"
+          {@attach sidebarBoldHotkey}
+          {@attach sidebarNewItemHotkey}
         >
           <h3>Sidebar (Scoped Area)</h3>
           <p>Click here to focus, then try:</p>
@@ -489,6 +472,8 @@ createHotkey('Mod+2', () => activeTab = 2)`}</pre>
                 tabindex="0"
                 onclick={(e) => e.stopPropagation()}
                 role="dialog"
+                {@attach closeModalHotkey}
+                {@attach submitModalHotkey}
               >
                 <h3>Modal Dialog (Scoped)</h3>
                 <p>Try these shortcuts while modal is open:</p>
@@ -525,11 +510,13 @@ createHotkey('Mod+2', () => activeTab = 2)`}</pre>
             <div><kbd>{formatForDisplay('Mod+K')}</kbd> — Clear editor</div>
           </div>
           <textarea
-            bind:this={editorRef}
             class="scoped-editor"
             bind:value={editorContent}
             placeholder="Focus here and try the shortcuts above..."
             rows="8"
+            {@attach saveEditorHotkey}
+            {@attach addEditorCommentHotkey}
+            {@attach clearEditorHotkey}
           ></textarea>
           <div class="counter">Editor shortcuts: {editorShortcutCount}x</div>
           <p class="hint">
@@ -543,33 +530,20 @@ createHotkey('Mod+2', () => activeTab = 2)`}</pre>
         </div>
       </div>
 
-      <pre class="code-block">{`// Scoped to a ref
-let sidebarRef = $state(null)
-
-createHotkey(
+      <pre class="code-block">{`const sidebarHotkey = createHotkeyAttachment(
   'Mod+B',
   () => console.log('Sidebar shortcut!'),
-  { target: () => sidebarRef }
 )
 
-// Scoped to a modal (only when open)
-let modalRef = $state(null)
-let modalOpen = $state(false)
-
-createHotkey(
+const modalEscape = createHotkeyAttachment(
   'Escape',
-  () => modalOpen = false,
-  { target: () => modalRef, enabled: modalOpen }
+  () => (modalOpen = false),
+  () => ({ enabled: modalOpen }),
 )
 
-// Scoped to an editor
-let editorRef = $state(null)
-
-createHotkey(
-  'Mod+S',
-  () => saveEditorContent(),
-  { target: () => editorRef }
-)`}</pre>
+const editorSave = createHotkeyAttachment('Mod+S', () => {
+  saveEditorContent()
+})`}</pre>
     </section>
   </main>
 </div>

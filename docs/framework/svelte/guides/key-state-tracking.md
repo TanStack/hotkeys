@@ -14,7 +14,7 @@ TanStack Hotkeys provides three Svelte functions for tracking live keyboard stat
   const heldKeys = getHeldKeys()
 </script>
 
-<div>{$heldKeys.length > 0 ? $heldKeys.join(' + ') : 'No keys held'}</div>
+<div>{heldKeys.keys.length > 0 ? heldKeys.keys.join(' + ') : 'No keys held'}</div>
 ```
 
 ## `getHeldKeyCodesMap`
@@ -25,6 +25,8 @@ TanStack Hotkeys provides three Svelte functions for tracking live keyboard stat
 
   const heldCodes = getHeldKeyCodesMap()
 </script>
+
+<pre>{JSON.stringify(heldCodes.codes, null, 2)}</pre>
 ```
 
 ## `getIsKeyHeld`
@@ -36,7 +38,7 @@ TanStack Hotkeys provides three Svelte functions for tracking live keyboard stat
   const isShiftHeld = getIsKeyHeld('Shift')
 </script>
 
-<span class:active={isShiftHeld}>Shift</span>
+<span class:active={isShiftHeld.held}>Shift</span>
 ```
 
 ## Common Patterns
@@ -50,7 +52,7 @@ TanStack Hotkeys provides three Svelte functions for tracking live keyboard stat
   const isShiftHeld = getIsKeyHeld('Shift')
 </script>
 
-{#if isShiftHeld}
+{#if isShiftHeld.held}
   <button>Permanently Delete</button>
 {:else}
   <button>Move to Trash</button>
@@ -70,6 +72,17 @@ TanStack Hotkeys provides three Svelte functions for tracking live keyboard stat
   const heldKeys = getHeldKeys()
   const heldCodes = getHeldKeyCodesMap()
 </script>
+
+<div>
+  {#each heldKeys.keys as key}
+    <kbd>
+      {formatKeyForDebuggingDisplay(key)}:
+      {heldCodes.codes[key]
+        ? formatKeyForDebuggingDisplay(heldCodes.codes[key], { source: 'code' })
+        : 'unknown'}
+    </kbd>
+  {/each}
+</div>
 ```
 
 ## Under the Hood

@@ -1,17 +1,11 @@
 <script lang="ts">
   import { getIsKeyHeld } from '@tanstack/svelte-hotkeys'
 
-  const isShiftHeldRef = getIsKeyHeld('Shift')
-  const isControlHeldRef = getIsKeyHeld('Control')
-  const isAltHeldRef = getIsKeyHeld('Alt')
-  const isMetaHeldRef = getIsKeyHeld('Meta')
-  const isSpaceHeldRef = getIsKeyHeld('Space')
-
-  const isShiftHeld = $derived(isShiftHeldRef.current)
-  const isControlHeld = $derived(isControlHeldRef.current)
-  const isAltHeld = $derived(isAltHeldRef.current)
-  const isMetaHeld = $derived(isMetaHeldRef.current)
-  const isSpaceHeld = $derived(isSpaceHeldRef.current)
+  const isShiftHeld = getIsKeyHeld('Shift')
+  const isControlHeld = getIsKeyHeld('Control')
+  const isAltHeld = getIsKeyHeld('Alt')
+  const isMetaHeld = getIsKeyHeld('Meta')
+  const isSpaceHeld = getIsKeyHeld('Space')
 </script>
 
 <div class="app">
@@ -27,33 +21,33 @@
     <section class="demo-section">
       <h2>Modifier Key States</h2>
       <div class="modifier-grid">
-        <div class="modifier-indicator" class:active={isShiftHeld}>
+        <div class="modifier-indicator" class:active={isShiftHeld.held}>
           <span class="key-name">Shift</span>
           <span class="status">
-            {isShiftHeld ? 'HELD' : 'Released'}
+            {isShiftHeld.held ? 'HELD' : 'Released'}
           </span>
         </div>
-        <div class="modifier-indicator" class:active={isControlHeld}>
+        <div class="modifier-indicator" class:active={isControlHeld.held}>
           <span class="key-name">Control</span>
           <span class="status">
-            {isControlHeld ? 'HELD' : 'Released'}
+            {isControlHeld.held ? 'HELD' : 'Released'}
           </span>
         </div>
-        <div class="modifier-indicator" class:active={isAltHeld}>
+        <div class="modifier-indicator" class:active={isAltHeld.held}>
           <span class="key-name">Alt / Option</span>
-          <span class="status">{isAltHeld ? 'HELD' : 'Released'}</span>
+          <span class="status">{isAltHeld.held ? 'HELD' : 'Released'}</span>
         </div>
-        <div class="modifier-indicator" class:active={isMetaHeld}>
+        <div class="modifier-indicator" class:active={isMetaHeld.held}>
           <span class="key-name">Meta (⌘ / ⊞)</span>
-          <span class="status">{isMetaHeld ? 'HELD' : 'Released'}</span>
+          <span class="status">{isMetaHeld.held ? 'HELD' : 'Released'}</span>
         </div>
       </div>
     </section>
 
     <section class="demo-section">
       <h2>Space Bar Demo</h2>
-      <div class="space-indicator" class:active={isSpaceHeld}>
-        {isSpaceHeld ? '🚀 SPACE HELD!' : 'Hold Space Bar'}
+      <div class="space-indicator" class:active={isSpaceHeld.held}>
+        {isSpaceHeld.held ? '🚀 SPACE HELD!' : 'Hold Space Bar'}
       </div>
     </section>
 
@@ -62,12 +56,11 @@
       <pre
         class="code-block">{`import { getIsKeyHeld } from '@tanstack/svelte-hotkeys'
 
-const isShiftHeldRef = getIsKeyHeld('Shift')
-const isShiftHeld = $derived(isShiftHeldRef.current)
+const isShiftHeld = getIsKeyHeld('Shift')
 
 // In template:
-// <div style="opacity: isShiftHeld ? 1 : 0.5">
-//   {isShiftHeld ? 'Shift is pressed!' : 'Press Shift'}
+// <div style="opacity: isShiftHeld.held ? 1 : 0.5">
+//   {isShiftHeld.held ? 'Shift is pressed!' : 'Press Shift'}
 // </div>`}</pre>
     </section>
 
@@ -76,8 +69,8 @@ const isShiftHeld = $derived(isShiftHeldRef.current)
       <p>
         Hold <kbd>Shift</kbd> to reveal the secret message:
       </p>
-      <div class="secret-box" class:revealed={isShiftHeld}>
-        {#if isShiftHeld}
+      <div class="secret-box" class:revealed={isShiftHeld.held}>
+        {#if isShiftHeld.held}
           <span>🎉 The secret password is: tanstack-hotkeys-rocks!</span>
         {:else}
           <span>••••••••••••••••••••••••••</span>

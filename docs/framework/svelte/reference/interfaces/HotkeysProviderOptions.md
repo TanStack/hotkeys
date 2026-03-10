@@ -5,7 +5,7 @@ title: HotkeysProviderOptions
 
 # Interface: HotkeysProviderOptions
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L11)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:7](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L7)
 
 ## Properties
 
@@ -15,7 +15,7 @@ Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:11](https://github.com/Ta
 optional hotkey: Partial<CreateHotkeyOptions>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L12)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:8](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L8)
 
 ***
 
@@ -25,7 +25,7 @@ Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:12](https://github.com/Ta
 optional hotkeyRecorder: Partial<HotkeyRecorderOptions>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L13)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:9](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L9)
 
 ***
 
@@ -35,4 +35,4 @@ Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:13](https://github.com/Ta
 optional hotkeySequence: Partial<CreateHotkeySequenceOptions>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L14)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L10)

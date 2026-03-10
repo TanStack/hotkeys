@@ -9,7 +9,7 @@ Don't have TanStack Hotkeys installed yet? See the [Installation](../../installa
 
 ## Your First Hotkey
 
-The `createHotkey` function is the primary way to register keyboard shortcuts in Svelte:
+Use `createHotkey` for global shortcuts and attachments for element-scoped shortcuts.
 
 ```svelte
 <script lang="ts">
@@ -27,7 +27,7 @@ The `Mod` modifier automatically resolves to `Meta` (Command) on macOS and `Cont
 
 ## Common Patterns
 
-### Multiple Hotkeys
+### Multiple global hotkeys
 
 ```svelte
 <script lang="ts">
@@ -41,23 +41,23 @@ The `Mod` modifier automatically resolves to `Meta` (Command) on macOS and `Cont
 </script>
 ```
 
-### Scoped Hotkeys with Refs
+### Scoped hotkeys with attachments
 
 ```svelte
 <script lang="ts">
-  import { createHotkey } from '@tanstack/svelte-hotkeys'
+  import { createHotkeyAttachment } from '@tanstack/svelte-hotkeys'
 
-  let panelRef = $state<HTMLDivElement | null>(null)
-
-  createHotkey('Escape', () => closePanel(), { target: () => panelRef })
+  const closePanel = createHotkeyAttachment('Escape', () => {
+    close()
+  })
 </script>
 
-<div bind:this={panelRef} tabindex="0">
+<div tabindex="0" {@attach closePanel}>
   <p>Press Escape while focused here to close</p>
 </div>
 ```
 
-### Conditional Hotkeys
+### Reactive options
 
 ```svelte
 <script lang="ts">
@@ -65,24 +65,33 @@ The `Mod` modifier automatically resolves to `Meta` (Command) on macOS and `Cont
 
   let isOpen = $state(true)
 
-  createHotkey('Escape', () => {
-    isOpen = false
-  }, { enabled: () => isOpen })
+  createHotkey(
+    'Escape',
+    () => {
+      isOpen = false
+    },
+    () => ({ enabled: isOpen }),
+  )
 </script>
 ```
 
-### Multi-Key Sequences
+### Scoped sequences
 
 ```svelte
 <script lang="ts">
-  import { createHotkeySequence } from '@tanstack/svelte-hotkeys'
+  import { createHotkeySequenceAttachment } from '@tanstack/svelte-hotkeys'
 
-  createHotkeySequence(['G', 'G'], () => scrollToTop())
-  createHotkeySequence(['G', 'Shift+G'], () => scrollToBottom())
+  const vimKeys = createHotkeySequenceAttachment(['G', 'G'], () => {
+    scrollToTop()
+  })
 </script>
+
+<div tabindex="0" {@attach vimKeys}>
+  Focus here, then press g then g
+</div>
 ```
 
-### Tracking Held Keys
+### Tracking held keys
 
 ```svelte
 <script lang="ts">
@@ -93,12 +102,37 @@ The `Mod` modifier automatically resolves to `Meta` (Command) on macOS and `Cont
 </script>
 
 <div class="status-bar">
-  {#if isShiftHeld}<span>Shift mode active</span>{/if}
-  {#if $heldKeys.length > 0}<span>Keys: {$heldKeys.join('+')}</span>{/if}
+  {#if isShiftHeld.held}<span>Shift mode active</span>{/if}
+  {#if heldKeys.keys.length > 0}
+    <span>Keys: {heldKeys.keys.join('+')}</span>
+  {/if}
 </div>
 ```
 
-### Displaying Hotkeys in the UI
+### Recording shortcuts
+
+```svelte
+<script lang="ts">
+  import {
+    createHotkeyRecorder,
+    formatForDisplay,
+  } from '@tanstack/svelte-hotkeys'
+
+  const recorder = createHotkeyRecorder({
+    onRecord: (hotkey) => {
+      console.log('Recorded:', hotkey)
+    },
+  })
+</script>
+
+<button onclick={recorder.startRecording}>
+  {recorder.recordedHotkey
+    ? formatForDisplay(recorder.recordedHotkey)
+    : 'Click to record'}
+</button>
+```
+
+### Displaying hotkeys in the UI
 
 ```svelte
 <script lang="ts">
@@ -112,24 +146,19 @@ The `Mod` modifier automatically resolves to `Meta` (Command) on macOS and `Cont
 </button>
 ```
 
-## Default Options Provider
+## Default options
 
-Wrap part of your app with `HotkeysProvider` to set default options for all Svelte hotkey functions in that subtree:
+Use `setHotkeysContext` when you want defaults for a subtree. This is an advanced API and usually belongs near the root of the part of the app that owns the hotkeys.
 
 ```svelte
 <script lang="ts">
-  import { HotkeysProvider } from '@tanstack/svelte-hotkeys'
-</script>
+  import { setHotkeysContext } from '@tanstack/svelte-hotkeys'
 
-<HotkeysProvider
-  defaultOptions={{
+  setHotkeysContext({
     hotkey: { preventDefault: true },
     hotkeySequence: { timeout: 1500 },
-    hotkeyRecorder: { onCancel: () => console.log('Recording cancelled') },
-  }}
->
-  <AppContent />
-</HotkeysProvider>
+  })
+</script>
 ```
 
 ## Next Steps

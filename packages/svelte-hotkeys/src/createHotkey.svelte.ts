@@ -5,175 +5,114 @@ import {
   rawHotkeyToParsedHotkey,
 } from '@tanstack/hotkeys'
 import { getDefaultHotkeysOptions } from './HotkeysCtx'
-import type { ResolvedTarget, Target } from './HotkeysCtx'
+import { resolveMaybeGetter } from './internal.svelte'
 import type {
   Hotkey,
   HotkeyCallback,
   HotkeyOptions,
-  HotkeyRegistrationHandle,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
+import type { MaybeGetter } from './internal.svelte'
+import type { Attachment } from 'svelte/attachments'
 
-export interface CreateHotkeyOptions extends Omit<HotkeyOptions, 'target'> {
-  /**
-   * The DOM element to attach the event listener to.
-   * Can be a Svelte ref, direct DOM element, or null.
-   * Defaults to document.
-   */
-  target?: Target
+export interface CreateHotkeyOptions extends Omit<HotkeyOptions, 'target'> {}
+
+function normalizeHotkey(
+  hotkey: RegisterableHotkey,
+  options: CreateHotkeyOptions,
+): Hotkey {
+  const platform = options.platform ?? detectPlatform()
+
+  return typeof hotkey === 'string'
+    ? hotkey
+    : (formatHotkey(rawHotkeyToParsedHotkey(hotkey, platform)) as Hotkey)
 }
 
-function resolveTarget(target: Target): ResolvedTarget {
-  if (typeof target === 'function') {
-    return target() ?? null
-  }
+function registerHotkey(
+  target: HTMLElement | Document | Window,
+  hotkey: MaybeGetter<RegisterableHotkey>,
+  callback: HotkeyCallback,
+  options: MaybeGetter<CreateHotkeyOptions>,
+) {
+  const resolvedHotkey = resolveMaybeGetter(hotkey)
+  const resolvedOptions = resolveMaybeGetter(options)
+  const mergedOptions = {
+    ...getDefaultHotkeysOptions().hotkey,
+    ...resolvedOptions,
+  } as CreateHotkeyOptions
 
-  return target
+  return getHotkeyManager().register(
+    normalizeHotkey(resolvedHotkey, mergedOptions),
+    callback,
+    {
+      ...mergedOptions,
+      target,
+    },
+  )
 }
 
 /**
- * Svelte function for registering a keyboard hotkey.
- *
- * Uses the singleton HotkeyManager for efficient event handling.
- * The callback receives both the keyboard event and a context object
- * containing the hotkey string and parsed hotkey.
- *
- * This function syncs the callback and options on every render to avoid
- * stale closures. This means
- * callbacks that reference Svelte state will always have access to
- * the latest values.
+ * Register a global hotkey for the current component.
  *
  * @example
  * ```svelte
- *
  * <script lang="ts">
  *   import { createHotkey } from '@tanstack/svelte-hotkeys'
  *
- *   let ref = $state<HTMLButtonElement | null>(null)
- *
  *   createHotkey('Mod+S', () => {
  *     console.log('Mod+S pressed')
- *   }, { target: ref })
+ *   })
  * </script>
- *
- * <div bind:this={ref}>
- *   ....
- * </div>
  * ```
+ */
+export function createHotkey(
+  hotkey: MaybeGetter<RegisterableHotkey>,
+  callback: HotkeyCallback,
+  options: MaybeGetter<CreateHotkeyOptions> = {},
+): void {
+  $effect(() => {
+    if (typeof document === 'undefined') {
+      return
+    }
+
+    const registration = registerHotkey(document, hotkey, callback, options)
+
+    return () => {
+      registration.unregister()
+    }
+  })
+}
+
+/**
+ * Create an attachment for element-scoped hotkeys.
  *
  * @example
  * ```svelte
  * <script lang="ts">
- *   import { createHotkey } from '@tanstack/svelte-hotkeys'
+ *   import { createHotkeyAttachment } from '@tanstack/svelte-hotkeys'
  *
- *   let ref = $state<HTMLDivElement | null>(null)
  *   let count = $state(0)
- *
- *   createHotkey('Mod+S', () => {
- *     console.log('Mod+S pressed')
+ *   const saveHotkey = createHotkeyAttachment('Mod+S', () => {
  *     count++
- *   }, { target: ref })
+ *   })
+ *
  * </script>
  *
- * <div bind:this={ref}>
+ * <div tabindex="0" {@attach saveHotkey}>
  *   Count: {count}
  * </div>
  * ```
  */
-
-export function createHotkey(
-  hotkey: RegisterableHotkey | (() => RegisterableHotkey),
+export function createHotkeyAttachment(
+  hotkey: MaybeGetter<RegisterableHotkey>,
   callback: HotkeyCallback,
-  options: CreateHotkeyOptions | (() => CreateHotkeyOptions) = {},
-): void {
-  const manager = getHotkeyManager()
+  options: MaybeGetter<CreateHotkeyOptions> = {},
+): Attachment<HTMLElement> {
+  return (element) => {
+    const registration = registerHotkey(element, hotkey, callback, options)
 
-  // Stable ref for registration handle
-  let registrationRef: HotkeyRegistrationHandle | null = null
-
-  // Refs to capture current values for use in effect without adding dependencies
-  let callbackRef = callback
-  let managerRef = manager
-
-  $effect(() => {
-    callbackRef = callback
-    managerRef = manager
-  })
-
-  // Track previous target and hotkey to detect changes requiring re-registration
-  let prevTargetRef: ResolvedTarget = null
-  let prevHotkeyRef: string | null = null
-
-  $effect(() => {
-    // Resolve reactive values (support getters for dynamic shortcuts)
-    const resolvedHotkey = typeof hotkey === 'function' ? hotkey() : hotkey
-    const resolvedOptions = typeof options === 'function' ? options() : options
-
-    const mergedOptions = {
-      ...getDefaultHotkeysOptions().hotkey,
-      ...resolvedOptions,
-    } as CreateHotkeyOptions
-
-    // Normalize to hotkey string
-    const platform = mergedOptions.platform ?? detectPlatform()
-    const hotkeyString: Hotkey =
-      typeof resolvedHotkey === 'string'
-        ? resolvedHotkey
-        : (formatHotkey(
-            rawHotkeyToParsedHotkey(resolvedHotkey, platform),
-          ) as Hotkey)
-
-    // Resolve target inside the effect so refs are already attached after mount
-    const resolvedTarget = mergedOptions.target
-      ? resolveTarget(mergedOptions.target)
-      : typeof document !== 'undefined'
-        ? document
-        : null
-
-    // Skip if no valid target (SSR or ref still null)
-    if (!resolvedTarget) {
-      return
-    }
-
-    // Extract options without target (target is handled separately)
-    const { target: _target, ...optionsWithoutTarget } = mergedOptions
-
-    // Check if we need to re-register (target or hotkey changed)
-    const targetChanged =
-      prevTargetRef !== null && prevTargetRef !== resolvedTarget
-    const hotkeyChanged =
-      prevHotkeyRef !== null && prevHotkeyRef !== hotkeyString
-
-    // If we have an active registration and target/hotkey changed, unregister first
-    if (registrationRef?.isActive && (targetChanged || hotkeyChanged)) {
-      registrationRef.unregister()
-      registrationRef = null
-    }
-
-    // Register if needed (no active registration)
-    if (!registrationRef || !registrationRef.isActive) {
-      registrationRef = managerRef.register(hotkeyString, callbackRef, {
-        ...optionsWithoutTarget,
-        target: resolvedTarget,
-      })
-    }
-
-    // Update callback and options
-    if (registrationRef.isActive) {
-      registrationRef.callback = callbackRef
-      registrationRef.setOptions(optionsWithoutTarget)
-    }
-
-    // Update tracking refs
-    prevTargetRef = resolvedTarget
-    prevHotkeyRef = hotkeyString
-
-    // Cleanup on unmount
     return () => {
-      if (registrationRef?.isActive) {
-        registrationRef.unregister()
-        registrationRef = null
-      }
+      registration.unregister()
     }
-  })
+  }
 }

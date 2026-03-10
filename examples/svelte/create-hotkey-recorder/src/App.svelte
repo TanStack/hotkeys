@@ -231,19 +231,28 @@
 
     <section class="demo-section">
       <h2>Usage</h2>
-      <pre
-        class="code-block">{`import { createHotkey, formatForDisplay } from '@tanstack/svelte-hotkeys'
+      <pre class="code-block">{`import {
+  createHotkey,
+  createHotkeyRecorder,
+  formatForDisplay,
+} from '@tanstack/svelte-hotkeys'
 
 let shortcuts = $state({
   save: 'Mod+K',
   open: 'Mod+E',
 })
 
+const recorder = createHotkeyRecorder({
+  onRecord: (hotkey) => {
+    shortcuts = { ...shortcuts, save: hotkey }
+  },
+})
+
 // Register shortcuts dynamically
 createHotkey(
-  shortcuts.save,
+  () => shortcuts.save,
   () => handleSave(),
-  { enabled: !isRecording }
+  () => ({ enabled: !recorder.isRecording })
 )
 
 // In template:

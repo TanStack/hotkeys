@@ -4,10 +4,6 @@ import type { CreateHotkeyOptions } from './createHotkey.svelte'
 import type { Snippet } from 'svelte'
 import type { CreateHotkeySequenceOptions } from './createHotkeySequence.svelte'
 
-export type Target = ResolvedTarget | (() => ResolvedTarget)
-
-export type ResolvedTarget = HTMLElement | Document | Window | null
-
 export interface HotkeysProviderOptions {
   hotkey?: Partial<CreateHotkeyOptions>
   hotkeyRecorder?: Partial<HotkeyRecorderOptions>
@@ -25,10 +21,36 @@ interface HotkeysContextValue {
   defaultOptions: HotkeysProviderOptions
 }
 
-const [getHotkeysContext, setHotkeysContext] =
+const [useHotkeysContext, setHotkeysContextValue] =
   createContext<HotkeysContextValue | null>()
 
-export { getHotkeysContext, setHotkeysContext }
+export function setHotkeysContext(
+  defaultOptions: HotkeysProviderOptions = DEFAULT_OPTIONS,
+): HotkeysContextValue {
+  return setHotkeysContextValue({
+    get defaultOptions() {
+      return defaultOptions
+    },
+  })!
+}
+
+export function setHotkeysContextSource(
+  defaultOptions: () => HotkeysProviderOptions,
+): HotkeysContextValue {
+  return setHotkeysContextValue({
+    get defaultOptions() {
+      return defaultOptions()
+    },
+  })!
+}
+
+export function getHotkeysContext(): HotkeysContextValue | null {
+  try {
+    return useHotkeysContext()
+  } catch {
+    return null
+  }
+}
 
 export function getDefaultHotkeysOptions(): HotkeysProviderOptions {
   return getHotkeysContext()?.defaultOptions ?? DEFAULT_OPTIONS

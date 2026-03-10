@@ -5,16 +5,14 @@
     getHeldKeyCodesMap,
   } from '@tanstack/svelte-hotkeys'
 
-  const heldKeysRef = getHeldKeys()
-  const heldKeyCodesMapRef = getHeldKeyCodesMap()
-  const heldKeys = $derived(heldKeysRef.current)
-  const heldKeyCodesMap = $derived(heldKeyCodesMapRef.current)
+  const heldKeys = getHeldKeys()
+  const heldKeyCodesMap = getHeldKeyCodesMap()
 
   let history = $state<Array<string>>([])
 
   $effect(() => {
-    if (heldKeys.length > 0) {
-      const combo = heldKeys
+    if (heldKeys.keys.length > 0) {
+      const combo = heldKeys.keys
         .map((k) => formatKeyForDebuggingDisplay(k))
         .join(' + ')
       if (history[history.length - 1] !== combo) {
@@ -37,9 +35,9 @@
     <section class="demo-section">
       <h2>Currently Held Keys</h2>
       <div class="key-display">
-        {#if heldKeys.length > 0}
-          {#each heldKeys as key, index}
-            {@const code = heldKeyCodesMap[key]}
+        {#if heldKeys.keys.length > 0}
+          {#each heldKeys.keys as key, index}
+            {@const code = heldKeyCodesMap.codes[key]}
             {#if index > 0}
               <span class="plus">+</span>
             {/if}
@@ -59,7 +57,7 @@
         {/if}
       </div>
       <div class="stats">
-        Keys held: <strong>{heldKeys.length}</strong>
+        Keys held: <strong>{heldKeys.keys.length}</strong>
       </div>
     </section>
 
@@ -68,11 +66,10 @@
       <pre
         class="code-block">{`import { getHeldKeys } from '@tanstack/svelte-hotkeys'
 
-const heldKeysRef = getHeldKeys()
-const heldKeys = $derived(heldKeysRef.current)
+const heldKeys = getHeldKeys()
 
 // In template:
-// Currently pressed: {heldKeys.join(' + ') || 'None'}`}</pre>
+// Currently pressed: {heldKeys.keys.join(' + ') || 'None'}`}</pre>
     </section>
 
     <section class="demo-section">

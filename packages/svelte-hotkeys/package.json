@@ -49,8 +49,7 @@
     "src"
   ],
   "dependencies": {
-    "@tanstack/hotkeys": "workspace:*",
-    "@tanstack/svelte-store": "^0.10.2"
+    "@tanstack/hotkeys": "workspace:*"
   },
   "devDependencies": {
     "@sveltejs/package": "^2.5.7",

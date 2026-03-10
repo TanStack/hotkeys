@@ -1,14 +1,15 @@
 import { HotkeyRecorder } from '@tanstack/hotkeys'
-import { useStore } from '@tanstack/svelte-store'
 import { onDestroy } from 'svelte'
 import { getDefaultHotkeysOptions } from './HotkeysCtx'
+import { createStoreSubscriber, resolveMaybeGetter } from './internal.svelte'
 import type { Hotkey, HotkeyRecorderOptions } from '@tanstack/hotkeys'
+import type { MaybeGetter } from './internal.svelte'
 
 export interface SvelteHotkeyRecorder {
   /** Whether recording is currently active */
-  isRecording: boolean
+  readonly isRecording: boolean
   /** The currently recorded hotkey (for live preview) */
-  recordedHotkey: Hotkey | null
+  readonly recordedHotkey: Hotkey | null
   /** Start recording a new hotkey */
   startRecording: () => void
   /** Stop recording (same as cancel) */
@@ -44,51 +45,74 @@ export interface SvelteHotkeyRecorder {
  * </script>
  *
  * <div>
- *   <button on:click={recorder.startRecording}>
+ *   <button onclick={recorder.startRecording}>
  *     {recorder.isRecording ? 'Recording...' : 'Edit Shortcut'}
  *   </button>
- *   {recorder.recordedHotkey && (
+ *   {#if recorder.recordedHotkey}
  *     <div>Recording: {recorder.recordedHotkey}</div>
- *   )}
+ *   {/if}
  * </div>
  * ```
  */
 
+class SvelteHotkeyRecorderState implements SvelteHotkeyRecorder {
+  #recorder: HotkeyRecorder
+  #subscribe: () => void
+
+  constructor(options: HotkeyRecorderOptions) {
+    this.#recorder = new HotkeyRecorder(options)
+    this.#subscribe = createStoreSubscriber(this.#recorder.store)
+  }
+
+  get isRecording(): boolean {
+    this.#subscribe()
+    return this.#recorder.store.state.isRecording
+  }
+
+  get recordedHotkey(): Hotkey | null {
+    this.#subscribe()
+    return this.#recorder.store.state.recordedHotkey
+  }
+
+  setOptions(options: HotkeyRecorderOptions): void {
+    this.#recorder.setOptions(options)
+  }
+
+  startRecording(): void {
+    this.#recorder.start()
+  }
+
+  stopRecording(): void {
+    this.#recorder.stop()
+  }
+
+  cancelRecording(): void {
+    this.#recorder.cancel()
+  }
+
+  destroy(): void {
+    this.#recorder.destroy()
+  }
+}
+
 export function createHotkeyRecorder(
-  options: HotkeyRecorderOptions,
+  options: MaybeGetter<HotkeyRecorderOptions>,
 ): SvelteHotkeyRecorder {
-  const mergedOptions = {
+  const recorder = new SvelteHotkeyRecorderState({
     ...getDefaultHotkeysOptions().hotkeyRecorder,
-    ...options,
-  } as HotkeyRecorderOptions
+    ...resolveMaybeGetter(options),
+  } as HotkeyRecorderOptions)
 
-  const recorder = new HotkeyRecorder(mergedOptions)
-
-  // Sync options on every render (same pattern as createHotkey)
-  // This ensures callbacks always have access to latest values
   $effect(() => {
-    recorder.setOptions(mergedOptions)
+    recorder.setOptions({
+      ...getDefaultHotkeysOptions().hotkeyRecorder,
+      ...resolveMaybeGetter(options),
+    } as HotkeyRecorderOptions)
   })
-
-  const isRecordingRef = useStore(recorder.store, (state) => state.isRecording)
-  const recordedHotkeyRef = useStore(
-    recorder.store,
-    (state) => state.recordedHotkey,
-  )
 
   onDestroy(() => {
     recorder.destroy()
   })
 
-  return {
-    get isRecording() {
-      return isRecordingRef.current
-    },
-    get recordedHotkey() {
-      return recordedHotkeyRef.current
-    },
-    startRecording: () => recorder.start(),
-    stopRecording: () => recorder.stop(),
-    cancelRecording: () => recorder.cancel(),
-  }
+  return recorder
 }

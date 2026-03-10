@@ -164,24 +164,21 @@
       <pre
         class="code-block">{`import { createHotkeySequence } from '@tanstack/svelte-hotkeys'
 
-function VimEditor() {
-  // Basic sequence
+<script lang="ts">
   createHotkeySequence(['G', 'G'], () => {
     scrollToTop()
   })
 
-  // With custom timeout (1.5 seconds)
   createHotkeySequence(
     ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown'],
     () => activateCheatMode(),
     { timeout: 1500 }
   )
 
-  // Three-key sequence
   createHotkeySequence(['C', 'I', 'W'], () => {
     changeInnerWord()
   })
-}`}</pre>
+</script>`}</pre>
     </section>
 
     {#if history.length > 0}

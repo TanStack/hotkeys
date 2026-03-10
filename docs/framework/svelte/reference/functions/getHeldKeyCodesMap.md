@@ -6,42 +6,34 @@ title: getHeldKeyCodesMap
 # Function: getHeldKeyCodesMap()
 
 ```ts
-function getHeldKeyCodesMap(): object;
+function getHeldKeyCodesMap(): SvelteHeldKeyCodesMap;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/getHeldKeyCodesMap.svelte.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHeldKeyCodesMap.svelte.ts#L30)
+Defined in: [packages/svelte-hotkeys/src/getHeldKeyCodesMap.svelte.ts:42](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHeldKeyCodesMap.svelte.ts#L42)
 
-Svelte function that returns a reactive reference to the map of currently held key names
+Svelte function that returns reactive access to the map of currently held key names
 to their physical `event.code` values.
 
 This is useful for debugging which physical key was pressed (e.g. distinguishing
 left vs right Shift via "ShiftLeft" / "ShiftRight").
-Use `$derived(getHeldKeyCodesMap().current)` for reactive access in templates.
 
 ## Returns
 
-`object`
+[`SvelteHeldKeyCodesMap`](../interfaces/SvelteHeldKeyCodesMap.md)
 
-Object with `current` property containing the held key codes map
+Object with a reactive `codes` property
 
 ```svelte
 <script>
   import { getHeldKeyCodesMap } from '@tanstack/svelte-hotkeys'
-  const heldKeyCodesMapRef = getHeldKeyCodesMap()
-  const heldKeyCodesMap = $derived(heldKeyCodesMapRef.current)
+  const heldKeyCodesMap = getHeldKeyCodesMap()
 </script>
 
 <div>
-  {Object.entries(heldKeyCodesMap).map(([key, code]) => (
-     <kbd key={key}>
-         {key} <small>{code}</small>
-     </kbd>
-   ))}
+  {#each Object.entries(heldKeyCodesMap.codes) as [key, code]}
+    <kbd>
+      {key} <small>{code}</small>
+    </kbd>
+  {/each}
  </div>
-```
-
-### current
-
-```ts
-readonly current: Record<string, string>;
 ```

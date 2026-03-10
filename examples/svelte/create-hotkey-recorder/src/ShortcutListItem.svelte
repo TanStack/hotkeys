@@ -12,8 +12,7 @@
 
   let { actionName, hotkey, isRecording, onEdit, onCancel }: Props = $props()
 
-  const heldKeysRef = getHeldKeys()
-  const heldKeys = $derived(heldKeysRef.current)
+  const heldKeys = getHeldKeys()
 </script>
 
 <div class="shortcut-item" class:recording={isRecording}>
@@ -22,9 +21,9 @@
     <div class="shortcut-hotkey">
       {#if isRecording}
         <div class="recording-indicator">
-          {#if heldKeys.length > 0}
+          {#if heldKeys.keys.length > 0}
             <div class="held-hotkeys">
-              {#each heldKeys as key, index}
+              {#each heldKeys.keys as key, index}
                 {#if index > 0}
                   <span class="plus">+</span>
                 {/if}

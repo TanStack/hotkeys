@@ -3,9 +3,9 @@ title: Hotkeys Guide
 id: hotkeys
 ---
 
-The `createHotkey` function is the primary way to register keyboard shortcuts in Svelte applications. It wraps the singleton `HotkeyManager` with automatic cleanup, support for refs, and reactive option syncing.
+Use `createHotkey` for global shortcuts and `createHotkeyAttachment` for element-scoped shortcuts. This keeps the common global case simple while making scoped behavior feel native to Svelte 5.
 
-## Basic Usage
+## Global hotkeys
 
 ```svelte
 <script lang="ts">
@@ -26,29 +26,27 @@ createHotkey('Mod+S', (event, context) => {
 })
 ```
 
-## Default Options
+## Scoped hotkeys
 
-`createHotkey` uses the same core defaults as the framework-agnostic manager:
+Use attachments instead of capturing an element ref just to pass it back into the API.
 
-```ts
-createHotkey('Mod+S', callback, {
-  enabled: true,
-  preventDefault: true,
-  stopPropagation: true,
-  eventType: 'keydown',
-  requireReset: false,
-  ignoreInputs: undefined,
-  target: document,
-  platform: undefined,
-  conflictBehavior: 'warn',
-})
+```svelte
+<script lang="ts">
+  import { createHotkeyAttachment } from '@tanstack/svelte-hotkeys'
+
+  const closePanel = createHotkeyAttachment('Escape', () => {
+    close()
+  })
+</script>
+
+<div tabindex="0" {@attach closePanel}>Panel content</div>
 ```
 
-## Reactive Options
+## Reactive inputs
 
-Svelte options can be plain values or getter functions for reactive state.
+Hotkeys can take plain values for static registrations or getter functions when the hotkey or options depend on reactive state.
 
-### `enabled`
+### Reactive `enabled`
 
 ```svelte
 <script lang="ts">
@@ -56,38 +54,44 @@ Svelte options can be plain values or getter functions for reactive state.
 
   let isEditing = $state(false)
 
-  createHotkey('Mod+S', () => save(), { enabled: () => isEditing })
+  createHotkey(
+    'Mod+S',
+    () => save(),
+    () => ({ enabled: isEditing }),
+  )
 </script>
 ```
 
-### `target`
+### Reactive hotkey values
 
 ```svelte
 <script lang="ts">
   import { createHotkey } from '@tanstack/svelte-hotkeys'
 
-  let panelRef = $state<HTMLDivElement | null>(null)
+  let shortcut = $state('Mod+S')
 
-  createHotkey('Escape', () => closePanel(), { target: () => panelRef })
+  createHotkey(
+    () => shortcut,
+    () => save(),
+  )
 </script>
-
-<div bind:this={panelRef} tabindex="0">Panel content</div>
 ```
 
-## Global Default Options via Provider
+## Default options
+
+Set defaults explicitly with `setHotkeysContext` when a subtree needs shared behavior:
 
 ```svelte
 <script lang="ts">
-  import { HotkeysProvider } from '@tanstack/svelte-hotkeys'
-</script>
+  import { setHotkeysContext } from '@tanstack/svelte-hotkeys'
 
-<HotkeysProvider
-  defaultOptions={{
-    hotkey: { preventDefault: false, ignoreInputs: false },
-  }}
->
-  <AppContent />
-</HotkeysProvider>
+  setHotkeysContext({
+    hotkey: {
+      preventDefault: false,
+      ignoreInputs: false,
+    },
+  })
+</script>
 ```
 
 ## Common Options
@@ -119,7 +123,7 @@ createHotkey('Mod+S', () => save(), { platform: 'mac' })
 
 ## Automatic Cleanup
 
-Hotkeys are automatically unregistered when the owning component unmounts.
+Global hotkeys are automatically unregistered when the owning component unmounts. Attachment-based hotkeys clean themselves up when the attached element is removed or when reactive inputs change.
 
 ## The Hotkey Manager
 

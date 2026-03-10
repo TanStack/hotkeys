@@ -1,42 +1,40 @@
-import { formatHotkeySequence, getSequenceManager } from '@tanstack/hotkeys'
+import { getSequenceManager } from '@tanstack/hotkeys'
 import { getDefaultHotkeysOptions } from './HotkeysCtx'
+import { resolveMaybeGetter } from './internal.svelte'
 import type {
   HotkeyCallback,
-  HotkeyCallbackContext,
   HotkeySequence,
   SequenceOptions,
-  SequenceRegistrationHandle,
 } from '@tanstack/hotkeys'
-import type { ResolvedTarget, Target } from './HotkeysCtx'
+import type { MaybeGetter } from './internal.svelte'
+import type { Attachment } from 'svelte/attachments'
 
 export interface CreateHotkeySequenceOptions extends Omit<
   SequenceOptions,
   'target'
-> {
-  /**
-   * The DOM element to attach the event listener to.
-   * Can be a Svelte ref, direct DOM element, or null.
-   * Defaults to document.
-   */
-  target?: Target
-}
+> {}
 
-function resolveTarget(target: Target): ResolvedTarget {
-  if (typeof target === 'function') {
-    return target() ?? null
-  }
-  return target
+function registerHotkeySequence(
+  target: HTMLElement | Document | Window,
+  sequence: MaybeGetter<HotkeySequence>,
+  callback: HotkeyCallback,
+  options: MaybeGetter<CreateHotkeySequenceOptions>,
+) {
+  const resolvedSequence = resolveMaybeGetter(sequence)
+  const resolvedOptions = resolveMaybeGetter(options)
+  const mergedOptions = {
+    ...getDefaultHotkeysOptions().hotkeySequence,
+    ...resolvedOptions,
+  } as CreateHotkeySequenceOptions
+
+  return getSequenceManager().register(resolvedSequence, callback, {
+    ...mergedOptions,
+    target,
+  })
 }
 
 /**
- * Svelte function for registering a keyboard shortcut sequence (Vim-style).
- *
- * This hook allows you to register multi-key sequences like 'g g' or 'd d'
- * that trigger when the full sequence is pressed within a timeout.
- *
- * @param sequence - Array of hotkey strings that form the sequence
- * @param callback - Function to call when the sequence is completed
- * @param options - Options for the sequence behavior
+ * Register a global keyboard shortcut sequence for the current component.
  *
  * @example
  * ```svelte
@@ -65,97 +63,72 @@ function resolveTarget(target: Target): ResolvedTarget {
  * ```
  */
 export function createHotkeySequence(
-  sequence: HotkeySequence,
+  sequence: MaybeGetter<HotkeySequence>,
   callback: HotkeyCallback,
-  options: CreateHotkeySequenceOptions = {},
+  options: MaybeGetter<CreateHotkeySequenceOptions> = {},
 ): void {
-  const mergedOptions = {
-    ...getDefaultHotkeysOptions().hotkeySequence,
-    ...options,
-  } as CreateHotkeySequenceOptions
-
-  const manager = getSequenceManager()
-
-  // Stable ref for registration handle
-  let registrationRef: SequenceRegistrationHandle | null = null
-
-  // Refs to capture current values for use in effect without adding dependencies
-  let callbackRef = callback
-  let optionsRef = mergedOptions
-
   $effect(() => {
-    callbackRef = callback
-    optionsRef = mergedOptions
-  })
-
-  // Track previous target and sequence to detect changes requiring re-registration
-  let prevTargetRef: ResolvedTarget = null
-  let prevSequenceRef: string | null = null
-
-  // Normalize to hotkey sequence string (join with spaces)
-  const hotkeySequenceString = $derived.by(() => formatHotkeySequence(sequence))
-
-  // Extract options without target (target is handled separately)
-  const { target: _target, ...optionsWithoutTarget } = $derived(mergedOptions)
-
-  $effect(() => {
-    if (sequence.length === 0) {
+    if (typeof document === 'undefined') {
       return
     }
 
-    // Resolve target inside the effect so refs are already attached after mount
-    const resolvedTarget = optionsRef.target
-      ? resolveTarget(optionsRef.target)
-      : typeof document !== 'undefined'
-        ? document
-        : null
-
-    // Skip if no valid target (SSR or ref still null)
-    if (!resolvedTarget) {
+    const resolvedSequence = resolveMaybeGetter(sequence)
+    if (resolvedSequence.length === 0) {
       return
     }
 
-    // Check if we need to re-register (target or sequence changed)
-    const targetChanged =
-      prevTargetRef !== null && prevTargetRef !== resolvedTarget
-    const sequenceChanged =
-      prevSequenceRef !== null && prevSequenceRef !== hotkeySequenceString
+    const registration = registerHotkeySequence(
+      document,
+      resolvedSequence,
+      callback,
+      options,
+    )
 
-    // If we have an active registration and target/sequence changed, unregister first
-    if (registrationRef?.isActive && (targetChanged || sequenceChanged)) {
-      registrationRef.unregister()
-      registrationRef = null
-    }
-
-    // Register if needed (no active registration)
-    if (!registrationRef || !registrationRef.isActive) {
-      registrationRef = manager.register(sequence, callback, {
-        ...optionsRef,
-        target: resolvedTarget,
-      })
-    }
-
-    // Update tracking refs
-    prevTargetRef = resolvedTarget
-    prevSequenceRef = hotkeySequenceString
-
-    // Cleanup on unmount
     return () => {
-      if (registrationRef?.isActive) {
-        registrationRef.unregister()
-        registrationRef = null
-      }
+      registration.unregister()
     }
   })
+}
 
-  // Sync callback and options on EVERY render
-  $effect(() => {
-    if (registrationRef?.isActive) {
-      registrationRef.callback = (
-        event: KeyboardEvent,
-        context: HotkeyCallbackContext,
-      ) => callbackRef(event, context)
-      registrationRef.setOptions(optionsWithoutTarget)
+/**
+ * Create an attachment for element-scoped keyboard sequences.
+ *
+ * @example
+ * ```svelte
+ * <script lang="ts">
+ *   import { createHotkeySequenceAttachment } from '@tanstack/svelte-hotkeys'
+ *
+ *   const vimKeys = createHotkeySequenceAttachment(['G', 'G'], () => {
+ *     scrollToTop()
+ *   })
+ * </script>
+ *
+ * <div tabindex="0" {@attach vimKeys}>
+ *   Focus here and press g then g
+ * </div>
+ * ```
+ */
+export function createHotkeySequenceAttachment(
+  sequence: MaybeGetter<HotkeySequence>,
+  callback: HotkeyCallback,
+  options: MaybeGetter<CreateHotkeySequenceOptions> = {},
+): Attachment<HTMLElement> {
+  return (element) => {
+    const resolvedSequence = resolveMaybeGetter(sequence)
+
+    if (resolvedSequence.length === 0) {
+      return
     }
-  })
+
+    const registration = registerHotkeySequence(
+      element,
+      resolvedSequence,
+      callback,
+      options,
+    )
+
+    return () => {
+      registration.unregister()
+    }
+  }
 }

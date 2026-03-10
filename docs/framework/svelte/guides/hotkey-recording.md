@@ -9,7 +9,10 @@ TanStack Hotkeys provides the `createHotkeyRecorder` function for building short
 
 ```svelte
 <script lang="ts">
-  import { formatForDisplay, createHotkeyRecorder } from '@tanstack/svelte-hotkeys'
+  import {
+    createHotkeyRecorder,
+    formatForDisplay,
+  } from '@tanstack/svelte-hotkeys'
 
   const recorder = createHotkeyRecorder({
     onRecord: (hotkey) => {
@@ -19,10 +22,7 @@ TanStack Hotkeys provides the `createHotkeyRecorder` function for building short
 </script>
 
 <div>
-  <button
-    onclick={() =>
-      recorder.isRecording ? recorder.stopRecording() : recorder.startRecording()}
-  >
+  <button onclick={recorder.startRecording}>
     {recorder.isRecording
       ? 'Press a key combination...'
       : recorder.recordedHotkey
@@ -53,22 +53,20 @@ createHotkeyRecorder({
 })
 ```
 
-## Global Default Options via Provider
+Options can also be reactive:
 
 ```svelte
 <script lang="ts">
-  import { HotkeysProvider } from '@tanstack/svelte-hotkeys'
-</script>
+  import { createHotkeyRecorder } from '@tanstack/svelte-hotkeys'
 
-<HotkeysProvider
-  defaultOptions={{
-    hotkeyRecorder: {
-      onCancel: () => console.log('Recording cancelled'),
+  let actionName = $state('Save')
+
+  const recorder = createHotkeyRecorder(() => ({
+    onRecord: (hotkey) => {
+      console.log(`${actionName}:`, hotkey)
     },
-  }}
->
-  <AppContent />
-</HotkeysProvider>
+  }))
+</script>
 ```
 
 ## Recording Behavior

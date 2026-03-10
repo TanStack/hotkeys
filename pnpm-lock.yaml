@@ -860,7 +860,7 @@ importers:
   examples/svelte/create-hotkey:
     dependencies:
       '@tanstack/svelte-hotkeys':
-        specifier: workspace:*
+        specifier: 0.0.1
         version: link:../../../packages/svelte-hotkeys
       svelte:
         specifier: ^5.53.7
@@ -879,7 +879,7 @@ importers:
   examples/svelte/create-hotkey-recorder:
     dependencies:
       '@tanstack/svelte-hotkeys':
-        specifier: workspace:*
+        specifier: 0.0.1
         version: link:../../../packages/svelte-hotkeys
       svelte:
         specifier: ^5.53.7
@@ -898,7 +898,7 @@ importers:
   examples/svelte/create-hotkey-sequence:
     dependencies:
       '@tanstack/svelte-hotkeys':
-        specifier: workspace:*
+        specifier: 0.0.1
         version: link:../../../packages/svelte-hotkeys
       svelte:
         specifier: ^5.53.7
@@ -917,7 +917,7 @@ importers:
   examples/svelte/get-held-keys:
     dependencies:
       '@tanstack/svelte-hotkeys':
-        specifier: workspace:*
+        specifier: 0.0.1
         version: link:../../../packages/svelte-hotkeys
       svelte:
         specifier: ^5.53.7
@@ -936,7 +936,7 @@ importers:
   examples/svelte/get-is-key-held:
     dependencies:
       '@tanstack/svelte-hotkeys':
-        specifier: workspace:*
+        specifier: 0.0.1
         version: link:../../../packages/svelte-hotkeys
       svelte:
         specifier: ^5.53.7
@@ -1276,9 +1276,6 @@ importers:
       '@tanstack/hotkeys':
         specifier: workspace:*
         version: link:../hotkeys
-      '@tanstack/svelte-store':
-        specifier: ^0.10.2
-        version: 0.10.2(svelte@5.53.7)
     devDependencies:
       '@sveltejs/package':
         specifier: ^2.5.7
@@ -4003,11 +4000,6 @@ packages:
 
   '@tanstack/store@0.9.2':
     resolution: {integrity: sha512-K013lUJEFJK2ofFQ/hZKJUmCnpcV00ebLyOyFOWQvyQHUOZp/iYO84BM6aOGiV81JzwbX0APTVmW8YI7yiG5oA==}
-
-  '@tanstack/svelte-store@0.10.2':
-    resolution: {integrity: sha512-6yrYg6ukZZeqPf3CY5+3H0DI6bUoLNwmImgqLNchavK89LtHL4Sel1fDyLtXymMssK4kYrJOQQ9+BBZWZhhTDw==}
-    peerDependencies:
-      svelte: ^5.0.0
 
   '@tanstack/typedoc-config@0.3.3':
     resolution: {integrity: sha512-wVT2YfKDSpd+4f7fk6UaPIP3a2J7LSovlyVuFF1PH2yQb7gjqehod5zdFiwFyEXgvI9XGuFvvs1OehkKNYcr6A==}
@@ -11560,11 +11552,6 @@ snapshots:
       solid-js: 1.9.11
 
   '@tanstack/store@0.9.2': {}
-
-  '@tanstack/svelte-store@0.10.2(svelte@5.53.7)':
-    dependencies:
-      '@tanstack/store': 0.9.2
-      svelte: 5.53.7
 
   '@tanstack/typedoc-config@0.3.3(typescript@5.9.3)':
     dependencies:

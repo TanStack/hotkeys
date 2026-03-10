@@ -12,32 +12,23 @@ function createHotkeySequence(
    options): void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:67](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts#L67)
+Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:65](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts#L65)
 
-Svelte function for registering a keyboard shortcut sequence (Vim-style).
-
-This hook allows you to register multi-key sequences like 'g g' or 'd d'
-that trigger when the full sequence is pressed within a timeout.
+Register a global keyboard shortcut sequence for the current component.
 
 ## Parameters
 
 ### sequence
 
-`HotkeySequence`
-
-Array of hotkey strings that form the sequence
+`MaybeGetter`\<`HotkeySequence`\>
 
 ### callback
 
 `HotkeyCallback`
 
-Function to call when the sequence is completed
-
 ### options
 
-[`CreateHotkeySequenceOptions`](../interfaces/CreateHotkeySequenceOptions.md) = `{}`
-
-Options for the sequence behavior
+`MaybeGetter`\<[`CreateHotkeySequenceOptions`](../interfaces/CreateHotkeySequenceOptions.md)\> = `{}`
 
 ## Returns
 
