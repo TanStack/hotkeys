@@ -627,13 +627,86 @@ describe('matchesKeyboardEvent', () => {
     })
   })
 
-  describe('dead key with non-Key/Digit codes', () => {
-    it('should not match dead key with non-letter, non-digit code', () => {
+  describe('dead key with punctuation codes', () => {
+    it('should match dead key with punctuation code via fallback', () => {
       const event = createKeyboardEvent('Dead', {
         altKey: true,
         code: 'BracketLeft',
       })
+      expect(matchesKeyboardEvent(event, 'Alt+[' as Hotkey)).toBe(true)
+    })
+
+    it('should not match dead key with unknown code', () => {
+      const event = createKeyboardEvent('Dead', {
+        altKey: true,
+        code: 'UnknownCode',
+      })
       expect(matchesKeyboardEvent(event, 'Alt+[' as Hotkey)).toBe(false)
+    })
+  })
+
+  describe('event.code fallback for punctuation keys', () => {
+    it('should fallback to event.code when macOS Option+minus produces en-dash', () => {
+      const event = createKeyboardEvent('–', {
+        altKey: true,
+        code: 'Minus',
+      })
+      expect(matchesKeyboardEvent(event, 'Alt+-' as Hotkey)).toBe(true)
+    })
+
+    it('should fallback to event.code for all punctuation keys with Alt', () => {
+      const cases: Array<[string, string, string]> = [
+        ['–', 'Minus', '-'],      // Option+- → en-dash
+        ['≠', 'Equal', '='],      // Option+= → ≠
+        ['÷', 'Slash', '/'],      // Option+/ → ÷
+        ['\u201c', 'BracketLeft', '['],  // Option+[ → "
+        ['\u2018', 'BracketRight', ']'], // Option+] → '
+        ['«', 'Backslash', '\\'], // Option+\ → «
+        ['≤', 'Comma', ','],      // Option+, → ≤
+        ['≥', 'Period', '.'],     // Option+. → ≥
+        ['`', 'Backquote', '`'],  // Option+` → ` (dead key on some layouts)
+      ]
+
+      for (const [composedChar, code, expectedKey] of cases) {
+        const event = createKeyboardEvent(composedChar, {
+          altKey: true,
+          code,
+        })
+        expect(
+          matchesKeyboardEvent(event, `Alt+${expectedKey}` as Hotkey),
+        ).toBe(true)
+      }
+    })
+
+    it('should match punctuation keys with multiple modifiers', () => {
+      // Cmd+Alt+- on macOS
+      const event = createKeyboardEvent('–', {
+        altKey: true,
+        metaKey: true,
+        code: 'Minus',
+      })
+      expect(matchesKeyboardEvent(event, 'Mod+Alt+-' as Hotkey, 'mac')).toBe(true)
+    })
+
+    it('should still match punctuation keys directly without fallback', () => {
+      const event = createKeyboardEvent('-', { code: 'Minus' })
+      expect(matchesKeyboardEvent(event, '-' as Hotkey)).toBe(true)
+    })
+
+    it('should not match punctuation fallback if code is missing', () => {
+      const event = createKeyboardEvent('–', {
+        altKey: true,
+        code: undefined,
+      })
+      expect(matchesKeyboardEvent(event, 'Alt+-' as Hotkey)).toBe(false)
+    })
+
+    it('should match Ctrl+punctuation without needing fallback (non-macOS)', () => {
+      const event = createKeyboardEvent('-', {
+        ctrlKey: true,
+        code: 'Minus',
+      })
+      expect(matchesKeyboardEvent(event, 'Control+-' as Hotkey)).toBe(true)
     })
   })
 

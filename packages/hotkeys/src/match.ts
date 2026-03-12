@@ -1,4 +1,5 @@
 import {
+  PUNCTUATION_CODE_MAP,
   detectPlatform,
   isSingleLetterKey,
   normalizeKeyName,
@@ -15,8 +16,9 @@ import type {
  * Checks if a KeyboardEvent matches a hotkey.
  *
  * Uses the `key` property from KeyboardEvent for matching, with a fallback to `code`
- * for letter keys and digit keys (0-9) when `key` produces special characters
- * (e.g., macOS Option+letter or Shift+number). Letter keys are matched case-insensitively.
+ * for letter keys, digit keys (0-9), and punctuation keys when `key` produces special
+ * characters (e.g., macOS Option+letter, Shift+number, or Option+punctuation).
+ * Letter keys are matched case-insensitively.
  *
  * Also handles "dead key" events where `event.key` is `'Dead'` instead of the expected
  * character. This commonly occurs on macOS with Option+letter combinations (e.g., Option+E,
@@ -108,6 +110,12 @@ export function matchesKeyboardEvent(
       if (codeDigit.length === 1 && /^[0-9]$/.test(codeDigit)) {
         return codeDigit === hotkeyKey
       }
+    }
+    // Fallback for punctuation keys (e.g., Minus, Slash, BracketLeft).
+    // On macOS, Option+punctuation produces composed characters (e.g., Option+- → '–'),
+    // but event.code still reports the physical key.
+    if (event.code && event.code in PUNCTUATION_CODE_MAP) {
+      return PUNCTUATION_CODE_MAP[event.code] === hotkeyKey
     }
     return false
   }
