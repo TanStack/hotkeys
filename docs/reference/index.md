@@ -62,6 +62,7 @@ title: "@tanstack/hotkeys"
 - [MODIFIER\_ORDER](variables/MODIFIER_ORDER.md)
 - [NAVIGATION\_KEYS](variables/NAVIGATION_KEYS.md)
 - [NUMBER\_KEYS](variables/NUMBER_KEYS.md)
+- [PUNCTUATION\_CODE\_MAP](variables/PUNCTUATION_CODE_MAP.md)
 - [PUNCTUATION\_KEYS](variables/PUNCTUATION_KEYS.md)
 - [STANDARD\_MODIFIER\_LABELS](variables/STANDARD_MODIFIER_LABELS.md)
 

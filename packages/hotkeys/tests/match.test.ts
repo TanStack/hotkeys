@@ -656,15 +656,15 @@ describe('matchesKeyboardEvent', () => {
 
     it('should fallback to event.code for all punctuation keys with Alt', () => {
       const cases: Array<[string, string, string]> = [
-        ['–', 'Minus', '-'],      // Option+- → en-dash
-        ['≠', 'Equal', '='],      // Option+= → ≠
-        ['÷', 'Slash', '/'],      // Option+/ → ÷
-        ['\u201c', 'BracketLeft', '['],  // Option+[ → "
+        ['–', 'Minus', '-'], // Option+- → en-dash
+        ['≠', 'Equal', '='], // Option+= → ≠
+        ['÷', 'Slash', '/'], // Option+/ → ÷
+        ['\u201c', 'BracketLeft', '['], // Option+[ → "
         ['\u2018', 'BracketRight', ']'], // Option+] → '
         ['«', 'Backslash', '\\'], // Option+\ → «
-        ['≤', 'Comma', ','],      // Option+, → ≤
-        ['≥', 'Period', '.'],     // Option+. → ≥
-        ['`', 'Backquote', '`'],  // Option+` → ` (dead key on some layouts)
+        ['≤', 'Comma', ','], // Option+, → ≤
+        ['≥', 'Period', '.'], // Option+. → ≥
+        ['`', 'Backquote', '`'], // Option+` → ` (dead key on some layouts)
       ]
 
       for (const [composedChar, code, expectedKey] of cases) {
@@ -685,7 +685,9 @@ describe('matchesKeyboardEvent', () => {
         metaKey: true,
         code: 'Minus',
       })
-      expect(matchesKeyboardEvent(event, 'Mod+Alt+-' as Hotkey, 'mac')).toBe(true)
+      expect(matchesKeyboardEvent(event, 'Mod+Alt+-' as Hotkey, 'mac')).toBe(
+        true,
+      )
     })
 
     it('should still match punctuation keys directly without fallback', () => {
