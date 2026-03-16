@@ -447,7 +447,7 @@ importers:
         specifier: 0.9.15
         version: 0.9.15(csstype@3.2.3)(preact@10.28.4)(solid-js@1.9.11)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 5.9.3
@@ -472,7 +472,7 @@ importers:
         specifier: 0.9.15
         version: 0.9.15(csstype@3.2.3)(preact@10.28.4)(solid-js@1.9.11)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 5.9.3
@@ -497,7 +497,7 @@ importers:
         specifier: 0.9.15
         version: 0.9.15(csstype@3.2.3)(preact@10.28.4)(solid-js@1.9.11)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 5.9.3
@@ -522,7 +522,7 @@ importers:
         specifier: 0.9.15
         version: 0.9.15(csstype@3.2.3)(preact@10.28.4)(solid-js@1.9.11)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 5.9.3
@@ -547,7 +547,7 @@ importers:
         specifier: 0.9.15
         version: 0.9.15(csstype@3.2.3)(preact@10.28.4)(solid-js@1.9.11)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 5.9.3
@@ -572,7 +572,7 @@ importers:
         specifier: 0.9.10
         version: 0.9.10(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solid-js@1.9.11)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -606,7 +606,7 @@ importers:
         specifier: 0.9.10
         version: 0.9.10(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solid-js@1.9.11)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -640,7 +640,7 @@ importers:
         specifier: 0.9.10
         version: 0.9.10(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solid-js@1.9.11)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -674,7 +674,7 @@ importers:
         specifier: 0.9.10
         version: 0.9.10(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solid-js@1.9.11)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -708,7 +708,7 @@ importers:
         specifier: 0.9.10
         version: 0.9.10(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solid-js@1.9.11)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -735,7 +735,7 @@ importers:
         specifier: ^0.4.1
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.11
@@ -757,7 +757,7 @@ importers:
         specifier: ^0.4.1
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.11
@@ -785,7 +785,7 @@ importers:
         specifier: ^0.4.1
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.11
@@ -807,7 +807,7 @@ importers:
         specifier: ^0.4.1
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.11
@@ -829,7 +829,7 @@ importers:
         specifier: ^0.4.1
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.11
@@ -950,7 +950,7 @@ importers:
         specifier: ^0.2.10
         version: 0.2.10(csstype@3.2.3)(solid-js@1.9.11)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: link:../../../packages/vue-hotkeys-devtools
       '@vitejs/plugin-vue':
         specifier: ^6.0.4
@@ -975,7 +975,7 @@ importers:
         specifier: ^0.2.10
         version: 0.2.10(csstype@3.2.3)(solid-js@1.9.11)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: link:../../../packages/vue-hotkeys-devtools
       '@vitejs/plugin-vue':
         specifier: ^6.0.4
@@ -1000,7 +1000,7 @@ importers:
         specifier: ^0.2.10
         version: 0.2.10(csstype@3.2.3)(solid-js@1.9.11)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: link:../../../packages/vue-hotkeys-devtools
       '@vitejs/plugin-vue':
         specifier: ^6.0.4
@@ -1025,7 +1025,7 @@ importers:
         specifier: ^0.2.10
         version: 0.2.10(csstype@3.2.3)(solid-js@1.9.11)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: link:../../../packages/vue-hotkeys-devtools
       '@vitejs/plugin-vue':
         specifier: ^6.0.4
@@ -1050,7 +1050,7 @@ importers:
         specifier: ^0.2.10
         version: 0.2.10(csstype@3.2.3)(solid-js@1.9.11)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.4.1
+        specifier: ^0.4.2
         version: link:../../../packages/vue-hotkeys-devtools
       '@vitejs/plugin-vue':
         specifier: ^6.0.4
@@ -8822,35 +8822,35 @@ snapshots:
       '@babel/preset-env': 7.29.0(@babel/core@7.29.0)
       '@babel/runtime': 7.28.6
       '@discoveryjs/json-ext': 0.6.3
-      '@ngtools/webpack': 21.2.1(@angular/compiler-cli@21.2.1(@angular/compiler@21.2.1)(typescript@5.9.3))(typescript@5.9.3)(webpack@5.105.2(esbuild@0.27.3))
+      '@ngtools/webpack': 21.2.1(@angular/compiler-cli@21.2.1(@angular/compiler@21.2.1)(typescript@5.9.3))(typescript@5.9.3)(webpack@5.105.2)
       ansi-colors: 4.1.3
       autoprefixer: 10.4.27(postcss@8.5.6)
-      babel-loader: 10.0.0(@babel/core@7.29.0)(webpack@5.105.2(esbuild@0.27.3))
+      babel-loader: 10.0.0(@babel/core@7.29.0)(webpack@5.105.2)
       browserslist: 4.28.1
-      copy-webpack-plugin: 14.0.0(webpack@5.105.2(esbuild@0.27.3))
-      css-loader: 7.1.3(webpack@5.105.2(esbuild@0.27.3))
+      copy-webpack-plugin: 14.0.0(webpack@5.105.2)
+      css-loader: 7.1.3(webpack@5.105.2)
       esbuild-wasm: 0.27.3
       http-proxy-middleware: 3.0.5
       istanbul-lib-instrument: 6.0.3
       jsonc-parser: 3.3.1
       karma-source-map-support: 1.4.0
       less: 4.4.2
-      less-loader: 12.3.1(less@4.4.2)(webpack@5.105.2(esbuild@0.27.3))
-      license-webpack-plugin: 4.0.2(webpack@5.105.2(esbuild@0.27.3))
+      less-loader: 12.3.1(less@4.4.2)(webpack@5.105.2)
+      license-webpack-plugin: 4.0.2(webpack@5.105.2)
       loader-utils: 3.3.1
-      mini-css-extract-plugin: 2.10.0(webpack@5.105.2(esbuild@0.27.3))
+      mini-css-extract-plugin: 2.10.0(webpack@5.105.2)
       open: 11.0.0
       ora: 9.3.0
       picomatch: 4.0.3
       piscina: 5.1.4
       postcss: 8.5.6
-      postcss-loader: 8.2.0(postcss@8.5.6)(typescript@5.9.3)(webpack@5.105.2(esbuild@0.27.3))
+      postcss-loader: 8.2.0(postcss@8.5.6)(typescript@5.9.3)(webpack@5.105.2)
       resolve-url-loader: 5.0.0
       rxjs: 7.8.2
       sass: 1.97.3
-      sass-loader: 16.0.7(sass@1.97.3)(webpack@5.105.2(esbuild@0.27.3))
+      sass-loader: 16.0.7(sass@1.97.3)(webpack@5.105.2)
       semver: 7.7.4
-      source-map-loader: 5.0.0(webpack@5.105.2(esbuild@0.27.3))
+      source-map-loader: 5.0.0(webpack@5.105.2)
       source-map-support: 0.5.21
       terser: 5.46.0
       tinyglobby: 0.2.15
@@ -8861,7 +8861,7 @@ snapshots:
       webpack-dev-middleware: 7.4.5(tslib@2.8.1)(webpack@5.105.2(esbuild@0.27.3))
       webpack-dev-server: 5.2.3(tslib@2.8.1)(webpack@5.105.2(esbuild@0.27.3))
       webpack-merge: 6.0.1
-      webpack-subresource-integrity: 5.1.0(webpack@5.105.2(esbuild@0.27.3))
+      webpack-subresource-integrity: 5.1.0(webpack@5.105.2)
     optionalDependencies:
       '@angular/core': 21.2.1(@angular/compiler@21.2.1)(rxjs@7.8.2)(zone.js@0.16.1)
       '@angular/platform-browser': 21.2.1(@angular/common@21.2.1(@angular/core@21.2.1(@angular/compiler@21.2.1)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.1(@angular/compiler@21.2.1)(rxjs@7.8.2)(zone.js@0.16.1))
@@ -10694,7 +10694,7 @@ snapshots:
       '@tybys/wasm-util': 0.10.1
     optional: true
 
-  '@ngtools/webpack@21.2.1(@angular/compiler-cli@21.2.1(@angular/compiler@21.2.1)(typescript@5.9.3))(typescript@5.9.3)(webpack@5.105.2(esbuild@0.27.3))':
+  '@ngtools/webpack@21.2.1(@angular/compiler-cli@21.2.1(@angular/compiler@21.2.1)(typescript@5.9.3))(typescript@5.9.3)(webpack@5.105.2)':
     dependencies:
       '@angular/compiler-cli': 21.2.1(@angular/compiler@21.2.1)(typescript@5.9.3)
       typescript: 5.9.3
@@ -12367,7 +12367,7 @@ snapshots:
 
   axobject-query@4.1.0: {}
 
-  babel-loader@10.0.0(@babel/core@7.29.0)(webpack@5.105.2(esbuild@0.27.3)):
+  babel-loader@10.0.0(@babel/core@7.29.0)(webpack@5.105.2):
     dependencies:
       '@babel/core': 7.29.0
       find-up: 5.0.0
@@ -12769,7 +12769,7 @@ snapshots:
     dependencies:
       is-what: 3.14.1
 
-  copy-webpack-plugin@14.0.0(webpack@5.105.2(esbuild@0.27.3)):
+  copy-webpack-plugin@14.0.0(webpack@5.105.2):
     dependencies:
       glob-parent: 6.0.2
       normalize-path: 3.0.0
@@ -12804,7 +12804,7 @@ snapshots:
       shebang-command: 2.0.0
       which: 2.0.2
 
-  css-loader@7.1.3(webpack@5.105.2(esbuild@0.27.3)):
+  css-loader@7.1.3(webpack@5.105.2):
     dependencies:
       icss-utils: 5.1.0(postcss@8.5.6)
       postcss: 8.5.6
@@ -14406,7 +14406,7 @@ snapshots:
       picocolors: 1.1.1
       shell-quote: 1.8.3
 
-  less-loader@12.3.1(less@4.4.2)(webpack@5.105.2(esbuild@0.27.3)):
+  less-loader@12.3.1(less@4.4.2)(webpack@5.105.2):
     dependencies:
       less: 4.4.2
     optionalDependencies:
@@ -14431,7 +14431,7 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
-  license-webpack-plugin@4.0.2(webpack@5.105.2(esbuild@0.27.3)):
+  license-webpack-plugin@4.0.2(webpack@5.105.2):
     dependencies:
       webpack-sources: 3.3.4
     optionalDependencies:
@@ -14656,7 +14656,7 @@ snapshots:
 
   min-indent@1.0.1: {}
 
-  mini-css-extract-plugin@2.10.0(webpack@5.105.2(esbuild@0.27.3)):
+  mini-css-extract-plugin@2.10.0(webpack@5.105.2):
     dependencies:
       schema-utils: 4.3.3
       tapable: 2.3.0
@@ -15228,7 +15228,7 @@ snapshots:
     optionalDependencies:
       postcss: 8.5.6
 
-  postcss-loader@8.2.0(postcss@8.5.6)(typescript@5.9.3)(webpack@5.105.2(esbuild@0.27.3)):
+  postcss-loader@8.2.0(postcss@8.5.6)(typescript@5.9.3)(webpack@5.105.2):
     dependencies:
       cosmiconfig: 9.0.0(typescript@5.9.3)
       jiti: 2.6.1
@@ -15641,7 +15641,7 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
-  sass-loader@16.0.7(sass@1.97.3)(webpack@5.105.2(esbuild@0.27.3)):
+  sass-loader@16.0.7(sass@1.97.3)(webpack@5.105.2):
     dependencies:
       neo-async: 2.6.2
     optionalDependencies:
@@ -15966,7 +15966,7 @@ snapshots:
 
   source-map-js@1.2.1: {}
 
-  source-map-loader@5.0.0(webpack@5.105.2(esbuild@0.27.3)):
+  source-map-loader@5.0.0(webpack@5.105.2):
     dependencies:
       iconv-lite: 0.6.3
       source-map-js: 1.2.1
@@ -16615,7 +16615,7 @@ snapshots:
 
   webpack-sources@3.3.4: {}
 
-  webpack-subresource-integrity@5.1.0(webpack@5.105.2(esbuild@0.27.3)):
+  webpack-subresource-integrity@5.1.0(webpack@5.105.2):
     dependencies:
       typed-assert: 1.0.9
       webpack: 5.105.2(esbuild@0.27.3)

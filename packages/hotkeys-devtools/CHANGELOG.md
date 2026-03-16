@@ -1,5 +1,11 @@
 # @tanstack/hotkeys-devtools
 
+## 0.4.2
+
+### Patch Changes
+
+- Moves devtools theme to the component to avoid theme miss-match. ([#67](https://github.com/TanStack/hotkeys/pull/67))
+
 ## 0.4.1
 
 ### Patch Changes
