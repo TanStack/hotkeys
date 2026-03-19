@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/angular-hotkeys",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Angular adapter for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",
