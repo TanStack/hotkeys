@@ -1,6 +1,6 @@
 import { constructCoreClass } from '@tanstack/devtools-utils/solid'
 
-const loadComponent = () => import('./HotkeysDevtools')
+const loadComponent = () => import('./components/index')
 
 export interface HotkeysDevtoolsInit {}
 
