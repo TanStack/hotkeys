@@ -297,6 +297,7 @@ export const PUNCTUATION_KEYS = new Set<PunctuationKey>([
   '-',
   ',',
   '.',
+  ';',
   '`',
 ])
 

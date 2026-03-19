@@ -664,6 +664,7 @@ describe('matchesKeyboardEvent', () => {
         ['«', 'Backslash', '\\'], // Option+\ → «
         ['≤', 'Comma', ','], // Option+, → ≤
         ['≥', 'Period', '.'], // Option+. → ≥
+        ['…', 'Semicolon', ';'], // Option+; → …
         ['`', 'Backquote', '`'], // Option+` → ` (dead key on some layouts)
       ]
 
