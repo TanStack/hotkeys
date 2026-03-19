@@ -9,7 +9,7 @@ title: MAC_MODIFIER_SYMBOLS
 const MAC_MODIFIER_SYMBOLS: Record<CanonicalModifier, string>;
 ```
 
-Defined in: [constants.ts:490](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L490)
+Defined in: [constants.ts:491](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L491)
 
 Modifier key symbols for macOS display.
 

@@ -9,7 +9,7 @@ title: normalizeKeyName
 function normalizeKeyName(key): string;
 ```
 
-Defined in: [constants.ts:448](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L448)
+Defined in: [constants.ts:449](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L449)
 
 ## Parameters
 
