@@ -512,6 +512,41 @@ describe('SequenceManager', () => {
       expect(callback).toHaveBeenCalledTimes(1)
     })
   })
+
+  describe('modifier key handling', () => {
+    it('should not reset sequence when modifier key is pressed between steps', () => {
+      const manager = SequenceManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register(['Z', 'Shift+C'], callback)
+
+      dispatchKey('z')
+      // Pressing Shift before Shift+C should not reset the sequence
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'Shift', bubbles: true }),
+      )
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'c', shiftKey: true, bubbles: true }),
+      )
+
+      expect(callback).toHaveBeenCalledTimes(1)
+    })
+
+    it('should reset sequence when a wrong non-modifier key is pressed between steps', () => {
+      const manager = SequenceManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register(['Z', 'Shift+C'], callback)
+
+      dispatchKey('z')
+      dispatchKey('x') // Wrong key resets the sequence
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'c', shiftKey: true, bubbles: true }),
+      )
+
+      expect(callback).not.toHaveBeenCalled()
+    })
+  })
 })
 
 describe('createSequenceMatcher', () => {

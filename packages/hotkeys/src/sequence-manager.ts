@@ -1,7 +1,7 @@
 import { Store } from '@tanstack/store'
 import { formatHotkeySequence } from './format'
 import { detectPlatform } from './constants'
-import { parseHotkey } from './parse'
+import { isModifierKey, parseHotkey } from './parse'
 import { matchesKeyboardEvent } from './match'
 import {
   defaultHotkeyOptions,
@@ -407,6 +407,11 @@ export class SequenceManager {
     target: Target,
     eventType: 'keydown' | 'keyup',
   ): void {
+    // Skip modifier-only events so pressing e.g. Shift before Shift+C does not reset the sequence.
+    if (isModifierKey(event)) {
+      return
+    }
+
     const targetRegs = this.#targetRegistrations.get(target)
     if (!targetRegs) {
       return
