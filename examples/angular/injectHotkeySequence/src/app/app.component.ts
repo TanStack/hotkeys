@@ -44,6 +44,10 @@ export class AppComponent {
       addToHistory('hello → Hello World!'),
     )
 
+    injectHotkeySequence(['Shift+R', 'Shift+T'], () =>
+      addToHistory('⇧R ⇧T → Chained Shift+letter (2 steps)'),
+    )
+
     injectHotkey('Escape', () => {
       this.lastSequence.set(null)
       this.history.set([])

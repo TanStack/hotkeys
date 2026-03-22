@@ -42,6 +42,10 @@ useHotkeySequence(['H', 'E', 'L', 'L', 'O'], () =>
   addToHistory('hello → Hello World!'),
 )
 
+useHotkeySequence(['Shift+R', 'Shift+T'], () =>
+  addToHistory('⇧R ⇧T → Chained Shift+letter (2 steps)'),
+)
+
 useHotkey('Escape', () => {
   lastSequence.value = null
   history.value = []
@@ -65,6 +69,11 @@ function VimEditor() {
   // Three-key sequence
   useHotkeySequence(['C', 'I', 'W'], () => {
     changeInnerWord()
+  })
+
+  // Same modifier on each step (Shift+letter, then Shift+letter)
+  useHotkeySequence(['Shift+R', 'Shift+T'], () => {
+    doSomething()
   })
 }`
 </script>
@@ -161,6 +170,32 @@ function VimEditor() {
             class="demo-input"
             placeholder="Focus here – sequences won't trigger while typing..."
           />
+        </section>
+
+        <section class="demo-section">
+          <h2>Chained Shift+letter sequences</h2>
+          <p>
+            Each step is a chord: hold <kbd>Shift</kbd> and press a letter. You
+            can press <kbd>Shift</kbd> alone between steps—those modifier-only
+            presses do not reset progress, so the next chord still counts.
+          </p>
+          <table class="sequence-table">
+            <thead>
+              <tr>
+                <th>Sequence</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <kbd>Shift</kbd>+<kbd>r</kbd> then <kbd>Shift</kbd>+
+                  <kbd>t</kbd>
+                </td>
+                <td>Chained Shift+letter (2 steps)</td>
+              </tr>
+            </tbody>
+          </table>
         </section>
 
         <section class="demo-section">
