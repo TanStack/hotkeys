@@ -499,10 +499,12 @@ createHotkey('Control+Tab', () => nextTab())
 createHotkey('Mod+Space', () => toggle())`}</pre>
         </section>
 
-        <Show when={lastHotkey()}>
-          <div class="info-box">
-            <strong>Last triggered:</strong> {formatForDisplay(lastHotkey()!)}
-          </div>
+        <Show when={lastHotkey()} keyed>
+          {(hotkey) => (
+            <div class="info-box">
+              <strong>Last triggered:</strong> {formatForDisplay(hotkey)}
+            </div>
+          )}
         </Show>
 
         <p class="hint">
