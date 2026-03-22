@@ -109,9 +109,7 @@ export function useHotkeys(
         const resolvedEnabled =
           mergedOptions.enabled === undefined
             ? undefined
-            : resolveMaybeRefOrGetter(
-                mergedOptions.enabled,
-              )
+            : resolveMaybeRefOrGetter(mergedOptions.enabled)
         const resolvedTarget =
           mergedOptions.target === undefined
             ? undefined
