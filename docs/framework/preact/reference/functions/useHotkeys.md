@@ -9,7 +9,7 @@ title: useHotkeys
 function useHotkeys(hotkeys, commonOptions): void;
 ```
 
-Defined in: useHotkeys.ts:71
+Defined in: [useHotkeys.ts:71](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeys.ts#L71)
 
 Preact hook for registering multiple keyboard hotkeys at once.
 
