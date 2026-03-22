@@ -28,7 +28,7 @@ Subscribe to this to observe registration changes.
 destroy(): void;
 ```
 
-Defined in: [sequence-manager.ts:597](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L597)
+Defined in: [sequence-manager.ts:602](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L602)
 
 Destroys the manager and removes all listeners.
 
@@ -44,7 +44,7 @@ Destroys the manager and removes all listeners.
 getRegistrationCount(): number;
 ```
 
-Defined in: [sequence-manager.ts:590](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L590)
+Defined in: [sequence-manager.ts:595](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L595)
 
 Gets the number of registered sequences.
 
@@ -101,7 +101,7 @@ A handle to update or unregister the sequence
 resetAll(): void;
 ```
 
-Defined in: [sequence-manager.ts:532](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L532)
+Defined in: [sequence-manager.ts:537](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L537)
 
 Resets all sequence progress.
 
@@ -117,7 +117,7 @@ Resets all sequence progress.
 triggerSequence(id): boolean;
 ```
 
-Defined in: [sequence-manager.ts:546](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L546)
+Defined in: [sequence-manager.ts:551](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L551)
 
 Triggers a sequence's callback programmatically from devtools.
 Creates a synthetic KeyboardEvent from the last key in the sequence.

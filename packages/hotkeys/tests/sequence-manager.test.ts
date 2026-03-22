@@ -526,7 +526,11 @@ describe('SequenceManager', () => {
         new KeyboardEvent('keydown', { key: 'Shift', bubbles: true }),
       )
       document.dispatchEvent(
-        new KeyboardEvent('keydown', { key: 'c', shiftKey: true, bubbles: true }),
+        new KeyboardEvent('keydown', {
+          key: 'c',
+          shiftKey: true,
+          bubbles: true,
+        }),
       )
 
       expect(callback).toHaveBeenCalledTimes(1)
@@ -541,7 +545,11 @@ describe('SequenceManager', () => {
       dispatchKey('z')
       dispatchKey('x') // Wrong key resets the sequence
       document.dispatchEvent(
-        new KeyboardEvent('keydown', { key: 'c', shiftKey: true, bubbles: true }),
+        new KeyboardEvent('keydown', {
+          key: 'c',
+          shiftKey: true,
+          bubbles: true,
+        }),
       )
 
       expect(callback).not.toHaveBeenCalled()
