@@ -12,7 +12,7 @@ function useHotkeySequence(
    options): void;
 ```
 
-Defined in: [useHotkeySequence.ts:62](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeySequence.ts#L62)
+Defined in: [useHotkeySequence.ts:63](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeySequence.ts#L63)
 
 Preact hook for registering a keyboard shortcut sequence (Vim-style).
 

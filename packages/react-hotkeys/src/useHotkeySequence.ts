@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { formatHotkeySequence, getSequenceManager } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
+import { isRef } from './utils'
 import type {
   HotkeyCallback,
   HotkeyCallbackContext,
@@ -158,11 +159,4 @@ export function useHotkeySequence(
     ) => callbackRef.current(event, context)
     registrationRef.current.setOptions(optionsWithoutTarget)
   }
-}
-
-/**
- * Type guard to check if a value is a React ref-like object.
- */
-function isRef(value: unknown): value is React.RefObject<HTMLElement | null> {
-  return value !== null && typeof value === 'object' && 'current' in value
 }

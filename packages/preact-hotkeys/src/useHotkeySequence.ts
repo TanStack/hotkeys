@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'preact/hooks'
 import { formatHotkeySequence, getSequenceManager } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
+import { isRef } from './utils'
 import type { RefObject } from 'preact'
 import type {
   HotkeyCallback,
@@ -159,11 +160,4 @@ export function useHotkeySequence(
     ) => callbackRef.current(event, context)
     registrationRef.current.setOptions(optionsWithoutTarget)
   }
-}
-
-/**
- * Type guard to check if a value is a Preact ref-like object.
- */
-function isRef(value: unknown): value is RefObject<HTMLElement | null> {
-  return value !== null && typeof value === 'object' && 'current' in value
 }

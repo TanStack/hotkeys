@@ -347,8 +347,16 @@
               "to": "framework/react/reference/functions/useHotkey"
             },
             {
+              "label": "useHotkeys",
+              "to": "framework/react/reference/functions/useHotkeys"
+            },
+            {
               "label": "UseHotkeyOptions",
               "to": "framework/react/reference/interfaces/UseHotkeyOptions"
+            },
+            {
+              "label": "UseHotkeyDefinition",
+              "to": "framework/react/reference/interfaces/UseHotkeyDefinition"
             }
           ]
         },
@@ -360,8 +368,16 @@
               "to": "framework/preact/reference/functions/useHotkey"
             },
             {
+              "label": "useHotkeys",
+              "to": "framework/preact/reference/functions/useHotkeys"
+            },
+            {
               "label": "UseHotkeyOptions",
               "to": "framework/preact/reference/interfaces/UseHotkeyOptions"
+            },
+            {
+              "label": "UseHotkeyDefinition",
+              "to": "framework/preact/reference/interfaces/UseHotkeyDefinition"
             }
           ]
         },
@@ -373,8 +389,16 @@
               "to": "framework/solid/reference/functions/createHotkey"
             },
             {
+              "label": "createHotkeys",
+              "to": "framework/solid/reference/functions/createHotkeys"
+            },
+            {
               "label": "CreateHotkeyOptions",
               "to": "framework/solid/reference/interfaces/CreateHotkeyOptions"
+            },
+            {
+              "label": "CreateHotkeyDefinition",
+              "to": "framework/solid/reference/interfaces/CreateHotkeyDefinition"
             }
           ]
         },
@@ -386,8 +410,16 @@
               "to": "framework/angular/reference/functions/injectHotkey"
             },
             {
+              "label": "injectHotkeys",
+              "to": "framework/angular/reference/functions/injectHotkeys"
+            },
+            {
               "label": "InjectHotkeyOptions",
               "to": "framework/angular/reference/interfaces/InjectHotkeyOptions"
+            },
+            {
+              "label": "InjectHotkeyDefinition",
+              "to": "framework/angular/reference/interfaces/InjectHotkeyDefinition"
             },
             {
               "label": "provideHotkeys",
@@ -407,8 +439,16 @@
               "to": "framework/vue/reference/functions/useHotkey"
             },
             {
+              "label": "useHotkeys",
+              "to": "framework/vue/reference/functions/useHotkeys"
+            },
+            {
               "label": "UseHotkeyOptions",
               "to": "framework/vue/reference/interfaces/UseHotkeyOptions"
+            },
+            {
+              "label": "UseHotkeyDefinition",
+              "to": "framework/vue/reference/interfaces/UseHotkeyDefinition"
             },
             {
               "label": "provideHotkeysContext",
@@ -428,12 +468,24 @@
               "to": "framework/svelte/reference/functions/createHotkey"
             },
             {
+              "label": "createHotkeys",
+              "to": "framework/svelte/reference/functions/createHotkeys"
+            },
+            {
               "label": "createHotkeyAttachment",
               "to": "framework/svelte/reference/functions/createHotkeyAttachment"
             },
             {
+              "label": "createHotkeysAttachment",
+              "to": "framework/svelte/reference/functions/createHotkeysAttachment"
+            },
+            {
               "label": "CreateHotkeyOptions",
               "to": "framework/svelte/reference/interfaces/CreateHotkeyOptions"
+            },
+            {
+              "label": "CreateHotkeyDefinition",
+              "to": "framework/svelte/reference/interfaces/CreateHotkeyDefinition"
             },
             {
               "label": "HotkeysProvider",
@@ -942,6 +994,10 @@
               "to": "framework/react/examples/useHotkey"
             },
             {
+              "label": "useHotkeys",
+              "to": "framework/react/examples/useHotkeys"
+            },
+            {
               "label": "useHotkeySequence",
               "to": "framework/react/examples/useHotkeySequence"
             },
@@ -965,6 +1021,10 @@
             {
               "label": "useHotkey",
               "to": "framework/preact/examples/useHotkey"
+            },
+            {
+              "label": "useHotkeys",
+              "to": "framework/preact/examples/useHotkeys"
             },
             {
               "label": "useHotkeySequence",
@@ -992,6 +1052,10 @@
               "to": "framework/solid/examples/createHotkey"
             },
             {
+              "label": "createHotkeys",
+              "to": "framework/solid/examples/createHotkeys"
+            },
+            {
               "label": "createHotkeySequence",
               "to": "framework/solid/examples/createHotkeySequence"
             },
@@ -1015,6 +1079,10 @@
             {
               "label": "injectHotkey",
               "to": "framework/angular/examples/injectHotkey"
+            },
+            {
+              "label": "injectHotkeys",
+              "to": "framework/angular/examples/injectHotkeys"
             },
             {
               "label": "injectHotkeySequence",
@@ -1042,6 +1110,10 @@
               "to": "framework/vue/examples/useHotkey"
             },
             {
+              "label": "useHotkeys",
+              "to": "framework/vue/examples/useHotkeys"
+            },
+            {
               "label": "useHotkeySequence",
               "to": "framework/vue/examples/useHotkeySequence"
             },
@@ -1065,6 +1137,10 @@
             {
               "label": "createHotkey",
               "to": "framework/svelte/examples/create-hotkey"
+            },
+            {
+              "label": "createHotkeys",
+              "to": "framework/svelte/examples/create-hotkeys"
             },
             {
               "label": "createHotkeySequence",

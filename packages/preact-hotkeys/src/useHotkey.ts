@@ -6,6 +6,7 @@ import {
   rawHotkeyToParsedHotkey,
 } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
+import { isRef } from './utils'
 import type { RefObject } from 'preact'
 import type {
   Hotkey,
@@ -182,11 +183,4 @@ export function useHotkey(
     registrationRef.current.callback = callback
     registrationRef.current.setOptions(optionsWithoutTarget)
   }
-}
-
-/**
- * Type guard to check if a value is a Preact ref-like object.
- */
-function isRef(value: unknown): value is RefObject<HTMLElement | null> {
-  return value !== null && typeof value === 'object' && 'current' in value
 }

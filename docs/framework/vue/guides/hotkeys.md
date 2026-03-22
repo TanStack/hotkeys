@@ -127,6 +127,58 @@ useHotkey('Mod+S', () => save(), { platform: 'mac' })
 
 Hotkeys are automatically unregistered when the owning component unmounts.
 
+## Registering Multiple Hotkeys
+
+When you need to register several hotkeys at once — or a dynamic, variable-length list — use the `useHotkeys` (plural) composable:
+
+```vue
+<script setup>
+import { useHotkeys } from '@tanstack/vue-hotkeys'
+
+useHotkeys([
+  { hotkey: 'Mod+S', callback: () => save() },
+  { hotkey: 'Mod+Z', callback: () => undo() },
+  { hotkey: 'Escape', callback: () => close() },
+])
+</script>
+```
+
+### Common Options with Per-Hotkey Overrides
+
+Pass shared options as the second argument. Per-definition options override the common ones:
+
+```ts
+useHotkeys(
+  [
+    { hotkey: 'Mod+S', callback: () => save() },
+    { hotkey: 'Mod+Z', callback: () => undo(), options: { enabled: false } },
+  ],
+  { preventDefault: true },
+)
+```
+
+### Dynamic Hotkey Lists
+
+Pass a getter or computed ref as the first argument for reactive arrays:
+
+```vue
+<script setup>
+import { computed } from 'vue'
+import { useHotkeys } from '@tanstack/vue-hotkeys'
+
+const items = computed(() => [...])
+
+useHotkeys(
+  () => items.value.map((item) => ({
+    hotkey: item.shortcut,
+    callback: item.action,
+  })),
+)
+</script>
+```
+
+The composable watches for changes and diffs registrations automatically.
+
 ## The Hotkey Manager
 
 You can always reach for the underlying manager directly:

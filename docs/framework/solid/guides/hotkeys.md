@@ -228,6 +228,54 @@ function TemporaryPanel() {
 }
 ```
 
+## Registering Multiple Hotkeys
+
+When you need to register several hotkeys at once — or a dynamic, variable-length list — use the `createHotkeys` (plural) primitive:
+
+```tsx
+import { createHotkeys } from '@tanstack/solid-hotkeys'
+
+function Editor() {
+  createHotkeys([
+    { hotkey: 'Mod+S', callback: () => save() },
+    { hotkey: 'Mod+Z', callback: () => undo() },
+    { hotkey: 'Escape', callback: () => close() },
+  ])
+}
+```
+
+### Common Options with Per-Hotkey Overrides
+
+Pass shared options as the second argument. Per-definition options override the common ones:
+
+```tsx
+createHotkeys(
+  [
+    { hotkey: 'Mod+S', callback: () => save() },
+    { hotkey: 'Mod+Z', callback: () => undo(), options: { enabled: false } },
+  ],
+  { preventDefault: true },
+)
+```
+
+### Dynamic Hotkey Lists
+
+Pass an accessor for reactive arrays:
+
+```tsx
+function MenuShortcuts(props) {
+  createHotkeys(
+    () => props.items.map((item) => ({
+      hotkey: item.shortcut,
+      callback: item.action,
+      options: { enabled: item.enabled },
+    })),
+  )
+}
+```
+
+The primitive tracks dependencies automatically and diffs registrations when the array changes.
+
 ## The Hotkey Manager
 
 Under the hood, `createHotkey` uses the singleton `HotkeyManager`. You can also access the manager directly if needed:

@@ -1,0 +1,25 @@
+{
+  "name": "@tanstack/hotkeys-example-solid-create-hotkeys",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3069",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test:types": "tsc"
+  },
+  "dependencies": {
+    "@tanstack/solid-devtools": "0.8.0",
+    "@tanstack/solid-hotkeys": "^0.4.2",
+    "@tanstack/solid-hotkeys-devtools": "^0.4.3",
+    "solid-js": "^1.9.11"
+  },
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "typescript": "5.9.3",
+    "vite": "^8.0.1",
+    "vite-plugin-solid": "^2.11.11"
+  }
+}

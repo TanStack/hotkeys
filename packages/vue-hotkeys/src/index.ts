@@ -7,6 +7,7 @@ export * from './HotkeysProviderContext'
 
 // Vue-specific composables
 export * from './useHotkey'
+export * from './useHotkeys'
 export * from './useHeldKeys'
 export * from './useHeldKeyCodes'
 export * from './useKeyHold'

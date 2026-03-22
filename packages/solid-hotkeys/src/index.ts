@@ -6,6 +6,7 @@ export * from './HotkeysProvider'
 
 // SolidJS-specific primitives
 export * from './createHotkey'
+export * from './createHotkeys'
 export * from './createHeldKeys'
 export * from './createHeldKeyCodes'
 export * from './createKeyHold'
