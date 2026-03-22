@@ -1,5 +1,11 @@
 # @tanstack/react-hotkeys
 
+## 0.5.0
+
+### Minor Changes
+
+- feat: add `useHotkeys` hook for registering multiple hotkeys in one call ([#75](https://github.com/TanStack/hotkeys/pull/75))
+
 ## 0.4.2
 
 ### Patch Changes
