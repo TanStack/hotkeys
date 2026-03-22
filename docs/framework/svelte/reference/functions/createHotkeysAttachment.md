@@ -9,7 +9,7 @@ title: createHotkeysAttachment
 function createHotkeysAttachment(hotkeys, commonOptions): Attachment<HTMLElement>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:120](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L120)
+Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:197](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L197)
 
 Create an attachment for element-scoped multi-hotkey registration.
 

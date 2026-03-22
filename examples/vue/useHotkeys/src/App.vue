@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed, ref } from 'vue'
 import { TanStackDevtools } from '@tanstack/vue-devtools'
 import {
+  HotkeysProvider,
   formatForDisplay,
   useHotkeys,
-  HotkeysProvider,
 } from '@tanstack/vue-hotkeys'
 import { HotkeysDevtoolsPanel } from '@tanstack/vue-hotkeys-devtools'
 import type { Hotkey, UseHotkeyDefinition } from '@tanstack/vue-hotkeys'

@@ -1,16 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {
+  HotkeysProvider,
   formatForDisplay,
-  useHotkey,
   useHeldKeys,
+  useHotkey,
   useHotkeyRecorder,
-  type Hotkey,
 } from '@tanstack/react-hotkeys'
-import { HotkeysProvider } from '@tanstack/react-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import './index.css'
+import type { Hotkey } from '@tanstack/react-hotkeys'
 
 interface ShortcutActions {
   [key: string]: {
@@ -77,7 +77,7 @@ function App() {
       if (recordingActionId) {
         setShortcuts((prev) => ({
           ...prev,
-          [recordingActionId]: hotkey || ('' as Hotkey | ''),
+          [recordingActionId]: hotkey,
         }))
         setRecordingActionId(null)
       }

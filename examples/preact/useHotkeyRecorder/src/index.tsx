@@ -1,15 +1,15 @@
 import React from 'preact/compat'
 import { render } from 'preact'
 import {
+  HotkeysProvider,
   formatForDisplay,
-  useHotkey,
   useHeldKeys,
+  useHotkey,
   useHotkeyRecorder,
-  type Hotkey,
 } from '@tanstack/preact-hotkeys'
-import { HotkeysProvider } from '@tanstack/preact-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools'
 import { TanStackDevtools } from '@tanstack/preact-devtools'
+import type { Hotkey } from '@tanstack/preact-hotkeys'
 import './index.css'
 
 interface ShortcutActions {
@@ -77,7 +77,7 @@ function App() {
       if (recordingActionId) {
         setShortcuts((prev) => ({
           ...prev,
-          [recordingActionId]: hotkey || ('' as Hotkey | ''),
+          [recordingActionId]: hotkey,
         }))
         setRecordingActionId(null)
       }

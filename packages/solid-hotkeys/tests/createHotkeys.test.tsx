@@ -165,13 +165,13 @@ describe('createHotkeys', () => {
         <button
           type="button"
           onClick={() =>
-            setDefs((prev) => [
-              ...prev,
+            setDefs([
+              { hotkey: 'Mod+S', callback: saveCb },
               { hotkey: 'Escape', callback: escapeCb },
             ])
           }
         >
-          Add
+          Update
         </button>
       )
     }
@@ -183,7 +183,16 @@ describe('createHotkeys', () => {
 
     getByRole('button').click()
 
-    expect(manager.getRegistrationCount()).toBe(3)
+    expect(manager.getRegistrationCount()).toBe(2)
+
+    document.dispatchEvent(
+      new KeyboardEvent('keydown', {
+        key: 'z',
+        metaKey: true,
+        bubbles: true,
+      }),
+    )
+    expect(undoCb).not.toHaveBeenCalled()
 
     document.dispatchEvent(
       new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }),

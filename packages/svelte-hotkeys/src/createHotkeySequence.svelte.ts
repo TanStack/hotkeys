@@ -116,21 +116,32 @@ export function createHotkeySequenceAttachment(
   options: MaybeGetter<CreateHotkeySequenceOptions> = {},
 ): Attachment<HTMLElement> {
   return (element) => {
-    const resolvedSequence = resolveMaybeGetter(sequence)
+    let registration: ReturnType<typeof registerHotkeySequence> | null = null
 
-    if (resolvedSequence.length === 0) {
-      return
-    }
+    $effect(() => {
+      const resolvedSequence = resolveMaybeGetter(sequence)
 
-    const registration = registerHotkeySequence(
-      element,
-      resolvedSequence,
-      callback,
-      options,
-    )
+      if (registration?.isActive) {
+        registration.unregister()
+        registration = null
+      }
+
+      if (resolvedSequence.length === 0) {
+        return
+      }
+
+      registration = registerHotkeySequence(
+        element,
+        resolvedSequence,
+        callback,
+        options,
+      )
+    })
 
     return () => {
-      registration.unregister()
+      if (registration?.isActive) {
+        registration.unregister()
+      }
     }
   }
 }

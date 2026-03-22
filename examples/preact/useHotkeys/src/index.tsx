@@ -1,7 +1,10 @@
 import { useState } from 'preact/hooks'
 import { render } from 'preact'
-import { formatForDisplay, useHotkeys } from '@tanstack/preact-hotkeys'
-import { HotkeysProvider } from '@tanstack/preact-hotkeys'
+import {
+  HotkeysProvider,
+  formatForDisplay,
+  useHotkeys,
+} from '@tanstack/preact-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools'
 import { TanStackDevtools } from '@tanstack/preact-devtools'
 import type { Hotkey, UseHotkeyDefinition } from '@tanstack/preact-hotkeys'

@@ -141,7 +141,7 @@
     </div>
     {#if log.length > 0}
       <div class="log">
-        {#each log as entry, i}
+        {#each log as entry}
           <div class="log-entry">{entry}</div>
         {/each}
       </div>

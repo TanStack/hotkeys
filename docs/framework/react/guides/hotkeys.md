@@ -279,7 +279,7 @@ function MenuShortcuts({ items }) {
 }
 ```
 
-The hook diffs the array between renders, registering new hotkeys and unregistering removed ones automatically.
+The hook diffs the array between renders by array index plus the normalized hotkey string, registering new hotkeys and unregistering removed ones automatically. Reordering the array changes that identity, so reordered entries are unregistered and re-registered even if their callback references stay the same.
 
 ## The Hotkey Manager
 

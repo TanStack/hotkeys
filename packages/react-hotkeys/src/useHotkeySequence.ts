@@ -78,11 +78,13 @@ export function useHotkeySequence(
   const callbackRef = useRef(callback)
   const optionsRef = useRef(mergedOptions)
   const managerRef = useRef(manager)
+  const sequenceRef = useRef(sequence)
 
   // Update refs on every render
   callbackRef.current = callback
   optionsRef.current = mergedOptions
   managerRef.current = manager
+  sequenceRef.current = sequence
 
   // Track previous target and sequence to detect changes requiring re-registration
   const prevTargetRef = useRef<HTMLElement | Document | Window | null>(null)
@@ -95,7 +97,7 @@ export function useHotkeySequence(
   const { target: _target, ...optionsWithoutTarget } = mergedOptions
 
   useEffect(() => {
-    if (sequence.length === 0) {
+    if (sequenceRef.current.length === 0) {
       return
     }
 
@@ -129,7 +131,7 @@ export function useHotkeySequence(
     // Register if needed (no active registration)
     if (!registrationRef.current || !registrationRef.current.isActive) {
       registrationRef.current = managerRef.current.register(
-        sequence,
+        sequenceRef.current,
         (event, context) => callbackRef.current(event, context),
         {
           ...optionsRef.current,
@@ -149,7 +151,7 @@ export function useHotkeySequence(
         registrationRef.current = null
       }
     }
-  }, [hotkeySequenceString, mergedOptions.enabled, sequence])
+  }, [hotkeySequenceString, mergedOptions.enabled])
 
   // Sync callback and options on EVERY render (outside useEffect)
   if (registrationRef.current?.isActive) {

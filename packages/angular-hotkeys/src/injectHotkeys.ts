@@ -79,14 +79,19 @@ export function injectHotkeys(
     | (() => Array<InjectHotkeyDefinition>),
   commonOptions: InjectHotkeyOptions | (() => InjectHotkeyOptions) = {},
 ): void {
+  type RegistrationRecord = {
+    handle: HotkeyRegistrationHandle
+    target: Document | HTMLElement | Window
+  }
+
   const defaultOptions = injectDefaultHotkeysOptions()
   const manager = getHotkeyManager()
   const destroyRef = inject(DestroyRef)
 
-  const registrations = new Map<string, HotkeyRegistrationHandle>()
+  const registrations = new Map<string, RegistrationRecord>()
 
   destroyRef.onDestroy(() => {
-    for (const handle of registrations.values()) {
+    for (const { handle } of registrations.values()) {
       if (handle.isActive) {
         handle.unregister()
       }
@@ -151,10 +156,10 @@ export function injectHotkeys(
       })
     }
 
-    for (const [key, handle] of [...registrations.entries()]) {
+    for (const [key, record] of [...registrations.entries()]) {
       if (!nextKeys.has(key)) {
-        if (handle.isActive) {
-          handle.unregister()
+        if (record.handle.isActive) {
+          record.handle.unregister()
         }
         registrations.delete(key)
       }
@@ -162,15 +167,17 @@ export function injectHotkeys(
 
     for (const p of prepared) {
       const existing = registrations.get(p.registrationKey)
-      if (existing?.isActive) {
-        existing.callback = p.def.callback
+      if (existing?.handle.isActive && existing.target === p.resolvedTarget) {
+        existing.handle.callback = p.def.callback
         const { target: _target, ...optionsWithoutTarget } = p.mergedOptions
-        existing.setOptions(optionsWithoutTarget)
+        existing.handle.setOptions(optionsWithoutTarget)
         continue
       }
 
       if (existing) {
-        existing.unregister()
+        if (existing.handle.isActive) {
+          existing.handle.unregister()
+        }
         registrations.delete(p.registrationKey)
       }
 
@@ -179,7 +186,10 @@ export function injectHotkeys(
         ...optionsWithoutTarget,
         target: p.resolvedTarget,
       })
-      registrations.set(p.registrationKey, handle)
+      registrations.set(p.registrationKey, {
+        handle,
+        target: p.resolvedTarget,
+      })
     }
   })
 }

@@ -4,6 +4,8 @@ import {
   getHotkeyManager,
   rawHotkeyToParsedHotkey,
 } from '@tanstack/hotkeys'
+import { onDestroy } from 'svelte'
+import { SvelteMap, SvelteSet } from 'svelte/reactivity'
 import { getDefaultHotkeysOptions } from './HotkeysCtx'
 import { resolveMaybeGetter } from './internal.svelte'
 import type {
@@ -38,6 +40,24 @@ function normalizeHotkey(
     : (formatHotkey(rawHotkeyToParsedHotkey(hotkey, platform)) as Hotkey)
 }
 
+type RegistrationRecord = {
+  handle: HotkeyRegistrationHandle
+  target: Document | HTMLElement | Window
+}
+
+function cleanupRegistrations(
+  registrations:
+    | Map<string, RegistrationRecord>
+    | SvelteMap<string, RegistrationRecord>,
+) {
+  for (const { handle } of registrations.values()) {
+    if (handle.isActive) {
+      handle.unregister()
+    }
+  }
+  registrations.clear()
+}
+
 /**
  * Register multiple global hotkeys for the current component.
  *
@@ -58,6 +78,12 @@ export function createHotkeys(
   hotkeys: MaybeGetter<Array<CreateHotkeyDefinition>>,
   commonOptions: MaybeGetter<CreateHotkeyOptions> = {},
 ): void {
+  const registrations = new SvelteMap<string, RegistrationRecord>()
+
+  onDestroy(() => {
+    cleanupRegistrations(registrations)
+  })
+
   $effect(() => {
     if (typeof document === 'undefined') {
       return
@@ -65,9 +91,17 @@ export function createHotkeys(
 
     const resolvedHotkeys = resolveMaybeGetter(hotkeys)
     const resolvedCommonOptions = resolveMaybeGetter(commonOptions)
-    const handles: Array<HotkeyRegistrationHandle> = []
+    const nextKeys = new SvelteSet<string>()
+    const prepared: Array<{
+      registrationKey: string
+      def: CreateHotkeyDefinition
+      mergedOptions: CreateHotkeyOptions
+      hotkeyString: Hotkey
+      resolvedTarget: Document | HTMLElement | Window
+    }> = []
 
-    for (const def of resolvedHotkeys) {
+    for (let i = 0; i < resolvedHotkeys.length; i++) {
+      const def = resolvedHotkeys[i]!
       const resolvedHotkey = resolveMaybeGetter(def.hotkey)
       const resolvedDefOptions = def.options
         ? resolveMaybeGetter(def.options)
@@ -79,21 +113,64 @@ export function createHotkeys(
         ...resolvedDefOptions,
       } as CreateHotkeyOptions
 
-      const handle = getHotkeyManager().register(
-        normalizeHotkey(resolvedHotkey, mergedOptions),
-        def.callback,
-        {
-          ...mergedOptions,
-          target: document,
-        },
-      )
-      handles.push(handle)
+      const resolvedTarget =
+        mergedOptions.target ??
+        (typeof document !== 'undefined' ? document : null)
+
+      if (!resolvedTarget) {
+        continue
+      }
+
+      const hotkeyString = normalizeHotkey(resolvedHotkey, mergedOptions)
+      const registrationKey = `${i}:${hotkeyString}`
+      nextKeys.add(registrationKey)
+      prepared.push({
+        registrationKey,
+        def,
+        mergedOptions,
+        hotkeyString,
+        resolvedTarget,
+      })
     }
 
-    return () => {
-      for (const handle of handles) {
-        handle.unregister()
+    for (const [key, record] of [...registrations.entries()]) {
+      if (!nextKeys.has(key)) {
+        if (record.handle.isActive) {
+          record.handle.unregister()
+        }
+        registrations.delete(key)
       }
+    }
+
+    for (const p of prepared) {
+      const existing = registrations.get(p.registrationKey)
+      const { target: _target, ...optionsWithoutTarget } = p.mergedOptions
+
+      if (existing?.handle.isActive && existing.target === p.resolvedTarget) {
+        existing.handle.callback = p.def.callback
+        existing.handle.setOptions(optionsWithoutTarget)
+        continue
+      }
+
+      if (existing?.handle.isActive) {
+        existing.handle.unregister()
+      }
+      if (existing) {
+        registrations.delete(p.registrationKey)
+      }
+
+      const handle = getHotkeyManager().register(
+        p.hotkeyString,
+        p.def.callback,
+        {
+          ...optionsWithoutTarget,
+          target: p.resolvedTarget,
+        },
+      )
+      registrations.set(p.registrationKey, {
+        handle,
+        target: p.resolvedTarget,
+      })
     }
   })
 }
@@ -122,37 +199,83 @@ export function createHotkeysAttachment(
   commonOptions: MaybeGetter<CreateHotkeyOptions> = {},
 ): Attachment<HTMLElement> {
   return (element) => {
-    const resolvedHotkeys = resolveMaybeGetter(hotkeys)
-    const resolvedCommonOptions = resolveMaybeGetter(commonOptions)
-    const handles: Array<HotkeyRegistrationHandle> = []
+    const registrations = new SvelteMap<string, RegistrationRecord>()
 
-    for (const def of resolvedHotkeys) {
-      const resolvedHotkey = resolveMaybeGetter(def.hotkey)
-      const resolvedDefOptions = def.options
-        ? resolveMaybeGetter(def.options)
-        : {}
+    $effect(() => {
+      const resolvedHotkeys = resolveMaybeGetter(hotkeys)
+      const resolvedCommonOptions = resolveMaybeGetter(commonOptions)
+      const nextKeys = new SvelteSet<string>()
+      const prepared: Array<{
+        registrationKey: string
+        def: CreateHotkeyDefinition
+        mergedOptions: CreateHotkeyOptions
+        hotkeyString: Hotkey
+      }> = []
 
-      const mergedOptions = {
-        ...getDefaultHotkeysOptions().hotkey,
-        ...resolvedCommonOptions,
-        ...resolvedDefOptions,
-      } as CreateHotkeyOptions
+      for (let i = 0; i < resolvedHotkeys.length; i++) {
+        const def = resolvedHotkeys[i]!
+        const resolvedHotkey = resolveMaybeGetter(def.hotkey)
+        const resolvedDefOptions = def.options
+          ? resolveMaybeGetter(def.options)
+          : {}
 
-      const handle = getHotkeyManager().register(
-        normalizeHotkey(resolvedHotkey, mergedOptions),
-        def.callback,
-        {
-          ...mergedOptions,
-          target: element,
-        },
-      )
-      handles.push(handle)
-    }
+        const mergedOptions = {
+          ...getDefaultHotkeysOptions().hotkey,
+          ...resolvedCommonOptions,
+          ...resolvedDefOptions,
+        } as CreateHotkeyOptions
+
+        const hotkeyString = normalizeHotkey(resolvedHotkey, mergedOptions)
+        const registrationKey = `${i}:${hotkeyString}`
+        nextKeys.add(registrationKey)
+        prepared.push({
+          registrationKey,
+          def,
+          mergedOptions,
+          hotkeyString,
+        })
+      }
+
+      for (const [key, record] of [...registrations.entries()]) {
+        if (!nextKeys.has(key)) {
+          if (record.handle.isActive) {
+            record.handle.unregister()
+          }
+          registrations.delete(key)
+        }
+      }
+
+      for (const p of prepared) {
+        const existing = registrations.get(p.registrationKey)
+        const { target: _target, ...optionsWithoutTarget } = p.mergedOptions
+
+        if (existing?.handle.isActive) {
+          existing.handle.callback = p.def.callback
+          existing.handle.setOptions(optionsWithoutTarget)
+          continue
+        }
+
+        if (existing?.handle.isActive) {
+          existing.handle.unregister()
+        }
+        if (existing) {
+          registrations.delete(p.registrationKey)
+        }
+
+        const handle = getHotkeyManager().register(
+          p.hotkeyString,
+          p.def.callback,
+          {
+            ...optionsWithoutTarget,
+            target: element,
+          },
+        )
+        registrations.set(p.registrationKey, { handle, target: element })
+      }
+    })
 
     return () => {
-      for (const handle of handles) {
-        handle.unregister()
-      }
+      cleanupRegistrations(registrations)
     }
   }
 }

@@ -72,29 +72,34 @@ export function useHotkeys(
   hotkeys: Array<UseHotkeyDefinition>,
   commonOptions: UseHotkeyOptions = {},
 ): void {
+  type RegistrationRecord = {
+    handle: HotkeyRegistrationHandle
+    target: Document | HTMLElement | Window
+  }
+
   const defaultOptions = useDefaultHotkeysOptions().hotkey
   const manager = getHotkeyManager()
   const platform =
     commonOptions.platform ?? defaultOptions?.platform ?? detectPlatform()
 
-  const registrationsRef = useRef<Map<string, HotkeyRegistrationHandle>>(
-    new Map(),
-  )
+  const registrationsRef = useRef<Map<string, RegistrationRecord>>(new Map())
   const hotkeysRef = useRef(hotkeys)
+  const hotkeyStringsRef = useRef<Array<Hotkey>>([])
   const commonOptionsRef = useRef(commonOptions)
   const defaultOptionsRef = useRef(defaultOptions)
   const managerRef = useRef(manager)
-
-  hotkeysRef.current = hotkeys
-  commonOptionsRef.current = commonOptions
-  defaultOptionsRef.current = defaultOptions
-  managerRef.current = manager
 
   const hotkeyStrings = hotkeys.map((def) =>
     typeof def.hotkey === 'string'
       ? def.hotkey
       : (formatHotkey(rawHotkeyToParsedHotkey(def.hotkey, platform)) as Hotkey),
   )
+
+  hotkeysRef.current = hotkeys
+  hotkeyStringsRef.current = hotkeyStrings
+  commonOptionsRef.current = commonOptions
+  defaultOptionsRef.current = defaultOptions
+  managerRef.current = manager
 
   // Stable serialized keys for effect dependencies
   const hotkeyKey = hotkeyStrings.join('\0')
@@ -111,7 +116,7 @@ export function useHotkeys(
 
   useEffect(() => {
     const prevRegistrations = registrationsRef.current
-    const nextRegistrations = new Map<string, HotkeyRegistrationHandle>()
+    const nextRegistrations = new Map<string, RegistrationRecord>()
 
     const rows: Array<{
       registrationKey: string
@@ -123,7 +128,7 @@ export function useHotkeys(
 
     for (let i = 0; i < hotkeysRef.current.length; i++) {
       const def = hotkeysRef.current[i]!
-      const hotkeyStr = hotkeyStrings[i]!
+      const hotkeyStr = hotkeyStringsRef.current[i]!
       const mergedOptions = {
         ...defaultOptionsRef.current,
         ...commonOptionsRef.current,
@@ -151,9 +156,9 @@ export function useHotkeys(
 
     const nextKeys = new Set(rows.map((r) => r.registrationKey))
 
-    for (const [key, handle] of prevRegistrations) {
-      if (!nextKeys.has(key) && handle.isActive) {
-        handle.unregister()
+    for (const [key, record] of prevRegistrations) {
+      if (!nextKeys.has(key) && record.handle.isActive) {
+        record.handle.unregister()
       }
     }
 
@@ -162,36 +167,43 @@ export function useHotkeys(
         row
 
       const existing = prevRegistrations.get(registrationKey)
-      if (existing?.isActive) {
+      if (existing?.handle.isActive && existing.target === resolvedTarget) {
         nextRegistrations.set(registrationKey, existing)
         continue
+      }
+
+      if (existing?.handle.isActive) {
+        existing.handle.unregister()
       }
 
       const handle = managerRef.current.register(hotkeyStr, def.callback, {
         ...mergedOptions,
         target: resolvedTarget,
       })
-      nextRegistrations.set(registrationKey, handle)
+      nextRegistrations.set(registrationKey, {
+        handle,
+        target: resolvedTarget,
+      })
     }
 
     registrationsRef.current = nextRegistrations
 
     return () => {
-      for (const handle of registrationsRef.current.values()) {
+      for (const { handle } of registrationsRef.current.values()) {
         if (handle.isActive) {
           handle.unregister()
         }
       }
       registrationsRef.current = new Map()
     }
-  }, [hotkeyKey, enabledKey, hotkeyStrings])
+  }, [hotkeyKey, enabledKey])
 
   // Sync callbacks and options on EVERY render (outside useEffect)
   for (let i = 0; i < hotkeys.length; i++) {
     const def = hotkeys[i]!
     const hotkeyStr = hotkeyStrings[i]!
     const registrationKey = `${i}:${hotkeyStr}`
-    const handle = registrationsRef.current.get(registrationKey)
+    const handle = registrationsRef.current.get(registrationKey)?.handle
 
     if (handle?.isActive) {
       handle.callback = def.callback

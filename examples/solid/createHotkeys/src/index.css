@@ -58,7 +58,7 @@ kbd {
 }
 .hint {
   font-size: 13px;
-  color: #888;
+  color: #555;
   font-style: italic;
 }
 .info-box {
@@ -176,6 +176,6 @@ button:disabled {
   border-bottom: none;
 }
 .log-time {
-  color: #888;
+  color: #666;
   margin-right: 8px;
 }

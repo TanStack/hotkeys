@@ -76,10 +76,15 @@ export function useHotkeys(
   hotkeys: MaybeRefOrGetter<Array<UseHotkeyDefinition>>,
   commonOptions: MaybeRefOrGetter<UseHotkeyOptions> = {},
 ): void {
+  type RegistrationRecord = {
+    handle: HotkeyRegistrationHandle
+    target: Document | HTMLElement | Window
+  }
+
   const defaultOptions = useDefaultHotkeysOptions()
   const manager = getHotkeyManager()
 
-  const registrations = new Map<string, HotkeyRegistrationHandle>()
+  const registrations = new Map<string, RegistrationRecord>()
 
   const stopWatcher = watch(
     () => {
@@ -147,10 +152,10 @@ export function useHotkeys(
         prepared.push({ registrationKey, entry, finalTarget })
       }
 
-      for (const [key, handle] of [...registrations.entries()]) {
+      for (const [key, record] of [...registrations.entries()]) {
         if (!nextKeys.has(key)) {
-          if (handle.isActive) {
-            handle.unregister()
+          if (record.handle.isActive) {
+            record.handle.unregister()
           }
           registrations.delete(key)
         }
@@ -158,8 +163,8 @@ export function useHotkeys(
 
       for (const { registrationKey, entry, finalTarget } of prepared) {
         const existing = registrations.get(registrationKey)
-        if (existing?.isActive) {
-          existing.callback = entry.callback
+        if (existing?.handle.isActive && existing.target === finalTarget) {
+          existing.handle.callback = entry.callback
           const {
             target: _target,
             enabled: _enabled,
@@ -171,12 +176,14 @@ export function useHotkeys(
               ? {}
               : { enabled: entry.resolvedEnabled }),
           }
-          existing.setOptions(optionsWithoutTarget)
+          existing.handle.setOptions(optionsWithoutTarget)
           continue
         }
 
         if (existing) {
-          existing.unregister()
+          if (existing.handle.isActive) {
+            existing.handle.unregister()
+          }
           registrations.delete(registrationKey)
         }
 
@@ -196,7 +203,7 @@ export function useHotkeys(
           ...optionsWithoutTarget,
           target: finalTarget,
         })
-        registrations.set(registrationKey, handle)
+        registrations.set(registrationKey, { handle, target: finalTarget })
       }
     },
     { immediate: true },
@@ -204,7 +211,7 @@ export function useHotkeys(
 
   onUnmounted(() => {
     stopWatcher()
-    for (const handle of registrations.values()) {
+    for (const { handle } of registrations.values()) {
       if (handle.isActive) {
         handle.unregister()
       }

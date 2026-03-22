@@ -5,7 +5,12 @@ import rootConfig from '../../../eslint.config.js'
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   {
-    ignores: ['eslint.config.js', 'vite.config.ts'],
+    ignores: [
+      'eslint.config.js',
+      'svelte.config.js',
+      'vite.config.ts',
+      'src/**/*.svelte',
+    ],
   },
   ...rootConfig,
 ]
