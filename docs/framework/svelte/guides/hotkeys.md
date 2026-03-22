@@ -125,6 +125,72 @@ createHotkey('Mod+S', () => save(), { platform: 'mac' })
 
 Global hotkeys are automatically unregistered when the owning component unmounts. Attachment-based hotkeys clean themselves up when the attached element is removed or when reactive inputs change.
 
+## Registering Multiple Hotkeys
+
+When you need to register several hotkeys at once — or a dynamic, variable-length list — use `createHotkeys` (plural) for global shortcuts and `createHotkeysAttachment` for element-scoped shortcuts:
+
+```svelte
+<script lang="ts">
+  import { createHotkeys } from '@tanstack/svelte-hotkeys'
+
+  createHotkeys([
+    { hotkey: 'Mod+S', callback: () => save() },
+    { hotkey: 'Mod+Z', callback: () => undo() },
+    { hotkey: 'Escape', callback: () => close() },
+  ])
+</script>
+```
+
+### Common Options with Per-Hotkey Overrides
+
+Pass shared options as the second argument. Per-definition options override the common ones:
+
+```ts
+createHotkeys(
+  [
+    { hotkey: 'Mod+S', callback: () => save() },
+    { hotkey: 'Mod+Z', callback: () => undo(), options: { enabled: false } },
+  ],
+  { preventDefault: true },
+)
+```
+
+### Dynamic Hotkey Lists
+
+Pass a getter for reactive arrays:
+
+```svelte
+<script lang="ts">
+  import { createHotkeys } from '@tanstack/svelte-hotkeys'
+
+  let shortcuts = $state([...])
+
+  createHotkeys(
+    () => shortcuts.map((s) => ({
+      hotkey: s.key,
+      callback: s.action,
+    })),
+  )
+</script>
+```
+
+### Scoped Multi-Hotkeys
+
+Use `createHotkeysAttachment` to scope multiple hotkeys to a specific element:
+
+```svelte
+<script lang="ts">
+  import { createHotkeysAttachment } from '@tanstack/svelte-hotkeys'
+
+  const editorKeys = createHotkeysAttachment([
+    { hotkey: 'Mod+S', callback: () => save() },
+    { hotkey: 'Mod+Z', callback: () => undo() },
+  ])
+</script>
+
+<div tabindex="0" {@attach editorKeys}>Editor content</div>
+```
+
 ## The Hotkey Manager
 
 You can always reach for the underlying manager directly:

@@ -5,7 +5,7 @@ title: UseHotkeySequenceOptions
 
 # Interface: UseHotkeySequenceOptions
 
-Defined in: [useHotkeySequence.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeySequence.ts#L12)
+Defined in: [useHotkeySequence.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeySequence.ts#L13)
 
 ## Extends
 
@@ -24,7 +24,7 @@ optional target:
   | null;
 ```
 
-Defined in: [useHotkeySequence.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeySequence.ts#L21)
+Defined in: [useHotkeySequence.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeySequence.ts#L22)
 
 The DOM element to attach the event listener to.
 Can be a React ref, direct DOM element, or null.

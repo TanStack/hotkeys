@@ -111,10 +111,20 @@ export function createHotkeyAttachment(
   options: MaybeGetter<CreateHotkeyOptions> = {},
 ): Attachment<HTMLElement> {
   return (element) => {
-    const registration = registerHotkey(element, hotkey, callback, options)
+    let registration: ReturnType<typeof registerHotkey> | null = null
+
+    $effect(() => {
+      if (registration?.isActive) {
+        registration.unregister()
+      }
+
+      registration = registerHotkey(element, hotkey, callback, options)
+    })
 
     return () => {
-      registration.unregister()
+      if (registration?.isActive) {
+        registration.unregister()
+      }
     }
   }
 }

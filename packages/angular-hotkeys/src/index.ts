@@ -6,6 +6,7 @@ export * from './hotkeys-provider'
 
 // Angular-specific primitives
 export * from './injectHotkey'
+export * from './injectHotkeys'
 export * from './injectHotkeySequence'
 export * from './injectHeldKeys'
 export * from './injectHeldKeyCodes'

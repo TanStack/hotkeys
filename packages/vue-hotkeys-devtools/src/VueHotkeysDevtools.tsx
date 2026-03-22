@@ -5,7 +5,7 @@ import type { DevtoolsPanelProps } from '@tanstack/devtools-utils/vue'
 export interface HotkeysDevtoolsVueInit extends DevtoolsPanelProps {}
 
 type DevtoolsPanelConstructor = new (props: DevtoolsPanelProps) => {
-  mount: (el: HTMLElement, theme?: 'dark' | 'light' | 'system') => void
+  mount: (el: HTMLElement, props?: DevtoolsPanelProps) => void
   unmount: () => void
 }
 

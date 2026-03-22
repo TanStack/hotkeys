@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/angular-hotkeys",
-  "version": "0.4.2",
+  "version": "0.5.0",
   "description": "Angular adapter for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",
@@ -59,9 +59,9 @@
     "@angular/core": ">=19.0.0"
   },
   "devDependencies": {
-    "@angular/common": "^21.2.1",
-    "@angular/core": "^21.2.1",
-    "@angular/platform-browser-dynamic": "^21.2.1",
+    "@angular/common": "^21.2.5",
+    "@angular/core": "^21.2.5",
+    "@angular/platform-browser-dynamic": "^21.2.5",
     "typescript": "5.9.3"
   }
 }

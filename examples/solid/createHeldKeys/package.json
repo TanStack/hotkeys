@@ -8,13 +8,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@tanstack/solid-devtools": "0.7.30",
-    "@tanstack/solid-hotkeys": "^0.4.2",
+    "@tanstack/solid-devtools": "0.8.0",
+    "@tanstack/solid-hotkeys": "^0.5.0",
     "@tanstack/solid-hotkeys-devtools": "^0.4.3",
     "solid-js": "^1.9.11"
   },
   "devDependencies": {
-    "vite": "^7.3.1",
-    "vite-plugin-solid": "^2.11.10"
+    "vite": "^8.0.1",
+    "vite-plugin-solid": "^2.11.11"
   }
 }

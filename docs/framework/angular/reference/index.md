@@ -10,6 +10,7 @@ title: "@tanstack/angular-hotkeys"
 - [AngularHotkeyRecorder](interfaces/AngularHotkeyRecorder.md)
 - [HotkeysContextValue](interfaces/HotkeysContextValue.md)
 - [HotkeysProviderOptions](interfaces/HotkeysProviderOptions.md)
+- [InjectHotkeyDefinition](interfaces/InjectHotkeyDefinition.md)
 - [InjectHotkeyOptions](interfaces/InjectHotkeyOptions.md)
 - [InjectHotkeySequenceOptions](interfaces/InjectHotkeySequenceOptions.md)
 
@@ -24,6 +25,7 @@ title: "@tanstack/angular-hotkeys"
 - [injectHeldKeys](functions/injectHeldKeys.md)
 - [injectHotkey](functions/injectHotkey.md)
 - [injectHotkeyRecorder](functions/injectHotkeyRecorder.md)
+- [injectHotkeys](functions/injectHotkeys.md)
 - [injectHotkeysContext](functions/injectHotkeysContext.md)
 - [injectHotkeySequence](functions/injectHotkeySequence.md)
 - [injectKeyHold](functions/injectKeyHold.md)

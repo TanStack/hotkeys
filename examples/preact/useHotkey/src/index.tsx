@@ -1,7 +1,10 @@
 import React from 'preact/compat'
 import { render } from 'preact'
-import { formatForDisplay, useHotkey } from '@tanstack/preact-hotkeys'
-import { HotkeysProvider } from '@tanstack/preact-hotkeys'
+import {
+  HotkeysProvider,
+  formatForDisplay,
+  useHotkey,
+} from '@tanstack/preact-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools'
 import { TanStackDevtools } from '@tanstack/preact-devtools'
 import type { Hotkey } from '@tanstack/preact-hotkeys'
@@ -674,9 +677,7 @@ useHotkey('Mod+Space', () => toggle())`}</pre>
                 className="scoped-editor"
                 value={editorContent}
                 onChange={(e) =>
-                  setEditorContent(
-                    (e.target as HTMLTextAreaElement)?.value ?? '',
-                  )
+                  setEditorContent((e.target as HTMLTextAreaElement).value)
                 }
                 placeholder="Focus here and try the shortcuts above..."
                 rows={8}

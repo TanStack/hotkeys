@@ -2,6 +2,7 @@
 export * from '@tanstack/hotkeys'
 
 export * from './createHotkey.svelte'
+export * from './createHotkeys.svelte'
 export * from './createHotkeySequence.svelte'
 export * from './createHotkeyRecorder.svelte'
 export * from './getHeldKeys.svelte'

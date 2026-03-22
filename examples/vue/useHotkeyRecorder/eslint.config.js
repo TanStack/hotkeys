@@ -3,11 +3,9 @@
 import rootConfig from '../../../eslint.config.js'
 
 /** @type {import('eslint').Linter.Config[]} */
-const config = [
-  ...rootConfig,
+export default [
   {
-    files: ['**/*.{ts,tsx,vue}'],
+    ignores: ['eslint.config.js', 'vite.config.ts'],
   },
+  ...rootConfig,
 ]
-
-export default config

@@ -137,6 +137,59 @@ injectHotkey('Mod+S', () => save(), { platform: 'mac' })
 
 Registrations are cleaned up automatically when the owning injection context is destroyed.
 
+## Registering Multiple Hotkeys
+
+When you need to register several hotkeys at once — or a dynamic, variable-length list — use `injectHotkeys` (plural):
+
+```ts
+import { Component } from '@angular/core'
+import { injectHotkeys } from '@tanstack/angular-hotkeys'
+
+@Component({ standalone: true, template: `` })
+export class EditorComponent {
+  constructor() {
+    injectHotkeys([
+      { hotkey: 'Mod+S', callback: () => this.save() },
+      { hotkey: 'Mod+Z', callback: () => this.undo() },
+      { hotkey: 'Escape', callback: () => this.close() },
+    ])
+  }
+}
+```
+
+### Common Options with Per-Hotkey Overrides
+
+Pass shared options as the second argument. Per-definition options override the common ones:
+
+```ts
+injectHotkeys(
+  [
+    { hotkey: 'Mod+S', callback: () => this.save() },
+    { hotkey: 'Mod+Z', callback: () => this.undo(), options: { enabled: false } },
+  ],
+  { preventDefault: true },
+)
+```
+
+### Dynamic Hotkey Lists
+
+Pass a getter for reactive arrays driven by Angular signals:
+
+```ts
+shortcuts = signal([...])
+
+constructor() {
+  injectHotkeys(
+    () => this.shortcuts().map((s) => ({
+      hotkey: s.key,
+      callback: s.action,
+    })),
+  )
+}
+```
+
+The function tracks signal dependencies and diffs registrations automatically.
+
 ## The Hotkey Manager
 
 You can access the underlying manager directly when needed:

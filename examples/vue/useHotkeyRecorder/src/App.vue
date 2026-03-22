@@ -5,11 +5,11 @@ import {
   formatForDisplay,
   useHotkey,
   useHotkeyRecorder,
-  type Hotkey,
 } from '@tanstack/vue-hotkeys'
 import { HotkeysDevtoolsPanel } from '@tanstack/vue-hotkeys-devtools'
 import { ref } from 'vue'
 import ShortcutListItem from './ShortcutListItem.vue'
+import type { Hotkey } from '@tanstack/vue-hotkeys'
 
 interface ShortcutActions {
   [key: string]: {
@@ -68,7 +68,7 @@ const recorder = useHotkeyRecorder({
     if (recordingActionId.value) {
       shortcuts.value = {
         ...shortcuts.value,
-        [recordingActionId.value]: hotkey || ('' as Hotkey | ''),
+        [recordingActionId.value]: hotkey,
       }
       recordingActionId.value = null
     }
@@ -88,9 +88,7 @@ const recorder = useHotkeyRecorder({
 })
 
 useHotkey(
-  () =>
-    (shortcuts.value.save ||
-      DEFAULT_SHORTCUT_ACTIONS.save.defaultHotkey) as Hotkey,
+  () => shortcuts.value.save || DEFAULT_SHORTCUT_ACTIONS.save.defaultHotkey,
   () => {
     console.log('Save triggered:', shortcuts.value.save)
     saveCount.value++
@@ -101,9 +99,7 @@ useHotkey(
 )
 
 useHotkey(
-  () =>
-    (shortcuts.value.open ||
-      DEFAULT_SHORTCUT_ACTIONS.open.defaultHotkey) as Hotkey,
+  () => shortcuts.value.open || DEFAULT_SHORTCUT_ACTIONS.open.defaultHotkey,
   () => {
     console.log('Open triggered:', shortcuts.value.open)
     openCount.value++
@@ -114,9 +110,7 @@ useHotkey(
 )
 
 useHotkey(
-  () =>
-    (shortcuts.value.new ||
-      DEFAULT_SHORTCUT_ACTIONS.new.defaultHotkey) as Hotkey,
+  () => shortcuts.value.new || DEFAULT_SHORTCUT_ACTIONS.new.defaultHotkey,
   () => {
     console.log('New triggered:', shortcuts.value.new)
     newCount.value++
@@ -127,9 +121,7 @@ useHotkey(
 )
 
 useHotkey(
-  () =>
-    (shortcuts.value.close ||
-      DEFAULT_SHORTCUT_ACTIONS.close.defaultHotkey) as Hotkey,
+  () => shortcuts.value.close || DEFAULT_SHORTCUT_ACTIONS.close.defaultHotkey,
   () => {
     console.log('Close triggered:', shortcuts.value.close)
     closeCount.value++
@@ -140,9 +132,7 @@ useHotkey(
 )
 
 useHotkey(
-  () =>
-    (shortcuts.value.undo ||
-      DEFAULT_SHORTCUT_ACTIONS.undo.defaultHotkey) as Hotkey,
+  () => shortcuts.value.undo || DEFAULT_SHORTCUT_ACTIONS.undo.defaultHotkey,
   () => {
     console.log('Undo triggered:', shortcuts.value.undo)
     undoCount.value++
@@ -153,9 +143,7 @@ useHotkey(
 )
 
 useHotkey(
-  () =>
-    (shortcuts.value.redo ||
-      DEFAULT_SHORTCUT_ACTIONS.redo.defaultHotkey) as Hotkey,
+  () => shortcuts.value.redo || DEFAULT_SHORTCUT_ACTIONS.redo.defaultHotkey,
   () => {
     console.log('Redo triggered:', shortcuts.value.redo)
     redoCount.value++

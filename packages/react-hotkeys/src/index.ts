@@ -6,6 +6,7 @@ export * from './HotkeysProvider'
 
 // React-specific exports
 export * from './useHotkey'
+export * from './useHotkeys'
 export * from './useHeldKeys'
 export * from './useHeldKeyCodes'
 export * from './useKeyHold'

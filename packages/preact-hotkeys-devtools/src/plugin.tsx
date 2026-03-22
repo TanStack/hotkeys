@@ -1,9 +1,13 @@
 import { createPreactPlugin } from '@tanstack/devtools-utils/preact'
 import { HotkeysDevtoolsPanel } from './PreactHotkeysDevtools'
 
-const [hotkeysDevtoolsPlugin, hotkeysDevtoolsNoOpPlugin] = createPreactPlugin({
+type HotkeysDevtoolsPluginFactory = ReturnType<typeof createPreactPlugin>[0]
+
+const plugins = createPreactPlugin({
   name: 'TanStack Hotkeys',
   Component: HotkeysDevtoolsPanel,
 })
 
-export { hotkeysDevtoolsPlugin, hotkeysDevtoolsNoOpPlugin }
+export const hotkeysDevtoolsPlugin: HotkeysDevtoolsPluginFactory = plugins[0]
+export const hotkeysDevtoolsNoOpPlugin: HotkeysDevtoolsPluginFactory =
+  plugins[1]

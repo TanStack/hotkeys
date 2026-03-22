@@ -11,15 +11,15 @@
     "test:types": "tsc"
   },
   "dependencies": {
-    "@tanstack/solid-devtools": "0.7.30",
-    "@tanstack/solid-hotkeys": "^0.4.2",
+    "@tanstack/solid-devtools": "0.8.0",
+    "@tanstack/solid-hotkeys": "^0.5.0",
     "@tanstack/solid-hotkeys-devtools": "^0.4.3",
     "solid-js": "^1.9.11"
   },
   "devDependencies": {
-    "@types/node": "^25.3.5",
+    "@types/node": "^25.5.0",
     "typescript": "5.9.3",
-    "vite": "^7.3.1",
-    "vite-plugin-solid": "^2.11.10"
+    "vite": "^8.0.1",
+    "vite-plugin-solid": "^2.11.11"
   }
 }

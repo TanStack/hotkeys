@@ -1,10 +1,10 @@
 /* @refresh reload */
+import { Show, createEffect, createSignal } from 'solid-js'
 import { render } from 'solid-js/web'
-import { createSignal, createEffect, Show } from 'solid-js'
 import {
-  formatForDisplay,
-  createHotkey,
   HotkeysProvider,
+  createHotkey,
+  formatForDisplay,
 } from '@tanstack/solid-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
 import { TanStackDevtools } from '@tanstack/solid-devtools'
@@ -499,10 +499,12 @@ createHotkey('Control+Tab', () => nextTab())
 createHotkey('Mod+Space', () => toggle())`}</pre>
         </section>
 
-        <Show when={lastHotkey()}>
-          <div class="info-box">
-            <strong>Last triggered:</strong> {formatForDisplay(lastHotkey()!)}
-          </div>
+        <Show when={lastHotkey()} keyed>
+          {(hotkey) => (
+            <div class="info-box">
+              <strong>Last triggered:</strong> {formatForDisplay(hotkey)}
+            </div>
+          )}
         </Show>
 
         <p class="hint">

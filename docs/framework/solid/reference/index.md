@@ -7,6 +7,7 @@ title: "@tanstack/solid-hotkeys"
 
 ## Interfaces
 
+- [CreateHotkeyDefinition](interfaces/CreateHotkeyDefinition.md)
 - [CreateHotkeyOptions](interfaces/CreateHotkeyOptions.md)
 - [CreateHotkeySequenceOptions](interfaces/CreateHotkeySequenceOptions.md)
 - [HotkeysProviderOptions](interfaces/HotkeysProviderOptions.md)
@@ -23,6 +24,7 @@ title: "@tanstack/solid-hotkeys"
 - [createHeldKeys](functions/createHeldKeys.md)
 - [createHotkey](functions/createHotkey.md)
 - [createHotkeyRecorder](functions/createHotkeyRecorder.md)
+- [createHotkeys](functions/createHotkeys.md)
 - [createHotkeySequence](functions/createHotkeySequence.md)
 - [createKeyHold](functions/createKeyHold.md)
 - [useDefaultHotkeysOptions](functions/useDefaultHotkeysOptions.md)

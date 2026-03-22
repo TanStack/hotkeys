@@ -62,8 +62,8 @@
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.4",
-    "vue": "^3.5.29"
+    "@vitejs/plugin-vue": "^6.0.5",
+    "vue": "^3.5.30"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js"
