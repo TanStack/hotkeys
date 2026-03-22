@@ -1,5 +1,13 @@
 # @tanstack/hotkeys
 
+## 0.4.3
+
+### Patch Changes
+
+- Fix useHotkeySequence resets progress when modifier key is pressed before a key combo e.g. zA (Vim-like hotkeys) ([#74](https://github.com/TanStack/hotkeys/pull/74))
+
+- fix: add jsdoc for combos in hotkey sequences ([`4e29eec`](https://github.com/TanStack/hotkeys/commit/4e29eec1eab57c7b2b59ccda84ce32dcb5f9fd8c))
+
 ## 0.4.2
 
 ### Patch Changes

@@ -1,5 +1,12 @@
 # @tanstack/vue-hotkeys-devtools
 
+## 0.4.4
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tanstack/hotkeys-devtools@0.4.4
+
 ## 0.4.3
 
 ### Patch Changes
