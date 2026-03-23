@@ -1,11 +1,4 @@
-import {
-  For,
-  Show,
-  createEffect,
-  createMemo,
-  createSignal,
-  on,
-} from 'solid-js'
+import { For, Show, createEffect, createMemo, createSignal, on } from 'solid-js'
 import clsx from 'clsx'
 import { formatForDisplay } from '@tanstack/hotkeys'
 import { useStyles } from '../styles/use-styles'
@@ -215,7 +208,7 @@ function SequenceListRow(props: {
         <For each={liveSequenceReg().sequence}>
           {(step, i) => (
             <span>
-              <Show when={i() > 0}>{' '}</Show>
+              <Show when={i() > 0}> </Show>
               <span
                 class={
                   i() < matchedSteps()
@@ -249,11 +242,7 @@ function SequenceListRow(props: {
         )}
         {hasScopeConflict() && (
           <span
-            class={clsx(
-              styles().badge,
-              styles().badgeInfo,
-              styles().tooltip,
-            )}
+            class={clsx(styles().badge, styles().badgeInfo, styles().tooltip)}
           >
             i
             <span class={styles().tooltipText} data-tooltip>
@@ -288,11 +277,7 @@ function SequenceListRow(props: {
           </span>
         </span>
         <span
-          class={clsx(
-            styles().badge,
-            styles().badgeTarget,
-            styles().tooltip,
-          )}
+          class={clsx(styles().badge, styles().badgeTarget, styles().tooltip)}
         >
           {getTargetLabel(props.reg.target)}
           <span class={styles().tooltipText} data-tooltip>

@@ -56,6 +56,7 @@ title: "@tanstack/hotkeys"
 ## Variables
 
 - [ALL\_KEYS](variables/ALL_KEYS.md)
+- [DEFAULT\_SEQUENCE\_TIMEOUT](variables/DEFAULT_SEQUENCE_TIMEOUT.md)
 - [EDITING\_KEYS](variables/EDITING_KEYS.md)
 - [FUNCTION\_KEYS](variables/FUNCTION_KEYS.md)
 - [KEY\_DISPLAY\_SYMBOLS](variables/KEY_DISPLAY_SYMBOLS.md)

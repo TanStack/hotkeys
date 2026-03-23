@@ -9,7 +9,7 @@ title: injectHotkeySequenceRecorder
 function injectHotkeySequenceRecorder(options): AngularHotkeySequenceRecorder;
 ```
 
-Defined in: injectHotkeySequenceRecorder.ts:31
+Defined in: [injectHotkeySequenceRecorder.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequenceRecorder.ts#L31)
 
 Angular inject-based API for recording multi-chord sequences.
 

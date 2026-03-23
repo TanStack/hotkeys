@@ -5,7 +5,7 @@ title: AngularHotkeySequenceRecorder
 
 # Interface: AngularHotkeySequenceRecorder
 
-Defined in: injectHotkeySequenceRecorder.ts:18
+Defined in: [injectHotkeySequenceRecorder.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequenceRecorder.ts#L18)
 
 ## Properties
 
@@ -15,7 +15,7 @@ Defined in: injectHotkeySequenceRecorder.ts:18
 readonly cancelRecording: () => void;
 ```
 
-Defined in: injectHotkeySequenceRecorder.ts:24
+Defined in: [injectHotkeySequenceRecorder.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequenceRecorder.ts#L24)
 
 #### Returns
 
@@ -29,7 +29,7 @@ Defined in: injectHotkeySequenceRecorder.ts:24
 readonly commitRecording: () => void;
 ```
 
-Defined in: injectHotkeySequenceRecorder.ts:25
+Defined in: [injectHotkeySequenceRecorder.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequenceRecorder.ts#L25)
 
 #### Returns
 
@@ -43,7 +43,7 @@ Defined in: injectHotkeySequenceRecorder.ts:25
 readonly isRecording: () => boolean;
 ```
 
-Defined in: injectHotkeySequenceRecorder.ts:19
+Defined in: [injectHotkeySequenceRecorder.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequenceRecorder.ts#L19)
 
 #### Returns
 
@@ -57,7 +57,7 @@ Defined in: injectHotkeySequenceRecorder.ts:19
 readonly recordedSequence: () => HotkeySequence | null;
 ```
 
-Defined in: injectHotkeySequenceRecorder.ts:21
+Defined in: [injectHotkeySequenceRecorder.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequenceRecorder.ts#L21)
 
 #### Returns
 
@@ -71,7 +71,7 @@ Defined in: injectHotkeySequenceRecorder.ts:21
 readonly startRecording: () => void;
 ```
 
-Defined in: injectHotkeySequenceRecorder.ts:22
+Defined in: [injectHotkeySequenceRecorder.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequenceRecorder.ts#L22)
 
 #### Returns
 
@@ -85,7 +85,7 @@ Defined in: injectHotkeySequenceRecorder.ts:22
 readonly steps: () => HotkeySequence;
 ```
 
-Defined in: injectHotkeySequenceRecorder.ts:20
+Defined in: [injectHotkeySequenceRecorder.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequenceRecorder.ts#L20)
 
 #### Returns
 
@@ -99,7 +99,7 @@ Defined in: injectHotkeySequenceRecorder.ts:20
 readonly stopRecording: () => void;
 ```
 
-Defined in: injectHotkeySequenceRecorder.ts:23
+Defined in: [injectHotkeySequenceRecorder.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequenceRecorder.ts#L23)
 
 #### Returns
 

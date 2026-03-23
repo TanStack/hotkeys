@@ -9,7 +9,7 @@ title: useHotkeySequenceRecorder
 function useHotkeySequenceRecorder(options): ReactHotkeySequenceRecorder;
 ```
 
-Defined in: useHotkeySequenceRecorder.ts:29
+Defined in: [useHotkeySequenceRecorder.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeySequenceRecorder.ts#L29)
 
 React hook for recording multi-chord sequences (Vim-style shortcuts).
 

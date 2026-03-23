@@ -153,8 +153,7 @@ function toRegistrationView(
   reg: SequenceRegistration,
 ): SequenceRegistrationView {
   const len = reg.parsedSequence.length
-  const inProgress =
-    reg.currentIndex > 0 && reg.currentIndex < len
+  const inProgress = reg.currentIndex > 0 && reg.currentIndex < len
   return {
     id: reg.id,
     sequence: reg.sequence,

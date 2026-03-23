@@ -9,7 +9,7 @@ title: createHotkeySequenceRecorder
 function createHotkeySequenceRecorder(options): SolidHotkeySequenceRecorder;
 ```
 
-Defined in: createHotkeySequenceRecorder.ts:23
+Defined in: [createHotkeySequenceRecorder.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeySequenceRecorder.ts#L23)
 
 SolidJS primitive for recording multi-chord sequences (Vim-style shortcuts).
 

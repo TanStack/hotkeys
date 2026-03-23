@@ -5,7 +5,7 @@ title: SvelteHotkeySequenceRecorder
 
 # Interface: SvelteHotkeySequenceRecorder
 
-Defined in: packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:11
+Defined in: [packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts#L11)
 
 ## Properties
 
@@ -15,7 +15,7 @@ Defined in: packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:1
 cancelRecording: () => void;
 ```
 
-Defined in: packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:17
+Defined in: [packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts#L17)
 
 #### Returns
 
@@ -29,7 +29,7 @@ Defined in: packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:1
 commitRecording: () => void;
 ```
 
-Defined in: packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:18
+Defined in: [packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts#L18)
 
 #### Returns
 
@@ -43,7 +43,7 @@ Defined in: packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:1
 readonly isRecording: boolean;
 ```
 
-Defined in: packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:12
+Defined in: [packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts#L12)
 
 ***
 
@@ -53,7 +53,7 @@ Defined in: packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:1
 readonly recordedSequence: HotkeySequence | null;
 ```
 
-Defined in: packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:14
+Defined in: [packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts#L14)
 
 ***
 
@@ -63,7 +63,7 @@ Defined in: packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:1
 startRecording: () => void;
 ```
 
-Defined in: packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:15
+Defined in: [packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts#L15)
 
 #### Returns
 
@@ -77,7 +77,7 @@ Defined in: packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:1
 readonly steps: HotkeySequence;
 ```
 
-Defined in: packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:13
+Defined in: [packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts#L13)
 
 ***
 
@@ -87,7 +87,7 @@ Defined in: packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:1
 stopRecording: () => void;
 ```
 
-Defined in: packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:16
+Defined in: [packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts#L16)
 
 #### Returns
 

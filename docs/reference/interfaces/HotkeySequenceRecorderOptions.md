@@ -5,7 +5,7 @@ title: HotkeySequenceRecorderOptions
 
 # Interface: HotkeySequenceRecorderOptions
 
-Defined in: hotkey-sequence-recorder.ts:28
+Defined in: [hotkey-sequence-recorder.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L28)
 
 Options for configuring a HotkeySequenceRecorder instance.
 
@@ -17,7 +17,7 @@ Options for configuring a HotkeySequenceRecorder instance.
 optional commitKeys: HotkeySequenceRecorderCommitKeys;
 ```
 
-Defined in: hotkey-sequence-recorder.ts:44
+Defined in: [hotkey-sequence-recorder.ts:44](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L44)
 
 Keyboard commit mode. When `'none'`, use [HotkeySequenceRecorder.commit](../classes/HotkeySequenceRecorder.md#commit) (and optional idle timeout).
 
@@ -35,7 +35,7 @@ Keyboard commit mode. When `'none'`, use [HotkeySequenceRecorder.commit](../clas
 optional commitOnEnter: boolean;
 ```
 
-Defined in: hotkey-sequence-recorder.ts:39
+Defined in: [hotkey-sequence-recorder.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L39)
 
 Whether plain Enter commits the current steps. Ignored when [commitKeys](#commitkeys) is `'none'`.
 
@@ -53,7 +53,7 @@ true
 optional idleTimeoutMs: number;
 ```
 
-Defined in: hotkey-sequence-recorder.ts:49
+Defined in: [hotkey-sequence-recorder.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L49)
 
 Milliseconds of inactivity after the **last completed chord** before auto-committing.
 The timer does not run while waiting for the first chord (`steps.length === 0`).
@@ -66,7 +66,7 @@ The timer does not run while waiting for the first chord (`steps.length === 0`).
 optional onCancel: () => void;
 ```
 
-Defined in: hotkey-sequence-recorder.ts:32
+Defined in: [hotkey-sequence-recorder.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L32)
 
 Optional callback when recording is cancelled (Escape pressed)
 
@@ -82,7 +82,7 @@ Optional callback when recording is cancelled (Escape pressed)
 optional onClear: () => void;
 ```
 
-Defined in: hotkey-sequence-recorder.ts:34
+Defined in: [hotkey-sequence-recorder.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L34)
 
 Optional callback when the sequence is cleared (Backspace/Delete with no steps)
 
@@ -98,7 +98,7 @@ Optional callback when the sequence is cleared (Backspace/Delete with no steps)
 onRecord: (sequence) => void;
 ```
 
-Defined in: hotkey-sequence-recorder.ts:30
+Defined in: [hotkey-sequence-recorder.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L30)
 
 Callback when a sequence is successfully recorded (including empty array when cleared)
 

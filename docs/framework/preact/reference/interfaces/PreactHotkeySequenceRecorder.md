@@ -5,7 +5,7 @@ title: PreactHotkeySequenceRecorder
 
 # Interface: PreactHotkeySequenceRecorder
 
-Defined in: useHotkeySequenceRecorder.ts:10
+Defined in: [useHotkeySequenceRecorder.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeySequenceRecorder.ts#L10)
 
 ## Properties
 
@@ -15,7 +15,7 @@ Defined in: useHotkeySequenceRecorder.ts:10
 cancelRecording: () => void;
 ```
 
-Defined in: useHotkeySequenceRecorder.ts:16
+Defined in: [useHotkeySequenceRecorder.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeySequenceRecorder.ts#L16)
 
 #### Returns
 
@@ -29,7 +29,7 @@ Defined in: useHotkeySequenceRecorder.ts:16
 commitRecording: () => void;
 ```
 
-Defined in: useHotkeySequenceRecorder.ts:17
+Defined in: [useHotkeySequenceRecorder.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeySequenceRecorder.ts#L17)
 
 #### Returns
 
@@ -43,7 +43,7 @@ Defined in: useHotkeySequenceRecorder.ts:17
 isRecording: boolean;
 ```
 
-Defined in: useHotkeySequenceRecorder.ts:11
+Defined in: [useHotkeySequenceRecorder.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeySequenceRecorder.ts#L11)
 
 ***
 
@@ -53,7 +53,7 @@ Defined in: useHotkeySequenceRecorder.ts:11
 recordedSequence: HotkeySequence | null;
 ```
 
-Defined in: useHotkeySequenceRecorder.ts:13
+Defined in: [useHotkeySequenceRecorder.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeySequenceRecorder.ts#L13)
 
 ***
 
@@ -63,7 +63,7 @@ Defined in: useHotkeySequenceRecorder.ts:13
 startRecording: () => void;
 ```
 
-Defined in: useHotkeySequenceRecorder.ts:14
+Defined in: [useHotkeySequenceRecorder.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeySequenceRecorder.ts#L14)
 
 #### Returns
 
@@ -77,7 +77,7 @@ Defined in: useHotkeySequenceRecorder.ts:14
 steps: HotkeySequence;
 ```
 
-Defined in: useHotkeySequenceRecorder.ts:12
+Defined in: [useHotkeySequenceRecorder.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeySequenceRecorder.ts#L12)
 
 ***
 
@@ -87,7 +87,7 @@ Defined in: useHotkeySequenceRecorder.ts:12
 stopRecording: () => void;
 ```
 
-Defined in: useHotkeySequenceRecorder.ts:15
+Defined in: [useHotkeySequenceRecorder.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeySequenceRecorder.ts#L15)
 
 #### Returns
 

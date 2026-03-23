@@ -5,7 +5,7 @@ title: VueHotkeySequenceRecorder
 
 # Interface: VueHotkeySequenceRecorder
 
-Defined in: packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:11
+Defined in: [packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts#L11)
 
 ## Properties
 
@@ -15,7 +15,7 @@ Defined in: packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:11
 cancelRecording: () => void;
 ```
 
-Defined in: packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:17
+Defined in: [packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts#L17)
 
 #### Returns
 
@@ -29,7 +29,7 @@ Defined in: packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:17
 commitRecording: () => void;
 ```
 
-Defined in: packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:18
+Defined in: [packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts#L18)
 
 #### Returns
 
@@ -43,7 +43,7 @@ Defined in: packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:18
 isRecording: Ref<boolean>;
 ```
 
-Defined in: packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:12
+Defined in: [packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts#L12)
 
 ***
 
@@ -53,7 +53,7 @@ Defined in: packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:12
 recordedSequence: Ref<HotkeySequence | null>;
 ```
 
-Defined in: packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:14
+Defined in: [packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts#L14)
 
 ***
 
@@ -63,7 +63,7 @@ Defined in: packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:14
 startRecording: () => void;
 ```
 
-Defined in: packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:15
+Defined in: [packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts#L15)
 
 #### Returns
 
@@ -77,7 +77,7 @@ Defined in: packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:15
 steps: Ref<HotkeySequence>;
 ```
 
-Defined in: packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:13
+Defined in: [packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts#L13)
 
 ***
 
@@ -87,7 +87,7 @@ Defined in: packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:13
 stopRecording: () => void;
 ```
 
-Defined in: packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:16
+Defined in: [packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts#L16)
 
 #### Returns
 

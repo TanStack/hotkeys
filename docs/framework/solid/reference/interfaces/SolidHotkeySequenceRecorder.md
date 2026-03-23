@@ -5,7 +5,7 @@ title: SolidHotkeySequenceRecorder
 
 # Interface: SolidHotkeySequenceRecorder
 
-Defined in: createHotkeySequenceRecorder.ts:10
+Defined in: [createHotkeySequenceRecorder.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeySequenceRecorder.ts#L10)
 
 ## Properties
 
@@ -15,7 +15,7 @@ Defined in: createHotkeySequenceRecorder.ts:10
 cancelRecording: () => void;
 ```
 
-Defined in: createHotkeySequenceRecorder.ts:16
+Defined in: [createHotkeySequenceRecorder.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeySequenceRecorder.ts#L16)
 
 #### Returns
 
@@ -29,7 +29,7 @@ Defined in: createHotkeySequenceRecorder.ts:16
 commitRecording: () => void;
 ```
 
-Defined in: createHotkeySequenceRecorder.ts:17
+Defined in: [createHotkeySequenceRecorder.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeySequenceRecorder.ts#L17)
 
 #### Returns
 
@@ -43,7 +43,7 @@ Defined in: createHotkeySequenceRecorder.ts:17
 isRecording: () => boolean;
 ```
 
-Defined in: createHotkeySequenceRecorder.ts:11
+Defined in: [createHotkeySequenceRecorder.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeySequenceRecorder.ts#L11)
 
 #### Returns
 
@@ -57,7 +57,7 @@ Defined in: createHotkeySequenceRecorder.ts:11
 recordedSequence: () => HotkeySequence | null;
 ```
 
-Defined in: createHotkeySequenceRecorder.ts:13
+Defined in: [createHotkeySequenceRecorder.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeySequenceRecorder.ts#L13)
 
 #### Returns
 
@@ -71,7 +71,7 @@ Defined in: createHotkeySequenceRecorder.ts:13
 startRecording: () => void;
 ```
 
-Defined in: createHotkeySequenceRecorder.ts:14
+Defined in: [createHotkeySequenceRecorder.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeySequenceRecorder.ts#L14)
 
 #### Returns
 
@@ -85,7 +85,7 @@ Defined in: createHotkeySequenceRecorder.ts:14
 steps: () => HotkeySequence;
 ```
 
-Defined in: createHotkeySequenceRecorder.ts:12
+Defined in: [createHotkeySequenceRecorder.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeySequenceRecorder.ts#L12)
 
 #### Returns
 
@@ -99,7 +99,7 @@ Defined in: createHotkeySequenceRecorder.ts:12
 stopRecording: () => void;
 ```
 
-Defined in: createHotkeySequenceRecorder.ts:15
+Defined in: [createHotkeySequenceRecorder.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeySequenceRecorder.ts#L15)
 
 #### Returns
 

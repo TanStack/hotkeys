@@ -5,10 +5,10 @@ title: SequenceRegistrationView
 
 # Interface: SequenceRegistrationView
 
-Defined in: [sequence-manager.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L75)
+Defined in: [sequence-manager.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L76)
 
 View of a sequence registration for devtools display.
-Excludes internal matching state (currentIndex, lastKeyTime).
+Progress fields reflect an in-progress match (between first key and completion or timeout).
 
 ## Properties
 
@@ -18,7 +18,19 @@ Excludes internal matching state (currentIndex, lastKeyTime).
 id: string;
 ```
 
-Defined in: [sequence-manager.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L76)
+Defined in: [sequence-manager.ts:77](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L77)
+
+***
+
+### matchedStepCount
+
+```ts
+matchedStepCount: number;
+```
+
+Defined in: [sequence-manager.ts:83](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L83)
+
+Steps matched in the current attempt (0 when idle or just completed).
 
 ***
 
@@ -28,7 +40,19 @@ Defined in: [sequence-manager.ts:76](https://github.com/TanStack/hotkeys/blob/ma
 options: SequenceOptions;
 ```
 
-Defined in: [sequence-manager.ts:78](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L78)
+Defined in: [sequence-manager.ts:79](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L79)
+
+***
+
+### partialMatchLastKeyTime
+
+```ts
+partialMatchLastKeyTime: number;
+```
+
+Defined in: [sequence-manager.ts:85](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L85)
+
+`Date.now()` when the last step in the current attempt matched; 0 if none.
 
 ***
 
@@ -38,7 +62,7 @@ Defined in: [sequence-manager.ts:78](https://github.com/TanStack/hotkeys/blob/ma
 sequence: HotkeySequence;
 ```
 
-Defined in: [sequence-manager.ts:77](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L77)
+Defined in: [sequence-manager.ts:78](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L78)
 
 ***
 
@@ -48,7 +72,7 @@ Defined in: [sequence-manager.ts:77](https://github.com/TanStack/hotkeys/blob/ma
 target: Target;
 ```
 
-Defined in: [sequence-manager.ts:79](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L79)
+Defined in: [sequence-manager.ts:80](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L80)
 
 ***
 
@@ -58,4 +82,4 @@ Defined in: [sequence-manager.ts:79](https://github.com/TanStack/hotkeys/blob/ma
 triggerCount: number;
 ```
 
-Defined in: [sequence-manager.ts:80](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L80)
+Defined in: [sequence-manager.ts:81](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L81)

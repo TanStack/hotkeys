@@ -376,10 +376,7 @@ function SequenceDetails(props: {
       reg(),
   )
   const matchedSteps = createMemo(() =>
-    effectiveSequenceMatchedSteps(
-      liveReg(),
-      props.state.sequenceProgressNow(),
-    ),
+    effectiveSequenceMatchedSteps(liveReg(), props.state.sequenceProgressNow()),
   )
   const targetConflicts = createMemo(() =>
     props.findSequenceTargetConflicts(
@@ -409,7 +406,7 @@ function SequenceDetails(props: {
           <For each={liveReg().sequence}>
             {(step, i) => (
               <span>
-                <Show when={i() > 0}>{' '}</Show>
+                <Show when={i() > 0}> </Show>
                 <span
                   class={
                     i() < matchedSteps()
@@ -431,7 +428,7 @@ function SequenceDetails(props: {
             <For each={liveReg().sequence}>
               {(step, i) => (
                 <span>
-                  <Show when={i() > 0}>{' '}</Show>
+                  <Show when={i() > 0}> </Show>
                   <span
                     class={
                       i() < matchedSteps()
