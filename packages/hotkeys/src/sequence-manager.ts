@@ -49,8 +49,9 @@ export type HotkeySequence = Array<Hotkey>
 
 /**
  * Default timeout between keys in a sequence (in milliseconds).
+ * Exported for consumers that display sequence state (e.g. devtools).
  */
-const DEFAULT_SEQUENCE_TIMEOUT = 1000
+export const DEFAULT_SEQUENCE_TIMEOUT = 1000
 
 let sequenceIdCounter = 0
 
@@ -70,7 +71,7 @@ function sequenceKey(sequence: HotkeySequence): string {
 
 /**
  * View of a sequence registration for devtools display.
- * Excludes internal matching state (currentIndex, lastKeyTime).
+ * Progress fields reflect an in-progress match (between first key and completion or timeout).
  */
 export interface SequenceRegistrationView {
   id: string
@@ -78,6 +79,10 @@ export interface SequenceRegistrationView {
   options: SequenceOptions
   target: Target
   triggerCount: number
+  /** Steps matched in the current attempt (0 when idle or just completed). */
+  matchedStepCount: number
+  /** `Date.now()` when the last step in the current attempt matched; 0 if none. */
+  partialMatchLastKeyTime: number
 }
 
 /**
@@ -147,12 +152,17 @@ export interface SequenceRegistrationHandle {
 function toRegistrationView(
   reg: SequenceRegistration,
 ): SequenceRegistrationView {
+  const len = reg.parsedSequence.length
+  const inProgress =
+    reg.currentIndex > 0 && reg.currentIndex < len
   return {
     id: reg.id,
     sequence: reg.sequence,
     options: reg.options,
     target: reg.target,
     triggerCount: reg.triggerCount,
+    matchedStepCount: inProgress ? reg.currentIndex : 0,
+    partialMatchLastKeyTime: inProgress ? reg.lastKeyTime : 0,
   }
 }
 
@@ -199,6 +209,12 @@ export class SequenceManager {
       SequenceManager.#instance.destroy()
       SequenceManager.#instance = null
     }
+  }
+
+  #syncRegistrationView(registration: SequenceRegistration): void {
+    this.registrations.setState((prev) =>
+      new Map(prev).set(registration.id, toRegistrationView(registration)),
+    )
   }
 
   /**
@@ -467,6 +483,7 @@ export class SequenceManager {
         now - registration.lastKeyTime > timeout
       ) {
         registration.currentIndex = 0
+        this.#syncRegistrationView(registration)
       }
 
       const expectedHotkey =
@@ -501,9 +518,14 @@ export class SequenceManager {
               ]!,
           }
 
-          registration.callback(event, context)
-
+          registration.triggerCount++
           registration.currentIndex = 0
+
+          this.#syncRegistrationView(registration)
+
+          registration.callback(event, context)
+        } else {
+          this.#syncRegistrationView(registration)
         }
       } else if (registration.currentIndex > 0) {
         const firstHotkey = registration.parsedSequence[0]!
@@ -519,6 +541,7 @@ export class SequenceManager {
         } else {
           registration.currentIndex = 0
         }
+        this.#syncRegistrationView(registration)
       }
     }
   }
@@ -549,6 +572,7 @@ export class SequenceManager {
     for (const registration of this.#registrations.values()) {
       registration.currentIndex = 0
       registration.lastKeyTime = 0
+      this.#syncRegistrationView(registration)
     }
   }
 
@@ -586,9 +610,7 @@ export class SequenceManager {
 
     registration.triggerCount++
 
-    this.registrations.setState((prev) =>
-      new Map(prev).set(id, toRegistrationView(registration)),
-    )
+    this.#syncRegistrationView(registration)
 
     const context: HotkeyCallbackContext = {
       hotkey: registration.sequence.join(' ') as Hotkey,

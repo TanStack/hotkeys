@@ -13,6 +13,7 @@ title: "@tanstack/solid-hotkeys"
 - [HotkeysProviderOptions](interfaces/HotkeysProviderOptions.md)
 - [HotkeysProviderProps](interfaces/HotkeysProviderProps.md)
 - [SolidHotkeyRecorder](interfaces/SolidHotkeyRecorder.md)
+- [SolidHotkeySequenceRecorder](interfaces/SolidHotkeySequenceRecorder.md)
 
 ## Variables
 
@@ -26,6 +27,7 @@ title: "@tanstack/solid-hotkeys"
 - [createHotkeyRecorder](functions/createHotkeyRecorder.md)
 - [createHotkeys](functions/createHotkeys.md)
 - [createHotkeySequence](functions/createHotkeySequence.md)
+- [createHotkeySequenceRecorder](functions/createHotkeySequenceRecorder.md)
 - [createKeyHold](functions/createKeyHold.md)
 - [useDefaultHotkeysOptions](functions/useDefaultHotkeysOptions.md)
 - [useHotkeysContext](functions/useHotkeysContext.md)

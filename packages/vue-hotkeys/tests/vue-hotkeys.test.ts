@@ -7,6 +7,10 @@ import {
   useHotkeyRecorder,
   type VueHotkeyRecorder,
 } from '../src/useHotkeyRecorder'
+import {
+  useHotkeySequenceRecorder,
+  type VueHotkeySequenceRecorder,
+} from '../src/useHotkeySequenceRecorder'
 
 describe('vue hotkeys adapters', () => {
   beforeEach(() => {
@@ -113,6 +117,51 @@ describe('vue hotkeys adapters', () => {
       defineComponent({
         setup() {
           recorder = useHotkeyRecorder(() => ({
+            onRecord,
+            onCancel: onCancel.value,
+          }))
+
+          return () => h('div')
+        },
+      }),
+    )
+
+    recorder.startRecording()
+    document.dispatchEvent(
+      new KeyboardEvent('keydown', {
+        key: 'Escape',
+        bubbles: true,
+      }),
+    )
+    expect(firstOnCancel).toHaveBeenCalledTimes(1)
+    expect(secondOnCancel).not.toHaveBeenCalled()
+
+    onCancel.value = secondOnCancel
+    await nextTick()
+
+    recorder.startRecording()
+    document.dispatchEvent(
+      new KeyboardEvent('keydown', {
+        key: 'Escape',
+        bubbles: true,
+      }),
+    )
+    expect(secondOnCancel).toHaveBeenCalledTimes(1)
+
+    wrapper.unmount()
+  })
+
+  it('syncs hotkey sequence recorder options from a getter', async () => {
+    const onRecord = vi.fn()
+    const firstOnCancel = vi.fn()
+    const secondOnCancel = vi.fn()
+    const onCancel = ref(firstOnCancel)
+    let recorder!: VueHotkeySequenceRecorder
+
+    const wrapper = mount(
+      defineComponent({
+        setup() {
+          recorder = useHotkeySequenceRecorder(() => ({
             onRecord,
             onCancel: onCancel.value,
           }))

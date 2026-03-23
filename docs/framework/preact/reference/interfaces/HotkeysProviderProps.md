@@ -5,7 +5,7 @@ title: HotkeysProviderProps
 
 # Interface: HotkeysProviderProps
 
-Defined in: [HotkeysProvider.tsx:20](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L20)
+Defined in: [HotkeysProvider.tsx:24](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L24)
 
 ## Properties
 
@@ -15,7 +15,7 @@ Defined in: [HotkeysProvider.tsx:20](https://github.com/TanStack/hotkeys/blob/ma
 children: ComponentChildren;
 ```
 
-Defined in: [HotkeysProvider.tsx:21](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L21)
+Defined in: [HotkeysProvider.tsx:25](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L25)
 
 ***
 
@@ -25,4 +25,4 @@ Defined in: [HotkeysProvider.tsx:21](https://github.com/TanStack/hotkeys/blob/ma
 optional defaultOptions: HotkeysProviderOptions;
 ```
 
-Defined in: [HotkeysProvider.tsx:22](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L22)
+Defined in: [HotkeysProvider.tsx:26](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L26)

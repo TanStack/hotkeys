@@ -1,0 +1,27 @@
+{
+  "name": "@tanstack/hotkeys-example-react-use-hotkey-sequence-recorder",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3069",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test:types": "tsc"
+  },
+  "dependencies": {
+    "@tanstack/react-hotkeys": "^0.5.1",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  },
+  "devDependencies": {
+    "@tanstack/react-devtools": "0.10.0",
+    "@tanstack/react-hotkeys-devtools": "^0.4.4",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "typescript": "5.9.3",
+    "vite": "^8.0.1"
+  }
+}

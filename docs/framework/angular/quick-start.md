@@ -167,5 +167,6 @@ export const appConfig: ApplicationConfig = {
 - [Hotkeys Guide](./guides/hotkeys)
 - [Sequences Guide](./guides/sequences)
 - [Hotkey Recording Guide](./guides/hotkey-recording)
+- [Sequence Recording Guide](./guides/sequence-recording)
 - [Key State Tracking Guide](./guides/key-state-tracking)
 - [Formatting & Display Guide](./guides/formatting-display)

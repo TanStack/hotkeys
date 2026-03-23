@@ -5,7 +5,7 @@ title: HotkeysProviderOptions
 
 # Interface: HotkeysProviderOptions
 
-Defined in: [packages/vue-hotkeys/src/HotkeysProviderContext.ts:7](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L7)
+Defined in: [packages/vue-hotkeys/src/HotkeysProviderContext.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L10)
 
 ## Properties
 
@@ -15,7 +15,7 @@ Defined in: [packages/vue-hotkeys/src/HotkeysProviderContext.ts:7](https://githu
 optional hotkey: Partial<UseHotkeyOptions>;
 ```
 
-Defined in: [packages/vue-hotkeys/src/HotkeysProviderContext.ts:8](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L8)
+Defined in: [packages/vue-hotkeys/src/HotkeysProviderContext.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L11)
 
 ***
 
@@ -25,7 +25,7 @@ Defined in: [packages/vue-hotkeys/src/HotkeysProviderContext.ts:8](https://githu
 optional hotkeyRecorder: Partial<HotkeyRecorderOptions>;
 ```
 
-Defined in: [packages/vue-hotkeys/src/HotkeysProviderContext.ts:9](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L9)
+Defined in: [packages/vue-hotkeys/src/HotkeysProviderContext.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L12)
 
 ***
 
@@ -35,4 +35,14 @@ Defined in: [packages/vue-hotkeys/src/HotkeysProviderContext.ts:9](https://githu
 optional hotkeySequence: Partial<UseHotkeySequenceOptions>;
 ```
 
-Defined in: [packages/vue-hotkeys/src/HotkeysProviderContext.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L10)
+Defined in: [packages/vue-hotkeys/src/HotkeysProviderContext.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L14)
+
+***
+
+### hotkeySequenceRecorder?
+
+```ts
+optional hotkeySequenceRecorder: Partial<HotkeySequenceRecorderOptions>;
+```
+
+Defined in: [packages/vue-hotkeys/src/HotkeysProviderContext.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L13)

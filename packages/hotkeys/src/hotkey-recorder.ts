@@ -1,11 +1,6 @@
 import { Store } from '@tanstack/store'
 import { detectPlatform } from './constants'
-import {
-  convertToModFormat,
-  hasNonModifierKey,
-  isModifierKey,
-  keyboardEventToHotkey,
-} from './parse'
+import { hotkeyChordFromKeydown } from './recorder-chord'
 import type { Hotkey } from './hotkey'
 
 /**
@@ -149,37 +144,28 @@ export class HotkeyRecorder {
         }
       }
 
-      // Ignore pure modifier keys (wait for a non-modifier key)
-      if (isModifierKey(event)) {
+      const finalHotkey = hotkeyChordFromKeydown(event, this.#platform)
+      if (finalHotkey === null) {
         return
       }
 
-      // Convert event to hotkey string using library function
-      const hotkey = keyboardEventToHotkey(event)
-
-      // Always convert to Mod format for portability
-      const finalHotkey = convertToModFormat(hotkey, this.#platform)
-
-      // Validate: must have at least one non-modifier key
-      if (hasNonModifierKey(finalHotkey, this.#platform)) {
-        // Remove listener FIRST to prevent any additional events
-        const handlerToRemove = this.#keydownHandler as
-          | ((event: KeyboardEvent) => void)
-          | null
-        if (handlerToRemove) {
-          this.#removeListener(handlerToRemove)
-          this.#keydownHandler = null
-        }
-
-        // Update store state immediately
-        this.store.setState(() => ({
-          isRecording: false,
-          recordedHotkey: finalHotkey,
-        }))
-
-        // Call callback AFTER listener is removed and state is set
-        this.#options.onRecord(finalHotkey)
+      // Remove listener FIRST to prevent any additional events
+      const handlerToRemove = this.#keydownHandler as
+        | ((event: KeyboardEvent) => void)
+        | null
+      if (handlerToRemove) {
+        this.#removeListener(handlerToRemove)
+        this.#keydownHandler = null
       }
+
+      // Update store state immediately
+      this.store.setState(() => ({
+        isRecording: false,
+        recordedHotkey: finalHotkey,
+      }))
+
+      // Call callback AFTER listener is removed and state is set
+      this.#options.onRecord(finalHotkey)
     }
 
     this.#keydownHandler = handler

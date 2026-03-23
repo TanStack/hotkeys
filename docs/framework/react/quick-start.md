@@ -182,5 +182,6 @@ function Root() {
 - [Hotkeys Guide](./guides/hotkeys) - Deep dive into `useHotkey` options and patterns
 - [Sequences Guide](./guides/sequences) - Multi-key sequence handling
 - [Hotkey Recording Guide](./guides/hotkey-recording) - Building shortcut customization UIs
+- [Sequence Recording Guide](./guides/sequence-recording)
 - [Key State Tracking Guide](./guides/key-state-tracking) - Real-time key state monitoring
 - [Formatting & Display Guide](./guides/formatting-display) - Platform-aware hotkey formatting

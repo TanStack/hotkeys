@@ -5,7 +5,7 @@ title: HotkeysContextValue
 
 # Interface: HotkeysContextValue
 
-Defined in: [hotkeys-provider.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L13)
+Defined in: [hotkeys-provider.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L17)
 
 ## Properties
 
@@ -15,4 +15,4 @@ Defined in: [hotkeys-provider.ts:13](https://github.com/TanStack/hotkeys/blob/ma
 readonly defaultOptions: HotkeysProviderOptions;
 ```
 
-Defined in: [hotkeys-provider.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L14)
+Defined in: [hotkeys-provider.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L18)

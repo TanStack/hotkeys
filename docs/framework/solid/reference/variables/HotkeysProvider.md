@@ -9,4 +9,4 @@ title: HotkeysProvider
 const HotkeysProvider: ParentComponent<HotkeysProviderProps>;
 ```
 
-Defined in: [HotkeysProvider.tsx:26](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L26)
+Defined in: [HotkeysProvider.tsx:30](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L30)

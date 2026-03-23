@@ -12,6 +12,7 @@ title: "@tanstack/vue-hotkeys"
 - [UseHotkeyOptions](interfaces/UseHotkeyOptions.md)
 - [UseHotkeySequenceOptions](interfaces/UseHotkeySequenceOptions.md)
 - [VueHotkeyRecorder](interfaces/VueHotkeyRecorder.md)
+- [VueHotkeySequenceRecorder](interfaces/VueHotkeySequenceRecorder.md)
 
 ## Variables
 
@@ -28,4 +29,5 @@ title: "@tanstack/vue-hotkeys"
 - [useHotkeys](functions/useHotkeys.md)
 - [useHotkeysContext](functions/useHotkeysContext.md)
 - [useHotkeySequence](functions/useHotkeySequence.md)
+- [useHotkeySequenceRecorder](functions/useHotkeySequenceRecorder.md)
 - [useKeyHold](functions/useKeyHold.md)

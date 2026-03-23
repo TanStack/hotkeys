@@ -10,6 +10,7 @@ title: "@tanstack/preact-hotkeys"
 - [HotkeysProviderOptions](interfaces/HotkeysProviderOptions.md)
 - [HotkeysProviderProps](interfaces/HotkeysProviderProps.md)
 - [PreactHotkeyRecorder](interfaces/PreactHotkeyRecorder.md)
+- [PreactHotkeySequenceRecorder](interfaces/PreactHotkeySequenceRecorder.md)
 - [UseHotkeyDefinition](interfaces/UseHotkeyDefinition.md)
 - [UseHotkeyOptions](interfaces/UseHotkeyOptions.md)
 - [UseHotkeySequenceOptions](interfaces/UseHotkeySequenceOptions.md)
@@ -25,4 +26,5 @@ title: "@tanstack/preact-hotkeys"
 - [useHotkeys](functions/useHotkeys.md)
 - [useHotkeysContext](functions/useHotkeysContext.md)
 - [useHotkeySequence](functions/useHotkeySequence.md)
+- [useHotkeySequenceRecorder](functions/useHotkeySequenceRecorder.md)
 - [useKeyHold](functions/useKeyHold.md)

@@ -198,6 +198,10 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       text-overflow: ellipsis;
       white-space: nowrap;
     `,
+    sequenceStepMatched: css`
+      font-weight: ${font.weight.bold};
+      color: ${t(colors.blue[700], colors.blue[300])};
+    `,
     hotkeyBadges: css`
       display: flex;
       gap: ${size[1]};
@@ -378,6 +382,11 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       box-shadow: ${tokens.shadow.sm()};
       text-transform: capitalize;
       white-space: nowrap;
+    `,
+    keyCapLargeInProgress: css`
+      border-color: ${t(colors.blue[500], colors.blue[400])};
+      color: ${t(colors.blue[900], colors.blue[200])};
+      background: ${t(colors.blue[50], colors.darkGray[500])};
     `,
     conflictList: css`
       display: flex;

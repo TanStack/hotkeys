@@ -1,12 +1,16 @@
 import { inject, provide } from 'vue'
 import type { InjectionKey } from 'vue'
-import type { HotkeyRecorderOptions } from '@tanstack/hotkeys'
+import type {
+  HotkeyRecorderOptions,
+  HotkeySequenceRecorderOptions,
+} from '@tanstack/hotkeys'
 import type { UseHotkeyOptions } from './useHotkey'
 import type { UseHotkeySequenceOptions } from './useHotkeySequence'
 
 export interface HotkeysProviderOptions {
   hotkey?: Partial<UseHotkeyOptions>
   hotkeyRecorder?: Partial<HotkeyRecorderOptions>
+  hotkeySequenceRecorder?: Partial<HotkeySequenceRecorderOptions>
   hotkeySequence?: Partial<UseHotkeySequenceOptions>
 }
 

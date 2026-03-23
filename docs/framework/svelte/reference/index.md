@@ -16,6 +16,7 @@ title: "@tanstack/svelte-hotkeys"
 - [SvelteHeldKeys](interfaces/SvelteHeldKeys.md)
 - [SvelteHeldKeyState](interfaces/SvelteHeldKeyState.md)
 - [SvelteHotkeyRecorder](interfaces/SvelteHotkeyRecorder.md)
+- [SvelteHotkeySequenceRecorder](interfaces/SvelteHotkeySequenceRecorder.md)
 
 ## Type Aliases
 
@@ -35,6 +36,7 @@ title: "@tanstack/svelte-hotkeys"
 - [createHotkeysAttachment](functions/createHotkeysAttachment.md)
 - [createHotkeySequence](functions/createHotkeySequence.md)
 - [createHotkeySequenceAttachment](functions/createHotkeySequenceAttachment.md)
+- [createHotkeySequenceRecorder](functions/createHotkeySequenceRecorder.md)
 - [getDefaultHotkeysOptions](functions/getDefaultHotkeysOptions.md)
 - [getHeldKeyCodesMap](functions/getHeldKeyCodesMap.md)
 - [getHeldKeys](functions/getHeldKeys.md)

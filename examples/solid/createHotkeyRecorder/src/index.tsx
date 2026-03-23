@@ -79,13 +79,9 @@ function ShortcutListItem(props: {
 
 function App() {
   const [shortcuts, setShortcuts] = createSignal<Record<string, Hotkey | ''>>(
-    () => {
-      const defaults: Record<string, Hotkey> = {}
-      for (const [id, action] of Object.entries(DEFAULT_SHORTCUT_ACTIONS)) {
-        defaults[id] = action.defaultHotkey
-      }
-      return defaults
-    },
+    Object.fromEntries(
+      ACTION_ENTRIES.map(([id, action]) => [id, action.defaultHotkey]),
+    ) as Record<string, Hotkey | ''>,
   )
   const [saveCount, setSaveCount] = createSignal(0)
   const [openCount, setOpenCount] = createSignal(0)

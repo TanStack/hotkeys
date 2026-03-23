@@ -1,5 +1,8 @@
 import { createContext } from 'svelte'
-import type { HotkeyRecorderOptions } from '@tanstack/hotkeys'
+import type {
+  HotkeyRecorderOptions,
+  HotkeySequenceRecorderOptions,
+} from '@tanstack/hotkeys'
 import type { CreateHotkeyOptions } from './createHotkey.svelte'
 import type { Snippet } from 'svelte'
 import type { CreateHotkeySequenceOptions } from './createHotkeySequence.svelte'
@@ -7,6 +10,7 @@ import type { CreateHotkeySequenceOptions } from './createHotkeySequence.svelte'
 export interface HotkeysProviderOptions {
   hotkey?: Partial<CreateHotkeyOptions>
   hotkeyRecorder?: Partial<HotkeyRecorderOptions>
+  hotkeySequenceRecorder?: Partial<HotkeySequenceRecorderOptions>
   hotkeySequence?: Partial<CreateHotkeySequenceOptions>
 }
 

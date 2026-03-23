@@ -1,12 +1,16 @@
 import { createContext, useContext } from 'solid-js'
 import type { JSX, ParentComponent } from 'solid-js'
-import type { HotkeyRecorderOptions } from '@tanstack/hotkeys'
+import type {
+  HotkeyRecorderOptions,
+  HotkeySequenceRecorderOptions,
+} from '@tanstack/hotkeys'
 import type { CreateHotkeyOptions } from './createHotkey'
 import type { CreateHotkeySequenceOptions } from './createHotkeySequence'
 
 export interface HotkeysProviderOptions {
   hotkey?: Partial<CreateHotkeyOptions>
   hotkeyRecorder?: Partial<HotkeyRecorderOptions>
+  hotkeySequenceRecorder?: Partial<HotkeySequenceRecorderOptions>
   hotkeySequence?: Partial<CreateHotkeySequenceOptions>
 }
 

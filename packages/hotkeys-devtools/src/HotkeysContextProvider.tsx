@@ -10,6 +10,7 @@ import {
   KeyStateTracker,
   SequenceManager,
 } from '@tanstack/hotkeys'
+import { needsSequenceProgressClock } from './sequence-progress'
 import type { Accessor } from 'solid-js'
 import type {
   HotkeyRegistration,
@@ -21,6 +22,8 @@ interface HotkeysDevtoolsContextType {
   sequenceRegistrations: Accessor<Array<SequenceRegistrationView>>
   heldKeys: Accessor<Array<string>>
   heldCodes: Accessor<Record<string, string>>
+  /** Monotonic clock for sequence in-progress UI (updates while a sequence match is active). */
+  sequenceProgressNow: Accessor<number>
 }
 
 const HotkeysDevtoolsContext = createContext<HotkeysDevtoolsContextType>({
@@ -28,6 +31,7 @@ const HotkeysDevtoolsContext = createContext<HotkeysDevtoolsContextType>({
   sequenceRegistrations: () => [],
   heldKeys: () => [],
   heldCodes: () => ({}),
+  sequenceProgressNow: () => Date.now(),
 })
 
 export function HotkeysContextProvider(props: { children: any }) {
@@ -76,6 +80,36 @@ export function HotkeysContextProvider(props: { children: any }) {
     onCleanup(() => unsubscribe())
   })
 
+  const [sequenceProgressNow, setSequenceProgressNow] = createSignal(Date.now())
+
+  createEffect(() => {
+    const regs = sequenceRegistrations()
+    let id: ReturnType<typeof setInterval> | undefined
+
+    const tick = () => {
+      const t = Date.now()
+      setSequenceProgressNow(t)
+      if (!needsSequenceProgressClock(sequenceRegistrations(), t)) {
+        if (id !== undefined) {
+          clearInterval(id)
+          id = undefined
+        }
+      }
+    }
+
+    if (needsSequenceProgressClock(regs, Date.now())) {
+      id = setInterval(tick, 50)
+    } else {
+      setSequenceProgressNow(Date.now())
+    }
+
+    onCleanup(() => {
+      if (id !== undefined) {
+        clearInterval(id)
+      }
+    })
+  })
+
   return (
     <HotkeysDevtoolsContext.Provider
       value={{
@@ -83,6 +117,7 @@ export function HotkeysContextProvider(props: { children: any }) {
         sequenceRegistrations,
         heldKeys,
         heldCodes,
+        sequenceProgressNow,
       }}
     >
       {props.children}

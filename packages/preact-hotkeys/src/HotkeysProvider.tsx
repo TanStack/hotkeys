@@ -1,13 +1,17 @@
 import { createContext } from 'preact'
 import { useContext, useMemo } from 'preact/hooks'
 import type { ComponentChildren } from 'preact'
-import type { HotkeyRecorderOptions } from '@tanstack/hotkeys'
+import type {
+  HotkeyRecorderOptions,
+  HotkeySequenceRecorderOptions,
+} from '@tanstack/hotkeys'
 import type { UseHotkeyOptions } from './useHotkey'
 import type { UseHotkeySequenceOptions } from './useHotkeySequence'
 
 export interface HotkeysProviderOptions {
   hotkey?: Partial<UseHotkeyOptions>
   hotkeyRecorder?: Partial<HotkeyRecorderOptions>
+  hotkeySequenceRecorder?: Partial<HotkeySequenceRecorderOptions>
   hotkeySequence?: Partial<UseHotkeySequenceOptions>
 }
 

@@ -99,6 +99,10 @@
               "to": "framework/react/guides/hotkey-recording"
             },
             {
+              "label": "Hotkey Sequence Recording",
+              "to": "framework/react/guides/sequence-recording"
+            },
+            {
               "label": "Key State Tracking",
               "to": "framework/react/guides/key-state-tracking"
             },
@@ -122,6 +126,10 @@
             {
               "label": "Hotkey Recording",
               "to": "framework/preact/guides/hotkey-recording"
+            },
+            {
+              "label": "Hotkey Sequence Recording",
+              "to": "framework/preact/guides/sequence-recording"
             },
             {
               "label": "Key State Tracking",
@@ -149,6 +157,10 @@
               "to": "framework/solid/guides/hotkey-recording"
             },
             {
+              "label": "Hotkey Sequence Recording",
+              "to": "framework/solid/guides/sequence-recording"
+            },
+            {
               "label": "Key State Tracking",
               "to": "framework/solid/guides/key-state-tracking"
             },
@@ -172,6 +184,10 @@
             {
               "label": "Hotkey Recording",
               "to": "framework/angular/guides/hotkey-recording"
+            },
+            {
+              "label": "Hotkey Sequence Recording",
+              "to": "framework/angular/guides/sequence-recording"
             },
             {
               "label": "Key State Tracking",
@@ -199,6 +215,10 @@
               "to": "framework/vue/guides/hotkey-recording"
             },
             {
+              "label": "Hotkey Sequence Recording",
+              "to": "framework/vue/guides/sequence-recording"
+            },
+            {
               "label": "Key State Tracking",
               "to": "framework/vue/guides/key-state-tracking"
             },
@@ -222,6 +242,10 @@
             {
               "label": "Hotkey Recording",
               "to": "framework/svelte/guides/hotkey-recording"
+            },
+            {
+              "label": "Hotkey Sequence Recording",
+              "to": "framework/svelte/guides/sequence-recording"
             },
             {
               "label": "Key State Tracking",
@@ -351,12 +375,32 @@
               "to": "framework/react/reference/functions/useHotkeys"
             },
             {
+              "label": "useHotkeysContext",
+              "to": "framework/react/reference/functions/useHotkeysContext"
+            },
+            {
               "label": "UseHotkeyOptions",
               "to": "framework/react/reference/interfaces/UseHotkeyOptions"
             },
             {
               "label": "UseHotkeyDefinition",
               "to": "framework/react/reference/interfaces/UseHotkeyDefinition"
+            },
+            {
+              "label": "HotkeysProvider",
+              "to": "framework/react/reference/functions/HotkeysProvider"
+            },
+            {
+              "label": "HotkeysProviderProps",
+              "to": "framework/react/reference/interfaces/HotkeysProviderProps"
+            },
+            {
+              "label": "HotkeysProviderOptions",
+              "to": "framework/react/reference/interfaces/HotkeysProviderOptions"
+            },
+            {
+              "label": "useDefaultHotkeysOptions",
+              "to": "framework/react/reference/functions/useDefaultHotkeysOptions"
             }
           ]
         },
@@ -372,12 +416,32 @@
               "to": "framework/preact/reference/functions/useHotkeys"
             },
             {
+              "label": "useHotkeysContext",
+              "to": "framework/preact/reference/functions/useHotkeysContext"
+            },
+            {
               "label": "UseHotkeyOptions",
               "to": "framework/preact/reference/interfaces/UseHotkeyOptions"
             },
             {
               "label": "UseHotkeyDefinition",
               "to": "framework/preact/reference/interfaces/UseHotkeyDefinition"
+            },
+            {
+              "label": "HotkeysProvider",
+              "to": "framework/preact/reference/functions/HotkeysProvider"
+            },
+            {
+              "label": "HotkeysProviderProps",
+              "to": "framework/preact/reference/interfaces/HotkeysProviderProps"
+            },
+            {
+              "label": "HotkeysProviderOptions",
+              "to": "framework/preact/reference/interfaces/HotkeysProviderOptions"
+            },
+            {
+              "label": "useDefaultHotkeysOptions",
+              "to": "framework/preact/reference/functions/useDefaultHotkeysOptions"
             }
           ]
         },
@@ -393,12 +457,20 @@
               "to": "framework/solid/reference/functions/createHotkeys"
             },
             {
+              "label": "useHotkeysContext",
+              "to": "framework/solid/reference/functions/useHotkeysContext"
+            },
+            {
               "label": "CreateHotkeyOptions",
               "to": "framework/solid/reference/interfaces/CreateHotkeyOptions"
             },
             {
               "label": "CreateHotkeyDefinition",
               "to": "framework/solid/reference/interfaces/CreateHotkeyDefinition"
+            },
+            {
+              "label": "useDefaultHotkeysOptions",
+              "to": "framework/solid/reference/functions/useDefaultHotkeysOptions"
             }
           ]
         },
@@ -412,6 +484,10 @@
             {
               "label": "injectHotkeys",
               "to": "framework/angular/reference/functions/injectHotkeys"
+            },
+            {
+              "label": "injectHotkeysContext",
+              "to": "framework/angular/reference/functions/injectHotkeysContext"
             },
             {
               "label": "InjectHotkeyOptions",
@@ -428,6 +504,10 @@
             {
               "label": "HotkeysProviderOptions",
               "to": "framework/angular/reference/interfaces/HotkeysProviderOptions"
+            },
+            {
+              "label": "injectDefaultHotkeysOptions",
+              "to": "framework/angular/reference/functions/injectDefaultHotkeysOptions"
             }
           ]
         },
@@ -441,6 +521,10 @@
             {
               "label": "useHotkeys",
               "to": "framework/vue/reference/functions/useHotkeys"
+            },
+            {
+              "label": "useHotkeysContext",
+              "to": "framework/vue/reference/functions/useHotkeysContext"
             },
             {
               "label": "UseHotkeyOptions",
@@ -457,6 +541,10 @@
             {
               "label": "HotkeysProviderOptions",
               "to": "framework/vue/reference/interfaces/HotkeysProviderOptions"
+            },
+            {
+              "label": "useDefaultHotkeysOptions",
+              "to": "framework/vue/reference/functions/useDefaultHotkeysOptions"
             }
           ]
         },
@@ -543,6 +631,14 @@
         {
           "label": "HotkeySequence",
           "to": "reference/type-aliases/HotkeySequence"
+        },
+        {
+          "label": "SequenceRegistrationHandle",
+          "to": "reference/interfaces/SequenceRegistrationHandle"
+        },
+        {
+          "label": "SequenceRegistrationView",
+          "to": "reference/interfaces/SequenceRegistrationView"
         }
       ],
       "frameworks": [
@@ -926,6 +1022,109 @@
     {
       "collapsible": true,
       "defaultCollapsed": true,
+      "label": "Hotkey Sequence Recorder API Reference",
+      "children": [
+        {
+          "label": "HotkeySequenceRecorder",
+          "to": "reference/classes/HotkeySequenceRecorder"
+        },
+        {
+          "label": "HotkeySequenceRecorderOptions",
+          "to": "reference/interfaces/HotkeySequenceRecorderOptions"
+        },
+        {
+          "label": "HotkeySequenceRecorderState",
+          "to": "reference/interfaces/HotkeySequenceRecorderState"
+        },
+        {
+          "label": "HotkeySequenceRecorderCommitKeys",
+          "to": "reference/type-aliases/HotkeySequenceRecorderCommitKeys"
+        }
+      ],
+      "frameworks": [
+        {
+          "label": "react",
+          "children": [
+            {
+              "label": "useHotkeySequenceRecorder",
+              "to": "framework/react/reference/functions/useHotkeySequenceRecorder"
+            },
+            {
+              "label": "ReactHotkeySequenceRecorder",
+              "to": "framework/react/reference/interfaces/ReactHotkeySequenceRecorder"
+            }
+          ]
+        },
+        {
+          "label": "preact",
+          "children": [
+            {
+              "label": "useHotkeySequenceRecorder",
+              "to": "framework/preact/reference/functions/useHotkeySequenceRecorder"
+            },
+            {
+              "label": "PreactHotkeySequenceRecorder",
+              "to": "framework/preact/reference/interfaces/PreactHotkeySequenceRecorder"
+            }
+          ]
+        },
+        {
+          "label": "solid",
+          "children": [
+            {
+              "label": "createHotkeySequenceRecorder",
+              "to": "framework/solid/reference/functions/createHotkeySequenceRecorder"
+            },
+            {
+              "label": "SolidHotkeySequenceRecorder",
+              "to": "framework/solid/reference/interfaces/SolidHotkeySequenceRecorder"
+            }
+          ]
+        },
+        {
+          "label": "angular",
+          "children": [
+            {
+              "label": "injectHotkeySequenceRecorder",
+              "to": "framework/angular/reference/functions/injectHotkeySequenceRecorder"
+            },
+            {
+              "label": "AngularHotkeySequenceRecorder",
+              "to": "framework/angular/reference/interfaces/AngularHotkeySequenceRecorder"
+            }
+          ]
+        },
+        {
+          "label": "vue",
+          "children": [
+            {
+              "label": "useHotkeySequenceRecorder",
+              "to": "framework/vue/reference/functions/useHotkeySequenceRecorder"
+            },
+            {
+              "label": "VueHotkeySequenceRecorder",
+              "to": "framework/vue/reference/interfaces/VueHotkeySequenceRecorder"
+            }
+          ]
+        },
+        {
+          "label": "svelte",
+          "children": [
+            {
+              "label": "createHotkeySequenceRecorder",
+              "to": "framework/svelte/reference/functions/createHotkeySequenceRecorder"
+            },
+            {
+              "label": "SvelteHotkeySequenceRecorder",
+              "to": "framework/svelte/reference/interfaces/SvelteHotkeySequenceRecorder"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "collapsible": true,
+      "defaultCollapsed": true,
       "label": "Format for Display API Reference",
       "children": [
         {
@@ -1006,6 +1205,10 @@
               "to": "framework/react/examples/useHotkeyRecorder"
             },
             {
+              "label": "useHotkeySequenceRecorder",
+              "to": "framework/react/examples/useHotkeySequenceRecorder"
+            },
+            {
               "label": "useHeldKeys",
               "to": "framework/react/examples/useHeldKeys"
             },
@@ -1033,6 +1236,10 @@
             {
               "label": "useHotkeyRecorder",
               "to": "framework/preact/examples/useHotkeyRecorder"
+            },
+            {
+              "label": "useHotkeySequenceRecorder",
+              "to": "framework/preact/examples/useHotkeySequenceRecorder"
             },
             {
               "label": "useHeldKeys",
@@ -1064,6 +1271,10 @@
               "to": "framework/solid/examples/createHotkeyRecorder"
             },
             {
+              "label": "createHotkeySequenceRecorder",
+              "to": "framework/solid/examples/createHotkeySequenceRecorder"
+            },
+            {
               "label": "createHeldKeys",
               "to": "framework/solid/examples/createHeldKeys"
             },
@@ -1091,6 +1302,10 @@
             {
               "label": "injectHotkeyRecorder",
               "to": "framework/angular/examples/injectHotkeyRecorder"
+            },
+            {
+              "label": "injectHotkeySequenceRecorder",
+              "to": "framework/angular/examples/injectHotkeySequenceRecorder"
             },
             {
               "label": "injectHeldKeys",
@@ -1122,6 +1337,10 @@
               "to": "framework/vue/examples/useHotkeyRecorder"
             },
             {
+              "label": "useHotkeySequenceRecorder",
+              "to": "framework/vue/examples/useHotkeySequenceRecorder"
+            },
+            {
               "label": "useHeldKeys",
               "to": "framework/vue/examples/useHeldKeys"
             },
@@ -1149,6 +1368,10 @@
             {
               "label": "createHotkeyRecorder",
               "to": "framework/svelte/examples/create-hotkey-recorder"
+            },
+            {
+              "label": "create-hotkey-sequence-recorder",
+              "to": "framework/svelte/examples/create-hotkey-sequence-recorder"
             },
             {
               "label": "getHeldKeys",

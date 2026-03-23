@@ -9,7 +9,7 @@ title: provideHotkeysContext
 function provideHotkeysContext(defaultOptions?): void;
 ```
 
-Defined in: [packages/vue-hotkeys/src/HotkeysProviderContext.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L22)
+Defined in: [packages/vue-hotkeys/src/HotkeysProviderContext.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L26)
 
 ## Parameters
 

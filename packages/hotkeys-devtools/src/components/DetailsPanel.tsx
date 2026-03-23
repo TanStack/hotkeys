@@ -1,7 +1,9 @@
 import { For, Show, createMemo } from 'solid-js'
+import clsx from 'clsx'
 import { formatForDisplay, formatHotkeySequence } from '@tanstack/hotkeys'
 import { useStyles } from '../styles/use-styles'
 import { useHotkeysDevtoolsState } from '../HotkeysContextProvider'
+import { effectiveSequenceMatchedSteps } from '../sequence-progress'
 import { ActionButtons } from './ActionButtons'
 import type {
   ConflictBehavior,
@@ -368,15 +370,26 @@ function SequenceDetails(props: {
   styles: ReturnType<typeof useStyles>
 }) {
   const reg = () => props.registration
+  const liveReg = createMemo(
+    () =>
+      props.state.sequenceRegistrations().find((r) => r.id === reg().id) ??
+      reg(),
+  )
+  const matchedSteps = createMemo(() =>
+    effectiveSequenceMatchedSteps(
+      liveReg(),
+      props.state.sequenceProgressNow(),
+    ),
+  )
   const targetConflicts = createMemo(() =>
     props.findSequenceTargetConflicts(
-      reg(),
+      liveReg(),
       props.state.sequenceRegistrations(),
     ),
   )
   const scopeConflicts = createMemo(() =>
     props.findSequenceScopeConflicts(
-      reg(),
+      liveReg(),
       props.state.sequenceRegistrations(),
     ),
   )
@@ -385,7 +398,7 @@ function SequenceDetails(props: {
     ...scopeConflicts(),
   ])
   const conflictBehavior = (): ConflictBehavior =>
-    reg().options.conflictBehavior ?? 'warn'
+    liveReg().options.conflictBehavior ?? 'warn'
 
   const styles = props.styles
 
@@ -393,18 +406,48 @@ function SequenceDetails(props: {
     <>
       <div class={styles().stateHeader}>
         <div class={styles().stateTitle}>
-          {props.formatHotkeySequence(reg().sequence)}
+          <For each={liveReg().sequence}>
+            {(step, i) => (
+              <span>
+                <Show when={i() > 0}>{' '}</Show>
+                <span
+                  class={
+                    i() < matchedSteps()
+                      ? styles().sequenceStepMatched
+                      : undefined
+                  }
+                >
+                  {props.formatForDisplay(step)}
+                </span>
+              </span>
+            )}
+          </For>
         </div>
         <div class={styles().infoGrid}>
           <div class={styles().infoLabel}>ID</div>
-          <div class={styles().infoValueMono}>{reg().id}</div>
+          <div class={styles().infoValueMono}>{liveReg().id}</div>
           <div class={styles().infoLabel}>Sequence</div>
           <div class={styles().infoValueMono}>
-            {props.formatHotkeySequence(reg().sequence)}
+            <For each={liveReg().sequence}>
+              {(step, i) => (
+                <span>
+                  <Show when={i() > 0}>{' '}</Show>
+                  <span
+                    class={
+                      i() < matchedSteps()
+                        ? styles().sequenceStepMatched
+                        : undefined
+                    }
+                  >
+                    {props.formatForDisplay(step)}
+                  </span>
+                </span>
+              )}
+            </For>
           </div>
           <div class={styles().infoLabel}>Target</div>
           <div class={styles().infoValueMono}>
-            {props.getTargetDescription(reg().target)}
+            {props.getTargetDescription(liveReg().target)}
           </div>
         </div>
       </div>
@@ -413,13 +456,18 @@ function SequenceDetails(props: {
         <div class={styles().detailSection}>
           <div class={styles().detailSectionHeader}>Key Breakdown</div>
           <div class={styles().keyBreakdown}>
-            <For each={reg().sequence}>
+            <For each={liveReg().sequence}>
               {(step, i) => (
                 <>
                   <Show when={i() > 0}>
                     <span class={styles().keyBreakdownPlus}>→</span>
                   </Show>
-                  <span class={styles().keyCapLarge}>
+                  <span
+                    class={clsx(
+                      styles().keyCapLarge,
+                      i() < matchedSteps() && styles().keyCapLargeInProgress,
+                    )}
+                  >
                     {props.formatForDisplay(step)}
                   </span>
                 </>
@@ -430,7 +478,7 @@ function SequenceDetails(props: {
 
         <div class={styles().detailSection}>
           <div class={styles().detailSectionHeader}>Actions</div>
-          <ActionButtons registration={reg()} />
+          <ActionButtons registration={liveReg()} />
         </div>
 
         <div class={styles().detailSection}>
@@ -440,60 +488,60 @@ function SequenceDetails(props: {
               <span class={styles().optionLabel}>enabled</span>
               <span
                 class={
-                  reg().options.enabled !== false
+                  liveReg().options.enabled !== false
                     ? styles().optionValueTrue
                     : styles().optionValueFalse
                 }
               >
-                {String(reg().options.enabled !== false)}
+                {String(liveReg().options.enabled !== false)}
               </span>
             </div>
             <div class={styles().optionRow}>
               <span class={styles().optionLabel}>eventType</span>
               <span class={styles().optionValue}>
-                {reg().options.eventType ?? 'keydown'}
+                {liveReg().options.eventType ?? 'keydown'}
               </span>
             </div>
             <div class={styles().optionRow}>
               <span class={styles().optionLabel}>timeout</span>
               <span class={styles().optionValue}>
-                {reg().options.timeout ?? 1000}ms
+                {liveReg().options.timeout ?? 1000}ms
               </span>
             </div>
             <div class={styles().optionRow}>
               <span class={styles().optionLabel}>preventDefault</span>
               <span
                 class={
-                  reg().options.preventDefault
+                  liveReg().options.preventDefault
                     ? styles().optionValueTrue
                     : styles().optionValueFalse
                 }
               >
-                {String(!!reg().options.preventDefault)}
+                {String(!!liveReg().options.preventDefault)}
               </span>
             </div>
             <div class={styles().optionRow}>
               <span class={styles().optionLabel}>stopPropagation</span>
               <span
                 class={
-                  reg().options.stopPropagation
+                  liveReg().options.stopPropagation
                     ? styles().optionValueTrue
                     : styles().optionValueFalse
                 }
               >
-                {String(!!reg().options.stopPropagation)}
+                {String(!!liveReg().options.stopPropagation)}
               </span>
             </div>
             <div class={styles().optionRow}>
               <span class={styles().optionLabel}>ignoreInputs</span>
               <span
                 class={
-                  reg().options.ignoreInputs !== false
+                  liveReg().options.ignoreInputs !== false
                     ? styles().optionValueTrue
                     : styles().optionValueFalse
                 }
               >
-                {String(reg().options.ignoreInputs !== false)}
+                {String(liveReg().options.ignoreInputs !== false)}
               </span>
             </div>
             <div class={styles().optionRow}>

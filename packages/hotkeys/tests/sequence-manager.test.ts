@@ -127,6 +127,43 @@ describe('SequenceManager', () => {
       expect(callback).toHaveBeenCalledTimes(1)
     })
 
+    it('should expose partial match progress on the registrations store', () => {
+      const manager = SequenceManager.getInstance()
+      const callback = vi.fn()
+      const handle = manager.register(['G', 'G'], callback)
+      const id = handle.id
+
+      dispatchKey('g')
+      expect(callback).not.toHaveBeenCalled()
+      expect(manager.registrations.state.get(id)?.matchedStepCount).toBe(1)
+      expect(
+        manager.registrations.state.get(id)?.partialMatchLastKeyTime,
+      ).toBeGreaterThan(0)
+
+      dispatchKey('g')
+      expect(callback).toHaveBeenCalledTimes(1)
+      expect(manager.registrations.state.get(id)?.matchedStepCount).toBe(0)
+    })
+
+    it('should increment triggerCount on the registrations store when a sequence completes', () => {
+      const manager = SequenceManager.getInstance()
+      const callback = vi.fn()
+      const handle = manager.register(['G', 'G'], callback)
+      const id = handle.id
+
+      expect(manager.registrations.state.get(id)?.triggerCount).toBe(0)
+
+      dispatchKey('g')
+      dispatchKey('g')
+      expect(callback).toHaveBeenCalledTimes(1)
+      expect(manager.registrations.state.get(id)?.triggerCount).toBe(1)
+
+      dispatchKey('g')
+      dispatchKey('g')
+      expect(callback).toHaveBeenCalledTimes(2)
+      expect(manager.registrations.state.get(id)?.triggerCount).toBe(2)
+    })
+
     it('should pass context to callback', () => {
       const manager = SequenceManager.getInstance()
       const callback = vi.fn()

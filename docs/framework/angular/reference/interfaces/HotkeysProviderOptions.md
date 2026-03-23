@@ -5,7 +5,7 @@ title: HotkeysProviderOptions
 
 # Interface: HotkeysProviderOptions
 
-Defined in: [hotkeys-provider.ts:7](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L7)
+Defined in: [hotkeys-provider.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L10)
 
 ## Properties
 
@@ -15,7 +15,7 @@ Defined in: [hotkeys-provider.ts:7](https://github.com/TanStack/hotkeys/blob/mai
 optional hotkey: Partial<InjectHotkeyOptions>;
 ```
 
-Defined in: [hotkeys-provider.ts:8](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L8)
+Defined in: [hotkeys-provider.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L11)
 
 ***
 
@@ -25,7 +25,7 @@ Defined in: [hotkeys-provider.ts:8](https://github.com/TanStack/hotkeys/blob/mai
 optional hotkeyRecorder: Partial<HotkeyRecorderOptions>;
 ```
 
-Defined in: [hotkeys-provider.ts:9](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L9)
+Defined in: [hotkeys-provider.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L12)
 
 ***
 
@@ -35,4 +35,14 @@ Defined in: [hotkeys-provider.ts:9](https://github.com/TanStack/hotkeys/blob/mai
 optional hotkeySequence: Partial<InjectHotkeySequenceOptions>;
 ```
 
-Defined in: [hotkeys-provider.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L10)
+Defined in: [hotkeys-provider.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L14)
+
+***
+
+### hotkeySequenceRecorder?
+
+```ts
+optional hotkeySequenceRecorder: Partial<HotkeySequenceRecorderOptions>;
+```
+
+Defined in: [hotkeys-provider.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L13)

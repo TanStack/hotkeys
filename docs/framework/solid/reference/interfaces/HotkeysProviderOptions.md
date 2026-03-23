@@ -5,7 +5,7 @@ title: HotkeysProviderOptions
 
 # Interface: HotkeysProviderOptions
 
-Defined in: [HotkeysProvider.tsx:7](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L7)
+Defined in: [HotkeysProvider.tsx:10](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L10)
 
 ## Properties
 
@@ -15,7 +15,7 @@ Defined in: [HotkeysProvider.tsx:7](https://github.com/TanStack/hotkeys/blob/mai
 optional hotkey: Partial<CreateHotkeyOptions>;
 ```
 
-Defined in: [HotkeysProvider.tsx:8](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L8)
+Defined in: [HotkeysProvider.tsx:11](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L11)
 
 ***
 
@@ -25,7 +25,7 @@ Defined in: [HotkeysProvider.tsx:8](https://github.com/TanStack/hotkeys/blob/mai
 optional hotkeyRecorder: Partial<HotkeyRecorderOptions>;
 ```
 
-Defined in: [HotkeysProvider.tsx:9](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L9)
+Defined in: [HotkeysProvider.tsx:12](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L12)
 
 ***
 
@@ -35,4 +35,14 @@ Defined in: [HotkeysProvider.tsx:9](https://github.com/TanStack/hotkeys/blob/mai
 optional hotkeySequence: Partial<CreateHotkeySequenceOptions>;
 ```
 
-Defined in: [HotkeysProvider.tsx:10](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L10)
+Defined in: [HotkeysProvider.tsx:14](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L14)
+
+***
+
+### hotkeySequenceRecorder?
+
+```ts
+optional hotkeySequenceRecorder: Partial<HotkeySequenceRecorderOptions>;
+```
+
+Defined in: [HotkeysProvider.tsx:13](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L13)
