@@ -10,9 +10,30 @@ const stylesFactory = (theme: 'light' | 'dark') => {
   const t = (light: string, dark: string) => (theme === 'light' ? light : dark)
 
   return {
+    /** Full-height flex child so MainPanel gets a bounded height from the portal */
+    shellRoot: css`
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      height: 100%;
+      flex: 1;
+      overflow: hidden;
+    `,
+    /** Overrides devtools-ui MainPanel (overflow-y: auto) so inner columns scroll independently */
+    mainPanelShell: css`
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 0%;
+      min-height: 0;
+      height: auto;
+      overflow: hidden !important;
+    `,
     mainContainer: css`
       display: flex;
       flex-direction: column;
+      flex: 1 1 0%;
+      min-height: 0;
+      overflow: hidden;
       padding: ${size[2]};
       padding-top: 0;
       margin-top: ${size[2]};
@@ -47,6 +68,10 @@ const stylesFactory = (theme: 'light' | 'dark') => {
     `,
     panelsContainer: css`
       display: flex;
+      flex: 1 1 0%;
+      min-height: 0;
+      overflow: hidden;
+      align-items: stretch;
     `,
     dragHandle: css`
       width: 8px;
@@ -129,6 +154,13 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       display: flex;
       flex-direction: column;
       flex-shrink: 0;
+      min-height: 0;
+      min-width: 0;
+    `,
+    leftPanelScroll: css`
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
     `,
     rightPanel: css`
       background: ${t(colors.gray[100], colors.darkGray[800])};
@@ -137,6 +169,9 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       display: flex;
       flex-direction: column;
       flex: 1;
+      min-height: 0;
+      min-width: 0;
+      overflow: hidden;
     `,
     panelHeader: css`
       font-size: ${fontSize.md};
@@ -254,6 +289,11 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       background: ${t(colors.blue[100], colors.blue[900] + alpha[30])};
     `,
     stateDetails: css`
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
       padding: ${size[2]};
     `,
     stateHeader: css`
