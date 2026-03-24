@@ -119,7 +119,7 @@ importers:
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: ^21.2.3
-        version: 21.2.3(@angular/compiler-cli@21.2.5(@angular/compiler@21.2.5)(typescript@5.9.3))(@angular/compiler@21.2.5)(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.2.5(@angular/common@21.2.5(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2)(zone.js@0.16.1)))(@types/node@25.5.0)(chokidar@5.0.0)(jiti@2.6.1)(karma@6.4.4)(lightningcss@1.32.0)(typescript@5.9.3)(vitest@4.1.0(@types/node@25.5.0)(happy-dom@20.8.4)(vite@8.0.1(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.6.1)(less@4.4.2)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)))(yaml@2.8.2)
+        version: 21.2.3(@angular/compiler-cli@21.2.5(@angular/compiler@21.2.5)(typescript@5.9.3))(@angular/compiler@21.2.5)(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.2.5(@angular/common@21.2.5(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2)(zone.js@0.16.1)))(@types/node@25.5.0)(chokidar@5.0.0)(jiti@2.6.1)(karma@6.4.4)(lightningcss@1.32.0)(typescript@5.9.3)(vitest@4.1.0(@types/node@25.5.0)(happy-dom@20.8.4)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.32.0)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)))(yaml@2.8.2)
       '@angular/cli':
         specifier: ^21.2.3
         version: 21.2.3(@types/node@25.5.0)(chokidar@5.0.0)
@@ -189,7 +189,7 @@ importers:
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: ^21.2.3
-        version: 21.2.3(@angular/compiler-cli@21.2.5(@angular/compiler@21.2.5)(typescript@5.9.3))(@angular/compiler@21.2.5)(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.2.5(@angular/common@21.2.5(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2)(zone.js@0.16.1)))(@types/node@25.5.0)(chokidar@5.0.0)(jiti@2.6.1)(karma@6.4.4)(lightningcss@1.32.0)(typescript@5.9.3)(vitest@4.1.0(@types/node@25.5.0)(happy-dom@20.8.4)(vite@7.3.1(@types/node@25.5.0)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.32.0)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)))(yaml@2.8.2)
+        version: 21.2.3(@angular/compiler-cli@21.2.5(@angular/compiler@21.2.5)(typescript@5.9.3))(@angular/compiler@21.2.5)(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.2.5(@angular/common@21.2.5(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.5(@angular/compiler@21.2.5)(rxjs@7.8.2)(zone.js@0.16.1)))(@types/node@25.5.0)(chokidar@5.0.0)(jiti@2.6.1)(karma@6.4.4)(lightningcss@1.32.0)(typescript@5.9.3)(vitest@4.1.0(@types/node@25.5.0)(happy-dom@20.8.4)(vite@8.0.1(@types/node@25.5.0)(esbuild@0.27.3)(jiti@2.6.1)(less@4.4.2)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)))(yaml@2.8.2)
       '@angular/cli':
         specifier: ^21.2.3
         version: 21.2.3(@types/node@25.5.0)(chokidar@5.0.0)
@@ -587,7 +587,7 @@ importers:
         specifier: 0.10.0
         version: 0.10.0(csstype@3.2.3)(preact@10.29.0)(solid-js@1.9.11)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 5.9.3
@@ -612,7 +612,7 @@ importers:
         specifier: 0.10.0
         version: 0.10.0(csstype@3.2.3)(preact@10.29.0)(solid-js@1.9.11)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 5.9.3
@@ -637,7 +637,7 @@ importers:
         specifier: 0.10.0
         version: 0.10.0(csstype@3.2.3)(preact@10.29.0)(solid-js@1.9.11)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 5.9.3
@@ -662,7 +662,7 @@ importers:
         specifier: 0.10.0
         version: 0.10.0(csstype@3.2.3)(preact@10.29.0)(solid-js@1.9.11)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 5.9.3
@@ -687,7 +687,7 @@ importers:
         specifier: 0.10.0
         version: 0.10.0(csstype@3.2.3)(preact@10.29.0)(solid-js@1.9.11)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 5.9.3
@@ -712,7 +712,7 @@ importers:
         specifier: 0.10.0
         version: 0.10.0(csstype@3.2.3)(preact@10.29.0)(solid-js@1.9.11)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 5.9.3
@@ -737,7 +737,7 @@ importers:
         specifier: 0.10.0
         version: 0.10.0(csstype@3.2.3)(preact@10.29.0)(solid-js@1.9.11)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 5.9.3
@@ -762,7 +762,7 @@ importers:
         specifier: 0.10.0
         version: 0.10.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solid-js@1.9.11)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -796,7 +796,7 @@ importers:
         specifier: 0.10.0
         version: 0.10.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solid-js@1.9.11)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -830,7 +830,7 @@ importers:
         specifier: 0.10.0
         version: 0.10.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solid-js@1.9.11)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -864,7 +864,7 @@ importers:
         specifier: 0.10.0
         version: 0.10.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solid-js@1.9.11)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -898,7 +898,7 @@ importers:
         specifier: 0.10.0
         version: 0.10.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solid-js@1.9.11)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -932,7 +932,7 @@ importers:
         specifier: 0.10.0
         version: 0.10.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solid-js@1.9.11)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -966,7 +966,7 @@ importers:
         specifier: 0.10.0
         version: 0.10.0(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(solid-js@1.9.11)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -993,7 +993,7 @@ importers:
         specifier: ^0.6.0
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.11
@@ -1015,7 +1015,7 @@ importers:
         specifier: ^0.6.0
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.11
@@ -1043,7 +1043,7 @@ importers:
         specifier: ^0.6.0
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.11
@@ -1065,7 +1065,7 @@ importers:
         specifier: ^0.6.0
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.11
@@ -1087,7 +1087,7 @@ importers:
         specifier: ^0.6.0
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.11
@@ -1109,7 +1109,7 @@ importers:
         specifier: ^0.6.0
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.11
@@ -1137,7 +1137,7 @@ importers:
         specifier: ^0.6.0
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.11
@@ -1296,7 +1296,7 @@ importers:
         specifier: ^0.2.14
         version: 0.2.14(csstype@3.2.3)(solid-js@1.9.11)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/vue-hotkeys-devtools
       '@vitejs/plugin-vue':
         specifier: ^6.0.5
@@ -1321,7 +1321,7 @@ importers:
         specifier: ^0.2.14
         version: 0.2.14(csstype@3.2.3)(solid-js@1.9.11)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/vue-hotkeys-devtools
       '@vitejs/plugin-vue':
         specifier: ^6.0.5
@@ -1346,7 +1346,7 @@ importers:
         specifier: ^0.2.14
         version: 0.2.14(csstype@3.2.3)(solid-js@1.9.11)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/vue-hotkeys-devtools
       '@vitejs/plugin-vue':
         specifier: ^6.0.5
@@ -1371,7 +1371,7 @@ importers:
         specifier: ^0.2.14
         version: 0.2.14(csstype@3.2.3)(solid-js@1.9.11)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/vue-hotkeys-devtools
       '@vitejs/plugin-vue':
         specifier: ^6.0.5
@@ -1396,7 +1396,7 @@ importers:
         specifier: ^0.2.14
         version: 0.2.14(csstype@3.2.3)(solid-js@1.9.11)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/vue-hotkeys-devtools
       '@vitejs/plugin-vue':
         specifier: ^6.0.5
@@ -1421,7 +1421,7 @@ importers:
         specifier: ^0.2.14
         version: 0.2.14(csstype@3.2.3)(solid-js@1.9.11)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/vue-hotkeys-devtools
       '@vitejs/plugin-vue':
         specifier: ^6.0.5
@@ -1446,7 +1446,7 @@ importers:
         specifier: ^0.2.14
         version: 0.2.14(csstype@3.2.3)(solid-js@1.9.11)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.4.5
+        specifier: ^0.5.0
         version: link:../../../packages/vue-hotkeys-devtools
       '@vitejs/plugin-vue':
         specifier: ^6.0.5
