@@ -1,5 +1,16 @@
 # @tanstack/react-hotkeys
 
+## 0.6.0
+
+### Minor Changes
+
+- Align sequence recording with hotkey-prefixed public API: `HotkeySequenceRecorder`, framework hooks `useHotkeySequenceRecorder` / `createHotkeySequenceRecorder` / `injectHotkeySequenceRecorder`, and provider defaults under `hotkeySequenceRecorder`. ([#78](https://github.com/TanStack/hotkeys/pull/78))
+
+### Patch Changes
+
+- Updated dependencies [[`e04555e`](https://github.com/TanStack/hotkeys/commit/e04555e234bfed439f59c319cc9039a515770d72)]:
+  - @tanstack/hotkeys@0.5.0
+
 ## 0.5.1
 
 ### Patch Changes

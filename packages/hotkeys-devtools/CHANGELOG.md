@@ -1,5 +1,12 @@
 # @tanstack/hotkeys-devtools
 
+## 1.0.0
+
+### Patch Changes
+
+- Updated dependencies [[`e04555e`](https://github.com/TanStack/hotkeys/commit/e04555e234bfed439f59c319cc9039a515770d72)]:
+  - @tanstack/hotkeys@0.5.0
+
 ## 0.4.4
 
 ### Patch Changes

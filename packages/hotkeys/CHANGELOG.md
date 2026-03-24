@@ -1,5 +1,11 @@
 # @tanstack/hotkeys
 
+## 0.5.0
+
+### Minor Changes
+
+- Align sequence recording with hotkey-prefixed public API: `HotkeySequenceRecorder`, framework hooks `useHotkeySequenceRecorder` / `createHotkeySequenceRecorder` / `injectHotkeySequenceRecorder`, and provider defaults under `hotkeySequenceRecorder`. ([#78](https://github.com/TanStack/hotkeys/pull/78))
+
 ## 0.4.3
 
 ### Patch Changes
