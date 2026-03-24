@@ -10,6 +10,7 @@ title: "@tanstack/vue-hotkeys"
 - [HotkeysProviderOptions](interfaces/HotkeysProviderOptions.md)
 - [UseHotkeyDefinition](interfaces/UseHotkeyDefinition.md)
 - [UseHotkeyOptions](interfaces/UseHotkeyOptions.md)
+- [UseHotkeySequenceDefinition](interfaces/UseHotkeySequenceDefinition.md)
 - [UseHotkeySequenceOptions](interfaces/UseHotkeySequenceOptions.md)
 - [VueHotkeyRecorder](interfaces/VueHotkeyRecorder.md)
 - [VueHotkeySequenceRecorder](interfaces/VueHotkeySequenceRecorder.md)
@@ -30,4 +31,5 @@ title: "@tanstack/vue-hotkeys"
 - [useHotkeysContext](functions/useHotkeysContext.md)
 - [useHotkeySequence](functions/useHotkeySequence.md)
 - [useHotkeySequenceRecorder](functions/useHotkeySequenceRecorder.md)
+- [useHotkeySequences](functions/useHotkeySequences.md)
 - [useKeyHold](functions/useKeyHold.md)

@@ -17,6 +17,21 @@ TanStack Hotkeys supports multi-key sequences in Svelte, where keys are pressed 
 </script>
 ```
 
+## Many sequences at once
+
+Use `createHotkeySequences` to register several global sequences in one place (including from a reactive getter). For multiple sequences on a focused element, use `createHotkeySequencesAttachment` the same way you would use `createHotkeySequenceAttachment`.
+
+```svelte
+<script lang="ts">
+  import { createHotkeySequences } from '@tanstack/svelte-hotkeys'
+
+  createHotkeySequences([
+    { sequence: ['G', 'G'], callback: () => scrollToTop() },
+    { sequence: ['D', 'D'], callback: () => deleteLine(), options: { timeout: 500 } },
+  ])
+</script>
+```
+
 ## Scoped sequences
 
 Use `createHotkeySequenceAttachment` when a sequence should only be active while a specific element owns focus.

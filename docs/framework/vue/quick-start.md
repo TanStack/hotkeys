@@ -88,6 +88,8 @@ useHotkeySequence(['G', 'Shift+G'], () => scrollToBottom())
 </script>
 ```
 
+For several sequences or a list that changes at runtime, prefer a single `useHotkeySequences([...])` call (see the [Sequences guide](./guides/sequences.md#many-sequences-at-once)).
+
 ### Tracking Held Keys
 
 ```vue

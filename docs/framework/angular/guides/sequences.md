@@ -21,6 +21,34 @@ export class AppComponent {
 }
 ```
 
+## Many sequences at once
+
+Use `injectHotkeySequences` when you want several sequences (or a list built from data) in one injection context, instead of many `injectHotkeySequence` calls.
+
+```ts
+import { injectHotkeySequences } from '@tanstack/angular-hotkeys'
+
+@Component({ standalone: true, template: `` })
+export class AppComponent {
+  constructor() {
+    injectHotkeySequences([
+      {
+        sequence: ['G', 'G'],
+        callback: () =>
+          window.scrollTo({ top: 0, behavior: 'smooth' }),
+      },
+      {
+        sequence: ['D', 'D'],
+        callback: () => console.log('delete line'),
+        options: { timeout: 500 },
+      },
+    ])
+  }
+}
+```
+
+Options merge like `injectHotkeys`: `provideHotkeys` defaults, then `commonOptions`, then each definition’s `options`.
+
 ## Sequence Options
 
 ```ts

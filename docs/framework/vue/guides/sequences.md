@@ -17,6 +17,23 @@ useHotkeySequence(['G', 'G'], () => {
 </script>
 ```
 
+## Many sequences at once
+
+When you need several sequences—or a **reactive** list whose length changes—use `useHotkeySequences` instead of many `useHotkeySequence` calls. One composable registers every sequence safely.
+
+```vue
+<script setup lang="ts">
+import { useHotkeySequences } from '@tanstack/vue-hotkeys'
+
+useHotkeySequences([
+  { sequence: ['G', 'G'], callback: () => scrollToTop() },
+  { sequence: ['D', 'D'], callback: () => deleteLine(), options: { timeout: 500 } },
+])
+</script>
+```
+
+Options merge like `useHotkeys`: `HotkeysProvider` defaults, then `commonOptions`, then each definition’s `options`.
+
 ## Sequence Options
 
 ```ts

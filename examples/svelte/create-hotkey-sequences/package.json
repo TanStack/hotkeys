@@ -1,0 +1,17 @@
+{
+  "name": "@tanstack/hotkeys-example-svelte-create-hotkey-sequences",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3069"
+  },
+  "dependencies": {
+    "@tanstack/svelte-hotkeys": "0.6.0",
+    "svelte": "^5.54.1"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^7.0.0",
+    "typescript": "5.9.3",
+    "vite": "^8.0.1"
+  }
+}

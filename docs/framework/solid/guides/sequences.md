@@ -22,6 +22,21 @@ function App() {
 
 The first argument is an array of `Hotkey` strings representing each step in the sequence. The user must press them in order within the timeout window.
 
+## Many sequences at once
+
+For several sequences or a **dynamic** list, use `createHotkeySequences` instead of many `createHotkeySequence` calls. Pass a plain array or an accessor that returns definitions.
+
+```tsx
+import { createHotkeySequences } from '@tanstack/solid-hotkeys'
+
+createHotkeySequences([
+  { sequence: ['G', 'G'], callback: () => scrollToTop() },
+  { sequence: ['D', 'D'], callback: () => deleteLine(), options: { timeout: 500 } },
+])
+```
+
+Options merge like `createHotkeys`: `HotkeysProvider` defaults, then `commonOptions`, then each definition’s `options`. For element-scoped multi-sequence registration, use `createHotkeySequencesAttachment`.
+
 ## Reactive Options
 
 Solid's `createHotkeySequence` accepts **accessor functions** for reactive sequence and options:

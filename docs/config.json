@@ -652,6 +652,14 @@
             {
               "label": "UseHotkeySequenceOptions",
               "to": "framework/react/reference/interfaces/UseHotkeySequenceOptions"
+            },
+            {
+              "label": "useHotkeySequences",
+              "to": "framework/react/reference/functions/useHotkeySequences"
+            },
+            {
+              "label": "UseHotkeySequenceDefinition",
+              "to": "framework/react/reference/interfaces/UseHotkeySequenceDefinition"
             }
           ]
         },
@@ -665,6 +673,14 @@
             {
               "label": "UseHotkeySequenceOptions",
               "to": "framework/preact/reference/interfaces/UseHotkeySequenceOptions"
+            },
+            {
+              "label": "useHotkeySequences",
+              "to": "framework/preact/reference/functions/useHotkeySequences"
+            },
+            {
+              "label": "UseHotkeySequenceDefinition",
+              "to": "framework/preact/reference/interfaces/UseHotkeySequenceDefinition"
             }
           ]
         },
@@ -678,6 +694,14 @@
             {
               "label": "CreateHotkeySequenceOptions",
               "to": "framework/solid/reference/interfaces/CreateHotkeySequenceOptions"
+            },
+            {
+              "label": "createHotkeySequences",
+              "to": "framework/solid/reference/functions/createHotkeySequences"
+            },
+            {
+              "label": "CreateHotkeySequenceDefinition",
+              "to": "framework/solid/reference/interfaces/CreateHotkeySequenceDefinition"
             }
           ]
         },
@@ -691,6 +715,14 @@
             {
               "label": "InjectHotkeySequenceOptions",
               "to": "framework/angular/reference/interfaces/InjectHotkeySequenceOptions"
+            },
+            {
+              "label": "injectHotkeySequences",
+              "to": "framework/angular/reference/functions/injectHotkeySequences"
+            },
+            {
+              "label": "InjectHotkeySequenceDefinition",
+              "to": "framework/angular/reference/interfaces/InjectHotkeySequenceDefinition"
             }
           ]
         },
@@ -704,6 +736,14 @@
             {
               "label": "UseHotkeySequenceOptions",
               "to": "framework/vue/reference/interfaces/UseHotkeySequenceOptions"
+            },
+            {
+              "label": "useHotkeySequences",
+              "to": "framework/vue/reference/functions/useHotkeySequences"
+            },
+            {
+              "label": "UseHotkeySequenceDefinition",
+              "to": "framework/vue/reference/interfaces/UseHotkeySequenceDefinition"
             }
           ]
         },
@@ -721,6 +761,18 @@
             {
               "label": "CreateHotkeySequenceOptions",
               "to": "framework/svelte/reference/interfaces/CreateHotkeySequenceOptions"
+            },
+            {
+              "label": "createHotkeySequences",
+              "to": "framework/svelte/reference/functions/createHotkeySequences"
+            },
+            {
+              "label": "createHotkeySequencesAttachment",
+              "to": "framework/svelte/reference/functions/createHotkeySequencesAttachment"
+            },
+            {
+              "label": "CreateHotkeySequenceDefinition",
+              "to": "framework/svelte/reference/interfaces/CreateHotkeySequenceDefinition"
             }
           ]
         }
@@ -1201,6 +1253,10 @@
               "to": "framework/react/examples/useHotkeySequence"
             },
             {
+              "label": "useHotkeySequences",
+              "to": "framework/react/examples/useHotkeySequences"
+            },
+            {
               "label": "useHotkeyRecorder",
               "to": "framework/react/examples/useHotkeyRecorder"
             },
@@ -1232,6 +1288,10 @@
             {
               "label": "useHotkeySequence",
               "to": "framework/preact/examples/useHotkeySequence"
+            },
+            {
+              "label": "useHotkeySequences",
+              "to": "framework/preact/examples/useHotkeySequences"
             },
             {
               "label": "useHotkeyRecorder",
@@ -1267,6 +1327,10 @@
               "to": "framework/solid/examples/createHotkeySequence"
             },
             {
+              "label": "createHotkeySequences",
+              "to": "framework/solid/examples/createHotkeySequences"
+            },
+            {
               "label": "createHotkeyRecorder",
               "to": "framework/solid/examples/createHotkeyRecorder"
             },
@@ -1298,6 +1362,10 @@
             {
               "label": "injectHotkeySequence",
               "to": "framework/angular/examples/injectHotkeySequence"
+            },
+            {
+              "label": "injectHotkeySequences",
+              "to": "framework/angular/examples/injectHotkeySequences"
             },
             {
               "label": "injectHotkeyRecorder",
@@ -1333,6 +1401,10 @@
               "to": "framework/vue/examples/useHotkeySequence"
             },
             {
+              "label": "useHotkeySequences",
+              "to": "framework/vue/examples/useHotkeySequences"
+            },
+            {
               "label": "useHotkeyRecorder",
               "to": "framework/vue/examples/useHotkeyRecorder"
             },
@@ -1364,6 +1436,10 @@
             {
               "label": "createHotkeySequence",
               "to": "framework/svelte/examples/create-hotkey-sequence"
+            },
+            {
+              "label": "createHotkeySequences",
+              "to": "framework/svelte/examples/create-hotkey-sequences"
             },
             {
               "label": "createHotkeyRecorder",

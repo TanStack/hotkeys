@@ -13,6 +13,7 @@ title: "@tanstack/preact-hotkeys"
 - [PreactHotkeySequenceRecorder](interfaces/PreactHotkeySequenceRecorder.md)
 - [UseHotkeyDefinition](interfaces/UseHotkeyDefinition.md)
 - [UseHotkeyOptions](interfaces/UseHotkeyOptions.md)
+- [UseHotkeySequenceDefinition](interfaces/UseHotkeySequenceDefinition.md)
 - [UseHotkeySequenceOptions](interfaces/UseHotkeySequenceOptions.md)
 
 ## Functions
@@ -27,4 +28,5 @@ title: "@tanstack/preact-hotkeys"
 - [useHotkeysContext](functions/useHotkeysContext.md)
 - [useHotkeySequence](functions/useHotkeySequence.md)
 - [useHotkeySequenceRecorder](functions/useHotkeySequenceRecorder.md)
+- [useHotkeySequences](functions/useHotkeySequences.md)
 - [useKeyHold](functions/useKeyHold.md)

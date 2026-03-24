@@ -22,6 +22,21 @@ function App() {
 
 The first argument is an array of `Hotkey` strings representing each step in the sequence. The user must press them in order within the timeout window.
 
+## Many sequences at once
+
+When you need several sequences—or a **dynamic** list whose length is not fixed at compile time—use `useHotkeySequences` instead of calling `useHotkeySequence` many times. One hook call keeps you within the rules of hooks while still registering every sequence.
+
+```tsx
+import { useHotkeySequences } from '@tanstack/preact-hotkeys'
+
+useHotkeySequences([
+  { sequence: ['G', 'G'], callback: () => scrollToTop() },
+  { sequence: ['D', 'D'], callback: () => deleteLine(), options: { timeout: 500 } },
+])
+```
+
+Options merge in the same order as `useHotkeys`: `HotkeysProvider` defaults, then the second-argument `commonOptions`, then each definition’s `options`.
+
 ## Sequence Options
 
 The third argument is an options object:

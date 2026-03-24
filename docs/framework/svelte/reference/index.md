@@ -9,6 +9,7 @@ title: "@tanstack/svelte-hotkeys"
 
 - [CreateHotkeyDefinition](interfaces/CreateHotkeyDefinition.md)
 - [CreateHotkeyOptions](interfaces/CreateHotkeyOptions.md)
+- [CreateHotkeySequenceDefinition](interfaces/CreateHotkeySequenceDefinition.md)
 - [CreateHotkeySequenceOptions](interfaces/CreateHotkeySequenceOptions.md)
 - [HotkeysProviderOptions](interfaces/HotkeysProviderOptions.md)
 - [HotkeysProviderProps](interfaces/HotkeysProviderProps.md)
@@ -37,6 +38,8 @@ title: "@tanstack/svelte-hotkeys"
 - [createHotkeySequence](functions/createHotkeySequence.md)
 - [createHotkeySequenceAttachment](functions/createHotkeySequenceAttachment.md)
 - [createHotkeySequenceRecorder](functions/createHotkeySequenceRecorder.md)
+- [createHotkeySequences](functions/createHotkeySequences.md)
+- [createHotkeySequencesAttachment](functions/createHotkeySequencesAttachment.md)
 - [getDefaultHotkeysOptions](functions/getDefaultHotkeysOptions.md)
 - [getHeldKeyCodesMap](functions/getHeldKeyCodesMap.md)
 - [getHeldKeys](functions/getHeldKeys.md)
