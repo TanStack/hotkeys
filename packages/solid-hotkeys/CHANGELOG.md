@@ -1,5 +1,11 @@
 # @tanstack/solid-hotkeys
 
+## 0.7.0
+
+### Minor Changes
+
+- Add plural sequence APIs (`useHotkeySequences`, `createHotkeySequences`, `createHotkeySequencesAttachment`, `injectHotkeySequences`) and align `enabled` across adapters: disabled registrations stay in the manager for devtools, only core dispatch is skipped, and toggling `enabled` updates handles via `setOptions` instead of churning unregister/register. ([#80](https://github.com/TanStack/hotkeys/pull/80))
+
 ## 0.6.0
 
 ### Minor Changes
