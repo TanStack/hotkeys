@@ -1,12 +1,11 @@
 // @vitest-environment happy-dom
-import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { render } from '@solidjs/testing-library'
 import { SequenceManager } from '@tanstack/hotkeys'
-import {
-  createHotkeySequences,
-  type CreateHotkeySequenceDefinition,
-} from '../src/createHotkeySequences'
-import { createSignal, type Component } from 'solid-js'
+import { createSignal } from 'solid-js'
+import type { Component } from 'solid-js'
+import { createHotkeySequences } from '../src/createHotkeySequences'
+import type { CreateHotkeySequenceDefinition } from '../src/createHotkeySequences'
 
 function dispatchKey(key: string) {
   document.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true }))

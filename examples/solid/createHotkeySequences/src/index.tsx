@@ -1,10 +1,10 @@
 /* @refresh reload */
 import { render } from 'solid-js/web'
-import { createSignal, Show } from 'solid-js'
+import { Show, createSignal } from 'solid-js'
 import {
+  HotkeysProvider,
   createHotkey,
   createHotkeySequences,
-  HotkeysProvider,
 } from '@tanstack/solid-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
 import { TanStackDevtools } from '@tanstack/solid-devtools'

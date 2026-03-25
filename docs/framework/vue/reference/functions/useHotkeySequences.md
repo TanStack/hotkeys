@@ -9,7 +9,7 @@ title: useHotkeySequences
 function useHotkeySequences(definitions, commonOptions): void;
 ```
 
-Defined in: packages/vue-hotkeys/src/useHotkeySequences.ts:68
+Defined in: [packages/vue-hotkeys/src/useHotkeySequences.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeySequences.ts#L68)
 
 Vue composable for registering multiple keyboard shortcut sequences at once (Vim-style).
 

@@ -70,7 +70,9 @@
     </section>
 
     @if (lastSequence(); as seq) {
-      <div class="info-box success"><strong>Triggered:</strong> {{ seq }}</div>
+      <div class="info-box success" aria-live="polite">
+        <strong>Triggered:</strong> {{ seq }}
+      </div>
     }
 
     <section class="demo-section">

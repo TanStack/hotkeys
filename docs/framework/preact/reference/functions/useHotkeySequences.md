@@ -9,7 +9,7 @@ title: useHotkeySequences
 function useHotkeySequences(definitions, commonOptions): void;
 ```
 
-Defined in: useHotkeySequences.ts:65
+Defined in: [useHotkeySequences.ts:65](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeySequences.ts#L65)
 
 Preact hook for registering multiple keyboard shortcut sequences at once (Vim-style).
 

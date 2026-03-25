@@ -9,7 +9,7 @@ title: injectHotkeySequences
 function injectHotkeySequences(sequences, commonOptions): void;
 ```
 
-Defined in: injectHotkeySequences.ts:50
+Defined in: [injectHotkeySequences.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequences.ts#L50)
 
 Angular inject-based API for registering multiple keyboard shortcut sequences at once (Vim-style).
 

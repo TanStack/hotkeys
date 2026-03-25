@@ -26,6 +26,7 @@ export class AppComponent {
 Use `injectHotkeySequences` when you want several sequences (or a list built from data) in one injection context, instead of many `injectHotkeySequence` calls.
 
 ```ts
+import { Component } from '@angular/core'
 import { injectHotkeySequences } from '@tanstack/angular-hotkeys'
 
 @Component({ standalone: true, template: `` })

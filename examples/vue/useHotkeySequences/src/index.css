@@ -25,7 +25,6 @@ header h1 {
 }
 header p {
   color: #666;
-  margin: 0;
   max-width: 500px;
   margin: 0 auto;
 }

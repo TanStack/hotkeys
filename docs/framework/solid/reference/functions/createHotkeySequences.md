@@ -9,7 +9,7 @@ title: createHotkeySequences
 function createHotkeySequences(sequences, commonOptions): void;
 ```
 
-Defined in: createHotkeySequences.ts:61
+Defined in: [createHotkeySequences.ts:61](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeySequences.ts#L61)
 
 SolidJS primitive for registering multiple keyboard shortcut sequences at once (Vim-style).
 

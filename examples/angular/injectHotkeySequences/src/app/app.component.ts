@@ -9,7 +9,7 @@ import { injectHotkey, injectHotkeySequences } from '@tanstack/angular-hotkeys'
 })
 export class AppComponent {
   lastSequence = signal<string | null>(null)
-  history = signal<string[]>([])
+  history = signal<Array<string>>([])
 
   constructor() {
     const addToHistory = (action: string) => {
