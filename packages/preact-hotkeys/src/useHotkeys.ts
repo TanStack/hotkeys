@@ -104,8 +104,6 @@ export function useHotkeys(
   defaultOptionsRef.current = defaultOptions
   managerRef.current = manager
 
-  const hotkeyKey = hotkeyStrings.join('\0')
-
   useEffect(() => {
     const prevRegistrations = registrationsRef.current
     const nextRegistrations = new Map<string, RegistrationRecord>()
@@ -179,7 +177,9 @@ export function useHotkeys(
     }
 
     registrationsRef.current = nextRegistrations
+  })
 
+  useEffect(() => {
     return () => {
       for (const { handle } of registrationsRef.current.values()) {
         if (handle.isActive) {
@@ -188,7 +188,7 @@ export function useHotkeys(
       }
       registrationsRef.current = new Map()
     }
-  }, [hotkeyKey])
+  }, [])
 
   for (let i = 0; i < hotkeys.length; i++) {
     const def = hotkeys[i]!

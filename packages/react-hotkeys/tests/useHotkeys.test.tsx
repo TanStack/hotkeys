@@ -232,6 +232,50 @@ describe('useHotkeys', () => {
     expect(disabledReg?.options.enabled).toBe(false)
   })
 
+  it('should move a registration when only the target changes', () => {
+    const callback = vi.fn()
+    const targetA = document.createElement('div')
+    const targetB = document.createElement('div')
+
+    const { rerender } = renderHook(
+      ({ target }: { target: HTMLElement }) =>
+        useHotkeys([{ hotkey: 'Mod+S', callback, options: { target } }], {
+          platform: 'mac',
+        }),
+      { initialProps: { target: targetA } },
+    )
+
+    targetA.dispatchEvent(
+      new KeyboardEvent('keydown', {
+        key: 's',
+        metaKey: true,
+        bubbles: true,
+      }),
+    )
+    expect(callback).toHaveBeenCalledTimes(1)
+
+    rerender({ target: targetB })
+    expect(HotkeyManager.getInstance().getRegistrationCount()).toBe(1)
+
+    targetA.dispatchEvent(
+      new KeyboardEvent('keydown', {
+        key: 's',
+        metaKey: true,
+        bubbles: true,
+      }),
+    )
+    expect(callback).toHaveBeenCalledTimes(1)
+
+    targetB.dispatchEvent(
+      new KeyboardEvent('keydown', {
+        key: 's',
+        metaKey: true,
+        bubbles: true,
+      }),
+    )
+    expect(callback).toHaveBeenCalledTimes(2)
+  })
+
   describe('stale closure prevention', () => {
     it('should have access to latest state values in callbacks', () => {
       const capturedValues: Array<number> = []

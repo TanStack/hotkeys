@@ -12,10 +12,16 @@ type SequenceTarget = Document | HTMLElement | Window
 
 export interface InjectHotkeySequenceOptions extends Omit<
   SequenceOptions,
-  'enabled'
+  'enabled' | 'target'
 > {
   /** Whether the sequence is enabled. Defaults to true. */
   enabled?: boolean
+  /**
+   * The DOM element to attach the event listener to.
+   * Can be a direct DOM element, an accessor target, or null.
+   * Defaults to document when omitted.
+   */
+  target?: HTMLElement | Document | Window | null
 }
 
 /**
@@ -87,8 +93,11 @@ export function injectHotkeySequence(
     const { enabled = true, ...sequenceOptions } = mergedOptions
 
     const resolvedTarget =
-      sequenceOptions.target ??
-      (typeof document !== 'undefined' ? document : undefined)
+      'target' in sequenceOptions
+        ? (sequenceOptions.target ?? null)
+        : typeof document !== 'undefined'
+          ? document
+          : null
 
     if (resolvedSequence.length === 0 || !resolvedTarget) {
       if (handle?.isActive) {

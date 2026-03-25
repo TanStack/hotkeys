@@ -132,6 +132,53 @@ describe('useHotkeySequences', () => {
     expect(disabledView?.options.enabled).toBe(false)
   })
 
+  it('should move a sequence registration when only the target changes', () => {
+    const callback = vi.fn()
+    const targetA = document.createElement('div')
+    const targetB = document.createElement('div')
+
+    const { rerender } = render(
+      <SequencesComponent
+        definitions={[
+          { sequence: ['G', 'G'], callback, options: { target: targetA } },
+        ]}
+      />,
+    )
+
+    targetA.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'g', bubbles: true }),
+    )
+    targetA.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'g', bubbles: true }),
+    )
+    expect(callback).toHaveBeenCalledTimes(1)
+
+    rerender(
+      <SequencesComponent
+        definitions={[
+          { sequence: ['G', 'G'], callback, options: { target: targetB } },
+        ]}
+      />,
+    )
+    expect(SequenceManager.getInstance().getRegistrationCount()).toBe(1)
+
+    targetA.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'g', bubbles: true }),
+    )
+    targetA.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'g', bubbles: true }),
+    )
+    expect(callback).toHaveBeenCalledTimes(1)
+
+    targetB.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'g', bubbles: true }),
+    )
+    targetB.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'g', bubbles: true }),
+    )
+    expect(callback).toHaveBeenCalledTimes(2)
+  })
+
   describe('stale closure prevention', () => {
     it('should sync enabled option on every render', () => {
       const callback = vi.fn()

@@ -146,7 +146,11 @@ export function useHotkey(
 
       // Resolve target
       const finalTarget =
-        resolvedTarget ?? (typeof document !== 'undefined' ? document : null)
+        resolvedTarget === undefined
+          ? typeof document !== 'undefined'
+            ? document
+            : null
+          : resolvedTarget
 
       if (!finalTarget) {
         if (registration?.isActive) {

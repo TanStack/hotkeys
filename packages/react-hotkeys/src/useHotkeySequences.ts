@@ -94,8 +94,6 @@ export function useHotkeySequences(
   defaultOptionsRef.current = defaultOptions
   managerRef.current = manager
 
-  const sequenceKey = sequenceStrings.join('\0')
-
   useEffect(() => {
     const prevRegistrations = registrationsRef.current
     const nextRegistrations = new Map<string, RegistrationRecord>()
@@ -175,7 +173,9 @@ export function useHotkeySequences(
     }
 
     registrationsRef.current = nextRegistrations
+  })
 
+  useEffect(() => {
     return () => {
       for (const { handle } of registrationsRef.current.values()) {
         if (handle.isActive) {
@@ -184,7 +184,7 @@ export function useHotkeySequences(
       }
       registrationsRef.current = new Map()
     }
-  }, [sequenceKey])
+  }, [])
 
   for (let i = 0; i < definitions.length; i++) {
     const def = definitions[i]!

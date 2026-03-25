@@ -60,20 +60,20 @@ useHotkey('Escape', () => {
   history.value = []
 })
 
-const usageCode = `import { useHotkeySequences } from '@tanstack/vue-hotkeys'
+const usageCode = `<script setup lang="ts">
+import { useHotkeySequences } from '@tanstack/vue-hotkeys'
 
-function VimEditor() {
-  useHotkeySequences([
-    { sequence: ['G', 'G'], callback: () => scrollToTop() },
-    {
-      sequence: ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown'],
-      callback: () => activateCheatMode(),
-      options: { timeout: 1500 },
-    },
-    { sequence: ['C', 'I', 'W'], callback: () => changeInnerWord() },
-    { sequence: ['Shift+R', 'Shift+T'], callback: () => doSomething() },
-  ])
-}`
+useHotkeySequences([
+  { sequence: ['g', 'g'], callback: () => scrollToTop() },
+  {
+    sequence: ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown'],
+    callback: () => activateCheatMode(),
+    options: { timeout: 1500 },
+  },
+  { sequence: ['C', 'I', 'W'], callback: () => changeInnerWord() },
+  { sequence: ['Shift+R', 'Shift+T'], callback: () => doSomething() },
+])
+</${'script'}>`
 </script>
 
 <template>
@@ -220,7 +220,7 @@ function VimEditor() {
           <ul class="history-list">
             <li v-for="(item, index) in history" :key="index">{{ item }}</li>
           </ul>
-          <button @click="history = []">Clear History</button>
+          <button type="button" @click="history = []">Clear History</button>
         </section>
 
         <p class="hint">Press <kbd>Escape</kbd> to clear history</p>

@@ -148,6 +148,47 @@ describe('useHotkeySequences', () => {
     expect(yy).toHaveBeenCalledTimes(1)
   })
 
+  it('should move a sequence registration when only the target changes', () => {
+    const callback = vi.fn()
+    const targetA = document.createElement('div')
+    const targetB = document.createElement('div')
+
+    const { rerender } = renderHook(
+      ({ target }: { target: HTMLElement }) =>
+        useHotkeySequences([
+          { sequence: ['G', 'G'], callback, options: { target } },
+        ]),
+      { initialProps: { target: targetA } },
+    )
+
+    targetA.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'g', bubbles: true }),
+    )
+    targetA.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'g', bubbles: true }),
+    )
+    expect(callback).toHaveBeenCalledTimes(1)
+
+    rerender({ target: targetB })
+    expect(SequenceManager.getInstance().getRegistrationCount()).toBe(1)
+
+    targetA.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'g', bubbles: true }),
+    )
+    targetA.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'g', bubbles: true }),
+    )
+    expect(callback).toHaveBeenCalledTimes(1)
+
+    targetB.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'g', bubbles: true }),
+    )
+    targetB.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'g', bubbles: true }),
+    )
+    expect(callback).toHaveBeenCalledTimes(2)
+  })
+
   describe('stale closure prevention', () => {
     it('should have access to latest state values in callbacks', () => {
       const capturedValues: Array<number> = []

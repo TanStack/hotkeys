@@ -112,7 +112,11 @@ export function useHotkeySequence(
     },
     ({ resolvedSequence, mergedOptions, resolvedEnabled, resolvedTarget }) => {
       const finalTarget =
-        resolvedTarget ?? (typeof document !== 'undefined' ? document : null)
+        resolvedTarget === undefined
+          ? typeof document !== 'undefined'
+            ? document
+            : null
+          : resolvedTarget
 
       if (resolvedSequence.length === 0 || !finalTarget) {
         if (registration?.isActive) {

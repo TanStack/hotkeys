@@ -112,8 +112,11 @@ export function injectHotkeySequences(
       }
 
       const resolvedTarget =
-        sequenceOpts.target ??
-        (typeof document !== 'undefined' ? document : null)
+        'target' in sequenceOpts
+          ? (sequenceOpts.target ?? null)
+          : typeof document !== 'undefined'
+            ? document
+            : null
 
       if (!resolvedTarget) {
         continue
