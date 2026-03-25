@@ -77,6 +77,8 @@ createHotkeySequence(['Shift+Z', 'Shift+Z'], () => forceQuit(), { timeout: 2000 
 
 Controls whether the sequence is active. Defaults to `true`. Use an accessor for reactive control.
 
+Disabled sequences **remain registered** and stay visible in devtools; only execution is suppressed.
+
 ```tsx
 const [isVimMode, setIsVimMode] = createSignal(true)
 

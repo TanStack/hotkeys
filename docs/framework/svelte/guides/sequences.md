@@ -61,6 +61,8 @@ createHotkeySequence(['G', 'G'], callback, {
 
 ### Reactive `enabled`
 
+When disabled, the sequence **stays registered** (visible in devtools); only execution is suppressed.
+
 ```svelte
 <script lang="ts">
   import { createHotkeySequence } from '@tanstack/svelte-hotkeys'

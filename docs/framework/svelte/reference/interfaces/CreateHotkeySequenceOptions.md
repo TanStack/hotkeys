@@ -5,7 +5,7 @@ title: CreateHotkeySequenceOptions
 
 # Interface: CreateHotkeySequenceOptions
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts#L12)
+Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts#L14)
 
 ## Extends
 
@@ -19,4 +19,4 @@ Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:12](http
 optional target: Document | Window;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts#L16)
+Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts#L18)

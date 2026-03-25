@@ -1,5 +1,5 @@
 import { createEffect, onCleanup } from 'solid-js'
-import { getSequenceManager } from '@tanstack/hotkeys'
+import { formatHotkeySequence, getSequenceManager } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import type {
   HotkeyCallback,
@@ -72,6 +72,17 @@ export function createHotkeySequence(
   const manager = getSequenceManager()
 
   let registration: SequenceRegistrationHandle | null = null
+  let lastSequenceKey: string | null = null
+  let lastTarget: HTMLElement | Document | Window | null = null
+
+  onCleanup(() => {
+    if (registration?.isActive) {
+      registration.unregister()
+      registration = null
+    }
+    lastSequenceKey = null
+    lastTarget = null
+  })
 
   createEffect(() => {
     // Resolve reactive values
@@ -87,10 +98,6 @@ export function createHotkeySequence(
     // Extract options without target (target is handled separately)
     const { target: _target, ...optionsWithoutTarget } = mergedOptions
 
-    if (resolvedSequence.length === 0) {
-      return
-    }
-
     // Resolve target: when explicitly provided (even as null), use it and skip if null.
     // When not provided, default to document. Matches createHotkey.
     const resolvedTarget =
@@ -100,34 +107,44 @@ export function createHotkeySequence(
           ? document
           : null
 
-    if (!resolvedTarget) {
+    if (resolvedSequence.length === 0 || !resolvedTarget) {
+      if (registration?.isActive) {
+        registration.unregister()
+        registration = null
+      }
+      lastSequenceKey = null
+      lastTarget = null
       return
     }
 
-    // Unregister previous registration if it exists
+    const sequenceKey = formatHotkeySequence(resolvedSequence)
+
+    if (
+      registration?.isActive &&
+      lastSequenceKey === sequenceKey &&
+      lastTarget === resolvedTarget
+    ) {
+      registration.callback = callback
+      registration.setOptions(optionsWithoutTarget)
+      return
+    }
+
     if (registration?.isActive) {
       registration.unregister()
       registration = null
     }
 
-    // Register the sequence
     registration = manager.register(resolvedSequence, callback, {
       ...mergedOptions,
       target: resolvedTarget,
     })
 
-    // Sync callback and options on every effect run
     if (registration.isActive) {
       registration.callback = callback
       registration.setOptions(optionsWithoutTarget)
     }
 
-    // Cleanup on disposal
-    onCleanup(() => {
-      if (registration?.isActive) {
-        registration.unregister()
-        registration = null
-      }
-    })
+    lastSequenceKey = sequenceKey
+    lastTarget = resolvedTarget
   })
 }

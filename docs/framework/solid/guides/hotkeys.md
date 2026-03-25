@@ -120,6 +120,8 @@ import { HotkeysProvider } from '@tanstack/solid-hotkeys'
 
 Controls whether the hotkey is active. Defaults to `true`. Use an accessor for reactive control.
 
+Disabled hotkeys **remain registered** in the manager and stay visible in devtools; only execution is suppressed.
+
 ```tsx
 const [isEditing, setIsEditing] = createSignal(false)
 

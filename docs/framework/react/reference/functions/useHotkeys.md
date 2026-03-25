@@ -9,7 +9,7 @@ title: useHotkeys
 function useHotkeys(hotkeys, commonOptions): void;
 ```
 
-Defined in: [useHotkeys.ts:71](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeys.ts#L71)
+Defined in: [useHotkeys.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeys.ts#L74)
 
 React hook for registering multiple keyboard hotkeys at once.
 
@@ -34,7 +34,10 @@ Array of hotkey definitions to register
 
 [`UseHotkeyOptions`](../interfaces/UseHotkeyOptions.md) = `{}`
 
-Shared options applied to all hotkeys (overridden by per-definition options)
+Shared options applied to all hotkeys (overridden by per-definition options).
+  Per-row `enabled: false` still registers that hotkey: `HotkeyManager` suppresses execution only (the row
+  stays in the store and appears in TanStack Hotkeys devtools). Toggling `enabled` updates the existing handle
+  via `setOptions` (no unregister/re-register churn).
 
 ## Returns
 

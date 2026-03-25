@@ -101,6 +101,63 @@ describe('createHotkeySequences', () => {
     expect(SequenceManager.getInstance().getRegistrationCount()).toBe(1)
   })
 
+  it('should register disabled sequences and keep them in the manager', () => {
+    const enabledCb = vi.fn()
+    const disabledCb = vi.fn()
+
+    const TestComponent: Component = () => {
+      createHotkeySequences([
+        { sequence: ['G', 'G'], callback: enabledCb },
+        {
+          sequence: ['D', 'D'],
+          callback: disabledCb,
+          options: { enabled: false },
+        },
+      ])
+      return null
+    }
+
+    render(() => <TestComponent />)
+
+    dispatchKey('g')
+    dispatchKey('g')
+    dispatchKey('d')
+    dispatchKey('d')
+    expect(enabledCb).toHaveBeenCalledTimes(1)
+    expect(disabledCb).not.toHaveBeenCalled()
+
+    const manager = SequenceManager.getInstance()
+    expect(manager.getRegistrationCount()).toBe(2)
+    const disabledView = [...manager.registrations.state.values()].find(
+      (r) => r.sequence[0] === 'D' && r.sequence[1] === 'D',
+    )
+    expect(disabledView?.options.enabled).toBe(false)
+  })
+
+  it('should preserve registration id when toggling enabled', () => {
+    const callback = vi.fn()
+    const manager = SequenceManager.getInstance()
+    const [enabled, setEnabled] = createSignal(true)
+
+    const TestComponent: Component = () => {
+      createHotkeySequences(() => [
+        { sequence: ['G', 'G'], callback, options: { enabled: enabled() } },
+      ])
+      return null
+    }
+
+    render(() => <TestComponent />)
+
+    const idBefore = [...manager.registrations.state.keys()][0]
+    expect(manager.getRegistrationCount()).toBe(1)
+
+    setEnabled(false)
+    expect([...manager.registrations.state.keys()][0]).toBe(idBefore)
+
+    setEnabled(true)
+    expect([...manager.registrations.state.keys()][0]).toBe(idBefore)
+  })
+
   it('should handle dynamic accessor for definitions', () => {
     const gg = vi.fn()
     const yy = vi.fn()

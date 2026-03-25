@@ -4,12 +4,14 @@ import {
   getHotkeyManager,
   rawHotkeyToParsedHotkey,
 } from '@tanstack/hotkeys'
+import { onDestroy } from 'svelte'
 import { getDefaultHotkeysOptions } from './HotkeysCtx'
 import { resolveMaybeGetter } from './internal.svelte'
 import type {
   Hotkey,
   HotkeyCallback,
   HotkeyOptions,
+  HotkeyRegistrationHandle,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
 import type { MaybeGetter } from './internal.svelte'
@@ -32,19 +34,12 @@ function normalizeHotkey(
 
 function registerHotkey(
   target: HTMLElement | Document | Window,
-  hotkey: MaybeGetter<RegisterableHotkey>,
+  hotkey: RegisterableHotkey,
   callback: HotkeyCallback,
-  options: MaybeGetter<CreateHotkeyOptions>,
+  mergedOptions: CreateHotkeyOptions,
 ) {
-  const resolvedHotkey = resolveMaybeGetter(hotkey)
-  const resolvedOptions = resolveMaybeGetter(options)
-  const mergedOptions = {
-    ...getDefaultHotkeysOptions().hotkey,
-    ...resolvedOptions,
-  } as CreateHotkeyOptions
-
   return getHotkeyManager().register(
-    normalizeHotkey(resolvedHotkey, mergedOptions),
+    normalizeHotkey(hotkey, mergedOptions),
     callback,
     {
       ...mergedOptions,
@@ -72,15 +67,48 @@ export function createHotkey(
   callback: HotkeyCallback,
   options: MaybeGetter<CreateHotkeyOptions> = {},
 ): void {
+  let registration: HotkeyRegistrationHandle | null = null
+  let lastHotkeyStr: Hotkey | null = null
+
   $effect(() => {
     if (typeof document === 'undefined') {
       return
     }
 
-    const registration = registerHotkey(document, hotkey, callback, options)
+    const resolvedHotkey = resolveMaybeGetter(hotkey)
+    const resolvedOptions = resolveMaybeGetter(options)
+    const mergedOptions = {
+      ...getDefaultHotkeysOptions().hotkey,
+      ...resolvedOptions,
+    } as CreateHotkeyOptions
 
-    return () => {
+    const hotkeyStr = normalizeHotkey(resolvedHotkey, mergedOptions)
+    const { target: _t, ...optionsWithoutTarget } = mergedOptions
+
+    if (registration?.isActive && lastHotkeyStr === hotkeyStr) {
+      registration.callback = callback
+      registration.setOptions(optionsWithoutTarget)
+      return
+    }
+
+    if (registration?.isActive) {
       registration.unregister()
+      registration = null
+    }
+
+    registration = registerHotkey(
+      document,
+      resolvedHotkey,
+      callback,
+      mergedOptions,
+    )
+    lastHotkeyStr = hotkeyStr
+  })
+
+  onDestroy(() => {
+    if (registration?.isActive) {
+      registration.unregister()
+      registration = null
     }
   })
 }
@@ -111,14 +139,38 @@ export function createHotkeyAttachment(
   options: MaybeGetter<CreateHotkeyOptions> = {},
 ): Attachment<HTMLElement> {
   return (element) => {
-    let registration: ReturnType<typeof registerHotkey> | null = null
+    let registration: HotkeyRegistrationHandle | null = null
+    let lastHotkeyStr: Hotkey | null = null
 
     $effect(() => {
-      if (registration?.isActive) {
-        registration.unregister()
+      const resolvedHotkey = resolveMaybeGetter(hotkey)
+      const resolvedOptions = resolveMaybeGetter(options)
+      const mergedOptions = {
+        ...getDefaultHotkeysOptions().hotkey,
+        ...resolvedOptions,
+      } as CreateHotkeyOptions
+
+      const hotkeyStr = normalizeHotkey(resolvedHotkey, mergedOptions)
+      const { target: _t, ...optionsWithoutTarget } = mergedOptions
+
+      if (registration?.isActive && lastHotkeyStr === hotkeyStr) {
+        registration.callback = callback
+        registration.setOptions(optionsWithoutTarget)
+        return
       }
 
-      registration = registerHotkey(element, hotkey, callback, options)
+      if (registration?.isActive) {
+        registration.unregister()
+        registration = null
+      }
+
+      registration = registerHotkey(
+        element,
+        resolvedHotkey,
+        callback,
+        mergedOptions,
+      )
+      lastHotkeyStr = hotkeyStr
     })
 
     return () => {

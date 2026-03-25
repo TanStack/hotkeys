@@ -12,6 +12,7 @@ import './index.css'
 function App() {
   const [lastSequence, setLastSequence] = React.useState<string | null>(null)
   const [history, setHistory] = React.useState<Array<string>>([])
+  const [helloSequenceEnabled, setHelloSequenceEnabled] = React.useState(true)
 
   const addToHistory = (action: string) => {
     setLastSequence(action)
@@ -47,6 +48,7 @@ function App() {
     {
       sequence: ['H', 'E', 'L', 'L', 'O'],
       callback: () => addToHistory('hello → Hello World!'),
+      options: { enabled: helloSequenceEnabled },
     },
     {
       sequence: ['Shift+R', 'Shift+T'],
@@ -144,6 +146,17 @@ function App() {
                 <kbd>h</kbd> <kbd>e</kbd> <kbd>l</kbd> <kbd>l</kbd> <kbd>o</kbd>
               </p>
               <span className="hint">Type "hello" quickly</span>
+              <p className="sequence-toggle-status">
+                This sequence is{' '}
+                <strong>{helloSequenceEnabled ? 'enabled' : 'disabled'}</strong>
+                .
+              </p>
+              <button
+                type="button"
+                onClick={() => setHelloSequenceEnabled((v) => !v)}
+              >
+                {helloSequenceEnabled ? 'Disable' : 'Enable'} sequence
+              </button>
             </div>
           </div>
         </section>

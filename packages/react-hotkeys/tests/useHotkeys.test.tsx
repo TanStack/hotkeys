@@ -223,6 +223,13 @@ describe('useHotkeys', () => {
 
     expect(enabledCb).toHaveBeenCalledTimes(1)
     expect(disabledCb).not.toHaveBeenCalled()
+
+    const manager = HotkeyManager.getInstance()
+    expect(manager.getRegistrationCount()).toBe(2)
+    const disabledReg = [...manager.registrations.state.values()].find(
+      (r) => r.hotkey === 'Mod+Z',
+    )
+    expect(disabledReg?.options.enabled).toBe(false)
   })
 
   describe('stale closure prevention', () => {
@@ -326,6 +333,29 @@ describe('useHotkeys', () => {
         }),
       )
       expect(callback).toHaveBeenCalledTimes(2)
+    })
+
+    it('should preserve registration id when toggling enabled', () => {
+      const callback = vi.fn()
+      const manager = HotkeyManager.getInstance()
+
+      const { rerender } = renderHook(
+        ({ enabled }: { enabled: boolean }) =>
+          useHotkeys([{ hotkey: 'Mod+S', callback, options: { enabled } }], {
+            platform: 'mac',
+          }),
+        { initialProps: { enabled: true } },
+      )
+
+      const idBefore = [...manager.registrations.state.keys()][0]
+      expect(manager.getRegistrationCount()).toBe(1)
+
+      rerender({ enabled: false })
+      expect(manager.getRegistrationCount()).toBe(1)
+      expect([...manager.registrations.state.keys()][0]).toBe(idBefore)
+
+      rerender({ enabled: true })
+      expect([...manager.registrations.state.keys()][0]).toBe(idBefore)
     })
   })
 })

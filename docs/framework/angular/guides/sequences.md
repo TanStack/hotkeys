@@ -61,6 +61,8 @@ injectHotkeySequence(['G', 'G'], callback, {
 
 ### Reactive `enabled`
 
+When disabled, the sequence **stays registered** (visible in devtools); only execution is suppressed.
+
 ```ts
 import { Component, signal } from '@angular/core'
 import { injectHotkeySequence } from '@tanstack/angular-hotkeys'

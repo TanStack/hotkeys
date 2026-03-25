@@ -54,6 +54,8 @@ For reactive state, pass an accessor function as the third argument.
 
 ### `enabled`
 
+When `enabled` is false, the hotkey **stays registered** (visible in devtools); only the callback is suppressed.
+
 ```ts
 import { Component, signal } from '@angular/core'
 import { injectHotkey } from '@tanstack/angular-hotkeys'

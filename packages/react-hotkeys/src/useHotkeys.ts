@@ -40,7 +40,10 @@ export interface UseHotkeyDefinition {
  * Callbacks and options are synced on every render to avoid stale closures.
  *
  * @param hotkeys - Array of hotkey definitions to register
- * @param commonOptions - Shared options applied to all hotkeys (overridden by per-definition options)
+ * @param commonOptions - Shared options applied to all hotkeys (overridden by per-definition options).
+ *   Per-row `enabled: false` still registers that hotkey: `HotkeyManager` suppresses execution only (the row
+ *   stays in the store and appears in TanStack Hotkeys devtools). Toggling `enabled` updates the existing handle
+ *   via `setOptions` (no unregister/re-register churn).
  *
  * @example
  * ```tsx
@@ -103,16 +106,6 @@ export function useHotkeys(
 
   // Stable serialized keys for effect dependencies
   const hotkeyKey = hotkeyStrings.join('\0')
-  const enabledKey = hotkeys
-    .map((def) => {
-      const merged = {
-        ...defaultOptions,
-        ...commonOptions,
-        ...def.options,
-      }
-      return merged.enabled ?? true
-    })
-    .join('\0')
 
   useEffect(() => {
     const prevRegistrations = registrationsRef.current
@@ -196,7 +189,7 @@ export function useHotkeys(
       }
       registrationsRef.current = new Map()
     }
-  }, [hotkeyKey, enabledKey])
+  }, [hotkeyKey])
 
   // Sync callbacks and options on EVERY render (outside useEffect)
   for (let i = 0; i < hotkeys.length; i++) {

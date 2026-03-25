@@ -12,7 +12,7 @@ function useHotkey(
    options): void;
 ```
 
-Defined in: [useHotkey.ts:91](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L91)
+Defined in: [useHotkey.ts:92](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L92)
 
 Preact hook for registering a keyboard hotkey.
 
@@ -43,7 +43,8 @@ The function to call when the hotkey is pressed
 
 [`UseHotkeyOptions`](../interfaces/UseHotkeyOptions.md) = `{}`
 
-Options for the hotkey behavior
+Options for the hotkey behavior. `enabled: false` keeps the registration (visible in devtools)
+  and only suppresses firing; the hook updates the existing handle instead of unregistering.
 
 ## Returns
 

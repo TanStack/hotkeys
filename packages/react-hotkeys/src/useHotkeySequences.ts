@@ -35,7 +35,10 @@ export interface UseHotkeySequenceDefinition {
  * Definitions with an empty `sequence` are skipped (no registration).
  *
  * @param definitions - Array of sequence definitions to register
- * @param commonOptions - Shared options applied to all sequences (overridden by per-definition options)
+ * @param commonOptions - Shared options applied to all sequences (overridden by per-definition options).
+ *   Per-row `enabled: false` still registers that sequence: `SequenceManager` suppresses execution only (the row
+ *   stays in the store and appears in TanStack Hotkeys devtools). Toggling `enabled` updates the existing handle
+ *   via `setOptions` (no unregister/re-register churn).
  *
  * @example
  * ```tsx
@@ -92,16 +95,6 @@ export function useHotkeySequences(
   managerRef.current = manager
 
   const sequenceKey = sequenceStrings.join('\0')
-  const enabledKey = definitions
-    .map((def) => {
-      const merged = {
-        ...defaultOptions,
-        ...commonOptions,
-        ...def.options,
-      }
-      return merged.enabled ?? true
-    })
-    .join('\0')
 
   useEffect(() => {
     const prevRegistrations = registrationsRef.current
@@ -191,7 +184,7 @@ export function useHotkeySequences(
       }
       registrationsRef.current = new Map()
     }
-  }, [sequenceKey, enabledKey])
+  }, [sequenceKey])
 
   for (let i = 0; i < definitions.length; i++) {
     const def = definitions[i]!

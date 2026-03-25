@@ -89,6 +89,17 @@ export function createHotkey(
   const manager = getHotkeyManager()
 
   let registration: HotkeyRegistrationHandle | null = null
+  let lastHotkeyString: Hotkey | null = null
+  let lastTarget: HTMLElement | Document | Window | null = null
+
+  onCleanup(() => {
+    if (registration?.isActive) {
+      registration.unregister()
+      registration = null
+    }
+    lastHotkeyString = null
+    lastTarget = null
+  })
 
   createEffect(() => {
     // Resolve reactive values
@@ -119,36 +130,44 @@ export function createHotkey(
           : null
 
     if (!resolvedTarget) {
+      if (registration?.isActive) {
+        registration.unregister()
+        registration = null
+      }
+      lastHotkeyString = null
+      lastTarget = null
       return
-    }
-
-    // Unregister previous registration if it exists
-    if (registration?.isActive) {
-      registration.unregister()
-      registration = null
     }
 
     // Extract options without target (target is handled separately)
     const { target: _target, ...optionsWithoutTarget } = mergedOptions
 
-    // Register the hotkey
+    if (
+      registration?.isActive &&
+      lastHotkeyString === hotkeyString &&
+      lastTarget === resolvedTarget
+    ) {
+      registration.callback = callback
+      registration.setOptions(optionsWithoutTarget)
+      return
+    }
+
+    if (registration?.isActive) {
+      registration.unregister()
+      registration = null
+    }
+
     registration = manager.register(hotkeyString, callback, {
       ...optionsWithoutTarget,
       target: resolvedTarget,
     })
 
-    // Update callback and options on every effect run
     if (registration.isActive) {
       registration.callback = callback
       registration.setOptions(optionsWithoutTarget)
     }
 
-    // Cleanup on disposal
-    onCleanup(() => {
-      if (registration?.isActive) {
-        registration.unregister()
-        registration = null
-      }
-    })
+    lastHotkeyString = hotkeyString
+    lastTarget = resolvedTarget
   })
 }

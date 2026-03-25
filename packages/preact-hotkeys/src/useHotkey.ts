@@ -44,7 +44,8 @@ export interface UseHotkeyOptions extends Omit<HotkeyOptions, 'target'> {
  *
  * @param hotkey - The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object (supports `mod` for cross-platform)
  * @param callback - The function to call when the hotkey is pressed
- * @param options - Options for the hotkey behavior
+ * @param options - Options for the hotkey behavior. `enabled: false` keeps the registration (visible in devtools)
+ *   and only suppresses firing; the hook updates the existing handle instead of unregistering.
  *
  * @example
  * ```tsx
@@ -136,6 +137,12 @@ export function useHotkey(
 
     // Skip if no valid target (SSR or ref still null)
     if (!resolvedTarget) {
+      if (registrationRef.current?.isActive) {
+        registrationRef.current.unregister()
+        registrationRef.current = null
+      }
+      prevTargetRef.current = null
+      prevHotkeyRef.current = null
       return
     }
 
@@ -175,7 +182,7 @@ export function useHotkey(
         registrationRef.current = null
       }
     }
-  }, [hotkeyString, options.enabled])
+  }, [hotkeyString])
 
   // Sync callback and options on EVERY render (outside useEffect)
   // This avoids stale closures - the callback always has access to latest state

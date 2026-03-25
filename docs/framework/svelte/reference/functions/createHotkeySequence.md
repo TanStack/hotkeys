@@ -12,7 +12,7 @@ function createHotkeySequence(
    options): void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:77](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts#L77)
+Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts#L72)
 
 Register a global keyboard shortcut sequence for the current component.
 

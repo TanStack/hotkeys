@@ -7,6 +7,7 @@
 
   let lastSequence = $state<string | null>(null)
   let history = $state<Array<string>>([])
+  let helloSequenceEnabled = $state(true)
 
   function addToHistory(action: string) {
     lastSequence = action
@@ -34,8 +35,10 @@
     { timeout: 1500 },
   )
 
-  createHotkeySequence(['H', 'E', 'L', 'L', 'O'], () =>
-    addToHistory('hello → Hello World!'),
+  createHotkeySequence(
+    ['H', 'E', 'L', 'L', 'O'],
+    () => addToHistory('hello → Hello World!'),
+    () => ({ enabled: helloSequenceEnabled }),
   )
 
   createHotkeySequence(['Shift+R', 'Shift+T'], () =>
@@ -132,6 +135,16 @@
             <kbd>h</kbd> <kbd>e</kbd> <kbd>l</kbd> <kbd>l</kbd> <kbd>o</kbd>
           </p>
           <span class="hint">Type "hello" quickly</span>
+          <p class="sequence-toggle-status">
+            This sequence is
+            <strong>{helloSequenceEnabled ? 'enabled' : 'disabled'}</strong>.
+          </p>
+          <button
+            type="button"
+            onclick={() => (helloSequenceEnabled = !helloSequenceEnabled)}
+          >
+            {helloSequenceEnabled ? 'Disable' : 'Enable'} sequence
+          </button>
         </div>
       </div>
     </section>

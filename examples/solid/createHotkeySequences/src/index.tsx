@@ -13,6 +13,7 @@ import './index.css'
 function App() {
   const [lastSequence, setLastSequence] = createSignal<string | null>(null)
   const [history, setHistory] = createSignal<Array<string>>([])
+  const [helloSequenceEnabled, setHelloSequenceEnabled] = createSignal(true)
   const addToHistory = (action: string) => {
     setLastSequence(action)
     setHistory((h) => [...h.slice(-9), action])
@@ -47,6 +48,11 @@ function App() {
     {
       sequence: ['H', 'E', 'L', 'L', 'O'],
       callback: () => addToHistory('hello → Hello World!'),
+      options: {
+        get enabled() {
+          return helloSequenceEnabled()
+        },
+      },
     },
     {
       sequence: ['Shift+R', 'Shift+T'],
@@ -144,6 +150,19 @@ function App() {
                 <kbd>h</kbd> <kbd>e</kbd> <kbd>l</kbd> <kbd>l</kbd> <kbd>o</kbd>
               </p>
               <span class="hint">Type "hello" quickly</span>
+              <p class="sequence-toggle-status">
+                This sequence is{' '}
+                <strong>
+                  {helloSequenceEnabled() ? 'enabled' : 'disabled'}
+                </strong>
+                .
+              </p>
+              <button
+                type="button"
+                onClick={() => setHelloSequenceEnabled(!helloSequenceEnabled())}
+              >
+                {helloSequenceEnabled() ? 'Disable' : 'Enable'} sequence
+              </button>
             </div>
           </div>
         </section>

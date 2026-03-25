@@ -9,7 +9,7 @@ title: useHotkeySequences
 function useHotkeySequences(definitions, commonOptions): void;
 ```
 
-Defined in: [useHotkeySequences.ts:65](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeySequences.ts#L65)
+Defined in: [useHotkeySequences.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeySequences.ts#L68)
 
 React hook for registering multiple keyboard shortcut sequences at once (Vim-style).
 
@@ -35,7 +35,10 @@ Array of sequence definitions to register
 
 [`UseHotkeySequenceOptions`](../interfaces/UseHotkeySequenceOptions.md) = `{}`
 
-Shared options applied to all sequences (overridden by per-definition options)
+Shared options applied to all sequences (overridden by per-definition options).
+  Per-row `enabled: false` still registers that sequence: `SequenceManager` suppresses execution only (the row
+  stays in the store and appears in TanStack Hotkeys devtools). Toggling `enabled` updates the existing handle
+  via `setOptions` (no unregister/re-register churn).
 
 ## Returns
 

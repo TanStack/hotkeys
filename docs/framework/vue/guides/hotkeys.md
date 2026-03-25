@@ -50,6 +50,8 @@ Vue-specific options can be plain values, refs, or getters.
 
 ### `enabled`
 
+When `enabled` is false, the hotkey **stays registered** (visible in devtools); only the callback is suppressed.
+
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'

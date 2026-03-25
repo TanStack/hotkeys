@@ -12,7 +12,7 @@ function injectHotkey(
    options): void;
 ```
 
-Defined in: [injectHotkey.ts:83](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L83)
+Defined in: [injectHotkey.ts:86](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L86)
 
 Angular inject-based API for registering a keyboard hotkey.
 
@@ -23,6 +23,8 @@ containing the hotkey string and parsed hotkey.
 Call in an injection context (e.g. constructor or field initializer).
 Uses effect() to track reactive dependencies and update registration
 when options or the callback change.
+`enabled: false` keeps the registration (visible in devtools) and only suppresses firing; the same
+handle is updated instead of unregistering and re-registering when identity is unchanged.
 
 ## Parameters
 

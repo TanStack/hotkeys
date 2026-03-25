@@ -10,6 +10,7 @@ import { injectHotkey, injectHotkeySequences } from '@tanstack/angular-hotkeys'
 export class AppComponent {
   lastSequence = signal<string | null>(null)
   history = signal<Array<string>>([])
+  readonly helloSequenceEnabled = signal(true)
 
   constructor() {
     const addToHistory = (action: string) => {
@@ -55,6 +56,7 @@ export class AppComponent {
       {
         sequence: ['H', 'E', 'L', 'L', 'O'],
         callback: () => addToHistory('hello → Hello World!'),
+        options: () => ({ enabled: this.helloSequenceEnabled() }),
       },
       {
         sequence: ['Shift+R', 'Shift+T'],
@@ -70,5 +72,9 @@ export class AppComponent {
 
   clearHistory(): void {
     this.history.set([])
+  }
+
+  toggleHelloSequence(): void {
+    this.helloSequenceEnabled.update((enabled) => !enabled)
   }
 }

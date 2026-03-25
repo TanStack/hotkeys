@@ -48,6 +48,8 @@ Hotkeys can take plain values for static registrations or getter functions when 
 
 ### Reactive `enabled`
 
+When `enabled` is false, the hotkey **stays registered** (visible in devtools); only the callback is suppressed.
+
 ```svelte
 <script lang="ts">
   import { createHotkey } from '@tanstack/svelte-hotkeys'

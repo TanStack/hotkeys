@@ -106,6 +106,8 @@ export function useHotkey(
   const manager = getHotkeyManager()
 
   let registration: HotkeyRegistrationHandle | null = null
+  let lastHotkeyString: Hotkey | null = null
+  let lastTarget: HTMLElement | Document | Window | null = null
 
   // Watch for changes to reactive dependencies
   const stopWatcher = watch(
@@ -147,13 +149,13 @@ export function useHotkey(
         resolvedTarget ?? (typeof document !== 'undefined' ? document : null)
 
       if (!finalTarget) {
+        if (registration?.isActive) {
+          registration.unregister()
+          registration = null
+        }
+        lastHotkeyString = null
+        lastTarget = null
         return
-      }
-
-      // Unregister previous registration if it exists
-      if (registration?.isActive) {
-        registration.unregister()
-        registration = null
       }
 
       // Extract options without target (target is handled separately)
@@ -167,17 +169,33 @@ export function useHotkey(
         ...(resolvedEnabled === undefined ? {} : { enabled: resolvedEnabled }),
       }
 
-      // Register the hotkey
+      if (
+        registration?.isActive &&
+        lastHotkeyString === hotkeyString &&
+        lastTarget === finalTarget
+      ) {
+        registration.callback = callback
+        registration.setOptions(optionsWithoutTarget)
+        return
+      }
+
+      if (registration?.isActive) {
+        registration.unregister()
+        registration = null
+      }
+
       registration = manager.register(hotkeyString, callback, {
         ...optionsWithoutTarget,
         target: finalTarget,
       })
 
-      // Update callback and options
       if (registration.isActive) {
         registration.callback = callback
         registration.setOptions(optionsWithoutTarget)
       }
+
+      lastHotkeyString = hotkeyString
+      lastTarget = finalTarget
     },
     { immediate: true },
   )

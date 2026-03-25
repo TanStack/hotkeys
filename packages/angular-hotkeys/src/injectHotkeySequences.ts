@@ -29,7 +29,8 @@ export interface InjectHotkeySequenceDefinition {
  * Options are merged in this order:
  * provideHotkeys defaults < commonOptions < per-definition options
  *
- * Definitions with an empty `sequence` or `enabled: false` after merge are skipped.
+ * Definitions with an empty `sequence` are skipped. Disabled sequences (`enabled: false`)
+ * remain registered so they stay visible in devtools; the core manager suppresses execution.
  *
  * @param sequences - Array of sequence definitions, or getter returning them
  * @param commonOptions - Shared options for all sequences, or getter
@@ -86,6 +87,7 @@ export function injectHotkeySequences(
       registrationKey: string
       def: InjectHotkeySequenceDefinition
       resolvedSequence: HotkeySequence
+      enabled: boolean
       sequenceOpts: Omit<InjectHotkeySequenceOptions, 'enabled'>
       resolvedTarget: Document | HTMLElement | Window
     }> = []
@@ -105,7 +107,7 @@ export function injectHotkeySequences(
 
       const { enabled = true, ...sequenceOpts } = mergedOptions
 
-      if (!enabled || resolvedSequence.length === 0) {
+      if (resolvedSequence.length === 0) {
         continue
       }
 
@@ -123,6 +125,7 @@ export function injectHotkeySequences(
         registrationKey,
         def,
         resolvedSequence,
+        enabled,
         sequenceOpts,
         resolvedTarget,
       })
@@ -142,7 +145,10 @@ export function injectHotkeySequences(
       if (existing?.handle.isActive && existing.target === p.resolvedTarget) {
         existing.handle.callback = p.def.callback
         const { target: _target, ...optionsWithoutTarget } = p.sequenceOpts
-        existing.handle.setOptions(optionsWithoutTarget)
+        existing.handle.setOptions({
+          ...optionsWithoutTarget,
+          enabled: p.enabled,
+        })
         continue
       }
 
@@ -155,7 +161,7 @@ export function injectHotkeySequences(
 
       const handle = manager.register(p.resolvedSequence, p.def.callback, {
         ...p.sequenceOpts,
-        enabled: true,
+        enabled: p.enabled,
         target: p.resolvedTarget,
       })
       registrations.set(p.registrationKey, {

@@ -100,6 +100,38 @@ describe('useHotkeySequences', () => {
     expect(SequenceManager.getInstance().getRegistrationCount()).toBe(1)
   })
 
+  it('should register disabled sequences and keep them in the manager', () => {
+    const enabledCb = vi.fn()
+    const disabledCb = vi.fn()
+
+    render(
+      <SequencesComponent
+        definitions={[
+          { sequence: ['G', 'G'], callback: enabledCb },
+          {
+            sequence: ['D', 'D'],
+            callback: disabledCb,
+            options: { enabled: false },
+          },
+        ]}
+      />,
+    )
+
+    dispatchKey('g')
+    dispatchKey('g')
+    dispatchKey('d')
+    dispatchKey('d')
+    expect(enabledCb).toHaveBeenCalledTimes(1)
+    expect(disabledCb).not.toHaveBeenCalled()
+
+    const manager = SequenceManager.getInstance()
+    expect(manager.getRegistrationCount()).toBe(2)
+    const disabledView = [...manager.registrations.state.values()].find(
+      (r) => r.sequence[0] === 'D' && r.sequence[1] === 'D',
+    )
+    expect(disabledView?.options.enabled).toBe(false)
+  })
+
   describe('stale closure prevention', () => {
     it('should sync enabled option on every render', () => {
       const callback = vi.fn()
@@ -126,6 +158,30 @@ describe('useHotkeySequences', () => {
       dispatchKey('g')
       dispatchKey('g')
       expect(callback).toHaveBeenCalledTimes(2)
+    })
+
+    it('should preserve registration id when toggling enabled', () => {
+      const callback = vi.fn()
+      const manager = SequenceManager.getInstance()
+
+      function EnabledSequences({ enabled }: { enabled: boolean }) {
+        useHotkeySequences([
+          { sequence: ['G', 'G'], callback, options: { enabled } },
+        ])
+        return null
+      }
+
+      const { rerender } = render(<EnabledSequences enabled={true} />)
+
+      const idBefore = [...manager.registrations.state.keys()][0]
+      expect(manager.getRegistrationCount()).toBe(1)
+
+      rerender(<EnabledSequences enabled={false} />)
+      expect(manager.getRegistrationCount()).toBe(1)
+      expect([...manager.registrations.state.keys()][0]).toBe(idBefore)
+
+      rerender(<EnabledSequences enabled={true} />)
+      expect([...manager.registrations.state.keys()][0]).toBe(idBefore)
     })
   })
 })

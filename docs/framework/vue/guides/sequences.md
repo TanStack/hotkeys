@@ -45,6 +45,8 @@ useHotkeySequence(['G', 'G'], callback, {
 
 ### Reactive `enabled`
 
+When disabled, the sequence **stays registered** (visible in devtools); only execution is suppressed.
+
 ```vue
 <script setup lang="ts">
 import { ref } from 'vue'

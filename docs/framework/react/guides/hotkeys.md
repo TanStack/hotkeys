@@ -91,6 +91,8 @@ import { HotkeysProvider } from '@tanstack/react-hotkeys'
 
 Controls whether the hotkey is active. Defaults to `true`.
 
+Disabled hotkeys **remain registered** in the manager and stay visible in devtools; only execution is suppressed. Framework hooks update `enabled` on the existing registration instead of unregistering and re-registering.
+
 ```tsx
 const [isEditing, setIsEditing] = useState(false)
 

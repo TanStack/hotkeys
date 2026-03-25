@@ -12,7 +12,7 @@ function createHotkey(
    options): void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L70)
+Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:65](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L65)
 
 Register a global hotkey for the current component.
 

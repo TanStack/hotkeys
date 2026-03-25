@@ -1,4 +1,4 @@
-import { effect } from '@angular/core'
+import { DestroyRef, effect, inject } from '@angular/core'
 import {
   detectPlatform,
   formatHotkey,
@@ -10,6 +10,7 @@ import type {
   Hotkey,
   HotkeyCallback,
   HotkeyOptions,
+  HotkeyRegistrationHandle,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
 
@@ -34,6 +35,8 @@ export interface InjectHotkeyOptions extends Omit<HotkeyOptions, 'target'> {
  * Call in an injection context (e.g. constructor or field initializer).
  * Uses effect() to track reactive dependencies and update registration
  * when options or the callback change.
+ * `enabled: false` keeps the registration (visible in devtools) and only suppresses firing; the same
+ * handle is updated instead of unregistering and re-registering when identity is unchanged.
  *
  * @param hotkey - The hotkey string (e.g. 'Mod+S', 'Escape') or getter function
  * @param callback - The function to call when the hotkey is pressed
@@ -87,8 +90,22 @@ export function injectHotkey(
 ): void {
   const defaultOptions = injectDefaultHotkeysOptions()
   const manager = getHotkeyManager()
+  const destroyRef = inject(DestroyRef)
 
-  effect((onCleanup) => {
+  let registration: HotkeyRegistrationHandle | null = null
+  let lastHotkeyString: Hotkey | null = null
+  let lastTarget: HTMLElement | Document | Window | null = null
+
+  destroyRef.onDestroy(() => {
+    if (registration?.isActive) {
+      registration.unregister()
+      registration = null
+    }
+    lastHotkeyString = null
+    lastTarget = null
+  })
+
+  effect(() => {
     // Resolve reactive values
     const resolvedHotkey = typeof hotkey === 'function' ? hotkey() : hotkey
     const resolvedOptions = typeof options === 'function' ? options() : options
@@ -117,29 +134,44 @@ export function injectHotkey(
           : null
 
     if (!resolvedTarget) {
+      if (registration?.isActive) {
+        registration.unregister()
+        registration = null
+      }
+      lastHotkeyString = null
+      lastTarget = null
       return
     }
 
     // Extract options without target (target is handled separately)
     const { target: _target, ...optionsWithoutTarget } = mergedOptions
 
-    // Register the hotkey
-    const registration = manager.register(hotkeyString, callback, {
+    if (
+      registration?.isActive &&
+      lastHotkeyString === hotkeyString &&
+      lastTarget === resolvedTarget
+    ) {
+      registration.callback = callback
+      registration.setOptions(optionsWithoutTarget)
+      return
+    }
+
+    if (registration?.isActive) {
+      registration.unregister()
+      registration = null
+    }
+
+    registration = manager.register(hotkeyString, callback, {
       ...optionsWithoutTarget,
       target: resolvedTarget,
     })
 
-    // Update callback and options on every effect run
     if (registration.isActive) {
       registration.callback = callback
       registration.setOptions(optionsWithoutTarget)
     }
 
-    // Cleanup on disposal
-    onCleanup(() => {
-      if (registration.isActive) {
-        registration.unregister()
-      }
-    })
+    lastHotkeyString = hotkeyString
+    lastTarget = resolvedTarget
   })
 }

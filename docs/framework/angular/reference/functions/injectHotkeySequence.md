@@ -12,7 +12,7 @@ function injectHotkeySequence(
    options): void;
 ```
 
-Defined in: [injectHotkeySequence.ts:48](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequence.ts#L48)
+Defined in: [injectHotkeySequence.ts:52](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequence.ts#L52)
 
 Angular inject-based API for registering a keyboard shortcut sequence (Vim-style).
 
@@ -40,7 +40,8 @@ Function to call when the sequence is completed
 
 ### options
 
-Options for the sequence behavior (or getter function)
+Options for the sequence behavior (or getter function). `enabled: false` still registers
+  the sequence (visible in devtools); only execution is suppressed.
 
 [`InjectHotkeySequenceOptions`](../interfaces/InjectHotkeySequenceOptions.md) | () => [`InjectHotkeySequenceOptions`](../interfaces/InjectHotkeySequenceOptions.md)
 

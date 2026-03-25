@@ -10,6 +10,7 @@ import { ref } from 'vue'
 
 const lastSequence = ref<string | null>(null)
 const history = ref<Array<string>>([])
+const helloSequenceEnabled = ref(true)
 const plugins = [{ name: 'TanStack Hotkeys', component: HotkeysDevtoolsPanel }]
 
 const addToHistory = (action: string) => {
@@ -46,6 +47,7 @@ useHotkeySequences([
   {
     sequence: ['H', 'E', 'L', 'L', 'O'],
     callback: () => addToHistory('hello → Hello World!'),
+    options: () => ({ enabled: helloSequenceEnabled.value }),
   },
   {
     sequence: ['Shift+R', 'Shift+T'],
@@ -144,6 +146,19 @@ function VimEditor() {
                 <kbd>h</kbd> <kbd>e</kbd> <kbd>l</kbd> <kbd>l</kbd> <kbd>o</kbd>
               </p>
               <span class="hint">Type "hello" quickly</span>
+              <p class="sequence-toggle-status">
+                This sequence is
+                <strong>{{
+                  helloSequenceEnabled ? 'enabled' : 'disabled'
+                }}</strong
+                >.
+              </p>
+              <button
+                type="button"
+                @click="helloSequenceEnabled = !helloSequenceEnabled"
+              >
+                {{ helloSequenceEnabled ? 'Disable' : 'Enable' }} sequence
+              </button>
             </div>
           </div>
         </section>

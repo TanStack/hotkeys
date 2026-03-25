@@ -65,6 +65,8 @@ useHotkeySequence(['Shift+Z', 'Shift+Z'], () => forceQuit(), { timeout: 2000 })
 
 Controls whether the sequence is active. Defaults to `true`.
 
+Disabled sequences **remain registered** and stay visible in devtools; only execution is suppressed.
+
 ```tsx
 const [isVimMode, setIsVimMode] = useState(true)
 

@@ -65,6 +65,16 @@
             <kbd>h</kbd> <kbd>e</kbd> <kbd>l</kbd> <kbd>l</kbd> <kbd>o</kbd>
           </p>
           <span class="hint">Type "hello" quickly</span>
+          <p class="sequence-toggle-status">
+            This sequence is
+            <strong>{{
+              helloSequenceEnabled() ? 'enabled' : 'disabled'
+            }}</strong
+            >.
+          </p>
+          <button type="button" (click)="toggleHelloSequence()">
+            {{ helloSequenceEnabled() ? 'Disable' : 'Enable' }} sequence
+          </button>
         </div>
       </div>
     </section>

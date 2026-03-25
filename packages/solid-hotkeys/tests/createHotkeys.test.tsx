@@ -146,6 +146,41 @@ describe('createHotkeys', () => {
 
     expect(enabledCb).toHaveBeenCalledTimes(1)
     expect(disabledCb).not.toHaveBeenCalled()
+
+    const manager = HotkeyManager.getInstance()
+    expect(manager.getRegistrationCount()).toBe(2)
+    const disabledReg = [...manager.registrations.state.values()].find(
+      (r) => r.hotkey === 'Mod+Z',
+    )
+    expect(disabledReg?.options.enabled).toBe(false)
+  })
+
+  it('should preserve registration id when toggling enabled', () => {
+    const callback = vi.fn()
+    const manager = HotkeyManager.getInstance()
+    const [enabled, setEnabled] = createSignal(true)
+
+    const TestComponent: Component = () => {
+      createHotkeys(() => [
+        {
+          hotkey: 'Mod+S',
+          callback,
+          options: { platform: 'mac', enabled: enabled() },
+        },
+      ])
+      return null
+    }
+
+    render(() => <TestComponent />)
+
+    const idBefore = [...manager.registrations.state.keys()][0]
+    expect(manager.getRegistrationCount()).toBe(1)
+
+    setEnabled(false)
+    expect([...manager.registrations.state.keys()][0]).toBe(idBefore)
+
+    setEnabled(true)
+    expect([...manager.registrations.state.keys()][0]).toBe(idBefore)
   })
 
   it('should handle dynamic array changes via accessor', () => {

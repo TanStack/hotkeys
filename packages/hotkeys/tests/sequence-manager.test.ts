@@ -86,6 +86,27 @@ describe('SequenceManager', () => {
       expect(manager.getRegistrationCount()).toBe(0)
     })
 
+    it('should keep registration when disabled and skip callback until re-enabled', () => {
+      const manager = SequenceManager.getInstance()
+      const callback = vi.fn()
+
+      const handle = manager.register(['G', 'G'], callback, { enabled: false })
+
+      expect(manager.getRegistrationCount()).toBe(1)
+      expect(
+        [...manager.registrations.state.values()][0]?.options.enabled,
+      ).toBe(false)
+
+      dispatchKey('g')
+      dispatchKey('g')
+      expect(callback).not.toHaveBeenCalled()
+
+      handle.setOptions({ enabled: true })
+      dispatchKey('g')
+      dispatchKey('g')
+      expect(callback).toHaveBeenCalledTimes(1)
+    })
+
     it('should return handle with callback and setOptions', () => {
       const manager = SequenceManager.getInstance()
       const callback1 = vi.fn()

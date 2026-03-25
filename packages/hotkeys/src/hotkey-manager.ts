@@ -27,7 +27,11 @@ export type { ConflictBehavior }
 export interface HotkeyOptions {
   /** Behavior when this hotkey conflicts with an existing registration on the same target. Defaults to 'warn' */
   conflictBehavior?: ConflictBehavior
-  /** Whether the hotkey is enabled. Defaults to true */
+  /**
+   * Soft-disable: when `false`, the callback does not run but the registration
+   * stays in `HotkeyManager` (and in devtools). Toggling this should update the
+   * existing handle via `setOptions` rather than unregistering. Defaults to `true`.
+   */
   enabled?: boolean
   /** The event type to listen for. Defaults to 'keydown' */
   eventType?: 'keydown' | 'keyup'

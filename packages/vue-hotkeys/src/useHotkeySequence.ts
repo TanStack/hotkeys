@@ -1,5 +1,5 @@
 import { onUnmounted, unref, watch } from 'vue'
-import { getSequenceManager } from '@tanstack/hotkeys'
+import { formatHotkeySequence, getSequenceManager } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProviderContext'
 import type { MaybeRefOrGetter } from 'vue'
 import type {
@@ -82,6 +82,8 @@ export function useHotkeySequence(
   const manager = getSequenceManager()
 
   let registration: SequenceRegistrationHandle | null = null
+  let lastSequenceKey: string | null = null
+  let lastTarget: HTMLElement | Document | Window | null = null
 
   // Watch for changes to reactive dependencies
   const stopWatcher = watch(
@@ -109,23 +111,20 @@ export function useHotkeySequence(
       }
     },
     ({ resolvedSequence, mergedOptions, resolvedEnabled, resolvedTarget }) => {
-      if (resolvedEnabled === false || resolvedSequence.length === 0) {
-        return
-      }
-
-      // Resolve target
       const finalTarget =
         resolvedTarget ?? (typeof document !== 'undefined' ? document : null)
 
-      if (!finalTarget) {
+      if (resolvedSequence.length === 0 || !finalTarget) {
+        if (registration?.isActive) {
+          registration.unregister()
+          registration = null
+        }
+        lastSequenceKey = null
+        lastTarget = null
         return
       }
 
-      // Unregister previous registration if it exists
-      if (registration?.isActive) {
-        registration.unregister()
-        registration = null
-      }
+      const sequenceKey = formatHotkeySequence(resolvedSequence)
 
       // Extract options without target (target is handled separately)
       const {
@@ -138,17 +137,33 @@ export function useHotkeySequence(
         ...(resolvedEnabled === undefined ? {} : { enabled: resolvedEnabled }),
       }
 
-      // Register the sequence
+      if (
+        registration?.isActive &&
+        lastSequenceKey === sequenceKey &&
+        lastTarget === finalTarget
+      ) {
+        registration.callback = callback
+        registration.setOptions(optionsWithoutTarget)
+        return
+      }
+
+      if (registration?.isActive) {
+        registration.unregister()
+        registration = null
+      }
+
       registration = manager.register(resolvedSequence, callback, {
         ...optionsWithoutTarget,
         target: finalTarget,
       })
 
-      // Update callback and options
       if (registration.isActive) {
         registration.callback = callback
         registration.setOptions(optionsWithoutTarget)
       }
+
+      lastSequenceKey = sequenceKey
+      lastTarget = finalTarget
     },
     { immediate: true },
   )

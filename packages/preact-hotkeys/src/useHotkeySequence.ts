@@ -41,7 +41,8 @@ export interface UseHotkeySequenceOptions extends Omit<
  *
  * @param sequence - Array of hotkey strings that form the sequence
  * @param callback - Function to call when the sequence is completed
- * @param options - Options for the sequence behavior
+ * @param options - Options for the sequence behavior. `enabled: false` keeps the registration (visible in devtools)
+ *   and only suppresses firing; the hook updates the existing handle instead of unregistering.
  *
  * @example
  * ```tsx
@@ -89,11 +90,13 @@ export function useHotkeySequence(
   const callbackRef = useRef(callback)
   const optionsRef = useRef(mergedOptions)
   const managerRef = useRef(manager)
+  const sequenceRef = useRef(sequence)
 
   // Update refs on every render
   callbackRef.current = callback
   optionsRef.current = mergedOptions
   managerRef.current = manager
+  sequenceRef.current = sequence
 
   // Track previous target and sequence to detect changes requiring re-registration
   const prevTargetRef = useRef<HTMLElement | Document | Window | null>(null)
@@ -106,7 +109,13 @@ export function useHotkeySequence(
   const { target: _target, ...optionsWithoutTarget } = mergedOptions
 
   useEffect(() => {
-    if (sequence.length === 0) {
+    if (sequenceRef.current.length === 0) {
+      if (registrationRef.current?.isActive) {
+        registrationRef.current.unregister()
+        registrationRef.current = null
+      }
+      prevTargetRef.current = null
+      prevSequenceRef.current = null
       return
     }
 
@@ -118,6 +127,12 @@ export function useHotkeySequence(
 
     // Skip if no valid target (SSR or ref still null)
     if (!resolvedTarget) {
+      if (registrationRef.current?.isActive) {
+        registrationRef.current.unregister()
+        registrationRef.current = null
+      }
+      prevTargetRef.current = null
+      prevSequenceRef.current = null
       return
     }
 
@@ -140,7 +155,7 @@ export function useHotkeySequence(
     // Register if needed (no active registration)
     if (!registrationRef.current || !registrationRef.current.isActive) {
       registrationRef.current = managerRef.current.register(
-        sequence,
+        sequenceRef.current,
         (event, context) => callbackRef.current(event, context),
         {
           ...optionsRef.current,
@@ -160,7 +175,7 @@ export function useHotkeySequence(
         registrationRef.current = null
       }
     }
-  }, [hotkeySequenceString, mergedOptions.enabled, sequence])
+  }, [hotkeySequenceString])
 
   // Sync callback and options on EVERY render (outside useEffect)
   if (registrationRef.current?.isActive) {

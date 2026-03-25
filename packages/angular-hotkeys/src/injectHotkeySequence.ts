@@ -1,11 +1,14 @@
-import { effect } from '@angular/core'
-import { getSequenceManager } from '@tanstack/hotkeys'
+import { DestroyRef, effect, inject } from '@angular/core'
+import { formatHotkeySequence, getSequenceManager } from '@tanstack/hotkeys'
 import { injectDefaultHotkeysOptions } from './hotkeys-provider'
 import type {
   HotkeyCallback,
   HotkeySequence,
   SequenceOptions,
+  SequenceRegistrationHandle,
 } from '@tanstack/hotkeys'
+
+type SequenceTarget = Document | HTMLElement | Window
 
 export interface InjectHotkeySequenceOptions extends Omit<
   SequenceOptions,
@@ -28,7 +31,8 @@ export interface InjectHotkeySequenceOptions extends Omit<
  *
  * @param sequence - Array of hotkey strings that form the sequence (or getter function)
  * @param callback - Function to call when the sequence is completed
- * @param options - Options for the sequence behavior (or getter function)
+ * @param options - Options for the sequence behavior (or getter function). `enabled: false` still registers
+ *   the sequence (visible in devtools); only execution is suppressed.
  *
  * @example
  * ```ts
@@ -53,8 +57,23 @@ export function injectHotkeySequence(
     | (() => InjectHotkeySequenceOptions) = {},
 ): void {
   const defaultOptions = injectDefaultHotkeysOptions()
+  const manager = getSequenceManager()
+  const destroyRef = inject(DestroyRef)
 
-  effect((onCleanup) => {
+  let handle: SequenceRegistrationHandle | null = null
+  let lastSequenceKey: string | null = null
+  let lastTarget: SequenceTarget | null = null
+
+  destroyRef.onDestroy(() => {
+    if (handle?.isActive) {
+      handle.unregister()
+      handle = null
+    }
+    lastSequenceKey = null
+    lastTarget = null
+  })
+
+  effect(() => {
     // Resolve reactive values
     const resolvedSequence =
       typeof sequence === 'function' ? sequence() : sequence
@@ -67,27 +86,46 @@ export function injectHotkeySequence(
 
     const { enabled = true, ...sequenceOptions } = mergedOptions
 
-    if (!enabled || resolvedSequence.length === 0) {
+    const resolvedTarget =
+      sequenceOptions.target ??
+      (typeof document !== 'undefined' ? document : undefined)
+
+    if (resolvedSequence.length === 0 || !resolvedTarget) {
+      if (handle?.isActive) {
+        handle.unregister()
+        handle = null
+      }
+      lastSequenceKey = null
+      lastTarget = null
       return
     }
 
-    const manager = getSequenceManager()
+    const sequenceKey = formatHotkeySequence(resolvedSequence)
 
-    // Pass through options; default target to document when not provided
-    const registerOptions: SequenceOptions = {
+    const registerPayload: SequenceOptions = {
       ...sequenceOptions,
-      enabled: true,
-      target:
-        sequenceOptions.target ??
-        (typeof document !== 'undefined' ? document : undefined),
+      enabled,
+      target: resolvedTarget,
+    }
+    const { target: _t, ...optionsWithoutTarget } = registerPayload
+
+    if (
+      handle?.isActive &&
+      lastSequenceKey === sequenceKey &&
+      lastTarget === resolvedTarget
+    ) {
+      handle.callback = callback
+      handle.setOptions(optionsWithoutTarget)
+      return
     }
 
-    const handle = manager.register(resolvedSequence, callback, registerOptions)
+    if (handle?.isActive) {
+      handle.unregister()
+      handle = null
+    }
 
-    onCleanup(() => {
-      if (handle.isActive) {
-        handle.unregister()
-      }
-    })
+    handle = manager.register(resolvedSequence, callback, registerPayload)
+    lastSequenceKey = sequenceKey
+    lastTarget = resolvedTarget
   })
 }

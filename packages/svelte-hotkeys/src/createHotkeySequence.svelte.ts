@@ -1,10 +1,12 @@
-import { getSequenceManager } from '@tanstack/hotkeys'
+import { formatHotkeySequence, getSequenceManager } from '@tanstack/hotkeys'
+import { onDestroy } from 'svelte'
 import { getDefaultHotkeysOptions } from './HotkeysCtx'
 import { resolveMaybeGetter } from './internal.svelte'
 import type {
   HotkeyCallback,
   HotkeySequence,
   SequenceOptions,
+  SequenceRegistrationHandle,
 } from '@tanstack/hotkeys'
 import type { MaybeGetter } from './internal.svelte'
 import type { Attachment } from 'svelte/attachments'
@@ -18,18 +20,11 @@ export interface CreateHotkeySequenceOptions extends Omit<
 
 function registerHotkeySequence(
   target: HTMLElement | Document | Window,
-  sequence: MaybeGetter<HotkeySequence>,
+  sequence: HotkeySequence,
   callback: HotkeyCallback,
-  options: MaybeGetter<CreateHotkeySequenceOptions>,
+  mergedOptions: CreateHotkeySequenceOptions,
 ) {
-  const resolvedSequence = resolveMaybeGetter(sequence)
-  const resolvedOptions = resolveMaybeGetter(options)
-  const mergedOptions = {
-    ...getDefaultHotkeysOptions().hotkeySequence,
-    ...resolvedOptions,
-  } as CreateHotkeySequenceOptions
-
-  return getSequenceManager().register(resolvedSequence, callback, {
+  return getSequenceManager().register(sequence, callback, {
     ...mergedOptions,
     target,
   })
@@ -79,25 +74,58 @@ export function createHotkeySequence(
   callback: HotkeyCallback,
   options: MaybeGetter<CreateHotkeySequenceOptions> = {},
 ): void {
+  let registration: SequenceRegistrationHandle | null = null
+  let lastSequenceKey: string | null = null
+
   $effect(() => {
     if (typeof document === 'undefined') {
       return
     }
 
     const resolvedSequence = resolveMaybeGetter(sequence)
+    const resolvedOptions = resolveMaybeGetter(options)
+    const mergedOptions = {
+      ...getDefaultHotkeysOptions().hotkeySequence,
+      ...resolvedOptions,
+    } as CreateHotkeySequenceOptions
+
+    const { target: _t, ...optionsWithoutTarget } = mergedOptions
+
     if (resolvedSequence.length === 0) {
+      if (registration?.isActive) {
+        registration.unregister()
+        registration = null
+      }
+      lastSequenceKey = null
       return
     }
 
-    const registration = registerHotkeySequence(
+    const sequenceKey = formatHotkeySequence(resolvedSequence)
+
+    if (registration?.isActive && lastSequenceKey === sequenceKey) {
+      registration.callback = callback
+      registration.setOptions(optionsWithoutTarget)
+      return
+    }
+
+    if (registration?.isActive) {
+      registration.unregister()
+      registration = null
+    }
+
+    registration = registerHotkeySequence(
       document,
       resolvedSequence,
       callback,
-      options,
+      mergedOptions,
     )
+    lastSequenceKey = sequenceKey
+  })
 
-    return () => {
+  onDestroy(() => {
+    if (registration?.isActive) {
       registration.unregister()
+      registration = null
     }
   })
 }
@@ -126,26 +154,48 @@ export function createHotkeySequenceAttachment(
   options: MaybeGetter<CreateHotkeySequenceOptions> = {},
 ): Attachment<HTMLElement> {
   return (element) => {
-    let registration: ReturnType<typeof registerHotkeySequence> | null = null
+    let registration: SequenceRegistrationHandle | null = null
+    let lastSequenceKey: string | null = null
 
     $effect(() => {
       const resolvedSequence = resolveMaybeGetter(sequence)
+      const resolvedOptions = resolveMaybeGetter(options)
+      const mergedOptions = {
+        ...getDefaultHotkeysOptions().hotkeySequence,
+        ...resolvedOptions,
+      } as CreateHotkeySequenceOptions
+
+      const { target: _t, ...optionsWithoutTarget } = mergedOptions
+
+      if (resolvedSequence.length === 0) {
+        if (registration?.isActive) {
+          registration.unregister()
+          registration = null
+        }
+        lastSequenceKey = null
+        return
+      }
+
+      const sequenceKey = formatHotkeySequence(resolvedSequence)
+
+      if (registration?.isActive && lastSequenceKey === sequenceKey) {
+        registration.callback = callback
+        registration.setOptions(optionsWithoutTarget)
+        return
+      }
 
       if (registration?.isActive) {
         registration.unregister()
         registration = null
       }
 
-      if (resolvedSequence.length === 0) {
-        return
-      }
-
       registration = registerHotkeySequence(
         element,
         resolvedSequence,
         callback,
-        options,
+        mergedOptions,
       )
+      lastSequenceKey = sequenceKey
     })
 
     return () => {
