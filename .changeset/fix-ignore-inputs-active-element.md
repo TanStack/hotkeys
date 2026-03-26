@@ -1,5 +1,5 @@
 ---
-"@tanstack/hotkeys": patch
+'@tanstack/hotkeys': patch
 ---
 
 fix: check `document.activeElement` in addition to `event.target` for `ignoreInputs` option
