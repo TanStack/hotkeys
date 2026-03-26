@@ -1,5 +1,16 @@
 # @tanstack/react-hotkeys
 
+## 0.8.0
+
+### Minor Changes
+
+- Refactor hotkey normalization and display formatting APIs in `@tanstack/hotkeys`, align framework packages and devtools, and update display-related constants. ([#85](https://github.com/TanStack/hotkeys/pull/85))
+
+### Patch Changes
+
+- Updated dependencies [[`74b474d`](https://github.com/TanStack/hotkeys/commit/74b474db6e44ad2d0a92f97898f5b145f00b9b93)]:
+  - @tanstack/hotkeys@0.6.0
+
 ## 0.7.0
 
 ### Minor Changes
