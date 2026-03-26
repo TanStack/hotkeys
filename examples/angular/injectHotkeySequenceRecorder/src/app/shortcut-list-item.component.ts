@@ -1,10 +1,9 @@
 import { Component, input, output } from '@angular/core'
 import {
   formatForDisplay,
-  formatKeyForDebuggingDisplay,
   injectHeldKeys,
+  type HotkeySequence,
 } from '@tanstack/angular-hotkeys'
-import type { HotkeySequence } from '@tanstack/angular-hotkeys'
 
 @Component({
   selector: 'app-shortcut-list-item',
@@ -22,10 +21,9 @@ export class ShortcutListItemComponent {
   cancel = output<void>()
 
   heldKeys = injectHeldKeys()
-  formatForDisplay = formatForDisplay
-  formatKey = formatKeyForDebuggingDisplay
+  readonly formatForDisplay = formatForDisplay
 
   formatSeq(seq: HotkeySequence): string {
-    return seq.map((h) => this.formatForDisplay(h)).join(' ')
+    return seq.map((h) => formatForDisplay(h)).join(' ')
   }
 }

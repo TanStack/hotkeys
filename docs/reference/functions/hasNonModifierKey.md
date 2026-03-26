@@ -9,7 +9,7 @@ title: hasNonModifierKey
 function hasNonModifierKey(hotkey, platform): boolean;
 ```
 
-Defined in: [parse.ts:314](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L314)
+Defined in: [parse.ts:316](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L316)
 
 Checks if a hotkey or ParsedHotkey contains at least one non-modifier key.
 

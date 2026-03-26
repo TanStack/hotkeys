@@ -1,12 +1,26 @@
 import {
   KEY_DISPLAY_SYMBOLS,
+  LINUX_MODIFIER_LABELS,
+  MAC_MODIFIER_LABELS,
   MAC_MODIFIER_SYMBOLS,
+  MODIFIER_ALIASES,
   MODIFIER_ORDER,
-  STANDARD_MODIFIER_LABELS,
+  PUNCTUATION_KEY_DISPLAY_LABELS,
+  WINDOWS_MODIFIER_LABELS,
   detectPlatform,
 } from './constants'
-import { parseHotkey } from './parse'
-import type { FormatDisplayOptions, Hotkey, ParsedHotkey } from './hotkey'
+import {
+  isModifierKey,
+  normalizeHotkeyFromParsed,
+  normalizeRegisterableHotkey,
+} from './parse'
+import type {
+  CanonicalModifier,
+  FormatDisplayOptions,
+  Hotkey,
+  ParsedHotkey,
+  RegisterableHotkey,
+} from './hotkey'
 
 /**
  * Converts a hotkey sequence array to a display string.
@@ -55,8 +69,8 @@ export function formatHotkey(parsed: ParsedHotkey): string {
 /**
  * Formats a hotkey for display in a user interface.
  *
- * On macOS, uses symbols (⌘⇧S).
- * On Windows/Linux, uses text (Ctrl+Shift+S).
+ * On macOS, uses symbols (⌘⇧S) in the same modifier order as {@link normalizeHotkeyFromParsed}.
+ * On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
  *
  * @param hotkey - The hotkey string or ParsedHotkey to format
  * @param options - Formatting options
@@ -65,7 +79,7 @@ export function formatHotkey(parsed: ParsedHotkey): string {
  * @example
  * ```ts
  * formatForDisplay('Mod+Shift+S', { platform: 'mac' })
- * // Returns: '⇧⌘S'
+ * // Returns: '⌘ ⇧ S' (symbols separated by spaces on macOS)
  *
  * formatForDisplay('Mod+Shift+S', { platform: 'windows' })
  * // Returns: 'Ctrl+Shift+S'
@@ -75,203 +89,51 @@ export function formatHotkey(parsed: ParsedHotkey): string {
  * ```
  */
 export function formatForDisplay(
-  hotkey: Hotkey | (string & {}) | ParsedHotkey,
+  hotkey: RegisterableHotkey | (string & {}),
   options: FormatDisplayOptions = {},
 ): string {
   const platform = options.platform ?? detectPlatform()
-  const parsed =
-    typeof hotkey === 'string' ? parseHotkey(hotkey, platform) : hotkey
+  const useSymbols = options.useSymbols ?? true
+  const normalizedHotkey = normalizeRegisterableHotkey(
+    hotkey as RegisterableHotkey,
+    platform,
+  )
+  return normalizedHotkey
+    .split('+')
+    .map((segment) => {
+      if (isModifierKey(segment)) {
+        const modifierToken = (MODIFIER_ALIASES[segment] ??
+          MODIFIER_ALIASES[segment.toLowerCase()]) as CanonicalModifier | 'Mod'
+        return platform === 'mac'
+          ? useSymbols
+            ? MAC_MODIFIER_SYMBOLS[modifierToken]
+            : MAC_MODIFIER_LABELS[modifierToken]
+          : platform === 'windows'
+            ? WINDOWS_MODIFIER_LABELS[modifierToken]
+            : LINUX_MODIFIER_LABELS[modifierToken]
+      } else {
+        const keyDisplaySymbol =
+          useSymbols &&
+          KEY_DISPLAY_SYMBOLS[segment as keyof typeof KEY_DISPLAY_SYMBOLS]
+        if (keyDisplaySymbol) return keyDisplaySymbol
 
-  if (platform === 'mac') {
-    return formatForMac(parsed)
-  }
-
-  return formatForStandard(parsed)
+        const punctuationKeyDisplayLabel =
+          !useSymbols &&
+          PUNCTUATION_KEY_DISPLAY_LABELS[
+            segment as keyof typeof PUNCTUATION_KEY_DISPLAY_LABELS
+          ]
+        return punctuationKeyDisplayLabel || segment
+      }
+    })
+    .join(platform === 'mac' && useSymbols ? ' ' : '+')
 }
 
 /**
- * Formats a hotkey for macOS display using symbols.
- */
-function formatForMac(parsed: ParsedHotkey): string {
-  const parts: Array<string> = []
-
-  // Add modifiers in macOS order (typically Control, Option, Shift, Command)
-  // But we'll use our canonical order and just use symbols
-  for (const modifier of MODIFIER_ORDER) {
-    if (parsed.modifiers.includes(modifier)) {
-      parts.push(MAC_MODIFIER_SYMBOLS[modifier])
-    }
-  }
-
-  // Add the key (use symbol if available, otherwise the key itself)
-  const keyDisplay = KEY_DISPLAY_SYMBOLS[parsed.key] ?? parsed.key
-  parts.push(keyDisplay)
-
-  // On Mac, modifiers are typically concatenated without separators
-  return parts.join('')
-}
-
-/**
- * Formats a hotkey for Windows/Linux display using text labels.
- */
-function formatForStandard(parsed: ParsedHotkey): string {
-  const parts: Array<string> = []
-
-  // Add modifiers in canonical order
-  for (const modifier of MODIFIER_ORDER) {
-    if (parsed.modifiers.includes(modifier)) {
-      parts.push(STANDARD_MODIFIER_LABELS[modifier])
-    }
-  }
-
-  // Add the key (use symbol/short form if available)
-  const keyDisplay = KEY_DISPLAY_SYMBOLS[parsed.key] ?? parsed.key
-  parts.push(keyDisplay)
-
-  // On Windows/Linux, use + as separator
-  return parts.join('+')
-}
-
-/**
- * Formats a hotkey using platform-agnostic labels.
- * Uses 'Cmd' on Mac and 'Ctrl' for Control, etc.
- *
- * @param hotkey - The hotkey string or ParsedHotkey to format
- * @param platform - The target platform
- * @returns A formatted string with platform-appropriate labels
+ * @deprecated Use {@link formatForDisplay} instead with `useSymbols: false` option.
  */
 export function formatWithLabels(
-  hotkey: Hotkey | (string & {}),
-  platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
+  hotkey: RegisterableHotkey,
+  options: Omit<FormatDisplayOptions, 'useSymbols'> = {},
 ): string {
-  const parsed =
-    typeof hotkey === 'string' ? parseHotkey(hotkey, platform) : hotkey
-  const parts: Array<string> = []
-
-  // Custom labels for more readable output
-  const labels: Record<string, string> = {
-    Control: 'Ctrl',
-    Alt: platform === 'mac' ? 'Option' : 'Alt',
-    Shift: 'Shift',
-    Meta: platform === 'mac' ? 'Cmd' : 'Win',
-  }
-
-  for (const modifier of MODIFIER_ORDER) {
-    if (parsed.modifiers.includes(modifier)) {
-      parts.push(labels[modifier] ?? modifier)
-    }
-  }
-
-  // Add the key
-  parts.push(parsed.key)
-
-  return parts.join('+')
-}
-
-// =============================================================================
-// Debugging Display Labels
-// =============================================================================
-
-/**
- * Maps canonical modifier names to debugging-friendly labels per platform.
- */
-const MODIFIER_DEBUG_LABELS: Record<string, Record<string, string>> = {
-  mac: { Meta: 'Mod (Cmd)', Control: 'Ctrl', Alt: 'Opt', Shift: 'Shift' },
-  windows: { Control: 'Mod (Ctrl)', Meta: 'Win', Alt: 'Alt', Shift: 'Shift' },
-  linux: { Control: 'Mod (Ctrl)', Meta: 'Super', Alt: 'Alt', Shift: 'Shift' },
-}
-
-/**
- * Options for formatting a single key for debugging display.
- */
-export interface FormatKeyDebuggingOptions {
-  /** The target platform. Defaults to auto-detection. */
-  platform?: 'mac' | 'windows' | 'linux'
-  /**
-   * Whether the input value comes from `event.key` or `event.code`.
-   *
-   * - `'key'` (default): Applies rich platform-aware formatting (modifier
-   *   labels, special-key symbols, etc.).
-   * - `'code'`: Returns the value unchanged — physical key codes like
-   *   `"MetaLeft"` or `"KeyA"` are already descriptive for debugging.
-   */
-  source?: 'key' | 'code'
-}
-
-/**
- * Formats a single key name for debugging/devtools display.
- *
- * Unlike `formatForDisplay` which formats full hotkey strings for end-user UIs,
- * this function formats individual key names (from `event.key`) with rich
- * platform-aware labels suitable for debugging tools and developer-facing displays.
- *
- * Features:
- * - Modifier keys show their platform role (e.g., "Mod (Cmd)" for Meta on Mac)
- * - On macOS, modifier keys are prefixed with their symbol (e.g., "⌘ Mod (Cmd)")
- * - Special keys use display symbols (ArrowUp -> "↑", Escape -> "Esc")
- * - Regular keys pass through unchanged
- *
- * @param key - A single key name (e.g., "Meta", "Shift", "ArrowUp", "A")
- * @param options - Formatting options
- * @returns A formatted label suitable for debugging display
- *
- * @example
- * ```ts
- * // On macOS:
- * formatKeyForDebuggingDisplay('Meta')    // '⌘ Mod (Cmd)'
- * formatKeyForDebuggingDisplay('Control') // '⌃ Ctrl'
- * formatKeyForDebuggingDisplay('Alt')     // '⌥ Opt'
- * formatKeyForDebuggingDisplay('Shift')   // '⇧ Shift'
- *
- * // On Windows:
- * formatKeyForDebuggingDisplay('Control') // 'Mod (Ctrl)'
- * formatKeyForDebuggingDisplay('Meta')    // 'Win'
- *
- * // Special keys (all platforms):
- * formatKeyForDebuggingDisplay('ArrowUp') // '↑'
- * formatKeyForDebuggingDisplay('Escape')  // 'Esc'
- * formatKeyForDebuggingDisplay('Space')   // '␣'
- *
- * // Regular keys pass through:
- * formatKeyForDebuggingDisplay('A')       // 'A'
- *
- * // With source: 'code', values pass through unchanged:
- * formatKeyForDebuggingDisplay('MetaLeft', { source: 'code' })  // 'MetaLeft'
- * formatKeyForDebuggingDisplay('KeyA', { source: 'code' })      // 'KeyA'
- * ```
- */
-export function formatKeyForDebuggingDisplay(
-  key: string,
-  options: FormatKeyDebuggingOptions = {},
-): string {
-  // For event.code values, pass through unchanged — they're already
-  // descriptive for debugging (e.g. "MetaLeft", "KeyA", "ShiftRight").
-  if (options.source === 'code') {
-    return key
-  }
-
-  const platform = options.platform ?? detectPlatform()
-
-  // Check if it's a modifier key
-  const modLabel = MODIFIER_DEBUG_LABELS[platform]?.[key]
-  if (modLabel) {
-    // On Mac, prefix modifier labels with their symbol
-    if (platform === 'mac') {
-      const symbol =
-        MAC_MODIFIER_SYMBOLS[key as keyof typeof MAC_MODIFIER_SYMBOLS]
-      if (symbol) {
-        return `${symbol} ${modLabel}`
-      }
-    }
-    return modLabel
-  }
-
-  // Check if it's a special key with a display symbol
-  const symbol = KEY_DISPLAY_SYMBOLS[key]
-  if (symbol) {
-    return symbol
-  }
-
-  // Regular key — pass through
-  return key
+  return formatForDisplay(hotkey, { ...options, useSymbols: false })
 }

@@ -12,7 +12,7 @@ function createHotkey(
    options): void;
 ```
 
-Defined in: [createHotkey.ts:83](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L83)
+Defined in: [createHotkey.ts:82](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L82)
 
 SolidJS primitive for registering a keyboard hotkey.
 

@@ -8,10 +8,6 @@ import type {
   PunctuationKey,
 } from './hotkey'
 
-// =============================================================================
-// Platform Detection
-// =============================================================================
-
 /**
  * Detects the current platform based on browser navigator properties.
  *
@@ -45,10 +41,6 @@ export function detectPlatform(): 'mac' | 'windows' | 'linux' {
   }
   return 'linux'
 }
-
-// =============================================================================
-// Modifier Aliases
-// =============================================================================
 
 /**
  * Canonical order for modifiers in normalized hotkey strings.
@@ -124,6 +116,12 @@ export const MODIFIER_ALIASES: Record<string, CanonicalModifier | 'Mod'> = {
   cmd: 'Meta',
   meta: 'Meta',
 
+  // DOM `KeyboardEvent.key` spellings for the meta / Windows key
+  OS: 'Meta',
+  os: 'Meta',
+  Win: 'Meta',
+  win: 'Meta',
+
   // Platform-adaptive (resolved at runtime)
   CommandOrControl: 'Mod',
   Mod: 'Mod',
@@ -161,10 +159,6 @@ export function resolveModifier(
   }
   return modifier
 }
-
-// =============================================================================
-// Valid Keys
-// =============================================================================
 
 /**
  * Set of all valid letter keys (A-Z).
@@ -311,16 +305,16 @@ export const PUNCTUATION_KEYS = new Set<PunctuationKey>([
  * fallbacks for letters and digits.
  */
 export const PUNCTUATION_CODE_MAP: Record<string, string> = {
-  Minus: '-',
-  Equal: '=',
-  Slash: '/',
+  Backquote: '`',
+  Backslash: '\\',
   BracketLeft: '[',
   BracketRight: ']',
-  Backslash: '\\',
   Comma: ',',
+  Equal: '=',
+  Minus: '-',
   Period: '.',
-  Backquote: '`',
   Semicolon: ';',
+  Slash: '/',
 }
 
 /**
@@ -446,6 +440,20 @@ export function isSingleLetterKey(key: string): boolean {
   return /^\p{Letter}$/u.test(key)
 }
 
+/**
+ * Normalizes a key name to its canonical form.
+ *
+ * @param key - The key name to normalize (can be an alias, lowercase, etc.)
+ * @returns The canonical key name
+ *
+ * @example
+ * ```ts
+ * normalizeKeyName('esc') // 'Escape'
+ * normalizeKeyName('a') // 'A'
+ * normalizeKeyName('f1') // 'F1'
+ * normalizeKeyName('ArrowUp') // 'ArrowUp' (already canonical)
+ * ```
+ */
 export function normalizeKeyName(key: string): string {
   // Check aliases first
   if (key in KEY_ALIASES) {
@@ -488,11 +496,35 @@ export function normalizeKeyName(key: string): string {
  * MAC_MODIFIER_SYMBOLS['Shift'] // '⇧'
  * ```
  */
-export const MAC_MODIFIER_SYMBOLS: Record<CanonicalModifier, string> = {
+export const MAC_MODIFIER_SYMBOLS: Record<CanonicalModifier | 'Mod', string> = {
   Control: '⌃',
   Alt: '⌥',
   Shift: '⇧',
   Meta: '⌘',
+  Mod: '⌘',
+}
+
+/**
+ * Modifier key labels for macOS display.
+ *
+ * Used by formatting functions to display hotkeys with macOS-style text labels
+ * (e.g., 'Control' for Control, 'Option' for Alt, 'Cmd' for Meta) instead of symbols.
+ * This provides a familiar macOS look and feel in hotkey displays.
+ *
+ * @example
+ * ```ts
+ * MAC_MODIFIER_LABELS['Control'] // 'control'
+ * MAC_MODIFIER_LABELS['Alt'] // 'option'
+ * MAC_MODIFIER_LABELS['Shift'] // 'shift'
+ * MAC_MODIFIER_LABELS['Meta'] // 'cmd'
+ * ```
+ */
+export const MAC_MODIFIER_LABELS: Record<CanonicalModifier | 'Mod', string> = {
+  Control: 'Control',
+  Alt: 'Option',
+  Shift: 'Shift',
+  Meta: 'Cmd',
+  Mod: 'Cmd',
 }
 
 /**
@@ -510,12 +542,34 @@ export const MAC_MODIFIER_SYMBOLS: Record<CanonicalModifier, string> = {
  * STANDARD_MODIFIER_LABELS['Shift'] // 'Shift'
  * ```
  */
-export const STANDARD_MODIFIER_LABELS: Record<CanonicalModifier, string> = {
+export const WINDOWS_MODIFIER_LABELS: Record<
+  CanonicalModifier | 'Mod',
+  string
+> = {
   Control: 'Ctrl',
   Alt: 'Alt',
   Shift: 'Shift',
   Meta: 'Win',
+  Mod: 'Ctrl',
 }
+
+export const LINUX_MODIFIER_LABELS: Record<CanonicalModifier | 'Mod', string> =
+  {
+    ...WINDOWS_MODIFIER_LABELS,
+    Meta: 'Super',
+  }
+
+export const PUNCTUATION_KEY_DISPLAY_LABELS = {
+  '`': 'Backquote',
+  '\\': 'Backslash',
+  '[': 'Left Bracket',
+  ']': 'Right Bracket',
+  ',': 'Comma',
+  '=': 'Equal',
+  '-': 'Minus',
+  '.': 'Period',
+  ';': 'Semicolon',
+} as const satisfies Record<string, string>
 
 /**
  * Special key symbols for display formatting.
@@ -532,7 +586,7 @@ export const STANDARD_MODIFIER_LABELS: Record<CanonicalModifier, string> = {
  * KEY_DISPLAY_SYMBOLS['Space'] // '␣'
  * ```
  */
-export const KEY_DISPLAY_SYMBOLS: Record<string, string> = {
+export const KEY_DISPLAY_SYMBOLS = {
   ArrowUp: '↑',
   ArrowDown: '↓',
   ArrowLeft: '←',
@@ -543,4 +597,4 @@ export const KEY_DISPLAY_SYMBOLS: Record<string, string> = {
   Delete: '⌦',
   Tab: '⇥',
   Space: '␣',
-}
+} as const satisfies Record<string, string>

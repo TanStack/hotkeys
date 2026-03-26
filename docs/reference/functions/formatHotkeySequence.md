@@ -9,7 +9,7 @@ title: formatHotkeySequence
 function formatHotkeySequence(sequence): string;
 ```
 
-Defined in: [format.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L23)
+Defined in: [format.ts:37](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L37)
 
 Converts a hotkey sequence array to a display string.
 

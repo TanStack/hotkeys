@@ -1,15 +1,13 @@
 import { useEffect, useRef } from 'preact/hooks'
 import {
   detectPlatform,
-  formatHotkey,
   getHotkeyManager,
-  rawHotkeyToParsedHotkey,
+  normalizeRegisterableHotkey,
 } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import { isRef } from './utils'
 import type { RefObject } from 'preact'
 import type {
-  Hotkey,
   HotkeyCallback,
   HotkeyOptions,
   HotkeyRegistrationHandle,
@@ -120,10 +118,7 @@ export function useHotkey(
 
   // Normalize to hotkey string
   const platform = mergedOptions.platform ?? detectPlatform()
-  const hotkeyString: Hotkey =
-    typeof hotkey === 'string'
-      ? hotkey
-      : (formatHotkey(rawHotkeyToParsedHotkey(hotkey, platform)) as Hotkey)
+  const hotkeyString = normalizeRegisterableHotkey(hotkey, platform)
 
   // Extract options without target (target is handled separately)
   const { target: _target, ...optionsWithoutTarget } = mergedOptions

@@ -135,7 +135,8 @@ Combine hooks with formatting utilities for a rich debugging display:
 import {
   useHeldKeys,
   useHeldKeyCodes,
-  formatKeyForDebuggingDisplay,
+  formatForDisplay,
+  type RegisterableHotkey,
 } from '@tanstack/react-hotkeys'
 
 function KeyDebugger() {
@@ -147,7 +148,9 @@ function KeyDebugger() {
       <h3>Active Keys</h3>
       {heldKeys.map((key) => (
         <div key={key}>
-          <strong>{formatKeyForDebuggingDisplay(key)}</strong>
+          <strong>
+            {formatForDisplay(key as RegisterableHotkey, { useSymbols: true })}
+          </strong>
           <span className="code">{heldCodes[key]}</span>
         </div>
       ))}

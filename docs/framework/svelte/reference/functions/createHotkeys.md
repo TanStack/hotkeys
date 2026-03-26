@@ -9,7 +9,7 @@ title: createHotkeys
 function createHotkeys(hotkeys, commonOptions): void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:77](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L77)
+Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:66](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L66)
 
 Register multiple global hotkeys for the current component.
 

@@ -5,7 +5,7 @@ title: UseHotkeyDefinition
 
 # Interface: UseHotkeyDefinition
 
-Defined in: [useHotkeys.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeys.ts#L21)
+Defined in: [useHotkeys.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeys.ts#L20)
 
 A single hotkey definition for use with `useHotkeys`.
 
@@ -17,7 +17,7 @@ A single hotkey definition for use with `useHotkeys`.
 callback: HotkeyCallback;
 ```
 
-Defined in: [useHotkeys.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeys.ts#L25)
+Defined in: [useHotkeys.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeys.ts#L24)
 
 The function to call when the hotkey is pressed
 
@@ -29,7 +29,7 @@ The function to call when the hotkey is pressed
 hotkey: RegisterableHotkey;
 ```
 
-Defined in: [useHotkeys.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeys.ts#L23)
+Defined in: [useHotkeys.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeys.ts#L22)
 
 The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object
 
@@ -41,6 +41,6 @@ The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object
 optional options: UseHotkeyOptions;
 ```
 
-Defined in: [useHotkeys.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeys.ts#L27)
+Defined in: [useHotkeys.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeys.ts#L26)
 
 Per-hotkey options (merged on top of commonOptions)

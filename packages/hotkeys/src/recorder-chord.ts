@@ -1,8 +1,8 @@
+import { normalizeKeyName } from './constants'
 import {
-  convertToModFormat,
   hasNonModifierKey,
   isModifierKey,
-  keyboardEventToHotkey,
+  normalizeHotkeyFromEvent,
 } from './parse'
 import type { Hotkey } from './hotkey'
 
@@ -14,11 +14,10 @@ export function hotkeyChordFromKeydown(
   event: KeyboardEvent,
   platform: 'mac' | 'windows' | 'linux',
 ): Hotkey | null {
-  if (isModifierKey(event)) {
+  if (isModifierKey(normalizeKeyName(event.key))) {
     return null
   }
-  const hotkey = keyboardEventToHotkey(event)
-  const finalHotkey = convertToModFormat(hotkey, platform)
+  const finalHotkey = normalizeHotkeyFromEvent(event, platform)
   if (!hasNonModifierKey(finalHotkey, platform)) {
     return null
   }

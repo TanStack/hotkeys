@@ -12,7 +12,7 @@
                 @if (i > 0) {
                   <span class="plus">+</span>
                 }
-                <kbd>{{ formatKey(key) }}</kbd>
+                <kbd>{{ formatForDisplay(key, { useSymbols: true }) }}</kbd>
               }
             </div>
           } @else {

@@ -368,6 +368,8 @@ export type RegisterableHotkey = Hotkey | RawHotkey
 export interface FormatDisplayOptions {
   /** The target platform. Defaults to auto-detection. */
   platform?: 'mac' | 'windows' | 'linux'
+  /** Whether to use symbols for the display. Defaults to true. */
+  useSymbols?: boolean
 }
 
 /**

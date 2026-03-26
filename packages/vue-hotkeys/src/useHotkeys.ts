@@ -1,14 +1,12 @@
 import { onUnmounted, unref, watch } from 'vue'
 import {
   detectPlatform,
-  formatHotkey,
   getHotkeyManager,
-  rawHotkeyToParsedHotkey,
+  normalizeRegisterableHotkey,
 } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProviderContext'
 import type { UseHotkeyOptions } from './useHotkey'
 import type {
-  Hotkey,
   HotkeyCallback,
   HotkeyRegistrationHandle,
   RegisterableHotkey,
@@ -104,12 +102,10 @@ export function useHotkeys(
         } as UseHotkeyOptions
 
         const platform = mergedOptions.platform ?? detectPlatform()
-        const hotkeyString: Hotkey =
-          typeof resolvedHotkey === 'string'
-            ? resolvedHotkey
-            : (formatHotkey(
-                rawHotkeyToParsedHotkey(resolvedHotkey as any, platform),
-              ) as Hotkey)
+        const hotkeyString = normalizeRegisterableHotkey(
+          resolvedHotkey,
+          platform,
+        )
 
         const resolvedEnabled =
           mergedOptions.enabled === undefined

@@ -1,8 +1,7 @@
 import {
   detectPlatform,
-  formatHotkey,
   getHotkeyManager,
-  rawHotkeyToParsedHotkey,
+  normalizeRegisterableHotkey,
 } from '@tanstack/hotkeys'
 import { onDestroy } from 'svelte'
 import { SvelteMap, SvelteSet } from 'svelte/reactivity'
@@ -28,16 +27,6 @@ export interface CreateHotkeyDefinition {
   callback: HotkeyCallback
   /** Per-hotkey options (merged on top of commonOptions) */
   options?: MaybeGetter<CreateHotkeyOptions>
-}
-
-function normalizeHotkey(
-  hotkey: RegisterableHotkey,
-  options: CreateHotkeyOptions,
-): Hotkey {
-  const platform = options.platform ?? detectPlatform()
-  return typeof hotkey === 'string'
-    ? hotkey
-    : (formatHotkey(rawHotkeyToParsedHotkey(hotkey, platform)) as Hotkey)
 }
 
 type RegistrationRecord = {
@@ -121,7 +110,10 @@ export function createHotkeys(
         continue
       }
 
-      const hotkeyString = normalizeHotkey(resolvedHotkey, mergedOptions)
+      const hotkeyString = normalizeRegisterableHotkey(
+        resolvedHotkey,
+        mergedOptions.platform ?? detectPlatform(),
+      )
       const registrationKey = `${i}:${hotkeyString}`
       nextKeys.add(registrationKey)
       prepared.push({
@@ -225,7 +217,10 @@ export function createHotkeysAttachment(
           ...resolvedDefOptions,
         } as CreateHotkeyOptions
 
-        const hotkeyString = normalizeHotkey(resolvedHotkey, mergedOptions)
+        const hotkeyString = normalizeRegisterableHotkey(
+          resolvedHotkey,
+          mergedOptions.platform ?? detectPlatform(),
+        )
         const registrationKey = `${i}:${hotkeyString}`
         nextKeys.add(registrationKey)
         prepared.push({

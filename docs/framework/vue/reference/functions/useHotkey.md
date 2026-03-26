@@ -12,7 +12,7 @@ function useHotkey(
    options): void;
 ```
 
-Defined in: [packages/vue-hotkeys/src/useHotkey.ts:100](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L100)
+Defined in: [packages/vue-hotkeys/src/useHotkey.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L99)
 
 Vue composable for registering a keyboard hotkey.
 

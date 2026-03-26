@@ -5,7 +5,7 @@ title: InjectHotkeyDefinition
 
 # Interface: InjectHotkeyDefinition
 
-Defined in: [injectHotkeys.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L20)
+Defined in: [injectHotkeys.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L19)
 
 A single hotkey definition for use with `injectHotkeys`.
 
@@ -17,7 +17,7 @@ A single hotkey definition for use with `injectHotkeys`.
 callback: HotkeyCallback;
 ```
 
-Defined in: [injectHotkeys.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L24)
+Defined in: [injectHotkeys.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L23)
 
 The function to call when the hotkey is pressed
 
@@ -29,7 +29,7 @@ The function to call when the hotkey is pressed
 hotkey: RegisterableHotkey | () => RegisterableHotkey;
 ```
 
-Defined in: [injectHotkeys.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L22)
+Defined in: [injectHotkeys.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L21)
 
 The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object
 
@@ -43,6 +43,6 @@ optional options:
   | () => InjectHotkeyOptions;
 ```
 
-Defined in: [injectHotkeys.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L26)
+Defined in: [injectHotkeys.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L25)
 
 Per-hotkey options (merged on top of commonOptions)

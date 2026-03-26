@@ -1,9 +1,8 @@
 import { useEffect, useRef } from 'preact/hooks'
 import {
   detectPlatform,
-  formatHotkey,
   getHotkeyManager,
-  rawHotkeyToParsedHotkey,
+  normalizeRegisterableHotkey,
 } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import { isRef } from './utils'
@@ -93,9 +92,7 @@ export function useHotkeys(
   const managerRef = useRef(manager)
 
   const hotkeyStrings = hotkeys.map((def) =>
-    typeof def.hotkey === 'string'
-      ? def.hotkey
-      : (formatHotkey(rawHotkeyToParsedHotkey(def.hotkey, platform)) as Hotkey),
+    normalizeRegisterableHotkey(def.hotkey, platform),
   )
 
   hotkeysRef.current = hotkeys

@@ -36,7 +36,7 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       overflow: hidden;
       padding: ${size[2]};
       padding-top: 0;
-      margin-top: ${size[2]};
+      margin-top: -8px;
     `,
     heldKeysBar: css`
       background: ${t(colors.gray[100], colors.darkGray[800])};
@@ -47,7 +47,7 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       gap: ${size[3]};
       padding: ${size[3]} ${size[3]};
       flex-shrink: 0;
-      min-height: 64px;
+      min-height: 72px;
       margin-bottom: ${size[2]};
     `,
     heldKeysBarHeader: css`
@@ -404,6 +404,64 @@ const stylesFactory = (theme: 'light' | 'dark') => {
     keyBreakdownPlus: css`
       color: ${t(colors.gray[500], colors.gray[400])};
       font-size: ${fontSize.sm};
+    `,
+    keyBreakdownSubHeader: css`
+      font-size: ${fontSize.xs};
+      font-weight: ${font.weight.semibold};
+      color: ${t(colors.gray[500], colors.gray[400])};
+      margin-top: ${size[3]};
+      margin-bottom: ${size[1]};
+    `,
+    keyBreakdownSplitRow: css`
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: ${size[3]};
+    `,
+    keyBreakdownSplitLeft: css`
+      flex: 0 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: ${size[1]};
+    `,
+    keyBreakdownSplitArrow: css`
+      flex-shrink: 0;
+      color: ${t(colors.gray[500], colors.gray[400])};
+      font-size: ${fontSize.sm};
+      font-family: ${fontFamily.mono};
+      user-select: none;
+    `,
+    keyBreakdownSplitRight: css`
+      flex: 1 1 200px;
+      min-width: min(220px, 100%);
+    `,
+    platformBreakdown: css`
+      display: flex;
+      flex-direction: column;
+      gap: ${size[1]};
+    `,
+    platformBreakdownRow: css`
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: ${size[2]};
+      align-items: center;
+      font-size: ${fontSize.xs};
+    `,
+    platformBreakdownLabel: css`
+      color: ${t(colors.gray[500], colors.gray[400])};
+      flex-shrink: 0;
+    `,
+    platformBreakdownPretty: css`
+      color: ${t(colors.gray[900], colors.gray[100])};
+      word-break: break-word;
+      min-width: 0;
+    `,
+    sequenceChordDetail: css`
+      margin-top: ${size[3]};
+      padding-top: ${size[2]};
+      border-top: 1px solid ${t(colors.gray[200], colors.darkGray[600])};
     `,
     keyCapLarge: css`
       display: inline-flex;

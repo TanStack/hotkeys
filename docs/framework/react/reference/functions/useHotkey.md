@@ -12,7 +12,7 @@ function useHotkey(
    options): void;
 ```
 
-Defined in: [useHotkey.ts:91](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L91)
+Defined in: [useHotkey.ts:89](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L89)
 
 React hook for registering a keyboard hotkey.
 

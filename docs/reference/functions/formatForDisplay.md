@@ -9,12 +9,12 @@ title: formatForDisplay
 function formatForDisplay(hotkey, options): string;
 ```
 
-Defined in: [format.ts:77](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L77)
+Defined in: [format.ts:91](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L91)
 
 Formats a hotkey for display in a user interface.
 
-On macOS, uses symbols (⌘⇧S).
-On Windows/Linux, uses text (Ctrl+Shift+S).
+On macOS, uses symbols (⌘⇧S) in the same modifier order as [normalizeHotkeyFromParsed](normalizeHotkeyFromParsed.md).
+On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
 
 ## Parameters
 
@@ -22,7 +22,7 @@ On Windows/Linux, uses text (Ctrl+Shift+S).
 
 The hotkey string or ParsedHotkey to format
 
-[`Hotkey`](../type-aliases/Hotkey.md) | [`ParsedHotkey`](../interfaces/ParsedHotkey.md) | `string` & `object`
+`string` & `object` | [`RegisterableHotkey`](../type-aliases/RegisterableHotkey.md)
 
 ### options
 
@@ -40,7 +40,7 @@ A formatted string suitable for display
 
 ```ts
 formatForDisplay('Mod+Shift+S', { platform: 'mac' })
-// Returns: '⇧⌘S'
+// Returns: '⌘ ⇧ S' (symbols separated by spaces on macOS)
 
 formatForDisplay('Mod+Shift+S', { platform: 'windows' })
 // Returns: 'Ctrl+Shift+S'

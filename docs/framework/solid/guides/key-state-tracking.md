@@ -134,7 +134,8 @@ function ShortcutHints() {
 import {
   createHeldKeys,
   createHeldKeyCodes,
-  formatKeyForDebuggingDisplay,
+  formatForDisplay,
+  type RegisterableHotkey,
 } from '@tanstack/solid-hotkeys'
 
 function KeyDebugger() {
@@ -147,7 +148,9 @@ function KeyDebugger() {
       <For each={heldKeys()}>
         {(key) => (
           <div>
-            <strong>{formatKeyForDebuggingDisplay(key)}</strong>
+            <strong>
+              {formatForDisplay(key as RegisterableHotkey, { useSymbols: true })}
+            </strong>
             <span class="code">{heldCodes()[key]}</span>
           </div>
         )}

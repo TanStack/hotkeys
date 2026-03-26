@@ -1,9 +1,5 @@
 import { Component, input, output } from '@angular/core'
-import {
-  formatForDisplay,
-  formatKeyForDebuggingDisplay,
-  injectHeldKeys,
-} from '@tanstack/angular-hotkeys'
+import { formatForDisplay, injectHeldKeys } from '@tanstack/angular-hotkeys'
 
 @Component({
   selector: 'app-shortcut-list-item',
@@ -19,6 +15,5 @@ export class ShortcutListItemComponent {
   cancel = output<void>()
 
   heldKeys = injectHeldKeys()
-  formatForDisplay = formatForDisplay
-  formatKey = formatKeyForDebuggingDisplay
+  readonly formatForDisplay = formatForDisplay
 }

@@ -5,7 +5,7 @@ title: InjectHotkeyOptions
 
 # Interface: InjectHotkeyOptions
 
-Defined in: [injectHotkey.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L17)
+Defined in: [injectHotkey.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L16)
 
 ## Extends
 
@@ -19,7 +19,7 @@ Defined in: [injectHotkey.ts:17](https://github.com/TanStack/hotkeys/blob/main/p
 optional target: HTMLElement | Document | Window | null;
 ```
 
-Defined in: [injectHotkey.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L25)
+Defined in: [injectHotkey.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L24)
 
 The DOM element to attach the event listener to.
 Can be a direct DOM element, an accessor (for reactive targets that become

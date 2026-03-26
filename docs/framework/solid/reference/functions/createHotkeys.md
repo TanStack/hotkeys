@@ -9,7 +9,7 @@ title: createHotkeys
 function createHotkeys(hotkeys, commonOptions): void;
 ```
 
-Defined in: [createHotkeys.ts:67](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L67)
+Defined in: [createHotkeys.ts:66](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L66)
 
 SolidJS primitive for registering multiple keyboard hotkeys at once.
 

@@ -65,14 +65,24 @@ const isShiftHeld = useKeyHold('Shift')
 ```vue
 <script setup lang="ts">
 import {
-  formatKeyForDebuggingDisplay,
+  formatForDisplay,
   useHeldKeyCodes,
   useHeldKeys,
 } from '@tanstack/vue-hotkeys'
+import type { RegisterableHotkey } from '@tanstack/vue-hotkeys'
 
 const heldKeys = useHeldKeys()
 const heldCodes = useHeldKeyCodes()
 </script>
+
+<template>
+  <div v-for="key in heldKeys" :key="key">
+    <strong>{{
+      formatForDisplay(key as RegisterableHotkey, { useSymbols: true })
+    }}</strong>
+    <span>{{ heldCodes[key] }}</span>
+  </div>
+</template>
 ```
 
 ## Under the Hood

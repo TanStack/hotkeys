@@ -20,3 +20,15 @@ optional platform: "mac" | "windows" | "linux";
 Defined in: [hotkey.ts:370](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L370)
 
 The target platform. Defaults to auto-detection.
+
+***
+
+### useSymbols?
+
+```ts
+optional useSymbols: boolean;
+```
+
+Defined in: [hotkey.ts:372](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L372)
+
+Whether to use symbols for the display. Defaults to true.

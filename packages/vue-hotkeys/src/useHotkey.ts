@@ -1,9 +1,8 @@
 import { onUnmounted, unref, watch } from 'vue'
 import {
   detectPlatform,
-  formatHotkey,
   getHotkeyManager,
-  rawHotkeyToParsedHotkey,
+  normalizeRegisterableHotkey,
 } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProviderContext'
 import type {
@@ -137,12 +136,7 @@ export function useHotkey(
     ({ resolvedHotkey, mergedOptions, resolvedEnabled, resolvedTarget }) => {
       // Normalize to hotkey string
       const platform = mergedOptions.platform ?? detectPlatform()
-      const hotkeyString: Hotkey =
-        typeof resolvedHotkey === 'string'
-          ? resolvedHotkey
-          : (formatHotkey(
-              rawHotkeyToParsedHotkey(resolvedHotkey as any, platform),
-            ) as Hotkey)
+      const hotkeyString = normalizeRegisterableHotkey(resolvedHotkey, platform)
 
       // Resolve target
       const finalTarget =

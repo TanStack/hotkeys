@@ -64,9 +64,10 @@ TanStack Hotkeys provides three Svelte functions for tracking live keyboard stat
 ```svelte
 <script lang="ts">
   import {
-    formatKeyForDebuggingDisplay,
+    formatForDisplay,
     getHeldKeyCodesMap,
     getHeldKeys,
+    type RegisterableHotkey,
   } from '@tanstack/svelte-hotkeys'
 
   const heldKeys = getHeldKeys()
@@ -76,10 +77,8 @@ TanStack Hotkeys provides three Svelte functions for tracking live keyboard stat
 <div>
   {#each heldKeys.keys as key}
     <kbd>
-      {formatKeyForDebuggingDisplay(key)}:
-      {heldCodes.codes[key]
-        ? formatKeyForDebuggingDisplay(heldCodes.codes[key], { source: 'code' })
-        : 'unknown'}
+      {formatForDisplay(key as RegisterableHotkey, { useSymbols: true })}:
+      {heldCodes.codes[key] ?? 'unknown'}
     </kbd>
   {/each}
 </div>

@@ -23,15 +23,6 @@ formatWithLabels('Mod+S')
 formatWithLabels('Mod+Shift+Z')
 ```
 
-## `formatKeyForDebuggingDisplay`
-
-```ts
-import { formatKeyForDebuggingDisplay } from '@tanstack/angular-hotkeys'
-
-formatKeyForDebuggingDisplay('Meta')
-formatKeyForDebuggingDisplay('Shift')
-```
-
 ## Using Formatted Hotkeys in Angular
 
 ### Keyboard Shortcut Badges

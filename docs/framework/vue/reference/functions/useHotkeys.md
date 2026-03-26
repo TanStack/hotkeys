@@ -9,7 +9,7 @@ title: useHotkeys
 function useHotkeys(hotkeys, commonOptions): void;
 ```
 
-Defined in: [packages/vue-hotkeys/src/useHotkeys.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeys.ts#L75)
+Defined in: [packages/vue-hotkeys/src/useHotkeys.ts:73](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeys.ts#L73)
 
 Vue composable for registering multiple keyboard hotkeys at once.
 

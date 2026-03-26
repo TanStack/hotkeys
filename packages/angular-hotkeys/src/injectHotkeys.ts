@@ -1,9 +1,8 @@
 import { DestroyRef, effect, inject } from '@angular/core'
 import {
   detectPlatform,
-  formatHotkey,
   getHotkeyManager,
-  rawHotkeyToParsedHotkey,
+  normalizeRegisterableHotkey,
 } from '@tanstack/hotkeys'
 import { injectDefaultHotkeysOptions } from './hotkeys-provider'
 import type { InjectHotkeyOptions } from './injectHotkey'
@@ -127,12 +126,7 @@ export function injectHotkeys(
       } as InjectHotkeyOptions
 
       const platform = mergedOptions.platform ?? detectPlatform()
-      const hotkeyString: Hotkey =
-        typeof resolvedHotkey === 'string'
-          ? resolvedHotkey
-          : (formatHotkey(
-              rawHotkeyToParsedHotkey(resolvedHotkey, platform),
-            ) as Hotkey)
+      const hotkeyString = normalizeRegisterableHotkey(resolvedHotkey, platform)
 
       const resolvedTarget =
         'target' in mergedOptions

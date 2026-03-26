@@ -781,7 +781,7 @@
     {
       "collapsible": true,
       "defaultCollapsed": true,
-      "label": "Key Hold API Reference",
+      "label": "Key hold & held keys API Reference",
       "children": [
         {
           "label": "KeyStateTracker",
@@ -807,86 +807,7 @@
             {
               "label": "useKeyHold",
               "to": "framework/react/reference/functions/useKeyHold"
-            }
-          ]
-        },
-        {
-          "label": "preact",
-          "children": [
-            {
-              "label": "useKeyHold",
-              "to": "framework/preact/reference/functions/useKeyHold"
-            }
-          ]
-        },
-        {
-          "label": "solid",
-          "children": [
-            {
-              "label": "createKeyHold",
-              "to": "framework/solid/reference/functions/createKeyHold"
-            }
-          ]
-        },
-        {
-          "label": "angular",
-          "children": [
-            {
-              "label": "injectKeyHold",
-              "to": "framework/angular/reference/functions/injectKeyHold"
-            }
-          ]
-        },
-        {
-          "label": "vue",
-          "children": [
-            {
-              "label": "useKeyHold",
-              "to": "framework/vue/reference/functions/useKeyHold"
-            }
-          ]
-        },
-        {
-          "label": "svelte",
-          "children": [
-            {
-              "label": "getIsKeyHeld",
-              "to": "framework/svelte/reference/functions/getIsKeyHeld"
             },
-            {
-              "label": "SvelteHeldKeyState",
-              "to": "framework/svelte/reference/interfaces/SvelteHeldKeyState"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "collapsible": true,
-      "defaultCollapsed": true,
-      "label": "Held Keys API Reference",
-      "children": [
-        {
-          "label": "KeyStateTracker",
-          "to": "reference/classes/KeyStateTracker"
-        },
-        {
-          "label": "getKeyStateTracker",
-          "to": "reference/functions/getKeyStateTracker"
-        },
-        {
-          "label": "KeyStateTrackerState",
-          "to": "reference/interfaces/KeyStateTrackerState"
-        },
-        {
-          "label": "HeldKey",
-          "to": "reference/type-aliases/HeldKey"
-        }
-      ],
-      "frameworks": [
-        {
-          "label": "react",
-          "children": [
             {
               "label": "useHeldKeys",
               "to": "framework/react/reference/functions/useHeldKeys"
@@ -901,6 +822,10 @@
           "label": "preact",
           "children": [
             {
+              "label": "useKeyHold",
+              "to": "framework/preact/reference/functions/useKeyHold"
+            },
+            {
               "label": "useHeldKeys",
               "to": "framework/preact/reference/functions/useHeldKeys"
             },
@@ -913,6 +838,10 @@
         {
           "label": "solid",
           "children": [
+            {
+              "label": "createKeyHold",
+              "to": "framework/solid/reference/functions/createKeyHold"
+            },
             {
               "label": "createHeldKeys",
               "to": "framework/solid/reference/functions/createHeldKeys"
@@ -927,6 +856,10 @@
           "label": "angular",
           "children": [
             {
+              "label": "injectKeyHold",
+              "to": "framework/angular/reference/functions/injectKeyHold"
+            },
+            {
               "label": "injectHeldKeys",
               "to": "framework/angular/reference/functions/injectHeldKeys"
             },
@@ -940,6 +873,10 @@
           "label": "vue",
           "children": [
             {
+              "label": "useKeyHold",
+              "to": "framework/vue/reference/functions/useKeyHold"
+            },
+            {
               "label": "useHeldKeys",
               "to": "framework/vue/reference/functions/useHeldKeys"
             },
@@ -952,6 +889,14 @@
         {
           "label": "svelte",
           "children": [
+            {
+              "label": "getIsKeyHeld",
+              "to": "framework/svelte/reference/functions/getIsKeyHeld"
+            },
+            {
+              "label": "SvelteHeldKeyState",
+              "to": "framework/svelte/reference/interfaces/SvelteHeldKeyState"
+            },
             {
               "label": "getHeldKeys",
               "to": "framework/svelte/reference/functions/getHeldKeys"
@@ -1177,8 +1122,24 @@
     {
       "collapsible": true,
       "defaultCollapsed": true,
-      "label": "Format for Display API Reference",
+      "label": "Normalization & format API Reference",
       "children": [
+        {
+          "label": "normalizeHotkey",
+          "to": "reference/functions/normalizeHotkey"
+        },
+        {
+          "label": "normalizeHotkeyFromParsed",
+          "to": "reference/functions/normalizeHotkeyFromParsed"
+        },
+        {
+          "label": "normalizeHotkeyFromEvent",
+          "to": "reference/functions/normalizeHotkeyFromEvent"
+        },
+        {
+          "label": "normalizeRegisterableHotkey",
+          "to": "reference/functions/normalizeRegisterableHotkey"
+        },
         {
           "label": "formatForDisplay",
           "to": "reference/functions/formatForDisplay"
@@ -1188,36 +1149,36 @@
           "to": "reference/functions/formatHotkey"
         },
         {
-          "label": "formatKeyForDebuggingDisplay",
-          "to": "reference/functions/formatKeyForDebuggingDisplay"
-        },
-        {
           "label": "formatWithLabels",
           "to": "reference/functions/formatWithLabels"
-        },
-        {
-          "label": "convertToModFormat",
-          "to": "reference/functions/convertToModFormat"
         },
         {
           "label": "FormatDisplayOptions",
           "to": "reference/interfaces/FormatDisplayOptions"
         },
         {
-          "label": "FormatKeyDebuggingOptions",
-          "to": "reference/interfaces/FormatKeyDebuggingOptions"
-        },
-        {
           "label": "KEY_DISPLAY_SYMBOLS",
           "to": "reference/variables/KEY_DISPLAY_SYMBOLS"
+        },
+        {
+          "label": "PUNCTUATION_KEY_DISPLAY_LABELS",
+          "to": "reference/variables/PUNCTUATION_KEY_DISPLAY_LABELS"
         },
         {
           "label": "MAC_MODIFIER_SYMBOLS",
           "to": "reference/variables/MAC_MODIFIER_SYMBOLS"
         },
         {
-          "label": "STANDARD_MODIFIER_LABELS",
-          "to": "reference/variables/STANDARD_MODIFIER_LABELS"
+          "label": "MAC_MODIFIER_LABELS",
+          "to": "reference/variables/MAC_MODIFIER_LABELS"
+        },
+        {
+          "label": "WINDOWS_MODIFIER_LABELS",
+          "to": "reference/variables/WINDOWS_MODIFIER_LABELS"
+        },
+        {
+          "label": "LINUX_MODIFIER_LABELS",
+          "to": "reference/variables/LINUX_MODIFIER_LABELS"
         },
         {
           "label": "MODIFIER_ALIASES",

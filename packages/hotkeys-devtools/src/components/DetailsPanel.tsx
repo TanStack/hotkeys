@@ -1,16 +1,63 @@
 import { For, Show, createMemo } from 'solid-js'
 import clsx from 'clsx'
-import { formatForDisplay, formatHotkeySequence } from '@tanstack/hotkeys'
+import {
+  detectPlatform,
+  formatForDisplay,
+  formatHotkeySequence,
+  normalizeHotkey,
+  normalizeHotkeyFromParsed,
+  parseHotkey,
+} from '@tanstack/hotkeys'
 import { useStyles } from '../styles/use-styles'
 import { useHotkeysDevtoolsState } from '../HotkeysContextProvider'
 import { effectiveSequenceMatchedSteps } from '../sequence-progress'
 import { ActionButtons } from './ActionButtons'
 import type {
   ConflictBehavior,
+  FormatDisplayOptions,
   HotkeyRegistration,
   HotkeySequence,
+  ParsedHotkey,
+  RegisterableHotkey,
   SequenceRegistrationView,
 } from '@tanstack/hotkeys'
+
+const PLATFORM_ROWS = [
+  { id: 'mac' as const, label: 'macOS' },
+  { id: 'windows' as const, label: 'Windows' },
+  { id: 'linux' as const, label: 'Linux' },
+]
+
+function KeyBreakdownPlatformTable(props: {
+  getParsed: () => ParsedHotkey
+  /** Platform used when the parsed hotkey was produced (registration `options.platform`). */
+  getCanonicalPlatform: () => 'mac' | 'windows' | 'linux'
+  styles: ReturnType<typeof useStyles>
+}) {
+  const st = () => props.styles()
+  return (
+    <div class={st().platformBreakdown}>
+      <For each={PLATFORM_ROWS}>
+        {(row) => (
+          <div class={st().platformBreakdownRow}>
+            <span class={st().platformBreakdownLabel}>{row.label}</span>
+            <span class={st().platformBreakdownPretty}>
+              {formatForDisplay(
+                normalizeHotkeyFromParsed(
+                  props.getParsed(),
+                  props.getCanonicalPlatform(),
+                ),
+                {
+                  platform: row.id,
+                },
+              )}
+            </span>
+          </div>
+        )}
+      </For>
+    </div>
+  )
+}
 
 function sequenceKey(sequence: Array<string>): string {
   return sequence.join('|')
@@ -145,7 +192,10 @@ function HotkeyDetails(props: {
     | 'conflictItemError'
     | 'conflictItemScope'
   getConflictLabel: (b: ConflictBehavior, same: boolean) => string
-  formatForDisplay: (hotkey: string) => string
+  formatForDisplay: (
+    hotkey: RegisterableHotkey,
+    options?: FormatDisplayOptions,
+  ) => string
   styles: ReturnType<typeof useStyles>
 }) {
   const reg = () => props.registration
@@ -163,16 +213,11 @@ function HotkeyDetails(props: {
   const conflictBehavior = (): ConflictBehavior =>
     reg().options.conflictBehavior ?? 'warn'
 
-  const keyParts = createMemo(() => {
-    const parts: Array<string> = []
-    const p = parsed()
-    if (p.ctrl) parts.push('Ctrl')
-    if (p.shift) parts.push('Shift')
-    if (p.alt) parts.push('Alt')
-    if (p.meta) parts.push('Meta')
-    parts.push(p.key)
-    return parts
-  })
+  const registrationPlatform = () => reg().options.platform ?? detectPlatform()
+
+  const rawModParts = createMemo(() =>
+    normalizeHotkeyFromParsed(parsed(), registrationPlatform()).split('+'),
+  )
 
   const styles = props.styles
 
@@ -197,17 +242,31 @@ function HotkeyDetails(props: {
       <div class={styles().detailsGrid}>
         <div class={styles().detailSection}>
           <div class={styles().detailSectionHeader}>Key Breakdown</div>
-          <div class={styles().keyBreakdown}>
-            <For each={keyParts()}>
-              {(part, i) => (
-                <>
-                  <Show when={i() > 0}>
-                    <span class={styles().keyBreakdownPlus}>+</span>
-                  </Show>
-                  <span class={styles().keyCapLarge}>{part}</span>
-                </>
-              )}
-            </For>
+          <div class={styles().keyBreakdownSplitRow}>
+            <div class={styles().keyBreakdownSplitLeft}>
+              <div class={styles().keyBreakdown}>
+                <For each={rawModParts()}>
+                  {(part, i) => (
+                    <>
+                      <Show when={i() > 0}>
+                        <span class={styles().keyBreakdownPlus}>+</span>
+                      </Show>
+                      <span class={styles().keyCapLarge}>{part}</span>
+                    </>
+                  )}
+                </For>
+              </div>
+            </div>
+            <span class={styles().keyBreakdownSplitArrow} aria-hidden="true">
+              {'->'}
+            </span>
+            <div class={styles().keyBreakdownSplitRight}>
+              <KeyBreakdownPlatformTable
+                getParsed={() => parsed()}
+                getCanonicalPlatform={registrationPlatform}
+                styles={props.styles}
+              />
+            </div>
           </div>
         </div>
 
@@ -366,7 +425,10 @@ function SequenceDetails(props: {
     | 'conflictItemScope'
   getConflictLabel: (b: ConflictBehavior, same: boolean) => string
   formatHotkeySequence: (seq: HotkeySequence) => string
-  formatForDisplay: (hotkey: string) => string
+  formatForDisplay: (
+    hotkey: RegisterableHotkey,
+    options?: FormatDisplayOptions,
+  ) => string
   styles: ReturnType<typeof useStyles>
 }) {
   const reg = () => props.registration
@@ -396,6 +458,10 @@ function SequenceDetails(props: {
   ])
   const conflictBehavior = (): ConflictBehavior =>
     liveReg().options.conflictBehavior ?? 'warn'
+
+  const sequenceCanonicalPlatform = createMemo(
+    () => liveReg().options.platform ?? detectPlatform(),
+  )
 
   const styles = props.styles
 
@@ -471,6 +537,52 @@ function SequenceDetails(props: {
               )}
             </For>
           </div>
+
+          <div class={styles().keyBreakdownSubHeader}>Each chord</div>
+          <For each={liveReg().sequence}>
+            {(step, stepIdx) => {
+              const stepParsed = () =>
+                parseHotkey(step, sequenceCanonicalPlatform())
+              const stepRawParts = () =>
+                normalizeHotkey(step, sequenceCanonicalPlatform()).split('+')
+              return (
+                <div class={styles().sequenceChordDetail}>
+                  <div class={styles().keyBreakdownSubHeader}>
+                    Step {stepIdx() + 1}
+                  </div>
+                  <div class={styles().keyBreakdownSplitRow}>
+                    <div class={styles().keyBreakdownSplitLeft}>
+                      <div class={styles().keyBreakdown}>
+                        <For each={stepRawParts()}>
+                          {(part, i) => (
+                            <>
+                              <Show when={i() > 0}>
+                                <span class={styles().keyBreakdownPlus}>+</span>
+                              </Show>
+                              <span class={styles().keyCapLarge}>{part}</span>
+                            </>
+                          )}
+                        </For>
+                      </div>
+                    </div>
+                    <span
+                      class={styles().keyBreakdownSplitArrow}
+                      aria-hidden="true"
+                    >
+                      {'->'}
+                    </span>
+                    <div class={styles().keyBreakdownSplitRight}>
+                      <KeyBreakdownPlatformTable
+                        getParsed={stepParsed}
+                        getCanonicalPlatform={() => sequenceCanonicalPlatform()}
+                        styles={props.styles}
+                      />
+                    </div>
+                  </div>
+                </div>
+              )
+            }}
+          </For>
         </div>
 
         <div class={styles().detailSection}>

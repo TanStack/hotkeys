@@ -1,10 +1,16 @@
 import { describe, expect, it } from 'vitest'
+import { normalizeKeyName } from '../src/constants'
+import { hotkeyChordFromKeydown } from '../src/recorder-chord'
 import {
-  isModifier,
+  isModifierKey,
   normalizeHotkey,
+  normalizeHotkeyFromEvent,
+  normalizeHotkeyFromParsed,
+  normalizeRegisterableHotkey,
   parseHotkey,
   rawHotkeyToParsedHotkey,
 } from '../src/parse'
+import type { ParsedHotkey } from '../src/hotkey'
 
 describe('parseHotkey', () => {
   describe('single keys', () => {
@@ -176,26 +182,34 @@ describe('parseHotkey', () => {
 })
 
 describe('normalizeHotkey', () => {
-  it('should normalize to canonical form', () => {
-    expect(normalizeHotkey('ctrl+a')).toBe('Control+A')
-    expect(normalizeHotkey('Ctrl+Shift+S')).toBe('Control+Shift+S')
+  it('should keep Control literal on Mac when Meta is not used', () => {
+    expect(normalizeHotkey('ctrl+a', 'mac')).toBe('Control+A')
+    expect(normalizeHotkey('Ctrl+Shift+S', 'mac')).toBe('Control+Shift+S')
   })
 
-  it('should sort modifiers in canonical order', () => {
-    expect(normalizeHotkey('Shift+Control+A')).toBe('Control+Shift+A')
-    expect(normalizeHotkey('Command+Shift+Alt+Control+A')).toBe(
+  it('should use Mod when Control is primary on Windows/Linux', () => {
+    expect(normalizeHotkey('ctrl+a', 'windows')).toBe('Mod+A')
+    expect(normalizeHotkey('ctrl+a', 'linux')).toBe('Mod+A')
+    expect(normalizeHotkey('Ctrl+Shift+S', 'windows')).toBe('Mod+Shift+S')
+    expect(normalizeHotkey('Shift+Control+A', 'windows')).toBe('Mod+Shift+A')
+  })
+
+  it('should sort non-Mod modifiers in canonical order when Mod ineligible', () => {
+    expect(normalizeHotkey('Shift+Control+A', 'mac')).toBe('Control+Shift+A')
+    expect(normalizeHotkey('Command+Shift+Alt+Control+A', 'mac')).toBe(
       'Control+Alt+Shift+Meta+A',
     )
   })
 
-  it('should resolve Mod based on platform', () => {
-    expect(normalizeHotkey('Mod+S', 'mac')).toBe('Meta+S')
-    expect(normalizeHotkey('Mod+S', 'windows')).toBe('Control+S')
+  it('should keep Mod in canonical Mod-first output', () => {
+    expect(normalizeHotkey('Mod+S', 'mac')).toBe('Mod+S')
+    expect(normalizeHotkey('Mod+S', 'windows')).toBe('Mod+S')
   })
 
   it('should normalize key aliases', () => {
-    expect(normalizeHotkey('Ctrl+Esc')).toBe('Control+Escape')
-    expect(normalizeHotkey('Mod+Return', 'mac')).toBe('Meta+Enter')
+    expect(normalizeHotkey('Ctrl+Esc', 'mac')).toBe('Control+Escape')
+    expect(normalizeHotkey('Ctrl+Esc', 'windows')).toBe('Mod+Escape')
+    expect(normalizeHotkey('Mod+Return', 'mac')).toBe('Mod+Enter')
   })
 
   it('should normalize single keys', () => {
@@ -203,32 +217,53 @@ describe('normalizeHotkey', () => {
     expect(normalizeHotkey('a')).toBe('A')
     expect(normalizeHotkey('f1')).toBe('F1')
   })
+
+  it('should normalize shuffled Meta chords to Mod-first on Mac', () => {
+    expect(normalizeHotkey('Shift+Meta+E', 'mac')).toBe('Mod+Shift+E')
+    expect(normalizeHotkey('Meta+Shift+E', 'mac')).toBe('Mod+Shift+E')
+  })
+
+  it('should normalize shuffled Control chords on Windows/Linux', () => {
+    expect(normalizeHotkey('Shift+Control+S', 'windows')).toBe('Mod+Shift+S')
+    expect(normalizeHotkey('Alt+Control+T', 'linux')).toBe('Mod+Alt+T')
+  })
+
+  it('should not collapse when both Control and Meta on Mac', () => {
+    expect(normalizeHotkey('Control+Meta+S', 'mac')).toBe('Control+Meta+S')
+  })
 })
 
-describe('isModifier', () => {
+describe('isModifierKey', () => {
   it('should return true for modifier keys', () => {
-    expect(isModifier('Control')).toBe(true)
-    expect(isModifier('Ctrl')).toBe(true)
-    expect(isModifier('Shift')).toBe(true)
-    expect(isModifier('Alt')).toBe(true)
-    expect(isModifier('Option')).toBe(true)
-    expect(isModifier('Command')).toBe(true)
-    expect(isModifier('Cmd')).toBe(true)
-    expect(isModifier('Mod')).toBe(true)
-    expect(isModifier('CommandOrControl')).toBe(true)
+    expect(isModifierKey('Control')).toBe(true)
+    expect(isModifierKey('Ctrl')).toBe(true)
+    expect(isModifierKey('Shift')).toBe(true)
+    expect(isModifierKey('Alt')).toBe(true)
+    expect(isModifierKey('Option')).toBe(true)
+    expect(isModifierKey('Command')).toBe(true)
+    expect(isModifierKey('Cmd')).toBe(true)
+    expect(isModifierKey('Mod')).toBe(true)
+    expect(isModifierKey('CommandOrControl')).toBe(true)
+    expect(isModifierKey('OS')).toBe(true)
+    expect(isModifierKey('Win')).toBe(true)
   })
 
   it('should return true for lowercase modifiers', () => {
-    expect(isModifier('control')).toBe(true)
-    expect(isModifier('ctrl')).toBe(true)
-    expect(isModifier('shift')).toBe(true)
+    expect(isModifierKey('control')).toBe(true)
+    expect(isModifierKey('ctrl')).toBe(true)
+    expect(isModifierKey('shift')).toBe(true)
   })
 
   it('should return false for non-modifier keys', () => {
-    expect(isModifier('A')).toBe(false)
-    expect(isModifier('Enter')).toBe(false)
-    expect(isModifier('F1')).toBe(false)
-    expect(isModifier('Space')).toBe(false)
+    expect(isModifierKey('A')).toBe(false)
+    expect(isModifierKey('Enter')).toBe(false)
+    expect(isModifierKey('F1')).toBe(false)
+    expect(isModifierKey('Space')).toBe(false)
+  })
+
+  it('should match DOM modifier key names after normalizeKeyName', () => {
+    expect(isModifierKey(normalizeKeyName('OS'))).toBe(true)
+    expect(isModifierKey(normalizeKeyName('Win'))).toBe(true)
   })
 })
 
@@ -309,5 +344,161 @@ describe('rawHotkeyToParsedHotkey', () => {
       'windows',
     )
     expect(winResult.modifiers).toEqual(['Control', 'Shift'])
+  })
+})
+
+describe('normalizeHotkeyFromParsed', () => {
+  it('should use Mod-first order on Mac (Cmd+Shift+E)', () => {
+    const parsed: ParsedHotkey = {
+      key: 'E',
+      ctrl: false,
+      shift: true,
+      alt: false,
+      meta: true,
+      modifiers: ['Shift', 'Meta'],
+    }
+    expect(normalizeHotkeyFromParsed(parsed, 'mac')).toBe('Mod+Shift+E')
+  })
+
+  it('should format Mod+Alt+T on Mac', () => {
+    const parsed: ParsedHotkey = {
+      key: 'T',
+      ctrl: false,
+      shift: false,
+      alt: true,
+      meta: true,
+      modifiers: ['Alt', 'Meta'],
+    }
+    expect(normalizeHotkeyFromParsed(parsed, 'mac')).toBe('Mod+Alt+T')
+  })
+
+  it('should format Mod+Alt+Shift+K on Mac', () => {
+    const parsed: ParsedHotkey = {
+      key: 'K',
+      ctrl: false,
+      shift: true,
+      alt: true,
+      meta: true,
+      modifiers: ['Alt', 'Shift', 'Meta'],
+    }
+    expect(normalizeHotkeyFromParsed(parsed, 'mac')).toBe('Mod+Alt+Shift+K')
+  })
+
+  it('should format Mod+E on Mac', () => {
+    const parsed: ParsedHotkey = {
+      key: 'E',
+      ctrl: false,
+      shift: false,
+      alt: false,
+      meta: true,
+      modifiers: ['Meta'],
+    }
+    expect(normalizeHotkeyFromParsed(parsed, 'mac')).toBe('Mod+E')
+  })
+
+  it('should use Mod-first order on Windows (Ctrl+Shift+S)', () => {
+    const parsed: ParsedHotkey = {
+      key: 'S',
+      ctrl: true,
+      shift: true,
+      alt: false,
+      meta: false,
+      modifiers: ['Control', 'Shift'],
+    }
+    expect(normalizeHotkeyFromParsed(parsed, 'windows')).toBe('Mod+Shift+S')
+  })
+
+  it('should format Mod+Alt+T on Linux', () => {
+    const parsed: ParsedHotkey = {
+      key: 'T',
+      ctrl: true,
+      shift: false,
+      alt: true,
+      meta: false,
+      modifiers: ['Control', 'Alt'],
+    }
+    expect(normalizeHotkeyFromParsed(parsed, 'linux')).toBe('Mod+Alt+T')
+  })
+
+  it('should not collapse to Mod when both Control and Meta are set', () => {
+    const parsed: ParsedHotkey = {
+      key: 'A',
+      ctrl: true,
+      shift: true,
+      alt: true,
+      meta: true,
+      modifiers: ['Control', 'Alt', 'Shift', 'Meta'],
+    }
+    expect(normalizeHotkeyFromParsed(parsed, 'mac')).toBe(
+      'Control+Alt+Shift+Meta+A',
+    )
+  })
+})
+
+describe('normalizeRegisterableHotkey', () => {
+  it('should match normalizeHotkey for strings', () => {
+    expect(normalizeRegisterableHotkey('Shift+Meta+E', 'mac')).toBe(
+      'Mod+Shift+E',
+    )
+  })
+
+  it('should match normalizeHotkeyFromParsed for RawHotkey objects', () => {
+    expect(
+      normalizeRegisterableHotkey({ key: 'S', mod: true, shift: true }, 'mac'),
+    ).toBe('Mod+Shift+S')
+    expect(
+      normalizeRegisterableHotkey({ key: 's', mod: true }, 'windows'),
+    ).toBe('Mod+S')
+  })
+})
+
+describe('normalizeHotkeyFromEvent', () => {
+  it('should match hotkeyChordFromKeydown for Cmd+Shift+E on Mac', () => {
+    const event = new KeyboardEvent('keydown', {
+      key: 'e',
+      metaKey: true,
+      shiftKey: true,
+    })
+    expect(normalizeHotkeyFromEvent(event, 'mac')).toBe('Mod+Shift+E')
+  })
+})
+
+describe('hotkeyChordFromKeydown', () => {
+  it('should return Mod+Shift+E for Cmd+Shift+E on Mac', () => {
+    const event = new KeyboardEvent('keydown', {
+      key: 'e',
+      metaKey: true,
+      shiftKey: true,
+    })
+    expect(hotkeyChordFromKeydown(event, 'mac')).toBe('Mod+Shift+E')
+  })
+
+  it('should return Mod+Shift+S for Ctrl+Shift+S on Windows', () => {
+    const event = new KeyboardEvent('keydown', {
+      key: 's',
+      ctrlKey: true,
+      shiftKey: true,
+    })
+    expect(hotkeyChordFromKeydown(event, 'windows')).toBe('Mod+Shift+S')
+  })
+
+  it('should return null for modifier-only keydown', () => {
+    const event = new KeyboardEvent('keydown', { key: 'Shift' })
+    expect(hotkeyChordFromKeydown(event, 'mac')).toBe(null)
+  })
+
+  it('should return null for OS / Win meta key keydown', () => {
+    expect(
+      hotkeyChordFromKeydown(
+        new KeyboardEvent('keydown', { key: 'OS' }),
+        'windows',
+      ),
+    ).toBe(null)
+    expect(
+      hotkeyChordFromKeydown(
+        new KeyboardEvent('keydown', { key: 'Win' }),
+        'windows',
+      ),
+    ).toBe(null)
   })
 })

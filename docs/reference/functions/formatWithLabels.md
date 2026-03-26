@@ -3,33 +3,28 @@ id: formatWithLabels
 title: formatWithLabels
 ---
 
-# Function: formatWithLabels()
+# ~~Function: formatWithLabels()~~
 
 ```ts
-function formatWithLabels(hotkey, platform): string;
+function formatWithLabels(hotkey, options): string;
 ```
 
-Defined in: [format.ts:143](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L143)
-
-Formats a hotkey using platform-agnostic labels.
-Uses 'Cmd' on Mac and 'Ctrl' for Control, etc.
+Defined in: [format.ts:134](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L134)
 
 ## Parameters
 
 ### hotkey
 
-The hotkey string or ParsedHotkey to format
+[`RegisterableHotkey`](../type-aliases/RegisterableHotkey.md)
 
-[`Hotkey`](../type-aliases/Hotkey.md) | `string` & `object`
+### options
 
-### platform
-
-The target platform
-
-`"mac"` | `"windows"` | `"linux"`
+`Omit`\<[`FormatDisplayOptions`](../interfaces/FormatDisplayOptions.md), `"useSymbols"`\> = `{}`
 
 ## Returns
 
 `string`
 
-A formatted string with platform-appropriate labels
+## Deprecated
+
+Use [formatForDisplay](formatForDisplay.md) instead with `useSymbols: false` option.

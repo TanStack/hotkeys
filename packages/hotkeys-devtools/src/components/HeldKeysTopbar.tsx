@@ -1,11 +1,13 @@
 import { For, Show } from 'solid-js'
-import { formatKeyForDebuggingDisplay } from '@tanstack/hotkeys'
+import { detectPlatform, formatForDisplay } from '@tanstack/hotkeys'
 import { useStyles } from '../styles/use-styles'
 import { useHotkeysDevtoolsState } from '../HotkeysContextProvider'
+import type { RegisterableHotkey } from '@tanstack/hotkeys'
 
 export function HeldKeysBar() {
   const styles = useStyles()
   const state = useHotkeysDevtoolsState()
+  const platform = detectPlatform()
 
   return (
     <div class={styles().heldKeysBar}>
@@ -18,12 +20,14 @@ export function HeldKeysBar() {
           <For each={state.heldKeys()}>
             {(key) => {
               const code = () => state.heldCodes()[key]
-              const label = () => formatKeyForDebuggingDisplay(key)
+              const label = () =>
+                formatForDisplay(key as RegisterableHotkey, {
+                  platform,
+                  useSymbols: true,
+                })
               const codeLabel = () => {
                 const c = code()
-                return c
-                  ? formatKeyForDebuggingDisplay(c, { source: 'code' })
-                  : undefined
+                return c || undefined
               }
               return (
                 <span class={styles().keyCap}>

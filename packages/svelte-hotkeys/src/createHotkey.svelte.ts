@@ -1,8 +1,7 @@
 import {
   detectPlatform,
-  formatHotkey,
   getHotkeyManager,
-  rawHotkeyToParsedHotkey,
+  normalizeRegisterableHotkey,
 } from '@tanstack/hotkeys'
 import { onDestroy } from 'svelte'
 import { getDefaultHotkeysOptions } from './HotkeysCtx'
@@ -21,17 +20,6 @@ export interface CreateHotkeyOptions extends Omit<HotkeyOptions, 'target'> {
   target?: Document | Window // not html elements, use attachment instead
 }
 
-function normalizeHotkey(
-  hotkey: RegisterableHotkey,
-  options: CreateHotkeyOptions,
-): Hotkey {
-  const platform = options.platform ?? detectPlatform()
-
-  return typeof hotkey === 'string'
-    ? hotkey
-    : (formatHotkey(rawHotkeyToParsedHotkey(hotkey, platform)) as Hotkey)
-}
-
 function registerHotkey(
   target: HTMLElement | Document | Window,
   hotkey: RegisterableHotkey,
@@ -39,7 +27,10 @@ function registerHotkey(
   mergedOptions: CreateHotkeyOptions,
 ) {
   return getHotkeyManager().register(
-    normalizeHotkey(hotkey, mergedOptions),
+    normalizeRegisterableHotkey(
+      hotkey,
+      mergedOptions.platform ?? detectPlatform(),
+    ),
     callback,
     {
       ...mergedOptions,
@@ -82,7 +73,10 @@ export function createHotkey(
       ...resolvedOptions,
     } as CreateHotkeyOptions
 
-    const hotkeyStr = normalizeHotkey(resolvedHotkey, mergedOptions)
+    const hotkeyStr = normalizeRegisterableHotkey(
+      resolvedHotkey,
+      mergedOptions.platform ?? detectPlatform(),
+    )
     const { target: _t, ...optionsWithoutTarget } = mergedOptions
 
     if (registration?.isActive && lastHotkeyStr === hotkeyStr) {
@@ -150,7 +144,10 @@ export function createHotkeyAttachment(
         ...resolvedOptions,
       } as CreateHotkeyOptions
 
-      const hotkeyStr = normalizeHotkey(resolvedHotkey, mergedOptions)
+      const hotkeyStr = normalizeRegisterableHotkey(
+        resolvedHotkey,
+        mergedOptions.platform ?? detectPlatform(),
+      )
       const { target: _t, ...optionsWithoutTarget } = mergedOptions
 
       if (registration?.isActive && lastHotkeyStr === hotkeyStr) {

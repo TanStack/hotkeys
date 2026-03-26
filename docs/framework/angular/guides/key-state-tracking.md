@@ -68,16 +68,18 @@ export class FileActionsComponent {
 ```ts
 import { Component } from '@angular/core'
 import {
-  formatKeyForDebuggingDisplay,
+  formatForDisplay,
   injectHeldKeyCodes,
   injectHeldKeys,
+  type RegisterableHotkey,
 } from '@tanstack/angular-hotkeys'
 
 @Component({ standalone: true, template: `` })
 export class KeyDebuggerComponent {
   readonly heldKeys = injectHeldKeys()
   readonly heldCodes = injectHeldKeyCodes()
-  readonly formatKey = formatKeyForDebuggingDisplay
+  readonly formatKey = (k: string) =>
+    formatForDisplay(k as RegisterableHotkey, { useSymbols: true })
 }
 ```
 

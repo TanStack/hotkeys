@@ -1,15 +1,15 @@
 ---
-id: STANDARD_MODIFIER_LABELS
-title: STANDARD_MODIFIER_LABELS
+id: WINDOWS_MODIFIER_LABELS
+title: WINDOWS_MODIFIER_LABELS
 ---
 
-# Variable: STANDARD\_MODIFIER\_LABELS
+# Variable: WINDOWS\_MODIFIER\_LABELS
 
 ```ts
-const STANDARD_MODIFIER_LABELS: Record<CanonicalModifier, string>;
+const WINDOWS_MODIFIER_LABELS: Record<CanonicalModifier | "Mod", string>;
 ```
 
-Defined in: [constants.ts:513](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L513)
+Defined in: [constants.ts:545](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L545)
 
 Modifier key labels for Windows/Linux display.
 

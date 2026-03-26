@@ -9,7 +9,7 @@ title: useHotkeys
 function useHotkeys(hotkeys, commonOptions): void;
 ```
 
-Defined in: [useHotkeys.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeys.ts#L74)
+Defined in: [useHotkeys.ts:73](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeys.ts#L73)
 
 React hook for registering multiple keyboard hotkeys at once.
 

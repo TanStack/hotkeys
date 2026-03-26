@@ -12,10 +12,10 @@ The primary formatting function. Returns a platform-aware string using symbols o
 ```tsx
 import { formatForDisplay } from '@tanstack/preact-hotkeys'
 
-// On macOS:
-formatForDisplay('Mod+S')         // "⌘S"
-formatForDisplay('Mod+Shift+Z')   // "⇧⌘Z"
-formatForDisplay('Control+Alt+D') // "⌃⌥D"
+// On macOS (symbols separated by spaces):
+formatForDisplay('Mod+S')         // "⌘ S"
+formatForDisplay('Mod+Shift+Z')   // "⌘ ⇧ Z"
+formatForDisplay('Control+Alt+D') // "⌃ ⌥ D"
 
 // On Windows/Linux:
 formatForDisplay('Mod+S')         // "Ctrl+S"
@@ -27,11 +27,12 @@ formatForDisplay('Control+Alt+D') // "Ctrl+Alt+D"
 
 ```ts
 formatForDisplay('Mod+S', {
-  platform: 'mac',     // Override platform detection ('mac' | 'windows' | 'linux')
+  platform: 'mac',
+  useSymbols: true,
 })
 ```
 
-On macOS, modifiers are joined without a separator (e.g., `⇧⌘Z`). On Windows and Linux, modifiers are joined with `+` (e.g., `Ctrl+Shift+Z`). This behavior is automatic and not configurable.
+On macOS, modifier order matches canonical normalization (same as `formatWithLabels`), and symbols are joined with **spaces** (e.g., `⌘ ⇧ Z`). On Windows and Linux, modifiers are joined with `+` (e.g., `Ctrl+Shift+Z`).
 
 ## `formatWithLabels`
 
@@ -41,26 +42,15 @@ Returns human-readable text labels (e.g., "Cmd" instead of the symbol). Useful w
 import { formatWithLabels } from '@tanstack/preact-hotkeys'
 
 // On macOS:
-formatWithLabels('Mod+S')         // "Cmd+S"
-formatWithLabels('Mod+Shift+Z')   // "Cmd+Shift+Z"
+formatWithLabels('Mod+S', { platform: 'mac' }) // "Cmd+S"
+formatWithLabels('Mod+Shift+Z', { platform: 'mac' }) // "Cmd+Shift+Z"
 
 // On Windows/Linux:
-formatWithLabels('Mod+S')         // "Ctrl+S"
-formatWithLabels('Mod+Shift+Z')   // "Ctrl+Shift+Z"
+formatWithLabels('Mod+S', { platform: 'windows' }) // "Ctrl+S"
+formatWithLabels('Mod+Shift+Z', { platform: 'windows' }) // "Ctrl+Shift+Z"
 ```
 
-## `formatKeyForDebuggingDisplay`
-
-Returns a rich label intended for devtools and debugging. Includes both the symbol and a descriptive label.
-
-```tsx
-import { formatKeyForDebuggingDisplay } from '@tanstack/preact-hotkeys'
-
-// On macOS:
-formatKeyForDebuggingDisplay('Meta')    // "⌘ Mod (Cmd)"
-formatKeyForDebuggingDisplay('Shift')   // "⇧ Shift"
-formatKeyForDebuggingDisplay('Control') // "⌃ Control"
-```
+Modifier order matches canonical normalization from the core package.
 
 ## Using Formatted Hotkeys in Preact
 
@@ -74,8 +64,8 @@ function ShortcutBadge({ hotkey }: { hotkey: string }) {
 }
 
 // Usage
-<ShortcutBadge hotkey="Mod+S" />      // Renders: ⌘S (Mac) or Ctrl+S (Windows)
-<ShortcutBadge hotkey="Mod+Shift+P" /> // Renders: ⇧⌘P (Mac) or Ctrl+Shift+P (Windows)
+<ShortcutBadge hotkey="Mod+S" />      // Renders: ⌘ S (Mac) or Ctrl+S (Windows)
+<ShortcutBadge hotkey="Mod+Shift+P" /> // Renders: ⌘ ⇧ P (Mac) or Ctrl+Shift+P (Windows)
 ```
 
 ### Menu Items with Hotkeys
@@ -181,17 +171,22 @@ const parsed = parseHotkey('Mod+Shift+S')
 // }
 ```
 
-### `normalizeHotkey`
+### `normalizeHotkey` and `normalizeRegisterableHotkey`
 
-Normalize a hotkey string to its canonical form:
+Core helpers produce a **canonical** hotkey string for storage and registration. When the platform allows `Mod` (Command on Mac without Control; Control on Windows/Linux without Meta), the output uses `Mod` and **Mod-first** modifier order (`Mod+Shift+E`), not expanded `Meta`/`Control`.
 
 ```ts
-import { normalizeHotkey } from '@tanstack/preact-hotkeys'
+import { normalizeHotkey, normalizeRegisterableHotkey } from '@tanstack/preact-hotkeys'
 
-normalizeHotkey('Cmd+S')          // 'Meta+S' (on Mac)
-normalizeHotkey('Ctrl+Shift+s')   // 'Control+Shift+S'
-normalizeHotkey('Mod+S')          // 'Meta+S' (on Mac) or 'Control+S' (on Windows)
+normalizeHotkey('Cmd+S', 'mac')           // 'Mod+S'
+normalizeHotkey('Ctrl+Shift+s', 'windows') // 'Mod+Shift+S'
+normalizeHotkey('Shift+Meta+E', 'mac')    // 'Mod+Shift+E'
+
+// String or RawHotkey — same string adapters use internally:
+normalizeRegisterableHotkey({ key: 'S', mod: true, shift: true }, 'mac') // 'Mod+Shift+S'
 ```
+
+Framework hooks normalize registerable hotkeys automatically via `normalizeRegisterableHotkey`.
 
 ## Validation
 
@@ -214,3 +209,4 @@ const result2 = validateHotkey('InvalidKey+S')
 //   errors: ['Unknown key: InvalidKey']
 // }
 ```
+

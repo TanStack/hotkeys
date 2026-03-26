@@ -6,18 +6,18 @@ title: normalizeHotkey
 # Function: normalizeHotkey()
 
 ```ts
-function normalizeHotkey(hotkey, platform): string;
+function normalizeHotkey(hotkey, platform): Hotkey;
 ```
 
-Defined in: [parse.ts:160](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L160)
+Defined in: [parse.ts:197](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L197)
 
 Normalizes a hotkey string to its canonical form.
 
-The canonical form uses:
-- Full modifier names (Control, Alt, Shift, Meta)
-- Modifiers in order: Control+Alt+Shift+Meta
-- Uppercase letters for single-character keys
-- Proper casing for special keys (Escape, not escape)
+- When `Mod` is allowed for the platform (Command on Mac without Control;
+  Control on Windows/Linux without Meta): emits `Mod`, then `Alt`, then `Shift`,
+  then the key (e.g. `Mod+Shift+E`, `Mod+S`).
+- Otherwise: literal modifiers in `Control+Alt+Shift+Meta` order, then the key.
+- Resolves aliases and normalizes key casing (e.g. `esc` → `Escape`, `a` → `A`).
 
 ## Parameters
 
@@ -29,20 +29,20 @@ The hotkey string to normalize
 
 ### platform
 
-The target platform for resolving 'Mod' (defaults to auto-detection)
+The target platform for resolving `Mod` (defaults to auto-detection)
 
 `"mac"` | `"windows"` | `"linux"`
 
 ## Returns
 
-`string`
+[`Hotkey`](../type-aliases/Hotkey.md)
 
 The normalized hotkey string
 
 ## Example
 
 ```ts
-normalizeHotkey('mod+shift+s') // On Mac: 'Shift+Meta+S'
-normalizeHotkey('ctrl+a') // 'Control+A'
+normalizeHotkey('shift+meta+e', 'mac') // 'Mod+Shift+E'
+normalizeHotkey('ctrl+a', 'windows') // 'Mod+A'
 normalizeHotkey('esc') // 'Escape'
 ```

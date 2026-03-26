@@ -5,7 +5,7 @@ title: CreateHotkeyDefinition
 
 # Interface: CreateHotkeyDefinition
 
-Defined in: [createHotkeys.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L20)
+Defined in: [createHotkeys.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L19)
 
 A single hotkey definition for use with `createHotkeys`.
 
@@ -17,7 +17,7 @@ A single hotkey definition for use with `createHotkeys`.
 callback: HotkeyCallback;
 ```
 
-Defined in: [createHotkeys.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L24)
+Defined in: [createHotkeys.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L23)
 
 The function to call when the hotkey is pressed
 
@@ -29,7 +29,7 @@ The function to call when the hotkey is pressed
 hotkey: RegisterableHotkey;
 ```
 
-Defined in: [createHotkeys.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L22)
+Defined in: [createHotkeys.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L21)
 
 The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object
 
@@ -41,6 +41,6 @@ The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object
 optional options: CreateHotkeyOptions;
 ```
 
-Defined in: [createHotkeys.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L26)
+Defined in: [createHotkeys.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L25)
 
 Per-hotkey options (merged on top of commonOptions)

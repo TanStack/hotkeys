@@ -12,7 +12,7 @@ function createHotkeyAttachment(
 options): Attachment<HTMLElement>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:136](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L136)
+Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:130](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L130)
 
 Create an attachment for element-scoped hotkeys.
 

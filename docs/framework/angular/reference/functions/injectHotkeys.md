@@ -9,7 +9,7 @@ title: injectHotkeys
 function injectHotkeys(hotkeys, commonOptions): void;
 ```
 
-Defined in: [injectHotkeys.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L76)
+Defined in: [injectHotkeys.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L75)
 
 Angular inject-based API for registering multiple keyboard hotkeys at once.
 

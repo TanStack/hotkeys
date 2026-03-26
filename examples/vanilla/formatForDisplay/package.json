@@ -1,0 +1,20 @@
+{
+  "name": "@tanstack/hotkeys-example-vanilla-format-for-display",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3069",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test:types": "tsc"
+  },
+  "dependencies": {
+    "@tanstack/hotkeys": "^0.5.0"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "vite": "^8.0.1"
+  }
+}

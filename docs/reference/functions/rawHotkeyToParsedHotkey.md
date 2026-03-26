@@ -9,7 +9,7 @@ title: rawHotkeyToParsedHotkey
 function rawHotkeyToParsedHotkey(raw, platform): ParsedHotkey;
 ```
 
-Defined in: [parse.ts:98](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L98)
+Defined in: [parse.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L99)
 
 Converts a RawHotkey object to a ParsedHotkey.
 Optional modifier booleans default to false; modifiers array is derived from them.

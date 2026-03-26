@@ -1,9 +1,8 @@
 import { createEffect, onCleanup } from 'solid-js'
 import {
   detectPlatform,
-  formatHotkey,
   getHotkeyManager,
-  rawHotkeyToParsedHotkey,
+  normalizeRegisterableHotkey,
 } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import type {
@@ -113,12 +112,7 @@ export function createHotkey(
 
     // Normalize to hotkey string
     const platform = mergedOptions.platform ?? detectPlatform()
-    const hotkeyString: Hotkey =
-      typeof resolvedHotkey === 'string'
-        ? resolvedHotkey
-        : (formatHotkey(
-            rawHotkeyToParsedHotkey(resolvedHotkey, platform),
-          ) as Hotkey)
+    const hotkeyString = normalizeRegisterableHotkey(resolvedHotkey, platform)
 
     // Resolve target: when explicitly provided (even as null), use it and skip if null.
     // When not provided, default to document. Matches React's ref handling.

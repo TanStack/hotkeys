@@ -2,7 +2,7 @@
 import { TanStackDevtools } from '@tanstack/vue-devtools'
 import {
   HotkeysProvider,
-  formatKeyForDebuggingDisplay,
+  formatForDisplay,
   useHeldKeyCodes,
   useHeldKeys,
 } from '@tanstack/vue-hotkeys'
@@ -17,7 +17,7 @@ const plugins = [{ name: 'TanStack Hotkeys', component: HotkeysDevtoolsPanel }]
 watch(heldKeys, (keys) => {
   if (keys.length > 0) {
     const combo = keys
-      .map((key) => formatKeyForDebuggingDisplay(key))
+      .map((key) => formatForDisplay(key, { useSymbols: true }))
       .join(' + ')
     history.value =
       history.value[history.value.length - 1] !== combo
@@ -58,16 +58,14 @@ function KeyDisplay() {
               <template v-for="(key, index) in heldKeys" :key="key">
                 <span v-if="index > 0" class="plus">+</span>
                 <kbd class="large">
-                  {{ formatKeyForDebuggingDisplay(key) }}
+                  {{
+                    formatForDisplay(key, { useSymbols: true })
+                  }}
                   <small
                     v-if="heldCodes[key] && heldCodes[key] !== key"
                     class="code-label"
                   >
-                    {{
-                      formatKeyForDebuggingDisplay(heldCodes[key], {
-                        source: 'code',
-                      })
-                    }}
+                    {{ heldCodes[key] }}
                   </small>
                 </kbd>
               </template>

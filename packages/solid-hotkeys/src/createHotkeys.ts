@@ -1,9 +1,8 @@
 import { createEffect, onCleanup } from 'solid-js'
 import {
   detectPlatform,
-  formatHotkey,
   getHotkeyManager,
-  rawHotkeyToParsedHotkey,
+  normalizeRegisterableHotkey,
 } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import type { CreateHotkeyOptions } from './createHotkey'
@@ -118,12 +117,7 @@ export function createHotkeys(
       } as CreateHotkeyOptions
 
       const platform = mergedOptions.platform ?? detectPlatform()
-      const hotkeyString: Hotkey =
-        typeof def.hotkey === 'string'
-          ? def.hotkey
-          : (formatHotkey(
-              rawHotkeyToParsedHotkey(def.hotkey, platform),
-            ) as Hotkey)
+      const hotkeyString = normalizeRegisterableHotkey(def.hotkey, platform)
 
       const resolvedTarget =
         'target' in mergedOptions
