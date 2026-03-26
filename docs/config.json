@@ -1196,7 +1196,12 @@
     },
     {
       "label": "Examples",
-      "children": [],
+      "children": [
+        {
+          "label": "formatForDisplay",
+          "to": "framework/vanilla/examples/formatForDisplay"
+        }
+      ],
       "frameworks": [
         {
           "label": "react",
