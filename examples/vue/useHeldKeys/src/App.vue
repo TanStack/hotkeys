@@ -58,9 +58,7 @@ function KeyDisplay() {
               <template v-for="(key, index) in heldKeys" :key="key">
                 <span v-if="index > 0" class="plus">+</span>
                 <kbd class="large">
-                  {{
-                    formatForDisplay(key, { useSymbols: true })
-                  }}
+                  {{ formatForDisplay(key, { useSymbols: true }) }}
                   <small
                     v-if="heldCodes[key] && heldCodes[key] !== key"
                     class="code-label"
