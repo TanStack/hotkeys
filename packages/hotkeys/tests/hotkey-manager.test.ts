@@ -1054,6 +1054,82 @@ describe('HotkeyManager', () => {
         callback.mockClear()
       }
     })
+
+    it('should ignore hotkeys when activeElement is an input but event.target is different (React Aria pattern)', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Q', callback, { platform: 'mac' })
+
+      const input = document.createElement('input')
+      input.type = 'text'
+      const listItem = document.createElement('li')
+      document.body.appendChild(input)
+      document.body.appendChild(listItem)
+
+      input.focus()
+
+      const event = new KeyboardEvent('keydown', {
+        key: 'q',
+        bubbles: true,
+      })
+      Object.defineProperty(event, 'target', {
+        value: listItem,
+        writable: false,
+        configurable: true,
+      })
+      Object.defineProperty(event, 'currentTarget', {
+        value: document,
+        writable: false,
+        configurable: true,
+      })
+      document.dispatchEvent(event)
+
+      expect(callback).not.toHaveBeenCalled()
+
+      document.body.removeChild(input)
+      document.body.removeChild(listItem)
+    })
+
+    it('should fire Mod hotkeys when activeElement is an input but event.target is different (React Aria pattern)', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Mod+S', callback, { platform: 'mac' })
+
+      const input = document.createElement('input')
+      input.type = 'text'
+      const listItem = document.createElement('li')
+      document.body.appendChild(input)
+      document.body.appendChild(listItem)
+
+      input.focus()
+
+      const event = new KeyboardEvent('keydown', {
+        key: 's',
+        metaKey: true,
+        bubbles: true,
+      })
+      Object.defineProperty(event, 'target', {
+        value: listItem,
+        writable: false,
+        configurable: true,
+      })
+      Object.defineProperty(event, 'currentTarget', {
+        value: document,
+        writable: false,
+        configurable: true,
+      })
+      document.dispatchEvent(event)
+
+      expect(callback).toHaveBeenCalledWith(
+        event,
+        expect.objectContaining({ hotkey: 'Mod+S' }),
+      )
+
+      document.body.removeChild(input)
+      document.body.removeChild(listItem)
+    })
   })
 
   describe('conflict detection', () => {

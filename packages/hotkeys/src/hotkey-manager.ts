@@ -456,7 +456,13 @@ export class HotkeyManager {
 
       // Check if we should ignore input elements (defaults to true)
       if (registration.options.ignoreInputs !== false) {
-        if (isInputElement(event.target)) {
+        // Check both event.target and document.activeElement because some libraries
+        // (e.g. React Aria's Autocomplete) intercept keydown events from inputs and
+        // re-dispatch them on a different element (like a list item). In such cases,
+        // event.target is the list element, but document.activeElement is still the input.
+        const activeElement =
+          typeof document !== 'undefined' ? document.activeElement : null
+        if (isInputElement(event.target) || isInputElement(activeElement)) {
           // Don't ignore if the hotkey is explicitly scoped to this input element
           if (event.target !== registration.target) {
             continue
