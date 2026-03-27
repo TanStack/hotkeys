@@ -5,7 +5,7 @@ title: SequenceManager
 
 # Class: SequenceManager
 
-Defined in: [sequence-manager.ts:168](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L168)
+Defined in: [sequence-manager.ts:169](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L169)
 
 ## Properties
 
@@ -15,7 +15,7 @@ Defined in: [sequence-manager.ts:168](https://github.com/TanStack/hotkeys/blob/m
 readonly registrations: Store<Map<string, SequenceRegistrationView>>;
 ```
 
-Defined in: [sequence-manager.ts:175](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L175)
+Defined in: [sequence-manager.ts:176](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L176)
 
 The TanStack Store containing sequence registration views for devtools.
 Subscribe to this to observe registration changes.
@@ -63,7 +63,7 @@ register(
    options): SequenceRegistrationHandle;
 ```
 
-Defined in: [sequence-manager.ts:227](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L227)
+Defined in: [sequence-manager.ts:228](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L228)
 
 Registers a hotkey sequence handler.
 
@@ -144,7 +144,7 @@ True if the registration was found and triggered
 static getInstance(): SequenceManager;
 ```
 
-Defined in: [sequence-manager.ts:196](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L196)
+Defined in: [sequence-manager.ts:197](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L197)
 
 Gets the singleton instance of SequenceManager.
 
@@ -160,7 +160,7 @@ Gets the singleton instance of SequenceManager.
 static resetInstance(): void;
 ```
 
-Defined in: [sequence-manager.ts:206](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L206)
+Defined in: [sequence-manager.ts:207](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L207)
 
 Resets the singleton instance. Useful for testing.
 

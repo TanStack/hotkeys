@@ -1128,6 +1128,37 @@ describe('HotkeyManager', () => {
       document.body.removeChild(input)
       document.body.removeChild(listItem)
     })
+
+    it('should ignore single-key hotkeys when listener target is inside an iframe and focus is in an input there', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+      const iframe = document.createElement('iframe')
+      document.body.appendChild(iframe)
+      const idoc = iframe.contentDocument
+      expect(idoc).toBeTruthy()
+      if (!idoc) {
+        document.body.removeChild(iframe)
+        return
+      }
+
+      const container = idoc.createElement('div')
+      const input = idoc.createElement('input')
+      input.type = 'text'
+      container.appendChild(input)
+      idoc.body.appendChild(container)
+
+      const handle = manager.register('K', callback, {
+        platform: 'mac',
+        target: container,
+      })
+
+      dispatchKeyboardEventFromElement(container, input, 'keydown', 'k')
+
+      expect(callback).not.toHaveBeenCalled()
+
+      handle.unregister()
+      document.body.removeChild(iframe)
+    })
   })
 
   describe('conflict detection', () => {

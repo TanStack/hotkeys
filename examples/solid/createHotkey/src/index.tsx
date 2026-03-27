@@ -275,6 +275,14 @@ function App() {
     },
     () => ({ target: editorRef() }),
   )
+  createHotkey(
+    'J',
+    () => {
+      setLastHotkey('J')
+      setEditorShortcutCount((c) => c + 1)
+    },
+    () => ({ target: editorRef() }),
+  )
 
   return (
     <div class="app">
@@ -588,6 +596,9 @@ createHotkey('Mod+Space', () => toggle())`}</pre>
                 </div>
                 <div>
                   <kbd>{formatForDisplay('Mod+K')}</kbd> — Clear editor
+                </div>
+                <div>
+                  <kbd>J</kbd> — Single key (test ignoreInputs)
                 </div>
               </div>
               <textarea

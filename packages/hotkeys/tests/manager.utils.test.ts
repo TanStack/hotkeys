@@ -2,6 +2,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 import {
   defaultHotkeyOptions,
+  getActiveElementForListenerTarget,
   getDefaultIgnoreInputs,
   handleConflict,
   isEventForTarget,
@@ -79,6 +80,63 @@ describe('manager.utils', () => {
     it('should return false for regular div', () => {
       const div = document.createElement('div')
       expect(isInputElement(div)).toBe(false)
+    })
+  })
+
+  describe('getActiveElementForListenerTarget', () => {
+    it('returns document.activeElement when target is Document', () => {
+      const input = document.createElement('input')
+      input.type = 'text'
+      document.body.appendChild(input)
+      input.focus()
+      expect(getActiveElementForListenerTarget(document)).toBe(input)
+      document.body.removeChild(input)
+    })
+
+    it('returns document.activeElement when target is Window', () => {
+      const input = document.createElement('input')
+      input.type = 'text'
+      document.body.appendChild(input)
+      input.focus()
+      expect(getActiveElementForListenerTarget(window)).toBe(input)
+      document.body.removeChild(input)
+    })
+
+    it('returns ownerDocument.activeElement when target is HTMLElement', () => {
+      const wrapper = document.createElement('div')
+      const input = document.createElement('input')
+      input.type = 'text'
+      wrapper.appendChild(input)
+      document.body.appendChild(wrapper)
+      input.focus()
+      expect(getActiveElementForListenerTarget(wrapper)).toBe(input)
+      document.body.removeChild(wrapper)
+    })
+
+    it('reads focus from the iframe document when target is inside an iframe', () => {
+      const iframe = document.createElement('iframe')
+      document.body.appendChild(iframe)
+      const idoc = iframe.contentDocument
+      expect(idoc).toBeTruthy()
+      if (!idoc) {
+        document.body.removeChild(iframe)
+        return
+      }
+      const container = idoc.createElement('div')
+      const input = idoc.createElement('input')
+      input.type = 'text'
+      container.appendChild(input)
+      idoc.body.appendChild(container)
+      input.focus()
+
+      expect(getActiveElementForListenerTarget(container)).toBe(input)
+      expect(getActiveElementForListenerTarget(idoc)).toBe(input)
+      const cw = iframe.contentWindow
+      if (cw) {
+        expect(getActiveElementForListenerTarget(cw)).toBe(input)
+      }
+
+      document.body.removeChild(iframe)
     })
   })
 

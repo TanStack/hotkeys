@@ -75,6 +75,36 @@ export function isInputElement(element: EventTarget | null): boolean {
 }
 
 /**
+ * Returns the focused element for the document associated with where hotkey
+ * listeners are attached (listener root). Use this instead of the global
+ * `document.activeElement` so registrations scoped to an iframe (or another
+ * document) read focus from the correct tree.
+ */
+export function getActiveElementForListenerTarget(
+  target: HTMLElement | Document | Window,
+): Element | null {
+  if (typeof document === 'undefined') {
+    return null
+  }
+
+  // Document first (nodeType covers environments where `document instanceof Document` is false)
+  if (
+    (typeof Document !== 'undefined' && target instanceof Document) ||
+    (typeof Node !== 'undefined' &&
+      (target as Node).nodeType === Node.DOCUMENT_NODE)
+  ) {
+    return (target as Document).activeElement
+  }
+
+  if (typeof HTMLElement !== 'undefined' && target instanceof HTMLElement) {
+    return target.ownerDocument.activeElement ?? null
+  }
+
+  // Window (global or iframe): avoid relying on `instanceof Window` alone (test DOM quirks)
+  return (target as Window).document.activeElement ?? null
+}
+
+/**
  * Checks if an event is for the given target (originated from or bubbled to it).
  *
  * For document/window targets, also accepts document.documentElement as currentTarget

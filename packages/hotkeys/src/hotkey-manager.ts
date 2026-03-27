@@ -5,6 +5,7 @@ import { parseHotkey, rawHotkeyToParsedHotkey } from './parse'
 import { matchesKeyboardEvent } from './match'
 import {
   defaultHotkeyOptions,
+  getActiveElementForListenerTarget,
   getDefaultIgnoreInputs,
   handleConflict,
   isEventForTarget,
@@ -456,13 +457,12 @@ export class HotkeyManager {
 
       // Check if we should ignore input elements (defaults to true)
       if (registration.options.ignoreInputs !== false) {
-        const activeElement =
-          typeof document !== 'undefined' ? document.activeElement : null
-        if (isInputElement(activeElement)) {
-          // Don't ignore if the hotkey is explicitly scoped to this input element
-          if (activeElement !== registration.target) {
-            continue
-          }
+        const focused = getActiveElementForListenerTarget(target)
+        const shouldIgnore = [focused, event.target].some(
+          (el) => isInputElement(el) && el !== registration.target,
+        )
+        if (shouldIgnore) {
+          continue
         }
       }
 

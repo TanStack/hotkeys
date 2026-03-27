@@ -511,6 +511,45 @@ describe('SequenceManager', () => {
       document.body.removeChild(input)
       document.body.removeChild(listItem)
     })
+
+    it('should ignore sequences when listener target is inside an iframe and focus is in an input there', () => {
+      const manager = SequenceManager.getInstance()
+      const callback = vi.fn()
+      const iframe = document.createElement('iframe')
+      document.body.appendChild(iframe)
+      const idoc = iframe.contentDocument
+      expect(idoc).toBeTruthy()
+      if (!idoc) {
+        document.body.removeChild(iframe)
+        return
+      }
+
+      const container = idoc.createElement('div')
+      const input = idoc.createElement('input')
+      input.type = 'text'
+      container.appendChild(input)
+      idoc.body.appendChild(container)
+
+      const handle = manager.register(['G', 'G'], callback, {
+        target: container,
+      })
+
+      input.focus()
+      for (let i = 0; i < 2; i++) {
+        const event = new KeyboardEvent('keydown', { key: 'g', bubbles: true })
+        Object.defineProperty(event, 'currentTarget', {
+          value: container,
+          writable: false,
+          configurable: true,
+        })
+        container.dispatchEvent(event)
+      }
+
+      expect(callback).not.toHaveBeenCalled()
+
+      handle.unregister()
+      document.body.removeChild(iframe)
+    })
   })
 
   describe('target option', () => {

@@ -248,6 +248,11 @@
     editorShortcutCount++
     editorContent = ''
   })
+
+  const editorLetterHotkey = createHotkeyAttachment('J', () => {
+    lastHotkey = 'J'
+    editorShortcutCount++
+  })
 </script>
 
 <div class="app">
@@ -508,6 +513,7 @@ createHotkey('Mod+2', () => activeTab = 2)`}</pre>
             </div>
             <div><kbd>{formatForDisplay('Mod+/')}</kbd> — Add comment</div>
             <div><kbd>{formatForDisplay('Mod+K')}</kbd> — Clear editor</div>
+            <div><kbd>J</kbd> — Single key (test ignoreInputs)</div>
           </div>
           <textarea
             class="scoped-editor"
@@ -517,6 +523,7 @@ createHotkey('Mod+2', () => activeTab = 2)`}</pre>
             {@attach saveEditorHotkey}
             {@attach addEditorCommentHotkey}
             {@attach clearEditorHotkey}
+            {@attach editorLetterHotkey}
           ></textarea>
           <div class="counter">Editor shortcuts: {editorShortcutCount}x</div>
           <p class="hint">

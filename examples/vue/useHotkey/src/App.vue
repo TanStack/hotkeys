@@ -277,6 +277,15 @@ useHotkey(
   { target: editorRef },
 )
 
+useHotkey(
+  'J',
+  () => {
+    lastHotkey.value = 'J'
+    editorShortcutCount.value++
+  },
+  { target: editorRef },
+)
+
 const basicCode = `useHotkey('Mod+S', (_event, { hotkey, parsedHotkey }) => {
   console.log('Hotkey:', hotkey)
   console.log('Parsed:', parsedHotkey)
@@ -640,6 +649,7 @@ useHotkey(
                 <div>
                   <kbd>{{ formatForDisplay('Mod+K') }}</kbd> — Clear editor
                 </div>
+                <div><kbd>J</kbd> — Single key (test ignoreInputs)</div>
               </div>
               <textarea
                 ref="editorRef"
