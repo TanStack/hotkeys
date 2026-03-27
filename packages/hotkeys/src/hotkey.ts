@@ -370,6 +370,8 @@ export interface FormatDisplayOptions {
   platform?: 'mac' | 'windows' | 'linux'
   /** Whether to use symbols for the display. Defaults to true. */
   useSymbols?: boolean
+  /** Override the separator between display tokens. Defaults to platform-specific formatting when null/undefined. */
+  separatorToken?: string | null
 }
 
 /**

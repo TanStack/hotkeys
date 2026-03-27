@@ -71,6 +71,7 @@ export function formatHotkey(parsed: ParsedHotkey): string {
  *
  * On macOS, uses symbols (⌘⇧S) in the same modifier order as {@link normalizeHotkeyFromParsed}.
  * On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
+ * The separator can be customized with `separatorToken`.
  *
  * @param hotkey - The hotkey string or ParsedHotkey to format
  * @param options - Formatting options
@@ -94,6 +95,8 @@ export function formatForDisplay(
 ): string {
   const platform = options.platform ?? detectPlatform()
   const useSymbols = options.useSymbols ?? true
+  const separatorToken =
+    options.separatorToken ?? (platform === 'mac' && useSymbols ? ' ' : '+')
   const normalizedHotkey = normalizeRegisterableHotkey(
     hotkey as RegisterableHotkey,
     platform,
@@ -125,7 +128,7 @@ export function formatForDisplay(
         return punctuationKeyDisplayLabel || segment
       }
     })
-    .join(platform === 'mac' && useSymbols ? ' ' : '+')
+    .join(separatorToken)
 }
 
 /**

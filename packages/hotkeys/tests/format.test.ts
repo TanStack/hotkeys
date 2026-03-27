@@ -102,6 +102,27 @@ describe('formatForDisplay', () => {
       )
     })
 
+    it('should allow customizing the separator token', () => {
+      expect(
+        formatForDisplay('Mod+Shift+S', {
+          platform: 'mac',
+          separatorToken: '',
+        }),
+      ).toBe('⌘⇧S')
+      expect(
+        formatForDisplay('Mod+Shift+S', {
+          platform: 'mac',
+          separatorToken: ' + ',
+        }),
+      ).toBe('⌘ + ⇧ + S')
+      expect(
+        formatForDisplay('Mod+Shift+S', {
+          platform: 'mac',
+          separatorToken: null,
+        }),
+      ).toBe('⌘ ⇧ S')
+    })
+
     it('should resolve Mod to Command symbol', () => {
       expect(formatForDisplay('Mod+S', { platform: 'mac' })).toBe('⌘ S')
       expect(formatForDisplay('Mod+Shift+S', { platform: 'mac' })).toBe('⌘ ⇧ S')
@@ -130,6 +151,27 @@ describe('formatForDisplay', () => {
       expect(formatForDisplay('Control+Shift+A', { platform: 'windows' })).toBe(
         'Ctrl+Shift+A',
       )
+    })
+
+    it('should allow customizing the separator token', () => {
+      expect(
+        formatForDisplay('Control+Shift+A', {
+          platform: 'windows',
+          separatorToken: '',
+        }),
+      ).toBe('CtrlShiftA')
+      expect(
+        formatForDisplay('Control+Shift+A', {
+          platform: 'windows',
+          separatorToken: ' + ',
+        }),
+      ).toBe('Ctrl + Shift + A')
+      expect(
+        formatForDisplay('Control+Shift+A', {
+          platform: 'windows',
+          separatorToken: null,
+        }),
+      ).toBe('Ctrl+Shift+A')
     })
 
     it('should resolve Mod to Ctrl', () => {
