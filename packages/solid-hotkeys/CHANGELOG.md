@@ -1,5 +1,12 @@
 # @tanstack/solid-hotkeys
 
+## 0.8.2
+
+### Patch Changes
+
+- Updated dependencies [[`6939ac7`](https://github.com/TanStack/hotkeys/commit/6939ac7f91ce8b5ffe54cdc122171f277c837c92)]:
+  - @tanstack/hotkeys@0.6.2
+
 ## 0.8.1
 
 ### Patch Changes

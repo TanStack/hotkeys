@@ -1,5 +1,13 @@
 # @tanstack/hotkeys
 
+## 0.6.2
+
+### Patch Changes
+
+- fix: use `document.activeElement` instead of `event.target` for `ignoreInputs` option ([#89](https://github.com/TanStack/hotkeys/pull/89))
+
+  Switched from checking `event.target` to checking `document.activeElement` when determining if hotkeys should be ignored in input elements. This more accurately reflects whether the user is currently typing in an input, and fixes issues with libraries that intercept and re-dispatch keyboard events.
+
 ## 0.6.1
 
 ### Patch Changes

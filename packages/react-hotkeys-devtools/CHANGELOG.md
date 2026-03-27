@@ -1,5 +1,12 @@
 # @tanstack/react-hotkeys-devtools
 
+## 0.6.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tanstack/hotkeys-devtools@0.7.2
+
 ## 0.6.1
 
 ### Patch Changes
