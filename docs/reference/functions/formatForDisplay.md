@@ -9,12 +9,13 @@ title: formatForDisplay
 function formatForDisplay(hotkey, options): string;
 ```
 
-Defined in: [format.ts:91](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L91)
+Defined in: [format.ts:92](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L92)
 
 Formats a hotkey for display in a user interface.
 
 On macOS, uses symbols (⌘⇧S) in the same modifier order as [normalizeHotkeyFromParsed](normalizeHotkeyFromParsed.md).
 On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
+The separator can be customized with `separatorToken`.
 
 ## Parameters
 

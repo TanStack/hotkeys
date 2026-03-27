@@ -23,6 +23,18 @@ The target platform. Defaults to auto-detection.
 
 ***
 
+### separatorToken?
+
+```ts
+optional separatorToken: string | null;
+```
+
+Defined in: [hotkey.ts:374](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L374)
+
+Override the separator between display tokens. Defaults to platform-specific formatting when null/undefined.
+
+***
+
 ### useSymbols?
 
 ```ts
