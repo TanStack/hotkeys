@@ -11,7 +11,7 @@
     "test:types": "tsc"
   },
   "dependencies": {
-    "@tanstack/hotkeys": "^0.6.2"
+    "@tanstack/hotkeys": "^0.6.3"
   },
   "devDependencies": {
     "typescript": "5.9.3",

@@ -1,5 +1,11 @@
 # @tanstack/hotkeys
 
+## 0.6.3
+
+### Patch Changes
+
+- Add `separatorToken` option to `formatForDisplay` to allow customizing the separator between keys ([#92](https://github.com/TanStack/hotkeys/pull/92))
+
 ## 0.6.2
 
 ### Patch Changes
