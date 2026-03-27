@@ -619,8 +619,9 @@ describe('HotkeyManager', () => {
 
   describe('ignoreInputs option', () => {
     /**
-     * Helper to create and dispatch a keyboard event from a specific element
-     * The event is dispatched on the target (usually document) but with event.target set to the element
+     * Helper to create and dispatch a keyboard event from a specific element.
+     * Focuses the element first to set document.activeElement, then dispatches
+     * the event on the target (usually document).
      */
     function dispatchKeyboardEventFromElement(
       target: HTMLElement | Document,
@@ -634,6 +635,9 @@ describe('HotkeyManager', () => {
         metaKey?: boolean
       } = {},
     ): KeyboardEvent {
+      // Focus the element so document.activeElement is set
+      element.focus()
+
       const event = new KeyboardEvent(type, {
         key,
         ctrlKey: options.ctrlKey ?? false,
@@ -641,12 +645,6 @@ describe('HotkeyManager', () => {
         altKey: options.altKey ?? false,
         metaKey: options.metaKey ?? false,
         bubbles: true,
-      })
-      // Set the target to the element (where the event originated)
-      Object.defineProperty(event, 'target', {
-        value: element,
-        writable: false,
-        configurable: true,
       })
       // Set currentTarget to the target (where the listener is attached)
       Object.defineProperty(event, 'currentTarget', {

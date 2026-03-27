@@ -2,6 +2,6 @@
 '@tanstack/hotkeys': patch
 ---
 
-fix: check `document.activeElement` in addition to `event.target` for `ignoreInputs` option
+fix: use `document.activeElement` instead of `event.target` for `ignoreInputs` option
 
-Some libraries like React Aria's Autocomplete intercept keydown events from input elements and re-dispatch them on a different element (like a list item). In these cases, `event.target` is the re-dispatched target, not the actual focused input. By also checking `document.activeElement`, we can properly detect when the user is typing in an input even if the event has been re-dispatched.
+Switched from checking `event.target` to checking `document.activeElement` when determining if hotkeys should be ignored in input elements. This more accurately reflects whether the user is currently typing in an input, and fixes issues with libraries that intercept and re-dispatch keyboard events.

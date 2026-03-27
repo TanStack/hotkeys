@@ -20,7 +20,8 @@ function dispatchKey(
 
 /**
  * Helper to dispatch a keyboard event from a specific element.
- * Dispatches on the element so listeners attached to it receive the event.
+ * Focuses the element first to set document.activeElement, then dispatches
+ * on the element so listeners attached to it receive the event.
  */
 function dispatchKeyFromElement(
   element: HTMLElement,
@@ -33,6 +34,9 @@ function dispatchKeyFromElement(
     metaKey?: boolean
   } = {},
 ): KeyboardEvent {
+  // Focus the element so document.activeElement is set
+  element.focus()
+
   const eventType = options.eventType ?? 'keydown'
   const event = new KeyboardEvent(eventType, {
     key,
