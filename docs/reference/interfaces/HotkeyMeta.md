@@ -5,7 +5,7 @@ title: HotkeyMeta
 
 # Interface: HotkeyMeta
 
-Defined in: [hotkey.ts:432](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L432)
+Defined in: [hotkey.ts:431](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L431)
 
 Metadata for hotkey and sequence registrations.
 Includes `name` and `description` by default. Extend via declaration merging:
@@ -29,7 +29,7 @@ declare module '@tanstack/hotkeys' {
 optional description: string;
 ```
 
-Defined in: [hotkey.ts:436](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L436)
+Defined in: [hotkey.ts:435](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L435)
 
 Description of what this hotkey does
 
@@ -41,6 +41,6 @@ Description of what this hotkey does
 optional name: string;
 ```
 
-Defined in: [hotkey.ts:434](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L434)
+Defined in: [hotkey.ts:433](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L433)
 
 Human-readable name for this hotkey (e.g., "Save Document")
