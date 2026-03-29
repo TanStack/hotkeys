@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://coderabbit.ai/integrations/schema.v2.json
+# Path filters: mirror .cursorignore where noted; other entries are explicit exclusions.
+language: "en-US"
+early_access: false
+reviews:
+  profile: "chill"
+  request_changes_workflow: false
+  high_level_summary: true
+  poem: true
+  review_status: true
+  review_details: false
+  auto_review:
+    enabled: true
+    drafts: false
+  path_filters:
+    # Generated API reference (matches .cursorignore)
+    - "!docs/**/reference/**"
+    # Lock files
+    - "!**/package-lock.json"
+    - "!**/yarn.lock"
+    - "!**/pnpm-lock.yaml"
+    - "!**/bun.lockb"
+    - "!**/*.lock"
+chat:
+  auto_reply: true
