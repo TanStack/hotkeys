@@ -6,7 +6,7 @@
     "dev": "vite --port=3069"
   },
   "dependencies": {
-    "@tanstack/svelte-hotkeys": "0.8.3",
+    "@tanstack/svelte-hotkeys": "0.8.4",
     "svelte": "^5.55.0"
   },
   "devDependencies": {

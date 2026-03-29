@@ -1,5 +1,11 @@
 # @tanstack/hotkeys
 
+## 0.6.4
+
+### Patch Changes
+
+- Add `@tanstack/lit-hotkeys` package with Lit reactive controllers and decorators for hotkeys, hotkey sequences, key hold, held keys, hotkey recording, and sequence recording. Also fix input element detection inside shadow DOMs in the core hotkeys package. ([#59](https://github.com/TanStack/hotkeys/pull/59))
+
 ## 0.6.3
 
 ### Patch Changes
