@@ -1858,6 +1858,9 @@ importers:
       goober:
         specifier: ^2.1.18
         version: 2.1.18(csstype@3.2.3)
+      match-sorter:
+        specifier: ^8.2.0
+        version: 8.2.0
       solid-js:
         specifier: ^1.9.12
         version: 1.9.12
@@ -7535,6 +7538,9 @@ packages:
     engines: {node: '>= 20'}
     hasBin: true
 
+  match-sorter@8.2.0:
+    resolution: {integrity: sha512-qRVB7wYMJXizAWR4TKo5UYwgW7oAVzA8V9jve0wGzRvV91ou9dcqL+/2gJtD0PZ/Pm2Fq6cVT4VHXHmDFVMGRA==}
+
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
     engines: {node: '>= 0.4'}
@@ -8359,6 +8365,9 @@ packages:
   regjsparser@0.13.0:
     resolution: {integrity: sha512-NZQZdC5wOE/H3UT28fVGL+ikOZcEzfMGk/c3iN9UGxzWHMa1op7274oyiUVrAG4B2EuFhus8SvkaYnhvW92p9Q==}
     hasBin: true
+
+  remove-accents@0.5.0:
+    resolution: {integrity: sha512-8g3/Otx1eJaVD12e31UbJj1YzdtVvzH85HV7t+9MJYk/u3XmkOUJ5Ys9wQrf9PCPK8+xn4ymzqYCiZl6QWKn+A==}
 
   require-directory@2.1.1:
     resolution: {integrity: sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==}
@@ -15753,6 +15762,11 @@ snapshots:
 
   marked@17.0.2: {}
 
+  match-sorter@8.2.0:
+    dependencies:
+      '@babel/runtime': 7.28.6
+      remove-accents: 0.5.0
+
   math-intrinsics@1.1.0: {}
 
   mdurl@2.0.0: {}
@@ -16658,6 +16672,8 @@ snapshots:
   regjsparser@0.13.0:
     dependencies:
       jsesc: 3.1.0
+
+  remove-accents@0.5.0: {}
 
   require-directory@2.1.1: {}
 

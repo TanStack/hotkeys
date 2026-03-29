@@ -99,6 +99,17 @@ import { HotkeysProvider } from '@tanstack/solid-hotkeys'
 | **Escape** | Cancels the recording |
 | **Backspace / Delete** | Clears the currently recorded hotkey |
 
+### `ignoreInputs`
+
+The `HotkeyRecorderOptions` supports an `ignoreInputs` option (defaults to `true`). When `true`, the recorder will not intercept normal typing in text inputs, textareas, selects, or contentEditable elements -- keystrokes pass through to the input as usual. Pressing **Escape** still cancels recording even when focused on an input. Set `ignoreInputs: false` if you want the recorder to capture keys from within input elements.
+
+```tsx
+createHotkeyRecorder({
+  ignoreInputs: false, // record even from inside inputs
+  onRecord: (hotkey) => console.log(hotkey),
+})
+```
+
 ### Mod Auto-Conversion
 
 Recorded hotkeys automatically use the portable `Mod` format (Command on Mac, Control elsewhere).

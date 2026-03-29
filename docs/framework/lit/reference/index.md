@@ -11,6 +11,7 @@ title: "@tanstack/lit-hotkeys"
 - [HeldKeysController](classes/HeldKeysController.md)
 - [HotkeyController](classes/HotkeyController.md)
 - [HotkeyRecorderController](classes/HotkeyRecorderController.md)
+- [HotkeyRegistrationsController](classes/HotkeyRegistrationsController.md)
 - [HotkeySequenceController](classes/HotkeySequenceController.md)
 - [HotkeySequenceRecorderController](classes/HotkeySequenceRecorderController.md)
 - [KeyHoldController](classes/KeyHoldController.md)

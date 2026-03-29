@@ -181,6 +181,67 @@ useHotkeys(
 
 The composable watches for changes and diffs registrations automatically.
 
+## Metadata (name & description)
+
+Every hotkey registration can carry a `meta` object with a `name` and `description`. This metadata is informational only -- it does not affect hotkey behavior -- but it flows through to registrations and devtools, making it easy to build shortcut palettes and help screens.
+
+```ts
+useHotkey('Mod+S', () => save(), {
+  meta: { name: 'Save', description: 'Save the document' },
+})
+```
+
+The `meta` option is typed as `HotkeyMeta`, which ships with `name` and `description` fields. You can extend it with additional properties using TypeScript declaration merging:
+
+```ts
+declare module '@tanstack/hotkeys' {
+  interface HotkeyMeta {
+    icon?: string
+    group?: string
+  }
+}
+
+useHotkey('Mod+S', () => save(), {
+  meta: { name: 'Save', description: 'Save the document', icon: 'floppy', group: 'File' },
+})
+```
+
+## Introspecting Registrations
+
+Use the `useHotkeyRegistrations` composable to get a live view of all hotkey and sequence registrations. This is useful for building shortcut palettes, help dialogs, or devtools.
+
+```vue
+<script setup lang="ts">
+import { useHotkeyRegistrations } from '@tanstack/vue-hotkeys'
+
+const { hotkeys, sequences } = useHotkeyRegistrations()
+</script>
+
+<template>
+  <div>
+    <h2>Keyboard Shortcuts</h2>
+    <ul>
+      <li v-for="reg in hotkeys" :key="reg.hotkey">
+        <kbd>{{ reg.hotkey }}</kbd>
+        <span v-if="reg.meta?.name"> — {{ reg.meta.name }}</span>
+        <p v-if="reg.meta?.description">{{ reg.meta.description }}</p>
+      </li>
+    </ul>
+    <template v-if="sequences.length > 0">
+      <h2>Sequences</h2>
+      <ul>
+        <li v-for="reg in sequences" :key="reg.sequence.join(' ')">
+          <kbd>{{ reg.sequence.join(' → ') }}</kbd>
+          <span v-if="reg.meta?.name"> — {{ reg.meta.name }}</span>
+        </li>
+      </ul>
+    </template>
+  </div>
+</template>
+```
+
+The returned `hotkeys` array contains registration objects with the hotkey string, options (including `meta`), and enabled state. The `sequences` array contains sequence registrations with the same structure.
+
 ## The Hotkey Manager
 
 You can always reach for the underlying manager directly:

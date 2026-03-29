@@ -78,6 +78,18 @@ import { HotkeysProvider } from '@tanstack/vue-hotkeys'
 </template>
 ```
 
+### `meta`
+
+Sequences support the same `meta` option as hotkeys, allowing you to attach a `name` and `description` for use in shortcut palettes and devtools.
+
+```ts
+useHotkeySequence(['G', 'G'], () => scrollToTop(), {
+  meta: { name: 'Go to Top', description: 'Scroll to the top of the page' },
+})
+```
+
+See the [Hotkeys Guide](./hotkeys.md#metadata-name--description) for details on declaration merging and introspecting registrations.
+
 ## Chained modifier chords
 
 Each step can use modifiers (for example `Mod+K` then `Mod+C`). You can use the **same** modifier on consecutive steps:

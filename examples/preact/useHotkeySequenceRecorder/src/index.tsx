@@ -4,196 +4,197 @@ import {
   HotkeysProvider,
   formatForDisplay,
   useHeldKeys,
-  useHotkeySequence,
+  useHotkeyRegistrations,
   useHotkeySequenceRecorder,
+  useHotkeySequences,
 } from '@tanstack/preact-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools'
 import { TanStackDevtools } from '@tanstack/preact-devtools'
 import './index.css'
 import type { HotkeySequence } from '@tanstack/preact-hotkeys'
 
-interface ShortcutActions {
-  [key: string]: {
-    name: string
-    defaultSequence: HotkeySequence
-  }
+interface Shortcut {
+  id: string
+  name: string
+  description: string
+  sequence: HotkeySequence
 }
 
-const DEFAULT_SHORTCUT_ACTIONS: ShortcutActions = {
-  save: {
+let nextId = 0
+function createId(): string {
+  return `shortcut_${++nextId}`
+}
+
+const INITIAL_SHORTCUTS: Array<Shortcut> = [
+  {
+    id: createId(),
     name: 'Save',
-    defaultSequence: ['Mod+S'],
+    description: 'Save the current document',
+    sequence: ['Mod+S'],
   },
-  open: {
+  {
+    id: createId(),
     name: 'Open (gg)',
-    defaultSequence: ['G', 'G'],
+    description: 'Open the file browser',
+    sequence: ['G', 'G'],
   },
-  new: {
+  {
+    id: createId(),
     name: 'New (dd)',
-    defaultSequence: ['D', 'D'],
+    description: 'Create a new document',
+    sequence: ['D', 'D'],
   },
-  close: {
+  {
+    id: createId(),
     name: 'Close',
-    defaultSequence: ['Mod+Shift+K'],
+    description: 'Close the current tab',
+    sequence: ['Mod+Shift+K'],
   },
-  undo: {
+  {
+    id: createId(),
     name: 'Undo (yy)',
-    defaultSequence: ['Y', 'Y'],
+    description: 'Undo the last action',
+    sequence: ['Y', 'Y'],
   },
-  redo: {
+  {
+    id: createId(),
     name: 'Redo',
-    defaultSequence: ['Mod+Shift+G'],
+    description: 'Redo the last undone action',
+    sequence: ['Mod+Shift+G'],
   },
-}
-
-function resolveSequence(
-  actionId: string,
-  shortcuts: Record<string, HotkeySequence | null>,
-): HotkeySequence {
-  const s = shortcuts[actionId]
-  if (s !== null) {
-    return s
-  }
-  return DEFAULT_SHORTCUT_ACTIONS[actionId].defaultSequence
-}
-
-const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
+]
 
 function App() {
-  const [shortcuts, setShortcuts] = React.useState<
-    Record<string, HotkeySequence | null>
-  >(() => {
-    const initial: Record<string, HotkeySequence | null> = {}
-    for (const id of Object.keys(DEFAULT_SHORTCUT_ACTIONS)) {
-      initial[id] = null
-    }
-    return initial
-  })
+  const [shortcuts, setShortcuts] = React.useState<Array<Shortcut>>(
+    () => INITIAL_SHORTCUTS,
+  )
 
-  const [saveCount, setSaveCount] = React.useState(0)
-  const [openCount, setOpenCount] = React.useState(0)
-  const [newCount, setNewCount] = React.useState(0)
-  const [closeCount, setCloseCount] = React.useState(0)
-  const [undoCount, setUndoCount] = React.useState(0)
-  const [redoCount, setRedoCount] = React.useState(0)
-
-  const [recordingActionId, setRecordingActionId] = React.useState<
-    string | null
-  >(null)
+  // Track which shortcut is being edited
+  const [editingId, setEditingId] = React.useState<string | null>(null)
+  const [draftName, setDraftName] = React.useState('')
+  const [draftDescription, setDraftDescription] = React.useState('')
 
   const recorder = useHotkeySequenceRecorder({
     onRecord: (sequence: HotkeySequence) => {
-      if (recordingActionId) {
-        setShortcuts((prev) => ({
-          ...prev,
-          [recordingActionId]: sequence,
-        }))
-        setRecordingActionId(null)
+      if (editingId) {
+        setShortcuts((prev) =>
+          prev.map((s) =>
+            s.id === editingId
+              ? {
+                  ...s,
+                  sequence,
+                  name: draftName,
+                  description: draftDescription,
+                }
+              : s,
+          ),
+        )
+        setEditingId(null)
       }
     },
     onCancel: () => {
-      setRecordingActionId(null)
+      // If this was a brand-new shortcut with no sequence yet, remove it
+      if (editingId) {
+        setShortcuts((prev) => {
+          const shortcut = prev.find((s) => s.id === editingId)
+          if (shortcut && shortcut.sequence.length === 0) {
+            return prev.filter((s) => s.id !== editingId)
+          }
+          return prev
+        })
+      }
+      setEditingId(null)
     },
     onClear: () => {
-      if (recordingActionId) {
-        setShortcuts((prev) => ({
-          ...prev,
-          [recordingActionId]: [],
-        }))
-        setRecordingActionId(null)
+      if (editingId) {
+        setShortcuts((prev) =>
+          prev.map((s) =>
+            s.id === editingId
+              ? {
+                  ...s,
+                  sequence: [],
+                  name: draftName,
+                  description: draftDescription,
+                }
+              : s,
+          ),
+        )
+        setEditingId(null)
       }
     },
   })
 
   const isRecording = recorder.isRecording
 
-  const saveSeq = resolveSequence('save', shortcuts)
-  const openSeq = resolveSequence('open', shortcuts)
-  const newSeq = resolveSequence('new', shortcuts)
-  const closeSeq = resolveSequence('close', shortcuts)
-  const undoSeq = resolveSequence('undo', shortcuts)
-  const redoSeq = resolveSequence('redo', shortcuts)
-
-  useHotkeySequence(
-    saveSeq,
-    () => {
-      console.log('Save triggered:', saveSeq)
-      setSaveCount((c) => c + 1)
-    },
-    {
-      enabled: !isRecording && saveSeq.length > 0,
-    },
+  // Register all sequences with meta
+  useHotkeySequences(
+    shortcuts
+      .filter((s) => s.sequence.length > 0)
+      .map((s) => ({
+        sequence: s.sequence,
+        callback: () => {
+          console.log(`${s.name} triggered:`, s.sequence)
+        },
+        options: {
+          enabled: !isRecording,
+          meta: {
+            name: s.name,
+            description: s.description,
+          },
+        },
+      })),
   )
 
-  useHotkeySequence(
-    openSeq,
-    () => {
-      console.log('Open triggered:', openSeq)
-      setOpenCount((c) => c + 1)
-    },
-    {
-      enabled: !isRecording && openSeq.length > 0,
-    },
-  )
-
-  useHotkeySequence(
-    newSeq,
-    () => {
-      console.log('New triggered:', newSeq)
-      setNewCount((c) => c + 1)
-    },
-    {
-      enabled: !isRecording && newSeq.length > 0,
-    },
-  )
-
-  useHotkeySequence(
-    closeSeq,
-    () => {
-      console.log('Close triggered:', closeSeq)
-      setCloseCount((c) => c + 1)
-    },
-    {
-      enabled: !isRecording && closeSeq.length > 0,
-    },
-  )
-
-  useHotkeySequence(
-    undoSeq,
-    () => {
-      console.log('Undo triggered:', undoSeq)
-      setUndoCount((c) => c + 1)
-    },
-    {
-      enabled: !isRecording && undoSeq.length > 0,
-    },
-  )
-
-  useHotkeySequence(
-    redoSeq,
-    () => {
-      console.log('Redo triggered:', redoSeq)
-      setRedoCount((c) => c + 1)
-    },
-    {
-      enabled: !isRecording && redoSeq.length > 0,
-    },
-  )
-
-  const handleEdit = (actionId: string) => {
-    setRecordingActionId(actionId)
+  const handleEdit = (id: string) => {
+    const shortcut = shortcuts.find((s) => s.id === id)
+    if (!shortcut) return
+    setEditingId(id)
+    setDraftName(shortcut.name)
+    setDraftDescription(shortcut.description)
     recorder.startRecording()
+  }
+
+  const handleSaveEditing = () => {
+    if (editingId) {
+      setShortcuts((prev) =>
+        prev.map((s) =>
+          s.id === editingId
+            ? { ...s, name: draftName, description: draftDescription }
+            : s,
+        ),
+      )
+      recorder.stopRecording()
+      setEditingId(null)
+    }
   }
 
   const handleCancel = () => {
     recorder.cancelRecording()
-    setRecordingActionId(null)
+    // onCancel callback handles cleanup
+  }
+
+  const handleDelete = (id: string) => {
+    setShortcuts((prev) => prev.filter((s) => s.id !== id))
+  }
+
+  const handleCreateNew = () => {
+    const newShortcut: Shortcut = {
+      id: createId(),
+      name: '',
+      description: '',
+      sequence: [],
+    }
+    setShortcuts((prev) => [...prev, newShortcut])
+    setEditingId(newShortcut.id)
+    setDraftName('')
+    setDraftDescription('')
+    recorder.startRecording()
   }
 
   return (
     <div className="app">
       <header>
-        <h1>Sequence shortcut settings</h1>
+        <h1>Sequence Shortcut Settings</h1>
         <p>
           Customize Vim-style sequences. Click Edit, press each chord in order,
           then press Enter to save. Escape cancels; Backspace removes the last
@@ -205,66 +206,44 @@ function App() {
         <section className="demo-section">
           <h2>Shortcuts</h2>
           <div className="shortcuts-list">
-            {Object.entries(DEFAULT_SHORTCUT_ACTIONS).map(
-              ([actionId, action]) => (
-                <ShortcutListItem
-                  key={actionId}
-                  actionName={action.name}
-                  sequence={resolveSequence(actionId, shortcuts)}
-                  disabled={resolveSequence(actionId, shortcuts).length === 0}
-                  isRecording={
-                    recorder.isRecording && recordingActionId === actionId
-                  }
-                  liveSteps={recorder.steps}
-                  onEdit={() => handleEdit(actionId)}
-                  onCancel={handleCancel}
-                />
-              ),
-            )}
+            {shortcuts.map((shortcut) => (
+              <ShortcutListItem
+                key={shortcut.id}
+                shortcut={shortcut}
+                isEditing={editingId === shortcut.id}
+                draftName={
+                  editingId === shortcut.id ? draftName : shortcut.name
+                }
+                draftDescription={
+                  editingId === shortcut.id
+                    ? draftDescription
+                    : shortcut.description
+                }
+                onDraftNameChange={setDraftName}
+                onDraftDescriptionChange={setDraftDescription}
+                liveSteps={recorder.steps}
+                onEdit={() => handleEdit(shortcut.id)}
+                onSave={handleSaveEditing}
+                onCancel={handleCancel}
+                onDelete={() => handleDelete(shortcut.id)}
+              />
+            ))}
           </div>
-        </section>
-
-        <section className="demo-section">
-          <h2>Demo actions</h2>
-          <p>Try your sequences within the default timeout window.</p>
-          <div className="demo-stats">
-            <div className="stat-item">
-              <div className="stat-label">Save</div>
-              <div className="stat-value">{saveCount}</div>
-              <kbd>{formatSequenceLabel('save', shortcuts)}</kbd>
-            </div>
-            <div className="stat-item">
-              <div className="stat-label">Open</div>
-              <div className="stat-value">{openCount}</div>
-              <kbd>{formatSequenceLabel('open', shortcuts)}</kbd>
-            </div>
-            <div className="stat-item">
-              <div className="stat-label">New</div>
-              <div className="stat-value">{newCount}</div>
-              <kbd>{formatSequenceLabel('new', shortcuts)}</kbd>
-            </div>
-            <div className="stat-item">
-              <div className="stat-label">Close</div>
-              <div className="stat-value">{closeCount}</div>
-              <kbd>{formatSequenceLabel('close', shortcuts)}</kbd>
-            </div>
-            <div className="stat-item">
-              <div className="stat-label">Undo</div>
-              <div className="stat-value">{undoCount}</div>
-              <kbd>{formatSequenceLabel('undo', shortcuts)}</kbd>
-            </div>
-            <div className="stat-item">
-              <div className="stat-label">Redo</div>
-              <div className="stat-value">{redoCount}</div>
-              <kbd>{formatSequenceLabel('redo', shortcuts)}</kbd>
-            </div>
-          </div>
+          <button
+            type="button"
+            className="create-button"
+            onClick={handleCreateNew}
+            disabled={isRecording}
+          >
+            + Create New Shortcut
+          </button>
         </section>
 
         {recorder.isRecording && (
           <div className="info-box recording-notice">
-            <strong>Recording sequence…</strong> Press each chord, then Enter to
-            finish. Escape cancels. Backspace removes the last chord or clears.
+            <strong>Recording sequence...</strong> Press each chord, then Enter
+            to finish. Escape cancels. Backspace removes the last chord or
+            clears.
             {recorder.steps.length > 0 && (
               <div>
                 Steps:{' '}
@@ -279,55 +258,175 @@ function App() {
           </div>
         )}
 
+        <RegistrationsViewer />
+
         <section className="demo-section">
           <h2>Usage</h2>
-          <pre className="code-block">{`import { useHotkeySequence } from '@tanstack/preact-hotkeys'
+          <pre className="code-block">{`import {
+  useHotkeySequences,
+  useHotkeySequenceRecorder,
+  useHotkeyRegistrations,
+} from '@tanstack/preact-hotkeys'
 
-useHotkeySequence(['G', 'G'], () => goTop(), { enabled: !isRecording })`}</pre>
+// Register sequences dynamically with meta
+useHotkeySequences(
+  shortcuts.map((s) => ({
+    sequence: s.sequence,
+    callback: () => handleAction(s.id),
+    options: {
+      enabled: !isRecording,
+      meta: { name: s.name, description: s.description },
+    },
+  })),
+)
+
+// Read all registrations reactively
+const { sequences } = useHotkeyRegistrations()
+// sequences[0].options.meta?.name → 'Save'
+// sequences[0].triggerCount → 3`}</pre>
         </section>
       </main>
     </div>
   )
 }
 
-function formatSequenceLabel(
-  actionId: string,
-  shortcuts: Record<string, HotkeySequence | null>,
-): string {
-  const seq = resolveSequence(actionId, shortcuts)
-  if (seq.length === 0) {
-    return '—'
-  }
-  return seq.map((h) => formatForDisplay(h)).join(' ')
+// ---------------------------------------------------------------------------
+// Live registrations viewer using useHotkeyRegistrations
+// ---------------------------------------------------------------------------
+
+function RegistrationsViewer() {
+  const { sequences } = useHotkeyRegistrations()
+
+  return (
+    <section className="demo-section">
+      <h2>Live Registrations</h2>
+      <p>
+        This table is powered by <code>useHotkeyRegistrations()</code> — trigger
+        counts, names, and descriptions update in real-time as you use your
+        sequences.
+      </p>
+      <table className="registrations-table">
+        <thead>
+          <tr>
+            <th>Sequence</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Enabled</th>
+            <th>Triggers</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sequences.map((reg) => (
+            <tr key={reg.id}>
+              <td>
+                {reg.sequence.map((s, i) => (
+                  <React.Fragment key={i}>
+                    {i > 0 && ' '}
+                    <kbd>{formatForDisplay(s)}</kbd>
+                  </React.Fragment>
+                ))}
+              </td>
+              <td>{reg.options.meta?.name ?? '—'}</td>
+              <td className="description-cell">
+                {reg.options.meta?.description ?? '—'}
+              </td>
+              <td>
+                <span
+                  className={
+                    reg.options.enabled !== false ? 'status-on' : 'status-off'
+                  }
+                >
+                  {reg.options.enabled !== false ? 'yes' : 'no'}
+                </span>
+              </td>
+              <td className="trigger-count">{reg.triggerCount}</td>
+            </tr>
+          ))}
+          {sequences.length === 0 && (
+            <tr>
+              <td colSpan={5} className="empty-row">
+                No sequences registered
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </section>
+  )
 }
 
+// ---------------------------------------------------------------------------
+// Shortcut list item with inline editing
+// ---------------------------------------------------------------------------
+
 interface ShortcutListItemProps {
-  actionName: string
-  sequence: HotkeySequence
-  disabled: boolean
-  isRecording: boolean
+  shortcut: Shortcut
+  isEditing: boolean
+  draftName: string
+  draftDescription: string
+  onDraftNameChange: (value: string) => void
+  onDraftDescriptionChange: (value: string) => void
   liveSteps: HotkeySequence
   onEdit: () => void
+  onSave: () => void
   onCancel: () => void
+  onDelete: () => void
 }
 
 function ShortcutListItem({
-  actionName,
-  sequence,
-  disabled,
-  isRecording,
+  shortcut,
+  isEditing,
+  draftName,
+  draftDescription,
+  onDraftNameChange,
+  onDraftDescriptionChange,
   liveSteps,
   onEdit,
+  onSave,
   onCancel,
+  onDelete,
 }: ShortcutListItemProps) {
   const heldKeys = useHeldKeys()
 
   return (
-    <div className={`shortcut-item ${isRecording ? 'recording' : ''}`}>
+    <div className={`shortcut-item ${isEditing ? 'recording' : ''}`}>
       <div className="shortcut-item-content">
-        <div className="shortcut-action">{actionName}</div>
+        <div className="shortcut-action">
+          {isEditing ? (
+            <div className="editing-fields">
+              <input
+                type="text"
+                className="edit-input edit-name"
+                value={draftName}
+                onChange={(e) =>
+                  onDraftNameChange((e.target as HTMLInputElement).value)
+                }
+                placeholder="Shortcut name"
+                autoFocus
+              />
+              <input
+                type="text"
+                className="edit-input edit-description"
+                value={draftDescription}
+                onChange={(e) =>
+                  onDraftDescriptionChange((e.target as HTMLInputElement).value)
+                }
+                placeholder="Description (optional)"
+              />
+            </div>
+          ) : (
+            <>
+              {shortcut.name || <span className="unnamed">Unnamed</span>}
+              {shortcut.description && (
+                <div className="shortcut-description">
+                  {shortcut.description}
+                </div>
+              )}
+            </>
+          )}
+        </div>
         <div className="shortcut-hotkey">
-          {isRecording ? (
+          {isEditing ? (
             <div className="recording-indicator">
               {liveSteps.length > 0 ? (
                 <span className="held-hotkeys">
@@ -344,31 +443,46 @@ function ShortcutListItem({
                 </div>
               ) : (
                 <span className="recording-text">
-                  Press chords, then Enter…
+                  Press chords, then Enter...
                 </span>
               )}
             </div>
-          ) : disabled ? (
-            <span className="no-shortcut">No shortcut</span>
+          ) : shortcut.sequence.length > 0 ? (
+            <kbd>
+              {shortcut.sequence.map((h) => formatForDisplay(h)).join(' ')}
+            </kbd>
           ) : (
-            <kbd>{sequence.map((h) => formatForDisplay(h)).join(' ')}</kbd>
+            <span className="no-shortcut">No shortcut</span>
           )}
         </div>
       </div>
       <div className="shortcut-actions">
-        {isRecording ? (
-          <button type="button" onClick={onCancel} className="cancel-button">
-            Cancel
-          </button>
+        {isEditing ? (
+          <>
+            <button type="button" onClick={onSave} className="save-button">
+              Save
+            </button>
+            <button type="button" onClick={onCancel} className="cancel-button">
+              Cancel
+            </button>
+          </>
         ) : (
-          <button type="button" onClick={onEdit} className="edit-button">
-            Edit
-          </button>
+          <>
+            <button type="button" onClick={onEdit} className="edit-button">
+              Edit
+            </button>
+            <button type="button" onClick={onDelete} className="delete-button">
+              Delete
+            </button>
+          </>
         )}
       </div>
     </div>
   )
 }
+
+// TanStackDevtools as sibling of App to avoid Preact hook errors when hotkeys update state
+const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
 
 render(
   <HotkeysProvider>

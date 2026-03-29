@@ -35,7 +35,7 @@ Defined in: [HotkeysProvider.tsx:12](https://github.com/TanStack/hotkeys/blob/ma
 optional hotkeySequence: Partial<UseHotkeySequenceOptions>;
 ```
 
-Defined in: [HotkeysProvider.tsx:14](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L14)
+Defined in: [HotkeysProvider.tsx:13](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L13)
 
 ***
 
@@ -45,4 +45,4 @@ Defined in: [HotkeysProvider.tsx:14](https://github.com/TanStack/hotkeys/blob/ma
 optional hotkeySequenceRecorder: Partial<HotkeySequenceRecorderOptions>;
 ```
 
-Defined in: [HotkeysProvider.tsx:13](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L13)
+Defined in: [HotkeysProvider.tsx:14](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L14)

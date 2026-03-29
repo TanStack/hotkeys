@@ -66,7 +66,7 @@ Defined in: [controllers/key-hold.ts:58](https://github.com/TanStack/hotkeys/blo
 
 ##### \_key
 
-`HeldKey`
+`IndividualKey`
 
 #### Returns
 

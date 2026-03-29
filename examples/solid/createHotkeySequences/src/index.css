@@ -15,6 +15,10 @@ body {
   margin: 0 auto;
   padding: 20px;
 }
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
 header h1 {
   margin: 0 0 10px;
   color: #0066cc;
@@ -39,6 +43,7 @@ header p {
 kbd {
   background: linear-gradient(180deg, #f8f8f8 0%, #e8e8e8 100%);
   border: 1px solid #ccc;
+  border-bottom-width: 2px;
   border-radius: 4px;
   padding: 2px 8px;
   font-family: monospace;
@@ -55,6 +60,11 @@ kbd {
   text-align: left;
   border-bottom: 1px solid #eee;
 }
+.sequence-table th {
+  font-weight: 600;
+  color: #666;
+  font-size: 14px;
+}
 .fun-sequences {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -70,11 +80,14 @@ kbd {
   margin: 0 0 12px;
   font-size: 16px;
 }
+.sequence-card p {
+  margin: 0 0 8px;
+}
 .sequence-toggle-status {
   font-size: 13px;
   color: #555;
   font-style: normal;
-  margin: 12px 0 10px;
+  margin: 12px 0 10px !important;
   line-height: 1.4;
 }
 .hint {
@@ -100,6 +113,7 @@ kbd {
   border-radius: 8px;
   overflow-x: auto;
   font-size: 13px;
+  line-height: 1.5;
 }
 .history-list {
   list-style: none;
@@ -121,6 +135,10 @@ button {
   padding: 10px 20px;
   border-radius: 6px;
   cursor: pointer;
+  font-size: 14px;
+}
+button:hover {
+  background: #0052a3;
 }
 
 .counter {
@@ -144,4 +162,48 @@ button {
   outline: 2px solid #0066cc;
   outline-offset: 2px;
   border-color: #0066cc;
+}
+
+/* Registrations table */
+.registrations-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.registrations-table th {
+  text-align: left;
+  padding: 8px 12px;
+  background: #f0f0f0;
+  border-bottom: 2px solid #ddd;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+}
+.registrations-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+}
+.registrations-table tbody tr:hover {
+  background: #f8f8f8;
+}
+.description-cell {
+  color: #666;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.trigger-count {
+  font-family: monospace;
+  font-weight: bold;
+  text-align: center;
+}
+.status-on {
+  color: #28a745;
+  font-weight: 500;
+}
+.status-off {
+  color: #dc3545;
+  font-weight: 500;
 }

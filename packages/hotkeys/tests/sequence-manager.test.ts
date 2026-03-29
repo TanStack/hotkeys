@@ -835,3 +835,115 @@ describe('createSequenceMatcher', () => {
     expect(matcher.getProgress()).toBe(1) // Started new sequence
   })
 })
+
+describe('SequenceManager meta option', () => {
+  beforeEach(() => {
+    SequenceManager.resetInstance()
+    vi.useFakeTimers()
+  })
+
+  afterEach(() => {
+    SequenceManager.resetInstance()
+    vi.useRealTimers()
+  })
+
+  it('should store meta in registration view options', () => {
+    const manager = SequenceManager.getInstance()
+    const callback = vi.fn()
+
+    manager.register(['G', 'G'], callback, {
+      meta: { name: 'Go to top', description: 'Scroll to the top of the page' },
+    })
+
+    const view = Array.from(manager.registrations.state.values())[0]!
+    expect(view.options.meta).toEqual({
+      name: 'Go to top',
+      description: 'Scroll to the top of the page',
+    })
+  })
+
+  it('should allow registering sequences without meta', () => {
+    const manager = SequenceManager.getInstance()
+    const callback = vi.fn()
+
+    manager.register(['D', 'D'], callback)
+
+    const view = Array.from(manager.registrations.state.values())[0]!
+    expect(view.options.meta).toBeUndefined()
+  })
+})
+
+describe('SequenceManager hasFired', () => {
+  beforeEach(() => {
+    SequenceManager.resetInstance()
+    vi.useFakeTimers()
+  })
+
+  afterEach(() => {
+    SequenceManager.resetInstance()
+    vi.useRealTimers()
+  })
+
+  it('should start with hasFired as false', () => {
+    const manager = SequenceManager.getInstance()
+    const callback = vi.fn()
+
+    manager.register(['G', 'G'], callback)
+
+    const view = Array.from(manager.registrations.state.values())[0]!
+    expect(view.hasFired).toBe(false)
+  })
+
+  it('should set hasFired to true after sequence triggers', () => {
+    const manager = SequenceManager.getInstance()
+    const callback = vi.fn()
+
+    manager.register(['G', 'G'], callback)
+
+    dispatchKey('g')
+    dispatchKey('g')
+
+    expect(callback).toHaveBeenCalledTimes(1)
+
+    const view = Array.from(manager.registrations.state.values())[0]!
+    expect(view.hasFired).toBe(true)
+  })
+
+  it('should set hasFired to true via triggerSequence', () => {
+    const manager = SequenceManager.getInstance()
+    const callback = vi.fn()
+
+    const handle = manager.register(['G', 'G'], callback)
+
+    expect(Array.from(manager.registrations.state.values())[0]!.hasFired).toBe(
+      false,
+    )
+
+    manager.triggerSequence(handle.id)
+
+    expect(Array.from(manager.registrations.state.values())[0]!.hasFired).toBe(
+      true,
+    )
+  })
+
+  it('should expose hasFired in the SequenceRegistrationView', () => {
+    const manager = SequenceManager.getInstance()
+    const callback = vi.fn()
+
+    manager.register(['D', 'D'], callback)
+
+    // Before trigger
+    let view = Array.from(manager.registrations.state.values())[0]!
+    expect(view).toHaveProperty('hasFired')
+    expect(view.hasFired).toBe(false)
+
+    // Trigger sequence
+    dispatchKey('d')
+    dispatchKey('d')
+
+    // After trigger
+    view = Array.from(manager.registrations.state.values())[0]!
+    expect(view.hasFired).toBe(true)
+    expect(view.triggerCount).toBe(1)
+  })
+})

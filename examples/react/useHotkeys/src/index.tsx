@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client'
 import {
   HotkeysProvider,
   formatForDisplay,
+  useHotkeyRegistrations,
   useHotkeys,
 } from '@tanstack/react-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
@@ -27,6 +28,7 @@ function App() {
           <BasicMultiHotkeys />
           <CommonOptionsDemo />
           <DynamicHotkeysDemo />
+          <RegistrationsViewer />
         </div>
       </HotkeysProvider>
       <TanStackDevtools plugins={plugins} />
@@ -51,6 +53,9 @@ function BasicMultiHotkeys() {
         setSaveCount((c) => c + 1)
         setLog((l) => [`${hotkey} pressed`, ...l].slice(0, 20))
       },
+      options: {
+        meta: { name: 'Save', description: 'Save the current document' },
+      },
     },
     {
       hotkey: 'Shift+U',
@@ -58,12 +63,18 @@ function BasicMultiHotkeys() {
         setUndoCount((c) => c + 1)
         setLog((l) => [`${hotkey} pressed`, ...l].slice(0, 20))
       },
+      options: {
+        meta: { name: 'Undo', description: 'Undo the last action' },
+      },
     },
     {
       hotkey: 'Shift+R',
       callback: (_e, { hotkey }) => {
         setRedoCount((c) => c + 1)
         setLog((l) => [`${hotkey} pressed`, ...l].slice(0, 20))
+      },
+      options: {
+        meta: { name: 'Redo', description: 'Redo the last undone action' },
       },
     },
   ])
@@ -73,7 +84,7 @@ function BasicMultiHotkeys() {
       <h2>Basic Multi-Hotkey Registration</h2>
       <p>
         All three hotkeys are registered in a single <code>useHotkeys()</code>{' '}
-        call.
+        call with <code>meta</code> for name and description.
       </p>
       <div className="hotkey-grid">
         <div>
@@ -96,9 +107,16 @@ function BasicMultiHotkeys() {
         </div>
       )}
       <pre className="code-block">{`useHotkeys([
-  { hotkey: 'Shift+S', callback: () => save() },
-  { hotkey: 'Shift+U', callback: () => undo() },
-  { hotkey: 'Shift+R', callback: () => redo() },
+  {
+    hotkey: 'Shift+S',
+    callback: () => save(),
+    options: { meta: { name: 'Save', description: 'Save the document' } },
+  },
+  {
+    hotkey: 'Shift+U',
+    callback: () => undo(),
+    options: { meta: { name: 'Undo', description: 'Undo the last action' } },
+  },
 ])`}</pre>
     </div>
   )
@@ -117,15 +135,33 @@ function CommonOptionsDemo() {
       {
         hotkey: 'Alt+J',
         callback: () => setCounts((c) => ({ ...c, a: c.a + 1 })),
+        options: {
+          meta: {
+            name: 'Action A',
+            description: 'First action (respects toggle)',
+          },
+        },
       },
       {
         hotkey: 'Alt+K',
         callback: () => setCounts((c) => ({ ...c, b: c.b + 1 })),
+        options: {
+          meta: {
+            name: 'Action B',
+            description: 'Second action (respects toggle)',
+          },
+        },
       },
       {
         hotkey: 'Alt+L',
         callback: () => setCounts((c) => ({ ...c, c: c.c + 1 })),
-        options: { enabled: true },
+        options: {
+          enabled: true,
+          meta: {
+            name: 'Action C',
+            description: 'Always-on action (overrides toggle)',
+          },
+        },
       },
     ],
     { enabled },
@@ -159,10 +195,10 @@ function CommonOptionsDemo() {
       </div>
       <pre className="code-block">{`useHotkeys(
   [
-    { hotkey: 'Alt+J', callback: () => actionA() },
-    { hotkey: 'Alt+K', callback: () => actionB() },
+    { hotkey: 'Alt+J', callback: () => actionA(),
+      options: { meta: { name: 'Action A' } } },
     { hotkey: 'Alt+L', callback: () => actionC(),
-      options: { enabled: true } }, // overrides common
+      options: { enabled: true, meta: { name: 'Action C' } } },
   ],
   { enabled }, // common option
 )`}</pre>
@@ -178,15 +214,34 @@ interface DynamicShortcut {
   id: number
   hotkey: string
   label: string
+  description: string
   count: number
 }
 
 let nextId = 0
 
 const DEFAULT_SHORTCUTS: Array<DynamicShortcut> = [
-  { id: nextId++, hotkey: 'Shift+A', label: 'Action A', count: 0 },
-  { id: nextId++, hotkey: 'Shift+B', label: 'Action B', count: 0 },
-  { id: nextId++, hotkey: 'Shift+C', label: 'Action C', count: 0 },
+  {
+    id: nextId++,
+    hotkey: 'Shift+A',
+    label: 'Action A',
+    description: 'First dynamic action',
+    count: 0,
+  },
+  {
+    id: nextId++,
+    hotkey: 'Shift+B',
+    label: 'Action B',
+    description: 'Second dynamic action',
+    count: 0,
+  },
+  {
+    id: nextId++,
+    hotkey: 'Shift+C',
+    label: 'Action C',
+    description: 'Third dynamic action',
+    count: 0,
+  },
 ]
 
 function DynamicHotkeysDemo() {
@@ -194,6 +249,7 @@ function DynamicHotkeysDemo() {
     React.useState<Array<DynamicShortcut>>(DEFAULT_SHORTCUTS)
   const [newHotkey, setNewHotkey] = React.useState('')
   const [newLabel, setNewLabel] = React.useState('')
+  const [newDescription, setNewDescription] = React.useState('')
 
   const definitions: Array<UseHotkeyDefinition> = shortcuts.map((s) => ({
     hotkey: s.hotkey as Hotkey,
@@ -204,6 +260,9 @@ function DynamicHotkeysDemo() {
         ),
       )
     },
+    options: {
+      meta: { name: s.label, description: s.description },
+    },
   }))
 
   useHotkeys(definitions)
@@ -213,10 +272,17 @@ function DynamicHotkeysDemo() {
     if (!trimmed || !newLabel.trim()) return
     setShortcuts((prev) => [
       ...prev,
-      { id: nextId++, hotkey: trimmed, label: newLabel.trim(), count: 0 },
+      {
+        id: nextId++,
+        hotkey: trimmed,
+        label: newLabel.trim(),
+        description: newDescription.trim(),
+        count: 0,
+      },
     ])
     setNewHotkey('')
     setNewLabel('')
+    setNewDescription('')
   }
 
   const removeShortcut = (id: number) => {
@@ -256,9 +322,18 @@ function DynamicHotkeysDemo() {
         />
         <input
           type="text"
-          placeholder="Label (e.g. Action D)"
+          placeholder="Name (e.g. Action D)"
           value={newLabel}
           onChange={(e) => setNewLabel(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') addShortcut()
+          }}
+        />
+        <input
+          type="text"
+          placeholder="Description (optional)"
+          value={newDescription}
+          onChange={(e) => setNewDescription(e.target.value)}
           onKeyDown={(e) => {
             if (e.key === 'Enter') addShortcut()
           }}
@@ -273,8 +348,114 @@ useHotkeys(
   shortcuts.map((s) => ({
     hotkey: s.key,
     callback: s.action,
+    options: { meta: { name: s.name, description: s.description } },
   })),
 )`}</pre>
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Live registrations viewer using useHotkeyRegistrations
+// ---------------------------------------------------------------------------
+
+function RegistrationsViewer() {
+  const { hotkeys, sequences } = useHotkeyRegistrations()
+
+  return (
+    <div className="demo-section">
+      <h2>Live Registrations (useHotkeyRegistrations)</h2>
+      <p>
+        This table is rendered from <code>useHotkeyRegistrations()</code> — a
+        reactive view of all registered hotkeys. It updates automatically as
+        hotkeys are added, removed, enabled/disabled, or triggered.
+      </p>
+      <table className="registrations-table">
+        <thead>
+          <tr>
+            <th>Hotkey</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Enabled</th>
+            <th>Triggers</th>
+          </tr>
+        </thead>
+        <tbody>
+          {hotkeys.map((reg) => (
+            <tr key={reg.id}>
+              <td>
+                <kbd>{formatForDisplay(reg.hotkey)}</kbd>
+              </td>
+              <td>{reg.options.meta?.name ?? '—'}</td>
+              <td className="description-cell">
+                {reg.options.meta?.description ?? '—'}
+              </td>
+              <td>
+                <span
+                  className={
+                    reg.options.enabled !== false ? 'status-on' : 'status-off'
+                  }
+                >
+                  {reg.options.enabled !== false ? 'yes' : 'no'}
+                </span>
+              </td>
+              <td className="trigger-count">{reg.triggerCount}</td>
+            </tr>
+          ))}
+          {hotkeys.length === 0 && (
+            <tr>
+              <td colSpan={5} className="hint">
+                No hotkeys registered
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+      {sequences.length > 0 && (
+        <>
+          <h3 style={{ marginTop: 16 }}>Sequences</h3>
+          <table className="registrations-table">
+            <thead>
+              <tr>
+                <th>Sequence</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Triggers</th>
+              </tr>
+            </thead>
+            <tbody>
+              {sequences.map((reg) => (
+                <tr key={reg.id}>
+                  <td>
+                    {reg.sequence.map((s, i) => (
+                      <React.Fragment key={i}>
+                        {i > 0 && ' '}
+                        <kbd>{formatForDisplay(s)}</kbd>
+                      </React.Fragment>
+                    ))}
+                  </td>
+                  <td>{reg.options.meta?.name ?? '—'}</td>
+                  <td className="description-cell">
+                    {reg.options.meta?.description ?? '—'}
+                  </td>
+                  <td className="trigger-count">{reg.triggerCount}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
+      <pre className="code-block">{`const { hotkeys, sequences } = useHotkeyRegistrations()
+
+// Render a live table of all registrations
+hotkeys.map((reg) => (
+  <tr key={reg.id}>
+    <td>{formatForDisplay(reg.hotkey)}</td>
+    <td>{reg.options.meta?.name}</td>
+    <td>{reg.options.meta?.description}</td>
+    <td>{reg.triggerCount}</td>
+  </tr>
+))`}</pre>
     </div>
   )
 }

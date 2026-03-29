@@ -94,6 +94,18 @@ export const appConfig: ApplicationConfig = {
 }
 ```
 
+### `meta`
+
+Sequences support the same `meta` option as hotkeys, allowing you to attach a `name` and `description` for use in shortcut palettes and devtools.
+
+```ts
+injectHotkeySequence(['G', 'G'], () => scrollToTop(), {
+  meta: { name: 'Go to Top', description: 'Scroll to the top of the page' },
+})
+```
+
+See the [Hotkeys Guide](./hotkeys.md#metadata-name--description) for details on declaration merging and introspecting registrations.
+
 ## Chained modifier chords
 
 You can repeat the same modifier across consecutive steps:

@@ -1,6 +1,6 @@
 import { useStore } from '@tanstack/react-store'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
-import type { HeldKey } from '@tanstack/hotkeys'
+import type { IndividualKey } from '@tanstack/hotkeys'
 
 /**
  * React hook that returns whether a specific key is currently being held.
@@ -42,7 +42,7 @@ import type { HeldKey } from '@tanstack/hotkeys'
  * }
  * ```
  */
-export function useKeyHold(key: HeldKey): boolean {
+export function useKeyHold(key: IndividualKey): boolean {
   const tracker = getKeyStateTracker()
   const normalizedKey = key.toLowerCase()
 

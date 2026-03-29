@@ -106,6 +106,17 @@ When `commitKeys` is `'enter'`, set to `false` to treat Enter as a normal chord.
 
 Milliseconds of inactivity **after the last completed chord** to auto-commit. The timer does not run while waiting for the **first** chord.
 
+### `ignoreInputs`
+
+The `HotkeySequenceRecorderOptions` supports an `ignoreInputs` option (defaults to `true`). When `true`, the recorder will not intercept normal typing in text inputs, textareas, selects, or contentEditable elements -- keystrokes pass through to the input as usual. Pressing **Escape** still cancels recording even when focused on an input. Set `ignoreInputs: false` if you want the recorder to capture keys from within input elements.
+
+```ts
+new HotkeySequenceRecorderController(this, {
+  ignoreInputs: false, // record even from inside inputs
+  onRecord: (sequence) => console.log(sequence),
+})
+```
+
 ## Recording Behavior
 
 | Input | Behavior |

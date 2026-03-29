@@ -23,7 +23,7 @@ specified key is held.
 
 The key to check (e.g., 'Shift', 'Control', 'A') - can be an accessor function
 
-`HeldKey` | () => `HeldKey`
+`IndividualKey` | () => `IndividualKey`
 
 ## Returns
 

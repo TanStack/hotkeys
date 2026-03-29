@@ -278,6 +278,75 @@ function MenuShortcuts(props) {
 
 The primitive tracks dependencies automatically and diffs registrations when the array changes.
 
+## Metadata (name & description)
+
+Every hotkey registration can carry a `meta` object with a `name` and `description`. This metadata is informational only -- it does not affect hotkey behavior -- but it flows through to registrations and devtools, making it easy to build shortcut palettes and help screens.
+
+```tsx
+createHotkey('Mod+S', () => save(), {
+  meta: { name: 'Save', description: 'Save the document' },
+})
+```
+
+The `meta` option is typed as `HotkeyMeta`, which ships with `name` and `description` fields. You can extend it with additional properties using TypeScript declaration merging:
+
+```tsx
+declare module '@tanstack/hotkeys' {
+  interface HotkeyMeta {
+    icon?: string
+    group?: string
+  }
+}
+
+createHotkey('Mod+S', () => save(), {
+  meta: { name: 'Save', description: 'Save the document', icon: 'floppy', group: 'File' },
+})
+```
+
+## Introspecting Registrations
+
+Use the `createHotkeyRegistrations` primitive to get a live view of all hotkey and sequence registrations. This is useful for building shortcut palettes, help dialogs, or devtools.
+
+```tsx
+import { createHotkeyRegistrations } from '@tanstack/solid-hotkeys'
+
+function ShortcutPalette() {
+  const registrations = createHotkeyRegistrations()
+
+  return (
+    <div>
+      <h2>Keyboard Shortcuts</h2>
+      <ul>
+        <For each={registrations().hotkeys}>
+          {(reg) => (
+            <li>
+              <kbd>{reg.hotkey}</kbd>
+              {reg.meta?.name && <span> — {reg.meta.name}</span>}
+              {reg.meta?.description && <p>{reg.meta.description}</p>}
+            </li>
+          )}
+        </For>
+      </ul>
+      <Show when={registrations().sequences.length > 0}>
+        <h2>Sequences</h2>
+        <ul>
+          <For each={registrations().sequences}>
+            {(reg) => (
+              <li>
+                <kbd>{reg.sequence.join(' → ')}</kbd>
+                {reg.meta?.name && <span> — {reg.meta.name}</span>}
+              </li>
+            )}
+          </For>
+        </ul>
+      </Show>
+    </div>
+  )
+}
+```
+
+The returned accessor provides an object with a `hotkeys` array containing registration objects with the hotkey string, options (including `meta`), and enabled state, and a `sequences` array containing sequence registrations with the same structure.
+
 ## The Hotkey Manager
 
 Under the hood, `createHotkey` uses the singleton `HotkeyManager`. You can also access the manager directly if needed:

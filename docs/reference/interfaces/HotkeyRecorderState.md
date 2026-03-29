@@ -5,7 +5,7 @@ title: HotkeyRecorderState
 
 # Interface: HotkeyRecorderState
 
-Defined in: [hotkey-recorder.ts:9](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L9)
+Defined in: [hotkey-recorder.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L10)
 
 State interface for the HotkeyRecorder.
 
@@ -17,7 +17,7 @@ State interface for the HotkeyRecorder.
 isRecording: boolean;
 ```
 
-Defined in: [hotkey-recorder.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L11)
+Defined in: [hotkey-recorder.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L12)
 
 Whether recording is currently active
 
@@ -29,6 +29,6 @@ Whether recording is currently active
 recordedHotkey: Hotkey | null;
 ```
 
-Defined in: [hotkey-recorder.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L13)
+Defined in: [hotkey-recorder.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L14)
 
 The currently recorded hotkey (for live preview)

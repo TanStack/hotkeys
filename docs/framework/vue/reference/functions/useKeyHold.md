@@ -21,7 +21,7 @@ the specified key is held.
 
 ### key
 
-`MaybeRefOrGetter`\<`HeldKey`\>
+`MaybeRefOrGetter`\<`IndividualKey`\>
 
 The key to check (e.g., 'Shift', 'Control', 'A')
 

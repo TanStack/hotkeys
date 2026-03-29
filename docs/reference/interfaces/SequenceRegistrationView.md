@@ -12,6 +12,18 @@ Progress fields reflect an in-progress match (between first key and completion o
 
 ## Properties
 
+### hasFired
+
+```ts
+hasFired: boolean;
+```
+
+Defined in: [sequence-manager.ts:83](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L83)
+
+Whether this sequence has been triggered at least once.
+
+***
+
 ### id
 
 ```ts
@@ -28,7 +40,7 @@ Defined in: [sequence-manager.ts:77](https://github.com/TanStack/hotkeys/blob/ma
 matchedStepCount: number;
 ```
 
-Defined in: [sequence-manager.ts:83](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L83)
+Defined in: [sequence-manager.ts:85](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L85)
 
 Steps matched in the current attempt (0 when idle or just completed).
 
@@ -50,7 +62,7 @@ Defined in: [sequence-manager.ts:79](https://github.com/TanStack/hotkeys/blob/ma
 partialMatchLastKeyTime: number;
 ```
 
-Defined in: [sequence-manager.ts:85](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L85)
+Defined in: [sequence-manager.ts:87](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L87)
 
 `Date.now()` when the last step in the current attempt matched; 0 if none.
 

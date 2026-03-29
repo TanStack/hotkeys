@@ -2,17 +2,28 @@
 import { formatForDisplay, useHeldKeys } from '@tanstack/vue-hotkeys'
 import type { HotkeySequence } from '@tanstack/vue-hotkeys'
 
-defineEmits<{
-  edit: []
-  cancel: []
-}>()
+interface Shortcut {
+  id: string
+  name: string
+  description: string
+  sequence: HotkeySequence
+}
 
 defineProps<{
-  actionName: string
-  sequence: HotkeySequence
-  disabled: boolean
-  isRecording: boolean
+  shortcut: Shortcut
+  isEditing: boolean
+  draftName: string
+  draftDescription: string
   liveSteps: HotkeySequence
+}>()
+
+defineEmits<{
+  'update:draftName': [value: string]
+  'update:draftDescription': [value: string]
+  edit: []
+  save: []
+  cancel: []
+  delete: []
 }>()
 
 const heldKeys = useHeldKeys()
@@ -23,11 +34,48 @@ function formatSeq(seq: HotkeySequence): string {
 </script>
 
 <template>
-  <div class="shortcut-item" :class="{ recording: isRecording }">
+  <div class="shortcut-item" :class="{ recording: isEditing }">
     <div class="shortcut-item-content">
-      <div class="shortcut-action">{{ actionName }}</div>
+      <div class="shortcut-action">
+        <template v-if="isEditing">
+          <div class="editing-fields">
+            <input
+              type="text"
+              class="edit-input edit-name"
+              :value="draftName"
+              placeholder="Shortcut name"
+              autofocus
+              @input="
+                $emit(
+                  'update:draftName',
+                  ($event.target as HTMLInputElement).value,
+                )
+              "
+            />
+            <input
+              type="text"
+              class="edit-input edit-description"
+              :value="draftDescription"
+              placeholder="Description (optional)"
+              @input="
+                $emit(
+                  'update:draftDescription',
+                  ($event.target as HTMLInputElement).value,
+                )
+              "
+            />
+          </div>
+        </template>
+        <template v-else>
+          <template v-if="shortcut.name">{{ shortcut.name }}</template>
+          <span v-else class="unnamed">Unnamed</span>
+          <div v-if="shortcut.description" class="shortcut-description">
+            {{ shortcut.description }}
+          </div>
+        </template>
+      </div>
       <div class="shortcut-hotkey">
-        <div v-if="isRecording" class="recording-indicator">
+        <div v-if="isEditing" class="recording-indicator">
           <span v-if="liveSteps.length > 0" class="held-hotkeys">{{
             formatSeq(liveSteps)
           }}</span>
@@ -37,24 +85,31 @@ function formatSeq(seq: HotkeySequence): string {
               <kbd>{{ key }}</kbd>
             </template>
           </div>
-          <span v-else class="recording-text">Press chords, then Enter…</span>
+          <span v-else class="recording-text">Press chords, then Enter...</span>
         </div>
-        <kbd v-else-if="!disabled">{{ formatSeq(sequence) }}</kbd>
+        <kbd v-else-if="shortcut.sequence.length > 0">{{
+          formatSeq(shortcut.sequence)
+        }}</kbd>
         <span v-else class="no-shortcut">No shortcut</span>
       </div>
     </div>
     <div class="shortcut-actions">
-      <button
-        v-if="isRecording"
-        type="button"
-        class="cancel-button"
-        @click="$emit('cancel')"
-      >
-        Cancel
-      </button>
-      <button v-else type="button" class="edit-button" @click="$emit('edit')">
-        Edit
-      </button>
+      <template v-if="isEditing">
+        <button type="button" class="save-button" @click="$emit('save')">
+          Save
+        </button>
+        <button type="button" class="cancel-button" @click="$emit('cancel')">
+          Cancel
+        </button>
+      </template>
+      <template v-else>
+        <button type="button" class="edit-button" @click="$emit('edit')">
+          Edit
+        </button>
+        <button type="button" class="delete-button" @click="$emit('delete')">
+          Delete
+        </button>
+      </template>
     </div>
   </div>
 </template>

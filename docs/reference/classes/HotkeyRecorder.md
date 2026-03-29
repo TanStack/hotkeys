@@ -5,7 +5,7 @@ title: HotkeyRecorder
 
 # Class: HotkeyRecorder
 
-Defined in: [hotkey-recorder.ts:67](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L67)
+Defined in: [hotkey-recorder.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L76)
 
 Framework-agnostic class for recording keyboard shortcuts.
 
@@ -54,7 +54,7 @@ unsubscribe()
 new HotkeyRecorder(options): HotkeyRecorder;
 ```
 
-Defined in: [hotkey-recorder.ts:81](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L81)
+Defined in: [hotkey-recorder.ts:90](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L90)
 
 #### Parameters
 
@@ -74,7 +74,7 @@ Defined in: [hotkey-recorder.ts:81](https://github.com/TanStack/hotkeys/blob/mai
 readonly store: Store<HotkeyRecorderState>;
 ```
 
-Defined in: [hotkey-recorder.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L72)
+Defined in: [hotkey-recorder.ts:81](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L81)
 
 The TanStack Store instance containing the recorder state.
 Use this to subscribe to state changes or access current state.
@@ -87,7 +87,7 @@ Use this to subscribe to state changes or access current state.
 cancel(): void;
 ```
 
-Defined in: [hotkey-recorder.ts:200](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L200)
+Defined in: [hotkey-recorder.ts:220](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L220)
 
 Cancel recording without saving.
 
@@ -106,7 +106,7 @@ the onCancel callback if provided.
 destroy(): void;
 ```
 
-Defined in: [hotkey-recorder.ts:245](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L245)
+Defined in: [hotkey-recorder.ts:265](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L265)
 
 Clean up event listeners and reset state.
 
@@ -125,7 +125,7 @@ all event listeners are properly removed.
 setOptions(options): void;
 ```
 
-Defined in: [hotkey-recorder.ts:90](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L90)
+Defined in: [hotkey-recorder.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L99)
 
 Updates the recorder options, including callbacks.
 This allows framework adapters to sync callback changes without recreating the recorder.
@@ -148,7 +148,7 @@ This allows framework adapters to sync callback changes without recreating the r
 start(): void;
 ```
 
-Defined in: [hotkey-recorder.ts:104](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L104)
+Defined in: [hotkey-recorder.ts:113](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L113)
 
 Start recording a new hotkey.
 
@@ -168,7 +168,7 @@ a valid hotkey is recorded, Escape is pressed, or stop/cancel is called.
 stop(): void;
 ```
 
-Defined in: [hotkey-recorder.ts:180](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L180)
+Defined in: [hotkey-recorder.ts:200](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L200)
 
 Stop recording (same as cancel, but doesn't call onCancel).
 

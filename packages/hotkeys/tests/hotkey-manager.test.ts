@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { HotkeyManager } from '../src/hotkey-manager'
+import { HotkeyManager, toHotkeyRegistrationView } from '../src/hotkey-manager'
 
 /**
  * Helper to create a mock KeyboardEvent
@@ -1283,6 +1283,146 @@ describe('HotkeyManager', () => {
       expect(manager.getRegistrationCount()).toBe(2)
 
       warnSpy.mockRestore()
+    })
+  })
+
+  describe('meta option', () => {
+    it('should store meta with name and description in registration options', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Mod+S', callback, {
+        platform: 'mac',
+        meta: { name: 'Save', description: 'Save the document' },
+      })
+
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      expect(reg.options.meta).toEqual({
+        name: 'Save',
+        description: 'Save the document',
+      })
+    })
+
+    it('should store meta with only name', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Mod+Z', callback, {
+        platform: 'mac',
+        meta: { name: 'Undo' },
+      })
+
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      expect(reg.options.meta?.name).toBe('Undo')
+      expect(reg.options.meta?.description).toBeUndefined()
+    })
+
+    it('should allow registering without meta', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Mod+S', callback, { platform: 'mac' })
+
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      expect(reg.options.meta).toBeUndefined()
+    })
+
+    it('should allow custom properties on meta (declaration merging)', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Mod+S', callback, {
+        platform: 'mac',
+        meta: {
+          name: 'Save',
+          description: 'Save the document',
+          // Simulating declaration-merged custom properties
+          ...({ category: 'File', icon: 'save' } as any),
+        },
+      })
+
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      expect((reg.options.meta as any).category).toBe('File')
+      expect((reg.options.meta as any).icon).toBe('save')
+    })
+
+    it('should preserve meta through setOptions', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      const handle = manager.register('Mod+S', callback, {
+        platform: 'mac',
+        meta: { name: 'Save', description: 'Save the document' },
+      })
+
+      handle.setOptions({ enabled: false })
+
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      expect(reg.options.meta).toEqual({
+        name: 'Save',
+        description: 'Save the document',
+      })
+      expect(reg.options.enabled).toBe(false)
+    })
+  })
+
+  describe('toHotkeyRegistrationView', () => {
+    it('should strip callback from the view', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Mod+S', callback, { platform: 'mac' })
+
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      const view = toHotkeyRegistrationView(reg)
+
+      expect(view).not.toHaveProperty('callback')
+      expect(view.hotkey).toBe(reg.hotkey)
+      expect(view.id).toBe(reg.id)
+      expect(view.options).toBe(reg.options)
+      expect(view.parsedHotkey).toBe(reg.parsedHotkey)
+      expect(view.target).toBe(reg.target)
+      expect(view.triggerCount).toBe(reg.triggerCount)
+      expect(view.hasFired).toBe(reg.hasFired)
+    })
+
+    it('should include meta in the view via options', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Mod+S', callback, {
+        platform: 'mac',
+        meta: { name: 'Save', description: 'Save the document' },
+      })
+
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      const view = toHotkeyRegistrationView(reg)
+
+      expect(view.options.meta).toEqual({
+        name: 'Save',
+        description: 'Save the document',
+      })
+    })
+
+    it('should reflect hasFired state', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Mod+S', callback, {
+        platform: 'mac',
+        requireReset: true,
+      })
+
+      const regBefore = Array.from(manager.registrations.state.values())[0]!
+      expect(toHotkeyRegistrationView(regBefore).hasFired).toBe(false)
+
+      // Trigger the hotkey
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 's', { metaKey: true }),
+      )
+
+      const regAfter = Array.from(manager.registrations.state.values())[0]!
+      expect(toHotkeyRegistrationView(regAfter).hasFired).toBe(true)
     })
   })
 })

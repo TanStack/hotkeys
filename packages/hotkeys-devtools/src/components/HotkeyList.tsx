@@ -1,5 +1,6 @@
 import { For, Show, createEffect, createMemo, createSignal, on } from 'solid-js'
 import clsx from 'clsx'
+import { matchSorter } from 'match-sorter'
 import { formatForDisplay } from '@tanstack/hotkeys'
 import { useStyles } from '../styles/use-styles'
 import { useHotkeysDevtoolsState } from '../HotkeysContextProvider'
@@ -113,6 +114,17 @@ function findSequenceScopeConflicts(
   )
 }
 
+function buildRowTooltip(meta?: {
+  name?: string
+  description?: string
+}): string | undefined {
+  if (!meta) return undefined
+  const parts: Array<string> = []
+  if (meta.name) parts.push(meta.name)
+  if (meta.description) parts.push(meta.description)
+  return parts.length > 0 ? parts.join(' — ') : undefined
+}
+
 function SequenceListRow(props: {
   reg: SequenceRegistrationView
   getSequences: () => Array<SequenceRegistrationView>
@@ -195,32 +207,46 @@ function SequenceListRow(props: {
     }),
   )
 
+  const metaName = () => props.reg.options.meta?.name
+  const rowTooltip = () => buildRowTooltip(props.reg.options.meta)
+
   return (
     <div
       class={clsx(
         styles().hotkeyRow,
         props.selectedId() === props.reg.id && styles().hotkeyRowSelected,
         pulsing() && styles().hotkeyRowTriggered,
+        rowTooltip() && styles().tooltip,
       )}
       onClick={() => props.setSelectedId(props.reg.id)}
     >
+      <Show when={rowTooltip()}>
+        <span class={styles().rowTooltipText} data-tooltip>
+          {rowTooltip()}
+        </span>
+      </Show>
       <span class={styles().hotkeyLabel}>
-        <For each={liveSequenceReg().sequence}>
-          {(step, i) => (
-            <span>
-              <Show when={i() > 0}> </Show>
-              <span
-                class={
-                  i() < matchedSteps()
-                    ? styles().sequenceStepMatched
-                    : undefined
-                }
-              >
-                {formatForDisplay(step)}
+        <span class={styles().hotkeyLabelKeys}>
+          <For each={liveSequenceReg().sequence}>
+            {(step, i) => (
+              <span>
+                <Show when={i() > 0}> </Show>
+                <span
+                  class={
+                    i() < matchedSteps()
+                      ? styles().sequenceStepMatched
+                      : undefined
+                  }
+                >
+                  {formatForDisplay(step)}
+                </span>
               </span>
-            </span>
-          )}
-        </For>
+            )}
+          </For>
+        </span>
+        <Show when={metaName()}>
+          <span class={styles().hotkeyLabelName}>{metaName()}</span>
+        </Show>
       </span>
       <Show when={triggerCount() > 0}>
         <span class={styles().triggerCount}>x{triggerCount()}</span>
@@ -293,14 +319,62 @@ export function HotkeyList(props: HotkeyListProps) {
   const styles = useStyles()
   const state = useHotkeysDevtoolsState()
 
+  const [searchQuery, setSearchQuery] = createSignal('')
+
   const registrations = createMemo(() => state.registrations())
   const sequenceRegistrations = createMemo(() => state.sequenceRegistrations())
 
+  const filteredRegistrations = createMemo(() => {
+    const query = searchQuery().trim()
+    if (!query) return registrations()
+    return matchSorter(registrations(), query, {
+      keys: [
+        (r) => formatForDisplay(r.hotkey),
+        'hotkey',
+        'options.meta.name',
+        'options.meta.description',
+      ],
+    })
+  })
+
+  const filteredSequenceRegistrations = createMemo(() => {
+    const query = searchQuery().trim()
+    if (!query) return sequenceRegistrations()
+    return matchSorter(sequenceRegistrations(), query, {
+      keys: [
+        (r) => r.sequence.map((s) => formatForDisplay(s)).join(' '),
+        (r) => r.sequence.join(' '),
+        'options.meta.name',
+        'options.meta.description',
+      ],
+    })
+  })
+
   return (
     <>
-      <div class={styles().panelHeader}>Hotkeys ({registrations().length})</div>
+      <div class={styles().searchContainer}>
+        <input
+          type="text"
+          class={styles().searchInput}
+          placeholder="Search hotkeys..."
+          value={searchQuery()}
+          onInput={(e) => setSearchQuery(e.currentTarget.value)}
+        />
+        <Show when={searchQuery()}>
+          <button
+            class={styles().searchClear}
+            onClick={() => setSearchQuery('')}
+          >
+            &times;
+          </button>
+        </Show>
+      </div>
+
+      <div class={styles().panelHeader}>
+        Hotkeys ({filteredRegistrations().length})
+      </div>
       <div class={styles().hotkeyList}>
-        <For each={registrations()}>
+        <For each={filteredRegistrations()}>
           {(reg) => {
             const targetConflicts = () =>
               findTargetConflicts(reg, registrations())
@@ -365,17 +439,31 @@ export function HotkeyList(props: HotkeyListProps) {
               }),
             )
 
+            const metaName = () => reg.options.meta?.name
+            const rowTooltip = () => buildRowTooltip(reg.options.meta)
+
             return (
               <div
                 class={clsx(
                   styles().hotkeyRow,
                   props.selectedId() === reg.id && styles().hotkeyRowSelected,
                   pulsing() && styles().hotkeyRowTriggered,
+                  rowTooltip() && styles().tooltip,
                 )}
                 onClick={() => props.setSelectedId(reg.id)}
               >
+                <Show when={rowTooltip()}>
+                  <span class={styles().rowTooltipText} data-tooltip>
+                    {rowTooltip()}
+                  </span>
+                </Show>
                 <span class={styles().hotkeyLabel}>
-                  {formatForDisplay(reg.hotkey)}
+                  <span class={styles().hotkeyLabelKeys}>
+                    {formatForDisplay(reg.hotkey)}
+                  </span>
+                  <Show when={metaName()}>
+                    <span class={styles().hotkeyLabelName}>{metaName()}</span>
+                  </Show>
                 </span>
                 <Show when={triggerCount() > 0}>
                   <span class={styles().triggerCount}>x{triggerCount()}</span>
@@ -457,10 +545,10 @@ export function HotkeyList(props: HotkeyListProps) {
       </div>
 
       <div class={styles().panelHeader}>
-        Sequences ({sequenceRegistrations().length})
+        Sequences ({filteredSequenceRegistrations().length})
       </div>
       <div class={styles().hotkeyList}>
-        <For each={sequenceRegistrations()}>
+        <For each={filteredSequenceRegistrations()}>
           {(reg) => (
             <SequenceListRow
               reg={reg}

@@ -5,7 +5,7 @@ title: HotkeySequenceRecorderState
 
 # Interface: HotkeySequenceRecorderState
 
-Defined in: [hotkey-sequence-recorder.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L16)
+Defined in: [hotkey-sequence-recorder.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L17)
 
 State interface for the HotkeySequenceRecorder.
 
@@ -17,7 +17,7 @@ State interface for the HotkeySequenceRecorder.
 isRecording: boolean;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L18)
+Defined in: [hotkey-sequence-recorder.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L19)
 
 Whether recording is currently active
 
@@ -29,7 +29,7 @@ Whether recording is currently active
 recordedSequence: HotkeySequence | null;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L22)
+Defined in: [hotkey-sequence-recorder.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L23)
 
 The last successfully committed sequence, or null if none / after starting a new session
 
@@ -41,6 +41,6 @@ The last successfully committed sequence, or null if none / after starting a new
 steps: HotkeySequence;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L20)
+Defined in: [hotkey-sequence-recorder.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L21)
 
 Chords captured so far in the current recording session

@@ -1,6 +1,6 @@
 import { getKeyStateTracker } from '@tanstack/hotkeys'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
-import type { HeldKey, KeyStateTracker } from '@tanstack/hotkeys'
+import type { IndividualKey, KeyStateTracker } from '@tanstack/hotkeys'
 
 /**
  * A Lit ReactiveController that tracks whether a specific key is currently held.
@@ -57,7 +57,7 @@ export class KeyHoldController implements ReactiveController {
    */
   constructor(
     private _host: ReactiveControllerHost,
-    private _key: HeldKey,
+    private _key: IndividualKey,
   ) {
     this._host.addController(this)
   }

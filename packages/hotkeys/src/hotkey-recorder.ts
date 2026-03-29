@@ -1,5 +1,6 @@
 import { Store } from '@tanstack/store'
 import { detectPlatform } from './constants'
+import { isInputElement } from './manager.utils'
 import { hotkeyChordFromKeydown } from './recorder-chord'
 import type { Hotkey } from './hotkey'
 
@@ -23,6 +24,14 @@ export interface HotkeyRecorderOptions {
   onCancel?: () => void
   /** Optional callback when shortcut is cleared (Backspace/Delete pressed) */
   onClear?: () => void
+  /**
+   * Whether to ignore keyboard events from input-like elements (text inputs,
+   * textarea, select, contenteditable). When true, typing in inputs passes
+   * through normally instead of being captured as a hotkey recording.
+   * Escape always works regardless of this setting.
+   * @default true
+   */
+  ignoreInputs?: boolean
 }
 
 /**
@@ -118,6 +127,17 @@ export class HotkeyRecorder {
       // Check if we're still recording (handler might be called after stop/cancel)
       if (!this.#keydownHandler) {
         return
+      }
+
+      // If ignoreInputs is enabled (default) and focus is in an input element,
+      // let the event pass through so the user can type normally.
+      // Escape is the exception — it should always cancel recording.
+      if (this.#options.ignoreInputs !== false) {
+        const activeEl =
+          typeof document !== 'undefined' ? document.activeElement : null
+        if (isInputElement(activeEl) && event.key !== 'Escape') {
+          return
+        }
       }
 
       event.preventDefault()

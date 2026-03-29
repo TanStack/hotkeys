@@ -1,10 +1,10 @@
 <div class="app">
   <header>
-    <h1>Sequence shortcut settings</h1>
+    <h1>Sequence Shortcut Settings</h1>
     <p>
       Customize Vim-style sequences. Click Edit, press each chord in order, then
-      Enter to save. Escape cancels; Backspace removes the last chord or clears
-      when empty.
+      press Enter to save. Escape cancels; Backspace removes the last chord or
+      clears when empty.
     </p>
   </header>
 
@@ -12,37 +12,121 @@
     <section class="demo-section">
       <h2>Shortcuts</h2>
       <div class="shortcuts-list">
-        @for (entry of actionEntries; track entry[0]) {
-          <app-shortcut-list-item
-            [actionName]="entry[1].name"
-            [sequence]="resolveSeq(entry[0])"
-            [disabled]="resolveSeq(entry[0]).length === 0"
-            [liveSteps]="recorderSteps()"
-            [isRecording]="isRecording() && recordingActionId() === entry[0]"
-            (edit)="handleEdit(entry[0])"
-            (cancel)="handleCancel()"
-          />
-        }
-      </div>
-    </section>
-
-    <section class="demo-section">
-      <h2>Demo actions</h2>
-      <p>Try your sequences within the default timeout window.</p>
-      <div class="demo-stats">
-        @for (entry of actionEntries; track entry[0]) {
-          <div class="stat-item">
-            <div class="stat-label">{{ entry[1].name }}</div>
-            <div class="stat-value">{{ countFor(entry[0]) }}</div>
-            <kbd>{{ sequenceStatLabel(entry[0]) }}</kbd>
+        @for (shortcut of shortcuts(); track shortcut.id) {
+          <div
+            class="shortcut-item"
+            [class.recording]="editingId() === shortcut.id"
+          >
+            <div class="shortcut-item-content">
+              <div class="shortcut-action">
+                @if (editingId() === shortcut.id) {
+                  <div class="editing-fields">
+                    <input
+                      type="text"
+                      class="edit-input edit-name"
+                      [value]="draftName()"
+                      (input)="onDraftNameInput($event)"
+                      placeholder="Shortcut name"
+                    />
+                    <input
+                      type="text"
+                      class="edit-input edit-description"
+                      [value]="draftDescription()"
+                      (input)="onDraftDescriptionInput($event)"
+                      placeholder="Description (optional)"
+                    />
+                  </div>
+                } @else {
+                  @if (shortcut.name) {
+                    {{ shortcut.name }}
+                  } @else {
+                    <span class="unnamed">Unnamed</span>
+                  }
+                  @if (shortcut.description) {
+                    <div class="shortcut-description">
+                      {{ shortcut.description }}
+                    </div>
+                  }
+                }
+              </div>
+              <div class="shortcut-hotkey">
+                @if (editingId() === shortcut.id) {
+                  <div class="recording-indicator">
+                    @if (recorderSteps().length > 0) {
+                      <span class="held-hotkeys">{{
+                        formatSeq(recorderSteps())
+                      }}</span>
+                    } @else if (heldKeys().length > 0) {
+                      <div class="held-hotkeys">
+                        @for (key of heldKeys(); track key; let i = $index) {
+                          @if (i > 0) {
+                            <span class="plus">+</span>
+                          }
+                          <kbd>{{ key }}</kbd>
+                        }
+                      </div>
+                    } @else {
+                      <span class="recording-text"
+                        >Press chords, then Enter...</span
+                      >
+                    }
+                  </div>
+                } @else if (shortcut.sequence.length > 0) {
+                  <kbd>{{ formatSeq(shortcut.sequence) }}</kbd>
+                } @else {
+                  <span class="no-shortcut">No shortcut</span>
+                }
+              </div>
+            </div>
+            <div class="shortcut-actions">
+              @if (editingId() === shortcut.id) {
+                <button
+                  type="button"
+                  class="save-button"
+                  (click)="handleSaveEditing()"
+                >
+                  Save
+                </button>
+                <button
+                  type="button"
+                  class="cancel-button"
+                  (click)="handleCancel()"
+                >
+                  Cancel
+                </button>
+              } @else {
+                <button
+                  type="button"
+                  class="edit-button"
+                  (click)="handleEdit(shortcut.id)"
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  class="delete-button"
+                  (click)="handleDelete(shortcut.id)"
+                >
+                  Delete
+                </button>
+              }
+            </div>
           </div>
         }
       </div>
+      <button
+        type="button"
+        class="create-button"
+        (click)="handleCreateNew()"
+        [disabled]="isRecording()"
+      >
+        + Create New Shortcut
+      </button>
     </section>
 
     @if (isRecording()) {
       <div class="info-box recording-notice">
-        <strong>Recording sequence…</strong> Press each chord, then Enter to
+        <strong>Recording sequence...</strong> Press each chord, then Enter to
         finish. Escape cancels. Backspace removes the last chord or clears.
         @if (recorderSteps().length > 0) {
           <div>Steps: {{ recordingStepsLabel() }}</div>
@@ -51,15 +135,79 @@
     }
 
     <section class="demo-section">
+      <h2>Live Registrations</h2>
+      <p>
+        This table is powered by
+        <code>injectHotkeyRegistrations()</code> — trigger counts, names, and
+        descriptions update in real-time as you use your sequences.
+      </p>
+      <table class="registrations-table">
+        <thead>
+          <tr>
+            <th>Sequence</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Enabled</th>
+            <th>Triggers</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (reg of registrations.sequences(); track reg.id) {
+            <tr>
+              <td>
+                <kbd>{{ formatSeq(reg.sequence) }}</kbd>
+              </td>
+              <td>{{ reg.options.meta?.name ?? '—' }}</td>
+              <td class="description-cell">
+                {{ reg.options.meta?.description ?? '—' }}
+              </td>
+              <td>
+                <span
+                  [class.status-on]="reg.options.enabled !== false"
+                  [class.status-off]="reg.options.enabled === false"
+                >
+                  {{ reg.options.enabled !== false ? 'yes' : 'no' }}
+                </span>
+              </td>
+              <td class="trigger-count">{{ reg.triggerCount }}</td>
+            </tr>
+          }
+          @if (registrations.sequences().length === 0) {
+            <tr>
+              <td colspan="5" class="empty-row">No sequences registered</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </section>
+
+    <section class="demo-section">
       <h2>Usage</h2>
       <pre class="code-block">
-import {{ '{' }} injectHotkeySequence, injectHotkeySequenceRecorder {{
+import {{
+          '{'
+        }} injectHotkeySequences, injectHotkeySequenceRecorder, injectHotkeyRegistrations {{
           '}'
         }} from '&#64;tanstack/angular-hotkeys'
 
-injectHotkeySequence(['G', 'G'], () => this.goTop(), () => ({{
-          '{'
-        }} enabled: !this.recorder.isRecording() {{ '}' }}))</pre
+// Register sequences dynamically with meta
+injectHotkeySequences(() =>
+  this.shortcuts()
+    .filter((s) => s.sequence.length > 0)
+    .map((s) => ({{ '{' }}
+      sequence: s.sequence,
+      callback: () => handleAction(s.id),
+      options: {{ '{' }}
+        enabled: !this.recorder.isRecording(),
+        meta: {{ '{' }} name: s.name, description: s.description {{ '}' }},
+      {{ '}' }},
+    {{ '}' }})),
+)
+
+// Read all registrations reactively
+const registrations = injectHotkeyRegistrations()
+// registrations.sequences()[0].options.meta?.name → 'Save'
+// registrations.sequences()[0].triggerCount → 3</pre
       >
     </section>
   </main>

@@ -9,7 +9,7 @@ title: HotkeySequenceRecorderCommitKeys
 type HotkeySequenceRecorderCommitKeys = "enter" | "none";
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L11)
+Defined in: [hotkey-sequence-recorder.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L12)
 
 How the user can commit a recorded sequence from the keyboard.
 - `'enter'`: plain Enter (no modifiers) commits when at least one step exists.

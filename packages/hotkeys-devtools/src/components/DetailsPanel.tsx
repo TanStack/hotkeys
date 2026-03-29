@@ -276,6 +276,45 @@ function HotkeyDetails(props: {
         </div>
 
         <div class={styles().detailSection}>
+          <div class={styles().detailSectionHeader}>Meta</div>
+          <div>
+            <div class={styles().optionRow}>
+              <span class={styles().optionLabel}>name</span>
+              <span class={styles().optionValue}>
+                {reg().options.meta?.name ?? '—'}
+              </span>
+            </div>
+            <div class={styles().optionRow}>
+              <span class={styles().optionLabel}>description</span>
+              <span class={styles().optionValue}>
+                {reg().options.meta?.description ?? '—'}
+              </span>
+            </div>
+            <Show
+              when={
+                reg().options.meta &&
+                Object.keys(reg().options.meta!).filter(
+                  (k) => k !== 'name' && k !== 'description',
+                ).length > 0
+              }
+            >
+              <For
+                each={Object.entries(reg().options.meta ?? {}).filter(
+                  ([k]) => k !== 'name' && k !== 'description',
+                )}
+              >
+                {([key, value]) => (
+                  <div class={styles().optionRow}>
+                    <span class={styles().optionLabel}>{key}</span>
+                    <span class={styles().optionValue}>{String(value)}</span>
+                  </div>
+                )}
+              </For>
+            </Show>
+          </div>
+        </div>
+
+        <div class={styles().detailSection}>
           <div class={styles().detailSectionHeader}>Options</div>
           <div>
             <div class={styles().optionRow}>
@@ -588,6 +627,45 @@ function SequenceDetails(props: {
         <div class={styles().detailSection}>
           <div class={styles().detailSectionHeader}>Actions</div>
           <ActionButtons registration={liveReg()} />
+        </div>
+
+        <div class={styles().detailSection}>
+          <div class={styles().detailSectionHeader}>Meta</div>
+          <div>
+            <div class={styles().optionRow}>
+              <span class={styles().optionLabel}>name</span>
+              <span class={styles().optionValue}>
+                {liveReg().options.meta?.name ?? '—'}
+              </span>
+            </div>
+            <div class={styles().optionRow}>
+              <span class={styles().optionLabel}>description</span>
+              <span class={styles().optionValue}>
+                {liveReg().options.meta?.description ?? '—'}
+              </span>
+            </div>
+            <Show
+              when={
+                liveReg().options.meta &&
+                Object.keys(liveReg().options.meta!).filter(
+                  (k) => k !== 'name' && k !== 'description',
+                ).length > 0
+              }
+            >
+              <For
+                each={Object.entries(liveReg().options.meta ?? {}).filter(
+                  ([k]) => k !== 'name' && k !== 'description',
+                )}
+              >
+                {([key, value]) => (
+                  <div class={styles().optionRow}>
+                    <span class={styles().optionLabel}>{key}</span>
+                    <span class={styles().optionValue}>{String(value)}</span>
+                  </div>
+                )}
+              </For>
+            </Show>
+          </div>
         </div>
 
         <div class={styles().detailSection}>

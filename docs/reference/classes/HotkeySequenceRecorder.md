@@ -5,7 +5,7 @@ title: HotkeySequenceRecorder
 
 # Class: HotkeySequenceRecorder
 
-Defined in: [hotkey-sequence-recorder.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L76)
+Defined in: [hotkey-sequence-recorder.ts:85](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L85)
 
 Framework-agnostic class for recording multi-chord sequences (Vim-style shortcuts).
 
@@ -21,7 +21,7 @@ when [HotkeySequenceRecorderOptions.commitKeys](../interfaces/HotkeySequenceReco
 new HotkeySequenceRecorder(options): HotkeySequenceRecorder;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:89](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L89)
+Defined in: [hotkey-sequence-recorder.ts:98](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L98)
 
 #### Parameters
 
@@ -41,7 +41,7 @@ Defined in: [hotkey-sequence-recorder.ts:89](https://github.com/TanStack/hotkeys
 readonly store: Store<HotkeySequenceRecorderState>;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:77](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L77)
+Defined in: [hotkey-sequence-recorder.ts:86](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L86)
 
 ## Methods
 
@@ -51,7 +51,7 @@ Defined in: [hotkey-sequence-recorder.ts:77](https://github.com/TanStack/hotkeys
 cancel(): void;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:272](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L272)
+Defined in: [hotkey-sequence-recorder.ts:292](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L292)
 
 #### Returns
 
@@ -65,7 +65,7 @@ Defined in: [hotkey-sequence-recorder.ts:272](https://github.com/TanStack/hotkey
 commit(): void;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:223](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L223)
+Defined in: [hotkey-sequence-recorder.ts:243](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L243)
 
 Commit the current steps as a sequence. No-op if fewer than one step.
 
@@ -81,7 +81,7 @@ Commit the current steps as a sequence. No-op if fewer than one step.
 destroy(): void;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:300](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L300)
+Defined in: [hotkey-sequence-recorder.ts:320](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L320)
 
 #### Returns
 
@@ -95,7 +95,7 @@ Defined in: [hotkey-sequence-recorder.ts:300](https://github.com/TanStack/hotkey
 setOptions(options): void;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:97](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L97)
+Defined in: [hotkey-sequence-recorder.ts:106](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L106)
 
 #### Parameters
 
@@ -115,7 +115,7 @@ Defined in: [hotkey-sequence-recorder.ts:97](https://github.com/TanStack/hotkeys
 start(): void;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:140](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L140)
+Defined in: [hotkey-sequence-recorder.ts:149](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L149)
 
 #### Returns
 
@@ -129,7 +129,7 @@ Defined in: [hotkey-sequence-recorder.ts:140](https://github.com/TanStack/hotkey
 stop(): void;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:259](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L259)
+Defined in: [hotkey-sequence-recorder.ts:279](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L279)
 
 #### Returns
 

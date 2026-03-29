@@ -7,6 +7,7 @@ title: "@tanstack/react-hotkeys"
 
 ## Interfaces
 
+- [HotkeyRegistrationsResult](interfaces/HotkeyRegistrationsResult.md)
 - [HotkeysProviderOptions](interfaces/HotkeysProviderOptions.md)
 - [HotkeysProviderProps](interfaces/HotkeysProviderProps.md)
 - [ReactHotkeyRecorder](interfaces/ReactHotkeyRecorder.md)
@@ -24,6 +25,7 @@ title: "@tanstack/react-hotkeys"
 - [useHeldKeys](functions/useHeldKeys.md)
 - [useHotkey](functions/useHotkey.md)
 - [useHotkeyRecorder](functions/useHotkeyRecorder.md)
+- [useHotkeyRegistrations](functions/useHotkeyRegistrations.md)
 - [useHotkeys](functions/useHotkeys.md)
 - [useHotkeysContext](functions/useHotkeysContext.md)
 - [useHotkeySequence](functions/useHotkeySequence.md)

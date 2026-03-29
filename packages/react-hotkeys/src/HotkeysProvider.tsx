@@ -10,8 +10,8 @@ import type { UseHotkeySequenceOptions } from './useHotkeySequence'
 export interface HotkeysProviderOptions {
   hotkey?: Partial<UseHotkeyOptions>
   hotkeyRecorder?: Partial<HotkeyRecorderOptions>
-  hotkeySequenceRecorder?: Partial<HotkeySequenceRecorderOptions>
   hotkeySequence?: Partial<UseHotkeySequenceOptions>
+  hotkeySequenceRecorder?: Partial<HotkeySequenceRecorderOptions>
 }
 
 interface HotkeysContextValue {

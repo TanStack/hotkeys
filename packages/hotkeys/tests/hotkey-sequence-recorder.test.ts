@@ -166,4 +166,86 @@ describe('HotkeySequenceRecorder', () => {
     r.commit()
     expect(onRecord).toHaveBeenCalledTimes(1)
   })
+
+  describe('ignoreInputs', () => {
+    it('should not record when focus is in a text input', () => {
+      const onRecord = vi.fn()
+      const r = new HotkeySequenceRecorder({ onRecord })
+
+      const input = document.createElement('input')
+      input.type = 'text'
+      document.body.appendChild(input)
+      input.focus()
+
+      r.start()
+      document.dispatchEvent(createKeyboardEvent('keydown', 'g'))
+
+      expect(r.store.state.steps.length).toBe(0)
+      expect(r.store.state.isRecording).toBe(true)
+
+      r.destroy()
+      document.body.removeChild(input)
+    })
+
+    it('should still cancel via Escape from an input', () => {
+      const onCancel = vi.fn()
+      const r = new HotkeySequenceRecorder({ onRecord: vi.fn(), onCancel })
+
+      const input = document.createElement('input')
+      input.type = 'text'
+      document.body.appendChild(input)
+      input.focus()
+
+      r.start()
+      document.dispatchEvent(createKeyboardEvent('keydown', 'Escape'))
+
+      expect(onCancel).toHaveBeenCalledTimes(1)
+      expect(r.store.state.isRecording).toBe(false)
+
+      document.body.removeChild(input)
+    })
+
+    it('should record normally when focus is not in an input', () => {
+      const onRecord = vi.fn()
+      const r = new HotkeySequenceRecorder({ onRecord })
+
+      const div = document.createElement('div')
+      div.tabIndex = 0
+      document.body.appendChild(div)
+      div.focus()
+
+      r.start()
+      document.dispatchEvent(createKeyboardEvent('keydown', 'g'))
+      document.dispatchEvent(createKeyboardEvent('keydown', 'g'))
+      document.dispatchEvent(createKeyboardEvent('keydown', 'Enter'))
+
+      expect(onRecord).toHaveBeenCalledTimes(1)
+      expect(r.store.state.isRecording).toBe(false)
+
+      document.body.removeChild(div)
+    })
+
+    it('should record from inputs when ignoreInputs is false', () => {
+      const onRecord = vi.fn()
+      const r = new HotkeySequenceRecorder({
+        onRecord,
+        ignoreInputs: false,
+      })
+
+      const input = document.createElement('input')
+      input.type = 'text'
+      document.body.appendChild(input)
+      input.focus()
+
+      r.start()
+      document.dispatchEvent(createKeyboardEvent('keydown', 'g'))
+      document.dispatchEvent(createKeyboardEvent('keydown', 'g'))
+      document.dispatchEvent(createKeyboardEvent('keydown', 'Enter'))
+
+      expect(onRecord).toHaveBeenCalledTimes(1)
+      expect(r.store.state.isRecording).toBe(false)
+
+      document.body.removeChild(input)
+    })
+  })
 })

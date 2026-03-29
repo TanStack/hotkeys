@@ -193,6 +193,75 @@ Use `createHotkeysAttachment` to scope multiple hotkeys to a specific element:
 <div tabindex="0" {@attach editorKeys}>Editor content</div>
 ```
 
+## Metadata (name & description)
+
+Every hotkey registration can carry a `meta` object with a `name` and `description`. This metadata is informational only -- it does not affect hotkey behavior -- but it flows through to registrations and devtools, making it easy to build shortcut palettes and help screens.
+
+```ts
+createHotkey('Mod+S', () => save(), {
+  meta: { name: 'Save', description: 'Save the document' },
+})
+```
+
+The `meta` option is typed as `HotkeyMeta`, which ships with `name` and `description` fields. You can extend it with additional properties using TypeScript declaration merging:
+
+```ts
+declare module '@tanstack/hotkeys' {
+  interface HotkeyMeta {
+    icon?: string
+    group?: string
+  }
+}
+
+createHotkey('Mod+S', () => save(), {
+  meta: { name: 'Save', description: 'Save the document', icon: 'floppy', group: 'File' },
+})
+```
+
+## Introspecting Registrations
+
+Use the `getHotkeyRegistrations` function to get a live view of all hotkey and sequence registrations. This is useful for building shortcut palettes, help dialogs, or devtools.
+
+```svelte
+<script lang="ts">
+  import { getHotkeyRegistrations } from '@tanstack/svelte-hotkeys'
+
+  const registrations = getHotkeyRegistrations()
+</script>
+
+<div>
+  <h2>Keyboard Shortcuts</h2>
+  <ul>
+    {#each registrations.hotkeys as reg (reg.hotkey)}
+      <li>
+        <kbd>{reg.hotkey}</kbd>
+        {#if reg.meta?.name}
+          <span> — {reg.meta.name}</span>
+        {/if}
+        {#if reg.meta?.description}
+          <p>{reg.meta.description}</p>
+        {/if}
+      </li>
+    {/each}
+  </ul>
+  {#if registrations.sequences.length > 0}
+    <h2>Sequences</h2>
+    <ul>
+      {#each registrations.sequences as reg (reg.sequence.join(' '))}
+        <li>
+          <kbd>{reg.sequence.join(' → ')}</kbd>
+          {#if reg.meta?.name}
+            <span> — {reg.meta.name}</span>
+          {/if}
+        </li>
+      {/each}
+    </ul>
+  {/if}
+</div>
+```
+
+The returned object contains a `hotkeys` array with registration objects including the hotkey string, options (including `meta`), and enabled state, and a `sequences` array containing sequence registrations with the same structure.
+
 ## The Hotkey Manager
 
 You can always reach for the underlying manager directly:

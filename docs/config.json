@@ -405,6 +405,18 @@
           "to": "reference/interfaces/HotkeyCallbackContext"
         },
         {
+          "label": "HotkeyMeta",
+          "to": "reference/interfaces/HotkeyMeta"
+        },
+        {
+          "label": "HotkeyRegistrationView",
+          "to": "reference/interfaces/HotkeyRegistrationView"
+        },
+        {
+          "label": "toHotkeyRegistrationView",
+          "to": "reference/functions/toHotkeyRegistrationView"
+        },
+        {
           "label": "ConflictBehavior",
           "to": "reference/type-aliases/ConflictBehavior"
         }
@@ -448,6 +460,14 @@
             {
               "label": "useDefaultHotkeysOptions",
               "to": "framework/react/reference/functions/useDefaultHotkeysOptions"
+            },
+            {
+              "label": "useHotkeyRegistrations",
+              "to": "framework/react/reference/functions/useHotkeyRegistrations"
+            },
+            {
+              "label": "HotkeyRegistrationsResult",
+              "to": "framework/react/reference/interfaces/HotkeyRegistrationsResult"
             }
           ]
         },
@@ -489,6 +509,14 @@
             {
               "label": "useDefaultHotkeysOptions",
               "to": "framework/preact/reference/functions/useDefaultHotkeysOptions"
+            },
+            {
+              "label": "useHotkeyRegistrations",
+              "to": "framework/preact/reference/functions/useHotkeyRegistrations"
+            },
+            {
+              "label": "HotkeyRegistrationsResult",
+              "to": "framework/preact/reference/interfaces/HotkeyRegistrationsResult"
             }
           ]
         },
@@ -518,6 +546,14 @@
             {
               "label": "useDefaultHotkeysOptions",
               "to": "framework/solid/reference/functions/useDefaultHotkeysOptions"
+            },
+            {
+              "label": "createHotkeyRegistrations",
+              "to": "framework/solid/reference/functions/createHotkeyRegistrations"
+            },
+            {
+              "label": "HotkeyRegistrationsResult",
+              "to": "framework/solid/reference/interfaces/HotkeyRegistrationsResult"
             }
           ]
         },
@@ -555,6 +591,14 @@
             {
               "label": "injectDefaultHotkeysOptions",
               "to": "framework/angular/reference/functions/injectDefaultHotkeysOptions"
+            },
+            {
+              "label": "injectHotkeyRegistrations",
+              "to": "framework/angular/reference/functions/injectHotkeyRegistrations"
+            },
+            {
+              "label": "HotkeyRegistrationsResult",
+              "to": "framework/angular/reference/interfaces/HotkeyRegistrationsResult"
             }
           ]
         },
@@ -592,6 +636,14 @@
             {
               "label": "useDefaultHotkeysOptions",
               "to": "framework/vue/reference/functions/useDefaultHotkeysOptions"
+            },
+            {
+              "label": "useHotkeyRegistrations",
+              "to": "framework/vue/reference/functions/useHotkeyRegistrations"
+            },
+            {
+              "label": "HotkeyRegistrationsResult",
+              "to": "framework/vue/reference/interfaces/HotkeyRegistrationsResult"
             }
           ]
         },
@@ -605,6 +657,10 @@
             {
               "label": "HotkeyController",
               "to": "framework/lit/reference/classes/HotkeyController"
+            },
+            {
+              "label": "HotkeyRegistrationsController",
+              "to": "framework/lit/reference/classes/HotkeyRegistrationsController"
             }
           ]
         },
@@ -662,6 +718,14 @@
             {
               "label": "setHotkeysContext",
               "to": "framework/svelte/reference/functions/setHotkeysContext"
+            },
+            {
+              "label": "getHotkeyRegistrations",
+              "to": "framework/svelte/reference/functions/getHotkeyRegistrations"
+            },
+            {
+              "label": "SvelteHotkeyRegistrations",
+              "to": "framework/svelte/reference/interfaces/SvelteHotkeyRegistrations"
             }
           ]
         }
@@ -869,8 +933,8 @@
           "to": "reference/interfaces/KeyStateTrackerState"
         },
         {
-          "label": "HeldKey",
-          "to": "reference/type-aliases/HeldKey"
+          "label": "IndividualKey",
+          "to": "reference/type-aliases/IndividualKey"
         }
       ],
       "frameworks": [

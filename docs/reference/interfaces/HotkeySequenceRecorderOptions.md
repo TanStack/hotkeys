@@ -5,7 +5,7 @@ title: HotkeySequenceRecorderOptions
 
 # Interface: HotkeySequenceRecorderOptions
 
-Defined in: [hotkey-sequence-recorder.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L28)
+Defined in: [hotkey-sequence-recorder.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L29)
 
 Options for configuring a HotkeySequenceRecorder instance.
 
@@ -17,7 +17,7 @@ Options for configuring a HotkeySequenceRecorder instance.
 optional commitKeys: HotkeySequenceRecorderCommitKeys;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:44](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L44)
+Defined in: [hotkey-sequence-recorder.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L45)
 
 Keyboard commit mode. When `'none'`, use [HotkeySequenceRecorder.commit](../classes/HotkeySequenceRecorder.md#commit) (and optional idle timeout).
 
@@ -35,7 +35,7 @@ Keyboard commit mode. When `'none'`, use [HotkeySequenceRecorder.commit](../clas
 optional commitOnEnter: boolean;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L39)
+Defined in: [hotkey-sequence-recorder.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L40)
 
 Whether plain Enter commits the current steps. Ignored when [commitKeys](#commitkeys) is `'none'`.
 
@@ -53,10 +53,31 @@ true
 optional idleTimeoutMs: number;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L49)
+Defined in: [hotkey-sequence-recorder.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L50)
 
 Milliseconds of inactivity after the **last completed chord** before auto-committing.
 The timer does not run while waiting for the first chord (`steps.length === 0`).
+
+***
+
+### ignoreInputs?
+
+```ts
+optional ignoreInputs: boolean;
+```
+
+Defined in: [hotkey-sequence-recorder.ts:58](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L58)
+
+Whether to ignore keyboard events from input-like elements (text inputs,
+textarea, select, contenteditable). When true, typing in inputs passes
+through normally instead of being captured as a sequence recording.
+Escape always works regardless of this setting.
+
+#### Default
+
+```ts
+true
+```
 
 ***
 
@@ -66,7 +87,7 @@ The timer does not run while waiting for the first chord (`steps.length === 0`).
 optional onCancel: () => void;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L32)
+Defined in: [hotkey-sequence-recorder.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L33)
 
 Optional callback when recording is cancelled (Escape pressed)
 
@@ -82,7 +103,7 @@ Optional callback when recording is cancelled (Escape pressed)
 optional onClear: () => void;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L34)
+Defined in: [hotkey-sequence-recorder.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L35)
 
 Optional callback when the sequence is cleared (Backspace/Delete with no steps)
 
@@ -98,7 +119,7 @@ Optional callback when the sequence is cleared (Backspace/Delete with no steps)
 onRecord: (sequence) => void;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L30)
+Defined in: [hotkey-sequence-recorder.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L31)
 
 Callback when a sequence is successfully recorded (including empty array when cleared)
 

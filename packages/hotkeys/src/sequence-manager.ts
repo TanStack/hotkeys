@@ -79,6 +79,8 @@ export interface SequenceRegistrationView {
   options: SequenceOptions
   target: Target
   triggerCount: number
+  /** Whether this sequence has been triggered at least once. */
+  hasFired: boolean
   /** Steps matched in the current attempt (0 when idle or just completed). */
   matchedStepCount: number
   /** `Date.now()` when the last step in the current attempt matched; 0 if none. */
@@ -98,6 +100,7 @@ interface SequenceRegistration {
   currentIndex: number
   lastKeyTime: number
   triggerCount: number
+  hasFired: boolean
 }
 
 /**
@@ -160,6 +163,7 @@ function toRegistrationView(
     options: reg.options,
     target: reg.target,
     triggerCount: reg.triggerCount,
+    hasFired: reg.hasFired,
     matchedStepCount: inProgress ? reg.currentIndex : 0,
     partialMatchLastKeyTime: inProgress ? reg.lastKeyTime : 0,
   }
@@ -284,6 +288,7 @@ export class SequenceManager {
       currentIndex: 0,
       lastKeyTime: 0,
       triggerCount: 0,
+      hasFired: false,
     }
 
     this.#registrations.set(id, registration)
@@ -515,6 +520,7 @@ export class SequenceManager {
           }
 
           registration.triggerCount++
+          registration.hasFired = true
           registration.currentIndex = 0
 
           this.#syncRegistrationView(registration)
@@ -605,6 +611,7 @@ export class SequenceManager {
     )
 
     registration.triggerCount++
+    registration.hasFired = true
 
     this.#syncRegistrationView(registration)
 

@@ -149,10 +149,9 @@ type NonPunctuationKey =
 export type Key = NonPunctuationKey | PunctuationKey
 
 /**
- * Keys that can be tracked as "held" (pressed down).
  * Includes both modifier keys and regular keys.
  */
-export type HeldKey = CanonicalModifier | Key
+export type IndividualKey = CanonicalModifier | Key
 
 // =============================================================================
 // Hotkey Types
@@ -414,3 +413,24 @@ export type HotkeyCallback = (
   event: KeyboardEvent,
   context: HotkeyCallbackContext,
 ) => void
+
+/**
+ * Metadata for hotkey and sequence registrations.
+ * Includes `name` and `description` by default. Extend via declaration merging:
+ *
+ * @example
+ * ```ts
+ * declare module '@tanstack/hotkeys' {
+ *   interface HotkeyMeta {
+ *     category?: string
+ *     icon?: string
+ *   }
+ * }
+ * ```
+ */
+export interface HotkeyMeta {
+  /** Human-readable name for this hotkey (e.g., "Save Document") */
+  name?: string
+  /** Description of what this hotkey does */
+  description?: string
+}

@@ -2,7 +2,9 @@
 import { TanStackDevtools } from '@tanstack/vue-devtools'
 import {
   HotkeysProvider,
+  formatForDisplay,
   useHotkey,
+  useHotkeyRegistrations,
   useHotkeySequences,
 } from '@tanstack/vue-hotkeys'
 import { HotkeysDevtoolsPanel } from '@tanstack/vue-hotkeys-devtools'
@@ -19,39 +21,102 @@ const addToHistory = (action: string) => {
 }
 
 useHotkeySequences([
-  { sequence: ['G', 'G'], callback: () => addToHistory('gg → Go to top') },
+  {
+    sequence: ['G', 'G'],
+    callback: () => addToHistory('gg → Go to top'),
+    options: {
+      meta: {
+        name: 'Go to top',
+        description: 'Scroll to the beginning of the document',
+      },
+    },
+  },
   {
     sequence: ['Shift+G'],
     callback: () => addToHistory('G → Go to bottom'),
+    options: {
+      meta: {
+        name: 'Go to bottom',
+        description: 'Scroll to the end of the document',
+      },
+    },
   },
-  { sequence: ['D', 'D'], callback: () => addToHistory('dd → Delete line') },
+  {
+    sequence: ['D', 'D'],
+    callback: () => addToHistory('dd → Delete line'),
+    options: {
+      meta: { name: 'Delete line', description: 'Delete the current line' },
+    },
+  },
   {
     sequence: ['Y', 'Y'],
     callback: () => addToHistory('yy → Yank (copy) line'),
+    options: {
+      meta: {
+        name: 'Yank line',
+        description: 'Copy the current line to clipboard',
+      },
+    },
   },
-  { sequence: ['D', 'W'], callback: () => addToHistory('dw → Delete word') },
+  {
+    sequence: ['D', 'W'],
+    callback: () => addToHistory('dw → Delete word'),
+    options: {
+      meta: {
+        name: 'Delete word',
+        description: 'Delete from cursor to end of word',
+      },
+    },
+  },
   {
     sequence: ['C', 'I', 'W'],
     callback: () => addToHistory('ciw → Change inner word'),
+    options: {
+      meta: {
+        name: 'Change inner word',
+        description: 'Delete word under cursor and enter insert mode',
+      },
+    },
   },
   {
     sequence: ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown'],
     callback: () => addToHistory('↑↑↓↓ → Konami code (partial)'),
-    options: { timeout: 1500 },
+    options: {
+      timeout: 1500,
+      meta: {
+        name: 'Konami code',
+        description: 'Partial Konami code using arrow keys',
+      },
+    },
   },
   {
     sequence: ['ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'],
     callback: () => addToHistory('←→←→ → Side to side!'),
-    options: { timeout: 1500 },
+    options: {
+      timeout: 1500,
+      meta: {
+        name: 'Side to side',
+        description: 'Left-right-left-right arrow pattern',
+      },
+    },
   },
   {
     sequence: ['H', 'E', 'L', 'L', 'O'],
     callback: () => addToHistory('hello → Hello World!'),
-    options: () => ({ enabled: helloSequenceEnabled.value }),
+    options: () => ({
+      enabled: helloSequenceEnabled.value,
+      meta: { name: 'Hello', description: 'Spell out hello to trigger' },
+    }),
   },
   {
     sequence: ['Shift+R', 'Shift+T'],
     callback: () => addToHistory('⇧R ⇧T → Chained Shift+letter (2 steps)'),
+    options: {
+      meta: {
+        name: 'Chained Shift',
+        description: 'Two consecutive Shift+letter chords',
+      },
+    },
   },
 ])
 
@@ -60,20 +125,29 @@ useHotkey('Escape', () => {
   history.value = []
 })
 
-const usageCode = `<script setup lang="ts">
-import { useHotkeySequences } from '@tanstack/vue-hotkeys'
+// Registrations viewer
+const { hotkeys: registeredHotkeys, sequences: registeredSequences } =
+  useHotkeyRegistrations()
+
+const usageCode = `import { useHotkeySequences, useHotkeyRegistrations } from '@tanstack/vue-hotkeys'
 
 useHotkeySequences([
-  { sequence: ['g', 'g'], callback: () => scrollToTop() },
   {
-    sequence: ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown'],
-    callback: () => activateCheatMode(),
-    options: { timeout: 1500 },
+    sequence: ['G', 'G'],
+    callback: () => scrollToTop(),
+    options: { meta: { name: 'Go to top', description: 'Scroll to top' } },
   },
-  { sequence: ['C', 'I', 'W'], callback: () => changeInnerWord() },
-  { sequence: ['Shift+R', 'Shift+T'], callback: () => doSomething() },
+  {
+    sequence: ['C', 'I', 'W'],
+    callback: () => changeInnerWord(),
+    options: { meta: { name: 'Change inner word' } },
+  },
 ])
-</${'script'}>`
+
+// Introspect all registrations
+const { sequences } = useHotkeyRegistrations()
+// sequences.value[0].options.meta?.name → 'Go to top'
+// sequences.value[0].triggerCount → 3`
 </script>
 
 <template>
@@ -205,6 +279,82 @@ useHotkeySequences([
                   <kbd>t</kbd>
                 </td>
                 <td>Chained Shift+letter (2 steps)</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Live Registrations Viewer -->
+        <section class="demo-section">
+          <h2>Live Registrations (useHotkeyRegistrations)</h2>
+          <p>
+            This table is rendered from
+            <code>useHotkeyRegistrations()</code> — a reactive view of all
+            registered hotkeys and sequences. Trigger counts update in
+            real-time.
+          </p>
+
+          <template v-if="registeredHotkeys.length > 0">
+            <h3>Hotkeys</h3>
+            <table class="registrations-table">
+              <thead>
+                <tr>
+                  <th>Hotkey</th>
+                  <th>Name</th>
+                  <th>Description</th>
+                  <th>Triggers</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="reg in registeredHotkeys" :key="reg.id">
+                  <td>
+                    <kbd>{{ formatForDisplay(reg.hotkey) }}</kbd>
+                  </td>
+                  <td>{{ reg.options.meta?.name ?? '\u2014' }}</td>
+                  <td class="description-cell">
+                    {{ reg.options.meta?.description ?? '\u2014' }}
+                  </td>
+                  <td class="trigger-count">{{ reg.triggerCount }}</td>
+                </tr>
+              </tbody>
+            </table>
+          </template>
+
+          <h3>Sequences ({{ registeredSequences.length }})</h3>
+          <table class="registrations-table">
+            <thead>
+              <tr>
+                <th>Sequence</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Enabled</th>
+                <th>Triggers</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="reg in registeredSequences" :key="reg.id">
+                <td>
+                  <template v-for="(s, i) in reg.sequence" :key="i">
+                    {{ i > 0 ? ' ' : '' }}<kbd>{{ formatForDisplay(s) }}</kbd>
+                  </template>
+                </td>
+                <td>{{ reg.options.meta?.name ?? '\u2014' }}</td>
+                <td class="description-cell">
+                  {{ reg.options.meta?.description ?? '\u2014' }}
+                </td>
+                <td>
+                  <span
+                    :class="
+                      reg.options.enabled !== false ? 'status-on' : 'status-off'
+                    "
+                  >
+                    {{ reg.options.enabled !== false ? 'yes' : 'no' }}
+                  </span>
+                </td>
+                <td class="trigger-count">{{ reg.triggerCount }}</td>
+              </tr>
+              <tr v-if="registeredSequences.length === 0">
+                <td colspan="5" class="hint">No sequences registered</td>
               </tr>
             </tbody>
           </table>

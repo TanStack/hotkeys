@@ -1,6 +1,6 @@
 import { getKeyStateTracker } from '@tanstack/hotkeys'
 import { createStoreSubscriber } from './internal.svelte'
-import type { HeldKey } from '@tanstack/hotkeys'
+import type { IndividualKey } from '@tanstack/hotkeys'
 
 export interface SvelteHeldKeyState {
   readonly held: boolean
@@ -11,7 +11,7 @@ class HeldKeyState implements SvelteHeldKeyState {
   #normalizedKey: string
   #subscribe = createStoreSubscriber(this.#tracker.store)
 
-  constructor(key: HeldKey) {
+  constructor(key: IndividualKey) {
     this.#normalizedKey = key.toLowerCase()
   }
 
@@ -63,6 +63,6 @@ class HeldKeyState implements SvelteHeldKeyState {
  * ```
  */
 
-export function getIsKeyHeld(key: HeldKey): SvelteHeldKeyState {
+export function getIsKeyHeld(key: IndividualKey): SvelteHeldKeyState {
   return new HeldKeyState(key)
 }

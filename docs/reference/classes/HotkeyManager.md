@@ -5,7 +5,7 @@ title: HotkeyManager
 
 # Class: HotkeyManager
 
-Defined in: [hotkey-manager.ts:144](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L144)
+Defined in: [hotkey-manager.ts:186](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L186)
 
 Singleton manager for hotkey registrations.
 
@@ -34,7 +34,7 @@ unregister()
 readonly registrations: Store<Map<string, HotkeyRegistration>>;
 ```
 
-Defined in: [hotkey-manager.ts:166](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L166)
+Defined in: [hotkey-manager.ts:208](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L208)
 
 The TanStack Store containing all hotkey registrations.
 Use this to subscribe to registration changes or access current registrations.
@@ -63,7 +63,7 @@ for (const [id, reg] of manager.registrations.state) {
 destroy(): void;
 ```
 
-Defined in: [hotkey-manager.ts:699](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L699)
+Defined in: [hotkey-manager.ts:741](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L741)
 
 Destroys the manager and removes all listeners.
 
@@ -79,7 +79,7 @@ Destroys the manager and removes all listeners.
 getRegistrationCount(): number;
 ```
 
-Defined in: [hotkey-manager.ts:670](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L670)
+Defined in: [hotkey-manager.ts:712](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L712)
 
 Gets the number of registered hotkeys.
 
@@ -95,7 +95,7 @@ Gets the number of registered hotkeys.
 isRegistered(hotkey, target?): boolean;
 ```
 
-Defined in: [hotkey-manager.ts:681](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L681)
+Defined in: [hotkey-manager.ts:723](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L723)
 
 Checks if a specific hotkey is registered.
 
@@ -130,7 +130,7 @@ register(
    options): HotkeyRegistrationHandle;
 ```
 
-Defined in: [hotkey-manager.ts:229](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L229)
+Defined in: [hotkey-manager.ts:271](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L271)
 
 Registers a hotkey handler and returns a handle for updating the registration.
 
@@ -186,7 +186,7 @@ handle.unregister()
 triggerRegistration(id): boolean;
 ```
 
-Defined in: [hotkey-manager.ts:634](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L634)
+Defined in: [hotkey-manager.ts:676](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L676)
 
 Triggers a registration's callback programmatically from devtools.
 Creates a synthetic KeyboardEvent and invokes the callback.
@@ -213,7 +213,7 @@ True if the registration was found and triggered
 static getInstance(): HotkeyManager;
 ```
 
-Defined in: [hotkey-manager.ts:187](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L187)
+Defined in: [hotkey-manager.ts:229](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L229)
 
 Gets the singleton instance of HotkeyManager.
 
@@ -229,7 +229,7 @@ Gets the singleton instance of HotkeyManager.
 static resetInstance(): void;
 ```
 
-Defined in: [hotkey-manager.ts:197](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L197)
+Defined in: [hotkey-manager.ts:239](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L239)
 
 Resets the singleton instance. Useful for testing.
 

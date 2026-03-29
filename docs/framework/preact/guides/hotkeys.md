@@ -283,6 +283,73 @@ function MenuShortcuts({ items }) {
 
 The hook diffs the array between renders by array index plus the normalized hotkey string, registering new hotkeys and unregistering removed ones automatically. Reordering the array changes that identity, so reordered entries are unregistered and re-registered even if their callback references stay the same.
 
+## Metadata (name & description)
+
+Every hotkey registration can carry a `meta` object with a `name` and `description`. This metadata is informational only -- it does not affect hotkey behavior -- but it flows through to registrations and devtools, making it easy to build shortcut palettes and help screens.
+
+```tsx
+useHotkey('Mod+S', () => save(), {
+  meta: { name: 'Save', description: 'Save the document' },
+})
+```
+
+The `meta` option is typed as `HotkeyMeta`, which ships with `name` and `description` fields. You can extend it with additional properties using TypeScript declaration merging:
+
+```tsx
+declare module '@tanstack/hotkeys' {
+  interface HotkeyMeta {
+    icon?: string
+    group?: string
+  }
+}
+
+useHotkey('Mod+S', () => save(), {
+  meta: { name: 'Save', description: 'Save the document', icon: 'floppy', group: 'File' },
+})
+```
+
+## Introspecting Registrations
+
+Use the `useHotkeyRegistrations` hook to get a live view of all hotkey and sequence registrations. This is useful for building shortcut palettes, help dialogs, or devtools.
+
+```tsx
+import { useHotkeyRegistrations } from '@tanstack/preact-hotkeys'
+
+function ShortcutPalette() {
+  const { hotkeys, sequences } = useHotkeyRegistrations()
+
+  return (
+    <div>
+      <h2>Keyboard Shortcuts</h2>
+      <ul>
+        {hotkeys.map((reg) => (
+          <li key={reg.hotkey}>
+            <kbd>{reg.hotkey}</kbd>
+            {reg.meta?.name && <span> — {reg.meta.name}</span>}
+            {reg.meta?.description && <p>{reg.meta.description}</p>}
+          </li>
+        ))}
+      </ul>
+      {sequences.length > 0 && (
+        <>
+          <h2>Sequences</h2>
+          <ul>
+            {sequences.map((reg) => (
+              <li key={reg.sequence.join(' ')}>
+                <kbd>{reg.sequence.join(' → ')}</kbd>
+                {reg.meta?.name && <span> — {reg.meta.name}</span>}
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
+    </div>
+  )
+}
+```
+
+The returned `hotkeys` array contains registration objects with the hotkey string, options (including `meta`), and enabled state. The `sequences` array contains sequence registrations with the same structure.
+
 ## The Hotkey Manager
 
 Under the hood, `useHotkey` uses the singleton `HotkeyManager`. You can also access the manager directly if needed:

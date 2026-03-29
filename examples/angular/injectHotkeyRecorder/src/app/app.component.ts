@@ -1,166 +1,213 @@
 import { Component, signal } from '@angular/core'
 import {
   formatForDisplay,
-  injectHotkey,
+  injectHeldKeys,
   injectHotkeyRecorder,
+  injectHotkeyRegistrations,
+  injectHotkeys,
 } from '@tanstack/angular-hotkeys'
-import type { Hotkey } from '@tanstack/angular-hotkeys'
-import { ShortcutListItemComponent } from './shortcut-list-item.component'
+import type { Hotkey, InjectHotkeyDefinition } from '@tanstack/angular-hotkeys'
 
-const DEFAULT_SHORTCUT_ACTIONS: Record<
-  string,
-  { name: string; defaultHotkey: Hotkey }
-> = {
-  save: { name: 'Save', defaultHotkey: 'Mod+K' },
-  open: { name: 'Open', defaultHotkey: 'Mod+E' },
-  new: { name: 'New', defaultHotkey: 'Mod+G' },
-  close: { name: 'Close', defaultHotkey: 'Mod+Shift+K' },
-  undo: { name: 'Undo', defaultHotkey: 'Mod+Shift+E' },
-  redo: { name: 'Redo', defaultHotkey: 'Mod+Shift+G' },
+interface Shortcut {
+  id: string
+  name: string
+  description: string
+  hotkey: Hotkey | ''
 }
 
-const ACTION_ENTRIES = Object.entries(DEFAULT_SHORTCUT_ACTIONS)
+let nextId = 0
+function createId(): string {
+  return `shortcut_${++nextId}`
+}
+
+const INITIAL_SHORTCUTS: Array<Shortcut> = [
+  {
+    id: createId(),
+    name: 'Save',
+    description: 'Save the current document',
+    hotkey: 'Mod+K',
+  },
+  {
+    id: createId(),
+    name: 'Open',
+    description: 'Open a file from disk',
+    hotkey: 'Mod+E',
+  },
+  {
+    id: createId(),
+    name: 'New',
+    description: 'Create a new document',
+    hotkey: 'Mod+G',
+  },
+  {
+    id: createId(),
+    name: 'Close',
+    description: 'Close the current tab',
+    hotkey: 'Mod+Shift+K',
+  },
+  {
+    id: createId(),
+    name: 'Undo',
+    description: 'Undo the last action',
+    hotkey: 'Mod+Shift+E',
+  },
+  {
+    id: createId(),
+    name: 'Redo',
+    description: 'Redo the last undone action',
+    hotkey: 'Mod+Shift+G',
+  },
+]
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [ShortcutListItemComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
 export class AppComponent {
+  shortcuts = signal<Array<Shortcut>>(INITIAL_SHORTCUTS)
+  editingId = signal<string | null>(null)
+  draftName = signal('')
+  draftDescription = signal('')
+
+  formatForDisplay = formatForDisplay
+  heldKeys = injectHeldKeys()
+
   private readonly recorder = injectHotkeyRecorder({
     onRecord: (hotkey: Hotkey) => {
-      const id = this.recordingActionId()
+      const id = this.editingId()
       if (id) {
-        this.shortcuts.update((prev) => ({
-          ...prev,
-          [id]: hotkey || ('' as Hotkey | ''),
-        }))
-        this.recordingActionId.set(null)
+        this.shortcuts.update((prev) =>
+          prev.map((s) =>
+            s.id === id
+              ? {
+                  ...s,
+                  hotkey,
+                  name: this.draftName(),
+                  description: this.draftDescription(),
+                }
+              : s,
+          ),
+        )
+        this.editingId.set(null)
       }
     },
-    onCancel: () => this.recordingActionId.set(null),
-    onClear: () => {
-      const id = this.recordingActionId()
+    onCancel: () => {
+      const id = this.editingId()
       if (id) {
-        this.shortcuts.update((prev) => ({ ...prev, [id]: '' as Hotkey | '' }))
-        this.recordingActionId.set(null)
+        this.shortcuts.update((prev) => {
+          const shortcut = prev.find((s) => s.id === id)
+          if (shortcut && shortcut.hotkey === '') {
+            return prev.filter((s) => s.id !== id)
+          }
+          return prev
+        })
+      }
+      this.editingId.set(null)
+    },
+    onClear: () => {
+      const id = this.editingId()
+      if (id) {
+        this.shortcuts.update((prev) =>
+          prev.map((s) =>
+            s.id === id
+              ? {
+                  ...s,
+                  hotkey: '' as Hotkey | '',
+                  name: this.draftName(),
+                  description: this.draftDescription(),
+                }
+              : s,
+          ),
+        )
+        this.editingId.set(null)
       }
     },
   })
 
-  shortcuts = signal<Record<string, Hotkey | ''>>(
-    (() => {
-      const defaults: Record<string, Hotkey | ''> = {}
-      for (const [id, action] of Object.entries(DEFAULT_SHORTCUT_ACTIONS)) {
-        defaults[id] = action.defaultHotkey
-      }
-      return defaults
-    })(),
-  )
+  readonly isRecording = this.recorder.isRecording
 
-  saveCount = signal(0)
-  openCount = signal(0)
-  newCount = signal(0)
-  closeCount = signal(0)
-  undoCount = signal(0)
-  redoCount = signal(0)
-  recordingActionId = signal<string | null>(null)
-
-  readonly actionEntries = ACTION_ENTRIES
-  readonly defaultActions = DEFAULT_SHORTCUT_ACTIONS
-  formatForDisplay = formatForDisplay
+  readonly registrations = injectHotkeyRegistrations()
 
   constructor() {
-    injectHotkey(
-      () =>
-        this.shortcuts()['save'] ||
-        DEFAULT_SHORTCUT_ACTIONS['save'].defaultHotkey,
-      () => this.saveCount.update((c) => c + 1),
-      () => ({
-        enabled:
-          !this.recorder.isRecording() && this.shortcuts()['save'] !== '',
-      }),
-    )
-    injectHotkey(
-      () =>
-        this.shortcuts()['open'] ||
-        DEFAULT_SHORTCUT_ACTIONS['open'].defaultHotkey,
-      () => this.openCount.update((c) => c + 1),
-      () => ({
-        enabled:
-          !this.recorder.isRecording() && this.shortcuts()['open'] !== '',
-      }),
-    )
-    injectHotkey(
-      () =>
-        this.shortcuts()['new'] ||
-        DEFAULT_SHORTCUT_ACTIONS['new'].defaultHotkey,
-      () => this.newCount.update((c) => c + 1),
-      () => ({
-        enabled: !this.recorder.isRecording() && this.shortcuts()['new'] !== '',
-      }),
-    )
-    injectHotkey(
-      () =>
-        this.shortcuts()['close'] ||
-        DEFAULT_SHORTCUT_ACTIONS['close'].defaultHotkey,
-      () => this.closeCount.update((c) => c + 1),
-      () => ({
-        enabled:
-          !this.recorder.isRecording() && this.shortcuts()['close'] !== '',
-      }),
-    )
-    injectHotkey(
-      () =>
-        this.shortcuts()['undo'] ||
-        DEFAULT_SHORTCUT_ACTIONS['undo'].defaultHotkey,
-      () => this.undoCount.update((c) => c + 1),
-      () => ({
-        enabled:
-          !this.recorder.isRecording() && this.shortcuts()['undo'] !== '',
-      }),
-    )
-    injectHotkey(
-      () =>
-        this.shortcuts()['redo'] ||
-        DEFAULT_SHORTCUT_ACTIONS['redo'].defaultHotkey,
-      () => this.redoCount.update((c) => c + 1),
-      () => ({
-        enabled:
-          !this.recorder.isRecording() && this.shortcuts()['redo'] !== '',
-      }),
+    // Register all shortcuts dynamically with meta
+    injectHotkeys(() =>
+      this.shortcuts()
+        .filter((s) => s.hotkey !== '')
+        .map(
+          (s): InjectHotkeyDefinition => ({
+            hotkey: s.hotkey as Hotkey,
+            callback: () => {
+              console.log(`${s.name} triggered:`, s.hotkey)
+            },
+            options: {
+              enabled: !this.recorder.isRecording(),
+              meta: {
+                name: s.name,
+                description: s.description,
+              },
+            },
+          }),
+        ),
     )
   }
 
-  /** Expose recorder's isRecording signal for template */
-  readonly isRecording = this.recorder.isRecording
-
-  handleEdit(actionId: string): void {
-    this.recordingActionId.set(actionId)
+  handleEdit(id: string): void {
+    const shortcut = this.shortcuts().find((s) => s.id === id)
+    if (!shortcut) return
+    this.editingId.set(id)
+    this.draftName.set(shortcut.name)
+    this.draftDescription.set(shortcut.description)
     this.recorder.startRecording()
+  }
+
+  handleSaveEditing(): void {
+    const id = this.editingId()
+    if (id) {
+      this.shortcuts.update((prev) =>
+        prev.map((s) =>
+          s.id === id
+            ? {
+                ...s,
+                name: this.draftName(),
+                description: this.draftDescription(),
+              }
+            : s,
+        ),
+      )
+      this.recorder.stopRecording()
+      this.editingId.set(null)
+    }
   }
 
   handleCancel(): void {
     this.recorder.cancelRecording()
-    this.recordingActionId.set(null)
   }
 
-  shortcutDisplay(id: string): Hotkey {
-    const hotkey = this.shortcuts()[id]
-    return (hotkey || this.defaultActions[id].defaultHotkey) as Hotkey
+  handleDelete(id: string): void {
+    this.shortcuts.update((prev) => prev.filter((s) => s.id !== id))
   }
 
-  countFor(id: string): number {
-    const counts: Record<string, () => number> = {
-      save: () => this.saveCount(),
-      open: () => this.openCount(),
-      new: () => this.newCount(),
-      close: () => this.closeCount(),
-      undo: () => this.undoCount(),
-      redo: () => this.redoCount(),
+  handleCreateNew(): void {
+    const newShortcut: Shortcut = {
+      id: createId(),
+      name: '',
+      description: '',
+      hotkey: '',
     }
-    return counts[id]?.() ?? 0
+    this.shortcuts.update((prev) => [...prev, newShortcut])
+    this.editingId.set(newShortcut.id)
+    this.draftName.set('')
+    this.draftDescription.set('')
+    this.recorder.startRecording()
+  }
+
+  onDraftNameInput(event: Event): void {
+    this.draftName.set((event.target as HTMLInputElement).value)
+  }
+
+  onDraftDescriptionInput(event: Event): void {
+    this.draftDescription.set((event.target as HTMLInputElement).value)
   }
 }

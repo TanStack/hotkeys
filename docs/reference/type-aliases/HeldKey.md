@@ -1,12 +1,12 @@
 ---
-id: HeldKey
-title: HeldKey
+id: IndividualKey
+title: IndividualKey
 ---
 
-# Type Alias: HeldKey
+# Type Alias: IndividualKey
 
 ```ts
-type HeldKey = CanonicalModifier | Key;
+type IndividualKey = CanonicalModifier | Key;
 ```
 
 Defined in: [hotkey.ts:155](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L155)

@@ -20,7 +20,7 @@ or released.
 
 ### key
 
-`HeldKey`
+`IndividualKey`
 
 The key to check (e.g., 'Shift', 'Control', 'A')
 

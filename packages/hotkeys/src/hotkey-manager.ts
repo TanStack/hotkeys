@@ -15,6 +15,7 @@ import type {
   Hotkey,
   HotkeyCallback,
   HotkeyCallbackContext,
+  HotkeyMeta,
   ParsedHotkey,
   RegisterableHotkey,
 } from './hotkey'
@@ -47,6 +48,8 @@ export interface HotkeyOptions {
   stopPropagation?: boolean
   /** The DOM element to attach the event listener to. Defaults to document. */
   target?: HTMLElement | Document | Window | null
+  /** Optional metadata (name, description, custom fields via declaration merging) */
+  meta?: HotkeyMeta
 }
 
 /**
@@ -69,6 +72,45 @@ export interface HotkeyRegistration {
   target: HTMLElement | Document | Window
   /** How many times this registration's callback has been triggered */
   triggerCount: number
+}
+
+/**
+ * Public view of a hotkey registration for display and introspection.
+ * Omits the callback function which is an internal implementation detail.
+ */
+export interface HotkeyRegistrationView {
+  /** The original hotkey string */
+  hotkey: Hotkey
+  /** Unique identifier for this registration */
+  id: string
+  /** Options for this registration */
+  options: HotkeyOptions
+  /** The parsed hotkey */
+  parsedHotkey: ParsedHotkey
+  /** The resolved target element for this registration */
+  target: HTMLElement | Document | Window
+  /** How many times this registration's callback has been triggered */
+  triggerCount: number
+  /** Whether this registration has fired and needs reset (for requireReset) */
+  hasFired: boolean
+}
+
+/**
+ * Creates a public view from an internal registration,
+ * stripping the callback function.
+ */
+export function toHotkeyRegistrationView(
+  reg: HotkeyRegistration,
+): HotkeyRegistrationView {
+  return {
+    hotkey: reg.hotkey,
+    id: reg.id,
+    options: reg.options,
+    parsedHotkey: reg.parsedHotkey,
+    target: reg.target,
+    triggerCount: reg.triggerCount,
+    hasFired: reg.hasFired,
+  }
 }
 
 /**

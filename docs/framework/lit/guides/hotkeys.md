@@ -298,6 +298,85 @@ class MyEditor extends LitElement {
 
 Use the `@hotkey` decorator for the common case of binding a static shortcut to a method. Use `HotkeyController` when you need to construct the hotkey string dynamically or manage registration imperatively.
 
+## Metadata (name & description)
+
+Every hotkey registration can carry a `meta` object with a `name` and `description`. This metadata is informational only -- it does not affect hotkey behavior -- but it flows through to registrations and devtools, making it easy to build shortcut palettes and help screens.
+
+```ts
+@hotkey('Mod+S', { meta: { name: 'Save', description: 'Save the document' } })
+save() { saveDocument() }
+
+// Or with HotkeyController:
+new HotkeyController(this, 'Mod+S', () => this.save(), {
+  meta: { name: 'Save', description: 'Save the document' },
+})
+```
+
+The `meta` option is typed as `HotkeyMeta`, which ships with `name` and `description` fields. You can extend it with additional properties using TypeScript declaration merging:
+
+```ts
+declare module '@tanstack/hotkeys' {
+  interface HotkeyMeta {
+    icon?: string
+    group?: string
+  }
+}
+
+@hotkey('Mod+S', { meta: { name: 'Save', description: 'Save the document', icon: 'floppy', group: 'File' } })
+save() { saveDocument() }
+```
+
+## Introspecting Registrations
+
+Use `HotkeyRegistrationsController` to get a live view of all hotkey and sequence registrations. This is useful for building shortcut palettes, help dialogs, or devtools.
+
+```ts
+import { LitElement, html } from 'lit'
+import { customElement } from 'lit/decorators.js'
+import { HotkeyRegistrationsController } from '@tanstack/lit-hotkeys'
+
+@customElement('shortcut-palette')
+class ShortcutPalette extends LitElement {
+  private registrations = new HotkeyRegistrationsController(this)
+
+  render() {
+    const { hotkeys, sequences } = this.registrations
+
+    return html`
+      <h2>Keyboard Shortcuts</h2>
+      <ul>
+        ${hotkeys.map(
+          (reg) => html`
+            <li>
+              <kbd>${reg.hotkey}</kbd>
+              ${reg.meta?.name ? html`<span> — ${reg.meta.name}</span>` : ''}
+              ${reg.meta?.description ? html`<p>${reg.meta.description}</p>` : ''}
+            </li>
+          `,
+        )}
+      </ul>
+      ${sequences.length > 0
+        ? html`
+            <h2>Sequences</h2>
+            <ul>
+              ${sequences.map(
+                (reg) => html`
+                  <li>
+                    <kbd>${reg.sequence.join(' → ')}</kbd>
+                    ${reg.meta?.name ? html`<span> — ${reg.meta.name}</span>` : ''}
+                  </li>
+                `,
+              )}
+            </ul>
+          `
+        : ''}
+    `
+  }
+}
+```
+
+The controller exposes `hotkeys` and `sequences` arrays. The `hotkeys` array contains registration objects with the hotkey string, options (including `meta`), and enabled state. The `sequences` array contains sequence registrations with the same structure.
+
 ## The Hotkey Manager
 
 Under the hood, both the decorator and controller use the singleton `HotkeyManager`. You can access the manager directly when needed:

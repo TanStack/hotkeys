@@ -1,5 +1,6 @@
 import { Store } from '@tanstack/store'
 import { detectPlatform } from './constants'
+import { isInputElement } from './manager.utils'
 import { hotkeyChordFromKeydown } from './recorder-chord'
 import type { HotkeySequence } from './sequence-manager'
 
@@ -47,6 +48,14 @@ export interface HotkeySequenceRecorderOptions {
    * The timer does not run while waiting for the first chord (`steps.length === 0`).
    */
   idleTimeoutMs?: number
+  /**
+   * Whether to ignore keyboard events from input-like elements (text inputs,
+   * textarea, select, contenteditable). When true, typing in inputs passes
+   * through normally instead of being captured as a sequence recording.
+   * Escape always works regardless of this setting.
+   * @default true
+   */
+  ignoreInputs?: boolean
 }
 
 const defaultHotkeySequenceRecorderOptions: Pick<
@@ -152,6 +161,17 @@ export class HotkeySequenceRecorder {
     const handler = (event: KeyboardEvent) => {
       if (!this.#keydownHandler) {
         return
+      }
+
+      // If ignoreInputs is enabled (default) and focus is in an input element,
+      // let the event pass through so the user can type normally.
+      // Escape is the exception — it should always cancel recording.
+      if (this.#options.ignoreInputs !== false) {
+        const activeEl =
+          typeof document !== 'undefined' ? document.activeElement : null
+        if (isInputElement(activeEl) && event.key !== 'Escape') {
+          return
+        }
       }
 
       event.preventDefault()

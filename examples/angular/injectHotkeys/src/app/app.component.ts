@@ -1,11 +1,16 @@
 import { Component, signal } from '@angular/core'
-import { formatForDisplay, injectHotkeys } from '@tanstack/angular-hotkeys'
+import {
+  formatForDisplay,
+  injectHotkeyRegistrations,
+  injectHotkeys,
+} from '@tanstack/angular-hotkeys'
 import type { Hotkey, InjectHotkeyDefinition } from '@tanstack/angular-hotkeys'
 
 interface DynamicShortcut {
   id: number
   hotkey: string
   label: string
+  description: string
   count: number
 }
 
@@ -30,21 +35,46 @@ export class AppComponent {
   // Dynamic demo
   nextId = 0
   shortcuts = signal<DynamicShortcut[]>([
-    { id: this.nextId++, hotkey: 'Shift+A', label: 'Action A', count: 0 },
-    { id: this.nextId++, hotkey: 'Shift+B', label: 'Action B', count: 0 },
-    { id: this.nextId++, hotkey: 'Shift+C', label: 'Action C', count: 0 },
+    {
+      id: this.nextId++,
+      hotkey: 'Shift+A',
+      label: 'Action A',
+      description: 'First dynamic action',
+      count: 0,
+    },
+    {
+      id: this.nextId++,
+      hotkey: 'Shift+B',
+      label: 'Action B',
+      description: 'Second dynamic action',
+      count: 0,
+    },
+    {
+      id: this.nextId++,
+      hotkey: 'Shift+C',
+      label: 'Action C',
+      description: 'Third dynamic action',
+      count: 0,
+    },
   ])
   newHotkey = signal('')
   newLabel = signal('')
+  newDescription = signal('')
+
+  // Registrations viewer
+  readonly registrations = injectHotkeyRegistrations()
 
   constructor() {
-    // Basic multi-hotkey
+    // Basic multi-hotkey with meta
     injectHotkeys([
       {
         hotkey: 'Shift+S',
         callback: (_e, { hotkey }) => {
           this.saveCount.update((c) => c + 1)
           this.log.update((l) => [`${hotkey} pressed`, ...l].slice(0, 20))
+        },
+        options: {
+          meta: { name: 'Save', description: 'Save the current document' },
         },
       },
       {
@@ -53,6 +83,9 @@ export class AppComponent {
           this.undoCount.update((c) => c + 1)
           this.log.update((l) => [`${hotkey} pressed`, ...l].slice(0, 20))
         },
+        options: {
+          meta: { name: 'Undo', description: 'Undo the last action' },
+        },
       },
       {
         hotkey: 'Shift+R',
@@ -60,30 +93,51 @@ export class AppComponent {
           this.redoCount.update((c) => c + 1)
           this.log.update((l) => [`${hotkey} pressed`, ...l].slice(0, 20))
         },
+        options: {
+          meta: { name: 'Redo', description: 'Redo the last undone action' },
+        },
       },
     ])
 
-    // Common options with per-hotkey overrides
+    // Common options with per-hotkey overrides and meta
     injectHotkeys(
       [
         {
           hotkey: 'Alt+J',
           callback: () => this.counts.update((c) => ({ ...c, a: c.a + 1 })),
+          options: {
+            meta: {
+              name: 'Action A',
+              description: 'First action (respects toggle)',
+            },
+          },
         },
         {
           hotkey: 'Alt+K',
           callback: () => this.counts.update((c) => ({ ...c, b: c.b + 1 })),
+          options: {
+            meta: {
+              name: 'Action B',
+              description: 'Second action (respects toggle)',
+            },
+          },
         },
         {
           hotkey: 'Alt+L',
           callback: () => this.counts.update((c) => ({ ...c, c: c.c + 1 })),
-          options: { enabled: true },
+          options: {
+            enabled: true,
+            meta: {
+              name: 'Action C',
+              description: 'Always-on action (overrides toggle)',
+            },
+          },
         },
       ],
       () => ({ enabled: this.commonEnabled() }),
     )
 
-    // Dynamic hotkeys
+    // Dynamic hotkeys with meta
     injectHotkeys(() =>
       this.shortcuts().map(
         (s): InjectHotkeyDefinition => ({
@@ -94,6 +148,9 @@ export class AppComponent {
                 item.id === s.id ? { ...item, count: item.count + 1 } : item,
               ),
             )
+          },
+          options: {
+            meta: { name: s.label, description: s.description },
           },
         }),
       ),
@@ -113,11 +170,13 @@ export class AppComponent {
         id: this.nextId++,
         hotkey: trimmed,
         label: this.newLabel().trim(),
+        description: this.newDescription().trim(),
         count: 0,
       },
     ])
     this.newHotkey.set('')
     this.newLabel.set('')
+    this.newDescription.set('')
   }
 
   removeShortcut(id: number) {
@@ -132,7 +191,15 @@ export class AppComponent {
     this.newLabel.set((event.target as HTMLInputElement).value)
   }
 
+  onNewDescriptionInput(event: Event) {
+    this.newDescription.set((event.target as HTMLInputElement).value)
+  }
+
   onInputKeydown(event: KeyboardEvent) {
     if (event.key === 'Enter') this.addShortcut()
+  }
+
+  formatSeq(seq: Array<string>): string {
+    return seq.map((h) => formatForDisplay(h as Hotkey)).join(' ')
   }
 }

@@ -80,6 +80,39 @@ button:active {
 .edit-button:hover {
   background: #218838;
 }
+.save-button {
+  background: #0066cc;
+}
+.save-button:hover {
+  background: #0052a3;
+}
+.delete-button {
+  background: #6c757d;
+}
+.delete-button:hover {
+  background: #5a6268;
+}
+.create-button {
+  margin-top: 16px;
+  width: 100%;
+  padding: 12px;
+  background: #f8f9fa;
+  color: #0066cc;
+  border: 2px dashed #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.create-button:hover:not(:disabled) {
+  background: #e9ecef;
+  border-color: #0066cc;
+}
+.create-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
 .code-block {
   background: #1e1e1e;
   color: #d4d4d4;
@@ -153,8 +186,44 @@ button:active {
 }
 .shortcut-action {
   font-weight: 500;
-  min-width: 80px;
+  min-width: 160px;
   font-size: 15px;
+}
+.shortcut-description {
+  font-weight: 400;
+  font-size: 13px;
+  color: #666;
+  margin-top: 2px;
+}
+.unnamed {
+  color: #999;
+  font-style: italic;
+}
+.editing-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.edit-input {
+  padding: 6px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.edit-input:focus {
+  border-color: #0066cc;
+  box-shadow: 0 0 0 2px rgba(0, 102, 204, 0.15);
+}
+.edit-name {
+  font-weight: 500;
+  font-size: 15px;
+}
+.edit-description {
+  font-size: 13px;
+  color: #555;
 }
 .shortcut-hotkey {
   display: flex;
@@ -202,37 +271,6 @@ button:active {
   font-weight: 600;
 }
 
-/* Demo Stats */
-.demo-stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 16px;
-  margin-top: 20px;
-}
-.stat-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 16px;
-  background: #f8f9fa;
-  border-radius: 8px;
-  gap: 8px;
-}
-.stat-label {
-  font-size: 13px;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-.stat-value {
-  font-size: 32px;
-  font-weight: bold;
-  color: #0066cc;
-}
-.stat-item kbd {
-  margin-top: 4px;
-}
-
 /* Responsive */
 @media (max-width: 600px) {
   .shortcut-item {
@@ -250,7 +288,53 @@ button:active {
     width: 100%;
     justify-content: flex-end;
   }
-  .demo-stats {
-    grid-template-columns: repeat(2, 1fr);
-  }
+}
+
+/* Registrations table */
+.registrations-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.registrations-table th {
+  text-align: left;
+  padding: 8px 12px;
+  background: #f0f0f0;
+  border-bottom: 2px solid #ddd;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+}
+.registrations-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+}
+.registrations-table tbody tr:hover {
+  background: #f8f8f8;
+}
+.description-cell {
+  color: #666;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.trigger-count {
+  font-family: monospace;
+  font-weight: bold;
+  text-align: center;
+}
+.status-on {
+  color: #28a745;
+  font-weight: 500;
+}
+.status-off {
+  color: #dc3545;
+  font-weight: 500;
+}
+.empty-row {
+  color: #999;
+  font-style: italic;
+  text-align: center;
 }

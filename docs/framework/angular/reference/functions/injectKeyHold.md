@@ -22,7 +22,7 @@ if the specified key is held.
 
 The key to check (e.g. 'Shift', 'Control', 'Space') - can be a getter function
 
-`HeldKey` | () => `HeldKey`
+`IndividualKey` | () => `IndividualKey`
 
 ## Returns
 

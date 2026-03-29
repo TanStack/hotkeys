@@ -3,187 +3,209 @@ import { TanStackDevtools } from '@tanstack/vue-devtools'
 import {
   HotkeysProvider,
   formatForDisplay,
-  useHotkey,
   useHotkeyRecorder,
+  useHotkeyRegistrations,
+  useHotkeys,
 } from '@tanstack/vue-hotkeys'
 import { HotkeysDevtoolsPanel } from '@tanstack/vue-hotkeys-devtools'
 import { ref } from 'vue'
 import ShortcutListItem from './ShortcutListItem.vue'
 import type { Hotkey } from '@tanstack/vue-hotkeys'
 
-interface ShortcutActions {
-  [key: string]: {
-    name: string
-    defaultHotkey: Hotkey
-  }
+interface Shortcut {
+  id: string
+  name: string
+  description: string
+  hotkey: Hotkey | ''
 }
 
-const DEFAULT_SHORTCUT_ACTIONS: ShortcutActions = {
-  save: {
+let nextId = 0
+function createId(): string {
+  return `shortcut_${++nextId}`
+}
+
+const INITIAL_SHORTCUTS: Array<Shortcut> = [
+  {
+    id: createId(),
     name: 'Save',
-    defaultHotkey: 'Mod+K',
+    description: 'Save the current document',
+    hotkey: 'Mod+K',
   },
-  open: {
+  {
+    id: createId(),
     name: 'Open',
-    defaultHotkey: 'Mod+E',
+    description: 'Open a file from disk',
+    hotkey: 'Mod+E',
   },
-  new: {
+  {
+    id: createId(),
     name: 'New',
-    defaultHotkey: 'Mod+G',
+    description: 'Create a new document',
+    hotkey: 'Mod+G',
   },
-  close: {
+  {
+    id: createId(),
     name: 'Close',
-    defaultHotkey: 'Mod+Shift+K',
+    description: 'Close the current tab',
+    hotkey: 'Mod+Shift+K',
   },
-  undo: {
+  {
+    id: createId(),
     name: 'Undo',
-    defaultHotkey: 'Mod+Shift+E',
+    description: 'Undo the last action',
+    hotkey: 'Mod+Shift+E',
   },
-  redo: {
+  {
+    id: createId(),
     name: 'Redo',
-    defaultHotkey: 'Mod+Shift+G',
+    description: 'Redo the last undone action',
+    hotkey: 'Mod+Shift+G',
   },
-}
+]
 
-const shortcuts = ref<Record<string, Hotkey | ''>>(
-  Object.fromEntries(
-    Object.entries(DEFAULT_SHORTCUT_ACTIONS).map(([id, action]) => [
-      id,
-      action.defaultHotkey,
-    ]),
-  ) as Record<string, Hotkey | ''>,
-)
+const shortcuts = ref<Array<Shortcut>>([...INITIAL_SHORTCUTS])
 
-const saveCount = ref(0)
-const openCount = ref(0)
-const newCount = ref(0)
-const closeCount = ref(0)
-const undoCount = ref(0)
-const redoCount = ref(0)
-const recordingActionId = ref<string | null>(null)
+// Track which shortcut is being edited (recording + name/description editing)
+const editingId = ref<string | null>(null)
+// Draft name/description while editing
+const draftName = ref('')
+const draftDescription = ref('')
+
 const plugins = [{ name: 'TanStack Hotkeys', component: HotkeysDevtoolsPanel }]
 
 const recorder = useHotkeyRecorder({
   onRecord: (hotkey: Hotkey) => {
-    if (recordingActionId.value) {
-      shortcuts.value = {
-        ...shortcuts.value,
-        [recordingActionId.value]: hotkey,
-      }
-      recordingActionId.value = null
+    if (editingId.value) {
+      shortcuts.value = shortcuts.value.map((s) =>
+        s.id === editingId.value
+          ? {
+              ...s,
+              hotkey,
+              name: draftName.value,
+              description: draftDescription.value,
+            }
+          : s,
+      )
+      editingId.value = null
     }
   },
   onCancel: () => {
-    recordingActionId.value = null
+    // If this was a brand-new shortcut with no hotkey yet, remove it
+    if (editingId.value) {
+      const shortcut = shortcuts.value.find((s) => s.id === editingId.value)
+      if (shortcut && shortcut.hotkey === '') {
+        shortcuts.value = shortcuts.value.filter(
+          (s) => s.id !== editingId.value,
+        )
+      }
+    }
+    editingId.value = null
   },
   onClear: () => {
-    if (recordingActionId.value) {
-      shortcuts.value = {
-        ...shortcuts.value,
-        [recordingActionId.value]: '' as Hotkey | '',
-      }
-      recordingActionId.value = null
+    if (editingId.value) {
+      shortcuts.value = shortcuts.value.map((s) =>
+        s.id === editingId.value
+          ? {
+              ...s,
+              hotkey: '' as Hotkey | '',
+              name: draftName.value,
+              description: draftDescription.value,
+            }
+          : s,
+      )
+      editingId.value = null
     }
   },
 })
 
-useHotkey(
-  () => shortcuts.value.save || DEFAULT_SHORTCUT_ACTIONS.save.defaultHotkey,
-  () => {
-    console.log('Save triggered:', shortcuts.value.save)
-    saveCount.value++
-  },
-  {
-    enabled: () => !recorder.isRecording.value && shortcuts.value.save !== '',
-  },
+// Register all shortcuts with meta
+useHotkeys(() =>
+  shortcuts.value
+    .filter((s) => s.hotkey !== '')
+    .map((s) => ({
+      hotkey: s.hotkey as Hotkey,
+      callback: () => {
+        console.log(`${s.name} triggered:`, s.hotkey)
+      },
+      options: {
+        enabled: !recorder.isRecording.value,
+        meta: {
+          name: s.name,
+          description: s.description,
+        },
+      },
+    })),
 )
 
-useHotkey(
-  () => shortcuts.value.open || DEFAULT_SHORTCUT_ACTIONS.open.defaultHotkey,
-  () => {
-    console.log('Open triggered:', shortcuts.value.open)
-    openCount.value++
-  },
-  {
-    enabled: () => !recorder.isRecording.value && shortcuts.value.open !== '',
-  },
-)
+const { hotkeys: registeredHotkeys } = useHotkeyRegistrations()
 
-useHotkey(
-  () => shortcuts.value.new || DEFAULT_SHORTCUT_ACTIONS.new.defaultHotkey,
-  () => {
-    console.log('New triggered:', shortcuts.value.new)
-    newCount.value++
-  },
-  {
-    enabled: () => !recorder.isRecording.value && shortcuts.value.new !== '',
-  },
-)
-
-useHotkey(
-  () => shortcuts.value.close || DEFAULT_SHORTCUT_ACTIONS.close.defaultHotkey,
-  () => {
-    console.log('Close triggered:', shortcuts.value.close)
-    closeCount.value++
-  },
-  {
-    enabled: () => !recorder.isRecording.value && shortcuts.value.close !== '',
-  },
-)
-
-useHotkey(
-  () => shortcuts.value.undo || DEFAULT_SHORTCUT_ACTIONS.undo.defaultHotkey,
-  () => {
-    console.log('Undo triggered:', shortcuts.value.undo)
-    undoCount.value++
-  },
-  {
-    enabled: () => !recorder.isRecording.value && shortcuts.value.undo !== '',
-  },
-)
-
-useHotkey(
-  () => shortcuts.value.redo || DEFAULT_SHORTCUT_ACTIONS.redo.defaultHotkey,
-  () => {
-    console.log('Redo triggered:', shortcuts.value.redo)
-    redoCount.value++
-  },
-  {
-    enabled: () => !recorder.isRecording.value && shortcuts.value.redo !== '',
-  },
-)
-
-const handleEdit = (actionId: string) => {
-  recordingActionId.value = actionId
+const handleEdit = (id: string) => {
+  const shortcut = shortcuts.value.find((s) => s.id === id)
+  if (!shortcut) return
+  editingId.value = id
+  draftName.value = shortcut.name
+  draftDescription.value = shortcut.description
   recorder.startRecording()
+}
+
+const handleSaveEditing = () => {
+  if (editingId.value) {
+    // Save draft name/description, keep current hotkey, stop recording
+    shortcuts.value = shortcuts.value.map((s) =>
+      s.id === editingId.value
+        ? { ...s, name: draftName.value, description: draftDescription.value }
+        : s,
+    )
+    recorder.stopRecording()
+    editingId.value = null
+  }
 }
 
 const handleCancel = () => {
   recorder.cancelRecording()
-  recordingActionId.value = null
+  // onCancel callback handles cleanup
 }
 
-const usageCode = `import { useHotkey, formatForDisplay } from '@tanstack/vue-hotkeys'
+const handleDelete = (id: string) => {
+  shortcuts.value = shortcuts.value.filter((s) => s.id !== id)
+}
 
-function App() {
-  const [shortcuts, setShortcuts] = useState({
-    save: 'Mod+K',
-    open: 'Mod+E',
-  })
+const handleCreateNew = () => {
+  const newShortcut: Shortcut = {
+    id: createId(),
+    name: '',
+    description: '',
+    hotkey: '',
+  }
+  shortcuts.value = [...shortcuts.value, newShortcut]
+  editingId.value = newShortcut.id
+  draftName.value = ''
+  draftDescription.value = ''
+  recorder.startRecording()
+}
 
-  // Register shortcuts dynamically
-  useHotkey(
-    shortcuts.save,
-    () => handleSave(),
-    { enabled: !isRecording }
-  )
+const usageCode = `import {
+  useHotkeys,
+  useHotkeyRecorder,
+  useHotkeyRegistrations,
+} from '@tanstack/vue-hotkeys'
 
-  return (
-    <div>
-      <kbd>{formatForDisplay(shortcuts.save)}</kbd>
-    </div>
-  )
-}`
+// Register shortcuts dynamically with meta
+useHotkeys(
+  shortcuts.map((s) => ({
+    hotkey: s.hotkey,
+    callback: () => handleAction(s.id),
+    options: {
+      enabled: !isRecording,
+      meta: { name: s.name, description: s.description },
+    },
+  })),
+)
+
+// Read all registrations reactively
+const { hotkeys } = useHotkeyRegistrations()
+// hotkeys.value[0].options.meta?.name → 'Save'
+// hotkeys.value[0].triggerCount → 3`
 </script>
 
 <template>
@@ -202,62 +224,88 @@ function App() {
           <h2>Shortcuts</h2>
           <div class="shortcuts-list">
             <ShortcutListItem
-              v-for="(action, actionId) in DEFAULT_SHORTCUT_ACTIONS"
-              :key="actionId"
-              :action-name="action.name"
-              :hotkey="shortcuts[actionId] || ''"
-              :is-recording="
-                recorder.isRecording && recordingActionId === actionId
+              v-for="shortcut in shortcuts"
+              :key="shortcut.id"
+              :shortcut="shortcut"
+              :is-editing="editingId === shortcut.id"
+              :draft-name="
+                editingId === shortcut.id ? draftName : shortcut.name
               "
-              @edit="handleEdit(actionId)"
+              :draft-description="
+                editingId === shortcut.id
+                  ? draftDescription
+                  : shortcut.description
+              "
+              @update:draft-name="draftName = $event"
+              @update:draft-description="draftDescription = $event"
+              @edit="handleEdit(shortcut.id)"
+              @save="handleSaveEditing"
               @cancel="handleCancel"
+              @delete="handleDelete(shortcut.id)"
             />
           </div>
+          <button
+            type="button"
+            class="create-button"
+            :disabled="recorder.isRecording.value"
+            @click="handleCreateNew"
+          >
+            + Create New Shortcut
+          </button>
         </section>
 
-        <section class="demo-section">
-          <h2>Demo Actions</h2>
-          <p>Try your shortcuts! Actions will trigger when you press them.</p>
-          <div class="demo-stats">
-            <div class="stat-item">
-              <div class="stat-label">Save</div>
-              <div class="stat-value">{{ saveCount }}</div>
-              <kbd>{{ formatForDisplay(shortcuts.save || 'Mod+K') }}</kbd>
-            </div>
-            <div class="stat-item">
-              <div class="stat-label">Open</div>
-              <div class="stat-value">{{ openCount }}</div>
-              <kbd>{{ formatForDisplay(shortcuts.open || 'Mod+E') }}</kbd>
-            </div>
-            <div class="stat-item">
-              <div class="stat-label">New</div>
-              <div class="stat-value">{{ newCount }}</div>
-              <kbd>{{ formatForDisplay(shortcuts.new || 'Mod+G') }}</kbd>
-            </div>
-            <div class="stat-item">
-              <div class="stat-label">Close</div>
-              <div class="stat-value">{{ closeCount }}</div>
-              <kbd>{{
-                formatForDisplay(shortcuts.close || 'Mod+Shift+K')
-              }}</kbd>
-            </div>
-            <div class="stat-item">
-              <div class="stat-label">Undo</div>
-              <div class="stat-value">{{ undoCount }}</div>
-              <kbd>{{ formatForDisplay(shortcuts.undo || 'Mod+Shift+E') }}</kbd>
-            </div>
-            <div class="stat-item">
-              <div class="stat-label">Redo</div>
-              <div class="stat-value">{{ redoCount }}</div>
-              <kbd>{{ formatForDisplay(shortcuts.redo || 'Mod+Shift+G') }}</kbd>
-            </div>
-          </div>
-        </section>
-
-        <div v-if="recorder.isRecording" class="info-box recording-notice">
+        <div
+          v-if="recorder.isRecording.value"
+          class="info-box recording-notice"
+        >
           <strong>Recording shortcut...</strong> Press any key combination or
           Escape to cancel. Press Backspace/Delete to clear the shortcut.
         </div>
+
+        <!-- Live Registrations Viewer -->
+        <section class="demo-section">
+          <h2>Live Registrations</h2>
+          <p>
+            This table is powered by <code>useHotkeyRegistrations()</code> —
+            trigger counts, names, and descriptions update in real-time as you
+            use your shortcuts.
+          </p>
+          <table class="registrations-table">
+            <thead>
+              <tr>
+                <th>Hotkey</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Enabled</th>
+                <th>Triggers</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="reg in registeredHotkeys" :key="reg.id">
+                <td>
+                  <kbd>{{ formatForDisplay(reg.hotkey) }}</kbd>
+                </td>
+                <td>{{ reg.options.meta?.name ?? '\u2014' }}</td>
+                <td class="description-cell">
+                  {{ reg.options.meta?.description ?? '\u2014' }}
+                </td>
+                <td>
+                  <span
+                    :class="
+                      reg.options.enabled !== false ? 'status-on' : 'status-off'
+                    "
+                  >
+                    {{ reg.options.enabled !== false ? 'yes' : 'no' }}
+                  </span>
+                </td>
+                <td class="trigger-count">{{ reg.triggerCount }}</td>
+              </tr>
+              <tr v-if="registeredHotkeys.length === 0">
+                <td colspan="5" class="empty-row">No hotkeys registered</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
 
         <section class="demo-section">
           <h2>Usage</h2>

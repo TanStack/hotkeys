@@ -2,7 +2,9 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {
   HotkeysProvider,
+  formatForDisplay,
   useHotkey,
+  useHotkeyRegistrations,
   useHotkeySequences,
 } from '@tanstack/react-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
@@ -20,39 +22,102 @@ function App() {
   }
 
   useHotkeySequences([
-    { sequence: ['G', 'G'], callback: () => addToHistory('gg → Go to top') },
+    {
+      sequence: ['G', 'G'],
+      callback: () => addToHistory('gg → Go to top'),
+      options: {
+        meta: {
+          name: 'Go to top',
+          description: 'Scroll to the beginning of the document',
+        },
+      },
+    },
     {
       sequence: ['Shift+G'],
       callback: () => addToHistory('G → Go to bottom'),
+      options: {
+        meta: {
+          name: 'Go to bottom',
+          description: 'Scroll to the end of the document',
+        },
+      },
     },
-    { sequence: ['D', 'D'], callback: () => addToHistory('dd → Delete line') },
+    {
+      sequence: ['D', 'D'],
+      callback: () => addToHistory('dd → Delete line'),
+      options: {
+        meta: { name: 'Delete line', description: 'Delete the current line' },
+      },
+    },
     {
       sequence: ['Y', 'Y'],
       callback: () => addToHistory('yy → Yank (copy) line'),
+      options: {
+        meta: {
+          name: 'Yank line',
+          description: 'Copy the current line to clipboard',
+        },
+      },
     },
-    { sequence: ['D', 'W'], callback: () => addToHistory('dw → Delete word') },
+    {
+      sequence: ['D', 'W'],
+      callback: () => addToHistory('dw → Delete word'),
+      options: {
+        meta: {
+          name: 'Delete word',
+          description: 'Delete from cursor to end of word',
+        },
+      },
+    },
     {
       sequence: ['C', 'I', 'W'],
       callback: () => addToHistory('ciw → Change inner word'),
+      options: {
+        meta: {
+          name: 'Change inner word',
+          description: 'Delete word under cursor and enter insert mode',
+        },
+      },
     },
     {
       sequence: ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown'],
       callback: () => addToHistory('↑↑↓↓ → Konami code (partial)'),
-      options: { timeout: 1500 },
+      options: {
+        timeout: 1500,
+        meta: {
+          name: 'Konami code',
+          description: 'Partial Konami code using arrow keys',
+        },
+      },
     },
     {
       sequence: ['ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'],
       callback: () => addToHistory('←→←→ → Side to side!'),
-      options: { timeout: 1500 },
+      options: {
+        timeout: 1500,
+        meta: {
+          name: 'Side to side',
+          description: 'Left-right-left-right arrow pattern',
+        },
+      },
     },
     {
       sequence: ['H', 'E', 'L', 'L', 'O'],
       callback: () => addToHistory('hello → Hello World!'),
-      options: { enabled: helloSequenceEnabled },
+      options: {
+        enabled: helloSequenceEnabled,
+        meta: { name: 'Hello', description: 'Spell out hello to trigger' },
+      },
     },
     {
       sequence: ['Shift+R', 'Shift+T'],
       callback: () => addToHistory('⇧R ⇧T → Chained Shift+letter (2 steps)'),
+      options: {
+        meta: {
+          name: 'Chained Shift',
+          description: 'Two consecutive Shift+letter chords',
+        },
+      },
     },
   ])
 
@@ -213,21 +278,30 @@ function App() {
           </table>
         </section>
 
+        <RegistrationsViewer />
+
         <section className="demo-section">
           <h2>Usage</h2>
-          <pre className="code-block">{`import { useHotkeySequences } from '@tanstack/react-hotkeys'
+          <pre className="code-block">{`import { useHotkeySequences, useHotkeyRegistrations } from '@tanstack/react-hotkeys'
 
 function VimEditor() {
   useHotkeySequences([
-    { sequence: ['G', 'G'], callback: () => scrollToTop() },
     {
-      sequence: ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown'],
-      callback: () => activateCheatMode(),
-      options: { timeout: 1500 },
+      sequence: ['G', 'G'],
+      callback: () => scrollToTop(),
+      options: { meta: { name: 'Go to top', description: 'Scroll to top' } },
     },
-    { sequence: ['C', 'I', 'W'], callback: () => changeInnerWord() },
-    { sequence: ['Shift+R', 'Shift+T'], callback: () => doSomething() },
+    {
+      sequence: ['C', 'I', 'W'],
+      callback: () => changeInnerWord(),
+      options: { meta: { name: 'Change inner word' } },
+    },
   ])
+
+  // Introspect all registrations
+  const { sequences } = useHotkeyRegistrations()
+  // sequences[0].options.meta?.name → 'Go to top'
+  // sequences[0].triggerCount → 3
 }`}</pre>
         </section>
 
@@ -253,15 +327,105 @@ function VimEditor() {
   )
 }
 
+// ---------------------------------------------------------------------------
+// Live registrations viewer using useHotkeyRegistrations
+// ---------------------------------------------------------------------------
+
+function RegistrationsViewer() {
+  const { hotkeys, sequences } = useHotkeyRegistrations()
+
+  return (
+    <section className="demo-section">
+      <h2>Live Registrations (useHotkeyRegistrations)</h2>
+      <p>
+        This table is rendered from <code>useHotkeyRegistrations()</code> — a
+        reactive view of all registered hotkeys and sequences. Trigger counts
+        update in real-time.
+      </p>
+
+      {hotkeys.length > 0 && (
+        <>
+          <h3>Hotkeys</h3>
+          <table className="registrations-table">
+            <thead>
+              <tr>
+                <th>Hotkey</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Triggers</th>
+              </tr>
+            </thead>
+            <tbody>
+              {hotkeys.map((reg) => (
+                <tr key={reg.id}>
+                  <td>
+                    <kbd>{formatForDisplay(reg.hotkey)}</kbd>
+                  </td>
+                  <td>{reg.options.meta?.name ?? '—'}</td>
+                  <td className="description-cell">
+                    {reg.options.meta?.description ?? '—'}
+                  </td>
+                  <td className="trigger-count">{reg.triggerCount}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
+
+      <h3>Sequences ({sequences.length})</h3>
+      <table className="registrations-table">
+        <thead>
+          <tr>
+            <th>Sequence</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Enabled</th>
+            <th>Triggers</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sequences.map((reg) => (
+            <tr key={reg.id}>
+              <td>
+                {reg.sequence.map((s, i) => (
+                  <React.Fragment key={i}>
+                    {i > 0 && ' '}
+                    <kbd>{formatForDisplay(s)}</kbd>
+                  </React.Fragment>
+                ))}
+              </td>
+              <td>{reg.options.meta?.name ?? '—'}</td>
+              <td className="description-cell">
+                {reg.options.meta?.description ?? '—'}
+              </td>
+              <td>
+                <span
+                  className={
+                    reg.options.enabled !== false ? 'status-on' : 'status-off'
+                  }
+                >
+                  {reg.options.enabled !== false ? 'yes' : 'no'}
+                </span>
+              </td>
+              <td className="trigger-count">{reg.triggerCount}</td>
+            </tr>
+          ))}
+          {sequences.length === 0 && (
+            <tr>
+              <td colSpan={5} className="hint">
+                No sequences registered
+              </td>
+            </tr>
+          )}
+        </tbody>
+      </table>
+    </section>
+  )
+}
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  // optionally, provide default options to an optional HotkeysProvider
-  <HotkeysProvider
-  // defaultOptions={{
-  //   hotkeySequence: {
-  //     timeout: 1500,
-  //   },
-  // }}
-  >
+  <HotkeysProvider>
     <App />
   </HotkeysProvider>,
 )

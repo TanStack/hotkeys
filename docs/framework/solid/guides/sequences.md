@@ -105,6 +105,18 @@ import { HotkeysProvider } from '@tanstack/solid-hotkeys'
 </HotkeysProvider>
 ```
 
+### `meta`
+
+Sequences support the same `meta` option as hotkeys, allowing you to attach a `name` and `description` for use in shortcut palettes and devtools.
+
+```tsx
+createHotkeySequence(['G', 'G'], () => scrollToTop(), {
+  meta: { name: 'Go to Top', description: 'Scroll to the top of the page' },
+})
+```
+
+See the [Hotkeys Guide](./hotkeys.md#metadata-name--description) for details on declaration merging and introspecting registrations.
+
 ## Sequences with Modifiers
 
 Each step in a sequence can include modifiers:

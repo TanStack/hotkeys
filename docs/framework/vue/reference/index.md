@@ -7,6 +7,7 @@ title: "@tanstack/vue-hotkeys"
 
 ## Interfaces
 
+- [HotkeyRegistrationsResult](interfaces/HotkeyRegistrationsResult.md)
 - [HotkeysProviderOptions](interfaces/HotkeysProviderOptions.md)
 - [UseHotkeyDefinition](interfaces/UseHotkeyDefinition.md)
 - [UseHotkeyOptions](interfaces/UseHotkeyOptions.md)
@@ -27,6 +28,7 @@ title: "@tanstack/vue-hotkeys"
 - [useHeldKeys](functions/useHeldKeys.md)
 - [useHotkey](functions/useHotkey.md)
 - [useHotkeyRecorder](functions/useHotkeyRecorder.md)
+- [useHotkeyRegistrations](functions/useHotkeyRegistrations.md)
 - [useHotkeys](functions/useHotkeys.md)
 - [useHotkeysContext](functions/useHotkeysContext.md)
 - [useHotkeySequence](functions/useHotkeySequence.md)

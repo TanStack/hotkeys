@@ -28,6 +28,7 @@ header p {
   max-width: 500px;
   margin: 0 auto;
 }
+
 .demo-section {
   background: white;
   border-radius: 12px;
@@ -138,4 +139,71 @@ button {
 }
 button:hover {
   background: #0052a3;
+}
+
+.counter {
+  font-size: 18px;
+  font-weight: bold;
+  color: #0066cc;
+  margin: 12px 0;
+}
+
+.demo-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 16px;
+  font-size: 14px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  margin-top: 8px;
+}
+
+.demo-input:focus {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+  border-color: #0066cc;
+}
+
+/* Registrations table */
+.registrations-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.registrations-table th {
+  text-align: left;
+  padding: 8px 12px;
+  background: #f0f0f0;
+  border-bottom: 2px solid #ddd;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+}
+.registrations-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+}
+.registrations-table tbody tr:hover {
+  background: #f8f8f8;
+}
+.description-cell {
+  color: #666;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.trigger-count {
+  font-family: monospace;
+  font-weight: bold;
+  text-align: center;
+}
+.status-on {
+  color: #28a745;
+  font-weight: 500;
+}
+.status-off {
+  color: #dc3545;
+  font-weight: 500;
 }

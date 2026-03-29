@@ -166,3 +166,47 @@ button:hover {
   outline-offset: 2px;
   border-color: #0066cc;
 }
+
+/* Registrations table */
+.registrations-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.registrations-table th {
+  text-align: left;
+  padding: 8px 12px;
+  background: #f0f0f0;
+  border-bottom: 2px solid #ddd;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #666;
+}
+.registrations-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #eee;
+}
+.registrations-table tbody tr:hover {
+  background: #f8f8f8;
+}
+.description-cell {
+  color: #666;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.trigger-count {
+  font-family: monospace;
+  font-weight: bold;
+  text-align: center;
+}
+.status-on {
+  color: #28a745;
+  font-weight: 500;
+}
+.status-off {
+  color: #dc3545;
+  font-weight: 500;
+}

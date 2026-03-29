@@ -173,6 +173,55 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       min-width: 0;
       overflow: hidden;
     `,
+    searchContainer: css`
+      position: relative;
+      padding: ${size[2]};
+      padding-bottom: 0;
+      flex-shrink: 0;
+    `,
+    searchInput: css`
+      width: 100%;
+      padding: ${size[1.5]} ${size[2]};
+      padding-right: ${size[7]};
+      font-size: ${fontSize.xs};
+      font-family: ${fontFamily.sans};
+      color: ${t(colors.gray[900], colors.gray[100])};
+      background: ${t(colors.gray[200], colors.darkGray[700])};
+      border: 1px solid ${t(colors.gray[300], colors.darkGray[600])};
+      border-radius: ${border.radius.md};
+      outline: none;
+      box-sizing: border-box;
+
+      &::placeholder {
+        color: ${t(colors.gray[500], colors.gray[500])};
+      }
+
+      &:focus {
+        border-color: ${t(colors.blue[500], colors.blue[400])};
+        box-shadow: 0 0 0 1px
+          ${t(colors.blue[500] + alpha[30], colors.blue[400] + alpha[30])};
+      }
+    `,
+    searchClear: css`
+      position: absolute;
+      right: ${size[3]};
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: ${t(colors.gray[500], colors.gray[400])};
+      font-size: ${fontSize.md};
+      cursor: pointer;
+      padding: ${size[1]};
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        color: ${t(colors.gray[700], colors.gray[200])};
+      }
+    `,
     panelHeader: css`
       font-size: ${fontSize.md};
       font-weight: ${font.weight.bold};
@@ -225,13 +274,28 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       }
     `,
     hotkeyLabel: css`
-      font-family: ${fontFamily.mono};
       font-size: ${fontSize.xs};
       color: ${t(colors.gray[900], colors.gray[100])};
       flex: 1;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: ${size[1.5]};
+      min-width: 0;
+    `,
+    hotkeyLabelKeys: css`
+      font-family: ${fontFamily.mono};
+      flex-shrink: 0;
+    `,
+    hotkeyLabelName: css`
+      font-family: ${fontFamily.sans};
+      color: ${t(colors.gray[500], colors.gray[400])};
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
     `,
     sequenceStepMatched: css`
       font-weight: ${font.weight.bold};
@@ -579,6 +643,29 @@ const stylesFactory = (theme: 'light' | 'dark') => {
         visibility 0.15s;
       z-index: ${tokens.zIndices.tooltip};
       margin-top: ${size[1]};
+    `,
+    rowTooltipText: css`
+      position: absolute;
+      bottom: 100%;
+      left: ${size[2]};
+      padding: ${size[1]} ${size[1.5]};
+      background: ${t(colors.gray[800], colors.darkGray[500])};
+      color: ${t(colors.white, colors.gray[100])};
+      font-size: ${fontSize['2xs']};
+      font-family: ${fontFamily.sans};
+      border-radius: ${border.radius.sm};
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        opacity 0.15s,
+        visibility 0.15s;
+      z-index: ${tokens.zIndices.tooltip};
+      margin-bottom: ${size[1]};
+      max-width: 300px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     `,
     triggerCount: css`
       font-family: ${fontFamily.mono};

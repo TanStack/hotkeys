@@ -149,6 +149,22 @@ scrollToTop() {
 
 When you omit options, the library uses the same defaults as the core [`SequenceOptions`](../../../reference/interfaces/SequenceOptions.md): `timeout: 1000`, `preventDefault` / `stopPropagation` enabled, smart `ignoreInputs`, and platform auto-detection. If you omit `target`, the Lit adapter resolves it to `document` when the controller connects in the browser.
 
+### `meta`
+
+Sequences support the same `meta` option as hotkeys, allowing you to attach a `name` and `description` for use in shortcut palettes and devtools.
+
+```ts
+@hotkeySequence(['G', 'G'], { meta: { name: 'Go to Top', description: 'Scroll to the top of the page' } })
+scrollTop() { window.scrollTo({ top: 0, behavior: 'smooth' }) }
+
+// Or with HotkeySequenceController:
+new HotkeySequenceController(this, ['G', 'G'], () => this.scrollTop(), {
+  meta: { name: 'Go to Top', description: 'Scroll to the top of the page' },
+})
+```
+
+See the [Hotkeys Guide](./hotkeys.md#metadata-name--description) for details on declaration merging and introspecting registrations.
+
 ## Sequences with Modifiers
 
 Each step in a sequence can include modifiers:
