@@ -1,5 +1,16 @@
 # @tanstack/vue-hotkeys
 
+## 0.9.0
+
+### Minor Changes
+
+- feat: options.meta with name and descriptions by default and new useHotkeysRegistrations hooks ([#95](https://github.com/TanStack/hotkeys/pull/95))
+
+### Patch Changes
+
+- Updated dependencies [[`63bfa22`](https://github.com/TanStack/hotkeys/commit/63bfa229b98427fd1f603095fb3435d66ceeda09)]:
+  - @tanstack/hotkeys@0.7.0
+
 ## 0.8.4
 
 ### Patch Changes

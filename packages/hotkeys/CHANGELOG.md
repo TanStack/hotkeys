@@ -1,5 +1,11 @@
 # @tanstack/hotkeys
 
+## 0.7.0
+
+### Minor Changes
+
+- feat: options.meta with name and descriptions by default and new useHotkeysRegistrations hooks ([#95](https://github.com/TanStack/hotkeys/pull/95))
+
 ## 0.6.4
 
 ### Patch Changes
