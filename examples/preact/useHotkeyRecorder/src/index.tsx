@@ -378,7 +378,6 @@ function ShortcutListItem({
                   onDraftNameChange((e.target as HTMLInputElement).value)
                 }
                 placeholder="Shortcut name"
-                autoFocus
               />
               <input
                 type="text"

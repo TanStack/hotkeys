@@ -1,4 +1,4 @@
-import { createEffect, onCleanup } from 'solid-js'
+import { createEffect, onCleanup, untrack } from 'solid-js'
 import {
   detectPlatform,
   getHotkeyManager,
@@ -136,32 +136,37 @@ export function createHotkey(
     // Extract options without target (target is handled separately)
     const { target: _target, ...optionsWithoutTarget } = mergedOptions
 
-    if (
-      registration?.isActive &&
-      lastHotkeyString === hotkeyString &&
-      lastTarget === resolvedTarget
-    ) {
-      registration.callback = callback
-      registration.setOptions(optionsWithoutTarget)
-      return
-    }
+    // Untrack store mutations so that registering/updating the hotkey doesn't
+    // create a circular reactive dependency when createHotkeyRegistrations
+    // subscribes to the same store.
+    untrack(() => {
+      if (
+        registration?.isActive &&
+        lastHotkeyString === hotkeyString &&
+        lastTarget === resolvedTarget
+      ) {
+        registration.callback = callback
+        registration.setOptions(optionsWithoutTarget)
+        return
+      }
 
-    if (registration?.isActive) {
-      registration.unregister()
-      registration = null
-    }
+      if (registration?.isActive) {
+        registration.unregister()
+        registration = null
+      }
 
-    registration = manager.register(hotkeyString, callback, {
-      ...optionsWithoutTarget,
-      target: resolvedTarget,
+      registration = manager.register(hotkeyString, callback, {
+        ...optionsWithoutTarget,
+        target: resolvedTarget,
+      })
+
+      if (registration.isActive) {
+        registration.callback = callback
+        registration.setOptions(optionsWithoutTarget)
+      }
+
+      lastHotkeyString = hotkeyString
+      lastTarget = resolvedTarget
     })
-
-    if (registration.isActive) {
-      registration.callback = callback
-      registration.setOptions(optionsWithoutTarget)
-    }
-
-    lastHotkeyString = hotkeyString
-    lastTarget = resolvedTarget
   })
 }

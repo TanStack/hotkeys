@@ -1,4 +1,4 @@
-import { createEffect, onCleanup } from 'solid-js'
+import { createEffect, onCleanup, untrack } from 'solid-js'
 import { formatHotkeySequence, getSequenceManager } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import type {
@@ -119,32 +119,37 @@ export function createHotkeySequence(
 
     const sequenceKey = formatHotkeySequence(resolvedSequence)
 
-    if (
-      registration?.isActive &&
-      lastSequenceKey === sequenceKey &&
-      lastTarget === resolvedTarget
-    ) {
-      registration.callback = callback
-      registration.setOptions(optionsWithoutTarget)
-      return
-    }
+    // Untrack store mutations so that registering/updating the sequence doesn't
+    // create a circular reactive dependency when createHotkeyRegistrations
+    // subscribes to the same store.
+    untrack(() => {
+      if (
+        registration?.isActive &&
+        lastSequenceKey === sequenceKey &&
+        lastTarget === resolvedTarget
+      ) {
+        registration.callback = callback
+        registration.setOptions(optionsWithoutTarget)
+        return
+      }
 
-    if (registration?.isActive) {
-      registration.unregister()
-      registration = null
-    }
+      if (registration?.isActive) {
+        registration.unregister()
+        registration = null
+      }
 
-    registration = manager.register(resolvedSequence, callback, {
-      ...mergedOptions,
-      target: resolvedTarget,
+      registration = manager.register(resolvedSequence, callback, {
+        ...mergedOptions,
+        target: resolvedTarget,
+      })
+
+      if (registration.isActive) {
+        registration.callback = callback
+        registration.setOptions(optionsWithoutTarget)
+      }
+
+      lastSequenceKey = sequenceKey
+      lastTarget = resolvedTarget
     })
-
-    if (registration.isActive) {
-      registration.callback = callback
-      registration.setOptions(optionsWithoutTarget)
-    }
-
-    lastSequenceKey = sequenceKey
-    lastTarget = resolvedTarget
   })
 }

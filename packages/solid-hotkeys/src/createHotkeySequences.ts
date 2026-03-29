@@ -1,4 +1,4 @@
-import { createEffect, onCleanup } from 'solid-js'
+import { createEffect, onCleanup, untrack } from 'solid-js'
 import { formatHotkeySequence, getSequenceManager } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import type { CreateHotkeySequenceOptions } from './createHotkeySequence'
@@ -137,40 +137,45 @@ export function createHotkeySequences(
       })
     }
 
-    for (const [key, record] of [...registrations.entries()]) {
-      if (!nextKeys.has(key)) {
-        if (record.handle.isActive) {
-          record.handle.unregister()
+    // Untrack store mutations so that registering/updating sequences doesn't
+    // create a circular reactive dependency when createHotkeyRegistrations
+    // subscribes to the same store.
+    untrack(() => {
+      for (const [key, record] of [...registrations.entries()]) {
+        if (!nextKeys.has(key)) {
+          if (record.handle.isActive) {
+            record.handle.unregister()
+          }
+          registrations.delete(key)
         }
-        registrations.delete(key)
       }
-    }
 
-    for (const p of prepared) {
-      const existing = registrations.get(p.registrationKey)
-      if (existing?.handle.isActive && existing.target === p.resolvedTarget) {
-        existing.handle.callback = p.def.callback
+      for (const p of prepared) {
+        const existing = registrations.get(p.registrationKey)
+        if (existing?.handle.isActive && existing.target === p.resolvedTarget) {
+          existing.handle.callback = p.def.callback
+          const { target: _target, ...optionsWithoutTarget } = p.mergedOptions
+          existing.handle.setOptions(optionsWithoutTarget)
+          continue
+        }
+
+        if (existing) {
+          if (existing.handle.isActive) {
+            existing.handle.unregister()
+          }
+          registrations.delete(p.registrationKey)
+        }
+
         const { target: _target, ...optionsWithoutTarget } = p.mergedOptions
-        existing.handle.setOptions(optionsWithoutTarget)
-        continue
+        const handle = manager.register(p.def.sequence, p.def.callback, {
+          ...optionsWithoutTarget,
+          target: p.resolvedTarget,
+        })
+        registrations.set(p.registrationKey, {
+          handle,
+          target: p.resolvedTarget,
+        })
       }
-
-      if (existing) {
-        if (existing.handle.isActive) {
-          existing.handle.unregister()
-        }
-        registrations.delete(p.registrationKey)
-      }
-
-      const { target: _target, ...optionsWithoutTarget } = p.mergedOptions
-      const handle = manager.register(p.def.sequence, p.def.callback, {
-        ...optionsWithoutTarget,
-        target: p.resolvedTarget,
-      })
-      registrations.set(p.registrationKey, {
-        handle,
-        target: p.resolvedTarget,
-      })
-    }
+    })
   })
 }

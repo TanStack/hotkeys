@@ -39,7 +39,6 @@ const heldKeys = useHeldKeys()
               class="edit-input edit-name"
               :value="draftName"
               placeholder="Shortcut name"
-              autofocus
               @input="
                 $emit(
                   'update:draftName',

@@ -401,7 +401,6 @@ function ShortcutListItem({
                 value={draftName}
                 onChange={(e) => onDraftNameChange(e.target.value)}
                 placeholder="Shortcut name"
-                autoFocus
               />
               <input
                 type="text"

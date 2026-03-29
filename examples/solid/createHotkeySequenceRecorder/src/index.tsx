@@ -395,7 +395,6 @@ function ShortcutListItem(props: {
                 value={props.draftName}
                 onInput={(e) => props.onDraftNameChange(e.currentTarget.value)}
                 placeholder="Shortcut name"
-                autofocus
               />
               <input
                 type="text"
