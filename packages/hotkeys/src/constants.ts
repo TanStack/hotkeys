@@ -455,6 +455,9 @@ export function isSingleLetterKey(key: string): boolean {
  * ```
  */
 export function normalizeKeyName(key: string): string {
+  // key an be undefined in rare cases
+  // (browser extensions synthesizing key events, accessibility tools, certain OS/browser combinations).
+  if (!key) return ''
   // Check aliases first
   if (key in KEY_ALIASES) {
     return KEY_ALIASES[key]!
