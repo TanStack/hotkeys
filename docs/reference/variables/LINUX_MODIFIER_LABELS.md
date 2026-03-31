@@ -9,4 +9,4 @@ title: LINUX_MODIFIER_LABELS
 const LINUX_MODIFIER_LABELS: Record<CanonicalModifier | "Mod", string>;
 ```
 
-Defined in: [constants.ts:556](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L556)
+Defined in: [constants.ts:559](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L559)

@@ -9,7 +9,7 @@ title: WINDOWS_MODIFIER_LABELS
 const WINDOWS_MODIFIER_LABELS: Record<CanonicalModifier | "Mod", string>;
 ```
 
-Defined in: [constants.ts:545](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L545)
+Defined in: [constants.ts:548](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L548)
 
 Modifier key labels for Windows/Linux display.
 

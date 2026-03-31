@@ -9,7 +9,7 @@ title: MAC_MODIFIER_LABELS
 const MAC_MODIFIER_LABELS: Record<CanonicalModifier | "Mod", string>;
 ```
 
-Defined in: [constants.ts:522](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L522)
+Defined in: [constants.ts:525](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L525)
 
 Modifier key labels for macOS display.
 
