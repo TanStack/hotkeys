@@ -1,5 +1,11 @@
 # @tanstack/hotkeys
 
+## 0.7.1
+
+### Patch Changes
+
+- fix: normalizeKeyName null check ([#98](https://github.com/TanStack/hotkeys/pull/98))
+
 ## 0.7.0
 
 ### Minor Changes
