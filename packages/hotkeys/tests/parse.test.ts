@@ -267,6 +267,13 @@ describe('isModifierKey', () => {
   })
 })
 
+describe('normalizeKeyName', () => {
+  it('returns empty string for falsy input (undefined coerced, empty string)', () => {
+    expect(normalizeKeyName('')).toBe('')
+    expect(normalizeKeyName(undefined as unknown as string)).toBe('')
+  })
+})
+
 describe('rawHotkeyToParsedHotkey', () => {
   it('should convert minimal RawHotkey (key only)', () => {
     const result = rawHotkeyToParsedHotkey({ key: 'Escape' })
