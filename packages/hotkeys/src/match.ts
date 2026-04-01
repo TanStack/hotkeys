@@ -13,6 +13,42 @@ import type {
 } from './hotkey'
 
 /**
+ * Reverse mapping from punctuation characters to their `KeyboardEvent.code` values.
+ * Built from `PUNCTUATION_CODE_MAP` for use with `matchBy: 'code'`.
+ */
+const KEY_TO_PUNCTUATION_CODE: Record<string, string> = {}
+for (const [code, key] of Object.entries(PUNCTUATION_CODE_MAP)) {
+  KEY_TO_PUNCTUATION_CODE[key] = code
+}
+
+/**
+ * Converts a hotkey key name to its expected `KeyboardEvent.code` value.
+ *
+ * Used when `matchBy: 'code'` to compare against the physical key position
+ * rather than the character produced by the current keyboard layout/IME.
+ *
+ * @param key - The normalized hotkey key name (e.g., 'A', '4', '-', 'Escape')
+ * @returns The expected `event.code` value, or the key itself for special keys
+ */
+function keyToCode(key: string): string {
+  // Letter keys: A → KeyA
+  if (/^[A-Za-z]$/.test(key)) {
+    return `Key${key.toUpperCase()}`
+  }
+  // Digit keys: 4 → Digit4
+  if (/^[0-9]$/.test(key)) {
+    return `Digit${key}`
+  }
+  // Punctuation keys: - → Minus, / → Slash, etc.
+  if (key in KEY_TO_PUNCTUATION_CODE) {
+    return KEY_TO_PUNCTUATION_CODE[key]!
+  }
+  // Special keys (Escape, Enter, Space, Tab, F1, ArrowUp, etc.)
+  // Their event.code matches the key name
+  return key
+}
+
+/**
  * Checks if a KeyboardEvent matches a hotkey.
  *
  * Uses the `key` property from KeyboardEvent for matching, with a fallback to `code`
@@ -28,6 +64,7 @@ import type {
  * @param event - The KeyboardEvent to check
  * @param hotkey - The hotkey string or ParsedHotkey to match against
  * @param platform - The target platform for resolving 'Mod' (defaults to auto-detection)
+ * @param matchBy - How to match: 'key' (layout-aware, default) or 'code' (physical key position)
  * @returns True if the event matches the hotkey
  *
  * @example
@@ -37,6 +74,11 @@ import type {
  *     event.preventDefault()
  *     handleSave()
  *   }
+ *
+ *   // Physical key matching for non-Latin IME
+ *   if (matchesKeyboardEvent(event, 'A', undefined, 'code')) {
+ *     handleA() // Works even when a non-Latin IME is active
+ *   }
  * })
  * ```
  */
@@ -44,6 +86,7 @@ export function matchesKeyboardEvent(
   event: KeyboardEvent,
   hotkey: Hotkey | ParsedHotkey,
   platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
+  matchBy: 'key' | 'code' = 'key',
 ): boolean {
   const parsed =
     typeof hotkey === 'string' ? parseHotkey(hotkey, platform) : hotkey
@@ -60,6 +103,17 @@ export function matchesKeyboardEvent(
   }
   if (event.metaKey !== parsed.meta) {
     return false
+  }
+
+  // When matchBy is 'code', compare against event.code (physical key position)
+  // instead of event.key. Useful when a non-Latin IME is active and
+  // event.key produces non-Latin characters.
+  if (matchBy === 'code') {
+    if (!event.code) {
+      return false
+    }
+    const expectedCode = keyToCode(parsed.key)
+    return event.code === expectedCode
   }
 
   // Check key (case-insensitive for letters)
@@ -136,6 +190,8 @@ export interface CreateHotkeyHandlerOptions {
   stopPropagation?: boolean
   /** The target platform for resolving 'Mod' */
   platform?: 'mac' | 'windows' | 'linux'
+  /** How to match: 'key' (layout-aware, default) or 'code' (physical key position) */
+  matchBy?: 'key' | 'code'
 }
 
 /**
@@ -161,7 +217,12 @@ export function createHotkeyHandler(
   callback: HotkeyCallback,
   options: CreateHotkeyHandlerOptions = {},
 ): (event: KeyboardEvent) => void {
-  const { preventDefault = true, stopPropagation = true, platform } = options
+  const {
+    preventDefault = true,
+    stopPropagation = true,
+    platform,
+    matchBy,
+  } = options
   const resolvedPlatform = platform ?? detectPlatform()
 
   const hotkeyString: Hotkey =
@@ -175,7 +236,7 @@ export function createHotkeyHandler(
   }
 
   return (event: KeyboardEvent) => {
-    if (matchesKeyboardEvent(event, parsed, resolvedPlatform)) {
+    if (matchesKeyboardEvent(event, parsed, resolvedPlatform, matchBy)) {
       if (preventDefault) {
         event.preventDefault()
       }
@@ -211,7 +272,12 @@ export function createMultiHotkeyHandler(
   handlers: MultiHotkeyHandler,
   options: CreateHotkeyHandlerOptions = {},
 ): (event: KeyboardEvent) => void {
-  const { preventDefault = true, stopPropagation = true, platform } = options
+  const {
+    preventDefault = true,
+    stopPropagation = true,
+    platform,
+    matchBy,
+  } = options
   const resolvedPlatform = platform ?? detectPlatform()
 
   // Pre-parse all hotkeys for efficiency
@@ -228,7 +294,7 @@ export function createMultiHotkeyHandler(
 
   return (event: KeyboardEvent) => {
     for (const { parsed, handler, context } of parsedHandlers) {
-      if (matchesKeyboardEvent(event, parsed, resolvedPlatform)) {
+      if (matchesKeyboardEvent(event, parsed, resolvedPlatform, matchBy)) {
         if (preventDefault) {
           event.preventDefault()
         }
