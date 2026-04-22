@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/vue-hotkeys",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "description": "Vue adapter for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",

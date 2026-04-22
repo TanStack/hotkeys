@@ -1,5 +1,11 @@
 # @tanstack/hotkeys
 
+## 0.8.0
+
+### Minor Changes
+
+- feat: upgrade to latest tanstack store version ([`3104ee4`](https://github.com/TanStack/hotkeys/commit/3104ee494edd9877249c46b648af27d31cfd8c9c))
+
 ## 0.7.1
 
 ### Patch Changes

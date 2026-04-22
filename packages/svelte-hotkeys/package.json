@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/svelte-hotkeys",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "description": "Svelte adapter for TanStack Hotkeys",
   "author": "Kunal Rao",
   "license": "MIT",
