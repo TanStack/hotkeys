@@ -12,6 +12,7 @@ lit: @tanstack/lit-hotkeys
 preact: @tanstack/preact-hotkeys
 react: @tanstack/react-hotkeys
 solid: @tanstack/solid-hotkeys
+svelte: @tanstack/svelte-hotkeys
 vue: @tanstack/vue-hotkeys
 
 <!-- ::end:tabs -->
@@ -42,6 +43,14 @@ Start with the [API reference](./framework/preact/reference/index) and [guides](
 # Solid
 
 Start with the [API reference](./framework/solid/reference/index) and [guides](./framework/solid/guides/hotkeys). If you want the integrated devtools panel, also install:
+
+<!-- ::end:framework -->
+
+<!-- ::start:framework -->
+
+# Svelte
+
+Start with the [Quick Start](./framework/svelte/quick-start) guide and the Svelte-specific [guides](./framework/svelte/guides/hotkeys).
 
 <!-- ::end:framework -->
 
