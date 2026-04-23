@@ -1,6 +1,6 @@
 # @tanstack/hotkeys-devtools
 
-## 1.0.0
+## 0.9.0
 
 ### Minor Changes
 

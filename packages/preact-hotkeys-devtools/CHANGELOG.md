@@ -9,7 +9,7 @@
 ### Patch Changes
 
 - Updated dependencies [[`3104ee4`](https://github.com/TanStack/hotkeys/commit/3104ee494edd9877249c46b648af27d31cfd8c9c)]:
-  - @tanstack/hotkeys-devtools@1.0.0
+  - @tanstack/hotkeys-devtools@0.9.0
 
 ## 0.6.6
 
