@@ -48,7 +48,7 @@ Start with the [API reference](./framework/solid/reference/index) and [guides](.
 
 <!-- ::start:framework -->
 
-# Svelte
+### Svelte
 
 Start with the [Quick Start](./framework/svelte/quick-start) guide and the Svelte-specific [guides](./framework/svelte/guides/hotkeys).
 
