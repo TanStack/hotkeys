@@ -1,5 +1,5 @@
 import { onUnmounted, unref, watch } from 'vue'
-import { useStore } from '@tanstack/vue-store'
+import { useSelector } from '@tanstack/vue-store'
 import { HotkeySequenceRecorder } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProviderContext'
 import type { MaybeRefOrGetter, Ref } from 'vue'
@@ -29,9 +29,9 @@ export function useHotkeySequenceRecorder(
     resolveHotkeySequenceRecorderOptions(options, defaultOptions),
   )
 
-  const isRecording = useStore(recorder.store, (state) => state.isRecording)
-  const steps = useStore(recorder.store, (state) => state.steps)
-  const recordedSequence = useStore(
+  const isRecording = useSelector(recorder.store, (state) => state.isRecording)
+  const steps = useSelector(recorder.store, (state) => state.steps)
+  const recordedSequence = useSelector(
     recorder.store,
     (state) => state.recordedSequence,
   )

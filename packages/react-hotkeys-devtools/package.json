@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/react-hotkeys-devtools",
-  "version": "0.6.6",
+  "version": "0.7.0",
   "description": "React devtools for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",
@@ -58,11 +58,11 @@
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {
-    "@eslint-react/eslint-plugin": "^3.0.0",
+    "@eslint-react/eslint-plugin": "^4.2.3",
     "@types/react": "^19.2.14",
     "@vitejs/plugin-react": "^6.0.1",
     "eslint-plugin-react-compiler": "19.1.0-rc.2",
-    "eslint-plugin-react-hooks": "^7.0.1",
-    "react": "^19.2.4"
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "react": "^19.2.5"
   }
 }

@@ -1,4 +1,4 @@
-import { useStore } from '@tanstack/react-store'
+import { useSelector } from '@tanstack/react-store'
 import {
   getHotkeyManager,
   getSequenceManager,
@@ -55,11 +55,11 @@ export function useHotkeyRegistrations(): HotkeyRegistrationsResult {
   const hotkeyManager = getHotkeyManager()
   const sequenceManager = getSequenceManager()
 
-  const hotkeys = useStore(hotkeyManager.registrations, (state) =>
+  const hotkeys = useSelector(hotkeyManager.registrations, (state) =>
     Array.from(state.values()).map(toHotkeyRegistrationView),
   )
 
-  const sequences = useStore(sequenceManager.registrations, (state) =>
+  const sequences = useSelector(sequenceManager.registrations, (state) =>
     Array.from(state.values()),
   )
 

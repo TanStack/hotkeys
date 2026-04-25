@@ -13,7 +13,7 @@ Defined in: [createKeyHold.ts:46](https://github.com/TanStack/hotkeys/blob/main/
 
 SolidJS primitive that returns whether a specific key is currently being held.
 
-This primitive uses `useStore` from `@tanstack/solid-store` to subscribe
+This primitive uses `useSelector` from `@tanstack/solid-store` to subscribe
 to the global KeyStateTracker and uses a selector to determine if the
 specified key is held.
 

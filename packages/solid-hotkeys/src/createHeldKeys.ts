@@ -1,10 +1,10 @@
-import { useStore } from '@tanstack/solid-store'
+import { useSelector } from '@tanstack/solid-store'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
 
 /**
  * SolidJS primitive that returns a signal of currently held keyboard keys.
  *
- * This primitive uses `useStore` from `@tanstack/solid-store` to subscribe
+ * This primitive uses `useSelector` from `@tanstack/solid-store` to subscribe
  * to the global KeyStateTracker and updates whenever keys are pressed
  * or released.
  *
@@ -25,5 +25,5 @@ import { getKeyStateTracker } from '@tanstack/hotkeys'
  */
 export function createHeldKeys(): () => Array<string> {
   const tracker = getKeyStateTracker()
-  return useStore(tracker.store, (state) => state.heldKeys)
+  return useSelector(tracker.store, (state) => state.heldKeys)
 }

@@ -1,4 +1,4 @@
-import { injectStore } from '@tanstack/angular-store'
+import { injectSelector } from '@tanstack/angular-store'
 import {
   getHotkeyManager,
   getSequenceManager,
@@ -36,11 +36,11 @@ export function injectHotkeyRegistrations(): HotkeyRegistrationsResult {
   const hotkeyManager = getHotkeyManager()
   const sequenceManager = getSequenceManager()
 
-  const hotkeys = injectStore(hotkeyManager.registrations, (state) =>
+  const hotkeys = injectSelector(hotkeyManager.registrations, (state) =>
     Array.from(state.values()).map(toHotkeyRegistrationView),
   )
 
-  const sequences = injectStore(sequenceManager.registrations, (state) =>
+  const sequences = injectSelector(sequenceManager.registrations, (state) =>
     Array.from(state.values()),
   )
 

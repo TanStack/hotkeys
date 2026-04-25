@@ -1,4 +1,4 @@
-import { useStore } from '@tanstack/solid-store'
+import { useSelector } from '@tanstack/solid-store'
 import {
   getHotkeyManager,
   getSequenceManager,
@@ -33,11 +33,11 @@ export function createHotkeyRegistrations(): HotkeyRegistrationsResult {
   const hotkeyManager = getHotkeyManager()
   const sequenceManager = getSequenceManager()
 
-  const hotkeys = useStore(hotkeyManager.registrations, (state) =>
+  const hotkeys = useSelector(hotkeyManager.registrations, (state) =>
     Array.from(state.values()).map(toHotkeyRegistrationView),
   )
 
-  const sequences = useStore(sequenceManager.registrations, (state) =>
+  const sequences = useSelector(sequenceManager.registrations, (state) =>
     Array.from(state.values()),
   )
 

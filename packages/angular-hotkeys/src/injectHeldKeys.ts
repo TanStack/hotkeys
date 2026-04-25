@@ -1,5 +1,5 @@
 import { getKeyStateTracker } from '@tanstack/hotkeys'
-import { injectStore } from '@tanstack/angular-store'
+import { injectSelector } from '@tanstack/angular-store'
 import type { Signal } from '@angular/core'
 
 /**
@@ -22,5 +22,5 @@ import type { Signal } from '@angular/core'
  */
 export function injectHeldKeys(): Signal<Array<string>> {
   const tracker = getKeyStateTracker()
-  return injectStore(tracker.store, (state) => state.heldKeys)
+  return injectSelector(tracker.store, (state) => state.heldKeys)
 }

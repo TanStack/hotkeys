@@ -1,5 +1,5 @@
 import { createEffect, onCleanup } from 'solid-js'
-import { useStore } from '@tanstack/solid-store'
+import { useSelector } from '@tanstack/solid-store'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import type { Hotkey, HotkeyRecorderOptions } from '@tanstack/hotkeys'
@@ -25,7 +25,7 @@ export interface SolidHotkeyRecorder {
  * to hotkey strings, and handling edge cases like Escape to cancel or Backspace/Delete
  * to clear.
  *
- * This primitive uses `useStore` from `@tanstack/solid-store` to subscribe
+ * This primitive uses `useSelector` from `@tanstack/solid-store` to subscribe
  * to the recorder's store state (same pattern as useHotkeyRecorder in React).
  *
  * @param options - Configuration options for the recorder (or accessor function)
@@ -72,9 +72,9 @@ export function createHotkeyRecorder(
   // Create recorder once synchronously (matches React's useRef pattern)
   const recorder = new HotkeyRecorder(mergedOptions)
 
-  // Subscribe to recorder state using useStore (same pattern as useHotkeyRecorder)
-  const isRecording = useStore(recorder.store, (state) => state.isRecording)
-  const recordedHotkey = useStore(
+  // Subscribe to recorder state using useSelector (same pattern as useHotkeyRecorder)
+  const isRecording = useSelector(recorder.store, (state) => state.isRecording)
+  const recordedHotkey = useSelector(
     recorder.store,
     (state) => state.recordedHotkey,
   )

@@ -44,7 +44,7 @@ export interface HotkeyRecorderOptions {
  * State Management:
  * - Uses TanStack Store for reactive state management
  * - State can be accessed via `recorder.store.state` when using the class directly
- * - When using framework adapters (React), use `useStore` hooks for reactive state
+ * - When using framework adapters (React), use `useSelector` hooks for reactive state
  *
  * @example
  * ```ts

@@ -13,7 +13,7 @@ Defined in: [createHeldKeys.ts:26](https://github.com/TanStack/hotkeys/blob/main
 
 SolidJS primitive that returns a signal of currently held keyboard keys.
 
-This primitive uses `useStore` from `@tanstack/solid-store` to subscribe
+This primitive uses `useSelector` from `@tanstack/solid-store` to subscribe
 to the global KeyStateTracker and updates whenever keys are pressed
 or released.
 

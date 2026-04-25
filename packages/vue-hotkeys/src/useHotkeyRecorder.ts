@@ -1,5 +1,5 @@
 import { onUnmounted, unref, watch } from 'vue'
-import { useStore } from '@tanstack/vue-store'
+import { useSelector } from '@tanstack/vue-store'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProviderContext'
 import type { MaybeRefOrGetter, Ref } from 'vue'
@@ -67,9 +67,9 @@ export function useHotkeyRecorder(
     resolveRecorderOptions(options, defaultOptions),
   )
 
-  // Subscribe to recorder state using useStore
-  const isRecording = useStore(recorder.store, (state) => state.isRecording)
-  const recordedHotkey = useStore(
+  // Subscribe to recorder state using useSelector
+  const isRecording = useSelector(recorder.store, (state) => state.isRecording)
+  const recordedHotkey = useSelector(
     recorder.store,
     (state) => state.recordedHotkey,
   )

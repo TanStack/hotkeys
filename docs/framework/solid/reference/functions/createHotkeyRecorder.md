@@ -18,7 +18,7 @@ class, managing all the complexity of capturing keyboard events, converting them
 to hotkey strings, and handling edge cases like Escape to cancel or Backspace/Delete
 to clear.
 
-This primitive uses `useStore` from `@tanstack/solid-store` to subscribe
+This primitive uses `useSelector` from `@tanstack/solid-store` to subscribe
 to the recorder's store state (same pattern as useHotkeyRecorder in React).
 
 ## Parameters

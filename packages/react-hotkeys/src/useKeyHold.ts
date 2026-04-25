@@ -1,11 +1,11 @@
-import { useStore } from '@tanstack/react-store'
+import { useSelector } from '@tanstack/react-store'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
 import type { IndividualKey } from '@tanstack/hotkeys'
 
 /**
  * React hook that returns whether a specific key is currently being held.
  *
- * This hook uses `useStore` from `@tanstack/react-store` to subscribe
+ * This hook uses `useSelector` from `@tanstack/react-store` to subscribe
  * to the global KeyStateTracker and uses a selector to determine if
  * the specified key is held.
  *
@@ -46,7 +46,7 @@ export function useKeyHold(key: IndividualKey): boolean {
   const tracker = getKeyStateTracker()
   const normalizedKey = key.toLowerCase()
 
-  return useStore(tracker.store, (state) =>
+  return useSelector(tracker.store, (state) =>
     state.heldKeys.some((heldKey) => heldKey.toLowerCase() === normalizedKey),
   )
 }

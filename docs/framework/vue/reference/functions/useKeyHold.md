@@ -13,7 +13,7 @@ Defined in: [packages/vue-hotkeys/src/useKeyHold.ts:51](https://github.com/TanSt
 
 Vue composable that returns a reactive ref indicating whether a specific key is currently being held.
 
-This composable uses `useStore` from `@tanstack/vue-store` to subscribe
+This composable uses `useSelector` from `@tanstack/vue-store` to subscribe
 to the global KeyStateTracker and uses a selector to determine if
 the specified key is held.
 

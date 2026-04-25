@@ -11,16 +11,16 @@
     "test:types": "tsc"
   },
   "dependencies": {
-    "@tanstack/vue-hotkeys": "^0.9.1",
-    "vue": "^3.5.31"
+    "@tanstack/vue-hotkeys": "^0.10.0",
+    "vue": "^3.5.33"
   },
   "devDependencies": {
-    "@tanstack/vue-devtools": "^0.2.14",
-    "@tanstack/vue-hotkeys-devtools": "^0.6.6",
-    "@typescript-eslint/parser": "^8.57.2",
-    "@vitejs/plugin-vue": "^6.0.5",
-    "typescript": "6.0.2",
-    "vite": "^8.0.3",
+    "@tanstack/vue-devtools": "^0.2.16",
+    "@tanstack/vue-hotkeys-devtools": "^0.7.0",
+    "@typescript-eslint/parser": "^8.59.0",
+    "@vitejs/plugin-vue": "^6.0.6",
+    "typescript": "6.0.3",
+    "vite": "^8.0.9",
     "vue-eslint-parser": "10.4.0"
   }
 }

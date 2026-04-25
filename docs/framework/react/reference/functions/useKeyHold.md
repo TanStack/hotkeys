@@ -13,7 +13,7 @@ Defined in: [useKeyHold.ts:45](https://github.com/TanStack/hotkeys/blob/main/pac
 
 React hook that returns whether a specific key is currently being held.
 
-This hook uses `useStore` from `@tanstack/react-store` to subscribe
+This hook uses `useSelector` from `@tanstack/react-store` to subscribe
 to the global KeyStateTracker and uses a selector to determine if
 the specified key is held.
 

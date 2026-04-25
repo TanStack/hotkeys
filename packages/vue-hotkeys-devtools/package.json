@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/vue-hotkeys-devtools",
-  "version": "0.6.6",
+  "version": "0.7.0",
   "description": "Vue devtools for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",
@@ -62,8 +62,8 @@
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.5",
-    "vue": "^3.5.31"
+    "@vitejs/plugin-vue": "^6.0.6",
+    "vue": "^3.5.33"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js"

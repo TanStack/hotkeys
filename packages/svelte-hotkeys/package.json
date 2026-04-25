@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/svelte-hotkeys",
-  "version": "0.9.1",
+  "version": "0.10.0",
   "description": "Svelte adapter for TanStack Hotkeys",
   "author": "Kunal Rao",
   "license": "MIT",
@@ -54,9 +54,9 @@
   "devDependencies": {
     "@sveltejs/package": "^2.5.7",
     "@sveltejs/vite-plugin-svelte": "^7.0.0",
-    "@typescript-eslint/parser": "^8.57.2",
-    "eslint-plugin-svelte": "^3.16.0",
-    "svelte": "^5.55.0"
+    "@typescript-eslint/parser": "^8.59.0",
+    "eslint-plugin-svelte": "^3.17.1",
+    "svelte": "^5.55.4"
   },
   "peerDependencies": {
     "svelte": "^5.25.0"

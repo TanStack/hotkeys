@@ -1,4 +1,4 @@
-import { useStore } from '@tanstack/solid-store'
+import { useSelector } from '@tanstack/solid-store'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
 
 /**
@@ -7,7 +7,7 @@ import { getKeyStateTracker } from '@tanstack/hotkeys'
  * This is useful for debugging which physical key was pressed (e.g. distinguishing
  * left vs right Shift via "ShiftLeft" / "ShiftRight").
  *
- * This primitive uses `useStore` from `@tanstack/solid-store` to subscribe
+ * This primitive uses `useSelector` from `@tanstack/solid-store` to subscribe
  * to the global KeyStateTracker.
  *
  * @returns Signal accessor for record mapping normalized key names to their `event.code` values
@@ -34,5 +34,5 @@ import { getKeyStateTracker } from '@tanstack/hotkeys'
  */
 export function createHeldKeyCodes(): () => Record<string, string> {
   const tracker = getKeyStateTracker()
-  return useStore(tracker.store, (state) => state.heldCodes)
+  return useSelector(tracker.store, (state) => state.heldCodes)
 }

@@ -13,7 +13,7 @@ Defined in: [useHeldKeys.ts:26](https://github.com/TanStack/hotkeys/blob/main/pa
 
 Preact hook that returns an array of currently held keyboard keys.
 
-This hook uses `useStore` from `@tanstack/preact-store` to subscribe
+This hook uses `useSelector` from `@tanstack/preact-store` to subscribe
 to the global KeyStateTracker and updates whenever keys are pressed
 or released.
 

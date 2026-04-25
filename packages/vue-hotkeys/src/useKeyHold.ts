@@ -1,4 +1,4 @@
-import { useStore } from '@tanstack/vue-store'
+import { useSelector } from '@tanstack/vue-store'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
 import { unref } from 'vue'
 import type { MaybeRefOrGetter, Ref } from 'vue'
@@ -7,7 +7,7 @@ import type { IndividualKey } from '@tanstack/hotkeys'
 /**
  * Vue composable that returns a reactive ref indicating whether a specific key is currently being held.
  *
- * This composable uses `useStore` from `@tanstack/vue-store` to subscribe
+ * This composable uses `useSelector` from `@tanstack/vue-store` to subscribe
  * to the global KeyStateTracker and uses a selector to determine if
  * the specified key is held.
  *
@@ -51,7 +51,7 @@ import type { IndividualKey } from '@tanstack/hotkeys'
 export function useKeyHold(key: MaybeRefOrGetter<IndividualKey>): Ref<boolean> {
   const tracker = getKeyStateTracker()
 
-  const isHeld = useStore(tracker.store, (state) => {
+  const isHeld = useSelector(tracker.store, (state) => {
     const keyValue = unref(key)
     const normalizedKey = (
       typeof keyValue === 'string' ? keyValue : String(keyValue)

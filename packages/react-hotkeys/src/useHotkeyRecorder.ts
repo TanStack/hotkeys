@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react'
-import { useStore } from '@tanstack/react-store'
+import { useSelector } from '@tanstack/react-store'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import type { Hotkey, HotkeyRecorderOptions } from '@tanstack/hotkeys'
@@ -74,12 +74,12 @@ export function useHotkeyRecorder(
   // This ensures callbacks always have access to latest values
   recorderRef.current.setOptions(mergedOptions)
 
-  // Subscribe to recorder state using useStore (same pattern as useHeldKeys)
-  const isRecording = useStore(
+  // Subscribe to recorder state using useSelector (same pattern as useHeldKeys)
+  const isRecording = useSelector(
     recorderRef.current.store,
     (state) => state.isRecording,
   )
-  const recordedHotkey = useStore(
+  const recordedHotkey = useSelector(
     recorderRef.current.store,
     (state) => state.recordedHotkey,
   )

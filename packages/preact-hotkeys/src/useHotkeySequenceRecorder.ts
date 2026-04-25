@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'preact/hooks'
-import { useStore } from '@tanstack/preact-store'
+import { useSelector } from '@tanstack/preact-store'
 import { HotkeySequenceRecorder } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import type {
@@ -36,12 +36,12 @@ export function useHotkeySequenceRecorder(
 
   recorderRef.current.setOptions(mergedOptions)
 
-  const isRecording = useStore(
+  const isRecording = useSelector(
     recorderRef.current.store,
     (state) => state.isRecording,
   )
-  const steps = useStore(recorderRef.current.store, (state) => state.steps)
-  const recordedSequence = useStore(
+  const steps = useSelector(recorderRef.current.store, (state) => state.steps)
+  const recordedSequence = useSelector(
     recorderRef.current.store,
     (state) => state.recordedSequence,
   )

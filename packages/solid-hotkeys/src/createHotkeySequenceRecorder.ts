@@ -1,5 +1,5 @@
 import { createEffect, onCleanup } from 'solid-js'
-import { useStore } from '@tanstack/solid-store'
+import { useSelector } from '@tanstack/solid-store'
 import { HotkeySequenceRecorder } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import type {
@@ -35,9 +35,9 @@ export function createHotkeySequenceRecorder(
 
   const recorder = new HotkeySequenceRecorder(mergedOptions)
 
-  const isRecording = useStore(recorder.store, (state) => state.isRecording)
-  const steps = useStore(recorder.store, (state) => state.steps)
-  const recordedSequence = useStore(
+  const isRecording = useSelector(recorder.store, (state) => state.isRecording)
+  const steps = useSelector(recorder.store, (state) => state.steps)
+  const recordedSequence = useSelector(
     recorder.store,
     (state) => state.recordedSequence,
   )

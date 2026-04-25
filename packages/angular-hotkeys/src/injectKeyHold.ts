@@ -1,5 +1,5 @@
 import { computed } from '@angular/core'
-import { injectStore } from '@tanstack/angular-store'
+import { injectSelector } from '@tanstack/angular-store'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
 import type { IndividualKey } from '@tanstack/hotkeys'
 import type { Signal } from '@angular/core'
@@ -41,7 +41,10 @@ export function injectKeyHold(
   key: IndividualKey | (() => IndividualKey),
 ): Signal<boolean> {
   const tracker = getKeyStateTracker()
-  const heldKeysSelector = injectStore(tracker.store, (state) => state.heldKeys)
+  const heldKeysSelector = injectSelector(
+    tracker.store,
+    (state) => state.heldKeys,
+  )
 
   return computed(() => {
     const resolvedKey = typeof key === 'function' ? key() : key

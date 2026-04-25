@@ -11,10 +11,10 @@
     "test:types": "tsc"
   },
   "dependencies": {
-    "@tanstack/hotkeys": "^0.7.1"
+    "@tanstack/hotkeys": "^0.8.0"
   },
   "devDependencies": {
-    "typescript": "6.0.2",
-    "vite": "^8.0.3"
+    "typescript": "6.0.3",
+    "vite": "^8.0.9"
   }
 }

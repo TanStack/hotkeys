@@ -16,7 +16,7 @@ SolidJS primitive that returns a signal of a map from currently held key names t
 This is useful for debugging which physical key was pressed (e.g. distinguishing
 left vs right Shift via "ShiftLeft" / "ShiftRight").
 
-This primitive uses `useStore` from `@tanstack/solid-store` to subscribe
+This primitive uses `useSelector` from `@tanstack/solid-store` to subscribe
 to the global KeyStateTracker.
 
 ## Returns
