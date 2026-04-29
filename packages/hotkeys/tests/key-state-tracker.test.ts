@@ -1,5 +1,6 @@
 /// <reference lib="dom" />
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { HotkeySequenceRecorder } from '../src/hotkey-sequence-recorder'
 import { KeyStateTracker } from '../src/key-state-tracker'
 
 /**
@@ -273,6 +274,37 @@ describe('KeyStateTracker', () => {
       dispatchKey('keydown', 'a')
       expect(tracker.isKeyHeld('a')).toBe(true)
       expect(tracker.isKeyHeld('A')).toBe(true)
+    })
+  })
+
+  describe('capture phase registration', () => {
+    // Regression: a HotkeySequenceRecorder registers a capture-phase keydown
+    // listener that calls stopPropagation. If the tracker is on the bubble
+    // phase, propagation halts before its listener runs and held-key state
+    // goes stale. Capture-phase registration ensures the tracker observes
+    // every key, even when a recorder is active.
+    it('tracks held keys while a HotkeySequenceRecorder is active', () => {
+      const tracker = KeyStateTracker.getInstance()
+      const recorder = new HotkeySequenceRecorder({ onRecord: () => {} })
+      recorder.start()
+
+      const child = document.createElement('div')
+      document.body.appendChild(child)
+
+      try {
+        child.dispatchEvent(
+          new KeyboardEvent('keydown', {
+            key: 'Control',
+            code: 'ControlLeft',
+            bubbles: true,
+          }),
+        )
+
+        expect(tracker.getHeldKeys()).toContain('Control')
+      } finally {
+        recorder.destroy()
+        child.remove()
+      }
     })
   })
 })

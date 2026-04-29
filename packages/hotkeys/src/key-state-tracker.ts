@@ -150,8 +150,8 @@ export class KeyStateTracker {
       }
     }
 
-    document.addEventListener('keydown', this.#keydownListener)
-    document.addEventListener('keyup', this.#keyupListener)
+    document.addEventListener('keydown', this.#keydownListener, true)
+    document.addEventListener('keyup', this.#keyupListener, true)
     window.addEventListener('blur', this.#blurListener)
   }
 
@@ -174,12 +174,12 @@ export class KeyStateTracker {
     }
 
     if (this.#keydownListener) {
-      document.removeEventListener('keydown', this.#keydownListener)
+      document.removeEventListener('keydown', this.#keydownListener, true)
       this.#keydownListener = null
     }
 
     if (this.#keyupListener) {
-      document.removeEventListener('keyup', this.#keyupListener)
+      document.removeEventListener('keyup', this.#keyupListener, true)
       this.#keyupListener = null
     }
 
