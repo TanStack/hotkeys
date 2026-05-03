@@ -7,8 +7,8 @@ title: "@tanstack/ember-hotkeys"
 
 ## Helpers
 
-- [on-hotkey](../../guides/hotkeys) — Register a single keyboard shortcut
-- [on-hotkey-sequence](../../guides/sequences) — Register a multi-key sequence (Vim-style)
+- [on-hotkey](../guides/hotkeys) — Register a single keyboard shortcut
+- [on-hotkey-sequence](../guides/sequences) — Register a multi-key sequence (Vim-style)
 
 ## Test Support
 
@@ -38,4 +38,4 @@ declare module '@glint/environment-ember-loose/registry' {
 
 ## Re-exports
 
-This package re-exports everything from the core [`@tanstack/hotkeys`](../../reference/index) package, so there is no need to install the core package separately.
+This package re-exports everything from the core [`@tanstack/hotkeys`](../../../reference/index) package, so there is no need to install the core package separately.
