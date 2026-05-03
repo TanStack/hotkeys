@@ -102,7 +102,7 @@ test('it saves on Mod+S', async function (assert) {
     </template>,
   );
 
-  triggerKeyPress('Mod+S');
+  await triggerKeyPress('Mod+S');
 });
 ```
 

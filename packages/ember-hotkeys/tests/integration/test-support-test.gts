@@ -27,7 +27,7 @@ module('Integration | Test Support | triggerKeyPress', function (hooks) {
       </template>,
     );
 
-    triggerKeyPress('Mod+S');
+    await triggerKeyPress('Mod+S');
   });
 
   test('triggerKeyPress works with simple keys', async function (assert) {
@@ -41,7 +41,7 @@ module('Integration | Test Support | triggerKeyPress', function (hooks) {
       </template>,
     );
 
-    triggerKeyPress('Escape');
+    await triggerKeyPress('Escape');
   });
 
   test('triggerKeyRelease dispatches a keyup event', async function (assert) {
@@ -55,6 +55,6 @@ module('Integration | Test Support | triggerKeyPress', function (hooks) {
       </template>,
     );
 
-    triggerKeyRelease('Escape');
+    await triggerKeyRelease('Escape');
   });
 });

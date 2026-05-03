@@ -12,8 +12,8 @@ title: "@tanstack/ember-hotkeys"
 
 ## Test Support
 
-- `triggerKeyPress(combo)` — Dispatch a `keydown` event for the given hotkey combo
-- `triggerKeyRelease(combo)` — Dispatch a `keyup` event for the given hotkey combo
+- `triggerKeyPress(combo)` — Dispatch a `keydown` event for the given hotkey combo and settle
+- `triggerKeyRelease(combo)` — Dispatch a `keyup` event for the given hotkey combo and settle
 
 Import from `@tanstack/ember-hotkeys/test-support`.
 

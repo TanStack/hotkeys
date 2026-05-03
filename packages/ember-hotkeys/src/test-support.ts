@@ -1,8 +1,10 @@
+import { settled } from '@ember/test-helpers';
 import { parseHotkey } from '@tanstack/hotkeys';
 import type { Hotkey } from '@tanstack/hotkeys';
 
 /**
- * Simulates a hotkey press by dispatching a `KeyboardEvent` on `document`.
+ * Simulates a hotkey press by dispatching a `KeyboardEvent` on `document`
+ * and waiting for Ember's runloop and pending async work to settle.
  *
  * Useful in integration and acceptance tests to trigger hotkeys registered
  * via the `{{onHotkey}}` helper.
@@ -12,7 +14,6 @@ import type { Hotkey } from '@tanstack/hotkeys';
  * @example
  * ```ts
  * import { triggerKeyPress } from '@tanstack/ember-hotkeys/test-support';
- * import { settled } from '@ember/test-helpers';
  *
  * test('onSave is called when Mod+S is pressed', async function (assert) {
  *   assert.expect(1);
@@ -22,12 +23,11 @@ import type { Hotkey } from '@tanstack/hotkeys';
  *       <MyComponent @onSave={{onSave}} />
  *     </template>
  *   );
- *   triggerKeyPress('Mod+S');
- *   await settled();
+ *   await triggerKeyPress('Mod+S');
  * });
  * ```
  */
-export function triggerKeyPress(combo: Hotkey): void {
+export async function triggerKeyPress(combo: Hotkey): Promise<void> {
   const parsed = parseHotkey(combo);
   const event = new KeyboardEvent('keydown', {
     key: parsed.key,
@@ -39,10 +39,12 @@ export function triggerKeyPress(combo: Hotkey): void {
     cancelable: true,
   });
   document.dispatchEvent(event);
+  await settled();
 }
 
 /**
- * Simulates a keyup event for a hotkey on `document`.
+ * Simulates a keyup event for a hotkey on `document`
+ * and waiting for Ember's runloop and pending async work to settle.
  *
  * Useful when testing hotkeys registered with `eventType: 'keyup'`
  * or when testing key hold functionality.
@@ -52,18 +54,15 @@ export function triggerKeyPress(combo: Hotkey): void {
  * @example
  * ```ts
  * import { triggerKeyPress, triggerKeyRelease } from '@tanstack/ember-hotkeys/test-support';
- * import { settled } from '@ember/test-helpers';
  *
  * test('key hold detection', async function (assert) {
- *   triggerKeyPress('Shift');
- *   await settled();
+ *   await triggerKeyPress('Shift');
  *   // ... assert held state ...
- *   triggerKeyRelease('Shift');
- *   await settled();
+ *   await triggerKeyRelease('Shift');
  * });
  * ```
  */
-export function triggerKeyRelease(combo: Hotkey): void {
+export async function triggerKeyRelease(combo: Hotkey): Promise<void> {
   const parsed = parseHotkey(combo);
   const event = new KeyboardEvent('keyup', {
     key: parsed.key,
@@ -75,4 +74,5 @@ export function triggerKeyRelease(combo: Hotkey): void {
     cancelable: true,
   });
   document.dispatchEvent(event);
+  await settled();
 }
