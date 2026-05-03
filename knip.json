@@ -1,7 +1,7 @@
 {
   "$schema": "https://unpkg.com/knip@5/schema.json",
   "ignoreDependencies": ["@faker-js/faker"],
-  "ignoreWorkspaces": ["examples/**"],
+  "ignoreWorkspaces": ["examples/**", "packages/ember-hotkeys"],
   "workspaces": {
     "packages/react-hotkeys": {
       "ignore": []

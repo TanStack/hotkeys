@@ -85,6 +85,15 @@
               "to": "framework/svelte/quick-start"
             }
           ]
+        },
+        {
+          "label": "ember",
+          "children": [
+            {
+              "label": "Quick Start",
+              "to": "framework/ember/quick-start"
+            }
+          ]
         }
       ]
     },
@@ -294,6 +303,35 @@
               "to": "framework/svelte/guides/formatting-display"
             }
           ]
+        },
+        {
+          "label": "ember",
+          "children": [
+            {
+              "label": "Hotkeys",
+              "to": "framework/ember/guides/hotkeys"
+            },
+            {
+              "label": "Sequences",
+              "to": "framework/ember/guides/sequences"
+            },
+            {
+              "label": "Hotkey Recording",
+              "to": "framework/ember/guides/hotkey-recording"
+            },
+            {
+              "label": "Hotkey Sequence Recording",
+              "to": "framework/ember/guides/sequence-recording"
+            },
+            {
+              "label": "Key State Tracking",
+              "to": "framework/ember/guides/key-state-tracking"
+            },
+            {
+              "label": "Formatting & Display",
+              "to": "framework/ember/guides/formatting-display"
+            }
+          ]
         }
       ]
     },
@@ -366,6 +404,15 @@
             {
               "label": "Svelte APIs",
               "to": "framework/svelte/reference/index"
+            }
+          ]
+        },
+        {
+          "label": "ember",
+          "children": [
+            {
+              "label": "Ember Helpers",
+              "to": "framework/ember/reference/index"
             }
           ]
         }

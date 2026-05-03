@@ -10,7 +10,7 @@ TanStack Hotkeys is a **type-safe**, **framework-agnostic** library for handling
 
 ## Motivation
 
-On the surface, keyboard shortcuts are a simple concept, and you would think that it should just take a couple of lines of code to implement them. And sometimes, it can be that simple. However, there are enough small "gotchas" that can eventually add up to an annoying amount of complexity when you need to consider multiple keyboard layouts, operating systems, custom shortcuts, conflicting hotkey scopes, properly ignoring input elements, and more. 
+On the surface, keyboard shortcuts are a simple concept, and you would think that it should just take a couple of lines of code to implement them. And sometimes, it can be that simple. However, there are enough small "gotchas" that can eventually add up to an annoying amount of complexity when you need to consider multiple keyboard layouts, operating systems, custom shortcuts, conflicting hotkey scopes, properly ignoring input elements, and more.
 
 Surprisingly, in our experience, even AI often struggles to get hotkey management fully correct. We believe that providing a library that brings type-safety and well thought out cross-platform compatibility to hotkey management is a valuable contribution to the community.
 
@@ -46,9 +46,9 @@ Surprisingly, in our experience, even AI often struggles to get hotkey managemen
   - Platform-aware formatting (e.g., `⌘⇧S` on Mac vs `Ctrl+Shift+S` on Windows) for cheatsheet UIs
 
 - **Framework Adapters**
-  - React and Preact hooks, Solid primitives, Angular inject APIs, Vue composables, and Lit controllers/decorators
+  - React and Preact hooks, Solid primitives, Angular inject APIs, Vue composables, Lit controllers/decorators, Svelte actions, and Ember helpers
 
 - **Awesome Devtools!**
   - See all currently registered hotkeys, held keys, and more in real-time.
 
-For a complete walkthrough, see the [React Quick Start](framework/react/quick-start), [Angular Quick Start](framework/angular/quick-start), [Vue Quick Start](framework/vue/quick-start) or [Lit Quick Start](framework/lit/quick-start).
+For a complete walkthrough, see the [React Quick Start](framework/react/quick-start), [Angular Quick Start](framework/angular/quick-start), [Vue Quick Start](framework/vue/quick-start), [Lit Quick Start](framework/lit/quick-start) or [Ember Quick Start](framework/ember/quick-start).
