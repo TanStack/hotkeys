@@ -83,6 +83,7 @@
   },
   "overrides": {
     "@tanstack/angular-hotkeys": "workspace:*",
+    "@tanstack/ember-hotkeys": "workspace:*",
     "@tanstack/hotkeys": "workspace:*",
     "@tanstack/hotkeys-devtools": "workspace:*",
     "@tanstack/lit-hotkeys": "workspace:*",

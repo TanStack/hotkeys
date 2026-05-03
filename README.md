@@ -60,6 +60,7 @@ Type-safe keyboard shortcuts for the web. Template-string bindings, parsed objec
 > - [**Vue Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/vue/reference)
 > - [**Lit Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/lit/reference)
 > - [**Svelte Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference)
+> - [**Ember Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/ember/reference)
 
 ## Get Involved
 

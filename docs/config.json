@@ -85,6 +85,15 @@
               "to": "framework/svelte/quick-start"
             }
           ]
+        },
+        {
+          "label": "ember",
+          "children": [
+            {
+              "label": "Ember Helpers",
+              "to": "framework/ember/reference/index"
+            }
+          ]
         }
       ]
     },
@@ -294,6 +303,19 @@
               "to": "framework/svelte/guides/formatting-display"
             }
           ]
+        },
+        {
+          "label": "ember",
+          "children": [
+            {
+              "label": "Hotkeys",
+              "to": "framework/ember/guides/hotkeys"
+            },
+            {
+              "label": "Sequences",
+              "to": "framework/ember/guides/sequences"
+            }
+          ]
         }
       ]
     },
@@ -366,6 +388,15 @@
             {
               "label": "Svelte APIs",
               "to": "framework/svelte/reference/index"
+            }
+          ]
+        },
+        {
+          "label": "ember",
+          "children": [
+            {
+              "label": "Ember Helpers",
+              "to": "framework/ember/reference/index"
             }
           ]
         }

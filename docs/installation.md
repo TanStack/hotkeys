@@ -8,6 +8,7 @@ TanStack Hotkeys is compatible with various front-end frameworks. Install the co
 <!-- ::start:tabs variant="package-managers" -->
 
 angular: @tanstack/angular-hotkeys
+ember: @tanstack/ember-hotkeys
 lit: @tanstack/lit-hotkeys
 preact: @tanstack/preact-hotkeys
 react: @tanstack/react-hotkeys
@@ -81,6 +82,16 @@ If you want the Vue devtools panel component, also install:
 Start with the [Quick Start](./framework/lit/quick-start) guide and the Lit-specific [guides](./framework/lit/guides/hotkeys).
 
 Lit currently ships the hotkeys adapter only, so no dedicated Lit devtools package is required.
+
+<!-- ::end:framework -->
+
+<!-- ::start:framework -->
+
+### Ember
+
+Start with the [API reference](./framework/ember/reference/index) and [guides](./framework/ember/guides/hotkeys).
+
+Ember currently ships the hotkeys adapter only, so no dedicated Ember devtools package is required.
 
 <!-- ::end:framework -->
 
