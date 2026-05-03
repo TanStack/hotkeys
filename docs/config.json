@@ -90,8 +90,8 @@
           "label": "ember",
           "children": [
             {
-              "label": "Ember Helpers",
-              "to": "framework/ember/reference/index"
+              "label": "Quick Start",
+              "to": "framework/ember/quick-start"
             }
           ]
         }
@@ -314,6 +314,22 @@
             {
               "label": "Sequences",
               "to": "framework/ember/guides/sequences"
+            },
+            {
+              "label": "Hotkey Recording",
+              "to": "framework/ember/guides/hotkey-recording"
+            },
+            {
+              "label": "Hotkey Sequence Recording",
+              "to": "framework/ember/guides/sequence-recording"
+            },
+            {
+              "label": "Key State Tracking",
+              "to": "framework/ember/guides/key-state-tracking"
+            },
+            {
+              "label": "Formatting & Display",
+              "to": "framework/ember/guides/formatting-display"
             }
           ]
         }

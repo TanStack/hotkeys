@@ -89,7 +89,7 @@ Lit currently ships the hotkeys adapter only, so no dedicated Lit devtools packa
 
 ### Ember
 
-Start with the [API reference](./framework/ember/reference/index) and [guides](./framework/ember/guides/hotkeys).
+Start with the [Quick Start](./framework/ember/quick-start) guide and the Ember-specific [guides](./framework/ember/guides/hotkeys).
 
 Ember currently ships the hotkeys adapter only, so no dedicated Ember devtools package is required.
 
