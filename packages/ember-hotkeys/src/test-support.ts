@@ -12,6 +12,7 @@ import type { Hotkey } from '@tanstack/hotkeys';
  * @example
  * ```ts
  * import { triggerKeyPress } from '@tanstack/ember-hotkeys/test-support';
+ * import { settled } from '@ember/test-helpers';
  *
  * test('onSave is called when Mod+S is pressed', async function (assert) {
  *   assert.expect(1);
@@ -22,6 +23,7 @@ import type { Hotkey } from '@tanstack/hotkeys';
  *     </template>
  *   );
  *   triggerKeyPress('Mod+S');
+ *   await settled();
  * });
  * ```
  */
@@ -50,11 +52,14 @@ export function triggerKeyPress(combo: Hotkey): void {
  * @example
  * ```ts
  * import { triggerKeyPress, triggerKeyRelease } from '@tanstack/ember-hotkeys/test-support';
+ * import { settled } from '@ember/test-helpers';
  *
  * test('key hold detection', async function (assert) {
  *   triggerKeyPress('Shift');
+ *   await settled();
  *   // ... assert held state ...
  *   triggerKeyRelease('Shift');
+ *   await settled();
  * });
  * ```
  */

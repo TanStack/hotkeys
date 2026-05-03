@@ -5,8 +5,8 @@
 <br />
 
 <div align="center">
-	<a href="https://www.npmjs.com/package/@tanstack/hotkeys" target="\_parent">
-	  <img alt="" src="https://img.shields.io/npm/dm/@tanstack/hotkeys.svg" alt="npm downloads" />
+	<a href="https://www.npmjs.com/package/@tanstack/ember-hotkeys" target="\_parent">
+	  <img alt="" src="https://img.shields.io/npm/dm/@tanstack/ember-hotkeys.svg" alt="npm downloads" />
 	</a>
 	<a href="https://github.com/TanStack/hotkeys" target="\_parent">
 	  <img alt="" src="https://img.shields.io/github/stars/TanStack/hotkeys.svg?style=social&label=Star" alt="GitHub stars" />
