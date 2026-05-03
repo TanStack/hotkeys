@@ -3,7 +3,7 @@ title: Key State Tracking Guide
 id: key-state-tracking
 ---
 
-TanStack Hotkeys provides `KeyStateTracker` for tracking live keyboard state. The tracker is re-exported from `@tanstack/ember-hotkeys` and can be used directly in Ember components.
+TanStack Hotkeys provides `KeyStateTracker` for tracking live keyboard state. The tracker is a singleton re-exported from `@tanstack/ember-hotkeys` that automatically manages `keydown`/`keyup`/`blur` listeners and exposes reactive state via a TanStack Store.
 
 ## `KeyStateTracker`
 
@@ -11,6 +11,9 @@ TanStack Hotkeys provides `KeyStateTracker` for tracking live keyboard state. Th
 import { getKeyStateTracker } from '@tanstack/ember-hotkeys';
 
 const tracker = getKeyStateTracker();
+
+tracker.getHeldKeys();    // ['Control', 'Shift']
+tracker.isKeyHeld('Shift'); // true
 ```
 
 ## Common Patterns
@@ -31,20 +34,11 @@ export default class FileActions extends Component {
 
     const tracker = getKeyStateTracker();
 
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Shift') this.isShiftHeld = true;
-    };
-    const onKeyUp = (event: KeyboardEvent) => {
-      if (event.key === 'Shift') this.isShiftHeld = false;
-    };
-
-    document.addEventListener('keydown', onKeyDown);
-    document.addEventListener('keyup', onKeyUp);
-
-    registerDestructor(this, () => {
-      document.removeEventListener('keydown', onKeyDown);
-      document.removeEventListener('keyup', onKeyUp);
+    const unsubscribe = tracker.store.subscribe(() => {
+      this.isShiftHeld = tracker.isKeyHeld('Shift');
     });
+
+    registerDestructor(this, unsubscribe);
   }
 
   <template>
@@ -63,6 +57,7 @@ export default class FileActions extends Component {
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { registerDestructor } from '@ember/destroyable';
+import { getKeyStateTracker } from '@tanstack/ember-hotkeys';
 
 export default class KeyDebugger extends Component {
   @tracked heldKeys: Array<string> = [];
@@ -70,22 +65,13 @@ export default class KeyDebugger extends Component {
   constructor(owner: unknown, args: Record<string, unknown>) {
     super(owner, args);
 
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (!this.heldKeys.includes(event.key)) {
-        this.heldKeys = [...this.heldKeys, event.key];
-      }
-    };
-    const onKeyUp = (event: KeyboardEvent) => {
-      this.heldKeys = this.heldKeys.filter((k) => k !== event.key);
-    };
+    const tracker = getKeyStateTracker();
 
-    document.addEventListener('keydown', onKeyDown);
-    document.addEventListener('keyup', onKeyUp);
-
-    registerDestructor(this, () => {
-      document.removeEventListener('keydown', onKeyDown);
-      document.removeEventListener('keyup', onKeyUp);
+    const unsubscribe = tracker.store.subscribe(() => {
+      this.heldKeys = tracker.getHeldKeys();
     });
+
+    registerDestructor(this, unsubscribe);
   }
 
   <template>
@@ -102,12 +88,19 @@ export default class KeyDebugger extends Component {
 
 ## Under the Hood
 
-The `KeyStateTracker` is a singleton that listens for `keydown` and `keyup` events on the document. It provides `heldKeys` and `heldKeyCodes` state that updates in real-time:
+The `KeyStateTracker` is a singleton that manages its own `keydown`, `keyup`, and `blur` listeners. It uses a TanStack Store for reactive state, so you can subscribe to changes and read current state:
 
 ```ts
 import { getKeyStateTracker } from '@tanstack/ember-hotkeys';
 
 const tracker = getKeyStateTracker();
-// tracker.heldKeys — current set of held event.key values
-// tracker.heldKeyCodes — current set of held event.code values
+
+// Read current state
+tracker.store.state.heldKeys;  // ['Control', 'A']
+tracker.store.state.heldCodes; // { Control: 'ControlLeft', A: 'KeyA' }
+
+// Subscribe to changes
+const unsubscribe = tracker.store.subscribe(() => {
+  console.log('Currently held:', tracker.getHeldKeys());
+});
 ```
