@@ -11,6 +11,7 @@ TanStack Hotkeys provides the `HotkeyRecorder` class for building shortcut custo
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import { registerDestructor } from '@ember/destroyable';
 import { HotkeyRecorder, formatForDisplay } from '@tanstack/ember-hotkeys';
 import type { Hotkey } from '@tanstack/ember-hotkeys';
 
@@ -27,6 +28,11 @@ export default class ShortcutRecorder extends Component {
       this.isRecording = false;
     },
   });
+
+  constructor(owner: unknown, args: Record<string, unknown>) {
+    super(owner, args);
+    registerDestructor(this, () => this.recorder.cancel());
+  }
 
   @action startRecording() {
     this.recorder.start();

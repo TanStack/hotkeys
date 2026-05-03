@@ -29,7 +29,6 @@ export function triggerKeyPress(combo: Hotkey): void {
   const parsed = parseHotkey(combo);
   const event = new KeyboardEvent('keydown', {
     key: parsed.key,
-    code: parsed.key,
     altKey: parsed.alt,
     ctrlKey: parsed.ctrl,
     metaKey: parsed.meta,
@@ -63,7 +62,6 @@ export function triggerKeyRelease(combo: Hotkey): void {
   const parsed = parseHotkey(combo);
   const event = new KeyboardEvent('keyup', {
     key: parsed.key,
-    code: parsed.key,
     altKey: parsed.alt,
     ctrlKey: parsed.ctrl,
     metaKey: parsed.meta,

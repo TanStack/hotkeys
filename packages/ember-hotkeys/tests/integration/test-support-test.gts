@@ -23,7 +23,7 @@ module('Integration | Test Support | triggerKeyPress', function (hooks) {
 
     await render(
       <template>
-        {{onHotkey "Mod+S" callback platform="mac"}}
+        {{onHotkey "Mod+S" callback}}
       </template>,
     );
 

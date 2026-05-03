@@ -11,8 +11,8 @@
 	<a href="https://github.com/TanStack/hotkeys" target="\_parent">
 	  <img alt="" src="https://img.shields.io/github/stars/TanStack/hotkeys.svg?style=social&label=Star" alt="GitHub stars" />
 	</a>
-	<a href="https://bundlephobia.com/result?p=@tanstack/react-hotkeys@latest" target="\_parent">
-	  <img alt="" src="https://badgen.net/bundlephobia/minzip/@tanstack/react-hotkeys@latest" alt="Bundle size" />
+	<a href="https://bundlephobia.com/result?p=@tanstack/ember-hotkeys@latest" target="\_parent">
+	  <img alt="" src="https://badgen.net/bundlephobia/minzip/@tanstack/ember-hotkeys@latest" alt="Bundle size" />
 	</a>
 </div>
 
@@ -46,7 +46,7 @@ Type-safe keyboard shortcuts for the web. Template-string bindings, parsed objec
 - Cross-platform Mod — maps to Cmd on macOS and Ctrl on Windows/Linux
 - Batteries included — validation + matching, sequences (Vim-style), key-state tracking, recorder UI helpers, framework adapters, and devtools
 
-### <a href="https://tanstack.com/hotkeys">Read the docs →</a>
+## <a href="https://tanstack.com/hotkeys">Read the docs →</a>
 
 <br />
 

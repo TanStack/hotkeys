@@ -23,6 +23,7 @@ The callback receives the original `KeyboardEvent` as the first argument and a `
 
 ```gts
 import onHotkey from '@tanstack/ember-hotkeys/helpers/on-hotkey';
+import type { HotkeyCallbackContext } from '@tanstack/ember-hotkeys';
 
 const save = (event: KeyboardEvent, context: HotkeyCallbackContext) => {
   console.log(context.hotkey);
@@ -64,13 +65,24 @@ import onHotkey from '@tanstack/ember-hotkeys/helpers/on-hotkey';
 Scope a hotkey to a specific DOM element instead of the entire document:
 
 ```gts
+import Component from '@glimmer/component';
+import { action } from '@ember/object';
 import onHotkey from '@tanstack/ember-hotkeys/helpers/on-hotkey';
 
-<template>
-  <div tabindex="0" {{onHotkey "Escape" @onClosePanel target=this}}>
-    Panel content
-  </div>
-</template>
+export default class Panel extends Component {
+  panelEl: HTMLElement | null = null;
+
+  @action setRef(el: HTMLElement) {
+    this.panelEl = el;
+  }
+
+  <template>
+    <div tabindex="0" {{did-insert this.setRef}}>
+      {{onHotkey "Escape" @onClosePanel target=this.panelEl}}
+      Panel content
+    </div>
+  </template>
+}
 ```
 
 ### `preventDefault`
