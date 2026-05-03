@@ -22,7 +22,7 @@ const scrollToTop = () => {
 
 ## Sequence Options
 
-Options are passed as named arguments, just like `{{on-hotkey}}`:
+Options are passed as named arguments, just like `{{onHotkey}}`:
 
 ```gts
 {{onHotkeySequence (array "G" "G") @onScrollToTop timeout=1000 enabled=true}}
@@ -95,7 +95,7 @@ import { array } from '@ember/helper';
 
 ## Under the Hood
 
-`{{on-hotkey-sequence}}` uses the singleton `SequenceManager`. You can also access it directly:
+`{{onHotkeySequence}}` uses the singleton `SequenceManager`. You can also access it directly:
 
 ```ts
 import { createSequenceMatcher, getSequenceManager } from '@tanstack/ember-hotkeys';

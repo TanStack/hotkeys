@@ -3,7 +3,7 @@ title: Hotkeys Guide
 id: hotkeys
 ---
 
-The `{{on-hotkey}}` helper is the primary way to register keyboard shortcuts in Ember applications. It wraps the singleton `HotkeyManager` with Ember's helper lifecycle: when the helper enters the template the key is registered, and when the template is torn down the listener is removed.
+The `{{onHotkey}}` helper is the primary way to register keyboard shortcuts in Ember applications. It wraps the singleton `HotkeyManager` with Ember's helper lifecycle: when the helper enters the template the key is registered, and when the template is torn down the listener is removed.
 
 ## Basic Usage
 

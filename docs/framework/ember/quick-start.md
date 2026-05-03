@@ -9,7 +9,7 @@ Don't have TanStack Hotkeys installed yet? See the [Installation](../../installa
 
 ## Your First Hotkey
 
-The `{{on-hotkey}}` helper is the primary way to register keyboard shortcuts in Ember:
+The `{{onHotkey}}` helper is the primary way to register keyboard shortcuts in Ember:
 
 ```gts
 import onHotkey from '@tanstack/ember-hotkeys/helpers/on-hotkey';
@@ -56,7 +56,7 @@ import onHotkey from '@tanstack/ember-hotkeys/helpers/on-hotkey';
 
 ### Multi-Key Sequences
 
-Register Vim-style key sequences with the `{{on-hotkey-sequence}}` helper:
+Register Vim-style key sequences with the `{{onHotkeySequence}}` helper:
 
 ```gts
 import onHotkeySequence from '@tanstack/ember-hotkeys/helpers/on-hotkey-sequence';

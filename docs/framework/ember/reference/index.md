@@ -7,8 +7,8 @@ title: "@tanstack/ember-hotkeys"
 
 ## Helpers
 
-- [on-hotkey](../guides/hotkeys) — Register a single keyboard shortcut
-- [on-hotkey-sequence](../guides/sequences) — Register a multi-key sequence (Vim-style)
+- [onHotkey](../guides/hotkeys) — Register a single keyboard shortcut
+- [onHotkeySequence](../guides/sequences) — Register a multi-key sequence (Vim-style)
 
 ## Test Support
 
@@ -19,10 +19,10 @@ Import from `@tanstack/ember-hotkeys/test-support`.
 
 ## Interfaces
 
-- `OnHotkeySignature` — Glint signature for the `on-hotkey` helper
-- `OnHotkeyOptions` — Named arguments accepted by `on-hotkey`
-- `OnHotkeySequenceSignature` — Glint signature for the `on-hotkey-sequence` helper
-- `OnHotkeySequenceOptions` — Named arguments accepted by `on-hotkey-sequence`
+- `OnHotkeySignature` — Glint signature for the `onHotkey` helper
+- `OnHotkeyOptions` — Named arguments accepted by `onHotkey`
+- `OnHotkeySequenceSignature` — Glint signature for the `onHotkeySequence` helper
+- `OnHotkeySequenceOptions` — Named arguments accepted by `onHotkeySequence`
 
 ## Template Registry
 
