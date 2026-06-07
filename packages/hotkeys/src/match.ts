@@ -93,9 +93,15 @@ export function matchesKeyboardEvent(
   // event.key is a non-letter special character.
   // Dead keys: Option+letter on macOS, international layouts produce event.key === 'Dead'
   // Single-char mismatches: Cmd+Option+T gives '†' instead of 'T', Shift+4 gives '$'
+  const hasPunctuationCode = Boolean(
+    event.code && event.code in PUNCTUATION_CODE_MAP,
+  )
+
   if (
     event.code &&
-    (eventKey === 'Dead' || (eventKey.length === 1 && hotkeyKey.length === 1))
+    (eventKey === 'Dead' ||
+      (eventKey.length === 1 && hotkeyKey.length === 1) ||
+      hasPunctuationCode)
   ) {
     // fallback for letter keys (common with mac option + letter)
     if (event.code.startsWith('Key')) {

@@ -283,10 +283,12 @@ export const EDITING_KEYS = new Set<EditingKey>([
  * so they're excluded from Shift-based hotkey combinations to avoid layout-dependent behavior.
  */
 export const PUNCTUATION_KEYS = new Set<PunctuationKey>([
+  'Plus',
   '/',
   '[',
   ']',
   '\\',
+  '+',
   '=',
   '-',
   ',',
@@ -312,6 +314,7 @@ export const PUNCTUATION_CODE_MAP: Record<string, string> = {
   Comma: ',',
   Equal: '=',
   Minus: '-',
+  NumpadAdd: '+',
   Period: '.',
   Semicolon: ';',
   Slash: '/',
@@ -410,6 +413,10 @@ const KEY_ALIASES: Record<string, string> = {
   PgDn: 'PageDown',
   pgup: 'PageUp',
   pgdn: 'PageDown',
+
+  // Punctuation variants
+  Plus: '+',
+  plus: '+',
 }
 
 /**
@@ -563,11 +570,13 @@ export const LINUX_MODIFIER_LABELS: Record<CanonicalModifier | 'Mod', string> =
   }
 
 export const PUNCTUATION_KEY_DISPLAY_LABELS = {
+  Plus: 'Plus',
   '`': 'Backquote',
   '\\': 'Backslash',
   '[': 'Left Bracket',
   ']': 'Right Bracket',
   ',': 'Comma',
+  '+': 'Plus',
   '=': 'Equal',
   '-': 'Minus',
   '.': 'Period',
