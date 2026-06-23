@@ -4,11 +4,11 @@ preferWorkspacePackages: true
 blockExoticSubdeps: true
 trustPolicy: 'no-downgrade'
 trustPolicyExclude:
-  - 'chokidar@4.0.3'
-  - 'express-rate-limit@8.3.0'
-  - 'semver@5.7.2'
-  - 'semver@6.3.1'
-  - 'ua-parser-js@0.7.41'
+  - 'chokidar@4.0.3' # Socket score 99; popular, healthy cadence.
+  - 'express-rate-limit@8.3.0' # Socket score 100; popular, healthy cadence.
+  - 'semver@5.7.2' # Socket score 100; popular npm-maintained legacy release.
+  - 'semver@6.3.1' # Socket score 100; popular npm-maintained latest-6 release.
+  - 'ua-parser-js@0.7.41' # Socket score 100; popular, healthy cadence.
 minimumReleaseAge: 1
 overrides:
   rolldown: 1.0.0-rc.12
