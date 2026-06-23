@@ -3,6 +3,15 @@ linkWorkspacePackages: true
 preferWorkspacePackages: true
 blockExoticSubdeps: true
 trustPolicy: 'no-downgrade'
+trustPolicyExclude:
+  - 'chokidar@4.0.3'
+  - 'express-rate-limit@8.3.0'
+  - 'semver@5.7.2'
+  - 'semver@6.3.1'
+  - 'ua-parser-js@0.7.41'
+minimumReleaseAge: 1
+overrides:
+  rolldown: 1.0.0-rc.12
 
 packages:
   - 'examples/**/*'
