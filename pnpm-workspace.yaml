@@ -9,7 +9,7 @@ trustPolicyExclude:
   - 'semver@5.7.2' # Socket score 100; popular npm-maintained legacy release.
   - 'semver@6.3.1' # Socket score 100; popular npm-maintained latest-6 release.
   - 'ua-parser-js@0.7.41' # Socket score 100; popular, healthy cadence.
-minimumReleaseAge: 1
+minimumReleaseAge: 1440
 overrides:
   rolldown: 1.0.0-rc.12
 
