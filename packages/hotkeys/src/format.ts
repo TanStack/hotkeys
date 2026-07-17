@@ -8,6 +8,7 @@ import {
   PUNCTUATION_KEY_DISPLAY_LABELS,
   WINDOWS_MODIFIER_LABELS,
   detectPlatform,
+  resolveModifier,
 } from './constants'
 import {
   isModifierKey,
@@ -21,6 +22,7 @@ import type {
   ParsedHotkey,
   RegisterableHotkey,
 } from './hotkey'
+
 
 /**
  * Converts a hotkey sequence array to a display string.
@@ -69,7 +71,7 @@ export function formatHotkey(parsed: ParsedHotkey): string {
 /**
  * Formats a hotkey for display in a user interface.
  *
- * On macOS, uses symbols (⌘⇧S) in the same modifier order as {@link normalizeHotkeyFromParsed}.
+ * On macOS, uses symbols (⇧⌘S) in the same modifier order as {@link normalizeHotkeyFromParsed}.
  * On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
  * The separator can be customized with `separatorToken`.
  *
@@ -80,7 +82,7 @@ export function formatHotkey(parsed: ParsedHotkey): string {
  * @example
  * ```ts
  * formatForDisplay('Mod+Shift+S', { platform: 'mac' })
- * // Returns: '⌘ ⇧ S' (symbols separated by spaces on macOS)
+ * // Returns: '⇧ ⌘ S' (symbols separated by spaces on macOS)
  *
  * formatForDisplay('Mod+Shift+S', { platform: 'windows' })
  * // Returns: 'Ctrl+Shift+S'
@@ -101,7 +103,11 @@ export function formatForDisplay(
     hotkey as RegisterableHotkey,
     platform,
   )
-  return normalizedHotkey
+
+  const formattedHotkey =
+    platform === 'mac' ? toAppleHIGModifierOrder(normalizedHotkey) : normalizedHotkey
+
+  return formattedHotkey
     .split('+')
     .map((segment) => {
       if (isModifierKey(segment)) {
@@ -129,6 +135,32 @@ export function formatForDisplay(
       }
     })
     .join(separatorToken)
+}
+
+
+/**
+ * @paramaters hotkey - The hotkey sequence from the user
+ * @returns The hotkey sequence but removes the mod key alias and reorders to the Apple HIG modifier order
+ **/
+
+function toAppleHIGModifierOrder(hotkey: string) {
+  let modifiers: Array<string> = []
+  let keys: Array<string> = []
+  hotkey.split('+').forEach((segment) => {
+    if (isModifierKey(segment)) {
+      const modifier = resolveModifier(segment as CanonicalModifier, 'mac');
+      modifiers = [...modifiers, modifier]
+    } else {
+      keys = [...keys, segment]
+    }
+  })
+
+  modifiers.sort(
+    (a, b) =>
+      MODIFIER_ORDER.indexOf(a as CanonicalModifier) -
+      MODIFIER_ORDER.indexOf(b as CanonicalModifier),
+  )
+  return modifiers.concat(keys).join('+')
 }
 
 /**

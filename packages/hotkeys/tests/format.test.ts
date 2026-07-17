@@ -98,7 +98,7 @@ describe('formatForDisplay', () => {
         '⌃ ⇧ A',
       )
       expect(formatForDisplay(hk('Command+Shift+S'), { platform: 'mac' })).toBe(
-        '⌘ ⇧ S',
+        '⇧ ⌘ S',
       )
     })
 
@@ -108,24 +108,24 @@ describe('formatForDisplay', () => {
           platform: 'mac',
           separatorToken: '',
         }),
-      ).toBe('⌘⇧S')
+      ).toBe('⇧⌘S')
       expect(
         formatForDisplay('Mod+Shift+S', {
           platform: 'mac',
           separatorToken: ' + ',
         }),
-      ).toBe('⌘ + ⇧ + S')
+      ).toBe('⇧ + ⌘ + S')
       expect(
         formatForDisplay('Mod+Shift+S', {
           platform: 'mac',
           separatorToken: null,
         }),
-      ).toBe('⌘ ⇧ S')
+      ).toBe('⇧ ⌘ S')
     })
 
     it('should resolve Mod to Command symbol', () => {
       expect(formatForDisplay('Mod+S', { platform: 'mac' })).toBe('⌘ S')
-      expect(formatForDisplay('Mod+Shift+S', { platform: 'mac' })).toBe('⌘ ⇧ S')
+      expect(formatForDisplay('Mod+Shift+S', { platform: 'mac' })).toBe('⇧ ⌘ S')
     })
 
     it('should use symbols for special keys', () => {
@@ -195,10 +195,10 @@ describe('formatForDisplay', () => {
         meta: true,
         modifiers: ['Shift', 'Meta'],
       }
-      expect(formatForDisplay(parsed, { platform: 'mac' })).toBe('⌘ ⇧ S')
+      expect(formatForDisplay(parsed, { platform: 'mac' })).toBe('⇧ ⌘ S')
       expect(
         formatForDisplay(parsed, { platform: 'mac', useSymbols: false }),
-      ).toBe('Cmd+Shift+S')
+      ).toBe('Shift+Cmd+S')
     })
   })
 
@@ -248,16 +248,25 @@ describe('formatForDisplay', () => {
     it('should handle multiple modifiers in canonical order (Mod first)', () => {
       expect(
         formatForDisplay('Mod+Shift+S', {
-          platform: 'mac',
-          useSymbols: false,
-        }),
-      ).toBe('Cmd+Shift+S')
-      expect(
-        formatForDisplay('Mod+Shift+S', {
           platform: 'windows',
           useSymbols: false,
         }),
       ).toBe('Ctrl+Shift+S')
+    })
+    it('when platform is mac, handling multiple modifiers should follow apple human interface guidelines', () => {
+      // Control → Option → Shift → Command
+      expect(
+        formatForDisplay('Meta+Shift+Alt+Control+A', {
+          platform: 'mac',
+          useSymbols: false,
+        }),
+      ).toBe('Control+Option+Shift+Cmd+A')
+      expect(
+        formatForDisplay('Meta+Shift+Alt+Control+A', {
+          platform: 'mac',
+          useSymbols: true,
+        }),
+      ).toBe('⌃ ⌥ ⇧ ⌘ A')
     })
   })
 })
