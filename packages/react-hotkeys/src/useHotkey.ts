@@ -178,10 +178,17 @@ export function useHotkey(
     }
   }, [hotkeyString])
 
-  // Sync callback and options on EVERY render (outside useEffect)
+  // Sync callback on EVERY render (outside useEffect)
   // This avoids stale closures - the callback always has access to latest state
   if (registrationRef.current?.isActive) {
     registrationRef.current.callback = callback
-    registrationRef.current.setOptions(optionsWithoutTarget)
   }
+
+  // Sync options after the UI commits so store subscribers aren't
+  // notified during the render phase
+  useEffect(() => {
+    if (registrationRef.current?.isActive) {
+      registrationRef.current.setOptions(optionsWithoutTarget)
+    }
+  })
 }

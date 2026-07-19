@@ -257,3 +257,31 @@ describe('useHotkey', () => {
     })
   })
 })
+
+describe('options sync timing', () => {
+  it('should notify store subscribers after commit, not during render', () => {
+    const manager = HotkeyManager.getInstance()
+    const timeline: Array<string> = []
+
+    const { rerender } = renderHook(
+      ({ enabled }: { enabled: boolean }) => {
+        timeline.push('render-start')
+        useHotkey('Mod+S', () => {}, { platform: 'mac', enabled })
+        timeline.push('render-end')
+      },
+      { initialProps: { enabled: true } },
+    )
+
+   const subscribe =  manager.registrations.subscribe(() => {
+      timeline.push('store-notified')
+    })
+
+    timeline.length = 0;
+    rerender({ enabled: false })
+
+    expect(timeline).toEqual(['render-start', 'render-end', 'store-notified'])
+
+    subscribe.unsubscribe();
+    });
+  });
+
