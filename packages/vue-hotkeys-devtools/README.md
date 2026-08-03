@@ -2,15 +2,15 @@
   <picture>
     <source
       media="(prefers-color-scheme: dark)"
-      srcset="https://tanstack.com/api/readme/hotkeys.png?framework=vue&theme=dark"
+      srcset="https://tanstack.com/api/readme/hotkeys.png?theme=dark"
     />
     <source
       media="(prefers-color-scheme: light)"
-      srcset="https://tanstack.com/api/readme/hotkeys.png?framework=vue"
+      srcset="https://tanstack.com/api/readme/hotkeys.png"
     />
     <img
-      src="https://tanstack.com/api/readme/hotkeys.png?framework=vue"
-      alt="TanStack Vue Hotkeys"
+      src="https://tanstack.com/api/readme/hotkeys.png"
+      alt="TanStack Hotkeys"
       width="900"
     />
   </picture>
