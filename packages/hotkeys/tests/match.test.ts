@@ -713,6 +713,155 @@ describe('matchesKeyboardEvent', () => {
     })
   })
 
+  describe('matchBy: code (physical key matching)', () => {
+    it('should match physical key A when non-Latin IME produces non-Latin character', () => {
+      // Non-Latin IME: pressing physical A key produces a non-Latin character in event.key
+      const event = createKeyboardEvent('ㅁ', { code: 'KeyA' })
+      expect(matchesKeyboardEvent(event, 'A', undefined, 'code')).toBe(true)
+    })
+
+    it('should not match with default matchBy when non-Latin IME is active', () => {
+      // Without matchBy: 'code', the hotkey should NOT match
+      const event = createKeyboardEvent('ㅁ', { code: 'KeyA' })
+      expect(matchesKeyboardEvent(event, 'A')).toBe(false)
+    })
+
+    it('should match physical key S when non-Latin IME is active', () => {
+      const event = createKeyboardEvent('と', { code: 'KeyS' })
+      expect(matchesKeyboardEvent(event, 'S', undefined, 'code')).toBe(true)
+    })
+
+    it('should match physical key with modifiers', () => {
+      const event = createKeyboardEvent('ㅁ', {
+        ctrlKey: true,
+        code: 'KeyA',
+      })
+      expect(
+        matchesKeyboardEvent(event, 'Control+A', undefined, 'code'),
+      ).toBe(true)
+    })
+
+    it('should match Mod+S with code matching on Mac', () => {
+      const event = createKeyboardEvent('ㄴ', {
+        metaKey: true,
+        code: 'KeyS',
+      })
+      expect(matchesKeyboardEvent(event, 'Mod+S', 'mac', 'code')).toBe(true)
+    })
+
+    it('should match Mod+S with code matching on Windows', () => {
+      const event = createKeyboardEvent('ㄴ', {
+        ctrlKey: true,
+        code: 'KeyS',
+      })
+      expect(matchesKeyboardEvent(event, 'Mod+S', 'windows', 'code')).toBe(
+        true,
+      )
+    })
+
+    it('should not match if modifiers do not match', () => {
+      const event = createKeyboardEvent('ㅁ', { code: 'KeyA' })
+      expect(
+        matchesKeyboardEvent(event, 'Control+A', undefined, 'code'),
+      ).toBe(false)
+    })
+
+    it('should not match different physical key', () => {
+      const event = createKeyboardEvent('ㅁ', { code: 'KeyA' })
+      expect(matchesKeyboardEvent(event, 'B', undefined, 'code')).toBe(false)
+    })
+
+    it('should match digit keys by code', () => {
+      const event = createKeyboardEvent('!', {
+        shiftKey: true,
+        code: 'Digit1',
+      })
+      expect(
+        matchesKeyboardEvent(event, 'Shift+1', undefined, 'code'),
+      ).toBe(true)
+    })
+
+    it('should match punctuation keys by code', () => {
+      const event = createKeyboardEvent('–', {
+        altKey: true,
+        code: 'Minus',
+      })
+      expect(
+        matchesKeyboardEvent(event, 'Alt+-' as Hotkey, undefined, 'code'),
+      ).toBe(true)
+    })
+
+    it('should match special keys by code', () => {
+      const event = createKeyboardEvent('Escape', { code: 'Escape' })
+      expect(
+        matchesKeyboardEvent(event, 'Escape', undefined, 'code'),
+      ).toBe(true)
+    })
+
+    it('should match function keys by code', () => {
+      const event = createKeyboardEvent('F5', { code: 'F5' })
+      expect(matchesKeyboardEvent(event, 'F5', undefined, 'code')).toBe(true)
+    })
+
+    it('should not match if event.code is missing', () => {
+      const event = createKeyboardEvent('ㅁ', { code: undefined })
+      expect(matchesKeyboardEvent(event, 'A', undefined, 'code')).toBe(false)
+    })
+
+    it('should match all letter keys A-Z by code', () => {
+      for (const letter of 'ABCDEFGHIJKLMNOPQRSTUVWXYZ') {
+        const event = createKeyboardEvent('ㅁ', {
+          code: `Key${letter}`,
+        })
+        expect(
+          matchesKeyboardEvent(event, letter as Hotkey, undefined, 'code'),
+        ).toBe(true)
+      }
+    })
+
+    it('should match with multiple modifiers by code', () => {
+      const event = createKeyboardEvent('ㅁ', {
+        ctrlKey: true,
+        shiftKey: true,
+        code: 'KeyA',
+      })
+      expect(
+        matchesKeyboardEvent(event, 'Control+Shift+A', undefined, 'code'),
+      ).toBe(true)
+    })
+
+    it('should work with ParsedHotkey input', () => {
+      const event = createKeyboardEvent('ㅁ', { code: 'KeyA' })
+      const parsed = {
+        key: 'A',
+        ctrl: false,
+        shift: false,
+        alt: false,
+        meta: false,
+        modifiers: [] as ('Control' | 'Shift' | 'Alt' | 'Meta')[],
+      }
+      expect(matchesKeyboardEvent(event, parsed, undefined, 'code')).toBe(true)
+    })
+
+    it('should still work with ASCII keys when matchBy is code', () => {
+      // Even with English input, matchBy: 'code' should work
+      const event = createKeyboardEvent('a', { code: 'KeyA' })
+      expect(matchesKeyboardEvent(event, 'A', undefined, 'code')).toBe(true)
+    })
+
+    it('should match non-Latin IME input by code when event.key is ASCII', () => {
+      // Some IMEs pass through ASCII in event.key; code matching still works
+      const event = createKeyboardEvent('a', { code: 'KeyA' })
+      expect(matchesKeyboardEvent(event, 'A', undefined, 'code')).toBe(true)
+    })
+
+    it('should match non-Latin keyboard layout by code', () => {
+      // Non-Latin layout: physical A key produces a non-Latin character
+      const event = createKeyboardEvent('ф', { code: 'KeyA' })
+      expect(matchesKeyboardEvent(event, 'A', undefined, 'code')).toBe(true)
+    })
+  })
+
   describe('edge cases', () => {
     it('should not match when event.key is Unidentified', () => {
       const event = createKeyboardEvent('Unidentified', { code: 'KeyA' })

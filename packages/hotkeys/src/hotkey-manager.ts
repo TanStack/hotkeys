@@ -50,6 +50,8 @@ export interface HotkeyOptions {
   target?: HTMLElement | Document | Window | null
   /** Optional metadata (name, description, custom fields via declaration merging) */
   meta?: HotkeyMeta
+  /** Whether to match by `event.key` (layout-aware, default) or `event.code` (physical key position). Use `'code'` when a non-Latin IME is active. Defaults to 'key' */
+  matchBy?: 'key' | 'code'
 }
 
 /**
@@ -514,6 +516,7 @@ export class HotkeyManager {
           event,
           registration.parsedHotkey,
           registration.options.platform,
+          registration.options.matchBy,
         )
 
         if (matches) {
@@ -545,6 +548,7 @@ export class HotkeyManager {
               event,
               registration.parsedHotkey,
               registration.options.platform,
+              registration.options.matchBy,
             )
           ) {
             this.#executeHotkeyCallback(registration, event)
@@ -637,19 +641,6 @@ export class HotkeyManager {
     const parsed = registration.parsedHotkey
     const releasedKey = normalizeKeyName(event.key)
 
-    // Reset if the main key is released
-    // Compare case-insensitively for single-letter keys
-    const parsedKeyNormalized =
-      parsed.key.length === 1 ? parsed.key.toUpperCase() : parsed.key
-    const releasedKeyNormalized =
-      releasedKey.length === 1 ? releasedKey.toUpperCase() : releasedKey
-
-    if (releasedKeyNormalized === parsedKeyNormalized) {
-      return true
-    }
-
-    // Reset if any required modifier is released
-    // Use normalized key names and check against canonical modifier names
     if (parsed.ctrl && releasedKey === 'Control') {
       return true
     }
@@ -660,6 +651,27 @@ export class HotkeyManager {
       return true
     }
     if (parsed.meta && releasedKey === 'Meta') {
+      return true
+    }
+
+    // Reset if the main key is released
+    if (registration.options.matchBy === 'code') {
+      // For code-based matching, compare event.code against the expected physical key code
+      return matchesKeyboardEvent(
+        event,
+        { ...parsed, ctrl: false, shift: false, alt: false, meta: false, modifiers: [] },
+        registration.options.platform,
+        'code',
+      )
+    }
+
+    // Compare case-insensitively for single-letter keys
+    const parsedKeyNormalized =
+      parsed.key.length === 1 ? parsed.key.toUpperCase() : parsed.key
+    const releasedKeyNormalized =
+      releasedKey.length === 1 ? releasedKey.toUpperCase() : releasedKey
+
+    if (releasedKeyNormalized === parsedKeyNormalized) {
       return true
     }
 
