@@ -46,32 +46,36 @@ export function getDefaultIgnoreInputs(parsedHotkey: ParsedHotkey): boolean {
  * Mod+S and Escape fire when the user has tabbed to a form button.
  */
 export function isInputElement(element: EventTarget | null): boolean {
-  if (!element) {
+  if (
+    !element ||
+    !('tagName' in element) ||
+    typeof element.tagName !== 'string'
+  ) {
     return false
   }
 
-  if (element instanceof HTMLInputElement) {
-    const type = element.type.toLowerCase()
+  // Do not use instanceof here: elements from another realm (for example an
+  // iframe) have different DOM constructors than the current global object.
+  const tagName = element.tagName.toLowerCase()
+
+  if (tagName === 'input') {
+    const type =
+      'type' in element && typeof element.type === 'string'
+        ? element.type.toLowerCase()
+        : ''
     if (type === 'button' || type === 'submit' || type === 'reset') {
       return false
     }
     return true
   }
 
-  if (
-    element instanceof HTMLTextAreaElement ||
-    element instanceof HTMLSelectElement
-  ) {
+  if (tagName === 'textarea' || tagName === 'select') {
     return true
   }
 
   // Check for contenteditable elements (includes "true", "", "plaintext-only",
   // and inherited contenteditable from ancestor elements)
-  if (element instanceof HTMLElement && element.isContentEditable) {
-    return true
-  }
-
-  return false
+  return 'isContentEditable' in element && element.isContentEditable === true
 }
 
 /**

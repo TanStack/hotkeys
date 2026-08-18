@@ -81,6 +81,35 @@ describe('manager.utils', () => {
       const div = document.createElement('div')
       expect(isInputElement(div)).toBe(false)
     })
+
+    it('should not rely on current-realm DOM constructors', () => {
+      const input = document.createElement('input')
+      input.type = 'text'
+      const button = document.createElement('input')
+      button.type = 'button'
+      const textarea = document.createElement('textarea')
+      const select = document.createElement('select')
+      const editable = document.createElement('div')
+      editable.contentEditable = 'true'
+      const regular = document.createElement('div')
+
+      vi.stubGlobal('HTMLInputElement', class {})
+      vi.stubGlobal('HTMLTextAreaElement', class {})
+      vi.stubGlobal('HTMLSelectElement', class {})
+      vi.stubGlobal('HTMLElement', class {})
+
+      try {
+        expect(input).not.toBeInstanceOf(HTMLInputElement)
+        expect(isInputElement(input)).toBe(true)
+        expect(isInputElement(button)).toBe(false)
+        expect(isInputElement(textarea)).toBe(true)
+        expect(isInputElement(select)).toBe(true)
+        expect(isInputElement(editable)).toBe(true)
+        expect(isInputElement(regular)).toBe(false)
+      } finally {
+        vi.unstubAllGlobals()
+      }
+    })
   })
 
   describe('getActiveElementForListenerTarget', () => {
