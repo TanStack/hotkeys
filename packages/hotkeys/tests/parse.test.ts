@@ -49,6 +49,18 @@ describe('parseHotkey', () => {
       expect(parseHotkey('ArrowDown').key).toBe('ArrowDown')
     })
 
+    it('should parse plus keys from delimiter-based strings', () => {
+      expect(parseHotkey('+').key).toBe('+')
+      expect(parseHotkey('Mod++', 'windows')).toMatchObject({
+        ctrl: true,
+        key: '+',
+      })
+      expect(parseHotkey('Mod+Plus', 'mac')).toMatchObject({
+        key: '+',
+        meta: true,
+      })
+    })
+
     it('should handle key aliases', () => {
       expect(parseHotkey('Esc').key).toBe('Escape')
       expect(parseHotkey('Return').key).toBe('Enter')
@@ -210,6 +222,8 @@ describe('normalizeHotkey', () => {
     expect(normalizeHotkey('Ctrl+Esc', 'mac')).toBe('Control+Escape')
     expect(normalizeHotkey('Ctrl+Esc', 'windows')).toBe('Mod+Escape')
     expect(normalizeHotkey('Mod+Return', 'mac')).toBe('Mod+Enter')
+    expect(normalizeHotkey('Mod++', 'windows')).toBe('Mod+Plus')
+    expect(normalizeHotkey('Mod+Plus', 'mac')).toBe('Mod+Plus')
   })
 
   it('should normalize single keys', () => {
@@ -456,6 +470,9 @@ describe('normalizeRegisterableHotkey', () => {
     expect(
       normalizeRegisterableHotkey({ key: 's', mod: true }, 'windows'),
     ).toBe('Mod+S')
+    expect(
+      normalizeRegisterableHotkey({ key: '+', mod: true }, 'windows'),
+    ).toBe('Mod+Plus')
   })
 })
 

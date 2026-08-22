@@ -26,6 +26,15 @@ describe('validateHotkey', () => {
       expect(validateHotkey('Esc').valid).toBe(true)
       expect(validateHotkey('Return').valid).toBe(true)
       expect(validateHotkey('Del').valid).toBe(true)
+      expect(validateHotkey('Mod+Plus').valid).toBe(true)
+    })
+
+    it('should validate plus keys written with a trailing plus delimiter', () => {
+      const result = validateHotkey('Mod++')
+
+      expect(result.valid).toBe(true)
+      expect(result.errors).toHaveLength(0)
+      expect(result.warnings).toHaveLength(0)
     })
   })
 

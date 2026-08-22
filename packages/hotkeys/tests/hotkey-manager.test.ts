@@ -12,10 +12,12 @@ function createKeyboardEvent(
     shiftKey?: boolean
     altKey?: boolean
     metaKey?: boolean
+    code?: string
   } = {},
 ): KeyboardEvent {
   return new KeyboardEvent(type, {
     key,
+    code: options.code,
     ctrlKey: options.ctrlKey ?? false,
     shiftKey: options.shiftKey ?? false,
     altKey: options.altKey ?? false,
@@ -121,6 +123,25 @@ describe('HotkeyManager', () => {
       expect(manager.isRegistered('Meta+S')).toBe(true)
       document.dispatchEvent(
         createKeyboardEvent('keydown', 's', { metaKey: true }),
+      )
+      expect(callback).toHaveBeenCalledTimes(1)
+    })
+
+    it('should register a RawHotkey plus key and match NumpadAdd', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register({ key: '+', mod: true }, callback, {
+        platform: 'windows',
+      })
+
+      expect(manager.getRegistrationCount()).toBe(1)
+      expect(manager.isRegistered('Control+Plus')).toBe(true)
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 'Unidentified', {
+          code: 'NumpadAdd',
+          ctrlKey: true,
+        }),
       )
       expect(callback).toHaveBeenCalledTimes(1)
     })
