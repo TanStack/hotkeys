@@ -1,5 +1,19 @@
 <div align="center">
-  <img src="./media/header_hotkeys.png" alt="TanStack Hotkeys" />
+  <picture>
+    <source
+      media="(prefers-color-scheme: dark)"
+      srcset="https://tanstack.com/api/readme/hotkeys.png?theme=dark"
+    />
+    <source
+      media="(prefers-color-scheme: light)"
+      srcset="https://tanstack.com/api/readme/hotkeys.png"
+    />
+    <img
+      src="https://tanstack.com/api/readme/hotkeys.png"
+      alt="TanStack Hotkeys"
+      width="900"
+    />
+  </picture>
 </div>
 
 <br />

@@ -5,9 +5,9 @@
     "type": "git",
     "url": "git+https://github.com/TanStack/hotkeys.git"
   },
-  "packageManager": "pnpm@11.1.0",
+  "packageManager": "pnpm@11.9.0",
   "engines": {
-    "pnpm": ">=11.0.0"
+    "pnpm": ">=11.9.0"
   },
   "type": "module",
   "scripts": {
@@ -52,11 +52,6 @@
       "test:knip",
       "test:sherif"
     ]
-  },
-  "pnpm": {
-    "overrides": {
-      "rolldown": "1.0.0-rc.12"
-    }
   },
   "devDependencies": {
     "@changesets/cli": "^2.31.0",
