@@ -3,6 +3,8 @@ id: setHotkeysContext
 title: setHotkeysContext
 ---
 
+# Function: setHotkeysContext()
+
 ```ts
 function setHotkeysContext(defaultOptions): HotkeysContextValue;
 ```

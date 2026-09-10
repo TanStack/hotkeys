@@ -3,6 +3,8 @@ id: injectHotkeySequenceRecorder
 title: injectHotkeySequenceRecorder
 ---
 
+# Function: injectHotkeySequenceRecorder()
+
 ```ts
 function injectHotkeySequenceRecorder(options): AngularHotkeySequenceRecorder;
 ```

@@ -3,6 +3,8 @@ id: getHotkeyManager
 title: getHotkeyManager
 ---
 
+# Function: getHotkeyManager()
+
 ```ts
 function getHotkeyManager(): HotkeyManager;
 ```

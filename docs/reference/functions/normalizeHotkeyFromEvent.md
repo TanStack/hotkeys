@@ -3,6 +3,8 @@ id: normalizeHotkeyFromEvent
 title: normalizeHotkeyFromEvent
 ---
 
+# Function: normalizeHotkeyFromEvent()
+
 ```ts
 function normalizeHotkeyFromEvent(event, platform): Hotkey;
 ```

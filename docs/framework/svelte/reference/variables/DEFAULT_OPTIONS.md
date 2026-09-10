@@ -3,6 +3,8 @@ id: DEFAULT_OPTIONS
 title: DEFAULT_OPTIONS
 ---
 
+# Variable: DEFAULT\_OPTIONS
+
 ```ts
 const DEFAULT_OPTIONS: HotkeysProviderOptions = {};
 ```

@@ -3,6 +3,8 @@ id: UseHotkeyDefinition
 title: UseHotkeyDefinition
 ---
 
+# Interface: UseHotkeyDefinition
+
 Defined in: [packages/vue-hotkeys/src/useHotkeys.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeys.ts#L19)
 
 A single hotkey definition for use with `useHotkeys`.

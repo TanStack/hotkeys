@@ -3,6 +3,8 @@ id: HotkeyRegistrationsController
 title: HotkeyRegistrationsController
 ---
 
+# Class: HotkeyRegistrationsController
+
 Defined in: [controllers/hotkey-registrations.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-registrations.ts#L35)
 
 A Lit ReactiveController that tracks all hotkey and sequence registrations.

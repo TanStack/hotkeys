@@ -3,6 +3,8 @@ id: UseHotkeyDefinition
 title: UseHotkeyDefinition
 ---
 
+# Interface: UseHotkeyDefinition
+
 Defined in: [useHotkeys.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeys.ts#L20)
 
 A single hotkey definition for use with `useHotkeys`.

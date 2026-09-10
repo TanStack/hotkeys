@@ -3,6 +3,8 @@ id: InjectHotkeyOptions
 title: InjectHotkeyOptions
 ---
 
+# Interface: InjectHotkeyOptions
+
 Defined in: [injectHotkey.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L16)
 
 ## Extends

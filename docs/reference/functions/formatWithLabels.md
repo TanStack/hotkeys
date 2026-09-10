@@ -3,6 +3,8 @@ id: formatWithLabels
 title: formatWithLabels
 ---
 
+# ~~Function: formatWithLabels()~~
+
 ```ts
 function formatWithLabels(hotkey, options): string;
 ```

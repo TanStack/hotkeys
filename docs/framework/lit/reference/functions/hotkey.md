@@ -3,6 +3,8 @@ id: hotkey
 title: hotkey
 ---
 
+# Function: hotkey()
+
 ```ts
 function hotkey(hotkey, options): <T>(proto, propertyKey, descriptor?) => void;
 ```

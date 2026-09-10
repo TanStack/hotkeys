@@ -3,6 +3,8 @@ id: "@tanstack/vue-hotkeys"
 title: "@tanstack/vue-hotkeys"
 ---
 
+# @tanstack/vue-hotkeys
+
 ## Interfaces
 
 - [HotkeyRegistrationsResult](interfaces/HotkeyRegistrationsResult.md)

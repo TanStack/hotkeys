@@ -3,6 +3,8 @@ id: RegisterableHotkey
 title: RegisterableHotkey
 ---
 
+# Type Alias: RegisterableHotkey
+
 ```ts
 type RegisterableHotkey = Hotkey | RawHotkey;
 ```

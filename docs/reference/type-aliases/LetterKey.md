@@ -3,6 +3,8 @@ id: LetterKey
 title: LetterKey
 ---
 
+# Type Alias: LetterKey
+
 ```ts
 type LetterKey = 
   | "A"

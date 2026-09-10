@@ -3,6 +3,8 @@ id: checkHotkey
 title: checkHotkey
 ---
 
+# Function: checkHotkey()
+
 ```ts
 function checkHotkey(hotkey): boolean;
 ```

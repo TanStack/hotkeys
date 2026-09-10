@@ -3,6 +3,8 @@ id: HotkeySequenceRecorderController
 title: HotkeySequenceRecorderController
 ---
 
+# Class: HotkeySequenceRecorderController
+
 Defined in: [controllers/hotkey-sequence-recorder.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L45)
 
 A Lit ReactiveController that records multi-chord sequences (Vim-style shortcuts).

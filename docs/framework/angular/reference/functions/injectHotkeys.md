@@ -3,6 +3,8 @@ id: injectHotkeys
 title: injectHotkeys
 ---
 
+# Function: injectHotkeys()
+
 ```ts
 function injectHotkeys(hotkeys, commonOptions): void;
 ```

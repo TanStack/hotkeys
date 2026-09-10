@@ -3,6 +3,8 @@ id: injectHeldKeys
 title: injectHeldKeys
 ---
 
+# Function: injectHeldKeys()
+
 ```ts
 function injectHeldKeys(): Signal<string[]>;
 ```

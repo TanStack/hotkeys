@@ -3,6 +3,8 @@ id: NAVIGATION_KEYS
 title: NAVIGATION_KEYS
 ---
 
+# Variable: NAVIGATION\_KEYS
+
 ```ts
 const NAVIGATION_KEYS: Set<NavigationKey>;
 ```

@@ -3,6 +3,8 @@ id: CreateHotkeySequenceDefinition
 title: CreateHotkeySequenceDefinition
 ---
 
+# Interface: CreateHotkeySequenceDefinition
+
 Defined in: [packages/svelte-hotkeys/src/createHotkeySequences.svelte.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequences.svelte.ts#L18)
 
 A single sequence definition for use with `createHotkeySequences`.

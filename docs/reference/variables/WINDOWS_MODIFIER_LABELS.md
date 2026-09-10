@@ -3,6 +3,8 @@ id: WINDOWS_MODIFIER_LABELS
 title: WINDOWS_MODIFIER_LABELS
 ---
 
+# Variable: WINDOWS\_MODIFIER\_LABELS
+
 ```ts
 const WINDOWS_MODIFIER_LABELS: Record<CanonicalModifier | "Mod", string>;
 ```

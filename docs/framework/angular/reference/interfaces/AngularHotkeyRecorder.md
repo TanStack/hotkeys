@@ -3,6 +3,8 @@ id: AngularHotkeyRecorder
 title: AngularHotkeyRecorder
 ---
 
+# Interface: AngularHotkeyRecorder
+
 Defined in: [injectHotkeyRecorder.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L15)
 
 ## Properties

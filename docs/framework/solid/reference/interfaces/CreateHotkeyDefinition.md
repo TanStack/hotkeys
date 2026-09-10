@@ -3,6 +3,8 @@ id: CreateHotkeyDefinition
 title: CreateHotkeyDefinition
 ---
 
+# Interface: CreateHotkeyDefinition
+
 Defined in: [createHotkeys.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L19)
 
 A single hotkey definition for use with `createHotkeys`.

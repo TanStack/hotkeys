@@ -3,6 +3,8 @@ id: getHeldKeys
 title: getHeldKeys
 ---
 
+# Function: getHeldKeys()
+
 ```ts
 function getHeldKeys(): SvelteHeldKeys;
 ```

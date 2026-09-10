@@ -3,6 +3,8 @@ id: createHeldKeys
 title: createHeldKeys
 ---
 
+# Function: createHeldKeys()
+
 ```ts
 function createHeldKeys(): () => string[];
 ```

@@ -3,6 +3,8 @@ id: isModifierKey
 title: isModifierKey
 ---
 
+# Function: isModifierKey()
+
 ```ts
 function isModifierKey(key): key is string;
 ```

@@ -3,6 +3,8 @@ id: createHeldKeyCodes
 title: createHeldKeyCodes
 ---
 
+# Function: createHeldKeyCodes()
+
 ```ts
 function createHeldKeyCodes(): () => Record<string, string>;
 ```

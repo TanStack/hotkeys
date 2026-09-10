@@ -3,6 +3,8 @@ id: "@tanstack/lit-hotkeys"
 title: "@tanstack/lit-hotkeys"
 ---
 
+# @tanstack/lit-hotkeys
+
 ## Classes
 
 - [HeldKeyCodesController](classes/HeldKeyCodesController.md)

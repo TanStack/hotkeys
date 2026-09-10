@@ -3,6 +3,8 @@ id: injectHotkeysContext
 title: injectHotkeysContext
 ---
 
+# Function: injectHotkeysContext()
+
 ```ts
 function injectHotkeysContext(): HotkeysContextValue;
 ```

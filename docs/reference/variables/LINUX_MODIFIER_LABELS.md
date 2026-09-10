@@ -3,6 +3,8 @@ id: LINUX_MODIFIER_LABELS
 title: LINUX_MODIFIER_LABELS
 ---
 
+# Variable: LINUX\_MODIFIER\_LABELS
+
 ```ts
 const LINUX_MODIFIER_LABELS: Record<CanonicalModifier | "Mod", string>;
 ```

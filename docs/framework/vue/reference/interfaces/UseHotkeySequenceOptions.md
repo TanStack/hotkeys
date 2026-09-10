@@ -3,6 +3,8 @@ id: UseHotkeySequenceOptions
 title: UseHotkeySequenceOptions
 ---
 
+# Interface: UseHotkeySequenceOptions
+
 Defined in: [packages/vue-hotkeys/src/useHotkeySequence.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeySequence.ts#L12)
 
 ## Extends

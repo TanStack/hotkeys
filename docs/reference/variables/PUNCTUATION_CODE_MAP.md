@@ -3,6 +3,8 @@ id: PUNCTUATION_CODE_MAP
 title: PUNCTUATION_CODE_MAP
 ---
 
+# Variable: PUNCTUATION\_CODE\_MAP
+
 ```ts
 const PUNCTUATION_CODE_MAP: Record<string, string>;
 ```

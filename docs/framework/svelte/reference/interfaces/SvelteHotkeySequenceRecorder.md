@@ -3,6 +3,8 @@ id: SvelteHotkeySequenceRecorder
 title: SvelteHotkeySequenceRecorder
 ---
 
+# Interface: SvelteHotkeySequenceRecorder
+
 Defined in: [packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts#L11)
 
 ## Properties

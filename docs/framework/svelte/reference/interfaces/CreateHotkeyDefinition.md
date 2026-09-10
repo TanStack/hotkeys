@@ -3,6 +3,8 @@ id: CreateHotkeyDefinition
 title: CreateHotkeyDefinition
 ---
 
+# Interface: CreateHotkeyDefinition
+
 Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L23)
 
 A single hotkey definition for use with `createHotkeys`.

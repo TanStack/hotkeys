@@ -3,6 +3,8 @@ id: CreateHotkeySequenceDefinition
 title: CreateHotkeySequenceDefinition
 ---
 
+# Interface: CreateHotkeySequenceDefinition
+
 Defined in: [createHotkeySequences.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeySequences.ts#L14)
 
 A single sequence definition for use with `createHotkeySequences`.

@@ -3,6 +3,8 @@ id: ConflictBehavior
 title: ConflictBehavior
 ---
 
+# Type Alias: ConflictBehavior
+
 ```ts
 type ConflictBehavior = "warn" | "error" | "replace" | "allow";
 ```

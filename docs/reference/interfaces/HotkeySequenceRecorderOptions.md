@@ -3,6 +3,8 @@ id: HotkeySequenceRecorderOptions
 title: HotkeySequenceRecorderOptions
 ---
 
+# Interface: HotkeySequenceRecorderOptions
+
 Defined in: [hotkey-sequence-recorder.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L29)
 
 Options for configuring a HotkeySequenceRecorder instance.

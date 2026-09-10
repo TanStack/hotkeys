@@ -3,6 +3,8 @@ id: useHeldKeyCodes
 title: useHeldKeyCodes
 ---
 
+# Function: useHeldKeyCodes()
+
 ```ts
 function useHeldKeyCodes(): Record<string, string>;
 ```

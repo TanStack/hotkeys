@@ -3,6 +3,8 @@ id: parseKeyboardEvent
 title: parseKeyboardEvent
 ---
 
+# Function: parseKeyboardEvent()
+
 ```ts
 function parseKeyboardEvent(event): ParsedHotkey;
 ```

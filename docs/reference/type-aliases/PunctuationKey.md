@@ -3,6 +3,8 @@ id: PunctuationKey
 title: PunctuationKey
 ---
 
+# Type Alias: PunctuationKey
+
 ```ts
 type PunctuationKey = "/" | "[" | "]" | "\" | "=" | "-" | "," | "." | ";" | "`";
 ```

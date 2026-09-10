@@ -3,6 +3,8 @@ id: HeldKeysController
 title: HeldKeysController
 ---
 
+# Class: HeldKeysController
+
 Defined in: [controllers/held-keys.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/held-keys.ts#L26)
 
 A Lit ReactiveController that tracks all currently held keyboard keys.

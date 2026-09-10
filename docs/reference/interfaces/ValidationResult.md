@@ -3,6 +3,8 @@ id: ValidationResult
 title: ValidationResult
 ---
 
+# Interface: ValidationResult
+
 Defined in: [hotkey.ts:379](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L379)
 
 Result of validating a hotkey string.

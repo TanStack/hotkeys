@@ -3,6 +3,8 @@ id: createHotkeyAttachment
 title: createHotkeyAttachment
 ---
 
+# Function: createHotkeyAttachment()
+
 ```ts
 function createHotkeyAttachment(
    hotkey, 

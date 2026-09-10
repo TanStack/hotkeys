@@ -3,6 +3,8 @@ id: useHotkeySequence
 title: useHotkeySequence
 ---
 
+# Function: useHotkeySequence()
+
 ```ts
 function useHotkeySequence(
    sequence, 

@@ -3,6 +3,8 @@ id: useHeldKeys
 title: useHeldKeys
 ---
 
+# Function: useHeldKeys()
+
 ```ts
 function useHeldKeys(): string[];
 ```

@@ -3,6 +3,8 @@ id: HotkeySequenceController
 title: HotkeySequenceController
 ---
 
+# Class: HotkeySequenceController
+
 Defined in: [controllers/hotkey-sequence.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence.ts#L28)
 
 A Lit ReactiveController that registers a keyboard sequence (e.g. Vim-style)

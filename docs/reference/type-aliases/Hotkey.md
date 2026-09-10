@@ -3,6 +3,8 @@ id: Hotkey
 title: Hotkey
 ---
 
+# Type Alias: Hotkey
+
 ```ts
 type Hotkey = 
   | Key

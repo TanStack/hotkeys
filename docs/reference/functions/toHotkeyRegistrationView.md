@@ -3,6 +3,8 @@ id: toHotkeyRegistrationView
 title: toHotkeyRegistrationView
 ---
 
+# Function: toHotkeyRegistrationView()
+
 ```ts
 function toHotkeyRegistrationView(reg): HotkeyRegistrationView;
 ```

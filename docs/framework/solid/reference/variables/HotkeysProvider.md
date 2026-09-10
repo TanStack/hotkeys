@@ -3,6 +3,8 @@ id: HotkeysProvider
 title: HotkeysProvider
 ---
 
+# Variable: HotkeysProvider
+
 ```ts
 const HotkeysProvider: ParentComponent<HotkeysProviderProps>;
 ```

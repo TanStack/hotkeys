@@ -3,6 +3,8 @@ id: injectHotkeySequence
 title: injectHotkeySequence
 ---
 
+# Function: injectHotkeySequence()
+
 ```ts
 function injectHotkeySequence(
    sequence, 

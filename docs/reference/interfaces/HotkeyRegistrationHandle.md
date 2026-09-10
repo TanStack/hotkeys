@@ -3,6 +3,8 @@ id: HotkeyRegistrationHandle
 title: HotkeyRegistrationHandle
 ---
 
+# Interface: HotkeyRegistrationHandle
+
 Defined in: [hotkey-manager.ts:139](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L139)
 
 A handle returned from HotkeyManager.register() that allows updating

@@ -3,6 +3,8 @@ id: createSequenceMatcher
 title: createSequenceMatcher
 ---
 
+# Function: createSequenceMatcher()
+
 ```ts
 function createSequenceMatcher(sequence, options): object;
 ```

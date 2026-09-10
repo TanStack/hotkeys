@@ -3,6 +3,8 @@ id: MAC_MODIFIER_SYMBOLS
 title: MAC_MODIFIER_SYMBOLS
 ---
 
+# Variable: MAC\_MODIFIER\_SYMBOLS
+
 ```ts
 const MAC_MODIFIER_SYMBOLS: Record<CanonicalModifier | "Mod", string>;
 ```

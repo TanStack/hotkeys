@@ -3,6 +3,8 @@ id: getHotkeysContext
 title: getHotkeysContext
 ---
 
+# Function: getHotkeysContext()
+
 ```ts
 function getHotkeysContext(): HotkeysContextValue | null;
 ```

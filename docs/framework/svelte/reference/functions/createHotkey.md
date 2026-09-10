@@ -3,6 +3,8 @@ id: createHotkey
 title: createHotkey
 ---
 
+# Function: createHotkey()
+
 ```ts
 function createHotkey(
    hotkey, 

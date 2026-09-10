@@ -3,6 +3,8 @@ id: isSingleLetterKey
 title: isSingleLetterKey
 ---
 
+# Function: isSingleLetterKey()
+
 ```ts
 function isSingleLetterKey(key): boolean;
 ```

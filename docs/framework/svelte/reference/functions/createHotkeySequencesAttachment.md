@@ -3,6 +3,8 @@ id: createHotkeySequencesAttachment
 title: createHotkeySequencesAttachment
 ---
 
+# Function: createHotkeySequencesAttachment()
+
 ```ts
 function createHotkeySequencesAttachment(definitions, commonOptions): Attachment<HTMLElement>;
 ```

@@ -3,6 +3,8 @@ id: MODIFIER_ORDER
 title: MODIFIER_ORDER
 ---
 
+# Variable: MODIFIER\_ORDER
+
 ```ts
 const MODIFIER_ORDER: CanonicalModifier[];
 ```

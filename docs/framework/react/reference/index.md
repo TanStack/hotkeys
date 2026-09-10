@@ -3,6 +3,8 @@ id: "@tanstack/react-hotkeys"
 title: "@tanstack/react-hotkeys"
 ---
 
+# @tanstack/react-hotkeys
+
 ## Interfaces
 
 - [HotkeyRegistrationsResult](interfaces/HotkeyRegistrationsResult.md)

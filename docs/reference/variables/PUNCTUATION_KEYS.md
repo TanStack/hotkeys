@@ -3,6 +3,8 @@ id: PUNCTUATION_KEYS
 title: PUNCTUATION_KEYS
 ---
 
+# Variable: PUNCTUATION\_KEYS
+
 ```ts
 const PUNCTUATION_KEYS: Set<PunctuationKey>;
 ```

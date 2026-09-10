@@ -3,6 +3,8 @@ id: KEY_DISPLAY_SYMBOLS
 title: KEY_DISPLAY_SYMBOLS
 ---
 
+# Variable: KEY\_DISPLAY\_SYMBOLS
+
 ```ts
 const KEY_DISPLAY_SYMBOLS: object;
 ```

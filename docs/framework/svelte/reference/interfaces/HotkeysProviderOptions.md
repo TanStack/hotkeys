@@ -3,6 +3,8 @@ id: HotkeysProviderOptions
 title: HotkeysProviderOptions
 ---
 
+# Interface: HotkeysProviderOptions
+
 Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L10)
 
 ## Properties

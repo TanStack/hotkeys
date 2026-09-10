@@ -3,6 +3,8 @@ id: HotkeySequence
 title: HotkeySequence
 ---
 
+# Type Alias: HotkeySequence
+
 ```ts
 type HotkeySequence = Hotkey[];
 ```

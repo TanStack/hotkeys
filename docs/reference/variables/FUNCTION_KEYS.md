@@ -3,6 +3,8 @@ id: FUNCTION_KEYS
 title: FUNCTION_KEYS
 ---
 
+# Variable: FUNCTION\_KEYS
+
 ```ts
 const FUNCTION_KEYS: Set<FunctionKey>;
 ```

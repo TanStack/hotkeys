@@ -3,6 +3,8 @@ id: SvelteHotkeyRegistrations
 title: SvelteHotkeyRegistrations
 ---
 
+# Interface: SvelteHotkeyRegistrations
+
 Defined in: [packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts#L12)
 
 ## Properties

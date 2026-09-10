@@ -3,6 +3,8 @@ id: rawHotkeyToParsedHotkey
 title: rawHotkeyToParsedHotkey
 ---
 
+# Function: rawHotkeyToParsedHotkey()
+
 ```ts
 function rawHotkeyToParsedHotkey(raw, platform): ParsedHotkey;
 ```

@@ -3,6 +3,8 @@ id: CreateHotkeySequenceOptions
 title: CreateHotkeySequenceOptions
 ---
 
+# Interface: CreateHotkeySequenceOptions
+
 Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts#L14)
 
 ## Extends

@@ -3,6 +3,8 @@ id: assertValidHotkey
 title: assertValidHotkey
 ---
 
+# Function: assertValidHotkey()
+
 ```ts
 function assertValidHotkey(hotkey): void;
 ```

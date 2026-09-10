@@ -3,6 +3,8 @@ id: injectKeyHold
 title: injectKeyHold
 ---
 
+# Function: injectKeyHold()
+
 ```ts
 function injectKeyHold(key): Signal<boolean>;
 ```

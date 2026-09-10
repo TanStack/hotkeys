@@ -3,6 +3,8 @@ id: formatHotkeySequence
 title: formatHotkeySequence
 ---
 
+# Function: formatHotkeySequence()
+
 ```ts
 function formatHotkeySequence(sequence): string;
 ```

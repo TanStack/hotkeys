@@ -3,6 +3,8 @@ id: useKeyHold
 title: useKeyHold
 ---
 
+# Function: useKeyHold()
+
 ```ts
 function useKeyHold(key): Ref<boolean>;
 ```

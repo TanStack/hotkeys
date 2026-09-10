@@ -3,6 +3,8 @@ id: useHotkeySequenceRecorder
 title: useHotkeySequenceRecorder
 ---
 
+# Function: useHotkeySequenceRecorder()
+
 ```ts
 function useHotkeySequenceRecorder(options): ReactHotkeySequenceRecorder;
 ```
