@@ -3,8 +3,6 @@ id: getIsKeyHeld
 title: getIsKeyHeld
 ---
 
-# Function: getIsKeyHeld()
-
 ```ts
 function getIsKeyHeld(key): SvelteHeldKeyState;
 ```

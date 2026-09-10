@@ -3,8 +3,6 @@ id: HotkeyRecorderController
 title: HotkeyRecorderController
 ---
 
-# Class: HotkeyRecorderController
-
 Defined in: [controllers/hotkey-recorder.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L40)
 
 A Lit ReactiveController that records keyboard shortcuts.

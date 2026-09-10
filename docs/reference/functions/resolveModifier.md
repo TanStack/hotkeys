@@ -3,8 +3,6 @@ id: resolveModifier
 title: resolveModifier
 ---
 
-# Function: resolveModifier()
-
 ```ts
 function resolveModifier(modifier, platform): CanonicalModifier;
 ```

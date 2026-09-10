@@ -3,8 +3,6 @@ id: "@tanstack/angular-hotkeys"
 title: "@tanstack/angular-hotkeys"
 ---
 
-# @tanstack/angular-hotkeys
-
 ## Interfaces
 
 - [AngularHotkeyRecorder](interfaces/AngularHotkeyRecorder.md)

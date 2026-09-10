@@ -3,8 +3,6 @@ id: createHotkeyHandler
 title: createHotkeyHandler
 ---
 
-# Function: createHotkeyHandler()
-
 ```ts
 function createHotkeyHandler(
    hotkey, 

@@ -3,8 +3,6 @@ id: RawHotkey
 title: RawHotkey
 ---
 
-# Interface: RawHotkey
-
 Defined in: [hotkey.ts:343](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L343)
 
 A raw hotkey object for programmatic registration.

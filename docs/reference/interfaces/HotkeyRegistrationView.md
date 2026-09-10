@@ -3,8 +3,6 @@ id: HotkeyRegistrationView
 title: HotkeyRegistrationView
 ---
 
-# Interface: HotkeyRegistrationView
-
 Defined in: [hotkey-manager.ts:81](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L81)
 
 Public view of a hotkey registration for display and introspection.

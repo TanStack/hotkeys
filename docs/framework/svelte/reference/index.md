@@ -3,8 +3,6 @@ id: "@tanstack/svelte-hotkeys"
 title: "@tanstack/svelte-hotkeys"
 ---
 
-# @tanstack/svelte-hotkeys
-
 ## Interfaces
 
 - [CreateHotkeyDefinition](interfaces/CreateHotkeyDefinition.md)

@@ -3,8 +3,6 @@ id: MODIFIER_KEYS
 title: MODIFIER_KEYS
 ---
 
-# Variable: MODIFIER\_KEYS
-
 ```ts
 const MODIFIER_KEYS: Set<string>;
 ```

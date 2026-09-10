@@ -3,8 +3,6 @@ id: validateHotkey
 title: validateHotkey
 ---
 
-# Function: validateHotkey()
-
 ```ts
 function validateHotkey(hotkey): ValidationResult;
 ```

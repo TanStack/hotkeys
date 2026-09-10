@@ -3,8 +3,6 @@ id: LETTER_KEYS
 title: LETTER_KEYS
 ---
 
-# Variable: LETTER\_KEYS
-
 ```ts
 const LETTER_KEYS: Set<LetterKey>;
 ```

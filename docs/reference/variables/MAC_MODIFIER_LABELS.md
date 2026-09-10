@@ -3,8 +3,6 @@ id: MAC_MODIFIER_LABELS
 title: MAC_MODIFIER_LABELS
 ---
 
-# Variable: MAC\_MODIFIER\_LABELS
-
 ```ts
 const MAC_MODIFIER_LABELS: Record<CanonicalModifier | "Mod", string>;
 ```

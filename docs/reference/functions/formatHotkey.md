@@ -3,8 +3,6 @@ id: formatHotkey
 title: formatHotkey
 ---
 
-# Function: formatHotkey()
-
 ```ts
 function formatHotkey(parsed): string;
 ```

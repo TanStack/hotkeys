@@ -3,8 +3,6 @@ id: normalizeRegisterableHotkey
 title: normalizeRegisterableHotkey
 ---
 
-# Function: normalizeRegisterableHotkey()
-
 ```ts
 function normalizeRegisterableHotkey(hotkey, platform): Hotkey;
 ```

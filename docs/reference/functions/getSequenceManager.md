@@ -3,8 +3,6 @@ id: getSequenceManager
 title: getSequenceManager
 ---
 
-# Function: getSequenceManager()
-
 ```ts
 function getSequenceManager(): SequenceManager;
 ```

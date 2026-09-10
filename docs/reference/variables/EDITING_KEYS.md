@@ -3,8 +3,6 @@ id: EDITING_KEYS
 title: EDITING_KEYS
 ---
 
-# Variable: EDITING\_KEYS
-
 ```ts
 const EDITING_KEYS: Set<EditingKey>;
 ```

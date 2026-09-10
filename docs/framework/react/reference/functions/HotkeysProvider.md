@@ -3,8 +3,6 @@ id: HotkeysProvider
 title: HotkeysProvider
 ---
 
-# Function: HotkeysProvider()
-
 ```ts
 function HotkeysProvider(__namedParameters): Element;
 ```

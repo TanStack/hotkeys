@@ -3,8 +3,6 @@ id: HotkeySequenceRecorder
 title: HotkeySequenceRecorder
 ---
 
-# Class: HotkeySequenceRecorder
-
 Defined in: [hotkey-sequence-recorder.ts:85](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L85)
 
 Framework-agnostic class for recording multi-chord sequences (Vim-style shortcuts).

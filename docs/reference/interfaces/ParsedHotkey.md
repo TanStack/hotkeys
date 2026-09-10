@@ -3,8 +3,6 @@ id: ParsedHotkey
 title: ParsedHotkey
 ---
 
-# Interface: ParsedHotkey
-
 Defined in: [hotkey.ts:308](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L308)
 
 A parsed representation of a hotkey string.

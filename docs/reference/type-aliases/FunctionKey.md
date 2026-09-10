@@ -3,8 +3,6 @@ id: FunctionKey
 title: FunctionKey
 ---
 
-# Type Alias: FunctionKey
-
 ```ts
 type FunctionKey = 
   | "F1"

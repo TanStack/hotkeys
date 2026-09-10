@@ -3,8 +3,6 @@ id: HotkeyController
 title: HotkeyController
 ---
 
-# Class: HotkeyController
-
 Defined in: [controllers/hotkey.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L34)
 
 A Lit ReactiveController that registers a keyboard hotkey when the host

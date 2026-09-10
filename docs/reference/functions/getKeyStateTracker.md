@@ -3,8 +3,6 @@ id: getKeyStateTracker
 title: getKeyStateTracker
 ---
 
-# Function: getKeyStateTracker()
-
 ```ts
 function getKeyStateTracker(): KeyStateTracker;
 ```
