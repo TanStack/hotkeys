@@ -3,8 +3,6 @@ id: getHeldKeyCodesMap
 title: getHeldKeyCodesMap
 ---
 
-# Function: getHeldKeyCodesMap()
-
 ```ts
 function getHeldKeyCodesMap(): SvelteHeldKeyCodesMap;
 ```

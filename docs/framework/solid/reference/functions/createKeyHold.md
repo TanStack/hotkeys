@@ -3,8 +3,6 @@ id: createKeyHold
 title: createKeyHold
 ---
 
-# Function: createKeyHold()
-
 ```ts
 function createKeyHold(key): () => boolean;
 ```

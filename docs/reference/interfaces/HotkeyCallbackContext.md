@@ -3,8 +3,6 @@ id: HotkeyCallbackContext
 title: HotkeyCallbackContext
 ---
 
-# Interface: HotkeyCallbackContext
-
 Defined in: [hotkey.ts:391](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L391)
 
 Context passed to hotkey callbacks along with the keyboard event.

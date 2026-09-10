@@ -3,8 +3,6 @@ id: matchesKeyboardEvent
 title: matchesKeyboardEvent
 ---
 
-# Function: matchesKeyboardEvent()
-
 ```ts
 function matchesKeyboardEvent(
    event, 

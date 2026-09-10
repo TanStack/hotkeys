@@ -3,8 +3,6 @@ id: HotkeysProviderOptions
 title: HotkeysProviderOptions
 ---
 
-# Interface: HotkeysProviderOptions
-
 Defined in: [HotkeysProvider.tsx:10](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L10)
 
 ## Properties

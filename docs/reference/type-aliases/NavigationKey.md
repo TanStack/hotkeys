@@ -3,8 +3,6 @@ id: NavigationKey
 title: NavigationKey
 ---
 
-# Type Alias: NavigationKey
-
 ```ts
 type NavigationKey = 
   | "ArrowUp"

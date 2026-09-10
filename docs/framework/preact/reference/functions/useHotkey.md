@@ -3,8 +3,6 @@ id: useHotkey
 title: useHotkey
 ---
 
-# Function: useHotkey()
-
 ```ts
 function useHotkey(
    hotkey, 

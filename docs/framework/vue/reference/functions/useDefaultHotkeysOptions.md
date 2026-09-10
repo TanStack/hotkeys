@@ -3,8 +3,6 @@ id: useDefaultHotkeysOptions
 title: useDefaultHotkeysOptions
 ---
 
-# Function: useDefaultHotkeysOptions()
-
 ```ts
 function useDefaultHotkeysOptions(): HotkeysProviderOptions;
 ```

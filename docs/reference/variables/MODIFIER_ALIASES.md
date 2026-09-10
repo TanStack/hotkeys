@@ -3,8 +3,6 @@ id: MODIFIER_ALIASES
 title: MODIFIER_ALIASES
 ---
 
-# Variable: MODIFIER\_ALIASES
-
 ```ts
 const MODIFIER_ALIASES: Record<string, CanonicalModifier | "Mod">;
 ```

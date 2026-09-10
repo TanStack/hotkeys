@@ -3,8 +3,6 @@ id: createHotkeySequence
 title: createHotkeySequence
 ---
 
-# Function: createHotkeySequence()
-
 ```ts
 function createHotkeySequence(
    sequence, 

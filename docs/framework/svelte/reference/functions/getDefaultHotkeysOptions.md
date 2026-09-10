@@ -3,8 +3,6 @@ id: getDefaultHotkeysOptions
 title: getDefaultHotkeysOptions
 ---
 
-# Function: getDefaultHotkeysOptions()
-
 ```ts
 function getDefaultHotkeysOptions(): HotkeysProviderOptions;
 ```

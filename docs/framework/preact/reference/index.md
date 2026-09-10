@@ -3,8 +3,6 @@ id: "@tanstack/preact-hotkeys"
 title: "@tanstack/preact-hotkeys"
 ---
 
-# @tanstack/preact-hotkeys
-
 ## Interfaces
 
 - [HotkeyRegistrationsResult](interfaces/HotkeyRegistrationsResult.md)

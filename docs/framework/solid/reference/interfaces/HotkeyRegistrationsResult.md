@@ -3,8 +3,6 @@ id: HotkeyRegistrationsResult
 title: HotkeyRegistrationsResult
 ---
 
-# Interface: HotkeyRegistrationsResult
-
 Defined in: [createHotkeyRegistrations.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRegistrations.ts#L15)
 
 Return type for createHotkeyRegistrations.

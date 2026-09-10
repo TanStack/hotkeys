@@ -3,8 +3,6 @@ id: createHotkeySequenceAttachment
 title: createHotkeySequenceAttachment
 ---
 
-# Function: createHotkeySequenceAttachment()
-
 ```ts
 function createHotkeySequenceAttachment(
    sequence, 

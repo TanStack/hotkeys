@@ -3,8 +3,6 @@ id: UseHotkeyOptions
 title: UseHotkeyOptions
 ---
 
-# Interface: UseHotkeyOptions
-
 Defined in: [useHotkey.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L17)
 
 ## Extends

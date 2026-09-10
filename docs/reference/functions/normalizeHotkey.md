@@ -3,8 +3,6 @@ id: normalizeHotkey
 title: normalizeHotkey
 ---
 
-# Function: normalizeHotkey()
-
 ```ts
 function normalizeHotkey(hotkey, platform): Hotkey;
 ```

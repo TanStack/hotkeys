@@ -3,8 +3,6 @@ id: PreactHotkeyRecorder
 title: PreactHotkeyRecorder
 ---
 
-# Interface: PreactHotkeyRecorder
-
 Defined in: [useHotkeyRecorder.ts:7](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L7)
 
 ## Properties

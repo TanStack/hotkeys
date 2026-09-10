@@ -3,8 +3,6 @@ id: ReactHotkeyRecorder
 title: ReactHotkeyRecorder
 ---
 
-# Interface: ReactHotkeyRecorder
-
 Defined in: [useHotkeyRecorder.ts:7](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeyRecorder.ts#L7)
 
 ## Properties

@@ -3,8 +3,6 @@ id: Modifier
 title: Modifier
 ---
 
-# Type Alias: Modifier
-
 ```ts
 type Modifier = 
   | "Control"
