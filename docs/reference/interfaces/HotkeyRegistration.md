@@ -3,8 +3,6 @@ id: HotkeyRegistration
 title: HotkeyRegistration
 ---
 
-# Interface: HotkeyRegistration
-
 Defined in: [hotkey-manager.ts:58](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L58)
 
 A registered hotkey handler in the HotkeyManager.

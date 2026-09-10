@@ -3,8 +3,6 @@ id: createMultiHotkeyHandler
 title: createMultiHotkeyHandler
 ---
 
-# Function: createMultiHotkeyHandler()
-
 ```ts
 function createMultiHotkeyHandler(handlers, options): (event) => void;
 ```

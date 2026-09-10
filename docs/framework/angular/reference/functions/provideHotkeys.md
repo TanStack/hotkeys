@@ -3,8 +3,6 @@ id: provideHotkeys
 title: provideHotkeys
 ---
 
-# Function: provideHotkeys()
-
 ```ts
 function provideHotkeys(defaultOptions): StaticProvider;
 ```

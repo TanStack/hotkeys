@@ -3,8 +3,6 @@ id: HotkeyRecorderOptions
 title: HotkeyRecorderOptions
 ---
 
-# Interface: HotkeyRecorderOptions
-
 Defined in: [hotkey-recorder.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L20)
 
 Options for configuring a HotkeyRecorder instance.

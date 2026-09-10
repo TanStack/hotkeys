@@ -3,8 +3,6 @@ id: SequenceRegistrationHandle
 title: SequenceRegistrationHandle
 ---
 
-# Interface: SequenceRegistrationHandle
-
 Defined in: [sequence-manager.ts:119](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L119)
 
 A handle returned from SequenceManager.register() that allows updating

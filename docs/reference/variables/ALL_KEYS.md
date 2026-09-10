@@ -3,8 +3,6 @@ id: ALL_KEYS
 title: ALL_KEYS
 ---
 
-# Variable: ALL\_KEYS
-
 ```ts
 const ALL_KEYS: Set<
   | LetterKey

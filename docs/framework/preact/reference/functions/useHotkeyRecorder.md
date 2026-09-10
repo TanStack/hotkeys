@@ -3,8 +3,6 @@ id: useHotkeyRecorder
 title: useHotkeyRecorder
 ---
 
-# Function: useHotkeyRecorder()
-
 ```ts
 function useHotkeyRecorder(options): PreactHotkeyRecorder;
 ```

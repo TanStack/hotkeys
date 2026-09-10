@@ -3,8 +3,6 @@ id: VueHotkeySequenceRecorder
 title: VueHotkeySequenceRecorder
 ---
 
-# Interface: VueHotkeySequenceRecorder
-
 Defined in: [packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeySequenceRecorder.ts#L11)
 
 ## Properties

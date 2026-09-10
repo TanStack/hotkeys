@@ -3,8 +3,6 @@ id: getHotkeyRegistrations
 title: getHotkeyRegistrations
 ---
 
-# Function: getHotkeyRegistrations()
-
 ```ts
 function getHotkeyRegistrations(): SvelteHotkeyRegistrations;
 ```

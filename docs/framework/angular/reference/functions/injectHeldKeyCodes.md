@@ -3,8 +3,6 @@ id: injectHeldKeyCodes
 title: injectHeldKeyCodes
 ---
 
-# Function: injectHeldKeyCodes()
-
 ```ts
 function injectHeldKeyCodes(): Signal<Record<string, string>>;
 ```

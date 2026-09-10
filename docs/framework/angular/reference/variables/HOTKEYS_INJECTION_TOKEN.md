@@ -3,8 +3,6 @@ id: HOTKEYS_INJECTION_TOKEN
 title: HOTKEYS_INJECTION_TOKEN
 ---
 
-# Variable: HOTKEYS\_INJECTION\_TOKEN
-
 ```ts
 const HOTKEYS_INJECTION_TOKEN: InjectionToken<HotkeysContextValue>;
 ```

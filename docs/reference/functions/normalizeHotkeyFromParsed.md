@@ -3,8 +3,6 @@ id: normalizeHotkeyFromParsed
 title: normalizeHotkeyFromParsed
 ---
 
-# Function: normalizeHotkeyFromParsed()
-
 ```ts
 function normalizeHotkeyFromParsed(parsed, platform): Hotkey;
 ```

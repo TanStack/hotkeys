@@ -3,8 +3,6 @@ id: SolidHotkeySequenceRecorder
 title: SolidHotkeySequenceRecorder
 ---
 
-# Interface: SolidHotkeySequenceRecorder
-
 Defined in: [createHotkeySequenceRecorder.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeySequenceRecorder.ts#L10)
 
 ## Properties

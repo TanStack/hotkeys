@@ -3,8 +3,6 @@ id: formatForDisplay
 title: formatForDisplay
 ---
 
-# Function: formatForDisplay()
-
 ```ts
 function formatForDisplay(hotkey, options): string;
 ```

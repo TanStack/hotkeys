@@ -3,8 +3,6 @@ id: useHotkeys
 title: useHotkeys
 ---
 
-# Function: useHotkeys()
-
 ```ts
 function useHotkeys(hotkeys, commonOptions): void;
 ```

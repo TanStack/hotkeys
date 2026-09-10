@@ -3,8 +3,6 @@ id: NUMBER_KEYS
 title: NUMBER_KEYS
 ---
 
-# Variable: NUMBER\_KEYS
-
 ```ts
 const NUMBER_KEYS: Set<NumberKey>;
 ```
