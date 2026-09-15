@@ -53,6 +53,7 @@ useHotkey('Mod+S', callback, {
   target: document,
   platform: undefined, // auto-detected
   conflictBehavior: 'warn',
+  matchBy: 'key',
 })
 ```
 
@@ -204,6 +205,32 @@ Override the auto-detected platform. Useful for testing or for applications that
 ```tsx
 useHotkey('Mod+S', () => save(), { platform: 'mac' })
 ```
+
+### `matchBy`
+
+Controls whether hotkeys match by `event.key` (layout-aware) or `event.code` (physical key position). Defaults to `'key'`.
+
+Use `'code'` when a non-Latin IME is active and `event.key` produces non-Latin characters instead of the expected ASCII letter. For example, pressing the physical `A` key with a non-Latin IME produces a non-Latin character in `event.key`, but `event.code` still reports `'KeyA'`.
+
+```tsx
+// Match by physical key position
+useHotkey('A', () => handleA(), { matchBy: 'code' })
+
+// Works with modifiers
+useHotkey('Mod+S', () => save(), { matchBy: 'code' })
+
+// Works with useHotkeys as a common option
+useHotkeys(
+  [
+    { hotkey: 'Mod+S', callback: () => save() },
+    { hotkey: 'Mod+Z', callback: () => undo() },
+  ],
+  { matchBy: 'code' },
+)
+```
+
+> [!NOTE]
+> `matchBy: 'code'` ignores the active keyboard layout. If your users rely on alternative Latin layouts (Dvorak, Colemak, AZERTY), keep the default `'key'` so shortcuts follow their remapped layout.
 
 ## Stale Closure Prevention
 
