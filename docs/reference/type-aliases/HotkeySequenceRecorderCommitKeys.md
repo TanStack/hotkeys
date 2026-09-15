@@ -3,8 +3,6 @@ id: HotkeySequenceRecorderCommitKeys
 title: HotkeySequenceRecorderCommitKeys
 ---
 
-# Type Alias: HotkeySequenceRecorderCommitKeys
-
 ```ts
 type HotkeySequenceRecorderCommitKeys = "enter" | "none";
 ```

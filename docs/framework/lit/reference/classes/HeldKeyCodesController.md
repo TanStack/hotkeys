@@ -3,8 +3,6 @@ id: HeldKeyCodesController
 title: HeldKeyCodesController
 ---
 
-# Class: HeldKeyCodesController
-
 Defined in: [controllers/held-key-codes.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/held-key-codes.ts#L27)
 
 A Lit ReactiveController that tracks all currently held key names to their physical `event.code` values.

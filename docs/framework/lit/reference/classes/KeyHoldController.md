@@ -3,8 +3,6 @@ id: KeyHoldController
 title: KeyHoldController
 ---
 
-# Class: KeyHoldController
-
 Defined in: [controllers/key-hold.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/key-hold.ts#L43)
 
 A Lit ReactiveController that tracks whether a specific key is currently held.

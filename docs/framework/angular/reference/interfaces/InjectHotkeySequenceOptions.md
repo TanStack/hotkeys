@@ -3,8 +3,6 @@ id: InjectHotkeySequenceOptions
 title: InjectHotkeySequenceOptions
 ---
 
-# Interface: InjectHotkeySequenceOptions
-
 Defined in: [injectHotkeySequence.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequence.ts#L13)
 
 ## Extends

@@ -3,8 +3,6 @@ id: parseHotkey
 title: parseHotkey
 ---
 
-# Function: parseHotkey()
-
 ```ts
 function parseHotkey(hotkey, platform): ParsedHotkey;
 ```

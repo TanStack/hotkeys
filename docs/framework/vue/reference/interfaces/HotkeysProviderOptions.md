@@ -3,8 +3,6 @@ id: HotkeysProviderOptions
 title: HotkeysProviderOptions
 ---
 
-# Interface: HotkeysProviderOptions
-
 Defined in: [packages/vue-hotkeys/src/HotkeysProviderContext.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L10)
 
 ## Properties

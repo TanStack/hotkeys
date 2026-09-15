@@ -3,8 +3,6 @@ id: useHotkeyRegistrations
 title: useHotkeyRegistrations
 ---
 
-# Function: useHotkeyRegistrations()
-
 ```ts
 function useHotkeyRegistrations(): HotkeyRegistrationsResult;
 ```

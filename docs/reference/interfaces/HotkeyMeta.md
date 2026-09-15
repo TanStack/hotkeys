@@ -3,8 +3,6 @@ id: HotkeyMeta
 title: HotkeyMeta
 ---
 
-# Interface: HotkeyMeta
-
 Defined in: [hotkey.ts:431](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L431)
 
 Metadata for hotkey and sequence registrations.

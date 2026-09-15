@@ -3,8 +3,6 @@ id: injectHotkey
 title: injectHotkey
 ---
 
-# Function: injectHotkey()
-
 ```ts
 function injectHotkey(
    hotkey, 

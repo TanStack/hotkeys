@@ -3,8 +3,6 @@ id: EditingKey
 title: EditingKey
 ---
 
-# Type Alias: EditingKey
-
 ```ts
 type EditingKey = "Enter" | "Escape" | "Space" | "Tab" | "Backspace" | "Delete";
 ```

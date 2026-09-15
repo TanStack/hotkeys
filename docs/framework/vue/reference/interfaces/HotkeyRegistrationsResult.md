@@ -3,8 +3,6 @@ id: HotkeyRegistrationsResult
 title: HotkeyRegistrationsResult
 ---
 
-# Interface: HotkeyRegistrationsResult
-
 Defined in: [packages/vue-hotkeys/src/useHotkeyRegistrations.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRegistrations.ts#L16)
 
 Return type for useHotkeyRegistrations.

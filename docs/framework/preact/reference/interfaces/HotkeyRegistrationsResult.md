@@ -3,8 +3,6 @@ id: HotkeyRegistrationsResult
 title: HotkeyRegistrationsResult
 ---
 
-# Interface: HotkeyRegistrationsResult
-
 Defined in: [useHotkeyRegistrations.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRegistrations.ts#L15)
 
 Return type for useHotkeyRegistrations.

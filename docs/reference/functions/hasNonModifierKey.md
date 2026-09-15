@@ -3,8 +3,6 @@ id: hasNonModifierKey
 title: hasNonModifierKey
 ---
 
-# Function: hasNonModifierKey()
-
 ```ts
 function hasNonModifierKey(hotkey, platform): boolean;
 ```

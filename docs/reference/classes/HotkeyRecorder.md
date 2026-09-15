@@ -3,8 +3,6 @@ id: HotkeyRecorder
 title: HotkeyRecorder
 ---
 
-# Class: HotkeyRecorder
-
 Defined in: [hotkey-recorder.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L76)
 
 Framework-agnostic class for recording keyboard shortcuts.

@@ -3,8 +3,6 @@ id: CreateHotkeyHandlerOptions
 title: CreateHotkeyHandlerOptions
 ---
 
-# Interface: CreateHotkeyHandlerOptions
-
 Defined in: [match.ts:132](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L132)
 
 Options for creating a hotkey handler.

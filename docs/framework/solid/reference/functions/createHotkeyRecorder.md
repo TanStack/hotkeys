@@ -3,8 +3,6 @@ id: createHotkeyRecorder
 title: createHotkeyRecorder
 ---
 
-# Function: createHotkeyRecorder()
-
 ```ts
 function createHotkeyRecorder(options): SolidHotkeyRecorder;
 ```

@@ -3,8 +3,6 @@ id: InjectHotkeySequenceDefinition
 title: InjectHotkeySequenceDefinition
 ---
 
-# Interface: InjectHotkeySequenceDefinition
-
 Defined in: [injectHotkeySequences.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequences.ts#L14)
 
 A single sequence definition for use with `injectHotkeySequences`.

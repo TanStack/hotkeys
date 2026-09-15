@@ -3,8 +3,6 @@ id: provideHotkeysContext
 title: provideHotkeysContext
 ---
 
-# Function: provideHotkeysContext()
-
 ```ts
 function provideHotkeysContext(defaultOptions?): void;
 ```

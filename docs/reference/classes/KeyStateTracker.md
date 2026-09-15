@@ -3,8 +3,6 @@ id: KeyStateTracker
 title: KeyStateTracker
 ---
 
-# Class: KeyStateTracker
-
 Defined in: [key-state-tracker.ts:63](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L63)
 
 Singleton tracker for currently held keyboard keys.

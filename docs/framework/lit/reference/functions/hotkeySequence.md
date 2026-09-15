@@ -3,8 +3,6 @@ id: hotkeySequence
 title: hotkeySequence
 ---
 
-# Function: hotkeySequence()
-
 ```ts
 function hotkeySequence(sequence, options): <T>(proto, methodName, descriptor) => void;
 ```

@@ -3,8 +3,6 @@ id: CanonicalModifier
 title: CanonicalModifier
 ---
 
-# Type Alias: CanonicalModifier
-
 ```ts
 type CanonicalModifier = "Control" | "Shift" | "Alt" | "Meta";
 ```
