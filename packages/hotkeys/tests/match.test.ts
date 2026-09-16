@@ -5,6 +5,7 @@ import {
   matchesKeyboardEvent,
 } from '../src/match'
 import { Hotkey } from '../src'
+import { rawHotkeyToParsedHotkey } from '../src/parse'
 
 /**
  * Helper to create a mock KeyboardEvent
@@ -702,6 +703,30 @@ describe('matchesKeyboardEvent', () => {
         code: undefined,
       })
       expect(matchesKeyboardEvent(event, 'Alt+-' as Hotkey)).toBe(false)
+    })
+
+    it('should match NumpadAdd for plus hotkeys', () => {
+      const event = createKeyboardEvent('Unidentified', {
+        ctrlKey: true,
+        code: 'NumpadAdd',
+      })
+
+      expect(matchesKeyboardEvent(event, 'Mod++' as Hotkey, 'windows')).toBe(
+        true,
+      )
+    })
+
+    it('should match NumpadAdd for parsed raw plus hotkeys', () => {
+      const event = createKeyboardEvent('Unidentified', {
+        metaKey: true,
+        code: 'NumpadAdd',
+      })
+      const parsedHotkey = rawHotkeyToParsedHotkey(
+        { key: '+', mod: true },
+        'mac',
+      )
+
+      expect(matchesKeyboardEvent(event, parsedHotkey, 'mac')).toBe(true)
     })
 
     it('should match Ctrl+punctuation without needing fallback (non-macOS)', () => {

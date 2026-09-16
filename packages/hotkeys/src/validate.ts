@@ -1,4 +1,4 @@
-import { ALL_KEYS, MODIFIER_ALIASES } from './constants'
+import { ALL_KEYS, MODIFIER_ALIASES, normalizeKeyName } from './constants'
 import type { Hotkey, ValidationResult } from './hotkey'
 
 /**
@@ -36,7 +36,7 @@ export function validateHotkey(
     }
   }
 
-  const parts = hotkey.split('+').map((p) => p.trim())
+  const parts = splitHotkeyParts(hotkey)
 
   // Must have at least one part (the key)
   if (parts.length === 0 || parts.some((p) => p === '')) {
@@ -61,7 +61,7 @@ export function validateHotkey(
   }
 
   // Check if key is known
-  const normalizedKey = normalizeKeyForValidation(keyPart)
+  const normalizedKey = normalizeKeyName(normalizeKeyForValidation(keyPart))
   if (!isKnownKey(normalizedKey) && !isKnownKey(keyPart)) {
     warnings.push(
       `Unknown key: '${keyPart}'. This may still work but won't have type-safe autocomplete.`,
@@ -73,6 +73,22 @@ export function validateHotkey(
     warnings,
     errors,
   }
+}
+
+function splitHotkeyParts(hotkey: string): Array<string> {
+  const parts = hotkey.split('+').map((p) => p.trim())
+
+  if (hotkey.endsWith('+') && parts.length > 1) {
+    parts.pop()
+
+    if (parts.at(-1) === '') {
+      parts.pop()
+    }
+
+    parts.push('+')
+  }
+
+  return parts
 }
 
 /**

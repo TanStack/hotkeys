@@ -115,10 +115,12 @@ export type EditingKey =
  * (layout-dependent, typically US keyboard layout).
  */
 export type PunctuationKey =
+  | 'Plus'
   | '/'
   | '['
   | ']'
   | '\\'
+  | '+'
   | '='
   | '-'
   | ','

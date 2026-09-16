@@ -32,7 +32,7 @@ export function parseHotkey(
   hotkey: Hotkey | (string & {}),
   platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
 ): ParsedHotkey {
-  const parts = hotkey.split('+')
+  const parts = splitHotkeyParts(hotkey)
   const modifiers: Set<CanonicalModifier> = new Set()
   let key = ''
 
@@ -73,6 +73,28 @@ export function parseHotkey(
     meta: modifiers.has('Meta'),
     modifiers: MODIFIER_ORDER.filter((m) => modifiers.has(m)),
   }
+}
+
+function splitHotkeyParts(hotkey: string): Array<string> {
+  const parts = hotkey.split('+').map((part) => part.trim())
+
+  if (hotkey.endsWith('+') && parts.length > 1) {
+    parts.pop()
+
+    if (parts.at(-1) === '') {
+      parts.pop()
+    }
+
+    parts.push('+')
+  }
+
+  return parts
+}
+
+function hotkeyKeyToken(key: string): string {
+  const normalizedKey = normalizeKeyName(key)
+
+  return normalizedKey === '+' ? 'Plus' : normalizedKey
 }
 
 /**
@@ -129,7 +151,7 @@ export function rawHotkeyToParsedHotkey(
     }
   })
   return {
-    key: raw.key,
+    key: normalizeKeyName(raw.key),
     ctrl,
     shift,
     alt,
@@ -170,7 +192,7 @@ function normalizedHotkeyStringFromParsed(
     }
   }
 
-  parts.push(normalizeKeyName(parsed.key))
+  parts.push(hotkeyKeyToken(parsed.key))
   return parts.join('+') as Hotkey
 }
 

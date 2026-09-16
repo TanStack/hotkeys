@@ -61,7 +61,7 @@ export function formatHotkey(parsed: ParsedHotkey): string {
   }
 
   // Add the key
-  parts.push(parsed.key)
+  parts.push(parsed.key === '+' ? 'Plus' : parsed.key)
 
   return parts.join('+')
 }
