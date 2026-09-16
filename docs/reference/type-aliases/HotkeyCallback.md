@@ -3,8 +3,6 @@ id: HotkeyCallback
 title: HotkeyCallback
 ---
 
-# Type Alias: HotkeyCallback()
-
 ```ts
 type HotkeyCallback = (event, context) => void;
 ```

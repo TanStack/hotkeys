@@ -3,8 +3,6 @@ id: HotkeyOptions
 title: HotkeyOptions
 ---
 
-# Interface: HotkeyOptions
-
 Defined in: [hotkey-manager.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L28)
 
 Options for registering a hotkey.

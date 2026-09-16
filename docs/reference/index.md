@@ -3,8 +3,6 @@ id: "@tanstack/hotkeys"
 title: "@tanstack/hotkeys"
 ---
 
-# @tanstack/hotkeys
-
 ## Classes
 
 - [HotkeyManager](classes/HotkeyManager.md)

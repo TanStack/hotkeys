@@ -3,8 +3,6 @@ id: createHotkeys
 title: createHotkeys
 ---
 
-# Function: createHotkeys()
-
 ```ts
 function createHotkeys(hotkeys, commonOptions): void;
 ```

@@ -3,8 +3,6 @@ id: createHotkeyRegistrations
 title: createHotkeyRegistrations
 ---
 
-# Function: createHotkeyRegistrations()
-
 ```ts
 function createHotkeyRegistrations(): HotkeyRegistrationsResult;
 ```

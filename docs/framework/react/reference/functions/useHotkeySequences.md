@@ -3,8 +3,6 @@ id: useHotkeySequences
 title: useHotkeySequences
 ---
 
-# Function: useHotkeySequences()
-
 ```ts
 function useHotkeySequences(definitions, commonOptions): void;
 ```

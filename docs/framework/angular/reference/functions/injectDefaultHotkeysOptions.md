@@ -3,8 +3,6 @@ id: injectDefaultHotkeysOptions
 title: injectDefaultHotkeysOptions
 ---
 
-# Function: injectDefaultHotkeysOptions()
-
 ```ts
 function injectDefaultHotkeysOptions(): HotkeysProviderOptions;
 ```

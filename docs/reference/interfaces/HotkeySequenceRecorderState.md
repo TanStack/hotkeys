@@ -3,8 +3,6 @@ id: HotkeySequenceRecorderState
 title: HotkeySequenceRecorderState
 ---
 
-# Interface: HotkeySequenceRecorderState
-
 Defined in: [hotkey-sequence-recorder.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L17)
 
 State interface for the HotkeySequenceRecorder.

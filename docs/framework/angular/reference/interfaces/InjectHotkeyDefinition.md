@@ -3,8 +3,6 @@ id: InjectHotkeyDefinition
 title: InjectHotkeyDefinition
 ---
 
-# Interface: InjectHotkeyDefinition
-
 Defined in: [injectHotkeys.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L19)
 
 A single hotkey definition for use with `injectHotkeys`.

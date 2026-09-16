@@ -3,8 +3,6 @@ id: useHotkeysContext
 title: useHotkeysContext
 ---
 
-# Function: useHotkeysContext()
-
 ```ts
 function useHotkeysContext(): HotkeysContextValue | null;
 ```

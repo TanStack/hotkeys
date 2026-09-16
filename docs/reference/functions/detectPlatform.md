@@ -3,8 +3,6 @@ id: detectPlatform
 title: detectPlatform
 ---
 
-# Function: detectPlatform()
-
 ```ts
 function detectPlatform(): "mac" | "windows" | "linux";
 ```

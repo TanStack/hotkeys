@@ -3,8 +3,6 @@ id: HotkeyRegistrationsResult
 title: HotkeyRegistrationsResult
 ---
 
-# Interface: HotkeyRegistrationsResult
-
 Defined in: [injectHotkeyRegistrations.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRegistrations.ts#L16)
 
 Return type for injectHotkeyRegistrations.

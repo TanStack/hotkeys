@@ -3,8 +3,6 @@ id: Key
 title: Key
 ---
 
-# Type Alias: Key
-
 ```ts
 type Key = NonPunctuationKey | PunctuationKey;
 ```

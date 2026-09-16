@@ -3,8 +3,6 @@ id: injectHotkeyRegistrations
 title: injectHotkeyRegistrations
 ---
 
-# Function: injectHotkeyRegistrations()
-
 ```ts
 function injectHotkeyRegistrations(): HotkeyRegistrationsResult;
 ```

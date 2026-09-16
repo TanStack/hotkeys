@@ -3,8 +3,6 @@ id: FormatDisplayOptions
 title: FormatDisplayOptions
 ---
 
-# Interface: FormatDisplayOptions
-
 Defined in: [hotkey.ts:367](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L367)
 
 Options for formatting hotkeys for display.

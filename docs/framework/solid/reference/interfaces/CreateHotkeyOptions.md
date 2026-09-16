@@ -3,8 +3,6 @@ id: CreateHotkeyOptions
 title: CreateHotkeyOptions
 ---
 
-# Interface: CreateHotkeyOptions
-
 Defined in: [createHotkey.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L16)
 
 ## Extends

@@ -3,8 +3,6 @@ id: UseHotkeySequenceDefinition
 title: UseHotkeySequenceDefinition
 ---
 
-# Interface: UseHotkeySequenceDefinition
-
 Defined in: [useHotkeySequences.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeySequences.ts#L15)
 
 A single sequence definition for use with `useHotkeySequences`.

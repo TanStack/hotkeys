@@ -3,8 +3,6 @@ id: normalizeKeyName
 title: normalizeKeyName
 ---
 
-# Function: normalizeKeyName()
-
 ```ts
 function normalizeKeyName(key): string;
 ```

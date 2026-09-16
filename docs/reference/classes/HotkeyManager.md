@@ -3,8 +3,6 @@ id: HotkeyManager
 title: HotkeyManager
 ---
 
-# Class: HotkeyManager
-
 Defined in: [hotkey-manager.ts:186](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L186)
 
 Singleton manager for hotkey registrations.

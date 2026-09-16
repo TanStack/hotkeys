@@ -3,8 +3,6 @@ id: HotkeysProvider
 title: HotkeysProvider
 ---
 
-# Variable: HotkeysProvider
-
 ```ts
 const HotkeysProvider: LegacyComponentType;
 ```

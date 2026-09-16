@@ -3,8 +3,6 @@ id: HotkeysProvider
 title: HotkeysProvider
 ---
 
-# Type Alias: HotkeysProvider
-
 ```ts
 type HotkeysProvider = SvelteComponent;
 ```

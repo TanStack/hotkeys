@@ -3,8 +3,6 @@ id: IndividualKey
 title: IndividualKey
 ---
 
-# Type Alias: IndividualKey
-
 ```ts
 type IndividualKey = CanonicalModifier | Key;
 ```

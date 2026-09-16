@@ -3,8 +3,6 @@ id: UseHotkeySequenceOptions
 title: UseHotkeySequenceOptions
 ---
 
-# Interface: UseHotkeySequenceOptions
-
 Defined in: [useHotkeySequence.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeySequence.ts#L13)
 
 ## Extends
