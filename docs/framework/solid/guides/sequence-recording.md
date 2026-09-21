@@ -3,10 +3,57 @@ title: Sequence Recording Guide
 id: sequence-recording
 ---
 
-Use `createHotkeySequenceRecorder` from `@tanstack/solid-hotkeys` to record multi-chord sequences. API mirrors `createHotkeyRecorder`: accessors `isRecording`, `steps`, `recordedSequence`, plus `startRecording`, `stopRecording`, `cancelRecording`, `commitRecording`.
+Use `createHotkeySequenceRecorder` to capture a series of shortcut chords. By default, each step records its physical code: pressing G twice produces `['[KeyG]', '[KeyG]']`. Set `recordBy: 'key'` to follow logical characters instead. Pass the resulting array directly to sequence registration and format each step for display.
 
-Options and keyboard behavior are the same as the core `HotkeySequenceRecorder` class (`commitKeys`, `commitOnEnter`, `idleTimeoutMs`, Enter / Escape / Backspace). Set provider defaults with `HotkeysProvider` `defaultOptions.hotkeySequenceRecorder`.
+## Record and display a sequence
 
-### `ignoreInputs`
+This example uses a Save button so plain Enter can be recorded as a step:
 
-The `HotkeySequenceRecorderOptions` supports an `ignoreInputs` option (defaults to `true`). When `true`, the recorder will not intercept normal typing in text inputs, textareas, selects, or contentEditable elements -- keystrokes pass through to the input as usual. Pressing **Escape** still cancels recording even when focused on an input. Set `ignoreInputs: false` if you want the recorder to capture keys from within input elements.
+```tsx
+import { Show } from 'solid-js'
+import { createHotkeySequenceRecorder, formatForDisplay } from '@tanstack/solid-hotkeys'
+
+function SequenceRecorder() {
+  const recorder = createHotkeySequenceRecorder({
+    commitKeys: 'none',
+    onRecord: (sequence) => console.log('Register or persist:', sequence),
+    onReject: ({ message }) => console.log(message),
+  })
+  const label = () =>
+    (recorder.isRecording() ? recorder.steps() : recorder.recordedSequence() ?? [])
+      .map((step) => formatForDisplay(step)).join(' → ')
+
+  return (
+    <div>
+      <button onClick={recorder.startRecording}>Record sequence</button>
+      <p>{label()}</p>
+      <Show when={recorder.isRecording()}>
+        <button onClick={recorder.commitRecording}>Save</button>
+        <button onClick={recorder.cancelRecording}>Cancel</button>
+      </Show>
+    </div>
+  )
+}
+```
+
+## State and controls
+
+The recorder exposes `isRecording`, `steps`, and `recordedSequence` as accessors. `steps` contains the current attempt; `recordedSequence` contains the last committed result. `startRecording()` begins a new session. `commitRecording()` saves a nonempty attempt, while `cancelRecording()` discards it and calls `onCancel`. `stopRecording()` resets recorder state without calling `onRecord` or `onCancel`.
+
+## Options and keyboard behavior
+
+- `recordBy`: `'code'` by default; `'key'` records produced logical characters.
+- `commitKeys`: `'enter'` by default; plain Enter commits a nonempty sequence. `'none'` lets Enter become a step and requires manual or idle commit.
+- `commitOnEnter: false`: also permits Enter as a step when `commitKeys` is `'enter'`.
+- `idleTimeoutMs`: optionally commits after inactivity following a completed step. No timer runs before the first step.
+- `ignoreInputs`: true by default, including shadow-root inputs. Set false to record from editable fields. Escape still cancels from an input.
+
+Escape cancels. Unmodified Backspace/Delete removes the last step; when already empty it stops and calls only `onClear`. Modifier-only presses, automatic repeats, and IME composition do not append steps. Recorded events and their releases do not trigger application shortcuts.
+
+Set provider defaults through `HotkeysProvider` with `defaultOptions.hotkeySequenceRecorder`.
+
+## Validation and conflicts
+
+`validate(sequence, { events, parsedSequence })` runs at commit. Return true to accept, or false/a message to reject. `detectConflicts` checks live bindings and sequence prefixes, including physical/logical overlap established by the recorded events. `onReject` receives feedback; rejected steps remain editable with Backspace.
+
+The shared options and exclusions are described in the [hotkey recording guide](./hotkey-recording.md#validation-and-conflicts). The application owns reset, persistence, and any binding being edited; clearing never calls `onRecord([])`.

@@ -3,52 +3,47 @@ title: Overview
 id: overview
 ---
 
-TanStack Hotkeys is a **type-safe**, **framework-agnostic** library for handling keyboard shortcuts in your applications. It provides a comprehensive set of utilities for registering hotkeys, tracking key state, recording custom keyboard shortcuts, and handling multi-key sequences -- all with first-class TypeScript support and cross-platform compatibility.
+TanStack Hotkeys is a type-safe, headless library for keyboard shortcuts, sequences, recording, and key state tracking. Use its framework adapters for registration and cleanup, and build shortcut interfaces with your own components and application state.
 
-> [!IMPORTANT]
-> TanStack Hotkeys is currently in **alpha** and its API is still subject to change. Early adopters are encouraged to help us solve edge cases across multiple keyboard layouts, locales, and operating systems.
+## Choose what a shortcut follows
 
-## Motivation
+A binding can follow a logical character or a physical keyboard position. Both forms use the same registration APIs:
 
-On the surface, keyboard shortcuts are a simple concept, and you would think that it should just take a couple of lines of code to implement them. And sometimes, it can be that simple. However, there are enough small "gotchas" that can eventually add up to an annoying amount of complexity when you need to consider multiple keyboard layouts, operating systems, custom shortcuts, conflicting hotkey scopes, properly ignoring input elements, and more. 
+```ts
+// React; the other adapters accept the same binding forms.
+useHotkey('Mod+S', save) // Logical S on the active layout
+useHotkey('Alt+[KeyW]', moveForward) // Physical KeyW position
+useHotkey({ code: 'NumpadAdd', mod: true }, zoomIn)
+```
 
-Surprisingly, in our experience, even AI often struggles to get hotkey management fully correct. We believe that providing a library that brings type-safety and well thought out cross-platform compatibility to hotkey management is a valuable contribution to the community.
+`Mod` means Command on macOS and Control on Windows/Linux. Brackets identify physical `event.code` names in strings, including `[Enter]` and `[F13]`. Object bindings use either `key` or `code`, never both. Both logical names and physical codes have type-safe autocomplete.
 
-## Features
+Logical bindings prefer `event.key`. ASCII letter output remains authoritative on layouts such as Dvorak and AZERTY; conservative code fallback helps when Option, dead keys, or non-Latin output transforms the character. Physical bindings match `event.code` exactly. Among eligible registrations on a target, exact matches take priority over weaker fallbacks.
 
-- **Desired Defaults**
-  - TanStack Hotkeys automatically uses `preventDefault`, `stopPropagation`, and intelligently ignores hotkeys when input elements are focused by default.
+Logical and physical bindings both support F1–F24 and shared named keys such as `CapsLock`, `MediaPlayPause`, and `BrowserBack`. Some browser names differ: logical `LaunchApplication1` corresponds to physical `[LaunchApp1]`. Logical `Enter` includes numpad Enter, while `[Enter]` and `[NumpadEnter]` distinguish their positions.
 
-- **Type-Safe Hotkey Strings**
-  - Full autocomplete for valid modifier - e.g. `Control+A`, `Alt+S`, `Shift+D`, `Mod+Shift+G`, etc.
-  - Alternatively, you can use a raw `RawHotkey` object to register hotkeys: `useHotkey({ key: 'S', mod: true }, handler)`
+## Register actions and sequences
 
-- **Cross-Platform Compatibility**
-  - `Mod` resolves to `Meta` (Cmd) on macOS and `Control` on Windows/Linux
+Single shortcuts and sequence steps use the same binding syntax. For example, `['G', 'G']` follows the logical letter, while `['[KeyG]', '[KeyG]']` follows a position. Sequences may mix logical and physical steps. Modifier-only events, IME composition, and automatic repeats do not advance sequences or extend their timeout.
 
-- **event.key API**
-  - The primary APIs are built around the `event.key` property, which is the most reliable way to determine the key that was pressed.
-  - `event.code` is used as a fallback for letter keys (A-Z) and digit keys (0-9) when `event.key` produces special characters (e.g., macOS Option+letter or Shift+number).
+Registrations support enabled state, element targets, input handling, callback metadata, and conflict policies. Framework adapters update bindings from normal reactive state and remove them on unmount. `meta.name`, `meta.description`, and `meta.group` describe registrations for menus and help panels; they do not change matching or scope.
 
-- **Hotkey Registration**
-  - Centralized `HotkeyManager` with per-target listeners, conflict detection, and automatic input filtering
+## Record a replacement binding
 
-- **Multi-Key Sequences**
-  - Vim-style sequences (e.g., `['G', 'G']`, `['D', 'I', 'W']`) with configurable timeout
+Recorders default to `recordBy: 'code'`. On macOS, Option+S producing `ß` records `Alt+[KeyS]`, so replay follows the same physical combination. Set `recordBy: 'key'` to intentionally record the produced logical character. The recorder never silently switches between these modes.
 
-- **Hotkey Recording**
-  - Interactive capture for settings UIs with portable `Mod` format conversion
+Pass recorded strings directly into registrations and store them in ordinary application state. Both single and sequence recorders support validation, structured rejection, and live-registry conflict checks. Rejected candidates leave recording active. Clearing calls only `onClear`; your app decides whether that removes a binding or restores an initial value.
 
-- **Key State Tracking**
-  - Real-time held keys hooks: `useHeldKeys`, `useHeldKeyCodes`, `useKeyHold`
+## Display shortcuts and hints
 
-- **Display Formatting**
-  - Platform-aware formatting (e.g., `⌘⇧S` on Mac vs `Ctrl+Shift+S` on Windows) for cheatsheet UIs
+Use `formatForDisplay` at render time. Both `Mod+S` and `Mod+[KeyS]` display as `⌘ S` on macOS, but their stored identities remain distinct. `parts: true` returns individual keycap labels, and symbols can be configured separately for modifiers and keys.
 
-- **Framework Adapters**
-  - React and Preact hooks, Solid primitives, Angular inject APIs, Vue composables, and Lit controllers/decorators
+Physical labels use readable defaults such as `S`, `2`, and numpad labels. For a known layout, pass an already-resolved `layoutMap`; use `keyLabels` for explicit overrides. Formatting stays synchronous and never loads a keyboard layout. Labels do not change registration or recording behavior.
 
-- **Awesome Devtools!**
-  - See all currently registered hotkeys, held keys, and more in real-time.
+Key-state primitives expose held logical keys and physical codes. `matchesHeldModifiers` and framework hint helpers reveal relevant shortcuts while modifiers are held. Live registration views and devtools expose current shortcuts and sequence progress, making it possible to build grouped help panels without a separate action catalog.
 
-For a complete walkthrough, see the [React Quick Start](framework/react/quick-start), [Angular Quick Start](framework/angular/quick-start), [Vue Quick Start](framework/vue/quick-start) or [Lit Quick Start](framework/lit/quick-start).
+## Inspect a binding
+
+`ParsedHotkey` preserves identity as a union: logical bindings have `key`, physical bindings have `code`. Narrow with `parsed.code !== undefined` before reading it. Shared resolved flags and the ordered modifier list live in `ParsedModifiers`. `parseKeyboardEvent` produces logical identity; code recording constructs physical identity explicitly.
+
+Start with the [React Quick Start](./framework/react/quick-start), [Angular Quick Start](./framework/angular/quick-start), [Vue Quick Start](./framework/vue/quick-start), or [Lit Quick Start](./framework/lit/quick-start). Explore the [Router kitchen sink](./framework/react/examples/kitchen-sink) for route lifetimes, recording, and hints, or the [vanilla formatter playground](./framework/vanilla/examples/formatForDisplay) for display options.

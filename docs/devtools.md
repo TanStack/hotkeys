@@ -3,19 +3,19 @@ title: Devtools
 id: devtools
 ---
 
-TanStack Hotkeys provides devtools for debugging and monitoring all your registered hotkeys in real-time. The devtools integrate seamlessly within the [TanStack Devtools](https://tanstack.com/devtools) multi-panel UI.
+TanStack Hotkeys ships devtools for debugging and monitoring your registered hotkeys in real time, as a panel inside the [TanStack Devtools](https://tanstack.com/devtools) multi-panel UI.
 
 > [!NOTE]
-> By default, the TanStack Devtools and TanStack Hotkeys Devtools will only be included in development mode. This helps keep your production bundle size minimal. If you need to include devtools in production builds (e.g., for debugging production issues), you can use the alternative "production" imports.
+> By default, TanStack Devtools and the Hotkeys devtools are only included in development mode, so they add nothing to your production bundle. If you need devtools in a production build (say, to debug a production-only issue), use the alternative "production" imports.
 
 ## Features
 
-The Hotkeys devtools panel provides:
+The Hotkeys devtools panel lets you:
 
-- **Registered Hotkeys List** - View all currently registered hotkeys with their options and status
-- **Held Keys Display** - See which keys are currently being held down in real-time
-- **Trigger Hotkeys** - Programmatically trigger hotkey callbacks for testing without pressing keys
-- **Registration Details** - Inspect individual hotkey registrations including their target, event type, and conflict behavior
+- View all currently registered hotkeys with their options and status
+- See which keys are held down in real time
+- Trigger hotkey callbacks for testing, without pressing the keys
+- Inspect individual registrations, including their target, event type, and conflict behavior
 
 ## Installation
 
@@ -49,7 +49,7 @@ Angular and Lit do not currently ship a dedicated hotkeys devtools adapter.
 
 ## Setup
 
-### React Setup
+### React setup
 
 ```tsx
 import { TanStackDevtools } from '@tanstack/react-devtools'
@@ -60,7 +60,7 @@ function App() {
 }
 ```
 
-### Preact Setup
+### Preact setup
 
 ```tsx
 import { TanStackDevtools } from '@tanstack/preact-devtools'
@@ -71,7 +71,7 @@ export function App() {
 }
 ```
 
-### Solid Setup
+### Solid setup
 
 ```tsx
 import { TanStackDevtools } from '@tanstack/solid-devtools'
@@ -82,7 +82,7 @@ export function App() {
 }
 ```
 
-### Vue Setup
+### Vue setup
 
 ```vue
 <script setup lang="ts">
@@ -97,11 +97,11 @@ import { HotkeysDevtoolsPanel } from '@tanstack/vue-hotkeys-devtools'
 
 For React, Preact, and Solid, the Hotkeys panel appears alongside any other TanStack devtools plugins you have installed.
 
-## Production Builds
+## Production builds
 
-By default, the framework devtools adapters return no-op implementations in production builds so they do not affect your production bundle behavior.
+In production builds, the framework devtools adapters return no-op implementations, so they don't affect your bundle's behavior.
 
-React additionally exposes a production import when you explicitly want to include the plugin in production:
+React also exposes a production import for when you explicitly want the plugin in production:
 
 ```tsx
 import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools/production'

@@ -7,7 +7,7 @@ title: useHotkeyRegistrations
 function useHotkeyRegistrations(): HotkeyRegistrationsResult;
 ```
 
-Defined in: [useHotkeyRegistrations.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRegistrations.ts#L32)
+Defined in: [useHotkeyRegistrations.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRegistrations.ts#L33)
 
 Preact hook that reactively reads all hotkey and sequence registrations
 from the singleton managers.

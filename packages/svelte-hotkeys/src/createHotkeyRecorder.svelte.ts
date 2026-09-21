@@ -78,15 +78,18 @@ class SvelteHotkeyRecorderState implements SvelteHotkeyRecorder {
     this.#recorder.setOptions(options)
   }
 
-  startRecording(): void {
+  // Keep the recorder receiver when used directly as an event handler.
+  startRecording = (): void => {
     this.#recorder.start()
   }
 
-  stopRecording(): void {
+  // Keep the recorder receiver when used directly as an event handler.
+  stopRecording = (): void => {
     this.#recorder.stop()
   }
 
-  cancelRecording(): void {
+  // Keep the recorder receiver when used directly as an event handler.
+  cancelRecording = (): void => {
     this.#recorder.cancel()
   }
 

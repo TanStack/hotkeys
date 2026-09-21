@@ -5,7 +5,24 @@ id: hotkeys
 
 The `injectHotkey` API is the primary way to register keyboard shortcuts in Angular applications. It wraps the singleton `HotkeyManager` with injection-context lifecycle management and Angular signal-friendly reactive options.
 
-## Basic Usage
+## Logical keys and physical positions
+
+Use a logical binding when the shortcut should follow the character on the active layout. Use a physical binding when it should follow a keyboard position:
+
+| Binding | Identity checked |
+| --- | --- |
+| `Mod+S` or `{ key: 'S', mod: true }` | Logical `event.key`, with conservative code fallback |
+| `Mod+[KeyS]` or `{ code: 'KeyS', mod: true }` | Exact `event.code` |
+| `Enter` | Logical Enter, including numpad Enter |
+| `[Enter]` / `[NumpadEnter]` | Separate physical Enter positions |
+
+Every physical code uses brackets in strings, including names shared with logical keys such as `[Enter]` and `[F13]`. Supported codes are type-safe and available in autocomplete. Do not put a bracketed code in an object's `key` field; use `code`. A binding has either `key` or `code`, never both.
+
+On a layout where the `KeyQ` position produces `a`, `A` follows that character and `[KeyQ]` follows the position. Logical ASCII letters remain layout-aware; conservative physical fallback helps with transformed output such as macOS Option keys. Exact matches take priority over weaker fallbacks among eligible registrations on the same target.
+
+Callbacks expose the same distinction in `context.parsedHotkey`: check `parsed.code !== undefined` before reading its physical identity. Use `formatForDisplay` for labels; stored physical strings retain their brackets.
+
+## Basic usage
 
 ```ts
 import { Component } from '@angular/core'
@@ -30,7 +47,11 @@ injectHotkey('Mod+S', (event, context) => {
 })
 ```
 
-## Default Options
+### Changing a binding
+
+Pass a new logical or physical binding through your framework's normal state mechanism. A recorder result such as `Alt+[KeyS]` can be passed directly to the same registration API. Keep an initial binding in application state if you want a reset button; the library does not need a separate preferences store.
+
+## Default options
 
 `injectHotkey` uses the same core defaults as the framework-agnostic manager:
 
@@ -48,13 +69,13 @@ injectHotkey('Mod+S', callback, {
 })
 ```
 
-## Reactive Options
+## Reactive options
 
 For reactive state, pass an accessor function as the third argument.
 
 ### `enabled`
 
-When `enabled` is false, the hotkey **stays registered** (visible in devtools); only the callback is suppressed.
+When `enabled` is false, the hotkey stays registered (visible in devtools); only the callback is suppressed.
 
 ```ts
 import { Component, signal } from '@angular/core'
@@ -93,7 +114,7 @@ export class PanelComponent {
 }
 ```
 
-## Global Default Options via Provider
+## Global defaults via provider
 
 ```ts
 import { ApplicationConfig } from '@angular/core'
@@ -108,7 +129,7 @@ export const appConfig: ApplicationConfig = {
 }
 ```
 
-## Common Options
+## Common options
 
 ### `requireReset`
 
@@ -135,13 +156,13 @@ injectHotkey('Mod+S', () => save(), { conflictBehavior: 'replace' })
 injectHotkey('Mod+S', () => save(), { platform: 'mac' })
 ```
 
-## Automatic Cleanup
+## Automatic cleanup
 
 Registrations are cleaned up automatically when the owning injection context is destroyed.
 
-## Registering Multiple Hotkeys
+## Registering multiple hotkeys
 
-When you need to register several hotkeys at once — or a dynamic, variable-length list — use `injectHotkeys` (plural):
+When you need to register several hotkeys at once, or a dynamic list of variable length, use `injectHotkeys` (plural):
 
 ```ts
 import { Component } from '@angular/core'
@@ -159,7 +180,7 @@ export class EditorComponent {
 }
 ```
 
-### Common Options with Per-Hotkey Overrides
+### Common options with per-hotkey overrides
 
 Pass shared options as the second argument. Per-definition options override the common ones:
 
@@ -173,7 +194,7 @@ injectHotkeys(
 )
 ```
 
-### Dynamic Hotkey Lists
+### Dynamic hotkey lists
 
 Pass a getter for reactive arrays driven by Angular signals:
 
@@ -192,9 +213,9 @@ constructor() {
 
 The function tracks signal dependencies and diffs registrations automatically.
 
-## Metadata (name & description)
+## Metadata (name, description, and group)
 
-Every hotkey registration can carry a `meta` object with a `name` and `description`. This metadata is informational only -- it does not affect hotkey behavior -- but it flows through to registrations and devtools, making it easy to build shortcut palettes and help screens.
+Every hotkey registration can carry a `meta` object with a `name`, `description`, and `group`. Metadata never affects hotkey behavior, but it flows through to registrations and devtools, so you can build shortcut palettes and help screens from it.
 
 ```ts
 injectHotkey('Mod+S', () => save(), {
@@ -202,13 +223,12 @@ injectHotkey('Mod+S', () => save(), {
 })
 ```
 
-The `meta` option is typed as `HotkeyMeta`, which ships with `name` and `description` fields. You can extend it with additional properties using TypeScript declaration merging:
+The `meta` option is typed as `HotkeyMeta`, which ships with `name`, `description`, and `group` fields. You can extend it with additional properties using TypeScript declaration merging:
 
 ```ts
 declare module '@tanstack/hotkeys' {
   interface HotkeyMeta {
     icon?: string
-    group?: string
   }
 }
 
@@ -217,27 +237,29 @@ injectHotkey('Mod+S', () => save(), {
 })
 ```
 
-## Introspecting Registrations
+Group is descriptive metadata, not an execution scope. A shortcuts panel can group live registration views directly. Disabled registrations remain listed; unmounted registrations disappear.
 
-Use the `injectHotkeyRegistrations` API to get a live view of all hotkey and sequence registrations. This is useful for building shortcut palettes, help dialogs, or devtools.
+## Introspecting registrations
+
+Use the `injectHotkeyRegistrations` API to get a live view of all hotkey and sequence registrations. Use it to build shortcut palettes, help dialogs, or devtools.
 
 ```ts
 import { Component } from '@angular/core'
-import { injectHotkeyRegistrations } from '@tanstack/angular-hotkeys'
+import { injectHotkeyRegistrations, formatForDisplay } from '@tanstack/angular-hotkeys'
 
 @Component({
   standalone: true,
   template: `
     <h2>Keyboard Shortcuts</h2>
     <ul>
-      @for (reg of registrations().hotkeys; track reg.hotkey) {
+      @for (reg of registrations().hotkeys; track reg.id) {
         <li>
-          <kbd>{{ reg.hotkey }}</kbd>
-          @if (reg.meta?.name) {
-            <span> — {{ reg.meta.name }}</span>
+          <kbd>{{ formatForDisplay(reg.hotkey) }}</kbd>
+          @if (reg.options.meta?.name) {
+            <span> — {{ reg.options.meta.name }}</span>
           }
-          @if (reg.meta?.description) {
-            <p>{{ reg.meta.description }}</p>
+          @if (reg.options.meta?.description) {
+            <p>{{ reg.options.meta.description }}</p>
           }
         </li>
       }
@@ -245,11 +267,11 @@ import { injectHotkeyRegistrations } from '@tanstack/angular-hotkeys'
     @if (registrations().sequences.length > 0) {
       <h2>Sequences</h2>
       <ul>
-        @for (reg of registrations().sequences; track reg.sequence.join(' ')) {
+        @for (reg of registrations().sequences; track reg.id) {
           <li>
-            <kbd>{{ reg.sequence.join(' → ') }}</kbd>
-            @if (reg.meta?.name) {
-              <span> — {{ reg.meta.name }}</span>
+            <kbd>{{ displaySequence(reg.sequence) }}</kbd>
+            @if (reg.options.meta?.name) {
+              <span> — {{ reg.options.meta.name }}</span>
             }
           </li>
         }
@@ -258,13 +280,16 @@ import { injectHotkeyRegistrations } from '@tanstack/angular-hotkeys'
   `,
 })
 export class ShortcutPaletteComponent {
+  readonly formatForDisplay = formatForDisplay
+  readonly displaySequence = (sequence: ReadonlyArray<Parameters<typeof formatForDisplay>[0]>) =>
+    sequence.map((step) => formatForDisplay(step)).join(' → ')
   readonly registrations = injectHotkeyRegistrations()
 }
 ```
 
-The returned signal provides an object with a `hotkeys` array containing registration objects with the hotkey string, options (including `meta`), and enabled state, and a `sequences` array containing sequence registrations with the same structure.
+The returned signal holds an object with two arrays. `hotkeys` contains registration objects with the hotkey string, options (including `meta`), and enabled state. `sequences` contains sequence registrations with the same structure.
 
-## The Hotkey Manager
+## The hotkey manager
 
 You can access the underlying manager directly when needed:
 

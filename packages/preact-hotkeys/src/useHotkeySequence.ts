@@ -167,7 +167,9 @@ export function useHotkeySequence(
     // Update tracking refs
     prevTargetRef.current = resolvedTarget
     prevSequenceRef.current = hotkeySequenceString
+  })
 
+  useEffect(() => {
     // Cleanup on unmount
     return () => {
       if (registrationRef.current?.isActive) {
@@ -175,14 +177,16 @@ export function useHotkeySequence(
         registrationRef.current = null
       }
     }
-  }, [hotkeySequenceString])
+  }, [])
 
-  // Sync callback and options on EVERY render (outside useEffect)
-  if (registrationRef.current?.isActive) {
-    registrationRef.current.callback = (
-      event: KeyboardEvent,
-      context: HotkeyCallbackContext,
-    ) => callbackRef.current(event, context)
-    registrationRef.current.setOptions(optionsWithoutTarget)
-  }
+  // Publish option changes after commit, never during render.
+  useEffect(() => {
+    if (registrationRef.current?.isActive) {
+      registrationRef.current.callback = (
+        event: KeyboardEvent,
+        context: HotkeyCallbackContext,
+      ) => callbackRef.current(event, context)
+      registrationRef.current.setOptions(optionsWithoutTarget)
+    }
+  })
 }

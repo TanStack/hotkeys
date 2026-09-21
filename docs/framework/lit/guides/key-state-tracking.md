@@ -3,12 +3,11 @@ title: Key State Tracking Guide
 id: key-state-tracking
 ---
 
-TanStack Hotkeys provides three Lit **reactive controllers** for tracking the real-time state of keyboard keys. These are useful for building UIs that respond to modifier keys being held, displaying active key states, or implementing hold-to-activate features.
-
+TanStack Hotkeys provides three Lit reactive controllers for tracking the real-time state of keyboard keys. Use them to show modifier state in the UI or to build hold-to-activate features.
 
 ## `HeldKeysController`
 
-Tracks all currently held key names. Exposes a reactive **`value`** getter: `Array<string>`.
+Tracks all currently held key names. Exposes a reactive `value` getter: `Array<string>`.
 
 ```ts
 import { LitElement, html } from 'lit'
@@ -34,7 +33,7 @@ The array contains key names like `'Shift'`, `'Control'`, `'Meta'`, `'A'`, `'Arr
 
 ## `HeldKeyCodesController`
 
-Tracks held key names mapped to physical key codes (`event.code`). Exposes **`value`**: `Record<string, string>`.
+Tracks held key names mapped to physical key codes (`event.code`). Exposes `value`: `Record<string, string>`.
 
 ```ts
 import { LitElement, html } from 'lit'
@@ -63,7 +62,7 @@ Use this when you need to distinguish left vs. right modifiers (or other physica
 
 ## `KeyHoldController`
 
-Tracks whether **one** specific key is held. Exposes **`value`**: `boolean`. Updates the host only when **that** key’s held state changes (not on every unrelated key press).
+Tracks whether one specific key is held. Exposes `value`: `boolean`. Updates the host only when that key's held state changes (not on every unrelated key press).
 
 ```ts
 import { LitElement, html } from 'lit'
@@ -208,7 +207,7 @@ On macOS, when a modifier key is held and a non-modifier key is pressed, the OS 
 
 ### Window blur
 
-When the browser window loses focus, all held keys are automatically cleared. This prevents “stuck” keys after the user tabs away and releases keys outside the window.
+When the browser window loses focus, the tracker clears all held keys. This prevents "stuck" keys after the user tabs away and releases keys outside the window.
 
 ## Under the hood
 
@@ -225,3 +224,15 @@ tracker.isKeyHeld('Shift') // boolean
 tracker.isAnyKeyHeld(['Shift', 'Control']) // boolean
 tracker.areAllKeysHeld(['Shift', 'Control']) // boolean
 ```
+
+## Modifier-held shortcut hints
+
+`HotkeyHintController` answers whether held modifiers are relevant to a binding. Keep formatting and badge styling in your component:
+
+```ts
+private hint = new HotkeyHintController(this, () => this.binding) // hint.value
+```
+
+For `Alt+Shift+[KeyK]`, holding Alt, Shift, or both reveals the hint. An extra Control hides it; releasing all modifiers or blurring the window hides it. Nonmodifier keys are ignored. AltGraph does not reveal hints. Pass `{ exact: true }` to require all binding modifiers, or `{ platform: 'mac' }` to resolve Mod explicitly. Supply the same platform used by the registration when overriding detection.
+
+Combine the boolean with the action's enabled state. The helper does not register a shortcut or determine whether its target is focused. The core equivalent is `matchesHeldModifiers(binding, heldKeys, options)`.

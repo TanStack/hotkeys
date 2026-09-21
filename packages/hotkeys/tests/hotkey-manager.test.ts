@@ -12,6 +12,7 @@ function createKeyboardEvent(
     shiftKey?: boolean
     altKey?: boolean
     metaKey?: boolean
+    code?: string
   } = {},
 ): KeyboardEvent {
   return new KeyboardEvent(type, {
@@ -20,6 +21,7 @@ function createKeyboardEvent(
     shiftKey: options.shiftKey ?? false,
     altKey: options.altKey ?? false,
     metaKey: options.metaKey ?? false,
+    code: options.code,
     bubbles: true,
   })
 }
@@ -550,6 +552,73 @@ describe('HotkeyManager', () => {
         createKeyboardEvent('keydown', 's', { metaKey: true }),
       )
       expect(callback).toHaveBeenCalledTimes(2)
+    })
+
+    it('resets by the code that actually activated the registration', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+      manager.register('Control+A', callback, {
+        platform: 'windows',
+        requireReset: true,
+      })
+
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 'ф', { ctrlKey: true, code: 'KeyA' }),
+      )
+      document.dispatchEvent(
+        createKeyboardEvent('keyup', 'a', { ctrlKey: true, code: 'KeyA' }),
+      )
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 'ф', { ctrlKey: true, code: 'KeyA' }),
+      )
+      expect(callback).toHaveBeenCalledTimes(2)
+    })
+  })
+
+  describe('layout collision precedence', () => {
+    it('prefers a logical registration over a physical fallback', () => {
+      const manager = HotkeyManager.getInstance()
+      const logical = vi.fn()
+      const fallback = vi.fn()
+      manager.register('Control+ф' as never, logical, { platform: 'windows' })
+      manager.register('Control+A', fallback, { platform: 'windows' })
+
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 'ф', { ctrlKey: true, code: 'KeyA' }),
+      )
+      expect(logical).toHaveBeenCalledOnce()
+      expect(fallback).not.toHaveBeenCalled()
+    })
+
+    it('supports an explicit physical code registration', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+      manager.register({ code: 'KeyW', ctrl: true }, callback, {
+        platform: 'windows',
+      })
+
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 'ц', { ctrlKey: true, code: 'KeyW' }),
+      )
+      expect(callback).toHaveBeenCalledOnce()
+    })
+
+    it('prefers an explicit Shift chord over an implicit glyph Shift', () => {
+      const manager = HotkeyManager.getInstance()
+      const implicit = vi.fn()
+      const explicit = vi.fn()
+      manager.register('Control+1', implicit, { platform: 'windows' })
+      manager.register('Control+Shift+1', explicit, { platform: 'windows' })
+
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', '1', {
+          ctrlKey: true,
+          shiftKey: true,
+          code: 'Digit1',
+        }),
+      )
+      expect(explicit).toHaveBeenCalledOnce()
+      expect(implicit).not.toHaveBeenCalled()
     })
   })
 

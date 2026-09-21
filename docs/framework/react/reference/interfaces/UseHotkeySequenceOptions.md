@@ -15,9 +15,9 @@ Defined in: [useHotkeySequence.ts:13](https://github.com/TanStack/hotkeys/blob/m
 
 ```ts
 optional target: 
-  | HTMLElement
   | Document
   | Window
+  | HTMLElement
   | RefObject<HTMLElement | null>
   | null;
 ```

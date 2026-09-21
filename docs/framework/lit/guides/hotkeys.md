@@ -7,9 +7,26 @@ The `@hotkey` decorator is the primary way to register keyboard shortcuts in Lit
 
 Both approaches wrap the singleton `HotkeyManager` with automatic lifecycle management tied to Lit's `connectedCallback` / `disconnectedCallback`.
 
-## Basic Usage
+## Logical keys and physical positions
 
-### The `@hotkey` Decorator
+Use a logical binding when the shortcut should follow the character on the active layout. Use a physical binding when it should follow a keyboard position:
+
+| Binding | Identity checked |
+| --- | --- |
+| `Mod+S` or `{ key: 'S', mod: true }` | Logical `event.key`, with conservative code fallback |
+| `Mod+[KeyS]` or `{ code: 'KeyS', mod: true }` | Exact `event.code` |
+| `Enter` | Logical Enter, including numpad Enter |
+| `[Enter]` / `[NumpadEnter]` | Separate physical Enter positions |
+
+Every physical code uses brackets in strings, including names shared with logical keys such as `[Enter]` and `[F13]`. Supported codes are type-safe and available in autocomplete. Do not put a bracketed code in an object's `key` field; use `code`. A binding has either `key` or `code`, never both.
+
+On a layout where the `KeyQ` position produces `a`, `A` follows that character and `[KeyQ]` follows the position. Logical ASCII letters remain layout-aware; conservative physical fallback helps with transformed output such as macOS Option keys. Exact matches take priority over weaker fallbacks among eligible registrations on the same target.
+
+Callbacks expose the same distinction in `context.parsedHotkey`: check `parsed.code !== undefined` before reading its physical identity. Use `formatForDisplay` for labels; stored physical strings retain their brackets.
+
+## Basic usage
+
+### The `@hotkey` decorator
 
 Decorate any method to have it called when a hotkey is pressed:
 
@@ -73,7 +90,11 @@ class MyEditor extends LitElement {
 }
 ```
 
-## Default Options
+### Changing a binding
+
+Pass a new logical or physical binding through your framework's normal state mechanism. A recorder result such as `Alt+[KeyS]` can be passed directly to the same registration API. Keep an initial binding in application state if you want a reset button; the library does not need a separate preferences store.
+
+## Default options
 
 When you register a hotkey without passing options, or when you omit specific options, the following defaults apply:
 
@@ -93,19 +114,19 @@ save() { /* ... */ }
 
 If you omit `target`, the Lit adapter resolves it when the controller connects: it listens on `document` in the browser, and skips registration in non-DOM environments.
 
-### Why These Defaults?
+### Why these defaults?
 
-Most hotkey registrations are intended to override default browser behavior — such as using `Mod+S` to save a document instead of showing the browser's "Save Page" dialog. To make this easy and consistent, the library sets `preventDefault` and `stopPropagation` to `true` by default, ensuring your hotkey handlers take precedence.
+Most hotkey registrations are meant to override default browser behavior, such as using `Mod+S` to save a document instead of showing the browser's "Save Page" dialog. So `preventDefault` and `stopPropagation` are `true` by default, and you opt out per hotkey when you actually want the browser behavior.
 
-#### Smart Input Handling: `ignoreInputs`
+#### Smart input handling: `ignoreInputs`
 
-The `ignoreInputs` option strikes a balance between accessibility and usability. By default, hotkeys involving `Ctrl`/`Meta` modifiers (like `Mod+S`) and the `Escape` key fire even when focus is inside input elements (text fields, text areas, etc.) and button-type inputs (`type="button"`, `"submit"`, or `"reset"`). Single key shortcuts or those using only `Shift`/`Alt` are ignored within non-button inputs to prevent interference with normal typing.
+The `ignoreInputs` default depends on the hotkey. Hotkeys involving `Ctrl`/`Meta` modifiers (like `Mod+S`) and the `Escape` key fire even when focus is inside input elements (text fields, text areas, etc.) and button-type inputs (`type="button"`, `"submit"`, or `"reset"`). Single key shortcuts, and those using only `Shift`/`Alt`, are ignored within non-button inputs so they don't interfere with normal typing.
 
-#### Hotkey Conflicts: `conflictBehavior`
+#### Hotkey conflicts: `conflictBehavior`
 
 When you register a hotkey that is already registered elsewhere in your app, the library logs a warning by default (`conflictBehavior: 'warn'`). This helps catch accidental duplicate bindings during development.
 
-## Hotkey Options
+## Hotkey options
 
 ### `enabled`
 
@@ -166,14 +187,14 @@ closePanel() { this.panelOpen = false }
 
 ### `ignoreInputs`
 
-When `true`, the hotkey will not fire when the user is focused on a text input, textarea, select, or contentEditable element. Button-type inputs (`type="button"`, `"submit"`, `"reset"`) are not ignored. When unset, a smart default applies: `Ctrl`/`Meta` shortcuts and `Escape` fire in inputs; single keys and `Shift`/`Alt` combos are ignored.
+When `true`, the hotkey doesn't fire when the user is focused on a text input, textarea, select, or contentEditable element. Button-type inputs (`type="button"`, `"submit"`, `"reset"`) are not ignored. When unset, a smart default applies: `Ctrl`/`Meta` shortcuts and `Escape` fire in inputs; single keys and `Shift`/`Alt` combos are ignored.
 
 ```ts
-// Single key — ignored in inputs by default (smart default)
+// Single key - ignored in inputs by default (smart default)
 @hotkey('K')
 openSearch() { /* ... */ }
 
-// Mod+S and Escape — fire in inputs by default (smart default)
+// Mod+S and Escape - fire in inputs by default (smart default)
 @hotkey('Mod+S')
 save() { /* ... */ }
 
@@ -226,10 +247,10 @@ class MyPanel extends LitElement {
 
 Controls what happens when you register a hotkey that's already registered. Options:
 
-- `'warn'` (default) — Logs a warning but allows the registration
-- `'error'` — Throws an error
-- `'replace'` — Replaces the existing registration
-- `'allow'` — Allows multiple registrations silently
+- `'warn'` (default): logs a warning but allows the registration
+- `'error'`: throws an error
+- `'replace'`: replaces the existing registration
+- `'allow'`: allows multiple registrations silently
 
 ```ts
 @hotkey('Mod+S', { conflictBehavior: 'replace' })
@@ -245,7 +266,7 @@ Override the auto-detected platform. Useful for testing or for applications that
 save() { saveDocument() }
 ```
 
-## Automatic Cleanup
+## Automatic cleanup
 
 Both the `@hotkey` decorator and `HotkeyController` automatically unregister the hotkey when the element is disconnected from the DOM:
 
@@ -262,7 +283,7 @@ class TemporaryPanel extends LitElement {
 }
 ```
 
-## Multiple Hotkeys
+## Multiple hotkeys
 
 Register as many hotkeys as you need. Each `@hotkey` decorator is independent:
 
@@ -286,7 +307,7 @@ class MyEditor extends LitElement {
 }
 ```
 
-## Choosing Between Decorator and Controller
+## Choosing between decorator and controller
 
 | | `@hotkey` Decorator | `HotkeyController` |
 |---|---|---|
@@ -298,9 +319,9 @@ class MyEditor extends LitElement {
 
 Use the `@hotkey` decorator for the common case of binding a static shortcut to a method. Use `HotkeyController` when you need to construct the hotkey string dynamically or manage registration imperatively.
 
-## Metadata (name & description)
+## Metadata (name, description, and group)
 
-Every hotkey registration can carry a `meta` object with a `name` and `description`. This metadata is informational only -- it does not affect hotkey behavior -- but it flows through to registrations and devtools, making it easy to build shortcut palettes and help screens.
+Every hotkey registration can carry a `meta` object with a `name`, `description`, and `group`. Metadata never affects hotkey behavior, but it flows through to registrations and devtools, so you can build shortcut palettes and help screens from it.
 
 ```ts
 @hotkey('Mod+S', { meta: { name: 'Save', description: 'Save the document' } })
@@ -312,13 +333,12 @@ new HotkeyController(this, 'Mod+S', () => this.save(), {
 })
 ```
 
-The `meta` option is typed as `HotkeyMeta`, which ships with `name` and `description` fields. You can extend it with additional properties using TypeScript declaration merging:
+The `meta` option is typed as `HotkeyMeta`, which ships with `name`, `description`, and `group` fields. You can extend it with additional properties using TypeScript declaration merging:
 
 ```ts
 declare module '@tanstack/hotkeys' {
   interface HotkeyMeta {
     icon?: string
-    group?: string
   }
 }
 
@@ -326,14 +346,16 @@ declare module '@tanstack/hotkeys' {
 save() { saveDocument() }
 ```
 
-## Introspecting Registrations
+Group is descriptive metadata, not an execution scope. A shortcuts panel can group live registration views directly. Disabled registrations remain listed; unmounted registrations disappear.
 
-Use `HotkeyRegistrationsController` to get a live view of all hotkey and sequence registrations. This is useful for building shortcut palettes, help dialogs, or devtools.
+## Introspecting registrations
+
+Use `HotkeyRegistrationsController` to get a live view of all hotkey and sequence registrations. Use it to build shortcut palettes, help dialogs, or devtools.
 
 ```ts
 import { LitElement, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { HotkeyRegistrationsController } from '@tanstack/lit-hotkeys'
+import { HotkeyRegistrationsController, formatForDisplay } from '@tanstack/lit-hotkeys'
 
 @customElement('shortcut-palette')
 class ShortcutPalette extends LitElement {
@@ -348,9 +370,9 @@ class ShortcutPalette extends LitElement {
         ${hotkeys.map(
           (reg) => html`
             <li>
-              <kbd>${reg.hotkey}</kbd>
-              ${reg.meta?.name ? html`<span> — ${reg.meta.name}</span>` : ''}
-              ${reg.meta?.description ? html`<p>${reg.meta.description}</p>` : ''}
+              <kbd>${formatForDisplay(reg.hotkey)}</kbd>
+              ${reg.options.meta?.name ? html`<span> — ${reg.options.meta.name}</span>` : ''}
+              ${reg.options.meta?.description ? html`<p>${reg.options.meta.description}</p>` : ''}
             </li>
           `,
         )}
@@ -362,8 +384,8 @@ class ShortcutPalette extends LitElement {
               ${sequences.map(
                 (reg) => html`
                   <li>
-                    <kbd>${reg.sequence.join(' → ')}</kbd>
-                    ${reg.meta?.name ? html`<span> — ${reg.meta.name}</span>` : ''}
+                    <kbd>${reg.sequence.map((step) => formatForDisplay(step)).join(' → ')}</kbd>
+                    ${reg.options.meta?.name ? html`<span> — ${reg.options.meta.name}</span>` : ''}
                   </li>
                 `,
               )}
@@ -377,7 +399,7 @@ class ShortcutPalette extends LitElement {
 
 The controller exposes `hotkeys` and `sequences` arrays. The `hotkeys` array contains registration objects with the hotkey string, options (including `meta`), and enabled state. The `sequences` array contains sequence registrations with the same structure.
 
-## The Hotkey Manager
+## The hotkey manager
 
 Under the hood, both the decorator and controller use the singleton `HotkeyManager`. You can access the manager directly when needed:
 
@@ -393,4 +415,4 @@ manager.isRegistered('Mod+S')
 manager.getRegistrationCount()
 ```
 
-The manager attaches event listeners per target element, so only elements that have registered hotkeys receive listeners. This is more efficient than a single global listener.
+The manager attaches event listeners per target element, so only elements that have registered hotkeys receive listeners. That beats a single global listener that has to inspect every keystroke.

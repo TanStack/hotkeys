@@ -7,7 +7,7 @@ title: checkHotkey
 function checkHotkey(hotkey): boolean;
 ```
 
-Defined in: [validate.ts:159](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L159)
+Defined in: [validate.ts:155](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L155)
 
 Validates a hotkey and logs warnings to the console.
 Useful for development-time feedback.

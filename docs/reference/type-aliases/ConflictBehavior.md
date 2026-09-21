@@ -7,7 +7,7 @@ title: ConflictBehavior
 type ConflictBehavior = "warn" | "error" | "replace" | "allow";
 ```
 
-Defined in: [manager.utils.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/manager.utils.ts#L11)
+Defined in: [hotkey.types.ts:269](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L269)
 
 Behavior when registering a hotkey/sequence that conflicts with an existing registration.
 

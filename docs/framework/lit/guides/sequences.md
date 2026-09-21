@@ -3,11 +3,13 @@ title: Sequences Guide
 id: sequences
 ---
 
-TanStack Hotkeys supports multi-key sequences -- shortcuts where you press keys one after another rather than simultaneously. This is commonly used for Vim-style navigation, cheat codes, or multi-step commands.
+TanStack Hotkeys supports multi-key sequences: shortcuts where you press keys one after another rather than simultaneously. Sequences are common in Vim-style navigation, cheat codes, and multi-step commands.
 
-In Lit, registration is **declarative** via the `@hotkeySequence` decorator, or **imperative** via `HotkeySequenceController` when the sequence or options are built at runtime. Both use the same singleton `SequenceManager`.
+In Lit, registration is declarative via the `@hotkeySequence` decorator, or imperative via `HotkeySequenceController` when the sequence or options are built at runtime. Both use the same singleton `SequenceManager`.
 
-## Basic Usage
+Sequence steps use the same string syntax as single hotkeys. For example, `['[KeyG]', '[KeyG]']` follows a physical position, while `['G', 'G']` follows the logical letter. A sequence can mix forms, such as `['Mod+[KeyK]', 'C']`. Display steps with `sequence.map((step) => formatForDisplay(step)).join(' → ')`.
+
+## Basic usage
 
 ### The `@hotkeySequence` decorator
 
@@ -78,7 +80,7 @@ class VimView extends LitElement {
 
 ## Many sequences at once
 
-Register several sequences on the same element by applying **multiple** `@hotkeySequence` decorators (one per method), or by adding **multiple** `HotkeySequenceController` instances with `addController`. There is no Lit equivalent to React’s `useHotkeySequences` hook; several decorators on one class are the idiomatic pattern.
+Register several sequences on the same element by applying multiple `@hotkeySequence` decorators (one per method), or by adding multiple `HotkeySequenceController` instances with `addController`. There is no Lit equivalent to React's `useHotkeySequences` hook; several decorators on one class are the idiomatic pattern.
 
 ```ts
 @customElement('vim-navigation')
@@ -104,9 +106,9 @@ class VimNavigation extends LitElement {
 }
 ```
 
-## Sequence Options
+## Sequence options
 
-Pass options as the **second** argument to `@hotkeySequence` (or to `HotkeySequenceController`):
+Pass options as the second argument to `@hotkeySequence` (or to `HotkeySequenceController`):
 
 ```ts
 @hotkeySequence(['G', 'G'], {
@@ -151,7 +153,7 @@ When you omit options, the library uses the same defaults as the core [`Sequence
 
 ### `meta`
 
-Sequences support the same `meta` option as hotkeys, allowing you to attach a `name` and `description` for use in shortcut palettes and devtools.
+Sequences support the same `meta` option as hotkeys. Attach a `name` and `description` for use in shortcut palettes and devtools.
 
 ```ts
 @hotkeySequence(['G', 'G'], { meta: { name: 'Go to Top', description: 'Scroll to the top of the page' } })
@@ -165,7 +167,7 @@ new HotkeySequenceController(this, ['G', 'G'], () => this.scrollTop(), {
 
 See the [Hotkeys Guide](./hotkeys.md#metadata-name--description) for details on declaration merging and introspecting registrations.
 
-## Sequences with Modifiers
+## Sequences with modifiers
 
 Each step in a sequence can include modifiers:
 
@@ -183,10 +185,12 @@ scrollBottom() {
 
 ## Chained modifier chords
 
-You can repeat the same modifier across consecutive steps — for example `Shift+R` then `Shift+T`:
+This example follows physical R and T positions. Brackets retain those positions even when the keys produce different letters. Other sequences can continue using logical characters.
+
+You can repeat the same modifier across consecutive steps, for example `Shift+R` then `Shift+T`:
 
 ```ts
-@hotkeySequence(['Shift+R', 'Shift+T'])
+@hotkeySequence(['Shift+[KeyR]', 'Shift+[KeyT]'])
 chordSequence() {
   runAfterChords()
 }
@@ -194,9 +198,9 @@ chordSequence() {
 
 ### Modifier-only keys between steps
 
-While a sequence is in progress, **modifier-only** keydown events (Shift, Control, Alt, or Meta pressed alone, with no letter or other key) are ignored. They do not advance the sequence and they do **not** reset progress. That way a user can tap Shift (or hold it) between chords such as `Shift+R` and `Shift+T` without breaking the sequence — similar to Vim-style flows where a modifier may be pressed before the next chord.
+While a sequence is in progress, the manager ignores modifier-only keydown events (Shift, Control, Alt, or Meta pressed alone, with no letter or other key). They neither advance the sequence nor reset progress. That way a user can tap Shift (or hold it) between chords such as `Shift+R` and `Shift+T` without breaking the sequence, much like Vim-style flows where a modifier may be pressed before the next chord.
 
-## Common Sequence Patterns
+## Common sequence patterns
 
 ### Vim-style navigation
 
@@ -268,6 +272,8 @@ openHelp() {
 
 ## How sequences work
 
+Both `SequenceManager` and `createSequenceMatcher` ignore modifier-only events, IME composition, and automatic keydown repeats. These events neither advance the sequence nor refresh its timeout: holding G does not complete a two-press G sequence. The manager prefers exact matches over weaker logical-key fallbacks while preserving equally strong matches.
+
 The `SequenceManager` (singleton) handles all sequence registrations. When a key is pressed:
 
 1. It checks if the key matches the next expected step in any registered sequence
@@ -298,6 +304,10 @@ diw() {
 ```
 
 After pressing `D`, the manager waits for the next key to determine which sequence to complete.
+
+### Conflicting registrations
+
+For the same target, duplicate detection compares resolved steps: modifier aliases, modifier order, and logical key casing do not create separate bindings. `conflictBehavior` applies to equivalent sequences without rewriting their stored strings. Physical and logical identities remain distinct, and a shared prefix alone is not a duplicate registration. Recorder conflict detection also checks prefixes and observed physical/logical overlap.
 
 ## The sequence manager
 

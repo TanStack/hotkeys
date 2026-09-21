@@ -7,7 +7,7 @@ title: normalizeHotkey
 function normalizeHotkey(hotkey, platform): Hotkey;
 ```
 
-Defined in: [parse.ts:197](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L197)
+Defined in: [parse.ts:205](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L205)
 
 Normalizes a hotkey string to its canonical form.
 

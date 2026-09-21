@@ -7,7 +7,7 @@ title: normalizeHotkeyFromEvent
 function normalizeHotkeyFromEvent(event, platform): Hotkey;
 ```
 
-Defined in: [parse.ts:292](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L292)
+Defined in: [parse.ts:309](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L309)
 
 Normalizes a keyboard event to the same canonical hotkey string as [normalizeHotkey](normalizeHotkey.md).
 

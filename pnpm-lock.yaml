@@ -644,6 +644,76 @@ importers:
         specifier: 6.0.3
         version: 6.0.3
 
+  examples/angular/kitchen-sink:
+    dependencies:
+      '@angular/common':
+        specifier: ^21.2.10
+        version: 21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2)
+      '@angular/compiler':
+        specifier: ^21.2.10
+        version: 21.2.10
+      '@angular/core':
+        specifier: ^21.2.10
+        version: 21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1)
+      '@angular/forms':
+        specifier: ^21.2.10
+        version: 21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1)))(rxjs@7.8.2)
+      '@angular/platform-browser':
+        specifier: ^21.2.10
+        version: 21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))
+      '@angular/platform-browser-dynamic':
+        specifier: ^21.2.10
+        version: 21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/compiler@21.2.10)(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1)))
+      '@angular/router':
+        specifier: ^21.2.10
+        version: 21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1)))(rxjs@7.8.2)
+      '@tanstack/angular-hotkeys':
+        specifier: ^0.10.0
+        version: link:../../../packages/angular-hotkeys
+      rxjs:
+        specifier: ~7.8.2
+        version: 7.8.2
+      tslib:
+        specifier: ^2.8.1
+        version: 2.8.1
+      zone.js:
+        specifier: ~0.16.1
+        version: 0.16.1
+    devDependencies:
+      '@angular-devkit/build-angular':
+        specifier: ^21.2.8
+        version: 21.2.8(@angular/compiler-cli@21.2.10(@angular/compiler@21.2.10)(typescript@6.0.3))(@angular/compiler@21.2.10)(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1)))(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(chokidar@5.0.0)(jiti@2.6.1)(karma@6.4.4)(lightningcss@1.32.0)(typescript@6.0.3)(vitest@4.1.5(@types/node@25.6.0)(happy-dom@20.9.0)(vite@8.0.10(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)))(yaml@2.8.2)
+      '@angular/cli':
+        specifier: ^21.2.8
+        version: 21.2.8(@types/node@25.6.0)(chokidar@5.0.0)
+      '@angular/compiler-cli':
+        specifier: ^21.2.10
+        version: 21.2.10(@angular/compiler@21.2.10)(typescript@6.0.3)
+      '@types/jasmine':
+        specifier: ~6.0.0
+        version: 6.0.0
+      jasmine-core:
+        specifier: ~6.2.0
+        version: 6.2.0
+      karma:
+        specifier: ~6.4.4
+        version: 6.4.4(debug@4.4.3)
+      karma-chrome-launcher:
+        specifier: ~3.2.0
+        version: 3.2.0
+      karma-coverage:
+        specifier: ~2.2.1
+        version: 2.2.1
+      karma-jasmine:
+        specifier: ~5.1.0
+        version: 5.1.0(karma@6.4.4)
+      karma-jasmine-html-reporter:
+        specifier: ~2.2.0
+        version: 2.2.0(jasmine-core@6.2.0)(karma-jasmine@5.1.0(karma@6.4.4))(karma@6.4.4)
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+
   examples/lit/held-keys:
     dependencies:
       '@tanstack/lit-hotkeys':
@@ -733,6 +803,47 @@ importers:
         specifier: ^3.3.2
         version: 3.3.2
     devDependencies:
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.0.10
+        version: 8.0.10(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+
+  examples/lit/kitchen-sink:
+    dependencies:
+      '@tanstack/lit-hotkeys':
+        specifier: 0.11.0
+        version: link:../../../packages/lit-hotkeys
+      lit:
+        specifier: ^3.3.2
+        version: 3.3.2
+    devDependencies:
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.0.10
+        version: 8.0.10(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+
+  examples/preact/kitchen-sink:
+    dependencies:
+      '@tanstack/preact-hotkeys':
+        specifier: ^0.10.0
+        version: link:../../../packages/preact-hotkeys
+      preact:
+        specifier: ^10.29.1
+        version: 10.29.1
+    devDependencies:
+      '@preact/preset-vite':
+        specifier: ^2.10.5
+        version: 2.10.5(@babel/core@7.29.0)(preact@10.29.1)(rollup@4.57.1)(vite@8.0.10(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+      '@tanstack/preact-devtools':
+        specifier: 0.10.2
+        version: 0.10.2(csstype@3.2.3)(preact@10.29.1)(solid-js@1.9.12)
+      '@tanstack/preact-hotkeys-devtools':
+        specifier: ^0.7.0
+        version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -933,6 +1044,43 @@ importers:
       '@tanstack/preact-hotkeys-devtools':
         specifier: ^0.7.0
         version: link:../../../packages/preact-hotkeys-devtools
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.0.10
+        version: 8.0.10(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+
+  examples/react/kitchen-sink:
+    dependencies:
+      '@tanstack/react-hotkeys':
+        specifier: ^0.10.0
+        version: link:../../../packages/react-hotkeys
+      '@tanstack/react-router':
+        specifier: ^1.170.38
+        version: 1.170.38(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      react:
+        specifier: ^19.2.5
+        version: 19.2.5
+      react-dom:
+        specifier: ^19.2.5
+        version: 19.2.5(react@19.2.5)
+    devDependencies:
+      '@tanstack/react-devtools':
+        specifier: 0.10.2
+        version: 0.10.2(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(solid-js@1.9.12)
+      '@tanstack/react-hotkeys-devtools':
+        specifier: ^0.7.0
+        version: link:../../../packages/react-hotkeys-devtools
+      '@types/react':
+        specifier: ^19.2.14
+        version: 19.2.14
+      '@types/react-dom':
+        specifier: ^19.2.3
+        version: 19.2.3(@types/react@19.2.14)
+      '@vitejs/plugin-react':
+        specifier: ^6.0.1
+        version: 6.0.1(vite@8.0.10(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -1400,6 +1548,34 @@ importers:
         specifier: ^2.11.12
         version: 2.11.12(@testing-library/jest-dom@6.9.1)(solid-js@1.9.12)(vite@8.0.10(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
 
+  examples/solid/kitchen-sink:
+    dependencies:
+      '@tanstack/solid-devtools':
+        specifier: 0.8.2
+        version: 0.8.2(csstype@3.2.3)(solid-js@1.9.12)
+      '@tanstack/solid-hotkeys':
+        specifier: ^0.10.0
+        version: link:../../../packages/solid-hotkeys
+      '@tanstack/solid-hotkeys-devtools':
+        specifier: ^0.7.0
+        version: link:../../../packages/solid-hotkeys-devtools
+      solid-js:
+        specifier: ^1.9.12
+        version: 1.9.12
+    devDependencies:
+      '@types/node':
+        specifier: ^25.6.0
+        version: 25.6.0
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.0.10
+        version: 8.0.10(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+      vite-plugin-solid:
+        specifier: ^2.11.12
+        version: 2.11.12(@testing-library/jest-dom@6.9.1)(solid-js@1.9.12)(vite@8.0.10(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+
   examples/svelte/create-hotkey:
     dependencies:
       '@tanstack/svelte-hotkeys':
@@ -1552,6 +1728,25 @@ importers:
         specifier: ^8.0.10
         version: 8.0.10(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
 
+  examples/svelte/kitchen-sink:
+    dependencies:
+      '@tanstack/svelte-hotkeys':
+        specifier: 0.10.0
+        version: link:../../../packages/svelte-hotkeys
+      svelte:
+        specifier: ^5.55.5
+        version: 5.55.5(@typescript-eslint/types@8.59.0)
+    devDependencies:
+      '@sveltejs/vite-plugin-svelte':
+        specifier: ^7.0.0
+        version: 7.0.0(svelte@5.55.5(@typescript-eslint/types@8.59.0))(vite@8.0.10(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.0.10
+        version: 8.0.10(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+
   examples/vanilla/formatForDisplay:
     dependencies:
       '@tanstack/hotkeys':
@@ -1564,6 +1759,37 @@ importers:
       vite:
         specifier: ^8.0.10
         version: 8.0.10(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+
+  examples/vue/kitchen-sink:
+    dependencies:
+      '@tanstack/vue-hotkeys':
+        specifier: ^0.10.0
+        version: link:../../../packages/vue-hotkeys
+      vue:
+        specifier: ^3.5.33
+        version: 3.5.33(typescript@6.0.3)
+    devDependencies:
+      '@tanstack/vue-devtools':
+        specifier: ^0.2.16
+        version: 0.2.16(csstype@3.2.3)(solid-js@1.9.12)
+      '@tanstack/vue-hotkeys-devtools':
+        specifier: ^0.7.0
+        version: link:../../../packages/vue-hotkeys-devtools
+      '@typescript-eslint/parser':
+        specifier: ^8.59.0
+        version: 8.59.0(eslint@10.2.1(jiti@2.6.1))(typescript@6.0.3)
+      '@vitejs/plugin-vue':
+        specifier: ^6.0.6
+        version: 6.0.6(vite@8.0.10(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.33(typescript@6.0.3))
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.0.10
+        version: 8.0.10(@emnapi/core@1.10.0)(@emnapi/runtime@1.10.0)(@types/node@25.6.0)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+      vue-eslint-parser:
+        specifier: 10.4.0
+        version: 10.4.0(eslint@10.2.1(jiti@2.6.1))
 
   examples/vue/useHeldKeys:
     dependencies:
@@ -4905,6 +5131,10 @@ packages:
     peerDependencies:
       eslint: ^9.0.0 || ^10.0.0
 
+  '@tanstack/history@1.162.4':
+    resolution: {integrity: sha512-utTS5L2OkeYUzXGohL1Z8sefu1GLNOJcxe8Hd6iIdc/Xo1K1nDB2JEp4iSFhvYh33xKC9V91TxrS8qfrpoKobQ==}
+    engines: {node: '>=20.19'}
+
   '@tanstack/preact-devtools@0.10.2':
     resolution: {integrity: sha512-riIk07IEu8mNTNgHO1ewI1V8h6s6phQBjDbeWh+cHGDe7sO+46mWl+We+nHMc/UXyjJgUDDbKnUR48ipyK95sA==}
     engines: {node: '>=18'}
@@ -4925,11 +5155,22 @@ packages:
       react: '>=16.8'
       react-dom: '>=16.8'
 
+  '@tanstack/react-router@1.170.38':
+    resolution: {integrity: sha512-iHM9b0aDJbuvftmkiQXawzoqsdV68p2Re2safbVLCnxafe+iLKV++2i3hI/BMAP6uR92/Mjw94JKJJfD7pbwHQ==}
+    engines: {node: '>=20.19'}
+    peerDependencies:
+      react: '>=18.0.0 || >=19.0.0'
+      react-dom: '>=18.0.0 || >=19.0.0'
+
   '@tanstack/react-store@0.11.0':
     resolution: {integrity: sha512-tX4YXh3PDkmpvGQWkWqKpzs/MSqbtuwY9dWdWhtV9Q50PmO+jOkUKIWIX4G85dwt7lxdHLXsiaEKPdKmC8F41w==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || ^19.0.0
+
+  '@tanstack/router-core@1.171.32':
+    resolution: {integrity: sha512-X86Jqk3vB2KJcUfS6oLi7B7yxbaa59QEhZRPPP1fRx3k+Jw/Fu1UYVBcRtdwK/OccQnrlQdVoKvNO3QXmyEBOw==}
+    engines: {node: '>=20.19'}
 
   '@tanstack/solid-devtools@0.8.2':
     resolution: {integrity: sha512-tzHF9rNPd9mO5vCArBkVABNe3qs+hvocra4LyRi/aFZC/0leLtD/TpXGnYx4IjDixTqkMCv3PLaG0HTwI5sdnw==}
@@ -5178,12 +5419,6 @@ packages:
 
   '@typescript-eslint/tsconfig-utils@8.55.0':
     resolution: {integrity: sha512-1R9cXqY7RQd7WuqSN47PK9EDpgFUK3VqdmbYrvWJZYDd0cavROGn+74ktWBlmJ13NXUQKlZ/iAEQHI/V0kKe0Q==}
-    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
-    peerDependencies:
-      typescript: '>=4.8.4 <6.0.0'
-
-  '@typescript-eslint/tsconfig-utils@8.57.1':
-    resolution: {integrity: sha512-0lgOZB8cl19fHO4eI46YUx2EceQqhgkPSuCGLlGi79L2jwYY1cxeYc1Nae8Aw1xjgW3PKVDLlr3YJ6Bxx8HkWg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
     peerDependencies:
       typescript: '>=4.8.4 <6.0.0'
@@ -6018,6 +6253,9 @@ packages:
 
   convert-source-map@2.0.0:
     resolution: {integrity: sha512-Kvp459HrV2FEJ1CAsi1Ku+MY3kasH19TFykTz2xWmMeq6bk2NU3XXvfJ+Q61m0xktWwt+1HSYf3JZsTms3aRJg==}
+
+  cookie-es@3.1.1:
+    resolution: {integrity: sha512-UaXxwISYJPTr9hwQxMFYZ7kNhSXboMXP+Z3TRX6f1/NyaGPfuNUZOWP1pUEb75B2HjfklIYLVRfWiFZJyC6Npg==}
 
   cookie-signature@1.0.7:
     resolution: {integrity: sha512-NXdYc3dLr47pBkpUCHtKSwIOQXLVn8dZEuywboCOJY/osA0wFSLlSawr3KN8qXJEyX66FcONTH8EIlVuK0yyFA==}
@@ -7288,6 +7526,10 @@ packages:
   isbinaryfile@4.0.10:
     resolution: {integrity: sha512-iHrqe5shvBUcFbmZq9zOQHBoeOhZJu6RQGrDpBgenUm/Am+F3JM2MgQj+rK3Z601fzrL5gLZWtAPH2OBaSVcyw==}
     engines: {node: '>= 8.0.0'}
+
+  isbot@5.2.2:
+    resolution: {integrity: sha512-iQcBXcd+Rv/pkubRyGh2utW2j1oPG5hZY6TUhVPpqK4G+o3IbxpJNx04hgksjc/N7GK5pEorUxDeg31cFgEk/w==}
+    engines: {node: '>=18'}
 
   isexe@2.0.0:
     resolution: {integrity: sha512-RHxMLp9lnKHGHRng9QFhRCMbYAcVpn69smSGcq3f36xjgVVWThj4qqLbTLlq7Ssj8B+fIQ1EuCEGI2lKsyQeIw==}
@@ -8731,8 +8973,18 @@ packages:
     peerDependencies:
       seroval: ^1.0
 
+  seroval-plugins@1.6.4:
+    resolution: {integrity: sha512-R0f1U9hmn38+dFMz6b6ab8lwucmw4AtiY7St+JPWudy1dm+Bs3g884nyrsH9Cy6rKpZKLYayXuMda9GZ/fl8JQ==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      seroval: ^1.0
+
   seroval@1.5.0:
     resolution: {integrity: sha512-OE4cvmJ1uSPrKorFIH9/w/Qwuvi/IMcGbv5RKgcJ/zjA/IohDLU6SVaxFN9FwajbP7nsX0dQqMDes1whk3y+yw==}
+    engines: {node: '>=10'}
+
+  seroval@1.6.4:
+    resolution: {integrity: sha512-LErWMNS2RRFdu2RMA5u/PA59/IWs0XsikyEXGQ2/36iEWFrdG0ABmg17E17cikrv76891kOAMq3TkTFXpwAHXw==}
     engines: {node: '>=10'}
 
   serve-index@1.9.2:
@@ -9165,12 +9417,6 @@ packages:
   tree-kill@1.2.2:
     resolution: {integrity: sha512-L0Orpi8qGpRG//Nd+H90vFB+3iHnue1zSSGmNOOCh1GLJ7rUKVwV2HvijphGQS2UmhUZewS9VgvxYIdgr+fG1A==}
     hasBin: true
-
-  ts-api-utils@2.4.0:
-    resolution: {integrity: sha512-3TaVTaAv2gTiMB35i3FiGJaRfwb3Pyn/j3m/bfAvGe8FB7CF6u+LMYqYlDh7reQf7UNvoTvdfAqHGmPGOSsPmA==}
-    engines: {node: '>=18.12'}
-    peerDependencies:
-      typescript: '>=4.8.4'
 
   ts-api-utils@2.5.0:
     resolution: {integrity: sha512-OJ/ibxhPlqrMM0UiNHJ/0CKQkoKF243/AEmplt3qpRgkW8VG7IfOS41h7V8TjITqdByHzrjcS/2si+y4lIh8NA==}
@@ -12562,7 +12808,7 @@ snapshots:
     dependencies:
       '@types/estree': 1.0.8
       estree-walker: 2.0.2
-      picomatch: 4.0.3
+      picomatch: 4.0.4
     optionalDependencies:
       rollup: 4.57.1
 
@@ -12869,6 +13115,8 @@ snapshots:
       - supports-color
       - typescript
 
+  '@tanstack/history@1.162.4': {}
+
   '@tanstack/preact-devtools@0.10.2(csstype@3.2.3)(preact@10.29.1)(solid-js@1.9.12)':
     dependencies:
       '@tanstack/devtools': 0.11.2(csstype@3.2.3)(solid-js@1.9.12)
@@ -12897,12 +13145,28 @@ snapshots:
       - solid-js
       - utf-8-validate
 
+  '@tanstack/react-router@1.170.38(react-dom@19.2.5(react@19.2.5))(react@19.2.5)':
+    dependencies:
+      '@tanstack/history': 1.162.4
+      '@tanstack/react-store': 0.11.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5)
+      '@tanstack/router-core': 1.171.32
+      isbot: 5.2.2
+      react: 19.2.5
+      react-dom: 19.2.5(react@19.2.5)
+
   '@tanstack/react-store@0.11.0(react-dom@19.2.5(react@19.2.5))(react@19.2.5)':
     dependencies:
       '@tanstack/store': 0.11.0
       react: 19.2.5
       react-dom: 19.2.5(react@19.2.5)
       use-sync-external-store: 1.6.0(react@19.2.5)
+
+  '@tanstack/router-core@1.171.32':
+    dependencies:
+      '@tanstack/history': 1.162.4
+      cookie-es: 3.1.1
+      seroval: 1.6.4
+      seroval-plugins: 1.6.4(seroval@1.6.4)
 
   '@tanstack/solid-devtools@0.8.2(csstype@3.2.3)(solid-js@1.9.12)':
     dependencies:
@@ -13198,8 +13462,8 @@ snapshots:
 
   '@typescript-eslint/project-service@8.55.0(typescript@6.0.3)':
     dependencies:
-      '@typescript-eslint/tsconfig-utils': 8.57.1(typescript@6.0.3)
-      '@typescript-eslint/types': 8.57.1
+      '@typescript-eslint/tsconfig-utils': 8.59.0(typescript@6.0.3)
+      '@typescript-eslint/types': 8.59.0
       debug: 4.4.3
       typescript: 6.0.3
     transitivePeerDependencies:
@@ -13225,10 +13489,6 @@ snapshots:
       '@typescript-eslint/visitor-keys': 8.59.0
 
   '@typescript-eslint/tsconfig-utils@8.55.0(typescript@6.0.3)':
-    dependencies:
-      typescript: 6.0.3
-
-  '@typescript-eslint/tsconfig-utils@8.57.1(typescript@6.0.3)':
     dependencies:
       typescript: 6.0.3
 
@@ -13276,7 +13536,7 @@ snapshots:
       minimatch: 9.0.5
       semver: 7.7.4
       tinyglobby: 0.2.16
-      ts-api-utils: 2.4.0(typescript@6.0.3)
+      ts-api-utils: 2.5.0(typescript@6.0.3)
       typescript: 6.0.3
     transitivePeerDependencies:
       - supports-color
@@ -14160,6 +14420,8 @@ snapshots:
   convert-source-map@1.9.0: {}
 
   convert-source-map@2.0.0: {}
+
+  cookie-es@3.1.1: {}
 
   cookie-signature@1.0.7: {}
 
@@ -15595,6 +15857,8 @@ snapshots:
   isarray@2.0.5: {}
 
   isbinaryfile@4.0.10: {}
+
+  isbot@5.2.2: {}
 
   isexe@2.0.0: {}
 
@@ -17295,7 +17559,13 @@ snapshots:
     dependencies:
       seroval: 1.5.0
 
+  seroval-plugins@1.6.4(seroval@1.6.4):
+    dependencies:
+      seroval: 1.6.4
+
   seroval@1.5.0: {}
+
+  seroval@1.6.4: {}
 
   serve-index@1.9.2:
     dependencies:
@@ -17794,10 +18064,6 @@ snapshots:
 
   tree-kill@1.2.2: {}
 
-  ts-api-utils@2.4.0(typescript@6.0.3):
-    dependencies:
-      typescript: 6.0.3
-
   ts-api-utils@2.5.0(typescript@6.0.3):
     dependencies:
       typescript: 6.0.3
@@ -18140,9 +18406,9 @@ snapshots:
     dependencies:
       debug: 4.4.3
       eslint: 10.2.1(jiti@2.6.1)
-      eslint-scope: 8.4.0
+      eslint-scope: 9.1.2
       eslint-visitor-keys: 5.0.1
-      espree: 10.4.0
+      espree: 11.2.0
       esquery: 1.7.0
       semver: 7.7.4
     transitivePeerDependencies:

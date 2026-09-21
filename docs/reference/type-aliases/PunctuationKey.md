@@ -4,11 +4,42 @@ title: PunctuationKey
 ---
 
 ```ts
-type PunctuationKey = "/" | "[" | "]" | "\" | "=" | "-" | "," | "." | ";" | "`";
+type PunctuationKey =
+  | "/"
+  | "["
+  | "]"
+  | "\"
+  | "="
+  | "-"
+  | ","
+  | "."
+  | ";"
+  | "`"
+  | "'"
+  | "+"
+  | "?"
+  | "!"
+  | "@"
+  | "#"
+  | "$"
+  | "%"
+  | "^"
+  | "&"
+  | ""
+  | "("
+  | ")"
+  | "_"
+  | "{"
+  | "}"
+  | "|"
+  | ":"
+  | "\""
+  | "<"
+  | ">"
+  | "~";
 ```
 
-Defined in: [hotkey.ts:117](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L117)
+Defined in: [key.types.ts:130](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L130)
 
-Punctuation keys commonly used in keyboard shortcuts.
-These are the literal characters as they appear in KeyboardEvent.key
-(layout-dependent, typically US keyboard layout).
+Printable punctuation glyphs used in keyboard shortcuts. Matching uses the
+final KeyboardEvent.key glyph, independent of which layout produced it.

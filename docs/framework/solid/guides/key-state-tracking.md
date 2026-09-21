@@ -3,7 +3,7 @@ title: Key State Tracking Guide
 id: key-state-tracking
 ---
 
-TanStack Hotkeys provides three primitives for tracking the real-time state of keyboard keys. These are useful for building UIs that respond to modifier keys being held, displaying active key states, or implementing hold-to-activate features.
+TanStack Hotkeys includes three primitives for tracking the real-time state of keyboard keys. Use them to show modifier state in the UI or to build hold-to-activate features.
 
 ## `createHeldKeys`
 
@@ -26,7 +26,7 @@ function KeyDisplay() {
 ```
 
 > [!NOTE]
-> In Solid, `createHeldKeys()` returns an **accessor function**. Call it with `()` to read the current value: `heldKeys()`.
+> In Solid, `createHeldKeys()` returns an accessor function. Call it with `()` to read the current value: `heldKeys()`.
 
 The returned array contains key names like `'Shift'`, `'Control'`, `'Meta'`, `'A'`, `'ArrowUp'`, etc. Keys appear in the order they were pressed.
 
@@ -79,9 +79,9 @@ function ModifierIndicators() {
 }
 ```
 
-## Common Patterns
+## Common patterns
 
-### Hold-to-Reveal UI
+### Hold-to-reveal UI
 
 ```tsx
 import { createKeyHold } from '@tanstack/solid-hotkeys'
@@ -107,7 +107,7 @@ function FileItem(props: { file: File }) {
 }
 ```
 
-### Keyboard Shortcut Hints
+### Keyboard shortcut hints
 
 ```tsx
 import { createKeyHold } from '@tanstack/solid-hotkeys'
@@ -128,7 +128,7 @@ function ShortcutHints() {
 }
 ```
 
-### Debugging Key Display
+### Debugging key display
 
 ```tsx
 import {
@@ -163,19 +163,19 @@ function KeyDebugger() {
 }
 ```
 
-## Platform Quirks
+## Platform quirks
 
 The underlying `KeyStateTracker` handles several platform-specific issues:
 
-### macOS Modifier Key Behavior
+### macOS modifier key behavior
 
 On macOS, when a modifier key is held and a non-modifier key is pressed, the OS sometimes swallows the `keyup` event. TanStack Hotkeys detects and handles this automatically.
 
-### Window Blur
+### Window blur
 
-When the browser window loses focus, all held keys are automatically cleared.
+When the browser window loses focus, the tracker clears all held keys.
 
-## Under the Hood
+## Under the hood
 
 All three primitives subscribe to the singleton `KeyStateTracker` via `@tanstack/solid-store`. The tracker manages its own event listeners on `document` and maintains state in a TanStack Store.
 
@@ -189,3 +189,15 @@ tracker.isKeyHeld('Shift')   // boolean
 tracker.isAnyKeyHeld(['Shift', 'Control']) // boolean
 tracker.areAllKeysHeld(['Shift', 'Control']) // boolean
 ```
+
+## Modifier-held shortcut hints
+
+`createHotkeyHint` answers whether held modifiers are relevant to a binding. Keep formatting and badge styling in your component:
+
+```ts
+const visible = createHotkeyHint(() => binding()) // accessor: visible()
+```
+
+For `Alt+Shift+[KeyK]`, holding Alt, Shift, or both reveals the hint. An extra Control hides it; releasing all modifiers or blurring the window hides it. Nonmodifier keys are ignored. AltGraph does not reveal hints. Pass `{ exact: true }` to require all binding modifiers, or `{ platform: 'mac' }` to resolve Mod explicitly. Supply the same platform used by the registration when overriding detection.
+
+Combine the boolean with the action's enabled state. The helper does not register a shortcut or determine whether its target is focused. The core equivalent is `matchesHeldModifiers(binding, heldKeys, options)`.

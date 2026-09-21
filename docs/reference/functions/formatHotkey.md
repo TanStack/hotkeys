@@ -7,7 +7,7 @@ title: formatHotkey
 function formatHotkey(parsed): string;
 ```
 
-Defined in: [format.ts:53](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L53)
+Defined in: [format.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L54)
 
 Converts a ParsedHotkey back to a hotkey string.
 
@@ -15,7 +15,7 @@ Converts a ParsedHotkey back to a hotkey string.
 
 ### parsed
 
-[`ParsedHotkey`](../interfaces/ParsedHotkey.md)
+[`ParsedHotkey`](../type-aliases/ParsedHotkey.md)
 
 The parsed hotkey object
 

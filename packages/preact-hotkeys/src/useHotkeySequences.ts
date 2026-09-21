@@ -154,6 +154,10 @@ export function useHotkeySequences(
 
       const existing = prevRegistrations.get(registrationKey)
       if (existing?.handle.isActive && existing.target === resolvedTarget) {
+        // Publish callback/options only after commit, never during render.
+        existing.handle.callback = def.callback
+        const { target: _target, ...optionsWithoutTarget } = mergedOptions
+        existing.handle.setOptions(optionsWithoutTarget)
         nextRegistrations.set(registrationKey, existing)
         continue
       }
@@ -185,22 +189,4 @@ export function useHotkeySequences(
       registrationsRef.current = new Map()
     }
   }, [])
-
-  for (let i = 0; i < definitions.length; i++) {
-    const def = definitions[i]!
-    const seqStr = sequenceStrings[i]!
-    const registrationKey = `${i}:${seqStr}`
-    const handle = registrationsRef.current.get(registrationKey)?.handle
-
-    if (handle?.isActive && def.sequence.length > 0) {
-      handle.callback = def.callback
-      const mergedOptions = {
-        ...defaultOptions,
-        ...commonOptions,
-        ...def.options,
-      } as UseHotkeySequenceOptions
-      const { target: _target, ...optionsWithoutTarget } = mergedOptions
-      handle.setOptions(optionsWithoutTarget)
-    }
-  }
 }

@@ -46,7 +46,7 @@ function App() {
     { enabled: helloSequenceEnabled },
   )
 
-  useHotkeySequence(['Shift+R', 'Shift+T'], () =>
+  useHotkeySequence(['Shift+[KeyR]', 'Shift+[KeyT]'], () =>
     addToHistory('⇧R ⇧T → Chained Shift+letter (2 steps)'),
   )
 
@@ -184,9 +184,12 @@ function App() {
         <section className="demo-section">
           <h2>Chained Shift+letter sequences</h2>
           <p>
-            Each step is a chord: hold <kbd>Shift</kbd> and press a letter. You
-            can press <kbd>Shift</kbd> alone between steps—those modifier-only
-            presses do not reset progress, so the next chord still counts.
+            These steps use physical R and T positions (<code>[KeyR]</code> and{' '}
+            <code>[KeyT]</code>), independent of the characters they produce.
+            Hold <kbd>Shift</kbd> and press each position. You can press{' '}
+            <kbd>Shift</kbd> alone between steps—those modifier-only presses do
+            not reset progress, so the next chord still counts. Holding a key
+            does not count as additional steps.
           </p>
           <table className="sequence-table">
             <thead>
@@ -230,7 +233,7 @@ function VimEditor() {
   })
 
   // Same modifier on each step (Shift+letter, then Shift+letter)
-  useHotkeySequence(['Shift+R', 'Shift+T'], () => {
+  useHotkeySequence(['Shift+[KeyR]', 'Shift+[KeyT]'], () => {
     doSomething()
   })
 }`}</pre>

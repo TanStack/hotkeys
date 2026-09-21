@@ -194,7 +194,7 @@ function HotkeyDetails(props: {
   getConflictLabel: (b: ConflictBehavior, same: boolean) => string
   formatForDisplay: (
     hotkey: RegisterableHotkey,
-    options?: FormatDisplayOptions,
+    options?: FormatDisplayOptions & { parts?: false },
   ) => string
   styles: ReturnType<typeof useStyles>
 }) {
@@ -466,7 +466,7 @@ function SequenceDetails(props: {
   formatHotkeySequence: (seq: HotkeySequence) => string
   formatForDisplay: (
     hotkey: RegisterableHotkey,
-    options?: FormatDisplayOptions,
+    options?: FormatDisplayOptions & { parts?: false },
   ) => string
   styles: ReturnType<typeof useStyles>
 }) {

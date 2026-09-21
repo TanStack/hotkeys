@@ -1,8 +1,21 @@
 import { Store } from '@tanstack/store'
-import { detectPlatform } from './constants'
-import { isInputElement } from './manager.utils'
-import { hotkeyChordFromKeydown } from './recorder-chord'
-import type { Hotkey } from './hotkey'
+import { findHotkeyConflicts } from './conflicts'
+import {
+  beginRecording,
+  captureRecordingEvent,
+  endRecording,
+} from './_recording-guard'
+import { chordRejection, hotkeyChordFromKeydown } from './_recorder-chord'
+import { normalizeKeyboardEvent } from './_keyboard-event'
+import { isModifierKey, parseHotkey } from './parse'
+import { validateHotkey } from './validate'
+import { detectPlatform } from './platform'
+import { shouldIgnoreInputEvent } from './_event-target'
+import type {
+  HotkeyRecorderValidationContext,
+  RecorderOptions,
+} from './recorder-options'
+import type { Hotkey } from './hotkey.types'
 
 /**
  * State interface for the HotkeyRecorder.
@@ -17,7 +30,12 @@ export interface HotkeyRecorderState {
 /**
  * Options for configuring a HotkeyRecorder instance.
  */
-export interface HotkeyRecorderOptions {
+export interface HotkeyRecorderOptions extends RecorderOptions {
+  /** Return true to accept, or false/a message to reject while staying in recording mode. */
+  validate?: (
+    hotkey: Hotkey,
+    context: HotkeyRecorderValidationContext,
+  ) => boolean | string
   /** Callback when a hotkey is successfully recorded */
   onRecord: (hotkey: Hotkey) => void
   /** Optional callback when recording is cancelled (Escape pressed) */
@@ -116,6 +134,7 @@ export class HotkeyRecorder {
       return
     }
 
+    beginRecording(this)
     // Update store state
     this.store.setState(() => ({
       isRecording: true,
@@ -132,16 +151,19 @@ export class HotkeyRecorder {
       // If ignoreInputs is enabled (default) and focus is in an input element,
       // let the event pass through so the user can type normally.
       // Escape is the exception — it should always cancel recording.
-      if (this.#options.ignoreInputs !== false) {
-        const activeEl =
-          typeof document !== 'undefined' ? document.activeElement : null
-        if (isInputElement(activeEl) && event.key !== 'Escape') {
-          return
-        }
-      }
+      if (
+        this.#options.ignoreInputs !== false &&
+        event.key !== 'Escape' &&
+        shouldIgnoreInputEvent(event, document, document)
+      )
+        return
 
+      const platform = this.#options.platform ?? this.#platform
+      if (normalizeKeyboardEvent(event, platform).isComposing) return
+      captureRecordingEvent(event)
       event.preventDefault()
       event.stopPropagation()
+      if (event.repeat) return
 
       // Handle Escape to cancel
       if (event.key === 'Escape') {
@@ -157,18 +179,70 @@ export class HotkeyRecorder {
           !event.altKey &&
           !event.metaKey
         ) {
-          this.#options.onClear?.()
-          this.#options.onRecord('' as Hotkey)
           this.stop()
+          this.#options.onClear?.()
           return
         }
       }
 
-      const finalHotkey = hotkeyChordFromKeydown(event, this.#platform)
+      if (isModifierKey(event.key) || event.key === 'AltGraph') return
+      const rejection = chordRejection(event, { ...this.#options, platform })
+      if (rejection) {
+        this.#options.onReject?.(rejection)
+        return
+      }
+      const finalHotkey = hotkeyChordFromKeydown(
+        event,
+        platform,
+        this.#options.recordBy,
+      )
       if (finalHotkey === null) {
         return
       }
 
+      const validation = validateHotkey(finalHotkey)
+      if (!validation.valid) {
+        this.#options.onReject?.({
+          reason: 'invalid',
+          message: validation.errors.join('; '),
+          hotkey: finalHotkey,
+        })
+        return
+      }
+      const accepted = this.#options.validate?.(finalHotkey, {
+        event,
+        parsedHotkey: parseHotkey(finalHotkey, platform),
+      })
+      if (accepted !== undefined && accepted !== true) {
+        this.#options.onReject?.({
+          reason: 'validation',
+          message:
+            typeof accepted === 'string'
+              ? accepted
+              : 'This shortcut is not allowed.',
+          hotkey: finalHotkey,
+        })
+        return
+      }
+      if (this.#options.detectConflicts) {
+        const conflicts = findHotkeyConflicts(finalHotkey, {
+          ...(typeof this.#options.detectConflicts === 'object'
+            ? this.#options.detectConflicts
+            : {}),
+          platform,
+          events: [event],
+        })
+        if (conflicts.length) {
+          this.#options.onReject?.({
+            reason: 'conflict',
+            message: 'This shortcut conflicts with a registered binding.',
+            hotkey: finalHotkey,
+            conflicts,
+          })
+          return
+        }
+      }
+      endRecording(this)
       // Remove listener FIRST to prevent any additional events
       const handlerToRemove = this.#keydownHandler as
         | ((event: KeyboardEvent) => void)
@@ -198,6 +272,7 @@ export class HotkeyRecorder {
    * Removes the event listener and resets the recording state.
    */
   stop(): void {
+    endRecording(this)
     // Remove event listener immediately
     if (this.#keydownHandler) {
       this.#removeListener(this.#keydownHandler)
@@ -218,6 +293,7 @@ export class HotkeyRecorder {
    * the onCancel callback if provided.
    */
   cancel(): void {
+    endRecording(this)
     // Remove event listener immediately
     if (this.#keydownHandler) {
       this.#removeListener(this.#keydownHandler)

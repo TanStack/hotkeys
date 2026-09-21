@@ -40,9 +40,9 @@ import { injectKeyHold } from '@tanstack/angular-hotkeys'
 readonly isShiftHeld = injectKeyHold('Shift')
 ```
 
-## Common Patterns
+## Common patterns
 
-### Hold-to-Reveal UI
+### Hold-to-reveal UI
 
 ```ts
 import { Component } from '@angular/core'
@@ -63,7 +63,7 @@ export class FileActionsComponent {
 }
 ```
 
-### Debugging Key Display
+### Debugging key display
 
 ```ts
 import { Component } from '@angular/core'
@@ -83,7 +83,7 @@ export class KeyDebuggerComponent {
 }
 ```
 
-## Under the Hood
+## Under the hood
 
 All three APIs subscribe to the singleton `KeyStateTracker`:
 
@@ -94,3 +94,15 @@ const tracker = getKeyStateTracker()
 tracker.getHeldKeys()
 tracker.isKeyHeld('Shift')
 ```
+
+## Modifier-held shortcut hints
+
+`injectHotkeyHint` answers whether held modifiers are relevant to a binding. Keep formatting and badge styling in your component:
+
+```ts
+readonly visible = injectHotkeyHint(() => this.binding()) // signal: visible()
+```
+
+For `Alt+Shift+[KeyK]`, holding Alt, Shift, or both reveals the hint. An extra Control hides it; releasing all modifiers or blurring the window hides it. Nonmodifier keys are ignored. AltGraph does not reveal hints. Pass `{ exact: true }` to require all binding modifiers, or `{ platform: 'mac' }` to resolve Mod explicitly. Supply the same platform used by the registration when overriding detection.
+
+Combine the boolean with the action's enabled state. The helper does not register a shortcut or determine whether its target is focused. The core equivalent is `matchesHeldModifiers(binding, heldKeys, options)`.

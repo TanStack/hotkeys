@@ -7,9 +7,9 @@ title: normalizeRegisterableHotkey
 function normalizeRegisterableHotkey(hotkey, platform): Hotkey;
 ```
 
-Defined in: [parse.ts:221](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L221)
+Defined in: [parse.ts:229](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L229)
 
-Normalizes a string or [RawHotkey](../interfaces/RawHotkey.md) object to the same canonical hotkey string.
+Normalizes a string or [RawHotkey](../type-aliases/RawHotkey.md) object to the same canonical hotkey string.
 Use this in framework adapters instead of branching on `formatHotkey(rawHotkeyToParsedHotkey(...))`.
 
 ## Parameters

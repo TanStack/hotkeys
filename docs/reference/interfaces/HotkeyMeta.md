@@ -3,10 +3,10 @@ id: HotkeyMeta
 title: HotkeyMeta
 ---
 
-Defined in: [hotkey.ts:431](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L431)
+Defined in: [hotkey.types.ts:252](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L252)
 
 Metadata for hotkey and sequence registrations.
-Includes `name` and `description` by default. Extend via declaration merging:
+Includes `name`, `description`, and `group` by default. Extend via declaration merging:
 
 ## Example
 
@@ -27,9 +27,21 @@ declare module '@tanstack/hotkeys' {
 optional description: string;
 ```
 
-Defined in: [hotkey.ts:435](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L435)
+Defined in: [hotkey.types.ts:256](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L256)
 
 Description of what this hotkey does
+
+***
+
+### group?
+
+```ts
+optional group: string;
+```
+
+Defined in: [hotkey.types.ts:258](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L258)
+
+Optional display group. Does not affect matching or scope.
 
 ***
 
@@ -39,6 +51,6 @@ Description of what this hotkey does
 optional name: string;
 ```
 
-Defined in: [hotkey.ts:433](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L433)
+Defined in: [hotkey.types.ts:254](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L254)
 
 Human-readable name for this hotkey (e.g., "Save Document")

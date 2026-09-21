@@ -10,11 +10,12 @@ function matchesKeyboardEvent(
    platform): boolean;
 ```
 
-Defined in: [match.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L43)
+Defined in: [match.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L49)
 
 Checks if a KeyboardEvent matches a hotkey.
 
-Uses the `key` property from KeyboardEvent for matching, with a fallback to `code`
+Physical bindings such as `Mod+[KeyS]` match `event.code` exactly.
+Logical bindings use `event.key`, with a fallback to `code`
 for letter keys, digit keys (0-9), and punctuation keys when `key` produces special
 characters (e.g., macOS Option+letter, Shift+number, or Option+punctuation).
 Letter keys are matched case-insensitively.
@@ -36,7 +37,7 @@ The KeyboardEvent to check
 
 The hotkey string or ParsedHotkey to match against
 
-[`Hotkey`](../type-aliases/Hotkey.md) | [`ParsedHotkey`](../interfaces/ParsedHotkey.md)
+[`Hotkey`](../type-aliases/Hotkey.md) | [`ParsedHotkey`](../type-aliases/ParsedHotkey.md)
 
 ### platform
 

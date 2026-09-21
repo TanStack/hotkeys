@@ -935,6 +935,14 @@
         {
           "label": "IndividualKey",
           "to": "reference/type-aliases/IndividualKey"
+        },
+        {
+          "label": "matchesHeldModifiers",
+          "to": "reference/functions/matchesHeldModifiers"
+        },
+        {
+          "label": "HeldModifierOptions",
+          "to": "reference/interfaces/HeldModifierOptions"
         }
       ],
       "frameworks": [
@@ -952,6 +960,10 @@
             {
               "label": "useHeldKeyCodes",
               "to": "framework/react/reference/functions/useHeldKeyCodes"
+            },
+            {
+              "label": "useHotkeyHint",
+              "to": "framework/react/reference/functions/useHotkeyHint"
             }
           ]
         },
@@ -969,6 +981,10 @@
             {
               "label": "useHeldKeyCodes",
               "to": "framework/preact/reference/functions/useHeldKeyCodes"
+            },
+            {
+              "label": "useHotkeyHint",
+              "to": "framework/preact/reference/functions/useHotkeyHint"
             }
           ]
         },
@@ -986,6 +1002,10 @@
             {
               "label": "createHeldKeyCodes",
               "to": "framework/solid/reference/functions/createHeldKeyCodes"
+            },
+            {
+              "label": "createHotkeyHint",
+              "to": "framework/solid/reference/functions/createHotkeyHint"
             }
           ]
         },
@@ -1003,6 +1023,10 @@
             {
               "label": "injectHeldKeyCodes",
               "to": "framework/angular/reference/functions/injectHeldKeyCodes"
+            },
+            {
+              "label": "injectHotkeyHint",
+              "to": "framework/angular/reference/functions/injectHotkeyHint"
             }
           ]
         },
@@ -1020,6 +1044,10 @@
             {
               "label": "useHeldKeyCodes",
               "to": "framework/vue/reference/functions/useHeldKeyCodes"
+            },
+            {
+              "label": "useHotkeyHint",
+              "to": "framework/vue/reference/functions/useHotkeyHint"
             }
           ]
         },
@@ -1037,6 +1065,10 @@
             {
               "label": "HeldKeyCodesController",
               "to": "framework/lit/reference/classes/HeldKeyCodesController"
+            },
+            {
+              "label": "HotkeyHintController",
+              "to": "framework/lit/reference/classes/HotkeyHintController"
             }
           ]
         },
@@ -1066,6 +1098,10 @@
             {
               "label": "SvelteHeldKeyCodesMap",
               "to": "framework/svelte/reference/interfaces/SvelteHeldKeyCodesMap"
+            },
+            {
+              "label": "getHotkeyHint",
+              "to": "framework/svelte/reference/functions/getHotkeyHint"
             }
           ]
         }
@@ -1087,6 +1123,34 @@
         {
           "label": "HotkeyRecorderState",
           "to": "reference/interfaces/HotkeyRecorderState"
+        },
+        {
+          "label": "findHotkeyConflicts",
+          "to": "reference/functions/findHotkeyConflicts"
+        },
+        {
+          "label": "HotkeyConflictOptions",
+          "to": "reference/interfaces/HotkeyConflictOptions"
+        },
+        {
+          "label": "HotkeyConflict",
+          "to": "reference/type-aliases/HotkeyConflict"
+        },
+        {
+          "label": "RecorderRejection",
+          "to": "reference/interfaces/RecorderRejection"
+        },
+        {
+          "label": "RecorderKeyMode",
+          "to": "reference/type-aliases/RecorderKeyMode"
+        },
+        {
+          "label": "RecorderOptions",
+          "to": "reference/interfaces/RecorderOptions"
+        },
+        {
+          "label": "HotkeyRecorderValidationContext",
+          "to": "reference/interfaces/HotkeyRecorderValidationContext"
         }
       ],
       "frameworks": [
@@ -1199,6 +1263,10 @@
         {
           "label": "HotkeySequenceRecorderCommitKeys",
           "to": "reference/type-aliases/HotkeySequenceRecorderCommitKeys"
+        },
+        {
+          "label": "HotkeySequenceRecorderValidationContext",
+          "to": "reference/interfaces/HotkeySequenceRecorderValidationContext"
         }
       ],
       "frameworks": [
@@ -1363,21 +1431,105 @@
         {
           "label": "MODIFIER_KEYS",
           "to": "reference/variables/MODIFIER_KEYS"
+        },
+        {
+          "label": "parseRegisterableHotkey",
+          "to": "reference/functions/parseRegisterableHotkey"
+        },
+        {
+          "label": "areHotkeysEqual",
+          "to": "reference/functions/areHotkeysEqual"
+        },
+        {
+          "label": "PhysicalKey",
+          "to": "reference/type-aliases/PhysicalKey"
+        },
+        {
+          "label": "Hotkey",
+          "to": "reference/type-aliases/Hotkey"
+        },
+        {
+          "label": "RegisterableHotkey",
+          "to": "reference/type-aliases/RegisterableHotkey"
+        },
+        {
+          "label": "RawHotkey",
+          "to": "reference/type-aliases/RawHotkey"
+        },
+        {
+          "label": "ParsedHotkey",
+          "to": "reference/type-aliases/ParsedHotkey"
+        },
+        {
+          "label": "LogicalKey",
+          "to": "reference/type-aliases/LogicalKey"
+        },
+        {
+          "label": "PhysicalKeyCode",
+          "to": "reference/type-aliases/PhysicalKeyCode"
+        },
+        {
+          "label": "DisplayHotkey",
+          "to": "reference/type-aliases/DisplayHotkey"
+        },
+        {
+          "label": "formatHotkeySequence",
+          "to": "reference/functions/formatHotkeySequence"
+        },
+        {
+          "label": "parseHotkey",
+          "to": "reference/functions/parseHotkey"
+        },
+        {
+          "label": "rawHotkeyToParsedHotkey",
+          "to": "reference/functions/rawHotkeyToParsedHotkey"
+        },
+        {
+          "label": "parseKeyboardEvent",
+          "to": "reference/functions/parseKeyboardEvent"
+        },
+        {
+          "label": "matchesKeyboardEvent",
+          "to": "reference/functions/matchesKeyboardEvent"
+        },
+        {
+          "label": "validateHotkey",
+          "to": "reference/functions/validateHotkey"
+        },
+        {
+          "label": "checkHotkey",
+          "to": "reference/functions/checkHotkey"
+        },
+        {
+          "label": "assertValidHotkey",
+          "to": "reference/functions/assertValidHotkey"
+        },
+        {
+          "label": "ValidationResult",
+          "to": "reference/interfaces/ValidationResult"
         }
       ]
     },
     {
       "label": "Examples",
-      "children": [
-        {
-          "label": "formatForDisplay",
-          "to": "framework/vanilla/examples/formatForDisplay"
-        }
-      ],
+      "children": [],
       "frameworks": [
+        {
+          "label": "vanilla",
+          "children": [
+            {
+              "label": "formatForDisplay",
+              "to": "framework/vanilla/examples/formatForDisplay"
+            }
+          ]
+        },
         {
           "label": "react",
           "children": [
+            {
+              "label": "Kitchen Sink",
+              "to": "framework/react/examples/kitchen-sink"
+            },
             {
               "label": "useHotkey",
               "to": "framework/react/examples/useHotkey"
@@ -1416,6 +1568,10 @@
           "label": "preact",
           "children": [
             {
+              "label": "Kitchen Sink",
+              "to": "framework/preact/examples/kitchen-sink"
+            },
+            {
               "label": "useHotkey",
               "to": "framework/preact/examples/useHotkey"
             },
@@ -1452,6 +1608,10 @@
         {
           "label": "solid",
           "children": [
+            {
+              "label": "Kitchen Sink",
+              "to": "framework/solid/examples/kitchen-sink"
+            },
             {
               "label": "createHotkey",
               "to": "framework/solid/examples/createHotkey"
@@ -1490,6 +1650,10 @@
           "label": "angular",
           "children": [
             {
+              "label": "Kitchen Sink",
+              "to": "framework/angular/examples/kitchen-sink"
+            },
+            {
               "label": "injectHotkey",
               "to": "framework/angular/examples/injectHotkey"
             },
@@ -1526,6 +1690,10 @@
         {
           "label": "vue",
           "children": [
+            {
+              "label": "Kitchen Sink",
+              "to": "framework/vue/examples/kitchen-sink"
+            },
             {
               "label": "useHotkey",
               "to": "framework/vue/examples/useHotkey"
@@ -1564,6 +1732,10 @@
           "label": "lit",
           "children": [
             {
+              "label": "Kitchen Sink",
+              "to": "framework/lit/examples/kitchen-sink"
+            },
+            {
               "label": "hotkey",
               "to": "framework/lit/examples/hotkey"
             },
@@ -1592,6 +1764,10 @@
         {
           "label": "svelte",
           "children": [
+            {
+              "label": "Kitchen Sink",
+              "to": "framework/svelte/examples/kitchen-sink"
+            },
             {
               "label": "createHotkey",
               "to": "framework/svelte/examples/create-hotkey"

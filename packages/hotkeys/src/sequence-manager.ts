@@ -1,24 +1,28 @@
 import { Store } from '@tanstack/store'
+import { isRecordingEvent } from './_recording-guard'
 import { formatHotkeySequence } from './format'
-import { detectPlatform, normalizeKeyName } from './constants'
+import { detectPlatform } from './platform'
+import { normalizeKeyName } from './constants'
 import { isModifierKey, parseHotkey } from './parse'
-import { matchesKeyboardEvent } from './match'
+import { areHotkeysEqual, matchesKeyboardEvent } from './match'
+import { matchKeyboardEvent } from './_match'
+import { normalizeKeyboardEvent } from './_keyboard-event'
 import {
   defaultHotkeyOptions,
   getDefaultIgnoreInputs,
   handleConflict,
-  isEventForTarget,
-  shouldIgnoreInputEvent,
-} from './manager.utils'
+  optionsEqual,
+} from './_registration'
+import { isEventForTarget, shouldIgnoreInputEvent } from './_event-target'
 import type { HotkeyOptions } from './hotkey-manager'
 import type {
   Hotkey,
   HotkeyCallback,
   HotkeyCallbackContext,
   ParsedHotkey,
-} from './hotkey'
+} from './hotkey.types'
 
-type Target = HTMLElement | Document | Window
+export type Target = HTMLElement | Document | Window
 
 /**
  * Options for hotkey sequence matching.
@@ -35,7 +39,7 @@ export interface SequenceOptions extends Omit<HotkeyOptions, 'requireReset'> {
  * Each element is one step (a `Hotkey` string). Steps may include modifiers;
  * the same modifier can appear on consecutive steps (e.g. `Shift+R` then
  * `Shift+T`). Modifier-only key events do not advance or reset matching—see
- * `SequenceManager`.
+ * `SequenceManager`. Automatic keydown repeats and IME composition are also ignored.
  *
  * @example
  * ```ts
@@ -63,13 +67,6 @@ function generateSequenceId(): string {
 }
 
 /**
- * Returns a canonical string for sequence conflict comparison.
- */
-function sequenceKey(sequence: HotkeySequence): string {
-  return sequence.join('|')
-}
-
-/**
  * View of a sequence registration for devtools display.
  * Progress fields reflect an in-progress match (between first key and completion or timeout).
  */
@@ -90,7 +87,7 @@ export interface SequenceRegistrationView {
 /**
  * Internal representation of a sequence registration.
  */
-interface SequenceRegistration {
+export interface SequenceRegistration {
   id: string
   sequence: HotkeySequence
   parsedSequence: Array<ParsedHotkey>
@@ -253,7 +250,7 @@ export class SequenceManager {
 
     // Check for existing registrations with the same sequence and target
     const conflictingRegistration = this.#findConflictingSequence(
-      sequence,
+      parsedSequence,
       target,
     )
 
@@ -325,7 +322,10 @@ export class SequenceManager {
       },
       setOptions: (newOptions: Partial<SequenceOptions>) => {
         const reg = manager.#registrations.get(id)
-        if (reg) {
+        if (
+          reg &&
+          !optionsEqual(reg.options, { ...reg.options, ...newOptions })
+        ) {
           reg.options = { ...reg.options, ...newOptions }
           manager.registrations.setState((prev) =>
             new Map(prev).set(id, toRegistrationView(reg)),
@@ -438,6 +438,22 @@ export class SequenceManager {
     target: Target,
     eventType: 'keydown' | 'keyup',
   ): void {
+    if (isRecordingEvent(event)) {
+      for (const id of this.#targetRegistrations.get(target) ?? []) {
+        const registration = this.#registrations.get(id)
+        if (registration && registration.currentIndex > 0) {
+          registration.currentIndex = 0
+          this.#syncRegistrationView(registration)
+        }
+      }
+      return
+    }
+    if (
+      (event.type === 'keydown' && event.repeat) ||
+      normalizeKeyboardEvent(event).isComposing
+    ) {
+      return
+    }
     // Skip modifier-only events so pressing e.g. Shift before Shift+C does not reset the sequence.
     if (isModifierKey(normalizeKeyName(event.key))) {
       return
@@ -449,6 +465,9 @@ export class SequenceManager {
     }
 
     const now = Date.now()
+    // Score eligible next steps (or restarts) before advancing any sequence.
+    const candidates = new Map<string, { score: number; nextIndex: number }>()
+    let bestScore = 0
 
     registrationIds: for (const id of targetRegs) {
       const registration = this.#registrations.get(id)
@@ -493,15 +512,30 @@ export class SequenceManager {
         continue
       }
 
-      if (
-        matchesKeyboardEvent(
+      let match = matchKeyboardEvent(
+        event,
+        expectedHotkey,
+        registration.options.platform,
+      )
+      let nextIndex = registration.currentIndex + 1
+      if (!match.matched && registration.currentIndex > 0) {
+        match = matchKeyboardEvent(
           event,
-          expectedHotkey,
+          registration.parsedSequence[0]!,
           registration.options.platform,
         )
-      ) {
+        nextIndex = 1
+      }
+      candidates.set(id, { score: match.score, nextIndex })
+      bestScore = Math.max(bestScore, match.score)
+    }
+
+    for (const [id, candidate] of candidates) {
+      const registration = this.#registrations.get(id)
+      if (!registration || !registration.options.enabled) continue
+      if (candidate.score > 0 && candidate.score === bestScore) {
         registration.lastKeyTime = now
-        registration.currentIndex++
+        registration.currentIndex = candidate.nextIndex
 
         if (registration.currentIndex >= registration.parsedSequence.length) {
           if (registration.options.preventDefault) {
@@ -530,36 +564,27 @@ export class SequenceManager {
           this.#syncRegistrationView(registration)
         }
       } else if (registration.currentIndex > 0) {
-        const firstHotkey = registration.parsedSequence[0]!
-        if (
-          matchesKeyboardEvent(
-            event,
-            firstHotkey,
-            registration.options.platform,
-          )
-        ) {
-          registration.currentIndex = 1
-          registration.lastKeyTime = now
-        } else {
-          registration.currentIndex = 0
-        }
+        // A mismatched or weaker candidate cannot carry stale progress forward.
+        registration.currentIndex = 0
         this.#syncRegistrationView(registration)
       }
     }
   }
 
   /**
-   * Finds an existing registration with the same sequence and target.
+   * Compares resolved step identities without changing the supplied sequence strings.
    */
   #findConflictingSequence(
-    sequence: HotkeySequence,
+    parsedSequence: Array<ParsedHotkey>,
     target: Target,
   ): SequenceRegistration | null {
-    const key = sequenceKey(sequence)
     for (const registration of this.#registrations.values()) {
       if (
-        sequenceKey(registration.sequence) === key &&
-        registration.target === target
+        registration.target === target &&
+        registration.parsedSequence.length === parsedSequence.length &&
+        parsedSequence.every((step, index) =>
+          areHotkeysEqual(step, registration.parsedSequence[index]!),
+        )
       ) {
         return registration
       }
@@ -600,7 +625,9 @@ export class SequenceManager {
     const syntheticEvent = new KeyboardEvent(
       registration.options.eventType ?? 'keydown',
       {
-        key: lastParsed.key,
+        ...(lastParsed.code !== undefined
+          ? { code: lastParsed.code }
+          : { key: lastParsed.key }),
         ctrlKey: lastParsed.ctrl,
         shiftKey: lastParsed.shift,
         altKey: lastParsed.alt,
@@ -691,6 +718,14 @@ export function createSequenceMatcher(
 
   return {
     match(event: KeyboardEvent): boolean {
+      // These events are not sequence steps and must not refresh the timeout.
+      if (
+        (event.type === 'keydown' && event.repeat) ||
+        normalizeKeyboardEvent(event, platform).isComposing ||
+        isModifierKey(normalizeKeyName(event.key))
+      ) {
+        return false
+      }
       const now = Date.now()
 
       if (currentIndex > 0 && now - lastKeyTime > timeout) {

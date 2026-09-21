@@ -7,7 +7,7 @@ title: assertValidHotkey
 function assertValidHotkey(hotkey): void;
 ```
 
-Defined in: [validate.ts:138](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L138)
+Defined in: [validate.ts:134](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L134)
 
 Validates a hotkey and throws an error if invalid.
 Useful for development-time validation.

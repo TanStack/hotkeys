@@ -41,9 +41,9 @@ TanStack Hotkeys provides three Svelte functions for tracking live keyboard stat
 <span class:active={isShiftHeld.held}>Shift</span>
 ```
 
-## Common Patterns
+## Common patterns
 
-### Hold-to-Reveal UI
+### Hold-to-reveal UI
 
 ```svelte
 <script lang="ts">
@@ -59,7 +59,7 @@ TanStack Hotkeys provides three Svelte functions for tracking live keyboard stat
 {/if}
 ```
 
-### Debugging Key Display
+### Debugging key display
 
 ```svelte
 <script lang="ts">
@@ -84,7 +84,7 @@ TanStack Hotkeys provides three Svelte functions for tracking live keyboard stat
 </div>
 ```
 
-## Under the Hood
+## Under the hood
 
 All three functions subscribe to the singleton `KeyStateTracker`:
 
@@ -95,3 +95,15 @@ const tracker = getKeyStateTracker()
 tracker.getHeldKeys()
 tracker.isKeyHeld('Shift')
 ```
+
+## Modifier-held shortcut hints
+
+`getHotkeyHint` answers whether held modifiers are relevant to a binding. Keep formatting and badge styling in your component:
+
+```ts
+const hint = getHotkeyHint(() => binding) // reactive getter: hint.visible
+```
+
+For `Alt+Shift+[KeyK]`, holding Alt, Shift, or both reveals the hint. An extra Control hides it; releasing all modifiers or blurring the window hides it. Nonmodifier keys are ignored. AltGraph does not reveal hints. Pass `{ exact: true }` to require all binding modifiers, or `{ platform: 'mac' }` to resolve Mod explicitly. Supply the same platform used by the registration when overriding detection.
+
+Combine the boolean with the action's enabled state. The helper does not register a shortcut or determine whether its target is focused. The core equivalent is `matchesHeldModifiers(binding, heldKeys, options)`.

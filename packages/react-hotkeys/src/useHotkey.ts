@@ -168,7 +168,9 @@ export function useHotkey(
     // Update tracking refs
     prevTargetRef.current = resolvedTarget
     prevHotkeyRef.current = hotkeyString
+  })
 
+  useEffect(() => {
     // Cleanup on unmount
     return () => {
       if (registrationRef.current?.isActive) {
@@ -176,12 +178,13 @@ export function useHotkey(
         registrationRef.current = null
       }
     }
-  }, [hotkeyString])
+  }, [])
 
-  // Sync callback and options on EVERY render (outside useEffect)
-  // This avoids stale closures - the callback always has access to latest state
-  if (registrationRef.current?.isActive) {
-    registrationRef.current.callback = callback
-    registrationRef.current.setOptions(optionsWithoutTarget)
-  }
+  // Publish option changes after commit, never during render.
+  useEffect(() => {
+    if (registrationRef.current?.isActive) {
+      registrationRef.current.callback = callback
+      registrationRef.current.setOptions(optionsWithoutTarget)
+    }
+  })
 }

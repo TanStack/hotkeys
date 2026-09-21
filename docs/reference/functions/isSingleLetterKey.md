@@ -7,7 +7,7 @@ title: isSingleLetterKey
 function isSingleLetterKey(key): boolean;
 ```
 
-Defined in: [constants.ts:439](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L439)
+Defined in: [constants.ts:419](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L419)
 
 Normalizes a key name to its canonical form.
 

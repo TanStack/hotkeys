@@ -19,3 +19,4 @@ export {
   setHotkeysContext,
 } from './HotkeysCtx'
 export type { HotkeysProviderOptions, HotkeysProviderProps } from './HotkeysCtx'
+export * from './getHotkeyHint.svelte'
