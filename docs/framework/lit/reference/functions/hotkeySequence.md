@@ -4,7 +4,7 @@ title: hotkeySequence
 ---
 
 ```ts
-function hotkeySequence(sequence, options): <T>(proto, methodName, descriptor) => void;
+function hotkeySequence(sequence, options?): <T>(proto, methodName, descriptor) => void;
 ```
 
 Defined in: [decorators/hotkey-sequence.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/decorators/hotkey-sequence.ts#L30)
@@ -21,7 +21,7 @@ when it connects and unregisters when it disconnects. Uses
 
 The key sequence to listen for (e.g. `['G', 'G']` for "g g").
 
-### options
+### options?
 
 `SequenceOptions` = `HOTKEY_SEQUENCE_DEFAULT_OPTIONS`
 
@@ -31,36 +31,7 @@ Optional sequence options (target, timeout, enabled, etc.).
 
 A method decorator for use on LitElement methods.
 
-```ts
-<T>(
-   proto, 
-   methodName, 
-   descriptor): void;
-```
-
-### Type Parameters
-
-#### T
-
-`T` *extends* `HotkeyCallback`
-
-### Parameters
-
-#### proto
-
-`LitElement`
-
-#### methodName
-
-`string`
-
-#### descriptor
-
-`TypedPropertyDescriptor`\<`T`\>
-
-### Returns
-
-`void`
+\<`T`\>(`proto`, `methodName`, `descriptor`) => `void`
 
 ## Example
 

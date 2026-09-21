@@ -65,8 +65,7 @@ export interface CreateHotkeyDefinition {
  */
 export function createHotkeys(
   hotkeys:
-    | Array<CreateHotkeyDefinition>
-    | (() => Array<CreateHotkeyDefinition>),
+    Array<CreateHotkeyDefinition> | (() => Array<CreateHotkeyDefinition>),
   commonOptions: CreateHotkeyOptions | (() => CreateHotkeyOptions) = {},
 ): void {
   type RegistrationRecord = {

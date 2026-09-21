@@ -7,10 +7,10 @@ title: useHotkey
 function useHotkey(
    hotkey, 
    callback, 
-   options): void;
+   options?): void;
 ```
 
-Defined in: [useHotkey.ts:90](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L90)
+Defined in: [useHotkey.ts:86](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L86)
 
 Preact hook for registering a keyboard hotkey.
 
@@ -37,7 +37,7 @@ The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object (supports `mod` 
 
 The function to call when the hotkey is pressed
 
-### options
+### options?
 
 [`UseHotkeyOptions`](../interfaces/UseHotkeyOptions.md) = `{}`
 

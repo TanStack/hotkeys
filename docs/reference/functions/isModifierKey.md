@@ -18,9 +18,9 @@ spellings like `OS` / `Win` match the same alias table.
 
 ### key
 
-Key name or alias (e.g. from a hotkey string or `event.key`)
+[`Key`](../type-aliases/Key.md) \| `string` & `object`
 
-[`Key`](../type-aliases/Key.md) | `string` & `object`
+Key name or alias (e.g. from a hotkey string or `event.key`)
 
 ## Returns
 

@@ -3,7 +3,7 @@ id: RawHotkey
 title: RawHotkey
 ---
 
-Defined in: [hotkey.ts:343](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L343)
+Defined in: [hotkey.ts:316](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L316)
 
 A raw hotkey object for programmatic registration.
 
@@ -30,10 +30,10 @@ useHotkey({ key: 'S', mod: true, shift: true }, handler)  // Mod+Shift+S
 ### alt?
 
 ```ts
-optional alt: boolean;
+optional alt?: boolean;
 ```
 
-Defined in: [hotkey.ts:353](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L353)
+Defined in: [hotkey.ts:326](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L326)
 
 Whether the Alt key is required. Defaults to false.
 
@@ -42,10 +42,10 @@ Whether the Alt key is required. Defaults to false.
 ### ctrl?
 
 ```ts
-optional ctrl: boolean;
+optional ctrl?: boolean;
 ```
 
-Defined in: [hotkey.ts:349](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L349)
+Defined in: [hotkey.ts:322](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L322)
 
 Whether the Control key is required. Defaults to false.
 
@@ -57,7 +57,7 @@ Whether the Control key is required. Defaults to false.
 key: Key | string & object;
 ```
 
-Defined in: [hotkey.ts:345](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L345)
+Defined in: [hotkey.ts:318](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L318)
 
 The non-modifier key (e.g., 'S', 'Escape', 'F1').
 
@@ -66,10 +66,10 @@ The non-modifier key (e.g., 'S', 'Escape', 'F1').
 ### meta?
 
 ```ts
-optional meta: boolean;
+optional meta?: boolean;
 ```
 
-Defined in: [hotkey.ts:355](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L355)
+Defined in: [hotkey.ts:328](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L328)
 
 Whether the Meta (Command) key is required. Defaults to false.
 
@@ -78,10 +78,10 @@ Whether the Meta (Command) key is required. Defaults to false.
 ### mod?
 
 ```ts
-optional mod: boolean;
+optional mod?: boolean;
 ```
 
-Defined in: [hotkey.ts:347](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L347)
+Defined in: [hotkey.ts:320](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L320)
 
 Platform-adaptive modifier: Command on macOS, Control on Windows/Linux. Defaults to false.
 
@@ -90,9 +90,9 @@ Platform-adaptive modifier: Command on macOS, Control on Windows/Linux. Defaults
 ### shift?
 
 ```ts
-optional shift: boolean;
+optional shift?: boolean;
 ```
 
-Defined in: [hotkey.ts:351](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L351)
+Defined in: [hotkey.ts:324](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L324)
 
 Whether the Shift key is required. Defaults to false.

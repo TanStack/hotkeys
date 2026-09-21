@@ -112,13 +112,15 @@ export class MyApp extends LitElement {
             </div>
           </section>
 
-          ${this.lastSequence
-            ? html`
-                <div class="info-box success">
-                  <strong>Triggered:</strong> ${this.lastSequence}
-                </div>
-              `
-            : null}
+          ${
+            this.lastSequence
+              ? html`
+                  <div class="info-box success">
+                    <strong>Triggered:</strong> ${this.lastSequence}
+                  </div>
+                `
+              : null
+          }
 
           <section class="demo-section">
             <h2>Input handling</h2>
@@ -164,23 +166,24 @@ class VimEditor extends LitElement {
   changeInnerWord() {
     // ...
   }
-}`}</pre
-            >
+}`}</pre>
           </section>
 
-          ${this.history.length > 0
-            ? html`
-                <section class="demo-section">
-                  <h2>History</h2>
-                  <ul class="history-list">
-                    ${this.history.map((item) => html`<li>${item}</li>`)}
-                  </ul>
-                  <button @click=${() => (this.history = [])}>
-                    Clear History
-                  </button>
-                </section>
-              `
-            : null}
+          ${
+            this.history.length > 0
+              ? html`
+                  <section class="demo-section">
+                    <h2>History</h2>
+                    <ul class="history-list">
+                      ${this.history.map((item) => html`<li>${item}</li>`)}
+                    </ul>
+                    <button @click=${() => (this.history = [])}>
+                      Clear History
+                    </button>
+                  </section>
+                `
+              : null
+          }
 
           <p class="hint">Press <kbd>Escape</kbd> to clear history</p>
         </main>

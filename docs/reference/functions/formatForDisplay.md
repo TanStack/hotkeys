@@ -4,7 +4,7 @@ title: formatForDisplay
 ---
 
 ```ts
-function formatForDisplay(hotkey, options): string;
+function formatForDisplay(hotkey, options?): string;
 ```
 
 Defined in: [format.ts:92](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L92)
@@ -19,11 +19,12 @@ The separator can be customized with `separatorToken`.
 
 ### hotkey
 
+  \| `string` & `object`
+  \| [`RegisterableHotkey`](../type-aliases/RegisterableHotkey.md)
+
 The hotkey string or ParsedHotkey to format
 
-`string` & `object` | [`RegisterableHotkey`](../type-aliases/RegisterableHotkey.md)
-
-### options
+### options?
 
 [`FormatDisplayOptions`](../interfaces/FormatDisplayOptions.md) = `{}`
 

@@ -7,7 +7,7 @@ title: createHotkeySequence
 function createHotkeySequence(
    sequence, 
    callback, 
-   options): void;
+   options?): void;
 ```
 
 Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts#L72)
@@ -29,7 +29,7 @@ advance the sequence or reset progress.
 
 `HotkeyCallback`
 
-### options
+### options?
 
 `MaybeGetter`\<[`CreateHotkeySequenceOptions`](../interfaces/CreateHotkeySequenceOptions.md)\> = `{}`
 

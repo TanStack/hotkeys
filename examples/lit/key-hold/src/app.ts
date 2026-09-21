@@ -51,9 +51,9 @@ export class MyApp extends LitElement {
             <h2>Modifier Key States</h2>
             <div class="modifier-grid">
               <div
-                class="modifier-indicator ${this.shiftHold.value
-                  ? 'active'
-                  : ''}"
+                class="modifier-indicator ${
+                  this.shiftHold.value ? 'active' : ''
+                }"
               >
                 <span class="key-name">Shift</span>
                 <span class="status">
@@ -61,9 +61,9 @@ export class MyApp extends LitElement {
                 </span>
               </div>
               <div
-                class="modifier-indicator ${this.controlHold.value
-                  ? 'active'
-                  : ''}"
+                class="modifier-indicator ${
+                  this.controlHold.value ? 'active' : ''
+                }"
               >
                 <span class="key-name">Control</span>
                 <span class="status">
@@ -79,9 +79,9 @@ export class MyApp extends LitElement {
                 </span>
               </div>
               <div
-                class="modifier-indicator ${this.metaHold.value
-                  ? 'active'
-                  : ''}"
+                class="modifier-indicator ${
+                  this.metaHold.value ? 'active' : ''
+                }"
               >
                 <span class="key-name">Meta (⌘ / ⊞)</span>
                 <span class="status">
@@ -115,19 +115,20 @@ class ShiftIndicator extends LitElement {
       </div>
     \`
   }
-}`}</pre
-            >
+}`}</pre>
           </section>
 
           <section class="demo-section">
             <h2>Conditional UI Example</h2>
             <p>Hold <kbd>Shift</kbd> to reveal the secret message:</p>
             <div class="secret-box ${this.shiftHold.value ? 'revealed' : ''}">
-              ${this.shiftHold.value
-                ? html`<span
-                    >🎉 The secret password is: tanstack-hotkeys-rocks!</span
-                  >`
-                : html`<span>••••••••••••••••••••••••••</span>`}
+              ${
+                this.shiftHold.value
+                  ? html`<span
+                      >🎉 The secret password is: tanstack-hotkeys-rocks!</span
+                    >`
+                  : html`<span>••••••••••••••••••••••••••</span>`
+              }
             </div>
           </section>
 

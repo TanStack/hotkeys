@@ -65,8 +65,7 @@ export function createHotkeySequence(
   sequence: HotkeySequence | (() => HotkeySequence),
   callback: HotkeyCallback,
   options:
-    | CreateHotkeySequenceOptions
-    | (() => CreateHotkeySequenceOptions) = {},
+    CreateHotkeySequenceOptions | (() => CreateHotkeySequenceOptions) = {},
 ): void {
   const defaultOptions = useDefaultHotkeysOptions()
   const manager = getSequenceManager()

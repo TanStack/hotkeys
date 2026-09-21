@@ -7,7 +7,7 @@ title: useHotkeyRegistrations
 function useHotkeyRegistrations(): HotkeyRegistrationsResult;
 ```
 
-Defined in: [packages/vue-hotkeys/src/useHotkeyRegistrations.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRegistrations.ts#L33)
+Defined in: [useHotkeyRegistrations.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRegistrations.ts#L33)
 
 Vue composable that reactively reads all hotkey and sequence registrations
 from the singleton managers.

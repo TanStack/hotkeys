@@ -12,7 +12,7 @@ Options for configuring a HotkeyRecorder instance.
 ### ignoreInputs?
 
 ```ts
-optional ignoreInputs: boolean;
+optional ignoreInputs?: boolean;
 ```
 
 Defined in: [hotkey-recorder.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L34)
@@ -30,10 +30,10 @@ true
 
 ***
 
-### onCancel()?
+### onCancel?
 
 ```ts
-optional onCancel: () => void;
+optional onCancel?: () => void;
 ```
 
 Defined in: [hotkey-recorder.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L24)
@@ -46,10 +46,10 @@ Optional callback when recording is cancelled (Escape pressed)
 
 ***
 
-### onClear()?
+### onClear?
 
 ```ts
-optional onClear: () => void;
+optional onClear?: () => void;
 ```
 
 Defined in: [hotkey-recorder.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L26)
@@ -62,7 +62,7 @@ Optional callback when shortcut is cleared (Backspace/Delete pressed)
 
 ***
 
-### onRecord()
+### onRecord
 
 ```ts
 onRecord: (hotkey) => void;

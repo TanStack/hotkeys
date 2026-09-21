@@ -24,7 +24,7 @@ The function to call when the hotkey is pressed
 ### hotkey
 
 ```ts
-hotkey: RegisterableHotkey | () => RegisterableHotkey;
+hotkey: RegisterableHotkey | (() => RegisterableHotkey);
 ```
 
 Defined in: [injectHotkeys.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L21)
@@ -36,9 +36,9 @@ The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object
 ### options?
 
 ```ts
-optional options: 
+optional options?: 
   | InjectHotkeyOptions
-  | () => InjectHotkeyOptions;
+  | (() => InjectHotkeyOptions);
 ```
 
 Defined in: [injectHotkeys.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L25)

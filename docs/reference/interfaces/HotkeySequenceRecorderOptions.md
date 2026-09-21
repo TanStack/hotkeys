@@ -12,7 +12,7 @@ Options for configuring a HotkeySequenceRecorder instance.
 ### commitKeys?
 
 ```ts
-optional commitKeys: HotkeySequenceRecorderCommitKeys;
+optional commitKeys?: HotkeySequenceRecorderCommitKeys;
 ```
 
 Defined in: [hotkey-sequence-recorder.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L45)
@@ -30,7 +30,7 @@ Keyboard commit mode. When `'none'`, use [HotkeySequenceRecorder.commit](../clas
 ### commitOnEnter?
 
 ```ts
-optional commitOnEnter: boolean;
+optional commitOnEnter?: boolean;
 ```
 
 Defined in: [hotkey-sequence-recorder.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L40)
@@ -48,7 +48,7 @@ true
 ### idleTimeoutMs?
 
 ```ts
-optional idleTimeoutMs: number;
+optional idleTimeoutMs?: number;
 ```
 
 Defined in: [hotkey-sequence-recorder.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L50)
@@ -61,7 +61,7 @@ The timer does not run while waiting for the first chord (`steps.length === 0`).
 ### ignoreInputs?
 
 ```ts
-optional ignoreInputs: boolean;
+optional ignoreInputs?: boolean;
 ```
 
 Defined in: [hotkey-sequence-recorder.ts:58](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L58)
@@ -79,10 +79,10 @@ true
 
 ***
 
-### onCancel()?
+### onCancel?
 
 ```ts
-optional onCancel: () => void;
+optional onCancel?: () => void;
 ```
 
 Defined in: [hotkey-sequence-recorder.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L33)
@@ -95,10 +95,10 @@ Optional callback when recording is cancelled (Escape pressed)
 
 ***
 
-### onClear()?
+### onClear?
 
 ```ts
-optional onClear: () => void;
+optional onClear?: () => void;
 ```
 
 Defined in: [hotkey-sequence-recorder.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L35)
@@ -111,7 +111,7 @@ Optional callback when the sequence is cleared (Backspace/Delete with no steps)
 
 ***
 
-### onRecord()
+### onRecord
 
 ```ts
 onRecord: (sequence) => void;

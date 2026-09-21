@@ -4,7 +4,7 @@ title: resolveModifier
 ---
 
 ```ts
-function resolveModifier(modifier, platform): CanonicalModifier;
+function resolveModifier(modifier, platform?): CanonicalModifier;
 ```
 
 Defined in: [constants.ts:153](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L153)
@@ -22,15 +22,15 @@ map to Command+S on Mac and Ctrl+S on Windows/Linux.
 
 ### modifier
 
+`"Mod"` \| [`CanonicalModifier`](../type-aliases/CanonicalModifier.md)
+
 The modifier to resolve. If 'Mod', resolves based on platform.
 
-`"Mod"` | [`CanonicalModifier`](../type-aliases/CanonicalModifier.md)
+### platform?
 
-### platform
+`"mac"` \| `"windows"` \| `"linux"`
 
 The target platform. Defaults to auto-detection.
-
-`"mac"` | `"windows"` | `"linux"`
 
 ## Returns
 

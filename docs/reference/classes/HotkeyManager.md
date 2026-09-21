@@ -107,9 +107,9 @@ The hotkey string to check
 
 ##### target?
 
-Optional target element to match (if provided, both hotkey and target must match)
+`HTMLElement` \| `Document` \| `Window`
 
-`HTMLElement` | `Document` | `Window`
+Optional target element to match (if provided, both hotkey and target must match)
 
 #### Returns
 
@@ -125,7 +125,7 @@ True if a matching registration exists
 register(
    hotkey, 
    callback, 
-   options): HotkeyRegistrationHandle;
+   options?): HotkeyRegistrationHandle;
 ```
 
 Defined in: [hotkey-manager.ts:271](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L271)
@@ -149,7 +149,7 @@ The hotkey string (e.g., 'Mod+S') or RawHotkey object
 
 The function to call when the hotkey is pressed
 
-##### options
+##### options?
 
 [`HotkeyOptions`](../interfaces/HotkeyOptions.md) = `{}`
 

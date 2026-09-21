@@ -36,7 +36,7 @@ The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object
 ### options?
 
 ```ts
-optional options: CreateHotkeyOptions;
+optional options?: CreateHotkeyOptions;
 ```
 
 Defined in: [createHotkeys.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L25)

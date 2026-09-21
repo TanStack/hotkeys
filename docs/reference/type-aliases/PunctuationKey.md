@@ -7,7 +7,7 @@ title: PunctuationKey
 type PunctuationKey = "/" | "[" | "]" | "\" | "=" | "-" | "," | "." | ";" | "`";
 ```
 
-Defined in: [hotkey.ts:117](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L117)
+Defined in: [hotkey.ts:103](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L103)
 
 Punctuation keys commonly used in keyboard shortcuts.
 These are the literal characters as they appear in KeyboardEvent.key

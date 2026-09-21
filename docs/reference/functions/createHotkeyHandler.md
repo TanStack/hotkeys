@@ -7,7 +7,7 @@ title: createHotkeyHandler
 function createHotkeyHandler(
    hotkey, 
    callback, 
-   options): (event) => void;
+   options?): (event) => void;
 ```
 
 Defined in: [match.ts:159](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L159)
@@ -18,9 +18,10 @@ Creates a keyboard event handler that calls the callback when the hotkey matches
 
 ### hotkey
 
-The hotkey string or ParsedHotkey to match
+  \| [`Hotkey`](../type-aliases/Hotkey.md)
+  \| [`ParsedHotkey`](../interfaces/ParsedHotkey.md)
 
-[`Hotkey`](../type-aliases/Hotkey.md) | [`ParsedHotkey`](../interfaces/ParsedHotkey.md)
+The hotkey string or ParsedHotkey to match
 
 ### callback
 
@@ -28,7 +29,7 @@ The hotkey string or ParsedHotkey to match
 
 The function to call when the hotkey matches
 
-### options
+### options?
 
 [`CreateHotkeyHandlerOptions`](../interfaces/CreateHotkeyHandlerOptions.md) = `{}`
 
@@ -38,19 +39,7 @@ Options for matching and handling
 
 A function that can be used as an event handler
 
-```ts
-(event): void;
-```
-
-### Parameters
-
-#### event
-
-`KeyboardEvent`
-
-### Returns
-
-`void`
+(`event`) => `void`
 
 ## Example
 

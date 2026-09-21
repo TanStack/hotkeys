@@ -4,10 +4,10 @@ title: useHotkeys
 ---
 
 ```ts
-function useHotkeys(hotkeys, commonOptions): void;
+function useHotkeys(hotkeys, commonOptions?): void;
 ```
 
-Defined in: [packages/vue-hotkeys/src/useHotkeys.ts:73](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeys.ts#L73)
+Defined in: [useHotkeys.ts:73](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeys.ts#L73)
 
 Vue composable for registering multiple keyboard hotkeys at once.
 
@@ -26,7 +26,7 @@ HotkeysProvider defaults < commonOptions < per-definition options
 
 Array of hotkey definitions to register, or a getter/ref
 
-### commonOptions
+### commonOptions?
 
 `MaybeRefOrGetter`\<[`UseHotkeyOptions`](../interfaces/UseHotkeyOptions.md)\> = `{}`
 

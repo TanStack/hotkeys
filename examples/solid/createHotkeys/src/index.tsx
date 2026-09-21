@@ -221,21 +221,19 @@ function DynamicHotkeysDemo() {
   const [newDescription, setNewDescription] = createSignal('')
 
   createHotkeys(() =>
-    shortcuts().map(
-      (s): CreateHotkeyDefinition => ({
-        hotkey: s.hotkey as Hotkey,
-        callback: () => {
-          setShortcuts((prev) =>
-            prev.map((item) =>
-              item.id === s.id ? { ...item, count: item.count + 1 } : item,
-            ),
-          )
-        },
-        options: {
-          meta: { name: s.label, description: s.description },
-        },
-      }),
-    ),
+    shortcuts().map((s): CreateHotkeyDefinition => ({
+      hotkey: s.hotkey as Hotkey,
+      callback: () => {
+        setShortcuts((prev) =>
+          prev.map((item) =>
+            item.id === s.id ? { ...item, count: item.count + 1 } : item,
+          ),
+        )
+      },
+      options: {
+        meta: { name: s.label, description: s.description },
+      },
+    })),
   )
 
   const addShortcut = () => {

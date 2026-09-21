@@ -58,7 +58,7 @@ Gets the number of registered sequences.
 register(
    sequence, 
    callback, 
-   options): SequenceRegistrationHandle;
+   options?): SequenceRegistrationHandle;
 ```
 
 Defined in: [sequence-manager.ts:231](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L231)
@@ -79,7 +79,7 @@ Array of hotkey strings that form the sequence
 
 Function to call when the sequence is completed
 
-##### options
+##### options?
 
 [`SequenceOptions`](../interfaces/SequenceOptions.md) = `{}`
 

@@ -214,8 +214,7 @@ export class MyApp extends LitElement {
 ${`@hotkey('Mod+S', (_event, { hotkey, parsedHotkey }) => {
   console.log('Hotkey:', hotkey)
   console.log('Parsed:', parsedHotkey)
-})`}</pre
-          >
+})`}</pre>
         </section>
 
         <section class="demo-section">
@@ -236,8 +235,7 @@ private _handleIncrementing(
   { hotkey }: HotkeyCallbackContext,
 ) {
   this.incrementCount++
-}`}</pre
-          >
+}`}</pre>
         </section>
 
         <section class="demo-section">
@@ -259,8 +257,7 @@ private _handleConditional = (
 ) => {
   if (!this.enabled) return
   alert('This hotkey can be toggled!')
-}`}</pre
-          >
+}`}</pre>
         </section>
 
         <section class="demo-section">
@@ -279,8 +276,7 @@ ${`@hotkey('Mod+1')
 private _tab1 = () => { this.activeTab = 1 }
 
 @hotkey('Mod+2')
-private _tab2 = () => { this.activeTab = 2 }`}</pre
-          >
+private _tab2 = () => { this.activeTab = 2 }`}</pre>
         </section>
 
         <section class="demo-section">
@@ -316,8 +312,7 @@ private _tab2 = () => { this.activeTab = 2 }`}</pre
 ${`@hotkey('Shift+ArrowUp', () => selectUp())
 @hotkey('Alt+ArrowLeft', () => navigateBack())
 @hotkey('Mod+Home', () => goToStart())
-@hotkey('Control+PageUp', () => previousPage())`}</pre
-          >
+@hotkey('Control+PageUp', () => previousPage())`}</pre>
         </section>
 
         <section class="demo-section">
@@ -341,8 +336,7 @@ ${`@hotkey('Shift+ArrowUp', () => selectUp())
 ${`@hotkey('Alt+F4', () => closeWindow())
 @hotkey('Control+F5', () => hardRefresh())
 @hotkey('Mod+F1', () => showHelp())
-@hotkey('F12', () => openDevTools())`}</pre
-          >
+@hotkey('F12', () => openDevTools())`}</pre>
         </section>
 
         <section class="demo-section">
@@ -372,8 +366,7 @@ ${`@hotkey('Alt+F4', () => closeWindow())
 ${`@hotkey('Mod+Shift+S', () => saveAs())
 @hotkey('Mod+Shift+Z', () => redo())
 @hotkey('Control+Alt+A', () => specialAction())
-@hotkey('Control+Alt+Shift+X', () => complexAction())`}</pre
-          >
+@hotkey('Control+Alt+Shift+X', () => complexAction())`}</pre>
         </section>
 
         <section class="demo-section">
@@ -402,18 +395,19 @@ ${`@hotkey('Mod+Enter', () => submitForm())
 @hotkey('Shift+Enter', () => insertNewline())
 @hotkey('Mod+Backspace', () => deleteWord())
 @hotkey('Control+Tab', () => nextTab())
-@hotkey('Mod+Space', () => toggle())`}</pre
-          >
+@hotkey('Mod+Space', () => toggle())`}</pre>
         </section>
 
-        ${this.lastHotkey
-          ? html`
-              <div class="info-box">
-                <strong>Last triggered:</strong>
-                ${formatForDisplay(this.lastHotkey)}
-              </div>
-            `
-          : null}
+        ${
+          this.lastHotkey
+            ? html`
+                <div class="info-box">
+                  <strong>Last triggered:</strong>
+                  ${formatForDisplay(this.lastHotkey)}
+                </div>
+              `
+            : null
+        }
 
         <p class="hint">Press <kbd>Escape</kbd> to reset all counters</p>
 
@@ -452,44 +446,47 @@ ${`@hotkey('Mod+Enter', () => submitForm())
                 Open Modal
               </button>
 
-              ${this.modalOpen
-                ? html`
-                    <div
-                      class="modal-overlay"
-                      @click=${() => (this.modalOpen = false)}
-                    >
+              ${
+                this.modalOpen
+                  ? html`
                       <div
-                        class="modal-content"
-                        tabindex="0"
-                        ${ref(this.modalRef)}
-                        @click=${(e: Event) => e.stopPropagation()}
+                        class="modal-overlay"
+                        @click=${() => (this.modalOpen = false)}
                       >
-                        <h3>Modal Dialog (Scoped)</h3>
-                        <p>Try these shortcuts while modal is open:</p>
-                        <div class="hotkey-list">
-                          <div>
-                            <kbd>${formatForDisplay('Escape')}</kbd> — Close
-                            modal
+                        <div
+                          class="modal-content"
+                          tabindex="0"
+                          ${ref(this.modalRef)}
+                          @click=${(e: Event) => e.stopPropagation()}
+                        >
+                          <h3>Modal Dialog (Scoped)</h3>
+                          <p>Try these shortcuts while modal is open:</p>
+                          <div class="hotkey-list">
+                            <div>
+                              <kbd>${formatForDisplay('Escape')}</kbd> — Close
+                              modal
+                            </div>
+                            <div>
+                              <kbd>${formatForDisplay('Mod+Enter')}</kbd> —
+                              Submit
+                            </div>
                           </div>
-                          <div>
-                            <kbd>${formatForDisplay('Mod+Enter')}</kbd> — Submit
-                          </div>
-                        </div>
 
-                        <div class="counter">
-                          Modal shortcuts: ${this.modalShortcutCount}x
+                          <div class="counter">
+                            Modal shortcuts: ${this.modalShortcutCount}x
+                          </div>
+                          <p class="hint">
+                            These shortcuts only work when the modal is open and
+                            focused.
+                          </p>
+                          <button @click=${() => (this.modalOpen = false)}>
+                            Close
+                          </button>
                         </div>
-                        <p class="hint">
-                          These shortcuts only work when the modal is open and
-                          focused.
-                        </p>
-                        <button @click=${() => (this.modalOpen = false)}>
-                          Close
-                        </button>
                       </div>
-                    </div>
-                  `
-                : null}
+                    `
+                  : null
+              }
             </div>
 
             <div class="scoped-area">
@@ -553,8 +550,7 @@ manager.register(
   'Mod+S',
   () => saveEditorContent(),
   { target: this.editorRef.value }
-)`}</pre
-          >
+)`}</pre>
         </section>
       </main>
     </div>`

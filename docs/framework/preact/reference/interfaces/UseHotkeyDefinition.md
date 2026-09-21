@@ -36,7 +36,7 @@ The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object
 ### options?
 
 ```ts
-optional options: UseHotkeyOptions;
+optional options?: UseHotkeyOptions;
 ```
 
 Defined in: [useHotkeys.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeys.ts#L26)

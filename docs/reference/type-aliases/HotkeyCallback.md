@@ -7,7 +7,7 @@ title: HotkeyCallback
 type HotkeyCallback = (event, context) => void;
 ```
 
-Defined in: [hotkey.ts:412](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L412)
+Defined in: [hotkey.ts:385](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L385)
 
 Callback function type for hotkey handlers.
 

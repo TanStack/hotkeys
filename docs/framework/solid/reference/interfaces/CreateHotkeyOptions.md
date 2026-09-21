@@ -14,7 +14,7 @@ Defined in: [createHotkey.ts:16](https://github.com/TanStack/hotkeys/blob/main/p
 ### target?
 
 ```ts
-optional target: HTMLElement | Document | Window | null;
+optional target?: HTMLElement | Document | Window | null;
 ```
 
 Defined in: [createHotkey.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L24)

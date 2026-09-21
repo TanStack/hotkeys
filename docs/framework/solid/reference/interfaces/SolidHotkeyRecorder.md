@@ -7,7 +7,7 @@ Defined in: [createHotkeyRecorder.ts:7](https://github.com/TanStack/hotkeys/blob
 
 ## Properties
 
-### cancelRecording()
+### cancelRecording
 
 ```ts
 cancelRecording: () => void;
@@ -23,7 +23,7 @@ Cancel recording without saving
 
 ***
 
-### isRecording()
+### isRecording
 
 ```ts
 isRecording: () => boolean;
@@ -39,7 +39,7 @@ Whether recording is currently active
 
 ***
 
-### recordedHotkey()
+### recordedHotkey
 
 ```ts
 recordedHotkey: () => Hotkey | null;
@@ -55,7 +55,7 @@ The currently recorded hotkey (for live preview)
 
 ***
 
-### startRecording()
+### startRecording
 
 ```ts
 startRecording: () => void;
@@ -71,7 +71,7 @@ Start recording a new hotkey
 
 ***
 
-### stopRecording()
+### stopRecording
 
 ```ts
 stopRecording: () => void;

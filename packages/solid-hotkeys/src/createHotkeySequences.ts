@@ -63,8 +63,7 @@ export function createHotkeySequences(
     | Array<CreateHotkeySequenceDefinition>
     | (() => Array<CreateHotkeySequenceDefinition>),
   commonOptions:
-    | CreateHotkeySequenceOptions
-    | (() => CreateHotkeySequenceOptions) = {},
+    CreateHotkeySequenceOptions | (() => CreateHotkeySequenceOptions) = {},
 ): void {
   type RegistrationRecord = {
     handle: SequenceRegistrationHandle

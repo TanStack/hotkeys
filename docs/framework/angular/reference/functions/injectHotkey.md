@@ -7,7 +7,7 @@ title: injectHotkey
 function injectHotkey(
    hotkey, 
    callback, 
-   options): void;
+   options?): void;
 ```
 
 Defined in: [injectHotkey.ts:85](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L85)
@@ -28,9 +28,9 @@ handle is updated instead of unregistering and re-registering when identity is u
 
 ### hotkey
 
-The hotkey string (e.g. 'Mod+S', 'Escape') or getter function
+`RegisterableHotkey` \| (() => `RegisterableHotkey`)
 
-`RegisterableHotkey` | () => `RegisterableHotkey`
+The hotkey string (e.g. 'Mod+S', 'Escape') or getter function
 
 ### callback
 
@@ -38,11 +38,12 @@ The hotkey string (e.g. 'Mod+S', 'Escape') or getter function
 
 The function to call when the hotkey is pressed
 
-### options
+### options?
+
+  \| [`InjectHotkeyOptions`](../interfaces/InjectHotkeyOptions.md)
+  \| (() => [`InjectHotkeyOptions`](../interfaces/InjectHotkeyOptions.md))
 
 Options for the hotkey behavior, or getter for reactive options
-
-[`InjectHotkeyOptions`](../interfaces/InjectHotkeyOptions.md) | () => [`InjectHotkeyOptions`](../interfaces/InjectHotkeyOptions.md)
 
 ## Returns
 

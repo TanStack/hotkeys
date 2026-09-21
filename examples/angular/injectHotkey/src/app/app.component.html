@@ -18,8 +18,7 @@
 injectHotkey('Mod+S', (_event, &#123; hotkey, parsedHotkey &#125;) => &#123;
   console.log('Hotkey:', hotkey)
   console.log('Parsed:', parsedHotkey)
-&#125;)</pre
-      >
+&#125;)</pre>
     </section>
 
     <section class="demo-section">
@@ -40,8 +39,7 @@ injectHotkey(
     this.incrementCount.update(c => c + 1)
   &#125;,
   &#123; requireReset: true &#125;
-)</pre
-      >
+)</pre>
     </section>
 
     <section class="demo-section">
@@ -61,8 +59,7 @@ injectHotkey(
   'Mod+E',
   (event, &#123; hotkey &#125;) => &#123; alert('Triggered!') &#125;,
   this.modEOptions
-)</pre
-      >
+)</pre>
     </section>
 
     <section class="demo-section">
@@ -88,8 +85,7 @@ injectHotkey(
       <div class="counter">Active Tab: {{ activeTab() }}</div>
       <pre class="code-block">
 injectHotkey('Mod+1', () => this.activeTab.set(1))
-injectHotkey('Mod+2', () => this.activeTab.set(2))</pre
-      >
+injectHotkey('Mod+2', () => this.activeTab.set(2))</pre>
     </section>
 
     <section class="demo-section">
@@ -126,8 +122,7 @@ injectHotkey('Mod+2', () => this.activeTab.set(2))</pre
 injectHotkey('Shift+ArrowUp', () => selectUp())
 injectHotkey('Alt+ArrowLeft', () => navigateBack())
 injectHotkey('Mod+Home', () => goToStart())
-injectHotkey('Control+PageUp', () => previousPage())</pre
-      >
+injectHotkey('Control+PageUp', () => previousPage())</pre>
     </section>
 
     <section class="demo-section">
@@ -157,8 +152,7 @@ injectHotkey('Control+PageUp', () => previousPage())</pre
 injectHotkey('Alt+F4', () => closeWindow())
 injectHotkey('Control+F5', () => hardRefresh())
 injectHotkey('Mod+F1', () => showHelp())
-injectHotkey('F12', () => openDevTools())</pre
-      >
+injectHotkey('F12', () => openDevTools())</pre>
     </section>
 
     <section class="demo-section">
@@ -192,8 +186,7 @@ injectHotkey('F12', () => openDevTools())</pre
 injectHotkey('Mod+Shift+S', () => saveAs())
 injectHotkey('Mod+Shift+Z', () => redo())
 injectHotkey('Control+Alt+A', () => specialAction())
-injectHotkey('Control+Alt+Shift+X', () => complexAction())</pre
-      >
+injectHotkey('Control+Alt+Shift+X', () => complexAction())</pre>
     </section>
 
     <section class="demo-section">
@@ -230,8 +223,7 @@ injectHotkey('Mod+Enter', () => submitForm())
 injectHotkey('Shift+Enter', () => insertNewline())
 injectHotkey('Mod+Backspace', () => deleteWord())
 injectHotkey('Control+Tab', () => nextTab())
-injectHotkey('Mod+Space', () => toggle())</pre
-      >
+injectHotkey('Mod+Space', () => toggle())</pre>
     </section>
 
     @if (lastHotkey()) {
@@ -367,8 +359,7 @@ injectHotkey(
   'Mod+S',
   () => saveEditorContent(),
   () => (&#123; target: this.editorRef()?.nativeElement ?? null &#125;)
-)</pre
-      >
+)</pre>
     </section>
   </main>
 </div>

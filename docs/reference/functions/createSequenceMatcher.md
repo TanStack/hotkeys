@@ -4,7 +4,7 @@ title: createSequenceMatcher
 ---
 
 ```ts
-function createSequenceMatcher(sequence, options): object;
+function createSequenceMatcher(sequence, options?): object;
 ```
 
 Defined in: [sequence-manager.ts:677](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L677)
@@ -23,7 +23,7 @@ if attaching to document.
 
 The sequence of hotkeys to match
 
-### options
+### options?
 
 Options including timeout
 
@@ -41,7 +41,7 @@ Options including timeout
 
 An object with match() and reset() methods
 
-### getProgress()
+### getProgress
 
 ```ts
 getProgress: () => number;
@@ -51,7 +51,7 @@ getProgress: () => number;
 
 `number`
 
-### match()
+### match
 
 ```ts
 match: (event) => boolean;
@@ -67,7 +67,7 @@ match: (event) => boolean;
 
 `boolean`
 
-### reset()
+### reset
 
 ```ts
 reset: () => void;

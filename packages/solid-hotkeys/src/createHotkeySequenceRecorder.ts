@@ -22,8 +22,7 @@ export interface SolidHotkeySequenceRecorder {
  */
 export function createHotkeySequenceRecorder(
   options:
-    | HotkeySequenceRecorderOptions
-    | (() => HotkeySequenceRecorderOptions),
+    HotkeySequenceRecorderOptions | (() => HotkeySequenceRecorderOptions),
 ): SolidHotkeySequenceRecorder {
   const defaultOptions = useDefaultHotkeysOptions()
 

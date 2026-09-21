@@ -4,7 +4,7 @@ title: hasNonModifierKey
 ---
 
 ```ts
-function hasNonModifierKey(hotkey, platform): boolean;
+function hasNonModifierKey(hotkey, platform?): boolean;
 ```
 
 Defined in: [parse.ts:316](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L316)
@@ -18,15 +18,17 @@ just a combination of modifiers without an action key.
 
 ### hotkey
 
+  \| [`Hotkey`](../type-aliases/Hotkey.md)
+  \| [`ParsedHotkey`](../interfaces/ParsedHotkey.md)
+  \| `string` & `object`
+
 The hotkey string or ParsedHotkey to check
 
-[`Hotkey`](../type-aliases/Hotkey.md) | [`ParsedHotkey`](../interfaces/ParsedHotkey.md) | `string` & `object`
+### platform?
 
-### platform
+`"mac"` \| `"windows"` \| `"linux"`
 
 The target platform for parsing (defaults to auto-detection)
-
-`"mac"` | `"windows"` | `"linux"`
 
 ## Returns
 

@@ -4,10 +4,10 @@ title: useHotkeySequences
 ---
 
 ```ts
-function useHotkeySequences(definitions, commonOptions): void;
+function useHotkeySequences(definitions, commonOptions?): void;
 ```
 
-Defined in: [packages/vue-hotkeys/src/useHotkeySequences.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeySequences.ts#L68)
+Defined in: [useHotkeySequences.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeySequences.ts#L68)
 
 Vue composable for registering multiple keyboard shortcut sequences at once (Vim-style).
 
@@ -27,7 +27,7 @@ Definitions with an empty `sequence` are skipped (no registration).
 
 Array of sequence definitions, or a getter/ref
 
-### commonOptions
+### commonOptions?
 
 `MaybeRefOrGetter`\<[`UseHotkeySequenceOptions`](../interfaces/UseHotkeySequenceOptions.md)\> = `{}`
 

@@ -135,21 +135,19 @@ export class AppComponent {
     injectHotkeys(() =>
       this.shortcuts()
         .filter((s) => s.hotkey !== '')
-        .map(
-          (s): InjectHotkeyDefinition => ({
-            hotkey: s.hotkey as Hotkey,
-            callback: () => {
-              console.log(`${s.name} triggered:`, s.hotkey)
+        .map((s): InjectHotkeyDefinition => ({
+          hotkey: s.hotkey as Hotkey,
+          callback: () => {
+            console.log(`${s.name} triggered:`, s.hotkey)
+          },
+          options: {
+            enabled: !this.recorder.isRecording(),
+            meta: {
+              name: s.name,
+              description: s.description,
             },
-            options: {
-              enabled: !this.recorder.isRecording(),
-              meta: {
-                name: s.name,
-                description: s.description,
-              },
-            },
-          }),
-        ),
+          },
+        })),
     )
   }
 

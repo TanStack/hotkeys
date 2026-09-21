@@ -7,7 +7,7 @@ title: matchesKeyboardEvent
 function matchesKeyboardEvent(
    event, 
    hotkey, 
-   platform): boolean;
+   platform?): boolean;
 ```
 
 Defined in: [match.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L43)
@@ -34,15 +34,16 @@ The KeyboardEvent to check
 
 ### hotkey
 
+  \| [`Hotkey`](../type-aliases/Hotkey.md)
+  \| [`ParsedHotkey`](../interfaces/ParsedHotkey.md)
+
 The hotkey string or ParsedHotkey to match against
 
-[`Hotkey`](../type-aliases/Hotkey.md) | [`ParsedHotkey`](../interfaces/ParsedHotkey.md)
+### platform?
 
-### platform
+`"mac"` \| `"windows"` \| `"linux"`
 
 The target platform for resolving 'Mod' (defaults to auto-detection)
-
-`"mac"` | `"windows"` | `"linux"`
 
 ## Returns
 

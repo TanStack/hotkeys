@@ -67,7 +67,7 @@ Check if this registration is still active (not unregistered)
 
 ***
 
-### setOptions()
+### setOptions
 
 ```ts
 setOptions: (options) => void;
@@ -90,7 +90,7 @@ Useful for updating `enabled`, `preventDefault`, etc. without re-registering.
 
 ***
 
-### unregister()
+### unregister
 
 ```ts
 unregister: () => void;

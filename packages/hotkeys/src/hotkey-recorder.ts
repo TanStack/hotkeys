@@ -171,8 +171,7 @@ export class HotkeyRecorder {
 
       // Remove listener FIRST to prevent any additional events
       const handlerToRemove = this.#keydownHandler as
-        | ((event: KeyboardEvent) => void)
-        | null
+        ((event: KeyboardEvent) => void) | null
       if (handlerToRemove) {
         this.#removeListener(handlerToRemove)
         this.#keydownHandler = null

@@ -57,16 +57,7 @@ export type LetterKey =
  * Number keys 0-9.
  */
 export type NumberKey =
-  | '0'
-  | '1'
-  | '2'
-  | '3'
-  | '4'
-  | '5'
-  | '6'
-  | '7'
-  | '8'
-  | '9'
+  '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
 
 /**
  * Function keys F1-F12.
@@ -102,12 +93,7 @@ export type NavigationKey =
  * Editing and special keys.
  */
 export type EditingKey =
-  | 'Enter'
-  | 'Escape'
-  | 'Space'
-  | 'Tab'
-  | 'Backspace'
-  | 'Delete'
+  'Enter' | 'Escape' | 'Space' | 'Tab' | 'Backspace' | 'Delete'
 
 /**
  * Punctuation keys commonly used in keyboard shortcuts.
@@ -115,16 +101,7 @@ export type EditingKey =
  * (layout-dependent, typically US keyboard layout).
  */
 export type PunctuationKey =
-  | '/'
-  | '['
-  | ']'
-  | '\\'
-  | '='
-  | '-'
-  | ','
-  | '.'
-  | ';'
-  | '`'
+  '/' | '[' | ']' | '\\' | '=' | '-' | ',' | '.' | ';' | '`'
 
 /**
  * Keys that don't change their value when Shift is pressed.
@@ -137,11 +114,7 @@ export type PunctuationKey =
  * is part of the modifier combination.
  */
 type NonPunctuationKey =
-  | LetterKey
-  | NumberKey
-  | EditingKey
-  | NavigationKey
-  | FunctionKey
+  LetterKey | NumberKey | EditingKey | NavigationKey | FunctionKey
 
 /**
  * All supported non-modifier keys.

@@ -21,11 +21,7 @@ export interface UseHotkeySequenceOptions extends Omit<
    * Defaults to document.
    */
   target?:
-    | RefObject<HTMLElement | null>
-    | HTMLElement
-    | Document
-    | Window
-    | null
+    RefObject<HTMLElement | null> | HTMLElement | Document | Window | null
 }
 
 /**

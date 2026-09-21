@@ -4,10 +4,10 @@ title: createHotkeys
 ---
 
 ```ts
-function createHotkeys(hotkeys, commonOptions): void;
+function createHotkeys(hotkeys, commonOptions?): void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:66](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L66)
+Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:65](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L65)
 
 Register multiple global hotkeys for the current component.
 
@@ -17,7 +17,7 @@ Register multiple global hotkeys for the current component.
 
 `MaybeGetter`\<[`CreateHotkeyDefinition`](../interfaces/CreateHotkeyDefinition.md)[]\>
 
-### commonOptions
+### commonOptions?
 
 `MaybeGetter`\<[`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md)\> = `{}`
 

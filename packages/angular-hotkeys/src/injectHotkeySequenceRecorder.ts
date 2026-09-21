@@ -30,8 +30,7 @@ export interface AngularHotkeySequenceRecorder {
  */
 export function injectHotkeySequenceRecorder(
   options:
-    | HotkeySequenceRecorderOptions
-    | (() => HotkeySequenceRecorderOptions),
+    HotkeySequenceRecorderOptions | (() => HotkeySequenceRecorderOptions),
 ): AngularHotkeySequenceRecorder {
   const defaultOptions = injectDefaultHotkeysOptions()
   const destroyRef = inject(DestroyRef)

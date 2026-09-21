@@ -4,10 +4,10 @@ title: createHotkeysAttachment
 ---
 
 ```ts
-function createHotkeysAttachment(hotkeys, commonOptions): Attachment<HTMLElement>;
+function createHotkeysAttachment(hotkeys, commonOptions?): Attachment<HTMLElement>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:189](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L189)
+Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:188](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L188)
 
 Create an attachment for element-scoped multi-hotkey registration.
 
@@ -17,7 +17,7 @@ Create an attachment for element-scoped multi-hotkey registration.
 
 `MaybeGetter`\<[`CreateHotkeyDefinition`](../interfaces/CreateHotkeyDefinition.md)[]\>
 
-### commonOptions
+### commonOptions?
 
 `MaybeGetter`\<[`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md)\> = `{}`
 

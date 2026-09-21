@@ -231,8 +231,7 @@ useHotkeys([
     callback: () => undo(),
     options: { meta: { name: 'Undo', description: 'Undo the last action' } },
   },
-])</pre
-        >
+])</pre>
       </div>
 
       <!-- Common Options -->
@@ -269,8 +268,7 @@ useHotkeys(
       options: { enabled: true, meta: { name: 'Action C' } } },
   ],
   { enabled }, // common option
-)</pre
-        >
+)</pre>
       </div>
 
       <!-- Dynamic -->
@@ -323,8 +321,7 @@ useHotkeys(
     callback: s.action,
     options: { meta: { name: s.name, description: s.description } },
   })),
-)</pre
-        >
+)</pre>
       </div>
 
       <!-- Live Registrations Viewer -->
@@ -407,8 +404,7 @@ hotkeys.value.map((reg) => ({
   name: reg.options.meta?.name,
   description: reg.options.meta?.description,
   triggers: reg.triggerCount,
-}))</pre
-        >
+}))</pre>
       </div>
     </div>
 

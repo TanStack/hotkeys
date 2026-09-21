@@ -12,7 +12,7 @@ type Hotkey =
   | FourModifierHotkey;
 ```
 
-Defined in: [hotkey.ts:283](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L283)
+Defined in: [hotkey.ts:256](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L256)
 
 A type-safe hotkey string.
 

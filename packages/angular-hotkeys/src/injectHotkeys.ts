@@ -74,8 +74,7 @@ export interface InjectHotkeyDefinition {
  */
 export function injectHotkeys(
   hotkeys:
-    | Array<InjectHotkeyDefinition>
-    | (() => Array<InjectHotkeyDefinition>),
+    Array<InjectHotkeyDefinition> | (() => Array<InjectHotkeyDefinition>),
   commonOptions: InjectHotkeyOptions | (() => InjectHotkeyOptions) = {},
 ): void {
   type RegistrationRecord = {

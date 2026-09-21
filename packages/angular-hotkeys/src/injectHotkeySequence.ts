@@ -59,8 +59,7 @@ export function injectHotkeySequence(
   sequence: HotkeySequence | (() => HotkeySequence),
   callback: HotkeyCallback,
   options:
-    | InjectHotkeySequenceOptions
-    | (() => InjectHotkeySequenceOptions) = {},
+    InjectHotkeySequenceOptions | (() => InjectHotkeySequenceOptions) = {},
 ): void {
   const defaultOptions = injectDefaultHotkeysOptions()
   const manager = getSequenceManager()

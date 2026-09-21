@@ -53,8 +53,7 @@ export function injectHotkeySequences(
     | Array<InjectHotkeySequenceDefinition>
     | (() => Array<InjectHotkeySequenceDefinition>),
   commonOptions:
-    | InjectHotkeySequenceOptions
-    | (() => InjectHotkeySequenceOptions) = {},
+    InjectHotkeySequenceOptions | (() => InjectHotkeySequenceOptions) = {},
 ): void {
   type RegistrationRecord = {
     handle: SequenceRegistrationHandle
