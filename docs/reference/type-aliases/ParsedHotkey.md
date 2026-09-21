@@ -4,7 +4,7 @@ title: ParsedHotkey
 ---
 
 ```ts
-type ParsedHotkey = ParsedModifiers &
+type ParsedHotkey = ParsedModifiers & 
   | {
   code?: never;
   key: LogicalKey | string & object;

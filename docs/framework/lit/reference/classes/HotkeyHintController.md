@@ -17,8 +17,8 @@ Modifier hint controller. Getter arguments can read reactive host properties.
 
 ```ts
 new HotkeyHintController(
-   host,
-   hotkey,
+   host, 
+   hotkey, 
    options): HotkeyHintController;
 ```
 

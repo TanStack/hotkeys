@@ -4,7 +4,7 @@ title: LogicalKey
 ---
 
 ```ts
-type LogicalKey =
+type LogicalKey = 
   | NonPunctuationKey
   | PunctuationKey;
 ```

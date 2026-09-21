@@ -5,8 +5,8 @@ title: areHotkeysEqual
 
 ```ts
 function areHotkeysEqual(
-   left,
-   right,
+   left, 
+   right, 
    platform): boolean;
 ```
 

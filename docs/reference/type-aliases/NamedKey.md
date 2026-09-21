@@ -4,7 +4,7 @@ title: NamedKey
 ---
 
 ```ts
-type NamedKey =
+type NamedKey = 
   | typeof SHARED_NAMED_KEYS[number]
   | typeof LOGICAL_ONLY_NAMED_KEYS[number];
 ```

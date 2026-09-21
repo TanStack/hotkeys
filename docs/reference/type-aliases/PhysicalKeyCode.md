@@ -4,7 +4,7 @@ title: PhysicalKeyCode
 ---
 
 ```ts
-type PhysicalKeyCode =
+type PhysicalKeyCode = 
   | `Key${LetterKey}`
   | `Digit${NumberKey}`
   | `Numpad${NumberKey}`

@@ -4,7 +4,7 @@ title: NonPunctuationKey
 ---
 
 ```ts
-type NonPunctuationKey =
+type NonPunctuationKey = 
   | LetterKey
   | NumberKey
   | EditingKey

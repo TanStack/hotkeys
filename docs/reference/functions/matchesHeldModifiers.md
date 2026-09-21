@@ -5,8 +5,8 @@ title: matchesHeldModifiers
 
 ```ts
 function matchesHeldModifiers(
-   hotkey,
-   heldKeys,
+   hotkey, 
+   heldKeys, 
    options): boolean;
 ```
 

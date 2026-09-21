@@ -4,7 +4,7 @@ title: HotkeyConflict
 ---
 
 ```ts
-type HotkeyConflict =
+type HotkeyConflict = 
   | {
   registration: HotkeyRegistrationView;
   type: "hotkey";

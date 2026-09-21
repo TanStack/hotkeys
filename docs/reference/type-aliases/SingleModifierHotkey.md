@@ -4,7 +4,7 @@ title: SingleModifierHotkey
 ---
 
 ```ts
-type SingleModifierHotkey =
+type SingleModifierHotkey = 
   | `Control+${Key}`
   | `Alt+${Key}`
   | `Shift+${Key}`

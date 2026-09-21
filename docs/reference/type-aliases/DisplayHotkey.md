@@ -4,7 +4,7 @@ title: DisplayHotkey
 ---
 
 ```ts
-type DisplayHotkey =
+type DisplayHotkey = 
   | RegisterableHotkey
   | ParsedHotkey
   | string & object;

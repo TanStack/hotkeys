@@ -4,7 +4,7 @@ title: RawHotkey
 ---
 
 ```ts
-type RawHotkey =
+type RawHotkey = 
   | object & RawModifiers
   | object & RawModifiers;
 ```

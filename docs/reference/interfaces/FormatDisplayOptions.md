@@ -91,7 +91,7 @@ Override the separator between display tokens. Defaults to platform-specific for
 ### useSymbols?
 
 ```ts
-optional useSymbols:
+optional useSymbols: 
   | boolean
   | {
   keys?: boolean;

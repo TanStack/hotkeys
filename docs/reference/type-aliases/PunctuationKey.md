@@ -4,7 +4,7 @@ title: PunctuationKey
 ---
 
 ```ts
-type PunctuationKey =
+type PunctuationKey = 
   | "/"
   | "["
   | "]"

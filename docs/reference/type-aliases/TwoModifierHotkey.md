@@ -4,7 +4,7 @@ title: TwoModifierHotkey
 ---
 
 ```ts
-type TwoModifierHotkey =
+type TwoModifierHotkey = 
   | `Control+Alt+${Key}`
   | `Control+Shift+${Key}`
   | `Control+Meta+${Key}`
