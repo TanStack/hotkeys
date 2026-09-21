@@ -11,7 +11,7 @@ trustPolicyExclude:
   - 'ua-parser-js@0.7.41' # Socket score 100; popular, healthy cadence.
 minimumReleaseAge: 1440
 overrides:
-  rolldown: 1.0.0-rc.12
+  rolldown: 1.2.9
 
 packages:
   - 'examples/**/*'

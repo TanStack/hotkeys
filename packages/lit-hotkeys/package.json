@@ -52,7 +52,7 @@
     "@tanstack/hotkeys": "workspace:*"
   },
   "devDependencies": {
-    "lit": "^3.3.2"
+    "lit": "^3.3.3"
   },
   "peerDependencies": {
     "lit": ">=3.0.0"
