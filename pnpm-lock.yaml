@@ -108,7 +108,7 @@ importers:
         specifier: ^21.2.10
         version: 21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1)))(rxjs@7.8.2)
       '@tanstack/angular-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/angular-hotkeys
       rxjs:
         specifier: ~7.8.2
@@ -178,7 +178,7 @@ importers:
         specifier: ^21.2.10
         version: 21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1)))(rxjs@7.8.2)
       '@tanstack/angular-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/angular-hotkeys
       rxjs:
         specifier: ~7.8.2
@@ -248,7 +248,7 @@ importers:
         specifier: ^21.2.10
         version: 21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1)))(rxjs@7.8.2)
       '@tanstack/angular-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/angular-hotkeys
       rxjs:
         specifier: ~7.8.2
@@ -318,7 +318,7 @@ importers:
         specifier: ^21.2.10
         version: 21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1)))(rxjs@7.8.2)
       '@tanstack/angular-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/angular-hotkeys
       rxjs:
         specifier: ~7.8.2
@@ -388,7 +388,7 @@ importers:
         specifier: ^21.2.10
         version: 21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1)))(rxjs@7.8.2)
       '@tanstack/angular-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/angular-hotkeys
       rxjs:
         specifier: ~7.8.2
@@ -458,7 +458,7 @@ importers:
         specifier: ^21.2.10
         version: 21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1)))(rxjs@7.8.2)
       '@tanstack/angular-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/angular-hotkeys
       rxjs:
         specifier: ~7.8.2
@@ -528,7 +528,7 @@ importers:
         specifier: ^21.2.10
         version: 21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1)))(rxjs@7.8.2)
       '@tanstack/angular-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/angular-hotkeys
       rxjs:
         specifier: ~7.8.2
@@ -598,7 +598,7 @@ importers:
         specifier: ^21.2.10
         version: 21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1)))(rxjs@7.8.2)
       '@tanstack/angular-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/angular-hotkeys
       rxjs:
         specifier: ~7.8.2
@@ -668,7 +668,7 @@ importers:
         specifier: ^21.2.10
         version: 21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(@angular/platform-browser@21.2.10(@angular/common@21.2.10(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1))(rxjs@7.8.2))(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.1)))(rxjs@7.8.2)
       '@tanstack/angular-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/angular-hotkeys
       rxjs:
         specifier: ~7.8.2
@@ -717,7 +717,7 @@ importers:
   examples/lit/held-keys:
     dependencies:
       '@tanstack/lit-hotkeys':
-        specifier: 0.11.0
+        specifier: 0.12.0
         version: link:../../../packages/lit-hotkeys
       lit:
         specifier: ^3.3.2
@@ -733,7 +733,7 @@ importers:
   examples/lit/hotkey:
     dependencies:
       '@tanstack/lit-hotkeys':
-        specifier: 0.11.0
+        specifier: 0.12.0
         version: link:../../../packages/lit-hotkeys
       lit:
         specifier: ^3.3.2
@@ -749,7 +749,7 @@ importers:
   examples/lit/hotkey-recorder:
     dependencies:
       '@tanstack/lit-hotkeys':
-        specifier: 0.11.0
+        specifier: 0.12.0
         version: link:../../../packages/lit-hotkeys
       lit:
         specifier: ^3.3.2
@@ -765,7 +765,7 @@ importers:
   examples/lit/hotkey-sequence:
     dependencies:
       '@tanstack/lit-hotkeys':
-        specifier: 0.11.0
+        specifier: 0.12.0
         version: link:../../../packages/lit-hotkeys
       lit:
         specifier: ^3.3.2
@@ -781,7 +781,7 @@ importers:
   examples/lit/hotkey-sequence-recorder:
     dependencies:
       '@tanstack/lit-hotkeys':
-        specifier: 0.11.0
+        specifier: 0.12.0
         version: link:../../../packages/lit-hotkeys
       lit:
         specifier: ^3.3.2
@@ -797,7 +797,7 @@ importers:
   examples/lit/key-hold:
     dependencies:
       '@tanstack/lit-hotkeys':
-        specifier: 0.11.0
+        specifier: 0.12.0
         version: link:../../../packages/lit-hotkeys
       lit:
         specifier: ^3.3.2
@@ -813,7 +813,7 @@ importers:
   examples/lit/kitchen-sink:
     dependencies:
       '@tanstack/lit-hotkeys':
-        specifier: 0.11.0
+        specifier: 0.12.0
         version: link:../../../packages/lit-hotkeys
       lit:
         specifier: ^3.3.2
@@ -829,7 +829,7 @@ importers:
   examples/preact/kitchen-sink:
     dependencies:
       '@tanstack/preact-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/preact-hotkeys
       preact:
         specifier: ^10.29.1
@@ -842,7 +842,7 @@ importers:
         specifier: 0.10.2
         version: 0.10.2(csstype@3.2.3)(preact@10.29.1)(solid-js@1.9.12)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 6.0.3
@@ -854,7 +854,7 @@ importers:
   examples/preact/useHeldKeys:
     dependencies:
       '@tanstack/preact-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/preact-hotkeys
       preact:
         specifier: ^10.29.1
@@ -867,7 +867,7 @@ importers:
         specifier: 0.10.2
         version: 0.10.2(csstype@3.2.3)(preact@10.29.1)(solid-js@1.9.12)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 6.0.3
@@ -879,7 +879,7 @@ importers:
   examples/preact/useHotkey:
     dependencies:
       '@tanstack/preact-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/preact-hotkeys
       preact:
         specifier: ^10.29.1
@@ -892,7 +892,7 @@ importers:
         specifier: 0.10.2
         version: 0.10.2(csstype@3.2.3)(preact@10.29.1)(solid-js@1.9.12)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 6.0.3
@@ -904,7 +904,7 @@ importers:
   examples/preact/useHotkeyRecorder:
     dependencies:
       '@tanstack/preact-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/preact-hotkeys
       preact:
         specifier: ^10.29.1
@@ -917,7 +917,7 @@ importers:
         specifier: 0.10.2
         version: 0.10.2(csstype@3.2.3)(preact@10.29.1)(solid-js@1.9.12)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 6.0.3
@@ -929,7 +929,7 @@ importers:
   examples/preact/useHotkeySequence:
     dependencies:
       '@tanstack/preact-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/preact-hotkeys
       preact:
         specifier: ^10.29.1
@@ -942,7 +942,7 @@ importers:
         specifier: 0.10.2
         version: 0.10.2(csstype@3.2.3)(preact@10.29.1)(solid-js@1.9.12)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 6.0.3
@@ -954,7 +954,7 @@ importers:
   examples/preact/useHotkeySequenceRecorder:
     dependencies:
       '@tanstack/preact-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/preact-hotkeys
       preact:
         specifier: ^10.29.1
@@ -967,7 +967,7 @@ importers:
         specifier: 0.10.2
         version: 0.10.2(csstype@3.2.3)(preact@10.29.1)(solid-js@1.9.12)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 6.0.3
@@ -979,7 +979,7 @@ importers:
   examples/preact/useHotkeySequences:
     dependencies:
       '@tanstack/preact-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/preact-hotkeys
       preact:
         specifier: ^10.29.1
@@ -992,7 +992,7 @@ importers:
         specifier: 0.10.2
         version: 0.10.2(csstype@3.2.3)(preact@10.29.1)(solid-js@1.9.12)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 6.0.3
@@ -1004,7 +1004,7 @@ importers:
   examples/preact/useHotkeys:
     dependencies:
       '@tanstack/preact-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/preact-hotkeys
       preact:
         specifier: ^10.29.1
@@ -1017,7 +1017,7 @@ importers:
         specifier: 0.10.2
         version: 0.10.2(csstype@3.2.3)(preact@10.29.1)(solid-js@1.9.12)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 6.0.3
@@ -1029,7 +1029,7 @@ importers:
   examples/preact/useKeyhold:
     dependencies:
       '@tanstack/preact-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/preact-hotkeys
       preact:
         specifier: ^10.29.1
@@ -1042,7 +1042,7 @@ importers:
         specifier: 0.10.2
         version: 0.10.2(csstype@3.2.3)(preact@10.29.1)(solid-js@1.9.12)
       '@tanstack/preact-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/preact-hotkeys-devtools
       typescript:
         specifier: 6.0.3
@@ -1054,7 +1054,7 @@ importers:
   examples/react/kitchen-sink:
     dependencies:
       '@tanstack/react-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/react-hotkeys
       '@tanstack/react-router':
         specifier: ^1.170.38
@@ -1070,7 +1070,7 @@ importers:
         specifier: 0.10.2
         version: 0.10.2(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(solid-js@1.9.12)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -1091,7 +1091,7 @@ importers:
   examples/react/useHeldKeys:
     dependencies:
       '@tanstack/react-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/react-hotkeys
       react:
         specifier: ^19.2.5
@@ -1104,7 +1104,7 @@ importers:
         specifier: 0.10.2
         version: 0.10.2(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(solid-js@1.9.12)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -1125,7 +1125,7 @@ importers:
   examples/react/useHotkey:
     dependencies:
       '@tanstack/react-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/react-hotkeys
       react:
         specifier: ^19.2.5
@@ -1138,7 +1138,7 @@ importers:
         specifier: 0.10.2
         version: 0.10.2(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(solid-js@1.9.12)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -1159,7 +1159,7 @@ importers:
   examples/react/useHotkeyRecorder:
     dependencies:
       '@tanstack/react-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/react-hotkeys
       react:
         specifier: ^19.2.5
@@ -1172,7 +1172,7 @@ importers:
         specifier: 0.10.2
         version: 0.10.2(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(solid-js@1.9.12)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -1193,7 +1193,7 @@ importers:
   examples/react/useHotkeySequence:
     dependencies:
       '@tanstack/react-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/react-hotkeys
       react:
         specifier: ^19.2.5
@@ -1206,7 +1206,7 @@ importers:
         specifier: 0.10.2
         version: 0.10.2(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(solid-js@1.9.12)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -1227,7 +1227,7 @@ importers:
   examples/react/useHotkeySequenceRecorder:
     dependencies:
       '@tanstack/react-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/react-hotkeys
       react:
         specifier: ^19.2.5
@@ -1240,7 +1240,7 @@ importers:
         specifier: 0.10.2
         version: 0.10.2(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(solid-js@1.9.12)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -1261,7 +1261,7 @@ importers:
   examples/react/useHotkeySequences:
     dependencies:
       '@tanstack/react-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/react-hotkeys
       react:
         specifier: ^19.2.5
@@ -1274,7 +1274,7 @@ importers:
         specifier: 0.10.2
         version: 0.10.2(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(solid-js@1.9.12)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -1295,7 +1295,7 @@ importers:
   examples/react/useHotkeys:
     dependencies:
       '@tanstack/react-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/react-hotkeys
       react:
         specifier: ^19.2.5
@@ -1308,7 +1308,7 @@ importers:
         specifier: 0.10.2
         version: 0.10.2(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(solid-js@1.9.12)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -1329,7 +1329,7 @@ importers:
   examples/react/useKeyhold:
     dependencies:
       '@tanstack/react-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/react-hotkeys
       react:
         specifier: ^19.2.5
@@ -1342,7 +1342,7 @@ importers:
         specifier: 0.10.2
         version: 0.10.2(@types/react-dom@19.2.3(@types/react@19.2.14))(@types/react@19.2.14)(csstype@3.2.3)(react-dom@19.2.5(react@19.2.5))(react@19.2.5)(solid-js@1.9.12)
       '@tanstack/react-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/react-hotkeys-devtools
       '@types/react':
         specifier: ^19.2.14
@@ -1366,10 +1366,10 @@ importers:
         specifier: 0.8.2
         version: 0.8.2(csstype@3.2.3)(solid-js@1.9.12)
       '@tanstack/solid-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.12
@@ -1388,10 +1388,10 @@ importers:
         specifier: 0.8.2
         version: 0.8.2(csstype@3.2.3)(solid-js@1.9.12)
       '@tanstack/solid-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.12
@@ -1416,10 +1416,10 @@ importers:
         specifier: 0.8.2
         version: 0.8.2(csstype@3.2.3)(solid-js@1.9.12)
       '@tanstack/solid-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.12
@@ -1438,10 +1438,10 @@ importers:
         specifier: 0.8.2
         version: 0.8.2(csstype@3.2.3)(solid-js@1.9.12)
       '@tanstack/solid-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.12
@@ -1460,10 +1460,10 @@ importers:
         specifier: 0.8.2
         version: 0.8.2(csstype@3.2.3)(solid-js@1.9.12)
       '@tanstack/solid-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.12
@@ -1482,10 +1482,10 @@ importers:
         specifier: 0.8.2
         version: 0.8.2(csstype@3.2.3)(solid-js@1.9.12)
       '@tanstack/solid-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.12
@@ -1504,10 +1504,10 @@ importers:
         specifier: 0.8.2
         version: 0.8.2(csstype@3.2.3)(solid-js@1.9.12)
       '@tanstack/solid-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.12
@@ -1532,10 +1532,10 @@ importers:
         specifier: 0.8.2
         version: 0.8.2(csstype@3.2.3)(solid-js@1.9.12)
       '@tanstack/solid-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.12
@@ -1554,10 +1554,10 @@ importers:
         specifier: 0.8.2
         version: 0.8.2(csstype@3.2.3)(solid-js@1.9.12)
       '@tanstack/solid-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/solid-hotkeys
       '@tanstack/solid-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
         specifier: ^1.9.12
@@ -1579,7 +1579,7 @@ importers:
   examples/svelte/create-hotkey:
     dependencies:
       '@tanstack/svelte-hotkeys':
-        specifier: 0.10.0
+        specifier: 0.11.0
         version: link:../../../packages/svelte-hotkeys
       svelte:
         specifier: ^5.55.5
@@ -1598,7 +1598,7 @@ importers:
   examples/svelte/create-hotkey-recorder:
     dependencies:
       '@tanstack/svelte-hotkeys':
-        specifier: 0.10.0
+        specifier: 0.11.0
         version: link:../../../packages/svelte-hotkeys
       svelte:
         specifier: ^5.55.5
@@ -1617,7 +1617,7 @@ importers:
   examples/svelte/create-hotkey-sequence:
     dependencies:
       '@tanstack/svelte-hotkeys':
-        specifier: 0.10.0
+        specifier: 0.11.0
         version: link:../../../packages/svelte-hotkeys
       svelte:
         specifier: ^5.55.5
@@ -1636,7 +1636,7 @@ importers:
   examples/svelte/create-hotkey-sequence-recorder:
     dependencies:
       '@tanstack/svelte-hotkeys':
-        specifier: 0.10.0
+        specifier: 0.11.0
         version: link:../../../packages/svelte-hotkeys
       svelte:
         specifier: ^5.55.5
@@ -1655,7 +1655,7 @@ importers:
   examples/svelte/create-hotkey-sequences:
     dependencies:
       '@tanstack/svelte-hotkeys':
-        specifier: 0.10.0
+        specifier: 0.11.0
         version: link:../../../packages/svelte-hotkeys
       svelte:
         specifier: ^5.55.5
@@ -1674,7 +1674,7 @@ importers:
   examples/svelte/create-hotkeys:
     dependencies:
       '@tanstack/svelte-hotkeys':
-        specifier: 0.10.0
+        specifier: 0.11.0
         version: link:../../../packages/svelte-hotkeys
       svelte:
         specifier: ^5.55.5
@@ -1693,7 +1693,7 @@ importers:
   examples/svelte/get-held-keys:
     dependencies:
       '@tanstack/svelte-hotkeys':
-        specifier: 0.10.0
+        specifier: 0.11.0
         version: link:../../../packages/svelte-hotkeys
       svelte:
         specifier: ^5.55.5
@@ -1712,7 +1712,7 @@ importers:
   examples/svelte/get-is-key-held:
     dependencies:
       '@tanstack/svelte-hotkeys':
-        specifier: 0.10.0
+        specifier: 0.11.0
         version: link:../../../packages/svelte-hotkeys
       svelte:
         specifier: ^5.55.5
@@ -1731,7 +1731,7 @@ importers:
   examples/svelte/kitchen-sink:
     dependencies:
       '@tanstack/svelte-hotkeys':
-        specifier: 0.10.0
+        specifier: 0.11.0
         version: link:../../../packages/svelte-hotkeys
       svelte:
         specifier: ^5.55.5
@@ -1750,7 +1750,7 @@ importers:
   examples/vanilla/formatForDisplay:
     dependencies:
       '@tanstack/hotkeys':
-        specifier: ^0.8.0
+        specifier: ^0.9.0
         version: link:../../../packages/hotkeys
     devDependencies:
       typescript:
@@ -1763,7 +1763,7 @@ importers:
   examples/vue/kitchen-sink:
     dependencies:
       '@tanstack/vue-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/vue-hotkeys
       vue:
         specifier: ^3.5.33
@@ -1773,7 +1773,7 @@ importers:
         specifier: ^0.2.16
         version: 0.2.16(csstype@3.2.3)(solid-js@1.9.12)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/vue-hotkeys-devtools
       '@typescript-eslint/parser':
         specifier: ^8.59.0
@@ -1794,7 +1794,7 @@ importers:
   examples/vue/useHeldKeys:
     dependencies:
       '@tanstack/vue-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/vue-hotkeys
       vue:
         specifier: ^3.5.33
@@ -1804,7 +1804,7 @@ importers:
         specifier: ^0.2.16
         version: 0.2.16(csstype@3.2.3)(solid-js@1.9.12)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/vue-hotkeys-devtools
       '@typescript-eslint/parser':
         specifier: ^8.59.0
@@ -1825,7 +1825,7 @@ importers:
   examples/vue/useHotkey:
     dependencies:
       '@tanstack/vue-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/vue-hotkeys
       vue:
         specifier: ^3.5.33
@@ -1835,7 +1835,7 @@ importers:
         specifier: ^0.2.16
         version: 0.2.16(csstype@3.2.3)(solid-js@1.9.12)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/vue-hotkeys-devtools
       '@typescript-eslint/parser':
         specifier: ^8.59.0
@@ -1856,7 +1856,7 @@ importers:
   examples/vue/useHotkeyRecorder:
     dependencies:
       '@tanstack/vue-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/vue-hotkeys
       vue:
         specifier: ^3.5.33
@@ -1866,7 +1866,7 @@ importers:
         specifier: ^0.2.16
         version: 0.2.16(csstype@3.2.3)(solid-js@1.9.12)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/vue-hotkeys-devtools
       '@typescript-eslint/parser':
         specifier: ^8.59.0
@@ -1887,7 +1887,7 @@ importers:
   examples/vue/useHotkeySequence:
     dependencies:
       '@tanstack/vue-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/vue-hotkeys
       vue:
         specifier: ^3.5.33
@@ -1897,7 +1897,7 @@ importers:
         specifier: ^0.2.16
         version: 0.2.16(csstype@3.2.3)(solid-js@1.9.12)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/vue-hotkeys-devtools
       '@typescript-eslint/parser':
         specifier: ^8.59.0
@@ -1918,7 +1918,7 @@ importers:
   examples/vue/useHotkeySequenceRecorder:
     dependencies:
       '@tanstack/vue-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/vue-hotkeys
       vue:
         specifier: ^3.5.33
@@ -1928,7 +1928,7 @@ importers:
         specifier: ^0.2.16
         version: 0.2.16(csstype@3.2.3)(solid-js@1.9.12)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/vue-hotkeys-devtools
       '@typescript-eslint/parser':
         specifier: ^8.59.0
@@ -1949,7 +1949,7 @@ importers:
   examples/vue/useHotkeySequences:
     dependencies:
       '@tanstack/vue-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/vue-hotkeys
       vue:
         specifier: ^3.5.33
@@ -1959,7 +1959,7 @@ importers:
         specifier: ^0.2.16
         version: 0.2.16(csstype@3.2.3)(solid-js@1.9.12)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/vue-hotkeys-devtools
       '@typescript-eslint/parser':
         specifier: ^8.59.0
@@ -1980,7 +1980,7 @@ importers:
   examples/vue/useHotkeys:
     dependencies:
       '@tanstack/vue-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/vue-hotkeys
       vue:
         specifier: ^3.5.33
@@ -1990,7 +1990,7 @@ importers:
         specifier: ^0.2.16
         version: 0.2.16(csstype@3.2.3)(solid-js@1.9.12)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/vue-hotkeys-devtools
       '@typescript-eslint/parser':
         specifier: ^8.59.0
@@ -2011,7 +2011,7 @@ importers:
   examples/vue/useKeyhold:
     dependencies:
       '@tanstack/vue-hotkeys':
-        specifier: ^0.10.0
+        specifier: ^0.11.0
         version: link:../../../packages/vue-hotkeys
       vue:
         specifier: ^3.5.33
@@ -2021,7 +2021,7 @@ importers:
         specifier: ^0.2.16
         version: 0.2.16(csstype@3.2.3)(solid-js@1.9.12)
       '@tanstack/vue-hotkeys-devtools':
-        specifier: ^0.7.0
+        specifier: ^0.8.0
         version: link:../../../packages/vue-hotkeys-devtools
       '@typescript-eslint/parser':
         specifier: ^8.59.0
