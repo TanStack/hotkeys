@@ -5,15 +5,12 @@ import { formatForDisplay } from '@tanstack/hotkeys'
 import { useStyles } from '../styles/use-styles'
 import { useHotkeysDevtoolsState } from '../HotkeysContextProvider'
 import { effectiveSequenceMatchedSteps } from '../sequence-progress'
-import type {
-  ConflictBehavior,
-  HotkeyRegistration,
-  SequenceRegistrationView,
-} from '@tanstack/hotkeys'
-
-function sequenceKey(sequence: Array<string>): string {
-  return sequence.join('|')
-}
+import {
+  formatRegistration,
+  getBindingKind,
+  useRegistrationConflicts,
+} from '../_registrations'
+import type { SequenceRegistrationView } from '@tanstack/hotkeys'
 
 type HotkeyListProps = {
   selectedId: () => string | null
@@ -62,64 +59,14 @@ function getTargetTooltip(target: HTMLElement | Document | Window): string {
   return 'Listening on element'
 }
 
-function findTargetConflicts(
-  registration: HotkeyRegistration,
-  all: Array<HotkeyRegistration>,
-): Array<HotkeyRegistration> {
-  return all.filter(
-    (other) =>
-      other.id !== registration.id &&
-      other.hotkey === registration.hotkey &&
-      other.options.eventType === registration.options.eventType &&
-      other.target === registration.target,
-  )
-}
-
-function findScopeConflicts(
-  registration: HotkeyRegistration,
-  all: Array<HotkeyRegistration>,
-): Array<HotkeyRegistration> {
-  return all.filter(
-    (other) =>
-      other.id !== registration.id &&
-      other.hotkey === registration.hotkey &&
-      other.options.eventType === registration.options.eventType &&
-      other.target !== registration.target,
-  )
-}
-
-function findSequenceTargetConflicts(
-  registration: SequenceRegistrationView,
-  all: Array<SequenceRegistrationView>,
-): Array<SequenceRegistrationView> {
-  return all.filter(
-    (other) =>
-      other.id !== registration.id &&
-      sequenceKey(other.sequence) === sequenceKey(registration.sequence) &&
-      other.options.eventType === registration.options.eventType &&
-      other.target === registration.target,
-  )
-}
-
-function findSequenceScopeConflicts(
-  registration: SequenceRegistrationView,
-  all: Array<SequenceRegistrationView>,
-): Array<SequenceRegistrationView> {
-  return all.filter(
-    (other) =>
-      other.id !== registration.id &&
-      sequenceKey(other.sequence) === sequenceKey(registration.sequence) &&
-      other.options.eventType === registration.options.eventType &&
-      other.target !== registration.target,
-  )
-}
-
 function buildRowTooltip(meta?: {
   name?: string
   description?: string
+  group?: string
 }): string | undefined {
   if (!meta) return undefined
   const parts: Array<string> = []
+  if (meta.group) parts.push(meta.group)
   if (meta.name) parts.push(meta.name)
   if (meta.description) parts.push(meta.description)
   return parts.length > 0 ? parts.join(' — ') : undefined
@@ -136,45 +83,18 @@ function SequenceListRow(props: {
 
   const sequenceRegistrations = () => props.getSequences()
 
-  const targetConflicts = () =>
-    findSequenceTargetConflicts(props.reg, sequenceRegistrations())
-  const scopeConflicts = () =>
-    findSequenceScopeConflicts(props.reg, sequenceRegistrations())
-
+  const conflicts = useRegistrationConflicts(() => props.reg)
+  const targetConflicts = () => conflicts().overlapping
+  const scopeConflicts = () => conflicts().separate
   const hasTargetConflict = () => targetConflicts().length > 0
   const hasScopeConflict = () => scopeConflicts().length > 0
-
-  const conflictBehavior = (): ConflictBehavior =>
-    props.reg.options.conflictBehavior ?? 'warn'
-
-  const targetConflictBadge = () => {
-    const behavior = conflictBehavior()
-    const c = targetConflicts()
-    if (behavior === 'allow') {
-      return {
-        style: 'badgeAllow' as const,
-        label: '~',
-        tooltip: `Allowed: ${c.length} other binding${c.length > 1 ? 's' : ''} on same sequence and target (conflictBehavior: allow)`,
-      }
-    }
-    if (behavior === 'error') {
-      return {
-        style: 'badgeError' as const,
-        label: '!',
-        tooltip: `Error: ${c.length} conflicting binding${c.length > 1 ? 's' : ''} on same sequence and target (conflictBehavior: error)`,
-      }
-    }
-    return {
-      style: 'badgeConflict' as const,
-      label: '!',
-      tooltip: `Warning: ${c.length} other binding${c.length > 1 ? 's' : ''} on same sequence and target`,
-    }
-  }
-
-  const scopeConflictTooltip = () => {
-    const c = scopeConflicts()
-    return `Info: ${c.length} binding${c.length > 1 ? 's' : ''} with same sequence on different target${c.length > 1 ? 's' : ''}`
-  }
+  const targetConflictBadge = () => ({
+    style: 'badgeConflict' as const,
+    label: '!',
+    tooltip: `Potential overlap: ${targetConflicts().length} other bindings on overlapping targets`,
+  })
+  const scopeConflictTooltip = () =>
+    `Info: ${scopeConflicts().length} related bindings on separate targets`
 
   const enabled = () => props.reg.options.enabled !== false
 
@@ -238,7 +158,9 @@ function SequenceListRow(props: {
                       : undefined
                   }
                 >
-                  {formatForDisplay(step)}
+                  {formatForDisplay(step, {
+                    platform: props.reg.options.platform,
+                  })}
                 </span>
               </span>
             )}
@@ -252,6 +174,12 @@ function SequenceListRow(props: {
         <span class={styles().triggerCount}>x{triggerCount()}</span>
       </Show>
       <div class={styles().hotkeyBadges}>
+        <span
+          class={clsx(styles().badge, styles().badgeTarget)}
+          data-binding-kind
+        >
+          {getBindingKind(props.reg)}
+        </span>
         {hasTargetConflict() && (
           <span
             class={clsx(
@@ -329,10 +257,11 @@ export function HotkeyList(props: HotkeyListProps) {
     if (!query) return registrations()
     return matchSorter(registrations(), query, {
       keys: [
-        (r) => formatForDisplay(r.hotkey),
+        (r) => formatRegistration(r),
         'hotkey',
         'options.meta.name',
         'options.meta.description',
+        'options.meta.group',
       ],
     })
   })
@@ -342,10 +271,11 @@ export function HotkeyList(props: HotkeyListProps) {
     if (!query) return sequenceRegistrations()
     return matchSorter(sequenceRegistrations(), query, {
       keys: [
-        (r) => r.sequence.map((s) => formatForDisplay(s)).join(' '),
+        (r) => formatRegistration(r),
         (r) => r.sequence.join(' '),
         'options.meta.name',
         'options.meta.description',
+        'options.meta.group',
       ],
     })
   })
@@ -376,46 +306,18 @@ export function HotkeyList(props: HotkeyListProps) {
       <div class={styles().hotkeyList}>
         <For each={filteredRegistrations()}>
           {(reg) => {
-            const targetConflicts = () =>
-              findTargetConflicts(reg, registrations())
-            const scopeConflicts = () =>
-              findScopeConflicts(reg, registrations())
-
+            const conflicts = useRegistrationConflicts(() => reg)
+            const targetConflicts = () => conflicts().overlapping
+            const scopeConflicts = () => conflicts().separate
             const hasTargetConflict = () => targetConflicts().length > 0
             const hasScopeConflict = () => scopeConflicts().length > 0
-
-            const conflictBehavior = (): ConflictBehavior =>
-              reg.options.conflictBehavior ?? 'warn'
-
-            const targetConflictBadge = () => {
-              const behavior = conflictBehavior()
-              const c = targetConflicts()
-              if (behavior === 'allow') {
-                return {
-                  style: 'badgeAllow' as const,
-                  label: '~',
-                  tooltip: `Allowed: ${c.length} other binding${c.length > 1 ? 's' : ''} on same key and target (conflictBehavior: allow)`,
-                }
-              }
-              if (behavior === 'error') {
-                return {
-                  style: 'badgeError' as const,
-                  label: '!',
-                  tooltip: `Error: ${c.length} conflicting binding${c.length > 1 ? 's' : ''} on same key and target (conflictBehavior: error)`,
-                }
-              }
-              // 'warn' (default) or 'replace' (replacement already happened, but show warn-style if somehow present)
-              return {
-                style: 'badgeConflict' as const,
-                label: '!',
-                tooltip: `Warning: ${c.length} other binding${c.length > 1 ? 's' : ''} on same key and target`,
-              }
-            }
-
-            const scopeConflictTooltip = () => {
-              const c = scopeConflicts()
-              return `Info: ${c.length} binding${c.length > 1 ? 's' : ''} with same key on different target${c.length > 1 ? 's' : ''}`
-            }
+            const targetConflictBadge = () => ({
+              style: 'badgeConflict' as const,
+              label: '!',
+              tooltip: `Potential overlap: ${targetConflicts().length} other bindings on overlapping targets`,
+            })
+            const scopeConflictTooltip = () =>
+              `Info: ${scopeConflicts().length} related bindings on separate targets`
 
             const enabled = () => reg.options.enabled !== false
 
@@ -459,7 +361,7 @@ export function HotkeyList(props: HotkeyListProps) {
                 </Show>
                 <span class={styles().hotkeyLabel}>
                   <span class={styles().hotkeyLabelKeys}>
-                    {formatForDisplay(reg.hotkey)}
+                    {formatRegistration(reg)}
                   </span>
                   <Show when={metaName()}>
                     <span class={styles().hotkeyLabelName}>{metaName()}</span>
@@ -469,6 +371,12 @@ export function HotkeyList(props: HotkeyListProps) {
                   <span class={styles().triggerCount}>x{triggerCount()}</span>
                 </Show>
                 <div class={styles().hotkeyBadges}>
+                  <span
+                    class={clsx(styles().badge, styles().badgeTarget)}
+                    data-binding-kind
+                  >
+                    {getBindingKind(reg)}
+                  </span>
                   {hasTargetConflict() && (
                     <span
                       class={clsx(

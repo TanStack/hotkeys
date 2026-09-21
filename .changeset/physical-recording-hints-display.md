@@ -42,3 +42,4 @@
 - fix: Ignore repeated keydowns when matching sequences.
 - fix: Prevent continuous rerenders when reading Preact hotkey registrations.
 - fix: Allow Svelte recorder controls to be passed directly to event handlers.
+- fix: Update devtools conflict reporting, plus-key formatting, group search, and key/code labels.
