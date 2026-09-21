@@ -4,7 +4,7 @@ import {
   createMultiHotkeyHandler,
   matchesKeyboardEvent,
 } from '../src/match'
-import { Hotkey } from '../src'
+import type { Hotkey } from '../src'
 
 /**
  * Helper to create a mock KeyboardEvent
@@ -17,6 +17,8 @@ function createKeyboardEvent(
     altKey?: boolean
     metaKey?: boolean
     code?: string
+    isComposing?: boolean
+    altGraph?: boolean
   } = {},
 ): KeyboardEvent {
   // Auto-generate code for letters and digits if not provided
@@ -36,6 +38,9 @@ function createKeyboardEvent(
     shiftKey: options.shiftKey ?? false,
     altKey: options.altKey ?? false,
     metaKey: options.metaKey ?? false,
+    isComposing: options.isComposing ?? false,
+    getModifierState: (modifier: string) =>
+      modifier === 'AltGraph' && (options.altGraph ?? false),
     preventDefault: vi.fn(),
     stopPropagation: vi.fn(),
   } as unknown as KeyboardEvent
@@ -180,7 +185,7 @@ describe('matchesKeyboardEvent', () => {
         shift: false,
         alt: false,
         meta: true,
-        modifiers: ['Meta'] as ('Control' | 'Shift' | 'Alt' | 'Meta')[],
+        modifiers: ['Meta'] as Array<'Control' | 'Shift' | 'Alt' | 'Meta'>,
       }
       expect(matchesKeyboardEvent(event, parsed)).toBe(true)
     })
@@ -334,13 +339,13 @@ describe('matchesKeyboardEvent', () => {
       expect(matchesKeyboardEvent(event, 'Mod+Alt+T', 'mac')).toBe(true)
     })
 
-    it('should NOT match Control+A when a non-ASCII letter comes from a different physical key', () => {
+    it('should match Control+A by physical position on a non-Latin layout', () => {
       // Russian layout: event.key reflects the logical key, event.code the physical one.
       const event = createKeyboardEvent('ф', {
         ctrlKey: true,
         code: 'KeyA',
       })
-      expect(matchesKeyboardEvent(event, 'Control+A', 'windows')).toBe(false)
+      expect(matchesKeyboardEvent(event, 'Control+A', 'windows')).toBe(true)
     })
 
     it('should match a non-ASCII hotkey string case-insensitively', () => {
@@ -408,12 +413,99 @@ describe('matchesKeyboardEvent', () => {
       }
     })
 
-    it('should NOT fall back for non-ASCII letters without Alt key (keyboard layout letters)', () => {
-      // Russian layout without Alt key: ф on KeyA should not match 'A'
+    it('should fall back for non-Latin letters without Alt', () => {
       const event = createKeyboardEvent('ф', {
         code: 'KeyA',
       })
-      expect(matchesKeyboardEvent(event, 'A')).toBe(false)
+      expect(matchesKeyboardEvent(event, 'A')).toBe(true)
+    })
+
+    it('should preserve native Latin logical letters', () => {
+      const event = createKeyboardEvent('ø', { code: 'Semicolon' })
+      expect(matchesKeyboardEvent(event, 'ø' as Hotkey)).toBe(true)
+      expect(matchesKeyboardEvent(event, ';')).toBe(true)
+    })
+
+    it('should match punctuation positions on non-Latin layouts', () => {
+      const event = createKeyboardEvent('ж', {
+        ctrlKey: true,
+        code: 'Semicolon',
+      })
+      expect(matchesKeyboardEvent(event, 'Control+;')).toBe(true)
+    })
+
+    it.each([
+      ['Greek', 'α', 'KeyA', 'Control+A'],
+      ['Georgian', 'ა', 'KeyA', 'Control+A'],
+      ['Hangul Jamo', 'ㅁ', 'KeyA', 'Control+A'],
+      ['Arabic-Indic digit', '١', 'Digit1', 'Control+1'],
+    ])('uses the physical fallback for %s output', (_, key, code, hotkey) => {
+      const event = createKeyboardEvent(key, { ctrlKey: true, code })
+      expect(matchesKeyboardEvent(event, hotkey as Hotkey, 'windows')).toBe(
+        true,
+      )
+    })
+  })
+
+  describe('layout-produced glyphs and physical keys', () => {
+    it('treats Shift as implicit when it produces a non-letter glyph', () => {
+      expect(
+        matchesKeyboardEvent(
+          createKeyboardEvent('?', {
+            metaKey: true,
+            shiftKey: true,
+            code: 'Comma',
+          }),
+          'Mod+?',
+          'mac',
+        ),
+      ).toBe(true)
+      expect(
+        matchesKeyboardEvent(
+          createKeyboardEvent('+', { metaKey: true, code: 'BracketRight' }),
+          'Mod++',
+          'mac',
+        ),
+      ).toBe(true)
+    })
+
+    it('supports exact physical registrations and numpad distinctions', () => {
+      const event = createKeyboardEvent('+', {
+        ctrlKey: true,
+        code: 'NumpadAdd',
+      })
+      expect(
+        matchesKeyboardEvent(event, {
+          code: 'NumpadAdd',
+          ctrl: true,
+          shift: false,
+          alt: false,
+          meta: false,
+          modifiers: ['Control'],
+        }),
+      ).toBe(true)
+      expect(matchesKeyboardEvent(event, 'Control+Plus' as Hotkey)).toBe(true)
+    })
+
+    it('ignores printable hotkeys during composition', () => {
+      const event = createKeyboardEvent('/', {
+        code: 'Slash',
+        isComposing: true,
+      })
+      expect(matchesKeyboardEvent(event, '/')).toBe(false)
+    })
+
+    it('does not interpret AltGraph character entry as Control+Alt', () => {
+      const event = createKeyboardEvent('@', {
+        ctrlKey: true,
+        altKey: true,
+        code: 'KeyQ',
+        altGraph: true,
+      })
+      expect(matchesKeyboardEvent(event, 'Control+Alt+Q', 'windows')).toBe(
+        false,
+      )
+      expect(matchesKeyboardEvent(event, '@' as Hotkey, 'windows')).toBe(true)
     })
   })
 
@@ -822,7 +914,7 @@ describe('createHotkeyHandler', () => {
       shift: false,
       alt: false,
       meta: true,
-      modifiers: ['Meta'] as ('Control' | 'Shift' | 'Alt' | 'Meta')[],
+      modifiers: ['Meta'] as Array<'Control' | 'Shift' | 'Alt' | 'Meta'>,
     }
     const handler = createHotkeyHandler(parsed, callback, { platform: 'mac' })
 

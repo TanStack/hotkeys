@@ -3,7 +3,24 @@ title: Hotkeys Guide
 id: hotkeys
 ---
 
-Use `createHotkey` for global shortcuts and `createHotkeyAttachment` for element-scoped shortcuts. This keeps the common global case simple while making scoped behavior feel native to Svelte 5.
+Use `createHotkey` for global shortcuts and `createHotkeyAttachment` for element-scoped shortcuts. The common global case stays simple, and scoped behavior feels native to Svelte 5.
+
+## Logical keys and physical positions
+
+Use a logical binding when the shortcut should follow the character on the active layout. Use a physical binding when it should follow a keyboard position:
+
+| Binding | Identity checked |
+| --- | --- |
+| `Mod+S` or `{ key: 'S', mod: true }` | Logical `event.key`, with conservative code fallback |
+| `Mod+[KeyS]` or `{ code: 'KeyS', mod: true }` | Exact `event.code` |
+| `Enter` | Logical Enter, including numpad Enter |
+| `[Enter]` / `[NumpadEnter]` | Separate physical Enter positions |
+
+Every physical code uses brackets in strings, including names shared with logical keys such as `[Enter]` and `[F13]`. Supported codes are type-safe and available in autocomplete. Do not put a bracketed code in an object's `key` field; use `code`. A binding has either `key` or `code`, never both.
+
+On a layout where the `KeyQ` position produces `a`, `A` follows that character and `[KeyQ]` follows the position. Logical ASCII letters remain layout-aware; conservative physical fallback helps with transformed output such as macOS Option keys. Exact matches take priority over weaker fallbacks among eligible registrations on the same target.
+
+Callbacks expose the same distinction in `context.parsedHotkey`: check `parsed.code !== undefined` before reading its physical identity. Use `formatForDisplay` for labels; stored physical strings retain their brackets.
 
 ## Global hotkeys
 
@@ -48,7 +65,7 @@ Hotkeys can take plain values for static registrations or getter functions when 
 
 ### Reactive `enabled`
 
-When `enabled` is false, the hotkey **stays registered** (visible in devtools); only the callback is suppressed.
+When `enabled` is false, the hotkey stays registered (visible in devtools); only the callback is suppressed.
 
 ```svelte
 <script lang="ts">
@@ -79,6 +96,10 @@ When `enabled` is false, the hotkey **stays registered** (visible in devtools); 
 </script>
 ```
 
+### Changing a binding
+
+Pass a new logical or physical binding through your framework's normal state mechanism. A recorder result such as `Alt+[KeyS]` can be passed directly to the same registration API. Keep an initial binding in application state if you want a reset button; the library does not need a separate preferences store.
+
 ## Default options
 
 Set defaults explicitly with `setHotkeysContext` when a subtree needs shared behavior:
@@ -96,7 +117,7 @@ Set defaults explicitly with `setHotkeysContext` when a subtree needs shared beh
 </script>
 ```
 
-## Common Options
+## Common options
 
 ### `requireReset`
 
@@ -123,13 +144,13 @@ createHotkey('Mod+S', () => save(), { conflictBehavior: 'replace' })
 createHotkey('Mod+S', () => save(), { platform: 'mac' })
 ```
 
-## Automatic Cleanup
+## Automatic cleanup
 
 Global hotkeys are automatically unregistered when the owning component unmounts. Attachment-based hotkeys clean themselves up when the attached element is removed or when reactive inputs change.
 
-## Registering Multiple Hotkeys
+## Registering multiple hotkeys
 
-When you need to register several hotkeys at once — or a dynamic, variable-length list — use `createHotkeys` (plural) for global shortcuts and `createHotkeysAttachment` for element-scoped shortcuts:
+When you need to register several hotkeys at once, or a dynamic, variable-length list, use `createHotkeys` (plural) for global shortcuts and `createHotkeysAttachment` for element-scoped shortcuts:
 
 ```svelte
 <script lang="ts">
@@ -143,7 +164,7 @@ When you need to register several hotkeys at once — or a dynamic, variable-len
 </script>
 ```
 
-### Common Options with Per-Hotkey Overrides
+### Common options with per-hotkey overrides
 
 Pass shared options as the second argument. Per-definition options override the common ones:
 
@@ -157,7 +178,7 @@ createHotkeys(
 )
 ```
 
-### Dynamic Hotkey Lists
+### Dynamic hotkey lists
 
 Pass a getter for reactive arrays:
 
@@ -176,7 +197,7 @@ Pass a getter for reactive arrays:
 </script>
 ```
 
-### Scoped Multi-Hotkeys
+### Scoped multi-hotkeys
 
 Use `createHotkeysAttachment` to scope multiple hotkeys to a specific element:
 
@@ -193,9 +214,9 @@ Use `createHotkeysAttachment` to scope multiple hotkeys to a specific element:
 <div tabindex="0" {@attach editorKeys}>Editor content</div>
 ```
 
-## Metadata (name & description)
+## Metadata (name, description, and group)
 
-Every hotkey registration can carry a `meta` object with a `name` and `description`. This metadata is informational only -- it does not affect hotkey behavior -- but it flows through to registrations and devtools, making it easy to build shortcut palettes and help screens.
+Every hotkey registration can carry a `meta` object with a `name`, `description`, and `group`. Metadata never affects hotkey behavior, but it flows through to registrations and devtools, so you can build shortcut palettes and help screens from it.
 
 ```ts
 createHotkey('Mod+S', () => save(), {
@@ -203,13 +224,12 @@ createHotkey('Mod+S', () => save(), {
 })
 ```
 
-The `meta` option is typed as `HotkeyMeta`, which ships with `name` and `description` fields. You can extend it with additional properties using TypeScript declaration merging:
+The `meta` option is typed as `HotkeyMeta`, which ships with `name`, `description`, and `group` fields. You can extend it with additional properties using TypeScript declaration merging:
 
 ```ts
 declare module '@tanstack/hotkeys' {
   interface HotkeyMeta {
     icon?: string
-    group?: string
   }
 }
 
@@ -218,13 +238,15 @@ createHotkey('Mod+S', () => save(), {
 })
 ```
 
-## Introspecting Registrations
+Group is descriptive metadata, not an execution scope. A shortcuts panel can group live registration views directly. Disabled registrations remain listed; unmounted registrations disappear.
+
+## Introspecting registrations
 
 Use the `getHotkeyRegistrations` function to get a live view of all hotkey and sequence registrations. This is useful for building shortcut palettes, help dialogs, or devtools.
 
 ```svelte
 <script lang="ts">
-  import { getHotkeyRegistrations } from '@tanstack/svelte-hotkeys'
+  import { getHotkeyRegistrations, formatForDisplay } from '@tanstack/svelte-hotkeys'
 
   const registrations = getHotkeyRegistrations()
 </script>
@@ -234,12 +256,12 @@ Use the `getHotkeyRegistrations` function to get a live view of all hotkey and s
   <ul>
     {#each registrations.hotkeys as reg (reg.hotkey)}
       <li>
-        <kbd>{reg.hotkey}</kbd>
-        {#if reg.meta?.name}
-          <span> — {reg.meta.name}</span>
+        <kbd>{formatForDisplay(reg.hotkey)}</kbd>
+        {#if reg.options.meta?.name}
+          <span> — {reg.options.meta.name}</span>
         {/if}
-        {#if reg.meta?.description}
-          <p>{reg.meta.description}</p>
+        {#if reg.options.meta?.description}
+          <p>{reg.options.meta.description}</p>
         {/if}
       </li>
     {/each}
@@ -249,9 +271,9 @@ Use the `getHotkeyRegistrations` function to get a live view of all hotkey and s
     <ul>
       {#each registrations.sequences as reg (reg.sequence.join(' '))}
         <li>
-          <kbd>{reg.sequence.join(' → ')}</kbd>
-          {#if reg.meta?.name}
-            <span> — {reg.meta.name}</span>
+          <kbd>{reg.sequence.map((step) => formatForDisplay(step)).join(' → ')}</kbd>
+          {#if reg.options.meta?.name}
+            <span> — {reg.options.meta.name}</span>
           {/if}
         </li>
       {/each}
@@ -262,7 +284,7 @@ Use the `getHotkeyRegistrations` function to get a live view of all hotkey and s
 
 The returned object contains a `hotkeys` array with registration objects including the hotkey string, options (including `meta`), and enabled state, and a `sequences` array containing sequence registrations with the same structure.
 
-## The Hotkey Manager
+## The hotkey manager
 
 You can always reach for the underlying manager directly:
 

@@ -17,7 +17,7 @@ When `mod` is true, it is resolved to Control or Meta based on platform.
 
 ### raw
 
-[`RawHotkey`](../interfaces/RawHotkey.md)
+[`RawHotkey`](../type-aliases/RawHotkey.md)
 
 The raw hotkey object
 
@@ -29,7 +29,7 @@ The target platform for resolving 'Mod' (defaults to auto-detection)
 
 ## Returns
 
-[`ParsedHotkey`](../interfaces/ParsedHotkey.md)
+[`ParsedHotkey`](../type-aliases/ParsedHotkey.md)
 
 A ParsedHotkey suitable for matching and formatting
 

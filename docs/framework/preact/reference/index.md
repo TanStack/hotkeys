@@ -22,6 +22,7 @@ title: "@tanstack/preact-hotkeys"
 - [useHeldKeyCodes](functions/useHeldKeyCodes.md)
 - [useHeldKeys](functions/useHeldKeys.md)
 - [useHotkey](functions/useHotkey.md)
+- [useHotkeyHint](functions/useHotkeyHint.md)
 - [useHotkeyRecorder](functions/useHotkeyRecorder.md)
 - [useHotkeyRegistrations](functions/useHotkeyRegistrations.md)
 - [useHotkeys](functions/useHotkeys.md)

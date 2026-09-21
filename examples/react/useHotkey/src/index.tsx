@@ -42,7 +42,7 @@ function App() {
 
   // Browser default: Save page (downloads the current page)
   // Basic hotkey with callback context
-  useHotkey('Mod+S', (_event, { hotkey, parsedHotkey }) => {
+  useHotkey('Mod+[KeyS]', (_event, { hotkey, parsedHotkey }) => {
     setLastHotkey(hotkey)
     setSaveCount((c) => c + 1)
     console.log('Hotkey triggered:', hotkey)
@@ -79,8 +79,8 @@ function App() {
     setActiveTab(1)
   })
 
-  useHotkey('Mod+2', () => {
-    setLastHotkey('Mod+2')
+  useHotkey('Mod+[Digit2]', () => {
+    setLastHotkey('Mod+[Digit2]')
     setActiveTab(2)
   })
 
@@ -368,10 +368,11 @@ function App() {
         <section className="demo-section">
           <h2>Basic Hotkey</h2>
           <p>
-            Press <kbd>{formatForDisplay('Mod+S')}</kbd> to trigger
+            Press <kbd>{formatForDisplay('Mod+[KeyS]')}</kbd> to trigger the
+            physical S position
           </p>
           <div className="counter">Save triggered: {saveCount}x</div>
-          <pre className="code-block">{`useHotkey('Mod+S', (_event, { hotkey, parsedHotkey }) => {
+          <pre className="code-block">{`useHotkey('Mod+[KeyS]', (_event, { hotkey, parsedHotkey }) => {
   console.log('Hotkey:', hotkey)
   console.log('Parsed:', parsedHotkey)
 })`}</pre>
@@ -419,13 +420,17 @@ useHotkey(
 
         <section className="demo-section">
           <h2>Number Key Combinations</h2>
-          <p>Common for tab/section switching:</p>
+          <p>
+            Tab 2 uses the physical number-row position (
+            <code>Mod+[Digit2]</code>), even when that key produces a different
+            character. The other tabs follow logical digits.
+          </p>
           <div className="hotkey-grid">
             <div>
               <kbd>{formatForDisplay('Mod+1')}</kbd> → Tab 1
             </div>
             <div>
-              <kbd>{formatForDisplay('Mod+2')}</kbd> → Tab 2
+              <kbd>{formatForDisplay('Mod+[Digit2]')}</kbd> → Tab 2
             </div>
             <div>
               <kbd>{formatForDisplay('Mod+3')}</kbd> → Tab 3
@@ -439,7 +444,7 @@ useHotkey(
           </div>
           <div className="counter">Active Tab: {activeTab}</div>
           <pre className="code-block">{`useHotkey('Mod+1', () => setActiveTab(1))
-useHotkey('Mod+2', () => setActiveTab(2))
+useHotkey('Mod+[Digit2]', () => setActiveTab(2))
 `}</pre>
         </section>
 

@@ -1,0 +1,21 @@
+{
+  "name": "@tanstack/hotkeys-example-lit-kitchen-sink",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3069",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test:types": "tsc"
+  },
+  "dependencies": {
+    "@tanstack/lit-hotkeys": "0.11.0",
+    "lit": "^3.3.2"
+  },
+  "devDependencies": {
+    "typescript": "6.0.3",
+    "vite": "^8.0.10"
+  }
+}

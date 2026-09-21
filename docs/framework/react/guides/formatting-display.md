@@ -3,224 +3,108 @@ title: Formatting & Display Guide
 id: formatting-display
 ---
 
-TanStack Hotkeys provides several utilities for formatting hotkey strings into human-readable display text. These utilities handle platform differences automatically, so your UI shows the right symbols and labels for each operating system.
+Use `formatForDisplay` whenever a binding appears in a menu, button, hint, or shortcut settings panel. It accepts logical strings, bracketed physical strings, raw objects, and parsed bindings. Store the original binding and format it at render time: the display label is not a registration string.
 
-## `formatForDisplay`
+## Format a binding
 
-The primary formatting function. Returns a platform-aware string using symbols on macOS and text labels on Windows/Linux.
-
-```tsx
+```ts
 import { formatForDisplay } from '@tanstack/react-hotkeys'
 
-// On macOS (symbols separated by spaces):
-formatForDisplay('Mod+S')         // "⌘ S"
-formatForDisplay('Mod+Shift+Z')   // "⌘ ⇧ Z"
-formatForDisplay('Control+Alt+D') // "⌃ ⌥ D"
-
-// On Windows/Linux:
-formatForDisplay('Mod+S')         // "Ctrl+S"
-formatForDisplay('Mod+Shift+Z')   // "Ctrl+Shift+Z"
-formatForDisplay('Control+Alt+D') // "Ctrl+Alt+D"
+formatForDisplay('Mod+S', { platform: 'mac' }) // '⌘ S'
+formatForDisplay('Mod+[KeyS]', { platform: 'mac' }) // '⌘ S'
+formatForDisplay({ code: 'KeyS', mod: true }, { platform: 'windows' }) // 'Ctrl+S'
+formatForDisplay('Mod+[Digit2]', { platform: 'windows' }) // 'Ctrl+2'
 ```
 
-### Options
+The same label can represent different bindings. `Mod+S` follows a logical letter; `Mod+[KeyS]` follows a physical position. Physical labels shorten `KeyS` to `S` and `Digit2` to `2`, preserve readable numpad labels, and reuse punctuation and special-key symbols. This does not change the stored code or infer the user's layout.
+
+Omit `platform` to use detection. On macOS the default joins modifier symbols with spaces; Windows and Linux use labels joined with `+`.
+
+## Render individual keycaps
+
+Set `parts: true` to get one label per key instead of a joined string:
 
 ```ts
-formatForDisplay('Mod+S', {
-  platform: 'mac', // Override platform detection ('mac' | 'windows' | 'linux')
-  useSymbols: true, // default; set false for text labels on macOS
-})
+const binding = 'Mod+[KeyS]'
+const parts = formatForDisplay(binding, { platform: 'mac', parts: true })
+// ['⌘', 'S'] — render each part in its own <kbd>
 ```
 
-On macOS, modifier **order** matches canonical normalization (same as `formatWithLabels`), and symbols are joined with **spaces** (e.g., `⌘ ⇧ Z`). On Windows and Linux, modifiers are joined with `+` (e.g., `Ctrl+Shift+Z`).
+With `parts` omitted or false, the result is a string. A runtime boolean returns `string | string[]`. Parts preserve literal plus keys and ignore `separatorToken`.
 
-`platform` is used for both normalization and display. If you need to show the same [`ParsedHotkey`](../../../reference/interfaces/ParsedHotkey.md) under several platforms, first serialize with the platform it was parsed with, then format for each display platform:
-
-```tsx
-import {
-  formatForDisplay,
-  normalizeHotkeyFromParsed,
-  parseHotkey,
-} from '@tanstack/react-hotkeys'
-
-const parsed = parseHotkey('Mod+K', 'mac')
-const canonical = normalizeHotkeyFromParsed(parsed, 'mac')
-formatForDisplay(canonical, { platform: 'windows' }) // "Ctrl+K"
-```
-
-## `formatWithLabels`
-
-Returns human-readable text labels (e.g., "Cmd" instead of the symbol). Useful when you want readable text rather than symbols.
-
-```tsx
-import { formatWithLabels } from '@tanstack/react-hotkeys'
-
-// On macOS:
-formatWithLabels('Mod+S', { platform: 'mac' }) // "Cmd+S"
-formatWithLabels('Mod+Shift+Z', { platform: 'mac' }) // "Cmd+Shift+Z"
-
-// On Windows/Linux:
-formatWithLabels('Mod+S', { platform: 'windows' }) // "Ctrl+S"
-formatWithLabels('Mod+Shift+Z', { platform: 'windows' }) // "Ctrl+Shift+Z"
-```
-
-Modifier order matches canonical normalization from the core package (e.g. `Mod` first, then `Shift`, then the key).
-
-## Using Formatted Hotkeys in React
-
-### Keyboard Shortcut Badges
-
-```tsx
-import { formatForDisplay } from '@tanstack/react-hotkeys'
-
-function ShortcutBadge({ hotkey }: { hotkey: string }) {
-  return <kbd className="shortcut-badge">{formatForDisplay(hotkey)}</kbd>
-}
-
-// Usage
-<ShortcutBadge hotkey="Mod+S" />      // Renders: ⌘ S (Mac) or Ctrl+S (Windows)
-<ShortcutBadge hotkey="Mod+Shift+P" /> // Renders: ⌘ ⇧ P (Mac) or Ctrl+Shift+P (Windows)
-```
-
-### Menu Items with Hotkeys
-
-```tsx
-import { useHotkey, formatForDisplay } from '@tanstack/react-hotkeys'
-
-function MenuItem({
-  label,
-  hotkey,
-  onAction,
-}: {
-  label: string
-  hotkey: string
-  onAction: () => void
-}) {
-  useHotkey(hotkey, () => onAction())
-
-  return (
-    <div className="menu-item">
-      <span>{label}</span>
-      <span className="menu-shortcut">{formatForDisplay(hotkey)}</span>
-    </div>
-  )
-}
-
-// Usage
-<MenuItem label="Save" hotkey="Mod+S" onAction={save} />
-<MenuItem label="Undo" hotkey="Mod+Z" onAction={undo} />
-<MenuItem label="Find" hotkey="Mod+F" onAction={openFind} />
-```
-
-### Command Palette Items
-
-```tsx
-import { formatForDisplay } from '@tanstack/react-hotkeys'
-import type { Hotkey } from '@tanstack/react-hotkeys'
-
-interface Command {
-  id: string
-  label: string
-  hotkey?: Hotkey
-  action: () => void
-}
-
-function CommandPaletteItem({ command }: { command: Command }) {
-  return (
-    <div className="command-item" onClick={command.action}>
-      <span>{command.label}</span>
-      {command.hotkey && (
-        <kbd>{formatForDisplay(command.hotkey)}</kbd>
-      )}
-    </div>
-  )
-}
-```
-
-## Platform Symbols Reference
-
-On macOS, modifiers are displayed as symbols:
-
-| Modifier | Mac Symbol | Windows/Linux Label |
-|----------|-----------|-------------------|
-| Meta (Cmd) | `⌘` | `Win` / `Super` |
-| Control | `⌃` | `Ctrl` |
-| Alt/Option | `⌥` | `Alt` |
-| Shift | `⇧` | `Shift` |
-
-Special keys also have display symbols:
-
-| Key | Display |
-|-----|---------|
-| Escape | `Esc` |
-| Backspace | `⌫` (Mac) / `Backspace` |
-| Delete | `⌦` (Mac) / `Del` |
-| Enter | `↵` |
-| Tab | `⇥` |
-| ArrowUp | `↑` |
-| ArrowDown | `↓` |
-| ArrowLeft | `←` |
-| ArrowRight | `→` |
-| Space | `Space` |
-
-## Parsing and Normalization
-
-TanStack Hotkeys also provides utilities for parsing and normalizing hotkey strings:
-
-### `parseHotkey`
-
-Parse a hotkey string into its component parts:
+Sequences are arrays of bindings. Format their steps individually:
 
 ```ts
-import { parseHotkey } from '@tanstack/react-hotkeys'
+import type { HotkeySequence } from '@tanstack/react-hotkeys'
 
-const parsed = parseHotkey('Mod+Shift+S')
-// {
-//   key: 'S',
-//   ctrl: false,   // true on Windows/Linux
-//   shift: true,
-//   alt: false,
-//   meta: true,    // true on Mac
-//   modifiers: ['Shift', 'Meta']  // or ['Control', 'Shift'] on Windows
-// }
+const sequence: HotkeySequence = ['Mod+[KeyK]', 'C']
+const label = sequence.map((step) => formatForDisplay(step)).join(' → ')
 ```
 
-### `normalizeHotkey` and `normalizeRegisterableHotkey`
+`formatHotkeySequence` only joins stored strings with spaces. It intentionally retains brackets and code names, so use the code above for user-facing labels.
 
-Core helpers produce a **canonical** hotkey string for storage and registration. When the platform allows `Mod` (Command on Mac without Control; Control on Windows/Linux without Meta), the output uses `Mod` and **Mod-first** modifier order (`Mod+Shift+E`), not expanded `Meta`/`Control`.
+## Choose symbols and separators
+
+`useSymbols` accepts a boolean or independent `modifiers` and `keys` settings. Omitted fields default to true. Modifier symbols apply on macOS; Windows and Linux retain modifier labels.
 
 ```ts
-import { normalizeHotkey, normalizeRegisterableHotkey } from '@tanstack/react-hotkeys'
+formatForDisplay('Shift+[ArrowUp]', {
+  platform: 'mac',
+  useSymbols: { modifiers: false, keys: true },
+  parts: true,
+}) // ['Shift', '↑']
 
-normalizeHotkey('Cmd+S', 'mac')           // 'Mod+S'
-normalizeHotkey('Ctrl+Shift+s', 'windows') // 'Mod+Shift+S'
-normalizeHotkey('Shift+Meta+E', 'mac')    // 'Mod+Shift+E'
+formatForDisplay('Mod+[KeyS]', {
+  platform: 'mac', useSymbols: false,
+}) // 'Cmd+S'
 
-// String or RawHotkey — same string adapters use internally:
-normalizeRegisterableHotkey({ key: 'S', mod: true, shift: true }, 'mac') // 'Mod+Shift+S'
+formatForDisplay('Control++', {
+  platform: 'windows', separatorToken: ' · ',
+}) // 'Ctrl · +'
 ```
 
-Framework hooks normalize registerable hotkeys automatically via `normalizeRegisterableHotkey`.
+An empty separator joins labels directly. `undefined` or `null` uses the platform default. `formatWithLabels(binding, options)` is the shorthand for `formatForDisplay` with `useSymbols: false`.
 
-## Validation
+## Supply layout labels
 
-Use `validateHotkey` to check if a hotkey string is valid and get warnings about potential platform issues:
+Physical codes describe positions, so their fallback labels may differ from the characters printed on a user's keyboard. Pass an already-resolved `layoutMap` to label those positions for a known layout:
 
 ```ts
-import { validateHotkey } from '@tanstack/react-hotkeys'
+const layoutMap = new Map([['KeyQ', 'a']])
 
-const result = validateHotkey('Alt+A')
-// {
-//   valid: true,
-//   warnings: ['Alt+letter combinations may not work on macOS due to special characters'],
-//   errors: []
-// }
-
-const result2 = validateHotkey('InvalidKey+S')
-// {
-//   valid: false,
-//   warnings: [],
-//   errors: ['Unknown key: InvalidKey']
-// }
+formatForDisplay('Mod+[KeyQ]', { platform: 'mac', layoutMap }) // '⌘ A'
+formatForDisplay('Mod+Q', { platform: 'mac', layoutMap }) // '⌘ Q'
 ```
 
+Any object with `get(code): string | undefined` works, including a browser `KeyboardLayoutMap`. Formatting stays synchronous. Your app owns loading, errors, and refreshing the map: render fallback labels while loading, then pass the resolved map on the next render. The library never requests it. Logical bindings ignore `layoutMap`.
+
+Use `keyLabels` for explicit labels keyed by physical code or normalized logical key:
+
+```ts
+formatForDisplay('Mod+[KeyQ]', {
+  platform: 'mac', layoutMap, keyLabels: { KeyQ: 'Action' },
+}) // '⌘ Action'
+```
+
+The precedence is `keyLabels`, then a layout entry, then the fallback label. Layout entries receive normal letter casing and key symbols; missing or empty entries fall back. Explicit labels are final. All of these options affect display only.
+
+## Parse and store bindings
+
+`parseHotkey` returns either a logical `key` or a physical `code`, plus resolved modifier flags. Narrow the union before inspecting the identity:
+
+```ts
+import { parseHotkey, normalizeHotkeyFromParsed } from '@tanstack/react-hotkeys'
+
+const parsed = parseHotkey('Mod+[KeyS]', 'mac')
+if (parsed.code !== undefined) {
+  console.log(parsed.code) // 'KeyS'; parsed.key is undefined
+}
+const stored = normalizeHotkeyFromParsed(parsed, 'mac') // 'Mod+[KeyS]'
+formatForDisplay(stored, { platform: 'windows' }) // 'Ctrl+S'
+```
+
+Parsed modifiers are already resolved. To display a portable `Mod` binding on another platform, serialize with the original platform first, as above. `normalizeRegisterableHotkey` accepts strings or raw objects and preserves the logical/physical distinction. Do not store display labels or put a bracketed code in a logical `key` field.
+
+Use `validateHotkey` when accepting strings from an external source. It returns `valid`, `errors`, and `warnings`; it does not guarantee that a browser or operating system will deliver the shortcut. Recorder validation and live conflict checks are covered in the [recording guide](./hotkey-recording.md#validation-and-conflicts).
+
+Try these options together in the [vanilla formatter playground](../../../framework/vanilla/examples/formatForDisplay).

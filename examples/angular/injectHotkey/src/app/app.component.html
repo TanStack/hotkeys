@@ -67,13 +67,17 @@ injectHotkey(
 
     <section class="demo-section">
       <h2>Number Key Combinations</h2>
-      <p>Common for tab/section switching:</p>
+      <p>
+        Tab 2 uses the physical number-row position (<code>Mod+[Digit2]</code>),
+        even when that key produces a different character. The other tabs follow
+        logical digits.
+      </p>
       <div class="hotkey-grid">
         <div>
           <kbd>{{ formatForDisplay('Mod+1') }}</kbd> → Tab 1
         </div>
         <div>
-          <kbd>{{ formatForDisplay('Mod+2') }}</kbd> → Tab 2
+          <kbd>{{ formatForDisplay('Mod+[Digit2]') }}</kbd> → Tab 2
         </div>
         <div>
           <kbd>{{ formatForDisplay('Mod+3') }}</kbd> → Tab 3
@@ -88,7 +92,7 @@ injectHotkey(
       <div class="counter">Active Tab: {{ activeTab() }}</div>
       <pre class="code-block">
 injectHotkey('Mod+1', () => this.activeTab.set(1))
-injectHotkey('Mod+2', () => this.activeTab.set(2))</pre
+injectHotkey('Mod+[Digit2]', () => this.activeTab.set(2))</pre
       >
     </section>
 

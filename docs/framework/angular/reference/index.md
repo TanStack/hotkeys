@@ -25,6 +25,7 @@ title: "@tanstack/angular-hotkeys"
 - [injectHeldKeyCodes](functions/injectHeldKeyCodes.md)
 - [injectHeldKeys](functions/injectHeldKeys.md)
 - [injectHotkey](functions/injectHotkey.md)
+- [injectHotkeyHint](functions/injectHotkeyHint.md)
 - [injectHotkeyRecorder](functions/injectHotkeyRecorder.md)
 - [injectHotkeyRegistrations](functions/injectHotkeyRegistrations.md)
 - [injectHotkeys](functions/injectHotkeys.md)

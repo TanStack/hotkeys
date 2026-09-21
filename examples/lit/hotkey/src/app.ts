@@ -265,10 +265,14 @@ private _handleConditional = (
 
         <section class="demo-section">
           <h2>Number Key Combinations</h2>
-          <p>Common for tab/section switching:</p>
+          <p>
+            Tab 2 uses the physical number-row position
+            (<code>Mod+[Digit2]</code>), even when that key produces a different
+            character. The other tabs follow logical digits.
+          </p>
           <div class="hotkey-grid">
             <div><kbd>${formatForDisplay('Mod+1')}</kbd> → Tab 1</div>
-            <div><kbd>${formatForDisplay('Mod+2')}</kbd> → Tab 2</div>
+            <div><kbd>${formatForDisplay('Mod+[Digit2]')}</kbd> → Tab 2</div>
             <div><kbd>${formatForDisplay('Mod+3')}</kbd> → Tab 3</div>
             <div><kbd>${formatForDisplay('Mod+4')}</kbd> → Tab 4</div>
             <div><kbd>${formatForDisplay('Mod+5')}</kbd> → Tab 5</div>
@@ -278,7 +282,7 @@ private _handleConditional = (
 ${`@hotkey('Mod+1')
 private _tab1 = () => { this.activeTab = 1 }
 
-@hotkey('Mod+2')
+@hotkey('Mod+[Digit2]')
 private _tab2 = () => { this.activeTab = 2 }`}</pre
           >
         </section>
@@ -605,9 +609,9 @@ manager.register(
     this.activeTab = 1
   }
 
-  @hotkey('Mod+2')
+  @hotkey('Mod+[Digit2]')
   private _tab2 = () => {
-    this.lastHotkey = 'Mod+2'
+    this.lastHotkey = 'Mod+[Digit2]'
     this.activeTab = 2
   }
 

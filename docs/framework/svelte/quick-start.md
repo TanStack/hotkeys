@@ -7,7 +7,7 @@ id: quick-start
 
 Don't have TanStack Hotkeys installed yet? See the [Installation](../../installation) page for instructions.
 
-## Your First Hotkey
+## Your first hotkey
 
 Use `createHotkey` for global shortcuts and attachments for element-scoped shortcuts.
 
@@ -25,7 +25,7 @@ Use `createHotkey` for global shortcuts and attachments for element-scoped short
 
 The `Mod` modifier automatically resolves to `Meta` (Command) on macOS and `Control` on Windows/Linux, so your shortcuts work across platforms without extra logic.
 
-## Common Patterns
+## Common patterns
 
 ### Multiple global hotkeys
 
@@ -161,7 +161,7 @@ Use `setHotkeysContext` when you want defaults for a subtree. This is an advance
 </script>
 ```
 
-## Next Steps
+## Next steps
 
 - [Hotkeys Guide](./guides/hotkeys)
 - [Sequences Guide](./guides/sequences)

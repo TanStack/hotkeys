@@ -7,11 +7,11 @@ id: quick-start
 
 Don't have TanStack Hotkeys installed yet? See the [Installation](../../installation) page for instructions.
 
-## Your First Hotkey
+## Your first hotkey
 
-The Lit adapter offers two ways to register hotkeys: **decorators** for declarative method-level binding, and **controllers** for imperative, reactive state management.
+The Lit adapter offers two ways to register hotkeys: decorators for declarative method-level binding, and controllers for imperative, reactive state management.
 
-### Using the `@hotkey` Decorator
+### Using the `@hotkey` decorator
 
 The `@hotkey` decorator is the simplest way to bind a keyboard shortcut to a class method:
 
@@ -67,9 +67,9 @@ class MyEditor extends LitElement {
 
 The `Mod` modifier automatically resolves to `Meta` (Command) on macOS and `Control` on Windows/Linux, so your shortcuts work across platforms without extra logic.
 
-## Common Patterns
+## Common patterns
 
-### Multiple Hotkeys
+### Multiple hotkeys
 
 Register as many hotkeys as you need with the `@hotkey` decorator:
 
@@ -93,9 +93,9 @@ class MyEditor extends LitElement {
 }
 ```
 
-### Scoped Hotkeys
+### Scoped hotkeys
 
-Attach hotkeys to specific elements instead of the entire document using the `target` option. When the target comes from a ref, create the registration after the element has rendered:
+Use the `target` option to attach hotkeys to specific elements instead of the entire document. When the target comes from a ref, create the registration after the element has rendered:
 
 ```ts
 import { LitElement, html } from 'lit'
@@ -134,7 +134,7 @@ class MyPanel extends LitElement {
 }
 ```
 
-### Conditional Hotkeys
+### Conditional hotkeys
 
 Enable or disable hotkeys based on application state via the `enabled` option:
 
@@ -152,7 +152,7 @@ class MyModal extends LitElement {
 }
 ```
 
-### Multi-Key Sequences
+### Multi-key sequences
 
 Register Vim-style key sequences with the `@hotkeySequence` decorator or `HotkeySequenceController`:
 
@@ -175,7 +175,7 @@ class VimEditor extends LitElement {
 }
 ```
 
-### Tracking Held Keys
+### Tracking held keys
 
 Display modifier key state for power-user UIs using `KeyHoldController` and `HeldKeysController`:
 
@@ -204,7 +204,7 @@ class StatusBar extends LitElement {
 }
 ```
 
-### Recording Hotkeys
+### Recording hotkeys
 
 Build shortcut customization UIs with `HotkeyRecorderController`:
 
@@ -243,7 +243,7 @@ class ShortcutSettings extends LitElement {
 }
 ```
 
-### Displaying Hotkeys in the UI
+### Displaying hotkeys in the UI
 
 Format hotkeys for platform-aware display:
 
@@ -268,9 +268,9 @@ class SaveButton extends LitElement {
 }
 ```
 
-## Decorators vs Controllers
+## Decorators vs controllers
 
-The Lit adapter provides two complementary approaches:
+The Lit adapter gives you two complementary approaches:
 
 | | Decorators (`@hotkey`, `@hotkeySequence`) | Controllers (`HotkeyController`, etc.) |
 |---|---|---|
@@ -279,9 +279,9 @@ The Lit adapter provides two complementary approaches:
 | **State access** | No (fire-and-forget callbacks) | Yes (`isRecording`, `value`, etc.) |
 | **Dynamic hotkeys** | No (static at decoration time) | Yes (can re-register programmatically) |
 
-Use **decorators** when you simply want a method to fire on a key combo. Use **controllers** when you need reactive state (held keys, recording) or dynamic hotkey registration.
+Use decorators when you simply want a method to fire on a key combo. Use controllers when you need reactive state (held keys, recording) or dynamic hotkey registration.
 
-## Next Steps
+## Next steps
 
 - [Hotkeys Guide](./guides/hotkeys) - Deep dive into `@hotkey` decorator and `HotkeyController` options
 - [Sequences Guide](./guides/sequences) - Multi-key sequence handling

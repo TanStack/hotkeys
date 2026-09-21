@@ -155,6 +155,10 @@ export function useHotkeys(
 
       const existing = prevRegistrations.get(registrationKey)
       if (existing?.handle.isActive && existing.target === resolvedTarget) {
+        // Publish callback/options only after commit, never during render.
+        existing.handle.callback = def.callback
+        const { target: _target, ...optionsWithoutTarget } = mergedOptions
+        existing.handle.setOptions(optionsWithoutTarget)
         nextRegistrations.set(registrationKey, existing)
         continue
       }
@@ -186,22 +190,4 @@ export function useHotkeys(
       registrationsRef.current = new Map()
     }
   }, [])
-
-  for (let i = 0; i < hotkeys.length; i++) {
-    const def = hotkeys[i]!
-    const hotkeyStr = hotkeyStrings[i]!
-    const registrationKey = `${i}:${hotkeyStr}`
-    const handle = registrationsRef.current.get(registrationKey)?.handle
-
-    if (handle?.isActive) {
-      handle.callback = def.callback
-      const mergedOptions = {
-        ...defaultOptions,
-        ...commonOptions,
-        ...def.options,
-      } as UseHotkeyOptions
-      const { target: _target, ...optionsWithoutTarget } = mergedOptions
-      handle.setOptions(optionsWithoutTarget)
-    }
-  }
 }

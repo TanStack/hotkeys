@@ -3,7 +3,7 @@ title: Installation
 id: installation
 ---
 
-TanStack Hotkeys is compatible with various front-end frameworks. Install the corresponding adapter for your framework using your preferred package manager:
+Install the adapter for your framework with your preferred package manager:
 
 <!-- ::start:tabs variant="package-managers" -->
 
@@ -17,7 +17,7 @@ vue: @tanstack/vue-hotkeys
 
 <!-- ::end:tabs -->
 
-Each framework package re-exports everything from the core `@tanstack/hotkeys` package, so there is no need to install the core package separately.
+Each framework package re-exports everything from the core `@tanstack/hotkeys` package, so you don't need to install the core package separately.
 
 > [!NOTE]
 > If you are not using a framework, you can install the core `@tanstack/hotkeys` package directly for use with vanilla JavaScript.

@@ -24,6 +24,7 @@ title: "@tanstack/solid-hotkeys"
 - [createHeldKeyCodes](functions/createHeldKeyCodes.md)
 - [createHeldKeys](functions/createHeldKeys.md)
 - [createHotkey](functions/createHotkey.md)
+- [createHotkeyHint](functions/createHotkeyHint.md)
 - [createHotkeyRecorder](functions/createHotkeyRecorder.md)
 - [createHotkeyRegistrations](functions/createHotkeyRegistrations.md)
 - [createHotkeys](functions/createHotkeys.md)

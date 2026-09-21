@@ -62,6 +62,13 @@ describe('KeyStateTracker', () => {
       expect(tracker.isKeyHeld('A')).toBe(false)
     })
 
+    it('pairs keyup by code when the logical key changes', () => {
+      const tracker = KeyStateTracker.getInstance()
+      dispatchKey('keydown', 'ф', 'KeyA')
+      dispatchKey('keyup', 'a', 'KeyA')
+      expect(tracker.isKeyHeld('ф')).toBe(false)
+    })
+
     it('should track multiple keys', () => {
       const tracker = KeyStateTracker.getInstance()
 

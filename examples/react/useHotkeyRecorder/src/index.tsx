@@ -30,7 +30,7 @@ const INITIAL_SHORTCUTS: Array<Shortcut> = [
     id: createId(),
     name: 'Save',
     description: 'Save the current document',
-    hotkey: 'Mod+K',
+    hotkey: 'Mod+[KeyK]',
   },
   {
     id: createId(),
@@ -236,8 +236,9 @@ function App() {
 
         {recorder.isRecording && (
           <div className="info-box recording-notice">
-            <strong>Recording shortcut...</strong> Press any key combination or
-            Escape to cancel. Press Backspace/Delete to clear the shortcut.
+            <strong>Recording shortcut...</strong> The physical key position
+            will be saved. Press any key combination or Escape to cancel. Press
+            Backspace/Delete to clear the shortcut.
           </div>
         )}
 

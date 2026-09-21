@@ -3,9 +3,11 @@ title: Sequence Recording Guide
 id: sequence-recording
 ---
 
-TanStack Hotkeys provides the `HotkeySequenceRecorderController` for building UIs where users record **multi-chord sequences** (Vim-style shortcuts). Each step is captured like a single hotkey chord; users finish with **Enter** by default, or you can use manual commit and optional idle timeout.
+TanStack Hotkeys provides the `HotkeySequenceRecorderController` for building UIs where users record multi-chord sequences (Vim-style shortcuts). Each step is captured like a single hotkey chord; users finish with Enter by default, or you can use manual commit and optional idle timeout.
 
-## Basic Usage
+Sequence recording uses `recordBy: 'code'` by default, preserving every step as a physical string such as `['[KeyG]', 'Alt+[KeyS]']`. Set `recordBy: 'key'` for logical characters. The shared rejection and conflict options follow the [hotkey recording guide](./hotkey-recording.md#validation-and-conflicts).
+
+## Basic usage
 
 ```ts
 import { LitElement, html, nothing } from 'lit'
@@ -67,6 +69,8 @@ The controller registers itself with the host in its constructor, subscribes to 
 
 ## Options
 
+`recordBy` defaults to `'code'`; choose `'key'` for logical characters. Repeats and IME composition never append steps. Modifier-only presses wait for a complete chord.
+
 Pass options as the second argument to the constructor:
 
 ```ts
@@ -81,7 +85,7 @@ new HotkeySequenceRecorderController(this, {
 
 ### `onRecord`
 
-Called when a sequence is committed (including `[]` when cleared via Backspace with no steps). Receives the recorded `HotkeySequence` array.
+Called when a nonempty sequence is committed. Clearing calls only `onClear`. Receives the recorded `HotkeySequence` array.
 
 ### `onCancel`
 
@@ -95,8 +99,8 @@ Called when the sequence is cleared (by pressing Backspace or Delete during reco
 
 Controls how the user finishes recording from the keyboard:
 
-- `'enter'` (default) — plain Enter (no modifiers) commits when at least one step exists.
-- `'none'` — only `commitRecording()` or `idleTimeoutMs` finishes recording; plain Enter can be recorded as a chord.
+- `'enter'` (default): plain Enter (no modifiers) commits when at least one step exists.
+- `'none'`: only `commitRecording()` or `idleTimeoutMs` finishes recording; plain Enter can be recorded as a chord.
 
 ### `commitOnEnter`
 
@@ -104,11 +108,11 @@ When `commitKeys` is `'enter'`, set to `false` to treat Enter as a normal chord.
 
 ### `idleTimeoutMs`
 
-Milliseconds of inactivity **after the last completed chord** to auto-commit. The timer does not run while waiting for the **first** chord.
+Milliseconds of inactivity after the last completed chord to auto-commit. The timer does not run while waiting for the first chord.
 
 ### `ignoreInputs`
 
-The `HotkeySequenceRecorderOptions` supports an `ignoreInputs` option (defaults to `true`). When `true`, the recorder will not intercept normal typing in text inputs, textareas, selects, or contentEditable elements -- keystrokes pass through to the input as usual. Pressing **Escape** still cancels recording even when focused on an input. Set `ignoreInputs: false` if you want the recorder to capture keys from within input elements.
+The `HotkeySequenceRecorderOptions` supports an `ignoreInputs` option (defaults to `true`). When `true`, the recorder doesn't intercept normal typing in text inputs, textareas, selects, or contentEditable elements. Keystrokes pass through to the input as usual. Pressing Escape still cancels recording even when focused on an input. Set `ignoreInputs: false` if you want the recorder to capture keys from within input elements.
 
 ```ts
 new HotkeySequenceRecorderController(this, {
@@ -117,17 +121,21 @@ new HotkeySequenceRecorderController(this, {
 })
 ```
 
-## Recording Behavior
+## Recording behavior
 
 | Input | Behavior |
 |-------|----------|
 | Valid chord | Appended to `steps`; listener stays active |
 | Enter (no modifiers), `commitKeys: 'enter'`, `steps.length >= 1` | Commits and calls `onRecord` |
 | Escape | Cancels; calls `onCancel` |
-| Backspace / Delete (no modifiers) | Removes last step, or if empty runs `onClear` + `onRecord([])` and stops |
+| Backspace / Delete (no modifiers) | Removes last step, or if empty runs only `onClear` and stops |
 
 Recorded chords use portable `Mod` format, same as `HotkeyRecorderController`.
 
-## Under the Hood
+## Validation and conflicts
+
+Sequence `validate(sequence, { events, parsedSequence })` runs when committing and returns true, false, or a rejection message. `detectConflicts` checks sequence prefixes as well as single bindings. Rejected commits keep recording active with the steps intact so the user can edit them with Backspace. Empty Backspace/Delete clears and emits `onClear` only; removing a nonempty step does not commit. Recorded steps, commit keys, and releases are isolated from application handlers.
+
+## Under the hood
 
 The `HotkeySequenceRecorderController` creates a `HotkeySequenceRecorder` class instance and subscribes to its reactive state via `@tanstack/store`. The class manages its own keyboard event listeners and state, and the controller handles cleanup on disconnect.

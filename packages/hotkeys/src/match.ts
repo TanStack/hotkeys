@@ -1,21 +1,27 @@
-import {
-  PUNCTUATION_CODE_MAP,
-  detectPlatform,
-  isSingleLetterKey,
-  normalizeKeyName,
-} from './constants'
-import { parseHotkey } from './parse'
+import { matchKeyboardEvent } from './_match'
+import { parseHotkey, parseRegisterableHotkey } from './parse'
+import { detectPlatform } from './platform'
+import { keysEqual } from './_keyboard-event'
 import type {
   Hotkey,
   HotkeyCallback,
   HotkeyCallbackContext,
   ParsedHotkey,
-} from './hotkey'
+  RegisterableHotkey,
+} from './hotkey.types'
+
+export interface KeyboardEventMatch {
+  matched: boolean
+  score: 0 | 1 | 2 | 3
+  source?: 'key' | 'code' | 'fallback'
+  identity?: { key: string; code: string }
+}
 
 /**
  * Checks if a KeyboardEvent matches a hotkey.
  *
- * Uses the `key` property from KeyboardEvent for matching, with a fallback to `code`
+ * Physical bindings such as `Mod+[KeyS]` match `event.code` exactly.
+ * Logical bindings use `event.key`, with a fallback to `code`
  * for letter keys, digit keys (0-9), and punctuation keys when `key` produces special
  * characters (e.g., macOS Option+letter, Shift+number, or Option+punctuation).
  * Letter keys are matched case-insensitively.
@@ -45,85 +51,7 @@ export function matchesKeyboardEvent(
   hotkey: Hotkey | ParsedHotkey,
   platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
 ): boolean {
-  const parsed =
-    typeof hotkey === 'string' ? parseHotkey(hotkey, platform) : hotkey
-
-  // Check modifiers
-  if (event.ctrlKey !== parsed.ctrl) {
-    return false
-  }
-  if (event.shiftKey !== parsed.shift) {
-    return false
-  }
-  if (event.altKey !== parsed.alt) {
-    return false
-  }
-  if (event.metaKey !== parsed.meta) {
-    return false
-  }
-
-  // Check key (case-insensitive for letters)
-  const eventKey = normalizeKeyName(event.key)
-  const hotkeyKey = parsed.key
-
-  // For single-character keys (not dead keys), try direct event.key match first
-  if (eventKey !== 'Dead' && eventKey.length === 1 && hotkeyKey.length === 1) {
-    if (eventKey.toUpperCase() === hotkeyKey.toUpperCase()) {
-      return true
-    }
-
-    // If event.key is a letter, we usually trust the keyboard layout.
-    // For ASCII letters: always trust layout (Dvorak, Colemak, AZERTY support).
-    // For non-ASCII letters without Alt: trust layout (e.g., Cyrillic keyboards).
-    //
-    // For non-ASCII letters WITH Alt held down: fall through to the event.code
-    // fallback. macOS Option+letter combinations produce non-ASCII letters as
-    // event.key (e.g., Option+A → 'å', Option+' → 'æ', Option+P → 'π'), but
-    // event.code still reflects the physical key. We want Alt+A to match even
-    // when Option+A fires event.key='å'.
-    if (
-      isSingleLetterKey(eventKey) &&
-      (/^[A-Za-z]$/.test(eventKey) || !event.altKey)
-    ) {
-      return false
-    }
-  }
-
-  // Fallback to event.code for dead keys or single-char mismatches where
-  // event.key is a non-letter special character.
-  // Dead keys: Option+letter on macOS, international layouts produce event.key === 'Dead'
-  // Single-char mismatches: Cmd+Option+T gives '†' instead of 'T', Shift+4 gives '$'
-  if (
-    event.code &&
-    (eventKey === 'Dead' || (eventKey.length === 1 && hotkeyKey.length === 1))
-  ) {
-    // fallback for letter keys (common with mac option + letter)
-    if (event.code.startsWith('Key')) {
-      const codeLetter = event.code.slice(3)
-      if (codeLetter.length === 1 && /^[A-Za-z]$/.test(codeLetter)) {
-        return codeLetter.toUpperCase() === hotkeyKey.toUpperCase()
-      }
-    }
-
-    // fallback for number keys (common with mac option + num)
-    if (event.code.startsWith('Digit')) {
-      const codeDigit = event.code.slice(5)
-      if (codeDigit.length === 1 && /^[0-9]$/.test(codeDigit)) {
-        return codeDigit === hotkeyKey
-      }
-    }
-    // Fallback for punctuation keys (e.g., Minus, Slash, BracketLeft).
-    // On macOS, Option+punctuation produces composed characters (e.g., Option+- → '–'),
-    // but event.code still reports the physical key.
-    if (event.code in PUNCTUATION_CODE_MAP) {
-      return PUNCTUATION_CODE_MAP[event.code] === hotkeyKey
-    }
-
-    return false
-  }
-
-  // For special keys, compare exactly (after normalization)
-  return eventKey === hotkeyKey
+  return matchKeyboardEvent(event, hotkey, platform).matched
 }
 
 /**
@@ -187,7 +115,7 @@ export function createHotkeyHandler(
   }
 }
 
-type MultiHotkeyHandler = { [K in Hotkey]?: HotkeyCallback }
+export type MultiHotkeyHandler = { [K in Hotkey]?: HotkeyCallback }
 
 /**
  * Creates a handler that matches multiple hotkeys.
@@ -253,7 +181,30 @@ function formatParsedHotkey(parsed: ParsedHotkey): Hotkey {
   if (parsed.alt) parts.push('Alt')
   if (parsed.shift) parts.push('Shift')
   if (parsed.meta) parts.push('Meta')
-  parts.push(parsed.key)
+  parts.push(parsed.code !== undefined ? `[${parsed.code}]` : parsed.key)
 
   return parts.join('+') as Hotkey
+}
+
+/**
+ * Compares normalized binding identity, including all four modifiers.
+ * Aliases resolve on the supplied platform. A physical code and a logical key
+ * remain distinct even when one keyboard event could match both.
+ */
+export function areHotkeysEqual(
+  left: RegisterableHotkey,
+  right: RegisterableHotkey,
+  platform = detectPlatform(),
+): boolean {
+  const a = parseRegisterableHotkey(left, platform)
+  const b = parseRegisterableHotkey(right, platform)
+  return (
+    a.ctrl === b.ctrl &&
+    a.alt === b.alt &&
+    a.shift === b.shift &&
+    a.meta === b.meta &&
+    (a.code !== undefined || b.code !== undefined
+      ? a.code === b.code
+      : keysEqual(a.key, b.key))
+  )
 }

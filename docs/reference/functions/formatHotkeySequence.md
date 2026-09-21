@@ -7,9 +7,10 @@ title: formatHotkeySequence
 function formatHotkeySequence(sequence): string;
 ```
 
-Defined in: [format.ts:37](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L37)
+Defined in: [format.ts:38](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L38)
 
-Converts a hotkey sequence array to a display string.
+Joins stored sequence steps with spaces, preserving physical code tokens.
+For user-facing labels, call formatForDisplay on each step instead.
 
 ## Parameters
 

@@ -1,5 +1,6 @@
-import { ALL_KEYS, MODIFIER_ALIASES } from './constants'
-import type { Hotkey, ValidationResult } from './hotkey'
+import { ALL_KEYS, MODIFIER_ALIASES, normalizeKeyName } from './constants'
+import { splitHotkeyParts } from './_keyboard-event'
+import type { Hotkey } from './hotkey.types'
 
 /**
  * Validates a hotkey string and returns any warnings or errors.
@@ -36,7 +37,7 @@ export function validateHotkey(
     }
   }
 
-  const parts = hotkey.split('+').map((p) => p.trim())
+  const parts = splitHotkeyParts(hotkey).map((p) => p.trim())
 
   // Must have at least one part (the key)
   if (parts.length === 0 || parts.some((p) => p === '')) {
@@ -60,8 +61,18 @@ export function validateHotkey(
     }
   }
 
+  if (
+    keyPart.length > 1 &&
+    (keyPart.startsWith('[') || keyPart.endsWith(']')) &&
+    !/^\[[A-Za-z][A-Za-z0-9]*\]$/.test(keyPart)
+  ) {
+    errors.push(
+      'Invalid physical key: use a bracketed KeyboardEvent.code, such as [KeyS]',
+    )
+  }
+
   // Check if key is known
-  const normalizedKey = normalizeKeyForValidation(keyPart)
+  const normalizedKey = normalizeKeyName(keyPart)
   if (!isKnownKey(normalizedKey) && !isKnownKey(keyPart)) {
     warnings.push(
       `Unknown key: '${keyPart}'. This may still work but won't have type-safe autocomplete.`,
@@ -76,26 +87,11 @@ export function validateHotkey(
 }
 
 /**
- * Normalizes a key for validation checking.
- */
-function normalizeKeyForValidation(key: string): string {
-  // Single letter to uppercase
-  if (key.length === 1 && /^[a-zA-Z]$/.test(key)) {
-    return key.toUpperCase()
-  }
-
-  // Function keys to uppercase
-  if (/^f([1-9]|1[0-2])$/i.test(key)) {
-    return key.toUpperCase()
-  }
-
-  return key
-}
-
-/**
  * Checks if a key is in the known keys set.
  */
 function isKnownKey(key: string): boolean {
+  if (/^\[[A-Za-z][A-Za-z0-9]*\]$/.test(key)) return true
+  if (Array.from(key).length === 1) return true
   // Check direct match
   if (ALL_KEYS.has(key as any)) {
     return true
@@ -168,4 +164,16 @@ export function checkHotkey(hotkey: Hotkey | (string & {})): boolean {
   }
 
   return result.valid
+}
+
+/**
+ * Result of validating a hotkey string.
+ */
+export interface ValidationResult {
+  /** Whether the hotkey is valid (can still have warnings) */
+  valid: boolean
+  /** Warning messages about potential issues */
+  warnings: Array<string>
+  /** Error messages about invalid syntax */
+  errors: Array<string>
 }

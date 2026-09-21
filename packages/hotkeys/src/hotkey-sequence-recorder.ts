@@ -1,7 +1,20 @@
 import { Store } from '@tanstack/store'
-import { detectPlatform } from './constants'
-import { isInputElement } from './manager.utils'
-import { hotkeyChordFromKeydown } from './recorder-chord'
+import { findHotkeyConflicts } from './conflicts'
+import {
+  beginRecording,
+  captureRecordingEvent,
+  endRecording,
+} from './_recording-guard'
+import { chordRejection, hotkeyChordFromKeydown } from './_recorder-chord'
+import { normalizeKeyboardEvent } from './_keyboard-event'
+import { isModifierKey, parseHotkey } from './parse'
+import { validateHotkey } from './validate'
+import { detectPlatform } from './platform'
+import { shouldIgnoreInputEvent } from './_event-target'
+import type {
+  HotkeySequenceRecorderValidationContext,
+  RecorderOptions,
+} from './recorder-options'
 import type { HotkeySequence } from './sequence-manager'
 
 /**
@@ -26,8 +39,13 @@ export interface HotkeySequenceRecorderState {
 /**
  * Options for configuring a HotkeySequenceRecorder instance.
  */
-export interface HotkeySequenceRecorderOptions {
-  /** Callback when a sequence is successfully recorded (including empty array when cleared) */
+export interface HotkeySequenceRecorderOptions extends RecorderOptions {
+  /** Validate the completed sequence. Rejection preserves the steps for editing. */
+  validate?: (
+    sequence: HotkeySequence,
+    context: HotkeySequenceRecorderValidationContext,
+  ) => boolean | string
+  /** Callback when a sequence is successfully recorded */
   onRecord: (sequence: HotkeySequence) => void
   /** Optional callback when recording is cancelled (Escape pressed) */
   onCancel?: () => void
@@ -66,6 +84,7 @@ const defaultHotkeySequenceRecorderOptions: Pick<
   commitKeys: 'enter',
 }
 
+/** Resolves the Enter policy, with commitKeys: none overriding the legacy boolean. */
 function resolvedCommitOnEnter(
   options: HotkeySequenceRecorderOptions,
 ): boolean {
@@ -93,6 +112,7 @@ export class HotkeySequenceRecorder {
   #keydownHandler: ((event: KeyboardEvent) => void) | null = null
   #options: HotkeySequenceRecorderOptions
   #platform: 'mac' | 'windows' | 'linux'
+  #events: Array<KeyboardEvent> = []
   #idleTimer: ReturnType<typeof setTimeout> | null = null
 
   constructor(options: HotkeySequenceRecorderOptions) {
@@ -103,6 +123,7 @@ export class HotkeySequenceRecorder {
     this.#platform = detectPlatform()
   }
 
+  /** Merges current callbacks and options without discarding recorded steps. */
   setOptions(options: Partial<HotkeySequenceRecorderOptions>): void {
     this.#options = {
       ...defaultHotkeySequenceRecorderOptions,
@@ -111,6 +132,7 @@ export class HotkeySequenceRecorder {
     }
   }
 
+  /** Cancels a pending idle commit so it cannot fire after editing or stopping. */
   #clearIdleTimer(): void {
     if (this.#idleTimer !== null) {
       clearTimeout(this.#idleTimer)
@@ -118,6 +140,7 @@ export class HotkeySequenceRecorder {
     }
   }
 
+  /** Restarts optional idle commit after a step is recorded or edited. */
   #scheduleIdleTimer(): void {
     this.#clearIdleTimer()
     const ms = this.#options.idleTimeoutMs
@@ -139,6 +162,7 @@ export class HotkeySequenceRecorder {
     }, ms)
   }
 
+  /** Publishes edited steps while preserving the remaining recorder state. */
   #patchSteps(updater: (prev: HotkeySequence) => HotkeySequence): void {
     this.store.setState((s) => ({
       ...s,
@@ -146,12 +170,15 @@ export class HotkeySequenceRecorder {
     }))
   }
 
+  /** Starts a fresh recording; repeated starts during an active session are ignored. */
   start(): void {
     if (this.#keydownHandler) {
       return
     }
 
     this.#clearIdleTimer()
+    this.#events = []
+    beginRecording(this)
     this.store.setState(() => ({
       isRecording: true,
       steps: [],
@@ -166,16 +193,19 @@ export class HotkeySequenceRecorder {
       // If ignoreInputs is enabled (default) and focus is in an input element,
       // let the event pass through so the user can type normally.
       // Escape is the exception — it should always cancel recording.
-      if (this.#options.ignoreInputs !== false) {
-        const activeEl =
-          typeof document !== 'undefined' ? document.activeElement : null
-        if (isInputElement(activeEl) && event.key !== 'Escape') {
-          return
-        }
-      }
+      if (
+        this.#options.ignoreInputs !== false &&
+        event.key !== 'Escape' &&
+        shouldIgnoreInputEvent(event, document, document)
+      )
+        return
 
+      const platform = this.#options.platform ?? this.#platform
+      if (normalizeKeyboardEvent(event, platform).isComposing) return
+      captureRecordingEvent(event)
       event.preventDefault()
       event.stopPropagation()
+      if (event.repeat) return
 
       if (event.key === 'Escape') {
         this.cancel()
@@ -191,11 +221,11 @@ export class HotkeySequenceRecorder {
         ) {
           const steps = this.store.state.steps
           if (steps.length === 0) {
+            this.stop()
             this.#options.onClear?.()
-            this.#options.onRecord([])
-            this.#finishWithoutCommitCallback()
             return
           }
+          this.#events.pop()
           this.#patchSteps((prev) => prev.slice(0, -1))
           const next = this.store.state.steps
           if (next.length === 0) {
@@ -224,11 +254,31 @@ export class HotkeySequenceRecorder {
         return
       }
 
-      const finalHotkey = hotkeyChordFromKeydown(event, this.#platform)
+      if (isModifierKey(event.key) || event.key === 'AltGraph') return
+      const rejection = chordRejection(event, { ...this.#options, platform })
+      if (rejection) {
+        this.#options.onReject?.(rejection)
+        return
+      }
+      const finalHotkey = hotkeyChordFromKeydown(
+        event,
+        platform,
+        this.#options.recordBy,
+      )
       if (finalHotkey === null) {
         return
       }
 
+      const validation = validateHotkey(finalHotkey)
+      if (!validation.valid) {
+        this.#options.onReject?.({
+          reason: 'invalid',
+          message: validation.errors.join('; '),
+          hotkey: finalHotkey,
+        })
+        return
+      }
+      this.#events.push(event)
       this.#patchSteps((prev) => [...prev, finalHotkey])
       this.#scheduleIdleTimer()
     }
@@ -247,6 +297,43 @@ export class HotkeySequenceRecorder {
     }
 
     const sequence = [...steps]
+    const platform = this.#options.platform ?? this.#platform
+    this.#clearIdleTimer()
+    const accepted = this.#options.validate?.(sequence, {
+      events: [...this.#events],
+      parsedSequence: sequence.map((step) => parseHotkey(step, platform)),
+    })
+    if (accepted !== undefined && accepted !== true) {
+      this.#options.onReject?.({
+        reason: 'validation',
+        message:
+          typeof accepted === 'string'
+            ? accepted
+            : 'This sequence is not allowed.',
+        sequence,
+      })
+      return
+    }
+    if (this.#options.detectConflicts) {
+      const conflicts = findHotkeyConflicts(sequence, {
+        ...(typeof this.#options.detectConflicts === 'object'
+          ? this.#options.detectConflicts
+          : {}),
+        platform,
+        events: this.#events,
+      })
+      if (conflicts.length) {
+        this.#options.onReject?.({
+          reason: 'conflict',
+          message: 'This sequence conflicts with a registered binding.',
+          sequence,
+          conflicts,
+        })
+        return
+      }
+    }
+    endRecording(this)
+    this.#events = []
 
     if (this.#keydownHandler) {
       this.#removeListener(this.#keydownHandler)
@@ -263,20 +350,10 @@ export class HotkeySequenceRecorder {
     this.#options.onRecord(sequence)
   }
 
-  #finishWithoutCommitCallback(): void {
-    if (this.#keydownHandler) {
-      this.#removeListener(this.#keydownHandler)
-      this.#keydownHandler = null
-    }
-    this.#clearIdleTimer()
-    this.store.setState(() => ({
-      isRecording: false,
-      steps: [],
-      recordedSequence: null,
-    }))
-  }
-
+  /** Stops and discards in-progress steps without invoking onCancel. */
   stop(): void {
+    endRecording(this)
+    this.#events = []
     if (this.#keydownHandler) {
       this.#removeListener(this.#keydownHandler)
       this.#keydownHandler = null
@@ -289,7 +366,10 @@ export class HotkeySequenceRecorder {
     }))
   }
 
+  /** Stops, discards in-progress steps, and notifies onCancel. */
   cancel(): void {
+    endRecording(this)
+    this.#events = []
     if (this.#keydownHandler) {
       this.#removeListener(this.#keydownHandler)
       this.#keydownHandler = null
@@ -303,6 +383,7 @@ export class HotkeySequenceRecorder {
     this.#options.onCancel?.()
   }
 
+  /** Captures keydowns before application handlers, with an SSR-safe document check. */
   #addListener(handler: (event: KeyboardEvent) => void): void {
     if (typeof document === 'undefined') {
       return
@@ -310,6 +391,7 @@ export class HotkeySequenceRecorder {
     document.addEventListener('keydown', handler, true)
   }
 
+  /** Detaches the capture listener when recording ends. */
   #removeListener(handler: (event: KeyboardEvent) => void): void {
     if (typeof document === 'undefined') {
       return

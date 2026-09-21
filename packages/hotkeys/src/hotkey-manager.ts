@@ -1,24 +1,27 @@
 import { Store } from '@tanstack/store'
-import { detectPlatform, normalizeKeyName } from './constants'
+import { isRecordingEvent } from './_recording-guard'
+import { areHotkeysEqual } from './match'
+import { detectPlatform } from './platform'
+import { normalizeKeyName } from './constants'
 import { formatHotkey } from './format'
 import { parseHotkey, rawHotkeyToParsedHotkey } from './parse'
-import { matchesKeyboardEvent } from './match'
+import { matchKeyboardEvent } from './_match'
 import {
   defaultHotkeyOptions,
   getDefaultIgnoreInputs,
   handleConflict,
-  isEventForTarget,
-  shouldIgnoreInputEvent,
-} from './manager.utils'
-import type { ConflictBehavior } from './manager.utils'
+  optionsEqual,
+} from './_registration'
+import { isEventForTarget, shouldIgnoreInputEvent } from './_event-target'
 import type {
+  ConflictBehavior,
   Hotkey,
   HotkeyCallback,
   HotkeyCallbackContext,
   HotkeyMeta,
   ParsedHotkey,
   RegisterableHotkey,
-} from './hotkey'
+} from './hotkey.types'
 
 export type { ConflictBehavior }
 
@@ -60,6 +63,8 @@ export interface HotkeyRegistration {
   callback: HotkeyCallback
   /** Whether this registration has fired and needs reset (for requireReset) */
   hasFired: boolean
+  /** The concrete key/code that activated a requireReset registration. */
+  activeMatch?: { key: string; code: string }
   /** The original hotkey string */
   hotkey: Hotkey
   /** Unique identifier for this registration */
@@ -378,7 +383,10 @@ export class HotkeyManager {
       setOptions: (newOptions: Partial<HotkeyOptions>) => {
         manager.registrations.setState((prev) => {
           const reg = prev.get(id)
-          if (reg) {
+          if (
+            reg &&
+            !optionsEqual(reg.options, { ...reg.options, ...newOptions })
+          ) {
             const next = new Map(prev)
             next.set(id, { ...reg, options: { ...reg.options, ...newOptions } })
             return next
@@ -476,9 +484,50 @@ export class HotkeyManager {
     target: HTMLElement | Document | Window,
     eventType: 'keydown' | 'keyup',
   ): void {
+    // Releases clear latches even when focus or enabled state now prevents callbacks.
+    if (eventType === 'keyup') {
+      for (const id of this.#targetRegistrations.get(target) ?? []) {
+        const registration = this.registrations.state.get(id)
+        if (
+          registration?.hasFired &&
+          this.#shouldResetRegistration(registration, event)
+        ) {
+          registration.hasFired = false
+          registration.activeMatch = undefined
+        }
+      }
+    }
+    if (isRecordingEvent(event)) return
     const targetRegs = this.#targetRegistrations.get(target)
     if (!targetRegs) {
       return
+    }
+
+    const matches = new Map<string, ReturnType<typeof matchKeyboardEvent>>()
+    let bestScore = 0
+
+    // Exact logical/explicit-code matches outrank compatibility fallbacks.
+    for (const id of targetRegs) {
+      const registration = this.registrations.state.get(id)
+      if (
+        !registration ||
+        !registration.options.enabled ||
+        registration.options.eventType !== eventType ||
+        !isEventForTarget(event, target) ||
+        (registration.options.ignoreInputs !== false &&
+          shouldIgnoreInputEvent(event, target, registration.target))
+      ) {
+        continue
+      }
+      const result = matchKeyboardEvent(
+        event,
+        registration.parsedHotkey,
+        registration.options.platform,
+      )
+      if (result.matched) {
+        matches.set(id, result)
+        bestScore = Math.max(bestScore, result.score)
+      }
     }
 
     for (const id of targetRegs) {
@@ -509,14 +558,9 @@ export class HotkeyManager {
           continue
         }
 
-        // Check if the hotkey matches first
-        const matches = matchesKeyboardEvent(
-          event,
-          registration.parsedHotkey,
-          registration.options.platform,
-        )
+        const match = matches.get(id)
 
-        if (matches) {
+        if (match?.matched && match.score === bestScore) {
           // Always apply preventDefault/stopPropagation if the hotkey matches,
           // even when requireReset is active and has already fired
           if (registration.options.preventDefault) {
@@ -533,6 +577,7 @@ export class HotkeyManager {
             // Mark as fired if requireReset is enabled
             if (registration.options.requireReset) {
               registration.hasFired = true
+              registration.activeMatch = match.identity
             }
           }
         }
@@ -540,21 +585,9 @@ export class HotkeyManager {
       // Handle keyup events
       else {
         if (registration.options.eventType === 'keyup') {
-          if (
-            matchesKeyboardEvent(
-              event,
-              registration.parsedHotkey,
-              registration.options.platform,
-            )
-          ) {
+          const match = matches.get(id)
+          if (match?.matched && match.score === bestScore) {
             this.#executeHotkeyCallback(registration, event)
-          }
-        }
-
-        // Reset hasFired when any key in the hotkey is released
-        if (registration.options.requireReset && registration.hasFired) {
-          if (this.#shouldResetRegistration(registration, event)) {
-            registration.hasFired = false
           }
         }
       }
@@ -620,7 +653,14 @@ export class HotkeyManager {
     target: HTMLElement | Document | Window,
   ): HotkeyRegistration | null {
     for (const registration of this.registrations.state.values()) {
-      if (registration.hotkey === hotkey && registration.target === target) {
+      if (
+        areHotkeysEqual(
+          registration.hotkey,
+          hotkey,
+          registration.options.platform,
+        ) &&
+        registration.target === target
+      ) {
         return registration
       }
     }
@@ -637,15 +677,22 @@ export class HotkeyManager {
     const parsed = registration.parsedHotkey
     const releasedKey = normalizeKeyName(event.key)
 
-    // Reset if the main key is released
-    // Compare case-insensitively for single-letter keys
-    const parsedKeyNormalized =
-      parsed.key.length === 1 ? parsed.key.toUpperCase() : parsed.key
-    const releasedKeyNormalized =
-      releasedKey.length === 1 ? releasedKey.toUpperCase() : releasedKey
-
-    if (releasedKeyNormalized === parsedKeyNormalized) {
+    if (
+      registration.activeMatch?.code &&
+      event.code === registration.activeMatch.code
+    ) {
       return true
+    }
+
+    // Compare the release against the identity this binding actually stores.
+    if (parsed.code !== undefined) {
+      if (event.code === parsed.code) return true
+    } else {
+      const parsedKeyNormalized =
+        parsed.key.length === 1 ? parsed.key.toUpperCase() : parsed.key
+      const releasedKeyNormalized =
+        releasedKey.length === 1 ? releasedKey.toUpperCase() : releasedKey
+      if (releasedKeyNormalized === parsedKeyNormalized) return true
     }
 
     // Reset if any required modifier is released
@@ -683,7 +730,9 @@ export class HotkeyManager {
     const syntheticEvent = new KeyboardEvent(
       registration.options.eventType ?? 'keydown',
       {
-        key: parsed.key,
+        ...(parsed.code !== undefined
+          ? { code: parsed.code }
+          : { key: parsed.key }),
         ctrlKey: parsed.ctrl,
         shiftKey: parsed.shift,
         altKey: parsed.alt,
@@ -725,7 +774,13 @@ export class HotkeyManager {
     target?: HTMLElement | Document | Window,
   ): boolean {
     for (const registration of this.registrations.state.values()) {
-      if (registration.hotkey === hotkey) {
+      if (
+        areHotkeysEqual(
+          registration.hotkey,
+          hotkey,
+          registration.options.platform,
+        )
+      ) {
         // If target is specified, both must match
         if (target === undefined || registration.target === target) {
           return true

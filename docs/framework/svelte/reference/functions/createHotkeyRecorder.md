@@ -7,7 +7,7 @@ title: createHotkeyRecorder
 function createHotkeyRecorder(options): SvelteHotkeyRecorder;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:98](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L98)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:101](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L101)
 
 ## Parameters
 

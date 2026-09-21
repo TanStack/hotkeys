@@ -26,7 +26,7 @@ Whether the sequence is enabled. Defaults to true.
 ### target?
 
 ```ts
-optional target: HTMLElement | Document | Window | null;
+optional target: Document | Window | HTMLElement | null;
 ```
 
 Defined in: [injectHotkeySequence.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequence.ts#L24)

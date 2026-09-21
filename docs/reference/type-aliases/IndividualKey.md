@@ -7,6 +7,6 @@ title: IndividualKey
 type IndividualKey = CanonicalModifier | Key;
 ```
 
-Defined in: [hotkey.ts:154](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L154)
+Defined in: [key.types.ts:255](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L255)
 
 Includes both modifier keys and regular keys.

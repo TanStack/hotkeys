@@ -5,7 +5,9 @@ id: sequences
 
 TanStack Hotkeys supports multi-key sequences in Vue, where keys are pressed one after another rather than simultaneously.
 
-## Basic Usage
+Sequence steps use the same string syntax as single hotkeys. For example, `['[KeyG]', '[KeyG]']` follows a physical position, while `['G', 'G']` follows the logical letter. A sequence can mix forms, such as `['Mod+[KeyK]', 'C']`. Display steps with `sequence.map((step) => formatForDisplay(step)).join(' → ')`.
+
+## Basic usage
 
 ```vue
 <script setup lang="ts">
@@ -19,7 +21,7 @@ useHotkeySequence(['G', 'G'], () => {
 
 ## Many sequences at once
 
-When you need several sequences—or a **reactive** list whose length changes—use `useHotkeySequences` instead of many `useHotkeySequence` calls. One composable registers every sequence safely.
+When you need several sequences, or a reactive list whose length changes, use `useHotkeySequences` instead of many `useHotkeySequence` calls. One composable registers every sequence safely.
 
 ```vue
 <script setup lang="ts">
@@ -32,9 +34,13 @@ useHotkeySequences([
 </script>
 ```
 
-Options merge like `useHotkeys`: `HotkeysProvider` defaults, then `commonOptions`, then each definition’s `options`.
+Options merge like `useHotkeys`: `HotkeysProvider` defaults, then `commonOptions`, then each definition's `options`.
 
-## Sequence Options
+## Matching steps
+
+Both `SequenceManager` and `createSequenceMatcher` ignore modifier-only events, IME composition, and automatic keydown repeats. These events neither advance the sequence nor refresh its timeout: holding G does not complete a two-press G sequence. The manager prefers exact matches over weaker logical-key fallbacks while preserving equally strong matches.
+
+## Sequence options
 
 ```ts
 useHotkeySequence(['G', 'G'], callback, {
@@ -45,7 +51,7 @@ useHotkeySequence(['G', 'G'], callback, {
 
 ### Reactive `enabled`
 
-When disabled, the sequence **stays registered** (visible in devtools); only execution is suppressed.
+When disabled, the sequence stays registered (visible in devtools); only execution is suppressed.
 
 ```vue
 <script setup lang="ts">
@@ -60,7 +66,7 @@ useHotkeySequence(['G', 'G'], () => scrollToTop(), {
 </script>
 ```
 
-## Global Default Options via Provider
+## Global defaults via provider
 
 ```vue
 <script setup lang="ts">
@@ -80,7 +86,7 @@ import { HotkeysProvider } from '@tanstack/vue-hotkeys'
 
 ### `meta`
 
-Sequences support the same `meta` option as hotkeys, allowing you to attach a `name` and `description` for use in shortcut palettes and devtools.
+Sequences support the same `meta` option as hotkeys. Attach a `name` and `description` to use in shortcut palettes and devtools.
 
 ```ts
 useHotkeySequence(['G', 'G'], () => scrollToTop(), {
@@ -92,17 +98,19 @@ See the [Hotkeys Guide](./hotkeys.md#metadata-name--description) for details on 
 
 ## Chained modifier chords
 
-Each step can use modifiers (for example `Mod+K` then `Mod+C`). You can use the **same** modifier on consecutive steps:
+This example follows physical R and T positions. Brackets retain those positions even when the keys produce different letters. Other sequences can continue using logical characters.
+
+Each step can use modifiers (for example `Mod+K` then `Mod+C`). You can use the same modifier on consecutive steps:
 
 ```ts
-useHotkeySequence(['Shift+R', 'Shift+T'], () => doNextAction())
+useHotkeySequence(['Shift+[KeyR]', 'Shift+[KeyT]'], () => doNextAction())
 ```
 
-While a sequence is in progress, **modifier-only** keydown events (Shift, Control, Alt, or Meta pressed alone) are ignored: they do not advance the sequence and do not reset progress. A user can press Shift alone between `Shift+R` and `Shift+T` without breaking the sequence.
+While a sequence is in progress, modifier-only keydown events (Shift, Control, Alt, or Meta pressed alone) are ignored: they do not advance the sequence and do not reset progress. A user can press Shift alone between `Shift+R` and `Shift+T` without breaking the sequence.
 
-## Common Patterns
+## Common patterns
 
-### Vim-Style Navigation
+### Vim-style navigation
 
 ```ts
 useHotkeySequence(['G', 'G'], () => scrollToTop())
@@ -122,7 +130,7 @@ useHotkeySequence(
 )
 ```
 
-## Under the Hood
+## Under the hood
 
 `useHotkeySequence` uses the singleton `SequenceManager`. You can also access it directly:
 
@@ -132,3 +140,7 @@ import { createSequenceMatcher, getSequenceManager } from '@tanstack/vue-hotkeys
 const manager = getSequenceManager()
 const matcher = createSequenceMatcher(['G', 'G'], { timeout: 1000 })
 ```
+
+### Conflicting registrations
+
+For the same target, duplicate detection compares resolved steps: modifier aliases, modifier order, and logical key casing do not create separate bindings. `conflictBehavior` applies to equivalent sequences without rewriting their stored strings. Physical and logical identities remain distinct, and a shared prefix alone is not a duplicate registration. Recorder conflict detection also checks prefixes and observed physical/logical overlap.

@@ -3,7 +3,7 @@ id: HotkeyRegistrationsResult
 title: HotkeyRegistrationsResult
 ---
 
-Defined in: [useHotkeyRegistrations.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRegistrations.ts#L15)
+Defined in: [useHotkeyRegistrations.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRegistrations.ts#L16)
 
 Return type for useHotkeyRegistrations.
 
@@ -15,7 +15,7 @@ Return type for useHotkeyRegistrations.
 hotkeys: HotkeyRegistrationView[];
 ```
 
-Defined in: [useHotkeyRegistrations.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRegistrations.ts#L17)
+Defined in: [useHotkeyRegistrations.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRegistrations.ts#L18)
 
 All registered hotkeys (public view, no callbacks)
 
@@ -27,6 +27,6 @@ All registered hotkeys (public view, no callbacks)
 sequences: SequenceRegistrationView[];
 ```
 
-Defined in: [useHotkeyRegistrations.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRegistrations.ts#L19)
+Defined in: [useHotkeyRegistrations.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRegistrations.ts#L20)
 
 All registered sequences

@@ -1,0 +1,26 @@
+{
+  "name": "@tanstack/hotkeys-example-vue-kitchen-sink",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3069",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test:types": "tsc"
+  },
+  "dependencies": {
+    "@tanstack/vue-hotkeys": "^0.10.0",
+    "vue": "^3.5.33"
+  },
+  "devDependencies": {
+    "@tanstack/vue-devtools": "^0.2.16",
+    "@tanstack/vue-hotkeys-devtools": "^0.7.0",
+    "@typescript-eslint/parser": "^8.59.0",
+    "@vitejs/plugin-vue": "^6.0.6",
+    "typescript": "6.0.3",
+    "vite": "^8.0.10",
+    "vue-eslint-parser": "10.4.0"
+  }
+}
