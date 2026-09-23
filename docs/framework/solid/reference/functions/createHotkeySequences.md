@@ -4,7 +4,7 @@ title: createHotkeySequences
 ---
 
 ```ts
-function createHotkeySequences(sequences, commonOptions): void;
+function createHotkeySequences(sequences, commonOptions?): void;
 ```
 
 Defined in: [createHotkeySequences.ts:61](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeySequences.ts#L61)
@@ -23,15 +23,17 @@ Definitions with an empty `sequence` are skipped (no registration).
 
 ### sequences
 
+  \| [`CreateHotkeySequenceDefinition`](../interfaces/CreateHotkeySequenceDefinition.md)[]
+  \| (() => [`CreateHotkeySequenceDefinition`](../interfaces/CreateHotkeySequenceDefinition.md)[])
+
 Array of sequence definitions, or accessor returning them
 
-[`CreateHotkeySequenceDefinition`](../interfaces/CreateHotkeySequenceDefinition.md)[] | () => [`CreateHotkeySequenceDefinition`](../interfaces/CreateHotkeySequenceDefinition.md)[]
+### commonOptions?
 
-### commonOptions
+  \| [`CreateHotkeySequenceOptions`](../interfaces/CreateHotkeySequenceOptions.md)
+  \| (() => [`CreateHotkeySequenceOptions`](../interfaces/CreateHotkeySequenceOptions.md))
 
 Shared options for all sequences, or accessor
-
-[`CreateHotkeySequenceOptions`](../interfaces/CreateHotkeySequenceOptions.md) | () => [`CreateHotkeySequenceOptions`](../interfaces/CreateHotkeySequenceOptions.md)
 
 ## Returns
 

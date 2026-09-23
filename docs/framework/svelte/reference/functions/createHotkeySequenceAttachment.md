@@ -7,7 +7,7 @@ title: createHotkeySequenceAttachment
 function createHotkeySequenceAttachment(
    sequence, 
    callback, 
-options): Attachment<HTMLElement>;
+options?): Attachment<HTMLElement>;
 ```
 
 Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:151](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts#L151)
@@ -24,7 +24,7 @@ Create an attachment for element-scoped keyboard sequences.
 
 `HotkeyCallback`
 
-### options
+### options?
 
 `MaybeGetter`\<[`CreateHotkeySequenceOptions`](../interfaces/CreateHotkeySequenceOptions.md)\> = `{}`
 

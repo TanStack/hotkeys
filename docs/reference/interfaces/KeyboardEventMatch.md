@@ -10,7 +10,7 @@ Defined in: [match.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages
 ### identity?
 
 ```ts
-optional identity: object;
+optional identity?: object;
 ```
 
 Defined in: [match.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L17)
@@ -52,7 +52,7 @@ Defined in: [match.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages
 ### source?
 
 ```ts
-optional source: "key" | "code" | "fallback";
+optional source?: "key" | "code" | "fallback";
 ```
 
 Defined in: [match.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L16)

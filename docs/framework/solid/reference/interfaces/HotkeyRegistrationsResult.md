@@ -9,7 +9,7 @@ Return type for createHotkeyRegistrations.
 
 ## Properties
 
-### hotkeys()
+### hotkeys
 
 ```ts
 hotkeys: () => HotkeyRegistrationView[];
@@ -25,7 +25,7 @@ Accessor for all registered hotkeys (public view, no callbacks)
 
 ***
 
-### sequences()
+### sequences
 
 ```ts
 sequences: () => SequenceRegistrationView[];

@@ -4,7 +4,7 @@ title: createHotkeyHint
 ---
 
 ```ts
-function createHotkeyHint(hotkey, options): () => boolean;
+function createHotkeyHint(hotkey, options?): () => boolean;
 ```
 
 Defined in: [createHotkeyHint.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyHint.ts#L13)
@@ -19,18 +19,12 @@ This helper does not register a shortcut or check whether its target is focused.
 
 ### hotkey
 
-`RegisterableHotkey` | () => `RegisterableHotkey`
+`RegisterableHotkey` \| (() => `RegisterableHotkey`)
 
-### options
+### options?
 
-`HeldModifierOptions` | () => `HeldModifierOptions`
+`HeldModifierOptions` \| (() => `HeldModifierOptions`)
 
 ## Returns
 
-```ts
-(): boolean;
-```
-
-### Returns
-
-`boolean`
+() => `boolean`

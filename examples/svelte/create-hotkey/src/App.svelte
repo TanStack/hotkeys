@@ -527,8 +527,7 @@ createHotkey('Mod+[Digit2]', () => activeTab = 2)`}</pre>
             {@attach saveEditorHotkey}
             {@attach addEditorCommentHotkey}
             {@attach clearEditorHotkey}
-            {@attach editorLetterHotkey}
-          ></textarea>
+            {@attach editorLetterHotkey}></textarea>
           <div class="counter">Editor shortcuts: {editorShortcutCount}x</div>
           <p class="hint">
             These shortcuts only work when the editor is focused. Notice that <kbd

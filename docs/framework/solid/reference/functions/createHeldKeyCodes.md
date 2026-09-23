@@ -21,13 +21,7 @@ to the global KeyStateTracker.
 
 Signal accessor for record mapping normalized key names to their `event.code` values
 
-```ts
-(): Record<string, string>;
-```
-
-### Returns
-
-`Record`\<`string`, `string`\>
+() => `Record`\<`string`, `string`\>
 
 ## Example
 

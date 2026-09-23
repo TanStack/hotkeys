@@ -4,7 +4,7 @@ title: injectHotkeys
 ---
 
 ```ts
-function injectHotkeys(hotkeys, commonOptions): void;
+function injectHotkeys(hotkeys, commonOptions?): void;
 ```
 
 Defined in: [injectHotkeys.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L75)
@@ -25,15 +25,17 @@ provideHotkeys defaults < commonOptions < per-definition options
 
 ### hotkeys
 
+  \| [`InjectHotkeyDefinition`](../interfaces/InjectHotkeyDefinition.md)[]
+  \| (() => [`InjectHotkeyDefinition`](../interfaces/InjectHotkeyDefinition.md)[])
+
 Array of hotkey definitions, or getter returning them
 
-[`InjectHotkeyDefinition`](../interfaces/InjectHotkeyDefinition.md)[] | () => [`InjectHotkeyDefinition`](../interfaces/InjectHotkeyDefinition.md)[]
+### commonOptions?
 
-### commonOptions
+  \| [`InjectHotkeyOptions`](../interfaces/InjectHotkeyOptions.md)
+  \| (() => [`InjectHotkeyOptions`](../interfaces/InjectHotkeyOptions.md))
 
 Shared options for all hotkeys, or getter
-
-[`InjectHotkeyOptions`](../interfaces/InjectHotkeyOptions.md) | () => [`InjectHotkeyOptions`](../interfaces/InjectHotkeyOptions.md)
 
 ## Returns
 

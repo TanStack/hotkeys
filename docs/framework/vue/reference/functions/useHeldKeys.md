@@ -7,7 +7,7 @@ title: useHeldKeys
 function useHeldKeys(): Ref<string[]>;
 ```
 
-Defined in: [packages/vue-hotkeys/src/useHeldKeys.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHeldKeys.ts#L29)
+Defined in: [useHeldKeys.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHeldKeys.ts#L29)
 
 Vue composable that returns a reactive ref of currently held keyboard keys.
 

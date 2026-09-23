@@ -4,7 +4,7 @@ title: injectHotkeyHint
 ---
 
 ```ts
-function injectHotkeyHint(hotkey, options): Signal<boolean>;
+function injectHotkeyHint(hotkey, options?): Signal<boolean>;
 ```
 
 Defined in: [injectHotkeyHint.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyHint.ts#L14)
@@ -19,11 +19,11 @@ This helper does not register a shortcut or check whether its target is focused.
 
 ### hotkey
 
-`RegisterableHotkey` | () => `RegisterableHotkey`
+`RegisterableHotkey` \| (() => `RegisterableHotkey`)
 
-### options
+### options?
 
-`HeldModifierOptions` | () => `HeldModifierOptions`
+`HeldModifierOptions` \| (() => `HeldModifierOptions`)
 
 ## Returns
 

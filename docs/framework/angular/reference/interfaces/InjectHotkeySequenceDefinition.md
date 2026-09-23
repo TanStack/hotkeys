@@ -24,9 +24,9 @@ The function to call when the sequence is completed
 ### options?
 
 ```ts
-optional options: 
+optional options?: 
   | InjectHotkeySequenceOptions
-  | () => InjectHotkeySequenceOptions;
+  | (() => InjectHotkeySequenceOptions);
 ```
 
 Defined in: [injectHotkeySequences.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequences.ts#L20)
@@ -38,7 +38,7 @@ Per-sequence options (merged on top of commonOptions)
 ### sequence
 
 ```ts
-sequence: HotkeySequence | () => HotkeySequence;
+sequence: HotkeySequence | (() => HotkeySequence);
 ```
 
 Defined in: [injectHotkeySequences.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequences.ts#L16)

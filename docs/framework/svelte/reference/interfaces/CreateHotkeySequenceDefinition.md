@@ -24,7 +24,7 @@ The function to call when the sequence is completed
 ### options?
 
 ```ts
-optional options: MaybeGetter<CreateHotkeySequenceOptions>;
+optional options?: MaybeGetter<CreateHotkeySequenceOptions>;
 ```
 
 Defined in: [packages/svelte-hotkeys/src/createHotkeySequences.svelte.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequences.svelte.ts#L24)

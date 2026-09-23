@@ -19,7 +19,7 @@ Modifier hint controller. Getter arguments can read reactive host properties.
 new HotkeyHintController(
    host, 
    hotkey, 
-   options): HotkeyHintController;
+   options?): HotkeyHintController;
 ```
 
 Defined in: [controllers/hotkey-hint.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L11)
@@ -34,11 +34,11 @@ Attaches to the host; getter arguments can read changing reactive properties.
 
 ##### hotkey
 
-`RegisterableHotkey` | () => `RegisterableHotkey`
+`RegisterableHotkey` \| (() => `RegisterableHotkey`)
 
-##### options
+##### options?
 
-`HeldModifierOptions` | () => `HeldModifierOptions`
+`HeldModifierOptions` \| (() => `HeldModifierOptions`)
 
 #### Returns
 

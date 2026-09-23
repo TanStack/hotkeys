@@ -24,7 +24,7 @@ declare module '@tanstack/hotkeys' {
 ### description?
 
 ```ts
-optional description: string;
+optional description?: string;
 ```
 
 Defined in: [hotkey.types.ts:256](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L256)
@@ -36,7 +36,7 @@ Description of what this hotkey does
 ### group?
 
 ```ts
-optional group: string;
+optional group?: string;
 ```
 
 Defined in: [hotkey.types.ts:258](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L258)
@@ -48,7 +48,7 @@ Optional display group. Does not affect matching or scope.
 ### name?
 
 ```ts
-optional name: string;
+optional name?: string;
 ```
 
 Defined in: [hotkey.types.ts:254](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L254)

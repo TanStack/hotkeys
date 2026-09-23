@@ -10,7 +10,7 @@ Defined in: [recorder-options.ts:7](https://github.com/TanStack/hotkeys/blob/mai
 ### conflicts?
 
 ```ts
-optional conflicts: HotkeyConflict[];
+optional conflicts?: HotkeyConflict[];
 ```
 
 Defined in: [recorder-options.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L12)
@@ -20,7 +20,7 @@ Defined in: [recorder-options.ts:12](https://github.com/TanStack/hotkeys/blob/ma
 ### hotkey?
 
 ```ts
-optional hotkey: Hotkey;
+optional hotkey?: Hotkey;
 ```
 
 Defined in: [recorder-options.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L10)
@@ -50,7 +50,7 @@ Defined in: [recorder-options.ts:8](https://github.com/TanStack/hotkeys/blob/mai
 ### sequence?
 
 ```ts
-optional sequence: Hotkey[];
+optional sequence?: Hotkey[];
 ```
 
 Defined in: [recorder-options.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L11)

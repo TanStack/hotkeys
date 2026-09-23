@@ -4,7 +4,7 @@ title: useHotkeySequences
 ---
 
 ```ts
-function useHotkeySequences(definitions, commonOptions): void;
+function useHotkeySequences(definitions, commonOptions?): void;
 ```
 
 Defined in: [useHotkeySequences.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeySequences.ts#L68)
@@ -29,7 +29,7 @@ Definitions with an empty `sequence` are skipped (no registration).
 
 Array of sequence definitions to register
 
-### commonOptions
+### commonOptions?
 
 [`UseHotkeySequenceOptions`](../interfaces/UseHotkeySequenceOptions.md) = `{}`
 

@@ -14,7 +14,7 @@ Defined in: [injectHotkeySequence.ts:13](https://github.com/TanStack/hotkeys/blo
 ### enabled?
 
 ```ts
-optional enabled: boolean;
+optional enabled?: boolean;
 ```
 
 Defined in: [injectHotkeySequence.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequence.ts#L18)
@@ -26,7 +26,7 @@ Whether the sequence is enabled. Defaults to true.
 ### target?
 
 ```ts
-optional target: Document | Window | HTMLElement | null;
+optional target?: Document | Window | HTMLElement | null;
 ```
 
 Defined in: [injectHotkeySequence.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequence.ts#L24)

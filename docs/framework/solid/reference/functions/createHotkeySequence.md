@@ -7,7 +7,7 @@ title: createHotkeySequence
 function createHotkeySequence(
    sequence, 
    callback, 
-   options): void;
+   options?): void;
 ```
 
 Defined in: [createHotkeySequence.ts:64](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeySequence.ts#L64)
@@ -26,9 +26,9 @@ advance the sequence or reset progress.
 
 ### sequence
 
-Array of hotkey strings that form the sequence (or accessor function)
+`HotkeySequence` \| (() => `HotkeySequence`)
 
-`HotkeySequence` | () => `HotkeySequence`
+Array of hotkey strings that form the sequence (or accessor function)
 
 ### callback
 
@@ -36,11 +36,12 @@ Array of hotkey strings that form the sequence (or accessor function)
 
 Function to call when the sequence is completed
 
-### options
+### options?
+
+  \| [`CreateHotkeySequenceOptions`](../interfaces/CreateHotkeySequenceOptions.md)
+  \| (() => [`CreateHotkeySequenceOptions`](../interfaces/CreateHotkeySequenceOptions.md))
 
 Options for the sequence behavior (or accessor function)
-
-[`CreateHotkeySequenceOptions`](../interfaces/CreateHotkeySequenceOptions.md) | () => [`CreateHotkeySequenceOptions`](../interfaces/CreateHotkeySequenceOptions.md)
 
 ## Returns
 

@@ -7,10 +7,10 @@ title: useHotkey
 function useHotkey(
    hotkey, 
    callback, 
-   options): void;
+   options?): void;
 ```
 
-Defined in: [packages/vue-hotkeys/src/useHotkey.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L99)
+Defined in: [useHotkey.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L99)
 
 Vue composable for registering a keyboard hotkey.
 
@@ -35,7 +35,7 @@ The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object (supports `mod` 
 
 The function to call when the hotkey is pressed
 
-### options
+### options?
 
 `MaybeRefOrGetter`\<[`UseHotkeyOptions`](../interfaces/UseHotkeyOptions.md)\> = `{}`
 

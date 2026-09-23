@@ -4,7 +4,7 @@ title: getHotkeyHint
 ---
 
 ```ts
-function getHotkeyHint(hotkey, options): SvelteHotkeyHint;
+function getHotkeyHint(hotkey, options?): SvelteHotkeyHint;
 ```
 
 Defined in: [packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts#L18)
@@ -21,7 +21,7 @@ This helper does not register a shortcut or check whether its target is focused.
 
 `MaybeGetter`\<`RegisterableHotkey`\>
 
-### options
+### options?
 
 `MaybeGetter`\<`HeldModifierOptions`\> = `{}`
 

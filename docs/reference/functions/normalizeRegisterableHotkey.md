@@ -4,7 +4,7 @@ title: normalizeRegisterableHotkey
 ---
 
 ```ts
-function normalizeRegisterableHotkey(hotkey, platform): Hotkey;
+function normalizeRegisterableHotkey(hotkey, platform?): Hotkey;
 ```
 
 Defined in: [parse.ts:229](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L229)
@@ -18,9 +18,9 @@ Use this in framework adapters instead of branching on `formatHotkey(rawHotkeyTo
 
 [`RegisterableHotkey`](../type-aliases/RegisterableHotkey.md)
 
-### platform
+### platform?
 
-`"mac"` | `"windows"` | `"linux"`
+`"mac"` \| `"windows"` \| `"linux"`
 
 ## Returns
 

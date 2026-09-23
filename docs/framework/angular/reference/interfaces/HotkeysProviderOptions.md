@@ -10,7 +10,7 @@ Defined in: [hotkeys-provider.ts:10](https://github.com/TanStack/hotkeys/blob/ma
 ### hotkey?
 
 ```ts
-optional hotkey: Partial<InjectHotkeyOptions>;
+optional hotkey?: Partial<InjectHotkeyOptions>;
 ```
 
 Defined in: [hotkeys-provider.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L11)
@@ -20,7 +20,7 @@ Defined in: [hotkeys-provider.ts:11](https://github.com/TanStack/hotkeys/blob/ma
 ### hotkeyRecorder?
 
 ```ts
-optional hotkeyRecorder: Partial<HotkeyRecorderOptions>;
+optional hotkeyRecorder?: Partial<HotkeyRecorderOptions>;
 ```
 
 Defined in: [hotkeys-provider.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L12)
@@ -30,7 +30,7 @@ Defined in: [hotkeys-provider.ts:12](https://github.com/TanStack/hotkeys/blob/ma
 ### hotkeySequence?
 
 ```ts
-optional hotkeySequence: Partial<InjectHotkeySequenceOptions>;
+optional hotkeySequence?: Partial<InjectHotkeySequenceOptions>;
 ```
 
 Defined in: [hotkeys-provider.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L14)
@@ -40,7 +40,7 @@ Defined in: [hotkeys-provider.ts:14](https://github.com/TanStack/hotkeys/blob/ma
 ### hotkeySequenceRecorder?
 
 ```ts
-optional hotkeySequenceRecorder: Partial<HotkeySequenceRecorderOptions>;
+optional hotkeySequenceRecorder?: Partial<HotkeySequenceRecorderOptions>;
 ```
 
 Defined in: [hotkeys-provider.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L13)

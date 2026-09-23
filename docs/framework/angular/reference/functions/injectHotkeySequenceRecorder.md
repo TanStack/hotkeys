@@ -15,7 +15,7 @@ Angular inject-based API for recording multi-chord sequences.
 
 ### options
 
-`HotkeySequenceRecorderOptions` | () => `HotkeySequenceRecorderOptions`
+`HotkeySequenceRecorderOptions` \| (() => `HotkeySequenceRecorderOptions`)
 
 ## Returns
 

@@ -7,7 +7,7 @@ Defined in: [injectHotkeySequenceRecorder.ts:18](https://github.com/TanStack/hot
 
 ## Properties
 
-### cancelRecording()
+### cancelRecording
 
 ```ts
 readonly cancelRecording: () => void;
@@ -21,7 +21,7 @@ Defined in: [injectHotkeySequenceRecorder.ts:24](https://github.com/TanStack/hot
 
 ***
 
-### commitRecording()
+### commitRecording
 
 ```ts
 readonly commitRecording: () => void;
@@ -35,7 +35,7 @@ Defined in: [injectHotkeySequenceRecorder.ts:25](https://github.com/TanStack/hot
 
 ***
 
-### isRecording()
+### isRecording
 
 ```ts
 readonly isRecording: () => boolean;
@@ -49,7 +49,7 @@ Defined in: [injectHotkeySequenceRecorder.ts:19](https://github.com/TanStack/hot
 
 ***
 
-### recordedSequence()
+### recordedSequence
 
 ```ts
 readonly recordedSequence: () => HotkeySequence | null;
@@ -63,7 +63,7 @@ Defined in: [injectHotkeySequenceRecorder.ts:21](https://github.com/TanStack/hot
 
 ***
 
-### startRecording()
+### startRecording
 
 ```ts
 readonly startRecording: () => void;
@@ -77,7 +77,7 @@ Defined in: [injectHotkeySequenceRecorder.ts:22](https://github.com/TanStack/hot
 
 ***
 
-### steps()
+### steps
 
 ```ts
 readonly steps: () => HotkeySequence;
@@ -91,7 +91,7 @@ Defined in: [injectHotkeySequenceRecorder.ts:20](https://github.com/TanStack/hot
 
 ***
 
-### stopRecording()
+### stopRecording
 
 ```ts
 readonly stopRecording: () => void;

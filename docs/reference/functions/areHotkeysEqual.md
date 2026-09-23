@@ -7,7 +7,7 @@ title: areHotkeysEqual
 function areHotkeysEqual(
    left, 
    right, 
-   platform): boolean;
+   platform?): boolean;
 ```
 
 Defined in: [match.ts:194](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L194)
@@ -26,9 +26,9 @@ remain distinct even when one keyboard event could match both.
 
 [`RegisterableHotkey`](../type-aliases/RegisterableHotkey.md)
 
-### platform
+### platform?
 
-`"mac"` | `"windows"` | `"linux"`
+`"mac"` \| `"windows"` \| `"linux"`
 
 ## Returns
 

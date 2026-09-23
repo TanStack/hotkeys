@@ -50,7 +50,7 @@ Defined in: [sequence-manager.ts:118](https://github.com/TanStack/hotkeys/blob/m
 
 ***
 
-### setOptions()
+### setOptions
 
 ```ts
 setOptions: (options) => void;
@@ -70,7 +70,7 @@ Defined in: [sequence-manager.ts:120](https://github.com/TanStack/hotkeys/blob/m
 
 ***
 
-### unregister()
+### unregister
 
 ```ts
 unregister: () => void;
