@@ -31,7 +31,7 @@ export function createHotkeySequenceRecorder(
   const mergedOptions = {
     ...defaultOptions.hotkeySequenceRecorder,
     ...resolvedOptions,
-  } as HotkeySequenceRecorderOptions
+  }
 
   const recorder = new HotkeySequenceRecorder(mergedOptions)
 
@@ -47,7 +47,7 @@ export function createHotkeySequenceRecorder(
     recorder.setOptions({
       ...defaultOptions.hotkeySequenceRecorder,
       ...resolved,
-    } as HotkeySequenceRecorderOptions)
+    })
   })
 
   onCleanup(() => {

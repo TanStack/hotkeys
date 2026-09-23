@@ -48,13 +48,13 @@
   ],
   "dependencies": {
     "@tanstack/hotkeys": "workspace:*",
-    "@tanstack/solid-store": "^0.11.0"
+    "@tanstack/solid-store": "^0.11.1"
   },
   "devDependencies": {
     "@solidjs/testing-library": "^0.8.10",
-    "@testing-library/jest-dom": "^6.9.1",
-    "solid-js": "^1.9.12",
-    "vite-plugin-solid": "^2.11.12"
+    "@testing-library/jest-dom": "^7.0.1",
+    "solid-js": "^1.9.15",
+    "vite-plugin-solid": "^2.11.14"
   },
   "peerDependencies": {
     "solid-js": ">=1.7.0"

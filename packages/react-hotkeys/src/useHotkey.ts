@@ -94,7 +94,7 @@ export function useHotkey(
   const mergedOptions = {
     ...useDefaultHotkeysOptions().hotkey,
     ...options,
-  } as UseHotkeyOptions
+  }
 
   const manager = getHotkeyManager()
 

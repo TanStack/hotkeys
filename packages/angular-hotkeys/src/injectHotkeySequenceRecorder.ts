@@ -44,7 +44,7 @@ export function injectHotkeySequenceRecorder(
       const mergedOptions = {
         ...defaultOptions.hotkeySequenceRecorder,
         ...resolvedOptions,
-      } as HotkeySequenceRecorderOptions
+      }
 
       return new HotkeySequenceRecorder(mergedOptions)
     }),
@@ -66,7 +66,7 @@ export function injectHotkeySequenceRecorder(
     recorderSignal().setOptions({
       ...defaultOptions.hotkeySequenceRecorder,
       ...resolved,
-    } as HotkeySequenceRecorderOptions)
+    })
   })
 
   destroyRef.onDestroy(() => {

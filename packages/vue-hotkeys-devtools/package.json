@@ -52,11 +52,11 @@
     "vue": ">=3.0.0"
   },
   "dependencies": {
-    "@tanstack/devtools-utils": "^0.4.0",
+    "@tanstack/devtools-utils": "^0.7.0",
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.6",
-    "vue": "^3.5.33"
+    "@vitejs/plugin-vue": "^6.0.9",
+    "vue": "^3.5.43"
   }
 }

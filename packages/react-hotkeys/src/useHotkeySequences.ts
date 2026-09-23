@@ -119,7 +119,7 @@ export function useHotkeySequences(
         ...defaultOptionsRef.current,
         ...commonOptionsRef.current,
         ...def.options,
-      } as UseHotkeySequenceOptions
+      }
 
       const resolvedTarget = isRef(mergedOptions.target)
         ? mergedOptions.target.current

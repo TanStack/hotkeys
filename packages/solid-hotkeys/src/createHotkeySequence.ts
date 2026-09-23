@@ -93,7 +93,7 @@ export function createHotkeySequence(
     const mergedOptions = {
       ...defaultOptions.hotkeySequence,
       ...resolvedOptions,
-    } as CreateHotkeySequenceOptions
+    }
 
     // Extract options without target (target is handled separately)
     const { target: _target, ...optionsWithoutTarget } = mergedOptions

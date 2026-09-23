@@ -123,7 +123,7 @@ export function injectHotkeys(
         ...defaultOptions.hotkey,
         ...resolvedCommonOptions,
         ...resolvedDefOptions,
-      } as InjectHotkeyOptions
+      }
 
       const platform = mergedOptions.platform ?? detectPlatform()
       const hotkeyString = normalizeRegisterableHotkey(resolvedHotkey, platform)

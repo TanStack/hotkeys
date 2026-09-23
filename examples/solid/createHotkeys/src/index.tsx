@@ -62,16 +62,13 @@ function BasicMultiHotkeys() {
       </p>
       <div class="hotkey-grid">
         <div>
-          <kbd>{formatForDisplay('Shift+S' as Hotkey)}</kbd> Save ({saveCount()}
-          )
+          <kbd>{formatForDisplay('Shift+S')}</kbd> Save ({saveCount()})
         </div>
         <div>
-          <kbd>{formatForDisplay('Shift+U' as Hotkey)}</kbd> Undo ({undoCount()}
-          )
+          <kbd>{formatForDisplay('Shift+U')}</kbd> Undo ({undoCount()})
         </div>
         <div>
-          <kbd>{formatForDisplay('Shift+R' as Hotkey)}</kbd> Redo ({redoCount()}
-          )
+          <kbd>{formatForDisplay('Shift+R')}</kbd> Redo ({redoCount()})
         </div>
       </div>
       <Show when={log().length > 0}>
@@ -142,9 +139,9 @@ function CommonOptionsDemo() {
     <div class="demo-section">
       <h2>Common Options with Per-Hotkey Overrides</h2>
       <p>
-        <kbd>{formatForDisplay('Alt+J' as Hotkey)}</kbd> and{' '}
-        <kbd>{formatForDisplay('Alt+K' as Hotkey)}</kbd> respect the global
-        toggle. <kbd>{formatForDisplay('Alt+L' as Hotkey)}</kbd> overrides{' '}
+        <kbd>{formatForDisplay('Alt+J')}</kbd> and{' '}
+        <kbd>{formatForDisplay('Alt+K')}</kbd> respect the global toggle.{' '}
+        <kbd>{formatForDisplay('Alt+L')}</kbd> overrides{' '}
         <code>enabled: true</code> so it always works.
       </p>
       <div style={{ 'margin-bottom': '12px' }}>
@@ -154,16 +151,14 @@ function CommonOptionsDemo() {
       </div>
       <div class="hotkey-grid">
         <div>
-          <kbd>{formatForDisplay('Alt+J' as Hotkey)}</kbd> Action A (
-          {counts().a})
+          <kbd>{formatForDisplay('Alt+J')}</kbd> Action A ({counts().a})
         </div>
         <div>
-          <kbd>{formatForDisplay('Alt+K' as Hotkey)}</kbd> Action B (
-          {counts().b})
+          <kbd>{formatForDisplay('Alt+K')}</kbd> Action B ({counts().b})
         </div>
         <div>
-          <kbd>{formatForDisplay('Alt+L' as Hotkey)}</kbd> Action C (
-          {counts().c})<span class="hint"> (always on)</span>
+          <kbd>{formatForDisplay('Alt+L')}</kbd> Action C ({counts().c})
+          <span class="hint"> (always on)</span>
         </div>
       </div>
       <pre class="code-block">{`createHotkeys(
@@ -271,7 +266,7 @@ function DynamicHotkeysDemo() {
         <For each={shortcuts()}>
           {(s) => (
             <div class="dynamic-item">
-              <kbd>{formatForDisplay(s.hotkey as Hotkey)}</kbd>
+              <kbd>{formatForDisplay(s.hotkey)}</kbd>
               <span>{s.label}</span>
               <span class="count">{s.count}</span>
               <button onClick={() => removeShortcut(s.id)}>Remove</button>

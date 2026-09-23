@@ -51,11 +51,11 @@
     "@tanstack/hotkeys": "workspace:*"
   },
   "devDependencies": {
-    "@sveltejs/package": "^2.5.7",
+    "@sveltejs/package": "^2.5.8",
     "@sveltejs/vite-plugin-svelte": "^7.0.0",
-    "@typescript-eslint/parser": "^8.59.0",
-    "eslint-plugin-svelte": "^3.17.1",
-    "svelte": "^5.55.5"
+    "@typescript-eslint/parser": "^8.70.1",
+    "eslint-plugin-svelte": "^3.23.0",
+    "svelte": "^5.57.1"
   },
   "peerDependencies": {
     "svelte": "^5.25.0"

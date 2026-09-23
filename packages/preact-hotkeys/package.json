@@ -45,12 +45,12 @@
   ],
   "dependencies": {
     "@tanstack/hotkeys": "workspace:*",
-    "@tanstack/preact-store": "^0.13.0"
+    "@tanstack/preact-store": "0.13.0"
   },
   "devDependencies": {
-    "@preact/preset-vite": "^2.10.5",
+    "@preact/preset-vite": "^2.10.6",
     "@testing-library/preact": "^3.2.4",
-    "preact": "^10.29.1"
+    "preact": "^10.29.8"
   },
   "peerDependencies": {
     "preact": ">=10.0.0"

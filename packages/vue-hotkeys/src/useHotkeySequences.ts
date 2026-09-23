@@ -94,7 +94,7 @@ export function useHotkeySequences(
           ...defaultOptions.hotkeySequence,
           ...resolvedCommonOptions,
           ...resolvedDefOptions,
-        } as UseHotkeySequenceOptions
+        }
 
         const sequenceString = formatHotkeySequence(resolvedSequence)
 

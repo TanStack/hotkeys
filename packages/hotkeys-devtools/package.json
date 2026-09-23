@@ -50,14 +50,14 @@
     "@tanstack/hotkeys": "workspace:*"
   },
   "dependencies": {
-    "@tanstack/devtools-ui": "^0.5.1",
-    "@tanstack/devtools-utils": "^0.4.0",
+    "@tanstack/devtools-ui": "^0.7.1",
+    "@tanstack/devtools-utils": "^0.7.0",
     "clsx": "^2.1.1",
-    "goober": "^2.1.18",
+    "goober": "^2.1.19",
     "match-sorter": "^8.3.0",
-    "solid-js": "^1.9.12"
+    "solid-js": "^1.9.15"
   },
   "devDependencies": {
-    "vite-plugin-solid": "^2.11.12"
+    "vite-plugin-solid": "^2.11.14"
   }
 }
