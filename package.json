@@ -7,12 +7,13 @@
   },
   "packageManager": "pnpm@11.9.0",
   "engines": {
-    "pnpm": ">=11.9.0"
+    "pnpm": ">=11.9.0",
+    "node": ">=20"
   },
   "type": "module",
   "scripts": {
     "build": "nx affected --skip-nx-cache --targets=build --exclude=examples/** && size-limit",
-    "build:all": "nx run-many --targets=build --exclude=examples/**",
+    "build:all": "nx run-many --targets=build --exclude=examples/** && size-limit",
     "build:core": "nx run-many --targets=build --projects=packages/hotkeys",
     "changeset": "changeset",
     "changeset:publish": "changeset publish",
@@ -29,16 +30,17 @@
     "lint:fix": "nx affected --target=lint:fix --exclude=examples/**",
     "lint:fix:all": "nx run-many --targets=lint:fix",
     "test": "pnpm run test:ci",
-    "test:ci": "pnpm run lint:all && nx run-many --targets=test:sherif,test:knip,test:docs,test:lib,test:types,build",
+    "test:ci": "pnpm run lint:all && nx run-many --targets=test:sherif,test:knip,test:docs,test:lib,test:types,test:build,build && size-limit",
     "test:docs": "node scripts/verify-links.ts",
     "test:eslint": "nx affected --target=test:eslint --exclude=examples/**",
     "test:knip": "knip",
     "test:lib": "nx affected --targets=test:lib --exclude=examples/**",
     "test:lib:dev": "pnpm test:lib && nx watch --all -- pnpm test:lib",
-    "test:pr": "pnpm run lint:all && nx affected --targets=test:sherif,test:knip,test:docs,test:lib,test:types,build",
+    "test:pr": "pnpm run lint:all && nx affected --targets=test:sherif,test:knip,test:docs,test:lib,test:types,test:build,build",
     "test:sherif": "sherif",
     "test:types": "nx affected --targets=test:types --exclude=examples/**",
-    "watch": "pnpm run build:all && nx watch --all -- pnpm run build:all"
+    "watch": "pnpm run build:all && nx watch --all -- pnpm run build:all",
+    "test:build": "nx affected --target=test:build"
   },
   "size-limit": [
     {

@@ -31,28 +31,22 @@
     "test:lib": "vitest --passWithNoTests",
     "test:lib:dev": "pnpm test:lib --watch",
     "test:types": "tsc",
-    "build": "tsdown"
+    "build": "tsdown",
+    "test:build": "publint --strict && node ../../scripts/verify-package.ts"
   },
   "type": "module",
-  "types": "./dist/index.d.cts",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
-    "./production": {
-      "import": "./dist/production.js",
-      "require": "./dist/production.cjs"
-    },
+    ".": "./dist/index.js",
+    "./production": "./dist/production.js",
     "./package.json": "./package.json"
   },
   "sideEffects": false,
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "files": [
-    "dist/",
-    "src"
+    "dist"
   ],
   "peerDependencies": {
     "vue": ">=3.0.0"
@@ -64,7 +58,5 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.6",
     "vue": "^3.5.33"
-  },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js"
+  }
 }
