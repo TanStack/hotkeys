@@ -39,6 +39,7 @@ Before proceeding with development, ensure you match one of the following criter
 
 - Fork this repository, we prefer the `feat-*` branch name style
 - Ensure you have `pnpm` installed
+- Use the Node.js version in `.nvmrc` (`nvm install && nvm use`), also pinned in `package.json` for Volta. The Angular example build tools require a newer Node.js version than the published packages' Node.js 20 minimum.
 - Install projects dependencies and linkages by running `pnpm install`
 - Auto-build and auto-test files as you edit by running `pnpm dev`
 - Implement your changes and tests
