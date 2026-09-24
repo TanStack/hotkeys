@@ -61,7 +61,7 @@ export function useHotkeyRecorder(
   const mergedOptions = {
     ...useDefaultHotkeysOptions().hotkeyRecorder,
     ...options,
-  } as HotkeyRecorderOptions
+  }
 
   const recorderRef = useRef<HotkeyRecorder | null>(null)
 

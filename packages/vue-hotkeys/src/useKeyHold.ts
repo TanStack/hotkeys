@@ -61,5 +61,5 @@ export function useKeyHold(key: MaybeRefOrGetter<IndividualKey>): Ref<boolean> {
     )
   })
 
-  return isHeld as Ref<boolean>
+  return isHeld
 }

@@ -49,7 +49,7 @@ export function hotkey(
 
       if (!host[controllerKey]) {
         const callback: HotkeyCallback = descriptor?.value
-          ? (descriptor.value.bind(this) as HotkeyCallback)
+          ? descriptor.value.bind(this)
           : (host[propertyKey] as HotkeyCallback)
 
         if (typeof callback !== 'function') {

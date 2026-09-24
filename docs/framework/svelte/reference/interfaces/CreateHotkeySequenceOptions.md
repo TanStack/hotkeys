@@ -14,7 +14,7 @@ Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:14](http
 ### target?
 
 ```ts
-optional target: Document | Window;
+optional target?: Document | Window;
 ```
 
 Defined in: [packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequence.svelte.ts#L18)

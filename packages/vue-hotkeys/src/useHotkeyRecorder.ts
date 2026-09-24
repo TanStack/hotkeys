@@ -89,8 +89,8 @@ export function useHotkeyRecorder(
   })
 
   return {
-    isRecording: isRecording as Ref<boolean>,
-    recordedHotkey: recordedHotkey as Ref<Hotkey | null>,
+    isRecording: isRecording,
+    recordedHotkey: recordedHotkey,
     startRecording: () => recorder.start(),
     stopRecording: () => recorder.stop(),
     cancelRecording: () => recorder.cancel(),
@@ -104,7 +104,7 @@ function resolveRecorderOptions(
   return {
     ...defaultOptions.hotkeyRecorder,
     ...resolveMaybeRefOrGetter(options),
-  } as HotkeyRecorderOptions
+  }
 }
 
 function resolveMaybeRefOrGetter<T>(value: MaybeRefOrGetter<T>): T {

@@ -7,7 +7,7 @@ title: useHotkeyRecorder
 function useHotkeyRecorder(options): VueHotkeyRecorder;
 ```
 
-Defined in: [packages/vue-hotkeys/src/useHotkeyRecorder.ts:62](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L62)
+Defined in: [useHotkeyRecorder.ts:62](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L62)
 
 Vue composable for recording keyboard shortcuts.
 

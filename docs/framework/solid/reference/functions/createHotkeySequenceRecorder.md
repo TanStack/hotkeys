@@ -15,7 +15,7 @@ SolidJS primitive for recording multi-chord sequences (Vim-style shortcuts).
 
 ### options
 
-`HotkeySequenceRecorderOptions` | () => `HotkeySequenceRecorderOptions`
+`HotkeySequenceRecorderOptions` \| (() => `HotkeySequenceRecorderOptions`)
 
 ## Returns
 

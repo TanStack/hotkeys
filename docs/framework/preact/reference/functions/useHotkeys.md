@@ -4,7 +4,7 @@ title: useHotkeys
 ---
 
 ```ts
-function useHotkeys(hotkeys, commonOptions): void;
+function useHotkeys(hotkeys, commonOptions?): void;
 ```
 
 Defined in: [useHotkeys.ts:73](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeys.ts#L73)
@@ -28,7 +28,7 @@ Callbacks and options are synced on every render to avoid stale closures.
 
 Array of hotkey definitions to register
 
-### commonOptions
+### commonOptions?
 
 [`UseHotkeyOptions`](../interfaces/UseHotkeyOptions.md) = `{}`
 

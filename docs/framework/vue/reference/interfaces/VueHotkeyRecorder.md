@@ -3,17 +3,17 @@ id: VueHotkeyRecorder
 title: VueHotkeyRecorder
 ---
 
-Defined in: [packages/vue-hotkeys/src/useHotkeyRecorder.ts:8](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L8)
+Defined in: [useHotkeyRecorder.ts:8](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L8)
 
 ## Properties
 
-### cancelRecording()
+### cancelRecording
 
 ```ts
 cancelRecording: () => void;
 ```
 
-Defined in: [packages/vue-hotkeys/src/useHotkeyRecorder.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L18)
+Defined in: [useHotkeyRecorder.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L18)
 
 Cancel recording without saving
 
@@ -29,7 +29,7 @@ Cancel recording without saving
 isRecording: Ref<boolean>;
 ```
 
-Defined in: [packages/vue-hotkeys/src/useHotkeyRecorder.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L10)
+Defined in: [useHotkeyRecorder.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L10)
 
 Whether recording is currently active
 
@@ -41,19 +41,19 @@ Whether recording is currently active
 recordedHotkey: Ref<Hotkey | null>;
 ```
 
-Defined in: [packages/vue-hotkeys/src/useHotkeyRecorder.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L12)
+Defined in: [useHotkeyRecorder.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L12)
 
 The currently recorded hotkey (for live preview)
 
 ***
 
-### startRecording()
+### startRecording
 
 ```ts
 startRecording: () => void;
 ```
 
-Defined in: [packages/vue-hotkeys/src/useHotkeyRecorder.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L14)
+Defined in: [useHotkeyRecorder.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L14)
 
 Start recording a new hotkey
 
@@ -63,13 +63,13 @@ Start recording a new hotkey
 
 ***
 
-### stopRecording()
+### stopRecording
 
 ```ts
 stopRecording: () => void;
 ```
 
-Defined in: [packages/vue-hotkeys/src/useHotkeyRecorder.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L16)
+Defined in: [useHotkeyRecorder.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L16)
 
 Stop recording (same as cancel)
 

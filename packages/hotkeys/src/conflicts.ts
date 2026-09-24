@@ -47,7 +47,7 @@ function targetsOverlap(
   }
   if (documentOf(a) !== documentOf(b)) return false
   if (!('contains' in a) || !('contains' in b)) return true
-  return a.contains(b as Node) || b.contains(a as Node)
+  return a.contains(b) || b.contains(a)
 }
 
 /**

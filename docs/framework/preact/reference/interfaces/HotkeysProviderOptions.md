@@ -10,7 +10,7 @@ Defined in: [HotkeysProvider.tsx:11](https://github.com/TanStack/hotkeys/blob/ma
 ### hotkey?
 
 ```ts
-optional hotkey: Partial<UseHotkeyOptions>;
+optional hotkey?: Partial<UseHotkeyOptions>;
 ```
 
 Defined in: [HotkeysProvider.tsx:12](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L12)
@@ -20,7 +20,7 @@ Defined in: [HotkeysProvider.tsx:12](https://github.com/TanStack/hotkeys/blob/ma
 ### hotkeyRecorder?
 
 ```ts
-optional hotkeyRecorder: Partial<HotkeyRecorderOptions>;
+optional hotkeyRecorder?: Partial<HotkeyRecorderOptions>;
 ```
 
 Defined in: [HotkeysProvider.tsx:13](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L13)
@@ -30,7 +30,7 @@ Defined in: [HotkeysProvider.tsx:13](https://github.com/TanStack/hotkeys/blob/ma
 ### hotkeySequence?
 
 ```ts
-optional hotkeySequence: Partial<UseHotkeySequenceOptions>;
+optional hotkeySequence?: Partial<UseHotkeySequenceOptions>;
 ```
 
 Defined in: [HotkeysProvider.tsx:15](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L15)
@@ -40,7 +40,7 @@ Defined in: [HotkeysProvider.tsx:15](https://github.com/TanStack/hotkeys/blob/ma
 ### hotkeySequenceRecorder?
 
 ```ts
-optional hotkeySequenceRecorder: Partial<HotkeySequenceRecorderOptions>;
+optional hotkeySequenceRecorder?: Partial<HotkeySequenceRecorderOptions>;
 ```
 
 Defined in: [HotkeysProvider.tsx:14](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L14)

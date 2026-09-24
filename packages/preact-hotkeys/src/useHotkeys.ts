@@ -120,7 +120,7 @@ export function useHotkeys(
         ...defaultOptionsRef.current,
         ...commonOptionsRef.current,
         ...def.options,
-      } as UseHotkeyOptions
+      }
 
       const resolvedTarget = isRef(mergedOptions.target)
         ? mergedOptions.target.current

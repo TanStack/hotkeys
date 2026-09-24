@@ -114,7 +114,7 @@ export function createHotkeys(
         ...defaultOptions.hotkey,
         ...resolvedCommonOptions,
         ...resolvedDefOptions,
-      } as CreateHotkeyOptions
+      }
 
       const platform = mergedOptions.platform ?? detectPlatform()
       const hotkeyString = normalizeRegisterableHotkey(def.hotkey, platform)

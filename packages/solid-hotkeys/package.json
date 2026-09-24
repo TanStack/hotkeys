@@ -30,36 +30,31 @@
     "test:lib": "vitest --passWithNoTests",
     "test:lib:dev": "pnpm test:lib --watch",
     "test:types": "tsc",
-    "build": "tsdown"
+    "build": "tsdown",
+    "test:build": "publint --strict && node ../../scripts/verify-package.ts"
   },
   "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.cts",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
+    ".": "./dist/index.js",
     "./package.json": "./package.json"
   },
   "sideEffects": false,
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "dependencies": {
     "@tanstack/hotkeys": "workspace:*",
-    "@tanstack/solid-store": "^0.11.0"
+    "@tanstack/solid-store": "^0.11.1"
   },
   "devDependencies": {
     "@solidjs/testing-library": "^0.8.10",
-    "@testing-library/jest-dom": "^6.9.1",
-    "solid-js": "^1.9.12",
-    "vite-plugin-solid": "^2.11.12"
+    "@testing-library/jest-dom": "^7.0.1",
+    "solid-js": "^1.9.15",
+    "vite-plugin-solid": "^2.11.14"
   },
   "peerDependencies": {
     "solid-js": ">=1.7.0"

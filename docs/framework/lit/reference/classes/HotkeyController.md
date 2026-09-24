@@ -34,7 +34,7 @@ new HotkeyController(
    _host, 
    _hotkey, 
    _callback, 
-   _options): HotkeyController;
+   _options?): HotkeyController;
 ```
 
 Defined in: [controllers/hotkey.ts:44](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L44)
@@ -59,7 +59,7 @@ The key or key combo to listen for (e.g. `'Mod+S'` or a raw hotkey object).
 
 Function to run when the hotkey is pressed; called with the host as `this`.
 
-##### \_options
+##### \_options?
 
 `HotkeyOptions` = `HOTKEY_DEFAULT_OPTIONS`
 

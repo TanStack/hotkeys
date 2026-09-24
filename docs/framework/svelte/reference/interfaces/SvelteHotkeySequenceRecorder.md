@@ -7,7 +7,7 @@ Defined in: [packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:
 
 ## Properties
 
-### cancelRecording()
+### cancelRecording
 
 ```ts
 cancelRecording: () => void;
@@ -21,7 +21,7 @@ Defined in: [packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:
 
 ***
 
-### commitRecording()
+### commitRecording
 
 ```ts
 commitRecording: () => void;
@@ -55,7 +55,7 @@ Defined in: [packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:
 
 ***
 
-### startRecording()
+### startRecording
 
 ```ts
 startRecording: () => void;
@@ -79,7 +79,7 @@ Defined in: [packages/svelte-hotkeys/src/createHotkeySequenceRecorder.svelte.ts:
 
 ***
 
-### stopRecording()
+### stopRecording
 
 ```ts
 stopRecording: () => void;

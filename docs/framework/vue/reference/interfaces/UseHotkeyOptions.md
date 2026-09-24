@@ -3,7 +3,7 @@ id: UseHotkeyOptions
 title: UseHotkeyOptions
 ---
 
-Defined in: [packages/vue-hotkeys/src/useHotkey.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L17)
+Defined in: [useHotkey.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L17)
 
 ## Extends
 
@@ -14,10 +14,10 @@ Defined in: [packages/vue-hotkeys/src/useHotkey.ts:17](https://github.com/TanSta
 ### enabled?
 
 ```ts
-optional enabled: MaybeRefOrGetter<boolean>;
+optional enabled?: MaybeRefOrGetter<boolean>;
 ```
 
-Defined in: [packages/vue-hotkeys/src/useHotkey.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L26)
+Defined in: [useHotkey.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L26)
 
 Whether the hotkey is active.
 Can be a Ref, a getter function, or a boolean value.
@@ -28,10 +28,10 @@ Defaults to true.
 ### target?
 
 ```ts
-optional target: MaybeRefOrGetter<HTMLElement | Document | Window | null>;
+optional target?: MaybeRefOrGetter<HTMLElement | Document | Window | null>;
 ```
 
-Defined in: [packages/vue-hotkeys/src/useHotkey.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L32)
+Defined in: [useHotkey.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L32)
 
 The DOM element to attach the event listener to.
 Can be a Ref, a getter function, direct DOM element, or null.

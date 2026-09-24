@@ -104,13 +104,13 @@ export function createHotkeyRecorder(
   const recorder = new SvelteHotkeyRecorderState({
     ...getDefaultHotkeysOptions().hotkeyRecorder,
     ...resolveMaybeGetter(options),
-  } as HotkeyRecorderOptions)
+  })
 
   $effect(() => {
     recorder.setOptions({
       ...getDefaultHotkeysOptions().hotkeyRecorder,
       ...resolveMaybeGetter(options),
-    } as HotkeyRecorderOptions)
+    })
   })
 
   onDestroy(() => {

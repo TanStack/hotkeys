@@ -7,7 +7,7 @@ title: matchesHeldModifiers
 function matchesHeldModifiers(
    hotkey, 
    heldKeys, 
-   options): boolean;
+   options?): boolean;
 ```
 
 Defined in: [hint.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hint.ts#L23)
@@ -27,7 +27,7 @@ Nonmodifier keys are ignored. This does not check registration or focus.
 
 readonly `string`[]
 
-### options
+### options?
 
 [`HeldModifierOptions`](../interfaces/HeldModifierOptions.md) = `{}`
 

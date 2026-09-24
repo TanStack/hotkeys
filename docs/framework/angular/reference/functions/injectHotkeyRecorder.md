@@ -19,9 +19,9 @@ cancel or Backspace/Delete to clear.
 
 ### options
 
-Configuration options for the recorder (or getter)
+`HotkeyRecorderOptions` \| (() => `HotkeyRecorderOptions`)
 
-`HotkeyRecorderOptions` | () => `HotkeyRecorderOptions`
+Configuration options for the recorder (or getter)
 
 ## Returns
 

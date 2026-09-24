@@ -7,10 +7,10 @@ title: useHotkeySequence
 function useHotkeySequence(
    sequence, 
    callback, 
-   options): void;
+   options?): void;
 ```
 
-Defined in: [packages/vue-hotkeys/src/useHotkeySequence.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeySequence.ts#L76)
+Defined in: [useHotkeySequence.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeySequence.ts#L76)
 
 Vue composable for registering a keyboard shortcut sequence (Vim-style).
 
@@ -36,7 +36,7 @@ Array of hotkey strings that form the sequence
 
 Function to call when the sequence is completed
 
-### options
+### options?
 
 `MaybeRefOrGetter`\<[`UseHotkeySequenceOptions`](../interfaces/UseHotkeySequenceOptions.md)\> = `{}`
 

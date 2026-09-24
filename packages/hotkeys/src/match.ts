@@ -146,7 +146,7 @@ export function createMultiHotkeyHandler(
   const parsedHandlers = Object.entries(handlers)
     .filter((entry): entry is [string, HotkeyCallback] => Boolean(entry[1]))
     .map(([hotkey, handler]) => {
-      const parsed = parseHotkey(hotkey as Hotkey, resolvedPlatform)
+      const parsed = parseHotkey(hotkey, resolvedPlatform)
       const context: HotkeyCallbackContext = {
         hotkey: hotkey as Hotkey,
         parsedHotkey: parsed,

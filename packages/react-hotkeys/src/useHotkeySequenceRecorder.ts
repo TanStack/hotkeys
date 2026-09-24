@@ -32,7 +32,7 @@ export function useHotkeySequenceRecorder(
   const mergedOptions = {
     ...useDefaultHotkeysOptions().hotkeySequenceRecorder,
     ...options,
-  } as HotkeySequenceRecorderOptions
+  }
 
   const recorderRef = useRef<HotkeySequenceRecorder | null>(null)
 

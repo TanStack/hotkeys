@@ -7,7 +7,7 @@ title: createHotkey
 function createHotkey(
    hotkey, 
    callback, 
-   options): void;
+   options?): void;
 ```
 
 Defined in: [createHotkey.ts:82](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L82)
@@ -25,9 +25,9 @@ the registration when options or the callback change.
 
 ### hotkey
 
-The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object (supports `mod` for cross-platform)
+`RegisterableHotkey` \| (() => `RegisterableHotkey`)
 
-`RegisterableHotkey` | () => `RegisterableHotkey`
+The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object (supports `mod` for cross-platform)
 
 ### callback
 
@@ -35,11 +35,12 @@ The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object (supports `mod` 
 
 The function to call when the hotkey is pressed
 
-### options
+### options?
+
+  \| [`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md)
+  \| (() => [`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md))
 
 Options for the hotkey behavior
-
-[`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md) | () => [`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md)
 
 ## Returns
 

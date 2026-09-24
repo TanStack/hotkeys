@@ -2,10 +2,11 @@ import { defineConfig } from 'tsdown'
 
 export default defineConfig({
   entry: ['./src/index.ts', './src/production.ts'],
-  format: ['esm', 'cjs'],
+  format: ['esm'],
+  target: 'es2022',
   unbundle: true,
   dts: true,
-  sourcemap: true,
+  sourcemap: false,
   clean: true,
   minify: false,
   fixedExtension: false,

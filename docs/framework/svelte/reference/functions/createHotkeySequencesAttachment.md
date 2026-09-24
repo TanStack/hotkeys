@@ -4,7 +4,7 @@ title: createHotkeySequencesAttachment
 ---
 
 ```ts
-function createHotkeySequencesAttachment(definitions, commonOptions): Attachment<HTMLElement>;
+function createHotkeySequencesAttachment(definitions, commonOptions?): Attachment<HTMLElement>;
 ```
 
 Defined in: [packages/svelte-hotkeys/src/createHotkeySequences.svelte.ts:184](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeySequences.svelte.ts#L184)
@@ -17,7 +17,7 @@ Create an attachment for element-scoped multi-sequence registration.
 
 `MaybeGetter`\<[`CreateHotkeySequenceDefinition`](../interfaces/CreateHotkeySequenceDefinition.md)[]\>
 
-### commonOptions
+### commonOptions?
 
 `MaybeGetter`\<[`CreateHotkeySequenceOptions`](../interfaces/CreateHotkeySequenceOptions.md)\> = `{}`
 

@@ -12,7 +12,7 @@ Modifier flags shared by logical-key and physical-code registrations.
 ### alt?
 
 ```ts
-optional alt: boolean;
+optional alt?: boolean;
 ```
 
 Defined in: [hotkey.types.ts:194](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L194)
@@ -24,7 +24,7 @@ Whether the Alt key is required. Defaults to false.
 ### ctrl?
 
 ```ts
-optional ctrl: boolean;
+optional ctrl?: boolean;
 ```
 
 Defined in: [hotkey.types.ts:190](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L190)
@@ -36,7 +36,7 @@ Whether the Control key is required. Defaults to false.
 ### meta?
 
 ```ts
-optional meta: boolean;
+optional meta?: boolean;
 ```
 
 Defined in: [hotkey.types.ts:196](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L196)
@@ -48,7 +48,7 @@ Whether the Meta (Command) key is required. Defaults to false.
 ### mod?
 
 ```ts
-optional mod: boolean;
+optional mod?: boolean;
 ```
 
 Defined in: [hotkey.types.ts:188](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L188)
@@ -60,7 +60,7 @@ Platform-adaptive modifier: Command on macOS, Control on Windows/Linux. Defaults
 ### shift?
 
 ```ts
-optional shift: boolean;
+optional shift?: boolean;
 ```
 
 Defined in: [hotkey.types.ts:192](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L192)

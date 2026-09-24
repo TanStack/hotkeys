@@ -34,7 +34,7 @@ new HotkeySequenceController(
    _host, 
    _sequence, 
    _callback, 
-   _options): HotkeySequenceController;
+   _options?): HotkeySequenceController;
 ```
 
 Defined in: [controllers/hotkey-sequence.ts:38](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence.ts#L38)
@@ -59,7 +59,7 @@ The key sequence to listen for (e.g. `['G', 'G']`).
 
 Function to run when the sequence is completed; called with the host as `this`.
 
-##### \_options
+##### \_options?
 
 `SequenceOptions` = `HOTKEY_SEQUENCE_DEFAULT_OPTIONS`
 

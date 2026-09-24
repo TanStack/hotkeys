@@ -7,7 +7,7 @@ Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:8](https
 
 ## Properties
 
-### cancelRecording()
+### cancelRecording
 
 ```ts
 cancelRecording: () => void;
@@ -47,7 +47,7 @@ The currently recorded hotkey (for live preview)
 
 ***
 
-### startRecording()
+### startRecording
 
 ```ts
 startRecording: () => void;
@@ -63,7 +63,7 @@ Start recording a new hotkey
 
 ***
 
-### stopRecording()
+### stopRecording
 
 ```ts
 stopRecording: () => void;

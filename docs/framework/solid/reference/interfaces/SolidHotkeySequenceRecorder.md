@@ -7,7 +7,7 @@ Defined in: [createHotkeySequenceRecorder.ts:10](https://github.com/TanStack/hot
 
 ## Properties
 
-### cancelRecording()
+### cancelRecording
 
 ```ts
 cancelRecording: () => void;
@@ -21,7 +21,7 @@ Defined in: [createHotkeySequenceRecorder.ts:16](https://github.com/TanStack/hot
 
 ***
 
-### commitRecording()
+### commitRecording
 
 ```ts
 commitRecording: () => void;
@@ -35,7 +35,7 @@ Defined in: [createHotkeySequenceRecorder.ts:17](https://github.com/TanStack/hot
 
 ***
 
-### isRecording()
+### isRecording
 
 ```ts
 isRecording: () => boolean;
@@ -49,7 +49,7 @@ Defined in: [createHotkeySequenceRecorder.ts:11](https://github.com/TanStack/hot
 
 ***
 
-### recordedSequence()
+### recordedSequence
 
 ```ts
 recordedSequence: () => HotkeySequence | null;
@@ -63,7 +63,7 @@ Defined in: [createHotkeySequenceRecorder.ts:13](https://github.com/TanStack/hot
 
 ***
 
-### startRecording()
+### startRecording
 
 ```ts
 startRecording: () => void;
@@ -77,7 +77,7 @@ Defined in: [createHotkeySequenceRecorder.ts:14](https://github.com/TanStack/hot
 
 ***
 
-### steps()
+### steps
 
 ```ts
 steps: () => HotkeySequence;
@@ -91,7 +91,7 @@ Defined in: [createHotkeySequenceRecorder.ts:12](https://github.com/TanStack/hot
 
 ***
 
-### stopRecording()
+### stopRecording
 
 ```ts
 stopRecording: () => void;

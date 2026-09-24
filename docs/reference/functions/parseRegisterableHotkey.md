@@ -4,7 +4,7 @@ title: parseRegisterableHotkey
 ---
 
 ```ts
-function parseRegisterableHotkey(hotkey, platform): ParsedHotkey;
+function parseRegisterableHotkey(hotkey, platform?): ParsedHotkey;
 ```
 
 Defined in: [parse.ts:362](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L362)
@@ -18,9 +18,9 @@ Physical tokens such as `[KeyQ]` retain `code`; they never become logical Q.
 
 [`RegisterableHotkey`](../type-aliases/RegisterableHotkey.md)
 
-### platform
+### platform?
 
-`"mac"` | `"windows"` | `"linux"`
+`"mac"` \| `"windows"` \| `"linux"`
 
 ## Returns
 

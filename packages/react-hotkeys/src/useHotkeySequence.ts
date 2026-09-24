@@ -78,7 +78,7 @@ export function useHotkeySequence(
   const mergedOptions = {
     ...useDefaultHotkeysOptions().hotkeySequence,
     ...options,
-  } as UseHotkeySequenceOptions
+  }
 
   const manager = getSequenceManager()
 

@@ -87,7 +87,7 @@ export function createHotkeySequence(
     const mergedOptions = {
       ...getDefaultHotkeysOptions().hotkeySequence,
       ...resolvedOptions,
-    } as CreateHotkeySequenceOptions
+    }
 
     const { target: _t, ...optionsWithoutTarget } = mergedOptions
 
@@ -163,7 +163,7 @@ export function createHotkeySequenceAttachment(
       const mergedOptions = {
         ...getDefaultHotkeysOptions().hotkeySequence,
         ...resolvedOptions,
-      } as CreateHotkeySequenceOptions
+      }
 
       const { target: _t, ...optionsWithoutTarget } = mergedOptions
 

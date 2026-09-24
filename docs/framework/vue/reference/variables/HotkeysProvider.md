@@ -32,7 +32,7 @@ const HotkeysProvider: DefineComponent<ExtractPropTypes<{
 }, any>;
 ```
 
-Defined in: [packages/vue-hotkeys/src/HotkeysProvider.tsx:17](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProvider.tsx#L17)
+Defined in: [HotkeysProvider.tsx:17](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProvider.tsx#L17)
 
 Vue component that provides default options for hotkeys context.
 

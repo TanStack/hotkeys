@@ -124,7 +124,7 @@ export class MyApp extends LitElement {
           s.id === this._editingId
             ? {
                 ...s,
-                hotkey: '' as Hotkey | '',
+                hotkey: '',
                 name: this._draftName,
                 description: this._draftDescription,
               }

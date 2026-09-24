@@ -23,9 +23,9 @@ to the recorder's store state (same pattern as useHotkeyRecorder in React).
 
 ### options
 
-Configuration options for the recorder (or accessor function)
+`HotkeyRecorderOptions` \| (() => `HotkeyRecorderOptions`)
 
-`HotkeyRecorderOptions` | () => `HotkeyRecorderOptions`
+Configuration options for the recorder (or accessor function)
 
 ## Returns
 

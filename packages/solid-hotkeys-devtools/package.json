@@ -31,31 +31,32 @@
     "test:lib": "vitest --passWithNoTests",
     "test:lib:dev": "pnpm test:lib --watch",
     "test:types": "tsc",
-    "build": "tsdown"
+    "build": "tsdown",
+    "test:build": "publint --strict && node ../../scripts/verify-package.ts"
   },
   "type": "module",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
+    "./production": "./dist/production.js",
     "./package.json": "./package.json"
   },
   "sideEffects": false,
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "files": [
-    "dist/",
-    "src"
+    "dist"
   ],
   "peerDependencies": {
     "solid-js": ">=1.7.0"
   },
   "dependencies": {
-    "@tanstack/devtools-utils": "^0.4.0",
+    "@tanstack/devtools-utils": "^0.7.0",
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {
-    "solid-js": "^1.9.12",
-    "vite-plugin-solid": "^2.11.12"
+    "solid-js": "^1.9.15",
+    "vite-plugin-solid": "^2.11.14"
   }
 }

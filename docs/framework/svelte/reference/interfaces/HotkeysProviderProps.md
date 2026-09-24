@@ -20,7 +20,7 @@ Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:18](https://github.com/Ta
 ### defaultOptions?
 
 ```ts
-optional defaultOptions: HotkeysProviderOptions;
+optional defaultOptions?: HotkeysProviderOptions;
 ```
 
 Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L19)

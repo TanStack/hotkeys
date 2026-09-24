@@ -100,7 +100,7 @@ export function createHotkeys(
         ...getDefaultHotkeysOptions().hotkey,
         ...resolvedCommonOptions,
         ...resolvedDefOptions,
-      } as CreateHotkeyOptions
+      }
 
       const resolvedTarget =
         mergedOptions.target ??
@@ -215,7 +215,7 @@ export function createHotkeysAttachment(
           ...getDefaultHotkeysOptions().hotkey,
           ...resolvedCommonOptions,
           ...resolvedDefOptions,
-        } as CreateHotkeyOptions
+        }
 
         const hotkeyString = normalizeRegisterableHotkey(
           resolvedHotkey,

@@ -70,7 +70,7 @@ export function injectHotkeyRecorder(
       const mergedOptions = {
         ...defaultOptions.hotkeyRecorder,
         ...resolvedOptions,
-      } as HotkeyRecorderOptions
+      }
 
       return new HotkeyRecorder(mergedOptions)
     }),
@@ -93,7 +93,7 @@ export function injectHotkeyRecorder(
     recorderSignal().setOptions({
       ...defaultOptions.hotkeyRecorder,
       ...resolved,
-    } as HotkeyRecorderOptions)
+    })
   })
 
   destroyRef.onDestroy(() => {

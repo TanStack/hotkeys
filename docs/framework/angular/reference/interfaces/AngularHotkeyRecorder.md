@@ -7,7 +7,7 @@ Defined in: [injectHotkeyRecorder.ts:15](https://github.com/TanStack/hotkeys/blo
 
 ## Properties
 
-### cancelRecording()
+### cancelRecording
 
 ```ts
 readonly cancelRecording: () => void;
@@ -23,7 +23,7 @@ Cancel recording without saving
 
 ***
 
-### isRecording()
+### isRecording
 
 ```ts
 readonly isRecording: () => boolean;
@@ -39,7 +39,7 @@ Whether recording is currently active
 
 ***
 
-### recordedHotkey()
+### recordedHotkey
 
 ```ts
 readonly recordedHotkey: () => Hotkey | null;
@@ -55,7 +55,7 @@ The currently recorded hotkey (for live preview)
 
 ***
 
-### startRecording()
+### startRecording
 
 ```ts
 readonly startRecording: () => void;
@@ -71,7 +71,7 @@ Start recording a new hotkey
 
 ***
 
-### stopRecording()
+### stopRecording
 
 ```ts
 readonly stopRecording: () => void;
