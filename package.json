@@ -56,10 +56,10 @@
     ]
   },
   "devDependencies": {
+    "@changesets/changelog-github": "^1.0.1",
     "@changesets/cli": "^3.0.3",
     "@faker-js/faker": "^10.6.0",
     "@size-limit/preset-small-lib": "^14.0.0",
-    "@svitejs/changesets-changelog-github-compact": "^1.2.0",
     "@tanstack/eslint-config": "0.4.0",
     "@tanstack/typedoc-config": "0.3.4",
     "@testing-library/jest-dom": "^7.0.1",
