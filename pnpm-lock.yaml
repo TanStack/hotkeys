@@ -2291,8 +2291,8 @@ importers:
         specifier: workspace:*
         version: link:../hotkeys
       '@tanstack/preact-store':
-        specifier: 0.13.0
-        version: 0.13.0(preact@10.29.8)
+        specifier: ^0.13.3
+        version: 0.13.3(preact@10.29.8)
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
@@ -5917,8 +5917,8 @@ packages:
     peerDependencies:
       preact: '>=10.0.0'
 
-  '@tanstack/preact-store@0.13.0':
-    resolution: {integrity: sha512-jhzf4+gFomlaehFp4PhevM65d36FQSxuYcWx7MnwcBA/WqGu387xXjyng58yO17lhkXRPtonl/usK+3WAN+8eA==}
+  '@tanstack/preact-store@0.13.3':
+    resolution: {integrity: sha512-sI0yb2Z8bs8LUaQOpHQckvLYC2qTMYCvq682XSv3TzimBstpz33Db2mrkQugCKjbwP3eB5Gq21n6Ey0Fl7DH+w==}
     peerDependencies:
       preact: ^10.0.0
 
@@ -5958,9 +5958,6 @@ packages:
     resolution: {integrity: sha512-wzJsiqqLHyQacqbYPT8dKNfhR00NNu743vGeWz2lEpOyE/R+6AYIfFLhXsCIT/Kb+KKiT1KDkB2/35DhLEGx8g==}
     peerDependencies:
       solid-js: ^1.6.0
-
-  '@tanstack/store@0.11.0':
-    resolution: {integrity: sha512-WlzzCt3xi0G6pCAJu1U+2jiECwabETDpQDi3hfkFZvJii9AuZqEKbOiVarX1/bWhTNjU486yQtJCCasi/0q+Cw==}
 
   '@tanstack/store@0.11.1':
     resolution: {integrity: sha512-mzTOBhypOuDJAy/D8n2MfUZ1HFkXnmSETviRyhqEC8LUE7/IZQExOTxMANj3KjTofYTkFNpBY67qaVrT41YccA==}
@@ -14377,9 +14374,9 @@ snapshots:
       - solid-js
       - utf-8-validate
 
-  '@tanstack/preact-store@0.13.0(preact@10.29.8)':
+  '@tanstack/preact-store@0.13.3(preact@10.29.8)':
     dependencies:
-      '@tanstack/store': 0.11.0
+      '@tanstack/store': 0.11.1
       preact: 10.29.8
 
   '@tanstack/react-devtools@0.10.2(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)':
@@ -14431,8 +14428,6 @@ snapshots:
     dependencies:
       '@tanstack/store': 0.11.1
       solid-js: 1.9.15
-
-  '@tanstack/store@0.11.0': {}
 
   '@tanstack/store@0.11.1': {}
 

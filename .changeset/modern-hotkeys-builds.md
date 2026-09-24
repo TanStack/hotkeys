@@ -18,4 +18,4 @@ Publish ES2022 ESM-only packages with a Node.js 20 minimum, matching TanStack Ta
 
 Expose the existing Solid devtools production entry with TypeScript declarations.
 
-Update framework, store, devtools, and build dependencies while retaining TypeScript 6.0.3. Adapt devtools styling to the new `createTheme` API. Keep `@tanstack/preact-store` pinned to 0.13.0 to preserve hint updates when shortcut bindings change.
+Update framework, store, devtools, and build dependencies while retaining TypeScript 6.0.3. Adapt devtools styling to the new `createTheme` API. Upgrade `@tanstack/preact-store` to 0.13.3, which fixes stale hint updates when shortcut bindings change.

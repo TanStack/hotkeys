@@ -10,6 +10,8 @@ trustPolicyExclude:
   - 'semver@6.3.1' # Socket score 100; popular npm-maintained latest-6 release.
   - 'ua-parser-js@0.7.41' # Socket score 100; popular, healthy cadence.
 minimumReleaseAge: 1440
+minimumReleaseAgeExclude:
+  - '@tanstack/preact-store@0.13.3' # Selector cache fix: TanStack/store#367.
 packages:
   - 'examples/**/*'
   - 'packages/*'

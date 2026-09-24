@@ -12,7 +12,7 @@ that follows the repository template.
 ## Dependency compatibility pins
 
 - Keep TypeScript at `6.0.3` during routine dependency updates.
-- Keep `@tanstack/preact-store` at exactly `0.13.0`. Versions `0.13.1` and
-  `0.13.2` cache selector results across changed selector closures, leaving
-  `useHotkeyHint` stale when its binding changes without a store update.
-  Verify `packages/preact-hotkeys/tests/useHotkeyHint.test.tsx` before upgrading.
+- Keep `@tanstack/preact-store` at `0.13.3` or newer. Versions `0.13.1` and
+  `0.13.2` leave `useHotkeyHint` stale when its binding changes without a store
+  update; `0.13.3` fixes this in TanStack/store#367. Verify
+  `packages/preact-hotkeys/tests/useHotkeyHint.test.tsx` before upgrading.

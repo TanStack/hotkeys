@@ -45,7 +45,7 @@
   ],
   "dependencies": {
     "@tanstack/hotkeys": "workspace:*",
-    "@tanstack/preact-store": "0.13.0"
+    "@tanstack/preact-store": "^0.13.3"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.6",
