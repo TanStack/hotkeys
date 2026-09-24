@@ -13,7 +13,7 @@
 ### Patch Changes
 
 - Updated dependencies [[`ce6e271`](https://github.com/TanStack/hotkeys/commit/ce6e271d7fbf8cc3382bde634b93180127cb44b9)]:
-  - @tanstack/hotkeys-devtools@2.0.0
+  - @tanstack/hotkeys-devtools@1.1.0
 
 ## 0.8.0
 
