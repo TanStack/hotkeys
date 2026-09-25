@@ -6,12 +6,12 @@
     "dev": "vite --port=3069"
   },
   "dependencies": {
-    "@tanstack/svelte-hotkeys": "0.11.0",
-    "svelte": "^5.55.5"
+    "@tanstack/svelte-hotkeys": "0.12.0",
+    "svelte": "^5.57.1"
   },
   "devDependencies": {
     "@sveltejs/vite-plugin-svelte": "^7.0.0",
     "typescript": "6.0.3",
-    "vite": "^8.0.10"
+    "vite": "^8.3.0"
   }
 }

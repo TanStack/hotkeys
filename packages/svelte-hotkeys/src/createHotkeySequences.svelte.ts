@@ -99,7 +99,7 @@ export function createHotkeySequences(
         ...getDefaultHotkeysOptions().hotkeySequence,
         ...resolvedCommonOptions,
         ...resolvedDefOptions,
-      } as CreateHotkeySequenceOptions
+      }
 
       const resolvedTarget =
         mergedOptions.target ??
@@ -215,7 +215,7 @@ export function createHotkeySequencesAttachment(
           ...getDefaultHotkeysOptions().hotkeySequence,
           ...resolvedCommonOptions,
           ...resolvedDefOptions,
-        } as CreateHotkeySequenceOptions
+        }
 
         const sequenceString = formatHotkeySequence(resolvedSequence)
         const registrationKey = `${i}:${sequenceString}`

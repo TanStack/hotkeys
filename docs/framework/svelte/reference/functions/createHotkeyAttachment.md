@@ -7,7 +7,7 @@ title: createHotkeyAttachment
 function createHotkeyAttachment(
    hotkey, 
    callback, 
-options): Attachment<HTMLElement>;
+options?): Attachment<HTMLElement>;
 ```
 
 Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:130](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L130)
@@ -24,7 +24,7 @@ Create an attachment for element-scoped hotkeys.
 
 `HotkeyCallback`
 
-### options
+### options?
 
 `MaybeGetter`\<[`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md)\> = `{}`
 

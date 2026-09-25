@@ -4,7 +4,7 @@ title: useHotkeyHint
 ---
 
 ```ts
-function useHotkeyHint(hotkey, options): boolean;
+function useHotkeyHint(hotkey, options?): boolean;
 ```
 
 Defined in: [useHotkeyHint.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeyHint.ts#L12)
@@ -21,7 +21,7 @@ This helper does not register a shortcut or check whether its target is focused.
 
 `RegisterableHotkey`
 
-### options
+### options?
 
 `HeldModifierOptions` = `{}`
 

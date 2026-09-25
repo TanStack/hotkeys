@@ -4,7 +4,7 @@ title: createHotkeys
 ---
 
 ```ts
-function createHotkeys(hotkeys, commonOptions): void;
+function createHotkeys(hotkeys, commonOptions?): void;
 ```
 
 Defined in: [createHotkeys.ts:66](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L66)
@@ -22,15 +22,17 @@ HotkeysProvider defaults < commonOptions < per-definition options
 
 ### hotkeys
 
+  \| [`CreateHotkeyDefinition`](../interfaces/CreateHotkeyDefinition.md)[]
+  \| (() => [`CreateHotkeyDefinition`](../interfaces/CreateHotkeyDefinition.md)[])
+
 Array of hotkey definitions, or accessor returning them
 
-[`CreateHotkeyDefinition`](../interfaces/CreateHotkeyDefinition.md)[] | () => [`CreateHotkeyDefinition`](../interfaces/CreateHotkeyDefinition.md)[]
+### commonOptions?
 
-### commonOptions
+  \| [`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md)
+  \| (() => [`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md))
 
 Shared options applied to all hotkeys, or accessor
-
-[`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md) | () => [`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md)
 
 ## Returns
 

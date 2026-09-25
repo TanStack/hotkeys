@@ -24,7 +24,7 @@ The function to call when the sequence is completed
 ### options?
 
 ```ts
-optional options: CreateHotkeySequenceOptions;
+optional options?: CreateHotkeySequenceOptions;
 ```
 
 Defined in: [createHotkeySequences.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeySequences.ts#L20)

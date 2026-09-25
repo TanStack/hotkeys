@@ -107,7 +107,7 @@ export function createHotkeySequences(
         ...defaultOptions.hotkeySequence,
         ...resolvedCommonOptions,
         ...resolvedDefOptions,
-      } as CreateHotkeySequenceOptions
+      }
 
       if (def.sequence.length === 0) {
         continue

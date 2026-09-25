@@ -67,7 +67,7 @@ export function createHotkeyRecorder(
   const mergedOptions = {
     ...defaultOptions.hotkeyRecorder,
     ...resolvedOptions,
-  } as HotkeyRecorderOptions
+  }
 
   // Create recorder once synchronously (matches React's useRef pattern)
   const recorder = new HotkeyRecorder(mergedOptions)
@@ -85,7 +85,7 @@ export function createHotkeyRecorder(
     recorder.setOptions({
       ...defaultOptions.hotkeyRecorder,
       ...resolved,
-    } as HotkeyRecorderOptions)
+    })
   })
 
   // Cleanup on unmount

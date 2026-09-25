@@ -93,7 +93,7 @@ export function useHotkeySequence(
       const mergedOptions = {
         ...defaultOptions.hotkeySequence,
         ...resolvedOptions,
-      } as UseHotkeySequenceOptions
+      }
       const resolvedEnabled =
         mergedOptions.enabled === undefined
           ? undefined

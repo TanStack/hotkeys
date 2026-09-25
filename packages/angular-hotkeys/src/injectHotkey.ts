@@ -112,7 +112,7 @@ export function injectHotkey(
     const mergedOptions = {
       ...defaultOptions.hotkey,
       ...resolvedOptions,
-    } as InjectHotkeyOptions
+    }
 
     // Normalize to hotkey string
     const platform = mergedOptions.platform ?? detectPlatform()

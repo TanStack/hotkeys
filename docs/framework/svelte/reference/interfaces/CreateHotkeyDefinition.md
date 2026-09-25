@@ -36,7 +36,7 @@ The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object
 ### options?
 
 ```ts
-optional options: MaybeGetter<CreateHotkeyOptions>;
+optional options?: MaybeGetter<CreateHotkeyOptions>;
 ```
 
 Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L29)

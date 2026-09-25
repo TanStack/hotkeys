@@ -108,7 +108,7 @@ function App() {
             s.id === editingId
               ? {
                   ...s,
-                  hotkey: '' as Hotkey | '',
+                  hotkey: '',
                   name: draftName,
                   description: draftDescription,
                 }

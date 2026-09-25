@@ -7,7 +7,7 @@ Defined in: [useHotkeySequenceRecorder.ts:10](https://github.com/TanStack/hotkey
 
 ## Properties
 
-### cancelRecording()
+### cancelRecording
 
 ```ts
 cancelRecording: () => void;
@@ -21,7 +21,7 @@ Defined in: [useHotkeySequenceRecorder.ts:19](https://github.com/TanStack/hotkey
 
 ***
 
-### commitRecording()
+### commitRecording
 
 ```ts
 commitRecording: () => void;
@@ -61,7 +61,7 @@ Last committed sequence
 
 ***
 
-### startRecording()
+### startRecording
 
 ```ts
 startRecording: () => void;
@@ -87,7 +87,7 @@ Chords captured in the current session
 
 ***
 
-### stopRecording()
+### stopRecording
 
 ```ts
 stopRecording: () => void;

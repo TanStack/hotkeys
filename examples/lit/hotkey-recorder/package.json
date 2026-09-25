@@ -11,11 +11,11 @@
     "test:types": "tsc"
   },
   "dependencies": {
-    "@tanstack/lit-hotkeys": "0.12.0",
-    "lit": "^3.3.2"
+    "@tanstack/lit-hotkeys": "0.13.0",
+    "lit": "^3.3.3"
   },
   "devDependencies": {
     "typescript": "6.0.3",
-    "vite": "^8.0.10"
+    "vite": "^8.3.0"
   }
 }

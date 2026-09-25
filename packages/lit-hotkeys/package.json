@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/lit-hotkeys",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "description": "Lit adapter for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",
@@ -27,32 +27,27 @@
     "test:lib": "vitest --passWithNoTests",
     "test:lib:dev": "pnpm test:lib --watch",
     "test:types": "tsc",
-    "build": "tsdown"
+    "build": "tsdown",
+    "test:build": "publint --strict && node ../../scripts/verify-package.ts"
   },
   "type": "module",
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.cts",
+  "types": "./dist/index.d.ts",
   "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "require": "./dist/index.cjs"
-    },
+    ".": "./dist/index.js",
     "./package.json": "./package.json"
   },
   "sideEffects": false,
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "files": [
-    "dist",
-    "src"
+    "dist"
   ],
   "dependencies": {
     "@tanstack/hotkeys": "workspace:*"
   },
   "devDependencies": {
-    "lit": "^3.3.2"
+    "lit": "^3.3.3"
   },
   "peerDependencies": {
     "lit": ">=3.0.0"

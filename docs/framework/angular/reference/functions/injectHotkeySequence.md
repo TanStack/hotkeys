@@ -7,7 +7,7 @@ title: injectHotkeySequence
 function injectHotkeySequence(
    sequence, 
    callback, 
-   options): void;
+   options?): void;
 ```
 
 Defined in: [injectHotkeySequence.ts:58](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequence.ts#L58)
@@ -26,9 +26,9 @@ advance the sequence or reset progress.
 
 ### sequence
 
-Array of hotkey strings that form the sequence (or getter function)
+`HotkeySequence` \| (() => `HotkeySequence`)
 
-`HotkeySequence` | () => `HotkeySequence`
+Array of hotkey strings that form the sequence (or getter function)
 
 ### callback
 
@@ -36,12 +36,13 @@ Array of hotkey strings that form the sequence (or getter function)
 
 Function to call when the sequence is completed
 
-### options
+### options?
+
+  \| [`InjectHotkeySequenceOptions`](../interfaces/InjectHotkeySequenceOptions.md)
+  \| (() => [`InjectHotkeySequenceOptions`](../interfaces/InjectHotkeySequenceOptions.md))
 
 Options for the sequence behavior (or getter function). `enabled: false` still registers
   the sequence (visible in devtools); only execution is suppressed.
-
-[`InjectHotkeySequenceOptions`](../interfaces/InjectHotkeySequenceOptions.md) | () => [`InjectHotkeySequenceOptions`](../interfaces/InjectHotkeySequenceOptions.md)
 
 ## Returns
 

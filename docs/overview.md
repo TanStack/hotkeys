@@ -5,6 +5,14 @@ id: overview
 
 TanStack Hotkeys is a type-safe, headless library for keyboard shortcuts, sequences, recording, and key state tracking. Use its framework adapters for registration and cleanup, and build shortcut interfaces with your own components and application state.
 
+## Runtime and package requirements
+
+Hotkeys packages ship ES2022 JavaScript as ESM only and require Node.js 20 or newer when used in Node.js. Browser applications need an ES2022-compatible runtime or a build pipeline that transforms the library for their supported browsers.
+
+Use ESM imports, such as `import { parseHotkey } from '@tanstack/hotkeys'`. CommonJS builds and `require` export conditions are no longer provided. CommonJS applications can use dynamic `import()` or migrate their consuming modules to ESM.
+
+Published packages contain the runtime files and TypeScript declarations in `dist`, plus package metadata, README, and license files. The repository's `src` directory and source maps are no longer included. Inspect `dist/index.d.ts` and its referenced declarations for the installed API; consult the matching repository version when you need the original implementation.
+
 ## Choose what a shortcut follows
 
 A binding can follow a logical character or a physical keyboard position. Both forms use the same registration APIs:

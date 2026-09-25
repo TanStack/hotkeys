@@ -107,7 +107,7 @@ const recorder = useHotkeyRecorder({
         s.id === editingId.value
           ? {
               ...s,
-              hotkey: '' as Hotkey | '',
+              hotkey: '',
               name: draftName.value,
               description: draftDescription.value,
             }

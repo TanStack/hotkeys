@@ -4,7 +4,7 @@ title: rawHotkeyToParsedHotkey
 ---
 
 ```ts
-function rawHotkeyToParsedHotkey(raw, platform): ParsedHotkey;
+function rawHotkeyToParsedHotkey(raw, platform?): ParsedHotkey;
 ```
 
 Defined in: [parse.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L99)
@@ -21,11 +21,11 @@ When `mod` is true, it is resolved to Control or Meta based on platform.
 
 The raw hotkey object
 
-### platform
+### platform?
+
+`"mac"` \| `"windows"` \| `"linux"`
 
 The target platform for resolving 'Mod' (defaults to auto-detection)
-
-`"mac"` | `"windows"` | `"linux"`
 
 ## Returns
 

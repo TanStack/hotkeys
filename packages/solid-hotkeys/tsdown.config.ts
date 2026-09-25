@@ -4,10 +4,11 @@ import solid from 'vite-plugin-solid'
 export default defineConfig({
   plugins: [solid()],
   entry: ['./src/index.ts'],
-  format: ['esm', 'cjs'],
+  format: ['esm'],
+  target: 'es2022',
   unbundle: true,
   dts: true,
-  sourcemap: true,
+  sourcemap: false,
   clean: true,
   minify: false,
   fixedExtension: false,

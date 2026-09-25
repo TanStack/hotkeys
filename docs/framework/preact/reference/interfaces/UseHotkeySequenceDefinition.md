@@ -24,7 +24,7 @@ The function to call when the sequence is completed
 ### options?
 
 ```ts
-optional options: UseHotkeySequenceOptions;
+optional options?: UseHotkeySequenceOptions;
 ```
 
 Defined in: [useHotkeySequences.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeySequences.ts#L21)

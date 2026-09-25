@@ -24,9 +24,9 @@ The KeyboardEvent to parse
 
 ### platform?
 
-The target platform for resolving modifiers (defaults to auto-detection)
+`"mac"` \| `"windows"` \| `"linux"`
 
-`"mac"` | `"windows"` | `"linux"`
+The target platform for resolving modifiers (defaults to auto-detection)
 
 ## Returns
 

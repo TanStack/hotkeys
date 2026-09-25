@@ -4,7 +4,7 @@ title: normalizeHotkeyFromParsed
 ---
 
 ```ts
-function normalizeHotkeyFromParsed(parsed, platform): Hotkey;
+function normalizeHotkeyFromParsed(parsed, platform?): Hotkey;
 ```
 
 Defined in: [parse.ts:218](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L218)
@@ -17,9 +17,9 @@ Same canonical string as [normalizeHotkey](normalizeHotkey.md), but from an alre
 
 [`ParsedHotkey`](../type-aliases/ParsedHotkey.md)
 
-### platform
+### platform?
 
-`"mac"` | `"windows"` | `"linux"`
+`"mac"` \| `"windows"` \| `"linux"`
 
 ## Returns
 

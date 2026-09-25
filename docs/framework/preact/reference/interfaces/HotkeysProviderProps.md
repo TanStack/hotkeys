@@ -20,7 +20,7 @@ Defined in: [HotkeysProvider.tsx:25](https://github.com/TanStack/hotkeys/blob/ma
 ### defaultOptions?
 
 ```ts
-optional defaultOptions: HotkeysProviderOptions;
+optional defaultOptions?: HotkeysProviderOptions;
 ```
 
 Defined in: [HotkeysProvider.tsx:26](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L26)

@@ -12,7 +12,7 @@ A registered hotkey handler in the HotkeyManager.
 ### activeMatch?
 
 ```ts
-optional activeMatch: object;
+optional activeMatch?: object;
 ```
 
 Defined in: [hotkey-manager.ts:67](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L67)

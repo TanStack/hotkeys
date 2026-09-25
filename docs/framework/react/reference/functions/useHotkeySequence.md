@@ -7,7 +7,7 @@ title: useHotkeySequence
 function useHotkeySequence(
    sequence, 
    callback, 
-   options): void;
+   options?): void;
 ```
 
 Defined in: [useHotkeySequence.ts:73](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeySequence.ts#L73)
@@ -36,7 +36,7 @@ Array of hotkey strings that form the sequence
 
 Function to call when the sequence is completed
 
-### options
+### options?
 
 [`UseHotkeySequenceOptions`](../interfaces/UseHotkeySequenceOptions.md) = `{}`
 

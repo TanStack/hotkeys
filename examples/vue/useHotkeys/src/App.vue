@@ -176,7 +176,7 @@ function removeShortcut(id: number) {
 }
 
 function fd(h: string) {
-  return formatForDisplay(h as Hotkey)
+  return formatForDisplay(h)
 }
 
 // Registrations viewer

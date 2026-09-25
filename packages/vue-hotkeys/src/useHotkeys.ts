@@ -99,7 +99,7 @@ export function useHotkeys(
           ...defaultOptions.hotkey,
           ...resolvedCommonOptions,
           ...resolvedDefOptions,
-        } as UseHotkeyOptions
+        }
 
         const platform = mergedOptions.platform ?? detectPlatform()
         const hotkeyString = normalizeRegisterableHotkey(

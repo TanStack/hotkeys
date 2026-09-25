@@ -71,7 +71,7 @@ export function createHotkey(
     const mergedOptions = {
       ...getDefaultHotkeysOptions().hotkey,
       ...resolvedOptions,
-    } as CreateHotkeyOptions
+    }
 
     const hotkeyStr = normalizeRegisterableHotkey(
       resolvedHotkey,
@@ -142,7 +142,7 @@ export function createHotkeyAttachment(
       const mergedOptions = {
         ...getDefaultHotkeysOptions().hotkey,
         ...resolvedOptions,
-      } as CreateHotkeyOptions
+      }
 
       const hotkeyStr = normalizeRegisterableHotkey(
         resolvedHotkey,

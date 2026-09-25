@@ -14,7 +14,7 @@ Defined in: [useHotkey.ts:16](https://github.com/TanStack/hotkeys/blob/main/pack
 ### target?
 
 ```ts
-optional target: 
+optional target?: 
   | Document
   | Window
   | HTMLElement

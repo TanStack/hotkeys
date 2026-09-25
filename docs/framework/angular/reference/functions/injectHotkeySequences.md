@@ -4,7 +4,7 @@ title: injectHotkeySequences
 ---
 
 ```ts
-function injectHotkeySequences(sequences, commonOptions): void;
+function injectHotkeySequences(sequences, commonOptions?): void;
 ```
 
 Defined in: [injectHotkeySequences.ts:51](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeySequences.ts#L51)
@@ -24,15 +24,17 @@ remain registered so they stay visible in devtools; the core manager suppresses 
 
 ### sequences
 
+  \| [`InjectHotkeySequenceDefinition`](../interfaces/InjectHotkeySequenceDefinition.md)[]
+  \| (() => [`InjectHotkeySequenceDefinition`](../interfaces/InjectHotkeySequenceDefinition.md)[])
+
 Array of sequence definitions, or getter returning them
 
-[`InjectHotkeySequenceDefinition`](../interfaces/InjectHotkeySequenceDefinition.md)[] | () => [`InjectHotkeySequenceDefinition`](../interfaces/InjectHotkeySequenceDefinition.md)[]
+### commonOptions?
 
-### commonOptions
+  \| [`InjectHotkeySequenceOptions`](../interfaces/InjectHotkeySequenceOptions.md)
+  \| (() => [`InjectHotkeySequenceOptions`](../interfaces/InjectHotkeySequenceOptions.md))
 
 Shared options for all sequences, or getter
-
-[`InjectHotkeySequenceOptions`](../interfaces/InjectHotkeySequenceOptions.md) | () => [`InjectHotkeySequenceOptions`](../interfaces/InjectHotkeySequenceOptions.md)
 
 ## Returns
 

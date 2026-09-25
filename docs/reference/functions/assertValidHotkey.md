@@ -16,9 +16,9 @@ Useful for development-time validation.
 
 ### hotkey
 
-The hotkey string to validate
+[`Hotkey`](../type-aliases/Hotkey.md) \| `string` & `object`
 
-[`Hotkey`](../type-aliases/Hotkey.md) | `string` & `object`
+The hotkey string to validate
 
 ## Returns
 

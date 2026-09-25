@@ -80,13 +80,13 @@ export function createHotkeySequenceRecorder(
   const recorder = new SvelteHotkeySequenceRecorderState({
     ...getDefaultHotkeysOptions().hotkeySequenceRecorder,
     ...resolveMaybeGetter(options),
-  } as HotkeySequenceRecorderOptions)
+  })
 
   $effect(() => {
     recorder.setOptions({
       ...getDefaultHotkeysOptions().hotkeySequenceRecorder,
       ...resolveMaybeGetter(options),
-    } as HotkeySequenceRecorderOptions)
+    })
   })
 
   onDestroy(() => {

@@ -72,7 +72,7 @@ export function optionsEqual(left: object, right: object): boolean {
     keys.length === Object.keys(b).length &&
     keys.every((key) =>
       key === 'meta' && a[key] && b[key]
-        ? optionsEqual(a[key] as object, b[key] as object)
+        ? optionsEqual(a[key], b[key])
         : Object.is(a[key], b[key]),
     )
   )

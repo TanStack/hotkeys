@@ -88,7 +88,7 @@ export function injectHotkeySequence(
     const mergedOptions = {
       ...defaultOptions.hotkeySequence,
       ...resolvedOptions,
-    } as InjectHotkeySequenceOptions
+    }
 
     const { enabled = true, ...sequenceOptions } = mergedOptions
 

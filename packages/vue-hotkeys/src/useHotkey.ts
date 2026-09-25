@@ -116,7 +116,7 @@ export function useHotkey(
       const mergedOptions = {
         ...defaultOptions.hotkey,
         ...resolvedOptions,
-      } as UseHotkeyOptions
+      }
       const resolvedEnabled =
         mergedOptions.enabled === undefined
           ? undefined

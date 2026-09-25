@@ -2,7 +2,6 @@ import { For, Show } from 'solid-js'
 import { detectPlatform, formatForDisplay } from '@tanstack/hotkeys'
 import { useStyles } from '../styles/use-styles'
 import { useHotkeysDevtoolsState } from '../HotkeysContextProvider'
-import type { RegisterableHotkey } from '@tanstack/hotkeys'
 
 export function HeldKeysBar() {
   const styles = useStyles()
@@ -21,7 +20,7 @@ export function HeldKeysBar() {
             {(key) => {
               const code = () => state.heldCodes()[key]
               const label = () =>
-                formatForDisplay(key as RegisterableHotkey, {
+                formatForDisplay(key, {
                   platform,
                   useSymbols: true,
                 })
