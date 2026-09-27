@@ -1,5 +1,12 @@
 # @tanstack/solid-hotkeys
 
+## 0.12.1
+
+### Patch Changes
+
+- Updated dependencies [[`faddbfc`](https://github.com/TanStack/hotkeys/commit/faddbfc7bdd98b809f086304f88ff95a848d92be)]:
+  - @tanstack/hotkeys@0.10.1
+
 ## 0.12.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @tanstack/hotkeys
 
+## 0.10.1
+
+### Patch Changes
+
+- [#159](https://github.com/TanStack/hotkeys/pull/159) [`faddbfc`](https://github.com/TanStack/hotkeys/commit/faddbfc7bdd98b809f086304f88ff95a848d92be) - Display macOS shortcut modifiers in Control, Option, Shift, Command order without changing normalized binding identities.
+
 ## 0.10.0
 
 ### Minor Changes
