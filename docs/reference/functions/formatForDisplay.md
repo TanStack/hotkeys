@@ -9,11 +9,12 @@ title: formatForDisplay
 function formatForDisplay(hotkey, options): string[];
 ```
 
-Defined in: [format.ts:100](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L100)
+Defined in: [format.ts:101](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L101)
 
 Formats a hotkey for display in a user interface.
 
-On macOS, uses symbols (⌘⇧S) in the same modifier order as [normalizeHotkeyFromParsed](normalizeHotkeyFromParsed.md).
+On macOS, uses symbols (⇧⌘S) in Control, Option, Shift, Command order.
+Display ordering does not change the normalized hotkey used for registration.
 On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
 The separator can be customized with `separatorToken`.
 Physical codes use conventional display labels: `[KeyS]` becomes `S` and
@@ -45,7 +46,7 @@ Display text, or individual key labels when parts is true
 
 ```ts
 formatForDisplay('Mod+Shift+S', { platform: 'mac' })
-// Returns: '⌘ ⇧ S' (symbols separated by spaces on macOS)
+// Returns: '⇧ ⌘ S' (symbols separated by spaces on macOS)
 
 formatForDisplay('Mod+Shift+S', { platform: 'windows' })
 // Returns: 'Ctrl+Shift+S'
@@ -60,11 +61,12 @@ formatForDisplay('Escape')
 function formatForDisplay(hotkey, options?): string;
 ```
 
-Defined in: [format.ts:104](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L104)
+Defined in: [format.ts:105](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L105)
 
 Formats a hotkey for display in a user interface.
 
-On macOS, uses symbols (⌘⇧S) in the same modifier order as [normalizeHotkeyFromParsed](normalizeHotkeyFromParsed.md).
+On macOS, uses symbols (⇧⌘S) in Control, Option, Shift, Command order.
+Display ordering does not change the normalized hotkey used for registration.
 On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
 The separator can be customized with `separatorToken`.
 Physical codes use conventional display labels: `[KeyS]` becomes `S` and
@@ -96,7 +98,7 @@ Display text, or individual key labels when parts is true
 
 ```ts
 formatForDisplay('Mod+Shift+S', { platform: 'mac' })
-// Returns: '⌘ ⇧ S' (symbols separated by spaces on macOS)
+// Returns: '⇧ ⌘ S' (symbols separated by spaces on macOS)
 
 formatForDisplay('Mod+Shift+S', { platform: 'windows' })
 // Returns: 'Ctrl+Shift+S'
@@ -111,11 +113,12 @@ formatForDisplay('Escape')
 function formatForDisplay(hotkey, options): string | string[];
 ```
 
-Defined in: [format.ts:108](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L108)
+Defined in: [format.ts:109](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L109)
 
 Formats a hotkey for display in a user interface.
 
-On macOS, uses symbols (⌘⇧S) in the same modifier order as [normalizeHotkeyFromParsed](normalizeHotkeyFromParsed.md).
+On macOS, uses symbols (⇧⌘S) in Control, Option, Shift, Command order.
+Display ordering does not change the normalized hotkey used for registration.
 On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
 The separator can be customized with `separatorToken`.
 Physical codes use conventional display labels: `[KeyS]` becomes `S` and
@@ -147,7 +150,7 @@ Display text, or individual key labels when parts is true
 
 ```ts
 formatForDisplay('Mod+Shift+S', { platform: 'mac' })
-// Returns: '⌘ ⇧ S' (symbols separated by spaces on macOS)
+// Returns: '⇧ ⌘ S' (symbols separated by spaces on macOS)
 
 formatForDisplay('Mod+Shift+S', { platform: 'windows' })
 // Returns: 'Ctrl+Shift+S'
