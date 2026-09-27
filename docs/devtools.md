@@ -97,6 +97,20 @@ import { HotkeysDevtoolsPanel } from '@tanstack/vue-hotkeys-devtools'
 
 For React, Preact, and Solid, the Hotkeys panel appears alongside any other TanStack devtools plugins you have installed.
 
+### Standalone panel
+
+React, Preact, and Solid also export `HotkeysDevtoolsPanel` for rendering without the TanStack Devtools dock:
+
+```tsx
+import { HotkeysDevtoolsPanel } from '@tanstack/react-hotkeys-devtools'
+
+function DebugPanel() {
+  return <HotkeysDevtoolsPanel />
+}
+```
+
+Use the corresponding `@tanstack/preact-hotkeys-devtools` or `@tanstack/solid-hotkeys-devtools` import for those frameworks. Both props are optional: `theme` defaults to `'dark'` and `devtoolsOpen` defaults to `true`. Pass `theme="light"` to select the light theme. When using `hotkeysDevtoolsPlugin()`, the dock supplies these props and its values take precedence over the standalone defaults.
+
 ## Production builds
 
 In production builds, the framework devtools adapters return no-op implementations, so they don't affect your bundle's behavior.
