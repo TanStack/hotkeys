@@ -7,7 +7,7 @@ import type { JSX } from 'react'
 export interface HotkeysDevtoolsReactInit extends Partial<DevtoolsPanelProps> {}
 
 type HotkeysDevtoolsPanelComponent = (
-  props: HotkeysDevtoolsReactInit,
+  props?: HotkeysDevtoolsReactInit,
 ) => JSX.Element
 
 const panels = createReactPanel(HotkeysDevtoolsCore)
@@ -15,7 +15,7 @@ const panels = createReactPanel(HotkeysDevtoolsCore)
 function withDefaults(
   Panel: (typeof panels)[number],
 ): HotkeysDevtoolsPanelComponent {
-  return (props) =>
+  return (props = {}) =>
     createElement(Panel, {
       ...props,
       theme: props.theme ?? 'dark',

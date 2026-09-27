@@ -16,7 +16,9 @@ vi.mock('@tanstack/hotkeys-devtools', () => ({
   },
 }))
 
-const emptyProps: Parameters<typeof HotkeysDevtoolsPanel>[0] = {}
+const emptyProps = {} satisfies NonNullable<
+  Parameters<typeof HotkeysDevtoolsPanel>[0]
+>
 let host: HTMLDivElement
 let root: Root
 beforeEach(() => {
@@ -58,4 +60,16 @@ it('keeps the no-op panel inert with empty props', async () => {
     root.render(createElement(HotkeysDevtoolsPanelNoOp, emptyProps)),
   )
   expect(core.mount).not.toHaveBeenCalled()
+})
+
+it('accepts omitted props for real and no-op panels during render', async () => {
+  const Standalone = () => HotkeysDevtoolsPanel()
+  const NoOp = () => HotkeysDevtoolsPanelNoOp()
+  await act(() => root.render(createElement(Standalone)))
+  expect(core.mount.mock.calls[0]![1]).toMatchObject({
+    theme: 'dark',
+    devtoolsOpen: true,
+  })
+  await act(() => root.render(createElement(NoOp)))
+  expect(core.mount).toHaveBeenCalledOnce()
 })

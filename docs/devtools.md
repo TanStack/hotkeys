@@ -109,7 +109,7 @@ function DebugPanel() {
 }
 ```
 
-Use the corresponding `@tanstack/preact-hotkeys-devtools` or `@tanstack/solid-hotkeys-devtools` import for those frameworks. Both props are optional: `theme` defaults to `'dark'` and `devtoolsOpen` defaults to `true`. Pass `theme="light"` to select the light theme. When using `hotkeysDevtoolsPlugin()`, the dock supplies these props and its values take precedence over the standalone defaults.
+Use the corresponding `@tanstack/preact-hotkeys-devtools` or `@tanstack/solid-hotkeys-devtools` import for those frameworks. The panel and no-op component also accept an omitted props argument during rendering. Both props are optional: `theme` defaults to `'dark'` and `devtoolsOpen` defaults to `true`. Pass `theme="light"` to select the light theme. When using `hotkeysDevtoolsPlugin()`, the dock supplies these props and its values take precedence over the standalone defaults.
 
 ## Production builds
 

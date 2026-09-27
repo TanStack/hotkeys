@@ -7,7 +7,7 @@ import type { JSX } from 'solid-js'
 export interface HotkeysDevtoolsSolidInit extends Partial<DevtoolsPanelProps> {}
 
 type HotkeysDevtoolsPanelComponent = (
-  props: HotkeysDevtoolsSolidInit,
+  props?: HotkeysDevtoolsSolidInit,
 ) => JSX.Element
 
 const panels = createSolidPanel(HotkeysDevtoolsCore)
@@ -15,7 +15,7 @@ const panels = createSolidPanel(HotkeysDevtoolsCore)
 function withDefaults(
   Panel: (typeof panels)[number],
 ): HotkeysDevtoolsPanelComponent {
-  return (props) =>
+  return (props = {}) =>
     createComponent(
       Panel,
       mergeProps({ theme: 'dark' as const, devtoolsOpen: true }, props),

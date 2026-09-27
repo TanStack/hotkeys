@@ -7,7 +7,7 @@ import type { JSX } from 'preact'
 export interface HotkeysDevtoolsPreactInit extends Partial<DevtoolsPanelProps> {}
 
 type HotkeysDevtoolsPanelComponent = (
-  props: HotkeysDevtoolsPreactInit,
+  props?: HotkeysDevtoolsPreactInit,
 ) => JSX.Element
 
 const panels = createPreactPanel(HotkeysDevtoolsCore)
@@ -15,7 +15,7 @@ const panels = createPreactPanel(HotkeysDevtoolsCore)
 function withDefaults(
   Panel: (typeof panels)[number],
 ): HotkeysDevtoolsPanelComponent {
-  return (props) =>
+  return (props = {}) =>
     h(Panel, {
       ...props,
       theme: props.theme ?? 'dark',
