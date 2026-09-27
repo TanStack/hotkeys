@@ -18,7 +18,7 @@ formatForDisplay('Mod+[Digit2]', { platform: 'windows' }) // 'Ctrl+2'
 
 The same label can represent different bindings. `Mod+S` follows a logical letter; `Mod+[KeyS]` follows a physical position. Physical labels shorten `KeyS` to `S` and `Digit2` to `2`, preserve readable numpad labels, and reuse punctuation and special-key symbols. This does not change the stored code or infer the user's layout.
 
-Omit `platform` to use detection. On macOS the default joins modifier symbols with spaces; Windows and Linux use labels joined with `+`.
+Omit `platform` to use detection. On macOS the default joins modifier symbols with spaces; Windows and Linux use labels joined with `+`. macOS display orders modifiers as Control, Option, Shift, Command: `Mod+Shift+S` displays as `⇧ ⌘ S`. The normalized binding remains `Mod+Shift+S`.
 
 ## Render individual keycaps
 
