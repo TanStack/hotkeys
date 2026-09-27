@@ -76,6 +76,48 @@ function ModifierIndicators() {
 
 ## Common patterns
 
+### Reading held keys inside a stable callback
+
+`useKeyHold` and `useHeldKeys` return the state for the current render. If a memoized callback reads those values, include them in its dependencies so it sees updates.
+
+For an event handler that should read the latest held keys without subscribing to render updates, use the existing `getKeyStateTracker()` API:
+
+```tsx
+import { useCallback } from 'react'
+import { getKeyStateTracker } from '@tanstack/react-hotkeys'
+
+function KeyInspector() {
+  const tracker = getKeyStateTracker()
+  const logHeldKeys = useCallback(() => {
+    console.log(tracker.getHeldKeys())
+    console.log('Space held:', tracker.isKeyHeld('Space'))
+  }, [tracker])
+
+  return <button type="button" onClick={logHeldKeys}>Log held keys</button>
+}
+```
+
+The tracker is a shared singleton, so its identity stays stable during normal use. Initialize it while setting up the component, before the keys you want to observe are pressed. Read `getHeldKeys()` or `isKeyHeld()` inside the callback; saving their return values outside the callback would save an earlier snapshot. These imperative reads do not subscribe the component to updates. Use the hooks when held keys affect rendering, and do not destroy the shared tracker when a component unmounts.
+
+For a mouse or wheel handler that only needs a modifier's state for that event, read the event's `ctrlKey`, `shiftKey`, `altKey`, or `metaKey` property directly:
+
+```tsx
+import { useCallback } from 'react'
+import type { WheelEvent } from 'react'
+
+function WheelInspector() {
+  const onWheel = useCallback((event: WheelEvent<HTMLDivElement>) => {
+    if (event.ctrlKey) {
+      console.log('Wheel event with Control modifier')
+    }
+  }, [])
+
+  return <div onWheel={onWheel}>Scroll here</div>
+}
+```
+
+This reads the modifier state reported by the event. Browsers can also report `ctrlKey` for a trackpad pinch gesture, so it does not necessarily mean the physical Control key is held.
+
 ### Hold-to-reveal UI
 
 Show additional options while a modifier is held:
@@ -181,7 +223,7 @@ import { getKeyStateTracker } from '@tanstack/react-hotkeys'
 
 const tracker = getKeyStateTracker()
 
-// Imperative access (outside of React)
+// Imperative access (also available inside callbacks)
 tracker.getHeldKeys()        // string[]
 tracker.isKeyHeld('Shift')   // boolean
 tracker.isAnyKeyHeld(['Shift', 'Control']) // boolean
