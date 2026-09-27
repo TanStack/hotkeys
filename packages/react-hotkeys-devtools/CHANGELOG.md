@@ -1,5 +1,13 @@
 # @tanstack/react-hotkeys-devtools
 
+## 0.9.1
+
+### Patch Changes
+
+- [#162](https://github.com/TanStack/hotkeys/pull/162) [`4409bd9`](https://github.com/TanStack/hotkeys/commit/4409bd9a15dd788e85165f50e7ea4389cb35dbcf) - Allow standalone HotkeysDevtoolsPanel components without props, supplying dark theme and open defaults while preserving props from the Devtools dock.
+- Updated dependencies []:
+  - @tanstack/hotkeys-devtools@1.1.1
+
 ## 0.9.0
 
 ### Minor Changes
