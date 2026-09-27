@@ -1,3 +1,5 @@
+import { normalizeKeyName } from './constants'
+
 /**
  * Checks if an element is an input-like element that should be ignored for hotkeys.
  *
@@ -69,9 +71,30 @@ export function getActiveElementForListenerTarget(
   return (target as Window).document.activeElement ?? null
 }
 
+/** Native buttons use Space/Enter; links only use Enter for activation. */
+function isNativeActivationElement(
+  element: EventTarget | null,
+  key: string,
+): boolean {
+  if (!element || !('tagName' in element)) return false
+  const control = element as HTMLElement
+  const tagName = control.tagName.toLowerCase()
+  if (tagName === 'button') return true
+  if (tagName === 'input') {
+    const type = (control as HTMLInputElement).type
+    return type === 'button' || type === 'submit' || type === 'reset'
+  }
+  return (
+    key === 'Enter' &&
+    (tagName === 'a' || tagName === 'area') &&
+    control.hasAttribute('href')
+  )
+}
+
 /**
  * Returns whether an event should be ignored because it originated from an
- * input-like element other than the registration target.
+ * input-like element other than the registration target. Document/window
+ * registrations also leave unmodified native control activation keys alone.
  *
  * This checks:
  * - the currently focused element for the listener target
@@ -83,22 +106,29 @@ export function shouldIgnoreInputEvent(
   listenerTarget: HTMLElement | Document | Window,
   registrationTarget: HTMLElement | Document | Window,
 ): boolean {
+  const key = normalizeKeyName(event.key)
+  const preserveActivation =
+    ('document' in registrationTarget || registrationTarget.nodeType === 9) &&
+    !event.ctrlKey &&
+    !event.metaKey &&
+    !event.altKey &&
+    !event.shiftKey &&
+    (key === 'Space' || key === 'Enter')
+  const shouldIgnore = (element: EventTarget | null) =>
+    element !== registrationTarget &&
+    (isInputElement(element) ||
+      (preserveActivation && isNativeActivationElement(element, key)))
+
   const focused = getActiveElementForListenerTarget(listenerTarget)
-  if (focused && isInputElement(focused) && focused !== registrationTarget) {
+  if (shouldIgnore(focused)) {
     return true
   }
 
-  if (
-    event
-      .composedPath()
-      .some(
-        (element) => isInputElement(element) && element !== registrationTarget,
-      )
-  ) {
+  if (event.composedPath().some(shouldIgnore)) {
     return true
   }
 
-  return isInputElement(event.target) && event.target !== registrationTarget
+  return shouldIgnore(event.target)
 }
 
 /**

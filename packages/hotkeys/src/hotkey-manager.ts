@@ -39,7 +39,13 @@ export interface HotkeyOptions {
   enabled?: boolean
   /** The event type to listen for. Defaults to 'keydown' */
   eventType?: 'keydown' | 'keyup'
-  /** Whether to ignore hotkeys when keyboard events originate from input-like elements (text inputs, textarea, select, contenteditable — button-type inputs like type=button/submit/reset are not ignored). Defaults based on hotkey: true for single keys and Shift/Alt combos; false for Ctrl/Meta shortcuts and Escape */
+  /**
+   * Ignore events from text inputs, textarea, select, and contenteditable.
+   * Document/window targets also preserve unmodified Space/Enter on native
+   * buttons and Enter on links. Explicit element targets can override activation.
+   * Defaults to true for single keys and Shift/Alt combos; false for Ctrl/Meta
+   * shortcuts and Escape. Set false to handle keys even in these controls.
+   */
   ignoreInputs?: boolean
   /** The target platform for resolving 'Mod' */
   platform?: 'mac' | 'windows' | 'linux'
