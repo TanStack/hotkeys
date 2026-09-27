@@ -172,6 +172,12 @@ On macOS, when a modifier key is held and a non-modifier key is pressed, the OS 
 
 When the browser window loses focus, the tracker clears all held keys. Otherwise a key released after tabbing away would appear "stuck" forever.
 
+### Missed modifier releases
+
+System shortcuts and browser tools can consume a modifier's `keyup` event without blurring the page. On the next keyboard event, mouse movement, or mouse button press, the tracker checks that event's modifier flags and removes any tracked Control, Alt, Shift, or Meta keys that are no longer active. This updates `useKeyHold`, `useHeldKeys`, and `useHeldKeyCodes` together. Modifiers still reported as active remain held, including when both left and right modifier keys are pressed.
+
+Recovery requires another event that reports the modifier state or a window blur. If neither arrives, the tracker cannot tell a missed release from a continued hold. It does not expire held keys after a timeout or infer physical key codes from modifier flags alone.
+
 ## Under the hood
 
 All three hooks subscribe to the singleton `KeyStateTracker` via `@tanstack/react-store`. The tracker manages its own event listeners on `document` and maintains state in a TanStack Store, which the hooks subscribe to reactively.
