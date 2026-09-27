@@ -73,7 +73,8 @@ export type DisplayHotkey = RegisterableHotkey | ParsedHotkey | (string & {})
 /**
  * Formats a hotkey for display in a user interface.
  *
- * On macOS, uses symbols (⌘⇧S) in the same modifier order as {@link normalizeHotkeyFromParsed}.
+ * On macOS, uses symbols (⇧⌘S) in Control, Option, Shift, Command order.
+ * Display ordering does not change the normalized hotkey used for registration.
  * On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
  * The separator can be customized with `separatorToken`.
  * Physical codes use conventional display labels: `[KeyS]` becomes `S` and
@@ -88,7 +89,7 @@ export type DisplayHotkey = RegisterableHotkey | ParsedHotkey | (string & {})
  * @example
  * ```ts
  * formatForDisplay('Mod+Shift+S', { platform: 'mac' })
- * // Returns: '⌘ ⇧ S' (symbols separated by spaces on macOS)
+ * // Returns: '⇧ ⌘ S' (symbols separated by spaces on macOS)
  *
  * formatForDisplay('Mod+Shift+S', { platform: 'windows' })
  * // Returns: 'Ctrl+Shift+S'
@@ -126,7 +127,18 @@ export function formatForDisplay(
     typeof hotkey === 'object' && 'modifiers' in hotkey
       ? normalizeHotkeyFromParsed(hotkey, platform)
       : normalizeRegisterableHotkey(hotkey as RegisterableHotkey, platform)
-  const parts = splitHotkeyParts(normalized).map((segment) => {
+  const segments = splitHotkeyParts(normalized)
+  if (platform === 'mac') {
+    // Canonical registration puts Mod first; display resolves it to Command.
+    const modifierIndex = (segment: string) => {
+      const index = MODIFIER_ORDER.indexOf(
+        (segment === 'Mod' ? 'Meta' : segment) as CanonicalModifier,
+      )
+      return index === -1 ? MODIFIER_ORDER.length : index
+    }
+    segments.sort((a, b) => modifierIndex(a) - modifierIndex(b))
+  }
+  const parts = segments.map((segment) => {
     if (isModifierKey(segment)) {
       const modifier = (MODIFIER_ALIASES[segment] ??
         MODIFIER_ALIASES[segment.toLowerCase()]) as CanonicalModifier | 'Mod'

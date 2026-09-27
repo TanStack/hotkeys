@@ -7,7 +7,7 @@ title: formatWithLabels
 function formatWithLabels(hotkey, options?): string;
 ```
 
-Defined in: [format.ts:173](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L173)
+Defined in: [format.ts:185](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L185)
 
 ## Parameters
 
