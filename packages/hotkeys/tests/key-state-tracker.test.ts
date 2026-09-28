@@ -9,11 +9,13 @@ function dispatchKey(
   type: 'keydown' | 'keyup',
   key: string,
   code?: string,
+  modifiers: KeyboardEventInit = {},
 ): KeyboardEvent {
   const event = new KeyboardEvent(type, {
     key,
     code: code ?? key,
     bubbles: true,
+    ...modifiers,
   })
   document.dispatchEvent(event)
   return event
@@ -26,6 +28,7 @@ describe('KeyStateTracker', () => {
 
   afterEach(() => {
     KeyStateTracker.resetInstance()
+    vi.restoreAllMocks()
   })
 
   describe('singleton pattern', () => {
@@ -72,9 +75,12 @@ describe('KeyStateTracker', () => {
     it('should track multiple keys', () => {
       const tracker = KeyStateTracker.getInstance()
 
-      dispatchKey('keydown', 'Control')
-      dispatchKey('keydown', 'Shift')
-      dispatchKey('keydown', 'a')
+      dispatchKey('keydown', 'Control', undefined, { ctrlKey: true })
+      dispatchKey('keydown', 'Shift', undefined, {
+        ctrlKey: true,
+        shiftKey: true,
+      })
+      dispatchKey('keydown', 'a', undefined, { ctrlKey: true, shiftKey: true })
 
       const heldKeys = tracker.getHeldKeys()
       expect(heldKeys).toContain('Control')
@@ -94,8 +100,11 @@ describe('KeyStateTracker', () => {
     it('should check if all keys are held', () => {
       const tracker = KeyStateTracker.getInstance()
 
-      dispatchKey('keydown', 'Control')
-      dispatchKey('keydown', 'Shift')
+      dispatchKey('keydown', 'Control', undefined, { ctrlKey: true })
+      dispatchKey('keydown', 'Shift', undefined, {
+        ctrlKey: true,
+        shiftKey: true,
+      })
 
       expect(tracker.areAllKeysHeld(['Control', 'Shift'])).toBe(true)
       expect(tracker.areAllKeysHeld(['Control', 'Shift', 'Alt'])).toBe(false)
@@ -164,9 +173,12 @@ describe('KeyStateTracker', () => {
     it('should track multiple codes simultaneously', () => {
       const tracker = KeyStateTracker.getInstance()
 
-      dispatchKey('keydown', 'Control', 'ControlLeft')
-      dispatchKey('keydown', 'Shift', 'ShiftRight')
-      dispatchKey('keydown', 'a', 'KeyA')
+      dispatchKey('keydown', 'Control', 'ControlLeft', { ctrlKey: true })
+      dispatchKey('keydown', 'Shift', 'ShiftRight', {
+        ctrlKey: true,
+        shiftKey: true,
+      })
+      dispatchKey('keydown', 'a', 'KeyA', { ctrlKey: true, shiftKey: true })
 
       expect(tracker.store.state.heldCodes).toEqual({
         Control: 'ControlLeft',
@@ -178,8 +190,8 @@ describe('KeyStateTracker', () => {
     it('should clear non-modifier codes when modifier is released', () => {
       const tracker = KeyStateTracker.getInstance()
 
-      dispatchKey('keydown', 'Meta', 'MetaLeft')
-      dispatchKey('keydown', 's', 'KeyS')
+      dispatchKey('keydown', 'Meta', 'MetaLeft', { metaKey: true })
+      dispatchKey('keydown', 's', 'KeyS', { metaKey: true })
       expect(tracker.store.state.heldCodes).toEqual({
         Meta: 'MetaLeft',
         S: 'KeyS',
@@ -209,8 +221,8 @@ describe('KeyStateTracker', () => {
 
       // Simulate Cmd+S: keydown Meta, keydown S, then only keyup Meta
       // (macOS swallows the keyup for S)
-      dispatchKey('keydown', 'Meta')
-      dispatchKey('keydown', 's')
+      dispatchKey('keydown', 'Meta', undefined, { metaKey: true })
+      dispatchKey('keydown', 's', undefined, { metaKey: true })
       expect(tracker.getHeldKeys()).toContain('Meta')
       expect(tracker.getHeldKeys()).toContain('S')
 
@@ -224,8 +236,8 @@ describe('KeyStateTracker', () => {
     it('should clear non-modifier keys when Control is released', () => {
       const tracker = KeyStateTracker.getInstance()
 
-      dispatchKey('keydown', 'Control')
-      dispatchKey('keydown', 'c')
+      dispatchKey('keydown', 'Control', undefined, { ctrlKey: true })
+      dispatchKey('keydown', 'c', undefined, { ctrlKey: true })
       dispatchKey('keyup', 'Control')
 
       expect(tracker.isKeyHeld('Control')).toBe(false)
@@ -236,8 +248,8 @@ describe('KeyStateTracker', () => {
     it('should clear non-modifier keys when Alt is released', () => {
       const tracker = KeyStateTracker.getInstance()
 
-      dispatchKey('keydown', 'Alt')
-      dispatchKey('keydown', 'Tab')
+      dispatchKey('keydown', 'Alt', undefined, { altKey: true })
+      dispatchKey('keydown', 'Tab', undefined, { altKey: true })
       dispatchKey('keyup', 'Alt')
 
       expect(tracker.isKeyHeld('Alt')).toBe(false)
@@ -249,10 +261,13 @@ describe('KeyStateTracker', () => {
       const tracker = KeyStateTracker.getInstance()
 
       // Ctrl+Shift+S — release Ctrl, Shift should remain
-      dispatchKey('keydown', 'Control')
-      dispatchKey('keydown', 'Shift')
-      dispatchKey('keydown', 's')
-      dispatchKey('keyup', 'Control')
+      dispatchKey('keydown', 'Control', undefined, { ctrlKey: true })
+      dispatchKey('keydown', 'Shift', undefined, {
+        ctrlKey: true,
+        shiftKey: true,
+      })
+      dispatchKey('keydown', 's', undefined, { ctrlKey: true, shiftKey: true })
+      dispatchKey('keyup', 'Control', undefined, { shiftKey: true })
 
       expect(tracker.isKeyHeld('Control')).toBe(false)
       expect(tracker.isKeyHeld('Shift')).toBe(true)
@@ -270,6 +285,152 @@ describe('KeyStateTracker', () => {
       // b should still be held — only modifier releases trigger cleanup
       expect(tracker.isKeyHeld('A')).toBe(false)
       expect(tracker.isKeyHeld('B')).toBe(true)
+    })
+  })
+
+  describe('recovery after missed modifier releases', () => {
+    const modifiers = [
+      ['Control', 'ControlLeft', { ctrlKey: true }],
+      ['Alt', 'AltLeft', { altKey: true }],
+      ['Shift', 'ShiftLeft', { shiftKey: true }],
+      ['Meta', 'MetaLeft', { metaKey: true }],
+    ] as const
+
+    describe.each(modifiers)('%s', (modifier, code, flags) => {
+      it.each(['keydown', 'keyup', 'mousemove', 'mousedown'])(
+        'recovers on %s without a modifier keyup or blur',
+        (type) => {
+          const tracker = KeyStateTracker.getInstance()
+          dispatchKey('keydown', modifier, code, flags)
+          // The OS consumed the modifier release without blurring the page.
+          // A later event reports that no modifier is active.
+          if (type === 'keydown' || type === 'keyup') {
+            dispatchKey(type, 'a', 'KeyA')
+          } else {
+            document.dispatchEvent(new MouseEvent(type, { bubbles: true }))
+          }
+          expect(tracker.isKeyHeld(modifier)).toBe(false)
+          expect(tracker.store.state.heldKeys).not.toContain(modifier)
+          expect(tracker.store.state.heldCodes).not.toHaveProperty(modifier)
+        },
+      )
+
+      it('preserves a held modifier across keyboard and mouse events', () => {
+        const tracker = KeyStateTracker.getInstance()
+        dispatchKey('keydown', modifier, code, flags)
+        dispatchKey('keydown', 'a', 'KeyA', flags)
+        dispatchKey('keyup', 'a', 'KeyA', flags)
+        const state = tracker.store.state
+        document.dispatchEvent(new MouseEvent('mousemove', flags))
+        document.dispatchEvent(new MouseEvent('mousedown', flags))
+        expect(tracker.store.state).toBe(state)
+        expect(tracker.store.state.heldCodes).toEqual({ [modifier]: code })
+      })
+    })
+
+    it('keeps the other physical modifier held until its own release', () => {
+      const tracker = KeyStateTracker.getInstance()
+      dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
+      dispatchKey('keydown', 'Shift', 'ShiftRight', { shiftKey: true })
+      dispatchKey('keyup', 'Shift', 'ShiftRight', { shiftKey: true })
+      expect(tracker.store.state).toEqual({
+        heldKeys: ['Shift'],
+        heldCodes: { Shift: 'ShiftLeft' },
+      })
+      dispatchKey('keyup', 'Shift', 'ShiftLeft')
+      expect(tracker.store.state).toEqual({ heldKeys: [], heldCodes: {} })
+    })
+
+    it('clears both stale physical modifiers and code-less modifiers', () => {
+      const tracker = KeyStateTracker.getInstance()
+      dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
+      dispatchKey('keydown', 'Shift', 'ShiftRight', { shiftKey: true })
+      dispatchKey('keydown', 'Meta', '', { shiftKey: true, metaKey: true })
+      document.dispatchEvent(new MouseEvent('mousemove'))
+      expect(tracker.store.state).toEqual({ heldKeys: [], heldCodes: {} })
+    })
+
+    it('removes only released modifiers and publishes one final state per keyboard event', () => {
+      const tracker = KeyStateTracker.getInstance()
+      dispatchKey('keydown', 'Control', 'ControlLeft', { ctrlKey: true })
+      dispatchKey('keydown', 'Shift', 'ShiftLeft', {
+        ctrlKey: true,
+        shiftKey: true,
+      })
+      const listener = vi.fn()
+      const subscription = tracker.store.subscribe(() =>
+        listener(tracker.store.state),
+      )
+      dispatchKey('keydown', 'a', 'KeyA', { shiftKey: true })
+      expect(listener).toHaveBeenCalledExactlyOnceWith({
+        heldKeys: ['Shift', 'A'],
+        heldCodes: { Shift: 'ShiftLeft', A: 'KeyA' },
+      })
+      subscription.unsubscribe()
+    })
+
+    it('recovers on a repeated keydown even when no new key entry is added', () => {
+      const tracker = KeyStateTracker.getInstance()
+      dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
+      dispatchKey('keydown', 'a', 'KeyA', { shiftKey: true })
+      dispatchKey('keydown', 'a', 'KeyA', { repeat: true })
+      expect(tracker.store.state).toEqual({
+        heldKeys: ['A'],
+        heldCodes: { A: 'KeyA' },
+      })
+    })
+
+    it('does not infer physical keys or discard held non-modifiers from mouse state', () => {
+      const tracker = KeyStateTracker.getInstance()
+      dispatchKey('keydown', 'a', 'KeyA')
+      const state = tracker.store.state
+      document.dispatchEvent(new MouseEvent('mousemove', { shiftKey: true }))
+      document.dispatchEvent(new MouseEvent('mousemove'))
+      expect(tracker.store.state).toBe(state)
+      expect(tracker.store.state.heldCodes).toEqual({ A: 'KeyA' })
+    })
+
+    it('publishes mouse recovery once and removes listeners when destroyed', () => {
+      const addListener = vi.spyOn(document, 'addEventListener')
+      const removeListener = vi.spyOn(document, 'removeEventListener')
+      const tracker = KeyStateTracker.getInstance()
+      dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
+      const listener = vi.fn()
+      const subscription = tracker.store.subscribe(listener)
+      document.dispatchEvent(new MouseEvent('mousemove'))
+      document.dispatchEvent(new MouseEvent('mousemove'))
+      document.dispatchEvent(new MouseEvent('mousedown'))
+      expect(listener).toHaveBeenCalledTimes(1)
+      tracker.destroy()
+      for (const [type, handler, options] of addListener.mock.calls) {
+        if (type === 'mousemove' || type === 'mousedown') {
+          expect(removeListener).toHaveBeenCalledWith(type, handler, options)
+        }
+      }
+      listener.mockClear()
+      dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
+      document.dispatchEvent(new MouseEvent('mousemove'))
+      document.dispatchEvent(new MouseEvent('mousedown'))
+      expect(listener).not.toHaveBeenCalled()
+      expect(tracker.store.state).toEqual({ heldKeys: [], heldCodes: {} })
+      subscription.unsubscribe()
+    })
+
+    it('recovers before a child mouse handler that stops propagation', () => {
+      const tracker = KeyStateTracker.getInstance()
+      const child = document.createElement('div')
+      document.body.append(child)
+      child.addEventListener('mousedown', (event) => {
+        event.stopPropagation()
+        expect(tracker.isKeyHeld('Shift')).toBe(false)
+      })
+      try {
+        dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
+        child.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }))
+        expect(tracker.isKeyHeld('Shift')).toBe(false)
+      } finally {
+        child.remove()
+      }
     })
   })
 
