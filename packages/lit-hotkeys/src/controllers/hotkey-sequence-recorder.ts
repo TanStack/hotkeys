@@ -45,6 +45,7 @@ import type {
 export class HotkeySequenceRecorderController implements ReactiveController {
   /** The recorder instance. */
   private _recorder: HotkeySequenceRecorder
+  private _optionOverrides: Partial<HotkeySequenceRecorderOptions> = {}
   /** The unsubscribe function. */
   private _unsubscribe: (() => void) | undefined
   /** Whether recording is currently active. */
@@ -71,13 +72,19 @@ export class HotkeySequenceRecorderController implements ReactiveController {
 
   /**
    * @param _host - The Lit component that owns this controller.
-   * @param _options - Configuration options for the sequence recorder.
+   * @param _options - Options or a getter, read during recording.
    */
   constructor(
     private _host: ReactiveControllerHost,
-    private _options: HotkeySequenceRecorderOptions,
+    private _options:
+      HotkeySequenceRecorderOptions | (() => HotkeySequenceRecorderOptions),
   ) {
-    this._recorder = new HotkeySequenceRecorder(_options)
+    this._recorder = new HotkeySequenceRecorder(() => ({
+      ...(typeof this._options === 'function'
+        ? this._options()
+        : this._options),
+      ...this._optionOverrides,
+    }))
     this._host.addController(this)
   }
 
@@ -115,8 +122,7 @@ export class HotkeySequenceRecorderController implements ReactiveController {
 
   /** Updates the recorder options. */
   public setOptions(options: Partial<HotkeySequenceRecorderOptions>): void {
-    this._options = { ...this._options, ...options }
-    this._recorder.setOptions(this._options)
+    this._optionOverrides = { ...this._optionOverrides, ...options }
   }
 
   /** Start recording a new sequence. */

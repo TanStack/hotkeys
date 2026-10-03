@@ -46,7 +46,7 @@
     "dist"
   ],
   "dependencies": {
-    "@tanstack/angular-store": "^0.11.1",
+    "@tanstack/angular-store": "^0.11.2",
     "@tanstack/hotkeys": "workspace:*"
   },
   "peerDependencies": {
@@ -54,9 +54,9 @@
     "@angular/core": ">=19.0.0"
   },
   "devDependencies": {
-    "@angular/common": "^22.1.7",
-    "@angular/core": "^22.1.7",
-    "@angular/platform-browser-dynamic": "^22.1.7",
+    "@angular/common": "^22.2.1",
+    "@angular/core": "^22.2.1",
+    "@angular/platform-browser-dynamic": "^22.2.1",
     "typescript": "6.0.3"
   }
 }

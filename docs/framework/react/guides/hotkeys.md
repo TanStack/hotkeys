@@ -60,6 +60,12 @@ useHotkey({ key: 'S', mod: true, shift: true }, () => saveAs())
 
 Pass a new logical or physical binding through your framework's normal state mechanism. A recorder result such as `Alt+[KeyS]` can be passed directly to the same registration API. Keep an initial binding in application state if you want a reset button; the library does not need a separate preferences store.
 
+## Updating options
+
+Pass current options when the component renders. Hooks synchronize those options with the existing registration. You do not need to call `setOptions` in application code. Provider defaults and recorder options follow the same component update lifecycle.
+
+Property getters are read when the hook runs. They do not subscribe to external state independently of the component. Keep changing values in framework state so the component updates, and avoid creating an options object once with an initial state snapshot.
+
 ## Default options
 
 When you register a hotkey without options, or omit specific ones, these defaults apply:

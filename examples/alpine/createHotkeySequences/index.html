@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TanStack Hotkeys | Alpine createHotkeySequences</title>
+  </head>
+  <body>
+    <div x-data="app">
+      <div class="app">
+        <header>
+          <h1>scope.createHotkeySequences</h1>
+          <p>
+            Register many multi-key sequences in one hook (like Vim commands).
+            Keys must be pressed within the timeout window (default: 1000ms).
+          </p>
+        </header>
+
+        <main>
+          <section class="demo-section">
+            <h2>Vim-Style Commands</h2>
+            <table class="sequence-table">
+              <thead>
+                <tr>
+                  <th>Sequence</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><kbd>g</kbd> <kbd>g</kbd></td>
+                  <td>Go to top</td>
+                </tr>
+                <tr>
+                  <td><kbd>G</kbd> (Shift+G)</td>
+                  <td>Go to bottom</td>
+                </tr>
+                <tr>
+                  <td><kbd>d</kbd> <kbd>d</kbd></td>
+                  <td>Delete line</td>
+                </tr>
+                <tr>
+                  <td><kbd>y</kbd> <kbd>y</kbd></td>
+                  <td>Yank (copy) line</td>
+                </tr>
+                <tr>
+                  <td><kbd>d</kbd> <kbd>w</kbd></td>
+                  <td>Delete word</td>
+                </tr>
+                <tr>
+                  <td><kbd>c</kbd> <kbd>i</kbd> <kbd>w</kbd></td>
+                  <td>Change inner word</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="demo-section">
+            <h2>Fun Sequences</h2>
+            <div class="fun-sequences">
+              <div class="sequence-card">
+                <h3>Konami Code (Partial)</h3>
+                <p><kbd>↑</kbd> <kbd>↑</kbd> <kbd>↓</kbd> <kbd>↓</kbd></p>
+                <span class="hint">Use arrow keys within 1.5 seconds</span>
+              </div>
+              <div class="sequence-card">
+                <h3>Side to Side</h3>
+                <p><kbd>←</kbd> <kbd>→</kbd> <kbd>←</kbd> <kbd>→</kbd></p>
+                <span class="hint">Arrow keys within 1.5 seconds</span>
+              </div>
+              <div class="sequence-card">
+                <h3>Spell It Out</h3>
+                <p>
+                  <kbd>h</kbd> <kbd>e</kbd> <kbd>l</kbd> <kbd>l</kbd>
+                  <kbd>o</kbd>
+                </p>
+                <span class="hint">Type "hello" quickly</span>
+                <p class="sequence-toggle-status">
+                  <span
+                    x-text="[&quot; This sequence is&quot;, (' '), &quot; &quot;].join('')"
+                  ></span
+                  ><strong
+                    ><span
+                      x-text="[(helloSequenceEnabled ? 'enabled' : 'disabled')].join('')"
+                    ></span
+                  ></strong>
+                  .
+                </p>
+                <button
+                  type="button"
+                  @click="((() =&gt; helloSequenceEnabled = !helloSequenceEnabled))($event)"
+                >
+                  <span
+                    x-text="[&quot; &quot;, (helloSequenceEnabled ? 'Disable' : 'Enable'), &quot; sequence &quot;].join('')"
+                  ></span>
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <template x-if="(lastSequence)"
+            ><div class="info-box success">
+              <strong>Triggered:</strong
+              ><span
+                x-text='[" ", (lastSequence), " "].join(&apos;&apos;)'
+              ></span></div
+          ></template>
+
+          <section class="demo-section">
+            <h2>Input handling</h2>
+            <p>
+              Sequences are not detected when typing in text inputs, textareas,
+              selects, or contenteditable elements. Button-type inputs (
+              <code>type="button"</code>, <code>submit</code>,
+              <code>reset</code>) still receive sequences. Focus the input below
+              and try <kbd>g</kbd
+              ><span x-text="[(' '), &quot; &quot;].join('')"></span
+              ><kbd>g</kbd> or <kbd>h</kbd>
+              <kbd>e</kbd>
+              <kbd>l</kbd>
+              <kbd>l</kbd>
+              <kbd>o</kbd> — nothing will trigger. Click outside to try again.
+            </p>
+            <input
+              type="text"
+              class="demo-input"
+              placeholder="Focus here – sequences won't trigger while typing..."
+            />
+          </section>
+
+          <section class="demo-section">
+            <h2>Chained Shift+letter sequences</h2>
+            <p>
+              Each step is a chord: hold <kbd>Shift</kbd> and press a letter.
+              You can press <kbd>Shift</kbd> alone between steps—those
+              modifier-only presses do not reset progress, so the next chord
+              still counts.
+            </p>
+            <table class="sequence-table">
+              <thead>
+                <tr>
+                  <th>Sequence</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <kbd>Shift</kbd>+<kbd>r</kbd> then <kbd>Shift</kbd>+
+                    <kbd>t</kbd>
+                  </td>
+                  <td>Chained Shift+letter (2 steps)</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <span
+            style="display: contents"
+            x-data="registrationsViewer(() => ({}))"
+            ><section class="demo-section">
+              <h2>Live Registrations (scope.createHotkeyRegistrations)</h2>
+              <p>
+                This table is rendered from <code>scope.createHotkeyRegistrations()</code> —
+                a reactive view of all registered hotkeys and sequences. Trigger
+                counts update in real-time.
+              </p>
+
+              <template x-if="(hotkeys.length &gt; 0)"
+                ><span>
+                  <h3>Hotkeys</h3>
+                  <table class="registrations-table">
+                    <thead>
+                      <tr>
+                        <th>Hotkey</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Triggers</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <template x-for="reg in (hotkeys)" :key="(reg.id)"
+                        ><tr>
+                          <td>
+                            <kbd
+                              ><span
+                                x-text="[(formatForDisplay(reg.hotkey))].join('')"
+                              ></span
+                            ></kbd>
+                          </td>
+                          <td>
+                            <span
+                              x-text="[(reg.options.meta?.name ?? '—')].join('')"
+                            ></span>
+                          </td>
+                          <td class="description-cell">
+                            <span
+                              x-text="[&quot; &quot;, (reg.options.meta?.description ?? '—'), &quot; &quot;].join('')"
+                            ></span>
+                          </td>
+                          <td class="trigger-count">
+                            <span x-text="[(reg.triggerCount)].join('')"></span>
+                          </td></tr
+                      ></template>
+                    </tbody>
+                  </table> </span
+              ></template>
+
+              <h3>
+                <span
+                  x-text='["Sequences (", (sequences.length), ")"].join(&apos;&apos;)'
+                ></span>
+              </h3>
+              <table class="registrations-table">
+                <thead>
+                  <tr>
+                    <th>Sequence</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Enabled</th>
+                    <th>Triggers</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <template x-for="reg in (sequences)" :key="(reg.id)"
+                    ><tr>
+                      <td>
+                        <template x-for="(s, i) in (reg.sequence)" :key="(i)"
+                          ><span
+                            ><span
+                              x-text="[&quot; &quot;, ((i &gt; 0) ? (' ') : ''), &quot; &quot;].join('')"
+                            ></span
+                            ><kbd
+                              ><span
+                                x-text="[(formatForDisplay(s))].join('')"
+                              ></span
+                            ></kbd> </span
+                        ></template>
+                      </td>
+                      <td>
+                        <span
+                          x-text="[(reg.options.meta?.name ?? '—')].join('')"
+                        ></span>
+                      </td>
+                      <td class="description-cell">
+                        <span
+                          x-text="[&quot; &quot;, (reg.options.meta?.description ?? '—'), &quot; &quot;].join('')"
+                        ></span>
+                      </td>
+                      <td>
+                        <span
+                          :class="(reg.options.enabled !== false ? 'status-on' : 'status-off')"
+                          ><span
+                            x-text="[&quot; &quot;, (reg.options.enabled !== false ? 'yes' : 'no'), &quot; &quot;].join('')"
+                          ></span
+                        ></span>
+                      </td>
+                      <td class="trigger-count">
+                        <span x-text="[(reg.triggerCount)].join('')"></span>
+                      </td></tr
+                  ></template>
+                  <template x-if="(sequences.length === 0)"
+                    ><tr>
+                      <td :colspan="(5)" class="hint">
+                        No sequences registered
+                      </td>
+                    </tr></template
+                  >
+                </tbody>
+              </table>
+            </section></span
+          >
+
+          <section class="demo-section">
+            <h2>Usage</h2>
+            <pre class="code-block" x-text="usage0"></pre>
+          </section>
+
+          <template x-if="(history.length &gt; 0)"
+            ><section class="demo-section">
+              <h2>History</h2>
+              <ul class="history-list">
+                <template x-for="(item, i) in (history)" :key="(i)"
+                  ><li><span x-text="[(item)].join('')"></span></li
+                ></template>
+              </ul>
+              <button @click="((() =&gt; history = []))($event)">
+                Clear History
+              </button>
+            </section></template
+          >
+
+          <p class="hint">Press <kbd>Escape</kbd> to clear history</p>
+        </main>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

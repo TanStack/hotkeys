@@ -1,0 +1,65 @@
+{
+  "name": "@tanstack/octane-hotkeys",
+  "version": "0.1.0",
+  "description": "Octane adapter for TanStack Hotkeys",
+  "author": "Tanner Linsley",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TanStack/hotkeys.git",
+    "directory": "packages/octane-hotkeys"
+  },
+  "homepage": "https://tanstack.com/hotkeys",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/tannerlinsley"
+  },
+  "keywords": [
+    "octane",
+    "tanstack",
+    "hotkeys"
+  ],
+  "scripts": {
+    "clean": "premove ./build ./dist",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "test:eslint": "eslint ./src",
+    "test:lib": "vitest run && vitest run --config vitest.ssr.config.ts",
+    "test:lib:dev": "vitest --watch",
+    "test:types": "tsrx-tsc --noEmit",
+    "build": "tsdown",
+    "test:build": "publint --strict && node ../../scripts/verify-package.ts"
+  },
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=22.22.2"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@tanstack/hotkeys": "workspace:*",
+    "@tanstack/octane-store": "^0.12.3"
+  },
+  "devDependencies": {
+    "@tsrx/typescript-plugin": "^0.3.138",
+    "octane": "0.1.36",
+    "vite": "^8.3.2"
+  },
+  "peerDependencies": {
+    "octane": ">=0.1.36 <0.2.0"
+  },
+  "octane": {
+    "hookSlots": {
+      "manual": [
+        "dist"
+      ]
+    }
+  }
+}

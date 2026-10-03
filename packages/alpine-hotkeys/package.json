@@ -1,0 +1,57 @@
+{
+  "name": "@tanstack/alpine-hotkeys",
+  "version": "0.1.0",
+  "description": "Alpine adapter for TanStack Hotkeys",
+  "author": "Tanner Linsley",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TanStack/hotkeys.git",
+    "directory": "packages/alpine-hotkeys"
+  },
+  "homepage": "https://tanstack.com/hotkeys",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/tannerlinsley"
+  },
+  "keywords": [
+    "alpine",
+    "tanstack",
+    "hotkeys"
+  ],
+  "scripts": {
+    "clean": "premove ./build ./dist",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "test:eslint": "eslint ./src",
+    "test:lib": "vitest --passWithNoTests",
+    "test:lib:dev": "pnpm test:lib --watch",
+    "test:types": "tsc",
+    "build": "tsdown",
+    "test:build": "publint --strict && node ../../scripts/verify-package.ts"
+  },
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json"
+  },
+  "sideEffects": false,
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "dist"
+  ],
+  "dependencies": {
+    "@tanstack/hotkeys": "workspace:*",
+    "@tanstack/store": "^0.11.2"
+  },
+  "devDependencies": {
+    "@types/alpinejs": "^3.17.0",
+    "alpinejs": "^3.17.4"
+  },
+  "peerDependencies": {
+    "alpinejs": "^3.15.12"
+  }
+}

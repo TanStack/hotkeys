@@ -7,6 +7,10 @@ TanStack Hotkeys provides the `HotkeySequenceRecorderController` for building UI
 
 Sequence recording uses `recordBy: 'code'` by default, preserving every step as a physical string such as `['[KeyG]', 'Alt+[KeyS]']`. Set `recordBy: 'key'` for logical characters. The shared rejection and conflict options follow the [hotkey recording guide](./hotkey-recording.md#validation-and-conflicts).
 
+## Reactive options
+
+Recorder options support [property getters and functions returning options](./hotkeys.md#property-getters). Updated callbacks, validation, and recording settings apply during an active session without restarting it. Recorder controls read current options directly. Explicit `setOptions` values override constructor options for the supplied keys; other getters stay live.
+
 ## Basic usage
 
 ```ts

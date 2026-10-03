@@ -100,6 +100,29 @@ When `enabled` is false, the hotkey stays registered (visible in devtools); only
 
 Pass a new logical or physical binding through your framework's normal state mechanism. A recorder result such as `Alt+[KeyS]` can be passed directly to the same registration API. Keep an initial binding in application state if you want a reset button; the library does not need a separate preferences store.
 
+## Property getters
+
+Property getters and functions returning an options object are both supported. Read reactive state inside the getter. A plain value such as `{ enabled: currentValue }` captures the value when that object is created.
+
+The adapter reads option properties inside its reactive computation and updates registrations automatically. Callbacks such as `onRecord` and `onCancel` remain functions; the adapter does not call them to resolve options. Tracking is shallow; callback bodies and nested objects are not evaluated to discover dependencies. Keep getters free of side effects. Ordinary option changes preserve registration identity. Changing the target moves the registration to that target.
+
+```svelte
+<script lang="ts">
+	import { createHotkey } from '@tanstack/svelte-hotkeys'
+
+	let enabled = $state(true)
+	createHotkey('Mod+S', () => console.log('Save'), {
+		get enabled() {
+			return enabled
+		},
+	})
+</script>
+
+<button onclick={() => enabled = !enabled}>Toggle shortcut</button>
+```
+
+You can also pass `() => ({ enabled })`. Svelte applies registration changes when its effect runs. The same forms work for attachments, common options, per-definition options, sequences, and recorders. `HotkeysProvider` follows replacement `defaultOptions` objects and getters within defaults.
+
 ## Default options
 
 Set defaults explicitly with `setHotkeysContext` when a subtree needs shared behavior:

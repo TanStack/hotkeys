@@ -58,7 +58,7 @@ createHotkey({ key: 'S', mod: true, shift: true }, () => saveAs())
 
 ## Reactive options
 
-Unlike React/Preact hooks, Solid primitives accept accessor functions for reactive options. Pass a function that returns the options object, and the hotkey updates automatically when dependencies change:
+Solid primitives accept property getters and accessor functions for reactive options. With an accessor, the hotkey updates automatically when dependencies change:
 
 ```tsx
 function Modal(props) {
@@ -89,6 +89,27 @@ function Editor() {
 ### Changing a binding
 
 Pass a new logical or physical binding through your framework's normal state mechanism. A recorder result such as `Alt+[KeyS]` can be passed directly to the same registration API. Keep an initial binding in application state if you want a reset button; the library does not need a separate preferences store.
+
+## Property getters
+
+Property getters and functions returning an options object are both supported. Read reactive state inside the getter. A plain value such as `{ enabled: currentValue }` captures the value when that object is created.
+
+The adapter reads option properties inside its reactive computation and updates registrations automatically. Callbacks such as `onRecord` and `onCancel` remain functions; the adapter does not call them to resolve options. Tracking is shallow; callback bodies and nested objects are not evaluated to discover dependencies. Keep getters free of side effects. Ordinary option changes preserve registration identity. Changing the target moves the registration to that target.
+
+```tsx
+import { createHotkey } from '@tanstack/solid-hotkeys'
+
+export function SaveShortcut(props: { enabled: boolean; onSave: () => void }) {
+	createHotkey('Mod+S', () => props.onSave(), {
+		get enabled() {
+			return props.enabled
+		},
+	})
+	return null
+}
+```
+
+You can also pass `() => ({ enabled: props.enabled })`. Both forms work for common options, sequences, and recorders. Property getters also work in per-definition options. `HotkeysProvider` follows replacement `defaultOptions` objects and getters within defaults. Per-call options override provider defaults, and per-definition options override common options.
 
 ## Default options
 

@@ -51,6 +51,33 @@ injectHotkey('Mod+S', (event, context) => {
 
 Pass a new logical or physical binding through your framework's normal state mechanism. A recorder result such as `Alt+[KeyS]` can be passed directly to the same registration API. Keep an initial binding in application state if you want a reset button; the library does not need a separate preferences store.
 
+## Property getters
+
+Property getters and functions returning an options object are both supported. Read reactive state inside the getter. A plain value such as `{ enabled: currentValue }` captures the value when that object is created.
+
+The adapter reads option properties inside its reactive computation and updates registrations automatically. Callbacks such as `onRecord` and `onCancel` remain functions; the adapter does not call them to resolve options. Tracking is shallow; callback bodies and nested objects are not evaluated to discover dependencies. Keep getters free of side effects. Ordinary option changes preserve registration identity. Changing the target moves the registration to that target.
+
+```ts
+import { Component, signal } from '@angular/core'
+import { injectHotkey } from '@tanstack/angular-hotkeys'
+
+@Component({ selector: 'save-shortcut', template: '' })
+export class SaveShortcut {
+	enabled = signal(true)
+
+	constructor() {
+		const component = this
+		injectHotkey('Mod+S', () => console.log('Save'), {
+			get enabled() {
+				return component.enabled()
+			},
+		})
+	}
+}
+```
+
+You can also pass `() => ({ enabled: this.enabled() })` from the component. Signals read by option getters update registrations when Angular runs the effect. Use the same forms for common options, per-definition options, sequences, and recorders. Getter properties in provided defaults are tracked too.
+
 ## Default options
 
 `injectHotkey` uses the same core defaults as the framework-agnostic manager:
@@ -71,7 +98,7 @@ injectHotkey('Mod+S', callback, {
 
 ## Reactive options
 
-For reactive state, pass an accessor function as the third argument.
+For reactive state, pass an options object with property getters or a function returning options.
 
 ### `enabled`
 

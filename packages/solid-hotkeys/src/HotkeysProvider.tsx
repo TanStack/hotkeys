@@ -31,7 +31,9 @@ export const HotkeysProvider: ParentComponent<HotkeysProviderProps> = (
   props,
 ) => {
   const contextValue: HotkeysContextValue = {
-    defaultOptions: props.defaultOptions ?? DEFAULT_OPTIONS,
+    get defaultOptions() {
+      return props.defaultOptions ?? DEFAULT_OPTIONS
+    },
   }
 
   return (

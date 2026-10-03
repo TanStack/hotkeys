@@ -7,6 +7,42 @@ const __dirname = fileURLToPath(new URL('.', import.meta.url))
 await generateReferenceDocs({
   packages: [
     {
+      name: 'alpine-hotkeys',
+      entryPoints: [
+        resolve(__dirname, '../packages/alpine-hotkeys/src/index.ts'),
+      ],
+      tsconfig: resolve(
+        __dirname,
+        '../packages/alpine-hotkeys/tsconfig.docs.json',
+      ),
+      outputDir: resolve(__dirname, '../docs/framework/alpine/reference'),
+      exclude: ['packages/hotkeys/**/*'],
+    },
+    {
+      name: 'ember-hotkeys',
+      entryPoints: [
+        resolve(__dirname, '../packages/ember-hotkeys/src/index.ts'),
+      ],
+      tsconfig: resolve(
+        __dirname,
+        '../packages/ember-hotkeys/tsconfig.docs.json',
+      ),
+      outputDir: resolve(__dirname, '../docs/framework/ember/reference'),
+      exclude: ['packages/hotkeys/**/*'],
+    },
+    {
+      name: 'octane-hotkeys',
+      entryPoints: [
+        resolve(__dirname, '../packages/octane-hotkeys/src/index.ts'),
+      ],
+      tsconfig: resolve(
+        __dirname,
+        '../packages/octane-hotkeys/tsconfig.docs.json',
+      ),
+      outputDir: resolve(__dirname, '../docs/framework/octane/reference'),
+      exclude: ['packages/hotkeys/**/*'],
+    },
+    {
       name: 'angular-hotkeys',
       entryPoints: [
         resolve(__dirname, '../packages/angular-hotkeys/src/index.ts'),
@@ -23,6 +59,12 @@ await generateReferenceDocs({
       entryPoints: [resolve(__dirname, '../packages/hotkeys/src/index.ts')],
       tsconfig: resolve(__dirname, '../packages/hotkeys/tsconfig.docs.json'),
       outputDir: resolve(__dirname, '../docs/reference'),
+    },
+    {
+      name: 'hotkeys/adapter',
+      entryPoints: [resolve(__dirname, '../packages/hotkeys/src/adapter.ts')],
+      tsconfig: resolve(__dirname, '../packages/hotkeys/tsconfig.docs.json'),
+      outputDir: resolve(__dirname, '../docs/reference/adapter'),
     },
     {
       name: 'lit-hotkeys',

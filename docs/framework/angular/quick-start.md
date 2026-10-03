@@ -170,3 +170,13 @@ export const appConfig: ApplicationConfig = {
 - [Sequence Recording Guide](./guides/sequence-recording)
 - [Key State Tracking Guide](./guides/key-state-tracking)
 - [Formatting & Display Guide](./guides/formatting-display)
+
+## Devtools
+
+Install the optional devtools packages to inspect registrations, held keys, and trigger counts:
+
+```sh
+npm install @tanstack/angular-devtools @tanstack/angular-hotkeys-devtools
+```
+
+The Angular devtools integration requires Angular 21 or newer. Follow the [devtools setup guide](../../devtools) to add the dock to your application.

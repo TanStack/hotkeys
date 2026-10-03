@@ -7,6 +7,10 @@ TanStack Hotkeys provides the `HotkeyRecorderController` for building keyboard s
 
 Recorders default to physical codes: recording a shortcut stores a string such as `Mod+[KeyS]`. Pass it directly to your hotkey registration and use `formatForDisplay` for the label. Set `recordBy: 'key'` when you intentionally want the produced character instead.
 
+## Reactive options
+
+Recorder options support [property getters and functions returning options](./hotkeys.md#property-getters). Updated callbacks, validation, and recording settings apply during an active session without restarting it. Recorder controls read current options directly. Explicit `setOptions` values override constructor options for the supplied keys; other getters stay live.
+
 ## Basic usage
 
 ```ts

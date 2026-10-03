@@ -1,6 +1,6 @@
 import { createEffect, onCleanup, untrack } from 'solid-js'
 import { formatHotkeySequence, getSequenceManager } from '@tanstack/hotkeys'
-import { useDefaultHotkeysOptions } from './HotkeysProvider'
+import { useDefaultHotkeysOptionsSource } from './defaultOptions'
 import type {
   HotkeyCallback,
   HotkeySequence,
@@ -65,10 +65,9 @@ export function createHotkeySequence(
   sequence: HotkeySequence | (() => HotkeySequence),
   callback: HotkeyCallback,
   options:
-    | CreateHotkeySequenceOptions
-    | (() => CreateHotkeySequenceOptions) = {},
+    CreateHotkeySequenceOptions | (() => CreateHotkeySequenceOptions) = {},
 ): void {
-  const defaultOptions = useDefaultHotkeysOptions()
+  const defaultOptions = useDefaultHotkeysOptionsSource()
   const manager = getSequenceManager()
 
   let registration: SequenceRegistrationHandle | null = null
@@ -91,7 +90,7 @@ export function createHotkeySequence(
     const resolvedOptions = typeof options === 'function' ? options() : options
 
     const mergedOptions = {
-      ...defaultOptions.hotkeySequence,
+      ...defaultOptions().hotkeySequence,
       ...resolvedOptions,
     }
 

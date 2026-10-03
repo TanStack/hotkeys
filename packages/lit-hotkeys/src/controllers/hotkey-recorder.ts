@@ -40,6 +40,7 @@ import type { Hotkey, HotkeyRecorderOptions } from '@tanstack/hotkeys'
 export class HotkeyRecorderController implements ReactiveController {
   /** The recorder instance. */
   private _recorder: HotkeyRecorder
+  private _optionOverrides: Partial<HotkeyRecorderOptions> = {}
   /** The unsubscribe function to unsubscribe from the recorder store. */
   private _unsubscribe: (() => void) | undefined
   /** Whether recording is currently active. */
@@ -59,13 +60,18 @@ export class HotkeyRecorderController implements ReactiveController {
 
   /**
    * @param _host - The Lit component that owns this controller.
-   * @param _options - Configuration options for the recorder.
+   * @param _options - Options or a getter, read during recording.
    */
   constructor(
     private _host: ReactiveControllerHost,
-    private _options: HotkeyRecorderOptions,
+    private _options: HotkeyRecorderOptions | (() => HotkeyRecorderOptions),
   ) {
-    this._recorder = new HotkeyRecorder(_options)
+    this._recorder = new HotkeyRecorder(() => ({
+      ...(typeof this._options === 'function'
+        ? this._options()
+        : this._options),
+      ...this._optionOverrides,
+    }))
     this._host.addController(this)
   }
 
@@ -99,8 +105,7 @@ export class HotkeyRecorderController implements ReactiveController {
 
   /** Updates the recorder options (e.g. callbacks). */
   public setOptions(options: Partial<HotkeyRecorderOptions>): void {
-    this._options = { ...this._options, ...options }
-    this._recorder.setOptions(this._options)
+    this._optionOverrides = { ...this._optionOverrides, ...options }
   }
 
   /** Start recording a new hotkey. */

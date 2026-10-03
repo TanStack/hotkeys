@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TanStack Hotkeys | Alpine createHotkeySequenceRecorder</title>
+  </head>
+  <body>
+    <div x-data="app">
+      <div class="app">
+        <header>
+          <h1>Sequence Shortcut Settings</h1>
+          <p>
+            Customize Vim-style sequences. Click Edit, press each chord in
+            order, then press Enter to save. Escape cancels; Backspace removes
+            the last chord or clears when empty.
+          </p>
+        </header>
+
+        <main>
+          <section class="demo-section">
+            <h2>Shortcuts</h2>
+            <div class="shortcuts-list">
+              <template x-for="shortcut in (shortcuts)" :key="(shortcut.id)"
+                ><span
+                  style="display: contents"
+                  x-data="shortcutListItem(() => ({shortcut: (shortcut), isEditing: (editingId === shortcut.id), draftName: (editingId === shortcut.id ? draftName : shortcut.name), draftDescription: (editingId === shortcut.id
+    ? draftDescription : shortcut.description), onDraftNameChange: (setDraftName), onDraftDescriptionChange: (setDraftDescription), liveSteps: (recorder.steps), onEdit: (() =&gt; handleEdit(shortcut.id)), onSave: (handleSaveEditing), onCancel: (handleCancel), onDelete: (() =&gt; handleDelete(shortcut.id))}))"
+                  ><div
+                    :class="(`shortcut-item ${props().isEditing ? 'recording' : ''}`)"
+                  >
+                    <div class="shortcut-item-content">
+                      <div class="shortcut-action">
+                        <template x-if="(props().isEditing)"
+                          ><div class="editing-fields">
+                            <input
+                              type="text"
+                              class="edit-input edit-name"
+                              :value="(props().draftName)"
+                              @input="(((e) =&gt; props().onDraftNameChange(e.currentTarget.value)))($event)"
+                              placeholder="Shortcut name"
+                            />
+                            <input
+                              type="text"
+                              class="edit-input edit-description"
+                              :value="(props().draftDescription)"
+                              @input="(((e) =&gt; props().onDraftDescriptionChange(e.currentTarget.value)))($event)"
+                              placeholder="Description (optional)"
+                            /></div></template
+                        ><template x-if="!((props().isEditing))"
+                          ><span>
+                            <span x-text="(props().shortcut.name)"></span
+                            ><template x-if="!((props().shortcut.name))"
+                              ><span
+                                ><span class="unnamed">Unnamed</span></span
+                              ></template
+                            >
+                            <template x-if="(props().shortcut.description)"
+                              ><div class="shortcut-description">
+                                <span
+                                  x-text='[" ", (props().shortcut.description), " "].join(&apos;&apos;)'
+                                ></span></div
+                            ></template> </span
+                        ></template>
+                      </div>
+                      <div class="shortcut-hotkey">
+                        <template x-if="(props().isEditing)"
+                          ><div class="recording-indicator">
+                            <template x-if="(props().liveSteps.length &gt; 0)"
+                              ><span class="held-hotkeys"
+                                ><span
+                                  x-text="[&quot; &quot;, (props().liveSteps.map((h) =&gt; formatForDisplay(h)).join(' ')), &quot; &quot;].join('')"
+                                ></span></span></template
+                            ><template
+                              x-if="!((props().liveSteps.length &gt; 0))"
+                              ><span
+                                ><template x-if="(heldKeys.length &gt; 0)"
+                                  ><div class="held-hotkeys">
+                                    <template
+                                      x-for="(key, index) in (heldKeys)"
+                                      :key="(key)"
+                                      ><span>
+                                        <template x-if="(index &gt; 0)"
+                                          ><span class="plus">+</span></template
+                                        >
+                                        <kbd
+                                          ><span
+                                            x-text="[(key)].join('')"
+                                          ></span
+                                        ></kbd> </span
+                                    ></template></div></template
+                                ><template x-if="!((heldKeys.length &gt; 0))"
+                                  ><span class="recording-text">
+                                    Press chords, then Enter...
+                                  </span></template
+                                ></span
+                              ></template
+                            >
+                          </div></template
+                        ><template x-if="!((props().isEditing))"
+                          ><span
+                            ><template
+                              x-if="(props().shortcut.sequence.length &gt; 0)"
+                              ><kbd
+                                ><span
+                                  x-text="[&quot; &quot;, (props().shortcut.sequence.map((h) =&gt; formatForDisplay(h)).join(' ')), &quot; &quot;].join('')"
+                                ></span></kbd></template
+                            ><template
+                              x-if="!((props().shortcut.sequence.length &gt; 0))"
+                              ><span class="no-shortcut"
+                                >No shortcut</span
+                              ></template
+                            ></span
+                          ></template
+                        >
+                      </div>
+                    </div>
+                    <div class="shortcut-actions">
+                      <template x-if="(props().isEditing)"
+                        ><span>
+                          <button
+                            type="button"
+                            @click="(props().onSave)($event)"
+                            class="save-button"
+                          >
+                            Save
+                          </button>
+                          <button
+                            type="button"
+                            @click="(props().onCancel)($event)"
+                            class="cancel-button"
+                          >
+                            Cancel
+                          </button>
+                        </span></template
+                      ><template x-if="!((props().isEditing))"
+                        ><span>
+                          <button
+                            type="button"
+                            @click="(props().onEdit)($event)"
+                            class="edit-button"
+                          >
+                            Edit
+                          </button>
+                          <button
+                            type="button"
+                            @click="(props().onDelete)($event)"
+                            class="delete-button"
+                          >
+                            Delete
+                          </button>
+                        </span></template
+                      >
+                    </div>
+                  </div></span
+                ></template
+              >
+            </div>
+            <button
+              type="button"
+              class="create-button"
+              @click="(handleCreateNew)($event)"
+              :disabled="(isRecording)"
+            >
+              + Create New Shortcut
+            </button>
+          </section>
+
+          <template x-if="(recorder.isRecording)"
+            ><div class="info-box recording-notice">
+              <strong>Recording sequence...</strong> Press each chord, then
+              Enter to finish. Escape cancels. Backspace removes the last chord
+              or clears.
+              <template x-if="(recorder.steps.length &gt; 0)"
+                ><div>
+                  <span
+                    x-text="[&quot; Steps:&quot;, (' '), &quot; &quot;].join('')"
+                  ></span
+                  ><template
+                    x-for="(h, i) in (recorder.steps)"
+                    :key="(`${h}-${i}`)"
+                    ><span
+                      ><span
+                        x-text="[&quot; &quot;, ((i &gt; 0) ? (' ') : ''), &quot; &quot;].join('')"
+                      ></span
+                      ><kbd
+                        ><span x-text="[(formatForDisplay(h))].join('')"></span
+                      ></kbd> </span
+                  ></template></div
+              ></template></div
+          ></template>
+
+          <span
+            style="display: contents"
+            x-data="registrationsViewer(() => ({}))"
+            ><section class="demo-section">
+              <h2>Live Registrations</h2>
+              <p>
+                This table is powered by <code>scope.createHotkeyRegistrations()</code> —
+                trigger counts, names, and descriptions update in real-time as
+                you use your sequences.
+              </p>
+              <table class="registrations-table">
+                <thead>
+                  <tr>
+                    <th>Sequence</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Enabled</th>
+                    <th>Triggers</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <template x-for="reg in (sequences)" :key="(reg.id)"
+                    ><tr>
+                      <td>
+                        <template x-for="(s, i) in (reg.sequence)" :key="(i)"
+                          ><span
+                            ><span
+                              x-text="[&quot; &quot;, ((i &gt; 0) ? (' ') : ''), &quot; &quot;].join('')"
+                            ></span
+                            ><kbd
+                              ><span
+                                x-text="[(formatForDisplay(s))].join('')"
+                              ></span
+                            ></kbd> </span
+                        ></template>
+                      </td>
+                      <td>
+                        <span
+                          x-text="[(reg.options.meta?.name ?? '—')].join('')"
+                        ></span>
+                      </td>
+                      <td class="description-cell">
+                        <span
+                          x-text="[&quot; &quot;, (reg.options.meta?.description ?? '—'), &quot; &quot;].join('')"
+                        ></span>
+                      </td>
+                      <td>
+                        <span
+                          :class="(reg.options.enabled !== false ? 'status-on' : 'status-off')"
+                          ><span
+                            x-text="[&quot; &quot;, (reg.options.enabled !== false ? 'yes' : 'no'), &quot; &quot;].join('')"
+                          ></span
+                        ></span>
+                      </td>
+                      <td class="trigger-count">
+                        <span x-text="[(reg.triggerCount)].join('')"></span>
+                      </td></tr
+                  ></template>
+                  <template x-if="(sequences.length === 0)"
+                    ><tr>
+                      <td :colspan="(5)" class="empty-row">
+                        No sequences registered
+                      </td>
+                    </tr></template
+                  >
+                </tbody>
+              </table>
+            </section></span
+          >
+
+          <section class="demo-section">
+            <h2>Usage</h2>
+            <pre class="code-block" x-text="usage0"></pre>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

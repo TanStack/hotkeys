@@ -1,12 +1,10 @@
-import { getSequenceManager } from '@tanstack/hotkeys'
+import { createHotkeySequenceBindings } from '@tanstack/hotkeys/adapter'
 import { HOTKEY_SEQUENCE_DEFAULT_OPTIONS } from '../constants'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 import type {
   HotkeyCallback,
   HotkeySequence,
-  SequenceManager,
   SequenceOptions,
-  SequenceRegistrationHandle,
 } from '@tanstack/hotkeys'
 
 /**
@@ -26,57 +24,49 @@ import type {
  * ```
  */
 export class HotkeySequenceController implements ReactiveController {
-  /** The sequence registration handle. */
-  private _registration: SequenceRegistrationHandle | undefined
+  private _bindings = createHotkeySequenceBindings()
+  private _connected = false
+  private _boundCallback: HotkeyCallback
 
   /**
-   * @param _host - The Lit component that owns this controller (use `this` and pass it to `addController()`).
-   * @param _sequence - The key sequence to listen for (e.g. `['G', 'G']`).
-   * @param _callback - Function to run when the sequence is completed; called with the host as `this`.
-   * @param _options - Optional sequence options (target, timeout, enabled, etc.).
+   * @param _host - The Lit component that owns this controller. Add the controller with `addController()`.
+   * @param _sequence - The sequence to register.
+   * @param callback - Called with the host as `this`.
+   * @param _options - Options or a getter. Property getters are read on connection and after host updates.
    */
   constructor(
     private _host: ReactiveControllerHost,
     private _sequence: HotkeySequence,
-    private _callback: HotkeyCallback,
-    private _options: SequenceOptions = HOTKEY_SEQUENCE_DEFAULT_OPTIONS,
-  ) {}
-
-  /**
-   * Registers the sequence with the global sequence manager when the host is connected to the DOM.
-   * Skips registration if disabled, sequence is empty, or no target is available.
-   */
-  public hostConnected(): void {
-    const { target: _target, ...optionsWithoutTarget } = this._options
-
-    const manager: SequenceManager = getSequenceManager()
-
-    const hasExplicitTarget = 'target' in this._options
-    const resolvedTarget = hasExplicitTarget
-      ? (this._options.target ?? null)
-      : typeof document !== 'undefined'
-        ? document
-        : null
-
-    if (!resolvedTarget) {
-      return
-    }
-
-    const boundCallback: HotkeyCallback = this._callback.bind(
-      this._host as unknown as object,
-    )
-
-    this._registration = manager.register(this._sequence, boundCallback, {
-      ...optionsWithoutTarget,
-      target: resolvedTarget,
-    })
+    callback: HotkeyCallback,
+    private _options:
+      | SequenceOptions
+      | (() => SequenceOptions) = HOTKEY_SEQUENCE_DEFAULT_OPTIONS,
+  ) {
+    this._boundCallback = callback.bind(this._host)
   }
 
-  /** Unregisters the sequence when the host is disconnected from the DOM. */
+  /** Registers when connected and a target is available. */
+  public hostConnected(): void {
+    this._connected = true
+    this._sync()
+  }
+
+  /** Refreshes options after rendering, when scoped targets are available. */
+  public hostUpdated(): void {
+    if (this._connected) this._sync()
+  }
+
+  private _sync(): void {
+    const options =
+      typeof this._options === 'function' ? this._options() : this._options
+    this._bindings.update([
+      { sequence: this._sequence, callback: this._boundCallback, options },
+    ])
+  }
+
+  /** Releases registrations when the host disconnects. */
   public hostDisconnected(): void {
-    if (this._registration?.isActive) {
-      this._registration.unregister()
-    }
-    this._registration = undefined
+    this._connected = false
+    this._bindings.destroy()
   }
 }

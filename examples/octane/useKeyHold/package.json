@@ -1,0 +1,21 @@
+{
+  "name": "@tanstack/hotkeys-example-octane-use-key-hold",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3069",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "tsrx-tsc --noEmit",
+    "test:types": "tsrx-tsc --noEmit"
+  },
+  "dependencies": {
+    "@tanstack/octane-hotkeys": "workspace:*",
+    "octane": "0.1.36"
+  },
+  "devDependencies": {
+    "@tsrx/typescript-plugin": "^0.3.138",
+    "typescript": "6.0.3",
+    "vite": "^8.3.2"
+  }
+}

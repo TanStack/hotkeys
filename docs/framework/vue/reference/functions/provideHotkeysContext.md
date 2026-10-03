@@ -13,7 +13,7 @@ Defined in: [HotkeysProviderContext.ts:26](https://github.com/TanStack/hotkeys/b
 
 ### defaultOptions?
 
-[`HotkeysProviderOptions`](../interfaces/HotkeysProviderOptions.md)
+`MaybeRefOrGetter`\<[`HotkeysProviderOptions`](../interfaces/HotkeysProviderOptions.md)\>
 
 ## Returns
 

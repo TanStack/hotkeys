@@ -41,6 +41,8 @@ Options merge like `createHotkeys`: `HotkeysProvider` defaults, then `commonOpti
 
 ## Reactive options
 
+Sequence options support the same [property getter patterns](./hotkeys.md#property-getters) as hotkey options, including `enabled`, `timeout`, and `target`. Updates preserve the registration when its sequence, target, and platform stay the same.
+
 Solid's `createHotkeySequence` accepts accessor functions for reactive sequence and options:
 
 ```tsx

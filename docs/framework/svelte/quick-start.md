@@ -169,3 +169,13 @@ Use `setHotkeysContext` when you want defaults for a subtree. This is an advance
 - [Sequence Recording Guide](./guides/sequence-recording)
 - [Key State Tracking Guide](./guides/key-state-tracking)
 - [Formatting & Display Guide](./guides/formatting-display)
+
+## Devtools
+
+Install the optional devtools packages to inspect registrations, held keys, and trigger counts:
+
+```sh
+npm install @tanstack/svelte-devtools @tanstack/svelte-hotkeys-devtools
+```
+
+Follow the [devtools setup guide](../../devtools) to add the dock to your application.
