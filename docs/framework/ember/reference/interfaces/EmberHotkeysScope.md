@@ -3,7 +3,7 @@ id: EmberHotkeysScope
 title: EmberHotkeysScope
 ---
 
-Defined in: packages/ember-hotkeys/src/createHotkeysScope.ts:12
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L12)
 
 Helpers and recorder factories with shared defaults. Owners retain their own cleanup.
 
@@ -15,7 +15,7 @@ Helpers and recorder factories with shared defaults. Owners retain their own cle
 useHotkey: typeof useHotkey;
 ```
 
-Defined in: packages/ember-hotkeys/src/createHotkeysScope.ts:13
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L13)
 
 ***
 
@@ -25,7 +25,7 @@ Defined in: packages/ember-hotkeys/src/createHotkeysScope.ts:13
 useHotkeyRecorder: (owner, options) => EmberHotkeyRecorder;
 ```
 
-Defined in: packages/ember-hotkeys/src/createHotkeysScope.ts:17
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L17)
 
 Creates an owned recorder with autotracked state and current callback options.
 
@@ -51,7 +51,7 @@ Creates an owned recorder with autotracked state and current callback options.
 useHotkeys: typeof useHotkeys;
 ```
 
-Defined in: packages/ember-hotkeys/src/createHotkeysScope.ts:14
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L14)
 
 ***
 
@@ -61,7 +61,7 @@ Defined in: packages/ember-hotkeys/src/createHotkeysScope.ts:14
 useHotkeySequence: typeof useHotkeySequence;
 ```
 
-Defined in: packages/ember-hotkeys/src/createHotkeysScope.ts:15
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L15)
 
 ***
 
@@ -71,7 +71,7 @@ Defined in: packages/ember-hotkeys/src/createHotkeysScope.ts:15
 useHotkeySequenceRecorder: (owner, options) => EmberHotkeySequenceRecorder;
 ```
 
-Defined in: packages/ember-hotkeys/src/createHotkeysScope.ts:18
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L18)
 
 Creates an owned sequence recorder with explicit commit and cancel controls.
 
@@ -97,4 +97,4 @@ Creates an owned sequence recorder with explicit commit and cancel controls.
 useHotkeySequences: typeof useHotkeySequences;
 ```
 
-Defined in: packages/ember-hotkeys/src/createHotkeysScope.ts:16
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L16)

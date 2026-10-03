@@ -7,7 +7,7 @@ title: useHeldKeys
 function useHeldKeys(): string[];
 ```
 
-Defined in: useHeldKeys.ts:5
+Defined in: [useHeldKeys.ts:5](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHeldKeys.ts#L5)
 
 Reads held logical keys from the shared key tracker.
 

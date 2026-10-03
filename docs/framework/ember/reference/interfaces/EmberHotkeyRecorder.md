@@ -3,7 +3,7 @@ id: EmberHotkeyRecorder
 title: EmberHotkeyRecorder
 ---
 
-Defined in: packages/ember-hotkeys/src/types.ts:18
+Defined in: [packages/ember-hotkeys/src/types.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L18)
 
 Recording state and controls owned by the containing component.
 
@@ -15,7 +15,7 @@ Recording state and controls owned by the containing component.
 cancelRecording: () => void;
 ```
 
-Defined in: packages/ember-hotkeys/src/types.ts:28
+Defined in: [packages/ember-hotkeys/src/types.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L28)
 
 Stop, clear recorder state, and call onCancel.
 
@@ -31,7 +31,7 @@ Stop, clear recorder state, and call onCancel.
 readonly isRecording: boolean;
 ```
 
-Defined in: packages/ember-hotkeys/src/types.ts:20
+Defined in: [packages/ember-hotkeys/src/types.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L20)
 
 Whether the recorder is listening for a shortcut.
 
@@ -43,7 +43,7 @@ Whether the recorder is listening for a shortcut.
 readonly recordedHotkey: Hotkey | null;
 ```
 
-Defined in: packages/ember-hotkeys/src/types.ts:22
+Defined in: [packages/ember-hotkeys/src/types.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L22)
 
 The last recorded binding, including brackets for physical codes.
 
@@ -55,7 +55,7 @@ The last recorded binding, including brackets for physical codes.
 startRecording: () => void;
 ```
 
-Defined in: packages/ember-hotkeys/src/types.ts:24
+Defined in: [packages/ember-hotkeys/src/types.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L24)
 
 Start a new recording session.
 
@@ -71,7 +71,7 @@ Start a new recording session.
 stopRecording: () => void;
 ```
 
-Defined in: packages/ember-hotkeys/src/types.ts:26
+Defined in: [packages/ember-hotkeys/src/types.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L26)
 
 Stop and clear recorder state without calling onRecord or onCancel.
 

@@ -5,12 +5,12 @@ title: useHotkeyHint
 
 ```ts
 function useHotkeyHint(
-   owner,
-   hotkey,
+   owner, 
+   hotkey, 
 options?): EmberHotkeyState<boolean>;
 ```
 
-Defined in: packages/ember-hotkeys/src/useHotkeyHint.ts:8
+Defined in: [packages/ember-hotkeys/src/useHotkeyHint.ts:8](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeyHint.ts#L8)
 
 Recomputes for held modifiers and tracked changes to the binding or options.
 

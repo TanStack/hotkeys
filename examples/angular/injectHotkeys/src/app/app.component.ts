@@ -139,21 +139,19 @@ export class AppComponent {
 
     // Dynamic hotkeys with meta
     injectHotkeys(() =>
-      this.shortcuts().map(
-        (s): InjectHotkeyDefinition => ({
-          hotkey: s.hotkey as Hotkey,
-          callback: () => {
-            this.shortcuts.update((prev) =>
-              prev.map((item) =>
-                item.id === s.id ? { ...item, count: item.count + 1 } : item,
-              ),
-            )
-          },
-          options: {
-            meta: { name: s.label, description: s.description },
-          },
-        }),
-      ),
+      this.shortcuts().map((s): InjectHotkeyDefinition => ({
+        hotkey: s.hotkey as Hotkey,
+        callback: () => {
+          this.shortcuts.update((prev) =>
+            prev.map((item) =>
+              item.id === s.id ? { ...item, count: item.count + 1 } : item,
+            ),
+          )
+        },
+        options: {
+          meta: { name: s.label, description: s.description },
+        },
+      })),
     )
   }
 

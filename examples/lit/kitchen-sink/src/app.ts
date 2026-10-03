@@ -469,11 +469,13 @@ class Recording extends DemoElement {
         }}
       >
         Reset</button
-      >${this.recorder.isRecording
-        ? html`<button @click=${() => this.recorder.cancelRecording()}>
-            Cancel
-          </button>`
-        : null}
+      >${
+        this.recorder.isRecording
+          ? html`<button @click=${() => this.recorder.cancelRecording()}>
+              Cancel
+            </button>`
+          : null
+      }
       <h3>Sequence</h3>
       <p>
         ${(this.seq.isRecording ? this.seq.steps : this.sequence)
@@ -512,11 +514,13 @@ class Recording extends DemoElement {
         @click=${() => this.seq.commitRecording()}
       >
         Commit</button
-      >${this.seq.isRecording
-        ? html`<button @click=${() => this.seq.cancelRecording()}>
-            Cancel
-          </button>`
-        : null}
+      >${
+        this.seq.isRecording
+          ? html`<button @click=${() => this.seq.cancelRecording()}>
+              Cancel
+            </button>`
+          : null
+      }
       <p>
         Backspace removes a step or restores the initial binding when empty.
         Rejected steps remain editable.
@@ -707,40 +711,44 @@ class App extends DemoElement {
           ${this.show ? 'Hide' : 'Show'} shortcuts
         </button>
       </header>
-      ${this.show
-        ? html`<section>
-            <h2>Live registry</h2>
-            <table>
-              <thead>
-                <tr>
-                  <th>Group / action</th>
-                  <th>Binding</th>
-                  <th>Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                ${[...this.registry.hotkeys, ...this.registry.sequences].map(
-                  (reg) =>
-                    html`<tr>
-                      <td>
-                        ${reg.options.meta?.group} / ${reg.options.meta?.name}
-                      </td>
-                      <td>
-                        ${('hotkey' in reg ? [reg.hotkey] : reg.sequence)
-                          .map((h) => formatForDisplay(h))
-                          .join(' → ')}
-                      </td>
-                      <td>
-                        ${reg.options.enabled === false
-                          ? 'Disabled'
-                          : `${reg.triggerCount} fired`}
-                      </td>
-                    </tr>`,
-                )}
-              </tbody>
-            </table>
-          </section>`
-        : null}
+      ${
+        this.show
+          ? html`<section>
+              <h2>Live registry</h2>
+              <table>
+                <thead>
+                  <tr>
+                    <th>Group / action</th>
+                    <th>Binding</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${[...this.registry.hotkeys, ...this.registry.sequences].map(
+                    (reg) =>
+                      html`<tr>
+                        <td>
+                          ${reg.options.meta?.group} / ${reg.options.meta?.name}
+                        </td>
+                        <td>
+                          ${('hotkey' in reg ? [reg.hotkey] : reg.sequence)
+                            .map((h) => formatForDisplay(h))
+                            .join(' → ')}
+                        </td>
+                        <td>
+                          ${
+                            reg.options.enabled === false
+                              ? 'Disabled'
+                              : `${reg.triggerCount} fired`
+                          }
+                        </td>
+                      </tr>`,
+                  )}
+                </tbody>
+              </table>
+            </section>`
+          : null
+      }
       <main
         @activity=${(e: CustomEvent<string>) => {
           this.activity = [e.detail, ...this.activity].slice(0, 6)

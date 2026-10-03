@@ -3,7 +3,7 @@ id: HotkeyDefinition
 title: HotkeyDefinition
 ---
 
-Defined in: adapter.ts:14
+Defined in: [adapter.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L14)
 
 A hotkey and its callback, with optional per-binding options.
 
@@ -15,7 +15,7 @@ A hotkey and its callback, with optional per-binding options.
 callback: HotkeyCallback;
 ```
 
-Defined in: adapter.ts:16
+Defined in: [adapter.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L16)
 
 ***
 
@@ -25,7 +25,7 @@ Defined in: adapter.ts:16
 hotkey: RegisterableHotkey;
 ```
 
-Defined in: adapter.ts:15
+Defined in: [adapter.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L15)
 
 ***
 
@@ -35,4 +35,4 @@ Defined in: adapter.ts:15
 optional options?: HotkeyOptions;
 ```
 
-Defined in: adapter.ts:17
+Defined in: [adapter.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L17)

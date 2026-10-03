@@ -5,12 +5,12 @@ title: useHotkey
 
 ```ts
 function useHotkey(
-   hotkey,
-   callback,
+   hotkey, 
+   callback, 
    options?): void;
 ```
 
-Defined in: useHotkey.ts:11
+Defined in: [useHotkey.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkey.ts#L11)
 
 Registers one shortcut. Callback and options are refreshed after every commit.
 

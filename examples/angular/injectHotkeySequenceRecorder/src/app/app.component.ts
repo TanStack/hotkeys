@@ -139,21 +139,19 @@ export class AppComponent {
     injectHotkeySequences(() =>
       this.shortcuts()
         .filter((s) => s.sequence.length > 0)
-        .map(
-          (s): InjectHotkeySequenceDefinition => ({
-            sequence: s.sequence,
-            callback: () => {
-              console.log(`${s.name} triggered:`, s.sequence)
+        .map((s): InjectHotkeySequenceDefinition => ({
+          sequence: s.sequence,
+          callback: () => {
+            console.log(`${s.name} triggered:`, s.sequence)
+          },
+          options: {
+            enabled: !this.recorder.isRecording(),
+            meta: {
+              name: s.name,
+              description: s.description,
             },
-            options: {
-              enabled: !this.recorder.isRecording(),
-              meta: {
-                name: s.name,
-                description: s.description,
-              },
-            },
-          }),
-        ),
+          },
+        })),
     )
   }
 

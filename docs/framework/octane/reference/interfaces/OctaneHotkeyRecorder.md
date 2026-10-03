@@ -3,7 +3,7 @@ id: OctaneHotkeyRecorder
 title: OctaneHotkeyRecorder
 ---
 
-Defined in: types.ts:9
+Defined in: [types.ts:9](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L9)
 
 Recording state and controls owned by the containing component.
 
@@ -15,7 +15,7 @@ Recording state and controls owned by the containing component.
 cancelRecording: () => void;
 ```
 
-Defined in: types.ts:19
+Defined in: [types.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L19)
 
 Stop, clear recorder state, and call onCancel.
 
@@ -31,7 +31,7 @@ Stop, clear recorder state, and call onCancel.
 isRecording: boolean;
 ```
 
-Defined in: types.ts:11
+Defined in: [types.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L11)
 
 Whether the recorder is listening for a shortcut.
 
@@ -43,7 +43,7 @@ Whether the recorder is listening for a shortcut.
 recordedHotkey: Hotkey | null;
 ```
 
-Defined in: types.ts:13
+Defined in: [types.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L13)
 
 The last recorded binding, including brackets for physical codes.
 
@@ -55,7 +55,7 @@ The last recorded binding, including brackets for physical codes.
 startRecording: () => void;
 ```
 
-Defined in: types.ts:15
+Defined in: [types.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L15)
 
 Start a new recording session.
 
@@ -71,7 +71,7 @@ Start a new recording session.
 stopRecording: () => void;
 ```
 
-Defined in: types.ts:17
+Defined in: [types.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L17)
 
 Stop and clear recorder state without calling onRecord or onCancel.
 

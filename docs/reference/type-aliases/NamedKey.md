@@ -9,6 +9,6 @@ type NamedKey =
   | typeof LOGICAL_ONLY_NAMED_KEYS[number];
 ```
 
-Defined in: [key.types.ts:165](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L165)
+Defined in: [key.types.ts:151](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L151)
 
 Additional named logical keys, including media, browser, lock, and input-mode keys.

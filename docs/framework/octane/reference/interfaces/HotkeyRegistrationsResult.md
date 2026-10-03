@@ -3,7 +3,7 @@ id: HotkeyRegistrationsResult
 title: HotkeyRegistrationsResult
 ---
 
-Defined in: types.ts:41
+Defined in: [types.ts:41](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L41)
 
 Live registration views from the shared hotkey and sequence managers.
 
@@ -15,7 +15,7 @@ Live registration views from the shared hotkey and sequence managers.
 hotkeys: HotkeyRegistrationView[];
 ```
 
-Defined in: types.ts:42
+Defined in: [types.ts:42](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L42)
 
 ***
 
@@ -25,4 +25,4 @@ Defined in: types.ts:42
 sequences: SequenceRegistrationView[];
 ```
 
-Defined in: types.ts:43
+Defined in: [types.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L43)

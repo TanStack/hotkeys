@@ -3,7 +3,7 @@ id: DefaultHotkeysOptions
 title: DefaultHotkeysOptions
 ---
 
-Defined in: HotkeysProvider.ts:9
+Defined in: [HotkeysProvider.ts:9](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L9)
 
 ## Properties
 
@@ -13,7 +13,7 @@ Defined in: HotkeysProvider.ts:9
 optional hotkey?: HotkeyOptions;
 ```
 
-Defined in: HotkeysProvider.ts:10
+Defined in: [HotkeysProvider.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L10)
 
 ***
 
@@ -23,7 +23,7 @@ Defined in: HotkeysProvider.ts:10
 optional hotkeyRecorder?: Partial<HotkeyRecorderOptions>;
 ```
 
-Defined in: HotkeysProvider.ts:12
+Defined in: [HotkeysProvider.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L12)
 
 ***
 
@@ -33,7 +33,7 @@ Defined in: HotkeysProvider.ts:12
 optional hotkeySequence?: SequenceOptions;
 ```
 
-Defined in: HotkeysProvider.ts:11
+Defined in: [HotkeysProvider.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L11)
 
 ***
 
@@ -43,4 +43,4 @@ Defined in: HotkeysProvider.ts:11
 optional hotkeySequenceRecorder?: Partial<HotkeySequenceRecorderOptions>;
 ```
 
-Defined in: HotkeysProvider.ts:13
+Defined in: [HotkeysProvider.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L13)

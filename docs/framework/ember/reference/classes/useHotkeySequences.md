@@ -3,7 +3,7 @@ id: useHotkeySequences
 title: useHotkeySequences
 ---
 
-Defined in: packages/ember-hotkeys/src/useHotkeySequences.ts:13
+Defined in: [packages/ember-hotkeys/src/useHotkeySequences.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeySequences.ts#L13)
 
 Registers a reactive list of sequences with the helper's template lifecycle.
 
@@ -469,7 +469,7 @@ Helper.ownerConstructor
 ### properties
 
 ```ts
-static properties:
+static properties: 
   | {
 [key: string]: any;
 }
@@ -680,8 +680,8 @@ Helper._super
 
 ```ts
 addObserver<Target>(
-   key,
-   target,
+   key, 
+   target, 
    method): this;
 ```
 
@@ -884,7 +884,7 @@ Helper.cacheFor
 compute(positional, options): void;
 ```
 
-Defined in: packages/ember-hotkeys/src/useHotkeySequences.ts:25
+Defined in: [packages/ember-hotkeys/src/useHotkeySequences.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeySequences.ts#L25)
 
 Override this function when writing a class-based helper.
 
@@ -1458,8 +1458,8 @@ Helper.recompute
 
 ```ts
 removeObserver<Target>(
-   key,
-   target,
+   key, 
+   target, 
    method): this;
 ```
 
@@ -1620,7 +1620,7 @@ coalesced manner.
 
 ###### T
 
-`T` *extends*
+`T` *extends* 
   \| `string`
   \| `boolean`
   \| `unknown`[]

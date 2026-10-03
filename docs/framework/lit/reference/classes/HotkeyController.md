@@ -31,9 +31,9 @@ class MyElement extends LitElement {
 
 ```ts
 new HotkeyController(
-   _host,
-   _hotkey,
-   callback,
+   _host, 
+   _hotkey, 
+   callback, 
    _options?): HotkeyController;
 ```
 

@@ -3,7 +3,7 @@ id: HotkeysProviderProps
 title: HotkeysProviderProps
 ---
 
-Defined in: HotkeysProvider.ts:20
+Defined in: [HotkeysProvider.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L20)
 
 ## Properties
 
@@ -13,7 +13,7 @@ Defined in: HotkeysProvider.ts:20
 optional children?: unknown;
 ```
 
-Defined in: HotkeysProvider.ts:21
+Defined in: [HotkeysProvider.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L21)
 
 ***
 
@@ -23,4 +23,4 @@ Defined in: HotkeysProvider.ts:21
 optional defaultOptions?: DefaultHotkeysOptions;
 ```
 
-Defined in: HotkeysProvider.ts:22
+Defined in: [HotkeysProvider.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L22)

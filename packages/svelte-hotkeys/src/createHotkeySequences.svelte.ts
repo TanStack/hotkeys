@@ -31,8 +31,7 @@ type RegistrationRecord = {
 
 function cleanupRegistrations(
   registrations:
-    | Map<string, RegistrationRecord>
-    | SvelteMap<string, RegistrationRecord>,
+    Map<string, RegistrationRecord> | SvelteMap<string, RegistrationRecord>,
 ) {
   for (const { handle } of registrations.values()) {
     if (handle.isActive) {

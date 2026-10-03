@@ -10,7 +10,7 @@ function HotkeysProvider(__namedParameters): ElementDescriptor<{
 }>;
 ```
 
-Defined in: HotkeysProvider.ts:37
+Defined in: [HotkeysProvider.ts:37](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L37)
 
 Sets registration and recorder defaults for descendant components.
 
