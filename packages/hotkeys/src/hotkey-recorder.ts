@@ -102,11 +102,22 @@ export class HotkeyRecorder {
   })
 
   #keydownHandler: ((event: KeyboardEvent) => void) | null = null
-  #options: HotkeyRecorderOptions
+  #optionsSource: HotkeyRecorderOptions | (() => HotkeyRecorderOptions)
+  #optionOverrides: Partial<HotkeyRecorderOptions> = {}
+
+  get #options(): HotkeyRecorderOptions {
+    return {
+      ...(typeof this.#optionsSource === 'function'
+        ? this.#optionsSource()
+        : this.#optionsSource),
+      ...this.#optionOverrides,
+    }
+  }
   #platform: 'mac' | 'windows' | 'linux'
 
-  constructor(options: HotkeyRecorderOptions) {
-    this.#options = options
+  /** Options may be a getter to read current configuration during an active session. */
+  constructor(options: HotkeyRecorderOptions | (() => HotkeyRecorderOptions)) {
+    this.#optionsSource = options
     this.#platform = detectPlatform()
   }
 
@@ -115,10 +126,7 @@ export class HotkeyRecorder {
    * This allows framework adapters to sync callback changes without recreating the recorder.
    */
   setOptions(options: Partial<HotkeyRecorderOptions>): void {
-    this.#options = {
-      ...this.#options,
-      ...options,
-    }
+    this.#optionOverrides = { ...this.#optionOverrides, ...options }
   }
 
   /**
@@ -245,8 +253,7 @@ export class HotkeyRecorder {
       endRecording(this)
       // Remove listener FIRST to prevent any additional events
       const handlerToRemove = this.#keydownHandler as
-        | ((event: KeyboardEvent) => void)
-        | null
+        ((event: KeyboardEvent) => void) | null
       if (handlerToRemove) {
         this.#removeListener(handlerToRemove)
         this.#keydownHandler = null

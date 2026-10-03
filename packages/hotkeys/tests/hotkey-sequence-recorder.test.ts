@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeySequenceRecorder } from '../src/hotkey-sequence-recorder'
+import type { HotkeySequenceRecorderOptions } from '../src/hotkey-sequence-recorder'
 
 // Explicit US-layout fixtures; production recording must never infer a code from a key.
 const fixtureCodes: Record<string, string> = {
@@ -16,9 +17,7 @@ const fixtureCodes: Record<string, string> = {
 const instances: Array<HotkeySequenceRecorder> = []
 
 /** Tracks recorder instances so active listeners and timers cannot leak between cases. */
-function createRecorder(
-  options: ConstructorParameters<typeof HotkeySequenceRecorder>[0],
-) {
+function createRecorder(options: HotkeySequenceRecorderOptions) {
   const recorder = new HotkeySequenceRecorder({ platform: 'mac', ...options })
   instances.push(recorder)
   return recorder

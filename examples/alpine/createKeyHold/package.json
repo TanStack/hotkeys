@@ -1,0 +1,22 @@
+{
+  "name": "@tanstack/hotkeys-example-alpine-create-key-hold",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3069",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "test:types": "tsc"
+  },
+  "dependencies": {
+    "@tanstack/alpine-hotkeys": "workspace:*",
+    "alpinejs": "^3.17.4"
+  },
+  "devDependencies": {
+    "@types/alpinejs": "^3.17.0",
+    "typescript": "6.0.3",
+    "vite": "^8.3.2"
+  }
+}

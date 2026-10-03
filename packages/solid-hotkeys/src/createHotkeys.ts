@@ -4,7 +4,7 @@ import {
   getHotkeyManager,
   normalizeRegisterableHotkey,
 } from '@tanstack/hotkeys'
-import { useDefaultHotkeysOptions } from './HotkeysProvider'
+import { useDefaultHotkeysOptionsSource } from './defaultOptions'
 import type { CreateHotkeyOptions } from './createHotkey'
 import type {
   Hotkey,
@@ -65,8 +65,7 @@ export interface CreateHotkeyDefinition {
  */
 export function createHotkeys(
   hotkeys:
-    | Array<CreateHotkeyDefinition>
-    | (() => Array<CreateHotkeyDefinition>),
+    Array<CreateHotkeyDefinition> | (() => Array<CreateHotkeyDefinition>),
   commonOptions: CreateHotkeyOptions | (() => CreateHotkeyOptions) = {},
 ): void {
   type RegistrationRecord = {
@@ -74,7 +73,7 @@ export function createHotkeys(
     target: Document | HTMLElement | Window
   }
 
-  const defaultOptions = useDefaultHotkeysOptions()
+  const defaultOptions = useDefaultHotkeysOptionsSource()
   const manager = getHotkeyManager()
 
   const registrations = new Map<string, RegistrationRecord>()
@@ -111,7 +110,7 @@ export function createHotkeys(
       const resolvedDefOptions = def.options ?? {}
 
       const mergedOptions = {
-        ...defaultOptions.hotkey,
+        ...defaultOptions().hotkey,
         ...resolvedCommonOptions,
         ...resolvedDefOptions,
       }

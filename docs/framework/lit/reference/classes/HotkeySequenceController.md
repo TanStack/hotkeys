@@ -3,7 +3,7 @@ id: HotkeySequenceController
 title: HotkeySequenceController
 ---
 
-Defined in: [controllers/hotkey-sequence.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence.ts#L28)
+Defined in: [controllers/hotkey-sequence.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence.ts#L26)
 
 A Lit ReactiveController that registers a keyboard sequence (e.g. Vim-style)
 when the host element is connected and unregisters it when the host is disconnected.
@@ -33,11 +33,11 @@ class MyElement extends LitElement {
 new HotkeySequenceController(
    _host, 
    _sequence, 
-   _callback, 
+   callback, 
    _options?): HotkeySequenceController;
 ```
 
-Defined in: [controllers/hotkey-sequence.ts:38](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence.ts#L38)
+Defined in: [controllers/hotkey-sequence.ts:37](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence.ts#L37)
 
 #### Parameters
 
@@ -45,25 +45,25 @@ Defined in: [controllers/hotkey-sequence.ts:38](https://github.com/TanStack/hotk
 
 `ReactiveControllerHost`
 
-The Lit component that owns this controller (use `this` and pass it to `addController()`).
+The Lit component that owns this controller. Add the controller with `addController()`.
 
 ##### \_sequence
 
 `HotkeySequence`
 
-The key sequence to listen for (e.g. `['G', 'G']`).
+The sequence to register.
 
-##### \_callback
+##### callback
 
 `HotkeyCallback`
 
-Function to run when the sequence is completed; called with the host as `this`.
+Called with the host as `this`.
 
 ##### \_options?
 
-`SequenceOptions` = `HOTKEY_SEQUENCE_DEFAULT_OPTIONS`
+`SequenceOptions` \| (() => `SequenceOptions`)
 
-Optional sequence options (target, timeout, enabled, etc.).
+Options or a getter. Property getters are read on connection and after host updates.
 
 #### Returns
 
@@ -79,8 +79,7 @@ hostConnected(): void;
 
 Defined in: [controllers/hotkey-sequence.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence.ts#L49)
 
-Registers the sequence with the global sequence manager when the host is connected to the DOM.
-Skips registration if disabled, sequence is empty, or no target is available.
+Registers when connected and a target is available.
 
 #### Returns
 
@@ -100,9 +99,9 @@ ReactiveController.hostConnected
 hostDisconnected(): void;
 ```
 
-Defined in: [controllers/hotkey-sequence.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence.ts#L76)
+Defined in: [controllers/hotkey-sequence.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence.ts#L68)
 
-Unregisters the sequence when the host is disconnected from the DOM.
+Releases registrations when the host disconnects.
 
 #### Returns
 
@@ -112,4 +111,26 @@ Unregisters the sequence when the host is disconnected from the DOM.
 
 ```ts
 ReactiveController.hostDisconnected
+```
+
+***
+
+### hostUpdated()
+
+```ts
+hostUpdated(): void;
+```
+
+Defined in: [controllers/hotkey-sequence.ts:55](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence.ts#L55)
+
+Refreshes options after rendering, when scoped targets are available.
+
+#### Returns
+
+`void`
+
+#### Implementation of
+
+```ts
+ReactiveController.hostUpdated
 ```

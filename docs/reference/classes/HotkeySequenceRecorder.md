@@ -19,13 +19,16 @@ when [HotkeySequenceRecorderOptions.commitKeys](../interfaces/HotkeySequenceReco
 new HotkeySequenceRecorder(options): HotkeySequenceRecorder;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:118](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L118)
+Defined in: [hotkey-sequence-recorder.ts:131](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L131)
+
+Options may be a getter to read current configuration during an active session.
 
 #### Parameters
 
 ##### options
 
-[`HotkeySequenceRecorderOptions`](../interfaces/HotkeySequenceRecorderOptions.md)
+  \| [`HotkeySequenceRecorderOptions`](../interfaces/HotkeySequenceRecorderOptions.md)
+  \| (() => [`HotkeySequenceRecorderOptions`](../interfaces/HotkeySequenceRecorderOptions.md))
 
 #### Returns
 
@@ -49,7 +52,7 @@ Defined in: [hotkey-sequence-recorder.ts:105](https://github.com/TanStack/hotkey
 cancel(): void;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:370](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L370)
+Defined in: [hotkey-sequence-recorder.ts:379](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L379)
 
 Stops, discards in-progress steps, and notifies onCancel.
 
@@ -65,7 +68,7 @@ Stops, discards in-progress steps, and notifies onCancel.
 commit(): void;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:293](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L293)
+Defined in: [hotkey-sequence-recorder.ts:302](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L302)
 
 Commit the current steps as a sequence. No-op if fewer than one step.
 
@@ -81,7 +84,7 @@ Commit the current steps as a sequence. No-op if fewer than one step.
 destroy(): void;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:402](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L402)
+Defined in: [hotkey-sequence-recorder.ts:411](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L411)
 
 #### Returns
 
@@ -95,7 +98,7 @@ Defined in: [hotkey-sequence-recorder.ts:402](https://github.com/TanStack/hotkey
 setOptions(options): void;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:127](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L127)
+Defined in: [hotkey-sequence-recorder.ts:140](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L140)
 
 Merges current callbacks and options without discarding recorded steps.
 
@@ -117,7 +120,7 @@ Merges current callbacks and options without discarding recorded steps.
 start(): void;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:174](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L174)
+Defined in: [hotkey-sequence-recorder.ts:183](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L183)
 
 Starts a fresh recording; repeated starts during an active session are ignored.
 
@@ -133,7 +136,7 @@ Starts a fresh recording; repeated starts during an active session are ignored.
 stop(): void;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:354](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L354)
+Defined in: [hotkey-sequence-recorder.ts:363](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L363)
 
 Stops and discards in-progress steps without invoking onCancel.
 

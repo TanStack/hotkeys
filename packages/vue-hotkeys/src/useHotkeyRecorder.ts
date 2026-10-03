@@ -1,7 +1,7 @@
 import { onUnmounted, unref, watch } from 'vue'
 import { useSelector } from '@tanstack/vue-store'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
-import { useDefaultHotkeysOptions } from './HotkeysProviderContext'
+import { useDefaultHotkeysOptionsSource } from './defaultOptions'
 import type { MaybeRefOrGetter, Ref } from 'vue'
 import type { Hotkey, HotkeyRecorderOptions } from '@tanstack/hotkeys'
 
@@ -62,7 +62,7 @@ export interface VueHotkeyRecorder {
 export function useHotkeyRecorder(
   options: MaybeRefOrGetter<HotkeyRecorderOptions>,
 ): VueHotkeyRecorder {
-  const defaultOptions = useDefaultHotkeysOptions()
+  const defaultOptions = useDefaultHotkeysOptionsSource()
   const recorder = new HotkeyRecorder(
     resolveRecorderOptions(options, defaultOptions),
   )
@@ -99,10 +99,10 @@ export function useHotkeyRecorder(
 
 function resolveRecorderOptions(
   options: MaybeRefOrGetter<HotkeyRecorderOptions>,
-  defaultOptions: ReturnType<typeof useDefaultHotkeysOptions>,
+  defaultOptions: ReturnType<typeof useDefaultHotkeysOptionsSource>,
 ): HotkeyRecorderOptions {
   return {
-    ...defaultOptions.hotkeyRecorder,
+    ...defaultOptions().hotkeyRecorder,
     ...resolveMaybeRefOrGetter(options),
   }
 }

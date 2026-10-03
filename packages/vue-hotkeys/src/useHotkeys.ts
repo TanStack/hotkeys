@@ -4,7 +4,7 @@ import {
   getHotkeyManager,
   normalizeRegisterableHotkey,
 } from '@tanstack/hotkeys'
-import { useDefaultHotkeysOptions } from './HotkeysProviderContext'
+import { useDefaultHotkeysOptionsSource } from './defaultOptions'
 import type { UseHotkeyOptions } from './useHotkey'
 import type {
   HotkeyCallback,
@@ -79,7 +79,7 @@ export function useHotkeys(
     target: Document | HTMLElement | Window
   }
 
-  const defaultOptions = useDefaultHotkeysOptions()
+  const defaultOptions = useDefaultHotkeysOptionsSource()
   const manager = getHotkeyManager()
 
   const registrations = new Map<string, RegistrationRecord>()
@@ -96,7 +96,7 @@ export function useHotkeys(
           : {}
 
         const mergedOptions = {
-          ...defaultOptions.hotkey,
+          ...defaultOptions().hotkey,
           ...resolvedCommonOptions,
           ...resolvedDefOptions,
         }

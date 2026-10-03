@@ -1,7 +1,7 @@
 import { createEffect, onCleanup } from 'solid-js'
 import { useSelector } from '@tanstack/solid-store'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
-import { useDefaultHotkeysOptions } from './HotkeysProvider'
+import { useDefaultHotkeysOptionsSource } from './defaultOptions'
 import type { Hotkey, HotkeyRecorderOptions } from '@tanstack/hotkeys'
 
 export interface SolidHotkeyRecorder {
@@ -61,11 +61,11 @@ export interface SolidHotkeyRecorder {
 export function createHotkeyRecorder(
   options: HotkeyRecorderOptions | (() => HotkeyRecorderOptions),
 ): SolidHotkeyRecorder {
-  const defaultOptions = useDefaultHotkeysOptions()
+  const defaultOptions = useDefaultHotkeysOptionsSource()
 
   const resolvedOptions = typeof options === 'function' ? options() : options
   const mergedOptions = {
-    ...defaultOptions.hotkeyRecorder,
+    ...defaultOptions().hotkeyRecorder,
     ...resolvedOptions,
   }
 
@@ -83,7 +83,7 @@ export function createHotkeyRecorder(
   createEffect(() => {
     const resolved = typeof options === 'function' ? options() : options
     recorder.setOptions({
-      ...defaultOptions.hotkeyRecorder,
+      ...defaultOptions().hotkeyRecorder,
       ...resolved,
     })
   })

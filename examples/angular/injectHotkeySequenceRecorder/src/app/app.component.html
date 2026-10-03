@@ -198,7 +198,6 @@ injectHotkeySequences(() =>
       sequence: s.sequence,
       callback: () => handleAction(s.id),
       options: {{ '{' }}
-        enabled: !this.recorder.isRecording(),
         meta: {{ '{' }} name: s.name, description: s.description {{ '}' }},
       {{ '}' }},
     {{ '}' }})),
@@ -207,8 +206,7 @@ injectHotkeySequences(() =>
 // Read all registrations reactively
 const registrations = injectHotkeyRegistrations()
 // registrations.sequences()[0].options.meta?.name → 'Save'
-// registrations.sequences()[0].triggerCount → 3</pre
-      >
+// registrations.sequences()[0].triggerCount → 3</pre>
     </section>
   </main>
 </div>

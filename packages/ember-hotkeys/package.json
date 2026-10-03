@@ -1,0 +1,98 @@
+{
+  "name": "@tanstack/ember-hotkeys",
+  "version": "0.1.0",
+  "description": "Ember adapter for TanStack Hotkeys",
+  "author": "Tanner Linsley",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TanStack/hotkeys.git",
+    "directory": "packages/ember-hotkeys"
+  },
+  "homepage": "https://tanstack.com/hotkeys",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/tannerlinsley"
+  },
+  "keywords": [
+    "ember",
+    "tanstack",
+    "hotkeys"
+  ],
+  "scripts": {
+    "clean": "premove ./build ./dist ./dist-tests",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix",
+    "test:eslint": "eslint ./src",
+    "test:lib": "vite build --mode=development --out-dir dist-tests && testem --file testem.cjs ci --port 0",
+    "test:lib:dev": "pnpm test:lib --watch",
+    "test:types": "ember-tsc --noEmit",
+    "build": "tsdown",
+    "test:build": "publint --strict && node ../../scripts/verify-package.ts"
+  },
+  "type": "module",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": "./dist/index.js",
+    "./package.json": "./package.json",
+    "./addon-main.js": "./addon-main.cjs"
+  },
+  "sideEffects": [
+    "./tests/**"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "files": [
+    "dist",
+    "addon-main.cjs"
+  ],
+  "dependencies": {
+    "@embroider/addon-shim": "^1.10.3",
+    "@tanstack/hotkeys": "workspace:*",
+    "@tanstack/store": "^0.11.2",
+    "ember-modifier": "4.2.2"
+  },
+  "devDependencies": {
+    "@babel/core": "7.29.7",
+    "@babel/plugin-transform-typescript": "7.29.9",
+    "@ember/app-tsconfig": "2.1.0",
+    "@ember/test-helpers": "^5.7.0",
+    "@embroider/core": "4.6.7",
+    "@embroider/macros": "1.21.1",
+    "@embroider/vite": "^1.7.13",
+    "@glimmer/component": "2.1.1",
+    "@glint/ember-tsc": "1.11.6",
+    "@glint/template": "1.9.0",
+    "@glint/tsserver-plugin": "2.7.9",
+    "@rollup/plugin-babel": "7.1.0",
+    "@types/qunit": "^2.19.14",
+    "babel-plugin-ember-template-compilation": "4.0.0",
+    "decorator-transforms": "2.4.0",
+    "ember-qunit": "^9.2.0",
+    "ember-source": "7.3.0",
+    "ember-strict-application-resolver": "0.1.1",
+    "qunit": "^3.0.0",
+    "qunit-dom": "^3.6.0",
+    "testem": "^3.21.3",
+    "vite": "^8.3.2"
+  },
+  "peerDependencies": {
+    "ember-source": ">=6.8.0"
+  },
+  "ember-addon": {
+    "version": 2,
+    "type": "addon",
+    "main": "addon-main.cjs"
+  },
+  "nx": {
+    "targets": {
+      "test:lib": {
+        "dependsOn": [
+          "build",
+          "^build"
+        ]
+      }
+    }
+  }
+}

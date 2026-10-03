@@ -85,6 +85,33 @@
               "to": "framework/svelte/quick-start"
             }
           ]
+        },
+        {
+          "label": "alpine",
+          "children": [
+            {
+              "label": "Quick Start",
+              "to": "framework/alpine/quick-start"
+            }
+          ]
+        },
+        {
+          "label": "ember",
+          "children": [
+            {
+              "label": "Quick Start",
+              "to": "framework/ember/quick-start"
+            }
+          ]
+        },
+        {
+          "label": "octane",
+          "children": [
+            {
+              "label": "Quick Start",
+              "to": "framework/octane/quick-start"
+            }
+          ]
         }
       ]
     },
@@ -294,6 +321,93 @@
               "to": "framework/svelte/guides/formatting-display"
             }
           ]
+        },
+        {
+          "label": "alpine",
+          "children": [
+            {
+              "label": "Hotkeys",
+              "to": "framework/alpine/guides/hotkeys"
+            },
+            {
+              "label": "Sequences",
+              "to": "framework/alpine/guides/sequences"
+            },
+            {
+              "label": "Hotkey Recording",
+              "to": "framework/alpine/guides/hotkey-recording"
+            },
+            {
+              "label": "Hotkey Sequence Recording",
+              "to": "framework/alpine/guides/sequence-recording"
+            },
+            {
+              "label": "Key State Tracking",
+              "to": "framework/alpine/guides/key-state-tracking"
+            },
+            {
+              "label": "Formatting & Display",
+              "to": "framework/alpine/guides/formatting-display"
+            }
+          ]
+        },
+        {
+          "label": "ember",
+          "children": [
+            {
+              "label": "Hotkeys",
+              "to": "framework/ember/guides/hotkeys"
+            },
+            {
+              "label": "Sequences",
+              "to": "framework/ember/guides/sequences"
+            },
+            {
+              "label": "Hotkey Recording",
+              "to": "framework/ember/guides/hotkey-recording"
+            },
+            {
+              "label": "Hotkey Sequence Recording",
+              "to": "framework/ember/guides/sequence-recording"
+            },
+            {
+              "label": "Key State Tracking",
+              "to": "framework/ember/guides/key-state-tracking"
+            },
+            {
+              "label": "Formatting & Display",
+              "to": "framework/ember/guides/formatting-display"
+            }
+          ]
+        },
+        {
+          "label": "octane",
+          "children": [
+            {
+              "label": "Hotkeys",
+              "to": "framework/octane/guides/hotkeys"
+            },
+            {
+              "label": "Sequences",
+              "to": "framework/octane/guides/sequences"
+            },
+            {
+              "label": "Hotkey Recording",
+              "to": "framework/octane/guides/hotkey-recording"
+            },
+            {
+              "label": "Hotkey Sequence Recording",
+              "to": "framework/octane/guides/sequence-recording"
+            },
+            {
+              "label": "Key State Tracking",
+              "to": "framework/octane/guides/key-state-tracking"
+            },
+            {
+              "label": "Formatting & Display",
+              "to": "framework/octane/guides/formatting-display"
+            }
+          ]
         }
       ]
     },
@@ -368,6 +482,33 @@
               "to": "framework/svelte/reference/index"
             }
           ]
+        },
+        {
+          "label": "alpine",
+          "children": [
+            {
+              "label": "Alpine API",
+              "to": "framework/alpine/reference/index"
+            }
+          ]
+        },
+        {
+          "label": "ember",
+          "children": [
+            {
+              "label": "Ember API",
+              "to": "framework/ember/reference/index"
+            }
+          ]
+        },
+        {
+          "label": "octane",
+          "children": [
+            {
+              "label": "Octane API",
+              "to": "framework/octane/reference/index"
+            }
+          ]
         }
       ]
     },
@@ -419,6 +560,10 @@
         {
           "label": "ConflictBehavior",
           "to": "reference/type-aliases/ConflictBehavior"
+        },
+        {
+          "label": "HotkeyDefinition",
+          "to": "reference/adapter/interfaces/HotkeyDefinition"
         }
       ],
       "frameworks": [
@@ -728,6 +873,133 @@
               "to": "framework/svelte/reference/interfaces/SvelteHotkeyRegistrations"
             }
           ]
+        },
+        {
+          "label": "alpine",
+          "children": [
+            {
+              "label": "createHotkeysScope",
+              "to": "framework/alpine/reference/functions/createHotkeysScope"
+            },
+            {
+              "label": "hotkeysPlugin",
+              "to": "framework/alpine/reference/functions/hotkeysPlugin"
+            },
+            {
+              "label": "AlpineHotkeys",
+              "to": "framework/alpine/reference/interfaces/AlpineHotkeys"
+            },
+            {
+              "label": "createHotkey",
+              "to": "framework/alpine/reference/interfaces/AlpineHotkeys#createhotkey"
+            },
+            {
+              "label": "createHotkeys",
+              "to": "framework/alpine/reference/interfaces/AlpineHotkeys#createhotkeys"
+            },
+            {
+              "label": "createHotkeyRegistrations",
+              "to": "framework/alpine/reference/interfaces/AlpineHotkeys#createhotkeyregistrations"
+            },
+            {
+              "label": "HotkeyRegistrationsResult",
+              "to": "framework/alpine/reference/interfaces/HotkeyRegistrationsResult"
+            },
+            {
+              "label": "DefaultHotkeysOptions",
+              "to": "framework/alpine/reference/interfaces/DefaultHotkeysOptions"
+            }
+          ]
+        },
+        {
+          "label": "ember",
+          "children": [
+            {
+              "label": "onHotkey",
+              "to": "framework/ember/reference/classes/onHotkey"
+            },
+            {
+              "label": "onHotkeys",
+              "to": "framework/ember/reference/classes/onHotkeys"
+            },
+            {
+              "label": "ElementHotkeyOptions",
+              "to": "framework/ember/reference/type-aliases/ElementHotkeyOptions"
+            },
+            {
+              "label": "useHotkey",
+              "to": "framework/ember/reference/classes/useHotkey"
+            },
+            {
+              "label": "useHotkeys",
+              "to": "framework/ember/reference/classes/useHotkeys"
+            },
+            {
+              "label": "useHotkeyRegistrations",
+              "to": "framework/ember/reference/functions/useHotkeyRegistrations"
+            },
+            {
+              "label": "HotkeyRegistrationsResult",
+              "to": "framework/ember/reference/interfaces/HotkeyRegistrationsResult"
+            },
+            {
+              "label": "createHotkeysScope",
+              "to": "framework/ember/reference/functions/createHotkeysScope"
+            },
+            {
+              "label": "EmberHotkeysScope",
+              "to": "framework/ember/reference/interfaces/EmberHotkeysScope"
+            },
+            {
+              "label": "DefaultHotkeysOptions",
+              "to": "framework/ember/reference/interfaces/DefaultHotkeysOptions"
+            }
+          ]
+        },
+        {
+          "label": "octane",
+          "children": [
+            {
+              "label": "useHotkey",
+              "to": "framework/octane/reference/functions/useHotkey"
+            },
+            {
+              "label": "useHotkeys",
+              "to": "framework/octane/reference/functions/useHotkeys"
+            },
+            {
+              "label": "useHotkeyRegistrations",
+              "to": "framework/octane/reference/functions/useHotkeyRegistrations"
+            },
+            {
+              "label": "HotkeyRegistrationsResult",
+              "to": "framework/octane/reference/interfaces/HotkeyRegistrationsResult"
+            },
+            {
+              "label": "HotkeysProvider",
+              "to": "framework/octane/reference/functions/HotkeysProvider"
+            },
+            {
+              "label": "DefaultHotkeysOptions",
+              "to": "framework/octane/reference/interfaces/DefaultHotkeysOptions"
+            },
+            {
+              "label": "useDefaultHotkeysOptions",
+              "to": "framework/octane/reference/functions/useDefaultHotkeysOptions"
+            },
+            {
+              "label": "useHotkeysContext",
+              "to": "framework/octane/reference/functions/useHotkeysContext"
+            },
+            {
+              "label": "HotkeysProviderProps",
+              "to": "framework/octane/reference/interfaces/HotkeysProviderProps"
+            },
+            {
+              "label": "HotkeysProviderOptions",
+              "to": "framework/octane/reference/type-aliases/HotkeysProviderOptions"
+            }
+          ]
         }
       ]
     },
@@ -763,6 +1035,10 @@
         {
           "label": "SequenceRegistrationView",
           "to": "reference/interfaces/SequenceRegistrationView"
+        },
+        {
+          "label": "HotkeySequenceDefinition",
+          "to": "reference/adapter/interfaces/HotkeySequenceDefinition"
         }
       ],
       "frameworks": [
@@ -910,6 +1186,45 @@
             {
               "label": "CreateHotkeySequenceDefinition",
               "to": "framework/svelte/reference/interfaces/CreateHotkeySequenceDefinition"
+            }
+          ]
+        },
+        {
+          "label": "alpine",
+          "children": [
+            {
+              "label": "createHotkeySequence",
+              "to": "framework/alpine/reference/interfaces/AlpineHotkeys#createhotkeysequence"
+            },
+            {
+              "label": "createHotkeySequences",
+              "to": "framework/alpine/reference/interfaces/AlpineHotkeys#createhotkeysequences"
+            }
+          ]
+        },
+        {
+          "label": "ember",
+          "children": [
+            {
+              "label": "useHotkeySequence",
+              "to": "framework/ember/reference/classes/useHotkeySequence"
+            },
+            {
+              "label": "useHotkeySequences",
+              "to": "framework/ember/reference/classes/useHotkeySequences"
+            }
+          ]
+        },
+        {
+          "label": "octane",
+          "children": [
+            {
+              "label": "useHotkeySequence",
+              "to": "framework/octane/reference/functions/useHotkeySequence"
+            },
+            {
+              "label": "useHotkeySequences",
+              "to": "framework/octane/reference/functions/useHotkeySequences"
             }
           ]
         }
@@ -1104,6 +1419,77 @@
               "to": "framework/svelte/reference/functions/getHotkeyHint"
             }
           ]
+        },
+        {
+          "label": "alpine",
+          "children": [
+            {
+              "label": "createKeyHold",
+              "to": "framework/alpine/reference/interfaces/AlpineHotkeys#createkeyhold"
+            },
+            {
+              "label": "createHeldKeys",
+              "to": "framework/alpine/reference/interfaces/AlpineHotkeys#createheldkeys"
+            },
+            {
+              "label": "createHeldKeyCodes",
+              "to": "framework/alpine/reference/interfaces/AlpineHotkeys#createheldkeycodes"
+            },
+            {
+              "label": "createHotkeyHint",
+              "to": "framework/alpine/reference/interfaces/AlpineHotkeys#createhotkeyhint"
+            },
+            {
+              "label": "AlpineHotkeyState",
+              "to": "framework/alpine/reference/interfaces/AlpineHotkeyState"
+            }
+          ]
+        },
+        {
+          "label": "ember",
+          "children": [
+            {
+              "label": "useKeyHold",
+              "to": "framework/ember/reference/functions/useKeyHold"
+            },
+            {
+              "label": "useHeldKeys",
+              "to": "framework/ember/reference/functions/useHeldKeys"
+            },
+            {
+              "label": "useHeldKeyCodes",
+              "to": "framework/ember/reference/functions/useHeldKeyCodes"
+            },
+            {
+              "label": "useHotkeyHint",
+              "to": "framework/ember/reference/functions/useHotkeyHint"
+            },
+            {
+              "label": "EmberHotkeyState",
+              "to": "framework/ember/reference/interfaces/EmberHotkeyState"
+            }
+          ]
+        },
+        {
+          "label": "octane",
+          "children": [
+            {
+              "label": "useKeyHold",
+              "to": "framework/octane/reference/functions/useKeyHold"
+            },
+            {
+              "label": "useHeldKeys",
+              "to": "framework/octane/reference/functions/useHeldKeys"
+            },
+            {
+              "label": "useHeldKeyCodes",
+              "to": "framework/octane/reference/functions/useHeldKeyCodes"
+            },
+            {
+              "label": "useHotkeyHint",
+              "to": "framework/octane/reference/functions/useHotkeyHint"
+            }
+          ]
         }
       ]
     },
@@ -1240,6 +1626,45 @@
               "to": "framework/svelte/reference/interfaces/SvelteHotkeyRecorder"
             }
           ]
+        },
+        {
+          "label": "alpine",
+          "children": [
+            {
+              "label": "createHotkeyRecorder",
+              "to": "framework/alpine/reference/interfaces/AlpineHotkeys#createhotkeyrecorder"
+            },
+            {
+              "label": "AlpineHotkeyRecorder",
+              "to": "framework/alpine/reference/interfaces/AlpineHotkeyRecorder"
+            }
+          ]
+        },
+        {
+          "label": "ember",
+          "children": [
+            {
+              "label": "useHotkeyRecorder",
+              "to": "framework/ember/reference/functions/useHotkeyRecorder"
+            },
+            {
+              "label": "EmberHotkeyRecorder",
+              "to": "framework/ember/reference/interfaces/EmberHotkeyRecorder"
+            }
+          ]
+        },
+        {
+          "label": "octane",
+          "children": [
+            {
+              "label": "useHotkeyRecorder",
+              "to": "framework/octane/reference/functions/useHotkeyRecorder"
+            },
+            {
+              "label": "OctaneHotkeyRecorder",
+              "to": "framework/octane/reference/interfaces/OctaneHotkeyRecorder"
+            }
+          ]
         }
       ]
     },
@@ -1354,6 +1779,45 @@
             {
               "label": "SvelteHotkeySequenceRecorder",
               "to": "framework/svelte/reference/interfaces/SvelteHotkeySequenceRecorder"
+            }
+          ]
+        },
+        {
+          "label": "alpine",
+          "children": [
+            {
+              "label": "createHotkeySequenceRecorder",
+              "to": "framework/alpine/reference/interfaces/AlpineHotkeys#createhotkeysequencerecorder"
+            },
+            {
+              "label": "AlpineHotkeySequenceRecorder",
+              "to": "framework/alpine/reference/interfaces/AlpineHotkeySequenceRecorder"
+            }
+          ]
+        },
+        {
+          "label": "ember",
+          "children": [
+            {
+              "label": "useHotkeySequenceRecorder",
+              "to": "framework/ember/reference/functions/useHotkeySequenceRecorder"
+            },
+            {
+              "label": "EmberHotkeySequenceRecorder",
+              "to": "framework/ember/reference/interfaces/EmberHotkeySequenceRecorder"
+            }
+          ]
+        },
+        {
+          "label": "octane",
+          "children": [
+            {
+              "label": "useHotkeySequenceRecorder",
+              "to": "framework/octane/reference/functions/useHotkeySequenceRecorder"
+            },
+            {
+              "label": "OctaneHotkeySequenceRecorder",
+              "to": "framework/octane/reference/interfaces/OctaneHotkeySequenceRecorder"
             }
           ]
         }
@@ -1799,6 +2263,129 @@
             {
               "label": "getIsKeyHeld",
               "to": "framework/svelte/examples/get-is-key-held"
+            }
+          ]
+        },
+        {
+          "label": "alpine",
+          "children": [
+            {
+              "label": "Kitchen Sink",
+              "to": "framework/alpine/examples/kitchen-sink"
+            },
+            {
+              "label": "createHotkey",
+              "to": "framework/alpine/examples/createHotkey"
+            },
+            {
+              "label": "createHotkeys",
+              "to": "framework/alpine/examples/createHotkeys"
+            },
+            {
+              "label": "createHotkeySequence",
+              "to": "framework/alpine/examples/createHotkeySequence"
+            },
+            {
+              "label": "createHotkeySequences",
+              "to": "framework/alpine/examples/createHotkeySequences"
+            },
+            {
+              "label": "createHotkeyRecorder",
+              "to": "framework/alpine/examples/createHotkeyRecorder"
+            },
+            {
+              "label": "createHotkeySequenceRecorder",
+              "to": "framework/alpine/examples/createHotkeySequenceRecorder"
+            },
+            {
+              "label": "createHeldKeys",
+              "to": "framework/alpine/examples/createHeldKeys"
+            },
+            {
+              "label": "createKeyHold",
+              "to": "framework/alpine/examples/createKeyHold"
+            }
+          ]
+        },
+        {
+          "label": "ember",
+          "children": [
+            {
+              "label": "Kitchen Sink",
+              "to": "framework/ember/examples/kitchen-sink"
+            },
+            {
+              "label": "useHotkey",
+              "to": "framework/ember/examples/useHotkey"
+            },
+            {
+              "label": "useHotkeys",
+              "to": "framework/ember/examples/useHotkeys"
+            },
+            {
+              "label": "useHotkeySequence",
+              "to": "framework/ember/examples/useHotkeySequence"
+            },
+            {
+              "label": "useHotkeySequences",
+              "to": "framework/ember/examples/useHotkeySequences"
+            },
+            {
+              "label": "useHotkeyRecorder",
+              "to": "framework/ember/examples/useHotkeyRecorder"
+            },
+            {
+              "label": "useHotkeySequenceRecorder",
+              "to": "framework/ember/examples/useHotkeySequenceRecorder"
+            },
+            {
+              "label": "useHeldKeys",
+              "to": "framework/ember/examples/useHeldKeys"
+            },
+            {
+              "label": "useKeyHold",
+              "to": "framework/ember/examples/useKeyHold"
+            }
+          ]
+        },
+        {
+          "label": "octane",
+          "children": [
+            {
+              "label": "Kitchen Sink",
+              "to": "framework/octane/examples/kitchen-sink"
+            },
+            {
+              "label": "useHotkey",
+              "to": "framework/octane/examples/useHotkey"
+            },
+            {
+              "label": "useHotkeys",
+              "to": "framework/octane/examples/useHotkeys"
+            },
+            {
+              "label": "useHotkeySequence",
+              "to": "framework/octane/examples/useHotkeySequence"
+            },
+            {
+              "label": "useHotkeySequences",
+              "to": "framework/octane/examples/useHotkeySequences"
+            },
+            {
+              "label": "useHotkeyRecorder",
+              "to": "framework/octane/examples/useHotkeyRecorder"
+            },
+            {
+              "label": "useHotkeySequenceRecorder",
+              "to": "framework/octane/examples/useHotkeySequenceRecorder"
+            },
+            {
+              "label": "useHeldKeys",
+              "to": "framework/octane/examples/useHeldKeys"
+            },
+            {
+              "label": "useKeyHold",
+              "to": "framework/octane/examples/useKeyHold"
             }
           ]
         }

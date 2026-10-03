@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TanStack Hotkeys | Alpine createHotkeySequence</title>
+  </head>
+  <body>
+    <div x-data="app">
+      <div class="app">
+        <header>
+          <h1>scope.createHotkeySequence</h1>
+          <p>
+            Register multi-key sequences (like Vim commands). Keys must be
+            pressed within the timeout window (default: 1000ms).
+          </p>
+        </header>
+
+        <main>
+          <section class="demo-section">
+            <h2>Vim-Style Commands</h2>
+            <table class="sequence-table">
+              <thead>
+                <tr>
+                  <th>Sequence</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <kbd>g</kbd>
+                    <kbd>g</kbd>
+                  </td>
+                  <td>Go to top</td>
+                </tr>
+                <tr>
+                  <td>
+                    <kbd>G</kbd>
+                    (Shift+G)
+                  </td>
+                  <td>Go to bottom</td>
+                </tr>
+                <tr>
+                  <td>
+                    <kbd>d</kbd>
+                    <kbd>d</kbd>
+                  </td>
+                  <td>Delete line</td>
+                </tr>
+                <tr>
+                  <td>
+                    <kbd>y</kbd>
+                    <kbd>y</kbd>
+                  </td>
+                  <td>Yank (copy) line</td>
+                </tr>
+                <tr>
+                  <td>
+                    <kbd>d</kbd>
+                    <kbd>w</kbd>
+                  </td>
+                  <td>Delete word</td>
+                </tr>
+                <tr>
+                  <td>
+                    <kbd>c</kbd>
+                    <kbd>i</kbd>
+                    <kbd>w</kbd>
+                  </td>
+                  <td>Change inner word</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="demo-section">
+            <h2>Fun Sequences</h2>
+            <div class="fun-sequences">
+              <div class="sequence-card">
+                <h3>Konami Code (Partial)</h3>
+                <p>
+                  <kbd>↑</kbd>
+                  <kbd>↑</kbd>
+                  <kbd>↓</kbd>
+                  <kbd>↓</kbd>
+                </p>
+                <span class="hint">Use arrow keys within 1.5 seconds</span>
+              </div>
+              <div class="sequence-card">
+                <h3>Side to Side</h3>
+                <p>
+                  <kbd>←</kbd>
+                  <kbd>→</kbd>
+                  <kbd>←</kbd>
+                  <kbd>→</kbd>
+                </p>
+                <span class="hint">Arrow keys within 1.5 seconds</span>
+              </div>
+              <div class="sequence-card">
+                <h3>Spell It Out</h3>
+                <p>
+                  <kbd>h</kbd>
+                  <kbd>e</kbd>
+                  <kbd>l</kbd>
+                  <kbd>l</kbd>
+                  <kbd>o</kbd>
+                </p>
+                <span class="hint">Type "hello" quickly</span>
+                <p class="sequence-toggle-status">
+                  <span x-text="` This sequence is  `"></span>
+                  <strong
+                    x-text="helloSequenceEnabled ? 'enabled' : 'disabled'"
+                  ></strong>
+                  .
+                </p>
+                <button
+                  type="button"
+                  @click="helloSequenceEnabled = !helloSequenceEnabled"
+                  x-text="` ${helloSequenceEnabled ? 'Disable' : 'Enable'} sequence `"
+                ></button>
+              </div>
+            </div>
+          </section>
+
+          <template x-if="lastSequence">
+            <div class="info-box success">
+              <strong>Triggered:</strong>
+              <span x-text="` ${lastSequence} `"></span>
+            </div>
+          </template>
+
+          <section class="demo-section">
+            <h2>Input handling</h2>
+            <p>
+              Sequences are not detected when typing in text inputs, textareas,
+              selects, or contenteditable elements. Button-type inputs (
+              <code>type="button"</code>
+              ,
+              <code>submit</code>
+              ,
+              <code>reset</code>
+              ) still receive sequences. Focus the input below and try
+              <kbd>g</kbd>
+              <span x-text="`  `"></span>
+              <kbd>g</kbd>
+              or
+              <kbd>h</kbd>
+              <kbd>e</kbd>
+              <kbd>l</kbd>
+              <kbd>l</kbd>
+              <kbd>o</kbd>
+              — nothing will trigger. Click outside to try again.
+            </p>
+            <input
+              type="text"
+              class="demo-input"
+              placeholder="Focus here – sequences won't trigger while typing..."
+            />
+          </section>
+
+          <section class="demo-section">
+            <h2>Chained Shift+letter sequences</h2>
+            <p>
+              These steps use physical R and T positions (
+              <code>[KeyR]</code>
+              <span x-text="` and  `"></span>
+              <code>[KeyT]</code>
+              ), independent of the characters they produce. Hold
+              <kbd>Shift</kbd>
+              <span x-text="` and press each position. You can press  `"></span>
+              <kbd>Shift</kbd>
+              alone between steps—those modifier-only presses do not reset
+              progress, so the next chord still counts. Holding a key does not
+              count as additional steps.
+            </p>
+            <table class="sequence-table">
+              <thead>
+                <tr>
+                  <th>Sequence</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <kbd>Shift</kbd>
+                    +
+                    <kbd>r</kbd>
+                    then
+                    <kbd>Shift</kbd>
+                    +
+                    <kbd>t</kbd>
+                  </td>
+                  <td>Chained Shift+letter (2 steps)</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+
+          <section class="demo-section">
+            <h2>Usage</h2>
+            <pre class="code-block" x-text="usage0"></pre>
+          </section>
+
+          <template x-if="history.length > 0">
+            <section class="demo-section">
+              <h2>History</h2>
+              <ul class="history-list">
+                <template x-for="(item, i) in (history)" :key="i">
+                  <li x-text="item"></li>
+                </template>
+              </ul>
+              <button @click="history = []">Clear History</button>
+            </section>
+          </template>
+
+          <p class="hint">
+            Press
+            <kbd>Escape</kbd>
+            to clear history
+          </p>
+        </main>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

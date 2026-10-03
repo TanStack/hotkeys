@@ -20,11 +20,7 @@ export interface UseHotkeySequenceOptions extends Omit<
    * Defaults to document.
    */
   target?:
-    | React.RefObject<HTMLElement | null>
-    | HTMLElement
-    | Document
-    | Window
-    | null
+    React.RefObject<HTMLElement | null> | HTMLElement | Document | Window | null
 }
 
 /**

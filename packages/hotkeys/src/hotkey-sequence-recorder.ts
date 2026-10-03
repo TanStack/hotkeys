@@ -110,26 +110,35 @@ export class HotkeySequenceRecorder {
     })
 
   #keydownHandler: ((event: KeyboardEvent) => void) | null = null
-  #options: HotkeySequenceRecorderOptions
+  #optionsSource:
+    HotkeySequenceRecorderOptions | (() => HotkeySequenceRecorderOptions)
+  #optionOverrides: Partial<HotkeySequenceRecorderOptions> = {}
+
+  get #options(): HotkeySequenceRecorderOptions {
+    return {
+      ...defaultHotkeySequenceRecorderOptions,
+      ...(typeof this.#optionsSource === 'function'
+        ? this.#optionsSource()
+        : this.#optionsSource),
+      ...this.#optionOverrides,
+    }
+  }
   #platform: 'mac' | 'windows' | 'linux'
   #events: Array<KeyboardEvent> = []
   #idleTimer: ReturnType<typeof setTimeout> | null = null
 
-  constructor(options: HotkeySequenceRecorderOptions) {
-    this.#options = {
-      ...defaultHotkeySequenceRecorderOptions,
-      ...options,
-    }
+  /** Options may be a getter to read current configuration during an active session. */
+  constructor(
+    options:
+      HotkeySequenceRecorderOptions | (() => HotkeySequenceRecorderOptions),
+  ) {
+    this.#optionsSource = options
     this.#platform = detectPlatform()
   }
 
   /** Merges current callbacks and options without discarding recorded steps. */
   setOptions(options: Partial<HotkeySequenceRecorderOptions>): void {
-    this.#options = {
-      ...defaultHotkeySequenceRecorderOptions,
-      ...this.#options,
-      ...options,
-    }
+    this.#optionOverrides = { ...this.#optionOverrides, ...options }
   }
 
   /** Cancels a pending idle commit so it cannot fire after editing or stopping. */

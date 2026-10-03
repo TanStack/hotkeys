@@ -1,5 +1,5 @@
-import { inject, provide } from 'vue'
-import type { InjectionKey } from 'vue'
+import { inject, provide, toValue } from 'vue'
+import type { InjectionKey, MaybeRefOrGetter } from 'vue'
 import type {
   HotkeyRecorderOptions,
   HotkeySequenceRecorderOptions,
@@ -23,9 +23,13 @@ const HotkeysContext: InjectionKey<HotkeysContextValue> =
 
 const DEFAULT_OPTIONS: HotkeysProviderOptions = {}
 
-export function provideHotkeysContext(defaultOptions?: HotkeysProviderOptions) {
+export function provideHotkeysContext(
+  defaultOptions?: MaybeRefOrGetter<HotkeysProviderOptions>,
+) {
   const contextValue: HotkeysContextValue = {
-    defaultOptions: defaultOptions ?? DEFAULT_OPTIONS,
+    get defaultOptions() {
+      return toValue(defaultOptions) ?? DEFAULT_OPTIONS
+    },
   }
 
   provide(HotkeysContext, contextValue)

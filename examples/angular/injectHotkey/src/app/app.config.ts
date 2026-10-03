@@ -1,6 +1,17 @@
-import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core'
-import { provideHotkeys } from '@tanstack/angular-hotkeys'
+import { isDevMode, provideZoneChangeDetection } from '@angular/core'
+import { provideTanStackDevtools } from '@tanstack/angular-devtools/provider'
+import { hotkeysDevtoolsPlugin } from '@tanstack/angular-hotkeys-devtools'
+import type { ApplicationConfig } from '@angular/core'
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideZoneChangeDetection({ eventCoalescing: true })],
+  providers: [
+    ...(isDevMode()
+      ? [
+          provideTanStackDevtools(() => ({
+            plugins: [hotkeysDevtoolsPlugin()],
+          })),
+        ]
+      : []),
+    provideZoneChangeDetection({ eventCoalescing: true }),
+  ],
 }

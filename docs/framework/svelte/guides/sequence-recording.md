@@ -5,6 +5,12 @@ id: sequence-recording
 
 Use `createHotkeySequenceRecorder` to capture a series of shortcut chords. By default, each step records its physical code: pressing G twice produces `['[KeyG]', '[KeyG]']`. Set `recordBy: 'key'` to follow logical characters instead. Pass the resulting array directly to sequence registration and format each step for display.
 
+TanStack Hotkeys automatically suppresses registered hotkey and sequence callbacks while any recorder is active. You do not need to set `enabled` from `isRecording`. Registrations remain available for conflict detection, and recorded keys stay suppressed through repeats and key release.
+
+## Reactive options
+
+Recorder options support [property getters and functions returning options](./hotkeys.md#property-getters). Updated callbacks, validation, and recording settings apply during an active session without restarting it. Allow the framework to run its effect or watcher before relying on the update.
+
 ## Record and display a sequence
 
 This example uses a Save button so plain Enter can be recorded as a step:

@@ -38,6 +38,7 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
+    "./adapter": "./dist/adapter.js",
     "./package.json": "./package.json"
   },
   "sideEffects": false,
@@ -48,6 +49,6 @@
     "dist"
   ],
   "dependencies": {
-    "@tanstack/store": "^0.11.1"
+    "@tanstack/store": "^0.11.2"
   }
 }

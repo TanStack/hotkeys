@@ -7,7 +7,7 @@ TanStack Hotkeys is a type-safe, headless library for keyboard shortcuts, sequen
 
 ## Runtime and package requirements
 
-Hotkeys packages ship ES2022 JavaScript as ESM only and require Node.js 20 or newer when used in Node.js. Browser applications need an ES2022-compatible runtime or a build pipeline that transforms the library for their supported browsers.
+Hotkeys packages ship ES2022 JavaScript as ESM only and require Node.js 20 or newer when used in Node.js, except the Octane adapter, which requires Node.js 22.22.2 or newer. Browser applications need an ES2022-compatible runtime or a build pipeline that transforms the library for their supported browsers.
 
 Use ESM imports, such as `import { parseHotkey } from '@tanstack/hotkeys'`. CommonJS builds and `require` export conditions are no longer provided. CommonJS applications can use dynamic `import()` or migrate their consuming modules to ESM.
 
@@ -54,4 +54,19 @@ Key-state primitives expose held logical keys and physical codes. `matchesHeldMo
 
 `ParsedHotkey` preserves identity as a union: logical bindings have `key`, physical bindings have `code`. Narrow with `parsed.code !== undefined` before reading it. Shared resolved flags and the ordered modifier list live in `ParsedModifiers`. `parseKeyboardEvent` produces logical identity; code recording constructs physical identity explicitly.
 
-Start with the [React Quick Start](./framework/react/quick-start), [Angular Quick Start](./framework/angular/quick-start), [Vue Quick Start](./framework/vue/quick-start), or [Lit Quick Start](./framework/lit/quick-start). Explore the [Router kitchen sink](./framework/react/examples/kitchen-sink) for route lifetimes, recording, and hints, or the [vanilla formatter playground](./framework/vanilla/examples/formatForDisplay) for display options.
+## Framework guides
+
+| Framework | Start here |
+| --- | --- |
+| Alpine | [Quick start](./framework/alpine/quick-start) |
+| Angular | [Quick start](./framework/angular/quick-start) |
+| Ember | [Quick start](./framework/ember/quick-start) |
+| Lit | [Quick start](./framework/lit/quick-start) |
+| Octane | [Quick start](./framework/octane/quick-start) |
+| Preact | [Hotkeys guide](./framework/preact/guides/hotkeys) |
+| React | [Quick start](./framework/react/quick-start) |
+| Solid | [Hotkeys guide](./framework/solid/guides/hotkeys) |
+| Svelte | [Quick start](./framework/svelte/quick-start) |
+| Vue | [Quick start](./framework/vue/quick-start) |
+
+Explore a kitchen sink for [Alpine](./framework/alpine/examples/kitchen-sink), [Ember](./framework/ember/examples/kitchen-sink), [Octane](./framework/octane/examples/kitchen-sink), or [React](./framework/react/examples/kitchen-sink) to see route lifetimes, recording, and hints. Try the [vanilla formatter playground](./framework/vanilla/examples/formatForDisplay) for display options.
