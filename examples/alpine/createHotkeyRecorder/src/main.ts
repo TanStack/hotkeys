@@ -72,7 +72,7 @@ class App {
   private hotkeysScope = createHotkeysScope()
 
   usage0 =
-    'const recorder = scope.createHotkeyRecorder({\n  onRecord: (value) => this.updateShortcut(value),\n  onCancel: () => this.cancelEditing(),\n  onClear: () => this.clearShortcut(),\n})\nscope.createHotkeys(\n  () => this.definitions,\n  () => ({ enabled: !recorder.isRecording }),\n)\nconst registrations = scope.createHotkeyRegistrations()\nrecorder.startRecording()'
+    'const recorder = scope.createHotkeyRecorder({\n  onRecord: (value) => this.updateShortcut(value),\n  onCancel: () => this.cancelEditing(),\n  onClear: () => this.clearShortcut(),\n})\nscope.createHotkeys(() => this.definitions)\nconst registrations = scope.createHotkeyRegistrations()\nrecorder.startRecording()'
   shortcuts: Array<Shortcut> = INITIAL_SHORTCUTS
   editingId: string | null = null
   draftName = ''
@@ -189,7 +189,6 @@ class App {
             console.log(`${s.name} triggered:`, s.hotkey)
           },
           options: {
-            enabled: !this.isRecording,
             meta: {
               name: s.name,
               description: s.description,

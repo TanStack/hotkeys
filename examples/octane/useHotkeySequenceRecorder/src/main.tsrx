@@ -133,7 +133,6 @@ function App() @{
           console.log(`${s.name} triggered:`, s.sequence)
         },
         options: {
-          enabled: !isRecording,
           meta: {
             name: s.name,
             description: s.description,
@@ -240,7 +239,6 @@ function App() @{
       sequence: s.sequence,
       callback: () => handleAction(s.id),
       options: {
-        enabled: !isRecording,
         meta: { name: s.name, description: s.description },
       },
     })),

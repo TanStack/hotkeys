@@ -128,7 +128,6 @@ function App() @{
           console.log(`${s.name} triggered:`, s.hotkey)
         },
         options: {
-          enabled: !isRecording,
           meta: {
             name: s.name,
             description: s.description,
@@ -227,7 +226,6 @@ function App() @{
       hotkey: s.hotkey,
       callback: () => handleAction(s.id),
       options: {
-        enabled: !isRecording,
         meta: { name: s.name, description: s.description },
       },
     })),

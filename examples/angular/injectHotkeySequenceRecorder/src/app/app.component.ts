@@ -145,7 +145,6 @@ export class AppComponent {
             console.log(`${s.name} triggered:`, s.sequence)
           },
           options: {
-            enabled: !this.recorder.isRecording(),
             meta: {
               name: s.name,
               description: s.description,

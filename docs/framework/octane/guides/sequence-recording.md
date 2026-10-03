@@ -5,6 +5,8 @@ id: sequence-recording
 
 Use `useHotkeySequenceRecorder` to record an ordered sequence of chords. Recording defaults to physical codes, such as `['[KeyG]', 'Alt+[KeyS]']`. Use `recordBy: 'key'` for logical characters. Pass the saved array directly to `useHotkeySequence`.
 
+TanStack Hotkeys automatically suppresses registered hotkey and sequence callbacks while any recorder is active. You do not need to set `enabled` from `isRecording`. Registrations remain available for conflict detection, and recorded keys stay suppressed through repeats and key release.
+
 ## Basic usage
 
 
@@ -16,7 +18,7 @@ import type { HotkeySequence } from '@tanstack/octane-hotkeys'
 export function SequenceSettings() @{
 	const [binding, setBinding] = useState<HotkeySequence>(['G', 'G'])
 	const recorder = useHotkeySequenceRecorder({ onRecord: setBinding })
-	useHotkeySequence(binding, () => console.log('Go to top'), { enabled: !recorder.isRecording })
+	useHotkeySequence(binding, () => console.log('Go to top'))
 
 	<div>
 		<button type="button" onClick={recorder.startRecording}>Record sequence</button>

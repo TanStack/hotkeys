@@ -5,6 +5,8 @@ id: sequence-recording
 
 Use `createHotkeySequenceRecorder` to record an ordered sequence of chords. Recording defaults to physical codes, such as `['[KeyG]', 'Alt+[KeyS]']`. Use `recordBy: 'key'` for logical characters. Pass the saved array directly to `createHotkeySequence`.
 
+TanStack Hotkeys automatically suppresses registered hotkey and sequence callbacks while any recorder is active. You do not need to set `enabled` from `isRecording`. Registrations remain available for conflict detection, and recorded keys stay suppressed through repeats and key release.
+
 ## Reactive options
 
 Recorder options support [property getters and functions returning options](./hotkeys.md#property-getters). Updated callbacks, validation, and recording settings apply during an active session without restarting it. Create getters in `init()` so they read the reactive component instance.
@@ -25,8 +27,7 @@ class SequenceSettings {
 		this.recorder = this.scope.createHotkeySequenceRecorder({
 			onRecord: (sequence) => { this.binding = sequence },
 		})
-		this.scope.createHotkeySequence(() => this.binding, () => console.log('Go to top'),
-			() => ({ enabled: !this.recorder.isRecording }))
+		this.scope.createHotkeySequence(() => this.binding, () => console.log('Go to top'))
 	}
 	get preview() {
 		return this.recorder.steps.map((step) => formatForDisplay(step)).join(' → ')

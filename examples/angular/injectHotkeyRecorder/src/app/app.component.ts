@@ -141,7 +141,6 @@ export class AppComponent {
             console.log(`${s.name} triggered:`, s.hotkey)
           },
           options: {
-            enabled: !this.recorder.isRecording(),
             meta: {
               name: s.name,
               description: s.description,

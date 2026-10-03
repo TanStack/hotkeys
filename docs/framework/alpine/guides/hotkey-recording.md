@@ -5,6 +5,8 @@ id: hotkey-recording
 
 Use `createHotkeyRecorder` to build a shortcut customization UI. Recording defaults to physical codes, producing values such as `Mod+[KeyS]`. Store that value directly and pass it to `createHotkey`. Use `formatForDisplay` for the label.
 
+TanStack Hotkeys automatically suppresses registered hotkey and sequence callbacks while any recorder is active. You do not need to set `enabled` from `isRecording`. Registrations remain available for conflict detection, and recorded keys stay suppressed through repeats and key release.
+
 ## Reactive options
 
 Recorder options support [property getters and functions returning options](./hotkeys.md#property-getters). Updated callbacks, validation, and recording settings apply during an active session without restarting it. Create getters in `init()` so they read the reactive component instance.
@@ -27,8 +29,7 @@ class ShortcutSettings {
 			onRecord: (hotkey) => { this.binding = hotkey },
 			onClear: () => { this.binding = 'Mod+S' },
 		})
-		this.scope.createHotkey(() => this.binding, () => console.log('Saved'),
-			() => ({ enabled: !this.recorder.isRecording }))
+		this.scope.createHotkey(() => this.binding, () => console.log('Saved'))
 	}
 	get label() { return formatForDisplay(this.binding) }
 	destroy() { this.scope.destroy() }
@@ -152,7 +153,7 @@ this.scope.createHotkeys(() => this.shortcuts.map((shortcut) => ({
 	hotkey: shortcut.hotkey,
 	callback: () => this.runAction(shortcut.id),
 	options: { meta: { name: shortcut.name } },
-})), () => ({ enabled: !this.recorder.isRecording }))
+})))
 ```
 
 The [createHotkeyRecorder example](../examples/createHotkeyRecorder) includes multiple actions, editable names and descriptions, create/delete controls, reset and clear behavior, cancellation, and a live registry. The [kitchen sink](../examples/kitchen-sink) also demonstrates conflict feedback and physical versus logical recording.

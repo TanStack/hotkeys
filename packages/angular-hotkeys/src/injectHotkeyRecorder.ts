@@ -49,7 +49,6 @@ export interface AngularHotkeyRecorder {
  *     injectHotkey(
  *       () => this.shortcut(),
  *       () => this.handleSave(),
- *       () => ({ enabled: !this.recorder.isRecording() }),
  *     )
  *   }
  * }

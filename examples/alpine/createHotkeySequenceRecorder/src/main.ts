@@ -74,7 +74,7 @@ class App {
 
   formatForDisplay = formatForDisplay
   usage0 =
-    'const recorder = scope.createHotkeySequenceRecorder({\n  onRecord: (value) => this.updateShortcut(value),\n  onCancel: () => this.cancelEditing(),\n  onClear: () => this.clearShortcut(),\n})\nscope.createHotkeySequences(\n  () => this.definitions,\n  () => ({ enabled: !recorder.isRecording }),\n)\nconst registrations = scope.createHotkeyRegistrations()\nrecorder.startRecording()'
+    'const recorder = scope.createHotkeySequenceRecorder({\n  onRecord: (value) => this.updateShortcut(value),\n  onCancel: () => this.cancelEditing(),\n  onClear: () => this.clearShortcut(),\n})\nscope.createHotkeySequences(() => this.definitions)\nconst registrations = scope.createHotkeyRegistrations()\nrecorder.startRecording()'
   shortcuts: Array<Shortcut> = INITIAL_SHORTCUTS
   editingId: string | null = null
   draftName = ''
@@ -191,7 +191,6 @@ class App {
             console.log(`${s.name} triggered:`, s.sequence)
           },
           options: {
-            enabled: !this.isRecording,
             meta: {
               name: s.name,
               description: s.description,

@@ -112,7 +112,6 @@
           console.log(`${s.name} triggered:`, s.hotkey)
         },
         options: {
-          enabled: !isRecording,
           meta: {
             name: s.name,
             description: s.description,
@@ -277,7 +276,6 @@ createHotkeys(() =>
     hotkey: s.hotkey,
     callback: () => handleAction(s.id),
     options: {
-      enabled: !isRecording,
       meta: { name: s.name, description: s.description },
     },
   })),

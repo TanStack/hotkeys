@@ -82,7 +82,7 @@ interface ShortcutListItemProps {
 
 class App extends Component {
   usage0 =
-    'recorder = useHotkeyRecorder(this, {\n  onRecord: (value) => this.updateShortcut(value),\n  onCancel: () => this.cancelEditing(),\n  onClear: () => this.clearShortcut(),\n})\nregistrations = useHotkeyRegistrations(this)\n\n<template>\n  {{useHotkeys this.definitions enabled=(not this.recorder.isRecording)}}\n  <button type="button" {{on "click" this.recorder.startRecording}}>Record</button>\n</template>'
+    'recorder = useHotkeyRecorder(this, {\n  onRecord: (value) => this.updateShortcut(value),\n  onCancel: () => this.cancelEditing(),\n  onClear: () => this.clearShortcut(),\n})\nregistrations = useHotkeyRegistrations(this)\n\n<template>\n  {{useHotkeys this.definitions}}\n  <button type="button" {{on "click" this.recorder.startRecording}}>Record</button>\n</template>'
   @tracked shortcuts: Array<Shortcut> = INITIAL_SHORTCUTS
   @tracked editingId: string | null = null
   @tracked draftName: string = ''
@@ -151,7 +151,6 @@ class App extends Component {
           console.log(`${s.name} triggered:`, s.hotkey)
         },
         options: {
-          enabled: !this.isRecording,
           meta: {
             name: s.name,
             description: s.description,

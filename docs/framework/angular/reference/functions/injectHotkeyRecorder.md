@@ -7,7 +7,7 @@ title: injectHotkeyRecorder
 function injectHotkeyRecorder(options): AngularHotkeyRecorder;
 ```
 
-Defined in: [injectHotkeyRecorder.ts:58](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L58)
+Defined in: [injectHotkeyRecorder.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L57)
 
 Angular inject-based API for recording keyboard shortcuts.
 
@@ -44,7 +44,6 @@ export class ShortcutSettingsComponent {
     injectHotkey(
       () => this.shortcut(),
       () => this.handleSave(),
-      () => ({ enabled: !this.recorder.isRecording() }),
     )
   }
 }

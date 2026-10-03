@@ -198,7 +198,6 @@ injectHotkeySequences(() =>
       sequence: s.sequence,
       callback: () => handleAction(s.id),
       options: {{ '{' }}
-        enabled: !this.recorder.isRecording(),
         meta: {{ '{' }} name: s.name, description: s.description {{ '}' }},
       {{ '}' }},
     {{ '}' }})),

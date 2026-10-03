@@ -7,6 +7,8 @@ TanStack Hotkeys includes the `useHotkeySequenceRecorder` hook for building UIs 
 
 Sequence recording uses `recordBy: 'code'` by default, preserving every step as a physical string such as `['[KeyG]', 'Alt+[KeyS]']`. Set `recordBy: 'key'` for logical characters. The shared rejection and conflict options follow the [hotkey recording guide](./hotkey-recording.md#validation-and-conflicts).
 
+TanStack Hotkeys automatically suppresses registered hotkey and sequence callbacks while any recorder is active. You do not need to set `enabled` from `isRecording`. Registrations remain available for conflict detection, and recorded keys stay suppressed through repeats and key release.
+
 ## Basic usage
 
 ```tsx

@@ -127,7 +127,6 @@ useHotkeySequences(() =>
         console.log(`${s.name} triggered:`, s.sequence)
       },
       options: {
-        enabled: !recorder.isRecording.value,
         meta: {
           name: s.name,
           description: s.description,
@@ -198,7 +197,6 @@ useHotkeySequences(
     sequence: s.sequence,
     callback: () => handleAction(s.id),
     options: {
-      enabled: !isRecording,
       meta: { name: s.name, description: s.description },
     },
   })),

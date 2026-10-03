@@ -165,8 +165,6 @@ export class MyApp extends LitElement {
   private _reregisterHotkeys(): void {
     this._unregisterAll()
 
-    if (this.recorder.isRecording) return
-
     const manager = getHotkeyManager()
 
     for (const shortcut of this._shortcuts) {
@@ -195,7 +193,6 @@ export class MyApp extends LitElement {
     this._editingId = id
     this._draftName = shortcut.name
     this._draftDescription = shortcut.description
-    this._unregisterAll()
     this.recorder.startRecording()
   }
 
@@ -233,7 +230,6 @@ export class MyApp extends LitElement {
     this._editingId = newShortcut.id
     this._draftName = ''
     this._draftDescription = ''
-    this._unregisterAll()
     this.recorder.startRecording()
   }
 

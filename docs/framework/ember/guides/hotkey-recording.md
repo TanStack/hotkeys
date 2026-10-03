@@ -5,6 +5,8 @@ id: hotkey-recording
 
 Use `useHotkeyRecorder` to build a shortcut customization UI. Recording defaults to physical codes, producing values such as `Mod+[KeyS]`. Store that value directly and pass it to `useHotkey`. Use `formatForDisplay` for the label.
 
+TanStack Hotkeys automatically suppresses registered hotkey and sequence callbacks while any recorder is active. You do not need to set `enabled` from `isRecording`. Registrations remain available for conflict detection, and recorded keys stay suppressed through repeats and key release.
+
 ## Reactive options
 
 Recorder options support [property getters and functions returning options](./hotkeys.md#property-getters). Updated callbacks, validation, and recording settings apply during an active session without restarting it.
@@ -26,11 +28,10 @@ export default class ShortcutSettings extends Component {
 		onClear: () => { this.binding = 'Mod+S' },
 	})
 	save = () => console.log('Saved')
-	get enabled() { return !this.recorder.isRecording }
 	get label() { return formatForDisplay(this.binding) }
 
 	<template>
-		{{useHotkey this.binding this.save enabled=this.enabled}}
+		{{useHotkey this.binding this.save}}
 		<kbd>{{this.label}}</kbd>
 		<button type="button" {{on 'click' this.recorder.startRecording}}>Record</button>
 		{{#if this.recorder.isRecording}}
@@ -146,10 +147,9 @@ get definitions() {
 		options: { meta: { name: shortcut.name } },
 	}))
 }
-get enabled() { return !this.recorder.isRecording }
 
 <template>
-	{{useHotkeys this.definitions enabled=this.enabled}}
+	{{useHotkeys this.definitions}}
 </template>
 ```
 
