@@ -26,7 +26,7 @@
     "format": "prettier --experimental-cli --ignore-unknown '**/*' --write",
     "generate-docs": "node scripts/generate-docs.ts && pnpm run copy:readme",
     "lint": "nx affected --target=lint --exclude=examples/**",
-    "lint:all": "pnpm run test:eslint && pnpm -r --filter \"./examples/**\" --if-present lint",
+    "lint:all": "pnpm run test:eslint && nx run-many --target=lint --projects=\"examples/**\"",
     "lint:fix": "nx affected --target=lint:fix --exclude=examples/**",
     "lint:fix:all": "nx run-many --targets=lint:fix",
     "test": "pnpm run test:ci",
