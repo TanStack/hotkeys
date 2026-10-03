@@ -1,6 +1,4 @@
-import { createRoot, delegateEvents, useEffect, useState } from 'octane'
-
-delegateEvents(['click', 'input', 'keydown'])
+import { createRoot, useEffect, useState } from 'octane'
 
 import {
   HotkeysProvider,
@@ -29,7 +27,6 @@ function App() @{
       })
     }
   }, [heldKeys])
-  console.log('heldKeys', heldKeys)
   <div className="app">
         <header>
           <h1>useHeldKeys</h1>
@@ -43,7 +40,7 @@ function App() @{
           <section className="demo-section">
             <h2>Currently Held Keys</h2>
             <div className="key-display">
-              @if (heldKeys.length > 0) { @for (const [index, key] of Array.from((heldKeys).entries()); key key) { const code = heldCodes[key]
+              @if (heldKeys.length > 0) { @for (const [index, key] of Array.from(heldKeys.entries()); key key) { const code = heldCodes[key]
   <>
                       @if (index > 0) { <span className="plus">+</span> }
                       <kbd className="large">
@@ -61,15 +58,11 @@ function App() @{
             <h2>Usage</h2>
             <pre className="code-block">{`import { useHeldKeys } from '@tanstack/octane-hotkeys'
 
-  function KeyDisplay() {
-    const heldKeys = useHeldKeys()
+function KeyDisplay() @{
+  const heldKeys = useHeldKeys()
 
-    return (
-      <div>
-        Currently pressed: {heldKeys.join(' + ') || 'None'}
-      </div>
-    )
-  }`}</pre>
+  <div>Currently pressed: {heldKeys.join(' + ') || 'None'}</div>
+}`}</pre>
           </section>
 
           <section className="demo-section">
@@ -87,7 +80,7 @@ function App() @{
           <section className="demo-section">
             <h2>Recent Combinations</h2>
             @if (history.length > 0) { <ul className="history-list">
-                @for (const [i, combo] of Array.from((history).entries()); key i) {
+                @for (const [i, combo] of Array.from(history.entries()); key i) {
   <li>{combo}</li> }
               </ul> } @else { <p className="placeholder">Press some key combinations...</p> }
             <button onClick={() => setHistory([])}>Clear History</button>
@@ -103,7 +96,6 @@ function App() @{
             </ul>
           </section>
         </main>
-
 
       </div>
 }

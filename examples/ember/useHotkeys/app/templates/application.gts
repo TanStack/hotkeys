@@ -1,18 +1,15 @@
+import { fn } from '@ember/helper'
+import { validateHotkey, normalizeHotkey } from '@tanstack/ember-hotkeys'
 import Component from '@glimmer/component'
 import { tracked } from '@glimmer/tracking'
 
 import { on } from '@ember/modifier'
-import { fn } from '@ember/helper'
 import {
   formatForDisplay,
   useHotkeys,
   useHotkeyRegistrations,
 } from '@tanstack/ember-hotkeys'
-import type {
-  Hotkey,
-  HotkeyDefinition,
-  HotkeyOptions,
-} from '@tanstack/ember-hotkeys'
+import type { Hotkey, HotkeyDefinition } from '@tanstack/ember-hotkeys'
 const eq = (a: unknown, b: unknown) => a === b
 const neq = (a: unknown, b: unknown) => a !== b
 const gt = (a: number, b: number) => a > b
@@ -21,7 +18,7 @@ const or = <T, U>(a: T, b: U) => a || b
 const not = (a: unknown) => !a
 interface DynamicShortcut {
   id: number
-  hotkey: string
+  hotkey: Hotkey
   label: string
   description: string
   count: number
@@ -78,7 +75,7 @@ class BasicMultiHotkeys extends Component {
   @tracked saveCount: number = 0
   @tracked undoCount: number = 0
   @tracked redoCount: number = 0
-  get hotkeyDefinitions(): Array<HotkeyDefinition> {
+  get definitions(): Array<HotkeyDefinition> {
     return [
       {
         hotkey: 'Shift+S',
@@ -114,7 +111,7 @@ class BasicMultiHotkeys extends Component {
   }
 
   <template>
-    {{useHotkeys this.hotkeyDefinitions}}
+    {{useHotkeys this.definitions}}
     <div class='demo-section'>
       <h2>Basic Multi-Hotkey Registration</h2>
       <p>
@@ -153,8 +150,8 @@ class CommonOptionsDemo extends Component {
     "get definitions() {\n  return [\n    { hotkey: 'Alt+J', callback: this.actionA },\n    { hotkey: 'Alt+L', callback: this.actionC, options: { enabled: true } },\n  ]\n}\n\n<template>{{useHotkeys this.definitions enabled=this.enabled}}</template>"
   @tracked enabled: boolean = true
   @tracked counts: { a: number; b: number; c: number } = { a: 0, b: 0, c: 0 }
-  handleClick1 = () => (this.enabled = !this.enabled)
-  get hotkeyDefinitions(): Array<HotkeyDefinition> {
+  toggleEnabled = () => (this.enabled = !this.enabled)
+  get definitions(): Array<HotkeyDefinition> {
     return [
       {
         hotkey: 'Alt+J',
@@ -192,12 +189,9 @@ class CommonOptionsDemo extends Component {
       },
     ]
   }
-  get options0(): HotkeyOptions {
-    return { enabled: this.enabled }
-  }
 
   <template>
-    {{useHotkeys this.hotkeyDefinitions enabled=this.options0.enabled}}
+    {{useHotkeys this.definitions enabled=this.enabled}}
     <div class='demo-section'>
       <h2>Common Options with Per-Hotkey Overrides</h2>
       <p>
@@ -211,7 +205,7 @@ class CommonOptionsDemo extends Component {
         so it always works.
       </p>
       <div style='margin-bottom:12px'>
-        <button {{on 'click' this.handleClick1}}>
+        <button {{on 'click' this.toggleEnabled}}>
           {{if this.enabled 'Disable' 'Enable'}}
           common hotkeys
         </button>
@@ -243,26 +237,20 @@ class DynamicHotkeysDemo extends Component {
   @tracked newHotkey: string = ''
   @tracked newLabel: string = ''
   @tracked newDescription: string = ''
-  value1 = (s: DynamicShortcut) => s.hotkey as Hotkey
-  handleClick2 = (s: DynamicShortcut) => this.removeShortcut(s.id)
-  handleInput3 = (e: Event) =>
+  @tracked error = ''
+  remove = (s: DynamicShortcut) => this.removeShortcut(s.id)
+  updateHotkey = (e: Event) =>
     (this.newHotkey = (e.currentTarget as HTMLInputElement).value)
-  handleKeydown4 = (e: KeyboardEvent) => {
+  addOnEnter = (e: KeyboardEvent) => {
     if (e.key === 'Enter') this.addShortcut()
   }
-  handleInput5 = (e: Event) =>
+  updateLabel = (e: Event) =>
     (this.newLabel = (e.currentTarget as HTMLInputElement).value)
-  handleKeydown6 = (e: KeyboardEvent) => {
-    if (e.key === 'Enter') this.addShortcut()
-  }
-  handleInput7 = (e: Event) =>
+  updateDescription = (e: Event) =>
     (this.newDescription = (e.currentTarget as HTMLInputElement).value)
-  handleKeydown8 = (e: KeyboardEvent) => {
-    if (e.key === 'Enter') this.addShortcut()
-  }
   get definitions(): Array<HotkeyDefinition> {
     return this.shortcuts.map((s) => ({
-      hotkey: s.hotkey as Hotkey,
+      hotkey: s.hotkey,
       callback: () => {
         this.shortcuts = this.shortcuts.map((item) =>
           item.id === s.id ? { ...item, count: item.count + 1 } : item,
@@ -273,17 +261,20 @@ class DynamicHotkeysDemo extends Component {
       },
     }))
   }
-  get hotkeyDefinitions(): Array<HotkeyDefinition> {
-    return this.definitions
-  }
   addShortcut = () => {
     const trimmed = this.newHotkey.trim()
-    if (!trimmed || !this.newLabel.trim()) return
+    if (!this.newLabel.trim()) return
+    const validation = validateHotkey(trimmed)
+    if (!validation.valid || validation.warnings.length > 0) {
+      this.error = [...validation.errors, ...validation.warnings].join(' ')
+      return
+    }
+    this.error = ''
     this.shortcuts = [
       ...this.shortcuts,
       {
         id: nextId++,
-        hotkey: trimmed,
+        hotkey: normalizeHotkey(trimmed),
         label: this.newLabel.trim(),
         description: this.newDescription.trim(),
         count: 0,
@@ -298,7 +289,7 @@ class DynamicHotkeysDemo extends Component {
   }
 
   <template>
-    {{useHotkeys this.hotkeyDefinitions}}
+    {{useHotkeys this.definitions}}
     <div class='demo-section'>
       <h2>Dynamic Hotkey List</h2>
       <p>
@@ -307,12 +298,13 @@ class DynamicHotkeysDemo extends Component {
         accepts a dynamic array, this is safe without breaking the registration
         lifecycle.
       </p>
+      {{#if this.error}}<p role='alert'>{{this.error}}</p>{{/if}}
       <div class='dynamic-list'>
         {{#each this.shortcuts key='id' as |s|}}<div class='dynamic-item'>
-            <kbd>{{formatForDisplay (this.value1 s)}}</kbd>
+            <kbd>{{formatForDisplay s.hotkey}}</kbd>
             <span>{{s.label}}</span>
             <span class='count'>{{s.count}}</span>
-            <button {{on 'click' (fn this.handleClick2 s)}}>Remove</button>
+            <button {{on 'click' (fn this.remove s)}}>Remove</button>
           </div>{{/each}}
         {{#if (eq this.shortcuts.length 0)}}<p class='hint'>No shortcuts registered.
             Add one below.</p>{{/if}}
@@ -322,22 +314,22 @@ class DynamicHotkeysDemo extends Component {
           type='text'
           placeholder='Hotkey (e.g. Shift+D)'
           value={{this.newHotkey}}
-          {{on 'input' this.handleInput3}}
-          {{on 'keydown' this.handleKeydown4}}
+          {{on 'input' this.updateHotkey}}
+          {{on 'keydown' this.addOnEnter}}
         />
         <input
           type='text'
           placeholder='Name (e.g. Action D)'
           value={{this.newLabel}}
-          {{on 'input' this.handleInput5}}
-          {{on 'keydown' this.handleKeydown6}}
+          {{on 'input' this.updateLabel}}
+          {{on 'keydown' this.addOnEnter}}
         />
         <input
           type='text'
           placeholder='Description (optional)'
           value={{this.newDescription}}
-          {{on 'input' this.handleInput7}}
-          {{on 'keydown' this.handleKeydown8}}
+          {{on 'input' this.updateDescription}}
+          {{on 'keydown' this.addOnEnter}}
         />
         <button
           {{on 'click' this.addShortcut}}
@@ -354,12 +346,12 @@ class DynamicHotkeysDemo extends Component {
 class RegistrationsViewer extends Component {
   usage0 =
     'registrations = useHotkeyRegistrations(this)\n\n<template>\n  {{#each this.registrations.hotkeys key="id" as |registration|}}\n    <p>{{registration.options.meta.name}}: {{registration.triggerCount}}</p>\n  {{/each}}\n</template>'
-  registrationState0 = useHotkeyRegistrations(this)
+  registrationsState = useHotkeyRegistrations(this)
   get hotkeys() {
-    return this.registrationState0.hotkeys
+    return this.registrationsState.hotkeys
   }
   get sequences() {
-    return this.registrationState0.sequences
+    return this.registrationsState.sequences
   }
 
   <template>

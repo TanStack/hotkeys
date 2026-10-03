@@ -17,56 +17,47 @@ class App {
 
   init() {
     this.addToHistory = this.addToHistory.bind(this)
-    this.hotkeysScope.createHotkeySequence(
-      () => ['G', 'G'],
-      () => this.addToHistory('gg → Go to top'),
+    this.hotkeysScope.createHotkeySequence(['G', 'G'], () =>
+      this.addToHistory('gg → Go to top'),
+    )
+    this.hotkeysScope.createHotkeySequence(['Shift+G'], () =>
+      this.addToHistory('G → Go to bottom'),
+    )
+    this.hotkeysScope.createHotkeySequence(['D', 'D'], () =>
+      this.addToHistory('dd → Delete line'),
+    )
+    this.hotkeysScope.createHotkeySequence(['Y', 'Y'], () =>
+      this.addToHistory('yy → Yank (copy) line'),
+    )
+    this.hotkeysScope.createHotkeySequence(['D', 'W'], () =>
+      this.addToHistory('dw → Delete word'),
+    )
+    this.hotkeysScope.createHotkeySequence(['C', 'I', 'W'], () =>
+      this.addToHistory('ciw → Change inner word'),
     )
     this.hotkeysScope.createHotkeySequence(
-      () => ['Shift+G'],
-      () => this.addToHistory('G → Go to bottom'),
-    )
-    this.hotkeysScope.createHotkeySequence(
-      () => ['D', 'D'],
-      () => this.addToHistory('dd → Delete line'),
-    )
-    this.hotkeysScope.createHotkeySequence(
-      () => ['Y', 'Y'],
-      () => this.addToHistory('yy → Yank (copy) line'),
-    )
-    this.hotkeysScope.createHotkeySequence(
-      () => ['D', 'W'],
-      () => this.addToHistory('dw → Delete word'),
-    )
-    this.hotkeysScope.createHotkeySequence(
-      () => ['C', 'I', 'W'],
-      () => this.addToHistory('ciw → Change inner word'),
-    )
-    this.hotkeysScope.createHotkeySequence(
-      () => ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown'],
+      ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown'],
       () => this.addToHistory('↑↑↓↓ → Konami code (partial)'),
-      () => ({ timeout: 1500 }),
+      { timeout: 1500 },
     )
     this.hotkeysScope.createHotkeySequence(
-      () => ['ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'],
+      ['ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'],
       () => this.addToHistory('←→←→ → Side to side!'),
-      () => ({ timeout: 1500 }),
+      { timeout: 1500 },
     )
     this.hotkeysScope.createHotkeySequence(
-      () => ['H', 'E', 'L', 'L', 'O'],
+      ['H', 'E', 'L', 'L', 'O'],
       () => this.addToHistory('hello → Hello World!'),
       () => ({ enabled: this.helloSequenceEnabled }),
     )
     this.hotkeysScope.createHotkeySequence(
-      () => ['Shift+[KeyR]', 'Shift+[KeyT]'],
+      ['Shift+[KeyR]', 'Shift+[KeyT]'],
       () => this.addToHistory('⇧R ⇧T → Chained Shift+letter (2 steps)'),
     )
-    this.hotkeysScope.createHotkey(
-      () => 'Escape',
-      () => {
-        this.lastSequence = null
-        this.history = []
-      },
-    )
+    this.hotkeysScope.createHotkey('Escape', () => {
+      this.lastSequence = null
+      this.history = []
+    })
   }
   destroy() {
     this.hotkeysScope.destroy()

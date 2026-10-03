@@ -3,11 +3,31 @@ id: EmberHotkeysScope
 title: EmberHotkeysScope
 ---
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L12)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L14)
 
-Helpers and recorder factories with shared defaults. Owners retain their own cleanup.
+Helpers, modifiers, and recorder factories with shared defaults. Owners retain their own cleanup.
 
 ## Properties
+
+### onHotkey
+
+```ts
+onHotkey: typeof onHotkey;
+```
+
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L15)
+
+***
+
+### onHotkeys
+
+```ts
+onHotkeys: typeof onHotkeys;
+```
+
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L16)
+
+***
 
 ### useHotkey
 
@@ -15,7 +35,7 @@ Helpers and recorder factories with shared defaults. Owners retain their own cle
 useHotkey: typeof useHotkey;
 ```
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L13)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L17)
 
 ***
 
@@ -25,7 +45,7 @@ Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:13](https://github
 useHotkeyRecorder: (owner, options) => EmberHotkeyRecorder;
 ```
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L17)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L21)
 
 Creates an owned recorder with autotracked state and current callback options.
 
@@ -51,7 +71,7 @@ Creates an owned recorder with autotracked state and current callback options.
 useHotkeys: typeof useHotkeys;
 ```
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L14)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L18)
 
 ***
 
@@ -61,7 +81,7 @@ Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:14](https://github
 useHotkeySequence: typeof useHotkeySequence;
 ```
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L15)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L19)
 
 ***
 
@@ -71,7 +91,7 @@ Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:15](https://github
 useHotkeySequenceRecorder: (owner, options) => EmberHotkeySequenceRecorder;
 ```
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L18)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L22)
 
 Creates an owned sequence recorder with explicit commit and cancel controls.
 
@@ -97,4 +117,4 @@ Creates an owned sequence recorder with explicit commit and cancel controls.
 useHotkeySequences: typeof useHotkeySequences;
 ```
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L16)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L20)

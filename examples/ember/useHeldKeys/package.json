@@ -27,6 +27,7 @@
     "@glimmer/component": "2.1.1",
     "@tanstack/ember-hotkeys": "workspace:*",
     "decorator-transforms": "2.4.0",
+    "ember-modifier": "4.2.2",
     "ember-source": "7.3.0",
     "ember-strict-application-resolver": "0.1.1"
   },

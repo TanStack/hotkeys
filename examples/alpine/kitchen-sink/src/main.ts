@@ -1,12 +1,16 @@
 import Alpine from 'alpinejs'
 import { createHotkeysScope, formatForDisplay } from '@tanstack/alpine-hotkeys'
-import './index.css'
 import type {
+  AlpineHotkeyRecorder,
+  AlpineHotkeySequenceRecorder,
+  AlpineHotkeyState,
   Hotkey,
+  HotkeyRegistrationsResult,
   HotkeySequence,
   RecorderKeyMode,
   RegisterableHotkey,
 } from '@tanstack/alpine-hotkeys'
+import './index.css'
 
 const pages = [
   { to: '/', label: 'Tickets', shortcut: 'Alt+[Digit1]' },
@@ -20,12 +24,7 @@ class Hint {
   private hotkeysScope = createHotkeysScope({ hotkey: { requireReset: true } })
 
   formatForDisplay = formatForDisplay
-  visibleState!: ReturnType<
-    ReturnType<typeof createHotkeysScope>['createHotkeyHint']
-  >
-  get visible() {
-    return this.visibleState.value
-  }
+  visible!: AlpineHotkeyState<boolean>
   constructor(
     public props: () => {
       hotkey: RegisterableHotkey
@@ -33,9 +32,7 @@ class Hint {
     },
   ) {}
   init() {
-    this.visibleState = this.hotkeysScope.createHotkeyHint(
-      () => this.props().hotkey,
-    )
+    this.visible = this.hotkeysScope.createHotkeyHint(() => this.props().hotkey)
   }
   destroy() {
     this.hotkeysScope.destroy()
@@ -50,33 +47,16 @@ class Layout {
   currentPath: string = window.location.pathname
   showShortcuts = false
   activity: Array<string> = []
-  keysState!: ReturnType<
-    ReturnType<typeof createHotkeysScope>['createHeldKeys']
-  >
-  codesState!: ReturnType<
-    ReturnType<typeof createHotkeysScope>['createHeldKeyCodes']
-  >
-  shiftState!: ReturnType<
-    ReturnType<typeof createHotkeysScope>['createKeyHold']
-  >
-  registrationState0!: ReturnType<
-    ReturnType<typeof createHotkeysScope>['createHotkeyRegistrations']
-  >
+  keys!: AlpineHotkeyState<Array<string>>
+  codes!: AlpineHotkeyState<Record<string, string>>
+  shift!: AlpineHotkeyState<boolean>
+  registrationState0!: HotkeyRegistrationsResult
   navigate({ to }: { to: string }) {
     window.history.pushState({}, '', to)
     this.currentPath = to
   }
   log(message: string) {
     this.activity = [message, ...this.activity].slice(0, 6)
-  }
-  get keys() {
-    return this.keysState.value
-  }
-  get codes() {
-    return this.codesState.value
-  }
-  get shift() {
-    return this.shiftState.value
   }
   get hotkeys() {
     return this.registrationState0.hotkeys
@@ -98,9 +78,9 @@ class Layout {
   init() {
     this.navigate = this.navigate.bind(this)
     this.log = this.log.bind(this)
-    this.keysState = this.hotkeysScope.createHeldKeys()
-    this.codesState = this.hotkeysScope.createHeldKeyCodes()
-    this.shiftState = this.hotkeysScope.createKeyHold(() => 'Shift')
+    this.keys = this.hotkeysScope.createHeldKeys()
+    this.codes = this.hotkeysScope.createHeldKeyCodes()
+    this.shift = this.hotkeysScope.createKeyHold('Shift')
     this.registrationState0 = this.hotkeysScope.createHotkeyRegistrations()
     this.hotkeysScope.createHotkeys(
       () =>
@@ -113,16 +93,14 @@ class Layout {
             meta: { name: `Open ${page.label}`, group: 'Navigation' },
           },
         })),
-      () => ({ ignoreInputs: true }),
+      { ignoreInputs: true },
     )
     this.hotkeysScope.createHotkey(
-      () => 'Alt+Shift+[KeyK]',
+      'Alt+Shift+[KeyK]',
       () => (this.showShortcuts = !this.showShortcuts),
-      () => ({
-        ...{
-          meta: { name: 'Show shortcuts', group: 'Navigation' },
-        },
-      }),
+      {
+        meta: { name: 'Show shortcuts', group: 'Navigation' },
+      },
     )
     const onPopState = () => {
       this.currentPath = window.location.pathname
@@ -152,31 +130,19 @@ class Tickets {
   init() {
     this.create = this.create.bind(this)
     this.save = this.save.bind(this)
-    this.hotkeysScope.createHotkey(
-      () => 'Alt+[KeyC]',
-      this.create,
-      () => ({
-        ...{
-          enabled: this.enabled,
-          ignoreInputs: false,
-          meta: {
-            name: 'Create ticket',
-            description: 'Also works while entering a ticket note',
-            group: 'Tickets',
-          },
-        },
-      }),
-    )
-    this.hotkeysScope.createHotkey(
-      () => 'Alt+[KeyS]',
-      this.save,
-      () => ({
-        ...{
-          enabled: this.enabled,
-          meta: { name: 'Save pending ticket', group: 'Tickets' },
-        },
-      }),
-    )
+    this.hotkeysScope.createHotkey('Alt+[KeyC]', this.create, () => ({
+      enabled: this.enabled,
+      ignoreInputs: false,
+      meta: {
+        name: 'Create ticket',
+        description: 'Also works while entering a ticket note',
+        group: 'Tickets',
+      },
+    }))
+    this.hotkeysScope.createHotkey('Alt+[KeyS]', this.save, () => ({
+      enabled: this.enabled,
+      meta: { name: 'Save pending ticket', group: 'Tickets' },
+    }))
   }
   destroy() {
     this.hotkeysScope.destroy()
@@ -187,7 +153,7 @@ class EditorPane {
   private hotkeysScope = createHotkeysScope({ hotkey: { requireReset: true } })
 
   formatForDisplay = formatForDisplay
-  target = { current: null as HTMLFieldSetElement | null }
+  target: HTMLFieldSetElement | null = null
   text = 'One shortcut, two independent editors.'
   saves = 0
 
@@ -196,7 +162,7 @@ class EditorPane {
   ) {}
   init() {
     this.hotkeysScope.createHotkeys(
-      () => [
+      [
         {
           hotkey: 'Mod+[KeyS]',
           callback: () => {
@@ -223,7 +189,8 @@ class EditorPane {
         },
       ],
       () => ({
-        ...{ target: this.target.current, ignoreInputs: false },
+        target: this.target,
+        ignoreInputs: false,
       }),
     )
   }
@@ -239,12 +206,12 @@ class Editor {
   repeat = false
   count = 0
   bubble = false
-  scope = { current: null as HTMLFieldSetElement | null }
+  scope: HTMLFieldSetElement | null = null
 
   constructor(public props: () => { log: (message: string) => void }) {}
   init() {
     this.hotkeysScope.createHotkey(
-      () => 'Alt+[ArrowRight]',
+      'Alt+[ArrowRight]',
       () => (this.count = this.count + 1),
       () => ({
         requireReset: !this.repeat,
@@ -252,33 +219,29 @@ class Editor {
       }),
     )
     this.hotkeysScope.createHotkey(
-      () => 'Alt+[KeyB]',
+      'Alt+[KeyB]',
       () => this.props().log('Scoped B handler'),
       () => ({
-        ...{
-          target: this.scope.current,
-          stopPropagation: !this.bubble,
-          preventDefault: !this.bubble,
-          meta: { name: 'Scoped propagation demo', group: 'Editor' },
-        },
+        target: this.scope,
+        stopPropagation: !this.bubble,
+        preventDefault: !this.bubble,
+        meta: { name: 'Scoped propagation demo', group: 'Editor' },
       }),
     )
     this.hotkeysScope.createHotkey(
-      () => 'Alt+[KeyB]',
+      'Alt+[KeyB]',
       () => this.props().log('Document B handler received the bubbled event'),
-      () => ({
-        ...{ meta: { name: 'Document propagation demo', group: 'Editor' } },
-      }),
+      {
+        meta: { name: 'Document propagation demo', group: 'Editor' },
+      },
     )
     this.hotkeysScope.createHotkey(
-      () => 'Alt+[KeyU]',
+      'Alt+[KeyU]',
       () => this.props().log('Key released: keyup handler'),
-      () => ({
-        ...{
-          eventType: 'keyup',
-          meta: { name: 'Run on release', group: 'Editor' },
-        },
-      }),
+      {
+        eventType: 'keyup',
+        meta: { name: 'Run on release', group: 'Editor' },
+      },
     )
   }
   destroy() {
@@ -291,16 +254,14 @@ class Sequences {
 
   formatForDisplay = formatForDisplay
   timeout = 1000
-  registrationState2!: ReturnType<
-    ReturnType<typeof createHotkeysScope>['createHotkeyRegistrations']
-  >
+  registrationState2!: HotkeyRegistrationsResult
   get sequences() {
     return this.registrationState2.sequences
   }
   constructor(public props: () => { log: (message: string) => void }) {}
   init() {
     this.hotkeysScope.createHotkeySequence(
-      () => ['[KeyG]', '[KeyG]'],
+      ['[KeyG]', '[KeyG]'],
       () => this.props().log('Sequence: go to top'),
       () => ({
         timeout: this.timeout,
@@ -308,7 +269,7 @@ class Sequences {
       }),
     )
     this.hotkeysScope.createHotkeySequences(
-      () => [
+      [
         {
           sequence: ['[KeyG]', '[KeyI]'],
           callback: () => this.props().log('Sequence: inbox'),
@@ -340,32 +301,39 @@ class Recording {
   sequenceProblem = ''
   idle = false
   commitOnEnter = true
-  recorder!: ReturnType<
-    ReturnType<typeof createHotkeysScope>['createHotkeyRecorder']
-  >
-  sequenceRecorder!: ReturnType<
-    ReturnType<typeof createHotkeysScope>['createHotkeySequenceRecorder']
-  >
+  recorder!: AlpineHotkeyRecorder
+  sequenceRecorder!: AlpineHotkeySequenceRecorder
   get initial(): Hotkey {
     return 'Alt+[KeyR]'
   }
   constructor(public props: () => { log: (message: string) => void }) {}
+  startRecording() {
+    this.problem = ''
+    this.recorder.startRecording()
+  }
+  resetShortcut() {
+    this.recorder.stopRecording()
+    this.hotkey = this.initial
+    this.problem = ''
+  }
+  startSequenceRecording() {
+    this.sequenceProblem = ''
+    this.sequenceRecorder.startRecording()
+  }
   init() {
     this.hotkeysScope.createHotkey(
       () => this.hotkey,
       () => this.props().log('Your recorded shortcut fired'),
-      () => ({
-        ...{
-          meta: { name: 'Recorded action', group: 'Recording' },
-        },
-      }),
+      {
+        meta: { name: 'Recorded action', group: 'Recording' },
+      },
     )
     this.hotkeysScope.createHotkeySequence(
       () => this.sequence,
       () => this.props().log('Your recorded sequence fired'),
-      () => ({
+      {
         meta: { name: 'Recorded sequence', group: 'Recording' },
-      }),
+      },
     )
     this.recorder = this.hotkeysScope.createHotkeyRecorder(() => ({
       recordBy: this.mode,

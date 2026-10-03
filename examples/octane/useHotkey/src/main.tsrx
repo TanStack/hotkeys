@@ -1,6 +1,4 @@
-import { createRoot, delegateEvents, useLayoutEffect, useState } from 'octane'
-
-delegateEvents(['click', 'input', 'keydown'])
+import { createRoot, useLayoutEffect, useState } from 'octane'
 
 import {
   HotkeysProvider,
@@ -30,7 +28,6 @@ function App() @{
   const [sidebarRef, setSidebarRef] = useState<HTMLDivElement | null>(null)
   const [modalRef, setModalRef] = useState<HTMLDivElement | null>(null)
   const [editorRef, setEditorRef] = useState<HTMLTextAreaElement | null>(null)
-  const editorRefForHotkey = editorRef
   useHotkey('Mod+[KeyS]', (_event, { hotkey, parsedHotkey }) => {
     setLastHotkey(hotkey)
     setSaveCount((c) => c + 1)
@@ -239,7 +236,7 @@ function App() @{
         `Editor content saved: "${editorContent.substring(0, 50)}${editorContent.length > 50 ? '...' : ''}"`,
       )
     },
-    { target: editorRefForHotkey },
+    { target: editorRef },
   )
   useHotkey(
     'Mod+/',
@@ -248,7 +245,7 @@ function App() @{
       setEditorShortcutCount((c) => c + 1)
       setEditorContent((prev) => prev + '\n// Comment added via shortcut')
     },
-    { target: editorRefForHotkey },
+    { target: editorRef },
   )
   useHotkey(
     'Mod+K',
@@ -257,7 +254,7 @@ function App() @{
       setEditorShortcutCount((c) => c + 1)
       setEditorContent('')
     },
-    { target: editorRefForHotkey },
+    { target: editorRef },
   )
   useHotkey('J', () => {
     setLastHotkey('J')
@@ -500,9 +497,6 @@ function App() @{
             Press <kbd>Escape</kbd> to reset all counters
           </p>
 
-
-
-
           <section className="demo-section scoped-section">
             <h2>Scoped Keyboard Shortcuts</h2>
             <p>
@@ -534,7 +528,6 @@ function App() @{
                 </p>
               </div>
 
-
               <div className="scoped-area">
                 <h3>Modal Dialog</h3>
                 <button onClick={() => setModalOpen(true)}>Open Modal</button>
@@ -562,7 +555,6 @@ function App() @{
                     </div>
                   </div> }
               </div>
-
 
               <div className="scoped-area">
                 <h3>Text Editor (Scoped)</h3>
@@ -607,7 +599,6 @@ useHotkey('Escape', closeModal, { target: modal, enabled: isOpen })
 useHotkey('Mod+S', saveEditorContent, { target: editor })`}</pre>
           </section>
         </main>
-
 
       </div>
 }

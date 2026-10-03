@@ -1,6 +1,4 @@
-import { createRoot, delegateEvents,  } from 'octane'
-
-delegateEvents(['click', 'input', 'keydown'])
+import { createRoot,  } from 'octane'
 
 import { HotkeysProvider, useKeyHold } from '@tanstack/octane-hotkeys'
 
@@ -91,7 +89,6 @@ function App() @{
             </ul>
           </section>
         </main>
-
 
       </div>
 }

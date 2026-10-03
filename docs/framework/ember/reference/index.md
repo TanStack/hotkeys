@@ -5,6 +5,8 @@ title: "@tanstack/ember-hotkeys"
 
 ## Classes
 
+- [onHotkey](classes/onHotkey.md)
+- [onHotkeys](classes/onHotkeys.md)
 - [useHotkey](classes/useHotkey.md)
 - [useHotkeys](classes/useHotkeys.md)
 - [useHotkeySequence](classes/useHotkeySequence.md)
@@ -21,6 +23,7 @@ title: "@tanstack/ember-hotkeys"
 
 ## Type Aliases
 
+- [ElementHotkeyOptions](type-aliases/ElementHotkeyOptions.md)
 - [MaybeGetter](type-aliases/MaybeGetter.md)
 
 ## Functions

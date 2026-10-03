@@ -1,6 +1,5 @@
-import { createRoot, delegateEvents, useState } from 'octane'
-
-delegateEvents(['click', 'input', 'keydown'])
+import { validateHotkey, normalizeHotkey } from '@tanstack/octane-hotkeys'
+import { createRoot, useState } from 'octane'
 
 import {
   HotkeysProvider,
@@ -88,7 +87,7 @@ function BasicMultiHotkeys() @{
           </div>
         </div>
         @if (log.length > 0) { <div className="log">
-            @for (const [i, entry] of Array.from((log).entries()); key i) {
+            @for (const [i, entry] of Array.from(log.entries()); key i) {
   <div className="log-entry">
                 {entry}
               </div> }
@@ -186,7 +185,7 @@ function CommonOptionsDemo() @{
 
 interface DynamicShortcut {
   id: number
-  hotkey: string
+  hotkey: Hotkey
   label: string
   description: string
   count: number
@@ -224,8 +223,9 @@ function DynamicHotkeysDemo() @{
   const [newHotkey, setNewHotkey] = useState('')
   const [newLabel, setNewLabel] = useState('')
   const [newDescription, setNewDescription] = useState('')
+  const [error, setError] = useState('')
   const definitions: Array<HotkeyDefinition> = shortcuts.map((s) => ({
-    hotkey: s.hotkey as Hotkey,
+    hotkey: s.hotkey,
     callback: () => {
       setShortcuts((prev) =>
         prev.map((item) =>
@@ -240,12 +240,18 @@ function DynamicHotkeysDemo() @{
   useHotkeys(definitions)
   const addShortcut = () => {
     const trimmed = newHotkey.trim()
-    if (!trimmed || !newLabel.trim()) return
+    if (!newLabel.trim()) return
+    const validation = validateHotkey(trimmed)
+    if (!validation.valid || validation.warnings.length > 0) {
+      setError([...validation.errors, ...validation.warnings].join(' '))
+      return
+    }
+    setError('')
     setShortcuts((prev) => [
       ...prev,
       {
         id: nextId++,
-        hotkey: trimmed,
+        hotkey: normalizeHotkey(trimmed),
         label: newLabel.trim(),
         description: newDescription.trim(),
         count: 0,
@@ -261,14 +267,13 @@ function DynamicHotkeysDemo() @{
   <div className="demo-section">
         <h2>Dynamic Hotkey List</h2>
         <p>
-          Add or remove hotkeys at runtime. Because <code>useHotkeys</code>{' '}
-          accepts a dynamic array, this is safe without breaking the rules of
-          hooks.
+          Add or remove hotkeys at runtime. <code>useHotkeys</code> keeps registrations in sync with the array.
         </p>
-        <div className="dynamic-list">
+        @if (error) { <p role="alert">{error}</p> }
+      <div className="dynamic-list">
           @for (const s of shortcuts; key s.id) {
   <div className="dynamic-item">
-              <kbd>{formatForDisplay(s.hotkey as Hotkey)}</kbd>
+              <kbd>{formatForDisplay(s.hotkey)}</kbd>
               <span>{s.label}</span>
               <span className="count">{s.count}</span>
               <button onClick={() => removeShortcut(s.id)}>Remove</button>

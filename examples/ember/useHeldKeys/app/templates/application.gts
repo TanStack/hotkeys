@@ -1,14 +1,14 @@
+import { hash } from '@ember/helper'
 import Component from '@glimmer/component'
 import { tracked } from '@glimmer/tracking'
 
-import { registerDestructor } from '@ember/destroyable'
+import { modifier } from 'ember-modifier'
+import { cancel, schedule } from '@ember/runloop'
 import { on } from '@ember/modifier'
-import { hash } from '@ember/helper'
 import {
   formatForDisplay,
   useHeldKeys,
   useHeldKeyCodes,
-  getKeyStateTracker,
 } from '@tanstack/ember-hotkeys'
 
 const neq = (a: unknown, b: unknown) => a !== b
@@ -18,34 +18,24 @@ const and = (a: unknown, b: unknown) => a && b
 class App extends Component {
   usage0 =
     "import { useHeldKeys, useHeldKeyCodes } from '@tanstack/ember-hotkeys'\n\n// The containing component owns both subscriptions.\nheldKeys = useHeldKeys(this)\nheldCodes = useHeldKeyCodes(this)\n\n<template>\n  {{#each this.heldKeys.value as |key|}}\n    <kbd>{{key}}</kbd>\n  {{/each}}\n</template>"
-  heldKeysState = useHeldKeys(this)
-  heldCodesState = useHeldKeyCodes(this)
+  heldKeys = useHeldKeys(this)
+  heldCodes = useHeldKeyCodes(this)
   @tracked history: Array<string> = []
-  value1 = (key: string) => this.heldCodes[key]
-  handleClick2 = () => (this.history = [])
-  get heldKeys() {
-    return this.heldKeysState.value
-  }
-  get heldCodes() {
-    return this.heldCodesState.value
-  }
-  constructor(...args: ConstructorParameters<typeof Component>) {
-    super(...args)
-    const subscription = getKeyStateTracker().store.subscribe(() => {
-      if (this.heldKeys.length > 0) {
-        const combo = this.heldKeys
-          .map((k) => formatForDisplay(k, { useSymbols: true }))
-          .join(' + ')
-        this.history = (() => {
-          if (this.history[this.history.length - 1] !== combo) {
-            return [...this.history.slice(-9), combo]
-          }
-          return this.history
-        })()
+  keyCode = (key: string) => this.heldCodes.value[key]
+  clearHistory = () => (this.history = [])
+  // Keep the optional history display in sync with the hook result.
+  recordHistory = modifier((_element, [keys]: [Array<string>]) => {
+    if (keys.length === 0) return
+    const combo = keys
+      .map((key) => formatForDisplay(key, { useSymbols: true }))
+      .join(' + ')
+    const timer = schedule('afterRender', () => {
+      if (this.history.at(-1) !== combo) {
+        this.history = [...this.history.slice(-9), combo]
       }
     })
-    registerDestructor(this, () => subscription.unsubscribe())
-  }
+    return () => cancel(timer)
+  })
   <template>
     <div class='app'>
       <header>
@@ -60,10 +50,10 @@ class App extends Component {
         <section class='demo-section'>
           <h2>Currently Held Keys</h2>
           <div class='key-display'>
-            {{#if (gt this.heldKeys.length 0)}}{{#each
-                this.heldKeys
+            {{#if (gt this.heldKeys.value.length 0)}}{{#each
+                this.heldKeys.value
                 as |key index|
-              }}{{#let (this.value1 key) as |code|}}
+              }}{{#let (this.keyCode key) as |code|}}
                   {{#if (gt index 0)}}<span class='plus'>+</span>{{/if}}
                   <kbd class='large'>
                     {{formatForDisplay key (hash useSymbols=true)}}
@@ -75,7 +65,7 @@ class App extends Component {
           </div>
           <div class='stats'>
             Keys held:
-            <strong>{{this.heldKeys.length}}</strong>
+            <strong>{{this.heldKeys.value.length}}</strong>
           </div>
         </section>
 
@@ -101,12 +91,12 @@ class App extends Component {
           </ul>
         </section>
 
-        <section class='demo-section'>
+        <section class='demo-section' {{this.recordHistory this.heldKeys.value}}>
           <h2>Recent Combinations</h2>
           {{#if (gt this.history.length 0)}}<ul class='history-list'>
               {{#each this.history as |combo i|}}<li>{{combo}}</li>{{/each}}
             </ul>{{else}}<p class='placeholder'>Press some key combinations...</p>{{/if}}
-          <button {{on 'click' this.handleClick2}}>Clear History</button>
+          <button {{on 'click' this.clearHistory}}>Clear History</button>
         </section>
 
         <section class='demo-section'>

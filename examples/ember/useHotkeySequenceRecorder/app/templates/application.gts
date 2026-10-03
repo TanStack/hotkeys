@@ -1,3 +1,4 @@
+import { fn } from '@ember/helper'
 import Component from '@glimmer/component'
 import { tracked } from '@glimmer/tracking'
 
@@ -136,8 +137,6 @@ class App extends Component {
       }
     },
   }))
-  handler1 = (shortcut: Shortcut) => () => this.handleEdit(shortcut.id)
-  handler2 = (shortcut: Shortcut) => () => this.handleDelete(shortcut.id)
   setDraftName = (value: string) => {
     this.draftName = value
   }
@@ -234,10 +233,10 @@ class App extends Component {
                 @onDraftNameChange={{this.setDraftName}}
                 @onDraftDescriptionChange={{this.setDraftDescription}}
                 @liveSteps={{this.recorder.steps}}
-                @onEdit={{this.handler1 shortcut}}
+                @onEdit={{fn this.handleEdit shortcut.id}}
                 @onSave={{this.handleSaveEditing}}
                 @onCancel={{this.handleCancel}}
-                @onDelete={{this.handler2 shortcut}}
+                @onDelete={{fn this.handleDelete shortcut.id}}
               />{{/each}}
           </div>
           <button
@@ -276,9 +275,9 @@ class App extends Component {
 }
 
 class RegistrationsViewer extends Component {
-  registrationState0 = useHotkeyRegistrations(this)
+  registrationsState = useHotkeyRegistrations(this)
   get sequences() {
-    return this.registrationState0.sequences
+    return this.registrationsState.sequences
   }
 
   <template>
@@ -337,28 +336,25 @@ class RegistrationsViewer extends Component {
 }
 
 class ShortcutListItem extends Component<{ Args: ShortcutListItemProps }> {
-  heldKeysState = useHeldKeys(this)
-  get value1() {
+  heldKeys = useHeldKeys(this)
+  get itemClass() {
     return `shortcut-item ${this.args.isEditing ? 'recording' : ''}`
   }
-  handleInput2 = (e: Event) =>
+  updateDraftName = (e: Event) =>
     this.args.onDraftNameChange((e.currentTarget as HTMLInputElement).value)
-  handleInput3 = (e: Event) =>
+  updateDraftDescription = (e: Event) =>
     this.args.onDraftDescriptionChange(
       (e.currentTarget as HTMLInputElement).value,
     )
-  get value4() {
+  get liveSequenceText() {
     return this.args.liveSteps.map((h) => formatForDisplay(h)).join(' ')
   }
-  get value5() {
+  get savedSequenceText() {
     return this.args.shortcut.sequence.map((h) => formatForDisplay(h)).join(' ')
-  }
-  get heldKeys() {
-    return this.heldKeysState.value
   }
 
   <template>
-    <div class={{this.value1}}>
+    <div class={{this.itemClass}}>
       <div class='shortcut-item-content'>
         <div class='shortcut-action'>
           {{#if this.args.isEditing}}<div class='editing-fields'>
@@ -366,14 +362,14 @@ class ShortcutListItem extends Component<{ Args: ShortcutListItemProps }> {
                 type='text'
                 class='edit-input edit-name'
                 value={{this.args.draftName}}
-                {{on 'input' this.handleInput2}}
+                {{on 'input' this.updateDraftName}}
                 placeholder='Shortcut name'
               />
               <input
                 type='text'
                 class='edit-input edit-description'
                 value={{this.args.draftDescription}}
-                {{on 'input' this.handleInput3}}
+                {{on 'input' this.updateDraftDescription}}
                 placeholder='Description (optional)'
               />
             </div>{{else}}
@@ -388,11 +384,11 @@ class ShortcutListItem extends Component<{ Args: ShortcutListItemProps }> {
         <div class='shortcut-hotkey'>
           {{#if this.args.isEditing}}<div class='recording-indicator'>
               {{#if (gt this.args.liveSteps.length 0)}}<span class='held-hotkeys'>
-                  {{this.value4}}
-                </span>{{else if (gt this.heldKeys.length 0)}}<div
+                  {{this.liveSequenceText}}
+                </span>{{else if (gt this.heldKeys.value.length 0)}}<div
                   class='held-hotkeys'
                 >
-                  {{#each this.heldKeys as |key index|}}
+                  {{#each this.heldKeys.value as |key index|}}
                     {{#if (gt index 0)}}<span class='plus'>+</span>{{/if}}
                     <kbd>{{key}}</kbd>
                   {{/each}}
@@ -400,7 +396,7 @@ class ShortcutListItem extends Component<{ Args: ShortcutListItemProps }> {
                   Press chords, then Enter...
                 </span>{{/if}}
             </div>{{else if (gt this.args.shortcut.sequence.length 0)}}<kbd>
-              {{this.value5}}
+              {{this.savedSequenceText}}
             </kbd>{{else}}<span class='no-shortcut'>No shortcut</span>{{/if}}
         </div>
       </div>

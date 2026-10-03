@@ -55,7 +55,15 @@ Each registration is independent. For a dynamic list, use `useHotkeys` as shown 
 
 ### Scoped hotkeys
 
-Pass an actual element as `target`. A `null` target defers registration until the element exists. Make the element focusable with `tabindex="0"`. See the [complete scoped example](./guides/hotkeys.md#target).
+Import `onHotkey` and attach it to the element. It handles registration, reactive options, and cleanup with the element's lifecycle.
+
+```hbs
+<div tabindex="0" {{onHotkey 'Escape' this.close enabled=this.enabled}}>
+	Focus here and press Escape.
+</div>
+```
+
+Use `onHotkeys` for an array of definitions. See the [complete scoped example](./guides/hotkeys.md#target).
 
 ### Conditional hotkeys
 
@@ -106,7 +114,7 @@ Use `formatForDisplay(binding)` for platform-specific labels. Keep the original 
 
 ## Shared defaults
 
-Pass defaults to `createHotkeysScope`. The scope accepts `hotkey`, `hotkeySequence`, `hotkeyRecorder`, and `hotkeySequenceRecorder` options. Use the returned contextual helpers and recorder factories. Pass the scope through component arguments to share it with descendants; helpers and recorders still clean up with their own owners. Pass a getter for tracked defaults. Call-specific options override scope defaults, and per-definition options override common options. Omitted options use the core defaults.
+Pass defaults to `createHotkeysScope`. The scope accepts `hotkey`, `hotkeySequence`, `hotkeyRecorder`, and `hotkeySequenceRecorder` options. Use the returned contextual helpers, modifiers, and recorder factories. Pass the scope through component arguments to share it with descendants; helpers and recorders still clean up with their own owners. Pass a getter for tracked defaults. Call-specific options override scope defaults, and per-definition options override common options. Omitted options use the core defaults.
 
 ```gts
 import Component from '@glimmer/component'

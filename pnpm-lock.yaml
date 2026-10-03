@@ -1159,9 +1159,6 @@ importers:
       decorator-transforms:
         specifier: 2.4.0
         version: 2.4.0(@babel/core@7.29.7(supports-color@8.1.1))
-      ember-modifier:
-        specifier: 4.2.2
-        version: 4.2.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       ember-source:
         specifier: 7.3.0
         version: 7.3.0(@glimmer/component@2.1.1(supports-color@8.1.1))(supports-color@8.1.1)
@@ -1229,6 +1226,9 @@ importers:
       decorator-transforms:
         specifier: 2.4.0
         version: 2.4.0(@babel/core@7.29.7(supports-color@8.1.1))
+      ember-modifier:
+        specifier: 4.2.2
+        version: 4.2.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       ember-source:
         specifier: 7.3.0
         version: 7.3.0(@glimmer/component@2.1.1(supports-color@8.1.1))(supports-color@8.1.1)
@@ -3363,6 +3363,9 @@ importers:
       '@tanstack/store':
         specifier: ^0.11.2
         version: 0.11.2
+      ember-modifier:
+        specifier: 4.2.2
+        version: 4.2.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
     devDependencies:
       '@babel/core':
         specifier: 7.29.7

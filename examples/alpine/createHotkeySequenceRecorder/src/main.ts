@@ -1,7 +1,12 @@
 import Alpine from 'alpinejs'
 import { createHotkeysScope, formatForDisplay } from '@tanstack/alpine-hotkeys'
+import type {
+  AlpineHotkeySequenceRecorder,
+  AlpineHotkeyState,
+  HotkeyRegistrationsResult,
+  HotkeySequence,
+} from '@tanstack/alpine-hotkeys'
 import './index.css'
-import type { HotkeySequence } from '@tanstack/alpine-hotkeys'
 
 interface Shortcut {
   id: string
@@ -79,9 +84,7 @@ class App {
   editingId: string | null = null
   draftName = ''
   draftDescription = ''
-  recorder!: ReturnType<
-    ReturnType<typeof createHotkeysScope>['createHotkeySequenceRecorder']
-  >
+  recorder!: AlpineHotkeySequenceRecorder
   setDraftName(value: string) {
     this.draftName = value
   }
@@ -138,7 +141,7 @@ class App {
     this.handleCancel = this.handleCancel.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
     this.handleCreateNew = this.handleCreateNew.bind(this)
-    this.recorder = this.hotkeysScope.createHotkeySequenceRecorder(() => ({
+    this.recorder = this.hotkeysScope.createHotkeySequenceRecorder({
       onRecord: (sequence: HotkeySequence) => {
         if (this.editingId) {
           this.shortcuts = this.shortcuts.map((s) =>
@@ -181,7 +184,7 @@ class App {
           this.editingId = null
         }
       },
-    }))
+    })
     this.hotkeysScope.createHotkeySequences(() =>
       this.shortcuts
         .filter((s) => s.sequence.length > 0)
@@ -208,9 +211,7 @@ class RegistrationsViewer {
   private hotkeysScope = createHotkeysScope()
 
   formatForDisplay = formatForDisplay
-  registrationState0!: ReturnType<
-    ReturnType<typeof createHotkeysScope>['createHotkeyRegistrations']
-  >
+  registrationState0!: HotkeyRegistrationsResult
   get sequences() {
     return this.registrationState0.sequences
   }
@@ -227,15 +228,10 @@ class ShortcutListItem {
   private hotkeysScope = createHotkeysScope()
 
   formatForDisplay = formatForDisplay
-  heldKeysState!: ReturnType<
-    ReturnType<typeof createHotkeysScope>['createHeldKeys']
-  >
-  get heldKeys() {
-    return this.heldKeysState.value
-  }
+  heldKeys!: AlpineHotkeyState<Array<string>>
   constructor(public props: () => ShortcutListItemProps) {}
   init() {
-    this.heldKeysState = this.hotkeysScope.createHeldKeys()
+    this.heldKeys = this.hotkeysScope.createHeldKeys()
   }
   destroy() {
     this.hotkeysScope.destroy()

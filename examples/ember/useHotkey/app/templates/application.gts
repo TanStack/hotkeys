@@ -1,33 +1,17 @@
 import Component from '@glimmer/component'
 import { tracked } from '@glimmer/tracking'
-import { trackedObject } from '@ember/reactive/collections'
 
 import { on } from '@ember/modifier'
 
-import { formatForDisplay, useHotkey } from '@tanstack/ember-hotkeys'
+import { formatForDisplay, useHotkey, onHotkey } from '@tanstack/ember-hotkeys'
 import type {
   Hotkey,
   RegisterableHotkey,
-  HotkeyOptions,
   HotkeyCallback,
 } from '@tanstack/ember-hotkeys'
 import { modifier } from 'ember-modifier'
-import { schedule } from '@ember/runloop'
-const captureElement = modifier(
-  (
-    element: HTMLElement,
-    [capture]: [(element: HTMLElement | null) => void],
-  ) => {
-    let active = true
-    schedule('afterRender', () => {
-      if (active) capture(element)
-    })
-    return () => {
-      active = false
-      capture(null)
-    }
-  },
-)
+
+const autofocus = modifier((element: HTMLElement) => element.focus())
 
 class App extends Component {
   usage0 =
@@ -46,7 +30,7 @@ class App extends Component {
   usage7 =
     '{{useHotkey "Mod+Enter" this.submitForm}}\n{{useHotkey "Mod+Backspace" this.deleteWord}}\n{{useHotkey "Mod+Space" this.openPalette}}'
   usage8 =
-    '{{useHotkey "Mod+B" this.sidebarAction target=this.sidebarRef.current}}\n{{useHotkey "Escape" this.closeModal\n  target=this.modalRef.current enabled=this.modalOpen}}\n{{useHotkey "Mod+S" this.saveEditor target=this.editorRef.current}}'
+    '<div {{onHotkey "Mod+B" this.sidebarAction}} tabindex="0">...</div>\n{{#if this.modalOpen}}\n  <div {{onHotkey "Escape" this.closeModal}} tabindex="0">...</div>\n{{/if}}\n<textarea {{onHotkey "Mod+S" this.saveEditor}}></textarea>'
   @tracked lastHotkey: Hotkey | null = null
   @tracked saveCount: number = 0
   @tracked incrementCount: number = 0
@@ -61,29 +45,12 @@ class App extends Component {
   @tracked sidebarShortcutCount: number = 0
   @tracked modalShortcutCount: number = 0
   @tracked editorShortcutCount: number = 0
-  sidebarRef = trackedObject({ current: null as HTMLDivElement | null })
-  modalRef = trackedObject({ current: null as HTMLDivElement | null })
-  editorRef = trackedObject({ current: null as HTMLTextAreaElement | null })
-  handleClick1 = () => (this.enabled = !this.enabled)
-  captureSidebarRef = (element: HTMLElement | null) => {
-    this.sidebarRef.current = element as HTMLDivElement | null
-  }
-  handleClick2 = () => (this.modalOpen = true)
-  handleClick3 = () => (this.modalOpen = false)
-  captureModalRef = (element: HTMLElement | null) => {
-    this.modalRef.current = element as HTMLDivElement | null
-    element?.focus()
-  }
-  handleClick4 = (e: Event) => e.stopPropagation()
-  handleClick5 = () => (this.modalOpen = false)
-  captureEditorRef = (element: HTMLElement | null) => {
-    this.editorRef.current = element as HTMLTextAreaElement | null
-  }
-  handleInput6 = (e: Event) =>
+  toggleEnabled = () => (this.enabled = !this.enabled)
+  openModal = () => (this.modalOpen = true)
+  closeModal = () => (this.modalOpen = false)
+  stopClickPropagation = (e: Event) => e.stopPropagation()
+  updateEditor = (e: Event) =>
     (this.editorContent = (e.currentTarget as HTMLInputElement).value)
-  get editorRefForHotkey() {
-    return this.editorRef
-  }
   onModKeyS: HotkeyCallback = (_event, { hotkey, parsedHotkey }) => {
     this.lastHotkey = hotkey
     this.saveCount = this.saveCount + 1
@@ -94,15 +61,9 @@ class App extends Component {
     this.lastHotkey = hotkey
     this.incrementCount = this.incrementCount + 1
   }
-  get optionsModK(): HotkeyOptions {
-    return { requireReset: true }
-  }
   onModE: HotkeyCallback = (_event, { hotkey }) => {
     this.lastHotkey = hotkey
     alert('This hotkey can be toggled!')
-  }
-  get optionsModE(): HotkeyOptions {
-    return { enabled: this.enabled }
   }
   onMod1: HotkeyCallback = () => {
     this.lastHotkey = 'Mod+1'
@@ -181,10 +142,10 @@ class App extends Component {
     this.lastHotkey = 'Mod+Shift+Z'
     this.multiModifierCount = this.multiModifierCount + 1
   }
-  get hotkey22(): RegisterableHotkey {
+  get rawSelectAll(): RegisterableHotkey {
     return { key: 'A', ctrl: true, alt: true }
   }
-  on22: HotkeyCallback = () => {
+  selectAll: HotkeyCallback = () => {
     this.lastHotkey = 'Control+Alt+A'
     this.multiModifierCount = this.multiModifierCount + 1
   }
@@ -228,10 +189,10 @@ class App extends Component {
     this.lastHotkey = 'Mod+Space'
     this.editingKeyCount = this.editingKeyCount + 1
   }
-  get hotkey33(): RegisterableHotkey {
+  get escape(): RegisterableHotkey {
     return { key: 'Escape' }
   }
-  on33: HotkeyCallback = () => {
+  resetCounters: HotkeyCallback = () => {
     this.lastHotkey = null
     this.saveCount = 0
     this.incrementCount = 0
@@ -252,31 +213,19 @@ class App extends Component {
       'Sidebar shortcut triggered! This only works when the sidebar area is focused.',
     )
   }
-  get optionsModBSidebar(): HotkeyOptions {
-    return { target: this.sidebarRef.current }
-  }
   onModNSidebar: HotkeyCallback = () => {
     this.lastHotkey = 'Mod+N'
     this.sidebarShortcutCount = this.sidebarShortcutCount + 1
-  }
-  get optionsModNSidebar(): HotkeyOptions {
-    return { target: this.sidebarRef.current }
   }
   onEscapeModal: HotkeyCallback = () => {
     this.lastHotkey = 'Escape'
     this.modalShortcutCount = this.modalShortcutCount + 1
     this.modalOpen = false
   }
-  get optionsEscapeModal(): HotkeyOptions {
-    return { target: this.modalRef.current, enabled: this.modalOpen }
-  }
   onModEnterModal: HotkeyCallback = () => {
     this.lastHotkey = 'Mod+Enter'
     this.modalShortcutCount = this.modalShortcutCount + 1
     alert('Modal submit shortcut!')
-  }
-  get optionsModEnterModal(): HotkeyOptions {
-    return { target: this.modalRef.current, enabled: this.modalOpen }
   }
   onModSEditor: HotkeyCallback = () => {
     this.lastHotkey = 'Mod+S'
@@ -285,24 +234,15 @@ class App extends Component {
       `Editor content saved: "${this.editorContent.substring(0, 50)}${this.editorContent.length > 50 ? '...' : ''}"`,
     )
   }
-  get optionsModSEditor(): HotkeyOptions {
-    return { target: this.editorRefForHotkey.current }
-  }
   onModEditor: HotkeyCallback = () => {
     this.lastHotkey = 'Mod+/'
     this.editorShortcutCount = this.editorShortcutCount + 1
     this.editorContent = this.editorContent + '\n// Comment added via shortcut'
   }
-  get optionsModEditor(): HotkeyOptions {
-    return { target: this.editorRefForHotkey.current }
-  }
   onModKEditor: HotkeyCallback = () => {
     this.lastHotkey = 'Mod+K'
     this.editorShortcutCount = this.editorShortcutCount + 1
     this.editorContent = ''
-  }
-  get optionsModKEditor(): HotkeyOptions {
-    return { target: this.editorRefForHotkey.current }
   }
   onJ: HotkeyCallback = () => {
     this.lastHotkey = 'J'
@@ -311,8 +251,8 @@ class App extends Component {
 
   <template>
     {{useHotkey 'Mod+[KeyS]' this.onModKeyS}}
-    {{useHotkey 'Mod+K' this.onModK requireReset=this.optionsModK.requireReset}}
-    {{useHotkey 'Mod+E' this.onModE enabled=this.optionsModE.enabled}}
+    {{useHotkey 'Mod+K' this.onModK requireReset=true}}
+    {{useHotkey 'Mod+E' this.onModE enabled=this.enabled}}
     {{useHotkey 'Mod+1' this.onMod1}}
     {{useHotkey 'Mod+[Digit2]' this.onModDigit2}}
     {{useHotkey 'Mod+3' this.onMod3}}
@@ -332,7 +272,7 @@ class App extends Component {
     {{useHotkey 'Shift+F10' this.onShiftF10}}
     {{useHotkey 'Mod+Shift+S' this.onModShiftS}}
     {{useHotkey 'Mod+Shift+Z' this.onModShiftZ}}
-    {{useHotkey this.hotkey22 this.on22}}
+    {{useHotkey this.rawSelectAll this.selectAll}}
     {{useHotkey 'Control+Shift+N' this.onControlShiftN}}
     {{useHotkey 'Mod+Alt+T' this.onModAltT}}
     {{useHotkey 'Control+Alt+Shift+X' this.onControlAltShiftX}}
@@ -343,25 +283,9 @@ class App extends Component {
     {{useHotkey 'Control+Tab' this.onControlTab}}
     {{useHotkey 'Shift+Tab' this.onShiftTab}}
     {{useHotkey 'Mod+Space' this.onModSpace}}
-    {{useHotkey this.hotkey33 this.on33}}
+    {{useHotkey this.escape this.resetCounters}}
     {{useHotkey 'F12' this.onF12}}
-    {{useHotkey 'Mod+B' this.onModBSidebar target=this.optionsModBSidebar.target}}
-    {{useHotkey 'Mod+N' this.onModNSidebar target=this.optionsModNSidebar.target}}
-    {{useHotkey
-      'Escape'
-      this.onEscapeModal
-      enabled=this.optionsEscapeModal.enabled
-      target=this.optionsEscapeModal.target
-    }}
-    {{useHotkey
-      'Mod+Enter'
-      this.onModEnterModal
-      enabled=this.optionsModEnterModal.enabled
-      target=this.optionsModEnterModal.target
-    }}
-    {{useHotkey 'Mod+S' this.onModSEditor target=this.optionsModSEditor.target}}
-    {{useHotkey 'Mod+/' this.onModEditor target=this.optionsModEditor.target}}
-    {{useHotkey 'Mod+K' this.onModKEditor target=this.optionsModKEditor.target}}
+
     {{useHotkey 'J' this.onJ}}
     <div class='app'>
       <header>
@@ -406,7 +330,7 @@ class App extends Component {
             is currently
             <strong>{{if this.enabled 'enabled' 'disabled'}}</strong>
           </p>
-          <button {{on 'click' this.handleClick1}}>
+          <button {{on 'click' this.toggleEnabled}}>
             {{if this.enabled 'Disable' 'Enable'}}
             Hotkey
           </button>
@@ -612,9 +536,9 @@ class App extends Component {
         <section class='demo-section scoped-section'>
           <h2>Scoped Keyboard Shortcuts</h2>
           <p>
-            Shortcuts can be scoped to specific DOM elements using the
-            <code>target</code>
-            option. This allows different shortcuts to work in different parts of
+            Attach shortcuts to a DOM element with the
+            <code>onHotkey</code>
+            modifier. This allows different shortcuts to work in different parts of
             your application.
           </p>
 
@@ -622,7 +546,8 @@ class App extends Component {
 
             <div
               class='scoped-area'
-              {{captureElement this.captureSidebarRef}}
+              {{onHotkey 'Mod+B' this.onModBSidebar}}
+              {{onHotkey 'Mod+N' this.onModNSidebar}}
               tabindex={{0}}
             >
               <h3>Sidebar (Scoped Area)</h3>
@@ -649,16 +574,18 @@ class App extends Component {
 
             <div class='scoped-area'>
               <h3>Modal Dialog</h3>
-              <button {{on 'click' this.handleClick2}}>Open Modal</button>
+              <button {{on 'click' this.openModal}}>Open Modal</button>
               {{#if this.modalOpen}}<div
                   class='modal-overlay'
-                  {{on 'click' this.handleClick3}}
+                  {{on 'click' this.closeModal}}
                 >
                   <div
                     class='modal-content'
-                    {{captureElement this.captureModalRef}}
+                    {{onHotkey 'Escape' this.onEscapeModal}}
+                    {{onHotkey 'Mod+Enter' this.onModEnterModal}}
+                    {{autofocus}}
                     tabindex={{0}}
-                    {{on 'click' this.handleClick4}}
+                    {{on 'click' this.stopClickPropagation}}
                   >
                     <h3>Modal Dialog (Scoped)</h3>
                     <p>Try these shortcuts while modal is open:</p>
@@ -681,7 +608,7 @@ class App extends Component {
                       The Escape key here won't conflict with the global Escape
                       handler.
                     </p>
-                    <button {{on 'click' this.handleClick5}}>Close</button>
+                    <button {{on 'click' this.closeModal}}>Close</button>
                   </div>
                 </div>{{/if}}
             </div>
@@ -708,10 +635,12 @@ class App extends Component {
                 </div>
               </div>
               <textarea
-                {{captureElement this.captureEditorRef}}
+                {{onHotkey 'Mod+S' this.onModSEditor}}
+                {{onHotkey 'Mod+/' this.onModEditor}}
+                {{onHotkey 'Mod+K' this.onModKEditor}}
                 class='scoped-editor'
                 value={{this.editorContent}}
-                {{on 'input' this.handleInput6}}
+                {{on 'input' this.updateEditor}}
                 placeholder='Focus here and try the shortcuts above...'
                 rows={{8}}
               ></textarea>

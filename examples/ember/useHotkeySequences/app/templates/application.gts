@@ -26,8 +26,8 @@ class App extends Component {
   @tracked lastSequence: string | null = null
   @tracked history: Array<string> = []
   @tracked helloSequenceEnabled: boolean = true
-  handleClick1 = () => (this.helloSequenceEnabled = !this.helloSequenceEnabled)
-  handleClick2 = () => (this.history = [])
+  toggleHello = () => (this.helloSequenceEnabled = !this.helloSequenceEnabled)
+  clearHistory = () => (this.history = [])
   addToHistory = (action: string) => {
     this.lastSequence = action
     this.history = [...this.history.slice(-9), action]
@@ -251,7 +251,7 @@ class App extends Component {
                   }}</strong>
                 .
               </p>
-              <button type='button' {{on 'click' this.handleClick1}}>
+              <button type='button' {{on 'click' this.toggleHello}}>
                 {{if this.helloSequenceEnabled 'Disable' 'Enable'}}
                 sequence
               </button>
@@ -333,7 +333,7 @@ class App extends Component {
             <ul class='history-list'>
               {{#each this.history as |item i|}}<li>{{item}}</li>{{/each}}
             </ul>
-            <button {{on 'click' this.handleClick2}}>Clear History</button>
+            <button {{on 'click' this.clearHistory}}>Clear History</button>
           </section>{{/if}}
 
         <p class='hint'>
@@ -348,12 +348,12 @@ class App extends Component {
 }
 
 class RegistrationsViewer extends Component {
-  registrationState0 = useHotkeyRegistrations(this)
+  registrationsState = useHotkeyRegistrations(this)
   get hotkeys() {
-    return this.registrationState0.hotkeys
+    return this.registrationsState.hotkeys
   }
   get sequences() {
-    return this.registrationState0.sequences
+    return this.registrationsState.sequences
   }
 
   <template>

@@ -915,6 +915,18 @@
           "label": "ember",
           "children": [
             {
+              "label": "onHotkey",
+              "to": "framework/ember/reference/classes/onHotkey"
+            },
+            {
+              "label": "onHotkeys",
+              "to": "framework/ember/reference/classes/onHotkeys"
+            },
+            {
+              "label": "ElementHotkeyOptions",
+              "to": "framework/ember/reference/type-aliases/ElementHotkeyOptions"
+            },
+            {
               "label": "useHotkey",
               "to": "framework/ember/reference/classes/useHotkey"
             },

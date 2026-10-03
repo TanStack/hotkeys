@@ -169,32 +169,32 @@ Use `ignoreInputs: true` to ignore typing targets even for Control/Meta shortcut
 Targets can be an element, `document`, or `window`. A `null` target defers registration; an omitted target uses `document`. Changing the target moves the registration and removes listeners from the previous target when no registrations remain.
 
 
+For shortcuts scoped to a rendered element, use the `onHotkey` modifier. It registers on that element and unregisters when the element is removed. Named options stay reactive.
+
 ```gts
 import Component from '@glimmer/component'
-import { tracked } from '@glimmer/tracking'
-import { schedule } from '@ember/runloop'
-import { modifier } from 'ember-modifier'
-import { useHotkey } from '@tanstack/ember-hotkeys'
-
-const capture = modifier((element: HTMLElement, [set]: [(el: HTMLElement | null) => void]) => {
-	let active = true
-	schedule('afterRender', () => { if (active) set(element) })
-	return () => { active = false; set(null) }
-})
+import { onHotkey } from '@tanstack/ember-hotkeys'
 
 export default class Panel extends Component {
-	@tracked element: HTMLElement | null = null
-	setElement = (element: HTMLElement | null) => { this.element = element }
 	close = () => console.log('Close focused panel')
 
 	<template>
-		{{useHotkey 'Escape' this.close target=this.element}}
-		<div tabindex="0" {{capture this.setElement}}>Focus here and press Escape.</div>
+		<div tabindex="0" {{onHotkey 'Escape' this.close}}>
+			Focus here and press Escape.
+		</div>
 	</template>
 }
 ```
 
-This recipe uses the `ember-modifier` package. Scheduling the captured element after render avoids changing tracked state during rendering. The modifier clears the target when the element is removed.
+Use `onHotkeys` for a changing list:
+
+```hbs
+<fieldset {{onHotkeys this.definitions ignoreInputs=false}}>
+	<textarea></textarea>
+</fieldset>
+```
+
+Both modifiers use their containing element as the target, including for individual definitions. Use the `useHotkey` and `useHotkeys` helpers when you need a different target such as `window`. The modifiers are also available from `createHotkeysScope` and inherit its `hotkey` defaults.
 
 ### `conflictBehavior`
 

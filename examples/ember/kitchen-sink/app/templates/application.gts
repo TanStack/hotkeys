@@ -1,9 +1,8 @@
+import { hash, fn } from '@ember/helper'
 import Component from '@glimmer/component'
 import { tracked } from '@glimmer/tracking'
-import { trackedObject } from '@ember/reactive/collections'
 import { registerDestructor } from '@ember/destroyable'
 import { on } from '@ember/modifier'
-import { fn } from '@ember/helper'
 import {
   createHotkeysScope,
   formatForDisplay,
@@ -19,35 +18,22 @@ import type {
   HotkeyDefinition,
   HotkeySequenceDefinition,
   RegisterableHotkey,
-  HotkeyOptions,
-  SequenceOptions,
   HotkeyRegistrationView,
   SequenceRegistrationView,
   RecorderKeyMode,
   HotkeyCallback,
 } from '@tanstack/ember-hotkeys'
-import { modifier } from 'ember-modifier'
-import { schedule } from '@ember/runloop'
 const {
-  useHotkey, useHotkeys, useHotkeySequence, useHotkeySequences,
-  useHotkeyRecorder, useHotkeySequenceRecorder,
+  onHotkey,
+  onHotkeys,
+  useHotkey,
+  useHotkeys,
+  useHotkeySequence,
+  useHotkeySequences,
+  useHotkeyRecorder,
+  useHotkeySequenceRecorder,
 } = createHotkeysScope({ hotkey: { requireReset: true } })
 
-const captureElement = modifier(
-  (
-    element: HTMLElement,
-    [capture]: [(element: HTMLElement | null) => void],
-  ) => {
-    let active = true
-    schedule('afterRender', () => {
-      if (active) capture(element)
-    })
-    return () => {
-      active = false
-      capture(null)
-    }
-  },
-)
 const eq = (a: unknown, b: unknown) => a === b
 const and = (a: unknown, b: unknown) => a && b
 const or = <T, U>(a: T, b: U) => a || b
@@ -66,15 +52,13 @@ class Hint extends Component<{
     enabled?: boolean
   }
 }> {
-  visibleState = useHotkeyHint(this, () => this.args.hotkey)
-  get visible() {
-    return this.visibleState.value
-  }
+  visible = useHotkeyHint(this, () => this.args.hotkey)
 
   <template>
     {{#if
       (and
-        this.visible (if (eq this.args.enabled undefined) true this.args.enabled)
+        this.visible.value
+        (if (eq this.args.enabled undefined) true this.args.enabled)
       )
     }}<kbd>{{formatForDisplay this.args.hotkey}}</kbd>{{else}}{{/if}}
   </template>
@@ -84,60 +68,35 @@ class Layout extends Component {
   @tracked currentPath: string = window.location.pathname
   @tracked showShortcuts: boolean = false
   @tracked activity: Array<string> = []
-  keysState = useHeldKeys(this)
-  codesState = useHeldKeyCodes(this)
-  shiftState = useKeyHold(this, () => 'Shift')
-  registrationState0 = useHotkeyRegistrations(this)
-  handleClick1 = (
-    page:
-      | {
-          readonly to: '/'
-          readonly label: 'Tickets'
-          readonly shortcut: 'Alt+[Digit1]'
-        }
-      | {
-          readonly to: '/editor'
-          readonly label: 'Editor'
-          readonly shortcut: 'Alt+[Digit2]'
-        }
-      | {
-          readonly to: '/sequences'
-          readonly label: 'Sequences'
-          readonly shortcut: 'Alt+[Digit3]'
-        }
-      | {
-          readonly to: '/recording'
-          readonly label: 'Recording'
-          readonly shortcut: 'Alt+[Digit4]'
-        }
-      | {
-          readonly to: '/formatting'
-          readonly label: 'Formatting'
-          readonly shortcut: 'Alt+[Digit5]'
-        },
-    e: Event,
-  ) => {
+  keys = useHeldKeys(this)
+  codes = useHeldKeyCodes(this)
+  shift = useKeyHold(this, 'Shift')
+  registrationsState = useHotkeyRegistrations(this)
+  navigateToPage = (page: (typeof pages)[number], e: Event) => {
     e.preventDefault()
     this.navigate({ to: page.to })
   }
-  handleClick2 = () => (this.showShortcuts = !this.showShortcuts)
-  value3 = (reg: HotkeyRegistrationView | SequenceRegistrationView) =>
+  toggleShortcuts = () => (this.showShortcuts = !this.showShortcuts)
+  formatRegistration = (
+    reg: HotkeyRegistrationView | SequenceRegistrationView,
+  ) =>
     ('hotkey' in reg ? [reg.hotkey] : reg.sequence)
       .map((step) => formatForDisplay(step))
       .join(' → ')
-  value4 = (reg: HotkeyRegistrationView | SequenceRegistrationView) =>
-    `${reg.triggerCount} fired`
-  value5 = (group: string) =>
+  triggerCountLabel = (
+    reg: HotkeyRegistrationView | SequenceRegistrationView,
+  ) => `${reg.triggerCount} fired`
+  registrationsForGroup = (group: string) =>
     this.registrations.filter(
       (reg) => (reg.options.meta?.group ?? 'Other') === group,
     )
-  get value6() {
-    return this.keys.join(' + ')
+  get heldKeysText() {
+    return this.keys.value.join(' + ')
   }
-  get value7() {
-    return Object.values(this.codes).join(' + ')
+  get heldCodesText() {
+    return Object.values(this.codes.value).join(' + ')
   }
-  handleClick8 = () => (this.activity = [])
+  clearActivity = () => (this.activity = [])
   navigate = ({ to }: { to: string }) => {
     window.history.pushState({}, '', to)
     this.currentPath = to
@@ -145,20 +104,11 @@ class Layout extends Component {
   log = (message: string) => {
     this.activity = [message, ...this.activity].slice(0, 6)
   }
-  get keys() {
-    return this.keysState.value
-  }
-  get codes() {
-    return this.codesState.value
-  }
-  get shift() {
-    return this.shiftState.value
-  }
   get hotkeys() {
-    return this.registrationState0.hotkeys
+    return this.registrationsState.hotkeys
   }
   get sequences() {
-    return this.registrationState0.sequences
+    return this.registrationsState.sequences
   }
   get registrations() {
     return [...this.hotkeys, ...this.sequences]
@@ -179,19 +129,8 @@ class Layout extends Component {
       options: { meta: { name: `Open ${page.label}`, group: 'Navigation' } },
     }))
   }
-  get options1(): HotkeyOptions {
-    return { ignoreInputs: true }
-  }
   onAltShiftKeyK: HotkeyCallback = () =>
     (this.showShortcuts = !this.showShortcuts)
-  get optionsAltShiftKeyK(): HotkeyOptions {
-    return {
-
-      ...{
-        meta: { name: 'Show shortcuts', group: 'Navigation' },
-      },
-    }
-  }
   constructor(...args: ConstructorParameters<typeof Component>) {
     super(...args)
     const onPopState = () => {
@@ -203,16 +142,11 @@ class Layout extends Component {
     )
   }
   <template>
-    {{useHotkeys
-      this.hotkeyDefinitions1
-
-      ignoreInputs=this.options1.ignoreInputs
-    }}
+    {{useHotkeys this.hotkeyDefinitions1 ignoreInputs=true}}
     {{useHotkey
       'Alt+Shift+[KeyK]'
       this.onAltShiftKeyK
-
-      meta=this.optionsAltShiftKeyK.meta
+      meta=(hash name='Show shortcuts' group='Navigation')
     }}
 
     <header>
@@ -225,10 +159,13 @@ class Layout extends Component {
         {{#each pages key='to' as |page|}}<a
             href={{page.to}}
             class={{if (eq this.currentPath page.to) 'active' ''}}
-            {{on 'click' (fn this.handleClick1 page)}}
+            {{on 'click' (fn this.navigateToPage page)}}
           >{{page.label}} <Hint @hotkey={{page.shortcut}} /></a>{{/each}}
       </nav>
-      <button {{on 'click' this.handleClick2}} aria-expanded={{this.showShortcuts}}>
+      <button
+        {{on 'click' this.toggleShortcuts}}
+        aria-expanded={{this.showShortcuts}}
+      >
         {{if this.showShortcuts 'Hide' 'Show'}}
         shortcuts
         <Hint @hotkey='Alt+Shift+[KeyK]' />
@@ -251,20 +188,20 @@ class Layout extends Component {
                 </tr>
               </thead>
               <tbody>
-                {{#each (this.value5 group) key='id' as |reg|}}<tr>
+                {{#each (this.registrationsForGroup group) key='id' as |reg|}}<tr>
                     <td>
                       {{or reg.options.meta.name reg.id}}
                       <br />
                       <small>{{reg.options.meta.description}}</small>
                     </td>
                     <td>
-                      {{this.value3 reg}}
+                      {{this.formatRegistration reg}}
                     </td>
                     <td>
                       {{if
                         (eq reg.options.enabled false)
                         'Disabled'
-                        (this.value4 reg)
+                        (this.triggerCountLabel reg)
                       }}
                     </td>
                   </tr>{{/each}}
@@ -285,16 +222,16 @@ class Layout extends Component {
       <h2>Key state</h2>
       <p>
         Keys:
-        {{or this.value6 'None'}}
+        {{or this.heldKeysText 'None'}}
         <br />
         Codes:
-        {{or this.value7 'None'}}
+        {{or this.heldCodesText 'None'}}
         <br />
         Shift:
-        {{if this.shift 'held' 'released'}}
+        {{if this.shift.value 'held' 'released'}}
       </p>
       <h2>Activity</h2>
-      <button {{on 'click' this.handleClick8}}>Clear log</button>
+      <button {{on 'click' this.clearActivity}}>Clear log</button>
       <ul aria-live='polite'>
         {{#each this.activity as |message i|}}<li>{{message}}</li>{{/each}}
       </ul>
@@ -305,7 +242,7 @@ class Layout extends Component {
 class Tickets extends Component<{ Args: { log: (message: string) => void } }> {
   @tracked count: number = 0
   @tracked enabled: boolean = true
-  handleInput1 = (e: Event) =>
+  updateEnabled = (e: Event) =>
     (this.enabled = (e.currentTarget as HTMLInputElement).checked)
   create = () => {
     this.count = this.count + 1
@@ -313,46 +250,25 @@ class Tickets extends Component<{ Args: { log: (message: string) => void } }> {
   }
   save = () => this.args.log('Pending ticket saved')
   onAltKeyC: HotkeyCallback = () => this.create()
-  get optionsAltKeyC(): HotkeyOptions {
-    return {
-
-      ...{
-        enabled: this.enabled,
-        ignoreInputs: false,
-        meta: {
-          name: 'Create ticket',
-          description: 'Also works while entering a ticket note',
-          group: 'Tickets',
-        },
-      },
-    }
-  }
   onAltKeyS: HotkeyCallback = () => this.save()
-  get optionsAltKeyS(): HotkeyOptions {
-    return {
-
-      ...{
-        enabled: this.enabled,
-        meta: { name: 'Save pending ticket', group: 'Tickets' },
-      },
-    }
-  }
 
   <template>
     {{useHotkey
       'Alt+[KeyC]'
       this.onAltKeyC
-      enabled=this.optionsAltKeyC.enabled
-
-      ignoreInputs=this.optionsAltKeyC.ignoreInputs
-      meta=this.optionsAltKeyC.meta
+      enabled=this.enabled
+      ignoreInputs=false
+      meta=(hash
+        name='Create ticket'
+        description='Also works while entering a ticket note'
+        group='Tickets'
+      )
     }}
     {{useHotkey
       'Alt+[KeyS]'
       this.onAltKeyS
-      enabled=this.optionsAltKeyS.enabled
-
-      meta=this.optionsAltKeyS.meta
+      enabled=this.enabled
+      meta=(hash name='Save pending ticket' group='Tickets')
     }}
     <section>
       <h2>Tickets</h2>
@@ -365,7 +281,7 @@ class Tickets extends Component<{ Args: { log: (message: string) => void } }> {
         <input
           type='checkbox'
           checked={{this.enabled}}
-          {{on 'input' this.handleInput1}}
+          {{on 'input' this.updateEnabled}}
         />
         Enable ticket actions
       </label>
@@ -396,13 +312,9 @@ class Tickets extends Component<{ Args: { log: (message: string) => void } }> {
 class EditorPane extends Component<{
   Args: { name: string; log: (message: string) => void }
 }> {
-  target = trackedObject({ current: null as HTMLFieldSetElement | null })
   @tracked text: string = 'One shortcut, two independent editors.'
   @tracked saves: number = 0
-  captureTarget = (element: HTMLElement | null) => {
-    this.target.current = element as HTMLFieldSetElement | null
-  }
-  handleInput1 = (e: Event) =>
+  updateText = (e: Event) =>
     (this.text = (e.currentTarget as HTMLInputElement).value)
   get hotkeyDefinitions(): Array<HotkeyDefinition> {
     return [
@@ -430,21 +342,9 @@ class EditorPane extends Component<{
       },
     ]
   }
-  get options0Target(): HotkeyOptions {
-    return {
-
-      ...{ target: this.target.current, ignoreInputs: false },
-    }
-  }
 
   <template>
-    {{useHotkeys
-      this.hotkeyDefinitions
-      target=this.options0Target.target
-
-      ignoreInputs=this.options0Target.ignoreInputs
-    }}
-    <fieldset {{captureElement this.captureTarget}}>
+    <fieldset {{onHotkeys this.hotkeyDefinitions ignoreInputs=false}}>
       <legend>
         {{this.args.name}}
         —
@@ -456,7 +356,7 @@ class EditorPane extends Component<{
         <textarea
           rows={{3}}
           value={{this.text}}
-          {{on 'input' this.handleInput1}}
+          {{on 'input' this.updateText}}
         ></textarea>
       </label>
       <p>
@@ -473,81 +373,37 @@ class Editor extends Component<{ Args: { log: (message: string) => void } }> {
   @tracked repeat: boolean = false
   @tracked count: number = 0
   @tracked bubble: boolean = false
-  scope = trackedObject({ current: null as HTMLFieldSetElement | null })
-  handleInput1 = (e: Event) =>
+  updateRepeat = (e: Event) =>
     (this.repeat = (e.currentTarget as HTMLInputElement).checked)
-  captureScope = (element: HTMLElement | null) => {
-    this.scope.current = element as HTMLFieldSetElement | null
-  }
-  handleInput2 = (e: Event) =>
+  updateBubbling = (e: Event) =>
     (this.bubble = (e.currentTarget as HTMLInputElement).checked)
-  handleClick3 = () => this.scope.current?.focus()
+  focusScope = (event: Event) => {
+    const button = event.currentTarget as HTMLButtonElement
+    button.closest('fieldset')?.focus()
+  }
   onAltArrowRight: HotkeyCallback = () => (this.count = this.count + 1)
-  get optionsAltArrowRight(): HotkeyOptions {
-    return {
-      requireReset: !this.repeat,
-      meta: { name: 'Advance counter', group: 'Editor' },
-    }
-  }
   onAltKeyBScope: HotkeyCallback = () => this.args.log('Scoped B handler')
-  get optionsAltKeyBScope(): HotkeyOptions {
-    return {
-
-      ...{
-        target: this.scope.current,
-        stopPropagation: !this.bubble,
-        preventDefault: !this.bubble,
-        meta: { name: 'Scoped propagation demo', group: 'Editor' },
-      },
-    }
-  }
   onAltKeyB: HotkeyCallback = () =>
     this.args.log('Document B handler received the bubbled event')
-  get optionsAltKeyB(): HotkeyOptions {
-    return {
-
-      ...{ meta: { name: 'Document propagation demo', group: 'Editor' } },
-    }
-  }
   onAltKeyU: HotkeyCallback = () => this.args.log('Key released: keyup handler')
-  get optionsAltKeyU(): HotkeyOptions {
-    return {
-
-      ...{
-        eventType: 'keyup',
-        meta: { name: 'Run on release', group: 'Editor' },
-      },
-    }
-  }
 
   <template>
     {{useHotkey
       'Alt+[ArrowRight]'
       this.onAltArrowRight
-      requireReset=this.optionsAltArrowRight.requireReset
-      meta=this.optionsAltArrowRight.meta
-    }}
-    {{useHotkey
-      'Alt+[KeyB]'
-      this.onAltKeyBScope
-      target=this.optionsAltKeyBScope.target
-
-      preventDefault=this.optionsAltKeyBScope.preventDefault
-      stopPropagation=this.optionsAltKeyBScope.stopPropagation
-      meta=this.optionsAltKeyBScope.meta
+      requireReset=(not this.repeat)
+      meta=(hash name='Advance counter' group='Editor')
     }}
     {{useHotkey
       'Alt+[KeyB]'
       this.onAltKeyB
-
-      meta=this.optionsAltKeyB.meta
+      meta=(hash name='Document propagation demo' group='Editor')
     }}
     {{useHotkey
       'Alt+[KeyU]'
       this.onAltKeyU
-
-      eventType=this.optionsAltKeyU.eventType
-      meta=this.optionsAltKeyU.meta
+      eventType='keyup'
+      meta=(hash name='Run on release' group='Editor')
     }}
     <section>
       <h2>Editor scopes</h2>
@@ -562,7 +418,7 @@ class Editor extends Component<{ Args: { log: (message: string) => void } }> {
         <input
           type='checkbox'
           checked={{this.repeat}}
-          {{on 'input' this.handleInput1}}
+          {{on 'input' this.updateRepeat}}
         />
         Allow key repeat
       </label>
@@ -574,13 +430,22 @@ class Editor extends Component<{ Args: { log: (message: string) => void } }> {
         <kbd>{{formatForDisplay 'Alt+[KeyU]'}}</kbd>
         to log a keyup event.
       </p>
-      <fieldset {{captureElement this.captureScope}} tabindex={{0}}>
+      <fieldset
+        {{onHotkey
+          'Alt+[KeyB]'
+          this.onAltKeyBScope
+          preventDefault=(not this.bubble)
+          stopPropagation=(not this.bubble)
+          meta=(hash name='Scoped propagation demo' group='Editor')
+        }}
+        tabindex={{0}}
+      >
         <legend>Propagation</legend>
         <label>
           <input
             type='checkbox'
             checked={{this.bubble}}
-            {{on 'input' this.handleInput2}}
+            {{on 'input' this.updateBubbling}}
           />
           Allow bubbling and browser defaults
         </label>
@@ -589,7 +454,7 @@ class Editor extends Component<{ Args: { log: (message: string) => void } }> {
           <kbd>{{formatForDisplay 'Alt+[KeyB]'}}</kbd>. Activity shows whether the
           document handler also receives the event.
         </p>
-        <button {{on 'click' this.handleClick3}}>Focus this area</button>
+        <button {{on 'click' this.focusScope}}>Focus this area</button>
       </fieldset>
     </section>
   </template>
@@ -599,21 +464,15 @@ class Sequences extends Component<{
   Args: { log: (message: string) => void }
 }> {
   @tracked timeout: number = 1000
-  registrationState2 = useHotkeyRegistrations(this)
-  handleInput1 = (e: Event) =>
+  registrationsState = useHotkeyRegistrations(this)
+  updateTimeout = (e: Event) =>
     (this.timeout = Number((e.currentTarget as HTMLInputElement).value))
-  value2 = (reg: SequenceRegistrationView) =>
+  formatSequence = (reg: SequenceRegistrationView) =>
     reg.sequence.map((step) => formatForDisplay(step)).join(' → ')
-  get sequence0(): HotkeySequence {
+  get goToTopSequence(): HotkeySequence {
     return ['[KeyG]', '[KeyG]']
   }
-  on0: HotkeyCallback = () => this.args.log('Sequence: go to top')
-  get options0(): SequenceOptions {
-    return {
-      timeout: this.timeout,
-      meta: { name: 'Go to top', group: 'Sequences' },
-    }
-  }
+  goToTop: HotkeyCallback = () => this.args.log('Sequence: go to top')
   get sequenceDefinitions1(): Array<HotkeySequenceDefinition> {
     return [
       {
@@ -628,21 +487,18 @@ class Sequences extends Component<{
       },
     ]
   }
-  get options1(): SequenceOptions {
-    return { timeout: this.timeout }
-  }
   get sequences() {
-    return this.registrationState2.sequences
+    return this.registrationsState.sequences
   }
 
   <template>
     {{useHotkeySequence
-      this.sequence0
-      this.on0
-      timeout=this.options0.timeout
-      meta=this.options0.meta
+      this.goToTopSequence
+      this.goToTop
+      timeout=this.timeout
+      meta=(hash name='Go to top' group='Sequences')
     }}
-    {{useHotkeySequences this.sequenceDefinitions1 timeout=this.options1.timeout}}
+    {{useHotkeySequences this.sequenceDefinitions1 timeout=this.timeout}}
     <section>
       <h2>Sequences</h2>
       <p>
@@ -659,7 +515,7 @@ class Sequences extends Component<{
           max='2500'
           step='100'
           value={{this.timeout}}
-          {{on 'input' this.handleInput1}}
+          {{on 'input' this.updateTimeout}}
         />
       </label>
       <table>
@@ -674,7 +530,7 @@ class Sequences extends Component<{
           {{#each this.sequences key='id' as |reg|}}<tr>
               <td>{{reg.options.meta.name}}</td>
               <td>
-                {{this.value2 reg}}
+                {{this.formatSequence reg}}
               </td>
               <td>
                 {{reg.matchedStepCount}}/{{reg.sequence.length}}
@@ -746,18 +602,18 @@ class Recording extends Component<{
     },
     onCancel: () => (this.sequenceProblem = 'Recording cancelled.'),
   }))
-  handleInput1 = (e: Event) =>
+  updateMode = (e: Event) =>
     (this.mode = (e.currentTarget as HTMLInputElement).value as RecorderKeyMode)
-  handleClick2 = () => {
+  startRecording = () => {
     this.problem = ''
     this.recorder.startRecording()
   }
-  handleClick3 = () => {
+  resetShortcut = () => {
     this.recorder.stopRecording()
     this.hotkey = this.initial
     this.problem = ''
   }
-  get value4() {
+  get sequenceText() {
     return (
       this.sequenceRecorder.isRecording
         ? this.sequenceRecorder.steps
@@ -766,47 +622,33 @@ class Recording extends Component<{
       .map((step) => formatForDisplay(step))
       .join(' → ')
   }
-  handleInput5 = (e: Event) =>
+  updateIdle = (e: Event) =>
     (this.idle = (e.currentTarget as HTMLInputElement).checked)
-  handleInput6 = (e: Event) =>
+  updateCommitOnEnter = (e: Event) =>
     (this.commitOnEnter = (e.currentTarget as HTMLInputElement).checked)
-  handleClick7 = () => {
+  startSequenceRecording = () => {
     this.sequenceProblem = ''
     this.sequenceRecorder.startRecording()
   }
   get initial(): Hotkey {
     return 'Alt+[KeyR]'
   }
-  get hotkey0(): RegisterableHotkey {
-    return this.hotkey
-  }
-  on0: HotkeyCallback = () => this.args.log('Your recorded shortcut fired')
-  get options0(): HotkeyOptions {
-    return {
-
-      ...{
-        meta: { name: 'Recorded action', group: 'Recording' },
-      },
-    }
-  }
-  get sequence1(): HotkeySequence {
-    return this.sequence
-  }
-  on1: HotkeyCallback = () => this.args.log('Your recorded sequence fired')
-  get options1(): SequenceOptions {
-    return {
-      meta: { name: 'Recorded sequence', group: 'Recording' },
-    }
-  }
+  runShortcut: HotkeyCallback = () =>
+    this.args.log('Your recorded shortcut fired')
+  runSequence: HotkeyCallback = () =>
+    this.args.log('Your recorded sequence fired')
 
   <template>
     {{useHotkey
-      this.hotkey0
-      this.on0
-
-      meta=this.options0.meta
+      this.hotkey
+      this.runShortcut
+      meta=(hash name='Recorded action' group='Recording')
     }}
-    {{useHotkeySequence this.sequence1 this.on1 meta=this.options1.meta}}
+    {{useHotkeySequence
+      this.sequence
+      this.runSequence
+      meta=(hash name='Recorded sequence' group='Recording')
+    }}
     <section>
       <h2>Recording</h2>
       <p>
@@ -821,7 +663,7 @@ class Recording extends Component<{
             this.recorder.isRecording
             this.sequenceRecorder.isRecording
           }}
-          {{on 'input' this.handleInput1}}
+          {{on 'input' this.updateMode}}
         >
           <option value='code'>Physical code (default)</option>
           <option value='key'>Logical character</option>
@@ -835,11 +677,11 @@ class Recording extends Component<{
       </p>
       <button
         disabled={{or this.recorder.isRecording this.sequenceRecorder.isRecording}}
-        {{on 'click' this.handleClick2}}
+        {{on 'click' this.startRecording}}
       >
         {{if this.recorder.isRecording 'Listening…' 'Record shortcut'}}
       </button>
-      <button {{on 'click' this.handleClick3}}>
+      <button {{on 'click' this.resetShortcut}}>
         Reset
       </button>
       {{#if this.recorder.isRecording}}<button
@@ -852,13 +694,13 @@ class Recording extends Component<{
       <p role='status'>{{this.problem}}</p>
       <h3>Sequence</h3>
       <p>
-        {{or this.value4 'Waiting for the first chord…'}}
+        {{or this.sequenceText 'Waiting for the first chord…'}}
       </p>
       <label>
         <input
           type='checkbox'
           checked={{this.idle}}
-          {{on 'input' this.handleInput5}}
+          {{on 'input' this.updateIdle}}
         />
         Commit after 1.5 seconds idle
       </label>
@@ -866,7 +708,7 @@ class Recording extends Component<{
         <input
           type='checkbox'
           checked={{this.commitOnEnter}}
-          {{on 'input' this.handleInput6}}
+          {{on 'input' this.updateCommitOnEnter}}
         />
         Enter commits the sequence
       </label>
@@ -876,7 +718,7 @@ class Recording extends Component<{
             this.recorder.isRecording
             this.sequenceRecorder.isRecording
           }}
-          {{on 'click' this.handleClick7}}
+          {{on 'click' this.startSequenceRecording}}
         >
           Record sequence
         </button>
@@ -906,17 +748,17 @@ class Formatting extends Component {
   @tracked platform: 'mac' | 'windows' | 'linux' = 'mac'
   @tracked modifierSymbols: boolean = false
   @tracked keySymbols: boolean = true
-  handleInput1 = (e: Event) =>
+  updatePlatform = (e: Event) =>
     (this.platform = (e.currentTarget as HTMLInputElement)
       .value as typeof this.platform)
-  handleInput2 = (e: Event) =>
+  updateModifierSymbols = (e: Event) =>
     (this.modifierSymbols = (e.currentTarget as HTMLInputElement).checked)
-  handleInput3 = (e: Event) =>
+  updateKeySymbols = (e: Event) =>
     (this.keySymbols = (e.currentTarget as HTMLInputElement).checked)
-  get value4() {
+  get partOptions() {
     return { ...this.options, parts: true }
   }
-  get value5() {
+  get sampleHotkeys() {
     return [
       'Mod+Shift+ArrowUp',
       'Control++',
@@ -936,7 +778,7 @@ class Formatting extends Component {
       <h2>Formatting</h2>
       <label>
         Platform
-        <select value={{this.platform}} {{on 'input' this.handleInput1}}>
+        <select value={{this.platform}} {{on 'input' this.updatePlatform}}>
           <option value='mac'>macOS</option>
           <option value='windows'>Windows</option>
           <option value='linux'>Linux</option>
@@ -946,7 +788,7 @@ class Formatting extends Component {
         <input
           type='checkbox'
           checked={{this.modifierSymbols}}
-          {{on 'input' this.handleInput2}}
+          {{on 'input' this.updateModifierSymbols}}
         />
         Modifier symbols
       </label>
@@ -954,7 +796,7 @@ class Formatting extends Component {
         <input
           type='checkbox'
           checked={{this.keySymbols}}
-          {{on 'input' this.handleInput3}}
+          {{on 'input' this.updateKeySymbols}}
         />
         Key symbols
       </label>
@@ -967,13 +809,13 @@ class Formatting extends Component {
           </tr>
         </thead>
         <tbody>
-          {{#each this.value5 as |hotkey|}}<tr>
+          {{#each this.sampleHotkeys as |hotkey|}}<tr>
               <td>
                 <code>{{hotkey}}</code>
               </td>
               <td>{{formatForDisplay hotkey this.options}}</td>
               <td>
-                {{#each (formatForDisplay hotkey this.value4) as |part i|}}<kbd
+                {{#each (formatForDisplay hotkey this.partOptions) as |part i|}}<kbd
                   >{{part}}</kbd>{{/each}}
               </td>
             </tr>{{/each}}

@@ -23,6 +23,8 @@ Add Alpine, Ember, and Octane adapters with framework-native lifecycle managemen
 
 Support reactive option getters and live recorder options. Follow replacement provider defaults in Solid and Vue, track getters in Ember definitions, and refresh Lit registrations and scoped targets after host updates.
 
+Add Ember `onHotkey` and `onHotkeys` modifiers for element-scoped shortcuts with reactive options and automatic cleanup.
+
 Add Angular and Svelte Hotkeys devtools integrations with development-only defaults and explicit production exports.
 
 Update compatible dependencies and release all Hotkeys adapters and devtools packages together as minor versions.

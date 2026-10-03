@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -15,202 +15,141 @@
             dynamic arrays for variable-length shortcut lists.
           </p>
         </header>
-        <span style="display: contents" x-data="basicMultiHotkeys(() => ({}))"
-          ><div class="demo-section">
+        <span style="display: contents" x-data="basicMultiHotkeys(() => ({}))">
+          <div class="demo-section">
             <h2>Basic Multi-Hotkey Registration</h2>
             <p>
               All three hotkeys are registered in a single
-              <code>scope.createHotkeys()</code
-              ><span x-text="[(' '), &quot; call with &quot;].join('')"></span
-              ><code>meta</code> for name and description.
+              <code>scope.createHotkeys()</code>
+              <span x-text="`  call with `"></span>
+              <code>meta</code>
+              for name and description.
             </p>
             <div class="hotkey-grid">
               <div>
-                <kbd
-                  ><span
-                    x-text="[(formatForDisplay('Shift+S'))].join('')"
-                  ></span></kbd
-                ><span
-                  x-text='[" Save (", (saveCount), ") "].join(&apos;&apos;)'
-                ></span>
+                <kbd x-text="formatForDisplay('Shift+S')"></kbd>
+                <span x-text="` Save (${saveCount}) `"></span>
               </div>
               <div>
-                <kbd
-                  ><span
-                    x-text="[(formatForDisplay('Shift+U'))].join('')"
-                  ></span></kbd
-                ><span
-                  x-text='[" Undo (", (undoCount), ") "].join(&apos;&apos;)'
-                ></span>
+                <kbd x-text="formatForDisplay('Shift+U')"></kbd>
+                <span x-text="` Undo (${undoCount}) `"></span>
               </div>
               <div>
-                <kbd
-                  ><span
-                    x-text="[(formatForDisplay('Shift+R'))].join('')"
-                  ></span></kbd
-                ><span
-                  x-text='[" Redo (", (redoCount), ") "].join(&apos;&apos;)'
-                ></span>
+                <kbd x-text="formatForDisplay('Shift+R')"></kbd>
+                <span x-text="` Redo (${redoCount}) `"></span>
               </div>
             </div>
-            <template x-if="(log.length &gt; 0)"
-              ><div class="log">
-                <template x-for="(entry, i) in (log)" :key="(i)"
-                  ><div class="log-entry">
-                    <span
-                      x-text='[" ", (entry), " "].join(&apos;&apos;)'
-                    ></span></div
-                ></template></div
-            ></template>
-            <pre class="code-block" x-text="usage0"></pre></div
-        ></span>
-        <span style="display: contents" x-data="commonOptionsDemo(() => ({}))"
-          ><div class="demo-section">
+            <template x-if="log.length > 0">
+              <div class="log">
+                <template x-for="(entry, i) in (log)" :key="i">
+                  <div class="log-entry" x-text="` ${entry} `"></div>
+                </template>
+              </div>
+            </template>
+            <pre class="code-block" x-text="usage0"></pre>
+          </div>
+        </span>
+        <span style="display: contents" x-data="commonOptionsDemo(() => ({}))">
+          <div class="demo-section">
             <h2>Common Options with Per-Hotkey Overrides</h2>
             <p>
-              <kbd
-                ><span
-                  x-text="[(formatForDisplay('Alt+J'))].join('')"
-                ></span></kbd
-              ><span
-                x-text="[&quot; and&quot;, (' '), &quot; &quot;].join('')"
-              ></span
-              ><kbd
-                ><span
-                  x-text="[(formatForDisplay('Alt+K'))].join('')"
-                ></span></kbd
-              ><span
-                x-text="[&quot; respect the global toggle.&quot;, (' '), &quot; &quot;].join('')"
-              ></span
-              ><kbd
-                ><span
-                  x-text="[(formatForDisplay('Alt+L'))].join('')"
-                ></span></kbd
-              ><span
-                x-text="[&quot; overrides&quot;, (' '), &quot; &quot;].join('')"
-              ></span
-              ><code>enabled: true</code> so it always works.
+              <kbd x-text="formatForDisplay('Alt+J')"></kbd>
+              <span x-text="` and  `"></span>
+              <kbd x-text="formatForDisplay('Alt+K')"></kbd>
+              <span x-text="` respect the global toggle.  `"></span>
+              <kbd x-text="formatForDisplay('Alt+L')"></kbd>
+              <span x-text="` overrides  `"></span>
+              <code>enabled: true</code>
+              so it always works.
             </p>
             <div style="margin-bottom: 12px">
-              <button @click="((() =&gt; enabled = !enabled))($event)">
-                <span
-                  x-text="[&quot; &quot;, (enabled ? 'Disable' : 'Enable'), &quot; common hotkeys &quot;].join('')"
-                ></span>
-              </button>
+              <button
+                @click="enabled = !enabled"
+                x-text="` ${enabled ? 'Disable' : 'Enable'} common hotkeys `"
+              ></button>
             </div>
             <div class="hotkey-grid">
               <div>
-                <kbd
-                  ><span
-                    x-text="[(formatForDisplay('Alt+J'))].join('')"
-                  ></span></kbd
-                ><span
-                  x-text='[" Action A (", (counts.a), ") "].join(&apos;&apos;)'
-                ></span>
+                <kbd x-text="formatForDisplay('Alt+J')"></kbd>
+                <span x-text="` Action A (${counts.a}) `"></span>
               </div>
               <div>
-                <kbd
-                  ><span
-                    x-text="[(formatForDisplay('Alt+K'))].join('')"
-                  ></span></kbd
-                ><span
-                  x-text='[" Action B (", (counts.b), ") "].join(&apos;&apos;)'
-                ></span>
+                <kbd x-text="formatForDisplay('Alt+K')"></kbd>
+                <span x-text="` Action B (${counts.b}) `"></span>
               </div>
               <div>
-                <kbd
-                  ><span
-                    x-text="[(formatForDisplay('Alt+L'))].join('')"
-                  ></span></kbd
-                ><span
-                  x-text='[" Action C (", (counts.c), ") "].join(&apos;&apos;)'
-                ></span
-                ><span class="hint"> (always on)</span>
+                <kbd x-text="formatForDisplay('Alt+L')"></kbd>
+                <span x-text="` Action C (${counts.c}) `"></span>
+                <span class="hint">(always on)</span>
               </div>
             </div>
-            <pre class="code-block" x-text="usage0"></pre></div
-        ></span>
-        <span style="display: contents" x-data="dynamicHotkeysDemo(() => ({}))"
-          ><div class="demo-section">
+            <pre class="code-block" x-text="usage0"></pre>
+          </div>
+        </span>
+        <span style="display: contents" x-data="dynamicHotkeysDemo(() => ({}))">
+          <div class="demo-section">
             <h2>Dynamic Hotkey List</h2>
             <p>
               Add or remove hotkeys at runtime. Because
-              <code>scope.createHotkeys</code
-              ><span
-                x-text="[(' '), &quot; accepts a dynamic array, this is safe without breaking the registration lifecycle. &quot;].join('')"
-              ></span>
+              <code>scope.createHotkeys</code>
+              accepts a dynamic array, this is safe without breaking the
+              registration lifecycle.
             </p>
+            <p role="alert" x-show="error" x-text="error"></p>
             <div class="dynamic-list">
-              <template x-for="s in (shortcuts)" :key="(s.id)"
-                ><div class="dynamic-item">
-                  <kbd
-                    ><span
-                      x-text="[(formatForDisplay(s.hotkey))].join('')"
-                    ></span
-                  ></kbd>
-                  <span><span x-text="[(s.label)].join('')"></span></span>
-                  <span class="count"
-                    ><span x-text="[(s.count)].join('')"></span
-                  ></span>
-                  <button @click="((() =&gt; removeShortcut(s.id)))($event)">
-                    Remove
-                  </button>
-                </div></template
-              >
-              <template x-if="(shortcuts.length === 0)"
-                ><p class="hint">
-                  No shortcuts registered. Add one below.
-                </p></template
-              >
+              <template x-for="s in (shortcuts)" :key="s.id">
+                <div class="dynamic-item">
+                  <kbd x-text="formatForDisplay(s.hotkey)"></kbd>
+                  <span x-text="s.label"></span>
+                  <span class="count" x-text="s.count"></span>
+                  <button @click="removeShortcut(s.id)">Remove</button>
+                </div>
+              </template>
+              <template x-if="shortcuts.length === 0">
+                <p class="hint">No shortcuts registered. Add one below.</p>
+              </template>
             </div>
             <div class="add-form">
               <input
                 type="text"
                 placeholder="Hotkey (e.g. Shift+D)"
-                :value="(newHotkey)"
-                @input="(((e) =&gt; newHotkey = e.currentTarget.value))($event)"
-                @keydown="(((e) =&gt; {
-    if (e.key === 'Enter')
-        addShortcut();
-}))($event)"
+                x-model="newHotkey"
+                @keydown.enter="addShortcut()"
               />
               <input
                 type="text"
                 placeholder="Name (e.g. Action D)"
-                :value="(newLabel)"
-                @input="(((e) =&gt; newLabel = e.currentTarget.value))($event)"
-                @keydown="(((e) =&gt; {
-    if (e.key === 'Enter')
-        addShortcut();
-}))($event)"
+                x-model="newLabel"
+                @keydown.enter="addShortcut()"
               />
               <input
                 type="text"
                 placeholder="Description (optional)"
-                :value="(newDescription)"
-                @input="(((e) =&gt; newDescription = e.currentTarget.value))($event)"
-                @keydown="(((e) =&gt; {
-    if (e.key === 'Enter')
-        addShortcut();
-}))($event)"
+                x-model="newDescription"
+                @keydown.enter="addShortcut()"
               />
               <button
-                @click="(addShortcut)($event)"
-                :disabled="(!newHotkey || !newLabel)"
+                @click="addShortcut()"
+                :disabled="!newHotkey || !newLabel"
               >
                 Add
               </button>
             </div>
-            <pre class="code-block" x-text="usage0"></pre></div
-        ></span>
-        <span style="display: contents" x-data="registrationsViewer(() => ({}))"
-          ><div class="demo-section">
+            <pre class="code-block" x-text="usage0"></pre>
+          </div>
+        </span>
+        <span
+          style="display: contents"
+          x-data="registrationsViewer(() => ({}))"
+        >
+          <div class="demo-section">
             <h2>Live Registrations (scope.createHotkeyRegistrations)</h2>
             <p>
               This table is rendered from
-              <code>scope.createHotkeyRegistrations()</code> — a reactive view
-              of all registered hotkeys. It updates automatically as hotkeys are
-              added, removed, enabled/disabled, or triggered.
+              <code>scope.createHotkeyRegistrations()</code>
+              — a reactive view of all registered hotkeys. It updates
+              automatically as hotkeys are added, removed, enabled/disabled, or
+              triggered.
             </p>
             <table class="registrations-table">
               <thead>
@@ -223,46 +162,34 @@
                 </tr>
               </thead>
               <tbody>
-                <template x-for="reg in (hotkeys)" :key="(reg.id)"
-                  ><tr>
+                <template x-for="reg in (hotkeys)" :key="reg.id">
+                  <tr>
                     <td>
-                      <kbd
-                        ><span
-                          x-text="[(formatForDisplay(reg.hotkey))].join('')"
-                        ></span
-                      ></kbd>
+                      <kbd x-text="formatForDisplay(reg.hotkey)"></kbd>
                     </td>
-                    <td>
-                      <span
-                        x-text="[(reg.options.meta?.name ?? '—')].join('')"
-                      ></span>
-                    </td>
-                    <td class="description-cell">
-                      <span
-                        x-text="[&quot; &quot;, (reg.options.meta?.description ?? '—'), &quot; &quot;].join('')"
-                      ></span>
-                    </td>
+                    <td x-text="reg.options.meta?.name ?? '—'"></td>
+                    <td
+                      class="description-cell"
+                      x-text="` ${reg.options.meta?.description ?? '—'} `"
+                    ></td>
                     <td>
                       <span
-                        :class="(reg.options.enabled !== false ? 'status-on' : 'status-off')"
-                        ><span
-                          x-text="[&quot; &quot;, (reg.options.enabled !== false ? 'yes' : 'no'), &quot; &quot;].join('')"
-                        ></span
+                        :class="reg.options.enabled !== false ? 'status-on' : 'status-off'"
+                        x-text="` ${reg.options.enabled !== false ? 'yes' : 'no'} `"
                       ></span>
                     </td>
-                    <td class="trigger-count">
-                      <span x-text="[(reg.triggerCount)].join('')"></span>
-                    </td></tr
-                ></template>
-                <template x-if="(hotkeys.length === 0)"
-                  ><tr>
-                    <td :colspan="(5)" class="hint">No hotkeys registered</td>
-                  </tr></template
-                >
+                    <td class="trigger-count" x-text="reg.triggerCount"></td>
+                  </tr>
+                </template>
+                <template x-if="hotkeys.length === 0">
+                  <tr>
+                    <td :colspan="5" class="hint">No hotkeys registered</td>
+                  </tr>
+                </template>
               </tbody>
             </table>
-            <template x-if="(sequences.length &gt; 0)"
-              ><span>
+            <template x-if="sequences.length > 0">
+              <span>
                 <h3 style="margin-top: 16px">Sequences</h3>
                 <table class="registrations-table">
                   <thead>
@@ -274,40 +201,34 @@
                     </tr>
                   </thead>
                   <tbody>
-                    <template x-for="reg in (sequences)" :key="(reg.id)"
-                      ><tr>
+                    <template x-for="reg in (sequences)" :key="reg.id">
+                      <tr>
                         <td>
-                          <template x-for="(s, i) in (reg.sequence)" :key="(i)"
-                            ><span
-                              ><span
-                                x-text="[&quot; &quot;, ((i &gt; 0) ? (' ') : ''), &quot; &quot;].join('')"
-                              ></span
-                              ><kbd
-                                ><span
-                                  x-text="[(formatForDisplay(s))].join('')"
-                                ></span
-                              ></kbd> </span
-                          ></template>
+                          <template x-for="(s, i) in (reg.sequence)" :key="i">
+                            <span>
+                              <span x-text="` ${i > 0 ? ' ' : ''} `"></span>
+                              <kbd x-text="formatForDisplay(s)"></kbd>
+                            </span>
+                          </template>
                         </td>
-                        <td>
-                          <span
-                            x-text="[(reg.options.meta?.name ?? '—')].join('')"
-                          ></span>
-                        </td>
-                        <td class="description-cell">
-                          <span
-                            x-text="[&quot; &quot;, (reg.options.meta?.description ?? '—'), &quot; &quot;].join('')"
-                          ></span>
-                        </td>
-                        <td class="trigger-count">
-                          <span x-text="[(reg.triggerCount)].join('')"></span>
-                        </td></tr
-                    ></template>
+                        <td x-text="reg.options.meta?.name ?? '—'"></td>
+                        <td
+                          class="description-cell"
+                          x-text="` ${reg.options.meta?.description ?? '—'} `"
+                        ></td>
+                        <td
+                          class="trigger-count"
+                          x-text="reg.triggerCount"
+                        ></td>
+                      </tr>
+                    </template>
                   </tbody>
-                </table> </span
-            ></template>
-            <pre class="code-block" x-text="usage0"></pre></div
-        ></span>
+                </table>
+              </span>
+            </template>
+            <pre class="code-block" x-text="usage0"></pre>
+          </div>
+        </span>
       </div>
     </div>
     <script type="module" src="/src/main.ts"></script>

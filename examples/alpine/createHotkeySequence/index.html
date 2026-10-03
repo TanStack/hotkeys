@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -28,27 +28,46 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><kbd>g</kbd> <kbd>g</kbd></td>
+                  <td>
+                    <kbd>g</kbd>
+                    <kbd>g</kbd>
+                  </td>
                   <td>Go to top</td>
                 </tr>
                 <tr>
-                  <td><kbd>G</kbd> (Shift+G)</td>
+                  <td>
+                    <kbd>G</kbd>
+                    (Shift+G)
+                  </td>
                   <td>Go to bottom</td>
                 </tr>
                 <tr>
-                  <td><kbd>d</kbd> <kbd>d</kbd></td>
+                  <td>
+                    <kbd>d</kbd>
+                    <kbd>d</kbd>
+                  </td>
                   <td>Delete line</td>
                 </tr>
                 <tr>
-                  <td><kbd>y</kbd> <kbd>y</kbd></td>
+                  <td>
+                    <kbd>y</kbd>
+                    <kbd>y</kbd>
+                  </td>
                   <td>Yank (copy) line</td>
                 </tr>
                 <tr>
-                  <td><kbd>d</kbd> <kbd>w</kbd></td>
+                  <td>
+                    <kbd>d</kbd>
+                    <kbd>w</kbd>
+                  </td>
                   <td>Delete word</td>
                 </tr>
                 <tr>
-                  <td><kbd>c</kbd> <kbd>i</kbd> <kbd>w</kbd></td>
+                  <td>
+                    <kbd>c</kbd>
+                    <kbd>i</kbd>
+                    <kbd>w</kbd>
+                  </td>
                   <td>Change inner word</td>
                 </tr>
               </tbody>
@@ -60,66 +79,78 @@
             <div class="fun-sequences">
               <div class="sequence-card">
                 <h3>Konami Code (Partial)</h3>
-                <p><kbd>↑</kbd> <kbd>↑</kbd> <kbd>↓</kbd> <kbd>↓</kbd></p>
+                <p>
+                  <kbd>↑</kbd>
+                  <kbd>↑</kbd>
+                  <kbd>↓</kbd>
+                  <kbd>↓</kbd>
+                </p>
                 <span class="hint">Use arrow keys within 1.5 seconds</span>
               </div>
               <div class="sequence-card">
                 <h3>Side to Side</h3>
-                <p><kbd>←</kbd> <kbd>→</kbd> <kbd>←</kbd> <kbd>→</kbd></p>
+                <p>
+                  <kbd>←</kbd>
+                  <kbd>→</kbd>
+                  <kbd>←</kbd>
+                  <kbd>→</kbd>
+                </p>
                 <span class="hint">Arrow keys within 1.5 seconds</span>
               </div>
               <div class="sequence-card">
                 <h3>Spell It Out</h3>
                 <p>
-                  <kbd>h</kbd> <kbd>e</kbd> <kbd>l</kbd> <kbd>l</kbd>
+                  <kbd>h</kbd>
+                  <kbd>e</kbd>
+                  <kbd>l</kbd>
+                  <kbd>l</kbd>
                   <kbd>o</kbd>
                 </p>
                 <span class="hint">Type "hello" quickly</span>
                 <p class="sequence-toggle-status">
-                  <span
-                    x-text="[&quot; This sequence is&quot;, (' '), &quot; &quot;].join('')"
-                  ></span
-                  ><strong
-                    ><span
-                      x-text="[(helloSequenceEnabled ? 'enabled' : 'disabled')].join('')"
-                    ></span
+                  <span x-text="` This sequence is  `"></span>
+                  <strong
+                    x-text="helloSequenceEnabled ? 'enabled' : 'disabled'"
                   ></strong>
                   .
                 </p>
                 <button
                   type="button"
-                  @click="((() =&gt; helloSequenceEnabled = !helloSequenceEnabled))($event)"
-                >
-                  <span
-                    x-text="[&quot; &quot;, (helloSequenceEnabled ? 'Disable' : 'Enable'), &quot; sequence &quot;].join('')"
-                  ></span>
-                </button>
+                  @click="helloSequenceEnabled = !helloSequenceEnabled"
+                  x-text="` ${helloSequenceEnabled ? 'Disable' : 'Enable'} sequence `"
+                ></button>
               </div>
             </div>
           </section>
 
-          <template x-if="(lastSequence)"
-            ><div class="info-box success">
-              <strong>Triggered:</strong
-              ><span
-                x-text='[" ", (lastSequence), " "].join(&apos;&apos;)'
-              ></span></div
-          ></template>
+          <template x-if="lastSequence">
+            <div class="info-box success">
+              <strong>Triggered:</strong>
+              <span x-text="` ${lastSequence} `"></span>
+            </div>
+          </template>
 
           <section class="demo-section">
             <h2>Input handling</h2>
             <p>
               Sequences are not detected when typing in text inputs, textareas,
               selects, or contenteditable elements. Button-type inputs (
-              <code>type="button"</code>, <code>submit</code>,
-              <code>reset</code>) still receive sequences. Focus the input below
-              and try <kbd>g</kbd
-              ><span x-text="[(' '), &quot; &quot;].join('')"></span
-              ><kbd>g</kbd> or <kbd>h</kbd>
+              <code>type="button"</code>
+              ,
+              <code>submit</code>
+              ,
+              <code>reset</code>
+              ) still receive sequences. Focus the input below and try
+              <kbd>g</kbd>
+              <span x-text="`  `"></span>
+              <kbd>g</kbd>
+              or
+              <kbd>h</kbd>
               <kbd>e</kbd>
               <kbd>l</kbd>
               <kbd>l</kbd>
-              <kbd>o</kbd> — nothing will trigger. Click outside to try again.
+              <kbd>o</kbd>
+              — nothing will trigger. Click outside to try again.
             </p>
             <input
               type="text"
@@ -131,18 +162,17 @@
           <section class="demo-section">
             <h2>Chained Shift+letter sequences</h2>
             <p>
-              These steps use physical R and T positions (<code>[KeyR]</code
-              ><span
-                x-text="[&quot; and&quot;, (' '), &quot; &quot;].join('')"
-              ></span
-              ><code>[KeyT]</code>), independent of the characters they produce.
-              Hold <kbd>Shift</kbd
-              ><span
-                x-text="[&quot; and press each position. You can press&quot;, (' '), &quot; &quot;].join('')"
-              ></span
-              ><kbd>Shift</kbd> alone between steps—those modifier-only presses
-              do not reset progress, so the next chord still counts. Holding a
-              key does not count as additional steps.
+              These steps use physical R and T positions (
+              <code>[KeyR]</code>
+              <span x-text="` and  `"></span>
+              <code>[KeyT]</code>
+              ), independent of the characters they produce. Hold
+              <kbd>Shift</kbd>
+              <span x-text="` and press each position. You can press  `"></span>
+              <kbd>Shift</kbd>
+              alone between steps—those modifier-only presses do not reset
+              progress, so the next chord still counts. Holding a key does not
+              count as additional steps.
             </p>
             <table class="sequence-table">
               <thead>
@@ -154,7 +184,12 @@
               <tbody>
                 <tr>
                   <td>
-                    <kbd>Shift</kbd>+<kbd>r</kbd> then <kbd>Shift</kbd>+
+                    <kbd>Shift</kbd>
+                    +
+                    <kbd>r</kbd>
+                    then
+                    <kbd>Shift</kbd>
+                    +
                     <kbd>t</kbd>
                   </td>
                   <td>Chained Shift+letter (2 steps)</td>
@@ -168,21 +203,23 @@
             <pre class="code-block" x-text="usage0"></pre>
           </section>
 
-          <template x-if="(history.length &gt; 0)"
-            ><section class="demo-section">
+          <template x-if="history.length > 0">
+            <section class="demo-section">
               <h2>History</h2>
               <ul class="history-list">
-                <template x-for="(item, i) in (history)" :key="(i)"
-                  ><li><span x-text="[(item)].join('')"></span></li
-                ></template>
+                <template x-for="(item, i) in (history)" :key="i">
+                  <li x-text="item"></li>
+                </template>
               </ul>
-              <button @click="((() =&gt; history = []))($event)">
-                Clear History
-              </button>
-            </section></template
-          >
+              <button @click="history = []">Clear History</button>
+            </section>
+          </template>
 
-          <p class="hint">Press <kbd>Escape</kbd> to clear history</p>
+          <p class="hint">
+            Press
+            <kbd>Escape</kbd>
+            to clear history
+          </p>
         </main>
       </div>
     </div>

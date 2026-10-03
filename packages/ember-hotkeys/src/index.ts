@@ -19,3 +19,7 @@ export * from './useHotkeySequenceRecorder'
 
 export * from './types'
 export * from './createHotkeysScope'
+
+export { OnHotkey as onHotkey } from './onHotkey'
+export { OnHotkeys as onHotkeys } from './onHotkeys'
+export type { ElementHotkeyOptions } from './onHotkeys'

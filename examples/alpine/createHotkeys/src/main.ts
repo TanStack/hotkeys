@@ -1,11 +1,20 @@
+import {
+  createHotkeysScope,
+  formatForDisplay,
+  normalizeHotkey,
+  validateHotkey,
+} from '@tanstack/alpine-hotkeys'
 import Alpine from 'alpinejs'
-import { createHotkeysScope, formatForDisplay } from '@tanstack/alpine-hotkeys'
+import type {
+  Hotkey,
+  HotkeyDefinition,
+  HotkeyRegistrationsResult,
+} from '@tanstack/alpine-hotkeys'
 import './index.css'
-import type { Hotkey, HotkeyDefinition } from '@tanstack/alpine-hotkeys'
 
 interface DynamicShortcut {
   id: number
-  hotkey: string
+  hotkey: Hotkey
   label: string
   description: string
   count: number
@@ -51,7 +60,7 @@ class BasicMultiHotkeys {
   redoCount = 0
 
   init() {
-    this.hotkeysScope.createHotkeys(() => [
+    this.hotkeysScope.createHotkeys([
       {
         hotkey: 'Shift+S',
         callback: (_e, { hotkey }) => {
@@ -100,7 +109,7 @@ class CommonOptionsDemo {
 
   init() {
     this.hotkeysScope.createHotkeys(
-      () => [
+      [
         {
           hotkey: 'Alt+J',
           callback: () =>
@@ -154,9 +163,10 @@ class DynamicHotkeysDemo {
   newHotkey = ''
   newLabel = ''
   newDescription = ''
+  error = ''
   get definitions(): Array<HotkeyDefinition> {
     return this.shortcuts.map((s) => ({
-      hotkey: s.hotkey as Hotkey,
+      hotkey: s.hotkey,
       callback: () => {
         this.shortcuts = this.shortcuts.map((item) =>
           item.id === s.id ? { ...item, count: item.count + 1 } : item,
@@ -169,12 +179,18 @@ class DynamicHotkeysDemo {
   }
   addShortcut() {
     const trimmed = this.newHotkey.trim()
-    if (!trimmed || !this.newLabel.trim()) return
+    if (!this.newLabel.trim()) return
+    const validation = validateHotkey(trimmed)
+    if (!validation.valid || validation.warnings.length > 0) {
+      this.error = [...validation.errors, ...validation.warnings].join(' ')
+      return
+    }
+    this.error = ''
     this.shortcuts = [
       ...this.shortcuts,
       {
         id: nextId++,
-        hotkey: trimmed,
+        hotkey: normalizeHotkey(trimmed),
         label: this.newLabel.trim(),
         description: this.newDescription.trim(),
         count: 0,
@@ -204,9 +220,7 @@ class RegistrationsViewer {
   formatForDisplay = formatForDisplay
   usage0 =
     'const registrations = scope.createHotkeyRegistrations()\n\n// Alpine reads registrations.hotkeys and registrations.sequences reactively.\n// <template x-for="reg in registrations.hotkeys" :key="reg.id">\n//   <p x-text="reg.options.meta?.name + \': \' + reg.triggerCount"></p>\n// </template>'
-  registrationState0!: ReturnType<
-    ReturnType<typeof createHotkeysScope>['createHotkeyRegistrations']
-  >
+  registrationState0!: HotkeyRegistrationsResult
   get hotkeys() {
     return this.registrationState0.hotkeys
   }

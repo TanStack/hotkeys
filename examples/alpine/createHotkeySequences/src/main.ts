@@ -1,5 +1,6 @@
 import Alpine from 'alpinejs'
 import { createHotkeysScope, formatForDisplay } from '@tanstack/alpine-hotkeys'
+import type { HotkeyRegistrationsResult } from '@tanstack/alpine-hotkeys'
 import './index.css'
 
 class App {
@@ -117,13 +118,10 @@ class App {
         },
       },
     ])
-    this.hotkeysScope.createHotkey(
-      () => 'Escape',
-      () => {
-        this.lastSequence = null
-        this.history = []
-      },
-    )
+    this.hotkeysScope.createHotkey('Escape', () => {
+      this.lastSequence = null
+      this.history = []
+    })
   }
   destroy() {
     this.hotkeysScope.destroy()
@@ -134,9 +132,7 @@ class RegistrationsViewer {
   private hotkeysScope = createHotkeysScope()
 
   formatForDisplay = formatForDisplay
-  registrationState0!: ReturnType<
-    ReturnType<typeof createHotkeysScope>['createHotkeyRegistrations']
-  >
+  registrationState0!: HotkeyRegistrationsResult
   get hotkeys() {
     return this.registrationState0.hotkeys
   }

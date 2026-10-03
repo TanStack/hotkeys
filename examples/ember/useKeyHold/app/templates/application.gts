@@ -7,44 +7,11 @@ import { useKeyHold } from '@tanstack/ember-hotkeys'
 class App extends Component {
   usage0 =
     "import { useKeyHold } from '@tanstack/ember-hotkeys'\n\nshift = useKeyHold(this, 'Shift')\n\n<template>\n  {{if this.shift.value 'Shift is pressed!' 'Press Shift'}}\n</template>"
-  isShiftHeldState = useKeyHold(this, () => 'Shift')
-  isControlHeldState = useKeyHold(this, () => 'Control')
-  isAltHeldState = useKeyHold(this, () => 'Alt')
-  isMetaHeldState = useKeyHold(this, () => 'Meta')
-  isSpaceHeldState = useKeyHold(this, () => 'Space')
-  get value1() {
-    return `modifier-indicator ${this.isShiftHeld ? 'active' : ''}`
-  }
-  get value2() {
-    return `modifier-indicator ${this.isControlHeld ? 'active' : ''}`
-  }
-  get value3() {
-    return `modifier-indicator ${this.isAltHeld ? 'active' : ''}`
-  }
-  get value4() {
-    return `modifier-indicator ${this.isMetaHeld ? 'active' : ''}`
-  }
-  get value5() {
-    return `space-indicator ${this.isSpaceHeld ? 'active' : ''}`
-  }
-  get value6() {
-    return `secret-box ${this.isShiftHeld ? 'revealed' : ''}`
-  }
-  get isShiftHeld() {
-    return this.isShiftHeldState.value
-  }
-  get isControlHeld() {
-    return this.isControlHeldState.value
-  }
-  get isAltHeld() {
-    return this.isAltHeldState.value
-  }
-  get isMetaHeld() {
-    return this.isMetaHeldState.value
-  }
-  get isSpaceHeld() {
-    return this.isSpaceHeldState.value
-  }
+  isShiftHeld = useKeyHold(this, 'Shift')
+  isControlHeld = useKeyHold(this, 'Control')
+  isAltHeld = useKeyHold(this, 'Alt')
+  isMetaHeld = useKeyHold(this, 'Meta')
+  isSpaceHeld = useKeyHold(this, 'Space')
 
   <template>
     <div class='app'>
@@ -60,33 +27,43 @@ class App extends Component {
         <section class='demo-section'>
           <h2>Modifier Key States</h2>
           <div class='modifier-grid'>
-            <div class={{this.value1}}>
+            <div class='modifier-indicator {{if this.isShiftHeld.value "active"}}'>
               <span class='key-name'>Shift</span>
               <span class='status'>
-                {{if this.isShiftHeld 'HELD' 'Released'}}
+                {{if this.isShiftHeld.value 'HELD' 'Released'}}
               </span>
             </div>
-            <div class={{this.value2}}>
+            <div
+              class='modifier-indicator {{if this.isControlHeld.value "active"}}'
+            >
               <span class='key-name'>Control</span>
               <span class='status'>
-                {{if this.isControlHeld 'HELD' 'Released'}}
+                {{if this.isControlHeld.value 'HELD' 'Released'}}
               </span>
             </div>
-            <div class={{this.value3}}>
+            <div class='modifier-indicator {{if this.isAltHeld.value "active"}}'>
               <span class='key-name'>Alt / Option</span>
-              <span class='status'>{{if this.isAltHeld 'HELD' 'Released'}}</span>
+              <span class='status'>{{if
+                  this.isAltHeld.value
+                  'HELD'
+                  'Released'
+                }}</span>
             </div>
-            <div class={{this.value4}}>
+            <div class='modifier-indicator {{if this.isMetaHeld.value "active"}}'>
               <span class='key-name'>Meta (⌘ / ⊞)</span>
-              <span class='status'>{{if this.isMetaHeld 'HELD' 'Released'}}</span>
+              <span class='status'>{{if
+                  this.isMetaHeld.value
+                  'HELD'
+                  'Released'
+                }}</span>
             </div>
           </div>
         </section>
 
         <section class='demo-section'>
           <h2>Space Bar Demo</h2>
-          <div class={{this.value5}}>
-            {{if this.isSpaceHeld '🚀 SPACE HELD!' 'Hold Space Bar'}}
+          <div class='space-indicator {{if this.isSpaceHeld.value "active"}}'>
+            {{if this.isSpaceHeld.value '🚀 SPACE HELD!' 'Hold Space Bar'}}
           </div>
         </section>
 
@@ -102,8 +79,8 @@ class App extends Component {
             <kbd>Shift</kbd>
             to reveal the secret message:
           </p>
-          <div class={{this.value6}}>
-            {{#if this.isShiftHeld}}<span>🎉 The secret password is:
+          <div class='secret-box {{if this.isShiftHeld.value "revealed"}}'>
+            {{#if this.isShiftHeld.value}}<span>🎉 The secret password is:
                 tanstack-hotkeys-rocks!</span>{{else}}<span
               >••••••••••••••••••••••••••</span>{{/if}}
           </div>

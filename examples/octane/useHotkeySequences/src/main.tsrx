@@ -1,6 +1,4 @@
-import { createRoot, delegateEvents, useState } from 'octane'
-
-delegateEvents(['click', 'input', 'keydown'])
+import { createRoot, useState } from 'octane'
 
 import {
   HotkeysProvider,
@@ -294,7 +292,7 @@ function App() @{
           @if (history.length > 0) { <section className="demo-section">
               <h2>History</h2>
               <ul className="history-list">
-                @for (const [i, item] of Array.from((history).entries()); key i) {
+                @for (const [i, item] of Array.from(history.entries()); key i) {
   <li>{item}</li> }
               </ul>
               <button onClick={() => setHistory([])}>Clear History</button>
@@ -304,7 +302,6 @@ function App() @{
             Press <kbd>Escape</kbd> to clear history
           </p>
         </main>
-
 
       </div>
 }

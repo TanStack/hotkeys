@@ -1,6 +1,4 @@
-import { createRoot, delegateEvents, useState } from 'octane'
-
-delegateEvents(['click', 'input', 'keydown'])
+import { createRoot, useState } from 'octane'
 
 import {
   HotkeysProvider,
@@ -331,7 +329,7 @@ function ShortcutListItem({
           <div className="shortcut-hotkey">
             @if (isEditing) { <div className="recording-indicator">
                 @if (heldKeys.length > 0) { <div className="held-hotkeys">
-                    @for (const [index, key] of Array.from((heldKeys).entries()); key key) {
+                    @for (const [index, key] of Array.from(heldKeys.entries()); key key) {
   <>
                         @if (index > 0) { <span className="plus">+</span> }
                         <kbd>{key}</kbd>

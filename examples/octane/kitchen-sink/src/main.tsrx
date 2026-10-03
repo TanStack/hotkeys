@@ -1,6 +1,4 @@
-import { createRoot, delegateEvents, createContext, useCallback, useContext, useEffect, useState } from 'octane'
-
-delegateEvents(['click', 'input', 'keydown'])
+import { createRoot, createContext, useCallback, useContext, useEffect, useState } from 'octane'
 
 import {
   HotkeysProvider,
@@ -159,7 +157,7 @@ function Layout() @{
           <h2>Activity</h2>
           <button onClick={() => setActivity([])}>Clear log</button>
           <ul aria-live="polite">
-            @for (const [i, message] of Array.from((activity).entries()); key i) {
+            @for (const [i, message] of Array.from(activity.entries()); key i) {
   <li>{message}</li> }
           </ul>
         </section>

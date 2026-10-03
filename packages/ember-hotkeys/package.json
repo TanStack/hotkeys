@@ -50,7 +50,8 @@
   "dependencies": {
     "@embroider/addon-shim": "^1.10.3",
     "@tanstack/hotkeys": "workspace:*",
-    "@tanstack/store": "^0.11.2"
+    "@tanstack/store": "^0.11.2",
+    "ember-modifier": "4.2.2"
   },
   "devDependencies": {
     "@babel/core": "7.29.7",
