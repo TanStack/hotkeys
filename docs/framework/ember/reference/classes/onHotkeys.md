@@ -3,7 +3,7 @@ id: onHotkeys
 title: onHotkeys
 ---
 
-Defined in: packages/ember-hotkeys/src/onHotkeys.ts:16
+Defined in: [packages/ember-hotkeys/src/onHotkeys.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/onHotkeys.ts#L16)
 
 Attach a reactive list of shortcuts directly to an element.
 
@@ -99,12 +99,12 @@ Modifier.[Invoke]
 
 ```ts
 modify(
-   element,
-   positional,
+   element, 
+   positional, 
    options): void;
 ```
 
-Defined in: packages/ember-hotkeys/src/onHotkeys.ts:28
+Defined in: [packages/ember-hotkeys/src/onHotkeys.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/onHotkeys.ts#L28)
 
 Called when the modifier is installed and any time any tracked state used
 in the modifier changes.

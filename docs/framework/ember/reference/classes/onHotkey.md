@@ -3,7 +3,7 @@ id: onHotkey
 title: onHotkey
 ---
 
-Defined in: packages/ember-hotkeys/src/onHotkey.ts:14
+Defined in: [packages/ember-hotkeys/src/onHotkey.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/onHotkey.ts#L14)
 
 Attaches a shortcut to the element that owns the modifier.
 
@@ -99,12 +99,12 @@ Modifier.[Invoke]
 
 ```ts
 modify(
-   element,
-   positional,
+   element, 
+   positional, 
    options): void;
 ```
 
-Defined in: packages/ember-hotkeys/src/onHotkey.ts:25
+Defined in: [packages/ember-hotkeys/src/onHotkey.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/onHotkey.ts#L25)
 
 Called when the modifier is installed and any time any tracked state used
 in the modifier changes.

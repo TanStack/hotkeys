@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -276,11 +276,7 @@
                         @click="startRecording()"
                         x-text="` ${recorder.isRecording ? 'Listening…' : 'Record shortcut'} `"
                       ></button>
-                      <button
-                        @click="resetShortcut()"
-                      >
-                        Reset
-                      </button>
+                      <button @click="resetShortcut()">Reset</button>
                       <template x-if="recorder.isRecording">
                         <button @click="recorder.cancelRecording($event)">
                           Cancel
