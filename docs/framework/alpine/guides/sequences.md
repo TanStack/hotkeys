@@ -5,6 +5,10 @@ id: sequences
 
 A sequence is an ordered list of chords. Use `createHotkeySequence` for one sequence and `createHotkeySequences` for a changing list. A chord can be a logical binding such as `G`, a physical position such as `[KeyG]`, or a modifier combination such as `Mod+[KeyK]`.
 
+## Capture phase
+
+Sequences accept `capture: true` with the same [event propagation behavior as hotkeys](./hotkeys.md#capture-phase). The default is `false`. Each step is matched in the selected phase, but `preventDefault` and `stopPropagation` apply only when the full sequence completes. Earlier steps still reach descendant widgets. Changing `capture` preserves partial progress and the existing timeout.
+
 ## Reactive options
 
 Sequence options support the same [property getter patterns](./hotkeys.md#property-getters) as hotkey options, including `enabled`, `timeout`, and `target`. Updates preserve the registration when its sequence, target, and platform stay the same.

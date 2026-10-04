@@ -225,6 +225,7 @@ describe('registration and event-target helpers', () => {
   describe('defaultHotkeyOptions', () => {
     it('should have expected default values', () => {
       expect(defaultHotkeyOptions).toEqual({
+        capture: false,
         preventDefault: true,
         stopPropagation: true,
         eventType: 'keydown',
