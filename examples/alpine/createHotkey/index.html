@@ -1,0 +1,382 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TanStack Hotkeys | Alpine createHotkey</title>
+  </head>
+  <body>
+    <div x-data="app">
+      <div class="app">
+        <header>
+          <h1>scope.createHotkey</h1>
+          <p>
+            Register keyboard shortcuts with callback context containing the
+            hotkey and parsed hotkey information.
+          </p>
+        </header>
+
+        <main>
+          <section class="demo-section">
+            <h2>Basic Hotkey</h2>
+            <p>
+              Press
+              <kbd x-text="formatForDisplay('Mod+[KeyS]')"></kbd>
+              to trigger the physical S position
+            </p>
+            <div class="counter" x-text="`Save triggered: ${saveCount}x`"></div>
+            <pre class="code-block" x-text="usage0"></pre>
+          </section>
+
+          <section class="demo-section">
+            <h2>With requireReset</h2>
+            <p>
+              Hold
+              <kbd x-text="formatForDisplay('Mod+K')"></kbd>
+              — only increments once until you release all keys
+            </p>
+            <div class="counter" x-text="`Increment: ${incrementCount}`"></div>
+            <p class="hint">
+              This prevents repeated triggering while holding the keys down.
+              Release all keys to allow re-triggering.
+            </p>
+            <pre class="code-block" x-text="usage1"></pre>
+          </section>
+
+          <section class="demo-section">
+            <h2>Conditional Hotkey</h2>
+            <p>
+              <kbd x-text="formatForDisplay('Mod+E')"></kbd>
+              <span x-text="` is currently  `"></span>
+              <strong x-text="enabled ? 'enabled' : 'disabled'"></strong>
+            </p>
+            <button
+              @click="enabled = !enabled"
+              x-text="` ${enabled ? 'Disable' : 'Enable'} Hotkey `"
+            ></button>
+            <pre class="code-block" x-text="usage2"></pre>
+          </section>
+
+          <section class="demo-section">
+            <h2>Number Key Combinations</h2>
+            <p>
+              Tab 2 uses the physical number-row position (
+              <code>Mod+[Digit2]</code>
+              ), even when that key produces a different character. The other
+              tabs follow logical digits.
+            </p>
+            <div class="hotkey-grid">
+              <div>
+                <kbd x-text="formatForDisplay('Mod+1')"></kbd>
+                → Tab 1
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Mod+[Digit2]')"></kbd>
+                → Tab 2
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Mod+3')"></kbd>
+                → Tab 3
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Mod+4')"></kbd>
+                → Tab 4
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Mod+5')"></kbd>
+                → Tab 5
+              </div>
+            </div>
+            <div class="counter" x-text="`Active Tab: ${activeTab}`"></div>
+            <pre class="code-block" x-text="usage3"></pre>
+          </section>
+
+          <section class="demo-section">
+            <h2>Navigation Key Combinations</h2>
+            <p>Selection and navigation shortcuts:</p>
+            <div class="hotkey-grid">
+              <div>
+                <kbd x-text="formatForDisplay('Shift+ArrowUp')"></kbd>
+                — Select up
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Shift+ArrowDown')"></kbd>
+                — Select down
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Alt+ArrowLeft')"></kbd>
+                — Navigate back
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Alt+ArrowRight')"></kbd>
+                — Navigate forward
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Mod+Home')"></kbd>
+                — Go to start
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Mod+End')"></kbd>
+                — Go to end
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Control+PageUp')"></kbd>
+                — Previous page
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Control+PageDown')"></kbd>
+                — Next page
+              </div>
+            </div>
+            <div
+              class="counter"
+              x-text="` Navigation triggered: ${navigationCount}x `"
+            ></div>
+            <pre class="code-block" x-text="usage4"></pre>
+          </section>
+
+          <section class="demo-section">
+            <h2>Function Key Combinations</h2>
+            <p>System and application shortcuts:</p>
+            <div class="hotkey-grid">
+              <div>
+                <kbd x-text="formatForDisplay('Alt+F4')"></kbd>
+                — Close window
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Control+F5')"></kbd>
+                — Hard refresh
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Mod+F1')"></kbd>
+                — Help
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Shift+F10')"></kbd>
+                — Context menu
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('F12')"></kbd>
+                — DevTools
+              </div>
+            </div>
+            <div
+              class="counter"
+              x-text="` Function keys triggered: ${functionKeyCount}x `"
+            ></div>
+            <pre class="code-block" x-text="usage5"></pre>
+          </section>
+
+          <section class="demo-section">
+            <h2>Multi-Modifier Combinations</h2>
+            <p>Complex shortcuts with multiple modifiers:</p>
+            <div class="hotkey-grid">
+              <div>
+                <kbd x-text="formatForDisplay('Mod+Shift+S')"></kbd>
+                — Save As
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Mod+Shift+Z')"></kbd>
+                — Redo
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Control+Alt+A')"></kbd>
+                — Special action
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Control+Shift+N')"></kbd>
+                — New incognito
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Mod+Alt+T')"></kbd>
+                — Toggle theme
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Control+Alt+Shift+X')"></kbd>
+                — Triple modifier
+              </div>
+            </div>
+            <div
+              class="counter"
+              x-text="` Multi-modifier triggered: ${multiModifierCount}x `"
+            ></div>
+            <pre class="code-block" x-text="usage6"></pre>
+          </section>
+
+          <section class="demo-section">
+            <h2>Editing Key Combinations</h2>
+            <p>Text editing and form shortcuts:</p>
+            <div class="hotkey-grid">
+              <div>
+                <kbd x-text="formatForDisplay('Mod+Enter')"></kbd>
+                — Submit form
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Shift+Enter')"></kbd>
+                — New line
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Mod+Backspace')"></kbd>
+                — Delete word
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Mod+Delete')"></kbd>
+                — Delete forward
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Control+Tab')"></kbd>
+                — Next tab
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Shift+Tab')"></kbd>
+                — Previous field
+              </div>
+              <div>
+                <kbd x-text="formatForDisplay('Mod+Space')"></kbd>
+                — Toggle
+              </div>
+            </div>
+            <div
+              class="counter"
+              x-text="` Editing keys triggered: ${editingKeyCount}x `"
+            ></div>
+            <pre class="code-block" x-text="usage7"></pre>
+          </section>
+
+          <template x-if="lastHotkey">
+            <div class="info-box">
+              <strong>Last triggered:</strong>
+              <span x-text="` ${formatForDisplay(lastHotkey ?? '')} `"></span>
+            </div>
+          </template>
+
+          <p class="hint">
+            Press
+            <kbd>Escape</kbd>
+            to reset all counters
+          </p>
+
+          <section class="demo-section scoped-section">
+            <h2>Scoped Keyboard Shortcuts</h2>
+            <p>
+              <span
+                x-text="` Shortcuts can be scoped to specific DOM elements using the  `"
+              ></span>
+              <code>target</code>
+              option. This allows different shortcuts to work in different parts
+              of your application.
+            </p>
+
+            <div class="scoped-grid">
+              <div class="scoped-area" x-init="sidebarRef = $el" :tabindex="0">
+                <h3>Sidebar (Scoped Area)</h3>
+                <p>Click here to focus, then try:</p>
+                <div class="hotkey-list">
+                  <div>
+                    <kbd x-text="formatForDisplay('Mod+B')"></kbd>
+                    — Trigger sidebar action
+                  </div>
+                  <div>
+                    <kbd x-text="formatForDisplay('Mod+N')"></kbd>
+                    — New item
+                  </div>
+                </div>
+                <div
+                  class="counter"
+                  x-text="` Sidebar shortcuts: ${sidebarShortcutCount}x `"
+                ></div>
+                <p class="hint">
+                  These shortcuts only work when this sidebar area is focused or
+                  contains focus.
+                </p>
+              </div>
+
+              <div class="scoped-area">
+                <h3>Modal Dialog</h3>
+                <button @click="modalOpen = true">Open Modal</button>
+                <template x-if="modalOpen">
+                  <div class="modal-overlay" @click="modalOpen = false">
+                    <div
+                      class="modal-content"
+                      x-init="modalRef = $el; $nextTick(() => $el.focus())"
+                      :tabindex="0"
+                      @click="$event.stopPropagation()"
+                    >
+                      <h3>Modal Dialog (Scoped)</h3>
+                      <p>Try these shortcuts while modal is open:</p>
+                      <div class="hotkey-list">
+                        <div>
+                          <kbd x-text="formatForDisplay('Escape')"></kbd>
+                          — Close modal
+                        </div>
+                        <div>
+                          <kbd x-text="formatForDisplay('Mod+Enter')"></kbd>
+                          — Submit
+                        </div>
+                      </div>
+                      <div
+                        class="counter"
+                        x-text="` Modal shortcuts: ${modalShortcutCount}x `"
+                      ></div>
+                      <p class="hint">
+                        These shortcuts only work when the modal is open and
+                        focused. The Escape key here won't conflict with the
+                        global Escape handler.
+                      </p>
+                      <button @click="modalOpen = false">Close</button>
+                    </div>
+                  </div>
+                </template>
+              </div>
+
+              <div class="scoped-area">
+                <h3>Text Editor (Scoped)</h3>
+                <p>Focus the editor below and try:</p>
+                <div class="hotkey-list">
+                  <div>
+                    <kbd x-text="formatForDisplay('Mod+S')"></kbd>
+                    — Save editor content
+                  </div>
+                  <div>
+                    <kbd x-text="formatForDisplay('Mod+/')"></kbd>
+                    — Add comment
+                  </div>
+                  <div>
+                    <kbd x-text="formatForDisplay('Mod+K')"></kbd>
+                    — Clear editor
+                  </div>
+                  <div>
+                    <kbd>J</kbd>
+                    — Single key (test ignoreInputs)
+                  </div>
+                </div>
+                <textarea
+                  x-init="editorRef = $el"
+                  class="scoped-editor"
+                  x-model="editorContent"
+                  placeholder="Focus here and try the shortcuts above..."
+                  :rows="8"
+                ></textarea>
+                <div
+                  class="counter"
+                  x-text="` Editor shortcuts: ${editorShortcutCount}x `"
+                ></div>
+                <p class="hint">
+                  These shortcuts only work when the editor is focused. Notice
+                  that
+                  <kbd x-text="formatForDisplay('Mod+S')"></kbd>
+                  here doesn't conflict with the global
+                  <kbd x-text="formatForDisplay('Mod+S')"></kbd>
+                  shortcut.
+                </p>
+              </div>
+            </div>
+
+            <pre class="code-block" x-text="usage8"></pre>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

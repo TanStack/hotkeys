@@ -1,6 +1,6 @@
 import { onUnmounted, unref, watch } from 'vue'
 import { formatHotkeySequence, getSequenceManager } from '@tanstack/hotkeys'
-import { useDefaultHotkeysOptions } from './HotkeysProviderContext'
+import { useDefaultHotkeysOptionsSource } from './defaultOptions'
 import type { MaybeRefOrGetter } from 'vue'
 import type {
   HotkeyCallback,
@@ -78,7 +78,7 @@ export function useHotkeySequence(
   callback: HotkeyCallback,
   options: MaybeRefOrGetter<UseHotkeySequenceOptions> = {},
 ): void {
-  const defaultOptions = useDefaultHotkeysOptions()
+  const defaultOptions = useDefaultHotkeysOptionsSource()
   const manager = getSequenceManager()
 
   let registration: SequenceRegistrationHandle | null = null
@@ -91,7 +91,7 @@ export function useHotkeySequence(
       const resolvedSequence = resolveMaybeRefOrGetter(sequence)
       const resolvedOptions = resolveMaybeRefOrGetter(options)
       const mergedOptions = {
-        ...defaultOptions.hotkeySequence,
+        ...defaultOptions().hotkeySequence,
         ...resolvedOptions,
       }
       const resolvedEnabled =

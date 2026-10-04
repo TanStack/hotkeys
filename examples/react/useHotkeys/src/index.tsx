@@ -1,11 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
 import {
   HotkeysProvider,
   formatForDisplay,
+  normalizeHotkey,
   useHotkeyRegistrations,
   useHotkeys,
+  validateHotkey,
 } from '@tanstack/react-hotkeys'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import type { Hotkey, UseHotkeyDefinition } from '@tanstack/react-hotkeys'
@@ -212,7 +214,7 @@ function CommonOptionsDemo() {
 
 interface DynamicShortcut {
   id: number
-  hotkey: string
+  hotkey: Hotkey
   label: string
   description: string
   count: number
@@ -250,9 +252,10 @@ function DynamicHotkeysDemo() {
   const [newHotkey, setNewHotkey] = React.useState('')
   const [newLabel, setNewLabel] = React.useState('')
   const [newDescription, setNewDescription] = React.useState('')
+  const [error, setError] = React.useState('')
 
   const definitions: Array<UseHotkeyDefinition> = shortcuts.map((s) => ({
-    hotkey: s.hotkey as Hotkey,
+    hotkey: s.hotkey,
     callback: () => {
       setShortcuts((prev) =>
         prev.map((item) =>
@@ -269,12 +272,18 @@ function DynamicHotkeysDemo() {
 
   const addShortcut = () => {
     const trimmed = newHotkey.trim()
-    if (!trimmed || !newLabel.trim()) return
+    if (!newLabel.trim()) return
+    const validation = validateHotkey(trimmed)
+    if (!validation.valid || validation.warnings.length > 0) {
+      setError([...validation.errors, ...validation.warnings].join(' '))
+      return
+    }
+    setError('')
     setShortcuts((prev) => [
       ...prev,
       {
         id: nextId++,
-        hotkey: trimmed,
+        hotkey: normalizeHotkey(trimmed),
         label: newLabel.trim(),
         description: newDescription.trim(),
         count: 0,
@@ -297,10 +306,11 @@ function DynamicHotkeysDemo() {
         accepts a dynamic array, this is safe without breaking the rules of
         hooks.
       </p>
+      {error && <p role="alert">{error}</p>}
       <div className="dynamic-list">
         {shortcuts.map((s) => (
           <div key={s.id} className="dynamic-item">
-            <kbd>{formatForDisplay(s.hotkey as Hotkey)}</kbd>
+            <kbd>{formatForDisplay(s.hotkey)}</kbd>
             <span>{s.label}</span>
             <span className="count">{s.count}</span>
             <button onClick={() => removeShortcut(s.id)}>Remove</button>

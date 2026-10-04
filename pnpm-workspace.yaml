@@ -10,8 +10,6 @@ trustPolicyExclude:
   - 'semver@6.3.1' # Socket score 100; popular npm-maintained latest-6 release.
   - 'ua-parser-js@0.7.41' # Socket score 100; popular, healthy cadence.
 minimumReleaseAge: 1440
-minimumReleaseAgeExclude:
-  - '@tanstack/preact-store@0.13.3' # Selector cache fix: TanStack/store#367.
 packages:
   - 'examples/**/*'
   - 'packages/*'
@@ -31,3 +29,27 @@ allowBuilds:
 
   # @tanstack/vue-store
   vue-demi: false # only required for vue 2 support
+
+overrides:
+  # Ember's transforms require Babel 7; these tools also allow Babel 8.
+  '@nullvoxpopuli/ember-build-tooling-utils>@babel/core': '^7.29.7'
+  '@nullvoxpopuli/ember-vite>@babel/core': '^7.29.7'
+  '@tanstack/alpine-hotkeys': 'workspace:*'
+  '@tanstack/angular-hotkeys': 'workspace:*'
+  '@tanstack/angular-hotkeys-devtools': 'workspace:*'
+  '@tanstack/ember-hotkeys': 'workspace:*'
+  '@tanstack/hotkeys': 'workspace:*'
+  '@tanstack/hotkeys-devtools': 'workspace:*'
+  '@tanstack/lit-hotkeys': 'workspace:*'
+  '@tanstack/lit-hotkeys-devtools': 'workspace:*'
+  '@tanstack/octane-hotkeys': 'workspace:*'
+  '@tanstack/preact-hotkeys': 'workspace:*'
+  '@tanstack/preact-hotkeys-devtools': 'workspace:*'
+  '@tanstack/react-hotkeys': 'workspace:*'
+  '@tanstack/react-hotkeys-devtools': 'workspace:*'
+  '@tanstack/solid-hotkeys': 'workspace:*'
+  '@tanstack/solid-hotkeys-devtools': 'workspace:*'
+  '@tanstack/svelte-hotkeys': 'workspace:*'
+  '@tanstack/svelte-hotkeys-devtools': 'workspace:*'
+  '@tanstack/vue-hotkeys': 'workspace:*'
+  '@tanstack/vue-hotkeys-devtools': 'workspace:*'

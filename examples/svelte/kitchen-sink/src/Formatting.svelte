@@ -31,7 +31,7 @@
           ><td><code>{binding}</code></td><td
             >{formatForDisplay(binding, options)}</td
           ><td
-            >{#each formatForDisplay( binding, { ...options, parts: true }, ) as part}<kbd
+            >{#each formatForDisplay( binding, { ...options, parts: true } ) as part}<kbd
                 >{part}</kbd
               >{/each}</td
           ></tr

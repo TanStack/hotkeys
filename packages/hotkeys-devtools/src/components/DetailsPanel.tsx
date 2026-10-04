@@ -67,9 +67,7 @@ function isSequenceRegistration(
 
 type DetailsPanelProps = {
   selectedRegistration: () =>
-    | HotkeyRegistration
-    | SequenceRegistrationView
-    | null
+    HotkeyRegistration | SequenceRegistrationView | null
 }
 
 function getTargetDescription(target: HTMLElement | Document | Window): string {

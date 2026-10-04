@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TanStack Hotkeys | Alpine createKeyHold</title>
+  </head>
+  <body>
+    <div x-data="app">
+      <div class="app">
+        <header>
+          <h1>scope.createKeyHold</h1>
+          <p>
+            Returns a boolean indicating if a specific key is currently held.
+            Optimized to only re-render when that specific key changes.
+          </p>
+        </header>
+
+        <main>
+          <section class="demo-section">
+            <h2>Modifier Key States</h2>
+            <div class="modifier-grid">
+              <div
+                :class="`modifier-indicator ${isShiftHeld.value ? 'active' : ''}`"
+              >
+                <span class="key-name">Shift</span>
+                <span
+                  class="status"
+                  x-text="` ${isShiftHeld.value ? 'HELD' : 'Released'} `"
+                ></span>
+              </div>
+              <div
+                :class="`modifier-indicator ${isControlHeld.value ? 'active' : ''}`"
+              >
+                <span class="key-name">Control</span>
+                <span
+                  class="status"
+                  x-text="` ${isControlHeld.value ? 'HELD' : 'Released'} `"
+                ></span>
+              </div>
+              <div
+                :class="`modifier-indicator ${isAltHeld.value ? 'active' : ''}`"
+              >
+                <span class="key-name">Alt / Option</span>
+                <span
+                  class="status"
+                  x-text="isAltHeld.value ? 'HELD' : 'Released'"
+                ></span>
+              </div>
+              <div
+                :class="`modifier-indicator ${isMetaHeld.value ? 'active' : ''}`"
+              >
+                <span class="key-name">Meta (⌘ / ⊞)</span>
+                <span
+                  class="status"
+                  x-text="isMetaHeld.value ? 'HELD' : 'Released'"
+                ></span>
+              </div>
+            </div>
+          </section>
+
+          <section class="demo-section">
+            <h2>Space Bar Demo</h2>
+            <div
+              :class="`space-indicator ${isSpaceHeld.value ? 'active' : ''}`"
+              x-text="` ${isSpaceHeld.value ? '🚀 SPACE HELD!' : 'Hold Space Bar'} `"
+            ></div>
+          </section>
+
+          <section class="demo-section">
+            <h2>Usage</h2>
+            <pre class="code-block" x-text="usage0"></pre>
+          </section>
+
+          <section class="demo-section">
+            <h2>Conditional UI Example</h2>
+            <p>
+              Hold
+              <kbd>Shift</kbd>
+              to reveal the secret message:
+            </p>
+            <div :class="`secret-box ${isShiftHeld.value ? 'revealed' : ''}`">
+              <template x-if="isShiftHeld.value">
+                <span>🎉 The secret password is: tanstack-hotkeys-rocks!</span>
+              </template>
+              <template x-if="!isShiftHeld.value">
+                <span>••••••••••••••••••••••••••</span>
+              </template>
+            </div>
+          </section>
+
+          <section class="demo-section">
+            <h2>Use Cases</h2>
+            <ul>
+              <li>Show different UI based on modifier state</li>
+              <li>Enable "power user" mode while holding a key</li>
+              <li>Hold-to-reveal sensitive information</li>
+              <li>Drag-and-drop with modifier behaviors</li>
+              <li>Show additional options on hover + modifier</li>
+            </ul>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

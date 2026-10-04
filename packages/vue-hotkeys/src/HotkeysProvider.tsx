@@ -23,7 +23,7 @@ export const HotkeysProvider = defineComponent({
     },
   },
   setup(props, { slots }) {
-    provideHotkeysContext(props.defaultOptions)
+    provideHotkeysContext(() => props.defaultOptions ?? {})
     return () => slots.default?.()
   },
 })

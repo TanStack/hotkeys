@@ -1,17 +1,9 @@
-import {
-  detectPlatform,
-  formatHotkey,
-  getHotkeyManager,
-  rawHotkeyToParsedHotkey,
-} from '@tanstack/hotkeys'
+import { createHotkeyBindings } from '@tanstack/hotkeys/adapter'
 import { HOTKEY_DEFAULT_OPTIONS } from '../constants'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 import type {
-  Hotkey,
   HotkeyCallback,
-  HotkeyManager,
   HotkeyOptions,
-  HotkeyRegistrationHandle,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
 
@@ -32,65 +24,48 @@ import type {
  * ```
  */
 export class HotkeyController implements ReactiveController {
-  /** The hotkey registration handle. */
-  private _registration: HotkeyRegistrationHandle | undefined
+  private _bindings = createHotkeyBindings()
+  private _connected = false
+  private _boundCallback: HotkeyCallback
 
   /**
-   * @param _host - The Lit component that owns this controller (use `this` and pass it to `addController()`).
-   * @param _hotkey - The key or key combo to listen for (e.g. `'Mod+S'` or a raw hotkey object).
-   * @param _callback - Function to run when the hotkey is pressed; called with the host as `this`.
-   * @param _options - Optional registration options (target, platform, enabled, etc.).
+   * @param _host - The Lit component that owns this controller. Add the controller with `addController()`.
+   * @param _hotkey - The shortcut to register.
+   * @param callback - Called with the host as `this`.
+   * @param _options - Options or a getter. Property getters are read on connection and after host updates.
    */
   constructor(
     private _host: ReactiveControllerHost,
     private _hotkey: RegisterableHotkey,
-    private _callback: HotkeyCallback,
-    private _options: HotkeyOptions = HOTKEY_DEFAULT_OPTIONS,
-  ) {}
-
-  /**
-   * Registers the hotkey with the global manager when the host is connected to the DOM.
-   * Skips registration if no target is available (e.g. no document or options.target is null).
-   */
-  public hostConnected(): void {
-    const manager: HotkeyManager = getHotkeyManager()
-
-    const platform = this._options.platform ?? detectPlatform()
-    const hotkeyString: Hotkey =
-      typeof this._hotkey === 'string'
-        ? this._hotkey
-        : (formatHotkey(
-            rawHotkeyToParsedHotkey(this._hotkey, platform),
-          ) as Hotkey)
-
-    const hasExplicitTarget = 'target' in this._options
-    const resolvedTarget = hasExplicitTarget
-      ? (this._options.target ?? null)
-      : typeof document !== 'undefined'
-        ? document
-        : null
-
-    if (!resolvedTarget) {
-      return
-    }
-
-    const { target: _target, ...optionsWithoutTarget } = this._options
-
-    const boundCallback: HotkeyCallback = this._callback.bind(
-      this._host as unknown as object,
-    )
-
-    this._registration = manager.register(hotkeyString, boundCallback, {
-      ...optionsWithoutTarget,
-      target: resolvedTarget,
-    })
+    callback: HotkeyCallback,
+    private _options:
+      HotkeyOptions | (() => HotkeyOptions) = HOTKEY_DEFAULT_OPTIONS,
+  ) {
+    this._boundCallback = callback.bind(this._host)
   }
 
-  /** Unregisters the hotkey when the host is disconnected from the DOM. */
+  /** Registers when connected and a target is available. */
+  public hostConnected(): void {
+    this._connected = true
+    this._sync()
+  }
+
+  /** Refreshes options after rendering, when scoped targets are available. */
+  public hostUpdated(): void {
+    if (this._connected) this._sync()
+  }
+
+  private _sync(): void {
+    const options =
+      typeof this._options === 'function' ? this._options() : this._options
+    this._bindings.update([
+      { hotkey: this._hotkey, callback: this._boundCallback, options },
+    ])
+  }
+
+  /** Releases registrations when the host disconnects. */
   public hostDisconnected(): void {
-    if (this._registration?.isActive) {
-      this._registration.unregister()
-    }
-    this._registration = undefined
+    this._connected = false
+    this._bindings.destroy()
   }
 }

@@ -54,7 +54,7 @@ class ShortcutSettings extends LitElement {
 new HotkeySequenceRecorderController(_host, _options): HotkeySequenceRecorderController;
 ```
 
-Defined in: [controllers/hotkey-sequence-recorder.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L76)
+Defined in: [controllers/hotkey-sequence-recorder.ts:77](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L77)
 
 #### Parameters
 
@@ -66,9 +66,9 @@ The Lit component that owns this controller.
 
 ##### \_options
 
-`HotkeySequenceRecorderOptions`
+`HotkeySequenceRecorderOptions` \| (() => `HotkeySequenceRecorderOptions`)
 
-Configuration options for the sequence recorder.
+Options or a getter, read during recording.
 
 #### Returns
 
@@ -84,7 +84,7 @@ Configuration options for the sequence recorder.
 get isRecording(): boolean;
 ```
 
-Defined in: [controllers/hotkey-sequence-recorder.ts:58](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L58)
+Defined in: [controllers/hotkey-sequence-recorder.ts:59](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L59)
 
 Whether recording is currently active.
 
@@ -102,7 +102,7 @@ Whether recording is currently active.
 get recordedSequence(): HotkeySequence | null;
 ```
 
-Defined in: [controllers/hotkey-sequence-recorder.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L68)
+Defined in: [controllers/hotkey-sequence-recorder.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L69)
 
 Last committed sequence, or null if none.
 
@@ -120,7 +120,7 @@ Last committed sequence, or null if none.
 get steps(): HotkeySequence;
 ```
 
-Defined in: [controllers/hotkey-sequence-recorder.ts:63](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L63)
+Defined in: [controllers/hotkey-sequence-recorder.ts:64](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L64)
 
 Chords captured in the current session.
 
@@ -136,7 +136,7 @@ Chords captured in the current session.
 cancelRecording(): void;
 ```
 
-Defined in: [controllers/hotkey-sequence-recorder.ts:133](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L133)
+Defined in: [controllers/hotkey-sequence-recorder.ts:139](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L139)
 
 Cancel recording without saving.
 
@@ -152,7 +152,7 @@ Cancel recording without saving.
 commitRecording(): void;
 ```
 
-Defined in: [controllers/hotkey-sequence-recorder.ts:138](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L138)
+Defined in: [controllers/hotkey-sequence-recorder.ts:144](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L144)
 
 Commit current steps as a sequence (no-op if empty).
 
@@ -168,7 +168,7 @@ Commit current steps as a sequence (no-op if empty).
 hostConnected(): void;
 ```
 
-Defined in: [controllers/hotkey-sequence-recorder.ts:85](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L85)
+Defined in: [controllers/hotkey-sequence-recorder.ts:92](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L92)
 
 Subscribes to the recorder store and updates internal state when changes occur.
 
@@ -190,7 +190,7 @@ ReactiveController.hostConnected
 hostDisconnected(): void;
 ```
 
-Defined in: [controllers/hotkey-sequence-recorder.ts:107](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L107)
+Defined in: [controllers/hotkey-sequence-recorder.ts:114](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L114)
 
 Unsubscribes from the recorder store and destroys the recorder instance to prevent memory leaks.
 
@@ -212,7 +212,7 @@ ReactiveController.hostDisconnected
 setOptions(options): void;
 ```
 
-Defined in: [controllers/hotkey-sequence-recorder.ts:117](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L117)
+Defined in: [controllers/hotkey-sequence-recorder.ts:124](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L124)
 
 Updates the recorder options.
 
@@ -234,7 +234,7 @@ Updates the recorder options.
 startRecording(): void;
 ```
 
-Defined in: [controllers/hotkey-sequence-recorder.ts:123](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L123)
+Defined in: [controllers/hotkey-sequence-recorder.ts:129](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L129)
 
 Start recording a new sequence.
 
@@ -250,7 +250,7 @@ Start recording a new sequence.
 stopRecording(): void;
 ```
 
-Defined in: [controllers/hotkey-sequence-recorder.ts:128](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L128)
+Defined in: [controllers/hotkey-sequence-recorder.ts:134](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-sequence-recorder.ts#L134)
 
 Stop recording (same as cancel but without calling onCancel).
 

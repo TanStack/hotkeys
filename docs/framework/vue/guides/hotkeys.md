@@ -47,6 +47,28 @@ useHotkey('Mod+S', (event, context) => {
 
 Pass a new logical or physical binding through your framework's normal state mechanism. A recorder result such as `Alt+[KeyS]` can be passed directly to the same registration API. Keep an initial binding in application state if you want a reset button; the library does not need a separate preferences store.
 
+## Property getters
+
+Property getters and functions returning an options object are both supported. Read reactive state inside the getter. A plain value such as `{ enabled: currentValue }` captures the value when that object is created.
+
+The adapter reads option properties inside its reactive computation and updates registrations automatically. Callbacks such as `onRecord` and `onCancel` remain functions; the adapter does not call them to resolve options. Tracking is shallow; callback bodies and nested objects are not evaluated to discover dependencies. Keep getters free of side effects. Ordinary option changes preserve registration identity. Changing the target moves the registration to that target.
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useHotkey } from '@tanstack/vue-hotkeys'
+
+const enabled = ref(true)
+useHotkey('Mod+S', () => console.log('Save'), {
+	get enabled() {
+		return enabled.value
+	},
+})
+</script>
+```
+
+You can also pass `() => ({ enabled: enabled.value })` or a reactive options object. Vue applies registration changes when its watcher runs. The same forms work for common options, per-definition options, sequences, and recorders. `HotkeysProvider` follows replacement `defaultOptions` objects and getters within defaults. Per-call options override provider defaults, and per-definition options override common options.
+
 ## Default options
 
 `useHotkey` uses the same core defaults as the framework-agnostic manager:
