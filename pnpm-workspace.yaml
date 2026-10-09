@@ -10,6 +10,10 @@ trustPolicyExclude:
   - 'semver@6.3.1' # Socket score 100; popular npm-maintained latest-6 release.
   - 'ua-parser-js@0.7.41' # Socket score 100; popular, healthy cadence.
 minimumReleaseAge: 1440
+minimumReleaseAgeExclude:
+  # octane adapter upgrade: published less than 24 hours ago
+  - octane@0.12.1
+  - '@tanstack/octane-store@0.13.0'
 packages:
   - 'examples/**/*'
   - 'packages/*'
