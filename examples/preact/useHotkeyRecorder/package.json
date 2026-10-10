@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "@tanstack/preact-hotkeys": "^0.13.0",
-    "preact": "^10.29.8"
+    "preact": "^11.0.1"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.6",
