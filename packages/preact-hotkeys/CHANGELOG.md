@@ -1,5 +1,11 @@
 # @tanstack/preact-hotkeys
 
+## 0.13.1
+
+### Patch Changes
+
+- [#172](https://github.com/TanStack/hotkeys/pull/172) [`20acd0e`](https://github.com/TanStack/hotkeys/commit/20acd0ea3f2a0fe615a60d86317862fcb4172749) - Require `@tanstack/preact-store` `^0.13.5`, the first version whose `preact` peer range allows Preact 11.
+
 ## 0.13.0
 
 ### Minor Changes
