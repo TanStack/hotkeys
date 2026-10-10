@@ -11,20 +11,25 @@ it('selects visibility, tracks binding changes and cleans up subscriptions', () 
   flushSync()
   expect(notify).toHaveBeenLastCalledWith(false)
   document.dispatchEvent(
-    new KeyboardEvent('keydown', { key: 'Alt', code: 'AltLeft' }),
+    new KeyboardEvent('keydown', { key: 'Alt', code: 'AltLeft', altKey: true }),
   )
   flushSync()
   expect(notify).toHaveBeenLastCalledWith(true)
   const count = notify.mock.calls.length
   document.dispatchEvent(
-    new KeyboardEvent('keydown', { key: 'x', code: 'KeyX' }),
+    new KeyboardEvent('keydown', { key: 'x', code: 'KeyX', altKey: true }),
   )
   flushSync()
   expect(notify).toHaveBeenCalledTimes(count)
   app.setBinding('Alt+Control+[KeyS]')
   flushSync()
   document.dispatchEvent(
-    new KeyboardEvent('keydown', { key: 'Control', code: 'ControlLeft' }),
+    new KeyboardEvent('keydown', {
+      key: 'Control',
+      code: 'ControlLeft',
+      ctrlKey: true,
+      altKey: true,
+    }),
   )
   flushSync()
   expect(notify).toHaveBeenLastCalledWith(true)
@@ -32,7 +37,11 @@ it('selects visibility, tracks binding changes and cleans up subscriptions', () 
   flushSync()
   expect(notify).toHaveBeenLastCalledWith(false)
   document.dispatchEvent(
-    new KeyboardEvent('keyup', { key: 'Control', code: 'ControlLeft' }),
+    new KeyboardEvent('keyup', {
+      key: 'Control',
+      code: 'ControlLeft',
+      altKey: true,
+    }),
   )
   flushSync()
   expect(notify).toHaveBeenLastCalledWith(true)
