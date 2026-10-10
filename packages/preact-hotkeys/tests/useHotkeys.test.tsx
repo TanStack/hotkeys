@@ -94,7 +94,9 @@ describe('useHotkeys', () => {
     const manager = HotkeyManager.getInstance()
     expect(manager.getRegistrationCount()).toBe(2)
 
-    act(() => unmount())
+    act(() => {
+      unmount()
+    })
     expect(manager.getRegistrationCount()).toBe(0)
   })
 

@@ -49,7 +49,9 @@ describe('useHotkey', () => {
     const removeEventListenerSpy = vi.spyOn(document, 'removeEventListener')
 
     const { unmount } = render(<HotkeyTestComponent callback={callback} />)
-    act(() => unmount())
+    act(() => {
+      unmount()
+    })
 
     expect(removeEventListenerSpy).toHaveBeenCalledWith(
       'keydown',

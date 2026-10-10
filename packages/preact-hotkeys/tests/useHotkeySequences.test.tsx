@@ -80,7 +80,9 @@ describe('useHotkeySequences', () => {
     )
 
     expect(SequenceManager.getInstance().getRegistrationCount()).toBe(2)
-    act(() => unmount())
+    act(() => {
+      unmount()
+    })
     expect(SequenceManager.getInstance().getRegistrationCount()).toBe(0)
   })
 

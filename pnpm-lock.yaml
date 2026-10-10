@@ -3533,8 +3533,8 @@ importers:
         specifier: workspace:*
         version: link:../hotkeys
       '@tanstack/preact-store':
-        specifier: ^0.13.4
-        version: 0.13.4(preact@10.29.8)
+        specifier: ^0.13.5
+        version: 0.13.5(preact@10.29.8)
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
@@ -8300,10 +8300,10 @@ packages:
     peerDependencies:
       preact: '>=10.0.0'
 
-  '@tanstack/preact-store@0.13.4':
-    resolution: {integrity: sha512-Gz5O1Y5jaQPPzranmnUKAMCNoqLDBuxFGSH9XsdquhUAfdy9JR68RohiQ/uNzDiGRe8t5ODaGYOXMWjF+JHNPA==}
+  '@tanstack/preact-store@0.13.5':
+    resolution: {integrity: sha512-+ONKQNVqoGBpCbvahHjW39d28vwBVNRUa927m5owRQS6fySTORPKbOV6HYBXt0qHxOA8r0llg1Bfy/FKXsj3qw==}
     peerDependencies:
-      preact: ^10.0.0
+      preact: ^10.0.0 || ^11.0.0-0
 
   '@tanstack/react-devtools@0.10.13':
     resolution: {integrity: sha512-r0cdB/14+st2Vxl/1Bodlyq4VC8pf9SykLQDYbGHDc1+V146WQo5B3KlYLkfyxD9Q/6+9NPRQHZyl8fvZVMdRA==}
@@ -19288,7 +19288,7 @@ snapshots:
       - solid-js
       - utf-8-validate
 
-  '@tanstack/preact-store@0.13.4(preact@10.29.8)':
+  '@tanstack/preact-store@0.13.5(preact@10.29.8)':
     dependencies:
       '@tanstack/store': 0.11.2
       preact: 10.29.8
