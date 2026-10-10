@@ -176,7 +176,7 @@ function CommonOptionsDemo() {
         <kbd>{formatForDisplay('Alt+L')}</kbd> overrides{' '}
         <code>enabled: true</code> so it always works.
       </p>
-      <div style={{ marginBottom: 12 }}>
+      <div style={{ marginBottom: '12px' }}>
         <button onClick={() => setEnabled((e) => !e)}>
           {enabled ? 'Disable' : 'Enable'} common hotkeys
         </button>
@@ -415,7 +415,7 @@ function RegistrationsViewer() {
       </table>
       {sequences.length > 0 && (
         <>
-          <h3 style={{ marginTop: 16 }}>Sequences</h3>
+          <h3 style={{ marginTop: '16px' }}>Sequences</h3>
           <table className="registrations-table">
             <thead>
               <tr>
