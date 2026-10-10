@@ -3,7 +3,7 @@ id: SequenceRegistration
 title: SequenceRegistration
 ---
 
-Defined in: [sequence-manager.ts:90](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L90)
+Defined in: [sequence-manager.ts:91](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L91)
 
 Internal representation of a sequence registration.
 
@@ -15,7 +15,7 @@ Internal representation of a sequence registration.
 callback: HotkeyCallback;
 ```
 
-Defined in: [sequence-manager.ts:94](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L94)
+Defined in: [sequence-manager.ts:95](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L95)
 
 ***
 
@@ -25,7 +25,7 @@ Defined in: [sequence-manager.ts:94](https://github.com/TanStack/hotkeys/blob/ma
 currentIndex: number;
 ```
 
-Defined in: [sequence-manager.ts:97](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L97)
+Defined in: [sequence-manager.ts:98](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L98)
 
 ***
 
@@ -35,7 +35,7 @@ Defined in: [sequence-manager.ts:97](https://github.com/TanStack/hotkeys/blob/ma
 hasFired: boolean;
 ```
 
-Defined in: [sequence-manager.ts:100](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L100)
+Defined in: [sequence-manager.ts:101](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L101)
 
 ***
 
@@ -45,7 +45,7 @@ Defined in: [sequence-manager.ts:100](https://github.com/TanStack/hotkeys/blob/m
 id: string;
 ```
 
-Defined in: [sequence-manager.ts:91](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L91)
+Defined in: [sequence-manager.ts:92](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L92)
 
 ***
 
@@ -55,7 +55,7 @@ Defined in: [sequence-manager.ts:91](https://github.com/TanStack/hotkeys/blob/ma
 lastKeyTime: number;
 ```
 
-Defined in: [sequence-manager.ts:98](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L98)
+Defined in: [sequence-manager.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L99)
 
 ***
 
@@ -65,7 +65,7 @@ Defined in: [sequence-manager.ts:98](https://github.com/TanStack/hotkeys/blob/ma
 options: SequenceOptions;
 ```
 
-Defined in: [sequence-manager.ts:95](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L95)
+Defined in: [sequence-manager.ts:96](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L96)
 
 ***
 
@@ -75,7 +75,7 @@ Defined in: [sequence-manager.ts:95](https://github.com/TanStack/hotkeys/blob/ma
 parsedSequence: ParsedHotkey[];
 ```
 
-Defined in: [sequence-manager.ts:93](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L93)
+Defined in: [sequence-manager.ts:94](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L94)
 
 ***
 
@@ -85,7 +85,7 @@ Defined in: [sequence-manager.ts:93](https://github.com/TanStack/hotkeys/blob/ma
 sequence: HotkeySequence;
 ```
 
-Defined in: [sequence-manager.ts:92](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L92)
+Defined in: [sequence-manager.ts:93](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L93)
 
 ***
 
@@ -95,7 +95,7 @@ Defined in: [sequence-manager.ts:92](https://github.com/TanStack/hotkeys/blob/ma
 target: Target;
 ```
 
-Defined in: [sequence-manager.ts:96](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L96)
+Defined in: [sequence-manager.ts:97](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L97)
 
 ***
 
@@ -105,4 +105,4 @@ Defined in: [sequence-manager.ts:96](https://github.com/TanStack/hotkeys/blob/ma
 triggerCount: number;
 ```
 
-Defined in: [sequence-manager.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L99)
+Defined in: [sequence-manager.ts:100](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L100)

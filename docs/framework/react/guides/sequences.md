@@ -7,6 +7,10 @@ TanStack Hotkeys supports multi-key sequences, shortcuts where you press keys on
 
 Sequence steps use the same string syntax as single hotkeys. For example, `['[KeyG]', '[KeyG]']` follows a physical position, while `['G', 'G']` follows the logical letter. A sequence can mix forms, such as `['Mod+[KeyK]', 'C']`. Display steps with `sequence.map((step) => formatForDisplay(step)).join(' → ')`.
 
+## Capture phase
+
+Sequences accept `capture: true` with the same [event propagation behavior as hotkeys](./hotkeys.md#capture-phase). The default is `false`. Each step is matched in the selected phase, but `preventDefault` and `stopPropagation` apply only when the full sequence completes. Earlier steps still reach descendant widgets. Changing `capture` preserves partial progress and the existing timeout.
+
 ## Basic usage
 
 Use the `useHotkeySequence` hook to register a key sequence:

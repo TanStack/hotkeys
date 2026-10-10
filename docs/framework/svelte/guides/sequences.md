@@ -7,6 +7,10 @@ TanStack Hotkeys supports multi-key sequences in Svelte, where keys are pressed 
 
 Sequence steps use the same string syntax as single hotkeys. For example, `['[KeyG]', '[KeyG]']` follows a physical position, while `['G', 'G']` follows the logical letter. A sequence can mix forms, such as `['Mod+[KeyK]', 'C']`. Display steps with `sequence.map((step) => formatForDisplay(step)).join(' → ')`.
 
+## Capture phase
+
+Sequences accept `capture: true` with the same [event propagation behavior as hotkeys](./hotkeys.md#capture-phase). The default is `false`. Each step is matched in the selected phase, but `preventDefault` and `stopPropagation` apply only when the full sequence completes. Earlier steps still reach descendant widgets. Changing `capture` preserves partial progress and the existing timeout.
+
 ## Reactive options
 
 Sequence options support the same [property getter patterns](./hotkeys.md#property-getters) as hotkey options, including `enabled`, `timeout`, and `target`. Updates preserve the registration when its sequence, target, and platform stay the same.

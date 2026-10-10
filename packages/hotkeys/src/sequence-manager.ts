@@ -1,4 +1,5 @@
 import { Store } from '@tanstack/store'
+import { TargetListeners } from './_target-listeners'
 import { isRecordingEvent } from './_recording-guard'
 import { formatHotkeySequence } from './format'
 import { detectPlatform } from './platform'
@@ -117,6 +118,11 @@ export interface SequenceRegistrationHandle {
   readonly id: string
   readonly isActive: boolean
   callback: HotkeyCallback
+  /**
+   * Merge options without re-registering. Changing `capture` preserves partial
+   * sequence progress and its timeout. A step cannot advance twice for the same
+   * event when a callback changes the phase.
+   */
   setOptions: (options: Partial<SequenceOptions>) => void
   unregister: () => void
 }
@@ -177,14 +183,9 @@ export class SequenceManager {
     new Store(new Map())
 
   #registrations: Map<string, SequenceRegistration> = new Map()
-  #targetListeners: Map<
-    Target,
-    {
-      keydown: (event: KeyboardEvent) => void
-      keyup: (event: KeyboardEvent) => void
-    }
-  > = new Map()
-  #targetRegistrations: Map<Target, Set<string>> = new Map()
+  #listeners = new TargetListeners((...args) =>
+    this.#processTargetEvent(...args),
+  )
   #platform: 'mac' | 'windows' | 'linux'
 
   private constructor() {
@@ -293,14 +294,7 @@ export class SequenceManager {
       new Map(prev).set(id, toRegistrationView(registration)),
     )
 
-    // Track registration for this target
-    if (!this.#targetRegistrations.has(target)) {
-      this.#targetRegistrations.set(target, new Set())
-    }
-    this.#targetRegistrations.get(target)!.add(id)
-
-    // Ensure listeners are attached for this target
-    this.#ensureListenersForTarget(target)
+    this.#listeners.add(target, !!registration.options.capture, id)
 
     const manager = this
     const handle: SequenceRegistrationHandle = {
@@ -326,7 +320,12 @@ export class SequenceManager {
           reg &&
           !optionsEqual(reg.options, { ...reg.options, ...newOptions })
         ) {
+          const capture = !!reg.options.capture
           reg.options = { ...reg.options, ...newOptions }
+          if (capture !== !!reg.options.capture) {
+            manager.#listeners.remove(reg.target, capture, id)
+            manager.#listeners.add(reg.target, !!reg.options.capture, id)
+          }
           manager.registrations.setState((prev) =>
             new Map(prev).set(id, toRegistrationView(reg)),
           )
@@ -358,76 +357,7 @@ export class SequenceManager {
       return next
     })
 
-    // Remove from target registrations tracking
-    const targetRegs = this.#targetRegistrations.get(target)
-    if (targetRegs) {
-      targetRegs.delete(id)
-      if (targetRegs.size === 0) {
-        this.#removeListenersForTarget(target)
-      }
-    }
-  }
-
-  /**
-   * Ensures event listeners are attached for a specific target.
-   */
-  #ensureListenersForTarget(target: Target): void {
-    if (typeof document === 'undefined') {
-      return // SSR safety
-    }
-
-    if (this.#targetListeners.has(target)) {
-      return
-    }
-
-    const keydownHandler = this.#createTargetKeyDownHandler(target)
-    const keyupHandler = this.#createTargetKeyUpHandler(target)
-
-    target.addEventListener('keydown', keydownHandler as EventListener)
-    target.addEventListener('keyup', keyupHandler as EventListener)
-
-    this.#targetListeners.set(target, {
-      keydown: keydownHandler,
-      keyup: keyupHandler,
-    })
-  }
-
-  /**
-   * Removes event listeners for a specific target.
-   */
-  #removeListenersForTarget(target: Target): void {
-    if (typeof document === 'undefined') {
-      return
-    }
-
-    const listeners = this.#targetListeners.get(target)
-    if (!listeners) {
-      return
-    }
-
-    target.removeEventListener('keydown', listeners.keydown as EventListener)
-    target.removeEventListener('keyup', listeners.keyup as EventListener)
-
-    this.#targetListeners.delete(target)
-    this.#targetRegistrations.delete(target)
-  }
-
-  /**
-   * Creates a keydown handler for a specific target.
-   */
-  #createTargetKeyDownHandler(target: Target): (event: KeyboardEvent) => void {
-    return (event: KeyboardEvent) => {
-      this.#processTargetEvent(event, target, 'keydown')
-    }
-  }
-
-  /**
-   * Creates a keyup handler for a specific target.
-   */
-  #createTargetKeyUpHandler(target: Target): (event: KeyboardEvent) => void {
-    return (event: KeyboardEvent) => {
-      this.#processTargetEvent(event, target, 'keyup')
-    }
+    this.#listeners.remove(target, !!registration.options.capture, id)
   }
 
   /**
@@ -437,9 +367,11 @@ export class SequenceManager {
     event: KeyboardEvent,
     target: Target,
     eventType: 'keydown' | 'keyup',
+    capture: boolean,
+    targetRegs: Set<string>,
   ): void {
     if (isRecordingEvent(event)) {
-      for (const id of this.#targetRegistrations.get(target) ?? []) {
+      for (const id of targetRegs) {
         const registration = this.#registrations.get(id)
         if (registration && registration.currentIndex > 0) {
           registration.currentIndex = 0
@@ -459,11 +391,6 @@ export class SequenceManager {
       return
     }
 
-    const targetRegs = this.#targetRegistrations.get(target)
-    if (!targetRegs) {
-      return
-    }
-
     const now = Date.now()
     // Score eligible next steps (or restarts) before advancing any sequence.
     const candidates = new Map<string, { score: number; nextIndex: number }>()
@@ -471,7 +398,7 @@ export class SequenceManager {
 
     registrationIds: for (const id of targetRegs) {
       const registration = this.#registrations.get(id)
-      if (!registration) {
+      if (!registration || !!registration.options.capture !== capture) {
         continue
       }
 
@@ -532,7 +459,12 @@ export class SequenceManager {
 
     for (const [id, candidate] of candidates) {
       const registration = this.#registrations.get(id)
-      if (!registration || !registration.options.enabled) continue
+      if (
+        !registration ||
+        !registration.options.enabled ||
+        !!registration.options.capture !== capture
+      )
+        continue
       if (candidate.score > 0 && candidate.score === bestScore) {
         registration.lastKeyTime = now
         registration.currentIndex = candidate.nextIndex
@@ -663,9 +595,7 @@ export class SequenceManager {
    * Destroys the manager and removes all listeners.
    */
   destroy(): void {
-    for (const target of this.#targetListeners.keys()) {
-      this.#removeListenersForTarget(target)
-    }
+    this.#listeners.destroy()
     this.#registrations.clear()
     this.registrations.setState(() => new Map())
   }

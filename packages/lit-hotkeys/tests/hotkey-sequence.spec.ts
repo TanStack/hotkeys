@@ -60,7 +60,7 @@ describe('HotkeySequenceController', () => {
     host.addController(ctrl)
     ctrl.hostConnected()
 
-    expect(addSpy).toHaveBeenCalledWith('keydown', expect.any(Function))
+    expect(addSpy).toHaveBeenCalledWith('keydown', expect.any(Function), false)
 
     ctrl.hostDisconnected()
     addSpy.mockRestore()
@@ -370,7 +370,7 @@ describe('HotkeySequenceController', () => {
       host.addController(ctrl)
       ctrl.hostConnected()
 
-      expect(addSpy).toHaveBeenCalledWith('keyup', expect.any(Function))
+      expect(addSpy).toHaveBeenCalledWith('keyup', expect.any(Function), false)
 
       dispatchKeyup(document, { key: 'g' })
       dispatchKeyup(document, { key: 'g' })

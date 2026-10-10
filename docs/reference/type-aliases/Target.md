@@ -7,4 +7,4 @@ title: Target
 type Target = HTMLElement | Document | Window;
 ```
 
-Defined in: [sequence-manager.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L25)
+Defined in: [sequence-manager.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L26)

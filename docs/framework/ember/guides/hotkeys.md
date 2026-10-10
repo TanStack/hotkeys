@@ -114,6 +114,16 @@ The helper reads getters during rendering and applies registration changes after
 
 Getters must read tracked state. A plain `{ enabled: this.enabled }` stored once does not track later changes. Callbacks remain functions and are not invoked to resolve options.
 
+## Capture phase
+
+Set `capture: true` to handle a shortcut before a descendant widget's keyboard listener. The default is `false`, which listens during bubbling. This option applies to both `keydown` and `keyup`.
+
+With the default `stopPropagation: true`, a matching capture listener on an ancestor prevents the event from reaching the widget. Set `stopPropagation: false` to let the event continue. `preventDefault` controls the browser's default action independently. Other listeners on the same target still run. Capture does not override earlier capture listeners on ancestors. A `window` capture listener that stops propagation also blocks document listeners, including key-state tracking.
+
+Capture and bubble registrations on the same target dispatch separately. Match precedence applies within each phase. Equivalent bindings on the same target still follow `conflictBehavior` across phases. Use `conflictBehavior: 'allow'` for intentional duplicates.
+
+Changing `capture` through reactive options preserves the registration ID, trigger count, and `requireReset` state. A registration already processed in one phase cannot process the same event again after moving to another phase. Active shortcut recording also suppresses capture registrations.
+
 ## Default options
 
 | Option | Default | Behavior |
