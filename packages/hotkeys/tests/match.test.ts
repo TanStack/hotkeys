@@ -511,6 +511,26 @@ describe('matchesKeyboardEvent', () => {
         true,
       )
     })
+
+    it.each([
+      ['µ', 'KeyM', 'M'],
+      ['ć', 'KeyC', 'C'],
+      ['@', 'KeyQ', 'Q'],
+      ['[', 'Digit8', '8'],
+    ])(
+      'does not fall back to the physical key for AltGraph character %s',
+      (key, code, hotkey) => {
+        const event = createKeyboardEvent(key, {
+          ctrlKey: true,
+          altKey: true,
+          code,
+          altGraph: true,
+        })
+        expect(
+          matchesKeyboardEvent(event, hotkey as HotkeyChord, 'windows'),
+        ).toBe(false)
+      },
+    )
   })
 
   describe('dead key fallback (macOS Option+letter)', () => {

@@ -57,6 +57,9 @@ export function matchKeyboardEvent(
     return noMatch
   }
 
+  // AltGraph produced this character, so it is text input. Only a direct key
+  // match counts; never fall back to the physical key under it.
+  if (normalized.altGraph) return noMatch
   if (!modifiersMatch(normalized, parsed, false)) return noMatch
   const fallbackKey = codeToLogicalKey(normalized.code)
   return fallbackKey !== undefined && keysEqual(fallbackKey, parsed.key)
