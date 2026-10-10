@@ -2067,15 +2067,15 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.0.1
+        version: 11.0.1
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
         specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@10.29.8)(solid-js@1.9.15)
+        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2092,15 +2092,15 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.0.1
+        version: 11.0.1
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
         specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@10.29.8)(solid-js@1.9.15)
+        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2117,15 +2117,15 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.0.1
+        version: 11.0.1
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
         specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@10.29.8)(solid-js@1.9.15)
+        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2142,15 +2142,15 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.0.1
+        version: 11.0.1
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
         specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@10.29.8)(solid-js@1.9.15)
+        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2167,15 +2167,15 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.0.1
+        version: 11.0.1
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
         specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@10.29.8)(solid-js@1.9.15)
+        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2192,15 +2192,15 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.0.1
+        version: 11.0.1
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
         specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@10.29.8)(solid-js@1.9.15)
+        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2217,15 +2217,15 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.0.1
+        version: 11.0.1
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
         specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@10.29.8)(solid-js@1.9.15)
+        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2242,15 +2242,15 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.0.1
+        version: 11.0.1
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
         specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@10.29.8)(solid-js@1.9.15)
+        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2267,15 +2267,15 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.0.1
+        version: 11.0.1
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
         specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@10.29.8)(solid-js@1.9.15)
+        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -3533,34 +3533,34 @@ importers:
         specifier: workspace:*
         version: link:../hotkeys
       '@tanstack/preact-store':
-        specifier: ^0.13.4
-        version: 0.13.4(preact@10.29.8)
+        specifier: ^0.13.5
+        version: 0.13.5(preact@11.0.1)
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@7.3.2(@types/node@26.6.4)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@7.3.2(@types/node@26.6.4)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@testing-library/preact':
         specifier: ^3.2.4
-        version: 3.2.4(preact@10.29.8)
+        version: 3.2.4(preact@11.0.1)
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.0.1
+        version: 11.0.1
 
   packages/preact-hotkeys-devtools:
     dependencies:
       '@tanstack/devtools-utils':
         specifier: ^0.7.0
-        version: 0.7.0(@angular/core@21.2.10)(@types/react@19.2.14)(preact@10.29.8)(react@19.2.5)(solid-js@1.9.12)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))
+        version: 0.7.0(@angular/core@21.2.10)(@types/react@19.2.14)(preact@11.0.1)(react@19.2.5)(solid-js@1.9.12)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))
       '@tanstack/hotkeys-devtools':
         specifier: workspace:*
         version: link:../hotkeys-devtools
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.0.1
+        version: 11.0.1
 
   packages/react-hotkeys:
     dependencies:
@@ -8300,10 +8300,10 @@ packages:
     peerDependencies:
       preact: '>=10.0.0'
 
-  '@tanstack/preact-store@0.13.4':
-    resolution: {integrity: sha512-Gz5O1Y5jaQPPzranmnUKAMCNoqLDBuxFGSH9XsdquhUAfdy9JR68RohiQ/uNzDiGRe8t5ODaGYOXMWjF+JHNPA==}
+  '@tanstack/preact-store@0.13.5':
+    resolution: {integrity: sha512-+ONKQNVqoGBpCbvahHjW39d28vwBVNRUa927m5owRQS6fySTORPKbOV6HYBXt0qHxOA8r0llg1Bfy/FKXsj3qw==}
     peerDependencies:
-      preact: ^10.0.0
+      preact: ^10.0.0 || ^11.0.0-0
 
   '@tanstack/react-devtools@0.10.13':
     resolution: {integrity: sha512-r0cdB/14+st2Vxl/1Bodlyq4VC8pf9SykLQDYbGHDc1+V146WQo5B3KlYLkfyxD9Q/6+9NPRQHZyl8fvZVMdRA==}
@@ -12711,6 +12711,14 @@ packages:
     resolution: {integrity: sha512-ej2aVZ+vZ8WO7tvlQWRM9N63A0KzF9q4mWJfDUHgYaIofWY9hu74QdnQrjoPMmZi2/nZ5gN0bJCQF49xQqx09Q==}
     peerDependencies:
       preact-render-to-string: '>=5'
+    peerDependenciesMeta:
+      preact-render-to-string:
+        optional: true
+
+  preact@11.0.1:
+    resolution: {integrity: sha512-TNNwEq++jYNHy747LziCjPRVgEwnLSOIOAw/oYcjI3Tdnubx2EXtt76I0an8PATvUWtx/DX1kFIg1eFN+O/fkw==}
+    peerDependencies:
+      preact-render-to-string: '>=6.7.0'
     peerDependenciesMeta:
       preact-render-to-string:
         optional: true
@@ -18623,12 +18631,12 @@ snapshots:
 
   '@pnpm/deps.graph-sequencer@1100.0.1': {}
 
-  '@preact/preset-vite@2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@7.3.2(@types/node@26.6.4)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))':
+  '@preact/preset-vite@2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@7.3.2(@types/node@26.6.4)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))':
     dependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
       '@babel/plugin-transform-react-jsx': 7.28.6(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       '@babel/plugin-transform-react-jsx-development': 7.27.1(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
-      '@prefresh/vite': 2.4.12(preact@10.29.8)(supports-color@8.1.1)(vite@7.3.2(@types/node@26.6.4)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+      '@prefresh/vite': 2.4.12(preact@11.0.1)(supports-color@8.1.1)(vite@7.3.2(@types/node@26.6.4)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@rollup/pluginutils': 5.3.0(rollup@4.57.1)
       babel-plugin-transform-hook-names: 1.0.2(@babel/core@7.29.7(supports-color@8.1.1))
       debug: 4.4.3(supports-color@8.1.1)
@@ -18642,12 +18650,12 @@ snapshots:
       - rollup
       - supports-color
 
-  '@preact/preset-vite@2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))':
+  '@preact/preset-vite@2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))':
     dependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
       '@babel/plugin-transform-react-jsx': 7.28.6(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       '@babel/plugin-transform-react-jsx-development': 7.27.1(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
-      '@prefresh/vite': 2.4.12(preact@10.29.8)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+      '@prefresh/vite': 2.4.12(preact@11.0.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@rollup/pluginutils': 5.3.0(rollup@4.57.1)
       babel-plugin-transform-hook-names: 1.0.2(@babel/core@7.29.7(supports-color@8.1.1))
       debug: 4.4.3(supports-color@8.1.1)
@@ -18663,32 +18671,32 @@ snapshots:
 
   '@prefresh/babel-plugin@0.5.3': {}
 
-  '@prefresh/core@1.5.9(preact@10.29.8)':
+  '@prefresh/core@1.5.9(preact@11.0.1)':
     dependencies:
-      preact: 10.29.8
+      preact: 11.0.1
 
   '@prefresh/utils@1.2.1': {}
 
-  '@prefresh/vite@2.4.12(preact@10.29.8)(supports-color@8.1.1)(vite@7.3.2(@types/node@26.6.4)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))':
+  '@prefresh/vite@2.4.12(preact@11.0.1)(supports-color@8.1.1)(vite@7.3.2(@types/node@26.6.4)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))':
     dependencies:
       '@babel/core': 7.29.0(supports-color@8.1.1)
       '@prefresh/babel-plugin': 0.5.3
-      '@prefresh/core': 1.5.9(preact@10.29.8)
+      '@prefresh/core': 1.5.9(preact@11.0.1)
       '@prefresh/utils': 1.2.1
       '@rollup/pluginutils': 4.2.1
-      preact: 10.29.8
+      preact: 11.0.1
       vite: 7.3.2(@types/node@26.6.4)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
     transitivePeerDependencies:
       - supports-color
 
-  '@prefresh/vite@2.4.12(preact@10.29.8)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))':
+  '@prefresh/vite@2.4.12(preact@11.0.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))':
     dependencies:
       '@babel/core': 7.29.0(supports-color@8.1.1)
       '@prefresh/babel-plugin': 0.5.3
-      '@prefresh/core': 1.5.9(preact@10.29.8)
+      '@prefresh/core': 1.5.9(preact@11.0.1)
       '@prefresh/utils': 1.2.1
       '@rollup/pluginutils': 4.2.1
-      preact: 10.29.8
+      preact: 11.0.1
       vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
     transitivePeerDependencies:
       - supports-color
@@ -19197,11 +19205,11 @@ snapshots:
       svelte: 5.57.1(@typescript-eslint/types@8.70.1)
       vue: 3.5.43(typescript@6.0.3)
 
-  '@tanstack/devtools-utils@0.7.0(@angular/core@21.2.10)(@types/react@19.2.14)(preact@10.29.8)(react@19.2.5)(solid-js@1.9.12)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))':
+  '@tanstack/devtools-utils@0.7.0(@angular/core@21.2.10)(@types/react@19.2.14)(preact@11.0.1)(react@19.2.5)(solid-js@1.9.12)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))':
     optionalDependencies:
       '@angular/core': 21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.3)
       '@types/react': 19.2.14
-      preact: 10.29.8
+      preact: 11.0.1
       react: 19.2.5
       solid-js: 1.9.12
       svelte: 5.57.1(@typescript-eslint/types@8.70.1)
@@ -19278,20 +19286,20 @@ snapshots:
       '@tanstack/store': 0.11.2
       octane: 0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2))
 
-  '@tanstack/preact-devtools@0.10.13(csstype@3.2.3)(preact@10.29.8)(solid-js@1.9.15)':
+  '@tanstack/preact-devtools@0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)':
     dependencies:
       '@tanstack/devtools': 0.15.0(csstype@3.2.3)(solid-js@1.9.15)
-      preact: 10.29.8
+      preact: 11.0.1
     transitivePeerDependencies:
       - bufferutil
       - csstype
       - solid-js
       - utf-8-validate
 
-  '@tanstack/preact-store@0.13.4(preact@10.29.8)':
+  '@tanstack/preact-store@0.13.5(preact@11.0.1)':
     dependencies:
       '@tanstack/store': 0.11.2
-      preact: 10.29.8
+      preact: 11.0.1
 
   '@tanstack/react-devtools@0.10.13(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)':
     dependencies:
@@ -19424,10 +19432,10 @@ snapshots:
     optionalDependencies:
       vitest: 5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
 
-  '@testing-library/preact@3.2.4(preact@10.29.8)':
+  '@testing-library/preact@3.2.4(preact@11.0.1)':
     dependencies:
       '@testing-library/dom': 8.20.1
-      preact: 10.29.8
+      preact: 11.0.1
 
   '@testing-library/react@16.3.3(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
@@ -24583,7 +24591,10 @@ snapshots:
   preact@10.29.1:
     optional: true
 
-  preact@10.29.8: {}
+  preact@10.29.8:
+    optional: true
+
+  preact@11.0.1: {}
 
   prelude-ls@1.2.1: {}
 
