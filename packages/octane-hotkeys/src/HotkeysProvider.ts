@@ -38,7 +38,7 @@ export function HotkeysProvider({
   children,
   defaultOptions = {},
 }: HotkeysProviderProps) {
-  return createElement(HotkeysContext.Provider, {
+  return createElement(HotkeysContext, {
     value: defaultOptions,
     children,
   })

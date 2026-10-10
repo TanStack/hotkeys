@@ -83,7 +83,7 @@ function Layout() @{
   useHotkey('Alt+Shift+[KeyK]', () => setShowShortcuts((value) => !value), {
     meta: { name: 'Show shortcuts', group: 'Navigation' },
   })
-  <ActivityContext.Provider value={log}>
+  <ActivityContext value={log}>
         <header>
           <h1>TanStack Hotkeys kitchen sink</h1>
           <p>
@@ -162,7 +162,7 @@ function Layout() @{
           </ul>
         </section>
 
-      </ActivityContext.Provider>
+      </ActivityContext>
 }
 
 function Tickets() @{
