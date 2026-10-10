@@ -207,6 +207,8 @@ createHotkey('Escape', () => closePanel(), { requireReset: true })
 
 ### `ignoreInputs`
 
+When `ignoreInputs` is enabled, global hotkeys and sequences (targeting `document` or `window`) also preserve unmodified `Space` and `Enter` on native buttons and button-type inputs, and `Enter` on links with an `href`. Other keys and modifier shortcuts still work on these controls. Set `ignoreInputs: false`, or use an explicit element `target`, to intentionally handle their activation keys. This does not automatically detect keyboard handling in custom ARIA widgets.
+
 When `true`, the hotkey doesn't fire when the user is focused on a text input, textarea, select, or contentEditable element. When unset, a smart default applies based on the hotkey type.
 
 ```tsx
