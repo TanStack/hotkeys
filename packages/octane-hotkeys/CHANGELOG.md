@@ -1,5 +1,11 @@
 # @tanstack/octane-hotkeys
 
+## 0.3.0
+
+### Minor Changes
+
+- [#170](https://github.com/TanStack/hotkeys/pull/170) [`839ee94`](https://github.com/TanStack/hotkeys/commit/839ee941a9b2ee2cf5f70f28b161757bcfd61931) - Require octane `>=0.12.0` and depend on `@tanstack/octane-store` `^0.13.0`. `HotkeysProvider` now renders the context itself as the provider, since octane removed `Context.Provider`.
+
 ## 0.2.0
 
 ### Minor Changes
