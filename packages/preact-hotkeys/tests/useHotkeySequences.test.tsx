@@ -4,6 +4,7 @@ import { cleanup, render } from '@testing-library/preact'
 import { SequenceManager } from '@tanstack/hotkeys'
 import { useHotkeySequences } from '../src/useHotkeySequences'
 import type { UseHotkeySequenceDefinition } from '../src/useHotkeySequences'
+import { act } from 'preact/test-utils'
 
 function dispatchKey(key: string) {
   document.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true }))
@@ -79,7 +80,7 @@ describe('useHotkeySequences', () => {
     )
 
     expect(SequenceManager.getInstance().getRegistrationCount()).toBe(2)
-    unmount()
+    act(() => unmount())
     expect(SequenceManager.getInstance().getRegistrationCount()).toBe(0)
   })
 

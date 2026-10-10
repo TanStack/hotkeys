@@ -5,6 +5,7 @@ import { useRef } from 'preact/hooks'
 import { HotkeyManager } from '@tanstack/hotkeys'
 import { useHotkey } from '../src/useHotkey'
 import type { HotkeyCallback } from '@tanstack/hotkeys'
+import { act } from 'preact/test-utils'
 
 function HotkeyTestComponent({
   callback,
@@ -48,7 +49,7 @@ describe('useHotkey', () => {
     const removeEventListenerSpy = vi.spyOn(document, 'removeEventListener')
 
     const { unmount } = render(<HotkeyTestComponent callback={callback} />)
-    unmount()
+    act(() => unmount())
 
     expect(removeEventListenerSpy).toHaveBeenCalledWith(
       'keydown',

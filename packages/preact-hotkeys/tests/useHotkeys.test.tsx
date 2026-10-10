@@ -4,6 +4,7 @@ import { cleanup, render } from '@testing-library/preact'
 import { HotkeyManager } from '@tanstack/hotkeys'
 import { useHotkeys } from '../src/useHotkeys'
 import type { UseHotkeyDefinition } from '../src/useHotkeys'
+import { act } from 'preact/test-utils'
 
 function MultiHotkeyComponent({
   definitions,
@@ -93,7 +94,7 @@ describe('useHotkeys', () => {
     const manager = HotkeyManager.getInstance()
     expect(manager.getRegistrationCount()).toBe(2)
 
-    unmount()
+    act(() => unmount())
     expect(manager.getRegistrationCount()).toBe(0)
   })
 
