@@ -1,10 +1,5 @@
 <script lang="ts">
-  import {
-    createHotkey,
-    createHotkeySequences,
-    formatForDisplay,
-    getHotkeyRegistrations,
-  } from '@tanstack/svelte-hotkeys'
+  import { createHotkey } from '@tanstack/svelte-hotkeys'
 
   let lastSequence = $state<string | null>(null)
   let history = $state<Array<string>>([])
@@ -15,122 +10,48 @@
     history = [...history.slice(-9), action]
   }
 
-  createHotkeySequences([
-    {
-      sequence: ['G', 'G'],
-      callback: () => addToHistory('gg → Go to top'),
-      options: {
-        meta: {
-          name: 'Go to top',
-          description: 'Scroll to the beginning of the document',
-        },
-      },
-    },
-    {
-      sequence: ['Shift+G'],
-      callback: () => addToHistory('G → Go to bottom'),
-      options: {
-        meta: {
-          name: 'Go to bottom',
-          description: 'Scroll to the end of the document',
-        },
-      },
-    },
-    {
-      sequence: ['D', 'D'],
-      callback: () => addToHistory('dd → Delete line'),
-      options: {
-        meta: { name: 'Delete line', description: 'Delete the current line' },
-      },
-    },
-    {
-      sequence: ['Y', 'Y'],
-      callback: () => addToHistory('yy → Yank (copy) line'),
-      options: {
-        meta: {
-          name: 'Yank line',
-          description: 'Copy the current line to clipboard',
-        },
-      },
-    },
-    {
-      sequence: ['D', 'W'],
-      callback: () => addToHistory('dw → Delete word'),
-      options: {
-        meta: {
-          name: 'Delete word',
-          description: 'Delete from cursor to end of word',
-        },
-      },
-    },
-    {
-      sequence: ['C', 'I', 'W'],
-      callback: () => addToHistory('ciw → Change inner word'),
-      options: {
-        meta: {
-          name: 'Change inner word',
-          description: 'Delete word under cursor and enter insert mode',
-        },
-      },
-    },
-    {
-      sequence: ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown'],
-      callback: () => addToHistory('↑↑↓↓ → Konami code (partial)'),
-      options: {
-        timeout: 1500,
-        meta: {
-          name: 'Konami code',
-          description: 'Partial Konami code using arrow keys',
-        },
-      },
-    },
-    {
-      sequence: ['ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'],
-      callback: () => addToHistory('←→←→ → Side to side!'),
-      options: {
-        timeout: 1500,
-        meta: {
-          name: 'Side to side',
-          description: 'Left-right-left-right arrow pattern',
-        },
-      },
-    },
-    {
-      sequence: ['H', 'E', 'L', 'L', 'O'],
-      callback: () => addToHistory('hello → Hello World!'),
-      options: () => ({
-        enabled: helloSequenceEnabled,
-        meta: { name: 'Hello', description: 'Spell out hello to trigger' },
-      }),
-    },
-    {
-      sequence: ['Shift+R', 'Shift+T'],
-      callback: () => addToHistory('⇧R ⇧T → Chained Shift+letter (2 steps)'),
-      options: {
-        meta: {
-          name: 'Chained Shift',
-          description: 'Two consecutive Shift+letter chords',
-        },
-      },
-    },
-  ])
+  createHotkey(['G', 'G'], () => addToHistory('gg → Go to top'))
+  createHotkey(['Shift+G'], () => addToHistory('G → Go to bottom'))
+  createHotkey(['D', 'D'], () => addToHistory('dd → Delete line'))
+  createHotkey(['Y', 'Y'], () => addToHistory('yy → Yank (copy) line'))
+  createHotkey(['D', 'W'], () => addToHistory('dw → Delete word'))
+  createHotkey(['C', 'I', 'W'], () => addToHistory('ciw → Change inner word'))
+
+  createHotkey(
+    ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown'],
+    () => addToHistory('↑↑↓↓ → Konami code (partial)'),
+    { timeout: 1500 },
+  )
+
+  createHotkey(
+    ['ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight'],
+    () => addToHistory('←→←→ → Side to side!'),
+    { timeout: 1500 },
+  )
+
+  createHotkey(
+    ['H', 'E', 'L', 'L', 'O'],
+    () => addToHistory('hello → Hello World!'),
+    () => ({ enabled: helloSequenceEnabled }),
+  )
+
+  createHotkey(['Shift+R', 'Shift+T'], () =>
+    addToHistory('⇧R ⇧T → Chained Shift+letter (2 steps)'),
+  )
 
   // Clear history with Escape
   createHotkey('Escape', () => {
     lastSequence = null
     history = []
   })
-
-  // Registrations viewer
-  const registrations = getHotkeyRegistrations()
 </script>
 
 <div class="app">
   <header>
-    <h1>createHotkeySequences</h1>
+    <h1>Sequences with createHotkey</h1>
     <p>
-      Register many multi-key sequences in one call (like Vim commands). Keys
-      must be pressed within the timeout window (default: 1000ms).
+      Register multi-key sequences (like Vim commands). Keys must be pressed
+      within the timeout window (default: 1000ms).
     </p>
   </header>
 
@@ -274,109 +195,29 @@
       </table>
     </section>
 
-    <!-- Registrations Viewer -->
-    <section class="demo-section">
-      <h2>Live Registrations (getHotkeyRegistrations)</h2>
-      <p>
-        This table is rendered from
-        <code>getHotkeyRegistrations()</code> — a reactive view of all registered
-        hotkeys and sequences. Trigger counts update in real-time.
-      </p>
-
-      {#if registrations.hotkeys.length > 0}
-        <h3>Hotkeys</h3>
-        <table class="registrations-table">
-          <thead>
-            <tr>
-              <th>Hotkey</th>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Triggers</th>
-            </tr>
-          </thead>
-          <tbody>
-            {#each registrations.hotkeys as reg (reg.id)}
-              <tr>
-                <td>
-                  <kbd>{formatForDisplay(reg.hotkey)}</kbd>
-                </td>
-                <td>{reg.options.meta?.name ?? '—'}</td>
-                <td class="description-cell">
-                  {reg.options.meta?.description ?? '—'}
-                </td>
-                <td class="trigger-count">{reg.triggerCount}</td>
-              </tr>
-            {/each}
-          </tbody>
-        </table>
-      {/if}
-
-      <h3>Sequences ({registrations.sequences.length})</h3>
-      <table class="registrations-table">
-        <thead>
-          <tr>
-            <th>Sequence</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Enabled</th>
-            <th>Triggers</th>
-          </tr>
-        </thead>
-        <tbody>
-          {#each registrations.sequences as reg (reg.id)}
-            <tr>
-              <td>
-                {#each reg.sequence as s, i}
-                  {#if i > 0}{' '}{/if}<kbd>{formatForDisplay(s)}</kbd>
-                {/each}
-              </td>
-              <td>{reg.options.meta?.name ?? '—'}</td>
-              <td class="description-cell">
-                {reg.options.meta?.description ?? '—'}
-              </td>
-              <td>
-                <span
-                  class={reg.options.enabled !== false
-                    ? 'status-on'
-                    : 'status-off'}
-                >
-                  {reg.options.enabled !== false ? 'yes' : 'no'}
-                </span>
-              </td>
-              <td class="trigger-count">{reg.triggerCount}</td>
-            </tr>
-          {/each}
-          {#if registrations.sequences.length === 0}
-            <tr>
-              <td colspan="5" class="hint">No sequences registered</td>
-            </tr>
-          {/if}
-        </tbody>
-      </table>
-    </section>
-
     <section class="demo-section">
       <h2>Usage</h2>
       <pre
-        class="code-block">{`import { createHotkeySequences, getHotkeyRegistrations } from '@tanstack/svelte-hotkeys'
+        class="code-block">{`import { createHotkey } from '@tanstack/svelte-hotkeys'
 
-createHotkeySequences([
-  {
-    sequence: ['G', 'G'],
-    callback: () => scrollToTop(),
-    options: { meta: { name: 'Go to top', description: 'Scroll to top' } },
-  },
-  {
-    sequence: ['C', 'I', 'W'],
-    callback: () => changeInnerWord(),
-    options: { meta: { name: 'Change inner word' } },
-  },
-])
+// An array of chords registers a sequence
+createHotkey(['G', 'G'], () => {
+  scrollToTop()
+})
 
-// Introspect all registrations
-const registrations = getHotkeyRegistrations()
-// registrations.sequences[0].options.meta?.name → 'Go to top'
-// registrations.sequences[0].triggerCount → 3`}</pre>
+createHotkey(
+  ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown'],
+  () => activateCheatMode(),
+  { timeout: 1500 }
+)
+
+createHotkey(['C', 'I', 'W'], () => {
+  changeInnerWord()
+})
+
+createHotkey(['Shift+R', 'Shift+T'], () => {
+  doSomething()
+})`}</pre>
     </section>
 
     {#if history.length > 0}

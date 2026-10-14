@@ -1,112 +1,101 @@
-import { onUnmounted, unref, watch } from 'vue'
+import { onScopeDispose, toValue, watch } from 'vue'
 import { useSelector } from '@tanstack/vue-store'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptionsSource } from './defaultOptions'
 import type { MaybeRefOrGetter, Ref } from 'vue'
-import type { Hotkey, HotkeyRecorderOptions } from '@tanstack/hotkeys'
+import type {
+  Hotkey,
+  HotkeyChord,
+  HotkeyChordRecorderOptions,
+  HotkeyRecorderOptions,
+  HotkeySequence,
+  HotkeySequenceRecorderOptions,
+} from '@tanstack/hotkeys'
 
-export interface VueHotkeyRecorder {
+export interface VueHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
   /** Whether recording is currently active */
-  isRecording: Ref<boolean>
-  /** The currently recorded hotkey (for live preview) */
-  recordedHotkey: Ref<Hotkey | null>
+  isRecording: Readonly<Ref<boolean>>
+  /** Chords recorded so far in a multi-step recording (for live preview) */
+  steps: Readonly<Ref<HotkeySequence>>
+  /** The last committed hotkey */
+  recordedHotkey: Readonly<Ref<THotkey | null>>
   /** Start recording a new hotkey */
   startRecording: () => void
-  /** Stop recording (same as cancel) */
+  /** Stop recording without calling onCancel */
   stopRecording: () => void
-  /** Cancel recording without saving */
+  /** Cancel recording and call onCancel */
   cancelRecording: () => void
+  /** Commit the recorded steps now (multi-step recordings) */
+  commitRecording: () => void
 }
 
 /**
- * Vue composable for recording keyboard shortcuts.
+ * Vue composable for recording keyboard shortcuts. Options may be a ref or getter.
  *
- * This composable provides a thin wrapper around the framework-agnostic `HotkeyRecorder`
- * class, managing all the complexity of capturing keyboard events, converting them
- * to hotkey strings, and handling edge cases like Escape to cancel or Backspace/Delete
- * to clear.
- *
- * @param options - Configuration options for the recorder
- * @returns An object with recording state and control functions
+ * With the default `maxSteps: 1`, the first valid chord is recorded. With a
+ * larger `maxSteps`, each chord adds a step; the recording commits on Enter
+ * (unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at `maxSteps`, and
+ * `onRecord` receives a chord (one step) or a sequence.
  *
  * @example
- * ```vue
- * <script setup>
- * import { ref } from 'vue'
- * import { useHotkeyRecorder } from '@tanstack/vue-hotkeys'
- *
- * const shortcut = ref<Hotkey>('Mod+S')
- *
- * const recorder = useHotkeyRecorder({
- *   onRecord: (hotkey) => {
- *     shortcut.value = hotkey
- *   },
- *   onCancel: () => {
- *     console.log('Recording cancelled')
- *   },
- * })
- * </script>
- *
- * <template>
- *   <div>
- *     <button @click="recorder.startRecording()">
- *       {{ recorder.isRecording ? 'Recording...' : 'Edit Shortcut' }}
- *     </button>
- *     <div v-if="recorder.recordedHotkey">
- *       Recording: {{ recorder.recordedHotkey }}
- *     </div>
- *   </div>
- * </template>
+ * ```ts
+ * const recorder = useHotkeyRecorder({ onRecord: (hotkey) => (shortcut.value = hotkey) })
+ * const sequenceRecorder = useHotkeyRecorder({ maxSteps: 3, onRecord: save })
  * ```
  */
+export function useHotkeyRecorder(
+  options: HotkeyChordRecorderOptions,
+): VueHotkeyRecorder<HotkeyChord>
+export function useHotkeyRecorder(
+  options: HotkeySequenceRecorderOptions,
+): VueHotkeyRecorder
+// Getter overloads list sequences first: TypeScript keeps a lambda's parameter
+// types from the first overload it tries, and sequence types also fit chords.
+export function useHotkeyRecorder(
+  options: () => HotkeySequenceRecorderOptions,
+): VueHotkeyRecorder
+export function useHotkeyRecorder(
+  options: () => HotkeyChordRecorderOptions,
+): VueHotkeyRecorder<HotkeyChord>
+export function useHotkeyRecorder(
+  options: Ref<HotkeyRecorderOptions>,
+): VueHotkeyRecorder
 export function useHotkeyRecorder(
   options: MaybeRefOrGetter<HotkeyRecorderOptions>,
 ): VueHotkeyRecorder {
   const defaultOptions = useDefaultHotkeysOptionsSource()
-  const recorder = new HotkeyRecorder(
-    resolveRecorderOptions(options, defaultOptions),
-  )
+  const resolve = () =>
+    ({
+      ...defaultOptions().hotkeyRecorder,
+      ...toValue(options),
+    }) as HotkeySequenceRecorderOptions
 
-  // Subscribe to recorder state using useSelector
+  // Overloads already checked the options; either shape is valid here.
+  const recorder = new HotkeyRecorder(resolve())
+
   const isRecording = useSelector(recorder.store, (state) => state.isRecording)
+  const steps = useSelector(recorder.store, (state) => state.steps)
   const recordedHotkey = useSelector(
     recorder.store,
     (state) => state.recordedHotkey,
   )
 
-  const stopWatcher = watch(
-    () => resolveRecorderOptions(options, defaultOptions),
-    (resolvedOptions) => {
-      recorder.setOptions(resolvedOptions)
-    },
-    { immediate: true },
+  const stopWatcher = watch(resolve, (resolved) =>
+    recorder.setOptions(resolved),
   )
 
-  // Cleanup on unmount
-  onUnmounted(() => {
+  onScopeDispose(() => {
     stopWatcher()
     recorder.destroy()
   })
 
   return {
-    isRecording: isRecording,
-    recordedHotkey: recordedHotkey,
+    isRecording,
+    steps,
+    recordedHotkey,
     startRecording: () => recorder.start(),
     stopRecording: () => recorder.stop(),
     cancelRecording: () => recorder.cancel(),
+    commitRecording: () => recorder.commit(),
   }
-}
-
-function resolveRecorderOptions(
-  options: MaybeRefOrGetter<HotkeyRecorderOptions>,
-  defaultOptions: ReturnType<typeof useDefaultHotkeysOptionsSource>,
-): HotkeyRecorderOptions {
-  return {
-    ...defaultOptions().hotkeyRecorder,
-    ...resolveMaybeRefOrGetter(options),
-  }
-}
-
-function resolveMaybeRefOrGetter<T>(value: MaybeRefOrGetter<T>): T {
-  return typeof value === 'function' ? (value as () => T)() : unref(value)
 }

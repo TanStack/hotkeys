@@ -3,16 +3,19 @@ id: useHotkey
 title: useHotkey
 ---
 
-Defined in: [packages/ember-hotkeys/src/useHotkey.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkey.ts#L17)
+Defined in: [packages/ember-hotkeys/src/useHotkey.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkey.ts#L16)
 
-Use {{useHotkey "Mod+S" this.save enabled=this.enabled}} in a template.
+Registers a hotkey for the helper's template lifecycle: a chord such as
+`"Mod+S"`, a sequence such as `(array "G" "G")`, or an app hotkey.
+
+Use `{{useHotkey "Mod+S" this.save enabled=this.enabled}}` in a template.
 
 ## Extends
 
 - `default`\<\{
   `Args`: \{
-     `Named`: `HotkeyOptions`;
-     `Positional`: \[`RegisterableHotkey`, `HotkeyCallback`\];
+     `Named`: [`EmberHotkeyCommonOptions`](../type-aliases/EmberHotkeyCommonOptions.md);
+     `Positional`: \[`RegisterableHotkey` \| `AppHotkey`, `HotkeyCallback`\];
   \};
   `Return`: `void`;
 \}\>
@@ -42,8 +45,8 @@ Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_su
 ```ts
 Helper<{
   Args: {
-    Positional: [RegisterableHotkey, HotkeyCallback]
-    Named: HotkeyOptions
+    Positional: [RegisterableHotkey | AppHotkey, HotkeyCallback]
+    Named: EmberHotkeyCommonOptions
   }
   Return: void
 }>.constructor
@@ -63,7 +66,9 @@ Defined in: node\_modules/.pnpm/@glint+template@1.9.0/node\_modules/@glint/templ
 
 ##### args
 
-...\[`RegisterableHotkey`, `HotkeyCallback`, `NamedArgs`\<`HotkeyOptions`\>\]
+...\[
+  \| `RegisterableHotkey`
+  \| `AppHotkey`\<`string`, HotkeyChord \| HotkeySequence \| null\>, `HotkeyCallback`, `NamedArgs`\<[`EmberHotkeyCommonOptions`](../type-aliases/EmberHotkeyCommonOptions.md)\>\]
 
 #### Returns
 
@@ -884,7 +889,7 @@ Helper.cacheFor
 compute(positional, options): void;
 ```
 
-Defined in: [packages/ember-hotkeys/src/useHotkey.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkey.ts#L28)
+Defined in: [packages/ember-hotkeys/src/useHotkey.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkey.ts#L25)
 
 Override this function when writing a class-based helper.
 
@@ -892,13 +897,15 @@ Override this function when writing a class-based helper.
 
 ##### positional
 
-\[`RegisterableHotkey`, `HotkeyCallback`\]
+\[
+  \| `RegisterableHotkey`
+  \| `AppHotkey`\<`string`, HotkeyChord \| HotkeySequence \| null\>, `HotkeyCallback`\]
 
 The positional arguments to the helper
 
 ##### options
 
-`HotkeyOptions`
+[`EmberHotkeyCommonOptions`](../type-aliases/EmberHotkeyCommonOptions.md)
 
 #### Returns
 

@@ -5,14 +5,21 @@ title: "@tanstack/vue-hotkeys"
 
 ## Interfaces
 
-- [HotkeyRegistrationsResult](interfaces/HotkeyRegistrationsResult.md)
 - [HotkeysProviderOptions](interfaces/HotkeysProviderOptions.md)
-- [UseHotkeyDefinition](interfaces/UseHotkeyDefinition.md)
-- [UseHotkeyOptions](interfaces/UseHotkeyOptions.md)
-- [UseHotkeySequenceDefinition](interfaces/UseHotkeySequenceDefinition.md)
-- [UseHotkeySequenceOptions](interfaces/UseHotkeySequenceOptions.md)
+- [ProvideHotkeysContextOptions](interfaces/ProvideHotkeysContextOptions.md)
+- [UseCustomHotkeysResult](interfaces/UseCustomHotkeysResult.md)
 - [VueHotkeyRecorder](interfaces/VueHotkeyRecorder.md)
-- [VueHotkeySequenceRecorder](interfaces/VueHotkeySequenceRecorder.md)
+
+## Type Aliases
+
+- [UseAppHotkeyOptions](type-aliases/UseAppHotkeyOptions.md)
+- [UseHotkeyChordOptions](type-aliases/UseHotkeyChordOptions.md)
+- [UseHotkeyCommonOptions](type-aliases/UseHotkeyCommonOptions.md)
+- [UseHotkeyDefinition](type-aliases/UseHotkeyDefinition.md)
+- [UseHotkeyOptions](type-aliases/UseHotkeyOptions.md)
+- [UseHotkeyOptionsFor](type-aliases/UseHotkeyOptionsFor.md)
+- [UseHotkeySequenceOptions](type-aliases/UseHotkeySequenceOptions.md)
+- [UseHotkeyTarget](type-aliases/UseHotkeyTarget.md)
 
 ## Variables
 
@@ -21,6 +28,9 @@ title: "@tanstack/vue-hotkeys"
 ## Functions
 
 - [provideHotkeysContext](functions/provideHotkeysContext.md)
+- [useAppHotkeyList](functions/useAppHotkeyList.md)
+- [useAppHotkeys](functions/useAppHotkeys.md)
+- [useCustomHotkeys](functions/useCustomHotkeys.md)
 - [useDefaultHotkeysOptions](functions/useDefaultHotkeysOptions.md)
 - [useHeldKeyCodes](functions/useHeldKeyCodes.md)
 - [useHeldKeys](functions/useHeldKeys.md)
@@ -30,7 +40,4 @@ title: "@tanstack/vue-hotkeys"
 - [useHotkeyRegistrations](functions/useHotkeyRegistrations.md)
 - [useHotkeys](functions/useHotkeys.md)
 - [useHotkeysContext](functions/useHotkeysContext.md)
-- [useHotkeySequence](functions/useHotkeySequence.md)
-- [useHotkeySequenceRecorder](functions/useHotkeySequenceRecorder.md)
-- [useHotkeySequences](functions/useHotkeySequences.md)
 - [useKeyHold](functions/useKeyHold.md)

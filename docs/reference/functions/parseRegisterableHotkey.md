@@ -7,7 +7,7 @@ title: parseRegisterableHotkey
 function parseRegisterableHotkey(hotkey, platform?): ParsedHotkey;
 ```
 
-Defined in: [parse.ts:362](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L362)
+Defined in: [parse.ts:399](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L399)
 
 Parses a string or raw binding, resolving Mod for the supplied platform.
 Physical tokens such as `[KeyQ]` retain `code`; they never become logical Q.
@@ -16,7 +16,7 @@ Physical tokens such as `[KeyQ]` retain `code`; they never become logical Q.
 
 ### hotkey
 
-[`RegisterableHotkey`](../type-aliases/RegisterableHotkey.md)
+[`RegisterableHotkeyChord`](../type-aliases/RegisterableHotkeyChord.md)
 
 ### platform?
 

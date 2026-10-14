@@ -12,7 +12,9 @@ TanStack Hotkeys ships devtools for debugging and monitoring your registered hot
 
 The Hotkeys devtools panel lets you:
 
-- View all currently registered hotkeys with their options and status
+- View all currently registered hotkeys, chords and sequences in one list, with their options and status
+- Follow sequence progress as steps are pressed
+- See declared [app hotkeys](./overview#app-hotkeys) that nothing has registered yet, with their custom hotkeys
 - See which keys are held down in real time
 - Trigger hotkey callbacks for testing, without pressing the keys
 - Inspect individual registrations, including their target, event type, and conflict behavior

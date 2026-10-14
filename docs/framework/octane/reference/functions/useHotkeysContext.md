@@ -4,20 +4,13 @@ title: useHotkeysContext
 ---
 
 ```ts
-function useHotkeysContext(): 
-  | {
-  defaultOptions: DefaultHotkeysOptions;
-}
-  | null;
+function useHotkeysContext(): HotkeysContextValue | null;
 ```
 
-Defined in: [HotkeysProvider.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L26)
+Defined in: [HotkeysProvider.ts:60](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L60)
 
 Reads the nearest provider, or null outside a provider.
 
 ## Returns
 
-  \| \{
-  `defaultOptions`: [`DefaultHotkeysOptions`](../interfaces/DefaultHotkeysOptions.md);
-\}
-  \| `null`
+`HotkeysContextValue` \| `null`

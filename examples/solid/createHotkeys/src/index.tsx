@@ -325,15 +325,15 @@ createHotkeys(
 // ---------------------------------------------------------------------------
 
 function RegistrationsViewer() {
-  const { hotkeys, sequences } = createHotkeyRegistrations()
+  const registrations = createHotkeyRegistrations()
 
   return (
-    <div class="demo-section">
+    <section class="demo-section">
       <h2>Live Registrations (createHotkeyRegistrations)</h2>
       <p>
         This table is rendered from <code>createHotkeyRegistrations()</code> — a
-        reactive view of all registered hotkeys. It updates automatically as
-        hotkeys are added, removed, enabled/disabled, or triggered.
+        reactive view of every registered hotkey, chords and sequences. Progress
+        and trigger counts update in real-time.
       </p>
       <table class="registrations-table">
         <thead>
@@ -341,12 +341,13 @@ function RegistrationsViewer() {
             <th>Hotkey</th>
             <th>Name</th>
             <th>Description</th>
+            <th>Progress</th>
             <th>Enabled</th>
             <th>Triggers</th>
           </tr>
         </thead>
         <tbody>
-          <For each={hotkeys()}>
+          <For each={registrations()}>
             {(reg) => (
               <tr>
                 <td>
@@ -355,6 +356,11 @@ function RegistrationsViewer() {
                 <td>{reg.options.meta?.name ?? '\u2014'}</td>
                 <td class="description-cell">
                   {reg.options.meta?.description ?? '\u2014'}
+                </td>
+                <td>
+                  {reg.kind === 'sequence'
+                    ? `${reg.matchedStepCount}/${reg.hotkey.length}`
+                    : '\u2014'}
                 </td>
                 <td>
                   <span
@@ -369,65 +375,16 @@ function RegistrationsViewer() {
               </tr>
             )}
           </For>
-          <Show when={hotkeys().length === 0}>
+          <Show when={registrations().length === 0}>
             <tr>
-              <td colSpan={5} class="hint">
+              <td colSpan={6} class="hint">
                 No hotkeys registered
               </td>
             </tr>
           </Show>
         </tbody>
       </table>
-      <Show when={sequences().length > 0}>
-        <h3 style={{ 'margin-top': '16px' }}>Sequences</h3>
-        <table class="registrations-table">
-          <thead>
-            <tr>
-              <th>Sequence</th>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Triggers</th>
-            </tr>
-          </thead>
-          <tbody>
-            <For each={sequences()}>
-              {(reg) => (
-                <tr>
-                  <td>
-                    <For each={reg.sequence}>
-                      {(s, i) => (
-                        <>
-                          {i() > 0 && ' '}
-                          <kbd>{formatForDisplay(s)}</kbd>
-                        </>
-                      )}
-                    </For>
-                  </td>
-                  <td>{reg.options.meta?.name ?? '\u2014'}</td>
-                  <td class="description-cell">
-                    {reg.options.meta?.description ?? '\u2014'}
-                  </td>
-                  <td class="trigger-count">{reg.triggerCount}</td>
-                </tr>
-              )}
-            </For>
-          </tbody>
-        </table>
-      </Show>
-      <pre class="code-block">{`const { hotkeys, sequences } = createHotkeyRegistrations()
-
-// Render a live table of all registrations
-<For each={hotkeys()}>
-  {(reg) => (
-    <tr>
-      <td>{formatForDisplay(reg.hotkey)}</td>
-      <td>{reg.options.meta?.name}</td>
-      <td>{reg.options.meta?.description}</td>
-      <td>{reg.triggerCount}</td>
-    </tr>
-  )}
-</For>`}</pre>
-    </div>
+    </section>
   )
 }
 

@@ -7,7 +7,7 @@ import type {
   SingleModifierHotkey,
   DisplayHotkey,
   MultiHotkeyHandler,
-  SequenceRegistration,
+  HotkeySequenceRegistration,
   Target,
 } from '../src'
 
@@ -18,7 +18,7 @@ it('exports shared types without exposing internal runtime helpers', () => {
   expectTypeOf<'Mod+[KeyS]'>().toExtend<SingleModifierHotkey>()
   expectTypeOf<'Mod+[KeyS]'>().toExtend<DisplayHotkey>()
   expectTypeOf<{}>().toExtend<MultiHotkeyHandler>()
-  expectTypeOf<SequenceRegistration['target']>().toEqualTypeOf<Target>()
+  expectTypeOf<HotkeySequenceRegistration['target']>().toEqualTypeOf<Target>()
   for (const name of [
     'chordRejection',
     'matchKeyboardEvent',

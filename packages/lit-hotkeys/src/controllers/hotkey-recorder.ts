@@ -1,13 +1,21 @@
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
-import type { Hotkey, HotkeyRecorderOptions } from '@tanstack/hotkeys'
+import type {
+  Hotkey,
+  HotkeyChordRecorderOptions,
+  HotkeyRecorderOptions,
+  HotkeySequence,
+  HotkeySequenceRecorderOptions,
+} from '@tanstack/hotkeys'
 
 /**
  * A Lit ReactiveController that records keyboard shortcuts.
  *
- * Wraps the framework-agnostic `HotkeyRecorder` class, managing all the
- * complexity of capturing keyboard events, converting them to hotkey strings,
- * and handling edge cases like Escape to cancel or Backspace/Delete to clear.
+ * With the default `maxSteps: 1`, the first valid chord is recorded. With a
+ * larger `maxSteps`, each chord adds a step; the recording commits on Enter
+ * (unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at `maxSteps`, and
+ * `onRecord` receives a chord (one step) or a sequence. Escape cancels;
+ * Backspace/Delete removes the last step or clears.
  *
  * @example
  * ```ts
@@ -45,48 +53,81 @@ export class HotkeyRecorderController implements ReactiveController {
   private _unsubscribe: (() => void) | undefined
   /** Whether recording is currently active. */
   private _isRecording = false
-  /** The currently recorded hotkey (for live preview). */
+  /** The last committed hotkey. */
   private _recordedHotkey: Hotkey | null = null
+  /** Chords recorded so far in a multi-step recording. */
+  private _steps: HotkeySequence = []
 
   /** Whether recording is currently active. */
   public get isRecording(): boolean {
     return this._isRecording
   }
 
-  /** The currently recorded hotkey (for live preview). */
+  /** The last committed hotkey: a chord, or a sequence of two or more steps. */
   public get recordedHotkey(): Hotkey | null {
     return this._recordedHotkey
   }
 
+  /** Chords recorded so far in a multi-step recording (for live preview). */
+  public get steps(): HotkeySequence {
+    return this._steps
+  }
+
   /**
-   * @param _host - The Lit component that owns this controller.
-   * @param _options - Options or a getter, read during recording.
+   * @param host - The Lit component that owns this controller.
+   * @param options - Options or a getter, read during recording.
    */
+  constructor(host: ReactiveControllerHost, options: HotkeyChordRecorderOptions)
+  constructor(
+    host: ReactiveControllerHost,
+    options: HotkeySequenceRecorderOptions,
+  )
+  // Getter overloads list sequences first: TypeScript keeps a lambda's
+  // parameter types from the first overload it tries, and sequence types also
+  // fit chords.
+  constructor(
+    host: ReactiveControllerHost,
+    options: () => HotkeySequenceRecorderOptions,
+  )
+  constructor(
+    host: ReactiveControllerHost,
+    options: () => HotkeyChordRecorderOptions,
+  )
+  constructor(
+    host: ReactiveControllerHost,
+    options: () => HotkeyRecorderOptions,
+  )
   constructor(
     private _host: ReactiveControllerHost,
     private _options: HotkeyRecorderOptions | (() => HotkeyRecorderOptions),
   ) {
-    this._recorder = new HotkeyRecorder(() => ({
-      ...(typeof this._options === 'function'
-        ? this._options()
-        : this._options),
-      ...this._optionOverrides,
-    }))
+    // Overloads already checked the options; either shape is valid here.
+    this._recorder = new HotkeyRecorder(
+      () =>
+        ({
+          ...(typeof this._options === 'function'
+            ? this._options()
+            : this._options),
+          ...this._optionOverrides,
+        }) as HotkeySequenceRecorderOptions,
+    )
     this._host.addController(this)
   }
 
   /** Subscribes to the recorder store and updates the internal state when changes occur. */
   public hostConnected(): void {
     const subscription = this._recorder.store.subscribe(() => {
-      const { isRecording, recordedHotkey } = this._recorder.store.state
+      const { isRecording, recordedHotkey, steps } = this._recorder.store.state
 
       const hasChanged: boolean =
         isRecording !== this._isRecording ||
-        recordedHotkey !== this._recordedHotkey
+        recordedHotkey !== this._recordedHotkey ||
+        steps !== this._steps
 
       if (hasChanged) {
         this._isRecording = isRecording
         this._recordedHotkey = recordedHotkey
+        this._steps = steps
         this._host.requestUpdate()
       }
     })
@@ -101,11 +142,15 @@ export class HotkeyRecorderController implements ReactiveController {
     this._recorder.stop()
     this._isRecording = false
     this._recordedHotkey = null
+    this._steps = []
   }
 
   /** Updates the recorder options (e.g. callbacks). */
   public setOptions(options: Partial<HotkeyRecorderOptions>): void {
-    this._optionOverrides = { ...this._optionOverrides, ...options }
+    this._optionOverrides = {
+      ...this._optionOverrides,
+      ...options,
+    } as Partial<HotkeyRecorderOptions>
   }
 
   /** Start recording a new hotkey. */
@@ -121,5 +166,10 @@ export class HotkeyRecorderController implements ReactiveController {
   /** Cancel recording without saving. */
   public cancelRecording(): void {
     this._recorder.cancel()
+  }
+
+  /** Commit the recorded steps now (multi-step recordings). */
+  public commitRecording(): void {
+    this._recorder.commit()
   }
 }

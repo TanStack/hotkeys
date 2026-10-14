@@ -9,12 +9,12 @@ import {
 } from './_keyboard-event'
 import { parseHotkey } from './parse'
 import type { KeyboardEventMatch } from './match'
-import type { Hotkey, ParsedHotkey } from './hotkey.types'
+import type { HotkeyChord, ParsedHotkey } from './hotkey.types'
 
 /** Matches an event and reports the winning candidate and release identity. */
 export function matchKeyboardEvent(
   event: KeyboardEvent,
-  hotkey: Hotkey | ParsedHotkey,
+  hotkey: HotkeyChord | ParsedHotkey,
   platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
 ): KeyboardEventMatch {
   const parsed =

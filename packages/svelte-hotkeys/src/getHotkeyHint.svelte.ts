@@ -1,7 +1,17 @@
 import { createSubscriber } from 'svelte/reactivity'
-import { getKeyStateTracker, matchesHeldModifiers } from '@tanstack/hotkeys'
+import {
+  getKeyStateTracker,
+  isAppHotkey,
+  matchesHeldModifiers,
+  resolveAppHotkey,
+} from '@tanstack/hotkeys'
+import { getHotkeysContext } from './HotkeysCtx'
 import { resolveMaybeGetter } from './internal.svelte'
-import type { HeldModifierOptions, RegisterableHotkey } from '@tanstack/hotkeys'
+import type {
+  AppHotkey,
+  HeldModifierOptions,
+  RegisterableHotkey,
+} from '@tanstack/hotkeys'
 import type { MaybeGetter } from './internal.svelte'
 
 export interface SvelteHotkeyHint {
@@ -9,36 +19,50 @@ export interface SvelteHotkeyHint {
 }
 
 /**
- * Returns an object with a reactive `visible` getter indicating whether held modifiers reveal this shortcut.
- * Pass getters to track changing bindings and options.
- * Uses the nonempty-subset/AltGr rules of `matchesHeldModifiers`; `exact` requires
- * every modifier. Combine with the action's enabled state before showing a badge.
- * This helper does not register a shortcut or check whether its target is focused.
+ * Returns an object with a reactive `visible` getter indicating whether held
+ * modifiers reveal this shortcut. Pass getters to track changing hotkeys and
+ * options. A sequence reveals its hint from its first step, and an app hotkey
+ * uses its effective hotkey (false while unbound). This helper does not
+ * register a shortcut or check whether its target is focused.
  */
 export function getHotkeyHint(
-  hotkey: MaybeGetter<RegisterableHotkey>,
+  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey>,
   options: MaybeGetter<HeldModifierOptions> = {},
 ): SvelteHotkeyHint {
   const tracker = getKeyStateTracker()
-  // Resolve current reactive arguments without caching a stale binding.
-  const read = () =>
-    matchesHeldModifiers(
-      resolveMaybeGetter(hotkey),
-      tracker.store.state.heldKeys,
-      resolveMaybeGetter(options),
+  const store = getHotkeysContext()?.appHotkeysStore ?? null
+  // Resolve current reactive arguments without caching a stale hotkey.
+  const read = () => {
+    const value = resolveMaybeGetter(hotkey)
+    const resolved = isAppHotkey(value)
+      ? resolveAppHotkey(value, store).hotkey
+      : value
+    return (
+      resolved !== null &&
+      matchesHeldModifiers(
+        resolved,
+        tracker.store.state.heldKeys,
+        resolveMaybeGetter(options),
+      )
     )
+  }
   let previous = false
   // Notify Svelte only when visibility changes, not for every unrelated held key.
   const subscribe = createSubscriber((update) => {
     previous = read()
-    const subscription = tracker.store.subscribe(() => {
+    const check = () => {
       const next = read()
       if (next !== previous) {
         previous = next
         update()
       }
-    })
-    return () => subscription.unsubscribe()
+    }
+    const keys = tracker.store.subscribe(check)
+    const custom = store?.store.subscribe(check)
+    return () => {
+      keys.unsubscribe()
+      custom?.unsubscribe()
+    }
   })
   return {
     /** Reads visibility and subscribes the current reactive consumer when needed. */

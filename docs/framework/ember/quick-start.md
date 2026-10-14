@@ -36,7 +36,7 @@ Press Command+S on macOS or Control+S on Windows and Linux. The count increases 
 
 ## Registration and cleanup
 
-`useHotkey`, `useHotkeys`, `useHotkeySequence`, and `useHotkeySequences` are template helpers. Invoke them with `{{...}}`, not as JavaScript hooks. Tracked arguments update registrations after rendering. Removing a helper from the template unregisters its bindings.
+`useHotkey` and `useHotkeys` are template helpers. Invoke them with `{{...}}`, not as JavaScript hooks. Tracked arguments update registrations after rendering. Removing a helper from the template unregisters its bindings.
 
 State readers and recorders are JavaScript functions. Pass the containing component as their first argument, usually `this`. The adapter releases subscriptions and recorders when that owner is destroyed. State readers expose `.value`; recorder fields and registration arrays are reactive getters. Read those properties in templates or getters instead of destructuring an initial snapshot.
 
@@ -78,10 +78,10 @@ Use Ember tracked state for the enabled flag.
 
 
 ```hbs
-{{useHotkeySequence (array 'G' 'G') this.goToTop}}
+{{useHotkey (array 'G' 'G') this.goToTop}}
 ```
 
-Import `array` from `@ember/helper` and `useHotkeySequence` from `@tanstack/ember-hotkeys`.
+An array of chords registers a sequence. Import `array` from `@ember/helper` and `useHotkey` from `@tanstack/ember-hotkeys`.
 
 Release G between presses. Automatic key repeats do not advance sequences.
 
@@ -114,7 +114,7 @@ Use `formatForDisplay(binding)` for platform-specific labels. Keep the original 
 
 ## Shared defaults
 
-Pass defaults to `createHotkeysScope`. The scope accepts `hotkey`, `hotkeySequence`, `hotkeyRecorder`, and `hotkeySequenceRecorder` options. Use the returned contextual helpers, modifiers, and recorder factories. Pass the scope through component arguments to share it with descendants; helpers and recorders still clean up with their own owners. Pass a getter for tracked defaults. Call-specific options override scope defaults, and per-definition options override common options. Omitted options use the core defaults.
+Pass defaults to `createHotkeysScope`. The scope accepts `hotkey` and `hotkeyRecorder` options. `requireReset` applies to chords and `timeout` to sequences. Use the returned contextual helpers, modifiers, and recorder factories. Pass the scope through component arguments to share it with descendants; helpers and recorders still clean up with their own owners. Pass a getter for tracked defaults. Call-specific options override scope defaults, and per-definition options override common options. Omitted options use the core defaults.
 
 ```gts
 import Component from '@glimmer/component'
@@ -125,9 +125,7 @@ export default class Editor extends Component {
   @tracked enabled = true
   hotkeys = createHotkeysScope(() => ({
     hotkey: { enabled: this.enabled, requireReset: true },
-    hotkeySequence: { timeout: 1500 },
-    hotkeyRecorder: { ignoreInputs: false },
-    hotkeySequenceRecorder: { idleTimeoutMs: 2000 },
+    hotkeyRecorder: { ignoreInputs: false, idleTimeoutMs: 2000 },
   }))
   save = () => console.log('Saved')
   next = () => console.log('Next')
@@ -139,14 +137,18 @@ export default class Editor extends Component {
 }
 ```
 
-A child can receive this scope as `@hotkeys={{this.hotkeys}}` and call `{{@hotkeys.useHotkey ...}}`. To use recorder defaults, call `this.hotkeys.useHotkeyRecorder(this, options)` or `this.hotkeys.useHotkeySequenceRecorder(this, options)`. The standalone imports use core defaults. The scope itself owns no registrations and needs no `destroy()` call.
+A child can receive this scope as `@hotkeys={{this.hotkeys}}` and call `{{@hotkeys.useHotkey ...}}`. To use recorder defaults, call `this.hotkeys.useHotkeyRecorder(this, options)`. The standalone imports use core defaults. The scope itself owns no registrations and needs no `destroy()` call.
+
+## Declaring app hotkeys
+
+To list every hotkey in a cheat sheet, including hotkeys whose components haven't mounted, and to let users customize them, declare them once with `defineAppHotkeys` and provide them with `provideAppHotkeys`. See the [App Hotkeys Guide](./guides/app-hotkeys).
 
 ## Examples and next steps
 
 - [Hotkeys](./guides/hotkeys)
 - [Sequences](./guides/sequences)
+- [App hotkeys](./guides/app-hotkeys)
 - [Hotkey recording](./guides/hotkey-recording)
-- [Sequence recording](./guides/sequence-recording)
 - [Key state tracking](./guides/key-state-tracking)
 - [Formatting and display](./guides/formatting-display)
 - [Kitchen sink](./examples/kitchen-sink)

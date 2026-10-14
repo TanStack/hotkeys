@@ -136,7 +136,7 @@ useHotkeys(() =>
     })),
 )
 
-const { hotkeys: registeredHotkeys } = useHotkeyRegistrations()
+const registeredHotkeys = useHotkeyRegistrations()
 
 const handleEdit = (id: string) => {
   const shortcut = shortcuts.value.find((s) => s.id === id)
@@ -201,7 +201,7 @@ useHotkeys(
 )
 
 // Read all registrations reactively
-const { hotkeys } = useHotkeyRegistrations()
+const hotkeys = useHotkeyRegistrations()
 // hotkeys.value[0].options.meta?.name → 'Save'
 // hotkeys.value[0].triggerCount → 3`
 </script>

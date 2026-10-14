@@ -1,9 +1,7 @@
 import { afterEach, expect, it, vi } from 'vitest'
 import { LitElement } from 'lit'
-import { HotkeyManager, SequenceManager } from '@tanstack/hotkeys'
+import { HotkeyManager } from '@tanstack/hotkeys'
 import { HotkeyController } from '../src/controllers/hotkey'
-import { HotkeySequenceController } from '../src/controllers/hotkey-sequence'
-import { HotkeySequenceRecorderController } from '../src/controllers/hotkey-sequence-recorder'
 import { HotkeyRecorderController } from '../src/controllers/hotkey-recorder'
 class ReactiveHost extends LitElement {
   static properties = { enabled: { type: Boolean } }
@@ -19,7 +17,6 @@ const press = (key: string) =>
 afterEach(() => {
   document.body.replaceChildren()
   HotkeyManager.resetInstance()
-  SequenceManager.resetInstance()
 })
 it.each(['hotkey', 'sequence'])(
   'updates a %s enabled getter after the host updates',
@@ -34,7 +31,7 @@ it.each(['hotkey', 'sequence'])(
     const controller =
       kind === 'hotkey'
         ? new HotkeyController(host, 'A', callback, options)
-        : new HotkeySequenceController(host, ['A', 'B'], callback, options)
+        : new HotkeyController(host, ['A', 'B'], callback, options)
     host.addController(controller)
     document.body.append(host)
     await host.updateComplete
@@ -83,11 +80,8 @@ it.each(['hotkey', 'sequence'] as const)(
     const controller =
       kind === 'hotkey'
         ? new HotkeyController(host, 'A', callback, options)
-        : new HotkeySequenceController(host, ['A', 'B'], callback, options)
-    const registrations =
-      kind === 'hotkey'
-        ? HotkeyManager.getInstance().registrations
-        : SequenceManager.getInstance().registrations
+        : new HotkeyController(host, ['A', 'B'], callback, options)
+    const registrations = HotkeyManager.getInstance().registrations
     const invoke = (element: HTMLElement, type = 'keydown') => {
       element.dispatchEvent(
         new KeyboardEvent(type, { key: 'a', bubbles: true }),
@@ -149,7 +143,10 @@ it.each(['single', 'sequence'] as const)(
     const recorder =
       kind === 'single'
         ? new HotkeyRecorderController(host, options)
-        : new HotkeySequenceRecorderController(host, () => options)
+        : new HotkeyRecorderController(host, () => ({
+            ...options,
+            maxSteps: Infinity,
+          }))
     document.body.append(host)
     await host.updateComplete
     recorder.setOptions({ onRecord: record })

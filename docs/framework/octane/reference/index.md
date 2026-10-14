@@ -9,15 +9,26 @@ title: "@tanstack/octane-hotkeys"
 - [HotkeyRegistrationsResult](interfaces/HotkeyRegistrationsResult.md)
 - [HotkeysProviderProps](interfaces/HotkeysProviderProps.md)
 - [OctaneHotkeyRecorder](interfaces/OctaneHotkeyRecorder.md)
-- [OctaneHotkeySequenceRecorder](interfaces/OctaneHotkeySequenceRecorder.md)
+- [UseCustomHotkeysResult](interfaces/UseCustomHotkeysResult.md)
 
 ## Type Aliases
 
 - [HotkeysProviderOptions](type-aliases/HotkeysProviderOptions.md)
+- [UseAppHotkeyOptions](type-aliases/UseAppHotkeyOptions.md)
+- [UseHotkeyChordOptions](type-aliases/UseHotkeyChordOptions.md)
+- [UseHotkeyCommonOptions](type-aliases/UseHotkeyCommonOptions.md)
+- [UseHotkeyDefinition](type-aliases/UseHotkeyDefinition.md)
+- [UseHotkeyOptions](type-aliases/UseHotkeyOptions.md)
+- [UseHotkeyOptionsFor](type-aliases/UseHotkeyOptionsFor.md)
+- [UseHotkeySequenceOptions](type-aliases/UseHotkeySequenceOptions.md)
+- [UseHotkeyTarget](type-aliases/UseHotkeyTarget.md)
 
 ## Functions
 
 - [HotkeysProvider](functions/HotkeysProvider.md)
+- [useAppHotkeyList](functions/useAppHotkeyList.md)
+- [useAppHotkeys](functions/useAppHotkeys.md)
+- [useCustomHotkeys](functions/useCustomHotkeys.md)
 - [useDefaultHotkeysOptions](functions/useDefaultHotkeysOptions.md)
 - [useHeldKeyCodes](functions/useHeldKeyCodes.md)
 - [useHeldKeys](functions/useHeldKeys.md)
@@ -27,7 +38,4 @@ title: "@tanstack/octane-hotkeys"
 - [useHotkeyRegistrations](functions/useHotkeyRegistrations.md)
 - [useHotkeys](functions/useHotkeys.md)
 - [useHotkeysContext](functions/useHotkeysContext.md)
-- [useHotkeySequence](functions/useHotkeySequence.md)
-- [useHotkeySequenceRecorder](functions/useHotkeySequenceRecorder.md)
-- [useHotkeySequences](functions/useHotkeySequences.md)
 - [useKeyHold](functions/useKeyHold.md)

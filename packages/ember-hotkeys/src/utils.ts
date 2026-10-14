@@ -1,5 +1,8 @@
 import { registerDestructor } from '@ember/destroyable'
 import { trackedObject } from '@ember/reactive/collections'
+import { getHotkeyManager } from '@tanstack/hotkeys'
+import { subscribePublishedAppHotkeys } from '@tanstack/hotkeys/adapter'
+import type { AppHotkeysStore } from '@tanstack/hotkeys'
 import type { ReadonlyStore } from '@tanstack/store'
 
 export type MaybeGetter<T> = T | (() => T)
@@ -22,5 +25,25 @@ export function select<T, TSelected>(
     get value() {
       return selector(state.snapshot)
     },
+  }
+}
+
+/**
+ * Returns the store published by `provideAppHotkeys`. Reading it tracks app
+ * hotkey and custom hotkey changes for the owner's lifetime.
+ */
+export function trackPublishedAppHotkeys(
+  owner: object,
+): () => AppHotkeysStore | null {
+  const state = trackedObject({ version: 0 })
+  registerDestructor(
+    owner,
+    subscribePublishedAppHotkeys(() => {
+      state.version++
+    }),
+  )
+  return () => {
+    void state.version
+    return getHotkeyManager().appHotkeys.state
   }
 }

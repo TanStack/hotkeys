@@ -10,7 +10,10 @@ import {
   getBindingKind,
   useRegistrationConflicts,
 } from '../_registrations'
-import type { SequenceRegistrationView } from '@tanstack/hotkeys'
+import type {
+  AppHotkeyListItem,
+  HotkeyRegistrationView,
+} from '@tanstack/hotkeys'
 
 type HotkeyListProps = {
   selectedId: () => string | null
@@ -72,16 +75,50 @@ function buildRowTooltip(meta?: {
   return parts.length > 0 ? parts.join(' — ') : undefined
 }
 
-function SequenceListRow(props: {
-  reg: SequenceRegistrationView
-  getSequences: () => Array<SequenceRegistrationView>
+/** Formats a hotkey step by step, highlighting matched sequence steps. */
+function RegistrationKeys(props: {
+  reg: HotkeyRegistrationView
+  matchedSteps: () => number
+}) {
+  const styles = useStyles()
+  return (
+    <Show
+      when={props.reg.kind === 'sequence' && props.reg}
+      fallback={formatRegistration(props.reg)}
+    >
+      {(sequence) => (
+        <For each={sequence().hotkey}>
+          {(step, i) => (
+            <span>
+              <Show when={i() > 0}> </Show>
+              <span
+                class={
+                  i() < props.matchedSteps()
+                    ? styles().sequenceStepMatched
+                    : undefined
+                }
+              >
+                {formatForDisplay(step, {
+                  platform: props.reg.options.platform,
+                })}
+              </span>
+            </span>
+          )}
+        </For>
+      )}
+    </Show>
+  )
+}
+
+function RegistrationRow(props: {
+  reg: HotkeyRegistrationView
+  appHotkey: () => AppHotkeyListItem | undefined
   sequenceProgressNow: () => number
   selectedId: () => string | null
   setSelectedId: (id: string | null) => void
 }) {
   const styles = useStyles()
-
-  const sequenceRegistrations = () => props.getSequences()
+  const state = useHotkeysDevtoolsState()
 
   const conflicts = useRegistrationConflicts(() => props.reg)
   const targetConflicts = () => conflicts().overlapping
@@ -98,21 +135,17 @@ function SequenceListRow(props: {
 
   const enabled = () => props.reg.options.enabled !== false
 
-  const liveSequenceReg = createMemo(
-    () =>
-      sequenceRegistrations().find((r) => r.id === props.reg.id) ?? props.reg,
+  // reg is a stable object ref; read live counts and progress from the list.
+  const liveReg = createMemo(
+    () => state.registrations().find((r) => r.id === props.reg.id) ?? props.reg,
   )
-
-  const triggerCount = () =>
-    sequenceRegistrations().find((r) => r.id === props.reg.id)?.triggerCount ??
-    props.reg.triggerCount
-
-  const matchedSteps = createMemo(() =>
-    effectiveSequenceMatchedSteps(
-      liveSequenceReg(),
-      props.sequenceProgressNow(),
-    ),
-  )
+  const triggerCount = () => liveReg().triggerCount
+  const matchedSteps = createMemo(() => {
+    const reg = liveReg()
+    return reg.kind === 'sequence'
+      ? effectiveSequenceMatchedSteps(reg, props.sequenceProgressNow())
+      : 0
+  })
 
   const [prevCount, setPrevCount] = createSignal(props.reg.triggerCount)
   const [pulsing, setPulsing] = createSignal(false)
@@ -147,24 +180,7 @@ function SequenceListRow(props: {
       </Show>
       <span class={styles().hotkeyLabel}>
         <span class={styles().hotkeyLabelKeys}>
-          <For each={liveSequenceReg().sequence}>
-            {(step, i) => (
-              <span>
-                <Show when={i() > 0}> </Show>
-                <span
-                  class={
-                    i() < matchedSteps()
-                      ? styles().sequenceStepMatched
-                      : undefined
-                  }
-                >
-                  {formatForDisplay(step, {
-                    platform: props.reg.options.platform,
-                  })}
-                </span>
-              </span>
-            )}
-          </For>
+          <RegistrationKeys reg={liveReg()} matchedSteps={matchedSteps} />
         </span>
         <Show when={metaName()}>
           <span class={styles().hotkeyLabelName}>{metaName()}</span>
@@ -174,12 +190,25 @@ function SequenceListRow(props: {
         <span class={styles().triggerCount}>x{triggerCount()}</span>
       </Show>
       <div class={styles().hotkeyBadges}>
+        <Show when={props.reg.kind === 'sequence'}>
+          <span class={clsx(styles().badge, styles().badgeTarget)}>seq</span>
+        </Show>
         <span
           class={clsx(styles().badge, styles().badgeTarget)}
           data-binding-kind
         >
           {getBindingKind(props.reg)}
         </span>
+        <Show when={props.appHotkey()?.isCustom}>
+          <span
+            class={clsx(styles().badge, styles().badgeCustom, styles().tooltip)}
+          >
+            custom
+            <span class={styles().tooltipText} data-tooltip>
+              The user changed this app hotkey from its default
+            </span>
+          </span>
+        </Show>
         {hasTargetConflict() && (
           <span
             class={clsx(
@@ -213,7 +242,7 @@ function SequenceListRow(props: {
         >
           {enabled() ? 'on' : 'off'}
           <span class={styles().tooltipText} data-tooltip>
-            {enabled() ? 'Sequence is enabled' : 'Sequence is disabled'}
+            {enabled() ? 'Hotkey is enabled' : 'Hotkey is disabled'}
           </span>
         </span>
         <span
@@ -243,22 +272,75 @@ function SequenceListRow(props: {
   )
 }
 
+/** A declared app hotkey that nothing has registered, or that has no hotkey. */
+function AppHotkeyRow(props: {
+  item: AppHotkeyListItem
+  selectedId: () => string | null
+  setSelectedId: (id: string | null) => void
+}) {
+  const styles = useStyles()
+  const id = () => appHotkeySelectionId(props.item.appHotkey.id)
+  const hotkey = () => props.item.appHotkey.hotkey
+  return (
+    <div
+      class={clsx(
+        styles().hotkeyRow,
+        styles().hotkeyRowInactive,
+        props.selectedId() === id() && styles().hotkeyRowSelected,
+      )}
+      onClick={() => props.setSelectedId(id())}
+    >
+      <span class={styles().hotkeyLabel}>
+        <span class={styles().hotkeyLabelKeys}>
+          {hotkey()
+            ? formatForDisplay(hotkey()!, { sequenceSeparator: ' → ' })
+            : 'Unassigned'}
+        </span>
+        <span class={styles().hotkeyLabelName}>
+          {props.item.appHotkey.meta?.name ?? props.item.appHotkey.id}
+        </span>
+      </span>
+      <div class={styles().hotkeyBadges}>
+        <Show when={props.item.isCustom}>
+          <span class={clsx(styles().badge, styles().badgeCustom)}>custom</span>
+        </Show>
+        <span
+          class={clsx(styles().badge, styles().badgeDisabled, styles().tooltip)}
+        >
+          {props.item.status}
+          <span class={styles().tooltipText} data-tooltip>
+            {props.item.status === 'unbound'
+              ? 'Declared without a hotkey'
+              : 'Declared but not registered on this page'}
+          </span>
+        </span>
+      </div>
+    </div>
+  )
+}
+
+/** Selection ids for app hotkeys, kept distinct from registration ids. */
+export function appHotkeySelectionId(id: string): string {
+  return `app:${id}`
+}
+
 export function HotkeyList(props: HotkeyListProps) {
   const styles = useStyles()
   const state = useHotkeysDevtoolsState()
 
   const [searchQuery, setSearchQuery] = createSignal('')
 
-  const registrations = createMemo(() => state.registrations())
-  const sequenceRegistrations = createMemo(() => state.sequenceRegistrations())
+  const appHotkeyById = createMemo(
+    () => new Map(state.appHotkeys().map((item) => [item.appHotkey.id, item])),
+  )
 
   const filteredRegistrations = createMemo(() => {
     const query = searchQuery().trim()
-    if (!query) return registrations()
-    return matchSorter(registrations(), query, {
+    if (!query) return state.registrations()
+    return matchSorter(state.registrations(), query, {
       keys: [
         (r) => formatRegistration(r),
-        'hotkey',
+        (r) => (typeof r.hotkey === 'string' ? r.hotkey : r.hotkey.join(' ')),
         'options.meta.name',
         'options.meta.description',
         'options.meta.group',
@@ -266,16 +348,18 @@ export function HotkeyList(props: HotkeyListProps) {
     })
   })
 
-  const filteredSequenceRegistrations = createMemo(() => {
+  const filteredAppHotkeys = createMemo(() => {
+    const unregistered = state
+      .appHotkeys()
+      .filter((item) => item.registrations.length === 0)
     const query = searchQuery().trim()
-    if (!query) return sequenceRegistrations()
-    return matchSorter(sequenceRegistrations(), query, {
+    if (!query) return unregistered
+    return matchSorter(unregistered, query, {
       keys: [
-        (r) => formatRegistration(r),
-        (r) => r.sequence.join(' '),
-        'options.meta.name',
-        'options.meta.description',
-        'options.meta.group',
+        'appHotkey.id',
+        'appHotkey.meta.name',
+        'appHotkey.meta.description',
+        'appHotkey.meta.group',
       ],
     })
   })
@@ -305,162 +389,14 @@ export function HotkeyList(props: HotkeyListProps) {
       </div>
       <div class={styles().hotkeyList}>
         <For each={filteredRegistrations()}>
-          {(reg) => {
-            const conflicts = useRegistrationConflicts(() => reg)
-            const targetConflicts = () => conflicts().overlapping
-            const scopeConflicts = () => conflicts().separate
-            const hasTargetConflict = () => targetConflicts().length > 0
-            const hasScopeConflict = () => scopeConflicts().length > 0
-            const targetConflictBadge = () => ({
-              style: 'badgeConflict' as const,
-              label: '!',
-              tooltip: `Potential overlap: ${targetConflicts().length} other bindings on overlapping targets`,
-            })
-            const scopeConflictTooltip = () =>
-              `Info: ${scopeConflicts().length} related bindings on separate targets`
-
-            const enabled = () => reg.options.enabled !== false
-
-            // Look up trigger count reactively from the registrations list
-            // (reg is a stable object ref; the list re-derives on store change)
-            const triggerCount = () =>
-              registrations().find((r) => r.id === reg.id)?.triggerCount ??
-              reg.triggerCount
-
-            // Track trigger count changes for pulse animation
-            const [prevCount, setPrevCount] = createSignal(reg.triggerCount)
-            const [pulsing, setPulsing] = createSignal(false)
-
-            createEffect(
-              on(triggerCount, (current) => {
-                if (current > prevCount()) {
-                  setPulsing(true)
-                  setTimeout(() => setPulsing(false), 600)
-                }
-                setPrevCount(current)
-              }),
-            )
-
-            const metaName = () => reg.options.meta?.name
-            const rowTooltip = () => buildRowTooltip(reg.options.meta)
-
-            return (
-              <div
-                class={clsx(
-                  styles().hotkeyRow,
-                  props.selectedId() === reg.id && styles().hotkeyRowSelected,
-                  pulsing() && styles().hotkeyRowTriggered,
-                  rowTooltip() && styles().tooltip,
-                )}
-                onClick={() => props.setSelectedId(reg.id)}
-              >
-                <Show when={rowTooltip()}>
-                  <span class={styles().rowTooltipText} data-tooltip>
-                    {rowTooltip()}
-                  </span>
-                </Show>
-                <span class={styles().hotkeyLabel}>
-                  <span class={styles().hotkeyLabelKeys}>
-                    {formatRegistration(reg)}
-                  </span>
-                  <Show when={metaName()}>
-                    <span class={styles().hotkeyLabelName}>{metaName()}</span>
-                  </Show>
-                </span>
-                <Show when={triggerCount() > 0}>
-                  <span class={styles().triggerCount}>x{triggerCount()}</span>
-                </Show>
-                <div class={styles().hotkeyBadges}>
-                  <span
-                    class={clsx(styles().badge, styles().badgeTarget)}
-                    data-binding-kind
-                  >
-                    {getBindingKind(reg)}
-                  </span>
-                  {hasTargetConflict() && (
-                    <span
-                      class={clsx(
-                        styles().badge,
-                        styles()[targetConflictBadge().style],
-                        styles().tooltip,
-                      )}
-                    >
-                      {targetConflictBadge().label}
-                      <span class={styles().tooltipText} data-tooltip>
-                        {targetConflictBadge().tooltip}
-                      </span>
-                    </span>
-                  )}
-                  {hasScopeConflict() && (
-                    <span
-                      class={clsx(
-                        styles().badge,
-                        styles().badgeInfo,
-                        styles().tooltip,
-                      )}
-                    >
-                      i
-                      <span class={styles().tooltipText} data-tooltip>
-                        {scopeConflictTooltip()}
-                      </span>
-                    </span>
-                  )}
-                  <span
-                    class={clsx(
-                      styles().badge,
-                      enabled()
-                        ? styles().badgeEnabled
-                        : styles().badgeDisabled,
-                      styles().tooltip,
-                    )}
-                  >
-                    {enabled() ? 'on' : 'off'}
-                    <span class={styles().tooltipText} data-tooltip>
-                      {enabled() ? 'Hotkey is enabled' : 'Hotkey is disabled'}
-                    </span>
-                  </span>
-                  <span
-                    class={clsx(
-                      styles().badge,
-                      (reg.options.eventType ?? 'keydown') === 'keydown'
-                        ? styles().badgeKeydown
-                        : styles().badgeKeyup,
-                      styles().tooltip,
-                    )}
-                  >
-                    {reg.options.eventType ?? 'keydown'}
-                    <span class={styles().tooltipText} data-tooltip>
-                      Fires on {reg.options.eventType ?? 'keydown'} event
-                    </span>
-                  </span>
-                  <span
-                    class={clsx(
-                      styles().badge,
-                      styles().badgeTarget,
-                      styles().tooltip,
-                    )}
-                  >
-                    {getTargetLabel(reg.target)}
-                    <span class={styles().tooltipText} data-tooltip>
-                      {getTargetTooltip(reg.target)}
-                    </span>
-                  </span>
-                </div>
-              </div>
-            )
-          }}
-        </For>
-      </div>
-
-      <div class={styles().panelHeader}>
-        Sequences ({filteredSequenceRegistrations().length})
-      </div>
-      <div class={styles().hotkeyList}>
-        <For each={filteredSequenceRegistrations()}>
           {(reg) => (
-            <SequenceListRow
+            <RegistrationRow
               reg={reg}
-              getSequences={sequenceRegistrations}
+              appHotkey={() =>
+                reg.options.appHotkeyId === undefined
+                  ? undefined
+                  : appHotkeyById().get(reg.options.appHotkeyId)
+              }
               sequenceProgressNow={state.sequenceProgressNow}
               selectedId={props.selectedId}
               setSelectedId={props.setSelectedId}
@@ -468,6 +404,23 @@ export function HotkeyList(props: HotkeyListProps) {
           )}
         </For>
       </div>
+
+      <Show when={state.appHotkeys().length > 0}>
+        <div class={styles().panelHeader}>
+          Declared, not registered ({filteredAppHotkeys().length})
+        </div>
+        <div class={styles().hotkeyList}>
+          <For each={filteredAppHotkeys()}>
+            {(item) => (
+              <AppHotkeyRow
+                item={item}
+                selectedId={props.selectedId}
+                setSelectedId={props.setSelectedId}
+              />
+            )}
+          </For>
+        </div>
+      </Show>
     </>
   )
 }

@@ -6,6 +6,7 @@ import { on } from '@ember/modifier'
 import {
   createHotkeysScope,
   formatForDisplay,
+  isHotkeySequence,
   useHotkeyHint,
   useHeldKeys,
   useHeldKeyCodes,
@@ -15,11 +16,9 @@ import {
 import type {
   Hotkey,
   HotkeySequence,
-  HotkeyDefinition,
-  HotkeySequenceDefinition,
+  EmberHotkeyDefinition,
   RegisterableHotkey,
   HotkeyRegistrationView,
-  SequenceRegistrationView,
   RecorderKeyMode,
   HotkeyCallback,
 } from '@tanstack/ember-hotkeys'
@@ -28,10 +27,7 @@ const {
   onHotkeys,
   useHotkey,
   useHotkeys,
-  useHotkeySequence,
-  useHotkeySequences,
   useHotkeyRecorder,
-  useHotkeySequenceRecorder,
 } = createHotkeysScope({ hotkey: { requireReset: true } })
 
 const eq = (a: unknown, b: unknown) => a === b
@@ -77,15 +73,10 @@ class Layout extends Component {
     this.navigate({ to: page.to })
   }
   toggleShortcuts = () => (this.showShortcuts = !this.showShortcuts)
-  formatRegistration = (
-    reg: HotkeyRegistrationView | SequenceRegistrationView,
-  ) =>
-    ('hotkey' in reg ? [reg.hotkey] : reg.sequence)
-      .map((step) => formatForDisplay(step))
-      .join(' → ')
-  triggerCountLabel = (
-    reg: HotkeyRegistrationView | SequenceRegistrationView,
-  ) => `${reg.triggerCount} fired`
+  formatRegistration = (reg: HotkeyRegistrationView) =>
+    formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })
+  triggerCountLabel = (reg: HotkeyRegistrationView) =>
+    `${reg.triggerCount} fired`
   registrationsForGroup = (group: string) =>
     this.registrations.filter(
       (reg) => (reg.options.meta?.group ?? 'Other') === group,
@@ -104,14 +95,8 @@ class Layout extends Component {
   log = (message: string) => {
     this.activity = [message, ...this.activity].slice(0, 6)
   }
-  get hotkeys() {
-    return this.registrationsState.hotkeys
-  }
-  get sequences() {
-    return this.registrationsState.sequences
-  }
   get registrations() {
-    return [...this.hotkeys, ...this.sequences]
+    return this.registrationsState.hotkeys
   }
   get groups() {
     return [
@@ -120,7 +105,7 @@ class Layout extends Component {
       ),
     ]
   }
-  get hotkeyDefinitions1(): Array<HotkeyDefinition> {
+  get hotkeyDefinitions1(): Array<EmberHotkeyDefinition> {
     return pages.map((page) => ({
       hotkey: page.shortcut,
       callback: () => {
@@ -316,7 +301,7 @@ class EditorPane extends Component<{
   @tracked saves: number = 0
   updateText = (e: Event) =>
     (this.text = (e.currentTarget as HTMLInputElement).value)
-  get hotkeyDefinitions(): Array<HotkeyDefinition> {
+  get hotkeyDefinitions(): Array<EmberHotkeyDefinition> {
     return [
       {
         hotkey: 'Mod+[KeyS]',
@@ -467,38 +452,41 @@ class Sequences extends Component<{
   registrationsState = useHotkeyRegistrations(this)
   updateTimeout = (e: Event) =>
     (this.timeout = Number((e.currentTarget as HTMLInputElement).value))
-  formatSequence = (reg: SequenceRegistrationView) =>
-    reg.sequence.map((step) => formatForDisplay(step)).join(' → ')
+  formatSequence = (reg: HotkeyRegistrationView) =>
+    formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })
   get goToTopSequence(): HotkeySequence {
     return ['[KeyG]', '[KeyG]']
   }
   goToTop: HotkeyCallback = () => this.args.log('Sequence: go to top')
-  get sequenceDefinitions1(): Array<HotkeySequenceDefinition> {
+  get sequenceDefinitions1(): Array<EmberHotkeyDefinition> {
     return [
       {
-        sequence: ['[KeyG]', '[KeyI]'],
+        hotkey: ['[KeyG]', '[KeyI]'],
         callback: () => this.args.log('Sequence: inbox'),
         options: { meta: { name: 'Open inbox', group: 'Sequences' } },
       },
       {
-        sequence: ['Shift+[KeyR]', 'Shift+[KeyT]'],
+        hotkey: ['Shift+[KeyR]', 'Shift+[KeyT]'],
         callback: () => this.args.log('Sequence: shifted chord chain'),
         options: { meta: { name: 'Shifted chain', group: 'Sequences' } },
       },
     ]
   }
   get sequences() {
-    return this.registrationsState.sequences
+    return this.registrationsState.hotkeys.filter(
+      (reg) => reg.kind === 'sequence',
+    )
   }
 
   <template>
-    {{useHotkeySequence
+    {{! An array of chords registers a sequence. }}
+    {{useHotkey
       this.goToTopSequence
       this.goToTop
       timeout=this.timeout
       meta=(hash name='Go to top' group='Sequences')
     }}
-    {{useHotkeySequences this.sequenceDefinitions1 timeout=this.timeout}}
+    {{useHotkeys this.sequenceDefinitions1 timeout=this.timeout}}
     <section>
       <h2>Sequences</h2>
       <p>
@@ -533,7 +521,7 @@ class Sequences extends Component<{
                 {{this.formatSequence reg}}
               </td>
               <td>
-                {{reg.matchedStepCount}}/{{reg.sequence.length}}
+                {{reg.matchedStepCount}}/{{reg.hotkey.length}}
                 steps;
                 {{reg.triggerCount}}
                 fired
@@ -555,7 +543,7 @@ class Recording extends Component<{
   @tracked hotkey: Hotkey = this.initial
   @tracked mode: RecorderKeyMode = 'code'
   @tracked problem: string = ''
-  @tracked sequence: HotkeySequence = ['[KeyX]', '[KeyY]']
+  @tracked sequence: Hotkey = ['[KeyX]', '[KeyY]']
   @tracked sequenceProblem: string = ''
   @tracked idle: boolean = false
   @tracked commitOnEnter: boolean = true
@@ -581,7 +569,9 @@ class Recording extends Component<{
     },
     onCancel: () => (this.problem = 'Recording cancelled. Binding unchanged.'),
   }))
-  sequenceRecorder = useHotkeySequenceRecorder(this, () => ({
+  // maxSteps above 1 records sequences; one step records a chord.
+  sequenceRecorder = useHotkeyRecorder(this, () => ({
+    maxSteps: Infinity,
     recordBy: this.mode,
     ignoreInputs: false,
     idleTimeoutMs: this.idle ? 1500 : undefined,
@@ -589,11 +579,15 @@ class Recording extends Component<{
     detectConflicts: {
       exclude: (reg) => reg.options.meta?.name === 'Recorded sequence',
     },
-    validate: (steps) => steps.length >= 2 || 'Record at least two chords.',
+    validate: (value) =>
+      (isHotkeySequence(value) && value.length >= 2) ||
+      'Record at least two chords.',
     onRecord: (value) => {
       this.sequence = value
       this.sequenceProblem = ''
-      this.args.log(`Recorded sequence ${value.join(' → ')}`)
+      this.args.log(
+        `Recorded sequence ${formatForDisplay(value, { sequenceSeparator: ' → ' })}`,
+      )
     },
     onReject: (reason) => (this.sequenceProblem = reason.message),
     onClear: () => {
@@ -613,14 +607,16 @@ class Recording extends Component<{
     this.hotkey = this.initial
     this.problem = ''
   }
+  get hotkeyText() {
+    return String(this.hotkey)
+  }
   get sequenceText() {
-    return (
+    return formatForDisplay(
       this.sequenceRecorder.isRecording
         ? this.sequenceRecorder.steps
-        : this.sequence
+        : this.sequence,
+      { sequenceSeparator: ' → ' },
     )
-      .map((step) => formatForDisplay(step))
-      .join(' → ')
   }
   updateIdle = (e: Event) =>
     (this.idle = (e.currentTarget as HTMLInputElement).checked)
@@ -644,7 +640,7 @@ class Recording extends Component<{
       this.runShortcut
       meta=(hash name='Recorded action' group='Recording')
     }}
-    {{useHotkeySequence
+    {{useHotkey
       this.sequence
       this.runSequence
       meta=(hash name='Recorded sequence' group='Recording')
@@ -673,7 +669,7 @@ class Recording extends Component<{
       <p>
         <kbd>{{formatForDisplay this.hotkey}}</kbd>
         — stored as
-        <code>{{this.hotkey}}</code>
+        <code>{{this.hotkeyText}}</code>
       </p>
       <button
         disabled={{or this.recorder.isRecording this.sequenceRecorder.isRecording}}
@@ -756,7 +752,7 @@ class Formatting extends Component {
   updateKeySymbols = (e: Event) =>
     (this.keySymbols = (e.currentTarget as HTMLInputElement).checked)
   get partOptions() {
-    return { ...this.options, parts: true }
+    return { ...this.options, parts: true as const }
   }
   get sampleHotkeys() {
     return [

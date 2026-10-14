@@ -3,9 +3,21 @@ title: Hotkeys Guide
 id: hotkeys
 ---
 
-`useHotkey` registers a shortcut with the shared `HotkeyManager`. `useHotkey`, `useHotkeys`, `useHotkeySequence`, and `useHotkeySequences` are template helpers. Invoke them with `{{...}}`, not as JavaScript hooks. Tracked arguments update registrations after rendering. Removing a helper from the template unregisters its bindings.
+`useHotkey` registers a shortcut with the shared `HotkeyManager`. `useHotkey` and `useHotkeys` are template helpers. Invoke them with `{{...}}`, not as JavaScript hooks. Tracked arguments update registrations after rendering. Removing a helper from the template unregisters its bindings.
 
 State readers and recorders are JavaScript functions. Pass the containing component as their first argument, usually `this`. The adapter releases subscriptions and recorders when that owner is destroyed. State readers expose `.value`; recorder fields and registration arrays are reactive getters. Read those properties in templates or getters instead of destructuring an initial snapshot.
+
+## Chords and sequences
+
+A hotkey is either a **chord**, keys pressed together such as `'Mod+S'`, or a **sequence**, chords pressed one after another such as `['G', 'G']`. Every API in this guide accepts both, and a one-step array such as `['Mod+S']` is the chord `'Mod+S'`.
+
+```gts
+{{useHotkey 'Mod+S' this.save}}
+{{useHotkey (array 'G' 'G') this.scrollToTop timeout=500}}
+{{useHotkey 'Escape' this.close requireReset=true}}
+```
+
+Most options apply to both kinds. `requireReset` applies only to chords and `timeout` only to sequences; an option that doesn't match the hotkey's kind is ignored. In JavaScript, `useHotkeys` definitions are typed by their hotkey, so TypeScript rejects mismatched options there. Defaults apply only to the kinds that support them. See the [Sequences Guide](./sequences) for timing and matching, and the [App Hotkeys Guide](./app-hotkeys) to declare hotkeys up front and let users customize them.
 
 ## Logical keys and physical positions
 
@@ -86,12 +98,12 @@ Registration helpers track named arguments and property getters inside definitio
 import Component from '@glimmer/component'
 import { tracked } from '@glimmer/tracking'
 import { useHotkeys } from '@tanstack/ember-hotkeys'
-import type { HotkeyDefinition } from '@tanstack/ember-hotkeys'
+import type { EmberHotkeyDefinition } from '@tanstack/ember-hotkeys'
 
 export default class Editor extends Component {
 	@tracked enabled = true
 
-	definitions: Array<HotkeyDefinition> = [{
+	definitions: Array<EmberHotkeyDefinition> = [{
 		hotkey: 'Mod+S',
 		callback: () => console.log('Save'),
 		options: this.createOptions(),
@@ -110,7 +122,7 @@ export default class Editor extends Component {
 }
 ```
 
-The helper reads getters during rendering and applies registration changes after rendering. This also works with `useHotkeySequences`. For a single registration, pass tracked named arguments such as `enabled=this.enabled`. Scope defaults and recorder options accept property getters or functions returning options. Recorders read current options during the active session without requiring a render.
+The helper reads getters during rendering and applies registration changes after rendering. This also works with sequences. For a single registration, pass tracked named arguments such as `enabled=this.enabled`. Scope defaults and recorder options accept property getters or functions returning options. Recorders read current options during the active session without requiring a render.
 
 Getters must read tracked state. A plain `{ enabled: this.enabled }` stored once does not track later changes. Callbacks remain functions and are not invoked to resolve options.
 
@@ -136,7 +148,7 @@ By default, Control/Meta shortcuts and Escape work in text inputs, textareas, se
 
 ### Shared default options
 
-Pass defaults to `createHotkeysScope`. The scope accepts `hotkey`, `hotkeySequence`, `hotkeyRecorder`, and `hotkeySequenceRecorder` options. Use the returned contextual helpers and recorder factories. Pass the scope through component arguments to share it with descendants; helpers and recorders still clean up with their own owners. Pass a getter for tracked defaults. Call-specific options override scope defaults, and per-definition options override common options. Omitted options use the core defaults. See [shared defaults](../quick-start.md#shared-defaults) for a complete example.
+Pass defaults to `createHotkeysScope`. The scope accepts `hotkey` and `hotkeyRecorder` options. Use the returned contextual helpers and recorder factories. Pass the scope through component arguments to share it with descendants; helpers and recorders still clean up with their own owners. Pass a getter for tracked defaults. Call-specific options override scope defaults, and per-definition options override common options. Omitted options use the core defaults. See [shared defaults](../quick-start.md#shared-defaults) for a complete example.
 
 ## Hotkey options
 
@@ -211,23 +223,23 @@ Pass `'mac'`, `'windows'`, or `'linux'` to override detection. Use the same plat
 
 ## Current callbacks and automatic cleanup
 
-`useHotkey`, `useHotkeys`, `useHotkeySequence`, and `useHotkeySequences` are template helpers. Invoke them with `{{...}}`, not as JavaScript hooks. Tracked arguments update registrations after rendering. Removing a helper from the template unregisters its bindings.
+`useHotkey` and `useHotkeys` are template helpers. Invoke them with `{{...}}`, not as JavaScript hooks. Tracked arguments update registrations after rendering. Removing a helper from the template unregisters its bindings.
 
 State readers and recorders are JavaScript functions. Pass the containing component as their first argument, usually `this`. The adapter releases subscriptions and recorders when that owner is destroyed. State readers expose `.value`; recorder fields and registration arrays are reactive getters. Read those properties in templates or getters instead of destructuring an initial snapshot.
 
 ## Registering multiple hotkeys
 
-Use `useHotkeys` to register a dynamic list. Per-definition options override common options. Removing an entry unregisters it. Each entry has the shared [HotkeyDefinition](../../../reference/adapter/interfaces/HotkeyDefinition) shape.
+Use `useHotkeys` to register a dynamic list. Per-definition options override common options. Removing an entry unregisters it. Each entry has the shared [EmberHotkeyDefinition](../reference/type-aliases/EmberHotkeyDefinition.md) shape.
 
 ```gts
 import Component from '@glimmer/component'
 import { tracked } from '@glimmer/tracking'
 import { useHotkeys } from '@tanstack/ember-hotkeys'
-import type { HotkeyDefinition } from '@tanstack/ember-hotkeys'
+import type { EmberHotkeyDefinition } from '@tanstack/ember-hotkeys'
 
 export default class Menu extends Component {
 	@tracked enabled = true
-	@tracked shortcuts: Array<HotkeyDefinition> = [
+	@tracked shortcuts: Array<EmberHotkeyDefinition> = [
 		{ hotkey: 'Mod+S', callback: () => console.log('Save') },
 		{ hotkey: 'Mod+Z', callback: () => console.log('Undo'), options: { enabled: false } },
 	]
@@ -255,7 +267,7 @@ declare module '@tanstack/hotkeys' {
 
 ## Introspecting registrations
 
-Read `hotkeys` and `sequences` from `useHotkeyRegistrations(this)`. Disabled entries stay listed; destroyed registrations disappear. Both arrays include options and metadata. Hotkey views include enabled state and trigger counts; sequence views include sequence steps and progress.
+Use the `useHotkeyRegistrations` utility to get a live view of every registration, chords and sequences together. It's the building block for shortcut palettes and help dialogs.
 
 ```gts
 import Component from '@glimmer/component'
@@ -276,7 +288,9 @@ export default class Shortcuts extends Component {
 }
 ```
 
-Read `registrations.sequences` in the same way. Format each sequence step with `formatForDisplay` and join the labels with an arrow. Group entries by `registration.options.meta?.group` when building a help panel.
+The tracked `hotkeys` array holds one list of registration views. Each view has an `id`, the `hotkey`, its `options` (including `meta`), its `target`, and a `triggerCount`. Narrow with `kind`: chord views add `parsedHotkey`; sequence views add `parsedSequence` and `matchedStepCount`, the steps matched so far in the current attempt. Disabled entries stay listed; unmounted registrations disappear. Format any hotkey with `formatForDisplay`, and group entries by `options.meta?.group` when building a help panel.
+
+Registrations only exist while their components are mounted. To list hotkeys from routes that have not rendered, declare them with [app hotkeys](./app-hotkeys).
 
 ## The hotkey manager
 

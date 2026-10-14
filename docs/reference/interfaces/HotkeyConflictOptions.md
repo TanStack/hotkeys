@@ -3,7 +3,7 @@ id: HotkeyConflictOptions
 title: HotkeyConflictOptions
 ---
 
-Defined in: [conflicts.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L15)
+Defined in: [conflicts.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L17)
 
 ## Properties
 
@@ -25,7 +25,7 @@ Source events allow detecting physical/logical overlap on the recorded layout.
 optional eventType?: "keyup" | "keydown";
 ```
 
-Defined in: [conflicts.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L21)
+Defined in: [conflicts.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L23)
 
 Intended event type. Default: keydown.
 
@@ -37,7 +37,7 @@ Intended event type. Default: keydown.
 optional exclude?: (registration) => boolean;
 ```
 
-Defined in: [conflicts.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L27)
+Defined in: [conflicts.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L29)
 
 Additional app-specific exclusions, such as all instances of one action.
 
@@ -45,8 +45,7 @@ Additional app-specific exclusions, such as all instances of one action.
 
 ##### registration
 
-  \| [`HotkeyRegistrationView`](HotkeyRegistrationView.md)
-  \| [`SequenceRegistrationView`](SequenceRegistrationView.md)
+[`HotkeyRegistrationView`](../type-aliases/HotkeyRegistrationView.md)
 
 #### Returns
 
@@ -60,7 +59,7 @@ Additional app-specific exclusions, such as all instances of one action.
 optional excludeIds?: readonly string[];
 ```
 
-Defined in: [conflicts.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L25)
+Defined in: [conflicts.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L27)
 
 IDs of registrations being edited.
 
@@ -72,7 +71,7 @@ IDs of registrations being edited.
 optional includeDisabled?: boolean;
 ```
 
-Defined in: [conflicts.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L23)
+Defined in: [conflicts.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L25)
 
 Include disabled registrations. Default: false.
 
@@ -96,7 +95,7 @@ Platform used to resolve Mod in the candidate. Registrations retain their own pl
 optional scope?: "all" | "overlapping";
 ```
 
-Defined in: [conflicts.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L19)
+Defined in: [conflicts.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L21)
 
 Check all targets instead of overlapping targets. Default: overlapping.
 
@@ -108,6 +107,6 @@ Check all targets instead of overlapping targets. Default: overlapping.
 optional target?: Document | Window | HTMLElement;
 ```
 
-Defined in: [conflicts.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L17)
+Defined in: [conflicts.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L19)
 
 Intended registration target. Defaults to document; disjoint targets are excluded.

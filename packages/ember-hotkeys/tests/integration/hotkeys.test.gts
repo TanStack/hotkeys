@@ -6,12 +6,12 @@ import { tracked } from '@glimmer/tracking'
 import { on } from '@ember/modifier'
 import { array } from '@ember/helper'
 import {
-  createHotkeysScope, useHotkey, useHotkeys, useHotkeySequence, useHotkeySequences,
+  createHotkeysScope, useHotkey, useHotkeys,
   useHeldKeys, useHeldKeyCodes, useKeyHold, useHotkeyHint,
-  useHotkeyRecorder, useHotkeySequenceRecorder, useHotkeyRegistrations,
-  HotkeyManager, SequenceManager, KeyStateTracker, getHotkeyManager, getSequenceManager,
+  useHotkeyRecorder, useHotkeyRegistrations,
+  HotkeyManager, KeyStateTracker, getHotkeyManager,
 } from '@tanstack/ember-hotkeys'
-import type { Hotkey, HotkeyDefinition, HotkeySequenceDefinition } from '@tanstack/ember-hotkeys'
+import type { EmberHotkeyDefinition, Hotkey } from '@tanstack/ember-hotkeys'
 
 let instance: Example
 const records: Array<unknown> = []
@@ -27,7 +27,7 @@ class Example extends Component {
   hint = useHotkeyHint(this, () => this.binding)
   registrations = useHotkeyRegistrations(this)
   recorder = useHotkeyRecorder(this, { recordBy: 'key', platform: 'mac', onRecord: (value) => records.push(value) })
-  sequenceRecorder = useHotkeySequenceRecorder(this, { recordBy: 'key', platform: 'mac', onRecord: (value) => records.push(value) })
+  sequenceRecorder = useHotkeyRecorder(this, { maxSteps: Infinity, recordBy: 'key', platform: 'mac', onRecord: (value) => records.push(value) })
   save = () => { this.count++ }
   runOther = () => { this.other++ }
   changeBinding = () => { this.binding = 'Alt+S' }
@@ -38,20 +38,22 @@ class Example extends Component {
     instance = this
   }
 
-  get definitions(): Array<HotkeyDefinition> {
+  get definitions(): Array<EmberHotkeyDefinition> {
     return this.enabled ? [{ hotkey: 'B', callback: this.runOther }] : []
   }
-  get sequences(): Array<HotkeySequenceDefinition> {
-    return this.enabled ? [{ sequence: ['D', 'D'], callback: this.runOther }] : []
+  get sequences(): Array<EmberHotkeyDefinition> {
+    return this.enabled ? [{ hotkey: ['D', 'D'], callback: this.runOther }] : []
   }
+  get chordCount() { return this.registrations.hotkeys.filter((reg) => reg.kind === 'chord').length }
+  get sequenceCount() { return this.registrations.hotkeys.filter((reg) => reg.kind === 'sequence').length }
   get heldText() { return this.held.value.join(',') }
   get codeText() { return JSON.stringify(this.codes.value) }
 
   <template>
     {{useHotkey this.binding this.save enabled=this.enabled}}
     {{useHotkeys this.definitions}}
-    {{useHotkeySequence (array "G" "G") this.save}}
-    {{useHotkeySequences this.sequences}}
+    {{useHotkey (array "G" "G") this.save}}
+    {{useHotkeys this.sequences}}
     <button id="binding" type="button" {{on "click" this.changeBinding}}>Change binding</button>
     <button id="enabled" type="button" {{on "click" this.toggle}}>Toggle</button>
     <output id="count">{{this.count}}</output>
@@ -60,7 +62,7 @@ class Example extends Component {
     <output id="codes">{{this.codeText}}</output>
     <output id="hint">{{if this.hint.value "yes" "no"}}</output>
     <output id="hold">{{if this.hold.value "yes" "no"}}</output>
-    <output id="registrations">{{this.registrations.hotkeys.length}}:{{this.registrations.sequences.length}}</output>
+    <output id="registrations">{{this.chordCount}}:{{this.sequenceCount}}</output>
     <output id="recording">{{if this.recorder.isRecording "yes" "no"}}</output>
   </template>
 }
@@ -75,14 +77,13 @@ module('Ember hotkeys', (hooks) => {
   hooks.afterEach(async () => {
     await clearRender()
     HotkeyManager.resetInstance()
-    SequenceManager.resetInstance()
     KeyStateTracker.resetInstance()
     records.length = 0
   })
 
   test('updates callbacks, bindings, and enabled options without replacing stable handles', async (assert) => {
     await render(<template><Example /></template>)
-    const id = [...getHotkeyManager().registrations.state.values()].find((registration) => registration.parsedHotkey.ctrl)!.id
+    const id = [...getHotkeyManager().registrations.state.values()].find((registration) => registration.kind === 'chord' && registration.parsedHotkey.ctrl)!.id
     await key('s', 'keydown', { ctrlKey: true })
     await key('s', 'keyup', { ctrlKey: true })
     await key('s', 'keydown', { ctrlKey: true })
@@ -131,11 +132,10 @@ module('Ember hotkeys', (hooks) => {
     await key('g'); await key('g', 'keyup')
     assert.deepEqual(instance.sequenceRecorder.steps, ['G'])
     instance.sequenceRecorder.commitRecording()
-    assert.deepEqual(records, ['Control+S', ['G']])
+    assert.deepEqual(records, ['Control+S', 'G'])
     instance.recorder.startRecording()
     await clearRender()
     assert.strictEqual(getHotkeyManager().registrations.state.size, 0)
-    assert.strictEqual(getSequenceManager().registrations.state.size, 0)
     await key('k')
     assert.strictEqual(records.length, 2)
   })
@@ -146,7 +146,6 @@ module('Ember hotkeys', (hooks) => {
     await clearRender()
     await key('g')
     assert.strictEqual(getHotkeyManager().registrations.state.size, 0)
-    assert.strictEqual(getSequenceManager().registrations.state.size, 0)
   })
 })
 
@@ -157,26 +156,24 @@ class ScopedExample extends Component {
   @tracked accept = false
   @tracked count = 0
   hotkeys = createHotkeysScope(() => ({
-    hotkey: { enabled: this.enabled },
-    hotkeySequence: { enabled: this.enabled, timeout: 321 },
+    hotkey: { enabled: this.enabled, timeout: 321 },
     hotkeyRecorder: { recordBy: this.recordBy },
-    hotkeySequenceRecorder: { recordBy: this.recordBy },
   }))
   recorder = this.hotkeys.useHotkeyRecorder(this, () => ({
     onRecord: (value) => records.push(value), validate: () => this.accept,
   }))
-  sequenceRecorder = this.hotkeys.useHotkeySequenceRecorder(this, () => ({
-    onRecord: (value) => records.push(value), validate: () => this.accept,
+  sequenceRecorder = this.hotkeys.useHotkeyRecorder(this, () => ({
+    maxSteps: Infinity, onRecord: (value) => records.push(value), validate: () => this.accept,
   }))
   run = () => { this.count++ }
-  get definitions(): Array<HotkeyDefinition> { return [{ hotkey: 'B', callback: this.run, options: { enabled: true } }] }
-  get sequences(): Array<HotkeySequenceDefinition> { return [{ sequence: ['X', 'X'], callback: this.run, options: { enabled: true } }] }
+  get definitions(): Array<EmberHotkeyDefinition> { return [{ hotkey: 'B', callback: this.run, options: { enabled: true } }] }
+  get sequences(): Array<EmberHotkeyDefinition> { return [{ hotkey: ['X', 'X'], callback: this.run, options: { enabled: true } }] }
   constructor(...args: ConstructorParameters<typeof Component>) { super(...args); scoped = this }
   <template>
     {{this.hotkeys.useHotkey "A" this.run}}
     {{this.hotkeys.useHotkeys this.definitions}}
-    {{this.hotkeys.useHotkeySequence (array "G" "G") this.run}}
-    {{this.hotkeys.useHotkeySequences this.sequences}}
+    {{this.hotkeys.useHotkey (array "G" "G") this.run}}
+    {{this.hotkeys.useHotkeys this.sequences}}
     <output id="scoped-count">{{this.count}}</output>
   </template>
 }
@@ -185,7 +182,7 @@ module('Ember scoped defaults and recorder parity', (hooks) => {
   setupRenderingTest(hooks)
   hooks.afterEach(async () => {
     await clearRender()
-    HotkeyManager.resetInstance(); SequenceManager.resetInstance(); KeyStateTracker.resetInstance()
+    HotkeyManager.resetInstance(); KeyStateTracker.resetInstance()
     records.length = 0
   })
   test('scoped defaults update helpers and preserve overrides and registration identity', async (assert) => {
@@ -198,10 +195,9 @@ module('Ember scoped defaults and recorder parity', (hooks) => {
     await key('a')
     assert.dom('#scoped-count').hasText('2')
     assert.deepEqual([...getHotkeyManager().registrations.state.keys()], ids)
-    assert.true([...getSequenceManager().registrations.state.values()].every(r => r.options.timeout === 321))
+    assert.true([...getHotkeyManager().registrations.state.values()].filter(r => r.kind === 'sequence').every(r => r.options.timeout === 321))
     await clearRender()
     assert.strictEqual(getHotkeyManager().registrations.state.size, 0)
-    assert.strictEqual(getSequenceManager().registrations.state.size, 0)
   })
   test('active recorders read current options and validation', async (assert) => {
     await render(<template><ScopedExample /></template>)
@@ -218,6 +214,6 @@ module('Ember scoped defaults and recorder parity', (hooks) => {
     assert.true(scoped.sequenceRecorder.isRecording)
     scoped.accept = true
     scoped.sequenceRecorder.commitRecording()
-    assert.deepEqual(records, ['[KeyS]', ['[KeyG]']])
+    assert.deepEqual(records, ['[KeyS]', '[KeyG]'])
   })
 })

@@ -9,16 +9,13 @@ import {
   useHotkeyHint,
   useHotkeyRecorder,
   useHotkeyRegistrations,
-  useHotkeySequence,
-  useHotkeySequenceRecorder,
-  useHotkeySequences,
   useHotkeys,
   useKeyHold,
+  isHotkeySequence,
 } from '@tanstack/octane-hotkeys'
 
 import type {
   Hotkey,
-  HotkeySequence,
   RecorderKeyMode,
   RegisterableHotkey,
 } from '@tanstack/octane-hotkeys'
@@ -65,8 +62,7 @@ function Layout() @{
   const keys = useHeldKeys()
   const codes = useHeldKeyCodes()
   const shift = useKeyHold('Shift')
-  const { hotkeys, sequences } = useHotkeyRegistrations()
-  const registrations = [...hotkeys, ...sequences]
+  const { hotkeys: registrations } = useHotkeyRegistrations()
   const groups = [
     ...new Set(registrations.map((reg) => reg.options.meta?.group ?? 'Other')),
   ]
@@ -128,9 +124,7 @@ function Layout() @{
                             <small>{reg.options.meta?.description}</small>
                           </td>
                           <td>
-                            {('hotkey' in reg ? [reg.hotkey] : reg.sequence)
-                              .map((step) => formatForDisplay(step))
-                              .join(' → ')}
+                            {formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })}
                           </td>
                           <td>
                             {reg.options.enabled === false
@@ -324,26 +318,29 @@ function Editor() @{
 function Sequences() @{
   const log = useContext(ActivityContext)
   const [timeout, setTimeoutValue] = useState(1000)
-  useHotkeySequence(['[KeyG]', '[KeyG]'], () => log('Sequence: go to top'), {
+  // An array of chords registers a sequence.
+  useHotkey(['[KeyG]', '[KeyG]'], () => log('Sequence: go to top'), {
     timeout,
     meta: { name: 'Go to top', group: 'Sequences' },
   })
-  useHotkeySequences(
+  useHotkeys(
     [
       {
-        sequence: ['[KeyG]', '[KeyI]'],
+        hotkey: ['[KeyG]', '[KeyI]'],
         callback: () => log('Sequence: inbox'),
         options: { meta: { name: 'Open inbox', group: 'Sequences' } },
       },
       {
-        sequence: ['Shift+[KeyR]', 'Shift+[KeyT]'],
+        hotkey: ['Shift+[KeyR]', 'Shift+[KeyT]'],
         callback: () => log('Sequence: shifted chord chain'),
         options: { meta: { name: 'Shifted chain', group: 'Sequences' } },
       },
     ],
     { timeout },
   )
-  const { sequences } = useHotkeyRegistrations()
+  const sequences = useHotkeyRegistrations().hotkeys.filter(
+    (reg) => reg.kind === 'sequence',
+  )
   <section>
         <h2>Sequences</h2>
         <p>
@@ -367,10 +364,10 @@ function Sequences() @{
   <tr>
                 <td>{reg.options.meta?.name}</td>
                 <td>
-                  {reg.sequence.map((step) => formatForDisplay(step)).join(' → ')}
+                  {formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })}
                 </td>
                 <td>
-                  {reg.matchedStepCount}/{reg.sequence.length} steps;{' '}
+                  {reg.matchedStepCount}/{reg.hotkey.length} steps;{' '}
                   {reg.triggerCount} fired
                 </td>
               </tr> }
@@ -389,14 +386,14 @@ function Recording() @{
   const [hotkey, setHotkey] = useState<Hotkey>(initial)
   const [mode, setMode] = useState<RecorderKeyMode>('code')
   const [problem, setProblem] = useState('')
-  const [sequence, setSequence] = useState<HotkeySequence>(['[KeyX]', '[KeyY]'])
+  const [sequence, setSequence] = useState<Hotkey>(['[KeyX]', '[KeyY]'])
   const [sequenceProblem, setSequenceProblem] = useState('')
   const [idle, setIdle] = useState(false)
   const [commitOnEnter, setCommitOnEnter] = useState(true)
   useHotkey(hotkey, () => log('Your recorded shortcut fired'), {
     meta: { name: 'Recorded action', group: 'Recording' },
   })
-  useHotkeySequence(sequence, () => log('Your recorded sequence fired'), {
+  useHotkey(sequence, () => log('Your recorded sequence fired'), {
     meta: { name: 'Recorded sequence', group: 'Recording' },
   })
   const recorder = useHotkeyRecorder({
@@ -421,7 +418,9 @@ function Recording() @{
     },
     onCancel: () => setProblem('Recording cancelled. Binding unchanged.'),
   })
-  const sequenceRecorder = useHotkeySequenceRecorder({
+  // maxSteps above 1 records sequences; one step records a chord.
+  const sequenceRecorder = useHotkeyRecorder({
+    maxSteps: Infinity,
     recordBy: mode,
     ignoreInputs: false,
     idleTimeoutMs: idle ? 1500 : undefined,
@@ -429,11 +428,15 @@ function Recording() @{
     detectConflicts: {
       exclude: (reg) => reg.options.meta?.name === 'Recorded sequence',
     },
-    validate: (steps) => steps.length >= 2 || 'Record at least two chords.',
+    validate: (value) =>
+      (isHotkeySequence(value) && value.length >= 2) ||
+      'Record at least two chords.',
     onRecord: (value) => {
       setSequence(value)
       setSequenceProblem('')
-      log(`Recorded sequence ${value.join(' → ')}`)
+      log(
+        `Recorded sequence ${formatForDisplay(value, { sequenceSeparator: ' → ' })}`,
+      )
     },
     onReject: (reason) => setSequenceProblem(reason.message),
     onClear: () => {
@@ -457,7 +460,7 @@ function Recording() @{
         </label>
         <h3>Single shortcut</h3>
         <p>
-          <kbd>{formatForDisplay(hotkey)}</kbd> — stored as <code>{hotkey}</code>
+          <kbd>{formatForDisplay(hotkey)}</kbd> — stored as <code>{String(hotkey)}</code>
         </p>
         <button disabled={recorder.isRecording || sequenceRecorder.isRecording} onClick={() => {
             setProblem('')
@@ -480,9 +483,10 @@ function Recording() @{
         <p role="status">{problem}</p>
         <h3>Sequence</h3>
         <p>
-          {(sequenceRecorder.isRecording ? sequenceRecorder.steps : sequence)
-            .map((step) => formatForDisplay(step))
-            .join(' → ') || 'Waiting for the first chord…'}
+          {formatForDisplay(
+            sequenceRecorder.isRecording ? sequenceRecorder.steps : sequence,
+            { sequenceSeparator: ' → ' },
+          ) || 'Waiting for the first chord…'}
         </p>
         <label>
           <input type="checkbox" checked={idle} onInput={(e) => setIdle(e.currentTarget.checked)} />{' '}
@@ -559,7 +563,7 @@ function Formatting() @{
             ); key hotkey) {
   <tr>
                 <td>
-                  <code>{hotkey}</code>
+                  <code>{String(hotkey)}</code>
                 </td>
                 <td>{formatForDisplay(hotkey, options)}</td>
                 <td>

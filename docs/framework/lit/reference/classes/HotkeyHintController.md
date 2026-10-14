@@ -3,7 +3,7 @@ id: HotkeyHintController
 title: HotkeyHintController
 ---
 
-Defined in: [controllers/hotkey-hint.ts:6](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L6)
+Defined in: [controllers/hotkey-hint.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L16)
 
 Modifier hint controller. Getter arguments can read reactive host properties.
 
@@ -22,7 +22,7 @@ new HotkeyHintController(
    options?): HotkeyHintController;
 ```
 
-Defined in: [controllers/hotkey-hint.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L11)
+Defined in: [controllers/hotkey-hint.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L21)
 
 Attaches to the host; getter arguments can read changing reactive properties.
 
@@ -34,7 +34,9 @@ Attaches to the host; getter arguments can read changing reactive properties.
 
 ##### hotkey
 
-`RegisterableHotkey` \| (() => `RegisterableHotkey`)
+  \| `RegisterableHotkey`
+  \| `AppHotkey`\<`string`, HotkeyChord \| HotkeySequence \| null\>
+  \| (() => RegisterableHotkey \| AppHotkey\<string, HotkeyChord \| HotkeySequence \| null\>)
 
 ##### options?
 
@@ -54,7 +56,7 @@ Attaches to the host; getter arguments can read changing reactive properties.
 get value(): boolean;
 ```
 
-Defined in: [controllers/hotkey-hint.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L20)
+Defined in: [controllers/hotkey-hint.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L31)
 
 Current visibility; combine with the action’s enabled state when rendering.
 
@@ -70,7 +72,7 @@ Current visibility; combine with the action’s enabled state when rendering.
 hostConnected(): void;
 ```
 
-Defined in: [controllers/hotkey-hint.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L25)
+Defined in: [controllers/hotkey-hint.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L36)
 
 Subscribes on connection and requests renders only when hint visibility changes.
 
@@ -92,7 +94,7 @@ ReactiveController.hostConnected
 hostDisconnected(): void;
 ```
 
-Defined in: [controllers/hotkey-hint.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L39)
+Defined in: [controllers/hotkey-hint.ts:55](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L55)
 
 Releases the subscription and clears cached visibility while disconnected.
 
@@ -114,7 +116,7 @@ ReactiveController.hostDisconnected
 hostUpdate(): void;
 ```
 
-Defined in: [controllers/hotkey-hint.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L34)
+Defined in: [controllers/hotkey-hint.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L50)
 
 Re-evaluates getter arguments when host properties trigger an update.
 

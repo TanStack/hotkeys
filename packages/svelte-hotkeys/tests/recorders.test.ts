@@ -2,11 +2,10 @@ import { flushSync, mount, unmount } from 'svelte'
 import { expect, it } from 'vitest'
 import RecorderHarness from './RecorderHarness.svelte'
 import type { SvelteHotkeyRecorder } from '../src/createHotkeyRecorder.svelte'
-import type { SvelteHotkeySequenceRecorder } from '../src/createHotkeySequenceRecorder.svelte'
 
 it('allows recorder controls to be passed directly to event handlers', async () => {
   let single!: SvelteHotkeyRecorder
-  let sequence!: SvelteHotkeySequenceRecorder
+  let sequence!: SvelteHotkeyRecorder
   const component = mount(RecorderHarness, {
     target: document.body,
     props: {
@@ -37,7 +36,7 @@ it('allows recorder controls to be passed directly to event handlers', async () 
       new KeyboardEvent('keyup', { key: 'x', code: 'KeyX' }),
     )
     commitRecording.call(document.body)
-    expect(sequence.recordedSequence).toEqual(['[KeyX]'])
+    expect(sequence.recordedHotkey).toEqual('[KeyX]')
     expect(sequence.isRecording).toBe(false)
   } finally {
     await unmount(component)

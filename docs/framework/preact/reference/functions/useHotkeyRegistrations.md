@@ -4,20 +4,37 @@ title: useHotkeyRegistrations
 ---
 
 ```ts
-function useHotkeyRegistrations(): HotkeyRegistrationsResult;
+function useHotkeyRegistrations(): HotkeyRegistrationView[];
 ```
 
-Defined in: [useHotkeyRegistrations.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRegistrations.ts#L33)
+Defined in: [useHotkeyRegistrations.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRegistrations.ts#L31)
 
-Preact hook that reactively reads all hotkey and sequence registrations
-from the singleton managers.
+Preact hook that reactively reads every hotkey registration, chords and
+sequences, from the singleton HotkeyManager. Narrow each view with `kind`.
 
-This is a standalone hook that does NOT require the HotkeysProvider.
-It subscribes to both HotkeyManager and SequenceManager stores and
-re-renders when registrations change.
+This hook does NOT require the HotkeysProvider. It re-renders when
+registrations change, including trigger counts and sequence progress.
 
 ## Returns
 
-[`HotkeyRegistrationsResult`](../interfaces/HotkeyRegistrationsResult.md)
+`HotkeyRegistrationView`[]
 
-Object with `hotkeys` and `sequences` arrays
+All registrations, without callbacks
+
+## Example
+
+```tsx
+function ShortcutPalette() {
+  const registrations = useHotkeyRegistrations()
+
+  return (
+    <ul>
+      {registrations.map((reg) => (
+        <li key={reg.id}>
+          {reg.options.meta?.name}: {formatForDisplay(reg.hotkey)}
+        </li>
+      ))}
+    </ul>
+  )
+}
+```

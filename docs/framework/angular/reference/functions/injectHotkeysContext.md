@@ -7,7 +7,7 @@ title: injectHotkeysContext
 function injectHotkeysContext(): HotkeysContextValue;
 ```
 
-Defined in: [hotkeys-provider.ts:38](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L38)
+Defined in: [hotkeys-provider.ts:119](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L119)
 
 ## Returns
 

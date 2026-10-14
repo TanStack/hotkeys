@@ -1,12 +1,14 @@
 import Alpine from 'alpinejs'
-import { createHotkeysScope, formatForDisplay } from '@tanstack/alpine-hotkeys'
+import {
+  createHotkeysScope,
+  formatForDisplay,
+  isHotkeySequence,
+} from '@tanstack/alpine-hotkeys'
 import type {
   AlpineHotkeyRecorder,
-  AlpineHotkeySequenceRecorder,
   AlpineHotkeyState,
   Hotkey,
   HotkeyRegistrationsResult,
-  HotkeySequence,
   RecorderKeyMode,
   RegisterableHotkey,
 } from '@tanstack/alpine-hotkeys'
@@ -61,11 +63,8 @@ class Layout {
   get hotkeys() {
     return this.registrationState0.hotkeys
   }
-  get sequences() {
-    return this.registrationState0.sequences
-  }
   get registrations() {
-    return [...this.hotkeys, ...this.sequences]
+    return this.hotkeys
   }
   get groups() {
     return [
@@ -256,11 +255,14 @@ class Sequences {
   timeout = 1000
   registrationState2!: HotkeyRegistrationsResult
   get sequences() {
-    return this.registrationState2.sequences
+    return this.registrationState2.hotkeys.filter(
+      (reg) => reg.kind === 'sequence',
+    )
   }
   constructor(public props: () => { log: (message: string) => void }) {}
   init() {
-    this.hotkeysScope.createHotkeySequence(
+    // An array of chords registers a sequence.
+    this.hotkeysScope.createHotkey(
       ['[KeyG]', '[KeyG]'],
       () => this.props().log('Sequence: go to top'),
       () => ({
@@ -268,15 +270,15 @@ class Sequences {
         meta: { name: 'Go to top', group: 'Sequences' },
       }),
     )
-    this.hotkeysScope.createHotkeySequences(
+    this.hotkeysScope.createHotkeys(
       [
         {
-          sequence: ['[KeyG]', '[KeyI]'],
+          hotkey: ['[KeyG]', '[KeyI]'],
           callback: () => this.props().log('Sequence: inbox'),
           options: { meta: { name: 'Open inbox', group: 'Sequences' } },
         },
         {
-          sequence: ['Shift+[KeyR]', 'Shift+[KeyT]'],
+          hotkey: ['Shift+[KeyR]', 'Shift+[KeyT]'],
           callback: () => this.props().log('Sequence: shifted chord chain'),
           options: { meta: { name: 'Shifted chain', group: 'Sequences' } },
         },
@@ -297,12 +299,12 @@ class Recording {
   hotkey: Hotkey = this.initial
   mode: RecorderKeyMode = 'code'
   problem = ''
-  sequence: HotkeySequence = ['[KeyX]', '[KeyY]']
+  sequence: Hotkey = ['[KeyX]', '[KeyY]']
   sequenceProblem = ''
   idle = false
   commitOnEnter = true
   recorder!: AlpineHotkeyRecorder
-  sequenceRecorder!: AlpineHotkeySequenceRecorder
+  sequenceRecorder!: AlpineHotkeyRecorder
   get initial(): Hotkey {
     return 'Alt+[KeyR]'
   }
@@ -328,7 +330,7 @@ class Recording {
         meta: { name: 'Recorded action', group: 'Recording' },
       },
     )
-    this.hotkeysScope.createHotkeySequence(
+    this.hotkeysScope.createHotkey(
       () => this.sequence,
       () => this.props().log('Your recorded sequence fired'),
       {
@@ -358,29 +360,33 @@ class Recording {
       onCancel: () =>
         (this.problem = 'Recording cancelled. Binding unchanged.'),
     }))
-    this.sequenceRecorder = this.hotkeysScope.createHotkeySequenceRecorder(
-      () => ({
-        recordBy: this.mode,
-        ignoreInputs: false,
-        idleTimeoutMs: this.idle ? 1500 : undefined,
-        commitKeys: this.commitOnEnter ? 'enter' : 'none',
-        detectConflicts: {
-          exclude: (reg) => reg.options.meta?.name === 'Recorded sequence',
-        },
-        validate: (steps) => steps.length >= 2 || 'Record at least two chords.',
-        onRecord: (value) => {
-          this.sequence = value
-          this.sequenceProblem = ''
-          this.props().log(`Recorded sequence ${value.join(' → ')}`)
-        },
-        onReject: (reason) => (this.sequenceProblem = reason.message),
-        onClear: () => {
-          this.sequence = ['[KeyX]', '[KeyY]']
-          this.sequenceProblem = 'Restored default sequence.'
-        },
-        onCancel: () => (this.sequenceProblem = 'Recording cancelled.'),
-      }),
-    )
+    // maxSteps above 1 records sequences; one step records a chord.
+    this.sequenceRecorder = this.hotkeysScope.createHotkeyRecorder(() => ({
+      maxSteps: Infinity,
+      recordBy: this.mode,
+      ignoreInputs: false,
+      idleTimeoutMs: this.idle ? 1500 : undefined,
+      commitKeys: this.commitOnEnter ? 'enter' : 'none',
+      detectConflicts: {
+        exclude: (reg) => reg.options.meta?.name === 'Recorded sequence',
+      },
+      validate: (value) =>
+        (isHotkeySequence(value) && value.length >= 2) ||
+        'Record at least two chords.',
+      onRecord: (value) => {
+        this.sequence = value
+        this.sequenceProblem = ''
+        this.props().log(
+          `Recorded sequence ${formatForDisplay(value, { sequenceSeparator: ' → ' })}`,
+        )
+      },
+      onReject: (reason) => (this.sequenceProblem = reason.message),
+      onClear: () => {
+        this.sequence = ['[KeyX]', '[KeyY]']
+        this.sequenceProblem = 'Restored default sequence.'
+      },
+      onCancel: () => (this.sequenceProblem = 'Recording cancelled.'),
+    }))
   }
   destroy() {
     this.hotkeysScope.destroy()

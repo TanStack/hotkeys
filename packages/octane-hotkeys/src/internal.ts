@@ -1,4 +1,5 @@
-import { useSelector } from '@tanstack/octane-store'
+import { Store, useSelector } from '@tanstack/octane-store'
+import type { AppHotkeysState, AppHotkeysStore } from '@tanstack/hotkeys'
 import type { ReadonlyStore, UseSelectorOptions } from '@tanstack/octane-store'
 
 // Slot mechanics for the binding's plain-`.ts` hooks. Octane injects a
@@ -47,3 +48,17 @@ export const select = useSelector as <T, TSelected>(
   options: UseSelectorOptions<TSelected> | undefined,
   slot: symbol,
 ) => TSelected
+
+const NO_APP_HOTKEYS = new Store<AppHotkeysState | null>(null)
+
+/**
+ * Re-renders when the provider's app hotkeys or custom hotkeys change and
+ * returns the provider's store.
+ */
+export function useAppHotkeysStore(
+  store: AppHotkeysStore | null,
+  slot: symbol,
+): AppHotkeysStore | null {
+  select(store?.store ?? NO_APP_HOTKEYS, (value) => value, undefined, slot)
+  return store
+}

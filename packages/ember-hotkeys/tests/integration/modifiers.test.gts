@@ -7,7 +7,7 @@ import {
   createHotkeysScope, onHotkey, onHotkeys, useHotkeyRegistrations,
   HotkeyManager, KeyStateTracker, getHotkeyManager,
 } from '@tanstack/ember-hotkeys'
-import type { Hotkey, HotkeyDefinition } from '@tanstack/ember-hotkeys'
+import type { EmberHotkeyDefinition, Hotkey } from '@tanstack/ember-hotkeys'
 
 let instance: ScopedShortcuts
 class ScopedShortcuts extends Component {
@@ -18,7 +18,7 @@ class ScopedShortcuts extends Component {
   @tracked message = 'first'
   @tracked count = 0
   @tracked lastMessage = ''
-  @tracked definitions: Array<HotkeyDefinition> = [{ hotkey: 'Alt+A', callback: () => this.count++ }]
+  @tracked definitions: Array<EmberHotkeyDefinition> = [{ hotkey: 'Alt+A', callback: () => this.count++ }]
   registrations = useHotkeyRegistrations(this)
   defaults = createHotkeysScope(() => ({ hotkey: { enabled: this.enabled } }))
   save = () => { this.count++; this.lastMessage = this.message }

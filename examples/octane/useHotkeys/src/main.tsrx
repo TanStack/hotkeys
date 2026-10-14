@@ -8,7 +8,7 @@ import {
   useHotkeys,
 } from '@tanstack/octane-hotkeys'
 
-import type { Hotkey, HotkeyDefinition } from '@tanstack/octane-hotkeys'
+import type { Hotkey, UseHotkeyDefinition } from '@tanstack/octane-hotkeys'
 
 import './index.css'
 
@@ -224,7 +224,7 @@ function DynamicHotkeysDemo() @{
   const [newLabel, setNewLabel] = useState('')
   const [newDescription, setNewDescription] = useState('')
   const [error, setError] = useState('')
-  const definitions: Array<HotkeyDefinition> = shortcuts.map((s) => ({
+  const definitions: Array<UseHotkeyDefinition> = shortcuts.map((s) => ({
     hotkey: s.hotkey,
     callback: () => {
       setShortcuts((prev) =>
@@ -307,13 +307,14 @@ function DynamicHotkeysDemo() @{
 }
 
 function RegistrationsViewer() @{
-  const { hotkeys, sequences } = useHotkeyRegistrations()
+  const { hotkeys } = useHotkeyRegistrations()
   <div className="demo-section">
         <h2>Live Registrations (useHotkeyRegistrations)</h2>
         <p>
           This table is rendered from <code>useHotkeyRegistrations()</code> — a
-          reactive view of all registered hotkeys. It updates automatically as
-          hotkeys are added, removed, enabled/disabled, or triggered.
+          reactive view of all registered hotkeys, chords and sequences. It
+          updates automatically as hotkeys are added, removed, enabled/disabled,
+          or triggered.
         </p>
         <table className="registrations-table">
           <thead>
@@ -321,6 +322,7 @@ function RegistrationsViewer() @{
               <th>Hotkey</th>
               <th>Name</th>
               <th>Description</th>
+              <th>Progress</th>
               <th>Enabled</th>
               <th>Triggers</th>
             </tr>
@@ -336,6 +338,11 @@ function RegistrationsViewer() @{
                   {reg.options.meta?.description ?? '—'}
                 </td>
                 <td>
+                  {reg.kind === 'sequence'
+                    ? `${reg.matchedStepCount}/${reg.hotkey.length}`
+                    : '—'}
+                </td>
+                <td>
                   <span className={
                       reg.options.enabled !== false ? 'status-on' : 'status-off'
                     }>
@@ -345,45 +352,15 @@ function RegistrationsViewer() @{
                 <td className="trigger-count">{reg.triggerCount}</td>
               </tr> }
             @if (hotkeys.length === 0) { <tr>
-                <td colSpan={5} className="hint">
+                <td colSpan={6} className="hint">
                   No hotkeys registered
                 </td>
               </tr> }
           </tbody>
         </table>
-        @if (sequences.length > 0) { <>
-            <h3 style={{ marginTop: 16 }}>Sequences</h3>
-            <table className="registrations-table">
-              <thead>
-                <tr>
-                  <th>Sequence</th>
-                  <th>Name</th>
-                  <th>Description</th>
-                  <th>Triggers</th>
-                </tr>
-              </thead>
-              <tbody>
-                @for (const reg of sequences; key reg.id) {
-  <tr>
-                    <td>
-                      @for (const [i, s] of Array.from((reg.sequence).entries()); key i) {
-  <>
-                          {i > 0 && ' '}
-                          <kbd>{formatForDisplay(s)}</kbd>
-                        </> }
-                    </td>
-                    <td>{reg.options.meta?.name ?? '—'}</td>
-                    <td className="description-cell">
-                      {reg.options.meta?.description ?? '—'}
-                    </td>
-                    <td className="trigger-count">{reg.triggerCount}</td>
-                  </tr> }
-              </tbody>
-            </table>
-          </> }
-        <pre className="code-block">{`const { hotkeys, sequences } = useHotkeyRegistrations()
+        <pre className="code-block">{`const { hotkeys } = useHotkeyRegistrations()
 
-  // Render a live table of all registrations
+  // Render a live table of all registrations, chords and sequences
   hotkeys.map((reg) => (
     <tr key={reg.id}>
       <td>{formatForDisplay(reg.hotkey)}</td>

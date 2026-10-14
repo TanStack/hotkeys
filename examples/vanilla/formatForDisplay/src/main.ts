@@ -5,7 +5,7 @@ import {
 } from '@tanstack/hotkeys'
 import type {
   FormatDisplayOptions,
-  RegisterableHotkey,
+  RegisterableHotkeyChord,
 } from '@tanstack/hotkeys'
 
 const app = document.getElementById('app')!
@@ -144,7 +144,7 @@ function render() {
   const forms: Array<{
     label: string
     code: string
-    binding: RegisterableHotkey | ReturnType<typeof parseHotkey>
+    binding: RegisterableHotkeyChord | ReturnType<typeof parseHotkey>
   }> = [
     {
       label: 'Logical string',

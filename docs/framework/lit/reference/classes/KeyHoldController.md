@@ -62,9 +62,13 @@ Defined in: [controllers/key-hold.ts:58](https://github.com/TanStack/hotkeys/blo
 
 `ReactiveControllerHost`
 
+The Lit component that owns this controller.
+
 ##### \_key
 
 `IndividualKey`
+
+The key to track (e.g. 'Shift', 'Control', 'A').
 
 #### Returns
 

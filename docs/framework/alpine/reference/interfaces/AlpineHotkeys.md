@@ -3,11 +3,59 @@ id: AlpineHotkeys
 title: AlpineHotkeys
 ---
 
-Defined in: [types.ts:67](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L67)
+Defined in: [types.ts:125](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L125)
 
 Registrations, recorders, and reactive state owned by one Alpine component.
 
 ## Properties
+
+### createAppHotkeyList
+
+```ts
+createAppHotkeyList: () => AlpineHotkeyState<AppHotkeyListItem<AppHotkey<string, HotkeyChord | HotkeySequence | null>>[]>;
+```
+
+Defined in: [types.ts:154](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L154)
+
+Read every app hotkey with its live status through `.value`.
+
+#### Returns
+
+[`AlpineHotkeyState`](AlpineHotkeyState.md)\<`AppHotkeyListItem`\<`AppHotkey`\<`string`, `HotkeyChord` \| `HotkeySequence` \| `null`\>\>[]\>
+
+***
+
+### createAppHotkeys
+
+```ts
+createAppHotkeys: () => AlpineHotkeyState<Readonly<Record<string, AppHotkey<string, HotkeyChord | HotkeySequence | null>>>>;
+```
+
+Defined in: [types.ts:152](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L152)
+
+Read the effective app hotkeys from `provideAppHotkeys` through `.value`.
+
+#### Returns
+
+[`AlpineHotkeyState`](AlpineHotkeyState.md)\<`Readonly`\<`Record`\<`string`, `AppHotkey`\<`string`, `HotkeyChord` \| `HotkeySequence` \| `null`\>\>\>\>
+
+***
+
+### createCustomHotkeys
+
+```ts
+createCustomHotkeys: () => AlpineCustomHotkeys;
+```
+
+Defined in: [types.ts:158](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L158)
+
+Read and change the user's custom hotkeys.
+
+#### Returns
+
+[`AlpineCustomHotkeys`](AlpineCustomHotkeys.md)
+
+***
 
 ### createHeldKeyCodes
 
@@ -15,7 +63,7 @@ Registrations, recorders, and reactive state owned by one Alpine component.
 createHeldKeyCodes: () => AlpineHotkeyState<Record<string, string>>;
 ```
 
-Defined in: [types.ts:93](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L93)
+Defined in: [types.ts:139](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L139)
 
 Read the mapping of held logical names to physical codes through `.value`.
 
@@ -31,7 +79,7 @@ Read the mapping of held logical names to physical codes through `.value`.
 createHeldKeys: () => AlpineHotkeyState<string[]>;
 ```
 
-Defined in: [types.ts:91](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L91)
+Defined in: [types.ts:137](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L137)
 
 Read held logical key names through `.value`.
 
@@ -44,30 +92,13 @@ Read held logical key names through `.value`.
 ### createHotkey
 
 ```ts
-createHotkey: (hotkey, callback, options?) => void;
+createHotkey: AlpineCreateHotkey;
 ```
 
-Defined in: [types.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L69)
+Defined in: [types.ts:130](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L130)
 
-Register one shortcut. Getters track changing bindings and options.
-
-#### Parameters
-
-##### hotkey
-
-[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<`RegisterableHotkey`\>
-
-##### callback
-
-`HotkeyCallback`
-
-##### options?
-
-[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<`HotkeyOptions`\>
-
-#### Returns
-
-`void`
+Register one hotkey: a chord such as `'Mod+S'`, a sequence such as
+`['G', 'G']`, or an app hotkey. Getters track changing hotkeys and options.
 
 ***
 
@@ -77,15 +108,17 @@ Register one shortcut. Getters track changing bindings and options.
 createHotkeyHint: (hotkey, options?) => AlpineHotkeyState<boolean>;
 ```
 
-Defined in: [types.ts:97](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L97)
+Defined in: [types.ts:143](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L143)
 
-Read whether held modifiers reveal a binding through `.value`.
+Read whether held modifiers reveal a hotkey through `.value`.
 
 #### Parameters
 
 ##### hotkey
 
-[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<`RegisterableHotkey`\>
+[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<
+  \| `RegisterableHotkey`
+  \| `AppHotkey`\<`string`, HotkeyChord \| HotkeySequence \| null\>\>
 
 ##### options?
 
@@ -100,22 +133,12 @@ Read whether held modifiers reveal a binding through `.value`.
 ### createHotkeyRecorder
 
 ```ts
-createHotkeyRecorder: (options) => AlpineHotkeyRecorder;
+createHotkeyRecorder: AlpineCreateHotkeyRecorder;
 ```
 
-Defined in: [types.ts:104](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L104)
+Defined in: [types.ts:150](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L150)
 
 Create a recorder whose options can follow Alpine state.
-
-#### Parameters
-
-##### options
-
-[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<`HotkeyRecorderOptions`\>
-
-#### Returns
-
-[`AlpineHotkeyRecorder`](AlpineHotkeyRecorder.md)
 
 ***
 
@@ -125,9 +148,9 @@ Create a recorder whose options can follow Alpine state.
 createHotkeyRegistrations: () => HotkeyRegistrationsResult;
 ```
 
-Defined in: [types.ts:102](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L102)
+Defined in: [types.ts:148](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L148)
 
-Read live hotkey and sequence registrations, including disabled entries.
+Read live registrations, including disabled entries.
 
 #### Returns
 
@@ -141,97 +164,19 @@ Read live hotkey and sequence registrations, including disabled entries.
 createHotkeys: (definitions, options?) => void;
 ```
 
-Defined in: [types.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L75)
+Defined in: [types.ts:132](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L132)
 
-Reconcile a list of shortcuts. Definition options override common options.
-
-#### Parameters
-
-##### definitions
-
-[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<`HotkeyDefinition`[]\>
-
-##### options?
-
-[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<`HotkeyOptions`\>
-
-#### Returns
-
-`void`
-
-***
-
-### createHotkeySequence
-
-```ts
-createHotkeySequence: (sequence, callback, options?) => void;
-```
-
-Defined in: [types.ts:80](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L80)
-
-Register consecutive chords with an optional timeout and element target.
-
-#### Parameters
-
-##### sequence
-
-[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<`HotkeySequence`\>
-
-##### callback
-
-`HotkeyCallback`
-
-##### options?
-
-[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<`SequenceOptions`\>
-
-#### Returns
-
-`void`
-
-***
-
-### createHotkeySequenceRecorder
-
-```ts
-createHotkeySequenceRecorder: (options) => AlpineHotkeySequenceRecorder;
-```
-
-Defined in: [types.ts:108](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L108)
-
-Create a sequence recorder with live steps and explicit commit controls.
-
-#### Parameters
-
-##### options
-
-[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<`HotkeySequenceRecorderOptions`\>
-
-#### Returns
-
-[`AlpineHotkeySequenceRecorder`](AlpineHotkeySequenceRecorder.md)
-
-***
-
-### createHotkeySequences
-
-```ts
-createHotkeySequences: (definitions, options?) => void;
-```
-
-Defined in: [types.ts:86](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L86)
-
-Reconcile a changing list of sequences.
+Reconcile a list of hotkeys. Definition options override common options.
 
 #### Parameters
 
 ##### definitions
 
-[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<`HotkeySequenceDefinition`[]\>
+[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<readonly [`AlpineHotkeyDefinition`](../type-aliases/AlpineHotkeyDefinition.md)[]\>
 
 ##### options?
 
-[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<`SequenceOptions`\>
+[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<[`AlpineHotkeyCommonOptions`](../type-aliases/AlpineHotkeyCommonOptions.md)\>
 
 #### Returns
 
@@ -245,7 +190,7 @@ Reconcile a changing list of sequences.
 createKeyHold: (key) => AlpineHotkeyState<boolean>;
 ```
 
-Defined in: [types.ts:95](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L95)
+Defined in: [types.ts:141](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L141)
 
 Read whether a key is held through `.value`.
 
@@ -267,7 +212,7 @@ Read whether a key is held through `.value`.
 destroy: () => void;
 ```
 
-Defined in: [types.ts:112](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L112)
+Defined in: [types.ts:160](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L160)
 
 Release every registration, subscription, effect, and recorder. Idempotent.
 

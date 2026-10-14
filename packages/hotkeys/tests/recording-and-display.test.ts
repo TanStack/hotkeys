@@ -2,8 +2,6 @@ import { afterEach, expect, it, vi } from 'vitest'
 import {
   HotkeyManager,
   HotkeyRecorder,
-  HotkeySequenceRecorder,
-  SequenceManager,
   areHotkeysEqual,
   findHotkeyConflicts,
   formatForDisplay,
@@ -15,10 +13,10 @@ import {
   rawHotkeyToParsedHotkey,
   validateHotkey,
 } from '../src'
-import type { Hotkey } from '../src'
+import type { HotkeyChord, HotkeyChordRecorderOptions } from '../src'
 
-const instances: Array<HotkeyRecorder | HotkeySequenceRecorder> = []
-function recorder(options: ConstructorParameters<typeof HotkeyRecorder>[0]) {
+const instances: Array<HotkeyRecorder> = []
+function recorder(options: HotkeyChordRecorderOptions) {
   const value = new HotkeyRecorder(options)
   instances.push(value)
   return value
@@ -43,7 +41,7 @@ afterEach(() => {
   instances.splice(0).forEach((r) => r.destroy())
   window.dispatchEvent(new Event('blur'))
   HotkeyManager.resetInstance()
-  SequenceManager.resetInstance()
+  HotkeyManager.resetInstance()
   document.body.replaceChildren()
 })
 
@@ -57,7 +55,7 @@ it.each([
 ] as const)(
   'records and replays %s without layout conversion',
   (key, code, flags, expected) => {
-    let binding: Hotkey | undefined
+    let binding: HotkeyChord | undefined
     const r = recorder({
       platform: 'mac',
       onRecord: (value) => {
@@ -215,7 +213,7 @@ it('detects physical/logical conflicts from source events and stays active', () 
   expect(onReject).toHaveBeenCalledWith(
     expect.objectContaining({
       reason: 'conflict',
-      conflicts: [expect.objectContaining({ type: 'hotkey' })],
+      conflicts: [{ registration: expect.objectContaining({ kind: 'chord' }) }],
     }),
   )
   expect(onRecord).not.toHaveBeenCalled()
@@ -237,7 +235,7 @@ it('allows disjoint targets and finds overlapping targets', () => {
   expect(findHotkeyConflicts('Alt+[KeyS]', { eventType: 'keyup' })).toEqual([])
 })
 it('finds sequence prefix conflicts in both directions', () => {
-  SequenceManager.getInstance().register(['[KeyG]', '[KeyG]'], vi.fn())
+  HotkeyManager.getInstance().register(['[KeyG]', '[KeyG]'], vi.fn())
   expect(findHotkeyConflicts('[KeyG]')).toHaveLength(1)
   expect(findHotkeyConflicts(['[KeyG]', '[KeyG]', '[KeyD]'])).toHaveLength(1)
   expect(findHotkeyConflicts(['[KeyG]', '[KeyD]'])).toEqual([])
@@ -248,11 +246,13 @@ it('retains rejected sequence steps, allows editing, and clears without onRecord
   const onRecord = vi.fn(),
     onReject = vi.fn(),
     onClear = vi.fn()
-  const r = new HotkeySequenceRecorder({
+  const r = new HotkeyRecorder({
+    maxSteps: Infinity,
     onRecord,
     onReject,
     onClear,
-    validate: (steps) => steps.length >= 2 || 'Two steps required',
+    validate: (hotkey) =>
+      (Array.isArray(hotkey) && hotkey.length >= 2) || 'Two steps required',
   })
   instances.push(r)
   r.start()
@@ -361,7 +361,7 @@ it('releases pre-recording reset latches without firing keyup callbacks', () => 
 })
 it('does not carry sequence progress across a recorded chord', () => {
   const callback = vi.fn()
-  SequenceManager.getInstance().register(['[KeyG]', '[KeyG]'], callback)
+  HotkeyManager.getInstance().register(['[KeyG]', '[KeyG]'], callback)
   press('g', 'KeyG')
   release('g', 'KeyG')
   const r = recorder({ onRecord: vi.fn() })
@@ -394,8 +394,9 @@ it('rejects a sequence-prefix conflict at commit without executing registered se
   const callback = vi.fn(),
     onRecord = vi.fn(),
     onReject = vi.fn()
-  SequenceManager.getInstance().register(['[KeyG]', '[KeyG]'], callback)
-  const r = new HotkeySequenceRecorder({
+  HotkeyManager.getInstance().register(['[KeyG]', '[KeyG]'], callback)
+  const r = new HotkeyRecorder({
+    maxSteps: Infinity,
     onRecord,
     onReject,
     detectConflicts: true,
@@ -408,7 +409,11 @@ it('rejects a sequence-prefix conflict at commit without executing registered se
   expect(onReject).toHaveBeenCalledWith(
     expect.objectContaining({
       reason: 'conflict',
-      conflicts: [expect.objectContaining({ type: 'sequence' })],
+      conflicts: [
+        {
+          registration: expect.objectContaining({ kind: 'sequence' }),
+        },
+      ],
     }),
   )
   expect(r.store.state.steps).toEqual(['[KeyG]'])

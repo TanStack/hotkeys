@@ -1,179 +1,109 @@
-import {
-  detectPlatform,
-  getHotkeyManager,
-  normalizeRegisterableHotkey,
-} from '@tanstack/hotkeys'
-import { onDestroy } from 'svelte'
-import { getDefaultHotkeysOptions } from './HotkeysCtx'
-import { resolveMaybeGetter } from './internal.svelte'
+import { createHotkeys, createHotkeysAttachment } from './createHotkeys.svelte'
+import type { Attachment } from 'svelte/attachments'
 import type {
-  Hotkey,
+  AppHotkey,
   HotkeyCallback,
-  HotkeyOptions,
-  HotkeyRegistrationHandle,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
+import type {
+  AdapterAppHotkeyOptions,
+  AdapterChordOptions,
+  AdapterCommonOptions,
+  AdapterHotkeyOptions,
+  AdapterOptionsFor,
+  AdapterSequenceOptions,
+} from '@tanstack/hotkeys/adapter'
 import type { MaybeGetter } from './internal.svelte'
-import type { Attachment } from 'svelte/attachments'
 
-export interface CreateHotkeyOptions extends Omit<HotkeyOptions, 'target'> {
-  target?: Document | Window // not html elements, use attachment instead
-}
+/** The document or window to listen on. Use an attachment for elements. */
+export type CreateHotkeyTarget = Document | Window
 
-function registerHotkey(
-  target: HTMLElement | Document | Window,
-  hotkey: RegisterableHotkey,
-  callback: HotkeyCallback,
-  mergedOptions: CreateHotkeyOptions,
-) {
-  return getHotkeyManager().register(
-    normalizeRegisterableHotkey(
-      hotkey,
-      mergedOptions.platform ?? detectPlatform(),
-    ),
-    callback,
-    {
-      ...mergedOptions,
-      target,
-    },
-  )
-}
+/** Options shared by chords and sequences. */
+export type CreateHotkeyOptions = AdapterHotkeyOptions<CreateHotkeyTarget>
+
+/** Options for a chord such as `'Mod+S'`. */
+export type CreateHotkeyChordOptions = AdapterChordOptions<CreateHotkeyTarget>
+
+/** Options for a sequence such as `['G', 'G']`. */
+export type CreateHotkeySequenceOptions =
+  AdapterSequenceOptions<CreateHotkeyTarget>
+
+/** Options applied to every hotkey, such as provider defaults. Each applies to the kinds that support it. */
+export type CreateHotkeyCommonOptions = AdapterCommonOptions<CreateHotkeyTarget>
+
+/** The options type for a hotkey: chord options for chords, sequence options for sequences. */
+export type CreateHotkeyOptionsFor<T extends RegisterableHotkey> =
+  AdapterOptionsFor<T, CreateHotkeyTarget>
+
+/** Call-site options for an app hotkey, typed by its declared default kind. */
+export type CreateAppHotkeyOptions<T extends AppHotkey = AppHotkey> =
+  AdapterAppHotkeyOptions<T, CreateHotkeyTarget>
 
 /**
- * Register a global hotkey for the current component.
+ * Svelte function for registering a hotkey on the document: a chord such as
+ * `'Mod+S'`, a sequence such as `['G', 'G']`, or an app hotkey from
+ * `defineAppHotkeys`. Pass getters for reactive values. Use
+ * `createHotkeyAttachment` for element-scoped hotkeys.
+ *
+ * Chords accept `requireReset`; sequences accept `timeout`. A one-step
+ * sequence registers as its chord. An app hotkey uses its effective hotkey
+ * from `HotkeysProvider` (including the user's custom hotkey) and its
+ * declared meta and options, and registers nothing while unbound.
  *
  * @example
  * ```svelte
  * <script lang="ts">
- *   import { createHotkey } from '@tanstack/svelte-hotkeys'
- *
- *   createHotkey('Mod+S', () => {
- *     console.log('Mod+S pressed')
- *   })
+ *   createHotkey('Mod+S', () => save())
+ *   createHotkey(['G', 'G'], () => scrollToTop(), { timeout: 500 })
+ *   createHotkey('Escape', () => close(), () => ({ enabled: isOpen }))
  * </script>
  * ```
  */
+export function createHotkey<T extends AppHotkey>(
+  hotkey: MaybeGetter<T>,
+  callback: HotkeyCallback,
+  options?: MaybeGetter<CreateAppHotkeyOptions<T>>,
+): void
+export function createHotkey<T extends RegisterableHotkey>(
+  hotkey: MaybeGetter<T>,
+  callback: HotkeyCallback,
+  options?: MaybeGetter<CreateHotkeyOptionsFor<T>>,
+): void
 export function createHotkey(
-  hotkey: MaybeGetter<RegisterableHotkey>,
+  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey>,
   callback: HotkeyCallback,
-  options: MaybeGetter<CreateHotkeyOptions> = {},
+  options: MaybeGetter<CreateHotkeyCommonOptions> = {},
 ): void {
-  let registration: HotkeyRegistrationHandle | null = null
-  let lastHotkeyStr: Hotkey | null = null
-
-  $effect(() => {
-    if (typeof document === 'undefined') {
-      return
-    }
-
-    const resolvedHotkey = resolveMaybeGetter(hotkey)
-    const resolvedOptions = resolveMaybeGetter(options)
-    const mergedOptions = {
-      ...getDefaultHotkeysOptions().hotkey,
-      ...resolvedOptions,
-    }
-
-    const hotkeyStr = normalizeRegisterableHotkey(
-      resolvedHotkey,
-      mergedOptions.platform ?? detectPlatform(),
-    )
-    const { target: _t, ...optionsWithoutTarget } = mergedOptions
-
-    if (registration?.isActive && lastHotkeyStr === hotkeyStr) {
-      registration.callback = callback
-      registration.setOptions(optionsWithoutTarget)
-      return
-    }
-
-    if (registration?.isActive) {
-      registration.unregister()
-      registration = null
-    }
-
-    registration = registerHotkey(
-      document,
-      resolvedHotkey,
-      callback,
-      mergedOptions,
-    )
-    lastHotkeyStr = hotkeyStr
-  })
-
-  onDestroy(() => {
-    if (registration?.isActive) {
-      registration.unregister()
-      registration = null
-    }
-  })
+  createHotkeys([{ hotkey, callback, options } as never])
 }
 
 /**
- * Create an attachment for element-scoped hotkeys.
+ * Create an attachment for an element-scoped hotkey: a chord, a sequence, or
+ * an app hotkey that listens on the attached element.
  *
  * @example
  * ```svelte
  * <script lang="ts">
- *   import { createHotkeyAttachment } from '@tanstack/svelte-hotkeys'
- *
- *   let count = $state(0)
- *   const saveHotkey = createHotkeyAttachment('Mod+S', () => {
- *     count++
- *   })
- *
+ *   const saveKey = createHotkeyAttachment('Mod+S', () => save())
  * </script>
  *
- * <div tabindex="0" {@attach saveHotkey}>
- *   Count: {count}
- * </div>
+ * <div tabindex="0" {@attach saveKey}>Editor content</div>
  * ```
  */
-export function createHotkeyAttachment(
-  hotkey: MaybeGetter<RegisterableHotkey>,
+export function createHotkeyAttachment<T extends AppHotkey>(
+  hotkey: MaybeGetter<T>,
   callback: HotkeyCallback,
-  options: MaybeGetter<CreateHotkeyOptions> = {},
+  options?: MaybeGetter<CreateAppHotkeyOptions<T>>,
+): Attachment<HTMLElement>
+export function createHotkeyAttachment<T extends RegisterableHotkey>(
+  hotkey: MaybeGetter<T>,
+  callback: HotkeyCallback,
+  options?: MaybeGetter<CreateHotkeyOptionsFor<T>>,
+): Attachment<HTMLElement>
+export function createHotkeyAttachment(
+  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey>,
+  callback: HotkeyCallback,
+  options: MaybeGetter<CreateHotkeyCommonOptions> = {},
 ): Attachment<HTMLElement> {
-  return (element) => {
-    let registration: HotkeyRegistrationHandle | null = null
-    let lastHotkeyStr: Hotkey | null = null
-
-    $effect(() => {
-      const resolvedHotkey = resolveMaybeGetter(hotkey)
-      const resolvedOptions = resolveMaybeGetter(options)
-      const mergedOptions = {
-        ...getDefaultHotkeysOptions().hotkey,
-        ...resolvedOptions,
-      }
-
-      const hotkeyStr = normalizeRegisterableHotkey(
-        resolvedHotkey,
-        mergedOptions.platform ?? detectPlatform(),
-      )
-      const { target: _t, ...optionsWithoutTarget } = mergedOptions
-
-      if (registration?.isActive && lastHotkeyStr === hotkeyStr) {
-        registration.callback = callback
-        registration.setOptions(optionsWithoutTarget)
-        return
-      }
-
-      if (registration?.isActive) {
-        registration.unregister()
-        registration = null
-      }
-
-      registration = registerHotkey(
-        element,
-        resolvedHotkey,
-        callback,
-        mergedOptions,
-      )
-      lastHotkeyStr = hotkeyStr
-    })
-
-    return () => {
-      if (registration?.isActive) {
-        registration.unregister()
-      }
-    }
-  }
+  return createHotkeysAttachment([{ hotkey, callback, options } as never])
 }

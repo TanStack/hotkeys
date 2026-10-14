@@ -7,20 +7,16 @@ import {
   HotkeyHintController,
   HotkeyRecorderController,
   HotkeyRegistrationsController,
-  HotkeySequenceController,
-  HotkeySequenceRecorderController,
   KeyHoldController,
   formatForDisplay,
   getHotkeyManager,
-  getSequenceManager,
   hotkey,
+  isHotkeySequence,
 } from '@tanstack/lit-hotkeys'
 import type {
   Hotkey,
   HotkeyRegistrationHandle,
-  HotkeySequence,
   RecorderKeyMode,
-  SequenceRegistrationHandle,
 } from '@tanstack/lit-hotkeys'
 import './styles.css'
 
@@ -272,11 +268,12 @@ class Editor extends DemoElement {
 class Sequences extends DemoElement {
   @state() private timeout = 1000
   private registry = new HotkeyRegistrationsController(this)
-  private handles: Array<SequenceRegistrationHandle> = []
+  private handles: Array<HotkeyRegistrationHandle> = []
   constructor() {
     super()
     this.addController(
-      new HotkeySequenceController(
+      // An array of chords registers a sequence.
+      new HotkeyController(
         this,
         ['Shift+[KeyR]', 'Shift+[KeyT]'],
         () => this.log('Shift chain'),
@@ -287,7 +284,7 @@ class Sequences extends DemoElement {
   connectedCallback() {
     super.connectedCallback()
     this.handles = [
-      getSequenceManager().register(
+      getHotkeyManager().register(
         ['[KeyG]', '[KeyG]'],
         () => this.log('Go to top'),
         {
@@ -295,7 +292,7 @@ class Sequences extends DemoElement {
           meta: { name: 'Go to top', group: 'Sequences' },
         },
       ),
-      getSequenceManager().register(
+      getHotkeyManager().register(
         ['[KeyG]', '[KeyI]'],
         () => this.log('Inbox'),
         { timeout: this.timeout, meta: { name: 'Inbox', group: 'Sequences' } },
@@ -328,18 +325,19 @@ class Sequences extends DemoElement {
       /></label>
       <table>
         <tbody>
-          ${this.registry.sequences.map(
-            (reg) =>
-              html`<tr>
-                <td>${reg.options.meta?.name}</td>
-                <td>
-                  ${reg.sequence.map((h) => formatForDisplay(h)).join(' → ')}
-                </td>
-                <td>
-                  ${reg.matchedStepCount}/${reg.sequence.length} steps;
-                  ${reg.triggerCount} fired
-                </td>
-              </tr>`,
+          ${this.registry.hotkeys.map((reg) =>
+            reg.kind !== 'sequence'
+              ? null
+              : html`<tr>
+                  <td>${reg.options.meta?.name}</td>
+                  <td>
+                    ${formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })}
+                  </td>
+                  <td>
+                    ${reg.matchedStepCount}/${reg.hotkey.length} steps;
+                    ${reg.triggerCount} fired
+                  </td>
+                </tr>`,
           )}
         </tbody>
       </table>
@@ -351,13 +349,13 @@ class Sequences extends DemoElement {
 class Recording extends DemoElement {
   private initial: Hotkey = 'Alt+[KeyR]'
   @state() private binding: Hotkey = this.initial
-  @state() private sequence: HotkeySequence = ['[KeyX]', '[KeyY]']
+  @state() private sequence: Hotkey = ['[KeyX]', '[KeyY]']
   @state() private mode: RecorderKeyMode = 'code'
   @state() private problem = ''
   @state() private idle = false
   @state() private enter = true
   private shortcut?: HotkeyRegistrationHandle
-  private sequenceHandle?: SequenceRegistrationHandle
+  private sequenceHandle?: HotkeyRegistrationHandle
   private recorder = new HotkeyRecorderController(this, {
     ignoreInputs: false,
     detectConflicts: {
@@ -381,12 +379,16 @@ class Recording extends DemoElement {
       this.problem = 'Cancelled'
     },
   })
-  private seq = new HotkeySequenceRecorderController(this, {
+  // maxSteps above 1 records sequences; one step records a chord.
+  private seq = new HotkeyRecorderController(this, {
+    maxSteps: Infinity,
     ignoreInputs: false,
     detectConflicts: {
       exclude: (reg) => reg.options.meta?.name === 'Recorded sequence',
     },
-    validate: (steps) => steps.length >= 2 || 'Record at least two chords.',
+    validate: (value) =>
+      (isHotkeySequence(value) && value.length >= 2) ||
+      'Record at least two chords.',
     onRecord: (value) => {
       this.sequence = value
       this.registerSequence()
@@ -416,7 +418,7 @@ class Recording extends DemoElement {
   }
   private registerSequence() {
     this.sequenceHandle?.unregister()
-    this.sequenceHandle = getSequenceManager().register(
+    this.sequenceHandle = getHotkeyManager().register(
       this.sequence,
       () => this.log('Recorded sequence fired'),
       { meta: { name: 'Recorded sequence', group: 'Recording' } },
@@ -478,9 +480,12 @@ class Recording extends DemoElement {
       }
       <h3>Sequence</h3>
       <p>
-        ${(this.seq.isRecording ? this.seq.steps : this.sequence)
-          .map((h) => formatForDisplay(h))
-          .join(' → ')}
+        ${formatForDisplay(
+          this.seq.isRecording ? this.seq.steps : this.sequence,
+          {
+            sequenceSeparator: ' → ',
+          },
+        )}
       </p>
       <label
         ><input
@@ -724,16 +729,16 @@ class App extends DemoElement {
                   </tr>
                 </thead>
                 <tbody>
-                  ${[...this.registry.hotkeys, ...this.registry.sequences].map(
+                  ${this.registry.hotkeys.map(
                     (reg) =>
                       html`<tr>
                         <td>
                           ${reg.options.meta?.group} / ${reg.options.meta?.name}
                         </td>
                         <td>
-                          ${('hotkey' in reg ? [reg.hotkey] : reg.sequence)
-                            .map((h) => formatForDisplay(h))
-                            .join(' → ')}
+                          ${formatForDisplay(reg.hotkey, {
+                            sequenceSeparator: ' → ',
+                          })}
                         </td>
                         <td>
                           ${
