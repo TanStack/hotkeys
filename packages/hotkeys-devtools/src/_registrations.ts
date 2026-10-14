@@ -1,9 +1,5 @@
 import { createMemo } from 'solid-js'
-import {
-  findHotkeyConflicts,
-  formatForDisplay,
-  parseHotkey,
-} from '@tanstack/hotkeys'
+import { findHotkeyConflicts, formatForDisplay } from '@tanstack/hotkeys'
 import { useHotkeysDevtoolsState } from './HotkeysContextProvider'
 import type { HotkeyConflict } from '@tanstack/hotkeys'
 
@@ -14,10 +10,9 @@ export function useRegistrationConflicts(
   const state = useHotkeysDevtoolsState()
   return createMemo(() => {
     state.registrations()
-    state.sequenceRegistrations()
     const reg = registration()
     if (reg.options.enabled === false) return { overlapping: [], separate: [] }
-    const binding = 'sequence' in reg ? reg.sequence : reg.hotkey
+    const binding = reg.hotkey
     const options = {
       target: reg.target,
       platform: reg.options.platform,
@@ -40,10 +35,10 @@ export function useRegistrationConflicts(
 export function formatRegistration(
   reg: HotkeyConflict['registration'],
 ): string {
-  const steps = 'sequence' in reg ? reg.sequence : [reg.hotkey]
-  return steps
-    .map((step) => formatForDisplay(step, { platform: reg.options.platform }))
-    .join(' → ')
+  return formatForDisplay(reg.hotkey, {
+    platform: reg.options.platform,
+    sequenceSeparator: ' → ',
+  })
 }
 
 /** Sequences may mix logical keys and physical codes, so report both when needed. */
@@ -51,9 +46,7 @@ export function getBindingKind(
   reg: HotkeyConflict['registration'],
 ): 'Key' | 'Code' | 'Mixed' {
   const parsed =
-    'sequence' in reg
-      ? reg.sequence.map((step) => parseHotkey(step, reg.options.platform))
-      : [reg.parsedHotkey]
+    reg.kind === 'sequence' ? reg.parsedSequence : [reg.parsedHotkey]
   const codes = parsed.filter((step) => step.code !== undefined).length
   return codes === 0 ? 'Key' : codes === parsed.length ? 'Code' : 'Mixed'
 }

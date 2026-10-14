@@ -1,7 +1,7 @@
 import type { CanonicalModifier, Key, LogicalKey } from './key.types'
 
 // =============================================================================
-// Hotkey Types
+// HotkeyChord Types
 // =============================================================================
 
 /**
@@ -114,16 +114,16 @@ export type FourModifierHotkey = `Control+Alt+Shift+Meta+${Key}`
  * @example
  * ```ts
  * // Cross-platform shortcuts (recommended)
- * const save: Hotkey = 'Mod+S'           // Command+S on Mac, Ctrl+S on Windows/Linux
- * const saveAs: Hotkey = 'Mod+Shift+S'   // Command+Shift+S on Mac, Ctrl+Shift+S elsewhere
- * const comment: Hotkey = 'Mod+/'       // Command+/ on Mac, Ctrl+/ elsewhere
+ * const save: HotkeyChord = 'Mod+S'           // Command+S on Mac, Ctrl+S on Windows/Linux
+ * const saveAs: HotkeyChord = 'Mod+Shift+S'   // Command+Shift+S on Mac, Ctrl+Shift+S elsewhere
+ * const comment: HotkeyChord = 'Mod+/'       // Command+/ on Mac, Ctrl+/ elsewhere
  *
  * // Platform-specific shortcuts
- * const macOnly: Hotkey = 'Meta+S'       // Command+S on Mac only
- * const windowsOnly: Hotkey = 'Control+S' // Ctrl+S on Windows/Linux only
+ * const macOnly: HotkeyChord = 'Meta+S'       // Command+S on Mac only
+ * const windowsOnly: HotkeyChord = 'Control+S' // Ctrl+S on Windows/Linux only
  * ```
  */
-export type Hotkey =
+export type HotkeyChord =
   | Key
   | SingleModifierHotkey
   | TwoModifierHotkey
@@ -201,18 +201,35 @@ export type RawHotkey =
   | ({ code: string; key?: never } & RawModifiers)
 
 /**
- * A hotkey that can be passed to `HotkeyManager.register()` and `useHotkey()`.
- * Either a type-safe string (`Hotkey`) or a raw object (`RawHotkey`).
+ * A sequence of chords pressed one after another (Vim-style), such as `['G', 'G']`.
+ *
+ * Steps may include modifiers; the same modifier can appear on consecutive
+ * steps (e.g. `['Shift+R', 'Shift+T']`). Modifier-only key events do not
+ * advance or reset matching. Automatic repeats and IME composition are ignored.
+ * A one-step sequence is treated as its single chord.
  */
-export type RegisterableHotkey = Hotkey | RawHotkey
+export type HotkeySequence = ReadonlyArray<HotkeyChord>
+
+/**
+ * A hotkey: one chord (`'Mod+S'`) or a sequence of chords (`['G', 'G']`).
+ */
+export type Hotkey = HotkeyChord | HotkeySequence
+
+/** A single chord as a type-safe string (`HotkeyChord`) or a raw object (`RawHotkey`). */
+export type RegisterableHotkeyChord = HotkeyChord | RawHotkey
+
+/**
+ * Anything that can be registered: a chord string, a raw chord object, or a sequence.
+ */
+export type RegisterableHotkey = RegisterableHotkeyChord | HotkeySequence
 
 /**
  * Context passed to hotkey callbacks along with the keyboard event.
  */
 export interface HotkeyCallbackContext {
-  /** The original hotkey string that was registered */
+  /** The registered hotkey: a chord string or a sequence */
   hotkey: Hotkey
-  /** The parsed representation of the hotkey */
+  /** The parsed chord that completed the match (the last step of a sequence) */
   parsedHotkey: ParsedHotkey
 }
 
@@ -236,7 +253,7 @@ export type HotkeyCallback = (
 ) => void
 
 /**
- * Metadata for hotkey and sequence registrations.
+ * Metadata for hotkey registrations, chords and sequences alike.
  * Includes `name`, `description`, and `group` by default. Extend via declaration merging:
  *
  * @example

@@ -1,9 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte'
   import { createHotkeyRecorder } from '../src/createHotkeyRecorder.svelte'
-  import { createHotkeySequenceRecorder } from '../src/createHotkeySequenceRecorder.svelte'
   import type { SvelteHotkeyRecorder } from '../src/createHotkeyRecorder.svelte'
-  import type { SvelteHotkeySequenceRecorder } from '../src/createHotkeySequenceRecorder.svelte'
 
   let {
     first,
@@ -14,7 +12,7 @@
     second: () => void
     ready: (
       single: SvelteHotkeyRecorder,
-      sequence: SvelteHotkeySequenceRecorder,
+      sequence: SvelteHotkeyRecorder,
       change: () => void,
     ) => void
   } = $props()
@@ -25,8 +23,15 @@
       return changed ? second : first
     },
   }
+  const sequenceOptions = {
+    maxSteps: Infinity,
+    onRecord() {},
+    get onCancel() {
+      return changed ? second : first
+    },
+  }
   const single = createHotkeyRecorder(options)
-  const sequence = createHotkeySequenceRecorder(options)
+  const sequence = createHotkeyRecorder(sequenceOptions)
   onMount(() =>
     ready(single, sequence, () => {
       changed = true

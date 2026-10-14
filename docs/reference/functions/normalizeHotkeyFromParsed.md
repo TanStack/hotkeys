@@ -4,10 +4,10 @@ title: normalizeHotkeyFromParsed
 ---
 
 ```ts
-function normalizeHotkeyFromParsed(parsed, platform?): Hotkey;
+function normalizeHotkeyFromParsed(parsed, platform?): HotkeyChord;
 ```
 
-Defined in: [parse.ts:218](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L218)
+Defined in: [parse.ts:242](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L242)
 
 Same canonical string as [normalizeHotkey](normalizeHotkey.md), but from an already-parsed hotkey.
 
@@ -23,4 +23,4 @@ Same canonical string as [normalizeHotkey](normalizeHotkey.md), but from an alre
 
 ## Returns
 
-[`Hotkey`](../type-aliases/Hotkey.md)
+[`HotkeyChord`](../type-aliases/HotkeyChord.md)

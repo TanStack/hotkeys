@@ -7,18 +7,16 @@ title: createHotkeyBindings
 function createHotkeyBindings(): object;
 ```
 
-Defined in: [adapter.ts:107](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L107)
+Defined in: [adapter.ts:53](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L53)
 
 Reconciles adapter registrations while retaining handles for option updates.
 
 ## Returns
 
-`object`
-
-### destroy
+### destroy()
 
 ```ts
-destroy: () => void = bindings.destroy;
+destroy(): void;
 ```
 
 #### Returns
@@ -31,15 +29,18 @@ destroy: () => void = bindings.destroy;
 update(definitions, commonOptions?): void;
 ```
 
+Registers new definitions, updates existing ones in place, and removes
+stale ones. Definitions with an empty sequence or a null target are skipped.
+
 #### Parameters
 
 ##### definitions
 
-[`HotkeyDefinition`](../interfaces/HotkeyDefinition.md)[]
+readonly [`HotkeyDefinition`](../type-aliases/HotkeyDefinition.md)[]
 
 ##### commonOptions?
 
-`HotkeyOptions` = `{}`
+[`HotkeyBindingsCommonOptions`](../type-aliases/HotkeyBindingsCommonOptions.md) = `{}`
 
 #### Returns
 

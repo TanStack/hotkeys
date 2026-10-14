@@ -3,14 +3,12 @@ export * from '@tanstack/hotkeys'
 
 export * from './createHotkey.svelte'
 export * from './createHotkeys.svelte'
-export * from './createHotkeySequence.svelte'
-export * from './createHotkeySequences.svelte'
 export * from './createHotkeyRecorder.svelte'
-export * from './createHotkeySequenceRecorder.svelte'
 export * from './getHeldKeys.svelte'
 export * from './getHotkeyRegistrations.svelte'
 export * from './getHeldKeyCodesMap.svelte'
 export * from './getIsKeyHeld.svelte'
+export * from './getAppHotkeys.svelte'
 export { default as HotkeysProvider } from './HotkeysProvider.svelte'
 export {
   DEFAULT_OPTIONS,
@@ -18,5 +16,9 @@ export {
   getHotkeysContext,
   setHotkeysContext,
 } from './HotkeysCtx'
-export type { HotkeysProviderOptions, HotkeysProviderProps } from './HotkeysCtx'
+export type {
+  HotkeysContextOptions,
+  HotkeysProviderOptions,
+  HotkeysProviderProps,
+} from './HotkeysCtx'
 export * from './getHotkeyHint.svelte'

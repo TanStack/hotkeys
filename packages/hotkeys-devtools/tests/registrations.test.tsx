@@ -1,9 +1,10 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { render } from 'solid-js/web'
 import {
+  AppHotkeysStore,
   HotkeyManager,
   KeyStateTracker,
-  SequenceManager,
+  defineAppHotkeys,
 } from '@tanstack/hotkeys'
 import {
   HotkeysContextProvider,
@@ -33,11 +34,12 @@ function mount(selectedId?: string) {
           setSelectedId={() => {}}
         />
         <DetailsPanel
-          selectedRegistration={() =>
-            [...state.registrations(), ...state.sequenceRegistrations()].find(
-              (r) => r.id === selectedId,
-            ) ?? null
-          }
+          selection={() => {
+            const registration = state
+              .registrations()
+              .find((r) => r.id === selectedId)
+            return registration ? { type: 'registration', registration } : null
+          }}
         />
       </>
     )
@@ -57,7 +59,6 @@ afterEach(() => {
   dispose?.()
   dispose = undefined
   HotkeyManager.resetInstance()
-  SequenceManager.resetInstance()
   KeyStateTracker.resetInstance()
   document.body.replaceChildren()
 })
@@ -73,7 +74,7 @@ describe('shared devtools registrations', () => {
   })
 
   it('updates sequence-prefix and hotkey/sequence conflicts when either registry changes', async () => {
-    const sequences = SequenceManager.getInstance()
+    const sequences = HotkeyManager.getInstance()
     const first = sequences.register(['[KeyG]', '[KeyG]'], () => {}, options)
     const ui = mount(first.id)
     expect(ui.querySelector('.conflictList')).toBeNull()
@@ -128,7 +129,7 @@ describe('shared devtools registrations', () => {
       const handle =
         kind === 'hotkey'
           ? HotkeyManager.getInstance().register('Mod++', () => {}, options)
-          : SequenceManager.getInstance().register(
+          : HotkeyManager.getInstance().register(
               ['Mod++', '[KeyS]'],
               () => {},
               options,
@@ -151,7 +152,7 @@ describe('shared devtools registrations', () => {
       const handle =
         kind === 'hotkey'
           ? HotkeyManager.getInstance().register('Mod+[KeyS]', () => {}, opts)
-          : SequenceManager.getInstance().register(
+          : HotkeyManager.getInstance().register(
               ['[KeyG]', '[KeyS]'],
               () => {},
               opts,
@@ -168,7 +169,7 @@ describe('shared devtools registrations', () => {
   )
 
   it('normalizes sequence aliases without assuming that logical and physical labels conflict', () => {
-    const sequences = SequenceManager.getInstance()
+    const sequences = HotkeyManager.getInstance()
     const first = sequences.register(
       ['Control+[KeyS]', 'Escape'],
       () => {},
@@ -202,7 +203,7 @@ describe('shared devtools registrations', () => {
               callback,
               options,
             )
-          : SequenceManager.getInstance().register(
+          : HotkeyManager.getInstance().register(
               ['[KeyG]', '[KeyS]'],
               callback,
               options,
@@ -221,7 +222,7 @@ describe('shared devtools registrations', () => {
     const manager = HotkeyManager.getInstance()
     manager.register('Mod+S', () => {}, options)
     manager.register('Mod+[KeyS]', () => {}, options)
-    const mixed = SequenceManager.getInstance().register(
+    const mixed = HotkeyManager.getInstance().register(
       ['G', '[KeyS]'],
       () => {},
       options,
@@ -234,5 +235,34 @@ describe('shared devtools registrations', () => {
     expect(badges).toContain('Key')
     expect(badges).toContain('Code')
     expect(badges).toContain('Mixed')
+  })
+
+  it('lists declared app hotkeys that are not registered', async () => {
+    const appHotkeys = defineAppHotkeys({
+      'doc.save': { hotkey: 'Mod+S', meta: { name: 'Save' } },
+      'nav.home': { hotkey: ['G', 'H'], meta: { name: 'Go home' } },
+      'palette.open': { hotkey: null, meta: { name: 'Palette' } },
+    })
+    const store = new AppHotkeysStore(appHotkeys, {
+      customHotkeys: { 'nav.home': ['G', 'G'] },
+    })
+    const manager = HotkeyManager.getInstance()
+    manager.appHotkeys.setState(() => store)
+    manager.register('Mod+S', () => {}, { ...options, appHotkeyId: 'doc.save' })
+    const ui = mount()
+    const declared = () =>
+      Array.from(ui.querySelectorAll('.hotkeyRowInactive'), (row) =>
+        row.textContent?.replace(/\s+/g, ' '),
+      )
+    expect(declared()).toEqual([
+      expect.stringContaining('Go home'),
+      expect.stringContaining('Palette'),
+    ])
+    expect(declared()[0]).toContain('custom')
+    expect(declared()[1]).toContain('Unassigned')
+
+    store.setCustomHotkey('palette.open', 'Mod+P')
+    await Promise.resolve()
+    expect(declared()[1]).not.toContain('Unassigned')
   })
 })

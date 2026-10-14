@@ -3,85 +3,106 @@ id: createHotkey
 title: createHotkey
 ---
 
+## Call Signature
+
 ```ts
-function createHotkey(
+function createHotkey<T>(
    hotkey, 
    callback, 
    options?): void;
 ```
 
-Defined in: [createHotkey.ts:82](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L82)
+Defined in: [createHotkey.ts:64](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L64)
 
-SolidJS primitive for registering a keyboard hotkey.
+Solid primitive for registering a hotkey: a chord such as `'Mod+S'`, a
+sequence such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
+The hotkey and options may be accessors.
 
-Uses the singleton HotkeyManager for efficient event handling.
-The callback receives both the keyboard event and a context object
-containing the hotkey string and parsed hotkey.
+Chords accept `requireReset`; sequences accept `timeout`. A one-step
+sequence registers as its chord. An app hotkey uses its effective hotkey
+from `HotkeysProvider` (including the user's custom hotkey) and its
+declared meta and options, and registers nothing while unbound.
 
-This primitive automatically tracks reactive dependencies and updates
-the registration when options or the callback change.
+### Type Parameters
 
-## Parameters
+#### T
 
-### hotkey
+`T` *extends* `AppHotkey`\<`string`, `HotkeyChord` \| `HotkeySequence` \| `null`\>
 
-`RegisterableHotkey` \| (() => `RegisterableHotkey`)
+### Parameters
 
-The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object (supports `mod` for cross-platform)
+#### hotkey
 
-### callback
+`MaybeAccessor`\<`T`\>
+
+#### callback
 
 `HotkeyCallback`
 
-The function to call when the hotkey is pressed
+#### options?
 
-### options?
+`MaybeAccessor`\<[`CreateAppHotkeyOptions`](../type-aliases/CreateAppHotkeyOptions.md)\<`T`\>\>
 
-  \| [`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md)
-  \| (() => [`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md))
-
-Options for the hotkey behavior
-
-## Returns
+### Returns
 
 `void`
 
-## Examples
+### Example
 
 ```tsx
-function SaveButton() {
-  const [count, setCount] = createSignal(0)
-
-  // Callback always has access to latest count value
-  createHotkey('Mod+S', (event, { hotkey }) => {
-    console.log(`Save triggered, count is ${count()}`)
-    handleSave()
-  })
-
-  return <button onClick={() => setCount(c => c + 1)}>Count: {count()}</button>
-}
+createHotkey('Mod+S', () => save())
+createHotkey(['G', 'G'], () => scrollToTop(), { timeout: 500 })
+createHotkey('Escape', () => close(), () => ({ enabled: isOpen() }))
 ```
 
-```tsx
-function Modal(props) {
-  // enabled option is reactive
-  createHotkey('Escape', () => {
-    props.onClose()
-  }, () => ({ enabled: props.isOpen }))
+## Call Signature
 
-  return <Show when={props.isOpen}>
-    <div class="modal">...</div>
-  </Show>
-}
+```ts
+function createHotkey<T>(
+   hotkey, 
+   callback, 
+   options?): void;
 ```
 
+Defined in: [createHotkey.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L69)
+
+Solid primitive for registering a hotkey: a chord such as `'Mod+S'`, a
+sequence such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
+The hotkey and options may be accessors.
+
+Chords accept `requireReset`; sequences accept `timeout`. A one-step
+sequence registers as its chord. An app hotkey uses its effective hotkey
+from `HotkeysProvider` (including the user's custom hotkey) and its
+declared meta and options, and registers nothing while unbound.
+
+### Type Parameters
+
+#### T
+
+`T` *extends* `RegisterableHotkey`
+
+### Parameters
+
+#### hotkey
+
+`MaybeAccessor`\<`T`\>
+
+#### callback
+
+`HotkeyCallback`
+
+#### options?
+
+`MaybeAccessor`\<`AdapterOptionsFor`\<`T`, [`CreateHotkeyTarget`](../type-aliases/CreateHotkeyTarget.md)\>\>
+
+### Returns
+
+`void`
+
+### Example
+
 ```tsx
-function Editor() {
-  const [editorRef, setEditorRef] = createSignal<HTMLDivElement | null>(null)
-
-  // Scoped to a specific element - use accessor so hotkey waits for ref
-  createHotkey('Mod+S', save, () => ({ target: editorRef() }))
-
-  return <div ref={setEditorRef}>...</div>
-}
+createHotkey('Mod+S', () => save())
+createHotkey(['G', 'G'], () => scrollToTop(), { timeout: 500 })
+createHotkey('Escape', () => close(), () => ({ enabled: isOpen() }))
 ```

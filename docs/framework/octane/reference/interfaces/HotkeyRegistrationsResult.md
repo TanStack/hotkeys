@@ -3,9 +3,9 @@ id: HotkeyRegistrationsResult
 title: HotkeyRegistrationsResult
 ---
 
-Defined in: [types.ts:41](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L41)
+Defined in: [types.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L29)
 
-Live registration views from the shared hotkey and sequence managers.
+Live registration views from the shared hotkey manager.
 
 ## Properties
 
@@ -15,14 +15,6 @@ Live registration views from the shared hotkey and sequence managers.
 hotkeys: HotkeyRegistrationView[];
 ```
 
-Defined in: [types.ts:42](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L42)
+Defined in: [types.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L31)
 
-***
-
-### sequences
-
-```ts
-sequences: SequenceRegistrationView[];
-```
-
-Defined in: [types.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/types.ts#L43)
+Every registration, chords and sequences. Narrow each view with `kind`.

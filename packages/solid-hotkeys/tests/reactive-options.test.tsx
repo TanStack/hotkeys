@@ -1,11 +1,8 @@
-import { createHotkeySequenceRecorder } from '../src/createHotkeySequenceRecorder'
-import { createHotkeySequences } from '../src/createHotkeySequences'
-import { createHotkeySequence } from '../src/createHotkeySequence'
 import { createHotkeys } from '../src/createHotkeys'
 import { afterEach, expect, it, vi } from 'vitest'
 import { cleanup, render } from '@solidjs/testing-library'
 import { createSignal } from 'solid-js'
-import { HotkeyManager, SequenceManager } from '@tanstack/hotkeys'
+import { HotkeyManager } from '@tanstack/hotkeys'
 import { createHotkey } from '../src/createHotkey'
 import { createHotkeyRecorder } from '../src/createHotkeyRecorder'
 import { HotkeysProvider } from '../src/HotkeysProvider'
@@ -16,7 +13,6 @@ const press = () =>
 afterEach(() => {
   cleanup()
   HotkeyManager.resetInstance()
-  SequenceManager.resetInstance()
 })
 it('updates a direct enabled property getter without user setOptions', () => {
   const [enabled, setEnabled] = createSignal(true)
@@ -84,15 +80,15 @@ it('refreshes all provider option groups without replacing registrations or acti
     run = vi.fn(),
     override = vi.fn()
   let single!: ReturnType<typeof createHotkeyRecorder>
-  let sequence!: ReturnType<typeof createHotkeySequenceRecorder>
+  let sequence!: ReturnType<typeof createHotkeyRecorder>
   function setupHooks() {
     createHotkey('A', run)
     createHotkeys([{ hotkey: 'B', callback: run }])
-    createHotkeySequence(['C', 'D'], run)
-    createHotkeySequences([{ sequence: ['E', 'F'], callback: run }])
+    createHotkey(['C', 'D'], run)
+    createHotkeys([{ hotkey: ['E', 'F'], callback: run }])
     createHotkey('Z', override, { enabled: true })
     single = createHotkeyRecorder({ onRecord() {} })
-    sequence = createHotkeySequenceRecorder({ onRecord() {} })
+    sequence = createHotkeyRecorder({ maxSteps: Infinity, onRecord() {} })
   }
   const invoke = () => {
     for (const key of ['a', 'b', 'c', 'd', 'e', 'f', 'z'])
@@ -107,9 +103,7 @@ it('refreshes all provider option groups without replacing registrations or acti
   }
   const defaults = () => ({
     hotkey: { enabled: enabled() },
-    hotkeySequence: { enabled: enabled() },
     hotkeyRecorder: { onCancel: enabled() ? first : second },
-    hotkeySequenceRecorder: { onCancel: enabled() ? first : second },
   })
   const view = render(() => (
     <HotkeysProvider defaultOptions={defaults()}>
@@ -117,9 +111,6 @@ it('refreshes all provider option groups without replacing registrations or acti
     </HotkeysProvider>
   ))
   const ids = [...HotkeyManager.getInstance().registrations.state.keys()]
-  const sequenceIds = [
-    ...SequenceManager.getInstance().registrations.state.keys(),
-  ]
   invoke()
   expect(run).toHaveBeenCalledTimes(4)
   expect(override).toHaveBeenCalledOnce()
@@ -138,10 +129,6 @@ it('refreshes all provider option groups without replacing registrations or acti
   expect([...HotkeyManager.getInstance().registrations.state.keys()]).toEqual(
     ids,
   )
-  expect([...SequenceManager.getInstance().registrations.state.keys()]).toEqual(
-    sequenceIds,
-  )
   view.unmount()
   expect(HotkeyManager.getInstance().registrations.state.size).toBe(0)
-  expect(SequenceManager.getInstance().registrations.state.size).toBe(0)
 })

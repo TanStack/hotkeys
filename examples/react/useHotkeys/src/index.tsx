@@ -370,15 +370,16 @@ useHotkeys(
 // ---------------------------------------------------------------------------
 
 function RegistrationsViewer() {
-  const { hotkeys, sequences } = useHotkeyRegistrations()
+  const registrations = useHotkeyRegistrations()
 
   return (
     <div className="demo-section">
       <h2>Live Registrations (useHotkeyRegistrations)</h2>
       <p>
         This table is rendered from <code>useHotkeyRegistrations()</code> — a
-        reactive view of all registered hotkeys. It updates automatically as
-        hotkeys are added, removed, enabled/disabled, or triggered.
+        reactive view of all registered hotkeys, chords and sequences. It
+        updates automatically as hotkeys are added, removed, enabled/disabled,
+        or triggered.
       </p>
       <table className="registrations-table">
         <thead>
@@ -391,7 +392,7 @@ function RegistrationsViewer() {
           </tr>
         </thead>
         <tbody>
-          {hotkeys.map((reg) => (
+          {registrations.map((reg) => (
             <tr key={reg.id}>
               <td>
                 <kbd>{formatForDisplay(reg.hotkey)}</kbd>
@@ -412,7 +413,7 @@ function RegistrationsViewer() {
               <td className="trigger-count">{reg.triggerCount}</td>
             </tr>
           ))}
-          {hotkeys.length === 0 && (
+          {registrations.length === 0 && (
             <tr>
               <td colSpan={5} className="hint">
                 No hotkeys registered
@@ -421,44 +422,10 @@ function RegistrationsViewer() {
           )}
         </tbody>
       </table>
-      {sequences.length > 0 && (
-        <>
-          <h3 style={{ marginTop: 16 }}>Sequences</h3>
-          <table className="registrations-table">
-            <thead>
-              <tr>
-                <th>Sequence</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Triggers</th>
-              </tr>
-            </thead>
-            <tbody>
-              {sequences.map((reg) => (
-                <tr key={reg.id}>
-                  <td>
-                    {reg.sequence.map((s, i) => (
-                      <React.Fragment key={i}>
-                        {i > 0 && ' '}
-                        <kbd>{formatForDisplay(s)}</kbd>
-                      </React.Fragment>
-                    ))}
-                  </td>
-                  <td>{reg.options.meta?.name ?? '—'}</td>
-                  <td className="description-cell">
-                    {reg.options.meta?.description ?? '—'}
-                  </td>
-                  <td className="trigger-count">{reg.triggerCount}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
-      )}
-      <pre className="code-block">{`const { hotkeys, sequences } = useHotkeyRegistrations()
+      <pre className="code-block">{`const registrations = useHotkeyRegistrations()
 
-// Render a live table of all registrations
-hotkeys.map((reg) => (
+// Render a live table of all registrations, chords and sequences
+registrations.map((reg) => (
   <tr key={reg.id}>
     <td>{formatForDisplay(reg.hotkey)}</td>
     <td>{reg.options.meta?.name}</td>

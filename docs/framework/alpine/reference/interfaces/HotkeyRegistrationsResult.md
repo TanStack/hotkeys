@@ -3,9 +3,9 @@ id: HotkeyRegistrationsResult
 title: HotkeyRegistrationsResult
 ---
 
-Defined in: [types.ts:58](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L58)
+Defined in: [types.ts:67](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L67)
 
-Live registration views from the shared hotkey and sequence managers.
+Live registration views from the shared hotkey manager.
 
 ## Properties
 
@@ -15,14 +15,6 @@ Live registration views from the shared hotkey and sequence managers.
 readonly hotkeys: HotkeyRegistrationView[];
 ```
 
-Defined in: [types.ts:59](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L59)
+Defined in: [types.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L69)
 
-***
-
-### sequences
-
-```ts
-readonly sequences: SequenceRegistrationView[];
-```
-
-Defined in: [types.ts:60](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L60)
+Every registration, chords and sequences. Narrow each view with `kind`.

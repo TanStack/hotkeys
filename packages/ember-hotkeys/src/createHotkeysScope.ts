@@ -2,11 +2,9 @@ import { OnHotkey } from './onHotkey'
 import { OnHotkeys } from './onHotkeys'
 import { UseHotkey } from './useHotkey'
 import { UseHotkeys } from './useHotkeys'
-import { UseHotkeySequence } from './useHotkeySequence'
-import { UseHotkeySequences } from './useHotkeySequences'
 import { useHotkeyRecorder } from './useHotkeyRecorder'
-import { useHotkeySequenceRecorder } from './useHotkeySequenceRecorder'
 import { read } from './utils'
+import type { HotkeySequenceRecorderOptions } from '@tanstack/hotkeys'
 import type { DefaultHotkeysOptions } from './types'
 import type { MaybeGetter } from './utils'
 
@@ -16,10 +14,7 @@ export interface EmberHotkeysScope {
   onHotkeys: typeof OnHotkeys
   useHotkey: typeof UseHotkey
   useHotkeys: typeof UseHotkeys
-  useHotkeySequence: typeof UseHotkeySequence
-  useHotkeySequences: typeof UseHotkeySequences
   useHotkeyRecorder: typeof useHotkeyRecorder
-  useHotkeySequenceRecorder: typeof useHotkeySequenceRecorder
 }
 
 /**
@@ -60,35 +55,14 @@ export function createHotkeysScope(
         super.compute(args, { ...read(defaultOptions).hotkey, ...options })
       }
     },
-    useHotkeySequence: class extends UseHotkeySequence {
-      override compute(
-        ...[args, options]: Parameters<UseHotkeySequence['compute']>
-      ) {
-        super.compute(args, {
-          ...read(defaultOptions).hotkeySequence,
-          ...options,
-        })
-      }
-    },
-    useHotkeySequences: class extends UseHotkeySequences {
-      override compute(
-        ...[args, options]: Parameters<UseHotkeySequences['compute']>
-      ) {
-        super.compute(args, {
-          ...read(defaultOptions).hotkeySequence,
-          ...options,
-        })
-      }
-    },
-    useHotkeyRecorder: (owner, options) =>
-      useHotkeyRecorder(owner, () => ({
-        ...read(defaultOptions).hotkeyRecorder,
-        ...read(options),
-      })),
-    useHotkeySequenceRecorder: (owner, options) =>
-      useHotkeySequenceRecorder(owner, () => ({
-        ...read(defaultOptions).hotkeySequenceRecorder,
-        ...read(options),
-      })),
+    useHotkeyRecorder: ((owner: object, options: MaybeGetter<object>) =>
+      useHotkeyRecorder(
+        owner,
+        () =>
+          ({
+            ...read(defaultOptions).hotkeyRecorder,
+            ...read(options),
+          }) as HotkeySequenceRecorderOptions,
+      )) as typeof useHotkeyRecorder,
   }
 }

@@ -6,8 +6,8 @@ import {
 } from '@tanstack/alpine-hotkeys'
 import Alpine from 'alpinejs'
 import type {
+  AlpineHotkeyDefinition,
   Hotkey,
-  HotkeyDefinition,
   HotkeyRegistrationsResult,
 } from '@tanstack/alpine-hotkeys'
 import './index.css'
@@ -164,7 +164,7 @@ class DynamicHotkeysDemo {
   newLabel = ''
   newDescription = ''
   error = ''
-  get definitions(): Array<HotkeyDefinition> {
+  get definitions(): Array<AlpineHotkeyDefinition> {
     return this.shortcuts.map((s) => ({
       hotkey: s.hotkey,
       callback: () => {
@@ -219,15 +219,11 @@ class RegistrationsViewer {
 
   formatForDisplay = formatForDisplay
   usage0 =
-    'const registrations = scope.createHotkeyRegistrations()\n\n// Alpine reads registrations.hotkeys and registrations.sequences reactively.\n// <template x-for="reg in registrations.hotkeys" :key="reg.id">\n//   <p x-text="reg.options.meta?.name + \': \' + reg.triggerCount"></p>\n// </template>'
+    'const registrations = scope.createHotkeyRegistrations()\n\n// Alpine reads registrations.hotkeys, chords and sequences, reactively.\n// <template x-for="reg in registrations.hotkeys" :key="reg.id">\n//   <p x-text="reg.options.meta?.name + \': \' + reg.triggerCount"></p>\n// </template>'
   registrationState0!: HotkeyRegistrationsResult
   get hotkeys() {
     return this.registrationState0.hotkeys
   }
-  get sequences() {
-    return this.registrationState0.sequences
-  }
-
   init() {
     this.registrationState0 = this.hotkeysScope.createHotkeyRegistrations()
   }

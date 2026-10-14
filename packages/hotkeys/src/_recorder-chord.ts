@@ -10,7 +10,7 @@ import type {
   RecorderOptions,
   RecorderRejection,
 } from './recorder-options'
-import type { Hotkey } from './hotkey.types'
+import type { HotkeyChord } from './hotkey.types'
 
 /**
  * Converts a keydown to a replayable chord, preserving physical codes by default.
@@ -21,7 +21,7 @@ export function hotkeyChordFromKeydown(
   event: KeyboardEvent,
   platform: 'mac' | 'windows' | 'linux',
   recordBy: RecorderKeyMode = 'code',
-): Hotkey | null {
+): HotkeyChord | null {
   const normalized = normalizeKeyboardEvent(event, platform)
   if (
     normalized.isComposing ||

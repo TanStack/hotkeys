@@ -6,13 +6,17 @@ title: HotkeysProvider
 ```ts
 function HotkeysProvider(__namedParameters): ElementDescriptor<{
   children: unknown;
-  value: DefaultHotkeysOptions;
+  value: {
+     appHotkeysStore:   | AppHotkeysStore<Readonly<Record<string, AppHotkey<string, HotkeyChord | HotkeySequence | null>>>>
+        | null;
+     defaultOptions: DefaultHotkeysOptions;
+  };
 }>;
 ```
 
-Defined in: [HotkeysProvider.ts:37](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L37)
+Defined in: [HotkeysProvider.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L70)
 
-Sets registration and recorder defaults for descendant components.
+Sets defaults, app hotkeys, and custom hotkeys for descendant components.
 
 ## Parameters
 
@@ -24,5 +28,9 @@ Sets registration and recorder defaults for descendant components.
 
 `ElementDescriptor`\<\{
   `children`: `unknown`;
-  `value`: [`DefaultHotkeysOptions`](../interfaces/DefaultHotkeysOptions.md);
+  `value`: \{
+     `appHotkeysStore`:   \| `AppHotkeysStore`\<`Readonly`\<`Record`\<`string`, `AppHotkey`\<`string`, `HotkeyChord` \| `HotkeySequence` \| `null`\>\>\>\>
+        \| `null`;
+     `defaultOptions`: [`DefaultHotkeysOptions`](../interfaces/DefaultHotkeysOptions.md);
+  \};
 \}\>

@@ -14,6 +14,6 @@ export const appConfig: ApplicationConfig = {
         ]
       : []),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideHotkeys({ hotkey: { requireReset: true } }),
+    provideHotkeys({ defaultOptions: { hotkey: { requireReset: true } } }),
   ],
 }

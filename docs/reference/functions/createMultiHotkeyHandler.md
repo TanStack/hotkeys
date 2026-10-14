@@ -7,7 +7,7 @@ title: createMultiHotkeyHandler
 function createMultiHotkeyHandler(handlers, options?): (event) => void;
 ```
 
-Defined in: [match.ts:138](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L138)
+Defined in: [match.ts:146](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L146)
 
 Creates a handler that matches multiple hotkeys.
 

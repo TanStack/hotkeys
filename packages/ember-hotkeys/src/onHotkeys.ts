@@ -1,52 +1,25 @@
 import Modifier from 'ember-modifier'
-import {
-  isDestroyed,
-  isDestroying,
-  registerDestructor,
-} from '@ember/destroyable'
-import { scheduleOnce } from '@ember/runloop'
-import { createHotkeyBindings } from '@tanstack/hotkeys/adapter'
-import type { HotkeyOptions } from '@tanstack/hotkeys'
-import type { HotkeyDefinition } from '@tanstack/hotkeys/adapter'
+import { createOwnedBindings } from './bindings'
+import type { EmberHotkeyCommonOptions, EmberHotkeyDefinition } from './types'
 
 /** Options for a modifier whose target is always its containing element. */
-export type ElementHotkeyOptions = Omit<HotkeyOptions, 'target'>
+export type ElementHotkeyOptions = Omit<EmberHotkeyCommonOptions, 'target'>
 
-/** Attach a reactive list of shortcuts directly to an element. */
+/** Attach a reactive list of hotkeys directly to an element. */
 export class OnHotkeys extends Modifier<{
   Element: HTMLElement
   Args: {
-    Positional: [Array<HotkeyDefinition>]
+    Positional: [ReadonlyArray<EmberHotkeyDefinition>]
     Named: ElementHotkeyOptions
   }
 }> {
-  private bindings = createHotkeyBindings()
-  private definitions: Array<HotkeyDefinition> = []
-  private options: HotkeyOptions = {}
-  private cleanup = registerDestructor(this, () => this.bindings.destroy())
+  private bindings = createOwnedBindings(this)
 
   override modify(
     element: HTMLElement,
-    [definitions]: [Array<HotkeyDefinition>],
+    [definitions]: [ReadonlyArray<EmberHotkeyDefinition>],
     options: ElementHotkeyOptions,
   ): void {
-    void this.cleanup
-    // Consume tracked arguments here; publish registration changes after rendering.
-    this.definitions = definitions.map((definition) => ({
-      ...definition,
-      hotkey:
-        typeof definition.hotkey === 'string'
-          ? definition.hotkey
-          : { ...definition.hotkey },
-      options: { ...definition.options, target: element },
-    }))
-    this.options = { ...options, target: element }
-    scheduleOnce('afterRender', this, this.update)
-  }
-
-  private update(): void {
-    if (!isDestroying(this) && !isDestroyed(this)) {
-      this.bindings.update(this.definitions, this.options)
-    }
+    this.bindings.set(definitions, options, element)
   }
 }

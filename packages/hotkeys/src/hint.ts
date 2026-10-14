@@ -1,5 +1,5 @@
 import { MODIFIER_KEYS, normalizeKeyName } from './constants'
-import { parseRegisterableHotkey } from './parse'
+import { isHotkeySequence, parseRegisterableHotkey } from './parse'
 import type { CanonicalModifier } from './key.types'
 import type { RegisterableHotkey } from './hotkey.types'
 
@@ -15,6 +15,7 @@ export interface HeldModifierOptions {
  * By default, any nonempty subset of the binding's modifiers qualifies; an
  * unrelated modifier hides the hint. `exact` requires every binding modifier.
  * Nonmodifier keys are ignored. This does not check registration or focus.
+ * A sequence reveals its hint from its first step.
  *
  * @example
  * matchesHeldModifiers('Alt+Shift+[KeyK]', ['Alt']) // true
@@ -33,7 +34,9 @@ export function matchesHeldModifiers(
       heldKeys.map(normalizeKeyName).filter((key) => MODIFIER_KEYS.has(key)),
     ),
   ]
-  const { modifiers } = parseRegisterableHotkey(hotkey, options.platform)
+  const first = isHotkeySequence(hotkey) ? hotkey[0] : hotkey
+  if (first === undefined) return false
+  const { modifiers } = parseRegisterableHotkey(first, options.platform)
   return (
     held.length > 0 &&
     held.every((key) => modifiers.includes(key as CanonicalModifier)) &&

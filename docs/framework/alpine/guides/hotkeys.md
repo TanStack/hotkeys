@@ -7,6 +7,18 @@ id: hotkeys
 
 Pass getters for bindings and options that can change. A value such as `{ enabled: this.enabled }` captures the value at registration time; `() => ({ enabled: this.enabled })` follows Alpine state. State readers return an object with a reactive `.value` getter. Read it in a template or an Alpine effect instead of destructuring it once.
 
+## Chords and sequences
+
+A hotkey is either a **chord**, keys pressed together such as `'Mod+S'`, or a **sequence**, chords pressed one after another such as `['G', 'G']`. Every API in this guide accepts both, and a one-step array such as `['Mod+S']` is the chord `'Mod+S'`.
+
+```ts
+this.scope.createHotkey('Mod+S', () => this.save()) // chord
+this.scope.createHotkey(['G', 'G'], () => this.scrollToTop(), { timeout: 500 }) // sequence
+this.scope.createHotkey('Escape', () => this.close(), { requireReset: true }) // chord-only option
+```
+
+Most options apply to both kinds. `requireReset` applies only to chords and `timeout` only to sequences, and TypeScript rejects options that don't match the hotkey. When the kind isn't known statically, such as a `Hotkey` loaded from settings, only the shared options are accepted. Defaults apply only to the kinds that support them. See the [Sequences Guide](./sequences) for timing and matching, and the [App Hotkeys Guide](./app-hotkeys) to declare hotkeys up front and let users customize them.
+
 ## Logical keys and physical positions
 
 Use a logical binding when the shortcut should follow the character on the active layout. Use a physical binding when it should follow a keyboard position:
@@ -134,7 +146,7 @@ By default, Control/Meta shortcuts and Escape work in text inputs, textareas, se
 
 ### Shared default options
 
-Pass defaults to `createHotkeysScope`. The scope accepts `hotkey`, `hotkeySequence`, `hotkeyRecorder`, and `hotkeySequenceRecorder` options. Pass a getter to follow Alpine state. Each component owns and destroys its scope. Call-specific options override scope defaults, and per-definition options override common options. Omitted options use the core defaults. See [shared defaults](../quick-start.md#shared-defaults) for a complete example.
+Pass defaults to `createHotkeysScope`. The scope accepts `hotkey` and `hotkeyRecorder` options. Pass a getter to follow Alpine state. Each component owns and destroys its scope. Call-specific options override scope defaults, and per-definition options override common options. Omitted options use the core defaults. See [shared defaults](../quick-start.md#shared-defaults) for a complete example.
 
 ## Hotkey options
 
@@ -208,7 +220,7 @@ Pass getters for bindings and options that can change. A value such as `{ enable
 
 ## Registering multiple hotkeys
 
-Use `createHotkeys` to register a dynamic list. Per-definition options override common options. Removing an entry unregisters it. Each entry has the shared [HotkeyDefinition](../../../reference/adapter/interfaces/HotkeyDefinition) shape.
+Use `createHotkeys` to register a dynamic list. Per-definition options override common options. Removing an entry unregisters it. Each entry has the shared [AlpineHotkeyDefinition](../reference/type-aliases/AlpineHotkeyDefinition.md) shape.
 
 ```ts
 this.scope.createHotkeys(
@@ -218,9 +230,9 @@ this.scope.createHotkeys(
 ```
 
 ```ts
-import type { HotkeyDefinition } from '@tanstack/alpine-hotkeys'
+import type { AlpineHotkeyDefinition } from '@tanstack/alpine-hotkeys'
 
-const shortcuts: Array<HotkeyDefinition> = [
+const shortcuts: Array<AlpineHotkeyDefinition> = [
 	{ hotkey: 'Mod+S', callback: () => console.log('Save') },
 	{ hotkey: 'Mod+Z', callback: () => console.log('Undo'), options: { enabled: false } },
 ]
@@ -246,7 +258,7 @@ declare module '@tanstack/hotkeys' {
 
 ## Introspecting registrations
 
-Read `hotkeys` and `sequences` from `createHotkeyRegistrations()`. Disabled entries stay listed; destroyed registrations disappear. Both arrays include options and metadata. Hotkey views include enabled state and trigger counts; sequence views include sequence steps and progress.
+Use the `createHotkeyRegistrations` scope method to get a live view of every registration, chords and sequences together. It's the building block for shortcut palettes and help dialogs.
 
 ```ts
 // Inside init():
@@ -258,11 +270,13 @@ this.scope.createHotkey('Mod+S', () => this.save(), {
 
 ```html
 <template x-for="registration in registrations.hotkeys" :key="registration.id">
-	<p x-text="registration.options.meta?.name + ': ' + registration.hotkey"></p>
+	<p x-text="registration.options.meta?.name + ': ' + formatForDisplay(registration.hotkey)"></p>
 </template>
 ```
 
-Read `registrations.sequences` in the same way. Format each sequence step with `formatForDisplay` and join the labels with an arrow. Group entries by `registration.options.meta?.group` when building a help panel.
+Read the reactive `hotkeys` array in templates or effects. Each view has an `id`, the `hotkey`, its `options` (including `meta`), its `target`, and a `triggerCount`. Narrow with `kind`: chord views add `parsedHotkey`; sequence views add `parsedSequence` and `matchedStepCount`, the steps matched so far in the current attempt. Disabled entries stay listed; unmounted registrations disappear. Format any hotkey with `formatForDisplay`, and group entries by `options.meta?.group` when building a help panel.
+
+Registrations only exist while their components are mounted. To list hotkeys from routes that have not rendered, declare them with [app hotkeys](./app-hotkeys).
 
 ## The hotkey manager
 

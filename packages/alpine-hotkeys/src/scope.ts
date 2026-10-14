@@ -1,4 +1,7 @@
 import Alpine from 'alpinejs'
+import { getHotkeyManager } from '@tanstack/hotkeys'
+import { subscribePublishedAppHotkeys } from '@tanstack/hotkeys/adapter'
+import type { AppHotkeysStore } from '@tanstack/hotkeys'
 import type { ReadonlyStore } from '@tanstack/store'
 import type { DefaultHotkeysOptions, MaybeGetter } from './types'
 
@@ -41,10 +44,26 @@ export function createScope(
     }
   }
 
+  let appHotkeysState: { version: number } | undefined
+  /**
+   * Returns the store published by `provideAppHotkeys`. Reading it inside an
+   * effect or reactive getter tracks app hotkey and custom hotkey changes.
+   */
+  function appHotkeys(): AppHotkeysStore | null {
+    if (!appHotkeysState) {
+      const state = Alpine.reactive({ version: 0 })
+      appHotkeysState = state
+      cleanups.add(subscribePublishedAppHotkeys(() => state.version++))
+    }
+    void appHotkeysState.version
+    return getHotkeyManager().appHotkeys.state
+  }
+
   return {
     assertActive,
     effect,
     select,
+    appHotkeys,
     defaultOptions: () => read(defaultOptions),
     addCleanup: (cleanup: () => void) => cleanups.add(cleanup),
     get destroyed() {

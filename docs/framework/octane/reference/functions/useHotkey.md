@@ -3,31 +3,80 @@ id: useHotkey
 title: useHotkey
 ---
 
+## Call Signature
+
 ```ts
-function useHotkey(
+function useHotkey<T>(
    hotkey, 
    callback, 
    options?): void;
 ```
 
-Defined in: [useHotkey.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkey.ts#L11)
+Defined in: [useHotkey.ts:47](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkey.ts#L47)
 
-Registers one shortcut. Callback and options are refreshed after every commit.
+Registers one hotkey: a chord such as `'Mod+S'`, a sequence such as
+`['G', 'G']`, or an app hotkey from `defineAppHotkeys`. The callback and
+options are refreshed after every commit.
 
-## Parameters
+### Type Parameters
 
-### hotkey
+#### T
 
-`RegisterableHotkey`
+`T` *extends* `AppHotkey`\<`string`, `HotkeyChord` \| `HotkeySequence` \| `null`\>
 
-### callback
+### Parameters
+
+#### hotkey
+
+`T`
+
+#### callback
 
 `HotkeyCallback`
 
-### options?
+#### options?
 
-`HotkeyOptions`
+[`UseAppHotkeyOptions`](../type-aliases/UseAppHotkeyOptions.md)\<`T`\>
 
-## Returns
+### Returns
+
+`void`
+
+## Call Signature
+
+```ts
+function useHotkey<T>(
+   hotkey, 
+   callback, 
+   options?): void;
+```
+
+Defined in: [useHotkey.ts:52](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkey.ts#L52)
+
+Registers one hotkey: a chord such as `'Mod+S'`, a sequence such as
+`['G', 'G']`, or an app hotkey from `defineAppHotkeys`. The callback and
+options are refreshed after every commit.
+
+### Type Parameters
+
+#### T
+
+`T` *extends* `RegisterableHotkey`
+
+### Parameters
+
+#### hotkey
+
+`T`
+
+#### callback
+
+`HotkeyCallback`
+
+#### options?
+
+`AdapterOptionsFor`\<`T`, [`UseHotkeyTarget`](../type-aliases/UseHotkeyTarget.md)\>
+
+### Returns
 
 `void`

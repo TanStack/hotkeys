@@ -20,7 +20,7 @@ interface DynamicShortcut {
   templateUrl: './app.component.html',
 })
 export class AppComponent {
-  fd = (h: string) => formatForDisplay(h as Hotkey)
+  fd = formatForDisplay
 
   // Basic demo
   log = signal<string[]>([])
@@ -195,9 +195,5 @@ export class AppComponent {
 
   onInputKeydown(event: KeyboardEvent) {
     if (event.key === 'Enter') this.addShortcut()
-  }
-
-  formatSeq(seq: Array<string>): string {
-    return seq.map((h) => formatForDisplay(h as Hotkey)).join(' ')
   }
 }

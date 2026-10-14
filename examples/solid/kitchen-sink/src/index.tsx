@@ -17,16 +17,13 @@ import {
   createHotkeyHint,
   createHotkeyRecorder,
   createHotkeyRegistrations,
-  createHotkeySequence,
-  createHotkeySequenceRecorder,
-  createHotkeySequences,
   createHotkeys,
   createKeyHold,
   formatForDisplay,
+  isHotkeySequence,
 } from '@tanstack/solid-hotkeys'
 import type {
   Hotkey,
-  HotkeySequence,
   RecorderKeyMode,
   RegisterableHotkey,
 } from '@tanstack/solid-hotkeys'
@@ -66,8 +63,7 @@ function Layout() {
   const keys = createHeldKeys()
   const codes = createHeldKeyCodes()
   const shift = createKeyHold('Shift')
-  const { hotkeys, sequences } = createHotkeyRegistrations()
-  const registrations = () => [...hotkeys(), ...sequences()]
+  const registrations = createHotkeyRegistrations()
   const groups = () => [
     ...new Set(
       registrations().map((reg) => reg.options.meta?.group ?? 'Other'),
@@ -144,9 +140,9 @@ function Layout() {
                           <small>{reg.options.meta?.description}</small>
                         </td>
                         <td>
-                          {('hotkey' in reg ? [reg.hotkey] : reg.sequence)
-                            .map((step) => formatForDisplay(step))
-                            .join(' → ')}
+                          {formatForDisplay(reg.hotkey, {
+                            sequenceSeparator: ' → ',
+                          })}
                         </td>
                         <td>
                           {reg.options.enabled === false
@@ -379,7 +375,7 @@ function Editor() {
 function Sequences() {
   const log = useContext(ActivityContext)
   const [timeout, setTimeoutValue] = createSignal(1000)
-  createHotkeySequence(
+  createHotkey(
     ['[KeyG]', '[KeyG]'],
     () => log('Sequence: go to top'),
     () => ({
@@ -387,22 +383,24 @@ function Sequences() {
       meta: { name: 'Go to top', group: 'Sequences' },
     }),
   )
-  createHotkeySequences(
+  createHotkeys(
     [
       {
-        sequence: ['[KeyG]', '[KeyI]'],
+        hotkey: ['[KeyG]', '[KeyI]'],
         callback: () => log('Sequence: inbox'),
         options: { meta: { name: 'Open inbox', group: 'Sequences' } },
       },
       {
-        sequence: ['Shift+[KeyR]', 'Shift+[KeyT]'],
+        hotkey: ['Shift+[KeyR]', 'Shift+[KeyT]'],
         callback: () => log('Sequence: shifted chord chain'),
         options: { meta: { name: 'Shifted chain', group: 'Sequences' } },
       },
     ],
     () => ({ timeout: timeout() }),
   )
-  const { sequences } = createHotkeyRegistrations()
+  const registrations = createHotkeyRegistrations()
+  const sequences = () =>
+    registrations().filter((reg) => reg.kind === 'sequence')
   return (
     <section>
       <h2>Sequences</h2>
@@ -434,10 +432,10 @@ function Sequences() {
             <tr>
               <td>{reg.options.meta?.name}</td>
               <td>
-                {reg.sequence.map((step) => formatForDisplay(step)).join(' → ')}
+                {formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })}
               </td>
               <td>
-                {reg.matchedStepCount}/{reg.sequence.length} steps;{' '}
+                {reg.matchedStepCount}/{reg.hotkey.length} steps;{' '}
                 {reg.triggerCount} fired
               </td>
             </tr>
@@ -458,10 +456,7 @@ function Recording() {
   const [hotkey, setHotkey] = createSignal<Hotkey>(initial)
   const [mode, setMode] = createSignal<RecorderKeyMode>('code')
   const [problem, setProblem] = createSignal('')
-  const [sequence, setSequence] = createSignal<HotkeySequence>([
-    '[KeyX]',
-    '[KeyY]',
-  ])
+  const [sequence, setSequence] = createSignal<Hotkey>(['[KeyX]', '[KeyY]'])
   const [sequenceProblem, setSequenceProblem] = createSignal('')
   const [idle, setIdle] = createSignal(false)
   const [commitOnEnter, setCommitOnEnter] = createSignal(true)
@@ -472,7 +467,7 @@ function Recording() {
       meta: { name: 'Recorded action', group: 'Recording' },
     }),
   )
-  createHotkeySequence(
+  createHotkey(
     sequence,
     () => log('Your recorded sequence fired'),
     () => ({
@@ -501,7 +496,9 @@ function Recording() {
     },
     onCancel: () => setProblem('Recording cancelled. Binding unchanged.'),
   }))
-  const sequenceRecorder = createHotkeySequenceRecorder(() => ({
+  // maxSteps above 1 records sequences; one step records a chord.
+  const sequenceRecorder = createHotkeyRecorder(() => ({
+    maxSteps: Infinity,
     recordBy: mode(),
     ignoreInputs: false,
     idleTimeoutMs: idle() ? 1500 : undefined,
@@ -509,11 +506,15 @@ function Recording() {
     detectConflicts: {
       exclude: (reg) => reg.options.meta?.name === 'Recorded sequence',
     },
-    validate: (steps) => steps.length >= 2 || 'Record at least two chords.',
+    validate: (value) =>
+      (isHotkeySequence(value) && value.length >= 2) ||
+      'Record at least two chords.',
     onRecord: (value) => {
       setSequence(value)
       setSequenceProblem('')
-      log(`Recorded sequence ${value.join(' → ')}`)
+      log(
+        `Recorded sequence ${formatForDisplay(value, { sequenceSeparator: ' → ' })}`,
+      )
     },
     onReject: (reason) => setSequenceProblem(reason.message),
     onClear: () => {
@@ -543,7 +544,7 @@ function Recording() {
       <h3>Single shortcut</h3>
       <p>
         <kbd>{formatForDisplay(hotkey())}</kbd> — stored as{' '}
-        <code>{hotkey()}</code>
+        <code>{String(hotkey())}</code>
       </p>
       <button
         disabled={recorder.isRecording() || sequenceRecorder.isRecording()}
@@ -573,12 +574,11 @@ function Recording() {
       <p role="status">{problem()}</p>
       <h3>Sequence</h3>
       <p>
-        {(sequenceRecorder.isRecording()
-          ? sequenceRecorder.steps()
-          : sequence()
-        )
-          .map((step) => formatForDisplay(step))
-          .join(' → ') || 'Waiting for the first chord…'}
+        {sequenceRecorder.isRecording()
+          ? formatForDisplay(sequenceRecorder.steps(), {
+              sequenceSeparator: ' → ',
+            }) || 'Waiting for the first chord…'
+          : formatForDisplay(sequence(), { sequenceSeparator: ' → ' })}
       </p>
       <label>
         <input

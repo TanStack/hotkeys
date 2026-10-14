@@ -3,16 +3,16 @@ id: useHotkeys
 title: useHotkeys
 ---
 
-Defined in: [packages/ember-hotkeys/src/useHotkeys.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeys.ts#L13)
+Defined in: [packages/ember-hotkeys/src/useHotkeys.ts:6](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeys.ts#L6)
 
-Registers a reactive list of shortcuts with the helper's template lifecycle.
+Registers a reactive list of hotkeys with the helper's template lifecycle.
 
 ## Extends
 
 - `default`\<\{
   `Args`: \{
-     `Named`: `HotkeyOptions`;
-     `Positional`: \[`HotkeyDefinition`[]\];
+     `Named`: [`EmberHotkeyCommonOptions`](../type-aliases/EmberHotkeyCommonOptions.md);
+     `Positional`: \[`ReadonlyArray`\<[`EmberHotkeyDefinition`](../type-aliases/EmberHotkeyDefinition.md)\>\];
   \};
   `Return`: `void`;
 \}\>
@@ -41,7 +41,10 @@ Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_su
 
 ```ts
 Helper<{
-  Args: { Positional: [Array<HotkeyDefinition>]; Named: HotkeyOptions }
+  Args: {
+    Positional: [ReadonlyArray<EmberHotkeyDefinition>]
+    Named: EmberHotkeyCommonOptions
+  }
   Return: void
 }>.constructor
 ```
@@ -60,7 +63,7 @@ Defined in: node\_modules/.pnpm/@glint+template@1.9.0/node\_modules/@glint/templ
 
 ##### args
 
-...\[`HotkeyDefinition`[], `NamedArgs`\<`HotkeyOptions`\>\]
+...\[readonly [`EmberHotkeyDefinition`](../type-aliases/EmberHotkeyDefinition.md)[], `NamedArgs`\<[`EmberHotkeyCommonOptions`](../type-aliases/EmberHotkeyCommonOptions.md)\>\]
 
 #### Returns
 
@@ -881,7 +884,7 @@ Helper.cacheFor
 compute(positional, options): void;
 ```
 
-Defined in: [packages/ember-hotkeys/src/useHotkeys.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeys.ts#L22)
+Defined in: [packages/ember-hotkeys/src/useHotkeys.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeys.ts#L15)
 
 Override this function when writing a class-based helper.
 
@@ -889,13 +892,13 @@ Override this function when writing a class-based helper.
 
 ##### positional
 
-\[`HotkeyDefinition`[]\]
+\[readonly [`EmberHotkeyDefinition`](../type-aliases/EmberHotkeyDefinition.md)[]\]
 
 The positional arguments to the helper
 
 ##### options
 
-`HotkeyOptions`
+[`EmberHotkeyCommonOptions`](../type-aliases/EmberHotkeyCommonOptions.md)
 
 #### Returns
 

@@ -1,15 +1,18 @@
 import { useState } from 'octane';
 import {
   HotkeysProvider, useDefaultHotkeysOptions, useHotkeysContext,
-  useHotkey, useHotkeys, useHotkeySequence, useHotkeySequences,
+  useHotkey, useHotkeys,
   useHeldKeys, useHeldKeyCodes, useKeyHold, useHotkeyHint,
-  useHotkeyRecorder, useHotkeySequenceRecorder, useHotkeyRegistrations,
+  useHotkeyRecorder, useHotkeyRegistrations,
+  defineAppHotkeys, useAppHotkeyList, useCustomHotkeys,
 } from '@tanstack/octane-hotkeys';
-import type { Hotkey } from '@tanstack/octane-hotkeys';
+import type {
+  Hotkey, OctaneHotkeyRecorder, UseCustomHotkeysResult,
+} from '@tanstack/octane-hotkeys';
 
 export const capture: {
-  recorder?: ReturnType<typeof useHotkeyRecorder>;
-  sequenceRecorder?: ReturnType<typeof useHotkeySequenceRecorder>;
+  recorder?: OctaneHotkeyRecorder;
+  sequenceRecorder?: OctaneHotkeyRecorder;
   records: unknown[];
 } = { records: [] };
 
@@ -23,8 +26,8 @@ export function Fixture() @{
   useHotkey(binding, () => setCount(count + 1), { enabled });
   useHotkey('B', () => setOther(other + 1));
   useHotkeys(enabled ? [{ hotkey: 'C', callback: () => setOther(other + 1) }] : []);
-  useHotkeySequence(['G', 'G'], () => setCount(count + 1));
-  useHotkeySequences(enabled ? [{ sequence: ['D', 'D'], callback: () => setOther(other + 1) }] : []);
+  useHotkey(['G', 'G'], () => setCount(count + 1));
+  useHotkeys(enabled ? [{ hotkey: ['D', 'D'], callback: () => setOther(other + 1) }] : []);
   const held = useHeldKeys();
   const codes = useHeldKeyCodes();
   const hold = useKeyHold('Control');
@@ -32,7 +35,7 @@ export function Fixture() @{
   const otherHint = useHotkeyHint('Alt+S');
   const registrations = useHotkeyRegistrations();
   const recorder = useHotkeyRecorder({ recordBy: 'key', platform: 'mac', onRecord: (value) => capture.records.push(value) });
-  const sequenceRecorder = useHotkeySequenceRecorder({ recordBy: 'key', platform: 'mac', onRecord: (value) => capture.records.push(value) });
+  const sequenceRecorder = useHotkeyRecorder({ maxSteps: Infinity, recordBy: 'key', platform: 'mac', onRecord: (value) => capture.records.push(value) });
   capture.recorder = recorder;
   capture.sequenceRecorder = sequenceRecorder;
   <div>
@@ -49,7 +52,7 @@ export function Fixture() @{
     <output id="held">{held.join(',')}</output>
     <output id="codes">{JSON.stringify(codes)}</output>
     <output id="hold">{String(hold)}</output>
-    <output id="registrations">{registrations.hotkeys.length + ':' + registrations.sequences.length}</output>
+    <output id="registrations">{registrations.hotkeys.filter((reg) => reg.kind === 'chord').length + ':' + registrations.hotkeys.filter((reg) => reg.kind === 'sequence').length}</output>
     <output id="recording">{String(recorder.isRecording)}</output>
     <output id="steps">{sequenceRecorder.steps.join(',')}</output>
   </div>
@@ -58,10 +61,8 @@ export function Fixture() @{
 export function ProviderFixture() @{
   const [enabled, setEnabled] = useState(false);
   <HotkeysProvider defaultOptions={{
-    hotkey: { enabled, preventDefault: false },
-    hotkeySequence: { enabled, timeout: 321 },
-    hotkeyRecorder: { recordBy: 'key' },
-    hotkeySequenceRecorder: { recordBy: 'key', commitKeys: 'none' },
+    hotkey: { enabled, preventDefault: false, timeout: 321 },
+    hotkeyRecorder: { recordBy: 'key', commitKeys: 'none' },
   }}>
     <div>
       <button id="provider-enable" onClick={() => setEnabled(true)}>Enable</button>
@@ -78,9 +79,9 @@ function ProviderConsumer() @{
   const context = useHotkeysContext();
   useHotkey('A', () => capture.records.push('A'));
   useHotkeys([{ hotkey: 'B', callback: () => capture.records.push('B'), options: { enabled: true } }]);
-  useHotkeySequence(['G', 'G'], () => capture.records.push('GG'));
+  useHotkey(['G', 'G'], () => capture.records.push('GG'));
   const recorder = useHotkeyRecorder({ onRecord: value => capture.records.push(value) });
-  const sequence = useHotkeySequenceRecorder({ onRecord: value => capture.records.push(value), commitKeys: 'enter' });
+  const sequence = useHotkeyRecorder({ maxSteps: Infinity, onRecord: value => capture.records.push(value), commitKeys: 'enter' });
   <div>
     <output id="provider-default">{String(defaults.hotkey?.enabled)}</output>
     <output id="provider-context">{String(context !== null)}</output>
@@ -92,4 +93,40 @@ function ProviderConsumer() @{
 function NestedConsumer() @{
   useHotkey('C', () => capture.records.push('C'));
   <span>Nested provider</span>
+}
+
+export const appHotkeys = defineAppHotkeys({
+  'doc.save': { hotkey: 'Control+S', meta: { name: 'Save' } },
+  'palette.open': { hotkey: null },
+  'nav.home': { hotkey: ['G', 'H'], options: { timeout: 400 } },
+});
+
+export const appCapture: {
+  custom?: UseCustomHotkeysResult;
+  changes: unknown[];
+} = { changes: [] };
+
+export function AppHotkeysFixture() @{
+  <HotkeysProvider
+    appHotkeys={appHotkeys}
+    customHotkeys={{ 'nav.home': ['G', 'G'] }}
+    onCustomHotkeysChange={(custom) => appCapture.changes.push(custom)}
+  >
+    <AppHotkeysConsumer />
+  </HotkeysProvider>
+}
+
+function AppHotkeysConsumer() @{
+  const [count, setCount] = useState(0);
+  useHotkey(appHotkeys['doc.save'], () => setCount(count + 1));
+  useHotkeys([
+    { hotkey: appHotkeys['nav.home'], callback: () => {} },
+    { hotkey: appHotkeys['palette.open'], callback: () => {} },
+  ]);
+  const list = useAppHotkeyList();
+  appCapture.custom = useCustomHotkeys();
+  <div>
+    <output id="app-count">{count}</output>
+    <output id="app-statuses">{list.map((item) => item.status).join(',')}</output>
+  </div>
 }

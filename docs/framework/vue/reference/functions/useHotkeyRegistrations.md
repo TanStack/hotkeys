@@ -4,20 +4,31 @@ title: useHotkeyRegistrations
 ---
 
 ```ts
-function useHotkeyRegistrations(): HotkeyRegistrationsResult;
+function useHotkeyRegistrations(): Readonly<Ref<HotkeyRegistrationView[]>>;
 ```
 
-Defined in: [useHotkeyRegistrations.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRegistrations.ts#L33)
+Defined in: [useHotkeyRegistrations.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRegistrations.ts#L26)
 
-Vue composable that reactively reads all hotkey and sequence registrations
-from the singleton managers.
+Vue composable that reactively reads every hotkey registration, chords and
+sequences, from the singleton HotkeyManager. Narrow each view with `kind`.
 
-This is a standalone composable that does NOT require the HotkeysProvider.
-It subscribes to both HotkeyManager and SequenceManager stores and
-triggers reactivity when registrations change.
+This composable does NOT require the HotkeysProvider.
 
 ## Returns
 
-[`HotkeyRegistrationsResult`](../interfaces/HotkeyRegistrationsResult.md)
+`Readonly`\<`Ref`\<`HotkeyRegistrationView`[]\>\>
 
-Object with `hotkeys` and `sequences` refs
+A ref of all registrations, without callbacks
+
+## Example
+
+```vue
+<script setup>
+const registrations = useHotkeyRegistrations()
+</script>
+<template>
+  <li v-for="reg in registrations" :key="reg.id">
+    {{ reg.options.meta?.name }}: {{ formatForDisplay(reg.hotkey) }}
+  </li>
+</template>
+```

@@ -1,275 +1,160 @@
 import {
-  detectPlatform,
-  getHotkeyManager,
-  normalizeRegisterableHotkey,
-} from '@tanstack/hotkeys'
+  createHotkeyBindings,
+  prepareHotkeyDefinitions,
+} from '@tanstack/hotkeys/adapter'
 import { onDestroy } from 'svelte'
-import { SvelteMap, SvelteSet } from 'svelte/reactivity'
-import { getDefaultHotkeysOptions } from './HotkeysCtx'
-import { resolveMaybeGetter } from './internal.svelte'
-import type {
-  Hotkey,
-  HotkeyCallback,
-  HotkeyRegistrationHandle,
-  RegisterableHotkey,
-} from '@tanstack/hotkeys'
-import type { CreateHotkeyOptions } from './createHotkey.svelte'
-import type { MaybeGetter } from './internal.svelte'
+import { getHotkeysContext } from './HotkeysCtx'
+import {
+  createAppHotkeysSubscriber,
+  resolveMaybeGetter,
+} from './internal.svelte'
 import type { Attachment } from 'svelte/attachments'
+import type {
+  AppHotkey,
+  HotkeyCallback,
+  HotkeySequence,
+  RegisterableHotkey,
+  RegisterableHotkeyChord,
+} from '@tanstack/hotkeys'
+import type { AdapterHotkeyDefinition } from '@tanstack/hotkeys/adapter'
+import type { MaybeGetter } from './internal.svelte'
+import type {
+  CreateAppHotkeyOptions,
+  CreateHotkeyChordOptions,
+  CreateHotkeyCommonOptions,
+  CreateHotkeyOptions,
+  CreateHotkeySequenceOptions,
+  CreateHotkeyTarget,
+} from './createHotkey.svelte'
 
 /**
- * A single hotkey definition for use with `createHotkeys`.
+ * One hotkey for `createHotkeys`. The hotkey and options may be getters.
+ * Chords accept `requireReset`; sequences accept `timeout`; hotkeys of unknown
+ * kind accept only shared options.
  */
-export interface CreateHotkeyDefinition {
-  /** The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object */
-  hotkey: MaybeGetter<RegisterableHotkey>
-  /** The function to call when the hotkey is pressed */
-  callback: HotkeyCallback
-  /** Per-hotkey options (merged on top of commonOptions) */
-  options?: MaybeGetter<CreateHotkeyOptions>
-}
-
-type RegistrationRecord = {
-  handle: HotkeyRegistrationHandle
-  target: Document | HTMLElement | Window
-}
-
-function cleanupRegistrations(
-  registrations:
-    Map<string, RegistrationRecord> | SvelteMap<string, RegistrationRecord>,
-) {
-  for (const { handle } of registrations.values()) {
-    if (handle.isActive) {
-      handle.unregister()
+export type CreateHotkeyDefinition =
+  | {
+      /** A chord string such as `'Mod+S'`, or a RawHotkey object */
+      hotkey: MaybeGetter<RegisterableHotkeyChord>
+      /** The function to call when the hotkey is pressed */
+      callback: HotkeyCallback
+      /** Per-hotkey options (merged on top of commonOptions) */
+      options?: MaybeGetter<CreateHotkeyChordOptions>
     }
-  }
-  registrations.clear()
-}
+  | {
+      /** A sequence such as `['G', 'G']` */
+      hotkey: MaybeGetter<HotkeySequence>
+      callback: HotkeyCallback
+      options?: MaybeGetter<CreateHotkeySequenceOptions>
+    }
+  | {
+      /** An app hotkey from `defineAppHotkeys` */
+      hotkey: MaybeGetter<AppHotkey>
+      callback: HotkeyCallback
+      options?: MaybeGetter<CreateAppHotkeyOptions>
+    }
+  | {
+      /** A hotkey whose kind is not known statically. Accepts only shared options. */
+      hotkey: MaybeGetter<RegisterableHotkey>
+      callback: HotkeyCallback
+      options?: MaybeGetter<CreateHotkeyOptions>
+    }
 
 /**
- * Register multiple global hotkeys for the current component.
- *
- * @example
- * ```svelte
- * <script lang="ts">
- *   import { createHotkeys } from '@tanstack/svelte-hotkeys'
- *
- *   createHotkeys([
- *     { hotkey: 'Mod+S', callback: () => save() },
- *     { hotkey: 'Mod+Z', callback: () => undo() },
- *     { hotkey: 'Escape', callback: () => close() },
- *   ])
- * </script>
- * ```
+ * Registers definitions in an effect. With an element, every hotkey listens on
+ * that element; otherwise each uses its own target (document by default).
  */
-export function createHotkeys(
-  hotkeys: MaybeGetter<Array<CreateHotkeyDefinition>>,
-  commonOptions: MaybeGetter<CreateHotkeyOptions> = {},
-): void {
-  const registrations = new SvelteMap<string, RegistrationRecord>()
-
-  onDestroy(() => {
-    cleanupRegistrations(registrations)
-  })
+function bindHotkeys(
+  hotkeys: MaybeGetter<ReadonlyArray<CreateHotkeyDefinition>>,
+  commonOptions: MaybeGetter<CreateHotkeyCommonOptions>,
+  element?: HTMLElement,
+) {
+  const context = getHotkeysContext()
+  const subscribeAppHotkeys = createAppHotkeysSubscriber(
+    context?.appHotkeysStore ?? null,
+  )
+  const bindings = createHotkeyBindings()
 
   $effect(() => {
     if (typeof document === 'undefined') {
       return
     }
-
-    const resolvedHotkeys = resolveMaybeGetter(hotkeys)
-    const resolvedCommonOptions = resolveMaybeGetter(commonOptions)
-    const nextKeys = new SvelteSet<string>()
-    const prepared: Array<{
-      registrationKey: string
-      def: CreateHotkeyDefinition
-      mergedOptions: CreateHotkeyOptions
-      hotkeyString: Hotkey
-      resolvedTarget: Document | HTMLElement | Window
-    }> = []
-
-    for (let i = 0; i < resolvedHotkeys.length; i++) {
-      const def = resolvedHotkeys[i]!
-      const resolvedHotkey = resolveMaybeGetter(def.hotkey)
-      const resolvedDefOptions = def.options
-        ? resolveMaybeGetter(def.options)
-        : {}
-
-      const mergedOptions = {
-        ...getDefaultHotkeysOptions().hotkey,
-        ...resolvedCommonOptions,
-        ...resolvedDefOptions,
-      }
-
-      const resolvedTarget =
-        mergedOptions.target ??
-        (typeof document !== 'undefined' ? document : null)
-
-      if (!resolvedTarget) {
-        continue
-      }
-
-      const hotkeyString = normalizeRegisterableHotkey(
-        resolvedHotkey,
-        mergedOptions.platform ?? detectPlatform(),
-      )
-      const registrationKey = `${i}:${hotkeyString}`
-      nextKeys.add(registrationKey)
-      prepared.push({
-        registrationKey,
-        def,
-        mergedOptions,
-        hotkeyString,
-        resolvedTarget,
-      })
-    }
-
-    for (const [key, record] of [...registrations.entries()]) {
-      if (!nextKeys.has(key)) {
-        if (record.handle.isActive) {
-          record.handle.unregister()
-        }
-        registrations.delete(key)
-      }
-    }
-
-    for (const p of prepared) {
-      const existing = registrations.get(p.registrationKey)
-      const { target: _target, ...optionsWithoutTarget } = p.mergedOptions
-
-      if (existing?.handle.isActive && existing.target === p.resolvedTarget) {
-        existing.handle.callback = p.def.callback
-        existing.handle.setOptions(optionsWithoutTarget)
-        continue
-      }
-
-      if (existing?.handle.isActive) {
-        existing.handle.unregister()
-      }
-      if (existing) {
-        registrations.delete(p.registrationKey)
-      }
-
-      const handle = getHotkeyManager().register(
-        p.hotkeyString,
-        p.def.callback,
-        {
-          ...optionsWithoutTarget,
-          target: p.resolvedTarget,
-        },
-      )
-      registrations.set(p.registrationKey, {
-        handle,
-        target: p.resolvedTarget,
-      })
-    }
+    // Track app hotkeys so registrations move with custom hotkeys.
+    subscribeAppHotkeys()
+    const definitions = resolveMaybeGetter(hotkeys).map(
+      (definition) =>
+        ({
+          hotkey: resolveMaybeGetter(definition.hotkey),
+          callback: definition.callback,
+          options: definition.options
+            ? resolveMaybeGetter(definition.options)
+            : undefined,
+        }) as AdapterHotkeyDefinition<CreateHotkeyTarget | HTMLElement>,
+    )
+    bindings.update(
+      prepareHotkeyDefinitions(definitions, {
+        appHotkeysStore: context?.appHotkeysStore,
+        defaults: context?.defaultOptions.hotkey,
+        commonOptions: element
+          ? { ...resolveMaybeGetter(commonOptions), target: element }
+          : resolveMaybeGetter(commonOptions),
+        resolveTarget: element ? () => element : undefined,
+      }),
+    )
   })
+
+  return bindings
 }
 
 /**
- * Create an attachment for element-scoped multi-hotkey registration.
+ * Svelte function for registering several hotkeys at once on the document:
+ * chords, sequences, and app hotkeys. Pass getters for reactive values. Use
+ * `createHotkeysAttachment` for element-scoped hotkeys.
+ *
+ * Options merge in this order: provider defaults, app hotkey declaration,
+ * commonOptions, per-hotkey options. Each option applies only to the kinds
+ * that support it. Unbound app hotkeys and empty sequences register nothing.
  *
  * @example
  * ```svelte
  * <script lang="ts">
- *   import { createHotkeysAttachment } from '@tanstack/svelte-hotkeys'
+ *   createHotkeys([
+ *     { hotkey: 'Mod+S', callback: () => save() },
+ *     { hotkey: ['G', 'G'], callback: () => scrollToTop(), options: { timeout: 500 } },
+ *   ])
+ * </script>
+ * ```
+ */
+export function createHotkeys(
+  hotkeys: MaybeGetter<ReadonlyArray<CreateHotkeyDefinition>>,
+  commonOptions: MaybeGetter<CreateHotkeyCommonOptions> = {},
+): void {
+  const bindings = bindHotkeys(hotkeys, commonOptions)
+  onDestroy(() => bindings.destroy())
+}
+
+/**
+ * Create an attachment for element-scoped hotkeys: chords, sequences, and app
+ * hotkeys listen on the attached element.
  *
+ * @example
+ * ```svelte
+ * <script lang="ts">
  *   const editorKeys = createHotkeysAttachment([
  *     { hotkey: 'Mod+S', callback: () => save() },
- *     { hotkey: 'Mod+Z', callback: () => undo() },
+ *     { hotkey: ['G', 'G'], callback: () => scrollToTop() },
  *   ])
  * </script>
  *
- * <div tabindex="0" {@attach editorKeys}>
- *   Editor content
- * </div>
+ * <div tabindex="0" {@attach editorKeys}>Editor content</div>
  * ```
  */
 export function createHotkeysAttachment(
-  hotkeys: MaybeGetter<Array<CreateHotkeyDefinition>>,
-  commonOptions: MaybeGetter<CreateHotkeyOptions> = {},
+  hotkeys: MaybeGetter<ReadonlyArray<CreateHotkeyDefinition>>,
+  commonOptions: MaybeGetter<CreateHotkeyCommonOptions> = {},
 ): Attachment<HTMLElement> {
   return (element) => {
-    const registrations = new SvelteMap<string, RegistrationRecord>()
-
-    $effect(() => {
-      const resolvedHotkeys = resolveMaybeGetter(hotkeys)
-      const resolvedCommonOptions = resolveMaybeGetter(commonOptions)
-      const nextKeys = new SvelteSet<string>()
-      const prepared: Array<{
-        registrationKey: string
-        def: CreateHotkeyDefinition
-        mergedOptions: CreateHotkeyOptions
-        hotkeyString: Hotkey
-      }> = []
-
-      for (let i = 0; i < resolvedHotkeys.length; i++) {
-        const def = resolvedHotkeys[i]!
-        const resolvedHotkey = resolveMaybeGetter(def.hotkey)
-        const resolvedDefOptions = def.options
-          ? resolveMaybeGetter(def.options)
-          : {}
-
-        const mergedOptions = {
-          ...getDefaultHotkeysOptions().hotkey,
-          ...resolvedCommonOptions,
-          ...resolvedDefOptions,
-        }
-
-        const hotkeyString = normalizeRegisterableHotkey(
-          resolvedHotkey,
-          mergedOptions.platform ?? detectPlatform(),
-        )
-        const registrationKey = `${i}:${hotkeyString}`
-        nextKeys.add(registrationKey)
-        prepared.push({
-          registrationKey,
-          def,
-          mergedOptions,
-          hotkeyString,
-        })
-      }
-
-      for (const [key, record] of [...registrations.entries()]) {
-        if (!nextKeys.has(key)) {
-          if (record.handle.isActive) {
-            record.handle.unregister()
-          }
-          registrations.delete(key)
-        }
-      }
-
-      for (const p of prepared) {
-        const existing = registrations.get(p.registrationKey)
-        const { target: _target, ...optionsWithoutTarget } = p.mergedOptions
-
-        if (existing?.handle.isActive) {
-          existing.handle.callback = p.def.callback
-          existing.handle.setOptions(optionsWithoutTarget)
-          continue
-        }
-
-        if (existing?.handle.isActive) {
-          existing.handle.unregister()
-        }
-        if (existing) {
-          registrations.delete(p.registrationKey)
-        }
-
-        const handle = getHotkeyManager().register(
-          p.hotkeyString,
-          p.def.callback,
-          {
-            ...optionsWithoutTarget,
-            target: element,
-          },
-        )
-        registrations.set(p.registrationKey, { handle, target: element })
-      }
-    })
-
-    return () => {
-      cleanupRegistrations(registrations)
-    }
+    const bindings = bindHotkeys(hotkeys, commonOptions, element)
+    return () => bindings.destroy()
   }
 }

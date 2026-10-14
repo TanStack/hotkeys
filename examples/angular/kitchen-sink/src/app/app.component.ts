@@ -16,18 +16,12 @@ import {
   injectHotkeyHint,
   injectHotkeyRecorder,
   injectHotkeyRegistrations,
-  injectHotkeySequence,
-  injectHotkeySequenceRecorder,
-  injectHotkeySequences,
   injectHotkeys,
   injectKeyHold,
+  isHotkeySequence,
 } from '@tanstack/angular-hotkeys'
 import type { ElementRef } from '@angular/core'
-import type {
-  Hotkey,
-  HotkeySequence,
-  RecorderKeyMode,
-} from '@tanstack/angular-hotkeys'
+import type { Hotkey, RecorderKeyMode } from '@tanstack/angular-hotkeys'
 
 @Injectable({ providedIn: 'root' })
 export class Activity {
@@ -243,12 +237,12 @@ export class Editor {
     /></label>
     <table>
       <tbody>
-        @for (reg of registry.sequences(); track reg.id) {
+        @for (reg of sequences(); track reg.id) {
           <tr>
             <td>{{ reg.options.meta?.name }}</td>
-            <td>{{ label(reg.sequence) }}</td>
+            <td>{{ label(reg.hotkey) }}</td>
             <td>
-              {{ reg.matchedStepCount }}/{{ reg.sequence.length }} steps;
+              {{ reg.matchedStepCount }}/{{ reg.hotkey.length }} steps;
               {{ reg.triggerCount }} fired
             </td>
           </tr>
@@ -260,11 +254,15 @@ export class Editor {
 export class Sequences {
   readonly timeout = signal(1000)
   readonly activity = inject(Activity)
-  readonly registry = injectHotkeyRegistrations()
-  label = (sequence: HotkeySequence) =>
-    sequence.map((h) => formatForDisplay(h)).join(' → ')
+  readonly registrations = injectHotkeyRegistrations()
+  readonly sequences = computed(() =>
+    this.registrations().filter((reg) => reg.kind === 'sequence'),
+  )
+  label = (hotkey: Hotkey) =>
+    formatForDisplay(hotkey, { sequenceSeparator: ' → ' })
   constructor() {
-    injectHotkeySequence(
+    // An array of chords registers a sequence.
+    injectHotkey(
       ['[KeyG]', '[KeyG]'],
       () => this.activity.log('Go to top'),
       () => ({
@@ -272,15 +270,15 @@ export class Sequences {
         meta: { name: 'Go to top', group: 'Sequences' },
       }),
     )
-    injectHotkeySequences(
+    injectHotkeys(
       [
         {
-          sequence: ['[KeyG]', '[KeyI]'],
+          hotkey: ['[KeyG]', '[KeyI]'],
           callback: () => this.activity.log('Inbox'),
           options: { meta: { name: 'Inbox', group: 'Sequences' } },
         },
         {
-          sequence: ['Shift+[KeyR]', 'Shift+[KeyT]'],
+          hotkey: ['Shift+[KeyR]', 'Shift+[KeyT]'],
           callback: () => this.activity.log('Shift chain'),
           options: { meta: { name: 'Shift chain', group: 'Sequences' } },
         },
@@ -366,15 +364,15 @@ export class Sequences {
 export class Recording {
   readonly initial: Hotkey = 'Alt+[KeyR]'
   readonly hotkey = signal<Hotkey>(this.initial)
-  readonly sequence = signal<HotkeySequence>(['[KeyX]', '[KeyY]'])
+  readonly sequence = signal<Hotkey>(['[KeyX]', '[KeyY]'])
   readonly mode = signal<RecorderKeyMode>('code')
   readonly problem = signal('')
   readonly idle = signal(false)
   readonly enter = signal(true)
   readonly activity = inject(Activity)
   readonly format = formatForDisplay
-  label = (sequence: HotkeySequence) =>
-    sequence.map((h) => formatForDisplay(h)).join(' → ')
+  label = (hotkey: Hotkey) =>
+    formatForDisplay(hotkey, { sequenceSeparator: ' → ' })
   setMode(value: string) {
     this.mode.set(value === 'key' ? 'key' : 'code')
   }
@@ -394,7 +392,9 @@ export class Recording {
     onReject: (r) => this.problem.set(r.message),
     onCancel: () => this.problem.set('Cancelled'),
   }))
-  readonly seq = injectHotkeySequenceRecorder(() => ({
+  // maxSteps above 1 records sequences; one step records a chord.
+  readonly seq = injectHotkeyRecorder(() => ({
+    maxSteps: Infinity,
     recordBy: this.mode(),
     ignoreInputs: false,
     idleTimeoutMs: this.idle() ? 1500 : undefined,
@@ -402,7 +402,9 @@ export class Recording {
     detectConflicts: {
       exclude: (reg) => reg.options.meta?.name === 'Recorded sequence',
     },
-    validate: (steps) => steps.length >= 2 || 'Record at least two chords.',
+    validate: (value) =>
+      (isHotkeySequence(value) && value.length >= 2) ||
+      'Record at least two chords.',
     onRecord: (value) => {
       this.sequence.set(value)
       this.problem.set('')
@@ -417,7 +419,7 @@ export class Recording {
       () => this.activity.log('Recorded shortcut fired'),
       { meta: { name: 'Recorded action', group: 'Recording' } },
     )
-    injectHotkeySequence(
+    injectHotkey(
       this.sequence,
       () => this.activity.log('Recorded sequence fired'),
       { meta: { name: 'Recorded sequence', group: 'Recording' } },
@@ -614,15 +616,9 @@ export class AppComponent {
   readonly codeLabel = computed(
     () => Object.values(this.codes()).join(' + ') || 'None',
   )
-  readonly registry = injectHotkeyRegistrations()
-  readonly registrations = computed(() => [
-    ...this.registry.hotkeys(),
-    ...this.registry.sequences(),
-  ])
+  readonly registrations = injectHotkeyRegistrations()
   bindingLabel = (reg: ReturnType<typeof this.registrations>[number]) =>
-    ('hotkey' in reg ? [reg.hotkey] : reg.sequence)
-      .map((h) => formatForDisplay(h))
-      .join(' → ')
+    formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })
   constructor() {
     const update = () => this.path.set(location.hash.slice(1) || '/')
     window.addEventListener('hashchange', update)

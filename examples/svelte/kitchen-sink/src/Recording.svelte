@@ -3,19 +3,14 @@
   import {
     formatForDisplay,
     createHotkey,
-    createHotkeySequence,
     createHotkeyRecorder,
-    createHotkeySequenceRecorder,
+    isHotkeySequence,
   } from '@tanstack/svelte-hotkeys'
-  import type {
-    Hotkey,
-    HotkeySequence,
-    RecorderKeyMode,
-  } from '@tanstack/svelte-hotkeys'
+  import type { Hotkey, RecorderKeyMode } from '@tanstack/svelte-hotkeys'
   const log = getContext<(message: string) => void>('log')
   const initial: Hotkey = 'Alt+[KeyR]'
   let hotkey = $state<Hotkey>(initial),
-    sequence = $state<HotkeySequence>(['[KeyX]', '[KeyY]'])
+    sequence = $state<Hotkey>(['[KeyX]', '[KeyY]'])
   let mode = $state<RecorderKeyMode>('code'),
     problem = $state(''),
     idle = $state(false),
@@ -25,7 +20,7 @@
     () => log('Recorded shortcut fired'),
     { meta: { name: 'Recorded action', group: 'Recording' } },
   )
-  createHotkeySequence(
+  createHotkey(
     () => sequence,
     () => log('Recorded sequence fired'),
     { meta: { name: 'Recorded sequence', group: 'Recording' } },
@@ -52,7 +47,9 @@
       problem = 'Cancelled'
     },
   }))
-  const seq = createHotkeySequenceRecorder(() => ({
+  // maxSteps above 1 records sequences; one step records a chord.
+  const seq = createHotkeyRecorder(() => ({
+    maxSteps: Infinity,
     recordBy: mode,
     ignoreInputs: false,
     idleTimeoutMs: idle ? 1500 : undefined,
@@ -60,7 +57,9 @@
     detectConflicts: {
       exclude: (reg) => reg.options.meta?.name === 'Recorded sequence',
     },
-    validate: (steps) => steps.length >= 2 || 'Record at least two chords.',
+    validate: (value) =>
+      (isHotkeySequence(value) && value.length >= 2) ||
+      'Record at least two chords.',
     onRecord: (value) => {
       sequence = value
       problem = ''
@@ -104,9 +103,9 @@
     >{/if}
   <h3>Sequence</h3>
   <p>
-    {(seq.isRecording ? seq.steps : sequence)
-      .map((h) => formatForDisplay(h))
-      .join(' → ')}
+    {formatForDisplay(seq.isRecording ? seq.steps : sequence, {
+      sequenceSeparator: ' → ',
+    })}
   </p>
   <label
     ><input type="checkbox" bind:checked={idle} /> Commit after 1.5 seconds idle</label

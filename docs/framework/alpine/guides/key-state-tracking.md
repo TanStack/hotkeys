@@ -97,7 +97,7 @@ const hint = scope.createHotkeyHint('Alt+Shift+[KeyK]')
 // Read hint.value in an Alpine template or effect.
 ```
 
-Holding Alt, Shift, or both reveals this hint. Extra Control hides it, as does releasing all modifiers or blurring the window. Nonmodifier keys are ignored. AltGraph never reveals hints.
+Holding Alt, Shift, or both reveals this hint. Extra Control hides it, as does releasing all modifiers or blurring the window. Nonmodifier keys are ignored. AltGraph never reveals hints. A sequence reveals its hint from its first step, and an app hotkey uses its effective hotkey (no hint while unbound).
 
 Pass `{ exact: true }` to require every binding modifier, or `{ platform: 'mac' }` to resolve `Mod` explicitly. Supply the same platform used for registration. Combine the result with the action's enabled state. The core equivalent is `matchesHeldModifiers(binding, heldKeys, options)`.
 

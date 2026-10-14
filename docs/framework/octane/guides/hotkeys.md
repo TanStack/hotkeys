@@ -7,6 +7,18 @@ id: hotkeys
 
 Registration callbacks and options refresh after each commit. Registrations and recorder subscriptions are released when the component unmounts. Element targets are DOM nodes, not React ref objects. Use a callback ref that updates component state so the hook sees a newly mounted or replaced element.
 
+## Chords and sequences
+
+A hotkey is either a **chord**, keys pressed together such as `'Mod+S'`, or a **sequence**, chords pressed one after another such as `['G', 'G']`. Every API in this guide accepts both, and a one-step array such as `['Mod+S']` is the chord `'Mod+S'`.
+
+```tsx
+useHotkey('Mod+S', () => save()) // chord
+useHotkey(['G', 'G'], () => scrollToTop(), { timeout: 500 }) // sequence
+useHotkey('Escape', () => close(), { requireReset: true }) // chord-only option
+```
+
+Most options apply to both kinds. `requireReset` applies only to chords and `timeout` only to sequences, and TypeScript rejects options that don't match the hotkey. When the kind isn't known statically, such as a `Hotkey` loaded from settings, only the shared options are accepted. Defaults apply only to the kinds that support them. See the [Sequences Guide](./sequences) for timing and matching, and the [App Hotkeys Guide](./app-hotkeys) to declare hotkeys up front and let users customize them.
+
 ## Logical keys and physical positions
 
 Use a logical binding when the shortcut should follow the character on the active layout. Use a physical binding when it should follow a keyboard position:
@@ -171,7 +183,7 @@ Registration callbacks and options refresh after each commit. Registrations and 
 
 ## Registering multiple hotkeys
 
-Use `useHotkeys` to register a dynamic list. Per-definition options override common options. Removing an entry unregisters it. Each entry has the shared [HotkeyDefinition](../../../reference/adapter/interfaces/HotkeyDefinition) shape.
+Use `useHotkeys` to register a dynamic list. Per-definition options override common options. Removing an entry unregisters it. Each entry has the shared [UseHotkeyDefinition](../reference/type-aliases/UseHotkeyDefinition.md) shape.
 
 ```tsx
 useHotkeys(
@@ -181,9 +193,9 @@ useHotkeys(
 ```
 
 ```ts
-import type { HotkeyDefinition } from '@tanstack/octane-hotkeys'
+import type { UseHotkeyDefinition } from '@tanstack/octane-hotkeys'
 
-const shortcuts: Array<HotkeyDefinition> = [
+const shortcuts: Array<UseHotkeyDefinition> = [
 	{ hotkey: 'Mod+S', callback: () => console.log('Save') },
 	{ hotkey: 'Mod+Z', callback: () => console.log('Undo'), options: { enabled: false } },
 ]
@@ -209,7 +221,7 @@ declare module '@tanstack/hotkeys' {
 
 ## Introspecting registrations
 
-Read `hotkeys` and `sequences` from `useHotkeyRegistrations()`. Disabled entries stay listed; destroyed registrations disappear. Both arrays include options and metadata. Hotkey views include enabled state and trigger counts; sequence views include sequence steps and progress.
+Use the `useHotkeyRegistrations` hook to get a live view of every registration, chords and sequences together. It's the building block for shortcut palettes and help dialogs.
 
 ```tsx
 import { useHotkey, useHotkeyRegistrations, formatForDisplay } from '@tanstack/octane-hotkeys'
@@ -219,17 +231,17 @@ export function Shortcuts() @{
 		meta: { name: 'Save', description: 'Save the document', group: 'File' },
 	})
 	const registrations = useHotkeyRegistrations()
-	<div>
-		<ul>
-			@for (const registration of registrations.hotkeys) {
-				<li><kbd>{formatForDisplay(registration.hotkey)}</kbd> {registration.options.meta?.name}</li>
-			}
-		</ul>
-	</div>
+	<ul>
+		@for (const registration of registrations.hotkeys; key registration.id) {
+			<li><kbd>{formatForDisplay(registration.hotkey)}</kbd> {registration.options.meta?.name}</li>
+		}
+	</ul>
 }
 ```
 
-Read `registrations.sequences` in the same way. Format each sequence step with `formatForDisplay` and join the labels with an arrow. Group entries by `registration.options.meta?.group` when building a help panel.
+The returned object's `hotkeys` array holds one list of registration views. Each view has an `id`, the `hotkey`, its `options` (including `meta`), its `target`, and a `triggerCount`. Narrow with `kind`: chord views add `parsedHotkey`; sequence views add `parsedSequence` and `matchedStepCount`, the steps matched so far in the current attempt. Disabled entries stay listed; unmounted registrations disappear. Format any hotkey with `formatForDisplay`, and group entries by `options.meta?.group` when building a help panel.
+
+Registrations only exist while their components are mounted. To list hotkeys from routes that have not rendered, declare them with [app hotkeys](./app-hotkeys).
 
 ## The hotkey manager
 

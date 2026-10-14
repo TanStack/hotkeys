@@ -1,12 +1,9 @@
 import { useHotkeyRecorder } from '../src/useHotkeyRecorder'
-import { useHotkeySequenceRecorder } from '../src/useHotkeySequenceRecorder'
-import { useHotkeySequences } from '../src/useHotkeySequences'
-import { useHotkeySequence } from '../src/useHotkeySequence'
 import { useHotkeys } from '../src/useHotkeys'
 import { afterEach, expect, it, vi } from 'vitest'
 import { defineComponent, h, ref, nextTick } from 'vue'
 import { mount } from '@vue/test-utils'
-import { HotkeyManager, SequenceManager } from '@tanstack/hotkeys'
+import { HotkeyManager } from '@tanstack/hotkeys'
 import { useHotkey } from '../src/useHotkey'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 const press = () =>
@@ -15,7 +12,6 @@ const press = () =>
   )
 afterEach(() => {
   HotkeyManager.resetInstance()
-  SequenceManager.resetInstance()
 })
 it.each(['local', 'provider'])('updates %s enabled options', async (kind) => {
   const enabled = ref(true),
@@ -68,15 +64,15 @@ it('refreshes all provider option groups without replacing registrations or acti
     run = vi.fn(),
     override = vi.fn()
   let single!: ReturnType<typeof useHotkeyRecorder>
-  let sequence!: ReturnType<typeof useHotkeySequenceRecorder>
+  let sequence!: ReturnType<typeof useHotkeyRecorder>
   function setupHooks() {
     useHotkey('A', run)
     useHotkeys([{ hotkey: 'B', callback: run }])
-    useHotkeySequence(['C', 'D'], run)
-    useHotkeySequences([{ sequence: ['E', 'F'], callback: run }])
+    useHotkey(['C', 'D'], run)
+    useHotkeys([{ hotkey: ['E', 'F'], callback: run }])
     useHotkey('Z', override, { enabled: true })
     single = useHotkeyRecorder({ onRecord() {} })
-    sequence = useHotkeySequenceRecorder({ onRecord() {} })
+    sequence = useHotkeyRecorder({ maxSteps: Infinity, onRecord() {} })
   }
   const invoke = () => {
     for (const key of ['a', 'b', 'c', 'd', 'e', 'f', 'z'])
@@ -100,11 +96,7 @@ it('refreshes all provider option groups without replacing registrations or acti
             {
               defaultOptions: {
                 hotkey: { enabled: enabled.value },
-                hotkeySequence: { enabled: enabled.value },
                 hotkeyRecorder: { onCancel: enabled.value ? first : second },
-                hotkeySequenceRecorder: {
-                  onCancel: enabled.value ? first : second,
-                },
               },
             },
             { default: () => h(Child) },
@@ -114,9 +106,6 @@ it('refreshes all provider option groups without replacing registrations or acti
   )
   try {
     const ids = [...HotkeyManager.getInstance().registrations.state.keys()]
-    const sequenceIds = [
-      ...SequenceManager.getInstance().registrations.state.keys(),
-    ]
     invoke()
     expect(run).toHaveBeenCalledTimes(4)
     expect(override).toHaveBeenCalledOnce()
@@ -138,12 +127,8 @@ it('refreshes all provider option groups without replacing registrations or acti
     expect([...HotkeyManager.getInstance().registrations.state.keys()]).toEqual(
       ids,
     )
-    expect([
-      ...SequenceManager.getInstance().registrations.state.keys(),
-    ]).toEqual(sequenceIds)
   } finally {
     view.unmount()
   }
   expect(HotkeyManager.getInstance().registrations.state.size).toBe(0)
-  expect(SequenceManager.getInstance().registrations.state.size).toBe(0)
 })

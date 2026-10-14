@@ -3,139 +3,129 @@ title: Hotkey Recording Guide
 id: hotkey-recording
 ---
 
-TanStack Hotkeys provides the `HotkeyRecorderController` for building keyboard shortcut customization UIs. This lets users record their own shortcuts by pressing the desired key combination, similar to how system preferences or IDE shortcut editors work.
+`HotkeyRecorderController` is for building keyboard shortcut customization UIs. Users record their own shortcuts by pressing the key combination they want, the same way system preferences or IDE shortcut editors work. By default it records one chord; set `maxSteps` to let users record a [sequence](./sequences) too.
 
 Recorders default to physical codes: recording a shortcut stores a string such as `Mod+[KeyS]`. Pass it directly to your hotkey registration and use `formatForDisplay` for the label. Set `recordBy: 'key'` when you intentionally want the produced character instead.
 
-TanStack Hotkeys automatically suppresses registered hotkey and sequence callbacks while any recorder is active. You do not need to set `enabled` from `isRecording`. Registrations remain available for conflict detection, and recorded keys stay suppressed through repeats and key release.
-
-## Reactive options
-
-Recorder options support [property getters and functions returning options](./hotkeys.md#property-getters). Updated callbacks, validation, and recording settings apply during an active session without restarting it. Recorder controls read current options directly. Explicit `setOptions` values override constructor options for the supplied keys; other getters stay live.
+TanStack Hotkeys automatically suppresses registered hotkey callbacks while any recorder is active. You do not need to disable hotkeys while recording. Registrations remain available for conflict detection, and recorded keys stay suppressed through repeats and key release.
 
 ## Basic usage
 
 ```ts
-import { LitElement, html, nothing } from 'lit'
-import { customElement } from 'lit/decorators.js'
 import { HotkeyRecorderController, formatForDisplay } from '@tanstack/lit-hotkeys'
 
-@customElement('shortcut-recorder')
 class ShortcutRecorder extends LitElement {
   private recorder = new HotkeyRecorderController(this, {
-    onRecord: (hotkey) => {
-      console.log('Recorded:', hotkey) // e.g., "Mod+Shift+[KeyS]"
-    },
+    onRecord: (hotkey) => console.log('Recorded:', hotkey), // e.g. 'Mod+Shift+[KeyS]'
   })
 
   render() {
     const { isRecording, recordedHotkey } = this.recorder
     return html`
-      <div>
-        <button
-          @click=${() =>
-            isRecording
-              ? this.recorder.stopRecording()
-              : this.recorder.startRecording()}
-        >
-          ${isRecording
-            ? 'Press a key combination...'
-            : recordedHotkey
-              ? formatForDisplay(recordedHotkey)
-              : 'Click to record'}
-        </button>
+      <button
+        @click=${() =>
+          isRecording ? this.recorder.cancelRecording() : this.recorder.startRecording()}
+      >
         ${isRecording
-          ? html`<button @click=${() => this.recorder.cancelRecording()}>
-              Cancel
-            </button>`
-          : nothing}
-      </div>
+          ? 'Press a key combination...'
+          : recordedHotkey
+            ? formatForDisplay(recordedHotkey)
+            : 'Click to record'}
+      </button>
     `
   }
 }
 ```
 
-## Controller API
+## Recorder state and actions
 
-`HotkeyRecorderController` exposes the following reactive getters and methods:
+| Member | Description |
+| --- | --- |
+| `isRecording` | Whether the recorder is currently listening for key presses |
+| `steps` | Chords captured so far in a multi-step recording |
+| `recordedHotkey` | The last recorded hotkey, or `null` if nothing recorded |
+| `startRecording()` | Start listening for key presses |
+| `stopRecording()` | Stop listening without calling `onRecord` or `onCancel` |
+| `cancelRecording()` | Stop listening and call `onCancel` |
+| `commitRecording()` | Commit the current `steps` now (multi-step recordings) |
 
-| Member | Type | Description |
-|--------|------|-------------|
-| `isRecording` | `boolean` (getter) | Whether the recorder is currently listening for key presses |
-| `recordedHotkey` | `Hotkey \| null` (getter) | The last recorded hotkey string, or `null` if nothing recorded |
-| `startRecording()` | `() => void` | Start listening for key presses |
-| `stopRecording()` | `() => void` | Stop listening and reset recorder state without calling `onRecord` |
-| `cancelRecording()` | `() => void` | Stop listening and discard any recorded hotkey |
-| `setOptions(opts)` | `(Partial<HotkeyRecorderOptions>) => void` | Update callbacks at runtime |
-
-The controller registers itself with the host in its constructor, subscribes to the underlying `HotkeyRecorder` store on `hostConnected`, and cleans up on `hostDisconnected`.
+The controller adds itself to the host and requests an update whenever its state changes.
 
 ## Options
 
 ### `recordBy`
 
-Recorders default to `recordBy: 'code'`. Option+S producing `ß` on macOS records `Alt+[KeyS]`; Option+2 producing `™` records `Alt+[Digit2]`. The stored brackets preserve physical identity through state, serialization, and registration; `formatForDisplay` produces a readable label. There is no code-to-letter conversion. Existing authored strings such as `Mod+S` remain logical bindings.
+Recorders default to `recordBy: 'code'`. Option+S producing `ß` on macOS records `Alt+[KeyS]`; Option+2 producing `™` records `Alt+[Digit2]`. The stored brackets preserve physical identity through state, serialization, and registration; `formatForDisplay` produces a readable label. Existing authored strings such as `Mod+S` remain logical hotkeys.
 
-Set `recordBy: 'key'` to intentionally record the produced logical character. A code-mode event with no usable code is rejected rather than silently switching modes. IME composition is ignored. AltGraph character entry is rejected in code mode; key mode preserves the produced character without synthetic Control/Alt while retaining Shift. Recording events, repeats, and their releases do not trigger registered hotkeys or sequences.
-
-Pass options as the second argument to the constructor:
-
-```ts
-new HotkeyRecorderController(this, {
-  recordBy: 'code', // default; choose 'key' for logical characters
-  onRecord: (hotkey) => { /* called when a hotkey is recorded */ },
-  onCancel: () => { /* called when recording is cancelled */ },
-  onClear: () => { /* called when the recorded hotkey is cleared */ },
-})
-```
+Set `recordBy: 'key'` to intentionally record the produced logical character. A code-mode event with no usable code is rejected rather than silently switching modes. IME composition is ignored. AltGraph character entry is rejected in code mode; key mode preserves the produced character without synthetic Control/Alt while retaining Shift.
 
 ### `onRecord`
 
-Called when the user presses a valid key combination (a modifier + a non-modifier key, or a single non-modifier key). Receives the recorded `Hotkey` string.
+Called when a recording commits. With the default `maxSteps: 1`, it receives a chord string such as `'Mod+[KeyS]'` as soon as the user presses a valid combination (a modifier + a non-modifier key, or a single non-modifier key). With a larger `maxSteps`, it receives a chord when one step was recorded, or a sequence otherwise.
 
 ### `onCancel`
 
-Called when recording is cancelled (either by pressing Escape or calling `cancelRecording()`).
+Called when recording is cancelled, by pressing Escape or calling `cancelRecording()`.
 
 ### `onClear`
 
-Called when the recorded hotkey is cleared (by pressing Backspace or Delete during recording).
-
-## Recording behavior
-
-The recorder has specific behavior for different keys:
-
-| Key | Behavior |
-|-----|----------|
-| Modifier only (Shift, Ctrl, etc.) | Waits for a non-modifier key; modifier-only presses don't complete a recording |
-| Modifier + key (e.g., Ctrl+S) | Records the full combination |
-| Single key (e.g., Escape, F1) | Records the single key |
-| Escape | Cancels the recording |
-| Backspace / Delete | Clears the currently recorded hotkey |
+Called when the recording is cleared: Backspace or Delete with no modifiers and no recorded steps. Clearing calls only `onClear`; your app decides whether that removes a hotkey or restores a default.
 
 ### `ignoreInputs`
 
-The `HotkeyRecorderOptions` supports an `ignoreInputs` option (defaults to `true`). When `true`, the recorder doesn't intercept normal typing in text inputs, textareas, selects, or contentEditable elements. Keystrokes pass through to the input as usual. Pressing Escape still cancels recording even when focused on an input. Set `ignoreInputs: false` if you want the recorder to capture keys from within input elements.
+Defaults to `true`. The recorder doesn't intercept normal typing in text inputs, textareas, selects, or contentEditable elements; keystrokes pass through to the input as usual. Escape still cancels recording even while an input is focused. Set `ignoreInputs: false` to record from inside input elements.
+
+Options can also be a getter, such as `new HotkeyRecorderController(this, () => ({ maxSteps: 3, recordBy: this.mode, onRecord }))`, read during recording.
+
+## Recording sequences
+
+Set `maxSteps` above 1 to record up to that many chords. Each chord adds a step, and the recording commits when the user presses Enter, when it reaches `maxSteps`, or after `idleTimeoutMs` without a new step:
 
 ```ts
-new HotkeyRecorderController(this, {
-  ignoreInputs: false, // record even from inside inputs
-  onRecord: (hotkey) => console.log(hotkey),
+private recorder = new HotkeyRecorderController(this, {
+  maxSteps: 3,
+  onRecord: (hotkey) => console.log('Recorded:', hotkey), // 'Mod+[KeyS]' or ['[KeyG]', '[KeyG]']
 })
+
+// Live preview while recording
+get label() {
+  return this.recorder.isRecording
+    ? formatForDisplay(this.recorder.steps) || 'Press chords, then Enter…'
+    : formatForDisplay(this.recorder.recordedHotkey ?? [])
+}
 ```
 
-### Mod auto-conversion
+A one-step recording commits as a chord, so the result can always be passed straight to your hotkey registration. Use `maxSteps: Infinity` for no limit.
 
-Recorded hotkeys automatically use the portable `Mod` format. If a user on macOS presses Command+S, the recorded hotkey is `Mod+[KeyS]` rather than `Meta+[KeyS]`, so the shortcut keeps working when it syncs to a machine on another OS.
+| Option | Description |
+| --- | --- |
+| `maxSteps` | Maximum chords to record. Reaching it commits. Default `1`. |
+| `commitKeys` | `'enter'` (default) commits on plain Enter. With `'none'`, plain Enter can be recorded as a step, and only `commitRecording()`, `idleTimeoutMs`, or `maxSteps` commit. |
+| `idleTimeoutMs` | Commit automatically after this many milliseconds without a new step. The timer does not run before the first chord. |
+
+`commitKeys` and `idleTimeoutMs` are only accepted when `maxSteps` is set. With `maxSteps` above 1, `onRecord` and `validate` receive `Hotkey` (a chord or a sequence) instead of a chord.
+
+## Recording behavior
+
+| Key | Behavior |
+| --- | --- |
+| Modifier only (Shift, Ctrl, etc.) | Waits for a non-modifier key; modifier-only presses don't complete a step |
+| Modifier + key (e.g., Ctrl+S) | Records the full combination |
+| Single key (e.g., Escape, F1) | Records the single key |
+| Enter (multi-step, `commitKeys: 'enter'`) | Commits the recorded steps |
+| Escape | Cancels the recording |
+| Backspace / Delete | Removes the last step; with no steps, clears and calls `onClear` |
+
+Repeats and IME composition never add a step. Recorded hotkeys use the portable `Mod` format: Command+S on macOS records `Mod+[KeyS]` rather than `Meta+[KeyS]`, so the primary modifier becomes Control if the hotkey is later used on Windows.
 
 ## Validation and conflicts
 
-Both recorder APIs accept `detectConflicts`, `validate`, and `onReject`. For a single-hotkey recorder, these options can be supplied alongside `onRecord`:
+The recorder accepts `detectConflicts`, `validate`, and `onReject` alongside `onRecord`:
 
 ```ts
 const options = {
   detectConflicts: {
-    // Use registration IDs to exclude the binding being edited:
+    // Use registration IDs to exclude the hotkey being edited:
     excludeIds: [registrationId],
     target: document,
     eventType: 'keydown',
@@ -149,112 +139,86 @@ const options = {
 }
 ```
 
-`validate` returns true to accept, or false/a message to reject. `onReject` receives `reason` (`missing-code`, `alt-graph`, `invalid`, `validation`, or `conflict`), a message, the candidate when available, and conflicting registration views for conflict rejections. Validation runs before commit; rejection never falls back to another key identity.
+`validate(hotkey, context)` returns true to accept, or false/a message to reject. The context holds the last chord's `event` and `parsedHotkey`, plus `events` and `parsedSequence` for every step. `onReject` receives `reason` (`missing-code`, `alt-graph`, `invalid`, `validation`, or `conflict`), a message, the rejected `hotkey` when available, and conflicting registrations for conflict rejections. Validation runs before commit; rejection never falls back to another key identity. A rejected multi-step recording keeps its steps so the user can edit them with Backspace.
 
-`detectConflicts: true` checks enabled live registrations with the intended event type (default keydown) and overlapping targets (default document). Document/nested scopes can conflict; disjoint widgets can reuse a binding. The options object also supports `scope: 'all'`, `includeDisabled`, and an `exclude(registration)` predicate. Both single bindings and sequence prefixes are checked. Source events detect physical/logical overlap on the recorded layout. This is a conservative collision check, not a promise that two callbacks will execute: propagation, input filtering, match priority, external listeners, unmounted routes, and other layouts can affect actual dispatch.
+`detectConflicts: true` checks enabled live registrations with the intended event type (default keydown) and overlapping targets (default document). Document/nested scopes can conflict; disjoint widgets can reuse a hotkey. The options object also supports `scope: 'all'`, `includeDisabled`, and an `exclude(registration)` predicate. Chords and sequence prefixes are checked: a recorded chord conflicts with a sequence that starts with it, and a recorded sequence conflicts with a registered chord equal to its first step. Source events detect physical/logical overlap on the recorded layout. This is a conservative collision check, not a promise that two callbacks will execute.
 
-For checks outside recording, use `findHotkeyConflicts(bindingOrSequence, options)`. Without source `events`, it compares binding identity and sequence prefixes; it does not guess equivalence between a logical character and a physical position.
+For checks outside recording, use `findHotkeyConflicts(hotkey, options)`. Without source `events`, it compares hotkey identity and sequence prefixes; it does not guess equivalence between a logical character and a physical position.
 
 ## Building a shortcut settings UI
 
-Here's a more complete example of a shortcut customization panel:
+For an app-wide settings screen, declare the hotkeys with [app hotkeys](./app-hotkeys) and save the recorder's result with `setCustomHotkey`. That keeps cheat sheets, conflicts, and persistence in one place.
+
+For a single component, ordinary state is enough:
 
 ```ts
 import { LitElement, html } from 'lit'
-import { customElement, state } from 'lit/decorators.js'
+import { state } from 'lit/decorators.js'
 import {
   HotkeyRecorderController,
-  HotkeyController,
   formatForDisplay,
+  getHotkeyManager,
 } from '@tanstack/lit-hotkeys'
-import type { Hotkey } from '@tanstack/lit-hotkeys'
+import type { Hotkey, HotkeyRegistrationHandle } from '@tanstack/lit-hotkeys'
 
-interface ShortcutMap {
-  save: Hotkey
-  undo: Hotkey
-  search: Hotkey
-}
+type Action = 'save' | 'undo' | 'search'
 
-@customElement('shortcut-settings')
 class ShortcutSettings extends LitElement {
-  @state() private shortcuts: ShortcutMap = {
+  @state() shortcuts: Record<Action, Hotkey> = {
     save: 'Mod+S',
     undo: 'Mod+Z',
-    search: 'Mod+K',
+    search: ['G', 'S'],
   }
-
-  @state() private editingAction: keyof ShortcutMap | null = null
+  @state() editing: Action | null = null
+  private handles: Array<HotkeyRegistrationHandle> = []
 
   private recorder = new HotkeyRecorderController(this, {
+    maxSteps: 2,
     onRecord: (hotkey) => {
-      if (this.editingAction) {
-        this.shortcuts = { ...this.shortcuts, [this.editingAction]: hotkey }
-        this.editingAction = null
-      }
+      if (this.editing) this.shortcuts = { ...this.shortcuts, [this.editing]: hotkey }
+      this.editing = null
     },
-    onCancel: () => {
-      this.editingAction = null
-    },
+    onCancel: () => (this.editing = null),
   })
 
-  private saveCtrl?: HotkeyController
-  private undoCtrl?: HotkeyController
-  private searchCtrl?: HotkeyController
-
-  connectedCallback() {
-    super.connectedCallback()
-    this._registerHotkeys()
-  }
-
-  updated() {
-    this._unregisterHotkeys()
-    this._registerHotkeys()
-  }
-
-  private _registerHotkeys() {
-    this.saveCtrl = new HotkeyController(this, this.shortcuts.save, () => save())
-    this.undoCtrl = new HotkeyController(this, this.shortcuts.undo, () => undo())
-    this.searchCtrl = new HotkeyController(this, this.shortcuts.search, () => openSearch())
-  }
-
-  private _unregisterHotkeys() {
-    this.saveCtrl?.hostDisconnected()
-    this.undoCtrl?.hostDisconnected()
-    this.searchCtrl?.hostDisconnected()
+  // Re-register whenever the shortcuts change
+  updated(changed: Map<string, unknown>) {
+    if (!changed.has('shortcuts')) return
+    this.handles.forEach((handle) => handle.unregister())
+    this.handles = Object.entries(this.shortcuts).map(([action, hotkey]) =>
+      getHotkeyManager().register(hotkey, () => this.run(action as Action)),
+    )
   }
 
   disconnectedCallback() {
     super.disconnectedCallback()
-    this._unregisterHotkeys()
+    this.handles.forEach((handle) => handle.unregister())
   }
 
   render() {
-    return html`
-      <div>
-        <h2>Keyboard Shortcuts</h2>
-        ${(Object.entries(this.shortcuts) as Array<[keyof ShortcutMap, Hotkey]>).map(
-          ([action, hotkey]) => html`
-            <div>
-              <span>${action}</span>
-              <button
-                @click=${() => {
-                  this.editingAction = action
-                  this.recorder.startRecording()
-                }}
-              >
-                ${this.editingAction === action && this.recorder.isRecording
-                  ? 'Press keys...'
-                  : formatForDisplay(hotkey)}
-              </button>
-            </div>
-          `,
-        )}
-      </div>
-    `
+    return Object.entries(this.shortcuts).map(
+      ([action, hotkey]) => html`
+        <button
+          @click=${() => {
+            this.editing = action as Action
+            this.recorder.startRecording()
+          }}
+        >
+          ${action}:
+          ${this.editing === action && this.recorder.isRecording
+            ? 'Press keys…'
+            : formatForDisplay(hotkey)}
+        </button>
+      `,
+    )
+  }
+
+  run(action: Action) {
+    /* ... */
   }
 }
 ```
 
 ## Under the hood
 
-The `HotkeyRecorderController` creates a `HotkeyRecorder` class instance and subscribes to its reactive state via the recorder's TanStack Store. The class manages its own keyboard event listeners and state, and the controller handles cleanup on disconnect.
+`HotkeyRecorderController` wraps a `HotkeyRecorder` from `@tanstack/hotkeys`, subscribes the host to its state, and destroys it when the host disconnects.

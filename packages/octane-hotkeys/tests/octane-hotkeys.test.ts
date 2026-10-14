@@ -7,12 +7,16 @@ import {
 } from 'octane'
 import {
   HotkeyManager,
-  SequenceManager,
   KeyStateTracker,
   getHotkeyManager,
-  getSequenceManager,
 } from '@tanstack/hotkeys'
-import { Fixture, ProviderFixture, capture } from './fixture.tsrx'
+import {
+  AppHotkeysFixture,
+  Fixture,
+  ProviderFixture,
+  appCapture,
+  capture,
+} from './fixture.tsrx'
 import type { Root } from 'octane'
 
 delegateEvents(['click'])
@@ -49,7 +53,8 @@ beforeEach(() => {
   flushSync(() => {
     root.render(Fixture)
   })
-  expect(getHotkeyManager().registrations.state.size).toBe(3)
+  // Three chords and two sequences, all in the one manager.
+  expect(getHotkeyManager().registrations.state.size).toBe(5)
   flush()
 })
 afterEach(() => {
@@ -57,7 +62,6 @@ afterEach(() => {
   flush()
   container.remove()
   HotkeyManager.resetInstance()
-  SequenceManager.resetInstance()
   KeyStateTracker.resetInstance()
 })
 
@@ -86,7 +90,7 @@ describe('compiled Octane hooks', () => {
 
   it('soft-disables a binding while removing dynamic list entries', () => {
     const id = [...getHotkeyManager().registrations.state.values()].find(
-      (entry) => entry.parsedHotkey.ctrl,
+      (entry) => entry.kind === 'chord' && entry.parsedHotkey.ctrl,
     )?.id
     click('#enabled')
     expect(value('#registrations')).toBe('2:1')
@@ -121,13 +125,12 @@ describe('compiled Octane hooks', () => {
     key('g', 'keyup')
     expect(value('#steps')).toBe('G')
     click('#commit-sequence')
-    expect(capture.records).toEqual(['Control+S', ['G']])
+    expect(capture.records).toEqual(['Control+S', 'G'])
     capture.recorder!.startRecording()
     root.unmount()
     expect(getHotkeyManager().registrations.state.size).toBe(0)
     flush()
     expect(getHotkeyManager().registrations.state.size).toBe(0)
-    expect(getSequenceManager().registrations.state.size).toBe(0)
     key('k')
     expect(capture.records).toHaveLength(2)
   })
@@ -150,8 +153,10 @@ it('inherits provider defaults, updates them, and respects nested and per-call o
   key('a')
   expect(capture.records).toEqual(['B', 'C', 'A'])
   expect(
-    [...getSequenceManager().registrations.state.values()][0]?.options.timeout,
-  ).toBe(321)
+    [...getHotkeyManager().registrations.state.values()].find(
+      (entry) => entry.kind === 'sequence',
+    )?.options,
+  ).toMatchObject({ timeout: 321 })
   click('#provider-record')
   key('k', 'keydown', { code: 'KeyK' })
   expect(capture.records.at(-1)).toBe('K')
@@ -159,5 +164,36 @@ it('inherits provider defaults, updates them, and respects nested and per-call o
   key('g', 'keydown', { code: 'KeyG' })
   key('g', 'keyup', { code: 'KeyG' })
   key('Enter', 'keydown', { code: 'Enter' })
-  expect(capture.records.at(-1)).toEqual(['G'])
+  expect(capture.records.at(-1)).toEqual('G')
+})
+
+it('registers app hotkeys, lists status, and follows custom hotkeys', () => {
+  // Earlier tests record keys without releasing them; blur clears those guards.
+  window.dispatchEvent(new Event('blur'))
+  appCapture.changes = []
+  flushSync(() => root.render(AppHotkeysFixture))
+  flush()
+  expect(value('#app-statuses')).toBe('active,unbound,active')
+  expect(
+    [...getHotkeyManager().registrations.state.values()].map(
+      (r) => r.options.appHotkeyId,
+    ),
+  ).toEqual(['doc.save', 'nav.home'])
+  key('s', 'keydown', { ctrlKey: true })
+  expect(value('#app-count')).toBe('1')
+
+  flushSync(() => {
+    appCapture.custom!.setCustomHotkey('doc.save', ['G', 'S'])
+    appCapture.custom!.setCustomHotkey('palette.open', 'Control+K')
+  })
+  flush()
+  expect(value('#app-statuses')).toBe('active,active,active')
+  expect(appCapture.changes.at(-1)).toEqual({
+    'nav.home': ['G', 'G'],
+    'doc.save': ['G', 'S'],
+    'palette.open': 'Control+K',
+  })
+  key('g')
+  key('s')
+  expect(value('#app-count')).toBe('2')
 })

@@ -1,10 +1,11 @@
 import { afterEach, expect, it, vi } from 'vitest'
 import { HotkeyRecorder } from '../src/hotkey-recorder'
-import { HotkeySequenceRecorder } from '../src/hotkey-sequence-recorder'
-import type { HotkeyRecorderOptions } from '../src/hotkey-recorder'
-import type { HotkeySequenceRecorderOptions } from '../src/hotkey-sequence-recorder'
+import type {
+  HotkeyChordRecorderOptions,
+  HotkeySequenceRecorderOptions,
+} from '../src/hotkey-recorder'
 
-const recorders: Array<HotkeyRecorder | HotkeySequenceRecorder> = []
+const recorders: Array<HotkeyRecorder> = []
 afterEach(() => {
   recorders.splice(0).forEach((recorder) => recorder.destroy())
   vi.useRealTimers()
@@ -22,7 +23,7 @@ it('reads current policy and callbacks during a hotkey recording session', () =>
   const stale = vi.fn()
   const current = vi.fn()
   const rejected = vi.fn()
-  let options: HotkeyRecorderOptions = {
+  let options: HotkeyChordRecorderOptions = {
     recordBy: 'key',
     onRecord: stale,
     validate: () => false,
@@ -45,22 +46,23 @@ it('reads current sequence commit policy and idle callbacks without losing steps
   const stale = vi.fn()
   const current = vi.fn()
   let options: HotkeySequenceRecorderOptions = {
+    maxSteps: Infinity,
     onRecord: stale,
     recordBy: 'key',
     commitKeys: 'none',
     idleTimeoutMs: 100,
   }
-  const recorder = new HotkeySequenceRecorder(() => options)
+  const recorder = new HotkeyRecorder(() => options)
   recorders.push(recorder)
   recorder.start()
   press('g', 'KeyG')
   options = { ...options, onRecord: current }
   vi.advanceTimersByTime(100)
-  expect(current).toHaveBeenCalledWith(['G'])
+  expect(current).toHaveBeenCalledWith('G')
   expect(stale).not.toHaveBeenCalled()
   recorder.start()
   press('g', 'KeyG')
-  options = { onRecord: current, recordBy: 'key' }
+  options = { maxSteps: Infinity, onRecord: current, recordBy: 'key' }
   press('Enter', 'Enter')
   expect(current).toHaveBeenCalledTimes(2)
   expect(recorder.store.state.isRecording).toBe(false)

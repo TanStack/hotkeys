@@ -3,43 +3,112 @@ id: createHotkey
 title: createHotkey
 ---
 
+## Call Signature
+
 ```ts
-function createHotkey(
+function createHotkey<T>(
    hotkey, 
    callback, 
    options?): void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:56](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L56)
+Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:62](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L62)
 
-Register a global hotkey for the current component.
+Svelte function for registering a hotkey on the document: a chord such as
+`'Mod+S'`, a sequence such as `['G', 'G']`, or an app hotkey from
+`defineAppHotkeys`. Pass getters for reactive values. Use
+`createHotkeyAttachment` for element-scoped hotkeys.
 
-## Parameters
+Chords accept `requireReset`; sequences accept `timeout`. A one-step
+sequence registers as its chord. An app hotkey uses its effective hotkey
+from `HotkeysProvider` (including the user's custom hotkey) and its
+declared meta and options, and registers nothing while unbound.
 
-### hotkey
+### Type Parameters
 
-`MaybeGetter`\<`RegisterableHotkey`\>
+#### T
 
-### callback
+`T` *extends* `AppHotkey`\<`string`, `HotkeyChord` \| `HotkeySequence` \| `null`\>
+
+### Parameters
+
+#### hotkey
+
+`MaybeGetter`\<`T`\>
+
+#### callback
 
 `HotkeyCallback`
 
-### options?
+#### options?
 
-`MaybeGetter`\<[`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md)\> = `{}`
+`MaybeGetter`\<[`CreateAppHotkeyOptions`](../type-aliases/CreateAppHotkeyOptions.md)\<`T`\>\>
 
-## Returns
+### Returns
 
 `void`
 
-## Example
+### Example
 
 ```svelte
 <script lang="ts">
-  import { createHotkey } from '@tanstack/svelte-hotkeys'
+  createHotkey('Mod+S', () => save())
+  createHotkey(['G', 'G'], () => scrollToTop(), { timeout: 500 })
+  createHotkey('Escape', () => close(), () => ({ enabled: isOpen }))
+</script>
+```
 
-  createHotkey('Mod+S', () => {
-    console.log('Mod+S pressed')
-  })
+## Call Signature
+
+```ts
+function createHotkey<T>(
+   hotkey, 
+   callback, 
+   options?): void;
+```
+
+Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:67](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L67)
+
+Svelte function for registering a hotkey on the document: a chord such as
+`'Mod+S'`, a sequence such as `['G', 'G']`, or an app hotkey from
+`defineAppHotkeys`. Pass getters for reactive values. Use
+`createHotkeyAttachment` for element-scoped hotkeys.
+
+Chords accept `requireReset`; sequences accept `timeout`. A one-step
+sequence registers as its chord. An app hotkey uses its effective hotkey
+from `HotkeysProvider` (including the user's custom hotkey) and its
+declared meta and options, and registers nothing while unbound.
+
+### Type Parameters
+
+#### T
+
+`T` *extends* `RegisterableHotkey`
+
+### Parameters
+
+#### hotkey
+
+`MaybeGetter`\<`T`\>
+
+#### callback
+
+`HotkeyCallback`
+
+#### options?
+
+`MaybeGetter`\<`AdapterOptionsFor`\<`T`, [`CreateHotkeyTarget`](../type-aliases/CreateHotkeyTarget.md)\>\>
+
+### Returns
+
+`void`
+
+### Example
+
+```svelte
+<script lang="ts">
+  createHotkey('Mod+S', () => save())
+  createHotkey(['G', 'G'], () => scrollToTop(), { timeout: 500 })
+  createHotkey('Escape', () => close(), () => ({ enabled: isOpen }))
 </script>
 ```

@@ -1,6 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { SequenceManager, createSequenceMatcher } from '../src/sequence-manager'
-import type { HotkeySequence } from '../src/sequence-manager'
+import { HotkeyManager } from '../src/hotkey-manager'
+import { createSequenceMatcher } from '../src/match'
+import type { HotkeySequence } from '../src/hotkey.types'
 
 /** Keeps logical output independent from physical position in layout fixtures. */
 function keyEvent(key: string, code: string, options: KeyboardEventInit = {}) {
@@ -13,7 +14,7 @@ function press(key: string, code: string, options: KeyboardEventInit = {}) {
 }
 
 afterEach(() => {
-  SequenceManager.resetInstance()
+  HotkeyManager.resetInstance()
   vi.useRealTimers()
 })
 
@@ -21,7 +22,7 @@ describe('sequence match priority', () => {
   it.each([false, true])(
     'prefers exact output regardless of registration order (%s)',
     (reverse) => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const exact = vi.fn()
       const fallback = vi.fn()
       const registrations: Array<[HotkeySequence, typeof exact]> = [
@@ -43,7 +44,7 @@ describe('sequence match priority', () => {
   )
 
   it('prefers physical matches over logical fallbacks on an intermediate step', () => {
-    const manager = SequenceManager.getInstance()
+    const manager = HotkeyManager.getInstance()
     const exact = vi.fn()
     const fallback = vi.fn()
     manager.register(['G', '[KeyQ]', 'X'], exact)
@@ -56,7 +57,7 @@ describe('sequence match priority', () => {
   })
 
   it('keeps equally strong matches and permits fallback when no exact match is eligible', () => {
-    const manager = SequenceManager.getInstance()
+    const manager = HotkeyManager.getInstance()
     const logical = vi.fn()
     const physical = vi.fn()
     const disabled = vi.fn()
@@ -67,8 +68,8 @@ describe('sequence match priority', () => {
     press('q', 'KeyQ')
     expect(logical).toHaveBeenCalledOnce()
     expect(physical).toHaveBeenCalledOnce()
-    SequenceManager.resetInstance()
-    const nextManager = SequenceManager.getInstance()
+    HotkeyManager.resetInstance()
+    const nextManager = HotkeyManager.getInstance()
     nextManager.register(['G', 'Q'], logical)
     nextManager.register(['G', '/'], disabled, { enabled: false })
     press('g', 'KeyG')
@@ -115,7 +116,7 @@ describe.each(['key', 'code'] as const)(
 
     it('requires separate presses in the manager and standalone matcher', () => {
       const callback = vi.fn()
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       manager.register([g, g], callback)
       const matcher = createSequenceMatcher([g, g])
       press('g', 'KeyG')
@@ -135,7 +136,7 @@ describe.each(['key', 'code'] as const)(
 )
 
 it('applies match priority when restarting a partially matched sequence', () => {
-  const manager = SequenceManager.getInstance()
+  const manager = HotkeyManager.getInstance()
   const exact = vi.fn()
   const fallback = vi.fn()
   manager.register(['/', 'X'], exact)
@@ -150,7 +151,7 @@ it('applies match priority when restarting a partially matched sequence', () => 
 })
 
 it('uses priority for keyup sequences without letting keydown registrations suppress them', () => {
-  const manager = SequenceManager.getInstance()
+  const manager = HotkeyManager.getInstance()
   const exact = vi.fn()
   const fallback = vi.fn()
   const keydown = vi.fn()
@@ -172,7 +173,7 @@ it('uses priority for keyup sequences without letting keydown registrations supp
 it('repeat events neither begin a sequence nor extend its timeout', () => {
   vi.useFakeTimers()
   const callback = vi.fn()
-  const manager = SequenceManager.getInstance()
+  const manager = HotkeyManager.getInstance()
   manager.register(['[KeyG]', '[KeyG]'], callback, { timeout: 100 })
   const matcher = createSequenceMatcher(['[KeyG]', '[KeyG]'], { timeout: 100 })
   press('g', 'KeyG', { repeat: true })
@@ -207,7 +208,7 @@ describe('equivalent sequence conflicts', () => {
   ] as Array<[HotkeySequence, HotkeySequence]>)(
     'rejects equivalent steps %j and %j',
     (original, equivalent) => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       manager.register(original, vi.fn())
       expect(() =>
         manager.register(equivalent, vi.fn(), { conflictBehavior: 'error' }),
@@ -217,7 +218,7 @@ describe('equivalent sequence conflicts', () => {
   )
 
   it('replaces the old callback while preserving the supplied sequence spelling', () => {
-    const manager = SequenceManager.getInstance()
+    const manager = HotkeyManager.getInstance()
     const oldCallback = vi.fn()
     const newCallback = vi.fn()
     const oldHandle = manager.register(['Control+S', 'Escape'], oldCallback)
@@ -226,7 +227,7 @@ describe('equivalent sequence conflicts', () => {
     manager.register(sequence, newCallback, { conflictBehavior: 'replace' })
     expect(oldHandle.isActive).toBe(false)
     expect(manager.getRegistrationCount()).toBe(1)
-    expect([...manager.registrations.state.values()][0]?.sequence).toEqual(
+    expect([...manager.registrations.state.values()][0]?.hotkey).toEqual(
       sequence,
     )
     expect(sequence).toEqual(['Ctrl+S', 'Esc'])
@@ -239,7 +240,7 @@ describe('equivalent sequence conflicts', () => {
   it('warns for aliases by default and honors allow', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
     try {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       manager.register(['Control+S', 'G'], vi.fn())
       manager.register(['Ctrl+S', 'G'] as HotkeySequence, vi.fn())
       expect(warn).toHaveBeenCalledOnce()
@@ -254,7 +255,7 @@ describe('equivalent sequence conflicts', () => {
   })
 
   it('compares Mod using each registration’s resolved platform', () => {
-    const manager = SequenceManager.getInstance()
+    const manager = HotkeyManager.getInstance()
     manager.register(['Mod+S', 'G'], vi.fn(), { platform: 'mac' })
     expect(() =>
       manager.register(['Meta+S', 'G'], vi.fn(), {
@@ -271,7 +272,7 @@ describe('equivalent sequence conflicts', () => {
   })
 
   it('keeps different identities, step order, lengths, modifiers, and targets distinct', () => {
-    const manager = SequenceManager.getInstance()
+    const manager = HotkeyManager.getInstance()
     manager.register(['Ctrl+Enter', 'G'] as HotkeySequence, vi.fn())
     for (const sequence of [
       ['Ctrl+[Enter]', 'G'],

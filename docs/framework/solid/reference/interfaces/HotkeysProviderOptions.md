@@ -3,44 +3,29 @@ id: HotkeysProviderOptions
 title: HotkeysProviderOptions
 ---
 
-Defined in: [HotkeysProvider.tsx:10](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L10)
+Defined in: [HotkeysProvider.tsx:18](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L18)
 
 ## Properties
 
 ### hotkey?
 
 ```ts
-optional hotkey?: Partial<CreateHotkeyOptions>;
+optional hotkey?: CreateHotkeyCommonOptions;
 ```
 
-Defined in: [HotkeysProvider.tsx:11](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L11)
+Defined in: [HotkeysProvider.tsx:23](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L23)
+
+Defaults for every hotkey registered by `createHotkey` and `createHotkeys`.
+`requireReset` applies to chords and `timeout` applies to sequences.
 
 ***
 
 ### hotkeyRecorder?
 
 ```ts
-optional hotkeyRecorder?: Partial<HotkeyRecorderOptions>;
+optional hotkeyRecorder?: Partial<Omit<HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions, "maxSteps" | "validate" | "onRecord">>;
 ```
 
-Defined in: [HotkeysProvider.tsx:12](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L12)
+Defined in: [HotkeysProvider.tsx:25](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L25)
 
-***
-
-### hotkeySequence?
-
-```ts
-optional hotkeySequence?: Partial<CreateHotkeySequenceOptions>;
-```
-
-Defined in: [HotkeysProvider.tsx:14](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L14)
-
-***
-
-### hotkeySequenceRecorder?
-
-```ts
-optional hotkeySequenceRecorder?: Partial<HotkeySequenceRecorderOptions>;
-```
-
-Defined in: [HotkeysProvider.tsx:13](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L13)
+Defaults for every `createHotkeyRecorder`.

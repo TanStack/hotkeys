@@ -7,7 +7,7 @@ title: parseHotkey
 function parseHotkey(hotkey, platform?): ParsedHotkey;
 ```
 
-Defined in: [parse.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L30)
+Defined in: [parse.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L54)
 
 Parses a hotkey string into its component parts.
 
@@ -15,7 +15,7 @@ Parses a hotkey string into its component parts.
 
 ### hotkey
 
-[`Hotkey`](../type-aliases/Hotkey.md) \| `string` & `object`
+[`HotkeyChord`](../type-aliases/HotkeyChord.md) \| `string` & `object`
 
 The hotkey string to parse (e.g., 'Mod+Shift+S')
 

@@ -7,7 +7,7 @@ title: parseKeyboardEvent
 function parseKeyboardEvent(event, platform?): ParsedHotkey;
 ```
 
-Defined in: [parse.ts:274](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L274)
+Defined in: [parse.ts:311](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L311)
 
 Parses a KeyboardEvent into a ParsedHotkey object.
 

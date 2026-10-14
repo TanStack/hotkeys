@@ -4,20 +4,27 @@ title: createHotkeyRegistrations
 ---
 
 ```ts
-function createHotkeyRegistrations(): HotkeyRegistrationsResult;
+function createHotkeyRegistrations(): () => HotkeyRegistrationView[];
 ```
 
-Defined in: [createHotkeyRegistrations.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRegistrations.ts#L32)
+Defined in: [createHotkeyRegistrations.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRegistrations.ts#L21)
 
-Solid primitive that reactively reads all hotkey and sequence registrations
-from the singleton managers.
+Solid primitive that reactively reads every hotkey registration, chords and
+sequences, from the singleton HotkeyManager. Narrow each view with `kind`.
 
-This is a standalone primitive that does NOT require the HotkeysProvider.
-It subscribes to both HotkeyManager and SequenceManager stores and
-triggers reactivity when registrations change.
+This primitive does NOT require the HotkeysProvider.
 
 ## Returns
 
-[`HotkeyRegistrationsResult`](../interfaces/HotkeyRegistrationsResult.md)
+An accessor for all registrations, without callbacks
 
-Object with `hotkeys` and `sequences` signal accessors
+() => `HotkeyRegistrationView`[]
+
+## Example
+
+```tsx
+const registrations = createHotkeyRegistrations()
+<For each={registrations()}>
+  {(reg) => <li>{reg.options.meta?.name}: {formatForDisplay(reg.hotkey)}</li>}
+</For>
+```

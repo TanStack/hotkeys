@@ -4,10 +4,9 @@ import { setupRenderingTest } from 'ember-qunit'
 import Component from '@glimmer/component'
 import { tracked } from '@glimmer/tracking'
 import {
-  useHotkeys, useHotkeySequences, HotkeyManager, SequenceManager,
-  getHotkeyManager, getSequenceManager,
+  useHotkeys, HotkeyManager, getHotkeyManager,
 } from '@tanstack/ember-hotkeys'
-import type { HotkeyDefinition, HotkeySequenceDefinition } from '@tanstack/ember-hotkeys'
+import type { EmberHotkeyDefinition } from '@tanstack/ember-hotkeys'
 
 let instance: ReactiveExample
 let count = 0
@@ -15,13 +14,13 @@ let count = 0
 class ReactiveExample extends Component {
   @tracked enabled = true
 
-  definitions: Array<HotkeyDefinition> = [{
+  definitions: Array<EmberHotkeyDefinition> = [{
     hotkey: 'A',
     callback: () => count++,
     options: this.createOptions(),
   }]
-  sequences: Array<HotkeySequenceDefinition> = [{
-    sequence: ['B', 'C'],
+  sequences: Array<EmberHotkeyDefinition> = [{
+    hotkey: ['B', 'C'],
     callback: () => count++,
     options: this.createOptions(),
   }]
@@ -38,7 +37,7 @@ class ReactiveExample extends Component {
 
   <template>
     {{useHotkeys this.definitions}}
-    {{useHotkeySequences this.sequences}}
+    {{useHotkeys this.sequences}}
   </template>
 }
 
@@ -47,16 +46,13 @@ module('Reactive options', (hooks) => {
   hooks.afterEach(async () => {
     await clearRender()
     HotkeyManager.resetInstance()
-    SequenceManager.resetInstance()
     count = 0
   })
 
   for (const kind of ['hotkey', 'sequence']) {
     test(`tracks property getters in stable ${kind} definitions`, async (assert) => {
       await render(<template><ReactiveExample /></template>)
-      const registrations = kind === 'hotkey'
-        ? getHotkeyManager().registrations
-        : getSequenceManager().registrations
+      const registrations = getHotkeyManager().registrations
       const ids = [...registrations.state.keys()]
       const press = async (key: string) => {
         document.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true }))

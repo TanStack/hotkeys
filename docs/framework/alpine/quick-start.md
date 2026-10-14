@@ -81,7 +81,7 @@ Use Alpine reactive state for the enabled flag.
 
 
 ```ts
-this.scope.createHotkeySequence(['G', 'G'], () => window.scrollTo({ top: 0 }))
+this.scope.createHotkey(['G', 'G'], () => window.scrollTo({ top: 0 }))
 ```
 
 Release G between presses. Automatic key repeats do not advance sequences.
@@ -120,7 +120,7 @@ Use `formatForDisplay(binding)` for platform-specific labels. Keep the original 
 
 ## Shared defaults
 
-Pass defaults to `createHotkeysScope`. The scope accepts `hotkey`, `hotkeySequence`, `hotkeyRecorder`, and `hotkeySequenceRecorder` options. Pass a getter to follow Alpine state. Each component owns and destroys its scope. Call-specific options override scope defaults, and per-definition options override common options. Omitted options use the core defaults.
+Pass defaults to `createHotkeysScope`. The scope accepts `hotkey` and `hotkeyRecorder` options. `requireReset` applies to chords and `timeout` to sequences. Pass a getter to follow Alpine state. Each component owns and destroys its scope. Call-specific options override scope defaults, and per-definition options override common options. Omitted options use the core defaults.
 
 ```ts
 import Alpine from 'alpinejs'
@@ -128,10 +128,8 @@ import { createHotkeysScope } from '@tanstack/alpine-hotkeys'
 
 Alpine.data('scopedEditor', () => {
   const scope = createHotkeysScope({
-    hotkey: { requireReset: true },
-    hotkeySequence: { timeout: 1500 },
-    hotkeyRecorder: { ignoreInputs: false },
-    hotkeySequenceRecorder: { idleTimeoutMs: 2000 },
+    hotkey: { requireReset: true, timeout: 1500 },
+    hotkeyRecorder: { ignoreInputs: false, idleTimeoutMs: 2000 },
   })
   return {
     init() {
@@ -144,6 +142,10 @@ Alpine.data('scopedEditor', () => {
 ```
 
 For changing defaults, create the scope in `init()` with `createHotkeysScope(() => ({ hotkey: { enabled: this.enabled } }))`. Creating the getter in `init()` makes `this` refer to Alpine's reactive component instance. Share a defaults object or getter between components when they need the same policy; give each component its own scope for cleanup. The `$hotkeys` magic uses core defaults, so use an explicit scope when supplying shared defaults.
+
+## Declaring app hotkeys
+
+To list every hotkey in a cheat sheet, including hotkeys whose components haven't mounted, and to let users customize them, declare them once with `defineAppHotkeys` and provide them with `provideAppHotkeys`. See the [App Hotkeys Guide](./guides/app-hotkeys).
 
 ## Optional Alpine magic
 
@@ -169,8 +171,8 @@ The plugin destroys that scope when Alpine destroys the owning element. Choose a
 
 - [Hotkeys](./guides/hotkeys)
 - [Sequences](./guides/sequences)
+- [App hotkeys](./guides/app-hotkeys)
 - [Hotkey recording](./guides/hotkey-recording)
-- [Sequence recording](./guides/sequence-recording)
 - [Key state tracking](./guides/key-state-tracking)
 - [Formatting and display](./guides/formatting-display)
 - [Kitchen sink](./examples/kitchen-sink)

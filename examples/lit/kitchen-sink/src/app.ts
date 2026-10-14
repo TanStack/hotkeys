@@ -7,21 +7,12 @@ import {
   HotkeyHintController,
   HotkeyRecorderController,
   HotkeyRegistrationsController,
-  HotkeySequenceController,
-  HotkeySequenceRecorderController,
   KeyHoldController,
   formatForDisplay,
-  getHotkeyManager,
-  getSequenceManager,
   hotkey,
+  isHotkeySequence,
 } from '@tanstack/lit-hotkeys'
-import type {
-  Hotkey,
-  HotkeyRegistrationHandle,
-  HotkeySequence,
-  RecorderKeyMode,
-  SequenceRegistrationHandle,
-} from '@tanstack/lit-hotkeys'
+import type { Hotkey, RecorderKeyMode } from '@tanstack/lit-hotkeys'
 import './styles.css'
 
 // Light DOM keeps the shared example CSS small and makes scoped targets easy to inspect.
@@ -56,35 +47,31 @@ class Hint extends DemoElement {
 class Tickets extends DemoElement {
   @state() private count = 0
   @state() private enabled = true
-  private bindings: Array<HotkeyRegistrationHandle> = []
   private create = () => {
     this.count++
     this.log('Ticket created')
   }
   private save = () => this.log('Ticket saved')
-  connectedCallback() {
-    super.connectedCallback()
-    this.bindings = [
-      getHotkeyManager().register('Alt+[KeyC]', this.create, {
+  constructor() {
+    super()
+    this.addController(
+      new HotkeyController(this, 'Alt+[KeyC]', this.create, () => ({
         enabled: this.enabled,
         requireReset: true,
         ignoreInputs: false,
         meta: { name: 'Create ticket', group: 'Tickets' },
-      }),
-      getHotkeyManager().register('Alt+[KeyS]', this.save, {
+      })),
+    )
+    this.addController(
+      new HotkeyController(this, 'Alt+[KeyS]', this.save, () => ({
         enabled: this.enabled,
         requireReset: true,
         meta: { name: 'Save ticket', group: 'Tickets' },
-      }),
-    ]
-  }
-  disconnectedCallback() {
-    this.bindings.forEach((h) => h.unregister())
-    super.disconnectedCallback()
+      })),
+    )
   }
   private toggle = (event: Event) => {
     this.enabled = (event.target as HTMLInputElement).checked
-    this.bindings.forEach((h) => h.setOptions({ enabled: this.enabled }))
   }
   render() {
     return html`<section>
@@ -186,8 +173,34 @@ class Editor extends DemoElement {
   @state() private count = 0
   @state() private repeat = false
   @state() private bubble = false
-  private counter?: HotkeyRegistrationHandle
-  private scoped?: HotkeyRegistrationHandle
+  constructor() {
+    super()
+    this.addController(
+      new HotkeyController(
+        this,
+        'Alt+[ArrowRight]',
+        () => this.count++,
+        () => ({
+          requireReset: !this.repeat,
+          meta: { name: 'Counter', group: 'Editor' },
+        }),
+      ),
+    )
+    this.addController(
+      // A null target waits until #scope renders.
+      new HotkeyController(
+        this,
+        'Alt+[KeyB]',
+        () => this.log('Scoped B'),
+        () => ({
+          target: this.querySelector<HTMLElement>('#scope'),
+          preventDefault: !this.bubble,
+          stopPropagation: !this.bubble,
+          meta: { name: 'Scoped propagation', group: 'Editor' },
+        }),
+      ),
+    )
+  }
   @hotkey('Alt+[KeyU]', {
     eventType: 'keyup',
     meta: { name: 'Keyup', group: 'Editor' },
@@ -201,26 +214,6 @@ class Editor extends DemoElement {
   documentB() {
     this.log('Document B')
   }
-  firstUpdated() {
-    this.counter = getHotkeyManager().register(
-      'Alt+[ArrowRight]',
-      () => this.count++,
-      { requireReset: true, meta: { name: 'Counter', group: 'Editor' } },
-    )
-    this.scoped = getHotkeyManager().register(
-      'Alt+[KeyB]',
-      () => this.log('Scoped B'),
-      {
-        target: this.querySelector<HTMLElement>('#scope')!,
-        meta: { name: 'Scoped propagation', group: 'Editor' },
-      },
-    )
-  }
-  disconnectedCallback() {
-    this.counter?.unregister()
-    this.scoped?.unregister()
-    super.disconnectedCallback()
-  }
   render() {
     return html`<section>
       <h2>Editor scopes</h2>
@@ -233,7 +226,6 @@ class Editor extends DemoElement {
           .checked=${this.repeat}
           @change=${(e: Event) => {
             this.repeat = (e.target as HTMLInputElement).checked
-            this.counter?.setOptions({ requireReset: !this.repeat })
           }}
         />
         Allow repeat</label
@@ -249,10 +241,6 @@ class Editor extends DemoElement {
             .checked=${this.bubble}
             @change=${(e: Event) => {
               this.bubble = (e.target as HTMLInputElement).checked
-              this.scoped?.setOptions({
-                preventDefault: !this.bubble,
-                stopPropagation: !this.bubble,
-              })
             }}
           />
           Allow bubbling and browser defaults</label
@@ -272,39 +260,39 @@ class Editor extends DemoElement {
 class Sequences extends DemoElement {
   @state() private timeout = 1000
   private registry = new HotkeyRegistrationsController(this)
-  private handles: Array<SequenceRegistrationHandle> = []
   constructor() {
     super()
     this.addController(
-      new HotkeySequenceController(
+      // An array of chords registers a sequence.
+      new HotkeyController(
         this,
         ['Shift+[KeyR]', 'Shift+[KeyT]'],
         () => this.log('Shift chain'),
         { meta: { name: 'Shift chain (1000ms)', group: 'Sequences' } },
       ),
     )
-  }
-  connectedCallback() {
-    super.connectedCallback()
-    this.handles = [
-      getSequenceManager().register(
+    this.addController(
+      new HotkeyController(
+        this,
         ['[KeyG]', '[KeyG]'],
         () => this.log('Go to top'),
-        {
+        () => ({
           timeout: this.timeout,
           meta: { name: 'Go to top', group: 'Sequences' },
-        },
+        }),
       ),
-      getSequenceManager().register(
+    )
+    this.addController(
+      new HotkeyController(
+        this,
         ['[KeyG]', '[KeyI]'],
         () => this.log('Inbox'),
-        { timeout: this.timeout, meta: { name: 'Inbox', group: 'Sequences' } },
+        () => ({
+          timeout: this.timeout,
+          meta: { name: 'Inbox', group: 'Sequences' },
+        }),
       ),
-    ]
-  }
-  disconnectedCallback() {
-    this.handles.forEach((h) => h.unregister())
-    super.disconnectedCallback()
+    )
   }
   render() {
     return html`<section>
@@ -323,23 +311,23 @@ class Sequences extends DemoElement {
           .value=${String(this.timeout)}
           @input=${(e: Event) => {
             this.timeout = Number((e.target as HTMLInputElement).value)
-            this.handles.forEach((h) => h.setOptions({ timeout: this.timeout }))
           }}
       /></label>
       <table>
         <tbody>
-          ${this.registry.sequences.map(
-            (reg) =>
-              html`<tr>
-                <td>${reg.options.meta?.name}</td>
-                <td>
-                  ${reg.sequence.map((h) => formatForDisplay(h)).join(' → ')}
-                </td>
-                <td>
-                  ${reg.matchedStepCount}/${reg.sequence.length} steps;
-                  ${reg.triggerCount} fired
-                </td>
-              </tr>`,
+          ${this.registry.hotkeys.map((reg) =>
+            reg.kind !== 'sequence'
+              ? null
+              : html`<tr>
+                  <td>${reg.options.meta?.name}</td>
+                  <td>
+                    ${formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })}
+                  </td>
+                  <td>
+                    ${reg.matchedStepCount}/${reg.hotkey.length} steps;
+                    ${reg.triggerCount} fired
+                  </td>
+                </tr>`,
           )}
         </tbody>
       </table>
@@ -351,13 +339,11 @@ class Sequences extends DemoElement {
 class Recording extends DemoElement {
   private initial: Hotkey = 'Alt+[KeyR]'
   @state() private binding: Hotkey = this.initial
-  @state() private sequence: HotkeySequence = ['[KeyX]', '[KeyY]']
+  @state() private sequence: Hotkey = ['[KeyX]', '[KeyY]']
   @state() private mode: RecorderKeyMode = 'code'
   @state() private problem = ''
   @state() private idle = false
   @state() private enter = true
-  private shortcut?: HotkeyRegistrationHandle
-  private sequenceHandle?: SequenceRegistrationHandle
   private recorder = new HotkeyRecorderController(this, {
     ignoreInputs: false,
     detectConflicts: {
@@ -367,12 +353,10 @@ class Recording extends DemoElement {
       parsedHotkey.modifiers.length > 0 || 'Include a modifier.',
     onRecord: (value) => {
       this.binding = value
-      this.registerShortcut()
       this.problem = ''
     },
     onClear: () => {
       this.binding = this.initial
-      this.registerShortcut()
     },
     onReject: (r) => {
       this.problem = r.message
@@ -381,20 +365,22 @@ class Recording extends DemoElement {
       this.problem = 'Cancelled'
     },
   })
-  private seq = new HotkeySequenceRecorderController(this, {
+  // maxSteps above 1 records sequences; one step records a chord.
+  private seq = new HotkeyRecorderController(this, {
+    maxSteps: Infinity,
     ignoreInputs: false,
     detectConflicts: {
       exclude: (reg) => reg.options.meta?.name === 'Recorded sequence',
     },
-    validate: (steps) => steps.length >= 2 || 'Record at least two chords.',
+    validate: (value) =>
+      (isHotkeySequence(value) && value.length >= 2) ||
+      'Record at least two chords.',
     onRecord: (value) => {
       this.sequence = value
-      this.registerSequence()
       this.problem = ''
     },
     onClear: () => {
       this.sequence = ['[KeyX]', '[KeyY]']
-      this.registerSequence()
     },
     onReject: (r) => {
       this.problem = r.message
@@ -403,34 +389,28 @@ class Recording extends DemoElement {
       this.problem = 'Cancelled'
     },
   })
-  private registerShortcut() {
-    this.shortcut?.unregister()
-    this.shortcut = getHotkeyManager().register(
-      this.binding,
-      () => this.log('Recorded shortcut fired'),
-      {
-        requireReset: true,
-        meta: { name: 'Recorded action', group: 'Recording' },
-      },
+  constructor() {
+    super()
+    // Hotkey getters re-register when the recorded binding changes.
+    this.addController(
+      new HotkeyController(
+        this,
+        () => this.binding,
+        () => this.log('Recorded shortcut fired'),
+        {
+          requireReset: true,
+          meta: { name: 'Recorded action', group: 'Recording' },
+        },
+      ),
     )
-  }
-  private registerSequence() {
-    this.sequenceHandle?.unregister()
-    this.sequenceHandle = getSequenceManager().register(
-      this.sequence,
-      () => this.log('Recorded sequence fired'),
-      { meta: { name: 'Recorded sequence', group: 'Recording' } },
+    this.addController(
+      new HotkeyController(
+        this,
+        () => this.sequence,
+        () => this.log('Recorded sequence fired'),
+        { meta: { name: 'Recorded sequence', group: 'Recording' } },
+      ),
     )
-  }
-  connectedCallback() {
-    super.connectedCallback()
-    this.registerShortcut()
-    this.registerSequence()
-  }
-  disconnectedCallback() {
-    this.shortcut?.unregister()
-    this.sequenceHandle?.unregister()
-    super.disconnectedCallback()
   }
   render() {
     return html`<section>
@@ -465,7 +445,6 @@ class Recording extends DemoElement {
         @click=${() => {
           this.recorder.stopRecording()
           this.binding = this.initial
-          this.registerShortcut()
         }}
       >
         Reset</button
@@ -478,9 +457,12 @@ class Recording extends DemoElement {
       }
       <h3>Sequence</h3>
       <p>
-        ${(this.seq.isRecording ? this.seq.steps : this.sequence)
-          .map((h) => formatForDisplay(h))
-          .join(' → ')}
+        ${formatForDisplay(
+          this.seq.isRecording ? this.seq.steps : this.sequence,
+          {
+            sequenceSeparator: ' → ',
+          },
+        )}
       </p>
       <label
         ><input
@@ -724,16 +706,16 @@ class App extends DemoElement {
                   </tr>
                 </thead>
                 <tbody>
-                  ${[...this.registry.hotkeys, ...this.registry.sequences].map(
+                  ${this.registry.hotkeys.map(
                     (reg) =>
                       html`<tr>
                         <td>
                           ${reg.options.meta?.group} / ${reg.options.meta?.name}
                         </td>
                         <td>
-                          ${('hotkey' in reg ? [reg.hotkey] : reg.sequence)
-                            .map((h) => formatForDisplay(h))
-                            .join(' → ')}
+                          ${formatForDisplay(reg.hotkey, {
+                            sequenceSeparator: ' → ',
+                          })}
                         </td>
                         <td>
                           ${

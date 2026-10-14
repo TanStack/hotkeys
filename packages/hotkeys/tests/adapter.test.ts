@@ -1,10 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import {
-  createHotkeyBindings,
-  createHotkeySequenceBindings,
-} from '../src/adapter'
+import { createHotkeyBindings } from '../src/adapter'
 import { HotkeyManager, getHotkeyManager } from '../src/hotkey-manager'
-import { SequenceManager, getSequenceManager } from '../src/sequence-manager'
 
 function press(
   key: string,
@@ -21,7 +17,7 @@ function press(
 
 afterEach(() => {
   HotkeyManager.resetInstance()
-  SequenceManager.resetInstance()
+  HotkeyManager.resetInstance()
   document.body.replaceChildren()
 })
 
@@ -89,22 +85,22 @@ describe('adapter bindings', () => {
   })
 
   it('keeps sequence progress through callback updates and cleans up timers', () => {
-    const bindings = createHotkeySequenceBindings()
+    const bindings = createHotkeyBindings()
     const first = vi.fn()
     const latest = vi.fn()
     bindings.update([
-      { sequence: ['G', 'G'], callback: first },
-      { sequence: [], callback: first },
+      { hotkey: ['G', 'G'], callback: first },
+      { hotkey: [], callback: first },
     ])
-    const id = [...getSequenceManager().registrations.state.keys()][0]
+    const id = [...getHotkeyManager().registrations.state.keys()][0]
     press('g')
-    bindings.update([{ sequence: ['G', 'G'], callback: latest }])
+    bindings.update([{ hotkey: ['G', 'G'], callback: latest }])
     press('g')
     expect(latest).toHaveBeenCalledOnce()
     expect(first).not.toHaveBeenCalled()
-    expect([...getSequenceManager().registrations.state.keys()]).toEqual([id])
+    expect([...getHotkeyManager().registrations.state.keys()]).toEqual([id])
     bindings.destroy()
     bindings.destroy()
-    expect(getSequenceManager().registrations.state.size).toBe(0)
+    expect(getHotkeyManager().registrations.state.size).toBe(0)
   })
 })

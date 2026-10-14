@@ -4,10 +4,10 @@ title: normalizeHotkey
 ---
 
 ```ts
-function normalizeHotkey(hotkey, platform?): Hotkey;
+function normalizeHotkey(hotkey, platform?): HotkeyChord;
 ```
 
-Defined in: [parse.ts:205](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L205)
+Defined in: [parse.ts:229](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L229)
 
 Normalizes a hotkey string to its canonical form.
 
@@ -33,7 +33,7 @@ The target platform for resolving `Mod` (defaults to auto-detection)
 
 ## Returns
 
-[`Hotkey`](../type-aliases/Hotkey.md)
+[`HotkeyChord`](../type-aliases/HotkeyChord.md)
 
 The normalized hotkey string
 
