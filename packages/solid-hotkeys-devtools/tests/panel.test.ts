@@ -80,3 +80,9 @@ it('accepts omitted props for real and no-op panels during render', () => {
   dispose = render(() => HotkeysDevtoolsPanelNoOp(), host)
   expect(core.mount).toHaveBeenCalledOnce()
 })
+
+it('exports the active panel and plugin from the production entry', async () => {
+  const production = await import('../src/production')
+  expect(production.HotkeysDevtoolsPanel).toBe(HotkeysDevtoolsPanel)
+  expect(production.hotkeysDevtoolsPlugin).toBe(hotkeysDevtoolsPlugin)
+})
