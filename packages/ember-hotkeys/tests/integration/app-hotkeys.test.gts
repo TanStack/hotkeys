@@ -22,11 +22,13 @@ const appHotkeys = defineAppHotkeys({
 })
 
 let instance: AppExample
+let currentPlatform: 'mac' | 'windows' | 'linux'
 
 class AppExample extends Component {
   @tracked count = 0
   list = useAppHotkeyList(this)
   custom = useCustomHotkeys(this)
+  platform = currentPlatform
   save = () => {
     this.count++
   }
@@ -45,8 +47,8 @@ class AppExample extends Component {
     instance = this
   }
   <template>
-    {{useHotkey this.saveHotkey this.save}}
-    {{useHotkeys this.definitions}}
+    {{useHotkey this.saveHotkey this.save platform=this.platform}}
+    {{useHotkeys this.definitions platform=this.platform}}
     <output id="count">{{this.count}}</output>
     <output id="statuses">{{this.statuses}}</output>
   </template>
@@ -64,38 +66,50 @@ module('App hotkeys', (hooks) => {
   const changes: Array<unknown> = []
   hooks.beforeEach(() => {
     changes.length = 0
+  })
+  function provide() {
     dispose = provideAppHotkeys(appHotkeys, {
+      platform: currentPlatform,
       customHotkeys: { 'nav.home': ['G', 'G'] },
       onCustomHotkeysChange: (custom) => changes.push(custom),
     }).dispose
-  })
+  }
   hooks.afterEach(async () => {
     await clearRender()
     dispose()
     HotkeyManager.resetInstance()
   })
 
-  test('registers app hotkeys, lists status, and follows custom hotkeys', async (assert) => {
-    await render(<template><AppExample /></template>)
-    assert.dom('#statuses').hasText('active,unbound,active')
-    assert.deepEqual(
-      [...getHotkeyManager().registrations.state.values()].map((r) => r.hotkey),
-      ['Control+S', ['G', 'G']],
-    )
-    await key('s', { ctrlKey: true })
-    assert.dom('#count').hasText('1')
+  // Control+S is the Mod shortcut on Windows and Linux, so registration stores it as Mod+S there.
+  for (const [testPlatform, savedHotkey] of [
+    ['mac', 'Control+S'],
+    ['windows', 'Mod+S'],
+    ['linux', 'Mod+S'],
+  ] as const) {
+    test(`registers app hotkeys, lists status, and follows custom hotkeys on ${testPlatform}`, async (assert) => {
+      currentPlatform = testPlatform
+      provide()
+      await render(<template><AppExample /></template>)
+      assert.dom('#statuses').hasText('active,unbound,active')
+      assert.deepEqual(
+        [...getHotkeyManager().registrations.state.values()].map((r) => r.hotkey),
+        [savedHotkey, ['G', 'G']],
+      )
+      await key('s', { ctrlKey: true })
+      assert.dom('#count').hasText('1')
 
-    instance.custom.setCustomHotkey('doc.save', ['G', 'S'])
-    instance.custom.setCustomHotkey('palette.open', 'Control+K')
-    await settled()
-    assert.dom('#statuses').hasText('active,active,active')
-    assert.deepEqual(changes.at(-1), {
-      'nav.home': ['G', 'G'],
-      'doc.save': ['G', 'S'],
-      'palette.open': 'Control+K',
+      instance.custom.setCustomHotkey('doc.save', ['G', 'S'])
+      instance.custom.setCustomHotkey('palette.open', 'Control+K')
+      await settled()
+      assert.dom('#statuses').hasText('active,active,active')
+      assert.deepEqual(changes.at(-1), {
+        'nav.home': ['G', 'G'],
+        'doc.save': ['G', 'S'],
+        'palette.open': 'Control+K',
+      })
+      await key('g')
+      await key('s')
+      assert.dom('#count').hasText('2')
     })
-    await key('g')
-    await key('s')
-    assert.dom('#count').hasText('2')
-  })
+  }
 })
