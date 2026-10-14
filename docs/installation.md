@@ -27,27 +27,53 @@ Each framework package re-exports everything from the core `@tanstack/hotkeys` p
 
 <!-- ::start:framework -->
 
-### Alpine
+# React
+
+Start with the [Quick Start](./framework/react/quick-start) guide. If you want the integrated devtools panel, also install:
+
+# Preact
+
+Start with the [API reference](./framework/preact/reference/index) and [guides](./framework/preact/guides/hotkeys). If you want the integrated devtools panel, also install:
+
+# Solid
+
+Start with the [API reference](./framework/solid/reference/index) and [guides](./framework/solid/guides/hotkeys). If you want the integrated devtools panel, also install:
+
+# Angular
+
+Start with the [Quick Start](./framework/angular/quick-start) guide and the Angular-specific [guides](./framework/angular/guides/hotkeys).
+
+The integrated devtools panel requires Angular 21 or newer. To use it, also install:
+
+# Vue
+
+Start with the [Quick Start](./framework/vue/quick-start) guide and the Vue-specific [guides](./framework/vue/guides/hotkeys).
+
+If you want the Vue devtools panel component, also install:
+
+# Svelte
+
+Start with the [Quick Start](./framework/svelte/quick-start) guide and the Svelte-specific [guides](./framework/svelte/guides/hotkeys). If you want the integrated devtools panel, also install:
+
+# Lit
+
+Start with the [Quick Start](./framework/lit/quick-start) guide and the Lit-specific [guides](./framework/lit/guides/hotkeys).
+
+Lit currently ships the hotkeys adapter only, so no dedicated Lit devtools package is required.
+
+# Alpine
 
 Use Alpine 3.15.12 or newer within version 3. Install the optional `hotkeysPlugin` before `Alpine.start()`, or create a scope explicitly.
 
 Start with the [Quick Start](./framework/alpine/quick-start), then follow the [guides](./framework/alpine/guides/hotkeys). The package includes the hotkeys adapter; a dedicated Alpine devtools adapter is not provided.
 
-<!-- ::end:framework -->
-
-<!-- ::start:framework -->
-
-### Ember
+# Ember
 
 Use Ember 6.8 or newer. Register hotkeys with imported template helpers in strict-mode `.gts` components. Pass the component as owner to state readers and recorders.
 
 Start with the [Quick Start](./framework/ember/quick-start), then follow the [guides](./framework/ember/guides/hotkeys). The package includes the hotkeys adapter; a dedicated Ember devtools adapter is not provided.
 
-<!-- ::end:framework -->
-
-<!-- ::start:framework -->
-
-### Octane
+# Octane
 
 Use Octane 0.1.36 or newer within version 0.1, with compiler-enabled `.tsrx` components. The Octane adapter requires Node.js 22.22.2 or newer when used in Node.js.
 
@@ -55,127 +81,45 @@ Start with the [Quick Start](./framework/octane/quick-start), then follow the [g
 
 <!-- ::end:framework -->
 
-<!-- ::start:framework -->
-
-### React
-
-Start with the [Quick Start](./framework/react/quick-start) guide. If you want the integrated devtools panel, also install:
-
-<!-- ::end:framework -->
-
-<!-- ::start:framework -->
-
-### Preact
-
-Start with the [API reference](./framework/preact/reference/index) and [guides](./framework/preact/guides/hotkeys). If you want the integrated devtools panel, also install:
-
-<!-- ::end:framework -->
-
-<!-- ::start:framework -->
-
-### Solid
-
-Start with the [API reference](./framework/solid/reference/index) and [guides](./framework/solid/guides/hotkeys). If you want the integrated devtools panel, also install:
-
-<!-- ::end:framework -->
-
-<!-- ::start:framework -->
-
-### Svelte
-
-Start with the [Quick Start](./framework/svelte/quick-start) guide and the Svelte-specific [guides](./framework/svelte/guides/hotkeys). If you want the integrated devtools panel, also install:
-
-<!-- ::end:framework -->
-
-<!-- ::start:framework -->
-
-### Angular
-
-Start with the [Quick Start](./framework/angular/quick-start) guide and the Angular-specific [guides](./framework/angular/guides/hotkeys).
-
-The integrated devtools panel requires Angular 21 or newer. To use it, also install:
-
-<!-- ::end:framework -->
-
-<!-- ::start:framework -->
-
-### Vue
-
-Start with the [Quick Start](./framework/vue/quick-start) guide and the Vue-specific [guides](./framework/vue/guides/hotkeys).
-
-If you want the Vue devtools panel component, also install:
-
-<!-- ::end:framework -->
-
-<!-- ::start:framework -->
-
-### Lit
-
-Start with the [Quick Start](./framework/lit/quick-start) guide and the Lit-specific [guides](./framework/lit/guides/hotkeys).
-
-Lit currently ships the hotkeys adapter only, so no dedicated Lit devtools package is required.
-
-<!-- ::end:framework -->
-
 <!-- ::start:tabs variant="package-manager" -->
 
-angular: @tanstack/angular-devtools
-angular: @tanstack/angular-hotkeys-devtools
-svelte: @tanstack/svelte-devtools
-svelte: @tanstack/svelte-hotkeys-devtools
-preact: @tanstack/preact-devtools
-preact: @tanstack/preact-hotkeys-devtools
 react: @tanstack/react-devtools
 react: @tanstack/react-hotkeys-devtools
+preact: @tanstack/preact-devtools
+preact: @tanstack/preact-hotkeys-devtools
 solid: @tanstack/solid-devtools
 solid: @tanstack/solid-hotkeys-devtools
+angular: @tanstack/angular-devtools
+angular: @tanstack/angular-hotkeys-devtools
 vue: @tanstack/vue-hotkeys-devtools
+svelte: @tanstack/svelte-devtools
+svelte: @tanstack/svelte-hotkeys-devtools
 
 <!-- ::end:tabs -->
 
 <!-- ::start:framework -->
 
-### React
+# React
 
 See the [devtools](./devtools) documentation for setup details.
 
-<!-- ::end:framework -->
-
-<!-- ::start:framework -->
-
-### Preact
+# Preact
 
 See the [devtools](./devtools) documentation for setup details.
 
-<!-- ::end:framework -->
-
-<!-- ::start:framework -->
-
-### Solid
+# Solid
 
 See the [devtools](./devtools) documentation for setup details.
 
-<!-- ::end:framework -->
-
-<!-- ::start:framework -->
-
-### Vue
+# Angular
 
 See the [devtools](./devtools) documentation for setup details.
 
-<!-- ::end:framework -->
-
-<!-- ::start:framework -->
-
-### Angular
+# Vue
 
 See the [devtools](./devtools) documentation for setup details.
 
-<!-- ::end:framework -->
-
-<!-- ::start:framework -->
-
-### Svelte
+# Svelte
 
 See the [devtools](./devtools) documentation for setup details.
 

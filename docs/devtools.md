@@ -6,7 +6,7 @@ id: devtools
 TanStack Hotkeys ships devtools for debugging and monitoring your registered hotkeys in real time, as a panel inside the [TanStack Devtools](https://tanstack.com/devtools) multi-panel UI.
 
 > [!NOTE]
-> The Hotkeys devtools exports are no-ops outside development mode. The Angular and Svelte setup examples below also guard the TanStack Devtools dock so it does not mount in production. To debug a production build, use the explicit `/production` Hotkeys exports.
+> The Hotkeys devtools exports are no-ops outside development mode. See [Production builds](#production-builds) if you need them in production.
 
 ## Features
 
@@ -21,9 +21,29 @@ The Hotkeys devtools panel lets you:
 
 ## Installation
 
-Install the devtools packages for your framework:
+Install the TanStack Devtools host package and the Hotkeys devtools adapter for your framework.
 
-### Angular
+<!-- ::start:framework -->
+
+# React
+
+```sh
+npm install @tanstack/react-devtools @tanstack/react-hotkeys-devtools
+```
+
+# Preact
+
+```sh
+npm install @tanstack/preact-devtools @tanstack/preact-hotkeys-devtools
+```
+
+# Solid
+
+```sh
+npm install @tanstack/solid-devtools @tanstack/solid-hotkeys-devtools
+```
+
+# Angular
 
 Requires Angular 21 or newer.
 
@@ -31,7 +51,13 @@ Requires Angular 21 or newer.
 npm install @tanstack/angular-devtools @tanstack/angular-hotkeys-devtools
 ```
 
-### Svelte
+# Vue
+
+```sh
+npm install @tanstack/vue-hotkeys-devtools
+```
+
+# Svelte
 
 Requires Svelte 5.25 or newer within version 5.
 
@@ -39,35 +65,68 @@ Requires Svelte 5.25 or newer within version 5.
 npm install @tanstack/svelte-devtools @tanstack/svelte-hotkeys-devtools
 ```
 
-### React
+# Lit
 
-```sh
-npm install @tanstack/react-devtools @tanstack/react-hotkeys-devtools
-```
+Lit does not currently ship a dedicated Hotkeys devtools adapter.
 
-### Preact
+# Alpine
 
-```sh
-npm install @tanstack/preact-devtools @tanstack/preact-hotkeys-devtools
-```
+Alpine does not currently ship a dedicated Hotkeys devtools adapter.
 
-### Solid
+# Ember
 
-```sh
-npm install @tanstack/solid-devtools @tanstack/solid-hotkeys-devtools
-```
+Ember does not currently ship a dedicated Hotkeys devtools adapter.
 
-### Vue
+# Octane
 
-```sh
-npm install @tanstack/vue-hotkeys-devtools
-```
+Octane does not currently ship a dedicated Hotkeys devtools adapter.
 
-Alpine, Ember, Lit, and Octane do not currently ship dedicated Hotkeys devtools adapters.
+<!-- ::end:framework -->
 
 ## Setup
 
-### Angular setup
+<!-- ::start:framework -->
+
+# React
+
+```tsx
+import { TanStackDevtools } from '@tanstack/react-devtools'
+import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
+
+function App() {
+  return <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
+}
+```
+
+The Hotkeys panel appears alongside any other TanStack devtools plugins you have installed.
+
+# Preact
+
+```tsx
+import { TanStackDevtools } from '@tanstack/preact-devtools'
+import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools'
+
+export function App() {
+  return <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
+}
+```
+
+The Hotkeys panel appears alongside any other TanStack devtools plugins you have installed.
+
+# Solid
+
+```tsx
+import { TanStackDevtools } from '@tanstack/solid-devtools'
+import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
+
+export function App() {
+  return <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
+}
+```
+
+The Hotkeys panel appears alongside any other TanStack devtools plugins you have installed.
+
+# Angular
 
 Add the plugin through the official `provideTanStackDevtools` provider in `app.config.ts`. The provider creates the dock; you do not need to add a component to your template.
 
@@ -90,9 +149,22 @@ export const appConfig: ApplicationConfig = {
 }
 ```
 
-Keep your existing application providers alongside this provider.
+Keep your existing application providers alongside this provider. The Hotkeys panel appears alongside any other TanStack devtools plugins you have installed.
 
-### Svelte setup
+# Vue
+
+```vue
+<script setup lang="ts">
+import { HotkeysDevtoolsPanel } from '@tanstack/vue-hotkeys-devtools'
+</script>
+
+<template>
+  <AppContent />
+  <HotkeysDevtoolsPanel />
+</template>
+```
+
+# Svelte
 
 Add the dock once in your root component. This example uses Vite's `import.meta.env.DEV` flag to keep the dock out of production builds.
 
@@ -107,59 +179,33 @@ Add the dock once in your root component. This example uses Vite's `import.meta.
 {/if}
 ```
 
-In SvelteKit, you can use `dev` from `$app/environment` as the condition instead.
+In SvelteKit, you can use `dev` from `$app/environment` as the condition instead. The Hotkeys panel appears alongside any other TanStack devtools plugins you have installed.
 
-### React setup
+# Lit
 
-```tsx
-import { TanStackDevtools } from '@tanstack/react-devtools'
-import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
+Lit does not currently ship a dedicated Hotkeys devtools adapter.
 
-function App() {
-  return <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
-}
-```
+# Alpine
 
-### Preact setup
+Alpine does not currently ship a dedicated Hotkeys devtools adapter.
 
-```tsx
-import { TanStackDevtools } from '@tanstack/preact-devtools'
-import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools'
+# Ember
 
-export function App() {
-  return <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
-}
-```
+Ember does not currently ship a dedicated Hotkeys devtools adapter.
 
-### Solid setup
+# Octane
 
-```tsx
-import { TanStackDevtools } from '@tanstack/solid-devtools'
-import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
+Octane does not currently ship a dedicated Hotkeys devtools adapter.
 
-export function App() {
-  return <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
-}
-```
+<!-- ::end:framework -->
 
-### Vue setup
+## Standalone panel
 
-```vue
-<script setup lang="ts">
-import { HotkeysDevtoolsPanel } from '@tanstack/vue-hotkeys-devtools'
-</script>
+<!-- ::start:framework -->
 
-<template>
-  <AppContent />
-  <HotkeysDevtoolsPanel />
-</template>
-```
+# React
 
-For Angular, Svelte, React, Preact, and Solid, the Hotkeys panel appears alongside any other TanStack devtools plugins you have installed.
-
-### Standalone panel
-
-React, Preact, and Solid also export `HotkeysDevtoolsPanel` for rendering without the TanStack Devtools dock:
+`HotkeysDevtoolsPanel` renders the panel without the TanStack Devtools dock:
 
 ```tsx
 import { HotkeysDevtoolsPanel } from '@tanstack/react-hotkeys-devtools'
@@ -169,19 +215,39 @@ function DebugPanel() {
 }
 ```
 
-Use the corresponding `@tanstack/preact-hotkeys-devtools` or `@tanstack/solid-hotkeys-devtools` import for those frameworks. The panel and no-op component also accept an omitted props argument during rendering. Both props are optional: `theme` defaults to `'dark'` and `devtoolsOpen` defaults to `true`. Pass `theme="light"` to select the light theme. When using `hotkeysDevtoolsPlugin()`, the dock supplies these props and its values take precedence over the standalone defaults.
+Both props are optional: `theme` defaults to `'dark'` and `devtoolsOpen` defaults to `true`. Pass `theme="light"` to select the light theme. When using `hotkeysDevtoolsPlugin()`, the dock supplies these props and its values take precedence over the standalone defaults.
 
-Svelte also exports a standalone component:
+# Preact
 
-```svelte
-<script lang="ts">
-  import { HotkeysDevtoolsPanel } from '@tanstack/svelte-hotkeys-devtools'
-</script>
+`HotkeysDevtoolsPanel` renders the panel without the TanStack Devtools dock:
 
-<HotkeysDevtoolsPanel theme="light" />
+```tsx
+import { HotkeysDevtoolsPanel } from '@tanstack/preact-hotkeys-devtools'
+
+export function DebugPanel() {
+  return <HotkeysDevtoolsPanel />
+}
 ```
 
-Angular's `HotkeysDevtoolsPanel` is a render factory for the official dock. To mount it in your own host element, call the factory and keep its returned cleanup function:
+Both props are optional: `theme` defaults to `'dark'` and `devtoolsOpen` defaults to `true`. Pass `theme="light"` to select the light theme. When using `hotkeysDevtoolsPlugin()`, the dock supplies these props and its values take precedence over the standalone defaults.
+
+# Solid
+
+`HotkeysDevtoolsPanel` renders the panel without the TanStack Devtools dock:
+
+```tsx
+import { HotkeysDevtoolsPanel } from '@tanstack/solid-hotkeys-devtools'
+
+export function DebugPanel() {
+  return <HotkeysDevtoolsPanel />
+}
+```
+
+Both props are optional: `theme` defaults to `'dark'` and `devtoolsOpen` defaults to `true`. Pass `theme="light"` to select the light theme. When using `hotkeysDevtoolsPlugin()`, the dock supplies these props and its values take precedence over the standalone defaults.
+
+# Angular
+
+`HotkeysDevtoolsPanel` is a render factory for the official dock. To mount it in your own host element, call the factory and keep its returned cleanup function:
 
 ```ts
 import { HotkeysDevtoolsPanel } from '@tanstack/angular-hotkeys-devtools'
@@ -192,26 +258,116 @@ export function mountHotkeysPanel(host: HTMLElement) {
 }
 ```
 
-Call the returned cleanup function when the host is destroyed. The factory returns `null` outside development mode. Both Angular and Svelte use the same standalone defaults as React: `theme: 'dark'` and `devtoolsOpen: true`. Values supplied by the dock take precedence over these defaults.
+Call the returned cleanup function when the host is destroyed. The factory returns `null` outside development mode. `theme` defaults to `'dark'` and `devtoolsOpen` defaults to `true`. Values supplied by the dock take precedence over these defaults.
+
+# Vue
+
+The `HotkeysDevtoolsPanel` component in the setup above is the standalone panel.
+
+# Svelte
+
+`HotkeysDevtoolsPanel` renders the panel without the TanStack Devtools dock:
+
+```svelte
+<script lang="ts">
+  import { HotkeysDevtoolsPanel } from '@tanstack/svelte-hotkeys-devtools'
+</script>
+
+<HotkeysDevtoolsPanel theme="light" />
+```
+
+Both props are optional: `theme` defaults to `'dark'` and `devtoolsOpen` defaults to `true`. Values supplied by the dock take precedence over these defaults.
+
+# Lit
+
+Lit does not currently ship a dedicated Hotkeys devtools adapter.
+
+# Alpine
+
+Alpine does not currently ship a dedicated Hotkeys devtools adapter.
+
+# Ember
+
+Ember does not currently ship a dedicated Hotkeys devtools adapter.
+
+# Octane
+
+Octane does not currently ship a dedicated Hotkeys devtools adapter.
+
+<!-- ::end:framework -->
 
 ## Production builds
 
 In production builds, the framework devtools adapters return no-op implementations, so they don't affect your bundle's behavior.
 
-React also exposes a production import for when you explicitly want the plugin in production:
+<!-- ::start:framework -->
+
+# React
+
+To include the devtools in a production build, import from the production entry point:
 
 ```tsx
 import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools/production'
 ```
 
-Angular and Svelte also provide explicit production exports:
+This entry point also exports the active `HotkeysDevtoolsPanel` for standalone use.
+
+# Preact
+
+The Preact adapter does not currently provide a production entry point.
+
+# Solid
+
+To include the devtools in a production build, import from the production entry point:
+
+```tsx
+import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools/production'
+```
+
+This entry point also exports the active `HotkeysDevtoolsPanel` for standalone use.
+
+# Angular
+
+To include the devtools in a production build, import from the production entry point and remove the `isDevMode()` guard from the setup example:
 
 ```ts
 import { hotkeysDevtoolsPlugin } from '@tanstack/angular-hotkeys-devtools/production'
 ```
 
+This entry point also exports the active `HotkeysDevtoolsPanel` for standalone use.
+
+# Vue
+
+To include the devtools in a production build, import from the production entry point:
+
+```ts
+import { HotkeysDevtoolsPanel } from '@tanstack/vue-hotkeys-devtools/production'
+```
+
+# Svelte
+
+To include the devtools in a production build, import from the production entry point and remove the `import.meta.env.DEV` guard from the setup example:
+
 ```ts
 import { hotkeysDevtoolsPlugin } from '@tanstack/svelte-hotkeys-devtools/production'
 ```
 
-Remove the `isDevMode()` or `import.meta.env.DEV` guard from the corresponding setup example when you intentionally want the dock in production. These entry points also export the active `HotkeysDevtoolsPanel` for standalone use.
+This entry point also exports the active `HotkeysDevtoolsPanel` for standalone use.
+
+# Lit
+
+Lit does not currently ship a dedicated Hotkeys devtools adapter.
+
+# Alpine
+
+Alpine does not currently ship a dedicated Hotkeys devtools adapter.
+
+# Ember
+
+Ember does not currently ship a dedicated Hotkeys devtools adapter.
+
+# Octane
+
+Octane does not currently ship a dedicated Hotkeys devtools adapter.
+
+<!-- ::end:framework -->
