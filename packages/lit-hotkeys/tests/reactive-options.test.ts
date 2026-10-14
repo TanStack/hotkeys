@@ -162,3 +162,22 @@ it.each(['single', 'sequence'] as const)(
     expect(second).toHaveBeenCalledOnce()
   },
 )
+it('re-registers when a hotkey getter changes after the host updates', async () => {
+  const host = new ReactiveHost(),
+    callback = vi.fn()
+  let hotkey: 'A' | ['B', 'C'] = 'A'
+  host.addController(new HotkeyController(host, () => hotkey, callback))
+  document.body.append(host)
+  await host.updateComplete
+  press('a')
+  expect(callback).toHaveBeenCalledTimes(1)
+  hotkey = ['B', 'C']
+  host.requestUpdate()
+  await host.updateComplete
+  press('a')
+  expect(callback).toHaveBeenCalledTimes(1)
+  press('b')
+  press('c')
+  expect(callback).toHaveBeenCalledTimes(2)
+  expect(HotkeyManager.getInstance().registrations.state.size).toBe(1)
+})

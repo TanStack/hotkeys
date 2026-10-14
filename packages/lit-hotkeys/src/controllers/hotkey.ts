@@ -55,7 +55,8 @@ type MaybeGetter<T> = T | (() => T)
  * hotkey from `defineAppHotkeys`, which uses its custom hotkey from
  * `provideAppHotkeys`.
  *
- * Chords accept `requireReset`; sequences accept `timeout`.
+ * Chords accept `requireReset`; sequences accept `timeout`. Pass a getter for
+ * the hotkey or options to re-read them after each host update.
  *
  * @example
  * ```ts
@@ -79,25 +80,25 @@ export class HotkeyController implements ReactiveController {
 
   /**
    * @param host - The Lit component that owns this controller. Add the controller with `addController()`.
-   * @param hotkey - The chord, sequence, or app hotkey to register.
+   * @param hotkey - The chord, sequence, or app hotkey to register, or a getter. A getter is read on connection and after host updates.
    * @param callback - Called with the host as `this`.
    * @param options - Options or a getter. Property getters are read on connection and after host updates.
    */
   constructor(
     host: ReactiveControllerHost,
-    hotkey: AppHotkey,
+    hotkey: MaybeGetter<AppHotkey>,
     callback: HotkeyCallback,
     options?: MaybeGetter<AppHotkeyControllerOptions>,
   )
   constructor(
     host: ReactiveControllerHost,
-    hotkey: RegisterableHotkey,
+    hotkey: MaybeGetter<RegisterableHotkey>,
     callback: HotkeyCallback,
     options?: MaybeGetter<HotkeyControllerCommonOptions>,
   )
   constructor(
     private _host: ReactiveControllerHost,
-    private _hotkey: RegisterableHotkey | AppHotkey,
+    private _hotkey: MaybeGetter<RegisterableHotkey | AppHotkey>,
     callback: HotkeyCallback,
     private _options: MaybeGetter<HotkeyControllerCommonOptions> = {},
   ) {
@@ -123,7 +124,10 @@ export class HotkeyController implements ReactiveController {
       prepareHotkeyDefinitions<HotkeyControllerTarget>(
         [
           {
-            hotkey: this._hotkey,
+            hotkey:
+              typeof this._hotkey === 'function'
+                ? this._hotkey()
+                : this._hotkey,
             callback: this._boundCallback,
             options,
           } as never,

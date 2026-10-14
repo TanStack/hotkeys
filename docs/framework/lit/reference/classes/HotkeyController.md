@@ -3,7 +3,7 @@ id: HotkeyController
 title: HotkeyController
 ---
 
-Defined in: [controllers/hotkey.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L74)
+Defined in: [controllers/hotkey.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L75)
 
 A Lit ReactiveController that registers a hotkey when the host element is
 connected and unregisters it when the host is disconnected. The hotkey can
@@ -11,7 +11,8 @@ be a chord such as `'Mod+S'`, a sequence such as `['G', 'G']`, or an app
 hotkey from `defineAppHotkeys`, which uses its custom hotkey from
 `provideAppHotkeys`.
 
-Chords accept `requireReset`; sequences accept `timeout`.
+Chords accept `requireReset`; sequences accept `timeout`. Pass a getter for
+the hotkey or options to re-read them after each host update.
 
 ## Example
 
@@ -44,7 +45,7 @@ new HotkeyController(
    options?): HotkeyController;
 ```
 
-Defined in: [controllers/hotkey.ts:86](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L86)
+Defined in: [controllers/hotkey.ts:87](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L87)
 
 #### Parameters
 
@@ -56,9 +57,9 @@ The Lit component that owns this controller. Add the controller with `addControl
 
 ##### hotkey
 
-`AppHotkey`
+`MaybeGetter`\<`AppHotkey`\<`string`, `HotkeyChord` \| `HotkeySequence` \| `null`\>\>
 
-The chord, sequence, or app hotkey to register.
+The chord, sequence, or app hotkey to register, or a getter. A getter is read on connection and after host updates.
 
 ##### callback
 
@@ -86,7 +87,7 @@ new HotkeyController(
    options?): HotkeyController;
 ```
 
-Defined in: [controllers/hotkey.ts:92](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L92)
+Defined in: [controllers/hotkey.ts:93](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L93)
 
 #### Parameters
 
@@ -96,7 +97,7 @@ Defined in: [controllers/hotkey.ts:92](https://github.com/TanStack/hotkeys/blob/
 
 ##### hotkey
 
-`RegisterableHotkey`
+`MaybeGetter`\<`RegisterableHotkey`\>
 
 ##### callback
 
@@ -118,7 +119,7 @@ Defined in: [controllers/hotkey.ts:92](https://github.com/TanStack/hotkeys/blob/
 hostConnected(): void;
 ```
 
-Defined in: [controllers/hotkey.ts:108](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L108)
+Defined in: [controllers/hotkey.ts:109](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L109)
 
 Registers when connected and a target is available.
 
@@ -140,7 +141,7 @@ ReactiveController.hostConnected
 hostDisconnected(): void;
 ```
 
-Defined in: [controllers/hotkey.ts:141](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L141)
+Defined in: [controllers/hotkey.ts:145](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L145)
 
 Releases registrations when the host disconnects.
 
@@ -162,7 +163,7 @@ ReactiveController.hostDisconnected
 hostUpdated(): void;
 ```
 
-Defined in: [controllers/hotkey.ts:115](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L115)
+Defined in: [controllers/hotkey.ts:116](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L116)
 
 Refreshes options after rendering, when scoped targets are available.
 
