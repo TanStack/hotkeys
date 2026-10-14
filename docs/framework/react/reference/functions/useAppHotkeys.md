@@ -7,7 +7,7 @@ title: useAppHotkeys
 function useAppHotkeys(): RegisteredAppHotkeys;
 ```
 
-Defined in: useAppHotkeys.ts:35
+Defined in: [useAppHotkeys.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useAppHotkeys.ts#L35)
 
 Returns the effective app hotkeys from `HotkeysProvider`, typed by
 `Register`: each declaration with the user's custom hotkey applied.

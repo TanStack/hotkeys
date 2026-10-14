@@ -7,7 +7,7 @@ title: publishAppHotkeysStore
 function publishAppHotkeysStore(store): () => void;
 ```
 
-Defined in: app-hotkeys.ts:543
+Defined in: [app-hotkeys.ts:543](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L543)
 
 Publishes a provider's store on the HotkeyManager so devtools can list
 declared hotkeys. Returns a cleanup function that unpublishes it if it is

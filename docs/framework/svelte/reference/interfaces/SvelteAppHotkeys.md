@@ -3,7 +3,7 @@ id: SvelteAppHotkeys
 title: SvelteAppHotkeys
 ---
 
-Defined in: packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:24
+Defined in: [packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts#L24)
 
 ## Properties
 
@@ -13,6 +13,6 @@ Defined in: packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:24
 readonly current: RegisteredAppHotkeys;
 ```
 
-Defined in: packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:26
+Defined in: [packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts#L26)
 
 Effective app hotkeys: each declaration with the user's custom hotkey applied.

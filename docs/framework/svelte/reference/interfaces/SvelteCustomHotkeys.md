@@ -3,7 +3,7 @@ id: SvelteCustomHotkeys
 title: SvelteCustomHotkeys
 ---
 
-Defined in: packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:74
+Defined in: [packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts#L74)
 
 ## Properties
 
@@ -13,7 +13,7 @@ Defined in: packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:74
 readonly current: CustomHotkeys;
 ```
 
-Defined in: packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:76
+Defined in: [packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts#L76)
 
 The user's hotkeys that differ from the defaults.
 
@@ -25,7 +25,7 @@ The user's hotkeys that differ from the defaults.
 findConflicts: (id, hotkey) => AppHotkey<string, HotkeyChord | HotkeySequence | null>[];
 ```
 
-Defined in: packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:90
+Defined in: [packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:90](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts#L90)
 
 Other app hotkeys that would collide if `id` used `hotkey`.
 
@@ -51,7 +51,7 @@ Other app hotkeys that would collide if `id` used `hotkey`.
 resetCustomHotkey: (id) => void;
 ```
 
-Defined in: packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:86
+Defined in: [packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:86](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts#L86)
 
 Restores the default hotkey for an app hotkey.
 
@@ -73,7 +73,7 @@ Restores the default hotkey for an app hotkey.
 resetCustomHotkeys: () => void;
 ```
 
-Defined in: packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:88
+Defined in: [packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:88](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts#L88)
 
 Restores every default hotkey.
 
@@ -89,7 +89,7 @@ Restores every default hotkey.
 setCustomHotkey: (id, hotkey) => AppHotkey<string, HotkeyChord | HotkeySequence | null>[];
 ```
 
-Defined in: packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:81
+Defined in: [packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts:81](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts#L81)
 
 Sets the user's hotkey for an app hotkey. `null` unbinds it.
 Returns conflicting app hotkeys; when any exist, nothing changes.

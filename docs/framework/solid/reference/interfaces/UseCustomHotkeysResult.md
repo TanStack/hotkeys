@@ -3,7 +3,7 @@ id: UseCustomHotkeysResult
 title: UseCustomHotkeysResult
 ---
 
-Defined in: appHotkeys.ts:61
+Defined in: [appHotkeys.ts:61](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/appHotkeys.ts#L61)
 
 Custom hotkey state and actions returned by `useCustomHotkeys`.
 
@@ -15,7 +15,7 @@ Custom hotkey state and actions returned by `useCustomHotkeys`.
 customHotkeys: () => CustomHotkeys;
 ```
 
-Defined in: appHotkeys.ts:63
+Defined in: [appHotkeys.ts:63](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/appHotkeys.ts#L63)
 
 The user's hotkeys that differ from the defaults.
 
@@ -31,7 +31,7 @@ The user's hotkeys that differ from the defaults.
 findConflicts: (id, hotkey) => AppHotkey<string, HotkeyChord | HotkeySequence | null>[];
 ```
 
-Defined in: appHotkeys.ts:77
+Defined in: [appHotkeys.ts:77](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/appHotkeys.ts#L77)
 
 Other app hotkeys that would collide if `id` used `hotkey`.
 
@@ -57,7 +57,7 @@ Other app hotkeys that would collide if `id` used `hotkey`.
 resetCustomHotkey: (id) => void;
 ```
 
-Defined in: appHotkeys.ts:73
+Defined in: [appHotkeys.ts:73](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/appHotkeys.ts#L73)
 
 Restores the default hotkey for an app hotkey.
 
@@ -79,7 +79,7 @@ Restores the default hotkey for an app hotkey.
 resetCustomHotkeys: () => void;
 ```
 
-Defined in: appHotkeys.ts:75
+Defined in: [appHotkeys.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/appHotkeys.ts#L75)
 
 Restores every default hotkey.
 
@@ -95,7 +95,7 @@ Restores every default hotkey.
 setCustomHotkey: (id, hotkey) => AppHotkey<string, HotkeyChord | HotkeySequence | null>[];
 ```
 
-Defined in: appHotkeys.ts:68
+Defined in: [appHotkeys.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/appHotkeys.ts#L68)
 
 Sets the user's hotkey for an app hotkey. `null` unbinds it.
 Returns conflicting app hotkeys; when any exist, nothing changes.

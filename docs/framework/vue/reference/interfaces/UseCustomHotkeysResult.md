@@ -3,7 +3,7 @@ id: UseCustomHotkeysResult
 title: UseCustomHotkeysResult
 ---
 
-Defined in: useAppHotkeys.ts:60
+Defined in: [useAppHotkeys.ts:60](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useAppHotkeys.ts#L60)
 
 Custom hotkey state and actions returned by `useCustomHotkeys`.
 
@@ -15,7 +15,7 @@ Custom hotkey state and actions returned by `useCustomHotkeys`.
 customHotkeys: ComputedRef<CustomHotkeys<Readonly<Record<string, AppHotkey<string, HotkeyChord | HotkeySequence | null>>>>>;
 ```
 
-Defined in: useAppHotkeys.ts:62
+Defined in: [useAppHotkeys.ts:62](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useAppHotkeys.ts#L62)
 
 The user's hotkeys that differ from the defaults.
 
@@ -27,7 +27,7 @@ The user's hotkeys that differ from the defaults.
 findConflicts: (id, hotkey) => AppHotkey<string, HotkeyChord | HotkeySequence | null>[];
 ```
 
-Defined in: useAppHotkeys.ts:76
+Defined in: [useAppHotkeys.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useAppHotkeys.ts#L76)
 
 Other app hotkeys that would collide if `id` used `hotkey`.
 
@@ -53,7 +53,7 @@ Other app hotkeys that would collide if `id` used `hotkey`.
 resetCustomHotkey: (id) => void;
 ```
 
-Defined in: useAppHotkeys.ts:72
+Defined in: [useAppHotkeys.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useAppHotkeys.ts#L72)
 
 Restores the default hotkey for an app hotkey.
 
@@ -75,7 +75,7 @@ Restores the default hotkey for an app hotkey.
 resetCustomHotkeys: () => void;
 ```
 
-Defined in: useAppHotkeys.ts:74
+Defined in: [useAppHotkeys.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useAppHotkeys.ts#L74)
 
 Restores every default hotkey.
 
@@ -91,7 +91,7 @@ Restores every default hotkey.
 setCustomHotkey: (id, hotkey) => AppHotkey<string, HotkeyChord | HotkeySequence | null>[];
 ```
 
-Defined in: useAppHotkeys.ts:67
+Defined in: [useAppHotkeys.ts:67](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useAppHotkeys.ts#L67)
 
 Sets the user's hotkey for an app hotkey. `null` unbinds it.
 Returns conflicting app hotkeys; when any exist, nothing changes.

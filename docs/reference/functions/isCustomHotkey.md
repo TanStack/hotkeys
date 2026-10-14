@@ -7,7 +7,7 @@ title: isCustomHotkey
 function isCustomHotkey(appHotkey, platform?): boolean;
 ```
 
-Defined in: app-hotkeys.ts:213
+Defined in: [app-hotkeys.ts:213](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L213)
 
 Whether an app hotkey's effective hotkey differs from its default.
 

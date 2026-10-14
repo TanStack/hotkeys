@@ -7,7 +7,7 @@ title: injectAppHotkeyList
 function injectAppHotkeyList(): Signal<AppHotkeyListItem<AppHotkey<string, HotkeyChord | HotkeySequence | null>>[]>;
 ```
 
-Defined in: injectAppHotkeys.ts:51
+Defined in: [injectAppHotkeys.ts:51](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectAppHotkeys.ts#L51)
 
 Lists every app hotkey with its live status, in declaration order, for
 cheat sheets and settings screens. App hotkeys whose components have not
