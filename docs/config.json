@@ -117,7 +117,12 @@
     },
     {
       "label": "Guides",
-      "children": [],
+      "children": [
+        {
+          "label": "Sensible Defaults",
+          "to": "guides/sensible-defaults"
+        }
+      ],
       "frameworks": [
         {
           "label": "react",
