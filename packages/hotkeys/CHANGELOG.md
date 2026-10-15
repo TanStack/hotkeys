@@ -1,5 +1,17 @@
 # @tanstack/hotkeys
 
+## 0.14.0
+
+### Minor Changes
+
+- [#167](https://github.com/TanStack/hotkeys/pull/167) [`f8f02f0`](https://github.com/TanStack/hotkeys/commit/f8f02f01e17d62f4323357d30f4b9ae50f797a88) - Add `capture: true` for hotkeys, including sequences, to handle shortcuts before descendant widgets consume them. Capture defaults to false and supports runtime updates while preserving registration state. App hotkeys can declare it, and framework adapters inherit the option, including provider defaults.
+
+  Key-state tracking now listens in the capture phase on `window`, so a capture hotkey on `window` can no longer hide keys from it. If an earlier callback unregisters another hotkey that matches the same key press, the unregistered hotkey no longer fires.
+
+### Patch Changes
+
+- [#161](https://github.com/TanStack/hotkeys/pull/161) [`a9b29f5`](https://github.com/TanStack/hotkeys/commit/a9b29f511faf33ecaa416b5137f4e66af1d44c06) - Recover stale held modifier keys when a system shortcut swallows their keyup without blurring the window. The next real keyboard or mouse event releases any modifier it reports as up. Events dispatched by page code are ignored for this, so they can't clear keys the user is still holding.
+
 ## 0.13.0
 
 ### Minor Changes
