@@ -106,7 +106,7 @@ useHotkey('Mod+S', callback, {
   capture: false,
   requireReset: false, // chords only
   timeout: 1000, // sequences only
-  ignoreInputs: undefined, // smart default: false for Mod+S, true for single keys
+  ignoreInputs: 'auto', // false for Mod+S and Escape, true for single keys
   target: document,
   platform: undefined, // auto-detected
   conflictBehavior: 'warn',
@@ -119,7 +119,7 @@ Most hotkey registrations exist to override the browser. When you bind `Mod+S` t
 
 #### Smart input handling with `ignoreInputs`
 
-By default, `Ctrl`/`Meta` shortcuts (like `Mod+S`) and `Escape` fire even while focus is inside a text field or textarea, so save and close work wherever the user happens to be. Single keys and `Shift`/`Alt` combos are ignored inside non-button inputs, because those are just typing. Button-type inputs (`type="button"`, `"submit"`, `"reset"`) don't block any hotkeys.
+By default, `Ctrl`/`Meta` shortcuts (like `Mod+S`) and `Escape` fire even while focus is inside a text field or textarea, so save and close work wherever the user happens to be. Single keys and `Shift`/`Alt` combos are ignored inside non-button inputs, because those are just typing. Button-type inputs (`type="button"`, `"submit"`, `"reset"`) allow unrelated shortcuts while preserving their native activation keys.
 
 #### Hotkey conflicts and `conflictBehavior`
 
@@ -212,13 +212,15 @@ useHotkey('Escape', () => closePanel(), { requireReset: true })
 
 ### `ignoreInputs`
 
-When `true`, the hotkey will not fire when the user is focused on a text input, textarea, select, or contentEditable element. Button-type inputs (`type="button"`, `"submit"`, `"reset"`) are not ignored, so shortcuts like Mod+S work when the user has tabbed to a form button. When unset, a smart default applies: `Ctrl`/`Meta` shortcuts and `Escape` fire in inputs; single keys and `Shift`/`Alt` combos are ignored.
+When `true`, the hotkey will not fire when the user is focused on a text input, textarea, select, or contentEditable element. Button-type inputs (`type="button"`, `"submit"`, `"reset"`) allow unrelated shortcuts, so shortcuts like Mod+S work when the user has tabbed to a form button. The default, `'auto'`, chooses from the hotkey: `Ctrl`/`Meta` shortcuts and `Escape` fire in inputs; single keys and `Shift`/`Alt` combos are ignored.
+
+When `ignoreInputs` is enabled, hotkeys also skip keys that a focused control inside their `target` uses itself: `Enter` and `Space` on buttons and `<summary>`, `Enter` on links, and navigation keys in ARIA widgets such as menus, listboxes, tabs, and grids. A hotkey targeted at the control itself still receives them, and `ignoreInputs: false` handles every key. See [Focused controls keep their own keys](../../../guides/sensible-defaults.md#focused-controls-keep-their-own-keys) for the full list.
 
 ```tsx
-// Single key - ignored in inputs by default (smart default)
+// Single key - ignored in inputs by default ('auto')
 useHotkey('K', () => openSearch())
 
-// Mod+S and Escape - fire in inputs by default (smart default)
+// Mod+S and Escape - fire in inputs by default ('auto')
 useHotkey('Mod+S', () => save())
 useHotkey('Escape', () => closeDialog())
 
@@ -226,7 +228,7 @@ useHotkey('Escape', () => closeDialog())
 useHotkey('Enter', () => submit(), { ignoreInputs: false })
 ```
 
-Set `ignoreInputs: false` or `true` explicitly to override the smart default.
+Set `ignoreInputs` to `true` or `false` to override `'auto'`.
 
 ### `target`
 

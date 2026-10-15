@@ -103,7 +103,7 @@ useHotkey('Mod+S', callback, {
   eventType: 'keydown',
   capture: false,
   requireReset: false,
-  ignoreInputs: undefined,
+  ignoreInputs: 'auto',
   target: document,
   platform: undefined,
   conflictBehavior: 'warn',
@@ -173,6 +173,8 @@ useHotkey('Escape', () => closePanel(), { requireReset: true })
 ```
 
 ### `ignoreInputs`
+
+When `ignoreInputs` is enabled, hotkeys also skip keys that a focused control inside their `target` uses itself: `Enter` and `Space` on buttons and `<summary>`, `Enter` on links, and navigation keys in ARIA widgets such as menus, listboxes, tabs, and grids. A hotkey targeted at the control itself still receives them, and `ignoreInputs: false` handles every key. See [Focused controls keep their own keys](../../../guides/sensible-defaults.md#focused-controls-keep-their-own-keys) for the full list.
 
 ```ts
 useHotkey('K', () => openSearch())

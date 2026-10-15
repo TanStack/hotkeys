@@ -10,7 +10,7 @@ import { normalizeKeyboardEvent } from './_keyboard-event'
 import { isModifierKey, parseHotkey, simplifyHotkey } from './parse'
 import { validateHotkey } from './validate'
 import { detectPlatform } from './platform'
-import { shouldIgnoreInputEvent } from './_event-target'
+import { isTypingEvent } from './_event-target'
 import type {
   HotkeyRecorderValidationContext,
   RecorderOptions,
@@ -233,13 +233,14 @@ export class HotkeyRecorder {
         return
       }
 
-      // If ignoreInputs is enabled (default) and focus is in an input element,
-      // let the event pass through so the user can type normally.
+      // If ignoreInputs is enabled (default) and focus is in a text field,
+      // let the event pass through so the user can type normally. Buttons
+      // don't count: focus often stays on the button that started recording.
       // Escape is the exception — it should always cancel recording.
       if (
         this.#options.ignoreInputs !== false &&
         event.key !== 'Escape' &&
-        shouldIgnoreInputEvent(event, document, document)
+        isTypingEvent(event, document)
       )
         return
 

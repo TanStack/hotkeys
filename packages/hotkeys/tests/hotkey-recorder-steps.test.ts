@@ -85,6 +85,23 @@ describe.each(['key', 'code', undefined] as const)(
       expect(r.store.state.recordedHotkey).toEqual(recorded)
     })
 
+    it('commits on Enter while the button that started recording has focus', () => {
+      const onRecord = vi.fn()
+      const r = createRecorder({ recordBy, onRecord })
+      const button = document.createElement('button')
+      document.body.appendChild(button)
+      button.focus()
+      r.start()
+
+      button.dispatchEvent(createKeyboardEvent('keydown', 'g'))
+      button.dispatchEvent(createKeyboardEvent('keydown', 'Enter'))
+
+      expect(onRecord).toHaveBeenCalledExactlyOnceWith(
+        recordBy === 'key' ? 'G' : '[KeyG]',
+      )
+      expect(r.store.state.isRecording).toBe(false)
+    })
+
     it('commitKeys none requires commit()', () => {
       const onRecord = vi.fn()
       const r = createRecorder({

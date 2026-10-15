@@ -3,7 +3,7 @@ id: HotkeyConflict
 title: HotkeyConflict
 ---
 
-Defined in: [conflicts.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L13)
+Defined in: [conflicts.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L14)
 
 A live registration that overlaps a candidate hotkey.
 
@@ -15,4 +15,4 @@ A live registration that overlaps a candidate hotkey.
 registration: HotkeyRegistrationView;
 ```
 
-Defined in: [conflicts.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L14)
+Defined in: [conflicts.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L15)
