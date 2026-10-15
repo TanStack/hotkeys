@@ -144,7 +144,7 @@ These defaults let application shortcuts replace browser shortcuts. Opt out of p
 
 ### Smart input handling
 
-By default, Control/Meta shortcuts and Escape work in text inputs, textareas, selects, and contentEditable elements. Single keys and Shift/Alt combinations are ignored there because they can be normal typing. Button-type inputs do not block hotkeys.
+By default, Control/Meta shortcuts and Escape work in text inputs, textareas, selects, and contentEditable elements. Single keys and Shift/Alt combinations are ignored there because they can be normal typing. Button-type inputs allow unrelated shortcuts while preserving their native activation keys.
 
 ### Shared default options
 
@@ -173,6 +173,8 @@ Set `eventType: 'keyup'` to execute when the key is released. The default is `'k
 Set `requireReset: true` for actions that must run once per press. The key must be released before another press can trigger the action.
 
 ### `ignoreInputs`
+
+When `ignoreInputs` is enabled, global hotkeys and sequences (targeting `document` or `window`) also preserve unmodified Space and Enter on native buttons and button-type inputs, and Enter on links with an `href`. Other keys and modifier shortcuts still work on these controls. Set `ignoreInputs: false`, or use an explicit element `target`, to handle their activation keys. Keyboard handling in custom ARIA widgets is not detected automatically.
 
 Use `ignoreInputs: true` to ignore typing targets even for Control/Meta shortcuts. Use `false` to allow a single key such as Enter inside an input. Omitting the option restores smart input handling.
 

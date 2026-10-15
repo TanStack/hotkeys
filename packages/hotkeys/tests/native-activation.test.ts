@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { HotkeyManager } from '../src/hotkey-manager'
-import { SequenceManager } from '../src/sequence-manager'
-import type { Hotkey, HotkeyOptions } from '../src'
+import { HotkeyManager, toHotkeyRegistrationView } from '../src/hotkey-manager'
+import type { HotkeySequenceRegistrationView } from '../src/hotkey-manager'
+import type { HotkeyChord, HotkeyOptions } from '../src'
 
 function focusControl(markup = '<button>Action</button>') {
   document.body.innerHTML = markup
@@ -29,21 +29,32 @@ function dispatchKey(
 
 afterEach(() => {
   HotkeyManager.resetInstance()
-  SequenceManager.resetInstance()
   document.body.innerHTML = ''
 })
 
 describe.each(['hotkey', 'sequence'] as const)(
   '%s native activation',
   (kind) => {
-    function register(hotkey: Hotkey, options: HotkeyOptions = {}) {
+    // Sequences end with the hotkey under test, so the activation key is
+    // checked as a later sequence step rather than collapsing to a chord.
+    function register(hotkey: HotkeyChord, options: HotkeyOptions = {}) {
       const callback = vi.fn()
       if (kind === 'hotkey') {
         HotkeyManager.getInstance().register(hotkey, callback, options)
       } else {
-        SequenceManager.getInstance().register([hotkey], callback, options)
+        HotkeyManager.getInstance().register(['G', hotkey], callback, options)
       }
       return callback
+    }
+
+    function press(
+      element: EventTarget,
+      key: string,
+      options: KeyboardEventInit = {},
+      type = 'keydown',
+    ) {
+      if (kind === 'sequence') dispatchKey(element, 'g', {}, type)
+      return dispatchKey(element, key, options, type)
     }
 
     it.each([
@@ -56,8 +67,8 @@ describe.each(['hotkey', 'sequence'] as const)(
       const space = register('Space')
       const enter = register('Enter')
 
-      expect(dispatchKey(element, ' ').defaultPrevented).toBe(false)
-      expect(dispatchKey(element, 'Enter').defaultPrevented).toBe(false)
+      expect(press(element, ' ').defaultPrevented).toBe(false)
+      expect(press(element, 'Enter').defaultPrevented).toBe(false)
       expect(space).not.toHaveBeenCalled()
       expect(enter).not.toHaveBeenCalled()
     })
@@ -67,16 +78,16 @@ describe.each(['hotkey', 'sequence'] as const)(
       const enter = register('Enter')
       const space = register('Space')
 
-      expect(dispatchKey(element, 'Enter').defaultPrevented).toBe(false)
+      expect(press(element, 'Enter').defaultPrevented).toBe(false)
       expect(enter).not.toHaveBeenCalled()
-      expect(dispatchKey(element, ' ').defaultPrevented).toBe(true)
+      expect(press(element, ' ').defaultPrevented).toBe(true)
       expect(space).toHaveBeenCalledOnce()
     })
 
     it('still handles Enter on an anchor without href', () => {
       const element = focusControl('<a tabindex="0">Placeholder</a>')
       const callback = register('Enter')
-      dispatchKey(element, 'Enter')
+      press(element, 'Enter')
       expect(callback).toHaveBeenCalledOnce()
     })
 
@@ -85,12 +96,10 @@ describe.each(['hotkey', 'sequence'] as const)(
       (eventType) => {
         const element = focusControl()
         const callback = register('Space', { eventType })
-        expect(dispatchKey(element, ' ', {}, eventType).defaultPrevented).toBe(
-          false,
-        )
+        expect(press(element, ' ', {}, eventType).defaultPrevented).toBe(false)
         expect(callback).not.toHaveBeenCalled()
         element.blur()
-        dispatchKey(document.body, ' ', {}, eventType)
+        press(document.body, ' ', {}, eventType)
         expect(callback).toHaveBeenCalledOnce()
       },
     )
@@ -98,7 +107,7 @@ describe.each(['hotkey', 'sequence'] as const)(
     it('preserves explicit ignoreInputs: false', () => {
       const element = focusControl()
       const callback = register('Space', { ignoreInputs: false })
-      expect(dispatchKey(element, ' ').defaultPrevented).toBe(true)
+      expect(press(element, ' ').defaultPrevented).toBe(true)
       expect(callback).toHaveBeenCalledOnce()
     })
 
@@ -111,7 +120,7 @@ describe.each(['hotkey', 'sequence'] as const)(
         const callback = register('Enter', {
           target: scope === 'control' ? element : container,
         })
-        expect(dispatchKey(element, 'Enter').defaultPrevented).toBe(true)
+        expect(press(element, 'Enter').defaultPrevented).toBe(true)
         expect(callback).toHaveBeenCalledOnce()
       },
     )
@@ -127,7 +136,7 @@ describe.each(['hotkey', 'sequence'] as const)(
     ] as const)('preserves %s on buttons', (hotkey, key, modifiers) => {
       const element = focusControl()
       const callback = register(hotkey, { platform: 'mac' })
-      dispatchKey(element, key, modifiers)
+      press(element, key, modifiers)
       expect(callback).toHaveBeenCalledOnce()
     })
 
@@ -138,14 +147,14 @@ describe.each(['hotkey', 'sequence'] as const)(
       shadow.append(button)
       button.focus()
       const callback = register('Enter')
-      expect(dispatchKey(button, 'Enter').defaultPrevented).toBe(false)
+      expect(press(button, 'Enter').defaultPrevented).toBe(false)
       expect(callback).not.toHaveBeenCalled()
     })
 
     it('still handles activation keys when no native control has focus', () => {
       const element = focusControl('<div tabindex="0">Content</div>')
       const callback = register('Space')
-      dispatchKey(element, ' ')
+      press(element, ' ')
       expect(callback).toHaveBeenCalledOnce()
     })
   },
@@ -154,10 +163,13 @@ describe.each(['hotkey', 'sequence'] as const)(
 it('does not consume native activation as a sequence step', () => {
   const element = focusControl()
   const callback = vi.fn()
-  const manager = SequenceManager.getInstance()
+  const manager = HotkeyManager.getInstance()
   const handle = manager.register(['Space', 'G'], callback)
   dispatchKey(element, ' ')
-  expect(manager.registrations.state.get(handle.id)?.matchedStepCount).toBe(0)
+  const view = toHotkeyRegistrationView(
+    manager.registrations.state.get(handle.id)!,
+  ) as HotkeySequenceRegistrationView
+  expect(view.matchedStepCount).toBe(0)
   element.blur()
   dispatchKey(document.body, 'g')
   expect(callback).not.toHaveBeenCalled()

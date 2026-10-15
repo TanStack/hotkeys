@@ -3,7 +3,7 @@ id: HotkeySequenceOptions
 title: HotkeySequenceOptions
 ---
 
-Defined in: [hotkey-manager.ts:79](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L79)
+Defined in: [hotkey-manager.ts:86](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L86)
 
 Options for a sequence such as `['G', 'G']`.
 
@@ -19,7 +19,7 @@ Options for a sequence such as `['G', 'G']`.
 optional appHotkeyId?: string;
 ```
 
-Defined in: [hotkey-manager.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L69)
+Defined in: [hotkey-manager.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L76)
 
 Id of the app hotkey this registration implements. Adapters set this when registering an app hotkey from `defineAppHotkeys`.
 
@@ -85,9 +85,14 @@ The event type to listen for. Defaults to 'keydown'
 optional ignoreInputs?: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L57)
+Defined in: [hotkey-manager.ts:64](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L64)
 
-Whether to ignore hotkeys when keyboard events originate from input-like elements (text inputs, textarea, select, contenteditable — button-type inputs like type=button/submit/reset are not ignored). Defaults based on the hotkey (the first step of a sequence): true for single keys and Shift/Alt combos; false for Ctrl/Meta shortcuts and Escape
+Ignore events from text inputs, textarea, select, and contenteditable.
+Document/window targets also preserve unmodified Space/Enter on native
+buttons and Enter on links. Explicit element targets can override activation.
+Defaults based on the hotkey (the first step of a sequence): true for single
+keys and Shift/Alt combos; false for Ctrl/Meta shortcuts and Escape. Set
+false to handle keys even in these controls.
 
 #### Inherited from
 
@@ -101,7 +106,7 @@ Whether to ignore hotkeys when keyboard events originate from input-like element
 optional meta?: HotkeyMeta;
 ```
 
-Defined in: [hotkey-manager.ts:67](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L67)
+Defined in: [hotkey-manager.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L74)
 
 Optional metadata (name, description, custom fields via declaration merging)
 
@@ -117,7 +122,7 @@ Optional metadata (name, description, custom fields via declaration merging)
 optional platform?: "mac" | "windows" | "linux";
 ```
 
-Defined in: [hotkey-manager.ts:59](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L59)
+Defined in: [hotkey-manager.ts:66](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L66)
 
 The target platform for resolving 'Mod'
 
@@ -133,7 +138,7 @@ The target platform for resolving 'Mod'
 optional preventDefault?: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:61](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L61)
+Defined in: [hotkey-manager.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L68)
 
 Prevent the default browser action when the hotkey matches. Defaults to true
 
@@ -149,7 +154,7 @@ Prevent the default browser action when the hotkey matches. Defaults to true
 optional stopPropagation?: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:63](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L63)
+Defined in: [hotkey-manager.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L70)
 
 Stop event propagation when the hotkey matches. Defaults to true
 
@@ -165,7 +170,7 @@ Stop event propagation when the hotkey matches. Defaults to true
 optional target?: Target | null;
 ```
 
-Defined in: [hotkey-manager.ts:65](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L65)
+Defined in: [hotkey-manager.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L72)
 
 The DOM element to attach the event listener to. Defaults to document.
 
@@ -181,6 +186,6 @@ The DOM element to attach the event listener to. Defaults to document.
 optional timeout?: number;
 ```
 
-Defined in: [hotkey-manager.ts:81](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L81)
+Defined in: [hotkey-manager.ts:88](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L88)
 
 Maximum time between steps in milliseconds. Default: 1000

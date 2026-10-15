@@ -102,7 +102,7 @@ Most hotkey registrations exist to override the browser. When you bind `Mod+S` t
 
 #### Smart input handling with `ignoreInputs`
 
-By default, `Ctrl`/`Meta` shortcuts (like `Mod+S`) and `Escape` fire even while focus is inside a text field or textarea, so save and close work wherever the user happens to be. Single keys and `Shift`/`Alt` combos are ignored inside non-button inputs, because those are just typing. Button-type inputs (`type="button"`, `"submit"`, `"reset"`) don't block any hotkeys.
+By default, `Ctrl`/`Meta` shortcuts (like `Mod+S`) and `Escape` fire even while focus is inside a text field or textarea, so save and close work wherever the user happens to be. Single keys and `Shift`/`Alt` combos are ignored inside non-button inputs, because those are just typing. Button-type inputs (`type="button"`, `"submit"`, `"reset"`) allow unrelated shortcuts while preserving their native activation keys.
 
 #### Hotkey conflicts and `conflictBehavior`
 

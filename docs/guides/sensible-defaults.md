@@ -70,7 +70,7 @@ A hotkey bound to `K` should not fire while the user types "okay" into a text fi
 
 For a sequence, the first step decides, so `['G', 'G']` is ignored in inputs.
 
-Text inputs, textareas, selects, and `contenteditable` elements count as inputs, including inside shadow DOM. Button-type inputs (`type="button"`, `"submit"`, and `"reset"`) do not, so shortcuts still work when the user has tabbed to a form button. A hotkey whose `target` is the input itself always receives that input's events.
+Text inputs, textareas, selects, and `contenteditable` elements count as inputs, including inside shadow DOM. Button-type inputs (`type="button"`, `"submit"`, and `"reset"`) do not, so shortcuts still work when the user has tabbed to a form button. One exception protects native activation: when `ignoreInputs` is on, hotkeys on `document` or `window` skip unmodified Space and Enter on a focused button, and Enter on a focused link, so the browser can click it. A hotkey whose `target` is the input itself always receives that input's events.
 
 Set `ignoreInputs: true` or `false` to choose explicitly.
 
