@@ -45,7 +45,7 @@
   "size-limit": [
     {
       "path": "packages/hotkeys/dist/index.js",
-      "limit": "12 KB"
+      "limit": "13 KB"
     }
   ],
   "nx": {

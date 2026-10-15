@@ -16,12 +16,12 @@ it('tracks relevant modifiers, reactive inputs, and disconnect without unrelated
   const hint = new HotkeyHintController(host, () => binding)
   hint.hostConnected()
   document.dispatchEvent(
-    new KeyboardEvent('keydown', { key: 'Alt', code: 'AltLeft' }),
+    new KeyboardEvent('keydown', { key: 'Alt', code: 'AltLeft', altKey: true }),
   )
   expect(hint.value).toBe(true)
   expect(host.requestUpdate).toHaveBeenCalledOnce()
   document.dispatchEvent(
-    new KeyboardEvent('keydown', { key: 'x', code: 'KeyX' }),
+    new KeyboardEvent('keydown', { key: 'x', code: 'KeyX', altKey: true }),
   )
   expect(host.requestUpdate).toHaveBeenCalledOnce()
   binding = 'Control+[KeyS]'

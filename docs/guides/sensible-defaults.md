@@ -172,6 +172,8 @@ Key state tracking marks a key as held on keydown and releases it on keyup. If t
 
 On macOS, the system can also swallow the keyup of a key pressed with Command. Releasing a modifier clears any other keys still marked as held, so no key is stuck.
 
+Some system shortcuts swallow a modifier's own keyup without taking focus from the page, such as Command+Shift+4 for a screenshot on macOS, or the DevTools inspect shortcut. Every keyboard and mouse event reports which modifiers are down, so the next key press, mouse movement, or click releases any modifier it reports as up. Only real user input counts: events that page code dispatches report no modifiers, so the tracker ignores them for this. Until such an event arrives, the modifier stays held, because nothing distinguishes a missed release from a long hold.
+
 ## Display matches the platform
 
 `formatForDisplay` uses each platform's conventions. On macOS, `Mod+Shift+S` displays as `⇧ ⌘ S`. On Windows and Linux, it displays as `Ctrl+Shift+S`. Sequence steps are separated by a space: `G G`.

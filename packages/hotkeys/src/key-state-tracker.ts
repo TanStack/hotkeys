@@ -74,6 +74,7 @@ export class KeyStateTracker {
   #heldEntries: Map<string, { key: string; code: string }> = new Map()
   #keydownListener: ((event: KeyboardEvent) => void) | null = null
   #keyupListener: ((event: KeyboardEvent) => void) | null = null
+  #mouseListener: ((event: MouseEvent) => void) | null = null
   #blurListener: (() => void) | null = null
 
   private constructor() {
@@ -109,12 +110,14 @@ export class KeyStateTracker {
     }
 
     this.#keydownListener = (event: KeyboardEvent) => {
+      let changed = this.#reconcileModifiers(event)
       const key = normalizeKeyName(event.key)
       const identity = event.code || `key:${key}`
       if (!this.#heldEntries.has(identity)) {
         this.#heldEntries.set(identity, { key, code: event.code })
-        this.#syncState()
+        changed = true
       }
+      if (changed) this.#syncState()
     }
 
     this.#keyupListener = (event: KeyboardEvent) => {
@@ -128,6 +131,8 @@ export class KeyStateTracker {
           if (entry.key === key) this.#heldEntries.delete(entryIdentity)
         }
       }
+
+      this.#reconcileModifiers(event)
 
       // When a modifier key is released, clear any non-modifier keys still
       // marked as held. On macOS, the OS intercepts modifier+key combos
@@ -144,6 +149,10 @@ export class KeyStateTracker {
       this.#syncState()
     }
 
+    this.#mouseListener = (event: MouseEvent) => {
+      if (this.#reconcileModifiers(event)) this.#syncState()
+    }
+
     // Clear all keys when window loses focus (keys might be released while not focused)
     this.#blurListener = () => {
       if (this.#heldEntries.size > 0) {
@@ -157,7 +166,33 @@ export class KeyStateTracker {
     // widget can hide keys from the tracker.
     window.addEventListener('keydown', this.#keydownListener, true)
     window.addEventListener('keyup', this.#keyupListener, true)
+    window.addEventListener('mousemove', this.#mouseListener, true)
+    window.addEventListener('mousedown', this.#mouseListener, true)
     window.addEventListener('blur', this.#blurListener)
+  }
+
+  /**
+   * Removes modifiers whose release was missed without a window blur.
+   * Event modifier state is shared by left/right keys, so a true flag keeps
+   * both physical entries until their individual keyup events arrive.
+   * Only real user input counts: events dispatched by page code report no
+   * modifiers and would clear keys the user is still holding.
+   */
+  #reconcileModifiers(event: KeyboardEvent | MouseEvent): boolean {
+    if (!event.isTrusted) return false
+    let changed = false
+    for (const [identity, entry] of this.#heldEntries) {
+      const released =
+        (entry.key === 'Control' && !event.ctrlKey) ||
+        (entry.key === 'Alt' && !event.altKey) ||
+        (entry.key === 'Shift' && !event.shiftKey) ||
+        (entry.key === 'Meta' && !event.metaKey)
+      if (released) {
+        this.#heldEntries.delete(identity)
+        changed = true
+      }
+    }
+    return changed
   }
 
   /**
@@ -195,6 +230,12 @@ export class KeyStateTracker {
     if (this.#keyupListener) {
       window.removeEventListener('keyup', this.#keyupListener, true)
       this.#keyupListener = null
+    }
+
+    if (this.#mouseListener) {
+      window.removeEventListener('mousemove', this.#mouseListener, true)
+      window.removeEventListener('mousedown', this.#mouseListener, true)
+      this.#mouseListener = null
     }
 
     if (this.#blurListener) {

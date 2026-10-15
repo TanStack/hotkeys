@@ -108,6 +108,8 @@ macOS can swallow the keyup event for a non-modifier while a modifier is held. T
 
 The tracker clears held keys when the browser window loses focus. Keys released while another window is active therefore do not remain stuck in the UI.
 
+If the system swallows a modifier's release without taking focus, such as Command+Shift+4 on macOS, the tracker releases the modifier on the next key press, mouse movement, or click. See [Held keys reset when the window loses focus](../../../guides/sensible-defaults.md#held-keys-reset-when-the-window-loses-focus).
+
 ## Under the hood
 
 Ember subscribes to the core TanStack Store and releases each subscription with its owner. The shared tracker manages keyboard listeners and exposes imperative queries.
