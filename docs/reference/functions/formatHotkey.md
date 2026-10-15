@@ -3,13 +3,11 @@ id: formatHotkey
 title: formatHotkey
 ---
 
-# Function: formatHotkey()
-
 ```ts
 function formatHotkey(parsed): string;
 ```
 
-Defined in: [format.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L39)
+Defined in: [format.ts:37](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L37)
 
 Converts a ParsedHotkey back to a hotkey string.
 
@@ -17,7 +15,7 @@ Converts a ParsedHotkey back to a hotkey string.
 
 ### parsed
 
-[`ParsedHotkey`](../interfaces/ParsedHotkey.md)
+[`ParsedHotkey`](../type-aliases/ParsedHotkey.md)
 
 The parsed hotkey object
 

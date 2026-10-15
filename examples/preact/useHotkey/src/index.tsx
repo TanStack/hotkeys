@@ -1,7 +1,10 @@
 import React from 'preact/compat'
 import { render } from 'preact'
-import { formatForDisplay, useHotkey } from '@tanstack/preact-hotkeys'
-import { HotkeysProvider } from '@tanstack/preact-hotkeys'
+import {
+  HotkeysProvider,
+  formatForDisplay,
+  useHotkey,
+} from '@tanstack/preact-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools'
 import { TanStackDevtools } from '@tanstack/preact-devtools'
 import type { Hotkey } from '@tanstack/preact-hotkeys'
@@ -76,8 +79,8 @@ function App() {
     setActiveTab(1)
   })
 
-  useHotkey('Mod+2', () => {
-    setLastHotkey('Mod+2')
+  useHotkey('Mod+[Digit2]', () => {
+    setLastHotkey('Mod+[Digit2]')
     setActiveTab(2)
   })
 
@@ -346,6 +349,11 @@ function App() {
     { target: editorRefForHotkey },
   )
 
+  useHotkey('J', () => {
+    setLastHotkey('J')
+    setEditorShortcutCount((c) => c + 1)
+  })
+
   return (
     <div className="app">
       <header>
@@ -411,13 +419,17 @@ useHotkey(
 
         <section className="demo-section">
           <h2>Number Key Combinations</h2>
-          <p>Common for tab/section switching:</p>
+          <p>
+            Tab 2 uses the physical number-row position (
+            <code>Mod+[Digit2]</code>), even when that key produces a different
+            character. The other tabs follow logical digits.
+          </p>
           <div className="hotkey-grid">
             <div>
               <kbd>{formatForDisplay('Mod+1')}</kbd> → Tab 1
             </div>
             <div>
-              <kbd>{formatForDisplay('Mod+2')}</kbd> → Tab 2
+              <kbd>{formatForDisplay('Mod+[Digit2]')}</kbd> → Tab 2
             </div>
             <div>
               <kbd>{formatForDisplay('Mod+3')}</kbd> → Tab 3
@@ -431,7 +443,7 @@ useHotkey(
           </div>
           <div className="counter">Active Tab: {activeTab}</div>
           <pre className="code-block">{`useHotkey('Mod+1', () => setActiveTab(1))
-useHotkey('Mod+2', () => setActiveTab(2))
+useHotkey('Mod+[Digit2]', () => setActiveTab(2))
 `}</pre>
         </section>
 
@@ -668,15 +680,16 @@ useHotkey('Mod+Space', () => toggle())`}</pre>
                 <div>
                   <kbd>{formatForDisplay('Mod+K')}</kbd> — Clear editor
                 </div>
+                <div>
+                  <kbd>J</kbd> — Single key (test ignoreInputs)
+                </div>
               </div>
               <textarea
                 ref={editorRef}
                 className="scoped-editor"
                 value={editorContent}
                 onChange={(e) =>
-                  setEditorContent(
-                    (e.target as HTMLTextAreaElement)?.value ?? '',
-                  )
+                  setEditorContent((e.target as HTMLTextAreaElement).value)
                 }
                 placeholder="Focus here and try the shortcuts above..."
                 rows={8}

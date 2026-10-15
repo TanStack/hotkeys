@@ -3,15 +3,23 @@ id: "@tanstack/solid-hotkeys"
 title: "@tanstack/solid-hotkeys"
 ---
 
-# @tanstack/solid-hotkeys
-
 ## Interfaces
 
-- [CreateHotkeyOptions](interfaces/CreateHotkeyOptions.md)
-- [CreateHotkeySequenceOptions](interfaces/CreateHotkeySequenceOptions.md)
 - [HotkeysProviderOptions](interfaces/HotkeysProviderOptions.md)
 - [HotkeysProviderProps](interfaces/HotkeysProviderProps.md)
 - [SolidHotkeyRecorder](interfaces/SolidHotkeyRecorder.md)
+- [UseCustomHotkeysResult](interfaces/UseCustomHotkeysResult.md)
+
+## Type Aliases
+
+- [CreateAppHotkeyOptions](type-aliases/CreateAppHotkeyOptions.md)
+- [CreateHotkeyChordOptions](type-aliases/CreateHotkeyChordOptions.md)
+- [CreateHotkeyCommonOptions](type-aliases/CreateHotkeyCommonOptions.md)
+- [CreateHotkeyDefinition](type-aliases/CreateHotkeyDefinition.md)
+- [CreateHotkeyOptions](type-aliases/CreateHotkeyOptions.md)
+- [CreateHotkeyOptionsFor](type-aliases/CreateHotkeyOptionsFor.md)
+- [CreateHotkeySequenceOptions](type-aliases/CreateHotkeySequenceOptions.md)
+- [CreateHotkeyTarget](type-aliases/CreateHotkeyTarget.md)
 
 ## Variables
 
@@ -19,11 +27,16 @@ title: "@tanstack/solid-hotkeys"
 
 ## Functions
 
+- [createAppHotkeyList](functions/createAppHotkeyList.md)
 - [createHeldKeyCodes](functions/createHeldKeyCodes.md)
 - [createHeldKeys](functions/createHeldKeys.md)
 - [createHotkey](functions/createHotkey.md)
+- [createHotkeyHint](functions/createHotkeyHint.md)
 - [createHotkeyRecorder](functions/createHotkeyRecorder.md)
-- [createHotkeySequence](functions/createHotkeySequence.md)
+- [createHotkeyRegistrations](functions/createHotkeyRegistrations.md)
+- [createHotkeys](functions/createHotkeys.md)
 - [createKeyHold](functions/createKeyHold.md)
+- [useAppHotkeys](functions/useAppHotkeys.md)
+- [useCustomHotkeys](functions/useCustomHotkeys.md)
 - [useDefaultHotkeysOptions](functions/useDefaultHotkeysOptions.md)
 - [useHotkeysContext](functions/useHotkeysContext.md)

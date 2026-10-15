@@ -3,8 +3,6 @@ id: useKeyHold
 title: useKeyHold
 ---
 
-# Function: useKeyHold()
-
 ```ts
 function useKeyHold(key): boolean;
 ```
@@ -13,7 +11,7 @@ Defined in: [useKeyHold.ts:45](https://github.com/TanStack/hotkeys/blob/main/pac
 
 Preact hook that returns whether a specific key is currently being held.
 
-This hook uses `useStore` from `@tanstack/preact-store` to subscribe
+This hook uses `useSelector` from `@tanstack/preact-store` to subscribe
 to the global KeyStateTracker and uses a selector to determine if
 the specified key is held.
 
@@ -21,7 +19,7 @@ the specified key is held.
 
 ### key
 
-`HeldKey`
+`IndividualKey`
 
 The key to check (e.g., 'Shift', 'Control', 'A')
 

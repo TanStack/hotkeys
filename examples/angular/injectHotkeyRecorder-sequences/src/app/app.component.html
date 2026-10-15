@@ -1,0 +1,225 @@
+<div class="app">
+  <header>
+    <h1>Recording Sequences</h1>
+    <p>
+      <code>injectHotkeyRecorder</code> with <code>maxSteps</code> records up to
+      that many chords. Click Edit, press each chord in order, then press Enter
+      (or reach four chords) to save. One chord saves as a regular hotkey.
+      Escape cancels; Backspace removes the last chord or clears when empty.
+    </p>
+  </header>
+
+  <main>
+    <section class="demo-section">
+      <h2>Shortcuts</h2>
+      <div class="shortcuts-list">
+        @for (shortcut of shortcuts(); track shortcut.id) {
+          <div
+            class="shortcut-item"
+            [class.recording]="editingId() === shortcut.id"
+          >
+            <div class="shortcut-item-content">
+              <div class="shortcut-action">
+                @if (editingId() === shortcut.id) {
+                  <div class="editing-fields">
+                    <input
+                      type="text"
+                      class="edit-input edit-name"
+                      [value]="draftName()"
+                      (input)="onDraftNameInput($event)"
+                      placeholder="Shortcut name"
+                    />
+                    <input
+                      type="text"
+                      class="edit-input edit-description"
+                      [value]="draftDescription()"
+                      (input)="onDraftDescriptionInput($event)"
+                      placeholder="Description (optional)"
+                    />
+                  </div>
+                } @else {
+                  @if (shortcut.name) {
+                    {{ shortcut.name }}
+                  } @else {
+                    <span class="unnamed">Unnamed</span>
+                  }
+                  @if (shortcut.description) {
+                    <div class="shortcut-description">
+                      {{ shortcut.description }}
+                    </div>
+                  }
+                }
+              </div>
+              <div class="shortcut-hotkey">
+                @if (editingId() === shortcut.id) {
+                  <div class="recording-indicator">
+                    @if (recorderSteps().length > 0) {
+                      <span class="held-hotkeys">{{
+                        formatForDisplay(recorderSteps())
+                      }}</span>
+                    } @else if (heldKeys().length > 0) {
+                      <div class="held-hotkeys">
+                        @for (key of heldKeys(); track key; let i = $index) {
+                          @if (i > 0) {
+                            <span class="plus">+</span>
+                          }
+                          <kbd>{{ key }}</kbd>
+                        }
+                      </div>
+                    } @else {
+                      <span class="recording-text"
+                        >Press chords, then Enter...</span
+                      >
+                    }
+                  </div>
+                } @else if (shortcut.hotkey !== null) {
+                  <kbd>{{ formatForDisplay(shortcut.hotkey) }}</kbd>
+                } @else {
+                  <span class="no-shortcut">No shortcut</span>
+                }
+              </div>
+            </div>
+            <div class="shortcut-actions">
+              @if (editingId() === shortcut.id) {
+                <button
+                  type="button"
+                  class="save-button"
+                  (click)="handleSaveEditing()"
+                >
+                  Save
+                </button>
+                <button
+                  type="button"
+                  class="cancel-button"
+                  (click)="handleCancel()"
+                >
+                  Cancel
+                </button>
+              } @else {
+                <button
+                  type="button"
+                  class="edit-button"
+                  (click)="handleEdit(shortcut.id)"
+                >
+                  Edit
+                </button>
+                <button
+                  type="button"
+                  class="delete-button"
+                  (click)="handleDelete(shortcut.id)"
+                >
+                  Delete
+                </button>
+              }
+            </div>
+          </div>
+        }
+      </div>
+      <button
+        type="button"
+        class="create-button"
+        (click)="handleCreateNew()"
+        [disabled]="isRecording()"
+      >
+        + Create New Shortcut
+      </button>
+    </section>
+
+    @if (isRecording()) {
+      <div class="info-box recording-notice">
+        <strong>Recording...</strong> Press up to four chords, then Enter to
+        finish. Escape cancels. Backspace removes the last chord or clears.
+        @if (recorderSteps().length > 0) {
+          <div>Steps: {{ recordingStepsLabel() }}</div>
+        }
+      </div>
+    }
+
+    <section class="demo-section">
+      <h2>Live Registrations</h2>
+      <p>
+        This table is powered by
+        <code>injectHotkeyRegistrations()</code> — trigger counts, names, and
+        descriptions update in real-time as you use your shortcuts.
+      </p>
+      <table class="registrations-table">
+        <thead>
+          <tr>
+            <th>Hotkey</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Progress</th>
+            <th>Enabled</th>
+            <th>Triggers</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (reg of registrations(); track reg.id) {
+            <tr>
+              <td>
+                <kbd>{{ formatForDisplay(reg.hotkey) }}</kbd>
+              </td>
+              <td>{{ reg.options.meta?.name ?? '—' }}</td>
+              <td class="description-cell">
+                {{ reg.options.meta?.description ?? '—' }}
+              </td>
+              <td>
+                @if (reg.kind === 'sequence') {
+                  {{ reg.matchedStepCount }}/{{ reg.hotkey.length }}
+                } @else {
+                  —
+                }
+              </td>
+              <td>
+                <span
+                  [class.status-on]="reg.options.enabled !== false"
+                  [class.status-off]="reg.options.enabled === false"
+                >
+                  {{ reg.options.enabled !== false ? 'yes' : 'no' }}
+                </span>
+              </td>
+              <td class="trigger-count">{{ reg.triggerCount }}</td>
+            </tr>
+          }
+          @if (registrations().length === 0) {
+            <tr>
+              <td colspan="6" class="hint">No hotkeys registered</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </section>
+
+    <section class="demo-section">
+      <h2>Usage</h2>
+      <pre class="code-block">
+import {{
+          '{'
+        }} injectHotkeys, injectHotkeyRecorder, injectHotkeyRegistrations {{
+          '}'
+        }} from '&#64;tanstack/angular-hotkeys'
+
+// Record a chord or a sequence of up to four chords
+const recorder = injectHotkeyRecorder({{ '{' }}
+  maxSteps: 4,
+  onRecord: (hotkey) => save(hotkey), // 'Mod+S' or ['G', 'G']
+{{ '}' }})
+
+// Register chords and sequences together, with meta
+injectHotkeys(() =>
+  this.shortcuts().map((s) => ({{ '{' }}
+    hotkey: s.hotkey,
+    callback: () => handleAction(s.id),
+    options: {{ '{' }}
+      meta: {{ '{' }} name: s.name, description: s.description {{ '}' }},
+    {{ '}' }},
+  {{ '}' }})),
+)
+
+// Read all registrations reactively
+const registrations = injectHotkeyRegistrations()
+// registrations()[0].options.meta?.name → 'Save'
+// registrations()[0].triggerCount → 3</pre>
+    </section>
+  </main>
+</div>

@@ -1,28 +1,26 @@
 import {
   KEY_DISPLAY_SYMBOLS,
+  LINUX_MODIFIER_LABELS,
+  MAC_MODIFIER_LABELS,
   MAC_MODIFIER_SYMBOLS,
+  PUNCTUATION_KEY_DISPLAY_LABELS,
+  WINDOWS_MODIFIER_LABELS,
+} from './display-labels'
+import {
+  MODIFIER_ALIASES,
   MODIFIER_ORDER,
-  STANDARD_MODIFIER_LABELS,
-  detectPlatform,
+  PUNCTUATION_CODE_MAP,
+  normalizeKeyName,
 } from './constants'
-import { parseHotkey } from './parse'
-import type { FormatDisplayOptions, Hotkey, ParsedHotkey } from './hotkey'
-
-/**
- * Converts a hotkey sequence array to a display string.
- *
- * @param sequence - Array of hotkey strings that form the sequence
- * @returns A space-separated string (e.g. ['G','G'] → 'G G')
- *
- * @example
- * ```ts
- * formatHotkeySequence(['G', 'G'])      // 'G G'
- * formatHotkeySequence(['D', 'I', 'W']) // 'D I W'
- * ```
- */
-export function formatHotkeySequence(sequence: Array<Hotkey>): string {
-  return sequence.join(' ')
-}
+import { detectPlatform } from './platform'
+import { assertLogicalKey, splitHotkeyParts } from './_keyboard-event'
+import {
+  isModifierKey,
+  normalizeHotkeyFromParsed,
+  normalizeRegisterableHotkey,
+} from './parse'
+import type { CanonicalModifier } from './key.types'
+import type { ParsedHotkey, RegisterableHotkeyChord } from './hotkey.types'
 
 /**
  * Converts a ParsedHotkey back to a hotkey string.
@@ -37,6 +35,7 @@ export function formatHotkeySequence(sequence: Array<Hotkey>): string {
  * ```
  */
 export function formatHotkey(parsed: ParsedHotkey): string {
+  if (parsed.code === undefined) assertLogicalKey(parsed.key)
   const parts: Array<string> = []
 
   // Add modifiers in canonical order
@@ -47,231 +46,185 @@ export function formatHotkey(parsed: ParsedHotkey): string {
   }
 
   // Add the key
-  parts.push(parsed.key)
+  parts.push(parsed.code !== undefined ? `[${parsed.code}]` : parsed.key)
 
   return parts.join('+')
 }
 
+/** A single chord to display: a string, raw object, or parsed hotkey. */
+export type DisplayHotkeyChord =
+  RegisterableHotkeyChord | ParsedHotkey | (string & {})
+
+/** A hotkey to display: a chord or a sequence of chords. */
+export type DisplayHotkey =
+  DisplayHotkeyChord | ReadonlyArray<DisplayHotkeyChord>
+
 /**
  * Formats a hotkey for display in a user interface.
  *
- * On macOS, uses symbols (⌘⇧S).
- * On Windows/Linux, uses text (Ctrl+Shift+S).
+ * On macOS, uses symbols (⇧⌘S) in Control, Option, Shift, Command order.
+ * Display ordering does not change the normalized hotkey used for registration.
+ * On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
+ * The separator can be customized with `separatorToken`.
+ * Physical codes use conventional display labels: `[KeyS]` becomes `S` and
+ * `[Digit2]` becomes `2`. These labels do not infer the active keyboard layout
+ * or change matching. Supply a resolved `layoutMap` for layout-aware labels;
+ * `keyLabels` overrides both layout entries and fallback labels.
+ * Sequence steps are formatted individually and joined with `sequenceSeparator`
+ * (a space by default).
  *
- * @param hotkey - The hotkey string or ParsedHotkey to format
+ * @param hotkey - A logical or physical string, raw object, ParsedHotkey, or sequence
  * @param options - Formatting options
- * @returns A formatted string suitable for display
+ * @returns Display text, or individual key labels when parts is true (one array per step for sequences)
  *
  * @example
  * ```ts
  * formatForDisplay('Mod+Shift+S', { platform: 'mac' })
- * // Returns: '⇧⌘S'
+ * // Returns: '⇧ ⌘ S' (symbols separated by spaces on macOS)
  *
  * formatForDisplay('Mod+Shift+S', { platform: 'windows' })
  * // Returns: 'Ctrl+Shift+S'
  *
  * formatForDisplay('Escape')
  * // Returns: 'Esc' (on all platforms)
+ *
+ * formatForDisplay(['G', 'H'])
+ * // Returns: 'G H'
  * ```
  */
 export function formatForDisplay(
-  hotkey: Hotkey | (string & {}) | ParsedHotkey,
+  hotkey: ReadonlyArray<DisplayHotkeyChord>,
+  options: FormatDisplayOptions & { parts: true },
+): Array<Array<string>>
+export function formatForDisplay(
+  hotkey: DisplayHotkeyChord,
+  options: FormatDisplayOptions & { parts: true },
+): Array<string>
+export function formatForDisplay(
+  hotkey: DisplayHotkey,
+  options?: FormatDisplayOptions & { parts?: false },
+): string
+export function formatForDisplay(
+  hotkey: DisplayHotkey,
+  options: FormatDisplayOptions,
+): string | Array<string> | Array<Array<string>>
+export function formatForDisplay(
+  hotkey: DisplayHotkey,
   options: FormatDisplayOptions = {},
-): string {
+): string | Array<string> | Array<Array<string>> {
+  if (Array.isArray(hotkey)) {
+    const steps = (hotkey as ReadonlyArray<DisplayHotkeyChord>).map((step) =>
+      formatChordParts(step, options),
+    )
+    return options.parts
+      ? steps
+      : steps
+          .map((parts) => parts.join(chordSeparator(options)))
+          .join(options.sequenceSeparator ?? ' ')
+  }
+  const parts = formatChordParts(hotkey as DisplayHotkeyChord, options)
+  return options.parts ? parts : parts.join(chordSeparator(options))
+}
+
+function modifierSymbolsEnabled(options: FormatDisplayOptions): boolean {
+  const symbols = options.useSymbols ?? true
+  return typeof symbols === 'boolean' ? symbols : (symbols.modifiers ?? true)
+}
+
+function chordSeparator(options: FormatDisplayOptions): string {
   const platform = options.platform ?? detectPlatform()
-  const parsed =
-    typeof hotkey === 'string' ? parseHotkey(hotkey, platform) : hotkey
+  return (
+    options.separatorToken ??
+    (platform === 'mac' && modifierSymbolsEnabled(options) ? ' ' : '+')
+  )
+}
 
+function formatChordParts(
+  hotkey: DisplayHotkeyChord,
+  options: FormatDisplayOptions,
+): Array<string> {
+  const platform = options.platform ?? detectPlatform()
+  const symbols = options.useSymbols ?? true
+  const modifierSymbols = modifierSymbolsEnabled(options)
+  const keySymbols =
+    typeof symbols === 'boolean' ? symbols : (symbols.keys ?? true)
+  const normalized =
+    typeof hotkey === 'object' && 'modifiers' in hotkey
+      ? normalizeHotkeyFromParsed(hotkey, platform)
+      : normalizeRegisterableHotkey(hotkey as RegisterableHotkeyChord, platform)
+  const segments = splitHotkeyParts(normalized)
   if (platform === 'mac') {
-    return formatForMac(parsed)
-  }
-
-  return formatForStandard(parsed)
-}
-
-/**
- * Formats a hotkey for macOS display using symbols.
- */
-function formatForMac(parsed: ParsedHotkey): string {
-  const parts: Array<string> = []
-
-  // Add modifiers in macOS order (typically Control, Option, Shift, Command)
-  // But we'll use our canonical order and just use symbols
-  for (const modifier of MODIFIER_ORDER) {
-    if (parsed.modifiers.includes(modifier)) {
-      parts.push(MAC_MODIFIER_SYMBOLS[modifier])
+    // Canonical registration puts Mod first; display resolves it to Command.
+    const modifierIndex = (segment: string) => {
+      const index = MODIFIER_ORDER.indexOf(
+        (segment === 'Mod' ? 'Meta' : segment) as CanonicalModifier,
+      )
+      return index === -1 ? MODIFIER_ORDER.length : index
     }
+    segments.sort((a, b) => modifierIndex(a) - modifierIndex(b))
   }
-
-  // Add the key (use symbol if available, otherwise the key itself)
-  const keyDisplay = KEY_DISPLAY_SYMBOLS[parsed.key] ?? parsed.key
-  parts.push(keyDisplay)
-
-  // On Mac, modifiers are typically concatenated without separators
-  return parts.join('')
-}
-
-/**
- * Formats a hotkey for Windows/Linux display using text labels.
- */
-function formatForStandard(parsed: ParsedHotkey): string {
-  const parts: Array<string> = []
-
-  // Add modifiers in canonical order
-  for (const modifier of MODIFIER_ORDER) {
-    if (parsed.modifiers.includes(modifier)) {
-      parts.push(STANDARD_MODIFIER_LABELS[modifier])
+  const parts = segments.map((segment) => {
+    if (isModifierKey(segment)) {
+      const modifier = (MODIFIER_ALIASES[segment] ??
+        MODIFIER_ALIASES[segment.toLowerCase()]) as CanonicalModifier | 'Mod'
+      return platform === 'mac'
+        ? modifierSymbols
+          ? MAC_MODIFIER_SYMBOLS[modifier]
+          : MAC_MODIFIER_LABELS[modifier]
+        : platform === 'windows'
+          ? WINDOWS_MODIFIER_LABELS[modifier]
+          : LINUX_MODIFIER_LABELS[modifier]
     }
-  }
-
-  // Add the key (use symbol/short form if available)
-  const keyDisplay = KEY_DISPLAY_SYMBOLS[parsed.key] ?? parsed.key
-  parts.push(keyDisplay)
-
-  // On Windows/Linux, use + as separator
-  return parts.join('+')
-}
-
-/**
- * Formats a hotkey using platform-agnostic labels.
- * Uses 'Cmd' on Mac and 'Ctrl' for Control, etc.
- *
- * @param hotkey - The hotkey string or ParsedHotkey to format
- * @param platform - The target platform
- * @returns A formatted string with platform-appropriate labels
- */
-export function formatWithLabels(
-  hotkey: Hotkey | (string & {}),
-  platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
-): string {
-  const parsed =
-    typeof hotkey === 'string' ? parseHotkey(hotkey, platform) : hotkey
-  const parts: Array<string> = []
-
-  // Custom labels for more readable output
-  const labels: Record<string, string> = {
-    Control: 'Ctrl',
-    Alt: platform === 'mac' ? 'Option' : 'Alt',
-    Shift: 'Shift',
-    Meta: platform === 'mac' ? 'Cmd' : 'Win',
-  }
-
-  for (const modifier of MODIFIER_ORDER) {
-    if (parsed.modifiers.includes(modifier)) {
-      parts.push(labels[modifier] ?? modifier)
+    const code = /^\[([A-Za-z][A-Za-z0-9]*)\]$/.exec(segment)?.[1]
+    const label = options.keyLabels?.[code ?? segment]
+    if (label !== undefined) return label
+    // Shorten conventional position labels for display only; stored identity is unchanged.
+    const numpad = code?.startsWith('Numpad') ?? false
+    let displayKey = code ?? segment
+    const mappedKey = code ? options.layoutMap?.get(code) : undefined
+    if (mappedKey) {
+      // Layout entries are logical labels; normalize their case and whitespace names.
+      displayKey = normalizeKeyName(mappedKey)
+    } else if (code) {
+      if (/^Key[A-Z]$/.test(code)) displayKey = code.slice(3)
+      else if (/^Digit[0-9]$/.test(code)) displayKey = code.slice(5)
+      else if (numpad) displayKey = code.slice(6)
+      else displayKey = PUNCTUATION_CODE_MAP[code] ?? code
     }
-  }
-
-  // Add the key
-  parts.push(parsed.key)
-
-  return parts.join('+')
-}
-
-// =============================================================================
-// Debugging Display Labels
-// =============================================================================
-
-/**
- * Maps canonical modifier names to debugging-friendly labels per platform.
- */
-const MODIFIER_DEBUG_LABELS: Record<string, Record<string, string>> = {
-  mac: { Meta: 'Mod (Cmd)', Control: 'Ctrl', Alt: 'Opt', Shift: 'Shift' },
-  windows: { Control: 'Mod (Ctrl)', Meta: 'Win', Alt: 'Alt', Shift: 'Shift' },
-  linux: { Control: 'Mod (Ctrl)', Meta: 'Super', Alt: 'Alt', Shift: 'Shift' },
+    const labels = keySymbols
+      ? KEY_DISPLAY_SYMBOLS
+      : PUNCTUATION_KEY_DISPLAY_LABELS
+    const display =
+      (labels as Partial<Record<string, string>>)[displayKey] ?? displayKey
+    // Retain numpad identity while making longer names such as MemoryAdd readable.
+    return numpad
+      ? `Numpad ${display.replace(/([a-z])([A-Z])/g, '$1 $2')}`
+      : display
+  })
+  return parts
 }
 
 /**
- * Options for formatting a single key for debugging display.
+ * Options for formatting hotkeys for display.
  */
-export interface FormatKeyDebuggingOptions {
+export interface FormatDisplayOptions {
   /** The target platform. Defaults to auto-detection. */
   platform?: 'mac' | 'windows' | 'linux'
+  /** Whether to use symbols for the display. Defaults to true. */
+  useSymbols?: boolean | { modifiers?: boolean; keys?: boolean }
+  /** Return individual key labels instead of a joined string. Default: false. */
+  parts?: boolean
   /**
-   * Whether the input value comes from `event.key` or `event.code`.
-   *
-   * - `'key'` (default): Applies rich platform-aware formatting (modifier
-   *   labels, special-key symbols, etc.).
-   * - `'code'`: Returns the value unchanged — physical key codes like
-   *   `"MetaLeft"` or `"KeyA"` are already descriptive for debugging.
+   * An already-resolved code-to-key map, such as KeyboardLayoutMap or Map.
+   * Used only for physical bindings. Mapped keys receive normal display formatting;
+   * missing or empty entries use conventional fallback labels. The caller owns
+   * loading and refreshing the map; this formatter never calls browser APIs.
    */
-  source?: 'key' | 'code'
-}
-
-/**
- * Formats a single key name for debugging/devtools display.
- *
- * Unlike `formatForDisplay` which formats full hotkey strings for end-user UIs,
- * this function formats individual key names (from `event.key`) with rich
- * platform-aware labels suitable for debugging tools and developer-facing displays.
- *
- * Features:
- * - Modifier keys show their platform role (e.g., "Mod (Cmd)" for Meta on Mac)
- * - On macOS, modifier keys are prefixed with their symbol (e.g., "⌘ Mod (Cmd)")
- * - Special keys use display symbols (ArrowUp -> "↑", Escape -> "Esc")
- * - Regular keys pass through unchanged
- *
- * @param key - A single key name (e.g., "Meta", "Shift", "ArrowUp", "A")
- * @param options - Formatting options
- * @returns A formatted label suitable for debugging display
- *
- * @example
- * ```ts
- * // On macOS:
- * formatKeyForDebuggingDisplay('Meta')    // '⌘ Mod (Cmd)'
- * formatKeyForDebuggingDisplay('Control') // '⌃ Ctrl'
- * formatKeyForDebuggingDisplay('Alt')     // '⌥ Opt'
- * formatKeyForDebuggingDisplay('Shift')   // '⇧ Shift'
- *
- * // On Windows:
- * formatKeyForDebuggingDisplay('Control') // 'Mod (Ctrl)'
- * formatKeyForDebuggingDisplay('Meta')    // 'Win'
- *
- * // Special keys (all platforms):
- * formatKeyForDebuggingDisplay('ArrowUp') // '↑'
- * formatKeyForDebuggingDisplay('Escape')  // 'Esc'
- * formatKeyForDebuggingDisplay('Space')   // '␣'
- *
- * // Regular keys pass through:
- * formatKeyForDebuggingDisplay('A')       // 'A'
- *
- * // With source: 'code', values pass through unchanged:
- * formatKeyForDebuggingDisplay('MetaLeft', { source: 'code' })  // 'MetaLeft'
- * formatKeyForDebuggingDisplay('KeyA', { source: 'code' })      // 'KeyA'
- * ```
- */
-export function formatKeyForDebuggingDisplay(
-  key: string,
-  options: FormatKeyDebuggingOptions = {},
-): string {
-  // For event.code values, pass through unchanged — they're already
-  // descriptive for debugging (e.g. "MetaLeft", "KeyA", "ShiftRight").
-  if (options.source === 'code') {
-    return key
-  }
-
-  const platform = options.platform ?? detectPlatform()
-
-  // Check if it's a modifier key
-  const modLabel = MODIFIER_DEBUG_LABELS[platform]?.[key]
-  if (modLabel) {
-    // On Mac, prefix modifier labels with their symbol
-    if (platform === 'mac') {
-      const symbol =
-        MAC_MODIFIER_SYMBOLS[key as keyof typeof MAC_MODIFIER_SYMBOLS]
-      if (symbol) {
-        return `${symbol} ${modLabel}`
-      }
-    }
-    return modLabel
-  }
-
-  // Check if it's a special key with a display symbol
-  const symbol = KEY_DISPLAY_SYMBOLS[key]
-  if (symbol) {
-    return symbol
-  }
-
-  // Regular key — pass through
-  return key
+  layoutMap?: { get: (code: string) => string | undefined }
+  /** Final display overrides for logical keys or physical codes; take precedence over layoutMap. Never changes matching. */
+  keyLabels?: Readonly<Record<string, string>>
+  /** Override the separator between display tokens. Defaults to platform-specific formatting when null/undefined. */
+  separatorToken?: string | null
+  /** Separator between sequence steps. Default: a space. */
+  sequenceSeparator?: string
 }

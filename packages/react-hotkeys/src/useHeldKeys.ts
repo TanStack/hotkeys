@@ -1,10 +1,10 @@
-import { useStore } from '@tanstack/react-store'
+import { useSelector } from '@tanstack/react-store'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
 
 /**
  * React hook that returns an array of currently held keyboard keys.
  *
- * This hook uses `useStore` from `@tanstack/react-store` to subscribe
+ * This hook uses `useSelector` from `@tanstack/react-store` to subscribe
  * to the global KeyStateTracker and updates whenever keys are pressed
  * or released.
  *
@@ -25,5 +25,5 @@ import { getKeyStateTracker } from '@tanstack/hotkeys'
  */
 export function useHeldKeys(): Array<string> {
   const tracker = getKeyStateTracker()
-  return useStore(tracker.store, (state) => state.heldKeys)
+  return useSelector(tracker.store, (state) => state.heldKeys)
 }

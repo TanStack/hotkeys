@@ -3,13 +3,11 @@ id: MODIFIER_ORDER
 title: MODIFIER_ORDER
 ---
 
-# Variable: MODIFIER\_ORDER
-
 ```ts
 const MODIFIER_ORDER: CanonicalModifier[];
 ```
 
-Defined in: [constants.ts:67](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L67)
+Defined in: [constants.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L26)
 
 Canonical order for modifiers in normalized hotkey strings.
 

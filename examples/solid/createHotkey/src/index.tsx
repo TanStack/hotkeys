@@ -1,10 +1,10 @@
 /* @refresh reload */
+import { Show, createEffect, createSignal } from 'solid-js'
 import { render } from 'solid-js/web'
-import { createSignal, createEffect, Show } from 'solid-js'
 import {
-  formatForDisplay,
-  createHotkey,
   HotkeysProvider,
+  createHotkey,
+  formatForDisplay,
 } from '@tanstack/solid-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
 import { TanStackDevtools } from '@tanstack/solid-devtools'
@@ -63,8 +63,8 @@ function App() {
     setLastHotkey('Mod+1')
     setActiveTab(1)
   })
-  createHotkey('Mod+2', () => {
-    setLastHotkey('Mod+2')
+  createHotkey('Mod+[Digit2]', () => {
+    setLastHotkey('Mod+[Digit2]')
     setActiveTab(2)
   })
   createHotkey('Mod+3', () => {
@@ -275,6 +275,10 @@ function App() {
     },
     () => ({ target: editorRef() }),
   )
+  createHotkey('J', () => {
+    setLastHotkey('J')
+    setEditorShortcutCount((c) => c + 1)
+  })
 
   return (
     <div class="app">
@@ -341,13 +345,17 @@ createHotkey(
 
         <section class="demo-section">
           <h2>Number Key Combinations</h2>
-          <p>Common for tab/section switching:</p>
+          <p>
+            Tab 2 uses the physical number-row position (
+            <code>Mod+[Digit2]</code>), even when that key produces a different
+            character. The other tabs follow logical digits.
+          </p>
           <div class="hotkey-grid">
             <div>
               <kbd>{formatForDisplay('Mod+1')}</kbd> → Tab 1
             </div>
             <div>
-              <kbd>{formatForDisplay('Mod+2')}</kbd> → Tab 2
+              <kbd>{formatForDisplay('Mod+[Digit2]')}</kbd> → Tab 2
             </div>
             <div>
               <kbd>{formatForDisplay('Mod+3')}</kbd> → Tab 3
@@ -361,7 +369,7 @@ createHotkey(
           </div>
           <div class="counter">Active Tab: {activeTab()}</div>
           <pre class="code-block">{`createHotkey('Mod+1', () => setActiveTab(1))
-createHotkey('Mod+2', () => setActiveTab(2))
+createHotkey('Mod+[Digit2]', () => setActiveTab(2))
 `}</pre>
         </section>
 
@@ -499,10 +507,12 @@ createHotkey('Control+Tab', () => nextTab())
 createHotkey('Mod+Space', () => toggle())`}</pre>
         </section>
 
-        <Show when={lastHotkey()}>
-          <div class="info-box">
-            <strong>Last triggered:</strong> {formatForDisplay(lastHotkey()!)}
-          </div>
+        <Show when={lastHotkey()} keyed>
+          {(hotkey) => (
+            <div class="info-box">
+              <strong>Last triggered:</strong> {formatForDisplay(hotkey)}
+            </div>
+          )}
         </Show>
 
         <p class="hint">
@@ -586,6 +596,9 @@ createHotkey('Mod+Space', () => toggle())`}</pre>
                 </div>
                 <div>
                   <kbd>{formatForDisplay('Mod+K')}</kbd> — Clear editor
+                </div>
+                <div>
+                  <kbd>J</kbd> — Single key (test ignoreInputs)
                 </div>
               </div>
               <textarea

@@ -5,6 +5,7 @@ import { useRef } from 'preact/hooks'
 import { HotkeyManager } from '@tanstack/hotkeys'
 import { useHotkey } from '../src/useHotkey'
 import type { HotkeyCallback } from '@tanstack/hotkeys'
+import { act } from 'preact/test-utils'
 
 function HotkeyTestComponent({
   callback,
@@ -48,7 +49,9 @@ describe('useHotkey', () => {
     const removeEventListenerSpy = vi.spyOn(document, 'removeEventListener')
 
     const { unmount } = render(<HotkeyTestComponent callback={callback} />)
-    unmount()
+    act(() => {
+      unmount()
+    })
 
     expect(removeEventListenerSpy).toHaveBeenCalledWith(
       'keydown',
@@ -196,6 +199,32 @@ describe('useHotkey', () => {
         }),
       )
       expect(callback).toHaveBeenCalledTimes(2)
+    })
+
+    it('should preserve registration id when toggling enabled', () => {
+      const callback = vi.fn()
+      const manager = HotkeyManager.getInstance()
+
+      const { rerender } = render(
+        <HotkeyTestComponent callback={callback} enabled={true} />,
+      )
+
+      const idBefore = [...manager.registrations.state.keys()][0]
+      expect(manager.getRegistrationCount()).toBe(1)
+      expect(idBefore).toBeDefined()
+
+      rerender(<HotkeyTestComponent callback={callback} enabled={false} />)
+      expect(manager.getRegistrationCount()).toBe(1)
+      expect([...manager.registrations.state.keys()][0]).toBe(idBefore)
+      expect(manager.registrations.state.get(idBefore!)?.options.enabled).toBe(
+        false,
+      )
+
+      rerender(<HotkeyTestComponent callback={callback} enabled={true} />)
+      expect([...manager.registrations.state.keys()][0]).toBe(idBefore)
+      expect(
+        manager.registrations.state.get(idBefore!)?.options.enabled,
+      ).not.toBe(false)
     })
   })
 

@@ -3,21 +3,36 @@ id: HotkeyOptions
 title: HotkeyOptions
 ---
 
-# Interface: HotkeyOptions
+Defined in: [hotkey-manager.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L45)
 
-Defined in: [hotkey-manager.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L27)
+Options shared by chords and sequences.
 
-Options for registering a hotkey.
+## Extended by
+
+- [`HotkeyChordOptions`](HotkeyChordOptions.md)
+- [`HotkeySequenceOptions`](HotkeySequenceOptions.md)
 
 ## Properties
+
+### appHotkeyId?
+
+```ts
+optional appHotkeyId?: string;
+```
+
+Defined in: [hotkey-manager.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L69)
+
+Id of the app hotkey this registration implements. Adapters set this when registering an app hotkey from `defineAppHotkeys`.
+
+***
 
 ### conflictBehavior?
 
 ```ts
-optional conflictBehavior: ConflictBehavior;
+optional conflictBehavior?: ConflictBehavior;
 ```
 
-Defined in: [hotkey-manager.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L29)
+Defined in: [hotkey-manager.ts:47](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L47)
 
 Behavior when this hotkey conflicts with an existing registration on the same target. Defaults to 'warn'
 
@@ -26,22 +41,24 @@ Behavior when this hotkey conflicts with an existing registration on the same ta
 ### enabled?
 
 ```ts
-optional enabled: boolean;
+optional enabled?: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L31)
+Defined in: [hotkey-manager.ts:53](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L53)
 
-Whether the hotkey is enabled. Defaults to true
+Soft-disable: when `false`, the callback does not run but the registration
+stays in `HotkeyManager` (and in devtools). Toggling this should update the
+existing handle via `setOptions` rather than unregistering. Defaults to `true`.
 
 ***
 
 ### eventType?
 
 ```ts
-optional eventType: "keydown" | "keyup";
+optional eventType?: "keyup" | "keydown";
 ```
 
-Defined in: [hotkey-manager.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L33)
+Defined in: [hotkey-manager.ts:55](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L55)
 
 The event type to listen for. Defaults to 'keydown'
 
@@ -50,22 +67,34 @@ The event type to listen for. Defaults to 'keydown'
 ### ignoreInputs?
 
 ```ts
-optional ignoreInputs: boolean;
+optional ignoreInputs?: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L35)
+Defined in: [hotkey-manager.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L57)
 
-Whether to ignore hotkeys when keyboard events originate from input-like elements (text inputs, textarea, select, contenteditable — button-type inputs like type=button/submit/reset are not ignored). Defaults based on hotkey: true for single keys and Shift/Alt combos; false for Ctrl/Meta shortcuts and Escape
+Whether to ignore hotkeys when keyboard events originate from input-like elements (text inputs, textarea, select, contenteditable — button-type inputs like type=button/submit/reset are not ignored). Defaults based on the hotkey (the first step of a sequence): true for single keys and Shift/Alt combos; false for Ctrl/Meta shortcuts and Escape
+
+***
+
+### meta?
+
+```ts
+optional meta?: HotkeyMeta;
+```
+
+Defined in: [hotkey-manager.ts:67](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L67)
+
+Optional metadata (name, description, custom fields via declaration merging)
 
 ***
 
 ### platform?
 
 ```ts
-optional platform: "mac" | "windows" | "linux";
+optional platform?: "mac" | "windows" | "linux";
 ```
 
-Defined in: [hotkey-manager.ts:37](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L37)
+Defined in: [hotkey-manager.ts:59](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L59)
 
 The target platform for resolving 'Mod'
 
@@ -74,34 +103,22 @@ The target platform for resolving 'Mod'
 ### preventDefault?
 
 ```ts
-optional preventDefault: boolean;
+optional preventDefault?: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L39)
+Defined in: [hotkey-manager.ts:61](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L61)
 
 Prevent the default browser action when the hotkey matches. Defaults to true
-
-***
-
-### requireReset?
-
-```ts
-optional requireReset: boolean;
-```
-
-Defined in: [hotkey-manager.ts:41](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L41)
-
-If true, only trigger once until all keys are released. Default: false
 
 ***
 
 ### stopPropagation?
 
 ```ts
-optional stopPropagation: boolean;
+optional stopPropagation?: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L43)
+Defined in: [hotkey-manager.ts:63](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L63)
 
 Stop event propagation when the hotkey matches. Defaults to true
 
@@ -110,9 +127,9 @@ Stop event propagation when the hotkey matches. Defaults to true
 ### target?
 
 ```ts
-optional target: HTMLElement | Document | Window | null;
+optional target?: Target | null;
 ```
 
-Defined in: [hotkey-manager.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L45)
+Defined in: [hotkey-manager.ts:65](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L65)
 
 The DOM element to attach the event listener to. Defaults to document.

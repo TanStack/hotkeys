@@ -1,0 +1,25 @@
+---
+id: WINDOWS_MODIFIER_LABELS
+title: WINDOWS_MODIFIER_LABELS
+---
+
+```ts
+const WINDOWS_MODIFIER_LABELS: Record<CanonicalModifier | "Mod", string>;
+```
+
+Defined in: [display-labels.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/display-labels.ts#L68)
+
+Modifier key labels for Windows/Linux display.
+
+Used by formatting functions to display hotkeys with standard text labels
+(e.g., 'Ctrl' for Control, 'Win' for Meta/Windows key) instead of symbols.
+This provides a familiar Windows/Linux look and feel in hotkey displays.
+
+## Example
+
+```ts
+STANDARD_MODIFIER_LABELS['Control'] // 'Ctrl'
+STANDARD_MODIFIER_LABELS['Meta'] // 'Win'
+STANDARD_MODIFIER_LABELS['Alt'] // 'Alt'
+STANDARD_MODIFIER_LABELS['Shift'] // 'Shift'
+```

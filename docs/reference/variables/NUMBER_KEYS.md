@@ -3,13 +3,11 @@ id: NUMBER_KEYS
 title: NUMBER_KEYS
 ---
 
-# Variable: NUMBER\_KEYS
-
 ```ts
 const NUMBER_KEYS: Set<NumberKey>;
 ```
 
-Defined in: [constants.ts:211](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L211)
+Defined in: [constants.ts:141](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L141)
 
 Set of all valid number keys (0-9).
 

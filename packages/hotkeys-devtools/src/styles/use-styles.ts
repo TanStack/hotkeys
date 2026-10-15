@@ -1,6 +1,6 @@
 import * as goober from 'goober'
 import { createEffect, createSignal } from 'solid-js'
-import { useTheme } from '@tanstack/devtools-ui'
+import { createTheme } from '@tanstack/devtools-ui'
 import { tokens } from './tokens'
 
 const stylesFactory = (theme: 'light' | 'dark') => {
@@ -10,12 +10,33 @@ const stylesFactory = (theme: 'light' | 'dark') => {
   const t = (light: string, dark: string) => (theme === 'light' ? light : dark)
 
   return {
+    /** Full-height flex child so MainPanel gets a bounded height from the portal */
+    shellRoot: css`
+      display: flex;
+      flex-direction: column;
+      min-height: 0;
+      height: 100%;
+      flex: 1;
+      overflow: hidden;
+    `,
+    /** Overrides devtools-ui MainPanel (overflow-y: auto) so inner columns scroll independently */
+    mainPanelShell: css`
+      display: flex;
+      flex-direction: column;
+      flex: 1 1 0%;
+      min-height: 0;
+      height: auto;
+      overflow: hidden !important;
+    `,
     mainContainer: css`
       display: flex;
       flex-direction: column;
+      flex: 1 1 0%;
+      min-height: 0;
+      overflow: hidden;
       padding: ${size[2]};
       padding-top: 0;
-      margin-top: ${size[2]};
+      margin-top: -8px;
     `,
     heldKeysBar: css`
       background: ${t(colors.gray[100], colors.darkGray[800])};
@@ -26,7 +47,7 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       gap: ${size[3]};
       padding: ${size[3]} ${size[3]};
       flex-shrink: 0;
-      min-height: 64px;
+      min-height: 72px;
       margin-bottom: ${size[2]};
     `,
     heldKeysBarHeader: css`
@@ -47,6 +68,10 @@ const stylesFactory = (theme: 'light' | 'dark') => {
     `,
     panelsContainer: css`
       display: flex;
+      flex: 1 1 0%;
+      min-height: 0;
+      overflow: hidden;
+      align-items: stretch;
     `,
     dragHandle: css`
       width: 8px;
@@ -129,6 +154,13 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       display: flex;
       flex-direction: column;
       flex-shrink: 0;
+      min-height: 0;
+      min-width: 0;
+    `,
+    leftPanelScroll: css`
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
     `,
     rightPanel: css`
       background: ${t(colors.gray[100], colors.darkGray[800])};
@@ -137,6 +169,58 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       display: flex;
       flex-direction: column;
       flex: 1;
+      min-height: 0;
+      min-width: 0;
+      overflow: hidden;
+    `,
+    searchContainer: css`
+      position: relative;
+      padding: ${size[2]};
+      padding-bottom: 0;
+      flex-shrink: 0;
+    `,
+    searchInput: css`
+      width: 100%;
+      padding: ${size[1.5]} ${size[2]};
+      padding-right: ${size[7]};
+      font-size: ${fontSize.xs};
+      font-family: ${fontFamily.sans};
+      color: ${t(colors.gray[900], colors.gray[100])};
+      background: ${t(colors.gray[200], colors.darkGray[700])};
+      border: 1px solid ${t(colors.gray[300], colors.darkGray[600])};
+      border-radius: ${border.radius.md};
+      outline: none;
+      box-sizing: border-box;
+
+      &::placeholder {
+        color: ${t(colors.gray[500], colors.gray[500])};
+      }
+
+      &:focus {
+        border-color: ${t(colors.blue[500], colors.blue[400])};
+        box-shadow: 0 0 0 1px
+          ${t(colors.blue[500] + alpha[30], colors.blue[400] + alpha[30])};
+      }
+    `,
+    searchClear: css`
+      position: absolute;
+      right: ${size[3]};
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: none;
+      color: ${t(colors.gray[500], colors.gray[400])};
+      font-size: ${fontSize.md};
+      cursor: pointer;
+      padding: ${size[1]};
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      &:hover {
+        color: ${t(colors.gray[700], colors.gray[200])};
+      }
     `,
     panelHeader: css`
       font-size: ${fontSize.md};
@@ -167,6 +251,11 @@ const stylesFactory = (theme: 'light' | 'dark') => {
         border-color: ${t(colors.gray[400], colors.darkGray[500])};
       }
     `,
+    hotkeyRowInactive: css`
+      opacity: 0.65;
+      border-style: dashed;
+      border-color: ${t(colors.gray[400], colors.darkGray[500])};
+    `,
     hotkeyRowSelected: css`
       background: ${t(colors.blue[100], colors.blue[900] + alpha[20])};
       border-color: ${t(colors.blue[600], colors.blue[500])};
@@ -190,13 +279,32 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       }
     `,
     hotkeyLabel: css`
-      font-family: ${fontFamily.mono};
       font-size: ${fontSize.xs};
       color: ${t(colors.gray[900], colors.gray[100])};
       flex: 1;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: ${size[1.5]};
+      min-width: 0;
+    `,
+    hotkeyLabelKeys: css`
+      font-family: ${fontFamily.mono};
+      flex-shrink: 0;
+    `,
+    hotkeyLabelName: css`
+      font-family: ${fontFamily.sans};
+      color: ${t(colors.gray[500], colors.gray[400])};
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      min-width: 0;
+    `,
+    sequenceStepMatched: css`
+      font-weight: ${font.weight.bold};
+      color: ${t(colors.blue[700], colors.blue[300])};
     `,
     hotkeyBadges: css`
       display: flex;
@@ -216,6 +324,10 @@ const stylesFactory = (theme: 'light' | 'dark') => {
     badgeEnabled: css`
       color: ${t(colors.green[700], colors.green[400])};
       background: ${t(colors.green[100], colors.green[900] + alpha[30])};
+    `,
+    badgeCustom: css`
+      color: ${t(colors.blue[700], colors.blue[400])};
+      background: ${t(colors.blue[100], colors.blue[900] + alpha[30])};
     `,
     badgeDisabled: css`
       color: ${t(colors.red[700], colors.red[400])};
@@ -250,6 +362,11 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       background: ${t(colors.blue[100], colors.blue[900] + alpha[30])};
     `,
     stateDetails: css`
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
       padding: ${size[2]};
     `,
     stateHeader: css`
@@ -361,6 +478,64 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       color: ${t(colors.gray[500], colors.gray[400])};
       font-size: ${fontSize.sm};
     `,
+    keyBreakdownSubHeader: css`
+      font-size: ${fontSize.xs};
+      font-weight: ${font.weight.semibold};
+      color: ${t(colors.gray[500], colors.gray[400])};
+      margin-top: ${size[3]};
+      margin-bottom: ${size[1]};
+    `,
+    keyBreakdownSplitRow: css`
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: ${size[3]};
+    `,
+    keyBreakdownSplitLeft: css`
+      flex: 0 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: ${size[1]};
+    `,
+    keyBreakdownSplitArrow: css`
+      flex-shrink: 0;
+      color: ${t(colors.gray[500], colors.gray[400])};
+      font-size: ${fontSize.sm};
+      font-family: ${fontFamily.mono};
+      user-select: none;
+    `,
+    keyBreakdownSplitRight: css`
+      flex: 1 1 200px;
+      min-width: min(220px, 100%);
+    `,
+    platformBreakdown: css`
+      display: flex;
+      flex-direction: column;
+      gap: ${size[1]};
+    `,
+    platformBreakdownRow: css`
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: ${size[2]};
+      align-items: center;
+      font-size: ${fontSize.xs};
+    `,
+    platformBreakdownLabel: css`
+      color: ${t(colors.gray[500], colors.gray[400])};
+      flex-shrink: 0;
+    `,
+    platformBreakdownPretty: css`
+      color: ${t(colors.gray[900], colors.gray[100])};
+      word-break: break-word;
+      min-width: 0;
+    `,
+    sequenceChordDetail: css`
+      margin-top: ${size[3]};
+      padding-top: ${size[2]};
+      border-top: 1px solid ${t(colors.gray[200], colors.darkGray[600])};
+    `,
     keyCapLarge: css`
       display: inline-flex;
       align-items: center;
@@ -378,6 +553,11 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       box-shadow: ${tokens.shadow.sm()};
       text-transform: capitalize;
       white-space: nowrap;
+    `,
+    keyCapLargeInProgress: css`
+      border-color: ${t(colors.blue[500], colors.blue[400])};
+      color: ${t(colors.blue[900], colors.blue[200])};
+      background: ${t(colors.blue[50], colors.darkGray[500])};
     `,
     conflictList: css`
       display: flex;
@@ -473,6 +653,29 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       z-index: ${tokens.zIndices.tooltip};
       margin-top: ${size[1]};
     `,
+    rowTooltipText: css`
+      position: absolute;
+      bottom: 100%;
+      left: ${size[2]};
+      padding: ${size[1]} ${size[1.5]};
+      background: ${t(colors.gray[800], colors.darkGray[500])};
+      color: ${t(colors.white, colors.gray[100])};
+      font-size: ${fontSize['2xs']};
+      font-family: ${fontFamily.sans};
+      border-radius: ${border.radius.sm};
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      transition:
+        opacity 0.15s,
+        visibility 0.15s;
+      z-index: ${tokens.zIndices.tooltip};
+      margin-bottom: ${size[1]};
+      max-width: 300px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    `,
     triggerCount: css`
       font-family: ${fontFamily.mono};
       font-size: ${fontSize['2xs']};
@@ -484,7 +687,7 @@ const stylesFactory = (theme: 'light' | 'dark') => {
 }
 
 export function useStyles() {
-  const { theme } = useTheme()
+  const { theme } = createTheme()
   const [styles, setStyles] = createSignal(stylesFactory(theme()))
   createEffect(() => {
     setStyles(stylesFactory(theme()))

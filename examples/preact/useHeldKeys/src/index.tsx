@@ -1,11 +1,11 @@
 import React from 'preact/compat'
 import { render } from 'preact'
 import {
-  formatKeyForDebuggingDisplay,
-  useHeldKeys,
+  HotkeysProvider,
+  formatForDisplay,
   useHeldKeyCodes,
+  useHeldKeys,
 } from '@tanstack/preact-hotkeys'
-import { HotkeysProvider } from '@tanstack/preact-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools'
 import { TanStackDevtools } from '@tanstack/preact-devtools'
 import './index.css'
@@ -20,7 +20,7 @@ function App() {
   React.useEffect(() => {
     if (heldKeys.length > 0) {
       const combo = heldKeys
-        .map((k) => formatKeyForDebuggingDisplay(k))
+        .map((k) => formatForDisplay(k, { useSymbols: true }))
         .join(' + ')
       setHistory((h) => {
         // Only add if different from last entry
@@ -55,13 +55,9 @@ function App() {
                   <React.Fragment key={key}>
                     {index > 0 && <span className="plus">+</span>}
                     <kbd className="large">
-                      {formatKeyForDebuggingDisplay(key)}
+                      {formatForDisplay(key, { useSymbols: true })}
                       {code && code !== key && (
-                        <small className="code-label">
-                          {formatKeyForDebuggingDisplay(code, {
-                            source: 'code',
-                          })}
-                        </small>
+                        <small className="code-label">{code}</small>
                       )}
                     </kbd>
                   </React.Fragment>

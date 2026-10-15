@@ -1,5 +1,193 @@
 # @tanstack/hotkeys
 
+## 0.12.1
+
+### Patch Changes
+
+- [#177](https://github.com/TanStack/hotkeys/pull/177) [`575dc91`](https://github.com/TanStack/hotkeys/commit/575dc912dad2efca59175e18aa877eb0996d17bc) - Do not match a hotkey through the physical key when AltGraph produced the character. For example, German AltGr+M typing `µ` no longer fires `M` or `[KeyM]`.
+
+## 0.12.0
+
+### Minor Changes
+
+- [#175](https://github.com/TanStack/hotkeys/pull/175) [`a71180e`](https://github.com/TanStack/hotkeys/commit/a71180ec7f66be52f0aa268a2c2cce2f742d1602) - Hotkeys now include sequences everywhere, and app hotkeys can be declared up front and customized by users.
+
+  - A hotkey is a chord (`'Mod+S'`) or a sequence (`['G', 'G']`). Every adapter's hotkey and hotkeys APIs, `HotkeyManager.register`, `formatForDisplay`, `areHotkeysEqual`, `validateHotkey`, and hints accept both. A one-step sequence is its chord. Chords accept `requireReset`; sequences accept `timeout`, enforced by types.
+  - Every adapter's recorder records sequences with `maxSteps` (default 1).
+  - `defineAppHotkeys` declares every app hotkey. Pass them to the adapter's provider as `appHotkeys`, with optional `customHotkeys` and `onCustomHotkeysChange` to persist user changes. Each adapter can read and change them through its app hotkeys, app hotkey list, and custom hotkeys APIs (for example, React's `useAppHotkeys`, `useAppHotkeyList`, and `useCustomHotkeys`). Lit, Alpine, and Ember, which have no provider, use `provideAppHotkeys`. Devtools list declared hotkeys that are not registered.
+
+  Breaking changes (React names shown; other adapters follow their own naming, such as `createHotkey`, `injectHotkey`, or `HotkeyController`):
+
+  | Before                                                                   | After                                                           |
+  | ------------------------------------------------------------------------ | --------------------------------------------------------------- |
+  | `Hotkey` (one chord)                                                     | `HotkeyChord`; `Hotkey` is now a chord or a sequence            |
+  | `SequenceManager`, `getSequenceManager()`                                | `HotkeyManager`, `getHotkeyManager()`                           |
+  | `useHotkeySequence(sequence, cb, options)`                               | `useHotkey(sequence, cb, options)`                              |
+  | `useHotkeySequences([{ sequence, callback }])`                           | `useHotkeys([{ hotkey: sequence, callback }])`                  |
+  | `useHotkeySequenceRecorder(options)`, `HotkeySequenceRecorder`           | `useHotkeyRecorder({ maxSteps, ...options })`, `HotkeyRecorder` |
+  | Lit `@hotkeySequence`, `HotkeySequenceController`                        | `@hotkey`, `HotkeyController`                                   |
+  | Lit `HotkeySequenceRecorderController`                                   | `HotkeyRecorderController` with `maxSteps`                      |
+  | `useHotkeyRegistrations()` → `{ hotkeys, sequences }`                    | One list of chords and sequences; narrow with `kind`            |
+  | `SequenceRegistrationView.sequence`                                      | `HotkeySequenceRegistrationView.hotkey`                         |
+  | `HotkeyConflict.type`                                                    | `HotkeyConflict.registration.kind`                              |
+  | Sequence callback `context.hotkey` (`'G G'`)                             | `context.hotkey` (`['G', 'G']`)                                 |
+  | `defaultOptions.hotkeySequence`, `defaultOptions.hotkeySequenceRecorder` | `defaultOptions.hotkey`, `defaultOptions.hotkeyRecorder`        |
+  | Vue `provideHotkeysContext(defaultOptions)`                              | `provideHotkeysContext({ defaultOptions, appHotkeys, ... })`    |
+  | Svelte `setHotkeysContext(defaultOptions)`                               | `setHotkeysContext({ defaultOptions, appHotkeys, ... })`        |
+  | Angular `provideHotkeys(defaultOptions)`                                 | `provideHotkeys({ defaultOptions, appHotkeys, ... })`           |
+  | `HotkeyDefinition` (core)                                                | Each adapter's definition type, such as `UseHotkeyDefinition`   |
+  | `createHotkeySequenceBindings` (adapter)                                 | `createHotkeyBindings`                                          |
+  | `formatHotkeySequence`, `formatWithLabels`                               | `formatForDisplay`                                              |
+  | `SequenceManager.resetAll()`                                             | `HotkeyManager.resetSequenceProgress()`                         |
+
+## 0.11.0
+
+### Minor Changes
+
+- [#165](https://github.com/TanStack/hotkeys/pull/165) [`2ebcecf`](https://github.com/TanStack/hotkeys/commit/2ebcecfc673fb7b3b4877624fc832d83532a412a) - Add Alpine, Ember, and Octane adapters with framework-native lifecycle management, scoped defaults, and shared registration reconciliation.
+
+  Support reactive option getters and live recorder options. Follow replacement provider defaults in Solid and Vue, track getters in Ember definitions, and refresh Lit registrations and scoped targets after host updates.
+
+  Add Ember `onHotkey` and `onHotkeys` modifiers for element-scoped shortcuts with reactive options and automatic cleanup.
+
+  Add Angular and Svelte Hotkeys devtools integrations with development-only defaults and explicit production exports.
+
+  Update compatible dependencies and release all Hotkeys adapters and devtools packages together as minor versions.
+
+## 0.10.1
+
+### Patch Changes
+
+- [#159](https://github.com/TanStack/hotkeys/pull/159) [`faddbfc`](https://github.com/TanStack/hotkeys/commit/faddbfc7bdd98b809f086304f88ff95a848d92be) - Display macOS shortcut modifiers in Control, Option, Shift, Command order without changing normalized binding identities.
+
+## 0.10.0
+
+### Minor Changes
+
+- [#157](https://github.com/TanStack/hotkeys/pull/157) [`ce6e271`](https://github.com/TanStack/hotkeys/commit/ce6e271d7fbf8cc3382bde634b93180127cb44b9) - Publish ES2022 ESM-only packages with a Node.js 20 minimum, matching TanStack Table v9. CommonJS builds, package `src` directories, and source maps are no longer published. Use ESM imports and inspect the declarations in `dist` for installed API types.
+
+  Expose the existing Solid devtools production entry with TypeScript declarations.
+
+  Update framework, store, devtools, and build dependencies while retaining TypeScript 6.0.3. Adapt devtools styling to the new `createTheme` API. Upgrade `@tanstack/preact-store` to 0.13.3, which fixes stale hint updates when shortcut bindings change.
+
+## 0.9.0
+
+### Minor Changes
+
+- - breaking: `RawHotkey` and `ParsedHotkey` are now unions containing either `key` or `code`. Use type intersections instead of extending them with interfaces. ([#151](https://github.com/TanStack/hotkeys/pull/151))
+  - breaking: Recorders default to physical codes. Set `recordBy: 'key'` to record logical keys.
+  - breaking: Clearing a recording calls only `onClear`, without calling `onRecord` with an empty value.
+  - feat: Support typed physical bindings such as `Mod+[KeyS]` and `{ code: 'KeyS', mod: true }`.
+  - feat: Support F1–F24, additional named keys, and more punctuation shortcuts.
+  - feat: Add a platform option to `parseKeyboardEvent`.
+  - feat: Add recorder `recordBy`, `validate`, `detectConflicts`, and `onReject` options.
+  - feat: Add `findHotkeyConflicts`, including sequence-prefix checks.
+  - feat: Add `HotkeyMeta.group`.
+  - feat: Add `matchesHeldModifiers` and shortcut hint helpers for every framework adapter.
+  - feat: Add `formatForDisplay` support for parsed bindings, `parts`, separate modifier/key symbols, `keyLabels`, and a resolved `layoutMap`.
+  - fix: Improve shortcut matching across keyboard layouts, macOS Option keys, shifted punctuation, and numpad keys.
+  - fix: Prefer exact matches over physical-key fallbacks in hotkeys and sequences.
+  - fix: Handle literal plus shortcuts such as `Mod++` and Unicode key names correctly.
+  - fix: Avoid triggering shortcuts during IME composition and AltGraph character entry.
+  - fix: Clear held-key and `requireReset` state correctly when released keys produce different characters.
+  - fix: Prevent recording keystrokes, repeats, and releases from triggering registered shortcuts.
+  - fix: Display readable physical-key labels, such as `S` instead of `KeyS`.
+  - fix: Recognize equivalent hotkey aliases in registration lookups and conflict checks, including sequences.
+  - fix: Avoid unnecessary registration updates and handle target changes correctly in React and Preact.
+  - fix: Reject bracketed physical codes in logical `key` fields.
+  - fix: Reset shortcuts when keys are released inside inputs or while disabled.
+  - fix: Respect recorder `ignoreInputs` inside shadow roots.
+  - fix: Preserve Shift when recording logical AltGraph shortcuts.
+  - fix: Ignore modifier and composition events in standalone sequence matching.
+  - fix: Ignore repeated keydowns when matching sequences.
+  - fix: Prevent continuous rerenders when reading Preact hotkey registrations.
+  - fix: Allow Svelte recorder controls to be passed directly to event handlers.
+  - fix: Update devtools conflict reporting, plus-key formatting, group search, and key/code labels.
+
+## 0.8.0
+
+### Minor Changes
+
+- feat: upgrade to latest tanstack store version ([`3104ee4`](https://github.com/TanStack/hotkeys/commit/3104ee494edd9877249c46b648af27d31cfd8c9c))
+
+## 0.7.1
+
+### Patch Changes
+
+- fix: normalizeKeyName null check ([#98](https://github.com/TanStack/hotkeys/pull/98))
+
+## 0.7.0
+
+### Minor Changes
+
+- feat: options.meta with name and descriptions by default and new useHotkeysRegistrations hooks ([#95](https://github.com/TanStack/hotkeys/pull/95))
+
+## 0.6.4
+
+### Patch Changes
+
+- Add `@tanstack/lit-hotkeys` package with Lit reactive controllers and decorators for hotkeys, hotkey sequences, key hold, held keys, hotkey recording, and sequence recording. Also fix input element detection inside shadow DOMs in the core hotkeys package. ([#59](https://github.com/TanStack/hotkeys/pull/59))
+
+## 0.6.3
+
+### Patch Changes
+
+- Add `separatorToken` option to `formatForDisplay` to allow customizing the separator between keys ([#92](https://github.com/TanStack/hotkeys/pull/92))
+
+## 0.6.2
+
+### Patch Changes
+
+- fix: use `document.activeElement` instead of `event.target` for `ignoreInputs` option ([#89](https://github.com/TanStack/hotkeys/pull/89))
+
+  Switched from checking `event.target` to checking `document.activeElement` when determining if hotkeys should be ignored in input elements. This more accurately reflects whether the user is currently typing in an input, and fixes issues with libraries that intercept and re-dispatch keyboard events.
+
+## 0.6.1
+
+### Patch Changes
+
+- chore: upgrade tanstack store version ([`19a960f`](https://github.com/TanStack/hotkeys/commit/19a960fb07655db28b6ec967cba7f957ece66edb))
+
+## 0.6.0
+
+### Minor Changes
+
+- Refactor hotkey normalization and display formatting APIs in `@tanstack/hotkeys`, align framework packages and devtools, and update display-related constants. ([#85](https://github.com/TanStack/hotkeys/pull/85))
+
+## 0.5.0
+
+### Minor Changes
+
+- Align sequence recording with hotkey-prefixed public API: `HotkeySequenceRecorder`, framework hooks `useHotkeySequenceRecorder` / `createHotkeySequenceRecorder` / `injectHotkeySequenceRecorder`, and provider defaults under `hotkeySequenceRecorder`. ([#78](https://github.com/TanStack/hotkeys/pull/78))
+
+## 0.4.3
+
+### Patch Changes
+
+- Fix useHotkeySequence resets progress when modifier key is pressed before a key combo e.g. zA (Vim-like hotkeys) ([#74](https://github.com/TanStack/hotkeys/pull/74))
+
+- fix: add jsdoc for combos in hotkey sequences ([`4e29eec`](https://github.com/TanStack/hotkeys/commit/4e29eec1eab57c7b2b59ccda84ce32dcb5f9fd8c))
+
+## 0.4.2
+
+### Patch Changes
+
+- Fix Alt+punctuation hotkeys not firing on macOS due to Option key character composition ([#64](https://github.com/TanStack/hotkeys/pull/64))
+
+  On macOS, the Option (Alt) key acts as a character composer for punctuation keys (e.g., Option+- produces an en-dash '–'), causing `event.key` to differ from the expected character. Added an `event.code` fallback for punctuation keys (Minus, Equal, Slash, BracketLeft, BracketRight, Backslash, Comma, Period, Backquote, Semicolon), matching the existing fallback pattern for letter and digit keys.
+
+## 0.4.1
+
+### Patch Changes
+
+- fix: option+letter combos on mac layouts ([#61](https://github.com/TanStack/hotkeys/pull/61))
+
+## 0.4.0
+
+### Minor Changes
+
+- add angular adapter and upgrade packages ([#31](https://github.com/TanStack/hotkeys/pull/31))
+
 ## 0.3.3
 
 ### Patch Changes

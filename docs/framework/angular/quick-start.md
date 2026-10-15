@@ -1,0 +1,188 @@
+---
+title: Quick Start
+id: quick-start
+---
+
+## Installation
+
+Don't have TanStack Hotkeys installed yet? See the [Installation](../../installation) page for instructions.
+
+## Your first hotkey
+
+The `injectHotkey` API is the primary way to register keyboard shortcuts in Angular:
+
+```ts
+import { Component } from '@angular/core'
+import { injectHotkey } from '@tanstack/angular-hotkeys'
+
+@Component({
+  selector: 'app-root',
+  standalone: true,
+  template: `<div>Press Cmd+S (Mac) or Ctrl+S (Windows) to save</div>`,
+})
+export class AppComponent {
+  constructor() {
+    injectHotkey('Mod+S', () => {
+      saveDocument()
+    })
+  }
+}
+```
+
+The `Mod` modifier automatically resolves to `Meta` (Command) on macOS and `Control` on Windows/Linux, so your shortcuts work across platforms without extra logic.
+
+## Common patterns
+
+### Multiple hotkeys
+
+```ts
+constructor() {
+  injectHotkey('Mod+S', () => save())
+  injectHotkey('Mod+Z', () => undo())
+  injectHotkey('Mod+Shift+Z', () => redo())
+  injectHotkey('Mod+F', () => openSearch())
+  injectHotkey('Escape', () => closeDialog())
+}
+```
+
+### Scoped hotkeys with `viewChild`
+
+```ts
+import { Component, ElementRef, viewChild } from '@angular/core'
+import { injectHotkey } from '@tanstack/angular-hotkeys'
+
+@Component({
+  standalone: true,
+  template: `
+    <div #panel tabindex="0">
+      <p>Press Escape while focused here to close</p>
+    </div>
+  `,
+})
+export class PanelComponent {
+  private readonly panel = viewChild<ElementRef<HTMLDivElement>>('panel')
+
+  constructor() {
+    injectHotkey('Escape', () => closePanel(), () => ({
+      target: this.panel()?.nativeElement ?? null,
+    }))
+  }
+}
+```
+
+### Conditional hotkeys
+
+```ts
+import { Component, signal } from '@angular/core'
+import { injectHotkey } from '@tanstack/angular-hotkeys'
+
+@Component({ standalone: true, template: `` })
+export class ModalComponent {
+  readonly isOpen = signal(true)
+
+  constructor() {
+    injectHotkey('Escape', () => this.isOpen.set(false), () => ({
+      enabled: this.isOpen(),
+    }))
+  }
+}
+```
+
+### Multi-key sequences
+
+```ts
+import { injectHotkey } from '@tanstack/angular-hotkeys'
+
+constructor() {
+  // An array of chords registers a sequence
+  injectHotkey(['G', 'G'], () => scrollToTop())
+  injectHotkey(['G', 'Shift+G'], () => scrollToBottom())
+}
+```
+
+### Tracking held keys
+
+```ts
+import { Component } from '@angular/core'
+import { injectHeldKeys, injectKeyHold } from '@tanstack/angular-hotkeys'
+
+@Component({
+  standalone: true,
+  template: `
+    <div class="status-bar">
+      @if (isShiftHeld()) {
+        <span>Shift mode active</span>
+      }
+      @if (heldKeys().length > 0) {
+        <span>Keys: {{ heldKeys().join('+') }}</span>
+      }
+    </div>
+  `,
+})
+export class StatusBarComponent {
+  readonly heldKeys = injectHeldKeys()
+  readonly isShiftHeld = injectKeyHold('Shift')
+}
+```
+
+### Displaying hotkeys in the UI
+
+```ts
+import { Component } from '@angular/core'
+import { formatForDisplay, injectHotkey } from '@tanstack/angular-hotkeys'
+
+@Component({
+  standalone: true,
+  template: `<button>Save <kbd>{{ saveLabel }}</kbd></button>`,
+})
+export class SaveButtonComponent {
+  readonly saveLabel = formatForDisplay('Mod+S')
+
+  constructor() {
+    injectHotkey('Mod+S', () => save())
+  }
+}
+```
+
+## Default options provider
+
+Use `provideHotkeys` to configure default options for your Angular app:
+
+```ts
+import { ApplicationConfig } from '@angular/core'
+import { provideHotkeys } from '@tanstack/angular-hotkeys'
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideHotkeys({
+      defaultOptions: {
+        hotkey: { preventDefault: true, timeout: 1500 },
+        hotkeyRecorder: { onCancel: () => console.log('Recording cancelled') },
+      },
+    }),
+  ],
+}
+```
+
+## Declaring app hotkeys
+
+To list every hotkey in a cheat sheet, including hotkeys whose components haven't mounted, and to let users customize them, declare them once with `defineAppHotkeys` and provide them with `provideHotkeys`. See the [App Hotkeys Guide](./guides/app-hotkeys).
+
+## Next steps
+
+- [Hotkeys Guide](./guides/hotkeys)
+- [Sequences Guide](./guides/sequences)
+- [Hotkey Recording Guide](./guides/hotkey-recording)
+- [App Hotkeys Guide](./guides/app-hotkeys)
+- [Key State Tracking Guide](./guides/key-state-tracking)
+- [Formatting & Display Guide](./guides/formatting-display)
+
+## Devtools
+
+Install the optional devtools packages to inspect registrations, held keys, and trigger counts:
+
+```sh
+npm install @tanstack/angular-devtools @tanstack/angular-hotkeys-devtools
+```
+
+The Angular devtools integration requires Angular 21 or newer. Follow the [devtools setup guide](../../devtools) to add the dock to your application.

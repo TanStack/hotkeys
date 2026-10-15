@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { HotkeyManager } from '../src/hotkey-manager'
+import { HotkeyManager, toHotkeyRegistrationView } from '../src/hotkey-manager'
 
 /**
  * Helper to create a mock KeyboardEvent
@@ -12,6 +12,7 @@ function createKeyboardEvent(
     shiftKey?: boolean
     altKey?: boolean
     metaKey?: boolean
+    code?: string
   } = {},
 ): KeyboardEvent {
   return new KeyboardEvent(type, {
@@ -20,6 +21,7 @@ function createKeyboardEvent(
     shiftKey: options.shiftKey ?? false,
     altKey: options.altKey ?? false,
     metaKey: options.metaKey ?? false,
+    code: options.code,
     bubbles: true,
   })
 }
@@ -551,6 +553,73 @@ describe('HotkeyManager', () => {
       )
       expect(callback).toHaveBeenCalledTimes(2)
     })
+
+    it('resets by the code that actually activated the registration', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+      manager.register('Control+A', callback, {
+        platform: 'windows',
+        requireReset: true,
+      })
+
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 'ф', { ctrlKey: true, code: 'KeyA' }),
+      )
+      document.dispatchEvent(
+        createKeyboardEvent('keyup', 'a', { ctrlKey: true, code: 'KeyA' }),
+      )
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 'ф', { ctrlKey: true, code: 'KeyA' }),
+      )
+      expect(callback).toHaveBeenCalledTimes(2)
+    })
+  })
+
+  describe('layout collision precedence', () => {
+    it('prefers a logical registration over a physical fallback', () => {
+      const manager = HotkeyManager.getInstance()
+      const logical = vi.fn()
+      const fallback = vi.fn()
+      manager.register('Control+ф' as never, logical, { platform: 'windows' })
+      manager.register('Control+A', fallback, { platform: 'windows' })
+
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 'ф', { ctrlKey: true, code: 'KeyA' }),
+      )
+      expect(logical).toHaveBeenCalledOnce()
+      expect(fallback).not.toHaveBeenCalled()
+    })
+
+    it('supports an explicit physical code registration', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+      manager.register({ code: 'KeyW', ctrl: true }, callback, {
+        platform: 'windows',
+      })
+
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 'ц', { ctrlKey: true, code: 'KeyW' }),
+      )
+      expect(callback).toHaveBeenCalledOnce()
+    })
+
+    it('prefers an explicit Shift chord over an implicit glyph Shift', () => {
+      const manager = HotkeyManager.getInstance()
+      const implicit = vi.fn()
+      const explicit = vi.fn()
+      manager.register('Control+1', implicit, { platform: 'windows' })
+      manager.register('Control+Shift+1', explicit, { platform: 'windows' })
+
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', '1', {
+          ctrlKey: true,
+          shiftKey: true,
+          code: 'Digit1',
+        }),
+      )
+      expect(explicit).toHaveBeenCalledOnce()
+      expect(implicit).not.toHaveBeenCalled()
+    })
   })
 
   describe('preventDefault and stopPropagation', () => {
@@ -619,8 +688,9 @@ describe('HotkeyManager', () => {
 
   describe('ignoreInputs option', () => {
     /**
-     * Helper to create and dispatch a keyboard event from a specific element
-     * The event is dispatched on the target (usually document) but with event.target set to the element
+     * Helper to create and dispatch a keyboard event from a specific element.
+     * Focuses the element first to set document.activeElement, then dispatches
+     * the event on the target (usually document).
      */
     function dispatchKeyboardEventFromElement(
       target: HTMLElement | Document,
@@ -634,6 +704,9 @@ describe('HotkeyManager', () => {
         metaKey?: boolean
       } = {},
     ): KeyboardEvent {
+      // Focus the element so document.activeElement is set
+      element.focus()
+
       const event = new KeyboardEvent(type, {
         key,
         ctrlKey: options.ctrlKey ?? false,
@@ -641,12 +714,6 @@ describe('HotkeyManager', () => {
         altKey: options.altKey ?? false,
         metaKey: options.metaKey ?? false,
         bubbles: true,
-      })
-      // Set the target to the element (where the event originated)
-      Object.defineProperty(event, 'target', {
-        value: element,
-        writable: false,
-        configurable: true,
       })
       // Set currentTarget to the target (where the listener is attached)
       Object.defineProperty(event, 'currentTarget', {
@@ -852,6 +919,34 @@ describe('HotkeyManager', () => {
       document.body.removeChild(input)
     })
 
+    it('should ignore single-key hotkeys when typing in a shadow-dom textarea', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('K', callback, {
+        platform: 'mac',
+      })
+
+      const host = document.createElement('div')
+      const shadowRoot = host.attachShadow({ mode: 'open' })
+      const textarea = document.createElement('textarea')
+      shadowRoot.appendChild(textarea)
+      document.body.appendChild(host)
+
+      textarea.focus()
+      textarea.dispatchEvent(
+        new KeyboardEvent('keydown', {
+          key: 'k',
+          bubbles: true,
+          composed: true,
+        }),
+      )
+
+      expect(callback).not.toHaveBeenCalled()
+
+      document.body.removeChild(host)
+    })
+
     it('should fire hotkeys when typing in non-input elements', () => {
       const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
@@ -1054,6 +1149,113 @@ describe('HotkeyManager', () => {
         callback.mockClear()
       }
     })
+
+    it('should ignore hotkeys when activeElement is an input but event.target is different (React Aria pattern)', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Q', callback, { platform: 'mac' })
+
+      const input = document.createElement('input')
+      input.type = 'text'
+      const listItem = document.createElement('li')
+      document.body.appendChild(input)
+      document.body.appendChild(listItem)
+
+      input.focus()
+
+      const event = new KeyboardEvent('keydown', {
+        key: 'q',
+        bubbles: true,
+      })
+      Object.defineProperty(event, 'target', {
+        value: listItem,
+        writable: false,
+        configurable: true,
+      })
+      Object.defineProperty(event, 'currentTarget', {
+        value: document,
+        writable: false,
+        configurable: true,
+      })
+      document.dispatchEvent(event)
+
+      expect(callback).not.toHaveBeenCalled()
+
+      document.body.removeChild(input)
+      document.body.removeChild(listItem)
+    })
+
+    it('should fire Mod hotkeys when activeElement is an input but event.target is different (React Aria pattern)', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Mod+S', callback, { platform: 'mac' })
+
+      const input = document.createElement('input')
+      input.type = 'text'
+      const listItem = document.createElement('li')
+      document.body.appendChild(input)
+      document.body.appendChild(listItem)
+
+      input.focus()
+
+      const event = new KeyboardEvent('keydown', {
+        key: 's',
+        metaKey: true,
+        bubbles: true,
+      })
+      Object.defineProperty(event, 'target', {
+        value: listItem,
+        writable: false,
+        configurable: true,
+      })
+      Object.defineProperty(event, 'currentTarget', {
+        value: document,
+        writable: false,
+        configurable: true,
+      })
+      document.dispatchEvent(event)
+
+      expect(callback).toHaveBeenCalledWith(
+        event,
+        expect.objectContaining({ hotkey: 'Mod+S' }),
+      )
+
+      document.body.removeChild(input)
+      document.body.removeChild(listItem)
+    })
+
+    it('should ignore single-key hotkeys when listener target is inside an iframe and focus is in an input there', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+      const iframe = document.createElement('iframe')
+      document.body.appendChild(iframe)
+      const idoc = iframe.contentDocument
+      expect(idoc).toBeTruthy()
+      if (!idoc) {
+        document.body.removeChild(iframe)
+        return
+      }
+
+      const container = idoc.createElement('div')
+      const input = idoc.createElement('input')
+      input.type = 'text'
+      container.appendChild(input)
+      idoc.body.appendChild(container)
+
+      const handle = manager.register('K', callback, {
+        platform: 'mac',
+        target: container,
+      })
+
+      dispatchKeyboardEventFromElement(container, input, 'keydown', 'k')
+
+      expect(callback).not.toHaveBeenCalled()
+
+      handle.unregister()
+      document.body.removeChild(iframe)
+    })
   })
 
   describe('conflict detection', () => {
@@ -1150,6 +1352,149 @@ describe('HotkeyManager', () => {
       expect(manager.getRegistrationCount()).toBe(2)
 
       warnSpy.mockRestore()
+    })
+  })
+
+  describe('meta option', () => {
+    it('should store meta with name and description in registration options', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Mod+S', callback, {
+        platform: 'mac',
+        meta: { name: 'Save', description: 'Save the document' },
+      })
+
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      expect(reg.options.meta).toEqual({
+        name: 'Save',
+        description: 'Save the document',
+      })
+    })
+
+    it('should store meta with only name', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Mod+Z', callback, {
+        platform: 'mac',
+        meta: { name: 'Undo' },
+      })
+
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      expect(reg.options.meta?.name).toBe('Undo')
+      expect(reg.options.meta?.description).toBeUndefined()
+    })
+
+    it('should allow registering without meta', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Mod+S', callback, { platform: 'mac' })
+
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      expect(reg.options.meta).toBeUndefined()
+    })
+
+    it('should allow custom properties on meta (declaration merging)', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Mod+S', callback, {
+        platform: 'mac',
+        meta: {
+          name: 'Save',
+          description: 'Save the document',
+          // Simulating declaration-merged custom properties
+          ...({ category: 'File', icon: 'save' } as any),
+        },
+      })
+
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      expect((reg.options.meta as any).category).toBe('File')
+      expect((reg.options.meta as any).icon).toBe('save')
+    })
+
+    it('should preserve meta through setOptions', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      const handle = manager.register('Mod+S', callback, {
+        platform: 'mac',
+        meta: { name: 'Save', description: 'Save the document' },
+      })
+
+      handle.setOptions({ enabled: false })
+
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      expect(reg.options.meta).toEqual({
+        name: 'Save',
+        description: 'Save the document',
+      })
+      expect(reg.options.enabled).toBe(false)
+    })
+  })
+
+  describe('toHotkeyRegistrationView', () => {
+    it('should strip callback from the view', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Mod+S', callback, { platform: 'mac' })
+
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      const view = toHotkeyRegistrationView(reg)
+      if (view.kind !== 'chord' || reg.kind !== 'chord') {
+        throw new Error('Expected a chord registration')
+      }
+
+      expect(view).not.toHaveProperty('callback')
+      expect(view.hotkey).toBe(reg.hotkey)
+      expect(view.id).toBe(reg.id)
+      expect(view.options).toBe(reg.options)
+      expect(view.parsedHotkey).toBe(reg.parsedHotkey)
+      expect(view.target).toBe(reg.target)
+      expect(view.triggerCount).toBe(reg.triggerCount)
+      expect(view.hasFired).toBe(reg.hasFired)
+    })
+
+    it('should include meta in the view via options', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Mod+S', callback, {
+        platform: 'mac',
+        meta: { name: 'Save', description: 'Save the document' },
+      })
+
+      const reg = Array.from(manager.registrations.state.values())[0]!
+      const view = toHotkeyRegistrationView(reg)
+
+      expect(view.options.meta).toEqual({
+        name: 'Save',
+        description: 'Save the document',
+      })
+    })
+
+    it('should reflect hasFired state', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register('Mod+S', callback, {
+        platform: 'mac',
+        requireReset: true,
+      })
+
+      const regBefore = Array.from(manager.registrations.state.values())[0]!
+      expect(toHotkeyRegistrationView(regBefore).hasFired).toBe(false)
+
+      // Trigger the hotkey
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 's', { metaKey: true }),
+      )
+
+      const regAfter = Array.from(manager.registrations.state.values())[0]!
+      expect(toHotkeyRegistrationView(regAfter).hasFired).toBe(true)
     })
   })
 })

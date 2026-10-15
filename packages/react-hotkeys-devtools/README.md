@@ -1,5 +1,19 @@
 <div align="center">
-  <img src="./media/header_hotkeys.png" alt="TanStack Hotkeys" />
+  <picture>
+    <source
+      media="(prefers-color-scheme: dark)"
+      srcset="https://tanstack.com/api/readme/hotkeys.png?theme=dark"
+    />
+    <source
+      media="(prefers-color-scheme: light)"
+      srcset="https://tanstack.com/api/readme/hotkeys.png"
+    />
+    <img
+      src="https://tanstack.com/api/readme/hotkeys.png"
+      alt="TanStack Hotkeys"
+      width="900"
+    />
+  </picture>
 </div>
 
 <br />
@@ -37,14 +51,14 @@
 # TanStack Hotkeys
 
 > [!NOTE]
-> TanStack Hotkeys is pre-alpha (prototyping phase). We are actively developing the library and are open to feedback and contributions.
+> TanStack Hotkeys is alpha. We are actively developing the library and are open to feedback and contributions.
 
 Type-safe keyboard shortcuts for the web. Template-string bindings, parsed objects, a cross-platform `Mod` key, a singleton Hotkey Manager, and utilities for cheatsheet UIs—built to stay SSR-friendly.
 
 - Type-safe bindings — template strings (`Mod+Shift+S`, `Escape`) or parsed objects for full control
 - Flexible options — `keydown`/`keyup`, `preventDefault`, `stopPropagation`, conditional enabled, `requireReset`
 - Cross-platform Mod — maps to Cmd on macOS and Ctrl on Windows/Linux
-- Batteries included — validation + matching, sequences (Vim-style), key-state tracking, recorder UI helpers, React hooks, and devtools (in progress)
+- Batteries included — validation + matching, sequences (Vim-style), key-state tracking, recorder UI helpers, framework adapters, and devtools
 
 ### <a href="https://tanstack.com/hotkeys">Read the docs →</a>
 
@@ -53,12 +67,16 @@ Type-safe keyboard shortcuts for the web. Template-string bindings, parsed objec
 > [!NOTE]
 > You may know **TanStack Hotkeys** by our adapter names, too!
 >
+> - [**Alpine Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/alpine/quick-start)
+> - [**Ember Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/ember/quick-start)
+> - [**Octane Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/octane/quick-start)
 > - [**React Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/react/react-hotkeys)
 > - [**Preact Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/preact/preact-hotkeys)
-> - [**Solid Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/solid/solid-hotkeys)
-> - Angular Hotkeys – needs a contributor!
-> - Svelte Hotkeys – needs a contributor!
-> - Vue Hotkeys – needs a contributor!
+> - [**Solid Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/solid/reference)
+> - [**Angular Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/angular/reference)
+> - [**Vue Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/vue/reference)
+> - [**Lit Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/lit/reference)
+> - [**Svelte Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/svelte/reference)
 
 ## Get Involved
 

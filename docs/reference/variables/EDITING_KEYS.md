@@ -3,13 +3,11 @@ id: EDITING_KEYS
 title: EDITING_KEYS
 ---
 
-# Variable: EDITING\_KEYS
-
 ```ts
 const EDITING_KEYS: Set<EditingKey>;
 ```
 
-Defined in: [constants.ts:270](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L270)
+Defined in: [constants.ts:212](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L212)
 
 Set of all valid editing and special keys.
 

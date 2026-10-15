@@ -71,8 +71,7 @@ export class KeyStateTracker {
     getDefaultKeyStateTrackerState(),
   )
 
-  #heldKeysSet: Set<string> = new Set()
-  #heldCodesMap: Map<string, string> = new Map()
+  #heldEntries: Map<string, { key: string; code: string }> = new Map()
   #keydownListener: ((event: KeyboardEvent) => void) | null = null
   #keyupListener: ((event: KeyboardEvent) => void) | null = null
   #blurListener: (() => void) | null = null
@@ -111,18 +110,23 @@ export class KeyStateTracker {
 
     this.#keydownListener = (event: KeyboardEvent) => {
       const key = normalizeKeyName(event.key)
-      if (!this.#heldKeysSet.has(key)) {
-        this.#heldKeysSet.add(key)
-        this.#heldCodesMap.set(key, event.code)
+      const identity = event.code || `key:${key}`
+      if (!this.#heldEntries.has(identity)) {
+        this.#heldEntries.set(identity, { key, code: event.code })
         this.#syncState()
       }
     }
 
     this.#keyupListener = (event: KeyboardEvent) => {
       const key = normalizeKeyName(event.key)
-      if (this.#heldKeysSet.has(key)) {
-        this.#heldKeysSet.delete(key)
-        this.#heldCodesMap.delete(key)
+      const identity = event.code || `key:${key}`
+      this.#heldEntries.delete(identity)
+
+      // Code-less keyup events can only be paired by their logical key.
+      if (!event.code) {
+        for (const [entryIdentity, entry] of this.#heldEntries) {
+          if (entry.key === key) this.#heldEntries.delete(entryIdentity)
+        }
       }
 
       // When a modifier key is released, clear any non-modifier keys still
@@ -130,10 +134,9 @@ export class KeyStateTracker {
       // (e.g. Cmd+S) and swallows the keyup event for the non-modifier key,
       // leaving it permanently stuck in the held set.
       if (MODIFIER_KEYS.has(key)) {
-        for (const heldKey of this.#heldKeysSet) {
-          if (!MODIFIER_KEYS.has(heldKey)) {
-            this.#heldKeysSet.delete(heldKey)
-            this.#heldCodesMap.delete(heldKey)
+        for (const [entryIdentity, entry] of this.#heldEntries) {
+          if (!MODIFIER_KEYS.has(entry.key)) {
+            this.#heldEntries.delete(entryIdentity)
           }
         }
       }
@@ -143,15 +146,14 @@ export class KeyStateTracker {
 
     // Clear all keys when window loses focus (keys might be released while not focused)
     this.#blurListener = () => {
-      if (this.#heldKeysSet.size > 0) {
-        this.#heldKeysSet.clear()
-        this.#heldCodesMap.clear()
+      if (this.#heldEntries.size > 0) {
+        this.#heldEntries.clear()
         this.#syncState()
       }
     }
 
-    document.addEventListener('keydown', this.#keydownListener)
-    document.addEventListener('keyup', this.#keyupListener)
+    document.addEventListener('keydown', this.#keydownListener, true)
+    document.addEventListener('keyup', this.#keyupListener, true)
     window.addEventListener('blur', this.#blurListener)
   }
 
@@ -159,9 +161,18 @@ export class KeyStateTracker {
    * Syncs the internal Set to the Store state.
    */
   #syncState(): void {
+    const heldKeys = Array.from(
+      new Set(Array.from(this.#heldEntries.values(), (entry) => entry.key)),
+    )
+    const heldCodes = Object.fromEntries(
+      Array.from(this.#heldEntries.values(), (entry) => [
+        entry.key,
+        entry.code,
+      ]),
+    )
     this.store.setState(() => ({
-      heldKeys: Array.from(this.#heldKeysSet),
-      heldCodes: Object.fromEntries(this.#heldCodesMap),
+      heldKeys,
+      heldCodes,
     }))
   }
 
@@ -174,12 +185,12 @@ export class KeyStateTracker {
     }
 
     if (this.#keydownListener) {
-      document.removeEventListener('keydown', this.#keydownListener)
+      document.removeEventListener('keydown', this.#keydownListener, true)
       this.#keydownListener = null
     }
 
     if (this.#keyupListener) {
-      document.removeEventListener('keyup', this.#keyupListener)
+      document.removeEventListener('keyup', this.#keyupListener, true)
       this.#keyupListener = null
     }
 
@@ -206,7 +217,9 @@ export class KeyStateTracker {
    */
   isKeyHeld(key: string): boolean {
     const normalizedKey = normalizeKeyName(key)
-    return this.#heldKeysSet.has(normalizedKey)
+    return Array.from(this.#heldEntries.values()).some(
+      (entry) => entry.key === normalizedKey,
+    )
   }
 
   /**
@@ -234,8 +247,7 @@ export class KeyStateTracker {
    */
   destroy(): void {
     this.#removeListeners()
-    this.#heldKeysSet.clear()
-    this.#heldCodesMap.clear()
+    this.#heldEntries.clear()
     this.store.setState(() => getDefaultKeyStateTrackerState())
   }
 }

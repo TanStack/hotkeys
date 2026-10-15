@@ -203,6 +203,34 @@ describe('useHotkey', () => {
       )
       expect(callback).toHaveBeenCalledTimes(2)
     })
+
+    it('should preserve registration id when toggling enabled', () => {
+      const callback = vi.fn()
+      const manager = HotkeyManager.getInstance()
+
+      const { rerender } = renderHook(
+        ({ enabled }: { enabled: boolean }) =>
+          useHotkey('Mod+S', callback, { platform: 'mac', enabled }),
+        { initialProps: { enabled: true } },
+      )
+
+      const idBefore = [...manager.registrations.state.keys()][0]
+      expect(manager.getRegistrationCount()).toBe(1)
+      expect(idBefore).toBeDefined()
+
+      rerender({ enabled: false })
+      expect(manager.getRegistrationCount()).toBe(1)
+      expect([...manager.registrations.state.keys()][0]).toBe(idBefore)
+      expect(manager.registrations.state.get(idBefore!)?.options.enabled).toBe(
+        false,
+      )
+
+      rerender({ enabled: true })
+      expect([...manager.registrations.state.keys()][0]).toBe(idBefore)
+      expect(
+        manager.registrations.state.get(idBefore!)?.options.enabled,
+      ).not.toBe(false)
+    })
   })
 
   describe('target handling', () => {

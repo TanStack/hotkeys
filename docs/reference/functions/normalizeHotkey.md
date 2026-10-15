@@ -3,46 +3,44 @@ id: normalizeHotkey
 title: normalizeHotkey
 ---
 
-# Function: normalizeHotkey()
-
 ```ts
-function normalizeHotkey(hotkey, platform): string;
+function normalizeHotkey(hotkey, platform?): HotkeyChord;
 ```
 
-Defined in: [parse.ts:160](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L160)
+Defined in: [parse.ts:229](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L229)
 
 Normalizes a hotkey string to its canonical form.
 
-The canonical form uses:
-- Full modifier names (Control, Alt, Shift, Meta)
-- Modifiers in order: Control+Alt+Shift+Meta
-- Uppercase letters for single-character keys
-- Proper casing for special keys (Escape, not escape)
+- When `Mod` is allowed for the platform (Command on Mac without Control;
+  Control on Windows/Linux without Meta): emits `Mod`, then `Alt`, then `Shift`,
+  then the key (e.g. `Mod+Shift+E`, `Mod+S`).
+- Otherwise: literal modifiers in `Control+Alt+Shift+Meta` order, then the key.
+- Resolves aliases and normalizes key casing (e.g. `esc` → `Escape`, `a` → `A`).
 
 ## Parameters
 
 ### hotkey
 
+[`Key`](../type-aliases/Key.md) \| `string` & `object`
+
 The hotkey string to normalize
 
-[`Key`](../type-aliases/Key.md) | `string` & `object`
+### platform?
 
-### platform
+`"mac"` \| `"windows"` \| `"linux"`
 
-The target platform for resolving 'Mod' (defaults to auto-detection)
-
-`"mac"` | `"windows"` | `"linux"`
+The target platform for resolving `Mod` (defaults to auto-detection)
 
 ## Returns
 
-`string`
+[`HotkeyChord`](../type-aliases/HotkeyChord.md)
 
 The normalized hotkey string
 
 ## Example
 
 ```ts
-normalizeHotkey('mod+shift+s') // On Mac: 'Shift+Meta+S'
-normalizeHotkey('ctrl+a') // 'Control+A'
+normalizeHotkey('shift+meta+e', 'mac') // 'Mod+Shift+E'
+normalizeHotkey('ctrl+a', 'windows') // 'Mod+A'
 normalizeHotkey('esc') // 'Escape'
 ```

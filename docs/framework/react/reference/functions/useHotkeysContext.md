@@ -3,13 +3,11 @@ id: useHotkeysContext
 title: useHotkeysContext
 ---
 
-# Function: useHotkeysContext()
-
 ```ts
 function useHotkeysContext(): HotkeysContextValue | null;
 ```
 
-Defined in: [HotkeysProvider.tsx:44](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L44)
+Defined in: [HotkeysProvider.tsx:121](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L121)
 
 ## Returns
 

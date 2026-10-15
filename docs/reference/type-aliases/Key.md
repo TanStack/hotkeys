@@ -3,12 +3,10 @@ id: Key
 title: Key
 ---
 
-# Type Alias: Key
-
 ```ts
-type Key = NonPunctuationKey | PunctuationKey;
+type Key = LogicalKey | PhysicalKey;
 ```
 
-Defined in: [hotkey.ts:148](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L148)
+Defined in: [key.types.ts:230](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L230)
 
-All supported non-modifier keys.
+All supported logical keys and bracketed physical key tokens.

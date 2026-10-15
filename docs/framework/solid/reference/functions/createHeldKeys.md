@@ -3,8 +3,6 @@ id: createHeldKeys
 title: createHeldKeys
 ---
 
-# Function: createHeldKeys()
-
 ```ts
 function createHeldKeys(): () => string[];
 ```
@@ -13,7 +11,7 @@ Defined in: [createHeldKeys.ts:26](https://github.com/TanStack/hotkeys/blob/main
 
 SolidJS primitive that returns a signal of currently held keyboard keys.
 
-This primitive uses `useStore` from `@tanstack/solid-store` to subscribe
+This primitive uses `useSelector` from `@tanstack/solid-store` to subscribe
 to the global KeyStateTracker and updates whenever keys are pressed
 or released.
 
@@ -21,13 +19,7 @@ or released.
 
 Signal accessor for array of currently held key names
 
-```ts
-(): string[];
-```
-
-### Returns
-
-`string`[]
+() => `string`[]
 
 ## Example
 

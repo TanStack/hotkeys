@@ -3,13 +3,11 @@ id: createSequenceMatcher
 title: createSequenceMatcher
 ---
 
-# Function: createSequenceMatcher()
-
 ```ts
-function createSequenceMatcher(sequence, options): object;
+function createSequenceMatcher(sequence, options?): object;
 ```
 
-Defined in: [sequence-manager.ts:636](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L636)
+Defined in: [match.ts:259](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L259)
 
 Creates a simple sequence matcher for one-off use.
 
@@ -25,7 +23,7 @@ if attaching to document.
 
 The sequence of hotkeys to match
 
-### options
+### options?
 
 Options including timeout
 
@@ -43,7 +41,7 @@ Options including timeout
 
 An object with match() and reset() methods
 
-### getProgress()
+### getProgress
 
 ```ts
 getProgress: () => number;
@@ -53,7 +51,7 @@ getProgress: () => number;
 
 `number`
 
-### match()
+### match
 
 ```ts
 match: (event) => boolean;
@@ -69,7 +67,7 @@ match: (event) => boolean;
 
 `boolean`
 
-### reset()
+### reset
 
 ```ts
 reset: () => void;

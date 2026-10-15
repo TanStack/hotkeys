@@ -1,191 +1,101 @@
-import { useEffect, useRef } from 'react'
-import {
-  detectPlatform,
-  formatHotkey,
-  getHotkeyManager,
-  rawHotkeyToParsedHotkey,
-} from '@tanstack/hotkeys'
-import { useDefaultHotkeysOptions } from './HotkeysProvider'
+import { useHotkeys } from './useHotkeys'
 import type {
-  Hotkey,
+  AppHotkey,
   HotkeyCallback,
-  HotkeyOptions,
-  HotkeyRegistrationHandle,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
+import type {
+  AdapterAppHotkeyOptions,
+  AdapterChordOptions,
+  AdapterCommonOptions,
+  AdapterHotkeyOptions,
+  AdapterOptionsFor,
+  AdapterSequenceOptions,
+} from '@tanstack/hotkeys/adapter'
 
-export interface UseHotkeyOptions extends Omit<HotkeyOptions, 'target'> {
-  /**
-   * The DOM element to attach the event listener to.
-   * Can be a React ref, direct DOM element, or null.
-   * Defaults to document.
-   */
-  target?:
-    | React.RefObject<HTMLElement | null>
-    | HTMLElement
-    | Document
-    | Window
-    | null
-}
+/** A React ref, element, document, or window to listen on. */
+export type UseHotkeyTarget =
+  React.RefObject<HTMLElement | null> | HTMLElement | Document | Window | null
+
+/** Options shared by chords and sequences. */
+export type UseHotkeyOptions = AdapterHotkeyOptions<UseHotkeyTarget>
+
+/** Options for a chord such as `'Mod+S'`. */
+export type UseHotkeyChordOptions = AdapterChordOptions<UseHotkeyTarget>
+
+/** Options for a sequence such as `['G', 'G']`. */
+export type UseHotkeySequenceOptions = AdapterSequenceOptions<UseHotkeyTarget>
+
+/** Options applied to every hotkey, such as provider defaults. Each applies to the kinds that support it. */
+export type UseHotkeyCommonOptions = AdapterCommonOptions<UseHotkeyTarget>
+
+/** The options type for a hotkey: chord options for chords, sequence options for sequences. */
+export type UseHotkeyOptionsFor<T extends RegisterableHotkey> =
+  AdapterOptionsFor<T, UseHotkeyTarget>
 
 /**
- * React hook for registering a keyboard hotkey.
+ * Options for an app hotkey at the call site. `meta` comes from the declaration.
+ * Kind-specific options follow the declared default: `requireReset` for a chord,
+ * `timeout` for a sequence, both for an app hotkey without a default. If the
+ * user rebinds it to the other kind, options for the old kind no longer apply.
+ */
+export type UseAppHotkeyOptions<T extends AppHotkey = AppHotkey> =
+  AdapterAppHotkeyOptions<T, UseHotkeyTarget>
+
+/**
+ * React hook for registering a hotkey: a chord such as `'Mod+S'`, a sequence
+ * such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
  *
- * Uses the singleton HotkeyManager for efficient event handling.
- * The callback receives both the keyboard event and a context object
- * containing the hotkey string and parsed hotkey.
+ * Uses the singleton HotkeyManager for efficient event handling. The callback
+ * and options sync on every render, so callbacks that reference React state
+ * always see the latest values. `enabled: false` keeps the registration
+ * (visible in devtools) and only suppresses firing.
  *
- * This hook syncs the callback and options on every render to avoid
- * stale closures. This means
- * callbacks that reference React state will always have access to
- * the latest values.
+ * Chords accept `requireReset`; sequences accept `timeout`. A one-step
+ * sequence registers as its chord. An app hotkey uses its effective hotkey
+ * from `HotkeysProvider` (including the user's custom hotkey) and its declared
+ * meta and options, and registers nothing while unbound.
  *
- * @param hotkey - The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object (supports `mod` for cross-platform)
+ * Options merge in this order: provider defaults, app hotkey declaration,
+ * call-site options.
+ *
+ * @param hotkey - A chord string, RawHotkey object, sequence, or app hotkey
  * @param callback - The function to call when the hotkey is pressed
  * @param options - Options for the hotkey behavior
  *
  * @example
  * ```tsx
- * function SaveButton() {
+ * function Editor() {
  *   const [count, setCount] = useState(0)
  *
- *   // Callback always has access to latest count value
- *   useHotkey('Mod+S', (event, { hotkey }) => {
- *     console.log(`Save triggered, count is ${count}`)
- *     handleSave()
- *   })
- *
- *   return <button onClick={() => setCount(c => c + 1)}>Count: {count}</button>
+ *   useHotkey('Mod+S', () => save(count))
+ *   useHotkey(['G', 'G'], () => scrollToTop(), { timeout: 500 })
+ *   useHotkey('Escape', () => close(), { enabled: isOpen })
  * }
  * ```
  *
  * @example
  * ```tsx
- * function Modal({ isOpen, onClose }) {
- *   // enabled option is synced on every render
- *   useHotkey('Escape', () => {
- *     onClose()
- *   }, { enabled: isOpen })
- *
- *   if (!isOpen) return null
- *   return <div className="modal">...</div>
- * }
- * ```
- *
- * @example
- * ```tsx
- * function Editor() {
- *   const editorRef = useRef<HTMLDivElement>(null)
- *
- *   // Scoped to a specific element
- *   useHotkey('Mod+S', () => {
- *     save()
- *   }, { target: editorRef })
- *
- *   return <div ref={editorRef}>...</div>
+ * function Toolbar() {
+ *   const hotkeys = useAppHotkeys()
+ *   useHotkey(hotkeys['doc.save'], () => save())
  * }
  * ```
  */
-export function useHotkey(
-  hotkey: RegisterableHotkey,
+export function useHotkey<T extends AppHotkey>(
+  hotkey: T,
   callback: HotkeyCallback,
-  options: UseHotkeyOptions = {},
+  options?: UseAppHotkeyOptions<T>,
+): void
+export function useHotkey<T extends RegisterableHotkey>(
+  hotkey: T,
+  callback: HotkeyCallback,
+  options?: UseHotkeyOptionsFor<T>,
+): void
+export function useHotkey(
+  hotkey: RegisterableHotkey | AppHotkey,
+  callback: HotkeyCallback,
+  options?: UseHotkeyCommonOptions,
 ): void {
-  const mergedOptions = {
-    ...useDefaultHotkeysOptions().hotkey,
-    ...options,
-  } as UseHotkeyOptions
-
-  const manager = getHotkeyManager()
-
-  // Stable ref for registration handle
-  const registrationRef = useRef<HotkeyRegistrationHandle | null>(null)
-
-  // Refs to capture current values for use in effect without adding dependencies
-  const callbackRef = useRef(callback)
-  const optionsRef = useRef(mergedOptions)
-  const managerRef = useRef(manager)
-
-  // Update refs on every render
-  callbackRef.current = callback
-  optionsRef.current = mergedOptions
-  managerRef.current = manager
-
-  // Track previous target and hotkey to detect changes requiring re-registration
-  const prevTargetRef = useRef<HTMLElement | Document | Window | null>(null)
-  const prevHotkeyRef = useRef<string | null>(null)
-
-  // Normalize to hotkey string
-  const platform = mergedOptions.platform ?? detectPlatform()
-  const hotkeyString: Hotkey =
-    typeof hotkey === 'string'
-      ? hotkey
-      : (formatHotkey(rawHotkeyToParsedHotkey(hotkey, platform)) as Hotkey)
-
-  // Extract options without target (target is handled separately)
-  const { target: _target, ...optionsWithoutTarget } = mergedOptions
-
-  useEffect(() => {
-    // Resolve target inside the effect so refs are already attached after mount
-    const resolvedTarget = isRef(optionsRef.current.target)
-      ? optionsRef.current.target.current
-      : (optionsRef.current.target ??
-        (typeof document !== 'undefined' ? document : null))
-
-    // Skip if no valid target (SSR or ref still null)
-    if (!resolvedTarget) {
-      return
-    }
-
-    // Check if we need to re-register (target or hotkey changed)
-    const targetChanged =
-      prevTargetRef.current !== null && prevTargetRef.current !== resolvedTarget
-    const hotkeyChanged =
-      prevHotkeyRef.current !== null && prevHotkeyRef.current !== hotkeyString
-
-    // If we have an active registration and target/hotkey changed, unregister first
-    if (registrationRef.current?.isActive && (targetChanged || hotkeyChanged)) {
-      registrationRef.current.unregister()
-      registrationRef.current = null
-    }
-
-    // Register if needed (no active registration)
-    // Use refs to access current values without adding them to dependencies
-    if (!registrationRef.current || !registrationRef.current.isActive) {
-      registrationRef.current = managerRef.current.register(
-        hotkeyString,
-        callbackRef.current,
-        {
-          ...optionsRef.current,
-          target: resolvedTarget,
-        },
-      )
-    }
-
-    // Update tracking refs
-    prevTargetRef.current = resolvedTarget
-    prevHotkeyRef.current = hotkeyString
-
-    // Cleanup on unmount
-    return () => {
-      if (registrationRef.current?.isActive) {
-        registrationRef.current.unregister()
-        registrationRef.current = null
-      }
-    }
-  }, [hotkeyString, options.enabled])
-
-  // Sync callback and options on EVERY render (outside useEffect)
-  // This avoids stale closures - the callback always has access to latest state
-  if (registrationRef.current?.isActive) {
-    registrationRef.current.callback = callback
-    registrationRef.current.setOptions(optionsWithoutTarget)
-  }
-}
-
-/**
- * Type guard to check if a value is a React ref-like object.
- */
-function isRef(value: unknown): value is React.RefObject<HTMLElement | null> {
-  return value !== null && typeof value === 'object' && 'current' in value
+  useHotkeys([{ hotkey, callback, options } as never])
 }

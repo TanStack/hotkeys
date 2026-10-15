@@ -1,11 +1,12 @@
 import { defineConfig } from 'tsdown'
 
 export default defineConfig({
-  entry: ['./src/index.ts'],
-  format: ['esm', 'cjs'],
+  entry: ['./src/index.ts', './src/adapter.ts'],
+  format: ['esm'],
+  target: 'es2022',
   unbundle: true,
   dts: true,
-  sourcemap: true,
+  sourcemap: false,
   clean: true,
   minify: false,
   fixedExtension: false,

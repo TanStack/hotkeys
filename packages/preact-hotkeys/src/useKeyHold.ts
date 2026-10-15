@@ -1,11 +1,11 @@
-import { useStore } from '@tanstack/preact-store'
+import { useSelector } from '@tanstack/preact-store'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
-import type { HeldKey } from '@tanstack/hotkeys'
+import type { IndividualKey } from '@tanstack/hotkeys'
 
 /**
  * Preact hook that returns whether a specific key is currently being held.
  *
- * This hook uses `useStore` from `@tanstack/preact-store` to subscribe
+ * This hook uses `useSelector` from `@tanstack/preact-store` to subscribe
  * to the global KeyStateTracker and uses a selector to determine if
  * the specified key is held.
  *
@@ -42,11 +42,11 @@ import type { HeldKey } from '@tanstack/hotkeys'
  * }
  * ```
  */
-export function useKeyHold(key: HeldKey): boolean {
+export function useKeyHold(key: IndividualKey): boolean {
   const tracker = getKeyStateTracker()
   const normalizedKey = key.toLowerCase()
 
-  return useStore(tracker.store, (state) =>
+  return useSelector(tracker.store, (state) =>
     state.heldKeys.some((heldKey) => heldKey.toLowerCase() === normalizedKey),
   )
 }

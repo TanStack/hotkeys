@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "include": [
+    "src/**/*.js",
+    "src/**/*.ts",
+    "src/**/*.svelte",
+    "src/**/*.svelte.ts",
+    "svelte.config.js",
+    "vitest.config.ts"
+  ],
+  "exclude": ["eslint.config.js"]
+}

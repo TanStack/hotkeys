@@ -3,13 +3,11 @@ id: MAC_MODIFIER_SYMBOLS
 title: MAC_MODIFIER_SYMBOLS
 ---
 
-# Variable: MAC\_MODIFIER\_SYMBOLS
-
 ```ts
-const MAC_MODIFIER_SYMBOLS: Record<CanonicalModifier, string>;
+const MAC_MODIFIER_SYMBOLS: Record<CanonicalModifier | "Mod", string>;
 ```
 
-Defined in: [constants.ts:465](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L465)
+Defined in: [display-labels.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/display-labels.ts#L22)
 
 Modifier key symbols for macOS display.
 

@@ -11,6 +11,9 @@ export default defineConfig({
       './packages/react-hotkeys/vitest.config.ts',
       './packages/solid-hotkeys-devtools/vitest.config.ts',
       './packages/solid-hotkeys/vitest.config.ts',
+      './packages/angular-hotkeys/vitest.config.ts',
+      './packages/vue-hotkeys/vitest.config.ts',
+      './packages/svelte-hotkeys/vitest.config.ts',
     ],
   },
 })

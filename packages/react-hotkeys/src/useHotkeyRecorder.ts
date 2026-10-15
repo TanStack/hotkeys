@@ -1,60 +1,76 @@
 import { useEffect, useRef } from 'react'
-import { useStore } from '@tanstack/react-store'
+import { useSelector } from '@tanstack/react-store'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
-import type { Hotkey, HotkeyRecorderOptions } from '@tanstack/hotkeys'
+import type {
+  Hotkey,
+  HotkeyChord,
+  HotkeyChordRecorderOptions,
+  HotkeyRecorderOptions,
+  HotkeySequence,
+  HotkeySequenceRecorderOptions,
+} from '@tanstack/hotkeys'
 
-export interface ReactHotkeyRecorder {
+export interface ReactHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
   /** Whether recording is currently active */
   isRecording: boolean
-  /** The currently recorded hotkey (for live preview) */
-  recordedHotkey: Hotkey | null
+  /** Chords recorded so far in a multi-step recording (for live preview) */
+  steps: HotkeySequence
+  /** The last committed hotkey */
+  recordedHotkey: THotkey | null
   /** Start recording a new hotkey */
   startRecording: () => void
-  /** Stop recording (same as cancel) */
+  /** Stop recording without calling onCancel */
   stopRecording: () => void
-  /** Cancel recording without saving */
+  /** Cancel recording and call onCancel */
   cancelRecording: () => void
+  /** Commit the recorded steps now (multi-step recordings) */
+  commitRecording: () => void
 }
 
 /**
  * React hook for recording keyboard shortcuts.
  *
- * This hook provides a thin wrapper around the framework-agnostic `HotkeyRecorder`
- * class, managing all the complexity of capturing keyboard events, converting them
- * to hotkey strings, and handling edge cases like Escape to cancel or Backspace/Delete
- * to clear.
+ * With the default `maxSteps: 1`, the first valid chord is recorded and
+ * `onRecord` receives a chord such as `'Mod+S'`. With a larger `maxSteps`, each
+ * chord adds a step; the recording commits on Enter (unless
+ * `commitKeys: 'none'`), after `idleTimeoutMs`, or when it reaches `maxSteps`,
+ * and `onRecord` receives a chord (one step) or a sequence.
+ *
+ * Escape cancels. Backspace/Delete removes the last step, or calls `onClear`
+ * when nothing is recorded.
  *
  * @param options - Configuration options for the recorder
- * @returns An object with recording state and control functions
+ * @returns The recorder state and controls
  *
  * @example
  * ```tsx
- * function ShortcutSettings() {
+ * function ShortcutInput() {
  *   const [shortcut, setShortcut] = useState<Hotkey>('Mod+S')
- *
- *   const recorder = useHotkeyRecorder({
- *     onRecord: (hotkey) => {
- *       setShortcut(hotkey)
- *     },
- *     onCancel: () => {
- *       console.log('Recording cancelled')
- *     },
- *   })
+ *   const recorder = useHotkeyRecorder({ onRecord: setShortcut })
  *
  *   return (
- *     <div>
- *       <button onClick={recorder.startRecording}>
- *         {recorder.isRecording ? 'Recording...' : 'Edit Shortcut'}
- *       </button>
- *       {recorder.recordedHotkey && (
- *         <div>Recording: {recorder.recordedHotkey}</div>
- *       )}
- *     </div>
+ *     <button onClick={recorder.startRecording}>
+ *       {recorder.isRecording ? 'Press keys…' : formatForDisplay(shortcut)}
+ *     </button>
  *   )
  * }
  * ```
+ *
+ * @example
+ * ```tsx
+ * const recorder = useHotkeyRecorder({
+ *   maxSteps: 3,
+ *   onRecord: (hotkey) => setShortcut(hotkey), // 'Mod+S' or ['G', 'H']
+ * })
+ * ```
  */
+export function useHotkeyRecorder(
+  options: HotkeyChordRecorderOptions,
+): ReactHotkeyRecorder<HotkeyChord>
+export function useHotkeyRecorder(
+  options: HotkeySequenceRecorderOptions,
+): ReactHotkeyRecorder
 export function useHotkeyRecorder(
   options: HotkeyRecorderOptions,
 ): ReactHotkeyRecorder {
@@ -67,20 +83,20 @@ export function useHotkeyRecorder(
 
   // Create recorder instance once
   if (!recorderRef.current) {
-    recorderRef.current = new HotkeyRecorder(mergedOptions)
+    // Overloads already checked the options; either shape is valid here.
+    recorderRef.current = new HotkeyRecorder(
+      mergedOptions as HotkeySequenceRecorderOptions,
+    )
   }
 
-  // Sync options on every render (same pattern as useHotkey)
-  // This ensures callbacks always have access to latest values
+  // Sync options on every render so callbacks always see the latest values
   recorderRef.current.setOptions(mergedOptions)
 
-  // Subscribe to recorder state using useStore (same pattern as useHeldKeys)
-  const isRecording = useStore(
-    recorderRef.current.store,
-    (state) => state.isRecording,
-  )
-  const recordedHotkey = useStore(
-    recorderRef.current.store,
+  const recorder = recorderRef.current
+  const isRecording = useSelector(recorder.store, (state) => state.isRecording)
+  const steps = useSelector(recorder.store, (state) => state.steps)
+  const recordedHotkey = useSelector(
+    recorder.store,
     (state) => state.recordedHotkey,
   )
 
@@ -93,9 +109,11 @@ export function useHotkeyRecorder(
 
   return {
     isRecording,
+    steps,
     recordedHotkey,
     startRecording: () => recorderRef.current?.start(),
     stopRecording: () => recorderRef.current?.stop(),
     cancelRecording: () => recorderRef.current?.cancel(),
+    commitRecording: () => recorderRef.current?.commit(),
   }
 }

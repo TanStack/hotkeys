@@ -3,42 +3,27 @@ id: isModifierKey
 title: isModifierKey
 ---
 
-# Function: isModifierKey()
-
 ```ts
-function isModifierKey(event): boolean;
+function isModifierKey(key): key is string;
 ```
 
-Defined in: [parse.ts:284](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L284)
+Defined in: [parse.ts:287](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L287)
 
-Checks if a KeyboardEvent represents a modifier-only key press.
+Checks if a string is a recognized modifier token (including aliases).
 
-Modifier-only keys are keys like 'Control', 'Shift', 'Alt', 'Meta', etc.
-that don't have an associated character or action key. This is useful
-for filtering out modifier key presses when recording shortcuts.
+For a `KeyboardEvent`, use `isModifier(normalizeKeyName(event.key))` so DOM
+spellings like `OS` / `Win` match the same alias table.
 
 ## Parameters
 
-### event
+### key
 
-`KeyboardEvent`
+[`Key`](../type-aliases/Key.md) \| `string` & `object`
 
-The KeyboardEvent to check
+Key name or alias (e.g. from a hotkey string or `event.key`)
 
 ## Returns
 
-`boolean`
+`key is string`
 
-True if the event represents a modifier-only key
-
-## Example
-
-```ts
-document.addEventListener('keydown', (event) => {
-  if (isModifierKey(event)) {
-    console.log('Modifier key pressed, waiting for action key...')
-    return
-  }
-  // Process non-modifier key
-})
-```
+True if the string is a recognized modifier

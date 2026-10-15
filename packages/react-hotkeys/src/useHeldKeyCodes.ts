@@ -1,4 +1,4 @@
-import { useStore } from '@tanstack/react-store'
+import { useSelector } from '@tanstack/react-store'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
 
 /**
@@ -29,5 +29,5 @@ import { getKeyStateTracker } from '@tanstack/hotkeys'
  */
 export function useHeldKeyCodes(): Record<string, string> {
   const tracker = getKeyStateTracker()
-  return useStore(tracker.store, (state) => state.heldCodes)
+  return useSelector(tracker.store, (state) => state.heldCodes)
 }

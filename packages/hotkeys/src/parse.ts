@@ -1,24 +1,48 @@
 import {
-  MODIFIER_ALIASES,
-  MODIFIER_ORDER,
-  detectPlatform,
-  normalizeKeyName,
-  resolveModifier,
-} from './constants'
+  assertLogicalKey,
+  normalizeKeyboardEvent,
+  splitHotkeyParts,
+} from './_keyboard-event'
+import { MODIFIER_ALIASES, MODIFIER_ORDER, normalizeKeyName } from './constants'
+import { detectPlatform, resolveModifier } from './platform'
+import type { CanonicalModifier, Key } from './key.types'
 import type {
-  CanonicalModifier,
   Hotkey,
-  Key,
+  HotkeyChord,
+  HotkeySequence,
   ParsedHotkey,
   RawHotkey,
-} from './hotkey'
+  RegisterableHotkey,
+  RegisterableHotkeyChord,
+} from './hotkey.types'
+
+/**
+ * Whether a hotkey is a sequence. Use this instead of `Array.isArray`, which
+ * does not narrow readonly arrays.
+ */
+export function isHotkeySequence(
+  hotkey: RegisterableHotkey,
+): hotkey is HotkeySequence {
+  return Array.isArray(hotkey)
+}
+
+/**
+ * Collapses a one-step sequence to its chord without otherwise changing the hotkey.
+ * Registration APIs treat `['Mod+S']` exactly like `'Mod+S'`.
+ */
+export function simplifyHotkey<T extends RegisterableHotkey>(
+  hotkey: T,
+): T extends HotkeySequence ? Hotkey : T
+export function simplifyHotkey(hotkey: RegisterableHotkey): RegisterableHotkey {
+  return isHotkeySequence(hotkey) && hotkey.length === 1 ? hotkey[0]! : hotkey
+}
 
 /**
  * Parses a hotkey string into its component parts.
  *
  * @param hotkey - The hotkey string to parse (e.g., 'Mod+Shift+S')
  * @param platform - The target platform for resolving 'Mod' (defaults to auto-detection)
- * @returns A ParsedHotkey object with the key and modifier flags
+ * @returns A ParsedHotkey with either logical key or physical code and modifier flags
  *
  * @example
  * ```ts
@@ -28,10 +52,10 @@ import type {
  * ```
  */
 export function parseHotkey(
-  hotkey: Hotkey | (string & {}),
+  hotkey: HotkeyChord | (string & {}),
   platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
 ): ParsedHotkey {
-  const parts = hotkey.split('+')
+  const parts = splitHotkeyParts(hotkey)
   const modifiers: Set<CanonicalModifier> = new Set()
   let key = ''
 
@@ -64,8 +88,9 @@ export function parseHotkey(
     key = normalizeKeyName(parts[parts.length - 1]!.trim())
   }
 
+  const code = /^\[([A-Za-z][A-Za-z0-9]*)\]$/.exec(key)?.[1]
   return {
-    key,
+    ...(code !== undefined ? { code } : { key }),
     ctrl: modifiers.has('Control'),
     shift: modifiers.has('Shift'),
     alt: modifiers.has('Alt'),
@@ -99,6 +124,7 @@ export function rawHotkeyToParsedHotkey(
   raw: RawHotkey,
   platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
 ): ParsedHotkey {
+  if (raw.code === undefined) assertLogicalKey(raw.key)
   let ctrl = raw.ctrl ?? false
   const shift = raw.shift ?? false
   const alt = raw.alt ?? false
@@ -128,7 +154,9 @@ export function rawHotkeyToParsedHotkey(
     }
   })
   return {
-    key: raw.key,
+    ...(raw.code !== undefined
+      ? { code: raw.code }
+      : { key: normalizeKeyName(raw.key) }),
     ctrl,
     shift,
     alt,
@@ -138,52 +166,127 @@ export function rawHotkeyToParsedHotkey(
 }
 
 /**
+ * Serializes a parsed hotkey to the canonical string form used for registration
+ * and storage: `Mod` first when the platform allows, then `Alt`, then `Shift`;
+ * otherwise full `Control+Alt+Shift+Meta` order.
+ */
+function normalizedHotkeyStringFromParsed(
+  parsed: ParsedHotkey,
+  platform: 'mac' | 'windows' | 'linux',
+): HotkeyChord {
+  if (parsed.code === undefined) assertLogicalKey(parsed.key)
+  const canUseMod =
+    platform === 'mac'
+      ? parsed.meta && !parsed.ctrl
+      : parsed.ctrl && !parsed.meta
+
+  const parts: Array<string> = []
+
+  if (canUseMod) {
+    parts.push('Mod')
+    if (parsed.alt) {
+      parts.push('Alt')
+    }
+    if (parsed.shift) {
+      parts.push('Shift')
+    }
+  } else {
+    for (const modifier of MODIFIER_ORDER) {
+      if (parsed.modifiers.includes(modifier)) {
+        parts.push(modifier)
+      }
+    }
+  }
+
+  parts.push(
+    parsed.code !== undefined
+      ? `[${parsed.code}]`
+      : normalizeKeyName(parsed.key),
+  )
+  return parts.join('+') as HotkeyChord
+}
+
+/**
  * Normalizes a hotkey string to its canonical form.
  *
- * The canonical form uses:
- * - Full modifier names (Control, Alt, Shift, Meta)
- * - Modifiers in order: Control+Alt+Shift+Meta
- * - Uppercase letters for single-character keys
- * - Proper casing for special keys (Escape, not escape)
+ * - When `Mod` is allowed for the platform (Command on Mac without Control;
+ *   Control on Windows/Linux without Meta): emits `Mod`, then `Alt`, then `Shift`,
+ *   then the key (e.g. `Mod+Shift+E`, `Mod+S`).
+ * - Otherwise: literal modifiers in `Control+Alt+Shift+Meta` order, then the key.
+ * - Resolves aliases and normalizes key casing (e.g. `esc` → `Escape`, `a` → `A`).
  *
  * @param hotkey - The hotkey string to normalize
- * @param platform - The target platform for resolving 'Mod' (defaults to auto-detection)
+ * @param platform - The target platform for resolving `Mod` (defaults to auto-detection)
  * @returns The normalized hotkey string
  *
  * @example
  * ```ts
- * normalizeHotkey('mod+shift+s') // On Mac: 'Shift+Meta+S'
- * normalizeHotkey('ctrl+a') // 'Control+A'
+ * normalizeHotkey('shift+meta+e', 'mac') // 'Mod+Shift+E'
+ * normalizeHotkey('ctrl+a', 'windows') // 'Mod+A'
  * normalizeHotkey('esc') // 'Escape'
  * ```
  */
 export function normalizeHotkey(
   hotkey: Key | (string & {}),
   platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
-): string {
-  const parsed = parseHotkey(hotkey, platform)
-  const parts: Array<string> = []
-
-  // Add modifiers in canonical order
-  for (const modifier of MODIFIER_ORDER) {
-    if (parsed.modifiers.includes(modifier)) {
-      parts.push(modifier)
-    }
-  }
-
-  // Add the key
-  parts.push(parsed.key)
-
-  return parts.join('+')
+): HotkeyChord {
+  return normalizedHotkeyStringFromParsed(
+    parseHotkey(hotkey, platform),
+    platform,
+  )
 }
 
 /**
- * Checks if a string represents a modifier key.
+ * Same canonical string as {@link normalizeHotkey}, but from an already-parsed hotkey.
+ */
+export function normalizeHotkeyFromParsed(
+  parsed: ParsedHotkey,
+  platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
+): HotkeyChord {
+  return normalizedHotkeyStringFromParsed(parsed, platform)
+}
+
+/**
+ * Normalizes a chord (string or {@link RawHotkey} object) or a sequence to canonical form.
+ * Each sequence step is normalized, and a one-step sequence becomes its chord.
+ * Use this in framework adapters instead of branching on `formatHotkey(rawHotkeyToParsedHotkey(...))`.
+ */
+export function normalizeRegisterableHotkey(
+  hotkey: RegisterableHotkeyChord,
+  platform?: 'mac' | 'windows' | 'linux',
+): HotkeyChord
+export function normalizeRegisterableHotkey(
+  hotkey: RegisterableHotkey,
+  platform?: 'mac' | 'windows' | 'linux',
+): Hotkey
+export function normalizeRegisterableHotkey(
+  hotkey: RegisterableHotkey,
+  platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
+): Hotkey {
+  if (isHotkeySequence(hotkey)) {
+    const steps = hotkey.map((step) => normalizeHotkey(step, platform))
+    return steps.length === 1 ? steps[0]! : steps
+  }
+  return typeof hotkey === 'string'
+    ? normalizeHotkey(hotkey, platform)
+    : normalizeHotkeyFromParsed(
+        rawHotkeyToParsedHotkey(hotkey, platform),
+        platform,
+      )
+}
+
+/**
+ * Checks if a string is a recognized modifier token (including aliases).
  *
- * @param key - The string to check
+ * For a `KeyboardEvent`, use `isModifier(normalizeKeyName(event.key))` so DOM
+ * spellings like `OS` / `Win` match the same alias table.
+ *
+ * @param key - Key name or alias (e.g. from a hotkey string or `event.key`)
  * @returns True if the string is a recognized modifier
  */
-export function isModifier(key: string): boolean {
+export function isModifierKey(
+  key: Key | (string & {}),
+): key is keyof typeof MODIFIER_ALIASES {
   return key in MODIFIER_ALIASES || key.toLowerCase() in MODIFIER_ALIASES
 }
 
@@ -205,92 +308,48 @@ export function isModifier(key: string): boolean {
  * })
  * ```
  */
-export function parseKeyboardEvent(event: KeyboardEvent): ParsedHotkey {
-  const normalizedKey = normalizeKeyName(event.key)
+export function parseKeyboardEvent(
+  event: KeyboardEvent,
+  platform?: 'mac' | 'windows' | 'linux',
+): ParsedHotkey {
+  const normalized = normalizeKeyboardEvent(event, platform)
+  // AltGraph is a character-production modifier, not an ordinary Control+Alt
+  // shortcut. Record the produced glyph instead of a synthetic Ctrl+Alt chord.
+  const ctrl = normalized.altGraph ? false : normalized.ctrl
+  const alt = normalized.altGraph ? false : normalized.alt
+  // Shift is a real modifier even during AltGraph input; preserve it for replay.
+  const shift = normalized.shift
 
   // Build modifiers array in canonical order
   const modifiers: Array<CanonicalModifier> = []
-  if (event.ctrlKey) modifiers.push('Control')
-  if (event.altKey) modifiers.push('Alt')
-  if (event.shiftKey) modifiers.push('Shift')
-  if (event.metaKey) modifiers.push('Meta')
+  if (ctrl) modifiers.push('Control')
+  if (alt) modifiers.push('Alt')
+  if (shift) modifiers.push('Shift')
+  if (normalized.meta) modifiers.push('Meta')
 
   return {
-    key: normalizedKey,
-    ctrl: event.ctrlKey,
-    shift: event.shiftKey,
-    alt: event.altKey,
-    meta: event.metaKey,
+    key: normalized.key,
+    ctrl,
+    shift,
+    alt,
+    meta: normalized.meta,
     modifiers,
   }
 }
 
 /**
- * Converts a KeyboardEvent directly to a hotkey string.
+ * Normalizes a keyboard event to the same canonical hotkey string as {@link normalizeHotkey}.
  *
- * This is a convenience function that combines `parseKeyboardEvent()` and formatting.
- * The resulting hotkey string uses canonical modifier names (Control, Alt, Shift, Meta)
- * and is suitable for use with `useHotkey()` and other hotkey functions.
- *
- * @param event - The KeyboardEvent to convert
- * @param platform - The target platform (defaults to auto-detection)
- * @returns A hotkey string in canonical form (e.g., 'Control+Shift+S')
- *
- * @example
- * ```ts
- * document.addEventListener('keydown', (event) => {
- *   const hotkey = keyboardEventToHotkey(event)
- *   console.log(hotkey) // 'Control+Shift+S'
- *   useHotkey(hotkey, () => console.log('Shortcut triggered'))
- * })
- * ```
+ * @param event - The keyboard event (typically `keydown`)
+ * @param platform - Target platform for `Mod` eligibility
  */
-export function keyboardEventToHotkey(event: KeyboardEvent): Hotkey {
-  const parsed = parseKeyboardEvent(event)
-
-  // Build hotkey string in canonical order (same as formatHotkey)
-  const parts: Array<string> = []
-  for (const modifier of MODIFIER_ORDER) {
-    if (parsed.modifiers.includes(modifier)) {
-      parts.push(modifier)
-    }
-  }
-  parts.push(parsed.key)
-
-  return parts.join('+') as Hotkey
-}
-
-/**
- * Checks if a KeyboardEvent represents a modifier-only key press.
- *
- * Modifier-only keys are keys like 'Control', 'Shift', 'Alt', 'Meta', etc.
- * that don't have an associated character or action key. This is useful
- * for filtering out modifier key presses when recording shortcuts.
- *
- * @param event - The KeyboardEvent to check
- * @returns True if the event represents a modifier-only key
- *
- * @example
- * ```ts
- * document.addEventListener('keydown', (event) => {
- *   if (isModifierKey(event)) {
- *     console.log('Modifier key pressed, waiting for action key...')
- *     return
- *   }
- *   // Process non-modifier key
- * })
- * ```
- */
-export function isModifierKey(event: KeyboardEvent): boolean {
-  const key = event.key
-  return (
-    key === 'Control' ||
-    key === 'Shift' ||
-    key === 'Alt' ||
-    key === 'Meta' ||
-    key === 'Command' ||
-    key === 'OS' ||
-    key === 'Win'
+export function normalizeHotkeyFromEvent(
+  event: KeyboardEvent,
+  platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
+): HotkeyChord {
+  return normalizedHotkeyStringFromParsed(
+    parseKeyboardEvent(event, platform),
+    platform,
   )
 }
 
@@ -312,57 +371,36 @@ export function isModifierKey(event: KeyboardEvent): boolean {
  * ```
  */
 export function hasNonModifierKey(
-  hotkey: Hotkey | ParsedHotkey | (string & {}),
+  hotkey: HotkeyChord | ParsedHotkey | (string & {}),
   platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
 ): boolean {
   const parsed =
     typeof hotkey === 'string' ? parseHotkey(hotkey, platform) : hotkey
 
+  if (parsed.code !== undefined) {
+    // Physical modifier codes identify a side, but still are not action keys.
+    return (
+      parsed.code.length > 0 &&
+      !/^(Control|Shift|Alt|Meta)(Left|Right)$/.test(parsed.code)
+    )
+  }
+
   // Check if the key part is actually a modifier
-  const keyIsModifier = isModifier(parsed.key)
+  const keyIsModifier = isModifierKey(parsed.key)
 
   // A valid hotkey must have a non-modifier key
   return !keyIsModifier && parsed.key.length > 0
 }
 
 /**
- * Converts a hotkey string to use 'Mod' format for portability.
- *
- * On macOS, converts 'Meta' to 'Mod'. On Windows/Linux, converts 'Control' to 'Mod'.
- * This enables cross-platform hotkey definitions that work consistently.
- *
- * @param hotkey - The hotkey string to convert
- * @param platform - The target platform (defaults to auto-detection)
- * @returns The hotkey string with 'Mod' format applied
- *
- * @example
- * ```ts
- * convertToModFormat('Meta+S', 'mac') // 'Mod+S'
- * convertToModFormat('Control+S', 'windows') // 'Mod+S'
- * convertToModFormat('Control+Meta+S', 'mac') // 'Control+Meta+S' (both present, no conversion)
- * ```
+ * Parses a string or raw binding, resolving Mod for the supplied platform.
+ * Physical tokens such as `[KeyQ]` retain `code`; they never become logical Q.
  */
-export function convertToModFormat(
-  hotkey: Hotkey | (string & {}),
-  platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
-): Hotkey {
-  const parsed = parseHotkey(hotkey, platform)
-
-  // Only convert if we have exactly one primary modifier
-  if (platform === 'mac' && parsed.meta && !parsed.ctrl) {
-    // Convert Meta to Mod on Mac
-    const parts = hotkey.split('+')
-    return parts
-      .map((part) => (part === 'Meta' ? 'Mod' : part))
-      .join('+') as Hotkey
-  } else if (platform !== 'mac' && parsed.ctrl && !parsed.meta) {
-    // Convert Control to Mod on Windows/Linux
-    const parts = hotkey.split('+')
-    return parts
-      .map((part) => (part === 'Control' ? 'Mod' : part))
-      .join('+') as Hotkey
-  }
-
-  // No conversion needed
-  return hotkey as Hotkey
+export function parseRegisterableHotkey(
+  hotkey: RegisterableHotkeyChord,
+  platform = detectPlatform(),
+): ParsedHotkey {
+  return typeof hotkey === 'string'
+    ? parseHotkey(hotkey, platform)
+    : rawHotkeyToParsedHotkey(hotkey, platform)
 }

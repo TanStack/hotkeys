@@ -3,13 +3,12 @@ id: RegisterableHotkey
 title: RegisterableHotkey
 ---
 
-# Type Alias: RegisterableHotkey
-
 ```ts
-type RegisterableHotkey = Hotkey | RawHotkey;
+type RegisterableHotkey = 
+  | RegisterableHotkeyChord
+  | HotkeySequence;
 ```
 
-Defined in: [hotkey.ts:362](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L362)
+Defined in: [hotkey.types.ts:224](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L224)
 
-A hotkey that can be passed to `HotkeyManager.register()` and `useHotkey()`.
-Either a type-safe string (`Hotkey`) or a raw object (`RawHotkey`).
+Anything that can be registered: a chord string, a raw chord object, or a sequence.

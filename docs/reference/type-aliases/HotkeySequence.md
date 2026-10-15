@@ -3,20 +3,15 @@ id: HotkeySequence
 title: HotkeySequence
 ---
 
-# Type Alias: HotkeySequence
-
 ```ts
-type HotkeySequence = Hotkey[];
+type HotkeySequence = ReadonlyArray<HotkeyChord>;
 ```
 
-Defined in: [sequence-manager.ts:42](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/sequence-manager.ts#L42)
+Defined in: [hotkey.types.ts:211](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L211)
 
-A sequence of hotkeys for Vim-style shortcuts.
+A sequence of chords pressed one after another (Vim-style), such as `['G', 'G']`.
 
-## Example
-
-```ts
-const gotoTop: HotkeySequence = ['G', 'G']  // gg
-const deleteLine: HotkeySequence = ['D', 'D']  // dd
-const deleteWord: HotkeySequence = ['D', 'I', 'W']  // diw
-```
+Steps may include modifiers; the same modifier can appear on consecutive
+steps (e.g. `['Shift+R', 'Shift+T']`). Modifier-only key events do not
+advance or reset matching. Automatic repeats and IME composition are ignored.
+A one-step sequence is treated as its single chord.

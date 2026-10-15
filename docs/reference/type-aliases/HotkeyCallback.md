@@ -3,13 +3,11 @@ id: HotkeyCallback
 title: HotkeyCallback
 ---
 
-# Type Alias: HotkeyCallback()
-
 ```ts
 type HotkeyCallback = (event, context) => void;
 ```
 
-Defined in: [hotkey.ts:408](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.ts#L408)
+Defined in: [hotkey.types.ts:250](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L250)
 
 Callback function type for hotkey handlers.
 

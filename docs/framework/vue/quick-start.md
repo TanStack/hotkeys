@@ -1,0 +1,160 @@
+---
+title: Quick Start
+id: quick-start
+---
+
+## Installation
+
+Don't have TanStack Hotkeys installed yet? See the [Installation](../../installation) page for instructions.
+
+## Your first hotkey
+
+The `useHotkey` composable is the primary way to register keyboard shortcuts in Vue:
+
+```vue
+<script setup lang="ts">
+import { useHotkey } from '@tanstack/vue-hotkeys'
+
+useHotkey('Mod+S', () => {
+  saveDocument()
+})
+</script>
+
+<template>
+  <div>Press Cmd+S (Mac) or Ctrl+S (Windows) to save</div>
+</template>
+```
+
+The `Mod` modifier automatically resolves to `Meta` (Command) on macOS and `Control` on Windows/Linux, so your shortcuts work across platforms without extra logic.
+
+## Common patterns
+
+### Multiple hotkeys
+
+```vue
+<script setup lang="ts">
+import { useHotkey } from '@tanstack/vue-hotkeys'
+
+useHotkey('Mod+S', () => save())
+useHotkey('Mod+Z', () => undo())
+useHotkey('Mod+Shift+Z', () => redo())
+useHotkey('Mod+F', () => openSearch())
+useHotkey('Escape', () => closeDialog())
+</script>
+```
+
+### Scoped hotkeys with template refs
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useHotkey } from '@tanstack/vue-hotkeys'
+
+const panelRef = ref<HTMLDivElement | null>(null)
+
+useHotkey('Escape', () => closePanel(), { target: panelRef })
+</script>
+
+<template>
+  <div ref="panelRef" tabindex="0">
+    <p>Press Escape while focused here to close</p>
+  </div>
+</template>
+```
+
+### Conditional hotkeys
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useHotkey } from '@tanstack/vue-hotkeys'
+
+const isOpen = ref(true)
+
+useHotkey('Escape', () => {
+  isOpen.value = false
+}, { enabled: isOpen })
+</script>
+```
+
+### Multi-key sequences
+
+```vue
+<script setup lang="ts">
+import { useHotkey } from '@tanstack/vue-hotkeys'
+
+// An array of chords registers a sequence
+useHotkey(['G', 'G'], () => scrollToTop())
+useHotkey(['G', 'Shift+G'], () => scrollToBottom())
+</script>
+```
+
+For several sequences or a list that changes at runtime, prefer a single `useHotkeys([...])` call (see the [Sequences guide](./guides/sequences.md#many-sequences-at-once)).
+
+### Tracking held keys
+
+```vue
+<script setup lang="ts">
+import { useHeldKeys, useKeyHold } from '@tanstack/vue-hotkeys'
+
+const heldKeys = useHeldKeys()
+const isShiftHeld = useKeyHold('Shift')
+</script>
+
+<template>
+  <div class="status-bar">
+    <span v-if="isShiftHeld">Shift mode active</span>
+    <span v-if="heldKeys.length > 0">Keys: {{ heldKeys.join('+') }}</span>
+  </div>
+</template>
+```
+
+### Displaying hotkeys in the UI
+
+```vue
+<script setup lang="ts">
+import { formatForDisplay, useHotkey } from '@tanstack/vue-hotkeys'
+
+useHotkey('Mod+S', () => save())
+</script>
+
+<template>
+  <button>
+    Save <kbd>{{ formatForDisplay('Mod+S') }}</kbd>
+  </button>
+</template>
+```
+
+## Default options provider
+
+Wrap part of your app with `HotkeysProvider` to set default options for all Vue composables in that subtree:
+
+```vue
+<script setup lang="ts">
+import { HotkeysProvider } from '@tanstack/vue-hotkeys'
+</script>
+
+<template>
+  <HotkeysProvider
+    :default-options="{
+      hotkey: { preventDefault: true, timeout: 1500 },
+      hotkeyRecorder: { onCancel: () => console.log('Recording cancelled') },
+    }"
+  >
+    <AppContent />
+  </HotkeysProvider>
+</template>
+```
+
+## Declaring app hotkeys
+
+To list every hotkey in a cheat sheet, including hotkeys whose components haven't mounted, and to let users customize them, declare them once with `defineAppHotkeys` and provide them with `HotkeysProvider`. See the [App Hotkeys Guide](./guides/app-hotkeys).
+
+## Next steps
+
+- [Hotkeys Guide](./guides/hotkeys)
+- [Sequences Guide](./guides/sequences)
+- [Hotkey Recording Guide](./guides/hotkey-recording)
+- [App Hotkeys Guide](./guides/app-hotkeys)
+- [Key State Tracking Guide](./guides/key-state-tracking)
+- [Formatting & Display Guide](./guides/formatting-display)

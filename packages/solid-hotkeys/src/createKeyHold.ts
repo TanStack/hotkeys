@@ -1,12 +1,12 @@
 import { createMemo } from 'solid-js'
-import { useStore } from '@tanstack/solid-store'
+import { useSelector } from '@tanstack/solid-store'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
-import type { HeldKey } from '@tanstack/hotkeys'
+import type { IndividualKey } from '@tanstack/hotkeys'
 
 /**
  * SolidJS primitive that returns whether a specific key is currently being held.
  *
- * This primitive uses `useStore` from `@tanstack/solid-store` to subscribe
+ * This primitive uses `useSelector` from `@tanstack/solid-store` to subscribe
  * to the global KeyStateTracker and uses a selector to determine if the
  * specified key is held.
  *
@@ -43,9 +43,11 @@ import type { HeldKey } from '@tanstack/hotkeys'
  * }
  * ```
  */
-export function createKeyHold(key: HeldKey | (() => HeldKey)): () => boolean {
+export function createKeyHold(
+  key: IndividualKey | (() => IndividualKey),
+): () => boolean {
   const tracker = getKeyStateTracker()
-  const heldKeysSelector = useStore(tracker.store, (state) => state.heldKeys)
+  const heldKeysSelector = useSelector(tracker.store, (state) => state.heldKeys)
 
   return createMemo(() => {
     const resolvedKey = typeof key === 'function' ? key() : key

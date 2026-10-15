@@ -3,13 +3,11 @@ id: useDefaultHotkeysOptions
 title: useDefaultHotkeysOptions
 ---
 
-# Function: useDefaultHotkeysOptions()
-
 ```ts
 function useDefaultHotkeysOptions(): HotkeysProviderOptions;
 ```
 
-Defined in: [HotkeysProvider.tsx:49](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L49)
+Defined in: [HotkeysProvider.tsx:119](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L119)
 
 ## Returns
 

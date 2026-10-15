@@ -5,7 +5,26 @@ id: hotkeys
 
 The `useHotkey` hook is the primary way to register keyboard shortcuts in React applications. It wraps the singleton `HotkeyManager` with automatic lifecycle management, stale-closure prevention, and React ref support.
 
-## Basic Usage
+A hotkey is either a **chord**, keys pressed together such as `'Mod+S'`, or a **sequence**, chords pressed one after another such as `['G', 'G']`. Every API in this guide accepts both. Sequence-specific behavior is covered in the [Sequences Guide](./sequences). To declare hotkeys up front and let users customize them, see the [App Hotkeys Guide](./app-hotkeys).
+
+## Logical keys and physical positions
+
+Use a logical binding when the shortcut should follow the character on the active layout. Use a physical binding when it should follow a keyboard position:
+
+| Binding | Identity checked |
+| --- | --- |
+| `Mod+S` or `{ key: 'S', mod: true }` | Logical `event.key`, with conservative code fallback |
+| `Mod+[KeyS]` or `{ code: 'KeyS', mod: true }` | Exact `event.code` |
+| `Enter` | Logical Enter, including numpad Enter |
+| `[Enter]` / `[NumpadEnter]` | Separate physical Enter positions |
+
+Every physical code uses brackets in strings, including names shared with logical keys such as `[Enter]` and `[F13]`. Supported codes are type-safe and available in autocomplete. Do not put a bracketed code in an object's `key` field; use `code`. A binding has either `key` or `code`, never both.
+
+On a layout where the `KeyQ` position produces `a`, `A` follows that character and `[KeyQ]` follows the position. Logical ASCII letters remain layout-aware; conservative physical fallback helps with transformed output such as macOS Option keys. Exact matches take priority over weaker fallbacks among eligible registrations on the same target.
+
+Callbacks expose the same distinction in `context.parsedHotkey`: check `parsed.code !== undefined` before reading its physical identity. Use `formatForDisplay` for labels; stored physical strings retain their brackets.
+
+## Basic usage
 
 ```tsx
 import { useHotkey } from '@tanstack/react-hotkeys'
@@ -28,19 +47,39 @@ useHotkey('Mod+S', (event, context) => {
 })
 ```
 
+Pass an array of chords to register a sequence with the same hook:
+
+```tsx
+useHotkey(['G', 'G'], () => scrollToTop())
+useHotkey(['Mod+K', 'Mod+C'], () => commentSelection())
+```
+
+A one-step array such as `['Mod+S']` registers the chord `'Mod+S'`.
+
 You can pass a hotkey as a string or as a `RawHotkey` object (modifier booleans optional). Use `mod` for cross-platform shortcuts (Command on Mac, Control elsewhere):
 
 ```tsx
 useHotkey('Mod+S', () => save())
 useHotkey({ key: 'S', mod: true }, () => save())           // Same as above
 useHotkey({ key: 'Escape' }, () => closeModal())
+useHotkey({ code: 'NumpadAdd', mod: true }, () => zoomIn())
 useHotkey({ key: 'S', ctrl: true, shift: true }, () => saveAs())
 useHotkey({ key: 'S', mod: true, shift: true }, () => saveAs())
 ```
 
-## Default Options
+### Changing a binding
 
-When you register a hotkey without passing options, or when you omit specific options, the following defaults apply:
+Pass a new logical or physical binding through your framework's normal state mechanism. A recorder result such as `Alt+[KeyS]` can be passed directly to the same registration API. Keep an initial binding in application state if you want a reset button; the library does not need a separate preferences store.
+
+## Updating options
+
+Pass current options when the component renders. Hooks synchronize those options with the existing registration. You do not need to call `setOptions` in application code. Provider defaults and recorder options follow the same component update lifecycle.
+
+Property getters are read when the hook runs. They do not subscribe to external state independently of the component. Keep changing values in framework state so the component updates, and avoid creating an options object once with an initial state snapshot.
+
+## Default options
+
+When you register a hotkey without options, or omit specific ones, these defaults apply:
 
 ```tsx
 useHotkey('Mod+S', callback, {
@@ -48,7 +87,8 @@ useHotkey('Mod+S', callback, {
   preventDefault: true,
   stopPropagation: true,
   eventType: 'keydown',
-  requireReset: false,
+  requireReset: false, // chords only
+  timeout: 1000, // sequences only
   ignoreInputs: undefined, // smart default: false for Mod+S, true for single keys
   target: document,
   platform: undefined, // auto-detected
@@ -56,40 +96,53 @@ useHotkey('Mod+S', callback, {
 })
 ```
 
-### Why These Defaults?
+### Why these defaults?
 
-Most hotkey registrations are intended to override default browser behavior—such as using `Mod+S` to save a document instead of showing the browser’s "Save Page" dialog. To make this easy and consistent, the library sets `preventDefault` and `stopPropagation` to `true` by default, ensuring your hotkey handlers take precedence and reducing the amount of repetitive boilerplate code required.
+Most hotkey registrations exist to override the browser. When you bind `Mod+S` to save a document, you don't want the browser's "Save Page" dialog too. So `preventDefault` and `stopPropagation` are `true` by default, and you opt out per hotkey when you actually want the browser behavior.
 
-#### Smart Input Handling: `ignoreInputs`
+#### Smart input handling with `ignoreInputs`
 
-The `ignoreInputs` option is designed to strike a balance between accessibility and usability. By default, hotkeys involving `Ctrl`/`Meta` modifiers (like `Mod+S`) and the `Escape` key are allowed to fire even when the focus is inside input elements (such as text fields or text areas), and when focused on button-type inputs (`type="button"`, `"submit"`, or `"reset"`). This allows shortcuts like save or close to work wherever the user is focused. On the other hand, single key shortcuts or those using only `Shift`/`Alt` are ignored within non-button inputs to prevent interference with normal typing.
+By default, `Ctrl`/`Meta` shortcuts (like `Mod+S`) and `Escape` fire even while focus is inside a text field or textarea, so save and close work wherever the user happens to be. Single keys and `Shift`/`Alt` combos are ignored inside non-button inputs, because those are just typing. Button-type inputs (`type="button"`, `"submit"`, `"reset"`) don't block any hotkeys.
 
-#### Hotkey Conflicts: `conflictBehavior`
+#### Hotkey conflicts and `conflictBehavior`
 
-When you attempt to register a hotkey that is already registered (possibly in another part of your app), the library logs a warning by default using the `conflictBehavior: 'warn'` setting. This helps you catch accidental duplicate bindings during development so they can be resolved before reaching production.
+If you register a hotkey that's already registered somewhere else in your app, the library logs a warning by default (`conflictBehavior: 'warn'`). That surfaces accidental duplicate bindings during development, before they reach production.
 
+### Chord and sequence options
 
-### Global Default Options via Provider
+Most options apply to both kinds. `requireReset` applies only to chords and `timeout` only to sequences. The option types follow the hotkey you pass, so TypeScript rejects `timeout` on a chord and `requireReset` on a sequence:
 
-You can change the default options for all `useHotkey` calls in your app by wrapping your component tree with `HotkeysProvider`. Per-hook options will override the provider defaults.
+```tsx
+useHotkey('Escape', close, { requireReset: true }) // OK
+useHotkey(['G', 'G'], scrollToTop, { timeout: 500 }) // OK
+useHotkey('Escape', close, { timeout: 500 }) // Type error
+```
+
+When the kind is not known statically, such as a `Hotkey` loaded from settings, only the shared options are accepted.
+
+### Global defaults via provider
+
+You can change the default options for all `useHotkey` and `useHotkeys` calls in your app by wrapping your component tree with `HotkeysProvider`. Per-hook options will override the provider defaults. Defaults apply only to the kinds that support them, so a default `timeout` affects sequences and a default `requireReset` affects chords.
 
 ```tsx
 import { HotkeysProvider } from '@tanstack/react-hotkeys'
 
 <HotkeysProvider
   defaultOptions={{
-    hotkey: { preventDefault: false, ignoreInputs: false },
+    hotkey: { preventDefault: false, ignoreInputs: false, timeout: 1500 },
   }}
 >
   <App />
 </HotkeysProvider>
 ```
 
-## Hotkey Options
+## Hotkey options
 
 ### `enabled`
 
 Controls whether the hotkey is active. Defaults to `true`.
+
+Disabled hotkeys stay registered in the manager and visible in devtools; only execution is suppressed. The hook updates `enabled` on the existing registration instead of unregistering and re-registering.
 
 ```tsx
 const [isEditing, setIsEditing] = useState(false)
@@ -133,7 +186,7 @@ useHotkey('Shift', () => deactivateMode(), { eventType: 'keyup' })
 
 ### `requireReset`
 
-When `true`, the hotkey will only fire once per key press. The key must be released and pressed again to fire again. Defaults to `false`.
+When `true`, a chord fires only once per key press. The key must be released and pressed again to fire again. Defaults to `false`. Sequences ignore automatic repeats already, so this option applies only to chords.
 
 ```tsx
 // Only fires once per Escape press, not on key repeat
@@ -195,6 +248,8 @@ Controls what happens when you register a hotkey that's already registered. Opti
 useHotkey('Mod+S', () => save(), { conflictBehavior: 'replace' })
 ```
 
+Duplicate detection compares resolved hotkeys on the same target, so `Mod+S` and `Meta+S` conflict on macOS. Two sequences conflict when their steps are equal; a shared prefix alone is not a duplicate.
+
 ### `platform`
 
 Override the auto-detected platform. Useful for testing or for applications that need to force a specific platform behavior.
@@ -203,7 +258,7 @@ Override the auto-detected platform. Useful for testing or for applications that
 useHotkey('Mod+S', () => save(), { platform: 'mac' })
 ```
 
-## Stale Closure Prevention
+## Stale closure prevention
 
 The `useHotkey` hook automatically syncs the callback on every render, so you never need to worry about stale closures:
 
@@ -220,7 +275,7 @@ function Counter() {
 }
 ```
 
-## Automatic Cleanup
+## Automatic cleanup
 
 The hook automatically unregisters the hotkey when the component unmounts:
 
@@ -233,20 +288,135 @@ function TemporaryPanel() {
 }
 ```
 
-## The Hotkey Manager
+## Registering multiple hotkeys
 
-Under the hood, `useHotkey` uses the singleton `HotkeyManager`. You can also access the manager directly if needed:
+To register several hotkeys at once, or a dynamic list whose length isn't known at compile time, use the `useHotkeys` (plural) hook instead of calling `useHotkey` multiple times. You can't call hooks conditionally or in loops, so a single hook that takes an array is the way to handle a variable number of shortcuts.
+
+```tsx
+import { useHotkeys } from '@tanstack/react-hotkeys'
+
+function Editor() {
+  useHotkeys([
+    { hotkey: 'Mod+S', callback: () => save() },
+    { hotkey: 'Mod+Z', callback: () => undo() },
+    { hotkey: ['G', 'G'], callback: () => scrollToTop(), options: { timeout: 500 } },
+    { hotkey: 'Escape', callback: () => close() },
+  ])
+}
+```
+
+Each definition's `options` are typed by its `hotkey`, just like `useHotkey`.
+
+### Common options with per-hotkey overrides
+
+Pass shared options as the second argument. Per-definition options override the common ones. Options merge in this order: `HotkeysProvider` defaults, then the common options, then each definition's options. A common `timeout` or `requireReset` applies only to the definitions of the matching kind.
+
+```tsx
+useHotkeys(
+  [
+    { hotkey: 'Mod+S', callback: () => save() },
+    { hotkey: 'Mod+Z', callback: () => undo(), options: { enabled: false } },
+  ],
+  { preventDefault: true },
+)
+```
+
+### Dynamic hotkey lists
+
+Because `useHotkeys` accepts a plain array, you can derive it from data:
+
+```tsx
+function MenuShortcuts({ items }) {
+  useHotkeys(
+    items.map((item) => ({
+      hotkey: item.shortcut,
+      callback: item.action,
+      options: { enabled: item.enabled },
+    })),
+  )
+}
+```
+
+The hook diffs the array between renders by array index plus the normalized hotkey, registering new hotkeys and unregistering removed ones automatically. Reordering the array changes that identity, so reordered entries are unregistered and re-registered even if their callback references stay the same.
+
+## Metadata (name, description, and group)
+
+Every hotkey registration can carry a `meta` object with a `name`, `description`, and `group`. Metadata never affects hotkey behavior, but it flows through to registrations and devtools, so you can build shortcut palettes and help screens from it.
+
+```tsx
+useHotkey('Mod+S', () => save(), {
+  meta: { name: 'Save', description: 'Save the document' },
+})
+```
+
+The `meta` option is typed as `HotkeyMeta`, which ships with `name`, `description`, and `group` fields. You can extend it with additional properties using TypeScript declaration merging:
+
+```tsx
+declare module '@tanstack/hotkeys' {
+  interface HotkeyMeta {
+    icon?: string
+  }
+}
+
+useHotkey('Mod+S', () => save(), {
+  meta: { name: 'Save', description: 'Save the document', icon: 'floppy', group: 'File' },
+})
+```
+
+Group is descriptive metadata, not an execution scope. A shortcuts panel can group live registration views directly. Disabled registrations remain listed; unmounted registrations disappear.
+
+## Introspecting registrations
+
+Use the `useHotkeyRegistrations` hook to get a live view of every registration, chords and sequences together. It's the building block for shortcut palettes and help dialogs.
+
+```tsx
+import { useHotkeyRegistrations, formatForDisplay } from '@tanstack/react-hotkeys'
+
+function ShortcutPalette() {
+  const registrations = useHotkeyRegistrations()
+
+  return (
+    <ul>
+      {registrations.map((reg) => (
+        <li key={reg.id}>
+          <kbd>{formatForDisplay(reg.hotkey)}</kbd>
+          {reg.options.meta?.name && <span> — {reg.options.meta.name}</span>}
+          {reg.kind === 'sequence' && (
+            <small>
+              {reg.matchedStepCount}/{reg.hotkey.length} steps
+            </small>
+          )}
+        </li>
+      ))}
+    </ul>
+  )
+}
+```
+
+Each view has an `id`, the `hotkey`, its `options` (including `meta`), its `target`, and a `triggerCount`. Narrow with `kind`: chord views add `parsedHotkey`; sequence views add `parsedSequence` and `matchedStepCount`, the steps matched so far in the current attempt.
+
+Registrations only exist while their components are mounted. To list hotkeys from routes that have not rendered, declare them with [app hotkeys](./app-hotkeys).
+
+## The hotkey manager
+
+Under the hood, `useHotkey` uses the singleton `HotkeyManager`, which handles chords and sequences alike. You can access the manager directly if needed:
 
 ```tsx
 import { getHotkeyManager } from '@tanstack/react-hotkeys'
 
 const manager = getHotkeyManager()
 
+// Register outside React; returns a handle with setOptions and unregister
+const handle = manager.register(['G', 'G'], () => scrollToTop(), { timeout: 500 })
+
 // Check if a hotkey is registered
 manager.isRegistered('Mod+S')
 
 // Get total number of registrations
 manager.getRegistrationCount()
+
+// Reset in-progress sequences
+manager.resetSequenceProgress()
 ```
 
-The manager attaches event listeners per target element, so only elements that have registered hotkeys receive listeners. This is more efficient than a single global listener.
+The manager attaches event listeners per target element, so only elements with registered hotkeys get listeners. That beats a single global listener that has to inspect every keystroke.

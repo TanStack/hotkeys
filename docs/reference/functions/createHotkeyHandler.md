@@ -3,16 +3,14 @@ id: createHotkeyHandler
 title: createHotkeyHandler
 ---
 
-# Function: createHotkeyHandler()
-
 ```ts
 function createHotkeyHandler(
    hotkey, 
    callback, 
-   options): (event) => void;
+   options?): (event) => void;
 ```
 
-Defined in: [match.ts:142](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L142)
+Defined in: [match.ts:95](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L95)
 
 Creates a keyboard event handler that calls the callback when the hotkey matches.
 
@@ -20,9 +18,10 @@ Creates a keyboard event handler that calls the callback when the hotkey matches
 
 ### hotkey
 
-The hotkey string or ParsedHotkey to match
+  \| [`HotkeyChord`](../type-aliases/HotkeyChord.md)
+  \| [`ParsedHotkey`](../type-aliases/ParsedHotkey.md)
 
-[`Hotkey`](../type-aliases/Hotkey.md) | [`ParsedHotkey`](../interfaces/ParsedHotkey.md)
+The hotkey string or ParsedHotkey to match
 
 ### callback
 
@@ -30,7 +29,7 @@ The hotkey string or ParsedHotkey to match
 
 The function to call when the hotkey matches
 
-### options
+### options?
 
 [`CreateHotkeyHandlerOptions`](../interfaces/CreateHotkeyHandlerOptions.md) = `{}`
 
@@ -40,19 +39,7 @@ Options for matching and handling
 
 A function that can be used as an event handler
 
-```ts
-(event): void;
-```
-
-### Parameters
-
-#### event
-
-`KeyboardEvent`
-
-### Returns
-
-`void`
+(`event`) => `void`
 
 ## Example
 

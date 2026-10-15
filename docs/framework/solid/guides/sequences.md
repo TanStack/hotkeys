@@ -3,160 +3,140 @@ title: Sequences Guide
 id: sequences
 ---
 
-TanStack Hotkeys supports multi-key sequences -- shortcuts where you press keys one after another rather than simultaneously. This is commonly used for Vim-style navigation, cheat codes, or multi-step commands.
+> [!IMPORTANT]
+> `createHotkeySequence`, `createHotkeySequences`, and `createHotkeySequenceRecorder` were removed in `@tanstack/solid-hotkeys` v0.14.0. Pass a sequence to `createHotkey` or `createHotkeys` instead, and record one with `createHotkeyRecorder` and `maxSteps`.
 
-## Basic Usage
+A sequence is a hotkey made of chords pressed one after another rather than together. Think Vim-style navigation, cheat codes, or multi-step commands. Sequences are ordinary hotkeys: register them with `createHotkey` and `createHotkeys`, list them with `createHotkeyRegistrations`, record them with `createHotkeyRecorder`, and format them with `formatForDisplay`.
 
-Use the `createHotkeySequence` primitive to register a key sequence:
+Sequence steps use the same syntax as chords. For example, `['[KeyG]', '[KeyG]']` follows a physical position, while `['G', 'G']` follows the logical letter. A sequence can mix forms, such as `['Mod+[KeyK]', 'C']`.
+
+## Basic usage
+
+Pass an array of chords wherever you pass a hotkey:
 
 ```tsx
-import { createHotkeySequence } from '@tanstack/solid-hotkeys'
+import { createHotkey } from '@tanstack/solid-hotkeys'
 
 function App() {
   // Vim-style: press g then g to scroll to top
-  createHotkeySequence(['G', 'G'], () => {
+  createHotkey(['G', 'G'], () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   })
 }
 ```
 
-The first argument is an array of `Hotkey` strings representing each step in the sequence. The user must press them in order within the timeout window.
+The user must press the steps in order, each within the timeout window. A one-step array such as `['Escape']` is the chord `'Escape'`.
 
-## Reactive Options
+## Many sequences at once
 
-Solid's `createHotkeySequence` accepts **accessor functions** for reactive sequence and options:
-
-```tsx
-const [isVimMode, setIsVimMode] = createSignal(true)
-const [sequence] = createSignal(['G', 'G'] as const)
-
-createHotkeySequence(
-  sequence,
-  () => scrollToTop(),
-  () => ({ enabled: isVimMode(), timeout: 1500 }),
-)
-```
-
-## Sequence Options
-
-The third argument is an options object (or accessor returning options):
+`createHotkeys` registers chords and sequences together, including dynamic lists:
 
 ```tsx
-createHotkeySequence(['G', 'G'], callback, {
-  timeout: 1000,  // Time allowed between keys (ms)
-  enabled: true,  // Whether the sequence is active
-  target: document, // Or from an accessor for scoped sequences
-})
+import { createHotkeys } from '@tanstack/solid-hotkeys'
+
+createHotkeys([
+  { hotkey: ['G', 'G'], callback: () => scrollToTop() },
+  { hotkey: ['D', 'D'], callback: () => deleteLine(), options: { timeout: 500 } },
+  { hotkey: 'Mod+S', callback: () => save() },
+])
 ```
+
+## Sequence options
+
+Sequences accept the same options as chords, except `requireReset`, plus `timeout`.
 
 ### `timeout`
 
-The maximum time (in milliseconds) allowed between consecutive key presses. Defaults to `1000` (1 second).
+The maximum time (in milliseconds) allowed between consecutive steps. If the user takes longer than this between any two steps, the sequence resets. Defaults to `1000` (1 second).
 
 ```tsx
-createHotkeySequence(['D', 'D'], () => deleteLine(), { timeout: 500 })
-createHotkeySequence(['Shift+Z', 'Shift+Z'], () => forceQuit(), { timeout: 2000 })
+// Fast sequence - user must type quickly
+createHotkey(['D', 'D'], () => deleteLine(), { timeout: 500 })
+
+// Slow sequence - user has more time between keys
+createHotkey(['Shift+Z', 'Shift+Z'], () => forceQuit(), { timeout: 2000 })
 ```
 
-### `enabled`
-
-Controls whether the sequence is active. Defaults to `true`. Use an accessor for reactive control.
-
-```tsx
-const [isVimMode, setIsVimMode] = createSignal(true)
-
-createHotkeySequence(['G', 'G'], () => scrollToTop(), () => ({
-  enabled: isVimMode(),
-}))
-```
-
-### `target`
-
-The DOM element to attach the sequence listener to. Defaults to `document`. Can be from an accessor when the target becomes available after mount.
-
-### Global Default Options via Provider
+`timeout` is only accepted when the hotkey is a sequence. Set a default for every sequence with `HotkeysProvider`:
 
 ```tsx
 import { HotkeysProvider } from '@tanstack/solid-hotkeys'
 
-<HotkeysProvider
-  defaultOptions={{
-    hotkeySequence: { timeout: 1500 },
-  }}
->
+<HotkeysProvider defaultOptions={{ hotkey: { timeout: 1500 } }}>
   <App />
 </HotkeysProvider>
 ```
 
-## Sequences with Modifiers
+### `enabled` and `meta`
 
-Each step in a sequence can include modifiers:
-
-```tsx
-createHotkeySequence(['Mod+K', 'Mod+C'], () => commentSelection())
-createHotkeySequence(['G', 'Shift+G'], () => scrollToBottom())
-```
-
-## Common Sequence Patterns
-
-### Vim-Style Navigation
+These work exactly as they do for chords. Disabled sequences stay registered and visible in devtools, and `meta` flows to registrations, devtools, and cheat sheets. See the [Hotkeys Guide](./hotkeys).
 
 ```tsx
-function VimNavigation() {
-  createHotkeySequence(['G', 'G'], () => scrollToTop())
-  createHotkeySequence(['G', 'Shift+G'], () => scrollToBottom())
-  createHotkeySequence(['D', 'D'], () => deleteLine())
-  createHotkeySequence(['D', 'W'], () => deleteWord())
-  createHotkeySequence(['C', 'I', 'W'], () => changeInnerWord())
-}
+createHotkey(['G', 'G'], () => scrollToTop(), () => ({
+  enabled: isVimMode(),
+  meta: { name: 'Go to top', description: 'Scroll to the top of the page' },
+}))
 ```
 
-### Konami Code
+## Sequences with modifiers
+
+Each step in a sequence can include modifiers, and consecutive steps can repeat the same modifier:
 
 ```tsx
-createHotkeySequence(
-  [
-    'ArrowUp', 'ArrowUp',
-    'ArrowDown', 'ArrowDown',
-    'ArrowLeft', 'ArrowRight',
-    'ArrowLeft', 'ArrowRight',
-    'B', 'A',
-  ],
-  () => enableEasterEgg(),
-  { timeout: 2000 },
-)
+// Ctrl+K followed by Ctrl+C (VS Code-style comment)
+createHotkey(['Mod+K', 'Mod+C'], () => commentSelection())
+
+// Physical R then T positions, both with Shift
+createHotkey(['Shift+[KeyR]', 'Shift+[KeyT]'], () => doNextAction())
 ```
 
-### Multi-Step Commands
+Brackets retain physical positions even when the keys produce different letters. While a sequence is in progress, modifier-only keydown events (Shift, Control, Alt, or Meta pressed alone) are ignored. They neither advance the sequence nor reset progress, so a user can tap or hold Shift between `Shift+R` and `Shift+T`.
+
+## Vim-style navigation
 
 ```tsx
-createHotkeySequence(['H', 'E', 'L', 'P'], () => openHelp())
+createHotkeys([
+  { hotkey: ['G', 'G'], callback: () => scrollToTop() },
+  { hotkey: ['G', 'Shift+G'], callback: () => scrollToBottom() },
+  { hotkey: ['D', 'D'], callback: () => deleteLine() },
+  { hotkey: ['D', 'W'], callback: () => deleteWord() },
+  { hotkey: ['C', 'I', 'W'], callback: () => changeInnerWord() },
+])
 ```
 
-## How Sequences Work
+## Displaying sequences
 
-The `SequenceManager` (singleton) handles all sequence registrations. When a key is pressed:
+`formatForDisplay` formats each step and joins them with `sequenceSeparator`, a space by default:
 
-1. It checks if the key matches the next expected step in any registered sequence
-2. If it matches, the sequence advances to the next step
+```ts
+formatForDisplay(['Mod+K', 'Mod+C'], { platform: 'mac' }) // '⌘ K ⌘ C'
+formatForDisplay(['G', 'G'], { sequenceSeparator: ' then ' }) // 'G then G'
+```
+
+Registration views report each sequence's progress in `matchedStepCount`, so a help panel can show how far the user has typed. See the [Hotkeys Guide](./hotkeys).
+
+## How sequences work
+
+The `HotkeyManager` tracks progress for every sequence registration. When a key is pressed:
+
+1. It checks whether the key matches the next expected step of each sequence
+2. If it matches, that sequence advances
 3. If the timeout expires between steps, the sequence resets
 4. When all steps are completed, the callback fires
 
-### Overlapping Sequences
+Modifier-only events, IME composition, and automatic keydown repeats neither advance a sequence nor refresh its timeout: holding G does not complete a two-press G sequence. Exact matches take priority over weaker logical-key fallbacks.
 
-Multiple sequences can share the same prefix. The manager tracks progress for each sequence independently:
+Multiple sequences can share a prefix, such as `['D', 'D']`, `['D', 'W']`, and `['D', 'I', 'W']`. Progress is tracked for each sequence independently, so after pressing `D` the manager waits for the next key to determine which sequence completes.
 
-```tsx
-createHotkeySequence(['D', 'D'], () => deleteLine())
-createHotkeySequence(['D', 'W'], () => deleteWord())
-createHotkeySequence(['D', 'I', 'W'], () => deleteInnerWord())
-```
+### Conflicting registrations
 
-## The Sequence Manager
+For the same target, duplicate detection compares resolved steps: modifier aliases, modifier order, and logical key casing do not create separate hotkeys. Physical and logical identities remain distinct, and a shared prefix alone is not a duplicate registration. Recorder conflict detection and app hotkey conflicts are stricter: there, a sequence also conflicts with a chord equal to its first step and with any sequence it starts.
 
-Under the hood, `createHotkeySequence` uses the singleton `SequenceManager`. You can also use the core `createSequenceMatcher` function for standalone sequence matching:
+## Standalone matching
 
-```tsx
+For sequence matching without the singleton manager, use `createSequenceMatcher`:
+
+```ts
 import { createSequenceMatcher } from '@tanstack/solid-hotkeys'
 
 const matcher = createSequenceMatcher(['G', 'G'], { timeout: 1000 })
@@ -165,6 +145,6 @@ document.addEventListener('keydown', (e) => {
   if (matcher.match(e)) {
     console.log('Sequence completed!')
   }
-  console.log('Progress:', matcher.getProgress())
+  console.log('Progress:', matcher.getProgress()) // e.g., 1
 })
 ```

@@ -1,11 +1,11 @@
 /* @refresh reload */
 import { render } from 'solid-js/web'
-import { createSignal, createEffect } from 'solid-js'
+import { createEffect, createSignal } from 'solid-js'
 import {
-  formatKeyForDebuggingDisplay,
-  createHeldKeys,
-  createHeldKeyCodes,
   HotkeysProvider,
+  createHeldKeyCodes,
+  createHeldKeys,
+  formatForDisplay,
 } from '@tanstack/solid-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
 import { TanStackDevtools } from '@tanstack/solid-devtools'
@@ -19,7 +19,9 @@ function App() {
   createEffect(() => {
     const keys = heldKeys()
     if (keys.length > 0) {
-      const combo = keys.map((k) => formatKeyForDebuggingDisplay(k)).join(' + ')
+      const combo = keys
+        .map((k) => formatForDisplay(k, { useSymbols: true }))
+        .join(' + ')
       setHistory((h) => {
         if (h[h.length - 1] !== combo) {
           return [...h.slice(-9), combo]
@@ -50,13 +52,9 @@ function App() {
                   <>
                     {index > 0 && <span class="plus">+</span>}
                     <kbd class="large">
-                      {formatKeyForDebuggingDisplay(key)}
+                      {formatForDisplay(key, { useSymbols: true })}
                       {code && code !== key && (
-                        <small class="code-label">
-                          {formatKeyForDebuggingDisplay(code, {
-                            source: 'code',
-                          })}
-                        </small>
+                        <small class="code-label">{code}</small>
                       )}
                     </kbd>
                   </>

@@ -1,9 +1,16 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import {
-  SequenceManager,
-  createSequenceMatcher,
-  type SequenceOptions,
-} from '../src/sequence-manager'
+import { HotkeyManager, toHotkeyRegistrationView } from '../src/hotkey-manager'
+import type { HotkeySequenceRegistrationView } from '../src/hotkey-manager'
+import { createSequenceMatcher } from '../src/match'
+import type { HotkeySequenceOptions as SequenceOptions } from '../src/hotkey-manager'
+
+/** Reads a sequence registration's public view, including match progress. */
+function sequenceView(id: string): HotkeySequenceRegistrationView {
+  const registration = HotkeyManager.getInstance().registrations.state.get(id)
+  return toHotkeyRegistrationView(
+    registration!,
+  ) as HotkeySequenceRegistrationView
+}
 
 /**
  * Helper to create and dispatch a KeyboardEvent
@@ -20,7 +27,8 @@ function dispatchKey(
 
 /**
  * Helper to dispatch a keyboard event from a specific element.
- * Dispatches on the element so listeners attached to it receive the event.
+ * Focuses the element first to set document.activeElement, then dispatches
+ * on the element so listeners attached to it receive the event.
  */
 function dispatchKeyFromElement(
   element: HTMLElement,
@@ -33,6 +41,9 @@ function dispatchKeyFromElement(
     metaKey?: boolean
   } = {},
 ): KeyboardEvent {
+  // Focus the element so document.activeElement is set
+  element.focus()
+
   const eventType = options.eventType ?? 'keydown'
   const event = new KeyboardEvent(eventType, {
     key,
@@ -46,28 +57,28 @@ function dispatchKeyFromElement(
   return event
 }
 
-describe('SequenceManager', () => {
+describe('HotkeyManager', () => {
   beforeEach(() => {
-    SequenceManager.resetInstance()
+    HotkeyManager.resetInstance()
     vi.useFakeTimers()
   })
 
   afterEach(() => {
-    SequenceManager.resetInstance()
+    HotkeyManager.resetInstance()
     vi.useRealTimers()
   })
 
   describe('singleton pattern', () => {
     it('should return the same instance', () => {
-      const instance1 = SequenceManager.getInstance()
-      const instance2 = SequenceManager.getInstance()
+      const instance1 = HotkeyManager.getInstance()
+      const instance2 = HotkeyManager.getInstance()
       expect(instance1).toBe(instance2)
     })
   })
 
   describe('sequence registration', () => {
     it('should register a sequence', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       manager.register(['G', 'G'], callback)
@@ -76,7 +87,7 @@ describe('SequenceManager', () => {
     })
 
     it('should unregister a sequence', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       const handle = manager.register(['G', 'G'], callback)
@@ -86,8 +97,29 @@ describe('SequenceManager', () => {
       expect(manager.getRegistrationCount()).toBe(0)
     })
 
+    it('should keep registration when disabled and skip callback until re-enabled', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      const handle = manager.register(['G', 'G'], callback, { enabled: false })
+
+      expect(manager.getRegistrationCount()).toBe(1)
+      expect(
+        [...manager.registrations.state.values()][0]?.options.enabled,
+      ).toBe(false)
+
+      dispatchKey('g')
+      dispatchKey('g')
+      expect(callback).not.toHaveBeenCalled()
+
+      handle.setOptions({ enabled: true })
+      dispatchKey('g')
+      dispatchKey('g')
+      expect(callback).toHaveBeenCalledTimes(1)
+    })
+
     it('should return handle with callback and setOptions', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback1 = vi.fn()
       const callback2 = vi.fn()
 
@@ -108,14 +140,14 @@ describe('SequenceManager', () => {
     })
 
     it('should throw for empty sequence', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       expect(() => manager.register([], vi.fn())).toThrow()
     })
   })
 
   describe('sequence matching', () => {
     it('should trigger callback when sequence is completed', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       manager.register(['G', 'G'], callback)
@@ -127,8 +159,43 @@ describe('SequenceManager', () => {
       expect(callback).toHaveBeenCalledTimes(1)
     })
 
+    it('should expose partial match progress on the registrations store', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+      const handle = manager.register(['G', 'G'], callback)
+      const id = handle.id
+
+      dispatchKey('g')
+      expect(callback).not.toHaveBeenCalled()
+      expect(sequenceView(id).matchedStepCount).toBe(1)
+      expect(sequenceView(id).partialMatchLastKeyTime).toBeGreaterThan(0)
+
+      dispatchKey('g')
+      expect(callback).toHaveBeenCalledTimes(1)
+      expect(sequenceView(id).matchedStepCount).toBe(0)
+    })
+
+    it('should increment triggerCount on the registrations store when a sequence completes', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+      const handle = manager.register(['G', 'G'], callback)
+      const id = handle.id
+
+      expect(manager.registrations.state.get(id)?.triggerCount).toBe(0)
+
+      dispatchKey('g')
+      dispatchKey('g')
+      expect(callback).toHaveBeenCalledTimes(1)
+      expect(manager.registrations.state.get(id)?.triggerCount).toBe(1)
+
+      dispatchKey('g')
+      dispatchKey('g')
+      expect(callback).toHaveBeenCalledTimes(2)
+      expect(manager.registrations.state.get(id)?.triggerCount).toBe(2)
+    })
+
     it('should pass context to callback', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       manager.register(['D', 'D'], callback)
@@ -139,13 +206,13 @@ describe('SequenceManager', () => {
       expect(callback).toHaveBeenCalledWith(
         expect.any(KeyboardEvent),
         expect.objectContaining({
-          hotkey: 'D D',
+          hotkey: ['D', 'D'],
         }),
       )
     })
 
     it('should reset on wrong key', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       manager.register(['G', 'G'], callback)
@@ -160,7 +227,7 @@ describe('SequenceManager', () => {
     })
 
     it('should restart sequence if first key of sequence is pressed', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       manager.register(['G', 'G'], callback)
@@ -178,7 +245,7 @@ describe('SequenceManager', () => {
 
   describe('timeout', () => {
     it('should reset sequence after timeout', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       manager.register(['G', 'G'], callback, { timeout: 500 })
@@ -191,7 +258,7 @@ describe('SequenceManager', () => {
     })
 
     it('should complete sequence within timeout', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       manager.register(['G', 'G'], callback, { timeout: 500 })
@@ -206,7 +273,7 @@ describe('SequenceManager', () => {
 
   describe('ignoreInputs option', () => {
     it('should ignore single-key sequences in input elements by default', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       manager.register(['G', 'G'], callback)
@@ -223,7 +290,7 @@ describe('SequenceManager', () => {
     })
 
     it('should ignore single-key sequences in textarea elements by default', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       manager.register(['G', 'G'], callback)
@@ -239,8 +306,41 @@ describe('SequenceManager', () => {
       document.body.removeChild(textarea)
     })
 
+    it('should ignore single-key sequences in a shadow-dom textarea by default', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register(['G', 'G'], callback)
+
+      const host = document.createElement('div')
+      const shadowRoot = host.attachShadow({ mode: 'open' })
+      const textarea = document.createElement('textarea')
+      shadowRoot.appendChild(textarea)
+      document.body.appendChild(host)
+
+      textarea.focus()
+      textarea.dispatchEvent(
+        new KeyboardEvent('keydown', {
+          key: 'g',
+          bubbles: true,
+          composed: true,
+        }),
+      )
+      textarea.dispatchEvent(
+        new KeyboardEvent('keydown', {
+          key: 'g',
+          bubbles: true,
+          composed: true,
+        }),
+      )
+
+      expect(callback).not.toHaveBeenCalled()
+
+      document.body.removeChild(host)
+    })
+
     it('should ignore single-key sequences in contenteditable elements by default', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       manager.register(['G', 'G'], callback)
@@ -258,7 +358,7 @@ describe('SequenceManager', () => {
     })
 
     it('should fire sequences starting with Mod key in inputs by default', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       manager.register(['Mod+K', 'S'], callback, { platform: 'mac' })
@@ -275,7 +375,7 @@ describe('SequenceManager', () => {
     })
 
     it('should respect explicit ignoreInputs: true even for Mod sequences', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       manager.register(['Mod+K', 'S'], callback, {
@@ -295,7 +395,7 @@ describe('SequenceManager', () => {
     })
 
     it('should respect explicit ignoreInputs: false for single-key sequences', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       manager.register(['G', 'G'], callback, { ignoreInputs: false })
@@ -312,7 +412,7 @@ describe('SequenceManager', () => {
     })
 
     it('should fire single-key sequences outside of input elements', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       manager.register(['G', 'G'], callback)
@@ -325,7 +425,7 @@ describe('SequenceManager', () => {
     })
 
     it('should not ignore button-type inputs', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       manager.register(['G', 'G'], callback)
@@ -343,7 +443,7 @@ describe('SequenceManager', () => {
     })
 
     it('should fire sequence when target is the input element itself', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       const input = document.createElement('input')
@@ -358,11 +458,141 @@ describe('SequenceManager', () => {
 
       document.body.removeChild(input)
     })
+
+    it('should ignore sequences when activeElement is an input but event.target is different (React Aria pattern)', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register(['G', 'G'], callback)
+
+      const input = document.createElement('input')
+      input.type = 'text'
+      const listItem = document.createElement('li')
+      document.body.appendChild(input)
+      document.body.appendChild(listItem)
+
+      input.focus()
+
+      for (let i = 0; i < 2; i++) {
+        const event = new KeyboardEvent('keydown', {
+          key: 'g',
+          bubbles: true,
+        })
+        Object.defineProperty(event, 'target', {
+          value: listItem,
+          writable: false,
+          configurable: true,
+        })
+        Object.defineProperty(event, 'currentTarget', {
+          value: document,
+          writable: false,
+          configurable: true,
+        })
+        document.dispatchEvent(event)
+      }
+
+      expect(callback).not.toHaveBeenCalled()
+
+      document.body.removeChild(input)
+      document.body.removeChild(listItem)
+    })
+
+    it('should fire Mod sequences when activeElement is an input but event.target is different (React Aria pattern)', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register(['Mod+K', 'S'], callback, { platform: 'mac' })
+
+      const input = document.createElement('input')
+      input.type = 'text'
+      const listItem = document.createElement('li')
+      document.body.appendChild(input)
+      document.body.appendChild(listItem)
+
+      input.focus()
+
+      const event1 = new KeyboardEvent('keydown', {
+        key: 'k',
+        metaKey: true,
+        bubbles: true,
+      })
+      Object.defineProperty(event1, 'target', {
+        value: listItem,
+        writable: false,
+        configurable: true,
+      })
+      Object.defineProperty(event1, 'currentTarget', {
+        value: document,
+        writable: false,
+        configurable: true,
+      })
+      document.dispatchEvent(event1)
+
+      const event2 = new KeyboardEvent('keydown', {
+        key: 's',
+        bubbles: true,
+      })
+      Object.defineProperty(event2, 'target', {
+        value: listItem,
+        writable: false,
+        configurable: true,
+      })
+      Object.defineProperty(event2, 'currentTarget', {
+        value: document,
+        writable: false,
+        configurable: true,
+      })
+      document.dispatchEvent(event2)
+
+      expect(callback).toHaveBeenCalledTimes(1)
+
+      document.body.removeChild(input)
+      document.body.removeChild(listItem)
+    })
+
+    it('should ignore sequences when listener target is inside an iframe and focus is in an input there', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+      const iframe = document.createElement('iframe')
+      document.body.appendChild(iframe)
+      const idoc = iframe.contentDocument
+      expect(idoc).toBeTruthy()
+      if (!idoc) {
+        document.body.removeChild(iframe)
+        return
+      }
+
+      const container = idoc.createElement('div')
+      const input = idoc.createElement('input')
+      input.type = 'text'
+      container.appendChild(input)
+      idoc.body.appendChild(container)
+
+      const handle = manager.register(['G', 'G'], callback, {
+        target: container,
+      })
+
+      input.focus()
+      for (let i = 0; i < 2; i++) {
+        const event = new KeyboardEvent('keydown', { key: 'g', bubbles: true })
+        Object.defineProperty(event, 'currentTarget', {
+          value: container,
+          writable: false,
+          configurable: true,
+        })
+        container.dispatchEvent(event)
+      }
+
+      expect(callback).not.toHaveBeenCalled()
+
+      handle.unregister()
+      document.body.removeChild(iframe)
+    })
   })
 
   describe('target option', () => {
     it('should fire sequence only for events inside target element', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       const div = document.createElement('div')
@@ -379,7 +609,7 @@ describe('SequenceManager', () => {
     })
 
     it('should not fire sequence for events outside target element', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       const divA = document.createElement('div')
@@ -401,7 +631,7 @@ describe('SequenceManager', () => {
 
   describe('eventType option', () => {
     it('should support eventType keyup sequences', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       manager.register(['G', 'G'], callback, { eventType: 'keyup' })
@@ -418,7 +648,7 @@ describe('SequenceManager', () => {
 
   describe('conflictBehavior option', () => {
     it('should warn by default when same sequence is registered twice', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback1 = vi.fn()
       const callback2 = vi.fn()
       const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
@@ -437,7 +667,7 @@ describe('SequenceManager', () => {
     })
 
     it('should throw with conflictBehavior error', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       manager.register(['G', 'G'], callback)
@@ -451,7 +681,7 @@ describe('SequenceManager', () => {
     })
 
     it('should replace with conflictBehavior replace', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback1 = vi.fn()
       const callback2 = vi.fn()
 
@@ -466,7 +696,7 @@ describe('SequenceManager', () => {
     })
 
     it('should allow multiple with conflictBehavior allow', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback1 = vi.fn()
       const callback2 = vi.fn()
       const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
@@ -499,7 +729,7 @@ describe('SequenceManager', () => {
 
   describe('longer sequences', () => {
     it('should match three-key sequences', () => {
-      const manager = SequenceManager.getInstance()
+      const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
       manager.register(['D', 'I', 'W'], callback)
@@ -510,6 +740,49 @@ describe('SequenceManager', () => {
 
       dispatchKey('w')
       expect(callback).toHaveBeenCalledTimes(1)
+    })
+  })
+
+  describe('modifier key handling', () => {
+    it('should not reset sequence when modifier key is pressed between steps', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register(['Z', 'Shift+C'], callback)
+
+      dispatchKey('z')
+      // Pressing Shift before Shift+C should not reset the sequence
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'Shift', bubbles: true }),
+      )
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', {
+          key: 'c',
+          shiftKey: true,
+          bubbles: true,
+        }),
+      )
+
+      expect(callback).toHaveBeenCalledTimes(1)
+    })
+
+    it('should reset sequence when a wrong non-modifier key is pressed between steps', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+
+      manager.register(['Z', 'Shift+C'], callback)
+
+      dispatchKey('z')
+      dispatchKey('x') // Wrong key resets the sequence
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', {
+          key: 'c',
+          shiftKey: true,
+          bubbles: true,
+        }),
+      )
+
+      expect(callback).not.toHaveBeenCalled()
     })
   })
 })
@@ -565,5 +838,117 @@ describe('createSequenceMatcher', () => {
       false,
     )
     expect(matcher.getProgress()).toBe(1) // Started new sequence
+  })
+})
+
+describe('HotkeyManager meta option', () => {
+  beforeEach(() => {
+    HotkeyManager.resetInstance()
+    vi.useFakeTimers()
+  })
+
+  afterEach(() => {
+    HotkeyManager.resetInstance()
+    vi.useRealTimers()
+  })
+
+  it('should store meta in registration view options', () => {
+    const manager = HotkeyManager.getInstance()
+    const callback = vi.fn()
+
+    manager.register(['G', 'G'], callback, {
+      meta: { name: 'Go to top', description: 'Scroll to the top of the page' },
+    })
+
+    const view = Array.from(manager.registrations.state.values())[0]!
+    expect(view.options.meta).toEqual({
+      name: 'Go to top',
+      description: 'Scroll to the top of the page',
+    })
+  })
+
+  it('should allow registering sequences without meta', () => {
+    const manager = HotkeyManager.getInstance()
+    const callback = vi.fn()
+
+    manager.register(['D', 'D'], callback)
+
+    const view = Array.from(manager.registrations.state.values())[0]!
+    expect(view.options.meta).toBeUndefined()
+  })
+})
+
+describe('HotkeyManager hasFired', () => {
+  beforeEach(() => {
+    HotkeyManager.resetInstance()
+    vi.useFakeTimers()
+  })
+
+  afterEach(() => {
+    HotkeyManager.resetInstance()
+    vi.useRealTimers()
+  })
+
+  it('should start with hasFired as false', () => {
+    const manager = HotkeyManager.getInstance()
+    const callback = vi.fn()
+
+    manager.register(['G', 'G'], callback)
+
+    const view = Array.from(manager.registrations.state.values())[0]!
+    expect(view.hasFired).toBe(false)
+  })
+
+  it('should set hasFired to true after sequence triggers', () => {
+    const manager = HotkeyManager.getInstance()
+    const callback = vi.fn()
+
+    manager.register(['G', 'G'], callback)
+
+    dispatchKey('g')
+    dispatchKey('g')
+
+    expect(callback).toHaveBeenCalledTimes(1)
+
+    const view = Array.from(manager.registrations.state.values())[0]!
+    expect(view.hasFired).toBe(true)
+  })
+
+  it('should set hasFired to true via triggerRegistration', () => {
+    const manager = HotkeyManager.getInstance()
+    const callback = vi.fn()
+
+    const handle = manager.register(['G', 'G'], callback)
+
+    expect(Array.from(manager.registrations.state.values())[0]!.hasFired).toBe(
+      false,
+    )
+
+    manager.triggerRegistration(handle.id)
+
+    expect(Array.from(manager.registrations.state.values())[0]!.hasFired).toBe(
+      true,
+    )
+  })
+
+  it('should expose hasFired in the SequenceRegistrationView', () => {
+    const manager = HotkeyManager.getInstance()
+    const callback = vi.fn()
+
+    manager.register(['D', 'D'], callback)
+
+    // Before trigger
+    let view = Array.from(manager.registrations.state.values())[0]!
+    expect(view).toHaveProperty('hasFired')
+    expect(view.hasFired).toBe(false)
+
+    // Trigger sequence
+    dispatchKey('d')
+    dispatchKey('d')
+
+    // After trigger
+    view = Array.from(manager.registrations.state.values())[0]!
+    expect(view.hasFired).toBe(true)
+    expect(view.triggerCount).toBe(1)
   })
 })

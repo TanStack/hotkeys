@@ -3,13 +3,11 @@ id: parseKeyboardEvent
 title: parseKeyboardEvent
 ---
 
-# Function: parseKeyboardEvent()
-
 ```ts
-function parseKeyboardEvent(event): ParsedHotkey;
+function parseKeyboardEvent(event, platform?): ParsedHotkey;
 ```
 
-Defined in: [parse.ts:208](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L208)
+Defined in: [parse.ts:311](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L311)
 
 Parses a KeyboardEvent into a ParsedHotkey object.
 
@@ -24,9 +22,15 @@ and converts it into the same format used by `parseHotkey()`.
 
 The KeyboardEvent to parse
 
+### platform?
+
+`"mac"` \| `"windows"` \| `"linux"`
+
+The target platform for resolving modifiers (defaults to auto-detection)
+
 ## Returns
 
-[`ParsedHotkey`](../interfaces/ParsedHotkey.md)
+[`ParsedHotkey`](../type-aliases/ParsedHotkey.md)
 
 A ParsedHotkey object representing the keyboard event
 

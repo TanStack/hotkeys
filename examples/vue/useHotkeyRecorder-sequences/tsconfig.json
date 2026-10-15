@@ -1,0 +1,9 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "types": ["vite/client"]
+  },
+  "include": ["src"],
+  "exclude": ["eslint.config.js"]
+}

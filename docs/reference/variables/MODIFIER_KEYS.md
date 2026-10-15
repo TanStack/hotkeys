@@ -3,13 +3,11 @@ id: MODIFIER_KEYS
 title: MODIFIER_KEYS
 ---
 
-# Variable: MODIFIER\_KEYS
-
 ```ts
 const MODIFIER_KEYS: Set<string>;
 ```
 
-Defined in: [constants.ts:81](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L81)
+Defined in: [constants.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L40)
 
 Set of canonical modifier key names for fast lookup.
 
