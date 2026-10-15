@@ -146,6 +146,12 @@ The hotkey can be a getter too, such as `() => this.binding` for a binding the u
 
 Recorder controllers accept the same two forms and read them during recording, including active sessions. Callback values remain functions and are not invoked to resolve options.
 
+## Capture phase
+
+By default, hotkeys listen during bubbling, after the keyboard handlers of widgets inside the target. A widget that handles a key and stops propagation keeps that key from your hotkeys. Set `capture: true` to run the hotkey before those widgets instead. It applies to `keydown` and `keyup`.
+
+With the default `stopPropagation: true`, a matching capture hotkey also keeps the key from those widgets. Set `stopPropagation: false` to let them handle it too. See [Hotkeys run after the page's own handlers](../../../guides/sensible-defaults.md#hotkeys-run-after-the-pages-own-handlers) for when to use capture.
+
 ## Default options
 
 When you register a hotkey without passing options, or when you omit specific options, the following defaults apply:
@@ -156,6 +162,7 @@ When you register a hotkey without passing options, or when you omit specific op
   preventDefault: true,
   stopPropagation: true,
   eventType: 'keydown',
+  capture: false,
   requireReset: false,
   ignoreInputs: 'auto', // false for Mod+S and Escape, true for single keys
   platform: undefined, // auto-detected

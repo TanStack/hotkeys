@@ -216,7 +216,7 @@ When the browser window loses focus, the tracker clears all held keys. Otherwise
 
 ## Under the hood
 
-All three hooks subscribe to the singleton `KeyStateTracker` via `@tanstack/preact-store`. The tracker manages its own event listeners on `document` and maintains state in a TanStack Store, which the hooks subscribe to reactively.
+All three hooks subscribe to the singleton `KeyStateTracker` via `@tanstack/preact-store`. The tracker manages its own event listeners on `window`, in the capture phase, and maintains state in a TanStack Store, which the hooks subscribe to reactively.
 
 ```tsx
 import { getKeyStateTracker } from '@tanstack/preact-hotkeys'

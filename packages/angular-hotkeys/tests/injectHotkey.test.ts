@@ -30,6 +30,7 @@ describe('injectHotkey', () => {
     expect(addEventListenerSpy).toHaveBeenCalledWith(
       'keydown',
       expect.any(Function),
+      false,
     )
 
     addEventListenerSpy.mockRestore()
@@ -49,6 +50,7 @@ describe('injectHotkey', () => {
     expect(removeEventListenerSpy).toHaveBeenCalledWith(
       'keydown',
       expect.any(Function),
+      false,
     )
 
     removeEventListenerSpy.mockRestore()
@@ -102,6 +104,7 @@ describe('injectHotkey', () => {
     expect(addEventListenerSpy).toHaveBeenCalledWith(
       'keyup',
       expect.any(Function),
+      false,
     )
 
     addEventListenerSpy.mockRestore()

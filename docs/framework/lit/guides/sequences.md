@@ -88,6 +88,10 @@ constructor() {
 }
 ```
 
+## Capture phase
+
+Sequences accept `capture: true` with the same [event propagation behavior as chords](./hotkeys.md#capture-phase). The default is `false`. Each step is matched in the selected phase, but `preventDefault` and `stopPropagation` apply only when the full sequence completes. Earlier steps still reach descendant widgets. Changing `capture` preserves partial progress and the existing timeout.
+
 ## Sequences with modifiers
 
 Each step in a sequence can include modifiers, and consecutive steps can repeat the same modifier:

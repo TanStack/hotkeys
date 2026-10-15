@@ -5,6 +5,7 @@ import type { ConflictBehavior, ParsedHotkey } from './hotkey.types'
  * Omitted: platform, target (resolved at registration), requireReset (HotkeyManager only).
  */
 export const defaultHotkeyOptions = {
+  capture: false,
   preventDefault: true,
   stopPropagation: true,
   eventType: 'keydown' as const,
@@ -44,7 +45,7 @@ export function handleConflict(
 
   if (conflictBehavior === 'warn') {
     console.warn(
-      `'${keyDisplay}' is already registered. Multiple handlers will be triggered. ` +
+      `'${keyDisplay}' is already registered. Multiple handlers may be triggered. ` +
         `Use conflictBehavior: 'replace' to replace the existing handler, ` +
         `or conflictBehavior: 'allow' to suppress this warning.`,
     )

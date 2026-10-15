@@ -81,6 +81,12 @@ useHotkey('Mod+S', () => console.log('Save'), {
 
 You can also pass `() => ({ enabled: enabled.value })` or a reactive options object. Vue applies registration changes when its watcher runs. The same forms work for common options, per-definition options, sequences, and recorders. `HotkeysProvider` follows replacement `defaultOptions` objects and getters within defaults. Per-call options override provider defaults, and per-definition options override common options.
 
+## Capture phase
+
+By default, hotkeys listen during bubbling, after the keyboard handlers of widgets inside the target. A widget that handles a key and stops propagation keeps that key from your hotkeys. Set `capture: true` to run the hotkey before those widgets instead. It applies to `keydown` and `keyup`.
+
+With the default `stopPropagation: true`, a matching capture hotkey also keeps the key from those widgets. Set `stopPropagation: false` to let them handle it too. See [Hotkeys run after the page's own handlers](../../../guides/sensible-defaults.md#hotkeys-run-after-the-pages-own-handlers) for when to use capture.
+
 ## Default options
 
 `useHotkey` uses the same core defaults as the framework-agnostic manager:
@@ -91,6 +97,7 @@ useHotkey('Mod+S', callback, {
   preventDefault: true,
   stopPropagation: true,
   eventType: 'keydown',
+  capture: false,
   requireReset: false,
   ignoreInputs: 'auto',
   target: document,

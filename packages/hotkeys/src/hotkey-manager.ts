@@ -1,4 +1,5 @@
 import { Store } from '@tanstack/store'
+import { TargetListeners } from './_target-listeners'
 import { isRecordingEvent } from './_recording-guard'
 import { DEFAULT_SEQUENCE_TIMEOUT, areHotkeysEqual } from './match'
 import { detectPlatform } from './platform'
@@ -43,6 +44,14 @@ export type Target = HTMLElement | Document | Window
  * Options shared by chords and sequences.
  */
 export interface HotkeyOptions {
+  /**
+   * Listen during capture, before descendant listeners. Defaults to `false` (bubble).
+   * With `stopPropagation: true`, a match on an ancestor prevents the event from
+   * reaching descendant widgets. Other listeners on the same target still run.
+   * Applies to both `keydown` and `keyup`, for chords and sequences.
+   * Changing this option preserves held-key reset state and sequence progress.
+   */
+  capture?: boolean
   /** Behavior when this hotkey conflicts with an existing registration on the same target. Defaults to 'warn' */
   conflictBehavior?: ConflictBehavior
   /**
@@ -240,6 +249,9 @@ export interface HotkeyRegistrationHandle<
   /**
    * Update options (merged with existing options).
    * Useful for updating `enabled`, `preventDefault`, etc. without re-registering.
+   * Changing `capture` moves the listener phase without clearing `requireReset`
+   * state or sequence progress. A registration already processed for an event
+   * cannot process it again in another phase.
    */
   setOptions: (options: Partial<TOptions>) => void
   /** Unregister this hotkey */
@@ -303,8 +315,8 @@ function formatForMessage(hotkey: Hotkey): string {
  * Singleton manager for hotkey registrations, including sequences.
  *
  * This class provides a centralized way to register and manage keyboard
- * hotkeys. It attaches one keydown and one keyup listener per target,
- * regardless of how many hotkeys are registered.
+ * hotkeys. It shares one keydown and one keyup listener per target and
+ * capture phase across registrations.
  *
  * Sequences (Vim-style hotkeys such as `['G', 'G']`) match when every step is
  * pressed within the timeout. Modifier-only events (Shift, Control, Alt, or
@@ -357,14 +369,9 @@ export class HotkeyManager {
   readonly appHotkeys: Store<AppHotkeysStore | null> =
     new Store<AppHotkeysStore | null>(null)
   #platform: 'mac' | 'windows' | 'linux'
-  #targetListeners: Map<
-    Target,
-    {
-      keydown: (event: KeyboardEvent) => void
-      keyup: (event: KeyboardEvent) => void
-    }
-  > = new Map()
-  #targetRegistrations: Map<Target, Set<string>> = new Map()
+  #listeners = new TargetListeners((...args) =>
+    this.#processTargetEvent(...args),
+  )
 
   private constructor() {
     this.#platform = detectPlatform()
@@ -525,14 +532,7 @@ export class HotkeyManager {
 
     this.registrations.setState((prev) => new Map(prev).set(id, registration))
 
-    // Track registration for this target
-    if (!this.#targetRegistrations.has(target)) {
-      this.#targetRegistrations.set(target, new Set())
-    }
-    this.#targetRegistrations.get(target)!.add(id)
-
-    // Ensure listeners are attached for this target
-    this.#ensureListenersForTarget(target)
+    this.#listeners.add(target, !!registration.options.capture, id)
 
     const manager = this
     return {
@@ -560,6 +560,11 @@ export class HotkeyManager {
             ...optionsForKind(reg.kind, newOptions),
           }
           if (optionsEqual(reg.options, options)) return prev
+          const capture = !!reg.options.capture
+          if (capture !== !!options.capture) {
+            manager.#listeners.remove(reg.target, capture, id)
+            manager.#listeners.add(reg.target, !!options.capture, id)
+          }
           return new Map(prev).set(id, { ...reg, options })
         })
       },
@@ -587,76 +592,39 @@ export class HotkeyManager {
       return next
     })
 
-    // Remove from target registrations tracking
-    const targetRegs = this.#targetRegistrations.get(target)
-    if (targetRegs) {
-      targetRegs.delete(id)
-      // If no more registrations for this target, remove listeners
-      if (targetRegs.size === 0) {
-        this.#removeListenersForTarget(target)
-      }
-    }
+    this.#listeners.remove(target, !!registration.options.capture, id)
   }
 
-  /**
-   * Ensures event listeners are attached for a specific target.
-   */
-  #ensureListenersForTarget(target: Target): void {
-    if (typeof document === 'undefined') {
-      return // SSR safety
-    }
-
-    // Skip if listeners already exist for this target
-    if (this.#targetListeners.has(target)) {
-      return
-    }
-
-    const keydown = (event: KeyboardEvent) =>
-      this.#processTargetEvent(event, target, 'keydown')
-    const keyup = (event: KeyboardEvent) =>
-      this.#processTargetEvent(event, target, 'keyup')
-
-    target.addEventListener('keydown', keydown as EventListener)
-    target.addEventListener('keyup', keyup as EventListener)
-
-    this.#targetListeners.set(target, { keydown, keyup })
-  }
-
-  /**
-   * Removes event listeners for a specific target.
-   */
-  #removeListenersForTarget(target: Target): void {
-    if (typeof document === 'undefined') {
-      return
-    }
-
-    const listeners = this.#targetListeners.get(target)
-    if (!listeners) {
-      return
-    }
-
-    target.removeEventListener('keydown', listeners.keydown as EventListener)
-    target.removeEventListener('keyup', listeners.keyup as EventListener)
-
-    this.#targetListeners.delete(target)
-    this.#targetRegistrations.delete(target)
-  }
-
-  /** Registrations of one kind on a target, in registration order. */
-  #registrationsOn<TKind extends HotkeyRegistration['kind']>(
-    target: Target,
+  /** Registrations of one kind in the listener phase, in registration order. */
+  #registrationsIn<TKind extends HotkeyRegistration['kind']>(
+    ids: Set<string>,
+    capture: boolean,
     kind: TKind,
   ): Array<Extract<HotkeyRegistration, { kind: TKind }>> {
     const result: Array<Extract<HotkeyRegistration, { kind: TKind }>> = []
-    for (const id of this.#targetRegistrations.get(target) ?? []) {
+    for (const id of ids) {
       const registration = this.registrations.state.get(id)
-      if (registration?.kind === kind) {
+      if (
+        registration?.kind === kind &&
+        !!registration.options.capture === capture
+      ) {
         result.push(
           registration as Extract<HotkeyRegistration, { kind: TKind }>,
         )
       }
     }
     return result
+  }
+
+  /** The live registration, unless it was removed or moved to another phase. */
+  #currentIn<T extends HotkeyRegistration>(
+    registration: T,
+    capture: boolean,
+  ): T | undefined {
+    const current = this.registrations.state.get(registration.id)
+    return current && !!current.options.capture === capture
+      ? (current as T)
+      : undefined
   }
 
   /**
@@ -667,17 +635,32 @@ export class HotkeyManager {
     event: KeyboardEvent,
     target: Target,
     eventType: 'keydown' | 'keyup',
+    capture: boolean,
+    ids: Set<string>,
   ): void {
-    this.#processChords(event, target, eventType)
-    this.#processSequences(event, target, eventType)
+    this.#processChords(
+      event,
+      target,
+      eventType,
+      capture,
+      this.#registrationsIn(ids, capture, 'chord'),
+    )
+    this.#processSequences(
+      event,
+      target,
+      eventType,
+      capture,
+      this.#registrationsIn(ids, capture, 'sequence'),
+    )
   }
 
   #processChords(
     event: KeyboardEvent,
     target: Target,
     eventType: 'keydown' | 'keyup',
+    capture: boolean,
+    registrations: Array<HotkeyChordRegistration>,
   ): void {
-    const registrations = this.#registrationsOn(target, 'chord')
     // Releases clear latches even when focus or enabled state now prevents callbacks.
     if (eventType === 'keyup') {
       for (const registration of registrations) {
@@ -717,11 +700,14 @@ export class HotkeyManager {
       }
     }
 
-    for (const registration of registrations) {
-      const match = matches.get(registration.id)
+    for (const snapshot of registrations) {
+      const match = matches.get(snapshot.id)
       if (!match?.matched || match.score !== bestScore) {
         continue
       }
+      // An earlier callback may have unregistered or moved this registration.
+      const registration = this.#currentIn(snapshot, capture)
+      if (!registration) continue
 
       if (eventType === 'keyup') {
         this.#executeCallback(registration, event)
@@ -739,13 +725,12 @@ export class HotkeyManager {
 
       // Only execute callback if requireReset is not active or hasn't fired yet
       if (!registration.options.requireReset || !registration.hasFired) {
-        this.#executeCallback(registration, event)
-
-        // Mark as fired if requireReset is enabled
+        // Set the latch before callbacks can update options and copy this registration.
         if (registration.options.requireReset) {
           registration.hasFired = true
           registration.activeMatch = match.identity
         }
+        this.#executeCallback(registration, event)
       }
     }
   }
@@ -754,8 +739,9 @@ export class HotkeyManager {
     event: KeyboardEvent,
     target: Target,
     eventType: 'keydown' | 'keyup',
+    capture: boolean,
+    registrations: Array<HotkeySequenceRegistration>,
   ): void {
-    const registrations = this.#registrationsOn(target, 'sequence')
     if (registrations.length === 0) return
 
     if (isRecordingEvent(event)) {
@@ -858,8 +844,10 @@ export class HotkeyManager {
     }
 
     if (changed && completed.length === 0) this.#notify()
-    for (const registration of completed) {
-      this.#executeCallback(registration, event)
+    for (const snapshot of completed) {
+      // An earlier callback may have unregistered or moved this registration.
+      const registration = this.#currentIn(snapshot, capture)
+      if (registration) this.#executeCallback(registration, event)
     }
   }
 
@@ -1055,15 +1043,9 @@ export class HotkeyManager {
    * Destroys the manager and removes all listeners.
    */
   destroy(): void {
-    // Remove all target listeners
-    for (const target of this.#targetListeners.keys()) {
-      this.#removeListenersForTarget(target)
-    }
-
+    this.#listeners.destroy()
     this.registrations.setState(() => new Map())
     this.appHotkeys.setState(() => null)
-    this.#targetListeners.clear()
-    this.#targetRegistrations.clear()
   }
 }
 

@@ -123,6 +123,12 @@ export function SaveShortcut(props: { enabled: boolean; onSave: () => void }) {
 
 You can also pass `() => ({ enabled: props.enabled })`. Both forms work for common options, sequences, and recorders. Property getters also work in per-definition options. `HotkeysProvider` follows replacement `defaultOptions` objects and getters within defaults. Per-call options override provider defaults, and per-definition options override common options.
 
+## Capture phase
+
+By default, hotkeys listen during bubbling, after the keyboard handlers of widgets inside the target. A widget that handles a key and stops propagation keeps that key from your hotkeys. Set `capture: true` to run the hotkey before those widgets instead. It applies to `keydown` and `keyup`.
+
+With the default `stopPropagation: true`, a matching capture hotkey also keeps the key from those widgets. Set `stopPropagation: false` to let them handle it too. See [Hotkeys run after the page's own handlers](../../../guides/sensible-defaults.md#hotkeys-run-after-the-pages-own-handlers) for when to use capture.
+
 ## Default options
 
 When you register a hotkey without passing options, or when you omit specific options, the following defaults apply:
@@ -133,6 +139,7 @@ createHotkey('Mod+S', callback, {
   preventDefault: true,
   stopPropagation: true,
   eventType: 'keydown',
+  capture: false,
   requireReset: false,
   ignoreInputs: 'auto', // false for Mod+S and Escape, true for single keys
   target: document,

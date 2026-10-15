@@ -211,7 +211,7 @@ When the browser window loses focus, the tracker clears all held keys. This prev
 
 ## Under the hood
 
-The three controllers subscribe to the singleton `KeyStateTracker` store from `@tanstack/hotkeys`. The tracker manages its own event listeners on `document` and maintains state in a TanStack Store, which the controllers read reactively.
+The three controllers subscribe to the singleton `KeyStateTracker` store from `@tanstack/hotkeys`. The tracker manages its own event listeners on `window`, in the capture phase, and maintains state in a TanStack Store, which the controllers read reactively.
 
 ```ts
 import { getKeyStateTracker } from '@tanstack/lit-hotkeys'
