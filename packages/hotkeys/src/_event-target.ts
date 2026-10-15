@@ -1,5 +1,31 @@
 import { normalizeKeyName } from './constants'
 
+// Nodes and windows can come from another frame (a same-origin iframe or a
+// popup window), whose DOM classes differ from this window's. These helpers
+// check `nodeType`, `localName`, and properties instead of using `instanceof`,
+// which is false for every object from another frame.
+
+function isNode(target: EventTarget | null): target is Node {
+  return typeof (target as Node | null)?.nodeType === 'number'
+}
+
+function isElement(target: EventTarget | null): target is Element {
+  return isNode(target) && target.nodeType === 1 // Node.ELEMENT_NODE
+}
+
+function isWindow(target: HTMLElement | Document | Window): target is Window {
+  return 'document' in target
+}
+
+/** Returns the document a listener target belongs to, in any frame. */
+export function getTargetDocument(
+  target: HTMLElement | Document | Window,
+): Document {
+  if (isWindow(target)) return target.document
+  if (target.nodeType === 9) return target as Document // Node.DOCUMENT_NODE
+  return (target as HTMLElement).ownerDocument
+}
+
 /**
  * Checks if an element is an input-like element that should be ignored for hotkeys.
  *
@@ -13,32 +39,22 @@ import { normalizeKeyName } from './constants'
  * Mod+S and Escape fire when the user has tabbed to a form button.
  */
 export function isInputElement(element: EventTarget | null): boolean {
-  if (!element) {
+  if (!isElement(element)) {
     return false
   }
 
-  if (element instanceof HTMLInputElement) {
-    const type = element.type.toLowerCase()
-    if (type === 'button' || type === 'submit' || type === 'reset') {
-      return false
-    }
-    return true
+  if (element.localName === 'input') {
+    const type = (element as HTMLInputElement).type.toLowerCase()
+    return type !== 'button' && type !== 'submit' && type !== 'reset'
   }
 
-  if (
-    element instanceof HTMLTextAreaElement ||
-    element instanceof HTMLSelectElement
-  ) {
+  if (element.localName === 'textarea' || element.localName === 'select') {
     return true
   }
 
   // Check for contenteditable elements (includes "true", "", "plaintext-only",
   // and inherited contenteditable from ancestor elements)
-  if (element instanceof HTMLElement && element.isContentEditable) {
-    return true
-  }
-
-  return false
+  return (element as HTMLElement).isContentEditable === true
 }
 
 /**
@@ -54,21 +70,7 @@ export function getActiveElementForListenerTarget(
     return null
   }
 
-  // Document first (nodeType covers environments where `document instanceof Document` is false)
-  if (
-    (typeof Document !== 'undefined' && target instanceof Document) ||
-    (typeof Node !== 'undefined' &&
-      (target as Node).nodeType === Node.DOCUMENT_NODE)
-  ) {
-    return (target as Document).activeElement
-  }
-
-  if (typeof HTMLElement !== 'undefined' && target instanceof HTMLElement) {
-    return target.ownerDocument.activeElement ?? null
-  }
-
-  // Window (global or iframe): avoid relying on `instanceof Window` alone (test DOM quirks)
-  return (target as Window).document.activeElement ?? null
+  return getTargetDocument(target).activeElement
 }
 
 /** Native buttons use Space/Enter; links only use Enter for activation. */
@@ -76,18 +78,16 @@ function isNativeActivationElement(
   element: EventTarget | null,
   key: string,
 ): boolean {
-  if (!element || !('tagName' in element)) return false
-  const control = element as HTMLElement
-  const tagName = control.tagName.toLowerCase()
-  if (tagName === 'button') return true
-  if (tagName === 'input') {
-    const type = (control as HTMLInputElement).type
+  if (!isElement(element)) return false
+  if (element.localName === 'button') return true
+  if (element.localName === 'input') {
+    const type = (element as HTMLInputElement).type
     return type === 'button' || type === 'submit' || type === 'reset'
   }
   return (
     key === 'Enter' &&
-    (tagName === 'a' || tagName === 'area') &&
-    control.hasAttribute('href')
+    (element.localName === 'a' || element.localName === 'area') &&
+    element.hasAttribute('href')
   )
 }
 
@@ -108,7 +108,7 @@ export function shouldIgnoreInputEvent(
 ): boolean {
   const key = normalizeKeyName(event.key)
   const preserveActivation =
-    ('document' in registrationTarget || registrationTarget.nodeType === 9) &&
+    (isWindow(registrationTarget) || registrationTarget.nodeType === 9) &&
     !event.ctrlKey &&
     !event.metaKey &&
     !event.altKey &&
@@ -134,54 +134,29 @@ export function shouldIgnoreInputEvent(
 /**
  * Checks if an event is for the given target (originated from or bubbled to it).
  *
- * For document/window targets, also accepts document.documentElement as currentTarget
- * to handle Brave and other browsers where currentTarget may be documentElement
- * instead of document when listeners are attached to document.
+ * For document/window targets, also accepts the document's root element as
+ * currentTarget to handle Brave and other browsers where currentTarget may be
+ * documentElement instead of document when listeners are attached to document.
  */
 export function isEventForTarget(
   event: KeyboardEvent,
   target: HTMLElement | Document | Window,
 ): boolean {
-  // For Document and Window, verify that our handler was indeed called for this target.
-  //
+  if (event.currentTarget === target) {
+    return true
+  }
+
   // Browser compatibility note:
   // Per the DOM spec, event.currentTarget should equal the element the listener was
   // attached to. However, some Chromium-based browsers (notably Brave) exhibit
   // non-standard behavior where event.currentTarget is set to document.documentElement
   // (<html>) instead of document when a listener is attached to document.
   // This may be related to privacy/fingerprinting protections.
-  //
-  // To ensure cross-browser compatibility, we accept both the expected target
-  // and document.documentElement as valid currentTarget values.
   // See: https://dom.spec.whatwg.org/#dom-event-currenttarget
-  if (target === document || target === window) {
-    return (
-      event.currentTarget === target ||
-      event.currentTarget === document.documentElement
-    )
+  if (isWindow(target) || target.nodeType === 9) {
+    return event.currentTarget === getTargetDocument(target).documentElement
   }
 
-  // For Window, accept window, document, or document.documentElement (browser quirks)
-  if (target === window) {
-    return (
-      event.currentTarget === window ||
-      event.currentTarget === document ||
-      event.currentTarget === document.documentElement
-    )
-  }
-
-  // For HTMLElement, check if event originated from or bubbled to the element
-  if (target instanceof HTMLElement) {
-    // Check if the event's currentTarget is the target (capturing/bubbling)
-    if (event.currentTarget === target) {
-      return true
-    }
-
-    // Check if the event's target is a descendant of our target
-    if (event.target instanceof Node && target.contains(event.target)) {
-      return true
-    }
-  }
-
-  return false
+  // For an element, accept events that originated inside it
+  return isNode(event.target) && target.contains(event.target)
 }

@@ -96,6 +96,8 @@ Hotkeys listen on `document` by default, so they work wherever focus is in the p
 
 To limit a hotkey to part of the page, set `target` to an element. The element receives keyboard events only while it, or something inside it, has focus, so make sure it is focusable, for example with `tabIndex`.
 
+A hotkey registered from the page can also target the document, window, or an element of a same-origin iframe or popup window. The hotkey then listens in that frame, and typing in the frame's inputs is ignored the same way as in the page.
+
 No listeners are attached during server rendering.
 
 ## Sequences allow 1 second between steps
