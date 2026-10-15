@@ -54,12 +54,13 @@ export interface HotkeyOptions {
   /** The event type to listen for. Defaults to 'keydown' */
   eventType?: 'keydown' | 'keyup'
   /**
-   * Ignore events from text inputs, textarea, select, and contenteditable.
-   * Document/window targets also preserve unmodified Space/Enter on native
-   * buttons and Enter on links. Explicit element targets can override activation.
-   * Defaults based on the hotkey (the first step of a sequence): true for single
-   * keys and Shift/Alt combos; false for Ctrl/Meta shortcuts and Escape. Set
-   * false to handle keys even in these controls.
+   * Skip keys that a focused control inside the target uses itself: typing in
+   * text inputs, textarea, select, and contenteditable; Enter/Space on buttons
+   * and summary elements; Enter on links; and navigation keys in ARIA widgets
+   * such as menus, listboxes, tabs, and grids. A hotkey targeted at the control
+   * itself still receives them. Defaults based on the hotkey (the first step of
+   * a sequence): true for single keys and Shift/Alt combos; false for Ctrl/Meta
+   * shortcuts and Escape. Set false to handle keys even in these controls.
    */
   ignoreInputs?: boolean
   /** The target platform for resolving 'Mod' */

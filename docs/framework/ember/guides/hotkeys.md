@@ -174,7 +174,7 @@ Set `requireReset: true` for actions that must run once per press. The key must 
 
 ### `ignoreInputs`
 
-When `ignoreInputs` is enabled, global hotkeys and sequences (targeting `document` or `window`) also preserve unmodified Space and Enter on native buttons and button-type inputs, and Enter on links with an `href`. Other keys and modifier shortcuts still work on these controls. Set `ignoreInputs: false`, or use an explicit element `target`, to handle their activation keys. Keyboard handling in custom ARIA widgets is not detected automatically.
+When `ignoreInputs` is enabled, hotkeys also skip keys that a focused control inside their `target` uses itself: Enter and Space on buttons and `<summary>`, Enter on links, and navigation keys in ARIA widgets such as menus, listboxes, tabs, and grids. A hotkey targeted at the control itself still receives them, and `ignoreInputs: false` handles every key. See [Focused controls keep their own keys](../../../guides/sensible-defaults.md#focused-controls-keep-their-own-keys) for the full list.
 
 Use `ignoreInputs: true` to ignore typing targets even for Control/Meta shortcuts. Use `false` to allow a single key such as Enter inside an input. Omitting the option restores smart input handling.
 

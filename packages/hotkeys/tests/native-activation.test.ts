@@ -111,17 +111,43 @@ describe.each(['hotkey', 'sequence'] as const)(
       expect(callback).toHaveBeenCalledOnce()
     })
 
-    it.each(['control', 'container'] as const)(
-      'preserves explicit %s targets',
-      (scope) => {
-        const container = focusControl('<div><button>Action</button></div>')
-        const element = container.firstElementChild as HTMLElement
-        element.focus()
-        const callback = register('Enter', {
-          target: scope === 'control' ? element : container,
-        })
-        expect(press(element, 'Enter').defaultPrevented).toBe(true)
-        expect(callback).toHaveBeenCalledOnce()
+    it('lets a hotkey targeted at the control handle its activation keys', () => {
+      const element = focusControl()
+      const callback = register('Enter', { target: element })
+      expect(press(element, 'Enter').defaultPrevented).toBe(true)
+      expect(callback).toHaveBeenCalledOnce()
+    })
+
+    it('preserves activation for a button inside an element target', () => {
+      // An Enter "confirm" hotkey on a dialog must not swallow Enter on its Cancel button
+      const dialog = focusControl(
+        '<div tabindex="0"><button>Cancel</button></div>',
+      )
+      const cancel = dialog.firstElementChild as HTMLElement
+      const callback = register('Enter', { target: dialog })
+
+      cancel.focus()
+      expect(press(cancel, 'Enter').defaultPrevented).toBe(false)
+      expect(callback).not.toHaveBeenCalled()
+
+      dialog.focus()
+      press(dialog, 'Enter')
+      expect(callback).toHaveBeenCalledOnce()
+    })
+
+    it.each(['Space', 'Enter'] as const)(
+      'preserves %s on a summary element',
+      (hotkey) => {
+        const details = focusControl(
+          '<details><summary>More</summary>Content</details>',
+        )
+        const summary = details.firstElementChild as HTMLElement
+        summary.focus()
+        const callback = register(hotkey)
+        expect(
+          press(summary, hotkey === 'Space' ? ' ' : 'Enter').defaultPrevented,
+        ).toBe(false)
+        expect(callback).not.toHaveBeenCalled()
       },
     )
 

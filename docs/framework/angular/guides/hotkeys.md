@@ -178,7 +178,7 @@ injectHotkey('Escape', () => closePanel(), { requireReset: true })
 
 ### `ignoreInputs`
 
-When `ignoreInputs` is enabled, global hotkeys and sequences (targeting `document` or `window`) also preserve unmodified `Space` and `Enter` on native buttons and button-type inputs, and `Enter` on links with an `href`. Other keys and modifier shortcuts still work on these controls. Set `ignoreInputs: false`, or use an explicit element `target`, to intentionally handle their activation keys. This does not automatically detect keyboard handling in custom ARIA widgets.
+When `ignoreInputs` is enabled, hotkeys also skip keys that a focused control inside their `target` uses itself: `Enter` and `Space` on buttons and `<summary>`, `Enter` on links, and navigation keys in ARIA widgets such as menus, listboxes, tabs, and grids. A hotkey targeted at the control itself still receives them, and `ignoreInputs: false` handles every key. See [Focused controls keep their own keys](../../../guides/sensible-defaults.md#focused-controls-keep-their-own-keys) for the full list.
 
 ```ts
 injectHotkey('K', () => openSearch())

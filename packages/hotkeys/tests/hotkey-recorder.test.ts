@@ -10,6 +10,8 @@ const fixtureCodes: Record<string, string> = {
   s: 'KeyS',
   x: 'KeyX',
   z: 'KeyZ',
+  ' ': 'Space',
+  ArrowDown: 'ArrowDown',
   Enter: 'Enter',
   Escape: 'Escape',
   Backspace: 'Backspace',
@@ -135,6 +137,44 @@ describe.each(['key', 'code', undefined] as const)(
 
         recorder.destroy()
         document.body.removeChild(textarea)
+      })
+
+      it.each([
+        ['Enter', 'Enter'],
+        [' ', 'Space'],
+      ])(
+        'should record %j while the button that started recording has focus',
+        (key, name) => {
+          // Focus usually stays on the Record button after clicking it
+          const onRecord = vi.fn()
+          const recorder = createRecorder({ recordBy, onRecord })
+          const button = document.createElement('button')
+          document.body.appendChild(button)
+          button.focus()
+
+          recorder.start()
+          button.dispatchEvent(createKeyboardEvent('keydown', key))
+
+          expect(onRecord).toHaveBeenCalledExactlyOnceWith(
+            recordBy === 'key' ? name : `[${name}]`,
+          )
+        },
+      )
+
+      it('should record navigation keys while focus is in an ARIA menu', () => {
+        const onRecord = vi.fn()
+        const recorder = createRecorder({ recordBy, onRecord })
+        document.body.innerHTML =
+          '<div role="menu"><div role="menuitem" tabindex="0">Item</div></div>'
+        const item = document.querySelector<HTMLElement>('[role="menuitem"]')!
+        item.focus()
+
+        recorder.start()
+        item.dispatchEvent(createKeyboardEvent('keydown', 'ArrowDown'))
+
+        expect(onRecord).toHaveBeenCalledExactlyOnceWith(
+          recordBy === 'key' ? 'ArrowDown' : '[ArrowDown]',
+        )
       })
 
       it('should record from inputs when ignoreInputs is false', () => {
