@@ -30,6 +30,9 @@ export function matchKeyboardEvent(
   if (normalized.altGraph && (parsed.ctrl || parsed.alt)) return noMatch
 
   if (parsed.code !== undefined) {
+    // AltGraph turns the key into character input, so the physical key no
+    // longer identifies a shortcut. Matches the recorder's AltGraph rejection.
+    if (normalized.altGraph) return noMatch
     if (!modifiersMatch(normalized, parsed, false)) return noMatch
     return normalized.code === parsed.code ? matched('code', 3) : noMatch
   }
