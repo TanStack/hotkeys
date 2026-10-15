@@ -58,11 +58,12 @@ export interface HotkeyOptions {
    * text inputs, textarea, select, and contenteditable; Enter/Space on buttons
    * and summary elements; Enter on links; and navigation keys in ARIA widgets
    * such as menus, listboxes, tabs, and grids. A hotkey targeted at the control
-   * itself still receives them. Defaults based on the hotkey (the first step of
-   * a sequence): true for single keys and Shift/Alt combos; false for Ctrl/Meta
-   * shortcuts and Escape. Set false to handle keys even in these controls.
+   * itself still receives them. Defaults to `'auto'`, which chooses from the
+   * hotkey (the first step of a sequence): true for single keys and Shift/Alt
+   * combos; false for Ctrl/Meta shortcuts and Escape. Set false to handle keys
+   * even in these controls.
    */
-  ignoreInputs?: boolean
+  ignoreInputs?: boolean | 'auto'
   /** The target platform for resolving 'Mod' */
   platform?: 'mac' | 'windows' | 'linux'
   /** Prevent the default browser action when the hotkey matches. Defaults to true */
@@ -276,6 +277,14 @@ function resolvedSteps(
     : registration.parsedSequence
 }
 
+/** Whether a registration skips keys that focused controls use, resolving `'auto'`. */
+function ignoresInputs(registration: HotkeyRegistration): boolean {
+  const { ignoreInputs = 'auto' } = registration.options
+  return ignoreInputs === 'auto'
+    ? getDefaultIgnoreInputs(resolvedSteps(registration)[0]!)
+    : ignoreInputs
+}
+
 function sameResolvedSteps(
   left: ReadonlyArray<ParsedHotkey>,
   right: ReadonlyArray<ParsedHotkey>,
@@ -469,8 +478,7 @@ export class HotkeyManager {
           timeout: DEFAULT_SEQUENCE_TIMEOUT,
           ...optionsForKind('sequence', options),
           platform,
-          ignoreInputs:
-            options.ignoreInputs ?? getDefaultIgnoreInputs(parsedSequence[0]!),
+          ignoreInputs: options.ignoreInputs ?? 'auto',
         },
         target,
         currentIndex: 0,
@@ -496,8 +504,7 @@ export class HotkeyManager {
           requireReset: false,
           ...optionsForKind('chord', options),
           platform,
-          ignoreInputs:
-            options.ignoreInputs ?? getDefaultIgnoreInputs(parsedHotkey),
+          ignoreInputs: options.ignoreInputs ?? 'auto',
         },
         target,
         hasFired: false,
@@ -694,7 +701,7 @@ export class HotkeyManager {
         !registration.options.enabled ||
         registration.options.eventType !== eventType ||
         !isEventForTarget(event, target) ||
-        (registration.options.ignoreInputs !== false &&
+        (ignoresInputs(registration) &&
           shouldIgnoreInputEvent(event, target, registration.target))
       ) {
         continue
@@ -783,7 +790,7 @@ export class HotkeyManager {
       if (
         !isEventForTarget(event, target) ||
         !registration.options.enabled ||
-        (registration.options.ignoreInputs !== false &&
+        (ignoresInputs(registration) &&
           shouldIgnoreInputEvent(event, target, registration.target)) ||
         registration.options.eventType !== eventType
       ) {

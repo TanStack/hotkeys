@@ -258,7 +258,7 @@ describe('registration and event-target helpers', () => {
         stopPropagation: true,
         eventType: 'keydown',
         enabled: true,
-        ignoreInputs: true,
+        ignoreInputs: 'auto',
         conflictBehavior: 'warn',
       })
     })

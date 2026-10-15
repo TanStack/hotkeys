@@ -157,7 +157,7 @@ When you register a hotkey without passing options, or when you omit specific op
   stopPropagation: true,
   eventType: 'keydown',
   requireReset: false,
-  ignoreInputs: undefined, // smart default: false for Mod+S, true for single keys
+  ignoreInputs: 'auto', // false for Mod+S and Escape, true for single keys
   platform: undefined, // auto-detected
   conflictBehavior: 'warn',
 })
@@ -241,14 +241,14 @@ closePanel() { this.panelOpen = false }
 
 When `ignoreInputs` is enabled, hotkeys also skip keys that a focused control inside their `target` uses itself: `Enter` and `Space` on buttons and `<summary>`, `Enter` on links, and navigation keys in ARIA widgets such as menus, listboxes, tabs, and grids. A hotkey targeted at the control itself still receives them, and `ignoreInputs: false` handles every key. See [Focused controls keep their own keys](../../../guides/sensible-defaults.md#focused-controls-keep-their-own-keys) for the full list.
 
-When `true`, the hotkey doesn't fire when the user is focused on a text input, textarea, select, or contentEditable element. Button-type inputs (`type="button"`, `"submit"`, `"reset"`) allow unrelated shortcuts. When unset, a smart default applies: `Ctrl`/`Meta` shortcuts and `Escape` fire in inputs; single keys and `Shift`/`Alt` combos are ignored.
+When `true`, the hotkey doesn't fire when the user is focused on a text input, textarea, select, or contentEditable element. Button-type inputs (`type="button"`, `"submit"`, `"reset"`) allow unrelated shortcuts. The default, `'auto'`, chooses from the hotkey: `Ctrl`/`Meta` shortcuts and `Escape` fire in inputs; single keys and `Shift`/`Alt` combos are ignored.
 
 ```ts
-// Single key - ignored in inputs by default (smart default)
+// Single key - ignored in inputs by default ('auto')
 @hotkey('K')
 openSearch() { /* ... */ }
 
-// Mod+S and Escape - fire in inputs by default (smart default)
+// Mod+S and Escape - fire in inputs by default ('auto')
 @hotkey('Mod+S')
 save() { /* ... */ }
 

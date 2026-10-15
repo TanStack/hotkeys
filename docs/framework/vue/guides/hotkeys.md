@@ -92,7 +92,7 @@ useHotkey('Mod+S', callback, {
   stopPropagation: true,
   eventType: 'keydown',
   requireReset: false,
-  ignoreInputs: undefined,
+  ignoreInputs: 'auto',
   target: document,
   platform: undefined,
   conflictBehavior: 'warn',

@@ -260,7 +260,7 @@ function HotkeyDetails(props: {
                     : styles().optionValueFalse
                 }
               >
-                {String(reg().options.ignoreInputs !== false)}
+                {String(reg().options.ignoreInputs ?? 'auto')}
               </span>
             </div>
             <div class={styles().optionRow}>
@@ -597,7 +597,7 @@ function SequenceDetails(props: {
                     : styles().optionValueFalse
                 }
               >
-                {String(liveReg().options.ignoreInputs !== false)}
+                {String(liveReg().options.ignoreInputs ?? 'auto')}
               </span>
             </div>
             <div class={styles().optionRow}>

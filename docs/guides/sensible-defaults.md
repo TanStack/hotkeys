@@ -60,7 +60,7 @@ Two kinds of key events never match ordinary shortcuts:
 
 ## Typing in inputs does not trigger shortcuts
 
-A hotkey bound to `K` should not fire while the user types "okay" into a text field. By default, `ignoreInputs` is chosen from the hotkey itself:
+A hotkey bound to `K` should not fire while the user types "okay" into a text field. By default, `ignoreInputs` is `'auto'`, which chooses from the hotkey itself:
 
 | Hotkey | Default | Reason |
 | --- | --- | --- |

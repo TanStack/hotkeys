@@ -135,7 +135,7 @@ Getters must read tracked state. A plain `{ enabled: this.enabled }` stored once
 | `stopPropagation` | `true` | Stop the event from bubbling to ancestor listeners. |
 | `eventType` | `'keydown'` | Listen on key press rather than release. |
 | `requireReset` | `false` | Allow held-key repeats. |
-| `ignoreInputs` | Smart default | Allow Control/Meta combinations and Escape in inputs. |
+| `ignoreInputs` | `'auto'` | Allow Control/Meta combinations and Escape in inputs. |
 | `target` | `document` | Listen for events that reach the document. |
 | `platform` | Detected | Resolve `Mod` for the current platform. |
 | `conflictBehavior` | `'warn'` | Warn about duplicate bindings while allowing them. |
@@ -176,7 +176,7 @@ Set `requireReset: true` for actions that must run once per press. The key must 
 
 When `ignoreInputs` is enabled, hotkeys also skip keys that a focused control inside their `target` uses itself: Enter and Space on buttons and `<summary>`, Enter on links, and navigation keys in ARIA widgets such as menus, listboxes, tabs, and grids. A hotkey targeted at the control itself still receives them, and `ignoreInputs: false` handles every key. See [Focused controls keep their own keys](../../../guides/sensible-defaults.md#focused-controls-keep-their-own-keys) for the full list.
 
-Use `ignoreInputs: true` to ignore typing targets even for Control/Meta shortcuts. Use `false` to allow a single key such as Enter inside an input. Omitting the option restores smart input handling.
+Use `ignoreInputs: true` to ignore typing targets even for Control/Meta shortcuts. Use `false` to allow a single key such as Enter inside an input. `'auto'`, the default, restores smart input handling.
 
 ### `target`
 

@@ -113,8 +113,22 @@ it('recognizes physical action keys and preserves Escape input defaults', () => 
   expect(hasNonModifierKey('[ShiftLeft]')).toBe(false)
   expect(hasNonModifierKey('[AltRight]')).toBe(false)
   const manager = HotkeyManager.getInstance()
-  const handle = manager.register('[Escape]', vi.fn())
+  const callback = vi.fn()
+  const handle = manager.register('[Escape]', callback)
   expect(manager.registrations.state.get(handle.id)?.options.ignoreInputs).toBe(
-    false,
+    'auto',
   )
+
+  const input = document.createElement('input')
+  document.body.appendChild(input)
+  input.focus()
+  input.dispatchEvent(
+    new KeyboardEvent('keydown', {
+      key: 'Escape',
+      code: 'Escape',
+      bubbles: true,
+    }),
+  )
+  expect(callback).toHaveBeenCalledOnce()
+  input.remove()
 })
