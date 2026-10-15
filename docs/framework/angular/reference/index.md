@@ -6,14 +6,21 @@ title: "@tanstack/angular-hotkeys"
 ## Interfaces
 
 - [AngularHotkeyRecorder](interfaces/AngularHotkeyRecorder.md)
-- [AngularHotkeySequenceRecorder](interfaces/AngularHotkeySequenceRecorder.md)
-- [HotkeyRegistrationsResult](interfaces/HotkeyRegistrationsResult.md)
 - [HotkeysContextValue](interfaces/HotkeysContextValue.md)
 - [HotkeysProviderOptions](interfaces/HotkeysProviderOptions.md)
-- [InjectHotkeyDefinition](interfaces/InjectHotkeyDefinition.md)
-- [InjectHotkeyOptions](interfaces/InjectHotkeyOptions.md)
-- [InjectHotkeySequenceDefinition](interfaces/InjectHotkeySequenceDefinition.md)
-- [InjectHotkeySequenceOptions](interfaces/InjectHotkeySequenceOptions.md)
+- [InjectCustomHotkeysResult](interfaces/InjectCustomHotkeysResult.md)
+- [ProvideHotkeysOptions](interfaces/ProvideHotkeysOptions.md)
+
+## Type Aliases
+
+- [InjectAppHotkeyOptions](type-aliases/InjectAppHotkeyOptions.md)
+- [InjectHotkeyChordOptions](type-aliases/InjectHotkeyChordOptions.md)
+- [InjectHotkeyCommonOptions](type-aliases/InjectHotkeyCommonOptions.md)
+- [InjectHotkeyDefinition](type-aliases/InjectHotkeyDefinition.md)
+- [InjectHotkeyOptions](type-aliases/InjectHotkeyOptions.md)
+- [InjectHotkeyOptionsFor](type-aliases/InjectHotkeyOptionsFor.md)
+- [InjectHotkeySequenceOptions](type-aliases/InjectHotkeySequenceOptions.md)
+- [InjectHotkeyTarget](type-aliases/InjectHotkeyTarget.md)
 
 ## Variables
 
@@ -21,6 +28,9 @@ title: "@tanstack/angular-hotkeys"
 
 ## Functions
 
+- [injectAppHotkeyList](functions/injectAppHotkeyList.md)
+- [injectAppHotkeys](functions/injectAppHotkeys.md)
+- [injectCustomHotkeys](functions/injectCustomHotkeys.md)
 - [injectDefaultHotkeysOptions](functions/injectDefaultHotkeysOptions.md)
 - [injectHeldKeyCodes](functions/injectHeldKeyCodes.md)
 - [injectHeldKeys](functions/injectHeldKeys.md)
@@ -30,8 +40,5 @@ title: "@tanstack/angular-hotkeys"
 - [injectHotkeyRegistrations](functions/injectHotkeyRegistrations.md)
 - [injectHotkeys](functions/injectHotkeys.md)
 - [injectHotkeysContext](functions/injectHotkeysContext.md)
-- [injectHotkeySequence](functions/injectHotkeySequence.md)
-- [injectHotkeySequenceRecorder](functions/injectHotkeySequenceRecorder.md)
-- [injectHotkeySequences](functions/injectHotkeySequences.md)
 - [injectKeyHold](functions/injectKeyHold.md)
 - [provideHotkeys](functions/provideHotkeys.md)

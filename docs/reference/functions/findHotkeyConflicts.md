@@ -17,8 +17,7 @@ discover unmounted handlers, external listeners, or other keyboard layouts.
 
 ### candidate
 
-  \| [`RegisterableHotkey`](../type-aliases/RegisterableHotkey.md)
-  \| readonly [`RegisterableHotkey`](../type-aliases/RegisterableHotkey.md)[]
+[`RegisterableHotkey`](../type-aliases/RegisterableHotkey.md)
 
 ### options?
 
@@ -26,4 +25,4 @@ discover unmounted handlers, external listeners, or other keyboard layouts.
 
 ## Returns
 
-[`HotkeyConflict`](../type-aliases/HotkeyConflict.md)[]
+[`HotkeyConflict`](../interfaces/HotkeyConflict.md)[]

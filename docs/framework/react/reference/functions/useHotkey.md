@@ -3,88 +3,154 @@ id: useHotkey
 title: useHotkey
 ---
 
+## Call Signature
+
 ```ts
-function useHotkey(
+function useHotkey<T>(
    hotkey, 
    callback, 
    options?): void;
 ```
 
-Defined in: [useHotkey.ts:89](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L89)
+Defined in: [useHotkey.ts:85](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L85)
 
-React hook for registering a keyboard hotkey.
+React hook for registering a hotkey: a chord such as `'Mod+S'`, a sequence
+such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
 
-Uses the singleton HotkeyManager for efficient event handling.
-The callback receives both the keyboard event and a context object
-containing the hotkey string and parsed hotkey.
+Uses the singleton HotkeyManager for efficient event handling. The callback
+and options sync on every render, so callbacks that reference React state
+always see the latest values. `enabled: false` keeps the registration
+(visible in devtools) and only suppresses firing.
 
-This hook syncs the callback and options on every render to avoid
-stale closures. This means
-callbacks that reference React state will always have access to
-the latest values.
+Chords accept `requireReset`; sequences accept `timeout`. A one-step
+sequence registers as its chord. An app hotkey uses its effective hotkey
+from `HotkeysProvider` (including the user's custom hotkey) and its declared
+meta and options, and registers nothing while unbound.
 
-## Parameters
+Options merge in this order: provider defaults, app hotkey declaration,
+call-site options.
 
-### hotkey
+### Type Parameters
 
-`RegisterableHotkey`
+#### T
 
-The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object (supports `mod` for cross-platform)
+`T` *extends* `AppHotkey`\<`string`, `HotkeyChord` \| `HotkeySequence` \| `null`\>
 
-### callback
+### Parameters
+
+#### hotkey
+
+`T`
+
+A chord string, RawHotkey object, sequence, or app hotkey
+
+#### callback
 
 `HotkeyCallback`
 
 The function to call when the hotkey is pressed
 
-### options?
+#### options?
 
-[`UseHotkeyOptions`](../interfaces/UseHotkeyOptions.md) = `{}`
+[`UseAppHotkeyOptions`](../type-aliases/UseAppHotkeyOptions.md)\<`T`\>
 
-Options for the hotkey behavior. `enabled: false` keeps the registration (visible in devtools)
-  and only suppresses firing; the hook updates the existing handle instead of unregistering.
+Options for the hotkey behavior
 
-## Returns
+### Returns
 
 `void`
 
-## Examples
-
-```tsx
-function SaveButton() {
-  const [count, setCount] = useState(0)
-
-  // Callback always has access to latest count value
-  useHotkey('Mod+S', (event, { hotkey }) => {
-    console.log(`Save triggered, count is ${count}`)
-    handleSave()
-  })
-
-  return <button onClick={() => setCount(c => c + 1)}>Count: {count}</button>
-}
-```
-
-```tsx
-function Modal({ isOpen, onClose }) {
-  // enabled option is synced on every render
-  useHotkey('Escape', () => {
-    onClose()
-  }, { enabled: isOpen })
-
-  if (!isOpen) return null
-  return <div className="modal">...</div>
-}
-```
+### Examples
 
 ```tsx
 function Editor() {
-  const editorRef = useRef<HTMLDivElement>(null)
+  const [count, setCount] = useState(0)
 
-  // Scoped to a specific element
-  useHotkey('Mod+S', () => {
-    save()
-  }, { target: editorRef })
+  useHotkey('Mod+S', () => save(count))
+  useHotkey(['G', 'G'], () => scrollToTop(), { timeout: 500 })
+  useHotkey('Escape', () => close(), { enabled: isOpen })
+}
+```
 
-  return <div ref={editorRef}>...</div>
+```tsx
+function Toolbar() {
+  const hotkeys = useAppHotkeys()
+  useHotkey(hotkeys['doc.save'], () => save())
+}
+```
+
+## Call Signature
+
+```ts
+function useHotkey<T>(
+   hotkey, 
+   callback, 
+   options?): void;
+```
+
+Defined in: [useHotkey.ts:90](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L90)
+
+React hook for registering a hotkey: a chord such as `'Mod+S'`, a sequence
+such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
+
+Uses the singleton HotkeyManager for efficient event handling. The callback
+and options sync on every render, so callbacks that reference React state
+always see the latest values. `enabled: false` keeps the registration
+(visible in devtools) and only suppresses firing.
+
+Chords accept `requireReset`; sequences accept `timeout`. A one-step
+sequence registers as its chord. An app hotkey uses its effective hotkey
+from `HotkeysProvider` (including the user's custom hotkey) and its declared
+meta and options, and registers nothing while unbound.
+
+Options merge in this order: provider defaults, app hotkey declaration,
+call-site options.
+
+### Type Parameters
+
+#### T
+
+`T` *extends* `RegisterableHotkey`
+
+### Parameters
+
+#### hotkey
+
+`T`
+
+A chord string, RawHotkey object, sequence, or app hotkey
+
+#### callback
+
+`HotkeyCallback`
+
+The function to call when the hotkey is pressed
+
+#### options?
+
+`AdapterOptionsFor`\<`T`, [`UseHotkeyTarget`](../type-aliases/UseHotkeyTarget.md)\>
+
+Options for the hotkey behavior
+
+### Returns
+
+`void`
+
+### Examples
+
+```tsx
+function Editor() {
+  const [count, setCount] = useState(0)
+
+  useHotkey('Mod+S', () => save(count))
+  useHotkey(['G', 'G'], () => scrollToTop(), { timeout: 500 })
+  useHotkey('Escape', () => close(), { enabled: isOpen })
+}
+```
+
+```tsx
+function Toolbar() {
+  const hotkeys = useAppHotkeys()
+  useHotkey(hotkeys['doc.save'], () => save())
 }
 ```

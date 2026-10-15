@@ -1,2 +1,5 @@
-export { HotkeysDevtoolsPanelNoOp as HotkeysDevtoolsPanel } from './SolidHotkeysDevtools'
-export { hotkeysDevtoolsNoOpPlugin as hotkeysDevtoolsPlugin } from './plugin'
+export { HotkeysDevtoolsPanel } from './SolidHotkeysDevtools'
+
+export type { HotkeysDevtoolsSolidInit } from './SolidHotkeysDevtools'
+
+export { hotkeysDevtoolsPlugin } from './plugin'

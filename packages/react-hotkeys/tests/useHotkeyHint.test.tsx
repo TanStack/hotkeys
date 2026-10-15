@@ -1,12 +1,8 @@
 // @vitest-environment happy-dom
 import { afterEach, expect, it, vi } from 'vitest'
 import { act, cleanup, renderHook } from '@testing-library/react'
-import {
-  HotkeyManager,
-  KeyStateTracker,
-  SequenceManager,
-} from '@tanstack/hotkeys'
-import { useHotkey, useHotkeyHint, useHotkeySequence } from '../src'
+import { HotkeyManager, KeyStateTracker } from '@tanstack/hotkeys'
+import { useHotkey, useHotkeyHint } from '../src'
 
 function key(
   type: string,
@@ -23,7 +19,6 @@ function key(
 afterEach(() => {
   cleanup()
   HotkeyManager.resetInstance()
-  SequenceManager.resetInstance()
   KeyStateTracker.resetInstance()
 })
 it('selects hint visibility without rerendering on unrelated keys and clears on blur', () => {
@@ -60,7 +55,7 @@ it('preserves raw code bindings through hook normalization and sequence registra
     sequence = vi.fn()
   const { unmount } = renderHook(() => {
     useHotkey({ code: 'KeyQ', shift: true }, single)
-    useHotkeySequence(['Shift+[KeyQ]', '[NumpadEnter]'], sequence)
+    useHotkey(['Shift+[KeyQ]', '[NumpadEnter]'], sequence)
   })
   key('keydown', 'A', 'KeyQ', { shiftKey: true })
   key('keyup', 'a', 'KeyQ')
@@ -69,7 +64,6 @@ it('preserves raw code bindings through hook normalization and sequence registra
   expect(sequence).toHaveBeenCalledOnce()
   unmount()
   expect(HotkeyManager.getInstance().registrations.state.size).toBe(0)
-  expect(SequenceManager.getInstance().registrations.state.size).toBe(0)
 })
 it('moves an unchanged binding to a new target after commit', () => {
   const a = document.createElement('div'),

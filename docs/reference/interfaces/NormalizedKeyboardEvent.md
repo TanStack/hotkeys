@@ -3,7 +3,7 @@ id: NormalizedKeyboardEvent
 title: NormalizedKeyboardEvent
 ---
 
-Defined in: [key.types.ts:258](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L258)
+Defined in: [key.types.ts:238](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L238)
 
 Keyboard event properties normalized for internal matching and recording.
 
@@ -15,7 +15,7 @@ Keyboard event properties normalized for internal matching and recording.
 alt: boolean;
 ```
 
-Defined in: [key.types.ts:263](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L263)
+Defined in: [key.types.ts:243](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L243)
 
 ***
 
@@ -25,7 +25,7 @@ Defined in: [key.types.ts:263](https://github.com/TanStack/hotkeys/blob/main/pac
 altGraph: boolean;
 ```
 
-Defined in: [key.types.ts:265](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L265)
+Defined in: [key.types.ts:245](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L245)
 
 ***
 
@@ -35,7 +35,7 @@ Defined in: [key.types.ts:265](https://github.com/TanStack/hotkeys/blob/main/pac
 code: string;
 ```
 
-Defined in: [key.types.ts:260](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L260)
+Defined in: [key.types.ts:240](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L240)
 
 ***
 
@@ -45,7 +45,7 @@ Defined in: [key.types.ts:260](https://github.com/TanStack/hotkeys/blob/main/pac
 ctrl: boolean;
 ```
 
-Defined in: [key.types.ts:261](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L261)
+Defined in: [key.types.ts:241](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L241)
 
 ***
 
@@ -55,7 +55,7 @@ Defined in: [key.types.ts:261](https://github.com/TanStack/hotkeys/blob/main/pac
 isComposing: boolean;
 ```
 
-Defined in: [key.types.ts:267](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L267)
+Defined in: [key.types.ts:247](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L247)
 
 ***
 
@@ -65,7 +65,7 @@ Defined in: [key.types.ts:267](https://github.com/TanStack/hotkeys/blob/main/pac
 key: string;
 ```
 
-Defined in: [key.types.ts:259](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L259)
+Defined in: [key.types.ts:239](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L239)
 
 ***
 
@@ -75,7 +75,7 @@ Defined in: [key.types.ts:259](https://github.com/TanStack/hotkeys/blob/main/pac
 location: number;
 ```
 
-Defined in: [key.types.ts:266](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L266)
+Defined in: [key.types.ts:246](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L246)
 
 ***
 
@@ -85,7 +85,7 @@ Defined in: [key.types.ts:266](https://github.com/TanStack/hotkeys/blob/main/pac
 meta: boolean;
 ```
 
-Defined in: [key.types.ts:264](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L264)
+Defined in: [key.types.ts:244](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L244)
 
 ***
 
@@ -95,4 +95,4 @@ Defined in: [key.types.ts:264](https://github.com/TanStack/hotkeys/blob/main/pac
 shift: boolean;
 ```
 
-Defined in: [key.types.ts:262](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L262)
+Defined in: [key.types.ts:242](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L242)

@@ -1,11 +1,13 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
 import {
   HotkeysProvider,
   formatForDisplay,
+  normalizeHotkey,
   useHotkeyRegistrations,
   useHotkeys,
+  validateHotkey,
 } from '@tanstack/react-hotkeys'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import type { Hotkey, UseHotkeyDefinition } from '@tanstack/react-hotkeys'
@@ -212,7 +214,7 @@ function CommonOptionsDemo() {
 
 interface DynamicShortcut {
   id: number
-  hotkey: string
+  hotkey: Hotkey
   label: string
   description: string
   count: number
@@ -250,9 +252,10 @@ function DynamicHotkeysDemo() {
   const [newHotkey, setNewHotkey] = React.useState('')
   const [newLabel, setNewLabel] = React.useState('')
   const [newDescription, setNewDescription] = React.useState('')
+  const [error, setError] = React.useState('')
 
   const definitions: Array<UseHotkeyDefinition> = shortcuts.map((s) => ({
-    hotkey: s.hotkey as Hotkey,
+    hotkey: s.hotkey,
     callback: () => {
       setShortcuts((prev) =>
         prev.map((item) =>
@@ -269,12 +272,18 @@ function DynamicHotkeysDemo() {
 
   const addShortcut = () => {
     const trimmed = newHotkey.trim()
-    if (!trimmed || !newLabel.trim()) return
+    if (!newLabel.trim()) return
+    const validation = validateHotkey(trimmed)
+    if (!validation.valid || validation.warnings.length > 0) {
+      setError([...validation.errors, ...validation.warnings].join(' '))
+      return
+    }
+    setError('')
     setShortcuts((prev) => [
       ...prev,
       {
         id: nextId++,
-        hotkey: trimmed,
+        hotkey: normalizeHotkey(trimmed),
         label: newLabel.trim(),
         description: newDescription.trim(),
         count: 0,
@@ -297,10 +306,11 @@ function DynamicHotkeysDemo() {
         accepts a dynamic array, this is safe without breaking the rules of
         hooks.
       </p>
+      {error && <p role="alert">{error}</p>}
       <div className="dynamic-list">
         {shortcuts.map((s) => (
           <div key={s.id} className="dynamic-item">
-            <kbd>{formatForDisplay(s.hotkey as Hotkey)}</kbd>
+            <kbd>{formatForDisplay(s.hotkey)}</kbd>
             <span>{s.label}</span>
             <span className="count">{s.count}</span>
             <button onClick={() => removeShortcut(s.id)}>Remove</button>
@@ -360,15 +370,16 @@ useHotkeys(
 // ---------------------------------------------------------------------------
 
 function RegistrationsViewer() {
-  const { hotkeys, sequences } = useHotkeyRegistrations()
+  const registrations = useHotkeyRegistrations()
 
   return (
     <div className="demo-section">
       <h2>Live Registrations (useHotkeyRegistrations)</h2>
       <p>
         This table is rendered from <code>useHotkeyRegistrations()</code> — a
-        reactive view of all registered hotkeys. It updates automatically as
-        hotkeys are added, removed, enabled/disabled, or triggered.
+        reactive view of all registered hotkeys, chords and sequences. It
+        updates automatically as hotkeys are added, removed, enabled/disabled,
+        or triggered.
       </p>
       <table className="registrations-table">
         <thead>
@@ -381,7 +392,7 @@ function RegistrationsViewer() {
           </tr>
         </thead>
         <tbody>
-          {hotkeys.map((reg) => (
+          {registrations.map((reg) => (
             <tr key={reg.id}>
               <td>
                 <kbd>{formatForDisplay(reg.hotkey)}</kbd>
@@ -402,7 +413,7 @@ function RegistrationsViewer() {
               <td className="trigger-count">{reg.triggerCount}</td>
             </tr>
           ))}
-          {hotkeys.length === 0 && (
+          {registrations.length === 0 && (
             <tr>
               <td colSpan={5} className="hint">
                 No hotkeys registered
@@ -411,44 +422,10 @@ function RegistrationsViewer() {
           )}
         </tbody>
       </table>
-      {sequences.length > 0 && (
-        <>
-          <h3 style={{ marginTop: 16 }}>Sequences</h3>
-          <table className="registrations-table">
-            <thead>
-              <tr>
-                <th>Sequence</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Triggers</th>
-              </tr>
-            </thead>
-            <tbody>
-              {sequences.map((reg) => (
-                <tr key={reg.id}>
-                  <td>
-                    {reg.sequence.map((s, i) => (
-                      <React.Fragment key={i}>
-                        {i > 0 && ' '}
-                        <kbd>{formatForDisplay(s)}</kbd>
-                      </React.Fragment>
-                    ))}
-                  </td>
-                  <td>{reg.options.meta?.name ?? '—'}</td>
-                  <td className="description-cell">
-                    {reg.options.meta?.description ?? '—'}
-                  </td>
-                  <td className="trigger-count">{reg.triggerCount}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
-      )}
-      <pre className="code-block">{`const { hotkeys, sequences } = useHotkeyRegistrations()
+      <pre className="code-block">{`const registrations = useHotkeyRegistrations()
 
-// Render a live table of all registrations
-hotkeys.map((reg) => (
+// Render a live table of all registrations, chords and sequences
+registrations.map((reg) => (
   <tr key={reg.id}>
     <td>{formatForDisplay(reg.hotkey)}</td>
     <td>{reg.options.meta?.name}</td>

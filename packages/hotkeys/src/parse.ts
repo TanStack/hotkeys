@@ -8,10 +8,34 @@ import { detectPlatform, resolveModifier } from './platform'
 import type { CanonicalModifier, Key } from './key.types'
 import type {
   Hotkey,
+  HotkeyChord,
+  HotkeySequence,
   ParsedHotkey,
   RawHotkey,
   RegisterableHotkey,
+  RegisterableHotkeyChord,
 } from './hotkey.types'
+
+/**
+ * Whether a hotkey is a sequence. Use this instead of `Array.isArray`, which
+ * does not narrow readonly arrays.
+ */
+export function isHotkeySequence(
+  hotkey: RegisterableHotkey,
+): hotkey is HotkeySequence {
+  return Array.isArray(hotkey)
+}
+
+/**
+ * Collapses a one-step sequence to its chord without otherwise changing the hotkey.
+ * Registration APIs treat `['Mod+S']` exactly like `'Mod+S'`.
+ */
+export function simplifyHotkey<T extends RegisterableHotkey>(
+  hotkey: T,
+): T extends HotkeySequence ? Hotkey : T
+export function simplifyHotkey(hotkey: RegisterableHotkey): RegisterableHotkey {
+  return isHotkeySequence(hotkey) && hotkey.length === 1 ? hotkey[0]! : hotkey
+}
 
 /**
  * Parses a hotkey string into its component parts.
@@ -28,7 +52,7 @@ import type {
  * ```
  */
 export function parseHotkey(
-  hotkey: Hotkey | (string & {}),
+  hotkey: HotkeyChord | (string & {}),
   platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
 ): ParsedHotkey {
   const parts = splitHotkeyParts(hotkey)
@@ -149,7 +173,7 @@ export function rawHotkeyToParsedHotkey(
 function normalizedHotkeyStringFromParsed(
   parsed: ParsedHotkey,
   platform: 'mac' | 'windows' | 'linux',
-): Hotkey {
+): HotkeyChord {
   if (parsed.code === undefined) assertLogicalKey(parsed.key)
   const canUseMod =
     platform === 'mac'
@@ -179,7 +203,7 @@ function normalizedHotkeyStringFromParsed(
       ? `[${parsed.code}]`
       : normalizeKeyName(parsed.key),
   )
-  return parts.join('+') as Hotkey
+  return parts.join('+') as HotkeyChord
 }
 
 /**
@@ -205,7 +229,7 @@ function normalizedHotkeyStringFromParsed(
 export function normalizeHotkey(
   hotkey: Key | (string & {}),
   platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
-): Hotkey {
+): HotkeyChord {
   return normalizedHotkeyStringFromParsed(
     parseHotkey(hotkey, platform),
     platform,
@@ -218,18 +242,31 @@ export function normalizeHotkey(
 export function normalizeHotkeyFromParsed(
   parsed: ParsedHotkey,
   platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
-): Hotkey {
+): HotkeyChord {
   return normalizedHotkeyStringFromParsed(parsed, platform)
 }
 
 /**
- * Normalizes a string or {@link RawHotkey} object to the same canonical hotkey string.
+ * Normalizes a chord (string or {@link RawHotkey} object) or a sequence to canonical form.
+ * Each sequence step is normalized, and a one-step sequence becomes its chord.
  * Use this in framework adapters instead of branching on `formatHotkey(rawHotkeyToParsedHotkey(...))`.
  */
+export function normalizeRegisterableHotkey(
+  hotkey: RegisterableHotkeyChord,
+  platform?: 'mac' | 'windows' | 'linux',
+): HotkeyChord
+export function normalizeRegisterableHotkey(
+  hotkey: RegisterableHotkey,
+  platform?: 'mac' | 'windows' | 'linux',
+): Hotkey
 export function normalizeRegisterableHotkey(
   hotkey: RegisterableHotkey,
   platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
 ): Hotkey {
+  if (isHotkeySequence(hotkey)) {
+    const steps = hotkey.map((step) => normalizeHotkey(step, platform))
+    return steps.length === 1 ? steps[0]! : steps
+  }
   return typeof hotkey === 'string'
     ? normalizeHotkey(hotkey, platform)
     : normalizeHotkeyFromParsed(
@@ -309,7 +346,7 @@ export function parseKeyboardEvent(
 export function normalizeHotkeyFromEvent(
   event: KeyboardEvent,
   platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
-): Hotkey {
+): HotkeyChord {
   return normalizedHotkeyStringFromParsed(
     parseKeyboardEvent(event, platform),
     platform,
@@ -334,7 +371,7 @@ export function normalizeHotkeyFromEvent(
  * ```
  */
 export function hasNonModifierKey(
-  hotkey: Hotkey | ParsedHotkey | (string & {}),
+  hotkey: HotkeyChord | ParsedHotkey | (string & {}),
   platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
 ): boolean {
   const parsed =
@@ -360,7 +397,7 @@ export function hasNonModifierKey(
  * Physical tokens such as `[KeyQ]` retain `code`; they never become logical Q.
  */
 export function parseRegisterableHotkey(
-  hotkey: RegisterableHotkey,
+  hotkey: RegisterableHotkeyChord,
   platform = detectPlatform(),
 ): ParsedHotkey {
   return typeof hotkey === 'string'

@@ -3,7 +3,13 @@ id: SvelteHotkeyRecorder
 title: SvelteHotkeyRecorder
 ---
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:8](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L8)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L15)
+
+## Type Parameters
+
+### THotkey
+
+`THotkey` *extends* `Hotkey` = `Hotkey`
 
 ## Properties
 
@@ -13,9 +19,25 @@ Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:8](https
 cancelRecording: () => void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L18)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L27)
 
-Cancel recording without saving
+Cancel recording and call onCancel
+
+#### Returns
+
+`void`
+
+***
+
+### commitRecording
+
+```ts
+commitRecording: () => void;
+```
+
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L29)
+
+Commit the recorded steps now (multi-step recordings)
 
 #### Returns
 
@@ -29,7 +51,7 @@ Cancel recording without saving
 readonly isRecording: boolean;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L10)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L17)
 
 Whether recording is currently active
 
@@ -38,12 +60,12 @@ Whether recording is currently active
 ### recordedHotkey
 
 ```ts
-readonly recordedHotkey: Hotkey | null;
+readonly recordedHotkey: THotkey | null;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L12)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L21)
 
-The currently recorded hotkey (for live preview)
+The last committed hotkey
 
 ***
 
@@ -53,7 +75,7 @@ The currently recorded hotkey (for live preview)
 startRecording: () => void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L14)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L23)
 
 Start recording a new hotkey
 
@@ -63,15 +85,27 @@ Start recording a new hotkey
 
 ***
 
+### steps
+
+```ts
+readonly steps: HotkeySequence;
+```
+
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L19)
+
+Chords recorded so far in a multi-step recording (for live preview)
+
+***
+
 ### stopRecording
 
 ```ts
 stopRecording: () => void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L16)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L25)
 
-Stop recording (same as cancel)
+Stop recording without calling onCancel
 
 #### Returns
 

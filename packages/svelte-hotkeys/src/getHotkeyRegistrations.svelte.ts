@@ -1,57 +1,38 @@
-import {
-  getHotkeyManager,
-  getSequenceManager,
-  toHotkeyRegistrationView,
-} from '@tanstack/hotkeys'
+import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
 import { createStoreSubscriber } from './internal.svelte'
-import type {
-  HotkeyRegistrationView,
-  SequenceRegistrationView,
-} from '@tanstack/hotkeys'
+import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
 
 export interface SvelteHotkeyRegistrations {
+  /** Every registration, chords and sequences. Narrow each view with `kind`. */
   readonly hotkeys: Array<HotkeyRegistrationView>
-  readonly sequences: Array<SequenceRegistrationView>
 }
 
 class HotkeyRegistrationsState implements SvelteHotkeyRegistrations {
-  #hotkeyManager = getHotkeyManager()
-  #sequenceManager = getSequenceManager()
-  #subscribeHotkeys = createStoreSubscriber(this.#hotkeyManager.registrations)
-  #subscribeSequences = createStoreSubscriber(
-    this.#sequenceManager.registrations,
-  )
+  #manager = getHotkeyManager()
+  #subscribe = createStoreSubscriber(this.#manager.registrations)
 
   get hotkeys(): Array<HotkeyRegistrationView> {
-    this.#subscribeHotkeys()
-    return Array.from(this.#hotkeyManager.registrations.state.values()).map(
+    this.#subscribe()
+    return Array.from(this.#manager.registrations.state.values()).map(
       toHotkeyRegistrationView,
     )
-  }
-
-  get sequences(): Array<SequenceRegistrationView> {
-    this.#subscribeSequences()
-    return Array.from(this.#sequenceManager.registrations.state.values())
   }
 }
 
 /**
- * Svelte function that returns reactive access to all hotkey and sequence
- * registrations from the singleton managers.
+ * Svelte function that returns reactive access to every hotkey registration,
+ * chords and sequences, from the singleton HotkeyManager.
  *
- * This is a standalone function that does NOT require the HotkeysProvider.
- *
- * @returns Object with reactive `hotkeys` and `sequences` properties
+ * This function does NOT require the HotkeysProvider.
  *
  * @example
  * ```svelte
- * <script>
- *   import { getHotkeyRegistrations } from '@tanstack/svelte-hotkeys'
- *
+ * <script lang="ts">
  *   const registrations = getHotkeyRegistrations()
  * </script>
- * {#each registrations.hotkeys as reg}
- *   <div>{reg.options.meta?.name} — {reg.triggerCount} triggers</div>
+ *
+ * {#each registrations.hotkeys as reg (reg.id)}
+ *   <li>{reg.options.meta?.name}: {formatForDisplay(reg.hotkey)}</li>
  * {/each}
  * ```
  */

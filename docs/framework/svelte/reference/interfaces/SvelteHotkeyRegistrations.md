@@ -3,7 +3,7 @@ id: SvelteHotkeyRegistrations
 title: SvelteHotkeyRegistrations
 ---
 
-Defined in: [packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts#L12)
+Defined in: [packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts:5](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts#L5)
 
 ## Properties
 
@@ -13,14 +13,6 @@ Defined in: [packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts:12](ht
 readonly hotkeys: HotkeyRegistrationView[];
 ```
 
-Defined in: [packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts#L13)
+Defined in: [packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts:7](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts#L7)
 
-***
-
-### sequences
-
-```ts
-readonly sequences: SequenceRegistrationView[];
-```
-
-Defined in: [packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts#L14)
+Every registration, chords and sequences. Narrow each view with `kind`.

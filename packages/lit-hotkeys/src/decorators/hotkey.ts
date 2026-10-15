@@ -1,17 +1,28 @@
 import { HotkeyController } from '../controllers/hotkey'
-import { HOTKEY_DEFAULT_OPTIONS } from '../constants'
 import type { LitElement } from 'lit'
 import type {
+  AppHotkey,
   HotkeyCallback,
-  HotkeyOptions,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
+import type {
+  AppHotkeyControllerOptions,
+  HotkeyControllerCommonOptions,
+  HotkeyControllerOptionsFor,
+} from '../controllers/hotkey'
+
+type HotkeyDecorator = <T extends HotkeyCallback>(
+  proto: LitElement,
+  propertyKey: string,
+  descriptor?: TypedPropertyDescriptor<T>,
+) => void
 
 /**
- * Decorator that registers a keyboard hotkey on the element when it connects
- * and unregisters when it disconnects. Uses {@link HotkeyController} under the hood.
+ * Decorator that registers a hotkey on the element when it connects and
+ * unregisters when it disconnects: a chord such as `'Mod+S'`, a sequence such
+ * as `['G', 'G']`, or an app hotkey. Uses {@link HotkeyController} under the hood.
  *
- * @param hotkey - The key or key combo to listen for (e.g. `'Mod+S'` or a raw hotkey object).
+ * @param hotkey - The chord, sequence, or app hotkey to listen for.
  * @param options - Optional registration options (target, platform, enabled, etc.).
  * @returns A method decorator for use on LitElement methods.
  *
@@ -21,15 +32,23 @@ import type {
  *   @hotkey('Mod+S')
  *   save() { this.doSave() }
  *
- *   @hotkey('Escape')
- *   close() { this.dismiss() }
+ *   @hotkey(['G', 'G'], { timeout: 500 })
+ *   goToTop() { window.scrollTo(0, 0) }
  * }
  * ```
  */
+export function hotkey<T extends AppHotkey>(
+  hotkey: T,
+  options?: AppHotkeyControllerOptions<T>,
+): HotkeyDecorator
+export function hotkey<T extends RegisterableHotkey>(
+  hotkey: T,
+  options?: HotkeyControllerOptionsFor<T>,
+): HotkeyDecorator
 export function hotkey(
-  hotkey: RegisterableHotkey,
-  options: HotkeyOptions = HOTKEY_DEFAULT_OPTIONS,
-) {
+  hotkey: RegisterableHotkey | AppHotkey,
+  options: HotkeyControllerCommonOptions = {},
+): HotkeyDecorator {
   return function <T extends HotkeyCallback>(
     proto: LitElement,
     propertyKey: string,
@@ -56,9 +75,9 @@ export function hotkey(
           throw new Error(`@hotkey decorator can only be applied to functions`)
         }
 
-        const controller: HotkeyController = new HotkeyController(
+        const controller = new HotkeyController(
           this,
-          hotkey,
+          hotkey as RegisterableHotkey,
           callback,
           options,
         )

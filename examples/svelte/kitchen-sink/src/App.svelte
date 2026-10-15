@@ -99,11 +99,9 @@
       <thead
         ><tr><th>Group / action</th><th>Binding</th><th>Status</th></tr></thead
       ><tbody>
-        {#each [...registry.hotkeys, ...registry.sequences] as reg (reg.id)}<tr
+        {#each registry.hotkeys as reg (reg.id)}<tr
             ><td>{reg.options.meta?.group} / {reg.options.meta?.name}</td><td
-              >{('hotkey' in reg ? [reg.hotkey] : reg.sequence)
-                .map((h) => formatForDisplay(h))
-                .join(' → ')}</td
+              >{formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })}</td
             ><td
               >{reg.options.enabled === false
                 ? 'Disabled'

@@ -33,7 +33,8 @@
     },
     "lint": {
       "cache": true,
-      "inputs": ["default", "{workspaceRoot}/eslint.config.js"]
+      "inputs": ["default", "^production", "{workspaceRoot}/eslint.config.js"],
+      "dependsOn": ["^build"]
     },
     "lint:fix": {
       "cache": true,

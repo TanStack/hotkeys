@@ -1,103 +1,100 @@
 import { createEffect, onCleanup } from 'solid-js'
 import { useSelector } from '@tanstack/solid-store'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
-import { useDefaultHotkeysOptions } from './HotkeysProvider'
-import type { Hotkey, HotkeyRecorderOptions } from '@tanstack/hotkeys'
+import { useDefaultHotkeysOptionsSource } from './defaultOptions'
+import type {
+  Hotkey,
+  HotkeyChord,
+  HotkeyChordRecorderOptions,
+  HotkeyRecorderOptions,
+  HotkeySequence,
+  HotkeySequenceRecorderOptions,
+} from '@tanstack/hotkeys'
 
-export interface SolidHotkeyRecorder {
+export interface SolidHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
   /** Whether recording is currently active */
   isRecording: () => boolean
-  /** The currently recorded hotkey (for live preview) */
-  recordedHotkey: () => Hotkey | null
+  /** Chords recorded so far in a multi-step recording (for live preview) */
+  steps: () => HotkeySequence
+  /** The last committed hotkey */
+  recordedHotkey: () => THotkey | null
   /** Start recording a new hotkey */
   startRecording: () => void
-  /** Stop recording (same as cancel) */
+  /** Stop recording without calling onCancel */
   stopRecording: () => void
-  /** Cancel recording without saving */
+  /** Cancel recording and call onCancel */
   cancelRecording: () => void
+  /** Commit the recorded steps now (multi-step recordings) */
+  commitRecording: () => void
 }
 
 /**
- * SolidJS primitive for recording keyboard shortcuts.
+ * Solid primitive for recording keyboard shortcuts. Options may be an accessor.
  *
- * This primitive provides a thin wrapper around the framework-agnostic `HotkeyRecorder`
- * class, managing all the complexity of capturing keyboard events, converting them
- * to hotkey strings, and handling edge cases like Escape to cancel or Backspace/Delete
- * to clear.
- *
- * This primitive uses `useSelector` from `@tanstack/solid-store` to subscribe
- * to the recorder's store state (same pattern as useHotkeyRecorder in React).
- *
- * @param options - Configuration options for the recorder (or accessor function)
- * @returns An object with recording state signals and control functions
+ * With the default `maxSteps: 1`, the first valid chord is recorded. With a
+ * larger `maxSteps`, each chord adds a step; the recording commits on Enter
+ * (unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at `maxSteps`, and
+ * `onRecord` receives a chord (one step) or a sequence.
  *
  * @example
  * ```tsx
- * function ShortcutSettings() {
- *   const [shortcut, setShortcut] = createSignal<Hotkey>('Mod+S')
- *
- *   const recorder = createHotkeyRecorder({
- *     onRecord: (hotkey) => {
- *       setShortcut(hotkey)
- *     },
- *     onCancel: () => {
- *       console.log('Recording cancelled')
- *     },
- *   })
- *
- *   return (
- *     <div>
- *       <button onClick={recorder.startRecording}>
- *         {recorder.isRecording() ? 'Recording...' : 'Edit Shortcut'}
- *       </button>
- *       <Show when={recorder.recordedHotkey()}>
- *         <div>Recording: {recorder.recordedHotkey()}</div>
- *       </Show>
- *     </div>
- *   )
- * }
+ * const recorder = createHotkeyRecorder({ onRecord: setShortcut })
+ * const sequenceRecorder = createHotkeyRecorder({ maxSteps: 3, onRecord: setShortcut })
  * ```
  */
 export function createHotkeyRecorder(
+  options: HotkeyChordRecorderOptions,
+): SolidHotkeyRecorder<HotkeyChord>
+export function createHotkeyRecorder(
+  options: HotkeySequenceRecorderOptions,
+): SolidHotkeyRecorder
+// Getter overloads list sequences first: TypeScript keeps a lambda's parameter
+// types from the first overload it tries, and sequence types also fit chords.
+export function createHotkeyRecorder(
+  options: () => HotkeySequenceRecorderOptions,
+): SolidHotkeyRecorder
+export function createHotkeyRecorder(
+  options: () => HotkeyChordRecorderOptions,
+): SolidHotkeyRecorder<HotkeyChord>
+export function createHotkeyRecorder(
+  options: () => HotkeyRecorderOptions,
+): SolidHotkeyRecorder
+export function createHotkeyRecorder(
   options: HotkeyRecorderOptions | (() => HotkeyRecorderOptions),
 ): SolidHotkeyRecorder {
-  const defaultOptions = useDefaultHotkeysOptions()
+  const defaultOptions = useDefaultHotkeysOptionsSource()
+  const resolve = () =>
+    ({
+      ...defaultOptions().hotkeyRecorder,
+      ...(typeof options === 'function' ? options() : options),
+    }) as HotkeySequenceRecorderOptions
 
-  const resolvedOptions = typeof options === 'function' ? options() : options
-  const mergedOptions = {
-    ...defaultOptions.hotkeyRecorder,
-    ...resolvedOptions,
-  }
+  // Create recorder once synchronously; overloads already checked the options.
+  const recorder = new HotkeyRecorder(resolve())
 
-  // Create recorder once synchronously (matches React's useRef pattern)
-  const recorder = new HotkeyRecorder(mergedOptions)
-
-  // Subscribe to recorder state using useSelector (same pattern as useHotkeyRecorder)
   const isRecording = useSelector(recorder.store, (state) => state.isRecording)
+  const steps = useSelector(recorder.store, (state) => state.steps)
   const recordedHotkey = useSelector(
     recorder.store,
     (state) => state.recordedHotkey,
   )
 
-  // Sync options on every effect run (matches React's sync on render)
+  // Sync options whenever reactive options change
   createEffect(() => {
-    const resolved = typeof options === 'function' ? options() : options
-    recorder.setOptions({
-      ...defaultOptions.hotkeyRecorder,
-      ...resolved,
-    })
+    recorder.setOptions(resolve())
   })
 
-  // Cleanup on unmount
   onCleanup(() => {
     recorder.destroy()
   })
 
   return {
     isRecording,
+    steps,
     recordedHotkey,
     startRecording: () => recorder.start(),
     stopRecording: () => recorder.stop(),
     cancelRecording: () => recorder.cancel(),
+    commitRecording: () => recorder.commit(),
   }
 }

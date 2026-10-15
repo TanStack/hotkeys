@@ -3,49 +3,98 @@ id: createHotkeyAttachment
 title: createHotkeyAttachment
 ---
 
+## Call Signature
+
 ```ts
-function createHotkeyAttachment(
+function createHotkeyAttachment<T>(
    hotkey, 
    callback, 
 options?): Attachment<HTMLElement>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:130](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L130)
+Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:93](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L93)
 
-Create an attachment for element-scoped hotkeys.
+Create an attachment for an element-scoped hotkey: a chord, a sequence, or
+an app hotkey that listens on the attached element.
 
-## Parameters
+### Type Parameters
 
-### hotkey
+#### T
 
-`MaybeGetter`\<`RegisterableHotkey`\>
+`T` *extends* `AppHotkey`\<`string`, `HotkeyChord` \| `HotkeySequence` \| `null`\>
 
-### callback
+### Parameters
+
+#### hotkey
+
+`MaybeGetter`\<`T`\>
+
+#### callback
 
 `HotkeyCallback`
 
-### options?
+#### options?
 
-`MaybeGetter`\<[`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md)\> = `{}`
+`MaybeGetter`\<[`CreateAppHotkeyOptions`](../type-aliases/CreateAppHotkeyOptions.md)\<`T`\>\>
 
-## Returns
+### Returns
 
 `Attachment`\<`HTMLElement`\>
 
-## Example
+### Example
 
 ```svelte
 <script lang="ts">
-  import { createHotkeyAttachment } from '@tanstack/svelte-hotkeys'
-
-  let count = $state(0)
-  const saveHotkey = createHotkeyAttachment('Mod+S', () => {
-    count++
-  })
-
+  const saveKey = createHotkeyAttachment('Mod+S', () => save())
 </script>
 
-<div tabindex="0" {@attach saveHotkey}>
-  Count: {count}
-</div>
+<div tabindex="0" {@attach saveKey}>Editor content</div>
+```
+
+## Call Signature
+
+```ts
+function createHotkeyAttachment<T>(
+   hotkey, 
+   callback, 
+options?): Attachment<HTMLElement>;
+```
+
+Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:98](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L98)
+
+Create an attachment for an element-scoped hotkey: a chord, a sequence, or
+an app hotkey that listens on the attached element.
+
+### Type Parameters
+
+#### T
+
+`T` *extends* `RegisterableHotkey`
+
+### Parameters
+
+#### hotkey
+
+`MaybeGetter`\<`T`\>
+
+#### callback
+
+`HotkeyCallback`
+
+#### options?
+
+`MaybeGetter`\<`AdapterOptionsFor`\<`T`, [`CreateHotkeyTarget`](../type-aliases/CreateHotkeyTarget.md)\>\>
+
+### Returns
+
+`Attachment`\<`HTMLElement`\>
+
+### Example
+
+```svelte
+<script lang="ts">
+  const saveKey = createHotkeyAttachment('Mod+S', () => save())
+</script>
+
+<div tabindex="0" {@attach saveKey}>Editor content</div>
 ```

@@ -3,44 +3,29 @@ id: HotkeysProviderOptions
 title: HotkeysProviderOptions
 ---
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L10)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L12)
 
 ## Properties
 
 ### hotkey?
 
 ```ts
-optional hotkey?: Partial<CreateHotkeyOptions>;
+optional hotkey?: CreateHotkeyCommonOptions;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L11)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L17)
+
+Defaults for every hotkey registered by `createHotkey` and `createHotkeys`.
+`requireReset` applies to chords and `timeout` applies to sequences.
 
 ***
 
 ### hotkeyRecorder?
 
 ```ts
-optional hotkeyRecorder?: Partial<HotkeyRecorderOptions>;
+optional hotkeyRecorder?: Partial<Omit<HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions, "maxSteps" | "validate" | "onRecord">>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L12)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L19)
 
-***
-
-### hotkeySequence?
-
-```ts
-optional hotkeySequence?: Partial<CreateHotkeySequenceOptions>;
-```
-
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L14)
-
-***
-
-### hotkeySequenceRecorder?
-
-```ts
-optional hotkeySequenceRecorder?: Partial<HotkeySequenceRecorderOptions>;
-```
-
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L13)
+Defaults for every `createHotkeyRecorder`.

@@ -4,7 +4,7 @@ import {
   createMultiHotkeyHandler,
   matchesKeyboardEvent,
 } from '../src/match'
-import type { Hotkey } from '../src'
+import type { HotkeyChord } from '../src'
 
 /**
  * Helper to create a mock KeyboardEvent
@@ -284,9 +284,9 @@ describe('matchesKeyboardEvent', () => {
         metaKey: true,
         code: 'KeyT', // uppercase
       })
-      expect(matchesKeyboardEvent(event2, 'Mod+Alt+t' as Hotkey, 'mac')).toBe(
-        true,
-      )
+      expect(
+        matchesKeyboardEvent(event2, 'Mod+Alt+t' as HotkeyChord, 'mac'),
+      ).toBe(true)
     })
   })
 
@@ -354,10 +354,10 @@ describe('matchesKeyboardEvent', () => {
         code: 'KeyA',
       })
       expect(
-        matchesKeyboardEvent(event, 'Control+ф' as Hotkey, 'windows'),
+        matchesKeyboardEvent(event, 'Control+ф' as HotkeyChord, 'windows'),
       ).toBe(true)
       expect(
-        matchesKeyboardEvent(event, 'Control+Ф' as Hotkey, 'windows'),
+        matchesKeyboardEvent(event, 'Control+Ф' as HotkeyChord, 'windows'),
       ).toBe(true)
     })
 
@@ -386,9 +386,9 @@ describe('matchesKeyboardEvent', () => {
           altKey: true,
           code,
         })
-        expect(matchesKeyboardEvent(event, `Alt+${letter}` as Hotkey)).toBe(
-          true,
-        )
+        expect(
+          matchesKeyboardEvent(event, `Alt+${letter}` as HotkeyChord),
+        ).toBe(true)
       }
     })
 
@@ -408,7 +408,7 @@ describe('matchesKeyboardEvent', () => {
           code,
         })
         expect(
-          matchesKeyboardEvent(event, `Alt+Shift+${letter}` as Hotkey),
+          matchesKeyboardEvent(event, `Alt+Shift+${letter}` as HotkeyChord),
         ).toBe(true)
       }
     })
@@ -422,7 +422,7 @@ describe('matchesKeyboardEvent', () => {
 
     it('should preserve native Latin logical letters', () => {
       const event = createKeyboardEvent('ø', { code: 'Semicolon' })
-      expect(matchesKeyboardEvent(event, 'ø' as Hotkey)).toBe(true)
+      expect(matchesKeyboardEvent(event, 'ø' as HotkeyChord)).toBe(true)
       expect(matchesKeyboardEvent(event, ';')).toBe(true)
     })
 
@@ -441,9 +441,9 @@ describe('matchesKeyboardEvent', () => {
       ['Arabic-Indic digit', '١', 'Digit1', 'Control+1'],
     ])('uses the physical fallback for %s output', (_, key, code, hotkey) => {
       const event = createKeyboardEvent(key, { ctrlKey: true, code })
-      expect(matchesKeyboardEvent(event, hotkey as Hotkey, 'windows')).toBe(
-        true,
-      )
+      expect(
+        matchesKeyboardEvent(event, hotkey as HotkeyChord, 'windows'),
+      ).toBe(true)
     })
   })
 
@@ -484,7 +484,9 @@ describe('matchesKeyboardEvent', () => {
           modifiers: ['Control'],
         }),
       ).toBe(true)
-      expect(matchesKeyboardEvent(event, 'Control+Plus' as Hotkey)).toBe(true)
+      expect(matchesKeyboardEvent(event, 'Control+Plus' as HotkeyChord)).toBe(
+        true,
+      )
     })
 
     it('ignores printable hotkeys during composition', () => {
@@ -505,7 +507,129 @@ describe('matchesKeyboardEvent', () => {
       expect(matchesKeyboardEvent(event, 'Control+Alt+Q', 'windows')).toBe(
         false,
       )
-      expect(matchesKeyboardEvent(event, '@' as Hotkey, 'windows')).toBe(true)
+      expect(matchesKeyboardEvent(event, '@' as HotkeyChord, 'windows')).toBe(
+        true,
+      )
+    })
+  })
+
+  describe('AltGraph character entry', () => {
+    // Current Chrome and Firefox clear Control/Alt and report only AltGraph.
+    // Keep the Control+Alt shape for older browsers and synthetic events.
+    const altGraphEvents = [
+      ['Control+Alt flags', 'windows', { ctrlKey: true, altKey: true }],
+      ['AltGraph only (Windows)', 'windows', {}],
+      ['AltGraph only (Linux)', 'linux', {}],
+    ] as const
+
+    describe.each(altGraphEvents)('%s', (_, platform, flags) => {
+      const altGr = (
+        key: string,
+        code: string,
+        options: { shiftKey?: boolean } = {},
+      ) =>
+        createKeyboardEvent(key, { ...flags, ...options, code, altGraph: true })
+
+      it.each([
+        ['µ', 'KeyM', 'M'],
+        ['ć', 'KeyC', 'C'],
+        ['ł', 'KeyL', 'L'],
+        ['@', 'KeyQ', 'Q'],
+        ['€', 'KeyE', 'E'],
+        ['[', 'Digit8', '8'],
+        ['ф', 'KeyA', 'A'],
+        [' ', 'Space', 'Space'],
+        ['Dead', 'KeyE', 'E'],
+      ])(
+        'does not fall back to the physical key for %s',
+        (key, code, hotkey) => {
+          expect(
+            matchesKeyboardEvent(
+              altGr(key, code),
+              hotkey as HotkeyChord,
+              platform,
+            ),
+          ).toBe(false)
+        },
+      )
+
+      it.each([
+        ['µ', 'KeyM', '[KeyM]'],
+        ['@', 'KeyQ', '[KeyQ]'],
+        ['[', 'Digit8', '[Digit8]'],
+        [' ', 'Space', '[Space]'],
+      ])('does not match physical binding for %s', (key, code, hotkey) => {
+        expect(
+          matchesKeyboardEvent(
+            altGr(key, code),
+            hotkey as HotkeyChord,
+            platform,
+          ),
+        ).toBe(false)
+      })
+
+      it('does not fall back for Shift+AltGraph characters', () => {
+        const event = altGr('º', 'KeyM', { shiftKey: true })
+        expect(matchesKeyboardEvent(event, 'Shift+M', platform)).toBe(false)
+        expect(matchesKeyboardEvent(event, 'Shift+[KeyM]', platform)).toBe(
+          false,
+        )
+      })
+
+      it.each([
+        ['@', 'KeyQ'],
+        ['€', 'KeyE'],
+        ['µ', 'KeyM'],
+        ['[', 'Digit8'],
+        ['}', 'Digit0'],
+        ['\\', 'Minus'],
+      ])('still matches the produced character %s', (key, code) => {
+        expect(
+          matchesKeyboardEvent(altGr(key, code), key as HotkeyChord, platform),
+        ).toBe(true)
+      })
+
+      it('does not match Control+Alt hotkeys', () => {
+        const event = altGr('µ', 'KeyM')
+        expect(matchesKeyboardEvent(event, 'Control+Alt+M', platform)).toBe(
+          false,
+        )
+        expect(
+          matchesKeyboardEvent(event, 'Control+Alt+[KeyM]', platform),
+        ).toBe(false)
+      })
+    })
+
+    it('keeps physical fallbacks for non-Latin layouts without AltGraph', () => {
+      expect(
+        matchesKeyboardEvent(createKeyboardEvent('ф', { code: 'KeyA' }), 'A'),
+      ).toBe(true)
+      expect(
+        matchesKeyboardEvent(
+          createKeyboardEvent('ф', { code: 'KeyA' }),
+          '[KeyA]',
+        ),
+      ).toBe(true)
+    })
+
+    it('keeps physical bindings for Control+Alt without AltGraph', () => {
+      const event = createKeyboardEvent('m', {
+        ctrlKey: true,
+        altKey: true,
+        code: 'KeyM',
+      })
+      expect(matchesKeyboardEvent(event, 'Control+Alt+[KeyM]')).toBe(true)
+      expect(matchesKeyboardEvent(event, '[KeyM]')).toBe(false)
+    })
+
+    it('ignores the AltGraph state macOS reports for Option', () => {
+      const event = createKeyboardEvent('µ', {
+        altKey: true,
+        code: 'KeyM',
+        altGraph: true,
+      })
+      expect(matchesKeyboardEvent(event, 'Alt+M', 'mac')).toBe(true)
+      expect(matchesKeyboardEvent(event, 'Alt+[KeyM]', 'mac')).toBe(true)
     })
   })
 
@@ -657,7 +781,9 @@ describe('matchesKeyboardEvent', () => {
           shiftKey: true,
           code: `Digit${i}`,
         })
-        expect(matchesKeyboardEvent(event, `Shift+${i}` as Hotkey)).toBe(true)
+        expect(matchesKeyboardEvent(event, `Shift+${i}` as HotkeyChord)).toBe(
+          true,
+        )
       }
     })
 
@@ -670,7 +796,7 @@ describe('matchesKeyboardEvent', () => {
   describe('Unicode normalization edge cases', () => {
     it('should match ß key despite toUpperCase expanding to multi-char', () => {
       const event = createKeyboardEvent('ß', { code: 'KeyS' })
-      expect(matchesKeyboardEvent(event, 'ß' as Hotkey)).toBe(true)
+      expect(matchesKeyboardEvent(event, 'ß' as HotkeyChord)).toBe(true)
     })
 
     it('should match ß with Alt+S via code fallback', () => {
@@ -705,17 +831,17 @@ describe('matchesKeyboardEvent', () => {
   describe('key alias matching', () => {
     it('should match aliased key names', () => {
       const event = createKeyboardEvent('Escape')
-      expect(matchesKeyboardEvent(event, 'Esc' as Hotkey)).toBe(true)
+      expect(matchesKeyboardEvent(event, 'Esc' as HotkeyChord)).toBe(true)
     })
 
     it('should match arrow key aliases', () => {
       const event = createKeyboardEvent('ArrowUp')
-      expect(matchesKeyboardEvent(event, 'Up' as Hotkey)).toBe(true)
+      expect(matchesKeyboardEvent(event, 'Up' as HotkeyChord)).toBe(true)
     })
 
     it('should match function keys case-insensitively', () => {
       const event = createKeyboardEvent('F5')
-      expect(matchesKeyboardEvent(event, 'f5' as Hotkey)).toBe(true)
+      expect(matchesKeyboardEvent(event, 'f5' as HotkeyChord)).toBe(true)
     })
   })
 
@@ -725,7 +851,7 @@ describe('matchesKeyboardEvent', () => {
         altKey: true,
         code: 'BracketLeft',
       })
-      expect(matchesKeyboardEvent(event, 'Alt+[' as Hotkey)).toBe(true)
+      expect(matchesKeyboardEvent(event, 'Alt+[' as HotkeyChord)).toBe(true)
     })
 
     it('should not match dead key with unknown code', () => {
@@ -733,7 +859,7 @@ describe('matchesKeyboardEvent', () => {
         altKey: true,
         code: 'UnknownCode',
       })
-      expect(matchesKeyboardEvent(event, 'Alt+[' as Hotkey)).toBe(false)
+      expect(matchesKeyboardEvent(event, 'Alt+[' as HotkeyChord)).toBe(false)
     })
   })
 
@@ -743,7 +869,7 @@ describe('matchesKeyboardEvent', () => {
         altKey: true,
         code: 'Minus',
       })
-      expect(matchesKeyboardEvent(event, 'Alt+-' as Hotkey)).toBe(true)
+      expect(matchesKeyboardEvent(event, 'Alt+-' as HotkeyChord)).toBe(true)
     })
 
     it('should fallback to event.code for all punctuation keys with Alt', () => {
@@ -766,7 +892,7 @@ describe('matchesKeyboardEvent', () => {
           code,
         })
         expect(
-          matchesKeyboardEvent(event, `Alt+${expectedKey}` as Hotkey),
+          matchesKeyboardEvent(event, `Alt+${expectedKey}` as HotkeyChord),
         ).toBe(true)
       }
     })
@@ -778,14 +904,14 @@ describe('matchesKeyboardEvent', () => {
         metaKey: true,
         code: 'Minus',
       })
-      expect(matchesKeyboardEvent(event, 'Mod+Alt+-' as Hotkey, 'mac')).toBe(
-        true,
-      )
+      expect(
+        matchesKeyboardEvent(event, 'Mod+Alt+-' as HotkeyChord, 'mac'),
+      ).toBe(true)
     })
 
     it('should still match punctuation keys directly without fallback', () => {
       const event = createKeyboardEvent('-', { code: 'Minus' })
-      expect(matchesKeyboardEvent(event, '-' as Hotkey)).toBe(true)
+      expect(matchesKeyboardEvent(event, '-' as HotkeyChord)).toBe(true)
     })
 
     it('should not match punctuation fallback if code is missing', () => {
@@ -793,7 +919,7 @@ describe('matchesKeyboardEvent', () => {
         altKey: true,
         code: undefined,
       })
-      expect(matchesKeyboardEvent(event, 'Alt+-' as Hotkey)).toBe(false)
+      expect(matchesKeyboardEvent(event, 'Alt+-' as HotkeyChord)).toBe(false)
     })
 
     it('should match Ctrl+punctuation without needing fallback (non-macOS)', () => {
@@ -801,7 +927,7 @@ describe('matchesKeyboardEvent', () => {
         ctrlKey: true,
         code: 'Minus',
       })
-      expect(matchesKeyboardEvent(event, 'Control+-' as Hotkey)).toBe(true)
+      expect(matchesKeyboardEvent(event, 'Control+-' as HotkeyChord)).toBe(true)
     })
   })
 

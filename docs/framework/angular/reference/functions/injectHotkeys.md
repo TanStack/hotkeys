@@ -7,67 +7,37 @@ title: injectHotkeys
 function injectHotkeys(hotkeys, commonOptions?): void;
 ```
 
-Defined in: [injectHotkeys.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L75)
+Defined in: [injectHotkeys.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L36)
 
-Angular inject-based API for registering multiple keyboard hotkeys at once.
+Angular inject-based API for registering several hotkeys at once: chords,
+sequences, and app hotkeys. Pass a getter for a reactive list.
 
-Uses the singleton HotkeyManager for efficient event handling.
-Accepts a dynamic array of hotkey definitions.
-
-Call in an injection context (e.g. constructor or field initializer).
-Uses effect() to track reactive dependencies and update registrations
-when options or the callback change.
-
-Options are merged in this order:
-provideHotkeys defaults < commonOptions < per-definition options
+Options merge in this order: provider defaults, app hotkey declaration,
+commonOptions, per-hotkey options. Each option applies only to the kinds
+that support it. Unbound app hotkeys and empty sequences register nothing.
+A `null` target skips registration until it is set.
 
 ## Parameters
 
 ### hotkeys
 
-  \| [`InjectHotkeyDefinition`](../interfaces/InjectHotkeyDefinition.md)[]
-  \| (() => [`InjectHotkeyDefinition`](../interfaces/InjectHotkeyDefinition.md)[])
-
-Array of hotkey definitions, or getter returning them
+  \| readonly [`InjectHotkeyDefinition`](../type-aliases/InjectHotkeyDefinition.md)[]
+  \| (() => readonly [`InjectHotkeyDefinition`](../type-aliases/InjectHotkeyDefinition.md)[])
 
 ### commonOptions?
 
-  \| [`InjectHotkeyOptions`](../interfaces/InjectHotkeyOptions.md)
-  \| (() => [`InjectHotkeyOptions`](../interfaces/InjectHotkeyOptions.md))
-
-Shared options for all hotkeys, or getter
+  \| [`InjectHotkeyCommonOptions`](../type-aliases/InjectHotkeyCommonOptions.md)
+  \| (() => [`InjectHotkeyCommonOptions`](../type-aliases/InjectHotkeyCommonOptions.md))
 
 ## Returns
 
 `void`
 
-## Examples
+## Example
 
 ```ts
-@Component({ ... })
-export class EditorComponent {
-  constructor() {
-    injectHotkeys([
-      { hotkey: 'Mod+S', callback: () => this.save() },
-      { hotkey: 'Mod+Z', callback: () => this.undo() },
-      { hotkey: 'Escape', callback: () => this.close() },
-    ])
-  }
-}
-```
-
-```ts
-@Component({ ... })
-export class DynamicShortcuts {
-  shortcuts = signal([...])
-
-  constructor() {
-    injectHotkeys(
-      () => this.shortcuts().map((s) => ({
-        hotkey: s.key,
-        callback: s.action,
-      })),
-    )
-  }
-}
+injectHotkeys([
+  { hotkey: 'Mod+S', callback: () => this.save() },
+  { hotkey: ['G', 'G'], callback: () => this.scrollToTop(), options: { timeout: 500 } },
+])
 ```

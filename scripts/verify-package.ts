@@ -15,6 +15,7 @@ interface PackedManifest {
   files: Array<string>
   exports: Record<string, ExportTarget>
   dependencies?: Record<string, string>
+  'ember-addon'?: { version: number; main: string }
 }
 
 // Validate an actual pnpm tarball, not the workspace where unpublished source
@@ -37,10 +38,17 @@ try {
   ) as PackedManifest
 
   assert.equal(manifest.type, 'module', 'Packages must be ESM')
-  assert.equal(manifest.engines.node, '>=20')
+  assert.equal(
+    manifest.engines.node,
+    manifest.name === '@tanstack/octane-hotkeys' ? '>=22.22.2' : '>=20',
+  )
   assert.equal(manifest.types, './dist/index.d.ts')
   assert.equal(manifest.main, undefined, 'Do not restore a legacy main entry')
-  assert.deepEqual(manifest.files, ['dist'])
+  const emberAddon = manifest['ember-addon']?.version === 2
+  assert.deepEqual(
+    manifest.files,
+    emberAddon ? ['dist', 'addon-main.cjs'] : ['dist'],
+  )
   assert.ok(manifest.exports['.'], 'The package must export its main entry')
 
   function checkFile(target: string) {
@@ -75,14 +83,19 @@ try {
   let unpackedBytes = 0
   for (const file of files) {
     assert.ok(
-      file.startsWith('dist/') ||
+      (emberAddon && file === 'addon-main.cjs') ||
+        file.startsWith('dist/') ||
         /^(package\.json|readme(?:\..*)?|licen[cs]e(?:\..*)?|changelog(?:\..*)?)$/i.test(
           file,
         ),
       `Unexpected published file: ${file}`,
     )
     assert.ok(!/(^|\/)src\//.test(file), `Published source directory: ${file}`)
-    assert.ok(!/\.(?:cjs|cts|map)$/.test(file), `Legacy output or map: ${file}`)
+    assert.ok(
+      (emberAddon && file === 'addon-main.cjs') ||
+        !/\.(?:cjs|cts|map)$/.test(file),
+      `Legacy output or map: ${file}`,
+    )
     assert.ok(
       !/\.[cm]?tsx?$/.test(file) || file.endsWith('.d.ts'),
       `Uncompiled TypeScript: ${file}`,

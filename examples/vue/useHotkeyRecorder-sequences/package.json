@@ -1,0 +1,26 @@
+{
+  "name": "@tanstack/hotkeys-example-vue-use-hotkey-recorder-sequences",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3069",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test:types": "tsc"
+  },
+  "dependencies": {
+    "@tanstack/vue-hotkeys": "^0.14.1",
+    "vue": "^3.5.43"
+  },
+  "devDependencies": {
+    "@tanstack/vue-devtools": "^0.2.27",
+    "@tanstack/vue-hotkeys-devtools": "^0.10.2",
+    "@typescript-eslint/parser": "^8.71.0",
+    "@vitejs/plugin-vue": "^6.0.9",
+    "typescript": "6.0.3",
+    "vite": "^8.3.2",
+    "vue-eslint-parser": "10.4.1"
+  }
+}

@@ -132,7 +132,6 @@ function App() {
           console.log(`${s.name} triggered:`, s.hotkey)
         },
         options: {
-          enabled: !isRecording,
           meta: {
             name: s.name,
             description: s.description,
@@ -257,14 +256,13 @@ useHotkeys(
     hotkey: s.hotkey,
     callback: () => handleAction(s.id),
     options: {
-      enabled: !isRecording,
       meta: { name: s.name, description: s.description },
     },
   })),
 )
 
 // Read all registrations reactively
-const { hotkeys } = useHotkeyRegistrations()
+const hotkeys = useHotkeyRegistrations()
 // hotkeys[0].options.meta?.name → 'Save'
 // hotkeys[0].triggerCount → 3`}</pre>
         </section>
@@ -278,7 +276,7 @@ const { hotkeys } = useHotkeyRegistrations()
 // ---------------------------------------------------------------------------
 
 function RegistrationsViewer() {
-  const { hotkeys } = useHotkeyRegistrations()
+  const hotkeys = useHotkeyRegistrations()
 
   return (
     <section className="demo-section">

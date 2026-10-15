@@ -2,21 +2,16 @@
 import { inject, ref } from 'vue'
 import {
   formatForDisplay,
+  isHotkeySequence,
   useHotkey,
   useHotkeyRecorder,
-  useHotkeySequence,
-  useHotkeySequenceRecorder,
 } from '@tanstack/vue-hotkeys'
-import type {
-  Hotkey,
-  HotkeySequence,
-  RecorderKeyMode,
-} from '@tanstack/vue-hotkeys'
+import type { Hotkey, RecorderKeyMode } from '@tanstack/vue-hotkeys'
 
 const log = inject<(message: string) => void>('log')!
 const initial: Hotkey = 'Alt+[KeyR]'
 const hotkey = ref<Hotkey>(initial),
-  sequence = ref<HotkeySequence>(['[KeyX]', '[KeyY]'])
+  sequence = ref<Hotkey>(['[KeyX]', '[KeyY]'])
 const mode = ref<RecorderKeyMode>('code'),
   problem = ref(''),
   idle = ref(false),
@@ -24,7 +19,7 @@ const mode = ref<RecorderKeyMode>('code'),
 useHotkey(hotkey, () => log('Recorded shortcut fired'), {
   meta: { name: 'Recorded action', group: 'Recording' },
 })
-useHotkeySequence(sequence, () => log('Recorded sequence fired'), {
+useHotkey(sequence, () => log('Recorded sequence fired'), {
   meta: { name: 'Recorded sequence', group: 'Recording' },
 })
 const recorder = useHotkeyRecorder(() => ({
@@ -49,7 +44,9 @@ const recorder = useHotkeyRecorder(() => ({
     problem.value = 'Cancelled'
   },
 }))
-const seq = useHotkeySequenceRecorder(() => ({
+// maxSteps above 1 records sequences; one step records a chord.
+const seq = useHotkeyRecorder(() => ({
+  maxSteps: Infinity,
   recordBy: mode.value,
   ignoreInputs: false,
   idleTimeoutMs: idle.value ? 1500 : undefined,
@@ -57,7 +54,9 @@ const seq = useHotkeySequenceRecorder(() => ({
   detectConflicts: {
     exclude: (reg) => reg.options.meta?.name === 'Recorded sequence',
   },
-  validate: (steps) => steps.length >= 2 || 'Record at least two chords.',
+  validate: (value) =>
+    (isHotkeySequence(value) && value.length >= 2) ||
+    'Record at least two chords.',
   onRecord: (value) => {
     sequence.value = value
     problem.value = ''
@@ -110,9 +109,9 @@ function resetShortcut() {
     <h3>Sequence</h3>
     <p>
       {{
-        (seq.isRecording.value ? seq.steps.value : sequence)
-          .map((h) => formatForDisplay(h))
-          .join(' → ')
+        formatForDisplay(seq.isRecording.value ? seq.steps.value : sequence, {
+          sequenceSeparator: ' → ',
+        })
       }}
     </p>
     <label

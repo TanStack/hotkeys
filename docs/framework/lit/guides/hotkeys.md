@@ -7,6 +7,23 @@ The `@hotkey` decorator is the primary way to register keyboard shortcuts in Lit
 
 Both approaches wrap the singleton `HotkeyManager` with automatic lifecycle management tied to Lit's `connectedCallback` / `disconnectedCallback`.
 
+## Chords and sequences
+
+A hotkey is either a **chord**, keys pressed together such as `'Mod+S'`, or a **sequence**, chords pressed one after another such as `['G', 'G']`. Every API in this guide accepts both, and a one-step array such as `['Mod+S']` is the chord `'Mod+S'`.
+
+```ts
+@hotkey('Mod+S') // chord
+save() {}
+
+@hotkey(['G', 'G'], { timeout: 500 }) // sequence
+scrollToTop() {}
+
+@hotkey('Escape', { requireReset: true }) // chord-only option
+close() {}
+```
+
+Most options apply to both kinds. `requireReset` applies only to chords and `timeout` only to sequences, and TypeScript rejects options that don't match the hotkey. When the kind isn't known statically, such as a `Hotkey` loaded from settings, only the shared options are accepted. Defaults apply only to the kinds that support them. See the [Sequences Guide](./sequences) for timing and matching, and the [App Hotkeys Guide](./app-hotkeys) to declare hotkeys up front and let users customize them.
+
 ## Logical keys and physical positions
 
 Use a logical binding when the shortcut should follow the character on the active layout. Use a physical binding when it should follow a keyboard position:
@@ -93,6 +110,41 @@ class MyEditor extends LitElement {
 ### Changing a binding
 
 Pass a new logical or physical binding through your framework's normal state mechanism. A recorder result such as `Alt+[KeyS]` can be passed directly to the same registration API. Keep an initial binding in application state if you want a reset button; the library does not need a separate preferences store.
+
+## Property getters
+
+`HotkeyController` accepts property getters or functions returning options. Controllers read options when the host connects and after each host update, so scoped targets can become available during rendering.
+
+```ts
+import { LitElement, html } from 'lit'
+import { HotkeyController } from '@tanstack/lit-hotkeys'
+
+export class Editor extends LitElement {
+	static properties = { enabled: { type: Boolean } }
+	declare enabled: boolean
+
+	constructor() {
+		super()
+		this.enabled = true
+		const component = this
+		this.addController(new HotkeyController(this, 'Mod+S', () => console.log('Save'), {
+			get enabled() {
+				return component.enabled
+			},
+		}))
+	}
+
+	render() {
+		return html`<button @click=${() => this.enabled = !this.enabled}>Toggle shortcut</button>`
+	}
+}
+```
+
+You can also pass `() => ({ enabled: this.enabled })`. Use Lit reactive properties, or call `requestUpdate()` after changing plain state. A getter alone does not schedule a host update. Ordinary option changes preserve registration identity. Changing the target moves listeners, and disconnecting releases registrations. For options that depend on the element instance, use a controller rather than decorator configuration created at class definition time.
+
+The hotkey can be a getter too, such as `() => this.binding` for a binding the user records. Changing the value it returns registers the new hotkey after the next host update.
+
+Recorder controllers accept the same two forms and read them during recording, including active sessions. Callback values remain functions and are not invoked to resolve options.
 
 ## Default options
 
@@ -352,7 +404,7 @@ Group is descriptive metadata, not an execution scope. A shortcuts panel can gro
 
 ## Introspecting registrations
 
-Use `HotkeyRegistrationsController` to get a live view of all hotkey and sequence registrations. Use it to build shortcut palettes, help dialogs, or devtools.
+Use the `HotkeyRegistrationsController` controller to get a live view of every registration, chords and sequences together. It's the building block for shortcut palettes and help dialogs.
 
 ```ts
 import { LitElement, html } from 'lit'
@@ -364,42 +416,26 @@ class ShortcutPalette extends LitElement {
   private registrations = new HotkeyRegistrationsController(this)
 
   render() {
-    const { hotkeys, sequences } = this.registrations
-
-    return html`
-      <h2>Keyboard Shortcuts</h2>
-      <ul>
-        ${hotkeys.map(
-          (reg) => html`
-            <li>
-              <kbd>${formatForDisplay(reg.hotkey)}</kbd>
-              ${reg.options.meta?.name ? html`<span> — ${reg.options.meta.name}</span>` : ''}
-              ${reg.options.meta?.description ? html`<p>${reg.options.meta.description}</p>` : ''}
-            </li>
-          `,
-        )}
-      </ul>
-      ${sequences.length > 0
-        ? html`
-            <h2>Sequences</h2>
-            <ul>
-              ${sequences.map(
-                (reg) => html`
-                  <li>
-                    <kbd>${reg.sequence.map((step) => formatForDisplay(step)).join(' → ')}</kbd>
-                    ${reg.options.meta?.name ? html`<span> — ${reg.options.meta.name}</span>` : ''}
-                  </li>
-                `,
-              )}
-            </ul>
-          `
-        : ''}
-    `
+    return html`<ul>
+      ${this.registrations.hotkeys.map(
+        (reg) => html`
+          <li>
+            <kbd>${formatForDisplay(reg.hotkey)}</kbd>
+            ${reg.options.meta?.name ? html`<span> — ${reg.options.meta.name}</span>` : ''}
+            ${reg.kind === 'sequence'
+              ? html`<small>${reg.matchedStepCount}/${reg.hotkey.length} steps</small>`
+              : ''}
+          </li>
+        `,
+      )}
+    </ul>`
   }
 }
 ```
 
-The controller exposes `hotkeys` and `sequences` arrays. The `hotkeys` array contains registration objects with the hotkey string, options (including `meta`), and enabled state. The `sequences` array contains sequence registrations with the same structure.
+The controller's `hotkeys` getter holds one array of registration views. Each view has an `id`, the `hotkey`, its `options` (including `meta`), its `target`, and a `triggerCount`. Narrow with `kind`: chord views add `parsedHotkey`; sequence views add `parsedSequence` and `matchedStepCount`, the steps matched so far in the current attempt. Disabled entries stay listed; unmounted registrations disappear. Format any hotkey with `formatForDisplay`, and group entries by `options.meta?.group` when building a help panel.
+
+Registrations only exist while their components are mounted. To list hotkeys from routes that have not rendered, declare them with [app hotkeys](./app-hotkeys).
 
 ## The hotkey manager
 

@@ -15,7 +15,7 @@
   createHotkeys([
     {
       hotkey: 'Shift+S',
-      callback: (_e: KeyboardEvent, { hotkey }: { hotkey: string }) => {
+      callback: (_e, { hotkey }) => {
         saveCount++
         log = [`${hotkey} pressed`, ...log].slice(0, 20)
       },
@@ -25,7 +25,7 @@
     },
     {
       hotkey: 'Shift+U',
-      callback: (_e: KeyboardEvent, { hotkey }: { hotkey: string }) => {
+      callback: (_e, { hotkey }) => {
         undoCount++
         log = [`${hotkey} pressed`, ...log].slice(0, 20)
       },
@@ -35,7 +35,7 @@
     },
     {
       hotkey: 'Shift+R',
-      callback: (_e: KeyboardEvent, { hotkey }: { hotkey: string }) => {
+      callback: (_e, { hotkey }) => {
         redoCount++
         log = [`${hotkey} pressed`, ...log].slice(0, 20)
       },
@@ -131,19 +131,17 @@
   let newDescription = $state('')
 
   createHotkeys(() =>
-    shortcuts.map(
-      (s): CreateHotkeyDefinition => ({
-        hotkey: s.hotkey as Hotkey,
-        callback: () => {
-          shortcuts = shortcuts.map((item) =>
-            item.id === s.id ? { ...item, count: item.count + 1 } : item,
-          )
-        },
-        options: {
-          meta: { name: s.label, description: s.description },
-        },
-      }),
-    ),
+    shortcuts.map((s): CreateHotkeyDefinition => ({
+      hotkey: s.hotkey as Hotkey,
+      callback: () => {
+        shortcuts = shortcuts.map((item) =>
+          item.id === s.id ? { ...item, count: item.count + 1 } : item,
+        )
+      },
+      options: {
+        meta: { name: s.label, description: s.description },
+      },
+    })),
   )
 
   function addShortcut() {
@@ -326,9 +324,9 @@ createHotkeys(
     <h2>Live Registrations (getHotkeyRegistrations)</h2>
     <p>
       This table is rendered from
-      <code>getHotkeyRegistrations()</code> — a reactive view of all registered hotkeys.
-      It updates automatically as hotkeys are added, removed, enabled/disabled, or
-      triggered.
+      <code>getHotkeyRegistrations()</code> — a reactive view of all registered hotkeys,
+      chords and sequences. It updates automatically as hotkeys are added, removed,
+      enabled/disabled, or triggered.
     </p>
     <table class="registrations-table">
       <thead>
@@ -336,6 +334,7 @@ createHotkeys(
           <th>Hotkey</th>
           <th>Name</th>
           <th>Description</th>
+          <th>Progress</th>
           <th>Enabled</th>
           <th>Triggers</th>
         </tr>
@@ -351,6 +350,11 @@ createHotkeys(
               {reg.options.meta?.description ?? '—'}
             </td>
             <td>
+              {reg.kind === 'sequence'
+                ? `${reg.matchedStepCount}/${reg.hotkey.length}`
+                : '—'}
+            </td>
+            <td>
               <span
                 class={reg.options.enabled !== false
                   ? 'status-on'
@@ -364,44 +368,15 @@ createHotkeys(
         {/each}
         {#if registrations.hotkeys.length === 0}
           <tr>
-            <td colspan="5" class="hint">No hotkeys registered</td>
+            <td colspan="6" class="hint">No hotkeys registered</td>
           </tr>
         {/if}
       </tbody>
     </table>
-    {#if registrations.sequences.length > 0}
-      <h3 style="margin-top: 16px">Sequences</h3>
-      <table class="registrations-table">
-        <thead>
-          <tr>
-            <th>Sequence</th>
-            <th>Name</th>
-            <th>Description</th>
-            <th>Triggers</th>
-          </tr>
-        </thead>
-        <tbody>
-          {#each registrations.sequences as reg (reg.id)}
-            <tr>
-              <td>
-                {#each reg.sequence as s, i}
-                  {#if i > 0}{' '}{/if}<kbd>{formatForDisplay(s)}</kbd>
-                {/each}
-              </td>
-              <td>{reg.options.meta?.name ?? '—'}</td>
-              <td class="description-cell">
-                {reg.options.meta?.description ?? '—'}
-              </td>
-              <td class="trigger-count">{reg.triggerCount}</td>
-            </tr>
-          {/each}
-        </tbody>
-      </table>
-    {/if}
     <pre class="code-block">{`const registrations = getHotkeyRegistrations()
 
 // Render a live table of all registrations
-// registrations.hotkeys → reactive array
+// registrations.hotkeys → reactive array of chords and sequences
 // registrations.hotkeys[0].options.meta?.name
 // registrations.hotkeys[0].triggerCount`}</pre>
   </div>

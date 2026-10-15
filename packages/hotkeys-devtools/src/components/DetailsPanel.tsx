@@ -16,10 +16,12 @@ import {
 } from '../_registrations'
 import { ActionButtons } from './ActionButtons'
 import type {
+  AppHotkeyListItem,
   ConflictBehavior,
-  HotkeyRegistration,
+  HotkeyChordRegistrationView,
+  HotkeyRegistrationView,
+  HotkeySequenceRegistrationView,
   ParsedHotkey,
-  SequenceRegistrationView,
 } from '@tanstack/hotkeys'
 
 const PLATFORM_ROWS = [
@@ -59,17 +61,13 @@ function KeyBreakdownPlatformTable(props: {
   )
 }
 
-function isSequenceRegistration(
-  reg: HotkeyRegistration | SequenceRegistrationView,
-): reg is SequenceRegistrationView {
-  return 'sequence' in reg && Array.isArray(reg.sequence)
-}
+/** What the details panel shows: a live registration or a declared app hotkey. */
+export type DetailsSelection =
+  | { type: 'registration'; registration: HotkeyRegistrationView }
+  | { type: 'appHotkey'; item: AppHotkeyListItem }
 
 type DetailsPanelProps = {
-  selectedRegistration: () =>
-    | HotkeyRegistration
-    | SequenceRegistrationView
-    | null
+  selection: () => DetailsSelection | null
 }
 
 function getTargetDescription(target: HTMLElement | Document | Window): string {
@@ -91,7 +89,7 @@ function getTargetDescription(target: HTMLElement | Document | Window): string {
 }
 
 function HotkeyDetails(props: {
-  registration: HotkeyRegistration
+  registration: HotkeyChordRegistrationView
   getTargetDescription: (t: HTMLElement | Document | Window) => string
   styles: ReturnType<typeof useStyles>
 }) {
@@ -333,17 +331,16 @@ function HotkeyDetails(props: {
 }
 
 function SequenceDetails(props: {
-  registration: SequenceRegistrationView
+  registration: HotkeySequenceRegistrationView
   state: ReturnType<typeof useHotkeysDevtoolsState>
   getTargetDescription: (t: HTMLElement | Document | Window) => string
   styles: ReturnType<typeof useStyles>
 }) {
   const reg = () => props.registration
-  const liveReg = createMemo(
-    () =>
-      props.state.sequenceRegistrations().find((r) => r.id === reg().id) ??
-      reg(),
-  )
+  const liveReg = createMemo((): HotkeySequenceRegistrationView => {
+    const live = props.state.registrations().find((r) => r.id === reg().id)
+    return live?.kind === 'sequence' ? live : reg()
+  })
   const matchedSteps = createMemo(() =>
     effectiveSequenceMatchedSteps(liveReg(), props.state.sequenceProgressNow()),
   )
@@ -364,7 +361,7 @@ function SequenceDetails(props: {
     <>
       <div class={styles().stateHeader}>
         <div class={styles().stateTitle}>
-          <For each={liveReg().sequence}>
+          <For each={liveReg().hotkey}>
             {(step, i) => (
               <span>
                 <Show when={i() > 0}> </Show>
@@ -390,11 +387,11 @@ function SequenceDetails(props: {
           <div class={styles().infoValueMono}>{getBindingKind(liveReg())}</div>
           <div class={styles().infoLabel}>Raw</div>
           <div class={styles().infoValueMono}>
-            {liveReg().sequence.join(' → ')}
+            {liveReg().hotkey.join(' → ')}
           </div>
           <div class={styles().infoLabel}>Sequence</div>
           <div class={styles().infoValueMono}>
-            <For each={liveReg().sequence}>
+            <For each={liveReg().hotkey}>
               {(step, i) => (
                 <span>
                   <Show when={i() > 0}> </Show>
@@ -424,7 +421,7 @@ function SequenceDetails(props: {
         <div class={styles().detailSection}>
           <div class={styles().detailSectionHeader}>Key Breakdown</div>
           <div class={styles().keyBreakdown}>
-            <For each={liveReg().sequence}>
+            <For each={liveReg().hotkey}>
               {(step, i) => (
                 <>
                   <Show when={i() > 0}>
@@ -446,7 +443,7 @@ function SequenceDetails(props: {
           </div>
 
           <div class={styles().keyBreakdownSubHeader}>Each chord</div>
-          <For each={liveReg().sequence}>
+          <For each={liveReg().hotkey}>
             {(step, stepIdx) => {
               const stepParsed = () =>
                 parseHotkey(step, sequenceCanonicalPlatform())
@@ -646,6 +643,67 @@ function SequenceDetails(props: {
   )
 }
 
+function AppHotkeyDetails(props: {
+  item: AppHotkeyListItem
+  styles: ReturnType<typeof useStyles>
+}) {
+  const styles = props.styles
+  const appHotkey = () => props.item.appHotkey
+  const format = (hotkey: AppHotkeyListItem['appHotkey']['hotkey']) =>
+    hotkey
+      ? formatForDisplay(hotkey, { sequenceSeparator: ' → ' })
+      : 'Unassigned'
+  const row = (label: string, value: string) => (
+    <div class={styles().optionRow}>
+      <span class={styles().optionLabel}>{label}</span>
+      <span class={styles().optionValue}>{value}</span>
+    </div>
+  )
+
+  return (
+    <>
+      <div class={styles().stateHeader}>
+        <div class={styles().stateTitle}>{format(appHotkey().hotkey)}</div>
+        <div class={styles().infoGrid}>
+          <div class={styles().infoLabel}>App hotkey</div>
+          <div class={styles().infoValueMono}>{appHotkey().id}</div>
+          <div class={styles().infoLabel}>Status</div>
+          <div class={styles().infoValueMono}>{props.item.status}</div>
+          <div class={styles().infoLabel}>Default</div>
+          <div class={styles().infoValueMono}>
+            {format(appHotkey().defaultHotkey)}
+            {props.item.isCustom ? ' (customized)' : ''}
+          </div>
+          <div class={styles().infoLabel}>Context</div>
+          <div class={styles().infoValueMono}>
+            {appHotkey().context ?? 'global'}
+          </div>
+        </div>
+      </div>
+      <div class={styles().detailsGrid}>
+        <div class={styles().detailSection}>
+          <div class={styles().detailSectionHeader}>Meta</div>
+          <div>
+            <For each={Object.entries(appHotkey().meta ?? {})}>
+              {([key, value]) => row(key, String(value))}
+            </For>
+            <Show when={!appHotkey().meta}>{row('meta', '—')}</Show>
+          </div>
+        </div>
+        <div class={styles().detailSection}>
+          <div class={styles().detailSectionHeader}>Declared options</div>
+          <div>
+            <For each={Object.entries(appHotkey().options ?? {})}>
+              {([key, value]) => row(key, String(value))}
+            </For>
+            <Show when={!appHotkey().options}>{row('options', '—')}</Show>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
+
 export function DetailsPanel(props: DetailsPanelProps) {
   const styles = useStyles()
   const state = useHotkeysDevtoolsState()
@@ -653,32 +711,34 @@ export function DetailsPanel(props: DetailsPanelProps) {
   return (
     <div class={styles().stateDetails}>
       <Show
-        when={props.selectedRegistration()}
+        when={props.selection()}
         fallback={
           <div class={styles().noSelection}>
-            Select a hotkey or sequence from the list to view its details
+            Select a hotkey from the list to view its details
           </div>
         }
       >
-        {(reg) => (
-          <Show
-            when={isSequenceRegistration(reg())}
-            fallback={
-              <HotkeyDetails
-                registration={reg() as HotkeyRegistration}
-                getTargetDescription={getTargetDescription}
-                styles={styles}
-              />
-            }
-          >
+        {(selection) => {
+          const current = selection()
+          if (current.type === 'appHotkey') {
+            return <AppHotkeyDetails item={current.item} styles={styles} />
+          }
+          const reg = current.registration
+          return reg.kind === 'sequence' ? (
             <SequenceDetails
-              registration={reg() as SequenceRegistrationView}
+              registration={reg}
               state={state}
               getTargetDescription={getTargetDescription}
               styles={styles}
             />
-          </Show>
-        )}
+          ) : (
+            <HotkeyDetails
+              registration={reg}
+              getTargetDescription={getTargetDescription}
+              styles={styles}
+            />
+          )
+        }}
       </Show>
     </div>
   )

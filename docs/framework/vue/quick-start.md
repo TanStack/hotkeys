@@ -81,14 +81,15 @@ useHotkey('Escape', () => {
 
 ```vue
 <script setup lang="ts">
-import { useHotkeySequence } from '@tanstack/vue-hotkeys'
+import { useHotkey } from '@tanstack/vue-hotkeys'
 
-useHotkeySequence(['G', 'G'], () => scrollToTop())
-useHotkeySequence(['G', 'Shift+G'], () => scrollToBottom())
+// An array of chords registers a sequence
+useHotkey(['G', 'G'], () => scrollToTop())
+useHotkey(['G', 'Shift+G'], () => scrollToBottom())
 </script>
 ```
 
-For several sequences or a list that changes at runtime, prefer a single `useHotkeySequences([...])` call (see the [Sequences guide](./guides/sequences.md#many-sequences-at-once)).
+For several sequences or a list that changes at runtime, prefer a single `useHotkeys([...])` call (see the [Sequences guide](./guides/sequences.md#many-sequences-at-once)).
 
 ### Tracking held keys
 
@@ -136,8 +137,7 @@ import { HotkeysProvider } from '@tanstack/vue-hotkeys'
 <template>
   <HotkeysProvider
     :default-options="{
-      hotkey: { preventDefault: true },
-      hotkeySequence: { timeout: 1500 },
+      hotkey: { preventDefault: true, timeout: 1500 },
       hotkeyRecorder: { onCancel: () => console.log('Recording cancelled') },
     }"
   >
@@ -146,11 +146,15 @@ import { HotkeysProvider } from '@tanstack/vue-hotkeys'
 </template>
 ```
 
+## Declaring app hotkeys
+
+To list every hotkey in a cheat sheet, including hotkeys whose components haven't mounted, and to let users customize them, declare them once with `defineAppHotkeys` and provide them with `HotkeysProvider`. See the [App Hotkeys Guide](./guides/app-hotkeys).
+
 ## Next steps
 
 - [Hotkeys Guide](./guides/hotkeys)
 - [Sequences Guide](./guides/sequences)
 - [Hotkey Recording Guide](./guides/hotkey-recording)
-- [Sequence Recording Guide](./guides/sequence-recording)
+- [App Hotkeys Guide](./guides/app-hotkeys)
 - [Key State Tracking Guide](./guides/key-state-tracking)
 - [Formatting & Display Guide](./guides/formatting-display)

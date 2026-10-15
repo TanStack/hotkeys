@@ -7,7 +7,7 @@ title: useHotkeysContext
 function useHotkeysContext(): HotkeysContextValue | null;
 ```
 
-Defined in: [HotkeysProvider.tsx:49](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L49)
+Defined in: [HotkeysProvider.tsx:115](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L115)
 
 ## Returns
 

@@ -20,24 +20,7 @@ import {
   normalizeRegisterableHotkey,
 } from './parse'
 import type { CanonicalModifier } from './key.types'
-import type { Hotkey, ParsedHotkey, RegisterableHotkey } from './hotkey.types'
-
-/**
- * Joins stored sequence steps with spaces, preserving physical code tokens.
- * For user-facing labels, call formatForDisplay on each step instead.
- *
- * @param sequence - Array of hotkey strings that form the sequence
- * @returns A space-separated string (e.g. ['G','G'] → 'G G')
- *
- * @example
- * ```ts
- * formatHotkeySequence(['G', 'G'])      // 'G G'
- * formatHotkeySequence(['D', 'I', 'W']) // 'D I W'
- * ```
- */
-export function formatHotkeySequence(sequence: Array<Hotkey>): string {
-  return sequence.join(' ')
-}
+import type { ParsedHotkey, RegisterableHotkeyChord } from './hotkey.types'
 
 /**
  * Converts a ParsedHotkey back to a hotkey string.
@@ -68,37 +51,53 @@ export function formatHotkey(parsed: ParsedHotkey): string {
   return parts.join('+')
 }
 
-export type DisplayHotkey = RegisterableHotkey | ParsedHotkey | (string & {})
+/** A single chord to display: a string, raw object, or parsed hotkey. */
+export type DisplayHotkeyChord =
+  RegisterableHotkeyChord | ParsedHotkey | (string & {})
+
+/** A hotkey to display: a chord or a sequence of chords. */
+export type DisplayHotkey =
+  DisplayHotkeyChord | ReadonlyArray<DisplayHotkeyChord>
 
 /**
  * Formats a hotkey for display in a user interface.
  *
- * On macOS, uses symbols (⌘⇧S) in the same modifier order as {@link normalizeHotkeyFromParsed}.
+ * On macOS, uses symbols (⇧⌘S) in Control, Option, Shift, Command order.
+ * Display ordering does not change the normalized hotkey used for registration.
  * On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
  * The separator can be customized with `separatorToken`.
  * Physical codes use conventional display labels: `[KeyS]` becomes `S` and
  * `[Digit2]` becomes `2`. These labels do not infer the active keyboard layout
  * or change matching. Supply a resolved `layoutMap` for layout-aware labels;
  * `keyLabels` overrides both layout entries and fallback labels.
+ * Sequence steps are formatted individually and joined with `sequenceSeparator`
+ * (a space by default).
  *
- * @param hotkey - A logical or physical string, raw binding, or ParsedHotkey
+ * @param hotkey - A logical or physical string, raw object, ParsedHotkey, or sequence
  * @param options - Formatting options
- * @returns Display text, or individual key labels when parts is true
+ * @returns Display text, or individual key labels when parts is true (one array per step for sequences)
  *
  * @example
  * ```ts
  * formatForDisplay('Mod+Shift+S', { platform: 'mac' })
- * // Returns: '⌘ ⇧ S' (symbols separated by spaces on macOS)
+ * // Returns: '⇧ ⌘ S' (symbols separated by spaces on macOS)
  *
  * formatForDisplay('Mod+Shift+S', { platform: 'windows' })
  * // Returns: 'Ctrl+Shift+S'
  *
  * formatForDisplay('Escape')
  * // Returns: 'Esc' (on all platforms)
+ *
+ * formatForDisplay(['G', 'H'])
+ * // Returns: 'G H'
  * ```
  */
 export function formatForDisplay(
-  hotkey: DisplayHotkey,
+  hotkey: ReadonlyArray<DisplayHotkeyChord>,
+  options: FormatDisplayOptions & { parts: true },
+): Array<Array<string>>
+export function formatForDisplay(
+  hotkey: DisplayHotkeyChord,
   options: FormatDisplayOptions & { parts: true },
 ): Array<string>
 export function formatForDisplay(
@@ -108,25 +107,63 @@ export function formatForDisplay(
 export function formatForDisplay(
   hotkey: DisplayHotkey,
   options: FormatDisplayOptions,
-): string | Array<string>
+): string | Array<string> | Array<Array<string>>
 export function formatForDisplay(
   hotkey: DisplayHotkey,
   options: FormatDisplayOptions = {},
-): string | Array<string> {
+): string | Array<string> | Array<Array<string>> {
+  if (Array.isArray(hotkey)) {
+    const steps = (hotkey as ReadonlyArray<DisplayHotkeyChord>).map((step) =>
+      formatChordParts(step, options),
+    )
+    return options.parts
+      ? steps
+      : steps
+          .map((parts) => parts.join(chordSeparator(options)))
+          .join(options.sequenceSeparator ?? ' ')
+  }
+  const parts = formatChordParts(hotkey as DisplayHotkeyChord, options)
+  return options.parts ? parts : parts.join(chordSeparator(options))
+}
+
+function modifierSymbolsEnabled(options: FormatDisplayOptions): boolean {
+  const symbols = options.useSymbols ?? true
+  return typeof symbols === 'boolean' ? symbols : (symbols.modifiers ?? true)
+}
+
+function chordSeparator(options: FormatDisplayOptions): string {
+  const platform = options.platform ?? detectPlatform()
+  return (
+    options.separatorToken ??
+    (platform === 'mac' && modifierSymbolsEnabled(options) ? ' ' : '+')
+  )
+}
+
+function formatChordParts(
+  hotkey: DisplayHotkeyChord,
+  options: FormatDisplayOptions,
+): Array<string> {
   const platform = options.platform ?? detectPlatform()
   const symbols = options.useSymbols ?? true
-  const modifierSymbols =
-    typeof symbols === 'boolean' ? symbols : (symbols.modifiers ?? true)
+  const modifierSymbols = modifierSymbolsEnabled(options)
   const keySymbols =
     typeof symbols === 'boolean' ? symbols : (symbols.keys ?? true)
-  const separator =
-    options.separatorToken ??
-    (platform === 'mac' && modifierSymbols ? ' ' : '+')
   const normalized =
     typeof hotkey === 'object' && 'modifiers' in hotkey
       ? normalizeHotkeyFromParsed(hotkey, platform)
-      : normalizeRegisterableHotkey(hotkey as RegisterableHotkey, platform)
-  const parts = splitHotkeyParts(normalized).map((segment) => {
+      : normalizeRegisterableHotkey(hotkey as RegisterableHotkeyChord, platform)
+  const segments = splitHotkeyParts(normalized)
+  if (platform === 'mac') {
+    // Canonical registration puts Mod first; display resolves it to Command.
+    const modifierIndex = (segment: string) => {
+      const index = MODIFIER_ORDER.indexOf(
+        (segment === 'Mod' ? 'Meta' : segment) as CanonicalModifier,
+      )
+      return index === -1 ? MODIFIER_ORDER.length : index
+    }
+    segments.sort((a, b) => modifierIndex(a) - modifierIndex(b))
+  }
+  const parts = segments.map((segment) => {
     if (isModifierKey(segment)) {
       const modifier = (MODIFIER_ALIASES[segment] ??
         MODIFIER_ALIASES[segment.toLowerCase()]) as CanonicalModifier | 'Mod'
@@ -164,17 +201,7 @@ export function formatForDisplay(
       ? `Numpad ${display.replace(/([a-z])([A-Z])/g, '$1 $2')}`
       : display
   })
-  return options.parts ? parts : parts.join(separator)
-}
-
-/**
- * @deprecated Use {@link formatForDisplay} instead with `useSymbols: false` option.
- */
-export function formatWithLabels(
-  hotkey: RegisterableHotkey,
-  options: Omit<FormatDisplayOptions, 'useSymbols' | 'parts'> = {},
-): string {
-  return formatForDisplay(hotkey, { ...options, useSymbols: false })
+  return parts
 }
 
 /**
@@ -198,4 +225,6 @@ export interface FormatDisplayOptions {
   keyLabels?: Readonly<Record<string, string>>
   /** Override the separator between display tokens. Defaults to platform-specific formatting when null/undefined. */
   separatorToken?: string | null
+  /** Separator between sequence steps. Default: a space. */
+  sequenceSeparator?: string
 }

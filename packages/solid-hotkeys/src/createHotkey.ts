@@ -1,172 +1,89 @@
-import { createEffect, onCleanup, untrack } from 'solid-js'
-import {
-  detectPlatform,
-  getHotkeyManager,
-  normalizeRegisterableHotkey,
-} from '@tanstack/hotkeys'
-import { useDefaultHotkeysOptions } from './HotkeysProvider'
+import { createHotkeys } from './createHotkeys'
 import type {
-  Hotkey,
+  AppHotkey,
   HotkeyCallback,
-  HotkeyOptions,
-  HotkeyRegistrationHandle,
   RegisterableHotkey,
+  Target,
 } from '@tanstack/hotkeys'
-
-export interface CreateHotkeyOptions extends Omit<HotkeyOptions, 'target'> {
-  /**
-   * The DOM element to attach the event listener to.
-   * Can be a direct DOM element, an accessor (for reactive targets that become
-   * available after mount), or null. Defaults to document.
-   * When using scoped targets, pass an accessor: () => ({ target: elementSignal() })
-   * so the hotkey waits for the element to be attached before registering.
-   */
-  target?: HTMLElement | Document | Window | null
-}
+import type {
+  AdapterAppHotkeyOptions,
+  AdapterChordOptions,
+  AdapterCommonOptions,
+  AdapterHotkeyOptions,
+  AdapterOptionsFor,
+  AdapterSequenceOptions,
+} from '@tanstack/hotkeys/adapter'
 
 /**
- * SolidJS primitive for registering a keyboard hotkey.
+ * The element to listen on. A `null` target skips registration, so pass an
+ * accessor such as `() => ({ target: element() })` for elements that attach
+ * after mount.
+ */
+export type CreateHotkeyTarget = Target | null
+
+/** Options shared by chords and sequences. */
+export type CreateHotkeyOptions = AdapterHotkeyOptions<CreateHotkeyTarget>
+
+/** Options for a chord such as `'Mod+S'`. */
+export type CreateHotkeyChordOptions = AdapterChordOptions<CreateHotkeyTarget>
+
+/** Options for a sequence such as `['G', 'G']`. */
+export type CreateHotkeySequenceOptions =
+  AdapterSequenceOptions<CreateHotkeyTarget>
+
+/** Options applied to every hotkey, such as provider defaults. Each applies to the kinds that support it. */
+export type CreateHotkeyCommonOptions = AdapterCommonOptions<CreateHotkeyTarget>
+
+/** The options type for a hotkey: chord options for chords, sequence options for sequences. */
+export type CreateHotkeyOptionsFor<T extends RegisterableHotkey> =
+  AdapterOptionsFor<T, CreateHotkeyTarget>
+
+/** Call-site options for an app hotkey, typed by its declared default kind. */
+export type CreateAppHotkeyOptions<T extends AppHotkey = AppHotkey> =
+  AdapterAppHotkeyOptions<T, CreateHotkeyTarget>
+
+type MaybeAccessor<T> = T | (() => T)
+
+/**
+ * Solid primitive for registering a hotkey: a chord such as `'Mod+S'`, a
+ * sequence such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
+ * The hotkey and options may be accessors.
  *
- * Uses the singleton HotkeyManager for efficient event handling.
- * The callback receives both the keyboard event and a context object
- * containing the hotkey string and parsed hotkey.
- *
- * This primitive automatically tracks reactive dependencies and updates
- * the registration when options or the callback change.
- *
- * @param hotkey - The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object (supports `mod` for cross-platform)
- * @param callback - The function to call when the hotkey is pressed
- * @param options - Options for the hotkey behavior
- *
- * @example
- * ```tsx
- * function SaveButton() {
- *   const [count, setCount] = createSignal(0)
- *
- *   // Callback always has access to latest count value
- *   createHotkey('Mod+S', (event, { hotkey }) => {
- *     console.log(`Save triggered, count is ${count()}`)
- *     handleSave()
- *   })
- *
- *   return <button onClick={() => setCount(c => c + 1)}>Count: {count()}</button>
- * }
- * ```
- *
- * @example
- * ```tsx
- * function Modal(props) {
- *   // enabled option is reactive
- *   createHotkey('Escape', () => {
- *     props.onClose()
- *   }, () => ({ enabled: props.isOpen }))
- *
- *   return <Show when={props.isOpen}>
- *     <div class="modal">...</div>
- *   </Show>
- * }
- * ```
+ * Chords accept `requireReset`; sequences accept `timeout`. A one-step
+ * sequence registers as its chord. An app hotkey uses its effective hotkey
+ * from `HotkeysProvider` (including the user's custom hotkey) and its
+ * declared meta and options, and registers nothing while unbound.
  *
  * @example
  * ```tsx
- * function Editor() {
- *   const [editorRef, setEditorRef] = createSignal<HTMLDivElement | null>(null)
- *
- *   // Scoped to a specific element - use accessor so hotkey waits for ref
- *   createHotkey('Mod+S', save, () => ({ target: editorRef() }))
- *
- *   return <div ref={setEditorRef}>...</div>
- * }
+ * createHotkey('Mod+S', () => save())
+ * createHotkey(['G', 'G'], () => scrollToTop(), { timeout: 500 })
+ * createHotkey('Escape', () => close(), () => ({ enabled: isOpen() }))
  * ```
  */
-export function createHotkey(
-  hotkey: RegisterableHotkey | (() => RegisterableHotkey),
+export function createHotkey<T extends AppHotkey>(
+  hotkey: MaybeAccessor<T>,
   callback: HotkeyCallback,
-  options: CreateHotkeyOptions | (() => CreateHotkeyOptions) = {},
+  options?: MaybeAccessor<CreateAppHotkeyOptions<T>>,
+): void
+export function createHotkey<T extends RegisterableHotkey>(
+  hotkey: MaybeAccessor<T>,
+  callback: HotkeyCallback,
+  options?: MaybeAccessor<CreateHotkeyOptionsFor<T>>,
+): void
+export function createHotkey(
+  hotkey: MaybeAccessor<RegisterableHotkey | AppHotkey>,
+  callback: HotkeyCallback,
+  options: MaybeAccessor<CreateHotkeyCommonOptions> = {},
 ): void {
-  const defaultOptions = useDefaultHotkeysOptions()
-  const manager = getHotkeyManager()
-
-  let registration: HotkeyRegistrationHandle | null = null
-  let lastHotkeyString: Hotkey | null = null
-  let lastTarget: HTMLElement | Document | Window | null = null
-
-  onCleanup(() => {
-    if (registration?.isActive) {
-      registration.unregister()
-      registration = null
-    }
-    lastHotkeyString = null
-    lastTarget = null
-  })
-
-  createEffect(() => {
-    // Resolve reactive values
-    const resolvedHotkey = typeof hotkey === 'function' ? hotkey() : hotkey
-    const resolvedOptions = typeof options === 'function' ? options() : options
-
-    const mergedOptions = {
-      ...defaultOptions.hotkey,
-      ...resolvedOptions,
-    }
-
-    // Normalize to hotkey string
-    const platform = mergedOptions.platform ?? detectPlatform()
-    const hotkeyString = normalizeRegisterableHotkey(resolvedHotkey, platform)
-
-    // Resolve target: when explicitly provided (even as null), use it and skip if null.
-    // When not provided, default to document. Matches React's ref handling.
-    const resolvedTarget =
-      'target' in mergedOptions
-        ? (mergedOptions.target ?? null)
-        : typeof document !== 'undefined'
-          ? document
-          : null
-
-    if (!resolvedTarget) {
-      if (registration?.isActive) {
-        registration.unregister()
-        registration = null
-      }
-      lastHotkeyString = null
-      lastTarget = null
-      return
-    }
-
-    // Extract options without target (target is handled separately)
-    const { target: _target, ...optionsWithoutTarget } = mergedOptions
-
-    // Untrack store mutations so that registering/updating the hotkey doesn't
-    // create a circular reactive dependency when createHotkeyRegistrations
-    // subscribes to the same store.
-    untrack(() => {
-      if (
-        registration?.isActive &&
-        lastHotkeyString === hotkeyString &&
-        lastTarget === resolvedTarget
-      ) {
-        registration.callback = callback
-        registration.setOptions(optionsWithoutTarget)
-        return
-      }
-
-      if (registration?.isActive) {
-        registration.unregister()
-        registration = null
-      }
-
-      registration = manager.register(hotkeyString, callback, {
-        ...optionsWithoutTarget,
-        target: resolvedTarget,
-      })
-
-      if (registration.isActive) {
-        registration.callback = callback
-        registration.setOptions(optionsWithoutTarget)
-      }
-
-      lastHotkeyString = hotkeyString
-      lastTarget = resolvedTarget
-    })
-  })
+  createHotkeys(
+    () =>
+      [
+        {
+          hotkey: typeof hotkey === 'function' ? hotkey() : hotkey,
+          callback,
+          options: typeof options === 'function' ? options() : options,
+        },
+      ] as never,
+  )
 }

@@ -165,8 +165,6 @@ export class MyApp extends LitElement {
   private _reregisterHotkeys(): void {
     this._unregisterAll()
 
-    if (this.recorder.isRecording) return
-
     const manager = getHotkeyManager()
 
     for (const shortcut of this._shortcuts) {
@@ -195,7 +193,6 @@ export class MyApp extends LitElement {
     this._editingId = id
     this._draftName = shortcut.name
     this._draftDescription = shortcut.description
-    this._unregisterAll()
     this.recorder.startRecording()
   }
 
@@ -233,7 +230,6 @@ export class MyApp extends LitElement {
     this._editingId = newShortcut.id
     this._draftName = ''
     this._draftDescription = ''
-    this._unregisterAll()
     this.recorder.startRecording()
   }
 
@@ -263,106 +259,120 @@ export class MyApp extends LitElement {
                   <div class="shortcut-item ${isEditing ? 'recording' : ''}">
                     <div class="shortcut-item-content">
                       <div class="shortcut-action">
-                        ${isEditing
-                          ? html`
-                              <div class="editing-fields">
-                                <input
-                                  type="text"
-                                  class="edit-input edit-name"
-                                  .value=${displayName}
-                                  @input=${(e: InputEvent) =>
-                                    (this._draftName = (
-                                      e.target as HTMLInputElement
-                                    ).value)}
-                                  placeholder="Shortcut name"
-                                />
-                                <input
-                                  type="text"
-                                  class="edit-input edit-description"
-                                  .value=${displayDescription}
-                                  @input=${(e: InputEvent) =>
-                                    (this._draftDescription = (
-                                      e.target as HTMLInputElement
-                                    ).value)}
-                                  placeholder="Description (optional)"
-                                />
-                              </div>
-                            `
-                          : html`
-                              ${shortcut.name ||
-                              html`<span class="unnamed">Unnamed</span>`}
-                              ${shortcut.description
-                                ? html`<div class="shortcut-description">
-                                    ${shortcut.description}
-                                  </div>`
-                                : nothing}
-                            `}
+                        ${
+                          isEditing
+                            ? html`
+                                <div class="editing-fields">
+                                  <input
+                                    type="text"
+                                    class="edit-input edit-name"
+                                    .value=${displayName}
+                                    @input=${(e: InputEvent) =>
+                                      (this._draftName = (
+                                        e.target as HTMLInputElement
+                                      ).value)}
+                                    placeholder="Shortcut name"
+                                  />
+                                  <input
+                                    type="text"
+                                    class="edit-input edit-description"
+                                    .value=${displayDescription}
+                                    @input=${(e: InputEvent) =>
+                                      (this._draftDescription = (
+                                        e.target as HTMLInputElement
+                                      ).value)}
+                                    placeholder="Description (optional)"
+                                  />
+                                </div>
+                              `
+                            : html`
+                                ${
+                                  shortcut.name ||
+                                  html`<span class="unnamed">Unnamed</span>`
+                                }
+                                ${
+                                  shortcut.description
+                                    ? html`<div class="shortcut-description">
+                                        ${shortcut.description}
+                                      </div>`
+                                    : nothing
+                                }
+                              `
+                        }
                       </div>
                       <div class="shortcut-hotkey">
-                        ${isEditing
-                          ? html`
-                              <div class="recording-indicator">
-                                ${this.heldKeys.value.length > 0
-                                  ? html`
-                                      <div class="held-hotkeys">
-                                        ${this.heldKeys.value.map(
-                                          (key, index) => html`
-                                            ${index > 0
-                                              ? html`<span class="plus"
-                                                  >+</span
-                                                >`
-                                              : nothing}
-                                            <kbd>${key}</kbd>
-                                          `,
-                                        )}
-                                      </div>
-                                    `
-                                  : html`
-                                      <span class="recording-text">
-                                        Press any key combination...
-                                      </span>
-                                    `}
-                              </div>
-                            `
-                          : shortcut.hotkey
-                            ? html`<kbd
-                                >${formatForDisplay(shortcut.hotkey)}</kbd
-                              >`
-                            : html`<span class="no-shortcut"
-                                >No shortcut</span
-                              >`}
+                        ${
+                          isEditing
+                            ? html`
+                                <div class="recording-indicator">
+                                  ${
+                                    this.heldKeys.value.length > 0
+                                      ? html`
+                                          <div class="held-hotkeys">
+                                            ${this.heldKeys.value.map(
+                                              (key, index) => html`
+                                                ${
+                                                  index > 0
+                                                    ? html`<span class="plus"
+                                                        >+</span
+                                                      >`
+                                                    : nothing
+                                                }
+                                                <kbd>${key}</kbd>
+                                              `,
+                                            )}
+                                          </div>
+                                        `
+                                      : html`
+                                          <span class="recording-text">
+                                            Press any key combination...
+                                          </span>
+                                        `
+                                  }
+                                </div>
+                              `
+                            : shortcut.hotkey
+                              ? html`<kbd
+                                  >${formatForDisplay(shortcut.hotkey)}</kbd
+                                >`
+                              : html`<span class="no-shortcut"
+                                  >No shortcut</span
+                                >`
+                        }
                       </div>
                     </div>
                     <div class="shortcut-actions">
-                      ${isEditing
-                        ? html`
-                            <button
-                              class="save-button"
-                              @click=${() => this._handleSaveEditing()}
-                            >
-                              Save
-                            </button>
-                            <button
-                              class="cancel-button"
-                              @click=${() => this._handleCancel()}
-                            >
-                              Cancel
-                            </button>
-                          `
-                        : html`
-                            <button
-                              class="edit-button"
-                              @click=${() => this._handleEdit(shortcut.id)}
-                            >
-                              Edit
-                            </button>
-                            <button
-                              class="delete-button"
-                              @click=${() => this._handleDelete(shortcut.id)}
-                            >
-                              Delete
-                            </button>
-                          `}
+                      ${
+                        isEditing
+                          ? html`
+                              <button
+                                class="save-button"
+                                @click=${() => this._handleSaveEditing()}
+                              >
+                                Save
+                              </button>
+                              <button
+                                class="cancel-button"
+                                @click=${() => this._handleCancel()}
+                              >
+                                Cancel
+                              </button>
+                            `
+                          : html`
+                              <button
+                                class="edit-button"
+                                @click=${() => this._handleEdit(shortcut.id)}
+                              >
+                                Edit
+                              </button>
+                              <button
+                                class="delete-button"
+                                @click=${() => this._handleDelete(shortcut.id)}
+                              >
+                                Delete
+                              </button>
+                            `
+                      }
                     </div>
                   </div>
                 `
@@ -377,15 +387,17 @@ export class MyApp extends LitElement {
             </button>
           </section>
 
-          ${this.recorder.isRecording
-            ? html`
-                <div class="info-box recording-notice">
-                  <strong>Recording shortcut...</strong> Press any key
-                  combination or Escape to cancel. Press Backspace/Delete to
-                  clear the shortcut.
-                </div>
-              `
-            : nothing}
+          ${
+            this.recorder.isRecording
+              ? html`
+                  <div class="info-box recording-notice">
+                    <strong>Recording shortcut...</strong> Press any key
+                    combination or Escape to cancel. Press Backspace/Delete to
+                    clear the shortcut.
+                  </div>
+                `
+              : nothing
+          }
 
           <section class="demo-section">
             <h2>Live Registrations</h2>
@@ -418,9 +430,11 @@ export class MyApp extends LitElement {
                       </td>
                       <td>
                         <span
-                          class=${reg.options.enabled !== false
-                            ? 'status-on'
-                            : 'status-off'}
+                          class=${
+                            reg.options.enabled !== false
+                              ? 'status-on'
+                              : 'status-off'
+                          }
                         >
                           ${reg.options.enabled !== false ? 'yes' : 'no'}
                         </span>
@@ -429,15 +443,17 @@ export class MyApp extends LitElement {
                     </tr>
                   `,
                 )}
-                ${this.registrations.hotkeys.length === 0
-                  ? html`
-                      <tr>
-                        <td colspan="5" class="empty-row">
-                          No hotkeys registered
-                        </td>
-                      </tr>
-                    `
-                  : nothing}
+                ${
+                  this.registrations.hotkeys.length === 0
+                    ? html`
+                        <tr>
+                          <td colspan="5" class="empty-row">
+                            No hotkeys registered
+                          </td>
+                        </tr>
+                      `
+                    : nothing
+                }
               </tbody>
             </table>
           </section>
@@ -474,8 +490,7 @@ class ShortcutSettings extends LitElement {
   // Read all registrations reactively
   // this.registrations.hotkeys[0].options.meta?.name → 'Save'
   // this.registrations.hotkeys[0].triggerCount → 3
-}`}</pre
-            >
+}`}</pre>
           </section>
         </main>
       </div>
