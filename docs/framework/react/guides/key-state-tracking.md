@@ -246,4 +246,10 @@ const visible = useHotkeyHint('Alt+Shift+[KeyK]')
 
 For `Alt+Shift+[KeyK]`, holding Alt, Shift, or both reveals the hint. An extra Control hides it; releasing all modifiers or blurring the window hides it. Nonmodifier keys are ignored. AltGraph does not reveal hints. Pass `{ exact: true }` to require all binding modifiers, or `{ platform: 'mac' }` to resolve Mod explicitly. Supply the same platform used by the registration when overriding detection.
 
+A sequence reveals its hint from its first step, and an app hotkey uses its effective hotkey (no hint while unbound):
+
+```ts
+const visible = useHotkeyHint(['Mod+K', 'Mod+C']) // visible while Mod is held
+```
+
 Combine the boolean with the action's enabled state. The helper does not register a shortcut or determine whether its target is focused. The core equivalent is `matchesHeldModifiers(binding, heldKeys, options)`.

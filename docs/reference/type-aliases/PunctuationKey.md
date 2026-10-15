@@ -39,7 +39,7 @@ type PunctuationKey =
   | "~";
 ```
 
-Defined in: [key.types.ts:130](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L130)
+Defined in: [key.types.ts:116](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L116)
 
 Printable punctuation glyphs used in keyboard shortcuts. Matching uses the
 final KeyboardEvent.key glyph, independent of which layout produced it.

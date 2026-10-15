@@ -69,20 +69,26 @@ export class MyApp extends LitElement {
           <section class="demo-section">
             <h2>Currently Held Keys</h2>
             <div class="key-display">
-              ${keys.length > 0
-                ? keys.map((key, index) => {
-                    const code = codes[key]
-                    return html`
-                      ${index > 0 ? html`<span class="plus">+</span>` : null}
-                      <kbd class="large">
-                        ${formatForDisplay(key, { useSymbols: true })}
-                        ${code && code !== key
-                          ? html`<small class="code-label"> ${code} </small>`
-                          : null}
-                      </kbd>
-                    `
-                  })
-                : html`<span class="placeholder">Press any keys...</span>`}
+              ${
+                keys.length > 0
+                  ? keys.map((key, index) => {
+                      const code = codes[key]
+                      return html`
+                        ${index > 0 ? html`<span class="plus">+</span>` : null}
+                        <kbd class="large">
+                          ${formatForDisplay(key, { useSymbols: true })}
+                          ${
+                            code && code !== key
+                              ? html`<small class="code-label">
+                                  ${code}
+                                </small>`
+                              : null
+                          }
+                        </kbd>
+                      `
+                    })
+                  : html`<span class="placeholder">Press any keys...</span>`
+              }
             </div>
             <div class="stats">Keys held: <strong>${keys.length}</strong></div>
           </section>
@@ -102,8 +108,7 @@ class KeyDisplay extends LitElement {
       </div>
     \`
   }
-}`}</pre
-            >
+}`}</pre>
           </section>
 
           <section class="demo-section">
@@ -118,13 +123,17 @@ class KeyDisplay extends LitElement {
 
           <section class="demo-section">
             <h2>Recent Combinations</h2>
-            ${this.history.length > 0
-              ? html`
-                  <ul class="history-list">
-                    ${this.history.map((combo) => html`<li>${combo}</li>`)}
-                  </ul>
-                `
-              : html`<p class="placeholder">Press some key combinations...</p>`}
+            ${
+              this.history.length > 0
+                ? html`
+                    <ul class="history-list">
+                      ${this.history.map((combo) => html`<li>${combo}</li>`)}
+                    </ul>
+                  `
+                : html`<p class="placeholder">
+                    Press some key combinations...
+                  </p>`
+            }
             <button @click=${() => (this.history = [])}>Clear History</button>
           </section>
 

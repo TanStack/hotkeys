@@ -7,28 +7,25 @@ title: getHotkeyRegistrations
 function getHotkeyRegistrations(): SvelteHotkeyRegistrations;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts:58](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts#L58)
+Defined in: [packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts#L39)
 
-Svelte function that returns reactive access to all hotkey and sequence
-registrations from the singleton managers.
+Svelte function that returns reactive access to every hotkey registration,
+chords and sequences, from the singleton HotkeyManager.
 
-This is a standalone function that does NOT require the HotkeysProvider.
+This function does NOT require the HotkeysProvider.
 
 ## Returns
 
 [`SvelteHotkeyRegistrations`](../interfaces/SvelteHotkeyRegistrations.md)
 
-Object with reactive `hotkeys` and `sequences` properties
-
 ## Example
 
 ```svelte
-<script>
-  import { getHotkeyRegistrations } from '@tanstack/svelte-hotkeys'
-
+<script lang="ts">
   const registrations = getHotkeyRegistrations()
 </script>
-{#each registrations.hotkeys as reg}
-  <div>{reg.options.meta?.name} — {reg.triggerCount} triggers</div>
+
+{#each registrations.hotkeys as reg (reg.id)}
+  <li>{reg.options.meta?.name}: {formatForDisplay(reg.hotkey)}</li>
 {/each}
 ```

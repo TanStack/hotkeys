@@ -5,11 +5,6 @@ title: RecorderOptions
 
 Defined in: [recorder-options.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L15)
 
-## Extended by
-
-- [`HotkeyRecorderOptions`](HotkeyRecorderOptions.md)
-- [`HotkeySequenceRecorderOptions`](HotkeySequenceRecorderOptions.md)
-
 ## Properties
 
 ### detectConflicts?

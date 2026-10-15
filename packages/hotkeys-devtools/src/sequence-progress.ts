@@ -1,12 +1,15 @@
 import { DEFAULT_SEQUENCE_TIMEOUT } from '@tanstack/hotkeys'
-import type { SequenceRegistrationView } from '@tanstack/hotkeys'
+import type {
+  HotkeyRegistrationView,
+  HotkeySequenceRegistrationView,
+} from '@tanstack/hotkeys'
 
 /**
  * Matched step count for UI, accounting for inter-key timeout even if the
  * manager has not processed another event yet.
  */
 export function effectiveSequenceMatchedSteps(
-  reg: SequenceRegistrationView,
+  reg: HotkeySequenceRegistrationView,
   now: number,
 ): number {
   const timeout = reg.options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT
@@ -22,8 +25,11 @@ export function effectiveSequenceMatchedSteps(
 
 /** Whether the devtools should run a short interval to refresh sequence progress UI. */
 export function needsSequenceProgressClock(
-  regs: Array<SequenceRegistrationView>,
+  regs: Array<HotkeyRegistrationView>,
   now: number,
 ): boolean {
-  return regs.some((reg) => effectiveSequenceMatchedSteps(reg, now) > 0)
+  return regs.some(
+    (reg) =>
+      reg.kind === 'sequence' && effectiveSequenceMatchedSteps(reg, now) > 0,
+  )
 }

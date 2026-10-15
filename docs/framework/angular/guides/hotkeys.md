@@ -5,6 +5,18 @@ id: hotkeys
 
 The `injectHotkey` API is the primary way to register keyboard shortcuts in Angular applications. It wraps the singleton `HotkeyManager` with injection-context lifecycle management and Angular signal-friendly reactive options.
 
+## Chords and sequences
+
+A hotkey is either a **chord**, keys pressed together such as `'Mod+S'`, or a **sequence**, chords pressed one after another such as `['G', 'G']`. Every API in this guide accepts both, and a one-step array such as `['Mod+S']` is the chord `'Mod+S'`.
+
+```ts
+injectHotkey('Mod+S', () => this.save()) // chord
+injectHotkey(['G', 'G'], () => this.scrollToTop(), { timeout: 500 }) // sequence
+injectHotkey('Escape', () => this.close(), { requireReset: true }) // chord-only option
+```
+
+Most options apply to both kinds. `requireReset` applies only to chords and `timeout` only to sequences, and TypeScript rejects options that don't match the hotkey. When the kind isn't known statically, such as a `Hotkey` loaded from settings, only the shared options are accepted. Defaults apply only to the kinds that support them. See the [Sequences Guide](./sequences) for timing and matching, and the [App Hotkeys Guide](./app-hotkeys) to declare hotkeys up front and let users customize them.
+
 ## Logical keys and physical positions
 
 Use a logical binding when the shortcut should follow the character on the active layout. Use a physical binding when it should follow a keyboard position:
@@ -51,6 +63,33 @@ injectHotkey('Mod+S', (event, context) => {
 
 Pass a new logical or physical binding through your framework's normal state mechanism. A recorder result such as `Alt+[KeyS]` can be passed directly to the same registration API. Keep an initial binding in application state if you want a reset button; the library does not need a separate preferences store.
 
+## Property getters
+
+Property getters and functions returning an options object are both supported. Read reactive state inside the getter. A plain value such as `{ enabled: currentValue }` captures the value when that object is created.
+
+The adapter reads option properties inside its reactive computation and updates registrations automatically. Callbacks such as `onRecord` and `onCancel` remain functions; the adapter does not call them to resolve options. Tracking is shallow; callback bodies and nested objects are not evaluated to discover dependencies. Keep getters free of side effects. Ordinary option changes preserve registration identity. Changing the target moves the registration to that target.
+
+```ts
+import { Component, signal } from '@angular/core'
+import { injectHotkey } from '@tanstack/angular-hotkeys'
+
+@Component({ selector: 'save-shortcut', template: '' })
+export class SaveShortcut {
+	enabled = signal(true)
+
+	constructor() {
+		const component = this
+		injectHotkey('Mod+S', () => console.log('Save'), {
+			get enabled() {
+				return component.enabled()
+			},
+		})
+	}
+}
+```
+
+You can also pass `() => ({ enabled: this.enabled() })` from the component. Signals read by option getters update registrations when Angular runs the effect. Use the same forms for common options, per-definition options, sequences, and recorders. Getter properties in provided defaults are tracked too.
+
 ## Default options
 
 `injectHotkey` uses the same core defaults as the framework-agnostic manager:
@@ -71,7 +110,7 @@ injectHotkey('Mod+S', callback, {
 
 ## Reactive options
 
-For reactive state, pass an accessor function as the third argument.
+For reactive state, pass an options object with property getters or a function returning options.
 
 ### `enabled`
 
@@ -241,53 +280,39 @@ Group is descriptive metadata, not an execution scope. A shortcuts panel can gro
 
 ## Introspecting registrations
 
-Use the `injectHotkeyRegistrations` API to get a live view of all hotkey and sequence registrations. Use it to build shortcut palettes, help dialogs, or devtools.
+Use the `injectHotkeyRegistrations` function to get a live view of every registration, chords and sequences together. It's the building block for shortcut palettes and help dialogs.
 
 ```ts
 import { Component } from '@angular/core'
 import { injectHotkeyRegistrations, formatForDisplay } from '@tanstack/angular-hotkeys'
 
 @Component({
-  standalone: true,
+  selector: 'app-shortcut-palette',
   template: `
-    <h2>Keyboard Shortcuts</h2>
     <ul>
-      @for (reg of registrations().hotkeys; track reg.id) {
+      @for (reg of registrations(); track reg.id) {
         <li>
-          <kbd>{{ formatForDisplay(reg.hotkey) }}</kbd>
+          <kbd>{{ format(reg.hotkey) }}</kbd>
           @if (reg.options.meta?.name) {
-            <span> — {{ reg.options.meta.name }}</span>
+            <span> — {{ reg.options.meta?.name }}</span>
           }
-          @if (reg.options.meta?.description) {
-            <p>{{ reg.options.meta.description }}</p>
+          @if (reg.kind === 'sequence') {
+            <small>{{ reg.matchedStepCount }}/{{ reg.hotkey.length }} steps</small>
           }
         </li>
       }
     </ul>
-    @if (registrations().sequences.length > 0) {
-      <h2>Sequences</h2>
-      <ul>
-        @for (reg of registrations().sequences; track reg.id) {
-          <li>
-            <kbd>{{ displaySequence(reg.sequence) }}</kbd>
-            @if (reg.options.meta?.name) {
-              <span> — {{ reg.options.meta.name }}</span>
-            }
-          </li>
-        }
-      </ul>
-    }
   `,
 })
 export class ShortcutPaletteComponent {
-  readonly formatForDisplay = formatForDisplay
-  readonly displaySequence = (sequence: ReadonlyArray<Parameters<typeof formatForDisplay>[0]>) =>
-    sequence.map((step) => formatForDisplay(step)).join(' → ')
+  readonly format = formatForDisplay
   readonly registrations = injectHotkeyRegistrations()
 }
 ```
 
-The returned signal holds an object with two arrays. `hotkeys` contains registration objects with the hotkey string, options (including `meta`), and enabled state. `sequences` contains sequence registrations with the same structure.
+The returned signal holds one array of registration views. Each view has an `id`, the `hotkey`, its `options` (including `meta`), its `target`, and a `triggerCount`. Narrow with `kind`: chord views add `parsedHotkey`; sequence views add `parsedSequence` and `matchedStepCount`, the steps matched so far in the current attempt. Disabled entries stay listed; unmounted registrations disappear. Format any hotkey with `formatForDisplay`, and group entries by `options.meta?.group` when building a help panel.
+
+Registrations only exist while their components are mounted. To list hotkeys from routes that have not rendered, declare them with [app hotkeys](./app-hotkeys).
 
 ## The hotkey manager
 

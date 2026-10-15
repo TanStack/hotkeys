@@ -1,51 +1,35 @@
-import { useMemo } from 'preact/hooks'
 import { useSelector } from '@tanstack/preact-store'
-import {
-  getHotkeyManager,
-  getSequenceManager,
-  toHotkeyRegistrationView,
-} from '@tanstack/hotkeys'
-import type {
-  HotkeyRegistrationView,
-  SequenceRegistrationView,
-} from '@tanstack/hotkeys'
+import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
+import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
 
 /**
- * Return type for useHotkeyRegistrations.
- */
-export interface HotkeyRegistrationsResult {
-  /** All registered hotkeys (public view, no callbacks) */
-  hotkeys: Array<HotkeyRegistrationView>
-  /** All registered sequences */
-  sequences: Array<SequenceRegistrationView>
-}
-
-/**
- * Preact hook that reactively reads all hotkey and sequence registrations
- * from the singleton managers.
+ * Preact hook that reactively reads every hotkey registration, chords and
+ * sequences, from the singleton HotkeyManager. Narrow each view with `kind`.
  *
- * This is a standalone hook that does NOT require the HotkeysProvider.
- * It subscribes to both HotkeyManager and SequenceManager stores and
- * re-renders when registrations change.
+ * This hook does NOT require the HotkeysProvider. It re-renders when
+ * registrations change, including trigger counts and sequence progress.
  *
- * @returns Object with `hotkeys` and `sequences` arrays
+ * @returns All registrations, without callbacks
+ *
+ * @example
+ * ```tsx
+ * function ShortcutPalette() {
+ *   const registrations = useHotkeyRegistrations()
+ *
+ *   return (
+ *     <ul>
+ *       {registrations.map((reg) => (
+ *         <li key={reg.id}>
+ *           {reg.options.meta?.name}: {formatForDisplay(reg.hotkey)}
+ *         </li>
+ *       ))}
+ *     </ul>
+ *   )
+ * }
+ * ```
  */
-export function useHotkeyRegistrations(): HotkeyRegistrationsResult {
-  const hotkeyManager = getHotkeyManager()
-  const sequenceManager = getSequenceManager()
-
-  // Select stable store snapshots before deriving arrays; fresh selector arrays
-  // make Preact's external-store subscription render continuously.
-  const hotkeyState = useSelector(hotkeyManager.registrations)
-  const sequenceState = useSelector(sequenceManager.registrations)
-  const hotkeys = useMemo(
-    () => Array.from(hotkeyState.values()).map(toHotkeyRegistrationView),
-    [hotkeyState],
+export function useHotkeyRegistrations(): Array<HotkeyRegistrationView> {
+  return useSelector(getHotkeyManager().registrations, (state) =>
+    Array.from(state.values()).map(toHotkeyRegistrationView),
   )
-  const sequences = useMemo(
-    () => Array.from(sequenceState.values()),
-    [sequenceState],
-  )
-
-  return { hotkeys, sequences }
 }

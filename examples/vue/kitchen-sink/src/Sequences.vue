@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import { inject, ref } from 'vue'
+import { computed, inject, ref } from 'vue'
 import {
   formatForDisplay,
+  useHotkey,
   useHotkeyRegistrations,
-  useHotkeySequence,
-  useHotkeySequences,
+  useHotkeys,
 } from '@tanstack/vue-hotkeys'
 
 const log = inject<(message: string) => void>('log')!
 const timeout = ref(1000)
-useHotkeySequence(
+// An array of chords registers a sequence.
+useHotkey(
   ['[KeyG]', '[KeyG]'],
   () => log('Go to top'),
   () => ({
@@ -17,22 +18,25 @@ useHotkeySequence(
     meta: { name: 'Go to top', group: 'Sequences' },
   }),
 )
-useHotkeySequences(
+useHotkeys(
   [
     {
-      sequence: ['[KeyG]', '[KeyI]'],
+      hotkey: ['[KeyG]', '[KeyI]'],
       callback: () => log('Inbox'),
       options: { meta: { name: 'Inbox', group: 'Sequences' } },
     },
     {
-      sequence: ['Shift+[KeyR]', 'Shift+[KeyT]'],
+      hotkey: ['Shift+[KeyR]', 'Shift+[KeyT]'],
       callback: () => log('Shift chain'),
       options: { meta: { name: 'Shift chain', group: 'Sequences' } },
     },
   ],
   () => ({ timeout: timeout.value }),
 )
-const { sequences } = useHotkeyRegistrations()
+const registrations = useHotkeyRegistrations()
+const sequences = computed(() =>
+  registrations.value.filter((reg) => reg.kind === 'sequence'),
+)
 </script>
 <template>
   <section>
@@ -55,10 +59,10 @@ const { sequences } = useHotkeyRegistrations()
         <tr v-for="reg in sequences" :key="reg.id">
           <td>{{ reg.options.meta?.name }}</td>
           <td>
-            {{ reg.sequence.map((h) => formatForDisplay(h)).join(' → ') }}
+            {{ formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' }) }}
           </td>
           <td>
-            {{ reg.matchedStepCount }}/{{ reg.sequence.length }} steps;
+            {{ reg.matchedStepCount }}/{{ reg.hotkey.length }} steps;
             {{ reg.triggerCount }} fired
           </td>
         </tr>

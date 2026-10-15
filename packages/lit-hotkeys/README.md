@@ -67,6 +67,9 @@ Type-safe keyboard shortcuts for the web. Template-string bindings, parsed objec
 > [!NOTE]
 > You may know **TanStack Hotkeys** by our adapter names, too!
 >
+> - [**Alpine Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/alpine/quick-start)
+> - [**Ember Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/ember/quick-start)
+> - [**Octane Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/octane/quick-start)
 > - [**React Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/react/react-hotkeys)
 > - [**Preact Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/preact/preact-hotkeys)
 > - [**Solid Hotkeys**](https://tanstack.com/hotkeys/latest/docs/framework/solid/reference)

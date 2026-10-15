@@ -1,0 +1,21 @@
+{
+  "name": "@tanstack/hotkeys-example-lit-hotkey-recorder-sequences",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port=3069",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test:types": "tsc"
+  },
+  "dependencies": {
+    "@tanstack/lit-hotkeys": "0.15.1",
+    "lit": "^3.3.3"
+  },
+  "devDependencies": {
+    "typescript": "6.0.3",
+    "vite": "^8.3.2"
+  }
+}

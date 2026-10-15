@@ -1,13 +1,21 @@
 import { matchKeyboardEvent } from './_match'
-import { parseHotkey, parseRegisterableHotkey } from './parse'
+import {
+  isHotkeySequence,
+  isModifierKey,
+  parseHotkey,
+  parseRegisterableHotkey,
+} from './parse'
 import { detectPlatform } from './platform'
-import { keysEqual } from './_keyboard-event'
+import { normalizeKeyName } from './constants'
+import { keysEqual, normalizeKeyboardEvent } from './_keyboard-event'
 import type {
-  Hotkey,
   HotkeyCallback,
   HotkeyCallbackContext,
+  HotkeyChord,
+  HotkeySequence,
   ParsedHotkey,
   RegisterableHotkey,
+  RegisterableHotkeyChord,
 } from './hotkey.types'
 
 export interface KeyboardEventMatch {
@@ -48,7 +56,7 @@ export interface KeyboardEventMatch {
  */
 export function matchesKeyboardEvent(
   event: KeyboardEvent,
-  hotkey: Hotkey | ParsedHotkey,
+  hotkey: HotkeyChord | ParsedHotkey,
   platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
 ): boolean {
   return matchKeyboardEvent(event, hotkey, platform).matched
@@ -85,14 +93,14 @@ export interface CreateHotkeyHandlerOptions {
  * ```
  */
 export function createHotkeyHandler(
-  hotkey: Hotkey | ParsedHotkey,
+  hotkey: HotkeyChord | ParsedHotkey,
   callback: HotkeyCallback,
   options: CreateHotkeyHandlerOptions = {},
 ): (event: KeyboardEvent) => void {
   const { preventDefault = true, stopPropagation = true, platform } = options
   const resolvedPlatform = platform ?? detectPlatform()
 
-  const hotkeyString: Hotkey =
+  const hotkeyString: HotkeyChord =
     typeof hotkey === 'string' ? hotkey : formatParsedHotkey(hotkey)
   const parsed =
     typeof hotkey === 'string' ? parseHotkey(hotkey, resolvedPlatform) : hotkey
@@ -115,7 +123,7 @@ export function createHotkeyHandler(
   }
 }
 
-export type MultiHotkeyHandler = { [K in Hotkey]?: HotkeyCallback }
+export type MultiHotkeyHandler = { [K in HotkeyChord]?: HotkeyCallback }
 
 /**
  * Creates a handler that matches multiple hotkeys.
@@ -148,7 +156,7 @@ export function createMultiHotkeyHandler(
     .map(([hotkey, handler]) => {
       const parsed = parseHotkey(hotkey, resolvedPlatform)
       const context: HotkeyCallbackContext = {
-        hotkey: hotkey as Hotkey,
+        hotkey: hotkey as HotkeyChord,
         parsedHotkey: parsed,
       }
       return { parsed, handler, context }
@@ -174,7 +182,7 @@ export function createMultiHotkeyHandler(
  * Formats a ParsedHotkey back to a hotkey string.
  * Used internally to provide the hotkey string in callback context.
  */
-function formatParsedHotkey(parsed: ParsedHotkey): Hotkey {
+function formatParsedHotkey(parsed: ParsedHotkey): HotkeyChord {
   const parts: Array<string> = []
 
   if (parsed.ctrl) parts.push('Control')
@@ -183,11 +191,12 @@ function formatParsedHotkey(parsed: ParsedHotkey): Hotkey {
   if (parsed.meta) parts.push('Meta')
   parts.push(parsed.code !== undefined ? `[${parsed.code}]` : parsed.key)
 
-  return parts.join('+') as Hotkey
+  return parts.join('+') as HotkeyChord
 }
 
 /**
- * Compares normalized binding identity, including all four modifiers.
+ * Compares normalized hotkey identity, including all four modifiers.
+ * Sequences are equal when every step is equal; a one-step sequence equals its chord.
  * Aliases resolve on the supplied platform. A physical code and a logical key
  * remain distinct even when one keyboard event could match both.
  */
@@ -195,6 +204,19 @@ export function areHotkeysEqual(
   left: RegisterableHotkey,
   right: RegisterableHotkey,
   platform = detectPlatform(),
+): boolean {
+  const a = isHotkeySequence(left) ? left : [left]
+  const b = isHotkeySequence(right) ? right : [right]
+  return (
+    a.length === b.length &&
+    a.every((step, index) => areChordsEqual(step, b[index]!, platform))
+  )
+}
+
+function areChordsEqual(
+  left: RegisterableHotkeyChord,
+  right: RegisterableHotkeyChord,
+  platform: 'mac' | 'windows' | 'linux',
 ): boolean {
   const a = parseRegisterableHotkey(left, platform)
   const b = parseRegisterableHotkey(right, platform)
@@ -207,4 +229,96 @@ export function areHotkeysEqual(
       ? a.code === b.code
       : keysEqual(a.key, b.key))
   )
+}
+
+/** Default timeout between sequence steps (in milliseconds). */
+export const DEFAULT_SEQUENCE_TIMEOUT = 1000
+
+/**
+ * Creates a simple sequence matcher for one-off use.
+ *
+ * This is a low-level helper that does not support ignoreInputs, target,
+ * or other HotkeyOptions. Callers must handle input filtering themselves
+ * if attaching to document.
+ *
+ * @param sequence - The sequence of hotkeys to match
+ * @param options - Options including timeout
+ * @returns An object with match() and reset() methods
+ *
+ * @example
+ * ```ts
+ * const matcher = createSequenceMatcher(['G', 'G'], { timeout: 500 })
+ *
+ * document.addEventListener('keydown', (event) => {
+ *   if (matcher.match(event)) {
+ *     console.log('Sequence matched!')
+ *   }
+ * })
+ * ```
+ */
+export function createSequenceMatcher(
+  sequence: HotkeySequence,
+  options: { timeout?: number; platform?: 'mac' | 'windows' | 'linux' } = {},
+): {
+  match: (event: KeyboardEvent) => boolean
+  reset: () => void
+  getProgress: () => number
+} {
+  const platform = options.platform ?? detectPlatform()
+  const timeout = options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT
+  const parsedSequence = sequence.map((hotkey) => parseHotkey(hotkey, platform))
+
+  let currentIndex = 0
+  let lastKeyTime = 0
+
+  return {
+    match(event: KeyboardEvent): boolean {
+      // These events are not sequence steps and must not refresh the timeout.
+      if (
+        (event.type === 'keydown' && event.repeat) ||
+        normalizeKeyboardEvent(event, platform).isComposing ||
+        isModifierKey(normalizeKeyName(event.key))
+      ) {
+        return false
+      }
+      const now = Date.now()
+
+      if (currentIndex > 0 && now - lastKeyTime > timeout) {
+        currentIndex = 0
+      }
+
+      const expected = parsedSequence[currentIndex]
+      if (!expected) {
+        return false
+      }
+
+      if (matchesKeyboardEvent(event, expected, platform)) {
+        lastKeyTime = now
+        currentIndex++
+
+        if (currentIndex >= parsedSequence.length) {
+          currentIndex = 0
+          return true
+        }
+      } else if (currentIndex > 0) {
+        if (matchesKeyboardEvent(event, parsedSequence[0]!, platform)) {
+          currentIndex = 1
+          lastKeyTime = now
+        } else {
+          currentIndex = 0
+        }
+      }
+
+      return false
+    },
+
+    reset(): void {
+      currentIndex = 0
+      lastKeyTime = 0
+    },
+
+    getProgress(): number {
+      return currentIndex
+    },
+  }
 }

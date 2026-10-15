@@ -5,22 +5,29 @@ title: "@tanstack/svelte-hotkeys"
 
 ## Interfaces
 
-- [CreateHotkeyDefinition](interfaces/CreateHotkeyDefinition.md)
-- [CreateHotkeyOptions](interfaces/CreateHotkeyOptions.md)
-- [CreateHotkeySequenceDefinition](interfaces/CreateHotkeySequenceDefinition.md)
-- [CreateHotkeySequenceOptions](interfaces/CreateHotkeySequenceOptions.md)
+- [HotkeysContextOptions](interfaces/HotkeysContextOptions.md)
 - [HotkeysProviderOptions](interfaces/HotkeysProviderOptions.md)
 - [HotkeysProviderProps](interfaces/HotkeysProviderProps.md)
+- [SvelteAppHotkeyList](interfaces/SvelteAppHotkeyList.md)
+- [SvelteAppHotkeys](interfaces/SvelteAppHotkeys.md)
+- [SvelteCustomHotkeys](interfaces/SvelteCustomHotkeys.md)
 - [SvelteHeldKeyCodesMap](interfaces/SvelteHeldKeyCodesMap.md)
 - [SvelteHeldKeys](interfaces/SvelteHeldKeys.md)
 - [SvelteHeldKeyState](interfaces/SvelteHeldKeyState.md)
 - [SvelteHotkeyHint](interfaces/SvelteHotkeyHint.md)
 - [SvelteHotkeyRecorder](interfaces/SvelteHotkeyRecorder.md)
 - [SvelteHotkeyRegistrations](interfaces/SvelteHotkeyRegistrations.md)
-- [SvelteHotkeySequenceRecorder](interfaces/SvelteHotkeySequenceRecorder.md)
 
 ## Type Aliases
 
+- [CreateAppHotkeyOptions](type-aliases/CreateAppHotkeyOptions.md)
+- [CreateHotkeyChordOptions](type-aliases/CreateHotkeyChordOptions.md)
+- [CreateHotkeyCommonOptions](type-aliases/CreateHotkeyCommonOptions.md)
+- [CreateHotkeyDefinition](type-aliases/CreateHotkeyDefinition.md)
+- [CreateHotkeyOptions](type-aliases/CreateHotkeyOptions.md)
+- [CreateHotkeyOptionsFor](type-aliases/CreateHotkeyOptionsFor.md)
+- [CreateHotkeySequenceOptions](type-aliases/CreateHotkeySequenceOptions.md)
+- [CreateHotkeyTarget](type-aliases/CreateHotkeyTarget.md)
 - [HotkeysProvider](type-aliases/HotkeysProvider.md)
 
 ## Variables
@@ -35,11 +42,9 @@ title: "@tanstack/svelte-hotkeys"
 - [createHotkeyRecorder](functions/createHotkeyRecorder.md)
 - [createHotkeys](functions/createHotkeys.md)
 - [createHotkeysAttachment](functions/createHotkeysAttachment.md)
-- [createHotkeySequence](functions/createHotkeySequence.md)
-- [createHotkeySequenceAttachment](functions/createHotkeySequenceAttachment.md)
-- [createHotkeySequenceRecorder](functions/createHotkeySequenceRecorder.md)
-- [createHotkeySequences](functions/createHotkeySequences.md)
-- [createHotkeySequencesAttachment](functions/createHotkeySequencesAttachment.md)
+- [getAppHotkeyList](functions/getAppHotkeyList.md)
+- [getAppHotkeys](functions/getAppHotkeys.md)
+- [getCustomHotkeys](functions/getCustomHotkeys.md)
 - [getDefaultHotkeysOptions](functions/getDefaultHotkeysOptions.md)
 - [getHeldKeyCodesMap](functions/getHeldKeyCodesMap.md)
 - [getHeldKeys](functions/getHeldKeys.md)

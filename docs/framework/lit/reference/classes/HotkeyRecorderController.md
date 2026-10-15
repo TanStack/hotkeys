@@ -3,13 +3,15 @@ id: HotkeyRecorderController
 title: HotkeyRecorderController
 ---
 
-Defined in: [controllers/hotkey-recorder.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L40)
+Defined in: [controllers/hotkey-recorder.ts:48](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L48)
 
 A Lit ReactiveController that records keyboard shortcuts.
 
-Wraps the framework-agnostic `HotkeyRecorder` class, managing all the
-complexity of capturing keyboard events, converting them to hotkey strings,
-and handling edge cases like Escape to cancel or Backspace/Delete to clear.
+With the default `maxSteps: 1`, the first valid chord is recorded. With a
+larger `maxSteps`, each chord adds a step; the recording commits on Enter
+(unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at `maxSteps`, and
+`onRecord` receives a chord (one step) or a sequence. Escape cancels;
+Backspace/Delete removes the last step or clears.
 
 ## Example
 
@@ -49,24 +51,112 @@ class ShortcutSettings extends LitElement {
 ### Constructor
 
 ```ts
-new HotkeyRecorderController(_host, _options): HotkeyRecorderController;
+new HotkeyRecorderController(host, options): HotkeyRecorderController;
 ```
 
-Defined in: [controllers/hotkey-recorder.ts:64](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L64)
+Defined in: [controllers/hotkey-recorder.ts:80](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L80)
 
 #### Parameters
 
-##### \_host
+##### host
 
 `ReactiveControllerHost`
 
 The Lit component that owns this controller.
 
-##### \_options
+##### options
 
-`HotkeyRecorderOptions`
+`HotkeyChordRecorderOptions`
 
-Configuration options for the recorder.
+Options or a getter, read during recording.
+
+#### Returns
+
+`HotkeyRecorderController`
+
+### Constructor
+
+```ts
+new HotkeyRecorderController(host, options): HotkeyRecorderController;
+```
+
+Defined in: [controllers/hotkey-recorder.ts:81](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L81)
+
+#### Parameters
+
+##### host
+
+`ReactiveControllerHost`
+
+##### options
+
+`HotkeySequenceRecorderOptions`
+
+#### Returns
+
+`HotkeyRecorderController`
+
+### Constructor
+
+```ts
+new HotkeyRecorderController(host, options): HotkeyRecorderController;
+```
+
+Defined in: [controllers/hotkey-recorder.ts:88](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L88)
+
+#### Parameters
+
+##### host
+
+`ReactiveControllerHost`
+
+##### options
+
+() => `HotkeySequenceRecorderOptions`
+
+#### Returns
+
+`HotkeyRecorderController`
+
+### Constructor
+
+```ts
+new HotkeyRecorderController(host, options): HotkeyRecorderController;
+```
+
+Defined in: [controllers/hotkey-recorder.ts:92](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L92)
+
+#### Parameters
+
+##### host
+
+`ReactiveControllerHost`
+
+##### options
+
+() => `HotkeyChordRecorderOptions`
+
+#### Returns
+
+`HotkeyRecorderController`
+
+### Constructor
+
+```ts
+new HotkeyRecorderController(host, options): HotkeyRecorderController;
+```
+
+Defined in: [controllers/hotkey-recorder.ts:96](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L96)
+
+#### Parameters
+
+##### host
+
+`ReactiveControllerHost`
+
+##### options
+
+() => `HotkeyRecorderOptions`
 
 #### Returns
 
@@ -82,7 +172,7 @@ Configuration options for the recorder.
 get isRecording(): boolean;
 ```
 
-Defined in: [controllers/hotkey-recorder.ts:51](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L51)
+Defined in: [controllers/hotkey-recorder.ts:62](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L62)
 
 Whether recording is currently active.
 
@@ -100,13 +190,31 @@ Whether recording is currently active.
 get recordedHotkey(): Hotkey | null;
 ```
 
-Defined in: [controllers/hotkey-recorder.ts:56](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L56)
+Defined in: [controllers/hotkey-recorder.ts:67](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L67)
 
-The currently recorded hotkey (for live preview).
+The last committed hotkey: a chord, or a sequence of two or more steps.
 
 ##### Returns
 
 `Hotkey` \| `null`
+
+***
+
+### steps
+
+#### Get Signature
+
+```ts
+get steps(): HotkeySequence;
+```
+
+Defined in: [controllers/hotkey-recorder.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L72)
+
+Chords recorded so far in a multi-step recording (for live preview).
+
+##### Returns
+
+`HotkeySequence`
 
 ## Methods
 
@@ -116,9 +224,25 @@ The currently recorded hotkey (for live preview).
 cancelRecording(): void;
 ```
 
-Defined in: [controllers/hotkey-recorder.ts:117](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L117)
+Defined in: [controllers/hotkey-recorder.ts:167](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L167)
 
 Cancel recording without saving.
+
+#### Returns
+
+`void`
+
+***
+
+### commitRecording()
+
+```ts
+commitRecording(): void;
+```
+
+Defined in: [controllers/hotkey-recorder.ts:172](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L172)
+
+Commit the recorded steps now (multi-step recordings).
 
 #### Returns
 
@@ -132,7 +256,7 @@ Cancel recording without saving.
 hostConnected(): void;
 ```
 
-Defined in: [controllers/hotkey-recorder.ts:73](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L73)
+Defined in: [controllers/hotkey-recorder.ts:118](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L118)
 
 Subscribes to the recorder store and updates the internal state when changes occur.
 
@@ -154,7 +278,7 @@ ReactiveController.hostConnected
 hostDisconnected(): void;
 ```
 
-Defined in: [controllers/hotkey-recorder.ts:92](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L92)
+Defined in: [controllers/hotkey-recorder.ts:139](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L139)
 
 Unsubscribes from the recorder store and destroys the recorder instance to prevent memory leaks.
 
@@ -176,7 +300,7 @@ ReactiveController.hostDisconnected
 setOptions(options): void;
 ```
 
-Defined in: [controllers/hotkey-recorder.ts:101](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L101)
+Defined in: [controllers/hotkey-recorder.ts:149](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L149)
 
 Updates the recorder options (e.g. callbacks).
 
@@ -198,7 +322,7 @@ Updates the recorder options (e.g. callbacks).
 startRecording(): void;
 ```
 
-Defined in: [controllers/hotkey-recorder.ts:107](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L107)
+Defined in: [controllers/hotkey-recorder.ts:157](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L157)
 
 Start recording a new hotkey.
 
@@ -214,7 +338,7 @@ Start recording a new hotkey.
 stopRecording(): void;
 ```
 
-Defined in: [controllers/hotkey-recorder.ts:112](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L112)
+Defined in: [controllers/hotkey-recorder.ts:162](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L162)
 
 Stop recording (same as cancel but without calling onCancel).
 

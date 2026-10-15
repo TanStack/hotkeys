@@ -9,12 +9,12 @@ import {
 } from './_keyboard-event'
 import { parseHotkey } from './parse'
 import type { KeyboardEventMatch } from './match'
-import type { Hotkey, ParsedHotkey } from './hotkey.types'
+import type { HotkeyChord, ParsedHotkey } from './hotkey.types'
 
 /** Matches an event and reports the winning candidate and release identity. */
 export function matchKeyboardEvent(
   event: KeyboardEvent,
-  hotkey: Hotkey | ParsedHotkey,
+  hotkey: HotkeyChord | ParsedHotkey,
   platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
 ): KeyboardEventMatch {
   const parsed =
@@ -30,6 +30,9 @@ export function matchKeyboardEvent(
   if (normalized.altGraph && (parsed.ctrl || parsed.alt)) return noMatch
 
   if (parsed.code !== undefined) {
+    // A held AltGraph means the physical key is not a plain shortcut press.
+    // This matches the recorder, which rejects AltGraph physical recordings.
+    if (normalized.altGraph) return noMatch
     if (!modifiersMatch(normalized, parsed, false)) return noMatch
     return normalized.code === parsed.code ? matched('code', 3) : noMatch
   }
@@ -57,6 +60,9 @@ export function matchKeyboardEvent(
     return noMatch
   }
 
+  // With AltGraph held, only a direct key match counts. Never fall back to
+  // the physical key, which would turn AltGr+M (`µ`) into `M`.
+  if (normalized.altGraph) return noMatch
   if (!modifiersMatch(normalized, parsed, false)) return noMatch
   const fallbackKey = codeToLogicalKey(normalized.code)
   return fallbackKey !== undefined && keysEqual(fallbackKey, parsed.key)

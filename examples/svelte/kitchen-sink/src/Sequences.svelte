@@ -2,13 +2,14 @@
   import { getContext } from 'svelte'
   import {
     formatForDisplay,
-    createHotkeySequence,
-    createHotkeySequences,
+    createHotkey,
+    createHotkeys,
     getHotkeyRegistrations,
   } from '@tanstack/svelte-hotkeys'
   const log = getContext<(message: string) => void>('log')
   let timeout = $state(1000)
-  createHotkeySequence(
+  // An array of chords registers a sequence.
+  createHotkey(
     ['[KeyG]', '[KeyG]'],
     () => log('Go to top'),
     () => ({
@@ -16,15 +17,15 @@
       meta: { name: 'Go to top', group: 'Sequences' },
     }),
   )
-  createHotkeySequences(
+  createHotkeys(
     [
       {
-        sequence: ['[KeyG]', '[KeyI]'],
+        hotkey: ['[KeyG]', '[KeyI]'],
         callback: () => log('Inbox'),
         options: { meta: { name: 'Inbox', group: 'Sequences' } },
       },
       {
-        sequence: ['Shift+[KeyR]', 'Shift+[KeyT]'],
+        hotkey: ['Shift+[KeyR]', 'Shift+[KeyT]'],
         callback: () => log('Shift chain'),
         options: { meta: { name: 'Shift chain', group: 'Sequences' } },
       },
@@ -32,6 +33,9 @@
     () => ({ timeout: timeout }),
   )
   const registry = getHotkeyRegistrations()
+  const sequences = $derived(
+    registry.hotkeys.filter((reg) => reg.kind === 'sequence'),
+  )
 </script>
 
 <section>
@@ -52,11 +56,11 @@
   >
   <table>
     <tbody
-      >{#each registry.sequences as reg (reg.id)}<tr
+      >{#each sequences as reg (reg.id)}<tr
           ><td>{reg.options.meta?.name}</td><td
-            >{reg.sequence.map((h) => formatForDisplay(h)).join(' → ')}</td
+            >{formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })}</td
           ><td
-            >{reg.matchedStepCount}/{reg.sequence.length} steps; {reg.triggerCount}
+            >{reg.matchedStepCount}/{reg.hotkey.length} steps; {reg.triggerCount}
             fired</td
           ></tr
         >{/each}</tbody

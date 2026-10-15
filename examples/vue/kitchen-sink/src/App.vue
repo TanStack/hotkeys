@@ -62,8 +62,7 @@ const show = ref(false)
 const keys = useHeldKeys(),
   codes = useHeldKeyCodes(),
   shift = useKeyHold('Shift')
-const { hotkeys, sequences } = useHotkeyRegistrations()
-const registrations = computed(() => [...hotkeys.value, ...sequences.value])
+const registrations = useHotkeyRegistrations()
 useHotkeys(
   pages.map((p) => ({
     hotkey: p.hotkey,
@@ -116,11 +115,7 @@ useHotkey(
         <tr v-for="reg in registrations" :key="reg.id">
           <td>{{ reg.options.meta?.group }} / {{ reg.options.meta?.name }}</td>
           <td>
-            {{
-              ('hotkey' in reg ? [reg.hotkey] : reg.sequence)
-                .map((h) => formatForDisplay(h))
-                .join(' → ')
-            }}
+            {{ formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' }) }}
           </td>
           <td>
             {{

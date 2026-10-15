@@ -6,10 +6,10 @@ title: formatForDisplay
 ## Call Signature
 
 ```ts
-function formatForDisplay(hotkey, options): string[];
+function formatForDisplay(hotkey, options): string[][];
 ```
 
-Defined in: [format.ts:101](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L101)
+Defined in: [format.ts:95](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L95)
 
 Formats a hotkey for display in a user interface.
 
@@ -21,14 +21,73 @@ Physical codes use conventional display labels: `[KeyS]` becomes `S` and
 `[Digit2]` becomes `2`. These labels do not infer the active keyboard layout
 or change matching. Supply a resolved `layoutMap` for layout-aware labels;
 `keyLabels` overrides both layout entries and fallback labels.
+Sequence steps are formatted individually and joined with `sequenceSeparator`
+(a space by default).
 
 ### Parameters
 
 #### hotkey
 
-[`DisplayHotkey`](../type-aliases/DisplayHotkey.md)
+readonly [`DisplayHotkeyChord`](../type-aliases/DisplayHotkeyChord.md)[]
 
-A logical or physical string, raw binding, or ParsedHotkey
+A logical or physical string, raw object, ParsedHotkey, or sequence
+
+#### options
+
+[`FormatDisplayOptions`](../interfaces/FormatDisplayOptions.md) & `object`
+
+Formatting options
+
+### Returns
+
+`string`[][]
+
+Display text, or individual key labels when parts is true (one array per step for sequences)
+
+### Example
+
+```ts
+formatForDisplay('Mod+Shift+S', { platform: 'mac' })
+// Returns: '⇧ ⌘ S' (symbols separated by spaces on macOS)
+
+formatForDisplay('Mod+Shift+S', { platform: 'windows' })
+// Returns: 'Ctrl+Shift+S'
+
+formatForDisplay('Escape')
+// Returns: 'Esc' (on all platforms)
+
+formatForDisplay(['G', 'H'])
+// Returns: 'G H'
+```
+
+## Call Signature
+
+```ts
+function formatForDisplay(hotkey, options): string[];
+```
+
+Defined in: [format.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L99)
+
+Formats a hotkey for display in a user interface.
+
+On macOS, uses symbols (⇧⌘S) in Control, Option, Shift, Command order.
+Display ordering does not change the normalized hotkey used for registration.
+On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
+The separator can be customized with `separatorToken`.
+Physical codes use conventional display labels: `[KeyS]` becomes `S` and
+`[Digit2]` becomes `2`. These labels do not infer the active keyboard layout
+or change matching. Supply a resolved `layoutMap` for layout-aware labels;
+`keyLabels` overrides both layout entries and fallback labels.
+Sequence steps are formatted individually and joined with `sequenceSeparator`
+(a space by default).
+
+### Parameters
+
+#### hotkey
+
+[`DisplayHotkeyChord`](../type-aliases/DisplayHotkeyChord.md)
+
+A logical or physical string, raw object, ParsedHotkey, or sequence
 
 #### options
 
@@ -40,7 +99,7 @@ Formatting options
 
 `string`[]
 
-Display text, or individual key labels when parts is true
+Display text, or individual key labels when parts is true (one array per step for sequences)
 
 ### Example
 
@@ -53,6 +112,9 @@ formatForDisplay('Mod+Shift+S', { platform: 'windows' })
 
 formatForDisplay('Escape')
 // Returns: 'Esc' (on all platforms)
+
+formatForDisplay(['G', 'H'])
+// Returns: 'G H'
 ```
 
 ## Call Signature
@@ -61,7 +123,7 @@ formatForDisplay('Escape')
 function formatForDisplay(hotkey, options?): string;
 ```
 
-Defined in: [format.ts:105](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L105)
+Defined in: [format.ts:103](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L103)
 
 Formats a hotkey for display in a user interface.
 
@@ -73,6 +135,8 @@ Physical codes use conventional display labels: `[KeyS]` becomes `S` and
 `[Digit2]` becomes `2`. These labels do not infer the active keyboard layout
 or change matching. Supply a resolved `layoutMap` for layout-aware labels;
 `keyLabels` overrides both layout entries and fallback labels.
+Sequence steps are formatted individually and joined with `sequenceSeparator`
+(a space by default).
 
 ### Parameters
 
@@ -80,7 +144,7 @@ or change matching. Supply a resolved `layoutMap` for layout-aware labels;
 
 [`DisplayHotkey`](../type-aliases/DisplayHotkey.md)
 
-A logical or physical string, raw binding, or ParsedHotkey
+A logical or physical string, raw object, ParsedHotkey, or sequence
 
 #### options?
 
@@ -92,7 +156,7 @@ Formatting options
 
 `string`
 
-Display text, or individual key labels when parts is true
+Display text, or individual key labels when parts is true (one array per step for sequences)
 
 ### Example
 
@@ -105,15 +169,18 @@ formatForDisplay('Mod+Shift+S', { platform: 'windows' })
 
 formatForDisplay('Escape')
 // Returns: 'Esc' (on all platforms)
+
+formatForDisplay(['G', 'H'])
+// Returns: 'G H'
 ```
 
 ## Call Signature
 
 ```ts
-function formatForDisplay(hotkey, options): string | string[];
+function formatForDisplay(hotkey, options): string | string[] | string[][];
 ```
 
-Defined in: [format.ts:109](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L109)
+Defined in: [format.ts:107](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L107)
 
 Formats a hotkey for display in a user interface.
 
@@ -125,6 +192,8 @@ Physical codes use conventional display labels: `[KeyS]` becomes `S` and
 `[Digit2]` becomes `2`. These labels do not infer the active keyboard layout
 or change matching. Supply a resolved `layoutMap` for layout-aware labels;
 `keyLabels` overrides both layout entries and fallback labels.
+Sequence steps are formatted individually and joined with `sequenceSeparator`
+(a space by default).
 
 ### Parameters
 
@@ -132,7 +201,7 @@ or change matching. Supply a resolved `layoutMap` for layout-aware labels;
 
 [`DisplayHotkey`](../type-aliases/DisplayHotkey.md)
 
-A logical or physical string, raw binding, or ParsedHotkey
+A logical or physical string, raw object, ParsedHotkey, or sequence
 
 #### options
 
@@ -142,9 +211,9 @@ Formatting options
 
 ### Returns
 
-`string` \| `string`[]
+`string` \| `string`[] \| `string`[][]
 
-Display text, or individual key labels when parts is true
+Display text, or individual key labels when parts is true (one array per step for sequences)
 
 ### Example
 
@@ -157,4 +226,7 @@ formatForDisplay('Mod+Shift+S', { platform: 'windows' })
 
 formatForDisplay('Escape')
 // Returns: 'Esc' (on all platforms)
+
+formatForDisplay(['G', 'H'])
+// Returns: 'G H'
 ```

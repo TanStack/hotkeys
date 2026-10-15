@@ -3,158 +3,146 @@ title: Sequences Guide
 id: sequences
 ---
 
-TanStack Hotkeys supports multi-key sequences in Svelte, where keys are pressed one after another rather than simultaneously.
+> [!IMPORTANT]
+> `createHotkeySequence`, `createHotkeySequences`, and `createHotkeySequenceRecorder` were removed in `@tanstack/svelte-hotkeys` v0.14.0. Pass a sequence to `createHotkey` or `createHotkeys` instead, and record one with `createHotkeyRecorder` and `maxSteps`.
 
-Sequence steps use the same string syntax as single hotkeys. For example, `['[KeyG]', '[KeyG]']` follows a physical position, while `['G', 'G']` follows the logical letter. A sequence can mix forms, such as `['Mod+[KeyK]', 'C']`. Display steps with `sequence.map((step) => formatForDisplay(step)).join(' → ')`.
+A sequence is a hotkey made of chords pressed one after another rather than together. Think Vim-style navigation, cheat codes, or multi-step commands. Sequences are ordinary hotkeys: register them with `createHotkey` and `createHotkeys`, list them with `getHotkeyRegistrations`, record them with `createHotkeyRecorder`, and format them with `formatForDisplay`.
 
-## Global sequences
+Sequence steps use the same syntax as chords. For example, `['[KeyG]', '[KeyG]']` follows a physical position, while `['G', 'G']` follows the logical letter. A sequence can mix forms, such as `['Mod+[KeyK]', 'C']`.
+
+## Basic usage
+
+Pass an array of chords wherever you pass a hotkey:
 
 ```svelte
 <script lang="ts">
-  import { createHotkeySequence } from '@tanstack/svelte-hotkeys'
+  import { createHotkey } from '@tanstack/svelte-hotkeys'
 
-  createHotkeySequence(['G', 'G'], () => {
+  // Vim-style: press g then g to scroll to top
+  createHotkey(['G', 'G'], () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   })
 </script>
 ```
 
+The user must press the steps in order, each within the timeout window. A one-step array such as `['Escape']` is the chord `'Escape'`.
+
 ## Many sequences at once
 
-Use `createHotkeySequences` to register several global sequences in one place (including from a reactive getter). For multiple sequences on a focused element, use `createHotkeySequencesAttachment` the same way you would use `createHotkeySequenceAttachment`.
+`createHotkeys` registers chords and sequences together, including dynamic lists:
 
-```svelte
-<script lang="ts">
-  import { createHotkeySequences } from '@tanstack/svelte-hotkeys'
+```ts
+import { createHotkeys } from '@tanstack/svelte-hotkeys'
 
-  createHotkeySequences([
-    { sequence: ['G', 'G'], callback: () => scrollToTop() },
-    { sequence: ['D', 'D'], callback: () => deleteLine(), options: { timeout: 500 } },
-  ])
-</script>
+createHotkeys([
+  { hotkey: ['G', 'G'], callback: () => scrollToTop() },
+  { hotkey: ['D', 'D'], callback: () => deleteLine(), options: { timeout: 500 } },
+  { hotkey: 'Mod+S', callback: () => save() },
+])
 ```
-
-## Scoped sequences
-
-Use `createHotkeySequenceAttachment` when a sequence should only be active while a specific element owns focus.
-
-```svelte
-<script lang="ts">
-  import { createHotkeySequenceAttachment } from '@tanstack/svelte-hotkeys'
-
-  const editorSequences = createHotkeySequenceAttachment(['G', 'G'], () => {
-    scrollToTop()
-  })
-</script>
-
-<div tabindex="0" {@attach editorSequences}>
-  Focus here, then press g then g
-</div>
-```
-
-## Matching steps
-
-Both `SequenceManager` and `createSequenceMatcher` ignore modifier-only events, IME composition, and automatic keydown repeats. These events neither advance the sequence nor refresh its timeout: holding G does not complete a two-press G sequence. The manager prefers exact matches over weaker logical-key fallbacks while preserving equally strong matches.
 
 ## Sequence options
 
+Sequences accept the same options as chords, except `requireReset`, plus `timeout`.
+
+### `timeout`
+
+The maximum time (in milliseconds) allowed between consecutive steps. If the user takes longer than this between any two steps, the sequence resets. Defaults to `1000` (1 second).
+
 ```ts
-createHotkeySequence(['G', 'G'], callback, {
-  timeout: 1000,
-  enabled: true,
-})
+// Fast sequence - user must type quickly
+createHotkey(['D', 'D'], () => deleteLine(), { timeout: 500 })
+
+// Slow sequence - user has more time between keys
+createHotkey(['Shift+Z', 'Shift+Z'], () => forceQuit(), { timeout: 2000 })
 ```
 
-### Reactive `enabled`
-
-When disabled, the sequence stays registered (visible in devtools); only execution is suppressed.
+`timeout` is only accepted when the hotkey is a sequence. Set a default for every sequence with `HotkeysProvider` (or `setHotkeysContext` in a root component's script):
 
 ```svelte
-<script lang="ts">
-  import { createHotkeySequence } from '@tanstack/svelte-hotkeys'
-
-  let isVimMode = $state(true)
-
-  createHotkeySequence(
-    ['G', 'G'],
-    () => scrollToTop(),
-    () => ({ enabled: isVimMode }),
-  )
-</script>
+<HotkeysProvider defaultOptions={{ hotkey: { timeout: 1500 } }}>
+  <App />
+</HotkeysProvider>
 ```
 
-## Default options
+### `enabled` and `meta`
 
-```svelte
-<script lang="ts">
-  import { setHotkeysContext } from '@tanstack/svelte-hotkeys'
-
-  setHotkeysContext({
-    hotkeySequence: { timeout: 1500 },
-  })
-</script>
-```
-
-### `meta`
-
-Sequences support the same `meta` option as hotkeys, so you can attach a `name` and `description` for use in shortcut palettes and devtools.
+These work exactly as they do for chords. Disabled sequences stay registered and visible in devtools, and `meta` flows to registrations, devtools, and cheat sheets. See the [Hotkeys Guide](./hotkeys).
 
 ```ts
-createHotkeySequence(['G', 'G'], () => scrollToTop(), {
-  meta: { name: 'Go to Top', description: 'Scroll to the top of the page' },
-})
+createHotkey(['G', 'G'], () => scrollToTop(), () => ({
+  enabled: isVimMode,
+  meta: { name: 'Go to top', description: 'Scroll to the top of the page' },
+}))
 ```
 
-See the [Hotkeys Guide](./hotkeys.md#metadata-name--description) for details on declaration merging and introspecting registrations.
+## Sequences with modifiers
 
-## Chained modifier chords
-
-This example follows physical R and T positions. Brackets retain those positions even when the keys produce different letters. Other sequences can continue using logical characters.
-
-You can use the same modifier on consecutive steps (for example `Shift+R` then `Shift+T`):
+Each step in a sequence can include modifiers, and consecutive steps can repeat the same modifier:
 
 ```ts
-createHotkeySequence(['Shift+[KeyR]', 'Shift+[KeyT]'], () => doNextAction())
+// Ctrl+K followed by Ctrl+C (VS Code-style comment)
+createHotkey(['Mod+K', 'Mod+C'], () => commentSelection())
+
+// Physical R then T positions, both with Shift
+createHotkey(['Shift+[KeyR]', 'Shift+[KeyT]'], () => doNextAction())
 ```
 
-While a sequence is in progress, modifier-only keydown events (Shift, Control, Alt, or Meta pressed alone) are ignored: they do not advance the sequence and do not reset progress.
+Brackets retain physical positions even when the keys produce different letters. While a sequence is in progress, modifier-only keydown events (Shift, Control, Alt, or Meta pressed alone) are ignored. They neither advance the sequence nor reset progress, so a user can tap or hold Shift between `Shift+R` and `Shift+T`.
 
-## Common patterns
-
-### Vim-style navigation
+## Vim-style navigation
 
 ```ts
-createHotkeySequence(['G', 'G'], () => scrollToTop())
-createHotkeySequence(['G', 'Shift+G'], () => scrollToBottom())
-createHotkeySequence(['D', 'D'], () => deleteLine())
-createHotkeySequence(['D', 'W'], () => deleteWord())
-createHotkeySequence(['C', 'I', 'W'], () => changeInnerWord())
+createHotkeys([
+  { hotkey: ['G', 'G'], callback: () => scrollToTop() },
+  { hotkey: ['G', 'Shift+G'], callback: () => scrollToBottom() },
+  { hotkey: ['D', 'D'], callback: () => deleteLine() },
+  { hotkey: ['D', 'W'], callback: () => deleteWord() },
+  { hotkey: ['C', 'I', 'W'], callback: () => changeInnerWord() },
+])
 ```
 
-### Konami Code
+## Displaying sequences
+
+`formatForDisplay` formats each step and joins them with `sequenceSeparator`, a space by default:
 
 ```ts
-createHotkeySequence(
-  ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'B', 'A'],
-  () => enableEasterEgg(),
-  { timeout: 2000 },
-)
+formatForDisplay(['Mod+K', 'Mod+C'], { platform: 'mac' }) // '⌘ K ⌘ C'
+formatForDisplay(['G', 'G'], { sequenceSeparator: ' then ' }) // 'G then G'
 ```
 
-## Under the hood
+Registration views report each sequence's progress in `matchedStepCount`, so a help panel can show how far the user has typed. See the [Hotkeys Guide](./hotkeys).
 
-`createHotkeySequence` uses the singleton `SequenceManager`. You can also access it directly:
+## How sequences work
 
-```ts
-import {
-  createSequenceMatcher,
-  getSequenceManager,
-} from '@tanstack/svelte-hotkeys'
+The `HotkeyManager` tracks progress for every sequence registration. When a key is pressed:
 
-const manager = getSequenceManager()
-const matcher = createSequenceMatcher(['G', 'G'], { timeout: 1000 })
-```
+1. It checks whether the key matches the next expected step of each sequence
+2. If it matches, that sequence advances
+3. If the timeout expires between steps, the sequence resets
+4. When all steps are completed, the callback fires
+
+Modifier-only events, IME composition, and automatic keydown repeats neither advance a sequence nor refresh its timeout: holding G does not complete a two-press G sequence. Exact matches take priority over weaker logical-key fallbacks.
+
+Multiple sequences can share a prefix, such as `['D', 'D']`, `['D', 'W']`, and `['D', 'I', 'W']`. Progress is tracked for each sequence independently, so after pressing `D` the manager waits for the next key to determine which sequence completes.
 
 ### Conflicting registrations
 
-For the same target, duplicate detection compares resolved steps: modifier aliases, modifier order, and logical key casing do not create separate bindings. `conflictBehavior` applies to equivalent sequences without rewriting their stored strings. Physical and logical identities remain distinct, and a shared prefix alone is not a duplicate registration. Recorder conflict detection also checks prefixes and observed physical/logical overlap.
+For the same target, duplicate detection compares resolved steps: modifier aliases, modifier order, and logical key casing do not create separate hotkeys. Physical and logical identities remain distinct, and a shared prefix alone is not a duplicate registration. Recorder conflict detection and app hotkey conflicts are stricter: there, a sequence also conflicts with a chord equal to its first step and with any sequence it starts.
+
+## Standalone matching
+
+For sequence matching without the singleton manager, use `createSequenceMatcher`:
+
+```ts
+import { createSequenceMatcher } from '@tanstack/svelte-hotkeys'
+
+const matcher = createSequenceMatcher(['G', 'G'], { timeout: 1000 })
+
+document.addEventListener('keydown', (e) => {
+  if (matcher.match(e)) {
+    console.log('Sequence completed!')
+  }
+  console.log('Progress:', matcher.getProgress()) // e.g., 1
+})
+```

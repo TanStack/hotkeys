@@ -1,4 +1,5 @@
 import { createSubscriber } from 'svelte/reactivity'
+import type { AppHotkeysStore } from '@tanstack/hotkeys'
 
 export type MaybeGetter<T> = T | (() => T)
 
@@ -23,4 +24,16 @@ export function createStoreSubscriber<TState>(
       ? subscription
       : () => subscription.unsubscribe()
   })
+}
+
+const noop = () => {}
+
+/**
+ * Returns a function that subscribes the current reactive consumer to an app
+ * hotkeys store, so it re-runs when app hotkeys or custom hotkeys change.
+ */
+export function createAppHotkeysSubscriber(
+  store: AppHotkeysStore | null,
+): () => void {
+  return store ? createStoreSubscriber(store.store) : noop
 }

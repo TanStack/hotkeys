@@ -7,8 +7,8 @@ export type RecorderKeyMode = 'code' | 'key'
 export interface RecorderRejection {
   reason: 'missing-code' | 'alt-graph' | 'invalid' | 'conflict' | 'validation'
   message: string
+  /** The rejected chord or sequence, when one was recorded. */
   hotkey?: Hotkey
-  sequence?: Array<Hotkey>
   conflicts?: Array<HotkeyConflict>
 }
 
@@ -23,12 +23,14 @@ export interface RecorderOptions {
   onReject?: (rejection: RecorderRejection) => void
 }
 
+/** Validation context for a recorded chord or sequence. */
 export interface HotkeyRecorderValidationContext {
+  /** The event that recorded the last chord. */
   event: KeyboardEvent
+  /** The last chord, parsed. */
   parsedHotkey: ParsedHotkey
-}
-
-export interface HotkeySequenceRecorderValidationContext {
+  /** The event that recorded each step. */
   events: ReadonlyArray<KeyboardEvent>
+  /** Every step, parsed. */
   parsedSequence: ReadonlyArray<ParsedHotkey>
 }

@@ -5,6 +5,18 @@ id: hotkeys
 
 Use `createHotkey` for global shortcuts and `createHotkeyAttachment` for element-scoped shortcuts. The common global case stays simple, and scoped behavior feels native to Svelte 5.
 
+## Chords and sequences
+
+A hotkey is either a **chord**, keys pressed together such as `'Mod+S'`, or a **sequence**, chords pressed one after another such as `['G', 'G']`. Every API in this guide accepts both, and a one-step array such as `['Mod+S']` is the chord `'Mod+S'`.
+
+```ts
+createHotkey('Mod+S', () => save()) // chord
+createHotkey(['G', 'G'], () => scrollToTop(), { timeout: 500 }) // sequence
+createHotkey('Escape', () => close(), { requireReset: true }) // chord-only option
+```
+
+Most options apply to both kinds. `requireReset` applies only to chords and `timeout` only to sequences, and TypeScript rejects options that don't match the hotkey. When the kind isn't known statically, such as a `Hotkey` loaded from settings, only the shared options are accepted. Defaults apply only to the kinds that support them. See the [Sequences Guide](./sequences) for timing and matching, and the [App Hotkeys Guide](./app-hotkeys) to declare hotkeys up front and let users customize them.
+
 ## Logical keys and physical positions
 
 Use a logical binding when the shortcut should follow the character on the active layout. Use a physical binding when it should follow a keyboard position:
@@ -99,6 +111,29 @@ When `enabled` is false, the hotkey stays registered (visible in devtools); only
 ### Changing a binding
 
 Pass a new logical or physical binding through your framework's normal state mechanism. A recorder result such as `Alt+[KeyS]` can be passed directly to the same registration API. Keep an initial binding in application state if you want a reset button; the library does not need a separate preferences store.
+
+## Property getters
+
+Property getters and functions returning an options object are both supported. Read reactive state inside the getter. A plain value such as `{ enabled: currentValue }` captures the value when that object is created.
+
+The adapter reads option properties inside its reactive computation and updates registrations automatically. Callbacks such as `onRecord` and `onCancel` remain functions; the adapter does not call them to resolve options. Tracking is shallow; callback bodies and nested objects are not evaluated to discover dependencies. Keep getters free of side effects. Ordinary option changes preserve registration identity. Changing the target moves the registration to that target.
+
+```svelte
+<script lang="ts">
+	import { createHotkey } from '@tanstack/svelte-hotkeys'
+
+	let enabled = $state(true)
+	createHotkey('Mod+S', () => console.log('Save'), {
+		get enabled() {
+			return enabled
+		},
+	})
+</script>
+
+<button onclick={() => enabled = !enabled}>Toggle shortcut</button>
+```
+
+You can also pass `() => ({ enabled })`. Svelte applies registration changes when its effect runs. The same forms work for attachments, common options, per-definition options, sequences, and recorders. `HotkeysProvider` follows replacement `defaultOptions` objects and getters within defaults.
 
 ## Default options
 
@@ -242,7 +277,7 @@ Group is descriptive metadata, not an execution scope. A shortcuts panel can gro
 
 ## Introspecting registrations
 
-Use the `getHotkeyRegistrations` function to get a live view of all hotkey and sequence registrations. This is useful for building shortcut palettes, help dialogs, or devtools.
+Use the `getHotkeyRegistrations` function to get a live view of every registration, chords and sequences together. It's the building block for shortcut palettes and help dialogs.
 
 ```svelte
 <script lang="ts">
@@ -251,38 +286,22 @@ Use the `getHotkeyRegistrations` function to get a live view of all hotkey and s
   const registrations = getHotkeyRegistrations()
 </script>
 
-<div>
-  <h2>Keyboard Shortcuts</h2>
-  <ul>
-    {#each registrations.hotkeys as reg (reg.hotkey)}
-      <li>
-        <kbd>{formatForDisplay(reg.hotkey)}</kbd>
-        {#if reg.options.meta?.name}
-          <span> — {reg.options.meta.name}</span>
-        {/if}
-        {#if reg.options.meta?.description}
-          <p>{reg.options.meta.description}</p>
-        {/if}
-      </li>
-    {/each}
-  </ul>
-  {#if registrations.sequences.length > 0}
-    <h2>Sequences</h2>
-    <ul>
-      {#each registrations.sequences as reg (reg.sequence.join(' '))}
-        <li>
-          <kbd>{reg.sequence.map((step) => formatForDisplay(step)).join(' → ')}</kbd>
-          {#if reg.options.meta?.name}
-            <span> — {reg.options.meta.name}</span>
-          {/if}
-        </li>
-      {/each}
-    </ul>
-  {/if}
-</div>
+<ul>
+  {#each registrations.hotkeys as reg (reg.id)}
+    <li>
+      <kbd>{formatForDisplay(reg.hotkey)}</kbd>
+      {#if reg.options.meta?.name}<span> — {reg.options.meta.name}</span>{/if}
+      {#if reg.kind === 'sequence'}
+        <small>{reg.matchedStepCount}/{reg.hotkey.length} steps</small>
+      {/if}
+    </li>
+  {/each}
+</ul>
 ```
 
-The returned object contains a `hotkeys` array with registration objects including the hotkey string, options (including `meta`), and enabled state, and a `sequences` array containing sequence registrations with the same structure.
+The returned object's reactive `hotkeys` getter holds one array of registration views. Each view has an `id`, the `hotkey`, its `options` (including `meta`), its `target`, and a `triggerCount`. Narrow with `kind`: chord views add `parsedHotkey`; sequence views add `parsedSequence` and `matchedStepCount`, the steps matched so far in the current attempt. Disabled entries stay listed; unmounted registrations disappear. Format any hotkey with `formatForDisplay`, and group entries by `options.meta?.group` when building a help panel.
+
+Registrations only exist while their components are mounted. To list hotkeys from routes that have not rendered, declare them with [app hotkeys](./app-hotkeys).
 
 ## The hotkey manager
 

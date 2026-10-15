@@ -2,8 +2,6 @@ import { afterEach, describe, expect, expectTypeOf, it, vi } from 'vitest'
 import {
   HotkeyManager,
   HotkeyRecorder,
-  HotkeySequenceRecorder,
-  SequenceManager,
   formatForDisplay,
   formatHotkey,
   matchesKeyboardEvent,
@@ -11,14 +9,15 @@ import {
   normalizeRegisterableHotkey,
   parseRegisterableHotkey,
 } from '../src'
+import type { HotkeySequenceRecorderOptions } from '../src'
 import type { LogicalKey, ParsedHotkey } from '../src'
 
-const recorders: Array<HotkeyRecorder | HotkeySequenceRecorder> = []
+const recorders: Array<HotkeyRecorder> = []
 afterEach(() => {
   recorders.splice(0).forEach((recorder) => recorder.destroy())
   window.dispatchEvent(new Event('blur'))
   HotkeyManager.resetInstance()
-  SequenceManager.resetInstance()
+  HotkeyManager.resetInstance()
   document.body.replaceChildren()
 })
 
@@ -67,9 +66,13 @@ it('releases requireReset while a registration is disabled', () => {
   expect(callback).toHaveBeenCalledTimes(2)
 })
 
-describe.each([HotkeyRecorder, HotkeySequenceRecorder])(
-  '%s shadow inputs',
-  (Recorder) => {
+describe.each([1, Infinity])(
+  'HotkeyRecorder (maxSteps: %s) shadow inputs',
+  (maxSteps) => {
+    const multi = maxSteps > 1
+    const createRecorder = (
+      options: Omit<HotkeySequenceRecorderOptions, 'maxSteps'>,
+    ) => new HotkeyRecorder({ ...options, maxSteps })
     it.each(['key', 'code'] as const)(
       'ignores typing but allows Escape with recordBy %s',
       (recordBy) => {
@@ -80,7 +83,7 @@ describe.each([HotkeyRecorder, HotkeySequenceRecorder])(
         input.focus()
         const onRecord = vi.fn(),
           onCancel = vi.fn()
-        const recorder = new Recorder({ recordBy, onRecord, onCancel })
+        const recorder = createRecorder({ recordBy, onRecord, onCancel })
         recorders.push(recorder)
         recorder.start()
         expect(dispatch(input, 'keydown', 's', 'KeyS').defaultPrevented).toBe(
@@ -88,8 +91,7 @@ describe.each([HotkeyRecorder, HotkeySequenceRecorder])(
         )
         expect(onRecord).not.toHaveBeenCalled()
         expect(recorder.store.state.isRecording).toBe(true)
-        if (recorder instanceof HotkeySequenceRecorder)
-          expect(recorder.store.state.steps).toEqual([])
+        expect(recorder.store.state.steps).toEqual([])
         dispatch(input, 'keydown', 'Escape', 'Escape')
         expect(onCancel).toHaveBeenCalledOnce()
         expect(recorder.store.state.isRecording).toBe(false)
@@ -103,21 +105,20 @@ describe.each([HotkeyRecorder, HotkeySequenceRecorder])(
       host.attachShadow({ mode: 'open' }).append(input)
       input.focus()
       const onRecord = vi.fn()
-      const recorder = new Recorder({ onRecord, ignoreInputs: false })
+      const recorder = createRecorder({ onRecord, ignoreInputs: false })
       recorders.push(recorder)
       recorder.start()
       dispatch(input, 'keydown', 's', 'KeyS')
-      if (recorder instanceof HotkeySequenceRecorder) recorder.commit()
-      expect(onRecord).toHaveBeenCalledExactlyOnceWith(
-        recorder instanceof HotkeySequenceRecorder ? ['[KeyS]'] : '[KeyS]',
-      )
+      if (multi) recorder.commit()
+      // One step records as a chord string with either maxSteps.
+      expect(onRecord).toHaveBeenCalledExactlyOnceWith('[KeyS]')
     })
 
     it.each(['Ę', '@'])(
       'replays shifted AltGraph logical recordings of %s',
       (key) => {
         const onRecord = vi.fn()
-        const recorder = new Recorder({
+        const recorder = createRecorder({
           onRecord,
           recordBy: 'key',
           platform: 'windows',
@@ -136,9 +137,8 @@ describe.each([HotkeyRecorder, HotkeySequenceRecorder])(
           value: (name: string) => name === 'AltGraph',
         })
         document.dispatchEvent(event)
-        if (recorder instanceof HotkeySequenceRecorder) recorder.commit()
-        const recorded = onRecord.mock.calls[0]![0]
-        const binding = Array.isArray(recorded) ? recorded[0] : recorded
+        if (multi) recorder.commit()
+        const binding = onRecord.mock.calls[0]![0]
         expect(binding).toBe(`Shift+${key}`)
         expect(matchesKeyboardEvent(event, binding, 'windows')).toBe(true)
       },

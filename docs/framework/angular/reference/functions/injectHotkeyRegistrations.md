@@ -4,22 +4,34 @@ title: injectHotkeyRegistrations
 ---
 
 ```ts
-function injectHotkeyRegistrations(): HotkeyRegistrationsResult;
+function injectHotkeyRegistrations(): Signal<HotkeyRegistrationView[]>;
 ```
 
-Defined in: [injectHotkeyRegistrations.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRegistrations.ts#L35)
+Defined in: [injectHotkeyRegistrations.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRegistrations.ts#L29)
 
-Angular injectable that reactively reads all hotkey and sequence registrations
-from the singleton managers.
+Angular inject-based API that reactively reads every hotkey registration,
+chords and sequences, from the singleton HotkeyManager. Narrow each view
+with `kind`.
 
-This is a standalone injectable that does NOT require the HotkeysProvider.
-It subscribes to both HotkeyManager and SequenceManager stores and
-triggers change detection when registrations change.
-
-Must be called in an injection context (constructor, factory, or `inject()`).
+This does NOT require `provideHotkeys`.
 
 ## Returns
 
-[`HotkeyRegistrationsResult`](../interfaces/HotkeyRegistrationsResult.md)
+`Signal`\<`HotkeyRegistrationView`[]\>
 
-Object with `hotkeys` and `sequences` signals
+A signal of all registrations, without callbacks
+
+## Example
+
+```ts
+@Component({
+  template: `
+    @for (reg of registrations(); track reg.id) {
+      <li>{{ reg.options.meta?.name }}</li>
+    }
+  `,
+})
+export class ShortcutPalette {
+  registrations = injectHotkeyRegistrations()
+}
+```

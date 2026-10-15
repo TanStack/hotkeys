@@ -10,17 +10,22 @@ import {
 } from '../src'
 import { LOGICAL_ONLY_NAMED_KEYS, SHARED_NAMED_KEYS } from '../src/_named-keys'
 import { hotkeyChordFromKeydown } from '../src/_recorder-chord'
-import type { FunctionKey, Hotkey, NamedKey, PhysicalKeyCode } from '../src'
+import type {
+  FunctionKey,
+  HotkeyChord,
+  NamedKey,
+  PhysicalKeyCode,
+} from '../src'
 
 it('types corresponding logical and physical names without conflating their spellings', () => {
-  expectTypeOf<`Mod+${FunctionKey}`>().toExtend<Hotkey>()
-  expectTypeOf<`Mod+[${FunctionKey}]`>().toExtend<Hotkey>()
-  expectTypeOf<`Mod+${NamedKey}`>().toExtend<Hotkey>()
+  expectTypeOf<`Mod+${FunctionKey}`>().toExtend<HotkeyChord>()
+  expectTypeOf<`Mod+[${FunctionKey}]`>().toExtend<HotkeyChord>()
+  expectTypeOf<`Mod+${NamedKey}`>().toExtend<HotkeyChord>()
   expectTypeOf<(typeof SHARED_NAMED_KEYS)[number]>().toExtend<PhysicalKeyCode>()
   expectTypeOf<
     Extract<
       'F25' | 'Mod+NumpadEnter' | 'Mod+LaunchApp1' | 'Mod+[LaunchApplication1]',
-      Hotkey
+      HotkeyChord
     >
   >().toBeNever()
 })
@@ -28,8 +33,8 @@ it('types corresponding logical and physical names without conflating their spel
 it.each([...FUNCTION_KEYS, ...SHARED_NAMED_KEYS])(
   'validates, records, and matches both identities for %s',
   (key) => {
-    const logical: Hotkey = `Alt+${key}`
-    const physical: Hotkey = `Alt+[${key}]`
+    const logical: HotkeyChord = `Alt+${key}`
+    const physical: HotkeyChord = `Alt+[${key}]`
     const event = new KeyboardEvent('keydown', { key, code: key, altKey: true })
     expect(ALL_KEYS.has(key)).toBe(true)
     expect(normalizeKeyName(key.toLowerCase())).toBe(key)

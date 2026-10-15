@@ -1,26 +1,38 @@
 import { describe, expect, it } from 'vitest'
-import {
-  formatForDisplay,
-  formatHotkey,
-  formatHotkeySequence,
-  formatWithLabels,
-} from '../src/format'
+import { formatForDisplay, formatHotkey } from '../src/format'
 import { normalizeRegisterableHotkey } from '../src/parse'
 import type { ParsedHotkey, RegisterableHotkey } from '../src/hotkey.types'
 
-/** Strings that parse correctly but are not in the `Hotkey` template union. */
+/** Strings that parse correctly but are not in the `HotkeyChord` template union. */
 function hk(s: string): RegisterableHotkey {
   return s as RegisterableHotkey
 }
 
-describe('formatHotkeySequence', () => {
-  it('should join sequence with spaces', () => {
-    expect(formatHotkeySequence(['G', 'G'])).toBe('G G')
-    expect(formatHotkeySequence(['D', 'I', 'W'])).toBe('D I W')
+describe('formatForDisplay with sequences', () => {
+  it('formats each step and joins steps with spaces', () => {
+    expect(formatForDisplay(['G', 'G'], { platform: 'mac' })).toBe('G G')
+    expect(formatForDisplay(['D', 'I', 'W'], { platform: 'mac' })).toBe('D I W')
+    expect(formatForDisplay(['Mod+K', '[KeyS]'], { platform: 'windows' })).toBe(
+      'Ctrl+K S',
+    )
   })
 
-  it('should handle single-key sequence', () => {
-    expect(formatHotkeySequence(['Escape'])).toBe('Escape')
+  it('formats a one-step sequence like its chord', () => {
+    expect(formatForDisplay(['Escape'], { platform: 'mac' })).toBe(
+      formatForDisplay('Escape', { platform: 'mac' }),
+    )
+  })
+
+  it('supports a custom step separator and per-step parts', () => {
+    expect(
+      formatForDisplay(['G', 'H'], {
+        platform: 'mac',
+        sequenceSeparator: ' → ',
+      }),
+    ).toBe('G → H')
+    expect(
+      formatForDisplay(['Shift+R', 'T'], { platform: 'windows', parts: true }),
+    ).toEqual([['Shift', 'R'], ['T']])
   })
 })
 
@@ -110,9 +122,9 @@ describe('formatForDisplay', () => {
       expect(normalizeRegisterableHotkey(binding, 'mac')).toBe(
         'Mod+Alt+Shift+[KeyS]',
       )
-      expect(formatWithLabels('Mod+Shift+S', { platform: 'mac' })).toBe(
-        'Shift+Cmd+S',
-      )
+      expect(
+        formatForDisplay('Mod+Shift+S', { platform: 'mac', useSymbols: false }),
+      ).toBe('Shift+Cmd+S')
       for (const platform of ['windows', 'linux'] as const) {
         expect(formatForDisplay('Mod+Alt+Shift+S', { platform })).toBe(
           'Ctrl+Alt+Shift+S',

@@ -5,6 +5,22 @@
   "workspaces": {
     "packages/react-hotkeys": {
       "ignore": []
+    },
+    "packages/ember-hotkeys": {
+      "entry": [
+        "testem.cjs",
+        "tests/test-helper.ts",
+        "tests/integration/*.gts"
+      ],
+      "ignoreDependencies": [
+        "@ember/component",
+        "@ember/destroyable",
+        "@ember/reactive",
+        "@ember/runloop",
+        "@ember/routing",
+        "@embroider/shared-internals",
+        "@glint/tsserver-plugin"
+      ]
     }
   }
 }

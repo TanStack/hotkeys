@@ -5,6 +5,18 @@ id: hotkeys
 
 The `createHotkey` primitive is the primary way to register keyboard shortcuts in SolidJS applications. It wraps the singleton `HotkeyManager` with automatic lifecycle management and reactive option support.
 
+## Chords and sequences
+
+A hotkey is either a **chord**, keys pressed together such as `'Mod+S'`, or a **sequence**, chords pressed one after another such as `['G', 'G']`. Every API in this guide accepts both, and a one-step array such as `['Mod+S']` is the chord `'Mod+S'`.
+
+```tsx
+createHotkey('Mod+S', () => save()) // chord
+createHotkey(['G', 'G'], () => scrollToTop(), { timeout: 500 }) // sequence
+createHotkey('Escape', () => close(), { requireReset: true }) // chord-only option
+```
+
+Most options apply to both kinds. `requireReset` applies only to chords and `timeout` only to sequences, and TypeScript rejects options that don't match the hotkey. When the kind isn't known statically, such as a `Hotkey` loaded from settings, only the shared options are accepted. Defaults apply only to the kinds that support them. See the [Sequences Guide](./sequences) for timing and matching, and the [App Hotkeys Guide](./app-hotkeys) to declare hotkeys up front and let users customize them.
+
 ## Logical keys and physical positions
 
 Use a logical binding when the shortcut should follow the character on the active layout. Use a physical binding when it should follow a keyboard position:
@@ -58,7 +70,7 @@ createHotkey({ key: 'S', mod: true, shift: true }, () => saveAs())
 
 ## Reactive options
 
-Unlike React/Preact hooks, Solid primitives accept accessor functions for reactive options. Pass a function that returns the options object, and the hotkey updates automatically when dependencies change:
+Solid primitives accept property getters and accessor functions for reactive options. With an accessor, the hotkey updates automatically when dependencies change:
 
 ```tsx
 function Modal(props) {
@@ -89,6 +101,27 @@ function Editor() {
 ### Changing a binding
 
 Pass a new logical or physical binding through your framework's normal state mechanism. A recorder result such as `Alt+[KeyS]` can be passed directly to the same registration API. Keep an initial binding in application state if you want a reset button; the library does not need a separate preferences store.
+
+## Property getters
+
+Property getters and functions returning an options object are both supported. Read reactive state inside the getter. A plain value such as `{ enabled: currentValue }` captures the value when that object is created.
+
+The adapter reads option properties inside its reactive computation and updates registrations automatically. Callbacks such as `onRecord` and `onCancel` remain functions; the adapter does not call them to resolve options. Tracking is shallow; callback bodies and nested objects are not evaluated to discover dependencies. Keep getters free of side effects. Ordinary option changes preserve registration identity. Changing the target moves the registration to that target.
+
+```tsx
+import { createHotkey } from '@tanstack/solid-hotkeys'
+
+export function SaveShortcut(props: { enabled: boolean; onSave: () => void }) {
+	createHotkey('Mod+S', () => props.onSave(), {
+		get enabled() {
+			return props.enabled
+		},
+	})
+	return null
+}
+```
+
+You can also pass `() => ({ enabled: props.enabled })`. Both forms work for common options, sequences, and recorders. Property getters also work in per-definition options. `HotkeysProvider` follows replacement `defaultOptions` objects and getters within defaults. Per-call options override provider defaults, and per-definition options override common options.
 
 ## Default options
 
@@ -328,47 +361,36 @@ Group is descriptive metadata, not an execution scope. A shortcuts panel can gro
 
 ## Introspecting registrations
 
-Use the `createHotkeyRegistrations` primitive to get a live view of all hotkey and sequence registrations. This is useful for building shortcut palettes, help dialogs, or devtools.
+Use the `createHotkeyRegistrations` primitive to get a live view of every registration, chords and sequences together. It's the building block for shortcut palettes and help dialogs.
 
 ```tsx
+import { For, Show } from 'solid-js'
 import { createHotkeyRegistrations, formatForDisplay } from '@tanstack/solid-hotkeys'
 
 function ShortcutPalette() {
   const registrations = createHotkeyRegistrations()
 
   return (
-    <div>
-      <h2>Keyboard Shortcuts</h2>
-      <ul>
-        <For each={registrations().hotkeys}>
-          {(reg) => (
-            <li>
-              <kbd>{formatForDisplay(reg.hotkey)}</kbd>
-              {reg.options.meta?.name && <span> — {reg.options.meta.name}</span>}
-              {reg.options.meta?.description && <p>{reg.options.meta.description}</p>}
-            </li>
-          )}
-        </For>
-      </ul>
-      <Show when={registrations().sequences.length > 0}>
-        <h2>Sequences</h2>
-        <ul>
-          <For each={registrations().sequences}>
-            {(reg) => (
-              <li>
-                <kbd>{reg.sequence.map((step) => formatForDisplay(step)).join(' → ')}</kbd>
-                {reg.options.meta?.name && <span> — {reg.options.meta.name}</span>}
-              </li>
-            )}
-          </For>
-        </ul>
-      </Show>
-    </div>
+    <ul>
+      <For each={registrations()}>
+        {(reg) => (
+          <li>
+            <kbd>{formatForDisplay(reg.hotkey)}</kbd>
+            {reg.options.meta?.name && <span> — {reg.options.meta.name}</span>}
+            <Show when={reg.kind === 'sequence' && reg}>
+              {(seq) => <small>{seq().matchedStepCount}/{seq().hotkey.length} steps</small>}
+            </Show>
+          </li>
+        )}
+      </For>
+    </ul>
   )
 }
 ```
 
-The returned accessor yields an object with a `hotkeys` array and a `sequences` array. Each hotkey entry carries the hotkey string, its options (including `meta`), and its enabled state; sequence entries have the same structure.
+The returned accessor yields one array of registration views. Each view has an `id`, the `hotkey`, its `options` (including `meta`), its `target`, and a `triggerCount`. Narrow with `kind`: chord views add `parsedHotkey`; sequence views add `parsedSequence` and `matchedStepCount`, the steps matched so far in the current attempt. Disabled entries stay listed; unmounted registrations disappear. Format any hotkey with `formatForDisplay`, and group entries by `options.meta?.group` when building a help panel.
+
+Registrations only exist while their components are mounted. To list hotkeys from routes that have not rendered, declare them with [app hotkeys](./app-hotkeys).
 
 ## The hotkey manager
 

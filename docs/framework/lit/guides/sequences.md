@@ -3,327 +3,160 @@ title: Sequences Guide
 id: sequences
 ---
 
-TanStack Hotkeys supports multi-key sequences: shortcuts where you press keys one after another rather than simultaneously. Sequences are common in Vim-style navigation, cheat codes, and multi-step commands.
+> [!IMPORTANT]
+> `@hotkeySequence`, `HotkeySequenceController`, and `HotkeySequenceRecorderController` were removed in `@tanstack/lit-hotkeys` v0.15.0. Pass a sequence to `@hotkey` or `HotkeyController` instead, and record one with `HotkeyRecorderController` and `maxSteps`.
 
-In Lit, registration is declarative via the `@hotkeySequence` decorator, or imperative via `HotkeySequenceController` when the sequence or options are built at runtime. Both use the same singleton `SequenceManager`.
+A sequence is a hotkey made of chords pressed one after another rather than together. Think Vim-style navigation, cheat codes, or multi-step commands. Sequences are ordinary hotkeys: register them with `@hotkey` and `HotkeyController`, list them with `HotkeyRegistrationsController`, record them with `HotkeyRecorderController`, and format them with `formatForDisplay`.
 
-Sequence steps use the same string syntax as single hotkeys. For example, `['[KeyG]', '[KeyG]']` follows a physical position, while `['G', 'G']` follows the logical letter. A sequence can mix forms, such as `['Mod+[KeyK]', 'C']`. Display steps with `sequence.map((step) => formatForDisplay(step)).join(' → ')`.
+Sequence steps use the same syntax as chords. For example, `['[KeyG]', '[KeyG]']` follows a physical position, while `['G', 'G']` follows the logical letter. A sequence can mix forms, such as `['Mod+[KeyK]', 'C']`.
 
 ## Basic usage
 
-### The `@hotkeySequence` decorator
-
-Decorate a method to run when the user completes the key sequence:
+Pass an array of chords wherever you pass a hotkey:
 
 ```ts
 import { LitElement, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { hotkeySequence } from '@tanstack/lit-hotkeys'
+import { hotkey } from '@tanstack/lit-hotkeys'
 
-@customElement('vim-view')
-class VimView extends LitElement {
-  @hotkeySequence(['G', 'G'])
-  scrollTop() {
+@customElement('my-app')
+class MyApp extends LitElement {
+  // Vim-style: press g then g to scroll to top
+  @hotkey(['G', 'G'])
+  scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
-
-  render() {
-    return html`<div>Press g then g to scroll to top</div>`
-  }
 }
 ```
 
-The first argument is an array of `Hotkey` strings representing each step in the sequence. The user must press them in order within the timeout window.
-
-The method receives the `KeyboardEvent` and [`HotkeyCallbackContext`](../../../reference/interfaces/HotkeyCallbackContext.md) like `@hotkey`:
-
-```ts
-import type { HotkeyCallbackContext } from '@tanstack/lit-hotkeys'
-
-@hotkeySequence(['G', 'G'])
-scrollTop(event: KeyboardEvent, context: HotkeyCallbackContext) {
-  console.log(context.hotkey)
-}
-```
-
-### `HotkeySequenceController`
-
-Use the controller when the sequence or callback cannot be expressed as a static decorator (e.g. data-driven shortcuts):
-
-```ts
-import { LitElement, html } from 'lit'
-import { customElement } from 'lit/decorators.js'
-import { HotkeySequenceController } from '@tanstack/lit-hotkeys'
-
-@customElement('vim-view')
-class VimView extends LitElement {
-  private scrollTopSeq = new HotkeySequenceController(
-    this,
-    ['G', 'G'],
-    () => this.scrollTop(),
-  )
-
-  constructor() {
-    super()
-    this.addController(this.scrollTopSeq)
-  }
-
-  private scrollTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-  }
-
-  render() {
-    return html`<div>Press g then g to scroll to top</div>`
-  }
-}
-```
+The user must press the steps in order, each within the timeout window. A one-step array such as `['Escape']` is the chord `'Escape'`.
 
 ## Many sequences at once
 
-Register several sequences on the same element by applying multiple `@hotkeySequence` decorators (one per method), or by adding multiple `HotkeySequenceController` instances with `addController`. There is no Lit equivalent to React's `useHotkeySequences` hook; several decorators on one class are the idiomatic pattern.
+Add a `HotkeyController` for each hotkey. Chords and sequences use the same controller:
 
 ```ts
-@customElement('vim-navigation')
-class VimNavigation extends LitElement {
-  @hotkeySequence(['G', 'G'])
-  goTop() {
-    scrollToTop()
-  }
+import { HotkeyController } from '@tanstack/lit-hotkeys'
 
-  @hotkeySequence(['G', 'Shift+G'])
-  goBottom() {
-    scrollToBottom()
-  }
-
-  @hotkeySequence(['D', 'D'], { timeout: 500 })
-  deleteLine() {
-    deleteCurrentLine()
-  }
-
-  render() {
-    return html`<div></div>`
+class Editor extends LitElement {
+  constructor() {
+    super()
+    this.addController(new HotkeyController(this, ['G', 'G'], () => this.scrollToTop()))
+    this.addController(
+      new HotkeyController(this, ['D', 'D'], () => this.deleteLine(), { timeout: 500 }),
+    )
+    this.addController(new HotkeyController(this, 'Mod+S', () => this.save()))
   }
 }
 ```
 
 ## Sequence options
 
-Pass options as the second argument to `@hotkeySequence` (or to `HotkeySequenceController`):
-
-```ts
-@hotkeySequence(['G', 'G'], {
-  timeout: 1000, // Time allowed between keys (ms)
-  enabled: true, // Whether the sequence is active at connect time
-})
-scrollTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
-}
-```
+Sequences accept the same options as chords, except `requireReset`, plus `timeout`.
 
 ### `timeout`
 
-The maximum time (in milliseconds) allowed between consecutive key presses. If the user takes longer than this between any two keys, the sequence resets. Defaults to `1000` (1 second).
+The maximum time (in milliseconds) allowed between consecutive steps. If the user takes longer than this between any two steps, the sequence resets. Defaults to `1000` (1 second).
 
 ```ts
-@hotkeySequence(['D', 'D'], { timeout: 500 })
-deleteLine() {
-  deleteCurrentLine()
-}
+// Fast sequence - user must type quickly
+@hotkey(['D', 'D'], { timeout: 500 })
+deleteLine() {}
 
-@hotkeySequence(['Shift+Z', 'Shift+Z'], { timeout: 2000 })
-forceQuit() {
-  quitWithoutSaving()
-}
+// Slow sequence - user has more time between keys
+@hotkey(['Shift+Z', 'Shift+Z'], { timeout: 2000 })
+forceQuit() {}
 ```
 
-### `enabled`
+`timeout` is only accepted when the hotkey is a sequence.
 
-Controls whether the sequence is registered when the element connects. Defaults to `true`. If `enabled` is `false` at connection time, registration is skipped. To turn sequences on or off later, reconnect the element, or create a new `HotkeySequenceController` when your state changes.
+### `enabled` and `meta`
+
+These work exactly as they do for chords. Disabled sequences stay registered and visible in devtools, and `meta` flows to registrations, devtools, and cheat sheets. See the [Hotkeys Guide](./hotkeys).
 
 ```ts
-@hotkeySequence(['G', 'G'], { enabled: true })
-scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
+private vimMode = true
+
+constructor() {
+  super()
+  this.addController(
+    new HotkeyController(this, ['G', 'G'], () => this.scrollToTop(), () => ({
+      enabled: this.vimMode,
+      meta: { name: 'Go to top', description: 'Scroll to the top of the page' },
+    })),
+  )
 }
 ```
-
-### Default options
-
-When you omit options, the library uses the same defaults as the core [`SequenceOptions`](../../../reference/interfaces/SequenceOptions.md): `timeout: 1000`, `preventDefault` / `stopPropagation` enabled, smart `ignoreInputs`, and platform auto-detection. If you omit `target`, the Lit adapter resolves it to `document` when the controller connects in the browser.
-
-### `meta`
-
-Sequences support the same `meta` option as hotkeys. Attach a `name` and `description` for use in shortcut palettes and devtools.
-
-```ts
-@hotkeySequence(['G', 'G'], { meta: { name: 'Go to Top', description: 'Scroll to the top of the page' } })
-scrollTop() { window.scrollTo({ top: 0, behavior: 'smooth' }) }
-
-// Or with HotkeySequenceController:
-new HotkeySequenceController(this, ['G', 'G'], () => this.scrollTop(), {
-  meta: { name: 'Go to Top', description: 'Scroll to the top of the page' },
-})
-```
-
-See the [Hotkeys Guide](./hotkeys.md#metadata-name--description) for details on declaration merging and introspecting registrations.
 
 ## Sequences with modifiers
 
-Each step in a sequence can include modifiers:
+Each step in a sequence can include modifiers, and consecutive steps can repeat the same modifier:
 
 ```ts
-@hotkeySequence(['Mod+K', 'Mod+C'])
-commentSelection() {
-  commentSelection()
-}
+// Ctrl+K followed by Ctrl+C (VS Code-style comment)
+@hotkey(['Mod+K', 'Mod+C'])
+commentSelection() {}
 
-@hotkeySequence(['G', 'Shift+G'])
-scrollBottom() {
-  window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
-}
+// Physical R then T positions, both with Shift
+@hotkey(['Shift+[KeyR]', 'Shift+[KeyT]'])
+doNextAction() {}
 ```
 
-## Chained modifier chords
+Brackets retain physical positions even when the keys produce different letters. While a sequence is in progress, modifier-only keydown events (Shift, Control, Alt, or Meta pressed alone) are ignored. They neither advance the sequence nor reset progress, so a user can tap or hold Shift between `Shift+R` and `Shift+T`.
 
-This example follows physical R and T positions. Brackets retain those positions even when the keys produce different letters. Other sequences can continue using logical characters.
-
-You can repeat the same modifier across consecutive steps, for example `Shift+R` then `Shift+T`:
+## Vim-style navigation
 
 ```ts
-@hotkeySequence(['Shift+[KeyR]', 'Shift+[KeyT]'])
-chordSequence() {
-  runAfterChords()
-}
-```
-
-### Modifier-only keys between steps
-
-While a sequence is in progress, the manager ignores modifier-only keydown events (Shift, Control, Alt, or Meta pressed alone, with no letter or other key). They neither advance the sequence nor reset progress. That way a user can tap Shift (or hold it) between chords such as `Shift+R` and `Shift+T` without breaking the sequence, much like Vim-style flows where a modifier may be pressed before the next chord.
-
-## Common sequence patterns
-
-### Vim-style navigation
-
-```ts
-@customElement('vim-navigation')
 class VimNavigation extends LitElement {
-  @hotkeySequence(['G', 'G'])
-  goTop() {
-    scrollToTop()
-  }
-
-  @hotkeySequence(['G', 'Shift+G'])
-  goBottom() {
-    scrollToBottom()
-  }
-
-  @hotkeySequence(['D', 'D'])
-  deleteLine() {
-    deleteCurrentLine()
-  }
-
-  @hotkeySequence(['D', 'W'])
-  deleteWord() {
-    deleteCurrentWord()
-  }
-
-  @hotkeySequence(['C', 'I', 'W'])
-  changeInnerWord() {
-    changeInnerWordImpl()
-  }
-
-  render() {
-    return html`<div></div>`
-  }
+  @hotkey(['G', 'G']) scrollToTop() {}
+  @hotkey(['G', 'Shift+G']) scrollToBottom() {}
+  @hotkey(['D', 'D']) deleteLine() {}
+  @hotkey(['D', 'W']) deleteWord() {}
+  @hotkey(['C', 'I', 'W']) changeInnerWord() {}
 }
 ```
 
-### Konami code
+## Displaying sequences
+
+`formatForDisplay` formats each step and joins them with `sequenceSeparator`, a space by default:
 
 ```ts
-@hotkeySequence(
-  [
-    'ArrowUp',
-    'ArrowUp',
-    'ArrowDown',
-    'ArrowDown',
-    'ArrowLeft',
-    'ArrowRight',
-    'ArrowLeft',
-    'ArrowRight',
-    'B',
-    'A',
-  ],
-  { timeout: 2000 },
-)
-enableEasterEgg() {
-  showEasterEgg()
-}
+formatForDisplay(['Mod+K', 'Mod+C'], { platform: 'mac' }) // '⌘ K ⌘ C'
+formatForDisplay(['G', 'G'], { sequenceSeparator: ' then ' }) // 'G then G'
 ```
 
-### Multi-step commands
-
-```ts
-@hotkeySequence(['H', 'E', 'L', 'P'])
-openHelp() {
-  showHelp()
-}
-```
+Registration views report each sequence's progress in `matchedStepCount`, so a help panel can show how far the user has typed. See the [Hotkeys Guide](./hotkeys).
 
 ## How sequences work
 
-Both `SequenceManager` and `createSequenceMatcher` ignore modifier-only events, IME composition, and automatic keydown repeats. These events neither advance the sequence nor refresh its timeout: holding G does not complete a two-press G sequence. The manager prefers exact matches over weaker logical-key fallbacks while preserving equally strong matches.
+The `HotkeyManager` tracks progress for every sequence registration. When a key is pressed:
 
-The `SequenceManager` (singleton) handles all sequence registrations. When a key is pressed:
-
-1. It checks if the key matches the next expected step in any registered sequence
-2. If it matches, the sequence advances to the next step
+1. It checks whether the key matches the next expected step of each sequence
+2. If it matches, that sequence advances
 3. If the timeout expires between steps, the sequence resets
 4. When all steps are completed, the callback fires
-5. Modifier-only keydowns are ignored (they neither advance nor reset the sequence)
 
-### Overlapping sequences
+Modifier-only events, IME composition, and automatic keydown repeats neither advance a sequence nor refresh its timeout: holding G does not complete a two-press G sequence. Exact matches take priority over weaker logical-key fallbacks.
 
-Multiple sequences can share the same prefix. The manager tracks progress for each sequence independently:
-
-```ts
-@hotkeySequence(['D', 'D'])
-dd() {
-  deleteLine()
-}
-
-@hotkeySequence(['D', 'W'])
-dw() {
-  deleteWord()
-}
-
-@hotkeySequence(['D', 'I', 'W'])
-diw() {
-  deleteInnerWord()
-}
-```
-
-After pressing `D`, the manager waits for the next key to determine which sequence to complete.
+Multiple sequences can share a prefix, such as `['D', 'D']`, `['D', 'W']`, and `['D', 'I', 'W']`. Progress is tracked for each sequence independently, so after pressing `D` the manager waits for the next key to determine which sequence completes.
 
 ### Conflicting registrations
 
-For the same target, duplicate detection compares resolved steps: modifier aliases, modifier order, and logical key casing do not create separate bindings. `conflictBehavior` applies to equivalent sequences without rewriting their stored strings. Physical and logical identities remain distinct, and a shared prefix alone is not a duplicate registration. Recorder conflict detection also checks prefixes and observed physical/logical overlap.
+For the same target, duplicate detection compares resolved steps: modifier aliases, modifier order, and logical key casing do not create separate hotkeys. Physical and logical identities remain distinct, and a shared prefix alone is not a duplicate registration. Recorder conflict detection and app hotkey conflicts are stricter: there, a sequence also conflicts with a chord equal to its first step and with any sequence it starts.
 
-## The sequence manager
+## Standalone matching
 
-Under the hood, `@hotkeySequence` and `HotkeySequenceController` use the singleton `SequenceManager`. You can also use the core `createSequenceMatcher` function for standalone sequence matching without the singleton:
+For sequence matching without the singleton manager, use `createSequenceMatcher`:
 
 ```ts
 import { createSequenceMatcher } from '@tanstack/lit-hotkeys'
 
-const matcher = createSequenceMatcher(['G', 'G'], {
-  timeout: 1000,
-})
+const matcher = createSequenceMatcher(['G', 'G'], { timeout: 1000 })
 
 document.addEventListener('keydown', (e) => {
   if (matcher.match(e)) {
     console.log('Sequence completed!')
   }
-  console.log('Progress:', matcher.getProgress()) // e.g., 1/2
+  console.log('Progress:', matcher.getProgress()) // e.g., 1
 })
 ```

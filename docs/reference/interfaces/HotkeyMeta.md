@@ -3,9 +3,9 @@ id: HotkeyMeta
 title: HotkeyMeta
 ---
 
-Defined in: [hotkey.types.ts:252](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L252)
+Defined in: [hotkey.types.ts:269](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L269)
 
-Metadata for hotkey and sequence registrations.
+Metadata for hotkey registrations, chords and sequences alike.
 Includes `name`, `description`, and `group` by default. Extend via declaration merging:
 
 ## Example
@@ -27,7 +27,7 @@ declare module '@tanstack/hotkeys' {
 optional description?: string;
 ```
 
-Defined in: [hotkey.types.ts:256](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L256)
+Defined in: [hotkey.types.ts:273](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L273)
 
 Description of what this hotkey does
 
@@ -39,7 +39,7 @@ Description of what this hotkey does
 optional group?: string;
 ```
 
-Defined in: [hotkey.types.ts:258](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L258)
+Defined in: [hotkey.types.ts:275](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L275)
 
 Optional display group. Does not affect matching or scope.
 
@@ -51,6 +51,6 @@ Optional display group. Does not affect matching or scope.
 optional name?: string;
 ```
 
-Defined in: [hotkey.types.ts:254](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L254)
+Defined in: [hotkey.types.ts:271](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L271)
 
 Human-readable name for this hotkey (e.g., "Save Document")
