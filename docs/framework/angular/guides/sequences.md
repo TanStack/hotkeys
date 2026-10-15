@@ -3,6 +3,9 @@ title: Sequences Guide
 id: sequences
 ---
 
+> [!IMPORTANT]
+> `injectHotkeySequence`, `injectHotkeySequences`, and `injectHotkeySequenceRecorder` were removed in `@tanstack/angular-hotkeys` v0.14.0. Pass a sequence to `injectHotkey` or `injectHotkeys` instead, and record one with `injectHotkeyRecorder` and `maxSteps`.
+
 A sequence is a hotkey made of chords pressed one after another rather than together. Think Vim-style navigation, cheat codes, or multi-step commands. Sequences are ordinary hotkeys: register them with `injectHotkey` and `injectHotkeys`, list them with `injectHotkeyRegistrations`, record them with `injectHotkeyRecorder`, and format them with `formatForDisplay`.
 
 Sequence steps use the same syntax as chords. For example, `['[KeyG]', '[KeyG]']` follows a physical position, while `['G', 'G']` follows the logical letter. A sequence can mix forms, such as `['Mod+[KeyK]', 'C']`.

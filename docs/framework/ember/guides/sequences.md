@@ -3,6 +3,9 @@ title: Sequences Guide
 id: sequences
 ---
 
+> [!IMPORTANT]
+> `useHotkeySequence`, `useHotkeySequences`, and `useHotkeySequenceRecorder` were removed in `@tanstack/ember-hotkeys` v0.3.0. Pass a sequence to `useHotkey` or `useHotkeys` instead, and record one with `useHotkeyRecorder` and `maxSteps`.
+
 A sequence is a hotkey made of chords pressed one after another rather than together. Think Vim-style navigation, cheat codes, or multi-step commands. Sequences are ordinary hotkeys: register them with `useHotkey` and `useHotkeys`, list them with `useHotkeyRegistrations`, record them with `useHotkeyRecorder`, and format them with `formatForDisplay`.
 
 Sequence steps use the same syntax as chords. For example, `['[KeyG]', '[KeyG]']` follows a physical position, while `['G', 'G']` follows the logical letter. A sequence can mix forms, such as `['Mod+[KeyK]', 'C']`.
