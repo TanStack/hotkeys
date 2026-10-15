@@ -1,5 +1,6 @@
 import { detectPlatform } from './platform'
 import { isHotkeySequence, parseRegisterableHotkey } from './parse'
+import { getTargetDocument } from './_event-target'
 import { keysEqual } from './_keyboard-event'
 import { matchesKeyboardEvent } from './match'
 import { getHotkeyManager, toHotkeyRegistrationView } from './hotkey-manager'
@@ -39,13 +40,7 @@ function targetsOverlap(
   b: HTMLElement | Document | Window,
 ): boolean {
   if (a === b) return true
-  // Resolve the owning document without relying on cross-frame instanceof checks.
-  const documentOf = (target: typeof a): Document | null => {
-    if ('document' in target) return target.document
-    if (target.nodeType === 9) return target as Document
-    return target.ownerDocument
-  }
-  if (documentOf(a) !== documentOf(b)) return false
+  if (getTargetDocument(a) !== getTargetDocument(b)) return false
   if (!('contains' in a) || !('contains' in b)) return true
   return a.contains(b) || b.contains(a)
 }
