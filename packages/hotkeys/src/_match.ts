@@ -30,8 +30,8 @@ export function matchKeyboardEvent(
   if (normalized.altGraph && (parsed.ctrl || parsed.alt)) return noMatch
 
   if (parsed.code !== undefined) {
-    // AltGraph turns the key into character input, so the physical key no
-    // longer identifies a shortcut. Matches the recorder's AltGraph rejection.
+    // A held AltGraph means the physical key is not a plain shortcut press.
+    // This matches the recorder, which rejects AltGraph physical recordings.
     if (normalized.altGraph) return noMatch
     if (!modifiersMatch(normalized, parsed, false)) return noMatch
     return normalized.code === parsed.code ? matched('code', 3) : noMatch
@@ -60,8 +60,8 @@ export function matchKeyboardEvent(
     return noMatch
   }
 
-  // AltGraph produced this character, so it is text input. Only a direct key
-  // match counts; never fall back to the physical key under it.
+  // With AltGraph held, only a direct key match counts. Never fall back to
+  // the physical key, which would turn AltGr+M (`µ`) into `M`.
   if (normalized.altGraph) return noMatch
   if (!modifiersMatch(normalized, parsed, false)) return noMatch
   const fallbackKey = codeToLogicalKey(normalized.code)

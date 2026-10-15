@@ -514,8 +514,8 @@ describe('matchesKeyboardEvent', () => {
   })
 
   describe('AltGraph character entry', () => {
-    // Chrome on Windows reports AltGr as Control+Alt plus AltGraph. Firefox on
-    // Windows and browsers on Linux clear Control/Alt and report only AltGraph.
+    // Current Chrome and Firefox clear Control/Alt and report only AltGraph.
+    // Keep the Control+Alt shape for older browsers and synthetic events.
     const altGraphEvents = [
       ['Control+Alt flags', 'windows', { ctrlKey: true, altKey: true }],
       ['AltGraph only (Windows)', 'windows', {}],
