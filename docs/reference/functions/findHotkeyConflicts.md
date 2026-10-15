@@ -7,7 +7,7 @@ title: findHotkeyConflicts
 function findHotkeyConflicts(candidate, options?): HotkeyConflict[];
 ```
 
-Defined in: [conflicts.ts:58](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L58)
+Defined in: [conflicts.ts:53](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L53)
 
 Find equivalent bindings and sequence-prefix conflicts in the live registry.
 With source events, also checks observed logical/physical overlap. Does not

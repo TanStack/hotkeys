@@ -1258,6 +1258,82 @@ describe('HotkeyManager', () => {
     })
   })
 
+  describe('targets in another frame', () => {
+    let iframe: HTMLIFrameElement
+    let frameDocument: Document
+
+    beforeEach(() => {
+      iframe = document.createElement('iframe')
+      document.body.appendChild(iframe)
+      frameDocument = iframe.contentDocument!
+      frameDocument.body.innerHTML =
+        '<div id="panel" tabindex="0"><input id="text" /><div id="editable" contenteditable="true"></div></div>'
+    })
+
+    afterEach(() => {
+      vi.unstubAllGlobals()
+      iframe.remove()
+    })
+
+    // Real browsers give each frame its own DOM classes, so `instanceof`
+    // checks against this window's classes fail for the frame's nodes.
+    // happy-dom shares one set, so replace them to reproduce that.
+    function stubFrameDomClasses() {
+      for (const name of [
+        'Document',
+        'HTMLElement',
+        'HTMLInputElement',
+        'HTMLSelectElement',
+        'HTMLTextAreaElement',
+      ]) {
+        vi.stubGlobal(name, class {})
+      }
+    }
+
+    function pressK(element: Element) {
+      ;(element as HTMLElement).focus()
+      element.dispatchEvent(
+        new KeyboardEvent('keydown', { key: 'k', code: 'KeyK', bubbles: true }),
+      )
+    }
+
+    it.each([
+      ['document', () => frameDocument],
+      ['window', () => iframe.contentWindow!],
+      ['element', () => frameDocument.getElementById('panel')!],
+    ] as const)('fires for an iframe %s target', (_, getTarget) => {
+      stubFrameDomClasses()
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('K', callback, {
+        target: getTarget(),
+      })
+
+      pressK(frameDocument.getElementById('panel')!)
+
+      expect(callback).toHaveBeenCalledTimes(1)
+    })
+
+    it.each([
+      ['document', () => frameDocument],
+      ['window', () => iframe.contentWindow!],
+      ['element', () => frameDocument.getElementById('panel')!],
+    ] as const)(
+      'ignores typing in the iframe for an iframe %s target',
+      (_, getTarget) => {
+        stubFrameDomClasses()
+        const callback = vi.fn()
+        HotkeyManager.getInstance().register('K', callback, {
+          target: getTarget(),
+        })
+
+        pressK(frameDocument.getElementById('text')!)
+        pressK(frameDocument.getElementById('editable')!)
+
+        expect(callback).not.toHaveBeenCalled()
+      },
+    )
+  })
+
   describe('conflict detection', () => {
     it('should warn by default when registering a conflicting hotkey', () => {
       const manager = HotkeyManager.getInstance()
