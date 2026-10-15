@@ -1,5 +1,11 @@
 # @tanstack/hotkeys
 
+## 0.12.1
+
+### Patch Changes
+
+- [#177](https://github.com/TanStack/hotkeys/pull/177) [`575dc91`](https://github.com/TanStack/hotkeys/commit/575dc912dad2efca59175e18aa877eb0996d17bc) - Do not match a hotkey through the physical key when AltGraph produced the character. For example, German AltGr+M typing `µ` no longer fires `M` or `[KeyM]`.
+
 ## 0.12.0
 
 ### Minor Changes
