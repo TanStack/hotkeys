@@ -10,9 +10,11 @@ function useHotkeyHint(
 options?): EmberHotkeyState<boolean>;
 ```
 
-Defined in: [packages/ember-hotkeys/src/useHotkeyHint.ts:8](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeyHint.ts#L8)
+Defined in: [packages/ember-hotkeys/src/useHotkeyHint.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeyHint.ts#L21)
 
-Recomputes for held modifiers and tracked changes to the binding or options.
+Recomputes for held modifiers and tracked changes to the hotkey or options.
+A sequence reveals its hint from its first step, and an app hotkey uses its
+effective hotkey (false while unbound).
 
 ## Parameters
 
@@ -22,7 +24,9 @@ Recomputes for held modifiers and tracked changes to the binding or options.
 
 ### hotkey
 
-[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<`RegisterableHotkey`\>
+[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<
+  \| `RegisterableHotkey`
+  \| `AppHotkey`\<`string`, HotkeyChord \| HotkeySequence \| null\>\>
 
 ### options?
 

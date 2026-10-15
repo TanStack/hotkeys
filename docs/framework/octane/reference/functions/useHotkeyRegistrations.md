@@ -7,9 +7,9 @@ title: useHotkeyRegistrations
 function useHotkeyRegistrations(): HotkeyRegistrationsResult;
 ```
 
-Defined in: [useHotkeyRegistrations.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkeyRegistrations.ts#L10)
+Defined in: [useHotkeyRegistrations.ts:6](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkeyRegistrations.ts#L6)
 
-Reads public registration snapshots from both managers.
+Reads public snapshots of every registration, chords and sequences.
 
 ## Returns
 

@@ -10,7 +10,7 @@ function matchesKeyboardEvent(
    platform?): boolean;
 ```
 
-Defined in: [match.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L49)
+Defined in: [match.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L57)
 
 Checks if a KeyboardEvent matches a hotkey.
 
@@ -35,7 +35,7 @@ The KeyboardEvent to check
 
 ### hotkey
 
-  \| [`Hotkey`](../type-aliases/Hotkey.md)
+  \| [`HotkeyChord`](../type-aliases/HotkeyChord.md)
   \| [`ParsedHotkey`](../type-aliases/ParsedHotkey.md)
 
 The hotkey string or ParsedHotkey to match against

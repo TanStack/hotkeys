@@ -3,135 +3,151 @@ title: Sequences Guide
 id: sequences
 ---
 
-A sequence is an ordered list of chords. Use `useHotkeySequence` for one sequence and `useHotkeySequences` for a changing list. A chord can be a logical binding such as `G`, a physical position such as `[KeyG]`, or a modifier combination such as `Mod+[KeyK]`.
+> [!IMPORTANT]
+> `useHotkeySequence`, `useHotkeySequences`, and `useHotkeySequenceRecorder` were removed in `@tanstack/octane-hotkeys` v0.4.0. Pass a sequence to `useHotkey` or `useHotkeys` instead, and record one with `useHotkeyRecorder` and `maxSteps`.
 
-## Capture phase
+A sequence is a hotkey made of chords pressed one after another rather than together. Think Vim-style navigation, cheat codes, or multi-step commands. Sequences are ordinary hotkeys: register them with `useHotkey` and `useHotkeys`, list them with `useHotkeyRegistrations`, record them with `useHotkeyRecorder`, and format them with `formatForDisplay`.
 
-Sequences accept `capture: true` with the same [event propagation behavior as hotkeys](./hotkeys.md#capture-phase). The default is `false`. Each step is matched in the selected phase, but `preventDefault` and `stopPropagation` apply only when the full sequence completes. Earlier steps still reach descendant widgets. Changing `capture` preserves partial progress and the existing timeout.
+Sequence steps use the same syntax as chords. For example, `['[KeyG]', '[KeyG]']` follows a physical position, while `['G', 'G']` follows the logical letter. A sequence can mix forms, such as `['Mod+[KeyK]', 'C']`.
 
 ## Basic usage
 
+Pass an array of chords wherever you pass a hotkey:
 
 ```tsx
-import { useState } from 'octane'
-import { useHotkeySequence, useHotkeySequences } from '@tanstack/octane-hotkeys'
+import { useHotkey } from '@tanstack/octane-hotkeys'
 
-export function Navigation() @{
-	const [enabled, setEnabled] = useState(true)
-	useHotkeySequence(['G', 'G'], () => window.scrollTo({ top: 0 }), { enabled, timeout: 1000 })
-	useHotkeySequences([
-		{ sequence: ['D', 'D'], callback: () => console.log('Delete line') },
-		{ sequence: ['D', 'W'], callback: () => console.log('Delete word'), options: { timeout: 500 } },
-	], { enabled })
-	<div>
-		<button type="button" onClick={() => setEnabled(!enabled)}>Toggle sequences</button>
-	</div>
+function App() @{
+  // Vim-style: press g then g to scroll to top
+  useHotkey(['G', 'G'], () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  })
+  <main>...</main>
 }
 ```
 
-The user must press and release each chord in order. The timeout applies between consecutive steps, rather than to the total duration of the sequence.
+The user must press the steps in order, each within the timeout window. A one-step array such as `['Escape']` is the chord `'Escape'`.
 
 ## Many sequences at once
 
-`useHotkeySequences` accepts an array of [HotkeySequenceDefinition](../../../reference/adapter/interfaces/HotkeySequenceDefinition) entries. Each contains `sequence`, `callback`, and optional `options`. An empty array removes all registrations owned by that call. Per-definition options override common options. Derive the array from component state and keep the hook call at a stable call site.
+`useHotkeys` registers chords and sequences together, including dynamic lists:
+
+```tsx
+import { useHotkeys } from '@tanstack/octane-hotkeys'
+
+useHotkeys([
+  { hotkey: ['G', 'G'], callback: () => scrollToTop() },
+  { hotkey: ['D', 'D'], callback: () => deleteLine(), options: { timeout: 500 } },
+  { hotkey: 'Mod+S', callback: () => save() },
+])
+```
 
 ## Sequence options
 
+Sequences accept the same options as chords, except `requireReset`, plus `timeout`.
+
 ### `timeout`
 
-The default is `1000` milliseconds between steps. A shorter timeout, such as `500`, requires faster entry; `2000` gives users more time. Expired sequences reset their progress.
-
-### `enabled`
-
-The default is `true`. Disabled sequences remain in the registry but do not execute. Pass a reactive flag to change this without discarding the registration.
-
-### Shared defaults
-
-Set `hotkeySequence` defaults in `HotkeysProvider`. Options passed to an individual hook override provider defaults. For a plural hook, each definition's options override its common options. See the [provider setup](../quick-start.md#default-options-provider).
-
-### Targets, input handling, and propagation
-
-Sequences support `target`, `ignoreInputs`, `preventDefault`, `stopPropagation`, `platform`, and `conflictBehavior`. Use a focusable element to scope a sequence to a widget, and `null` while that element is unavailable. When omitted, `ignoreInputs` follows the first step: Control/Meta combinations and Escape work in inputs, while other first steps are ignored there. Set it explicitly to override that behavior. See the [target examples](./hotkeys.md#target).
-
-### Metadata
-
-Attach a `meta` object with a name, description, and group. Read it through live registration views to build help panels. Metadata does not change execution scope.
+The maximum time (in milliseconds) allowed between consecutive steps. If the user takes longer than this between any two steps, the sequence resets. Defaults to `1000` (1 second).
 
 ```tsx
-useHotkeySequence(['G', 'G'], () => window.scrollTo({ top: 0 }), { meta: { name: 'Go to top', group: 'Navigation' } })
+// Fast sequence - user must type quickly
+useHotkey(['D', 'D'], () => deleteLine(), { timeout: 500 })
+
+// Slow sequence - user has more time between keys
+useHotkey(['Shift+Z', 'Shift+Z'], () => forceQuit(), { timeout: 2000 })
 ```
+
+`timeout` is only accepted when the hotkey is a sequence. Set a default for every sequence with `HotkeysProvider`:
+
+```tsx
+<HotkeysProvider defaultOptions={{ hotkey: { timeout: 1500 } }}>
+  <App />
+</HotkeysProvider>
+```
+
+### `enabled` and `meta`
+
+These work exactly as they do for chords. Disabled sequences stay registered and visible in devtools, and `meta` flows to registrations, devtools, and cheat sheets. See the [Hotkeys Guide](./hotkeys).
+
+```tsx
+useHotkey(['G', 'G'], () => scrollToTop(), {
+  enabled: isVimMode,
+  meta: { name: 'Go to top', description: 'Scroll to the top of the page' },
+})
+```
+
+## Capture phase
+
+Sequences accept `capture: true` with the same [event propagation behavior as chords](./hotkeys.md#capture-phase). The default is `false`. Each step is matched in the selected phase, but `preventDefault` and `stopPropagation` apply only when the full sequence completes. Earlier steps still reach descendant widgets. Changing `capture` preserves partial progress and the existing timeout.
 
 ## Sequences with modifiers
 
-Use `Mod+K`, then `Mod+C` for an editor-style comment shortcut. Logical and physical steps can be mixed.
+Each step in a sequence can include modifiers, and consecutive steps can repeat the same modifier:
 
 ```tsx
-useHotkeySequence(['Mod+K', 'Mod+C'], () => console.log("Comment selection"))
+// Ctrl+K followed by Ctrl+C (VS Code-style comment)
+useHotkey(['Mod+K', 'Mod+C'], () => commentSelection())
+
+// Physical R then T positions, both with Shift
+useHotkey(['Shift+[KeyR]', 'Shift+[KeyT]'], () => doNextAction())
 ```
 
-## Chained modifier chords
+Brackets retain physical positions even when the keys produce different letters. While a sequence is in progress, modifier-only keydown events (Shift, Control, Alt, or Meta pressed alone) are ignored. They neither advance the sequence nor reset progress, so a user can tap or hold Shift between `Shift+R` and `Shift+T`.
 
-Physical codes retain the same positions even when the keyboard layout changes.
+## Vim-style navigation
 
 ```tsx
-useHotkeySequence(['Shift+[KeyR]', 'Shift+[KeyT]'], () => console.log("Next action"))
+useHotkeys([
+  { hotkey: ['G', 'G'], callback: () => scrollToTop() },
+  { hotkey: ['G', 'Shift+G'], callback: () => scrollToBottom() },
+  { hotkey: ['D', 'D'], callback: () => deleteLine() },
+  { hotkey: ['D', 'W'], callback: () => deleteWord() },
+  { hotkey: ['C', 'I', 'W'], callback: () => changeInnerWord() },
+])
 ```
 
-### Modifier-only keys between steps
+## Displaying sequences
 
-Pressing Shift, Control, Alt, or Meta alone neither advances nor resets an in-progress sequence. Users can release and press Shift between the R and T chords. Modifier-only events, automatic repeats, and IME composition also do not refresh the timeout.
+`formatForDisplay` formats each step and joins them with `sequenceSeparator`, a space by default:
 
-## Common sequence patterns
-
-| Action | Steps |
-| --- | --- |
-| Go to top | `['G', 'G']` |
-| Go to bottom | `['G', 'Shift+G']` |
-| Delete line | `['D', 'D']` |
-| Delete word | `['D', 'W']` |
-| Change inner word | `['C', 'I', 'W']` |
-| Open help | `['H', 'E', 'L', 'P']` |
-
-For a Konami-style sequence, use the full ordered list and a longer timeout:
-
-```tsx
-useHotkeySequence(['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
-	'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'B', 'A'], () => console.log("Unlocked"), { timeout: 2000 })
+```ts
+formatForDisplay(['Mod+K', 'Mod+C'], { platform: 'mac' }) // '⌘ K ⌘ C'
+formatForDisplay(['G', 'G'], { sequenceSeparator: ' then ' }) // 'G then G'
 ```
+
+Registration views report each sequence's progress in `matchedStepCount`, so a help panel can show how far the user has typed. See the [Hotkeys Guide](./hotkeys).
 
 ## How sequences work
 
-The shared `SequenceManager` tracks every registration independently. Matching the next expected step advances progress. Completing all steps invokes the callback. The manager resets progress when the timeout expires and prefers exact key matches over weaker logical-key fallbacks.
+The `HotkeyManager` tracks progress for every sequence registration. When a key is pressed:
 
-### Overlapping sequences
+1. It checks whether the key matches the next expected step of each sequence
+2. If it matches, that sequence advances
+3. If the timeout expires between steps, the sequence resets
+4. When all steps are completed, the callback fires
 
-`['D', 'D']`, `['D', 'W']`, and `['D', 'I', 'W']` can share a prefix. Pressing D advances each matching sequence; later steps determine which one completes.
+Modifier-only events, IME composition, and automatic keydown repeats neither advance a sequence nor refresh its timeout: holding G does not complete a two-press G sequence. Exact matches take priority over weaker logical-key fallbacks.
+
+Multiple sequences can share a prefix, such as `['D', 'D']`, `['D', 'W']`, and `['D', 'I', 'W']`. Progress is tracked for each sequence independently, so after pressing `D` the manager waits for the next key to determine which sequence completes.
 
 ### Conflicting registrations
 
-Duplicate detection compares resolved steps on the same target. Modifier aliases, modifier order, and logical letter casing do not create distinct bindings. Physical and logical identities remain distinct. Sharing a prefix alone is not a duplicate registration, but recorder conflict checks also inspect prefixes and physical/logical overlap.
+For the same target, duplicate detection compares resolved steps: modifier aliases, modifier order, and logical key casing do not create separate hotkeys. Physical and logical identities remain distinct, and a shared prefix alone is not a duplicate registration. Recorder conflict detection and app hotkey conflicts are stricter: there, a sequence also conflicts with a chord equal to its first step and with any sequence it starts.
 
-### Updates and cleanup
+## Standalone matching
 
-Write hook calls in compiler-enabled `.tsrx` components. The Octane compiler supplies hook identity, so call hooks at stable component call sites. Use the plural hooks for lists that change length. Do not supply the compiler's internal slot argument yourself.
-
-Registration callbacks and options refresh after each commit. Registrations and recorder subscriptions are released when the component unmounts. Element targets are DOM nodes, not React ref objects. Use a callback ref that updates component state so the hook sees a newly mounted or replaced element.
-
-## The sequence manager
-
-Use `getSequenceManager()` for the shared registry. For standalone matching without registration, create your own matcher and remove your event listener when its owner is destroyed.
+For sequence matching without the singleton manager, use `createSequenceMatcher`:
 
 ```ts
 import { createSequenceMatcher } from '@tanstack/octane-hotkeys'
 
 const matcher = createSequenceMatcher(['G', 'G'], { timeout: 1000 })
-const onKeyDown = (event: KeyboardEvent) => {
-	if (matcher.match(event)) console.log('Sequence completed')
-	console.log(matcher.getProgress())
-}
-document.addEventListener('keydown', onKeyDown)
-// During teardown:
-document.removeEventListener('keydown', onKeyDown)
-```
 
-Try [useHotkeySequence](../examples/useHotkeySequence) and [useHotkeySequences](../examples/useHotkeySequences).
+document.addEventListener('keydown', (e) => {
+  if (matcher.match(e)) {
+    console.log('Sequence completed!')
+  }
+  console.log('Progress:', matcher.getProgress()) // e.g., 1
+})
+```

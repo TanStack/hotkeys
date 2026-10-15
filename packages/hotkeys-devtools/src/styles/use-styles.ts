@@ -251,6 +251,11 @@ const stylesFactory = (theme: 'light' | 'dark') => {
         border-color: ${t(colors.gray[400], colors.darkGray[500])};
       }
     `,
+    hotkeyRowInactive: css`
+      opacity: 0.65;
+      border-style: dashed;
+      border-color: ${t(colors.gray[400], colors.darkGray[500])};
+    `,
     hotkeyRowSelected: css`
       background: ${t(colors.blue[100], colors.blue[900] + alpha[20])};
       border-color: ${t(colors.blue[600], colors.blue[500])};
@@ -319,6 +324,10 @@ const stylesFactory = (theme: 'light' | 'dark') => {
     badgeEnabled: css`
       color: ${t(colors.green[700], colors.green[400])};
       background: ${t(colors.green[100], colors.green[900] + alpha[30])};
+    `,
+    badgeCustom: css`
+      color: ${t(colors.blue[700], colors.blue[400])};
+      background: ${t(colors.blue[100], colors.blue[900] + alpha[30])};
     `,
     badgeDisabled: css`
       color: ${t(colors.red[700], colors.red[400])};

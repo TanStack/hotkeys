@@ -7,19 +7,20 @@ title: createHotkeyHint
 function createHotkeyHint(hotkey, options?): () => boolean;
 ```
 
-Defined in: [createHotkeyHint.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyHint.ts#L13)
+Defined in: [createHotkeyHint.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyHint.ts#L22)
 
-Returns a boolean accessor indicating whether held modifiers reveal this shortcut.
-Pass accessors to track changing bindings and options.
-Uses the nonempty-subset/AltGr rules of `matchesHeldModifiers`; `exact` requires
-every modifier. Combine with the action's enabled state before showing a badge.
-This helper does not register a shortcut or check whether its target is focused.
+Returns an accessor indicating whether held modifiers reveal this shortcut.
+A sequence reveals its hint from its first step, and an app hotkey uses its
+effective hotkey (false while unbound). This helper does not register a
+shortcut or check whether its target is focused.
 
 ## Parameters
 
 ### hotkey
 
-`RegisterableHotkey` \| (() => `RegisterableHotkey`)
+  \| `RegisterableHotkey`
+  \| `AppHotkey`\<`string`, HotkeyChord \| HotkeySequence \| null\>
+  \| (() => RegisterableHotkey \| AppHotkey\<string, HotkeyChord \| HotkeySequence \| null\>)
 
 ### options?
 

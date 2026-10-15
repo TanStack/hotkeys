@@ -325,6 +325,25 @@ importers:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)
 
+  examples/alpine/createHotkey-sequences:
+    dependencies:
+      '@tanstack/alpine-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/alpine-hotkeys
+      alpinejs:
+        specifier: ^3.17.4
+        version: 3.17.4
+    devDependencies:
+      '@types/alpinejs':
+        specifier: ^3.17.0
+        version: 3.17.0
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.2
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+
   examples/alpine/createHotkeyRecorder:
     dependencies:
       '@tanstack/alpine-hotkeys':
@@ -344,7 +363,7 @@ importers:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)
 
-  examples/alpine/createHotkeySequence:
+  examples/alpine/createHotkeyRecorder-sequences:
     dependencies:
       '@tanstack/alpine-hotkeys':
         specifier: workspace:*
@@ -361,45 +380,7 @@ importers:
         version: 6.0.3
       vite:
         specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)
-
-  examples/alpine/createHotkeySequenceRecorder:
-    dependencies:
-      '@tanstack/alpine-hotkeys':
-        specifier: workspace:*
-        version: link:../../../packages/alpine-hotkeys
-      alpinejs:
-        specifier: ^3.17.4
-        version: 3.17.4
-    devDependencies:
-      '@types/alpinejs':
-        specifier: ^3.17.0
-        version: 3.17.0
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
-      vite:
-        specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)
-
-  examples/alpine/createHotkeySequences:
-    dependencies:
-      '@tanstack/alpine-hotkeys':
-        specifier: workspace:*
-        version: link:../../../packages/alpine-hotkeys
-      alpinejs:
-        specifier: ^3.17.4
-        version: 3.17.4
-    devDependencies:
-      '@types/alpinejs':
-        specifier: ^3.17.0
-        version: 3.17.0
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
-      vite:
-        specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
   examples/alpine/createHotkeys:
     dependencies:
@@ -419,6 +400,25 @@ importers:
       vite:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)
+
+  examples/alpine/createHotkeys-sequences:
+    dependencies:
+      '@tanstack/alpine-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/alpine-hotkeys
+      alpinejs:
+        specifier: ^3.17.4
+        version: 3.17.4
+    devDependencies:
+      '@types/alpinejs':
+        specifier: ^3.17.0
+        version: 3.17.0
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.2
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
   examples/alpine/createKeyHold:
     dependencies:
@@ -610,6 +610,82 @@ importers:
         specifier: 6.0.3
         version: 6.0.3
 
+  examples/angular/injectHotkey-sequences:
+    dependencies:
+      '@angular/common':
+        specifier: ^22.2.1
+        version: 22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2)
+      '@angular/compiler':
+        specifier: ^22.2.1
+        version: 22.2.1
+      '@angular/core':
+        specifier: ^22.2.1
+        version: 22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)
+      '@angular/forms':
+        specifier: ^22.2.1
+        version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
+      '@angular/platform-browser':
+        specifier: ^22.2.1
+        version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))
+      '@angular/platform-browser-dynamic':
+        specifier: ^22.2.1
+        version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/compiler@22.2.1)(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))
+      '@angular/router':
+        specifier: ^22.2.1
+        version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
+      '@tanstack/angular-devtools':
+        specifier: ^0.0.12
+        version: 0.0.12(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
+      '@tanstack/angular-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/angular-hotkeys
+      '@tanstack/angular-hotkeys-devtools':
+        specifier: workspace:*
+        version: link:../../../packages/angular-hotkeys-devtools
+      rxjs:
+        specifier: ~7.8.2
+        version: 7.8.2
+      tslib:
+        specifier: ^2.8.1
+        version: 2.8.1
+      zone.js:
+        specifier: ~0.16.3
+        version: 0.16.3
+    devDependencies:
+      '@angular-devkit/build-angular':
+        specifier: ^22.2.1
+        version: 22.2.1(@angular/compiler-cli@22.2.1(@angular/compiler@22.2.1)(typescript@6.0.3))(@angular/compiler@22.2.1)(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(@types/node@26.6.4)(chokidar@5.0.0)(jiti@2.6.1)(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(lightningcss@1.33.0)(rollup@4.57.1)(sass-embedded@1.104.1)(sass@1.104.1)(supports-color@8.1.1)(typescript@6.0.3)(uglify-js@3.19.3)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)))(yaml@2.9.1)
+      '@angular/cli':
+        specifier: ^22.2.1
+        version: 22.2.1(@types/node@26.6.4)(chokidar@5.0.0)
+      '@angular/compiler-cli':
+        specifier: ^22.2.1
+        version: 22.2.1(@angular/compiler@22.2.1)(typescript@6.0.3)
+      '@types/jasmine':
+        specifier: ~7.0.0
+        version: 7.0.0
+      jasmine-core:
+        specifier: ~7.0.2
+        version: 7.0.2
+      karma:
+        specifier: ~6.4.4
+        version: 6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+      karma-chrome-launcher:
+        specifier: ~3.2.0
+        version: 3.2.0
+      karma-coverage:
+        specifier: ~2.2.1
+        version: 2.2.1(supports-color@8.1.1)
+      karma-jasmine:
+        specifier: ~5.1.0
+        version: 5.1.0(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))
+      karma-jasmine-html-reporter:
+        specifier: ~2.3.0
+        version: 2.3.0(jasmine-core@7.0.2)(karma-jasmine@5.1.0(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)))(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+
   examples/angular/injectHotkeyRecorder:
     dependencies:
       '@angular/common':
@@ -686,7 +762,7 @@ importers:
         specifier: 6.0.3
         version: 6.0.3
 
-  examples/angular/injectHotkeySequence:
+  examples/angular/injectHotkeyRecorder-sequences:
     dependencies:
       '@angular/common':
         specifier: ^22.2.1
@@ -730,159 +806,7 @@ importers:
     devDependencies:
       '@angular-devkit/build-angular':
         specifier: ^22.2.1
-        version: 22.2.1(@angular/compiler-cli@22.2.1(@angular/compiler@22.2.1)(typescript@6.0.3))(@angular/compiler@22.2.1)(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(@types/node@26.6.4)(chokidar@5.0.0)(jiti@2.6.1)(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(lightningcss@1.32.0)(rollup@4.57.1)(sass-embedded@1.104.1)(sass@1.97.3)(supports-color@8.1.1)(typescript@6.0.3)(uglify-js@3.19.3)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)))(yaml@2.8.2)
-      '@angular/cli':
-        specifier: ^22.2.1
-        version: 22.2.1(@types/node@26.6.4)(chokidar@5.0.0)
-      '@angular/compiler-cli':
-        specifier: ^22.2.1
-        version: 22.2.1(@angular/compiler@22.2.1)(typescript@6.0.3)
-      '@types/jasmine':
-        specifier: ~7.0.0
-        version: 7.0.0
-      jasmine-core:
-        specifier: ~7.0.2
-        version: 7.0.2
-      karma:
-        specifier: ~6.4.4
-        version: 6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
-      karma-chrome-launcher:
-        specifier: ~3.2.0
-        version: 3.2.0
-      karma-coverage:
-        specifier: ~2.2.1
-        version: 2.2.1(supports-color@8.1.1)
-      karma-jasmine:
-        specifier: ~5.1.0
-        version: 5.1.0(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))
-      karma-jasmine-html-reporter:
-        specifier: ~2.3.0
-        version: 2.3.0(jasmine-core@7.0.2)(karma-jasmine@5.1.0(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)))(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
-
-  examples/angular/injectHotkeySequenceRecorder:
-    dependencies:
-      '@angular/common':
-        specifier: ^22.2.1
-        version: 22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2)
-      '@angular/compiler':
-        specifier: ^22.2.1
-        version: 22.2.1
-      '@angular/core':
-        specifier: ^22.2.1
-        version: 22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)
-      '@angular/forms':
-        specifier: ^22.2.1
-        version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
-      '@angular/platform-browser':
-        specifier: ^22.2.1
-        version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))
-      '@angular/platform-browser-dynamic':
-        specifier: ^22.2.1
-        version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/compiler@22.2.1)(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))
-      '@angular/router':
-        specifier: ^22.2.1
-        version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
-      '@tanstack/angular-devtools':
-        specifier: ^0.0.12
-        version: 0.0.12(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
-      '@tanstack/angular-hotkeys':
-        specifier: workspace:*
-        version: link:../../../packages/angular-hotkeys
-      '@tanstack/angular-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/angular-hotkeys-devtools
-      rxjs:
-        specifier: ~7.8.2
-        version: 7.8.2
-      tslib:
-        specifier: ^2.8.1
-        version: 2.8.1
-      zone.js:
-        specifier: ~0.16.3
-        version: 0.16.3
-    devDependencies:
-      '@angular-devkit/build-angular':
-        specifier: ^22.2.1
-        version: 22.2.1(@angular/compiler-cli@22.2.1(@angular/compiler@22.2.1)(typescript@6.0.3))(@angular/compiler@22.2.1)(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(@types/node@26.6.4)(chokidar@5.0.0)(jiti@2.6.1)(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(lightningcss@1.32.0)(rollup@4.57.1)(sass-embedded@1.104.1)(sass@1.97.3)(supports-color@8.1.1)(typescript@6.0.3)(uglify-js@3.19.3)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)))(yaml@2.8.2)
-      '@angular/cli':
-        specifier: ^22.2.1
-        version: 22.2.1(@types/node@26.6.4)(chokidar@5.0.0)
-      '@angular/compiler-cli':
-        specifier: ^22.2.1
-        version: 22.2.1(@angular/compiler@22.2.1)(typescript@6.0.3)
-      '@types/jasmine':
-        specifier: ~7.0.0
-        version: 7.0.0
-      jasmine-core:
-        specifier: ~7.0.2
-        version: 7.0.2
-      karma:
-        specifier: ~6.4.4
-        version: 6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
-      karma-chrome-launcher:
-        specifier: ~3.2.0
-        version: 3.2.0
-      karma-coverage:
-        specifier: ~2.2.1
-        version: 2.2.1(supports-color@8.1.1)
-      karma-jasmine:
-        specifier: ~5.1.0
-        version: 5.1.0(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))
-      karma-jasmine-html-reporter:
-        specifier: ~2.3.0
-        version: 2.3.0(jasmine-core@7.0.2)(karma-jasmine@5.1.0(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)))(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
-
-  examples/angular/injectHotkeySequences:
-    dependencies:
-      '@angular/common':
-        specifier: ^22.2.1
-        version: 22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2)
-      '@angular/compiler':
-        specifier: ^22.2.1
-        version: 22.2.1
-      '@angular/core':
-        specifier: ^22.2.1
-        version: 22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)
-      '@angular/forms':
-        specifier: ^22.2.1
-        version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
-      '@angular/platform-browser':
-        specifier: ^22.2.1
-        version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))
-      '@angular/platform-browser-dynamic':
-        specifier: ^22.2.1
-        version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/compiler@22.2.1)(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))
-      '@angular/router':
-        specifier: ^22.2.1
-        version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
-      '@tanstack/angular-devtools':
-        specifier: ^0.0.12
-        version: 0.0.12(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
-      '@tanstack/angular-hotkeys':
-        specifier: workspace:*
-        version: link:../../../packages/angular-hotkeys
-      '@tanstack/angular-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/angular-hotkeys-devtools
-      rxjs:
-        specifier: ~7.8.2
-        version: 7.8.2
-      tslib:
-        specifier: ^2.8.1
-        version: 2.8.1
-      zone.js:
-        specifier: ~0.16.3
-        version: 0.16.3
-    devDependencies:
-      '@angular-devkit/build-angular':
-        specifier: ^22.2.1
-        version: 22.2.1(@angular/compiler-cli@22.2.1(@angular/compiler@22.2.1)(typescript@6.0.3))(@angular/compiler@22.2.1)(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(@types/node@26.6.4)(chokidar@5.0.0)(jiti@2.6.1)(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(lightningcss@1.32.0)(rollup@4.57.1)(sass-embedded@1.104.1)(sass@1.97.3)(supports-color@8.1.1)(typescript@6.0.3)(uglify-js@3.19.3)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)))(yaml@2.8.2)
+        version: 22.2.1(@angular/compiler-cli@22.2.1(@angular/compiler@22.2.1)(typescript@6.0.3))(@angular/compiler@22.2.1)(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(@types/node@26.6.4)(chokidar@5.0.0)(jiti@2.6.1)(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(lightningcss@1.33.0)(rollup@4.57.1)(sass-embedded@1.104.1)(sass@1.104.1)(supports-color@8.1.1)(typescript@6.0.3)(uglify-js@3.19.3)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)))(yaml@2.9.1)
       '@angular/cli':
         specifier: ^22.2.1
         version: 22.2.1(@types/node@26.6.4)(chokidar@5.0.0)
@@ -959,6 +883,82 @@ importers:
       '@angular-devkit/build-angular':
         specifier: ^22.2.1
         version: 22.2.1(@angular/compiler-cli@22.2.1(@angular/compiler@22.2.1)(typescript@6.0.3))(@angular/compiler@22.2.1)(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(@types/node@26.6.4)(chokidar@5.0.0)(jiti@2.6.1)(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(lightningcss@1.32.0)(rollup@4.57.1)(sass-embedded@1.104.1)(sass@1.97.3)(supports-color@8.1.1)(typescript@6.0.3)(uglify-js@3.19.3)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)))(yaml@2.8.2)
+      '@angular/cli':
+        specifier: ^22.2.1
+        version: 22.2.1(@types/node@26.6.4)(chokidar@5.0.0)
+      '@angular/compiler-cli':
+        specifier: ^22.2.1
+        version: 22.2.1(@angular/compiler@22.2.1)(typescript@6.0.3)
+      '@types/jasmine':
+        specifier: ~7.0.0
+        version: 7.0.0
+      jasmine-core:
+        specifier: ~7.0.2
+        version: 7.0.2
+      karma:
+        specifier: ~6.4.4
+        version: 6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+      karma-chrome-launcher:
+        specifier: ~3.2.0
+        version: 3.2.0
+      karma-coverage:
+        specifier: ~2.2.1
+        version: 2.2.1(supports-color@8.1.1)
+      karma-jasmine:
+        specifier: ~5.1.0
+        version: 5.1.0(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))
+      karma-jasmine-html-reporter:
+        specifier: ~2.3.0
+        version: 2.3.0(jasmine-core@7.0.2)(karma-jasmine@5.1.0(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)))(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+
+  examples/angular/injectHotkeys-sequences:
+    dependencies:
+      '@angular/common':
+        specifier: ^22.2.1
+        version: 22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2)
+      '@angular/compiler':
+        specifier: ^22.2.1
+        version: 22.2.1
+      '@angular/core':
+        specifier: ^22.2.1
+        version: 22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)
+      '@angular/forms':
+        specifier: ^22.2.1
+        version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
+      '@angular/platform-browser':
+        specifier: ^22.2.1
+        version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))
+      '@angular/platform-browser-dynamic':
+        specifier: ^22.2.1
+        version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/compiler@22.2.1)(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))
+      '@angular/router':
+        specifier: ^22.2.1
+        version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
+      '@tanstack/angular-devtools':
+        specifier: ^0.0.12
+        version: 0.0.12(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
+      '@tanstack/angular-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/angular-hotkeys
+      '@tanstack/angular-hotkeys-devtools':
+        specifier: workspace:*
+        version: link:../../../packages/angular-hotkeys-devtools
+      rxjs:
+        specifier: ~7.8.2
+        version: 7.8.2
+      tslib:
+        specifier: ^2.8.1
+        version: 2.8.1
+      zone.js:
+        specifier: ~0.16.3
+        version: 0.16.3
+    devDependencies:
+      '@angular-devkit/build-angular':
+        specifier: ^22.2.1
+        version: 22.2.1(@angular/compiler-cli@22.2.1(@angular/compiler@22.2.1)(typescript@6.0.3))(@angular/compiler@22.2.1)(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(@types/node@26.6.4)(chokidar@5.0.0)(jiti@2.6.1)(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(lightningcss@1.33.0)(rollup@4.57.1)(sass-embedded@1.104.1)(sass@1.104.1)(supports-color@8.1.1)(typescript@6.0.3)(uglify-js@3.19.3)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)))(yaml@2.9.1)
       '@angular/cli':
         specifier: ^22.2.1
         version: 22.2.1(@types/node@26.6.4)(chokidar@5.0.0)
@@ -1349,6 +1349,73 @@ importers:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)
 
+  examples/ember/useHotkey-sequences:
+    dependencies:
+      '@embroider/macros':
+        specifier: 1.21.1
+        version: 1.21.1(@babel/core@7.29.7(supports-color@8.1.1))(@glint/template@1.9.0)(supports-color@8.1.1)
+      '@embroider/router':
+        specifier: 3.0.6
+        version: 3.0.6(@embroider/core@4.6.7(@glint/template@1.9.0)(supports-color@8.1.1))(supports-color@8.1.1)
+      '@glimmer/component':
+        specifier: 2.1.1
+        version: 2.1.1(supports-color@8.1.1)
+      '@tanstack/ember-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/ember-hotkeys
+      decorator-transforms:
+        specifier: 2.4.0
+        version: 2.4.0(@babel/core@7.29.7(supports-color@8.1.1))
+      ember-source:
+        specifier: 7.3.0
+        version: 7.3.0(@glimmer/component@2.1.1(supports-color@8.1.1))(supports-color@8.1.1)
+      ember-strict-application-resolver:
+        specifier: 0.1.1
+        version: 0.1.1(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
+    devDependencies:
+      '@babel/core':
+        specifier: 7.29.7
+        version: 7.29.7(supports-color@8.1.1)
+      '@babel/plugin-transform-runtime':
+        specifier: 7.29.7
+        version: 7.29.7(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
+      '@babel/plugin-transform-typescript':
+        specifier: 7.29.9
+        version: 7.29.9(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
+      '@babel/runtime':
+        specifier: 7.29.7
+        version: 7.29.7
+      '@ember/app-tsconfig':
+        specifier: 2.1.0
+        version: 2.1.0
+      '@embroider/core':
+        specifier: 4.6.7
+        version: 4.6.7(@glint/template@1.9.0)(supports-color@8.1.1)
+      '@glint/ember-tsc':
+        specifier: 1.11.6
+        version: 1.11.6(ember-source@7.3.0(@glimmer/component@2.1.1(supports-color@8.1.1))(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
+      '@glint/template':
+        specifier: 1.9.0
+        version: 1.9.0
+      '@glint/tsserver-plugin':
+        specifier: 2.7.9
+        version: 2.7.9(ember-source@7.3.0(@glimmer/component@2.1.1(supports-color@8.1.1))(supports-color@8.1.1))(supports-color@8.1.1)
+      '@nullvoxpopuli/ember-vite':
+        specifier: 1.2.0
+        version: 1.2.0(@glint/template@1.9.0)(@types/babel__core@7.20.5)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+      '@rollup/plugin-babel':
+        specifier: 7.1.0
+        version: 7.1.0(@babel/core@7.29.7(supports-color@8.1.1))(@types/babel__core@7.20.5)(rollup@4.57.1)(supports-color@8.1.1)
+      babel-plugin-ember-template-compilation:
+        specifier: 4.0.0
+        version: 4.0.0
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.2
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+
   examples/ember/useHotkeyRecorder:
     dependencies:
       '@embroider/macros':
@@ -1416,7 +1483,7 @@ importers:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)
 
-  examples/ember/useHotkeySequence:
+  examples/ember/useHotkeyRecorder-sequences:
     dependencies:
       '@embroider/macros':
         specifier: 1.21.1
@@ -1469,7 +1536,7 @@ importers:
         version: 2.7.9(ember-source@7.3.0(@glimmer/component@2.1.1(supports-color@8.1.1))(supports-color@8.1.1))(supports-color@8.1.1)
       '@nullvoxpopuli/ember-vite':
         specifier: 1.2.0
-        version: 1.2.0(@glint/template@1.9.0)(@types/babel__core@7.20.5)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
+        version: 1.2.0(@glint/template@1.9.0)(@types/babel__core@7.20.5)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
       '@rollup/plugin-babel':
         specifier: 7.1.0
         version: 7.1.0(@babel/core@7.29.7(supports-color@8.1.1))(@types/babel__core@7.20.5)(rollup@4.57.1)(supports-color@8.1.1)
@@ -1481,141 +1548,7 @@ importers:
         version: 6.0.3
       vite:
         specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)
-
-  examples/ember/useHotkeySequenceRecorder:
-    dependencies:
-      '@embroider/macros':
-        specifier: 1.21.1
-        version: 1.21.1(@babel/core@7.29.7(supports-color@8.1.1))(@glint/template@1.9.0)(supports-color@8.1.1)
-      '@embroider/router':
-        specifier: 3.0.6
-        version: 3.0.6(@embroider/core@4.6.7(@glint/template@1.9.0)(supports-color@8.1.1))(supports-color@8.1.1)
-      '@glimmer/component':
-        specifier: 2.1.1
-        version: 2.1.1(supports-color@8.1.1)
-      '@tanstack/ember-hotkeys':
-        specifier: workspace:*
-        version: link:../../../packages/ember-hotkeys
-      decorator-transforms:
-        specifier: 2.4.0
-        version: 2.4.0(@babel/core@7.29.7(supports-color@8.1.1))
-      ember-source:
-        specifier: 7.3.0
-        version: 7.3.0(@glimmer/component@2.1.1(supports-color@8.1.1))(supports-color@8.1.1)
-      ember-strict-application-resolver:
-        specifier: 0.1.1
-        version: 0.1.1(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
-    devDependencies:
-      '@babel/core':
-        specifier: 7.29.7
-        version: 7.29.7(supports-color@8.1.1)
-      '@babel/plugin-transform-runtime':
-        specifier: 7.29.7
-        version: 7.29.7(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
-      '@babel/plugin-transform-typescript':
-        specifier: 7.29.9
-        version: 7.29.9(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
-      '@babel/runtime':
-        specifier: 7.29.7
-        version: 7.29.7
-      '@ember/app-tsconfig':
-        specifier: 2.1.0
-        version: 2.1.0
-      '@embroider/core':
-        specifier: 4.6.7
-        version: 4.6.7(@glint/template@1.9.0)(supports-color@8.1.1)
-      '@glint/ember-tsc':
-        specifier: 1.11.6
-        version: 1.11.6(ember-source@7.3.0(@glimmer/component@2.1.1(supports-color@8.1.1))(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
-      '@glint/template':
-        specifier: 1.9.0
-        version: 1.9.0
-      '@glint/tsserver-plugin':
-        specifier: 2.7.9
-        version: 2.7.9(ember-source@7.3.0(@glimmer/component@2.1.1(supports-color@8.1.1))(supports-color@8.1.1))(supports-color@8.1.1)
-      '@nullvoxpopuli/ember-vite':
-        specifier: 1.2.0
-        version: 1.2.0(@glint/template@1.9.0)(@types/babel__core@7.20.5)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
-      '@rollup/plugin-babel':
-        specifier: 7.1.0
-        version: 7.1.0(@babel/core@7.29.7(supports-color@8.1.1))(@types/babel__core@7.20.5)(rollup@4.57.1)(supports-color@8.1.1)
-      babel-plugin-ember-template-compilation:
-        specifier: 4.0.0
-        version: 4.0.0
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
-      vite:
-        specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)
-
-  examples/ember/useHotkeySequences:
-    dependencies:
-      '@embroider/macros':
-        specifier: 1.21.1
-        version: 1.21.1(@babel/core@7.29.7(supports-color@8.1.1))(@glint/template@1.9.0)(supports-color@8.1.1)
-      '@embroider/router':
-        specifier: 3.0.6
-        version: 3.0.6(@embroider/core@4.6.7(@glint/template@1.9.0)(supports-color@8.1.1))(supports-color@8.1.1)
-      '@glimmer/component':
-        specifier: 2.1.1
-        version: 2.1.1(supports-color@8.1.1)
-      '@tanstack/ember-hotkeys':
-        specifier: workspace:*
-        version: link:../../../packages/ember-hotkeys
-      decorator-transforms:
-        specifier: 2.4.0
-        version: 2.4.0(@babel/core@7.29.7(supports-color@8.1.1))
-      ember-source:
-        specifier: 7.3.0
-        version: 7.3.0(@glimmer/component@2.1.1(supports-color@8.1.1))(supports-color@8.1.1)
-      ember-strict-application-resolver:
-        specifier: 0.1.1
-        version: 0.1.1(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
-    devDependencies:
-      '@babel/core':
-        specifier: 7.29.7
-        version: 7.29.7(supports-color@8.1.1)
-      '@babel/plugin-transform-runtime':
-        specifier: 7.29.7
-        version: 7.29.7(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
-      '@babel/plugin-transform-typescript':
-        specifier: 7.29.9
-        version: 7.29.9(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
-      '@babel/runtime':
-        specifier: 7.29.7
-        version: 7.29.7
-      '@ember/app-tsconfig':
-        specifier: 2.1.0
-        version: 2.1.0
-      '@embroider/core':
-        specifier: 4.6.7
-        version: 4.6.7(@glint/template@1.9.0)(supports-color@8.1.1)
-      '@glint/ember-tsc':
-        specifier: 1.11.6
-        version: 1.11.6(ember-source@7.3.0(@glimmer/component@2.1.1(supports-color@8.1.1))(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
-      '@glint/template':
-        specifier: 1.9.0
-        version: 1.9.0
-      '@glint/tsserver-plugin':
-        specifier: 2.7.9
-        version: 2.7.9(ember-source@7.3.0(@glimmer/component@2.1.1(supports-color@8.1.1))(supports-color@8.1.1))(supports-color@8.1.1)
-      '@nullvoxpopuli/ember-vite':
-        specifier: 1.2.0
-        version: 1.2.0(@glint/template@1.9.0)(@types/babel__core@7.20.5)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
-      '@rollup/plugin-babel':
-        specifier: 7.1.0
-        version: 7.1.0(@babel/core@7.29.7(supports-color@8.1.1))(@types/babel__core@7.20.5)(rollup@4.57.1)(supports-color@8.1.1)
-      babel-plugin-ember-template-compilation:
-        specifier: 4.0.0
-        version: 4.0.0
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
-      vite:
-        specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
   examples/ember/useHotkeys:
     dependencies:
@@ -1683,6 +1616,73 @@ importers:
       vite:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)
+
+  examples/ember/useHotkeys-sequences:
+    dependencies:
+      '@embroider/macros':
+        specifier: 1.21.1
+        version: 1.21.1(@babel/core@7.29.7(supports-color@8.1.1))(@glint/template@1.9.0)(supports-color@8.1.1)
+      '@embroider/router':
+        specifier: 3.0.6
+        version: 3.0.6(@embroider/core@4.6.7(@glint/template@1.9.0)(supports-color@8.1.1))(supports-color@8.1.1)
+      '@glimmer/component':
+        specifier: 2.1.1
+        version: 2.1.1(supports-color@8.1.1)
+      '@tanstack/ember-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/ember-hotkeys
+      decorator-transforms:
+        specifier: 2.4.0
+        version: 2.4.0(@babel/core@7.29.7(supports-color@8.1.1))
+      ember-source:
+        specifier: 7.3.0
+        version: 7.3.0(@glimmer/component@2.1.1(supports-color@8.1.1))(supports-color@8.1.1)
+      ember-strict-application-resolver:
+        specifier: 0.1.1
+        version: 0.1.1(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
+    devDependencies:
+      '@babel/core':
+        specifier: 7.29.7
+        version: 7.29.7(supports-color@8.1.1)
+      '@babel/plugin-transform-runtime':
+        specifier: 7.29.7
+        version: 7.29.7(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
+      '@babel/plugin-transform-typescript':
+        specifier: 7.29.9
+        version: 7.29.9(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
+      '@babel/runtime':
+        specifier: 7.29.7
+        version: 7.29.7
+      '@ember/app-tsconfig':
+        specifier: 2.1.0
+        version: 2.1.0
+      '@embroider/core':
+        specifier: 4.6.7
+        version: 4.6.7(@glint/template@1.9.0)(supports-color@8.1.1)
+      '@glint/ember-tsc':
+        specifier: 1.11.6
+        version: 1.11.6(ember-source@7.3.0(@glimmer/component@2.1.1(supports-color@8.1.1))(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
+      '@glint/template':
+        specifier: 1.9.0
+        version: 1.9.0
+      '@glint/tsserver-plugin':
+        specifier: 2.7.9
+        version: 2.7.9(ember-source@7.3.0(@glimmer/component@2.1.1(supports-color@8.1.1))(supports-color@8.1.1))(supports-color@8.1.1)
+      '@nullvoxpopuli/ember-vite':
+        specifier: 1.2.0
+        version: 1.2.0(@glint/template@1.9.0)(@types/babel__core@7.20.5)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+      '@rollup/plugin-babel':
+        specifier: 7.1.0
+        version: 7.1.0(@babel/core@7.29.7(supports-color@8.1.1))(@types/babel__core@7.20.5)(rollup@4.57.1)(supports-color@8.1.1)
+      babel-plugin-ember-template-compilation:
+        specifier: 4.0.0
+        version: 4.0.0
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.2
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
   examples/ember/useKeyHold:
     dependencies:
@@ -1799,7 +1799,7 @@ importers:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
 
-  examples/lit/hotkey-sequence:
+  examples/lit/hotkey-recorder-sequences:
     dependencies:
       '@tanstack/lit-hotkeys':
         specifier: workspace:*
@@ -1813,9 +1813,9 @@ importers:
         version: 6.0.3
       vite:
         specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
-  examples/lit/hotkey-sequence-recorder:
+  examples/lit/hotkey-sequences:
     dependencies:
       '@tanstack/lit-hotkeys':
         specifier: workspace:*
@@ -1829,7 +1829,7 @@ importers:
         version: 6.0.3
       vite:
         specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
   examples/lit/key-hold:
     dependencies:
@@ -1869,12 +1869,15 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/octane-hotkeys
       octane:
-        specifier: 0.1.36
-        version: 0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
+        specifier: 0.12.1
+        version: 0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
     devDependencies:
+      '@tsrx/oxc':
+        specifier: 0.20.0
+        version: 0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1))
       '@tsrx/typescript-plugin':
         specifier: ^0.3.138
-        version: 0.3.138(octane@0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)))(typescript@6.0.3)
+        version: 0.3.138(octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)))(typescript@6.0.3)
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -1888,12 +1891,15 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/octane-hotkeys
       octane:
-        specifier: 0.1.36
-        version: 0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
+        specifier: 0.12.1
+        version: 0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
     devDependencies:
+      '@tsrx/oxc':
+        specifier: 0.20.0
+        version: 0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1))
       '@tsrx/typescript-plugin':
         specifier: ^0.3.138
-        version: 0.3.138(octane@0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)))(typescript@6.0.3)
+        version: 0.3.138(octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)))(typescript@6.0.3)
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -1907,18 +1913,43 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/octane-hotkeys
       octane:
-        specifier: 0.1.36
-        version: 0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
+        specifier: 0.12.1
+        version: 0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
     devDependencies:
+      '@tsrx/oxc':
+        specifier: 0.20.0
+        version: 0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1))
       '@tsrx/typescript-plugin':
         specifier: ^0.3.138
-        version: 0.3.138(octane@0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)))(typescript@6.0.3)
+        version: 0.3.138(octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)))(typescript@6.0.3)
       typescript:
         specifier: 6.0.3
         version: 6.0.3
       vite:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)
+
+  examples/octane/useHotkey-sequences:
+    dependencies:
+      '@tanstack/octane-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/octane-hotkeys
+      octane:
+        specifier: 0.12.1
+        version: 0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+    devDependencies:
+      '@tsrx/oxc':
+        specifier: 0.20.0
+        version: 0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1))
+      '@tsrx/typescript-plugin':
+        specifier: ^0.3.138
+        version: 0.3.138(octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)))(typescript@6.0.3)
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.2
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
   examples/octane/useHotkeyRecorder:
     dependencies:
@@ -1926,12 +1957,15 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/octane-hotkeys
       octane:
-        specifier: 0.1.36
-        version: 0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
+        specifier: 0.12.1
+        version: 0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
     devDependencies:
+      '@tsrx/oxc':
+        specifier: 0.20.0
+        version: 0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1))
       '@tsrx/typescript-plugin':
         specifier: ^0.3.138
-        version: 0.3.138(octane@0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)))(typescript@6.0.3)
+        version: 0.3.138(octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)))(typescript@6.0.3)
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -1939,62 +1973,27 @@ importers:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)
 
-  examples/octane/useHotkeySequence:
+  examples/octane/useHotkeyRecorder-sequences:
     dependencies:
       '@tanstack/octane-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/octane-hotkeys
       octane:
-        specifier: 0.1.36
-        version: 0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
+        specifier: 0.12.1
+        version: 0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
     devDependencies:
+      '@tsrx/oxc':
+        specifier: 0.20.0
+        version: 0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1))
       '@tsrx/typescript-plugin':
         specifier: ^0.3.138
-        version: 0.3.138(octane@0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)))(typescript@6.0.3)
+        version: 0.3.138(octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)))(typescript@6.0.3)
       typescript:
         specifier: 6.0.3
         version: 6.0.3
       vite:
         specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)
-
-  examples/octane/useHotkeySequenceRecorder:
-    dependencies:
-      '@tanstack/octane-hotkeys':
-        specifier: workspace:*
-        version: link:../../../packages/octane-hotkeys
-      octane:
-        specifier: 0.1.36
-        version: 0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
-    devDependencies:
-      '@tsrx/typescript-plugin':
-        specifier: ^0.3.138
-        version: 0.3.138(octane@0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)))(typescript@6.0.3)
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
-      vite:
-        specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)
-
-  examples/octane/useHotkeySequences:
-    dependencies:
-      '@tanstack/octane-hotkeys':
-        specifier: workspace:*
-        version: link:../../../packages/octane-hotkeys
-      octane:
-        specifier: 0.1.36
-        version: 0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
-    devDependencies:
-      '@tsrx/typescript-plugin':
-        specifier: ^0.3.138
-        version: 0.3.138(octane@0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)))(typescript@6.0.3)
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
-      vite:
-        specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
   examples/octane/useHotkeys:
     dependencies:
@@ -2002,12 +2001,15 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/octane-hotkeys
       octane:
-        specifier: 0.1.36
-        version: 0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
+        specifier: 0.12.1
+        version: 0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
     devDependencies:
+      '@tsrx/oxc':
+        specifier: 0.20.0
+        version: 0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1))
       '@tsrx/typescript-plugin':
         specifier: ^0.3.138
-        version: 0.3.138(octane@0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)))(typescript@6.0.3)
+        version: 0.3.138(octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)))(typescript@6.0.3)
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -2015,18 +2017,43 @@ importers:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)
 
+  examples/octane/useHotkeys-sequences:
+    dependencies:
+      '@tanstack/octane-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/octane-hotkeys
+      octane:
+        specifier: 0.12.1
+        version: 0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+    devDependencies:
+      '@tsrx/oxc':
+        specifier: 0.20.0
+        version: 0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1))
+      '@tsrx/typescript-plugin':
+        specifier: ^0.3.138
+        version: 0.3.138(octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)))(typescript@6.0.3)
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.2
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+
   examples/octane/useKeyHold:
     dependencies:
       '@tanstack/octane-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/octane-hotkeys
       octane:
-        specifier: 0.1.36
-        version: 0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
+        specifier: 0.12.1
+        version: 0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
     devDependencies:
+      '@tsrx/oxc':
+        specifier: 0.20.0
+        version: 0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1))
       '@tsrx/typescript-plugin':
         specifier: ^0.3.138
-        version: 0.3.138(octane@0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)))(typescript@6.0.3)
+        version: 0.3.138(octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)))(typescript@6.0.3)
       typescript:
         specifier: 6.0.3
         version: 6.0.3
@@ -2040,15 +2067,15 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.0.1
+        version: 11.0.1
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
         specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@10.29.8)(solid-js@1.9.15)
+        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2065,15 +2092,15 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.0.1
+        version: 11.0.1
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
         specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@10.29.8)(solid-js@1.9.15)
+        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2090,15 +2117,15 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.0.1
+        version: 11.0.1
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
         specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@10.29.8)(solid-js@1.9.15)
+        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2108,6 +2135,31 @@ importers:
       vite:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+
+  examples/preact/useHotkey-sequences:
+    dependencies:
+      '@tanstack/preact-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/preact-hotkeys
+      preact:
+        specifier: ^11.0.1
+        version: 11.0.1
+    devDependencies:
+      '@preact/preset-vite':
+        specifier: ^2.10.6
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+      '@tanstack/preact-devtools':
+        specifier: 0.10.13
+        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
+      '@tanstack/preact-hotkeys-devtools':
+        specifier: workspace:*
+        version: link:../../../packages/preact-hotkeys-devtools
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.2
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
   examples/preact/useHotkeyRecorder:
     dependencies:
@@ -2115,15 +2167,15 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.0.1
+        version: 11.0.1
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
         specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@10.29.8)(solid-js@1.9.15)
+        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2134,21 +2186,21 @@ importers:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
 
-  examples/preact/useHotkeySequence:
+  examples/preact/useHotkeyRecorder-sequences:
     dependencies:
       '@tanstack/preact-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.0.1
+        version: 11.0.1
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
       '@tanstack/preact-devtools':
         specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@10.29.8)(solid-js@1.9.15)
+        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2157,57 +2209,7 @@ importers:
         version: 6.0.3
       vite:
         specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
-
-  examples/preact/useHotkeySequenceRecorder:
-    dependencies:
-      '@tanstack/preact-hotkeys':
-        specifier: workspace:*
-        version: link:../../../packages/preact-hotkeys
-      preact:
-        specifier: ^10.29.8
-        version: 10.29.8
-    devDependencies:
-      '@preact/preset-vite':
-        specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
-      '@tanstack/preact-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@10.29.8)(solid-js@1.9.15)
-      '@tanstack/preact-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/preact-hotkeys-devtools
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
-      vite:
-        specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
-
-  examples/preact/useHotkeySequences:
-    dependencies:
-      '@tanstack/preact-hotkeys':
-        specifier: workspace:*
-        version: link:../../../packages/preact-hotkeys
-      preact:
-        specifier: ^10.29.8
-        version: 10.29.8
-    devDependencies:
-      '@preact/preset-vite':
-        specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
-      '@tanstack/preact-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@10.29.8)(solid-js@1.9.15)
-      '@tanstack/preact-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/preact-hotkeys-devtools
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
-      vite:
-        specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
   examples/preact/useHotkeys:
     dependencies:
@@ -2215,15 +2217,15 @@ importers:
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.0.1
+        version: 11.0.1
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
         specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@10.29.8)(solid-js@1.9.15)
+        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2234,21 +2236,46 @@ importers:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
 
+  examples/preact/useHotkeys-sequences:
+    dependencies:
+      '@tanstack/preact-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/preact-hotkeys
+      preact:
+        specifier: ^11.0.1
+        version: 11.0.1
+    devDependencies:
+      '@preact/preset-vite':
+        specifier: ^2.10.6
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+      '@tanstack/preact-devtools':
+        specifier: 0.10.13
+        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
+      '@tanstack/preact-hotkeys-devtools':
+        specifier: workspace:*
+        version: link:../../../packages/preact-hotkeys-devtools
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.2
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+
   examples/preact/useKeyhold:
     dependencies:
       '@tanstack/preact-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.0.1
+        version: 11.0.1
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
         specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@10.29.8)(solid-js@1.9.15)
+        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2364,6 +2391,40 @@ importers:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
 
+  examples/react/useHotkey-sequences:
+    dependencies:
+      '@tanstack/react-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/react-hotkeys
+      react:
+        specifier: ^19.3.0
+        version: 19.3.0
+      react-dom:
+        specifier: ^19.3.0
+        version: 19.3.0(react@19.3.0)
+    devDependencies:
+      '@tanstack/react-devtools':
+        specifier: 0.10.13
+        version: 0.10.13(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
+      '@tanstack/react-hotkeys-devtools':
+        specifier: workspace:*
+        version: link:../../../packages/react-hotkeys-devtools
+      '@types/react':
+        specifier: ^19.3.0
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: ^19.3.0
+        version: 19.3.0(@types/react@19.3.0)
+      '@vitejs/plugin-react':
+        specifier: ^6.1.1
+        version: 6.1.1(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.2
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+
   examples/react/useHotkeyRecorder:
     dependencies:
       '@tanstack/react-hotkeys':
@@ -2398,7 +2459,7 @@ importers:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
 
-  examples/react/useHotkeySequence:
+  examples/react/useHotkeyRecorder-sequences:
     dependencies:
       '@tanstack/react-hotkeys':
         specifier: workspace:*
@@ -2424,81 +2485,13 @@ importers:
         version: 19.3.0(@types/react@19.3.0)
       '@vitejs/plugin-react':
         specifier: ^6.1.1
-        version: 6.1.1(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 6.1.1(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
       typescript:
         specifier: 6.0.3
         version: 6.0.3
       vite:
         specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
-
-  examples/react/useHotkeySequenceRecorder:
-    dependencies:
-      '@tanstack/react-hotkeys':
-        specifier: workspace:*
-        version: link:../../../packages/react-hotkeys
-      react:
-        specifier: ^19.3.0
-        version: 19.3.0
-      react-dom:
-        specifier: ^19.3.0
-        version: 19.3.0(react@19.3.0)
-    devDependencies:
-      '@tanstack/react-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
-      '@tanstack/react-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/react-hotkeys-devtools
-      '@types/react':
-        specifier: ^19.3.0
-        version: 19.3.0
-      '@types/react-dom':
-        specifier: ^19.3.0
-        version: 19.3.0(@types/react@19.3.0)
-      '@vitejs/plugin-react':
-        specifier: ^6.1.1
-        version: 6.1.1(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
-      vite:
-        specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
-
-  examples/react/useHotkeySequences:
-    dependencies:
-      '@tanstack/react-hotkeys':
-        specifier: workspace:*
-        version: link:../../../packages/react-hotkeys
-      react:
-        specifier: ^19.3.0
-        version: 19.3.0
-      react-dom:
-        specifier: ^19.3.0
-        version: 19.3.0(react@19.3.0)
-    devDependencies:
-      '@tanstack/react-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
-      '@tanstack/react-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/react-hotkeys-devtools
-      '@types/react':
-        specifier: ^19.3.0
-        version: 19.3.0
-      '@types/react-dom':
-        specifier: ^19.3.0
-        version: 19.3.0(@types/react@19.3.0)
-      '@vitejs/plugin-react':
-        specifier: ^6.1.1
-        version: 6.1.1(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
-      vite:
-        specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
   examples/react/useHotkeys:
     dependencies:
@@ -2533,6 +2526,40 @@ importers:
       vite:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+
+  examples/react/useHotkeys-sequences:
+    dependencies:
+      '@tanstack/react-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/react-hotkeys
+      react:
+        specifier: ^19.3.0
+        version: 19.3.0
+      react-dom:
+        specifier: ^19.3.0
+        version: 19.3.0(react@19.3.0)
+    devDependencies:
+      '@tanstack/react-devtools':
+        specifier: 0.10.13
+        version: 0.10.13(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
+      '@tanstack/react-hotkeys-devtools':
+        specifier: workspace:*
+        version: link:../../../packages/react-hotkeys-devtools
+      '@types/react':
+        specifier: ^19.3.0
+        version: 19.3.0
+      '@types/react-dom':
+        specifier: ^19.3.0
+        version: 19.3.0(@types/react@19.3.0)
+      '@vitejs/plugin-react':
+        specifier: ^6.1.1
+        version: 6.1.1(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.2
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
   examples/react/useKeyhold:
     dependencies:
@@ -2618,6 +2645,28 @@ importers:
         specifier: ^2.11.14
         version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
 
+  examples/solid/createHotkey-sequences:
+    dependencies:
+      '@tanstack/solid-devtools':
+        specifier: 0.8.13
+        version: 0.8.13(csstype@3.2.3)(solid-js@1.9.15)
+      '@tanstack/solid-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/solid-hotkeys
+      '@tanstack/solid-hotkeys-devtools':
+        specifier: workspace:*
+        version: link:../../../packages/solid-hotkeys-devtools
+      solid-js:
+        specifier: ^1.9.15
+        version: 1.9.15
+    devDependencies:
+      vite:
+        specifier: ^8.3.2
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+      vite-plugin-solid:
+        specifier: ^2.11.14
+        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+
   examples/solid/createHotkeyRecorder:
     dependencies:
       '@tanstack/solid-devtools':
@@ -2640,7 +2689,7 @@ importers:
         specifier: ^2.11.14
         version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
 
-  examples/solid/createHotkeySequence:
+  examples/solid/createHotkeyRecorder-sequences:
     dependencies:
       '@tanstack/solid-devtools':
         specifier: 0.8.13
@@ -2657,54 +2706,10 @@ importers:
     devDependencies:
       vite:
         specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
       vite-plugin-solid:
         specifier: ^2.11.14
-        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
-
-  examples/solid/createHotkeySequenceRecorder:
-    dependencies:
-      '@tanstack/solid-devtools':
-        specifier: 0.8.13
-        version: 0.8.13(csstype@3.2.3)(solid-js@1.9.15)
-      '@tanstack/solid-hotkeys':
-        specifier: workspace:*
-        version: link:../../../packages/solid-hotkeys
-      '@tanstack/solid-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/solid-hotkeys-devtools
-      solid-js:
-        specifier: ^1.9.15
-        version: 1.9.15
-    devDependencies:
-      vite:
-        specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
-      vite-plugin-solid:
-        specifier: ^2.11.14
-        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
-
-  examples/solid/createHotkeySequences:
-    dependencies:
-      '@tanstack/solid-devtools':
-        specifier: 0.8.13
-        version: 0.8.13(csstype@3.2.3)(solid-js@1.9.15)
-      '@tanstack/solid-hotkeys':
-        specifier: workspace:*
-        version: link:../../../packages/solid-hotkeys
-      '@tanstack/solid-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/solid-hotkeys-devtools
-      solid-js:
-        specifier: ^1.9.15
-        version: 1.9.15
-    devDependencies:
-      vite:
-        specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
-      vite-plugin-solid:
-        specifier: ^2.11.14
-        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
 
   examples/solid/createHotkeys:
     dependencies:
@@ -2733,6 +2738,28 @@ importers:
       vite-plugin-solid:
         specifier: ^2.11.14
         version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+
+  examples/solid/createHotkeys-sequences:
+    dependencies:
+      '@tanstack/solid-devtools':
+        specifier: 0.8.13
+        version: 0.8.13(csstype@3.2.3)(solid-js@1.9.15)
+      '@tanstack/solid-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/solid-hotkeys
+      '@tanstack/solid-hotkeys-devtools':
+        specifier: workspace:*
+        version: link:../../../packages/solid-hotkeys-devtools
+      solid-js:
+        specifier: ^1.9.15
+        version: 1.9.15
+    devDependencies:
+      vite:
+        specifier: ^8.3.2
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+      vite-plugin-solid:
+        specifier: ^2.11.14
+        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
 
   examples/solid/createKeyHold:
     dependencies:
@@ -2834,11 +2861,11 @@ importers:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
 
-  examples/svelte/create-hotkey-sequence:
+  examples/svelte/create-hotkey-recorder-sequences:
     dependencies:
       '@tanstack/svelte-devtools':
         specifier: ^0.1.7
-        version: 0.1.7(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))
+        version: 0.1.7(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))
       '@tanstack/svelte-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/svelte-hotkeys
@@ -2847,42 +2874,17 @@ importers:
         version: link:../../../packages/svelte-hotkeys-devtools
       svelte:
         specifier: ^5.57.1
-        version: 5.57.1(@typescript-eslint/types@8.59.0)
+        version: 5.57.1(@typescript-eslint/types@8.70.1)
     devDependencies:
       '@sveltejs/vite-plugin-svelte':
         specifier: ^7.3.1
-        version: 7.3.1(svelte@5.57.1(@typescript-eslint/types@8.59.0))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 7.3.1(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
       typescript:
         specifier: 6.0.3
         version: 6.0.3
       vite:
         specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
-
-  examples/svelte/create-hotkey-sequence-recorder:
-    dependencies:
-      '@tanstack/svelte-devtools':
-        specifier: ^0.1.7
-        version: 0.1.7(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))
-      '@tanstack/svelte-hotkeys':
-        specifier: workspace:*
-        version: link:../../../packages/svelte-hotkeys
-      '@tanstack/svelte-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/svelte-hotkeys-devtools
-      svelte:
-        specifier: ^5.57.1
-        version: 5.57.1(@typescript-eslint/types@8.59.0)
-    devDependencies:
-      '@sveltejs/vite-plugin-svelte':
-        specifier: ^7.3.1
-        version: 7.3.1(svelte@5.57.1(@typescript-eslint/types@8.59.0))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
-      vite:
-        specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
   examples/svelte/create-hotkey-sequences:
     dependencies:
@@ -2933,6 +2935,31 @@ importers:
       vite:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+
+  examples/svelte/create-hotkeys-sequences:
+    dependencies:
+      '@tanstack/svelte-devtools':
+        specifier: ^0.1.7
+        version: 0.1.7(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))
+      '@tanstack/svelte-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/svelte-hotkeys
+      '@tanstack/svelte-hotkeys-devtools':
+        specifier: workspace:*
+        version: link:../../../packages/svelte-hotkeys-devtools
+      svelte:
+        specifier: ^5.57.1
+        version: 5.57.1(@typescript-eslint/types@8.70.1)
+    devDependencies:
+      '@sveltejs/vite-plugin-svelte':
+        specifier: ^7.3.1
+        version: 7.3.1(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.2
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
   examples/svelte/get-held-keys:
     dependencies:
@@ -3115,6 +3142,37 @@ importers:
         specifier: 10.4.1
         version: 10.4.1(eslint@10.11.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)
 
+  examples/vue/useHotkey-sequences:
+    dependencies:
+      '@tanstack/vue-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/vue-hotkeys
+      vue:
+        specifier: ^3.5.43
+        version: 3.5.43(typescript@6.0.3)
+    devDependencies:
+      '@tanstack/vue-devtools':
+        specifier: ^0.2.27
+        version: 0.2.27(csstype@3.2.3)(solid-js@1.9.15)
+      '@tanstack/vue-hotkeys-devtools':
+        specifier: workspace:*
+        version: link:../../../packages/vue-hotkeys-devtools
+      '@typescript-eslint/parser':
+        specifier: ^8.71.0
+        version: 8.71.0(eslint@10.11.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
+      '@vitejs/plugin-vue':
+        specifier: ^6.0.9
+        version: 6.0.9(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))(vue@3.5.43(typescript@6.0.3))
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.2
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+      vue-eslint-parser:
+        specifier: 10.4.1
+        version: 10.4.1(eslint@10.11.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)
+
   examples/vue/useHotkeyRecorder:
     dependencies:
       '@tanstack/vue-hotkeys':
@@ -3146,7 +3204,7 @@ importers:
         specifier: 10.4.1
         version: 10.4.1(eslint@10.11.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)
 
-  examples/vue/useHotkeySequence:
+  examples/vue/useHotkeyRecorder-sequences:
     dependencies:
       '@tanstack/vue-hotkeys':
         specifier: workspace:*
@@ -3166,75 +3224,13 @@ importers:
         version: 8.71.0(eslint@10.11.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
       '@vitejs/plugin-vue':
         specifier: ^6.0.9
-        version: 6.0.9(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.43(typescript@6.0.3))
+        version: 6.0.9(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))(vue@3.5.43(typescript@6.0.3))
       typescript:
         specifier: 6.0.3
         version: 6.0.3
       vite:
         specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
-      vue-eslint-parser:
-        specifier: 10.4.1
-        version: 10.4.1(eslint@10.11.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)
-
-  examples/vue/useHotkeySequenceRecorder:
-    dependencies:
-      '@tanstack/vue-hotkeys':
-        specifier: workspace:*
-        version: link:../../../packages/vue-hotkeys
-      vue:
-        specifier: ^3.5.43
-        version: 3.5.43(typescript@6.0.3)
-    devDependencies:
-      '@tanstack/vue-devtools':
-        specifier: ^0.2.27
-        version: 0.2.27(csstype@3.2.3)(solid-js@1.9.15)
-      '@tanstack/vue-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/vue-hotkeys-devtools
-      '@typescript-eslint/parser':
-        specifier: ^8.71.0
-        version: 8.71.0(eslint@10.11.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
-      '@vitejs/plugin-vue':
-        specifier: ^6.0.9
-        version: 6.0.9(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.43(typescript@6.0.3))
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
-      vite:
-        specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
-      vue-eslint-parser:
-        specifier: 10.4.1
-        version: 10.4.1(eslint@10.11.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)
-
-  examples/vue/useHotkeySequences:
-    dependencies:
-      '@tanstack/vue-hotkeys':
-        specifier: workspace:*
-        version: link:../../../packages/vue-hotkeys
-      vue:
-        specifier: ^3.5.43
-        version: 3.5.43(typescript@6.0.3)
-    devDependencies:
-      '@tanstack/vue-devtools':
-        specifier: ^0.2.27
-        version: 0.2.27(csstype@3.2.3)(solid-js@1.9.15)
-      '@tanstack/vue-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/vue-hotkeys-devtools
-      '@typescript-eslint/parser':
-        specifier: ^8.71.0
-        version: 8.71.0(eslint@10.11.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
-      '@vitejs/plugin-vue':
-        specifier: ^6.0.9
-        version: 6.0.9(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.43(typescript@6.0.3))
-      typescript:
-        specifier: 6.0.3
-        version: 6.0.3
-      vite:
-        specifier: ^8.3.2
-        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
       vue-eslint-parser:
         specifier: 10.4.1
         version: 10.4.1(eslint@10.11.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)
@@ -3266,6 +3262,37 @@ importers:
       vite:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+      vue-eslint-parser:
+        specifier: 10.4.1
+        version: 10.4.1(eslint@10.11.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)
+
+  examples/vue/useHotkeys-sequences:
+    dependencies:
+      '@tanstack/vue-hotkeys':
+        specifier: workspace:*
+        version: link:../../../packages/vue-hotkeys
+      vue:
+        specifier: ^3.5.43
+        version: 3.5.43(typescript@6.0.3)
+    devDependencies:
+      '@tanstack/vue-devtools':
+        specifier: ^0.2.27
+        version: 0.2.27(csstype@3.2.3)(solid-js@1.9.15)
+      '@tanstack/vue-hotkeys-devtools':
+        specifier: workspace:*
+        version: link:../../../packages/vue-hotkeys-devtools
+      '@typescript-eslint/parser':
+        specifier: ^8.71.0
+        version: 8.71.0(eslint@10.11.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
+      '@vitejs/plugin-vue':
+        specifier: ^6.0.9
+        version: 6.0.9(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))(vue@3.5.43(typescript@6.0.3))
+      typescript:
+        specifier: 6.0.3
+        version: 6.0.3
+      vite:
+        specifier: ^8.3.2
+        version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
       vue-eslint-parser:
         specifier: 10.4.1
         version: 10.4.1(eslint@10.11.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)
@@ -3484,15 +3511,18 @@ importers:
         specifier: workspace:*
         version: link:../hotkeys
       '@tanstack/octane-store':
-        specifier: ^0.12.3
-        version: 0.12.3(octane@0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2)))
+        specifier: ^0.13.0
+        version: 0.13.0(octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2)))
     devDependencies:
+      '@tsrx/oxc':
+        specifier: 0.20.0
+        version: 0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1))
       '@tsrx/typescript-plugin':
         specifier: ^0.3.138
-        version: 0.3.138(octane@0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2)))(typescript@6.0.3)
+        version: 0.3.138(octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2)))(typescript@6.0.3)
       octane:
-        specifier: 0.1.36
-        version: 0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2))
+        specifier: 0.12.1
+        version: 0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2))
       vite:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2)
@@ -3503,34 +3533,34 @@ importers:
         specifier: workspace:*
         version: link:../hotkeys
       '@tanstack/preact-store':
-        specifier: ^0.13.4
-        version: 0.13.4(preact@10.29.8)
+        specifier: ^0.13.5
+        version: 0.13.5(preact@11.0.1)
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@7.3.2(@types/node@26.6.4)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@7.3.2(@types/node@26.6.4)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@testing-library/preact':
         specifier: ^3.2.4
-        version: 3.2.4(preact@10.29.8)
+        version: 3.2.4(preact@11.0.1)
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.0.1
+        version: 11.0.1
 
   packages/preact-hotkeys-devtools:
     dependencies:
       '@tanstack/devtools-utils':
         specifier: ^0.7.0
-        version: 0.7.0(@angular/core@21.2.10)(@types/react@19.2.14)(preact@10.29.8)(react@19.2.5)(solid-js@1.9.12)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))
+        version: 0.7.0(@angular/core@21.2.10)(@types/react@19.2.14)(preact@11.0.1)(react@19.2.5)(solid-js@1.9.12)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))
       '@tanstack/hotkeys-devtools':
         specifier: workspace:*
         version: link:../hotkeys-devtools
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
-        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       preact:
-        specifier: ^10.29.8
-        version: 10.29.8
+        specifier: ^11.0.1
+        version: 11.0.1
 
   packages/react-hotkeys:
     dependencies:
@@ -7076,6 +7106,280 @@ packages:
     cpu: [x64]
     os: [win32]
 
+  '@oxfmt/binding-android-arm-eabi@0.68.0':
+    resolution: {integrity: sha512-dhfYPbzv/h9JgHjNkl2R6sOjUfxDyLGOZVb3g8/ScaTNwwJcYgmHh8kcYFDUhinuy1QAoANCWUvw1jlk+z6gAg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm]
+    os: [android]
+
+  '@oxfmt/binding-android-arm64@0.68.0':
+    resolution: {integrity: sha512-v3Njdi6qY0O/5eGfg01ww2w6gTn2mUvZ72Bnx1/UN53A9wruh3Nk6otc3WkgJLkXD4Qgz1SOcVQieH1oD03V9Q==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [android]
+
+  '@oxfmt/binding-darwin-arm64@0.68.0':
+    resolution: {integrity: sha512-ei4MCMzHFREmZwPJ7KuWUB4kBuHdsgDrnXGJVcEAopU7fj7S42I8BChdFILWdHvhFqR08FLJtOfbZIr2CDw0cA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@oxfmt/binding-darwin-x64@0.68.0':
+    resolution: {integrity: sha512-UrKgzZxYhwB9DSvTX+vdgl9M32wLUNKJcAKIoiyx/Kzn/zveqi7W6kYVcRroFMhS3Kwz0KhTk3WBeSuQn4YCTg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [darwin]
+
+  '@oxfmt/binding-freebsd-x64@0.68.0':
+    resolution: {integrity: sha512-6jrEKgpJbilM1QaRv7hEtKXr4p4AK4jvvyOtajwyhu0kOz3e0O7OLnSTk6tBotRqCcUC4ehZRJ1Zx+Y99wieLw==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [freebsd]
+
+  '@oxfmt/binding-linux-arm-gnueabihf@0.68.0':
+    resolution: {integrity: sha512-YOIVnKOBaLeGullskS179N12hjSAdFYnzLjOaKiLhAKNWgnShq9w4xRdtmUm6BlnP65l2/EA9Aw/KlftNxDM7Q==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm]
+    os: [linux]
+
+  '@oxfmt/binding-linux-arm-musleabihf@0.68.0':
+    resolution: {integrity: sha512-xW5XoEHVNqydPBv2KXvk9lmEzyAlOQHVEazKoXUuAacqekjya+OdiaFjjEBl0oJD02raG8g3TRl9OVCh9PDIHA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm]
+    os: [linux]
+
+  '@oxfmt/binding-linux-arm64-gnu@0.68.0':
+    resolution: {integrity: sha512-QCvYwVVQieu6oyJglAgV9vH/YMDxZyR4cwVSYtoq9oOXd5N+D3TDUBjNwxFrLn5AdcJZOcvn/7IB17vJGp+2Og==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [linux]
+    libc: [glibc]
+
+  '@oxfmt/binding-linux-arm64-musl@0.68.0':
+    resolution: {integrity: sha512-4TVz5iFQ8ndrHnhX50UXiz9BIWAtUSOHJ6Nus4qWFfJBXq/Ed/krXbF/ehJu42BXM5tIvBs99jNIM22s9agY5A==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [linux]
+    libc: [musl]
+
+  '@oxfmt/binding-linux-ppc64-gnu@0.68.0':
+    resolution: {integrity: sha512-qLe3ao0RP84bnPxBvRI+GnlK/jybo538NWu0Xrm+zYeTmJtpzqLhnnd5BH21NafqKnplbGZjtN1cnrOlWF73lw==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [ppc64]
+    os: [linux]
+    libc: [glibc]
+
+  '@oxfmt/binding-linux-riscv64-gnu@0.68.0':
+    resolution: {integrity: sha512-Yvyl7a6gbb0vM6r925KW2dO+/CmXySO5TVbcX7o/uZJ+d108HFOG0TxIyHApmn5USuj5mhDPxzhiVwOlGP7uSA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [riscv64]
+    os: [linux]
+    libc: [glibc]
+
+  '@oxfmt/binding-linux-riscv64-musl@0.68.0':
+    resolution: {integrity: sha512-mJlFuFVCxzrYM5sFStN433D/s/mb6Wq4aCQAM02vs/OudHywnaSAd2rb1vlYUJtqdYIciJtiasuxvfbYkv5fLg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [riscv64]
+    os: [linux]
+    libc: [musl]
+
+  '@oxfmt/binding-linux-s390x-gnu@0.68.0':
+    resolution: {integrity: sha512-RlfSg++qs1hbKltRR6lYvV9EoI3MdlfSQD9w1hdHVYjHqjIn1tkH4FWOpMSmjKGN20zr+nI+W9o4ARogCDudGQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [s390x]
+    os: [linux]
+    libc: [glibc]
+
+  '@oxfmt/binding-linux-x64-gnu@0.68.0':
+    resolution: {integrity: sha512-nyzRB9U+dlYUKu3pMo3afHzZBUv/oTHZMG36ZfJViNVfOIzp70Q4GS8FFRGgYJ/p0zcyDCgpBvYISOdJOMh+jQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [linux]
+    libc: [glibc]
+
+  '@oxfmt/binding-linux-x64-musl@0.68.0':
+    resolution: {integrity: sha512-iCx3sbZRIvGrL1RafphEiUKBaW1lc0/tAjKOIB/Wjw2+STRBEdu5+fH1Gc1faEWEmc2k5Ks4iUUV54Zd5C9a1A==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [linux]
+    libc: [musl]
+
+  '@oxfmt/binding-openharmony-arm64@0.68.0':
+    resolution: {integrity: sha512-x2X5AZez7OgyLLFpwIgItoXBUqudDM7yiaTsxv8R8vKQ6e81l0jVw0NFeUCXzcl1sAJq8h+tC8N4mY8EiMeL4w==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [openharmony]
+
+  '@oxfmt/binding-win32-arm64-msvc@0.68.0':
+    resolution: {integrity: sha512-AHVPjXkenLPQUh6kB8zSC8pX2ct9r4T1Edk9r/RNJyov6wPsS5uAfYtipwG4chn6+3bPFG5rI/3DxEeH8vib1w==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [win32]
+
+  '@oxfmt/binding-win32-ia32-msvc@0.68.0':
+    resolution: {integrity: sha512-n09SjEk5VH7z8Hl4WVP7hho+cCwGViENkQFiM45vbW85dJd7kEhWaHRUobaPzEmrWyu6uumd4EuNfNyDKLtzDA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [ia32]
+    os: [win32]
+
+  '@oxfmt/binding-win32-x64-msvc@0.68.0':
+    resolution: {integrity: sha512-gPe+dJLXaPuWPWqlpklDAJp0k+K9KhQPYiQLHfb+i2rmFuUGfJ/5Qlj6tr1mO6of5g0DiLjG/XCFHIaPhotqqA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [win32]
+
+  '@oxlint-tsgolint/darwin-arm64@7.0.2002':
+    resolution: {integrity: sha512-E3yYb/tI+5M3SqGgKwrwUD0nmjA2FMGD1xFbma46qi8Y7+nPTlGY6bZk/hqxijc9Vda/tdtUxQ2d5zGIEX9qlg==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@oxlint-tsgolint/darwin-x64@7.0.2002':
+    resolution: {integrity: sha512-qEaMySdvzs8faaJwMO4dFtPFCa+degFCz+HbkFQ0REcIJqJ16KmC0smt30FAI9TeEHCoAtz6sU/6acJvi4uaxg==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@oxlint-tsgolint/linux-arm64@7.0.2002':
+    resolution: {integrity: sha512-bqPObCNIR6tDQSc0Xn9Nu7EfWRXFB+qFzADRl/q6YA8zT9YUg3pGUbmicV2hV91uLpiot74so9ocGjx35SaX6w==}
+    cpu: [arm64]
+    os: [linux]
+
+  '@oxlint-tsgolint/linux-x64@7.0.2002':
+    resolution: {integrity: sha512-E5CcRALAYdiQMbdYjEqlLOiYuEdt21RtXiyxIoD8bfypdfkpWppacijKOR4i0DtLXFRVwCGQggZBWk5bOIpU1A==}
+    cpu: [x64]
+    os: [linux]
+
+  '@oxlint-tsgolint/win32-arm64@7.0.2002':
+    resolution: {integrity: sha512-L+ul0ZFDiz/ZmTwCQ1J/qS7S6s45ktiaFqb+ZIzx+1sSdtdRxm8/H0+p4VDQYrCKBFzKNb6VjUlm48bNEe3BUg==}
+    cpu: [arm64]
+    os: [win32]
+
+  '@oxlint-tsgolint/win32-x64@7.0.2002':
+    resolution: {integrity: sha512-zkZeJfo4UmYiCzj77u85eCDpdxOiQiSAsV6j9Pvj5e7Vu5+MvwLtK1xmVutE77tJmUJ3eBOSXHR6WgY4AwHHGQ==}
+    cpu: [x64]
+    os: [win32]
+
+  '@oxlint/binding-android-arm-eabi@1.83.0':
+    resolution: {integrity: sha512-0yGY24EwsLk5YDe6F+VkmZyRHSwJDALa3nIrPpq7FXmp2lV2d0TzvBCGeZk+wgiULRGr5blhyr4QMp5KCXJUqA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm]
+    os: [android]
+
+  '@oxlint/binding-android-arm64@1.83.0':
+    resolution: {integrity: sha512-hHfJ0vc17A4iUjH5p9BsTUPYbYRNxGpvD2lbu1aBRk54bzNIx9o5TtYF39QPZcV95DagZd+4DEAw2RH3G2ZsMg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [android]
+
+  '@oxlint/binding-darwin-arm64@1.83.0':
+    resolution: {integrity: sha512-hsOjYjszLb/3zym/TkzUMPAoQlTJcuzSyEPOAyA+skXJIX9M0o+4JfOtqopX/Vf4hSLrJ98j0nvFo23gzk8auQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@oxlint/binding-darwin-x64@1.83.0':
+    resolution: {integrity: sha512-mjh5oH2EA+wl5yRJYT9K9G61O2zFlpuv+yf2JwZOi0+dq2FnTUtm1h8i+5Ik0fXPWIu/k84I1psZR9aQsLAnyA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [darwin]
+
+  '@oxlint/binding-freebsd-x64@1.83.0':
+    resolution: {integrity: sha512-fNHr64/YaO8YssuoDVC8+F4Uk5enR86q5uxfHkQrjAPs1dbAILOrD2uaud+J7MO8Fx774g44ERLD0IGIvZE48w==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [freebsd]
+
+  '@oxlint/binding-linux-arm-gnueabihf@1.83.0':
+    resolution: {integrity: sha512-Qpwy3zzAwMj+8/lyYItHmkSMwbkprFNWTK7jPYDOxSyxEhaSLOWYUTCMkjF334J8/WD0nznCCsoBbIH6hpsuIw==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm]
+    os: [linux]
+
+  '@oxlint/binding-linux-arm-musleabihf@1.83.0':
+    resolution: {integrity: sha512-s+BirYLFq7JL2k9sP0XI3ZXJ9dYvJ8sX3jLCLoag7tt+zrSHpZxP0jqznfL+Gdgwu7ay0dYgGYJXrQvq3iWloA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm]
+    os: [linux]
+
+  '@oxlint/binding-linux-arm64-gnu@1.83.0':
+    resolution: {integrity: sha512-7lihXt3vKr+GIyapNbHrnFHm/biiW30le6Zv/DExbAFPF6YwCQXVFlONPFehxs0CpGO4CBfYPM9rdDT+XMoIlg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [linux]
+    libc: [glibc]
+
+  '@oxlint/binding-linux-arm64-musl@1.83.0':
+    resolution: {integrity: sha512-q63JalLYVkZiZvls1z3PPUnpmQluOMXp0khqQMznCeAPLGydfNY8JhvuA4WlK57JfrvikU8wB5lPVveqpIXvew==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [linux]
+    libc: [musl]
+
+  '@oxlint/binding-linux-ppc64-gnu@1.83.0':
+    resolution: {integrity: sha512-krQmDF+dRbxvdqVPV88ZuOoPPu8X5BuqDA8Hd+qcS4YMRQCb+nexA57DazgGsc/rGdKBe3QmV0mnv0bdpW/p5g==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [ppc64]
+    os: [linux]
+    libc: [glibc]
+
+  '@oxlint/binding-linux-riscv64-gnu@1.83.0':
+    resolution: {integrity: sha512-MmOl8Y6txEAXZU1RG8Rr264jQ6D7VPmqFsU/45x/FeWsGe32hklTqGrLE6UxHzp5Rjt0wP+20tY8YXKgSFB3mw==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [riscv64]
+    os: [linux]
+    libc: [glibc]
+
+  '@oxlint/binding-linux-riscv64-musl@1.83.0':
+    resolution: {integrity: sha512-u1rMymh0W3JZkq370kzQsYPULGWqhE09pZRqnZvUSoYaI9pVO5yVX+iYIslmWuEgwuzH9YAaOsScJiobWCHoOw==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [riscv64]
+    os: [linux]
+    libc: [musl]
+
+  '@oxlint/binding-linux-s390x-gnu@1.83.0':
+    resolution: {integrity: sha512-y0zK3HNwGysu7rqtE+BQG/d0bx5gh/KwlOtghN8oWeK1KcWzeaLqtZrbm8owqdma1lFyrce/hTO5ismuNu+INQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [s390x]
+    os: [linux]
+    libc: [glibc]
+
+  '@oxlint/binding-linux-x64-gnu@1.83.0':
+    resolution: {integrity: sha512-rS5gM0NgD7ngmuJmbIehsidtrOwKkLFwCQbKEeb9KuyQrrWNq5Zkn0uV6AYdXOMJ0grrWEiLwBuvMxt8w5vsNw==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [linux]
+    libc: [glibc]
+
+  '@oxlint/binding-linux-x64-musl@1.83.0':
+    resolution: {integrity: sha512-W2IH4EtpcPaWcvNGCA95YoDg4vxqE/ZiPCi3arrxEEpsK7+JQN9WYwrlYFx9pcdP6KPXqRqkv3zdQPHcx7b6YQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [linux]
+    libc: [musl]
+
+  '@oxlint/binding-openharmony-arm64@1.83.0':
+    resolution: {integrity: sha512-6LyKkUyoajssTPLlZmDbZIbu4IZ5B4bGuRUnBgCGpEvHP3FQMaYITncHA/unPUo7q+Z+pIu2HhdkQ+8d1SG7iA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [openharmony]
+
+  '@oxlint/binding-win32-arm64-msvc@1.83.0':
+    resolution: {integrity: sha512-Uz/fObEtF0jmNJQJ8CGRBKfefYstS0/wjD3s6IGzP8nUwsJykHQJBiN3npHwKiGRGn/vvBEgNr4B3cCzmmatvg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [win32]
+
+  '@oxlint/binding-win32-ia32-msvc@1.83.0':
+    resolution: {integrity: sha512-u7XcvPW6Bk58tY5iWs2ESb0vJjoE/kuSpHxopbwp/p3ZtWVQXZ6wor5w3ssVTHOqd/v8b+QdhSFWQ4grEUNWpA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [ia32]
+    os: [win32]
+
+  '@oxlint/binding-win32-x64-msvc@1.83.0':
+    resolution: {integrity: sha512-LZRubd7ph13QmAg4fFecTYVZkiYbROR2Htaxh/ufWRkDhPOm2wrwaEYR89e0YpPFD3dqBrPoxS7myBw5hmYA7Q==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [win32]
+
   '@parcel/watcher-android-arm64@2.6.0':
     resolution: {integrity: sha512-trgpLSCKRC/huFjXX/Smh+0sWe4+YtKfktIToiMl59ghz7z+qkH6kMvNnUbLyRs9N11t8l4svSCs1+5B3rOAhA==}
     engines: {node: '>= 10.0.0'}
@@ -7984,11 +8288,11 @@ packages:
     resolution: {integrity: sha512-utTS5L2OkeYUzXGohL1Z8sefu1GLNOJcxe8Hd6iIdc/Xo1K1nDB2JEp4iSFhvYh33xKC9V91TxrS8qfrpoKobQ==}
     engines: {node: '>=20.19'}
 
-  '@tanstack/octane-store@0.12.3':
-    resolution: {integrity: sha512-/mkucriz/p+fIlMGywYEZMWjNs3LPUZHyYB4qV8Nmzv7aDkDK6UyFOwr4n1EgxFfoTVEZyUdazsNWcdsdUay/Q==}
+  '@tanstack/octane-store@0.13.0':
+    resolution: {integrity: sha512-No0LCGE4B3bnAMN3FZqXcpDvNbf4MUf1Grq9IxC8by7toXPWYVaBeDt0VkRr5lG7/0ElhNTu50GUA5xmn5Yhzg==}
     engines: {node: '>=22'}
     peerDependencies:
-      octane: 0.1.21
+      octane: '>=0.12.0'
 
   '@tanstack/preact-devtools@0.10.13':
     resolution: {integrity: sha512-r2INfcd0xvX3JgRuq8vn0Uy722gHiatDFBsgc4Wi9509ozGlEm8KPJXCa7rcg4o0vwyrIjYPgj0Cy4UyA399kQ==}
@@ -7996,10 +8300,10 @@ packages:
     peerDependencies:
       preact: '>=10.0.0'
 
-  '@tanstack/preact-store@0.13.4':
-    resolution: {integrity: sha512-Gz5O1Y5jaQPPzranmnUKAMCNoqLDBuxFGSH9XsdquhUAfdy9JR68RohiQ/uNzDiGRe8t5ODaGYOXMWjF+JHNPA==}
+  '@tanstack/preact-store@0.13.5':
+    resolution: {integrity: sha512-+ONKQNVqoGBpCbvahHjW39d28vwBVNRUa927m5owRQS6fySTORPKbOV6HYBXt0qHxOA8r0llg1Bfy/FKXsj3qw==}
     peerDependencies:
-      preact: ^10.0.0
+      preact: ^10.0.0 || ^11.0.0-0
 
   '@tanstack/react-devtools@0.10.13':
     resolution: {integrity: sha512-r0cdB/14+st2Vxl/1Bodlyq4VC8pf9SykLQDYbGHDc1+V146WQo5B3KlYLkfyxD9Q/6+9NPRQHZyl8fvZVMdRA==}
@@ -8103,11 +8407,68 @@ packages:
       '@types/react-dom':
         optional: true
 
-  '@tsrx/core@0.1.71':
-    resolution: {integrity: sha512-ooJ9RIOcaM1Z7jFAtW9FtyVnq3Bp8bZCI+mD1kcU0iEO3B2LHbW/gvE8iHONtZJB3wCaW0puFg5dVjRn44op2Q==}
+  '@tsrx/core@0.5.5':
+    resolution: {integrity: sha512-22Eym4Dtxm1d4INJHT560WQC9cxKT/YWXKztM7utjzHLtVB8egSycFmFt3D9g01Tb6G4g7GiF5YpgCOexx15uA==}
 
-  '@tsrx/runtime@0.1.7':
-    resolution: {integrity: sha512-lZn1z8nM0/+LSPE0auKiAb0PxN7+cBlCAKImP+aiWbmgLUQF3pcKPvAVRiUWUqjTfR5hC/LpdUElBPiTnoYhcA==}
+  '@tsrx/oxc-darwin-arm64@0.20.0':
+    resolution: {integrity: sha512-YpjpggD3earJQFJ8bUNfTqEiqIETDt+vtaVkdFftucaMZzzmBh1wU6QF50utl7fbSQejNedZhoDmPouEMA7huA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@tsrx/oxc-darwin-x64@0.20.0':
+    resolution: {integrity: sha512-dlyBvObV8rYg0dtNt0ifrOyJDEnxyJBCeBFRYurFjzwpccL4GbiiMuhGRdRlDoY46JrFoLIb/LvzNK9ji8dAoA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [darwin]
+
+  '@tsrx/oxc-linux-arm64-gnu@0.20.0':
+    resolution: {integrity: sha512-jOR+EGWUksTvL0GL2TeS5nMylZlFb+5PG6VG3ZHlsoBxwRwIyC+wz7v/YAonHOF94IBPvK7HCjPt19D+PlT+PA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [linux]
+    libc: [glibc]
+
+  '@tsrx/oxc-linux-arm64-musl@0.20.0':
+    resolution: {integrity: sha512-YDC2qF0wfmP8WVDLNysLbkFV9NGnYcJ/YkGaxJ46jSZWMM5qP9Xycytyo9RNtaXCvQPFZ1VupB8HDpDTn41TXA==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [linux]
+    libc: [musl]
+
+  '@tsrx/oxc-linux-x64-gnu@0.20.0':
+    resolution: {integrity: sha512-UAWmYd00/xPMOwgH6aK+z44vTOq8AokOzUdqveMXV/XKqf+D9YmSrqAHj6PASEmcSIMqc2/WtbMMRN+hS8licg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [linux]
+    libc: [glibc]
+
+  '@tsrx/oxc-linux-x64-musl@0.20.0':
+    resolution: {integrity: sha512-LZn1ioOsIHgsKdeLQ1HvJFNx+v2UnQwIiSmdLfDAAu7X+lye2AVmhEkT8BNrrJMJU/ZKmbbrzG7+RC40PwU2tg==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [linux]
+    libc: [musl]
+
+  '@tsrx/oxc-win32-arm64-msvc@0.20.0':
+    resolution: {integrity: sha512-MdcSkq6pGoUtytKcO9NxsNR4Deb/twIQbB715dI4UcOMCTos1uwrDv+6g1k9lAl0+XZMhvQ9xNmTkV40j1m+8g==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [arm64]
+    os: [win32]
+
+  '@tsrx/oxc-win32-x64-msvc@0.20.0':
+    resolution: {integrity: sha512-Ry1bqRByeYuldljxpSxqEH6wE1G1deEBRb/ekLuFusEvL8yk8hYGQpzbsVDGmISMTIVDa9t9v4L1mPGAdgSKjw==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    cpu: [x64]
+    os: [win32]
+
+  '@tsrx/oxc@0.20.0':
+    resolution: {integrity: sha512-Rk6uw//7E6f64dGyVHNujwP0q+inTRSGtNqiEPk63B47XYmEzH/UIhrMSGUcgJ7cE3ta3N0xObWEGImvhTfAmQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    hasBin: true
+
+  '@tsrx/runtime@0.2.4':
+    resolution: {integrity: sha512-rLwKYml/Qbb1D9LtB+NE5bcJDs/SowSKaL+lMR0m6Mr61lKZNuK43IFK+jxFmLvRlG+7ico1kOszMyhA5rObNA==}
 
   '@tsrx/typescript-plugin@0.3.138':
     resolution: {integrity: sha512-N/2nnORWMYvzRC1lbYLMix8dnvicmDJrWGEs+V7Rpww8YAh5j4xqp1DeliQ9ztyT0fP3RYMNYLNfhuz72+1+ig==}
@@ -8928,6 +9289,9 @@ packages:
 
   ajv@8.20.0:
     resolution: {integrity: sha512-Thbli+OlOj+iMPYFBVBfJ3OmCAnaSyNn4M1vz9T6Gka5Jt9ba/HIR56joy65tY6kx/FCF5VXNB819Y7/GUrBGA==}
+
+  alien-signals@3.2.1:
+    resolution: {integrity: sha512-I8FjmltrfnDFoZedi5CG8DghVYNhzb/Ijluz7tCSJH0xpd0484Kowhbb1XDYOxfJpU1p5wnM2X54dA+IfGyD1g==}
 
   alpinejs@3.17.4:
     resolution: {integrity: sha512-N2gsr+58XVUt7OAPKnUGiKPDtkd+xbSGTae8C8IJxeRdkkhBJPIautkJ+qcwb7lcjJ/QK3/CPVIbN20JPvtK7A==}
@@ -11984,17 +12348,23 @@ packages:
     resolution: {integrity: sha512-5vvB5+W7ePv+p3uqxi+RcW1XAzLW0/hxt3/4X4Lc4qHudzOhmBiBwOY6DRob4WnanAEGvNcLjF+KNOufrUoEQw==}
     engines: {node: '>=12.20.0'}
 
-  octane@0.1.36:
-    resolution: {integrity: sha512-egscdNROPtLh0Kd4TijYXr3/rVdjyDVCr7r4/mArAAjAuvqhRVsYcLDGr88MT4JSvZwDtISsOALNZY2crLETjg==}
+  octane@0.12.1:
+    resolution: {integrity: sha512-xMvWVhSo+G/sMafbv6dwNLiuj5jnHlcsCyhUX7Y21oSFu0CJ7N8XMAxWewZQPPzXbZEzyQwCyCtenbhn/UROYw==}
     engines: {node: '>=22.22.2'}
     peerDependencies:
+      '@tsrx/oxc': 0.20.0
       react: ^19.0.0
       react-dom: ^19.0.0
+      typescript: ^5.9.3 || ^6.0.0 || >=7.1.0-0
       vite: ^8.0.16
     peerDependenciesMeta:
+      '@tsrx/oxc':
+        optional: true
       react:
         optional: true
       react-dom:
+        optional: true
+      typescript:
         optional: true
       vite:
         optional: true
@@ -12062,6 +12432,36 @@ packages:
 
   oxc-resolver@11.24.2:
     resolution: {integrity: sha512-FY91FiDBj7ls5MsFS9jN3tjz2o0/zsdSsymlakySaBwVJZorHhkWyICLZMKxlu1R9vYo+sd3z1jwb4J8x7bNDw==}
+
+  oxfmt@0.68.0:
+    resolution: {integrity: sha512-Z0XMofcXCGUXbcpBHnWyUiX93BGiw1B+lcHNbQDWEtOhX06ewoFfu4zXkyiLhRrNnMq0twqXRHUcJetf+GsiQQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    hasBin: true
+    peerDependencies:
+      svelte: ^5.0.0
+      vite-plus: '*'
+    peerDependenciesMeta:
+      svelte:
+        optional: true
+      vite-plus:
+        optional: true
+
+  oxlint-tsgolint@7.0.2002:
+    resolution: {integrity: sha512-rQAj2RAQM57nCwTd3PhtnAkREGW2StqI47tzudNlJF8WwGommM7rVpeP4O1O8/ZiuDZ9f2GnTESzLHGTluwkvQ==}
+    hasBin: true
+
+  oxlint@1.83.0:
+    resolution: {integrity: sha512-cyDzSzaw3uzP0TeCeq3lLRPPoaUxkbB4ZOXj+kn+5r+BX9V+4bNVGk9lxer+WrgcpebH4JxLlJ3KQjveVztOLQ==}
+    engines: {node: ^20.19.0 || >=22.12.0}
+    hasBin: true
+    peerDependencies:
+      oxlint-tsgolint: '>=7.0.2001'
+      vite-plus: '*'
+    peerDependenciesMeta:
+      oxlint-tsgolint:
+        optional: true
+      vite-plus:
+        optional: true
 
   p-defer@1.0.0:
     resolution: {integrity: sha512-wB3wfAxZpk2AzOfUMJNL+d36xothRSyj8EXOa4f6GMqYDN9BJaaSISbsk+wS9abmnebVw95C2Kb5t85UmpCxuw==}
@@ -12182,6 +12582,9 @@ packages:
 
   path-to-regexp@8.3.0:
     resolution: {integrity: sha512-7jdwVIRtsP8MYpdXSwOS0YdD0Du+qOoF/AEPIt88PcCFrZCzx41oxku1jD88hZBwbNUIEfpqvuhjFaMAqMTWnA==}
+
+  pathe@2.0.3:
+    resolution: {integrity: sha512-WUjGcAqP1gQacoQe+OBJsFA7Ld4DyXuUIjZ5cc75cLHvJ7dtNsTugphxIADwspS+AraAUePCKrSVtPLFj/F88w==}
 
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
@@ -12308,6 +12711,14 @@ packages:
     resolution: {integrity: sha512-ej2aVZ+vZ8WO7tvlQWRM9N63A0KzF9q4mWJfDUHgYaIofWY9hu74QdnQrjoPMmZi2/nZ5gN0bJCQF49xQqx09Q==}
     peerDependencies:
       preact-render-to-string: '>=5'
+    peerDependenciesMeta:
+      preact-render-to-string:
+        optional: true
+
+  preact@11.0.1:
+    resolution: {integrity: sha512-TNNwEq++jYNHy747LziCjPRVgEwnLSOIOAw/oYcjI3Tdnubx2EXtt76I0an8PATvUWtx/DX1kFIg1eFN+O/fkw==}
+    peerDependencies:
+      preact-render-to-string: '>=6.7.0'
     peerDependenciesMeta:
       preact-render-to-string:
         optional: true
@@ -13348,6 +13759,10 @@ packages:
   tinyglobby@0.2.17:
     resolution: {integrity: sha512-wXR/dYpcqKmfWpEdZjiKJOwCNFndD0DMnrW/cYjVGttEkBfVgcLFHoNrlj47mjOVic9yyNu65alsgF4NQyTa2g==}
     engines: {node: '>=12.0.0'}
+
+  tinypool@2.1.2:
+    resolution: {integrity: sha512-9YodfrxS9g9IbFr/KOjE5bAeJ0p61n3bW6mqvy0jtoeKd1kTW1Cxm0oulm6KX2lyM9Gl6WIe8nEbY7LWv5ZJww==}
+    engines: {node: ^20.0.0 || >=22.0.0}
 
   tldts-core@6.1.86:
     resolution: {integrity: sha512-Je6p7pkk+KMzMv2XXKmAE3McmolOQFdxkKw0R8EYNr7sELW46JqnNeTX8ybPiQgvg1ymCoF8LXs5fzFaZvJPTA==}
@@ -14451,12 +14866,119 @@ snapshots:
       - webpack-cli
       - yaml
 
+  '@angular-devkit/build-angular@22.2.1(@angular/compiler-cli@22.2.1(@angular/compiler@22.2.1)(typescript@6.0.3))(@angular/compiler@22.2.1)(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(@types/node@26.6.4)(chokidar@5.0.0)(jiti@2.6.1)(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(lightningcss@1.33.0)(rollup@4.57.1)(sass-embedded@1.104.1)(sass@1.104.1)(supports-color@8.1.1)(typescript@6.0.3)(uglify-js@3.19.3)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)))(yaml@2.9.1)':
+    dependencies:
+      '@ampproject/remapping': 2.3.0
+      '@angular-devkit/architect': 0.2202.1(chokidar@5.0.0)
+      '@angular-devkit/build-webpack': 0.2202.1(chokidar@5.0.0)(webpack-dev-server@6.0.0(supports-color@8.1.1)(tslib@2.8.1)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)))(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
+      '@angular-devkit/core': 22.2.1(chokidar@5.0.0)
+      '@angular/build': 22.2.1(@angular/compiler-cli@22.2.1(@angular/compiler@22.2.1)(typescript@6.0.3))(@angular/compiler@22.2.1)(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(@types/node@26.6.4)(istanbul-lib-instrument@6.0.3(supports-color@8.1.1))(jiti@2.6.1)(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(less@4.9.1(supports-color@8.1.1))(postcss@8.5.28)(rollup@4.57.1)(supports-color@8.1.1)(terser@5.51.2)(tslib@2.8.1)(typescript@6.0.3)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)))(yaml@2.9.1)
+      '@angular/compiler-cli': 22.2.1(@angular/compiler@22.2.1)(typescript@6.0.3)
+      '@babel/core': 8.0.5
+      '@babel/generator': 8.0.5
+      '@babel/helper-annotate-as-pure': 8.0.0
+      '@babel/helper-split-export-declaration': 7.24.7
+      '@babel/plugin-transform-async-generator-functions': 8.0.1(@babel/core@8.0.5)
+      '@babel/plugin-transform-async-to-generator': 8.0.1(@babel/core@8.0.5)
+      '@babel/plugin-transform-runtime': 8.0.1(@babel/core@8.0.5)
+      '@babel/preset-env': 8.0.5(@babel/core@8.0.5)
+      '@babel/runtime': 8.0.5
+      '@discoveryjs/json-ext': 1.1.0
+      '@ngtools/webpack': 22.2.1(@angular/compiler-cli@22.2.1(@angular/compiler@22.2.1)(typescript@6.0.3))(typescript@6.0.3)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
+      ansi-colors: 4.1.3
+      autoprefixer: 10.6.0(postcss@8.5.28)
+      babel-loader: 10.1.1(@babel/core@8.0.5)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
+      beasties: 0.5.4
+      browserslist: 4.29.0
+      copy-webpack-plugin: 14.0.0(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
+      css-loader: 7.1.5(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
+      esbuild-wasm: 0.28.2
+      http-proxy-middleware: 4.2.0(supports-color@8.1.1)
+      istanbul-lib-instrument: 6.0.3(supports-color@8.1.1)
+      jsonc-parser: 3.3.1
+      karma-source-map-support: 1.4.0
+      less: 4.9.1(supports-color@8.1.1)
+      less-loader: 13.0.0(less@4.9.1(supports-color@8.1.1))(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
+      license-webpack-plugin: 4.0.2(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
+      loader-utils: 3.3.1
+      mini-css-extract-plugin: 2.10.2(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
+      open: 11.0.4
+      ora: 9.4.1
+      picomatch: 4.0.7
+      piscina: 5.3.2
+      postcss: 8.5.28
+      postcss-loader: 8.2.1(postcss@8.5.28)(typescript@6.0.3)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
+      resolve-url-loader: 5.0.0
+      rxjs: 7.8.2
+      sass-loader: 17.0.1(sass-embedded@1.104.1)(sass@1.104.1)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
+      semver: 7.8.5
+      source-map-loader: 5.0.0(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
+      source-map-support: 0.5.21
+      terser: 5.51.2
+      tinyglobby: 0.2.17
+      tslib: 2.8.1
+      typescript: 6.0.3
+      webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)
+      webpack-dev-middleware: 8.3.0(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
+      webpack-dev-server: 6.0.0(supports-color@8.1.1)(tslib@2.8.1)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
+      webpack-merge: 6.0.1
+      webpack-subresource-integrity: 5.1.0(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
+    optionalDependencies:
+      '@angular/core': 22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)
+      '@angular/platform-browser': 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))
+      esbuild: 0.28.2
+      karma: 6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - '@angular/compiler'
+      - '@minify-html/node'
+      - '@napi-rs/image'
+      - '@rspack/core'
+      - '@swc/core'
+      - '@swc/css'
+      - '@swc/html'
+      - '@types/node'
+      - '@vitejs/devtools'
+      - bufferutil
+      - chokidar
+      - clean-css
+      - cssnano
+      - csso
+      - html-minifier-terser
+      - html-webpack-plugin
+      - imagemin
+      - jiti
+      - kerberos
+      - lightningcss
+      - rollup
+      - sass
+      - sass-embedded
+      - sharp
+      - stylus
+      - sugarss
+      - supports-color
+      - svgo
+      - tsx
+      - uglify-js
+      - utf-8-validate
+      - vitest
+      - webpack-cli
+      - yaml
+
   '@angular-devkit/build-webpack@0.2202.1(chokidar@5.0.0)(webpack-dev-server@6.0.0(supports-color@8.1.1)(tslib@2.8.1)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3)))(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3))':
     dependencies:
       '@angular-devkit/architect': 0.2202.1(chokidar@5.0.0)
       rxjs: 7.8.2
       webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3)
       webpack-dev-server: 6.0.0(supports-color@8.1.1)(tslib@2.8.1)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3))
+    transitivePeerDependencies:
+      - chokidar
+
+  '@angular-devkit/build-webpack@0.2202.1(chokidar@5.0.0)(webpack-dev-server@6.0.0(supports-color@8.1.1)(tslib@2.8.1)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)))(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))':
+    dependencies:
+      '@angular-devkit/architect': 0.2202.1(chokidar@5.0.0)
+      rxjs: 7.8.2
+      webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)
+      webpack-dev-server: 6.0.0(supports-color@8.1.1)(tslib@2.8.1)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
     transitivePeerDependencies:
       - chokidar
 
@@ -14579,6 +15101,61 @@ snapshots:
       postcss: 8.5.28
       rollup: 4.57.1
       vitest: 5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+    transitivePeerDependencies:
+      - '@types/node'
+      - '@vitejs/devtools'
+      - jiti
+      - kerberos
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+      - tsx
+      - yaml
+
+  '@angular/build@22.2.1(@angular/compiler-cli@22.2.1(@angular/compiler@22.2.1)(typescript@6.0.3))(@angular/compiler@22.2.1)(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(@types/node@26.6.4)(istanbul-lib-instrument@6.0.3(supports-color@8.1.1))(jiti@2.6.1)(karma@6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1))(less@4.9.1(supports-color@8.1.1))(postcss@8.5.28)(rollup@4.57.1)(supports-color@8.1.1)(terser@5.51.2)(tslib@2.8.1)(typescript@6.0.3)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)))(yaml@2.9.1)':
+    dependencies:
+      '@ampproject/remapping': 2.3.0
+      '@angular-devkit/architect': 0.2202.1(chokidar@5.0.0)
+      '@angular/compiler': 22.2.1
+      '@angular/compiler-cli': 22.2.1(@angular/compiler@22.2.1)(typescript@6.0.3)
+      '@babel/core': 8.0.5
+      '@inquirer/confirm': 6.3.2(@types/node@26.6.4)
+      '@parcel/watcher': 2.6.0
+      '@vitejs/plugin-basic-ssl': 2.3.0(vite@8.3.0(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+      beasties: 0.5.4
+      browserslist: 4.29.0
+      chokidar: 5.0.0
+      esbuild: 0.28.2
+      https-proxy-agent: 9.1.0(supports-color@8.1.1)
+      jsonc-parser: 3.3.1
+      listr2: 11.1.0
+      magic-string: 1.4.1
+      mrmime: 2.0.1
+      oxc-parser: 0.150.0
+      parse5-html-rewriting-stream: 8.0.1
+      picomatch: 4.0.7
+      piscina: 5.3.2
+      rolldown: 1.2.8
+      sass: 1.104.1
+      sass-embedded: 1.104.1
+      semver: 7.8.5
+      source-map-support: 0.5.21
+      tinyglobby: 0.2.17
+      tslib: 2.8.1
+      typescript: 6.0.3
+      vite: 8.3.0(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+      xxhash-wasm: 1.1.0
+    optionalDependencies:
+      '@angular/core': 22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)
+      '@angular/platform-browser': 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))
+      istanbul-lib-instrument: 6.0.3(supports-color@8.1.1)
+      karma: 6.4.4(debug@4.4.3(supports-color@8.1.1))(supports-color@8.1.1)
+      less: 4.9.1(supports-color@8.1.1)
+      lmdb: 3.5.6
+      postcss: 8.5.28
+      rollup: 4.57.1
+      vitest: 5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
     transitivePeerDependencies:
       - '@types/node'
       - '@vitejs/devtools'
@@ -16533,6 +17110,32 @@ snapshots:
       - supports-color
       - utf-8-validate
 
+  '@embroider/vite@1.7.13(@embroider/core@4.6.7(@glint/template@1.9.0)(supports-color@8.1.1))(@glint/template@1.9.0)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))':
+    dependencies:
+      '@babel/core': 7.29.7(supports-color@8.1.1)
+      '@embroider/core': 4.6.7(@glint/template@1.9.0)(supports-color@8.1.1)
+      '@embroider/macros': 1.21.1(@babel/core@7.29.7(supports-color@8.1.1))(@glint/template@1.9.0)(supports-color@8.1.1)
+      '@embroider/reverse-exports': 0.2.0
+      assert-never: 1.4.0
+      browserslist: 4.29.0
+      browserslist-to-esbuild: 2.1.1(browserslist@4.29.0)
+      chalk: 5.6.2
+      content-tag: 4.2.1
+      debug: 4.4.3(supports-color@8.1.1)
+      fast-glob: 3.3.3
+      fs-extra: 10.1.0
+      jsdom: 25.0.1(supports-color@8.1.1)
+      send: 1.2.1(supports-color@8.1.1)
+      source-map-url: 0.4.1
+      terser: 5.51.2
+      vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+    transitivePeerDependencies:
+      - '@glint/template'
+      - bufferutil
+      - canvas
+      - supports-color
+      - utf-8-validate
+
   '@emnapi/core@1.10.0':
     dependencies:
       '@emnapi/wasi-threads': 1.2.1
@@ -17600,6 +18203,12 @@ snapshots:
       typescript: 6.0.3
       webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3)
 
+  '@ngtools/webpack@22.2.1(@angular/compiler-cli@22.2.1(@angular/compiler@22.2.1)(typescript@6.0.3))(typescript@6.0.3)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))':
+    dependencies:
+      '@angular/compiler-cli': 22.2.1(@angular/compiler@22.2.1)(typescript@6.0.3)
+      typescript: 6.0.3
+      webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)
+
   '@noble/hashes@1.4.0': {}
 
   '@noble/hashes@2.4.0': {}
@@ -17632,6 +18241,23 @@ snapshots:
       '@embroider/core': 4.6.7(@glint/template@1.9.0)(supports-color@8.1.1)
       '@embroider/macros': 1.21.1(@babel/core@7.29.7(supports-color@8.1.1))(@glint/template@1.9.0)(supports-color@8.1.1)
       '@embroider/vite': 1.7.13(@embroider/core@4.6.7(@glint/template@1.9.0)(supports-color@8.1.1))(@glint/template@1.9.0)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
+      '@nullvoxpopuli/ember-build-tooling-utils': 1.2.0(@types/babel__core@7.20.5)(rollup@4.57.1)(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - '@glint/template'
+      - '@types/babel__core'
+      - bufferutil
+      - canvas
+      - rollup
+      - supports-color
+      - utf-8-validate
+      - vite
+
+  '@nullvoxpopuli/ember-vite@1.2.0(@glint/template@1.9.0)(@types/babel__core@7.20.5)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))':
+    dependencies:
+      '@babel/core': 7.29.7(supports-color@8.1.1)
+      '@embroider/core': 4.6.7(@glint/template@1.9.0)(supports-color@8.1.1)
+      '@embroider/macros': 1.21.1(@babel/core@7.29.7(supports-color@8.1.1))(@glint/template@1.9.0)(supports-color@8.1.1)
+      '@embroider/vite': 1.7.13(@embroider/core@4.6.7(@glint/template@1.9.0)(supports-color@8.1.1))(@glint/template@1.9.0)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
       '@nullvoxpopuli/ember-build-tooling-utils': 1.2.0(@types/babel__core@7.20.5)(rollup@4.57.1)(supports-color@8.1.1)
     transitivePeerDependencies:
       - '@glint/template'
@@ -17933,6 +18559,138 @@ snapshots:
   '@oxc-resolver/binding-win32-x64-msvc@11.24.2':
     optional: true
 
+  '@oxfmt/binding-android-arm-eabi@0.68.0':
+    optional: true
+
+  '@oxfmt/binding-android-arm64@0.68.0':
+    optional: true
+
+  '@oxfmt/binding-darwin-arm64@0.68.0':
+    optional: true
+
+  '@oxfmt/binding-darwin-x64@0.68.0':
+    optional: true
+
+  '@oxfmt/binding-freebsd-x64@0.68.0':
+    optional: true
+
+  '@oxfmt/binding-linux-arm-gnueabihf@0.68.0':
+    optional: true
+
+  '@oxfmt/binding-linux-arm-musleabihf@0.68.0':
+    optional: true
+
+  '@oxfmt/binding-linux-arm64-gnu@0.68.0':
+    optional: true
+
+  '@oxfmt/binding-linux-arm64-musl@0.68.0':
+    optional: true
+
+  '@oxfmt/binding-linux-ppc64-gnu@0.68.0':
+    optional: true
+
+  '@oxfmt/binding-linux-riscv64-gnu@0.68.0':
+    optional: true
+
+  '@oxfmt/binding-linux-riscv64-musl@0.68.0':
+    optional: true
+
+  '@oxfmt/binding-linux-s390x-gnu@0.68.0':
+    optional: true
+
+  '@oxfmt/binding-linux-x64-gnu@0.68.0':
+    optional: true
+
+  '@oxfmt/binding-linux-x64-musl@0.68.0':
+    optional: true
+
+  '@oxfmt/binding-openharmony-arm64@0.68.0':
+    optional: true
+
+  '@oxfmt/binding-win32-arm64-msvc@0.68.0':
+    optional: true
+
+  '@oxfmt/binding-win32-ia32-msvc@0.68.0':
+    optional: true
+
+  '@oxfmt/binding-win32-x64-msvc@0.68.0':
+    optional: true
+
+  '@oxlint-tsgolint/darwin-arm64@7.0.2002':
+    optional: true
+
+  '@oxlint-tsgolint/darwin-x64@7.0.2002':
+    optional: true
+
+  '@oxlint-tsgolint/linux-arm64@7.0.2002':
+    optional: true
+
+  '@oxlint-tsgolint/linux-x64@7.0.2002':
+    optional: true
+
+  '@oxlint-tsgolint/win32-arm64@7.0.2002':
+    optional: true
+
+  '@oxlint-tsgolint/win32-x64@7.0.2002':
+    optional: true
+
+  '@oxlint/binding-android-arm-eabi@1.83.0':
+    optional: true
+
+  '@oxlint/binding-android-arm64@1.83.0':
+    optional: true
+
+  '@oxlint/binding-darwin-arm64@1.83.0':
+    optional: true
+
+  '@oxlint/binding-darwin-x64@1.83.0':
+    optional: true
+
+  '@oxlint/binding-freebsd-x64@1.83.0':
+    optional: true
+
+  '@oxlint/binding-linux-arm-gnueabihf@1.83.0':
+    optional: true
+
+  '@oxlint/binding-linux-arm-musleabihf@1.83.0':
+    optional: true
+
+  '@oxlint/binding-linux-arm64-gnu@1.83.0':
+    optional: true
+
+  '@oxlint/binding-linux-arm64-musl@1.83.0':
+    optional: true
+
+  '@oxlint/binding-linux-ppc64-gnu@1.83.0':
+    optional: true
+
+  '@oxlint/binding-linux-riscv64-gnu@1.83.0':
+    optional: true
+
+  '@oxlint/binding-linux-riscv64-musl@1.83.0':
+    optional: true
+
+  '@oxlint/binding-linux-s390x-gnu@1.83.0':
+    optional: true
+
+  '@oxlint/binding-linux-x64-gnu@1.83.0':
+    optional: true
+
+  '@oxlint/binding-linux-x64-musl@1.83.0':
+    optional: true
+
+  '@oxlint/binding-openharmony-arm64@1.83.0':
+    optional: true
+
+  '@oxlint/binding-win32-arm64-msvc@1.83.0':
+    optional: true
+
+  '@oxlint/binding-win32-ia32-msvc@1.83.0':
+    optional: true
+
+  '@oxlint/binding-win32-x64-msvc@1.83.0':
+    optional: true
+
   '@parcel/watcher-android-arm64@2.6.0':
     optional: true
 
@@ -18084,12 +18842,12 @@ snapshots:
 
   '@pnpm/deps.graph-sequencer@1100.0.1': {}
 
-  '@preact/preset-vite@2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@7.3.2(@types/node@26.6.4)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))':
+  '@preact/preset-vite@2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@7.3.2(@types/node@26.6.4)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))':
     dependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
       '@babel/plugin-transform-react-jsx': 7.28.6(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       '@babel/plugin-transform-react-jsx-development': 7.27.1(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
-      '@prefresh/vite': 2.4.12(preact@10.29.8)(supports-color@8.1.1)(vite@7.3.2(@types/node@26.6.4)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+      '@prefresh/vite': 2.4.12(preact@11.0.1)(supports-color@8.1.1)(vite@7.3.2(@types/node@26.6.4)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@rollup/pluginutils': 5.3.0(rollup@4.57.1)
       babel-plugin-transform-hook-names: 1.0.2(@babel/core@7.29.7(supports-color@8.1.1))
       debug: 4.4.3(supports-color@8.1.1)
@@ -18103,12 +18861,12 @@ snapshots:
       - rollup
       - supports-color
 
-  '@preact/preset-vite@2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@10.29.8)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))':
+  '@preact/preset-vite@2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))':
     dependencies:
       '@babel/core': 7.29.7(supports-color@8.1.1)
       '@babel/plugin-transform-react-jsx': 7.28.6(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       '@babel/plugin-transform-react-jsx-development': 7.27.1(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
-      '@prefresh/vite': 2.4.12(preact@10.29.8)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+      '@prefresh/vite': 2.4.12(preact@11.0.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@rollup/pluginutils': 5.3.0(rollup@4.57.1)
       babel-plugin-transform-hook-names: 1.0.2(@babel/core@7.29.7(supports-color@8.1.1))
       debug: 4.4.3(supports-color@8.1.1)
@@ -18122,35 +18880,66 @@ snapshots:
       - rollup
       - supports-color
 
+  '@preact/preset-vite@2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))':
+    dependencies:
+      '@babel/core': 7.29.7(supports-color@8.1.1)
+      '@babel/plugin-transform-react-jsx': 7.28.6(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
+      '@babel/plugin-transform-react-jsx-development': 7.27.1(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
+      '@prefresh/vite': 2.4.12(preact@11.0.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+      '@rollup/pluginutils': 5.3.0(rollup@4.57.1)
+      babel-plugin-transform-hook-names: 1.0.2(@babel/core@7.29.7(supports-color@8.1.1))
+      debug: 4.4.3(supports-color@8.1.1)
+      magic-string: 0.30.21
+      picocolors: 1.1.1
+      vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+      vite-prerender-plugin: 0.5.12(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+      zimmerframe: 1.1.4
+    transitivePeerDependencies:
+      - preact
+      - rollup
+      - supports-color
+
   '@prefresh/babel-plugin@0.5.3': {}
 
-  '@prefresh/core@1.5.9(preact@10.29.8)':
+  '@prefresh/core@1.5.9(preact@11.0.1)':
     dependencies:
-      preact: 10.29.8
+      preact: 11.0.1
 
   '@prefresh/utils@1.2.1': {}
 
-  '@prefresh/vite@2.4.12(preact@10.29.8)(supports-color@8.1.1)(vite@7.3.2(@types/node@26.6.4)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))':
+  '@prefresh/vite@2.4.12(preact@11.0.1)(supports-color@8.1.1)(vite@7.3.2(@types/node@26.6.4)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))':
     dependencies:
       '@babel/core': 7.29.0(supports-color@8.1.1)
       '@prefresh/babel-plugin': 0.5.3
-      '@prefresh/core': 1.5.9(preact@10.29.8)
+      '@prefresh/core': 1.5.9(preact@11.0.1)
       '@prefresh/utils': 1.2.1
       '@rollup/pluginutils': 4.2.1
-      preact: 10.29.8
+      preact: 11.0.1
       vite: 7.3.2(@types/node@26.6.4)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
     transitivePeerDependencies:
       - supports-color
 
-  '@prefresh/vite@2.4.12(preact@10.29.8)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))':
+  '@prefresh/vite@2.4.12(preact@11.0.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))':
     dependencies:
       '@babel/core': 7.29.0(supports-color@8.1.1)
       '@prefresh/babel-plugin': 0.5.3
-      '@prefresh/core': 1.5.9(preact@10.29.8)
+      '@prefresh/core': 1.5.9(preact@11.0.1)
       '@prefresh/utils': 1.2.1
       '@rollup/pluginutils': 4.2.1
-      preact: 10.29.8
+      preact: 11.0.1
       vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+    transitivePeerDependencies:
+      - supports-color
+
+  '@prefresh/vite@2.4.12(preact@11.0.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))':
+    dependencies:
+      '@babel/core': 7.29.0(supports-color@8.1.1)
+      '@prefresh/babel-plugin': 0.5.3
+      '@prefresh/core': 1.5.9(preact@11.0.1)
+      '@prefresh/utils': 1.2.1
+      '@rollup/pluginutils': 4.2.1
+      preact: 11.0.1
+      vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
     transitivePeerDependencies:
       - supports-color
 
@@ -18658,11 +19447,11 @@ snapshots:
       svelte: 5.57.1(@typescript-eslint/types@8.70.1)
       vue: 3.5.43(typescript@6.0.3)
 
-  '@tanstack/devtools-utils@0.7.0(@angular/core@21.2.10)(@types/react@19.2.14)(preact@10.29.8)(react@19.2.5)(solid-js@1.9.12)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))':
+  '@tanstack/devtools-utils@0.7.0(@angular/core@21.2.10)(@types/react@19.2.14)(preact@11.0.1)(react@19.2.5)(solid-js@1.9.12)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))':
     optionalDependencies:
       '@angular/core': 21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.3)
       '@types/react': 19.2.14
-      preact: 10.29.8
+      preact: 11.0.1
       react: 19.2.5
       solid-js: 1.9.12
       svelte: 5.57.1(@typescript-eslint/types@8.70.1)
@@ -18734,25 +19523,25 @@ snapshots:
 
   '@tanstack/history@1.162.4': {}
 
-  '@tanstack/octane-store@0.12.3(octane@0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2)))':
+  '@tanstack/octane-store@0.13.0(octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2)))':
     dependencies:
       '@tanstack/store': 0.11.2
-      octane: 0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2))
+      octane: 0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2))
 
-  '@tanstack/preact-devtools@0.10.13(csstype@3.2.3)(preact@10.29.8)(solid-js@1.9.15)':
+  '@tanstack/preact-devtools@0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)':
     dependencies:
       '@tanstack/devtools': 0.15.0(csstype@3.2.3)(solid-js@1.9.15)
-      preact: 10.29.8
+      preact: 11.0.1
     transitivePeerDependencies:
       - bufferutil
       - csstype
       - solid-js
       - utf-8-validate
 
-  '@tanstack/preact-store@0.13.4(preact@10.29.8)':
+  '@tanstack/preact-store@0.13.5(preact@11.0.1)':
     dependencies:
       '@tanstack/store': 0.11.2
-      preact: 10.29.8
+      preact: 11.0.1
 
   '@tanstack/react-devtools@0.10.13(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)':
     dependencies:
@@ -18810,6 +19599,16 @@ snapshots:
     dependencies:
       '@tanstack/devtools': 0.15.0(csstype@3.2.3)(solid-js@1.9.15)
       svelte: 5.57.1(@typescript-eslint/types@8.59.0)
+    transitivePeerDependencies:
+      - bufferutil
+      - csstype
+      - solid-js
+      - utf-8-validate
+
+  '@tanstack/svelte-devtools@0.1.7(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))':
+    dependencies:
+      '@tanstack/devtools': 0.15.0(csstype@3.2.3)(solid-js@1.9.15)
+      svelte: 5.57.1(@typescript-eslint/types@8.70.1)
     transitivePeerDependencies:
       - bufferutil
       - csstype
@@ -18885,10 +19684,23 @@ snapshots:
     optionalDependencies:
       vitest: 5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
 
-  '@testing-library/preact@3.2.4(preact@10.29.8)':
+  '@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)))':
+    dependencies:
+      '@adobe/css-tools': 4.4.4
+      '@testing-library/dom': 10.4.1
+      aria-query: 5.3.2
+      css.escape: 1.5.1
+      dom-accessibility-api: 0.6.3
+      picocolors: 1.1.1
+      redent: 3.0.0
+    optionalDependencies:
+      vitest: 5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+    optional: true
+
+  '@testing-library/preact@3.2.4(preact@11.0.1)':
     dependencies:
       '@testing-library/dom': 8.20.1
-      preact: 10.29.8
+      preact: 11.0.1
 
   '@testing-library/react@16.3.3(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
@@ -18900,12 +19712,12 @@ snapshots:
       '@types/react': 19.3.0
       '@types/react-dom': 19.2.3(@types/react@19.3.0)
 
-  '@tsrx/core@0.1.71(@typescript-eslint/types@8.70.1)':
+  '@tsrx/core@0.5.5(@typescript-eslint/types@8.70.1)':
     dependencies:
       '@jridgewell/sourcemap-codec': 1.6.0
       '@noble/hashes': 2.4.0
       '@sveltejs/acorn-typescript': 1.0.13(acorn@8.18.0)
-      '@tsrx/runtime': 0.1.7
+      '@tsrx/runtime': 0.2.4
       '@types/estree': 1.0.9
       '@types/estree-jsx': 1.0.5
       acorn: 8.18.0
@@ -18916,23 +19728,76 @@ snapshots:
     transitivePeerDependencies:
       - '@typescript-eslint/types'
 
-  '@tsrx/runtime@0.1.7': {}
+  '@tsrx/oxc-darwin-arm64@0.20.0':
+    optional: true
 
-  '@tsrx/typescript-plugin@0.3.138(octane@0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2)))(typescript@6.0.3)':
+  '@tsrx/oxc-darwin-x64@0.20.0':
+    optional: true
+
+  '@tsrx/oxc-linux-arm64-gnu@0.20.0':
+    optional: true
+
+  '@tsrx/oxc-linux-arm64-musl@0.20.0':
+    optional: true
+
+  '@tsrx/oxc-linux-x64-gnu@0.20.0':
+    optional: true
+
+  '@tsrx/oxc-linux-x64-musl@0.20.0':
+    optional: true
+
+  '@tsrx/oxc-win32-arm64-msvc@0.20.0':
+    optional: true
+
+  '@tsrx/oxc-win32-x64-msvc@0.20.0':
+    optional: true
+
+  '@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1))':
+    dependencies:
+      '@oxc-project/types': 0.150.0
+      oxfmt-current: oxfmt@0.68.0(svelte@5.57.1(@typescript-eslint/types@8.70.1))
+      oxlint-current: oxlint@1.83.0(oxlint-tsgolint@7.0.2002)
+      oxlint-tsgolint: 7.0.2002
+      pathe: 2.0.3
+      tinyglobby: 0.2.17
+    optionalDependencies:
+      '@tsrx/oxc-darwin-arm64': 0.20.0
+      '@tsrx/oxc-darwin-x64': 0.20.0
+      '@tsrx/oxc-linux-arm64-gnu': 0.20.0
+      '@tsrx/oxc-linux-arm64-musl': 0.20.0
+      '@tsrx/oxc-linux-x64-gnu': 0.20.0
+      '@tsrx/oxc-linux-x64-musl': 0.20.0
+      '@tsrx/oxc-win32-arm64-msvc': 0.20.0
+      '@tsrx/oxc-win32-x64-msvc': 0.20.0
+    transitivePeerDependencies:
+      - svelte
+      - vite-plus
+
+  '@tsrx/runtime@0.2.4': {}
+
+  '@tsrx/typescript-plugin@0.3.138(octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2)))(typescript@6.0.3)':
     dependencies:
       '@volar/language-core': 2.4.28
       '@volar/typescript': 2.4.28(typescript@6.0.3)
       typescript: 6.0.3
     optionalDependencies:
-      octane: 0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2))
+      octane: 0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2))
 
-  '@tsrx/typescript-plugin@0.3.138(octane@0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)))(typescript@6.0.3)':
+  '@tsrx/typescript-plugin@0.3.138(octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)))(typescript@6.0.3)':
     dependencies:
       '@volar/language-core': 2.4.28
       '@volar/typescript': 2.4.28(typescript@6.0.3)
       typescript: 6.0.3
     optionalDependencies:
-      octane: 0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
+      octane: 0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1))
+
+  '@tsrx/typescript-plugin@0.3.138(octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)))(typescript@6.0.3)':
+    dependencies:
+      '@volar/language-core': 2.4.28
+      '@volar/typescript': 2.4.28(typescript@6.0.3)
+      typescript: 6.0.3
+    optionalDependencies:
+      octane: 0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
 
   '@tybys/wasm-util@0.10.4':
     dependencies:
@@ -19433,15 +20298,30 @@ snapshots:
     dependencies:
       vite: 8.3.0(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.8.2)
 
+  '@vitejs/plugin-basic-ssl@2.3.0(vite@8.3.0(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))':
+    dependencies:
+      vite: 8.3.0(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+
   '@vitejs/plugin-react@6.1.1(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))':
     dependencies:
       '@rolldown/pluginutils': 1.0.1
       vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
 
+  '@vitejs/plugin-react@6.1.1(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))':
+    dependencies:
+      '@rolldown/pluginutils': 1.0.1
+      vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+
   '@vitejs/plugin-vue@6.0.9(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.43(typescript@6.0.3))':
     dependencies:
       '@rolldown/pluginutils': 1.0.1
       vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+      vue: 3.5.43(typescript@6.0.3)
+
+  '@vitejs/plugin-vue@6.0.9(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))(vue@3.5.43(typescript@6.0.3))':
+    dependencies:
+      '@rolldown/pluginutils': 1.0.1
+      vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
       vue: 3.5.43(typescript@6.0.3)
 
   '@vitest/mocker@5.0.3(vite@8.3.0(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.8.2))':
@@ -19462,6 +20342,16 @@ snapshots:
       magic-string: 1.4.1
     optionalDependencies:
       vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+
+  '@vitest/mocker@5.0.3(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))':
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.31
+      '@vitest/spy': 5.0.3
+      estree-walker: 3.0.3
+      magic-string: 1.4.1
+    optionalDependencies:
+      vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+    optional: true
 
   '@vitest/spy@5.0.3': {}
 
@@ -19919,6 +20809,8 @@ snapshots:
       json-schema-traverse: 1.0.0
       require-from-string: 2.0.2
 
+  alien-signals@3.2.1: {}
+
   alpinejs@3.17.4:
     dependencies:
       '@vue/reactivity': 3.5.43
@@ -20064,6 +20956,13 @@ snapshots:
       find-up: 5.0.0
     optionalDependencies:
       webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3)
+
+  babel-loader@10.1.1(@babel/core@8.0.5)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)):
+    dependencies:
+      '@babel/core': 8.0.5
+      find-up: 5.0.0
+    optionalDependencies:
+      webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)
 
   babel-plugin-debug-macros@0.3.4(@babel/core@7.29.7(supports-color@8.1.1)):
     dependencies:
@@ -20674,6 +21573,15 @@ snapshots:
       tinyglobby: 0.2.17
       webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3)
 
+  copy-webpack-plugin@14.0.0(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)):
+    dependencies:
+      glob-parent: 6.0.2
+      normalize-path: 3.0.0
+      schema-utils: 4.3.3
+      serialize-javascript: 7.0.4
+      tinyglobby: 0.2.17
+      webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)
+
   core-js-compat@3.48.0:
     dependencies:
       browserslist: 4.29.0
@@ -20712,6 +21620,19 @@ snapshots:
       semver: 7.8.5
     optionalDependencies:
       webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3)
+
+  css-loader@7.1.5(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)):
+    dependencies:
+      icss-utils: 5.1.0(postcss@8.5.28)
+      postcss: 8.5.28
+      postcss-modules-extract-imports: 3.1.0(postcss@8.5.28)
+      postcss-modules-local-by-default: 4.2.0(postcss@8.5.28)
+      postcss-modules-scope: 3.2.1(postcss@8.5.28)
+      postcss-modules-values: 4.0.0(postcss@8.5.28)
+      postcss-value-parser: 4.2.0
+      semver: 7.8.5
+    optionalDependencies:
+      webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)
 
   css-select@5.2.2:
     dependencies:
@@ -22755,6 +23676,13 @@ snapshots:
     optionalDependencies:
       webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3)
 
+  less-loader@13.0.0(less@4.9.1(supports-color@8.1.1))(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)):
+    dependencies:
+      '@types/less': 3.0.8
+      less: 4.9.1(supports-color@8.1.1)
+    optionalDependencies:
+      webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)
+
   less@4.4.2:
     dependencies:
       copy-anything: 2.0.6
@@ -22811,6 +23739,12 @@ snapshots:
       webpack-sources: 3.5.1
     optionalDependencies:
       webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3)
+
+  license-webpack-plugin@4.0.2(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)):
+    dependencies:
+      webpack-sources: 3.5.1
+    optionalDependencies:
+      webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)
 
   lightningcss-android-arm64@1.32.0:
     optional: true
@@ -23186,6 +24120,12 @@ snapshots:
       tapable: 2.3.3
       webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3)
 
+  mini-css-extract-plugin@2.10.2(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)):
+    dependencies:
+      schema-utils: 4.3.3
+      tapable: 2.3.3
+      webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)
+
   minimatch@10.2.5:
     dependencies:
       brace-expansion: 5.0.12
@@ -23218,6 +24158,19 @@ snapshots:
     optionalDependencies:
       esbuild: 0.28.2
       lightningcss: 1.32.0
+      postcss: 8.5.28
+      uglify-js: 3.19.3
+
+  minimizer-webpack-plugin@5.11.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)):
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.31
+      jest-worker: 27.5.1
+      schema-utils: 4.3.3
+      terser: 5.51.2
+      webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)
+    optionalDependencies:
+      esbuild: 0.28.2
+      lightningcss: 1.33.0
       postcss: 8.5.28
       uglify-js: 3.19.3
 
@@ -23513,31 +24466,63 @@ snapshots:
 
   obug@3.0.0: {}
 
-  octane@0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2)):
+  octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2)):
     dependencies:
-      '@tsrx/core': 0.1.71(@typescript-eslint/types@8.70.1)
+      '@tsrx/core': 0.5.5(@typescript-eslint/types@8.70.1)
       '@types/react': 19.3.0
+      '@volar/language-core': 2.4.28
+      '@volar/typescript': 2.4.28(typescript@6.0.3)
+      alien-signals: 3.2.1
+      csstype: 3.2.3
       devalue: 5.9.4
       es-module-lexer: 1.7.0
       esrap: 2.3.8(@typescript-eslint/types@8.70.1)
     optionalDependencies:
+      '@tsrx/oxc': 0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1))
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
+      typescript: 6.0.3
       vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2)
     transitivePeerDependencies:
       - '@typescript-eslint/types'
 
-  octane@0.1.36(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)):
+  octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)):
     dependencies:
-      '@tsrx/core': 0.1.71(@typescript-eslint/types@8.70.1)
+      '@tsrx/core': 0.5.5(@typescript-eslint/types@8.70.1)
       '@types/react': 19.3.0
+      '@volar/language-core': 2.4.28
+      '@volar/typescript': 2.4.28(typescript@6.0.3)
+      alien-signals: 3.2.1
+      csstype: 3.2.3
       devalue: 5.9.4
       es-module-lexer: 1.7.0
       esrap: 2.3.8(@typescript-eslint/types@8.70.1)
     optionalDependencies:
+      '@tsrx/oxc': 0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1))
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
+      typescript: 6.0.3
       vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.9.1)
+    transitivePeerDependencies:
+      - '@typescript-eslint/types'
+
+  octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)):
+    dependencies:
+      '@tsrx/core': 0.5.5(@typescript-eslint/types@8.70.1)
+      '@types/react': 19.3.0
+      '@volar/language-core': 2.4.28
+      '@volar/typescript': 2.4.28(typescript@6.0.3)
+      alien-signals: 3.2.1
+      csstype: 3.2.3
+      devalue: 5.9.4
+      es-module-lexer: 1.7.0
+      esrap: 2.3.8(@typescript-eslint/types@8.70.1)
+    optionalDependencies:
+      '@tsrx/oxc': 0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1))
+      react: 19.3.0
+      react-dom: 19.3.0(react@19.3.0)
+      typescript: 6.0.3
+      vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
     transitivePeerDependencies:
       - '@typescript-eslint/types'
 
@@ -23721,6 +24706,63 @@ snapshots:
       '@oxc-resolver/binding-win32-arm64-msvc': 11.24.2
       '@oxc-resolver/binding-win32-x64-msvc': 11.24.2
 
+  oxfmt@0.68.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)):
+    dependencies:
+      tinypool: 2.1.2
+    optionalDependencies:
+      '@oxfmt/binding-android-arm-eabi': 0.68.0
+      '@oxfmt/binding-android-arm64': 0.68.0
+      '@oxfmt/binding-darwin-arm64': 0.68.0
+      '@oxfmt/binding-darwin-x64': 0.68.0
+      '@oxfmt/binding-freebsd-x64': 0.68.0
+      '@oxfmt/binding-linux-arm-gnueabihf': 0.68.0
+      '@oxfmt/binding-linux-arm-musleabihf': 0.68.0
+      '@oxfmt/binding-linux-arm64-gnu': 0.68.0
+      '@oxfmt/binding-linux-arm64-musl': 0.68.0
+      '@oxfmt/binding-linux-ppc64-gnu': 0.68.0
+      '@oxfmt/binding-linux-riscv64-gnu': 0.68.0
+      '@oxfmt/binding-linux-riscv64-musl': 0.68.0
+      '@oxfmt/binding-linux-s390x-gnu': 0.68.0
+      '@oxfmt/binding-linux-x64-gnu': 0.68.0
+      '@oxfmt/binding-linux-x64-musl': 0.68.0
+      '@oxfmt/binding-openharmony-arm64': 0.68.0
+      '@oxfmt/binding-win32-arm64-msvc': 0.68.0
+      '@oxfmt/binding-win32-ia32-msvc': 0.68.0
+      '@oxfmt/binding-win32-x64-msvc': 0.68.0
+      svelte: 5.57.1(@typescript-eslint/types@8.70.1)
+
+  oxlint-tsgolint@7.0.2002:
+    optionalDependencies:
+      '@oxlint-tsgolint/darwin-arm64': 7.0.2002
+      '@oxlint-tsgolint/darwin-x64': 7.0.2002
+      '@oxlint-tsgolint/linux-arm64': 7.0.2002
+      '@oxlint-tsgolint/linux-x64': 7.0.2002
+      '@oxlint-tsgolint/win32-arm64': 7.0.2002
+      '@oxlint-tsgolint/win32-x64': 7.0.2002
+
+  oxlint@1.83.0(oxlint-tsgolint@7.0.2002):
+    optionalDependencies:
+      '@oxlint/binding-android-arm-eabi': 1.83.0
+      '@oxlint/binding-android-arm64': 1.83.0
+      '@oxlint/binding-darwin-arm64': 1.83.0
+      '@oxlint/binding-darwin-x64': 1.83.0
+      '@oxlint/binding-freebsd-x64': 1.83.0
+      '@oxlint/binding-linux-arm-gnueabihf': 1.83.0
+      '@oxlint/binding-linux-arm-musleabihf': 1.83.0
+      '@oxlint/binding-linux-arm64-gnu': 1.83.0
+      '@oxlint/binding-linux-arm64-musl': 1.83.0
+      '@oxlint/binding-linux-ppc64-gnu': 1.83.0
+      '@oxlint/binding-linux-riscv64-gnu': 1.83.0
+      '@oxlint/binding-linux-riscv64-musl': 1.83.0
+      '@oxlint/binding-linux-s390x-gnu': 1.83.0
+      '@oxlint/binding-linux-x64-gnu': 1.83.0
+      '@oxlint/binding-linux-x64-musl': 1.83.0
+      '@oxlint/binding-openharmony-arm64': 1.83.0
+      '@oxlint/binding-win32-arm64-msvc': 1.83.0
+      '@oxlint/binding-win32-ia32-msvc': 1.83.0
+      '@oxlint/binding-win32-x64-msvc': 1.83.0
+      oxlint-tsgolint: 7.0.2002
+
   p-defer@1.0.0: {}
 
   p-limit@2.3.0:
@@ -23827,6 +24869,8 @@ snapshots:
 
   path-to-regexp@8.3.0: {}
 
+  pathe@2.0.3: {}
+
   picocolors@1.1.1: {}
 
   picomatch@2.3.1: {}
@@ -23872,6 +24916,17 @@ snapshots:
       semver: 7.8.5
     optionalDependencies:
       webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3)
+    transitivePeerDependencies:
+      - typescript
+
+  postcss-loader@8.2.1(postcss@8.5.28)(typescript@6.0.3)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)):
+    dependencies:
+      cosmiconfig: 9.0.0(typescript@6.0.3)
+      jiti: 2.7.0
+      postcss: 8.5.28
+      semver: 7.8.5
+    optionalDependencies:
+      webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)
     transitivePeerDependencies:
       - typescript
 
@@ -23926,7 +24981,10 @@ snapshots:
   preact@10.29.1:
     optional: true
 
-  preact@10.29.8: {}
+  preact@10.29.8:
+    optional: true
+
+  preact@11.0.1: {}
 
   prelude-ls@1.2.1: {}
 
@@ -24494,6 +25552,12 @@ snapshots:
       sass-embedded: 1.104.1
       webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3)
 
+  sass-loader@17.0.1(sass-embedded@1.104.1)(sass@1.104.1)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)):
+    optionalDependencies:
+      sass: 1.104.1
+      sass-embedded: 1.104.1
+      webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)
+
   sass-loader@17.0.1(sass-embedded@1.104.1)(sass@1.97.3)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3)):
     optionalDependencies:
       sass: 1.97.3
@@ -24801,6 +25865,12 @@ snapshots:
       iconv-lite: 0.6.3
       source-map-js: 1.2.1
       webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3)
+
+  source-map-loader@5.0.0(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)):
+    dependencies:
+      iconv-lite: 0.6.3
+      source-map-js: 1.2.1
+      webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)
 
   source-map-support@0.5.21:
     dependencies:
@@ -25160,6 +26230,8 @@ snapshots:
       fdir: 6.5.0(picomatch@4.0.7)
       picomatch: 4.0.7
 
+  tinypool@2.1.2: {}
+
   tldts-core@6.1.86: {}
 
   tldts@6.1.86:
@@ -25436,6 +26508,21 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  vite-plugin-solid@2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)):
+    dependencies:
+      '@babel/core': 7.29.0(supports-color@8.1.1)
+      '@types/babel__core': 7.20.5
+      babel-preset-solid: 1.9.10(@babel/core@7.29.0(supports-color@8.1.1))(solid-js@1.9.15)
+      merge-anything: 5.1.7
+      solid-js: 1.9.15
+      solid-refresh: 0.6.3(solid-js@1.9.15)(supports-color@8.1.1)
+      vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+      vitefu: 1.1.2(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+    optionalDependencies:
+      '@testing-library/jest-dom': 7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)))
+    transitivePeerDependencies:
+      - supports-color
+
   vite-prerender-plugin@0.5.12(vite@7.3.2(@types/node@26.6.4)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)):
     dependencies:
       kolorist: 1.8.0
@@ -25455,6 +26542,16 @@ snapshots:
       source-map: 0.7.6
       stack-trace: 1.0.0-pre2
       vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+
+  vite-prerender-plugin@0.5.12(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)):
+    dependencies:
+      kolorist: 1.8.0
+      magic-string: 0.30.21
+      node-html-parser: 6.1.13
+      simple-code-frame: 1.3.0
+      source-map: 0.7.6
+      stack-trace: 1.0.0-pre2
+      vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
   vite@7.3.2(@types/node@26.6.4)(jiti@2.6.1)(less@4.4.2)(lightningcss@1.33.0)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2):
     dependencies:
@@ -25492,6 +26589,24 @@ snapshots:
       sass-embedded: 1.104.1
       terser: 5.51.2
       yaml: 2.8.2
+
+  vite@8.3.0(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1):
+    dependencies:
+      lightningcss: 1.33.0
+      picomatch: 4.0.7
+      postcss: 8.5.28
+      rolldown: 1.2.9
+      tinyglobby: 0.2.17
+    optionalDependencies:
+      '@types/node': 26.6.4
+      esbuild: 0.28.2
+      fsevents: 2.3.3
+      jiti: 2.6.1
+      less: 4.9.1(supports-color@8.1.1)
+      sass: 1.104.1
+      sass-embedded: 1.104.1
+      terser: 5.51.2
+      yaml: 2.9.1
 
   vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2):
     dependencies:
@@ -25653,6 +26768,30 @@ snapshots:
       tinyexec: 1.3.1
       tinyglobby: 0.2.17
       vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+      why-is-node-running: 3.2.1
+    optionalDependencies:
+      '@types/node': 26.6.4
+      happy-dom: 20.14.5
+      jsdom: 25.0.1(supports-color@8.1.1)
+    transitivePeerDependencies:
+      - msw
+    optional: true
+
+  vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)):
+    dependencies:
+      '@types/chai': 5.2.3
+      '@vitest/mocker': 5.0.3(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+      chai: 6.2.2
+      es-module-lexer: 2.3.2
+      expect-type: 1.4.0
+      magic-string: 1.4.1
+      obug: 2.2.1
+      picomatch: 4.0.7
+      std-env: 4.2.0
+      tinybench: 6.1.4
+      tinyexec: 1.3.1
+      tinyglobby: 0.2.17
+      vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
       why-is-node-running: 3.2.1
     optionalDependencies:
       '@types/node': 26.6.4
@@ -25840,6 +26979,18 @@ snapshots:
     transitivePeerDependencies:
       - tslib
 
+  webpack-dev-middleware@8.0.3(tslib@2.8.1)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)):
+    dependencies:
+      memfs: 4.56.10(tslib@2.8.1)
+      mime-types: 3.0.2
+      on-finished: 2.4.1
+      range-parser: 1.2.1
+      schema-utils: 4.3.3
+    optionalDependencies:
+      webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)
+    transitivePeerDependencies:
+      - tslib
+
   webpack-dev-middleware@8.3.0(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3)):
     dependencies:
       ansi-html-community: 0.0.8
@@ -25849,6 +27000,16 @@ snapshots:
       schema-utils: 4.3.3
     optionalDependencies:
       webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3)
+
+  webpack-dev-middleware@8.3.0(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)):
+    dependencies:
+      ansi-html-community: 0.0.8
+      memfs: 4.80.0
+      mime-types: 3.0.2
+      range-parser: 1.3.0
+      schema-utils: 4.3.3
+    optionalDependencies:
+      webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)
 
   webpack-dev-server@6.0.0(supports-color@8.1.1)(tslib@2.8.1)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3)):
     dependencies:
@@ -25885,6 +27046,41 @@ snapshots:
       - tslib
       - utf-8-validate
 
+  webpack-dev-server@6.0.0(supports-color@8.1.1)(tslib@2.8.1)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)):
+    dependencies:
+      '@types/bonjour': 3.5.13
+      '@types/connect-history-api-fallback': 1.5.4
+      '@types/express': 5.0.6
+      '@types/express-serve-static-core': 5.1.3
+      '@types/serve-index': 1.9.4
+      '@types/serve-static': 2.2.0
+      '@types/ws': 8.18.1
+      ansi-html-community: 0.0.8
+      bonjour-service: 1.3.0
+      chokidar: 5.0.0
+      compression: 1.8.1(supports-color@8.1.1)
+      connect-history-api-fallback: 2.0.0
+      express: 5.2.1(supports-color@8.1.1)
+      graceful-fs: 4.2.11
+      http-proxy-middleware: 4.2.0(supports-color@8.1.1)
+      ipaddr.js: 2.3.0
+      launch-editor: 2.14.1
+      open: 11.0.0
+      p-retry: 8.0.1
+      schema-utils: 4.3.3
+      selfsigned: 5.5.0
+      serve-index: 1.9.2(supports-color@8.1.1)
+      tinyglobby: 0.2.17
+      webpack-dev-middleware: 8.0.3(tslib@2.8.1)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
+      ws: 8.21.3
+    optionalDependencies:
+      webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - tslib
+      - utf-8-validate
+
   webpack-merge@6.0.1:
     dependencies:
       clone-deep: 4.0.1
@@ -25897,6 +27093,11 @@ snapshots:
     dependencies:
       typed-assert: 1.0.9
       webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3)
+
+  webpack-subresource-integrity@5.1.0(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)):
+    dependencies:
+      typed-assert: 1.0.9
+      webpack: 5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)
 
   webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3):
     dependencies:
@@ -25913,6 +27114,43 @@ snapshots:
       graceful-fs: 4.2.11
       mime-db: 1.54.0
       minimizer-webpack-plugin: 5.11.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.32.0)(postcss@8.5.28)(uglify-js@3.19.3))
+      schema-utils: 4.5.0
+      tapable: 2.3.3
+      watchpack: 2.5.2
+      webpack-sources: 3.5.1
+    transitivePeerDependencies:
+      - '@minify-html/node'
+      - '@napi-rs/image'
+      - '@swc/core'
+      - '@swc/css'
+      - '@swc/html'
+      - clean-css
+      - cssnano
+      - csso
+      - esbuild
+      - html-minifier-terser
+      - imagemin
+      - lightningcss
+      - postcss
+      - sharp
+      - svgo
+      - uglify-js
+
+  webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3):
+    dependencies:
+      '@types/estree': 1.0.9
+      '@types/json-schema': 7.0.15
+      '@webassemblyjs/ast': 1.14.1
+      '@webassemblyjs/wasm-edit': 1.14.1
+      '@webassemblyjs/wasm-parser': 1.14.1
+      browserslist: 4.29.0
+      chrome-trace-event: 1.0.4
+      enhanced-resolve: 5.25.1
+      es-module-lexer: 2.3.2
+      events: 3.3.0
+      graceful-fs: 4.2.11
+      mime-db: 1.54.0
+      minimizer-webpack-plugin: 5.11.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3)(webpack@5.111.0(esbuild@0.28.2)(lightningcss@1.33.0)(postcss@8.5.28)(uglify-js@3.19.3))
       schema-utils: 4.5.0
       tapable: 2.3.3
       watchpack: 2.5.2

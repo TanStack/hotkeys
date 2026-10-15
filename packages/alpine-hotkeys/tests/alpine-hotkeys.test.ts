@@ -2,12 +2,10 @@ import Alpine from 'alpinejs'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   HotkeyManager,
-  SequenceManager,
   KeyStateTracker,
   createHotkeysScope,
   hotkeysPlugin,
   getHotkeyManager,
-  getSequenceManager,
   getKeyStateTracker,
 } from '../src'
 import type { Hotkey } from '../src'
@@ -30,7 +28,6 @@ async function flush() {
 afterEach(() => {
   scopes.splice(0).forEach((value) => value.destroy())
   HotkeyManager.resetInstance()
-  SequenceManager.resetInstance()
   KeyStateTracker.resetInstance()
   document.body.replaceChildren()
 })
@@ -94,11 +91,13 @@ describe('Alpine lifecycle', () => {
     hotkeys.createHotkeys(() =>
       state.active ? [{ hotkey: 'A', callback }] : [],
     )
-    hotkeys.createHotkeySequences(() =>
-      state.active ? [{ sequence: ['G', 'G'], callback }] : [],
+    hotkeys.createHotkeys(() =>
+      state.active ? [{ hotkey: ['G', 'G'], callback }] : [],
     )
-    expect(registrations.hotkeys).toHaveLength(1)
-    expect(registrations.sequences).toHaveLength(1)
+    expect(registrations.hotkeys.map((reg) => reg.kind)).toEqual([
+      'chord',
+      'sequence',
+    ])
     key('g')
     key('g', 'keyup')
     key('g')
@@ -106,8 +105,7 @@ describe('Alpine lifecycle', () => {
     state.active = false
     await flush()
     expect(registrations.hotkeys).toHaveLength(0)
-    expect(registrations.sequences).toHaveLength(0)
-    expect(getSequenceManager().registrations.state.size).toBe(0)
+    expect(getHotkeyManager().registrations.state.size).toBe(0)
   })
 
   it('records shortcuts and sequences and stops active recording on destruction', () => {
@@ -123,7 +121,8 @@ describe('Alpine lifecycle', () => {
     key('k', 'keydown', { ctrlKey: true })
     expect(onRecord).toHaveBeenCalledWith('Control+K')
     expect(recorder.isRecording).toBe(false)
-    const sequence = hotkeys.createHotkeySequenceRecorder({
+    const sequence = hotkeys.createHotkeyRecorder({
+      maxSteps: Infinity,
       onRecord,
       recordBy: 'key',
       platform: 'mac',
@@ -133,7 +132,7 @@ describe('Alpine lifecycle', () => {
     key('g', 'keyup')
     expect(sequence.steps).toEqual(['G'])
     sequence.commitRecording()
-    expect(sequence.recordedSequence).toEqual(['G'])
+    expect(sequence.recordedHotkey).toEqual('G')
     recorder.startRecording()
     hotkeys.destroy()
     expect(recorder.isRecording).toBe(false)
@@ -174,18 +173,17 @@ it('applies reactive scoped defaults with per-call and per-definition overrides'
     hotkey: {
       enabled: defaults.enabled,
       preventDefault: defaults.preventDefault,
+      timeout: 321,
     },
-    hotkeySequence: { enabled: defaults.enabled, timeout: 321 },
     hotkeyRecorder: { recordBy: 'key' },
-    hotkeySequenceRecorder: { recordBy: 'key', commitKeys: 'none' },
   }))
   scopes.push(hotkeys)
   const callback = vi.fn()
   hotkeys.createHotkey('A', callback)
   hotkeys.createHotkeys([{ hotkey: 'B', callback, options: { enabled: true } }])
-  hotkeys.createHotkeySequence(['G', 'G'], callback)
-  hotkeys.createHotkeySequences([
-    { sequence: ['X', 'X'], callback, options: { enabled: true } },
+  hotkeys.createHotkey(['G', 'G'], callback)
+  hotkeys.createHotkeys([
+    { hotkey: ['X', 'X'], callback, options: { enabled: true } },
   ])
   key('a')
   key('b')
@@ -196,17 +194,22 @@ it('applies reactive scoped defaults with per-call and per-definition overrides'
   key('a')
   expect(callback).toHaveBeenCalledTimes(2)
   expect([...getHotkeyManager().registrations.state.keys()][0]).toBe(id)
+  const views = [...getHotkeyManager().registrations.state.values()]
   expect(
-    [...getSequenceManager().registrations.state.values()].every(
-      (r) => r.options.timeout === 321,
-    ),
+    views
+      .filter((r) => r.kind === 'sequence')
+      .every((r) => r.options.timeout === 321),
   ).toBe(true)
+  expect(
+    views.filter((r) => r.kind === 'chord')[0]!.options,
+  ).not.toHaveProperty('timeout')
   const onRecord = vi.fn()
   const recorder = hotkeys.createHotkeyRecorder({ onRecord })
   recorder.startRecording()
   key('k', 'keydown', { code: 'KeyK' })
   expect(onRecord).toHaveBeenCalledWith('K')
-  const sequence = hotkeys.createHotkeySequenceRecorder({
+  const sequence = hotkeys.createHotkeyRecorder({
+    maxSteps: Infinity,
     onRecord,
     commitKeys: 'enter',
   })
@@ -214,5 +217,5 @@ it('applies reactive scoped defaults with per-call and per-definition overrides'
   key('g', 'keydown', { code: 'KeyG' })
   key('g', 'keyup', { code: 'KeyG' })
   key('Enter', 'keydown', { code: 'Enter' })
-  expect(onRecord).toHaveBeenLastCalledWith(['G'])
+  expect(onRecord).toHaveBeenLastCalledWith('G')
 })

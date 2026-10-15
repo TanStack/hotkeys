@@ -3,16 +3,16 @@ id: onHotkeys
 title: onHotkeys
 ---
 
-Defined in: [packages/ember-hotkeys/src/onHotkeys.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/onHotkeys.ts#L16)
+Defined in: [packages/ember-hotkeys/src/onHotkeys.ts:9](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/onHotkeys.ts#L9)
 
-Attach a reactive list of shortcuts directly to an element.
+Attach a reactive list of hotkeys directly to an element.
 
 ## Extends
 
 - `default`\<\{
   `Args`: \{
      `Named`: [`ElementHotkeyOptions`](../type-aliases/ElementHotkeyOptions.md);
-     `Positional`: \[`HotkeyDefinition`[]\];
+     `Positional`: \[`ReadonlyArray`\<[`EmberHotkeyDefinition`](../type-aliases/EmberHotkeyDefinition.md)\>\];
   \};
   `Element`: `HTMLElement`;
 \}\>
@@ -40,7 +40,7 @@ An instance of an Owner (for service injection etc.).
 `ArgsFor`\<\{
   `Args`: \{
      `Named`: [`ElementHotkeyOptions`](../type-aliases/ElementHotkeyOptions.md);
-     `Positional`: \[`HotkeyDefinition`[]\];
+     `Positional`: \[readonly [`EmberHotkeyDefinition`](../type-aliases/EmberHotkeyDefinition.md)[]\];
   \};
   `Element`: `HTMLElement`;
 \}\>
@@ -57,7 +57,7 @@ The positional and named arguments passed to the modifier.
 Modifier<{
   Element: HTMLElement
   Args: {
-    Positional: [Array<HotkeyDefinition>]
+    Positional: [ReadonlyArray<EmberHotkeyDefinition>]
     Named: ElementHotkeyOptions
   }
 }>.constructor
@@ -81,7 +81,7 @@ Defined in: node\_modules/.pnpm/@glint+template@1.9.0/node\_modules/@glint/templ
 
 ##### args
 
-...\[`HotkeyDefinition`[], `NamedArgs`\<[`ElementHotkeyOptions`](../type-aliases/ElementHotkeyOptions.md)\>\]
+...\[readonly [`EmberHotkeyDefinition`](../type-aliases/EmberHotkeyDefinition.md)[], `NamedArgs`\<[`ElementHotkeyOptions`](../type-aliases/ElementHotkeyOptions.md)\>\]
 
 #### Returns
 
@@ -104,7 +104,7 @@ modify(
    options): void;
 ```
 
-Defined in: [packages/ember-hotkeys/src/onHotkeys.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/onHotkeys.ts#L28)
+Defined in: [packages/ember-hotkeys/src/onHotkeys.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/onHotkeys.ts#L18)
 
 Called when the modifier is installed and any time any tracked state used
 in the modifier changes.
@@ -146,7 +146,7 @@ The element to which the modifier is applied.
 
 ##### positional
 
-\[`HotkeyDefinition`[]\]
+\[readonly [`EmberHotkeyDefinition`](../type-aliases/EmberHotkeyDefinition.md)[]\]
 
 The positional arguments to the modifier.
 

@@ -7,19 +7,22 @@ title: useHotkeys
 function useHotkeys(definitions, options?): void;
 ```
 
-Defined in: [useHotkeys.ts:9](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkeys.ts#L9)
+Defined in: [useHotkeys.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkeys.ts#L23)
 
-Registers a changing list of shortcuts after commit and releases it on unmount.
+Registers a changing list of hotkeys (chords, sequences, and app hotkeys)
+after commit and releases it on unmount. Options merge in this order:
+provider defaults, app hotkey declaration, common options, per-hotkey
+options. Unbound app hotkeys and empty sequences register nothing.
 
 ## Parameters
 
 ### definitions
 
-`HotkeyDefinition`[]
+readonly [`UseHotkeyDefinition`](../type-aliases/UseHotkeyDefinition.md)[]
 
 ### options?
 
-`HotkeyOptions`
+[`UseHotkeyCommonOptions`](../type-aliases/UseHotkeyCommonOptions.md)
 
 ## Returns
 

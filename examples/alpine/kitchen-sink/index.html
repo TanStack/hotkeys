@@ -93,7 +93,7 @@
                         <small x-text="reg.options.meta?.description"></small>
                       </td>
                       <td
-                        x-text="` ${('hotkey' in reg ? [reg.hotkey] : reg.sequence).map(step => formatForDisplay(step)).join(' → ')} `"
+                        x-text="formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })"
                       ></td>
                       <td
                         x-text="` ${reg.options.enabled === false ? 'Disabled' : `${reg.triggerCount} fired`} `"
@@ -225,10 +225,10 @@
                         <tr>
                           <td x-text="reg.options.meta?.name"></td>
                           <td
-                            x-text="` ${reg.sequence.map(step => formatForDisplay(step)).join(' → ')} `"
+                            x-text="formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })"
                           ></td>
                           <td
-                            x-text="` ${reg.matchedStepCount}/${reg.sequence.length} steps;  ${reg.triggerCount} fired `"
+                            x-text="` ${reg.matchedStepCount}/${reg.hotkey.length} steps;  ${reg.triggerCount} fired `"
                           ></td>
                         </tr>
                       </template>
@@ -290,7 +290,7 @@
                       <p role="status" x-text="problem"></p>
                       <h3>Sequence</h3>
                       <p
-                        x-text="` ${(sequenceRecorder.isRecording ? sequenceRecorder.steps : sequence).map(step => formatForDisplay(step)).join(' → ') || 'Waiting for the first chord…'} `"
+                        x-text="formatForDisplay(sequenceRecorder.isRecording ? sequenceRecorder.steps : sequence, { sequenceSeparator: ' → ' }) || 'Waiting for the first chord…'"
                       ></p>
                       <label>
                         <input type="checkbox" x-model="idle" />

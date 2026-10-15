@@ -1,12 +1,27 @@
 <script lang="ts">
-  import { DEFAULT_OPTIONS, setHotkeysContextSource } from './HotkeysCtx'
+  import { setHotkeysContextSource } from './HotkeysCtx'
 
   import type { HotkeysProviderProps } from './HotkeysCtx'
 
-  let { children, defaultOptions = DEFAULT_OPTIONS }: HotkeysProviderProps =
-    $props()
+  let {
+    children,
+    defaultOptions,
+    appHotkeys,
+    customHotkeys,
+    onCustomHotkeysChange,
+  }: HotkeysProviderProps = $props()
 
-  setHotkeysContextSource(() => defaultOptions)
+  const context = setHotkeysContextSource(() => ({
+    defaultOptions,
+    appHotkeys,
+    customHotkeys,
+    onCustomHotkeysChange,
+  }))
+
+  // Keep declarations current (for example after hot module replacement).
+  $effect(() => {
+    if (appHotkeys) context.appHotkeysStore?.setAppHotkeys(appHotkeys)
+  })
 </script>
 
 {@render children()}

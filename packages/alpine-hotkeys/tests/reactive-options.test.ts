@@ -44,7 +44,12 @@ it.each(['single', 'sequence'] as const)(
       const recorder =
         kind === 'single'
           ? scope.createHotkeyRecorder(options)
-          : scope.createHotkeySequenceRecorder(options)
+          : scope.createHotkeyRecorder(
+              Object.defineProperties(
+                { maxSteps: Infinity },
+                Object.getOwnPropertyDescriptors(options),
+              ) as typeof options & { maxSteps: number },
+            )
       recorder.startRecording()
       state.current = true
       recorder.cancelRecording()

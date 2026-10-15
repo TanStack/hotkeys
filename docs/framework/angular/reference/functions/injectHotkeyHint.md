@@ -7,19 +7,21 @@ title: injectHotkeyHint
 function injectHotkeyHint(hotkey, options?): Signal<boolean>;
 ```
 
-Defined in: [injectHotkeyHint.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyHint.ts#L14)
+Defined in: [injectHotkeyHint.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyHint.ts#L24)
 
-Returns a computed signal indicating whether held modifiers reveal this shortcut.
-Call in an injection context; pass signal getters for changing inputs.
-Uses the nonempty-subset/AltGr rules of `matchesHeldModifiers`; `exact` requires
-every modifier. Combine with the action's enabled state before showing a badge.
-This helper does not register a shortcut or check whether its target is focused.
+Returns a signal indicating whether held modifiers reveal this shortcut.
+Pass getters to track changing hotkeys and options. A sequence reveals its
+hint from its first step, and an app hotkey uses its effective hotkey
+(false while unbound). This helper does not register a shortcut or check
+whether its target is focused.
 
 ## Parameters
 
 ### hotkey
 
-`RegisterableHotkey` \| (() => `RegisterableHotkey`)
+  \| `RegisterableHotkey`
+  \| `AppHotkey`\<`string`, HotkeyChord \| HotkeySequence \| null\>
+  \| (() => RegisterableHotkey \| AppHotkey\<string, HotkeyChord \| HotkeySequence \| null\>)
 
 ### options?
 

@@ -1,62 +1,55 @@
 import { afterEach, expect, it, vi } from 'vitest'
 import { act, renderHook } from '@testing-library/react'
-import { HotkeyManager, SequenceManager } from '@tanstack/hotkeys'
+import { HotkeyManager } from '@tanstack/hotkeys'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import { useHotkey } from '../src/useHotkey'
-import { useHotkeySequence } from '../src/useHotkeySequence'
 import React from 'react'
+import type { RegisterableHotkey } from '@tanstack/hotkeys'
 import type { ReactNode } from 'react'
 
 afterEach(() => {
   HotkeyManager.resetInstance()
-  SequenceManager.resetInstance()
   document.body.replaceChildren()
 })
 
-it.each(['hotkey', 'sequence'] as const)(
-  'forwards provider capture defaults and reactive overrides for %s',
-  (kind) => {
+it.each([
+  ['chord', 'Control+S', ['s']],
+  ['sequence', ['Control+S', 'Control+G'], ['s', 'g']],
+] as const)(
+  'forwards provider capture defaults and reactive overrides for a %s',
+  (_kind, hotkey, keys) => {
     const callback = vi.fn()
     const child = document.createElement('button')
     document.body.append(child)
     child.addEventListener('keydown', (event) => event.stopPropagation())
     const wrapper = ({ children }: { children: ReactNode }) => (
-      <HotkeysProvider
-        defaultOptions={{
-          hotkey: { capture: true },
-          hotkeySequence: { capture: true },
-        }}
-      >
+      <HotkeysProvider defaultOptions={{ hotkey: { capture: true } }}>
         {children}
       </HotkeysProvider>
     )
     const { rerender, unmount } = renderHook(
       ({ capture }: { capture?: boolean }) => {
-        useHotkey('Control+S', callback, {
-          ...(capture === undefined ? {} : { capture }),
-          enabled: kind === 'hotkey',
-        })
-        useHotkeySequence(['Control+S'], callback, {
-          ...(capture === undefined ? {} : { capture }),
-          enabled: kind === 'sequence',
-        })
+        useHotkey(
+          hotkey as RegisterableHotkey,
+          callback,
+          capture === undefined ? {} : { capture },
+        )
       },
       { initialProps: { capture: undefined as boolean | undefined }, wrapper },
     )
-    const manager =
-      kind === 'hotkey'
-        ? HotkeyManager.getInstance()
-        : SequenceManager.getInstance()
+    const manager = HotkeyManager.getInstance()
     const id = [...manager.registrations.state.keys()][0]!
     const press = () =>
       act(() => {
-        child.dispatchEvent(
-          new KeyboardEvent('keydown', {
-            key: 's',
-            ctrlKey: true,
-            bubbles: true,
-          }),
-        )
+        for (const key of keys) {
+          child.dispatchEvent(
+            new KeyboardEvent('keydown', {
+              key,
+              ctrlKey: true,
+              bubbles: true,
+            }),
+          )
+        }
       })
     press()
     expect(callback).toHaveBeenCalledOnce()

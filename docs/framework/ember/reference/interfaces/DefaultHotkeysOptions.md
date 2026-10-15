@@ -3,7 +3,7 @@ id: DefaultHotkeysOptions
 title: DefaultHotkeysOptions
 ---
 
-Defined in: [packages/ember-hotkeys/src/types.ts:56](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L56)
+Defined in: [packages/ember-hotkeys/src/types.ts:85](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L85)
 
 Shared defaults; call-specific options take precedence.
 
@@ -12,37 +12,21 @@ Shared defaults; call-specific options take precedence.
 ### hotkey?
 
 ```ts
-optional hotkey?: HotkeyOptions;
+optional hotkey?: EmberHotkeyCommonOptions;
 ```
 
-Defined in: [packages/ember-hotkeys/src/types.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L57)
+Defined in: [packages/ember-hotkeys/src/types.ts:87](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L87)
+
+Defaults for every hotkey. `requireReset` applies to chords and `timeout` to sequences.
 
 ***
 
 ### hotkeyRecorder?
 
 ```ts
-optional hotkeyRecorder?: Partial<HotkeyRecorderOptions>;
+optional hotkeyRecorder?: Partial<Omit<HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions, "maxSteps" | "validate" | "onRecord">>;
 ```
 
-Defined in: [packages/ember-hotkeys/src/types.ts:59](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L59)
+Defined in: [packages/ember-hotkeys/src/types.ts:89](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L89)
 
-***
-
-### hotkeySequence?
-
-```ts
-optional hotkeySequence?: SequenceOptions;
-```
-
-Defined in: [packages/ember-hotkeys/src/types.ts:58](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L58)
-
-***
-
-### hotkeySequenceRecorder?
-
-```ts
-optional hotkeySequenceRecorder?: Partial<HotkeySequenceRecorderOptions>;
-```
-
-Defined in: [packages/ember-hotkeys/src/types.ts:60](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L60)
+Defaults for every recorder.

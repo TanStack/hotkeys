@@ -10,7 +10,7 @@ function createHotkeyHandler(
    options?): (event) => void;
 ```
 
-Defined in: [match.ts:87](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L87)
+Defined in: [match.ts:95](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L95)
 
 Creates a keyboard event handler that calls the callback when the hotkey matches.
 
@@ -18,7 +18,7 @@ Creates a keyboard event handler that calls the callback when the hotkey matches
 
 ### hotkey
 
-  \| [`Hotkey`](../type-aliases/Hotkey.md)
+  \| [`HotkeyChord`](../type-aliases/HotkeyChord.md)
   \| [`ParsedHotkey`](../type-aliases/ParsedHotkey.md)
 
 The hotkey string or ParsedHotkey to match

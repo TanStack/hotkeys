@@ -79,9 +79,10 @@ The `Mod` modifier automatically resolves to `Meta` (Command) on macOS and `Cont
 
 ```svelte
 <script lang="ts">
-  import { createHotkeySequenceAttachment } from '@tanstack/svelte-hotkeys'
+  import { createHotkeyAttachment } from '@tanstack/svelte-hotkeys'
 
-  const vimKeys = createHotkeySequenceAttachment(['G', 'G'], () => {
+  // An array of chords registers a sequence
+  const vimKeys = createHotkeyAttachment(['G', 'G'], () => {
     scrollToTop()
   })
 </script>
@@ -155,18 +156,21 @@ Use `setHotkeysContext` when you want defaults for a subtree. This is an advance
   import { setHotkeysContext } from '@tanstack/svelte-hotkeys'
 
   setHotkeysContext({
-    hotkey: { preventDefault: true },
-    hotkeySequence: { timeout: 1500 },
+    defaultOptions: { hotkey: { preventDefault: true, timeout: 1500 } },
   })
 </script>
 ```
+
+## Declaring app hotkeys
+
+To list every hotkey in a cheat sheet, including hotkeys whose components haven't mounted, and to let users customize them, declare them once with `defineAppHotkeys` and provide them with `HotkeysProvider` or `setHotkeysContext`. See the [App Hotkeys Guide](./guides/app-hotkeys).
 
 ## Next steps
 
 - [Hotkeys Guide](./guides/hotkeys)
 - [Sequences Guide](./guides/sequences)
 - [Hotkey Recording Guide](./guides/hotkey-recording)
-- [Sequence Recording Guide](./guides/sequence-recording)
+- [App Hotkeys Guide](./guides/app-hotkeys)
 - [Key State Tracking Guide](./guides/key-state-tracking)
 - [Formatting & Display Guide](./guides/formatting-display)
 

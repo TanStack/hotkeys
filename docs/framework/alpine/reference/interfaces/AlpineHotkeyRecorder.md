@@ -3,9 +3,15 @@ id: AlpineHotkeyRecorder
 title: AlpineHotkeyRecorder
 ---
 
-Defined in: [types.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L26)
+Defined in: [types.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L49)
 
 Recording state and controls owned by the containing scope.
+
+## Type Parameters
+
+### THotkey
+
+`THotkey` *extends* `Hotkey` = `Hotkey`
 
 ## Properties
 
@@ -15,9 +21,25 @@ Recording state and controls owned by the containing scope.
 cancelRecording: () => void;
 ```
 
-Defined in: [types.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L36)
+Defined in: [types.ts:61](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L61)
 
 Stop, clear recorder state, and call onCancel.
+
+#### Returns
+
+`void`
+
+***
+
+### commitRecording
+
+```ts
+commitRecording: () => void;
+```
+
+Defined in: [types.ts:63](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L63)
+
+Commit the current steps (multi-step recordings).
 
 #### Returns
 
@@ -31,7 +53,7 @@ Stop, clear recorder state, and call onCancel.
 readonly isRecording: boolean;
 ```
 
-Defined in: [types.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L28)
+Defined in: [types.ts:51](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L51)
 
 Whether the recorder is listening for a shortcut.
 
@@ -40,12 +62,12 @@ Whether the recorder is listening for a shortcut.
 ### recordedHotkey
 
 ```ts
-readonly recordedHotkey: Hotkey | null;
+readonly recordedHotkey: THotkey | null;
 ```
 
-Defined in: [types.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L30)
+Defined in: [types.ts:55](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L55)
 
-The last recorded binding, including brackets for physical codes.
+The last committed hotkey, including brackets for physical codes.
 
 ***
 
@@ -55,7 +77,7 @@ The last recorded binding, including brackets for physical codes.
 startRecording: () => void;
 ```
 
-Defined in: [types.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L32)
+Defined in: [types.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L57)
 
 Start a new recording session.
 
@@ -65,13 +87,25 @@ Start a new recording session.
 
 ***
 
+### steps
+
+```ts
+readonly steps: HotkeySequence;
+```
+
+Defined in: [types.ts:53](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L53)
+
+Chords captured so far in a multi-step recording.
+
+***
+
 ### stopRecording
 
 ```ts
 stopRecording: () => void;
 ```
 
-Defined in: [types.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L34)
+Defined in: [types.ts:59](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L59)
 
 Stop and clear recorder state without calling onRecord or onCancel.
 

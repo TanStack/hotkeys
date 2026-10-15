@@ -11,7 +11,7 @@ import {
   useHotkeyRegistrations,
   useHeldKeys,
 } from '@tanstack/ember-hotkeys'
-import type { Hotkey, HotkeyDefinition } from '@tanstack/ember-hotkeys'
+import type { EmberHotkeyDefinition, Hotkey } from '@tanstack/ember-hotkeys'
 const eq = (a: unknown, b: unknown) => a === b
 const neq = (a: unknown, b: unknown) => a !== b
 const gt = (a: number, b: number) => a > b
@@ -141,7 +141,7 @@ class App extends Component {
   get isRecording() {
     return this.recorder.isRecording
   }
-  get hotkeyDefinitions(): Array<HotkeyDefinition> {
+  get hotkeyDefinitions(): Array<EmberHotkeyDefinition> {
     return this.shortcuts
       .filter((s) => s.hotkey !== '')
       .map((s) => ({

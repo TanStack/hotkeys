@@ -1,12 +1,8 @@
-import {
-  getHotkeyManager,
-  getSequenceManager,
-  toHotkeyRegistrationView,
-} from '@tanstack/hotkeys'
+import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
 import { select, subSlot } from './internal'
 import type { HotkeyRegistrationsResult } from './types'
 
-/** Reads public registration snapshots from both managers. */
+/** Reads public snapshots of every registration, chords and sequences. */
 export function useHotkeyRegistrations(): HotkeyRegistrationsResult
 export function useHotkeyRegistrations(
   slot?: symbol,
@@ -17,11 +13,5 @@ export function useHotkeyRegistrations(
     undefined,
     subSlot(slot, 'hotkeys'),
   )
-  const sequences = select(
-    getSequenceManager().registrations,
-    (state) => Array.from(state.values()),
-    undefined,
-    subSlot(slot, 'sequences'),
-  )
-  return { hotkeys, sequences }
+  return { hotkeys }
 }

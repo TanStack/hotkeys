@@ -1,6 +1,5 @@
 import ReactiveRecorders from './ReactiveRecorders.svelte'
 import type { SvelteHotkeyRecorder } from '../src/createHotkeyRecorder.svelte'
-import type { SvelteHotkeySequenceRecorder } from '../src/createHotkeySequenceRecorder.svelte'
 import { flushSync, mount, unmount } from 'svelte'
 import { expect, it, vi } from 'vitest'
 import { HotkeyManager } from '@tanstack/hotkeys'
@@ -40,7 +39,7 @@ it.each(['single', 'sequence'] as const)(
     const first = vi.fn(),
       second = vi.fn()
     let single!: SvelteHotkeyRecorder,
-      sequence!: SvelteHotkeySequenceRecorder,
+      sequence!: SvelteHotkeyRecorder,
       change!: () => void
     const component = mount(ReactiveRecorders, {
       target: document.body,

@@ -3,121 +3,139 @@ title: Hotkey Recording Guide
 id: hotkey-recording
 ---
 
-TanStack Hotkeys provides the `injectHotkeyRecorder` API for building shortcut customization UIs in Angular.
+`injectHotkeyRecorder` is for building keyboard shortcut customization UIs. Users record their own shortcuts by pressing the key combination they want, the same way system preferences or IDE shortcut editors work. By default it records one chord; set `maxSteps` to let users record a [sequence](./sequences) too.
 
 Recorders default to physical codes: recording a shortcut stores a string such as `Mod+[KeyS]`. Pass it directly to your hotkey registration and use `formatForDisplay` for the label. Set `recordBy: 'key'` when you intentionally want the produced character instead.
 
-TanStack Hotkeys automatically suppresses registered hotkey and sequence callbacks while any recorder is active. You do not need to set `enabled` from `isRecording`. Registrations remain available for conflict detection, and recorded keys stay suppressed through repeats and key release.
-
-## Reactive options
-
-Recorder options support [property getters and functions returning options](./hotkeys.md#property-getters). Updated callbacks, validation, and recording settings apply during an active session without restarting it. Allow the framework to run its effect or watcher before relying on the update.
+TanStack Hotkeys automatically suppresses registered hotkey callbacks while any recorder is active. You do not need to disable hotkeys while recording. Registrations remain available for conflict detection, and recorded keys stay suppressed through repeats and key release.
 
 ## Basic usage
 
 ```ts
 import { Component } from '@angular/core'
-import {
-  formatForDisplay,
-  injectHotkeyRecorder,
-} from '@tanstack/angular-hotkeys'
+import { formatForDisplay, injectHotkeyRecorder } from '@tanstack/angular-hotkeys'
 
 @Component({
-  standalone: true,
+  selector: 'app-shortcut-recorder',
   template: `
-    <button (click)="recorder.isRecording() ? recorder.stopRecording() : recorder.startRecording()">
+    <button (click)="recorder.isRecording() ? recorder.cancelRecording() : recorder.startRecording()">
       {{
         recorder.isRecording()
           ? 'Press a key combination...'
           : recorder.recordedHotkey()
-            ? formatForDisplay(recorder.recordedHotkey()!)
+            ? format(recorder.recordedHotkey()!)
             : 'Click to record'
       }}
     </button>
-    @if (recorder.isRecording()) {
-      <button (click)="recorder.cancelRecording()">Cancel</button>
-    }
   `,
 })
 export class ShortcutRecorderComponent {
-  readonly formatForDisplay = formatForDisplay
+  readonly format = formatForDisplay
   readonly recorder = injectHotkeyRecorder({
-    onRecord: (hotkey) => {
-      console.log('Recorded:', hotkey)
-    },
+    onRecord: (hotkey) => console.log('Recorded:', hotkey), // e.g. 'Mod+Shift+[KeyS]'
   })
 }
 ```
 
-## Return value
+## Recorder state and actions
 
-- `isRecording()`: Angular signal getter indicating whether recording is active
-- `recordedHotkey()`: Angular signal getter with the most recently recorded hotkey
-- `startRecording()`: start listening for key presses
-- `stopRecording()`: stop listening and reset recorder state without calling `onRecord`
-- `cancelRecording()`: stop listening and discard the in-progress recording
+| Member | Description |
+| --- | --- |
+| `isRecording` | Whether the recorder is currently listening for key presses |
+| `steps` | Chords captured so far in a multi-step recording |
+| `recordedHotkey` | The last recorded hotkey, or `null` if nothing recorded |
+| `startRecording()` | Start listening for key presses |
+| `stopRecording()` | Stop listening without calling `onRecord` or `onCancel` |
+| `cancelRecording()` | Stop listening and call `onCancel` |
+| `commitRecording()` | Commit the current `steps` now (multi-step recordings) |
+
+State members are signals: call `isRecording()`, `steps()`, and `recordedHotkey()`.
 
 ## Options
 
 ### `recordBy`
 
-Recorders default to `recordBy: 'code'`. Option+S producing `ß` on macOS records `Alt+[KeyS]`; Option+2 producing `™` records `Alt+[Digit2]`. The stored brackets preserve physical identity through state, serialization, and registration; `formatForDisplay` produces a readable label. There is no code-to-letter conversion. Existing authored strings such as `Mod+S` remain logical bindings.
+Recorders default to `recordBy: 'code'`. Option+S producing `ß` on macOS records `Alt+[KeyS]`; Option+2 producing `™` records `Alt+[Digit2]`. The stored brackets preserve physical identity through state, serialization, and registration; `formatForDisplay` produces a readable label. Existing authored strings such as `Mod+S` remain logical hotkeys.
 
-Set `recordBy: 'key'` to intentionally record the produced logical character. A code-mode event with no usable code is rejected rather than silently switching modes. IME composition is ignored. AltGraph character entry is rejected in code mode; key mode preserves the produced character without synthetic Control/Alt while retaining Shift. Recording events, repeats, and their releases do not trigger registered hotkeys or sequences.
+Set `recordBy: 'key'` to intentionally record the produced logical character. A code-mode event with no usable code is rejected rather than silently switching modes. IME composition is ignored. AltGraph character entry is rejected in code mode; key mode preserves the produced character without synthetic Control/Alt while retaining Shift.
 
-```ts
-injectHotkeyRecorder({
-  recordBy: 'code', // default; choose 'key' for logical characters
-  onRecord: (hotkey) => {},
-  onCancel: () => {},
-  onClear: () => {},
-})
-```
+### `onRecord`
 
-## Global defaults via provider
+Called when a recording commits. With the default `maxSteps: 1`, it receives a chord string such as `'Mod+[KeyS]'` as soon as the user presses a valid combination (a modifier + a non-modifier key, or a single non-modifier key). With a larger `maxSteps`, it receives a chord when one step was recorded, or a sequence otherwise.
 
-```ts
-import { ApplicationConfig } from '@angular/core'
-import { provideHotkeys } from '@tanstack/angular-hotkeys'
+### `onCancel`
 
-export const appConfig: ApplicationConfig = {
-  providers: [
-    provideHotkeys({
-      hotkeyRecorder: {
-        onCancel: () => console.log('Recording cancelled'),
-      },
-    }),
-  ],
-}
-```
+Called when recording is cancelled, by pressing Escape or calling `cancelRecording()`.
+
+### `onClear`
+
+Called when the recording is cleared: Backspace or Delete with no modifiers and no recorded steps. Clearing calls only `onClear`; your app decides whether that removes a hotkey or restores a default.
 
 ### `ignoreInputs`
 
-`HotkeyRecorderOptions` includes an `ignoreInputs` option (defaults to `true`). When `true`, the recorder doesn't intercept normal typing in text inputs, textareas, selects, or contentEditable elements. Keystrokes pass through to the input as usual. Pressing Escape still cancels recording even when an input is focused. Set `ignoreInputs: false` if you want the recorder to capture keys from within input elements.
+Defaults to `true`. The recorder doesn't intercept normal typing in text inputs, textareas, selects, or contentEditable elements; keystrokes pass through to the input as usual. Escape still cancels recording even while an input is focused. Set `ignoreInputs: false` to record from inside input elements.
+
+Options can also be a getter, such as `injectHotkeyRecorder(() => ({ maxSteps: 3, recordBy: this.mode(), onRecord }))`, so recording policy can follow signals.
+
+### Default options
+
+Set defaults for every recorder with `provideHotkeys`. Per-recorder options override them.
 
 ```ts
-injectHotkeyRecorder({
-  ignoreInputs: false, // record even from inside inputs
-  onRecord: (hotkey) => console.log(hotkey),
+provideHotkeys({
+  defaultOptions: { hotkeyRecorder: { idleTimeoutMs: 2000 } },
 })
 ```
 
+## Recording sequences
+
+Set `maxSteps` above 1 to record up to that many chords. Each chord adds a step, and the recording commits when the user presses Enter, when it reaches `maxSteps`, or after `idleTimeoutMs` without a new step:
+
+```ts
+readonly recorder = injectHotkeyRecorder({
+  maxSteps: 3,
+  onRecord: (hotkey) => console.log('Recorded:', hotkey), // 'Mod+[KeyS]' or ['[KeyG]', '[KeyG]']
+})
+
+// Live preview while recording
+readonly label = computed(() =>
+  this.recorder.isRecording()
+    ? formatForDisplay(this.recorder.steps()) || 'Press chords, then Enter…'
+    : formatForDisplay(this.recorder.recordedHotkey() ?? []),
+)
+```
+
+A one-step recording commits as a chord, so the result can always be passed straight to your hotkey registration. Use `maxSteps: Infinity` for no limit.
+
+| Option | Description |
+| --- | --- |
+| `maxSteps` | Maximum chords to record. Reaching it commits. Default `1`. |
+| `commitKeys` | `'enter'` (default) commits on plain Enter. With `'none'`, plain Enter can be recorded as a step, and only `commitRecording()`, `idleTimeoutMs`, or `maxSteps` commit. |
+| `idleTimeoutMs` | Commit automatically after this many milliseconds without a new step. The timer does not run before the first chord. |
+
+`commitKeys` and `idleTimeoutMs` are only accepted when `maxSteps` is set. With `maxSteps` above 1, `onRecord` and `validate` receive `Hotkey` (a chord or a sequence) instead of a chord.
+
 ## Recording behavior
 
-- Modifier-only presses do not complete a recording.
-- Modifier plus key combinations record the full shortcut.
-- Escape cancels recording.
-- Backspace and Delete clear the shortcut.
-- Recorded values are normalized to portable `Mod` format.
+| Key | Behavior |
+| --- | --- |
+| Modifier only (Shift, Ctrl, etc.) | Waits for a non-modifier key; modifier-only presses don't complete a step |
+| Modifier + key (e.g., Ctrl+S) | Records the full combination |
+| Single key (e.g., Escape, F1) | Records the single key |
+| Enter (multi-step, `commitKeys: 'enter'`) | Commits the recorded steps |
+| Escape | Cancels the recording |
+| Backspace / Delete | Removes the last step; with no steps, clears and calls `onClear` |
+
+Repeats and IME composition never add a step. Recorded hotkeys use the portable `Mod` format: Command+S on macOS records `Mod+[KeyS]` rather than `Meta+[KeyS]`, so the primary modifier becomes Control if the hotkey is later used on Windows.
 
 ## Validation and conflicts
 
-Both recorder APIs accept `detectConflicts`, `validate`, and `onReject`. For a single-hotkey recorder, these options can be supplied alongside `onRecord`:
+The recorder accepts `detectConflicts`, `validate`, and `onReject` alongside `onRecord`:
 
 ```ts
 const options = {
   detectConflicts: {
-    // Use registration IDs to exclude the binding being edited:
+    // Use registration IDs to exclude the hotkey being edited:
     excludeIds: [registrationId],
     target: document,
     eventType: 'keydown',
@@ -131,8 +149,76 @@ const options = {
 }
 ```
 
-`validate` returns true to accept, or false/a message to reject. `onReject` receives `reason` (`missing-code`, `alt-graph`, `invalid`, `validation`, or `conflict`), a message, the candidate when available, and conflicting registration views for conflict rejections. Validation runs before commit; rejection never falls back to another key identity.
+`validate(hotkey, context)` returns true to accept, or false/a message to reject. The context holds the last chord's `event` and `parsedHotkey`, plus `events` and `parsedSequence` for every step. `onReject` receives `reason` (`missing-code`, `alt-graph`, `invalid`, `validation`, or `conflict`), a message, the rejected `hotkey` when available, and conflicting registrations for conflict rejections. Validation runs before commit; rejection never falls back to another key identity. A rejected multi-step recording keeps its steps so the user can edit them with Backspace.
 
-`detectConflicts: true` checks enabled live registrations with the intended event type (default keydown) and overlapping targets (default document). Document/nested scopes can conflict; disjoint widgets can reuse a binding. The options object also supports `scope: 'all'`, `includeDisabled`, and an `exclude(registration)` predicate. Both single bindings and sequence prefixes are checked. Source events detect physical/logical overlap on the recorded layout. This is a conservative collision check, not a promise that two callbacks will execute: propagation, input filtering, match priority, external listeners, unmounted routes, and other layouts can affect actual dispatch.
+`detectConflicts: true` checks enabled live registrations with the intended event type (default keydown) and overlapping targets (default document). Document/nested scopes can conflict; disjoint widgets can reuse a hotkey. The options object also supports `scope: 'all'`, `includeDisabled`, and an `exclude(registration)` predicate. Chords and sequence prefixes are checked: a recorded chord conflicts with a sequence that starts with it, and a recorded sequence conflicts with a registered chord equal to its first step. Source events detect physical/logical overlap on the recorded layout. This is a conservative collision check, not a promise that two callbacks will execute.
 
-For checks outside recording, use `findHotkeyConflicts(bindingOrSequence, options)`. Without source `events`, it compares binding identity and sequence prefixes; it does not guess equivalence between a logical character and a physical position.
+For checks outside recording, use `findHotkeyConflicts(hotkey, options)`. Without source `events`, it compares hotkey identity and sequence prefixes; it does not guess equivalence between a logical character and a physical position.
+
+## Building a shortcut settings UI
+
+For an app-wide settings screen, declare the hotkeys with [app hotkeys](./app-hotkeys) and save the recorder's result with `setCustomHotkey`. That keeps cheat sheets, conflicts, and persistence in one place.
+
+For a single component, ordinary state is enough:
+
+```ts
+import { Component, signal } from '@angular/core'
+import { formatForDisplay, injectHotkeyRecorder, injectHotkeys } from '@tanstack/angular-hotkeys'
+import type { Hotkey } from '@tanstack/angular-hotkeys'
+
+type Action = 'save' | 'undo' | 'search'
+
+@Component({
+  selector: 'app-shortcut-settings',
+  template: `
+    @for (entry of entries(); track entry[0]) {
+      <button (click)="edit(entry[0])">
+        {{ entry[0] }}:
+        {{ editing() === entry[0] && recorder.isRecording() ? 'Press keys…' : format(entry[1]) }}
+      </button>
+    }
+  `,
+})
+export class ShortcutSettingsComponent {
+  readonly format = formatForDisplay
+  readonly shortcuts = signal<Record<Action, Hotkey>>({
+    save: 'Mod+S',
+    undo: 'Mod+Z',
+    search: ['G', 'S'],
+  })
+  readonly editing = signal<Action | null>(null)
+  readonly entries = () => Object.entries(this.shortcuts()) as Array<[Action, Hotkey]>
+
+  readonly recorder = injectHotkeyRecorder({
+    maxSteps: 2,
+    onRecord: (hotkey) => {
+      const action = this.editing()
+      if (action) this.shortcuts.update((prev) => ({ ...prev, [action]: hotkey }))
+      this.editing.set(null)
+    },
+    onCancel: () => this.editing.set(null),
+  })
+
+  constructor() {
+    injectHotkeys(() =>
+      this.entries().map(([action, hotkey]) => ({
+        hotkey,
+        callback: () => this.run(action),
+      })),
+    )
+  }
+
+  edit(action: Action) {
+    this.editing.set(action)
+    this.recorder.startRecording()
+  }
+
+  run(action: Action) {
+    /* ... */
+  }
+}
+```
+
+## Under the hood
+
+`injectHotkeyRecorder` creates a `HotkeyRecorder` from `@tanstack/hotkeys`, exposes its state as signals, and destroys it with the injection context.

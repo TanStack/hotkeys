@@ -3,93 +3,106 @@ id: useHotkey
 title: useHotkey
 ---
 
+## Call Signature
+
 ```ts
-function useHotkey(
+function useHotkey<T>(
    hotkey, 
    callback, 
    options?): void;
 ```
 
-Defined in: [useHotkey.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L99)
+Defined in: [useHotkey.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L75)
 
-Vue composable for registering a keyboard hotkey.
+Vue composable for registering a hotkey: a chord such as `'Mod+S'`, a
+sequence such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
+The hotkey and options may be refs or getters.
 
-Uses the singleton HotkeyManager for efficient event handling.
-The callback receives both the keyboard event and a context object
-containing the hotkey string and parsed hotkey.
+Chords accept `requireReset`; sequences accept `timeout`. A one-step
+sequence registers as its chord. An app hotkey uses its effective hotkey
+from `HotkeysProvider` (including the user's custom hotkey) and its
+declared meta and options, and registers nothing while unbound.
 
-This composable automatically tracks reactive dependencies and updates
-the registration when options or the callback change.
+### Type Parameters
 
-## Parameters
+#### T
 
-### hotkey
+`T` *extends* `AppHotkey`\<`string`, `HotkeyChord` \| `HotkeySequence` \| `null`\>
 
-`MaybeRefOrGetter`\<`RegisterableHotkey`\>
+### Parameters
 
-The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object (supports `mod` for cross-platform)
+#### hotkey
 
-### callback
+`MaybeRefOrGetter`\<`T`\>
+
+#### callback
 
 `HotkeyCallback`
 
-The function to call when the hotkey is pressed
+#### options?
 
-### options?
+`MaybeRefOrGetter`\<[`UseAppHotkeyOptions`](../type-aliases/UseAppHotkeyOptions.md)\<`T`\>\>
 
-`MaybeRefOrGetter`\<[`UseHotkeyOptions`](../interfaces/UseHotkeyOptions.md)\> = `{}`
-
-Options for the hotkey behavior
-
-## Returns
+### Returns
 
 `void`
 
-## Examples
+### Example
 
-```vue
-<script setup>
-import { ref } from 'vue'
-import { useHotkey } from '@tanstack/vue-hotkeys'
-
-const count = ref(0)
-
-// Callback always has access to latest count value
-useHotkey('Mod+S', (event, { hotkey }) => {
-  console.log(`Save triggered, count is ${count.value}`)
-  handleSave()
-})
-</script>
+```ts
+useHotkey('Mod+S', () => save())
+useHotkey(['G', 'G'], () => scrollToTop(), { timeout: 500 })
+useHotkey('Escape', () => close(), { enabled: isOpen })
 ```
 
-```vue
-<script setup>
-import { ref } from 'vue'
-import { useHotkey } from '@tanstack/vue-hotkeys'
+## Call Signature
 
-const isOpen = ref(false)
-
-// enabled option is reactive
-useHotkey('Escape', () => {
-  isOpen.value = false
-}, { enabled: isOpen })
-</script>
+```ts
+function useHotkey<T>(
+   hotkey, 
+   callback, 
+   options?): void;
 ```
 
-```vue
-<script setup>
-import { ref } from 'vue'
-import { useHotkey } from '@tanstack/vue-hotkeys'
+Defined in: [useHotkey.ts:80](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L80)
 
-const editorRef = ref<HTMLDivElement | null>(null)
+Vue composable for registering a hotkey: a chord such as `'Mod+S'`, a
+sequence such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
+The hotkey and options may be refs or getters.
 
-// Scoped to a specific element
-useHotkey('Mod+S', () => {
-  save()
-}, { target: editorRef })
-</script>
+Chords accept `requireReset`; sequences accept `timeout`. A one-step
+sequence registers as its chord. An app hotkey uses its effective hotkey
+from `HotkeysProvider` (including the user's custom hotkey) and its
+declared meta and options, and registers nothing while unbound.
 
-<template>
-  <div ref="editorRef">...</div>
-</template>
+### Type Parameters
+
+#### T
+
+`T` *extends* `RegisterableHotkey`
+
+### Parameters
+
+#### hotkey
+
+`MaybeRefOrGetter`\<`T`\>
+
+#### callback
+
+`HotkeyCallback`
+
+#### options?
+
+`MaybeRefOrGetter`\<[`UseHotkeyOptionsFor`](../type-aliases/UseHotkeyOptionsFor.md)\<`T`\>\>
+
+### Returns
+
+`void`
+
+### Example
+
+```ts
+useHotkey('Mod+S', () => save())
+useHotkey(['G', 'G'], () => scrollToTop(), { timeout: 500 })
+useHotkey('Escape', () => close(), { enabled: isOpen })
 ```

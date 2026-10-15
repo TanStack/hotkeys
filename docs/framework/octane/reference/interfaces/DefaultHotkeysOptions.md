@@ -3,44 +3,29 @@ id: DefaultHotkeysOptions
 title: DefaultHotkeysOptions
 ---
 
-Defined in: [HotkeysProvider.ts:9](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L9)
+Defined in: [HotkeysProvider.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L18)
 
 ## Properties
 
 ### hotkey?
 
 ```ts
-optional hotkey?: HotkeyOptions;
+optional hotkey?: UseHotkeyCommonOptions;
 ```
 
-Defined in: [HotkeysProvider.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L10)
+Defined in: [HotkeysProvider.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L23)
+
+Defaults for every hotkey registered by `useHotkey` and `useHotkeys`.
+`requireReset` applies to chords and `timeout` applies to sequences.
 
 ***
 
 ### hotkeyRecorder?
 
 ```ts
-optional hotkeyRecorder?: Partial<HotkeyRecorderOptions>;
+optional hotkeyRecorder?: Partial<Omit<HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions, "maxSteps" | "validate" | "onRecord">>;
 ```
 
-Defined in: [HotkeysProvider.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L12)
+Defined in: [HotkeysProvider.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L25)
 
-***
-
-### hotkeySequence?
-
-```ts
-optional hotkeySequence?: SequenceOptions;
-```
-
-Defined in: [HotkeysProvider.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L11)
-
-***
-
-### hotkeySequenceRecorder?
-
-```ts
-optional hotkeySequenceRecorder?: Partial<HotkeySequenceRecorderOptions>;
-```
-
-Defined in: [HotkeysProvider.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L13)
+Defaults for every `useHotkeyRecorder`.

@@ -2,7 +2,6 @@ import { afterEach, expect, it, vi } from 'vitest'
 import {
   HotkeyManager,
   HotkeyRecorder,
-  SequenceManager,
   createHotkeyHandler,
   formatHotkey,
   hasNonModifierKey,
@@ -12,7 +11,7 @@ import {
   rawHotkeyToParsedHotkey,
 } from '../src'
 import type {
-  HotkeyRecorderOptions,
+  HotkeyChordRecorderOptions,
   ParsedHotkey,
   ParsedModifiers,
 } from '../src'
@@ -35,7 +34,7 @@ void neither
 afterEach(() => {
   window.dispatchEvent(new Event('blur'))
   HotkeyManager.resetInstance()
-  SequenceManager.resetInstance()
+  HotkeyManager.resetInstance()
 })
 
 it('constructs exclusive identities from strings, raw bindings, and events', () => {
@@ -61,7 +60,7 @@ it('constructs exclusive identities from strings, raw bindings, and events', () 
   }
 })
 it('passes only physical identity to recorder validation', () => {
-  const validate = vi.fn<NonNullable<HotkeyRecorderOptions['validate']>>(
+  const validate = vi.fn<NonNullable<HotkeyChordRecorderOptions['validate']>>(
     () => true,
   )
   const recorder = new HotkeyRecorder({
@@ -77,6 +76,8 @@ it('passes only physical identity to recorder validation', () => {
     expect(validate.mock.calls[0]?.[1]).toEqual({
       event: expect.any(KeyboardEvent),
       parsedHotkey: { ...modifiers, code: 'KeyS' },
+      events: [expect.any(KeyboardEvent)],
+      parsedSequence: [{ ...modifiers, code: 'KeyS' }],
     })
   } finally {
     recorder.destroy()
@@ -96,11 +97,11 @@ it('synthesizes code rather than inventing a character when triggering registrat
   const single = vi.fn(),
     sequence = vi.fn()
   const manager = HotkeyManager.getInstance(),
-    sequences = SequenceManager.getInstance()
+    sequences = HotkeyManager.getInstance()
   const handle = manager.register('Alt+[KeyS]', single)
   const seq = sequences.register(['[KeyG]', 'Alt+[KeyS]'], sequence)
   manager.triggerRegistration(handle.id)
-  sequences.triggerSequence(seq.id)
+  sequences.triggerRegistration(seq.id)
   for (const callback of [single, sequence]) {
     expect(callback.mock.calls[0]![0].code).toBe('KeyS')
     expect(callback.mock.calls[0]![0].key).toBe('')

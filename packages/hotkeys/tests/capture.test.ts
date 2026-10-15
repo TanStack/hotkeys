@@ -1,16 +1,17 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager } from '../src/hotkey-manager'
-import { SequenceManager } from '../src/sequence-manager'
 import { HotkeyRecorder } from '../src/hotkey-recorder'
 import { KeyStateTracker } from '../src/key-state-tracker'
-import type { HotkeyOptions } from '../src/hotkey-manager'
+import type {
+  HotkeyOptions,
+  HotkeySequenceRegistration,
+} from '../src/hotkey-manager'
 
 const recorders: Array<HotkeyRecorder> = []
 afterEach(() => {
   recorders.splice(0).forEach((recorder) => recorder.destroy())
   window.dispatchEvent(new Event('blur'))
   HotkeyManager.resetInstance()
-  SequenceManager.resetInstance()
   KeyStateTracker.resetInstance()
   document.body.replaceChildren()
   vi.restoreAllMocks()
@@ -47,20 +48,11 @@ function widget() {
   return { parent, child }
 }
 
-for (const kind of ['hotkey', 'sequence'] as const) {
-  describe(`${kind} capture`, () => {
-    const manager = () =>
-      kind === 'hotkey'
-        ? HotkeyManager.getInstance()
-        : SequenceManager.getInstance()
+{
+  describe('chord capture', () => {
+    const manager = () => HotkeyManager.getInstance()
     const register = (callback: () => void, options: HotkeyOptions = {}) =>
-      kind === 'hotkey'
-        ? HotkeyManager.getInstance().register('Control+S', callback, options)
-        : SequenceManager.getInstance().register(
-            ['Control+S'],
-            callback,
-            options,
-          )
+      HotkeyManager.getInstance().register('Control+S', callback, options)
 
     it.each(['keydown', 'keyup'] as const)(
       'intercepts a widget during %s while the default bubbles',
@@ -263,12 +255,15 @@ it('preserves requireReset through phase changes inside callbacks', () => {
 it('preserves sequence progress when the phase changes', () => {
   const { child } = widget()
   const callback = vi.fn()
-  const manager = SequenceManager.getInstance()
+  const manager = HotkeyManager.getInstance()
   const handle = manager.register(['Control+S', 'Control+G'], callback, {
     capture: true,
   })
   press(child)
-  expect(manager.registrations.state.get(handle.id)?.matchedStepCount).toBe(1)
+  expect(
+    (manager.registrations.state.get(handle.id) as HotkeySequenceRegistration)
+      .currentIndex,
+  ).toBe(1)
   handle.setOptions({ capture: false })
   press(child, 'keydown', 'g')
   expect(callback).toHaveBeenCalledOnce()
@@ -291,18 +286,27 @@ it.each(['hotkey', 'sequence'] as const)(
     const exact = vi.fn()
     const fallback = vi.fn()
     const options = { stopPropagation: false, platform: 'windows' as const }
+    const manager = HotkeyManager.getInstance()
     if (kind === 'hotkey') {
-      HotkeyManager.getInstance().register('Control+ф' as never, exact, {
+      manager.register('Control+ф' as never, exact, {
         ...options,
         capture: true,
       })
-      HotkeyManager.getInstance().register('Control+A', fallback, options)
+      manager.register('Control+A', fallback, options)
     } else {
-      SequenceManager.getInstance().register(['Control+ф' as never], exact, {
+      manager.register(['Control+X', 'Control+ф' as never], exact, {
         ...options,
         capture: true,
       })
-      SequenceManager.getInstance().register(['Control+A'], fallback, options)
+      manager.register(['Control+X', 'Control+A'], fallback, options)
+      document.body.dispatchEvent(
+        new KeyboardEvent('keydown', {
+          key: 'x',
+          code: 'KeyX',
+          ctrlKey: true,
+          bubbles: true,
+        }),
+      )
     }
     document.body.dispatchEvent(
       new KeyboardEvent('keydown', {
@@ -322,7 +326,7 @@ it('only consumes the final step of a capture sequence', () => {
   const widgetHandler = vi.fn()
   child.addEventListener('keydown', widgetHandler)
   const callback = vi.fn()
-  SequenceManager.getInstance().register(['Control+S', 'Control+G'], callback, {
+  HotkeyManager.getInstance().register(['Control+S', 'Control+G'], callback, {
     capture: true,
   })
   expect(press(child).defaultPrevented).toBe(false)
@@ -330,6 +334,48 @@ it('only consumes the final step of a capture sequence', () => {
   expect(press(child, 'keydown', 'g').defaultPrevented).toBe(true)
   expect(widgetHandler).toHaveBeenCalledOnce()
   expect(callback).toHaveBeenCalledOnce()
+})
+
+it.each(['keydown', 'keyup'] as const)(
+  'completes a capture sequence during %s before a widget consumes it',
+  (eventType) => {
+    const { child } = widget()
+    child.addEventListener(eventType, (event) => event.stopPropagation())
+    const manager = HotkeyManager.getInstance()
+    const bubble = vi.fn()
+    const capture = vi.fn()
+    manager.register(['Control+S', 'Control+G'], bubble, { eventType })
+    manager.register(['Control+S', 'Control+G'], capture, {
+      capture: true,
+      eventType,
+      conflictBehavior: 'allow',
+    })
+    press(child, eventType)
+    press(child, eventType, 'g')
+    expect(capture).toHaveBeenCalledOnce()
+    expect(bubble).not.toHaveBeenCalled()
+  },
+)
+
+it('resets capture sequence progress while recording', () => {
+  const { child } = widget()
+  const manager = HotkeyManager.getInstance()
+  const callback = vi.fn()
+  const handle = manager.register(['Control+S', 'Control+G'], callback, {
+    capture: true,
+  })
+  press(child)
+  const recorder = new HotkeyRecorder({ onRecord: vi.fn() })
+  recorders.push(recorder)
+  recorder.start()
+  press(child, 'keydown', 'x')
+  expect(
+    (manager.registrations.state.get(handle.id) as HotkeySequenceRegistration)
+      .currentIndex,
+  ).toBe(0)
+  recorder.stop()
+  press(child, 'keydown', 'g')
+  expect(callback).not.toHaveBeenCalled()
 })
 
 it('allows dispatching the same event object again', () => {

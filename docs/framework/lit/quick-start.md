@@ -154,21 +154,21 @@ class MyModal extends LitElement {
 
 ### Multi-key sequences
 
-Register Vim-style key sequences with the `@hotkeySequence` decorator or `HotkeySequenceController`:
+Pass an array of chords to the `@hotkey` decorator or `HotkeyController` to register a Vim-style sequence:
 
 ```ts
 import { LitElement } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { hotkeySequence } from '@tanstack/lit-hotkeys'
+import { hotkey } from '@tanstack/lit-hotkeys'
 
 @customElement('vim-editor')
 class VimEditor extends LitElement {
-  @hotkeySequence(['G', 'G'])
+  @hotkey(['G', 'G'])
   scrollToTop() {
     window.scrollTo({ top: 0 })
   }
 
-  @hotkeySequence(['G', 'Shift+G'])
+  @hotkey(['G', 'Shift+G'])
   scrollToBottom() {
     window.scrollTo({ top: document.body.scrollHeight })
   }
@@ -272,7 +272,7 @@ class SaveButton extends LitElement {
 
 The Lit adapter gives you two complementary approaches:
 
-| | Decorators (`@hotkey`, `@hotkeySequence`) | Controllers (`HotkeyController`, etc.) |
+| | Decorator (`@hotkey`) | Controllers (`HotkeyController`, etc.) |
 |---|---|---|
 | **Best for** | Declarative method binding | Reactive state, dynamic hotkeys |
 | **Registration** | Automatic on connect/disconnect | Automatic via `hostConnected`/`hostDisconnected` |
@@ -281,11 +281,14 @@ The Lit adapter gives you two complementary approaches:
 
 Use decorators when you simply want a method to fire on a key combo. Use controllers when you need reactive state (held keys, recording) or dynamic hotkey registration.
 
+## Declaring app hotkeys
+
+To list every hotkey in a cheat sheet, including hotkeys whose components haven't mounted, and to let users customize them, declare them once with `defineAppHotkeys` and provide them with `provideAppHotkeys`. See the [App Hotkeys Guide](./guides/app-hotkeys).
+
 ## Next steps
 
 - [Hotkeys Guide](./guides/hotkeys) - Deep dive into `@hotkey` decorator and `HotkeyController` options
 - [Sequences Guide](./guides/sequences) - Multi-key sequence handling
 - [Hotkey Recording Guide](./guides/hotkey-recording) - Building shortcut customization UIs
-- [Sequence Recording Guide](./guides/sequence-recording) - Capture multi-step shortcuts
 - [Key State Tracking Guide](./guides/key-state-tracking) - Real-time key state monitoring
 - [Formatting & Display Guide](./guides/formatting-display) - Platform-aware hotkey formatting

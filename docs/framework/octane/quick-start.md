@@ -70,7 +70,7 @@ Use Octane component state for the enabled flag.
 
 
 ```tsx
-useHotkeySequence(['G', 'G'], () => window.scrollTo({ top: 0 }))
+useHotkey(['G', 'G'], () => window.scrollTo({ top: 0 }))
 ```
 
 Release G between presses. Automatic key repeats do not advance sequences.
@@ -110,10 +110,8 @@ import { HotkeysProvider } from '@tanstack/octane-hotkeys'
 export function Root() @{
 	<div>
 		<HotkeysProvider defaultOptions={{
-			hotkey: { preventDefault: true },
-			hotkeySequence: { timeout: 1500 },
-			hotkeyRecorder: { onCancel: () => console.log('Cancelled') },
-			hotkeySequenceRecorder: { idleTimeoutMs: 2000 },
+			hotkey: { preventDefault: true, timeout: 1500 },
+			hotkeyRecorder: { onCancel: () => console.log('Cancelled'), idleTimeoutMs: 2000 },
 		}}>
 			<Editor />
 		</HotkeysProvider>
@@ -121,14 +119,18 @@ export function Root() @{
 }
 ```
 
-`useDefaultHotkeysOptions()` reads the nearest provider's defaults and returns an empty object outside a provider. `useHotkeysContext()` returns `{ defaultOptions }`, or `null` outside a provider. Nested providers replace the outer defaults; call-specific options and per-definition options still take precedence.
+`useDefaultHotkeysOptions()` reads the nearest provider's defaults and returns an empty object outside a provider. `useHotkeysContext()` returns `{ defaultOptions, appHotkeysStore }`, or `null` outside a provider. Nested providers replace the outer defaults; call-specific options and per-definition options still take precedence.
+
+## Declaring app hotkeys
+
+To list every hotkey in a cheat sheet, including hotkeys whose components haven't mounted, and to let users customize them, declare them once with `defineAppHotkeys` and provide them with `HotkeysProvider`. See the [App Hotkeys Guide](./guides/app-hotkeys).
 
 ## Examples and next steps
 
 - [Hotkeys](./guides/hotkeys)
 - [Sequences](./guides/sequences)
+- [App hotkeys](./guides/app-hotkeys)
 - [Hotkey recording](./guides/hotkey-recording)
-- [Sequence recording](./guides/sequence-recording)
 - [Key state tracking](./guides/key-state-tracking)
 - [Formatting and display](./guides/formatting-display)
 - [Kitchen sink](./examples/kitchen-sink)

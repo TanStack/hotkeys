@@ -1,18 +1,20 @@
 import { createHotkeys } from './createHotkeys'
 import { read } from './scope'
 import type { HotkeysScope } from './scope'
-import type { MaybeGetter } from './types'
+import type { AlpineHotkeyCommonOptions, MaybeGetter } from './types'
 import type {
+  AppHotkey,
   HotkeyCallback,
-  HotkeyOptions,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
 
 export function createHotkey(
   scope: HotkeysScope,
-  hotkey: MaybeGetter<RegisterableHotkey>,
+  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey>,
   callback: HotkeyCallback,
-  options: MaybeGetter<HotkeyOptions> = {},
+  options: MaybeGetter<AlpineHotkeyCommonOptions> = {},
 ) {
-  createHotkeys(scope, () => [{ hotkey: read(hotkey), callback }], options)
+  createHotkeys(scope, () => [
+    { hotkey: read(hotkey), callback, options: read(options) } as never,
+  ])
 }

@@ -1,50 +1,125 @@
 import { getHotkeyManager } from './hotkey-manager'
 import {
-  DEFAULT_SEQUENCE_TIMEOUT,
-  getSequenceManager,
-} from './sequence-manager'
-import { normalizeRegisterableHotkey, parseHotkey } from './parse'
+  getAppHotkeyRegistrationOptions,
+  isAppHotkey,
+  resolveAppHotkey,
+} from './app-hotkeys'
+import {
+  isHotkeySequence,
+  normalizeRegisterableHotkey,
+  parseHotkey,
+} from './parse'
 import { defaultHotkeyOptions, getDefaultIgnoreInputs } from './_registration'
 import { detectPlatform } from './platform'
-import type { HotkeyCallback, RegisterableHotkey } from './hotkey.types'
-import type { HotkeyOptions, HotkeyRegistrationHandle } from './hotkey-manager'
-import type { HotkeySequence, SequenceOptions } from './sequence-manager'
+import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'
+import type {
+  HotkeyCallback,
+  HotkeyChord,
+  HotkeySequence,
+  RegisterableHotkey,
+  RegisterableHotkeyChord,
+} from './hotkey.types'
+import type {
+  HotkeyChordOptions,
+  HotkeyOptions,
+  HotkeyRegistrationHandle,
+  HotkeySequenceOptions,
+  Target,
+} from './hotkey-manager'
 
-/** A hotkey and its callback, with optional per-binding options. */
-export interface HotkeyDefinition {
-  hotkey: RegisterableHotkey
-  callback: HotkeyCallback
-  options?: HotkeyOptions
-}
+/**
+ * A hotkey and its callback, with optional per-binding options. Chords accept
+ * `requireReset`; sequences accept `timeout`.
+ */
+export type HotkeyDefinition =
+  | {
+      hotkey: RegisterableHotkeyChord
+      callback: HotkeyCallback
+      options?: HotkeyChordOptions
+    }
+  | {
+      hotkey: HotkeySequence
+      callback: HotkeyCallback
+      options?: HotkeySequenceOptions
+    }
 
-/** A sequence and its callback, with optional per-binding options. */
-export interface HotkeySequenceDefinition {
-  sequence: HotkeySequence
-  callback: HotkeyCallback
-  options?: SequenceOptions
-}
+/** Options shared by every definition. Each option applies only to the kinds that support it. */
+export type HotkeyBindingsCommonOptions = HotkeyChordOptions &
+  HotkeySequenceOptions
 
-type PreparedBinding<TOptions extends HotkeyOptions> = {
-  key: string
-  callback: HotkeyCallback
-  options: TOptions
-  register: () => HotkeyRegistrationHandle
-}
+type ResolvedOptions = HotkeyChordOptions & HotkeySequenceOptions
 
-function createBindings<TOptions extends HotkeyOptions>() {
+/** Reconciles adapter registrations while retaining handles for option updates. */
+export function createHotkeyBindings() {
   const registrations = new Map<
     string,
     {
       handle: HotkeyRegistrationHandle
-      target: HotkeyOptions['target']
-      platform: HotkeyOptions['platform']
-      options: TOptions
+      target: ResolvedOptions['target']
+      platform: ResolvedOptions['platform']
+      options: ResolvedOptions
     }
   >()
 
   return {
-    update(bindings: Array<PreparedBinding<TOptions>>) {
-      const keys = new Set(bindings.map((binding) => binding.key))
+    /**
+     * Registers new definitions, updates existing ones in place, and removes
+     * stale ones. Definitions with an empty sequence or a null target are skipped.
+     */
+    update(
+      definitions: ReadonlyArray<HotkeyDefinition>,
+      commonOptions: HotkeyBindingsCommonOptions = {},
+    ) {
+      const prepared: Array<{
+        key: string
+        callback: HotkeyCallback
+        options: ResolvedOptions
+        register: () => HotkeyRegistrationHandle
+      }> = []
+      definitions.forEach((definition, index) => {
+        const merged: ResolvedOptions = {
+          ...commonOptions,
+          ...definition.options,
+        }
+        const options: ResolvedOptions = {
+          ...defaultHotkeyOptions,
+          ...merged,
+          ignoreInputs: merged.ignoreInputs,
+          target:
+            'target' in merged
+              ? (merged.target ?? null)
+              : typeof document === 'undefined'
+                ? null
+                : document,
+          platform: merged.platform ?? detectPlatform(),
+        }
+        if (
+          !options.target ||
+          (isHotkeySequence(definition.hotkey) &&
+            definition.hotkey.length === 0)
+        ) {
+          return
+        }
+        const hotkey = normalizeRegisterableHotkey(
+          definition.hotkey,
+          options.platform,
+        )
+        const first = isHotkeySequence(hotkey) ? hotkey[0]! : hotkey
+        options.ignoreInputs ??= getDefaultIgnoreInputs(
+          parseHotkey(first, options.platform),
+        )
+        if (isHotkeySequence(hotkey)) delete options.requireReset
+        else delete options.timeout
+        prepared.push({
+          key: `${index}:${isHotkeySequence(hotkey) ? hotkey.join(' ') : hotkey}`,
+          callback: definition.callback,
+          options,
+          register: () =>
+            getHotkeyManager().register(hotkey, definition.callback, options),
+        })
+      })
+
+      const keys = new Set(prepared.map((binding) => binding.key))
       // Remove stale entries before registering replacements to avoid conflicts.
       for (const [key, registration] of registrations) {
         if (!keys.has(key)) {
@@ -52,7 +127,7 @@ function createBindings<TOptions extends HotkeyOptions>() {
           registrations.delete(key)
         }
       }
-      for (const binding of bindings) {
+      for (const binding of prepared) {
         const previous = registrations.get(binding.key)
         const { target, platform } = binding.options
         if (
@@ -85,93 +160,176 @@ function createBindings<TOptions extends HotkeyOptions>() {
   }
 }
 
-function resolveOptions<TOptions extends HotkeyOptions>(
-  options: TOptions,
-): TOptions {
-  return {
-    ...defaultHotkeyOptions,
-    requireReset: false,
-    ...options,
-    ignoreInputs: options.ignoreInputs,
-    target:
-      'target' in options
-        ? (options.target ?? null)
-        : typeof document === 'undefined'
-          ? null
-          : document,
-    platform: options.platform ?? detectPlatform(),
-  }
+/** Options with a framework-specific target, such as a ref. */
+export type WithTarget<TOptions, TTarget> = Omit<
+  TOptions,
+  'target' | 'appHotkeyId'
+> & {
+  /** The element to listen on. Defaults to document. */
+  target?: TTarget
 }
 
-/** Reconciles adapter registrations while retaining handles for option updates. */
-export function createHotkeyBindings() {
-  const bindings = createBindings<HotkeyOptions>()
-  return {
-    update(
-      definitions: Array<HotkeyDefinition>,
-      commonOptions: HotkeyOptions = {},
-    ) {
-      const prepared: Array<PreparedBinding<HotkeyOptions>> = []
-      definitions.forEach((definition, index) => {
-        const options = resolveOptions({
-          ...commonOptions,
-          ...definition.options,
-        })
-        if (!options.target) return
-        const hotkey = normalizeRegisterableHotkey(
-          definition.hotkey,
-          options.platform,
-        )
-        options.ignoreInputs ??= getDefaultIgnoreInputs(
-          parseHotkey(hotkey, options.platform),
-        )
-        prepared.push({
-          key: `${index}:${hotkey}`,
-          callback: definition.callback,
-          options,
-          register: () =>
-            getHotkeyManager().register(hotkey, definition.callback, options),
-        })
-      })
-      bindings.update(prepared)
-    },
-    destroy: bindings.destroy,
-  }
+/** Options shared by chords and sequences, with a framework target. */
+export type AdapterHotkeyOptions<TTarget> = WithTarget<HotkeyOptions, TTarget>
+
+/** Options for a chord such as `'Mod+S'`, with a framework target. */
+export type AdapterChordOptions<TTarget> = WithTarget<
+  HotkeyChordOptions,
+  TTarget
+>
+
+/** Options for a sequence such as `['G', 'G']`, with a framework target. */
+export type AdapterSequenceOptions<TTarget> = WithTarget<
+  HotkeySequenceOptions,
+  TTarget
+>
+
+/** Options applied to every hotkey, such as defaults. Each applies to the kinds that support it. */
+export type AdapterCommonOptions<TTarget> = AdapterChordOptions<TTarget> &
+  AdapterSequenceOptions<TTarget>
+
+/** Chord options for chords, sequence options for sequences. */
+export type AdapterOptionsFor<T extends RegisterableHotkey, TTarget> = [
+  T,
+] extends [never]
+  ? AdapterCommonOptions<TTarget>
+  : T extends readonly [unknown]
+    ? AdapterChordOptions<TTarget>
+    : T extends ReadonlyArray<unknown>
+      ? AdapterSequenceOptions<TTarget>
+      : AdapterChordOptions<TTarget>
+
+/**
+ * Call-site options for an app hotkey. `meta` comes from the declaration.
+ * Kind-specific options follow the declared default: `requireReset` for a
+ * chord, `timeout` for a sequence, both for an app hotkey without a default.
+ * If the user rebinds it to the other kind, options for the old kind no
+ * longer apply.
+ */
+export type AdapterAppHotkeyOptions<T extends AppHotkey, TTarget> = Omit<
+  [T['defaultHotkey']] extends [HotkeySequence]
+    ? AdapterSequenceOptions<TTarget>
+    : [T['defaultHotkey']] extends [HotkeyChord]
+      ? AdapterChordOptions<TTarget>
+      : AdapterCommonOptions<TTarget>,
+  'meta'
+>
+
+/**
+ * One hotkey and its callback for adapter APIs such as `useHotkeys`. Chords
+ * accept `requireReset`; sequences accept `timeout`; hotkeys of unknown kind
+ * accept only shared options.
+ */
+export type AdapterHotkeyDefinition<TTarget> =
+  | {
+      /** A chord string such as `'Mod+S'`, or a RawHotkey object */
+      hotkey: RegisterableHotkeyChord
+      /** The function to call when the hotkey is pressed */
+      callback: HotkeyCallback
+      /** Per-hotkey options (merged on top of common options) */
+      options?: AdapterChordOptions<TTarget>
+    }
+  | {
+      /** A sequence such as `['G', 'G']` */
+      hotkey: HotkeySequence
+      callback: HotkeyCallback
+      options?: AdapterSequenceOptions<TTarget>
+    }
+  | {
+      /**
+       * An app hotkey from `defineAppHotkeys`. Kind-specific options apply
+       * only while its effective hotkey has that kind.
+       */
+      hotkey: AppHotkey
+      callback: HotkeyCallback
+      options?: Omit<AdapterCommonOptions<TTarget>, 'meta'>
+    }
+  | {
+      /**
+       * A hotkey whose kind is not known statically, such as user data typed
+       * `Hotkey`. Accepts only shared options.
+       */
+      hotkey: RegisterableHotkey
+      callback: HotkeyCallback
+      options?: AdapterHotkeyOptions<TTarget>
+    }
+
+/** Context for `prepareHotkeyDefinitions`. */
+export interface PrepareHotkeyDefinitionsOptions<TTarget> {
+  /** The provider's app hotkeys store, so app hotkeys use custom hotkeys. */
+  appHotkeysStore?: AppHotkeysStore | null
+  /** Provider defaults, applied first. */
+  defaults?: AdapterCommonOptions<TTarget>
+  /** Options for every definition, applied after app hotkey declarations. */
+  commonOptions?: AdapterCommonOptions<TTarget>
+  /**
+   * Resolves a framework target, such as a ref. Return `undefined` for the
+   * document or `null` to skip registration until the target exists.
+   * Without it, targets pass through and `null` means document.
+   */
+  resolveTarget?: (target: TTarget) => Target | null | undefined
 }
 
-/** Reconciles sequence bindings; empty sequences and explicit null targets are skipped. */
-export function createHotkeySequenceBindings() {
-  const bindings = createBindings<SequenceOptions>()
-  return {
-    update(
-      definitions: Array<HotkeySequenceDefinition>,
-      commonOptions: SequenceOptions = {},
-    ) {
-      const prepared: Array<PreparedBinding<SequenceOptions>> = []
-      definitions.forEach((definition, index) => {
-        const options = resolveOptions({
-          timeout: DEFAULT_SEQUENCE_TIMEOUT,
-          ...commonOptions,
-          ...definition.options,
-        })
-        if (!options.target || definition.sequence.length === 0) return
-        options.ignoreInputs ??= getDefaultIgnoreInputs(
-          parseHotkey(definition.sequence[0]!, options.platform),
-        )
-        prepared.push({
-          key: `${index}:${JSON.stringify(definition.sequence)}`,
-          callback: definition.callback,
-          options,
-          register: () =>
-            getSequenceManager().register(
-              definition.sequence,
-              definition.callback,
-              options,
-            ),
-        })
-      })
-      bindings.update(prepared)
-    },
-    destroy: bindings.destroy,
+/**
+ * Converts adapter definitions into `createHotkeyBindings` definitions.
+ * Options merge in this order: defaults, app hotkey declaration, common
+ * options, per-definition options. App hotkeys resolve their effective hotkey
+ * from the store, and an unbound app hotkey keeps its position but registers
+ * nothing.
+ */
+export function prepareHotkeyDefinitions<TTarget>(
+  definitions: ReadonlyArray<AdapterHotkeyDefinition<TTarget>>,
+  options: PrepareHotkeyDefinitionsOptions<TTarget> = {},
+): Array<HotkeyDefinition> {
+  return definitions.map((definition) => {
+    let hotkey = definition.hotkey
+    let declared = {}
+    if (isAppHotkey(hotkey)) {
+      const appHotkey = resolveAppHotkey(hotkey, options.appHotkeysStore)
+      declared = getAppHotkeyRegistrationOptions(appHotkey)
+      hotkey = appHotkey.hotkey ?? []
+    }
+    const { target, ...merged } = {
+      ...options.defaults,
+      ...declared,
+      ...options.commonOptions,
+      ...definition.options,
+    } as AdapterCommonOptions<TTarget>
+    const resolved =
+      target === undefined
+        ? undefined
+        : options.resolveTarget
+          ? options.resolveTarget(target)
+          : ((target as Target | null) ?? undefined)
+    return {
+      hotkey,
+      callback: definition.callback,
+      options:
+        resolved === undefined ? merged : { ...merged, target: resolved },
+    } as HotkeyDefinition
+  })
+}
+
+/**
+ * Calls `onChange` when the store published with `publishAppHotkeysStore` or
+ * `provideAppHotkeys` changes, or when its app hotkeys or custom hotkeys
+ * change. For adapters that resolve app hotkeys without a provider. Returns an
+ * unsubscribe function.
+ */
+export function subscribePublishedAppHotkeys(onChange: () => void): () => void {
+  const slot = getHotkeyManager().appHotkeys
+  let inner: { unsubscribe: () => void } | undefined
+  const follow = () => {
+    inner?.unsubscribe()
+    inner = slot.state?.store.subscribe(onChange)
+  }
+  follow()
+  const outer = slot.subscribe(() => {
+    follow()
+    onChange()
+  })
+  return () => {
+    outer.unsubscribe()
+    inner?.unsubscribe()
   }
 }

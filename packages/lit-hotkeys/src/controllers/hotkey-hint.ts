@@ -1,6 +1,16 @@
-import { getKeyStateTracker, matchesHeldModifiers } from '@tanstack/hotkeys'
+import {
+  getKeyStateTracker,
+  isAppHotkey,
+  matchesHeldModifiers,
+  resolveAppHotkey,
+} from '@tanstack/hotkeys'
+import { getAppHotkeysStore, subscribeAppHotkeys } from './_app-hotkeys'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
-import type { HeldModifierOptions, RegisterableHotkey } from '@tanstack/hotkeys'
+import type {
+  AppHotkey,
+  HeldModifierOptions,
+  RegisterableHotkey,
+} from '@tanstack/hotkeys'
 
 /** Modifier hint controller. Getter arguments can read reactive host properties. */
 export class HotkeyHintController implements ReactiveController {
@@ -10,7 +20,8 @@ export class HotkeyHintController implements ReactiveController {
   /** Attaches to the host; getter arguments can read changing reactive properties. */
   constructor(
     private host: ReactiveControllerHost,
-    private hotkey: RegisterableHotkey | (() => RegisterableHotkey),
+    private hotkey:
+      RegisterableHotkey | AppHotkey | (() => RegisterableHotkey | AppHotkey),
     private options: HeldModifierOptions | (() => HeldModifierOptions) = {},
   ) {
     host.addController(this)
@@ -24,10 +35,15 @@ export class HotkeyHintController implements ReactiveController {
   /** Subscribes on connection and requests renders only when hint visibility changes. */
   hostConnected(): void {
     this.update()
-    const subscription = getKeyStateTracker().store.subscribe(() => {
+    const refresh = () => {
       if (this.update()) this.host.requestUpdate()
-    })
-    this.unsubscribe = () => subscription.unsubscribe()
+    }
+    const subscription = getKeyStateTracker().store.subscribe(refresh)
+    const unsubscribeAppHotkeys = subscribeAppHotkeys(refresh)
+    this.unsubscribe = () => {
+      subscription.unsubscribe()
+      unsubscribeAppHotkeys()
+    }
   }
 
   /** Re-evaluates getter arguments when host properties trigger an update. */
@@ -44,11 +60,19 @@ export class HotkeyHintController implements ReactiveController {
 
   /** Recomputes visibility and reports whether the host needs another render. */
   private update(): boolean {
-    const next = matchesHeldModifiers(
-      typeof this.hotkey === 'function' ? this.hotkey() : this.hotkey,
-      getKeyStateTracker().store.state.heldKeys,
-      typeof this.options === 'function' ? this.options() : this.options,
-    )
+    const value =
+      typeof this.hotkey === 'function' ? this.hotkey() : this.hotkey
+    // App hotkeys use their effective hotkey; a sequence uses its first step.
+    const hotkey = isAppHotkey(value)
+      ? resolveAppHotkey(value, getAppHotkeysStore()).hotkey
+      : value
+    const next =
+      hotkey !== null &&
+      matchesHeldModifiers(
+        hotkey,
+        getKeyStateTracker().store.state.heldKeys,
+        typeof this.options === 'function' ? this.options() : this.options,
+      )
     const changed = next !== this.visible
     this.visible = next
     return changed

@@ -91,11 +91,12 @@ export class ModalComponent {
 ### Multi-key sequences
 
 ```ts
-import { injectHotkeySequence } from '@tanstack/angular-hotkeys'
+import { injectHotkey } from '@tanstack/angular-hotkeys'
 
 constructor() {
-  injectHotkeySequence(['G', 'G'], () => scrollToTop())
-  injectHotkeySequence(['G', 'Shift+G'], () => scrollToBottom())
+  // An array of chords registers a sequence
+  injectHotkey(['G', 'G'], () => scrollToTop())
+  injectHotkey(['G', 'Shift+G'], () => scrollToBottom())
 }
 ```
 
@@ -154,20 +155,25 @@ import { provideHotkeys } from '@tanstack/angular-hotkeys'
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHotkeys({
-      hotkey: { preventDefault: true },
-      hotkeySequence: { timeout: 1500 },
-      hotkeyRecorder: { onCancel: () => console.log('Recording cancelled') },
+      defaultOptions: {
+        hotkey: { preventDefault: true, timeout: 1500 },
+        hotkeyRecorder: { onCancel: () => console.log('Recording cancelled') },
+      },
     }),
   ],
 }
 ```
+
+## Declaring app hotkeys
+
+To list every hotkey in a cheat sheet, including hotkeys whose components haven't mounted, and to let users customize them, declare them once with `defineAppHotkeys` and provide them with `provideHotkeys`. See the [App Hotkeys Guide](./guides/app-hotkeys).
 
 ## Next steps
 
 - [Hotkeys Guide](./guides/hotkeys)
 - [Sequences Guide](./guides/sequences)
 - [Hotkey Recording Guide](./guides/hotkey-recording)
-- [Sequence Recording Guide](./guides/sequence-recording)
+- [App Hotkeys Guide](./guides/app-hotkeys)
 - [Key State Tracking Guide](./guides/key-state-tracking)
 - [Formatting & Display Guide](./guides/formatting-display)
 

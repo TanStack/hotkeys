@@ -1,5 +1,4 @@
 import { injectHotkeyRecorder } from '../src/injectHotkeyRecorder'
-import { injectHotkeySequenceRecorder } from '../src/injectHotkeySequenceRecorder'
 import { provideZonelessChangeDetection, signal } from '@angular/core'
 import { TestBed } from '@angular/core/testing'
 import { HotkeyManager } from '@tanstack/hotkeys'
@@ -56,7 +55,12 @@ it.each(['single', 'sequence'] as const)(
       const recorder = TestBed.runInInjectionContext(() =>
         kind === 'single'
           ? injectHotkeyRecorder(options)
-          : injectHotkeySequenceRecorder(options),
+          : injectHotkeyRecorder(
+              Object.defineProperties(
+                { maxSteps: Infinity },
+                Object.getOwnPropertyDescriptors(options),
+              ) as typeof options & { maxSteps: number },
+            ),
       )
       TestBed.flushEffects()
       recorder.startRecording()

@@ -1,6 +1,6 @@
 import { expectTypeOf, it } from 'vitest'
 import type {
-  Hotkey,
+  HotkeyChord,
   PhysicalKey,
   PhysicalKeyCode,
   RegisterableHotkey,
@@ -22,7 +22,7 @@ it('accepts finite physical code families inside brackets', () => {
   >().toExtend<PhysicalKey>()
   expectTypeOf<
     'Mod+[KeyS]' | 'Control+Alt+Shift+Meta+[Enter]'
-  >().toExtend<Hotkey>()
+  >().toExtend<HotkeyChord>()
   expectTypeOf<'Mod+[Digit1]'>().toExtend<RegisterableHotkey>()
 })
 
@@ -39,7 +39,7 @@ it('rejects misspelled, unbracketed, and unidentified physical tokens', () => {
     | '[]'
     | 'KeyS'
   expectTypeOf<Extract<InvalidToken, PhysicalKey>>().toBeNever()
-  expectTypeOf<Extract<`Mod+${InvalidToken}`, Hotkey>>().toBeNever()
+  expectTypeOf<Extract<`Mod+${InvalidToken}`, HotkeyChord>>().toBeNever()
   expectTypeOf<Extract<`Mod+${InvalidToken}`, RegisterableHotkey>>().toBeNever()
   expectTypeOf<string>().not.toExtend<PhysicalKeyCode>()
   expectTypeOf<`[${string}]`>().not.toExtend<PhysicalKey>()

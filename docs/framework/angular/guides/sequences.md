@@ -3,171 +3,156 @@ title: Sequences Guide
 id: sequences
 ---
 
-TanStack Hotkeys supports multi-key sequences in Angular, where keys are pressed one after another rather than simultaneously.
+> [!IMPORTANT]
+> `injectHotkeySequence`, `injectHotkeySequences`, and `injectHotkeySequenceRecorder` were removed in `@tanstack/angular-hotkeys` v0.14.0. Pass a sequence to `injectHotkey` or `injectHotkeys` instead, and record one with `injectHotkeyRecorder` and `maxSteps`.
 
-Sequence steps use the same string syntax as single hotkeys. For example, `['[KeyG]', '[KeyG]']` follows a physical position, while `['G', 'G']` follows the logical letter. A sequence can mix forms, such as `['Mod+[KeyK]', 'C']`. Display steps with `sequence.map((step) => formatForDisplay(step)).join(' → ')`.
+A sequence is a hotkey made of chords pressed one after another rather than together. Think Vim-style navigation, cheat codes, or multi-step commands. Sequences are ordinary hotkeys: register them with `injectHotkey` and `injectHotkeys`, list them with `injectHotkeyRegistrations`, record them with `injectHotkeyRecorder`, and format them with `formatForDisplay`.
 
-## Capture phase
-
-Sequences accept `capture: true` with the same [event propagation behavior as hotkeys](./hotkeys.md#capture-phase). The default is `false`. Each step is matched in the selected phase, but `preventDefault` and `stopPropagation` apply only when the full sequence completes. Earlier steps still reach descendant widgets. Changing `capture` preserves partial progress and the existing timeout.
-
-## Reactive options
-
-Sequence options support the same [property getter patterns](./hotkeys.md#property-getters) as hotkey options, including `enabled`, `timeout`, and `target`. Updates preserve the registration when its sequence, target, and platform stay the same.
+Sequence steps use the same syntax as chords. For example, `['[KeyG]', '[KeyG]']` follows a physical position, while `['G', 'G']` follows the logical letter. A sequence can mix forms, such as `['Mod+[KeyK]', 'C']`.
 
 ## Basic usage
 
+Pass an array of chords wherever you pass a hotkey:
+
 ```ts
 import { Component } from '@angular/core'
-import { injectHotkeySequence } from '@tanstack/angular-hotkeys'
+import { injectHotkey } from '@tanstack/angular-hotkeys'
 
-@Component({ standalone: true, template: `` })
+@Component({ selector: 'app-root', template: `...` })
 export class AppComponent {
   constructor() {
-    injectHotkeySequence(['G', 'G'], () => {
+    // Vim-style: press g then g to scroll to top
+    injectHotkey(['G', 'G'], () => {
       window.scrollTo({ top: 0, behavior: 'smooth' })
     })
   }
 }
 ```
 
+The user must press the steps in order, each within the timeout window. A one-step array such as `['Escape']` is the chord `'Escape'`.
+
 ## Many sequences at once
 
-Use `injectHotkeySequences` when you want several sequences (or a list built from data) in one injection context, instead of many `injectHotkeySequence` calls.
+`injectHotkeys` registers chords and sequences together, including dynamic lists:
 
 ```ts
-import { Component } from '@angular/core'
-import { injectHotkeySequences } from '@tanstack/angular-hotkeys'
+import { injectHotkeys } from '@tanstack/angular-hotkeys'
 
-@Component({ standalone: true, template: `` })
-export class AppComponent {
-  constructor() {
-    injectHotkeySequences([
-      {
-        sequence: ['G', 'G'],
-        callback: () =>
-          window.scrollTo({ top: 0, behavior: 'smooth' }),
-      },
-      {
-        sequence: ['D', 'D'],
-        callback: () => console.log('delete line'),
-        options: { timeout: 500 },
-      },
-    ])
-  }
-}
+injectHotkeys([
+  { hotkey: ['G', 'G'], callback: () => this.scrollToTop() },
+  { hotkey: ['D', 'D'], callback: () => this.deleteLine(), options: { timeout: 500 } },
+  { hotkey: 'Mod+S', callback: () => this.save() },
+])
 ```
-
-Options merge like `injectHotkeys`: `provideHotkeys` defaults, then `commonOptions`, then each definition's `options`.
-
-## Matching steps
-
-Both `SequenceManager` and `createSequenceMatcher` ignore modifier-only events, IME composition, and automatic keydown repeats. These events neither advance the sequence nor refresh its timeout: holding G does not complete a two-press G sequence. The manager prefers exact matches over weaker logical-key fallbacks while preserving equally strong matches.
 
 ## Sequence options
 
+Sequences accept the same options as chords, except `requireReset`, plus `timeout`.
+
+### `timeout`
+
+The maximum time (in milliseconds) allowed between consecutive steps. If the user takes longer than this between any two steps, the sequence resets. Defaults to `1000` (1 second).
+
 ```ts
-injectHotkeySequence(['G', 'G'], callback, {
-  timeout: 1000,
-  enabled: true,
-})
+// Fast sequence - user must type quickly
+injectHotkey(['D', 'D'], () => this.deleteLine(), { timeout: 500 })
+
+// Slow sequence - user has more time between keys
+injectHotkey(['Shift+Z', 'Shift+Z'], () => this.forceQuit(), { timeout: 2000 })
 ```
 
-### Reactive `enabled`
-
-When disabled, the sequence stays registered (visible in devtools); only execution is suppressed.
+`timeout` is only accepted when the hotkey is a sequence. Set a default for every sequence with `provideHotkeys`:
 
 ```ts
-import { Component, signal } from '@angular/core'
-import { injectHotkeySequence } from '@tanstack/angular-hotkeys'
-
-@Component({ standalone: true, template: `` })
-export class VimModeComponent {
-  readonly isVimMode = signal(true)
-
-  constructor() {
-    injectHotkeySequence(['G', 'G'], () => scrollToTop(), () => ({
-      enabled: this.isVimMode(),
-    }))
-  }
-}
-```
-
-## Global defaults via provider
-
-```ts
-import { ApplicationConfig } from '@angular/core'
 import { provideHotkeys } from '@tanstack/angular-hotkeys'
 
-export const appConfig: ApplicationConfig = {
-  providers: [
-    provideHotkeys({
-      hotkeySequence: { timeout: 1500 },
-    }),
-  ],
-}
-```
-
-### `meta`
-
-Sequences support the same `meta` option as hotkeys. Attach a `name` and `description` to surface in shortcut palettes and devtools.
-
-```ts
-injectHotkeySequence(['G', 'G'], () => scrollToTop(), {
-  meta: { name: 'Go to Top', description: 'Scroll to the top of the page' },
+bootstrapApplication(AppComponent, {
+  providers: [provideHotkeys({ defaultOptions: { hotkey: { timeout: 1500 } } })],
 })
 ```
 
-See the [Hotkeys Guide](./hotkeys.md#metadata-name--description) for details on declaration merging and introspecting registrations.
+### `enabled` and `meta`
 
-## Chained modifier chords
-
-This example follows physical R and T positions. Brackets retain those positions even when the keys produce different letters. Other sequences can continue using logical characters.
-
-You can repeat the same modifier across consecutive steps:
+These work exactly as they do for chords. Disabled sequences stay registered and visible in devtools, and `meta` flows to registrations, devtools, and cheat sheets. See the [Hotkeys Guide](./hotkeys).
 
 ```ts
-injectHotkeySequence(['Shift+[KeyR]', 'Shift+[KeyT]'], () => doNextAction())
+injectHotkey(['G', 'G'], () => this.scrollToTop(), () => ({
+  enabled: this.isVimMode(),
+  meta: { name: 'Go to top', description: 'Scroll to the top of the page' },
+}))
 ```
 
-While a sequence is in progress, the matcher ignores modifier-only keydown events (Shift, Control, Alt, or Meta pressed alone): they do not advance the sequence and do not reset progress, so a user can press Shift alone between chords without breaking the sequence.
+## Capture phase
 
-## Common patterns
+Sequences accept `capture: true` with the same [event propagation behavior as chords](./hotkeys.md#capture-phase). The default is `false`. Each step is matched in the selected phase, but `preventDefault` and `stopPropagation` apply only when the full sequence completes. Earlier steps still reach descendant widgets. Changing `capture` preserves partial progress and the existing timeout.
 
-### Vim-style navigation
+## Sequences with modifiers
+
+Each step in a sequence can include modifiers, and consecutive steps can repeat the same modifier:
 
 ```ts
-injectHotkeySequence(['G', 'G'], () => scrollToTop())
-injectHotkeySequence(['G', 'Shift+G'], () => scrollToBottom())
-injectHotkeySequence(['D', 'D'], () => deleteLine())
-injectHotkeySequence(['D', 'W'], () => deleteWord())
-injectHotkeySequence(['C', 'I', 'W'], () => changeInnerWord())
+// Ctrl+K followed by Ctrl+C (VS Code-style comment)
+injectHotkey(['Mod+K', 'Mod+C'], () => this.commentSelection())
+
+// Physical R then T positions, both with Shift
+injectHotkey(['Shift+[KeyR]', 'Shift+[KeyT]'], () => this.doNextAction())
 ```
 
-### Konami Code
+Brackets retain physical positions even when the keys produce different letters. While a sequence is in progress, modifier-only keydown events (Shift, Control, Alt, or Meta pressed alone) are ignored. They neither advance the sequence nor reset progress, so a user can tap or hold Shift between `Shift+R` and `Shift+T`.
+
+## Vim-style navigation
 
 ```ts
-injectHotkeySequence(
-  ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'B', 'A'],
-  () => enableEasterEgg(),
-  { timeout: 2000 },
-)
+injectHotkeys([
+  { hotkey: ['G', 'G'], callback: () => this.scrollToTop() },
+  { hotkey: ['G', 'Shift+G'], callback: () => this.scrollToBottom() },
+  { hotkey: ['D', 'D'], callback: () => this.deleteLine() },
+  { hotkey: ['D', 'W'], callback: () => this.deleteWord() },
+  { hotkey: ['C', 'I', 'W'], callback: () => this.changeInnerWord() },
+])
 ```
 
-## Under the hood
+## Displaying sequences
 
-`injectHotkeySequence` uses the singleton `SequenceManager`. You can also access it directly:
+`formatForDisplay` formats each step and joins them with `sequenceSeparator`, a space by default:
 
 ```ts
-import {
-  createSequenceMatcher,
-  getSequenceManager,
-} from '@tanstack/angular-hotkeys'
-
-const manager = getSequenceManager()
-const matcher = createSequenceMatcher(['G', 'G'], { timeout: 1000 })
+formatForDisplay(['Mod+K', 'Mod+C'], { platform: 'mac' }) // '⌘ K ⌘ C'
+formatForDisplay(['G', 'G'], { sequenceSeparator: ' then ' }) // 'G then G'
 ```
+
+Registration views report each sequence's progress in `matchedStepCount`, so a help panel can show how far the user has typed. See the [Hotkeys Guide](./hotkeys).
+
+## How sequences work
+
+The `HotkeyManager` tracks progress for every sequence registration. When a key is pressed:
+
+1. It checks whether the key matches the next expected step of each sequence
+2. If it matches, that sequence advances
+3. If the timeout expires between steps, the sequence resets
+4. When all steps are completed, the callback fires
+
+Modifier-only events, IME composition, and automatic keydown repeats neither advance a sequence nor refresh its timeout: holding G does not complete a two-press G sequence. Exact matches take priority over weaker logical-key fallbacks.
+
+Multiple sequences can share a prefix, such as `['D', 'D']`, `['D', 'W']`, and `['D', 'I', 'W']`. Progress is tracked for each sequence independently, so after pressing `D` the manager waits for the next key to determine which sequence completes.
 
 ### Conflicting registrations
 
-For the same target, duplicate detection compares resolved steps: modifier aliases, modifier order, and logical key casing do not create separate bindings. `conflictBehavior` applies to equivalent sequences without rewriting their stored strings. Physical and logical identities remain distinct, and a shared prefix alone is not a duplicate registration. Recorder conflict detection also checks prefixes and observed physical/logical overlap.
+For the same target, duplicate detection compares resolved steps: modifier aliases, modifier order, and logical key casing do not create separate hotkeys. Physical and logical identities remain distinct, and a shared prefix alone is not a duplicate registration. Recorder conflict detection and app hotkey conflicts are stricter: there, a sequence also conflicts with a chord equal to its first step and with any sequence it starts.
+
+## Standalone matching
+
+For sequence matching without the singleton manager, use `createSequenceMatcher`:
+
+```ts
+import { createSequenceMatcher } from '@tanstack/angular-hotkeys'
+
+const matcher = createSequenceMatcher(['G', 'G'], { timeout: 1000 })
+
+document.addEventListener('keydown', (e) => {
+  if (matcher.match(e)) {
+    console.log('Sequence completed!')
+  }
+  console.log('Progress:', matcher.getProgress()) // e.g., 1
+})
+```

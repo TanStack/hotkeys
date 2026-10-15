@@ -9,7 +9,11 @@ import {
   useHotkeys,
   useHotkeyRegistrations,
 } from '@tanstack/ember-hotkeys'
-import type { Hotkey, HotkeyDefinition } from '@tanstack/ember-hotkeys'
+import type {
+  EmberHotkeyDefinition,
+  Hotkey,
+  HotkeyRegistrationView,
+} from '@tanstack/ember-hotkeys'
 const eq = (a: unknown, b: unknown) => a === b
 const neq = (a: unknown, b: unknown) => a !== b
 const gt = (a: number, b: number) => a > b
@@ -50,6 +54,11 @@ const DEFAULT_SHORTCUTS: Array<DynamicShortcut> = [
   },
 ]
 
+const progress = (reg: HotkeyRegistrationView) =>
+  reg.kind === 'sequence'
+    ? `${reg.matchedStepCount}/${reg.hotkey.length}`
+    : '\u2014'
+
 class App extends Component {
   <template>
     <div class='app'>
@@ -75,7 +84,7 @@ class BasicMultiHotkeys extends Component {
   @tracked saveCount: number = 0
   @tracked undoCount: number = 0
   @tracked redoCount: number = 0
-  get definitions(): Array<HotkeyDefinition> {
+  get definitions(): Array<EmberHotkeyDefinition> {
     return [
       {
         hotkey: 'Shift+S',
@@ -151,7 +160,7 @@ class CommonOptionsDemo extends Component {
   @tracked enabled: boolean = true
   @tracked counts: { a: number; b: number; c: number } = { a: 0, b: 0, c: 0 }
   toggleEnabled = () => (this.enabled = !this.enabled)
-  get definitions(): Array<HotkeyDefinition> {
+  get definitions(): Array<EmberHotkeyDefinition> {
     return [
       {
         hotkey: 'Alt+J',
@@ -248,7 +257,7 @@ class DynamicHotkeysDemo extends Component {
     (this.newLabel = (e.currentTarget as HTMLInputElement).value)
   updateDescription = (e: Event) =>
     (this.newDescription = (e.currentTarget as HTMLInputElement).value)
-  get definitions(): Array<HotkeyDefinition> {
+  get definitions(): Array<EmberHotkeyDefinition> {
     return this.shortcuts.map((s) => ({
       hotkey: s.hotkey,
       callback: () => {
@@ -350,17 +359,14 @@ class RegistrationsViewer extends Component {
   get hotkeys() {
     return this.registrationsState.hotkeys
   }
-  get sequences() {
-    return this.registrationsState.sequences
-  }
-
   <template>
     <div class='demo-section'>
       <h2>Live Registrations (useHotkeyRegistrations)</h2>
       <p>
         This table is rendered from
         <code>useHotkeyRegistrations()</code>
-        — a reactive view of all registered hotkeys. It updates automatically as
+        — a reactive view of all registered hotkeys, chords and sequences. It
+        updates automatically as
         hotkeys are added, removed, enabled/disabled, or triggered.
       </p>
       <table class='registrations-table'>
@@ -369,6 +375,7 @@ class RegistrationsViewer extends Component {
             <th>Hotkey</th>
             <th>Name</th>
             <th>Description</th>
+            <th>Progress</th>
             <th>Enabled</th>
             <th>Triggers</th>
           </tr>
@@ -382,6 +389,7 @@ class RegistrationsViewer extends Component {
               <td class='description-cell'>
                 {{or reg.options.meta.description '—'}}
               </td>
+              <td>{{progress reg}}</td>
               <td>
                 <span
                   class={{if
@@ -396,40 +404,12 @@ class RegistrationsViewer extends Component {
               <td class='trigger-count'>{{reg.triggerCount}}</td>
             </tr>{{/each}}
           {{#if (eq this.hotkeys.length 0)}}<tr>
-              <td colspan={{5}} class='hint'>
+              <td colspan={{6}} class='hint'>
                 No hotkeys registered
               </td>
             </tr>{{/if}}
         </tbody>
       </table>
-      {{#if (gt this.sequences.length 0)}}
-        <h3 style='margin-top:16px'>Sequences</h3>
-        <table class='registrations-table'>
-          <thead>
-            <tr>
-              <th>Sequence</th>
-              <th>Name</th>
-              <th>Description</th>
-              <th>Triggers</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each this.sequences key='id' as |reg|}}<tr>
-                <td>
-                  {{#each reg.sequence as |s i|}}
-                    {{and (gt i 0) ' '}}
-                    <kbd>{{formatForDisplay s}}</kbd>
-                  {{/each}}
-                </td>
-                <td>{{or reg.options.meta.name '—'}}</td>
-                <td class='description-cell'>
-                  {{or reg.options.meta.description '—'}}
-                </td>
-                <td class='trigger-count'>{{reg.triggerCount}}</td>
-              </tr>{{/each}}
-          </tbody>
-        </table>
-      {{/if}}
       <pre class='code-block'>{{this.usage0}}</pre>
     </div>
   </template>

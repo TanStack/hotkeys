@@ -1444,6 +1444,9 @@ describe('HotkeyManager', () => {
 
       const reg = Array.from(manager.registrations.state.values())[0]!
       const view = toHotkeyRegistrationView(reg)
+      if (view.kind !== 'chord' || reg.kind !== 'chord') {
+        throw new Error('Expected a chord registration')
+      }
 
       expect(view).not.toHaveProperty('callback')
       expect(view.hotkey).toBe(reg.hotkey)
