@@ -13,6 +13,9 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 import './index.css'
 import type { Hotkey, HotkeySequence } from '@tanstack/react-hotkeys'
 
+// Created once: a new array on every render remounts the devtools panel
+const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
+
 interface Shortcut {
   id: string
   name: string
@@ -295,7 +298,7 @@ const registrations = useHotkeyRegistrations()
 // registrations[0].triggerCount → 3`}</pre>
         </section>
       </main>
-      <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
+      <TanStackDevtools plugins={devtoolsPlugins} />
     </div>
   )
 }

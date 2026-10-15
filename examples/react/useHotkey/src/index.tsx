@@ -10,6 +10,9 @@ import { TanStackDevtools } from '@tanstack/react-devtools'
 import type { Hotkey } from '@tanstack/react-hotkeys'
 import './index.css'
 
+// Created once: a new array on every render remounts the devtools panel
+const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
+
 function App() {
   const [lastHotkey, setLastHotkey] = React.useState<Hotkey | null>(null)
   const [saveCount, setSaveCount] = React.useState(0)
@@ -737,7 +740,7 @@ useHotkey(
         </section>
       </main>
 
-      <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
+      <TanStackDevtools plugins={devtoolsPlugins} />
     </div>
   )
 }

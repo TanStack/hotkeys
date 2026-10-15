@@ -145,11 +145,14 @@ Add the TanStack Devtools to your app to inspect registered hotkeys, view held k
 import { TanStackDevtools } from '@tanstack/preact-devtools'
 import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools'
 
+// Create the plugins once; a new array on every render remounts the panel
+const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
+
 function App() {
   return (
     <div>
       {/* Your app */}
-      <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
+      <TanStackDevtools plugins={devtoolsPlugins} />
     </div>
   )
 }
