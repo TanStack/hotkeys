@@ -1,5 +1,17 @@
 # @tanstack/hotkeys
 
+## 0.13.0
+
+### Minor Changes
+
+- [#163](https://github.com/TanStack/hotkeys/pull/163) [`3b7c92f`](https://github.com/TanStack/hotkeys/commit/3b7c92f1ed814c0d3ae744b29b04c2ba92c47607) - Let focused controls keep their own keys when `ignoreInputs` is on. Hotkeys now skip Enter and Space on buttons and `<summary>`, Enter on links, and navigation keys in ARIA widgets such as menus, listboxes, tabs, trees, and grids, for any target that contains the focused control. A hotkey targeted at the control itself, or `ignoreInputs: false`, still receives these keys. The hotkey recorder now only skips text fields, so it can record Enter and Space while its button has focus.
+
+  `ignoreInputs` now accepts `'auto'`, which is the default and chooses from the hotkey as before. Registered options keep `'auto'` instead of a resolved boolean, and `setOptions({ ignoreInputs: 'auto' })` or `undefined` restores the automatic default.
+
+### Patch Changes
+
+- [#140](https://github.com/TanStack/hotkeys/pull/140) [`c2ee2e4`](https://github.com/TanStack/hotkeys/commit/c2ee2e428e0c3cb8a9e5f56ec519e1db267c1ccc) - fix: support hotkey targets in same-origin iframes and popup windows. Hotkeys targeting another frame's document, window, or element now fire, and typing in that frame's inputs is ignored.
+
 ## 0.12.1
 
 ### Patch Changes
