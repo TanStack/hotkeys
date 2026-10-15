@@ -10,27 +10,40 @@ import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { injectDefaultHotkeysOptions } from './hotkeys-provider'
 import type { Atom, ReadonlyAtom } from '@tanstack/angular-store'
 import type { Signal } from '@angular/core'
-import type { Hotkey, HotkeyRecorderOptions } from '@tanstack/hotkeys'
+import type {
+  Hotkey,
+  HotkeyChord,
+  HotkeyChordRecorderOptions,
+  HotkeyRecorderOptions,
+  HotkeySequence,
+  HotkeySequenceRecorderOptions,
+} from '@tanstack/hotkeys'
 
-export interface AngularHotkeyRecorder {
+export interface AngularHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
   /** Whether recording is currently active */
   readonly isRecording: () => boolean
-  /** The currently recorded hotkey (for live preview) */
-  readonly recordedHotkey: () => Hotkey | null
+  /** Chords recorded so far in a multi-step recording (for live preview) */
+  readonly steps: () => HotkeySequence
+  /** The last committed hotkey */
+  readonly recordedHotkey: () => THotkey | null
   /** Start recording a new hotkey */
   readonly startRecording: () => void
-  /** Stop recording (same as cancel) */
+  /** Stop recording without calling onCancel */
   readonly stopRecording: () => void
-  /** Cancel recording without saving */
+  /** Cancel recording and call onCancel */
   readonly cancelRecording: () => void
+  /** Commit the recorded steps now (multi-step recordings) */
+  readonly commitRecording: () => void
 }
 
 /**
  * Angular inject-based API for recording keyboard shortcuts.
  *
- * Thin wrapper around the framework-agnostic HotkeyRecorder class: captures
- * keyboard events, converts them to hotkey strings, and handles Escape to
- * cancel or Backspace/Delete to clear.
+ * With the default `maxSteps: 1`, the first valid chord is recorded. With a
+ * larger `maxSteps`, each chord adds a step; the recording commits on Enter
+ * (unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at `maxSteps`, and
+ * `onRecord` receives a chord (one step) or a sequence. Escape cancels;
+ * Backspace/Delete removes the last step or clears.
  *
  * @param options - Configuration options for the recorder (or getter)
  * @returns Object with recording state signals and control functions
@@ -49,12 +62,28 @@ export interface AngularHotkeyRecorder {
  *     injectHotkey(
  *       () => this.shortcut(),
  *       () => this.handleSave(),
- *       () => ({ enabled: !this.recorder.isRecording() }),
  *     )
  *   }
  * }
  * ```
  */
+export function injectHotkeyRecorder(
+  options: HotkeyChordRecorderOptions,
+): AngularHotkeyRecorder<HotkeyChord>
+export function injectHotkeyRecorder(
+  options: HotkeySequenceRecorderOptions,
+): AngularHotkeyRecorder
+// Getter overloads list sequences first: TypeScript keeps a lambda's parameter
+// types from the first overload it tries, and sequence types also fit chords.
+export function injectHotkeyRecorder(
+  options: () => HotkeySequenceRecorderOptions,
+): AngularHotkeyRecorder
+export function injectHotkeyRecorder(
+  options: () => HotkeyChordRecorderOptions,
+): AngularHotkeyRecorder<HotkeyChord>
+export function injectHotkeyRecorder(
+  options: () => HotkeyRecorderOptions,
+): AngularHotkeyRecorder
 export function injectHotkeyRecorder(
   options: HotkeyRecorderOptions | (() => HotkeyRecorderOptions),
 ): AngularHotkeyRecorder {
@@ -67,12 +96,11 @@ export function injectHotkeyRecorder(
       const resolvedOptions =
         typeof options === 'function' ? options() : options
 
-      const mergedOptions = {
+      // Overloads already checked the options; either shape is valid here.
+      return new HotkeyRecorder({
         ...defaultOptions.hotkeyRecorder,
         ...resolvedOptions,
-      } as HotkeyRecorderOptions
-
-      return new HotkeyRecorder(mergedOptions)
+      } as HotkeySequenceRecorderOptions)
     }),
   )
 
@@ -82,6 +110,7 @@ export function injectHotkeyRecorder(
     recorderStore,
     (state) => state.isRecording,
   )
+  const steps = injectLazyStore(recorderStore, (state) => state.steps)
   const recordedHotkey = injectLazyStore(
     recorderStore,
     (state) => state.recordedHotkey,
@@ -93,7 +122,7 @@ export function injectHotkeyRecorder(
     recorderSignal().setOptions({
       ...defaultOptions.hotkeyRecorder,
       ...resolved,
-    } as HotkeyRecorderOptions)
+    })
   })
 
   destroyRef.onDestroy(() => {
@@ -102,10 +131,12 @@ export function injectHotkeyRecorder(
 
   return {
     isRecording,
+    steps,
     recordedHotkey,
     startRecording: () => recorderSignal().start(),
     stopRecording: () => recorderSignal().stop(),
     cancelRecording: () => recorderSignal().cancel(),
+    commitRecording: () => recorderSignal().commit(),
   }
 }
 

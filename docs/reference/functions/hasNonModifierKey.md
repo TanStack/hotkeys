@@ -4,10 +4,10 @@ title: hasNonModifierKey
 ---
 
 ```ts
-function hasNonModifierKey(hotkey, platform): boolean;
+function hasNonModifierKey(hotkey, platform?): boolean;
 ```
 
-Defined in: [parse.ts:316](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L316)
+Defined in: [parse.ts:373](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L373)
 
 Checks if a hotkey or ParsedHotkey contains at least one non-modifier key.
 
@@ -18,15 +18,17 @@ just a combination of modifiers without an action key.
 
 ### hotkey
 
+  \| [`HotkeyChord`](../type-aliases/HotkeyChord.md)
+  \| `string` & `object`
+  \| [`ParsedHotkey`](../type-aliases/ParsedHotkey.md)
+
 The hotkey string or ParsedHotkey to check
 
-[`Hotkey`](../type-aliases/Hotkey.md) | [`ParsedHotkey`](../interfaces/ParsedHotkey.md) | `string` & `object`
+### platform?
 
-### platform
+`"mac"` \| `"windows"` \| `"linux"`
 
 The target platform for parsing (defaults to auto-detection)
-
-`"mac"` | `"windows"` | `"linux"`
 
 ## Returns
 

@@ -88,13 +88,13 @@ function BasicMultiHotkeys() {
       </p>
       <div className="hotkey-grid">
         <div>
-          <kbd>{formatForDisplay('Shift+S' as Hotkey)}</kbd> Save ({saveCount})
+          <kbd>{formatForDisplay('Shift+S')}</kbd> Save ({saveCount})
         </div>
         <div>
-          <kbd>{formatForDisplay('Shift+U' as Hotkey)}</kbd> Undo ({undoCount})
+          <kbd>{formatForDisplay('Shift+U')}</kbd> Undo ({undoCount})
         </div>
         <div>
-          <kbd>{formatForDisplay('Shift+R' as Hotkey)}</kbd> Redo ({redoCount})
+          <kbd>{formatForDisplay('Shift+R')}</kbd> Redo ({redoCount})
         </div>
       </div>
       {log.length > 0 && (
@@ -171,25 +171,25 @@ function CommonOptionsDemo() {
     <div className="demo-section">
       <h2>Common Options with Per-Hotkey Overrides</h2>
       <p>
-        <kbd>{formatForDisplay('Alt+J' as Hotkey)}</kbd> and{' '}
-        <kbd>{formatForDisplay('Alt+K' as Hotkey)}</kbd> respect the global
-        toggle. <kbd>{formatForDisplay('Alt+L' as Hotkey)}</kbd> overrides{' '}
+        <kbd>{formatForDisplay('Alt+J')}</kbd> and{' '}
+        <kbd>{formatForDisplay('Alt+K')}</kbd> respect the global toggle.{' '}
+        <kbd>{formatForDisplay('Alt+L')}</kbd> overrides{' '}
         <code>enabled: true</code> so it always works.
       </p>
-      <div style={{ marginBottom: 12 }}>
+      <div style={{ marginBottom: '12px' }}>
         <button onClick={() => setEnabled((e) => !e)}>
           {enabled ? 'Disable' : 'Enable'} common hotkeys
         </button>
       </div>
       <div className="hotkey-grid">
         <div>
-          <kbd>{formatForDisplay('Alt+J' as Hotkey)}</kbd> Action A ({counts.a})
+          <kbd>{formatForDisplay('Alt+J')}</kbd> Action A ({counts.a})
         </div>
         <div>
-          <kbd>{formatForDisplay('Alt+K' as Hotkey)}</kbd> Action B ({counts.b})
+          <kbd>{formatForDisplay('Alt+K')}</kbd> Action B ({counts.b})
         </div>
         <div>
-          <kbd>{formatForDisplay('Alt+L' as Hotkey)}</kbd> Action C ({counts.c})
+          <kbd>{formatForDisplay('Alt+L')}</kbd> Action C ({counts.c})
           <span className="hint"> (always on)</span>
         </div>
       </div>
@@ -362,15 +362,15 @@ useHotkeys(
 // ---------------------------------------------------------------------------
 
 function RegistrationsViewer() {
-  const { hotkeys, sequences } = useHotkeyRegistrations()
+  const registrations = useHotkeyRegistrations()
 
   return (
-    <div className="demo-section">
+    <section className="demo-section">
       <h2>Live Registrations (useHotkeyRegistrations)</h2>
       <p>
         This table is rendered from <code>useHotkeyRegistrations()</code> — a
-        reactive view of all registered hotkeys. It updates automatically as
-        hotkeys are added, removed, enabled/disabled, or triggered.
+        reactive view of every registered hotkey, chords and sequences. Progress
+        and trigger counts update in real-time.
       </p>
       <table className="registrations-table">
         <thead>
@@ -378,12 +378,13 @@ function RegistrationsViewer() {
             <th>Hotkey</th>
             <th>Name</th>
             <th>Description</th>
+            <th>Progress</th>
             <th>Enabled</th>
             <th>Triggers</th>
           </tr>
         </thead>
         <tbody>
-          {hotkeys.map((reg) => (
+          {registrations.map((reg) => (
             <tr key={reg.id}>
               <td>
                 <kbd>{formatForDisplay(reg.hotkey)}</kbd>
@@ -391,6 +392,11 @@ function RegistrationsViewer() {
               <td>{reg.options.meta?.name ?? '—'}</td>
               <td className="description-cell">
                 {reg.options.meta?.description ?? '—'}
+              </td>
+              <td>
+                {reg.kind === 'sequence'
+                  ? `${reg.matchedStepCount}/${reg.hotkey.length}`
+                  : '—'}
               </td>
               <td>
                 <span
@@ -404,61 +410,16 @@ function RegistrationsViewer() {
               <td className="trigger-count">{reg.triggerCount}</td>
             </tr>
           ))}
-          {hotkeys.length === 0 && (
+          {registrations.length === 0 && (
             <tr>
-              <td colSpan={5} className="hint">
+              <td colSpan={6} className="hint">
                 No hotkeys registered
               </td>
             </tr>
           )}
         </tbody>
       </table>
-      {sequences.length > 0 && (
-        <>
-          <h3 style={{ marginTop: 16 }}>Sequences</h3>
-          <table className="registrations-table">
-            <thead>
-              <tr>
-                <th>Sequence</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Triggers</th>
-              </tr>
-            </thead>
-            <tbody>
-              {sequences.map((reg) => (
-                <tr key={reg.id}>
-                  <td>
-                    {reg.sequence.map((s, i) => (
-                      <React.Fragment key={i}>
-                        {i > 0 && ' '}
-                        <kbd>{formatForDisplay(s)}</kbd>
-                      </React.Fragment>
-                    ))}
-                  </td>
-                  <td>{reg.options.meta?.name ?? '—'}</td>
-                  <td className="description-cell">
-                    {reg.options.meta?.description ?? '—'}
-                  </td>
-                  <td className="trigger-count">{reg.triggerCount}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </>
-      )}
-      <pre className="code-block">{`const { hotkeys, sequences } = useHotkeyRegistrations()
-
-// Render a live table of all registrations
-hotkeys.map((reg) => (
-  <tr key={reg.id}>
-    <td>{formatForDisplay(reg.hotkey)}</td>
-    <td>{reg.options.meta?.name}</td>
-    <td>{reg.options.meta?.description}</td>
-    <td>{reg.triggerCount}</td>
-  </tr>
-))`}</pre>
-    </div>
+    </section>
   )
 }
 

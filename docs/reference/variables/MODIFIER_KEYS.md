@@ -7,7 +7,7 @@ title: MODIFIER_KEYS
 const MODIFIER_KEYS: Set<string>;
 ```
 
-Defined in: [constants.ts:73](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L73)
+Defined in: [constants.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L40)
 
 Set of canonical modifier key names for fast lookup.
 

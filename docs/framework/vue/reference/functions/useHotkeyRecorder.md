@@ -3,60 +3,162 @@ id: useHotkeyRecorder
 title: useHotkeyRecorder
 ---
 
+## Call Signature
+
+```ts
+function useHotkeyRecorder(options): VueHotkeyRecorder<HotkeyChord>;
+```
+
+Defined in: [useHotkeyRecorder.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L46)
+
+Vue composable for recording keyboard shortcuts. Options may be a ref or getter.
+
+With the default `maxSteps: 1`, the first valid chord is recorded. With a
+larger `maxSteps`, each chord adds a step; the recording commits on Enter
+(unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at `maxSteps`, and
+`onRecord` receives a chord (one step) or a sequence.
+
+### Parameters
+
+#### options
+
+`HotkeyChordRecorderOptions`
+
+### Returns
+
+[`VueHotkeyRecorder`](../interfaces/VueHotkeyRecorder.md)\<`HotkeyChord`\>
+
+### Example
+
+```ts
+const recorder = useHotkeyRecorder({ onRecord: (hotkey) => (shortcut.value = hotkey) })
+const sequenceRecorder = useHotkeyRecorder({ maxSteps: 3, onRecord: save })
+```
+
+## Call Signature
+
 ```ts
 function useHotkeyRecorder(options): VueHotkeyRecorder;
 ```
 
-Defined in: [packages/vue-hotkeys/src/useHotkeyRecorder.ts:62](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L62)
+Defined in: [useHotkeyRecorder.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L49)
 
-Vue composable for recording keyboard shortcuts.
+Vue composable for recording keyboard shortcuts. Options may be a ref or getter.
 
-This composable provides a thin wrapper around the framework-agnostic `HotkeyRecorder`
-class, managing all the complexity of capturing keyboard events, converting them
-to hotkey strings, and handling edge cases like Escape to cancel or Backspace/Delete
-to clear.
+With the default `maxSteps: 1`, the first valid chord is recorded. With a
+larger `maxSteps`, each chord adds a step; the recording commits on Enter
+(unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at `maxSteps`, and
+`onRecord` receives a chord (one step) or a sequence.
 
-## Parameters
+### Parameters
 
-### options
+#### options
 
-`MaybeRefOrGetter`\<`HotkeyRecorderOptions`\>
+`HotkeySequenceRecorderOptions`
 
-Configuration options for the recorder
-
-## Returns
+### Returns
 
 [`VueHotkeyRecorder`](../interfaces/VueHotkeyRecorder.md)
 
-An object with recording state and control functions
+### Example
 
-## Example
+```ts
+const recorder = useHotkeyRecorder({ onRecord: (hotkey) => (shortcut.value = hotkey) })
+const sequenceRecorder = useHotkeyRecorder({ maxSteps: 3, onRecord: save })
+```
 
-```vue
-<script setup>
-import { ref } from 'vue'
-import { useHotkeyRecorder } from '@tanstack/vue-hotkeys'
+## Call Signature
 
-const shortcut = ref<Hotkey>('Mod+S')
+```ts
+function useHotkeyRecorder(options): VueHotkeyRecorder;
+```
 
-const recorder = useHotkeyRecorder({
-  onRecord: (hotkey) => {
-    shortcut.value = hotkey
-  },
-  onCancel: () => {
-    console.log('Recording cancelled')
-  },
-})
-</script>
+Defined in: [useHotkeyRecorder.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L54)
 
-<template>
-  <div>
-    <button @click="recorder.startRecording()">
-      {{ recorder.isRecording ? 'Recording...' : 'Edit Shortcut' }}
-    </button>
-    <div v-if="recorder.recordedHotkey">
-      Recording: {{ recorder.recordedHotkey }}
-    </div>
-  </div>
-</template>
+Vue composable for recording keyboard shortcuts. Options may be a ref or getter.
+
+With the default `maxSteps: 1`, the first valid chord is recorded. With a
+larger `maxSteps`, each chord adds a step; the recording commits on Enter
+(unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at `maxSteps`, and
+`onRecord` receives a chord (one step) or a sequence.
+
+### Parameters
+
+#### options
+
+() => `HotkeySequenceRecorderOptions`
+
+### Returns
+
+[`VueHotkeyRecorder`](../interfaces/VueHotkeyRecorder.md)
+
+### Example
+
+```ts
+const recorder = useHotkeyRecorder({ onRecord: (hotkey) => (shortcut.value = hotkey) })
+const sequenceRecorder = useHotkeyRecorder({ maxSteps: 3, onRecord: save })
+```
+
+## Call Signature
+
+```ts
+function useHotkeyRecorder(options): VueHotkeyRecorder<HotkeyChord>;
+```
+
+Defined in: [useHotkeyRecorder.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L57)
+
+Vue composable for recording keyboard shortcuts. Options may be a ref or getter.
+
+With the default `maxSteps: 1`, the first valid chord is recorded. With a
+larger `maxSteps`, each chord adds a step; the recording commits on Enter
+(unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at `maxSteps`, and
+`onRecord` receives a chord (one step) or a sequence.
+
+### Parameters
+
+#### options
+
+() => `HotkeyChordRecorderOptions`
+
+### Returns
+
+[`VueHotkeyRecorder`](../interfaces/VueHotkeyRecorder.md)\<`HotkeyChord`\>
+
+### Example
+
+```ts
+const recorder = useHotkeyRecorder({ onRecord: (hotkey) => (shortcut.value = hotkey) })
+const sequenceRecorder = useHotkeyRecorder({ maxSteps: 3, onRecord: save })
+```
+
+## Call Signature
+
+```ts
+function useHotkeyRecorder(options): VueHotkeyRecorder;
+```
+
+Defined in: [useHotkeyRecorder.ts:60](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L60)
+
+Vue composable for recording keyboard shortcuts. Options may be a ref or getter.
+
+With the default `maxSteps: 1`, the first valid chord is recorded. With a
+larger `maxSteps`, each chord adds a step; the recording commits on Enter
+(unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at `maxSteps`, and
+`onRecord` receives a chord (one step) or a sequence.
+
+### Parameters
+
+#### options
+
+`Ref`\<`HotkeyRecorderOptions`\>
+
+### Returns
+
+[`VueHotkeyRecorder`](../interfaces/VueHotkeyRecorder.md)
+
+### Example
+
+```ts
+const recorder = useHotkeyRecorder({ onRecord: (hotkey) => (shortcut.value = hotkey) })
+const sequenceRecorder = useHotkeyRecorder({ maxSteps: 3, onRecord: save })
 ```

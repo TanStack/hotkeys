@@ -30,7 +30,7 @@ const INITIAL_SHORTCUTS: Array<Shortcut> = [
     id: createId(),
     name: 'Save',
     description: 'Save the current document',
-    hotkey: 'Mod+K',
+    hotkey: 'Mod+[KeyK]',
   },
   {
     id: createId(),
@@ -108,7 +108,7 @@ function App() {
             s.id === editingId
               ? {
                   ...s,
-                  hotkey: '' as Hotkey | '',
+                  hotkey: '',
                   name: draftName,
                   description: draftDescription,
                 }
@@ -132,7 +132,6 @@ function App() {
           console.log(`${s.name} triggered:`, s.hotkey)
         },
         options: {
-          enabled: !isRecording,
           meta: {
             name: s.name,
             description: s.description,
@@ -236,8 +235,9 @@ function App() {
 
         {recorder.isRecording && (
           <div className="info-box recording-notice">
-            <strong>Recording shortcut...</strong> Press any key combination or
-            Escape to cancel. Press Backspace/Delete to clear the shortcut.
+            <strong>Recording shortcut...</strong> The physical key position
+            will be saved. Press any key combination or Escape to cancel. Press
+            Backspace/Delete to clear the shortcut.
           </div>
         )}
 
@@ -257,14 +257,13 @@ useHotkeys(
     hotkey: s.hotkey,
     callback: () => handleAction(s.id),
     options: {
-      enabled: !isRecording,
       meta: { name: s.name, description: s.description },
     },
   })),
 )
 
 // Read all registrations reactively
-const { hotkeys } = useHotkeyRegistrations()
+const hotkeys = useHotkeyRegistrations()
 // hotkeys[0].options.meta?.name → 'Save'
 // hotkeys[0].triggerCount → 3`}</pre>
         </section>
@@ -279,7 +278,7 @@ const { hotkeys } = useHotkeyRegistrations()
 // ---------------------------------------------------------------------------
 
 function RegistrationsViewer() {
-  const { hotkeys } = useHotkeyRegistrations()
+  const hotkeys = useHotkeyRegistrations()
 
   return (
     <section className="demo-section">

@@ -4,10 +4,10 @@ title: parseHotkey
 ---
 
 ```ts
-function parseHotkey(hotkey, platform): ParsedHotkey;
+function parseHotkey(hotkey, platform?): ParsedHotkey;
 ```
 
-Defined in: [parse.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L31)
+Defined in: [parse.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L54)
 
 Parses a hotkey string into its component parts.
 
@@ -15,21 +15,21 @@ Parses a hotkey string into its component parts.
 
 ### hotkey
 
+[`HotkeyChord`](../type-aliases/HotkeyChord.md) \| `string` & `object`
+
 The hotkey string to parse (e.g., 'Mod+Shift+S')
 
-[`Hotkey`](../type-aliases/Hotkey.md) | `string` & `object`
+### platform?
 
-### platform
+`"mac"` \| `"windows"` \| `"linux"`
 
 The target platform for resolving 'Mod' (defaults to auto-detection)
 
-`"mac"` | `"windows"` | `"linux"`
-
 ## Returns
 
-[`ParsedHotkey`](../interfaces/ParsedHotkey.md)
+[`ParsedHotkey`](../type-aliases/ParsedHotkey.md)
 
-A ParsedHotkey object with the key and modifier flags
+A ParsedHotkey with either logical key or physical code and modifier flags
 
 ## Example
 

@@ -7,7 +7,7 @@ title: useHeldKeyCodes
 function useHeldKeyCodes(): Ref<Record<string, string>>;
 ```
 
-Defined in: [packages/vue-hotkeys/src/useHeldKeyCodes.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHeldKeyCodes.ts#L31)
+Defined in: [useHeldKeyCodes.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHeldKeyCodes.ts#L31)
 
 Vue composable that returns a reactive ref mapping currently held key names to their physical `event.code` values.
 

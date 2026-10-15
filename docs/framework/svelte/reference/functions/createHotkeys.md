@@ -4,22 +4,28 @@ title: createHotkeys
 ---
 
 ```ts
-function createHotkeys(hotkeys, commonOptions): void;
+function createHotkeys(hotkeys, commonOptions?): void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:66](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L66)
+Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:128](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L128)
 
-Register multiple global hotkeys for the current component.
+Svelte function for registering several hotkeys at once on the document:
+chords, sequences, and app hotkeys. Pass getters for reactive values. Use
+`createHotkeysAttachment` for element-scoped hotkeys.
+
+Options merge in this order: provider defaults, app hotkey declaration,
+commonOptions, per-hotkey options. Each option applies only to the kinds
+that support it. Unbound app hotkeys and empty sequences register nothing.
 
 ## Parameters
 
 ### hotkeys
 
-`MaybeGetter`\<[`CreateHotkeyDefinition`](../interfaces/CreateHotkeyDefinition.md)[]\>
+`MaybeGetter`\<readonly [`CreateHotkeyDefinition`](../type-aliases/CreateHotkeyDefinition.md)[]\>
 
-### commonOptions
+### commonOptions?
 
-`MaybeGetter`\<[`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md)\> = `{}`
+`MaybeGetter`\<[`CreateHotkeyCommonOptions`](../type-aliases/CreateHotkeyCommonOptions.md)\> = `{}`
 
 ## Returns
 
@@ -29,12 +35,9 @@ Register multiple global hotkeys for the current component.
 
 ```svelte
 <script lang="ts">
-  import { createHotkeys } from '@tanstack/svelte-hotkeys'
-
   createHotkeys([
     { hotkey: 'Mod+S', callback: () => save() },
-    { hotkey: 'Mod+Z', callback: () => undo() },
-    { hotkey: 'Escape', callback: () => close() },
+    { hotkey: ['G', 'G'], callback: () => scrollToTop(), options: { timeout: 500 } },
   ])
 </script>
 ```

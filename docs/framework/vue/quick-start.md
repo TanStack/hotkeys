@@ -7,7 +7,7 @@ id: quick-start
 
 Don't have TanStack Hotkeys installed yet? See the [Installation](../../installation) page for instructions.
 
-## Your First Hotkey
+## Your first hotkey
 
 The `useHotkey` composable is the primary way to register keyboard shortcuts in Vue:
 
@@ -27,9 +27,9 @@ useHotkey('Mod+S', () => {
 
 The `Mod` modifier automatically resolves to `Meta` (Command) on macOS and `Control` on Windows/Linux, so your shortcuts work across platforms without extra logic.
 
-## Common Patterns
+## Common patterns
 
-### Multiple Hotkeys
+### Multiple hotkeys
 
 ```vue
 <script setup lang="ts">
@@ -43,7 +43,7 @@ useHotkey('Escape', () => closeDialog())
 </script>
 ```
 
-### Scoped Hotkeys with Template Refs
+### Scoped hotkeys with template refs
 
 ```vue
 <script setup lang="ts">
@@ -62,7 +62,7 @@ useHotkey('Escape', () => closePanel(), { target: panelRef })
 </template>
 ```
 
-### Conditional Hotkeys
+### Conditional hotkeys
 
 ```vue
 <script setup lang="ts">
@@ -77,20 +77,21 @@ useHotkey('Escape', () => {
 </script>
 ```
 
-### Multi-Key Sequences
+### Multi-key sequences
 
 ```vue
 <script setup lang="ts">
-import { useHotkeySequence } from '@tanstack/vue-hotkeys'
+import { useHotkey } from '@tanstack/vue-hotkeys'
 
-useHotkeySequence(['G', 'G'], () => scrollToTop())
-useHotkeySequence(['G', 'Shift+G'], () => scrollToBottom())
+// An array of chords registers a sequence
+useHotkey(['G', 'G'], () => scrollToTop())
+useHotkey(['G', 'Shift+G'], () => scrollToBottom())
 </script>
 ```
 
-For several sequences or a list that changes at runtime, prefer a single `useHotkeySequences([...])` call (see the [Sequences guide](./guides/sequences.md#many-sequences-at-once)).
+For several sequences or a list that changes at runtime, prefer a single `useHotkeys([...])` call (see the [Sequences guide](./guides/sequences.md#many-sequences-at-once)).
 
-### Tracking Held Keys
+### Tracking held keys
 
 ```vue
 <script setup lang="ts">
@@ -108,7 +109,7 @@ const isShiftHeld = useKeyHold('Shift')
 </template>
 ```
 
-### Displaying Hotkeys in the UI
+### Displaying hotkeys in the UI
 
 ```vue
 <script setup lang="ts">
@@ -124,7 +125,7 @@ useHotkey('Mod+S', () => save())
 </template>
 ```
 
-## Default Options Provider
+## Default options provider
 
 Wrap part of your app with `HotkeysProvider` to set default options for all Vue composables in that subtree:
 
@@ -136,8 +137,7 @@ import { HotkeysProvider } from '@tanstack/vue-hotkeys'
 <template>
   <HotkeysProvider
     :default-options="{
-      hotkey: { preventDefault: true },
-      hotkeySequence: { timeout: 1500 },
+      hotkey: { preventDefault: true, timeout: 1500 },
       hotkeyRecorder: { onCancel: () => console.log('Recording cancelled') },
     }"
   >
@@ -146,11 +146,15 @@ import { HotkeysProvider } from '@tanstack/vue-hotkeys'
 </template>
 ```
 
-## Next Steps
+## Declaring app hotkeys
+
+To list every hotkey in a cheat sheet, including hotkeys whose components haven't mounted, and to let users customize them, declare them once with `defineAppHotkeys` and provide them with `HotkeysProvider`. See the [App Hotkeys Guide](./guides/app-hotkeys).
+
+## Next steps
 
 - [Hotkeys Guide](./guides/hotkeys)
 - [Sequences Guide](./guides/sequences)
 - [Hotkey Recording Guide](./guides/hotkey-recording)
-- [Sequence Recording Guide](./guides/sequence-recording)
+- [App Hotkeys Guide](./guides/app-hotkeys)
 - [Key State Tracking Guide](./guides/key-state-tracking)
 - [Formatting & Display Guide](./guides/formatting-display)

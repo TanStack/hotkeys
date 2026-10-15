@@ -176,12 +176,11 @@ function removeShortcut(id: number) {
 }
 
 function fd(h: string) {
-  return formatForDisplay(h as Hotkey)
+  return formatForDisplay(h)
 }
 
 // Registrations viewer
-const { hotkeys: registeredHotkeys, sequences: registeredSequences } =
-  useHotkeyRegistrations()
+const registrations = useHotkeyRegistrations()
 </script>
 
 <template>
@@ -231,8 +230,7 @@ useHotkeys([
     callback: () => undo(),
     options: { meta: { name: 'Undo', description: 'Undo the last action' } },
   },
-])</pre
-        >
+])</pre>
       </div>
 
       <!-- Common Options -->
@@ -269,8 +267,7 @@ useHotkeys(
       options: { enabled: true, meta: { name: 'Action C' } } },
   ],
   { enabled }, // common option
-)</pre
-        >
+)</pre>
       </div>
 
       <!-- Dynamic -->
@@ -323,8 +320,7 @@ useHotkeys(
     callback: s.action,
     options: { meta: { name: s.name, description: s.description } },
   })),
-)</pre
-        >
+)</pre>
       </div>
 
       <!-- Live Registrations Viewer -->
@@ -333,8 +329,8 @@ useHotkeys(
         <p>
           This table is rendered from
           <code>useHotkeyRegistrations()</code> — a reactive view of all
-          registered hotkeys. It updates automatically as hotkeys are added,
-          removed, enabled/disabled, or triggered.
+          registered hotkeys, chords and sequences. It updates automatically as
+          hotkeys are added, removed, enabled/disabled, or triggered.
         </p>
         <table class="registrations-table">
           <thead>
@@ -342,18 +338,26 @@ useHotkeys(
               <th>Hotkey</th>
               <th>Name</th>
               <th>Description</th>
+              <th>Progress</th>
               <th>Enabled</th>
               <th>Triggers</th>
             </tr>
           </thead>
           <tbody>
-            <tr v-for="reg in registeredHotkeys" :key="reg.id">
+            <tr v-for="reg in registrations" :key="reg.id">
               <td>
                 <kbd>{{ formatForDisplay(reg.hotkey) }}</kbd>
               </td>
               <td>{{ reg.options.meta?.name ?? '\u2014' }}</td>
               <td class="description-cell">
                 {{ reg.options.meta?.description ?? '\u2014' }}
+              </td>
+              <td>
+                {{
+                  reg.kind === 'sequence'
+                    ? `${reg.matchedStepCount}/${reg.hotkey.length}`
+                    : '\u2014'
+                }}
               </td>
               <td>
                 <span
@@ -366,49 +370,21 @@ useHotkeys(
               </td>
               <td class="trigger-count">{{ reg.triggerCount }}</td>
             </tr>
-            <tr v-if="registeredHotkeys.length === 0">
-              <td colspan="5" class="hint">No hotkeys registered</td>
+            <tr v-if="registrations.length === 0">
+              <td colspan="6" class="hint">No hotkeys registered</td>
             </tr>
           </tbody>
         </table>
-        <template v-if="registeredSequences.length > 0">
-          <h3 style="margin-top: 16px">Sequences</h3>
-          <table class="registrations-table">
-            <thead>
-              <tr>
-                <th>Sequence</th>
-                <th>Name</th>
-                <th>Description</th>
-                <th>Triggers</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr v-for="reg in registeredSequences" :key="reg.id">
-                <td>
-                  <template v-for="(s, i) in reg.sequence" :key="i">
-                    {{ i > 0 ? ' ' : '' }}<kbd>{{ formatForDisplay(s) }}</kbd>
-                  </template>
-                </td>
-                <td>{{ reg.options.meta?.name ?? '\u2014' }}</td>
-                <td class="description-cell">
-                  {{ reg.options.meta?.description ?? '\u2014' }}
-                </td>
-                <td class="trigger-count">{{ reg.triggerCount }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </template>
         <pre class="code-block">
-const { hotkeys, sequences } = useHotkeyRegistrations()
+const registrations = useHotkeyRegistrations()
 
-// Render a live table of all registrations
-hotkeys.value.map((reg) => ({
+// Render a live table of all registrations, chords and sequences
+registrations.value.map((reg) => ({
   hotkey: formatForDisplay(reg.hotkey),
   name: reg.options.meta?.name,
   description: reg.options.meta?.description,
   triggers: reg.triggerCount,
-}))</pre
-        >
+}))</pre>
       </div>
     </div>
 

@@ -1,3 +1,4 @@
+import { LOGICAL_ONLY_NAMED_KEYS, SHARED_NAMED_KEYS } from './_named-keys'
 import type {
   CanonicalModifier,
   EditingKey,
@@ -6,41 +7,7 @@ import type {
   NavigationKey,
   NumberKey,
   PunctuationKey,
-} from './hotkey'
-
-/**
- * Detects the current platform based on browser navigator properties.
- *
- * Used internally to resolve platform-adaptive modifiers like 'Mod' (Command on Mac,
- * Control elsewhere) and for platform-specific hotkey formatting.
- *
- * @returns The detected platform: 'mac', 'windows', or 'linux'
- * @remarks Defaults to 'linux' in SSR environments where navigator is undefined
- *
- * @example
- * ```ts
- * const platform = detectPlatform() // 'mac' | 'windows' | 'linux'
- * const modifier = resolveModifier('Mod', platform) // 'Meta' on Mac, 'Control' elsewhere
- * ```
- */
-export function detectPlatform(): 'mac' | 'windows' | 'linux' {
-  if (typeof navigator === 'undefined') {
-    return 'linux' // Default for SSR
-  }
-
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  const platform = navigator.platform?.toLowerCase() ?? ''
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  const userAgent = navigator.userAgent?.toLowerCase() ?? ''
-
-  if (platform.includes('mac') || userAgent.includes('mac')) {
-    return 'mac'
-  }
-  if (platform.includes('win') || userAgent.includes('win')) {
-    return 'windows'
-  }
-  return 'linux'
-}
+} from './key.types'
 
 /**
  * Canonical order for modifiers in normalized hotkey strings.
@@ -130,37 +97,6 @@ export const MODIFIER_ALIASES: Record<string, CanonicalModifier | 'Mod'> = {
 }
 
 /**
- * Resolves the platform-adaptive 'Mod' modifier to the appropriate canonical modifier.
- *
- * The 'Mod' token represents the "primary modifier" on each platform:
- * - macOS: 'Meta' (Command key ⌘)
- * - Windows/Linux: 'Control' (Ctrl key)
- *
- * This enables cross-platform hotkey definitions like 'Mod+S' that automatically
- * map to Command+S on Mac and Ctrl+S on Windows/Linux.
- *
- * @param modifier - The modifier to resolve. If 'Mod', resolves based on platform.
- * @param platform - The target platform. Defaults to auto-detection.
- * @returns The canonical modifier name ('Control', 'Shift', 'Alt', or 'Meta')
- *
- * @example
- * ```ts
- * resolveModifier('Mod', 'mac') // 'Meta'
- * resolveModifier('Mod', 'windows') // 'Control'
- * resolveModifier('Control', 'mac') // 'Control' (unchanged)
- * ```
- */
-export function resolveModifier(
-  modifier: CanonicalModifier | 'Mod',
-  platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
-): CanonicalModifier {
-  if (modifier === 'Mod') {
-    return platform === 'mac' ? 'Meta' : 'Control'
-  }
-  return modifier
-}
-
-/**
  * Set of all valid letter keys (A-Z).
  *
  * Used for validation and type checking. Letter keys are matched case-insensitively
@@ -216,7 +152,7 @@ export const NUMBER_KEYS = new Set<NumberKey>([
 ])
 
 /**
- * Set of all valid function keys (F1-F12).
+ * Set of all valid function keys (F1-F24).
  *
  * Function keys are commonly used for system shortcuts (e.g., F12 for DevTools,
  * Alt+F4 to close windows) and application-specific commands.
@@ -234,6 +170,18 @@ export const FUNCTION_KEYS = new Set<FunctionKey>([
   'F10',
   'F11',
   'F12',
+  'F13',
+  'F14',
+  'F15',
+  'F16',
+  'F17',
+  'F18',
+  'F19',
+  'F20',
+  'F21',
+  'F22',
+  'F23',
+  'F24',
 ])
 
 /**
@@ -293,6 +241,28 @@ export const PUNCTUATION_KEYS = new Set<PunctuationKey>([
   '.',
   ';',
   '`',
+  "'",
+  '+',
+  '?',
+  '!',
+  '@',
+  '#',
+  '$',
+  '%',
+  '^',
+  '&',
+  '*',
+  '(',
+  ')',
+  '_',
+  '{',
+  '}',
+  '|',
+  ':',
+  '"',
+  '<',
+  '>',
+  '~',
 ])
 
 /**
@@ -313,6 +283,7 @@ export const PUNCTUATION_CODE_MAP: Record<string, string> = {
   Equal: '=',
   Minus: '-',
   Period: '.',
+  Quote: "'",
   Semicolon: ';',
   Slash: '/',
 }
@@ -338,7 +309,14 @@ export const ALL_KEYS = new Set([
   ...NAVIGATION_KEYS,
   ...EDITING_KEYS,
   ...PUNCTUATION_KEYS,
+  ...SHARED_NAMED_KEYS,
+  ...LOGICAL_ONLY_NAMED_KEYS,
 ])
+
+// Share canonical spellings with validation, including newly supported named keys.
+const CANONICAL_KEY_NAMES = new Map<string, string>(
+  Array.from(ALL_KEYS, (key) => [key.toLowerCase(), key]),
+)
 
 /**
  * Maps key name aliases to their canonical form.
@@ -360,6 +338,8 @@ export const ALL_KEYS = new Set([
  * ```
  */
 const KEY_ALIASES: Record<string, string> = {
+  Plus: '+',
+  plus: '+',
   // Escape variants
   Esc: 'Escape',
   esc: 'Escape',
@@ -471,133 +451,5 @@ export function normalizeKeyName(key: string): string {
     return upper.length === 1 ? upper : key
   }
 
-  // Check if it's a function key (normalize case)
-  const upperKey = key.toUpperCase()
-  if (/^F([1-9]|1[0-2])$/.test(upperKey)) {
-    return upperKey
-  }
-
-  return key
+  return CANONICAL_KEY_NAMES.get(key.toLowerCase()) ?? key
 }
-
-// =============================================================================
-// Display Symbols
-// =============================================================================
-
-/**
- * Modifier key symbols for macOS display.
- *
- * Used by formatting functions to display hotkeys with macOS-style symbols
- * (e.g., ⌘ for Command, ⌃ for Control) instead of text labels. This provides
- * a native macOS look and feel in hotkey displays.
- *
- * @example
- * ```ts
- * MAC_MODIFIER_SYMBOLS['Meta'] // '⌘'
- * MAC_MODIFIER_SYMBOLS['Control'] // '⌃'
- * MAC_MODIFIER_SYMBOLS['Alt'] // '⌥'
- * MAC_MODIFIER_SYMBOLS['Shift'] // '⇧'
- * ```
- */
-export const MAC_MODIFIER_SYMBOLS: Record<CanonicalModifier | 'Mod', string> = {
-  Control: '⌃',
-  Alt: '⌥',
-  Shift: '⇧',
-  Meta: '⌘',
-  Mod: '⌘',
-}
-
-/**
- * Modifier key labels for macOS display.
- *
- * Used by formatting functions to display hotkeys with macOS-style text labels
- * (e.g., 'Control' for Control, 'Option' for Alt, 'Cmd' for Meta) instead of symbols.
- * This provides a familiar macOS look and feel in hotkey displays.
- *
- * @example
- * ```ts
- * MAC_MODIFIER_LABELS['Control'] // 'control'
- * MAC_MODIFIER_LABELS['Alt'] // 'option'
- * MAC_MODIFIER_LABELS['Shift'] // 'shift'
- * MAC_MODIFIER_LABELS['Meta'] // 'cmd'
- * ```
- */
-export const MAC_MODIFIER_LABELS: Record<CanonicalModifier | 'Mod', string> = {
-  Control: 'Control',
-  Alt: 'Option',
-  Shift: 'Shift',
-  Meta: 'Cmd',
-  Mod: 'Cmd',
-}
-
-/**
- * Modifier key labels for Windows/Linux display.
- *
- * Used by formatting functions to display hotkeys with standard text labels
- * (e.g., 'Ctrl' for Control, 'Win' for Meta/Windows key) instead of symbols.
- * This provides a familiar Windows/Linux look and feel in hotkey displays.
- *
- * @example
- * ```ts
- * STANDARD_MODIFIER_LABELS['Control'] // 'Ctrl'
- * STANDARD_MODIFIER_LABELS['Meta'] // 'Win'
- * STANDARD_MODIFIER_LABELS['Alt'] // 'Alt'
- * STANDARD_MODIFIER_LABELS['Shift'] // 'Shift'
- * ```
- */
-export const WINDOWS_MODIFIER_LABELS: Record<
-  CanonicalModifier | 'Mod',
-  string
-> = {
-  Control: 'Ctrl',
-  Alt: 'Alt',
-  Shift: 'Shift',
-  Meta: 'Win',
-  Mod: 'Ctrl',
-}
-
-export const LINUX_MODIFIER_LABELS: Record<CanonicalModifier | 'Mod', string> =
-  {
-    ...WINDOWS_MODIFIER_LABELS,
-    Meta: 'Super',
-  }
-
-export const PUNCTUATION_KEY_DISPLAY_LABELS = {
-  '`': 'Backquote',
-  '\\': 'Backslash',
-  '[': 'Left Bracket',
-  ']': 'Right Bracket',
-  ',': 'Comma',
-  '=': 'Equal',
-  '-': 'Minus',
-  '.': 'Period',
-  ';': 'Semicolon',
-} as const satisfies Record<string, string>
-
-/**
- * Special key symbols for display formatting.
- *
- * Maps certain keys to their visual symbols for better readability in hotkey displays.
- * Used by formatting functions to show symbols like ↑ for ArrowUp or ↵ for Enter
- * instead of text labels.
- *
- * @example
- * ```ts
- * KEY_DISPLAY_SYMBOLS['ArrowUp'] // '↑'
- * KEY_DISPLAY_SYMBOLS['Enter'] // '↵'
- * KEY_DISPLAY_SYMBOLS['Escape'] // 'Esc'
- * KEY_DISPLAY_SYMBOLS['Space'] // '␣'
- * ```
- */
-export const KEY_DISPLAY_SYMBOLS = {
-  ArrowUp: '↑',
-  ArrowDown: '↓',
-  ArrowLeft: '←',
-  ArrowRight: '→',
-  Enter: '↵',
-  Escape: 'Esc',
-  Backspace: '⌫',
-  Delete: '⌦',
-  Tab: '⇥',
-  Space: '␣',
-} as const satisfies Record<string, string>

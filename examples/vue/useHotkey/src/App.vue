@@ -59,8 +59,8 @@ useHotkey('Mod+1', () => {
   lastHotkey.value = 'Mod+1'
   activeTab.value = 1
 })
-useHotkey('Mod+2', () => {
-  lastHotkey.value = 'Mod+2'
+useHotkey('Mod+[Digit2]', () => {
+  lastHotkey.value = 'Mod+[Digit2]'
   activeTab.value = 2
 })
 useHotkey('Mod+3', () => {
@@ -306,7 +306,7 @@ useHotkey(
 )`
 
 const numberCode = `useHotkey('Mod+1', () => setActiveTab(1))
-useHotkey('Mod+2', () => setActiveTab(2))`
+useHotkey('Mod+[Digit2]', () => setActiveTab(2))`
 
 const navigationCode = `useHotkey('Shift+ArrowUp', () => selectUp())
 useHotkey('Alt+ArrowLeft', () => navigateBack())
@@ -409,13 +409,17 @@ useHotkey(
 
         <section class="demo-section">
           <h2>Number Key Combinations</h2>
-          <p>Common for tab/section switching:</p>
+          <p>
+            Tab 2 uses the physical number-row position
+            (<code>Mod+[Digit2]</code>), even when that key produces a different
+            character. The other tabs follow logical digits.
+          </p>
           <div class="hotkey-grid">
             <div>
               <kbd>{{ formatForDisplay('Mod+1') }}</kbd> → Tab 1
             </div>
             <div>
-              <kbd>{{ formatForDisplay('Mod+2') }}</kbd> → Tab 2
+              <kbd>{{ formatForDisplay('Mod+[Digit2]') }}</kbd> → Tab 2
             </div>
             <div>
               <kbd>{{ formatForDisplay('Mod+3') }}</kbd> → Tab 3

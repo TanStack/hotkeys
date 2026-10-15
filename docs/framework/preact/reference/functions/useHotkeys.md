@@ -4,38 +4,35 @@ title: useHotkeys
 ---
 
 ```ts
-function useHotkeys(hotkeys, commonOptions): void;
+function useHotkeys(hotkeys, commonOptions?): void;
 ```
 
-Defined in: [useHotkeys.ts:73](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeys.ts#L73)
+Defined in: [useHotkeys.ts:59](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeys.ts#L59)
 
-Preact hook for registering multiple keyboard hotkeys at once.
+Preact hook for registering several hotkeys at once: chords, sequences, and
+app hotkeys. Accepts a dynamic array, so it is safe to use with
+variable-length lists without violating the rules of hooks.
 
-Uses the singleton HotkeyManager for efficient event handling.
-Accepts a dynamic array of hotkey definitions, making it safe to use
-with variable-length lists without violating the rules of hooks.
+Options merge in this order: provider defaults, app hotkey declaration,
+commonOptions, per-hotkey options. Each option applies only to the kinds
+that support it. Callbacks and options sync on every render.
 
-Options are merged in this order:
-HotkeysProvider defaults < commonOptions < per-definition options
-
-Callbacks and options are synced on every render to avoid stale closures.
+Per-row `enabled: false` keeps that registration (visible in devtools) and
+only suppresses firing. Unbound app hotkeys and empty sequences register nothing.
 
 ## Parameters
 
 ### hotkeys
 
-[`UseHotkeyDefinition`](../interfaces/UseHotkeyDefinition.md)[]
+readonly [`UseHotkeyDefinition`](../type-aliases/UseHotkeyDefinition.md)[]
 
-Array of hotkey definitions to register
+Hotkeys to register
 
-### commonOptions
+### commonOptions?
 
-[`UseHotkeyOptions`](../interfaces/UseHotkeyOptions.md) = `{}`
+[`UseHotkeyCommonOptions`](../type-aliases/UseHotkeyCommonOptions.md) = `{}`
 
-Shared options applied to all hotkeys (overridden by per-definition options).
-  Per-row `enabled: false` still registers that hotkey: `HotkeyManager` suppresses execution only (the row
-  stays in the store and appears in TanStack Hotkeys devtools). Toggling `enabled` updates the existing handle
-  via `setOptions` (no unregister/re-register churn).
+Options applied to every hotkey (overridden by per-hotkey options)
 
 ## Returns
 
@@ -47,7 +44,7 @@ Shared options applied to all hotkeys (overridden by per-definition options).
 function Editor() {
   useHotkeys([
     { hotkey: 'Mod+S', callback: () => save() },
-    { hotkey: 'Mod+Z', callback: () => undo() },
+    { hotkey: ['G', 'G'], callback: () => scrollToTop(), options: { timeout: 500 } },
     { hotkey: 'Escape', callback: () => close() },
   ])
 }

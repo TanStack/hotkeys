@@ -1,171 +1,94 @@
-import { DestroyRef, effect, inject } from '@angular/core'
-import {
-  detectPlatform,
-  getHotkeyManager,
-  normalizeRegisterableHotkey,
-} from '@tanstack/hotkeys'
-import { injectDefaultHotkeysOptions } from './hotkeys-provider'
+import { injectHotkeys } from './injectHotkeys'
 import type {
-  Hotkey,
+  AppHotkey,
   HotkeyCallback,
-  HotkeyOptions,
-  HotkeyRegistrationHandle,
   RegisterableHotkey,
+  Target,
 } from '@tanstack/hotkeys'
-
-export interface InjectHotkeyOptions extends Omit<HotkeyOptions, 'target'> {
-  /**
-   * The DOM element to attach the event listener to.
-   * Can be a direct DOM element, an accessor (for reactive targets that become
-   * available after mount), or null. Defaults to document.
-   * When using scoped targets, pass an accessor: () => ({ target: elementSignal() })
-   * so the hotkey waits for the element to be attached before registering.
-   */
-  target?: HTMLElement | Document | Window | null
-}
+import type {
+  AdapterAppHotkeyOptions,
+  AdapterChordOptions,
+  AdapterCommonOptions,
+  AdapterHotkeyOptions,
+  AdapterOptionsFor,
+  AdapterSequenceOptions,
+} from '@tanstack/hotkeys/adapter'
 
 /**
- * Angular inject-based API for registering a keyboard hotkey.
+ * The element to listen on. A `null` target skips registration, so pass a
+ * getter such as `() => ({ target: this.element() })` for elements that
+ * attach after the view renders.
+ */
+export type InjectHotkeyTarget = Target | null
+
+/** Options shared by chords and sequences. */
+export type InjectHotkeyOptions = AdapterHotkeyOptions<InjectHotkeyTarget>
+
+/** Options for a chord such as `'Mod+S'`. */
+export type InjectHotkeyChordOptions = AdapterChordOptions<InjectHotkeyTarget>
+
+/** Options for a sequence such as `['G', 'G']`. */
+export type InjectHotkeySequenceOptions =
+  AdapterSequenceOptions<InjectHotkeyTarget>
+
+/** Options applied to every hotkey, such as provider defaults. Each applies to the kinds that support it. */
+export type InjectHotkeyCommonOptions = AdapterCommonOptions<InjectHotkeyTarget>
+
+/** The options type for a hotkey: chord options for chords, sequence options for sequences. */
+export type InjectHotkeyOptionsFor<T extends RegisterableHotkey> =
+  AdapterOptionsFor<T, InjectHotkeyTarget>
+
+/** Call-site options for an app hotkey, typed by its declared default kind. */
+export type InjectAppHotkeyOptions<T extends AppHotkey = AppHotkey> =
+  AdapterAppHotkeyOptions<T, InjectHotkeyTarget>
+
+type MaybeGetter<T> = T | (() => T)
+
+/**
+ * Angular inject-based API for registering a hotkey: a chord such as
+ * `'Mod+S'`, a sequence such as `['G', 'G']`, or an app hotkey from
+ * `defineAppHotkeys`. The hotkey and options may be getters that read signals.
  *
- * Uses the singleton HotkeyManager for efficient event handling.
- * The callback receives both the keyboard event and a context object
- * containing the hotkey string and parsed hotkey.
- *
- * Call in an injection context (e.g. constructor or field initializer).
- * Uses effect() to track reactive dependencies and update registration
- * when options or the callback change.
- * `enabled: false` keeps the registration (visible in devtools) and only suppresses firing; the same
- * handle is updated instead of unregistering and re-registering when identity is unchanged.
- *
- * @param hotkey - The hotkey string (e.g. 'Mod+S', 'Escape') or getter function
- * @param callback - The function to call when the hotkey is pressed
- * @param options - Options for the hotkey behavior, or getter for reactive options
- *
- * @example
- * ```ts
- * @Component({ ... })
- * export class SaveButtonComponent {
- *   private readonly saveCount = signal(0)
- *
- *   constructor() {
- *     injectHotkey('Mod+S', (event, { hotkey }) => {
- *       event.preventDefault()
- *       this.saveCount.update(c => c + 1)
- *     })
- *   }
- * }
- * ```
- *
- * @example
- * ```ts
- * @Component({ ... })
- * export class ModalComponent {
- *   isOpen = signal(true)
- *
- *   constructor() {
- *     injectHotkey('Escape', () => this.close(), () => ({ enabled: this.isOpen() }))
- *   }
- * }
- * ```
+ * Chords accept `requireReset`; sequences accept `timeout`. A one-step
+ * sequence registers as its chord. An app hotkey uses its effective hotkey
+ * from `provideHotkeys` (including the user's custom hotkey) and its declared
+ * meta and options, and registers nothing while unbound.
  *
  * @example
  * ```ts
  * @Component({ ... })
  * export class EditorComponent {
- *   private readonly editorRef = viewChild<ElementRef<HTMLDivElement>>('editorRef')
- *
  *   constructor() {
- *     injectHotkey('Mod+B', () => this.toggleBold(), () => ({
- *       target: this.editorRef()?.nativeElement ?? null,
- *     }))
+ *     injectHotkey('Mod+S', () => this.save())
+ *     injectHotkey(['G', 'G'], () => this.scrollToTop(), { timeout: 500 })
+ *     injectHotkey('Escape', () => this.close(), () => ({ enabled: this.isOpen() }))
  *   }
  * }
  * ```
  */
-export function injectHotkey(
-  hotkey: RegisterableHotkey | (() => RegisterableHotkey),
+export function injectHotkey<T extends AppHotkey>(
+  hotkey: MaybeGetter<T>,
   callback: HotkeyCallback,
-  options: InjectHotkeyOptions | (() => InjectHotkeyOptions) = {},
+  options?: MaybeGetter<InjectAppHotkeyOptions<T>>,
+): void
+export function injectHotkey<T extends RegisterableHotkey>(
+  hotkey: MaybeGetter<T>,
+  callback: HotkeyCallback,
+  options?: MaybeGetter<InjectHotkeyOptionsFor<T>>,
+): void
+export function injectHotkey(
+  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey>,
+  callback: HotkeyCallback,
+  options: MaybeGetter<InjectHotkeyCommonOptions> = {},
 ): void {
-  const defaultOptions = injectDefaultHotkeysOptions()
-  const manager = getHotkeyManager()
-  const destroyRef = inject(DestroyRef)
-
-  let registration: HotkeyRegistrationHandle | null = null
-  let lastHotkeyString: Hotkey | null = null
-  let lastTarget: HTMLElement | Document | Window | null = null
-
-  destroyRef.onDestroy(() => {
-    if (registration?.isActive) {
-      registration.unregister()
-      registration = null
-    }
-    lastHotkeyString = null
-    lastTarget = null
-  })
-
-  effect(() => {
-    // Resolve reactive values
-    const resolvedHotkey = typeof hotkey === 'function' ? hotkey() : hotkey
-    const resolvedOptions = typeof options === 'function' ? options() : options
-
-    const mergedOptions = {
-      ...defaultOptions.hotkey,
-      ...resolvedOptions,
-    } as InjectHotkeyOptions
-
-    // Normalize to hotkey string
-    const platform = mergedOptions.platform ?? detectPlatform()
-    const hotkeyString = normalizeRegisterableHotkey(resolvedHotkey, platform)
-
-    // Resolve target: when explicitly provided (even as null), use it and skip if null.
-    // When not provided, default to document. Matches React's ref handling.
-    const resolvedTarget =
-      'target' in mergedOptions
-        ? (mergedOptions.target ?? null)
-        : typeof document !== 'undefined'
-          ? document
-          : null
-
-    if (!resolvedTarget) {
-      if (registration?.isActive) {
-        registration.unregister()
-        registration = null
-      }
-      lastHotkeyString = null
-      lastTarget = null
-      return
-    }
-
-    // Extract options without target (target is handled separately)
-    const { target: _target, ...optionsWithoutTarget } = mergedOptions
-
-    if (
-      registration?.isActive &&
-      lastHotkeyString === hotkeyString &&
-      lastTarget === resolvedTarget
-    ) {
-      registration.callback = callback
-      registration.setOptions(optionsWithoutTarget)
-      return
-    }
-
-    if (registration?.isActive) {
-      registration.unregister()
-      registration = null
-    }
-
-    registration = manager.register(hotkeyString, callback, {
-      ...optionsWithoutTarget,
-      target: resolvedTarget,
-    })
-
-    if (registration.isActive) {
-      registration.callback = callback
-      registration.setOptions(optionsWithoutTarget)
-    }
-
-    lastHotkeyString = hotkeyString
-    lastTarget = resolvedTarget
-  })
+  injectHotkeys(
+    () =>
+      [
+        {
+          hotkey: typeof hotkey === 'function' ? hotkey() : hotkey,
+          callback,
+          options: typeof options === 'function' ? options() : options,
+        },
+      ] as never,
+  )
 }

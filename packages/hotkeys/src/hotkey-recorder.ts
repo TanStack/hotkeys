@@ -1,8 +1,22 @@
 import { Store } from '@tanstack/store'
-import { detectPlatform } from './constants'
-import { isInputElement } from './manager.utils'
-import { hotkeyChordFromKeydown } from './recorder-chord'
-import type { Hotkey } from './hotkey'
+import { findHotkeyConflicts } from './conflicts'
+import {
+  beginRecording,
+  captureRecordingEvent,
+  endRecording,
+} from './_recording-guard'
+import { chordRejection, hotkeyChordFromKeydown } from './_recorder-chord'
+import { normalizeKeyboardEvent } from './_keyboard-event'
+import { isModifierKey, parseHotkey, simplifyHotkey } from './parse'
+import { validateHotkey } from './validate'
+import { detectPlatform } from './platform'
+import { shouldIgnoreInputEvent } from './_event-target'
+import type {
+  HotkeyRecorderValidationContext,
+  RecorderOptions,
+  RecorderRejection,
+} from './recorder-options'
+import type { Hotkey, HotkeyChord, HotkeySequence } from './hotkey.types'
 
 /**
  * State interface for the HotkeyRecorder.
@@ -10,85 +24,157 @@ import type { Hotkey } from './hotkey'
 export interface HotkeyRecorderState {
   /** Whether recording is currently active */
   isRecording: boolean
-  /** The currently recorded hotkey (for live preview) */
+  /** Chords recorded so far in a multi-step recording (empty for `maxSteps: 1`) */
+  steps: HotkeySequence
+  /** The last committed hotkey: a chord, or a sequence of two or more steps */
   recordedHotkey: Hotkey | null
 }
 
-/**
- * Options for configuring a HotkeyRecorder instance.
- */
-export interface HotkeyRecorderOptions {
-  /** Callback when a hotkey is successfully recorded */
-  onRecord: (hotkey: Hotkey) => void
+/** Which keys commit a multi-step recording before it reaches `maxSteps`. */
+export type HotkeyRecorderCommitKeys = 'enter' | 'none'
+
+interface HotkeyRecorderBaseOptions extends RecorderOptions {
   /** Optional callback when recording is cancelled (Escape pressed) */
   onCancel?: () => void
-  /** Optional callback when shortcut is cleared (Backspace/Delete pressed) */
+  /**
+   * Optional callback when the recording is cleared: Backspace/Delete with no
+   * modifiers and no recorded steps
+   */
   onClear?: () => void
   /**
    * Whether to ignore keyboard events from input-like elements (text inputs,
-   * textarea, select, contenteditable). When true, typing in inputs passes
-   * through normally instead of being captured as a hotkey recording.
-   * Escape always works regardless of this setting.
-   * @default true
+   * textarea, select, contenteditable) while recording. When true, typing in
+   * inputs passes through normally (Escape still cancels). Defaults to true.
    */
   ignoreInputs?: boolean
+}
+
+/** Options for recording a single chord. This is the default (`maxSteps: 1`). */
+export interface HotkeyChordRecorderOptions extends HotkeyRecorderBaseOptions {
+  /** Maximum number of chords to record. Default: 1 */
+  maxSteps?: 1
+  /** Return true to accept, or false/a message to reject while staying in recording mode. */
+  validate?: (
+    hotkey: HotkeyChord,
+    context: HotkeyRecorderValidationContext,
+  ) => boolean | string
+  /** Callback when a chord is successfully recorded */
+  onRecord: (hotkey: HotkeyChord) => void
+}
+
+/**
+ * Options for recording up to `maxSteps` chords. A one-step recording commits
+ * as a chord string; two or more steps commit as a sequence.
+ */
+export interface HotkeySequenceRecorderOptions extends HotkeyRecorderBaseOptions {
+  /** Maximum number of chords to record. Reaching it commits automatically. Use `Infinity` for no limit. */
+  maxSteps: number
+  /** Return true to accept, or false/a message to reject while staying in recording mode. */
+  validate?: (
+    hotkey: Hotkey,
+    context: HotkeyRecorderValidationContext,
+  ) => boolean | string
+  /** Callback when a hotkey is successfully recorded */
+  onRecord: (hotkey: Hotkey) => void
+  /** Whether plain Enter commits the recorded steps. Default: 'enter' */
+  commitKeys?: HotkeyRecorderCommitKeys
+  /** Commit automatically after this many milliseconds without a new step. Disabled when unset or 0. */
+  idleTimeoutMs?: number
+}
+
+/**
+ * Options for HotkeyRecorder. `maxSteps` (default 1) selects between recording
+ * a single chord and recording a sequence.
+ */
+export type HotkeyRecorderOptions =
+  HotkeyChordRecorderOptions | HotkeySequenceRecorderOptions
+
+/** Internal view of either options shape. */
+type ResolvedRecorderOptions = HotkeyRecorderBaseOptions & {
+  maxSteps?: number
+  validate?: (
+    hotkey: Hotkey,
+    context: HotkeyRecorderValidationContext,
+  ) => boolean | string
+  onRecord: (hotkey: Hotkey) => void
+  commitKeys?: HotkeyRecorderCommitKeys
+  idleTimeoutMs?: number
+}
+
+const initialState: HotkeyRecorderState = {
+  isRecording: false,
+  steps: [],
+  recordedHotkey: null,
 }
 
 /**
  * Framework-agnostic class for recording keyboard shortcuts.
  *
- * This class handles all the complexity of capturing keyboard events,
- * converting them to hotkey strings, and handling edge cases like
- * Escape to cancel or Backspace/Delete to clear.
+ * With the default `maxSteps: 1`, the first valid chord commits. With a larger
+ * `maxSteps`, each chord adds a step; the recording commits on Enter (unless
+ * `commitKeys: 'none'`), after `idleTimeoutMs`, or when it reaches `maxSteps`.
+ * Backspace/Delete removes the last step, and on an empty recording calls
+ * `onClear`. Escape cancels. A one-step result is a chord string.
  *
  * State Management:
  * - Uses TanStack Store for reactive state management
  * - State can be accessed via `recorder.store.state` when using the class directly
- * - When using framework adapters (React), use `useSelector` hooks for reactive state
+ * - When using framework adapters, use the `useHotkeyRecorder` hook for reactive state
  *
  * @example
  * ```ts
  * const recorder = new HotkeyRecorder({
  *   onRecord: (hotkey) => {
- *     console.log('Recorded:', hotkey)
- *   },
- *   onCancel: () => {
- *     console.log('Recording cancelled')
+ *     console.log('Recorded:', hotkey) // 'Mod+S'
  *   },
  * })
  *
- * // Start recording
+ * const sequenceRecorder = new HotkeyRecorder({
+ *   maxSteps: 3,
+ *   onRecord: (hotkey) => {
+ *     console.log('Recorded:', hotkey) // 'Mod+S' or ['G', 'H']
+ *   },
+ * })
+ *
  * recorder.start()
- *
- * // Access state directly
- * console.log(recorder.store.state.isRecording) // true
- *
- * // Subscribe to changes with TanStack Store
- * const unsubscribe = recorder.store.subscribe(() => {
- *   console.log('Recording:', recorder.store.state.isRecording)
- * })
- *
- * // Cleanup
+ * // ... later
  * recorder.destroy()
- * unsubscribe()
  * ```
  */
 export class HotkeyRecorder {
-  /**
-   * The TanStack Store instance containing the recorder state.
-   * Use this to subscribe to state changes or access current state.
-   */
-  readonly store: Store<HotkeyRecorderState> = new Store<HotkeyRecorderState>({
-    isRecording: false,
-    recordedHotkey: null,
-  })
+  readonly store: Store<HotkeyRecorderState> = new Store<HotkeyRecorderState>(
+    initialState,
+  )
 
   #keydownHandler: ((event: KeyboardEvent) => void) | null = null
-  #options: HotkeyRecorderOptions
+  #optionsSource: HotkeyRecorderOptions | (() => HotkeyRecorderOptions)
+  #optionOverrides: Partial<ResolvedRecorderOptions> = {}
   #platform: 'mac' | 'windows' | 'linux'
+  #events: Array<KeyboardEvent> = []
+  #idleTimer: ReturnType<typeof setTimeout> | null = null
 
-  constructor(options: HotkeyRecorderOptions) {
-    this.#options = options
+  get #options(): ResolvedRecorderOptions {
+    return {
+      ...((typeof this.#optionsSource === 'function'
+        ? this.#optionsSource()
+        : this.#optionsSource) as ResolvedRecorderOptions),
+      ...this.#optionOverrides,
+    }
+  }
+
+  get #maxSteps(): number {
+    return Math.max(1, this.#options.maxSteps ?? 1)
+  }
+
+  constructor(
+    options: HotkeyChordRecorderOptions | (() => HotkeyChordRecorderOptions),
+  )
+  constructor(
+    options:
+      HotkeySequenceRecorderOptions | (() => HotkeySequenceRecorderOptions),
+  )
+  constructor(options: HotkeyRecorderOptions | (() => HotkeyRecorderOptions)) {
+    this.#optionsSource = options
     this.#platform = detectPlatform()
   }
 
@@ -97,18 +183,38 @@ export class HotkeyRecorder {
    * This allows framework adapters to sync callback changes without recreating the recorder.
    */
   setOptions(options: Partial<HotkeyRecorderOptions>): void {
-    this.#options = {
-      ...this.#options,
-      ...options,
+    this.#optionOverrides = {
+      ...this.#optionOverrides,
+      ...(options as Partial<ResolvedRecorderOptions>),
     }
+  }
+
+  #clearIdleTimer(): void {
+    if (this.#idleTimer !== null) {
+      clearTimeout(this.#idleTimer)
+      this.#idleTimer = null
+    }
+  }
+
+  #scheduleIdleTimer(): void {
+    this.#clearIdleTimer()
+    const ms = this.#maxSteps > 1 ? this.#options.idleTimeoutMs : undefined
+    if (ms === undefined || ms <= 0 || this.store.state.steps.length === 0) {
+      return
+    }
+    this.#idleTimer = setTimeout(() => {
+      this.#idleTimer = null
+      if (this.#keydownHandler && this.store.state.steps.length >= 1) {
+        this.commit()
+      }
+    }, ms)
   }
 
   /**
    * Start recording a new hotkey.
    *
    * Sets up a keydown event listener that captures keyboard events
-   * and converts them to hotkey strings. Recording continues until
-   * a valid hotkey is recorded, Escape is pressed, or stop/cancel is called.
+   * and records chords according to `maxSteps`.
    */
   start(): void {
     // Prevent starting recording if already recording
@@ -116,13 +222,11 @@ export class HotkeyRecorder {
       return
     }
 
-    // Update store state
-    this.store.setState(() => ({
-      isRecording: true,
-      recordedHotkey: null,
-    }))
+    this.#clearIdleTimer()
+    this.#events = []
+    beginRecording(this)
+    this.store.setState(() => ({ ...initialState, isRecording: true }))
 
-    // Create keydown handler
     const handler = (event: KeyboardEvent) => {
       // Check if we're still recording (handler might be called after stop/cancel)
       if (!this.#keydownHandler) {
@@ -132,64 +236,167 @@ export class HotkeyRecorder {
       // If ignoreInputs is enabled (default) and focus is in an input element,
       // let the event pass through so the user can type normally.
       // Escape is the exception — it should always cancel recording.
-      if (this.#options.ignoreInputs !== false) {
-        const activeEl =
-          typeof document !== 'undefined' ? document.activeElement : null
-        if (isInputElement(activeEl) && event.key !== 'Escape') {
-          return
-        }
-      }
+      if (
+        this.#options.ignoreInputs !== false &&
+        event.key !== 'Escape' &&
+        shouldIgnoreInputEvent(event, document, document)
+      )
+        return
 
+      const platform = this.#options.platform ?? this.#platform
+      if (normalizeKeyboardEvent(event, platform).isComposing) return
+      captureRecordingEvent(event)
       event.preventDefault()
       event.stopPropagation()
+      if (event.repeat) return
 
-      // Handle Escape to cancel
       if (event.key === 'Escape') {
         this.cancel()
         return
       }
 
-      // Handle Backspace/Delete to clear shortcut
-      if (event.key === 'Backspace' || event.key === 'Delete') {
-        if (
-          !event.ctrlKey &&
-          !event.shiftKey &&
-          !event.altKey &&
-          !event.metaKey
-        ) {
-          this.#options.onClear?.()
-          this.#options.onRecord('' as Hotkey)
+      const unmodified =
+        !event.ctrlKey && !event.shiftKey && !event.altKey && !event.metaKey
+      const multiStep = this.#maxSteps > 1
+
+      // Backspace/Delete removes the last step, or clears an empty recording
+      if ((event.key === 'Backspace' || event.key === 'Delete') && unmodified) {
+        if (this.store.state.steps.length === 0) {
           this.stop()
+          this.#options.onClear?.()
           return
         }
-      }
-
-      const finalHotkey = hotkeyChordFromKeydown(event, this.#platform)
-      if (finalHotkey === null) {
+        this.#events.pop()
+        this.store.setState((s) => ({ ...s, steps: s.steps.slice(0, -1) }))
+        if (this.store.state.steps.length === 0) this.#clearIdleTimer()
+        else this.#scheduleIdleTimer()
         return
       }
 
-      // Remove listener FIRST to prevent any additional events
-      const handlerToRemove = this.#keydownHandler as
-        | ((event: KeyboardEvent) => void)
-        | null
-      if (handlerToRemove) {
-        this.#removeListener(handlerToRemove)
-        this.#keydownHandler = null
+      const options = this.#options
+      const enterCommits =
+        multiStep &&
+        options.commitKeys !== 'none' &&
+        event.key === 'Enter' &&
+        unmodified
+      if (enterCommits) {
+        if (this.store.state.steps.length >= 1) this.commit()
+        return
       }
 
-      // Update store state immediately
-      this.store.setState(() => ({
-        isRecording: false,
-        recordedHotkey: finalHotkey,
-      }))
+      if (isModifierKey(event.key) || event.key === 'AltGraph') return
+      const rejection = chordRejection(event, { ...options, platform })
+      if (rejection) {
+        options.onReject?.(rejection)
+        return
+      }
+      const chord = hotkeyChordFromKeydown(event, platform, options.recordBy)
+      if (chord === null) {
+        return
+      }
 
-      // Call callback AFTER listener is removed and state is set
-      this.#options.onRecord(finalHotkey)
+      const validation = validateHotkey(chord)
+      if (!validation.valid) {
+        options.onReject?.({
+          reason: 'invalid',
+          message: validation.errors.join('; '),
+          hotkey: chord,
+        })
+        return
+      }
+
+      this.#events.push(event)
+      this.store.setState((s) => ({ ...s, steps: [...s.steps, chord] }))
+      if (this.store.state.steps.length >= this.#maxSteps) {
+        this.commit()
+      } else {
+        this.#scheduleIdleTimer()
+      }
     }
 
     this.#keydownHandler = handler
     this.#addListener(handler)
+  }
+
+  /**
+   * Commits the recorded steps after validation and conflict checks.
+   * Called automatically at `maxSteps`, on Enter, or after `idleTimeoutMs`.
+   * A rejected commit leaves recording active with its steps intact.
+   */
+  commit(): void {
+    const steps = this.store.state.steps
+    if (steps.length < 1) {
+      return
+    }
+
+    const options = this.#options
+    const platform = options.platform ?? this.#platform
+    const hotkey = simplifyHotkey(steps)
+    const single = this.#maxSteps === 1
+    this.#clearIdleTimer()
+
+    const rejectAndKeepRecording = (rejection: RecorderRejection) => {
+      // A single-chord recording waits for a new chord rather than editing steps.
+      if (single) {
+        this.#events = []
+        this.store.setState((s) => ({ ...s, steps: [] }))
+      }
+      options.onReject?.(rejection)
+    }
+
+    const parsedSequence = steps.map((step) => parseHotkey(step, platform))
+    const accepted = options.validate?.(hotkey, {
+      event: this.#events[this.#events.length - 1]!,
+      parsedHotkey: parsedSequence[parsedSequence.length - 1]!,
+      events: [...this.#events],
+      parsedSequence,
+    })
+    if (accepted !== undefined && accepted !== true) {
+      rejectAndKeepRecording({
+        reason: 'validation',
+        message:
+          typeof accepted === 'string'
+            ? accepted
+            : `This ${single ? 'shortcut' : 'sequence'} is not allowed.`,
+        hotkey,
+      })
+      return
+    }
+
+    if (options.detectConflicts) {
+      const conflicts = findHotkeyConflicts(hotkey, {
+        ...(typeof options.detectConflicts === 'object'
+          ? options.detectConflicts
+          : {}),
+        platform,
+        events: this.#events,
+      })
+      if (conflicts.length) {
+        rejectAndKeepRecording({
+          reason: 'conflict',
+          message: `This ${single ? 'shortcut' : 'sequence'} conflicts with a registered hotkey.`,
+          hotkey,
+          conflicts,
+        })
+        return
+      }
+    }
+
+    this.#finish(hotkey)
+    options.onRecord(hotkey)
+  }
+
+  /** Stops listening and stores the final state. */
+  #finish(recordedHotkey: Hotkey | null): void {
+    endRecording(this)
+    this.#events = []
+    this.#clearIdleTimer()
+    // Remove listener FIRST to prevent any additional events
+    if (this.#keydownHandler) {
+      this.#removeListener(this.#keydownHandler)
+      this.#keydownHandler = null
+    }
+    this.store.setState(() => ({ ...initialState, recordedHotkey }))
   }
 
   /**
@@ -198,17 +405,7 @@ export class HotkeyRecorder {
    * Removes the event listener and resets the recording state.
    */
   stop(): void {
-    // Remove event listener immediately
-    if (this.#keydownHandler) {
-      this.#removeListener(this.#keydownHandler)
-      this.#keydownHandler = null
-    }
-
-    // Update store state
-    this.store.setState(() => ({
-      isRecording: false,
-      recordedHotkey: null,
-    }))
+    this.#finish(null)
   }
 
   /**
@@ -218,25 +415,10 @@ export class HotkeyRecorder {
    * the onCancel callback if provided.
    */
   cancel(): void {
-    // Remove event listener immediately
-    if (this.#keydownHandler) {
-      this.#removeListener(this.#keydownHandler)
-      this.#keydownHandler = null
-    }
-
-    // Update store state
-    this.store.setState(() => ({
-      isRecording: false,
-      recordedHotkey: null,
-    }))
-
-    // Call cancel callback
+    this.#finish(null)
     this.#options.onCancel?.()
   }
 
-  /**
-   * Adds the keydown event listener to the document.
-   */
   #addListener(handler: (event: KeyboardEvent) => void): void {
     if (typeof document === 'undefined') {
       return // SSR safety
@@ -245,9 +427,6 @@ export class HotkeyRecorder {
     document.addEventListener('keydown', handler, true)
   }
 
-  /**
-   * Removes the keydown event listener from the document.
-   */
   #removeListener(handler: (event: KeyboardEvent) => void): void {
     if (typeof document === 'undefined') {
       return
@@ -263,10 +442,6 @@ export class HotkeyRecorder {
    * all event listeners are properly removed.
    */
   destroy(): void {
-    this.stop()
-    this.store.setState(() => ({
-      isRecording: false,
-      recordedHotkey: null,
-    }))
+    this.#finish(null)
   }
 }

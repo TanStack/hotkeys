@@ -4,22 +4,23 @@ title: createHotkeysAttachment
 ---
 
 ```ts
-function createHotkeysAttachment(hotkeys, commonOptions): Attachment<HTMLElement>;
+function createHotkeysAttachment(hotkeys, commonOptions?): Attachment<HTMLElement>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:189](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L189)
+Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:152](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L152)
 
-Create an attachment for element-scoped multi-hotkey registration.
+Create an attachment for element-scoped hotkeys: chords, sequences, and app
+hotkeys listen on the attached element.
 
 ## Parameters
 
 ### hotkeys
 
-`MaybeGetter`\<[`CreateHotkeyDefinition`](../interfaces/CreateHotkeyDefinition.md)[]\>
+`MaybeGetter`\<readonly [`CreateHotkeyDefinition`](../type-aliases/CreateHotkeyDefinition.md)[]\>
 
-### commonOptions
+### commonOptions?
 
-`MaybeGetter`\<[`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md)\> = `{}`
+`MaybeGetter`\<[`CreateHotkeyCommonOptions`](../type-aliases/CreateHotkeyCommonOptions.md)\> = `{}`
 
 ## Returns
 
@@ -29,15 +30,11 @@ Create an attachment for element-scoped multi-hotkey registration.
 
 ```svelte
 <script lang="ts">
-  import { createHotkeysAttachment } from '@tanstack/svelte-hotkeys'
-
   const editorKeys = createHotkeysAttachment([
     { hotkey: 'Mod+S', callback: () => save() },
-    { hotkey: 'Mod+Z', callback: () => undo() },
+    { hotkey: ['G', 'G'], callback: () => scrollToTop() },
   ])
 </script>
 
-<div tabindex="0" {@attach editorKeys}>
-  Editor content
-</div>
+<div tabindex="0" {@attach editorKeys}>Editor content</div>
 ```

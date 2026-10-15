@@ -3,72 +3,102 @@ id: hotkey
 title: hotkey
 ---
 
-```ts
-function hotkey(hotkey, options): <T>(proto, propertyKey, descriptor?) => void;
-```
-
-Defined in: [decorators/hotkey.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/decorators/hotkey.ts#L29)
-
-Decorator that registers a keyboard hotkey on the element when it connects
-and unregisters when it disconnects. Uses [HotkeyController](../classes/HotkeyController.md) under the hood.
-
-## Parameters
-
-### hotkey
-
-`RegisterableHotkey`
-
-The key or key combo to listen for (e.g. `'Mod+S'` or a raw hotkey object).
-
-### options
-
-`HotkeyOptions` = `HOTKEY_DEFAULT_OPTIONS`
-
-Optional registration options (target, platform, enabled, etc.).
-
-## Returns
-
-A method decorator for use on LitElement methods.
+## Call Signature
 
 ```ts
-<T>(
-   proto, 
-   propertyKey, 
-   descriptor?): void;
+function hotkey<T>(hotkey, options?): HotkeyDecorator;
 ```
+
+Defined in: [decorators/hotkey.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/decorators/hotkey.ts#L40)
+
+Decorator that registers a hotkey on the element when it connects and
+unregisters when it disconnects: a chord such as `'Mod+S'`, a sequence such
+as `['G', 'G']`, or an app hotkey. Uses [HotkeyController](../classes/HotkeyController.md) under the hood.
 
 ### Type Parameters
 
 #### T
 
-`T` *extends* `HotkeyCallback`
+`T` *extends* `AppHotkey`\<`string`, `HotkeyChord` \| `HotkeySequence` \| `null`\>
 
 ### Parameters
 
-#### proto
+#### hotkey
 
-`LitElement`
+`T`
 
-#### propertyKey
+The chord, sequence, or app hotkey to listen for.
 
-`string`
+#### options?
 
-#### descriptor?
+[`AppHotkeyControllerOptions`](../type-aliases/AppHotkeyControllerOptions.md)\<`T`\>
 
-`TypedPropertyDescriptor`\<`T`\>
+Optional registration options (target, platform, enabled, etc.).
 
 ### Returns
 
-`void`
+`HotkeyDecorator`
 
-## Example
+A method decorator for use on LitElement methods.
+
+### Example
 
 ```ts
 class MyElement extends LitElement {
   @hotkey('Mod+S')
   save() { this.doSave() }
 
-  @hotkey('Escape')
-  close() { this.dismiss() }
+  @hotkey(['G', 'G'], { timeout: 500 })
+  goToTop() { window.scrollTo(0, 0) }
+}
+```
+
+## Call Signature
+
+```ts
+function hotkey<T>(hotkey, options?): HotkeyDecorator;
+```
+
+Defined in: [decorators/hotkey.ts:44](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/decorators/hotkey.ts#L44)
+
+Decorator that registers a hotkey on the element when it connects and
+unregisters when it disconnects: a chord such as `'Mod+S'`, a sequence such
+as `['G', 'G']`, or an app hotkey. Uses [HotkeyController](../classes/HotkeyController.md) under the hood.
+
+### Type Parameters
+
+#### T
+
+`T` *extends* `RegisterableHotkey`
+
+### Parameters
+
+#### hotkey
+
+`T`
+
+The chord, sequence, or app hotkey to listen for.
+
+#### options?
+
+[`HotkeyControllerOptionsFor`](../type-aliases/HotkeyControllerOptionsFor.md)\<`T`\>
+
+Optional registration options (target, platform, enabled, etc.).
+
+### Returns
+
+`HotkeyDecorator`
+
+A method decorator for use on LitElement methods.
+
+### Example
+
+```ts
+class MyElement extends LitElement {
+  @hotkey('Mod+S')
+  save() { this.doSave() }
+
+  @hotkey(['G', 'G'], { timeout: 500 })
+  goToTop() { window.scrollTo(0, 0) }
 }
 ```

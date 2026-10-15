@@ -18,9 +18,9 @@ if the specified key is held.
 
 ### key
 
-The key to check (e.g. 'Shift', 'Control', 'Space') - can be a getter function
+`IndividualKey` \| (() => `IndividualKey`)
 
-`IndividualKey` | () => `IndividualKey`
+The key to check (e.g. 'Shift', 'Control', 'Space') - can be a getter function
 
 ## Returns
 

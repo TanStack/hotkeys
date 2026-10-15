@@ -4,10 +4,10 @@ title: rawHotkeyToParsedHotkey
 ---
 
 ```ts
-function rawHotkeyToParsedHotkey(raw, platform): ParsedHotkey;
+function rawHotkeyToParsedHotkey(raw, platform?): ParsedHotkey;
 ```
 
-Defined in: [parse.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L99)
+Defined in: [parse.ts:123](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L123)
 
 Converts a RawHotkey object to a ParsedHotkey.
 Optional modifier booleans default to false; modifiers array is derived from them.
@@ -17,19 +17,19 @@ When `mod` is true, it is resolved to Control or Meta based on platform.
 
 ### raw
 
-[`RawHotkey`](../interfaces/RawHotkey.md)
+[`RawHotkey`](../type-aliases/RawHotkey.md)
 
 The raw hotkey object
 
-### platform
+### platform?
+
+`"mac"` \| `"windows"` \| `"linux"`
 
 The target platform for resolving 'Mod' (defaults to auto-detection)
 
-`"mac"` | `"windows"` | `"linux"`
-
 ## Returns
 
-[`ParsedHotkey`](../interfaces/ParsedHotkey.md)
+[`ParsedHotkey`](../type-aliases/ParsedHotkey.md)
 
 A ParsedHotkey suitable for matching and formatting
 

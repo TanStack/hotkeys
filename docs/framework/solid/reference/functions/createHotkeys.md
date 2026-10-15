@@ -4,59 +4,40 @@ title: createHotkeys
 ---
 
 ```ts
-function createHotkeys(hotkeys, commonOptions): void;
+function createHotkeys(hotkeys, commonOptions?): void;
 ```
 
-Defined in: [createHotkeys.ts:66](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L66)
+Defined in: [createHotkeys.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L39)
 
-SolidJS primitive for registering multiple keyboard hotkeys at once.
+Solid primitive for registering several hotkeys at once: chords, sequences,
+and app hotkeys. Pass an accessor for a reactive list.
 
-Uses the singleton HotkeyManager for efficient event handling.
-Accepts a dynamic array of hotkey definitions, making it safe to use
-with variable-length lists.
-
-Options are merged in this order:
-HotkeysProvider defaults < commonOptions < per-definition options
+Options merge in this order: provider defaults, app hotkey declaration,
+commonOptions, per-hotkey options. Each option applies only to the kinds
+that support it. Unbound app hotkeys and empty sequences register nothing.
+A `null` target skips registration until it is set.
 
 ## Parameters
 
 ### hotkeys
 
-Array of hotkey definitions, or accessor returning them
+  \| readonly [`CreateHotkeyDefinition`](../type-aliases/CreateHotkeyDefinition.md)[]
+  \| (() => readonly [`CreateHotkeyDefinition`](../type-aliases/CreateHotkeyDefinition.md)[])
 
-[`CreateHotkeyDefinition`](../interfaces/CreateHotkeyDefinition.md)[] | () => [`CreateHotkeyDefinition`](../interfaces/CreateHotkeyDefinition.md)[]
+### commonOptions?
 
-### commonOptions
-
-Shared options applied to all hotkeys, or accessor
-
-[`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md) | () => [`CreateHotkeyOptions`](../interfaces/CreateHotkeyOptions.md)
+  \| [`CreateHotkeyCommonOptions`](../type-aliases/CreateHotkeyCommonOptions.md)
+  \| (() => [`CreateHotkeyCommonOptions`](../type-aliases/CreateHotkeyCommonOptions.md))
 
 ## Returns
 
 `void`
 
-## Examples
+## Example
 
 ```tsx
-function Editor() {
-  createHotkeys([
-    { hotkey: 'Mod+S', callback: () => save() },
-    { hotkey: 'Mod+Z', callback: () => undo() },
-    { hotkey: 'Escape', callback: () => close() },
-  ])
-}
-```
-
-```tsx
-function MenuShortcuts(props) {
-  createHotkeys(
-    () => props.items.map((item) => ({
-      hotkey: item.shortcut,
-      callback: item.action,
-      options: { enabled: item.enabled },
-    })),
-    { preventDefault: true },
-  )
-}
+createHotkeys([
+  { hotkey: 'Mod+S', callback: () => save() },
+  { hotkey: ['G', 'G'], callback: () => scrollToTop(), options: { timeout: 500 } },
+])
 ```

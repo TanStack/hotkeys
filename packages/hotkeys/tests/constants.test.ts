@@ -1,5 +1,5 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { detectPlatform } from '../src/constants'
+import { detectPlatform } from '../src/platform'
 
 describe('detectPlatform', () => {
   const originalNavigator = globalThis.navigator

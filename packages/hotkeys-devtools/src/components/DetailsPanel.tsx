@@ -3,23 +3,25 @@ import clsx from 'clsx'
 import {
   detectPlatform,
   formatForDisplay,
-  formatHotkeySequence,
-  normalizeHotkey,
   normalizeHotkeyFromParsed,
   parseHotkey,
 } from '@tanstack/hotkeys'
 import { useStyles } from '../styles/use-styles'
 import { useHotkeysDevtoolsState } from '../HotkeysContextProvider'
 import { effectiveSequenceMatchedSteps } from '../sequence-progress'
+import {
+  formatRegistration,
+  getBindingKind,
+  useRegistrationConflicts,
+} from '../_registrations'
 import { ActionButtons } from './ActionButtons'
 import type {
+  AppHotkeyListItem,
   ConflictBehavior,
-  FormatDisplayOptions,
-  HotkeyRegistration,
-  HotkeySequence,
+  HotkeyChordRegistrationView,
+  HotkeyRegistrationView,
+  HotkeySequenceRegistrationView,
   ParsedHotkey,
-  RegisterableHotkey,
-  SequenceRegistrationView,
 } from '@tanstack/hotkeys'
 
 const PLATFORM_ROWS = [
@@ -59,21 +61,13 @@ function KeyBreakdownPlatformTable(props: {
   )
 }
 
-function sequenceKey(sequence: Array<string>): string {
-  return sequence.join('|')
-}
-
-function isSequenceRegistration(
-  reg: HotkeyRegistration | SequenceRegistrationView,
-): reg is SequenceRegistrationView {
-  return 'sequence' in reg && Array.isArray(reg.sequence)
-}
+/** What the details panel shows: a live registration or a declared app hotkey. */
+export type DetailsSelection =
+  | { type: 'registration'; registration: HotkeyRegistrationView }
+  | { type: 'appHotkey'; item: AppHotkeyListItem }
 
 type DetailsPanelProps = {
-  selectedRegistration: () =>
-    | HotkeyRegistration
-    | SequenceRegistrationView
-    | null
+  selection: () => DetailsSelection | null
 }
 
 function getTargetDescription(target: HTMLElement | Document | Window): string {
@@ -94,129 +88,27 @@ function getTargetDescription(target: HTMLElement | Document | Window): string {
   return 'element'
 }
 
-function findTargetConflicts(
-  registration: HotkeyRegistration,
-  all: Array<HotkeyRegistration>,
-): Array<HotkeyRegistration> {
-  return all.filter(
-    (other) =>
-      other.id !== registration.id &&
-      other.hotkey === registration.hotkey &&
-      other.options.eventType === registration.options.eventType &&
-      other.target === registration.target,
-  )
-}
-
-function findScopeConflicts(
-  registration: HotkeyRegistration,
-  all: Array<HotkeyRegistration>,
-): Array<HotkeyRegistration> {
-  return all.filter(
-    (other) =>
-      other.id !== registration.id &&
-      other.hotkey === registration.hotkey &&
-      other.options.eventType === registration.options.eventType &&
-      other.target !== registration.target,
-  )
-}
-
-function findSequenceTargetConflicts(
-  registration: SequenceRegistrationView,
-  all: Array<SequenceRegistrationView>,
-): Array<SequenceRegistrationView> {
-  return all.filter(
-    (other) =>
-      other.id !== registration.id &&
-      sequenceKey(other.sequence) === sequenceKey(registration.sequence) &&
-      other.options.eventType === registration.options.eventType &&
-      other.target === registration.target,
-  )
-}
-
-function findSequenceScopeConflicts(
-  registration: SequenceRegistrationView,
-  all: Array<SequenceRegistrationView>,
-): Array<SequenceRegistrationView> {
-  return all.filter(
-    (other) =>
-      other.id !== registration.id &&
-      sequenceKey(other.sequence) === sequenceKey(registration.sequence) &&
-      other.options.eventType === registration.options.eventType &&
-      other.target !== registration.target,
-  )
-}
-
-function getConflictItemStyle(
-  behavior: ConflictBehavior,
-  isSameTarget: boolean,
-):
-  | 'conflictItem'
-  | 'conflictItemAllow'
-  | 'conflictItemError'
-  | 'conflictItemScope' {
-  if (!isSameTarget) return 'conflictItemScope'
-  if (behavior === 'allow') return 'conflictItemAllow'
-  if (behavior === 'error') return 'conflictItemError'
-  return 'conflictItem'
-}
-
-function getConflictLabel(
-  behavior: ConflictBehavior,
-  isSameTarget: boolean,
-): string {
-  if (!isSameTarget) return 'scope'
-  if (behavior === 'allow') return 'allowed'
-  if (behavior === 'error') return 'error'
-  if (behavior === 'replace') return 'replaced'
-  return 'warning'
-}
-
 function HotkeyDetails(props: {
-  registration: HotkeyRegistration
-  state: ReturnType<typeof useHotkeysDevtoolsState>
+  registration: HotkeyChordRegistrationView
   getTargetDescription: (t: HTMLElement | Document | Window) => string
-  findTargetConflicts: (
-    r: HotkeyRegistration,
-    all: Array<HotkeyRegistration>,
-  ) => Array<HotkeyRegistration>
-  findScopeConflicts: (
-    r: HotkeyRegistration,
-    all: Array<HotkeyRegistration>,
-  ) => Array<HotkeyRegistration>
-  getConflictItemStyle: (
-    b: ConflictBehavior,
-    same: boolean,
-  ) =>
-    | 'conflictItem'
-    | 'conflictItemAllow'
-    | 'conflictItemError'
-    | 'conflictItemScope'
-  getConflictLabel: (b: ConflictBehavior, same: boolean) => string
-  formatForDisplay: (
-    hotkey: RegisterableHotkey,
-    options?: FormatDisplayOptions,
-  ) => string
   styles: ReturnType<typeof useStyles>
 }) {
   const reg = () => props.registration
   const parsed = () => reg().parsedHotkey
-  const targetConflicts = createMemo(() =>
-    props.findTargetConflicts(reg(), props.state.registrations()),
-  )
-  const scopeConflicts = createMemo(() =>
-    props.findScopeConflicts(reg(), props.state.registrations()),
-  )
-  const allConflicts = createMemo(() => [
-    ...targetConflicts(),
-    ...scopeConflicts(),
-  ])
+  const conflicts = useRegistrationConflicts(reg)
+  const targetConflicts = () => conflicts().overlapping
+  const scopeConflicts = () => conflicts().separate
+  const allConflicts = () => [...targetConflicts(), ...scopeConflicts()]
   const conflictBehavior = (): ConflictBehavior =>
     reg().options.conflictBehavior ?? 'warn'
 
   const registrationPlatform = () => reg().options.platform ?? detectPlatform()
 
-  const rawModParts = createMemo(() =>
-    normalizeHotkeyFromParsed(parsed(), registrationPlatform()).split('+'),
+  const keyParts = createMemo(() =>
+    formatForDisplay(parsed(), {
+      platform: registrationPlatform(),
+      parts: true,
+    }),
   )
 
   const styles = props.styles
@@ -224,12 +116,12 @@ function HotkeyDetails(props: {
   return (
     <>
       <div class={styles().stateHeader}>
-        <div class={styles().stateTitle}>
-          {props.formatForDisplay(reg().hotkey)}
-        </div>
+        <div class={styles().stateTitle}>{formatRegistration(reg())}</div>
         <div class={styles().infoGrid}>
           <div class={styles().infoLabel}>ID</div>
           <div class={styles().infoValueMono}>{reg().id}</div>
+          <div class={styles().infoLabel}>Matches</div>
+          <div class={styles().infoValueMono}>{getBindingKind(reg())}</div>
           <div class={styles().infoLabel}>Raw</div>
           <div class={styles().infoValueMono}>{reg().hotkey}</div>
           <div class={styles().infoLabel}>Target</div>
@@ -245,7 +137,7 @@ function HotkeyDetails(props: {
           <div class={styles().keyBreakdownSplitRow}>
             <div class={styles().keyBreakdownSplitLeft}>
               <div class={styles().keyBreakdown}>
-                <For each={rawModParts()}>
+                <For each={keyParts()}>
                   {(part, i) => (
                     <>
                       <Show when={i() > 0}>
@@ -410,14 +302,10 @@ function HotkeyDetails(props: {
             <div class={styles().conflictList}>
               <For each={targetConflicts()}>
                 {(conflict) => {
-                  const itemStyle = () =>
-                    props.getConflictItemStyle(conflictBehavior(), true)
-                  const label = () =>
-                    props.getConflictLabel(conflictBehavior(), true)
                   return (
-                    <div class={styles()[itemStyle()]}>
-                      <span>{label()}</span> {conflict.id}:{' '}
-                      {props.formatForDisplay(conflict.hotkey)} (
+                    <div class={styles().conflictItem}>
+                      <span>overlap</span> {conflict.id}:{' '}
+                      {formatRegistration(conflict)} (
                       {conflict.options.eventType ?? 'keydown'}) on{' '}
                       {props.getTargetDescription(conflict.target)}
                     </div>
@@ -428,7 +316,7 @@ function HotkeyDetails(props: {
                 {(conflict) => (
                   <div class={styles().conflictItemScope}>
                     <span>scope</span> {conflict.id}:{' '}
-                    {props.formatForDisplay(conflict.hotkey)} (
+                    {formatRegistration(conflict)} (
                     {conflict.options.eventType ?? 'keydown'}) on{' '}
                     {props.getTargetDescription(conflict.target)}
                   </div>
@@ -443,58 +331,23 @@ function HotkeyDetails(props: {
 }
 
 function SequenceDetails(props: {
-  registration: SequenceRegistrationView
+  registration: HotkeySequenceRegistrationView
   state: ReturnType<typeof useHotkeysDevtoolsState>
   getTargetDescription: (t: HTMLElement | Document | Window) => string
-  findSequenceTargetConflicts: (
-    r: SequenceRegistrationView,
-    all: Array<SequenceRegistrationView>,
-  ) => Array<SequenceRegistrationView>
-  findSequenceScopeConflicts: (
-    r: SequenceRegistrationView,
-    all: Array<SequenceRegistrationView>,
-  ) => Array<SequenceRegistrationView>
-  getConflictItemStyle: (
-    b: ConflictBehavior,
-    same: boolean,
-  ) =>
-    | 'conflictItem'
-    | 'conflictItemAllow'
-    | 'conflictItemError'
-    | 'conflictItemScope'
-  getConflictLabel: (b: ConflictBehavior, same: boolean) => string
-  formatHotkeySequence: (seq: HotkeySequence) => string
-  formatForDisplay: (
-    hotkey: RegisterableHotkey,
-    options?: FormatDisplayOptions,
-  ) => string
   styles: ReturnType<typeof useStyles>
 }) {
   const reg = () => props.registration
-  const liveReg = createMemo(
-    () =>
-      props.state.sequenceRegistrations().find((r) => r.id === reg().id) ??
-      reg(),
-  )
+  const liveReg = createMemo((): HotkeySequenceRegistrationView => {
+    const live = props.state.registrations().find((r) => r.id === reg().id)
+    return live?.kind === 'sequence' ? live : reg()
+  })
   const matchedSteps = createMemo(() =>
     effectiveSequenceMatchedSteps(liveReg(), props.state.sequenceProgressNow()),
   )
-  const targetConflicts = createMemo(() =>
-    props.findSequenceTargetConflicts(
-      liveReg(),
-      props.state.sequenceRegistrations(),
-    ),
-  )
-  const scopeConflicts = createMemo(() =>
-    props.findSequenceScopeConflicts(
-      liveReg(),
-      props.state.sequenceRegistrations(),
-    ),
-  )
-  const allConflicts = createMemo(() => [
-    ...targetConflicts(),
-    ...scopeConflicts(),
-  ])
+  const conflicts = useRegistrationConflicts(liveReg)
+  const targetConflicts = () => conflicts().overlapping
+  const scopeConflicts = () => conflicts().separate
+  const allConflicts = () => [...targetConflicts(), ...scopeConflicts()]
   const conflictBehavior = (): ConflictBehavior =>
     liveReg().options.conflictBehavior ?? 'warn'
 
@@ -508,7 +361,7 @@ function SequenceDetails(props: {
     <>
       <div class={styles().stateHeader}>
         <div class={styles().stateTitle}>
-          <For each={liveReg().sequence}>
+          <For each={liveReg().hotkey}>
             {(step, i) => (
               <span>
                 <Show when={i() > 0}> </Show>
@@ -519,7 +372,9 @@ function SequenceDetails(props: {
                       : undefined
                   }
                 >
-                  {props.formatForDisplay(step)}
+                  {formatForDisplay(step, {
+                    platform: sequenceCanonicalPlatform(),
+                  })}
                 </span>
               </span>
             )}
@@ -528,9 +383,15 @@ function SequenceDetails(props: {
         <div class={styles().infoGrid}>
           <div class={styles().infoLabel}>ID</div>
           <div class={styles().infoValueMono}>{liveReg().id}</div>
+          <div class={styles().infoLabel}>Matches</div>
+          <div class={styles().infoValueMono}>{getBindingKind(liveReg())}</div>
+          <div class={styles().infoLabel}>Raw</div>
+          <div class={styles().infoValueMono}>
+            {liveReg().hotkey.join(' → ')}
+          </div>
           <div class={styles().infoLabel}>Sequence</div>
           <div class={styles().infoValueMono}>
-            <For each={liveReg().sequence}>
+            <For each={liveReg().hotkey}>
               {(step, i) => (
                 <span>
                   <Show when={i() > 0}> </Show>
@@ -541,7 +402,9 @@ function SequenceDetails(props: {
                         : undefined
                     }
                   >
-                    {props.formatForDisplay(step)}
+                    {formatForDisplay(step, {
+                      platform: sequenceCanonicalPlatform(),
+                    })}
                   </span>
                 </span>
               )}
@@ -558,7 +421,7 @@ function SequenceDetails(props: {
         <div class={styles().detailSection}>
           <div class={styles().detailSectionHeader}>Key Breakdown</div>
           <div class={styles().keyBreakdown}>
-            <For each={liveReg().sequence}>
+            <For each={liveReg().hotkey}>
               {(step, i) => (
                 <>
                   <Show when={i() > 0}>
@@ -570,7 +433,9 @@ function SequenceDetails(props: {
                       i() < matchedSteps() && styles().keyCapLargeInProgress,
                     )}
                   >
-                    {props.formatForDisplay(step)}
+                    {formatForDisplay(step, {
+                      platform: sequenceCanonicalPlatform(),
+                    })}
                   </span>
                 </>
               )}
@@ -578,21 +443,25 @@ function SequenceDetails(props: {
           </div>
 
           <div class={styles().keyBreakdownSubHeader}>Each chord</div>
-          <For each={liveReg().sequence}>
+          <For each={liveReg().hotkey}>
             {(step, stepIdx) => {
               const stepParsed = () =>
                 parseHotkey(step, sequenceCanonicalPlatform())
-              const stepRawParts = () =>
-                normalizeHotkey(step, sequenceCanonicalPlatform()).split('+')
+              const stepParts = () =>
+                formatForDisplay(stepParsed(), {
+                  platform: sequenceCanonicalPlatform(),
+                  parts: true,
+                })
               return (
                 <div class={styles().sequenceChordDetail}>
                   <div class={styles().keyBreakdownSubHeader}>
-                    Step {stepIdx() + 1}
+                    Step {stepIdx() + 1} —{' '}
+                    {stepParsed().code !== undefined ? 'Code' : 'Key'}
                   </div>
                   <div class={styles().keyBreakdownSplitRow}>
                     <div class={styles().keyBreakdownSplitLeft}>
                       <div class={styles().keyBreakdown}>
-                        <For each={stepRawParts()}>
+                        <For each={stepParts()}>
                           {(part, i) => (
                             <>
                               <Show when={i() > 0}>
@@ -746,14 +615,10 @@ function SequenceDetails(props: {
             <div class={styles().conflictList}>
               <For each={targetConflicts()}>
                 {(conflict) => {
-                  const itemStyle = () =>
-                    props.getConflictItemStyle(conflictBehavior(), true)
-                  const label = () =>
-                    props.getConflictLabel(conflictBehavior(), true)
                   return (
-                    <div class={styles()[itemStyle()]}>
-                      <span>{label()}</span> {conflict.id}:{' '}
-                      {props.formatHotkeySequence(conflict.sequence)} (
+                    <div class={styles().conflictItem}>
+                      <span>overlap</span> {conflict.id}:{' '}
+                      {formatRegistration(conflict)} (
                       {conflict.options.eventType ?? 'keydown'}) on{' '}
                       {props.getTargetDescription(conflict.target)}
                     </div>
@@ -764,7 +629,7 @@ function SequenceDetails(props: {
                 {(conflict) => (
                   <div class={styles().conflictItemScope}>
                     <span>scope</span> {conflict.id}:{' '}
-                    {props.formatHotkeySequence(conflict.sequence)} (
+                    {formatRegistration(conflict)} (
                     {conflict.options.eventType ?? 'keydown'}) on{' '}
                     {props.getTargetDescription(conflict.target)}
                   </div>
@@ -778,6 +643,67 @@ function SequenceDetails(props: {
   )
 }
 
+function AppHotkeyDetails(props: {
+  item: AppHotkeyListItem
+  styles: ReturnType<typeof useStyles>
+}) {
+  const styles = props.styles
+  const appHotkey = () => props.item.appHotkey
+  const format = (hotkey: AppHotkeyListItem['appHotkey']['hotkey']) =>
+    hotkey
+      ? formatForDisplay(hotkey, { sequenceSeparator: ' → ' })
+      : 'Unassigned'
+  const row = (label: string, value: string) => (
+    <div class={styles().optionRow}>
+      <span class={styles().optionLabel}>{label}</span>
+      <span class={styles().optionValue}>{value}</span>
+    </div>
+  )
+
+  return (
+    <>
+      <div class={styles().stateHeader}>
+        <div class={styles().stateTitle}>{format(appHotkey().hotkey)}</div>
+        <div class={styles().infoGrid}>
+          <div class={styles().infoLabel}>App hotkey</div>
+          <div class={styles().infoValueMono}>{appHotkey().id}</div>
+          <div class={styles().infoLabel}>Status</div>
+          <div class={styles().infoValueMono}>{props.item.status}</div>
+          <div class={styles().infoLabel}>Default</div>
+          <div class={styles().infoValueMono}>
+            {format(appHotkey().defaultHotkey)}
+            {props.item.isCustom ? ' (customized)' : ''}
+          </div>
+          <div class={styles().infoLabel}>Context</div>
+          <div class={styles().infoValueMono}>
+            {appHotkey().context ?? 'global'}
+          </div>
+        </div>
+      </div>
+      <div class={styles().detailsGrid}>
+        <div class={styles().detailSection}>
+          <div class={styles().detailSectionHeader}>Meta</div>
+          <div>
+            <For each={Object.entries(appHotkey().meta ?? {})}>
+              {([key, value]) => row(key, String(value))}
+            </For>
+            <Show when={!appHotkey().meta}>{row('meta', '—')}</Show>
+          </div>
+        </div>
+        <div class={styles().detailSection}>
+          <div class={styles().detailSectionHeader}>Declared options</div>
+          <div>
+            <For each={Object.entries(appHotkey().options ?? {})}>
+              {([key, value]) => row(key, String(value))}
+            </For>
+            <Show when={!appHotkey().options}>{row('options', '—')}</Show>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
+
 export function DetailsPanel(props: DetailsPanelProps) {
   const styles = useStyles()
   const state = useHotkeysDevtoolsState()
@@ -785,44 +711,34 @@ export function DetailsPanel(props: DetailsPanelProps) {
   return (
     <div class={styles().stateDetails}>
       <Show
-        when={props.selectedRegistration()}
+        when={props.selection()}
         fallback={
           <div class={styles().noSelection}>
-            Select a hotkey or sequence from the list to view its details
+            Select a hotkey from the list to view its details
           </div>
         }
       >
-        {(reg) => (
-          <Show
-            when={isSequenceRegistration(reg())}
-            fallback={
-              <HotkeyDetails
-                registration={reg() as HotkeyRegistration}
-                state={state}
-                getTargetDescription={getTargetDescription}
-                findTargetConflicts={findTargetConflicts}
-                findScopeConflicts={findScopeConflicts}
-                getConflictItemStyle={getConflictItemStyle}
-                getConflictLabel={getConflictLabel}
-                formatForDisplay={formatForDisplay}
-                styles={styles}
-              />
-            }
-          >
+        {(selection) => {
+          const current = selection()
+          if (current.type === 'appHotkey') {
+            return <AppHotkeyDetails item={current.item} styles={styles} />
+          }
+          const reg = current.registration
+          return reg.kind === 'sequence' ? (
             <SequenceDetails
-              registration={reg() as SequenceRegistrationView}
+              registration={reg}
               state={state}
               getTargetDescription={getTargetDescription}
-              findSequenceTargetConflicts={findSequenceTargetConflicts}
-              findSequenceScopeConflicts={findSequenceScopeConflicts}
-              getConflictItemStyle={getConflictItemStyle}
-              getConflictLabel={getConflictLabel}
-              formatHotkeySequence={formatHotkeySequence}
-              formatForDisplay={formatForDisplay}
               styles={styles}
             />
-          </Show>
-        )}
+          ) : (
+            <HotkeyDetails
+              registration={reg}
+              getTargetDescription={getTargetDescription}
+              styles={styles}
+            />
+          )
+        }}
       </Show>
     </div>
   )

@@ -4,10 +4,10 @@ title: createMultiHotkeyHandler
 ---
 
 ```ts
-function createMultiHotkeyHandler(handlers, options): (event) => void;
+function createMultiHotkeyHandler(handlers, options?): (event) => void;
 ```
 
-Defined in: [match.ts:210](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L210)
+Defined in: [match.ts:146](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L146)
 
 Creates a handler that matches multiple hotkeys.
 
@@ -15,11 +15,11 @@ Creates a handler that matches multiple hotkeys.
 
 ### handlers
 
-`MultiHotkeyHandler`
+[`MultiHotkeyHandler`](../type-aliases/MultiHotkeyHandler.md)
 
 A map of hotkey strings to their handlers
 
-### options
+### options?
 
 [`CreateHotkeyHandlerOptions`](../interfaces/CreateHotkeyHandlerOptions.md) = `{}`
 
@@ -29,19 +29,7 @@ Options for matching and handling
 
 A function that can be used as an event handler
 
-```ts
-(event): void;
-```
-
-### Parameters
-
-#### event
-
-`KeyboardEvent`
-
-### Returns
-
-`void`
+(`event`) => `void`
 
 ## Example
 

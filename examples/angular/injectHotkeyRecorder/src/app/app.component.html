@@ -144,7 +144,7 @@
           </tr>
         </thead>
         <tbody>
-          @for (reg of registrations.hotkeys(); track reg.id) {
+          @for (reg of registrations(); track reg.id) {
             <tr>
               <td>
                 <kbd>{{ formatForDisplay(reg.hotkey) }}</kbd>
@@ -164,7 +164,7 @@
               <td class="trigger-count">{{ reg.triggerCount }}</td>
             </tr>
           }
-          @if (registrations.hotkeys().length === 0) {
+          @if (registrations().length === 0) {
             <tr>
               <td colspan="5" class="empty-row">No hotkeys registered</td>
             </tr>
@@ -190,7 +190,6 @@ injectHotkeys(() =>
       hotkey: s.hotkey,
       callback: () => handleAction(s.id),
       options: {{ '{' }}
-        enabled: !this.recorder.isRecording(),
         meta: {{ '{' }} name: s.name, description: s.description {{ '}' }},
       {{ '}' }},
     {{ '}' }})),
@@ -198,9 +197,8 @@ injectHotkeys(() =>
 
 // Read all registrations reactively
 const registrations = injectHotkeyRegistrations()
-// registrations.hotkeys()[0].options.meta?.name → 'Save'
-// registrations.hotkeys()[0].triggerCount → 3</pre
-      >
+// registrations()[0].options.meta?.name → 'Save'
+// registrations()[0].triggerCount → 3</pre>
     </section>
   </main>
 </div>

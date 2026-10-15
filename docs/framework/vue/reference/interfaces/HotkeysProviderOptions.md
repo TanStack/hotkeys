@@ -3,44 +3,29 @@ id: HotkeysProviderOptions
 title: HotkeysProviderOptions
 ---
 
-Defined in: [packages/vue-hotkeys/src/HotkeysProviderContext.ts:10](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L10)
+Defined in: [HotkeysProviderContext.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L12)
 
 ## Properties
 
 ### hotkey?
 
 ```ts
-optional hotkey: Partial<UseHotkeyOptions>;
+optional hotkey?: UseHotkeyCommonOptions;
 ```
 
-Defined in: [packages/vue-hotkeys/src/HotkeysProviderContext.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L11)
+Defined in: [HotkeysProviderContext.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L17)
+
+Defaults for every hotkey registered by `useHotkey` and `useHotkeys`.
+`requireReset` applies to chords and `timeout` applies to sequences.
 
 ***
 
 ### hotkeyRecorder?
 
 ```ts
-optional hotkeyRecorder: Partial<HotkeyRecorderOptions>;
+optional hotkeyRecorder?: Partial<Omit<HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions, "maxSteps" | "onRecord" | "validate">>;
 ```
 
-Defined in: [packages/vue-hotkeys/src/HotkeysProviderContext.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L12)
+Defined in: [HotkeysProviderContext.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L19)
 
-***
-
-### hotkeySequence?
-
-```ts
-optional hotkeySequence: Partial<UseHotkeySequenceOptions>;
-```
-
-Defined in: [packages/vue-hotkeys/src/HotkeysProviderContext.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L14)
-
-***
-
-### hotkeySequenceRecorder?
-
-```ts
-optional hotkeySequenceRecorder: Partial<HotkeySequenceRecorderOptions>;
-```
-
-Defined in: [packages/vue-hotkeys/src/HotkeysProviderContext.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L13)
+Defaults for every `useHotkeyRecorder`.

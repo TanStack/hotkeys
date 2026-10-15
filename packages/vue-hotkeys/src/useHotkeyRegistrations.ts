@@ -1,46 +1,32 @@
 import { useSelector } from '@tanstack/vue-store'
-import {
-  getHotkeyManager,
-  getSequenceManager,
-  toHotkeyRegistrationView,
-} from '@tanstack/hotkeys'
-import type {
-  HotkeyRegistrationView,
-  SequenceRegistrationView,
-} from '@tanstack/hotkeys'
+import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
 import type { Ref } from 'vue'
+import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
 
 /**
- * Return type for useHotkeyRegistrations.
- */
-export interface HotkeyRegistrationsResult {
-  /** All registered hotkeys (public view, no callbacks) */
-  hotkeys: Ref<Array<HotkeyRegistrationView>>
-  /** All registered sequences */
-  sequences: Ref<Array<SequenceRegistrationView>>
-}
-
-/**
- * Vue composable that reactively reads all hotkey and sequence registrations
- * from the singleton managers.
+ * Vue composable that reactively reads every hotkey registration, chords and
+ * sequences, from the singleton HotkeyManager. Narrow each view with `kind`.
  *
- * This is a standalone composable that does NOT require the HotkeysProvider.
- * It subscribes to both HotkeyManager and SequenceManager stores and
- * triggers reactivity when registrations change.
+ * This composable does NOT require the HotkeysProvider.
  *
- * @returns Object with `hotkeys` and `sequences` refs
+ * @returns A ref of all registrations, without callbacks
+ *
+ * @example
+ * ```vue
+ * <script setup>
+ * const registrations = useHotkeyRegistrations()
+ * </script>
+ * <template>
+ *   <li v-for="reg in registrations" :key="reg.id">
+ *     {{ reg.options.meta?.name }}: {{ formatForDisplay(reg.hotkey) }}
+ *   </li>
+ * </template>
+ * ```
  */
-export function useHotkeyRegistrations(): HotkeyRegistrationsResult {
-  const hotkeyManager = getHotkeyManager()
-  const sequenceManager = getSequenceManager()
-
-  const hotkeys = useSelector(hotkeyManager.registrations, (state) =>
+export function useHotkeyRegistrations(): Readonly<
+  Ref<Array<HotkeyRegistrationView>>
+> {
+  return useSelector(getHotkeyManager().registrations, (state) =>
     Array.from(state.values()).map(toHotkeyRegistrationView),
   )
-
-  const sequences = useSelector(sequenceManager.registrations, (state) =>
-    Array.from(state.values()),
-  )
-
-  return { hotkeys, sequences }
 }

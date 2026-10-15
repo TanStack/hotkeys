@@ -7,7 +7,7 @@ id: quick-start
 
 Don't have TanStack Hotkeys installed yet? See the [Installation](../../installation) page for instructions.
 
-## Your First Hotkey
+## Your first hotkey
 
 Use `createHotkey` for global shortcuts and attachments for element-scoped shortcuts.
 
@@ -25,7 +25,7 @@ Use `createHotkey` for global shortcuts and attachments for element-scoped short
 
 The `Mod` modifier automatically resolves to `Meta` (Command) on macOS and `Control` on Windows/Linux, so your shortcuts work across platforms without extra logic.
 
-## Common Patterns
+## Common patterns
 
 ### Multiple global hotkeys
 
@@ -79,9 +79,10 @@ The `Mod` modifier automatically resolves to `Meta` (Command) on macOS and `Cont
 
 ```svelte
 <script lang="ts">
-  import { createHotkeySequenceAttachment } from '@tanstack/svelte-hotkeys'
+  import { createHotkeyAttachment } from '@tanstack/svelte-hotkeys'
 
-  const vimKeys = createHotkeySequenceAttachment(['G', 'G'], () => {
+  // An array of chords registers a sequence
+  const vimKeys = createHotkeyAttachment(['G', 'G'], () => {
     scrollToTop()
   })
 </script>
@@ -155,17 +156,30 @@ Use `setHotkeysContext` when you want defaults for a subtree. This is an advance
   import { setHotkeysContext } from '@tanstack/svelte-hotkeys'
 
   setHotkeysContext({
-    hotkey: { preventDefault: true },
-    hotkeySequence: { timeout: 1500 },
+    defaultOptions: { hotkey: { preventDefault: true, timeout: 1500 } },
   })
 </script>
 ```
 
-## Next Steps
+## Declaring app hotkeys
+
+To list every hotkey in a cheat sheet, including hotkeys whose components haven't mounted, and to let users customize them, declare them once with `defineAppHotkeys` and provide them with `HotkeysProvider` or `setHotkeysContext`. See the [App Hotkeys Guide](./guides/app-hotkeys).
+
+## Next steps
 
 - [Hotkeys Guide](./guides/hotkeys)
 - [Sequences Guide](./guides/sequences)
 - [Hotkey Recording Guide](./guides/hotkey-recording)
-- [Sequence Recording Guide](./guides/sequence-recording)
+- [App Hotkeys Guide](./guides/app-hotkeys)
 - [Key State Tracking Guide](./guides/key-state-tracking)
 - [Formatting & Display Guide](./guides/formatting-display)
+
+## Devtools
+
+Install the optional devtools packages to inspect registrations, held keys, and trigger counts:
+
+```sh
+npm install @tanstack/svelte-devtools @tanstack/svelte-hotkeys-devtools
+```
+
+Follow the [devtools setup guide](../../devtools) to add the dock to your application.

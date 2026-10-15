@@ -62,8 +62,8 @@ export class AppComponent {
       this.lastHotkey.set('Mod+1')
       this.activeTab.set(1)
     })
-    injectHotkey('Mod+2', () => {
-      this.lastHotkey.set('Mod+2')
+    injectHotkey('Mod+[Digit2]', () => {
+      this.lastHotkey.set('Mod+[Digit2]')
       this.activeTab.set(2)
     })
     injectHotkey('Mod+3', () => {

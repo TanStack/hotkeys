@@ -3,18 +3,14 @@ import { createRef, ref } from 'lit/directives/ref.js'
 import { customElement, state } from 'lit/decorators.js'
 
 import {
+  HotkeyController,
   formatForDisplay,
-  getHotkeyManager,
   hotkey,
 } from '@tanstack/lit-hotkeys'
 
 import appStyles from './index.css?raw'
 import type { Ref } from 'lit/directives/ref.js'
-import type {
-  Hotkey,
-  HotkeyCallbackContext,
-  HotkeyRegistrationHandle,
-} from '@tanstack/lit-hotkeys'
+import type { Hotkey, HotkeyCallbackContext } from '@tanstack/lit-hotkeys'
 
 @customElement('my-app')
 export class MyApp extends LitElement {
@@ -61,138 +57,131 @@ export class MyApp extends LitElement {
   private modalRef: Ref<HTMLDivElement> = createRef()
   private editorRef: Ref<HTMLTextAreaElement> = createRef()
 
-  private _scopedRegistrations: Array<HotkeyRegistrationHandle> = []
-  private _modalRegistrations: Array<HotkeyRegistrationHandle> = []
+  constructor() {
+    super()
 
-  override updated(changedProps: Map<PropertyKey, unknown>): void {
-    super.updated(changedProps)
+    // Scoped hotkeys read their target from a ref. A null target skips
+    // registration until the element renders.
+    const sidebar = () => ({ target: this.sidebarRef.value ?? null })
+    const editor = () => ({ target: this.editorRef.value ?? null })
+    const modal = () => ({
+      target: this.modalOpen ? (this.modalRef.value ?? null) : null,
+    })
 
-    if (this._scopedRegistrations.length === 0) {
-      this._registerScopedHotkeys()
-    }
+    this.addController(
+      new HotkeyController(
+        this,
+        'Mod+B',
+        () => {
+          this.lastHotkey = 'Mod+B'
+          this.sidebarShortcutCount++
+          alert(
+            'Sidebar shortcut triggered! This only works when the sidebar area is focused.',
+          )
+        },
+        sidebar,
+      ),
+    )
+    this.addController(
+      new HotkeyController(
+        this,
+        'Mod+N',
+        () => {
+          this.lastHotkey = 'Mod+N'
+          this.sidebarShortcutCount++
+        },
+        sidebar,
+      ),
+    )
 
-    if (changedProps.has('modalOpen')) {
-      this._unregisterModal()
-      if (this.modalOpen) {
-        this._registerModalHotkeys()
-        this.modalRef.value?.focus()
-      }
-    }
-  }
-
-  override disconnectedCallback(): void {
-    super.disconnectedCallback()
-    this._unregisterScoped()
-    this._unregisterModal()
-  }
-
-  private _unregisterScoped(): void {
-    for (const reg of this._scopedRegistrations) {
-      if (reg.isActive) reg.unregister()
-    }
-    this._scopedRegistrations = []
-  }
-
-  private _unregisterModal(): void {
-    for (const reg of this._modalRegistrations) {
-      if (reg.isActive) reg.unregister()
-    }
-    this._modalRegistrations = []
-  }
-
-  private _registerScopedHotkeys(): void {
-    const manager = getHotkeyManager()
-
-    const sidebar = this.sidebarRef.value
-    if (sidebar) {
-      this._scopedRegistrations.push(
-        manager.register(
-          'Mod+B',
-          () => {
-            this.lastHotkey = 'Mod+B'
-            this.sidebarShortcutCount++
-            alert(
-              'Sidebar shortcut triggered! This only works when the sidebar area is focused.',
-            )
-          },
-          { target: sidebar },
-        ),
-        manager.register(
-          'Mod+N',
-          () => {
-            this.lastHotkey = 'Mod+N'
-            this.sidebarShortcutCount++
-          },
-          { target: sidebar },
-        ),
-      )
-    }
-
-    const editor = this.editorRef.value
-    if (editor) {
-      this._scopedRegistrations.push(
-        manager.register(
-          'Mod+S',
-          () => {
-            this.lastHotkey = 'Mod+S'
-            this.editorShortcutCount++
-            alert(
-              `Editor content saved: "${this.editorContent.substring(0, 50)}${this.editorContent.length > 50 ? '...' : ''}"`,
-            )
-          },
-          { target: editor },
-        ),
-        manager.register(
-          'Mod+/',
-          () => {
-            this.lastHotkey = 'Mod+/'
-            this.editorShortcutCount++
-            this.editorContent += '\n// Comment added via shortcut'
-          },
-          { target: editor },
-        ),
-        manager.register(
-          'Mod+K',
-          () => {
-            this.lastHotkey = 'Mod+K'
-            this.editorShortcutCount++
-            this.editorContent = ''
-          },
-          { target: editor },
-        ),
-        manager.register('J', () => {
-          this.lastHotkey = 'J'
+    this.addController(
+      new HotkeyController(
+        this,
+        'Mod+S',
+        () => {
+          this.lastHotkey = 'Mod+S'
           this.editorShortcutCount++
-        }),
-      )
-    }
-  }
+          alert(
+            `Editor content saved: "${this.editorContent.substring(0, 50)}${this.editorContent.length > 50 ? '...' : ''}"`,
+          )
+        },
+        editor,
+      ),
+    )
+    this.addController(
+      new HotkeyController(
+        this,
+        'Mod+/',
+        () => {
+          this.lastHotkey = 'Mod+/'
+          this.editorShortcutCount++
+          this.editorContent += '\n// Comment added via shortcut'
+        },
+        editor,
+      ),
+    )
+    this.addController(
+      new HotkeyController(
+        this,
+        'Mod+K',
+        () => {
+          this.lastHotkey = 'Mod+K'
+          this.editorShortcutCount++
+          this.editorContent = ''
+        },
+        editor,
+      ),
+    )
+    this.addController(
+      new HotkeyController(this, 'J', () => {
+        this.lastHotkey = 'J'
+        this.editorShortcutCount++
+      }),
+    )
 
-  private _registerModalHotkeys(): void {
-    const manager = getHotkeyManager()
-    const modal = this.modalRef.value
-    if (!modal) return
-
-    this._modalRegistrations.push(
-      manager.register(
+    this.addController(
+      new HotkeyController(
+        this,
         'Escape',
         () => {
           this.lastHotkey = 'Escape'
           this.modalShortcutCount++
           this.modalOpen = false
         },
-        { target: modal },
+        modal,
       ),
-      manager.register(
+    )
+    this.addController(
+      new HotkeyController(
+        this,
         'Mod+Enter',
         () => {
           this.lastHotkey = 'Mod+Enter'
           this.modalShortcutCount++
           alert('Modal submit shortcut!')
         },
-        { target: modal },
+        modal,
       ),
     )
+
+    this.addController(
+      new HotkeyController(
+        this,
+        'Mod+E',
+        (_event, { hotkey }) => {
+          this.lastHotkey = hotkey
+          alert('This hotkey can be toggled!')
+        },
+        () => ({ enabled: this.enabled }),
+      ),
+    )
+  }
+
+  override updated(changedProps: Map<PropertyKey, unknown>): void {
+    super.updated(changedProps)
+    if (changedProps.has('modalOpen') && this.modalOpen) {
+      this.modalRef.value?.focus()
+    }
   }
 
   render() {
@@ -214,8 +203,7 @@ export class MyApp extends LitElement {
 ${`@hotkey('Mod+S', (_event, { hotkey, parsedHotkey }) => {
   console.log('Hotkey:', hotkey)
   console.log('Parsed:', parsedHotkey)
-})`}</pre
-          >
+})`}</pre>
         </section>
 
         <section class="demo-section">
@@ -236,8 +224,7 @@ private _handleIncrementing(
   { hotkey }: HotkeyCallbackContext,
 ) {
   this.incrementCount++
-}`}</pre
-          >
+}`}</pre>
         </section>
 
         <section class="demo-section">
@@ -250,25 +237,32 @@ private _handleIncrementing(
             ${this.enabled ? 'Disable' : 'Enable'} Hotkey
           </button>
           <pre class="code-block">
-${`@property({ type: Boolean }) enabled = true
+${`@state() enabled = true
 
-@hotkey('Mod+E')
-private _handleConditional = (
-  _event: KeyboardEvent,
-  { hotkey }: HotkeyCallbackContext,
-) => {
-  if (!this.enabled) return
-  alert('This hotkey can be toggled!')
-}`}</pre
-          >
+// An options getter is re-read after each update
+private conditional = new HotkeyController(
+  this,
+  'Mod+E',
+  () => alert('This hotkey can be toggled!'),
+  () => ({ enabled: this.enabled }),
+)
+
+constructor() {
+  super()
+  this.addController(this.conditional)
+}`}</pre>
         </section>
 
         <section class="demo-section">
           <h2>Number Key Combinations</h2>
-          <p>Common for tab/section switching:</p>
+          <p>
+            Tab 2 uses the physical number-row position
+            (<code>Mod+[Digit2]</code>), even when that key produces a different
+            character. The other tabs follow logical digits.
+          </p>
           <div class="hotkey-grid">
             <div><kbd>${formatForDisplay('Mod+1')}</kbd> → Tab 1</div>
-            <div><kbd>${formatForDisplay('Mod+2')}</kbd> → Tab 2</div>
+            <div><kbd>${formatForDisplay('Mod+[Digit2]')}</kbd> → Tab 2</div>
             <div><kbd>${formatForDisplay('Mod+3')}</kbd> → Tab 3</div>
             <div><kbd>${formatForDisplay('Mod+4')}</kbd> → Tab 4</div>
             <div><kbd>${formatForDisplay('Mod+5')}</kbd> → Tab 5</div>
@@ -278,9 +272,8 @@ private _handleConditional = (
 ${`@hotkey('Mod+1')
 private _tab1 = () => { this.activeTab = 1 }
 
-@hotkey('Mod+2')
-private _tab2 = () => { this.activeTab = 2 }`}</pre
-          >
+@hotkey('Mod+[Digit2]')
+private _tab2 = () => { this.activeTab = 2 }`}</pre>
         </section>
 
         <section class="demo-section">
@@ -316,8 +309,7 @@ private _tab2 = () => { this.activeTab = 2 }`}</pre
 ${`@hotkey('Shift+ArrowUp', () => selectUp())
 @hotkey('Alt+ArrowLeft', () => navigateBack())
 @hotkey('Mod+Home', () => goToStart())
-@hotkey('Control+PageUp', () => previousPage())`}</pre
-          >
+@hotkey('Control+PageUp', () => previousPage())`}</pre>
         </section>
 
         <section class="demo-section">
@@ -341,8 +333,7 @@ ${`@hotkey('Shift+ArrowUp', () => selectUp())
 ${`@hotkey('Alt+F4', () => closeWindow())
 @hotkey('Control+F5', () => hardRefresh())
 @hotkey('Mod+F1', () => showHelp())
-@hotkey('F12', () => openDevTools())`}</pre
-          >
+@hotkey('F12', () => openDevTools())`}</pre>
         </section>
 
         <section class="demo-section">
@@ -372,8 +363,7 @@ ${`@hotkey('Alt+F4', () => closeWindow())
 ${`@hotkey('Mod+Shift+S', () => saveAs())
 @hotkey('Mod+Shift+Z', () => redo())
 @hotkey('Control+Alt+A', () => specialAction())
-@hotkey('Control+Alt+Shift+X', () => complexAction())`}</pre
-          >
+@hotkey('Control+Alt+Shift+X', () => complexAction())`}</pre>
         </section>
 
         <section class="demo-section">
@@ -402,18 +392,19 @@ ${`@hotkey('Mod+Enter', () => submitForm())
 @hotkey('Shift+Enter', () => insertNewline())
 @hotkey('Mod+Backspace', () => deleteWord())
 @hotkey('Control+Tab', () => nextTab())
-@hotkey('Mod+Space', () => toggle())`}</pre
-          >
+@hotkey('Mod+Space', () => toggle())`}</pre>
         </section>
 
-        ${this.lastHotkey
-          ? html`
-              <div class="info-box">
-                <strong>Last triggered:</strong>
-                ${formatForDisplay(this.lastHotkey)}
-              </div>
-            `
-          : null}
+        ${
+          this.lastHotkey
+            ? html`
+                <div class="info-box">
+                  <strong>Last triggered:</strong>
+                  ${formatForDisplay(this.lastHotkey)}
+                </div>
+              `
+            : null
+        }
 
         <p class="hint">Press <kbd>Escape</kbd> to reset all counters</p>
 
@@ -452,44 +443,47 @@ ${`@hotkey('Mod+Enter', () => submitForm())
                 Open Modal
               </button>
 
-              ${this.modalOpen
-                ? html`
-                    <div
-                      class="modal-overlay"
-                      @click=${() => (this.modalOpen = false)}
-                    >
+              ${
+                this.modalOpen
+                  ? html`
                       <div
-                        class="modal-content"
-                        tabindex="0"
-                        ${ref(this.modalRef)}
-                        @click=${(e: Event) => e.stopPropagation()}
+                        class="modal-overlay"
+                        @click=${() => (this.modalOpen = false)}
                       >
-                        <h3>Modal Dialog (Scoped)</h3>
-                        <p>Try these shortcuts while modal is open:</p>
-                        <div class="hotkey-list">
-                          <div>
-                            <kbd>${formatForDisplay('Escape')}</kbd> — Close
-                            modal
+                        <div
+                          class="modal-content"
+                          tabindex="0"
+                          ${ref(this.modalRef)}
+                          @click=${(e: Event) => e.stopPropagation()}
+                        >
+                          <h3>Modal Dialog (Scoped)</h3>
+                          <p>Try these shortcuts while modal is open:</p>
+                          <div class="hotkey-list">
+                            <div>
+                              <kbd>${formatForDisplay('Escape')}</kbd> — Close
+                              modal
+                            </div>
+                            <div>
+                              <kbd>${formatForDisplay('Mod+Enter')}</kbd> —
+                              Submit
+                            </div>
                           </div>
-                          <div>
-                            <kbd>${formatForDisplay('Mod+Enter')}</kbd> — Submit
-                          </div>
-                        </div>
 
-                        <div class="counter">
-                          Modal shortcuts: ${this.modalShortcutCount}x
+                          <div class="counter">
+                            Modal shortcuts: ${this.modalShortcutCount}x
+                          </div>
+                          <p class="hint">
+                            These shortcuts only work when the modal is open and
+                            focused.
+                          </p>
+                          <button @click=${() => (this.modalOpen = false)}>
+                            Close
+                          </button>
                         </div>
-                        <p class="hint">
-                          These shortcuts only work when the modal is open and
-                          focused.
-                        </p>
-                        <button @click=${() => (this.modalOpen = false)}>
-                          Close
-                        </button>
                       </div>
-                    </div>
-                  `
-                : null}
+                    `
+                  : null
+              }
             </div>
 
             <div class="scoped-area">
@@ -531,30 +525,35 @@ ${`@hotkey('Mod+Enter', () => submitForm())
           </div>
 
           <pre class="code-block">
-${`// Scoped to a ref (register after first render)
-const manager = getHotkeyManager()
-const sidebar = this.sidebarRef.value
-
-manager.register(
-  'Mod+B',
-  () => { console.log('Sidebar shortcut!') },
-  { target: sidebar }
+${`// Scoped to a ref. A null target waits until the element renders.
+this.addController(
+  new HotkeyController(
+    this,
+    'Mod+B',
+    () => console.log('Sidebar shortcut!'),
+    () => ({ target: this.sidebarRef.value ?? null }),
+  ),
 )
 
-// Scoped to a modal (register/unregister when opened/closed)
-manager.register(
-  'Escape',
-  () => { this.modalOpen = false },
-  { target: this.modalRef.value }
+// Scoped to a modal: registered only while it is open
+this.addController(
+  new HotkeyController(
+    this,
+    'Escape',
+    () => (this.modalOpen = false),
+    () => ({ target: this.modalOpen ? (this.modalRef.value ?? null) : null }),
+  ),
 )
 
 // Scoped to an editor
-manager.register(
-  'Mod+S',
-  () => saveEditorContent(),
-  { target: this.editorRef.value }
-)`}</pre
-          >
+this.addController(
+  new HotkeyController(
+    this,
+    'Mod+S',
+    () => saveEditorContent(),
+    () => ({ target: this.editorRef.value ?? null }),
+  ),
+)`}</pre>
         </section>
       </main>
     </div>`
@@ -588,26 +587,15 @@ manager.register(
     this.incrementCount++
   }
 
-  @hotkey('Mod+E')
-  private _handleConditional = (
-    _event: KeyboardEvent,
-    { hotkey }: HotkeyCallbackContext,
-  ) => {
-    if (!this.enabled) return
-    this.lastHotkey = hotkey
-    alert('This hotkey can be toggled!')
-  }
-
-  // Number key combinations (tab switching)
   @hotkey('Mod+1')
   private _tab1 = () => {
     this.lastHotkey = 'Mod+1'
     this.activeTab = 1
   }
 
-  @hotkey('Mod+2')
+  @hotkey('Mod+[Digit2]')
   private _tab2 = () => {
-    this.lastHotkey = 'Mod+2'
+    this.lastHotkey = 'Mod+[Digit2]'
     this.activeTab = 2
   }
 

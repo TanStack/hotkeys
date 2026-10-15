@@ -1,0 +1,156 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  max-width: 960px;
+  margin: 24px auto;
+  padding: 0 16px;
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+  color: #333;
+  background: #f5f5f5;
+}
+header {
+  margin-bottom: 24px;
+}
+h1 {
+  color: #06c;
+  font-size: 28px;
+}
+h2 {
+  font-size: 22px;
+}
+h3 {
+  font-size: 18px;
+}
+h1,
+h2,
+h3 {
+  margin: 0 0 12px;
+}
+p {
+  margin: 12px 0;
+}
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0;
+}
+nav a {
+  padding: 6px 12px;
+  border-radius: 4px;
+  color: #06c;
+  text-decoration: none;
+}
+nav a:hover {
+  background: #e8f2ff;
+}
+nav .active {
+  background: #06c;
+  color: white;
+}
+section {
+  margin: 20px 0;
+  padding: 24px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+button {
+  padding: 6px 12px;
+  margin: 0 6px 6px 0;
+  background: #f8f8f8;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  cursor: pointer;
+  color: inherit;
+}
+button:hover:not(:disabled) {
+  background: #e8f2ff;
+  border-color: #06c;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+label {
+  display: block;
+  margin: 12px 0;
+}
+input:not([type='checkbox']):not([type='range']),
+select,
+textarea {
+  padding: 6px 8px;
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  background: white;
+  color: inherit;
+  max-width: 100%;
+}
+input[type='checkbox'] {
+  accent-color: #06c;
+}
+fieldset {
+  margin: 16px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+legend {
+  font-weight: 600;
+}
+textarea {
+  display: block;
+  width: 100%;
+  margin-top: 6px;
+}
+kbd {
+  display: inline-block;
+  margin: 0 2px;
+  padding: 1px 5px;
+  background: #f2f2f2;
+  color: #333;
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  font-size: 0.85em;
+}
+code {
+  font-size: 0.9em;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0;
+}
+th,
+td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  overflow-wrap: anywhere;
+}
+th {
+  background: #f8f8f8;
+}
+small {
+  color: #666;
+}
+:focus-visible {
+  outline: 2px solid #06c;
+  outline-offset: 2px;
+}
+@media (max-width: 600px) {
+  section {
+    padding: 16px;
+  }
+  nav {
+    gap: 4px;
+  }
+}

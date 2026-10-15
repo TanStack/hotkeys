@@ -1,189 +1,63 @@
-import { DestroyRef, effect, inject } from '@angular/core'
+import { DestroyRef, effect, inject, untracked } from '@angular/core'
 import {
-  detectPlatform,
-  getHotkeyManager,
-  normalizeRegisterableHotkey,
-} from '@tanstack/hotkeys'
-import { injectDefaultHotkeysOptions } from './hotkeys-provider'
-import type { InjectHotkeyOptions } from './injectHotkey'
+  createHotkeyBindings,
+  prepareHotkeyDefinitions,
+} from '@tanstack/hotkeys/adapter'
+import { injectHotkeysContext } from './hotkeys-provider'
+import type { AdapterHotkeyDefinition } from '@tanstack/hotkeys/adapter'
 import type {
-  Hotkey,
-  HotkeyCallback,
-  HotkeyRegistrationHandle,
-  RegisterableHotkey,
-} from '@tanstack/hotkeys'
+  InjectHotkeyCommonOptions,
+  InjectHotkeyTarget,
+} from './injectHotkey'
 
 /**
- * A single hotkey definition for use with `injectHotkeys`.
+ * One hotkey for `injectHotkeys`. Chords accept `requireReset`; sequences
+ * accept `timeout`; hotkeys of unknown kind accept only shared options.
  */
-export interface InjectHotkeyDefinition {
-  /** The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object */
-  hotkey: RegisterableHotkey | (() => RegisterableHotkey)
-  /** The function to call when the hotkey is pressed */
-  callback: HotkeyCallback
-  /** Per-hotkey options (merged on top of commonOptions) */
-  options?: InjectHotkeyOptions | (() => InjectHotkeyOptions)
-}
+export type InjectHotkeyDefinition = AdapterHotkeyDefinition<InjectHotkeyTarget>
 
 /**
- * Angular inject-based API for registering multiple keyboard hotkeys at once.
+ * Angular inject-based API for registering several hotkeys at once: chords,
+ * sequences, and app hotkeys. Pass a getter for a reactive list.
  *
- * Uses the singleton HotkeyManager for efficient event handling.
- * Accepts a dynamic array of hotkey definitions.
- *
- * Call in an injection context (e.g. constructor or field initializer).
- * Uses effect() to track reactive dependencies and update registrations
- * when options or the callback change.
- *
- * Options are merged in this order:
- * provideHotkeys defaults < commonOptions < per-definition options
- *
- * @param hotkeys - Array of hotkey definitions, or getter returning them
- * @param commonOptions - Shared options for all hotkeys, or getter
+ * Options merge in this order: provider defaults, app hotkey declaration,
+ * commonOptions, per-hotkey options. Each option applies only to the kinds
+ * that support it. Unbound app hotkeys and empty sequences register nothing.
+ * A `null` target skips registration until it is set.
  *
  * @example
  * ```ts
- * @Component({ ... })
- * export class EditorComponent {
- *   constructor() {
- *     injectHotkeys([
- *       { hotkey: 'Mod+S', callback: () => this.save() },
- *       { hotkey: 'Mod+Z', callback: () => this.undo() },
- *       { hotkey: 'Escape', callback: () => this.close() },
- *     ])
- *   }
- * }
- * ```
- *
- * @example
- * ```ts
- * @Component({ ... })
- * export class DynamicShortcuts {
- *   shortcuts = signal([...])
- *
- *   constructor() {
- *     injectHotkeys(
- *       () => this.shortcuts().map((s) => ({
- *         hotkey: s.key,
- *         callback: s.action,
- *       })),
- *     )
- *   }
- * }
+ * injectHotkeys([
+ *   { hotkey: 'Mod+S', callback: () => this.save() },
+ *   { hotkey: ['G', 'G'], callback: () => this.scrollToTop(), options: { timeout: 500 } },
+ * ])
  * ```
  */
 export function injectHotkeys(
   hotkeys:
-    | Array<InjectHotkeyDefinition>
-    | (() => Array<InjectHotkeyDefinition>),
-  commonOptions: InjectHotkeyOptions | (() => InjectHotkeyOptions) = {},
+    | ReadonlyArray<InjectHotkeyDefinition>
+    | (() => ReadonlyArray<InjectHotkeyDefinition>),
+  commonOptions:
+    InjectHotkeyCommonOptions | (() => InjectHotkeyCommonOptions) = {},
 ): void {
-  type RegistrationRecord = {
-    handle: HotkeyRegistrationHandle
-    target: Document | HTMLElement | Window
-  }
-
-  const defaultOptions = injectDefaultHotkeysOptions()
-  const manager = getHotkeyManager()
-  const destroyRef = inject(DestroyRef)
-
-  const registrations = new Map<string, RegistrationRecord>()
-
-  destroyRef.onDestroy(() => {
-    for (const { handle } of registrations.values()) {
-      if (handle.isActive) {
-        handle.unregister()
-      }
-    }
-    registrations.clear()
-  })
+  const context = injectHotkeysContext()
+  const bindings = createHotkeyBindings()
+  inject(DestroyRef).onDestroy(() => bindings.destroy())
 
   effect(() => {
-    const resolvedHotkeys = typeof hotkeys === 'function' ? hotkeys() : hotkeys
-    const resolvedCommonOptions =
-      typeof commonOptions === 'function' ? commonOptions() : commonOptions
-
-    const nextKeys = new Set<string>()
-    const prepared: Array<{
-      registrationKey: string
-      def: InjectHotkeyDefinition
-      mergedOptions: InjectHotkeyOptions
-      hotkeyString: Hotkey
-      resolvedTarget: Document | HTMLElement | Window
-    }> = []
-
-    for (let i = 0; i < resolvedHotkeys.length; i++) {
-      const def = resolvedHotkeys[i]!
-      const resolvedHotkey =
-        typeof def.hotkey === 'function' ? def.hotkey() : def.hotkey
-      const resolvedDefOptions =
-        typeof def.options === 'function' ? def.options() : (def.options ?? {})
-
-      const mergedOptions = {
-        ...defaultOptions.hotkey,
-        ...resolvedCommonOptions,
-        ...resolvedDefOptions,
-      } as InjectHotkeyOptions
-
-      const platform = mergedOptions.platform ?? detectPlatform()
-      const hotkeyString = normalizeRegisterableHotkey(resolvedHotkey, platform)
-
-      const resolvedTarget =
-        'target' in mergedOptions
-          ? (mergedOptions.target ?? null)
-          : typeof document !== 'undefined'
-            ? document
-            : null
-
-      if (!resolvedTarget) {
-        continue
-      }
-
-      const registrationKey = `${i}:${hotkeyString}`
-      nextKeys.add(registrationKey)
-      prepared.push({
-        registrationKey,
-        def,
-        mergedOptions,
-        hotkeyString,
-        resolvedTarget,
-      })
-    }
-
-    for (const [key, record] of [...registrations.entries()]) {
-      if (!nextKeys.has(key)) {
-        if (record.handle.isActive) {
-          record.handle.unregister()
-        }
-        registrations.delete(key)
-      }
-    }
-
-    for (const p of prepared) {
-      const existing = registrations.get(p.registrationKey)
-      if (existing?.handle.isActive && existing.target === p.resolvedTarget) {
-        existing.handle.callback = p.def.callback
-        const { target: _target, ...optionsWithoutTarget } = p.mergedOptions
-        existing.handle.setOptions(optionsWithoutTarget)
-        continue
-      }
-
-      if (existing) {
-        if (existing.handle.isActive) {
-          existing.handle.unregister()
-        }
-        registrations.delete(p.registrationKey)
-      }
-
-      const { target: _target, ...optionsWithoutTarget } = p.mergedOptions
-      const handle = manager.register(p.hotkeyString, p.def.callback, {
-        ...optionsWithoutTarget,
-        target: p.resolvedTarget,
-      })
-      registrations.set(p.registrationKey, {
-        handle,
-        target: p.resolvedTarget,
-      })
-    }
+    // Track app hotkeys so registrations move with custom hotkeys.
+    context.appHotkeysState()
+    const definitions = prepareHotkeyDefinitions(
+      typeof hotkeys === 'function' ? hotkeys() : hotkeys,
+      {
+        appHotkeysStore: context.appHotkeysStore,
+        defaults: context.defaultOptions.hotkey,
+        commonOptions:
+          typeof commonOptions === 'function' ? commonOptions() : commonOptions,
+        // A null target skips registration until the element exists.
+        resolveTarget: (target) => target,
+      },
+    )
+    untracked(() => bindings.update(definitions))
   })
 }

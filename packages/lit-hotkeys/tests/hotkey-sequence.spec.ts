@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { SequenceManager } from '@tanstack/hotkeys'
-import { HotkeySequenceController } from '../src/controllers/hotkey-sequence'
+import { HotkeyManager } from '@tanstack/hotkeys'
+import { HotkeyController } from '../src/controllers/hotkey'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
 function createMockHost(): ReactiveControllerHost & {
@@ -42,13 +42,13 @@ function dispatchKeyup(
   return event
 }
 
-describe('HotkeySequenceController', () => {
+describe('HotkeyController with sequences', () => {
   beforeEach(() => {
-    SequenceManager.resetInstance()
+    HotkeyManager.resetInstance()
   })
 
   afterEach(() => {
-    SequenceManager.resetInstance()
+    HotkeyManager.resetInstance()
   })
 
   it('should register a sequence listener on connect', () => {
@@ -56,7 +56,7 @@ describe('HotkeySequenceController', () => {
     const addSpy = vi.spyOn(document, 'addEventListener')
 
     const host = createMockHost()
-    const ctrl = new HotkeySequenceController(host, ['G', 'G'], callback)
+    const ctrl = new HotkeyController(host, ['G', 'G'], callback)
     host.addController(ctrl)
     ctrl.hostConnected()
 
@@ -70,7 +70,7 @@ describe('HotkeySequenceController', () => {
     const callback = vi.fn()
 
     const host = createMockHost()
-    const ctrl = new HotkeySequenceController(host, ['G', 'G'], callback)
+    const ctrl = new HotkeyController(host, ['G', 'G'], callback)
     host.addController(ctrl)
     ctrl.hostConnected()
 
@@ -87,7 +87,7 @@ describe('HotkeySequenceController', () => {
     const callback = vi.fn()
 
     const host = createMockHost()
-    const ctrl = new HotkeySequenceController(host, ['D', 'I', 'W'], callback)
+    const ctrl = new HotkeyController(host, ['D', 'I', 'W'], callback)
     host.addController(ctrl)
     ctrl.hostConnected()
 
@@ -103,7 +103,7 @@ describe('HotkeySequenceController', () => {
     const callback = vi.fn()
 
     const host = createMockHost()
-    const ctrl = new HotkeySequenceController(host, ['D', 'I', 'W'], callback)
+    const ctrl = new HotkeyController(host, ['D', 'I', 'W'], callback)
     host.addController(ctrl)
     ctrl.hostConnected()
 
@@ -120,7 +120,7 @@ describe('HotkeySequenceController', () => {
     const callback = vi.fn()
 
     const host = createMockHost()
-    const ctrl = new HotkeySequenceController(host, ['G', 'G'], callback)
+    const ctrl = new HotkeyController(host, ['G', 'G'], callback)
     host.addController(ctrl)
     ctrl.hostConnected()
 
@@ -136,7 +136,7 @@ describe('HotkeySequenceController', () => {
     const callback = vi.fn()
 
     const host = createMockHost()
-    const ctrl = new HotkeySequenceController(host, ['G', 'G'], callback, {
+    const ctrl = new HotkeyController(host, ['G', 'G'], callback, {
       enabled: false,
     })
     host.addController(ctrl)
@@ -154,7 +154,7 @@ describe('HotkeySequenceController', () => {
     let capturedThis: unknown
 
     const host = createMockHost()
-    const ctrl = new HotkeySequenceController(host, ['G', 'G'], function (
+    const ctrl = new HotkeyController(host, ['G', 'G'], function (
       this: unknown,
     ) {
       capturedThis = this
@@ -177,7 +177,7 @@ describe('HotkeySequenceController', () => {
       const callsBefore = addSpy.mock.calls.length
 
       const host = createMockHost()
-      const ctrl = new HotkeySequenceController(host, ['G', 'G'], callback, {
+      const ctrl = new HotkeyController(host, ['G', 'G'], callback, {
         target: null,
       })
       host.addController(ctrl)
@@ -195,7 +195,7 @@ describe('HotkeySequenceController', () => {
       document.body.appendChild(targetEl)
 
       const host = createMockHost()
-      const ctrl = new HotkeySequenceController(host, ['G', 'G'], callback, {
+      const ctrl = new HotkeyController(host, ['G', 'G'], callback, {
         target: targetEl,
       })
       host.addController(ctrl)
@@ -217,7 +217,7 @@ describe('HotkeySequenceController', () => {
       const callback = vi.fn()
 
       const host = createMockHost()
-      const ctrl = new HotkeySequenceController(host, ['G', 'G'], callback)
+      const ctrl = new HotkeyController(host, ['G', 'G'], callback)
       host.addController(ctrl)
       ctrl.hostConnected()
 
@@ -235,7 +235,7 @@ describe('HotkeySequenceController', () => {
       const callback = vi.fn()
 
       const host = createMockHost()
-      const ctrl = new HotkeySequenceController(host, ['G', 'G'], callback)
+      const ctrl = new HotkeyController(host, ['G', 'G'], callback)
       host.addController(ctrl)
       ctrl.hostConnected()
 
@@ -254,7 +254,7 @@ describe('HotkeySequenceController', () => {
       const callback = vi.fn()
 
       const host = createMockHost()
-      const ctrl = new HotkeySequenceController(host, ['G', 'G'], callback)
+      const ctrl = new HotkeyController(host, ['G', 'G'], callback)
       host.addController(ctrl)
 
       ctrl.hostConnected()
@@ -272,7 +272,7 @@ describe('HotkeySequenceController', () => {
       const callback = vi.fn()
 
       const host = createMockHost()
-      const ctrl = new HotkeySequenceController(host, ['G', 'G'], callback)
+      const ctrl = new HotkeyController(host, ['G', 'G'], callback)
       host.addController(ctrl)
 
       for (let i = 0; i < 3; i++) {
@@ -289,7 +289,7 @@ describe('HotkeySequenceController', () => {
       const callback = vi.fn()
 
       const host = createMockHost()
-      const ctrl = new HotkeySequenceController(host, ['G', 'G'], callback)
+      const ctrl = new HotkeyController(host, ['G', 'G'], callback)
       host.addController(ctrl)
 
       expect(() => ctrl.hostDisconnected()).not.toThrow()
@@ -299,7 +299,7 @@ describe('HotkeySequenceController', () => {
       const callback = vi.fn()
 
       const host = createMockHost()
-      const ctrl = new HotkeySequenceController(host, ['G', 'G'], callback)
+      const ctrl = new HotkeyController(host, ['G', 'G'], callback)
       host.addController(ctrl)
       ctrl.hostConnected()
 
@@ -316,7 +316,7 @@ describe('HotkeySequenceController', () => {
       const callback = vi.fn()
 
       const host = createMockHost()
-      const ctrl = new HotkeySequenceController(host, ['G', 'G'], callback, {
+      const ctrl = new HotkeyController(host, ['G', 'G'], callback, {
         timeout: 500,
       })
       host.addController(ctrl)
@@ -339,7 +339,7 @@ describe('HotkeySequenceController', () => {
       const callback = vi.fn()
 
       const host = createMockHost()
-      const ctrl = new HotkeySequenceController(host, ['G', 'G'], callback, {
+      const ctrl = new HotkeyController(host, ['G', 'G'], callback, {
         timeout: 500,
       })
       host.addController(ctrl)
@@ -364,7 +364,7 @@ describe('HotkeySequenceController', () => {
       const addSpy = vi.spyOn(document, 'addEventListener')
 
       const host = createMockHost()
-      const ctrl = new HotkeySequenceController(host, ['G', 'G'], callback, {
+      const ctrl = new HotkeyController(host, ['G', 'G'], callback, {
         eventType: 'keyup',
       })
       host.addController(ctrl)
@@ -384,7 +384,7 @@ describe('HotkeySequenceController', () => {
       const callback = vi.fn()
 
       const host = createMockHost()
-      const ctrl = new HotkeySequenceController(host, ['G', 'G'], callback, {
+      const ctrl = new HotkeyController(host, ['G', 'G'], callback, {
         eventType: 'keyup',
       })
       host.addController(ctrl)
@@ -404,7 +404,7 @@ describe('HotkeySequenceController', () => {
       const callback = vi.fn()
 
       const host = createMockHost()
-      const ctrl = new HotkeySequenceController(
+      const ctrl = new HotkeyController(
         host,
         ['Control+K', 'Control+S'],
         callback,
@@ -427,7 +427,7 @@ describe('HotkeySequenceController', () => {
       const callback = vi.fn()
 
       const host = createMockHost()
-      const ctrl = new HotkeySequenceController(host, ['G', 'G'], callback)
+      const ctrl = new HotkeyController(host, ['G', 'G'], callback)
       host.addController(ctrl)
       ctrl.hostConnected()
 

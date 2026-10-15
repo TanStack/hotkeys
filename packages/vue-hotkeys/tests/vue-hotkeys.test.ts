@@ -7,10 +7,6 @@ import {
   useHotkeyRecorder,
   type VueHotkeyRecorder,
 } from '../src/useHotkeyRecorder'
-import {
-  useHotkeySequenceRecorder,
-  type VueHotkeySequenceRecorder,
-} from '../src/useHotkeySequenceRecorder'
 
 describe('vue hotkeys adapters', () => {
   beforeEach(() => {
@@ -156,12 +152,13 @@ describe('vue hotkeys adapters', () => {
     const firstOnCancel = vi.fn()
     const secondOnCancel = vi.fn()
     const onCancel = ref(firstOnCancel)
-    let recorder!: VueHotkeySequenceRecorder
+    let recorder!: VueHotkeyRecorder
 
     const wrapper = mount(
       defineComponent({
         setup() {
-          recorder = useHotkeySequenceRecorder(() => ({
+          recorder = useHotkeyRecorder(() => ({
+            maxSteps: Infinity,
             onRecord,
             onCancel: onCancel.value,
           }))

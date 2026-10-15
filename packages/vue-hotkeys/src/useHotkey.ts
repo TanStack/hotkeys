@@ -1,213 +1,91 @@
-import { onUnmounted, unref, watch } from 'vue'
-import {
-  detectPlatform,
-  getHotkeyManager,
-  normalizeRegisterableHotkey,
-} from '@tanstack/hotkeys'
-import { useDefaultHotkeysOptions } from './HotkeysProviderContext'
-import type {
-  Hotkey,
-  HotkeyCallback,
-  HotkeyOptions,
-  HotkeyRegistrationHandle,
-  RegisterableHotkey,
-} from '@tanstack/hotkeys'
+import { useHotkeys } from './useHotkeys'
 import type { MaybeRefOrGetter } from 'vue'
-
-export interface UseHotkeyOptions extends Omit<
-  HotkeyOptions,
-  'enabled' | 'target'
-> {
-  /**
-   * Whether the hotkey is active.
-   * Can be a Ref, a getter function, or a boolean value.
-   * Defaults to true.
-   */
-  enabled?: MaybeRefOrGetter<boolean>
-  /**
-   * The DOM element to attach the event listener to.
-   * Can be a Ref, a getter function, direct DOM element, or null.
-   * Defaults to document.
-   */
-  target?: MaybeRefOrGetter<HTMLElement | Document | Window | null>
-}
+import type {
+  AppHotkey,
+  HotkeyCallback,
+  RegisterableHotkey,
+  Target,
+} from '@tanstack/hotkeys'
+import type {
+  AdapterAppHotkeyOptions,
+  AdapterChordOptions,
+  AdapterCommonOptions,
+  AdapterHotkeyOptions,
+  AdapterOptionsFor,
+  AdapterSequenceOptions,
+} from '@tanstack/hotkeys/adapter'
 
 /**
- * Vue composable for registering a keyboard hotkey.
- *
- * Uses the singleton HotkeyManager for efficient event handling.
- * The callback receives both the keyboard event and a context object
- * containing the hotkey string and parsed hotkey.
- *
- * This composable automatically tracks reactive dependencies and updates
- * the registration when options or the callback change.
- *
- * @param hotkey - The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object (supports `mod` for cross-platform)
- * @param callback - The function to call when the hotkey is pressed
- * @param options - Options for the hotkey behavior
- *
- * @example
- * ```vue
- * <script setup>
- * import { ref } from 'vue'
- * import { useHotkey } from '@tanstack/vue-hotkeys'
- *
- * const count = ref(0)
- *
- * // Callback always has access to latest count value
- * useHotkey('Mod+S', (event, { hotkey }) => {
- *   console.log(`Save triggered, count is ${count.value}`)
- *   handleSave()
- * })
- * </script>
- * ```
- *
- * @example
- * ```vue
- * <script setup>
- * import { ref } from 'vue'
- * import { useHotkey } from '@tanstack/vue-hotkeys'
- *
- * const isOpen = ref(false)
- *
- * // enabled option is reactive
- * useHotkey('Escape', () => {
- *   isOpen.value = false
- * }, { enabled: isOpen })
- * </script>
- * ```
- *
- * @example
- * ```vue
- * <script setup>
- * import { ref } from 'vue'
- * import { useHotkey } from '@tanstack/vue-hotkeys'
- *
- * const editorRef = ref<HTMLDivElement | null>(null)
- *
- * // Scoped to a specific element
- * useHotkey('Mod+S', () => {
- *   save()
- * }, { target: editorRef })
- * </script>
- *
- * <template>
- *   <div ref="editorRef">...</div>
- * </template>
- * ```
+ * The element to listen on: a ref, getter, element, or null. A target that
+ * resolves to `null` skips registration until it is set. Defaults to document.
  */
-export function useHotkey(
-  hotkey: MaybeRefOrGetter<RegisterableHotkey>,
-  callback: HotkeyCallback,
-  options: MaybeRefOrGetter<UseHotkeyOptions> = {},
-): void {
-  const defaultOptions = useDefaultHotkeysOptions()
-  const manager = getHotkeyManager()
+export type UseHotkeyTarget = MaybeRefOrGetter<Target | null>
 
-  let registration: HotkeyRegistrationHandle | null = null
-  let lastHotkeyString: Hotkey | null = null
-  let lastTarget: HTMLElement | Document | Window | null = null
-
-  // Watch for changes to reactive dependencies
-  const stopWatcher = watch(
-    () => {
-      const resolvedHotkey = resolveMaybeRefOrGetter(hotkey)
-      const resolvedOptions = resolveMaybeRefOrGetter(options)
-      const mergedOptions = {
-        ...defaultOptions.hotkey,
-        ...resolvedOptions,
-      } as UseHotkeyOptions
-      const resolvedEnabled =
-        mergedOptions.enabled === undefined
-          ? undefined
-          : resolveMaybeRefOrGetter(mergedOptions.enabled)
-      const resolvedTarget =
-        mergedOptions.target === undefined
-          ? undefined
-          : resolveMaybeRefOrGetter(mergedOptions.target)
-
-      return {
-        resolvedHotkey,
-        mergedOptions,
-        resolvedEnabled,
-        resolvedTarget,
-      }
-    },
-    ({ resolvedHotkey, mergedOptions, resolvedEnabled, resolvedTarget }) => {
-      // Normalize to hotkey string
-      const platform = mergedOptions.platform ?? detectPlatform()
-      const hotkeyString = normalizeRegisterableHotkey(resolvedHotkey, platform)
-
-      // Resolve target
-      const finalTarget =
-        resolvedTarget === undefined
-          ? typeof document !== 'undefined'
-            ? document
-            : null
-          : resolvedTarget
-
-      if (!finalTarget) {
-        if (registration?.isActive) {
-          registration.unregister()
-          registration = null
-        }
-        lastHotkeyString = null
-        lastTarget = null
-        return
-      }
-
-      // Extract options without target (target is handled separately)
-      const {
-        target: _target,
-        enabled: _enabled,
-        ...restOptions
-      } = mergedOptions
-      const optionsWithoutTarget = {
-        ...restOptions,
-        ...(resolvedEnabled === undefined ? {} : { enabled: resolvedEnabled }),
-      }
-
-      if (
-        registration?.isActive &&
-        lastHotkeyString === hotkeyString &&
-        lastTarget === finalTarget
-      ) {
-        registration.callback = callback
-        registration.setOptions(optionsWithoutTarget)
-        return
-      }
-
-      if (registration?.isActive) {
-        registration.unregister()
-        registration = null
-      }
-
-      registration = manager.register(hotkeyString, callback, {
-        ...optionsWithoutTarget,
-        target: finalTarget,
-      })
-
-      if (registration.isActive) {
-        registration.callback = callback
-        registration.setOptions(optionsWithoutTarget)
-      }
-
-      lastHotkeyString = hotkeyString
-      lastTarget = finalTarget
-    },
-    { immediate: true },
-  )
-
-  // Cleanup on unmount
-  onUnmounted(() => {
-    stopWatcher()
-    if (registration?.isActive) {
-      registration.unregister()
-      registration = null
-    }
-  })
+/** Lets `enabled` be a ref or getter. */
+type WithReactiveEnabled<TOptions> = Omit<TOptions, 'enabled'> & {
+  /** Whether the hotkey is active. Can be a ref, getter, or boolean. Defaults to true. */
+  enabled?: MaybeRefOrGetter<boolean>
 }
 
-function resolveMaybeRefOrGetter<T>(value: MaybeRefOrGetter<T>): T {
-  return typeof value === 'function' ? (value as () => T)() : unref(value)
+/** Options shared by chords and sequences. */
+export type UseHotkeyOptions = WithReactiveEnabled<
+  AdapterHotkeyOptions<UseHotkeyTarget>
+>
+
+/** Options for a chord such as `'Mod+S'`. */
+export type UseHotkeyChordOptions = WithReactiveEnabled<
+  AdapterChordOptions<UseHotkeyTarget>
+>
+
+/** Options for a sequence such as `['G', 'G']`. */
+export type UseHotkeySequenceOptions = WithReactiveEnabled<
+  AdapterSequenceOptions<UseHotkeyTarget>
+>
+
+/** Options applied to every hotkey, such as provider defaults. Each applies to the kinds that support it. */
+export type UseHotkeyCommonOptions = WithReactiveEnabled<
+  AdapterCommonOptions<UseHotkeyTarget>
+>
+
+/** The options type for a hotkey: chord options for chords, sequence options for sequences. */
+export type UseHotkeyOptionsFor<T extends RegisterableHotkey> =
+  WithReactiveEnabled<AdapterOptionsFor<T, UseHotkeyTarget>>
+
+/** Call-site options for an app hotkey, typed by its declared default kind. */
+export type UseAppHotkeyOptions<T extends AppHotkey = AppHotkey> =
+  WithReactiveEnabled<AdapterAppHotkeyOptions<T, UseHotkeyTarget>>
+
+/**
+ * Vue composable for registering a hotkey: a chord such as `'Mod+S'`, a
+ * sequence such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
+ * The hotkey and options may be refs or getters.
+ *
+ * Chords accept `requireReset`; sequences accept `timeout`. A one-step
+ * sequence registers as its chord. An app hotkey uses its effective hotkey
+ * from `HotkeysProvider` (including the user's custom hotkey) and its
+ * declared meta and options, and registers nothing while unbound.
+ *
+ * @example
+ * ```ts
+ * useHotkey('Mod+S', () => save())
+ * useHotkey(['G', 'G'], () => scrollToTop(), { timeout: 500 })
+ * useHotkey('Escape', () => close(), { enabled: isOpen })
+ * ```
+ */
+export function useHotkey<T extends AppHotkey>(
+  hotkey: MaybeRefOrGetter<T>,
+  callback: HotkeyCallback,
+  options?: MaybeRefOrGetter<UseAppHotkeyOptions<T>>,
+): void
+export function useHotkey<T extends RegisterableHotkey>(
+  hotkey: MaybeRefOrGetter<T>,
+  callback: HotkeyCallback,
+  options?: MaybeRefOrGetter<UseHotkeyOptionsFor<T>>,
+): void
+export function useHotkey(
+  hotkey: MaybeRefOrGetter<RegisterableHotkey | AppHotkey>,
+  callback: HotkeyCallback,
+  options: MaybeRefOrGetter<UseHotkeyCommonOptions> = {},
+): void {
+  useHotkeys([{ hotkey, callback, options } as never])
 }

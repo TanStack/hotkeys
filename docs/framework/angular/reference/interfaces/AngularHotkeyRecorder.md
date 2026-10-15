@@ -3,19 +3,25 @@ id: AngularHotkeyRecorder
 title: AngularHotkeyRecorder
 ---
 
-Defined in: [injectHotkeyRecorder.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L15)
+Defined in: [injectHotkeyRecorder.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L22)
+
+## Type Parameters
+
+### THotkey
+
+`THotkey` *extends* `Hotkey` = `Hotkey`
 
 ## Properties
 
-### cancelRecording()
+### cancelRecording
 
 ```ts
 readonly cancelRecording: () => void;
 ```
 
-Defined in: [injectHotkeyRecorder.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L25)
+Defined in: [injectHotkeyRecorder.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L34)
 
-Cancel recording without saving
+Cancel recording and call onCancel
 
 #### Returns
 
@@ -23,13 +29,29 @@ Cancel recording without saving
 
 ***
 
-### isRecording()
+### commitRecording
+
+```ts
+readonly commitRecording: () => void;
+```
+
+Defined in: [injectHotkeyRecorder.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L36)
+
+Commit the recorded steps now (multi-step recordings)
+
+#### Returns
+
+`void`
+
+***
+
+### isRecording
 
 ```ts
 readonly isRecording: () => boolean;
 ```
 
-Defined in: [injectHotkeyRecorder.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L17)
+Defined in: [injectHotkeyRecorder.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L24)
 
 Whether recording is currently active
 
@@ -39,29 +61,29 @@ Whether recording is currently active
 
 ***
 
-### recordedHotkey()
+### recordedHotkey
 
 ```ts
-readonly recordedHotkey: () => Hotkey | null;
+readonly recordedHotkey: () => THotkey | null;
 ```
 
-Defined in: [injectHotkeyRecorder.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L19)
+Defined in: [injectHotkeyRecorder.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L28)
 
-The currently recorded hotkey (for live preview)
+The last committed hotkey
 
 #### Returns
 
-`Hotkey` \| `null`
+`THotkey` \| `null`
 
 ***
 
-### startRecording()
+### startRecording
 
 ```ts
 readonly startRecording: () => void;
 ```
 
-Defined in: [injectHotkeyRecorder.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L21)
+Defined in: [injectHotkeyRecorder.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L30)
 
 Start recording a new hotkey
 
@@ -71,15 +93,31 @@ Start recording a new hotkey
 
 ***
 
-### stopRecording()
+### steps
+
+```ts
+readonly steps: () => HotkeySequence;
+```
+
+Defined in: [injectHotkeyRecorder.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L26)
+
+Chords recorded so far in a multi-step recording (for live preview)
+
+#### Returns
+
+`HotkeySequence`
+
+***
+
+### stopRecording
 
 ```ts
 readonly stopRecording: () => void;
 ```
 
-Defined in: [injectHotkeyRecorder.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L23)
+Defined in: [injectHotkeyRecorder.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L32)
 
-Stop recording (same as cancel)
+Stop recording without calling onCancel
 
 #### Returns
 

@@ -1,99 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 :root {
-  font-family:
-    system-ui,
-    -apple-system,
-    Segoe UI,
-    Roboto,
-    sans-serif;
-  line-height: 1.5;
-  color: #0f172a;
-  background: #f8fafc;
+  font-family: 'DM Sans', sans-serif;
+  color: #213e36;
+  background: #f5f6f0;
+  font-synthesis: none;
 }
-
+* {
+  box-sizing: border-box;
+}
 body {
   margin: 0;
-  padding: 1.5rem;
 }
-
 #app {
-  max-width: 52rem;
-  margin: 0 auto;
+  max-width: 1280px;
+  margin: auto;
+  padding: 54px 32px;
 }
-
+h1,
+h2,
+h3 {
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: -0.035em;
+}
 h1 {
-  font-size: 1.35rem;
+  font-size: clamp(2rem, 5vw, 3.8rem);
+  margin: 12px 0;
+}
+h2 {
+  font-size: 1.6rem;
+}
+h3 {
+  font-size: 1.05rem;
+}
+p {
+  line-height: 1.6;
+  color: #53685f;
+}
+.lead {
+  max-width: 780px;
+  font-size: 1.1rem;
+}
+.eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  color: #49725e;
+}
+section {
+  margin-top: 40px;
+}
+.playground {
+  display: grid;
+  grid-template-columns: 340px minmax(0, 1fr);
+  border: 1px solid #cdd7cc;
+  border-radius: 18px;
+  overflow: hidden;
+  background: white;
+}
+.controls {
+  padding: 26px;
+  border-right: 1px solid #cdd7cc;
+}
+.controls h2 {
+  margin-top: 0;
+}
+label {
+  display: block;
+  font-size: 0.85rem;
   font-weight: 600;
-  margin: 0 0 0.5rem;
+  margin: 18px 0;
 }
-
-p.lead {
-  margin: 0 0 1.25rem;
-  color: #475569;
-  font-size: 0.95rem;
+input:not([type='checkbox']),
+select {
+  width: 100%;
+  display: block;
+  margin-top: 7px;
+  padding: 11px 12px;
+  font: inherit;
+  color: inherit;
+  background: #f9faf6;
+  border: 1px solid #cdd7cc;
+  border-radius: 7px;
 }
-
-fieldset {
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  padding: 0.75rem 1rem 1rem;
-  margin: 0 0 1.25rem;
-  background: #fff;
+input:focus,
+select:focus {
+  outline: 2px solid #568e68;
+  outline-offset: 2px;
 }
-
-legend {
-  font-weight: 600;
-  font-size: 0.875rem;
-  padding: 0 0.35rem;
-}
-
-.platform-options {
+.check {
   display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-}
-
-.platform-options label {
-  display: inline-flex;
+  gap: 8px;
   align-items: center;
-  gap: 0.4rem;
-  cursor: pointer;
-  font-size: 0.9rem;
 }
-
+.note {
+  font-size: 0.78rem;
+}
+.preview {
+  padding: 34px;
+  background: #edf3e9;
+  min-width: 0;
+}
+output {
+  display: block;
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 600;
+  margin: 22px 0 40px;
+  overflow-wrap: anywhere;
+}
+kbd {
+  display: inline-block;
+  font:
+    500 0.85rem 'DM Sans',
+    sans-serif;
+  white-space: nowrap;
+  margin: 3px;
+  padding: 6px 9px;
+  background: white;
+  border: 1px solid #cbd6c8;
+  border-bottom-width: 3px;
+  border-radius: 6px;
+  color: #254636;
+}
+#keycaps kbd {
+  font-size: 1.2rem;
+  padding: 10px 16px;
+}
+code,
+pre {
+  font-family: ui-monospace, monospace;
+  font-size: 0.82rem;
+}
+pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  line-height: 1.7;
+}
+#snippet {
+  margin-top: 30px;
+  padding: 18px;
+  background: #ffffffa8;
+  border-radius: 8px;
+}
+#error {
+  color: #a33327;
+}
+.table-scroll {
+  overflow: auto;
+  border: 1px solid #d4dcd0;
+  border-radius: 12px;
+}
 table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.875rem;
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 8px;
-  overflow: hidden;
+  background: white;
+  font-size: 0.86rem;
 }
-
 th,
 td {
   text-align: left;
-  padding: 0.6rem 0.85rem;
-  border-bottom: 1px solid #e2e8f0;
+  padding: 15px;
+  border-bottom: 1px solid #e3e7df;
+  white-space: nowrap;
 }
-
 th {
-  background: #f1f5f9;
-  font-weight: 600;
-  color: #334155;
+  background: #e8eee2;
+  font-size: 0.75rem;
 }
-
+td:first-child {
+  font-family: ui-monospace, monospace;
+}
 tr:last-child td {
-  border-bottom: none;
+  border: 0;
 }
-
-td.mono {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-  font-size: 0.8125rem;
+.input-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
 }
-
-td.display,
-td.display-labels {
-  font-size: 1rem;
-  letter-spacing: 0.02em;
+article {
+  padding: 20px;
+  border-radius: 12px;
+  background: white;
+  border: 1px solid #d4dcd0;
+}
+article h3 {
+  margin-top: 0;
+}
+article code {
+  overflow-wrap: anywhere;
+}
+.form-result {
+  margin-top: 18px;
+}
+footer {
+  color: #607168;
+  font-size: 0.87rem;
+  line-height: 1.8;
+  margin-top: 34px;
+  max-width: 850px;
+}
+[hidden] {
+  display: none !important;
+}
+@media (max-width: 760px) {
+  #app {
+    padding: 28px 18px;
+  }
+  .playground,
+  .input-grid {
+    grid-template-columns: 1fr;
+  }
+  .controls {
+    border-right: 0;
+    border-bottom: 1px solid #cdd7cc;
+  }
+  .preview {
+    padding: 24px;
+  }
 }

@@ -9,8 +9,9 @@ import { Header, HeaderLogo, MainPanel } from '@tanstack/devtools-ui'
 import { useStyles } from '../styles/use-styles'
 import { useHotkeysDevtoolsState } from '../HotkeysContextProvider'
 import { HeldKeysBar } from './HeldKeysTopbar'
-import { HotkeyList } from './HotkeyList'
+import { HotkeyList, appHotkeySelectionId } from './HotkeyList'
 import { DetailsPanel } from './DetailsPanel'
+import type { DetailsSelection } from './DetailsPanel'
 
 function readResizeObserverBlockSize(entry: ResizeObserverEntry): number {
   const [box] = entry.borderBoxSize
@@ -40,13 +41,15 @@ export function Shell() {
     undefined,
   )
 
-  const selectedRegistration = createMemo(() => {
+  const selection = createMemo((): DetailsSelection | null => {
     const id = selectedId()
     if (!id) return null
-    const hotkey = state.registrations().find((r) => r.id === id)
-    if (hotkey) return hotkey
-    const sequence = state.sequenceRegistrations().find((r) => r.id === id)
-    return sequence ?? null
+    const registration = state.registrations().find((r) => r.id === id)
+    if (registration) return { type: 'registration', registration }
+    const item = state
+      .appHotkeys()
+      .find((i) => appHotkeySelectionId(i.appHotkey.id) === id)
+    return item ? { type: 'appHotkey', item } : null
   })
 
   let dragStartX = 0
@@ -161,7 +164,7 @@ export function Shell() {
 
             <div class={styles().rightPanel} style={{ flex: 1 }}>
               <div class={styles().panelHeader}>Details</div>
-              <DetailsPanel selectedRegistration={selectedRegistration} />
+              <DetailsPanel selection={selection} />
             </div>
           </div>
         </div>

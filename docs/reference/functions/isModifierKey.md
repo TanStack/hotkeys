@@ -7,7 +7,7 @@ title: isModifierKey
 function isModifierKey(key): key is string;
 ```
 
-Defined in: [parse.ts:242](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L242)
+Defined in: [parse.ts:287](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L287)
 
 Checks if a string is a recognized modifier token (including aliases).
 
@@ -18,9 +18,9 @@ spellings like `OS` / `Win` match the same alias table.
 
 ### key
 
-Key name or alias (e.g. from a hotkey string or `event.key`)
+[`Key`](../type-aliases/Key.md) \| `string` & `object`
 
-[`Key`](../type-aliases/Key.md) | `string` & `object`
+Key name or alias (e.g. from a hotkey string or `event.key`)
 
 ## Returns
 

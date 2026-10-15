@@ -19,21 +19,15 @@ specified key is held.
 
 ### key
 
-The key to check (e.g., 'Shift', 'Control', 'A') - can be an accessor function
+`IndividualKey` \| (() => `IndividualKey`)
 
-`IndividualKey` | () => `IndividualKey`
+The key to check (e.g., 'Shift', 'Control', 'A') - can be an accessor function
 
 ## Returns
 
 Signal accessor that returns true if the key is currently held down
 
-```ts
-(): boolean;
-```
-
-### Returns
-
-`boolean`
+() => `boolean`
 
 ## Examples
 

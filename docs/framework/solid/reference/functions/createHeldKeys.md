@@ -19,13 +19,7 @@ or released.
 
 Signal accessor for array of currently held key names
 
-```ts
-(): string[];
-```
-
-### Returns
-
-`string`[]
+() => `string`[]
 
 ## Example
 

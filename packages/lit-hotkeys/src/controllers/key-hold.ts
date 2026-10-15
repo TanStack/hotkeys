@@ -52,8 +52,8 @@ export class KeyHoldController implements ReactiveController {
   }
 
   /**
-   * @param host - The Lit component that owns this controller.
-   * @param key - The key to track (e.g. 'Shift', 'Control', 'A').
+   * @param _host - The Lit component that owns this controller.
+   * @param _key - The key to track (e.g. 'Shift', 'Control', 'A').
    */
   constructor(
     private _host: ReactiveControllerHost,

@@ -3,87 +3,116 @@ id: injectHotkey
 title: injectHotkey
 ---
 
+## Call Signature
+
 ```ts
-function injectHotkey(
+function injectHotkey<T>(
    hotkey, 
    callback, 
-   options): void;
+   options?): void;
 ```
 
-Defined in: [injectHotkey.ts:85](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L85)
+Defined in: [injectHotkey.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L69)
 
-Angular inject-based API for registering a keyboard hotkey.
+Angular inject-based API for registering a hotkey: a chord such as
+`'Mod+S'`, a sequence such as `['G', 'G']`, or an app hotkey from
+`defineAppHotkeys`. The hotkey and options may be getters that read signals.
 
-Uses the singleton HotkeyManager for efficient event handling.
-The callback receives both the keyboard event and a context object
-containing the hotkey string and parsed hotkey.
+Chords accept `requireReset`; sequences accept `timeout`. A one-step
+sequence registers as its chord. An app hotkey uses its effective hotkey
+from `provideHotkeys` (including the user's custom hotkey) and its declared
+meta and options, and registers nothing while unbound.
 
-Call in an injection context (e.g. constructor or field initializer).
-Uses effect() to track reactive dependencies and update registration
-when options or the callback change.
-`enabled: false` keeps the registration (visible in devtools) and only suppresses firing; the same
-handle is updated instead of unregistering and re-registering when identity is unchanged.
+### Type Parameters
 
-## Parameters
+#### T
 
-### hotkey
+`T` *extends* `AppHotkey`\<`string`, `HotkeyChord` \| `HotkeySequence` \| `null`\>
 
-The hotkey string (e.g. 'Mod+S', 'Escape') or getter function
+### Parameters
 
-`RegisterableHotkey` | () => `RegisterableHotkey`
+#### hotkey
 
-### callback
+`MaybeGetter`\<`T`\>
+
+#### callback
 
 `HotkeyCallback`
 
-The function to call when the hotkey is pressed
+#### options?
 
-### options
+`MaybeGetter`\<[`InjectAppHotkeyOptions`](../type-aliases/InjectAppHotkeyOptions.md)\<`T`\>\>
 
-Options for the hotkey behavior, or getter for reactive options
-
-[`InjectHotkeyOptions`](../interfaces/InjectHotkeyOptions.md) | () => [`InjectHotkeyOptions`](../interfaces/InjectHotkeyOptions.md)
-
-## Returns
+### Returns
 
 `void`
 
-## Examples
+### Example
 
 ```ts
 @Component({ ... })
-export class SaveButtonComponent {
-  private readonly saveCount = signal(0)
-
+export class EditorComponent {
   constructor() {
-    injectHotkey('Mod+S', (event, { hotkey }) => {
-      event.preventDefault()
-      this.saveCount.update(c => c + 1)
-    })
-  }
-}
-```
-
-```ts
-@Component({ ... })
-export class ModalComponent {
-  isOpen = signal(true)
-
-  constructor() {
+    injectHotkey('Mod+S', () => this.save())
+    injectHotkey(['G', 'G'], () => this.scrollToTop(), { timeout: 500 })
     injectHotkey('Escape', () => this.close(), () => ({ enabled: this.isOpen() }))
   }
 }
 ```
 
+## Call Signature
+
+```ts
+function injectHotkey<T>(
+   hotkey, 
+   callback, 
+   options?): void;
+```
+
+Defined in: [injectHotkey.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L74)
+
+Angular inject-based API for registering a hotkey: a chord such as
+`'Mod+S'`, a sequence such as `['G', 'G']`, or an app hotkey from
+`defineAppHotkeys`. The hotkey and options may be getters that read signals.
+
+Chords accept `requireReset`; sequences accept `timeout`. A one-step
+sequence registers as its chord. An app hotkey uses its effective hotkey
+from `provideHotkeys` (including the user's custom hotkey) and its declared
+meta and options, and registers nothing while unbound.
+
+### Type Parameters
+
+#### T
+
+`T` *extends* `RegisterableHotkey`
+
+### Parameters
+
+#### hotkey
+
+`MaybeGetter`\<`T`\>
+
+#### callback
+
+`HotkeyCallback`
+
+#### options?
+
+`MaybeGetter`\<`AdapterOptionsFor`\<`T`, [`InjectHotkeyTarget`](../type-aliases/InjectHotkeyTarget.md)\>\>
+
+### Returns
+
+`void`
+
+### Example
+
 ```ts
 @Component({ ... })
 export class EditorComponent {
-  private readonly editorRef = viewChild<ElementRef<HTMLDivElement>>('editorRef')
-
   constructor() {
-    injectHotkey('Mod+B', () => this.toggleBold(), () => ({
-      target: this.editorRef()?.nativeElement ?? null,
-    }))
+    injectHotkey('Mod+S', () => this.save())
+    injectHotkey(['G', 'G'], () => this.scrollToTop(), { timeout: 500 })
+    injectHotkey('Escape', () => this.close(), () => ({ enabled: this.isOpen() }))
   }
 }
 ```

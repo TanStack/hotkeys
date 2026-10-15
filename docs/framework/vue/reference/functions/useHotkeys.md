@@ -4,66 +4,38 @@ title: useHotkeys
 ---
 
 ```ts
-function useHotkeys(hotkeys, commonOptions): void;
+function useHotkeys(hotkeys, commonOptions?): void;
 ```
 
-Defined in: [packages/vue-hotkeys/src/useHotkeys.ts:73](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeys.ts#L73)
+Defined in: [useHotkeys.ts:90](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeys.ts#L90)
 
-Vue composable for registering multiple keyboard hotkeys at once.
+Vue composable for registering several hotkeys at once: chords, sequences,
+and app hotkeys. The list, each hotkey, and options may be refs or getters.
 
-Uses the singleton HotkeyManager for efficient event handling.
-Accepts a dynamic array of hotkey definitions, making it safe to use
-with variable-length lists.
-
-Options are merged in this order:
-HotkeysProvider defaults < commonOptions < per-definition options
+Options merge in this order: provider defaults, app hotkey declaration,
+commonOptions, per-hotkey options. Each option applies only to the kinds
+that support it. Unbound app hotkeys and empty sequences register nothing.
+A target that resolves to `null` skips registration until it is set.
 
 ## Parameters
 
 ### hotkeys
 
-`MaybeRefOrGetter`\<[`UseHotkeyDefinition`](../interfaces/UseHotkeyDefinition.md)[]\>
+`MaybeRefOrGetter`\<readonly [`UseHotkeyDefinition`](../type-aliases/UseHotkeyDefinition.md)[]\>
 
-Array of hotkey definitions to register, or a getter/ref
+### commonOptions?
 
-### commonOptions
-
-`MaybeRefOrGetter`\<[`UseHotkeyOptions`](../interfaces/UseHotkeyOptions.md)\> = `{}`
-
-Shared options applied to all hotkeys (overridden by per-definition options)
+`MaybeRefOrGetter`\<[`UseHotkeyCommonOptions`](../type-aliases/UseHotkeyCommonOptions.md)\> = `{}`
 
 ## Returns
 
 `void`
 
-## Examples
+## Example
 
-```vue
-<script setup>
-import { useHotkeys } from '@tanstack/vue-hotkeys'
-
+```ts
 useHotkeys([
   { hotkey: 'Mod+S', callback: () => save() },
-  { hotkey: 'Mod+Z', callback: () => undo() },
-  { hotkey: 'Escape', callback: () => close() },
+  { hotkey: ['G', 'G'], callback: () => scrollToTop(), options: { timeout: 500 } },
 ])
-</script>
-```
-
-```vue
-<script setup>
-import { computed } from 'vue'
-import { useHotkeys } from '@tanstack/vue-hotkeys'
-
-const items = computed(() => [...])
-// Dynamic hotkeys from reactive data
-useHotkeys(
-  () => items.value.map((item) => ({
-    hotkey: item.shortcut,
-    callback: item.action,
-    options: { enabled: item.enabled },
-  })),
-  { preventDefault: true },
-)
-</script>
 ```

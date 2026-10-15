@@ -79,8 +79,8 @@ function App() {
     setActiveTab(1)
   })
 
-  useHotkey('Mod+2', () => {
-    setLastHotkey('Mod+2')
+  useHotkey('Mod+[Digit2]', () => {
+    setLastHotkey('Mod+[Digit2]')
     setActiveTab(2)
   })
 
@@ -419,13 +419,17 @@ useHotkey(
 
         <section className="demo-section">
           <h2>Number Key Combinations</h2>
-          <p>Common for tab/section switching:</p>
+          <p>
+            Tab 2 uses the physical number-row position (
+            <code>Mod+[Digit2]</code>), even when that key produces a different
+            character. The other tabs follow logical digits.
+          </p>
           <div className="hotkey-grid">
             <div>
               <kbd>{formatForDisplay('Mod+1')}</kbd> → Tab 1
             </div>
             <div>
-              <kbd>{formatForDisplay('Mod+2')}</kbd> → Tab 2
+              <kbd>{formatForDisplay('Mod+[Digit2]')}</kbd> → Tab 2
             </div>
             <div>
               <kbd>{formatForDisplay('Mod+3')}</kbd> → Tab 3
@@ -439,7 +443,7 @@ useHotkey(
           </div>
           <div className="counter">Active Tab: {activeTab}</div>
           <pre className="code-block">{`useHotkey('Mod+1', () => setActiveTab(1))
-useHotkey('Mod+2', () => setActiveTab(2))
+useHotkey('Mod+[Digit2]', () => setActiveTab(2))
 `}</pre>
         </section>
 

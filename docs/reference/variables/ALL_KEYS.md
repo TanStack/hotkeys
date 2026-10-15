@@ -5,6 +5,61 @@ title: ALL_KEYS
 
 ```ts
 const ALL_KEYS: Set<
+  | "CapsLock"
+  | "ContextMenu"
+  | "Convert"
+  | "KanaMode"
+  | "NonConvert"
+  | "Help"
+  | "Insert"
+  | "NumLock"
+  | "Fn"
+  | "FnLock"
+  | "PrintScreen"
+  | "ScrollLock"
+  | "Pause"
+  | "BrowserBack"
+  | "BrowserFavorites"
+  | "BrowserForward"
+  | "BrowserHome"
+  | "BrowserRefresh"
+  | "BrowserSearch"
+  | "BrowserStop"
+  | "Eject"
+  | "LaunchMail"
+  | "MediaPlayPause"
+  | "MediaStop"
+  | "MediaTrackNext"
+  | "MediaTrackPrevious"
+  | "Power"
+  | "AudioVolumeDown"
+  | "AudioVolumeMute"
+  | "AudioVolumeUp"
+  | "WakeUp"
+  | "Hyper"
+  | "Super"
+  | "Again"
+  | "Copy"
+  | "Cut"
+  | "Find"
+  | "Open"
+  | "Paste"
+  | "Props"
+  | "Select"
+  | "Undo"
+  | "Hiragana"
+  | "Katakana"
+  | "Clear"
+  | "Cancel"
+  | "Standby"
+  | "LaunchApplication1"
+  | "LaunchApplication2"
+  | "LaunchMediaPlayer"
+  | "HangulMode"
+  | "HanjaMode"
+  | "Zenkaku"
+  | "Hankaku"
+  | "ZenkakuHankaku"
   | LetterKey
   | NumberKey
   | FunctionKey
@@ -13,7 +68,7 @@ const ALL_KEYS: Set<
 | PunctuationKey>;
 ```
 
-Defined in: [constants.ts:334](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L334)
+Defined in: [constants.ts:305](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L305)
 
 Set of all valid non-modifier keys.
 

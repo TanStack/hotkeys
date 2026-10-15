@@ -5,7 +5,36 @@ id: hotkeys
 
 The `createHotkey` primitive is the primary way to register keyboard shortcuts in SolidJS applications. It wraps the singleton `HotkeyManager` with automatic lifecycle management and reactive option support.
 
-## Basic Usage
+## Chords and sequences
+
+A hotkey is either a **chord**, keys pressed together such as `'Mod+S'`, or a **sequence**, chords pressed one after another such as `['G', 'G']`. Every API in this guide accepts both, and a one-step array such as `['Mod+S']` is the chord `'Mod+S'`.
+
+```tsx
+createHotkey('Mod+S', () => save()) // chord
+createHotkey(['G', 'G'], () => scrollToTop(), { timeout: 500 }) // sequence
+createHotkey('Escape', () => close(), { requireReset: true }) // chord-only option
+```
+
+Most options apply to both kinds. `requireReset` applies only to chords and `timeout` only to sequences, and TypeScript rejects options that don't match the hotkey. When the kind isn't known statically, such as a `Hotkey` loaded from settings, only the shared options are accepted. Defaults apply only to the kinds that support them. See the [Sequences Guide](./sequences) for timing and matching, and the [App Hotkeys Guide](./app-hotkeys) to declare hotkeys up front and let users customize them.
+
+## Logical keys and physical positions
+
+Use a logical binding when the shortcut should follow the character on the active layout. Use a physical binding when it should follow a keyboard position:
+
+| Binding | Identity checked |
+| --- | --- |
+| `Mod+S` or `{ key: 'S', mod: true }` | Logical `event.key`, with conservative code fallback |
+| `Mod+[KeyS]` or `{ code: 'KeyS', mod: true }` | Exact `event.code` |
+| `Enter` | Logical Enter, including numpad Enter |
+| `[Enter]` / `[NumpadEnter]` | Separate physical Enter positions |
+
+Every physical code uses brackets in strings, including names shared with logical keys such as `[Enter]` and `[F13]`. Supported codes are type-safe and available in autocomplete. Do not put a bracketed code in an object's `key` field; use `code`. A binding has either `key` or `code`, never both.
+
+On a layout where the `KeyQ` position produces `a`, `A` follows that character and `[KeyQ]` follows the position. Logical ASCII letters remain layout-aware; conservative physical fallback helps with transformed output such as macOS Option keys. Exact matches take priority over weaker fallbacks among eligible registrations on the same target.
+
+Callbacks expose the same distinction in `context.parsedHotkey`: check `parsed.code !== undefined` before reading its physical identity. Use `formatForDisplay` for labels; stored physical strings retain their brackets.
+
+## Basic usage
 
 ```tsx
 import { createHotkey } from '@tanstack/solid-hotkeys'
@@ -34,13 +63,14 @@ You can pass a hotkey as a string or as a `RawHotkey` object (modifier booleans 
 createHotkey('Mod+S', () => save())
 createHotkey({ key: 'S', mod: true }, () => save())           // Same as above
 createHotkey({ key: 'Escape' }, () => closeModal())
+createHotkey({ code: 'NumpadAdd', mod: true }, () => zoomIn())
 createHotkey({ key: 'S', ctrl: true, shift: true }, () => saveAs())
 createHotkey({ key: 'S', mod: true, shift: true }, () => saveAs())
 ```
 
-## Reactive Options
+## Reactive options
 
-Unlike React/Preact hooks, Solid primitives accept **accessor functions** for reactive options. Pass a function that returns the options object to have the hotkey automatically update when dependencies change:
+Solid primitives accept property getters and accessor functions for reactive options. With an accessor, the hotkey updates automatically when dependencies change:
 
 ```tsx
 function Modal(props) {
@@ -68,7 +98,32 @@ function Editor() {
 }
 ```
 
-## Default Options
+### Changing a binding
+
+Pass a new logical or physical binding through your framework's normal state mechanism. A recorder result such as `Alt+[KeyS]` can be passed directly to the same registration API. Keep an initial binding in application state if you want a reset button; the library does not need a separate preferences store.
+
+## Property getters
+
+Property getters and functions returning an options object are both supported. Read reactive state inside the getter. A plain value such as `{ enabled: currentValue }` captures the value when that object is created.
+
+The adapter reads option properties inside its reactive computation and updates registrations automatically. Callbacks such as `onRecord` and `onCancel` remain functions; the adapter does not call them to resolve options. Tracking is shallow; callback bodies and nested objects are not evaluated to discover dependencies. Keep getters free of side effects. Ordinary option changes preserve registration identity. Changing the target moves the registration to that target.
+
+```tsx
+import { createHotkey } from '@tanstack/solid-hotkeys'
+
+export function SaveShortcut(props: { enabled: boolean; onSave: () => void }) {
+	createHotkey('Mod+S', () => props.onSave(), {
+		get enabled() {
+			return props.enabled
+		},
+	})
+	return null
+}
+```
+
+You can also pass `() => ({ enabled: props.enabled })`. Both forms work for common options, sequences, and recorders. Property getters also work in per-definition options. `HotkeysProvider` follows replacement `defaultOptions` objects and getters within defaults. Per-call options override provider defaults, and per-definition options override common options.
+
+## Default options
 
 When you register a hotkey without passing options, or when you omit specific options, the following defaults apply:
 
@@ -86,21 +141,21 @@ createHotkey('Mod+S', callback, {
 })
 ```
 
-### Why These Defaults?
+### Why these defaults?
 
-Most hotkey registrations are intended to override default browser behavior—such as using `Mod+S` to save a document instead of showing the browser's "Save Page" dialog. To make this easy and consistent, the library sets `preventDefault` and `stopPropagation` to `true` by default, ensuring your hotkey handlers take precedence and reducing the amount of repetitive boilerplate code required.
+Most hotkey registrations are meant to override default browser behavior, such as using `Mod+S` to save a document instead of showing the browser's "Save Page" dialog. So `preventDefault` and `stopPropagation` are `true` by default, and you opt out per hotkey when you actually want the browser behavior.
 
-#### Smart Input Handling: `ignoreInputs`
+#### Smart input handling: `ignoreInputs`
 
-The `ignoreInputs` option is designed to strike a balance between accessibility and usability. By default, hotkeys involving `Ctrl`/`Meta` modifiers (like `Mod+S`) and the `Escape` key are allowed to fire even when the focus is inside input elements (such as text fields or text areas), and when focused on button-type inputs (`type="button"`, `"submit"`, or `"reset"`). This allows shortcuts like save or close to work wherever the user is focused. On the other hand, single key shortcuts or those using only `Shift`/`Alt` are ignored within non-button inputs to prevent interference with normal typing.
+By default, hotkeys with `Ctrl`/`Meta` modifiers (like `Mod+S`) and the `Escape` key fire even when focus is inside input elements (such as text fields or text areas), and when focused on button-type inputs (`type="button"`, `"submit"`, or `"reset"`). Shortcuts like save or close keep working wherever the user is focused. Single-key shortcuts, or those using only `Shift`/`Alt`, are ignored within non-button inputs so they don't interfere with normal typing.
 
-#### Hotkey Conflicts: `conflictBehavior`
+#### Hotkey conflicts: `conflictBehavior`
 
-When you attempt to register a hotkey that is already registered (possibly in another part of your app), the library logs a warning by default using the `conflictBehavior: 'warn'` setting. This helps you catch accidental duplicate bindings during development so they can be resolved before reaching production.
+When you attempt to register a hotkey that is already registered (possibly in another part of your app), the library logs a warning by default using the `conflictBehavior: 'warn'` setting. That helps you catch accidental duplicate bindings during development, before they reach production.
 
-### Global Default Options via Provider
+### Global defaults via provider
 
-You can change the default options for all `createHotkey` calls in your app by wrapping your component tree with `HotkeysProvider`. Per-primitive options will override the provider defaults.
+You can change the default options for all `createHotkey` calls in your app by wrapping your component tree with `HotkeysProvider`. Per-primitive options override the provider defaults.
 
 ```tsx
 import { HotkeysProvider } from '@tanstack/solid-hotkeys'
@@ -114,13 +169,13 @@ import { HotkeysProvider } from '@tanstack/solid-hotkeys'
 </HotkeysProvider>
 ```
 
-## Hotkey Options
+## Hotkey options
 
 ### `enabled`
 
 Controls whether the hotkey is active. Defaults to `true`. Use an accessor for reactive control.
 
-Disabled hotkeys **remain registered** in the manager and stay visible in devtools; only execution is suppressed.
+Disabled hotkeys remain registered in the manager and stay visible in devtools; only execution is suppressed.
 
 ```tsx
 const [isEditing, setIsEditing] = createSignal(false)
@@ -156,7 +211,7 @@ createHotkey('Shift', () => deactivateMode(), { eventType: 'keyup' })
 
 ### `requireReset`
 
-When `true`, the hotkey will only fire once per key press. The key must be released and pressed again to fire again. Defaults to `false`.
+When `true`, the hotkey fires only once per key press. The key must be released and pressed again to fire again. Defaults to `false`.
 
 ```tsx
 createHotkey('Escape', () => closePanel(), { requireReset: true })
@@ -164,7 +219,7 @@ createHotkey('Escape', () => closePanel(), { requireReset: true })
 
 ### `ignoreInputs`
 
-When `true`, the hotkey will not fire when the user is focused on a text input, textarea, select, or contentEditable element. When unset, a smart default applies based on the hotkey type.
+When `true`, the hotkey doesn't fire when the user is focused on a text input, textarea, select, or contentEditable element. When unset, a smart default applies based on the hotkey type.
 
 ```tsx
 createHotkey('K', () => openSearch())  // Smart default: ignored in inputs
@@ -203,7 +258,7 @@ Override the auto-detected platform.
 createHotkey('Mod+S', () => save(), { platform: 'mac' })
 ```
 
-## Automatic Dependency Tracking
+## Automatic dependency tracking
 
 Solid's fine-grained reactivity means `createHotkey` automatically tracks reactive dependencies. The callback always has access to the latest signal values:
 
@@ -219,7 +274,7 @@ function Counter() {
 }
 ```
 
-## Automatic Cleanup
+## Automatic cleanup
 
 The primitive automatically unregisters the hotkey when the component unmounts (when the owning reactive scope is disposed):
 
@@ -230,9 +285,9 @@ function TemporaryPanel() {
 }
 ```
 
-## Registering Multiple Hotkeys
+## Registering multiple hotkeys
 
-When you need to register several hotkeys at once — or a dynamic, variable-length list — use the `createHotkeys` (plural) primitive:
+When you need to register several hotkeys at once, or a dynamic, variable-length list, use the `createHotkeys` (plural) primitive:
 
 ```tsx
 import { createHotkeys } from '@tanstack/solid-hotkeys'
@@ -246,7 +301,7 @@ function Editor() {
 }
 ```
 
-### Common Options with Per-Hotkey Overrides
+### Common options with per-hotkey overrides
 
 Pass shared options as the second argument. Per-definition options override the common ones:
 
@@ -260,7 +315,7 @@ createHotkeys(
 )
 ```
 
-### Dynamic Hotkey Lists
+### Dynamic hotkey lists
 
 Pass an accessor for reactive arrays:
 
@@ -278,9 +333,9 @@ function MenuShortcuts(props) {
 
 The primitive tracks dependencies automatically and diffs registrations when the array changes.
 
-## Metadata (name & description)
+## Metadata (name, description, and group)
 
-Every hotkey registration can carry a `meta` object with a `name` and `description`. This metadata is informational only -- it does not affect hotkey behavior -- but it flows through to registrations and devtools, making it easy to build shortcut palettes and help screens.
+Every hotkey registration can carry a `meta` object with a `name`, `description`, and `group`. Metadata never affects hotkey behavior, but it flows through to registrations and devtools, so you can build shortcut palettes and help screens from it.
 
 ```tsx
 createHotkey('Mod+S', () => save(), {
@@ -288,13 +343,12 @@ createHotkey('Mod+S', () => save(), {
 })
 ```
 
-The `meta` option is typed as `HotkeyMeta`, which ships with `name` and `description` fields. You can extend it with additional properties using TypeScript declaration merging:
+The `meta` option is typed as `HotkeyMeta`, which ships with `name`, `description`, and `group` fields. You can extend it with additional properties using TypeScript declaration merging:
 
 ```tsx
 declare module '@tanstack/hotkeys' {
   interface HotkeyMeta {
     icon?: string
-    group?: string
   }
 }
 
@@ -303,51 +357,42 @@ createHotkey('Mod+S', () => save(), {
 })
 ```
 
-## Introspecting Registrations
+Group is descriptive metadata, not an execution scope. A shortcuts panel can group live registration views directly. Disabled registrations remain listed; unmounted registrations disappear.
 
-Use the `createHotkeyRegistrations` primitive to get a live view of all hotkey and sequence registrations. This is useful for building shortcut palettes, help dialogs, or devtools.
+## Introspecting registrations
+
+Use the `createHotkeyRegistrations` primitive to get a live view of every registration, chords and sequences together. It's the building block for shortcut palettes and help dialogs.
 
 ```tsx
-import { createHotkeyRegistrations } from '@tanstack/solid-hotkeys'
+import { For, Show } from 'solid-js'
+import { createHotkeyRegistrations, formatForDisplay } from '@tanstack/solid-hotkeys'
 
 function ShortcutPalette() {
   const registrations = createHotkeyRegistrations()
 
   return (
-    <div>
-      <h2>Keyboard Shortcuts</h2>
-      <ul>
-        <For each={registrations().hotkeys}>
-          {(reg) => (
-            <li>
-              <kbd>{reg.hotkey}</kbd>
-              {reg.meta?.name && <span> — {reg.meta.name}</span>}
-              {reg.meta?.description && <p>{reg.meta.description}</p>}
-            </li>
-          )}
-        </For>
-      </ul>
-      <Show when={registrations().sequences.length > 0}>
-        <h2>Sequences</h2>
-        <ul>
-          <For each={registrations().sequences}>
-            {(reg) => (
-              <li>
-                <kbd>{reg.sequence.join(' → ')}</kbd>
-                {reg.meta?.name && <span> — {reg.meta.name}</span>}
-              </li>
-            )}
-          </For>
-        </ul>
-      </Show>
-    </div>
+    <ul>
+      <For each={registrations()}>
+        {(reg) => (
+          <li>
+            <kbd>{formatForDisplay(reg.hotkey)}</kbd>
+            {reg.options.meta?.name && <span> — {reg.options.meta.name}</span>}
+            <Show when={reg.kind === 'sequence' && reg}>
+              {(seq) => <small>{seq().matchedStepCount}/{seq().hotkey.length} steps</small>}
+            </Show>
+          </li>
+        )}
+      </For>
+    </ul>
   )
 }
 ```
 
-The returned accessor provides an object with a `hotkeys` array containing registration objects with the hotkey string, options (including `meta`), and enabled state, and a `sequences` array containing sequence registrations with the same structure.
+The returned accessor yields one array of registration views. Each view has an `id`, the `hotkey`, its `options` (including `meta`), its `target`, and a `triggerCount`. Narrow with `kind`: chord views add `parsedHotkey`; sequence views add `parsedSequence` and `matchedStepCount`, the steps matched so far in the current attempt. Disabled entries stay listed; unmounted registrations disappear. Format any hotkey with `formatForDisplay`, and group entries by `options.meta?.group` when building a help panel.
 
-## The Hotkey Manager
+Registrations only exist while their components are mounted. To list hotkeys from routes that have not rendered, declare them with [app hotkeys](./app-hotkeys).
+
+## The hotkey manager
 
 Under the hood, `createHotkey` uses the singleton `HotkeyManager`. You can also access the manager directly if needed:
 

@@ -1,221 +1,127 @@
-import { onUnmounted, unref, watch } from 'vue'
+import { onScopeDispose, toValue, watch } from 'vue'
 import {
-  detectPlatform,
-  getHotkeyManager,
-  normalizeRegisterableHotkey,
-} from '@tanstack/hotkeys'
-import { useDefaultHotkeysOptions } from './HotkeysProviderContext'
-import type { UseHotkeyOptions } from './useHotkey'
-import type {
-  HotkeyCallback,
-  HotkeyRegistrationHandle,
-  RegisterableHotkey,
-} from '@tanstack/hotkeys'
+  createHotkeyBindings,
+  prepareHotkeyDefinitions,
+} from '@tanstack/hotkeys/adapter'
+import {
+  useAppHotkeysStoreSource,
+  useDefaultHotkeysOptionsSource,
+} from './defaultOptions'
 import type { MaybeRefOrGetter } from 'vue'
+import type {
+  AppHotkey,
+  HotkeyCallback,
+  HotkeySequence,
+  RegisterableHotkey,
+  RegisterableHotkeyChord,
+} from '@tanstack/hotkeys'
+import type {
+  AdapterCommonOptions,
+  AdapterHotkeyDefinition,
+} from '@tanstack/hotkeys/adapter'
+import type {
+  UseAppHotkeyOptions,
+  UseHotkeyChordOptions,
+  UseHotkeyCommonOptions,
+  UseHotkeyOptions,
+  UseHotkeySequenceOptions,
+  UseHotkeyTarget,
+} from './useHotkey'
 
 /**
- * A single hotkey definition for use with `useHotkeys`.
+ * One hotkey for `useHotkeys`. The hotkey and options may be refs or getters.
+ * Chords accept `requireReset`; sequences accept `timeout`; hotkeys of unknown
+ * kind accept only shared options.
  */
-export interface UseHotkeyDefinition {
-  /** The hotkey string (e.g., 'Mod+S', 'Escape') or RawHotkey object */
-  hotkey: MaybeRefOrGetter<RegisterableHotkey>
-  /** The function to call when the hotkey is pressed */
-  callback: HotkeyCallback
-  /** Per-hotkey options (merged on top of commonOptions) */
-  options?: MaybeRefOrGetter<UseHotkeyOptions>
+export type UseHotkeyDefinition =
+  | {
+      /** A chord string such as `'Mod+S'`, or a RawHotkey object */
+      hotkey: MaybeRefOrGetter<RegisterableHotkeyChord>
+      /** The function to call when the hotkey is pressed */
+      callback: HotkeyCallback
+      /** Per-hotkey options (merged on top of commonOptions) */
+      options?: MaybeRefOrGetter<UseHotkeyChordOptions>
+    }
+  | {
+      /** A sequence such as `['G', 'G']` */
+      hotkey: MaybeRefOrGetter<HotkeySequence>
+      callback: HotkeyCallback
+      options?: MaybeRefOrGetter<UseHotkeySequenceOptions>
+    }
+  | {
+      /** An app hotkey from `defineAppHotkeys` */
+      hotkey: MaybeRefOrGetter<AppHotkey>
+      callback: HotkeyCallback
+      options?: MaybeRefOrGetter<UseAppHotkeyOptions>
+    }
+  | {
+      /** A hotkey whose kind is not known statically. Accepts only shared options. */
+      hotkey: MaybeRefOrGetter<RegisterableHotkey>
+      callback: HotkeyCallback
+      options?: MaybeRefOrGetter<UseHotkeyOptions>
+    }
+
+/** Resolves a ref or getter `enabled` so the core sees a boolean. */
+function resolveEnabled<T extends { enabled?: MaybeRefOrGetter<boolean> }>(
+  options: T | undefined,
+): AdapterCommonOptions<UseHotkeyTarget> | undefined {
+  if (!options) return options
+  const { enabled, ...rest } = options
+  return enabled === undefined ? rest : { ...rest, enabled: toValue(enabled) }
 }
 
 /**
- * Vue composable for registering multiple keyboard hotkeys at once.
+ * Vue composable for registering several hotkeys at once: chords, sequences,
+ * and app hotkeys. The list, each hotkey, and options may be refs or getters.
  *
- * Uses the singleton HotkeyManager for efficient event handling.
- * Accepts a dynamic array of hotkey definitions, making it safe to use
- * with variable-length lists.
- *
- * Options are merged in this order:
- * HotkeysProvider defaults < commonOptions < per-definition options
- *
- * @param hotkeys - Array of hotkey definitions to register, or a getter/ref
- * @param commonOptions - Shared options applied to all hotkeys (overridden by per-definition options)
+ * Options merge in this order: provider defaults, app hotkey declaration,
+ * commonOptions, per-hotkey options. Each option applies only to the kinds
+ * that support it. Unbound app hotkeys and empty sequences register nothing.
+ * A target that resolves to `null` skips registration until it is set.
  *
  * @example
- * ```vue
- * <script setup>
- * import { useHotkeys } from '@tanstack/vue-hotkeys'
- *
+ * ```ts
  * useHotkeys([
  *   { hotkey: 'Mod+S', callback: () => save() },
- *   { hotkey: 'Mod+Z', callback: () => undo() },
- *   { hotkey: 'Escape', callback: () => close() },
+ *   { hotkey: ['G', 'G'], callback: () => scrollToTop(), options: { timeout: 500 } },
  * ])
- * </script>
- * ```
- *
- * @example
- * ```vue
- * <script setup>
- * import { computed } from 'vue'
- * import { useHotkeys } from '@tanstack/vue-hotkeys'
- *
- * const items = computed(() => [...])
- * // Dynamic hotkeys from reactive data
- * useHotkeys(
- *   () => items.value.map((item) => ({
- *     hotkey: item.shortcut,
- *     callback: item.action,
- *     options: { enabled: item.enabled },
- *   })),
- *   { preventDefault: true },
- * )
- * </script>
  * ```
  */
 export function useHotkeys(
-  hotkeys: MaybeRefOrGetter<Array<UseHotkeyDefinition>>,
-  commonOptions: MaybeRefOrGetter<UseHotkeyOptions> = {},
+  hotkeys: MaybeRefOrGetter<ReadonlyArray<UseHotkeyDefinition>>,
+  commonOptions: MaybeRefOrGetter<UseHotkeyCommonOptions> = {},
 ): void {
-  type RegistrationRecord = {
-    handle: HotkeyRegistrationHandle
-    target: Document | HTMLElement | Window
-  }
-
-  const defaultOptions = useDefaultHotkeysOptions()
-  const manager = getHotkeyManager()
-
-  const registrations = new Map<string, RegistrationRecord>()
+  const defaultOptions = useDefaultHotkeysOptionsSource()
+  const appHotkeys = useAppHotkeysStoreSource()
+  const bindings = createHotkeyBindings()
 
   const stopWatcher = watch(
     () => {
-      const resolvedHotkeys = resolveMaybeRefOrGetter(hotkeys)
-      const resolvedCommonOptions = resolveMaybeRefOrGetter(commonOptions)
-
-      return resolvedHotkeys.map((def, i) => {
-        const resolvedHotkey = resolveMaybeRefOrGetter(def.hotkey)
-        const resolvedDefOptions = def.options
-          ? resolveMaybeRefOrGetter(def.options)
-          : {}
-
-        const mergedOptions = {
-          ...defaultOptions.hotkey,
-          ...resolvedCommonOptions,
-          ...resolvedDefOptions,
-        } as UseHotkeyOptions
-
-        const platform = mergedOptions.platform ?? detectPlatform()
-        const hotkeyString = normalizeRegisterableHotkey(
-          resolvedHotkey,
-          platform,
+      // Track app hotkeys so registrations move with custom hotkeys.
+      void appHotkeys.state.value
+      const definitions: Array<AdapterHotkeyDefinition<UseHotkeyTarget>> =
+        toValue(hotkeys).map(
+          (definition) =>
+            ({
+              hotkey: toValue(definition.hotkey),
+              callback: definition.callback,
+              options: resolveEnabled(toValue(definition.options)),
+            }) as AdapterHotkeyDefinition<UseHotkeyTarget>,
         )
-
-        const resolvedEnabled =
-          mergedOptions.enabled === undefined
-            ? undefined
-            : resolveMaybeRefOrGetter(mergedOptions.enabled)
-        const resolvedTarget =
-          mergedOptions.target === undefined
-            ? undefined
-            : resolveMaybeRefOrGetter(mergedOptions.target as any)
-
-        return {
-          index: i,
-          hotkeyString,
-          callback: def.callback,
-          mergedOptions,
-          resolvedEnabled,
-          resolvedTarget,
-        }
+      return prepareHotkeyDefinitions(definitions, {
+        appHotkeysStore: appHotkeys.store,
+        defaults: resolveEnabled(defaultOptions().hotkey),
+        commonOptions: resolveEnabled(toValue(commonOptions)),
+        // A target that resolves to null skips registration until it is set.
+        resolveTarget: (target) => toValue(target),
       })
     },
-    (resolved) => {
-      const nextKeys = new Set<string>()
-      const prepared: Array<{
-        registrationKey: string
-        entry: (typeof resolved)[number]
-        finalTarget: Document | HTMLElement | Window
-      }> = []
-
-      for (const entry of resolved) {
-        const finalTarget =
-          entry.resolvedTarget ??
-          (typeof document !== 'undefined' ? document : null)
-
-        if (!finalTarget) {
-          continue
-        }
-
-        const registrationKey = `${entry.index}:${entry.hotkeyString}`
-        nextKeys.add(registrationKey)
-        prepared.push({ registrationKey, entry, finalTarget })
-      }
-
-      for (const [key, record] of [...registrations.entries()]) {
-        if (!nextKeys.has(key)) {
-          if (record.handle.isActive) {
-            record.handle.unregister()
-          }
-          registrations.delete(key)
-        }
-      }
-
-      for (const { registrationKey, entry, finalTarget } of prepared) {
-        const existing = registrations.get(registrationKey)
-        if (existing?.handle.isActive && existing.target === finalTarget) {
-          existing.handle.callback = entry.callback
-          const {
-            target: _target,
-            enabled: _enabled,
-            ...restOptions
-          } = entry.mergedOptions
-          const optionsWithoutTarget = {
-            ...restOptions,
-            ...(entry.resolvedEnabled === undefined
-              ? {}
-              : { enabled: entry.resolvedEnabled }),
-          }
-          existing.handle.setOptions(optionsWithoutTarget)
-          continue
-        }
-
-        if (existing) {
-          if (existing.handle.isActive) {
-            existing.handle.unregister()
-          }
-          registrations.delete(registrationKey)
-        }
-
-        const {
-          target: _target,
-          enabled: _enabled,
-          ...restOptions
-        } = entry.mergedOptions
-        const optionsWithoutTarget = {
-          ...restOptions,
-          ...(entry.resolvedEnabled === undefined
-            ? {}
-            : { enabled: entry.resolvedEnabled }),
-        }
-
-        const handle = manager.register(entry.hotkeyString, entry.callback, {
-          ...optionsWithoutTarget,
-          target: finalTarget,
-        })
-        registrations.set(registrationKey, { handle, target: finalTarget })
-      }
-    },
+    (definitions) => bindings.update(definitions),
     { immediate: true },
   )
 
-  onUnmounted(() => {
+  onScopeDispose(() => {
     stopWatcher()
-    for (const { handle } of registrations.values()) {
-      if (handle.isActive) {
-        handle.unregister()
-      }
-    }
-    registrations.clear()
+    bindings.destroy()
   })
-}
-
-function resolveMaybeRefOrGetter<T>(value: MaybeRefOrGetter<T>): T {
-  return typeof value === 'function' ? (value as () => T)() : unref(value)
 }

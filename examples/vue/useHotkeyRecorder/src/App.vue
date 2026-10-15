@@ -107,7 +107,7 @@ const recorder = useHotkeyRecorder({
         s.id === editingId.value
           ? {
               ...s,
-              hotkey: '' as Hotkey | '',
+              hotkey: '',
               name: draftName.value,
               description: draftDescription.value,
             }
@@ -128,7 +128,6 @@ useHotkeys(() =>
         console.log(`${s.name} triggered:`, s.hotkey)
       },
       options: {
-        enabled: !recorder.isRecording.value,
         meta: {
           name: s.name,
           description: s.description,
@@ -137,7 +136,7 @@ useHotkeys(() =>
     })),
 )
 
-const { hotkeys: registeredHotkeys } = useHotkeyRegistrations()
+const registeredHotkeys = useHotkeyRegistrations()
 
 const handleEdit = (id: string) => {
   const shortcut = shortcuts.value.find((s) => s.id === id)
@@ -196,14 +195,13 @@ useHotkeys(
     hotkey: s.hotkey,
     callback: () => handleAction(s.id),
     options: {
-      enabled: !isRecording,
       meta: { name: s.name, description: s.description },
     },
   })),
 )
 
 // Read all registrations reactively
-const { hotkeys } = useHotkeyRegistrations()
+const hotkeys = useHotkeyRegistrations()
 // hotkeys.value[0].options.meta?.name → 'Save'
 // hotkeys.value[0].triggerCount → 3`
 </script>

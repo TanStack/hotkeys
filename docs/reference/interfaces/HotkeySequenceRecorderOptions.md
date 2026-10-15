@@ -3,44 +3,43 @@ id: HotkeySequenceRecorderOptions
 title: HotkeySequenceRecorderOptions
 ---
 
-Defined in: [hotkey-sequence-recorder.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L29)
+Defined in: [hotkey-recorder.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L69)
 
-Options for configuring a HotkeySequenceRecorder instance.
+Options for recording up to `maxSteps` chords. A one-step recording commits
+as a chord string; two or more steps commit as a sequence.
+
+## Extends
+
+- `HotkeyRecorderBaseOptions`
 
 ## Properties
 
 ### commitKeys?
 
 ```ts
-optional commitKeys: HotkeySequenceRecorderCommitKeys;
+optional commitKeys?: HotkeyRecorderCommitKeys;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L45)
+Defined in: [hotkey-recorder.ts:80](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L80)
 
-Keyboard commit mode. When `'none'`, use [HotkeySequenceRecorder.commit](../classes/HotkeySequenceRecorder.md#commit) (and optional idle timeout).
-
-#### Default
-
-```ts
-'enter'
-```
+Whether plain Enter commits the recorded steps. Default: 'enter'
 
 ***
 
-### commitOnEnter?
+### detectConflicts?
 
 ```ts
-optional commitOnEnter: boolean;
+optional detectConflicts?: boolean | HotkeyConflictOptions;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L40)
+Defined in: [recorder-options.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L21)
 
-Whether plain Enter commits the current steps. Ignored when [commitKeys](#commitkeys) is `'none'`.
+Opt in to live-registry conflicts, including sequence prefixes. Default: false.
 
-#### Default
+#### Inherited from
 
 ```ts
-true
+HotkeyRecorderBaseOptions.detectConflicts
 ```
 
 ***
@@ -48,44 +47,54 @@ true
 ### idleTimeoutMs?
 
 ```ts
-optional idleTimeoutMs: number;
+optional idleTimeoutMs?: number;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L50)
+Defined in: [hotkey-recorder.ts:82](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L82)
 
-Milliseconds of inactivity after the **last completed chord** before auto-committing.
-The timer does not run while waiting for the first chord (`steps.length === 0`).
+Commit automatically after this many milliseconds without a new step. Disabled when unset or 0.
 
 ***
 
 ### ignoreInputs?
 
 ```ts
-optional ignoreInputs: boolean;
+optional ignoreInputs?: boolean;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:58](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L58)
+Defined in: [hotkey-recorder.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L49)
 
 Whether to ignore keyboard events from input-like elements (text inputs,
-textarea, select, contenteditable). When true, typing in inputs passes
-through normally instead of being captured as a sequence recording.
-Escape always works regardless of this setting.
+textarea, select, contenteditable) while recording. When true, typing in
+inputs passes through normally (Escape still cancels). Defaults to true.
 
-#### Default
+#### Inherited from
 
 ```ts
-true
+HotkeyRecorderBaseOptions.ignoreInputs
 ```
 
 ***
 
-### onCancel()?
+### maxSteps
 
 ```ts
-optional onCancel: () => void;
+maxSteps: number;
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L33)
+Defined in: [hotkey-recorder.ts:71](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L71)
+
+Maximum number of chords to record. Reaching it commits automatically. Use `Infinity` for no limit.
+
+***
+
+### onCancel?
+
+```ts
+optional onCancel?: () => void;
+```
+
+Defined in: [hotkey-recorder.ts:38](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L38)
 
 Optional callback when recording is cancelled (Escape pressed)
 
@@ -93,40 +102,143 @@ Optional callback when recording is cancelled (Escape pressed)
 
 `void`
 
-***
-
-### onClear()?
+#### Inherited from
 
 ```ts
-optional onClear: () => void;
+HotkeyRecorderBaseOptions.onCancel
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L35)
+***
 
-Optional callback when the sequence is cleared (Backspace/Delete with no steps)
+### onClear?
+
+```ts
+optional onClear?: () => void;
+```
+
+Defined in: [hotkey-recorder.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L43)
+
+Optional callback when the recording is cleared: Backspace/Delete with no
+modifiers and no recorded steps
 
 #### Returns
 
 `void`
 
-***
-
-### onRecord()
+#### Inherited from
 
 ```ts
-onRecord: (sequence) => void;
+HotkeyRecorderBaseOptions.onClear
 ```
 
-Defined in: [hotkey-sequence-recorder.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-sequence-recorder.ts#L31)
+***
 
-Callback when a sequence is successfully recorded (including empty array when cleared)
+### onRecord
+
+```ts
+onRecord: (hotkey) => void;
+```
+
+Defined in: [hotkey-recorder.ts:78](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L78)
+
+Callback when a hotkey is successfully recorded
 
 #### Parameters
 
-##### sequence
+##### hotkey
 
-[`HotkeySequence`](../type-aliases/HotkeySequence.md)
+[`Hotkey`](../type-aliases/Hotkey.md)
 
 #### Returns
 
 `void`
+
+***
+
+### onReject?
+
+```ts
+optional onReject?: (rejection) => void;
+```
+
+Defined in: [recorder-options.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L23)
+
+Rejected candidates leave recording active.
+
+#### Parameters
+
+##### rejection
+
+[`RecorderRejection`](RecorderRejection.md)
+
+#### Returns
+
+`void`
+
+#### Inherited from
+
+```ts
+HotkeyRecorderBaseOptions.onReject
+```
+
+***
+
+### platform?
+
+```ts
+optional platform?: "mac" | "windows" | "linux";
+```
+
+Defined in: [recorder-options.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L19)
+
+Platform used for Mod and AltGraph handling. Defaults to platform detection.
+
+#### Inherited from
+
+```ts
+HotkeyRecorderBaseOptions.platform
+```
+
+***
+
+### recordBy?
+
+```ts
+optional recordBy?: RecorderKeyMode;
+```
+
+Defined in: [recorder-options.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L17)
+
+Physical code recording is the default. Choose key to record logical characters.
+
+#### Inherited from
+
+```ts
+HotkeyRecorderBaseOptions.recordBy
+```
+
+***
+
+### validate?
+
+```ts
+optional validate?: (hotkey, context) => string | boolean;
+```
+
+Defined in: [hotkey-recorder.ts:73](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L73)
+
+Return true to accept, or false/a message to reject while staying in recording mode.
+
+#### Parameters
+
+##### hotkey
+
+[`Hotkey`](../type-aliases/Hotkey.md)
+
+##### context
+
+[`HotkeyRecorderValidationContext`](HotkeyRecorderValidationContext.md)
+
+#### Returns
+
+`string` \| `boolean`

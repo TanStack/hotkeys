@@ -1,24 +1,38 @@
 import { describe, expect, it } from 'vitest'
-import {
-  formatForDisplay,
-  formatHotkey,
-  formatHotkeySequence,
-} from '../src/format'
-import type { ParsedHotkey, RegisterableHotkey } from '../src/hotkey'
+import { formatForDisplay, formatHotkey } from '../src/format'
+import { normalizeRegisterableHotkey } from '../src/parse'
+import type { ParsedHotkey, RegisterableHotkey } from '../src/hotkey.types'
 
-/** Strings that parse correctly but are not in the `Hotkey` template union. */
+/** Strings that parse correctly but are not in the `HotkeyChord` template union. */
 function hk(s: string): RegisterableHotkey {
   return s as RegisterableHotkey
 }
 
-describe('formatHotkeySequence', () => {
-  it('should join sequence with spaces', () => {
-    expect(formatHotkeySequence(['G', 'G'])).toBe('G G')
-    expect(formatHotkeySequence(['D', 'I', 'W'])).toBe('D I W')
+describe('formatForDisplay with sequences', () => {
+  it('formats each step and joins steps with spaces', () => {
+    expect(formatForDisplay(['G', 'G'], { platform: 'mac' })).toBe('G G')
+    expect(formatForDisplay(['D', 'I', 'W'], { platform: 'mac' })).toBe('D I W')
+    expect(formatForDisplay(['Mod+K', '[KeyS]'], { platform: 'windows' })).toBe(
+      'Ctrl+K S',
+    )
   })
 
-  it('should handle single-key sequence', () => {
-    expect(formatHotkeySequence(['Escape'])).toBe('Escape')
+  it('formats a one-step sequence like its chord', () => {
+    expect(formatForDisplay(['Escape'], { platform: 'mac' })).toBe(
+      formatForDisplay('Escape', { platform: 'mac' }),
+    )
+  })
+
+  it('supports a custom step separator and per-step parts', () => {
+    expect(
+      formatForDisplay(['G', 'H'], {
+        platform: 'mac',
+        sequenceSeparator: ' → ',
+      }),
+    ).toBe('G → H')
+    expect(
+      formatForDisplay(['Shift+R', 'T'], { platform: 'windows', parts: true }),
+    ).toEqual([['Shift', 'R'], ['T']])
   })
 })
 
@@ -86,6 +100,38 @@ describe('formatHotkey', () => {
 
 describe('formatForDisplay', () => {
   describe('macOS format', () => {
+    it.each([
+      ['Mod+Alt+Shift+S', '⌥ ⇧ ⌘ S'],
+      ['Meta+Shift+Alt+Control+S', '⌃ ⌥ ⇧ ⌘ S'],
+      ['Mod+Shift++', '⇧ ⌘ +'],
+      ['Mod+Shift', '⇧ ⌘'],
+    ])('orders %s for display without changing its key', (hotkey, display) => {
+      expect(formatForDisplay(hotkey, { platform: 'mac' })).toBe(display)
+    })
+
+    it('orders raw physical bindings and parts without changing registration identity', () => {
+      const binding = { code: 'KeyS', mod: true, alt: true, shift: true }
+      expect(
+        formatForDisplay(binding, {
+          platform: 'mac',
+          parts: true,
+          useSymbols: false,
+          keyLabels: { KeyS: 'Save' },
+        }),
+      ).toEqual(['Option', 'Shift', 'Cmd', 'Save'])
+      expect(normalizeRegisterableHotkey(binding, 'mac')).toBe(
+        'Mod+Alt+Shift+[KeyS]',
+      )
+      expect(
+        formatForDisplay('Mod+Shift+S', { platform: 'mac', useSymbols: false }),
+      ).toBe('Shift+Cmd+S')
+      for (const platform of ['windows', 'linux'] as const) {
+        expect(formatForDisplay('Mod+Alt+Shift+S', { platform })).toBe(
+          'Ctrl+Alt+Shift+S',
+        )
+      }
+    })
+
     it('should use symbols for modifiers with spaces between segments', () => {
       expect(formatForDisplay('Control+A', { platform: 'mac' })).toBe('⌃ A')
       expect(formatForDisplay('Shift+A', { platform: 'mac' })).toBe('⇧ A')
@@ -98,7 +144,7 @@ describe('formatForDisplay', () => {
         '⌃ ⇧ A',
       )
       expect(formatForDisplay(hk('Command+Shift+S'), { platform: 'mac' })).toBe(
-        '⌘ ⇧ S',
+        '⇧ ⌘ S',
       )
     })
 
@@ -108,24 +154,24 @@ describe('formatForDisplay', () => {
           platform: 'mac',
           separatorToken: '',
         }),
-      ).toBe('⌘⇧S')
+      ).toBe('⇧⌘S')
       expect(
         formatForDisplay('Mod+Shift+S', {
           platform: 'mac',
           separatorToken: ' + ',
         }),
-      ).toBe('⌘ + ⇧ + S')
+      ).toBe('⇧ + ⌘ + S')
       expect(
         formatForDisplay('Mod+Shift+S', {
           platform: 'mac',
           separatorToken: null,
         }),
-      ).toBe('⌘ ⇧ S')
+      ).toBe('⇧ ⌘ S')
     })
 
     it('should resolve Mod to Command symbol', () => {
       expect(formatForDisplay('Mod+S', { platform: 'mac' })).toBe('⌘ S')
-      expect(formatForDisplay('Mod+Shift+S', { platform: 'mac' })).toBe('⌘ ⇧ S')
+      expect(formatForDisplay('Mod+Shift+S', { platform: 'mac' })).toBe('⇧ ⌘ S')
     })
 
     it('should use symbols for special keys', () => {
@@ -195,10 +241,10 @@ describe('formatForDisplay', () => {
         meta: true,
         modifiers: ['Shift', 'Meta'],
       }
-      expect(formatForDisplay(parsed, { platform: 'mac' })).toBe('⌘ ⇧ S')
+      expect(formatForDisplay(parsed, { platform: 'mac' })).toBe('⇧ ⌘ S')
       expect(
         formatForDisplay(parsed, { platform: 'mac', useSymbols: false }),
-      ).toBe('Cmd+Shift+S')
+      ).toBe('Shift+Cmd+S')
     })
   })
 
@@ -245,13 +291,13 @@ describe('formatForDisplay', () => {
       ).toBe('Ctrl+S')
     })
 
-    it('should handle multiple modifiers in canonical order (Mod first)', () => {
+    it('should use platform-specific display order', () => {
       expect(
         formatForDisplay('Mod+Shift+S', {
           platform: 'mac',
           useSymbols: false,
         }),
-      ).toBe('Cmd+Shift+S')
+      ).toBe('Shift+Cmd+S')
       expect(
         formatForDisplay('Mod+Shift+S', {
           platform: 'windows',
@@ -259,5 +305,155 @@ describe('formatForDisplay', () => {
         }),
       ).toBe('Ctrl+Shift+S')
     })
+  })
+})
+
+describe('physical display labels', () => {
+  it.each([
+    ['KeyS', 'S'],
+    ['Digit2', '2'],
+    ['ArrowUp', 'ArrowUp'],
+    ['Enter', 'Enter'],
+    ['Slash', '/'],
+    ['BracketLeft', '['],
+    ['Minus', '-'],
+  ] as const)('formats %s like its logical label %s', (code, key) => {
+    for (const platform of ['mac', 'windows', 'linux'] as const) {
+      for (const useSymbols of [
+        true,
+        false,
+        { modifiers: false, keys: true },
+      ]) {
+        const options = { platform, useSymbols }
+        expect(formatForDisplay({ code, mod: true }, options)).toBe(
+          formatForDisplay({ key, mod: true }, options),
+        )
+        expect(
+          formatForDisplay(`Mod+[${code}]`, { ...options, parts: true }),
+        ).toEqual(
+          formatForDisplay({ key, mod: true }, { ...options, parts: true }),
+        )
+      }
+    }
+  })
+
+  it('keeps numpad labels distinct and readable', () => {
+    expect(formatForDisplay('[Numpad2]')).toBe('Numpad 2')
+    expect(formatForDisplay('[NumpadEnter]')).toBe('Numpad ↵')
+    expect(formatForDisplay('[NumpadEnter]', { useSymbols: false })).toBe(
+      'Numpad Enter',
+    )
+    expect(formatForDisplay('[NumpadMemoryAdd]')).toBe('Numpad Memory Add')
+  })
+
+  it('only strips exact letter and digit code patterns', () => {
+    expect(formatForDisplay('[Keyboard]')).toBe('Keyboard')
+    expect(formatForDisplay('[Digit10]')).toBe('Digit10')
+    expect(formatForDisplay('Key11')).toBe('Key11')
+  })
+
+  it('preserves overrides, separators, and serialized physical identity', () => {
+    expect(
+      formatForDisplay('Alt+[KeyQ]', {
+        keyLabels: { KeyQ: 'A' },
+        platform: 'mac',
+      }),
+    ).toBe('⌥ A')
+    expect(
+      formatForDisplay('Mod+[Digit2]', {
+        platform: 'windows',
+        separatorToken: ' · ',
+      }),
+    ).toBe('Ctrl · 2')
+    const physical: ParsedHotkey = {
+      code: 'KeyQ',
+      ctrl: false,
+      alt: true,
+      shift: false,
+      meta: false,
+      modifiers: ['Alt'],
+    }
+    expect(formatForDisplay(physical, { platform: 'mac' })).toBe('⌥ Q')
+    expect(formatHotkey(physical)).toBe('Alt+[KeyQ]')
+    expect(physical).not.toHaveProperty('key')
+  })
+})
+
+describe('layoutMap display labels', () => {
+  const layoutMap = new Map([
+    ['KeyQ', 'a'],
+    ['Digit2', 'é'],
+    ['Slash', '-'],
+  ])
+
+  it('formats mapped values in string, raw, and parsed physical bindings', () => {
+    const parsed: ParsedHotkey = {
+      code: 'KeyQ',
+      ctrl: false,
+      alt: true,
+      shift: false,
+      meta: false,
+      modifiers: ['Alt'],
+    }
+    for (const hotkey of ['Alt+[KeyQ]', { code: 'KeyQ', alt: true }, parsed]) {
+      expect(formatForDisplay(hotkey, { layoutMap, platform: 'mac' })).toBe(
+        '⌥ A',
+      )
+      expect(
+        formatForDisplay(hotkey, { layoutMap, platform: 'mac', parts: true }),
+      ).toEqual(['⌥', 'A'])
+    }
+    expect(formatHotkey(parsed)).toBe('Alt+[KeyQ]')
+    expect(formatForDisplay('[Digit2]', { layoutMap })).toBe('É')
+  })
+
+  it('applies existing symbol settings to mapped punctuation and named keys', () => {
+    expect(formatForDisplay('[Slash]', { layoutMap })).toBe('-')
+    expect(formatForDisplay('[Slash]', { layoutMap, useSymbols: false })).toBe(
+      'Minus',
+    )
+    expect(
+      formatForDisplay('[KeyQ]', { layoutMap: new Map([['KeyQ', 'ArrowUp']]) }),
+    ).toBe('↑')
+    expect(
+      formatForDisplay('[KeyQ]', { layoutMap: new Map([['KeyQ', 'ß']]) }),
+    ).toBe('ß')
+  })
+
+  it('uses exact explicit labels before looking up the map', () => {
+    const map = {
+      get: () => {
+        throw new Error('Should not be called')
+      },
+    }
+    expect(
+      formatForDisplay('[KeyQ]', {
+        layoutMap: map,
+        keyLabels: { KeyQ: 'custom' },
+      }),
+    ).toBe('custom')
+    expect(
+      formatForDisplay('[KeyQ]', { layoutMap: map, keyLabels: { KeyQ: '' } }),
+    ).toBe('')
+    expect(formatForDisplay('Q', { layoutMap: map })).toBe('Q')
+  })
+
+  it('falls back for missing or empty entries and preserves numpad identity', () => {
+    expect(formatForDisplay('[KeyS]', { layoutMap })).toBe('S')
+    expect(
+      formatForDisplay('[KeyS]', { layoutMap: new Map([['KeyS', '']]) }),
+    ).toBe('S')
+    expect(
+      formatForDisplay('[NumpadEnter]', {
+        layoutMap: new Map([['NumpadEnter', 'Enter']]),
+      }),
+    ).toBe('Numpad ↵')
+  })
+
+  it('accepts a resolved readonly map and reflects replacement labels', () => {
+    const first: ReadonlyMap<string, string> = new Map([['KeyQ', 'a']])
+    const next: ReadonlyMap<string, string> = new Map([['KeyQ', 'q']])
+    expect(formatForDisplay('[KeyQ]', { layoutMap: first })).toBe('A')
+    expect(formatForDisplay('[KeyQ]', { layoutMap: next })).toBe('Q')
   })
 })
