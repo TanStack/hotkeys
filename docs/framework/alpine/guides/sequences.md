@@ -3,6 +3,9 @@ title: Sequences Guide
 id: sequences
 ---
 
+> [!IMPORTANT]
+> `scope.createHotkeySequence`, `scope.createHotkeySequences`, and `scope.createHotkeySequenceRecorder` were removed in `@tanstack/alpine-hotkeys` v0.3.0. Pass a sequence to `scope.createHotkey` or `scope.createHotkeys` instead, and record one with `scope.createHotkeyRecorder` and `maxSteps`.
+
 A sequence is a hotkey made of chords pressed one after another rather than together. Think Vim-style navigation, cheat codes, or multi-step commands. Sequences are ordinary hotkeys: register them with `scope.createHotkey` and `scope.createHotkeys`, list them with `scope.createHotkeyRegistrations`, record them with `scope.createHotkeyRecorder`, and format them with `formatForDisplay`.
 
 Sequence steps use the same syntax as chords. For example, `['[KeyG]', '[KeyG]']` follows a physical position, while `['G', 'G']` follows the logical letter. A sequence can mix forms, such as `['Mod+[KeyK]', 'C']`.

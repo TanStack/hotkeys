@@ -3,6 +3,9 @@ title: Sequences Guide
 id: sequences
 ---
 
+> [!IMPORTANT]
+> `createHotkeySequence`, `createHotkeySequences`, and `createHotkeySequenceRecorder` were removed in `@tanstack/solid-hotkeys` v0.14.0. Pass a sequence to `createHotkey` or `createHotkeys` instead, and record one with `createHotkeyRecorder` and `maxSteps`.
+
 A sequence is a hotkey made of chords pressed one after another rather than together. Think Vim-style navigation, cheat codes, or multi-step commands. Sequences are ordinary hotkeys: register them with `createHotkey` and `createHotkeys`, list them with `createHotkeyRegistrations`, record them with `createHotkeyRecorder`, and format them with `formatForDisplay`.
 
 Sequence steps use the same syntax as chords. For example, `['[KeyG]', '[KeyG]']` follows a physical position, while `['G', 'G']` follows the logical letter. A sequence can mix forms, such as `['Mod+[KeyK]', 'C']`.
