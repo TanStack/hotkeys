@@ -175,8 +175,11 @@ export class KeyStateTracker {
    * Removes modifiers whose release was missed without a window blur.
    * Event modifier state is shared by left/right keys, so a true flag keeps
    * both physical entries until their individual keyup events arrive.
+   * Only real user input counts: events dispatched by page code report no
+   * modifiers and would clear keys the user is still holding.
    */
   #reconcileModifiers(event: KeyboardEvent | MouseEvent): boolean {
+    if (!event.isTrusted) return false
     let changed = false
     for (const [identity, entry] of this.#heldEntries) {
       const released =

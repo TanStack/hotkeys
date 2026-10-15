@@ -3,6 +3,12 @@ import { act, cleanup, renderHook } from '@testing-library/react'
 import { KeyStateTracker } from '@tanstack/hotkeys'
 import { useKeyHold } from '../src'
 
+/** Marks a test event as real user input; the tracker ignores synthetic events for recovery. */
+function trusted<T extends Event>(event: T): T {
+  Object.defineProperty(event, 'isTrusted', { value: true })
+  return event
+}
+
 afterEach(() => {
   cleanup()
   KeyStateTracker.resetInstance()
@@ -14,12 +20,14 @@ it.each(['keyboard', 'mouse'])(
     const { result } = renderHook(() => useKeyHold('Shift'))
     act(() => {
       document.dispatchEvent(
-        new KeyboardEvent('keydown', {
-          key: 'Shift',
-          code: 'ShiftLeft',
-          shiftKey: true,
-          bubbles: true,
-        }),
+        trusted(
+          new KeyboardEvent('keydown', {
+            key: 'Shift',
+            code: 'ShiftLeft',
+            shiftKey: true,
+            bubbles: true,
+          }),
+        ),
       )
     })
     expect(result.current).toBe(true)
@@ -27,13 +35,15 @@ it.each(['keyboard', 'mouse'])(
     // Simulate a missing release with no blur, followed by ordinary input.
     act(() => {
       document.dispatchEvent(
-        input === 'keyboard'
-          ? new KeyboardEvent('keydown', {
-              key: 'a',
-              code: 'KeyA',
-              bubbles: true,
-            })
-          : new MouseEvent('mousemove', { bubbles: true }),
+        trusted(
+          input === 'keyboard'
+            ? new KeyboardEvent('keydown', {
+                key: 'a',
+                code: 'KeyA',
+                bubbles: true,
+              })
+            : new MouseEvent('mousemove', { bubbles: true }),
+        ),
       )
     })
     expect(result.current).toBe(false)

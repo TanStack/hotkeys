@@ -175,6 +175,8 @@ On macOS, when a modifier key is held and a non-modifier key is pressed, the OS 
 
 When the browser window loses focus, the tracker clears all held keys.
 
+If the system swallows a modifier's release without taking focus, such as Command+Shift+4 on macOS, the tracker releases the modifier on the next key press, mouse movement, or click. See [Held keys reset when the window loses focus](../../../guides/sensible-defaults.md#held-keys-reset-when-the-window-loses-focus).
+
 ## Under the hood
 
 All three primitives subscribe to the singleton `KeyStateTracker` via `@tanstack/solid-store`. The tracker manages its own event listeners on `window`, in the capture phase, and maintains state in a TanStack Store.

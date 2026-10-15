@@ -2,6 +2,12 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { KeyStateTracker } from '../src/key-state-tracker'
 
+/** Marks a test event as real user input, as the tracker ignores synthetic events for recovery. */
+function trusted<T extends Event>(event: T): T {
+  Object.defineProperty(event, 'isTrusted', { value: true })
+  return event
+}
+
 /**
  * Helper to create and dispatch a KeyboardEvent
  */
@@ -11,14 +17,26 @@ function dispatchKey(
   code?: string,
   modifiers: KeyboardEventInit = {},
 ): KeyboardEvent {
-  const event = new KeyboardEvent(type, {
-    key,
-    code: code ?? key,
-    bubbles: true,
-    ...modifiers,
-  })
+  const event = trusted(
+    new KeyboardEvent(type, {
+      key,
+      code: code ?? key,
+      bubbles: true,
+      ...modifiers,
+    }),
+  )
   document.dispatchEvent(event)
   return event
+}
+
+/** Dispatches a mouse event as real user input. */
+function dispatchMouse(
+  type: 'mousemove' | 'mousedown',
+  init: MouseEventInit = {},
+) {
+  document.dispatchEvent(
+    trusted(new MouseEvent(type, { bubbles: true, ...init })),
+  )
 }
 
 describe('KeyStateTracker', () => {
@@ -307,7 +325,7 @@ describe('KeyStateTracker', () => {
           if (type === 'keydown' || type === 'keyup') {
             dispatchKey(type, 'a', 'KeyA')
           } else {
-            document.dispatchEvent(new MouseEvent(type, { bubbles: true }))
+            dispatchMouse(type as 'mousemove' | 'mousedown')
           }
           expect(tracker.isKeyHeld(modifier)).toBe(false)
           expect(tracker.store.state.heldKeys).not.toContain(modifier)
@@ -321,8 +339,8 @@ describe('KeyStateTracker', () => {
         dispatchKey('keydown', 'a', 'KeyA', flags)
         dispatchKey('keyup', 'a', 'KeyA', flags)
         const state = tracker.store.state
-        document.dispatchEvent(new MouseEvent('mousemove', flags))
-        document.dispatchEvent(new MouseEvent('mousedown', flags))
+        dispatchMouse('mousemove', flags)
+        dispatchMouse('mousedown', flags)
         expect(tracker.store.state).toBe(state)
         expect(tracker.store.state.heldCodes).toEqual({ [modifier]: code })
       })
@@ -346,7 +364,7 @@ describe('KeyStateTracker', () => {
       dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
       dispatchKey('keydown', 'Shift', 'ShiftRight', { shiftKey: true })
       dispatchKey('keydown', 'Meta', '', { shiftKey: true, metaKey: true })
-      document.dispatchEvent(new MouseEvent('mousemove'))
+      dispatchMouse('mousemove')
       expect(tracker.store.state).toEqual({ heldKeys: [], heldCodes: {} })
     })
 
@@ -384,8 +402,8 @@ describe('KeyStateTracker', () => {
       const tracker = KeyStateTracker.getInstance()
       dispatchKey('keydown', 'a', 'KeyA')
       const state = tracker.store.state
-      document.dispatchEvent(new MouseEvent('mousemove', { shiftKey: true }))
-      document.dispatchEvent(new MouseEvent('mousemove'))
+      dispatchMouse('mousemove', { shiftKey: true })
+      dispatchMouse('mousemove')
       expect(tracker.store.state).toBe(state)
       expect(tracker.store.state.heldCodes).toEqual({ A: 'KeyA' })
     })
@@ -397,9 +415,9 @@ describe('KeyStateTracker', () => {
       dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
       const listener = vi.fn()
       const subscription = tracker.store.subscribe(listener)
-      document.dispatchEvent(new MouseEvent('mousemove'))
-      document.dispatchEvent(new MouseEvent('mousemove'))
-      document.dispatchEvent(new MouseEvent('mousedown'))
+      dispatchMouse('mousemove')
+      dispatchMouse('mousemove')
+      dispatchMouse('mousedown')
       expect(listener).toHaveBeenCalledTimes(1)
       tracker.destroy()
       expect(
@@ -414,8 +432,8 @@ describe('KeyStateTracker', () => {
       }
       listener.mockClear()
       dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
-      document.dispatchEvent(new MouseEvent('mousemove'))
-      document.dispatchEvent(new MouseEvent('mousedown'))
+      dispatchMouse('mousemove')
+      dispatchMouse('mousedown')
       expect(listener).not.toHaveBeenCalled()
       expect(tracker.store.state).toEqual({ heldKeys: [], heldCodes: {} })
       subscription.unsubscribe()
@@ -431,13 +449,30 @@ describe('KeyStateTracker', () => {
       })
       try {
         dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
-        child.dispatchEvent(new MouseEvent('mousedown', { bubbles: true }))
+        child.dispatchEvent(
+          trusted(new MouseEvent('mousedown', { bubbles: true })),
+        )
         expect(tracker.isKeyHeld('Shift')).toBe(false)
       } finally {
         child.remove()
       }
     })
   })
+
+  it.each(['mousemove', 'keydown'] as const)(
+    'keeps a held modifier when page code dispatches a synthetic %s',
+    (type) => {
+      const tracker = KeyStateTracker.getInstance()
+      dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
+      // Synthetic events report no modifiers even while the user holds one
+      document.dispatchEvent(
+        type === 'mousemove'
+          ? new MouseEvent(type, { bubbles: true })
+          : new KeyboardEvent(type, { key: 'a', code: 'KeyA', bubbles: true }),
+      )
+      expect(tracker.isKeyHeld('Shift')).toBe(true)
+    },
+  )
 
   describe('case insensitivity', () => {
     it('should normalize key names', () => {
