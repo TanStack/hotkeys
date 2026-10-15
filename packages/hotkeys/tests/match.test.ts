@@ -513,6 +513,126 @@ describe('matchesKeyboardEvent', () => {
     })
   })
 
+  describe('AltGraph character entry', () => {
+    // Current Chrome and Firefox clear Control/Alt and report only AltGraph.
+    // Keep the Control+Alt shape for older browsers and synthetic events.
+    const altGraphEvents = [
+      ['Control+Alt flags', 'windows', { ctrlKey: true, altKey: true }],
+      ['AltGraph only (Windows)', 'windows', {}],
+      ['AltGraph only (Linux)', 'linux', {}],
+    ] as const
+
+    describe.each(altGraphEvents)('%s', (_, platform, flags) => {
+      const altGr = (
+        key: string,
+        code: string,
+        options: { shiftKey?: boolean } = {},
+      ) =>
+        createKeyboardEvent(key, { ...flags, ...options, code, altGraph: true })
+
+      it.each([
+        ['µ', 'KeyM', 'M'],
+        ['ć', 'KeyC', 'C'],
+        ['ł', 'KeyL', 'L'],
+        ['@', 'KeyQ', 'Q'],
+        ['€', 'KeyE', 'E'],
+        ['[', 'Digit8', '8'],
+        ['ф', 'KeyA', 'A'],
+        [' ', 'Space', 'Space'],
+        ['Dead', 'KeyE', 'E'],
+      ])(
+        'does not fall back to the physical key for %s',
+        (key, code, hotkey) => {
+          expect(
+            matchesKeyboardEvent(
+              altGr(key, code),
+              hotkey as HotkeyChord,
+              platform,
+            ),
+          ).toBe(false)
+        },
+      )
+
+      it.each([
+        ['µ', 'KeyM', '[KeyM]'],
+        ['@', 'KeyQ', '[KeyQ]'],
+        ['[', 'Digit8', '[Digit8]'],
+        [' ', 'Space', '[Space]'],
+      ])('does not match physical binding for %s', (key, code, hotkey) => {
+        expect(
+          matchesKeyboardEvent(
+            altGr(key, code),
+            hotkey as HotkeyChord,
+            platform,
+          ),
+        ).toBe(false)
+      })
+
+      it('does not fall back for Shift+AltGraph characters', () => {
+        const event = altGr('º', 'KeyM', { shiftKey: true })
+        expect(matchesKeyboardEvent(event, 'Shift+M', platform)).toBe(false)
+        expect(matchesKeyboardEvent(event, 'Shift+[KeyM]', platform)).toBe(
+          false,
+        )
+      })
+
+      it.each([
+        ['@', 'KeyQ'],
+        ['€', 'KeyE'],
+        ['µ', 'KeyM'],
+        ['[', 'Digit8'],
+        ['}', 'Digit0'],
+        ['\\', 'Minus'],
+      ])('still matches the produced character %s', (key, code) => {
+        expect(
+          matchesKeyboardEvent(altGr(key, code), key as HotkeyChord, platform),
+        ).toBe(true)
+      })
+
+      it('does not match Control+Alt hotkeys', () => {
+        const event = altGr('µ', 'KeyM')
+        expect(matchesKeyboardEvent(event, 'Control+Alt+M', platform)).toBe(
+          false,
+        )
+        expect(
+          matchesKeyboardEvent(event, 'Control+Alt+[KeyM]', platform),
+        ).toBe(false)
+      })
+    })
+
+    it('keeps physical fallbacks for non-Latin layouts without AltGraph', () => {
+      expect(
+        matchesKeyboardEvent(createKeyboardEvent('ф', { code: 'KeyA' }), 'A'),
+      ).toBe(true)
+      expect(
+        matchesKeyboardEvent(
+          createKeyboardEvent('ф', { code: 'KeyA' }),
+          '[KeyA]',
+        ),
+      ).toBe(true)
+    })
+
+    it('keeps physical bindings for Control+Alt without AltGraph', () => {
+      const event = createKeyboardEvent('m', {
+        ctrlKey: true,
+        altKey: true,
+        code: 'KeyM',
+      })
+      expect(matchesKeyboardEvent(event, 'Control+Alt+[KeyM]')).toBe(true)
+      expect(matchesKeyboardEvent(event, '[KeyM]')).toBe(false)
+    })
+
+    it('ignores the AltGraph state macOS reports for Option', () => {
+      const event = createKeyboardEvent('µ', {
+        altKey: true,
+        code: 'KeyM',
+        altGraph: true,
+      })
+      expect(matchesKeyboardEvent(event, 'Alt+M', 'mac')).toBe(true)
+      expect(matchesKeyboardEvent(event, 'Alt+[KeyM]', 'mac')).toBe(true)
+    })
+  })
+
   describe('dead key fallback (macOS Option+letter)', () => {
     it('should match Alt+E when event.key is Dead (macOS dead key for accent)', () => {
       const event = createKeyboardEvent('Dead', {

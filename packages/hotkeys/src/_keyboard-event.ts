@@ -10,7 +10,7 @@ export function normalizeKeyboardEvent(
   try {
     // WebKit reports AltGraph for Option on some macOS keyboard layouts. Option
     // remains a normal Alt shortcut modifier there, so only use this signal on
-    // Windows/Linux where AltGraph synthesizes Control+Alt.
+    // Windows/Linux, where it means AltGr is held.
     altGraph =
       platform !== 'mac' &&
       typeof event.getModifierState === 'function' &&
