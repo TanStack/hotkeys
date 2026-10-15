@@ -184,3 +184,33 @@ it('preserves native activation for a physical-code binding', () => {
   ).toBe(false)
   expect(callback).not.toHaveBeenCalled()
 })
+
+it('preserves native activation in an iframe for an iframe document target', () => {
+  const iframe = document.createElement('iframe')
+  document.body.appendChild(iframe)
+  const frameDocument = iframe.contentDocument!
+  frameDocument.body.innerHTML =
+    '<button>Action</button><div tabindex="0"></div>'
+  // Real browsers give each frame its own DOM classes; happy-dom shares one set.
+  for (const name of ['Document', 'HTMLElement', 'HTMLButtonElement']) {
+    vi.stubGlobal(name, class {})
+  }
+
+  try {
+    const callback = vi.fn()
+    HotkeyManager.getInstance().register('Enter', callback, {
+      target: frameDocument,
+    })
+    const button = frameDocument.querySelector('button')!
+    button.focus()
+    expect(dispatchKey(button, 'Enter').defaultPrevented).toBe(false)
+    expect(callback).not.toHaveBeenCalled()
+
+    const panel = frameDocument.querySelector('div')!
+    panel.focus()
+    dispatchKey(panel, 'Enter')
+    expect(callback).toHaveBeenCalledOnce()
+  } finally {
+    vi.unstubAllGlobals()
+  }
+})
