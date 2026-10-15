@@ -148,13 +148,9 @@ Recorder controllers accept the same two forms and read them during recording, i
 
 ## Capture phase
 
-Set `capture: true` to handle a shortcut before a descendant widget's keyboard listener. The default is `false`, which listens during bubbling. This option applies to both `keydown` and `keyup`.
+By default, hotkeys listen during bubbling, after the keyboard handlers of widgets inside the target. A widget that handles a key and stops propagation keeps that key from your hotkeys. Set `capture: true` to run the hotkey before those widgets instead. It applies to `keydown` and `keyup`.
 
-With the default `stopPropagation: true`, a matching capture listener on an ancestor prevents the event from reaching the widget. Set `stopPropagation: false` to let the event continue. `preventDefault` controls the browser's default action independently. Other listeners on the same target still run. Capture does not override earlier capture listeners on ancestors. A `window` capture listener that stops propagation also blocks document listeners, including key-state tracking.
-
-Capture and bubble registrations on the same target dispatch separately. Match precedence applies within each phase. Equivalent bindings on the same target still follow `conflictBehavior` across phases. Use `conflictBehavior: 'allow'` for intentional duplicates.
-
-Changing `capture` through reactive options preserves the registration ID, trigger count, and `requireReset` state. A registration already processed in one phase cannot process the same event again after moving to another phase. Active shortcut recording also suppresses capture registrations.
+With the default `stopPropagation: true`, a matching capture hotkey also keeps the key from those widgets. Set `stopPropagation: false` to let them handle it too. See [Hotkeys run after the page's own handlers](../../../guides/sensible-defaults.md#hotkeys-run-after-the-pages-own-handlers) for when to use capture.
 
 ## Default options
 

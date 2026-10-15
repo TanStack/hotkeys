@@ -152,8 +152,11 @@ export class KeyStateTracker {
       }
     }
 
-    document.addEventListener('keydown', this.#keydownListener, true)
-    document.addEventListener('keyup', this.#keyupListener, true)
+    // Window capture runs before every page listener, and stopPropagation
+    // doesn't stop other listeners on the same target, so no hotkey or
+    // widget can hide keys from the tracker.
+    window.addEventListener('keydown', this.#keydownListener, true)
+    window.addEventListener('keyup', this.#keyupListener, true)
     window.addEventListener('blur', this.#blurListener)
   }
 
@@ -185,12 +188,12 @@ export class KeyStateTracker {
     }
 
     if (this.#keydownListener) {
-      document.removeEventListener('keydown', this.#keydownListener, true)
+      window.removeEventListener('keydown', this.#keydownListener, true)
       this.#keydownListener = null
     }
 
     if (this.#keyupListener) {
-      document.removeEventListener('keyup', this.#keyupListener, true)
+      window.removeEventListener('keyup', this.#keyupListener, true)
       this.#keyupListener = null
     }
 

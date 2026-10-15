@@ -387,3 +387,21 @@ it('allows dispatching the same event object again', () => {
   document.dispatchEvent(event)
   expect(callback).toHaveBeenCalledTimes(2)
 })
+
+it('does not hide keys from the key-state tracker on a window capture hotkey', () => {
+  const callback = vi.fn()
+  HotkeyManager.getInstance().register('Control+S', callback, {
+    platform: 'mac',
+    target: window,
+    capture: true,
+  })
+  // The tracker attaches after the hotkey, so listener order doesn't decide this
+  const tracker = KeyStateTracker.getInstance()
+  const element = document.createElement('div')
+  document.body.append(element)
+
+  press(element)
+
+  expect(callback).toHaveBeenCalledOnce()
+  expect(tracker.isKeyHeld('S')).toBe(true)
+})

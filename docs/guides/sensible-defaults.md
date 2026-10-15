@@ -18,6 +18,7 @@ This guide describes each default, why it was chosen, and how to change it.
 | Browser behavior | Prevented, and the event stops propagating | `preventDefault`, `stopPropagation` |
 | When a chord fires | On keydown, and again on each automatic repeat while held | `eventType`, `requireReset` |
 | Where listeners attach | `document` | `target` |
+| When hotkeys run | After the keyboard handlers of widgets inside the target (bubble phase) | `capture` |
 | Time between sequence steps | 1 second | `timeout` |
 | Duplicate registrations | Allowed, with a console warning | `conflictBehavior` |
 | Recording | Records key positions; Escape cancels | `recordBy`, recorder options |
@@ -120,13 +121,21 @@ Set `eventType: 'keyup'` to fire on release instead, for example to end a mode t
 
 ## Listeners attach to the document
 
-Hotkeys listen on `document` by default, so they work wherever focus is in the page. The library attaches one `keydown` and one `keyup` listener per target, however many hotkeys are registered.
+Hotkeys listen on `document` by default, so they work wherever focus is in the page. The library attaches one `keydown` and one `keyup` listener per target, plus another pair if any hotkey on that target uses `capture`, however many hotkeys are registered.
 
 To limit a hotkey to part of the page, set `target` to an element. The element receives keyboard events only while it, or something inside it, has focus, so make sure it is focusable, for example with `tabIndex`.
 
 A hotkey registered from the page can also target the document, window, or an element of a same-origin iframe or popup window. The hotkey then listens in that frame, and typing in the frame's inputs is ignored the same way as in the page.
 
 No listeners are attached during server rendering.
+
+## Hotkeys run after the page's own handlers
+
+Hotkeys listen during the bubble phase, so a focused widget's own keyboard handler runs first. If a tab strip, editor, or menu handles a key and stops propagation, your hotkey never sees it. Usually that is what users expect: the widget they are working in should win.
+
+Set `capture: true` when an app-level shortcut has to win anyway. For example, a tab strip that ignores modifiers might treat `Mod+Backspace` as Backspace and close a tab before a document-level "close view" hotkey runs. With `capture: true`, the hotkey runs first, and the default `stopPropagation: true` keeps the key from the tab strip. Set `stopPropagation: false` if the widget should still receive it.
+
+Capture doesn't change which keys a hotkey skips. Typing in inputs and keys that focused controls keep for themselves are still skipped while `ignoreInputs` is on.
 
 ## Sequences allow 1 second between steps
 
