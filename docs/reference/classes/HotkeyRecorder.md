@@ -97,7 +97,7 @@ Defined in: [hotkey-recorder.ts:145](https://github.com/TanStack/hotkeys/blob/ma
 cancel(): void;
 ```
 
-Defined in: [hotkey-recorder.ts:417](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L417)
+Defined in: [hotkey-recorder.ts:418](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L418)
 
 Cancel recording without saving.
 
@@ -116,7 +116,7 @@ the onCancel callback if provided.
 commit(): void;
 ```
 
-Defined in: [hotkey-recorder.ts:326](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L326)
+Defined in: [hotkey-recorder.ts:327](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L327)
 
 Commits the recorded steps after validation and conflict checks.
 Called automatically at `maxSteps`, on Enter, or after `idleTimeoutMs`.
@@ -134,7 +134,7 @@ A rejected commit leaves recording active with its steps intact.
 destroy(): void;
 ```
 
-Defined in: [hotkey-recorder.ts:444](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L444)
+Defined in: [hotkey-recorder.ts:445](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L445)
 
 Clean up event listeners and reset state.
 
@@ -195,7 +195,7 @@ and records chords according to `maxSteps`.
 stop(): void;
 ```
 
-Defined in: [hotkey-recorder.ts:407](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L407)
+Defined in: [hotkey-recorder.ts:408](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L408)
 
 Stop recording (same as cancel, but doesn't call onCancel).
 

@@ -741,6 +741,62 @@ describe('HotkeyManager', () => {
       document.body.removeChild(input)
     })
 
+    it.each([
+      ['K', 'k', {}, false],
+      ['Mod+S', 's', { metaKey: true }, true],
+      ['Escape', 'Escape', {}, true],
+    ] as const)(
+      "resolves ignoreInputs: 'auto' for %s",
+      (hotkey, key, modifiers, firesInInput) => {
+        const manager = HotkeyManager.getInstance()
+        const callback = vi.fn()
+        const handle = manager.register(hotkey, callback, {
+          platform: 'mac',
+          ignoreInputs: 'auto',
+        })
+        expect(
+          manager.registrations.state.get(handle.id)?.options.ignoreInputs,
+        ).toBe('auto')
+
+        const input = document.createElement('input')
+        document.body.appendChild(input)
+        dispatchKeyboardEventFromElement(
+          document,
+          input,
+          'keydown',
+          key,
+          modifiers,
+        )
+        expect(callback).toHaveBeenCalledTimes(firesInInput ? 1 : 0)
+        input.remove()
+      },
+    )
+
+    it.each(['auto', undefined] as const)(
+      'restores the automatic default with setOptions({ ignoreInputs: %s })',
+      (value) => {
+        const manager = HotkeyManager.getInstance()
+        const callback = vi.fn()
+        const handle = manager.register('Mod+S', callback, {
+          platform: 'mac',
+          ignoreInputs: true,
+        })
+        const input = document.createElement('input')
+        document.body.appendChild(input)
+        dispatchKeyboardEventFromElement(document, input, 'keydown', 's', {
+          metaKey: true,
+        })
+        expect(callback).not.toHaveBeenCalled()
+
+        handle.setOptions({ ignoreInputs: value })
+        dispatchKeyboardEventFromElement(document, input, 'keydown', 's', {
+          metaKey: true,
+        })
+        expect(callback).toHaveBeenCalledOnce()
+        input.remove()
+      },
+    )
+
     it('should fire Mod+S in inputs by default (smart default)', () => {
       const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
