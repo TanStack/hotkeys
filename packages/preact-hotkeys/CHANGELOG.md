@@ -1,5 +1,12 @@
 # @tanstack/preact-hotkeys
 
+## 0.14.3
+
+### Patch Changes
+
+- Updated dependencies [[`a9b29f5`](https://github.com/TanStack/hotkeys/commit/a9b29f511faf33ecaa416b5137f4e66af1d44c06), [`f8f02f0`](https://github.com/TanStack/hotkeys/commit/f8f02f01e17d62f4323357d30f4b9ae50f797a88)]:
+  - @tanstack/hotkeys@0.14.0
+
 ## 0.14.2
 
 ### Patch Changes

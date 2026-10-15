@@ -11,7 +11,7 @@
     "test:types": "tsc"
   },
   "dependencies": {
-    "@tanstack/lit-hotkeys": "0.15.2",
+    "@tanstack/lit-hotkeys": "0.15.3",
     "lit": "^3.3.3"
   },
   "devDependencies": {

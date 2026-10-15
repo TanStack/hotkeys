@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/alpine-hotkeys",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Alpine adapter for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",
