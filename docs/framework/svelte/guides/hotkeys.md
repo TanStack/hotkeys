@@ -135,6 +135,12 @@ The adapter reads option properties inside its reactive computation and updates 
 
 You can also pass `() => ({ enabled })`. Svelte applies registration changes when its effect runs. The same forms work for attachments, common options, per-definition options, sequences, and recorders. `HotkeysProvider` follows replacement `defaultOptions` objects and getters within defaults.
 
+## Capture phase
+
+By default, hotkeys listen during bubbling, after the keyboard handlers of widgets inside the target. A widget that handles a key and stops propagation keeps that key from your hotkeys. Set `capture: true` to run the hotkey before those widgets instead. It applies to `keydown` and `keyup`.
+
+With the default `stopPropagation: true`, a matching capture hotkey also keeps the key from those widgets. Set `stopPropagation: false` to let them handle it too. See [Hotkeys run after the page's own handlers](../../../guides/sensible-defaults.md#hotkeys-run-after-the-pages-own-handlers) for when to use capture.
+
 ## Default options
 
 Set defaults explicitly with `setHotkeysContext` when a subtree needs shared behavior:
@@ -161,6 +167,8 @@ createHotkey('Escape', () => closePanel(), { requireReset: true })
 ```
 
 ### `ignoreInputs`
+
+When `ignoreInputs` is enabled, hotkeys also skip keys that a focused control inside their `target` uses itself: `Enter` and `Space` on buttons and `<summary>`, `Enter` on links, and navigation keys in ARIA widgets such as menus, listboxes, tabs, and grids. A hotkey targeted at the control itself still receives them, and `ignoreInputs: false` handles every key. See [Focused controls keep their own keys](../../../guides/sensible-defaults.md#focused-controls-keep-their-own-keys) for the full list.
 
 ```ts
 createHotkey('K', () => openSearch())

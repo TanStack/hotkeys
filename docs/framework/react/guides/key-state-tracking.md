@@ -222,7 +222,7 @@ Recovery requires another event that reports the modifier state or a window blur
 
 ## Under the hood
 
-All three hooks subscribe to the singleton `KeyStateTracker` via `@tanstack/react-store`. The tracker manages its own event listeners on `document` and maintains state in a TanStack Store, which the hooks subscribe to reactively.
+All three hooks subscribe to the singleton `KeyStateTracker` via `@tanstack/react-store`. The tracker manages its own event listeners on `window`, in the capture phase, and maintains state in a TanStack Store, which the hooks subscribe to reactively.
 
 ```tsx
 import { getKeyStateTracker } from '@tanstack/react-hotkeys'

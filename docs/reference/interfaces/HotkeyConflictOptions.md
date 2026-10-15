@@ -22,7 +22,7 @@ Source events allow detecting physical/logical overlap on the recorded layout.
 ### eventType?
 
 ```ts
-optional eventType?: "keyup" | "keydown";
+optional eventType?: "keydown" | "keyup";
 ```
 
 Defined in: [conflicts.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L24)
@@ -104,7 +104,7 @@ Check all targets instead of overlapping targets. Default: overlapping.
 ### target?
 
 ```ts
-optional target?: Document | Window | HTMLElement;
+optional target?: HTMLElement | Document | Window;
 ```
 
 Defined in: [conflicts.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L20)

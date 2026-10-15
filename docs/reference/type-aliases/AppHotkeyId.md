@@ -7,6 +7,6 @@ title: AppHotkeyId
 type AppHotkeyId = keyof RegisteredAppHotkeys & string;
 ```
 
-Defined in: [app-hotkeys.ts:151](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L151)
+Defined in: [app-hotkeys.ts:152](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L152)
 
 Ids of the registered app hotkeys.

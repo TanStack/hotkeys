@@ -19,6 +19,7 @@ import type {
 type Platform = 'mac' | 'windows' | 'linux'
 
 type DeclaredOptionKeys =
+  | 'capture'
   | 'conflictBehavior'
   | 'eventType'
   | 'ignoreInputs'

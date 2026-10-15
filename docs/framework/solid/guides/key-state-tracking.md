@@ -177,7 +177,7 @@ When the browser window loses focus, the tracker clears all held keys.
 
 ## Under the hood
 
-All three primitives subscribe to the singleton `KeyStateTracker` via `@tanstack/solid-store`. The tracker manages its own event listeners on `document` and maintains state in a TanStack Store.
+All three primitives subscribe to the singleton `KeyStateTracker` via `@tanstack/solid-store`. The tracker manages its own event listeners on `window`, in the capture phase, and maintains state in a TanStack Store.
 
 ```tsx
 import { getKeyStateTracker } from '@tanstack/solid-hotkeys'

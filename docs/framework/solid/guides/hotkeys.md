@@ -123,6 +123,12 @@ export function SaveShortcut(props: { enabled: boolean; onSave: () => void }) {
 
 You can also pass `() => ({ enabled: props.enabled })`. Both forms work for common options, sequences, and recorders. Property getters also work in per-definition options. `HotkeysProvider` follows replacement `defaultOptions` objects and getters within defaults. Per-call options override provider defaults, and per-definition options override common options.
 
+## Capture phase
+
+By default, hotkeys listen during bubbling, after the keyboard handlers of widgets inside the target. A widget that handles a key and stops propagation keeps that key from your hotkeys. Set `capture: true` to run the hotkey before those widgets instead. It applies to `keydown` and `keyup`.
+
+With the default `stopPropagation: true`, a matching capture hotkey also keeps the key from those widgets. Set `stopPropagation: false` to let them handle it too. See [Hotkeys run after the page's own handlers](../../../guides/sensible-defaults.md#hotkeys-run-after-the-pages-own-handlers) for when to use capture.
+
 ## Default options
 
 When you register a hotkey without passing options, or when you omit specific options, the following defaults apply:
@@ -133,8 +139,9 @@ createHotkey('Mod+S', callback, {
   preventDefault: true,
   stopPropagation: true,
   eventType: 'keydown',
+  capture: false,
   requireReset: false,
-  ignoreInputs: undefined, // smart default: false for Mod+S, true for single keys
+  ignoreInputs: 'auto', // false for Mod+S and Escape, true for single keys
   target: document,
   platform: undefined, // auto-detected
   conflictBehavior: 'warn',
@@ -219,11 +226,13 @@ createHotkey('Escape', () => closePanel(), { requireReset: true })
 
 ### `ignoreInputs`
 
-When `true`, the hotkey doesn't fire when the user is focused on a text input, textarea, select, or contentEditable element. When unset, a smart default applies based on the hotkey type.
+When `ignoreInputs` is enabled, hotkeys also skip keys that a focused control inside their `target` uses itself: `Enter` and `Space` on buttons and `<summary>`, `Enter` on links, and navigation keys in ARIA widgets such as menus, listboxes, tabs, and grids. A hotkey targeted at the control itself still receives them, and `ignoreInputs: false` handles every key. See [Focused controls keep their own keys](../../../guides/sensible-defaults.md#focused-controls-keep-their-own-keys) for the full list.
+
+When `true`, the hotkey doesn't fire when the user is focused on a text input, textarea, select, or contentEditable element. The default, `'auto'`, chooses from the hotkey.
 
 ```tsx
-createHotkey('K', () => openSearch())  // Smart default: ignored in inputs
-createHotkey('Mod+S', () => save())   // Smart default: fires in inputs
+createHotkey('K', () => openSearch())  // 'auto': ignored in inputs
+createHotkey('Mod+S', () => save())   // 'auto': fires in inputs
 createHotkey('Enter', () => submit(), { ignoreInputs: false })
 ```
 

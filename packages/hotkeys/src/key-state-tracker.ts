@@ -161,10 +161,13 @@ export class KeyStateTracker {
       }
     }
 
-    document.addEventListener('keydown', this.#keydownListener, true)
-    document.addEventListener('keyup', this.#keyupListener, true)
-    document.addEventListener('mousemove', this.#mouseListener, true)
-    document.addEventListener('mousedown', this.#mouseListener, true)
+    // Window capture runs before every page listener, and stopPropagation
+    // doesn't stop other listeners on the same target, so no hotkey or
+    // widget can hide keys from the tracker.
+    window.addEventListener('keydown', this.#keydownListener, true)
+    window.addEventListener('keyup', this.#keyupListener, true)
+    window.addEventListener('mousemove', this.#mouseListener, true)
+    window.addEventListener('mousedown', this.#mouseListener, true)
     window.addEventListener('blur', this.#blurListener)
   }
 
@@ -217,18 +220,18 @@ export class KeyStateTracker {
     }
 
     if (this.#keydownListener) {
-      document.removeEventListener('keydown', this.#keydownListener, true)
+      window.removeEventListener('keydown', this.#keydownListener, true)
       this.#keydownListener = null
     }
 
     if (this.#keyupListener) {
-      document.removeEventListener('keyup', this.#keyupListener, true)
+      window.removeEventListener('keyup', this.#keyupListener, true)
       this.#keyupListener = null
     }
 
     if (this.#mouseListener) {
-      document.removeEventListener('mousemove', this.#mouseListener, true)
-      document.removeEventListener('mousedown', this.#mouseListener, true)
+      window.removeEventListener('mousemove', this.#mouseListener, true)
+      window.removeEventListener('mousedown', this.#mouseListener, true)
       this.#mouseListener = null
     }
 

@@ -7,7 +7,7 @@ title: getKeyStateTracker
 function getKeyStateTracker(): KeyStateTracker;
 ```
 
-Defined in: [key-state-tracker.ts:297](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L297)
+Defined in: [key-state-tracker.ts:300](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key-state-tracker.ts#L300)
 
 Gets the singleton KeyStateTracker instance.
 Convenience function for accessing the tracker.

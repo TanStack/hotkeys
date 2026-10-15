@@ -92,6 +92,12 @@ Pass current options when the component renders. Hooks synchronize those options
 
 Property getters are read when the hook runs. They do not subscribe to external state independently of the component. Keep changing values in framework state so the component updates, and avoid creating an options object once with an initial state snapshot.
 
+## Capture phase
+
+By default, hotkeys listen during bubbling, after the keyboard handlers of widgets inside the target. A widget that handles a key and stops propagation keeps that key from your hotkeys. Set `capture: true` to run the hotkey before those widgets instead. It applies to `keydown` and `keyup`.
+
+With the default `stopPropagation: true`, a matching capture hotkey also keeps the key from those widgets. Set `stopPropagation: false` to let them handle it too. See [Hotkeys run after the page's own handlers](../../../guides/sensible-defaults.md#hotkeys-run-after-the-pages-own-handlers) for when to use capture.
+
 ## Default options
 
 | Option | Default | Behavior |
@@ -101,7 +107,7 @@ Property getters are read when the hook runs. They do not subscribe to external 
 | `stopPropagation` | `true` | Stop the event from bubbling to ancestor listeners. |
 | `eventType` | `'keydown'` | Listen on key press rather than release. |
 | `requireReset` | `false` | Allow held-key repeats. |
-| `ignoreInputs` | Smart default | Allow Control/Meta combinations and Escape in inputs. |
+| `ignoreInputs` | `'auto'` | Allow Control/Meta combinations and Escape in inputs. |
 | `target` | `document` | Listen for events that reach the document. |
 | `platform` | Detected | Resolve `Mod` for the current platform. |
 | `conflictBehavior` | `'warn'` | Warn about duplicate bindings while allowing them. |
@@ -110,7 +116,7 @@ These defaults let application shortcuts replace browser shortcuts. Opt out of p
 
 ### Smart input handling
 
-By default, Control/Meta shortcuts and Escape work in text inputs, textareas, selects, and contentEditable elements. Single keys and Shift/Alt combinations are ignored there because they can be normal typing. Button-type inputs do not block hotkeys.
+By default, Control/Meta shortcuts and Escape work in text inputs, textareas, selects, and contentEditable elements. Single keys and Shift/Alt combinations are ignored there because they can be normal typing. Button-type inputs allow unrelated shortcuts while preserving their native activation keys.
 
 ### Shared default options
 
@@ -140,7 +146,9 @@ Set `requireReset: true` for actions that must run once per press. The key must 
 
 ### `ignoreInputs`
 
-Use `ignoreInputs: true` to ignore typing targets even for Control/Meta shortcuts. Use `false` to allow a single key such as Enter inside an input. Omitting the option restores smart input handling.
+When `ignoreInputs` is enabled, hotkeys also skip keys that a focused control inside their `target` uses itself: Enter and Space on buttons and `<summary>`, Enter on links, and navigation keys in ARIA widgets such as menus, listboxes, tabs, and grids. A hotkey targeted at the control itself still receives them, and `ignoreInputs: false` handles every key. See [Focused controls keep their own keys](../../../guides/sensible-defaults.md#focused-controls-keep-their-own-keys) for the full list.
+
+Use `ignoreInputs: true` to ignore typing targets even for Control/Meta shortcuts. Use `false` to allow a single key such as Enter inside an input. `'auto'`, the default, restores smart input handling.
 
 ### `target`
 

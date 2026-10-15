@@ -18,6 +18,7 @@ This guide describes each default, why it was chosen, and how to change it.
 | Browser behavior | Prevented, and the event stops propagating | `preventDefault`, `stopPropagation` |
 | When a chord fires | On keydown, and again on each automatic repeat while held | `eventType`, `requireReset` |
 | Where listeners attach | `document` | `target` |
+| When hotkeys run | After the keyboard handlers of widgets inside the target (bubble phase) | `capture` |
 | Time between sequence steps | 1 second | `timeout` |
 | Duplicate registrations | Allowed, with a console warning | `conflictBehavior` |
 | Recording | Records key positions; Escape cancels | `recordBy`, recorder options |
@@ -60,7 +61,7 @@ Two kinds of key events never match ordinary shortcuts:
 
 ## Typing in inputs does not trigger shortcuts
 
-A hotkey bound to `K` should not fire while the user types "okay" into a text field. By default, `ignoreInputs` is chosen from the hotkey itself:
+A hotkey bound to `K` should not fire while the user types "okay" into a text field. By default, `ignoreInputs` is `'auto'`, which chooses from the hotkey itself:
 
 | Hotkey | Default | Reason |
 | --- | --- | --- |
@@ -73,6 +74,34 @@ For a sequence, the first step decides, so `['G', 'G']` is ignored in inputs.
 Text inputs, textareas, selects, and `contenteditable` elements count as inputs, including inside shadow DOM. Button-type inputs (`type="button"`, `"submit"`, and `"reset"`) do not, so shortcuts still work when the user has tabbed to a form button. A hotkey whose `target` is the input itself always receives that input's events.
 
 Set `ignoreInputs: true` or `false` to choose explicitly.
+
+## Focused controls keep their own keys
+
+Buttons, links, and ARIA widgets also use keys for themselves. A hotkey bound to `Enter` should not stop a focused button from clicking, and a hotkey bound to `ArrowDown` should not also run while the user moves through an open menu. When `ignoreInputs` is on, a hotkey skips these keys while such a control has focus:
+
+| Focused control | Keys it keeps |
+| --- | --- |
+| `<button>`, button-type inputs, `<summary>`, `role="button"` | Enter, Space |
+| Links with an `href`, `role="link"` | Enter |
+| `role="checkbox"`, `"switch"`, `"radio"` | Space |
+| `role="tab"`, `"option"`, `"treeitem"`, `"menuitem"` (and its checkbox and radio forms) | Enter, Space |
+| `role="menu"`, `"menubar"`, `"tree"` | Arrow keys, Home, End, Enter, Space, and typed characters |
+| `role="listbox"` | Up and Down (Left and Right with `aria-orientation="horizontal"`), Home, End, Enter, Space, and typed characters |
+| `role="combobox"` without a text field | Up, Down, Home, End, Enter, Space, and typed characters |
+| `role="tablist"` | Left and Right (Up and Down with `aria-orientation="vertical"`), Home, End, Enter, Space |
+| `role="toolbar"` | Left and Right (Up and Down with `aria-orientation="vertical"`), Home, End |
+| `role="grid"`, `"treegrid"` | Arrow keys, Home, End, Page Up, Page Down, Enter, Space |
+| `role="radiogroup"` | Arrow keys, Space |
+| `role="slider"` | Arrow keys, Home, End, Page Up, Page Down |
+| `role="spinbutton"` | Up, Down, Home, End, Page Up, Page Down |
+
+The keys follow the [WAI-ARIA Authoring Practices](https://www.w3.org/WAI/ARIA/apg/patterns/) keyboard patterns. A control counts while it, or an element inside it, has focus, so arrow keys in a menu item belong to the menu. Typed characters are the menu, listbox, or tree's typeahead search.
+
+Control, Meta, and Alt shortcuts are never skipped. Enter and Space are skipped only without modifiers. Navigation keys and typed characters are also skipped with Shift, which widgets use to extend a selection.
+
+A control counts only when it is inside the hotkey's `target`. A hotkey targeted at a dialog skips Enter while the dialog's Cancel button has focus, but a hotkey targeted at a listbox receives the listbox's arrow keys, so the listbox can implement its own navigation with hotkeys. Set `ignoreInputs: false` to handle every key regardless of focus.
+
+The recorder only skips text fields, so it can record Enter or Space while the button that started recording still has focus.
 
 ## The browser's action is prevented
 
@@ -92,13 +121,21 @@ Set `eventType: 'keyup'` to fire on release instead, for example to end a mode t
 
 ## Listeners attach to the document
 
-Hotkeys listen on `document` by default, so they work wherever focus is in the page. The library attaches one `keydown` and one `keyup` listener per target, however many hotkeys are registered.
+Hotkeys listen on `document` by default, so they work wherever focus is in the page. The library attaches one `keydown` and one `keyup` listener per target, plus another pair if any hotkey on that target uses `capture`, however many hotkeys are registered.
 
 To limit a hotkey to part of the page, set `target` to an element. The element receives keyboard events only while it, or something inside it, has focus, so make sure it is focusable, for example with `tabIndex`.
 
 A hotkey registered from the page can also target the document, window, or an element of a same-origin iframe or popup window. The hotkey then listens in that frame, and typing in the frame's inputs is ignored the same way as in the page.
 
 No listeners are attached during server rendering.
+
+## Hotkeys run after the page's own handlers
+
+Hotkeys listen during the bubble phase, so a focused widget's own keyboard handler runs first. If a tab strip, editor, or menu handles a key and stops propagation, your hotkey never sees it. Usually that is what users expect: the widget they are working in should win.
+
+Set `capture: true` when an app-level shortcut has to win anyway. For example, a tab strip that ignores modifiers might treat `Mod+Backspace` as Backspace and close a tab before a document-level "close view" hotkey runs. With `capture: true`, the hotkey runs first, and the default `stopPropagation: true` keeps the key from the tab strip. Set `stopPropagation: false` if the widget should still receive it.
+
+Capture doesn't change which keys a hotkey skips. Typing in inputs and keys that focused controls keep for themselves are still skipped while `ignoreInputs` is on.
 
 ## Sequences allow 1 second between steps
 

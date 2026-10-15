@@ -4,12 +4,8 @@ import {
   isAppHotkey,
   resolveAppHotkey,
 } from './app-hotkeys'
-import {
-  isHotkeySequence,
-  normalizeRegisterableHotkey,
-  parseHotkey,
-} from './parse'
-import { defaultHotkeyOptions, getDefaultIgnoreInputs } from './_registration'
+import { isHotkeySequence, normalizeRegisterableHotkey } from './parse'
+import { defaultHotkeyOptions } from './_registration'
 import { detectPlatform } from './platform'
 import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'
 import type {
@@ -84,7 +80,7 @@ export function createHotkeyBindings() {
         const options: ResolvedOptions = {
           ...defaultHotkeyOptions,
           ...merged,
-          ignoreInputs: merged.ignoreInputs,
+          ignoreInputs: merged.ignoreInputs ?? 'auto',
           target:
             'target' in merged
               ? (merged.target ?? null)
@@ -103,10 +99,6 @@ export function createHotkeyBindings() {
         const hotkey = normalizeRegisterableHotkey(
           definition.hotkey,
           options.platform,
-        )
-        const first = isHotkeySequence(hotkey) ? hotkey[0]! : hotkey
-        options.ignoreInputs ??= getDefaultIgnoreInputs(
-          parseHotkey(first, options.platform),
         )
         if (isHotkeySequence(hotkey)) delete options.requireReset
         else delete options.timeout

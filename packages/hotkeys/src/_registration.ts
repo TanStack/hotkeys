@@ -5,16 +5,17 @@ import type { ConflictBehavior, ParsedHotkey } from './hotkey.types'
  * Omitted: platform, target (resolved at registration), requireReset (HotkeyManager only).
  */
 export const defaultHotkeyOptions = {
+  capture: false,
   preventDefault: true,
   stopPropagation: true,
   eventType: 'keydown' as const,
   enabled: true,
-  ignoreInputs: true,
+  ignoreInputs: 'auto' as const,
   conflictBehavior: 'warn' as ConflictBehavior,
 }
 
 /**
- * Computes the default ignoreInputs value based on the hotkey.
+ * Resolves `ignoreInputs: 'auto'` from the hotkey (the first step of a sequence).
  * Ctrl/Meta shortcuts and Escape fire in inputs; single keys and Shift/Alt combos are ignored.
  */
 export function getDefaultIgnoreInputs(parsedHotkey: ParsedHotkey): boolean {
@@ -44,7 +45,7 @@ export function handleConflict(
 
   if (conflictBehavior === 'warn') {
     console.warn(
-      `'${keyDisplay}' is already registered. Multiple handlers will be triggered. ` +
+      `'${keyDisplay}' is already registered. Multiple handlers may be triggered. ` +
         `Use conflictBehavior: 'replace' to replace the existing handler, ` +
         `or conflictBehavior: 'allow' to suppress this warning.`,
     )

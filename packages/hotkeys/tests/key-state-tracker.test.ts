@@ -391,8 +391,8 @@ describe('KeyStateTracker', () => {
     })
 
     it('publishes mouse recovery once and removes listeners when destroyed', () => {
-      const addListener = vi.spyOn(document, 'addEventListener')
-      const removeListener = vi.spyOn(document, 'removeEventListener')
+      const addListener = vi.spyOn(window, 'addEventListener')
+      const removeListener = vi.spyOn(window, 'removeEventListener')
       const tracker = KeyStateTracker.getInstance()
       dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
       const listener = vi.fn()
@@ -402,6 +402,11 @@ describe('KeyStateTracker', () => {
       document.dispatchEvent(new MouseEvent('mousedown'))
       expect(listener).toHaveBeenCalledTimes(1)
       tracker.destroy()
+      expect(
+        addListener.mock.calls.filter(
+          ([type]) => type === 'mousemove' || type === 'mousedown',
+        ),
+      ).toHaveLength(2)
       for (const [type, handler, options] of addListener.mock.calls) {
         if (type === 'mousemove' || type === 'mousedown') {
           expect(removeListener).toHaveBeenCalledWith(type, handler, options)
