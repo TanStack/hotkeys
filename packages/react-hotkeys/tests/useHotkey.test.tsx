@@ -259,4 +259,23 @@ describe('useHotkey', () => {
       expect(callback).not.toHaveBeenCalled()
     })
   })
+
+  // https://github.com/TanStack/hotkeys/issues/116
+  it('does not run a chord for the key that completes a sequence', () => {
+    const chord = vi.fn()
+    const sequence = vi.fn()
+    renderHook(() => {
+      useHotkey('C', chord)
+      useHotkey(['G', 'C'], sequence)
+    })
+
+    for (const key of ['g', 'c']) {
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', { key, bubbles: true }),
+      )
+      document.dispatchEvent(new KeyboardEvent('keyup', { key, bubbles: true }))
+    }
+    expect(sequence).toHaveBeenCalledOnce()
+    expect(chord).not.toHaveBeenCalled()
+  })
 })
