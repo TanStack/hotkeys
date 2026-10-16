@@ -10,6 +10,6 @@ type DisplayHotkeyChord =
   | string & object;
 ```
 
-Defined in: [format.ts:55](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L55)
+Defined in: [format.ts:52](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L52)
 
 A single chord to display: a string, raw object, or parsed hotkey.

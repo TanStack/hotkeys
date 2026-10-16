@@ -3,7 +3,7 @@ id: RecorderOptions
 title: RecorderOptions
 ---
 
-Defined in: [recorder-options.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L15)
+Defined in: [hotkey-recorder.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L33)
 
 ## Properties
 
@@ -13,7 +13,7 @@ Defined in: [recorder-options.ts:15](https://github.com/TanStack/hotkeys/blob/ma
 optional detectConflicts?: boolean | HotkeyConflictOptions;
 ```
 
-Defined in: [recorder-options.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L21)
+Defined in: [hotkey-recorder.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L39)
 
 Opt in to live-registry conflicts, including sequence prefixes. Default: false.
 
@@ -25,7 +25,7 @@ Opt in to live-registry conflicts, including sequence prefixes. Default: false.
 optional onReject?: (rejection) => void;
 ```
 
-Defined in: [recorder-options.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L23)
+Defined in: [hotkey-recorder.ts:41](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L41)
 
 Rejected candidates leave recording active.
 
@@ -47,7 +47,7 @@ Rejected candidates leave recording active.
 optional platform?: "mac" | "windows" | "linux";
 ```
 
-Defined in: [recorder-options.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L19)
+Defined in: [hotkey-recorder.ts:37](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L37)
 
 Platform used for Mod and AltGraph handling. Defaults to platform detection.
 
@@ -59,6 +59,6 @@ Platform used for Mod and AltGraph handling. Defaults to platform detection.
 optional recordBy?: RecorderKeyMode;
 ```
 
-Defined in: [recorder-options.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L17)
+Defined in: [hotkey-recorder.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L35)
 
 Physical code recording is the default. Choose key to record logical characters.

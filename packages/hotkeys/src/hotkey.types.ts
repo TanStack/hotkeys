@@ -159,6 +159,20 @@ export type ParsedHotkey = ParsedModifiers &
     | { code: string; key?: never }
   )
 
+/** Modifier flags shared by logical-key and physical-code registrations. */
+export interface RawModifiers {
+  /** Platform-adaptive modifier: Command on macOS, Control on Windows/Linux. Defaults to false. */
+  mod?: boolean
+  /** Whether the Control key is required. Defaults to false. */
+  ctrl?: boolean
+  /** Whether the Shift key is required. Defaults to false. */
+  shift?: boolean
+  /** Whether the Alt key is required. Defaults to false. */
+  alt?: boolean
+  /** Whether the Meta (Command) key is required. Defaults to false. */
+  meta?: boolean
+}
+
 /**
  * A raw hotkey object for programmatic registration.
  *
@@ -181,21 +195,6 @@ export type ParsedHotkey = ParsedModifiers &
  * useHotkey({ code: 'NumpadAdd', mod: true }, handler)      // Physical numpad plus
  * ```
  */
-/** Modifier flags shared by logical-key and physical-code registrations. */
-export interface RawModifiers {
-  /** The non-modifier key (e.g., 'S', 'Escape', 'F1'). */
-  /** Platform-adaptive modifier: Command on macOS, Control on Windows/Linux. Defaults to false. */
-  mod?: boolean
-  /** Whether the Control key is required. Defaults to false. */
-  ctrl?: boolean
-  /** Whether the Shift key is required. Defaults to false. */
-  shift?: boolean
-  /** Whether the Alt key is required. Defaults to false. */
-  alt?: boolean
-  /** Whether the Meta (Command) key is required. Defaults to false. */
-  meta?: boolean
-}
-
 export type RawHotkey =
   | ({ key: LogicalKey | (string & {}); code?: never } & RawModifiers)
   | ({ code: string; key?: never } & RawModifiers)

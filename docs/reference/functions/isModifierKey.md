@@ -4,10 +4,10 @@ title: isModifierKey
 ---
 
 ```ts
-function isModifierKey(key): key is string;
+function isModifierKey(key): boolean;
 ```
 
-Defined in: [parse.ts:287](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L287)
+Defined in: [parse.ts:278](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L278)
 
 Checks if a string is a recognized modifier token (including aliases).
 
@@ -24,6 +24,6 @@ Key name or alias (e.g. from a hotkey string or `event.key`)
 
 ## Returns
 
-`key is string`
+`boolean`
 
 True if the string is a recognized modifier

@@ -7,7 +7,7 @@ title: HotkeySequence
 type HotkeySequence = ReadonlyArray<HotkeyChord>;
 ```
 
-Defined in: [hotkey.types.ts:211](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L211)
+Defined in: [hotkey.types.ts:210](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L210)
 
 A sequence of chords pressed one after another (Vim-style), such as `['G', 'G']`.
 

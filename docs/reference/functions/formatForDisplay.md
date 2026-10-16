@@ -9,7 +9,7 @@ title: formatForDisplay
 function formatForDisplay(hotkey, options): string[][];
 ```
 
-Defined in: [format.ts:95](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L95)
+Defined in: [format.ts:92](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L92)
 
 Formats a hotkey for display in a user interface.
 
@@ -66,7 +66,7 @@ formatForDisplay(['G', 'H'])
 function formatForDisplay(hotkey, options): string[];
 ```
 
-Defined in: [format.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L99)
+Defined in: [format.ts:96](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L96)
 
 Formats a hotkey for display in a user interface.
 
@@ -123,7 +123,7 @@ formatForDisplay(['G', 'H'])
 function formatForDisplay(hotkey, options?): string;
 ```
 
-Defined in: [format.ts:103](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L103)
+Defined in: [format.ts:100](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L100)
 
 Formats a hotkey for display in a user interface.
 
@@ -180,7 +180,7 @@ formatForDisplay(['G', 'H'])
 function formatForDisplay(hotkey, options): string | string[] | string[][];
 ```
 
-Defined in: [format.ts:107](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L107)
+Defined in: [format.ts:104](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L104)
 
 Formats a hotkey for display in a user interface.
 

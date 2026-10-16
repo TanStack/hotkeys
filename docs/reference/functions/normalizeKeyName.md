@@ -7,7 +7,7 @@ title: normalizeKeyName
 function normalizeKeyName(key): string;
 ```
 
-Defined in: [constants.ts:437](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L437)
+Defined in: [constants.ts:357](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L357)
 
 Normalizes a key name to its canonical form.
 

@@ -1,5 +1,6 @@
 import { Store } from '@tanstack/store'
 import { TargetListeners } from './_target-listeners'
+import { managerRef } from './_manager-ref'
 import { isRecordingEvent } from './_recording-guard'
 import { DEFAULT_SEQUENCE_TIMEOUT, areHotkeysEqual } from './match'
 import { detectPlatform } from './platform'
@@ -12,8 +13,8 @@ import {
   rawHotkeyToParsedHotkey,
   simplifyHotkey,
 } from './parse'
-import { matchKeyboardEvent } from './_match'
-import { normalizeKeyboardEvent } from './_keyboard-event'
+import { matchKeyboardEvent, parsedHotkeysEqual } from './_match'
+import { keysEqual, normalizeKeyboardEvent } from './_keyboard-event'
 import {
   defaultHotkeyOptions,
   getDefaultIgnoreInputs,
@@ -26,6 +27,7 @@ import {
   shouldIgnoreInputEvent,
 } from './_event-target'
 import type { AppHotkeysStore } from './app-hotkeys'
+import type { CanonicalModifier } from './key.types'
 import type {
   ConflictBehavior,
   Hotkey,
@@ -307,7 +309,7 @@ function sameResolvedSteps(
 ): boolean {
   return (
     left.length === right.length &&
-    left.every((step, index) => areHotkeysEqual(step, right[index]!))
+    left.every((step, index) => parsedHotkeysEqual(step, right[index]!))
   )
 }
 
@@ -342,8 +344,6 @@ function formatForMessage(hotkey: Hotkey): string {
  * ```
  */
 export class HotkeyManager {
-  static #instance: HotkeyManager | null = null
-
   /**
    * The TanStack Store containing all hotkey registrations, chords and sequences.
    * Use this to subscribe to registration changes or access current registrations.
@@ -389,20 +389,15 @@ export class HotkeyManager {
    * Gets the singleton instance of HotkeyManager.
    */
   static getInstance(): HotkeyManager {
-    if (!HotkeyManager.#instance) {
-      HotkeyManager.#instance = new HotkeyManager()
-    }
-    return HotkeyManager.#instance
+    return (managerRef.current ??= new HotkeyManager())
   }
 
   /**
    * Resets the singleton instance. Useful for testing.
    */
   static resetInstance(): void {
-    if (HotkeyManager.#instance) {
-      HotkeyManager.#instance.destroy()
-      HotkeyManager.#instance = null
-    }
+    managerRef.current?.destroy()
+    managerRef.current = null
   }
 
   /** Notifies subscribers after in-place updates such as counts and sequence progress. */
@@ -479,27 +474,33 @@ export class HotkeyManager {
     // Note: SSR case without explicit target is handled above
     const target = options.target ?? document
 
+    const sequence = isHotkeySequence(hotkey)
+    const resolvedOptions = {
+      ...defaultHotkeyOptions,
+      ...(sequence
+        ? { timeout: DEFAULT_SEQUENCE_TIMEOUT }
+        : { requireReset: false }),
+      ...optionsForKind(sequence ? 'sequence' : 'chord', options),
+      platform,
+      ignoreInputs: options.ignoreInputs ?? 'auto',
+    }
+    const common = {
+      id,
+      callback,
+      options: resolvedOptions,
+      target,
+      triggerCount: 0,
+      hasFired: false,
+    }
     let registration: HotkeyRegistration
-    if (isHotkeySequence(hotkey)) {
-      const parsedSequence = hotkey.map((step) => parseHotkey(step, platform))
+    if (sequence) {
       registration = {
+        ...common,
         kind: 'sequence',
-        id,
         hotkey,
-        parsedSequence,
-        callback,
-        options: {
-          ...defaultHotkeyOptions,
-          timeout: DEFAULT_SEQUENCE_TIMEOUT,
-          ...optionsForKind('sequence', options),
-          platform,
-          ignoreInputs: options.ignoreInputs ?? 'auto',
-        },
-        target,
+        parsedSequence: hotkey.map((step) => parseHotkey(step, platform)),
         currentIndex: 0,
         lastKeyTime: 0,
-        triggerCount: 0,
-        hasFired: false,
       }
     } else {
       const parsedHotkey =
@@ -507,23 +508,12 @@ export class HotkeyManager {
           ? parseHotkey(hotkey, platform)
           : rawHotkeyToParsedHotkey(hotkey, platform)
       registration = {
+        ...common,
         kind: 'chord',
-        id,
         hotkey: (typeof hotkey === 'string'
           ? hotkey
           : formatHotkey(parsedHotkey)) as HotkeyChord,
         parsedHotkey,
-        callback,
-        options: {
-          ...defaultHotkeyOptions,
-          requireReset: false,
-          ...optionsForKind('chord', options),
-          platform,
-          ignoreInputs: options.ignoreInputs ?? 'auto',
-        },
-        target,
-        hasFired: false,
-        triggerCount: 0,
       }
     }
 
@@ -724,18 +714,12 @@ export class HotkeyManager {
       const registration = this.#currentIn(snapshot, capture)
       if (!registration) continue
 
-      if (eventType === 'keyup') {
-        this.#executeCallback(registration, event)
-        continue
-      }
-
       // Always apply preventDefault/stopPropagation if the hotkey matches,
       // even when requireReset is active and has already fired
-      if (registration.options.preventDefault) {
-        event.preventDefault()
-      }
-      if (registration.options.stopPropagation) {
-        event.stopPropagation()
+      this.#consume(registration, event)
+      if (eventType === 'keyup') {
+        this.#fire(registration, event)
+        continue
       }
 
       // Only execute callback if requireReset is not active or hasn't fired yet
@@ -745,7 +729,7 @@ export class HotkeyManager {
           registration.hasFired = true
           registration.activeMatch = match.identity
         }
-        this.#executeCallback(registration, event)
+        this.#fire(registration, event)
       }
     }
   }
@@ -912,12 +896,7 @@ export class HotkeyManager {
         changed = true
 
         if (registration.currentIndex >= registration.parsedSequence.length) {
-          if (registration.options.preventDefault) {
-            event.preventDefault()
-          }
-          if (registration.options.stopPropagation) {
-            event.stopPropagation()
-          }
+          this.#consume(registration, event)
           registration.currentIndex = 0
           completed.push(registration)
         }
@@ -932,33 +911,34 @@ export class HotkeyManager {
     for (const snapshot of completed) {
       // An earlier callback may have unregistered or moved this registration.
       const registration = this.#currentIn(snapshot, capture)
-      if (registration) this.#executeCallback(registration, event)
+      if (registration) this.#fire(registration, event)
     }
   }
 
-  /**
-   * Executes a hotkey callback with proper event handling.
-   */
-  #executeCallback(
-    registration: HotkeyRegistration,
-    event: KeyboardEvent,
-  ): void {
+  /** Applies a matched registration's preventDefault and stopPropagation options. */
+  #consume(registration: HotkeyRegistration, event: KeyboardEvent): void {
     if (registration.options.preventDefault) {
       event.preventDefault()
     }
     if (registration.options.stopPropagation) {
       event.stopPropagation()
     }
+  }
 
+  /** Counts a trigger, notifies subscribers (such as devtools), and runs the callback. */
+  #fire(
+    registration: HotkeyRegistration,
+    event: KeyboardEvent,
+    context = this.#callbackContext(registration),
+  ): void {
     registration.triggerCount++
     if (registration.kind === 'sequence') registration.hasFired = true
 
-    // Notify the store so subscribers (e.g. devtools) see the updated count.
-    // We create a new Map but keep the same registration reference to preserve
-    // identity for mutation-based fields like hasFired.
+    // A new Map keeps the same registration reference to preserve identity
+    // for mutation-based fields like hasFired.
     this.#notify()
 
-    registration.callback(event, this.#callbackContext(registration))
+    registration.callback(event, context)
   }
 
   #callbackContext(registration: HotkeyRegistration): HotkeyCallbackContext {
@@ -1010,33 +990,14 @@ export class HotkeyManager {
       return true
     }
 
-    // Compare the release against the identity this binding actually stores.
-    if (parsed.code !== undefined) {
-      if (event.code === parsed.code) return true
-    } else {
-      const parsedKeyNormalized =
-        parsed.key.length === 1 ? parsed.key.toUpperCase() : parsed.key
-      const releasedKeyNormalized =
-        releasedKey.length === 1 ? releasedKey.toUpperCase() : releasedKey
-      if (releasedKeyNormalized === parsedKeyNormalized) return true
-    }
-
-    // Reset if any required modifier is released
-    // Use normalized key names and check against canonical modifier names
-    if (parsed.ctrl && releasedKey === 'Control') {
-      return true
-    }
-    if (parsed.shift && releasedKey === 'Shift') {
-      return true
-    }
-    if (parsed.alt && releasedKey === 'Alt') {
-      return true
-    }
-    if (parsed.meta && releasedKey === 'Meta') {
-      return true
-    }
-
-    return false
+    // Compare the release against the identity this binding actually stores,
+    // then reset if any required modifier is released.
+    return (
+      (parsed.code !== undefined
+        ? event.code === parsed.code
+        : keysEqual(releasedKey, parsed.key)) ||
+      parsed.modifiers.includes(releasedKey as CanonicalModifier)
+    )
   }
 
   /**
@@ -1083,14 +1044,7 @@ export class HotkeyManager {
       },
     )
 
-    registration.triggerCount++
-    if (registration.kind === 'sequence') registration.hasFired = true
-
-    // Notify the store so subscribers (e.g. devtools) see the updated count
-    this.#notify()
-
-    registration.callback(syntheticEvent, context)
-
+    this.#fire(registration, syntheticEvent, context)
     return true
   }
 

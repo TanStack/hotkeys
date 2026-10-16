@@ -6,19 +6,16 @@ import {
   PUNCTUATION_KEY_DISPLAY_LABELS,
   WINDOWS_MODIFIER_LABELS,
 } from './display-labels'
-import {
-  MODIFIER_ALIASES,
-  MODIFIER_ORDER,
-  PUNCTUATION_CODE_MAP,
-  normalizeKeyName,
-} from './constants'
+import { MODIFIER_ORDER, normalizeKeyName } from './constants'
 import { detectPlatform } from './platform'
-import { assertLogicalKey, splitHotkeyParts } from './_keyboard-event'
 import {
-  isModifierKey,
-  normalizeHotkeyFromParsed,
-  normalizeRegisterableHotkey,
-} from './parse'
+  assertLogicalKey,
+  codeToLogicalKey,
+  modifierAlias,
+  physicalCodeOf,
+  splitHotkeyParts,
+} from './_keyboard-event'
+import { normalizeHotkeyFromParsed, normalizeRegisterableHotkey } from './parse'
 import type { CanonicalModifier } from './key.types'
 import type { ParsedHotkey, RegisterableHotkeyChord } from './hotkey.types'
 
@@ -164,9 +161,8 @@ function formatChordParts(
     segments.sort((a, b) => modifierIndex(a) - modifierIndex(b))
   }
   const parts = segments.map((segment) => {
-    if (isModifierKey(segment)) {
-      const modifier = (MODIFIER_ALIASES[segment] ??
-        MODIFIER_ALIASES[segment.toLowerCase()]) as CanonicalModifier | 'Mod'
+    const modifier = modifierAlias(segment)
+    if (modifier) {
       return platform === 'mac'
         ? modifierSymbols
           ? MAC_MODIFIER_SYMBOLS[modifier]
@@ -175,7 +171,7 @@ function formatChordParts(
           ? WINDOWS_MODIFIER_LABELS[modifier]
           : LINUX_MODIFIER_LABELS[modifier]
     }
-    const code = /^\[([A-Za-z][A-Za-z0-9]*)\]$/.exec(segment)?.[1]
+    const code = physicalCodeOf(segment)
     const label = options.keyLabels?.[code ?? segment]
     if (label !== undefined) return label
     // Shorten conventional position labels for display only; stored identity is unchanged.
@@ -186,10 +182,8 @@ function formatChordParts(
       // Layout entries are logical labels; normalize their case and whitespace names.
       displayKey = normalizeKeyName(mappedKey)
     } else if (code) {
-      if (/^Key[A-Z]$/.test(code)) displayKey = code.slice(3)
-      else if (/^Digit[0-9]$/.test(code)) displayKey = code.slice(5)
-      else if (numpad) displayKey = code.slice(6)
-      else displayKey = PUNCTUATION_CODE_MAP[code] ?? code
+      // Numpad keys keep their names (Add, not +) and gain a prefix below.
+      displayKey = numpad ? code.slice(6) : (codeToLogicalKey(code) ?? code)
     }
     const labels = keySymbols
       ? KEY_DISPLAY_SYMBOLS

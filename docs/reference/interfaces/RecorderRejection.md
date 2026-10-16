@@ -3,7 +3,7 @@ id: RecorderRejection
 title: RecorderRejection
 ---
 
-Defined in: [recorder-options.ts:7](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L7)
+Defined in: [hotkey-recorder.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L25)
 
 ## Properties
 
@@ -13,7 +13,7 @@ Defined in: [recorder-options.ts:7](https://github.com/TanStack/hotkeys/blob/mai
 optional conflicts?: HotkeyConflict[];
 ```
 
-Defined in: [recorder-options.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L12)
+Defined in: [hotkey-recorder.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L30)
 
 ***
 
@@ -23,7 +23,7 @@ Defined in: [recorder-options.ts:12](https://github.com/TanStack/hotkeys/blob/ma
 optional hotkey?: Hotkey;
 ```
 
-Defined in: [recorder-options.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L11)
+Defined in: [hotkey-recorder.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L29)
 
 The rejected chord or sequence, when one was recorded.
 
@@ -35,7 +35,7 @@ The rejected chord or sequence, when one was recorded.
 message: string;
 ```
 
-Defined in: [recorder-options.ts:9](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L9)
+Defined in: [hotkey-recorder.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L27)
 
 ***
 
@@ -45,4 +45,4 @@ Defined in: [recorder-options.ts:9](https://github.com/TanStack/hotkeys/blob/mai
 reason: "invalid" | "missing-code" | "alt-graph" | "conflict" | "validation";
 ```
 
-Defined in: [recorder-options.ts:8](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L8)
+Defined in: [hotkey-recorder.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L26)

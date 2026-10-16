@@ -7,9 +7,11 @@ title: normalizeHotkeyFromParsed
 function normalizeHotkeyFromParsed(parsed, platform?): HotkeyChord;
 ```
 
-Defined in: [parse.ts:242](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L242)
+Defined in: [parse.ts:177](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L177)
 
-Same canonical string as [normalizeHotkey](normalizeHotkey.md), but from an already-parsed hotkey.
+Same canonical string as [normalizeHotkey](normalizeHotkey.md), but from an already-parsed
+hotkey: `Mod` first when the platform allows, then `Alt`, then `Shift`;
+otherwise full `Control+Alt+Shift+Meta` order.
 
 ## Parameters
 

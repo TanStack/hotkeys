@@ -13,6 +13,7 @@ import {
   rawHotkeyToParsedHotkey,
   validateHotkey,
 } from '../src'
+import { managerRef } from '../src/_manager-ref'
 import type { HotkeyChord, HotkeyChordRecorderOptions } from '../src'
 
 const instances: Array<HotkeyRecorder> = []
@@ -177,6 +178,12 @@ it('keeps recording after rejection and clears with only onClear', () => {
   expect(onRecord).not.toHaveBeenCalled()
   expect(onClear).toHaveBeenCalledOnce()
   expect(r.store.state.isRecording).toBe(false)
+})
+it('checks conflicts without creating a manager', () => {
+  HotkeyManager.resetInstance()
+  expect(findHotkeyConflicts('Mod+S')).toEqual([])
+  // Recorders reach the registry through this ref, not by importing the manager.
+  expect(managerRef.current).toBeNull()
 })
 it('resolves aliases, disabled state and exclusions', () => {
   const manager = HotkeyManager.getInstance()

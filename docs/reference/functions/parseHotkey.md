@@ -7,7 +7,7 @@ title: parseHotkey
 function parseHotkey(hotkey, platform?): ParsedHotkey;
 ```
 
-Defined in: [parse.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L54)
+Defined in: [parse.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L75)
 
 Parses a hotkey string into its component parts.
 

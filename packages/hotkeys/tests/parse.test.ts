@@ -263,6 +263,12 @@ describe('isModifierKey', () => {
     expect(isModifierKey('Space')).toBe(false)
   })
 
+  it('should return false for Object.prototype names', () => {
+    expect(isModifierKey('constructor')).toBe(false)
+    expect(isModifierKey('toString')).toBe(false)
+    expect(parseHotkey('constructor+S').modifiers).toEqual([])
+  })
+
   it('should match DOM modifier key names after normalizeKeyName', () => {
     expect(isModifierKey(normalizeKeyName('OS'))).toBe(true)
     expect(isModifierKey(normalizeKeyName('Win'))).toBe(true)
@@ -273,6 +279,17 @@ describe('normalizeKeyName', () => {
   it('returns empty string for falsy input (undefined coerced, empty string)', () => {
     expect(normalizeKeyName('')).toBe('')
     expect(normalizeKeyName(undefined as unknown as string)).toBe('')
+  })
+
+  it('resolves canonical names and aliases in any case', () => {
+    expect(normalizeKeyName('escape')).toBe('Escape')
+    expect(normalizeKeyName('ESC')).toBe('Escape')
+    expect(normalizeKeyName('Up')).toBe('ArrowUp')
+    expect(normalizeKeyName('PgDn')).toBe('PageDown')
+    expect(normalizeKeyName(' ')).toBe('Space')
+    expect(normalizeKeyName('plus')).toBe('+')
+    expect(normalizeKeyName('f12')).toBe('F12')
+    expect(normalizeKeyName('Dead')).toBe('Dead')
   })
 })
 

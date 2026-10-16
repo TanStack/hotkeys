@@ -1,5 +1,5 @@
 import { normalizeKeyName } from './constants'
-import { normalizeKeyboardEvent } from './_keyboard-event'
+import { isCodeName, normalizeKeyboardEvent } from './_keyboard-event'
 import {
   isModifierKey,
   normalizeHotkeyFromParsed,
@@ -9,7 +9,7 @@ import type {
   RecorderKeyMode,
   RecorderOptions,
   RecorderRejection,
-} from './recorder-options'
+} from './hotkey-recorder'
 import type { HotkeyChord } from './hotkey.types'
 
 /**
@@ -29,12 +29,7 @@ export function hotkeyChordFromKeydown(
     event.key === 'AltGraph'
   )
     return null
-  if (
-    recordBy === 'code' &&
-    (!/^[A-Za-z][A-Za-z0-9]*$/.test(event.code) ||
-      event.code === 'Unidentified' ||
-      normalized.altGraph)
-  )
+  if (recordBy === 'code' && (!hasUsableCode(event) || normalized.altGraph))
     return null
   const parsed = parseKeyboardEvent(event, platform)
   if (recordBy === 'code') {
@@ -64,13 +59,15 @@ export function chordRejection(
       message:
         'AltGraph character entry cannot be recorded as a physical shortcut. Use key mode for characters.',
     }
-  if (
-    !/^[A-Za-z][A-Za-z0-9]*$/.test(event.code) ||
-    event.code === 'Unidentified'
-  )
+  if (!hasUsableCode(event))
     return {
       reason: 'missing-code',
       message: 'This event has no usable physical key code.',
     }
   return undefined
+}
+
+/** Whether the event reports a real physical key code to record. */
+function hasUsableCode(event: KeyboardEvent): boolean {
+  return isCodeName(event.code) && event.code !== 'Unidentified'
 }

@@ -1,4 +1,5 @@
-import { matchKeyboardEvent } from './_match'
+import { matchKeyboardEvent, parsedHotkeysEqual } from './_match'
+import { formatHotkey } from './format'
 import {
   isHotkeySequence,
   isModifierKey,
@@ -7,7 +8,7 @@ import {
 } from './parse'
 import { detectPlatform } from './platform'
 import { normalizeKeyName } from './constants'
-import { keysEqual, normalizeKeyboardEvent } from './_keyboard-event'
+import { normalizeKeyboardEvent } from './_keyboard-event'
 import type {
   HotkeyCallback,
   HotkeyCallbackContext,
@@ -15,7 +16,6 @@ import type {
   HotkeySequence,
   ParsedHotkey,
   RegisterableHotkey,
-  RegisterableHotkeyChord,
 } from './hotkey.types'
 
 export interface KeyboardEventMatch {
@@ -101,7 +101,7 @@ export function createHotkeyHandler(
   const resolvedPlatform = platform ?? detectPlatform()
 
   const hotkeyString: HotkeyChord =
-    typeof hotkey === 'string' ? hotkey : formatParsedHotkey(hotkey)
+    typeof hotkey === 'string' ? hotkey : (formatHotkey(hotkey) as HotkeyChord)
   const parsed =
     typeof hotkey === 'string' ? parseHotkey(hotkey, resolvedPlatform) : hotkey
 
@@ -179,22 +179,6 @@ export function createMultiHotkeyHandler(
 }
 
 /**
- * Formats a ParsedHotkey back to a hotkey string.
- * Used internally to provide the hotkey string in callback context.
- */
-function formatParsedHotkey(parsed: ParsedHotkey): HotkeyChord {
-  const parts: Array<string> = []
-
-  if (parsed.ctrl) parts.push('Control')
-  if (parsed.alt) parts.push('Alt')
-  if (parsed.shift) parts.push('Shift')
-  if (parsed.meta) parts.push('Meta')
-  parts.push(parsed.code !== undefined ? `[${parsed.code}]` : parsed.key)
-
-  return parts.join('+') as HotkeyChord
-}
-
-/**
  * Compares normalized hotkey identity, including all four modifiers.
  * Sequences are equal when every step is equal; a one-step sequence equals its chord.
  * Aliases resolve on the supplied platform. A physical code and a logical key
@@ -209,25 +193,12 @@ export function areHotkeysEqual(
   const b = isHotkeySequence(right) ? right : [right]
   return (
     a.length === b.length &&
-    a.every((step, index) => areChordsEqual(step, b[index]!, platform))
-  )
-}
-
-function areChordsEqual(
-  left: RegisterableHotkeyChord,
-  right: RegisterableHotkeyChord,
-  platform: 'mac' | 'windows' | 'linux',
-): boolean {
-  const a = parseRegisterableHotkey(left, platform)
-  const b = parseRegisterableHotkey(right, platform)
-  return (
-    a.ctrl === b.ctrl &&
-    a.alt === b.alt &&
-    a.shift === b.shift &&
-    a.meta === b.meta &&
-    (a.code !== undefined || b.code !== undefined
-      ? a.code === b.code
-      : keysEqual(a.key, b.key))
+    a.every((step, index) =>
+      parsedHotkeysEqual(
+        parseRegisterableHotkey(step, platform),
+        parseRegisterableHotkey(b[index]!, platform),
+      ),
+    )
   )
 }
 
