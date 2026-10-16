@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/solid-hotkeys",
-  "version": "0.14.4",
+  "version": "0.14.5",
   "description": "SolidJS adapter for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",

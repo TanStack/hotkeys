@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/lit-hotkeys",
-  "version": "0.15.4",
+  "version": "0.15.5",
   "description": "Lit adapter for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",
