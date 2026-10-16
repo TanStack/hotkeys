@@ -20,7 +20,11 @@ import {
   handleConflict,
   optionsEqual,
 } from './_registration'
-import { isEventForTarget, shouldIgnoreInputEvent } from './_event-target'
+import {
+  getTargetDocument,
+  isEventForTarget,
+  shouldIgnoreInputEvent,
+} from './_event-target'
 import type { AppHotkeysStore } from './app-hotkeys'
 import type {
   ConflictBehavior,
@@ -372,6 +376,10 @@ export class HotkeyManager {
   #listeners = new TargetListeners((...args) =>
     this.#processTargetEvent(...args),
   )
+  /** Events that continue a sequence in progress, decided before any listener runs. */
+  #sequenceOwned = new WeakMap<KeyboardEvent, boolean>()
+  /** Physical keys whose keydown a sequence owned, so their repeats and keyup are owned too. */
+  #sequenceOwnedKeys = new Set<string>()
 
   private constructor() {
     this.#platform = detectPlatform()
@@ -629,7 +637,8 @@ export class HotkeyManager {
 
   /**
    * Processes keyboard events for a specific target and event type.
-   * Chords and sequences match independently; both may fire for one event.
+   * A key that continues a sequence in progress belongs to that sequence, so
+   * chords skip it. Chords and first steps of sequences may both fire.
    */
   #processTargetEvent(
     event: KeyboardEvent,
@@ -637,7 +646,13 @@ export class HotkeyManager {
     eventType: 'keydown' | 'keyup',
     capture: boolean,
     ids: Set<string>,
+    first: boolean,
   ): void {
+    // Decide before the first listener runs: an element's chord can run
+    // before the document's sequence advances.
+    if (first) {
+      this.#sequenceOwned.set(event, this.#isOwnedBySequence(event, eventType))
+    }
     this.#processChords(
       event,
       target,
@@ -673,7 +688,7 @@ export class HotkeyManager {
         }
       }
     }
-    if (isRecordingEvent(event)) return
+    if (isRecordingEvent(event) || this.#sequenceOwned.get(event)) return
 
     const matches = new Map<string, ReturnType<typeof matchKeyboardEvent>>()
     let bestScore = 0
@@ -733,6 +748,76 @@ export class HotkeyManager {
         this.#executeCallback(registration, event)
       }
     }
+  }
+
+  /**
+   * Whether the event continues or completes a sequence in progress whose
+   * target the event reaches. The repeats and keyup of a keydown that a
+   * sequence owns belong to the sequence too.
+   */
+  #isOwnedBySequence(
+    event: KeyboardEvent,
+    eventType: 'keydown' | 'keyup',
+  ): boolean {
+    const key = event.code || normalizeKeyName(event.key)
+    if (eventType === 'keyup') {
+      // Evaluate both: the keyup also clears the owned key
+      const ownedKeydown = this.#sequenceOwnedKeys.delete(key)
+      return this.#continuesSequence(event, eventType) || ownedKeydown
+    }
+    if (event.repeat) return this.#sequenceOwnedKeys.has(key)
+
+    const owned = this.#continuesSequence(event, eventType)
+    if (owned) this.#sequenceOwnedKeys.add(key)
+    else this.#sequenceOwnedKeys.delete(key)
+    return owned
+  }
+
+  #continuesSequence(
+    event: KeyboardEvent,
+    eventType: 'keydown' | 'keyup',
+  ): boolean {
+    if (
+      isRecordingEvent(event) ||
+      normalizeKeyboardEvent(event).isComposing ||
+      isModifierKey(normalizeKeyName(event.key))
+    ) {
+      return false
+    }
+    const path = event.composedPath()
+    const now = Date.now()
+    for (const registration of this.registrations.state.values()) {
+      if (
+        registration.kind !== 'sequence' ||
+        registration.currentIndex === 0 ||
+        !registration.options.enabled ||
+        registration.options.eventType !== eventType ||
+        now - registration.lastKeyTime >
+          (registration.options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT)
+      ) {
+        continue
+      }
+      const target = registration.target
+      // A window or document target is reached through its document
+      const reached = path.includes(
+        (target as Node).nodeType === 1 ? target : getTargetDocument(target),
+      )
+      if (
+        reached &&
+        !(
+          ignoresInputs(registration) &&
+          shouldIgnoreInputEvent(event, target, target)
+        ) &&
+        matchKeyboardEvent(
+          event,
+          registration.parsedSequence[registration.currentIndex]!,
+          registration.options.platform,
+        ).matched
+      ) {
+        return true
+      }
+    }
+    return false
   }
 
   #processSequences(

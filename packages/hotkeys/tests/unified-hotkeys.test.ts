@@ -55,7 +55,7 @@ describe('one manager for chords and sequences', () => {
     expect(callback).toHaveBeenCalledOnce()
   })
 
-  it('fires a chord and a sequence that share a key independently', () => {
+  it('fires a chord on a first step but not on a key the sequence continues', () => {
     const manager = HotkeyManager.getInstance()
     const chord = vi.fn()
     const sequence = vi.fn()
@@ -63,7 +63,7 @@ describe('one manager for chords and sequences', () => {
     manager.register(['G', 'G'], sequence)
     press('g')
     press('g')
-    expect(chord).toHaveBeenCalledTimes(2)
+    expect(chord).toHaveBeenCalledOnce()
     expect(sequence).toHaveBeenCalledOnce()
     expect(sequence.mock.calls[0]![1]).toMatchObject({ hotkey: ['G', 'G'] })
   })

@@ -24,6 +24,7 @@ export class TargetListeners {
       eventType: EventType,
       capture: boolean,
       ids: Set<string>,
+      first: boolean,
     ) => void,
   ) {}
 
@@ -44,7 +45,8 @@ export class TargetListeners {
           let processed = this.#processed.get(event)
           // The same event object can be dispatched again. Seeing the same
           // group twice starts a new dispatch rather than suppressing it.
-          if (!processed || processed.groups.has(ids)) {
+          const first = !processed || processed.groups.has(ids)
+          if (!processed || first) {
             processed = { ids: new Set(), groups: new Set() }
             this.#processed.set(event, processed)
           }
@@ -58,7 +60,7 @@ export class TargetListeners {
               pending.add(registrationId)
             }
           }
-          this.dispatch(event, target, eventType, capture, pending)
+          this.dispatch(event, target, eventType, capture, pending, first)
         }
       group = { ids, keydown: listener('keydown'), keyup: listener('keyup') }
       phases.set(capture, group)

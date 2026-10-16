@@ -131,6 +131,10 @@ Modifier-only events, IME composition, and automatic keydown repeats neither adv
 
 Multiple sequences can share a prefix, such as `['D', 'D']`, `['D', 'W']`, and `['D', 'I', 'W']`. Progress is tracked for each sequence independently, so after pressing `D` the manager waits for the next key to determine which sequence completes.
 
+### Sequences and chords
+
+A key that continues a sequence belongs to that sequence. With a `C` chord and a `G` then `C` sequence registered, pressing `G` and then `C` runs only the sequence, and pressing `C` on its own runs the chord. This applies to the keyup and automatic repeats of that key, to chords on any target the key press reaches, and to capture-phase chords. The first step of a sequence is not owned: with a `G` chord and a `G` then `G` sequence registered, the first `G` runs the chord and the second completes the sequence. A sequence that has timed out, is disabled, or ignores the focused input does not own the key.
+
 ### Conflicting registrations
 
 For the same target, duplicate detection compares resolved steps: modifier aliases, modifier order, and logical key casing do not create separate hotkeys. Physical and logical identities remain distinct, and a shared prefix alone is not a duplicate registration. Recorder conflict detection and app hotkey conflicts are stricter: there, a sequence also conflicts with a chord equal to its first step and with any sequence it starts.
