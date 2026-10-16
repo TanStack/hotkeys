@@ -4,6 +4,9 @@ import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import './index.css'
 
+// Created once: a new array on every render remounts the devtools panel
+const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
+
 function App() {
   // const isModHeld = useKeyHold('')
   const isShiftHeld = useKeyHold('Shift')
@@ -101,7 +104,7 @@ function ShiftIndicator() {
         </section>
       </main>
 
-      <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
+      <TanStackDevtools plugins={devtoolsPlugins} />
     </div>
   )
 }

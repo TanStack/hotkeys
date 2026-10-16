@@ -93,10 +93,14 @@ Octane does not currently ship a dedicated Hotkeys devtools adapter.
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
 
+const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
+
 function App() {
-  return <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
+  return <TanStackDevtools plugins={devtoolsPlugins} />
 }
 ```
+
+Create the `plugins` array outside your component. A new array on every render makes the devtools remount the panel, which clears its search box. Hotkeys state such as `useHeldKeys` re-renders a component on every key press, so this shows up quickly.
 
 The Hotkeys panel appears alongside any other TanStack devtools plugins you have installed.
 
@@ -106,10 +110,14 @@ The Hotkeys panel appears alongside any other TanStack devtools plugins you have
 import { TanStackDevtools } from '@tanstack/preact-devtools'
 import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools'
 
+const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
+
 export function App() {
-  return <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
+  return <TanStackDevtools plugins={devtoolsPlugins} />
 }
 ```
+
+Create the `plugins` array outside your component. A new array on every render makes the devtools remount the panel, which clears its search box. Hotkeys state such as `useHeldKeys` re-renders a component on every key press, so this shows up quickly.
 
 The Hotkeys panel appears alongside any other TanStack devtools plugins you have installed.
 

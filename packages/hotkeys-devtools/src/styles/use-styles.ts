@@ -180,46 +180,50 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       flex-shrink: 0;
     `,
     searchInput: css`
+      /* !important: host page input and button styles outrank one class */
+      margin: 0 !important;
       width: 100%;
-      padding: ${size[1.5]} ${size[2]};
-      padding-right: ${size[7]};
+      padding: ${size[1.5]} ${size[2]} !important;
+      padding-right: ${size[7]} !important;
       font-size: ${fontSize.xs};
       font-family: ${fontFamily.sans};
-      color: ${t(colors.gray[900], colors.gray[100])};
-      background: ${t(colors.gray[200], colors.darkGray[700])};
-      border: 1px solid ${t(colors.gray[300], colors.darkGray[600])};
-      border-radius: ${border.radius.md};
+      color: ${t(colors.gray[900], colors.gray[100])} !important;
+      background: ${t(colors.gray[200], colors.darkGray[700])} !important;
+      border: 1px solid ${t(colors.gray[300], colors.darkGray[600])} !important;
+      border-radius: ${border.radius.md} !important;
       outline: none;
       box-sizing: border-box;
 
       &::placeholder {
-        color: ${t(colors.gray[500], colors.gray[500])};
+        color: ${t(colors.gray[500], colors.gray[500])} !important;
       }
 
       &:focus {
-        border-color: ${t(colors.blue[500], colors.blue[400])};
+        border-color: ${t(colors.blue[500], colors.blue[400])} !important;
         box-shadow: 0 0 0 1px
           ${t(colors.blue[500] + alpha[30], colors.blue[400] + alpha[30])};
       }
     `,
     searchClear: css`
+      /* !important: host page input and button styles outrank one class */
+      margin: 0 !important;
       position: absolute;
       right: ${size[3]};
       top: 50%;
       transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: ${t(colors.gray[500], colors.gray[400])};
+      background: none !important;
+      border: none !important;
+      color: ${t(colors.gray[500], colors.gray[400])} !important;
       font-size: ${fontSize.md};
       cursor: pointer;
-      padding: ${size[1]};
+      padding: ${size[1]} !important;
       line-height: 1;
       display: flex;
       align-items: center;
       justify-content: center;
 
       &:hover {
-        color: ${t(colors.gray[700], colors.gray[200])};
+        color: ${t(colors.gray[700], colors.gray[200])} !important;
       }
     `,
     panelHeader: css`
@@ -425,14 +429,16 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       gap: ${size[2]};
     `,
     actionButton: css`
+      /* !important: host page input and button styles outrank one class */
+      margin: 0 !important;
       display: inline-flex;
       align-items: center;
       gap: ${size[1]};
-      padding: ${size[1]} ${size[2]};
-      border-radius: ${border.radius.md};
-      border: 1px solid ${t(colors.gray[300], colors.darkGray[500])};
-      background: ${t(colors.gray[200], colors.darkGray[600])};
-      color: ${t(colors.gray[900], colors.gray[100])};
+      padding: ${size[1]} ${size[2]} !important;
+      border-radius: ${border.radius.md} !important;
+      border: 1px solid ${t(colors.gray[300], colors.darkGray[500])} !important;
+      background: ${t(colors.gray[200], colors.darkGray[600])} !important;
+      color: ${t(colors.gray[900], colors.gray[100])} !important;
       font-size: ${fontSize.xs};
       cursor: pointer;
       user-select: none;
@@ -440,15 +446,15 @@ const stylesFactory = (theme: 'light' | 'dark') => {
         background 0.15s,
         border-color 0.15s;
       &:hover {
-        background: ${t(colors.gray[300], colors.darkGray[500])};
-        border-color: ${t(colors.gray[400], colors.darkGray[400])};
+        background: ${t(colors.gray[300], colors.darkGray[500])} !important;
+        border-color: ${t(colors.gray[400], colors.darkGray[400])} !important;
       }
       &:disabled {
         opacity: 0.5;
         cursor: not-allowed;
         &:hover {
-          background: ${t(colors.gray[200], colors.darkGray[600])};
-          border-color: ${t(colors.gray[300], colors.darkGray[500])};
+          background: ${t(colors.gray[200], colors.darkGray[600])} !important;
+          border-color: ${t(colors.gray[300], colors.darkGray[500])} !important;
         }
       }
     `,

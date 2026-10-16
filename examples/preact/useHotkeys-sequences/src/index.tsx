@@ -321,8 +321,6 @@ function VimEditor() {
           Press <kbd>Escape</kbd> to clear history
         </p>
       </main>
-
-      <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
     </div>
   )
 }

@@ -11,6 +11,9 @@ import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 import './index.css'
 
+// Created once: a new array on every render remounts the devtools panel
+const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
+
 function App() {
   const [lastSequence, setLastSequence] = React.useState<string | null>(null)
   const [history, setHistory] = React.useState<Array<string>>([])
@@ -323,7 +326,7 @@ function VimEditor() {
         </p>
       </main>
 
-      <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
+      <TanStackDevtools plugins={devtoolsPlugins} />
     </div>
   )
 }

@@ -27,6 +27,9 @@ import { ActivityContext, Hint, formatHotkey } from './shared'
 import type { CustomHotkeys } from '@tanstack/react-hotkeys'
 import './styles.css'
 
+// Created once: a new array on every render remounts the devtools panel
+const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
+
 const pages = [
   { to: '/', label: 'Tickets', hotkeyId: 'nav.tickets' },
   { to: '/editor', label: 'Editor', hotkeyId: 'nav.editor' },
@@ -190,7 +193,7 @@ function Layout() {
           ))}
         </ul>
       </section>
-      <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
+      <TanStackDevtools plugins={devtoolsPlugins} />
     </ActivityContext.Provider>
   )
 }

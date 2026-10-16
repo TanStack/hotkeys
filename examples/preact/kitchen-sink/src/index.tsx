@@ -30,6 +30,9 @@ import type {
 import './styles.css'
 import type { JSX } from 'preact'
 
+// Created once: a new array on every render remounts the devtools panel
+const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
+
 const ActivityContext = createContext<(message: string) => void>(() => {})
 const pages = [
   { to: '/', label: 'Tickets', shortcut: 'Alt+[Digit1]' },
@@ -182,7 +185,7 @@ function Layout() {
           ))}
         </ul>
       </section>
-      <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
+      <TanStackDevtools plugins={devtoolsPlugins} />
     </ActivityContext.Provider>
   )
 }
