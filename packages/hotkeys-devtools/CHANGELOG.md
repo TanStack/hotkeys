@@ -1,5 +1,11 @@
 # @tanstack/hotkeys-devtools
 
+## 1.3.4
+
+### Patch Changes
+
+- [#182](https://github.com/TanStack/hotkeys/pull/182) [`125fde6`](https://github.com/TanStack/hotkeys/commit/125fde6f8ec30f076c40bead0f90ae09b3dc9e1f) - Keep the devtools search box and buttons readable when the host page styles `input` or `button` elements, such as a global `background: white; color: inherit` that made the search text white on white in the dark theme.
+
 ## 1.3.3
 
 ### Patch Changes

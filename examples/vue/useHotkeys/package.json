@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@tanstack/vue-devtools": "^0.2.27",
-    "@tanstack/vue-hotkeys-devtools": "^0.10.4",
+    "@tanstack/vue-hotkeys-devtools": "^0.10.5",
     "@typescript-eslint/parser": "^8.71.0",
     "@vitejs/plugin-vue": "^6.0.9",
     "typescript": "6.0.3",
