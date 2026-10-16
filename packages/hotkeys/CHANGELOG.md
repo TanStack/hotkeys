@@ -1,5 +1,11 @@
 # @tanstack/hotkeys
 
+## 0.15.0
+
+### Minor Changes
+
+- [#184](https://github.com/TanStack/hotkeys/pull/184) [`d7a7e81`](https://github.com/TanStack/hotkeys/commit/d7a7e819db345228f2955729a32d7fc18f8267d4) - A key that continues or completes a sequence in progress no longer runs chords for the same key. With a `C` chord and a `G` then `C` sequence registered, pressing `G` and then `C` runs only the sequence. Chords on a sequence's first step still run.
+
 ## 0.14.0
 
 ### Minor Changes
