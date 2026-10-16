@@ -44,8 +44,33 @@
   },
   "size-limit": [
     {
+      "name": "everything",
       "path": "packages/hotkeys/dist/index.js",
       "limit": "13 KB"
+    },
+    {
+      "name": "HotkeyManager",
+      "path": "packages/hotkeys/dist/index.js",
+      "import": "{ getHotkeyManager }",
+      "limit": "8 KB"
+    },
+    {
+      "name": "HotkeyRecorder",
+      "path": "packages/hotkeys/dist/index.js",
+      "import": "{ HotkeyRecorder }",
+      "limit": "7 KB"
+    },
+    {
+      "name": "KeyStateTracker",
+      "path": "packages/hotkeys/dist/index.js",
+      "import": "{ getKeyStateTracker }",
+      "limit": "3.5 KB"
+    },
+    {
+      "name": "formatForDisplay",
+      "path": "packages/hotkeys/dist/index.js",
+      "import": "{ formatForDisplay }",
+      "limit": "3 KB"
     }
   ],
   "nx": {

@@ -72,10 +72,8 @@ export class KeyStateTracker {
   )
 
   #heldEntries: Map<string, { key: string; code: string }> = new Map()
-  #keydownListener: ((event: KeyboardEvent) => void) | null = null
-  #keyupListener: ((event: KeyboardEvent) => void) | null = null
-  #mouseListener: ((event: MouseEvent) => void) | null = null
-  #blurListener: (() => void) | null = null
+  /** Window listeners as `[type, listener, capture]`, removed together on destroy. */
+  #listeners: Array<[string, EventListener, boolean]> = []
 
   private constructor() {
     this.#setupListeners()
@@ -109,7 +107,7 @@ export class KeyStateTracker {
       return // SSR safety
     }
 
-    this.#keydownListener = (event: KeyboardEvent) => {
+    const onKeydown = (event: KeyboardEvent) => {
       let changed = this.#reconcileModifiers(event)
       const key = normalizeKeyName(event.key)
       const identity = event.code || `key:${key}`
@@ -120,7 +118,7 @@ export class KeyStateTracker {
       if (changed) this.#syncState()
     }
 
-    this.#keyupListener = (event: KeyboardEvent) => {
+    const onKeyup = (event: KeyboardEvent) => {
       const key = normalizeKeyName(event.key)
       const identity = event.code || `key:${key}`
       this.#heldEntries.delete(identity)
@@ -149,12 +147,12 @@ export class KeyStateTracker {
       this.#syncState()
     }
 
-    this.#mouseListener = (event: MouseEvent) => {
+    const onMouse = (event: MouseEvent) => {
       if (this.#reconcileModifiers(event)) this.#syncState()
     }
 
     // Clear all keys when window loses focus (keys might be released while not focused)
-    this.#blurListener = () => {
+    const onBlur = () => {
       if (this.#heldEntries.size > 0) {
         this.#heldEntries.clear()
         this.#syncState()
@@ -164,11 +162,16 @@ export class KeyStateTracker {
     // Window capture runs before every page listener, and stopPropagation
     // doesn't stop other listeners on the same target, so no hotkey or
     // widget can hide keys from the tracker.
-    window.addEventListener('keydown', this.#keydownListener, true)
-    window.addEventListener('keyup', this.#keyupListener, true)
-    window.addEventListener('mousemove', this.#mouseListener, true)
-    window.addEventListener('mousedown', this.#mouseListener, true)
-    window.addEventListener('blur', this.#blurListener)
+    this.#listeners = [
+      ['keydown', onKeydown as EventListener, true],
+      ['keyup', onKeyup as EventListener, true],
+      ['mousemove', onMouse as EventListener, true],
+      ['mousedown', onMouse as EventListener, true],
+      ['blur', onBlur, false],
+    ]
+    for (const [type, listener, capture] of this.#listeners) {
+      window.addEventListener(type, listener, capture)
+    }
   }
 
   /**
@@ -218,30 +221,10 @@ export class KeyStateTracker {
    * Removes the keyboard event listeners.
    */
   #removeListeners(): void {
-    if (typeof document === 'undefined') {
-      return
+    for (const [type, listener, capture] of this.#listeners) {
+      window.removeEventListener(type, listener, capture)
     }
-
-    if (this.#keydownListener) {
-      window.removeEventListener('keydown', this.#keydownListener, true)
-      this.#keydownListener = null
-    }
-
-    if (this.#keyupListener) {
-      window.removeEventListener('keyup', this.#keyupListener, true)
-      this.#keyupListener = null
-    }
-
-    if (this.#mouseListener) {
-      window.removeEventListener('mousemove', this.#mouseListener, true)
-      window.removeEventListener('mousedown', this.#mouseListener, true)
-      this.#mouseListener = null
-    }
-
-    if (this.#blurListener) {
-      window.removeEventListener('blur', this.#blurListener)
-      this.#blurListener = null
-    }
+    this.#listeners = []
   }
 
   /**

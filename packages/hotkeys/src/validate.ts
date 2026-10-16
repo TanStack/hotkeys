@@ -1,5 +1,9 @@
-import { ALL_KEYS, MODIFIER_ALIASES, normalizeKeyName } from './constants'
-import { splitHotkeyParts } from './_keyboard-event'
+import { ALL_KEYS, normalizeKeyName } from './constants'
+import {
+  modifierAlias,
+  physicalCodeOf,
+  splitHotkeyParts,
+} from './_keyboard-event'
 import type { Hotkey } from './hotkey.types'
 
 /** A hotkey to validate: a chord string, a sequence, or untyped input such as saved data. */
@@ -83,9 +87,7 @@ function validateChord(hotkey: string): ValidationResult {
 
   // Check for unknown modifiers
   for (const modifier of modifierParts) {
-    const normalized =
-      MODIFIER_ALIASES[modifier] ?? MODIFIER_ALIASES[modifier.toLowerCase()]
-    if (!normalized) {
+    if (!modifierAlias(modifier)) {
       errors.push(`Unknown modifier: '${modifier}'`)
     }
   }
@@ -93,16 +95,15 @@ function validateChord(hotkey: string): ValidationResult {
   if (
     keyPart.length > 1 &&
     (keyPart.startsWith('[') || keyPart.endsWith(']')) &&
-    !/^\[[A-Za-z][A-Za-z0-9]*\]$/.test(keyPart)
+    physicalCodeOf(keyPart) === undefined
   ) {
     errors.push(
       'Invalid physical key: use a bracketed KeyboardEvent.code, such as [KeyS]',
     )
   }
 
-  // Check if key is known
-  const normalizedKey = normalizeKeyName(keyPart)
-  if (!isKnownKey(normalizedKey) && !isKnownKey(keyPart)) {
+  // Aliases such as Esc normalize to a known key
+  if (!isKnownKey(normalizeKeyName(keyPart))) {
     warnings.push(
       `Unknown key: '${keyPart}'. This may still work but won't have type-safe autocomplete.`,
     )
@@ -115,36 +116,13 @@ function validateChord(hotkey: string): ValidationResult {
   }
 }
 
-/**
- * Checks if a key is in the known keys set.
- */
+/** Physical codes, single characters, and named keys are known. */
 function isKnownKey(key: string): boolean {
-  if (/^\[[A-Za-z][A-Za-z0-9]*\]$/.test(key)) return true
-  if (Array.from(key).length === 1) return true
-  // Check direct match
-  if (ALL_KEYS.has(key as any)) {
-    return true
-  }
-
-  // Check uppercase version for letters
-  if (key.length === 1 && ALL_KEYS.has(key.toUpperCase() as any)) {
-    return true
-  }
-
-  // Check common aliases
-  const aliases: Record<string, boolean> = {
-    Esc: true,
-    Return: true,
-    Space: true,
-    ' ': true,
-    Del: true,
-    Up: true,
-    Down: true,
-    Left: true,
-    Right: true,
-  }
-
-  return key in aliases
+  return (
+    physicalCodeOf(key) !== undefined ||
+    Array.from(key).length === 1 ||
+    ALL_KEYS.has(key as never)
+  )
 }
 
 /**

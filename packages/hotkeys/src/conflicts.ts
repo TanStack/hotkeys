@@ -1,9 +1,10 @@
 import { detectPlatform } from './platform'
 import { isHotkeySequence, parseRegisterableHotkey } from './parse'
 import { getTargetDocument } from './_event-target'
-import { keysEqual } from './_keyboard-event'
+import { parsedHotkeysEqual } from './_match'
 import { matchesKeyboardEvent } from './match'
-import { getHotkeyManager, toHotkeyRegistrationView } from './hotkey-manager'
+import { toHotkeyRegistrationView } from './hotkey-manager'
+import { managerRef } from './_manager-ref'
 import type { HotkeyRegistrationView } from './hotkey-manager'
 import type {
   RegisterableHotkey,
@@ -89,25 +90,19 @@ export function findHotkeyConflicts(
           bindings[index]!,
           registration.options.platform,
         )
-        const same =
-          a.ctrl === b.ctrl &&
-          a.alt === b.alt &&
-          a.shift === b.shift &&
-          a.meta === b.meta &&
-          (a.code !== undefined || b.code !== undefined
-            ? a.code === b.code
-            : keysEqual(a.key, b.key))
         // A source event can establish code/key overlap without guessing its layout.
         const event = options.events?.[index]
         return (
-          same ||
+          parsedHotkeysEqual(a, b) ||
           (event !== undefined &&
             matchesKeyboardEvent(event, a, platform) &&
             matchesKeyboardEvent(event, b, registration.options.platform))
         )
       })
   }
-  for (const registration of getHotkeyManager().registrations.state.values()) {
+  // Without a manager nothing is registered; don't create one just to check.
+  const registrations = managerRef.current?.registrations.state.values() ?? []
+  for (const registration of registrations) {
     const view = toHotkeyRegistrationView(registration)
     const bindings = view.kind === 'sequence' ? view.hotkey : [view.hotkey]
     if (matches(view, bindings)) conflicts.push({ registration: view })

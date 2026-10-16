@@ -37,7 +37,7 @@ export const MODIFIER_ORDER: Array<CanonicalModifier> = [
  * a modifier is released so we can clear non-modifier keys whose keyup events
  * may have been swallowed by the OS (e.g. macOS Cmd+key combos).
  */
-export const MODIFIER_KEYS = new Set<string>(MODIFIER_ORDER)
+export const MODIFIER_KEYS = /* @__PURE__ */ new Set<string>(MODIFIER_ORDER)
 
 /**
  * Maps modifier key aliases to their canonical form or platform-adaptive 'Mod'.
@@ -313,109 +313,29 @@ export const ALL_KEYS = new Set([
   ...LOGICAL_ONLY_NAMED_KEYS,
 ])
 
-// Share canonical spellings with validation, including newly supported named keys.
-const CANONICAL_KEY_NAMES = new Map<string, string>(
-  Array.from(ALL_KEYS, (key) => [key.toLowerCase(), key]),
-)
-
 /**
- * Maps key name aliases to their canonical form.
- *
- * Handles common variations and alternative names for keys to provide a more
- * forgiving API. For example, users can write 'Esc', 'esc', or 'escape' and
- * they'll all normalize to 'Escape'.
- *
- * This map is used internally by `normalizeKeyName()` to convert user input
- * into the canonical key names used throughout the library.
- *
- * @remarks Case-insensitive lookups are supported via lowercase variants
- *
- * @example
- * ```ts
- * KEY_ALIASES['Esc'] // 'Escape'
- * KEY_ALIASES['Del'] // 'Delete'
- * KEY_ALIASES['Up'] // 'ArrowUp'
- * ```
+ * Maps lowercase key names and aliases to their canonical form, so lookups
+ * are case-insensitive: `'esc'`, `'Esc'`, and `'ESCAPE'` all become `'Escape'`.
+ * Canonical names come from {@link ALL_KEYS}, so validation and normalization
+ * share one spelling for every key.
  */
-const KEY_ALIASES: Record<string, string> = {
-  Plus: '+',
-  plus: '+',
-  // Escape variants
-  Esc: 'Escape',
-  esc: 'Escape',
-  escape: 'Escape',
+const CANONICAL_KEY_NAMES = /* @__PURE__ */ new Map<string, string>([
+  ...Array.from(ALL_KEYS, (key): [string, string] => [key.toLowerCase(), key]),
+  ['plus', '+'],
+  ['esc', 'Escape'],
+  ['return', 'Enter'],
+  [' ', 'Space'],
+  ['spacebar', 'Space'],
+  ['del', 'Delete'],
+  ['up', 'ArrowUp'],
+  ['down', 'ArrowDown'],
+  ['left', 'ArrowLeft'],
+  ['right', 'ArrowRight'],
+  ['pgup', 'PageUp'],
+  ['pgdn', 'PageDown'],
+])
 
-  // Enter variants
-  Return: 'Enter',
-  return: 'Enter',
-  enter: 'Enter',
-
-  // Space variants
-  ' ': 'Space',
-  space: 'Space',
-  Spacebar: 'Space',
-  spacebar: 'Space',
-
-  // Tab variants
-  tab: 'Tab',
-
-  // Backspace variants
-  backspace: 'Backspace',
-
-  // Delete variants
-  Del: 'Delete',
-  del: 'Delete',
-  delete: 'Delete',
-
-  // Arrow key variants
-  Up: 'ArrowUp',
-  up: 'ArrowUp',
-  arrowup: 'ArrowUp',
-  Down: 'ArrowDown',
-  down: 'ArrowDown',
-  arrowdown: 'ArrowDown',
-  Left: 'ArrowLeft',
-  left: 'ArrowLeft',
-  arrowleft: 'ArrowLeft',
-  Right: 'ArrowRight',
-  right: 'ArrowRight',
-  arrowright: 'ArrowRight',
-
-  // Navigation variants
-  home: 'Home',
-  end: 'End',
-  pageup: 'PageUp',
-  pagedown: 'PageDown',
-  PgUp: 'PageUp',
-  PgDn: 'PageDown',
-  pgup: 'PageUp',
-  pgdn: 'PageDown',
-}
-
-/**
- * Normalizes a key name to its canonical form.
- *
- * Converts various key name formats (aliases, case variations) into the standard
- * canonical names used throughout the library. This enables a more forgiving API
- * where users can write keys in different ways and still get correct behavior.
- *
- * Normalization rules:
- * 1. Check aliases first (e.g., 'Esc' → 'Escape', 'Del' → 'Delete')
- * 2. Single letters → uppercase (e.g., 'a' → 'A', 's' → 'S')
- * 3. Function keys → uppercase (e.g., 'f1' → 'F1', 'F12' → 'F12')
- * 4. Other keys → returned as-is (already canonical or unknown)
- *
- * @param key - The key name to normalize (can be an alias, lowercase, etc.)
- * @returns The canonical key name
- *
- * @example
- * ```ts
- * normalizeKeyName('esc') // 'Escape'
- * normalizeKeyName('a') // 'A'
- * normalizeKeyName('f1') // 'F1'
- * normalizeKeyName('ArrowUp') // 'ArrowUp' (already canonical)
- * ```
- */
+/** Whether a key is a single Unicode letter, such as `'a'` or `'é'`. */
 export function isSingleLetterKey(key: string): boolean {
   return /^\p{Letter}$/u.test(key)
 }
@@ -438,11 +358,6 @@ export function normalizeKeyName(key: string): string {
   // key can be undefined in rare cases
   // (browser extensions synthesizing key events, accessibility tools, certain OS/browser combinations).
   if (!key) return ''
-  // Check aliases first
-  if (key in KEY_ALIASES) {
-    return KEY_ALIASES[key]!
-  }
-
   if (isSingleLetterKey(key)) {
     const upper = key.toUpperCase()
     // Some Unicode letters (e.g., 'ß') uppercase to multi-character sequences

@@ -7,7 +7,7 @@ title: validateHotkey
 function validateHotkey(hotkey): ValidationResult;
 ```
 
-Defined in: [validate.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L32)
+Defined in: [validate.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L36)
 
 Validates a hotkey and returns any warnings or errors.
 Sequences are validated step by step, and messages name the failing step.

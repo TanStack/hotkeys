@@ -3,7 +3,7 @@ id: HotkeyRecorderValidationContext
 title: HotkeyRecorderValidationContext
 ---
 
-Defined in: [recorder-options.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L27)
+Defined in: [hotkey-recorder.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L45)
 
 Validation context for a recorded chord or sequence.
 
@@ -15,7 +15,7 @@ Validation context for a recorded chord or sequence.
 event: KeyboardEvent;
 ```
 
-Defined in: [recorder-options.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L29)
+Defined in: [hotkey-recorder.ts:47](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L47)
 
 The event that recorded the last chord.
 
@@ -27,7 +27,7 @@ The event that recorded the last chord.
 events: readonly KeyboardEvent[];
 ```
 
-Defined in: [recorder-options.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L33)
+Defined in: [hotkey-recorder.ts:51](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L51)
 
 The event that recorded each step.
 
@@ -39,7 +39,7 @@ The event that recorded each step.
 parsedHotkey: ParsedHotkey;
 ```
 
-Defined in: [recorder-options.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L31)
+Defined in: [hotkey-recorder.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L49)
 
 The last chord, parsed.
 
@@ -51,6 +51,6 @@ The last chord, parsed.
 parsedSequence: readonly ParsedHotkey[];
 ```
 
-Defined in: [recorder-options.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/recorder-options.ts#L35)
+Defined in: [hotkey-recorder.ts:53](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L53)
 
 Every step, parsed.

@@ -3,7 +3,7 @@ id: RawModifiers
 title: RawModifiers
 ---
 
-Defined in: [hotkey.types.ts:185](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L185)
+Defined in: [hotkey.types.ts:163](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L163)
 
 Modifier flags shared by logical-key and physical-code registrations.
 
@@ -15,7 +15,7 @@ Modifier flags shared by logical-key and physical-code registrations.
 optional alt?: boolean;
 ```
 
-Defined in: [hotkey.types.ts:194](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L194)
+Defined in: [hotkey.types.ts:171](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L171)
 
 Whether the Alt key is required. Defaults to false.
 
@@ -27,7 +27,7 @@ Whether the Alt key is required. Defaults to false.
 optional ctrl?: boolean;
 ```
 
-Defined in: [hotkey.types.ts:190](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L190)
+Defined in: [hotkey.types.ts:167](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L167)
 
 Whether the Control key is required. Defaults to false.
 
@@ -39,7 +39,7 @@ Whether the Control key is required. Defaults to false.
 optional meta?: boolean;
 ```
 
-Defined in: [hotkey.types.ts:196](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L196)
+Defined in: [hotkey.types.ts:173](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L173)
 
 Whether the Meta (Command) key is required. Defaults to false.
 
@@ -51,7 +51,7 @@ Whether the Meta (Command) key is required. Defaults to false.
 optional mod?: boolean;
 ```
 
-Defined in: [hotkey.types.ts:188](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L188)
+Defined in: [hotkey.types.ts:165](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L165)
 
 Platform-adaptive modifier: Command on macOS, Control on Windows/Linux. Defaults to false.
 
@@ -63,6 +63,6 @@ Platform-adaptive modifier: Command on macOS, Control on Windows/Linux. Defaults
 optional shift?: boolean;
 ```
 
-Defined in: [hotkey.types.ts:192](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L192)
+Defined in: [hotkey.types.ts:169](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L169)
 
 Whether the Shift key is required. Defaults to false.

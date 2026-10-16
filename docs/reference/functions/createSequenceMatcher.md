@@ -7,7 +7,7 @@ title: createSequenceMatcher
 function createSequenceMatcher(sequence, options?): object;
 ```
 
-Defined in: [match.ts:259](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L259)
+Defined in: [match.ts:230](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L230)
 
 Creates a simple sequence matcher for one-off use.
 

@@ -100,3 +100,20 @@ function modifiersMatch(
   }
   return event.shift === parsed.shift || (allowImplicitShift && event.shift)
 }
+
+/**
+ * Whether two parsed chords have the same identity: equal modifiers, and the
+ * same physical code or (case-insensitively) the same logical key. A code and
+ * a key never match, even when one keyboard event could produce both.
+ */
+export function parsedHotkeysEqual(a: ParsedHotkey, b: ParsedHotkey): boolean {
+  return (
+    a.ctrl === b.ctrl &&
+    a.alt === b.alt &&
+    a.shift === b.shift &&
+    a.meta === b.meta &&
+    (a.code !== undefined || b.code !== undefined
+      ? a.code === b.code
+      : keysEqual(a.key, b.key))
+  )
+}

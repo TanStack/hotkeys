@@ -1,5 +1,9 @@
-import { PUNCTUATION_CODE_MAP, normalizeKeyName } from './constants'
-import type { NormalizedKeyboardEvent } from './key.types'
+import {
+  MODIFIER_ALIASES,
+  PUNCTUATION_CODE_MAP,
+  normalizeKeyName,
+} from './constants'
+import type { CanonicalModifier, NormalizedKeyboardEvent } from './key.types'
 
 /** Normalizes Unicode key names and modifier flags while retaining physical code and IME state. */
 export function normalizeKeyboardEvent(
@@ -62,6 +66,34 @@ export function codeToLogicalKey(code: string): string | undefined {
 /** Tests for one Unicode code point, including characters represented by a surrogate pair. */
 export function isPrintableKey(key: string): boolean {
   return key !== '' && Array.from(key).length === 1
+}
+
+/**
+ * Resolves a modifier token or alias case-insensitively: `ctrl` → `Control`,
+ * `cmd` → `Meta`, `mod` → `Mod`. Returns undefined for anything else.
+ */
+export function modifierAlias(
+  token: string,
+): CanonicalModifier | 'Mod' | undefined {
+  // Every alias has a lowercase entry. hasOwn keeps out names like 'constructor'.
+  const lower = token.toLowerCase()
+  return Object.hasOwn(MODIFIER_ALIASES, lower)
+    ? MODIFIER_ALIASES[lower]
+    : undefined
+}
+
+/** Whether a string has the shape of a `KeyboardEvent.code`, such as `KeyS`. */
+export function isCodeName(code: string): boolean {
+  return /^[A-Za-z][A-Za-z0-9]*$/.test(code)
+}
+
+/** The code inside a physical token: `[KeyS]` → `KeyS`. Undefined for anything else. */
+export function physicalCodeOf(token: string): string | undefined {
+  return token.startsWith('[') &&
+    token.endsWith(']') &&
+    isCodeName(token.slice(1, -1))
+    ? token.slice(1, -1)
+    : undefined
 }
 
 /** Splits modifier tokens while retaining a trailing literal plus: `Control++` → `['Control', '+']`. */
