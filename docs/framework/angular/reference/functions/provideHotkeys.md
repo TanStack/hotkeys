@@ -7,10 +7,16 @@ title: provideHotkeys
 function provideHotkeys(options?): Provider;
 ```
 
-Defined in: [hotkeys-provider.ts:84](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L84)
+Defined in: [hotkeys-provider.ts:231](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L231)
 
 Provides default options, app hotkeys, and the user's custom hotkeys to an
 injector, such as the application or a component.
+
+Provide it in a component to create a hotkey scope. A nested provider
+inherits app hotkeys and merges default options. With `scope`, hotkeys
+injected in the component and its children fire only while it exists and
+is enabled; with `exclusive`, only they fire. The scope activates when the
+first hotkey in it is injected.
 
 ## Parameters
 
@@ -22,7 +28,7 @@ injector, such as the application or a component.
 
 `Provider`
 
-## Example
+## Examples
 
 ```ts
 bootstrapApplication(App, {
@@ -35,4 +41,35 @@ bootstrapApplication(App, {
     }),
   ],
 })
+```
+
+```ts
+@Component({
+  selector: 'app-edit-dialog',
+  providers: [provideHotkeys({ scope: 'edit-dialog', exclusive: true })],
+  template: `...`,
+})
+export class EditDialog {
+  constructor() {
+    injectHotkey('Escape', () => this.close())
+  }
+}
+```
+
+```ts
+// A scope that follows the providing component's input.
+@Component({
+  selector: 'app-folder',
+  providers: [
+    provideHotkeys({
+      scope: () => inject(Folder).name(),
+      enabled: () => inject(Folder).current(),
+    }),
+  ],
+  template: `...`,
+})
+export class Folder {
+  readonly name = input.required<string>()
+  readonly current = input(false)
+}
 ```

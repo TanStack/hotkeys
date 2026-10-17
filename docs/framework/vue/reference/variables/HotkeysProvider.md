@@ -19,6 +19,22 @@ const HotkeysProvider: DefineComponent<ExtractPropTypes<{
      default: undefined;
      type: PropType<HotkeysProviderOptions>;
   };
+  enabled: {
+     default: boolean;
+     type: BooleanConstructor;
+  };
+  exclusive: {
+     default: boolean;
+     type: PropType<
+        | boolean
+        | {
+      }
+       | undefined>;
+  };
+  scope: {
+     default: undefined;
+     type: StringConstructor;
+  };
 }>, () => 
   | VNode<RendererNode, RendererElement, {
 [key: string]: any;
@@ -43,6 +59,22 @@ const HotkeysProvider: DefineComponent<ExtractPropTypes<{
      default: undefined;
      type: PropType<HotkeysProviderOptions>;
   };
+  enabled: {
+     default: boolean;
+     type: BooleanConstructor;
+  };
+  exclusive: {
+     default: boolean;
+     type: PropType<
+        | boolean
+        | {
+      }
+       | undefined>;
+  };
+  scope: {
+     default: undefined;
+     type: StringConstructor;
+  };
 }>, {
   customHotkeysChange: (_customHotkeys) => true;
 }>, {
@@ -50,6 +82,12 @@ const HotkeysProvider: DefineComponent<ExtractPropTypes<{
   customHotkeys:   | CustomHotkeys<Readonly<Record<string, AppHotkey<string, HotkeyChord | HotkeySequence | null>>>>
      | null;
   defaultOptions: HotkeysProviderOptions;
+  enabled: boolean;
+  exclusive:   | boolean
+     | {
+   }
+     | undefined;
+  scope: string;
 }, {
 }, {
 }, {
@@ -57,13 +95,17 @@ const HotkeysProvider: DefineComponent<ExtractPropTypes<{
 }, any>;
 ```
 
-Defined in: [HotkeysProvider.tsx:25](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProvider.tsx#L25)
+Defined in: [HotkeysProvider.tsx:37](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProvider.tsx#L37)
 
 Vue component that provides default options, app hotkeys, and the user's
 custom hotkeys. `customHotkeys` is read once; listen to
 `custom-hotkeys-change` to save changes.
 
-## Example
+Nest providers to create hotkey scopes. A nested provider inherits app
+hotkeys and merges default options. With `scope`, its hotkeys fire only
+while it is mounted and enabled; with `exclusive`, only its hotkeys fire.
+
+## Examples
 
 ```vue
 <template>
@@ -75,4 +117,10 @@ custom hotkeys. `customHotkeys` is read once; listen to
     <App />
   </HotkeysProvider>
 </template>
+```
+
+```vue
+<HotkeysProvider scope="edit-dialog" :exclusive="{ allow: ['global'] }">
+  <DialogBody />
+</HotkeysProvider>
 ```

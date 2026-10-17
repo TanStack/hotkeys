@@ -84,7 +84,7 @@ describe('HotkeyManager', () => {
       expect(manager.getRegistrationCount()).toBe(2)
     })
 
-    it('should register with RawHotkey object', () => {
+    it('should register with RawHotkeyChord object', () => {
       const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
@@ -102,7 +102,7 @@ describe('HotkeyManager', () => {
       expect(callback).toHaveBeenCalledTimes(1)
     })
 
-    it('should register with minimal RawHotkey (key only)', () => {
+    it('should register with minimal RawHotkeyChord (key only)', () => {
       const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
@@ -113,7 +113,7 @@ describe('HotkeyManager', () => {
       expect(callback).toHaveBeenCalledTimes(1)
     })
 
-    it('should register with RawHotkey mod (platform-adaptive)', () => {
+    it('should register with RawHotkeyChord mod (platform-adaptive)', () => {
       const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
 
@@ -286,7 +286,7 @@ describe('HotkeyManager', () => {
         event,
         expect.objectContaining({
           hotkey: 'Mod+S',
-          parsedHotkey: expect.objectContaining({ key: 'S', meta: true }),
+          parsedChord: expect.objectContaining({ key: 'S', meta: true }),
         }),
       )
     })
@@ -1584,7 +1584,7 @@ describe('HotkeyManager', () => {
       expect(view.hotkey).toBe(reg.hotkey)
       expect(view.id).toBe(reg.id)
       expect(view.options).toBe(reg.options)
-      expect(view.parsedHotkey).toBe(reg.parsedHotkey)
+      expect(view.parsedChord).toBe(reg.parsedChord)
       expect(view.target).toBe(reg.target)
       expect(view.triggerCount).toBe(reg.triggerCount)
       expect(view.hasFired).toBe(reg.hasFired)

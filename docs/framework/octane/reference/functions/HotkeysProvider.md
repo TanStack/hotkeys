@@ -10,13 +10,18 @@ function HotkeysProvider(__namedParameters): ElementDescriptor<{
      appHotkeysStore:   | AppHotkeysStore<Readonly<Record<string, AppHotkey<string, HotkeyChord | HotkeySequence | null>>>>
         | null;
      defaultOptions: DefaultHotkeysOptions;
+     enabled: boolean;
   };
 }>;
 ```
 
-Defined in: [HotkeysProvider.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L70)
+Defined in: [HotkeysProvider.ts:86](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L86)
 
 Sets defaults, app hotkeys, and custom hotkeys for descendant components.
+
+Nest providers to create hotkey scopes. A nested provider inherits app
+hotkeys and merges default options. With `scope`, its hotkeys fire only
+while it is mounted and enabled; with `exclusive`, only its hotkeys fire.
 
 ## Parameters
 
@@ -32,5 +37,6 @@ Sets defaults, app hotkeys, and custom hotkeys for descendant components.
      `appHotkeysStore`:   \| `AppHotkeysStore`\<`Readonly`\<`Record`\<`string`, `AppHotkey`\<`string`, `HotkeyChord` \| `HotkeySequence` \| `null`\>\>\>\>
         \| `null`;
      `defaultOptions`: [`DefaultHotkeysOptions`](../interfaces/DefaultHotkeysOptions.md);
+     `enabled`: `boolean`;
   \};
 \}\>

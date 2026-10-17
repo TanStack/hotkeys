@@ -15,9 +15,9 @@
       </p>
       <div class="counter">Save triggered: {{ saveCount() }}x</div>
       <pre class="code-block">
-injectHotkey('Mod+S', (_event, &#123; hotkey, parsedHotkey &#125;) => &#123;
+injectHotkey('Mod+S', (_event, &#123; hotkey, parsedChord &#125;) => &#123;
   console.log('Hotkey:', hotkey)
-  console.log('Parsed:', parsedHotkey)
+  console.log('Parsed:', parsedChord)
 &#125;)</pre>
     </section>
 

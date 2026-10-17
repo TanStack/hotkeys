@@ -1,6 +1,7 @@
 ---
 title: Devtools
 id: devtools
+description: Inspect registered hotkeys, scopes, app hotkeys, held keys, and sequence progress with the TanStack Hotkeys devtools panel.
 ---
 
 TanStack Hotkeys ships devtools for debugging and monitoring your registered hotkeys in real time, as a panel inside the [TanStack Devtools](https://tanstack.com/devtools) multi-panel UI.

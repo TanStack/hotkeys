@@ -6,10 +6,10 @@ title: HotkeyChord
 ```ts
 type HotkeyChord = 
   | Key
-  | SingleModifierHotkey
-  | TwoModifierHotkey
-  | ThreeModifierHotkey
-  | FourModifierHotkey;
+  | SingleModifierHotkeyChord
+  | TwoModifierHotkeyChord
+  | ThreeModifierHotkeyChord
+  | FourModifierHotkeyChord;
 ```
 
 Defined in: [hotkey.types.ts:126](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey.types.ts#L126)

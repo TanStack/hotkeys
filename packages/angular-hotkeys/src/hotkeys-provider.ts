@@ -1,6 +1,21 @@
-import { DestroyRef, InjectionToken, inject, signal } from '@angular/core'
+import {
+  DestroyRef,
+  InjectionToken,
+  Injector,
+  computed,
+  effect,
+  inject,
+  runInInjectionContext,
+  signal,
+} from '@angular/core'
 import { AppHotkeysStore, publishAppHotkeysStore } from '@tanstack/hotkeys'
+import {
+  activateHotkeysProviderScope,
+  getHotkeysProviderScopeKey,
+  mergeHotkeysProviderDefaults,
+} from '@tanstack/hotkeys/adapter'
 import type { Provider, Signal } from '@angular/core'
+import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
 import type {
   AppHotkeys,
   AppHotkeysState,
@@ -27,7 +42,19 @@ export interface HotkeysProviderOptions {
 
 /** Options for `provideHotkeys`. */
 export interface ProvideHotkeysOptions {
+  /** Merged with the parent provider's defaults. */
   defaultOptions?: HotkeysProviderOptions
+  /**
+   * See `HotkeysProviderScopeProps['scope']`. Getters, here and for
+   * `exclusive` and `enabled`, run in the provider's injection context, so
+   * they can `inject()` the component that provides them and read its
+   * signals.
+   */
+  scope?: MaybeGetter<HotkeysProviderScopeProps['scope']>
+  /** See `HotkeysProviderScopeProps['exclusive']`. */
+  exclusive?: MaybeGetter<HotkeysProviderScopeProps['exclusive']>
+  /** See `HotkeysProviderScopeProps['enabled']`. */
+  enabled?: MaybeGetter<HotkeysProviderScopeProps['enabled']>
   /**
    * Every app hotkey, from `defineAppHotkeys`. Listed by
    * `injectAppHotkeyList` whether or not they are registered.
@@ -43,29 +70,116 @@ export interface ProvideHotkeysOptions {
 }
 
 export interface HotkeysContextValue {
+  /** Merged with every ancestor provider's defaults, including `hotkey.scope`. */
   readonly defaultOptions: HotkeysProviderOptions
+  /** Whether this provider and every ancestor are enabled. */
+  readonly enabled: Signal<boolean>
   readonly appHotkeysStore: AppHotkeysStore | null
   /** Tracks app hotkeys and custom hotkeys so signals and effects re-run. */
   readonly appHotkeysState: Signal<AppHotkeysState | null>
 }
 
 const NO_APP_HOTKEYS = signal<AppHotkeysState | null>(null).asReadonly()
+const ROOT_CONTEXT: HotkeysContextValue = {
+  defaultOptions: {},
+  enabled: signal(true).asReadonly(),
+  appHotkeysStore: null,
+  appHotkeysState: NO_APP_HOTKEYS,
+}
 
 export const HOTKEYS_INJECTION_TOKEN = new InjectionToken<HotkeysContextValue>(
   'HOTKEYS_INJECTION_TOKEN',
   {
     providedIn: 'root',
-    factory: () => ({
-      defaultOptions: {},
-      appHotkeysStore: null,
-      appHotkeysState: NO_APP_HOTKEYS,
-    }),
+    factory: () => ROOT_CONTEXT,
   },
 )
+
+/** A value, or a signal or getter that returns it. */
+export type MaybeGetter<T> = T | (() => T)
+
+/** Creates a provider's context. Runs in an injection context. */
+function createHotkeysContext(
+  options: ProvideHotkeysOptions,
+): HotkeysContextValue {
+  const injector = inject(Injector)
+  const read = <T>(value: MaybeGetter<T>): T =>
+    typeof value === 'function'
+      ? runInInjectionContext(injector, value as () => T)
+      : value
+  const parent =
+    inject(HOTKEYS_INJECTION_TOKEN, { skipSelf: true, optional: true }) ??
+    ROOT_CONTEXT
+  const destroyRef = inject(DestroyRef)
+  const { appHotkeys, customHotkeys, onCustomHotkeysChange } = options
+
+  let store: AppHotkeysStore | null = null
+  let appHotkeysState = parent.appHotkeysState
+  if (appHotkeys) {
+    store = new AppHotkeysStore(appHotkeys, {
+      customHotkeys,
+      onCustomHotkeysChange,
+    })
+    const state = signal<AppHotkeysState | null>(store.store.state)
+    const subscription = store.store.subscribe(() =>
+      state.set(store!.store.state),
+    )
+    destroyRef.onDestroy(() => subscription.unsubscribe())
+    // Publish the store so devtools can list declared hotkeys.
+    if (typeof document !== 'undefined') {
+      destroyRef.onDestroy(publishAppHotkeysStore(store))
+    }
+    appHotkeysState = state.asReadonly()
+  }
+
+  const enabled = computed(
+    () => parent.enabled() && read(options.enabled) !== false,
+  )
+  const defaultOptions = computed(() =>
+    mergeHotkeysProviderDefaults(
+      parent.defaultOptions,
+      options.defaultOptions,
+      read(options.scope),
+    ),
+  )
+  // Compared by value, so a new `exclusive` object does not reactivate the
+  // scope and lose its precedence.
+  const scopeKey = computed(() =>
+    getHotkeysProviderScopeKey({
+      scope: read(options.scope),
+      exclusive: read(options.exclusive),
+      active: enabled(),
+      parent: parent.defaultOptions.hotkey?.scope,
+    }),
+  )
+
+  // Activate the scope while this injector lives and the provider is enabled.
+  if (typeof document !== 'undefined') {
+    effect((onCleanup) => {
+      const key = scopeKey()
+      if (key) onCleanup(activateHotkeysProviderScope(key))
+    })
+  }
+
+  return {
+    get defaultOptions() {
+      return defaultOptions()
+    },
+    enabled,
+    appHotkeysStore: store ?? parent.appHotkeysStore,
+    appHotkeysState,
+  }
+}
 
 /**
  * Provides default options, app hotkeys, and the user's custom hotkeys to an
  * injector, such as the application or a component.
+ *
+ * Provide it in a component to create a hotkey scope. A nested provider
+ * inherits app hotkeys and merges default options. With `scope`, hotkeys
+ * injected in the component and its children fire only while it exists and
+ * is enabled; with `exclusive`, only they fire. The scope activates when the
+ * first hotkey in it is injected.
  *
  * @example
  * ```ts
@@ -80,39 +194,44 @@ export const HOTKEYS_INJECTION_TOKEN = new InjectionToken<HotkeysContextValue>(
  *   ],
  * })
  * ```
+ *
+ * @example
+ * ```ts
+ * @Component({
+ *   selector: 'app-edit-dialog',
+ *   providers: [provideHotkeys({ scope: 'edit-dialog', exclusive: true })],
+ *   template: `...`,
+ * })
+ * export class EditDialog {
+ *   constructor() {
+ *     injectHotkey('Escape', () => this.close())
+ *   }
+ * }
+ * ```
+ *
+ * @example
+ * ```ts
+ * // A scope that follows the providing component's input.
+ * @Component({
+ *   selector: 'app-folder',
+ *   providers: [
+ *     provideHotkeys({
+ *       scope: () => inject(Folder).name(),
+ *       enabled: () => inject(Folder).current(),
+ *     }),
+ *   ],
+ *   template: `...`,
+ * })
+ * export class Folder {
+ *   readonly name = input.required<string>()
+ *   readonly current = input(false)
+ * }
+ * ```
  */
 export function provideHotkeys(options: ProvideHotkeysOptions = {}): Provider {
   return {
     provide: HOTKEYS_INJECTION_TOKEN,
-    useFactory: (): HotkeysContextValue => {
-      const defaultOptions = options.defaultOptions ?? {}
-      if (!options.appHotkeys) {
-        return {
-          defaultOptions,
-          appHotkeysStore: null,
-          appHotkeysState: NO_APP_HOTKEYS,
-        }
-      }
-      const store = new AppHotkeysStore(options.appHotkeys, {
-        customHotkeys: options.customHotkeys,
-        onCustomHotkeysChange: options.onCustomHotkeysChange,
-      })
-      const state = signal<AppHotkeysState | null>(store.store.state)
-      const subscription = store.store.subscribe(() =>
-        state.set(store.store.state),
-      )
-      const destroyRef = inject(DestroyRef)
-      destroyRef.onDestroy(() => subscription.unsubscribe())
-      // Publish the store so devtools can list declared hotkeys.
-      if (typeof document !== 'undefined') {
-        destroyRef.onDestroy(publishAppHotkeysStore(store))
-      }
-      return {
-        defaultOptions,
-        appHotkeysStore: store,
-        appHotkeysState: state.asReadonly(),
-      }
-    },
+    useFactory: () => createHotkeysContext(options),
   }
 }
 

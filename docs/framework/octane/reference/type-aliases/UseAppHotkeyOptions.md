@@ -7,7 +7,7 @@ title: UseAppHotkeyOptions
 type UseAppHotkeyOptions<T> = AdapterAppHotkeyOptions<T, UseHotkeyTarget>;
 ```
 
-Defined in: [useHotkey.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkey.ts#L39)
+Defined in: [useHotkey.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkey.ts#L40)
 
 Call-site options for an app hotkey, typed by its declared default kind.
 

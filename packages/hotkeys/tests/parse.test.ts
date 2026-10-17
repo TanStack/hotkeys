@@ -4,13 +4,10 @@ import { hotkeyChordFromKeydown } from '../src/_recorder-chord'
 import {
   isModifierKey,
   normalizeHotkey,
-  normalizeHotkeyFromEvent,
-  normalizeHotkeyFromParsed,
-  normalizeRegisterableHotkey,
   parseHotkey,
-  rawHotkeyToParsedHotkey,
+  parseKeyboardEvent,
 } from '../src/parse'
-import type { ParsedHotkey } from '../src/hotkey.types'
+import type { ParsedHotkeyChord } from '../src/hotkey.types'
 
 describe('parseHotkey', () => {
   describe('single keys', () => {
@@ -293,9 +290,9 @@ describe('normalizeKeyName', () => {
   })
 })
 
-describe('rawHotkeyToParsedHotkey', () => {
-  it('should convert minimal RawHotkey (key only)', () => {
-    const result = rawHotkeyToParsedHotkey({ key: 'Escape' })
+describe('parseHotkey', () => {
+  it('should convert minimal RawHotkeyChord (key only)', () => {
+    const result = parseHotkey({ key: 'Escape' })
     expect(result).toEqual({
       key: 'Escape',
       ctrl: false,
@@ -306,8 +303,8 @@ describe('rawHotkeyToParsedHotkey', () => {
     })
   })
 
-  it('should convert RawHotkey with modifiers', () => {
-    const result = rawHotkeyToParsedHotkey({
+  it('should convert RawHotkeyChord with modifiers', () => {
+    const result = parseHotkey({
       key: 'S',
       ctrl: true,
       shift: true,
@@ -323,7 +320,7 @@ describe('rawHotkeyToParsedHotkey', () => {
   })
 
   it('should default optional booleans to false', () => {
-    const result = rawHotkeyToParsedHotkey({ key: 'A', meta: true })
+    const result = parseHotkey({ key: 'A', meta: true })
     expect(result).toEqual({
       key: 'A',
       ctrl: false,
@@ -335,7 +332,7 @@ describe('rawHotkeyToParsedHotkey', () => {
   })
 
   it('should resolve mod to Meta on Mac', () => {
-    const result = rawHotkeyToParsedHotkey({ key: 'S', mod: true }, 'mac')
+    const result = parseHotkey({ key: 'S', mod: true }, 'mac')
     expect(result).toEqual({
       key: 'S',
       ctrl: false,
@@ -347,7 +344,7 @@ describe('rawHotkeyToParsedHotkey', () => {
   })
 
   it('should resolve mod to Control on Windows/Linux', () => {
-    const result = rawHotkeyToParsedHotkey({ key: 'S', mod: true }, 'windows')
+    const result = parseHotkey({ key: 'S', mod: true }, 'windows')
     expect(result).toEqual({
       key: 'S',
       ctrl: true,
@@ -359,13 +356,10 @@ describe('rawHotkeyToParsedHotkey', () => {
   })
 
   it('should resolve mod+shift to Mod+Shift+S', () => {
-    const macResult = rawHotkeyToParsedHotkey(
-      { key: 'S', mod: true, shift: true },
-      'mac',
-    )
+    const macResult = parseHotkey({ key: 'S', mod: true, shift: true }, 'mac')
     expect(macResult.modifiers).toEqual(['Shift', 'Meta'])
 
-    const winResult = rawHotkeyToParsedHotkey(
+    const winResult = parseHotkey(
       { key: 'S', mod: true, shift: true },
       'windows',
     )
@@ -373,9 +367,9 @@ describe('rawHotkeyToParsedHotkey', () => {
   })
 })
 
-describe('normalizeHotkeyFromParsed', () => {
+describe('normalizeHotkey', () => {
   it('should use Mod-first order on Mac (Cmd+Shift+E)', () => {
-    const parsed: ParsedHotkey = {
+    const parsed: ParsedHotkeyChord = {
       key: 'E',
       ctrl: false,
       shift: true,
@@ -383,11 +377,11 @@ describe('normalizeHotkeyFromParsed', () => {
       meta: true,
       modifiers: ['Shift', 'Meta'],
     }
-    expect(normalizeHotkeyFromParsed(parsed, 'mac')).toBe('Mod+Shift+E')
+    expect(normalizeHotkey(parsed, 'mac')).toBe('Mod+Shift+E')
   })
 
   it('should format Mod+Alt+T on Mac', () => {
-    const parsed: ParsedHotkey = {
+    const parsed: ParsedHotkeyChord = {
       key: 'T',
       ctrl: false,
       shift: false,
@@ -395,11 +389,11 @@ describe('normalizeHotkeyFromParsed', () => {
       meta: true,
       modifiers: ['Alt', 'Meta'],
     }
-    expect(normalizeHotkeyFromParsed(parsed, 'mac')).toBe('Mod+Alt+T')
+    expect(normalizeHotkey(parsed, 'mac')).toBe('Mod+Alt+T')
   })
 
   it('should format Mod+Alt+Shift+K on Mac', () => {
-    const parsed: ParsedHotkey = {
+    const parsed: ParsedHotkeyChord = {
       key: 'K',
       ctrl: false,
       shift: true,
@@ -407,11 +401,11 @@ describe('normalizeHotkeyFromParsed', () => {
       meta: true,
       modifiers: ['Alt', 'Shift', 'Meta'],
     }
-    expect(normalizeHotkeyFromParsed(parsed, 'mac')).toBe('Mod+Alt+Shift+K')
+    expect(normalizeHotkey(parsed, 'mac')).toBe('Mod+Alt+Shift+K')
   })
 
   it('should format Mod+E on Mac', () => {
-    const parsed: ParsedHotkey = {
+    const parsed: ParsedHotkeyChord = {
       key: 'E',
       ctrl: false,
       shift: false,
@@ -419,11 +413,11 @@ describe('normalizeHotkeyFromParsed', () => {
       meta: true,
       modifiers: ['Meta'],
     }
-    expect(normalizeHotkeyFromParsed(parsed, 'mac')).toBe('Mod+E')
+    expect(normalizeHotkey(parsed, 'mac')).toBe('Mod+E')
   })
 
   it('should use Mod-first order on Windows (Ctrl+Shift+S)', () => {
-    const parsed: ParsedHotkey = {
+    const parsed: ParsedHotkeyChord = {
       key: 'S',
       ctrl: true,
       shift: true,
@@ -431,11 +425,11 @@ describe('normalizeHotkeyFromParsed', () => {
       meta: false,
       modifiers: ['Control', 'Shift'],
     }
-    expect(normalizeHotkeyFromParsed(parsed, 'windows')).toBe('Mod+Shift+S')
+    expect(normalizeHotkey(parsed, 'windows')).toBe('Mod+Shift+S')
   })
 
   it('should format Mod+Alt+T on Linux', () => {
-    const parsed: ParsedHotkey = {
+    const parsed: ParsedHotkeyChord = {
       key: 'T',
       ctrl: true,
       shift: false,
@@ -443,11 +437,11 @@ describe('normalizeHotkeyFromParsed', () => {
       meta: false,
       modifiers: ['Control', 'Alt'],
     }
-    expect(normalizeHotkeyFromParsed(parsed, 'linux')).toBe('Mod+Alt+T')
+    expect(normalizeHotkey(parsed, 'linux')).toBe('Mod+Alt+T')
   })
 
   it('should not collapse to Mod when both Control and Meta are set', () => {
-    const parsed: ParsedHotkey = {
+    const parsed: ParsedHotkeyChord = {
       key: 'A',
       ctrl: true,
       shift: true,
@@ -455,57 +449,59 @@ describe('normalizeHotkeyFromParsed', () => {
       meta: true,
       modifiers: ['Control', 'Alt', 'Shift', 'Meta'],
     }
-    expect(normalizeHotkeyFromParsed(parsed, 'mac')).toBe(
-      'Control+Alt+Shift+Meta+A',
-    )
+    expect(normalizeHotkey(parsed, 'mac')).toBe('Control+Alt+Shift+Meta+A')
   })
 })
 
-describe('normalizeRegisterableHotkey', () => {
+describe('normalizeHotkey', () => {
   it('should match normalizeHotkey for strings', () => {
-    expect(normalizeRegisterableHotkey('Shift+Meta+E', 'mac')).toBe(
-      'Mod+Shift+E',
-    )
+    expect(normalizeHotkey('Shift+Meta+E', 'mac')).toBe('Mod+Shift+E')
   })
 
-  it('should match normalizeHotkeyFromParsed for RawHotkey objects', () => {
-    expect(
-      normalizeRegisterableHotkey({ key: 'S', mod: true, shift: true }, 'mac'),
-    ).toBe('Mod+Shift+S')
-    expect(
-      normalizeRegisterableHotkey({ key: 's', mod: true }, 'windows'),
-    ).toBe('Mod+S')
+  it('should match normalizeHotkey for RawHotkeyChord objects', () => {
+    expect(normalizeHotkey({ key: 'S', mod: true, shift: true }, 'mac')).toBe(
+      'Mod+Shift+S',
+    )
+    expect(normalizeHotkey({ key: 's', mod: true }, 'windows')).toBe('Mod+S')
   })
 })
 
-describe('normalizeHotkeyFromEvent', () => {
+describe('normalizeHotkey with a keyboard event', () => {
   it('should match hotkeyChordFromKeydown for Cmd+Shift+E on Mac', () => {
     const event = new KeyboardEvent('keydown', {
       key: 'e',
       metaKey: true,
       shiftKey: true,
     })
-    expect(normalizeHotkeyFromEvent(event, 'mac')).toBe('Mod+Shift+E')
+    expect(normalizeHotkey(parseKeyboardEvent(event, 'mac'), 'mac')).toBe(
+      'Mod+Shift+E',
+    )
   })
 
   it('preserves logical modifier-produced glyphs without inferring a US base key', () => {
     expect(
-      normalizeHotkeyFromEvent(
-        new KeyboardEvent('keydown', {
-          key: '!',
-          code: 'Digit1',
-          shiftKey: true,
-        }),
+      normalizeHotkey(
+        parseKeyboardEvent(
+          new KeyboardEvent('keydown', {
+            key: '!',
+            code: 'Digit1',
+            shiftKey: true,
+          }),
+          'windows',
+        ),
         'windows',
       ),
     ).toBe('Shift+!')
     expect(
-      normalizeHotkeyFromEvent(
-        new KeyboardEvent('keydown', {
-          key: '¡',
-          code: 'Digit1',
-          altKey: true,
-        }),
+      normalizeHotkey(
+        parseKeyboardEvent(
+          new KeyboardEvent('keydown', {
+            key: '¡',
+            code: 'Digit1',
+            altKey: true,
+          }),
+          'mac',
+        ),
         'mac',
       ),
     ).toBe('Alt+¡')

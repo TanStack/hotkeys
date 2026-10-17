@@ -10,6 +10,7 @@ import {
   getBindingKind,
   useRegistrationConflicts,
 } from '../_registrations'
+import { groupByScope, scopeStatusDescriptions } from '../_scopes'
 import type {
   AppHotkeyListItem,
   HotkeyRegistrationView,
@@ -128,10 +129,10 @@ function RegistrationRow(props: {
   const targetConflictBadge = () => ({
     style: 'badgeConflict' as const,
     label: '!',
-    tooltip: `Potential overlap: ${targetConflicts().length} other bindings on overlapping targets`,
+    tooltip: `Potential overlap: ${targetConflicts().length} other bindings in the same scope on overlapping targets`,
   })
   const scopeConflictTooltip = () =>
-    `Info: ${scopeConflicts().length} related bindings on separate targets`
+    `Info: ${scopeConflicts().length} related bindings in other scopes or on separate targets`
 
   const enabled = () => props.reg.options.enabled !== false
 
@@ -178,7 +179,7 @@ function RegistrationRow(props: {
           {rowTooltip()}
         </span>
       </Show>
-      <span class={styles().hotkeyLabel}>
+      <span class={styles().hotkeyLabel} data-row-label>
         <span class={styles().hotkeyLabelKeys}>
           <RegistrationKeys reg={liveReg()} matchedSteps={matchedSteps} />
         </span>
@@ -290,7 +291,7 @@ function AppHotkeyRow(props: {
       )}
       onClick={() => props.setSelectedId(id())}
     >
-      <span class={styles().hotkeyLabel}>
+      <span class={styles().hotkeyLabel} data-row-label>
         <span class={styles().hotkeyLabelKeys}>
           {hotkey()
             ? formatForDisplay(hotkey()!, { sequenceSeparator: ' → ' })
@@ -301,6 +302,13 @@ function AppHotkeyRow(props: {
         </span>
       </span>
       <div class={styles().hotkeyBadges}>
+        <Show when={props.item.appHotkey.scope}>
+          {(scope) => (
+            <span class={clsx(styles().badge, styles().badgeTarget)}>
+              {scope()}
+            </span>
+          )}
+        </Show>
         <Show when={props.item.isCustom}>
           <span class={clsx(styles().badge, styles().badgeCustom)}>custom</span>
         </Show>
@@ -344,9 +352,14 @@ export function HotkeyList(props: HotkeyListProps) {
         'options.meta.name',
         'options.meta.description',
         'options.meta.group',
+        'options.scope',
       ],
     })
   })
+
+  const scopeGroups = createMemo(() =>
+    groupByScope(filteredRegistrations(), state.scopes()),
+  )
 
   const filteredAppHotkeys = createMemo(() => {
     const unregistered = state
@@ -360,6 +373,7 @@ export function HotkeyList(props: HotkeyListProps) {
         'appHotkey.meta.name',
         'appHotkey.meta.description',
         'appHotkey.meta.group',
+        'appHotkey.scope',
       ],
     })
   })
@@ -388,19 +402,60 @@ export function HotkeyList(props: HotkeyListProps) {
         Hotkeys ({filteredRegistrations().length})
       </div>
       <div class={styles().hotkeyList}>
-        <For each={filteredRegistrations()}>
-          {(reg) => (
-            <RegistrationRow
-              reg={reg}
-              appHotkey={() =>
-                reg.options.appHotkeyId === undefined
-                  ? undefined
-                  : appHotkeyById().get(reg.options.appHotkeyId)
-              }
-              sequenceProgressNow={state.sequenceProgressNow}
-              selectedId={props.selectedId}
-              setSelectedId={props.setSelectedId}
-            />
+        <For each={scopeGroups()}>
+          {(group) => (
+            <div
+              class={clsx(
+                styles().scopeGroup,
+                (group.status === 'suspended' || group.status === 'inactive') &&
+                  styles().scopeGroupDimmed,
+              )}
+            >
+              <div class={styles().scopeHeader}>
+                <span class={styles().scopeName}>
+                  {group.scope}
+                  <span class={styles().scopeNameSuffix}> scope</span>
+                </span>
+                <span class={styles().scopeCount}>
+                  {group.registrations.length}
+                </span>
+                <span
+                  class={clsx(
+                    styles().badge,
+                    styles().tooltip,
+                    group.status === 'exclusive'
+                      ? styles().badgeExclusive
+                      : group.status === 'allowed'
+                        ? styles().badgeInfo
+                        : group.status === 'active'
+                          ? styles().badgeEnabled
+                          : group.status === 'suspended'
+                            ? styles().badgeSuspended
+                            : styles().badgeDisabled,
+                  )}
+                >
+                  {group.status}
+                  <span class={styles().tooltipText} data-tooltip>
+                    {scopeStatusDescriptions[group.status]}
+                  </span>
+                </span>
+              </div>
+              <For each={group.registrations}>
+                {(reg) => (
+                  <RegistrationRow
+                    reg={reg}
+                    appHotkey={() =>
+                      reg.options.appHotkeyId === undefined
+                        ? undefined
+                        : appHotkeyById().get(reg.options.appHotkeyId)
+                    }
+                    sequenceProgressNow={state.sequenceProgressNow}
+                    selectedId={props.selectedId}
+                    setSelectedId={props.setSelectedId}
+                  />
+                )}
+              </For>
+            </div>
           )}
         </For>
       </div>

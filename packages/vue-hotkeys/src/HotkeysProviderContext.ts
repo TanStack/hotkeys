@@ -1,5 +1,18 @@
-import { inject, onScopeDispose, provide, toValue, watch } from 'vue'
+import {
+  computed,
+  inject,
+  onMounted,
+  onScopeDispose,
+  provide,
+  toValue,
+  watch,
+} from 'vue'
 import { AppHotkeysStore, publishAppHotkeysStore } from '@tanstack/hotkeys'
+import {
+  activateHotkeysProviderScope,
+  getHotkeysProviderScopeKey,
+  mergeHotkeysProviderDefaults,
+} from '@tanstack/hotkeys/adapter'
 import type { InjectionKey, MaybeRefOrGetter } from 'vue'
 import type {
   AppHotkeys,
@@ -7,6 +20,7 @@ import type {
   HotkeyChordRecorderOptions,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
+import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
 import type { UseHotkeyCommonOptions } from './useHotkey'
 
 export interface HotkeysProviderOptions {
@@ -26,7 +40,10 @@ export interface HotkeysProviderOptions {
 
 interface HotkeysContextValue {
   readonly appHotkeysStore: AppHotkeysStore | null
+  /** Merged with every ancestor's defaults, including `hotkey.scope`. */
   readonly defaultOptions: HotkeysProviderOptions
+  /** Whether this context and every ancestor are enabled. */
+  readonly enabled: boolean
 }
 
 const HotkeysContext: InjectionKey<HotkeysContextValue> =
@@ -36,7 +53,14 @@ const DEFAULT_OPTIONS: HotkeysProviderOptions = {}
 
 /** Options for `provideHotkeysContext`. */
 export interface ProvideHotkeysContextOptions {
+  /** Merged with the parent context's defaults. */
   defaultOptions?: MaybeRefOrGetter<HotkeysProviderOptions | undefined>
+  /** See `HotkeysProviderScopeProps['scope']`. */
+  scope?: MaybeRefOrGetter<HotkeysProviderScopeProps['scope']>
+  /** See `HotkeysProviderScopeProps['exclusive']`. */
+  exclusive?: MaybeRefOrGetter<HotkeysProviderScopeProps['exclusive']>
+  /** See `HotkeysProviderScopeProps['enabled']`. */
+  enabled?: MaybeRefOrGetter<HotkeysProviderScopeProps['enabled']>
   /**
    * Every app hotkey, from `defineAppHotkeys`. Read when the context is
    * provided; later changes update the declarations.
@@ -53,8 +77,13 @@ export interface ProvideHotkeysContextOptions {
 
 /**
  * Provides default options, app hotkeys, and the user's custom hotkeys to
- * descendants. `HotkeysProvider` calls this; call it directly in a root
- * component's setup instead of rendering the provider.
+ * descendants. `HotkeysProvider` calls this; call it directly in a component's
+ * setup instead of rendering the provider.
+ *
+ * Nest contexts to create hotkey scopes. A nested context inherits app
+ * hotkeys and merges default options. With `scope`, its hotkeys fire only
+ * while the component is mounted and enabled; with `exclusive`, only its
+ * hotkeys fire.
  *
  * @example
  * ```ts
@@ -69,6 +98,7 @@ export interface ProvideHotkeysContextOptions {
 export function provideHotkeysContext(
   options: ProvideHotkeysContextOptions = {},
 ) {
+  const parent = inject(HotkeysContext, null)
   const appHotkeys = toValue(options.appHotkeys)
   const store = appHotkeys
     ? new AppHotkeysStore(appHotkeys, {
@@ -92,10 +122,46 @@ export function provideHotkeysContext(
     }
   }
 
+  const active = computed(
+    () => (parent?.enabled ?? true) && toValue(options.enabled) !== false,
+  )
+  const defaultOptions = computed(() =>
+    mergeHotkeysProviderDefaults(
+      parent?.defaultOptions,
+      toValue(options.defaultOptions),
+      toValue(options.scope),
+    ),
+  )
+  // Compared by value, so a new `exclusive` object does not reactivate the
+  // scope and lose its precedence.
+  const scopeKey = computed(() =>
+    getHotkeysProviderScopeKey({
+      scope: toValue(options.scope),
+      exclusive: toValue(options.exclusive),
+      active: active.value,
+      parent: parent?.defaultOptions.hotkey?.scope,
+    }),
+  )
+
+  // Activate the scope while mounted and enabled. Activating during setup
+  // would update registration subscribers in the middle of a render.
+  onMounted(() => {
+    watch(
+      scopeKey,
+      (key, _, onCleanup) => {
+        if (key) onCleanup(activateHotkeysProviderScope(key))
+      },
+      { immediate: true },
+    )
+  })
+
   const contextValue: HotkeysContextValue = {
-    appHotkeysStore: store,
+    appHotkeysStore: store ?? parent?.appHotkeysStore ?? null,
     get defaultOptions() {
-      return toValue(options.defaultOptions) ?? DEFAULT_OPTIONS
+      return defaultOptions.value
+    },
+    get enabled() {
+      return active.value
     },
   }
 

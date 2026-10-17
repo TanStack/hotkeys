@@ -19,6 +19,6 @@ typed by `Register`: each declaration with the user's custom hotkey applied.
 ## Example
 
 ```tsx
-const hotkeys = useAppHotkeys()
-createHotkey(() => hotkeys()['doc.save'], () => save())
+const appHotkeys = useAppHotkeys()
+createHotkey(() => appHotkeys()['doc.save'], () => save())
 ```

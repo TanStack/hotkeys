@@ -12,7 +12,7 @@ type UseHotkeyDefinition =
 }
   | {
   callback: HotkeyCallback;
-  hotkey: MaybeRefOrGetter<HotkeySequence>;
+  hotkey: MaybeRefOrGetter<RegisterableHotkeySequence>;
   options?: MaybeRefOrGetter<UseHotkeySequenceOptions>;
 }
   | {
@@ -59,7 +59,7 @@ The function to call when the hotkey is pressed
 hotkey: MaybeRefOrGetter<RegisterableHotkeyChord>;
 ```
 
-A chord string such as `'Mod+S'`, or a RawHotkey object
+A chord string such as `'Mod+S'`, or a chord object
 
 #### options?
 
@@ -76,7 +76,7 @@ Per-hotkey options (merged on top of commonOptions)
 ```ts
 {
   callback: HotkeyCallback;
-  hotkey: MaybeRefOrGetter<HotkeySequence>;
+  hotkey: MaybeRefOrGetter<RegisterableHotkeySequence>;
   options?: MaybeRefOrGetter<UseHotkeySequenceOptions>;
 }
 ```
@@ -90,10 +90,10 @@ callback: HotkeyCallback;
 #### hotkey
 
 ```ts
-hotkey: MaybeRefOrGetter<HotkeySequence>;
+hotkey: MaybeRefOrGetter<RegisterableHotkeySequence>;
 ```
 
-A sequence such as `['G', 'G']`
+A sequence such as `['G', 'G']`, with each step a string or an object
 
 #### options?
 

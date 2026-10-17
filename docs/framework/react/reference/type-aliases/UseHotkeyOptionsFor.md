@@ -7,7 +7,7 @@ title: UseHotkeyOptionsFor
 type UseHotkeyOptionsFor<T> = AdapterOptionsFor<T, UseHotkeyTarget>;
 ```
 
-Defined in: [useHotkey.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L33)
+Defined in: [useHotkey.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L34)
 
 The options type for a hotkey: chord options for chords, sequence options for sequences.
 

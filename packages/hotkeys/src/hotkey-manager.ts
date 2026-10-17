@@ -10,12 +10,12 @@ import {
   isHotkeySequence,
   isModifierKey,
   parseHotkey,
-  rawHotkeyToParsedHotkey,
   simplifyHotkey,
 } from './parse'
-import { matchKeyboardEvent, parsedHotkeysEqual } from './_match'
+import { matchKeyboardEvent, parsedChordsEqual } from './_match'
 import { keysEqual, normalizeKeyboardEvent } from './_keyboard-event'
 import {
+  GLOBAL_SCOPE,
   defaultHotkeyOptions,
   getDefaultIgnoreInputs,
   handleConflict,
@@ -33,12 +33,14 @@ import type {
   Hotkey,
   HotkeyCallback,
   HotkeyCallbackContext,
+  HotkeyCallbackContextFor,
   HotkeyChord,
   HotkeyMeta,
   HotkeySequence,
-  ParsedHotkey,
+  ParsedHotkeyChord,
   RegisterableHotkey,
   RegisterableHotkeyChord,
+  RegisterableHotkeySequence,
 } from './hotkey.types'
 
 export type { ConflictBehavior }
@@ -81,14 +83,30 @@ export interface HotkeyOptions {
   ignoreInputs?: boolean | 'auto'
   /** The target platform for resolving 'Mod' */
   platform?: 'mac' | 'windows' | 'linux'
-  /** Prevent the default browser action when the hotkey matches. Defaults to true */
+  /**
+   * Prevent the default browser action when the hotkey matches. For a
+   * sequence, every step that advances it does. Defaults to true
+   */
   preventDefault?: boolean
-  /** Stop event propagation when the hotkey matches. Defaults to true */
+  /**
+   * Stop event propagation when the hotkey matches. For a sequence, only the
+   * last step does, so earlier steps reach other listeners. Defaults to true
+   */
   stopPropagation?: boolean
   /** The DOM element to attach the event listener to. Defaults to document. */
   target?: Target | null
   /** Optional metadata (name, description, custom fields via declaration merging) */
   meta?: HotkeyMeta
+  /**
+   * Scope this hotkey belongs to. Defaults to `'global'`, which is always
+   * active. Other scopes are active while activated with
+   * `HotkeyManager.activateScope`, which framework providers do while
+   * mounted. While an exclusive scope is active, only its hotkeys, those of
+   * scopes nested in it, and those of scopes it allows fire.
+   * When active scopes share a hotkey on the same target, the most recently
+   * activated scope handles it.
+   */
+  scope?: string
   /** Id of the app hotkey this registration implements. Adapters set this when registering an app hotkey from `defineAppHotkeys`. */
   appHotkeyId?: string
 }
@@ -113,7 +131,7 @@ export type HotkeyOptionsFor<T extends RegisterableHotkey> = [T] extends [never]
   ? HotkeyChordOptions & HotkeySequenceOptions
   : T extends readonly [RegisterableHotkeyChord]
     ? HotkeyChordOptions
-    : T extends HotkeySequence
+    : T extends RegisterableHotkeySequence
       ? HotkeySequenceOptions
       : HotkeyChordOptions
 
@@ -136,7 +154,7 @@ interface RegistrationBase<TOptions extends HotkeyOptions> {
 export interface HotkeyChordRegistration extends RegistrationBase<HotkeyChordOptions> {
   kind: 'chord'
   hotkey: HotkeyChord
-  parsedHotkey: ParsedHotkey
+  parsedChord: ParsedHotkeyChord
   /** The concrete key/code that activated a requireReset registration. */
   activeMatch?: { key: string; code: string }
 }
@@ -145,7 +163,7 @@ export interface HotkeyChordRegistration extends RegistrationBase<HotkeyChordOpt
 export interface HotkeySequenceRegistration extends RegistrationBase<HotkeySequenceOptions> {
   kind: 'sequence'
   hotkey: HotkeySequence
-  parsedSequence: Array<ParsedHotkey>
+  parsedSequence: Array<ParsedHotkeyChord>
   /** Steps matched in the current attempt */
   currentIndex: number
   /** `Date.now()` when the last step in the current attempt matched */
@@ -167,7 +185,7 @@ interface RegistrationViewBase {
 export interface HotkeyChordRegistrationView extends RegistrationViewBase {
   kind: 'chord'
   hotkey: HotkeyChord
-  parsedHotkey: ParsedHotkey
+  parsedChord: ParsedHotkeyChord
   options: HotkeyChordOptions
 }
 
@@ -175,7 +193,7 @@ export interface HotkeyChordRegistrationView extends RegistrationViewBase {
 export interface HotkeySequenceRegistrationView extends RegistrationViewBase {
   kind: 'sequence'
   hotkey: HotkeySequence
-  parsedSequence: Array<ParsedHotkey>
+  parsedSequence: Array<ParsedHotkeyChord>
   options: HotkeySequenceOptions
   /** Steps matched in the current attempt (0 when idle or just completed). */
   matchedStepCount: number
@@ -205,7 +223,7 @@ export function toHotkeyRegistrationView(
       ...base,
       kind: 'chord',
       hotkey: reg.hotkey,
-      parsedHotkey: reg.parsedHotkey,
+      parsedChord: reg.parsedChord,
       options: reg.options,
     }
   }
@@ -266,6 +284,16 @@ export interface HotkeyRegistrationHandle<
 
 let registrationIdCounter = 0
 
+/** The string a chord registers as: strings as written, objects formatted from their parsed form. */
+function chordString(
+  chord: RegisterableHotkeyChord,
+  parsed: ParsedHotkeyChord,
+): HotkeyChord {
+  return (
+    typeof chord === 'string' ? chord : formatHotkey(parsed)
+  ) as HotkeyChord
+}
+
 /**
  * Generates a unique ID for hotkey registrations.
  */
@@ -289,9 +317,9 @@ function optionsForKind(
 /** Steps with Mod already resolved for the registration's platform. */
 function resolvedSteps(
   registration: HotkeyRegistration,
-): ReadonlyArray<ParsedHotkey> {
+): ReadonlyArray<ParsedHotkeyChord> {
   return registration.kind === 'chord'
-    ? [registration.parsedHotkey]
+    ? [registration.parsedChord]
     : registration.parsedSequence
 }
 
@@ -304,17 +332,63 @@ function ignoresInputs(registration: HotkeyRegistration): boolean {
 }
 
 function sameResolvedSteps(
-  left: ReadonlyArray<ParsedHotkey>,
-  right: ReadonlyArray<ParsedHotkey>,
+  left: ReadonlyArray<ParsedHotkeyChord>,
+  right: ReadonlyArray<ParsedHotkeyChord>,
 ): boolean {
   return (
     left.length === right.length &&
-    left.every((step, index) => parsedHotkeysEqual(step, right[index]!))
+    left.every((step, index) => parsedChordsEqual(step, right[index]!))
   )
 }
 
 function formatForMessage(hotkey: Hotkey): string {
   return isHotkeySequence(hotkey) ? hotkey.join(' ') : hotkey
+}
+
+/** Active hotkey scopes, published on `HotkeyManager.scopes`. */
+export interface HotkeyScopesState {
+  /**
+   * Activated scopes, lowest precedence first. `'global'` is always active
+   * and not listed.
+   */
+  active: ReadonlyArray<string>
+  /** The exclusive scope that owns the keyboard, or `null` when none is active. */
+  exclusive: string | null
+  /**
+   * Scopes the exclusive scope allows that are active, possibly including
+   * `'global'`. Empty when no scope is exclusive.
+   */
+  allowed: ReadonlyArray<string>
+  /**
+   * Scopes that are active but cannot fire because another scope is
+   * exclusive, possibly including `'global'`.
+   */
+  suspended: ReadonlyArray<string>
+}
+
+/** Options for `HotkeyManager.activateScope`. */
+export interface ActivateHotkeyScopeOptions {
+  /**
+   * Suspend every other scope, including `'global'`, until this activation is
+   * released. Scopes nested in this one stay active. Pass `{ allow }` to keep
+   * other scopes active too, such as `{ allow: ['global'] }`. An allowed scope
+   * still has to be activated, except `'global'`.
+   */
+  exclusive?: boolean | { allow: ReadonlyArray<string> }
+  /**
+   * The scope this one is nested in. A nested scope takes precedence over its
+   * ancestors even when it was activated first, as nested providers are when
+   * their effects run child-first. Defaults to `'global'`.
+   */
+  parent?: string
+}
+
+interface ScopeActivation {
+  scope: string
+  parent: string
+  /** Scopes allowed while exclusive, or `null` when not exclusive. */
+  allow: ReadonlyArray<string> | null
+  order: number
 }
 
 /**
@@ -372,7 +446,20 @@ export class HotkeyManager {
    */
   readonly appHotkeys: Store<AppHotkeysStore | null> =
     new Store<AppHotkeysStore | null>(null)
+  /** Active scopes. Subscribe to show which hotkeys are suspended. */
+  readonly scopes: Store<HotkeyScopesState> = new Store<HotkeyScopesState>({
+    active: [],
+    exclusive: null,
+    allowed: [],
+    suspended: [],
+  })
   #platform: 'mac' | 'windows' | 'linux'
+  #scopeActivations = new Set<ScopeActivation>()
+  #scopeActivationCount = 0
+  /** Active scopes, lowest precedence first, derived from activations. */
+  #scopeOrder: Array<string> = []
+  /** Scopes that can fire while a scope is exclusive, or `null` when none is. */
+  #liveScopes: Set<string> | null = null
   #listeners = new TargetListeners((...args) =>
     this.#processTargetEvent(...args),
   )
@@ -380,6 +467,8 @@ export class HotkeyManager {
   #sequenceOwned = new WeakMap<KeyboardEvent, boolean>()
   /** Physical keys whose keydown a sequence owned, so their repeats and keyup are owned too. */
   #sequenceOwnedKeys = new Set<string>()
+  /** Timers that clear a sequence's progress once its timeout passes. */
+  #sequenceResetTimers = new Map<string, ReturnType<typeof setTimeout>>()
 
   private constructor() {
     this.#platform = detectPlatform()
@@ -400,6 +489,163 @@ export class HotkeyManager {
     managerRef.current = null
   }
 
+  /**
+   * Activates a scope until the returned function is called. Activations are
+   * counted, so a scope stays active until every activation is released.
+   * Framework providers call this while mounted.
+   *
+   * When active scopes share a hotkey, a nested scope takes precedence over
+   * its ancestors, and otherwise the most recently activated scope wins. The
+   * same order picks the exclusive scope when several are active, and only
+   * that scope's `allow` list applies.
+   *
+   * @example
+   * ```ts
+   * const release = manager.activateScope('dialog', { exclusive: true })
+   * // Only hotkeys with scope 'dialog', or scopes nested in it, fire now.
+   * release()
+   *
+   * manager.activateScope('dialog', { exclusive: { allow: ['global'] } })
+   * // Hotkeys with scope 'global' fire too.
+   * ```
+   */
+  activateScope(
+    scope: string,
+    options: ActivateHotkeyScopeOptions = {},
+  ): () => void {
+    if (scope === GLOBAL_SCOPE) return () => {}
+    const { exclusive } = options
+    const allow = exclusive ? (exclusive === true ? [] : exclusive.allow) : null
+    if (
+      allow &&
+      [...this.#scopeActivations].some(
+        (other) => other.allow && other.scope === scope,
+      )
+    ) {
+      console.warn(
+        `Exclusive hotkey scope '${scope}' is already active. Hotkeys from both activations will fire; give each a unique scope.`,
+      )
+    }
+    const activation: ScopeActivation = {
+      scope,
+      parent: options.parent ?? GLOBAL_SCOPE,
+      allow,
+      order: ++this.#scopeActivationCount,
+    }
+    this.#scopeActivations.add(activation)
+    this.#updateScopes()
+    return () => {
+      if (this.#scopeActivations.delete(activation)) this.#updateScopes()
+    }
+  }
+
+  /**
+   * Whether hotkeys in a scope can fire: the scope is `'global'` or
+   * activated, and either no scope is exclusive or this scope is the
+   * exclusive one, nested in it, or allowed by it.
+   */
+  isScopeActive(scope: string = GLOBAL_SCOPE): boolean {
+    if (this.#liveScopes) return this.#liveScopes.has(scope)
+    return scope === GLOBAL_SCOPE || this.#scopeOrder.includes(scope)
+  }
+
+  /** Higher for scopes with higher precedence; `'global'` is 0. */
+  #scopeRank(scope: string = GLOBAL_SCOPE): number {
+    return this.#scopeOrder.indexOf(scope) + 1
+  }
+
+  /** Recomputes scope precedence and publishes it. */
+  #updateScopes(): void {
+    const parents = new Map<string, string>()
+    const latest = new Map<string, number>()
+    for (const activation of this.#scopeActivations) {
+      parents.set(activation.scope, activation.parent)
+      latest.set(
+        activation.scope,
+        Math.max(latest.get(activation.scope) ?? 0, activation.order),
+      )
+    }
+    const depth = (scope: string): number => {
+      let result = 0
+      const seen = new Set<string>()
+      for (
+        let current = parents.get(scope);
+        current !== undefined && !seen.has(current);
+        current = parents.get(current)
+      ) {
+        seen.add(current)
+        result++
+      }
+      return result
+    }
+    // A scope counts as no newer than its descendants, so a nested scope
+    // outranks its ancestors even when its effect ran first. Scopes in
+    // separate branches keep their activation order.
+    const since = new Map<string, number>()
+    for (const [scope, order] of latest) {
+      const seen = new Set<string>()
+      for (
+        let current: string | undefined = scope;
+        current !== undefined && !seen.has(current);
+        current = parents.get(current)
+      ) {
+        seen.add(current)
+        const own = latest.get(current)
+        if (own !== undefined) {
+          since.set(current, Math.min(since.get(current) ?? own, order))
+        }
+      }
+    }
+    const compare = (a: string, b: string) =>
+      since.get(a)! - since.get(b)! ||
+      depth(a) - depth(b) ||
+      latest.get(a)! - latest.get(b)!
+    this.#scopeOrder = [...latest.keys()].sort(compare)
+    const exclusive = [...this.#scopeActivations]
+      .filter((activation) => activation.allow)
+      .sort((a, b) => compare(a.scope, b.scope) || a.order - b.order)
+      .pop()
+    const activated = [GLOBAL_SCOPE, ...this.#scopeOrder]
+    let allowed: Array<string> = []
+    this.#liveScopes = null
+    if (exclusive?.allow) {
+      const { allow } = exclusive
+      const isNested = (scope: string) => {
+        const seen = new Set<string>()
+        for (
+          let current: string | undefined = scope;
+          current !== undefined && !seen.has(current);
+          current = parents.get(current)
+        ) {
+          if (current === exclusive.scope) return true
+          seen.add(current)
+        }
+        return false
+      }
+      allowed = activated.filter(
+        (scope) => !isNested(scope) && allow.includes(scope),
+      )
+      this.#liveScopes = new Set([...activated.filter(isNested), ...allowed])
+    }
+    const live = this.#liveScopes
+    this.scopes.setState(() => ({
+      active: this.#scopeOrder,
+      exclusive: exclusive?.scope ?? null,
+      allowed,
+      suspended: live ? activated.filter((scope) => !live.has(scope)) : [],
+    }))
+    // Registration subscribers, such as cheat sheets, show suspended hotkeys.
+    this.#notify()
+  }
+
+  /** Whether a registration can fire now: enabled, in an active scope. */
+  #isLive(registration: HotkeyRegistration): boolean {
+    return (
+      registration.options.enabled !== false &&
+      this.isScopeActive(registration.options.scope)
+    )
+  }
+
   /** Notifies subscribers after in-place updates such as counts and sequence progress. */
   #notify(): void {
     this.registrations.setState((prev) => new Map(prev))
@@ -408,14 +654,14 @@ export class HotkeyManager {
   /**
    * Registers a hotkey handler and returns a handle for updating the registration.
    *
-   * Pass a chord (`'Mod+S'` or a RawHotkey object) or a sequence (`['G', 'G']`).
+   * Pass a chord (`'Mod+S'` or a RawHotkeyChord object) or a sequence (`['G', 'G']`).
    * A one-step sequence registers as its chord. Chords accept `requireReset`;
    * sequences accept `timeout`.
    *
    * The returned handle allows updating the callback and options without
    * re-registering, which is useful for avoiding stale closures in React.
    *
-   * @param hotkey - A chord string, RawHotkey object, or sequence
+   * @param hotkey - A chord string, RawHotkeyChord object, or sequence
    * @param callback - The function to call when the hotkey is pressed
    * @param options - Options for the hotkey behavior
    * @returns A handle for managing the registration
@@ -434,9 +680,9 @@ export class HotkeyManager {
    * handle.unregister()
    * ```
    */
-  register<T extends RegisterableHotkey>(
+  register<const T extends RegisterableHotkey>(
     hotkey: T,
-    callback: HotkeyCallback,
+    callback: HotkeyCallback<HotkeyCallbackContextFor<T>>,
     options?: HotkeyOptionsFor<T>,
   ): HotkeyRegistrationHandle<HotkeyOptionsFor<T>>
   register(
@@ -494,26 +740,24 @@ export class HotkeyManager {
     }
     let registration: HotkeyRegistration
     if (sequence) {
+      const parsedSequence = parseHotkey(hotkey, platform)
       registration = {
         ...common,
         kind: 'sequence',
-        hotkey,
-        parsedSequence: hotkey.map((step) => parseHotkey(step, platform)),
+        hotkey: hotkey.map((step, index) =>
+          chordString(step, parsedSequence[index]!),
+        ),
+        parsedSequence,
         currentIndex: 0,
         lastKeyTime: 0,
       }
     } else {
-      const parsedHotkey =
-        typeof hotkey === 'string'
-          ? parseHotkey(hotkey, platform)
-          : rawHotkeyToParsedHotkey(hotkey, platform)
+      const parsedChord = parseHotkey(hotkey, platform)
       registration = {
         ...common,
         kind: 'chord',
-        hotkey: (typeof hotkey === 'string'
-          ? hotkey
-          : formatHotkey(parsedHotkey)) as HotkeyChord,
-        parsedHotkey,
+        hotkey: chordString(hotkey, parsedChord),
+        parsedChord,
       }
     }
 
@@ -591,6 +835,45 @@ export class HotkeyManager {
     })
 
     this.#listeners.remove(target, !!registration.options.capture, id)
+    this.#clearSequenceReset(id)
+  }
+
+  /**
+   * Clears a sequence's progress, and notifies subscribers, once its timeout
+   * passes without another step. Key presses check the timeout too, so this
+   * only keeps views such as `matchedStepCount` current.
+   */
+  #scheduleSequenceReset(id: string, delay: number): void {
+    this.#clearSequenceReset(id)
+    this.#sequenceResetTimers.set(
+      id,
+      setTimeout(() => {
+        this.#sequenceResetTimers.delete(id)
+        const registration = this.registrations.state.get(id)
+        if (
+          registration?.kind !== 'sequence' ||
+          registration.currentIndex === 0
+        ) {
+          return
+        }
+        const timeout = registration.options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT
+        const remaining = registration.lastKeyTime + timeout - Date.now()
+        if (remaining >= 0) {
+          this.#scheduleSequenceReset(id, remaining + 1)
+          return
+        }
+        registration.currentIndex = 0
+        registration.lastKeyTime = 0
+        this.#notify()
+      }, delay),
+    )
+  }
+
+  #clearSequenceReset(id: string): void {
+    const timer = this.#sequenceResetTimers.get(id)
+    if (timer === undefined) return
+    clearTimeout(timer)
+    this.#sequenceResetTimers.delete(id)
   }
 
   /** Registrations of one kind in the listener phase, in registration order. */
@@ -686,7 +969,7 @@ export class HotkeyManager {
     // Exact logical/explicit-code matches outrank compatibility fallbacks.
     for (const registration of registrations) {
       if (
-        !registration.options.enabled ||
+        !this.#isLive(registration) ||
         registration.options.eventType !== eventType ||
         !isEventForTarget(event, target) ||
         (ignoresInputs(registration) &&
@@ -696,7 +979,7 @@ export class HotkeyManager {
       }
       const result = matchKeyboardEvent(
         event,
-        registration.parsedHotkey,
+        registration.parsedChord,
         registration.options.platform,
       )
       if (result.matched) {
@@ -705,9 +988,24 @@ export class HotkeyManager {
       }
     }
 
+    // Among the best matches, the most recently activated scope handles the key.
+    let bestRank = -1
+    for (const registration of registrations) {
+      if (matches.get(registration.id)?.score === bestScore) {
+        bestRank = Math.max(
+          bestRank,
+          this.#scopeRank(registration.options.scope),
+        )
+      }
+    }
+
     for (const snapshot of registrations) {
       const match = matches.get(snapshot.id)
-      if (!match?.matched || match.score !== bestScore) {
+      if (
+        !match?.matched ||
+        match.score !== bestScore ||
+        this.#scopeRank(snapshot.options.scope) !== bestRank
+      ) {
         continue
       }
       // An earlier callback may have unregistered or moved this registration.
@@ -774,7 +1072,7 @@ export class HotkeyManager {
       if (
         registration.kind !== 'sequence' ||
         registration.currentIndex === 0 ||
-        !registration.options.enabled ||
+        !this.#isLive(registration) ||
         registration.options.eventType !== eventType ||
         now - registration.lastKeyTime >
           (registration.options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT)
@@ -818,6 +1116,7 @@ export class HotkeyManager {
       for (const registration of registrations) {
         if (registration.currentIndex > 0) {
           registration.currentIndex = 0
+          this.#clearSequenceReset(registration.id)
           changed = true
         }
       }
@@ -844,7 +1143,7 @@ export class HotkeyManager {
     for (const registration of registrations) {
       if (
         !isEventForTarget(event, target) ||
-        !registration.options.enabled ||
+        !this.#isLive(registration) ||
         (ignoresInputs(registration) &&
           shouldIgnoreInputEvent(event, target, registration.target)) ||
         registration.options.eventType !== eventType
@@ -899,11 +1198,25 @@ export class HotkeyManager {
           this.#consume(registration, event)
           registration.currentIndex = 0
           completed.push(registration)
+        } else if (registration.options.preventDefault) {
+          // Earlier steps keep the browser's action too, such as Ctrl+K in
+          // Ctrl+K then Ctrl+C. Propagation stops only on the last step.
+          event.preventDefault()
         }
       } else if (registration.currentIndex > 0) {
         // A mismatched or weaker candidate cannot carry stale progress forward.
         registration.currentIndex = 0
         changed = true
+      }
+    }
+
+    for (const registration of registrations) {
+      if (!candidates.has(registration.id)) continue
+      if (registration.currentIndex > 0) {
+        const timeout = registration.options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT
+        this.#scheduleSequenceReset(registration.id, timeout + 1)
+      } else {
+        this.#clearSequenceReset(registration.id)
       }
     }
 
@@ -942,20 +1255,22 @@ export class HotkeyManager {
   }
 
   #callbackContext(registration: HotkeyRegistration): HotkeyCallbackContext {
-    return {
-      hotkey: registration.hotkey,
-      parsedHotkey:
-        registration.kind === 'chord'
-          ? registration.parsedHotkey
-          : registration.parsedSequence[
-              registration.parsedSequence.length - 1
-            ]!,
-    }
+    return registration.kind === 'chord'
+      ? {
+          kind: 'chord',
+          hotkey: registration.hotkey,
+          parsedChord: registration.parsedChord,
+        }
+      : {
+          kind: 'sequence',
+          hotkey: registration.hotkey,
+          parsedSequence: registration.parsedSequence,
+        }
   }
 
   /**
-   * Finds an existing registration on the same target whose steps resolve to
-   * the same identity. Each side keeps its own platform, so `Mod+S` on macOS
+   * Finds an existing registration on the same target and scope whose steps
+   * resolve to the same identity. Each side keeps its own platform, so `Mod+S` on macOS
    * and `Mod+S` on Windows are different bindings.
    */
   #findConflictingRegistration(
@@ -965,6 +1280,7 @@ export class HotkeyManager {
     for (const registration of this.registrations.state.values()) {
       if (
         registration.target === candidate.target &&
+        registration.options.scope === candidate.options.scope &&
         sameResolvedSteps(resolvedSteps(registration), steps)
       ) {
         return registration
@@ -980,7 +1296,7 @@ export class HotkeyManager {
     registration: HotkeyChordRegistration,
     event: KeyboardEvent,
   ): boolean {
-    const parsed = registration.parsedHotkey
+    const parsed = registration.parsedChord
     const releasedKey = normalizeKeyName(event.key)
 
     if (
@@ -1010,6 +1326,8 @@ export class HotkeyManager {
         registration.lastKeyTime = 0
       }
     }
+    for (const timer of this.#sequenceResetTimers.values()) clearTimeout(timer)
+    this.#sequenceResetTimers.clear()
     this.#notify()
   }
 
@@ -1028,7 +1346,10 @@ export class HotkeyManager {
     }
 
     const context = this.#callbackContext(registration)
-    const parsed = context.parsedHotkey
+    const parsed =
+      registration.kind === 'chord'
+        ? registration.parsedChord
+        : registration.parsedSequence[registration.parsedSequence.length - 1]!
     const syntheticEvent = new KeyboardEvent(
       registration.options.eventType ?? 'keydown',
       {
@@ -1082,6 +1403,8 @@ export class HotkeyManager {
    * Destroys the manager and removes all listeners.
    */
   destroy(): void {
+    for (const timer of this.#sequenceResetTimers.values()) clearTimeout(timer)
+    this.#sequenceResetTimers.clear()
     this.#listeners.destroy()
     this.registrations.setState(() => new Map())
     this.appHotkeys.setState(() => null)

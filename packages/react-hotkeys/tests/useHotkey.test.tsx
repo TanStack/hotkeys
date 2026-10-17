@@ -1,8 +1,23 @@
 // @vitest-environment happy-dom
-import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
+import {
+  describe,
+  expect,
+  expectTypeOf,
+  it,
+  vi,
+  beforeEach,
+  afterEach,
+} from 'vitest'
 import { renderHook, act } from '@testing-library/react'
 import { HotkeyManager } from '@tanstack/hotkeys'
 import { useHotkey } from '../src/useHotkey'
+import { useHotkeys } from '../src/useHotkeys'
+import type {
+  Hotkey,
+  HotkeyCallbackContext,
+  HotkeyChordCallbackContext,
+  HotkeySequenceCallbackContext,
+} from '@tanstack/hotkeys'
 import { useState, useRef } from 'react'
 
 describe('useHotkey', () => {
@@ -277,5 +292,64 @@ describe('useHotkey', () => {
     }
     expect(sequence).toHaveBeenCalledOnce()
     expect(chord).not.toHaveBeenCalled()
+  })
+})
+
+describe('callback context types', () => {
+  it('narrows the context to the kind of hotkey passed to useHotkey', () => {
+    const loadHotkey = (): Hotkey => 'G'
+    renderHook(() => {
+      useHotkey('Mod+S', (_event, context) => {
+        expectTypeOf(context).toEqualTypeOf<HotkeyChordCallbackContext>()
+      })
+      useHotkey({ key: 'S', mod: true }, (_event, { parsedChord }) => {
+        expectTypeOf(parsedChord.modifiers).toBeArray()
+      })
+      useHotkey(['G', 'H'], (_event, context) => {
+        expectTypeOf(context).toEqualTypeOf<HotkeySequenceCallbackContext>()
+      })
+      useHotkey(['Escape'], (_event, context) => {
+        expectTypeOf(context).toEqualTypeOf<HotkeyChordCallbackContext>()
+      })
+      useHotkey(
+        [{ key: 'K', mod: true }, 'C'],
+        (_event, context) => {
+          expectTypeOf(context).toEqualTypeOf<HotkeySequenceCallbackContext>()
+        },
+        { timeout: 500 },
+      )
+      useHotkey(loadHotkey(), (_event, context) => {
+        expectTypeOf(context).toEqualTypeOf<HotkeyCallbackContext>()
+      })
+      useHotkeys([
+        {
+          hotkey: 'Mod+S',
+          callback: (_event, context) => {
+            expectTypeOf(context).toEqualTypeOf<HotkeyCallbackContext>()
+          },
+        },
+      ])
+    })
+  })
+})
+
+describe('sequence steps written as objects', () => {
+  it('registers object steps in normalized form', () => {
+    const callback = vi.fn()
+    renderHook(() =>
+      useHotkey([{ key: 'K', mod: true }, 'C'], callback, { platform: 'mac' }),
+    )
+    const [registration] =
+      HotkeyManager.getInstance().registrations.state.values()
+    expect(registration).toMatchObject({
+      kind: 'sequence',
+      hotkey: ['Mod+K', 'C'],
+    })
+    for (const init of [{ key: 'k', metaKey: true }, { key: 'c' }]) {
+      document.dispatchEvent(
+        new KeyboardEvent('keydown', { ...init, bubbles: true }),
+      )
+    }
+    expect(callback).toHaveBeenCalledOnce()
   })
 })

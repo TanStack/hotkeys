@@ -19,9 +19,11 @@ export function useRegistrationConflicts(
       eventType: reg.options.eventType,
       excludeIds: [reg.id],
     }
-    const overlapping = findHotkeyConflicts(binding, options).map(
-      (c) => c.registration,
-    )
+    // Registrations in other scopes never fire together, so they are only related.
+    const scope = reg.options.scope ?? 'global'
+    const overlapping = findHotkeyConflicts(binding, options)
+      .map((c) => c.registration)
+      .filter((r) => (r.options.scope ?? 'global') === scope)
     const ids = new Set(overlapping.map((r) => r.id))
     const separate = findHotkeyConflicts(binding, { ...options, scope: 'all' })
       .map((c) => c.registration)
@@ -46,7 +48,7 @@ export function getBindingKind(
   reg: HotkeyConflict['registration'],
 ): 'Key' | 'Code' | 'Mixed' {
   const parsed =
-    reg.kind === 'sequence' ? reg.parsedSequence : [reg.parsedHotkey]
+    reg.kind === 'sequence' ? reg.parsedSequence : [reg.parsedChord]
   const codes = parsed.filter((step) => step.code !== undefined).length
   return codes === 0 ? 'Key' : codes === parsed.length ? 'Code' : 'Mixed'
 }

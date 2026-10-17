@@ -14,8 +14,10 @@ import {
   AppHotkeysFixture,
   Fixture,
   ProviderFixture,
+  ScopesFixture,
   appCapture,
   capture,
+  scopeCapture,
 } from './fixture.tsrx'
 import type { Root } from 'octane'
 
@@ -90,7 +92,7 @@ describe('compiled Octane hooks', () => {
 
   it('soft-disables a binding while removing dynamic list entries', () => {
     const id = [...getHotkeyManager().registrations.state.values()].find(
-      (entry) => entry.kind === 'chord' && entry.parsedHotkey.ctrl,
+      (entry) => entry.kind === 'chord' && entry.parsedChord.ctrl,
     )?.id
     click('#enabled')
     expect(value('#registrations')).toBe('2:1')
@@ -196,4 +198,49 @@ it('registers app hotkeys, lists status, and follows custom hotkeys', () => {
   key('g')
   key('s')
   expect(value('#app-count')).toBe('2')
+})
+
+it('scopes hotkeys through nested, exclusive, and disabled providers', () => {
+  window.dispatchEvent(new Event('blur'))
+  scopeCapture.fired = {}
+  flushSync(() => root.render(ScopesFixture))
+  flush()
+  const scopes = Object.fromEntries(
+    [...getHotkeyManager().registrations.state.values()].map((r) => [
+      r.options.meta?.name ?? r.options.appHotkeyId,
+      r.options.scope,
+    ]),
+  )
+  expect(scopes).toEqual({
+    palette: 'global',
+    page: 'page',
+    panel: 'panel',
+    'doc.save': 'panel',
+  })
+
+  // A nested scope beats its ancestor; nested providers share app hotkeys.
+  key('s', 'keydown', { ctrlKey: true })
+  key('e', 'keydown', { ctrlKey: true })
+  expect(scopeCapture.fired).toEqual({ panel: 1, app: 1 })
+  expect(value('#scope-statuses')).toBe('active')
+
+  // An exclusive scope suspends the rest, except the scopes it allows.
+  click('#scope-open')
+  key('s', 'keydown', { ctrlKey: true })
+  key('k', 'keydown', { ctrlKey: true })
+  key('e', 'keydown', { ctrlKey: true })
+  expect(scopeCapture.fired).toEqual({
+    panel: 1,
+    app: 1,
+    dialog: 1,
+    palette: 1,
+  })
+  expect(value('#scope-statuses')).toBe('suspended')
+
+  // Disabling an ancestor deactivates nested scopes.
+  click('#scope-open')
+  click('#scope-enabled')
+  key('s', 'keydown', { ctrlKey: true })
+  expect(scopeCapture.fired.panel).toBe(1)
+  expect(getHotkeyManager().isScopeActive('panel')).toBe(false)
 })

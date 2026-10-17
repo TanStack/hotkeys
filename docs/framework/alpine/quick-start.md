@@ -1,155 +1,47 @@
 ---
 title: Quick Start
 id: quick-start
+description: Add keyboard shortcuts to Alpine components with TanStack Hotkeys. Register hotkeys, show them in your UI, and group them into scopes.
 ---
 
-Install `@tanstack/alpine-hotkeys` with the [installation instructions](../../installation). This guide builds a save shortcut and shows the component lifecycle used by the other APIs.
+This guide adds keyboard shortcuts to Alpine components. If you haven't installed TanStack Hotkeys yet, see [Installation](../../installation).
 
-## Your first hotkey
+## Register a hotkey
 
+TanStack Hotkeys needs no app-wide setup. In each component, create an owner for its hotkeys with `createHotkeysScope`, register the hotkeys in `init()`, and destroy the owner in `destroy()`:
 
 ```ts
 import Alpine from 'alpinejs'
-import { createHotkeysScope, formatForDisplay } from '@tanstack/alpine-hotkeys'
+import { createHotkeysScope } from '@tanstack/alpine-hotkeys'
 
-class Editor {
-	count = 0
-	enabled = true
-	scope = createHotkeysScope()
-	label = formatForDisplay('Mod+S')
+Alpine.data('editor', () => ({
+  hotkeys: createHotkeysScope(),
+  init() {
+    this.hotkeys.createHotkey('Mod+S', () => saveDocument())
+  },
+  destroy() {
+    this.hotkeys.destroy()
+  },
+}))
 
-	init() {
-		this.scope.createHotkey('Mod+S', () => this.count++,
-			() => ({ enabled: this.enabled }))
-	}
-
-	destroy() {
-		this.scope.destroy()
-	}
-}
-
-Alpine.data('editor', () => new Editor())
 Alpine.start()
 ```
 
 ```html
 <div x-data="editor">
-	<button type="button" @click="enabled = !enabled">Toggle shortcut</button>
-	<p>Press <kbd x-text="label"></kbd>. Saved <span x-text="count"></span> times.</p>
+  <textarea></textarea>
 </div>
 ```
 
-The Alpine adapter runs in the browser. In an application with server rendering, load it only on the client. Load the module after the markup is available. Call `Alpine.start()` once in your application entry point.
+Destroying the owner unregisters every hotkey it created. The adapter runs in the browser, so with server rendering, load it only on the client.
 
-Press Command+S on macOS or Control+S on Windows and Linux. The count increases and the browser save dialog is prevented. The toggle disables execution while preserving the registration.
+`Mod` is Command on macOS and Control on Windows and Linux, so `Mod+S` is the save shortcut each user already knows. The browser's Save dialog stays closed, and the shortcut still works while the user types in the textarea. [Sensible Defaults](../../guides/sensible-defaults) explains these defaults.
 
-`Mod` resolves to the primary platform modifier. Use `Mod+[KeyS]` instead when the shortcut must follow the physical S position.
+That's all a hotkey needs. Shared defaults, scopes, and the other features later in this guide are optional, so add them as your app grows.
 
-## Registration and cleanup
+### Use the `$hotkeys` magic
 
-Create one scope for each Alpine component. Register shortcuts in `init()` so getters and callbacks read the reactive component instance. Call `scope.destroy()` from the component's `destroy()` method. Destruction releases registrations, effects, Store subscriptions, and active recorders. Do not reuse a destroyed scope.
-
-Pass getters for bindings and options that can change. A value such as `{ enabled: this.enabled }` captures the value at registration time; `() => ({ enabled: this.enabled })` follows Alpine state. State readers return an object with a reactive `.value` getter. Read it in a template or an Alpine effect instead of destructuring it once.
-
-## Common patterns
-
-### Multiple hotkeys
-
-
-```ts
-this.scope.createHotkey('Mod+S', () => console.log('Save'))
-this.scope.createHotkey('Mod+Z', () => console.log('Undo'))
-this.scope.createHotkey('Mod+Shift+Z', () => console.log('Redo'))
-```
-
-Each registration is independent. For a dynamic list, use `createHotkeys` as shown in the [hotkeys guide](./guides/hotkeys.md#registering-multiple-hotkeys).
-
-### Scoped hotkeys
-
-Pass an actual element as `target`. A `null` target defers registration until the element exists. Make the element focusable with `tabindex="0"`. See the [complete scoped example](./guides/hotkeys.md#target).
-
-### Conditional hotkeys
-
-
-```ts
-this.scope.createHotkey('Mod+S', () => console.log("Save"), () => ({ enabled: this.enabled }))
-```
-
-Use Alpine reactive state for the enabled flag.
-
-### Multi-key sequences
-
-
-```ts
-this.scope.createHotkey(['G', 'G'], () => window.scrollTo({ top: 0 }))
-```
-
-Release G between presses. Automatic key repeats do not advance sequences.
-
-### Tracking held keys and displaying hints
-
-
-```ts
-import Alpine from 'alpinejs'
-import { createHotkeysScope } from '@tanstack/alpine-hotkeys'
-
-Alpine.data('keyStatus', () => {
-	const scope = createHotkeysScope()
-	return {
-		held: scope.createHeldKeys(),
-		codes: scope.createHeldKeyCodes(),
-		shift: scope.createKeyHold('Shift'),
-		hint: scope.createHotkeyHint('Mod+S'),
-		destroy() { scope.destroy() },
-	}
-})
-```
-
-```html
-<div x-data="keyStatus">
-	<p x-text="held.value.join(' + ') || 'No keys held'"></p>
-	<template x-for="key in held.value" :key="key">
-		<p x-text="key + ': ' + codes.value[key]"></p>
-	</template>
-	<button type="button" x-show="shift.value">Delete permanently</button>
-	<kbd x-show="hint.value">Save</kbd>
-</div>
-```
-
-Use `formatForDisplay(binding)` for platform-specific labels. Keep the original binding in state; a display label is not a registration string.
-
-## Shared defaults
-
-Pass defaults to `createHotkeysScope`. The scope accepts `hotkey` and `hotkeyRecorder` options. `requireReset` applies to chords and `timeout` to sequences. Pass a getter to follow Alpine state. Each component owns and destroys its scope. Call-specific options override scope defaults, and per-definition options override common options. Omitted options use the core defaults.
-
-```ts
-import Alpine from 'alpinejs'
-import { createHotkeysScope } from '@tanstack/alpine-hotkeys'
-
-Alpine.data('scopedEditor', () => {
-  const scope = createHotkeysScope({
-    hotkey: { requireReset: true, timeout: 1500 },
-    hotkeyRecorder: { ignoreInputs: false, idleTimeoutMs: 2000 },
-  })
-  return {
-    init() {
-      scope.createHotkey('Mod+S', () => console.log('Saved'))
-      scope.createHotkey('ArrowRight', () => console.log('Next'), { requireReset: false })
-    },
-    destroy() { scope.destroy() },
-  }
-})
-```
-
-For changing defaults, create the scope in `init()` with `createHotkeysScope(() => ({ hotkey: { enabled: this.enabled } }))`. Creating the getter in `init()` makes `this` refer to Alpine's reactive component instance. Share a defaults object or getter between components when they need the same policy; give each component its own scope for cleanup. The `$hotkeys` magic uses core defaults, so use an explicit scope when supplying shared defaults.
-
-## Declaring app hotkeys
-
-To list every hotkey in a cheat sheet, including hotkeys whose components haven't mounted, and to let users customize them, declare them once with `defineAppHotkeys` and provide them with `provideAppHotkeys`. See the [App Hotkeys Guide](./guides/app-hotkeys).
-
-## Optional Alpine magic
-
-Install `hotkeysPlugin` before `Alpine.start()` to get an element-owned `$hotkeys` scope:
+To register hotkeys from markup, install `hotkeysPlugin` before `Alpine.start()`:
 
 ```ts
 import Alpine from 'alpinejs'
@@ -161,19 +53,208 @@ Alpine.start()
 
 ```html
 <div x-data="{ count: 0 }" x-init="$hotkeys.createHotkey('Mod+S', () => count++)">
-	<span x-text="count"></span>
+  Saved <span x-text="count"></span> times
 </div>
 ```
 
-The plugin destroys that scope when Alpine destroys the owning element. Choose an explicit scope or the magic for a registration; using both registers it twice.
+`$hotkeys` is an owner that the plugin destroys with its element. It uses the built-in defaults. Register each hotkey with either `$hotkeys` or your own owner, not both.
 
-## Examples and next steps
+## Register several hotkeys
 
-- [Hotkeys](./guides/hotkeys)
-- [Sequences](./guides/sequences)
-- [App hotkeys](./guides/app-hotkeys)
-- [Hotkey recording](./guides/hotkey-recording)
-- [Key state tracking](./guides/key-state-tracking)
-- [Formatting and display](./guides/formatting-display)
-- [Kitchen sink](./examples/kitchen-sink)
-- [API reference](./reference/index)
+When a component has more than one hotkey, register them together with `createHotkeys`:
+
+```ts
+init() {
+  this.hotkeys.createHotkeys([
+    { hotkey: 'Mod+S', callback: () => save() },
+    { hotkey: 'Mod+Z', callback: () => undo() },
+    { hotkey: 'Mod+Shift+Z', callback: () => redo() },
+  ])
+},
+```
+
+`createHotkeys` also accepts a getter that returns the array, so the list can come from Alpine state and change length over time.
+
+## Sequences
+
+Pass an array of chords to register a sequence, pressed one after another:
+
+```ts
+this.hotkeys.createHotkey(['G', 'G'], () => scrollToTop())
+```
+
+Each step must follow the previous one within a second.
+
+`createHotkeys` accepts chords and sequences in the same array:
+
+```ts
+this.hotkeys.createHotkeys([
+  { hotkey: 'Mod+K', callback: () => openSearch() },
+  { hotkey: ['G', 'H'], callback: () => goHome() },
+  { hotkey: ['G', 'S'], callback: () => goToSettings() },
+])
+```
+
+## Show the shortcut
+
+Label a button or menu item with `formatForDisplay`. Format the same value you register, so the label always matches the binding:
+
+```ts
+import Alpine from 'alpinejs'
+import { createHotkeysScope, formatForDisplay } from '@tanstack/alpine-hotkeys'
+import type { HotkeyChord } from '@tanstack/alpine-hotkeys'
+
+const saveHotkey: HotkeyChord = 'Mod+S'
+
+Alpine.data('saveButton', () => ({
+  hotkeys: createHotkeysScope(),
+  label: formatForDisplay(saveHotkey),
+  init() {
+    this.hotkeys.createHotkey(saveHotkey, () => saveDocument())
+  },
+  destroy() {
+    this.hotkeys.destroy()
+  },
+}))
+```
+
+```html
+<button x-data="saveButton" type="button">
+  Save <kbd x-text="label"></kbd>
+</button>
+```
+
+The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. `HotkeyChord` checks the string, so a typo in the binding is a type error. Use `Hotkey` for a value that can also be a sequence.
+
+## Hotkeys follow your components
+
+A hotkey is registered in the component's `init()`, and unregistered when the component's `destroy()` destroys its owner. Put each hotkey in the component it belongs to, so it is active only while that component exists:
+
+```ts
+Alpine.data('settingsDialog', () => ({
+  hotkeys: createHotkeysScope(),
+  init() {
+    // Registered only while the dialog exists
+    this.hotkeys.createHotkey('Escape', () => this.$dispatch('close'))
+  },
+  destroy() {
+    this.hotkeys.destroy()
+  },
+}))
+```
+
+```html
+<div x-data="{ isOpen: false }">
+  <button type="button" @click="isOpen = true">Settings</button>
+  <template x-if="isOpen">
+    <div x-data="settingsDialog" role="dialog" @close="isOpen = false">...</div>
+  </template>
+</div>
+```
+
+For a condition that doesn't match a component, pass `enabled`. Pass options as a getter, so they follow Alpine state:
+
+```ts
+this.hotkeys.createHotkey('Mod+S', () => save(), () => ({
+  enabled: this.hasUnsavedChanges,
+}))
+```
+
+When a group of hotkeys turns on and off together, put them in a scope instead. See [Add defaults and scopes](#add-defaults-and-scopes-optional).
+
+## Element hotkeys
+
+A hotkey's default `target` is `document`, so it works wherever focus is on the page. To limit it to one element, pass that element as `target`:
+
+```ts
+Alpine.data('panel', () => ({
+  hotkeys: createHotkeysScope(),
+  init() {
+    // Fires only while the panel, or something inside it, has focus
+    this.hotkeys.createHotkey('Escape', () => closePanel(), () => ({
+      target: this.$refs.panel,
+    }))
+  },
+  destroy() {
+    this.hotkeys.destroy()
+  },
+}))
+```
+
+```html
+<div x-data="panel">
+  <div x-ref="panel" tabindex="0">...</div>
+</div>
+```
+
+A `null` target waits until the element exists. The element must be focusable to receive key presses, so give it a `tabindex` if it isn't a control.
+
+## Add defaults and scopes (optional)
+
+So far, every hotkey uses the built-in defaults and belongs to the global scope, so it is active whenever its component exists.
+
+Alpine has no provider, so pass default options to `createHotkeysScope`. Define them once and share them between components that need the same defaults:
+
+```ts
+const hotkeyDefaults = { hotkey: { timeout: 1500 } }
+
+Alpine.data('editor', () => ({
+  hotkeys: createHotkeysScope(hotkeyDefaults),
+  // ...
+}))
+```
+
+Hotkeys can also be grouped into scopes. Every hotkey in a scope turns on and off with it. Make a scope `exclusive`, and while it is active, only its hotkeys work. Use one for dialogs and popups that should own the keyboard.
+
+Activate the scope from the hotkey manager in `init()`, release it in `destroy()`, and pass `scope` to the hotkeys that belong to it:
+
+```ts
+import Alpine from 'alpinejs'
+import { createHotkeysScope, getHotkeyManager } from '@tanstack/alpine-hotkeys'
+
+Alpine.data('confirmDialog', () => {
+  const hotkeys = createHotkeysScope()
+  let releaseScope = () => {}
+
+  return {
+    init() {
+      releaseScope = getHotkeyManager().activateScope('confirm-dialog', {
+        exclusive: true,
+      })
+      hotkeys.createHotkeys(
+        [
+          { hotkey: 'Enter', callback: () => this.$dispatch('confirm') },
+          { hotkey: 'Escape', callback: () => this.$dispatch('cancel') },
+        ],
+        { scope: 'confirm-dialog' },
+      )
+    },
+    destroy() {
+      releaseScope()
+      hotkeys.destroy()
+    },
+  }
+})
+```
+
+While the dialog exists, `Enter` and `Escape` confirm and cancel it, and every hotkey outside the dialog is suspended. When the dialog is destroyed, they work again.
+
+`activateScope` returns a function that releases the scope. A scope stays active until every activation of it is released. Despite its name, `createHotkeysScope` only creates an owner for registrations. It doesn't create or activate a hotkey scope.
+
+## Next steps
+
+Learn more about the basics:
+
+- [Hotkeys](./guides/hotkeys): chords and sequences, options, and element hotkeys
+- [Sequences](./guides/sequences): Vim-style multi-key shortcuts
+- [Sensible Defaults](../../guides/sensible-defaults): what hotkeys do without options, and keyboard layouts
+- [Formatting & Display](./guides/formatting-display): labels and keycaps for every platform
+- [Held Key State Helpers](./guides/held-key-state-helpers): show which keys are held
+- [Hotkey Hints](./guides/hotkey-hints): show a button's shortcut while the user holds its modifiers
+
+As your app grows:
+
+- [App Hotkeys](./guides/app-hotkeys): declare hotkeys in one place and let users change them
+- [Cheat Sheet UI Helpers](./guides/cheat-sheet-ui-helpers): list your shortcuts in a help dialog
+- [Custom Hotkey Recording](./guides/custom-hotkey-recording): record the shortcut a user presses
+- [Hotkey Manager](./guides/hotkey-manager): register and inspect hotkeys outside components

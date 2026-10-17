@@ -99,7 +99,8 @@ function Layout() @{
             <h2>Registered shortcuts</h2>
             <p>
               Global and current-route registrations, including disabled handlers.
-              Scoped shortcuts run inside their target.
+              Each page renders a <code>HotkeysProvider</code> with its own scope.
+              Target shortcuts run only while focus is inside their target.
             </p>
             @for (const group of groups; key group) {
   <div>
@@ -109,6 +110,7 @@ function Layout() @{
                     <tr>
                       <th>Action</th>
                       <th>Binding</th>
+                      <th>Scope</th>
                       <th>Status</th>
                     </tr>
                   </thead>
@@ -126,6 +128,7 @@ function Layout() @{
                           <td>
                             {formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })}
                           </td>
+                          <td>{reg.options.scope}</td>
                           <td>
                             {reg.options.enabled === false
                               ? 'Disabled'
@@ -137,7 +140,10 @@ function Layout() @{
               </div> }
           </section> }
         <main>
-          @if (currentPath === '/editor') { <Editor /> } @else { @if (currentPath === '/sequences') { <Sequences /> } @else { @if (currentPath === '/recording') { <Recording /> } @else { @if (currentPath === '/formatting') { <Formatting /> } @else { <Tickets /> } } } }
+          {/* Each page gets its own hotkey scope, active while it is mounted. */}
+          <HotkeysProvider scope={(pages.find((page) => page.to === currentPath) ?? pages[0]).label.toLowerCase()}>
+            @if (currentPath === '/editor') { <Editor /> } @else { @if (currentPath === '/sequences') { <Sequences /> } @else { @if (currentPath === '/recording') { <Recording /> } @else { @if (currentPath === '/formatting') { <Formatting /> } @else { <Tickets /> } } } }
+          </HotkeysProvider>
         </main>
         <section>
           <h2>Key state</h2>
@@ -227,7 +233,7 @@ function EditorPane({ name }: { name: string }) @{
           meta: {
             name: `Save ${name}`,
             group: 'Editor',
-            description: 'Scoped to this editor',
+            description: 'Limited to this editor',
           },
         },
       },
@@ -267,11 +273,11 @@ function Editor() @{
     meta: { name: 'Advance counter', group: 'Editor' },
   })
   const [scope, setScope] = useState<HTMLFieldSetElement | null>(null)
-  useHotkey('Alt+[KeyB]', () => log('Scoped B handler'), {
+  useHotkey('Alt+[KeyB]', () => log('Target B handler'), {
     target: scope,
     stopPropagation: !bubble,
     preventDefault: !bubble,
-    meta: { name: 'Scoped propagation demo', group: 'Editor' },
+    meta: { name: 'Target propagation demo', group: 'Editor' },
   })
   useHotkey(
     'Alt+[KeyB]',
@@ -283,7 +289,7 @@ function Editor() @{
     meta: { name: 'Run on release', group: 'Editor' },
   })
   <section>
-        <h2>Editor scopes</h2>
+        <h2>Editor targets</h2>
         <p>
           Save is registered in both editors. Focus a textarea to choose which
           handler receives it.
@@ -402,8 +408,8 @@ function Recording() @{
     detectConflicts: {
       exclude: (reg) => reg.options.meta?.name === 'Recorded action',
     },
-    validate: (_, { parsedHotkey }) =>
-      parsedHotkey.modifiers.length > 0 ||
+    validate: (_, { parsedChord }) =>
+      parsedChord.modifiers.length > 0 ||
       'Include a modifier for this action.',
     onReject: ({ message }) => setProblem(message),
     onRecord: (value) => {

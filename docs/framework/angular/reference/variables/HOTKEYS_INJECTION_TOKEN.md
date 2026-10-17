@@ -7,4 +7,4 @@ title: HOTKEYS_INJECTION_TOKEN
 const HOTKEYS_INJECTION_TOKEN: InjectionToken<HotkeysContextValue>;
 ```
 
-Defined in: [hotkeys-provider.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L54)
+Defined in: [hotkeys-provider.ts:90](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L90)

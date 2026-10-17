@@ -1,14 +1,27 @@
 import { useState } from 'react'
 import { createLazyRoute } from '@tanstack/react-router'
-import { useAppHotkeys, useHotkey } from '@tanstack/react-hotkeys'
+import {
+  HotkeysProvider,
+  useAppHotkeys,
+  useHotkey,
+} from '@tanstack/react-hotkeys'
 import { Hint, useActivity } from '../shared'
 
-export const Route = createLazyRoute('/')({ component: Tickets })
+export const Route = createLazyRoute('/')({ component: TicketsRoute })
+
+/** The route's hotkeys fire only while this provider's scope is mounted. */
+function TicketsRoute() {
+  return (
+    <HotkeysProvider scope="tickets">
+      <Tickets />
+    </HotkeysProvider>
+  )
+}
 
 /** Single shortcuts share handlers with buttons and respect enabled/input policies. */
 function Tickets() {
   const log = useActivity()
-  const hotkeys = useAppHotkeys()
+  const appHotkeys = useAppHotkeys()
   const [count, setCount] = useState(0)
   const [archived, setArchived] = useState(0)
   const [enabled, setEnabled] = useState(true)
@@ -22,10 +35,10 @@ function Tickets() {
     log('Tickets archived')
   }
   // Bindings, meta, and ignoreInputs come from the declaration; enabled is local state.
-  useHotkey(hotkeys['tickets.create'], create, { enabled })
-  useHotkey(hotkeys['tickets.save'], save, { enabled })
+  useHotkey(appHotkeys['tickets.create'], create, { enabled })
+  useHotkey(appHotkeys['tickets.save'], save, { enabled })
   // Unbound by default: this registers nothing until the user assigns a binding.
-  useHotkey(hotkeys['tickets.archive'], archive, { enabled })
+  useHotkey(appHotkeys['tickets.archive'], archive, { enabled })
 
   return (
     <section>

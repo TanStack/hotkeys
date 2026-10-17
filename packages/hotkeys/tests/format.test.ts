@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { formatForDisplay, formatHotkey } from '../src/format'
-import { normalizeRegisterableHotkey } from '../src/parse'
-import type { ParsedHotkey, RegisterableHotkey } from '../src/hotkey.types'
+import { normalizeHotkey } from '../src/parse'
+import type { ParsedHotkeyChord, RegisterableHotkey } from '../src/hotkey.types'
 
 /** Strings that parse correctly but are not in the `HotkeyChord` template union. */
 function hk(s: string): RegisterableHotkey {
@@ -38,7 +38,7 @@ describe('formatForDisplay with sequences', () => {
 
 describe('formatHotkey', () => {
   it('should format a simple key', () => {
-    const parsed: ParsedHotkey = {
+    const parsed: ParsedHotkeyChord = {
       key: 'A',
       ctrl: false,
       shift: false,
@@ -50,7 +50,7 @@ describe('formatHotkey', () => {
   })
 
   it('should format with single modifier', () => {
-    const parsed: ParsedHotkey = {
+    const parsed: ParsedHotkeyChord = {
       key: 'S',
       ctrl: true,
       shift: false,
@@ -62,7 +62,7 @@ describe('formatHotkey', () => {
   })
 
   it('should format with multiple modifiers in canonical order', () => {
-    const parsed: ParsedHotkey = {
+    const parsed: ParsedHotkeyChord = {
       key: 'S',
       ctrl: true,
       shift: true,
@@ -74,7 +74,7 @@ describe('formatHotkey', () => {
   })
 
   it('should format with all modifiers', () => {
-    const parsed: ParsedHotkey = {
+    const parsed: ParsedHotkeyChord = {
       key: 'A',
       ctrl: true,
       shift: true,
@@ -86,7 +86,7 @@ describe('formatHotkey', () => {
   })
 
   it('should format special keys', () => {
-    const parsed: ParsedHotkey = {
+    const parsed: ParsedHotkeyChord = {
       key: 'Escape',
       ctrl: false,
       shift: false,
@@ -119,9 +119,7 @@ describe('formatForDisplay', () => {
           keyLabels: { KeyS: 'Save' },
         }),
       ).toEqual(['Option', 'Shift', 'Cmd', 'Save'])
-      expect(normalizeRegisterableHotkey(binding, 'mac')).toBe(
-        'Mod+Alt+Shift+[KeyS]',
-      )
+      expect(normalizeHotkey(binding, 'mac')).toBe('Mod+Alt+Shift+[KeyS]')
       expect(
         formatForDisplay('Mod+Shift+S', { platform: 'mac', useSymbols: false }),
       ).toBe('Shift+Cmd+S')
@@ -231,9 +229,9 @@ describe('formatForDisplay', () => {
     })
   })
 
-  describe('with ParsedHotkey input', () => {
-    it('should accept ParsedHotkey objects', () => {
-      const parsed: ParsedHotkey = {
+  describe('with ParsedHotkeyChord input', () => {
+    it('should accept ParsedHotkeyChord objects', () => {
+      const parsed: ParsedHotkeyChord = {
         key: 'S',
         ctrl: false,
         shift: true,
@@ -365,7 +363,7 @@ describe('physical display labels', () => {
         separatorToken: ' · ',
       }),
     ).toBe('Ctrl · 2')
-    const physical: ParsedHotkey = {
+    const physical: ParsedHotkeyChord = {
       code: 'KeyQ',
       ctrl: false,
       alt: true,
@@ -387,7 +385,7 @@ describe('layoutMap display labels', () => {
   ])
 
   it('formats mapped values in string, raw, and parsed physical bindings', () => {
-    const parsed: ParsedHotkey = {
+    const parsed: ParsedHotkeyChord = {
       code: 'KeyQ',
       ctrl: false,
       alt: true,

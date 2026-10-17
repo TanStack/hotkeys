@@ -60,7 +60,7 @@ export interface ReactHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
  * @example
  * ```tsx
  * const recorder = useHotkeyRecorder({
- *   maxSteps: 3,
+ *   maxSteps: Infinity,
  *   onRecord: (hotkey) => setShortcut(hotkey), // 'Mod+S' or ['G', 'H']
  * })
  * ```

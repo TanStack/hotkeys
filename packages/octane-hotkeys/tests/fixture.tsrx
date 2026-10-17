@@ -130,3 +130,46 @@ function AppHotkeysConsumer() @{
     <output id="app-statuses">{list.map((item) => item.status).join(',')}</output>
   </div>
 }
+
+export const scopedAppHotkeys = defineAppHotkeys({
+  'doc.save': { hotkey: 'Control+S' },
+});
+
+export const scopeCapture: { fired: Record<string, number> } = { fired: {} };
+
+export function ScopesFixture() @{
+  const [open, setOpen] = useState(false);
+  const [enabled, setEnabled] = useState(true);
+  <HotkeysProvider appHotkeys={scopedAppHotkeys} customHotkeys={{ 'doc.save': 'Control+E' }}>
+    <div>
+      <button id="scope-open" onClick={() => setOpen(!open)}>Open</button>
+      <button id="scope-enabled" onClick={() => setEnabled(!enabled)}>Enable</button>
+      <ScopedHotkey hotkey="Control+K" name="palette" />
+      <HotkeysProvider scope="page" enabled={enabled}>
+        <ScopedHotkey hotkey="Control+S" name="page" />
+        <HotkeysProvider scope="panel">
+          <ScopedHotkey hotkey="Control+S" name="panel" />
+          <ScopedAppHotkeys />
+        </HotkeysProvider>
+      </HotkeysProvider>
+      @if (open) { <HotkeysProvider scope="dialog" exclusive={{ allow: ['global'] }}>
+        <ScopedHotkey hotkey="Control+S" name="dialog" />
+      </HotkeysProvider> }
+    </div>
+  </HotkeysProvider>
+}
+
+function ScopedHotkey({ hotkey, name }: { hotkey: Hotkey; name: string }) @{
+  useHotkey(hotkey, () => {
+    scopeCapture.fired[name] = (scopeCapture.fired[name] ?? 0) + 1;
+  }, { meta: { name } });
+  <span />
+}
+
+function ScopedAppHotkeys() @{
+  useHotkey(scopedAppHotkeys['doc.save'], () => {
+    scopeCapture.fired.app = (scopeCapture.fired.app ?? 0) + 1;
+  });
+  const list = useAppHotkeyList();
+  <output id="scope-statuses">{list.map((item) => item.status).join(',')}</output>
+}

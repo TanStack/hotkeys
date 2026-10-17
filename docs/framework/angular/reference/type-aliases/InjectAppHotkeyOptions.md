@@ -7,7 +7,7 @@ title: InjectAppHotkeyOptions
 type InjectAppHotkeyOptions<T> = AdapterAppHotkeyOptions<T, InjectHotkeyTarget>;
 ```
 
-Defined in: [injectHotkey.ts:42](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L42)
+Defined in: [injectHotkey.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L43)
 
 Call-site options for an app hotkey, typed by its declared default kind.
 

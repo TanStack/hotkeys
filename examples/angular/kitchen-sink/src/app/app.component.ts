@@ -19,6 +19,7 @@ import {
   injectHotkeys,
   injectKeyHold,
   isHotkeySequence,
+  provideHotkeys,
 } from '@tanstack/angular-hotkeys'
 import type { ElementRef } from '@angular/core'
 import type { Hotkey, RecorderKeyMode } from '@tanstack/angular-hotkeys'
@@ -48,6 +49,8 @@ export class Hint {
 @Component({
   selector: 'ticket-demo',
   standalone: true,
+  // Each page gets its own hotkey scope, active while it exists.
+  providers: [provideHotkeys({ scope: 'tickets' })],
   imports: [Hint],
   template: ` <section>
     <h2>Tickets</h2>
@@ -147,9 +150,11 @@ export class EditorPane {
 @Component({
   selector: 'editor-demo',
   standalone: true,
+  // Each page gets its own hotkey scope, active while it exists.
+  providers: [provideHotkeys({ scope: 'editor' })],
   imports: [EditorPane],
   template: ` <section>
-    <h2>Editor scopes</h2>
+    <h2>Editor targets</h2>
     <p>Focus an editor to choose its Save handler.</p>
     <editor-pane name="Draft" /><editor-pane name="Notes" />
     <label
@@ -197,12 +202,12 @@ export class Editor {
     )
     injectHotkey(
       'Alt+[KeyB]',
-      () => this.activity.log('Scoped B'),
+      () => this.activity.log('Target B'),
       () => ({
         target: this.scope()?.nativeElement,
         stopPropagation: !this.bubble(),
         preventDefault: !this.bubble(),
-        meta: { name: 'Scoped propagation', group: 'Editor' },
+        meta: { name: 'Target propagation', group: 'Editor' },
       }),
     )
     injectHotkey('Alt+[KeyB]', () => this.activity.log('Document B'), {
@@ -218,6 +223,8 @@ export class Editor {
 @Component({
   selector: 'sequence-demo',
   standalone: true,
+  // Each page gets its own hotkey scope, active while it exists.
+  providers: [provideHotkeys({ scope: 'sequences' })],
   template: ` <section>
     <h2>Sequences</h2>
     <p>
@@ -291,6 +298,8 @@ export class Sequences {
 @Component({
   selector: 'recording-demo',
   standalone: true,
+  // Each page gets its own hotkey scope, active while it exists.
+  providers: [provideHotkeys({ scope: 'recording' })],
   template: ` <section>
     <h2>Recording</h2>
     <p>Bindings live in route state. Try Alt + 1 for a conflict.</p>
@@ -382,8 +391,9 @@ export class Recording {
     detectConflicts: {
       exclude: (reg) => reg.options.meta?.name === 'Recorded action',
     },
-    validate: (_, { parsedHotkey }) =>
-      parsedHotkey.modifiers.length > 0 || 'Include a modifier.',
+    validate: (_, context) =>
+      (context.kind === 'chord' && context.parsedChord.modifiers.length > 0) ||
+      'Include a modifier.',
     onRecord: (value) => {
       this.hotkey.set(value)
       this.problem.set('')
@@ -430,6 +440,8 @@ export class Recording {
 @Component({
   selector: 'format-demo',
   standalone: true,
+  // Each page gets its own hotkey scope, active while it exists.
+  providers: [provideHotkeys({ scope: 'formatting' })],
   template: ` <section>
     <h2>Formatting</h2>
     <label
@@ -542,6 +554,7 @@ export class Formatting {
             <tr>
               <th>Group / action</th>
               <th>Binding</th>
+              <th>Scope</th>
               <th>Status</th>
             </tr>
           </thead>
@@ -552,6 +565,7 @@ export class Formatting {
                   {{ reg.options.meta?.group }} / {{ reg.options.meta?.name }}
                 </td>
                 <td>{{ bindingLabel(reg) }}</td>
+                <td>{{ reg.options.scope }}</td>
                 <td>
                   {{
                     reg.options.enabled === false

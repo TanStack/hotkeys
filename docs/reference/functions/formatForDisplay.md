@@ -9,7 +9,7 @@ title: formatForDisplay
 function formatForDisplay(hotkey, options): string[][];
 ```
 
-Defined in: [format.ts:92](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L92)
+Defined in: [format.ts:109](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L109)
 
 Formats a hotkey for display in a user interface.
 
@@ -30,7 +30,7 @@ Sequence steps are formatted individually and joined with `sequenceSeparator`
 
 readonly [`DisplayHotkeyChord`](../type-aliases/DisplayHotkeyChord.md)[]
 
-A logical or physical string, raw object, ParsedHotkey, or sequence
+A logical or physical string, raw object, ParsedHotkeyChord, or sequence
 
 #### options
 
@@ -66,7 +66,7 @@ formatForDisplay(['G', 'H'])
 function formatForDisplay(hotkey, options): string[];
 ```
 
-Defined in: [format.ts:96](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L96)
+Defined in: [format.ts:113](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L113)
 
 Formats a hotkey for display in a user interface.
 
@@ -87,7 +87,7 @@ Sequence steps are formatted individually and joined with `sequenceSeparator`
 
 [`DisplayHotkeyChord`](../type-aliases/DisplayHotkeyChord.md)
 
-A logical or physical string, raw object, ParsedHotkey, or sequence
+A logical or physical string, raw object, ParsedHotkeyChord, or sequence
 
 #### options
 
@@ -123,7 +123,7 @@ formatForDisplay(['G', 'H'])
 function formatForDisplay(hotkey, options?): string;
 ```
 
-Defined in: [format.ts:100](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L100)
+Defined in: [format.ts:117](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L117)
 
 Formats a hotkey for display in a user interface.
 
@@ -144,7 +144,7 @@ Sequence steps are formatted individually and joined with `sequenceSeparator`
 
 [`DisplayHotkey`](../type-aliases/DisplayHotkey.md)
 
-A logical or physical string, raw object, ParsedHotkey, or sequence
+A logical or physical string, raw object, ParsedHotkeyChord, or sequence
 
 #### options?
 
@@ -180,7 +180,7 @@ formatForDisplay(['G', 'H'])
 function formatForDisplay(hotkey, options): string | string[] | string[][];
 ```
 
-Defined in: [format.ts:104](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L104)
+Defined in: [format.ts:121](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L121)
 
 Formats a hotkey for display in a user interface.
 
@@ -201,7 +201,7 @@ Sequence steps are formatted individually and joined with `sequenceSeparator`
 
 [`DisplayHotkey`](../type-aliases/DisplayHotkey.md)
 
-A logical or physical string, raw object, ParsedHotkey, or sequence
+A logical or physical string, raw object, ParsedHotkeyChord, or sequence
 
 #### options
 

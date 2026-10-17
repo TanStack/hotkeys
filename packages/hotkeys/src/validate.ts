@@ -2,7 +2,7 @@ import { ALL_KEYS, normalizeKeyName } from './constants'
 import {
   modifierAlias,
   physicalCodeOf,
-  splitHotkeyParts,
+  splitChordParts,
 } from './_keyboard-event'
 import type { Hotkey } from './hotkey.types'
 
@@ -70,7 +70,7 @@ function validateChord(hotkey: string): ValidationResult {
     }
   }
 
-  const parts = splitHotkeyParts(hotkey).map((p) => p.trim())
+  const parts = splitChordParts(hotkey).map((p) => p.trim())
 
   // Must have at least one part (the key)
   if (parts.length === 0 || parts.some((p) => p === '')) {

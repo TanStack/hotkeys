@@ -3,7 +3,7 @@ id: HotkeysContextValue
 title: HotkeysContextValue
 ---
 
-Defined in: [hotkeys-provider.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L45)
+Defined in: [hotkeys-provider.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L72)
 
 ## Properties
 
@@ -15,7 +15,7 @@ readonly appHotkeysState: Signal<
 | null>;
 ```
 
-Defined in: [hotkeys-provider.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L49)
+Defined in: [hotkeys-provider.ts:79](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L79)
 
 Tracks app hotkeys and custom hotkeys so signals and effects re-run.
 
@@ -29,7 +29,7 @@ readonly appHotkeysStore:
   | null;
 ```
 
-Defined in: [hotkeys-provider.ts:47](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L47)
+Defined in: [hotkeys-provider.ts:77](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L77)
 
 ***
 
@@ -39,4 +39,18 @@ Defined in: [hotkeys-provider.ts:47](https://github.com/TanStack/hotkeys/blob/ma
 readonly defaultOptions: HotkeysProviderOptions;
 ```
 
-Defined in: [hotkeys-provider.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L46)
+Defined in: [hotkeys-provider.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L74)
+
+Merged with every ancestor provider's defaults, including `hotkey.scope`.
+
+***
+
+### enabled
+
+```ts
+readonly enabled: Signal<boolean>;
+```
+
+Defined in: [hotkeys-provider.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L76)
+
+Whether this provider and every ancestor are enabled.

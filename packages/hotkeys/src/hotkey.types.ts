@@ -15,7 +15,7 @@ import type { CanonicalModifier, Key, LogicalKey } from './key.types'
  * This enables cross-platform hotkey definitions that automatically adapt to the platform.
  * For example, `Mod+S` becomes `Command+S` on Mac and `Ctrl+S` on Windows/Linux.
  */
-export type SingleModifierHotkey =
+export type SingleModifierHotkeyChord =
   | `Control+${Key}`
   | `Alt+${Key}`
   | `Shift+${Key}`
@@ -31,7 +31,7 @@ export type SingleModifierHotkey =
  *   - `Mod+Control` duplicates `Control` on Windows/Linux (Mod = Control)
  *   - `Mod+Meta` duplicates `Meta` on macOS (Mod = Meta)
  */
-export type TwoModifierHotkey =
+export type TwoModifierHotkeyChord =
   | `Control+Alt+${Key}`
   | `Control+Shift+${Key}`
   | `Control+Meta+${Key}`
@@ -50,7 +50,7 @@ export type TwoModifierHotkey =
  *   - `Mod+Control+Shift` duplicates `Control` on Windows/Linux (Mod = Control)
  *   - `Mod+Shift+Meta` duplicates `Meta` on macOS (Mod = Meta)
  */
-export type ThreeModifierHotkey =
+export type ThreeModifierHotkeyChord =
   | `Control+Alt+Shift+${Key}`
   | `Control+Alt+Meta+${Key}`
   | `Control+Shift+Meta+${Key}`
@@ -69,7 +69,7 @@ export type ThreeModifierHotkey =
  * - `Mod+Control+Alt+Shift` → duplicates `Control` on Windows/Linux
  * - `Mod+Alt+Shift+Meta` → duplicates `Meta` on macOS
  */
-export type FourModifierHotkey = `Control+Alt+Shift+Meta+${Key}`
+export type FourModifierHotkeyChord = `Control+Alt+Shift+Meta+${Key}`
 
 /**
  * A type-safe hotkey string.
@@ -125,10 +125,10 @@ export type FourModifierHotkey = `Control+Alt+Shift+Meta+${Key}`
  */
 export type HotkeyChord =
   | Key
-  | SingleModifierHotkey
-  | TwoModifierHotkey
-  | ThreeModifierHotkey
-  | FourModifierHotkey
+  | SingleModifierHotkeyChord
+  | TwoModifierHotkeyChord
+  | ThreeModifierHotkeyChord
+  | FourModifierHotkeyChord
 
 /** Resolved modifier flags shared by both parsed binding variants. */
 export interface ParsedModifiers {
@@ -145,15 +145,15 @@ export interface ParsedModifiers {
 }
 
 /**
- * A parsed binding matches either a logical key or a physical code, never both.
+ * A parsed chord matches either a logical key or a physical code, never both.
  * Check `code !== undefined` to narrow to a physical binding. Its logical
  * character is unknown without a keyboard event and is not stored in `key`.
  *
  * @example
  * parseHotkey('Alt+S') // { key: 'S', alt: true, ... }
- * parseHotkey('Alt+[KeyS]') // { code: 'KeyS', alt: true, ... } — no key property
+ * parseHotkey('Alt+[KeyS]') // { code: 'KeyS', alt: true, ... } with no key property
  */
-export type ParsedHotkey = ParsedModifiers &
+export type ParsedHotkeyChord = ParsedModifiers &
   (
     | { key: LogicalKey | (string & {}); code?: never }
     | { code: string; key?: never }
@@ -174,15 +174,12 @@ export interface RawModifiers {
 }
 
 /**
- * A raw hotkey object for programmatic registration.
- *
- * Like `ParsedHotkey` but without `modifiers` (derived from booleans)
- * and with optional modifier booleans (default to `false` when omitted).
- * Use with `HotkeyManager.register()` and `useHotkey()` when you prefer
- * object form over a string.
+ * A chord written as an object instead of a string, for building chords from
+ * data. Set `key` for a logical key or `code` for a physical one, and set a
+ * boolean for each modifier. Omitted modifiers default to `false`.
  *
  * The `mod` modifier is platform-adaptive: Command on macOS, Control on Windows/Linux.
- * Pass `platform` when converting to ParsedHotkey (e.g., via `options.platform`).
+ * Sequence steps can be objects too: `[{ key: 'K', mod: true }, 'C']`.
  *
  * @example
  * ```ts
@@ -195,12 +192,14 @@ export interface RawModifiers {
  * useHotkey({ code: 'NumpadAdd', mod: true }, handler)      // Physical numpad plus
  * ```
  */
-export type RawHotkey =
+export type RawHotkeyChord =
   | ({ key: LogicalKey | (string & {}); code?: never } & RawModifiers)
   | ({ code: string; key?: never } & RawModifiers)
 
 /**
- * A sequence of chords pressed one after another (Vim-style), such as `['G', 'G']`.
+ * A sequence of chord strings pressed one after another (Vim-style), such as
+ * `['G', 'G']`. Registered sequences are stored in this form. To register
+ * steps written as objects, see {@link RegisterableHotkeySequence}.
  *
  * Steps may include modifiers; the same modifier can appear on consecutive
  * steps (e.g. `['Shift+R', 'Shift+T']`). Modifier-only key events do not
@@ -214,42 +213,83 @@ export type HotkeySequence = ReadonlyArray<HotkeyChord>
  */
 export type Hotkey = HotkeyChord | HotkeySequence
 
-/** A single chord as a type-safe string (`HotkeyChord`) or a raw object (`RawHotkey`). */
-export type RegisterableHotkeyChord = HotkeyChord | RawHotkey
+/** A single chord as a type-safe string (`HotkeyChord`) or an object (`RawHotkeyChord`). */
+export type RegisterableHotkeyChord = HotkeyChord | RawHotkeyChord
 
 /**
- * Anything that can be registered: a chord string, a raw chord object, or a sequence.
+ * A sequence whose steps are chord strings or chord objects, such as
+ * `['G', { key: 'H', shift: true }]`.
  */
-export type RegisterableHotkey = RegisterableHotkeyChord | HotkeySequence
+export type RegisterableHotkeySequence = ReadonlyArray<RegisterableHotkeyChord>
+
+/**
+ * Anything that can be registered: a chord or a sequence, with each chord
+ * written as a string or an object.
+ */
+export type RegisterableHotkey =
+  RegisterableHotkeyChord | RegisterableHotkeySequence
+
+/** Context passed to a chord's callback. */
+export interface HotkeyChordCallbackContext {
+  kind: 'chord'
+  /** The registered chord */
+  hotkey: HotkeyChord
+  /** The chord with `Mod` resolved for the registration's platform */
+  parsedChord: ParsedHotkeyChord
+}
+
+/** Context passed to a sequence's callback. */
+export interface HotkeySequenceCallbackContext {
+  kind: 'sequence'
+  /** The registered sequence */
+  hotkey: HotkeySequence
+  /** Each step with `Mod` resolved for the registration's platform */
+  parsedSequence: Array<ParsedHotkeyChord>
+}
 
 /**
  * Context passed to hotkey callbacks along with the keyboard event.
+ * Narrow with `kind` to read `parsedChord` or `parsedSequence`.
  */
-export interface HotkeyCallbackContext {
-  /** The registered hotkey: a chord string or a sequence */
-  hotkey: Hotkey
-  /** The parsed chord that completed the match (the last step of a sequence) */
-  parsedHotkey: ParsedHotkey
-}
+export type HotkeyCallbackContext =
+  HotkeyChordCallbackContext | HotkeySequenceCallbackContext
+
+/**
+ * The callback context for a hotkey: chord context for chords (including
+ * one-step tuples), sequence context for sequences, and either when the kind
+ * is not known statically.
+ */
+export type HotkeyCallbackContextFor<T extends RegisterableHotkey> = [
+  T,
+] extends [never]
+  ? HotkeyCallbackContext
+  : T extends readonly [RegisterableHotkeyChord]
+    ? HotkeyChordCallbackContext
+    : T extends RegisterableHotkeySequence
+      ? HotkeySequenceCallbackContext
+      : HotkeyChordCallbackContext
 
 /**
  * Callback function type for hotkey handlers.
  *
  * @param event - The keyboard event that triggered the hotkey
- * @param context - Additional context including the hotkey and parsed hotkey
+ * @param context - The registered hotkey and its parsed form. APIs that take
+ * one hotkey narrow it to chord or sequence context from the hotkey you pass.
  *
  * @example
  * ```ts
- * const handler: HotkeyCallback = (event, { hotkey, parsedHotkey }) => {
- *   console.log(`Hotkey ${hotkey} was pressed`)
- *   console.log(`Modifiers:`, parsedHotkey.modifiers)
+ * const handler: HotkeyCallback = (event, context) => {
+ *   if (context.kind === 'chord') {
+ *     console.log(context.hotkey, context.parsedChord.modifiers)
+ *   } else {
+ *     console.log(context.hotkey.join(' '), context.parsedSequence.length)
+ *   }
  * }
  * ```
  */
-export type HotkeyCallback = (
-  event: KeyboardEvent,
-  context: HotkeyCallbackContext,
-) => void
+export type HotkeyCallback<
+  TContext extends HotkeyCallbackContext = HotkeyCallbackContext,
+> = (event: KeyboardEvent, context: TContext) => void
 
 /**
  * Metadata for hotkey registrations, chords and sequences alike.

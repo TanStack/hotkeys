@@ -6,6 +6,11 @@ import React, {
   useState,
 } from 'react'
 import { AppHotkeysStore, publishAppHotkeysStore } from '@tanstack/hotkeys'
+import {
+  activateHotkeysProviderScope,
+  getHotkeysProviderScopeKey,
+  mergeHotkeysProviderDefaults,
+} from '@tanstack/hotkeys/adapter'
 import type { ReactNode } from 'react'
 import type {
   AppHotkeys,
@@ -13,6 +18,7 @@ import type {
   HotkeyChordRecorderOptions,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
+import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
 import type { UseHotkeyCommonOptions } from './useHotkey'
 
 export interface HotkeysProviderOptions {
@@ -32,12 +38,17 @@ export interface HotkeysProviderOptions {
 
 interface HotkeysContextValue {
   appHotkeysStore: AppHotkeysStore | null
+  /** Merged with every ancestor provider's defaults, including `hotkey.scope`. */
   defaultOptions: HotkeysProviderOptions
+  /** Whether this provider and every ancestor are enabled. */
+  enabled: boolean
 }
 
 const HotkeysContext = createContext<HotkeysContextValue | null>(null)
 
-export interface HotkeysProviderProps<T extends AppHotkeys = AppHotkeys> {
+export interface HotkeysProviderProps<
+  T extends AppHotkeys = AppHotkeys,
+> extends HotkeysProviderScopeProps {
   children: ReactNode
   /**
    * Every app hotkey, from `defineAppHotkeys`. Listed by `useAppHotkeyList`
@@ -51,13 +62,23 @@ export interface HotkeysProviderProps<T extends AppHotkeys = AppHotkeys> {
   customHotkeys?: CustomHotkeys<T> | null
   /** Called with the custom hotkeys after every change, ready to save. */
   onCustomHotkeysChange?: (customHotkeys: CustomHotkeys<T>) => void
+  /** Merged with the parent provider's defaults. */
   defaultOptions?: HotkeysProviderOptions
 }
 
 const DEFAULT_OPTIONS: HotkeysProviderOptions = {}
+const NO_PARENT: HotkeysContextValue = {
+  appHotkeysStore: null,
+  defaultOptions: DEFAULT_OPTIONS,
+  enabled: true,
+}
 
 /**
  * Provides default options, app hotkeys, and the user's custom hotkeys.
+ *
+ * Nest providers to create hotkey scopes. A nested provider inherits app
+ * hotkeys and merges default options. With `scope`, its hotkeys fire only
+ * while it is mounted and enabled; with `exclusive`, only its hotkeys fire.
  *
  * @example
  * ```tsx
@@ -71,6 +92,17 @@ const DEFAULT_OPTIONS: HotkeysProviderOptions = {}
  *   <App />
  * </HotkeysProvider>
  * ```
+ *
+ * @example
+ * ```tsx
+ * function EditDialog() {
+ *   return (
+ *     <HotkeysProvider scope="edit-dialog" exclusive={{ allow: ['global'] }}>
+ *       <DialogBody />
+ *     </HotkeysProvider>
+ *   )
+ * }
+ * ```
  */
 export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
   children,
@@ -78,7 +110,12 @@ export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
   customHotkeys,
   onCustomHotkeysChange,
   defaultOptions = DEFAULT_OPTIONS,
+  scope,
+  exclusive = false,
+  enabled = true,
 }: HotkeysProviderProps<T>) {
+  // eslint-disable-next-line @eslint-react/no-use-context -- React 19+ only; we support React >=16.8
+  const parent = useContext(HotkeysContext) ?? NO_PARENT
   const [store] = useState(() =>
     appHotkeys
       ? new AppHotkeysStore<T>(appHotkeys, {
@@ -87,6 +124,20 @@ export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
         })
       : null,
   )
+  const active = parent.enabled && enabled
+  // Compared by value, so an inline `exclusive` object does not reactivate
+  // the scope, and lose its precedence, on every render.
+  const scopeKey = getHotkeysProviderScopeKey({
+    scope,
+    exclusive,
+    active,
+    parent: parent.defaultOptions.hotkey?.scope,
+  })
+
+  // Activate this provider's scope while mounted and enabled.
+  useEffect(() => {
+    return scopeKey ? activateHotkeysProviderScope(scopeKey) : undefined
+  }, [scopeKey])
 
   // Keep the latest callback and declarations without resetting custom hotkeys.
   useEffect(() => {
@@ -104,10 +155,15 @@ export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
 
   const contextValue: HotkeysContextValue = useMemo(
     () => ({
-      appHotkeysStore: store,
-      defaultOptions,
+      appHotkeysStore: store ?? parent.appHotkeysStore,
+      defaultOptions: mergeHotkeysProviderDefaults(
+        parent.defaultOptions,
+        defaultOptions,
+        scope,
+      ),
+      enabled: active,
     }),
-    [store, defaultOptions],
+    [store, parent, defaultOptions, scope, active],
   )
 
   return (

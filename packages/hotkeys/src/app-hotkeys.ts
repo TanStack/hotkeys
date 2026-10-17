@@ -4,6 +4,7 @@ import { areHotkeysEqual } from './match'
 import { detectPlatform } from './platform'
 import { isHotkeySequence, simplifyHotkey } from './parse'
 import { validateHotkey } from './validate'
+import { GLOBAL_SCOPE } from './_registration'
 import type {
   Hotkey,
   HotkeyChord,
@@ -48,11 +49,12 @@ export interface AppHotkeyInput {
   /** Display metadata for cheat sheets and settings screens. */
   meta?: HotkeyMeta
   /**
-   * Label for where this hotkey applies, such as `'editor'`. App hotkeys with
-   * different contexts may share a hotkey; one without a context conflicts with
-   * any app hotkey that shares its hotkey. It does not affect matching.
+   * Scope this hotkey fires in, such as `'editor'`. Overrides the scope of the
+   * provider it registers under. App hotkeys in different scopes may share a
+   * hotkey; one in the `'global'` scope conflicts with any app hotkey that
+   * shares its hotkey.
    */
-  context?: string
+  scope?: string
   /**
    * Options that describe the hotkey itself. Chord defaults accept
    * `requireReset`; sequence defaults accept `timeout`.
@@ -81,7 +83,7 @@ export interface AppHotkey<
   /** Hotkey declared in `defineAppHotkeys`. */
   readonly defaultHotkey: TDefault
   readonly meta?: HotkeyMeta
-  readonly context?: string
+  readonly scope?: string
   readonly options?: AppHotkeyOptions
 }
 
@@ -185,7 +187,7 @@ export function defineAppHotkeys<
       hotkey,
       defaultHotkey: hotkey,
       meta: input.meta,
-      context: input.context,
+      scope: input.scope,
       options: input.options,
     }
   }
@@ -272,12 +274,10 @@ function sanitizeCustomHotkeys<T extends AppHotkeys>(
 }
 
 /** Whether two app hotkeys can apply at the same time. */
-function contextsOverlap(a: AppHotkey, b: AppHotkey): boolean {
-  return (
-    a.context === undefined ||
-    b.context === undefined ||
-    a.context === b.context
-  )
+function scopesOverlap(a: AppHotkey, b: AppHotkey): boolean {
+  const left = a.scope ?? GLOBAL_SCOPE
+  const right = b.scope ?? GLOBAL_SCOPE
+  return left === GLOBAL_SCOPE || right === GLOBAL_SCOPE || left === right
 }
 
 /** Whether two hotkeys collide: equal chords, or one sequence starts with the other. */
@@ -298,11 +298,13 @@ function hotkeysOverlap(
 /**
  * Status of an app hotkey in the running app.
  * - `'active'`: at least one enabled registration
+ * - `'suspended'`: has an enabled registration, but none in an active scope
  * - `'disabled'`: registered, but every registration has `enabled: false`
  * - `'inactive'`: has a hotkey, but nothing has registered it
  * - `'unbound'`: no hotkey assigned
  */
-export type AppHotkeyStatus = 'active' | 'disabled' | 'inactive' | 'unbound'
+export type AppHotkeyStatus =
+  'active' | 'suspended' | 'disabled' | 'inactive' | 'unbound'
 
 /** One row of an app hotkey cheat sheet. */
 export interface AppHotkeyListItem<T extends AppHotkey = AppHotkey> {
@@ -408,7 +410,7 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
 
   /**
    * Other app hotkeys that would collide if `id` used `hotkey`. App hotkeys
-   * collide when their contexts match or either has no context, and their
+   * collide when their scopes match or either is `'global'`, and their
    * hotkeys are equal or one sequence starts with the other.
    */
   findConflicts(id: keyof T & string, hotkey: Hotkey): Array<AppHotkey> {
@@ -419,7 +421,7 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
       (other) =>
         other.id !== id &&
         other.hotkey !== null &&
-        contextsOverlap(self, other) &&
+        scopesOverlap(self, other) &&
         hotkeysOverlap(candidate, other.hotkey, this.#platform),
     )
   }
@@ -490,8 +492,10 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
       else byId.set(id, [registration])
     }
 
+    const manager = getHotkeyManager()
     return Object.values(this.store.state.appHotkeys).map((appHotkey) => {
       const registered = byId.get(appHotkey.id) ?? []
+      const enabled = registered.filter((r) => r.options.enabled !== false)
       return {
         appHotkey: appHotkey as T[keyof T],
         status:
@@ -499,9 +503,11 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
             ? 'unbound'
             : registered.length === 0
               ? 'inactive'
-              : registered.some((r) => r.options.enabled !== false)
-                ? 'active'
-                : 'disabled',
+              : enabled.length === 0
+                ? 'disabled'
+                : enabled.some((r) => manager.isScopeActive(r.options.scope))
+                  ? 'active'
+                  : 'suspended',
         isCustom: isCustomHotkey(appHotkey, this.#platform),
         registrations: registered,
       }
@@ -523,14 +529,20 @@ export function resolveAppHotkey(
 
 /**
  * Options that adapters pass to the manager when registering an app hotkey:
- * declared options, meta, and the app hotkey id. The manager drops options
+ * declared options, scope, meta, and the app hotkey id. The manager drops options
  * that do not apply to the effective hotkey's kind.
  */
 export function getAppHotkeyRegistrationOptions(
   appHotkey: AppHotkey,
-): AppHotkeyOptions & { meta?: HotkeyMeta; appHotkeyId: string } {
+): AppHotkeyOptions & {
+  meta?: HotkeyMeta
+  appHotkeyId: string
+  scope?: string
+} {
   return {
     ...appHotkey.options,
+    // Omitted when undeclared, so the provider's scope applies.
+    ...(appHotkey.scope !== undefined && { scope: appHotkey.scope }),
     meta: appHotkey.meta,
     appHotkeyId: appHotkey.id,
   }

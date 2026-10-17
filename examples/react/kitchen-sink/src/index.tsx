@@ -23,7 +23,7 @@ import {
   useKeyHold,
 } from '@tanstack/react-hotkeys'
 import { appHotkeys } from './app-hotkeys'
-import { ActivityContext, Hint, formatHotkey } from './shared'
+import { ActivityContext, Hint, Modal, formatHotkey } from './shared'
 import type { CustomHotkeys } from '@tanstack/react-hotkeys'
 import './styles.css'
 
@@ -36,20 +36,44 @@ const pages = [
   { to: '/sequences', label: 'Sequences', hotkeyId: 'nav.sequences' },
   { to: '/shortcuts', label: 'Shortcuts', hotkeyId: 'nav.shortcuts' },
   { to: '/formatting', label: 'Formatting', hotkeyId: 'nav.formatting' },
+  { to: '/scopes', label: 'Scopes', hotkeyId: 'nav.scopes' },
 ] as const
 
 const statusLabels = {
   active: 'Active',
+  suspended: 'Suspended by another scope',
   disabled: 'Disabled',
   inactive: 'Not on this page',
   unbound: 'Unbound',
 }
 
 /**
+ * A modal cheat sheet. It is not exclusive, so page hotkeys keep working and
+ * each row shows whether the current page registers it.
+ */
+function ShortcutPanel({ onClose }: { onClose: () => void }) {
+  return (
+    <Modal
+      title="Shortcuts"
+      scope="shortcut-panel"
+      exclusive={false}
+      wide
+      onClose={onClose}
+    >
+      <ShortcutList onClose={onClose} />
+    </Modal>
+  )
+}
+
+/**
  * Lists every declared hotkey, including those on routes whose code has not
  * loaded, followed by undeclared registrations on the current page.
  */
-function ShortcutPanel() {
+function ShortcutList({ onClose }: { onClose: () => void }) {
+  const appHotkeys = useAppHotkeys()
+  // The panel's scope is newer than 'global', so this handles the toggle
+  // hotkey while the panel is open instead of the layout's registration.
+  useHotkey(appHotkeys['panel.toggle'], onClose)
   const items = useAppHotkeyList()
   const undeclared = useHotkeyRegistrations().filter(
     (reg) => reg.options.appHotkeyId === undefined,
@@ -57,8 +81,7 @@ function ShortcutPanel() {
   const groups = [...new Set(items.map((item) => item.appHotkey.meta?.group))]
 
   return (
-    <section aria-label="Shortcuts">
-      <h2>Shortcuts</h2>
+    <>
       <p>
         Declared hotkeys from every route, before their route loads. Status
         shows whether the current page registers each one.
@@ -118,14 +141,14 @@ function ShortcutPanel() {
           </table>
         </>
       )}
-    </section>
+    </>
   )
 }
 
 /** Global shortcuts remain registered while route components mount and unmount. */
 function Layout() {
   const navigate = useNavigate()
-  const hotkeys = useAppHotkeys()
+  const appHotkeys = useAppHotkeys()
   const [showShortcuts, setShowShortcuts] = useState(false)
   const [activity, setActivity] = useState<Array<string>>([])
   const log = useCallback((message: string) => {
@@ -137,13 +160,15 @@ function Layout() {
 
   useHotkeys(
     pages.map((page) => ({
-      hotkey: hotkeys[page.hotkeyId],
+      hotkey: appHotkeys[page.hotkeyId],
       callback: () => {
         void navigate({ to: page.to })
       },
     })),
   )
-  useHotkey(hotkeys['panel.toggle'], () => setShowShortcuts((value) => !value))
+  useHotkey(appHotkeys['panel.toggle'], () =>
+    setShowShortcuts((value) => !value),
+  )
 
   return (
     <ActivityContext.Provider value={log}>
@@ -165,14 +190,13 @@ function Layout() {
             </Link>
           ))}
         </nav>
-        <button
-          onClick={() => setShowShortcuts((value) => !value)}
-          aria-expanded={showShortcuts}
-        >
-          {showShortcuts ? 'Hide' : 'Show'} shortcuts <Hint id="panel.toggle" />
+        <button onClick={() => setShowShortcuts(true)} aria-haspopup="dialog">
+          Show shortcuts <Hint id="panel.toggle" />
         </button>
       </header>
-      {showShortcuts && <ShortcutPanel />}
+      {showShortcuts && (
+        <ShortcutPanel onClose={() => setShowShortcuts(false)} />
+      )}
       <main>
         <Outlet />
       </main>
@@ -216,6 +240,9 @@ const routeTree = rootRoute.addChildren([
   ),
   createRoute({ getParentRoute: () => rootRoute, path: '/formatting' }).lazy(
     () => import('./routes/formatting').then((d) => d.Route),
+  ),
+  createRoute({ getParentRoute: () => rootRoute, path: '/scopes' }).lazy(() =>
+    import('./routes/scopes').then((d) => d.Route),
   ),
 ])
 const router = createRouter({ routeTree })

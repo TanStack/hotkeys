@@ -7,11 +7,16 @@ title: provideHotkeysContext
 function provideHotkeysContext(options?): void;
 ```
 
-Defined in: [HotkeysProviderContext.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L69)
+Defined in: [HotkeysProviderContext.ts:98](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L98)
 
 Provides default options, app hotkeys, and the user's custom hotkeys to
-descendants. `HotkeysProvider` calls this; call it directly in a root
-component's setup instead of rendering the provider.
+descendants. `HotkeysProvider` calls this; call it directly in a component's
+setup instead of rendering the provider.
+
+Nest contexts to create hotkey scopes. A nested context inherits app
+hotkeys and merges default options. With `scope`, its hotkeys fire only
+while the component is mounted and enabled; with `exclusive`, only its
+hotkeys fire.
 
 ## Parameters
 

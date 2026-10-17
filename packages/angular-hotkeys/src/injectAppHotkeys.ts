@@ -29,9 +29,9 @@ function injectRequiredStore(name: string) {
  *
  * @example
  * ```ts
- * hotkeys = injectAppHotkeys()
+ * appHotkeys = injectAppHotkeys()
  * constructor() {
- *   injectHotkey(() => this.hotkeys()['doc.save'], () => this.save())
+ *   injectHotkey(() => this.appHotkeys()['doc.save'], () => this.save())
  * }
  * ```
  */

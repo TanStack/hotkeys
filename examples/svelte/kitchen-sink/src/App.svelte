@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount, setContext } from 'svelte'
   import {
+    HotkeysProvider,
     createHotkeys,
     createHotkey,
     formatForDisplay,
@@ -97,12 +98,15 @@
     <h2>Live registry</h2>
     <table>
       <thead
-        ><tr><th>Group / action</th><th>Binding</th><th>Status</th></tr></thead
+        ><tr
+          ><th>Group / action</th><th>Binding</th><th>Scope</th><th>Status</th
+          ></tr
+        ></thead
       ><tbody>
         {#each registry.hotkeys as reg (reg.id)}<tr
             ><td>{reg.options.meta?.group} / {reg.options.meta?.name}</td><td
               >{formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' })}</td
-            ><td
+            ><td>{reg.options.scope}</td><td
               >{reg.options.enabled === false
                 ? 'Disabled'
                 : `${reg.triggerCount} fired`}</td
@@ -112,7 +116,10 @@
     </table>
   </section>{/if}
 <main>
-  {#key page.path}<page.component />{/key}
+  <!-- Each page gets its own hotkey scope, active while it is mounted. -->
+  {#key page.path}<HotkeysProvider scope={page.name.toLowerCase()}
+      ><page.component /></HotkeysProvider
+    >{/key}
 </main>
 <section>
   <h2>Key state</h2>

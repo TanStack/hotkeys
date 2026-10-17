@@ -2,17 +2,16 @@ import { afterEach, expect, it, vi } from 'vitest'
 import {
   HotkeyManager,
   HotkeyRecorder,
-  createHotkeyHandler,
+  createHotkeyChordHandler,
   formatHotkey,
   hasNonModifierKey,
-  normalizeHotkeyFromParsed,
+  normalizeHotkey,
   parseHotkey,
   parseKeyboardEvent,
-  rawHotkeyToParsedHotkey,
 } from '../src'
 import type {
   HotkeyChordRecorderOptions,
-  ParsedHotkey,
+  ParsedHotkeyChord,
   ParsedModifiers,
 } from '../src'
 
@@ -25,9 +24,9 @@ const modifiers: ParsedModifiers = {
 }
 // Type-level regressions: neither ambiguous nor missing identity is a parsed binding.
 // @ts-expect-error key and code are mutually exclusive
-const both: ParsedHotkey = { ...modifiers, key: 'S', code: 'KeyS' }
+const both: ParsedHotkeyChord = { ...modifiers, key: 'S', code: 'KeyS' }
 // @ts-expect-error one identity must be supplied
-const neither: ParsedHotkey = { ...modifiers }
+const neither: ParsedHotkeyChord = { ...modifiers }
 void both
 void neither
 
@@ -40,16 +39,16 @@ afterEach(() => {
 it('constructs exclusive identities from strings, raw bindings, and events', () => {
   for (const parsed of [
     parseHotkey('Alt+[KeyS]'),
-    rawHotkeyToParsedHotkey({ code: 'KeyS', alt: true }),
+    parseHotkey({ code: 'KeyS', alt: true }),
   ]) {
     expect(parsed).toEqual({ ...modifiers, code: 'KeyS' })
     expect(parsed).not.toHaveProperty('key')
     expect(formatHotkey(parsed)).toBe('Alt+[KeyS]')
-    expect(normalizeHotkeyFromParsed(parsed)).toBe('Alt+[KeyS]')
+    expect(normalizeHotkey(parsed)).toBe('Alt+[KeyS]')
   }
   for (const parsed of [
     parseHotkey('Alt+S'),
-    rawHotkeyToParsedHotkey({ key: 'S', alt: true }),
+    parseHotkey({ key: 'S', alt: true }),
     parseKeyboardEvent(
       new KeyboardEvent('keydown', { key: 's', code: 'KeyQ', altKey: true }),
       'mac',
@@ -74,10 +73,9 @@ it('passes only physical identity to recorder validation', () => {
       new KeyboardEvent('keydown', { key: 'ß', code: 'KeyS', altKey: true }),
     )
     expect(validate.mock.calls[0]?.[1]).toEqual({
+      kind: 'chord',
       event: expect.any(KeyboardEvent),
-      parsedHotkey: { ...modifiers, code: 'KeyS' },
-      events: [expect.any(KeyboardEvent)],
-      parsedSequence: [{ ...modifiers, code: 'KeyS' }],
+      parsedChord: { ...modifiers, code: 'KeyS' },
     })
   } finally {
     recorder.destroy()
@@ -85,12 +83,13 @@ it('passes only physical identity to recorder validation', () => {
 })
 it('keeps physical identity in standalone handler context', () => {
   const callback = vi.fn()
-  createHotkeyHandler({ ...modifiers, code: 'KeyS' }, callback, {
+  createHotkeyChordHandler({ ...modifiers, code: 'KeyS' }, callback, {
     platform: 'mac',
   })(new KeyboardEvent('keydown', { key: 'ß', code: 'KeyS', altKey: true }))
   expect(callback).toHaveBeenCalledWith(expect.any(KeyboardEvent), {
+    kind: 'chord',
     hotkey: 'Alt+[KeyS]',
-    parsedHotkey: { ...modifiers, code: 'KeyS' },
+    parsedChord: { ...modifiers, code: 'KeyS' },
   })
 })
 it('synthesizes code rather than inventing a character when triggering registrations', () => {
@@ -105,8 +104,9 @@ it('synthesizes code rather than inventing a character when triggering registrat
   for (const callback of [single, sequence]) {
     expect(callback.mock.calls[0]![0].code).toBe('KeyS')
     expect(callback.mock.calls[0]![0].key).toBe('')
-    expect(callback.mock.calls[0]![1].parsedHotkey).not.toHaveProperty('key')
   }
+  expect(single.mock.calls[0]![1].parsedChord).not.toHaveProperty('key')
+  expect(sequence.mock.calls[0]![1].parsedSequence[1]).not.toHaveProperty('key')
 })
 it('recognizes physical action keys and preserves Escape input defaults', () => {
   expect(hasNonModifierKey('[KeyS]')).toBe(true)

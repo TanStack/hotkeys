@@ -4,7 +4,7 @@ import {
   isAppHotkey,
   resolveAppHotkey,
 } from './app-hotkeys'
-import { isHotkeySequence, normalizeRegisterableHotkey } from './parse'
+import { isHotkeySequence, normalizeHotkey } from './parse'
 import { defaultHotkeyOptions } from './_registration'
 import { detectPlatform } from './platform'
 import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'
@@ -14,8 +14,10 @@ import type {
   HotkeySequence,
   RegisterableHotkey,
   RegisterableHotkeyChord,
+  RegisterableHotkeySequence,
 } from './hotkey.types'
 import type {
+  ActivateHotkeyScopeOptions,
   HotkeyChordOptions,
   HotkeyOptions,
   HotkeyRegistrationHandle,
@@ -34,7 +36,7 @@ export type HotkeyDefinition =
       options?: HotkeyChordOptions
     }
   | {
-      hotkey: HotkeySequence
+      hotkey: RegisterableHotkeySequence
       callback: HotkeyCallback
       options?: HotkeySequenceOptions
     }
@@ -96,10 +98,7 @@ export function createHotkeyBindings() {
         ) {
           return
         }
-        const hotkey = normalizeRegisterableHotkey(
-          definition.hotkey,
-          options.platform,
-        )
+        const hotkey = normalizeHotkey(definition.hotkey, options.platform)
         if (isHotkeySequence(hotkey)) delete options.requireReset
         else delete options.timeout
         prepared.push({
@@ -214,7 +213,7 @@ export type AdapterAppHotkeyOptions<T extends AppHotkey, TTarget> = Omit<
  */
 export type AdapterHotkeyDefinition<TTarget> =
   | {
-      /** A chord string such as `'Mod+S'`, or a RawHotkey object */
+      /** A chord string such as `'Mod+S'`, or a chord object */
       hotkey: RegisterableHotkeyChord
       /** The function to call when the hotkey is pressed */
       callback: HotkeyCallback
@@ -222,8 +221,8 @@ export type AdapterHotkeyDefinition<TTarget> =
       options?: AdapterChordOptions<TTarget>
     }
   | {
-      /** A sequence such as `['G', 'G']` */
-      hotkey: HotkeySequence
+      /** A sequence such as `['G', 'G']`, with each step a string or an object */
+      hotkey: RegisterableHotkeySequence
       callback: HotkeyCallback
       options?: AdapterSequenceOptions<TTarget>
     }
@@ -324,4 +323,77 @@ export function subscribePublishedAppHotkeys(onChange: () => void): () => void {
     outer.unsubscribe()
     inner?.unsubscribe()
   }
+}
+
+/** Scope props shared by framework providers. */
+export interface HotkeysProviderScopeProps {
+  /**
+   * Scope for hotkeys registered inside this provider, active while it is
+   * mounted and enabled. Defaults to the parent provider's scope, or
+   * `'global'` at the root. App hotkeys that declare a scope keep it.
+   */
+  scope?: string
+  /**
+   * While mounted and enabled, suspend hotkeys in every other scope,
+   * including `'global'`, except scopes of nested providers. Pass
+   * `{ allow: [...] }` to keep other scopes active, such as `'global'`. Use
+   * with `scope`, for dialogs and other overlays.
+   */
+  exclusive?: ActivateHotkeyScopeOptions['exclusive']
+  /**
+   * Set false to deactivate this provider's scope, and the scopes of
+   * providers nested in it, without unmounting. Defaults to true.
+   */
+  enabled?: boolean
+}
+
+/**
+ * Merges a provider's default options over its parent's. A provider with a
+ * `scope` sets `hotkey.scope`, so hotkeys registered inside it use that scope.
+ */
+export function mergeHotkeysProviderDefaults<
+  T extends { hotkey?: object; hotkeyRecorder?: object },
+>(parent: T | undefined, own: T | undefined, scope: string | undefined): T {
+  return {
+    hotkey: { ...parent?.hotkey, ...own?.hotkey, ...(scope && { scope }) },
+    hotkeyRecorder: { ...parent?.hotkeyRecorder, ...own?.hotkeyRecorder },
+  } as T
+}
+
+/**
+ * A key for a provider's scope activation, or `null` when the scope should not
+ * be active. Equal keys mean the same activation, so adapters reactivate only
+ * when the key changes, not when an inline `exclusive` object is recreated.
+ */
+export function getHotkeysProviderScopeKey(options: {
+  scope: string | undefined
+  exclusive: ActivateHotkeyScopeOptions['exclusive']
+  /** Whether this provider and every ancestor are enabled. */
+  active: boolean
+  /** The parent provider's scope. */
+  parent: string | undefined
+}): string | null {
+  const { scope, exclusive, active, parent } = options
+  if (!scope || !active) return null
+  return JSON.stringify([
+    scope,
+    typeof exclusive === 'object' ? exclusive.allow : !!exclusive,
+    parent ?? null,
+  ])
+}
+
+/**
+ * Activates the scope described by a key from `getHotkeysProviderScopeKey`.
+ * Returns a function that releases the activation.
+ */
+export function activateHotkeysProviderScope(key: string): () => void {
+  const [scope, exclusive, parent] = JSON.parse(key) as [
+    string,
+    boolean | Array<string>,
+    string | null,
+  ]
+  return getHotkeyManager().activateScope(scope, {
+    exclusive: Array.isArray(exclusive) ? { allow: exclusive } : exclusive,
+    parent: parent ?? undefined,
+  })
 }

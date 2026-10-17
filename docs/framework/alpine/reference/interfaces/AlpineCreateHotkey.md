@@ -3,7 +3,7 @@ id: AlpineCreateHotkey
 title: AlpineCreateHotkey
 ---
 
-Defined in: [types.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L99)
+Defined in: [types.ts:100](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L100)
 
 Registers a hotkey: a chord, a sequence, or an app hotkey.
 
@@ -16,7 +16,7 @@ AlpineCreateHotkey<T>(
    options?): void;
 ```
 
-Defined in: [types.ts:100](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L100)
+Defined in: [types.ts:101](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L101)
 
 Registers a hotkey: a chord, a sequence, or an app hotkey.
 
@@ -53,7 +53,7 @@ AlpineCreateHotkey<T>(
    options?): void;
 ```
 
-Defined in: [types.ts:105](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L105)
+Defined in: [types.ts:106](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L106)
 
 Registers a hotkey: a chord, a sequence, or an app hotkey.
 
@@ -71,7 +71,7 @@ Registers a hotkey: a chord, a sequence, or an app hotkey.
 
 #### callback
 
-`HotkeyCallback`
+`HotkeyCallback`\<`HotkeyCallbackContextFor`\<`T`\>\>
 
 #### options?
 

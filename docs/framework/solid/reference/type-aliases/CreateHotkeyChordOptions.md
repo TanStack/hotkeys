@@ -7,6 +7,6 @@ title: CreateHotkeyChordOptions
 type CreateHotkeyChordOptions = AdapterChordOptions<CreateHotkeyTarget>;
 ```
 
-Defined in: [createHotkey.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L28)
+Defined in: [createHotkey.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L29)
 
 Options for a chord such as `'Mod+S'`.

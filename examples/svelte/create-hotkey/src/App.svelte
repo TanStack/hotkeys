@@ -272,9 +272,9 @@
       </p>
       <div class="counter">Save triggered: {saveCount}x</div>
       <pre
-        class="code-block">{`createHotkey('Mod+S', (_event, { hotkey, parsedHotkey }) => {
+        class="code-block">{`createHotkey('Mod+S', (_event, { hotkey, parsedChord }) => {
   console.log('Hotkey:', hotkey)
-  console.log('Parsed:', parsedHotkey)
+  console.log('Parsed:', parsedChord)
 })`}</pre>
     </section>
 

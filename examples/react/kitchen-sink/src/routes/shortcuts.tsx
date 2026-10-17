@@ -18,6 +18,7 @@ export const Route = createLazyRoute('/shortcuts')({ component: Shortcuts })
 
 const statusLabels = {
   active: 'Active',
+  suspended: 'Suspended by another scope',
   disabled: 'Disabled',
   inactive: 'Not on this page',
   unbound: 'Unbound',
@@ -39,7 +40,10 @@ function Shortcuts() {
     findConflicts,
   } = useCustomHotkeys()
   const [editing, setEditing] = useState<AppHotkeyId | null>(null)
-  const [problem, setProblem] = useState('')
+  const [notice, setNotice] = useState<{
+    message: string
+    tone: 'error' | 'info'
+  } | null>(null)
   const [mode, setMode] = useState<RecorderKeyMode>('code')
   const [idle, setIdle] = useState(false)
 
@@ -48,14 +52,14 @@ function Shortcuts() {
 
   const finish = (id: AppHotkeyId, message: string) => {
     setEditing(null)
-    setProblem('')
+    setNotice(null)
     log(`${nameOf(id)}: ${message}`)
   }
 
-  // One recorder for every app hotkey: a single chord or a sequence of up to
-  // three. Enter (or the idle timeout) commits; one chord records a chord.
+  // One recorder for every app hotkey: a chord or a sequence. Enter (or the
+  // idle timeout) commits; one chord records a chord.
   const recorder = useHotkeyRecorder({
-    maxSteps: 3,
+    maxSteps: Infinity,
     recordBy: mode,
     ignoreInputs: false,
     idleTimeoutMs: idle ? 1500 : undefined,
@@ -73,7 +77,7 @@ function Shortcuts() {
         `Conflicts with ${conflicts.map((c) => c.meta?.name ?? c.id).join(', ')}.`
       )
     },
-    onReject: ({ message }) => setProblem(message),
+    onReject: ({ message }) => setNotice({ message, tone: 'error' }),
     onRecord: (hotkey) => {
       if (!editing) return
       setCustomHotkey(editing, hotkey)
@@ -86,13 +90,16 @@ function Shortcuts() {
     },
     onCancel: () => {
       setEditing(null)
-      setProblem('Recording cancelled. Hotkey unchanged.')
+      setNotice({
+        message: 'Recording cancelled. Hotkey unchanged.',
+        tone: 'info',
+      })
     },
   })
 
   const record = (id: AppHotkeyId) => {
     setEditing(id)
-    setProblem('')
+    setNotice(null)
     recorder.startRecording()
   }
 
@@ -128,12 +135,13 @@ function Shortcuts() {
         </label>
       </p>
       <p>
-        Press up to three chords, then Enter. Escape cancels. Backspace removes
-        the last chord, or restores the default when nothing is recorded. Try
-        Alt + 1 on a ticket action: it conflicts with a global navigation
-        hotkey.
+        Press each chord, then Enter. Escape cancels. Backspace removes the last
+        chord, or restores the default when nothing is recorded. Try Alt + 1 on
+        a ticket action: it conflicts with a global navigation hotkey.
       </p>
-      <p role="status">{problem}</p>
+      <div role="status" aria-live="polite">
+        {notice && <p className={`notice ${notice.tone}`}>{notice.message}</p>}
+      </div>
       {groups.map((group) => (
         <div key={group}>
           <h3>{group}</h3>
@@ -153,7 +161,14 @@ function Shortcuts() {
                   const id = appHotkey.id
                   const isEditing = editing === id && recorder.isRecording
                   return (
-                    <tr key={id}>
+                    <tr
+                      key={id}
+                      data-status={status}
+                      data-recording={isEditing || undefined}
+                      data-invalid={
+                        (isEditing && notice?.tone === 'error') || undefined
+                      }
+                    >
                       <td>
                         {appHotkey.meta?.name}
                         <br />
@@ -168,12 +183,16 @@ function Shortcuts() {
                             : 'Listening…'
                           : formatHotkey(appHotkey.hotkey)}
                         {isCustom && !isEditing && <small> (custom)</small>}
+                        {isEditing && notice?.tone === 'error' && (
+                          <div className="field-error">{notice.message}</div>
+                        )}
                       </td>
                       <td>{statusLabels[status]}</td>
-                      <td>
+                      <td className="actions">
                         {isEditing ? (
                           <>
                             <button
+                              className="primary"
                               disabled={recorder.steps.length === 0}
                               onClick={recorder.commitRecording}
                             >

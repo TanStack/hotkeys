@@ -1,137 +1,201 @@
 ---
 title: Quick Start
 id: quick-start
+description: Add keyboard shortcuts to an Octane app with TanStack Hotkeys. Register hotkeys, show them in your UI, and group them with scoped providers.
 ---
 
-Install `@tanstack/octane-hotkeys` with the [installation instructions](../../installation). This guide builds a save shortcut and shows the component lifecycle used by the other APIs.
+This guide adds keyboard shortcuts to an Octane app. If you haven't installed TanStack Hotkeys yet, see [Installation](../../installation).
 
-## Your first hotkey
+## Register a hotkey
 
-Put this code in a `.tsrx` file compiled with the Octane toolchain. Add `<div id="root"></div>` to the host HTML.
+TanStack Hotkeys needs no special setup. To register a keyboard shortcut, call `useHotkey` in the component that owns the action:
 
 ```tsx
-import { createRoot, delegateEvents, useState } from 'octane'
-import { useHotkey, formatForDisplay } from '@tanstack/octane-hotkeys'
-
-delegateEvents(['click'])
+import { useHotkey } from '@tanstack/octane-hotkeys'
 
 function Editor() @{
-	const [count, setCount] = useState(0)
-	const [enabled, setEnabled] = useState(true)
-	useHotkey('Mod+S', () => setCount((value) => value + 1), { enabled })
+  useHotkey('Mod+S', () => saveDocument())
 
-	<div>
-		<button type="button" onClick={() => setEnabled(!enabled)}>Toggle shortcut</button>
-		<p>Press <kbd>{formatForDisplay('Mod+S')}</kbd>. Saved {count} times.</p>
-	</div>
-}
-
-const root = createRoot(document.getElementById('root')!)
-root.render(Editor)
-```
-
-Press Command+S on macOS or Control+S on Windows and Linux. The count increases and the browser save dialog is prevented. The toggle disables execution while preserving the registration.
-
-`Mod` resolves to the primary platform modifier. Use `Mod+[KeyS]` instead when the shortcut must follow the physical S position.
-
-## Registration and cleanup
-
-Write hook calls in compiler-enabled `.tsrx` components. The Octane compiler supplies hook identity, so call hooks at stable component call sites. Use the plural hooks for lists that change length. Do not supply the compiler's internal slot argument yourself.
-
-Registration callbacks and options refresh after each commit. Registrations and recorder subscriptions are released when the component unmounts. Element targets are DOM nodes, not React ref objects. Use a callback ref that updates component state so the hook sees a newly mounted or replaced element.
-
-## Common patterns
-
-### Multiple hotkeys
-
-
-```tsx
-useHotkey('Mod+S', () => console.log('Save'))
-useHotkey('Mod+Z', () => console.log('Undo'))
-useHotkey('Mod+Shift+Z', () => console.log('Redo'))
-```
-
-Each registration is independent. For a dynamic list, use `useHotkeys` as shown in the [hotkeys guide](./guides/hotkeys.md#registering-multiple-hotkeys).
-
-### Scoped hotkeys
-
-Pass an actual element as `target`. A `null` target defers registration until the element exists. Make the element focusable with `tabindex="0"`. See the [complete scoped example](./guides/hotkeys.md#target).
-
-### Conditional hotkeys
-
-
-```tsx
-useHotkey('Mod+S', () => console.log("Save"), { enabled })
-```
-
-Use Octane component state for the enabled flag.
-
-### Multi-key sequences
-
-
-```tsx
-useHotkey(['G', 'G'], () => window.scrollTo({ top: 0 }))
-```
-
-Release G between presses. Automatic key repeats do not advance sequences.
-
-### Tracking held keys and displaying hints
-
-
-```tsx
-import { useHeldKeys, useHeldKeyCodes, useKeyHold, useHotkeyHint } from '@tanstack/octane-hotkeys'
-
-export function KeyStatus() @{
-	const held = useHeldKeys()
-	const codes = useHeldKeyCodes()
-	const shift = useKeyHold('Shift')
-	const hint = useHotkeyHint('Mod+S')
-
-	<div>
-		<p>{held.join(' + ') || 'No keys held'}</p>
-		@for (const key of held) {
-			<p>{key}: {codes[key]}</p>
-		}
-		@if (shift) { <button type="button">Delete permanently</button> }
-		@if (hint) { <kbd>Save</kbd> }
-	</div>
+  <textarea />
 }
 ```
 
-Use `formatForDisplay(binding)` for platform-specific labels. Keep the original binding in state; a display label is not a registration string.
+Write hook calls in compiler-enabled `.tsrx` components. The Octane compiler tracks hooks by call site, so call them at the top level of the component, not in loops or conditions.
 
-## Default options provider
+`Mod` is Command on macOS and Control on Windows and Linux, so `Mod+S` is the save shortcut each user already knows. The browser's Save dialog stays closed, and the shortcut still works while the user types in the textarea. [Sensible Defaults](../../guides/sensible-defaults) explains these defaults.
 
-Place the provider above components that call hotkey hooks.
+That's all a hotkey needs. Providers, scopes, and the other features later in this guide are optional, so add them as your app grows.
+
+## Register several hotkeys
+
+When a component has more than one hotkey, register them together with `useHotkeys`:
+
+```tsx
+import { useHotkeys } from '@tanstack/octane-hotkeys'
+
+function Editor() @{
+  useHotkeys([
+    { hotkey: 'Mod+S', callback: () => save() },
+    { hotkey: 'Mod+Z', callback: () => undo() },
+    { hotkey: 'Mod+Shift+Z', callback: () => redo() },
+  ])
+
+  <textarea />
+}
+```
+
+`useHotkeys` takes an array, so the list can also come from data, and its length can change between renders.
+
+## Sequences
+
+Pass an array of chords to register a sequence, pressed one after another:
+
+```tsx
+useHotkey(['G', 'G'], () => scrollToTop())
+```
+
+Each step must follow the previous one within a second.
+
+`useHotkeys` accepts chords and sequences in the same array:
+
+```tsx
+useHotkeys([
+  { hotkey: 'Mod+K', callback: () => openSearch() },
+  { hotkey: ['G', 'H'], callback: () => goHome() },
+  { hotkey: ['G', 'S'], callback: () => goToSettings() },
+])
+```
+
+## Show the shortcut
+
+Label a button or menu item with `formatForDisplay`. Format the same value you register, so the label always matches the binding:
+
+```tsx
+import { formatForDisplay, useHotkey } from '@tanstack/octane-hotkeys'
+import type { HotkeyChord } from '@tanstack/octane-hotkeys'
+
+const saveHotkey: HotkeyChord = 'Mod+S'
+
+function SaveButton() @{
+  useHotkey(saveHotkey, () => save())
+
+  <button onClick={save}>
+    Save <kbd>{formatForDisplay(saveHotkey)}</kbd>
+  </button>
+}
+```
+
+The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. `HotkeyChord` checks the string, so a typo in the binding is a type error. Use `Hotkey` for a value that can also be a sequence.
+
+## Hotkeys follow your components
+
+A hotkey is registered when the component that calls the hook mounts, and unregistered when that component unmounts. Put each hotkey in the component it belongs to, so it is active only while that component is mounted:
+
+```tsx
+import { useState } from 'octane'
+import { useHotkey } from '@tanstack/octane-hotkeys'
+
+function App() @{
+  const [isOpen, setIsOpen] = useState(false)
+
+  <div>
+    <button onClick={() => setIsOpen(true)}>Settings</button>
+    @if (isOpen) { <SettingsDialog onClose={() => setIsOpen(false)} /> }
+  </div>
+}
+
+function SettingsDialog({ onClose }: { onClose: () => void }) @{
+  // Registered only while the dialog is mounted
+  useHotkey('Escape', onClose)
+
+  <div role="dialog">...</div>
+}
+```
+
+For a condition that doesn't match a component, pass `enabled`:
+
+```tsx
+useHotkey('Mod+S', () => save(), { enabled: hasUnsavedChanges })
+```
+
+When a group of hotkeys turns on and off together, put them in a scope instead. See [Add providers and scopes](#add-providers-and-scopes-optional).
+
+## Element hotkeys
+
+A hotkey's default `target` is `document`, so it works wherever focus is on the page. To limit it to one element, keep the element in state with a callback ref and pass it as `target`:
+
+```tsx
+import { useState } from 'octane'
+import { useHotkey } from '@tanstack/octane-hotkeys'
+
+function Panel() @{
+  const [panel, setPanel] = useState<HTMLDivElement | null>(null)
+
+  // Fires only while the panel, or something inside it, has focus
+  useHotkey('Escape', () => closePanel(), { target: panel })
+
+  <div ref={setPanel} tabIndex={0}>...</div>
+}
+```
+
+A target must be an element, not a ref object. A `null` target waits until the element mounts. The element must be focusable to receive key presses, so give it a `tabIndex` if it isn't a control.
+
+## Add providers and scopes (optional)
+
+So far, every hotkey uses the built-in defaults and belongs to the global scope, so it is active whenever its component is mounted. You don't need a provider for that.
+
+Add `HotkeysProvider` at the root to set default options for every hotkey inside it, such as more time between sequence steps:
 
 ```tsx
 import { HotkeysProvider } from '@tanstack/octane-hotkeys'
 
-export function Root() @{
-	<div>
-		<HotkeysProvider defaultOptions={{
-			hotkey: { preventDefault: true, timeout: 1500 },
-			hotkeyRecorder: { onCancel: () => console.log('Cancelled'), idleTimeoutMs: 2000 },
-		}}>
-			<Editor />
-		</HotkeysProvider>
-	</div>
+function Root() @{
+  <HotkeysProvider defaultOptions={{ hotkey: { timeout: 1500 } }}>
+    <App />
+  </HotkeysProvider>
 }
 ```
 
-`useDefaultHotkeysOptions()` reads the nearest provider's defaults and returns an empty object outside a provider. `useHotkeysContext()` returns `{ defaultOptions, appHotkeysStore }`, or `null` outside a provider. Nested providers replace the outer defaults; call-specific options and per-definition options still take precedence.
+Add more providers deeper in your app to group hotkeys into scopes. Every hotkey inside a provider with a `scope` belongs to that scope. Make the scope `exclusive`, and while it is mounted, only its hotkeys work. Use one for dialogs and popups that should own the keyboard:
 
-## Declaring app hotkeys
+```tsx
+import { HotkeysProvider, useHotkeys } from '@tanstack/octane-hotkeys'
 
-To list every hotkey in a cheat sheet, including hotkeys whose components haven't mounted, and to let users customize them, declare them once with `defineAppHotkeys` and provide them with `HotkeysProvider`. See the [App Hotkeys Guide](./guides/app-hotkeys).
+function ConfirmDialog({ onConfirm, onCancel }: ConfirmDialogProps) @{
+  <HotkeysProvider scope="confirm-dialog" exclusive>
+    <ConfirmDialogBody onConfirm={onConfirm} onCancel={onCancel} />
+  </HotkeysProvider>
+}
 
-## Examples and next steps
+function ConfirmDialogBody({ onConfirm, onCancel }: ConfirmDialogProps) @{
+  useHotkeys([
+    { hotkey: 'Enter', callback: onConfirm },
+    { hotkey: 'Escape', callback: onCancel },
+  ])
 
-- [Hotkeys](./guides/hotkeys)
-- [Sequences](./guides/sequences)
-- [App hotkeys](./guides/app-hotkeys)
-- [Hotkey recording](./guides/hotkey-recording)
-- [Key state tracking](./guides/key-state-tracking)
-- [Formatting and display](./guides/formatting-display)
-- [Kitchen sink](./examples/kitchen-sink)
-- [API reference](./reference/index)
+  <div role="dialog">...</div>
+}
+```
+
+While the dialog is open, `Enter` and `Escape` confirm and cancel it, and every hotkey outside the dialog is suspended. When the dialog closes, they work again.
+
+A hook uses the nearest provider above the component that calls it, so register the dialog's hotkeys in a child of its provider. [HotkeysProvider and Scopes](./guides/hotkeys-provider-and-scopes) covers nested scopes, precedence, and turning a scope off without unmounting it.
+
+## Next steps
+
+Learn more about the basics:
+
+- [Hotkeys](./guides/hotkeys): chords and sequences, options, and element hotkeys
+- [Sequences](./guides/sequences): Vim-style multi-key shortcuts
+- [Sensible Defaults](../../guides/sensible-defaults): what hotkeys do without options, and keyboard layouts
+- [Formatting & Display](./guides/formatting-display): labels and keycaps for every platform
+- [Held Key State Helpers](./guides/held-key-state-helpers): show which keys are held
+- [Hotkey Hints](./guides/hotkey-hints): show a button's shortcut while the user holds its modifiers
+
+As your app grows:
+
+- [HotkeysProvider and Scopes](./guides/hotkeys-provider-and-scopes): set default options, and turn groups of hotkeys on and off with dialogs, panes, and tabs
+- [App Hotkeys](./guides/app-hotkeys): declare hotkeys in one place and let users change them
+- [Cheat Sheet UI Helpers](./guides/cheat-sheet-ui-helpers): list your shortcuts in a help dialog
+- [Custom Hotkey Recording](./guides/custom-hotkey-recording): record the shortcut a user presses
+- [Hotkey Manager](./guides/hotkey-manager): register and inspect hotkeys outside components

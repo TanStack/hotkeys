@@ -15,7 +15,7 @@ const autofocus = modifier((element: HTMLElement) => element.focus())
 
 class App extends Component {
   usage0 =
-    'onSave = (_event, { hotkey, parsedHotkey }) => {\n  console.log(hotkey, parsedHotkey)\n}\n\n<template>\n  {{useHotkey "Mod+[KeyS]" this.onSave}}\n</template>'
+    'onSave: HotkeyCallback = (_event, context) => {\n  if (context.kind === \'chord\') {\n    console.log(context.hotkey, context.parsedChord)\n  }\n}\n\n<template>\n  {{useHotkey "Mod+[KeyS]" this.onSave}}\n</template>'
   usage1 = '{{useHotkey "Mod+K" this.increment requireReset=true}}'
   usage2 =
     '@tracked enabled = true\n\n<template>\n  {{useHotkey "Mod+E" this.runAction enabled=this.enabled}}\n</template>'
@@ -51,11 +51,13 @@ class App extends Component {
   stopClickPropagation = (e: Event) => e.stopPropagation()
   updateEditor = (e: Event) =>
     (this.editorContent = (e.currentTarget as HTMLInputElement).value)
-  onModKeyS: HotkeyCallback = (_event, { hotkey, parsedHotkey }) => {
-    this.lastHotkey = hotkey
+  onModKeyS: HotkeyCallback = (_event, context) => {
+    this.lastHotkey = context.hotkey
     this.saveCount = this.saveCount + 1
-    console.log('Hotkey triggered:', hotkey)
-    console.log('Parsed hotkey:', parsedHotkey)
+    console.log('Hotkey triggered:', context.hotkey)
+    if (context.kind === 'chord') {
+      console.log('Parsed hotkey:', context.parsedChord)
+    }
   }
   onModK: HotkeyCallback = (_event, { hotkey }) => {
     this.lastHotkey = hotkey

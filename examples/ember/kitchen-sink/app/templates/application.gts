@@ -160,7 +160,7 @@ class Layout extends Component {
         <h2>Registered shortcuts</h2>
         <p>
           Global and current-route registrations, including disabled handlers.
-          Scoped shortcuts run inside their target.
+          Target shortcuts run only while focus is inside their target.
         </p>
         {{#each this.groups as |group|}}<div>
             <h3>{{group}}</h3>
@@ -313,7 +313,7 @@ class EditorPane extends Component<{
           meta: {
             name: `Save ${this.args.name}`,
             group: 'Editor',
-            description: 'Scoped to this editor',
+            description: 'Limited to this editor',
           },
         },
       },
@@ -367,7 +367,7 @@ class Editor extends Component<{ Args: { log: (message: string) => void } }> {
     button.closest('fieldset')?.focus()
   }
   onAltArrowRight: HotkeyCallback = () => (this.count = this.count + 1)
-  onAltKeyBScope: HotkeyCallback = () => this.args.log('Scoped B handler')
+  onAltKeyBScope: HotkeyCallback = () => this.args.log('Target B handler')
   onAltKeyB: HotkeyCallback = () =>
     this.args.log('Document B handler received the bubbled event')
   onAltKeyU: HotkeyCallback = () => this.args.log('Key released: keyup handler')
@@ -391,7 +391,7 @@ class Editor extends Component<{ Args: { log: (message: string) => void } }> {
       meta=(hash name='Run on release' group='Editor')
     }}
     <section>
-      <h2>Editor scopes</h2>
+      <h2>Editor targets</h2>
       <p>
         Save is registered in both editors. Focus a textarea to choose which handler
         receives it.
@@ -421,7 +421,7 @@ class Editor extends Component<{ Args: { log: (message: string) => void } }> {
           this.onAltKeyBScope
           preventDefault=(not this.bubble)
           stopPropagation=(not this.bubble)
-          meta=(hash name='Scoped propagation demo' group='Editor')
+          meta=(hash name='Target propagation demo' group='Editor')
         }}
         tabindex={{0}}
       >
@@ -553,8 +553,9 @@ class Recording extends Component<{
     detectConflicts: {
       exclude: (reg) => reg.options.meta?.name === 'Recorded action',
     },
-    validate: (_, { parsedHotkey }) =>
-      parsedHotkey.modifiers.length > 0 ||
+    validate: (_, context) =>
+      (context.kind === 'chord' &&
+        context.parsedChord.modifiers.length > 0) ||
       'Include a modifier for this action.',
     onReject: ({ message }) => (this.problem = message),
     onRecord: (value) => {

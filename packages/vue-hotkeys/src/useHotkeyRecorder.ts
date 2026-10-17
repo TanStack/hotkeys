@@ -40,7 +40,7 @@ export interface VueHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
  * @example
  * ```ts
  * const recorder = useHotkeyRecorder({ onRecord: (hotkey) => (shortcut.value = hotkey) })
- * const sequenceRecorder = useHotkeyRecorder({ maxSteps: 3, onRecord: save })
+ * const sequenceRecorder = useHotkeyRecorder({ maxSteps: Infinity, onRecord: save })
  * ```
  */
 export function useHotkeyRecorder(

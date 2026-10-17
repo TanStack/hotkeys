@@ -3,7 +3,7 @@ id: AppHotkey
 title: AppHotkey
 ---
 
-Defined in: [app-hotkeys.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L70)
+Defined in: [app-hotkeys.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L72)
 
 A declared app hotkey. It never holds a callback: register it with
 `useHotkey(appHotkey, callback)` or the equivalent adapter API.
@@ -35,19 +35,9 @@ A declared app hotkey. It never holds a callback: register it with
 readonly ~appHotkey: true;
 ```
 
-Defined in: [app-hotkeys.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L76)
+Defined in: [app-hotkeys.ts:78](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L78)
 
 Brand that distinguishes app hotkeys from raw hotkey objects.
-
-***
-
-### context?
-
-```ts
-readonly optional context?: string;
-```
-
-Defined in: [app-hotkeys.ts:84](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L84)
 
 ***
 
@@ -57,7 +47,7 @@ Defined in: [app-hotkeys.ts:84](https://github.com/TanStack/hotkeys/blob/main/pa
 readonly defaultHotkey: TDefault;
 ```
 
-Defined in: [app-hotkeys.ts:82](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L82)
+Defined in: [app-hotkeys.ts:84](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L84)
 
 Hotkey declared in `defineAppHotkeys`.
 
@@ -69,7 +59,7 @@ Hotkey declared in `defineAppHotkeys`.
 readonly hotkey: Hotkey | null;
 ```
 
-Defined in: [app-hotkeys.ts:80](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L80)
+Defined in: [app-hotkeys.ts:82](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L82)
 
 Effective hotkey: the user's custom hotkey, or the default. `null` means unbound.
 
@@ -81,7 +71,7 @@ Effective hotkey: the user's custom hotkey, or the default. `null` means unbound
 readonly id: TId;
 ```
 
-Defined in: [app-hotkeys.ts:78](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L78)
+Defined in: [app-hotkeys.ts:80](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L80)
 
 Stable id. Saved custom hotkeys are keyed by this value.
 
@@ -93,7 +83,7 @@ Stable id. Saved custom hotkeys are keyed by this value.
 readonly optional meta?: HotkeyMeta;
 ```
 
-Defined in: [app-hotkeys.ts:83](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L83)
+Defined in: [app-hotkeys.ts:85](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L85)
 
 ***
 
@@ -103,4 +93,14 @@ Defined in: [app-hotkeys.ts:83](https://github.com/TanStack/hotkeys/blob/main/pa
 readonly optional options?: AppHotkeyOptions;
 ```
 
-Defined in: [app-hotkeys.ts:85](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L85)
+Defined in: [app-hotkeys.ts:87](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L87)
+
+***
+
+### scope?
+
+```ts
+readonly optional scope?: string;
+```
+
+Defined in: [app-hotkeys.ts:86](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L86)

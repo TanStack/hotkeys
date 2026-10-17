@@ -16,7 +16,7 @@ import type {
   Hotkey,
   HotkeyChord,
   HotkeySequence,
-  ParsedHotkey,
+  ParsedHotkeyChord,
 } from './hotkey.types'
 
 /** Event property used to record a binding. Physical codes are the default. */
@@ -41,17 +41,30 @@ export interface RecorderOptions {
   onReject?: (rejection: RecorderRejection) => void
 }
 
-/** Validation context for a recorded chord or sequence. */
-export interface HotkeyRecorderValidationContext {
-  /** The event that recorded the last chord. */
+/** Validation context for a recorded chord. */
+export interface HotkeyChordRecorderValidationContext {
+  kind: 'chord'
+  /** The event that recorded the chord. */
   event: KeyboardEvent
-  /** The last chord, parsed. */
-  parsedHotkey: ParsedHotkey
+  /** The chord with `Mod` resolved for the recorder's platform. */
+  parsedChord: ParsedHotkeyChord
+}
+
+/** Validation context for a recorded sequence. */
+export interface HotkeySequenceRecorderValidationContext {
+  kind: 'sequence'
   /** The event that recorded each step. */
   events: ReadonlyArray<KeyboardEvent>
-  /** Every step, parsed. */
-  parsedSequence: ReadonlyArray<ParsedHotkey>
+  /** Each step with `Mod` resolved for the recorder's platform. */
+  parsedSequence: Array<ParsedHotkeyChord>
 }
+
+/**
+ * Validation context for a recorded chord or sequence. Narrow with `kind` to
+ * read `parsedChord` or `parsedSequence`.
+ */
+export type HotkeyRecorderValidationContext =
+  HotkeyChordRecorderValidationContext | HotkeySequenceRecorderValidationContext
 
 /**
  * State interface for the HotkeyRecorder.
@@ -91,7 +104,7 @@ export interface HotkeyChordRecorderOptions extends HotkeyRecorderBaseOptions {
   /** Return true to accept, or false/a message to reject while staying in recording mode. */
   validate?: (
     hotkey: HotkeyChord,
-    context: HotkeyRecorderValidationContext,
+    context: HotkeyChordRecorderValidationContext,
   ) => boolean | string
   /** Callback when a chord is successfully recorded */
   onRecord: (hotkey: HotkeyChord) => void
@@ -165,7 +178,7 @@ const initialState: HotkeyRecorderState = {
  * })
  *
  * const sequenceRecorder = new HotkeyRecorder({
- *   maxSteps: 3,
+ *   maxSteps: Infinity,
  *   onRecord: (hotkey) => {
  *     console.log('Recorded:', hotkey) // 'Mod+S' or ['G', 'H']
  *   },
@@ -380,13 +393,16 @@ export class HotkeyRecorder {
       options.onReject?.(rejection)
     }
 
-    const parsedSequence = steps.map((step) => parseHotkey(step, platform))
-    const accepted = options.validate?.(hotkey, {
-      event: this.#events[this.#events.length - 1]!,
-      parsedHotkey: parsedSequence[parsedSequence.length - 1]!,
-      events: [...this.#events],
-      parsedSequence,
-    })
+    const parsedSequence = parseHotkey(steps, platform)
+    const context: HotkeyRecorderValidationContext =
+      steps.length === 1
+        ? {
+            kind: 'chord',
+            event: this.#events[this.#events.length - 1]!,
+            parsedChord: parsedSequence[0]!,
+          }
+        : { kind: 'sequence', events: [...this.#events], parsedSequence }
+    const accepted = options.validate?.(hotkey, context)
     if (accepted !== undefined && accepted !== true) {
       rejectAndKeepRecording({
         reason: 'validation',

@@ -3,7 +3,7 @@ id: DefaultHotkeysOptions
 title: DefaultHotkeysOptions
 ---
 
-Defined in: [types.ts:164](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L164)
+Defined in: [types.ts:165](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L165)
 
 Shared defaults; call-specific options take precedence.
 
@@ -15,7 +15,7 @@ Shared defaults; call-specific options take precedence.
 optional hotkey?: AlpineHotkeyCommonOptions;
 ```
 
-Defined in: [types.ts:166](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L166)
+Defined in: [types.ts:167](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L167)
 
 Defaults for every hotkey. `requireReset` applies to chords and `timeout` to sequences.
 
@@ -27,6 +27,6 @@ Defaults for every hotkey. `requireReset` applies to chords and `timeout` to seq
 optional hotkeyRecorder?: Partial<Omit<HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions, "maxSteps" | "validate" | "onRecord">>;
 ```
 
-Defined in: [types.ts:168](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L168)
+Defined in: [types.ts:169](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L169)
 
 Defaults for every recorder.

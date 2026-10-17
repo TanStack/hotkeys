@@ -9,7 +9,7 @@ title: hotkey
 function hotkey<T>(hotkey, options?): HotkeyDecorator;
 ```
 
-Defined in: [decorators/hotkey.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/decorators/hotkey.ts#L40)
+Defined in: [decorators/hotkey.ts:48](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/decorators/hotkey.ts#L48)
 
 Decorator that registers a hotkey on the element when it connects and
 unregisters when it disconnects: a chord such as `'Mod+S'`, a sequence such
@@ -56,10 +56,10 @@ class MyElement extends LitElement {
 ## Call Signature
 
 ```ts
-function hotkey<T>(hotkey, options?): HotkeyDecorator;
+function hotkey<T>(hotkey, options?): HotkeyDecorator<HotkeyCallbackContextFor<T>>;
 ```
 
-Defined in: [decorators/hotkey.ts:44](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/decorators/hotkey.ts#L44)
+Defined in: [decorators/hotkey.ts:52](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/decorators/hotkey.ts#L52)
 
 Decorator that registers a hotkey on the element when it connects and
 unregisters when it disconnects: a chord such as `'Mod+S'`, a sequence such
@@ -87,7 +87,7 @@ Optional registration options (target, platform, enabled, etc.).
 
 ### Returns
 
-`HotkeyDecorator`
+`HotkeyDecorator`\<`HotkeyCallbackContextFor`\<`T`\>\>
 
 A method decorator for use on LitElement methods.
 

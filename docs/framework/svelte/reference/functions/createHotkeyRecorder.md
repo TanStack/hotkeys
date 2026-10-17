@@ -33,7 +33,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 ```svelte
 <script lang="ts">
   const recorder = createHotkeyRecorder({ onRecord: (hotkey) => (shortcut = hotkey) })
-  const sequenceRecorder = createHotkeyRecorder({ maxSteps: 3, onRecord: save })
+  const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: save })
 </script>
 
 <button onclick={recorder.startRecording}>
@@ -71,7 +71,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 ```svelte
 <script lang="ts">
   const recorder = createHotkeyRecorder({ onRecord: (hotkey) => (shortcut = hotkey) })
-  const sequenceRecorder = createHotkeyRecorder({ maxSteps: 3, onRecord: save })
+  const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: save })
 </script>
 
 <button onclick={recorder.startRecording}>
@@ -109,7 +109,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 ```svelte
 <script lang="ts">
   const recorder = createHotkeyRecorder({ onRecord: (hotkey) => (shortcut = hotkey) })
-  const sequenceRecorder = createHotkeyRecorder({ maxSteps: 3, onRecord: save })
+  const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: save })
 </script>
 
 <button onclick={recorder.startRecording}>
@@ -147,7 +147,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 ```svelte
 <script lang="ts">
   const recorder = createHotkeyRecorder({ onRecord: (hotkey) => (shortcut = hotkey) })
-  const sequenceRecorder = createHotkeyRecorder({ maxSteps: 3, onRecord: save })
+  const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: save })
 </script>
 
 <button onclick={recorder.startRecording}>
@@ -185,7 +185,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 ```svelte
 <script lang="ts">
   const recorder = createHotkeyRecorder({ onRecord: (hotkey) => (shortcut = hotkey) })
-  const sequenceRecorder = createHotkeyRecorder({ maxSteps: 3, onRecord: save })
+  const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: save })
 </script>
 
 <button onclick={recorder.startRecording}>
