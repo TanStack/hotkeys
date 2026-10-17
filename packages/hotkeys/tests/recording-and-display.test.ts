@@ -80,9 +80,7 @@ it('retains code identity through raw, string and parsed serialization', () => {
     const raw = { code, alt: true }
     const string = normalizeHotkey(raw, 'mac')
     expect(parseHotkey(string).code).toBe(code)
-    expect(parseHotkey(formatHotkey(parseHotkey(raw))).code).toBe(
-      code,
-    )
+    expect(parseHotkey(formatHotkey(parseHotkey(raw))).code).toBe(code)
     expect(areHotkeysEqual(raw, string)).toBe(true)
   }
   expect(

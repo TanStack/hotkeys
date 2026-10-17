@@ -1,8 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import {
-  HotkeyManager,
-  toHotkeyRegistrationView,
-} from '../src/hotkey-manager'
+import { HotkeyManager, toHotkeyRegistrationView } from '../src/hotkey-manager'
 import {
   AppHotkeysStore,
   defineAppHotkeys,

@@ -956,7 +956,9 @@ describe('matchesKeyboardEvent', () => {
 describe('createHotkeyChordHandler', () => {
   it('should call callback with event and context when hotkey matches', () => {
     const callback = vi.fn()
-    const handler = createHotkeyChordHandler('Mod+S', callback, { platform: 'mac' })
+    const handler = createHotkeyChordHandler('Mod+S', callback, {
+      platform: 'mac',
+    })
 
     const event = createKeyboardEvent('s', { metaKey: true })
     handler(event)
@@ -973,7 +975,9 @@ describe('createHotkeyChordHandler', () => {
 
   it('should not call callback when hotkey does not match', () => {
     const callback = vi.fn()
-    const handler = createHotkeyChordHandler('Mod+S', callback, { platform: 'mac' })
+    const handler = createHotkeyChordHandler('Mod+S', callback, {
+      platform: 'mac',
+    })
 
     const event = createKeyboardEvent('a', { metaKey: true })
     handler(event)
@@ -1009,7 +1013,9 @@ describe('createHotkeyChordHandler', () => {
 
   it('should preventDefault and stopPropagation by default', () => {
     const callback = vi.fn()
-    const handler = createHotkeyChordHandler('Mod+S', callback, { platform: 'mac' })
+    const handler = createHotkeyChordHandler('Mod+S', callback, {
+      platform: 'mac',
+    })
 
     const event = createKeyboardEvent('s', { metaKey: true })
     handler(event)
@@ -1043,7 +1049,9 @@ describe('createHotkeyChordHandler', () => {
       meta: true,
       modifiers: ['Meta'] as Array<'Control' | 'Shift' | 'Alt' | 'Meta'>,
     }
-    const handler = createHotkeyChordHandler(parsed, callback, { platform: 'mac' })
+    const handler = createHotkeyChordHandler(parsed, callback, {
+      platform: 'mac',
+    })
 
     const event = createKeyboardEvent('s', { metaKey: true })
     handler(event)

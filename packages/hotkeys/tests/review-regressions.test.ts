@@ -169,9 +169,7 @@ it('rejects physical tokens in raw and parsed logical fields without changing Un
   }
   for (const key of ['[', ']', 'ß', 'Ę', '字', 'é']) {
     const raw = { key }
-    expect(parseHotkey(normalizeHotkey(raw))).toEqual(
-      parseHotkey(raw),
-    )
+    expect(parseHotkey(normalizeHotkey(raw))).toEqual(parseHotkey(raw))
   }
   expect(parseHotkey('Mod+[KeyS]', 'mac')).toEqual(
     parseHotkey({ code: 'KeyS', mod: true }, 'mac'),

@@ -119,9 +119,7 @@ describe('formatForDisplay', () => {
           keyLabels: { KeyS: 'Save' },
         }),
       ).toEqual(['Option', 'Shift', 'Cmd', 'Save'])
-      expect(normalizeHotkey(binding, 'mac')).toBe(
-        'Mod+Alt+Shift+[KeyS]',
-      )
+      expect(normalizeHotkey(binding, 'mac')).toBe('Mod+Alt+Shift+[KeyS]')
       expect(
         formatForDisplay('Mod+Shift+S', { platform: 'mac', useSymbols: false }),
       ).toBe('Shift+Cmd+S')
