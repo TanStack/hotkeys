@@ -321,7 +321,7 @@ it.each(['hotkey', 'sequence'] as const)(
   },
 )
 
-it('only consumes the final step of a capture sequence', () => {
+it('prevents each step but stops propagation only on the final step of a capture sequence', () => {
   const { child } = widget()
   const widgetHandler = vi.fn()
   child.addEventListener('keydown', widgetHandler)
@@ -329,7 +329,7 @@ it('only consumes the final step of a capture sequence', () => {
   HotkeyManager.getInstance().register(['Control+S', 'Control+G'], callback, {
     capture: true,
   })
-  expect(press(child).defaultPrevented).toBe(false)
+  expect(press(child).defaultPrevented).toBe(true)
   expect(widgetHandler).toHaveBeenCalledOnce()
   expect(press(child, 'keydown', 'g').defaultPrevented).toBe(true)
   expect(widgetHandler).toHaveBeenCalledOnce()

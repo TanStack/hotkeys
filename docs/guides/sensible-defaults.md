@@ -1,6 +1,7 @@
 ---
-title: Sensible Defaults
+title: Sensible Defaults and Keyboard Layouts
 id: sensible-defaults
+description: How TanStack Hotkeys handles platforms, keyboard layouts, text inputs, and browser behavior by default, and how to change each default.
 ---
 
 Register `Mod+S` with no options and it behaves the way users expect: Command+S on macOS, Control+S elsewhere, the browser's Save dialog stays closed, it still works while the user is typing in a text field, and it works on any keyboard layout. TanStack Hotkeys chooses its defaults so the common case needs no configuration.
@@ -46,7 +47,25 @@ ASCII letters never fall back. If a key types `x`, it matches `X` and nothing el
 
 Letters match without regard to case: `S` and `s` are the same binding.
 
-When a shortcut should follow a position rather than a character, such as `W`/`A`/`S`/`D` movement in a game, use a physical binding with a bracketed code: `[KeyW]`. Physical bindings match `event.code` exactly and ignore the layout.
+### Match a key's position instead
+
+When a shortcut should follow a position rather than a character, such as `W`/`A`/`S`/`D` movement in a game, use a physical binding. Physical bindings match `event.code` exactly and ignore the layout:
+
+| Binding | Matches |
+| --- | --- |
+| `Mod+S` or `{ key: 'S', mod: true }` | The character S (`event.key`), with the fallbacks above |
+| `Mod+[KeyS]` or `{ code: 'KeyS', mod: true }` | The key in the S position on a US layout (`event.code`) |
+| `Enter` | Either Enter key, including the numpad's |
+| `[Enter]` or `[NumpadEnter]` | Only that Enter key |
+
+On a layout where the `KeyQ` position types `a`, `A` follows the character and `[KeyQ]` follows the position.
+
+- In strings, every physical code goes in brackets, including codes that share a name with a logical key, such as `[Enter]` and `[F13]`. Codes are type-checked and autocomplete in your editor.
+- In objects, use the `code` field for a physical binding and `key` for a logical one. A binding has one or the other, never both, and `key` never takes brackets.
+- In a chord's callback, `context.parsedChord.code` is set only for physical bindings. The same goes for each step in a sequence's `context.parsedSequence`. Check `code !== undefined` before reading it.
+- `formatForDisplay` labels physical bindings without brackets, so `Mod+[KeyS]` displays as `⌘ S` on macOS. The stored binding keeps its brackets.
+
+The [hotkey recorder](#recording-captures-what-the-user-pressed) records positions by default, so recorded hotkeys are physical bindings.
 
 ## Modifiers must match exactly
 
@@ -73,7 +92,7 @@ For a sequence, the first step decides, so `['G', 'G']` is ignored in inputs.
 
 Text inputs, textareas, selects, and `contenteditable` elements count as inputs, including inside shadow DOM. Button-type inputs (`type="button"`, `"submit"`, and `"reset"`) do not, so shortcuts still work when the user has tabbed to a form button. A hotkey whose `target` is the input itself always receives that input's events.
 
-Set `ignoreInputs: true` or `false` to choose explicitly.
+Set `ignoreInputs: true` or `false` to choose explicitly. For example, set `ignoreInputs: false` on an `Enter` hotkey that submits a form, so it works while focus is in the form's text fields.
 
 ## Focused controls keep their own keys
 
@@ -107,9 +126,19 @@ The recorder only skips text fields, so it can record Enter or Space while the b
 
 `preventDefault` and `stopPropagation` are `true` by default. Most shortcuts exist to replace a browser action: binding `Mod+S` to save a document should not also open the browser's Save Page dialog, and binding `Mod+K` to a command palette should not also focus the address bar. Stopping propagation keeps one key press from running both your shortcut and another listener higher in the page.
 
-Both apply only when a hotkey matches; every other key press is left alone. Set either to `false` when you want to observe a shortcut without taking it over.
+Both apply only when a hotkey matches; every other key press is left alone. For a sequence, every step that advances it calls `preventDefault`, so the browser doesn't act on `Mod+K` in `['Mod+K', 'Mod+C']`. Propagation stops only on the last step, so earlier steps still reach other listeners. Set either option to `false` when you want to observe a shortcut without taking it over.
 
-Some browser and operating system shortcuts, such as closing a tab or switching windows, never reach the page and cannot be overridden.
+Some browser and operating system shortcuts never reach the page and cannot be overridden. Browsers keep `Mod+T`, `Mod+N`, and `Mod+W` for opening and closing tabs and windows, and the operating system keeps shortcuts such as `Alt+Tab` and `Command+Tab`. Pick other keys for your app.
+
+## Single-key shortcuts need an off switch
+
+Ignoring inputs keeps a `K` hotkey from firing while the user types in a field, but it does not cover every case. Speech input users dictate words that arrive as key presses, and a stray key press can run a command. [WCAG 2.1.4](https://www.w3.org/WAI/WCAG22/Understanding/character-key-shortcuts.html) requires that a shortcut made of a single letter, number, punctuation, or symbol key meets at least one of these conditions:
+
+- **Users can turn it off.** Pass `enabled` from a user setting.
+- **Users can remap it** to include a modifier such as Control. App hotkeys let users rebind or unbind any hotkey you declare.
+- **It only works while a component has focus.** Set `target` to that component's element.
+
+Shortcuts with `Mod`, Control, or Alt, and keys that don't type characters, such as `Escape` and the function keys, are not affected. Shift doesn't count as a modifier here, because `Shift+K` still types a letter.
 
 ## Chords fire on keydown and repeat while held
 
@@ -133,7 +162,7 @@ No listeners are attached during server rendering.
 
 Hotkeys listen during the bubble phase, so a focused widget's own keyboard handler runs first. If a tab strip, editor, or menu handles a key and stops propagation, your hotkey never sees it. Usually that is what users expect: the widget they are working in should win.
 
-Set `capture: true` when an app-level shortcut has to win anyway. For example, a tab strip that ignores modifiers might treat `Mod+Backspace` as Backspace and close a tab before a document-level "close view" hotkey runs. With `capture: true`, the hotkey runs first, and the default `stopPropagation: true` keeps the key from the tab strip. Set `stopPropagation: false` if the widget should still receive it.
+Set `capture: true` when an app-level shortcut has to win anyway. It works with both `keydown` and `keyup` hotkeys. For example, a tab strip that ignores modifiers might treat `Mod+Backspace` as Backspace and close a tab before a document-level "close view" hotkey runs. With `capture: true`, the hotkey runs first, and the default `stopPropagation: true` keeps the key from the tab strip. Set `stopPropagation: false` if the widget should still receive it.
 
 Capture doesn't change which keys a hotkey skips. Typing in inputs and keys that focused controls keep for themselves are still skipped while `ignoreInputs` is on.
 
@@ -146,6 +175,7 @@ Sequences are forgiving in a few other ways:
 - **Pressing a modifier alone does not interrupt a sequence**, so steps can include modifiers: `['Shift+R', 'Shift+T']`.
 - **Automatic repeats are not steps.** Holding `G` does not complete `['G', 'G']`.
 - **A wrong key restarts the sequence.** If the wrong key is the sequence's first step, it begins a new attempt, so `G X G G` still completes `['G', 'G']`.
+- **Progress clears when the timeout passes**, without waiting for another key press, so a UI that shows the pressed steps clears on time.
 
 ## Duplicate registrations warn
 
@@ -161,7 +191,7 @@ While recording:
 
 - **Escape** cancels.
 - **Backspace** or **Delete** removes the last step, or clears an empty recording.
-- **Enter** commits a multi-step recording before it reaches `maxSteps`.
+- **Enter** commits a sequence recording, made with `maxSteps: Infinity`.
 - **Registered hotkeys are paused**, so pressing `Mod+S` to record it does not also save.
 - **Typing in inputs passes through**, so other fields on the page keep working. Escape still cancels.
 - **AltGr is rejected** for position recordings, because it types characters rather than shortcuts.
@@ -188,42 +218,42 @@ Every option above can be set on a single registration. To change a default for 
 
 # React
 
-See [Default options](../framework/react/guides/hotkeys.md#default-options) in the Hotkeys Guide.
+Pass `defaultOptions` to `HotkeysProvider`. See [Hotkey options](../framework/react/guides/hotkeys.md#hotkey-options) in Register Hotkeys.
 
 # Preact
 
-See [Default options](../framework/preact/guides/hotkeys.md#default-options) in the Hotkeys Guide.
+Pass `defaultOptions` to `HotkeysProvider`. See [Hotkey options](../framework/preact/guides/hotkeys.md#hotkey-options) in Register Hotkeys.
 
 # Solid
 
-See [Default options](../framework/solid/guides/hotkeys.md#default-options) in the Hotkeys Guide.
+Pass `defaultOptions` to `HotkeysProvider`. See [Hotkey options](../framework/solid/guides/hotkeys.md#hotkey-options) in Register Hotkeys.
 
 # Angular
 
-See [Default options](../framework/angular/guides/hotkeys.md#default-options) in the Hotkeys Guide.
+Pass `defaultOptions` to `provideHotkeys`. See [Hotkey options](../framework/angular/guides/hotkeys.md#hotkey-options) in Register Hotkeys.
 
 # Vue
 
-See [Default options](../framework/vue/guides/hotkeys.md#default-options) in the Hotkeys Guide.
+Pass `default-options` to `HotkeysProvider`. See [Hotkey options](../framework/vue/guides/hotkeys.md#hotkey-options) in Register Hotkeys.
 
 # Svelte
 
-See [Default options](../framework/svelte/guides/hotkeys.md#default-options) in the Hotkeys Guide.
+Pass `defaultOptions` to `HotkeysProvider`. See [Hotkey options](../framework/svelte/guides/hotkeys.md#hotkey-options) in Register Hotkeys.
 
 # Lit
 
-See [Default options](../framework/lit/guides/hotkeys.md#default-options) in the Hotkeys Guide.
+Lit has no shared defaults. Pass options to each hotkey, and share an options object between hotkeys that need the same ones. See [Share options](../framework/lit/guides/hotkeys.md#share-options) in Register Hotkeys.
 
 # Alpine
 
-See [Default options](../framework/alpine/guides/hotkeys.md#default-options) in the Hotkeys Guide.
+Pass default options to `createHotkeysScope`. See [Hotkey options](../framework/alpine/guides/hotkeys.md#hotkey-options) in Register Hotkeys.
 
 # Ember
 
-See [Default options](../framework/ember/guides/hotkeys.md#default-options) in the Hotkeys Guide.
+Pass default options to `createHotkeysScope`. See [Hotkey options](../framework/ember/guides/hotkeys.md#hotkey-options) in Register Hotkeys.
 
 # Octane
 
-See [Default options](../framework/octane/guides/hotkeys.md#default-options) in the Hotkeys Guide.
+Pass `defaultOptions` to `HotkeysProvider`. See [Hotkey options](../framework/octane/guides/hotkeys.md#hotkey-options) in Register Hotkeys.
 
 <!-- ::end:framework -->

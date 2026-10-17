@@ -117,12 +117,7 @@
     },
     {
       "label": "Guides",
-      "children": [
-        {
-          "label": "Sensible Defaults",
-          "to": "guides/sensible-defaults"
-        }
-      ],
+      "children": [],
       "frameworks": [
         {
           "label": "react",
@@ -136,20 +131,40 @@
               "to": "framework/react/guides/sequences"
             },
             {
-              "label": "App Hotkeys",
-              "to": "framework/react/guides/app-hotkeys"
-            },
-            {
-              "label": "Hotkey Recording",
-              "to": "framework/react/guides/hotkey-recording"
-            },
-            {
-              "label": "Key State Tracking",
-              "to": "framework/react/guides/key-state-tracking"
+              "label": "Sensible Defaults",
+              "to": "guides/sensible-defaults"
             },
             {
               "label": "Formatting & Display",
               "to": "framework/react/guides/formatting-display"
+            },
+            {
+              "label": "HotkeysProvider and Scopes",
+              "to": "framework/react/guides/hotkeys-provider-and-scopes"
+            },
+            {
+              "label": "App Hotkeys",
+              "to": "framework/react/guides/app-hotkeys"
+            },
+            {
+              "label": "Cheat Sheet UI Helpers",
+              "to": "framework/react/guides/cheat-sheet-ui-helpers"
+            },
+            {
+              "label": "Custom Hotkey Recording",
+              "to": "framework/react/guides/custom-hotkey-recording"
+            },
+            {
+              "label": "Held Key State Helpers",
+              "to": "framework/react/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Hotkey Hints",
+              "to": "framework/react/guides/hotkey-hints"
+            },
+            {
+              "label": "Hotkey Manager",
+              "to": "framework/react/guides/hotkey-manager"
             }
           ]
         },
@@ -165,20 +180,40 @@
               "to": "framework/preact/guides/sequences"
             },
             {
-              "label": "App Hotkeys",
-              "to": "framework/preact/guides/app-hotkeys"
-            },
-            {
-              "label": "Hotkey Recording",
-              "to": "framework/preact/guides/hotkey-recording"
-            },
-            {
-              "label": "Key State Tracking",
-              "to": "framework/preact/guides/key-state-tracking"
+              "label": "Sensible Defaults",
+              "to": "guides/sensible-defaults"
             },
             {
               "label": "Formatting & Display",
               "to": "framework/preact/guides/formatting-display"
+            },
+            {
+              "label": "HotkeysProvider and Scopes",
+              "to": "framework/preact/guides/hotkeys-provider-and-scopes"
+            },
+            {
+              "label": "App Hotkeys",
+              "to": "framework/preact/guides/app-hotkeys"
+            },
+            {
+              "label": "Cheat Sheet UI Helpers",
+              "to": "framework/preact/guides/cheat-sheet-ui-helpers"
+            },
+            {
+              "label": "Custom Hotkey Recording",
+              "to": "framework/preact/guides/custom-hotkey-recording"
+            },
+            {
+              "label": "Held Key State Helpers",
+              "to": "framework/preact/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Hotkey Hints",
+              "to": "framework/preact/guides/hotkey-hints"
+            },
+            {
+              "label": "Hotkey Manager",
+              "to": "framework/preact/guides/hotkey-manager"
             }
           ]
         },
@@ -194,20 +229,40 @@
               "to": "framework/solid/guides/sequences"
             },
             {
-              "label": "App Hotkeys",
-              "to": "framework/solid/guides/app-hotkeys"
-            },
-            {
-              "label": "Hotkey Recording",
-              "to": "framework/solid/guides/hotkey-recording"
-            },
-            {
-              "label": "Key State Tracking",
-              "to": "framework/solid/guides/key-state-tracking"
+              "label": "Sensible Defaults",
+              "to": "guides/sensible-defaults"
             },
             {
               "label": "Formatting & Display",
               "to": "framework/solid/guides/formatting-display"
+            },
+            {
+              "label": "HotkeysProvider and Scopes",
+              "to": "framework/solid/guides/hotkeys-provider-and-scopes"
+            },
+            {
+              "label": "App Hotkeys",
+              "to": "framework/solid/guides/app-hotkeys"
+            },
+            {
+              "label": "Cheat Sheet UI Helpers",
+              "to": "framework/solid/guides/cheat-sheet-ui-helpers"
+            },
+            {
+              "label": "Custom Hotkey Recording",
+              "to": "framework/solid/guides/custom-hotkey-recording"
+            },
+            {
+              "label": "Held Key State Helpers",
+              "to": "framework/solid/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Hotkey Hints",
+              "to": "framework/solid/guides/hotkey-hints"
+            },
+            {
+              "label": "Hotkey Manager",
+              "to": "framework/solid/guides/hotkey-manager"
             }
           ]
         },
@@ -223,20 +278,40 @@
               "to": "framework/angular/guides/sequences"
             },
             {
-              "label": "App Hotkeys",
-              "to": "framework/angular/guides/app-hotkeys"
-            },
-            {
-              "label": "Hotkey Recording",
-              "to": "framework/angular/guides/hotkey-recording"
-            },
-            {
-              "label": "Key State Tracking",
-              "to": "framework/angular/guides/key-state-tracking"
+              "label": "Sensible Defaults",
+              "to": "guides/sensible-defaults"
             },
             {
               "label": "Formatting & Display",
               "to": "framework/angular/guides/formatting-display"
+            },
+            {
+              "label": "provideHotkeys and Scopes",
+              "to": "framework/angular/guides/provide-hotkeys-and-scopes"
+            },
+            {
+              "label": "App Hotkeys",
+              "to": "framework/angular/guides/app-hotkeys"
+            },
+            {
+              "label": "Cheat Sheet UI Helpers",
+              "to": "framework/angular/guides/cheat-sheet-ui-helpers"
+            },
+            {
+              "label": "Custom Hotkey Recording",
+              "to": "framework/angular/guides/custom-hotkey-recording"
+            },
+            {
+              "label": "Held Key State Helpers",
+              "to": "framework/angular/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Hotkey Hints",
+              "to": "framework/angular/guides/hotkey-hints"
+            },
+            {
+              "label": "Hotkey Manager",
+              "to": "framework/angular/guides/hotkey-manager"
             }
           ]
         },
@@ -252,20 +327,40 @@
               "to": "framework/vue/guides/sequences"
             },
             {
-              "label": "App Hotkeys",
-              "to": "framework/vue/guides/app-hotkeys"
-            },
-            {
-              "label": "Hotkey Recording",
-              "to": "framework/vue/guides/hotkey-recording"
-            },
-            {
-              "label": "Key State Tracking",
-              "to": "framework/vue/guides/key-state-tracking"
+              "label": "Sensible Defaults",
+              "to": "guides/sensible-defaults"
             },
             {
               "label": "Formatting & Display",
               "to": "framework/vue/guides/formatting-display"
+            },
+            {
+              "label": "HotkeysProvider and Scopes",
+              "to": "framework/vue/guides/hotkeys-provider-and-scopes"
+            },
+            {
+              "label": "App Hotkeys",
+              "to": "framework/vue/guides/app-hotkeys"
+            },
+            {
+              "label": "Cheat Sheet UI Helpers",
+              "to": "framework/vue/guides/cheat-sheet-ui-helpers"
+            },
+            {
+              "label": "Custom Hotkey Recording",
+              "to": "framework/vue/guides/custom-hotkey-recording"
+            },
+            {
+              "label": "Held Key State Helpers",
+              "to": "framework/vue/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Hotkey Hints",
+              "to": "framework/vue/guides/hotkey-hints"
+            },
+            {
+              "label": "Hotkey Manager",
+              "to": "framework/vue/guides/hotkey-manager"
             }
           ]
         },
@@ -281,20 +376,36 @@
               "to": "framework/lit/guides/sequences"
             },
             {
-              "label": "App Hotkeys",
-              "to": "framework/lit/guides/app-hotkeys"
-            },
-            {
-              "label": "Hotkey Recording",
-              "to": "framework/lit/guides/hotkey-recording"
-            },
-            {
-              "label": "Key State Tracking",
-              "to": "framework/lit/guides/key-state-tracking"
+              "label": "Sensible Defaults",
+              "to": "guides/sensible-defaults"
             },
             {
               "label": "Formatting & Display",
               "to": "framework/lit/guides/formatting-display"
+            },
+            {
+              "label": "App Hotkeys",
+              "to": "framework/lit/guides/app-hotkeys"
+            },
+            {
+              "label": "Cheat Sheet UI Helpers",
+              "to": "framework/lit/guides/cheat-sheet-ui-helpers"
+            },
+            {
+              "label": "Custom Hotkey Recording",
+              "to": "framework/lit/guides/custom-hotkey-recording"
+            },
+            {
+              "label": "Held Key State Helpers",
+              "to": "framework/lit/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Hotkey Hints",
+              "to": "framework/lit/guides/hotkey-hints"
+            },
+            {
+              "label": "Hotkey Manager",
+              "to": "framework/lit/guides/hotkey-manager"
             }
           ]
         },
@@ -310,20 +421,40 @@
               "to": "framework/svelte/guides/sequences"
             },
             {
-              "label": "App Hotkeys",
-              "to": "framework/svelte/guides/app-hotkeys"
-            },
-            {
-              "label": "Hotkey Recording",
-              "to": "framework/svelte/guides/hotkey-recording"
-            },
-            {
-              "label": "Key State Tracking",
-              "to": "framework/svelte/guides/key-state-tracking"
+              "label": "Sensible Defaults",
+              "to": "guides/sensible-defaults"
             },
             {
               "label": "Formatting & Display",
               "to": "framework/svelte/guides/formatting-display"
+            },
+            {
+              "label": "HotkeysProvider and Scopes",
+              "to": "framework/svelte/guides/hotkeys-provider-and-scopes"
+            },
+            {
+              "label": "App Hotkeys",
+              "to": "framework/svelte/guides/app-hotkeys"
+            },
+            {
+              "label": "Cheat Sheet UI Helpers",
+              "to": "framework/svelte/guides/cheat-sheet-ui-helpers"
+            },
+            {
+              "label": "Custom Hotkey Recording",
+              "to": "framework/svelte/guides/custom-hotkey-recording"
+            },
+            {
+              "label": "Held Key State Helpers",
+              "to": "framework/svelte/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Hotkey Hints",
+              "to": "framework/svelte/guides/hotkey-hints"
+            },
+            {
+              "label": "Hotkey Manager",
+              "to": "framework/svelte/guides/hotkey-manager"
             }
           ]
         },
@@ -339,20 +470,36 @@
               "to": "framework/alpine/guides/sequences"
             },
             {
-              "label": "App Hotkeys",
-              "to": "framework/alpine/guides/app-hotkeys"
-            },
-            {
-              "label": "Hotkey Recording",
-              "to": "framework/alpine/guides/hotkey-recording"
-            },
-            {
-              "label": "Key State Tracking",
-              "to": "framework/alpine/guides/key-state-tracking"
+              "label": "Sensible Defaults",
+              "to": "guides/sensible-defaults"
             },
             {
               "label": "Formatting & Display",
               "to": "framework/alpine/guides/formatting-display"
+            },
+            {
+              "label": "App Hotkeys",
+              "to": "framework/alpine/guides/app-hotkeys"
+            },
+            {
+              "label": "Cheat Sheet UI Helpers",
+              "to": "framework/alpine/guides/cheat-sheet-ui-helpers"
+            },
+            {
+              "label": "Custom Hotkey Recording",
+              "to": "framework/alpine/guides/custom-hotkey-recording"
+            },
+            {
+              "label": "Held Key State Helpers",
+              "to": "framework/alpine/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Hotkey Hints",
+              "to": "framework/alpine/guides/hotkey-hints"
+            },
+            {
+              "label": "Hotkey Manager",
+              "to": "framework/alpine/guides/hotkey-manager"
             }
           ]
         },
@@ -368,20 +515,36 @@
               "to": "framework/ember/guides/sequences"
             },
             {
-              "label": "App Hotkeys",
-              "to": "framework/ember/guides/app-hotkeys"
-            },
-            {
-              "label": "Hotkey Recording",
-              "to": "framework/ember/guides/hotkey-recording"
-            },
-            {
-              "label": "Key State Tracking",
-              "to": "framework/ember/guides/key-state-tracking"
+              "label": "Sensible Defaults",
+              "to": "guides/sensible-defaults"
             },
             {
               "label": "Formatting & Display",
               "to": "framework/ember/guides/formatting-display"
+            },
+            {
+              "label": "App Hotkeys",
+              "to": "framework/ember/guides/app-hotkeys"
+            },
+            {
+              "label": "Cheat Sheet UI Helpers",
+              "to": "framework/ember/guides/cheat-sheet-ui-helpers"
+            },
+            {
+              "label": "Custom Hotkey Recording",
+              "to": "framework/ember/guides/custom-hotkey-recording"
+            },
+            {
+              "label": "Held Key State Helpers",
+              "to": "framework/ember/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Hotkey Hints",
+              "to": "framework/ember/guides/hotkey-hints"
+            },
+            {
+              "label": "Hotkey Manager",
+              "to": "framework/ember/guides/hotkey-manager"
             }
           ]
         },
@@ -397,20 +560,40 @@
               "to": "framework/octane/guides/sequences"
             },
             {
-              "label": "App Hotkeys",
-              "to": "framework/octane/guides/app-hotkeys"
-            },
-            {
-              "label": "Hotkey Recording",
-              "to": "framework/octane/guides/hotkey-recording"
-            },
-            {
-              "label": "Key State Tracking",
-              "to": "framework/octane/guides/key-state-tracking"
+              "label": "Sensible Defaults",
+              "to": "guides/sensible-defaults"
             },
             {
               "label": "Formatting & Display",
               "to": "framework/octane/guides/formatting-display"
+            },
+            {
+              "label": "HotkeysProvider and Scopes",
+              "to": "framework/octane/guides/hotkeys-provider-and-scopes"
+            },
+            {
+              "label": "App Hotkeys",
+              "to": "framework/octane/guides/app-hotkeys"
+            },
+            {
+              "label": "Cheat Sheet UI Helpers",
+              "to": "framework/octane/guides/cheat-sheet-ui-helpers"
+            },
+            {
+              "label": "Custom Hotkey Recording",
+              "to": "framework/octane/guides/custom-hotkey-recording"
+            },
+            {
+              "label": "Held Key State Helpers",
+              "to": "framework/octane/guides/held-key-state-helpers"
+            },
+            {
+              "label": "Hotkey Hints",
+              "to": "framework/octane/guides/hotkey-hints"
+            },
+            {
+              "label": "Hotkey Manager",
+              "to": "framework/octane/guides/hotkey-manager"
             }
           ]
         }
@@ -555,8 +738,12 @@
           "to": "reference/type-aliases/RegisterableHotkeyChord"
         },
         {
-          "label": "RawHotkey",
-          "to": "reference/type-aliases/RawHotkey"
+          "label": "RegisterableHotkeySequence",
+          "to": "reference/type-aliases/RegisterableHotkeySequence"
+        },
+        {
+          "label": "RawHotkeyChord",
+          "to": "reference/type-aliases/RawHotkeyChord"
         },
         {
           "label": "HotkeyOptions",
@@ -600,7 +787,19 @@
         },
         {
           "label": "HotkeyCallbackContext",
-          "to": "reference/interfaces/HotkeyCallbackContext"
+          "to": "reference/type-aliases/HotkeyCallbackContext"
+        },
+        {
+          "label": "HotkeyChordCallbackContext",
+          "to": "reference/interfaces/HotkeyChordCallbackContext"
+        },
+        {
+          "label": "HotkeySequenceCallbackContext",
+          "to": "reference/interfaces/HotkeySequenceCallbackContext"
+        },
+        {
+          "label": "HotkeyCallbackContextFor",
+          "to": "reference/type-aliases/HotkeyCallbackContextFor"
         },
         {
           "label": "HotkeyMeta",
@@ -1872,7 +2071,15 @@
         },
         {
           "label": "HotkeyRecorderValidationContext",
-          "to": "reference/interfaces/HotkeyRecorderValidationContext"
+          "to": "reference/type-aliases/HotkeyRecorderValidationContext"
+        },
+        {
+          "label": "HotkeyChordRecorderValidationContext",
+          "to": "reference/interfaces/HotkeyChordRecorderValidationContext"
+        },
+        {
+          "label": "HotkeySequenceRecorderValidationContext",
+          "to": "reference/interfaces/HotkeySequenceRecorderValidationContext"
         },
         {
           "label": "RecorderOptions",
@@ -2058,36 +2265,16 @@
           "to": "reference/functions/normalizeHotkey"
         },
         {
-          "label": "normalizeHotkeyFromParsed",
-          "to": "reference/functions/normalizeHotkeyFromParsed"
-        },
-        {
-          "label": "normalizeHotkeyFromEvent",
-          "to": "reference/functions/normalizeHotkeyFromEvent"
-        },
-        {
-          "label": "normalizeRegisterableHotkey",
-          "to": "reference/functions/normalizeRegisterableHotkey"
-        },
-        {
           "label": "parseHotkey",
           "to": "reference/functions/parseHotkey"
-        },
-        {
-          "label": "parseRegisterableHotkey",
-          "to": "reference/functions/parseRegisterableHotkey"
         },
         {
           "label": "parseKeyboardEvent",
           "to": "reference/functions/parseKeyboardEvent"
         },
         {
-          "label": "rawHotkeyToParsedHotkey",
-          "to": "reference/functions/rawHotkeyToParsedHotkey"
-        },
-        {
-          "label": "ParsedHotkey",
-          "to": "reference/type-aliases/ParsedHotkey"
+          "label": "ParsedHotkeyChord",
+          "to": "reference/type-aliases/ParsedHotkeyChord"
         },
         {
           "label": "matchesKeyboardEvent",
@@ -2188,6 +2375,10 @@
               "to": "framework/react/examples/kitchen-sink"
             },
             {
+              "label": "Scopes",
+              "to": "framework/react/examples/scopes"
+            },
+            {
               "label": "useHotkey",
               "to": "framework/react/examples/useHotkey"
             },
@@ -2227,6 +2418,10 @@
             {
               "label": "Kitchen Sink",
               "to": "framework/preact/examples/kitchen-sink"
+            },
+            {
+              "label": "Scopes",
+              "to": "framework/preact/examples/scopes"
             },
             {
               "label": "useHotkey",
@@ -2270,6 +2465,10 @@
               "to": "framework/solid/examples/kitchen-sink"
             },
             {
+              "label": "Scopes",
+              "to": "framework/solid/examples/scopes"
+            },
+            {
               "label": "createHotkey",
               "to": "framework/solid/examples/createHotkey"
             },
@@ -2311,6 +2510,10 @@
               "to": "framework/angular/examples/kitchen-sink"
             },
             {
+              "label": "Scopes",
+              "to": "framework/angular/examples/scopes"
+            },
+            {
               "label": "injectHotkey",
               "to": "framework/angular/examples/injectHotkey"
             },
@@ -2350,6 +2553,10 @@
             {
               "label": "Kitchen Sink",
               "to": "framework/vue/examples/kitchen-sink"
+            },
+            {
+              "label": "Scopes",
+              "to": "framework/vue/examples/scopes"
             },
             {
               "label": "useHotkey",
@@ -2424,6 +2631,10 @@
             {
               "label": "Kitchen Sink",
               "to": "framework/svelte/examples/kitchen-sink"
+            },
+            {
+              "label": "Scopes",
+              "to": "framework/svelte/examples/scopes"
             },
             {
               "label": "create-hotkey",
@@ -2547,6 +2758,10 @@
             {
               "label": "Kitchen Sink",
               "to": "framework/octane/examples/kitchen-sink"
+            },
+            {
+              "label": "Scopes",
+              "to": "framework/octane/examples/scopes"
             },
             {
               "label": "useHotkey",

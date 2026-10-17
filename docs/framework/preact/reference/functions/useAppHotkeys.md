@@ -20,6 +20,6 @@ Pass an entry to `useHotkey` or `useHotkeys` to register it.
 ## Example
 
 ```tsx
-const hotkeys = useAppHotkeys()
-useHotkey(hotkeys['doc.save'], () => save())
+const appHotkeys = useAppHotkeys()
+useHotkey(appHotkeys['doc.save'], () => save())
 ```

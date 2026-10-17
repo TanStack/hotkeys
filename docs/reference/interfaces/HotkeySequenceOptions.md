@@ -3,7 +3,7 @@ id: HotkeySequenceOptions
 title: HotkeySequenceOptions
 ---
 
-Defined in: [hotkey-manager.ts:103](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L103)
+Defined in: [hotkey-manager.ts:121](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L121)
 
 Options for a sequence such as `['G', 'G']`.
 
@@ -19,7 +19,7 @@ Options for a sequence such as `['G', 'G']`.
 optional appHotkeyId?: string;
 ```
 
-Defined in: [hotkey-manager.ts:93](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L93)
+Defined in: [hotkey-manager.ts:111](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L111)
 
 Id of the app hotkey this registration implements. Adapters set this when registering an app hotkey from `defineAppHotkeys`.
 
@@ -35,7 +35,7 @@ Id of the app hotkey this registration implements. Adapters set this when regist
 optional capture?: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:60](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L60)
+Defined in: [hotkey-manager.ts:62](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L62)
 
 Listen during capture, before descendant listeners. Defaults to `false` (bubble).
 With `stopPropagation: true`, a match on an ancestor prevents the event from
@@ -55,7 +55,7 @@ Changing this option preserves held-key reset state and sequence progress.
 optional conflictBehavior?: ConflictBehavior;
 ```
 
-Defined in: [hotkey-manager.ts:62](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L62)
+Defined in: [hotkey-manager.ts:64](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L64)
 
 Behavior when this hotkey conflicts with an existing registration on the same target. Defaults to 'warn'
 
@@ -71,7 +71,7 @@ Behavior when this hotkey conflicts with an existing registration on the same ta
 optional enabled?: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L68)
+Defined in: [hotkey-manager.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L70)
 
 Soft-disable: when `false`, the callback does not run but the registration
 stays in `HotkeyManager` (and in devtools). Toggling this should update the
@@ -89,7 +89,7 @@ existing handle via `setOptions` rather than unregistering. Defaults to `true`.
 optional eventType?: "keydown" | "keyup";
 ```
 
-Defined in: [hotkey-manager.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L70)
+Defined in: [hotkey-manager.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L72)
 
 The event type to listen for. Defaults to 'keydown'
 
@@ -105,7 +105,7 @@ The event type to listen for. Defaults to 'keydown'
 optional ignoreInputs?: boolean | "auto";
 ```
 
-Defined in: [hotkey-manager.ts:81](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L81)
+Defined in: [hotkey-manager.ts:83](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L83)
 
 Skip keys that a focused control inside the target uses itself: typing in
 text inputs, textarea, select, and contenteditable; Enter/Space on buttons
@@ -128,7 +128,7 @@ even in these controls.
 optional meta?: HotkeyMeta;
 ```
 
-Defined in: [hotkey-manager.ts:91](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L91)
+Defined in: [hotkey-manager.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L99)
 
 Optional metadata (name, description, custom fields via declaration merging)
 
@@ -144,7 +144,7 @@ Optional metadata (name, description, custom fields via declaration merging)
 optional platform?: "mac" | "windows" | "linux";
 ```
 
-Defined in: [hotkey-manager.ts:83](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L83)
+Defined in: [hotkey-manager.ts:85](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L85)
 
 The target platform for resolving 'Mod'
 
@@ -160,13 +160,36 @@ The target platform for resolving 'Mod'
 optional preventDefault?: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:85](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L85)
+Defined in: [hotkey-manager.ts:90](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L90)
 
-Prevent the default browser action when the hotkey matches. Defaults to true
+Prevent the default browser action when the hotkey matches. For a
+sequence, every step that advances it does. Defaults to true
 
 #### Inherited from
 
 [`HotkeyOptions`](HotkeyOptions.md).[`preventDefault`](HotkeyOptions.md#preventdefault)
+
+***
+
+### scope?
+
+```ts
+optional scope?: string;
+```
+
+Defined in: [hotkey-manager.ts:109](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L109)
+
+Scope this hotkey belongs to. Defaults to `'global'`, which is always
+active. Other scopes are active while activated with
+`HotkeyManager.activateScope`, which framework providers do while
+mounted. While an exclusive scope is active, only its hotkeys, those of
+scopes nested in it, and those of scopes it allows fire.
+When active scopes share a hotkey on the same target, the most recently
+activated scope handles it.
+
+#### Inherited from
+
+[`HotkeyOptions`](HotkeyOptions.md).[`scope`](HotkeyOptions.md#scope)
 
 ***
 
@@ -176,9 +199,10 @@ Prevent the default browser action when the hotkey matches. Defaults to true
 optional stopPropagation?: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:87](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L87)
+Defined in: [hotkey-manager.ts:95](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L95)
 
-Stop event propagation when the hotkey matches. Defaults to true
+Stop event propagation when the hotkey matches. For a sequence, only the
+last step does, so earlier steps reach other listeners. Defaults to true
 
 #### Inherited from
 
@@ -192,7 +216,7 @@ Stop event propagation when the hotkey matches. Defaults to true
 optional target?: Target | null;
 ```
 
-Defined in: [hotkey-manager.ts:89](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L89)
+Defined in: [hotkey-manager.ts:97](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L97)
 
 The DOM element to attach the event listener to. Defaults to document.
 
@@ -208,6 +232,6 @@ The DOM element to attach the event listener to. Defaults to document.
 optional timeout?: number;
 ```
 
-Defined in: [hotkey-manager.ts:105](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L105)
+Defined in: [hotkey-manager.ts:123](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L123)
 
 Maximum time between steps in milliseconds. Default: 1000

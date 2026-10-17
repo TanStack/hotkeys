@@ -11,9 +11,9 @@ import type { MaybeRefOrGetter } from 'vue'
 import type {
   AppHotkey,
   HotkeyCallback,
-  HotkeySequence,
   RegisterableHotkey,
   RegisterableHotkeyChord,
+  RegisterableHotkeySequence,
 } from '@tanstack/hotkeys'
 import type {
   AdapterCommonOptions,
@@ -35,7 +35,7 @@ import type {
  */
 export type UseHotkeyDefinition =
   | {
-      /** A chord string such as `'Mod+S'`, or a RawHotkey object */
+      /** A chord string such as `'Mod+S'`, or a chord object */
       hotkey: MaybeRefOrGetter<RegisterableHotkeyChord>
       /** The function to call when the hotkey is pressed */
       callback: HotkeyCallback
@@ -43,8 +43,8 @@ export type UseHotkeyDefinition =
       options?: MaybeRefOrGetter<UseHotkeyChordOptions>
     }
   | {
-      /** A sequence such as `['G', 'G']` */
-      hotkey: MaybeRefOrGetter<HotkeySequence>
+      /** A sequence such as `['G', 'G']`, with each step a string or an object */
+      hotkey: MaybeRefOrGetter<RegisterableHotkeySequence>
       callback: HotkeyCallback
       options?: MaybeRefOrGetter<UseHotkeySequenceOptions>
     }

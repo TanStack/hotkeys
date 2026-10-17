@@ -1,5 +1,5 @@
 import { MODIFIER_KEYS, normalizeKeyName } from './constants'
-import { isHotkeySequence, parseRegisterableHotkey } from './parse'
+import { isHotkeySequence, parseHotkey } from './parse'
 import type { CanonicalModifier } from './key.types'
 import type { RegisterableHotkey } from './hotkey.types'
 
@@ -36,7 +36,7 @@ export function matchesHeldModifiers(
   ]
   const first = isHotkeySequence(hotkey) ? hotkey[0] : hotkey
   if (first === undefined) return false
-  const { modifiers } = parseRegisterableHotkey(first, options.platform)
+  const { modifiers } = parseHotkey(first, options.platform)
   return (
     held.length > 0 &&
     held.every((key) => modifiers.includes(key as CanonicalModifier)) &&

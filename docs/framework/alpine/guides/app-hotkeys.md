@@ -1,11 +1,12 @@
 ---
-title: App Hotkeys Guide
+title: App Hotkeys and Custom Shortcuts in Alpine
 id: app-hotkeys
+description: Declare every hotkey in your Alpine app in one place, list them in cheat sheets, and let users change them and save their choices.
 ---
 
-`scope.createHotkey` and `scope.createHotkeys` register a hotkey while its component is mounted. A cheat sheet built from live registrations therefore misses hotkeys on routes that have not rendered yet, and a settings screen has nowhere to change them. App hotkeys solve both: you declare every hotkey in one place, publish them with `provideAppHotkeys`, and attach callbacks where the work happens. Users can then customize any of them, and your app decides how to save their choices.
+App hotkeys are optional. Plain `createHotkey` is enough until you need a cheat sheet for your whole app, or a screen where users change hotkeys. `createHotkey` registers a hotkey while its component exists, so a cheat sheet built from live registrations misses hotkeys on pages that have not rendered yet, and a settings screen has nowhere to change them. App hotkeys solve both: you declare every hotkey in one place, publish them with `provideAppHotkeys`, and attach callbacks where the work happens. Users can then customize any of them, and your app decides how to save their choices.
 
-A declaration holds a hotkey's id, default hotkey, metadata, and options. It never holds a callback; `scope.createHotkey` and `scope.createHotkeys` still attach the callbacks.
+A declaration holds a hotkey's id, default hotkey, metadata, and options. It never holds a callback. `createHotkey` and `createHotkeys` still attach the callbacks.
 
 ## Declare app hotkeys
 
@@ -20,7 +21,7 @@ export const appHotkeys = defineAppHotkeys({
   'doc.find': {
     hotkey: 'Mod+F',
     meta: { name: 'Find', group: 'Document' },
-    context: 'editor',
+    scope: 'editor',
   },
   'nav.home': {
     hotkey: ['G', 'H'],
@@ -39,12 +40,14 @@ declare module '@tanstack/alpine-hotkeys' {
 
 - The object key is the app hotkey's id. Treat ids as a stable contract, because saved custom hotkeys use them as keys.
 - `hotkey` is the default: a chord, a sequence, or `null` for an action without a default. An unbound app hotkey registers nothing until the user assigns one.
-- `options` describe the hotkey itself: `capture`, `conflictBehavior`, `eventType`, `ignoreInputs`, `preventDefault`, `stopPropagation`, plus `requireReset` for a chord default or `timeout` for a sequence default. Options that don't match the default's kind are type errors. Pass `target` and `enabled` where you register the hotkey.
-- `context` labels where a hotkey applies, such as `'editor'`. App hotkeys with different contexts may share a hotkey. It is used only for conflict checks and does not affect matching.
+- `options` describe the hotkey itself: `capture`, `conflictBehavior`, `eventType`, `ignoreInputs`, `preventDefault`, `stopPropagation`, plus `requireReset` for a chord default or `timeout` for a sequence default. [Hotkey options](./hotkeys#hotkey-options) describes each one. Options that don't match the default's kind are type errors. Pass `target` and `enabled` where you register the hotkey.
+- `scope` names the scope the hotkey fires in, such as `'editor'`. Hotkeys outside the default `'global'` scope fire only while their scope is active. Alpine has no provider to activate scopes, so activate them on the hotkey manager. See [Activate a scope](./hotkey-manager#activate-a-scope). App hotkeys in different scopes may share a hotkey.
 
-The `Register` augmentation types the app hotkeys you read back, the ids accepted when changing custom hotkeys, and the `CustomHotkeys` type.
+The `Register` augmentation types `createAppHotkeys()`, the ids accepted by `createCustomHotkeys()`, and the `CustomHotkeys` type.
 
 ## Provide app hotkeys
+
+Publish the declarations with `provideAppHotkeys` before Alpine starts:
 
 ```ts
 // main.ts, before Alpine.start()
@@ -54,84 +57,54 @@ import { appHotkeys } from './app-hotkeys'
 provideAppHotkeys(appHotkeys)
 ```
 
-Alpine has no provider component. `provideAppHotkeys` creates the shared `AppHotkeysStore` and publishes it for every scope and devtools. Call it once at startup; it returns `{ store, dispose }`.
+Alpine has no provider component. `provideAppHotkeys` creates the shared `AppHotkeysStore` and publishes it for every owner and for devtools. Call it once at startup. It returns `{ store, dispose }`.
 
 ## Register app hotkeys
 
-Pass an app hotkey wherever you pass a hotkey:
+Pass an app hotkey wherever you pass a hotkey. Read it from `createAppHotkeys().value` inside a getter, so the registration follows changes, or import it directly:
 
 ```ts
-class Editor {
-  scope = createHotkeysScope()
-  dirty = false
-
+Alpine.data('editor', () => ({
+  dirty: false,
+  hotkeys: createHotkeysScope(),
   init() {
-    const hotkeys = this.scope.createAppHotkeys()
-    this.scope.createHotkey(() => hotkeys.value['doc.save'], () => this.save(), () => ({
-      enabled: this.dirty,
-    }))
-    this.scope.createHotkeys(() => [
-      { hotkey: hotkeys.value['nav.home'], callback: () => this.goHome() },
-      { hotkey: 'Escape', callback: () => this.close() },
-    ])
-  }
+    const appHotkeys = this.hotkeys.createAppHotkeys()
 
+    this.hotkeys.createHotkey(
+      () => appHotkeys.value['doc.save'],
+      () => this.save(),
+      () => ({ enabled: this.dirty }),
+    )
+  },
   destroy() {
-    this.scope.destroy()
-  }
-}
+    this.hotkeys.destroy()
+  },
+}))
 ```
 
-`createAppHotkeys()` returns an object with a reactive `.value`. You can also import an app hotkey directly, such as `scope.createHotkey(appHotkeys['doc.save'], save)`. Without provided app hotkeys, the declared default is used.
+Both forms use the effective hotkey for that id, so a user's custom hotkey applies even to a direct import, such as `this.hotkeys.createHotkey(appHotkeys['doc.save'], save)`. Without `provideAppHotkeys`, the declared default is used.
 
-The registration takes `meta` and `options` from the declaration. Options merge in this order: default options, then declared options, then call-site options. `meta` comes only from the declaration, so the cheat sheet and the registration cannot disagree. Call-site options are typed by the declared default's kind, so `timeout` is accepted for `nav.home` but not for `doc.save`.
+The registration takes `meta` and `options` from the declaration. Options merge in this order: the owner's defaults, then declared options, then call-site options. `meta` comes only from the declaration, so the cheat sheet and the registration cannot disagree. Call-site options are typed by the declared default's kind, so `timeout` is accepted for `nav.home` but not for `doc.save`.
+
+When a component registers several hotkeys, pass app hotkeys to `createHotkeys` in the same field, mixed with plain hotkeys if you like:
+
+```ts
+this.hotkeys.createHotkeys(() => [
+  { hotkey: appHotkeys.value['doc.save'], callback: () => this.save() },
+  { hotkey: appHotkeys.value['nav.home'], callback: () => this.goHome() },
+  { hotkey: 'Escape', callback: () => this.close() },
+])
+```
 
 When the user changes a hotkey, registered app hotkeys move to the new hotkey immediately, even if it changes from a chord to a sequence.
 
-## Build a cheat sheet
+## List app hotkeys
 
-`scope.createAppHotkeyList` returns every app hotkey in declaration order, with its live status:
-
-| Status | Meaning |
-| --- | --- |
-| `'active'` | At least one enabled registration |
-| `'disabled'` | Registered, but every registration has `enabled: false` |
-| `'inactive'` | Has a hotkey, but nothing has registered it |
-| `'unbound'` | No hotkey assigned |
-
-```ts
-class CheatSheet {
-  scope = createHotkeysScope()
-  formatForDisplay = formatForDisplay
-  items!: AlpineHotkeyState<Array<AppHotkeyListItem>>
-
-  init() {
-    this.items = this.scope.createAppHotkeyList()
-  }
-
-  destroy() {
-    this.scope.destroy()
-  }
-}
-```
-
-```html
-<ul x-data="cheatSheet">
-  <template x-for="item in items.value" :key="item.appHotkey.id">
-    <li :data-status="item.status">
-      <span x-text="item.appHotkey.meta?.name"></span>:
-      <span x-text="item.appHotkey.hotkey ? formatForDisplay(item.appHotkey.hotkey) : 'Unassigned'"></span>
-      <span x-show="item.isCustom">(custom)</span>
-    </li>
-  </template>
-</ul>
-```
-
-An app hotkey registered by many components, such as one per list row, appears once. Its `registrations` array holds each live registration. Devtools also list declared app hotkeys that are not registered.
+`createAppHotkeyList` returns every app hotkey, with its current hotkey and whether anything has registered it. Use it to build a cheat sheet that includes pages that haven't rendered. See [List every app hotkey](./cheat-sheet-ui-helpers#list-every-app-hotkey).
 
 ## Customize and persist hotkeys
 
-TanStack Hotkeys does not store anything. Pass the user's saved custom hotkeys in and save them when they change:
+TanStack Hotkeys does not store anything. Pass the user's saved custom hotkeys to `provideAppHotkeys` and save them when they change:
 
 ```ts
 import { provideAppHotkeys } from '@tanstack/alpine-hotkeys'
@@ -144,58 +117,59 @@ provideAppHotkeys(appHotkeys, {
 ```
 
 - `customHotkeys` holds only the hotkeys that differ from the declared defaults, keyed by id. `null` means the user unbound that hotkey. Saving differences means users who never changed a hotkey get new defaults when you change them.
-- `customHotkeys` is read once; afterwards the shared store owns the state. Saved data can outlive the code that wrote it, so unknown ids and invalid hotkeys are ignored with a warning.
+- `provideAppHotkeys` reads `customHotkeys` once, and the shared store owns the state afterwards. Saved data can outlive the code that wrote it, so unknown ids and invalid hotkeys are ignored with a warning.
 - `onCustomHotkeysChange` receives the complete custom hotkeys after every change, ready to save. Storage can be anything: local storage, a server, or a user profile.
 
-Recorded hotkeys use `Mod` rather than platform-specific modifiers, so a hotkey saved on one platform works on others.
+The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platform-specific modifiers, so a hotkey saved on one platform works on others.
 
 ### Change hotkeys
 
-`scope.createCustomHotkeys` reads and changes the user's custom hotkeys:
+`createCustomHotkeys` reads and changes the user's custom hotkeys. Pair it with a [recorder](./custom-hotkey-recording), so users press the hotkey they want:
 
 ```ts
+import Alpine from 'alpinejs'
 import { createHotkeysScope, formatForDisplay } from '@tanstack/alpine-hotkeys'
-import type {
-  AlpineCustomHotkeys,
-  AlpineHotkeyRecorder,
-  AlpineHotkeyState,
-  AppHotkeyId,
-  RegisteredAppHotkeys,
-} from '@tanstack/alpine-hotkeys'
+import type { AppHotkeyId } from '@tanstack/alpine-hotkeys'
 
-class ShortcutRow {
-  scope = createHotkeysScope()
-  formatForDisplay = formatForDisplay
-  hotkeys!: AlpineHotkeyState<RegisteredAppHotkeys>
-  custom!: AlpineCustomHotkeys
-  recorder!: AlpineHotkeyRecorder
+Alpine.data('shortcutRow', (id: AppHotkeyId) => {
+  const hotkeys = createHotkeysScope()
+  const appHotkeys = hotkeys.createAppHotkeys()
+  const custom = hotkeys.createCustomHotkeys()
+  const recorder = hotkeys.createHotkeyRecorder({
+    maxSteps: Infinity,
+    validate: (hotkey) => {
+      const conflicts = custom.findConflicts(id, hotkey)
+      return conflicts.length === 0 || `Used by ${conflicts[0]?.meta?.name}`
+    },
+    onRecord: (hotkey) => custom.setCustomHotkey(id, hotkey),
+    onClear: () => custom.setCustomHotkey(id, null),
+  })
 
-  constructor(public id: AppHotkeyId) {}
-
-  init() {
-    this.hotkeys = this.scope.createAppHotkeys()
-    this.custom = this.scope.createCustomHotkeys()
-    this.recorder = this.scope.createHotkeyRecorder({
-      maxSteps: 3,
-      validate: (hotkey) => {
-        const conflicts = this.custom.findConflicts(this.id, hotkey)
-        return conflicts.length === 0 || `Used by ${conflicts[0]?.meta?.name}`
-      },
-      onRecord: (hotkey) => this.custom.setCustomHotkey(this.id, hotkey),
-      onClear: () => this.custom.setCustomHotkey(this.id, null),
-    })
+  return {
+    recorder,
+    get name() {
+      return appHotkeys.value[id].meta?.name
+    },
+    get label() {
+      const { hotkey } = appHotkeys.value[id]
+      return hotkey ? formatForDisplay(hotkey) : 'Unassigned'
+    },
+    reset() {
+      custom.resetCustomHotkey(id)
+    },
+    destroy() {
+      hotkeys.destroy()
+    },
   }
+})
+```
 
-  get appHotkey() {
-    return this.hotkeys.value[this.id]
-  }
-
-  destroy() {
-    this.scope.destroy()
-  }
-}
-
-Alpine.data('shortcutRow', (id: AppHotkeyId) => new ShortcutRow(id))
+```html
+<div x-data="shortcutRow('doc.save')">
+  <span x-text="name"></span>: <span x-text="label"></span>
+  <button @click="recorder.startRecording()">Change</button>
+  <button @click="reset()">Reset</button>
+</div>
 ```
 
 | Member | Description |
@@ -206,6 +180,8 @@ Alpine.data('shortcutRow', (id: AppHotkeyId) => new ShortcutRow(id))
 | `resetCustomHotkey(id)` | Restores one default |
 | `resetCustomHotkeys()` | Restores every default |
 
-Two app hotkeys conflict when their contexts match or either has no `context`, and their hotkeys collide: equal chords, or one sequence starts with the other, including a sequence whose first step equals a chord. Conflicts are checked across every declaration, whether or not it is registered.
+Two app hotkeys conflict when their scopes match or either is in `'global'`, including app hotkeys with no declared scope, and their hotkeys collide: equal chords, or one sequence starts with the other, including a sequence whose first step equals a chord. Conflicts are checked across every declaration, whether or not it is registered.
 
-Each app hotkey's `defaultHotkey` holds its declared default, and each cheat sheet item's `isCustom` reports whether the effective hotkey differs from it.
+Each app hotkey's `defaultHotkey` holds its declared default, and `isCustom` in `createAppHotkeyList` reports whether the effective hotkey differs from it.
+
+`provideAppHotkeys` returns the `AppHotkeysStore` it creates. See the [`AppHotkeysStore` reference](../../../reference/classes/AppHotkeysStore.md) to use it directly.

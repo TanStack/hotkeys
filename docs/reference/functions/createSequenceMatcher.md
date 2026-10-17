@@ -7,7 +7,7 @@ title: createSequenceMatcher
 function createSequenceMatcher(sequence, options?): object;
 ```
 
-Defined in: [match.ts:230](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L230)
+Defined in: [match.ts:233](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L233)
 
 Creates a simple sequence matcher for one-off use.
 
@@ -19,7 +19,7 @@ if attaching to document.
 
 ### sequence
 
-[`HotkeySequence`](../type-aliases/HotkeySequence.md)
+[`RegisterableHotkeySequence`](../type-aliases/RegisterableHotkeySequence.md)
 
 The sequence of hotkeys to match
 

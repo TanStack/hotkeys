@@ -39,7 +39,7 @@ export interface SolidHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
  * @example
  * ```tsx
  * const recorder = createHotkeyRecorder({ onRecord: setShortcut })
- * const sequenceRecorder = createHotkeyRecorder({ maxSteps: 3, onRecord: setShortcut })
+ * const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: setShortcut })
  * ```
  */
 export function createHotkeyRecorder(

@@ -2,6 +2,7 @@ import { createHotkeys } from './createHotkeys'
 import type {
   AppHotkey,
   HotkeyCallback,
+  HotkeyCallbackContextFor,
   RegisterableHotkey,
   Target,
 } from '@tanstack/hotkeys'
@@ -66,9 +67,9 @@ export function createHotkey<T extends AppHotkey>(
   callback: HotkeyCallback,
   options?: MaybeAccessor<CreateAppHotkeyOptions<T>>,
 ): void
-export function createHotkey<T extends RegisterableHotkey>(
+export function createHotkey<const T extends RegisterableHotkey>(
   hotkey: MaybeAccessor<T>,
-  callback: HotkeyCallback,
+  callback: HotkeyCallback<HotkeyCallbackContextFor<T>>,
   options?: MaybeAccessor<CreateHotkeyOptionsFor<T>>,
 ): void
 export function createHotkey(

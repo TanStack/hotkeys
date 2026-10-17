@@ -7,6 +7,6 @@ title: InjectHotkeySequenceOptions
 type InjectHotkeySequenceOptions = AdapterSequenceOptions<InjectHotkeyTarget>;
 ```
 
-Defined in: [injectHotkey.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L31)
+Defined in: [injectHotkey.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L32)
 
 Options for a sequence such as `['G', 'G']`.

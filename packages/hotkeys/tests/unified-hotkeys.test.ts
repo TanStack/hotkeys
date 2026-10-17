@@ -2,18 +2,30 @@ import { afterEach, describe, expect, expectTypeOf, it, vi } from 'vitest'
 import {
   HotkeyManager,
   areHotkeysEqual,
+  createSequenceMatcher,
   formatForDisplay,
+  formatHotkey,
   isHotkeySequence,
   matchesHeldModifiers,
-  normalizeRegisterableHotkey,
+  normalizeHotkey,
+  parseHotkey,
   simplifyHotkey,
   toHotkeyRegistrationView,
   validateHotkey,
 } from '../src'
 import type {
+  Hotkey,
+  HotkeyCallbackContext,
+  HotkeyCallbackContextFor,
+  HotkeyChordCallbackContext,
   HotkeyChordOptions,
   HotkeyOptionsFor,
+  HotkeyRegistrationHandle,
+  HotkeySequenceCallbackContext,
+  HotkeySequence,
   HotkeySequenceOptions,
+  RegisterableHotkey,
+  RegisterableHotkeySequence,
 } from '../src'
 
 function press(key: string, init: KeyboardEventInit = {}) {
@@ -82,6 +94,81 @@ describe('one manager for chords and sequences', () => {
     chord.unregister()
   })
 
+  it('passes kind-specific callback context', () => {
+    const manager = HotkeyManager.getInstance()
+    const chord = vi.fn()
+    const sequence = vi.fn()
+    const oneStep = vi.fn()
+    manager.register('Mod+S', chord, { platform: 'mac' })
+    manager.register(['G', 'H'], sequence)
+    manager.register(['Escape'], oneStep)
+    press('s', { metaKey: true })
+    press('g')
+    press('h')
+    press('Escape')
+    expect(chord.mock.calls[0]![1]).toEqual({
+      kind: 'chord',
+      hotkey: 'Mod+S',
+      parsedChord: expect.objectContaining({ key: 'S', meta: true }),
+    })
+    expect(sequence.mock.calls[0]![1]).toEqual({
+      kind: 'sequence',
+      hotkey: ['G', 'H'],
+      parsedSequence: [
+        expect.objectContaining({ key: 'G' }),
+        expect.objectContaining({ key: 'H' }),
+      ],
+    })
+    expect(oneStep.mock.calls[0]![1]).toMatchObject({
+      kind: 'chord',
+      hotkey: 'Escape',
+    })
+  })
+
+  it('types callback context by hotkey kind', () => {
+    expectTypeOf<
+      HotkeyCallbackContextFor<'Mod+S'>
+    >().toEqualTypeOf<HotkeyChordCallbackContext>()
+    expectTypeOf<
+      HotkeyCallbackContextFor<readonly ['G', 'H']>
+    >().toEqualTypeOf<HotkeySequenceCallbackContext>()
+    expectTypeOf<
+      HotkeyCallbackContextFor<readonly ['G']>
+    >().toEqualTypeOf<HotkeyChordCallbackContext>()
+    expectTypeOf<
+      HotkeyCallbackContextFor<Hotkey>
+    >().toEqualTypeOf<HotkeyCallbackContext>()
+
+    const manager = HotkeyManager.getInstance()
+    manager.register('Mod+S', (_event, context) => {
+      expectTypeOf(context).toEqualTypeOf<HotkeyChordCallbackContext>()
+    })
+    manager.register({ key: 'S', mod: true }, (_event, context) => {
+      expectTypeOf(context).toEqualTypeOf<HotkeyChordCallbackContext>()
+    })
+    manager.register(['G', 'H'], (_event, context) => {
+      expectTypeOf(context).toEqualTypeOf<HotkeySequenceCallbackContext>()
+    })
+    manager.register(['Escape'], (_event, context) => {
+      expectTypeOf(context).toEqualTypeOf<HotkeyChordCallbackContext>()
+    })
+    const loadHotkey = (): Hotkey => 'G'
+    manager.register(loadHotkey(), (_event, context) => {
+      expectTypeOf(context).toEqualTypeOf<HotkeyCallbackContext>()
+    })
+    // @ts-expect-error a sequence's context has no parsedChord
+    manager.register(['G', 'H'], (_event, context) => context.parsedChord)
+    const handle = manager.register('Mod+K', () => {})
+    handle.callback = (_event, context) => {
+      expectTypeOf(context).toEqualTypeOf<HotkeyCallbackContext>()
+    }
+    const handles: Array<HotkeyRegistrationHandle> = [
+      handle,
+      manager.register(['G', 'G'], () => {}),
+    ]
+    expect(handles).toHaveLength(2)
+  })
+
   it('types options by hotkey kind', () => {
     expectTypeOf<
       HotkeyOptionsFor<'Mod+S'>
@@ -100,6 +187,80 @@ describe('one manager for chords and sequences', () => {
   })
 })
 
+describe('sequence steps written as objects', () => {
+  it('registers object steps as strings and passes the parsed steps', () => {
+    const manager = HotkeyManager.getInstance()
+    const callback = vi.fn()
+    manager.register([{ key: 'K', mod: true }, 'C'], callback, {
+      platform: 'mac',
+    })
+    const [registration] = manager.registrations.state.values()
+    expect(registration).toMatchObject({
+      kind: 'sequence',
+      hotkey: ['Meta+K', 'C'],
+    })
+    press('k', { metaKey: true })
+    press('c')
+    expect(callback).toHaveBeenCalledOnce()
+    expect(callback.mock.calls[0]![1]).toEqual({
+      kind: 'sequence',
+      hotkey: ['Meta+K', 'C'],
+      parsedSequence: [
+        expect.objectContaining({ key: 'K', meta: true }),
+        expect.objectContaining({ key: 'C', meta: false }),
+      ],
+    })
+  })
+
+  it('parses, normalizes, formats, compares, and matches object steps', () => {
+    const sequence = [{ key: 'K', mod: true }, 'Shift+G'] as const
+    expect(parseHotkey(sequence, 'windows')).toEqual([
+      expect.objectContaining({ key: 'K', ctrl: true }),
+      expect.objectContaining({ key: 'G', shift: true }),
+    ])
+    expect(normalizeHotkey(sequence, 'windows')).toEqual(['Mod+K', 'Shift+G'])
+    expect(formatHotkey(parseHotkey(sequence, 'windows'))).toEqual([
+      'Control+K',
+      'Shift+G',
+    ])
+    expect(formatForDisplay(sequence, { platform: 'windows' })).toBe(
+      'Ctrl+K Shift+G',
+    )
+    expect(areHotkeysEqual(sequence, ['Mod+K', 'Shift+G'], 'windows')).toBe(
+      true,
+    )
+    const matcher = createSequenceMatcher([{ key: 'G' }, { key: 'H' }])
+    matcher.match(new KeyboardEvent('keydown', { key: 'g' }))
+    expect(matcher.match(new KeyboardEvent('keydown', { key: 'h' }))).toBe(true)
+  })
+
+  it('types object-step sequences as sequences', () => {
+    expectTypeOf<
+      HotkeyCallbackContextFor<readonly [{ key: 'K'; mod: true }, 'C']>
+    >().toEqualTypeOf<HotkeySequenceCallbackContext>()
+    expectTypeOf<
+      HotkeyOptionsFor<readonly [{ key: 'K'; mod: true }, 'C']>
+    >().toEqualTypeOf<HotkeySequenceOptions>()
+    const hotkey = (): RegisterableHotkey => [{ key: 'K', mod: true }, 'C']
+    const value = hotkey()
+    if (isHotkeySequence(value)) {
+      expectTypeOf(value).toEqualTypeOf<RegisterableHotkeySequence>()
+    }
+    const stored = (): Hotkey => ['G', 'H']
+    const storedValue = stored()
+    if (isHotkeySequence(storedValue)) {
+      expectTypeOf(storedValue).toEqualTypeOf<HotkeySequence>()
+    }
+    HotkeyManager.getInstance().register(
+      [{ key: 'K', mod: true }, 'C'],
+      (_event, context) => {
+        expectTypeOf(context).toEqualTypeOf<HotkeySequenceCallbackContext>()
+      },
+      { timeout: 500 },
+    )
+  })
+})
+
 describe('hotkey utilities accept sequences', () => {
   it('simplifyHotkey and isHotkeySequence', () => {
     expect(simplifyHotkey(['Mod+S'])).toBe('Mod+S')
@@ -108,13 +269,12 @@ describe('hotkey utilities accept sequences', () => {
     expect(isHotkeySequence('G')).toBe(false)
   })
 
-  it('normalizeRegisterableHotkey normalizes each step', () => {
-    expect(
-      normalizeRegisterableHotkey(['meta+s', 'esc'] as never, 'mac'),
-    ).toEqual(['Mod+S', 'Escape'])
-    expect(normalizeRegisterableHotkey(['ctrl+s'] as never, 'windows')).toBe(
+  it('normalizeHotkey normalizes each step', () => {
+    expect(normalizeHotkey(['meta+s', 'esc'] as never, 'mac')).toEqual([
       'Mod+S',
-    )
+      'Escape',
+    ])
+    expect(normalizeHotkey(['ctrl+s'] as never, 'windows')).toBe('Mod+S')
   })
 
   it('areHotkeysEqual compares sequences step by step', () => {

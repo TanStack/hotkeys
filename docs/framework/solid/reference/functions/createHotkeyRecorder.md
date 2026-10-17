@@ -32,7 +32,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 
 ```tsx
 const recorder = createHotkeyRecorder({ onRecord: setShortcut })
-const sequenceRecorder = createHotkeyRecorder({ maxSteps: 3, onRecord: setShortcut })
+const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: setShortcut })
 ```
 
 ## Call Signature
@@ -64,7 +64,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 
 ```tsx
 const recorder = createHotkeyRecorder({ onRecord: setShortcut })
-const sequenceRecorder = createHotkeyRecorder({ maxSteps: 3, onRecord: setShortcut })
+const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: setShortcut })
 ```
 
 ## Call Signature
@@ -96,7 +96,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 
 ```tsx
 const recorder = createHotkeyRecorder({ onRecord: setShortcut })
-const sequenceRecorder = createHotkeyRecorder({ maxSteps: 3, onRecord: setShortcut })
+const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: setShortcut })
 ```
 
 ## Call Signature
@@ -128,7 +128,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 
 ```tsx
 const recorder = createHotkeyRecorder({ onRecord: setShortcut })
-const sequenceRecorder = createHotkeyRecorder({ maxSteps: 3, onRecord: setShortcut })
+const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: setShortcut })
 ```
 
 ## Call Signature
@@ -160,5 +160,5 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 
 ```tsx
 const recorder = createHotkeyRecorder({ onRecord: setShortcut })
-const sequenceRecorder = createHotkeyRecorder({ maxSteps: 3, onRecord: setShortcut })
+const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: setShortcut })
 ```

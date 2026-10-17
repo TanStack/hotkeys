@@ -191,12 +191,12 @@ class Editor extends DemoElement {
       new HotkeyController(
         this,
         'Alt+[KeyB]',
-        () => this.log('Scoped B'),
+        () => this.log('Target B'),
         () => ({
           target: this.querySelector<HTMLElement>('#scope'),
           preventDefault: !this.bubble,
           stopPropagation: !this.bubble,
-          meta: { name: 'Scoped propagation', group: 'Editor' },
+          meta: { name: 'Target propagation', group: 'Editor' },
         }),
       ),
     )
@@ -216,7 +216,7 @@ class Editor extends DemoElement {
   }
   render() {
     return html`<section>
-      <h2>Editor scopes</h2>
+      <h2>Editor targets</h2>
       <p>Focus an editor to choose its Save handler.</p>
       <editor-pane name="Draft"></editor-pane
       ><editor-pane name="Notes"></editor-pane>
@@ -349,8 +349,8 @@ class Recording extends DemoElement {
     detectConflicts: {
       exclude: (reg) => reg.options.meta?.name === 'Recorded action',
     },
-    validate: (_, { parsedHotkey }) =>
-      parsedHotkey.modifiers.length > 0 || 'Include a modifier.',
+    validate: (_, { parsedChord }) =>
+      parsedChord.modifiers.length > 0 || 'Include a modifier.',
     onRecord: (value) => {
       this.binding = value
       this.problem = ''

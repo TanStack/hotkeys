@@ -80,3 +80,35 @@ it('merges explicit setOptions overrides over a live options source', () => {
   press('ß', 'KeyS')
   expect(callback).toHaveBeenCalledWith('[KeyS]')
 })
+
+it('passes chord or sequence validation context by recorded length', () => {
+  const validate = vi.fn<
+    NonNullable<HotkeySequenceRecorderOptions['validate']>
+  >(() => true)
+  const recorder = new HotkeyRecorder({
+    maxSteps: 2,
+    platform: 'mac',
+    validate,
+    onRecord: vi.fn(),
+  })
+  recorders.push(recorder)
+  recorder.start()
+  press('g', 'KeyG')
+  press('h', 'KeyH')
+  expect(validate).toHaveBeenLastCalledWith(['[KeyG]', '[KeyH]'], {
+    kind: 'sequence',
+    events: [expect.any(KeyboardEvent), expect.any(KeyboardEvent)],
+    parsedSequence: [
+      expect.objectContaining({ code: 'KeyG' }),
+      expect.objectContaining({ code: 'KeyH' }),
+    ],
+  })
+  recorder.start()
+  press('g', 'KeyG')
+  recorder.commit()
+  expect(validate).toHaveBeenLastCalledWith('[KeyG]', {
+    kind: 'chord',
+    event: expect.any(KeyboardEvent),
+    parsedChord: expect.objectContaining({ code: 'KeyG' }),
+  })
+})

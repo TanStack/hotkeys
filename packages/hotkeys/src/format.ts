@@ -13,25 +13,42 @@ import {
   codeToLogicalKey,
   modifierAlias,
   physicalCodeOf,
-  splitHotkeyParts,
+  splitChordParts,
 } from './_keyboard-event'
-import { normalizeHotkeyFromParsed, normalizeRegisterableHotkey } from './parse'
+import { normalizeHotkey } from './parse'
 import type { CanonicalModifier } from './key.types'
-import type { ParsedHotkey, RegisterableHotkeyChord } from './hotkey.types'
+import type { ParsedHotkeyChord, RegisterableHotkeyChord } from './hotkey.types'
 
 /**
- * Converts a ParsedHotkey back to a hotkey string.
+ * Converts a parsed hotkey back to a string, with each platform modifier
+ * spelled out, such as `Control+Shift+S`. A parsed chord returns a string, and
+ * a parsed sequence returns one string per step. To get `Mod` back where the
+ * platform allows it, use `normalizeHotkey` instead.
  *
- * @param parsed - The parsed hotkey object
- * @returns A hotkey string in canonical form
+ * @param parsed - A parsed chord, or the parsed steps of a sequence
  *
  * @example
  * ```ts
- * formatHotkey({ key: 'S', ctrl: true, shift: true, alt: false, meta: false, modifiers: ['Control', 'Shift'] })
- * // Returns: 'Control+Shift+S'
+ * formatHotkey(parseHotkey('Mod+Shift+S', 'windows')) // 'Control+Shift+S'
+ * formatHotkey(parseHotkey(['G', 'Mod+K'], 'mac')) // ['G', 'Meta+K']
  * ```
  */
-export function formatHotkey(parsed: ParsedHotkey): string {
+export function formatHotkey(parsed: ParsedHotkeyChord): string
+export function formatHotkey(
+  parsed: ReadonlyArray<ParsedHotkeyChord>,
+): Array<string>
+export function formatHotkey(
+  parsed: ParsedHotkeyChord | ReadonlyArray<ParsedHotkeyChord>,
+): string | Array<string>
+export function formatHotkey(
+  parsed: ParsedHotkeyChord | ReadonlyArray<ParsedHotkeyChord>,
+): string | Array<string> {
+  return Array.isArray(parsed)
+    ? parsed.map((step: ParsedHotkeyChord) => formatParsedChord(step))
+    : formatParsedChord(parsed as ParsedHotkeyChord)
+}
+
+function formatParsedChord(parsed: ParsedHotkeyChord): string {
   if (parsed.code === undefined) assertLogicalKey(parsed.key)
   const parts: Array<string> = []
 
@@ -50,7 +67,7 @@ export function formatHotkey(parsed: ParsedHotkey): string {
 
 /** A single chord to display: a string, raw object, or parsed hotkey. */
 export type DisplayHotkeyChord =
-  RegisterableHotkeyChord | ParsedHotkey | (string & {})
+  RegisterableHotkeyChord | ParsedHotkeyChord | (string & {})
 
 /** A hotkey to display: a chord or a sequence of chords. */
 export type DisplayHotkey =
@@ -70,7 +87,7 @@ export type DisplayHotkey =
  * Sequence steps are formatted individually and joined with `sequenceSeparator`
  * (a space by default).
  *
- * @param hotkey - A logical or physical string, raw object, ParsedHotkey, or sequence
+ * @param hotkey - A logical or physical string, raw object, ParsedHotkeyChord, or sequence
  * @param options - Formatting options
  * @returns Display text, or individual key labels when parts is true (one array per step for sequences)
  *
@@ -145,11 +162,8 @@ function formatChordParts(
   const modifierSymbols = modifierSymbolsEnabled(options)
   const keySymbols =
     typeof symbols === 'boolean' ? symbols : (symbols.keys ?? true)
-  const normalized =
-    typeof hotkey === 'object' && 'modifiers' in hotkey
-      ? normalizeHotkeyFromParsed(hotkey, platform)
-      : normalizeRegisterableHotkey(hotkey as RegisterableHotkeyChord, platform)
-  const segments = splitHotkeyParts(normalized)
+  const normalized = normalizeHotkey(hotkey, platform)
+  const segments = splitChordParts(normalized)
   if (platform === 'mac') {
     // Canonical registration puts Mod first; display resolves it to Command.
     const modifierIndex = (segment: string) => {

@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest'
 import {
-  createHotkeyHandler,
-  createMultiHotkeyHandler,
+  createHotkeyChordHandler,
+  createMultiHotkeyChordHandler,
   matchesKeyboardEvent,
 } from '../src/match'
 import type { HotkeyChord } from '../src'
@@ -176,8 +176,8 @@ describe('matchesKeyboardEvent', () => {
     })
   })
 
-  describe('with ParsedHotkey input', () => {
-    it('should accept ParsedHotkey objects', () => {
+  describe('with ParsedHotkeyChord input', () => {
+    it('should accept ParsedHotkeyChord objects', () => {
       const event = createKeyboardEvent('s', { metaKey: true })
       const parsed = {
         key: 'S',
@@ -953,17 +953,18 @@ describe('matchesKeyboardEvent', () => {
   })
 })
 
-describe('createHotkeyHandler', () => {
+describe('createHotkeyChordHandler', () => {
   it('should call callback with event and context when hotkey matches', () => {
     const callback = vi.fn()
-    const handler = createHotkeyHandler('Mod+S', callback, { platform: 'mac' })
+    const handler = createHotkeyChordHandler('Mod+S', callback, { platform: 'mac' })
 
     const event = createKeyboardEvent('s', { metaKey: true })
     handler(event)
 
     expect(callback).toHaveBeenCalledWith(event, {
+      kind: 'chord',
       hotkey: 'Mod+S',
-      parsedHotkey: expect.objectContaining({
+      parsedChord: expect.objectContaining({
         key: 'S',
         meta: true,
       }),
@@ -972,7 +973,7 @@ describe('createHotkeyHandler', () => {
 
   it('should not call callback when hotkey does not match', () => {
     const callback = vi.fn()
-    const handler = createHotkeyHandler('Mod+S', callback, { platform: 'mac' })
+    const handler = createHotkeyChordHandler('Mod+S', callback, { platform: 'mac' })
 
     const event = createKeyboardEvent('a', { metaKey: true })
     handler(event)
@@ -982,7 +983,7 @@ describe('createHotkeyHandler', () => {
 
   it('should preventDefault when option is set', () => {
     const callback = vi.fn()
-    const handler = createHotkeyHandler('Mod+S', callback, {
+    const handler = createHotkeyChordHandler('Mod+S', callback, {
       platform: 'mac',
       preventDefault: true,
     })
@@ -995,7 +996,7 @@ describe('createHotkeyHandler', () => {
 
   it('should stopPropagation when option is set', () => {
     const callback = vi.fn()
-    const handler = createHotkeyHandler('Mod+S', callback, {
+    const handler = createHotkeyChordHandler('Mod+S', callback, {
       platform: 'mac',
       stopPropagation: true,
     })
@@ -1008,7 +1009,7 @@ describe('createHotkeyHandler', () => {
 
   it('should preventDefault and stopPropagation by default', () => {
     const callback = vi.fn()
-    const handler = createHotkeyHandler('Mod+S', callback, { platform: 'mac' })
+    const handler = createHotkeyChordHandler('Mod+S', callback, { platform: 'mac' })
 
     const event = createKeyboardEvent('s', { metaKey: true })
     handler(event)
@@ -1019,7 +1020,7 @@ describe('createHotkeyHandler', () => {
 
   it('should not preventDefault or stopPropagation when explicitly set to false', () => {
     const callback = vi.fn()
-    const handler = createHotkeyHandler('Mod+S', callback, {
+    const handler = createHotkeyChordHandler('Mod+S', callback, {
       platform: 'mac',
       preventDefault: false,
       stopPropagation: false,
@@ -1032,7 +1033,7 @@ describe('createHotkeyHandler', () => {
     expect(event.stopPropagation).not.toHaveBeenCalled()
   })
 
-  it('should accept ParsedHotkey and provide formatted hotkey string in context', () => {
+  it('should accept ParsedHotkeyChord and provide formatted hotkey string in context', () => {
     const callback = vi.fn()
     const parsed = {
       key: 'S',
@@ -1042,24 +1043,25 @@ describe('createHotkeyHandler', () => {
       meta: true,
       modifiers: ['Meta'] as Array<'Control' | 'Shift' | 'Alt' | 'Meta'>,
     }
-    const handler = createHotkeyHandler(parsed, callback, { platform: 'mac' })
+    const handler = createHotkeyChordHandler(parsed, callback, { platform: 'mac' })
 
     const event = createKeyboardEvent('s', { metaKey: true })
     handler(event)
 
     expect(callback).toHaveBeenCalledWith(event, {
+      kind: 'chord',
       hotkey: 'Meta+S',
-      parsedHotkey: parsed,
+      parsedChord: parsed,
     })
   })
 })
 
-describe('createMultiHotkeyHandler', () => {
+describe('createMultiHotkeyChordHandler', () => {
   it('should call the correct handler with event and context', () => {
     const saveHandler = vi.fn()
     const undoHandler = vi.fn()
 
-    const handler = createMultiHotkeyHandler(
+    const handler = createMultiHotkeyChordHandler(
       {
         'Mod+S': saveHandler,
         'Mod+Z': undoHandler,
@@ -1092,7 +1094,7 @@ describe('createMultiHotkeyHandler', () => {
 
   it('should not call any handler for non-matching events', () => {
     const saveHandler = vi.fn()
-    const handler = createMultiHotkeyHandler(
+    const handler = createMultiHotkeyChordHandler(
       { 'Mod+S': saveHandler },
       { platform: 'mac' },
     )
@@ -1109,7 +1111,7 @@ describe('createMultiHotkeyHandler', () => {
     const handler2 = vi.fn()
 
     // Note: These are the same hotkey (unlikely in practice, but tests the behavior)
-    const handler = createMultiHotkeyHandler(
+    const handler = createMultiHotkeyChordHandler(
       {
         'Mod+S': handler1,
         'Meta+S': handler2, // Same as Mod+S on Mac
@@ -1127,7 +1129,7 @@ describe('createMultiHotkeyHandler', () => {
   })
 
   it('should apply preventDefault to matching hotkeys', () => {
-    const handler = createMultiHotkeyHandler(
+    const handler = createMultiHotkeyChordHandler(
       {
         'Mod+S': vi.fn(),
       },
@@ -1142,7 +1144,7 @@ describe('createMultiHotkeyHandler', () => {
 
   it('should skip undefined handler values without crashing', () => {
     const saveHandler = vi.fn()
-    const handler = createMultiHotkeyHandler(
+    const handler = createMultiHotkeyChordHandler(
       {
         'Mod+S': saveHandler,
         'Mod+Z': undefined as unknown as () => void,

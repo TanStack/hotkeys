@@ -172,7 +172,7 @@ class EditorPane {
             meta: {
               name: `Save ${this.props().name}`,
               group: 'Editor',
-              description: 'Scoped to this editor',
+              description: 'Limited to this editor',
             },
           },
         },
@@ -219,12 +219,12 @@ class Editor {
     )
     this.hotkeysScope.createHotkey(
       'Alt+[KeyB]',
-      () => this.props().log('Scoped B handler'),
+      () => this.props().log('Target B handler'),
       () => ({
         target: this.scope,
         stopPropagation: !this.bubble,
         preventDefault: !this.bubble,
-        meta: { name: 'Scoped propagation demo', group: 'Editor' },
+        meta: { name: 'Target propagation demo', group: 'Editor' },
       }),
     )
     this.hotkeysScope.createHotkey(
@@ -343,8 +343,9 @@ class Recording {
       detectConflicts: {
         exclude: (reg) => reg.options.meta?.name === 'Recorded action',
       },
-      validate: (_, { parsedHotkey }) =>
-        parsedHotkey.modifiers.length > 0 ||
+      validate: (_, context) =>
+        (context.kind === 'chord' &&
+          context.parsedChord.modifiers.length > 0) ||
         'Include a modifier for this action.',
       onReject: ({ message }) => (this.problem = message),
       onRecord: (value) => {

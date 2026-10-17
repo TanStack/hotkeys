@@ -83,7 +83,7 @@ module('Ember hotkeys', (hooks) => {
 
   test('updates callbacks, bindings, and enabled options without replacing stable handles', async (assert) => {
     await render(<template><Example /></template>)
-    const id = [...getHotkeyManager().registrations.state.values()].find((registration) => registration.kind === 'chord' && registration.parsedHotkey.ctrl)!.id
+    const id = [...getHotkeyManager().registrations.state.values()].find((registration) => registration.kind === 'chord' && registration.parsedChord.ctrl)!.id
     await key('s', 'keydown', { ctrlKey: true })
     await key('s', 'keyup', { ctrlKey: true })
     await key('s', 'keydown', { ctrlKey: true })

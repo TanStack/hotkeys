@@ -19,8 +19,8 @@ by `Register`: each declaration with the user's custom hotkey applied.
 ## Example
 
 ```ts
-hotkeys = injectAppHotkeys()
+appHotkeys = injectAppHotkeys()
 constructor() {
-  injectHotkey(() => this.hotkeys()['doc.save'], () => this.save())
+  injectHotkey(() => this.appHotkeys()['doc.save'], () => this.save())
 }
 ```

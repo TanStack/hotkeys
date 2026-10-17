@@ -18,12 +18,12 @@ useHotkey(
 )
 useHotkey(
   'Alt+[KeyB]',
-  () => log('Scoped B'),
+  () => log('Target B'),
   () => ({
     target: scope,
     stopPropagation: !bubble.value,
     preventDefault: !bubble.value,
-    meta: { name: 'Scoped propagation', group: 'Editor' },
+    meta: { name: 'Target propagation', group: 'Editor' },
   }),
 )
 useHotkey('Alt+[KeyB]', () => log('Document B'), {
@@ -36,7 +36,7 @@ useHotkey('Alt+[KeyU]', () => log('Keyup U'), {
 </script>
 <template>
   <section>
-    <h2>Editor scopes</h2>
+    <h2>Editor targets</h2>
     <p>Focus an editor to choose which Save handler receives the shortcut.</p>
     <EditorPane name="Draft" /><EditorPane name="Notes" />
     <label><input type="checkbox" v-model="repeat" /> Allow repeat</label>

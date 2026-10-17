@@ -5,6 +5,7 @@ import type {
   HeldModifierOptions,
   Hotkey,
   HotkeyCallback,
+  HotkeyCallbackContextFor,
   HotkeyChord,
   HotkeyChordRecorderOptions,
   HotkeyRecorderOptions,
@@ -102,9 +103,9 @@ export interface AlpineCreateHotkey {
     callback: HotkeyCallback,
     options?: MaybeGetter<AlpineAppHotkeyOptions<T>>,
   ): void
-  <T extends RegisterableHotkey>(
+  <const T extends RegisterableHotkey>(
     hotkey: MaybeGetter<T>,
-    callback: HotkeyCallback,
+    callback: HotkeyCallback<HotkeyCallbackContextFor<T>>,
     options?: MaybeGetter<AlpineHotkeyOptionsFor<T>>,
   ): void
 }

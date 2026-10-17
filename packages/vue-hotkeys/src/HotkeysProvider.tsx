@@ -2,12 +2,17 @@ import { defineComponent } from 'vue'
 import { provideHotkeysContext } from './HotkeysProviderContext'
 import type { PropType } from 'vue'
 import type { AppHotkeys, CustomHotkeys } from '@tanstack/hotkeys'
+import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
 import type { HotkeysProviderOptions } from './HotkeysProviderContext'
 
 /**
  * Vue component that provides default options, app hotkeys, and the user's
  * custom hotkeys. `customHotkeys` is read once; listen to
  * `custom-hotkeys-change` to save changes.
+ *
+ * Nest providers to create hotkey scopes. A nested provider inherits app
+ * hotkeys and merges default options. With `scope`, its hotkeys fire only
+ * while it is mounted and enabled; with `exclusive`, only its hotkeys fire.
  *
  * @example
  * ```vue
@@ -20,6 +25,13 @@ import type { HotkeysProviderOptions } from './HotkeysProviderContext'
  *     <App />
  *   </HotkeysProvider>
  * </template>
+ * ```
+ *
+ * @example
+ * ```vue
+ * <HotkeysProvider scope="edit-dialog" :exclusive="{ allow: ['global'] }">
+ *   <DialogBody />
+ * </HotkeysProvider>
  * ```
  */
 export const HotkeysProvider = defineComponent({
@@ -37,6 +49,17 @@ export const HotkeysProvider = defineComponent({
       type: Object as PropType<CustomHotkeys | null>,
       default: undefined,
     },
+    /** See `HotkeysProviderScopeProps['scope']`. */
+    scope: { type: String, default: undefined },
+    /** See `HotkeysProviderScopeProps['exclusive']`. */
+    exclusive: {
+      type: [Boolean, Object] as PropType<
+        HotkeysProviderScopeProps['exclusive']
+      >,
+      default: false,
+    },
+    /** See `HotkeysProviderScopeProps['enabled']`. */
+    enabled: { type: Boolean, default: true },
   },
   emits: {
     customHotkeysChange: (_customHotkeys: CustomHotkeys) => true,
@@ -46,6 +69,9 @@ export const HotkeysProvider = defineComponent({
       defaultOptions: () => props.defaultOptions,
       appHotkeys: () => props.appHotkeys,
       customHotkeys: props.customHotkeys,
+      scope: () => props.scope,
+      exclusive: () => props.exclusive,
+      enabled: () => props.enabled,
       onCustomHotkeysChange: (custom) => emit('customHotkeysChange', custom),
     })
     return () => slots.default?.()

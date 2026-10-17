@@ -12,6 +12,6 @@ type UseHotkeyTarget =
   | null;
 ```
 
-Defined in: [useHotkey.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L17)
+Defined in: [useHotkey.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L18)
 
 A React ref, element, document, or window to listen on.

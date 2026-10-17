@@ -12,9 +12,9 @@ import type { Attachment } from 'svelte/attachments'
 import type {
   AppHotkey,
   HotkeyCallback,
-  HotkeySequence,
   RegisterableHotkey,
   RegisterableHotkeyChord,
+  RegisterableHotkeySequence,
 } from '@tanstack/hotkeys'
 import type { AdapterHotkeyDefinition } from '@tanstack/hotkeys/adapter'
 import type { MaybeGetter } from './internal.svelte'
@@ -34,7 +34,7 @@ import type {
  */
 export type CreateHotkeyDefinition =
   | {
-      /** A chord string such as `'Mod+S'`, or a RawHotkey object */
+      /** A chord string such as `'Mod+S'`, or a chord object */
       hotkey: MaybeGetter<RegisterableHotkeyChord>
       /** The function to call when the hotkey is pressed */
       callback: HotkeyCallback
@@ -42,8 +42,8 @@ export type CreateHotkeyDefinition =
       options?: MaybeGetter<CreateHotkeyChordOptions>
     }
   | {
-      /** A sequence such as `['G', 'G']` */
-      hotkey: MaybeGetter<HotkeySequence>
+      /** A sequence such as `['G', 'G']`, with each step a string or an object */
+      hotkey: MaybeGetter<RegisterableHotkeySequence>
       callback: HotkeyCallback
       options?: MaybeGetter<CreateHotkeySequenceOptions>
     }

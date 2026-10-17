@@ -3,12 +3,13 @@ import clsx from 'clsx'
 import {
   detectPlatform,
   formatForDisplay,
-  normalizeHotkeyFromParsed,
+  normalizeHotkey,
   parseHotkey,
 } from '@tanstack/hotkeys'
 import { useStyles } from '../styles/use-styles'
 import { useHotkeysDevtoolsState } from '../HotkeysContextProvider'
 import { effectiveSequenceMatchedSteps } from '../sequence-progress'
+import { getScopeStatus } from '../_scopes'
 import {
   formatRegistration,
   getBindingKind,
@@ -21,7 +22,7 @@ import type {
   HotkeyChordRegistrationView,
   HotkeyRegistrationView,
   HotkeySequenceRegistrationView,
-  ParsedHotkey,
+  ParsedHotkeyChord,
 } from '@tanstack/hotkeys'
 
 const PLATFORM_ROWS = [
@@ -31,7 +32,7 @@ const PLATFORM_ROWS = [
 ]
 
 function KeyBreakdownPlatformTable(props: {
-  getParsed: () => ParsedHotkey
+  getParsed: () => ParsedHotkeyChord
   /** Platform used when the parsed hotkey was produced (registration `options.platform`). */
   getCanonicalPlatform: () => 'mac' | 'windows' | 'linux'
   styles: ReturnType<typeof useStyles>
@@ -45,7 +46,7 @@ function KeyBreakdownPlatformTable(props: {
             <span class={st().platformBreakdownLabel}>{row.label}</span>
             <span class={st().platformBreakdownPretty}>
               {formatForDisplay(
-                normalizeHotkeyFromParsed(
+                normalizeHotkey(
                   props.getParsed(),
                   props.getCanonicalPlatform(),
                 ),
@@ -93,8 +94,9 @@ function HotkeyDetails(props: {
   getTargetDescription: (t: HTMLElement | Document | Window) => string
   styles: ReturnType<typeof useStyles>
 }) {
+  const state = useHotkeysDevtoolsState()
   const reg = () => props.registration
-  const parsed = () => reg().parsedHotkey
+  const parsed = () => reg().parsedChord
   const conflicts = useRegistrationConflicts(reg)
   const targetConflicts = () => conflicts().overlapping
   const scopeConflicts = () => conflicts().separate
@@ -219,6 +221,17 @@ function HotkeyDetails(props: {
                 }
               >
                 {String(reg().options.enabled !== false)}
+              </span>
+            </div>
+            <div class={styles().optionRow}>
+              <span class={styles().optionLabel}>scope</span>
+              <span class={styles().optionValue}>
+                {reg().options.scope ?? 'global'} (
+                {getScopeStatus(
+                  reg().options.scope ?? 'global',
+                  state.scopes(),
+                )}
+                )
               </span>
             </div>
             <div class={styles().optionRow}>
@@ -553,6 +566,17 @@ function SequenceDetails(props: {
               </span>
             </div>
             <div class={styles().optionRow}>
+              <span class={styles().optionLabel}>scope</span>
+              <span class={styles().optionValue}>
+                {liveReg().options.scope ?? 'global'} (
+                {getScopeStatus(
+                  liveReg().options.scope ?? 'global',
+                  props.state.scopes(),
+                )}
+                )
+              </span>
+            </div>
+            <div class={styles().optionRow}>
               <span class={styles().optionLabel}>eventType</span>
               <span class={styles().optionValue}>
                 {liveReg().options.eventType ?? 'keydown'}
@@ -674,9 +698,9 @@ function AppHotkeyDetails(props: {
             {format(appHotkey().defaultHotkey)}
             {props.item.isCustom ? ' (customized)' : ''}
           </div>
-          <div class={styles().infoLabel}>Context</div>
+          <div class={styles().infoLabel}>Scope</div>
           <div class={styles().infoValueMono}>
-            {appHotkey().context ?? 'global'}
+            {appHotkey().scope ?? 'global'}
           </div>
         </div>
       </div>
@@ -708,37 +732,55 @@ export function DetailsPanel(props: DetailsPanelProps) {
   const styles = useStyles()
   const state = useHotkeysDevtoolsState()
 
+  // Re-render when a different hotkey is selected; live updates to the same
+  // hotkey flow through the props below.
+  const selectionKey = createMemo(() => {
+    const selection = props.selection()
+    if (!selection) return null
+    return selection.type === 'appHotkey'
+      ? `app:${selection.item.appHotkey.id}`
+      : `${selection.registration.kind}:${selection.registration.id}`
+  })
+  const appHotkeyItem = () => {
+    const selection = props.selection()
+    return selection?.type === 'appHotkey' ? selection.item : undefined
+  }
+  const registration = () => {
+    const selection = props.selection()
+    return selection?.type === 'registration'
+      ? selection.registration
+      : undefined
+  }
+
   return (
     <div class={styles().stateDetails}>
       <Show
-        when={props.selection()}
+        when={selectionKey()}
+        keyed
         fallback={
           <div class={styles().noSelection}>
             Select a hotkey from the list to view its details
           </div>
         }
       >
-        {(selection) => {
-          const current = selection()
-          if (current.type === 'appHotkey') {
-            return <AppHotkeyDetails item={current.item} styles={styles} />
-          }
-          const reg = current.registration
-          return reg.kind === 'sequence' ? (
+        {(key) =>
+          key.startsWith('app:') ? (
+            <AppHotkeyDetails item={appHotkeyItem()!} styles={styles} />
+          ) : key.startsWith('sequence:') ? (
             <SequenceDetails
-              registration={reg}
+              registration={registration() as HotkeySequenceRegistrationView}
               state={state}
               getTargetDescription={getTargetDescription}
               styles={styles}
             />
           ) : (
             <HotkeyDetails
-              registration={reg}
+              registration={registration() as HotkeyChordRegistrationView}
               getTargetDescription={getTargetDescription}
               styles={styles}
             />
           )
-        }}
+        }
       </Show>
     </div>
   )

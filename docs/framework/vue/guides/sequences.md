@@ -1,102 +1,182 @@
 ---
-title: Sequences Guide
+title: Multi-Key Sequences and Vim-Style Shortcuts in Vue
 id: sequences
+description: Register multi-key sequences in Vue, such as G then H, set the time allowed between steps, and show users which keys they've pressed so far.
 ---
 
 > [!IMPORTANT]
-> `useHotkeySequence`, `useHotkeySequences`, and `useHotkeySequenceRecorder` were removed in `@tanstack/vue-hotkeys` v0.14.0. Pass a sequence to `useHotkey` or `useHotkeys` instead, and record one with `useHotkeyRecorder` and `maxSteps`.
+> `useHotkeySequence`, `useHotkeySequences`, and `useHotkeySequenceRecorder` were removed in `@tanstack/vue-hotkeys` v0.14.0. Pass a sequence to `useHotkey` or `useHotkeys` instead, and record one with `useHotkeyRecorder` and `maxSteps: Infinity`.
 
-A sequence is a hotkey made of chords pressed one after another rather than together. Think Vim-style navigation, cheat codes, or multi-step commands. Sequences are ordinary hotkeys: register them with `useHotkey` and `useHotkeys`, list them with `useHotkeyRegistrations`, record them with `useHotkeyRecorder`, and format them with `formatForDisplay`.
+A sequence is a hotkey made of chords pressed one after another, such as `G` then `H` to go home. Vim-style navigation, two-step commands such as VS Code's `Ctrl+K` then `Ctrl+C`, and cheat codes are all sequences.
 
-Sequence steps use the same syntax as chords. For example, `['[KeyG]', '[KeyG]']` follows a physical position, while `['G', 'G']` follows the logical letter. A sequence can mix forms, such as `['Mod+[KeyK]', 'C']`.
+Sequences are ordinary hotkeys. You register them with `useHotkey` and `useHotkeys`, and options, targets, `enabled`, and `meta` work as they do in [Hotkeys](./hotkeys). This guide covers what is different about sequences.
 
-## Basic usage
+## Register a sequence
 
-Pass an array of chords wherever you pass a hotkey:
+Pass an array of chords to `useHotkey`:
 
 ```vue
 <script setup lang="ts">
 import { useHotkey } from '@tanstack/vue-hotkeys'
 
-// Vim-style: press g then g to scroll to top
-useHotkey(['G', 'G'], () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' })
-})
+// Press G, then H
+useHotkey(['G', 'H'], () => goHome())
 </script>
 ```
 
-The user must press the steps in order, each within the timeout window. A one-step array such as `['Escape']` is the chord `'Escape'`.
-
-## Many sequences at once
-
-`useHotkeys` registers chords and sequences together, including dynamic lists:
+`useHotkeys` registers chords and sequences in the same array:
 
 ```ts
-import { useHotkeys } from '@tanstack/vue-hotkeys'
-
 useHotkeys([
-  { hotkey: ['G', 'G'], callback: () => scrollToTop() },
-  { hotkey: ['D', 'D'], callback: () => deleteLine(), options: { timeout: 500 } },
-  { hotkey: 'Mod+S', callback: () => save() },
+  { hotkey: 'Mod+K', callback: () => openSearch() },
+  { hotkey: ['G', 'H'], callback: () => goHome() },
+  { hotkey: ['G', 'S'], callback: () => goToSettings() },
 ])
 ```
 
-## Sequence options
-
-Sequences accept the same options as chords, except `requireReset`, plus `timeout`.
-
-### `timeout`
-
-The maximum time (in milliseconds) allowed between consecutive steps. If the user takes longer than this between any two steps, the sequence resets. Defaults to `1000` (1 second).
+The callback's `context` has `kind: 'sequence'`, the registered `hotkey` array, and `parsedSequence`, with each step parsed:
 
 ```ts
-// Fast sequence - user must type quickly
-useHotkey(['D', 'D'], () => deleteLine(), { timeout: 500 })
-
-// Slow sequence - user has more time between keys
-useHotkey(['Shift+Z', 'Shift+Z'], () => forceQuit(), { timeout: 2000 })
+useHotkey(['Mod+K', 'Mod+C'], (event, context) => {
+  console.log(context.hotkey) // ['Mod+K', 'Mod+C']
+  console.log(context.parsedSequence.map((step) => step.key)) // ['K', 'C']
+})
 ```
 
-`timeout` is only accepted when the hotkey is a sequence. Set a default for every sequence with `HotkeysProvider` (or `provideHotkeysContext` in a root component's setup):
+### Write sequence steps
+
+Each step is a chord, written the same way as any other chord:
+
+```ts
+useHotkey(['G', 'H'], () => goHome()) // The G key, then the H key, on any layout
+useHotkey(['[KeyG]', '[KeyH]'], () => goHome()) // The G and H positions, whatever they type
+useHotkey(['Mod+K', 'Mod+C'], () => commentLine()) // Command+K then Command+C on macOS, Control elsewhere
+useHotkey(['G', 'Shift+G'], () => scrollToBottom()) // Each step has its own modifiers
+useHotkey(['Shift+R', 'Shift+T'], () => runTests()) // Shift can stay held between steps
+useHotkey([{ key: 'K', mod: true }, 'C'], () => openChat()) // A step can be a chord object
+```
+
+A one-step array, such as `['Escape']`, registers as the chord `'Escape'`. [Write a chord as a string or an object](./hotkeys#write-a-chord-as-a-string-or-an-object) covers chord syntax.
+
+## Time between steps
+
+Each step must follow the previous one within `timeout` milliseconds, 1000 by default. Set it for one sequence:
+
+```ts
+useHotkey(['D', 'D'], () => deleteLine(), { timeout: 500 }) // A quick double press
+useHotkey(['G', 'G'], () => scrollToTop(), { timeout: 2000 }) // More time between steps
+```
+
+To change it for every sequence, set it in `HotkeysProvider` default options: `:default-options="{ hotkey: { timeout: 1500 } }"`.
+
+While the user works through a sequence:
+
+- A key that doesn't continue the sequence starts it over. If that key is the sequence's first step, it begins a new attempt, so `G X G G` completes `['G', 'G']`.
+- Holding a key doesn't count as pressing it again, so holding `G` doesn't complete `['G', 'G']`.
+- Pressing a modifier alone, such as Shift, neither advances the sequence nor starts it over.
+
+[Sequences allow 1 second between steps](../../../guides/sensible-defaults.md#sequences-allow-1-second-between-steps) explains the default.
+
+## Options for sequences
+
+Sequences take the same options as chords, listed in [Hotkey options](./hotkeys#hotkey-options), with these differences:
+
+- `timeout` applies only to sequences, and `requireReset` only to chords. TypeScript rejects each one on the other kind.
+- Every step that advances a sequence calls `preventDefault`, so in `['Mod+K', 'Mod+C']`, the browser doesn't act on `Mod+K`. `stopPropagation` applies only on the last step, so earlier steps still reach other listeners, such as a focused widget.
+- With the default `ignoreInputs: 'auto'`, the first step decides whether a sequence works while the user types in a text field. `['G', 'G']` doesn't, and `['Mod+K', 'Mod+C']` does.
+- A sequence with a `target` advances only on key presses inside the target.
+- With `capture: true`, every step is matched in the capture phase.
+
+`enabled`, `scope`, and `meta` work as they do for chords. A disabled sequence ignores its steps.
+
+## Sequences that share keys
+
+### Sequences that start the same way
+
+Sequences can share their first steps. Each one tracks its own progress, and the next key decides which one completes:
+
+```ts
+useHotkeys([
+  { hotkey: ['D', 'D'], callback: () => deleteLine() },
+  { hotkey: ['D', 'W'], callback: () => deleteWord() },
+  { hotkey: ['D', 'I', 'W'], callback: () => deleteInnerWord() },
+])
+```
+
+Sharing first steps isn't a duplicate, so TanStack Hotkeys doesn't warn. Two sequences with all the same steps are duplicates. See [Handle duplicate hotkeys](./hotkeys#handle-duplicate-hotkeys).
+
+### Sequences and chords on the same key
+
+A key that continues a sequence belongs to the sequence, so a chord on the same key doesn't run:
+
+```ts
+useHotkeys([
+  { hotkey: 'C', callback: () => compose() }, // C on its own
+  { hotkey: ['G', 'C'], callback: () => goToContacts() }, // G, then C. compose() doesn't run.
+])
+```
+
+A sequence's first step doesn't belong to it yet, because the user may not be starting the sequence:
+
+```ts
+useHotkeys([
+  { hotkey: 'G', callback: () => openGoMenu() }, // Runs on the first G
+  { hotkey: ['G', 'G'], callback: () => scrollToTop() }, // Runs on the second G
+])
+```
+
+A sequence that has timed out, is disabled, or skips the focused text field doesn't claim the key.
+
+The [hotkey recorder](./custom-hotkey-recording) and [app hotkeys](./app-hotkeys) check conflicts more strictly. There, a hotkey conflicts with any sequence that starts with it, so `G` conflicts with `['G', 'H']`, and `['G', 'H']` conflicts with `['G', 'H', 'J']`.
+
+## Show sequences in your UI
+
+`formatForDisplay` formats each step and joins them with a space:
+
+```ts
+formatForDisplay(['Mod+K', 'Mod+C'], { platform: 'mac' }) // '⌘ K ⌘ C'
+formatForDisplay(['G', 'H'], { sequenceSeparator: ' then ' }) // 'G then H'
+```
+
+[Formatting & Display](./formatting-display) covers labels and keycaps.
+
+A sequence's first steps have no visible effect, so show users what they've pressed so far, as VS Code does after `Ctrl+K`. Registration views report each sequence's progress in `matchedStepCount`:
 
 ```vue
+<script setup lang="ts">
+import { computed } from 'vue'
+import { formatForDisplay, useHotkeyRegistrations } from '@tanstack/vue-hotkeys'
+import type { HotkeySequenceRegistrationView } from '@tanstack/vue-hotkeys'
+
+const registrations = useHotkeyRegistrations()
+const longest = computed(
+  () =>
+    registrations.value
+      .filter(
+        (reg): reg is HotkeySequenceRegistrationView =>
+          reg.kind === 'sequence' && reg.matchedStepCount > 0,
+      )
+      .sort((a, b) => b.matchedStepCount - a.matchedStepCount)[0],
+)
+</script>
+
 <template>
-  <HotkeysProvider :default-options="{ hotkey: { timeout: 1500 } }">
-    <App />
-  </HotkeysProvider>
+  <p v-if="longest" role="status">
+    <kbd>{{ formatForDisplay(longest.hotkey.slice(0, longest.matchedStepCount)) }}</kbd>
+    was pressed. Waiting for the next key.
+  </p>
 </template>
 ```
 
-### `enabled` and `meta`
+Progress clears when the sequence completes, when the user presses a key that doesn't continue it, and when the timeout passes, so the message goes away on its own. When several sequences are in progress, the one with the most matched steps shows the most of what the user pressed. [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers) covers listing hotkeys.
 
-These work exactly as they do for chords. Disabled sequences stay registered and visible in devtools, and `meta` flows to registrations, devtools, and cheat sheets. See the [Hotkeys Guide](./hotkeys).
+## Letter sequences need an off switch
 
-```ts
-useHotkey(['G', 'G'], () => scrollToTop(), () => ({
-  enabled: isVimMode.value,
-  meta: { name: 'Go to top', description: 'Scroll to the top of the page' },
-}))
-```
+A sequence made only of letter, number, or symbol keys, such as `G` then `H`, counts as a character key shortcut for accessibility, just like a single-key hotkey. Speech input can type it by accident. Let users turn such sequences off with `enabled`, or change them with [app hotkeys](./app-hotkeys). See [Single-key shortcuts need an off switch](../../../guides/sensible-defaults.md#single-key-shortcuts-need-an-off-switch).
 
-## Capture phase
+## Common patterns
 
-Sequences accept `capture: true` with the same [event propagation behavior as chords](./hotkeys.md#capture-phase). The default is `false`. Each step is matched in the selected phase, but `preventDefault` and `stopPropagation` apply only when the full sequence completes. Earlier steps still reach descendant widgets. Changing `capture` preserves partial progress and the existing timeout.
-
-## Sequences with modifiers
-
-Each step in a sequence can include modifiers, and consecutive steps can repeat the same modifier:
-
-```ts
-// Ctrl+K followed by Ctrl+C (VS Code-style comment)
-useHotkey(['Mod+K', 'Mod+C'], () => commentSelection())
-
-// Physical R then T positions, both with Shift
-useHotkey(['Shift+[KeyR]', 'Shift+[KeyT]'], () => doNextAction())
-```
-
-Brackets retain physical positions even when the keys produce different letters. While a sequence is in progress, modifier-only keydown events (Shift, Control, Alt, or Meta pressed alone) are ignored. They neither advance the sequence nor reset progress, so a user can tap or hold Shift between `Shift+R` and `Shift+T`.
-
-## Vim-style navigation
+### Vim-style navigation
 
 ```ts
 useHotkeys([
@@ -108,51 +188,20 @@ useHotkeys([
 ])
 ```
 
-## Displaying sequences
-
-`formatForDisplay` formats each step and joins them with `sequenceSeparator`, a space by default:
+### Konami code
 
 ```ts
-formatForDisplay(['Mod+K', 'Mod+C'], { platform: 'mac' }) // '⌘ K ⌘ C'
-formatForDisplay(['G', 'G'], { sequenceSeparator: ' then ' }) // 'G then G'
+useHotkey(
+  [
+    'ArrowUp', 'ArrowUp',
+    'ArrowDown', 'ArrowDown',
+    'ArrowLeft', 'ArrowRight',
+    'ArrowLeft', 'ArrowRight',
+    'B', 'A',
+  ],
+  () => enableEasterEgg(),
+  { timeout: 2000 },
+)
 ```
 
-Registration views report each sequence's progress in `matchedStepCount`, so a help panel can show how far the user has typed. See the [Hotkeys Guide](./hotkeys).
-
-## How sequences work
-
-The `HotkeyManager` tracks progress for every sequence registration. When a key is pressed:
-
-1. It checks whether the key matches the next expected step of each sequence
-2. If it matches, that sequence advances
-3. If the timeout expires between steps, the sequence resets
-4. When all steps are completed, the callback fires
-
-Modifier-only events, IME composition, and automatic keydown repeats neither advance a sequence nor refresh its timeout: holding G does not complete a two-press G sequence. Exact matches take priority over weaker logical-key fallbacks.
-
-Multiple sequences can share a prefix, such as `['D', 'D']`, `['D', 'W']`, and `['D', 'I', 'W']`. Progress is tracked for each sequence independently, so after pressing `D` the manager waits for the next key to determine which sequence completes.
-
-### Sequences and chords
-
-A key that continues a sequence belongs to that sequence. With a `C` chord and a `G` then `C` sequence registered, pressing `G` and then `C` runs only the sequence, and pressing `C` on its own runs the chord. This applies to the keyup and automatic repeats of that key, to chords on any target the key press reaches, and to capture-phase chords. The first step of a sequence is not owned: with a `G` chord and a `G` then `G` sequence registered, the first `G` runs the chord and the second completes the sequence. A sequence that has timed out, is disabled, or ignores the focused input does not own the key.
-
-### Conflicting registrations
-
-For the same target, duplicate detection compares resolved steps: modifier aliases, modifier order, and logical key casing do not create separate hotkeys. Physical and logical identities remain distinct, and a shared prefix alone is not a duplicate registration. Recorder conflict detection and app hotkey conflicts are stricter: there, a sequence also conflicts with a chord equal to its first step and with any sequence it starts.
-
-## Standalone matching
-
-For sequence matching without the singleton manager, use `createSequenceMatcher`:
-
-```ts
-import { createSequenceMatcher } from '@tanstack/vue-hotkeys'
-
-const matcher = createSequenceMatcher(['G', 'G'], { timeout: 1000 })
-
-document.addEventListener('keydown', (e) => {
-  if (matcher.match(e)) {
-    console.log('Sequence completed!')
-  }
-  console.log('Progress:', matcher.getProgress()) // e.g., 1
-})
-```
+To record a sequence the user presses, see [Custom Hotkey Recording](./custom-hotkey-recording). To match a sequence without the hotkey manager, see [Match a sequence on your own](./hotkey-manager#match-a-sequence-on-your-own).

@@ -114,7 +114,8 @@ function Layout() {
           <h2>Registered shortcuts</h2>
           <p>
             Global and current-route registrations, including disabled handlers.
-            Scoped shortcuts run inside their target.
+            Each page renders a <code>HotkeysProvider</code> with its own scope.
+            Target shortcuts run only while focus is inside their target.
           </p>
           {groups().map((group) => (
             <div>
@@ -124,6 +125,7 @@ function Layout() {
                   <tr>
                     <th>Action</th>
                     <th>Binding</th>
+                    <th>Scope</th>
                     <th>Status</th>
                   </tr>
                 </thead>
@@ -144,6 +146,7 @@ function Layout() {
                             sequenceSeparator: ' → ',
                           })}
                         </td>
+                        <td>{reg.options.scope}</td>
                         <td>
                           {reg.options.enabled === false
                             ? 'Disabled'
@@ -158,7 +161,14 @@ function Layout() {
         </section>
       )}
       <main>
-        <Dynamic component={routeComponents[path()] ?? Tickets} />
+        {/* Each page gets its own hotkey scope, active while it is mounted. */}
+        <Show when={path()} keyed>
+          {(current) => (
+            <HotkeysProvider scope={pageScope(current)}>
+              <Dynamic component={routeComponents[current] ?? Tickets} />
+            </HotkeysProvider>
+          )}
+        </Show>
       </main>
       <section>
         <h2>Key state</h2>
@@ -256,7 +266,7 @@ function EditorPane({ name }: { name: string }) {
           meta: {
             name: `Save ${name}`,
             group: 'Editor',
-            description: 'Scoped to this editor',
+            description: 'Limited to this editor',
           },
         },
       },
@@ -291,7 +301,7 @@ function EditorPane({ name }: { name: string }) {
     </fieldset>
   )
 }
-/** Exercises target scope, repeat/reset, propagation, and keyup options. */
+/** Exercises targets, repeat/reset, propagation, and keyup options. */
 function Editor() {
   const log = useContext(ActivityContext)
   const [repeat, setRepeat] = createSignal(false)
@@ -308,12 +318,12 @@ function Editor() {
   let scope: HTMLFieldSetElement | undefined
   createHotkey(
     'Alt+[KeyB]',
-    () => log('Scoped B handler'),
+    () => log('Target B handler'),
     () => ({
       target: scope,
       stopPropagation: !bubble(),
       preventDefault: !bubble(),
-      meta: { name: 'Scoped propagation demo', group: 'Editor' },
+      meta: { name: 'Target propagation demo', group: 'Editor' },
     }),
   )
   createHotkey(
@@ -331,7 +341,7 @@ function Editor() {
   )
   return (
     <section>
-      <h2>Editor scopes</h2>
+      <h2>Editor targets</h2>
       <p>
         Save is registered in both editors. Focus a textarea to choose which
         handler receives it.
@@ -480,8 +490,8 @@ function Recording() {
     detectConflicts: {
       exclude: (reg) => reg.options.meta?.name === 'Recorded action',
     },
-    validate: (_, { parsedHotkey }) =>
-      parsedHotkey.modifiers.length > 0 ||
+    validate: (_, context) =>
+      (context.kind === 'chord' && context.parsedChord.modifiers.length > 0) ||
       'Include a modifier for this action.',
     onReject: ({ message }) => setProblem(message),
     onRecord: (value) => {
@@ -711,6 +721,12 @@ function Formatting() {
   )
 }
 // A changed route mounts a new component, so its registrations clean up naturally.
+function pageScope(path: string) {
+  return (
+    pages.find((page) => page.to === path) ?? pages[0]
+  ).label.toLowerCase()
+}
+
 const routeComponents: Record<string, () => JSX.Element> = {
   '/': Tickets,
   '/editor': Editor,

@@ -22,7 +22,7 @@ const appHotkeys = defineAppHotkeys({
     meta: { name: 'Save', group: 'Document' },
     options: { requireReset: true },
   },
-  'doc.find': { hotkey: 'Mod+F', context: 'editor' },
+  'doc.find': { hotkey: 'Mod+F', scope: 'editor' },
   'palette.open': { hotkey: null, meta: { name: 'Command palette' } },
   'nav.home': {
     hotkey: ['G', 'H'],
@@ -154,13 +154,13 @@ describe('AppHotkeysStore', () => {
     expect(store.appHotkeys['palette.open'].hotkey).toBeNull()
   })
 
-  it('treats contexts and sequence prefixes when finding conflicts', () => {
+  it('treats scopes and sequence prefixes when finding conflicts', () => {
     const store = new AppHotkeysStore(
       defineAppHotkeys({
         top: { hotkey: ['G', 'G'] },
-        grid: { hotkey: 'G', context: 'grid' },
-        modalClose: { hotkey: 'Escape', context: 'modal' },
-        editorClose: { hotkey: 'Mod+W', context: 'editor' },
+        grid: { hotkey: 'G', scope: 'grid' },
+        modalClose: { hotkey: 'Escape', scope: 'modal' },
+        editorClose: { hotkey: 'Mod+W', scope: 'editor' },
       }),
     )
     expect(store.findConflicts('grid', 'G').map((c) => c.id)).toEqual(['top'])

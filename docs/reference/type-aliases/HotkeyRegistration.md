@@ -9,6 +9,6 @@ type HotkeyRegistration =
   | HotkeySequenceRegistration;
 ```
 
-Defined in: [hotkey-manager.ts:156](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L156)
+Defined in: [hotkey-manager.ts:174](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L174)
 
 A registered hotkey in the HotkeyManager.

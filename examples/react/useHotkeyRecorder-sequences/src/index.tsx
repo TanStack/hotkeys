@@ -79,8 +79,8 @@ function App() {
   const [draftDescription, setDraftDescription] = React.useState('')
 
   const recorder = useHotkeyRecorder({
-    // Record up to four chords; Enter or the fourth chord commits.
-    maxSteps: 4,
+    // Record a chord or a sequence. Enter commits.
+    maxSteps: Infinity,
     onRecord: (hotkey: Hotkey) => {
       if (editingId) {
         setShortcuts((prev) =>
@@ -202,11 +202,10 @@ function App() {
       <header>
         <h1>Recording Sequences</h1>
         <p>
-          <code>useHotkeyRecorder</code> with <code>maxSteps</code> records up
-          to that many chords. Click Edit, press each chord in order, then press
-          Enter (or reach four chords) to save. One chord saves as a regular
-          hotkey. Escape cancels; Backspace removes the last chord or clears
-          when empty.
+          <code>useHotkeyRecorder</code> with <code>maxSteps: Infinity</code>{' '}
+          records sequences. Click Edit, press each chord in order, then press
+          Enter to save. One chord saves as a regular hotkey. Escape cancels;
+          Backspace removes the last chord or clears when empty.
         </p>
       </header>
 
@@ -249,7 +248,7 @@ function App() {
 
         {recorder.isRecording && (
           <div className="info-box recording-notice">
-            <strong>Recording...</strong> Press up to four chords, then Enter to
+            <strong>Recording...</strong> Press each chord, then Enter to
             finish. Escape cancels. Backspace removes the last chord or clears.
             {recorder.steps.length > 0 && (
               <div>
@@ -275,9 +274,9 @@ function App() {
   useHotkeyRegistrations,
 } from '@tanstack/react-hotkeys'
 
-// Record a chord or a sequence of up to four chords
+// Record a chord or a sequence
 const recorder = useHotkeyRecorder({
-  maxSteps: 4,
+  maxSteps: Infinity,
   onRecord: (hotkey) => save(hotkey), // 'Mod+S' or ['G', 'G']
 })
 

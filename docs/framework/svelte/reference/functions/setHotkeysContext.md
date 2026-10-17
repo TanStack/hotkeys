@@ -7,10 +7,15 @@ title: setHotkeysContext
 function setHotkeysContext(options?): HotkeysContextValue;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L74)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:89](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L89)
 
 Sets the hotkeys context for descendants. `HotkeysProvider` calls this; call
-it directly in a root component's script instead of rendering the provider.
+it directly in a component's script instead of rendering the provider.
+
+Nest contexts to create hotkey scopes. A nested context inherits app
+hotkeys and merges default options. With `scope`, its hotkeys fire only
+while the component is mounted and enabled; with `exclusive`, only its
+hotkeys fire.
 
 ## Parameters
 

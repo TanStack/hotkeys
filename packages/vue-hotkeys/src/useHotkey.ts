@@ -3,6 +3,7 @@ import type { MaybeRefOrGetter } from 'vue'
 import type {
   AppHotkey,
   HotkeyCallback,
+  HotkeyCallbackContextFor,
   RegisterableHotkey,
   Target,
 } from '@tanstack/hotkeys'
@@ -77,9 +78,9 @@ export function useHotkey<T extends AppHotkey>(
   callback: HotkeyCallback,
   options?: MaybeRefOrGetter<UseAppHotkeyOptions<T>>,
 ): void
-export function useHotkey<T extends RegisterableHotkey>(
+export function useHotkey<const T extends RegisterableHotkey>(
   hotkey: MaybeRefOrGetter<T>,
-  callback: HotkeyCallback,
+  callback: HotkeyCallback<HotkeyCallbackContextFor<T>>,
   options?: MaybeRefOrGetter<UseHotkeyOptionsFor<T>>,
 ): void
 export function useHotkey(

@@ -6,11 +6,11 @@ title: matchesKeyboardEvent
 ```ts
 function matchesKeyboardEvent(
    event, 
-   hotkey, 
+   chord, 
    platform?): boolean;
 ```
 
-Defined in: [match.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L57)
+Defined in: [match.ts:52](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L52)
 
 Checks if a KeyboardEvent matches a hotkey.
 
@@ -33,12 +33,12 @@ In these cases, `event.code` is used to determine the physical key.
 
 The KeyboardEvent to check
 
-### hotkey
+### chord
 
   \| [`HotkeyChord`](../type-aliases/HotkeyChord.md)
-  \| [`ParsedHotkey`](../type-aliases/ParsedHotkey.md)
+  \| [`ParsedHotkeyChord`](../type-aliases/ParsedHotkeyChord.md)
 
-The hotkey string or ParsedHotkey to match against
+The chord string or parsed chord to match against
 
 ### platform?
 
@@ -50,7 +50,7 @@ The target platform for resolving 'Mod' (defaults to auto-detection)
 
 `boolean`
 
-True if the event matches the hotkey
+True if the event matches the chord
 
 ## Example
 

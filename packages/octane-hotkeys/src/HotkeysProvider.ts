@@ -6,6 +6,11 @@ import {
   useRef,
 } from 'octane'
 import { AppHotkeysStore, publishAppHotkeysStore } from '@tanstack/hotkeys'
+import {
+  activateHotkeysProviderScope,
+  getHotkeysProviderScopeKey,
+  mergeHotkeysProviderDefaults,
+} from '@tanstack/hotkeys/adapter'
 import { subSlot } from './internal'
 import type {
   AppHotkeys,
@@ -13,6 +18,7 @@ import type {
   HotkeyChordRecorderOptions,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
+import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
 import type { UseHotkeyCommonOptions } from './useHotkey'
 
 export interface DefaultHotkeysOptions {
@@ -31,16 +37,20 @@ export interface DefaultHotkeysOptions {
 }
 
 interface HotkeysContextValue {
+  /** Merged with every ancestor provider's defaults, including `hotkey.scope`. */
   defaultOptions: DefaultHotkeysOptions
   appHotkeysStore: AppHotkeysStore | null
+  /** Whether this provider and every ancestor are enabled. */
+  enabled: boolean
 }
 
 const HotkeysContext = createContext<HotkeysContextValue | null>(null)
 
 export type HotkeysProviderOptions = DefaultHotkeysOptions
 
-export interface HotkeysProviderProps {
+export interface HotkeysProviderProps extends HotkeysProviderScopeProps {
   children?: unknown
+  /** Merged with the parent provider's defaults. */
   defaultOptions?: HotkeysProviderOptions
   /**
    * Every app hotkey, from `defineAppHotkeys`. Read when the provider first
@@ -66,14 +76,24 @@ export function useDefaultHotkeysOptions(): DefaultHotkeysOptions {
   return useContext(HotkeysContext)?.defaultOptions ?? {}
 }
 
-/** Sets defaults, app hotkeys, and custom hotkeys for descendant components. */
+/**
+ * Sets defaults, app hotkeys, and custom hotkeys for descendant components.
+ *
+ * Nest providers to create hotkey scopes. A nested provider inherits app
+ * hotkeys and merges default options. With `scope`, its hotkeys fire only
+ * while it is mounted and enabled; with `exclusive`, only its hotkeys fire.
+ */
 export function HotkeysProvider({
   children,
-  defaultOptions = {},
+  defaultOptions,
   appHotkeys,
   customHotkeys,
   onCustomHotkeysChange,
+  scope,
+  exclusive,
+  enabled = true,
 }: HotkeysProviderProps) {
+  const parent = useContext(HotkeysContext)
   const callbackRef = useRef(
     onCustomHotkeysChange,
     subSlot(undefined, 'provider-callback'),
@@ -103,8 +123,31 @@ export function HotkeysProvider({
     [store],
     subSlot(undefined, 'provider-publish'),
   )
+  const active = (parent?.enabled ?? true) && enabled
+  // Compared by value, so an inline `exclusive` object does not reactivate
+  // the scope, and lose its precedence, on every render.
+  const scopeKey = getHotkeysProviderScopeKey({
+    scope,
+    exclusive,
+    active,
+    parent: parent?.defaultOptions.hotkey?.scope,
+  })
+  // Activate this provider's scope while mounted and enabled.
+  useLayoutEffect(
+    () => (scopeKey ? activateHotkeysProviderScope(scopeKey) : undefined),
+    [scopeKey],
+    subSlot(undefined, 'provider-scope'),
+  )
   return createElement(HotkeysContext, {
-    value: { defaultOptions, appHotkeysStore: store },
+    value: {
+      defaultOptions: mergeHotkeysProviderDefaults(
+        parent?.defaultOptions,
+        defaultOptions,
+        scope,
+      ),
+      appHotkeysStore: store ?? parent?.appHotkeysStore ?? null,
+      enabled: active,
+    },
     children,
   })
 }

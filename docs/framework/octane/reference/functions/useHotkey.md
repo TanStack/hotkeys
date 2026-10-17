@@ -12,7 +12,7 @@ function useHotkey<T>(
    options?): void;
 ```
 
-Defined in: [useHotkey.ts:47](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkey.ts#L47)
+Defined in: [useHotkey.ts:48](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkey.ts#L48)
 
 Registers one hotkey: a chord such as `'Mod+S'`, a sequence such as
 `['G', 'G']`, or an app hotkey from `defineAppHotkeys`. The callback and
@@ -51,7 +51,7 @@ function useHotkey<T>(
    options?): void;
 ```
 
-Defined in: [useHotkey.ts:52](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkey.ts#L52)
+Defined in: [useHotkey.ts:53](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkey.ts#L53)
 
 Registers one hotkey: a chord such as `'Mod+S'`, a sequence such as
 `['G', 'G']`, or an app hotkey from `defineAppHotkeys`. The callback and
@@ -71,7 +71,7 @@ options are refreshed after every commit.
 
 #### callback
 
-`HotkeyCallback`
+`HotkeyCallback`\<`HotkeyCallbackContextFor`\<`T`\>\>
 
 #### options?
 

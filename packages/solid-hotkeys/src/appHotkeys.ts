@@ -29,8 +29,8 @@ function useRequiredStore(name: string) {
  *
  * @example
  * ```tsx
- * const hotkeys = useAppHotkeys()
- * createHotkey(() => hotkeys()['doc.save'], () => save())
+ * const appHotkeys = useAppHotkeys()
+ * createHotkey(() => appHotkeys()['doc.save'], () => save())
  * ```
  */
 export function useAppHotkeys(): () => RegisteredAppHotkeys {

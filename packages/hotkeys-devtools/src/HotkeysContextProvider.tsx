@@ -17,6 +17,7 @@ import type {
   AppHotkeyListItem,
   AppHotkeysStore,
   HotkeyRegistrationView,
+  HotkeyScopesState,
 } from '@tanstack/hotkeys'
 
 interface HotkeysDevtoolsContextType {
@@ -24,6 +25,8 @@ interface HotkeysDevtoolsContextType {
   registrations: Accessor<Array<HotkeyRegistrationView>>
   /** Declared app hotkeys from a framework provider, with live status. Empty without one. */
   appHotkeys: Accessor<Array<AppHotkeyListItem>>
+  /** Active hotkey scopes. */
+  scopes: Accessor<HotkeyScopesState>
   heldKeys: Accessor<Array<string>>
   heldCodes: Accessor<Record<string, string>>
   /** Monotonic clock for sequence in-progress UI (updates while a sequence match is active). */
@@ -33,6 +36,7 @@ interface HotkeysDevtoolsContextType {
 const HotkeysDevtoolsContext = createContext<HotkeysDevtoolsContextType>({
   registrations: () => [],
   appHotkeys: () => [],
+  scopes: () => ({ active: [], exclusive: null, allowed: [], suspended: [] }),
   heldKeys: () => [],
   heldCodes: () => ({}),
   sequenceProgressNow: () => Date.now(),
@@ -57,6 +61,9 @@ export function HotkeysContextProvider(props: { children: any }) {
   const [appHotkeysStore, setAppHotkeysStore] =
     createSignal<AppHotkeysStore | null>(manager.appHotkeys.state)
   const [appHotkeysVersion, setAppHotkeysVersion] = createSignal(0)
+  const [scopes, setScopes] = createSignal<HotkeyScopesState>(
+    manager.scopes.state,
+  )
   const [heldKeys, setHeldKeys] = createSignal<Array<string>>(
     tracker.store.state.heldKeys,
   )
@@ -68,6 +75,13 @@ export function HotkeysContextProvider(props: { children: any }) {
   createEffect(() => {
     const unsubscribe = manager.registrations.subscribe(() => {
       setRegistrations(readRegistrations(manager))
+    }).unsubscribe
+    onCleanup(() => unsubscribe())
+  })
+
+  createEffect(() => {
+    const unsubscribe = manager.scopes.subscribe(() => {
+      setScopes(manager.scopes.state)
     }).unsubscribe
     onCleanup(() => unsubscribe())
   })
@@ -136,6 +150,7 @@ export function HotkeysContextProvider(props: { children: any }) {
       value={{
         registrations,
         appHotkeys,
+        scopes,
         heldKeys,
         heldCodes,
         sequenceProgressNow,

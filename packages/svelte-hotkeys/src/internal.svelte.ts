@@ -1,4 +1,5 @@
 import { createSubscriber } from 'svelte/reactivity'
+import { activateHotkeysProviderScope } from '@tanstack/hotkeys/adapter'
 import type { AppHotkeysStore } from '@tanstack/hotkeys'
 
 export type MaybeGetter<T> = T | (() => T)
@@ -36,4 +37,13 @@ export function createAppHotkeysSubscriber(
   store: AppHotkeysStore | null,
 ): () => void {
   return store ? createStoreSubscriber(store.store) : noop
+}
+
+/**
+ * Activates a provider's scope while the component is mounted, and again
+ * whenever the key from `getHotkeysProviderScopeKey` changes.
+ */
+export function activateScopeWhileMounted(getKey: () => string | null): void {
+  const key = $derived(getKey())
+  $effect(() => (key ? activateHotkeysProviderScope(key) : undefined))
 }

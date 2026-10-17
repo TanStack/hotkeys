@@ -1,199 +1,181 @@
 ---
-title: Hotkeys Guide
+title: Register Hotkeys with createHotkey and createHotkeys in Svelte
 id: hotkeys
+description: Register keyboard shortcuts in Svelte with createHotkey, createHotkeys, and attachments. Write chords and sequences, set reactive options, turn hotkeys on and off, and listen on one element.
 ---
 
-Use `createHotkey` for global shortcuts and `createHotkeyAttachment` for element-scoped shortcuts. The common global case stays simple, and scoped behavior feels native to Svelte 5.
+`createHotkey` registers a keyboard shortcut while the component that calls it is mounted, and `createHotkeys` registers several. For hotkeys that belong to one element, `createHotkeyAttachment` and `createHotkeysAttachment` do the same through `{@attach}`. All four take the same hotkeys and options. To register hotkeys outside Svelte components, use the [hotkey manager](./hotkey-manager).
 
 ## Chords and sequences
 
-A hotkey is either a **chord**, keys pressed together such as `'Mod+S'`, or a **sequence**, chords pressed one after another such as `['G', 'G']`. Every API in this guide accepts both, and a one-step array such as `['Mod+S']` is the chord `'Mod+S'`.
+A hotkey is one of two kinds:
+
+- A **chord** is keys pressed together, such as `'Mod+S'`, or a single key, such as `'Escape'`.
+- A **sequence** is chords pressed one after another, such as `['G', 'H']`. Write it as an array of chords.
 
 ```ts
-createHotkey('Mod+S', () => save()) // chord
-createHotkey(['G', 'G'], () => scrollToTop(), { timeout: 500 }) // sequence
-createHotkey('Escape', () => close(), { requireReset: true }) // chord-only option
+createHotkey('Mod+K', () => openSearch()) // Mod and K together
+createHotkey(['G', 'H'], () => goHome()) // G, then H
 ```
 
-Most options apply to both kinds. `requireReset` applies only to chords and `timeout` only to sequences, and TypeScript rejects options that don't match the hotkey. When the kind isn't known statically, such as a `Hotkey` loaded from settings, only the shared options are accepted. Defaults apply only to the kinds that support them. See the [Sequences Guide](./sequences) for timing and matching, and the [App Hotkeys Guide](./app-hotkeys) to declare hotkeys up front and let users customize them.
+Every function and option in this guide accepts both kinds, and most examples use chords. [Sequences](./sequences) covers how sequences match, the time allowed between steps, and sequences that start with the same chord.
 
-## Logical keys and physical positions
+## Register a hotkey
 
-Use a logical binding when the shortcut should follow the character on the active layout. Use a physical binding when it should follow a keyboard position:
-
-| Binding | Identity checked |
-| --- | --- |
-| `Mod+S` or `{ key: 'S', mod: true }` | Logical `event.key`, with conservative code fallback |
-| `Mod+[KeyS]` or `{ code: 'KeyS', mod: true }` | Exact `event.code` |
-| `Enter` | Logical Enter, including numpad Enter |
-| `[Enter]` / `[NumpadEnter]` | Separate physical Enter positions |
-
-Every physical code uses brackets in strings, including names shared with logical keys such as `[Enter]` and `[F13]`. Supported codes are type-safe and available in autocomplete. Do not put a bracketed code in an object's `key` field; use `code`. A binding has either `key` or `code`, never both.
-
-On a layout where the `KeyQ` position produces `a`, `A` follows that character and `[KeyQ]` follows the position. Logical ASCII letters remain layout-aware; conservative physical fallback helps with transformed output such as macOS Option keys. Exact matches take priority over weaker fallbacks among eligible registrations on the same target.
-
-Callbacks expose the same distinction in `context.parsedHotkey`: check `parsed.code !== undefined` before reading its physical identity. Use `formatForDisplay` for labels; stored physical strings retain their brackets.
-
-## Global hotkeys
+Call `createHotkey` in a component's script with a hotkey and a callback:
 
 ```svelte
 <script lang="ts">
   import { createHotkey } from '@tanstack/svelte-hotkeys'
 
-  createHotkey('Mod+S', () => {
-    saveDocument()
-  })
+  createHotkey('Mod+S', () => saveDocument())
 </script>
+
+<textarea></textarea>
 ```
 
-The callback receives the original `KeyboardEvent` as the first argument and a `HotkeyCallbackContext` as the second:
+The callback receives the `KeyboardEvent` and a context object:
 
 ```ts
 createHotkey('Mod+S', (event, context) => {
-  console.log(context.hotkey)
-  console.log(context.parsedHotkey)
+  console.log(context.hotkey) // 'Mod+S'
+  console.log(context.parsedChord.modifiers) // ['Meta'] on macOS, ['Control'] elsewhere
 })
 ```
 
-## Scoped hotkeys
-
-Use attachments instead of capturing an element ref just to pass it back into the API.
-
-```svelte
-<script lang="ts">
-  import { createHotkeyAttachment } from '@tanstack/svelte-hotkeys'
-
-  const closePanel = createHotkeyAttachment('Escape', () => {
-    close()
-  })
-</script>
-
-<div tabindex="0" {@attach closePanel}>Panel content</div>
-```
-
-## Reactive inputs
-
-Hotkeys can take plain values for static registrations or getter functions when the hotkey or options depend on reactive state.
-
-### Reactive `enabled`
-
-When `enabled` is false, the hotkey stays registered (visible in devtools); only the callback is suppressed.
+The script runs once, and the callback reads state and props when it runs, so it always sees their current values:
 
 ```svelte
 <script lang="ts">
   import { createHotkey } from '@tanstack/svelte-hotkeys'
 
-  let isEditing = $state(false)
+  let count = $state(0)
 
-  createHotkey(
-    'Mod+S',
-    () => save(),
-    () => ({ enabled: isEditing }),
-  )
+  // Logs the current count, not the count when the component was created
+  createHotkey('Mod+Shift+C', () => console.log(count))
 </script>
+
+<button onclick={() => count++}>Count: {count}</button>
 ```
 
-### Reactive hotkey values
+The hotkey and its options can change too. Pass them as getters, and the function follows the state they read. When only the options change, it updates the existing registration. When the hotkey changes, it replaces the registration:
 
 ```svelte
 <script lang="ts">
   import { createHotkey } from '@tanstack/svelte-hotkeys'
+  import type { Hotkey } from '@tanstack/svelte-hotkeys'
 
-  let shortcut = $state('Mod+S')
+  let { saveHotkey, readOnly }: { saveHotkey: Hotkey; readOnly: boolean } =
+    $props()
 
   createHotkey(
-    () => shortcut,
+    () => saveHotkey,
     () => save(),
+    () => ({ enabled: !readOnly }),
   )
 </script>
 ```
 
-### Changing a binding
+A plain options object is read once, so `{ enabled: !readOnly }` keeps the value from when the script ran. An object with getters, such as `{ get enabled() { return !readOnly } }`, follows changes like a getter function does.
 
-Pass a new logical or physical binding through your framework's normal state mechanism. A recorder result such as `Alt+[KeyS]` can be passed directly to the same registration API. Keep an initial binding in application state if you want a reset button; the library does not need a separate preferences store.
+That lets you register a hotkey the user chose, such as one from the [hotkey recorder](./custom-hotkey-recording). To let users change hotkeys across your app and save their choices, see [App Hotkeys](./app-hotkeys).
 
-## Property getters
+### Write a chord as a string or an object
 
-Property getters and functions returning an options object are both supported. Read reactive state inside the getter. A plain value such as `{ enabled: currentValue }` captures the value when that object is created.
-
-The adapter reads option properties inside its reactive computation and updates registrations automatically. Callbacks such as `onRecord` and `onCancel` remain functions; the adapter does not call them to resolve options. Tracking is shallow; callback bodies and nested objects are not evaluated to discover dependencies. Keep getters free of side effects. Ordinary option changes preserve registration identity. Changing the target moves the registration to that target.
-
-```svelte
-<script lang="ts">
-	import { createHotkey } from '@tanstack/svelte-hotkeys'
-
-	let enabled = $state(true)
-	createHotkey('Mod+S', () => console.log('Save'), {
-		get enabled() {
-			return enabled
-		},
-	})
-</script>
-
-<button onclick={() => enabled = !enabled}>Toggle shortcut</button>
-```
-
-You can also pass `() => ({ enabled })`. Svelte applies registration changes when its effect runs. The same forms work for attachments, common options, per-definition options, sequences, and recorders. `HotkeysProvider` follows replacement `defaultOptions` objects and getters within defaults.
-
-## Capture phase
-
-By default, hotkeys listen during bubbling, after the keyboard handlers of widgets inside the target. A widget that handles a key and stops propagation keeps that key from your hotkeys. Set `capture: true` to run the hotkey before those widgets instead. It applies to `keydown` and `keyup`.
-
-With the default `stopPropagation: true`, a matching capture hotkey also keeps the key from those widgets. Set `stopPropagation: false` to let them handle it too. See [Hotkeys run after the page's own handlers](../../../guides/sensible-defaults.md#hotkeys-run-after-the-pages-own-handlers) for when to use capture.
-
-## Default options
-
-Set defaults explicitly with `setHotkeysContext` when a subtree needs shared behavior:
-
-```svelte
-<script lang="ts">
-  import { setHotkeysContext } from '@tanstack/svelte-hotkeys'
-
-  setHotkeysContext({
-    hotkey: {
-      preventDefault: false,
-      ignoreInputs: false,
-    },
-  })
-</script>
-```
-
-## Common options
-
-### `requireReset`
+Write most chords as strings. Your editor autocompletes them, and TypeScript rejects a string that isn't a valid chord:
 
 ```ts
-createHotkey('Escape', () => closePanel(), { requireReset: true })
+createHotkey('Escape', () => close())
+createHotkey('Mod+S', () => save()) // Command+S on macOS, Control+S elsewhere
+createHotkey('Mod+Alt+Shift+K', () => openCommandLog()) // Modifiers in order: Mod or Control, Alt, Shift, Meta
+createHotkey('[KeyW]', () => moveUp()) // The W position, whatever the layout types there
+
+createHotkey('Shift+Mod+S', () => saveAs()) // Type error: Mod comes first
+createHotkey('Mod+Meta+S', () => saveAs()) // Type error: Mod is already Meta on macOS
 ```
 
-### `ignoreInputs`
-
-When `ignoreInputs` is enabled, hotkeys also skip keys that a focused control inside their `target` uses itself: `Enter` and `Space` on buttons and `<summary>`, `Enter` on links, and navigation keys in ARIA widgets such as menus, listboxes, tabs, and grids. A hotkey targeted at the control itself still receives them, and `ignoreInputs: false` handles every key. See [Focused controls keep their own keys](../../../guides/sensible-defaults.md#focused-controls-keep-their-own-keys) for the full list.
+Write a chord as a `RawHotkeyChord` object when you build it from data, such as a form with a checkbox for each modifier:
 
 ```ts
-createHotkey('K', () => openSearch())
+createHotkey({ key: 'S', mod: true, shift: true }, () => saveAs()) // Same as 'Mod+Shift+S'
+createHotkey({ code: 'KeyW' }, () => moveUp()) // Same as '[KeyW]'
+
+createHotkey(
+  () => ({ key: binding.key, mod: binding.mod, shift: binding.shift }),
+  () => runAction(),
+)
+```
+
+Sequence steps can be strings, objects, or a mix:
+
+```ts
+createHotkey(['G', { key: 'H', shift: true }], () => goToHistory())
+```
+
+The function registers every chord and sequence step as a string, so `context.hotkey` and devtools show `'Mod+Shift+S'` for the first object above. [Match a key's position instead](../../../guides/sensible-defaults.md#match-a-keys-position-instead) explains codes such as `[KeyW]`.
+
+## Hotkey options
+
+Pass options as the third argument:
+
+```ts
+// Submit with Enter, even while focus is in a text field
 createHotkey('Enter', () => submit(), { ignoreInputs: false })
 ```
 
-### `conflictBehavior`
+| Option | Default | Description |
+| --- | --- | --- |
+| `enabled` | `true` | Whether the hotkey responds to key presses. See [Enable and disable hotkeys](#enable-and-disable-hotkeys). |
+| `target` | `document` | Where the hotkey listens: `document` or `window`. For an element, use an attachment. See [Hotkey targets](#hotkey-targets). |
+| `preventDefault` | `true` | Stops the browser's own action, such as the Save dialog for `Mod+S` |
+| `stopPropagation` | `true` | Stops the key press from reaching other listeners |
+| `ignoreInputs` | `'auto'` | Skips key presses that type in a text field or operate a focused control. See [Typing in inputs does not trigger shortcuts](../../../guides/sensible-defaults.md#typing-in-inputs-does-not-trigger-shortcuts). |
+| `eventType` | `'keydown'` | Fires on `'keydown'` or `'keyup'` |
+| `capture` | `false` | Runs before the keyboard handlers of elements inside the target. See [Hotkeys run after the page's own handlers](../../../guides/sensible-defaults.md#hotkeys-run-after-the-pages-own-handlers). |
+| `requireReset` | `false` | Chords only. Fires once per press instead of again on each automatic repeat while the key is held. |
+| `timeout` | `1000` | Sequences only. Milliseconds allowed between steps. |
+| `conflictBehavior` | `'warn'` | What happens when the same hotkey is already registered. See [Handle duplicate hotkeys](#handle-duplicate-hotkeys). |
+| `scope` | The nearest provider's scope | The [scope](./hotkeys-provider-and-scopes) the hotkey belongs to |
+| `platform` | Detected | The platform that decides what `Mod` means: `'mac'`, `'windows'`, or `'linux'`. Useful in tests. |
+| `meta` | None | A name, a description, and a group. See [Describe hotkeys with `meta`](#describe-hotkeys-with-meta). |
 
-```ts
-createHotkey('Mod+S', () => save(), { conflictBehavior: 'replace' })
+The defaults suit most hotkeys. [Sensible Defaults](../../../guides/sensible-defaults.md) explains why each one was chosen and when to change it. The [`CreateHotkeyOptions` reference](../reference/type-aliases/CreateHotkeyOptions.md) lists the types.
+
+To change a default for every hotkey in your app, wrap it in a `HotkeysProvider` with `defaultOptions`. Options passed to a function override the provider's defaults:
+
+```svelte
+<!-- App.svelte -->
+<script lang="ts">
+  import { HotkeysProvider } from '@tanstack/svelte-hotkeys'
+  import Editor from './Editor.svelte'
+</script>
+
+<HotkeysProvider
+  defaultOptions={{ hotkey: { requireReset: true, timeout: 1500 } }}
+>
+  <Editor />
+</HotkeysProvider>
 ```
 
-### `platform`
+The provider is optional. Without one, every hotkey uses the built-in defaults in the table. See [HotkeysProvider and Scopes](./hotkeys-provider-and-scopes) for nested defaults and for grouping hotkeys into scopes.
+
+### Chord and sequence options
+
+Most options apply to both kinds of hotkey. `requireReset` applies only to chords, and `timeout` only to sequences. The option types follow the hotkey you pass, so TypeScript rejects options for the other kind:
 
 ```ts
-createHotkey('Mod+S', () => save(), { platform: 'mac' })
+createHotkey('Escape', close, { requireReset: true }) // OK
+createHotkey(['G', 'G'], scrollToTop, { timeout: 500 }) // OK
+createHotkey('Escape', close, { timeout: 500 }) // Type error
 ```
 
-## Automatic cleanup
+Options that apply to many hotkeys at once, such as provider defaults, apply each of these to the matching kind only. In the provider example above, `requireReset` affects chords, and `timeout` affects sequences.
 
-Global hotkeys are automatically unregistered when the owning component unmounts. Attachment-based hotkeys clean themselves up when the attached element is removed or when reactive inputs change.
+When the kind isn't known until runtime, such as a `Hotkey` loaded from settings, the function accepts only the options that both kinds share.
 
-## Registering multiple hotkeys
+## Register multiple hotkeys
 
-When you need to register several hotkeys at once, or a dynamic, variable-length list, use `createHotkeys` (plural) for global shortcuts and `createHotkeysAttachment` for element-scoped shortcuts:
+When a component has more than one hotkey, use `createHotkeys`. It takes an array of definitions, each with a `hotkey`, a `callback`, and optional `options`:
 
 ```svelte
 <script lang="ts">
@@ -202,123 +184,165 @@ When you need to register several hotkeys at once, or a dynamic, variable-length
   createHotkeys([
     { hotkey: 'Mod+S', callback: () => save() },
     { hotkey: 'Mod+Z', callback: () => undo() },
-    { hotkey: 'Escape', callback: () => close() },
+    { hotkey: 'Mod+Shift+Z', callback: () => redo() },
+    { hotkey: ['G', 'G'], callback: () => scrollToTop(), options: { timeout: 500 } },
   ])
 </script>
 ```
 
-### Common options with per-hotkey overrides
+Chords and sequences can share one array. Each definition's `options` are typed by its `hotkey`, as they are for `createHotkey`.
 
-Pass shared options as the second argument. Per-definition options override the common ones:
+A callback in the array receives a `context` that can belong to either kind of hotkey. Check `context.kind` before reading `context.parsedChord`:
 
 ```ts
-createHotkeys(
-  [
-    { hotkey: 'Mod+S', callback: () => save() },
-    { hotkey: 'Mod+Z', callback: () => undo(), options: { enabled: false } },
-  ],
-  { preventDefault: true },
-)
+createHotkeys([
+  {
+    hotkey: 'Mod+S',
+    callback: (event, context) => {
+      if (context.kind === 'chord') console.log(context.parsedChord.modifiers)
+    },
+  },
+])
 ```
 
-### Dynamic hotkey lists
+### Share options
 
-Pass a getter for reactive arrays:
-
-```svelte
-<script lang="ts">
-  import { createHotkeys } from '@tanstack/svelte-hotkeys'
-
-  let shortcuts = $state([...])
-
-  createHotkeys(
-    () => shortcuts.map((s) => ({
-      hotkey: s.key,
-      callback: s.action,
-    })),
-  )
-</script>
-```
-
-### Scoped multi-hotkeys
-
-Use `createHotkeysAttachment` to scope multiple hotkeys to a specific element:
+Pass options for every definition as the second argument. A definition's own options override them. This editor's formatting hotkeys toggle, so they share `requireReset: true` to fire once per press, while undo keeps repeating:
 
 ```svelte
 <script lang="ts">
   import { createHotkeysAttachment } from '@tanstack/svelte-hotkeys'
 
-  const editorKeys = createHotkeysAttachment([
-    { hotkey: 'Mod+S', callback: () => save() },
-    { hotkey: 'Mod+Z', callback: () => undo() },
-  ])
+  const editorHotkeys = createHotkeysAttachment(
+    [
+      { hotkey: 'Mod+B', callback: () => toggleBold() },
+      { hotkey: 'Mod+I', callback: () => toggleItalic() },
+      { hotkey: 'Mod+Z', callback: () => undo(), options: { requireReset: false } },
+    ],
+    { requireReset: true },
+  )
 </script>
 
-<div tabindex="0" {@attach editorKeys}>Editor content</div>
+<div contenteditable {@attach editorHotkeys}></div>
 ```
 
-## Metadata (name, description, and group)
+The attachment also makes all three hotkeys listen on the editor only. [Hotkey targets](#hotkey-targets) explains attachments.
 
-Every hotkey registration can carry a `meta` object with a `name`, `description`, and `group`. Metadata never affects hotkey behavior, but it flows through to registrations and devtools, so you can build shortcut palettes and help screens from it.
+Options merge in this order: provider defaults, then the shared options, then each definition's options.
 
-```ts
-createHotkey('Mod+S', () => save(), {
-  meta: { name: 'Save', description: 'Save the document' },
-})
-```
+### Build the list from data
 
-The `meta` option is typed as `HotkeyMeta`, which ships with `name`, `description`, and `group` fields. You can extend it with additional properties using TypeScript declaration merging:
-
-```ts
-declare module '@tanstack/hotkeys' {
-  interface HotkeyMeta {
-    icon?: string
-  }
-}
-
-createHotkey('Mod+S', () => save(), {
-  meta: { name: 'Save', description: 'Save the document', icon: 'floppy', group: 'File' },
-})
-```
-
-Group is descriptive metadata, not an execution scope. A shortcuts panel can group live registration views directly. Disabled registrations remain listed; unmounted registrations disappear.
-
-## Introspecting registrations
-
-Use the `getHotkeyRegistrations` function to get a live view of every registration, chords and sequences together. It's the building block for shortcut palettes and help dialogs.
+The script runs once, so a plain array never changes after it registers. Pass a getter for any list whose length can change:
 
 ```svelte
 <script lang="ts">
-  import { getHotkeyRegistrations, formatForDisplay } from '@tanstack/svelte-hotkeys'
+  import { createHotkeys } from '@tanstack/svelte-hotkeys'
 
-  const registrations = getHotkeyRegistrations()
+  let { items }: { items: Array<MenuItem> } = $props()
+
+  createHotkeys(() =>
+    items.map((item) => ({
+      hotkey: item.shortcut,
+      callback: item.action,
+      options: { enabled: item.enabled },
+    })),
+  )
+</script>
+```
+
+The function compares the array each time it changes, by position and hotkey. It registers new hotkeys and unregisters removed ones. Reordering the array registers the moved hotkeys again.
+
+## Enable and disable hotkeys
+
+A hotkey is on while its component is mounted. Most hotkeys need no other on and off logic, so put each one in the component it belongs to:
+
+```svelte
+<!-- SettingsDialog.svelte -->
+<script lang="ts">
+  import { createHotkey } from '@tanstack/svelte-hotkeys'
+
+  let { onClose }: { onClose: () => void } = $props()
+
+  // Registered only while the dialog is mounted
+  createHotkey('Escape', () => onClose())
 </script>
 
-<ul>
-  {#each registrations.hotkeys as reg (reg.id)}
-    <li>
-      <kbd>{formatForDisplay(reg.hotkey)}</kbd>
-      {#if reg.options.meta?.name}<span> — {reg.options.meta.name}</span>{/if}
-      {#if reg.kind === 'sequence'}
-        <small>{reg.matchedStepCount}/{reg.hotkey.length} steps</small>
-      {/if}
-    </li>
-  {/each}
-</ul>
+<div role="dialog">...</div>
 ```
 
-The returned object's reactive `hotkeys` getter holds one array of registration views. Each view has an `id`, the `hotkey`, its `options` (including `meta`), its `target`, and a `triggerCount`. Narrow with `kind`: chord views add `parsedHotkey`; sequence views add `parsedSequence` and `matchedStepCount`, the steps matched so far in the current attempt. Disabled entries stay listed; unmounted registrations disappear. Format any hotkey with `formatForDisplay`, and group entries by `options.meta?.group` when building a help panel.
-
-Registrations only exist while their components are mounted. To list hotkeys from routes that have not rendered, declare them with [app hotkeys](./app-hotkeys).
-
-## The hotkey manager
-
-You can always reach for the underlying manager directly:
+For a condition that doesn't match a component, pass `enabled` from a getter:
 
 ```ts
-import { getHotkeyManager } from '@tanstack/svelte-hotkeys'
-
-const manager = getHotkeyManager()
-manager.isRegistered('Mod+S')
-manager.getRegistrationCount()
+createHotkey('Mod+S', () => save(), () => ({ enabled: hasUnsavedChanges }))
 ```
+
+A disabled hotkey stays registered, so devtools still list it, and changing `enabled` doesn't register it again. While disabled, it ignores key presses completely and doesn't call `preventDefault`. Pressing `Mod+S` while the hotkey above is disabled opens the browser's Save dialog. To keep the dialog closed, leave the hotkey enabled and return early from the callback:
+
+```ts
+createHotkey('Mod+S', () => {
+  if (!hasUnsavedChanges) return
+  save()
+})
+```
+
+`enabled` works the same way for sequences. A disabled sequence ignores its steps.
+
+Single-key hotkeys, such as `K`, need a setting that lets users turn them off. Pass that setting as `enabled`. See [Single-key shortcuts need an off switch](../../../guides/sensible-defaults.md#single-key-shortcuts-need-an-off-switch).
+
+When a group of hotkeys turns on and off together, use [scopes](./hotkeys-provider-and-scopes) instead of passing `enabled` to each one. A scope can turn off the hotkeys in a tab panel that stays mounted, or suspend the rest of the page while a dialog is open.
+
+## Hotkey targets
+
+A hotkey listens on `document` by default, so it works wherever focus is on the page. `createHotkey` and `createHotkeys` also accept `target: window`. To listen on an element, create an attachment and attach it to that element:
+
+```svelte
+<script lang="ts">
+  import { createHotkeyAttachment } from '@tanstack/svelte-hotkeys'
+
+  // Fires only while the panel, or something inside it, has focus
+  const closeOnEscape = createHotkeyAttachment('Escape', () => closePanel())
+</script>
+
+<div tabindex="0" {@attach closeOnEscape}>Panel content</div>
+```
+
+The attachment registers the hotkey when the element mounts and unregisters it when the element is removed. `createHotkeysAttachment` does the same for an array of hotkeys.
+
+> [!NOTE]
+> An element receives key presses only while it, or something inside it, has focus. Give it a `tabindex` if it isn't focusable already.
+
+While focus is inside the element, its hotkeys run before hotkeys on `document`. With the default `stopPropagation: true`, a `document` hotkey for the same key doesn't run at all. A sequence on an element advances only on key presses inside the element.
+
+### A target is not a scope
+
+A target and a [scope](./hotkeys-provider-and-scopes) both limit when a hotkey works, in different ways:
+
+- A target decides which key presses the hotkey receives, based on where focus is.
+- A scope decides whether the hotkey is on, based on which parts of your app are active, such as an open dialog. Focus doesn't matter.
+
+Use an element target for hotkeys that belong to a focusable element, such as a list or a code editor. Use a scope for hotkeys that belong to a part of your app, whether or not it has focus. A hotkey can have both.
+
+## Handle duplicate hotkeys
+
+When you register a hotkey that is already registered on the same target and in the same scope, TanStack Hotkeys logs a warning, and both callbacks run. Set `conflictBehavior` to change that:
+
+- `'warn'` (default) logs a warning and keeps both registrations.
+- `'error'` throws an error.
+- `'replace'` unregisters the existing registration.
+- `'allow'` keeps both without a warning.
+
+The comparison resolves modifiers first, so `Mod+S` and `Meta+S` are duplicates on macOS. Two sequences are duplicates when all their steps match. Sequences that only start with the same chord, such as `['G', 'H']` and `['G', 'S']`, are not duplicates.
+
+The same hotkey in two different [scopes](./hotkeys-provider-and-scopes) is not a duplicate either. When both scopes are active, the scope with higher precedence handles the key. See [Nested scopes win](./hotkeys-provider-and-scopes#nested-scopes-win).
+
+## Describe hotkeys with `meta`
+
+Give a hotkey a name, a description, and a group with `meta`:
+
+```ts
+createHotkey('Mod+S', () => save(), {
+  meta: { name: 'Save', description: 'Save the document', group: 'File' },
+})
+```
+
+`meta` doesn't change how a hotkey behaves. Devtools show it, and you can build a list of your app's shortcuts from it. See [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers).

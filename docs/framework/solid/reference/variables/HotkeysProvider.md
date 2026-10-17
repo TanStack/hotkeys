@@ -7,11 +7,15 @@ title: HotkeysProvider
 const HotkeysProvider: ParentComponent<HotkeysProviderProps>;
 ```
 
-Defined in: [HotkeysProvider.tsx:75](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L75)
+Defined in: [HotkeysProvider.tsx:97](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L97)
 
 Provides default options, app hotkeys, and the user's custom hotkeys.
 
-## Example
+Nest providers to create hotkey scopes. A nested provider inherits app
+hotkeys and merges default options. With `scope`, its hotkeys fire only
+while it is mounted and enabled; with `exclusive`, only its hotkeys fire.
+
+## Examples
 
 ```tsx
 <HotkeysProvider
@@ -22,5 +26,11 @@ Provides default options, app hotkeys, and the user's custom hotkeys.
   }
 >
   <App />
+</HotkeysProvider>
+```
+
+```tsx
+<HotkeysProvider scope="edit-dialog" exclusive={{ allow: ['global'] }}>
+  <DialogBody />
 </HotkeysProvider>
 ```

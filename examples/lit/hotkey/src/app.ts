@@ -10,7 +10,11 @@ import {
 
 import appStyles from './index.css?raw'
 import type { Ref } from 'lit/directives/ref.js'
-import type { Hotkey, HotkeyCallbackContext } from '@tanstack/lit-hotkeys'
+import type {
+  Hotkey,
+  HotkeyCallbackContext,
+  HotkeyChordCallbackContext,
+} from '@tanstack/lit-hotkeys'
 
 @customElement('my-app')
 export class MyApp extends LitElement {
@@ -200,9 +204,9 @@ export class MyApp extends LitElement {
           <p>Press <kbd>${formatForDisplay('Mod+S')}</kbd> to trigger</p>
           <div class="counter">Save triggered: ${this.saveCount}x</div>
           <pre class="code-block">
-${`@hotkey('Mod+S', (_event, { hotkey, parsedHotkey }) => {
+${`@hotkey('Mod+S', (_event, { hotkey, parsedChord }) => {
   console.log('Hotkey:', hotkey)
-  console.log('Parsed:', parsedHotkey)
+  console.log('Parsed:', parsedChord)
 })`}</pre>
         </section>
 
@@ -568,13 +572,13 @@ this.addController(
   @hotkey('Mod+S')
   private _handleSaving = (
     _event: KeyboardEvent,
-    { hotkey, parsedHotkey }: HotkeyCallbackContext,
+    { hotkey, parsedChord }: HotkeyChordCallbackContext,
   ) => {
     this.lastHotkey = hotkey
     this.saveCount++
     console.log(this.saveCount)
     console.log('Hotkey triggered:', hotkey)
-    console.log('Parsed hotkey:', parsedHotkey)
+    console.log('Parsed hotkey:', parsedChord)
   }
 
   // requireReset prevents repeated triggering while holding keys

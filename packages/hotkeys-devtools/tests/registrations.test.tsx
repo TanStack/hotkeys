@@ -1,4 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { createSignal } from 'solid-js'
 import { render } from 'solid-js/web'
 import {
   AppHotkeysStore,
@@ -264,5 +265,40 @@ describe('shared devtools registrations', () => {
     store.setCustomHotkey('palette.open', 'Mod+P')
     await Promise.resolve()
     expect(declared()[1]).not.toContain('Unassigned')
+  })
+
+  it('shows the newly selected hotkey after switching selections', () => {
+    const manager = HotkeyManager.getInstance()
+    const save = manager.register('Control+S', () => {}, options)
+    const top = manager.register(['G', 'G'], () => {}, options)
+    const find = manager.register('Control+F', () => {}, options)
+    const [selectedId, setSelectedId] = createSignal(save.id)
+    const container = document.createElement('div')
+    document.body.append(container)
+    function Panel() {
+      const state = useHotkeysDevtoolsState()
+      return (
+        <DetailsPanel
+          selection={() => {
+            const registration = state
+              .registrations()
+              .find((r) => r.id === selectedId())
+            return registration ? { type: 'registration', registration } : null
+          }}
+        />
+      )
+    }
+    dispose = render(
+      () => (
+        <HotkeysContextProvider>
+          <Panel />
+        </HotkeysContextProvider>
+      ),
+      container,
+    )
+    for (const handle of [save, top, find]) {
+      setSelectedId(handle.id)
+      expect(container.textContent).toContain(handle.id)
+    }
   })
 })

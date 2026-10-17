@@ -1,51 +1,31 @@
 ---
-title: Hotkeys Guide
+title: Register Hotkeys with @hotkey and HotkeyController in Lit
 id: hotkeys
+description: Register keyboard shortcuts in Lit with the @hotkey decorator and HotkeyController. Write chords and sequences, set options, turn hotkeys on and off, and listen on one element.
 ---
 
-The `@hotkey` decorator is the primary way to register keyboard shortcuts in Lit applications. It binds a hotkey to a class method, automatically registering when the element connects to the DOM and unregistering when it disconnects. For more dynamic use cases, the `HotkeyController` provides imperative control over hotkey registration.
-
-Both approaches wrap the singleton `HotkeyManager` with automatic lifecycle management tied to Lit's `connectedCallback` / `disconnectedCallback`.
+The `@hotkey` decorator registers a keyboard shortcut for a method while its element is connected. `HotkeyController` does the same for any callback, and accepts a hotkey and options that change. Both take the same hotkeys and options. To register hotkeys outside Lit elements, use the [hotkey manager](./hotkey-manager).
 
 ## Chords and sequences
 
-A hotkey is either a **chord**, keys pressed together such as `'Mod+S'`, or a **sequence**, chords pressed one after another such as `['G', 'G']`. Every API in this guide accepts both, and a one-step array such as `['Mod+S']` is the chord `'Mod+S'`.
+A hotkey is one of two kinds:
+
+- A **chord** is keys pressed together, such as `'Mod+S'`, or a single key, such as `'Escape'`.
+- A **sequence** is chords pressed one after another, such as `['G', 'H']`. Write it as an array of chords.
 
 ```ts
-@hotkey('Mod+S') // chord
-save() {}
+@hotkey('Mod+K') // Mod and K together
+openSearch() {}
 
-@hotkey(['G', 'G'], { timeout: 500 }) // sequence
-scrollToTop() {}
-
-@hotkey('Escape', { requireReset: true }) // chord-only option
-close() {}
+@hotkey(['G', 'H']) // G, then H
+goHome() {}
 ```
 
-Most options apply to both kinds. `requireReset` applies only to chords and `timeout` only to sequences, and TypeScript rejects options that don't match the hotkey. When the kind isn't known statically, such as a `Hotkey` loaded from settings, only the shared options are accepted. Defaults apply only to the kinds that support them. See the [Sequences Guide](./sequences) for timing and matching, and the [App Hotkeys Guide](./app-hotkeys) to declare hotkeys up front and let users customize them.
+Every decorator, controller, and option in this guide accepts both kinds, and most examples use chords. [Sequences](./sequences) covers how sequences match, the time allowed between steps, and sequences that start with the same chord.
 
-## Logical keys and physical positions
+## Register a hotkey
 
-Use a logical binding when the shortcut should follow the character on the active layout. Use a physical binding when it should follow a keyboard position:
-
-| Binding | Identity checked |
-| --- | --- |
-| `Mod+S` or `{ key: 'S', mod: true }` | Logical `event.key`, with conservative code fallback |
-| `Mod+[KeyS]` or `{ code: 'KeyS', mod: true }` | Exact `event.code` |
-| `Enter` | Logical Enter, including numpad Enter |
-| `[Enter]` / `[NumpadEnter]` | Separate physical Enter positions |
-
-Every physical code uses brackets in strings, including names shared with logical keys such as `[Enter]` and `[F13]`. Supported codes are type-safe and available in autocomplete. Do not put a bracketed code in an object's `key` field; use `code`. A binding has either `key` or `code`, never both.
-
-On a layout where the `KeyQ` position produces `a`, `A` follows that character and `[KeyQ]` follows the position. Logical ASCII letters remain layout-aware; conservative physical fallback helps with transformed output such as macOS Option keys. Exact matches take priority over weaker fallbacks among eligible registrations on the same target.
-
-Callbacks expose the same distinction in `context.parsedHotkey`: check `parsed.code !== undefined` before reading its physical identity. Use `formatForDisplay` for labels; stored physical strings retain their brackets.
-
-## Basic usage
-
-### The `@hotkey` decorator
-
-Decorate any method to have it called when a hotkey is pressed:
+Decorate the method that handles the hotkey with `@hotkey`:
 
 ```ts
 import { LitElement, html } from 'lit'
@@ -60,213 +40,261 @@ class MyEditor extends LitElement {
   }
 
   render() {
-    return html`<div>Press Cmd+S (Mac) or Ctrl+S (Windows) to save</div>`
+    return html`<textarea></textarea>`
   }
 }
 ```
 
-The callback receives the original `KeyboardEvent` as the first argument and a `HotkeyCallbackContext` as the second:
+The method receives the `KeyboardEvent` and a context object. Type the context to match the hotkey, `HotkeyChordCallbackContext` for a chord:
 
 ```ts
 @hotkey('Mod+S')
-save(event: KeyboardEvent, context: HotkeyCallbackContext) {
-  console.log(context.hotkey) 
-  console.log(context.parsedHotkey)
+save(event: KeyboardEvent, context: HotkeyChordCallbackContext) {
+  console.log(context.hotkey) // 'Mod+S'
+  console.log(context.parsedChord.modifiers) // ['Meta'] on macOS, ['Control'] elsewhere
 }
 ```
 
-### The `HotkeyController`
+The method runs with the element as `this`, so it reads the element's current properties.
 
-For cases where you need to construct the hotkey dynamically or pass a callback that isn't a class method, use `HotkeyController` directly:
+Decorator arguments are fixed when the class is defined. When the hotkey or its options change, use `HotkeyController` and pass them as functions. The controller reads them when the element connects and after each update. When only the options change, it updates the existing registration. When the hotkey or its `target` changes, it replaces the registration:
 
 ```ts
 import { LitElement, html } from 'lit'
-import { customElement } from 'lit/decorators.js'
+import { customElement, property } from 'lit/decorators.js'
 import { HotkeyController } from '@tanstack/lit-hotkeys'
+import type { Hotkey } from '@tanstack/lit-hotkeys'
 
 @customElement('my-editor')
 class MyEditor extends LitElement {
-  private saveHotkey = new HotkeyController(
-    this,
-    'Mod+S',
-    () => this.save(),
-  )
+  @property({ attribute: false }) saveHotkey: Hotkey = 'Mod+S'
+  @property({ type: Boolean }) readOnly = false
 
   constructor() {
     super()
-    this.addController(this.saveHotkey)
+    this.addController(
+      new HotkeyController(
+        this,
+        () => this.saveHotkey,
+        () => this.save(),
+        () => ({ enabled: !this.readOnly }),
+      ),
+    )
   }
 
-  private save() {
+  save() {
     saveDocument()
   }
 
   render() {
-    return html`<div>Press Cmd+S (Mac) or Ctrl+S (Windows) to save</div>`
+    return html`<textarea></textarea>`
   }
 }
 ```
 
-### Changing a binding
+Keep the values the functions read in reactive properties, so a change triggers an update. A controller callback receives `HotkeyCallbackContext`, which can belong to either kind of hotkey, so check `context.kind` before reading `context.parsedChord`.
 
-Pass a new logical or physical binding through your framework's normal state mechanism. A recorder result such as `Alt+[KeyS]` can be passed directly to the same registration API. Keep an initial binding in application state if you want a reset button; the library does not need a separate preferences store.
+That lets you register a hotkey the user chose, such as one from the [hotkey recorder](./custom-hotkey-recording). To let users change hotkeys across your app and save their choices, see [App Hotkeys](./app-hotkeys).
 
-## Property getters
+### Write a chord as a string or an object
 
-`HotkeyController` accepts property getters or functions returning options. Controllers read options when the host connects and after each host update, so scoped targets can become available during rendering.
+Write most chords as strings. Your editor autocompletes them, and TypeScript rejects a string that isn't a valid chord:
 
 ```ts
-import { LitElement, html } from 'lit'
-import { HotkeyController } from '@tanstack/lit-hotkeys'
+@hotkey('Escape')
+close() {}
 
-export class Editor extends LitElement {
-	static properties = { enabled: { type: Boolean } }
-	declare enabled: boolean
+@hotkey('Mod+S') // Command+S on macOS, Control+S elsewhere
+save() {}
 
-	constructor() {
-		super()
-		this.enabled = true
-		const component = this
-		this.addController(new HotkeyController(this, 'Mod+S', () => console.log('Save'), {
-			get enabled() {
-				return component.enabled
-			},
-		}))
-	}
+@hotkey('Mod+Alt+Shift+K') // Modifiers in order: Mod or Control, Alt, Shift, Meta
+openCommandLog() {}
 
-	render() {
-		return html`<button @click=${() => this.enabled = !this.enabled}>Toggle shortcut</button>`
-	}
+@hotkey('[KeyW]') // The W position, whatever the layout types there
+moveUp() {}
+
+@hotkey('Shift+Mod+S') // Type error: Mod comes first
+saveAs() {}
+```
+
+Write a chord as a `RawHotkeyChord` object when you build it from data, such as a form with a checkbox for each modifier:
+
+```ts
+@hotkey({ key: 'S', mod: true, shift: true }) // Same as 'Mod+Shift+S'
+saveAs() {}
+
+@hotkey({ code: 'KeyW' }) // Same as '[KeyW]'
+moveUp() {}
+
+constructor() {
+  super()
+  this.addController(
+    new HotkeyController(
+      this,
+      () => ({ key: this.binding.key, mod: this.binding.mod, shift: this.binding.shift }),
+      () => this.runAction(),
+    ),
+  )
 }
 ```
 
-You can also pass `() => ({ enabled: this.enabled })`. Use Lit reactive properties, or call `requestUpdate()` after changing plain state. A getter alone does not schedule a host update. Ordinary option changes preserve registration identity. Changing the target moves listeners, and disconnecting releases registrations. For options that depend on the element instance, use a controller rather than decorator configuration created at class definition time.
-
-The hotkey can be a getter too, such as `() => this.binding` for a binding the user records. Changing the value it returns registers the new hotkey after the next host update.
-
-Recorder controllers accept the same two forms and read them during recording, including active sessions. Callback values remain functions and are not invoked to resolve options.
-
-## Capture phase
-
-By default, hotkeys listen during bubbling, after the keyboard handlers of widgets inside the target. A widget that handles a key and stops propagation keeps that key from your hotkeys. Set `capture: true` to run the hotkey before those widgets instead. It applies to `keydown` and `keyup`.
-
-With the default `stopPropagation: true`, a matching capture hotkey also keeps the key from those widgets. Set `stopPropagation: false` to let them handle it too. See [Hotkeys run after the page's own handlers](../../../guides/sensible-defaults.md#hotkeys-run-after-the-pages-own-handlers) for when to use capture.
-
-## Default options
-
-When you register a hotkey without passing options, or when you omit specific options, the following defaults apply:
+Sequence steps can be strings, objects, or a mix:
 
 ```ts
-@hotkey('Mod+S', {
-  enabled: true,
-  preventDefault: true,
-  stopPropagation: true,
-  eventType: 'keydown',
-  capture: false,
-  requireReset: false,
-  ignoreInputs: 'auto', // false for Mod+S and Escape, true for single keys
-  platform: undefined, // auto-detected
-  conflictBehavior: 'warn',
-})
-save() { /* ... */ }
+@hotkey(['G', { key: 'H', shift: true }])
+goToHistory() {}
 ```
 
-If you omit `target`, the Lit adapter resolves it when the controller connects: it listens on `document` in the browser, and skips registration in non-DOM environments.
-
-### Why these defaults?
-
-Most hotkey registrations are meant to override default browser behavior, such as using `Mod+S` to save a document instead of showing the browser's "Save Page" dialog. So `preventDefault` and `stopPropagation` are `true` by default, and you opt out per hotkey when you actually want the browser behavior.
-
-#### Smart input handling: `ignoreInputs`
-
-The `ignoreInputs` default depends on the hotkey. Hotkeys involving `Ctrl`/`Meta` modifiers (like `Mod+S`) and the `Escape` key fire even when focus is inside input elements (text fields, text areas, etc.) and button-type inputs (`type="button"`, `"submit"`, or `"reset"`). Single key shortcuts, and those using only `Shift`/`Alt`, are ignored within non-button inputs so they don't interfere with normal typing.
-
-#### Hotkey conflicts: `conflictBehavior`
-
-When you register a hotkey that is already registered elsewhere in your app, the library logs a warning by default (`conflictBehavior: 'warn'`). This helps catch accidental duplicate bindings during development.
+Every chord and sequence step registers as a string, so `context.hotkey` shows `'Mod+Shift+S'` for the first object above. [Match a key's position instead](../../../guides/sensible-defaults.md#match-a-keys-position-instead) explains codes such as `[KeyW]`.
 
 ## Hotkey options
 
-### `enabled`
-
-Controls whether the hotkey is active. Defaults to `true`.
+Pass options as the decorator's second argument, or the controller's fourth:
 
 ```ts
-@hotkey('Mod+S', { enabled: true })
-save() { saveDocument() }
-```
-
-### `preventDefault`
-
-Automatically calls `event.preventDefault()` when the hotkey fires. Defaults to `true`.
-
-```ts
-// Browser default is prevented (default behavior)
-@hotkey('Mod+S')
-save() { saveDocument() }
-
-// Opt out when you want the browser's default behavior
-@hotkey('Mod+P', { preventDefault: false })
-print() { customPrint() }
-```
-
-### `stopPropagation`
-
-Calls `event.stopPropagation()` when the hotkey fires. Defaults to `true`.
-
-```ts
-// Event propagation is stopped (default behavior)
-@hotkey('Escape')
-close() { closeModal() }
-
-// Opt out when you need the event to bubble
-@hotkey('Escape', { stopPropagation: false })
-close() { closeModal() }
-```
-
-### `eventType`
-
-Whether to listen on `keydown` (default) or `keyup`.
-
-```ts
-// Fire when the key is released
-@hotkey('Shift', { eventType: 'keyup' })
-deactivateMode() { this.shiftMode = false }
-```
-
-### `requireReset`
-
-When `true`, the hotkey fires only once per key press. The key must be released and pressed again to fire again. Defaults to `false`.
-
-```ts
-// Only fires once per Escape press, not on key repeat
-@hotkey('Escape', { requireReset: true })
-closePanel() { this.panelOpen = false }
-```
-
-### `ignoreInputs`
-
-When `ignoreInputs` is enabled, hotkeys also skip keys that a focused control inside their `target` uses itself: `Enter` and `Space` on buttons and `<summary>`, `Enter` on links, and navigation keys in ARIA widgets such as menus, listboxes, tabs, and grids. A hotkey targeted at the control itself still receives them, and `ignoreInputs: false` handles every key. See [Focused controls keep their own keys](../../../guides/sensible-defaults.md#focused-controls-keep-their-own-keys) for the full list.
-
-When `true`, the hotkey doesn't fire when the user is focused on a text input, textarea, select, or contentEditable element. Button-type inputs (`type="button"`, `"submit"`, `"reset"`) allow unrelated shortcuts. The default, `'auto'`, chooses from the hotkey: `Ctrl`/`Meta` shortcuts and `Escape` fire in inputs; single keys and `Shift`/`Alt` combos are ignored.
-
-```ts
-// Single key - ignored in inputs by default ('auto')
-@hotkey('K')
-openSearch() { /* ... */ }
-
-// Mod+S and Escape - fire in inputs by default ('auto')
-@hotkey('Mod+S')
-save() { /* ... */ }
-
-// Override: force a single key to fire in inputs
+// Submit with Enter, even while focus is in a text field
 @hotkey('Enter', { ignoreInputs: false })
-submit() { /* ... */ }
+submit() {}
 ```
 
-### `target`
+| Option | Default | Description |
+| --- | --- | --- |
+| `enabled` | `true` | Whether the hotkey responds to key presses. See [Enable and disable hotkeys](#enable-and-disable-hotkeys). |
+| `target` | `document` | Where the hotkey listens. See [Hotkey targets](#hotkey-targets). |
+| `preventDefault` | `true` | Stops the browser's own action, such as the Save dialog for `Mod+S` |
+| `stopPropagation` | `true` | Stops the key press from reaching other listeners |
+| `ignoreInputs` | `'auto'` | Skips key presses that type in a text field or operate a focused control. See [Typing in inputs does not trigger shortcuts](../../../guides/sensible-defaults.md#typing-in-inputs-does-not-trigger-shortcuts). |
+| `eventType` | `'keydown'` | Fires on `'keydown'` or `'keyup'` |
+| `capture` | `false` | Runs before the keyboard handlers of elements inside the target. See [Hotkeys run after the page's own handlers](../../../guides/sensible-defaults.md#hotkeys-run-after-the-pages-own-handlers). |
+| `requireReset` | `false` | Chords only. Fires once per press instead of again on each automatic repeat while the key is held. |
+| `timeout` | `1000` | Sequences only. Milliseconds allowed between steps. |
+| `conflictBehavior` | `'warn'` | What happens when the same hotkey is already registered. See [Handle duplicate hotkeys](#handle-duplicate-hotkeys). |
+| `scope` | `'global'` | The scope the hotkey belongs to. See [Add scopes](../quick-start#add-scopes-optional). |
+| `platform` | Detected | The platform that decides what `Mod` means: `'mac'`, `'windows'`, or `'linux'`. Useful in tests. |
+| `meta` | None | A name, a description, and a group. See [Describe hotkeys with `meta`](#describe-hotkeys-with-meta). |
 
-The DOM element to attach the event listener to. When omitted, the Lit adapter resolves `document` at connect time in the browser. Can be a DOM element, `document`, or `window`. Pass `null` to intentionally skip registration.
+The defaults suit most hotkeys. [Sensible Defaults](../../../guides/sensible-defaults.md) explains why each one was chosen and when to change it. The [`HotkeyControllerOptions` reference](../reference/type-aliases/HotkeyControllerOptions.md) lists the types.
+
+Lit has no provider for app-wide defaults, so pass options to each hotkey. To give several hotkeys the same options, share an options object. See [Share options](#share-options).
+
+### Chord and sequence options
+
+Most options apply to both kinds of hotkey. `requireReset` applies only to chords, and `timeout` only to sequences. The decorator's option types follow the hotkey you pass, so TypeScript rejects options for the other kind:
+
+```ts
+@hotkey('Escape', { requireReset: true }) // OK
+close() {}
+
+@hotkey(['G', 'G'], { timeout: 500 }) // OK
+scrollToTop() {}
+
+@hotkey('Escape', { timeout: 500 }) // Type error
+cancel() {}
+```
+
+When the kind isn't known until runtime, such as a `Hotkey` loaded from settings, the decorator accepts only the options that both kinds share.
+
+## Register multiple hotkeys
+
+Decorate one method for each hotkey. Each decorator registers its own hotkey:
+
+```ts
+@customElement('my-editor')
+class MyEditor extends LitElement {
+  @hotkey('Mod+S')
+  save() {}
+
+  @hotkey('Mod+Z')
+  undo() {}
+
+  @hotkey('Mod+Shift+Z')
+  redo() {}
+
+  @hotkey(['G', 'G'], { timeout: 500 })
+  scrollToTop() {}
+}
+```
+
+Chords and sequences can sit side by side on the same element.
+
+### Share options
+
+Keep options that several hotkeys share in one object. Pass it to each hotkey, or spread it to add more options:
+
+```ts
+import type { HotkeyControllerChordOptions } from '@tanstack/lit-hotkeys'
+
+// The formatting hotkeys toggle, so each fires once per press
+const toggle: HotkeyControllerChordOptions = { requireReset: true }
+
+@customElement('my-editor')
+class MyEditor extends LitElement {
+  @hotkey('Mod+B', toggle)
+  toggleBold() {}
+
+  @hotkey('Mod+I', toggle)
+  toggleItalic() {}
+
+  @hotkey('Mod+U', { ...toggle, meta: { name: 'Underline' } })
+  toggleUnderline() {}
+}
+```
+
+### Build the list from data
+
+Each decorator and controller registers one hotkey, and Lit has no API for a list whose length changes. When the list is known when the element is created, create one `HotkeyController` for each item in the constructor.
+
+## Enable and disable hotkeys
+
+A hotkey is on while its element is connected. Most hotkeys need no other on and off logic, so put each one on the element it belongs to:
+
+```ts
+@customElement('settings-dialog')
+class SettingsDialog extends LitElement {
+  // Registered only while the dialog is connected
+  @hotkey('Escape')
+  close() {
+    this.dispatchEvent(new CustomEvent('close'))
+  }
+
+  render() {
+    return html`<div role="dialog">...</div>`
+  }
+}
+```
+
+For a condition that doesn't match an element, pass `enabled` from a `HotkeyController` options function:
+
+```ts
+constructor() {
+  super()
+  this.addController(
+    new HotkeyController(this, 'Mod+S', () => this.save(), () => ({
+      enabled: this.hasUnsavedChanges,
+    })),
+  )
+}
+```
+
+A disabled hotkey stays registered, and changing `enabled` doesn't register it again. While disabled, it ignores key presses completely and doesn't call `preventDefault`. Pressing `Mod+S` while the hotkey above is disabled opens the browser's Save dialog. To keep the dialog closed, leave the hotkey enabled and return early from the method:
+
+```ts
+@hotkey('Mod+S')
+save() {
+  if (!this.hasUnsavedChanges) return
+  saveDocument()
+}
+```
+
+`enabled` works the same way for sequences. A disabled sequence ignores its steps.
+
+Single-key hotkeys, such as `K`, need a setting that lets users turn them off. Pass that setting as `enabled`. See [Single-key shortcuts need an off switch](../../../guides/sensible-defaults.md#single-key-shortcuts-need-an-off-switch).
+
+When a group of hotkeys turns on and off together, put them in a scope instead of passing `enabled` to each one. A scope can turn off the hotkeys in a tab panel that stays connected, or suspend the rest of the page while a dialog is open. See [Add scopes](../quick-start#add-scopes-optional).
+
+## Hotkey targets
+
+A hotkey listens on `document` by default, so it works wherever focus is on the page. Set `target` to an element, `document`, or `window` to listen somewhere else. For an element the hotkey's element renders, pass the options as a function on a `HotkeyController`:
 
 ```ts
 import { LitElement, html } from 'lit'
@@ -276,188 +304,62 @@ import { HotkeyController } from '@tanstack/lit-hotkeys'
 
 @customElement('my-panel')
 class MyPanel extends LitElement {
-  private panelRef = createRef<HTMLDivElement>()
-  private escapeHotkey?: HotkeyController
+  private panel = createRef<HTMLDivElement>()
 
-  firstUpdated() {
-    if (!this.panelRef.value) return
-
-    this.escapeHotkey = new HotkeyController(
-      this,
-      'Escape',
-      () => this.dispatchEvent(new CustomEvent('close')),
-      { target: this.panelRef.value },
+  constructor() {
+    super()
+    // Fires only while the panel, or something inside it, has focus
+    this.addController(
+      new HotkeyController(this, 'Escape', () => this.closePanel(), () => ({
+        target: this.panel.value ?? null,
+      })),
     )
-    this.addController(this.escapeHotkey)
   }
 
   render() {
-    return html`
-      <div ${ref(this.panelRef)} tabindex="0">
-        <p>Press Escape while focused here to close</p>
-      </div>
-    `
+    return html`<div ${ref(this.panel)} tabindex="0">Panel content</div>`
   }
 }
 ```
+
+A `null` target waits until the element renders.
 
 > [!NOTE]
-> When using a scoped target, make sure the element is focusable (has `tabindex`) so it can receive keyboard events.
+> An element receives key presses only while it, or something inside it, has focus. Give it a `tabindex` if it isn't focusable already.
 
-### `conflictBehavior`
+While focus is inside the element, its hotkeys run before hotkeys on `document`. With the default `stopPropagation: true`, a `document` hotkey for the same key doesn't run at all. A sequence with a target advances only on key presses inside the target.
 
-Controls what happens when you register a hotkey that's already registered. Options:
+### A target is not a scope
 
-- `'warn'` (default): logs a warning but allows the registration
-- `'error'`: throws an error
-- `'replace'`: replaces the existing registration
-- `'allow'`: allows multiple registrations silently
+A target and a scope both limit when a hotkey works, in different ways:
 
-```ts
-@hotkey('Mod+S', { conflictBehavior: 'replace' })
-save() { saveDocument() }
-```
+- A target decides which key presses the hotkey receives, based on where focus is.
+- A scope decides whether the hotkey is on, based on which parts of your app are active, such as an open dialog. Focus doesn't matter.
 
-### `platform`
+Use a target for hotkeys that belong to a focusable element, such as a list or a code editor. Use a scope for hotkeys that belong to a part of your app, whether or not it has focus. A hotkey can have both. See [Add scopes](../quick-start#add-scopes-optional).
 
-Override the auto-detected platform. Useful for testing or for applications that need to force a specific platform behavior.
+## Handle duplicate hotkeys
 
-```ts
-@hotkey('Mod+S', { platform: 'mac' })
-save() { saveDocument() }
-```
+When you register a hotkey that is already registered on the same target and in the same scope, TanStack Hotkeys logs a warning, and both callbacks run. Set `conflictBehavior` to change that:
 
-## Automatic cleanup
+- `'warn'` (default) logs a warning and keeps both registrations.
+- `'error'` throws an error.
+- `'replace'` unregisters the existing registration.
+- `'allow'` keeps both without a warning.
 
-Both the `@hotkey` decorator and `HotkeyController` automatically unregister the hotkey when the element is disconnected from the DOM:
+The comparison resolves modifiers first, so `Mod+S` and `Meta+S` are duplicates on macOS. Two sequences are duplicates when all their steps match. Sequences that only start with the same chord, such as `['G', 'H']` and `['G', 'S']`, are not duplicates.
 
-```ts
-@customElement('temporary-panel')
-class TemporaryPanel extends LitElement {
-  // Automatically registered on connect, unregistered on disconnect
-  @hotkey('Escape')
-  close() { this.remove() }
+The same hotkey in two different scopes is not a duplicate either. When both scopes are active, the scope with higher precedence handles the key.
 
-  render() {
-    return html`<div>Panel content</div>`
-  }
-}
-```
+## Describe hotkeys with `meta`
 
-## Multiple hotkeys
-
-Register as many hotkeys as you need. Each `@hotkey` decorator is independent:
+Give a hotkey a name, a description, and a group with `meta`:
 
 ```ts
-@customElement('my-editor')
-class MyEditor extends LitElement {
-  @hotkey('Mod+S')
-  save() { saveDocument() }
-
-  @hotkey('Mod+Z')
-  undo() { undoAction() }
-
-  @hotkey('Mod+Shift+Z')
-  redo() { redoAction() }
-
-  @hotkey('Mod+F')
-  search() { openSearch() }
-
-  @hotkey('Escape')
-  dismiss() { closeDialog() }
-}
-```
-
-## Choosing between decorator and controller
-
-| | `@hotkey` Decorator | `HotkeyController` |
-|---|---|---|
-| **Best for** | Static, declarative method binding | Dynamic hotkeys, programmatic control |
-| **Registration** | Automatic via `connectedCallback` | Automatic via `hostConnected` |
-| **Cleanup** | Automatic via `disconnectedCallback` | Automatic via `hostDisconnected` |
-| **Dynamic hotkeys** | No (hotkey is fixed at decoration time) | Yes (can construct hotkey at runtime) |
-| **Callback binding** | Bound to the host element automatically | Bound to the host element automatically |
-
-Use the `@hotkey` decorator for the common case of binding a static shortcut to a method. Use `HotkeyController` when you need to construct the hotkey string dynamically or manage registration imperatively.
-
-## Metadata (name, description, and group)
-
-Every hotkey registration can carry a `meta` object with a `name`, `description`, and `group`. Metadata never affects hotkey behavior, but it flows through to registrations and devtools, so you can build shortcut palettes and help screens from it.
-
-```ts
-@hotkey('Mod+S', { meta: { name: 'Save', description: 'Save the document' } })
-save() { saveDocument() }
-
-// Or with HotkeyController:
-new HotkeyController(this, 'Mod+S', () => this.save(), {
-  meta: { name: 'Save', description: 'Save the document' },
+@hotkey('Mod+S', {
+  meta: { name: 'Save', description: 'Save the document', group: 'File' },
 })
+save() {}
 ```
 
-The `meta` option is typed as `HotkeyMeta`, which ships with `name`, `description`, and `group` fields. You can extend it with additional properties using TypeScript declaration merging:
-
-```ts
-declare module '@tanstack/hotkeys' {
-  interface HotkeyMeta {
-    icon?: string
-  }
-}
-
-@hotkey('Mod+S', { meta: { name: 'Save', description: 'Save the document', icon: 'floppy', group: 'File' } })
-save() { saveDocument() }
-```
-
-Group is descriptive metadata, not an execution scope. A shortcuts panel can group live registration views directly. Disabled registrations remain listed; unmounted registrations disappear.
-
-## Introspecting registrations
-
-Use the `HotkeyRegistrationsController` controller to get a live view of every registration, chords and sequences together. It's the building block for shortcut palettes and help dialogs.
-
-```ts
-import { LitElement, html } from 'lit'
-import { customElement } from 'lit/decorators.js'
-import { HotkeyRegistrationsController, formatForDisplay } from '@tanstack/lit-hotkeys'
-
-@customElement('shortcut-palette')
-class ShortcutPalette extends LitElement {
-  private registrations = new HotkeyRegistrationsController(this)
-
-  render() {
-    return html`<ul>
-      ${this.registrations.hotkeys.map(
-        (reg) => html`
-          <li>
-            <kbd>${formatForDisplay(reg.hotkey)}</kbd>
-            ${reg.options.meta?.name ? html`<span> — ${reg.options.meta.name}</span>` : ''}
-            ${reg.kind === 'sequence'
-              ? html`<small>${reg.matchedStepCount}/${reg.hotkey.length} steps</small>`
-              : ''}
-          </li>
-        `,
-      )}
-    </ul>`
-  }
-}
-```
-
-The controller's `hotkeys` getter holds one array of registration views. Each view has an `id`, the `hotkey`, its `options` (including `meta`), its `target`, and a `triggerCount`. Narrow with `kind`: chord views add `parsedHotkey`; sequence views add `parsedSequence` and `matchedStepCount`, the steps matched so far in the current attempt. Disabled entries stay listed; unmounted registrations disappear. Format any hotkey with `formatForDisplay`, and group entries by `options.meta?.group` when building a help panel.
-
-Registrations only exist while their components are mounted. To list hotkeys from routes that have not rendered, declare them with [app hotkeys](./app-hotkeys).
-
-## The hotkey manager
-
-Under the hood, both the decorator and controller use the singleton `HotkeyManager`. You can access the manager directly when needed:
-
-```ts
-import { getHotkeyManager } from '@tanstack/lit-hotkeys'
-
-const manager = getHotkeyManager()
-
-// Check if a hotkey is registered
-manager.isRegistered('Mod+S')
-
-// Get total number of registrations
-manager.getRegistrationCount()
-```
-
-The manager attaches event listeners per target element, so only elements that have registered hotkeys receive listeners. That beats a single global listener that has to inspect every keystroke.
+`meta` doesn't change how a hotkey behaves. You can build a list of your app's shortcuts from it. See [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers).

@@ -1,21 +1,16 @@
-import { matchKeyboardEvent, parsedHotkeysEqual } from './_match'
+import { matchKeyboardEvent, parsedChordsEqual } from './_match'
 import { formatHotkey } from './format'
-import {
-  isHotkeySequence,
-  isModifierKey,
-  parseHotkey,
-  parseRegisterableHotkey,
-} from './parse'
+import { isHotkeySequence, isModifierKey, parseHotkey } from './parse'
 import { detectPlatform } from './platform'
 import { normalizeKeyName } from './constants'
 import { normalizeKeyboardEvent } from './_keyboard-event'
 import type {
   HotkeyCallback,
-  HotkeyCallbackContext,
   HotkeyChord,
-  HotkeySequence,
-  ParsedHotkey,
+  HotkeyChordCallbackContext,
+  ParsedHotkeyChord,
   RegisterableHotkey,
+  RegisterableHotkeySequence,
 } from './hotkey.types'
 
 export interface KeyboardEventMatch {
@@ -40,9 +35,9 @@ export interface KeyboardEventMatch {
  * In these cases, `event.code` is used to determine the physical key.
  *
  * @param event - The KeyboardEvent to check
- * @param hotkey - The hotkey string or ParsedHotkey to match against
+ * @param chord - The chord string or parsed chord to match against
  * @param platform - The target platform for resolving 'Mod' (defaults to auto-detection)
- * @returns True if the event matches the hotkey
+ * @returns True if the event matches the chord
  *
  * @example
  * ```ts
@@ -56,35 +51,36 @@ export interface KeyboardEventMatch {
  */
 export function matchesKeyboardEvent(
   event: KeyboardEvent,
-  hotkey: HotkeyChord | ParsedHotkey,
+  chord: HotkeyChord | ParsedHotkeyChord,
   platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
 ): boolean {
-  return matchKeyboardEvent(event, hotkey, platform).matched
+  return matchKeyboardEvent(event, chord, platform).matched
 }
 
 /**
- * Options for creating a hotkey handler.
+ * Options for creating a chord handler.
  */
-export interface CreateHotkeyHandlerOptions {
-  /** Prevent the default browser action when the hotkey matches. Defaults to true */
+export interface CreateHotkeyChordHandlerOptions {
+  /** Prevent the default browser action when the chord matches. Defaults to true */
   preventDefault?: boolean
-  /** Stop event propagation when the hotkey matches. Defaults to true */
+  /** Stop event propagation when the chord matches. Defaults to true */
   stopPropagation?: boolean
   /** The target platform for resolving 'Mod' */
   platform?: 'mac' | 'windows' | 'linux'
 }
 
 /**
- * Creates a keyboard event handler that calls the callback when the hotkey matches.
+ * Creates a keyboard event handler that calls the callback when the chord
+ * matches. For sequences, use `createSequenceMatcher`.
  *
- * @param hotkey - The hotkey string or ParsedHotkey to match
+ * @param chord - The chord string or parsed chord to match
  * @param callback - The function to call when the hotkey matches
  * @param options - Options for matching and handling
  * @returns A function that can be used as an event handler
  *
  * @example
  * ```ts
- * const handler = createHotkeyHandler('Mod+S', (event, { hotkey, parsedHotkey }) => {
+ * const handler = createHotkeyChordHandler('Mod+S', (event, { hotkey, parsedChord }) => {
  *   console.log(`${hotkey} was pressed`)
  *   handleSave()
  * })
@@ -92,22 +88,23 @@ export interface CreateHotkeyHandlerOptions {
  * document.addEventListener('keydown', handler)
  * ```
  */
-export function createHotkeyHandler(
-  hotkey: HotkeyChord | ParsedHotkey,
-  callback: HotkeyCallback,
-  options: CreateHotkeyHandlerOptions = {},
+export function createHotkeyChordHandler(
+  chord: HotkeyChord | ParsedHotkeyChord,
+  callback: HotkeyCallback<HotkeyChordCallbackContext>,
+  options: CreateHotkeyChordHandlerOptions = {},
 ): (event: KeyboardEvent) => void {
   const { preventDefault = true, stopPropagation = true, platform } = options
   const resolvedPlatform = platform ?? detectPlatform()
 
   const hotkeyString: HotkeyChord =
-    typeof hotkey === 'string' ? hotkey : (formatHotkey(hotkey) as HotkeyChord)
+    typeof chord === 'string' ? chord : (formatHotkey(chord) as HotkeyChord)
   const parsed =
-    typeof hotkey === 'string' ? parseHotkey(hotkey, resolvedPlatform) : hotkey
+    typeof chord === 'string' ? parseHotkey(chord, resolvedPlatform) : chord
 
-  const context: HotkeyCallbackContext = {
+  const context: HotkeyChordCallbackContext = {
+    kind: 'chord',
     hotkey: hotkeyString,
-    parsedHotkey: parsed,
+    parsedChord: parsed,
   }
 
   return (event: KeyboardEvent) => {
@@ -123,18 +120,20 @@ export function createHotkeyHandler(
   }
 }
 
-export type MultiHotkeyHandler = { [K in HotkeyChord]?: HotkeyCallback }
+export type MultiHotkeyChordHandler = {
+  [K in HotkeyChord]?: HotkeyCallback<HotkeyChordCallbackContext>
+}
 
 /**
- * Creates a handler that matches multiple hotkeys.
+ * Creates a handler that matches several chords.
  *
- * @param handlers - A map of hotkey strings to their handlers
+ * @param handlers - A map of chord strings to their handlers
  * @param options - Options for matching and handling
  * @returns A function that can be used as an event handler
  *
  * @example
  * ```ts
- * const handler = createMultiHotkeyHandler({
+ * const handler = createMultiHotkeyChordHandler({
  *   'Mod+S': (event, { hotkey }) => handleSave(),
  *   'Mod+Z': (event, { hotkey }) => handleUndo(),
  *   'Mod+Shift+Z': (event, { hotkey }) => handleRedo(),
@@ -143,21 +142,25 @@ export type MultiHotkeyHandler = { [K in HotkeyChord]?: HotkeyCallback }
  * document.addEventListener('keydown', handler)
  * ```
  */
-export function createMultiHotkeyHandler(
-  handlers: MultiHotkeyHandler,
-  options: CreateHotkeyHandlerOptions = {},
+export function createMultiHotkeyChordHandler(
+  handlers: MultiHotkeyChordHandler,
+  options: CreateHotkeyChordHandlerOptions = {},
 ): (event: KeyboardEvent) => void {
   const { preventDefault = true, stopPropagation = true, platform } = options
   const resolvedPlatform = platform ?? detectPlatform()
 
   // Pre-parse all hotkeys for efficiency
   const parsedHandlers = Object.entries(handlers)
-    .filter((entry): entry is [string, HotkeyCallback] => Boolean(entry[1]))
+    .filter(
+      (entry): entry is [string, HotkeyCallback<HotkeyChordCallbackContext>] =>
+        Boolean(entry[1]),
+    )
     .map(([hotkey, handler]) => {
       const parsed = parseHotkey(hotkey, resolvedPlatform)
-      const context: HotkeyCallbackContext = {
+      const context: HotkeyChordCallbackContext = {
+        kind: 'chord',
         hotkey: hotkey as HotkeyChord,
-        parsedHotkey: parsed,
+        parsedChord: parsed,
       }
       return { parsed, handler, context }
     })
@@ -194,9 +197,9 @@ export function areHotkeysEqual(
   return (
     a.length === b.length &&
     a.every((step, index) =>
-      parsedHotkeysEqual(
-        parseRegisterableHotkey(step, platform),
-        parseRegisterableHotkey(b[index]!, platform),
+      parsedChordsEqual(
+        parseHotkey(step, platform),
+        parseHotkey(b[index]!, platform),
       ),
     )
   )
@@ -228,7 +231,7 @@ export const DEFAULT_SEQUENCE_TIMEOUT = 1000
  * ```
  */
 export function createSequenceMatcher(
-  sequence: HotkeySequence,
+  sequence: RegisterableHotkeySequence,
   options: { timeout?: number; platform?: 'mac' | 'windows' | 'linux' } = {},
 ): {
   match: (event: KeyboardEvent) => boolean
@@ -237,7 +240,7 @@ export function createSequenceMatcher(
 } {
   const platform = options.platform ?? detectPlatform()
   const timeout = options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT
-  const parsedSequence = sequence.map((hotkey) => parseHotkey(hotkey, platform))
+  const parsedSequence = parseHotkey(sequence, platform)
 
   let currentIndex = 0
   let lastKeyTime = 0

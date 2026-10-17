@@ -12,7 +12,7 @@ function useHotkey<T>(
    options?): void;
 ```
 
-Defined in: [useHotkey.ts:85](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L85)
+Defined in: [useHotkey.ts:86](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L86)
 
 React hook for registering a hotkey: a chord such as `'Mod+S'`, a sequence
 such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
@@ -42,7 +42,7 @@ call-site options.
 
 `T`
 
-A chord string, RawHotkey object, sequence, or app hotkey
+A chord string, RawHotkeyChord object, sequence, or app hotkey
 
 #### callback
 
@@ -74,8 +74,8 @@ function Editor() {
 
 ```tsx
 function Toolbar() {
-  const hotkeys = useAppHotkeys()
-  useHotkey(hotkeys['doc.save'], () => save())
+  const appHotkeys = useAppHotkeys()
+  useHotkey(appHotkeys['doc.save'], () => save())
 }
 ```
 
@@ -88,7 +88,7 @@ function useHotkey<T>(
    options?): void;
 ```
 
-Defined in: [useHotkey.ts:90](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L90)
+Defined in: [useHotkey.ts:91](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L91)
 
 React hook for registering a hotkey: a chord such as `'Mod+S'`, a sequence
 such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
@@ -118,11 +118,11 @@ call-site options.
 
 `T`
 
-A chord string, RawHotkey object, sequence, or app hotkey
+A chord string, RawHotkeyChord object, sequence, or app hotkey
 
 #### callback
 
-`HotkeyCallback`
+`HotkeyCallback`\<`HotkeyCallbackContextFor`\<`T`\>\>
 
 The function to call when the hotkey is pressed
 
@@ -150,7 +150,7 @@ function Editor() {
 
 ```tsx
 function Toolbar() {
-  const hotkeys = useAppHotkeys()
-  useHotkey(hotkeys['doc.save'], () => save())
+  const appHotkeys = useAppHotkeys()
+  useHotkey(appHotkeys['doc.save'], () => save())
 }
 ```

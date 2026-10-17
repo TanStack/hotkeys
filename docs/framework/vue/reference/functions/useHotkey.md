@@ -12,7 +12,7 @@ function useHotkey<T>(
    options?): void;
 ```
 
-Defined in: [useHotkey.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L75)
+Defined in: [useHotkey.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L76)
 
 Vue composable for registering a hotkey: a chord such as `'Mod+S'`, a
 sequence such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
@@ -64,7 +64,7 @@ function useHotkey<T>(
    options?): void;
 ```
 
-Defined in: [useHotkey.ts:80](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L80)
+Defined in: [useHotkey.ts:81](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L81)
 
 Vue composable for registering a hotkey: a chord such as `'Mod+S'`, a
 sequence such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
@@ -89,7 +89,7 @@ declared meta and options, and registers nothing while unbound.
 
 #### callback
 
-`HotkeyCallback`
+`HotkeyCallback`\<`HotkeyCallbackContextFor`\<`T`\>\>
 
 #### options?
 

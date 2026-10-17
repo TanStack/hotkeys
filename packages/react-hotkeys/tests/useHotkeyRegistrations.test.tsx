@@ -49,7 +49,7 @@ describe('useHotkeyRegistrations', () => {
       'kind',
       'hotkey',
       'options',
-      'parsedHotkey',
+      'parsedChord',
       'target',
       'triggerCount',
       'hasFired',

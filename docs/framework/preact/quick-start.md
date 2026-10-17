@@ -1,51 +1,127 @@
 ---
 title: Quick Start
 id: quick-start
+description: Add keyboard shortcuts to a Preact app with TanStack Hotkeys. Register hotkeys, show them in your UI, and group them with scoped providers.
 ---
 
-## Installation
+This guide adds keyboard shortcuts to a Preact app. If you haven't installed TanStack Hotkeys yet, see [Installation](../../installation).
 
-Don't have TanStack Hotkeys installed yet? See the [Installation](../../installation) page for instructions.
+## Register a hotkey
 
-## Your first hotkey
-
-The `useHotkey` hook is the primary way to register keyboard shortcuts in Preact:
+TanStack Hotkeys needs no special setup. To register a keyboard shortcut, call `useHotkey` in the component that owns the action:
 
 ```tsx
 import { useHotkey } from '@tanstack/preact-hotkeys'
 
-function App() {
-  useHotkey('Mod+S', () => {
-    saveDocument()
-  })
+function Editor() {
+  useHotkey('Mod+S', () => saveDocument())
 
-  return <div>Press Cmd+S (Mac) or Ctrl+S (Windows) to save</div>
+  return <textarea />
 }
 ```
 
-The `Mod` modifier automatically resolves to `Meta` (Command) on macOS and `Control` on Windows/Linux, so your shortcuts work across platforms without extra logic.
+`Mod` is Command on macOS and Control on Windows and Linux, so `Mod+S` is the save shortcut each user already knows. The browser's Save dialog stays closed, and the shortcut still works while the user types in the textarea. [Sensible Defaults](../../guides/sensible-defaults) explains these defaults.
 
-## Common patterns
+That's all a hotkey needs. Providers, scopes, and the other features later in this guide are optional, so add them as your app grows.
 
-### Multiple hotkeys
+## Register several hotkeys
 
-Register as many hotkeys as you need. Each `useHotkey` call is independent:
+When a component has more than one hotkey, register them together with `useHotkeys`:
 
 ```tsx
-function Editor() {
-  useHotkey('Mod+S', () => save())
-  useHotkey('Mod+Z', () => undo())
-  useHotkey('Mod+Shift+Z', () => redo())
-  useHotkey('Mod+F', () => openSearch())
-  useHotkey('Escape', () => closeDialog())
+import { useHotkeys } from '@tanstack/preact-hotkeys'
 
-  return <div>Editor with keyboard shortcuts</div>
+function Editor() {
+  useHotkeys([
+    { hotkey: 'Mod+S', callback: () => save() },
+    { hotkey: 'Mod+Z', callback: () => undo() },
+    { hotkey: 'Mod+Shift+Z', callback: () => redo() },
+  ])
+
+  return <textarea />
 }
 ```
 
-### Scoped hotkeys with refs
+`useHotkeys` takes an array, so the list can also come from data, and its length can change between renders.
 
-Attach hotkeys to specific elements instead of the entire document:
+## Sequences
+
+Pass an array of chords to register a sequence, pressed one after another:
+
+```tsx
+useHotkey(['G', 'G'], () => scrollToTop())
+```
+
+Each step must follow the previous one within a second.
+
+`useHotkeys` accepts chords and sequences in the same array:
+
+```tsx
+useHotkeys([
+  { hotkey: 'Mod+K', callback: () => openSearch() },
+  { hotkey: ['G', 'H'], callback: () => goHome() },
+  { hotkey: ['G', 'S'], callback: () => goToSettings() },
+])
+```
+
+## Show the shortcut
+
+Label a button or menu item with `formatForDisplay`. Format the same value you register, so the label always matches the binding:
+
+```tsx
+import { formatForDisplay, useHotkey } from '@tanstack/preact-hotkeys'
+import type { HotkeyChord } from '@tanstack/preact-hotkeys'
+
+const saveHotkey: HotkeyChord = 'Mod+S'
+
+function SaveButton() {
+  useHotkey(saveHotkey, () => save())
+
+  return (
+    <button onClick={save}>
+      Save <kbd>{formatForDisplay(saveHotkey)}</kbd>
+    </button>
+  )
+}
+```
+
+The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. `HotkeyChord` checks the string, so a typo in the binding is a type error. Use `Hotkey` for a value that can also be a sequence.
+
+## Hotkeys follow your components
+
+A hotkey is registered when the component that calls the hook mounts, and unregistered when that component unmounts. Put each hotkey in the component it belongs to, so it is active only while that component is mounted:
+
+```tsx
+function App() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <>
+      <button onClick={() => setIsOpen(true)}>Settings</button>
+      {isOpen && <SettingsDialog onClose={() => setIsOpen(false)} />}
+    </>
+  )
+}
+
+function SettingsDialog({ onClose }: { onClose: () => void }) {
+  // Registered only while the dialog is open
+  useHotkey('Escape', onClose)
+
+  return <div role="dialog">...</div>
+}
+```
+
+For a condition that doesn't match a component, pass `enabled`:
+
+```tsx
+useHotkey('Mod+S', () => save(), { enabled: hasUnsavedChanges })
+```
+
+When a group of hotkeys turns on and off together, put them in a scope instead. See [Add providers and scopes](#add-providers-and-scopes-optional).
+
+## Element hotkeys
+
+A hotkey's default `target` is `document`, so it works wherever focus is on the page. To limit it to one element, pass a ref as `target`:
 
 ```tsx
 import { useRef } from 'preact/hooks'
@@ -54,170 +130,80 @@ import { useHotkey } from '@tanstack/preact-hotkeys'
 function Panel() {
   const panelRef = useRef<HTMLDivElement>(null)
 
-  // This hotkey only fires when the panel (or its children) has focus
+  // Fires only while the panel, or something inside it, has focus
   useHotkey('Escape', () => closePanel(), { target: panelRef })
 
   return (
     <div ref={panelRef} tabIndex={0}>
-      <p>Press Escape while focused here to close</p>
+      ...
     </div>
   )
 }
 ```
 
-### Conditional hotkeys
+The element must be focusable to receive key presses, so give it a `tabIndex` if it isn't a control.
 
-Enable or disable hotkeys based on application state:
+## Add providers and scopes (optional)
 
-```tsx
-function Modal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
-  useHotkey('Escape', () => onClose(), { enabled: isOpen })
+So far, every hotkey uses the built-in defaults and belongs to the global scope, so it is active whenever its component is mounted. You don't need a provider for that.
 
-  if (!isOpen) return null
-
-  return (
-    <div className="modal">
-      <p>Press Escape to close</p>
-    </div>
-  )
-}
-```
-
-### Multi-key sequences
-
-Pass an array of chords to register a Vim-style sequence:
-
-```tsx
-import { useHotkey } from '@tanstack/preact-hotkeys'
-
-function VimStyleApp() {
-  useHotkey(['G', 'G'], () => scrollToTop())
-  useHotkey(['G', 'Shift+G'], () => scrollToBottom())
-
-  return <div>Use gg to go to top, gG to go to bottom</div>
-}
-```
-
-### Tracking held keys
-
-Display modifier key state for power-user UIs:
-
-```tsx
-import { useKeyHold, useHeldKeys } from '@tanstack/preact-hotkeys'
-
-function StatusBar() {
-  const isShiftHeld = useKeyHold('Shift')
-  const heldKeys = useHeldKeys()
-
-  return (
-    <div className="status-bar">
-      {isShiftHeld && <span>Shift mode active</span>}
-      {heldKeys.length > 0 && <span>Keys: {heldKeys.join('+')}</span>}
-    </div>
-  )
-}
-```
-
-### Displaying hotkeys in the UI
-
-Format hotkeys for platform-aware display:
-
-```tsx
-import { useHotkey, formatForDisplay } from '@tanstack/preact-hotkeys'
-
-function SaveButton() {
-  useHotkey('Mod+S', () => save())
-
-  return (
-    <button>
-      Save <kbd>{formatForDisplay('Mod+S')}</kbd>
-      {/* Mac: "⌘ S"  |  Windows: "Ctrl+S" */}
-    </button>
-  )
-}
-```
-
-## Setting up devtools
-
-Add the TanStack Devtools to your app to inspect registered hotkeys, view held keys, and test shortcuts:
-
-```tsx
-import { TanStackDevtools } from '@tanstack/preact-devtools'
-import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools'
-
-// Create the plugins once; a new array on every render remounts the panel
-const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
-
-function App() {
-  return (
-    <div>
-      {/* Your app */}
-      <TanStackDevtools plugins={devtoolsPlugins} />
-    </div>
-  )
-}
-```
-
-## Declaring app hotkeys
-
-To list every hotkey in a cheat sheet, including those on routes that have not rendered, and to let users customize them, declare them once and pass them to `HotkeysProvider`:
-
-```tsx
-import {
-  HotkeysProvider,
-  defineAppHotkeys,
-  useAppHotkeys,
-  useHotkey,
-} from '@tanstack/preact-hotkeys'
-
-const appHotkeys = defineAppHotkeys({
-  'doc.save': { hotkey: 'Mod+S', meta: { name: 'Save' } },
-  'nav.home': { hotkey: ['G', 'H'], meta: { name: 'Go home' } },
-})
-
-function Root() {
-  return (
-    <HotkeysProvider appHotkeys={appHotkeys}>
-      <Editor />
-    </HotkeysProvider>
-  )
-}
-
-function Editor() {
-  const hotkeys = useAppHotkeys()
-  useHotkey(hotkeys['doc.save'], () => save())
-  return <div>Editor</div>
-}
-```
-
-See the [App Hotkeys Guide](./guides/app-hotkeys) for cheat sheets and saving custom hotkeys.
-
-## Default options provider
-
-`HotkeysProvider` also sets default options for every hotkey hook. Options passed directly to a hook override the provider defaults.
+Add `HotkeysProvider` at the root to set default options for every hotkey inside it, such as more time between sequence steps:
 
 ```tsx
 import { HotkeysProvider } from '@tanstack/preact-hotkeys'
 
 function Root() {
   return (
-    <HotkeysProvider
-      defaultOptions={{
-        hotkey: { preventDefault: true, timeout: 1500 },
-        hotkeyRecorder: { onCancel: () => console.log('Recording cancelled') },
-      }}
-    >
+    <HotkeysProvider defaultOptions={{ hotkey: { timeout: 1500 } }}>
       <App />
     </HotkeysProvider>
   )
 }
 ```
 
+Add more providers deeper in your app to group hotkeys into scopes. Every hotkey inside a provider with a `scope` belongs to that scope. Make the scope `exclusive`, and while it is mounted, only its hotkeys work. Use one for dialogs and popups that should own the keyboard:
+
+```tsx
+import { HotkeysProvider, useHotkeys } from '@tanstack/preact-hotkeys'
+
+function ConfirmDialog(props: ConfirmDialogProps) {
+  return (
+    <HotkeysProvider scope="confirm-dialog" exclusive>
+      <ConfirmDialogBody {...props} />
+    </HotkeysProvider>
+  )
+}
+
+function ConfirmDialogBody({ onConfirm, onCancel }: ConfirmDialogProps) {
+  useHotkeys([
+    { hotkey: 'Enter', callback: onConfirm },
+    { hotkey: 'Escape', callback: onCancel },
+  ])
+
+  return <div role="dialog">...</div>
+}
+```
+
+While the dialog is open, `Enter` and `Escape` confirm and cancel it, and every hotkey outside the dialog is suspended. When the dialog closes, they work again.
+
+A hook uses the nearest provider above the component that calls it, so register the dialog's hotkeys in a child of its provider. [HotkeysProvider and Scopes](./guides/hotkeys-provider-and-scopes) covers nested scopes, precedence, and turning a scope off without unmounting it.
+
 ## Next steps
 
-- [Hotkeys Guide](./guides/hotkeys) - Deep dive into `useHotkey` options and patterns
-- [Sequences Guide](./guides/sequences) - Multi-key sequence handling
-- [App Hotkeys Guide](./guides/app-hotkeys) - Declaring, listing, and customizing every hotkey
-- [Hotkey Recording Guide](./guides/hotkey-recording) - Recording chords and sequences in settings UIs
-- [Key State Tracking Guide](./guides/key-state-tracking) - Real-time key state monitoring
-- [Formatting & Display Guide](./guides/formatting-display) - Platform-aware hotkey formatting
+Learn more about the basics:
+
+- [Hotkeys](./guides/hotkeys): chords and sequences, options, and element hotkeys
+- [Sequences](./guides/sequences): Vim-style multi-key shortcuts
+- [Sensible Defaults](../../guides/sensible-defaults): what hotkeys do without options, and keyboard layouts
+- [Formatting & Display](./guides/formatting-display): labels and keycaps for every platform
+- [Held Key State Helpers](./guides/held-key-state-helpers): show which keys are held
+- [Hotkey Hints](./guides/hotkey-hints): show a button's shortcut while the user holds its modifiers
+- [Devtools](../../devtools): inspect registered hotkeys, scopes, and held keys while you develop
+
+As your app grows:
+
+- [HotkeysProvider and Scopes](./guides/hotkeys-provider-and-scopes): set default options, and turn groups of hotkeys on and off with dialogs, panes, and tabs
+- [App Hotkeys](./guides/app-hotkeys): declare hotkeys in one place and let users change them
+- [Cheat Sheet UI Helpers](./guides/cheat-sheet-ui-helpers): list your shortcuts in a help dialog
+- [Custom Hotkey Recording](./guides/custom-hotkey-recording): record the shortcut a user presses
+- [Hotkey Manager](./guides/hotkey-manager): register and inspect hotkeys outside components

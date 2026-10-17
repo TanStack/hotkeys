@@ -4,15 +4,13 @@ title: parseKeyboardEvent
 ---
 
 ```ts
-function parseKeyboardEvent(event, platform?): ParsedHotkey;
+function parseKeyboardEvent(event, platform?): ParsedHotkeyChord;
 ```
 
-Defined in: [parse.ts:300](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L300)
+Defined in: [parse.ts:308](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L308)
 
-Parses a KeyboardEvent into a ParsedHotkey object.
-
-This function extracts the key and modifier state from a keyboard event
-and converts it into the same format used by `parseHotkey()`.
+Parses a KeyboardEvent into the chord it pressed, in the same format as
+`parseHotkey()`. Pass the result to `normalizeHotkey` for its canonical string.
 
 ## Parameters
 
@@ -24,15 +22,15 @@ The KeyboardEvent to parse
 
 ### platform?
 
-`"mac"` \| `"windows"` \| `"linux"`
+`Platform`
 
 The target platform for resolving modifiers (defaults to auto-detection)
 
 ## Returns
 
-[`ParsedHotkey`](../type-aliases/ParsedHotkey.md)
+[`ParsedHotkeyChord`](../type-aliases/ParsedHotkeyChord.md)
 
-A ParsedHotkey object representing the keyboard event
+The parsed chord for the keyboard event
 
 ## Example
 

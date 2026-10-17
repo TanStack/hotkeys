@@ -8,7 +8,7 @@ class App {
 
   formatForDisplay = formatForDisplay
   usage0 =
-    "scope.createHotkey('Mod+[KeyS]', (_event, { hotkey, parsedHotkey }) => {\n  console.log(hotkey, parsedHotkey)\n})"
+    "scope.createHotkey('Mod+[KeyS]', (_event, { hotkey, parsedChord }) => {\n  console.log(hotkey, parsedChord)\n})"
   usage1 =
     "scope.createHotkey('Mod+K', () => this.count++, { requireReset: true })"
   usage2 =
@@ -46,11 +46,11 @@ class App {
   init() {
     this.hotkeysScope.createHotkey(
       'Mod+[KeyS]',
-      (_event, { hotkey, parsedHotkey }) => {
+      (_event, { hotkey, parsedChord }) => {
         this.lastHotkey = hotkey
         this.saveCount = this.saveCount + 1
         console.log('Hotkey triggered:', hotkey)
-        console.log('Parsed hotkey:', parsedHotkey)
+        console.log('Parsed hotkey:', parsedChord)
       },
     )
     this.hotkeysScope.createHotkey(

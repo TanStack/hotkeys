@@ -1,40 +1,52 @@
 import { useState } from 'react'
 import { createLazyRoute } from '@tanstack/react-router'
 import {
+  HotkeysProvider,
   useAppHotkeyList,
   useAppHotkeys,
   useHotkeys,
 } from '@tanstack/react-hotkeys'
 import { formatHotkey, useActivity } from '../shared'
 
-export const Route = createLazyRoute('/sequences')({ component: Sequences })
+export const Route = createLazyRoute('/sequences')({
+  component: SequencesRoute,
+})
+
+/** The route's hotkeys fire only while this provider's scope is mounted. */
+function SequencesRoute() {
+  return (
+    <HotkeysProvider scope="sequences">
+      <Sequences />
+    </HotkeysProvider>
+  )
+}
 
 /** App sequences share a timeout and expose progress through their registrations. */
 function Sequences() {
   const log = useActivity()
-  const hotkeys = useAppHotkeys()
+  const appHotkeys = useAppHotkeys()
   const [timeout, setTimeoutValue] = useState(1000)
   // App sequences register like any hotkey. commonOptions apply each option
   // only to the kinds that support it, so timeout reaches sequences only.
   useHotkeys(
     [
       {
-        hotkey: hotkeys['sequences.top'],
+        hotkey: appHotkeys['sequences.top'],
         callback: () => log('Sequence: go to top'),
       },
       {
-        hotkey: hotkeys['sequences.inbox'],
+        hotkey: appHotkeys['sequences.inbox'],
         callback: () => log('Sequence: inbox'),
       },
       {
-        hotkey: hotkeys['sequences.chain'],
+        hotkey: appHotkeys['sequences.chain'],
         callback: () => log('Sequence: shifted chord chain'),
       },
     ],
     { timeout },
   )
   const items = useAppHotkeyList().filter(
-    (item) => item.appHotkey.context === 'sequences',
+    (item) => item.appHotkey.scope === 'sequences',
   )
   return (
     <section>

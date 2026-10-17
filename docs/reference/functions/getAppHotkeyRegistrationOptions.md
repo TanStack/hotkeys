@@ -7,10 +7,10 @@ title: getAppHotkeyRegistrationOptions
 function getAppHotkeyRegistrationOptions(appHotkey): AppHotkeyChordOptions & AppHotkeySequenceOptions & object;
 ```
 
-Defined in: [app-hotkeys.ts:529](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L529)
+Defined in: [app-hotkeys.ts:535](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L535)
 
 Options that adapters pass to the manager when registering an app hotkey:
-declared options, meta, and the app hotkey id. The manager drops options
+declared options, scope, meta, and the app hotkey id. The manager drops options
 that do not apply to the effective hotkey's kind.
 
 ## Parameters

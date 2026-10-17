@@ -97,7 +97,7 @@ export function physicalCodeOf(token: string): string | undefined {
 }
 
 /** Splits modifier tokens while retaining a trailing literal plus: `Control++` → `['Control', '+']`. */
-export function splitHotkeyParts(hotkey: string): Array<string> {
+export function splitChordParts(hotkey: string): Array<string> {
   if (!hotkey.endsWith('+')) return hotkey.split('+')
   const parts = hotkey.slice(0, -1).split('+')
   if (parts.at(-1) === '') parts.pop()
