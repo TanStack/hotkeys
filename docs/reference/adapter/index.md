@@ -5,6 +5,7 @@ title: "@tanstack/hotkeys"
 
 ## Interfaces
 
+- [HotkeysProviderScopeProps](interfaces/HotkeysProviderScopeProps.md)
 - [PrepareHotkeyDefinitionsOptions](interfaces/PrepareHotkeyDefinitionsOptions.md)
 
 ## Type Aliases
@@ -22,6 +23,9 @@ title: "@tanstack/hotkeys"
 
 ## Functions
 
+- [activateHotkeysProviderScope](functions/activateHotkeysProviderScope.md)
 - [createHotkeyBindings](functions/createHotkeyBindings.md)
+- [getHotkeysProviderScopeKey](functions/getHotkeysProviderScopeKey.md)
+- [mergeHotkeysProviderDefaults](functions/mergeHotkeysProviderDefaults.md)
 - [prepareHotkeyDefinitions](functions/prepareHotkeyDefinitions.md)
 - [subscribePublishedAppHotkeys](functions/subscribePublishedAppHotkeys.md)

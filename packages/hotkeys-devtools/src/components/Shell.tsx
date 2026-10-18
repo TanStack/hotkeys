@@ -34,7 +34,7 @@ export function Shell() {
   const styles = useStyles()
   const state = useHotkeysDevtoolsState()
   const [selectedId, setSelectedId] = createSignal<string | null>(null)
-  const [leftPanelWidth, setLeftPanelWidth] = createSignal(300)
+  const [leftPanelWidth, setLeftPanelWidth] = createSignal(440)
   const [isDragging, setIsDragging] = createSignal(false)
   const [shellRootEl, setShellRootEl] = createSignal<HTMLElement | null>(null)
   const [slotHeightPx, setSlotHeightPx] = createSignal<number | undefined>(

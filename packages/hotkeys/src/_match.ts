@@ -9,12 +9,12 @@ import {
 } from './_keyboard-event'
 import { parseHotkey } from './parse'
 import type { KeyboardEventMatch } from './match'
-import type { HotkeyChord, ParsedHotkey } from './hotkey.types'
+import type { HotkeyChord, ParsedHotkeyChord } from './hotkey.types'
 
 /** Matches an event and reports the winning candidate and release identity. */
 export function matchKeyboardEvent(
   event: KeyboardEvent,
-  hotkey: HotkeyChord | ParsedHotkey,
+  hotkey: HotkeyChord | ParsedHotkeyChord,
   platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
 ): KeyboardEventMatch {
   const parsed =
@@ -86,7 +86,7 @@ export function matchKeyboardEvent(
 /** Compares modifiers, excluding synthetic AltGr flags and optionally allowing Shift used to type a glyph. */
 function modifiersMatch(
   event: ReturnType<typeof normalizeKeyboardEvent>,
-  parsed: ParsedHotkey,
+  parsed: ParsedHotkeyChord,
   allowImplicitShift: boolean,
 ): boolean {
   const ctrl = event.altGraph ? false : event.ctrl
@@ -106,7 +106,10 @@ function modifiersMatch(
  * same physical code or (case-insensitively) the same logical key. A code and
  * a key never match, even when one keyboard event could produce both.
  */
-export function parsedHotkeysEqual(a: ParsedHotkey, b: ParsedHotkey): boolean {
+export function parsedChordsEqual(
+  a: ParsedHotkeyChord,
+  b: ParsedHotkeyChord,
+): boolean {
   return (
     a.ctrl === b.ctrl &&
     a.alt === b.alt &&

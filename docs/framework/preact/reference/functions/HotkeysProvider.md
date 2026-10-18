@@ -7,9 +7,13 @@ title: HotkeysProvider
 function HotkeysProvider<T>(__namedParameters): Element;
 ```
 
-Defined in: [HotkeysProvider.tsx:70](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L70)
+Defined in: [HotkeysProvider.tsx:102](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L102)
 
 Provides default options, app hotkeys, and the user's custom hotkeys.
+
+Nest providers to create hotkey scopes. A nested provider inherits app
+hotkeys and merges default options. With `scope`, its hotkeys fire only
+while it is mounted and enabled; with `exclusive`, only its hotkeys fire.
 
 ## Type Parameters
 
@@ -27,7 +31,7 @@ Provides default options, app hotkeys, and the user's custom hotkeys.
 
 `Element`
 
-## Example
+## Examples
 
 ```tsx
 <HotkeysProvider
@@ -39,4 +43,14 @@ Provides default options, app hotkeys, and the user's custom hotkeys.
 >
   <App />
 </HotkeysProvider>
+```
+
+```tsx
+function EditDialog() {
+  return (
+    <HotkeysProvider scope="edit-dialog" exclusive={{ allow: ['global'] }}>
+      <DialogBody />
+    </HotkeysProvider>
+  )
+}
 ```

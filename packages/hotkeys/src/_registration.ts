@@ -1,4 +1,7 @@
-import type { ConflictBehavior, ParsedHotkey } from './hotkey.types'
+import type { ConflictBehavior, ParsedHotkeyChord } from './hotkey.types'
+
+/** The scope of hotkeys that do not name one. It is always active unless an exclusive scope is active. */
+export const GLOBAL_SCOPE = 'global'
 
 /**
  * Default options for hotkey/sequence registration.
@@ -12,15 +15,18 @@ export const defaultHotkeyOptions = {
   enabled: true,
   ignoreInputs: 'auto' as const,
   conflictBehavior: 'warn' as ConflictBehavior,
+  scope: GLOBAL_SCOPE as string,
 }
 
 /**
  * Resolves `ignoreInputs: 'auto'` from the hotkey (the first step of a sequence).
  * Ctrl/Meta shortcuts and Escape fire in inputs; single keys and Shift/Alt combos are ignored.
  */
-export function getDefaultIgnoreInputs(parsedHotkey: ParsedHotkey): boolean {
-  if (parsedHotkey.ctrl || parsedHotkey.meta) return false // Mod+S, Ctrl+C, etc.
-  if (parsedHotkey.key === 'Escape' || parsedHotkey.code === 'Escape')
+export function getDefaultIgnoreInputs(
+  parsedChord: ParsedHotkeyChord,
+): boolean {
+  if (parsedChord.ctrl || parsedChord.meta) return false // Mod+S, Ctrl+C, etc.
+  if (parsedChord.key === 'Escape' || parsedChord.code === 'Escape')
     return false // Close modal, etc.
   return true // Single keys, Shift+key, Alt+key
 }

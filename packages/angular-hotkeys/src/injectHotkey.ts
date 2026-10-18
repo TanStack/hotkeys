@@ -2,6 +2,7 @@ import { injectHotkeys } from './injectHotkeys'
 import type {
   AppHotkey,
   HotkeyCallback,
+  HotkeyCallbackContextFor,
   RegisterableHotkey,
   Target,
 } from '@tanstack/hotkeys'
@@ -71,9 +72,9 @@ export function injectHotkey<T extends AppHotkey>(
   callback: HotkeyCallback,
   options?: MaybeGetter<InjectAppHotkeyOptions<T>>,
 ): void
-export function injectHotkey<T extends RegisterableHotkey>(
+export function injectHotkey<const T extends RegisterableHotkey>(
   hotkey: MaybeGetter<T>,
-  callback: HotkeyCallback,
+  callback: HotkeyCallback<HotkeyCallbackContextFor<T>>,
   options?: MaybeGetter<InjectHotkeyOptionsFor<T>>,
 ): void
 export function injectHotkey(

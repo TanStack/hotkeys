@@ -63,6 +63,10 @@ function Layout() {
     return () => window.removeEventListener('hashchange', update)
   }, [])
   const Page = routeComponents[path] ?? Tickets
+  // Each page gets its own hotkey scope, active while the page is mounted.
+  const pageScope = (
+    pages.find((page) => page.to === path) ?? pages[0]
+  ).label.toLowerCase()
   const [showShortcuts, setShowShortcuts] = useState(false)
   const [activity, setActivity] = useState<Array<string>>([])
   const log = useCallback((message: string) => {
@@ -122,7 +126,8 @@ function Layout() {
           <h2>Registered shortcuts</h2>
           <p>
             Global and current-route registrations, including disabled handlers.
-            Scoped shortcuts run inside their target.
+            Each page renders a <code>HotkeysProvider</code> with its own scope.
+            Target shortcuts run only while focus is inside their target.
           </p>
           {groups.map((group) => (
             <div key={group}>
@@ -132,6 +137,7 @@ function Layout() {
                   <tr>
                     <th>Action</th>
                     <th>Binding</th>
+                    <th>Scope</th>
                     <th>Status</th>
                   </tr>
                 </thead>
@@ -152,6 +158,7 @@ function Layout() {
                             sequenceSeparator: ' → ',
                           })}
                         </td>
+                        <td>{reg.options.scope}</td>
                         <td>
                           {reg.options.enabled === false
                             ? 'Disabled'
@@ -166,7 +173,9 @@ function Layout() {
         </section>
       )}
       <main>
-        <Page key={path} />
+        <HotkeysProvider key={path} scope={pageScope}>
+          <Page />
+        </HotkeysProvider>
       </main>
       <section>
         <h2>Key state</h2>
@@ -266,7 +275,7 @@ function EditorPane({ name }: { name: string }) {
           meta: {
             name: `Save ${name}`,
             group: 'Editor',
-            description: 'Scoped to this editor',
+            description: 'Limited to this editor',
           },
         },
       },
@@ -302,7 +311,7 @@ function EditorPane({ name }: { name: string }) {
   )
 }
 
-/** Exercises target scope, repeat/reset, propagation, and keyup options. */
+/** Exercises targets, repeat/reset, propagation, and keyup options. */
 function Editor() {
   const log = useContext(ActivityContext)
   const [repeat, setRepeat] = useState(false)
@@ -313,11 +322,11 @@ function Editor() {
     meta: { name: 'Advance counter', group: 'Editor' },
   })
   const scope = useRef<HTMLFieldSetElement>(null)
-  useHotkey('Alt+[KeyB]', () => log('Scoped B handler'), {
+  useHotkey('Alt+[KeyB]', () => log('Target B handler'), {
     target: scope,
     stopPropagation: !bubble,
     preventDefault: !bubble,
-    meta: { name: 'Scoped propagation demo', group: 'Editor' },
+    meta: { name: 'Target propagation demo', group: 'Editor' },
   })
   useHotkey(
     'Alt+[KeyB]',
@@ -330,7 +339,7 @@ function Editor() {
   })
   return (
     <section>
-      <h2>Editor scopes</h2>
+      <h2>Editor targets</h2>
       <p>
         Save is registered in both editors. Focus a textarea to choose which
         handler receives it.
@@ -469,9 +478,8 @@ function Recording() {
     detectConflicts: {
       exclude: (reg) => reg.options.meta?.name === 'Recorded action',
     },
-    validate: (_, { parsedHotkey }) =>
-      parsedHotkey.modifiers.length > 0 ||
-      'Include a modifier for this action.',
+    validate: (_, { parsedChord }) =>
+      parsedChord.modifiers.length > 0 || 'Include a modifier for this action.',
     onReject: ({ message }) => setProblem(message),
     onRecord: (value) => {
       setHotkey(value)

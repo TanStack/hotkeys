@@ -1,11 +1,17 @@
 import { createContext, onMount } from 'svelte'
 import { AppHotkeysStore, publishAppHotkeysStore } from '@tanstack/hotkeys'
+import {
+  getHotkeysProviderScopeKey,
+  mergeHotkeysProviderDefaults,
+} from '@tanstack/hotkeys/adapter'
+import { activateScopeWhileMounted } from './internal.svelte'
 import type {
   AppHotkeys,
   CustomHotkeys,
   HotkeyChordRecorderOptions,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
+import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
 import type { CreateHotkeyCommonOptions } from './createHotkey.svelte'
 import type { Snippet } from 'svelte'
 
@@ -25,7 +31,8 @@ export interface HotkeysProviderOptions {
 }
 
 /** Options for `setHotkeysContext` and props for `HotkeysProvider`. */
-export interface HotkeysContextOptions {
+export interface HotkeysContextOptions extends HotkeysProviderScopeProps {
+  /** Merged with the parent context's defaults. */
   defaultOptions?: HotkeysProviderOptions
   /**
    * Every app hotkey, from `defineAppHotkeys`. Read when the context is set;
@@ -49,7 +56,10 @@ export const DEFAULT_OPTIONS: HotkeysProviderOptions = {}
 
 interface HotkeysContextValue {
   readonly appHotkeysStore: AppHotkeysStore | null
+  /** Merged with every ancestor's defaults, including `hotkey.scope`. */
   readonly defaultOptions: HotkeysProviderOptions
+  /** Whether this context and every ancestor are enabled. */
+  readonly enabled: boolean
 }
 
 const [useHotkeysContext, setHotkeysContextValue] =
@@ -57,7 +67,12 @@ const [useHotkeysContext, setHotkeysContextValue] =
 
 /**
  * Sets the hotkeys context for descendants. `HotkeysProvider` calls this; call
- * it directly in a root component's script instead of rendering the provider.
+ * it directly in a component's script instead of rendering the provider.
+ *
+ * Nest contexts to create hotkey scopes. A nested context inherits app
+ * hotkeys and merges default options. With `scope`, its hotkeys fire only
+ * while the component is mounted and enabled; with `exclusive`, only its
+ * hotkeys fire.
  *
  * @example
  * ```svelte
@@ -81,6 +96,7 @@ export function setHotkeysContext(
 export function setHotkeysContextSource(
   source: () => HotkeysContextOptions,
 ): HotkeysContextValue {
+  const parent = getHotkeysContext()
   const { appHotkeys, customHotkeys } = source()
   const store = appHotkeys
     ? new AppHotkeysStore(appHotkeys, {
@@ -91,12 +107,32 @@ export function setHotkeysContextSource(
     : null
   // Publish the store so devtools can list declared hotkeys.
   if (store) onMount(() => publishAppHotkeysStore(store))
-  return setHotkeysContextValue({
-    appHotkeysStore: store,
+  const context = setHotkeysContextValue({
+    appHotkeysStore: store ?? parent?.appHotkeysStore ?? null,
     get defaultOptions() {
-      return source().defaultOptions ?? DEFAULT_OPTIONS
+      const { defaultOptions, scope } = source()
+      return mergeHotkeysProviderDefaults(
+        parent?.defaultOptions,
+        defaultOptions,
+        scope,
+      )
+    },
+    get enabled() {
+      return (parent?.enabled ?? true) && source().enabled !== false
     },
   })!
+  // Compared by value, so a new `exclusive` object does not reactivate the
+  // scope and lose its precedence.
+  activateScopeWhileMounted(() => {
+    const { scope, exclusive } = source()
+    return getHotkeysProviderScopeKey({
+      scope,
+      exclusive,
+      active: context.enabled,
+      parent: parent?.defaultOptions.hotkey?.scope,
+    })
+  })
+  return context
 }
 
 export function getHotkeysContext(): HotkeysContextValue | null {

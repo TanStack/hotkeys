@@ -1,7 +1,7 @@
 import { detectPlatform } from './platform'
-import { isHotkeySequence, parseRegisterableHotkey } from './parse'
+import { isHotkeySequence, parseHotkey } from './parse'
 import { getTargetDocument } from './_event-target'
-import { parsedHotkeysEqual } from './_match'
+import { parsedChordsEqual } from './_match'
 import { matchesKeyboardEvent } from './match'
 import { toHotkeyRegistrationView } from './hotkey-manager'
 import { managerRef } from './_manager-ref'
@@ -62,7 +62,7 @@ export function findHotkeyConflicts(
     : [candidate]
   if (steps.length === 0) return []
   const platform = options.platform ?? detectPlatform()
-  const parsed = steps.map((step) => parseRegisterableHotkey(step, platform))
+  const parsed = steps.map((step) => parseHotkey(step, platform))
   const target =
     options.target ?? (typeof document === 'undefined' ? undefined : document)
   const conflicts: Array<HotkeyConflict> = []
@@ -86,14 +86,11 @@ export function findHotkeyConflicts(
     return parsed
       .slice(0, Math.min(parsed.length, bindings.length))
       .every((a, index) => {
-        const b = parseRegisterableHotkey(
-          bindings[index]!,
-          registration.options.platform,
-        )
+        const b = parseHotkey(bindings[index]!, registration.options.platform)
         // A source event can establish code/key overlap without guessing its layout.
         const event = options.events?.[index]
         return (
-          parsedHotkeysEqual(a, b) ||
+          parsedChordsEqual(a, b) ||
           (event !== undefined &&
             matchesKeyboardEvent(event, a, platform) &&
             matchesKeyboardEvent(event, b, registration.options.platform))

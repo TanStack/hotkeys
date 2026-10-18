@@ -12,7 +12,7 @@ type AdapterHotkeyDefinition<TTarget> =
 }
   | {
   callback: HotkeyCallback;
-  hotkey: HotkeySequence;
+  hotkey: RegisterableHotkeySequence;
   options?: AdapterSequenceOptions<TTarget>;
 }
   | {
@@ -27,7 +27,7 @@ type AdapterHotkeyDefinition<TTarget> =
 };
 ```
 
-Defined in: [adapter.ts:215](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L215)
+Defined in: [adapter.ts:214](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L214)
 
 One hotkey and its callback for adapter APIs such as `useHotkeys`. Chords
 accept `requireReset`; sequences accept `timeout`; hotkeys of unknown kind
@@ -65,7 +65,7 @@ The function to call when the hotkey is pressed
 hotkey: RegisterableHotkeyChord;
 ```
 
-A chord string such as `'Mod+S'`, or a RawHotkey object
+A chord string such as `'Mod+S'`, or a chord object
 
 #### options?
 
@@ -82,7 +82,7 @@ Per-hotkey options (merged on top of common options)
 ```ts
 {
   callback: HotkeyCallback;
-  hotkey: HotkeySequence;
+  hotkey: RegisterableHotkeySequence;
   options?: AdapterSequenceOptions<TTarget>;
 }
 ```
@@ -96,10 +96,10 @@ callback: HotkeyCallback;
 #### hotkey
 
 ```ts
-hotkey: HotkeySequence;
+hotkey: RegisterableHotkeySequence;
 ```
 
-A sequence such as `['G', 'G']`
+A sequence such as `['G', 'G']`, with each step a string or an object
 
 #### options?
 

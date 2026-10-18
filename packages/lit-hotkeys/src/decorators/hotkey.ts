@@ -3,6 +3,8 @@ import type { LitElement } from 'lit'
 import type {
   AppHotkey,
   HotkeyCallback,
+  HotkeyCallbackContext,
+  HotkeyCallbackContextFor,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
 import type {
@@ -11,7 +13,13 @@ import type {
   HotkeyControllerOptionsFor,
 } from '../controllers/hotkey'
 
-type HotkeyDecorator = <T extends HotkeyCallback>(
+/**
+ * A method decorator. The method's context parameter can be typed as the
+ * context for the decorated hotkey's kind, such as `HotkeyChordCallbackContext`.
+ */
+type HotkeyDecorator<
+  TContext extends HotkeyCallbackContext = HotkeyCallbackContext,
+> = <T extends HotkeyCallback<TContext>>(
   proto: LitElement,
   propertyKey: string,
   descriptor?: TypedPropertyDescriptor<T>,
@@ -41,10 +49,10 @@ export function hotkey<T extends AppHotkey>(
   hotkey: T,
   options?: AppHotkeyControllerOptions<T>,
 ): HotkeyDecorator
-export function hotkey<T extends RegisterableHotkey>(
+export function hotkey<const T extends RegisterableHotkey>(
   hotkey: T,
   options?: HotkeyControllerOptionsFor<T>,
-): HotkeyDecorator
+): HotkeyDecorator<HotkeyCallbackContextFor<T>>
 export function hotkey(
   hotkey: RegisterableHotkey | AppHotkey,
   options: HotkeyControllerCommonOptions = {},

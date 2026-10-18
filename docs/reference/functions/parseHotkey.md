@@ -3,38 +3,122 @@ id: parseHotkey
 title: parseHotkey
 ---
 
+## Call Signature
+
 ```ts
-function parseHotkey(hotkey, platform?): ParsedHotkey;
+function parseHotkey(hotkey, platform?): ParsedHotkeyChord;
 ```
 
-Defined in: [parse.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L75)
+Defined in: [parse.ts:211](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L211)
 
-Parses a hotkey string into its component parts.
+Parses a hotkey, resolving `Mod` for the platform. A chord, written as a
+string or an object, returns one parsed chord. A sequence returns one
+parsed chord per step. Physical tokens such as `[KeyQ]` keep `code`; they
+never become a logical Q.
 
-## Parameters
+### Parameters
 
-### hotkey
+#### hotkey
 
-[`HotkeyChord`](../type-aliases/HotkeyChord.md) \| `string` & `object`
+`AnyChord`
 
-The hotkey string to parse (e.g., 'Mod+Shift+S')
+A chord string such as `'Mod+S'`, a chord object, or a sequence
 
-### platform?
+#### platform?
 
-`"mac"` \| `"windows"` \| `"linux"`
+`Platform`
 
 The target platform for resolving 'Mod' (defaults to auto-detection)
 
-## Returns
+### Returns
 
-[`ParsedHotkey`](../type-aliases/ParsedHotkey.md)
+[`ParsedHotkeyChord`](../type-aliases/ParsedHotkeyChord.md)
 
-A ParsedHotkey with either logical key or physical code and modifier flags
-
-## Example
+### Example
 
 ```ts
-parseHotkey('Mod+S') // On Mac: { key: 'S', ctrl: false, shift: false, alt: false, meta: true, modifiers: ['Meta'] }
-parseHotkey('Mod+S') // On Windows: { key: 'S', ctrl: true, shift: false, alt: false, meta: false, modifiers: ['Control'] }
-parseHotkey('Control+Shift+A') // { key: 'A', ctrl: true, shift: true, alt: false, meta: false, modifiers: ['Control', 'Shift'] }
+parseHotkey('Mod+S', 'mac') // { key: 'S', ctrl: false, shift: false, alt: false, meta: true, modifiers: ['Meta'] }
+parseHotkey({ key: 'S', mod: true }, 'windows') // { key: 'S', ctrl: true, ..., modifiers: ['Control'] }
+parseHotkey(['G', 'Shift+G']) // [{ key: 'G', ... }, { key: 'G', shift: true, ... }]
+```
+
+## Call Signature
+
+```ts
+function parseHotkey(hotkey, platform?): ParsedHotkeyChord[];
+```
+
+Defined in: [parse.ts:215](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L215)
+
+Parses a hotkey, resolving `Mod` for the platform. A chord, written as a
+string or an object, returns one parsed chord. A sequence returns one
+parsed chord per step. Physical tokens such as `[KeyQ]` keep `code`; they
+never become a logical Q.
+
+### Parameters
+
+#### hotkey
+
+readonly `AnyChord`[]
+
+A chord string such as `'Mod+S'`, a chord object, or a sequence
+
+#### platform?
+
+`Platform`
+
+The target platform for resolving 'Mod' (defaults to auto-detection)
+
+### Returns
+
+[`ParsedHotkeyChord`](../type-aliases/ParsedHotkeyChord.md)[]
+
+### Example
+
+```ts
+parseHotkey('Mod+S', 'mac') // { key: 'S', ctrl: false, shift: false, alt: false, meta: true, modifiers: ['Meta'] }
+parseHotkey({ key: 'S', mod: true }, 'windows') // { key: 'S', ctrl: true, ..., modifiers: ['Control'] }
+parseHotkey(['G', 'Shift+G']) // [{ key: 'G', ... }, { key: 'G', shift: true, ... }]
+```
+
+## Call Signature
+
+```ts
+function parseHotkey(hotkey, platform?): 
+  | ParsedHotkeyChord
+  | ParsedHotkeyChord[];
+```
+
+Defined in: [parse.ts:219](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L219)
+
+Parses a hotkey, resolving `Mod` for the platform. A chord, written as a
+string or an object, returns one parsed chord. A sequence returns one
+parsed chord per step. Physical tokens such as `[KeyQ]` keep `code`; they
+never become a logical Q.
+
+### Parameters
+
+#### hotkey
+
+`AnyChord` \| readonly `AnyChord`[]
+
+A chord string such as `'Mod+S'`, a chord object, or a sequence
+
+#### platform?
+
+`Platform`
+
+The target platform for resolving 'Mod' (defaults to auto-detection)
+
+### Returns
+
+  \| [`ParsedHotkeyChord`](../type-aliases/ParsedHotkeyChord.md)
+  \| [`ParsedHotkeyChord`](../type-aliases/ParsedHotkeyChord.md)[]
+
+### Example
+
+```ts
+parseHotkey('Mod+S', 'mac') // { key: 'S', ctrl: false, shift: false, alt: false, meta: true, modifiers: ['Meta'] }
+parseHotkey({ key: 'S', mod: true }, 'windows') // { key: 'S', ctrl: true, ..., modifiers: ['Control'] }
+parseHotkey(['G', 'Shift+G']) // [{ key: 'G', ... }, { key: 'G', shift: true, ... }]
 ```

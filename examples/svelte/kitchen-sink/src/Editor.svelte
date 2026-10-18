@@ -21,11 +21,11 @@
   )
   const scoped = createHotkeyAttachment(
     'Alt+[KeyB]',
-    () => log('Scoped B'),
+    () => log('Target B'),
     () => ({
       stopPropagation: !bubble,
       preventDefault: !bubble,
-      meta: { name: 'Scoped propagation', group: 'Editor' },
+      meta: { name: 'Target propagation', group: 'Editor' },
     }),
   )
   createHotkey('Alt+[KeyB]', () => log('Document B'), {
@@ -38,7 +38,7 @@
 </script>
 
 <section>
-  <h2>Editor scopes</h2>
+  <h2>Editor targets</h2>
   <p>Focus an editor to choose its Save handler.</p>
   <EditorPane name="Draft" /><EditorPane name="Notes" />
   <label><input type="checkbox" bind:checked={repeat} /> Allow repeat</label>

@@ -12,12 +12,12 @@ type HotkeyDefinition =
 }
   | {
   callback: HotkeyCallback;
-  hotkey: HotkeySequence;
+  hotkey: RegisterableHotkeySequence;
   options?: HotkeySequenceOptions;
 };
 ```
 
-Defined in: [adapter.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L30)
+Defined in: [adapter.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L32)
 
 A hotkey and its callback, with optional per-binding options. Chords accept
 `requireReset`; sequences accept `timeout`.

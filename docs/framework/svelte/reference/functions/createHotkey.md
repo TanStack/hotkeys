@@ -12,7 +12,7 @@ function createHotkey<T>(
    options?): void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:62](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L62)
+Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:63](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L63)
 
 Svelte function for registering a hotkey on the document: a chord such as
 `'Mod+S'`, a sequence such as `['G', 'G']`, or an app hotkey from
@@ -67,7 +67,7 @@ function createHotkey<T>(
    options?): void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:67](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L67)
+Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L68)
 
 Svelte function for registering a hotkey on the document: a chord such as
 `'Mod+S'`, a sequence such as `['G', 'G']`, or an app hotkey from
@@ -93,7 +93,7 @@ declared meta and options, and registers nothing while unbound.
 
 #### callback
 
-`HotkeyCallback`
+`HotkeyCallback`\<`HotkeyCallbackContextFor`\<`T`\>\>
 
 #### options?
 

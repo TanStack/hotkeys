@@ -1,11 +1,17 @@
 import {
   createContext,
   createEffect,
+  createMemo,
   onCleanup,
   onMount,
   useContext,
 } from 'solid-js'
 import { AppHotkeysStore, publishAppHotkeysStore } from '@tanstack/hotkeys'
+import {
+  activateHotkeysProviderScope,
+  getHotkeysProviderScopeKey,
+  mergeHotkeysProviderDefaults,
+} from '@tanstack/hotkeys/adapter'
 import type { JSX, ParentComponent } from 'solid-js'
 import type {
   AppHotkeys,
@@ -13,6 +19,7 @@ import type {
   HotkeyChordRecorderOptions,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
+import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
 import type { CreateHotkeyCommonOptions } from './createHotkey'
 
 export interface HotkeysProviderOptions {
@@ -32,12 +39,15 @@ export interface HotkeysProviderOptions {
 
 interface HotkeysContextValue {
   readonly appHotkeysStore: AppHotkeysStore | null
+  /** Merged with every ancestor provider's defaults, including `hotkey.scope`. */
   readonly defaultOptions: HotkeysProviderOptions
+  /** Whether this provider and every ancestor are enabled. */
+  readonly enabled: boolean
 }
 
 const HotkeysContext = createContext<HotkeysContextValue | null>(null)
 
-export interface HotkeysProviderProps {
+export interface HotkeysProviderProps extends HotkeysProviderScopeProps {
   children: JSX.Element
   /**
    * Every app hotkey, from `defineAppHotkeys`. Read when the provider is
@@ -51,6 +61,7 @@ export interface HotkeysProviderProps {
   customHotkeys?: CustomHotkeys | null
   /** Called with the custom hotkeys after every change, ready to save. */
   onCustomHotkeysChange?: (customHotkeys: CustomHotkeys) => void
+  /** Merged with the parent provider's defaults. */
   defaultOptions?: HotkeysProviderOptions
 }
 
@@ -58,6 +69,10 @@ const DEFAULT_OPTIONS: HotkeysProviderOptions = {}
 
 /**
  * Provides default options, app hotkeys, and the user's custom hotkeys.
+ *
+ * Nest providers to create hotkey scopes. A nested provider inherits app
+ * hotkeys and merges default options. With `scope`, its hotkeys fire only
+ * while it is mounted and enabled; with `exclusive`, only its hotkeys fire.
  *
  * @example
  * ```tsx
@@ -71,10 +86,18 @@ const DEFAULT_OPTIONS: HotkeysProviderOptions = {}
  *   <App />
  * </HotkeysProvider>
  * ```
+ *
+ * @example
+ * ```tsx
+ * <HotkeysProvider scope="edit-dialog" exclusive={{ allow: ['global'] }}>
+ *   <DialogBody />
+ * </HotkeysProvider>
+ * ```
  */
 export const HotkeysProvider: ParentComponent<HotkeysProviderProps> = (
   props,
 ) => {
+  const parent = useContext(HotkeysContext)
   const store = props.appHotkeys
     ? new AppHotkeysStore(props.appHotkeys, {
         customHotkeys: props.customHotkeys,
@@ -93,10 +116,38 @@ export const HotkeysProvider: ParentComponent<HotkeysProviderProps> = (
     if (store) onCleanup(publishAppHotkeysStore(store))
   })
 
+  const active = () => (parent?.enabled ?? true) && props.enabled !== false
+  const defaultOptions = createMemo(() =>
+    mergeHotkeysProviderDefaults(
+      parent?.defaultOptions,
+      props.defaultOptions,
+      props.scope,
+    ),
+  )
+  // Compared by value, so a new `exclusive` object does not reactivate the
+  // scope and lose its precedence.
+  const scopeKey = createMemo(() =>
+    getHotkeysProviderScopeKey({
+      scope: props.scope,
+      exclusive: props.exclusive,
+      active: active(),
+      parent: parent?.defaultOptions.hotkey?.scope,
+    }),
+  )
+
+  // Activate this provider's scope while mounted and enabled.
+  createEffect(() => {
+    const key = scopeKey()
+    if (key) onCleanup(activateHotkeysProviderScope(key))
+  })
+
   const contextValue: HotkeysContextValue = {
-    appHotkeysStore: store,
+    appHotkeysStore: store ?? parent?.appHotkeysStore ?? null,
     get defaultOptions() {
-      return props.defaultOptions ?? DEFAULT_OPTIONS
+      return defaultOptions()
+    },
+    get enabled() {
+      return active()
     },
   }
 

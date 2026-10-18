@@ -6,10 +6,10 @@ title: DisplayHotkeyChord
 ```ts
 type DisplayHotkeyChord = 
   | RegisterableHotkeyChord
-  | ParsedHotkey
+  | ParsedHotkeyChord
   | string & object;
 ```
 
-Defined in: [format.ts:52](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L52)
+Defined in: [format.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L69)
 
 A single chord to display: a string, raw object, or parsed hotkey.

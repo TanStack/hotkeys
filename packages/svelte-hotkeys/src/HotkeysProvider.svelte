@@ -9,6 +9,9 @@
     appHotkeys,
     customHotkeys,
     onCustomHotkeysChange,
+    scope,
+    exclusive,
+    enabled,
   }: HotkeysProviderProps = $props()
 
   const context = setHotkeysContextSource(() => ({
@@ -16,6 +19,9 @@
     appHotkeys,
     customHotkeys,
     onCustomHotkeysChange,
+    scope,
+    exclusive,
+    enabled,
   }))
 
   // Keep declarations current (for example after hot module replacement).

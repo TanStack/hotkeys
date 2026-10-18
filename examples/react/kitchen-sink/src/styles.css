@@ -154,3 +154,138 @@ small {
     gap: 4px;
   }
 }
+.scope-status code {
+  margin-left: 6px;
+  padding: 1px 6px;
+  background: #e8f2ff;
+  border-radius: 3px;
+}
+.scope-status code[data-exclusive] {
+  background: #06c;
+  color: white;
+}
+.scope-status code[data-suspended] {
+  background: #eee;
+  color: #888;
+  text-decoration: line-through;
+}
+.workspaces {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.workspace {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  opacity: 0.6;
+}
+.workspace[data-current] {
+  border-color: #06c;
+  opacity: 1;
+}
+.modal {
+  width: min(520px, calc(100% - 32px));
+  max-height: calc(100% - 64px);
+  padding: 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 16px 48px rgb(0 0 0 / 0.3);
+  color: inherit;
+}
+.modal[data-wide] {
+  width: min(820px, calc(100% - 32px));
+}
+.modal::backdrop {
+  background: rgb(0 0 0 / 0.4);
+}
+.modal-body {
+  padding: 20px 24px 24px;
+}
+.modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: -4px 0 12px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #eee;
+}
+.modal-header h2 {
+  margin: 0;
+}
+.modal-header button {
+  margin: 0;
+  padding: 2px 10px;
+  font-size: 20px;
+  line-height: 1.2;
+  background: none;
+  border-color: transparent;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 6px;
+  margin-top: 20px;
+}
+.modal-actions button {
+  margin: 0;
+}
+button.primary {
+  background: #06c;
+  border-color: #06c;
+  color: white;
+}
+button.primary:hover:not(:disabled) {
+  background: #0052a3;
+  border-color: #0052a3;
+}
+.notice {
+  margin: 12px 0;
+  padding: 8px 12px;
+  border: 1px solid;
+  border-radius: 4px;
+}
+.notice.error {
+  color: #a1101a;
+  background: #fdecea;
+  border-color: #f3b8bd;
+}
+.notice.info {
+  color: #444;
+  background: #f2f2f2;
+  border-color: #ddd;
+}
+tr[data-recording] td {
+  background: #fff8e1;
+}
+tr[data-invalid] td {
+  background: #fdecea;
+}
+tr[data-invalid] td:nth-child(2) {
+  color: #a1101a;
+  font-weight: 600;
+}
+td.actions {
+  width: 1%;
+  white-space: nowrap;
+}
+.field-error {
+  margin-top: 4px;
+  color: #a1101a;
+  font-size: 0.85em;
+  font-weight: normal;
+}
+tr[data-status='inactive'] td,
+tr[data-status='unbound'] td,
+tr[data-status='disabled'] td,
+tr[data-status='suspended'] td {
+  color: #777;
+}
+pre {
+  padding: 12px;
+  background: #f8f8f8;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  overflow: auto;
+}

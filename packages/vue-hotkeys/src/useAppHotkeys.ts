@@ -28,8 +28,8 @@ function useRequiredStore(name: string) {
  *
  * @example
  * ```ts
- * const hotkeys = useAppHotkeys()
- * useHotkey(() => hotkeys.value['doc.save'], () => save())
+ * const appHotkeys = useAppHotkeys()
+ * useHotkey(() => appHotkeys.value['doc.save'], () => save())
  * ```
  */
 export function useAppHotkeys(): ComputedRef<RegisteredAppHotkeys> {

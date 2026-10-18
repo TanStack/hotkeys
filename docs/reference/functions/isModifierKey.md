@@ -7,7 +7,7 @@ title: isModifierKey
 function isModifierKey(key): boolean;
 ```
 
-Defined in: [parse.ts:278](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L278)
+Defined in: [parse.ts:288](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L288)
 
 Checks if a string is a recognized modifier token (including aliases).
 

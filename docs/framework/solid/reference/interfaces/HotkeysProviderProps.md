@@ -3,7 +3,11 @@ id: HotkeysProviderProps
 title: HotkeysProviderProps
 ---
 
-Defined in: [HotkeysProvider.tsx:40](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L40)
+Defined in: [HotkeysProvider.tsx:50](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L50)
+
+## Extends
+
+- `HotkeysProviderScopeProps`
 
 ## Properties
 
@@ -13,7 +17,7 @@ Defined in: [HotkeysProvider.tsx:40](https://github.com/TanStack/hotkeys/blob/ma
 optional appHotkeys?: Readonly<Record<string, AppHotkey<string, HotkeyChord | HotkeySequence | null>>>;
 ```
 
-Defined in: [HotkeysProvider.tsx:46](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L46)
+Defined in: [HotkeysProvider.tsx:56](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L56)
 
 Every app hotkey, from `defineAppHotkeys`. Read when the provider is
 created; listed by `createAppHotkeyList` whether or not they are registered.
@@ -26,7 +30,7 @@ created; listed by `createAppHotkeyList` whether or not they are registered.
 children: Element;
 ```
 
-Defined in: [HotkeysProvider.tsx:41](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L41)
+Defined in: [HotkeysProvider.tsx:51](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L51)
 
 ***
 
@@ -38,7 +42,7 @@ optional customHotkeys?:
   | null;
 ```
 
-Defined in: [HotkeysProvider.tsx:51](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L51)
+Defined in: [HotkeysProvider.tsx:61](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L61)
 
 Starting custom hotkeys, such as saved data. Read once; the provider owns
 the state afterwards. Invalid entries are ignored with a warning.
@@ -51,7 +55,9 @@ the state afterwards. Invalid entries are ignored with a warning.
 optional defaultOptions?: HotkeysProviderOptions;
 ```
 
-Defined in: [HotkeysProvider.tsx:54](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L54)
+Defined in: [HotkeysProvider.tsx:65](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L65)
+
+Merged with the parent provider's defaults.
 
 ***
 
@@ -61,7 +67,7 @@ Defined in: [HotkeysProvider.tsx:54](https://github.com/TanStack/hotkeys/blob/ma
 optional onCustomHotkeysChange?: (customHotkeys) => void;
 ```
 
-Defined in: [HotkeysProvider.tsx:53](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L53)
+Defined in: [HotkeysProvider.tsx:63](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L63)
 
 Called with the custom hotkeys after every change, ready to save.
 

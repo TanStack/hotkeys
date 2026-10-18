@@ -1,312 +1,365 @@
 ---
-title: Hotkeys Guide
+title: Register Hotkeys with useHotkey and useHotkeys in Vue
 id: hotkeys
+description: Register keyboard shortcuts in Vue with useHotkey and useHotkeys. Write chords and sequences, set reactive options, turn hotkeys on and off, and listen on one element.
 ---
 
-The `useHotkey` composable is the primary way to register keyboard shortcuts in Vue applications. It wraps the singleton `HotkeyManager` with automatic cleanup, support for template refs, and reactive option syncing.
+`useHotkey` registers a keyboard shortcut while the component that calls it is mounted, and `useHotkeys` registers several. Both composables take the same hotkeys and options. To register hotkeys outside Vue components, use the [hotkey manager](./hotkey-manager).
 
 ## Chords and sequences
 
-A hotkey is either a **chord**, keys pressed together such as `'Mod+S'`, or a **sequence**, chords pressed one after another such as `['G', 'G']`. Every API in this guide accepts both, and a one-step array such as `['Mod+S']` is the chord `'Mod+S'`.
+A hotkey is one of two kinds:
+
+- A **chord** is keys pressed together, such as `'Mod+S'`, or a single key, such as `'Escape'`.
+- A **sequence** is chords pressed one after another, such as `['G', 'H']`. Write it as an array of chords.
 
 ```ts
-useHotkey('Mod+S', () => save()) // chord
-useHotkey(['G', 'G'], () => scrollToTop(), { timeout: 500 }) // sequence
-useHotkey('Escape', () => close(), { requireReset: true }) // chord-only option
+useHotkey('Mod+K', () => openSearch()) // Mod and K together
+useHotkey(['G', 'H'], () => goHome()) // G, then H
 ```
 
-Most options apply to both kinds. `requireReset` applies only to chords and `timeout` only to sequences, and TypeScript rejects options that don't match the hotkey. When the kind isn't known statically, such as a `Hotkey` loaded from settings, only the shared options are accepted. Defaults apply only to the kinds that support them. See the [Sequences Guide](./sequences) for timing and matching, and the [App Hotkeys Guide](./app-hotkeys) to declare hotkeys up front and let users customize them.
+Every composable and option in this guide accepts both kinds, and most examples use chords. [Sequences](./sequences) covers how sequences match, the time allowed between steps, and sequences that start with the same chord.
 
-## Logical keys and physical positions
+## Register a hotkey
 
-Use a logical binding when the shortcut should follow the character on the active layout. Use a physical binding when it should follow a keyboard position:
-
-| Binding | Identity checked |
-| --- | --- |
-| `Mod+S` or `{ key: 'S', mod: true }` | Logical `event.key`, with conservative code fallback |
-| `Mod+[KeyS]` or `{ code: 'KeyS', mod: true }` | Exact `event.code` |
-| `Enter` | Logical Enter, including numpad Enter |
-| `[Enter]` / `[NumpadEnter]` | Separate physical Enter positions |
-
-Every physical code uses brackets in strings, including names shared with logical keys such as `[Enter]` and `[F13]`. Supported codes are type-safe and available in autocomplete. Do not put a bracketed code in an object's `key` field; use `code`. A binding has either `key` or `code`, never both.
-
-On a layout where the `KeyQ` position produces `a`, `A` follows that character and `[KeyQ]` follows the position. Logical ASCII letters remain layout-aware; conservative physical fallback helps with transformed output such as macOS Option keys. Exact matches take priority over weaker fallbacks among eligible registrations on the same target.
-
-Callbacks expose the same distinction in `context.parsedHotkey`: check `parsed.code !== undefined` before reading its physical identity. Use `formatForDisplay` for labels; stored physical strings retain their brackets.
-
-## Basic usage
+Call `useHotkey` in a component's `setup` with a hotkey and a callback:
 
 ```vue
 <script setup lang="ts">
 import { useHotkey } from '@tanstack/vue-hotkeys'
 
-useHotkey('Mod+S', () => {
-  saveDocument()
-})
-</script>
-```
-
-The callback receives the original `KeyboardEvent` as the first argument and a `HotkeyCallbackContext` as the second:
-
-```ts
-useHotkey('Mod+S', (event, context) => {
-  console.log(context.hotkey)
-  console.log(context.parsedHotkey)
-})
-```
-
-### Changing a binding
-
-Pass a new logical or physical binding through your framework's normal state mechanism. A recorder result such as `Alt+[KeyS]` can be passed directly to the same registration API. Keep an initial binding in application state if you want a reset button; the library does not need a separate preferences store.
-
-## Property getters
-
-Property getters and functions returning an options object are both supported. Read reactive state inside the getter. A plain value such as `{ enabled: currentValue }` captures the value when that object is created.
-
-The adapter reads option properties inside its reactive computation and updates registrations automatically. Callbacks such as `onRecord` and `onCancel` remain functions; the adapter does not call them to resolve options. Tracking is shallow; callback bodies and nested objects are not evaluated to discover dependencies. Keep getters free of side effects. Ordinary option changes preserve registration identity. Changing the target moves the registration to that target.
-
-```vue
-<script setup lang="ts">
-import { ref } from 'vue'
-import { useHotkey } from '@tanstack/vue-hotkeys'
-
-const enabled = ref(true)
-useHotkey('Mod+S', () => console.log('Save'), {
-	get enabled() {
-		return enabled.value
-	},
-})
-</script>
-```
-
-You can also pass `() => ({ enabled: enabled.value })` or a reactive options object. Vue applies registration changes when its watcher runs. The same forms work for common options, per-definition options, sequences, and recorders. `HotkeysProvider` follows replacement `defaultOptions` objects and getters within defaults. Per-call options override provider defaults, and per-definition options override common options.
-
-## Capture phase
-
-By default, hotkeys listen during bubbling, after the keyboard handlers of widgets inside the target. A widget that handles a key and stops propagation keeps that key from your hotkeys. Set `capture: true` to run the hotkey before those widgets instead. It applies to `keydown` and `keyup`.
-
-With the default `stopPropagation: true`, a matching capture hotkey also keeps the key from those widgets. Set `stopPropagation: false` to let them handle it too. See [Hotkeys run after the page's own handlers](../../../guides/sensible-defaults.md#hotkeys-run-after-the-pages-own-handlers) for when to use capture.
-
-## Default options
-
-`useHotkey` uses the same core defaults as the framework-agnostic manager:
-
-```ts
-useHotkey('Mod+S', callback, {
-  enabled: true,
-  preventDefault: true,
-  stopPropagation: true,
-  eventType: 'keydown',
-  capture: false,
-  requireReset: false,
-  ignoreInputs: 'auto',
-  target: document,
-  platform: undefined,
-  conflictBehavior: 'warn',
-})
-```
-
-## Reactive options
-
-Vue-specific options can be plain values, refs, or getters.
-
-### `enabled`
-
-When `enabled` is false, the hotkey stays registered (visible in devtools); only the callback is suppressed.
-
-```vue
-<script setup lang="ts">
-import { ref } from 'vue'
-import { useHotkey } from '@tanstack/vue-hotkeys'
-
-const isEditing = ref(false)
-
-useHotkey('Mod+S', () => save(), { enabled: isEditing })
-</script>
-```
-
-### `target`
-
-```vue
-<script setup lang="ts">
-import { ref } from 'vue'
-import { useHotkey } from '@tanstack/vue-hotkeys'
-
-const panelRef = ref<HTMLDivElement | null>(null)
-
-useHotkey('Escape', () => closePanel(), { target: panelRef })
+useHotkey('Mod+S', () => saveDocument())
 </script>
 
 <template>
-  <div ref="panelRef" tabindex="0">Panel content</div>
+  <textarea />
 </template>
 ```
 
-## Global defaults via provider
+The callback receives the `KeyboardEvent` and a context object:
+
+```ts
+useHotkey('Mod+S', (event, context) => {
+  console.log(context.hotkey) // 'Mod+S'
+  console.log(context.parsedChord.modifiers) // ['Meta'] on macOS, ['Control'] elsewhere
+})
+```
+
+`setup` runs once, and the callback reads refs and props when it runs, so it always sees their current values:
 
 ```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useHotkey } from '@tanstack/vue-hotkeys'
+
+const count = ref(0)
+
+// Logs the current count, not the count when the component was created
+useHotkey('Mod+Shift+C', () => console.log(count.value))
+</script>
+
+<template>
+  <button @click="count++">Count: {{ count }}</button>
+</template>
+```
+
+The hotkey and its options can change too. Pass them as getters or refs, and the composable follows them. When only the options change, it updates the existing registration. When the hotkey or its `target` changes, it replaces the registration:
+
+```vue
+<script setup lang="ts">
+import { useHotkey } from '@tanstack/vue-hotkeys'
+import type { Hotkey } from '@tanstack/vue-hotkeys'
+
+const props = defineProps<{ saveHotkey: Hotkey; readOnly: boolean }>()
+
+useHotkey(
+  () => props.saveHotkey,
+  () => save(),
+  () => ({ enabled: !props.readOnly }),
+)
+</script>
+```
+
+A plain options object is read once, so `{ enabled: !props.readOnly }` keeps the value from when `setup` ran. A ref also works for a single option, such as `{ enabled: isEditing }`.
+
+That lets you register a hotkey the user chose, such as one from the [hotkey recorder](./custom-hotkey-recording). To let users change hotkeys across your app and save their choices, see [App Hotkeys](./app-hotkeys).
+
+### Write a chord as a string or an object
+
+Write most chords as strings. Your editor autocompletes them, and TypeScript rejects a string that isn't a valid chord:
+
+```ts
+useHotkey('Escape', () => close())
+useHotkey('Mod+S', () => save()) // Command+S on macOS, Control+S elsewhere
+useHotkey('Mod+Alt+Shift+K', () => openCommandLog()) // Modifiers in order: Mod or Control, Alt, Shift, Meta
+useHotkey('[KeyW]', () => moveUp()) // The W position, whatever the layout types there
+
+useHotkey('Shift+Mod+S', () => saveAs()) // Type error: Mod comes first
+useHotkey('Mod+Meta+S', () => saveAs()) // Type error: Mod is already Meta on macOS
+```
+
+Write a chord as a `RawHotkeyChord` object when you build it from data, such as a form with a checkbox for each modifier:
+
+```ts
+useHotkey({ key: 'S', mod: true, shift: true }, () => saveAs()) // Same as 'Mod+Shift+S'
+useHotkey({ code: 'KeyW' }, () => moveUp()) // Same as '[KeyW]'
+
+useHotkey(
+  () => ({ key: binding.value.key, mod: binding.value.mod, shift: binding.value.shift }),
+  () => runAction(),
+)
+```
+
+Sequence steps can be strings, objects, or a mix:
+
+```ts
+useHotkey(['G', { key: 'H', shift: true }], () => goToHistory())
+```
+
+The composable registers every chord and sequence step as a string, so `context.hotkey` and devtools show `'Mod+Shift+S'` for the first object above. [Match a key's position instead](../../../guides/sensible-defaults.md#match-a-keys-position-instead) explains codes such as `[KeyW]`.
+
+## Hotkey options
+
+Pass options as the third argument:
+
+```ts
+// Submit with Enter, even while focus is in a text field
+useHotkey('Enter', () => submit(), { ignoreInputs: false })
+```
+
+| Option | Default | Description |
+| --- | --- | --- |
+| `enabled` | `true` | Whether the hotkey responds to key presses. See [Enable and disable hotkeys](#enable-and-disable-hotkeys). |
+| `target` | `document` | Where the hotkey listens. See [Hotkey targets](#hotkey-targets). |
+| `preventDefault` | `true` | Stops the browser's own action, such as the Save dialog for `Mod+S` |
+| `stopPropagation` | `true` | Stops the key press from reaching other listeners |
+| `ignoreInputs` | `'auto'` | Skips key presses that type in a text field or operate a focused control. See [Typing in inputs does not trigger shortcuts](../../../guides/sensible-defaults.md#typing-in-inputs-does-not-trigger-shortcuts). |
+| `eventType` | `'keydown'` | Fires on `'keydown'` or `'keyup'` |
+| `capture` | `false` | Runs before the keyboard handlers of elements inside the target. See [Hotkeys run after the page's own handlers](../../../guides/sensible-defaults.md#hotkeys-run-after-the-pages-own-handlers). |
+| `requireReset` | `false` | Chords only. Fires once per press instead of again on each automatic repeat while the key is held. |
+| `timeout` | `1000` | Sequences only. Milliseconds allowed between steps. |
+| `conflictBehavior` | `'warn'` | What happens when the same hotkey is already registered. See [Handle duplicate hotkeys](#handle-duplicate-hotkeys). |
+| `scope` | The nearest provider's scope | The [scope](./hotkeys-provider-and-scopes) the hotkey belongs to |
+| `platform` | Detected | The platform that decides what `Mod` means: `'mac'`, `'windows'`, or `'linux'`. Useful in tests. |
+| `meta` | None | A name, a description, and a group. See [Describe hotkeys with `meta`](#describe-hotkeys-with-meta). |
+
+The defaults suit most hotkeys. [Sensible Defaults](../../../guides/sensible-defaults.md) explains why each one was chosen and when to change it. The [`UseHotkeyOptions` reference](../reference/type-aliases/UseHotkeyOptions.md) lists the types.
+
+To change a default for every hotkey in your app, wrap it in a `HotkeysProvider` with `default-options`. Options passed to a composable override the provider's defaults:
+
+```vue
+<!-- App.vue -->
 <script setup lang="ts">
 import { HotkeysProvider } from '@tanstack/vue-hotkeys'
 </script>
 
 <template>
   <HotkeysProvider
-    :default-options="{
-      hotkey: { preventDefault: false, ignoreInputs: false },
-    }"
+    :default-options="{ hotkey: { requireReset: true, timeout: 1500 } }"
   >
     <AppContent />
   </HotkeysProvider>
 </template>
 ```
 
-## Common options
+The provider is optional. Without one, every hotkey uses the built-in defaults in the table. The defaults apply to components inside the provider, not to the component that renders it. See [HotkeysProvider and Scopes](./hotkeys-provider-and-scopes) for nested defaults and for grouping hotkeys into scopes.
 
-### `requireReset`
+### Chord and sequence options
 
-```ts
-useHotkey('Escape', () => closePanel(), { requireReset: true })
-```
-
-### `ignoreInputs`
-
-When `ignoreInputs` is enabled, hotkeys also skip keys that a focused control inside their `target` uses itself: `Enter` and `Space` on buttons and `<summary>`, `Enter` on links, and navigation keys in ARIA widgets such as menus, listboxes, tabs, and grids. A hotkey targeted at the control itself still receives them, and `ignoreInputs: false` handles every key. See [Focused controls keep their own keys](../../../guides/sensible-defaults.md#focused-controls-keep-their-own-keys) for the full list.
+Most options apply to both kinds of hotkey. `requireReset` applies only to chords, and `timeout` only to sequences. The option types follow the hotkey you pass, so TypeScript rejects options for the other kind:
 
 ```ts
-useHotkey('K', () => openSearch())
-useHotkey('Enter', () => submit(), { ignoreInputs: false })
+useHotkey('Escape', close, { requireReset: true }) // OK
+useHotkey(['G', 'G'], scrollToTop, { timeout: 500 }) // OK
+useHotkey('Escape', close, { timeout: 500 }) // Type error
 ```
 
-### `conflictBehavior`
+Options that apply to many hotkeys at once, such as provider defaults, apply each of these to the matching kind only. In the provider example above, `requireReset` affects chords, and `timeout` affects sequences.
 
-```ts
-useHotkey('Mod+S', () => save(), { conflictBehavior: 'replace' })
-```
+When the kind isn't known until runtime, such as a `Hotkey` loaded from settings, the composable accepts only the options that both kinds share.
 
-### `platform`
+## Register multiple hotkeys
 
-```ts
-useHotkey('Mod+S', () => save(), { platform: 'mac' })
-```
-
-## Automatic cleanup
-
-Hotkeys are automatically unregistered when the owning component unmounts.
-
-## Registering multiple hotkeys
-
-When you need to register several hotkeys at once, or a dynamic list whose length changes, use the `useHotkeys` (plural) composable:
+When a component has more than one hotkey, use `useHotkeys`. It takes an array of definitions, each with a `hotkey`, a `callback`, and optional `options`:
 
 ```vue
-<script setup>
+<script setup lang="ts">
 import { useHotkeys } from '@tanstack/vue-hotkeys'
 
 useHotkeys([
   { hotkey: 'Mod+S', callback: () => save() },
   { hotkey: 'Mod+Z', callback: () => undo() },
-  { hotkey: 'Escape', callback: () => close() },
+  { hotkey: 'Mod+Shift+Z', callback: () => redo() },
+  { hotkey: ['G', 'G'], callback: () => scrollToTop(), options: { timeout: 500 } },
 ])
 </script>
 ```
 
-### Common options with per-hotkey overrides
+Chords and sequences can share one array. Each definition's `options` are typed by its `hotkey`, as they are for `useHotkey`.
 
-Pass shared options as the second argument. Per-definition options override the common ones:
+A callback in the array receives a `context` that can belong to either kind of hotkey. Check `context.kind` before reading `context.parsedChord`:
 
 ```ts
-useHotkeys(
-  [
-    { hotkey: 'Mod+S', callback: () => save() },
-    { hotkey: 'Mod+Z', callback: () => undo(), options: { enabled: false } },
-  ],
-  { preventDefault: true },
-)
+useHotkeys([
+  {
+    hotkey: 'Mod+S',
+    callback: (event, context) => {
+      if (context.kind === 'chord') console.log(context.parsedChord.modifiers)
+    },
+  },
+])
 ```
 
-### Dynamic hotkey lists
+### Share options
 
-Pass a getter or computed ref as the first argument for reactive arrays:
+Pass options for every definition as the second argument. A definition's own options override them:
 
 ```vue
-<script setup>
-import { computed } from 'vue'
+<script setup lang="ts">
+import { ref } from 'vue'
 import { useHotkeys } from '@tanstack/vue-hotkeys'
 
-const items = computed(() => [...])
+const editor = ref<HTMLDivElement | null>(null)
 
 useHotkeys(
-  () => items.value.map((item) => ({
+  [
+    { hotkey: 'Mod+B', callback: () => toggleBold() },
+    { hotkey: 'Mod+I', callback: () => toggleItalic() },
+    { hotkey: 'Mod+Z', callback: () => undo(), options: { enabled: canUndo } },
+  ],
+  { target: editor },
+)
+</script>
+
+<template>
+  <div ref="editor" contenteditable />
+</template>
+```
+
+The shared `target` makes all three hotkeys listen on the editor only. [Hotkey targets](#hotkey-targets) explains targets.
+
+Options merge in this order: provider defaults, then the shared options, then each definition's options.
+
+### Build the list from data
+
+`setup` runs once, so a plain array never changes after it registers. Pass a getter or a computed ref for any list whose length can change:
+
+```vue
+<script setup lang="ts">
+import { useHotkeys } from '@tanstack/vue-hotkeys'
+
+const props = defineProps<{ items: Array<MenuItem> }>()
+
+useHotkeys(() =>
+  props.items.map((item) => ({
     hotkey: item.shortcut,
     callback: item.action,
+    options: { enabled: item.enabled },
   })),
 )
 </script>
 ```
 
-The composable watches for changes and diffs registrations automatically.
+The composable compares the array each time it changes, by position and hotkey. It registers new hotkeys and unregisters removed ones. Reordering the array registers the moved hotkeys again.
 
-## Metadata (name, description, and group)
+## Enable and disable hotkeys
 
-Every hotkey registration can carry a `meta` object with a `name`, `description`, and `group`. Metadata never affects hotkey behavior, but it flows through to registrations and devtools, so you can build shortcut palettes and help screens from it.
-
-```ts
-useHotkey('Mod+S', () => save(), {
-  meta: { name: 'Save', description: 'Save the document' },
-})
-```
-
-The `meta` option is typed as `HotkeyMeta`, which ships with `name`, `description`, and `group` fields. You can extend it with additional properties using TypeScript declaration merging:
-
-```ts
-declare module '@tanstack/hotkeys' {
-  interface HotkeyMeta {
-    icon?: string
-  }
-}
-
-useHotkey('Mod+S', () => save(), {
-  meta: { name: 'Save', description: 'Save the document', icon: 'floppy', group: 'File' },
-})
-```
-
-Group is descriptive metadata, not an execution scope. A shortcuts panel can group live registration views directly. Disabled registrations remain listed; unmounted registrations disappear.
-
-## Introspecting registrations
-
-Use the `useHotkeyRegistrations` composable to get a live view of every registration, chords and sequences together. It's the building block for shortcut palettes and help dialogs.
+A hotkey is on while its component is mounted. Most hotkeys need no other on and off logic, so put each one in the component it belongs to:
 
 ```vue
+<!-- SettingsDialog.vue -->
 <script setup lang="ts">
-import { useHotkeyRegistrations, formatForDisplay } from '@tanstack/vue-hotkeys'
+import { useHotkey } from '@tanstack/vue-hotkeys'
 
-const registrations = useHotkeyRegistrations()
+const emit = defineEmits<{ close: [] }>()
+
+// Registered only while the dialog is mounted
+useHotkey('Escape', () => emit('close'))
 </script>
 
 <template>
-  <ul>
-    <li v-for="reg in registrations" :key="reg.id">
-      <kbd>{{ formatForDisplay(reg.hotkey) }}</kbd>
-      <span v-if="reg.options.meta?.name"> — {{ reg.options.meta.name }}</span>
-      <small v-if="reg.kind === 'sequence'">
-        {{ reg.matchedStepCount }}/{{ reg.hotkey.length }} steps
-      </small>
-    </li>
-  </ul>
+  <div role="dialog">...</div>
 </template>
 ```
 
-The returned ref holds one array of registration views. Each view has an `id`, the `hotkey`, its `options` (including `meta`), its `target`, and a `triggerCount`. Narrow with `kind`: chord views add `parsedHotkey`; sequence views add `parsedSequence` and `matchedStepCount`, the steps matched so far in the current attempt. Disabled entries stay listed; unmounted registrations disappear. Format any hotkey with `formatForDisplay`, and group entries by `options.meta?.group` when building a help panel.
-
-Registrations only exist while their components are mounted. To list hotkeys from routes that have not rendered, declare them with [app hotkeys](./app-hotkeys).
-
-## The hotkey manager
-
-You can always reach for the underlying manager directly:
+For a condition that doesn't match a component, pass `enabled` as a ref or a getter:
 
 ```ts
-import { getHotkeyManager } from '@tanstack/vue-hotkeys'
-
-const manager = getHotkeyManager()
-manager.isRegistered('Mod+S')
-manager.getRegistrationCount()
+useHotkey('Mod+S', () => save(), { enabled: hasUnsavedChanges })
 ```
+
+A disabled hotkey stays registered, so devtools still list it, and changing `enabled` doesn't register it again. While disabled, it ignores key presses completely and doesn't call `preventDefault`. Pressing `Mod+S` while the hotkey above is disabled opens the browser's Save dialog. To keep the dialog closed, leave the hotkey enabled and return early from the callback:
+
+```ts
+useHotkey('Mod+S', () => {
+  if (!hasUnsavedChanges.value) return
+  save()
+})
+```
+
+`enabled` works the same way for sequences. A disabled sequence ignores its steps.
+
+Single-key hotkeys, such as `K`, need a setting that lets users turn them off. Pass that setting as `enabled`. See [Single-key shortcuts need an off switch](../../../guides/sensible-defaults.md#single-key-shortcuts-need-an-off-switch).
+
+When a group of hotkeys turns on and off together, use [scopes](./hotkeys-provider-and-scopes) instead of passing `enabled` to each one. A scope can turn off the hotkeys in a tab panel that stays mounted, or suspend the rest of the page while a dialog is open.
+
+## Hotkey targets
+
+A hotkey listens on `document` by default, so it works wherever focus is on the page. Set `target` to a template ref, an element, `document`, or `window` to listen somewhere else:
+
+```vue
+<script setup lang="ts">
+import { ref } from 'vue'
+import { useHotkey } from '@tanstack/vue-hotkeys'
+
+const panel = ref<HTMLDivElement | null>(null)
+
+// Fires only while the panel, or something inside it, has focus
+useHotkey('Escape', () => closePanel(), { target: panel })
+</script>
+
+<template>
+  <div ref="panel" tabindex="0">Panel content</div>
+</template>
+```
+
+A `null` target waits until the element is mounted.
+
+> [!NOTE]
+> An element receives key presses only while it, or something inside it, has focus. Give it a `tabindex` if it isn't focusable already.
+
+While focus is inside the element, its hotkeys run before hotkeys on `document`. With the default `stopPropagation: true`, a `document` hotkey for the same key doesn't run at all. A sequence with a target advances only on key presses inside the target.
+
+### A target is not a scope
+
+A target and a [scope](./hotkeys-provider-and-scopes) both limit when a hotkey works, in different ways:
+
+- A target decides which key presses the hotkey receives, based on where focus is.
+- A scope decides whether the hotkey is on, based on which parts of your app are active, such as an open dialog. Focus doesn't matter.
+
+Use a target for hotkeys that belong to a focusable element, such as a list or a code editor. Use a scope for hotkeys that belong to a part of your app, whether or not it has focus. A hotkey can have both.
+
+## Handle duplicate hotkeys
+
+When you register a hotkey that is already registered on the same target and in the same scope, TanStack Hotkeys logs a warning, and both callbacks run. Set `conflictBehavior` to change that:
+
+- `'warn'` (default) logs a warning and keeps both registrations.
+- `'error'` throws an error.
+- `'replace'` unregisters the existing registration.
+- `'allow'` keeps both without a warning.
+
+The comparison resolves modifiers first, so `Mod+S` and `Meta+S` are duplicates on macOS. Two sequences are duplicates when all their steps match. Sequences that only start with the same chord, such as `['G', 'H']` and `['G', 'S']`, are not duplicates.
+
+The same hotkey in two different [scopes](./hotkeys-provider-and-scopes) is not a duplicate either. When both scopes are active, the scope with higher precedence handles the key. See [Nested scopes win](./hotkeys-provider-and-scopes#nested-scopes-win).
+
+## Describe hotkeys with `meta`
+
+Give a hotkey a name, a description, and a group with `meta`:
+
+```ts
+useHotkey('Mod+S', () => save(), {
+  meta: { name: 'Save', description: 'Save the document', group: 'File' },
+})
+```
+
+`meta` doesn't change how a hotkey behaves. Devtools show it, and you can build a list of your app's shortcuts from it. See [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers).

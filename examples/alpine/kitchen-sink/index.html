@@ -66,7 +66,7 @@
           <h2>Registered shortcuts</h2>
           <p>
             Global and current-route registrations, including disabled handlers.
-            Scoped shortcuts run inside their target.
+            Target shortcuts run only while focus is inside their target.
           </p>
           <template x-for="group in (groups)" :key="group">
             <div>
@@ -110,7 +110,7 @@
         <template x-if="currentPath === '/editor'">
           <span style="display: contents" x-data="editor(() => ({ log: log }))">
             <section>
-              <h2>Editor scopes</h2>
+              <h2>Editor targets</h2>
               <p>
                 Save is registered in both editors. Focus a textarea to choose
                 which handler receives it.

@@ -3,7 +3,11 @@ id: HotkeysProviderProps
 title: HotkeysProviderProps
 ---
 
-Defined in: [HotkeysProvider.tsx:40](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L40)
+Defined in: [HotkeysProvider.tsx:49](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L49)
+
+## Extends
+
+- `HotkeysProviderScopeProps`
 
 ## Type Parameters
 
@@ -19,7 +23,7 @@ Defined in: [HotkeysProvider.tsx:40](https://github.com/TanStack/hotkeys/blob/ma
 optional appHotkeys?: T;
 ```
 
-Defined in: [HotkeysProvider.tsx:46](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L46)
+Defined in: [HotkeysProvider.tsx:57](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L57)
 
 Every app hotkey, from `defineAppHotkeys`. Listed by `useAppHotkeyList`
 whether or not their components have mounted.
@@ -32,7 +36,7 @@ whether or not their components have mounted.
 children: ReactNode;
 ```
 
-Defined in: [HotkeysProvider.tsx:41](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L41)
+Defined in: [HotkeysProvider.tsx:52](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L52)
 
 ***
 
@@ -42,7 +46,7 @@ Defined in: [HotkeysProvider.tsx:41](https://github.com/TanStack/hotkeys/blob/ma
 optional customHotkeys?: CustomHotkeys<T> | null;
 ```
 
-Defined in: [HotkeysProvider.tsx:51](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L51)
+Defined in: [HotkeysProvider.tsx:62](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L62)
 
 Starting custom hotkeys, such as saved data. Read once; the provider owns
 the state afterwards. Invalid entries are ignored with a warning.
@@ -55,7 +59,9 @@ the state afterwards. Invalid entries are ignored with a warning.
 optional defaultOptions?: HotkeysProviderOptions;
 ```
 
-Defined in: [HotkeysProvider.tsx:54](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L54)
+Defined in: [HotkeysProvider.tsx:66](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L66)
+
+Merged with the parent provider's defaults.
 
 ***
 
@@ -65,7 +71,7 @@ Defined in: [HotkeysProvider.tsx:54](https://github.com/TanStack/hotkeys/blob/ma
 optional onCustomHotkeysChange?: (customHotkeys) => void;
 ```
 
-Defined in: [HotkeysProvider.tsx:53](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L53)
+Defined in: [HotkeysProvider.tsx:64](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L64)
 
 Called with the custom hotkeys after every change, ready to save.
 

@@ -1,10 +1,6 @@
 import { normalizeKeyName } from './constants'
 import { isCodeName, normalizeKeyboardEvent } from './_keyboard-event'
-import {
-  isModifierKey,
-  normalizeHotkeyFromParsed,
-  parseKeyboardEvent,
-} from './parse'
+import { isModifierKey, normalizeHotkey, parseKeyboardEvent } from './parse'
 import type {
   RecorderKeyMode,
   RecorderOptions,
@@ -35,12 +31,9 @@ export function hotkeyChordFromKeydown(
   if (recordBy === 'code') {
     // Remove logical identity rather than placing a physical code in the key field.
     const { key: _key, code: _code, ...modifiers } = parsed
-    return normalizeHotkeyFromParsed(
-      { ...modifiers, code: event.code },
-      platform,
-    )
+    return normalizeHotkey({ ...modifiers, code: event.code }, platform)
   }
-  return parsed.key ? normalizeHotkeyFromParsed(parsed, platform) : null
+  return parsed.key ? normalizeHotkey(parsed, platform) : null
 }
 
 /**

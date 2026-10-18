@@ -1,0 +1,245 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background: #f5f5f5;
+  color: #333;
+}
+.app {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+}
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+header h1 {
+  margin: 0 0 10px;
+  color: #0066cc;
+}
+header p {
+  color: #666;
+  margin: 0;
+}
+.demo-section {
+  background: white;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+.demo-section h2 {
+  margin: 0 0 12px;
+  font-size: 20px;
+}
+.demo-section p {
+  margin: 0 0 12px;
+}
+kbd {
+  background: linear-gradient(180deg, #f8f8f8 0%, #e8e8e8 100%);
+  border: 1px solid #ccc;
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-family: monospace;
+  font-size: 13px;
+}
+.counter {
+  font-size: 28px;
+  font-weight: bold;
+  color: #0066cc;
+  margin: 16px 0;
+}
+.hint {
+  font-size: 13px;
+  color: #888;
+  font-style: italic;
+}
+.info-box {
+  background: #e3f2fd;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin: 20px 0;
+}
+button {
+  background: #0066cc;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+button:hover {
+  background: #0052a3;
+}
+button:disabled {
+  background: #aaa;
+  cursor: not-allowed;
+}
+.code-block {
+  background: #1e1e1e;
+  color: #d4d4d4;
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 16px;
+}
+code {
+  font-size: 13px;
+}
+label {
+  margin-right: 16px;
+}
+fieldset {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 0 0 16px;
+}
+button.secondary {
+  background: #e8e8e8;
+  color: #333;
+}
+button.secondary:hover {
+  background: #d8d8d8;
+}
+
+.panel {
+  padding: 12px 16px;
+  margin-top: 12px;
+  background: #f8f9fa;
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+}
+.panel p {
+  margin: 4px 0 0;
+}
+.folders {
+  display: grid;
+  gap: 12px;
+}
+.folder {
+  display: flex;
+  justify-content: space-between;
+  gap: 4px;
+  width: 100%;
+  margin: 0;
+  text-align: left;
+  color: #333;
+  font-size: 14px;
+}
+.folder:hover {
+  background: #eef4fb;
+}
+.folder[data-current='true'] {
+  border-color: #0066cc;
+  background: #e3f2fd;
+}
+
+/* Dialog */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.4);
+}
+.dialog {
+  width: min(640px, calc(100vw - 32px));
+  padding: 24px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.25);
+}
+.dialog h2 {
+  margin: 0 0 12px;
+}
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+/* Activity */
+.log {
+  max-height: 240px;
+  overflow-y: auto;
+  background: #f8f9fa;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 14px;
+}
+.log-entry {
+  padding: 4px 0;
+  border-bottom: 1px solid #eee;
+}
+.log-entry:last-child {
+  border-bottom: none;
+}
+.log-scope {
+  display: inline-block;
+  min-width: 110px;
+  margin-right: 8px;
+  color: #0052a3;
+}
+button kbd {
+  margin-left: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+  color: white;
+}
+
+/* Provider boxes */
+.scope-frame {
+  min-width: 0;
+  margin: 0 0 24px;
+  padding: 16px;
+  border: 2px solid #90c2f0;
+  border-radius: 12px;
+}
+.scope-frame:last-child,
+.scope-frame > :last-child {
+  margin-bottom: 0;
+}
+.scope-frame > legend {
+  padding: 0 6px;
+  font-size: 13px;
+  color: #555;
+}
+.scope-frame[data-exclusive='true'] {
+  border-color: #6b3fa0;
+}
+.scope-frame[data-enabled='false'] {
+  border-style: dashed;
+  border-color: #c8c8c8;
+}
+.scope-frame[data-enabled='false'] > :not(legend) {
+  opacity: 0.6;
+}
+.scope-frame .scope-frame {
+  margin: 12px 0 0;
+}
+.folders .scope-frame {
+  margin: 0;
+  padding: 4px 8px 8px;
+}
+.dialog > .scope-frame {
+  margin: 0;
+}
+
+/* Angular host elements */
+app-scope,
+app-scope-frame,
+app-activity-log {
+  display: block;
+}

@@ -3,6 +3,7 @@ import { splitSlot, subSlot } from './internal'
 import type {
   AppHotkey,
   HotkeyCallback,
+  HotkeyCallbackContextFor,
   RegisterableHotkey,
   Target,
 } from '@tanstack/hotkeys'
@@ -49,9 +50,9 @@ export function useHotkey<T extends AppHotkey>(
   callback: HotkeyCallback,
   options?: UseAppHotkeyOptions<T>,
 ): void
-export function useHotkey<T extends RegisterableHotkey>(
+export function useHotkey<const T extends RegisterableHotkey>(
   hotkey: T,
-  callback: HotkeyCallback,
+  callback: HotkeyCallback<HotkeyCallbackContextFor<T>>,
   options?: UseHotkeyOptionsFor<T>,
 ): void
 export function useHotkey(

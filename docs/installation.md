@@ -1,6 +1,7 @@
 ---
 title: Installation
 id: installation
+description: Install the TanStack Hotkeys adapter for React, Preact, Solid, Angular, Vue, Svelte, Lit, Alpine, Ember, or Octane, plus the optional devtools.
 ---
 
 Install the adapter for your framework with your preferred package manager:
@@ -33,11 +34,11 @@ Start with the [Quick Start](./framework/react/quick-start) guide. If you want t
 
 # Preact
 
-Start with the [API reference](./framework/preact/reference/index) and [guides](./framework/preact/guides/hotkeys). If you want the integrated devtools panel, also install:
+Start with the [Quick Start](./framework/preact/quick-start) guide and the Preact-specific [guides](./framework/preact/guides/hotkeys). If you want the integrated devtools panel, also install:
 
 # Solid
 
-Start with the [API reference](./framework/solid/reference/index) and [guides](./framework/solid/guides/hotkeys). If you want the integrated devtools panel, also install:
+Start with the [Quick Start](./framework/solid/quick-start) guide and the Solid-specific [guides](./framework/solid/guides/hotkeys). If you want the integrated devtools panel, also install:
 
 # Angular
 

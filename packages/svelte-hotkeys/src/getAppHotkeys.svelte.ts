@@ -33,8 +33,8 @@ export interface SvelteAppHotkeys {
  * @example
  * ```svelte
  * <script lang="ts">
- *   const hotkeys = getAppHotkeys()
- *   createHotkey(() => hotkeys.current['doc.save'], () => save())
+ *   const appHotkeys = getAppHotkeys()
+ *   createHotkey(() => appHotkeys.current['doc.save'], () => save())
  * </script>
  * ```
  */

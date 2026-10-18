@@ -30,11 +30,11 @@ const modalRef = ref<HTMLDivElement | null>(null)
 const editorRef = ref<HTMLTextAreaElement | null>(null)
 const plugins = [{ name: 'TanStack Hotkeys', component: HotkeysDevtoolsPanel }]
 
-useHotkey('Mod+S', (_event, { hotkey, parsedHotkey }) => {
+useHotkey('Mod+S', (_event, { hotkey, parsedChord }) => {
   lastHotkey.value = hotkey
   saveCount.value++
   console.log('Hotkey triggered:', hotkey)
-  console.log('Parsed hotkey:', parsedHotkey)
+  console.log('Parsed hotkey:', parsedChord)
 })
 
 useHotkey(
@@ -282,9 +282,9 @@ useHotkey('J', () => {
   editorShortcutCount.value++
 })
 
-const basicCode = `useHotkey('Mod+S', (_event, { hotkey, parsedHotkey }) => {
+const basicCode = `useHotkey('Mod+S', (_event, { hotkey, parsedChord }) => {
   console.log('Hotkey:', hotkey)
-  console.log('Parsed:', parsedHotkey)
+  console.log('Parsed:', parsedChord)
 })`
 
 const requireResetCode = `useHotkey(

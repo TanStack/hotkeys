@@ -22,7 +22,7 @@ registered app hotkey immediately and are passed to the provider's
 ```tsx
 const { setCustomHotkey, findConflicts } = useCustomHotkeys()
 const recorder = useHotkeyRecorder({
-  maxSteps: 3,
+  maxSteps: Infinity,
   validate: (hotkey) =>
     findConflicts('doc.save', hotkey).length === 0 || 'Already in use',
   onRecord: (hotkey) => setCustomHotkey('doc.save', hotkey),

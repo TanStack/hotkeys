@@ -2,6 +2,7 @@ import { useHotkeys } from './useHotkeys'
 import type {
   AppHotkey,
   HotkeyCallback,
+  HotkeyCallbackContextFor,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
 import type {
@@ -59,7 +60,7 @@ export type UseAppHotkeyOptions<T extends AppHotkey = AppHotkey> =
  * Options merge in this order: provider defaults, app hotkey declaration,
  * call-site options.
  *
- * @param hotkey - A chord string, RawHotkey object, sequence, or app hotkey
+ * @param hotkey - A chord string, RawHotkeyChord object, sequence, or app hotkey
  * @param callback - The function to call when the hotkey is pressed
  * @param options - Options for the hotkey behavior
  *
@@ -77,8 +78,8 @@ export type UseAppHotkeyOptions<T extends AppHotkey = AppHotkey> =
  * @example
  * ```tsx
  * function Toolbar() {
- *   const hotkeys = useAppHotkeys()
- *   useHotkey(hotkeys['doc.save'], () => save())
+ *   const appHotkeys = useAppHotkeys()
+ *   useHotkey(appHotkeys['doc.save'], () => save())
  * }
  * ```
  */
@@ -87,9 +88,9 @@ export function useHotkey<T extends AppHotkey>(
   callback: HotkeyCallback,
   options?: UseAppHotkeyOptions<T>,
 ): void
-export function useHotkey<T extends RegisterableHotkey>(
+export function useHotkey<const T extends RegisterableHotkey>(
   hotkey: T,
-  callback: HotkeyCallback,
+  callback: HotkeyCallback<HotkeyCallbackContextFor<T>>,
   options?: UseHotkeyOptionsFor<T>,
 ): void
 export function useHotkey(

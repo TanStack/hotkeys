@@ -28,8 +28,8 @@ const recorder = useHotkeyRecorder(() => ({
   detectConflicts: {
     exclude: (reg) => reg.options.meta?.name === 'Recorded action',
   },
-  validate: (_, { parsedHotkey }) =>
-    parsedHotkey.modifiers.length > 0 || 'Include a modifier.',
+  validate: (_, { parsedChord }) =>
+    parsedChord.modifiers.length > 0 || 'Include a modifier.',
   onRecord: (value) => {
     hotkey.value = value
     problem.value = ''

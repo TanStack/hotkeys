@@ -28,8 +28,8 @@ function useRequiredStore(hook: string): AppHotkeysStore<RegisteredAppHotkeys> {
  *
  * @example
  * ```tsx
- * const hotkeys = useAppHotkeys()
- * useHotkey(hotkeys['doc.save'], () => save())
+ * const appHotkeys = useAppHotkeys()
+ * useHotkey(appHotkeys['doc.save'], () => save())
  * ```
  */
 export function useAppHotkeys(): RegisteredAppHotkeys {
@@ -98,7 +98,7 @@ export interface UseCustomHotkeysResult {
  * ```tsx
  * const { setCustomHotkey, findConflicts } = useCustomHotkeys()
  * const recorder = useHotkeyRecorder({
- *   maxSteps: 3,
+ *   maxSteps: Infinity,
  *   validate: (hotkey) =>
  *     findConflicts('doc.save', hotkey).length === 0 || 'Already in use',
  *   onRecord: (hotkey) => setCustomHotkey('doc.save', hotkey),

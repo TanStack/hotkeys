@@ -53,7 +53,7 @@ function ShortcutInput() {
 
 ```tsx
 const recorder = useHotkeyRecorder({
-  maxSteps: 3,
+  maxSteps: Infinity,
   onRecord: (hotkey) => setShortcut(hotkey), // 'Mod+S' or ['G', 'H']
 })
 ```
@@ -108,7 +108,7 @@ function ShortcutInput() {
 
 ```tsx
 const recorder = useHotkeyRecorder({
-  maxSteps: 3,
+  maxSteps: Infinity,
   onRecord: (hotkey) => setShortcut(hotkey), // 'Mod+S' or ['G', 'H']
 })
 ```

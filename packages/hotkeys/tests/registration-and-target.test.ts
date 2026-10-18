@@ -261,6 +261,7 @@ describe('registration and event-target helpers', () => {
         enabled: true,
         ignoreInputs: 'auto',
         conflictBehavior: 'warn',
+        scope: 'global',
       })
     })
   })

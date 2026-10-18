@@ -8,9 +8,8 @@ import {
   formatHotkey,
   matchesHeldModifiers,
   matchesKeyboardEvent,
-  normalizeRegisterableHotkey,
+  normalizeHotkey,
   parseHotkey,
-  rawHotkeyToParsedHotkey,
   validateHotkey,
 } from '../src'
 import { managerRef } from '../src/_manager-ref'
@@ -79,11 +78,9 @@ it.each([
 it('retains code identity through raw, string and parsed serialization', () => {
   for (const code of ['KeyQ', 'Digit2', 'Enter', 'NumpadEnter', 'Slash']) {
     const raw = { code, alt: true }
-    const string = normalizeRegisterableHotkey(raw, 'mac')
+    const string = normalizeHotkey(raw, 'mac')
     expect(parseHotkey(string).code).toBe(code)
-    expect(parseHotkey(formatHotkey(rawHotkeyToParsedHotkey(raw))).code).toBe(
-      code,
-    )
+    expect(parseHotkey(formatHotkey(parseHotkey(raw))).code).toBe(code)
     expect(areHotkeysEqual(raw, string)).toBe(true)
   }
   expect(
@@ -162,8 +159,8 @@ it('keeps recording after rejection and clears with only onClear', () => {
     onRecord,
     onClear,
     onReject,
-    validate: (_, { parsedHotkey }) =>
-      parsedHotkey.modifiers.length > 0 || 'Include a modifier.',
+    validate: (_, { parsedChord }) =>
+      parsedChord.modifiers.length > 0 || 'Include a modifier.',
   })
   r.start()
   press('s', 'KeyS')

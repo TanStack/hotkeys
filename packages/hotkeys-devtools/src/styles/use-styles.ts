@@ -160,6 +160,7 @@ const stylesFactory = (theme: 'light' | 'dark') => {
     leftPanelScroll: css`
       flex: 1;
       min-height: 0;
+      overflow-x: hidden;
       overflow-y: auto;
     `,
     rightPanel: css`
@@ -238,6 +239,40 @@ const stylesFactory = (theme: 'light' | 'dark') => {
     hotkeyList: css`
       padding: ${size[1]};
     `,
+    scopeGroup: css`
+      margin-bottom: ${size[2]};
+    `,
+    scopeGroupDimmed: css`
+      & [data-row-label] {
+        opacity: 0.55;
+      }
+    `,
+    scopeHeader: css`
+      display: flex;
+      align-items: center;
+      gap: ${size[1.5]};
+      padding: ${size[1]} ${size[1]} ${size[1.5]};
+      position: sticky;
+      top: 0;
+      z-index: 3;
+      background: ${t(colors.gray[100], colors.darkGray[800])};
+    `,
+    scopeName: css`
+      font-family: ${fontFamily.mono};
+      font-size: ${fontSize.sm};
+      font-weight: ${font.weight.bold};
+      color: ${t(colors.gray[800], colors.gray[200])};
+    `,
+    scopeNameSuffix: css`
+      font-family: ${fontFamily.sans};
+      font-weight: ${font.weight.normal};
+      color: ${t(colors.gray[500], colors.gray[400])};
+    `,
+    scopeCount: css`
+      font-size: ${fontSize.xs};
+      color: ${t(colors.gray[500], colors.gray[400])};
+      margin-right: auto;
+    `,
     hotkeyRow: css`
       display: flex;
       justify-content: space-between;
@@ -249,14 +284,21 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       cursor: pointer;
       transition: all 0.2s ease;
       border: 1px solid transparent;
+      position: relative;
 
       &:hover {
         background: ${t(colors.gray[300], colors.darkGray[600])};
         border-color: ${t(colors.gray[400], colors.darkGray[500])};
+        /* Lift the row so its tooltips render above the rows after it. */
+        z-index: 2;
       }
     `,
+    /* Dim the label rather than the row: opacity on the row would trap and
+       fade its tooltips. */
     hotkeyRowInactive: css`
-      opacity: 0.65;
+      & > [data-row-label] {
+        opacity: 0.65;
+      }
       border-style: dashed;
       border-color: ${t(colors.gray[400], colors.darkGray[500])};
     `,
@@ -360,6 +402,14 @@ const stylesFactory = (theme: 'light' | 'dark') => {
     badgeAllow: css`
       color: ${t(colors.gray[600], colors.gray[400])};
       background: ${t(colors.gray[200], colors.darkGray[600])};
+    `,
+    badgeExclusive: css`
+      color: ${t(colors.purple[700], colors.purple[400])};
+      background: ${t(colors.purple[100], colors.purple[900] + alpha[30])};
+    `,
+    badgeSuspended: css`
+      color: ${t(colors.yellow[700], colors.yellow[400])};
+      background: ${t(colors.yellow[100], colors.yellow[900] + alpha[30])};
     `,
     badgeInfo: css`
       color: ${t(colors.blue[700], colors.blue[400])};
@@ -635,15 +685,18 @@ const stylesFactory = (theme: 'light' | 'dark') => {
     tooltip: css`
       position: relative;
       &:hover > [data-tooltip] {
+        display: block;
         opacity: 1;
         visibility: visible;
       }
     `,
+    /* Badges sit at the right edge of rows, so tooltips grow leftward. Hidden
+       tooltips use display: none so they cannot widen scroll containers. */
     tooltipText: css`
+      display: none;
       position: absolute;
       top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
+      right: 0;
       padding: ${size[1]} ${size[1.5]};
       background: ${t(colors.gray[800], colors.darkGray[500])};
       color: ${t(colors.white, colors.gray[100])};
@@ -660,6 +713,7 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       margin-top: ${size[1]};
     `,
     rowTooltipText: css`
+      display: none;
       position: absolute;
       bottom: 100%;
       left: ${size[2]};

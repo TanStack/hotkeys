@@ -12,7 +12,7 @@ function createHotkey<T>(
    options?): void;
 ```
 
-Defined in: [createHotkey.ts:64](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L64)
+Defined in: [createHotkey.ts:65](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L65)
 
 Solid primitive for registering a hotkey: a chord such as `'Mod+S'`, a
 sequence such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
@@ -64,7 +64,7 @@ function createHotkey<T>(
    options?): void;
 ```
 
-Defined in: [createHotkey.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L69)
+Defined in: [createHotkey.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L70)
 
 Solid primitive for registering a hotkey: a chord such as `'Mod+S'`, a
 sequence such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
@@ -89,7 +89,7 @@ declared meta and options, and registers nothing while unbound.
 
 #### callback
 
-`HotkeyCallback`
+`HotkeyCallback`\<`HotkeyCallbackContextFor`\<`T`\>\>
 
 #### options?
 

@@ -45,11 +45,11 @@ function App() {
 
   // Browser default: Save page (downloads the current page)
   // Basic hotkey with callback context
-  useHotkey('Mod+[KeyS]', (_event, { hotkey, parsedHotkey }) => {
+  useHotkey('Mod+[KeyS]', (_event, { hotkey, parsedChord }) => {
     setLastHotkey(hotkey)
     setSaveCount((c) => c + 1)
     console.log('Hotkey triggered:', hotkey)
-    console.log('Parsed hotkey:', parsedHotkey)
+    console.log('Parsed hotkey:', parsedChord)
   })
 
   // requireReset prevents repeated triggering while holding keys
@@ -248,7 +248,7 @@ function App() {
   // Single Keys
   // ============================================================================
 
-  // Clear with Escape (RawHotkey object form)
+  // Clear with Escape (RawHotkeyChord object form)
   useHotkey({ key: 'Escape' }, () => {
     setLastHotkey(null)
     setSaveCount(0)
@@ -375,9 +375,9 @@ function App() {
             physical S position
           </p>
           <div className="counter">Save triggered: {saveCount}x</div>
-          <pre className="code-block">{`useHotkey('Mod+[KeyS]', (_event, { hotkey, parsedHotkey }) => {
+          <pre className="code-block">{`useHotkey('Mod+[KeyS]', (_event, { hotkey, parsedChord }) => {
   console.log('Hotkey:', hotkey)
-  console.log('Parsed:', parsedHotkey)
+  console.log('Parsed:', parsedChord)
 })`}</pre>
         </section>
 

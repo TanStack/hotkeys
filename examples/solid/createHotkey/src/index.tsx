@@ -34,11 +34,11 @@ function App() {
     null,
   )
 
-  createHotkey('Mod+S', (_event, { hotkey, parsedHotkey }) => {
+  createHotkey('Mod+S', (_event, { hotkey, parsedChord }) => {
     setLastHotkey(hotkey)
     setSaveCount((c) => c + 1)
     console.log('Hotkey triggered:', hotkey)
-    console.log('Parsed hotkey:', parsedHotkey)
+    console.log('Parsed hotkey:', parsedChord)
   })
 
   createHotkey(
@@ -297,9 +297,9 @@ function App() {
             Press <kbd>{formatForDisplay('Mod+S')}</kbd> to trigger
           </p>
           <div class="counter">Save triggered: {saveCount()}x</div>
-          <pre class="code-block">{`createHotkey('Mod+S', (_event, { hotkey, parsedHotkey }) => {
+          <pre class="code-block">{`createHotkey('Mod+S', (_event, { hotkey, parsedChord }) => {
   console.log('Hotkey:', hotkey)
-  console.log('Parsed:', parsedHotkey)
+  console.log('Parsed:', parsedChord)
 })`}</pre>
         </section>
 

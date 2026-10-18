@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { computed, onUnmounted, provide, ref } from 'vue'
 import {
+  HotkeysProvider,
   formatForDisplay,
   useHeldKeyCodes,
   useHeldKeys,
@@ -108,6 +109,7 @@ useHotkey(
         <tr>
           <th>Group / action</th>
           <th>Binding</th>
+          <th>Scope</th>
           <th>Status</th>
         </tr>
       </thead>
@@ -117,6 +119,7 @@ useHotkey(
           <td>
             {{ formatForDisplay(reg.hotkey, { sequenceSeparator: ' → ' }) }}
           </td>
+          <td>{{ reg.options.scope }}</td>
           <td>
             {{
               reg.options.enabled === false
@@ -128,7 +131,12 @@ useHotkey(
       </tbody>
     </table>
   </section>
-  <main><component :is="page.component" :key="page.path" /></main>
+  <main>
+    <!-- Each page gets its own hotkey scope, active while it is mounted. -->
+    <HotkeysProvider :key="page.path" :scope="page.name.toLowerCase()">
+      <component :is="page.component" />
+    </HotkeysProvider>
+  </main>
   <section>
     <h2>Key state</h2>
     <p>

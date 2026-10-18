@@ -292,3 +292,75 @@ describe('equivalent sequence conflicts', () => {
     ).not.toThrow()
   })
 })
+
+describe('sequence steps before the last', () => {
+  afterEach(() => {
+    vi.useRealTimers()
+    HotkeyManager.resetInstance()
+  })
+
+  function keydown(key: string, init: KeyboardEventInit = {}) {
+    const event = new KeyboardEvent('keydown', {
+      key,
+      bubbles: true,
+      cancelable: true,
+      ...init,
+    })
+    document.dispatchEvent(event)
+    return event
+  }
+
+  it('prevents the default of each step that advances, and stops propagation only on the last', () => {
+    const manager = HotkeyManager.getInstance()
+    const callback = vi.fn()
+    const outer = vi.fn()
+    window.addEventListener('keydown', outer)
+    manager.register(['Mod+K', 'Mod+C'], callback, { platform: 'windows' })
+
+    expect(keydown('k', { ctrlKey: true }).defaultPrevented).toBe(true)
+    expect(outer).toHaveBeenCalledTimes(1)
+    expect(keydown('c', { ctrlKey: true }).defaultPrevented).toBe(true)
+    expect(outer).toHaveBeenCalledTimes(1)
+    expect(callback).toHaveBeenCalledOnce()
+    expect(keydown('x').defaultPrevented).toBe(false)
+    window.removeEventListener('keydown', outer)
+  })
+
+  it('leaves earlier steps alone with preventDefault: false', () => {
+    const manager = HotkeyManager.getInstance()
+    manager.register(['G', 'H'], () => {}, { preventDefault: false })
+    expect(keydown('g').defaultPrevented).toBe(false)
+    expect(keydown('h').defaultPrevented).toBe(false)
+  })
+
+  it('clears progress and notifies subscribers once the timeout passes', () => {
+    vi.useFakeTimers()
+    const manager = HotkeyManager.getInstance()
+    const handle = manager.register(['G', 'H'], () => {}, { timeout: 500 })
+    const progress = () => {
+      const registration = manager.registrations.state.get(handle.id)!
+      return registration.kind === 'sequence' ? registration.currentIndex : -1
+    }
+    const listener = vi.fn()
+    const subscription = manager.registrations.subscribe(listener)
+
+    keydown('g')
+    expect(progress()).toBe(1)
+    listener.mockClear()
+    vi.advanceTimersByTime(500)
+    expect(progress()).toBe(1)
+    expect(listener).not.toHaveBeenCalled()
+    vi.advanceTimersByTime(1)
+    expect(progress()).toBe(0)
+    expect(listener).toHaveBeenCalled()
+
+    keydown('g')
+    vi.advanceTimersByTime(400)
+    keydown('h')
+    expect(progress()).toBe(0)
+    keydown('g')
+    handle.unregister()
+    expect(vi.getTimerCount()).toBe(0)
+    subscription.unsubscribe()
+  })
+})

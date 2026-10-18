@@ -3,6 +3,7 @@ import type { Attachment } from 'svelte/attachments'
 import type {
   AppHotkey,
   HotkeyCallback,
+  HotkeyCallbackContextFor,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
 import type {
@@ -64,9 +65,9 @@ export function createHotkey<T extends AppHotkey>(
   callback: HotkeyCallback,
   options?: MaybeGetter<CreateAppHotkeyOptions<T>>,
 ): void
-export function createHotkey<T extends RegisterableHotkey>(
+export function createHotkey<const T extends RegisterableHotkey>(
   hotkey: MaybeGetter<T>,
-  callback: HotkeyCallback,
+  callback: HotkeyCallback<HotkeyCallbackContextFor<T>>,
   options?: MaybeGetter<CreateHotkeyOptionsFor<T>>,
 ): void
 export function createHotkey(
@@ -95,9 +96,9 @@ export function createHotkeyAttachment<T extends AppHotkey>(
   callback: HotkeyCallback,
   options?: MaybeGetter<CreateAppHotkeyOptions<T>>,
 ): Attachment<HTMLElement>
-export function createHotkeyAttachment<T extends RegisterableHotkey>(
+export function createHotkeyAttachment<const T extends RegisterableHotkey>(
   hotkey: MaybeGetter<T>,
-  callback: HotkeyCallback,
+  callback: HotkeyCallback<HotkeyCallbackContextFor<T>>,
   options?: MaybeGetter<CreateHotkeyOptionsFor<T>>,
 ): Attachment<HTMLElement>
 export function createHotkeyAttachment(
