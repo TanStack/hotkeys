@@ -15,7 +15,7 @@ TanStack Hotkeys is a type-safe, framework-agnostic library for keyboard shortcu
 - **Devtools** for inspecting shortcuts while you develop
 
 > [!IMPORTANT]
-> TanStack Hotkeys is currently in **alpha** and its API is still subject to change. Early adopters are encouraged to help us solve edge cases across multiple keyboard layouts, locales, and operating systems.
+> TanStack Hotkeys is currently in **beta** and its API is still subject to change. Early adopters are encouraged to help us solve edge cases across multiple keyboard layouts, locales, and operating systems.
 
 ## Motivation
 

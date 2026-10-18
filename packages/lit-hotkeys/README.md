@@ -51,7 +51,7 @@
 # TanStack Hotkeys
 
 > [!NOTE]
-> TanStack Hotkeys is alpha. We are actively developing the library and are open to feedback and contributions.
+> TanStack Hotkeys is in beta. We are actively developing the library and are open to feedback and contributions.
 
 Type-safe keyboard shortcuts for the web. Template-string bindings, parsed objects, a cross-platform `Mod` key, a singleton Hotkey Manager, and utilities for cheatsheet UIs—built to stay SSR-friendly.
 
