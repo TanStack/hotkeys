@@ -1,5 +1,16 @@
 # @tanstack/octane-hotkeys
 
+## 0.6.0
+
+### Minor Changes
+
+- [#194](https://github.com/TanStack/hotkeys/pull/194) [`db47b22`](https://github.com/TanStack/hotkeys/commit/db47b2211884f0b7f5a58f7b2b8234082294a5c5) - Ship [TanStack Intent](https://tanstack.com/intent) skills with each package, so coding agents use the library's own APIs instead of hand-written keydown listeners and wrappers. `@tanstack/hotkeys` includes `hotkeys-core` and `app-hotkeys`, and each framework package includes a skill for its bindings. List them with `npx @tanstack/intent@latest list`.
+
+### Patch Changes
+
+- Updated dependencies [[`db47b22`](https://github.com/TanStack/hotkeys/commit/db47b2211884f0b7f5a58f7b2b8234082294a5c5)]:
+  - @tanstack/hotkeys@0.17.0
+
 ## 0.5.1
 
 ### Patch Changes
