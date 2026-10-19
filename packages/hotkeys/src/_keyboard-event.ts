@@ -24,14 +24,21 @@ export function normalizeKeyboardEvent(
   }
 
   const key = (event.key || '').normalize('NFC')
+  const normalizedKey = normalizeKeyName(key)
+  // Windows reports AltGr as Control+Alt. When AltGr+key typed no new
+  // character (AltGr+Home, or AltGr+F typing `f`), treat it as that shortcut.
+  const controlAlt =
+    platform === 'windows' &&
+    altGraph &&
+    !altGraphTypedCharacter({ key: normalizedKey, altGraph })
   return {
-    key: normalizeKeyName(key),
+    key: normalizedKey,
     code: event.code || '',
-    ctrl: Boolean(event.ctrlKey),
+    ctrl: controlAlt || Boolean(event.ctrlKey),
     shift: Boolean(event.shiftKey),
-    alt: Boolean(event.altKey),
+    alt: controlAlt || Boolean(event.altKey),
     meta: Boolean(event.metaKey),
-    altGraph,
+    altGraph: altGraph && !controlAlt,
     location: event.location,
     isComposing:
       Boolean(event.isComposing) || key === 'Process' || key === 'Unidentified',
@@ -61,6 +68,21 @@ export function codeToLogicalKey(code: string): string | undefined {
     Space: 'Space',
   }
   return named[code]
+}
+
+/**
+ * Whether AltGr changed what a key typed, as in AltGr+Q typing `@`. False when
+ * AltGr is not held, or when the key typed its plain value: a named key such
+ * as Home, or an ASCII letter or digit (AltGr+F typing `f` on layouts with
+ * nothing on that key).
+ */
+export function altGraphTypedCharacter(
+  event: Pick<NormalizedKeyboardEvent, 'key' | 'altGraph'>,
+): boolean {
+  if (!event.altGraph) return false
+  // A dead key starts a composed character such as `ẽ`.
+  if (event.key === 'Dead') return true
+  return isPrintableKey(event.key) && !/^[A-Za-z0-9]$/.test(event.key)
 }
 
 /** Tests for one Unicode code point, including characters represented by a surrogate pair. */

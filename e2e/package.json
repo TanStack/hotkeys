@@ -1,0 +1,16 @@
+{
+  "name": "@tanstack/hotkeys-e2e",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test:e2e": "playwright test",
+    "test:e2e:layouts": "playwright test --config playwright.layouts.config.ts",
+    "test:e2e:layouts:docker": "node scripts/layouts-docker.ts",
+    "test:eslint": "eslint browser layouts support scripts *.config.ts",
+    "test:types": "tsc"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "esbuild": "^0.28.2"
+  }
+}

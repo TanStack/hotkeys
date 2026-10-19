@@ -9,3 +9,5 @@
 pnpm-lock.yaml
 
 .angular
+**/test-results
+**/playwright-report

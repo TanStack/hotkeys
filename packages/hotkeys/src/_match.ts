@@ -1,5 +1,6 @@
 import { detectPlatform } from './platform'
 import {
+  altGraphTypedCharacter,
   codeToLogicalKey,
   isAsciiLetter,
   isLatinLetter,
@@ -28,6 +29,9 @@ export function matchKeyboardEvent(
   )
     return noMatch
   if (normalized.altGraph && (parsed.ctrl || parsed.alt)) return noMatch
+  // Outside Windows, AltGr is not Control+Alt. When it typed no new character
+  // (AltGr+Home), it is a modifier no binding includes, so AltGr+F never fires F.
+  if (normalized.altGraph && !altGraphTypedCharacter(normalized)) return noMatch
 
   if (parsed.code !== undefined) {
     // A held AltGraph means the physical key is not a plain shortcut press.
