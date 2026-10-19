@@ -20,7 +20,8 @@
     "tanstack",
     "hotkeys",
     "keyboard",
-    "shortcuts"
+    "shortcuts",
+    "tanstack-intent"
   ],
   "scripts": {
     "clean": "premove ./build ./dist",
@@ -44,7 +45,8 @@
     "node": ">=20"
   },
   "files": [
-    "dist"
+    "dist",
+    "skills"
   ],
   "dependencies": {
     "@tanstack/hotkeys": "workspace:*",
