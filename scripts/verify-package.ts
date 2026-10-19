@@ -45,10 +45,18 @@ try {
   assert.equal(manifest.types, './dist/index.d.ts')
   assert.equal(manifest.main, undefined, 'Do not restore a legacy main entry')
   const emberAddon = manifest['ember-addon']?.version === 2
-  assert.deepEqual(
-    manifest.files,
-    emberAddon ? ['dist', 'addon-main.cjs'] : ['dist'],
-  )
+  // Packages that ship Intent skills list `skills` after the build output.
+  const shipsSkills = manifest.files.at(-1) === 'skills'
+  assert.deepEqual(manifest.files, [
+    ...(emberAddon ? ['dist', 'addon-main.cjs'] : ['dist']),
+    ...(shipsSkills ? ['skills'] : []),
+  ])
+  if (shipsSkills) {
+    assert.ok(
+      files.some((file) => /^skills\/[a-z0-9-]+\/SKILL\.md$/.test(file)),
+      'The skills entry must publish at least one SKILL.md',
+    )
+  }
   assert.ok(manifest.exports['.'], 'The package must export its main entry')
 
   function checkFile(target: string) {
@@ -85,6 +93,9 @@ try {
     assert.ok(
       (emberAddon && file === 'addon-main.cjs') ||
         file.startsWith('dist/') ||
+        /^skills\/[a-z0-9-]+\/(?:SKILL|references\/[a-z0-9-]+)\.md$/.test(
+          file,
+        ) ||
         /^(package\.json|readme(?:\..*)?|licen[cs]e(?:\..*)?|changelog(?:\..*)?)$/i.test(
           file,
         ),

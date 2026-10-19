@@ -41,6 +41,7 @@
     "test:lib:dev": "pnpm test:lib && nx watch --all -- pnpm test:lib",
     "test:pr": "pnpm run lint:all && nx affected --targets=test:sherif,test:knip,test:docs,test:lib,test:types,test:build,build",
     "test:sherif": "sherif",
+    "test:skills": "intent maintainer check",
     "test:types": "nx affected --targets=test:types --exclude=examples/**",
     "watch": "pnpm run build:all && nx watch --all -- pnpm run build:all",
     "test:build": "nx affected --target=test:build"
@@ -89,6 +90,7 @@
     "@faker-js/faker": "^10.6.0",
     "@size-limit/preset-small-lib": "^14.1.0",
     "@tanstack/eslint-config": "0.4.0",
+    "@tanstack/intent": "0.5.5",
     "@tanstack/typedoc-config": "0.3.4",
     "@testing-library/jest-dom": "^7.0.1",
     "@types/node": "^26.6.4",

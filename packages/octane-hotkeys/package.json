@@ -17,7 +17,8 @@
   "keywords": [
     "octane",
     "tanstack",
-    "hotkeys"
+    "hotkeys",
+    "tanstack-intent"
   ],
   "scripts": {
     "clean": "premove ./build ./dist",
@@ -41,7 +42,8 @@
     "node": ">=22.22.2"
   },
   "files": [
-    "dist"
+    "dist",
+    "skills"
   ],
   "dependencies": {
     "@tanstack/hotkeys": "workspace:*",

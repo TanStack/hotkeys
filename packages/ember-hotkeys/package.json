@@ -17,7 +17,8 @@
   "keywords": [
     "ember",
     "tanstack",
-    "hotkeys"
+    "hotkeys",
+    "tanstack-intent"
   ],
   "scripts": {
     "clean": "premove ./build ./dist ./dist-tests",
@@ -45,7 +46,8 @@
   },
   "files": [
     "dist",
-    "addon-main.cjs"
+    "addon-main.cjs",
+    "skills"
   ],
   "dependencies": {
     "@embroider/addon-shim": "^1.10.3",

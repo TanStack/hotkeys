@@ -1,0 +1,769 @@
+# domain_map.yaml
+# Library: @tanstack/hotkeys
+# Version: 0.16.0
+# Date: 2026-10-18
+# Status: draft
+
+library:
+  name: '@tanstack/hotkeys'
+  version: 0.16.0
+  repository: https://github.com/TanStack/hotkeys
+  description: Type-safe keyboard shortcuts with a framework-agnostic core and adapters for ten frameworks.
+  primary_framework: framework-agnostic
+domains:
+  - name: Hotkeys
+    slug: hotkeys
+    description: Registering, matching, scoping, and labeling keyboard shortcuts, and the keyboard behavior the library already owns.
+  - name: App hotkeys
+    slug: app-hotkeys
+    description: One catalog of every shortcut for cheat sheets, command palettes, rebinding, conflict checks, and saved custom hotkeys.
+  - name: Framework bindings
+    slug: framework-bindings
+    description: Each adapter's registration API, reactivity rules, provider or manager scopes, and element targets.
+skills:
+  - name: hotkeys-core
+    slug: hotkeys-core
+    domain: hotkeys
+    description: A developer adds, fixes, or reviews keyboard shortcuts and needs the hotkey format, the defaults the library owns, and how hotkeys turn on and off, instead of reading KeyboardEvent by hand.
+    packages:
+      - '@tanstack/hotkeys'
+    tasks:
+      - Add a save shortcut that works on macOS, Windows, and Linux
+      - Replace hand-written keydown listeners with registered hotkeys
+      - Make Escape close only the topmost dialog
+      - Add Vim-style key sequences
+      - Show a shortcut's label in a button, menu, or tooltip
+      - Bind game controls to key positions instead of characters
+      - Register hotkeys from code outside components
+      - Test hotkeys in unit tests
+    covers:
+      - Workarounds mapped to adapter APIs (listeners, platform checks, registries, enabled flags, cheat sheet lists, held-key state, recorders)
+      - enabled versus component lifetime versus scopes versus target
+      - 'Non-obvious behavior: disabled hotkeys and preventDefault, exact modifiers, repeats and requireReset, physical bindings'
+      - matchesKeyboardEvent for key handlers the app does not own
+      - 'Sequences: first-key chords and progress (matchedStepCount)'
+      - 'Testing: platform, singleton resets, event dispatch'
+    type: core
+    reference_candidates:
+      - topic: scopes
+        reason: Precedence, exclusive, allow, stacking, and manager activation are needed only for grouped hotkeys
+      - topic: testing
+        reason: Event dispatch, platform, and singleton resets apply only when writing tests
+    failure_modes:
+      - mistake: Reading key events instead of registering hotkeys
+        mechanism: A keydown listener with metaKey || ctrlKey saves on Control+S on macOS, misses Caps Lock and non-Latin layouts, and ignores scopes, recorders, and devtools.
+        wrong_pattern: document.addEventListener('keydown', (e) => { if ((e.metaKey || e.ctrlKey) && e.key === 's') save() })
+        correct_pattern: getHotkeyManager().register('Mod+S', () => save())
+        source: docs/guides/sensible-defaults.md
+        priority: HIGH
+        status: active
+        skills:
+          - hotkeys-core
+          - react-hotkeys
+          - preact-hotkeys
+          - solid-hotkeys
+          - vue-hotkeys
+          - svelte-hotkeys
+          - angular-hotkeys
+          - lit-hotkeys
+          - alpine-hotkeys
+          - ember-hotkeys
+          - octane-hotkeys
+      - mistake: Wrapping the library in a shortcut facade
+        mechanism: 'A useShortcut(keys: string) wrapper or shortcut registry casts strings to hotkeys, losing type checks, sequences, options, app hotkeys, and devtools listing.'
+        wrong_pattern: 'export function useShortcut(keys: string, fn: () => void) { useHotkey(keys as HotkeyChord, fn) }'
+        correct_pattern: "useHotkey('Mod+S', save, { meta: { name: 'Save' } }) // or defineAppHotkeys for a catalog"
+        source: 'Maintainer report (2026-10-18): agents generate custom facades and wrappers around the library'
+        priority: HIGH
+        status: active
+        skills:
+          - hotkeys-core
+          - app-hotkeys
+          - react-hotkeys
+          - preact-hotkeys
+          - solid-hotkeys
+          - vue-hotkeys
+          - svelte-hotkeys
+          - angular-hotkeys
+          - lit-hotkeys
+          - alpine-hotkeys
+          - ember-hotkeys
+          - octane-hotkeys
+      - mistake: Disabling a hotkey to skip its action
+        mechanism: A disabled hotkey ignores the key completely, so the browser Save Page dialog opens.
+        wrong_pattern: "register('Mod+S', save, { enabled: isDirty })"
+        correct_pattern: register('Mod+S', () => { if (!isDirty) return; save() })
+        source: docs/framework/react/guides/hotkeys.md#enable-and-disable-hotkeys
+        priority: HIGH
+        status: active
+      - mistake: Tracking the topmost dialog with enabled
+        mechanism: Per-hotkey enabled flags race with mount order and every component must know about every dialog; exclusive scopes suspend everything behind the topmost dialog.
+        wrong_pattern: "useHotkey('Escape', close, { enabled: useIsTopMostModal(id) })"
+        correct_pattern: <HotkeysProvider scope={`dialog-${useId()}`} exclusive><DialogBody /></HotkeysProvider>
+        source: https://github.com/TanStack/hotkeys/issues/42
+        priority: HIGH
+        status: fixed-but-legacy-risk
+        version_context: 'Scopes shipped in PR #189; older code fakes modal stacks with enabled.'
+        skills:
+          - hotkeys-core
+          - react-hotkeys
+          - preact-hotkeys
+          - solid-hotkeys
+          - vue-hotkeys
+          - svelte-hotkeys
+          - angular-hotkeys
+          - lit-hotkeys
+          - alpine-hotkeys
+          - ember-hotkeys
+          - octane-hotkeys
+      - mistake: Reusing one exclusive scope name for several open dialogs
+        mechanism: Two activations of the same exclusive scope log a warning and both dialogs handle the same keys.
+        wrong_pattern: <HotkeysProvider scope="dialog" exclusive> in a shared Dialog component
+        correct_pattern: A per-instance scope name such as `dialog-${useId()}`
+        source: src/hotkey-manager.ts (activateScope warning)
+        priority: HIGH
+        status: active
+        skills:
+          - hotkeys-core
+          - react-hotkeys
+          - preact-hotkeys
+          - solid-hotkeys
+          - vue-hotkeys
+          - svelte-hotkeys
+          - angular-hotkeys
+          - lit-hotkeys
+          - alpine-hotkeys
+          - ember-hotkeys
+          - octane-hotkeys
+      - mistake: Toggling without requireReset
+        mechanism: Chords fire on each automatic repeat, so holding the keys flickers a toggle.
+        wrong_pattern: register('Mod+B', toggleSidebar)
+        correct_pattern: "register('Mod+B', toggleSidebar, { requireReset: true })"
+        source: docs/guides/sensible-defaults.md#chords-fire-on-keydown-and-repeat-while-held
+        priority: MEDIUM
+        status: active
+      - mistake: Using letters for position-based controls
+        mechanism: Logical W follows the character, so WASD stops forming a cluster on AZERTY.
+        wrong_pattern: register('W', moveUp)
+        correct_pattern: register('[KeyW]', moveUp)
+        source: docs/guides/sensible-defaults.md#match-a-keys-position-instead
+        priority: MEDIUM
+        status: active
+      - mistake: Expecting a hotkey to match extra modifiers
+        mechanism: Modifiers match exactly, so ArrowDown never fires with Shift held and a shiftKey branch is dead code.
+        wrong_pattern: "register('ArrowDown', (e) => e.shiftKey ? extend() : move())"
+        correct_pattern: register('ArrowDown', move); register('Shift+ArrowDown', extend)
+        source: docs/guides/sensible-defaults.md#modifiers-must-match-exactly; probe on 2026-10-18
+        priority: MEDIUM
+        status: active
+      - mistake: Targeting an element that cannot take focus
+        mechanism: Element targets receive keys only while they or a descendant has focus.
+        wrong_pattern: "register('Escape', close, { target: divWithoutTabIndex })"
+        correct_pattern: Give the element tabindex="0"
+        source: docs/guides/sensible-defaults.md#listeners-attach-to-the-document
+        priority: MEDIUM
+        status: active
+      - mistake: Installing a second copy of @tanstack/hotkeys
+        mechanism: A separate core install at another version has its own manager, so scopes activated through one copy do not apply to hotkeys registered through the other.
+        wrong_pattern: import { getHotkeyManager } from '@tanstack/hotkeys' // separately installed at another version
+        correct_pattern: import { getHotkeyManager } from '@tanstack/react-hotkeys'
+        source: src/_manager-ref.ts, src/hotkey-manager.ts
+        priority: MEDIUM
+        status: active
+      - mistake: Testing without a fixed platform
+        mechanism: Test DOMs report no real platform (happy-dom on macOS detects windows), so Mod resolves differently between machines.
+        wrong_pattern: "register('Mod+S', save); dispatch({ key: 's', metaKey: true })"
+        correct_pattern: "register('Mod+S', save, { platform: 'mac' })"
+        source: src/platform.ts; probe on 2026-10-18
+        priority: MEDIUM
+        status: active
+  - name: app-hotkeys
+    slug: app-hotkeys
+    domain: app-hotkeys
+    description: A developer needs one list of every shortcut for a cheat sheet or command palette, or lets users rebind and save shortcuts.
+    packages:
+      - '@tanstack/hotkeys'
+    tasks:
+      - List every shortcut in a cheat sheet, including shortcuts on routes that have not rendered
+      - Build a command palette whose commands may have no shortcut
+      - Let users rebind, unbind, and reset shortcuts
+      - Record a new shortcut and reject conflicts
+      - Save custom shortcuts and restore them on load
+    covers:
+      - defineAppHotkeys declarations, ids, null defaults, declared options and scope, Register augmentation
+      - Provider appHotkeys, customHotkeys, onCustomHotkeysChange; provideAppHotkeys for Lit, Alpine, Ember
+      - App hotkey list statuses and isCustom
+      - setCustomHotkey, findConflicts, resetCustomHotkey, resetCustomHotkeys
+      - HotkeyRecorder options, validation, rejection reasons, physical recordings
+    type: core
+    reference_candidates:
+      - topic: recording
+        reason: Recorder behavior and validation apply only to settings screens
+    failure_modes:
+      - mistake: Keeping a parallel shortcut registry
+        mechanism: A hand-written shortcut map is not type-checked as hotkeys and has no custom hotkeys, conflict checks, statuses, or devtools entry.
+        wrong_pattern: "export const SHORTCUTS = { save: { keys: 'Mod+S', label: 'Save' } }"
+        correct_pattern: "export const appHotkeys = defineAppHotkeys({ 'doc.save': { hotkey: 'Mod+S', meta: { name: 'Save' } } })"
+        source: docs/framework/react/guides/app-hotkeys.md
+        priority: HIGH
+        status: active
+      - mistake: Registering the app hotkey value instead of the app hotkey
+        mechanism: The declared default ignores the user custom hotkey, and the registration loses its id, meta, scope, and options, so the list reports it as inactive.
+        wrong_pattern: useHotkey(appHotkeys['doc.save'].hotkey as HotkeyChord, save)
+        correct_pattern: useHotkey(appHotkeys['doc.save'], save)
+        source: src/adapter.ts (prepareHotkeyDefinitions); tests/skills/shortcut-settings
+        priority: HIGH
+        status: active
+        skills:
+          - app-hotkeys
+          - react-hotkeys
+          - preact-hotkeys
+          - solid-hotkeys
+          - vue-hotkeys
+          - svelte-hotkeys
+          - angular-hotkeys
+          - lit-hotkeys
+          - alpine-hotkeys
+          - ember-hotkeys
+          - octane-hotkeys
+      - mistake: Loading custom hotkeys after the provider is created
+        mechanism: Providers and provideAppHotkeys read customHotkeys once, so a later value is ignored and shortcuts revert to defaults.
+        wrong_pattern: <HotkeysProvider customHotkeys={query.data} ...> before the query resolves
+        correct_pattern: Render the provider after the data loads, or key it by user
+        source: src/app-hotkeys.ts (AppHotkeysStore); every adapter provider creates the store once
+        priority: HIGH
+        status: active
+        skills:
+          - app-hotkeys
+          - react-hotkeys
+          - preact-hotkeys
+          - solid-hotkeys
+          - vue-hotkeys
+          - svelte-hotkeys
+          - angular-hotkeys
+          - lit-hotkeys
+          - alpine-hotkeys
+          - ember-hotkeys
+          - octane-hotkeys
+      - mistake: Ignoring the conflicts setCustomHotkey returns
+        mechanism: A conflicting rebinding changes nothing, so reporting success misleads the user.
+        wrong_pattern: setCustomHotkey(id, hotkey); toast('Saved')
+        correct_pattern: const conflicts = setCustomHotkey(id, hotkey); if (conflicts.length) showError(...)
+        source: src/app-hotkeys.ts
+        priority: HIGH
+        status: active
+      - mistake: Saving the effective list instead of customHotkeys
+        mechanism: Saving every effective hotkey freezes the current defaults into user data.
+        wrong_pattern: localStorage.setItem(key, JSON.stringify(Object.fromEntries(list.map(...))))
+        correct_pattern: onCustomHotkeysChange={(custom) => localStorage.setItem(key, JSON.stringify(custom))}
+        source: docs/framework/react/guides/app-hotkeys.md#customize-and-persist-hotkeys; tests/skills/shortcut-settings
+        priority: MEDIUM
+        status: active
+      - mistake: Sharing keys between app hotkeys without declared scopes
+        mechanism: App hotkeys with no scope conflict with every app hotkey on the same keys, so rebindings are rejected.
+        wrong_pattern: "'doc.save': { hotkey: 'Mod+S' }, 'comment.post': { hotkey: 'Mod+S' }"
+        correct_pattern: "Declare scope: 'document' and scope: 'comments'"
+        source: src/app-hotkeys.ts (scopesOverlap)
+        priority: MEDIUM
+        status: active
+      - mistake: Building a recorder from keydown events
+        mechanism: A hand-written recorder records Meta instead of Mod, records the typed character, and lets registered hotkeys fire while recording.
+        wrong_pattern: window.addEventListener('keydown', (e) => setRecorded(buildString(e)))
+        correct_pattern: useHotkeyRecorder({ onRecord })
+        source: docs/framework/react/guides/custom-hotkey-recording.md
+        priority: HIGH
+        status: active
+      - mistake: Rewriting recorded physical bindings
+        mechanism: Replacing [KeyS] with S changes a position binding into a character binding.
+        wrong_pattern: "onRecord: (h) => save(String(h).replace(/\\[Key(\\w)\\]/, '$1'))"
+        correct_pattern: 'onRecord: (h) => setCustomHotkey(id, h)'
+        source: docs/guides/sensible-defaults.md#recording-captures-what-the-user-pressed
+        priority: MEDIUM
+        status: active
+  - name: react-hotkeys
+    slug: react-hotkeys
+    domain: framework-bindings
+    description: A developer registers, scopes, and displays hotkeys in a React app with the adapter's own APIs and reactivity rules.
+    packages:
+      - '@tanstack/react-hotkeys'
+    tasks:
+      - Register hotkeys in React components
+      - Keep hotkey options in sync with React state
+      - Limit a hotkey to one element
+      - Give a dialog an exclusive hotkey scope in React
+      - Use app hotkeys, recorders, and held-key state in React
+    covers:
+      - React registration API, reactive options, element targets, provider or manager scopes, app hotkey wiring
+    type: framework
+    reference_candidates:
+      - topic: app hotkeys in React
+        reason: Provider, registration, cheat sheet, and settings wiring are needed only for catalogs and rebinding
+    failure_modes:
+      - mistake: Passing ref.current as target
+        mechanism: ref.current is null during the first render and a null target means document, so the hotkey listens page-wide until a later render.
+        wrong_pattern: "useHotkey('Delete', remove, { target: listRef.current })"
+        correct_pattern: "useHotkey('Delete', remove, { target: listRef })"
+        source: src/utils.ts (resolveTarget); tests/skills/editor-shortcuts
+        priority: HIGH
+        status: active
+      - mistake: Registering above its own provider
+        mechanism: A hook reads the provider above its component, so a dialog that renders its own exclusive provider registers Escape in the suspended outer scope.
+        wrong_pattern: function Dialog() { useHotkey('Escape', close); return <HotkeysProvider scope="d" exclusive>...</HotkeysProvider> }
+        correct_pattern: Register in a child component of the provider
+        source: docs/framework/react/quick-start.md; tests/skills/editor-shortcuts
+        priority: HIGH
+        status: active
+  - name: preact-hotkeys
+    slug: preact-hotkeys
+    domain: framework-bindings
+    description: A developer registers, scopes, and displays hotkeys in a Preact app with the adapter's own APIs and reactivity rules.
+    packages:
+      - '@tanstack/preact-hotkeys'
+    tasks:
+      - Register hotkeys in Preact components
+      - Keep hotkey options in sync with Preact state
+      - Limit a hotkey to one element
+      - Give a dialog an exclusive hotkey scope in Preact
+      - Use app hotkeys, recorders, and held-key state in Preact
+    covers:
+      - Preact registration API, reactive options, element targets, provider or manager scopes, app hotkey wiring
+    type: framework
+    reference_candidates:
+      - topic: app hotkeys in Preact
+        reason: Provider, registration, cheat sheet, and settings wiring are needed only for catalogs and rebinding
+    failure_modes:
+      - mistake: Passing ref.current as target
+        mechanism: 'Same as React: a null target on the first render means document.'
+        wrong_pattern: "useHotkey('Delete', remove, { target: listRef.current })"
+        correct_pattern: "useHotkey('Delete', remove, { target: listRef })"
+        source: src/utils.ts
+        priority: HIGH
+        status: active
+      - mistake: Registering above its own provider
+        mechanism: The hook reads the provider above its component.
+        wrong_pattern: Dialog registers Escape and renders its own exclusive provider
+        correct_pattern: Register in a child component
+        source: docs/framework/preact/quick-start.md
+        priority: HIGH
+        status: active
+  - name: solid-hotkeys
+    slug: solid-hotkeys
+    domain: framework-bindings
+    description: A developer registers, scopes, and displays hotkeys in a Solid app with the adapter's own APIs and reactivity rules.
+    packages:
+      - '@tanstack/solid-hotkeys'
+    tasks:
+      - Register hotkeys in Solid components
+      - Keep hotkey options in sync with Solid state
+      - Limit a hotkey to one element
+      - Give a dialog an exclusive hotkey scope in Solid
+      - Use app hotkeys, recorders, and held-key state in Solid
+    covers:
+      - Solid registration API, reactive options, element targets, provider or manager scopes, app hotkey wiring
+    type: framework
+    reference_candidates:
+      - topic: app hotkeys in Solid
+        reason: Provider, registration, cheat sheet, and settings wiring are needed only for catalogs and rebinding
+    failure_modes:
+      - mistake: Passing a plain options object that reads signals
+        mechanism: A plain object is read once during setup, so enabled never follows the signal.
+        wrong_pattern: "createHotkey('Mod+S', save, { enabled: isDirty() })"
+        correct_pattern: "createHotkey('Mod+S', save, () => ({ enabled: isDirty() }))"
+        source: src/createHotkey.ts
+        priority: HIGH
+        status: active
+      - mistake: Passing an unassigned element variable as target
+        mechanism: An undefined target means document.
+        wrong_pattern: "let el; createHotkey('Delete', remove, { target: el })"
+        correct_pattern: "const [el, setEl] = createSignal(null); createHotkey('Delete', remove, () => ({ target: el() }))"
+        source: packages/hotkeys/src/adapter.ts
+        priority: HIGH
+        status: active
+  - name: vue-hotkeys
+    slug: vue-hotkeys
+    domain: framework-bindings
+    description: A developer registers, scopes, and displays hotkeys in a Vue app with the adapter's own APIs and reactivity rules.
+    packages:
+      - '@tanstack/vue-hotkeys'
+    tasks:
+      - Register hotkeys in Vue components
+      - Keep hotkey options in sync with Vue state
+      - Limit a hotkey to one element
+      - Give a dialog an exclusive hotkey scope in Vue
+      - Use app hotkeys, recorders, and held-key state in Vue
+    covers:
+      - Vue registration API, reactive options, element targets, provider or manager scopes, app hotkey wiring
+    type: framework
+    reference_candidates:
+      - topic: app hotkeys in Vue
+        reason: Provider, registration, cheat sheet, and settings wiring are needed only for catalogs and rebinding
+    failure_modes:
+      - mistake: Passing ref.value instead of the ref
+        mechanism: '.value reads once in setup: enabled stays fixed and a null target never registers.'
+        wrong_pattern: "useHotkey('Mod+S', save, { enabled: isDirty.value, target: panel.value })"
+        correct_pattern: "useHotkey('Mod+S', save, { enabled: isDirty, target: panel })"
+        source: src/useHotkeys.ts
+        priority: HIGH
+        status: active
+      - mistake: Using nested recorder refs in templates
+        mechanism: Templates unwrap only top-level refs, so v-if="recorder.isRecording" is always truthy.
+        wrong_pattern: const recorder = useHotkeyRecorder(...); v-if="recorder.isRecording"
+        correct_pattern: const { isRecording } = useHotkeyRecorder(...)
+        source: src/useHotkeyRecorder.ts
+        priority: MEDIUM
+        status: active
+      - mistake: Registering in the component that provides the scope
+        mechanism: A provider in a component template or provideHotkeysContext in its setup applies to children only.
+        wrong_pattern: 'provideHotkeysContext({ scope, exclusive: true }); useHotkey(...) in the same setup'
+        correct_pattern: Register in a child component
+        source: docs/framework/vue/guides/hotkeys-provider-and-scopes.md
+        priority: HIGH
+        status: active
+  - name: svelte-hotkeys
+    slug: svelte-hotkeys
+    domain: framework-bindings
+    description: A developer registers, scopes, and displays hotkeys in a Svelte app with the adapter's own APIs and reactivity rules.
+    packages:
+      - '@tanstack/svelte-hotkeys'
+    tasks:
+      - Register hotkeys in Svelte components
+      - Keep hotkey options in sync with Svelte state
+      - Limit a hotkey to one element
+      - Give a dialog an exclusive hotkey scope in Svelte
+      - Use app hotkeys, recorders, and held-key state in Svelte
+    covers:
+      - Svelte registration API, reactive options, element targets, provider or manager scopes, app hotkey wiring
+    type: framework
+    reference_candidates:
+      - topic: app hotkeys in Svelte
+        reason: Provider, registration, cheat sheet, and settings wiring are needed only for catalogs and rebinding
+    failure_modes:
+      - mistake: Passing a plain options object that reads state
+        mechanism: A plain object is read once during initialization.
+        wrong_pattern: "createHotkey('Mod+S', save, { enabled: isDirty })"
+        correct_pattern: "createHotkey('Mod+S', save, () => ({ enabled: isDirty }))"
+        source: src/createHotkeys.svelte.ts
+        priority: HIGH
+        status: active
+      - mistake: Destructuring reactive getters
+        mechanism: Destructuring copies the current value, so the UI never updates.
+        wrong_pattern: const { held } = getIsKeyHeld('Shift')
+        correct_pattern: const shift = getIsKeyHeld('Shift'); shift.held
+        source: src/getIsKeyHeld.svelte.ts
+        priority: HIGH
+        status: active
+      - mistake: Creating hotkeys before setHotkeysContext
+        mechanism: Hotkeys created first read the outer context and land in a suspended scope.
+        wrong_pattern: "createHotkey('Escape', close); setHotkeysContext({ scope, exclusive: true })"
+        correct_pattern: Call setHotkeysContext first
+        source: src/HotkeysCtx.ts
+        priority: HIGH
+        status: active
+  - name: angular-hotkeys
+    slug: angular-hotkeys
+    domain: framework-bindings
+    description: A developer registers, scopes, and displays hotkeys in a Angular app with the adapter's own APIs and reactivity rules.
+    packages:
+      - '@tanstack/angular-hotkeys'
+    tasks:
+      - Register hotkeys in Angular components
+      - Keep hotkey options in sync with Angular state
+      - Limit a hotkey to one element
+      - Give a dialog an exclusive hotkey scope in Angular
+      - Use app hotkeys, recorders, and held-key state in Angular
+    covers:
+      - Angular registration API, reactive options, element targets, provider or manager scopes, app hotkey wiring
+    type: framework
+    reference_candidates:
+      - topic: app hotkeys in Angular
+        reason: Provider, registration, cheat sheet, and settings wiring are needed only for catalogs and rebinding
+    failure_modes:
+      - mistake: Using @HostListener for shortcuts
+        mechanism: The listener ignores scopes, recorders, and devtools, and its modifier checks are wrong.
+        wrong_pattern: "@HostListener('document:keydown', ['$event'])"
+        correct_pattern: injectHotkey('Mod+S', () => this.save())
+        source: docs/framework/angular/quick-start.md
+        priority: HIGH
+        status: active
+      - mistake: Passing a plain options object that reads signals
+        mechanism: The object is read once in the constructor; a viewChild target is undefined there and means document.
+        wrong_pattern: "injectHotkey('Mod+S', save, { enabled: this.isDirty() })"
+        correct_pattern: "injectHotkey('Mod+S', save, () => ({ enabled: this.isDirty() }))"
+        source: src/injectHotkey.ts
+        priority: HIGH
+        status: active
+      - mistake: Sharing one exclusive scope across dialog instances
+        mechanism: Component providers with a fixed scope give every instance the same exclusive scope.
+        wrong_pattern: "providers: [provideHotkeys({ scope: 'dialog', exclusive: true })]"
+        correct_pattern: 'Derive the scope from a per-instance token: scope: () => inject(DIALOG_SCOPE)'
+        source: src/hotkeys-provider.ts
+        priority: HIGH
+        status: active
+      - mistake: Injecting hotkeys outside an injection context
+        mechanism: inject() throws in ngOnInit and event handlers.
+        wrong_pattern: ngOnInit() { injectHotkey('Mod+S', save) }
+        correct_pattern: injectHotkeys(() => this.items().map(...)) in the constructor
+        source: src/injectHotkeys.ts
+        priority: MEDIUM
+        status: active
+  - name: lit-hotkeys
+    slug: lit-hotkeys
+    domain: framework-bindings
+    description: A developer registers, scopes, and displays hotkeys in a Lit app with the adapter's own APIs and reactivity rules.
+    packages:
+      - '@tanstack/lit-hotkeys'
+    tasks:
+      - Register hotkeys in Lit components
+      - Keep hotkey options in sync with Lit state
+      - Limit a hotkey to one element
+      - Give a dialog an exclusive hotkey scope in Lit
+      - Use app hotkeys, recorders, and held-key state in Lit
+    covers:
+      - Lit registration API, reactive options, element targets, provider or manager scopes, app hotkey wiring
+    type: framework
+    reference_candidates:
+      - topic: app hotkeys in Lit
+        reason: Provider, registration, cheat sheet, and settings wiring are needed only for catalogs and rebinding
+    failure_modes:
+      - mistake: Forgetting to release a manager scope activation
+        mechanism: An exclusive activation that is never released keeps every other hotkey suspended.
+        wrong_pattern: "connectedCallback() { getHotkeyManager().activateScope('dialog', { exclusive: true }) }"
+        correct_pattern: this.release = manager.activateScope(...); disconnectedCallback() { this.release() }
+        source: docs/framework/react/guides/hotkey-manager.md#activate-a-scope
+        priority: HIGH
+        status: active
+        skills:
+          - lit-hotkeys
+          - alpine-hotkeys
+          - ember-hotkeys
+      - mistake: Not adding HotkeyController to the host
+        mechanism: HotkeyController does not add itself, so it never registers.
+        wrong_pattern: private save = new HotkeyController(this, 'Mod+S', fn)
+        correct_pattern: this.addController(new HotkeyController(this, 'Mod+S', fn))
+        source: src/controllers/hotkey.ts
+        priority: HIGH
+        status: active
+      - mistake: Using @hotkey with standard decorators
+        mechanism: The decorator has the legacy signature and fails with TS1241 without experimentalDecorators.
+        wrong_pattern: '@hotkey("Mod+S") in a standard-decorator project'
+        correct_pattern: Enable experimentalDecorators or use HotkeyController
+        source: src/decorators/hotkey.ts; tsc probe on 2026-10-18
+        priority: MEDIUM
+        status: active
+      - mistake: Reading instance state in decorator options
+        mechanism: Decorator arguments are evaluated once, when the class is defined.
+        wrong_pattern: "@hotkey('Mod+S', { enabled: this.dirty })"
+        correct_pattern: HotkeyController with an options function
+        source: src/decorators/hotkey.ts
+        priority: MEDIUM
+        status: active
+  - name: alpine-hotkeys
+    slug: alpine-hotkeys
+    domain: framework-bindings
+    description: A developer registers, scopes, and displays hotkeys in a Alpine app with the adapter's own APIs and reactivity rules.
+    packages:
+      - '@tanstack/alpine-hotkeys'
+    tasks:
+      - Register hotkeys in Alpine components
+      - Keep hotkey options in sync with Alpine state
+      - Limit a hotkey to one element
+      - Give a dialog an exclusive hotkey scope in Alpine
+      - Use app hotkeys, recorders, and held-key state in Alpine
+    covers:
+      - Alpine registration API, reactive options, element targets, provider or manager scopes, app hotkey wiring
+    type: framework
+    reference_candidates:
+      - topic: app hotkeys in Alpine
+        reason: Provider, registration, cheat sheet, and settings wiring are needed only for catalogs and rebinding
+    failure_modes:
+      - mistake: Not destroying the owner
+        mechanism: Owners are not tied to the Alpine lifecycle, so hotkeys outlive removed components.
+        wrong_pattern: Alpine.data with createHotkeysScope() and no destroy()
+        correct_pattern: destroy() { this.hotkeys.destroy() }
+        source: src/scope.ts
+        priority: HIGH
+        status: active
+      - mistake: Treating createHotkeysScope as a hotkey scope
+        mechanism: It only owns registrations; dialogs still need getHotkeyManager().activateScope.
+        wrong_pattern: createHotkeysScope() for a modal
+        correct_pattern: 'activateScope(scope, { exclusive: true }) plus scope on each hotkey'
+        source: docs/framework/alpine/quick-start.md
+        priority: HIGH
+        status: active
+      - mistake: Passing a plain options object that reads state
+        mechanism: A plain object is read once.
+        wrong_pattern: "createHotkey('Mod+S', save, { enabled: this.dirty })"
+        correct_pattern: "createHotkey('Mod+S', save, () => ({ enabled: this.dirty }))"
+        source: src/createHotkeys.ts
+        priority: HIGH
+        status: active
+  - name: ember-hotkeys
+    slug: ember-hotkeys
+    domain: framework-bindings
+    description: A developer registers, scopes, and displays hotkeys in a Ember app with the adapter's own APIs and reactivity rules.
+    packages:
+      - '@tanstack/ember-hotkeys'
+    tasks:
+      - Register hotkeys in Ember components
+      - Keep hotkey options in sync with Ember state
+      - Limit a hotkey to one element
+      - Give a dialog an exclusive hotkey scope in Ember
+      - Use app hotkeys, recorders, and held-key state in Ember
+    covers:
+      - Ember registration API, reactive options, element targets, provider or manager scopes, app hotkey wiring
+    type: framework
+    reference_candidates:
+      - topic: app hotkeys in Ember
+        reason: Provider, registration, cheat sheet, and settings wiring are needed only for catalogs and rebinding
+    failure_modes:
+      - mistake: Passing an unbound method as the callback
+        mechanism: The helper calls the callback without the component as this, so it throws on key press.
+        wrong_pattern: save() { this.doc.save() } with {{useHotkey "Mod+S" this.save}}
+        correct_pattern: save = () => this.doc.save()
+        source: docs/framework/ember/quick-start.md; src/useHotkey.ts
+        priority: HIGH
+        status: active
+      - mistake: Writing a sequence as a string in a template
+        mechanism: '"G G" registers a single key named G G.'
+        wrong_pattern: '{{useHotkey "G G" this.top}}'
+        correct_pattern: '{{useHotkey (array "G" "G") this.top}}'
+        source: docs/framework/ember/quick-start.md
+        priority: MEDIUM
+        status: active
+      - mistake: Treating createHotkeysScope as a hotkey scope
+        mechanism: It only sets helper defaults.
+        wrong_pattern: createHotkeysScope() for a modal
+        correct_pattern: activateScope plus registerDestructor
+        source: docs/framework/ember/quick-start.md
+        priority: HIGH
+        status: active
+  - name: octane-hotkeys
+    slug: octane-hotkeys
+    domain: framework-bindings
+    description: A developer registers, scopes, and displays hotkeys in a Octane app with the adapter's own APIs and reactivity rules.
+    packages:
+      - '@tanstack/octane-hotkeys'
+    tasks:
+      - Register hotkeys in Octane components
+      - Keep hotkey options in sync with Octane state
+      - Limit a hotkey to one element
+      - Give a dialog an exclusive hotkey scope in Octane
+      - Use app hotkeys, recorders, and held-key state in Octane
+    covers:
+      - Octane registration API, reactive options, element targets, provider or manager scopes, app hotkey wiring
+    type: framework
+    reference_candidates:
+      - topic: app hotkeys in Octane
+        reason: Provider, registration, cheat sheet, and settings wiring are needed only for catalogs and rebinding
+    failure_modes:
+      - mistake: Passing a ref object as target
+        mechanism: Octane targets must be elements; keep the element in state with a callback ref.
+        wrong_pattern: "useHotkey('Escape', close, { target: panelRef })"
+        correct_pattern: 'const [panel, setPanel] = useState(null); ref={setPanel}; { target: panel }'
+        source: src/useHotkey.ts
+        priority: HIGH
+        status: active
+      - mistake: Calling hooks in loops or conditions
+        mechanism: The compiler tracks hooks by call site.
+        wrong_pattern: items.map((item) => useHotkey(item.hotkey, item.run))
+        correct_pattern: useHotkeys(items.map(...))
+        source: docs/framework/octane/quick-start.md
+        priority: MEDIUM
+        status: active
+tensions:
+  - name: Component lifetime versus one catalog
+    skills:
+      - hotkeys-core
+      - app-hotkeys
+    description: Hotkeys belong in the components that own their actions, while cheat sheets and settings need every shortcut up front.
+    implication: Agents either move callbacks into a central registry or build cheat sheets from live registrations; declarations hold no callbacks, and components still register them.
+  - name: Logical declarations versus physical recordings
+    skills:
+      - app-hotkeys
+    description: Declarations are usually logical (Mod+P) while the recorder records positions (Mod+[KeyP]), and conflict checks compare them as different hotkeys.
+    implication: A rebinding to Command+P passes conflict checks and then runs two actions.
+cross_references:
+  - from: react-hotkeys
+    to: hotkeys-core
+    reason: Framework skills require the hotkey format, defaults, and workaround table.
+  - from: preact-hotkeys
+    to: hotkeys-core
+    reason: Framework skills require the hotkey format, defaults, and workaround table.
+  - from: solid-hotkeys
+    to: hotkeys-core
+    reason: Framework skills require the hotkey format, defaults, and workaround table.
+  - from: vue-hotkeys
+    to: hotkeys-core
+    reason: Framework skills require the hotkey format, defaults, and workaround table.
+  - from: svelte-hotkeys
+    to: hotkeys-core
+    reason: Framework skills require the hotkey format, defaults, and workaround table.
+  - from: angular-hotkeys
+    to: hotkeys-core
+    reason: Framework skills require the hotkey format, defaults, and workaround table.
+  - from: lit-hotkeys
+    to: hotkeys-core
+    reason: Framework skills require the hotkey format, defaults, and workaround table.
+  - from: alpine-hotkeys
+    to: hotkeys-core
+    reason: Framework skills require the hotkey format, defaults, and workaround table.
+  - from: ember-hotkeys
+    to: hotkeys-core
+    reason: Framework skills require the hotkey format, defaults, and workaround table.
+  - from: octane-hotkeys
+    to: hotkeys-core
+    reason: Framework skills require the hotkey format, defaults, and workaround table.
+  - from: react-hotkeys
+    to: app-hotkeys
+    reason: The framework app hotkeys reference shows wiring; app-hotkeys owns the rules.
+  - from: preact-hotkeys
+    to: app-hotkeys
+    reason: The framework app hotkeys reference shows wiring; app-hotkeys owns the rules.
+  - from: solid-hotkeys
+    to: app-hotkeys
+    reason: The framework app hotkeys reference shows wiring; app-hotkeys owns the rules.
+  - from: vue-hotkeys
+    to: app-hotkeys
+    reason: The framework app hotkeys reference shows wiring; app-hotkeys owns the rules.
+  - from: svelte-hotkeys
+    to: app-hotkeys
+    reason: The framework app hotkeys reference shows wiring; app-hotkeys owns the rules.
+  - from: angular-hotkeys
+    to: app-hotkeys
+    reason: The framework app hotkeys reference shows wiring; app-hotkeys owns the rules.
+  - from: lit-hotkeys
+    to: app-hotkeys
+    reason: The framework app hotkeys reference shows wiring; app-hotkeys owns the rules.
+  - from: alpine-hotkeys
+    to: app-hotkeys
+    reason: The framework app hotkeys reference shows wiring; app-hotkeys owns the rules.
+  - from: ember-hotkeys
+    to: app-hotkeys
+    reason: The framework app hotkeys reference shows wiring; app-hotkeys owns the rules.
+  - from: octane-hotkeys
+    to: app-hotkeys
+    reason: The framework app hotkeys reference shows wiring; app-hotkeys owns the rules.
+  - from: app-hotkeys
+    to: hotkeys-core
+    reason: App hotkeys use the same hotkey format, scopes, and registration rules.
+gaps:
+  - skill: app-hotkeys
+    question: Should app hotkey conflict checks and findHotkeyConflicts treat a physical binding such as Mod+[KeyP] as overlapping a logical Mod+P?
+    context: With default recorder settings, a user can rebind Save to Command+P over Print without a conflict, and both run. The skill states the current behavior.
+    status: open
+  - skill: lit-hotkeys
+    question: Should the Lit guides state that @hotkey needs experimentalDecorators, or should the decorator support standard decorators?
+    context: The examples set experimentalDecorators; the docs do not mention it, and standard decorators fail with TS1241.
+    status: open
+  - skill: octane-hotkeys
+    question: docs/installation.md says Octane 0.1.36 within 0.1, but the package peer range is octane >=0.12.0. Which is current?
+    context: The skill follows the peer range.
+    status: open
+  - skill: all framework skills except react-hotkeys
+    question: Executable task checks exist for React only.
+    context: Other adapters rely on structural validation and example-project type checks.
+    status: open
+  - skill: hotkeys-core
+    question: Fresh-consumer and discovery evaluations have not run.
+    context: They need isolated agent sessions with the packed skills installed.
+    status: open

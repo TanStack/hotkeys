@@ -229,6 +229,9 @@ importers:
       '@tanstack/eslint-config':
         specifier: 0.4.0
         version: 0.4.0(@typescript-eslint/utils@8.59.0(eslint@10.11.0(jiti@2.6.1)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3))(eslint@10.11.0(jiti@2.6.1)(supports-color@7.2.0))(supports-color@7.2.0)(typescript@6.0.3)
+      '@tanstack/intent':
+        specifier: 0.5.5
+        version: 0.5.5
       '@tanstack/typedoc-config':
         specifier: 0.3.4
         version: 0.3.4(typescript@6.0.3)
@@ -8542,6 +8545,11 @@ packages:
   '@tanstack/history@1.162.4':
     resolution: {integrity: sha512-utTS5L2OkeYUzXGohL1Z8sefu1GLNOJcxe8Hd6iIdc/Xo1K1nDB2JEp4iSFhvYh33xKC9V91TxrS8qfrpoKobQ==}
     engines: {node: '>=20.19'}
+
+  '@tanstack/intent@0.5.5':
+    resolution: {integrity: sha512-Ei5RqUWgV96HrezTEyDbScy0wZN+17dNo59Am8/3ncv0YIaIxApkiX5LkM488wxe4a1Imdi09nhjFxblxwLMSQ==}
+    engines: {node: '>=20.12.0'}
+    hasBin: true
 
   '@tanstack/octane-store@0.13.0':
     resolution: {integrity: sha512-No0LCGE4B3bnAMN3FZqXcpDvNbf4MUf1Grq9IxC8by7toXPWYVaBeDt0VkRr5lG7/0ElhNTu50GUA5xmn5Yhzg==}
@@ -19791,6 +19799,8 @@ snapshots:
       - typescript
 
   '@tanstack/history@1.162.4': {}
+
+  '@tanstack/intent@0.5.5': {}
 
   '@tanstack/octane-store@0.13.0(octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2)))':
     dependencies:
