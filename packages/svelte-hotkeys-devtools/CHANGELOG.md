@@ -1,5 +1,16 @@
 # @tanstack/svelte-hotkeys-devtools
 
+## 0.3.0
+
+### Minor Changes
+
+- [#194](https://github.com/TanStack/hotkeys/pull/194) [`db47b22`](https://github.com/TanStack/hotkeys/commit/db47b2211884f0b7f5a58f7b2b8234082294a5c5) - Minor release alongside `@tanstack/hotkeys` 0.17.0, which this package now requires. There are no other changes.
+
+### Patch Changes
+
+- Updated dependencies [[`db47b22`](https://github.com/TanStack/hotkeys/commit/db47b2211884f0b7f5a58f7b2b8234082294a5c5)]:
+  - @tanstack/hotkeys-devtools@1.5.0
+
 ## 0.2.9
 
 ### Patch Changes
