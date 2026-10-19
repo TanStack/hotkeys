@@ -32,9 +32,9 @@ skills:
     references:
       - references/scopes.md
       - references/testing.md
-    purpose: 'Framework-neutral rules for TanStack Hotkeys: the work the library
-      already does, how hotkeys turn on and off, and the pitfalls that don''t
-      surface as errors.'
+    purpose: "Framework-neutral rules for TanStack Hotkeys: the work the library
+      already does, how hotkeys turn on and off, and the pitfalls that don't
+      surface as errors."
     requires: []
   - name: app-hotkeys
     slug: app-hotkeys
@@ -66,7 +66,8 @@ skills:
     domain: framework-bindings
     package: packages/react-hotkeys
     path: skills/react-hotkeys/SKILL.md
-    description: 'Use when adding or fixing keyboard shortcuts in a React app with
+    description:
+      'Use when adding or fixing keyboard shortcuts in a React app with
       @tanstack/react-hotkeys: useHotkey and useHotkeys, refs as targets,
       HotkeysProvider defaults and dialog scopes, app hotkey hooks, recorders,
       held-key and hint hooks, or replacing useEffect keydown listeners and
@@ -85,14 +86,16 @@ skills:
       - '@tanstack/hotkeys#hotkeys-core'
     references:
       - references/app-hotkeys.md
-    purpose: 'React bindings for TanStack Hotkeys: hooks, providers, refs, and the
+    purpose:
+      'React bindings for TanStack Hotkeys: hooks, providers, refs, and the
       React-specific mistakes to avoid.'
   - name: preact-hotkeys
     slug: preact-hotkeys
     domain: framework-bindings
     package: packages/preact-hotkeys
     path: skills/preact-hotkeys/SKILL.md
-    description: 'Use when adding or fixing keyboard shortcuts in a Preact app with
+    description:
+      'Use when adding or fixing keyboard shortcuts in a Preact app with
       @tanstack/preact-hotkeys: useHotkey and useHotkeys, refs as targets,
       HotkeysProvider defaults and dialog scopes, app hotkey hooks, recorders,
       held-key and hint hooks, or replacing useEffect keydown listeners.'
@@ -108,14 +111,16 @@ skills:
       - '@tanstack/hotkeys#hotkeys-core'
     references:
       - references/app-hotkeys.md
-    purpose: 'Preact bindings for TanStack Hotkeys: hooks, providers, refs, and the
+    purpose:
+      'Preact bindings for TanStack Hotkeys: hooks, providers, refs, and the
       Preact-specific mistakes to avoid.'
   - name: solid-hotkeys
     slug: solid-hotkeys
     domain: framework-bindings
     package: packages/solid-hotkeys
     path: skills/solid-hotkeys/SKILL.md
-    description: 'Use when adding or fixing keyboard shortcuts in a SolidJS app with
+    description:
+      'Use when adding or fixing keyboard shortcuts in a SolidJS app with
       @tanstack/solid-hotkeys: createHotkey and createHotkeys, accessor options
       and signal targets, HotkeysProvider defaults and dialog scopes, app hotkey
       primitives, recorders, held-key and hint primitives, or replacing onMount
@@ -131,14 +136,16 @@ skills:
       - '@tanstack/hotkeys#hotkeys-core'
     references:
       - references/app-hotkeys.md
-    purpose: 'Solid bindings for TanStack Hotkeys: primitives, accessors, providers,
+    purpose:
+      'Solid bindings for TanStack Hotkeys: primitives, accessors, providers,
       and the Solid-specific reactivity mistakes to avoid.'
   - name: vue-hotkeys
     slug: vue-hotkeys
     domain: framework-bindings
     package: packages/vue-hotkeys
     path: skills/vue-hotkeys/SKILL.md
-    description: 'Use when adding or fixing keyboard shortcuts in a Vue 3 app with
+    description:
+      'Use when adding or fixing keyboard shortcuts in a Vue 3 app with
       @tanstack/vue-hotkeys: useHotkey and useHotkeys composables, refs and
       getters as options, template-ref targets, HotkeysProvider and
       provideHotkeysContext scopes, app hotkey composables, recorders, held-key
@@ -207,7 +214,8 @@ skills:
       - '@tanstack/hotkeys#hotkeys-core'
     references:
       - references/app-hotkeys.md
-    purpose: 'Angular bindings for TanStack Hotkeys: inject functions, signal-driven
+    purpose:
+      'Angular bindings for TanStack Hotkeys: inject functions, signal-driven
       options, provideHotkeys scopes, and the Angular-specific mistakes to
       avoid.'
   - name: lit-hotkeys
@@ -215,7 +223,8 @@ skills:
     domain: framework-bindings
     package: packages/lit-hotkeys
     path: skills/lit-hotkeys/SKILL.md
-    description: 'Use when adding or fixing keyboard shortcuts in Lit web components
+    description:
+      'Use when adding or fixing keyboard shortcuts in Lit web components
       with @tanstack/lit-hotkeys: the @hotkey decorator, HotkeyController with
       an options function, element targets, scopes activated from the hotkey
       manager, app hotkey and recorder controllers, held-key controllers, or
@@ -239,7 +248,8 @@ skills:
     domain: framework-bindings
     package: packages/alpine-hotkeys
     path: skills/alpine-hotkeys/SKILL.md
-    description: 'Use when adding or fixing keyboard shortcuts in an Alpine.js app
+    description:
+      'Use when adding or fixing keyboard shortcuts in an Alpine.js app
       with @tanstack/alpine-hotkeys: createHotkeysScope owners, the $hotkeys
       magic and hotkeysPlugin, getter options, element targets with $refs,
       scopes activated from the hotkey manager, app hotkeys, recorders, and held
@@ -264,7 +274,8 @@ skills:
     domain: framework-bindings
     package: packages/ember-hotkeys
     path: skills/ember-hotkeys/SKILL.md
-    description: 'Use when adding or fixing keyboard shortcuts in an Ember app with
+    description:
+      'Use when adding or fixing keyboard shortcuts in an Ember app with
       @tanstack/ember-hotkeys: the useHotkey and useHotkeys template helpers,
       onHotkey and onHotkeys element modifiers, createHotkeysScope defaults,
       scopes activated from the hotkey manager, app hotkeys, recorders, and held
@@ -291,7 +302,8 @@ skills:
     domain: framework-bindings
     package: packages/octane-hotkeys
     path: skills/octane-hotkeys/SKILL.md
-    description: 'Use when adding or fixing keyboard shortcuts in an Octane app with
+    description:
+      'Use when adding or fixing keyboard shortcuts in an Octane app with
       @tanstack/octane-hotkeys: useHotkey and useHotkeys in .tsrx components,
       element state as targets, HotkeysProvider defaults and dialog scopes, app
       hotkey hooks, recorders, held-key and hint hooks, or replacing keydown
@@ -307,6 +319,7 @@ skills:
       - '@tanstack/hotkeys#hotkeys-core'
     references:
       - references/app-hotkeys.md
-    purpose: 'Octane bindings for TanStack Hotkeys: hooks in compiler-enabled .tsrx
+    purpose:
+      'Octane bindings for TanStack Hotkeys: hooks in compiler-enabled .tsrx
       components, element targets, providers, and the Octane-specific mistakes
       to avoid.'

@@ -472,9 +472,7 @@
       "head": "ad56a4b0dbf3c34d8552eca2cc88c5c7000d520a",
       "outcome": "out-of-scope",
       "reason": "Release note for shipping the skills; it describes no library behavior the guidance covers.",
-      "evidence": [
-        ".changeset/intent-skills.md"
-      ]
+      "evidence": [".changeset/intent-skills.md"]
     },
     "source:scripts/verify-package.ts": {
       "fingerprint": "fc48112cc743933225c6aa48310529c4288a438cba01ad96378c6898d65dcce6",
