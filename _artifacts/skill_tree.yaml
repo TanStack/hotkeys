@@ -10,6 +10,11 @@ generated_from:
   skill_spec: _artifacts/skill_spec.md
 distribution:
   mode: none
+review:
+  # Release bookkeeping never changes library behavior, so it needs no skill review.
+  ignore:
+    - .changeset/**
+    - '**/CHANGELOG.md'
 skills:
   - name: hotkeys-core
     slug: hotkeys-core

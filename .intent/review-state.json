@@ -298,11 +298,11 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "f0d5fbb75255adb0158feec5b77236603ea78d44c76958f84215060fdb544b93",
+      "fingerprint": "dec587b0200db1f1debdfe912e70036852dfe67d3cae9ccd1823cdef7adaf690",
       "snapshot": {
         "_artifacts/domain_map.yaml": "dd50dde7eec97230c015f793602239e721dacb370936eafd4554988b4a2c1c89",
         "_artifacts/skill_spec.md": "57693ee30406d1a76d7ec201cc480e37611b23141ec70d7f178b0b07f56248fd",
-        "_artifacts/skill_tree.yaml": "c0cac7d4d0251bf3bb87f825d961ff77a77a3a016c9cd40d68ab334735cbe0d7",
+        "_artifacts/skill_tree.yaml": "c7e0b30458bd11e3a52e728163838166def6ee64419f1b632f1ea36a37e573af",
         "docs/framework/alpine/guides/app-hotkeys.md": "536c327d4d9f80219a0dcdd04bb36b684c35567ad76f86327287ae6a21f03199",
         "docs/framework/alpine/quick-start.md": "82877b602b370603286ca41f384f5e38da25f7df30bf707e04ea17018792875c",
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "003fba191e3d13d4466754644c4d2174a550f48d437028bc163ba6acca6546ad",
@@ -427,12 +427,12 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "476a5a50a21aefe6243f9bc6e8c6a679978542d6ad8b52e6a2b0f806cd5ef89a",
         "packages/vue-hotkeys/src/useHotkeys.ts": "f971e9938eca3188b3af0fcc96d095330f9f6abfd70cb848d2de5c80f8d09639"
       },
-      "head": "23d1c595900c721c5ff1a53d68ba0f7e0d9b19e6",
+      "head": "36c645189affb162d5f010f29f1caae464e52c8d",
       "outcome": "updated",
-      "reason": "Added the Batch 1 revision 2 entry to skill_spec.md: full API lists in framework skills, and the AltGr source sync with no skill change. skill_tree.yaml only picked up Prettier formatting from CI autofix.",
+      "reason": "Added review.ignore to skill_tree.yaml for .changeset/** and **/CHANGELOG.md, so release bookkeeping, including Version Packages PRs, needs no skill review.",
       "evidence": [
-        "_artifacts/skill_spec.md",
-        "intent validate: 12 skills passed (2026-10-19)"
+        "_artifacts/skill_tree.yaml",
+        "intent maintainer check: the two changesets in this PR are no longer pending"
       ]
     },
     "source:.changeset/intent-skills.md": {
