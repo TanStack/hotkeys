@@ -293,7 +293,8 @@ export class HotkeyRecorder {
         return
 
       const platform = this.#options.platform ?? this.#platform
-      if (normalizeKeyboardEvent(event, platform).isComposing) return
+      const normalized = normalizeKeyboardEvent(event, platform)
+      if (normalized.isComposing) return
       captureRecordingEvent(event)
       event.preventDefault()
       event.stopPropagation()
@@ -304,8 +305,13 @@ export class HotkeyRecorder {
         return
       }
 
+      // Normalized flags include AltGr reported as Control+Alt on Windows.
       const unmodified =
-        !event.ctrlKey && !event.shiftKey && !event.altKey && !event.metaKey
+        !normalized.ctrl &&
+        !normalized.shift &&
+        !normalized.alt &&
+        !normalized.meta &&
+        !normalized.altGraph
       const multiStep = this.#maxSteps > 1
 
       // Backspace/Delete removes the last step, or clears an empty recording

@@ -1,0 +1,49 @@
+name: E2E
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  browsers:
+    name: Browsers
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Setup Tools
+        uses: TanStack/config/.github/setup@e4b48f16568324f76f467aa4c2aac2f05db632c3
+      - name: Install Browsers
+        run: pnpm --filter @tanstack/hotkeys-e2e exec playwright install --with-deps chromium firefox webkit
+      - name: Run Browser Tests
+        run: pnpm test:e2e
+
+  keyboard-layouts:
+    name: Keyboard Layouts
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Setup Tools
+        uses: TanStack/config/.github/setup@e4b48f16568324f76f467aa4c2aac2f05db632c3
+      - name: Install X11 Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends xvfb xdotool x11-xkb-utils xkb-data
+          sudo cp e2e/docker/tanstack.xkb /usr/share/X11/xkb/symbols/tanstack
+      - name: Install Browsers
+        run: pnpm --filter @tanstack/hotkeys-e2e exec playwright install --with-deps chromium firefox
+      - name: Run Keyboard Layout Tests
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x800x24" pnpm test:e2e:layouts

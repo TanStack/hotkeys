@@ -75,7 +75,7 @@ The exception is Shift that is needed to type a symbol. On a US layout, `?` is t
 
 Two kinds of key events never match ordinary shortcuts:
 
-- **AltGr.** On Windows and Linux, AltGr types characters such as `@` and `€` on many layouts and reports itself as Control+Alt. Those key presses do not trigger `Control+Alt` shortcuts, so typing an email address does not run a command.
+- **AltGr.** On Windows and Linux, AltGr types characters such as `@` and `€` on many layouts. A character it types matches a binding for that character, but never a `Control+Alt` shortcut, so typing an email address does not run a command. When AltGr+key types nothing new, such as AltGr+Home, or AltGr+F on a layout with nothing on that key, it does not fire `Home` or `F`. Windows reports AltGr as Control+Alt, so there it fires `Control+Alt` shortcuts instead: AltGr+Home triggers `Control+Alt+Home`, as in native Windows apps.
 - **IME composition.** While the user composes text with an input method editor, such as for Japanese, Chinese, or Korean, character and physical bindings do not fire. Named keys such as `Escape` still do.
 
 ## Typing in inputs does not trigger shortcuts
@@ -194,7 +194,7 @@ While recording:
 - **Enter** commits a sequence recording, made with `maxSteps: Infinity`.
 - **Registered hotkeys are paused**, so pressing `Mod+S` to record it does not also save.
 - **Typing in inputs passes through**, so other fields on the page keep working. Escape still cancels.
-- **AltGr is rejected** for position recordings, because it types characters rather than shortcuts.
+- **AltGr is rejected** for position recordings, because it types characters rather than shortcuts. The exception is AltGr with a key it does not change on Windows, such as AltGr+Home, which records as Control+Alt.
 
 ## Held keys reset when the window loses focus
 

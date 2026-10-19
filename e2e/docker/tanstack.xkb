@@ -1,0 +1,12 @@
+// Norwegian with Windows-style AltGr. Linux layouts put a character on every
+// AltGr+letter (AltGr+F types "đ"). Windows Norwegian leaves most of them
+// empty, so AltGr+F still types "f". Leaving F, K and A at two levels makes
+// xkb do the same.
+default partial alphanumeric_keys
+xkb_symbols "winno" {
+    include "no"
+    name[Group1] = "Norwegian (Windows-style AltGr)";
+    key <AC01> { type[Group1] = "ALPHABETIC", [ a, A ] };
+    key <AC04> { type[Group1] = "ALPHABETIC", [ f, F ] };
+    key <AC08> { type[Group1] = "ALPHABETIC", [ k, K ] };
+};
