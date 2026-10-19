@@ -154,3 +154,10 @@ The skills teach agents to use those APIs directly. The core skills hold the fra
 - **Changes:** `hotkeys-core` went from 293 to 73 lines: the vanilla setup, defaults table, hotkey format, display section, and code-pair mistakes were replaced by the workaround table, the on/off order, and one-line pitfalls. The `sequences` and `from-other-libraries` references were folded into two pitfalls and deleted. `scopes` and `testing` dropped manager code. `app-hotkeys`, the recording reference, every framework skill, and every framework app hotkeys reference were trimmed the same way. Total skill content fell from 4,529 to 1,767 lines.
 - **Failure modes retired:** other-library hotkey syntax (TypeScript reports it) and React's manager-in-`useEffect` (dropped so the skills don't introduce the manager). Unreleased manager scopes moved from hotkeys-core to the Lit, Alpine, and Ember skills.
 - **Checks:** `intent validate` passes; every fence type-checks in its example project; the React task checks still pass.
+
+### Batch 1 revision 2 — 2026-10-19 — full API lists
+
+- **Maintainer decision:** each framework skill lists every hook and function its adapter defines, with one sentence on what each is for, so agents see the whole surface before reaching for a workaround. The `.d.ts` files stay the source for signatures and options.
+- **Changes:** the short task-to-API table in each of the 10 framework skills became an `## API` table with one row per export, 127 in all. Lit, Alpine, and Ember also list the two core calls they need, `provideAppHotkeys` and `getHotkeyManager().activateScope`; Alpine lists its 12 owner methods separately. Each table ends with a note that the adapter re-exports `@tanstack/hotkeys`. Core functions aren't repeated in each skill.
+- **Source sync:** the AltGr fix (#193) changed `hotkey-recorder.ts` and the AltGr notes in `docs/guides/sensible-defaults.md`. No skill covers AltGr, so `hotkeys-core` and `app-hotkeys` are unchanged.
+- **Checks:** a TypeScript export listing confirmed every adapter export appears in its skill; `intent validate` passes.

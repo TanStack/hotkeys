@@ -62,12 +62,26 @@ export class PanelComponent {
 }
 ```
 
-| Task                          | API                                                                                                                                                          |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Register                      | `injectHotkey(hotkey, callback, options?)`; `injectHotkeys(definitions, commonOptions?)` for several hotkeys or a list from data                             |
-| Defaults, scopes, app hotkeys | `provideHotkeys({ defaultOptions, scope, exclusive, enabled, appHotkeys, customHotkeys, onCustomHotkeysChange })` in app config or a component's `providers` |
-| App hotkeys                   | `injectAppHotkeys()`, `injectAppHotkeyList()` (signals), `injectCustomHotkeys()`                                                                             |
-| Record, list, held keys       | `injectHotkeyRecorder`, `injectHotkeyRegistrations`, `injectKeyHold`, `injectHeldKeys`, `injectHotkeyHint`                                                   |
+## API
+
+| API                                          | What it's for                                                                                                                        |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `injectHotkey(hotkey, callback, options?)`   | Register one chord, sequence, or app hotkey for the component's or service's lifetime; options can be a function that reads signals. |
+| `injectHotkeys(definitions, commonOptions?)` | Register several hotkeys, or a function returning a list built from data, in one call.                                               |
+| `provideHotkeys(options)`                    | Set default options, a scope (`exclusive` for dialogs), `enabled`, and app hotkeys in the app config or a component's `providers`.   |
+| `injectHotkeysContext()`                     | Read the nearest provided defaults and enabled state, or `null` without a provider.                                                  |
+| `injectDefaultHotkeysOptions()`              | Read the default options merged from every provider above.                                                                           |
+| `injectAppHotkeys()`                         | Get a signal of the declared app hotkeys with the user's custom hotkeys applied.                                                     |
+| `injectAppHotkeyList()`                      | Get a signal listing every app hotkey with its status, for a cheat sheet or settings screen.                                         |
+| `injectCustomHotkeys()`                      | Read, change, and reset the user's custom hotkeys, and check a new one for conflicts.                                                |
+| `injectHotkeyRecorder(options)`              | Record a chord or sequence the user presses, for a settings screen.                                                                  |
+| `injectHotkeyRegistrations()`                | Get a signal listing every registered hotkey with its options and `meta`.                                                            |
+| `injectHotkeyHint(hotkey, options?)`         | Get a signal of whether held modifiers should reveal a shortcut's hint.                                                              |
+| `injectKeyHold(key)`                         | Get a signal of whether one key is held.                                                                                             |
+| `injectHeldKeys()`                           | Get a signal of every key that's held right now.                                                                                     |
+| `injectHeldKeyCodes()`                       | Get a signal mapping each held key to its physical `event.code`.                                                                     |
+
+The package also re-exports `@tanstack/hotkeys`, such as `formatForDisplay`, `matchesKeyboardEvent`, and `defineAppHotkeys`.
 
 No provider is required. Call the inject functions in a constructor or field initializer.
 

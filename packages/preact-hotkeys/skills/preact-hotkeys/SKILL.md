@@ -43,12 +43,26 @@ export function SaveButton({ onSave }: { onSave: () => void }) {
 }
 ```
 
-| Task                          | API                                                                                                                        |
-| ----------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| Register                      | `useHotkey(hotkey, callback, options?)`; `useHotkeys(definitions, commonOptions?)` for several hotkeys or a list from data |
-| Defaults, scopes, app hotkeys | `<HotkeysProvider defaultOptions scope exclusive enabled appHotkeys customHotkeys onCustomHotkeysChange>`                  |
-| App hotkeys                   | `useAppHotkeys()`, `useAppHotkeyList()`, `useCustomHotkeys()`                                                              |
-| Record, list, held keys       | `useHotkeyRecorder`, `useHotkeyRegistrations`, `useKeyHold`, `useHeldKeys`, `useHotkeyHint`                                |
+## API
+
+| API                                       | What it's for                                                                                                                |
+| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `useHotkey(hotkey, callback, options?)`   | Register one chord, sequence, or app hotkey while the component is mounted.                                                  |
+| `useHotkeys(definitions, commonOptions?)` | Register several hotkeys, or a list built from data, in one call.                                                            |
+| `<HotkeysProvider>`                       | Set default options, a scope (`exclusive` for dialogs), `enabled`, and app hotkeys for the components inside it.             |
+| `useHotkeysContext()`                     | Read the nearest provider's merged defaults and enabled state, or `null` outside a provider.                                 |
+| `useDefaultHotkeysOptions()`              | Read the default options merged from every provider above.                                                                   |
+| `useAppHotkeys()`                         | Get the declared app hotkeys with the user's custom hotkeys applied, to pass to the register API.                            |
+| `useAppHotkeyList()`                      | List every app hotkey with its status, including ones whose components aren't mounted, for a cheat sheet or settings screen. |
+| `useCustomHotkeys()`                      | Read, change, and reset the user's custom hotkeys, and check a new one for conflicts.                                        |
+| `useHotkeyRecorder(options)`              | Record a chord or sequence the user presses, for a settings screen.                                                          |
+| `useHotkeyRegistrations()`                | List every registered hotkey with its options and `meta`, for a cheat sheet of what's mounted.                               |
+| `useHotkeyHint(hotkey, options?)`         | Get whether held modifiers should reveal a shortcut's hint, such as labels that appear while Mod is held.                    |
+| `useKeyHold(key)`                         | Get whether one key is held, such as Shift for a range-select mode.                                                          |
+| `useHeldKeys()`                           | Get every key that's held right now.                                                                                         |
+| `useHeldKeyCodes()`                       | Map each held key to its physical `event.code`.                                                                              |
+
+The package also re-exports `@tanstack/hotkeys`, such as `formatForDisplay`, `matchesKeyboardEvent`, and `defineAppHotkeys`.
 
 No provider is required.
 

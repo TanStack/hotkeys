@@ -58,7 +58,33 @@ Alpine.data('panel', () => ({
 
 For markup-only components, install `Alpine.plugin(hotkeysPlugin)` before `Alpine.start()` and use the `$hotkeys` magic, which is destroyed with its element: `x-init="$hotkeys.createHotkey('Mod+S', () => save())"`.
 
-Each owner from `createHotkeysScope(defaults?)` or `$hotkeys` has `createHotkey`, `createHotkeys`, `createHotkeyRecorder`, `createAppHotkeys`, `createAppHotkeyList`, `createCustomHotkeys`, held-key helpers, and `destroy`. Their state is read through `.value`.
+## API
+
+| API                                                 | What it's for                                                                                             |
+| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `Alpine.plugin(hotkeysPlugin)`                      | Install the `$hotkeys` magic, an owner that's destroyed with its element.                                 |
+| `createHotkeysScope(defaults?)`                     | Create an owner for one `Alpine.data` component, with optional default options.                           |
+| `provideAppHotkeys(appHotkeys, options?)`           | Declare app hotkeys and load the user's custom hotkeys once at startup, since Alpine has no provider.     |
+| `getHotkeyManager().activateScope(scope, options?)` | Turn on a scope, such as an exclusive one for a dialog; it returns the function that turns the scope off. |
+
+Each owner has these methods. Read their state through `.value`, or `.hotkeys` for registrations.
+
+| Method                                       | What it's for                                                                                      |
+| -------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| `createHotkey(hotkey, callback, options?)`   | Register one chord, sequence, or app hotkey until the owner is destroyed; options can be a getter. |
+| `createHotkeys(definitions, commonOptions?)` | Register several hotkeys, or a getter of a list built from data, in one call.                      |
+| `createHotkeyRecorder(options)`              | Record a chord or sequence the user presses, for a settings screen.                                |
+| `createAppHotkeys()`                         | Get the declared app hotkeys with the user's custom hotkeys applied.                               |
+| `createAppHotkeyList()`                      | List every app hotkey with its status, for a cheat sheet or settings screen.                       |
+| `createCustomHotkeys()`                      | Read, change, and reset the user's custom hotkeys, and check a new one for conflicts.              |
+| `createHotkeyRegistrations()`                | List every registered hotkey with its options and `meta`.                                          |
+| `createHotkeyHint(hotkey, options?)`         | Get whether held modifiers should reveal a shortcut's hint.                                        |
+| `createKeyHold(key)`                         | Get whether one key is held.                                                                       |
+| `createHeldKeys()`                           | Get every key that's held right now.                                                               |
+| `createHeldKeyCodes()`                       | Map each held key to its physical `event.code`.                                                    |
+| `destroy()`                                  | Release every hotkey, subscription, and recorder the owner created.                                |
+
+The package also re-exports `@tanstack/hotkeys`, such as `formatForDisplay`, `matchesKeyboardEvent`, and `defineAppHotkeys`.
 
 ## Pitfalls
 
