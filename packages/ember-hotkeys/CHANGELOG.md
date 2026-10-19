@@ -1,5 +1,12 @@
 # @tanstack/ember-hotkeys
 
+## 0.4.1
+
+### Patch Changes
+
+- Updated dependencies [[`daecd95`](https://github.com/TanStack/hotkeys/commit/daecd9508f16a016a7a30314e3d63a5fd76a654d)]:
+  - @tanstack/hotkeys@0.16.1
+
 ## 0.4.0
 
 ### Minor Changes
