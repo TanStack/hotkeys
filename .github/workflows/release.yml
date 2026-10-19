@@ -42,6 +42,6 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - name: Comment on PRs about release
         if: steps.changesets.outputs.published == 'true'
-        uses: TanStack/config/.github/comment-on-release@e4b48f16568324f76f467aa4c2aac2f05db632c3 # main
+        uses: TanStack/config/.github/comment-on-release@466151b2d479656b38942cd84a0a3dce29d48de3 # main
         with:
           published-packages: ${{ steps.changesets.outputs.published-packages }}
