@@ -2,7 +2,7 @@
 # A virtual X display runs Playwright's browser server, so real key presses
 # from xdotool go through the xkb keyboard layout before a browser sees them.
 # The Playwright version must match @playwright/test in e2e/package.json.
-FROM mcr.microsoft.com/playwright:v1.63.0-noble
+FROM mcr.microsoft.com/playwright:v1.64.1-noble
 RUN apt-get update \
   && apt-get install -y --no-install-recommends xvfb xdotool x11-xkb-utils xkb-data \
   && rm -rf /var/lib/apt/lists/*

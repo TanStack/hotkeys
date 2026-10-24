@@ -56,8 +56,8 @@
     "@angular/core": ">=19.0.0"
   },
   "devDependencies": {
-    "@angular/common": "^22.2.1",
-    "@angular/core": "^22.2.1",
+    "@angular/common": "^22.2.3",
+    "@angular/core": "^22.2.3",
     "@angular/platform-browser-dynamic": "^22.2.1",
     "typescript": "6.0.3"
   }

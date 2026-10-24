@@ -51,10 +51,10 @@
     "@angular/core": ">=21.0.0"
   },
   "dependencies": {
-    "@tanstack/devtools-utils": "^0.7.0",
+    "@tanstack/devtools-utils": "^0.7.1",
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {
-    "@angular/core": "^22.2.1"
+    "@angular/core": "^22.2.3"
   }
 }

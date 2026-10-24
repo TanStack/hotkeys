@@ -50,11 +50,11 @@
     "preact": ">=10.0.0"
   },
   "dependencies": {
-    "@tanstack/devtools-utils": "^0.7.0",
+    "@tanstack/devtools-utils": "^0.7.1",
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.6",
-    "preact": "^11.0.1"
+    "preact": "^11.0.2"
   }
 }
