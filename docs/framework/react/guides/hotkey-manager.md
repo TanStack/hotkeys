@@ -97,7 +97,7 @@ releaseScope()
 
 ### Read scope state
 
-`manager.isScopeActive(scope)` returns whether hotkeys in a scope can fire. `useHotkeyRegistrations` re-renders when scopes change, so a list filtered with `isScopeActive` stays current.
+`manager.isScopeActive(scope)` returns whether hotkeys in a scope can fire. To list which registered hotkeys can fire, read each registration's `status`. See [List the hotkeys on screen](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 
 `manager.scopes` is a store with these fields:
 
@@ -106,25 +106,13 @@ releaseScope()
 - `allowed` lists the active scopes that the exclusive scope allows.
 - `suspended` lists the active scopes that can't fire because another scope is exclusive. It can include `'global'`.
 
-To read it in a component, subscribe with React's `useSyncExternalStore`:
+To read it in a component, use `useHotkeyScopesState`. It updates when scopes activate or release:
 
 ```tsx
-import { useSyncExternalStore } from 'react'
-import { getHotkeyManager } from '@tanstack/react-hotkeys'
-
-const manager = getHotkeyManager()
-
-function subscribe(onChange: () => void) {
-  const subscription = manager.scopes.subscribe(onChange)
-  return () => subscription.unsubscribe()
-}
-
-function getScopes() {
-  return manager.scopes.state
-}
+import { useHotkeyScopesState } from '@tanstack/react-hotkeys'
 
 function KeyboardOwner() {
-  const scopes = useSyncExternalStore(subscribe, getScopes, getScopes)
+  const scopes = useHotkeyScopesState()
 
   return scopes.exclusive ? <p>Shortcuts belong to {scopes.exclusive}</p> : null
 }

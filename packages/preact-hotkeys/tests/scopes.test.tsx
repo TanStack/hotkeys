@@ -6,6 +6,8 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import { useAppHotkeyList } from '../src/useAppHotkeys'
 import { useHotkey } from '../src/useHotkey'
+import { useHotkeyScopesState } from '../src/useHotkeyScopesState'
+import type { HotkeyScopesState } from '@tanstack/hotkeys'
 import type { ComponentChildren } from 'preact'
 
 const appHotkeys = defineAppHotkeys({
@@ -257,5 +259,29 @@ describe('HotkeysProvider scopes', () => {
     expect(statuses).toEqual(['active', 'active'])
     act(() => setOpen(true))
     expect(statuses).toEqual(['suspended', 'suspended'])
+  })
+  it('re-renders with the scopes state when an exclusive scope activates', () => {
+    let state: HotkeyScopesState | undefined
+    function Reader() {
+      state = useHotkeyScopesState()
+      return null
+    }
+    render(<Reader />)
+    expect(state?.exclusive).toBeNull()
+
+    let release: () => void = () => {}
+    act(() => {
+      release = HotkeyManager.getInstance().activateScope('dialog', {
+        exclusive: true,
+      })
+    })
+    expect(state).toMatchObject({
+      active: ['dialog'],
+      exclusive: 'dialog',
+      suspended: ['global'],
+    })
+
+    act(() => release())
+    expect(state).toMatchObject({ exclusive: null, suspended: [] })
   })
 })

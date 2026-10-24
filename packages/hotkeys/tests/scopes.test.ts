@@ -34,6 +34,39 @@ describe('hotkey scopes', () => {
     vi.restoreAllMocks()
   })
 
+  it('reports whether a hotkey has an enabled registration in an active scope', () => {
+    const manager = HotkeyManager.getInstance()
+    const { 'doc.save': save } = defineAppHotkeys({
+      'doc.save': { hotkey: 'Control+S', scope: 'editor' },
+    })
+    expect(manager.hasActiveRegistration('Control+S')).toBe(false)
+    expect(manager.hasActiveRegistration(save)).toBe(false)
+
+    const handle = manager.register('Control+S', () => {}, {
+      ...options,
+      ...getAppHotkeyRegistrationOptions(save),
+    })
+    expect(manager.hasActiveRegistration('Control+S')).toBe(false)
+    const release = manager.activateScope('editor')
+    expect(manager.hasActiveRegistration('Control+S')).toBe(true)
+    expect(manager.hasActiveRegistration('Control+D')).toBe(false)
+    // App hotkeys match by id, so a custom hotkey still matches.
+    expect(manager.hasActiveRegistration({ ...save, hotkey: 'Alt+S' })).toBe(
+      true,
+    )
+
+    handle.setOptions({ enabled: false })
+    expect(manager.hasActiveRegistration(save)).toBe(false)
+    handle.setOptions({ enabled: true })
+
+    const releaseDialog = manager.activateScope('dialog', { exclusive: true })
+    expect(manager.hasActiveRegistration(save)).toBe(false)
+    releaseDialog()
+    expect(manager.hasActiveRegistration(save)).toBe(true)
+    release()
+    expect(manager.hasActiveRegistration(save)).toBe(false)
+  })
+
   it('fires scoped hotkeys only while their scope is active', () => {
     const manager = HotkeyManager.getInstance()
     const save = vi.fn()

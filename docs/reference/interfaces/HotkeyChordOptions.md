@@ -3,7 +3,7 @@ id: HotkeyChordOptions
 title: HotkeyChordOptions
 ---
 
-Defined in: [hotkey-manager.ts:115](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L115)
+Defined in: [hotkey-manager.ts:120](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L120)
 
 Options for a single chord such as `'Mod+S'`.
 
@@ -19,7 +19,7 @@ Options for a single chord such as `'Mod+S'`.
 optional appHotkeyId?: string;
 ```
 
-Defined in: [hotkey-manager.ts:111](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L111)
+Defined in: [hotkey-manager.ts:116](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L116)
 
 Id of the app hotkey this registration implements. Adapters set this when registering an app hotkey from `defineAppHotkeys`.
 
@@ -128,7 +128,7 @@ even in these controls.
 optional meta?: HotkeyMeta;
 ```
 
-Defined in: [hotkey-manager.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L99)
+Defined in: [hotkey-manager.ts:104](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L104)
 
 Optional metadata (name, description, custom fields via declaration merging)
 
@@ -157,13 +157,18 @@ The target platform for resolving 'Mod'
 ### preventDefault?
 
 ```ts
-optional preventDefault?: boolean;
+optional preventDefault?: boolean | "always";
 ```
 
-Defined in: [hotkey-manager.ts:90](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L90)
+Defined in: [hotkey-manager.ts:95](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L95)
 
 Prevent the default browser action when the hotkey matches. For a
-sequence, every step that advances it does. Defaults to true
+sequence, every step that advances it does. Defaults to true.
+
+`'always'` also prevents it while a chord can't fire because it is
+disabled or its scope is inactive or suspended, unless another hotkey
+handles the key. It never stops propagation for such a chord. Sequences
+treat `'always'` as `true`.
 
 #### Inherited from
 
@@ -177,7 +182,7 @@ sequence, every step that advances it does. Defaults to true
 optional requireReset?: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:117](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L117)
+Defined in: [hotkey-manager.ts:122](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L122)
 
 If true, only trigger once until all keys are released. Default: false
 
@@ -189,7 +194,7 @@ If true, only trigger once until all keys are released. Default: false
 optional scope?: string;
 ```
 
-Defined in: [hotkey-manager.ts:109](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L109)
+Defined in: [hotkey-manager.ts:114](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L114)
 
 Scope this hotkey belongs to. Defaults to `'global'`, which is always
 active. Other scopes are active while activated with
@@ -211,7 +216,7 @@ activated scope handles it.
 optional stopPropagation?: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:95](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L95)
+Defined in: [hotkey-manager.ts:100](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L100)
 
 Stop event propagation when the hotkey matches. For a sequence, only the
 last step does, so earlier steps reach other listeners. Defaults to true
@@ -228,7 +233,7 @@ last step does, so earlier steps reach other listeners. Defaults to true
 optional target?: Target | null;
 ```
 
-Defined in: [hotkey-manager.ts:97](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L97)
+Defined in: [hotkey-manager.ts:102](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L102)
 
 The DOM element to attach the event listener to. Defaults to document.
 

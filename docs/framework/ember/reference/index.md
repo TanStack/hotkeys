@@ -39,4 +39,5 @@ title: "@tanstack/ember-hotkeys"
 - [useHotkeyHint](functions/useHotkeyHint.md)
 - [useHotkeyRecorder](functions/useHotkeyRecorder.md)
 - [useHotkeyRegistrations](functions/useHotkeyRegistrations.md)
+- [useHotkeyScopesState](functions/useHotkeyScopesState.md)
 - [useKeyHold](functions/useKeyHold.md)

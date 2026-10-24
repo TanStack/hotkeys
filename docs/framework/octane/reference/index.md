@@ -38,4 +38,5 @@ title: "@tanstack/octane-hotkeys"
 - [useHotkeyRegistrations](functions/useHotkeyRegistrations.md)
 - [useHotkeys](functions/useHotkeys.md)
 - [useHotkeysContext](functions/useHotkeysContext.md)
+- [useHotkeyScopesState](functions/useHotkeyScopesState.md)
 - [useKeyHold](functions/useKeyHold.md)

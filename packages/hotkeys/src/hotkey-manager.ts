@@ -26,7 +26,7 @@ import {
   isEventForTarget,
   shouldIgnoreInputEvent,
 } from './_event-target'
-import type { AppHotkeysStore } from './app-hotkeys'
+import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'
 import type { CanonicalModifier } from './key.types'
 import type {
   ConflictBehavior,
@@ -85,9 +85,14 @@ export interface HotkeyOptions {
   platform?: 'mac' | 'windows' | 'linux'
   /**
    * Prevent the default browser action when the hotkey matches. For a
-   * sequence, every step that advances it does. Defaults to true
+   * sequence, every step that advances it does. Defaults to true.
+   *
+   * `'always'` also prevents it while a chord can't fire because it is
+   * disabled or its scope is inactive or suspended, unless another hotkey
+   * handles the key. It never stops propagation for such a chord. Sequences
+   * treat `'always'` as `true`.
    */
-  preventDefault?: boolean
+  preventDefault?: boolean | 'always'
   /**
    * Stop event propagation when the hotkey matches. For a sequence, only the
    * last step does, so earlier steps reach other listeners. Defaults to true
@@ -174,8 +179,18 @@ export interface HotkeySequenceRegistration extends RegistrationBase<HotkeySeque
 export type HotkeyRegistration =
   HotkeyChordRegistration | HotkeySequenceRegistration
 
+/**
+ * Whether a registration can fire now:
+ * - `'active'`: enabled, and its scope is active
+ * - `'suspended'`: enabled, but its scope is inactive or suspended by an exclusive scope
+ * - `'disabled'`: registered with `enabled: false`
+ */
+export type HotkeyRegistrationStatus = 'active' | 'suspended' | 'disabled'
+
 interface RegistrationViewBase {
   id: string
+  /** Whether the registration can fire now. */
+  status: HotkeyRegistrationStatus
   target: Target
   triggerCount: number
   hasFired: boolean
@@ -208,12 +223,24 @@ export interface HotkeySequenceRegistrationView extends RegistrationViewBase {
 export type HotkeyRegistrationView =
   HotkeyChordRegistrationView | HotkeySequenceRegistrationView
 
+/** Whether a registration can fire now. Without a manager, scopes don't apply. */
+function getRegistrationStatus(
+  options: HotkeyOptions,
+  manager: HotkeyManager | null,
+): HotkeyRegistrationStatus {
+  if (options.enabled === false) return 'disabled'
+  return manager?.isScopeActive(options.scope) === false
+    ? 'suspended'
+    : 'active'
+}
+
 /** Creates a public view from an internal registration, stripping the callback. */
 export function toHotkeyRegistrationView(
   reg: HotkeyRegistration,
 ): HotkeyRegistrationView {
   const base = {
     id: reg.id,
+    status: getRegistrationStatus(reg.options, managerRef.current),
     target: reg.target,
     triggerCount: reg.triggerCount,
     hasFired: reg.hasFired,
@@ -640,10 +667,7 @@ export class HotkeyManager {
 
   /** Whether a registration can fire now: enabled, in an active scope. */
   #isLive(registration: HotkeyRegistration): boolean {
-    return (
-      registration.options.enabled !== false &&
-      this.isScopeActive(registration.options.scope)
-    )
+    return getRegistrationStatus(registration.options, this) === 'active'
   }
 
   /** Notifies subscribers after in-place updates such as counts and sequence progress. */
@@ -965,11 +989,14 @@ export class HotkeyManager {
 
     const matches = new Map<string, ReturnType<typeof matchKeyboardEvent>>()
     let bestScore = 0
+    // A chord that can't fire but has `preventDefault: 'always'` matched.
+    let reserved = false
 
     // Exact logical/explicit-code matches outrank compatibility fallbacks.
     for (const registration of registrations) {
+      const live = this.#isLive(registration)
       if (
-        !this.#isLive(registration) ||
+        (!live && registration.options.preventDefault !== 'always') ||
         registration.options.eventType !== eventType ||
         !isEventForTarget(event, target) ||
         (ignoresInputs(registration) &&
@@ -982,11 +1009,17 @@ export class HotkeyManager {
         registration.parsedChord,
         registration.options.platform,
       )
-      if (result.matched) {
-        matches.set(registration.id, result)
-        bestScore = Math.max(bestScore, result.score)
+      if (!result.matched) continue
+      if (!live) {
+        reserved = true
+        continue
       }
+      matches.set(registration.id, result)
+      bestScore = Math.max(bestScore, result.score)
     }
+
+    // A hotkey that fires decides what happens to the event.
+    if (reserved && matches.size === 0) event.preventDefault()
 
     // Among the best matches, the most recently activated scope handles the key.
     let bestRank = -1
@@ -1392,6 +1425,37 @@ export class HotkeyManager {
           registration.options.platform,
         ) &&
         (target === undefined || registration.target === target)
+      ) {
+        return true
+      }
+    }
+    return false
+  }
+
+  /**
+   * Checks whether a hotkey can fire now: at least one registration is
+   * enabled and in an active scope. An app hotkey matches registrations by
+   * id, so custom hotkeys apply. This does not check focus or `target`.
+   *
+   * @param hotkey - A chord, sequence, or app hotkey
+   * @returns True if an enabled registration in an active scope exists
+   */
+  hasActiveRegistration(hotkey: RegisterableHotkey | AppHotkey): boolean {
+    // Checks the brand inline; importing `isAppHotkey` would bundle the app hotkeys store.
+    const id =
+      typeof hotkey === 'object' && '~appHotkey' in hotkey
+        ? hotkey.id
+        : undefined
+    for (const registration of this.registrations.state.values()) {
+      if (
+        this.#isLive(registration) &&
+        (id === undefined
+          ? areHotkeysEqual(
+              registration.hotkey,
+              hotkey as RegisterableHotkey,
+              registration.options.platform,
+            )
+          : registration.options.appHotkeyId === id)
       ) {
         return true
       }

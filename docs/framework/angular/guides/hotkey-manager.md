@@ -97,7 +97,7 @@ releaseScope()
 
 ### Read scope state
 
-`manager.isScopeActive(scope)` returns whether hotkeys in a scope can fire. `injectHotkeyRegistrations` updates when scopes change, so a list filtered with `isScopeActive` stays current.
+`manager.isScopeActive(scope)` returns whether hotkeys in a scope can fire. To list which registered hotkeys can fire, read each registration's `status`. See [List the hotkeys on screen](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 
 `manager.scopes` is a store with these fields:
 
@@ -106,11 +106,11 @@ releaseScope()
 - `allowed` lists the active scopes that the exclusive scope allows.
 - `suspended` lists the active scopes that can't fire because another scope is exclusive. It can include `'global'`.
 
-To read it in a component, copy it into a signal and unsubscribe when the component is destroyed:
+To read it in a component, use `injectHotkeyScopesState`. It updates when scopes activate or release:
 
 ```ts
-import { Component, DestroyRef, inject, signal } from '@angular/core'
-import { getHotkeyManager } from '@tanstack/angular-hotkeys'
+import { Component } from '@angular/core'
+import { injectHotkeyScopesState } from '@tanstack/angular-hotkeys'
 
 @Component({
   selector: 'app-keyboard-owner',
@@ -121,15 +121,7 @@ import { getHotkeyManager } from '@tanstack/angular-hotkeys'
   `,
 })
 export class KeyboardOwnerComponent {
-  private readonly manager = getHotkeyManager()
-  readonly scopes = signal(this.manager.scopes.state)
-
-  constructor() {
-    const subscription = this.manager.scopes.subscribe((state) =>
-      this.scopes.set(state),
-    )
-    inject(DestroyRef).onDestroy(() => subscription.unsubscribe())
-  }
+  readonly scopes = injectHotkeyScopesState()
 }
 ```
 

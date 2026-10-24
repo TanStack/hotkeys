@@ -7,11 +7,13 @@ title: getHotkeyHint
 function getHotkeyHint(hotkey, options?): SvelteHotkeyHint;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts#L28)
+Defined in: [packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts#L31)
 
 Returns an object with a reactive `visible` getter indicating whether held
-modifiers reveal this shortcut. Pass getters to track changing hotkeys and
-options. A sequence reveals its hint from its first step, and an app hotkey
+modifiers reveal this shortcut. The hint shows only while the hotkey can
+fire: some registration of it is enabled and in an active scope. Pass
+getters to track changing hotkeys and options. A sequence reveals its hint
+from its first step, and an app hotkey matches its registrations by id and
 uses its effective hotkey (false while unbound). This helper does not
 register a shortcut or check whether its target is focused.
 

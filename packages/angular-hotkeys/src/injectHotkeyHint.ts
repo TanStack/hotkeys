@@ -1,6 +1,7 @@
 import { computed } from '@angular/core'
 import { injectSelector } from '@tanstack/angular-store'
 import {
+  getHotkeyManager,
   getKeyStateTracker,
   isAppHotkey,
   matchesHeldModifiers,
@@ -16,9 +17,11 @@ import type {
 
 /**
  * Returns a signal indicating whether held modifiers reveal this shortcut.
- * Pass getters to track changing hotkeys and options. A sequence reveals its
- * hint from its first step, and an app hotkey uses its effective hotkey
- * (false while unbound). This helper does not register a shortcut or check
+ * The hint shows only while the hotkey can fire: some registration of it is
+ * enabled and in an active scope. Pass getters to track changing hotkeys and
+ * options. A sequence reveals its hint from its first step, and an app hotkey
+ * matches its registrations by id and uses its effective hotkey (false while
+ * unbound). This helper does not register a shortcut or check
  * whether its target is focused.
  */
 export function injectHotkeyHint(
@@ -27,6 +30,9 @@ export function injectHotkeyHint(
   options: HeldModifierOptions | (() => HeldModifierOptions) = {},
 ): Signal<boolean> {
   const context = injectHotkeysContext()
+  const manager = getHotkeyManager()
+  // Tracks registration, enabled, and scope changes.
+  const registrations = injectSelector(manager.registrations, (state) => state)
   const held = injectSelector(
     getKeyStateTracker().store,
     (state) => state.heldKeys,
@@ -43,7 +49,9 @@ export function injectHotkeyHint(
         resolved,
         held(),
         typeof options === 'function' ? options() : options,
-      )
+      ) &&
+      registrations().size > 0 &&
+      manager.hasActiveRegistration(value)
     )
   })
 }

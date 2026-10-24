@@ -6,6 +6,7 @@ import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import { createAppHotkeyList } from '../src/appHotkeys'
 import { createHotkey } from '../src/createHotkey'
+import { createHotkeyScopesState } from '../src/createHotkeyScopesState'
 import type { JSX } from 'solid-js'
 
 const appHotkeys = defineAppHotkeys({
@@ -225,5 +226,31 @@ describe('HotkeysProvider scopes', () => {
       'suspended',
       'suspended',
     ])
+  })
+  it('tracks the scopes state when an exclusive scope activates', () => {
+    let state: ReturnType<typeof createHotkeyScopesState> = () => {
+      throw new Error('not rendered')
+    }
+    function Reader() {
+      state = createHotkeyScopesState()
+      return <span>{state().exclusive ?? 'none'}</span>
+    }
+    const { container } = render(() => <Reader />)
+    expect(state().exclusive).toBeNull()
+    expect(container.textContent).toBe('none')
+
+    const release = HotkeyManager.getInstance().activateScope('dialog', {
+      exclusive: true,
+    })
+    expect(state()).toMatchObject({
+      active: ['dialog'],
+      exclusive: 'dialog',
+      suspended: ['global'],
+    })
+    expect(container.textContent).toBe('dialog')
+
+    release()
+    expect(state()).toMatchObject({ exclusive: null, suspended: [] })
+    expect(container.textContent).toBe('none')
   })
 })

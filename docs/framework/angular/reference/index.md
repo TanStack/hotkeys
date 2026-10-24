@@ -41,5 +41,6 @@ title: "@tanstack/angular-hotkeys"
 - [injectHotkeyRegistrations](functions/injectHotkeyRegistrations.md)
 - [injectHotkeys](functions/injectHotkeys.md)
 - [injectHotkeysContext](functions/injectHotkeysContext.md)
+- [injectHotkeyScopesState](functions/injectHotkeyScopesState.md)
 - [injectKeyHold](functions/injectKeyHold.md)
 - [provideHotkeys](functions/provideHotkeys.md)

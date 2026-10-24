@@ -54,22 +54,23 @@ export function Editor() {
 
 ## API
 
-| API                                          | What it's for                                                                                                             |
-| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| `createHotkey(hotkey, callback, options?)`   | Register one chord, sequence, or app hotkey for the owning component's lifetime; the hotkey and options can be accessors. |
-| `createHotkeys(definitions, commonOptions?)` | Register several hotkeys, or an accessor of a list built from data, in one call.                                          |
-| `<HotkeysProvider>`                          | Set default options, a scope (`exclusive` for dialogs), `enabled`, and app hotkeys for the components inside it.          |
-| `useHotkeysContext()`                        | Read the nearest provider's merged defaults and enabled state, or `null` outside a provider.                              |
-| `useDefaultHotkeysOptions()`                 | Read the default options merged from every provider above.                                                                |
-| `useAppHotkeys()`                            | Get an accessor of the declared app hotkeys with the user's custom hotkeys applied.                                       |
-| `createAppHotkeyList()`                      | Get an accessor listing every app hotkey with its status, for a cheat sheet or settings screen.                           |
-| `useCustomHotkeys()`                         | Read, change, and reset the user's custom hotkeys, and check a new one for conflicts.                                     |
-| `createHotkeyRecorder(options)`              | Record a chord or sequence the user presses; its state fields are accessors.                                              |
-| `createHotkeyRegistrations()`                | Get an accessor listing every registered hotkey with its options and `meta`.                                              |
-| `createHotkeyHint(hotkey, options?)`         | Get an accessor of whether held modifiers should reveal a shortcut's hint.                                                |
-| `createKeyHold(key)`                         | Get an accessor of whether one key is held.                                                                               |
-| `createHeldKeys()`                           | Get an accessor of every key that's held right now.                                                                       |
-| `createHeldKeyCodes()`                       | Get an accessor mapping each held key to its physical `event.code`.                                                       |
+| API                                          | What it's for                                                                                                                                        |
+| -------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `createHotkey(hotkey, callback, options?)`   | Register one chord, sequence, or app hotkey for the owning component's lifetime; the hotkey and options can be accessors.                            |
+| `createHotkeys(definitions, commonOptions?)` | Register several hotkeys, or an accessor of a list built from data, in one call.                                                                     |
+| `<HotkeysProvider>`                          | Set default options, a scope (`exclusive` for dialogs), `enabled`, and app hotkeys for the components inside it.                                     |
+| `useHotkeysContext()`                        | Read the nearest provider's merged defaults and enabled state, or `null` outside a provider.                                                         |
+| `useDefaultHotkeysOptions()`                 | Read the default options merged from every provider above.                                                                                           |
+| `useAppHotkeys()`                            | Get an accessor of the declared app hotkeys with the user's custom hotkeys applied.                                                                  |
+| `createAppHotkeyList()`                      | Get an accessor listing every app hotkey with its status, for a cheat sheet or settings screen.                                                      |
+| `useCustomHotkeys()`                         | Read, change, and reset the user's custom hotkeys, and check a new one for conflicts.                                                                |
+| `createHotkeyRecorder(options)`              | Record a chord or sequence the user presses; its state fields are accessors.                                                                         |
+| `createHotkeyRegistrations()`                | Get an accessor listing every registered hotkey with its options, `meta`, and `status` (whether it can fire).                                        |
+| `createHotkeyScopesState()`                  | Get an accessor of the active scopes and the exclusive scope that owns the keyboard.                                                                 |
+| `createHotkeyHint(hotkey, options?)`         | Get an accessor of whether held modifiers should reveal a shortcut's hint. False unless an enabled registration of the hotkey is in an active scope. |
+| `createKeyHold(key)`                         | Get an accessor of whether one key is held.                                                                                                          |
+| `createHeldKeys()`                           | Get an accessor of every key that's held right now.                                                                                                  |
+| `createHeldKeyCodes()`                       | Get an accessor mapping each held key to its physical `event.code`.                                                                                  |
 
 The package also re-exports `@tanstack/hotkeys`, such as `formatForDisplay`, `matchesKeyboardEvent`, and `defineAppHotkeys`.
 

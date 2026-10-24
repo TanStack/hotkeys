@@ -29,10 +29,10 @@ useHotkey('Alt+[KeyS]', save, () => ({
       ><input type="checkbox" v-model="enabled" /> Enable ticket actions</label
     >
     <button :disabled="!enabled" @click="create">
-      Create ticket <Hint hotkey="Alt+[KeyC]" :enabled="enabled" />
+      Create ticket <Hint hotkey="Alt+[KeyC]" />
     </button>
     <button :disabled="!enabled" @click="save">
-      Save pending <Hint hotkey="Alt+[KeyS]" :enabled="enabled" />
+      Save pending <Hint hotkey="Alt+[KeyS]" />
     </button>
     <label>Ticket note <input placeholder="Try Alt + C while typing" /></label>
     <p>

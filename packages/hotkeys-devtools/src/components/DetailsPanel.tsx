@@ -249,7 +249,9 @@ function HotkeyDetails(props: {
                     : styles().optionValueFalse
                 }
               >
-                {String(!!reg().options.preventDefault)}
+                {reg().options.preventDefault === 'always'
+                  ? 'always'
+                  : String(!!reg().options.preventDefault)}
               </span>
             </div>
             <div class={styles().optionRow}>
@@ -597,7 +599,9 @@ function SequenceDetails(props: {
                     : styles().optionValueFalse
                 }
               >
-                {String(!!liveReg().options.preventDefault)}
+                {liveReg().options.preventDefault === 'always'
+                  ? 'always'
+                  : String(!!liveReg().options.preventDefault)}
               </span>
             </div>
             <div class={styles().optionRow}>

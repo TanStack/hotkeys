@@ -31,7 +31,6 @@ const {
 } = createHotkeysScope({ hotkey: { requireReset: true } })
 
 const eq = (a: unknown, b: unknown) => a === b
-const and = (a: unknown, b: unknown) => a && b
 const or = <T, U>(a: T, b: U) => a || b
 const not = (a: unknown) => !a
 const pages = [
@@ -45,18 +44,12 @@ const pages = [
 class Hint extends Component<{
   Args: {
     hotkey: RegisterableHotkey
-    enabled?: boolean
   }
 }> {
   visible = useHotkeyHint(this, () => this.args.hotkey)
 
   <template>
-    {{#if
-      (and
-        this.visible.value
-        (if (eq this.args.enabled undefined) true this.args.enabled)
-      )
-    }}<kbd>{{formatForDisplay this.args.hotkey}}</kbd>{{else}}{{/if}}
+    {{#if this.visible.value}}<kbd>{{formatForDisplay this.args.hotkey}}</kbd>{{else}}{{/if}}
   </template>
 }
 
@@ -273,11 +266,11 @@ class Tickets extends Component<{ Args: { log: (message: string) => void } }> {
       <p>
         <button disabled={{not this.enabled}} {{on 'click' this.create}}>
           Create ticket
-          <Hint @hotkey='Alt+[KeyC]' @enabled={{this.enabled}} />
+          <Hint @hotkey='Alt+[KeyC]' />
         </button>
         <button disabled={{not this.enabled}} {{on 'click' this.save}}>
           Save pending
-          <Hint @hotkey='Alt+[KeyS]' @enabled={{this.enabled}} />
+          <Hint @hotkey='Alt+[KeyS]' />
         </button>
       </p>
       <label>

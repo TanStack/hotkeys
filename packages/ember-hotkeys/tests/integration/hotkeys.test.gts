@@ -8,7 +8,7 @@ import { array } from '@ember/helper'
 import {
   createHotkeysScope, useHotkey, useHotkeys,
   useHeldKeys, useHeldKeyCodes, useKeyHold, useHotkeyHint,
-  useHotkeyRecorder, useHotkeyRegistrations,
+  useHotkeyRecorder, useHotkeyRegistrations, useHotkeyScopesState,
   HotkeyManager, KeyStateTracker, getHotkeyManager,
 } from '@tanstack/ember-hotkeys'
 import type { EmberHotkeyDefinition, Hotkey } from '@tanstack/ember-hotkeys'
@@ -26,6 +26,7 @@ class Example extends Component {
   hold = useKeyHold(this, 'Control')
   hint = useHotkeyHint(this, () => this.binding)
   registrations = useHotkeyRegistrations(this)
+  scopes = useHotkeyScopesState(this)
   recorder = useHotkeyRecorder(this, { recordBy: 'key', platform: 'mac', onRecord: (value) => records.push(value) })
   sequenceRecorder = useHotkeyRecorder(this, { maxSteps: Infinity, recordBy: 'key', platform: 'mac', onRecord: (value) => records.push(value) })
   save = () => { this.count++ }
@@ -48,6 +49,7 @@ class Example extends Component {
   get sequenceCount() { return this.registrations.hotkeys.filter((reg) => reg.kind === 'sequence').length }
   get heldText() { return this.held.value.join(',') }
   get codeText() { return JSON.stringify(this.codes.value) }
+  get scopesText() { return `${this.scopes.value.exclusive ?? 'none'}:${this.scopes.value.suspended.join(',')}` }
 
   <template>
     {{useHotkey this.binding this.save enabled=this.enabled}}
@@ -63,6 +65,7 @@ class Example extends Component {
     <output id="hint">{{if this.hint.value "yes" "no"}}</output>
     <output id="hold">{{if this.hold.value "yes" "no"}}</output>
     <output id="registrations">{{this.chordCount}}:{{this.sequenceCount}}</output>
+    <output id="scopes">{{this.scopesText}}</output>
     <output id="recording">{{if this.recorder.isRecording "yes" "no"}}</output>
   </template>
 }
@@ -106,10 +109,25 @@ module('Ember hotkeys', (hooks) => {
     assert.dom('#codes').includesText('ControlLeft')
     assert.dom('#hint').hasText('yes')
     assert.dom('#hold').hasText('yes')
+    await click('#enabled')
+    assert.dom('#hint').hasText('no')
+    await click('#enabled')
+    assert.dom('#hint').hasText('yes')
     await click('#binding')
     assert.dom('#hint').hasText('no')
     await key('Control', 'keyup')
     assert.dom('#held').hasText('')
+  })
+
+  test('renders the scopes state when an exclusive scope activates', async (assert) => {
+    await render(<template><Example /></template>)
+    assert.dom('#scopes').hasText('none:')
+    const release = getHotkeyManager().activateScope('dialog', { exclusive: true })
+    await settled()
+    assert.dom('#scopes').hasText('dialog:global')
+    release()
+    await settled()
+    assert.dom('#scopes').hasText('none:')
   })
 
   test('runs single and plural sequences', async (assert) => {

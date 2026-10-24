@@ -32,15 +32,9 @@ const pages = [
   { to: '/formatting', label: 'Formatting', shortcut: 'Alt+[Digit5]' },
 ] as const
 
-function Hint({
-  hotkey,
-  enabled = true,
-}: {
-  hotkey: RegisterableHotkey
-  enabled?: boolean
-}) @{
+function Hint({ hotkey }: { hotkey: RegisterableHotkey }) @{
   const visible = useHotkeyHint(hotkey)
-  @if (visible && enabled) { <kbd>{formatForDisplay(hotkey)}</kbd> } @else {  }
+  @if (visible) { <kbd>{formatForDisplay(hotkey)}</kbd> } @else {  }
 }
 
 function Layout() @{
@@ -199,10 +193,10 @@ function Tickets() @{
         </label>
         <p>
           <button disabled={!enabled} onClick={create}>
-            Create ticket <Hint hotkey="Alt+[KeyC]" enabled={enabled} />
+            Create ticket <Hint hotkey="Alt+[KeyC]" />
           </button>
           <button disabled={!enabled} onClick={save}>
-            Save pending <Hint hotkey="Alt+[KeyS]" enabled={enabled} />
+            Save pending <Hint hotkey="Alt+[KeyS]" />
           </button>
         </p>
         <label>

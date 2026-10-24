@@ -684,6 +684,91 @@ describe('HotkeyManager', () => {
 
       expect(stopPropagationSpy).not.toHaveBeenCalled()
     })
+
+    describe("preventDefault: 'always'", () => {
+      function pressModS() {
+        const event = createKeyboardEvent('keydown', 's', { metaKey: true })
+        const preventDefault = vi.spyOn(event, 'preventDefault')
+        const stopPropagation = vi.spyOn(event, 'stopPropagation')
+        document.dispatchEvent(event)
+        return { preventDefault, stopPropagation }
+      }
+
+      it('prevents the default action of a disabled chord without firing or stopping propagation', () => {
+        const manager = HotkeyManager.getInstance()
+        const callback = vi.fn()
+        manager.register('Mod+S', callback, {
+          platform: 'mac',
+          enabled: false,
+          preventDefault: 'always',
+        })
+
+        const { preventDefault, stopPropagation } = pressModS()
+
+        expect(callback).not.toHaveBeenCalled()
+        expect(preventDefault).toHaveBeenCalled()
+        expect(stopPropagation).not.toHaveBeenCalled()
+      })
+
+      it('leaves the event alone for a disabled chord with preventDefault: true', () => {
+        const manager = HotkeyManager.getInstance()
+        manager.register('Mod+S', vi.fn(), { platform: 'mac', enabled: false })
+
+        expect(pressModS().preventDefault).not.toHaveBeenCalled()
+      })
+
+      it('prevents the default action of a chord in a suspended scope', () => {
+        const manager = HotkeyManager.getInstance()
+        const callback = vi.fn()
+        manager.register('Mod+S', callback, {
+          platform: 'mac',
+          preventDefault: 'always',
+        })
+        const release = manager.activateScope('dialog', { exclusive: true })
+
+        expect(pressModS().preventDefault).toHaveBeenCalled()
+        expect(callback).not.toHaveBeenCalled()
+
+        release()
+        pressModS()
+        expect(callback).toHaveBeenCalledOnce()
+      })
+
+      it('lets a chord that fires decide what happens to the event', () => {
+        const manager = HotkeyManager.getInstance()
+        const callback = vi.fn()
+        manager.register('Mod+S', vi.fn(), {
+          platform: 'mac',
+          enabled: false,
+          preventDefault: 'always',
+        })
+        manager.register('Mod+S', callback, {
+          platform: 'mac',
+          preventDefault: false,
+          conflictBehavior: 'allow',
+        })
+
+        expect(pressModS().preventDefault).not.toHaveBeenCalled()
+        expect(callback).toHaveBeenCalledOnce()
+      })
+
+      it('still skips typing in text fields', () => {
+        const manager = HotkeyManager.getInstance()
+        manager.register('K', vi.fn(), {
+          enabled: false,
+          preventDefault: 'always',
+        })
+        const input = document.createElement('input')
+        document.body.appendChild(input)
+
+        const event = createKeyboardEvent('keydown', 'k')
+        const preventDefault = vi.spyOn(event, 'preventDefault')
+        input.dispatchEvent(event)
+
+        expect(preventDefault).not.toHaveBeenCalled()
+        input.remove()
+      })
+    })
   })
 
   describe('ignoreInputs option', () => {
@@ -1627,6 +1712,26 @@ describe('HotkeyManager', () => {
 
       const regAfter = Array.from(manager.registrations.state.values())[0]!
       expect(toHotkeyRegistrationView(regAfter).hasFired).toBe(true)
+    })
+
+    it('reports whether the registration can fire', () => {
+      const manager = HotkeyManager.getInstance()
+      const handle = manager.register('Mod+S', vi.fn(), { platform: 'mac' })
+      manager.register('Escape', vi.fn(), { scope: 'dialog' })
+      const status = () =>
+        Array.from(
+          manager.registrations.state.values(),
+          (reg) => toHotkeyRegistrationView(reg).status,
+        )
+
+      expect(status()).toEqual(['active', 'suspended'])
+
+      const release = manager.activateScope('dialog', { exclusive: true })
+      expect(status()).toEqual(['suspended', 'active'])
+
+      release()
+      handle.setOptions({ enabled: false })
+      expect(status()).toEqual(['disabled', 'suspended'])
     })
   })
 })

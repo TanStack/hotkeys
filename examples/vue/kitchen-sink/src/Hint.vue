@@ -2,12 +2,9 @@
 import { formatForDisplay, useHotkeyHint } from '@tanstack/vue-hotkeys'
 import type { Hotkey } from '@tanstack/vue-hotkeys'
 
-const props = withDefaults(
-  defineProps<{ hotkey: Hotkey; enabled?: boolean }>(),
-  { enabled: true },
-)
+const props = defineProps<{ hotkey: Hotkey }>()
 const visible = useHotkeyHint(() => props.hotkey)
 </script>
 <template>
-  <kbd v-if="visible && enabled !== false">{{ formatForDisplay(hotkey) }}</kbd>
+  <kbd v-if="visible">{{ formatForDisplay(hotkey) }}</kbd>
 </template>

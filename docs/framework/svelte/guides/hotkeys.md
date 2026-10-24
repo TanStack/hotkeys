@@ -127,7 +127,7 @@ createHotkey('Enter', () => submit(), { ignoreInputs: false })
 | --- | --- | --- |
 | `enabled` | `true` | Whether the hotkey responds to key presses. See [Enable and disable hotkeys](#enable-and-disable-hotkeys). |
 | `target` | `document` | Where the hotkey listens: `document` or `window`. For an element, use an attachment. See [Hotkey targets](#hotkey-targets). |
-| `preventDefault` | `true` | Stops the browser's own action, such as the Save dialog for `Mod+S` |
+| `preventDefault` | `true` | Stops the browser's own action, such as the Save dialog for `Mod+S`. `'always'` also stops it while the hotkey can't fire. |
 | `stopPropagation` | `true` | Stops the key press from reaching other listeners |
 | `ignoreInputs` | `'auto'` | Skips key presses that type in a text field or operate a focused control. See [Typing in inputs does not trigger shortcuts](../../../guides/sensible-defaults.md#typing-in-inputs-does-not-trigger-shortcuts). |
 | `eventType` | `'keydown'` | Fires on `'keydown'` or `'keyup'` |
@@ -276,14 +276,16 @@ For a condition that doesn't match a component, pass `enabled` from a getter:
 createHotkey('Mod+S', () => save(), () => ({ enabled: hasUnsavedChanges }))
 ```
 
-A disabled hotkey stays registered, so devtools still list it, and changing `enabled` doesn't register it again. While disabled, it ignores key presses completely and doesn't call `preventDefault`. Pressing `Mod+S` while the hotkey above is disabled opens the browser's Save dialog. To keep the dialog closed, leave the hotkey enabled and return early from the callback:
+A disabled hotkey stays registered, so devtools still list it, and changing `enabled` doesn't register it again. While disabled, it ignores key presses, so pressing `Mod+S` opens the browser's Save dialog. To keep the dialog closed, set `preventDefault: 'always'`:
 
 ```ts
-createHotkey('Mod+S', () => {
-  if (!hasUnsavedChanges) return
-  save()
-})
+createHotkey('Mod+S', () => save(), () => ({
+  enabled: hasUnsavedChanges,
+  preventDefault: 'always',
+}))
 ```
+
+With `'always'`, a hotkey that can't fire, because it's disabled or its scope is inactive or suspended, still prevents the browser's action. It doesn't stop propagation, and when another hotkey handles the key, that hotkey's options apply instead. Sequences treat `'always'` as `true`. To apply it to every hotkey, set it in the default options. We recommend it for most hotkeys, but not for hotkeys you turn off to hand the key back to the browser, such as `Mod+C` or `Tab`. See [Hotkeys that can't fire leave the key alone](../../../guides/sensible-defaults.md#hotkeys-that-cant-fire-leave-the-key-alone).
 
 `enabled` works the same way for sequences. A disabled sequence ignores its steps.
 

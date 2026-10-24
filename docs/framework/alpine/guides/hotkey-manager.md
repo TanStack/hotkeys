@@ -97,7 +97,7 @@ releaseScope()
 
 ### Read scope state
 
-`manager.isScopeActive(scope)` returns whether hotkeys in a scope can fire. `createHotkeyRegistrations` updates when scopes change, so a list filtered with `isScopeActive` stays current.
+`manager.isScopeActive(scope)` returns whether hotkeys in a scope can fire. To list which registered hotkeys can fire, read each registration's `status`. See [List the hotkeys on screen](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 
 `manager.scopes` is a store with these fields:
 
@@ -106,26 +106,22 @@ releaseScope()
 - `allowed` lists the active scopes that the exclusive scope allows.
 - `suspended` lists the active scopes that can't fire because another scope is exclusive. It can include `'global'`.
 
-To read it in a component, copy the fields you need into component state from `init()`, and unsubscribe in `destroy()`:
+To read it in a component, call `createHotkeyScopesState` on an owner from `createHotkeysScope`. Its `value` updates when scopes activate or release:
 
 ```ts
 import Alpine from 'alpinejs'
-import { getHotkeyManager } from '@tanstack/alpine-hotkeys'
-
-const manager = getHotkeyManager()
+import { createHotkeysScope } from '@tanstack/alpine-hotkeys'
 
 Alpine.data('keyboardOwner', () => {
-  let subscription: { unsubscribe: () => void } | undefined
+  const hotkeys = createHotkeysScope()
+  const scopes = hotkeys.createHotkeyScopesState()
 
   return {
-    exclusive: manager.scopes.state.exclusive,
-    init() {
-      subscription = manager.scopes.subscribe((state) => {
-        this.exclusive = state.exclusive
-      })
+    get exclusive() {
+      return scopes.value.exclusive
     },
     destroy() {
-      subscription?.unsubscribe()
+      hotkeys.destroy()
     },
   }
 })

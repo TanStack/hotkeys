@@ -78,6 +78,7 @@ title: "@tanstack/hotkeys"
 - [HotkeyRecorderOptions](type-aliases/HotkeyRecorderOptions.md)
 - [HotkeyRecorderValidationContext](type-aliases/HotkeyRecorderValidationContext.md)
 - [HotkeyRegistration](type-aliases/HotkeyRegistration.md)
+- [HotkeyRegistrationStatus](type-aliases/HotkeyRegistrationStatus.md)
 - [HotkeyRegistrationView](type-aliases/HotkeyRegistrationView.md)
 - [HotkeySequence](type-aliases/HotkeySequence.md)
 - [IndividualKey](type-aliases/IndividualKey.md)

@@ -3,7 +3,7 @@ import {
   HotkeysProvider, useDefaultHotkeysOptions, useHotkeysContext,
   useHotkey, useHotkeys,
   useHeldKeys, useHeldKeyCodes, useKeyHold, useHotkeyHint,
-  useHotkeyRecorder, useHotkeyRegistrations,
+  useHotkeyRecorder, useHotkeyRegistrations, useHotkeyScopesState,
   defineAppHotkeys, useAppHotkeyList, useCustomHotkeys,
 } from '@tanstack/octane-hotkeys';
 import type {
@@ -34,6 +34,7 @@ export function Fixture() @{
   const hint = useHotkeyHint(binding);
   const otherHint = useHotkeyHint('Alt+S');
   const registrations = useHotkeyRegistrations();
+  const scopes = useHotkeyScopesState();
   const recorder = useHotkeyRecorder({ recordBy: 'key', platform: 'mac', onRecord: (value) => capture.records.push(value) });
   const sequenceRecorder = useHotkeyRecorder({ maxSteps: Infinity, recordBy: 'key', platform: 'mac', onRecord: (value) => capture.records.push(value) });
   capture.recorder = recorder;
@@ -53,6 +54,7 @@ export function Fixture() @{
     <output id="codes">{JSON.stringify(codes)}</output>
     <output id="hold">{String(hold)}</output>
     <output id="registrations">{registrations.hotkeys.filter((reg) => reg.kind === 'chord').length + ':' + registrations.hotkeys.filter((reg) => reg.kind === 'sequence').length}</output>
+    <output id="scopes">{(scopes.exclusive ?? 'none') + ':' + scopes.suspended.join(',')}</output>
     <output id="recording">{String(recorder.isRecording)}</output>
     <output id="steps">{sequenceRecorder.steps.join(',')}</output>
   </div>

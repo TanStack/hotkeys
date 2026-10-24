@@ -1,11 +1,17 @@
 // @vitest-environment happy-dom
 import { flushSync } from 'svelte'
 import { afterEach, expect, it, vi } from 'vitest'
-import { KeyStateTracker } from '@tanstack/hotkeys'
+import { HotkeyManager, KeyStateTracker } from '@tanstack/hotkeys'
 import { harness } from './hint-harness.svelte'
 
-afterEach(() => KeyStateTracker.resetInstance())
+afterEach(() => {
+  HotkeyManager.resetInstance()
+  KeyStateTracker.resetInstance()
+})
 it('selects visibility, tracks binding changes and cleans up subscriptions', () => {
+  const manager = HotkeyManager.getInstance()
+  const handle = manager.register('Alt+[KeyS]', () => {})
+  manager.register('Alt+Control+[KeyS]', () => {})
   const notify = vi.fn(),
     app = harness(notify)
   flushSync()
@@ -43,6 +49,18 @@ it('selects visibility, tracks binding changes and cleans up subscriptions', () 
       altKey: true,
     }),
   )
+  flushSync()
+  expect(notify).toHaveBeenLastCalledWith(true)
+  handle.setOptions({ enabled: false })
+  flushSync()
+  expect(notify).toHaveBeenLastCalledWith(false)
+  handle.setOptions({ enabled: true })
+  flushSync()
+  expect(notify).toHaveBeenLastCalledWith(true)
+  const release = manager.activateScope('dialog', { exclusive: true })
+  flushSync()
+  expect(notify).toHaveBeenLastCalledWith(false)
+  release()
   flushSync()
   expect(notify).toHaveBeenLastCalledWith(true)
   window.dispatchEvent(new Event('blur'))

@@ -5,7 +5,9 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import { useAppHotkeyList } from '../src/useAppHotkeys'
 import { useHotkey } from '../src/useHotkey'
-import type { VNodeChild } from 'vue'
+import { useHotkeyScopesState } from '../src/useHotkeyScopesState'
+import type { HotkeyScopesState } from '@tanstack/hotkeys'
+import type { Ref, VNodeChild } from 'vue'
 
 const appHotkeys = defineAppHotkeys({
   'doc.save': { hotkey: 'Mod+S' },
@@ -228,6 +230,36 @@ describe('HotkeysProvider scopes', () => {
     open.value = true
     await nextTick()
     expect(statuses()).toEqual(['suspended', 'suspended'])
+    wrapper.unmount()
+  })
+  it('updates the scopes state when an exclusive scope activates', async () => {
+    let state: Ref<HotkeyScopesState> | undefined
+    const wrapper = mount(
+      defineComponent({
+        setup() {
+          state = useHotkeyScopesState()
+          return () => h('span', state!.value.exclusive ?? 'none')
+        },
+      }),
+    )
+    expect(state!.value.exclusive).toBeNull()
+    expect(wrapper.text()).toBe('none')
+
+    const release = HotkeyManager.getInstance().activateScope('dialog', {
+      exclusive: true,
+    })
+    await nextTick()
+    expect(state!.value).toMatchObject({
+      active: ['dialog'],
+      exclusive: 'dialog',
+      suspended: ['global'],
+    })
+    expect(wrapper.text()).toBe('dialog')
+
+    release()
+    await nextTick()
+    expect(state!.value).toMatchObject({ exclusive: null, suspended: [] })
+    expect(wrapper.text()).toBe('none')
     wrapper.unmount()
   })
 })

@@ -1,5 +1,6 @@
 import { useSelector } from '@tanstack/react-store'
 import {
+  getHotkeyManager,
   getKeyStateTracker,
   isAppHotkey,
   matchesHeldModifiers,
@@ -14,12 +15,13 @@ import type {
 
 /**
  * Returns a boolean indicating whether held modifiers reveal this shortcut.
- * Only visibility changes from held-key updates cause a rerender.
- * Uses the nonempty-subset/AltGr rules of `matchesHeldModifiers`; `exact` requires
- * every modifier. A sequence reveals its hint from its first step, and an app
- * hotkey uses its effective hotkey (false while unbound). Combine with the
- * action's enabled state before showing a badge. This helper does not register
- * a shortcut or check whether its target is focused.
+ * The hint shows only while the hotkey can fire: some registration of it is
+ * enabled and in an active scope. An app hotkey matches its registrations by
+ * id and uses its effective hotkey (false while unbound).
+ * Uses the nonempty-subset/AltGr rules of `matchesHeldModifiers`; `exact`
+ * requires every modifier. A sequence reveals its hint from its first step.
+ * Only visibility changes cause a rerender. This helper does not register a
+ * shortcut or check whether its target is focused.
  */
 export function useHotkeyHint(
   hotkey: RegisterableHotkey | AppHotkey,
@@ -29,10 +31,16 @@ export function useHotkeyHint(
   const resolved = isAppHotkey(hotkey)
     ? resolveAppHotkey(hotkey, store).hotkey
     : hotkey
-  return useSelector(
+  const manager = getHotkeyManager()
+  const active = useSelector(
+    manager.registrations,
+    () => resolved !== null && manager.hasActiveRegistration(hotkey),
+  )
+  const held = useSelector(
     getKeyStateTracker().store,
     (state) =>
       resolved !== null &&
       matchesHeldModifiers(resolved, state.heldKeys, options),
   )
+  return active && held
 }

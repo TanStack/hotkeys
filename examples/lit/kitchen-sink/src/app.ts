@@ -34,10 +34,9 @@ class DemoElement extends LitElement {
 @customElement('shortcut-hint')
 class Hint extends DemoElement {
   @property() hotkey: Hotkey = 'Escape'
-  @property({ type: Boolean }) enabled = true
   private hint = new HotkeyHintController(this, () => this.hotkey)
   render() {
-    return this.hint.value && this.enabled
+    return this.hint.value
       ? html`<kbd>${formatForDisplay(this.hotkey)}</kbd>`
       : null
   }
@@ -87,17 +86,11 @@ class Tickets extends DemoElement {
       >
       <button ?disabled=${!this.enabled} @click=${this.create}>
         Create ticket
-        <shortcut-hint
-          hotkey="Alt+[KeyC]"
-          .enabled=${this.enabled}
-        ></shortcut-hint>
+        <shortcut-hint hotkey="Alt+[KeyC]"></shortcut-hint>
       </button>
       <button ?disabled=${!this.enabled} @click=${this.save}>
         Save pending
-        <shortcut-hint
-          hotkey="Alt+[KeyS]"
-          .enabled=${this.enabled}
-        ></shortcut-hint>
+        <shortcut-hint hotkey="Alt+[KeyS]"></shortcut-hint>
       </button>
       <label
         >Ticket note <input placeholder="Try Alt + C while typing"

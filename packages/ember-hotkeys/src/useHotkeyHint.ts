@@ -1,4 +1,5 @@
 import {
+  getHotkeyManager,
   getKeyStateTracker,
   isAppHotkey,
   matchesHeldModifiers,
@@ -15,8 +16,10 @@ import type { MaybeGetter } from './utils'
 
 /**
  * Recomputes for held modifiers and tracked changes to the hotkey or options.
- * A sequence reveals its hint from its first step, and an app hotkey uses its
- * effective hotkey (false while unbound).
+ * The hint shows only while the hotkey can fire: some registration of it is
+ * enabled and in an active scope. A sequence reveals its hint from its first
+ * step, and an app hotkey matches its registrations by id and uses its
+ * effective hotkey (false while unbound). Focus and `target` are not checked.
  */
 export function useHotkeyHint(
   owner: object,
@@ -24,6 +27,9 @@ export function useHotkeyHint(
   options: MaybeGetter<HeldModifierOptions> = {},
 ): EmberHotkeyState<boolean> {
   const appHotkeys = trackPublishedAppHotkeys(owner)
+  const manager = getHotkeyManager()
+  // Tracks registration, enabled, and scope changes.
+  const registrations = select(owner, manager.registrations, (state) => state)
   return select(owner, getKeyStateTracker().store, (state) => {
     const value = read(hotkey)
     const resolved = isAppHotkey(value)
@@ -31,7 +37,9 @@ export function useHotkeyHint(
       : value
     return (
       resolved !== null &&
-      matchesHeldModifiers(resolved, state.heldKeys, read(options))
+      matchesHeldModifiers(resolved, state.heldKeys, read(options)) &&
+      registrations.value.size > 0 &&
+      manager.hasActiveRegistration(value)
     )
   })
 }

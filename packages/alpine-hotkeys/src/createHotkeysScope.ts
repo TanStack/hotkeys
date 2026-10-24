@@ -6,6 +6,7 @@ import { createHeldKeyCodes } from './createHeldKeyCodes'
 import { createKeyHold } from './createKeyHold'
 import { createHotkeyHint } from './createHotkeyHint'
 import { createHotkeyRegistrations } from './createHotkeyRegistrations'
+import { createHotkeyScopesState } from './createHotkeyScopesState'
 import { createHotkeyRecorder } from './createHotkeyRecorder'
 import {
   createAppHotkeyList,
@@ -43,6 +44,7 @@ export function createHotkeysScope(
     createHotkeyHint: (...args) => createHotkeyHint(scope, ...args),
     createHotkeyRegistrations: (...args) =>
       createHotkeyRegistrations(scope, ...args),
+    createHotkeyScopesState: () => createHotkeyScopesState(scope),
     createHotkeyRecorder: ((options) =>
       createHotkeyRecorder(scope, options)) as AlpineCreateHotkeyRecorder,
     createAppHotkeys: () => createAppHotkeys(scope),

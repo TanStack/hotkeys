@@ -3,7 +3,7 @@ id: HotkeyHintController
 title: HotkeyHintController
 ---
 
-Defined in: [controllers/hotkey-hint.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L16)
+Defined in: [controllers/hotkey-hint.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L17)
 
 Modifier hint controller. Getter arguments can read reactive host properties.
 
@@ -22,7 +22,7 @@ new HotkeyHintController(
    options?): HotkeyHintController;
 ```
 
-Defined in: [controllers/hotkey-hint.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L21)
+Defined in: [controllers/hotkey-hint.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L22)
 
 Attaches to the host; getter arguments can read changing reactive properties.
 
@@ -56,9 +56,10 @@ Attaches to the host; getter arguments can read changing reactive properties.
 get value(): boolean;
 ```
 
-Defined in: [controllers/hotkey-hint.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L31)
+Defined in: [controllers/hotkey-hint.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L35)
 
-Current visibility; combine with the action’s enabled state when rendering.
+Current visibility. True only while the hotkey can fire: some registration
+of it is enabled and in an active scope. Focus and `target` are not checked.
 
 ##### Returns
 
@@ -72,7 +73,7 @@ Current visibility; combine with the action’s enabled state when rendering.
 hostConnected(): void;
 ```
 
-Defined in: [controllers/hotkey-hint.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L36)
+Defined in: [controllers/hotkey-hint.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L40)
 
 Subscribes on connection and requests renders only when hint visibility changes.
 
@@ -94,7 +95,7 @@ ReactiveController.hostConnected
 hostDisconnected(): void;
 ```
 
-Defined in: [controllers/hotkey-hint.ts:55](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L55)
+Defined in: [controllers/hotkey-hint.ts:61](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L61)
 
 Releases the subscription and clears cached visibility while disconnected.
 
@@ -116,7 +117,7 @@ ReactiveController.hostDisconnected
 hostUpdate(): void;
 ```
 
-Defined in: [controllers/hotkey-hint.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L50)
+Defined in: [controllers/hotkey-hint.ts:56](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L56)
 
 Re-evaluates getter arguments when host properties trigger an update.
 

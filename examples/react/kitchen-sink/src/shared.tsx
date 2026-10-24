@@ -26,19 +26,14 @@ export function formatHotkey(hotkey: Hotkey | null): string {
 }
 
 /**
- * Shows an app hotkey's current hotkey while its modifiers are held.
- * The provider resolves custom hotkeys, so hints stay correct after rebinding.
+ * Shows an app hotkey's current hotkey while its modifiers are held and it can
+ * fire. The provider resolves custom hotkeys, so hints stay correct after
+ * rebinding. Disabled and suspended hotkeys show no hint.
  */
-export function Hint({
-  id,
-  enabled = true,
-}: {
-  id: AppHotkeyId
-  enabled?: boolean
-}) {
+export function Hint({ id }: { id: AppHotkeyId }) {
   const appHotkey = useAppHotkeys()[id]
   const visible = useHotkeyHint(appHotkey)
-  return visible && enabled && appHotkey.hotkey ? (
+  return visible && appHotkey.hotkey ? (
     <kbd>{formatHotkey(appHotkey.hotkey)}</kbd>
   ) : null
 }

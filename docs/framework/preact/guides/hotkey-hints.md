@@ -4,7 +4,7 @@ id: hotkey-hints
 description: Reveal keyboard shortcut hints next to buttons in Preact while the user holds a modifier, with useHotkeyHint.
 ---
 
-Some apps show each button's shortcut only while the user holds a modifier, so the hints are there when the user reaches for the keyboard, and out of the way otherwise. `useHotkeyHint` returns `true` while the user holds modifiers that belong to a hotkey. It's an optional helper, and it doesn't register anything, so use it alongside `useHotkey`.
+Some apps show each button's shortcut only while the user holds a modifier, so the hints are there when the user reaches for the keyboard, and out of the way otherwise. `useHotkeyHint` returns `true` while the user holds modifiers that belong to a hotkey that can fire. It's an optional helper, and it doesn't register anything, so use it alongside `useHotkey`.
 
 ## Show a hint next to a button
 
@@ -38,6 +38,9 @@ While the user holds Command on macOS, or Control elsewhere, the button reads "S
 - Releasing every modifier, or the window losing focus, hides the hint.
 - Other held keys don't matter. AltGr never shows hints, because it types characters.
 - A hotkey without modifiers, such as `Escape` or `G`, never shows a hint.
+- The hotkey must be able to fire. A hint shows only while a registration of the hotkey is enabled and in an active [scope](./hotkeys-provider-and-scopes). A hotkey that nothing registers never shows a hint.
+- Every registration of the hotkey counts, not only the one in your component. If two components register the same hotkey and only one is enabled, both show the hint.
+- Focus doesn't matter. A hint for a hotkey bound to one element's `target` shows while focus is elsewhere.
 
 To show a hint only while every modifier is held, pass `exact`:
 
@@ -63,6 +66,7 @@ Pass an [app hotkey](./app-hotkeys) to show the user's current hotkey, including
 import {
   formatForDisplay,
   useAppHotkeys,
+  useHotkey,
   useHotkeyHint,
 } from '@tanstack/preact-hotkeys'
 import type { AppHotkeyId } from '@tanstack/preact-hotkeys'
@@ -77,6 +81,8 @@ function Hint({ id }: { id: AppHotkeyId }) {
 }
 
 function Toolbar() {
+  useHotkey(useAppHotkeys()['doc.save'], save)
+
   return (
     <button onClick={save}>
       Save <Hint id="doc.save" />
@@ -85,25 +91,24 @@ function Toolbar() {
 }
 ```
 
-## Hide hints for hotkeys that can't fire
-
-`useHotkeyHint` only looks at held keys. It doesn't know whether the hotkey is enabled, its scope is active, or its target has focus. When a hotkey can be off, combine the hint with the same state:
-
-```tsx
-useHotkey(saveHotkey, save, { enabled: isDirty })
-const showHint = useHotkeyHint(saveHotkey) && isDirty
-```
-
 ## Check held modifiers without the hook
 
-To check outside a component, such as while drawing on a canvas, pass the held keys to `matchesHeldModifiers`. It takes the same options:
+To check outside a component, such as while drawing on a canvas, pass the held keys to `matchesHeldModifiers`. It takes the same options, but it only looks at held keys. To also check that the hotkey can fire, call `hasActiveRegistration` on the hotkey manager:
 
 ```ts
-import { getKeyStateTracker, matchesHeldModifiers } from '@tanstack/preact-hotkeys'
+import {
+  getHotkeyManager,
+  getKeyStateTracker,
+  matchesHeldModifiers,
+} from '@tanstack/preact-hotkeys'
 
 const tracker = getKeyStateTracker()
 
 matchesHeldModifiers('Mod+S', tracker.getHeldKeys()) // true while Mod is held
+
+const showHint =
+  matchesHeldModifiers('Mod+S', tracker.getHeldKeys()) &&
+  getHotkeyManager().hasActiveRegistration('Mod+S') // Same check as the hook
 ```
 
 [Held Key State Helpers](./held-key-state-helpers) covers the tracker and the other held-key hooks.
