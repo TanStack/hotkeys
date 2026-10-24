@@ -35,8 +35,13 @@ export class HotkeyScopesStateController implements ReactiveController {
     this._host.addController(this)
   }
 
-  /** Subscribes to the scopes store and updates the host when it changes. */
+  /**
+   * Subscribes to the scopes store and updates the host when it changes.
+   * Connecting requests an update too, since scopes may have changed while
+   * disconnected.
+   */
   public hostConnected(): void {
+    this._host.requestUpdate()
     const subscription = getHotkeyManager().scopes.subscribe(() =>
       this._host.requestUpdate(),
     )

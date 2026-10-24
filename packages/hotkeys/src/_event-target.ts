@@ -26,6 +26,20 @@ export function getTargetDocument(
   return (target as HTMLElement).ownerDocument
 }
 
+/** Whether an event reaches a listener on `target`, from any listener's point of view. */
+export function eventReachesTarget(
+  event: Event,
+  target: HTMLElement | Document | Window,
+): boolean {
+  if (event.target === target) return true
+  if (!isNode(event.target)) return false
+  const container =
+    isWindow(target) || target.nodeType === 9
+      ? getTargetDocument(target)
+      : target
+  return container.contains(event.target)
+}
+
 /**
  * Checks if an element is an input-like element that should be ignored for hotkeys.
  *

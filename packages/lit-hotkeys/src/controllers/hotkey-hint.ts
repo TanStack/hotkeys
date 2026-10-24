@@ -36,9 +36,14 @@ export class HotkeyHintController implements ReactiveController {
     return this.visible
   }
 
-  /** Subscribes on connection and requests renders only when hint visibility changes. */
+  /**
+   * Subscribes on connection, then requests renders only when hint visibility
+   * changes. Reconnecting always requests one, since the hint may have changed
+   * while disconnected.
+   */
   hostConnected(): void {
     this.update()
+    this.host.requestUpdate()
     const refresh = () => {
       if (this.update()) this.host.requestUpdate()
     }

@@ -22,6 +22,7 @@ import {
   optionsEqual,
 } from './_registration'
 import {
+  eventReachesTarget,
   getTargetDocument,
   isEventForTarget,
   shouldIgnoreInputEvent,
@@ -670,6 +671,49 @@ export class HotkeyManager {
     return getRegistrationStatus(registration.options, this) === 'active'
   }
 
+  /**
+   * Whether a hotkey that can fire would handle this key on any listener the
+   * event reaches, including other targets and phases. A sequence counts when
+   * the key matches its next step or its first step.
+   */
+  #handledByLiveHotkey(
+    event: KeyboardEvent,
+    eventType: 'keydown' | 'keyup',
+  ): boolean {
+    for (const registration of this.registrations.state.values()) {
+      if (
+        !this.#isLive(registration) ||
+        registration.options.eventType !== eventType ||
+        !eventReachesTarget(event, registration.target) ||
+        (ignoresInputs(registration) &&
+          shouldIgnoreInputEvent(
+            event,
+            registration.target,
+            registration.target,
+          ))
+      ) {
+        continue
+      }
+      const steps =
+        registration.kind === 'chord'
+          ? [registration.parsedChord]
+          : [
+              registration.parsedSequence[registration.currentIndex]!,
+              registration.parsedSequence[0]!,
+            ]
+      if (
+        steps.some(
+          (step) =>
+            matchKeyboardEvent(event, step, registration.options.platform)
+              .matched,
+        )
+      ) {
+        return true
+      }
+    }
+    return false
+  }
+
   /** Notifies subscribers after in-place updates such as counts and sequence progress. */
   #notify(): void {
     this.registrations.setState((prev) => new Map(prev))
@@ -1018,8 +1062,14 @@ export class HotkeyManager {
       bestScore = Math.max(bestScore, result.score)
     }
 
-    // A hotkey that fires decides what happens to the event.
-    if (reserved && matches.size === 0) event.preventDefault()
+    // A hotkey that fires, on any listener, decides what happens to the event.
+    if (
+      reserved &&
+      matches.size === 0 &&
+      !this.#handledByLiveHotkey(event, eventType)
+    ) {
+      event.preventDefault()
+    }
 
     // Among the best matches, the most recently activated scope handles the key.
     let bestRank = -1

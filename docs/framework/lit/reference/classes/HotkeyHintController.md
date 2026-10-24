@@ -73,9 +73,11 @@ of it is enabled and in an active scope. Focus and `target` are not checked.
 hostConnected(): void;
 ```
 
-Defined in: [controllers/hotkey-hint.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L40)
+Defined in: [controllers/hotkey-hint.ts:44](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L44)
 
-Subscribes on connection and requests renders only when hint visibility changes.
+Subscribes on connection, then requests renders only when hint visibility
+changes. Reconnecting always requests one, since the hint may have changed
+while disconnected.
 
 #### Returns
 
@@ -95,7 +97,7 @@ ReactiveController.hostConnected
 hostDisconnected(): void;
 ```
 
-Defined in: [controllers/hotkey-hint.ts:61](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L61)
+Defined in: [controllers/hotkey-hint.ts:66](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L66)
 
 Releases the subscription and clears cached visibility while disconnected.
 
@@ -117,7 +119,7 @@ ReactiveController.hostDisconnected
 hostUpdate(): void;
 ```
 
-Defined in: [controllers/hotkey-hint.ts:56](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L56)
+Defined in: [controllers/hotkey-hint.ts:61](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L61)
 
 Re-evaluates getter arguments when host properties trigger an update.
 

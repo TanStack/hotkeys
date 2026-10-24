@@ -92,7 +92,7 @@
       "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "b682a1039aedb147fa222a50dadef795bbea190a9241b21296102ce5e4118aac",
+      "fingerprint": "76debe3069f7773a3e6972a1ad6ba701d718b54733f438a69ac38be00d424029",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
         "docs/framework/react/guides/hotkeys.md": "4d12140117ce4ceb3fb9bc17867efe30ae7085609714800e962c927ce07f019f",
@@ -101,7 +101,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "507ec6b32b7b1836276ee6527acdb3240f998d72dfb90f07c9e9820e688e8714",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "2091620d4dfed2fe22342d3e98dcda7a8996188eee9d001f47799a5a59adcaac",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "90e6512868c194f6c906711cd16882c204600a3118b08b7a101ff6b409012538",
-        "packages/hotkeys/src/hotkey-manager.ts": "fd2f7038a88c8362f0671567d204370eaae7b389ed108e819ed9943018a6c90b",
+        "packages/hotkeys/src/hotkey-manager.ts": "cd4fa92484d650e8d10a7f0a85d81e1e6d001bfe4ad38b9e40adbfab86ab6bfb",
         "packages/hotkeys/src/match.ts": "3a50921a68f79183b4ffac98e07e7fdf043711bc071f419c9cdc03422d25f268",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "25c572e968a78fd8df61f0bc98ba8adb41ecf0874437725e5ba28dd171e44fe1",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -113,10 +113,10 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "451dc7569f71956e5ce5e691ecc18ce14d4240b7edaa20cad58075747416c33d"
       },
-      "head": "9a3ab5127e79e94524708fab8af13ed0fe7715f7",
-      "outcome": "updated",
-      "reason": "preventDefault 'always' gotcha now says to skip it for hotkeys turned off to give the key back (clipboard, undo, Tab, single keys behind an off switch).",
-      "evidence": ["docs/guides/sensible-defaults.md"]
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
+      "outcome": "no-change",
+      "reason": "Review fixes: preventDefault 'always' now defers to live hotkeys on any listener, Lit controllers render on reconnect, Lit guide points to shared options. Skill guidance unchanged.",
+      "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
       "fingerprint": "e57dde82b258f09c78ce86d1a6588ebe89551d46deb0ecc0a68b72fefdb4b668",
@@ -282,7 +282,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "73fb1426fdb4886a240cf3965aa5e07522aba1f00f8fdd7d57a2cd7ed6c5a1d3",
+      "fingerprint": "bf23d5902c6922805e61f47a48342cd9e5ad75cb9aef3c8eb6617660e1564b76",
       "snapshot": {
         "_artifacts/domain_map.yaml": "dd50dde7eec97230c015f793602239e721dacb370936eafd4554988b4a2c1c89",
         "_artifacts/skill_spec.md": "57693ee30406d1a76d7ec201cc480e37611b23141ec70d7f178b0b07f56248fd",
@@ -342,7 +342,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "90e6512868c194f6c906711cd16882c204600a3118b08b7a101ff6b409012538",
         "packages/hotkeys/src/app-hotkeys.ts": "5bee8b0042a7385c8963aabf9b0ca7b6aad5ef8aab41b2759961a7ac6cf6849c",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
-        "packages/hotkeys/src/hotkey-manager.ts": "fd2f7038a88c8362f0671567d204370eaae7b389ed108e819ed9943018a6c90b",
+        "packages/hotkeys/src/hotkey-manager.ts": "cd4fa92484d650e8d10a7f0a85d81e1e6d001bfe4ad38b9e40adbfab86ab6bfb",
         "packages/hotkeys/src/hotkey-recorder.ts": "2ebed5665e56f5ee87130440fc93f2571aef7940b6153c05204cd0f3e7eea4cc",
         "packages/hotkeys/src/match.ts": "3a50921a68f79183b4ffac98e07e7fdf043711bc071f419c9cdc03422d25f268",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "5c01c92cfe98165a7633ace915b2f8e0d4d5f888edd54c63726d08e4f78c2c32",
@@ -411,10 +411,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "476a5a50a21aefe6243f9bc6e8c6a679978542d6ad8b52e6a2b0f806cd5ef89a",
         "packages/vue-hotkeys/src/useHotkeys.ts": "f971e9938eca3188b3af0fcc96d095330f9f6abfd70cb848d2de5c80f8d09639"
       },
-      "head": "9a3ab5127e79e94524708fab8af13ed0fe7715f7",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "no-change",
-      "reason": "Docs-only clarification.",
-      "evidence": ["docs/guides/sensible-defaults.md"]
+      "reason": "Review fixes: preventDefault 'always' now defers to live hotkeys on any listener, Lit controllers render on reconnect, Lit guide points to shared options. Skill guidance unchanged.",
+      "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -509,13 +509,13 @@
       ]
     },
     "source:docs/framework/lit/reference/classes/HotkeyHintController.md": {
-      "fingerprint": "62c4c33feb38c0f67fd752863aa7327a71ba8791762dcb66d02c86ccd8cb7f81",
+      "fingerprint": "5d5d7b720ac504f3f9e90ba2d5aaab65ff11ae7a24c326c703f388d0ba9173d6",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyHintController.md": "f0e294a1e9847701420c84bfe1030976671e5095ddbc824607c4f985edb61548"
+        "docs/framework/lit/reference/classes/HotkeyHintController.md": "170c0812e258c4859f87606d4da88cc571924ee6da3b8c51713b162ee55b262e"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": [
         "docs/framework/lit/reference/classes/HotkeyHintController.md"
       ]
@@ -667,23 +667,23 @@
       "evidence": ["docs/framework/vue/reference/functions/useHotkeyHint.md"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "9992dfc231289e540551962a7b2cf7f8ba8e37ec59ffeb986eb3b79dea2e95c2",
+      "fingerprint": "62084bb7a798910edda00d9df0c930d9899c6dad16fd0db37b059a7c6dcdbb1c",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "bfdb5915454ecb2b7d1e0a67be6e0217bbb4d2a284841ead831f5a51d4ceaf26"
+        "docs/reference/classes/HotkeyManager.md": "68f4b2d373025461905b531b87f66f131aa9e07011e0f88932db7f366661b710"
       },
-      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": ["docs/reference/classes/HotkeyManager.md"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "c3e94bc13cd235c439c88ab3592efd8a62e38e27fdeef5707a93f8f35d2fc45d",
+      "fingerprint": "c80e3874338d177a18dadf6fd8eb5d71ebf5ed82294e559552fe2bf4863e221b",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "13106d9f3017fccad8c1ae940ca72d8562c9a893b696fad4d344cb34a789d58d"
+        "docs/reference/functions/getHotkeyManager.md": "cd4854fbb7ad9734ca3eaecfdfc18fedf98a19fa8b2f630f73d0576680178828"
       },
-      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": ["docs/reference/functions/getHotkeyManager.md"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
@@ -907,23 +907,23 @@
       "evidence": ["packages/hotkeys/tests/scopes.test.ts"]
     },
     "source:packages/lit-hotkeys/src/controllers/hotkey-hint.ts": {
-      "fingerprint": "22e5be5d968ee004fbea363762f48b83060935ac6dfbb5f7af824513aa646d91",
+      "fingerprint": "604080b5204d4853f59c692a8799dbbd0ad40a8e3debcfa7036c8f801d9200ac",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/hotkey-hint.ts": "afb448ad9bf1fabae38dc91eba4d3d7e4859e7da50c997039ff5bc2904b0ff0e"
+        "packages/lit-hotkeys/src/controllers/hotkey-hint.ts": "400bca90ca14c1744389b9d35dd06ca74c94e3f5813a24dca92b68eaaafb548f"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "no-change",
-      "reason": "Internal refactor with identical behavior; skills unaffected.",
+      "reason": "Review fixes: preventDefault 'always' now defers to live hotkeys on any listener, Lit controllers render on reconnect, Lit guide points to shared options. Skill guidance unchanged.",
       "evidence": ["packages/lit-hotkeys/src/controllers/hotkey-hint.ts"]
     },
     "source:packages/lit-hotkeys/tests/hotkey-hint.spec.ts": {
-      "fingerprint": "1d5b2e64d7cede1a4444db2af672aa9d41d8c649e11b2630a3ccebbd06b07610",
+      "fingerprint": "594ffd4d628271b1e3c2982b7f7f67a1bfa29a492da8adf9109cf4b6406d6a0a",
       "snapshot": {
-        "packages/lit-hotkeys/tests/hotkey-hint.spec.ts": "5f47fde69c5b4a7114ee64646fcd6cd9e953f4fd33f041035865314f9947ac4f"
+        "packages/lit-hotkeys/tests/hotkey-hint.spec.ts": "e6229dfc4b3074abc4ccfd21de1b7e6f99b1588e708e60ef64469310cd8559f4"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": ["packages/lit-hotkeys/tests/hotkey-hint.spec.ts"]
     },
     "source:packages/octane-hotkeys/src/useHotkeyHint.ts": {
@@ -1106,17 +1106,14 @@
       ]
     },
     "source:docs/framework/lit/guides/hotkeys.md": {
-      "fingerprint": "4b94df1992639eb883b90ca07a858d9b057d05e857d21aa46dc3a263b4155477",
+      "fingerprint": "d27f953fa42f5de387055a179563d9bc6bbf7baf49efaddfb7d9d575ae8ca19b",
       "snapshot": {
-        "docs/framework/lit/guides/hotkeys.md": "a71dbd85bfc19065ab05b91f2971aa6684cfaa4a3fbdf4dc1a0ab8abcb6d03b9"
+        "docs/framework/lit/guides/hotkeys.md": "ecd5098e45f237cc6d43d67f0f01fe89bb27d91f1d68078fe8f05801d57caa09"
       },
-      "head": "9a3ab5127e79e94524708fab8af13ed0fe7715f7",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "no-change",
-      "reason": "Docs explain when to leave preventDefault 'always' off; the hotkeys-core skill carries the same guidance.",
-      "evidence": [
-        "docs/framework/lit/guides/hotkeys.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
-      ]
+      "reason": "Review fixes: preventDefault 'always' now defers to live hotkeys on any listener, Lit controllers render on reconnect, Lit guide points to shared options. Skill guidance unchanged.",
+      "evidence": ["docs/framework/lit/guides/hotkeys.md"]
     },
     "source:docs/framework/octane/guides/hotkeys.md": {
       "fingerprint": "c12021a09315d56b928f3f3755815e4448fc1b0147ea002de28872ce83dc4774",
@@ -1184,145 +1181,145 @@
       ]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
-      "fingerprint": "446152f19da4e50098d64feadad4773a3cabffd4d426f818b05bb91ec683c44a",
+      "fingerprint": "f938aef3ced0cd5db1c888442aba11c0ee7d674df98950da7f6833967859a08d",
       "snapshot": {
-        "docs/reference/functions/toHotkeyRegistrationView.md": "2ff1079ee72649ea236bc6263783031f8c8139018849f88bb8968a3ef9314b9d"
+        "docs/reference/functions/toHotkeyRegistrationView.md": "9cffcfc626a382f940e8414056f7cca7a856d4b0780b85a92121c4d31d565287"
       },
-      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": ["docs/reference/functions/toHotkeyRegistrationView.md"]
     },
     "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
-      "fingerprint": "747f3d10bc0838f355b7fdfe8143470ffa59216a86b152c86613264e85585531",
+      "fingerprint": "c2d2d5181d0913786dd9732fd6c836938cb84dfe7280a100901725745e662c28",
       "snapshot": {
-        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "9a170c0fd928ec6c5fc135c28226e9f3589ddda4cc03ae96d45fa8c614e78ccd"
+        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "d716823cc9ed4c6091d00441ce0342c95d50d6b4ebe23ca50b0653cc5eab5f09"
       },
-      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": ["docs/reference/interfaces/ActivateHotkeyScopeOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordOptions.md": {
-      "fingerprint": "b7af0a2ad6a2dc88b96883c451a20767467118c22f2bacf60046c93fd4a00e58",
+      "fingerprint": "404bc38543e861ec69922d37c22812def0ec459710625c6b99334a6f57192bb2",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordOptions.md": "e8296301a524719ac472e764f41a14a9250efcb83d7673a86e21b9f943c68e4d"
+        "docs/reference/interfaces/HotkeyChordOptions.md": "d6eada3aa2355bd56bfb4edf3e149069591df3e99f3e261421403bbaa6afc996"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": ["docs/reference/interfaces/HotkeyChordOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistration.md": {
-      "fingerprint": "3c2ed290b3ddb595d0f768bcd20d1cec796fc229f80d45e47cb5b95d76646c6f",
+      "fingerprint": "f514cd197b6e420ea05d5ae89b9254e0b62b8e2142f85c6acfba4ca56afb1430",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistration.md": "dcf8fe9475831f216004b8f03071dbfc5246485d1199bb718ce1c9fcbac1a35a"
+        "docs/reference/interfaces/HotkeyChordRegistration.md": "900bb35bac81b47304267dc37b3a560ec6d36913b886adca6cf4457a628c2cc3"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": ["docs/reference/interfaces/HotkeyChordRegistration.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistrationView.md": {
-      "fingerprint": "0fe596c9fbefc5dbe4fb5976eb4fb21f2751a56dc73659f71c552e672c090e0f",
+      "fingerprint": "69a3b0d00aa0168233a95f49611b1a53fc9bcee3e0b219efb73f117484577e6e",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "fe08393c94b345e794f8389b463c52dbe051b311557c9ca175db274f0e70b216"
+        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "2e8d157d2909db910dd3c757cc43886b433f05026c6cb0c73786b1364d34751b"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": ["docs/reference/interfaces/HotkeyChordRegistrationView.md"]
     },
     "source:docs/reference/interfaces/HotkeyOptions.md": {
-      "fingerprint": "7a75cc7ffcf6f6ea02f74230bba927a42d0fa3e51826516ba77eae9fa06a570b",
+      "fingerprint": "4133fc170ca919556ddec281e2c2e16518b0d1ba9654a9d6ad268ae5c3866a97",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyOptions.md": "ca2c8998ca112744615587761726a7361800163512c67859179fd188e29db052"
+        "docs/reference/interfaces/HotkeyOptions.md": "0aa93e7d3507e2e7a27b689278e6d574cb919ba05911b6e5a7974c5939161a5b"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": ["docs/reference/interfaces/HotkeyOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationHandle.md": {
-      "fingerprint": "ae6a5e492d83929fcd84df417da5ce738a1bc9d4253467b7bf50404a528e789b",
+      "fingerprint": "76df83771737340a55a24dffba4ff25d754fa9d9342b6e66b836ae97e0868569",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "c609f892198de6e2c9dd97d0ea88c8b1d3f47d2661a38150d7e12c63fe55ecb7"
+        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "b6c22f35acfc621f6fa610544f7c890df4d1515ef2c25e75f8cee6d5c72131b0"
       },
-      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": ["docs/reference/interfaces/HotkeyRegistrationHandle.md"]
     },
     "source:docs/reference/interfaces/HotkeyScopesState.md": {
-      "fingerprint": "2ac3662e7ddd9b21a7b1a5cafcb4c698dc140151cd3e6d6dc812b9d0974c8864",
+      "fingerprint": "1732bd55f06bb652d125b51b42719d2c783a845ba1ba69ae65dbd549232058a9",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyScopesState.md": "9639b77fbfefab542880a1f7aa541600785cf3ea3cf94471a220f7e3822c3a48"
+        "docs/reference/interfaces/HotkeyScopesState.md": "5c2b53cb7d39f2a86a5eec6899d1cfac3716441ded102296fad0dbd74827b6b8"
       },
-      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": ["docs/reference/interfaces/HotkeyScopesState.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
-      "fingerprint": "e8787cf66280298a0cc66b63097e184d414968a2ef739749f845a25c23a51163",
+      "fingerprint": "9ce40ae235071ab7685e0dcaf07bd1789692fd4bb3950c8187741c8bb6c5b473",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceOptions.md": "96c7149a1ccdb5477916f42404b76863a7e629846c63332e87b0d561ee3c320c"
+        "docs/reference/interfaces/HotkeySequenceOptions.md": "d028d435b3cd9c027c5d023b5b39b397affda59d91954b5ea19a5f69f7816248"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": ["docs/reference/interfaces/HotkeySequenceOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistration.md": {
-      "fingerprint": "130dad9c85c1b62ea38650f19c40789686e4dcd3df2c3d6966eb58b442046def",
+      "fingerprint": "149fb9cfb777b3141cb9b4abb8a1c97846eed6182d246cca745335bced6f447c",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistration.md": "347021b740c62d90d8c674a41ff33ca4006801cbbc9e7363af055b04487030a4"
+        "docs/reference/interfaces/HotkeySequenceRegistration.md": "c44ab6bd9ceeff3a3d687d679aa0a723d16b7b1b879298ce8ea71f94b66de06d"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": ["docs/reference/interfaces/HotkeySequenceRegistration.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistrationView.md": {
-      "fingerprint": "4e517cc96b8d8d06e53e4879073f09303e88535ef386c8b4025a8ed2897930b6",
+      "fingerprint": "c0bf18f71dc1cb2865fa223b46c5bacf8f6b834d8ae9dd72432cba2c969785f8",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "fd29933561c5f140c76b7823a29db544791f92bc3e7399fa448ed10e4ff08a21"
+        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "bb983e846ab7daec436446b4b55ac6a0c5d7f3673211b1be7666c318316f39fb"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": [
         "docs/reference/interfaces/HotkeySequenceRegistrationView.md"
       ]
     },
     "source:docs/reference/type-aliases/HotkeyOptionsFor.md": {
-      "fingerprint": "ba9908424d5f7f970ad148aec2ff0d1d89d3cf710629d6e40eee7de18dcf3f5e",
+      "fingerprint": "7fdc4618f808980418e1b2b34df6210cdb64523ba3dfbae3bd4530013189c1c7",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyOptionsFor.md": "2f1e8b9282a1d50f4b2776b9d005691c12960b5b6dce3532023446fdbe718e79"
+        "docs/reference/type-aliases/HotkeyOptionsFor.md": "ee43c56352a9ee3df76dc28bd5a13a10596dca25199f1f6cc4cfaf1f3d369c2c"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": ["docs/reference/type-aliases/HotkeyOptionsFor.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistration.md": {
-      "fingerprint": "6cff11f606028eff9a1ce753d08dc0c15dcc14669b2908abad92a1fec078cb83",
+      "fingerprint": "316b2a22813a196d0950b8d20d23e945fc45bab8c350bd1972e285f5f722a990",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistration.md": "72b2081584381755720c910723289f230c513ae6d4649885c7c6b81c32b50426"
+        "docs/reference/type-aliases/HotkeyRegistration.md": "cb575b12d108217046edada2f8a292eacc86d70de5417be426ae28394dc3e672"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": ["docs/reference/type-aliases/HotkeyRegistration.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationView.md": {
-      "fingerprint": "3d41ed00cc5051dc6657665e4ef65e8a0cd5369be1c36850894b10ccb5eebec7",
+      "fingerprint": "05cb809e9057568ddb448e5d41486a1407e7eb9facc8643ee94abc66e7fc7bad",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationView.md": "d1fe36da889ffc14671e00ec27fae6bca029567dc200f04e6402b726ea685dab"
+        "docs/reference/type-aliases/HotkeyRegistrationView.md": "f7dab4dfdd810dd6e4ddd2322c11d3f3c72cb7af73eabd1b3a72657ba55811c1"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": ["docs/reference/type-aliases/HotkeyRegistrationView.md"]
     },
     "source:packages/hotkeys-devtools/src/components/DetailsPanel.tsx": {
@@ -1336,13 +1333,13 @@
       "evidence": ["packages/hotkeys-devtools/src/components/DetailsPanel.tsx"]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "e3ae2b3ae45ab422dcafaa3b9c8df34f88d5e85ffe6825874bb2dce22c3cc97c",
+      "fingerprint": "6a0e5ffd746797cd092ea6892168a9b73ed260430cb9bfeae07eb8ed1b2ca9cb",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "664755e1824ec2385ea992bb877b792a69dc6c25f462900207ad1d85b07aa94b"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "64ad769ba06681aaa29b592eac3e4c3c0910f4e86cc4b553c76fdf696d69d26e"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": ["packages/hotkeys/tests/hotkey-manager.test.ts"]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
@@ -1650,13 +1647,13 @@
       "evidence": ["docs/framework/lit/guides/hotkey-manager.md"]
     },
     "source:docs/framework/lit/reference/classes/HotkeyScopesStateController.md": {
-      "fingerprint": "005841d6a65c821e1f2c9ed8628eab85d9ebb6fa1fbcd782e6d6b60436fa39ca",
+      "fingerprint": "2364a6f1f6db8f1d72bdf112e794d0b9797e4b2719876918caea9e09492f222a",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyScopesStateController.md": "54b8afc30ef6c01f2ab5393c083db42998b6a60f00bc4e6e04501455bc5ce85b"
+        "docs/framework/lit/reference/classes/HotkeyScopesStateController.md": "2359a2ef88fe6271a3ea91d51ecaaa9eb41212362a26855e0ca83fd76840826b"
       },
-      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": [
         "docs/framework/lit/reference/classes/HotkeyScopesStateController.md"
       ]
@@ -1936,13 +1933,13 @@
       "evidence": ["docs/reference/index.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationStatus.md": {
-      "fingerprint": "56c5ca1b04358c0120b4187e9d2795a6027c90583cab1b1f64e43b28bb9486f8",
+      "fingerprint": "2e8387c16e8f4f2631abe478156c9f8c2a45a134cb99709024c2a2b887d1116b",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "bd7b3be542d41ef91b30e56e270065fd63ff69e9600d6665eec9bd7db8b121e0"
+        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "5b3cd9937cba372de298a4c824440ad413c402702e0d49e2d67544b3cd9dc639"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "reason": "Tests or regenerated reference docs.",
       "evidence": ["docs/reference/type-aliases/HotkeyRegistrationStatus.md"]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyScopesState.ts": {
@@ -2016,13 +2013,13 @@
       "evidence": ["packages/ember-hotkeys/src/useHotkeyScopesState.ts"]
     },
     "source:packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts": {
-      "fingerprint": "9bce0203a36d155444a6102c239075b6f7ff63cc322bbab070e1a26f2671f56d",
+      "fingerprint": "7ee8fff9cb3de31c1b5c7e5253581cf446c3585e26312a406fa7bf4a8d22f3cf",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts": "aeb2b628b574361732f9f9f8aa9fd7ad06fe4537726bc8286aea4cf57170bb3f"
+        "packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts": "3df64fbdc22edcee768d9787b5fc02c4d1806dfac7aa43852098decde9891c11"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "reason": "Review fixes: preventDefault 'always' now defers to live hotkeys on any listener, Lit controllers render on reconnect, Lit guide points to shared options. Skill guidance unchanged.",
       "evidence": [
         "packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts"
       ]
@@ -2470,6 +2467,26 @@
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
       "evidence": ["docs/reference/type-aliases/RegisteredAppHotkeys.md"]
+    },
+    "source:docs/reference/type-aliases/Target.md": {
+      "fingerprint": "976d4e23e8e78ae594748914939a8235ce56a6c218bed648d31028ae3dc09fac",
+      "snapshot": {
+        "docs/reference/type-aliases/Target.md": "9776565467dd5900e7254fe1638c5ab8eaf3538457f750d24ff3edcc995295eb"
+      },
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
+      "outcome": "out-of-scope",
+      "reason": "Tests or regenerated reference docs.",
+      "evidence": ["docs/reference/type-aliases/Target.md"]
+    },
+    "source:packages/hotkeys/src/_event-target.ts": {
+      "fingerprint": "7a3d850908bad43c847dcba2d42792c9e7ea6d99a34ffa936dad9d208b33045f",
+      "snapshot": {
+        "packages/hotkeys/src/_event-target.ts": "5aa8ea0bc56519dca91f28bde7f58f9b201d6cb8e4183635452bcb130610786b"
+      },
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
+      "outcome": "no-change",
+      "reason": "Review fixes: preventDefault 'always' now defers to live hotkeys on any listener, Lit controllers render on reconnect, Lit guide points to shared options. Skill guidance unchanged.",
+      "evidence": ["packages/hotkeys/src/_event-target.ts"]
     }
   }
 }

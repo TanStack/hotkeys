@@ -74,9 +74,11 @@ The current scope state.
 hostConnected(): void;
 ```
 
-Defined in: [controllers/hotkey-scopes-state.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts#L39)
+Defined in: [controllers/hotkey-scopes-state.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts#L43)
 
 Subscribes to the scopes store and updates the host when it changes.
+Connecting requests an update too, since scopes may have changed while
+disconnected.
 
 #### Returns
 
@@ -96,7 +98,7 @@ ReactiveController.hostConnected
 hostDisconnected(): void;
 ```
 
-Defined in: [controllers/hotkey-scopes-state.ts:47](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts#L47)
+Defined in: [controllers/hotkey-scopes-state.ts:52](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts#L52)
 
 Unsubscribes from the scopes store.
 

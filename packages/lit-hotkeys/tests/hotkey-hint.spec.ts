@@ -22,6 +22,9 @@ it('tracks relevant modifiers, reactive inputs, and disconnect without unrelated
   let binding: Hotkey = 'Alt+[KeyS]'
   const hint = new HotkeyHintController(host, () => binding)
   hint.hostConnected()
+  // Connecting renders once, so a hint that changed while disconnected shows.
+  expect(host.requestUpdate).toHaveBeenCalledOnce()
+  host.requestUpdate.mockClear()
   document.dispatchEvent(
     new KeyboardEvent('keydown', { key: 'Alt', code: 'AltLeft', altKey: true }),
   )
@@ -65,6 +68,9 @@ it('exposes the scopes state and requests updates while connected', () => {
   expect(host.addController).toHaveBeenCalledWith(scopes)
   scopes.hostConnected()
   expect(scopes.value.exclusive).toBeNull()
+  // Connecting renders once, so scope changes while disconnected show.
+  expect(host.requestUpdate).toHaveBeenCalledOnce()
+  host.requestUpdate.mockClear()
 
   const release = manager.activateScope('dialog', { exclusive: true })
   expect(scopes.value).toMatchObject({
@@ -79,6 +85,13 @@ it('exposes the scopes state and requests updates while connected', () => {
   expect(host.requestUpdate).toHaveBeenCalledTimes(2)
 
   scopes.hostDisconnected()
-  manager.activateScope('dialog', { exclusive: true })
+  const releaseWhileDisconnected = manager.activateScope('dialog', {
+    exclusive: true,
+  })
   expect(host.requestUpdate).toHaveBeenCalledTimes(2)
+
+  scopes.hostConnected()
+  expect(host.requestUpdate).toHaveBeenCalledTimes(3)
+  expect(scopes.value.exclusive).toBe('dialog')
+  releaseWhileDisconnected()
 })
