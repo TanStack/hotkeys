@@ -20,6 +20,10 @@
         {
           "label": "Devtools",
           "to": "devtools"
+        },
+        {
+          "label": "Agent Skills (TanStack Intent)",
+          "to": "agent-skills"
         }
       ],
       "frameworks": [
