@@ -97,7 +97,7 @@ releaseScope()
 
 ### Read scope state
 
-`manager.isScopeActive(scope)` returns whether hotkeys in a scope can fire. `useHotkeyRegistrations` updates when scopes change, so a list filtered with `isScopeActive` stays current.
+`manager.isScopeActive(scope)` returns whether hotkeys in a scope can fire. To list which registered hotkeys are on, read each registration's `status`. See [List the hotkeys on screen](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 
 `manager.scopes` is a store with these fields:
 
@@ -106,17 +106,13 @@ releaseScope()
 - `allowed` lists the active scopes that the exclusive scope allows.
 - `suspended` lists the active scopes that can't fire because another scope is exclusive. It can include `'global'`.
 
-To read it in a component, copy it into a ref and unsubscribe when the component's scope is disposed:
+To read it in a component, use `useHotkeyScopesState`. It updates when scopes activate or release:
 
 ```vue
 <script setup lang="ts">
-import { onScopeDispose, shallowRef } from 'vue'
-import { getHotkeyManager } from '@tanstack/vue-hotkeys'
+import { useHotkeyScopesState } from '@tanstack/vue-hotkeys'
 
-const manager = getHotkeyManager()
-const scopes = shallowRef(manager.scopes.state)
-const subscription = manager.scopes.subscribe((state) => (scopes.value = state))
-onScopeDispose(() => subscription.unsubscribe())
+const scopes = useHotkeyScopesState()
 </script>
 
 <template>

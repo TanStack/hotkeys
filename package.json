@@ -50,13 +50,13 @@
     {
       "name": "everything",
       "path": "packages/hotkeys/dist/index.js",
-      "limit": "13 KB"
+      "limit": "13.5 KB"
     },
     {
       "name": "HotkeyManager",
       "path": "packages/hotkeys/dist/index.js",
       "import": "{ getHotkeyManager }",
-      "limit": "8 KB"
+      "limit": "8.5 KB"
     },
     {
       "name": "HotkeyRecorder",

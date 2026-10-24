@@ -1,8 +1,14 @@
 // @vitest-environment happy-dom
 import { afterEach, expect, it, vi } from 'vitest'
 import { act, cleanup, renderHook } from '@testing-library/react'
-import { HotkeyManager, KeyStateTracker } from '@tanstack/hotkeys'
-import { useHotkey, useHotkeyHint } from '../src'
+import React from 'react'
+import {
+  HotkeyManager,
+  KeyStateTracker,
+  defineAppHotkeys,
+} from '@tanstack/hotkeys'
+import { HotkeysProvider, useHotkey, useHotkeyHint } from '../src'
+import type { ReactNode } from 'react'
 
 function key(
   type: string,
@@ -26,6 +32,7 @@ it('selects hint visibility without rerendering on unrelated keys and clears on 
   const { result, rerender } = renderHook(
     ({ binding }) => {
       renders()
+      useHotkey(binding, () => {}, { platform: 'mac' })
       return useHotkeyHint(binding, { platform: 'mac' })
     },
     {
@@ -49,6 +56,87 @@ it('selects hint visibility without rerendering on unrelated keys and clears on 
     window.dispatchEvent(new Event('blur'))
   })
   expect(result.current).toBe(false)
+})
+it('hides hints for hotkeys that cannot fire', () => {
+  const appHotkeys = defineAppHotkeys({
+    'doc.edit': { hotkey: 'Alt+E', scope: 'page' },
+    'doc.delete': { hotkey: 'Alt+D' },
+    'doc.unused': { hotkey: 'Alt+U' },
+  })
+  const wrapper = ({ children }: { children: ReactNode }) => (
+    <HotkeysProvider appHotkeys={appHotkeys}>{children}</HotkeysProvider>
+  )
+  const { result, rerender } = renderHook(
+    ({ enabled }) => {
+      useHotkey(appHotkeys['doc.edit'], () => {})
+      useHotkey(appHotkeys['doc.delete'], () => {}, { enabled })
+      useHotkey('Alt+P', () => {}, { enabled })
+      return {
+        edit: useHotkeyHint(appHotkeys['doc.edit']),
+        delete: useHotkeyHint(appHotkeys['doc.delete']),
+        unused: useHotkeyHint(appHotkeys['doc.unused']),
+        plain: useHotkeyHint('Alt+P'),
+        unregistered: useHotkeyHint('Alt+Q'),
+      }
+    },
+    { wrapper, initialProps: { enabled: false } },
+  )
+  const manager = HotkeyManager.getInstance()
+  let releasePage!: () => void
+  act(() => {
+    releasePage = manager.activateScope('page')
+  })
+  key('keydown', 'Alt', 'AltLeft', { altKey: true })
+  expect(result.current).toEqual({
+    edit: true,
+    delete: false,
+    unused: false,
+    plain: false,
+    unregistered: false,
+  })
+
+  rerender({ enabled: true })
+  expect(result.current.delete).toBe(true)
+  expect(result.current.plain).toBe(true)
+
+  // An exclusive scope suspends 'page' and 'global'.
+  let releaseDialog!: () => void
+  act(() => {
+    releaseDialog = manager.activateScope('dialog', { exclusive: true })
+  })
+  expect(result.current).toMatchObject({
+    edit: false,
+    delete: false,
+    plain: false,
+  })
+
+  act(() => releaseDialog())
+  expect(result.current.edit).toBe(true)
+  act(() => releasePage())
+  expect(result.current.edit).toBe(false)
+})
+it('shows hints for element hotkeys only while focus is inside the element', () => {
+  const panel = document.createElement('div')
+  const input = document.createElement('input')
+  const outside = document.createElement('button')
+  panel.appendChild(input)
+  document.body.append(panel, outside)
+  const { result } = renderHook(() => {
+    useHotkey('Alt+P', () => {}, { target: panel })
+    return useHotkeyHint('Alt+P')
+  })
+
+  outside.focus()
+  key('keydown', 'Alt', 'AltLeft', { altKey: true })
+  expect(result.current).toBe(false)
+  key('keyup', 'Alt', 'AltLeft')
+
+  input.focus()
+  key('keydown', 'Alt', 'AltLeft', { altKey: true })
+  expect(result.current).toBe(true)
+
+  panel.remove()
+  outside.remove()
 })
 it('preserves raw code bindings through hook normalization and sequence registration', () => {
   const single = vi.fn(),

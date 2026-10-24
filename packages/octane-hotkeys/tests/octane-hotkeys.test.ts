@@ -84,10 +84,27 @@ describe('compiled Octane hooks', () => {
     expect(value('#other-hint')).toBe('false')
     expect(value('#hold')).toBe('true')
     expect(value('#codes')).toContain('ControlLeft')
+    click('#enabled')
+    expect(value('#hint')).toBe('false')
+    click('#enabled')
+    expect(value('#hint')).toBe('true')
     click('#binding')
     expect(value('#hint')).toBe('false')
     key('Control', 'keyup')
     expect(value('#held')).toBe('')
+  })
+
+  it('renders the scopes state when an exclusive scope activates', () => {
+    expect(value('#scopes')).toBe('none:')
+    let release: () => void = () => {}
+    flushSync(() => {
+      release = getHotkeyManager().activateScope('dialog', { exclusive: true })
+    })
+    flush()
+    expect(value('#scopes')).toBe('dialog:global')
+    flushSync(() => release())
+    flush()
+    expect(value('#scopes')).toBe('none:')
   })
 
   it('soft-disables a binding while removing dynamic list entries', () => {

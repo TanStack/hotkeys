@@ -69,20 +69,21 @@ For markup-only components, install `Alpine.plugin(hotkeysPlugin)` before `Alpin
 
 Each owner has these methods. Read their state through `.value`, or `.hotkeys` for registrations.
 
-| Method                                       | What it's for                                                                                      |
-| -------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| `createHotkey(hotkey, callback, options?)`   | Register one chord, sequence, or app hotkey until the owner is destroyed; options can be a getter. |
-| `createHotkeys(definitions, commonOptions?)` | Register several hotkeys, or a getter of a list built from data, in one call.                      |
-| `createHotkeyRecorder(options)`              | Record a chord or sequence the user presses, for a settings screen.                                |
-| `createAppHotkeys()`                         | Get the declared app hotkeys with the user's custom hotkeys applied.                               |
-| `createAppHotkeyList()`                      | List every app hotkey with its status, for a cheat sheet or settings screen.                       |
-| `createCustomHotkeys()`                      | Read, change, and reset the user's custom hotkeys, and check a new one for conflicts.              |
-| `createHotkeyRegistrations()`                | List every registered hotkey with its options and `meta`.                                          |
-| `createHotkeyHint(hotkey, options?)`         | Get whether held modifiers should reveal a shortcut's hint.                                        |
-| `createKeyHold(key)`                         | Get whether one key is held.                                                                       |
-| `createHeldKeys()`                           | Get every key that's held right now.                                                               |
-| `createHeldKeyCodes()`                       | Map each held key to its physical `event.code`.                                                    |
-| `destroy()`                                  | Release every hotkey, subscription, and recorder the owner created.                                |
+| Method                                       | What it's for                                                                                                                                                                          |
+| -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `createHotkey(hotkey, callback, options?)`   | Register one chord, sequence, or app hotkey until the owner is destroyed; options can be a getter.                                                                                     |
+| `createHotkeys(definitions, commonOptions?)` | Register several hotkeys, or a getter of a list built from data, in one call.                                                                                                          |
+| `createHotkeyRecorder(options)`              | Record a chord or sequence the user presses, for a settings screen.                                                                                                                    |
+| `createAppHotkeys()`                         | Get the declared app hotkeys with the user's custom hotkeys applied.                                                                                                                   |
+| `createAppHotkeyList()`                      | List every app hotkey with its status, for a cheat sheet or settings screen.                                                                                                           |
+| `createCustomHotkeys()`                      | Read, change, and reset the user's custom hotkeys, and check a new one for conflicts.                                                                                                  |
+| `createHotkeyRegistrations()`                | List every registered hotkey with its options, `meta`, and `status` (whether it's enabled and in an active scope).                                                                     |
+| `createHotkeyScopesState()`                  | Get the active scopes and the exclusive scope that owns the keyboard.                                                                                                                  |
+| `createHotkeyHint(hotkey, options?)`         | Get whether held modifiers should reveal a shortcut's hint. False unless a registration of the hotkey can fire: enabled, in an active scope, and with focus inside its element target. |
+| `createKeyHold(key)`                         | Get whether one key is held.                                                                                                                                                           |
+| `createHeldKeys()`                           | Get every key that's held right now.                                                                                                                                                   |
+| `createHeldKeyCodes()`                       | Map each held key to its physical `event.code`.                                                                                                                                        |
+| `destroy()`                                  | Release every hotkey, subscription, and recorder the owner created.                                                                                                                    |
 
 The package also re-exports `@tanstack/hotkeys`, such as `formatForDisplay`, `matchesKeyboardEvent`, and `defineAppHotkeys`.
 

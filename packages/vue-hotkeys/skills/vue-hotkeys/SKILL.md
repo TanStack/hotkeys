@@ -52,23 +52,24 @@ useHotkey('Escape', () => closePanel(), { target: panel })
 
 ## API
 
-| API                                       | What it's for                                                                                                                          |
-| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `useHotkey(hotkey, callback, options?)`   | Register one chord, sequence, or app hotkey while the component is mounted; the hotkey and options can be refs or getters.             |
-| `useHotkeys(definitions, commonOptions?)` | Register several hotkeys, or a ref or getter of a list built from data, in one call.                                                   |
-| `<HotkeysProvider>`                       | Set default options, a scope (`exclusive` for dialogs), `enabled`, and app hotkeys for its children, and emit `custom-hotkeys-change`. |
-| `provideHotkeysContext(options)`          | Provide the same options from a component's setup instead of rendering `HotkeysProvider`; they apply to its children.                  |
-| `useHotkeysContext()`                     | Read the nearest provider's merged defaults and enabled state, or `null` outside a provider.                                           |
-| `useDefaultHotkeysOptions()`              | Read the default options merged from every provider above.                                                                             |
-| `useAppHotkeys()`                         | Get a computed ref of the declared app hotkeys with the user's custom hotkeys applied.                                                 |
-| `useAppHotkeyList()`                      | Get a computed ref listing every app hotkey with its status, for a cheat sheet or settings screen.                                     |
-| `useCustomHotkeys()`                      | Read, change, and reset the user's custom hotkeys, and check a new one for conflicts.                                                  |
-| `useHotkeyRecorder(options)`              | Record a chord or sequence the user presses; destructure the refs it returns.                                                          |
-| `useHotkeyRegistrations()`                | Get a ref listing every registered hotkey with its options and `meta`.                                                                 |
-| `useHotkeyHint(hotkey, options?)`         | Get a computed ref of whether held modifiers should reveal a shortcut's hint.                                                          |
-| `useKeyHold(key)`                         | Get a ref of whether one key is held.                                                                                                  |
-| `useHeldKeys()`                           | Get a ref of every key that's held right now.                                                                                          |
-| `useHeldKeyCodes()`                       | Get a ref mapping each held key to its physical `event.code`.                                                                          |
+| API                                       | What it's for                                                                                                                                                                                            |
+| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `useHotkey(hotkey, callback, options?)`   | Register one chord, sequence, or app hotkey while the component is mounted; the hotkey and options can be refs or getters.                                                                               |
+| `useHotkeys(definitions, commonOptions?)` | Register several hotkeys, or a ref or getter of a list built from data, in one call.                                                                                                                     |
+| `<HotkeysProvider>`                       | Set default options, a scope (`exclusive` for dialogs), `enabled`, and app hotkeys for its children, and emit `custom-hotkeys-change`.                                                                   |
+| `provideHotkeysContext(options)`          | Provide the same options from a component's setup instead of rendering `HotkeysProvider`; they apply to its children.                                                                                    |
+| `useHotkeysContext()`                     | Read the nearest provider's merged defaults and enabled state, or `null` outside a provider.                                                                                                             |
+| `useDefaultHotkeysOptions()`              | Read the default options merged from every provider above.                                                                                                                                               |
+| `useAppHotkeys()`                         | Get a computed ref of the declared app hotkeys with the user's custom hotkeys applied.                                                                                                                   |
+| `useAppHotkeyList()`                      | Get a computed ref listing every app hotkey with its status, for a cheat sheet or settings screen.                                                                                                       |
+| `useCustomHotkeys()`                      | Read, change, and reset the user's custom hotkeys, and check a new one for conflicts.                                                                                                                    |
+| `useHotkeyRecorder(options)`              | Record a chord or sequence the user presses; destructure the refs it returns.                                                                                                                            |
+| `useHotkeyRegistrations()`                | Get a ref listing every registered hotkey with its options, `meta`, and `status` (whether it's enabled and in an active scope).                                                                          |
+| `useHotkeyScopesState()`                  | Get a ref of the active scopes and the exclusive scope that owns the keyboard.                                                                                                                           |
+| `useHotkeyHint(hotkey, options?)`         | Get a computed ref of whether held modifiers should reveal a shortcut's hint. False unless a registration of the hotkey can fire: enabled, in an active scope, and with focus inside its element target. |
+| `useKeyHold(key)`                         | Get a ref of whether one key is held.                                                                                                                                                                    |
+| `useHeldKeys()`                           | Get a ref of every key that's held right now.                                                                                                                                                            |
+| `useHeldKeyCodes()`                       | Get a ref mapping each held key to its physical `event.code`.                                                                                                                                            |
 
 The package also re-exports `@tanstack/hotkeys`, such as `formatForDisplay`, `matchesKeyboardEvent`, and `defineAppHotkeys`.
 

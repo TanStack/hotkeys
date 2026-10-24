@@ -13,6 +13,7 @@ import type {
 } from './hotkey.types'
 import type {
   HotkeyChordOptions,
+  HotkeyRegistrationStatus,
   HotkeyRegistrationView,
   HotkeySequenceOptions,
 } from './hotkey-manager'
@@ -492,10 +493,10 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
       else byId.set(id, [registration])
     }
 
-    const manager = getHotkeyManager()
     return Object.values(this.store.state.appHotkeys).map((appHotkey) => {
       const registered = byId.get(appHotkey.id) ?? []
-      const enabled = registered.filter((r) => r.options.enabled !== false)
+      const has = (status: HotkeyRegistrationStatus) =>
+        registered.some((r) => r.status === status)
       return {
         appHotkey: appHotkey as T[keyof T],
         status:
@@ -503,11 +504,11 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
             ? 'unbound'
             : registered.length === 0
               ? 'inactive'
-              : enabled.length === 0
-                ? 'disabled'
-                : enabled.some((r) => manager.isScopeActive(r.options.scope))
-                  ? 'active'
-                  : 'suspended',
+              : has('active')
+                ? 'active'
+                : has('suspended')
+                  ? 'suspended'
+                  : 'disabled',
         isCustom: isCustomHotkey(appHotkey, this.#platform),
         registrations: registered,
       }

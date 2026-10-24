@@ -97,7 +97,7 @@ releaseScope()
 
 ### Read scope state
 
-`manager.isScopeActive(scope)` returns whether hotkeys in a scope can fire. `useHotkeyRegistrations` updates when scopes change, so a list filtered with `isScopeActive` stays current.
+`manager.isScopeActive(scope)` returns whether hotkeys in a scope can fire. To list which registered hotkeys are on, read each registration's `status`. See [List the hotkeys on screen](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 
 `manager.scopes` is a store with these fields:
 
@@ -106,31 +106,18 @@ releaseScope()
 - `allowed` lists the active scopes that the exclusive scope allows.
 - `suspended` lists the active scopes that can't fire because another scope is exclusive. It can include `'global'`.
 
-To read it in a component, copy the fields you need into tracked properties, and unsubscribe when the component is destroyed:
+To read it in a component, pass the component to `useHotkeyScopesState`. Its `value` updates when scopes activate or release:
 
 ```gts
 import Component from '@glimmer/component'
-import { tracked } from '@glimmer/tracking'
-import { registerDestructor } from '@ember/destroyable'
-import { getHotkeyManager } from '@tanstack/ember-hotkeys'
-import type Owner from '@ember/owner'
-
-const manager = getHotkeyManager()
+import { useHotkeyScopesState } from '@tanstack/ember-hotkeys'
 
 export default class KeyboardOwner extends Component {
-  @tracked exclusive = manager.scopes.state.exclusive
-
-  constructor(owner: Owner, args: object) {
-    super(owner, args)
-    const subscription = manager.scopes.subscribe((state) => {
-      this.exclusive = state.exclusive
-    })
-    registerDestructor(this, () => subscription.unsubscribe())
-  }
+  scopes = useHotkeyScopesState(this)
 
   <template>
-    {{#if this.exclusive}}
-      <p>Shortcuts belong to {{this.exclusive}}</p>
+    {{#if this.scopes.value.exclusive}}
+      <p>Shortcuts belong to {{this.scopes.value.exclusive}}</p>
     {{/if}}
   </template>
 }

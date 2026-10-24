@@ -17,6 +17,7 @@ title: "@tanstack/svelte-hotkeys"
 - [SvelteHotkeyHint](interfaces/SvelteHotkeyHint.md)
 - [SvelteHotkeyRecorder](interfaces/SvelteHotkeyRecorder.md)
 - [SvelteHotkeyRegistrations](interfaces/SvelteHotkeyRegistrations.md)
+- [SvelteHotkeyScopesState](interfaces/SvelteHotkeyScopesState.md)
 
 ## Type Aliases
 
@@ -51,5 +52,6 @@ title: "@tanstack/svelte-hotkeys"
 - [getHotkeyHint](functions/getHotkeyHint.md)
 - [getHotkeyRegistrations](functions/getHotkeyRegistrations.md)
 - [getHotkeysContext](functions/getHotkeysContext.md)
+- [getHotkeyScopesState](functions/getHotkeyScopesState.md)
 - [getIsKeyHeld](functions/getIsKeyHeld.md)
 - [setHotkeysContext](functions/setHotkeysContext.md)

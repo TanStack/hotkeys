@@ -13,6 +13,7 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import { provideHotkeys } from '../src/hotkeys-provider'
 import { injectAppHotkeyList } from '../src/injectAppHotkeys'
 import { injectHotkey } from '../src/injectHotkey'
+import { injectHotkeyScopesState } from '../src/injectHotkeyScopesState'
 import type { ProvideHotkeysOptions } from '../src/hotkeys-provider'
 
 const appHotkeys = defineAppHotkeys({
@@ -179,5 +180,24 @@ describe('provideHotkeys scopes', () => {
     allow.set(['global'])
     TestBed.tick()
     expect(activate).not.toHaveBeenCalled()
+  })
+  it('exposes the scopes state as a signal', () => {
+    const root = setup()
+    const state = run(root, () => injectHotkeyScopesState())
+    expect(state().exclusive).toBeNull()
+
+    const release = HotkeyManager.getInstance().activateScope('dialog', {
+      exclusive: true,
+    })
+    TestBed.tick()
+    expect(state()).toMatchObject({
+      active: ['dialog'],
+      exclusive: 'dialog',
+      suspended: ['global'],
+    })
+
+    release()
+    TestBed.tick()
+    expect(state()).toMatchObject({ exclusive: null, suspended: [] })
   })
 })

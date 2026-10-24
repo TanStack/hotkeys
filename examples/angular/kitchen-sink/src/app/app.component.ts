@@ -35,13 +35,12 @@ export class Activity {
 @Component({
   selector: 'shortcut-hint',
   standalone: true,
-  template: `@if (visible() && enabled()) {
+  template: `@if (visible()) {
     <kbd>{{ format(hotkey()) }}</kbd>
   }`,
 })
 export class Hint {
   readonly hotkey = input<Hotkey>('Escape')
-  readonly enabled = input(true)
   readonly visible = injectHotkeyHint(() => this.hotkey())
   readonly format = formatForDisplay
 }
@@ -65,10 +64,10 @@ export class Hint {
       Enable ticket actions</label
     >
     <button [disabled]="!enabled()" (click)="create()">
-      Create ticket <shortcut-hint hotkey="Alt+[KeyC]" [enabled]="enabled()" />
+      Create ticket <shortcut-hint hotkey="Alt+[KeyC]" />
     </button>
     <button [disabled]="!enabled()" (click)="save()">
-      Save pending <shortcut-hint hotkey="Alt+[KeyS]" [enabled]="enabled()" />
+      Save pending <shortcut-hint hotkey="Alt+[KeyS]" />
     </button>
     <label>Ticket note <input placeholder="Try Alt + C while typing" /></label>
     <p>

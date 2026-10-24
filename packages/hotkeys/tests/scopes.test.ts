@@ -34,6 +34,87 @@ describe('hotkey scopes', () => {
     vi.restoreAllMocks()
   })
 
+  it('reports whether a hotkey has an enabled registration in an active scope', () => {
+    const manager = HotkeyManager.getInstance()
+    const { 'doc.save': save } = defineAppHotkeys({
+      'doc.save': { hotkey: 'Control+S', scope: 'editor' },
+    })
+    expect(manager.hasActiveRegistration('Control+S')).toBe(false)
+    expect(manager.hasActiveRegistration(save)).toBe(false)
+
+    const handle = manager.register('Control+S', () => {}, {
+      ...options,
+      ...getAppHotkeyRegistrationOptions(save),
+    })
+    expect(manager.hasActiveRegistration('Control+S')).toBe(false)
+    const release = manager.activateScope('editor')
+    expect(manager.hasActiveRegistration('Control+S')).toBe(true)
+    expect(manager.hasActiveRegistration('Control+D')).toBe(false)
+    // App hotkeys match by id, so a custom hotkey still matches.
+    expect(manager.hasActiveRegistration({ ...save, hotkey: 'Alt+S' })).toBe(
+      true,
+    )
+
+    handle.setOptions({ enabled: false })
+    expect(manager.hasActiveRegistration(save)).toBe(false)
+    handle.setOptions({ enabled: true })
+
+    const releaseDialog = manager.activateScope('dialog', { exclusive: true })
+    expect(manager.hasActiveRegistration(save)).toBe(false)
+    releaseDialog()
+    expect(manager.hasActiveRegistration(save)).toBe(true)
+    release()
+    expect(manager.hasActiveRegistration(save)).toBe(false)
+  })
+
+  it('counts a hotkey on an element only while focus is inside it', () => {
+    const manager = HotkeyManager.getInstance()
+    const panel = document.createElement('div')
+    const input = document.createElement('input')
+    const outside = document.createElement('button')
+    panel.appendChild(input)
+    document.body.append(panel, outside)
+
+    manager.register('Control+S', () => {}, { ...options, target: panel })
+    outside.focus()
+    expect(manager.hasActiveRegistration('Control+S')).toBe(false)
+    input.focus()
+    expect(manager.hasActiveRegistration('Control+S')).toBe(true)
+
+    // Document hotkeys work wherever focus is.
+    manager.register('Control+D', () => {}, options)
+    outside.focus()
+    expect(manager.hasActiveRegistration('Control+D')).toBe(true)
+
+    panel.remove()
+    outside.remove()
+  })
+
+  it('sees focus inside a shadow root', () => {
+    const manager = HotkeyManager.getInstance()
+    const host = document.createElement('div')
+    const root = host.attachShadow({ mode: 'open' })
+    const editor = document.createElement('div')
+    const input = document.createElement('input')
+    editor.appendChild(input)
+    root.appendChild(editor)
+    const outside = document.createElement('button')
+    document.body.append(host, outside)
+
+    // One hotkey on the host, one on an element inside the shadow root.
+    manager.register('Control+S', () => {}, { ...options, target: host })
+    manager.register('Control+D', () => {}, { ...options, target: editor })
+    input.focus()
+    expect(manager.hasActiveRegistration('Control+S')).toBe(true)
+    expect(manager.hasActiveRegistration('Control+D')).toBe(true)
+    outside.focus()
+    expect(manager.hasActiveRegistration('Control+S')).toBe(false)
+    expect(manager.hasActiveRegistration('Control+D')).toBe(false)
+
+    host.remove()
+    outside.remove()
+  })
+
   it('fires scoped hotkeys only while their scope is active', () => {
     const manager = HotkeyManager.getInstance()
     const save = vi.fn()

@@ -63,6 +63,8 @@ describe('Alpine lifecycle', () => {
   it('updates hints when the binding changes without a keyboard event', async () => {
     const hotkeys = scope()
     const state = Alpine.reactive({ hotkey: 'Control+S' as Hotkey })
+    const handle = getHotkeyManager().register('Control+S', () => {})
+    getHotkeyManager().register('Alt+S', () => {})
     const hint = hotkeys.createHotkeyHint(() => state.hotkey)
     const held = hotkeys.createHeldKeys()
     const codes = hotkeys.createHeldKeyCodes()
@@ -77,6 +79,20 @@ describe('Alpine lifecycle', () => {
     expect(held.value).toContain('Control')
     expect(codes.value.Control).toBe('ControlLeft')
     expect(hold.value).toBe(true)
+    handle.setOptions({ enabled: false })
+    await flush()
+    expect(visible).toBe(false)
+    handle.setOptions({ enabled: true })
+    await flush()
+    expect(visible).toBe(true)
+    const release = getHotkeyManager().activateScope('dialog', {
+      exclusive: true,
+    })
+    await flush()
+    expect(visible).toBe(false)
+    release()
+    await flush()
+    expect(visible).toBe(true)
     state.hotkey = 'Alt+S'
     await flush()
     expect(visible).toBe(false)
@@ -106,6 +122,31 @@ describe('Alpine lifecycle', () => {
     await flush()
     expect(registrations.hotkeys).toHaveLength(0)
     expect(getHotkeyManager().registrations.state.size).toBe(0)
+  })
+
+  it('tracks the scopes state when an exclusive scope activates', async () => {
+    const hotkeys = scope()
+    const scopes = hotkeys.createHotkeyScopesState()
+    let exclusive: string | null | undefined
+    const runner = Alpine.effect(() => {
+      exclusive = scopes.value.exclusive
+    })
+    expect(exclusive).toBeNull()
+    const release = getHotkeyManager().activateScope('dialog', {
+      exclusive: true,
+    })
+    await flush()
+    expect(exclusive).toBe('dialog')
+    expect(scopes.value).toMatchObject({
+      active: ['dialog'],
+      exclusive: 'dialog',
+      suspended: ['global'],
+    })
+    release()
+    await flush()
+    expect(exclusive).toBeNull()
+    expect(scopes.value.suspended).toEqual([])
+    Alpine.release(runner)
   })
 
   it('records shortcuts and sequences and stops active recording on destruction', () => {

@@ -3,7 +3,7 @@ id: SvelteHotkeyHint
 title: SvelteHotkeyHint
 ---
 
-Defined in: [packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts#L17)
+Defined in: [packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts#L18)
 
 ## Properties
 
@@ -13,4 +13,4 @@ Defined in: [packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts:17](https://git
 readonly visible: boolean;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts#L18)
+Defined in: [packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts#L19)

@@ -1,4 +1,5 @@
 import {
+  getHotkeyManager,
   getKeyStateTracker,
   isAppHotkey,
   matchesHeldModifiers,
@@ -13,9 +14,11 @@ import type {
 } from '@tanstack/hotkeys'
 
 /**
- * Reports whether held modifiers reveal a shortcut hint. A sequence reveals
- * its hint from its first step, and an app hotkey uses its effective hotkey
- * (false while unbound).
+ * Reports whether held modifiers reveal a shortcut hint. The hint shows only
+ * while the hotkey can fire: some registration of it is enabled and in an
+ * active scope. A sequence reveals its hint from its first step, and an app
+ * hotkey matches its registrations by id and uses its effective hotkey (false
+ * while unbound). A hotkey on an element counts only while focus is inside it.
  */
 export function useHotkeyHint(
   hotkey: RegisterableHotkey | AppHotkey,
@@ -33,7 +36,14 @@ export function useHotkeyHint(
   const resolved = isAppHotkey(hotkey)
     ? resolveAppHotkey(hotkey, store).hotkey
     : hotkey
-  return select(
+  const manager = getHotkeyManager()
+  const active = select(
+    manager.registrations,
+    () => resolved !== null && manager.hasActiveRegistration(hotkey),
+    undefined,
+    subSlot(slot, 'hint-active'),
+  )
+  const held = select(
     getKeyStateTracker().store,
     (state) =>
       resolved !== null &&
@@ -45,4 +55,5 @@ export function useHotkeyHint(
     undefined,
     subSlot(slot, 'hint'),
   )
+  return active && held
 }

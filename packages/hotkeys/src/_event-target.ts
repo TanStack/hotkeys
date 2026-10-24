@@ -27,6 +27,21 @@ export function getTargetDocument(
 }
 
 /**
+ * Whether key presses reach a listener on `target` right now. Document and
+ * window listeners receive every key press in their document. An element
+ * receives them only while focus is inside it, including inside a shadow
+ * root it contains.
+ */
+export function targetHasFocus(
+  target: HTMLElement | Document | Window,
+): boolean {
+  if (isWindow(target) || target.nodeType === 9) return true
+  // The root's activeElement is the focused element as seen from the target's tree.
+  const active = (target.getRootNode() as Document | ShadowRoot).activeElement
+  return !!active && target.contains(active)
+}
+
+/**
  * Checks if an element is an input-like element that should be ignored for hotkeys.
  *
  * This includes:

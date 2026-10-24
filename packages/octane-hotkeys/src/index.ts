@@ -17,6 +17,7 @@ export * from './useHeldKeyCodes'
 export * from './useKeyHold'
 export * from './useHotkeyHint'
 export * from './useHotkeyRegistrations'
+export * from './useHotkeyScopesState'
 export * from './useHotkeyRecorder'
 export * from './useAppHotkeys'
 

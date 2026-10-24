@@ -56,7 +56,7 @@ When nesting scopes, stacking dialogs, or keeping some hotkeys working during an
 
 ## Pitfalls
 
-- **A disabled hotkey doesn't block the browser.** With `enabled: false`, `Mod+S` opens the Save Page dialog. To skip the action, keep the hotkey enabled and return early from the callback.
+- **A disabled hotkey doesn't block the browser.** With `enabled: false`, `Mod+S` opens the Save Page dialog. Add `preventDefault: 'always'` to keep the action blocked while the hotkey can't fire, whether it's disabled or its scope is off. Skip it for hotkeys turned off to give the key back to the browser, such as `Mod+C`, `Mod+Z`, `Tab`, or single keys behind a user's off switch. Don't keep the hotkey enabled and return early from the callback; the hotkey would also stay `active` in app hotkey lists and show its hint.
 - **Modifiers match exactly.** `ArrowDown` never fires while Shift is held, so register `Shift+ArrowDown` instead of checking `event.shiftKey`. Shift that a symbol needs is the exception: `?` matches Shift+/.
 - **Chords repeat while held.** Set `requireReset: true` on toggles, or holding the keys flickers them.
 - **Letters follow the typed character.** For position-based controls such as WASD, use physical bindings such as `'[KeyW]'`. Keep letters for mnemonic commands such as `Mod+S`.

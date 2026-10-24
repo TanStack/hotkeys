@@ -30,7 +30,6 @@ class Hint {
   constructor(
     public props: () => {
       hotkey: RegisterableHotkey
-      enabled?: boolean
     },
   ) {}
   init() {

@@ -39,10 +39,10 @@ const pages = [
   { to: '/formatting', label: 'Formatting', shortcut: 'Alt+[Digit5]' },
 ] as const
 /** A separate component lets each navigation link or button subscribe to its hint. */
-function Hint(props: { hotkey: RegisterableHotkey; enabled?: boolean }) {
+function Hint(props: { hotkey: RegisterableHotkey }) {
   const visible = createHotkeyHint(() => props.hotkey)
   return (
-    <Show when={visible() && props.enabled !== false}>
+    <Show when={visible()}>
       <kbd>{formatForDisplay(props.hotkey)}</kbd>
     </Show>
   )
@@ -231,10 +231,10 @@ function Tickets() {
       </label>
       <p>
         <button disabled={!enabled()} onClick={create}>
-          Create ticket <Hint hotkey="Alt+[KeyC]" enabled={enabled()} />
+          Create ticket <Hint hotkey="Alt+[KeyC]" />
         </button>
         <button disabled={!enabled()} onClick={save}>
-          Save pending <Hint hotkey="Alt+[KeyS]" enabled={enabled()} />
+          Save pending <Hint hotkey="Alt+[KeyS]" />
         </button>
       </p>
       <label>

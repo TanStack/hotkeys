@@ -7,7 +7,7 @@ title: provideAppHotkeys
 function provideAppHotkeys<T>(appHotkeys, options?): object;
 ```
 
-Defined in: [app-hotkeys.ts:582](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L582)
+Defined in: [app-hotkeys.ts:583](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L583)
 
 Creates an app hotkeys store and publishes it on the HotkeyManager, for
 adapters without a provider component (such as Lit and Alpine). Hotkey

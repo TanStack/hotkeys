@@ -3,7 +3,7 @@ id: AlpineCreateHotkey
 title: AlpineCreateHotkey
 ---
 
-Defined in: [types.ts:100](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L100)
+Defined in: [types.ts:101](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L101)
 
 Registers a hotkey: a chord, a sequence, or an app hotkey.
 
@@ -16,7 +16,7 @@ AlpineCreateHotkey<T>(
    options?): void;
 ```
 
-Defined in: [types.ts:101](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L101)
+Defined in: [types.ts:102](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L102)
 
 Registers a hotkey: a chord, a sequence, or an app hotkey.
 
@@ -53,7 +53,7 @@ AlpineCreateHotkey<T>(
    options?): void;
 ```
 
-Defined in: [types.ts:106](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L106)
+Defined in: [types.ts:107](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L107)
 
 Registers a hotkey: a chord, a sequence, or an app hotkey.
 

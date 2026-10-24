@@ -10,6 +10,7 @@ import type {
   HotkeyChordRecorderOptions,
   HotkeyRecorderOptions,
   HotkeyRegistrationView,
+  HotkeyScopesState,
   HotkeySequence,
   HotkeySequenceRecorderOptions,
   IndividualKey,
@@ -147,6 +148,8 @@ export interface AlpineHotkeys {
   ) => AlpineHotkeyState<boolean>
   /** Read live registrations, including disabled entries. */
   createHotkeyRegistrations: () => HotkeyRegistrationsResult
+  /** Read the active, exclusive, allowed, and suspended scopes through `.value`. */
+  createHotkeyScopesState: () => AlpineHotkeyState<HotkeyScopesState>
   /** Create a recorder whose options can follow Alpine state. */
   createHotkeyRecorder: AlpineCreateHotkeyRecorder
   /** Read the effective app hotkeys from `provideAppHotkeys` through `.value`. */

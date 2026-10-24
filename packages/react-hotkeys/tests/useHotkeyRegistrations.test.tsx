@@ -3,6 +3,7 @@ import { act, renderHook } from '@testing-library/react'
 import { HotkeyManager } from '@tanstack/hotkeys'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { useHotkeyRegistrations } from '../src/useHotkeyRegistrations'
+import { useHotkeyScopesState } from '../src/useHotkeyScopesState'
 
 describe('useHotkeyRegistrations', () => {
   beforeEach(() => {
@@ -85,5 +86,52 @@ describe('useHotkeyRegistrations', () => {
     })
     const [view] = result.current
     expect(view?.kind === 'sequence' && view.matchedStepCount).toBe(1)
+  })
+
+  it('reports whether each registration can fire', () => {
+    const manager = HotkeyManager.getInstance()
+    const handle = manager.register('Mod+S', vi.fn(), { platform: 'mac' })
+    manager.register('Escape', vi.fn(), { scope: 'dialog' })
+    const { result } = renderHook(() => useHotkeyRegistrations())
+    const statuses = () => result.current.map((reg) => reg.status)
+
+    expect(statuses()).toEqual(['active', 'suspended'])
+
+    let release = () => {}
+    act(() => {
+      release = manager.activateScope('dialog', { exclusive: true })
+    })
+    expect(statuses()).toEqual(['suspended', 'active'])
+
+    act(() => {
+      release()
+      handle.setOptions({ enabled: false })
+    })
+    expect(statuses()).toEqual(['disabled', 'suspended'])
+  })
+})
+
+describe('useHotkeyScopesState', () => {
+  afterEach(() => {
+    HotkeyManager.resetInstance()
+  })
+
+  it('updates when scopes activate and release', () => {
+    const manager = HotkeyManager.getInstance()
+    const { result } = renderHook(() => useHotkeyScopesState())
+    expect(result.current.exclusive).toBeNull()
+
+    let release = () => {}
+    act(() => {
+      release = manager.activateScope('dialog', { exclusive: true })
+    })
+    expect(result.current).toMatchObject({
+      active: ['dialog'],
+      exclusive: 'dialog',
+      suspended: ['global'],
+    })
+
+    act(() => release())
+    expect(result.current.exclusive).toBeNull()
   })
 })

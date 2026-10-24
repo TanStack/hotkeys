@@ -722,6 +722,10 @@
           "to": "reference/functions/getHotkeyManager"
         },
         {
+          "label": "HotkeyScopesState",
+          "to": "reference/interfaces/HotkeyScopesState"
+        },
+        {
           "label": "Hotkey",
           "to": "reference/type-aliases/Hotkey"
         },
@@ -780,6 +784,10 @@
         {
           "label": "HotkeySequenceRegistrationView",
           "to": "reference/interfaces/HotkeySequenceRegistrationView"
+        },
+        {
+          "label": "HotkeyRegistrationStatus",
+          "to": "reference/type-aliases/HotkeyRegistrationStatus"
         },
         {
           "label": "toHotkeyRegistrationView",
@@ -851,6 +859,10 @@
               "to": "framework/react/reference/functions/useHotkeyRegistrations"
             },
             {
+              "label": "useHotkeyScopesState",
+              "to": "framework/react/reference/functions/useHotkeyScopesState"
+            },
+            {
               "label": "useHotkeys",
               "to": "framework/react/reference/functions/useHotkeys"
             },
@@ -916,6 +928,10 @@
               "to": "framework/preact/reference/functions/useHotkeyRegistrations"
             },
             {
+              "label": "useHotkeyScopesState",
+              "to": "framework/preact/reference/functions/useHotkeyScopesState"
+            },
+            {
               "label": "useHotkeys",
               "to": "framework/preact/reference/functions/useHotkeys"
             },
@@ -971,6 +987,10 @@
             {
               "label": "createHotkeyRegistrations",
               "to": "framework/solid/reference/functions/createHotkeyRegistrations"
+            },
+            {
+              "label": "createHotkeyScopesState",
+              "to": "framework/solid/reference/functions/createHotkeyScopesState"
             },
             {
               "label": "createHotkeys",
@@ -1040,6 +1060,10 @@
             {
               "label": "injectHotkeyRegistrations",
               "to": "framework/angular/reference/functions/injectHotkeyRegistrations"
+            },
+            {
+              "label": "injectHotkeyScopesState",
+              "to": "framework/angular/reference/functions/injectHotkeyScopesState"
             },
             {
               "label": "injectHotkeys",
@@ -1119,6 +1143,10 @@
               "to": "framework/vue/reference/functions/useHotkeyRegistrations"
             },
             {
+              "label": "useHotkeyScopesState",
+              "to": "framework/vue/reference/functions/useHotkeyScopesState"
+            },
+            {
               "label": "useHotkeys",
               "to": "framework/vue/reference/functions/useHotkeys"
             },
@@ -1184,6 +1212,10 @@
               "to": "framework/lit/reference/classes/HotkeyRegistrationsController"
             },
             {
+              "label": "HotkeyScopesStateController",
+              "to": "framework/lit/reference/classes/HotkeyScopesStateController"
+            },
+            {
               "label": "HotkeyControllerChordOptions",
               "to": "framework/lit/reference/type-aliases/HotkeyControllerChordOptions"
             },
@@ -1235,6 +1267,14 @@
             {
               "label": "getHotkeyRegistrations",
               "to": "framework/svelte/reference/functions/getHotkeyRegistrations"
+            },
+            {
+              "label": "getHotkeyScopesState",
+              "to": "framework/svelte/reference/functions/getHotkeyScopesState"
+            },
+            {
+              "label": "SvelteHotkeyScopesState",
+              "to": "framework/svelte/reference/interfaces/SvelteHotkeyScopesState"
             },
             {
               "label": "getHotkeysContext",
@@ -1363,6 +1403,10 @@
               "to": "framework/ember/reference/functions/useHotkeyRegistrations"
             },
             {
+              "label": "useHotkeyScopesState",
+              "to": "framework/ember/reference/functions/useHotkeyScopesState"
+            },
+            {
               "label": "onHotkey",
               "to": "framework/ember/reference/classes/onHotkey"
             },
@@ -1434,6 +1478,10 @@
             {
               "label": "useHotkeyRegistrations",
               "to": "framework/octane/reference/functions/useHotkeyRegistrations"
+            },
+            {
+              "label": "useHotkeyScopesState",
+              "to": "framework/octane/reference/functions/useHotkeyScopesState"
             },
             {
               "label": "useHotkeys",

@@ -17,6 +17,7 @@ This guide describes each default, why it was chosen, and how to change it.
 | Modifiers | Must match exactly | List every modifier in the binding |
 | Typing in inputs | Single keys and `Shift`/`Alt` chords are ignored; `Control`/`Meta` chords and `Escape` fire | `ignoreInputs` |
 | Browser behavior | Prevented, and the event stops propagating | `preventDefault`, `stopPropagation` |
+| Hotkeys that can't fire | The browser acts on the key | `preventDefault: 'always'` |
 | When a chord fires | On keydown, and again on each automatic repeat while held | `eventType`, `requireReset` |
 | Where listeners attach | `document` | `target` |
 | When hotkeys run | After the keyboard handlers of widgets inside the target (bubble phase) | `capture` |
@@ -129,6 +130,27 @@ The recorder only skips text fields, so it can record Enter or Space while the b
 Both apply only when a hotkey matches; every other key press is left alone. For a sequence, every step that advances it calls `preventDefault`, so the browser doesn't act on `Mod+K` in `['Mod+K', 'Mod+C']`. Propagation stops only on the last step, so earlier steps still reach other listeners. Set either option to `false` when you want to observe a shortcut without taking it over.
 
 Some browser and operating system shortcuts never reach the page and cannot be overridden. Browsers keep `Mod+T`, `Mod+N`, and `Mod+W` for opening and closing tabs and windows, and the operating system keeps shortcuts such as `Alt+Tab` and `Command+Tab`. Pick other keys for your app.
+
+## Hotkeys that can't fire leave the key alone
+
+A hotkey that can't fire, because it's disabled or its scope is inactive or suspended, doesn't call `preventDefault`, so the browser acts on the key. Pressing `Mod+S` while a save hotkey is disabled opens the browser's Save Page dialog.
+
+For most hotkeys, keeping the browser's action prevented is better, and we recommend `preventDefault: 'always'`. With it, a chord that can't fire still calls `preventDefault` when its keys are pressed:
+
+- It never stops propagation, so other listeners still receive the key.
+- It still skips typing in text fields when `ignoreInputs` does.
+- When another hotkey handles the key, that hotkey's options apply instead.
+- Sequences treat `'always'` as `true`.
+
+To use it for every hotkey, set it in your adapter's shared defaults, as shown in [Changing the defaults](#changing-the-defaults).
+
+It isn't the default because turning a hotkey off is often how an app hands a key back to the browser. With `'always'`, these hotkeys keep blocking the browser while they're off:
+
+- **Editing and clipboard shortcuts.** A grid that enables `Mod+C`, `Mod+A`, or `Mod+Z` only while cells are selected blocks native copy, select all, and undo the rest of the time. `Mod` chords fire in text fields by default, so this includes undo while typing.
+- **Single keys behind an [off switch](#single-key-shortcuts-need-an-off-switch).** When a user turns off single-key shortcuts, `Space` and the arrow keys still don't scroll, and `/` still doesn't open Firefox's quick find.
+- **Focus and native dialogs.** A disabled `Tab` hotkey keeps focus from moving off buttons and links, and a disabled `Escape` hotkey stops a native `<dialog>` from closing.
+
+If you set `'always'` in shared defaults, set `preventDefault: true` on hotkeys like these, so the browser takes over while they're off.
 
 ## Single-key shortcuts need an off switch
 

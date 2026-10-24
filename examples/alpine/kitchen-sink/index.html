@@ -25,14 +25,10 @@
                 style="display: contents"
                 x-data="hint(() => ({ hotkey: page.shortcut }))"
               >
-                <template
-                  x-if="visible.value &amp;&amp; (props().enabled ?? true)"
-                >
+                <template x-if="visible.value">
                   <kbd x-text="formatForDisplay(props().hotkey)"></kbd>
                 </template>
-                <template
-                  x-if="!(visible.value &amp;&amp; (props().enabled ?? true))"
-                >
+                <template x-if="!(visible.value)">
                   <span></span>
                 </template>
               </span>
@@ -50,12 +46,10 @@
             style="display: contents"
             x-data='hint(() => ({ hotkey: "Alt+Shift+[KeyK]" }))'
           >
-            <template x-if="visible.value &amp;&amp; (props().enabled ?? true)">
+            <template x-if="visible.value">
               <kbd x-text="formatForDisplay(props().hotkey)"></kbd>
             </template>
-            <template
-              x-if="!(visible.value &amp;&amp; (props().enabled ?? true))"
-            >
+            <template x-if="!(visible.value)">
               <span></span>
             </template>
           </span>
@@ -425,18 +419,14 @@
                               Create ticket
                               <span
                                 style="display: contents"
-                                x-data='hint(() => ({ hotkey: "Alt+[KeyC]", enabled: enabled }))'
+                                x-data='hint(() => ({ hotkey: "Alt+[KeyC]" }))'
                               >
-                                <template
-                                  x-if="visible.value &amp;&amp; (props().enabled ?? true)"
-                                >
+                                <template x-if="visible.value">
                                   <kbd
                                     x-text="formatForDisplay(props().hotkey)"
                                   ></kbd>
                                 </template>
-                                <template
-                                  x-if="!(visible.value &amp;&amp; (props().enabled ?? true))"
-                                >
+                                <template x-if="!(visible.value)">
                                   <span></span>
                                 </template>
                               </span>
@@ -445,18 +435,14 @@
                               Save pending
                               <span
                                 style="display: contents"
-                                x-data='hint(() => ({ hotkey: "Alt+[KeyS]", enabled: enabled }))'
+                                x-data='hint(() => ({ hotkey: "Alt+[KeyS]" }))'
                               >
-                                <template
-                                  x-if="visible.value &amp;&amp; (props().enabled ?? true)"
-                                >
+                                <template x-if="visible.value">
                                   <kbd
                                     x-text="formatForDisplay(props().hotkey)"
                                   ></kbd>
                                 </template>
-                                <template
-                                  x-if="!(visible.value &amp;&amp; (props().enabled ?? true))"
-                                >
+                                <template x-if="!(visible.value)">
                                   <span></span>
                                 </template>
                               </span>

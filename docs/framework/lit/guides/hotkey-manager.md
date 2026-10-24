@@ -96,7 +96,7 @@ releaseScope()
 
 ### Read scope state
 
-`manager.isScopeActive(scope)` returns whether hotkeys in a scope can fire. `HotkeyRegistrationsController` updates its element when scopes change, so a list filtered with `isScopeActive` stays current.
+`manager.isScopeActive(scope)` returns whether hotkeys in a scope can fire. To list which registered hotkeys are on, read each registration's `status`. See [List the hotkeys on screen](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 
 `manager.scopes` is a store with these fields:
 
@@ -105,31 +105,19 @@ releaseScope()
 - `allowed` lists the active scopes that the exclusive scope allows.
 - `suspended` lists the active scopes that can't fire because another scope is exclusive. It can include `'global'`.
 
-To read it in an element, subscribe while the element is connected, and request an update when it changes:
+To read it in an element, add a `HotkeyScopesStateController`. It updates the element when scopes activate or release:
 
 ```ts
 import { LitElement, html, nothing } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { getHotkeyManager } from '@tanstack/lit-hotkeys'
-
-const manager = getHotkeyManager()
+import { HotkeyScopesStateController } from '@tanstack/lit-hotkeys'
 
 @customElement('keyboard-owner')
 class KeyboardOwner extends LitElement {
-  private subscription?: { unsubscribe: () => void }
-
-  connectedCallback() {
-    super.connectedCallback()
-    this.subscription = manager.scopes.subscribe(() => this.requestUpdate())
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback()
-    this.subscription?.unsubscribe()
-  }
+  private scopes = new HotkeyScopesStateController(this)
 
   render() {
-    const { exclusive } = manager.scopes.state
+    const { exclusive } = this.scopes.value
     return exclusive ? html`<p>Shortcuts belong to ${exclusive}</p>` : nothing
   }
 }

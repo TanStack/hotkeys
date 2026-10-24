@@ -3,7 +3,7 @@ id: Register
 title: Register
 ---
 
-Defined in: [app-hotkeys.ts:144](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L144)
+Defined in: [app-hotkeys.ts:145](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L145)
 
 Register your app hotkeys to type `useAppHotkeys()` and `CustomHotkeys`.
 

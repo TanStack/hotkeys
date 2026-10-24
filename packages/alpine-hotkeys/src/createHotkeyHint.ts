@@ -1,4 +1,5 @@
 import {
+  getHotkeyManager,
   getKeyStateTracker,
   isAppHotkey,
   matchesHeldModifiers,
@@ -18,6 +19,9 @@ export function createHotkeyHint(
   hotkey: MaybeGetter<RegisterableHotkey | AppHotkey>,
   options: MaybeGetter<HeldModifierOptions> = {},
 ) {
+  const manager = getHotkeyManager()
+  // Tracks registration, enabled, and scope changes.
+  const registrations = scope.select(manager.registrations, (state) => state)
   return scope.select(getKeyStateTracker().store, (state) => {
     const value = read(hotkey)
     // App hotkeys use their effective hotkey; a sequence uses its first step.
@@ -26,7 +30,9 @@ export function createHotkeyHint(
       : value
     return (
       resolved !== null &&
-      matchesHeldModifiers(resolved, state.heldKeys, read(options))
+      matchesHeldModifiers(resolved, state.heldKeys, read(options)) &&
+      registrations.value.size > 0 &&
+      manager.hasActiveRegistration(value)
     )
   })
 }

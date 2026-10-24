@@ -320,7 +320,10 @@ describe('useAppHotkeyList', () => {
 describe('useHotkeyHint', () => {
   it('reveals an app hotkey by its effective hotkey', () => {
     const { result } = renderHook(
-      () => useHotkeyHint(appHotkeys['doc.save'], { platform: 'mac' }),
+      () => {
+        useHotkey(appHotkeys['doc.save'], () => {})
+        return useHotkeyHint(appHotkeys['doc.save'], { platform: 'mac' })
+      },
       {
         wrapper: wrapperWith({ customHotkeys: { 'doc.save': 'Alt+S' } }),
       },

@@ -2,10 +2,9 @@ import { useState } from 'react'
 import { createLazyRoute } from '@tanstack/react-router'
 import {
   HotkeysProvider,
-  getHotkeyManager,
   useAppHotkeys,
   useHotkey,
-  useHotkeyRegistrations,
+  useHotkeyScopesState,
 } from '@tanstack/react-hotkeys'
 import { Hint, Modal, formatHotkey, useActivity } from '../shared'
 
@@ -108,10 +107,9 @@ function Scopes() {
   )
 }
 
-/** Shows the active scopes. Scope changes notify registration subscribers. */
+/** Shows the active scopes. */
 function ScopeStatus() {
-  useHotkeyRegistrations()
-  const { active, exclusive, suspended } = getHotkeyManager().scopes.state
+  const { active, exclusive, suspended } = useHotkeyScopesState()
   return (
     <p className="scope-status">
       Active scopes:
@@ -147,6 +145,7 @@ function WorkspacePane({ name, current }: { name: string; current: boolean }) {
     <div className="workspace" data-current={current || undefined}>
       <strong>{name}</strong>
       <p>
+        {/* Hints follow the app hotkey, which the other pane also registers. */}
         {items} items{current && <Hint id="workspace.add" />}
       </p>
     </div>

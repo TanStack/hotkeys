@@ -1,4 +1,5 @@
 import {
+  getHotkeyManager,
   getKeyStateTracker,
   isAppHotkey,
   matchesHeldModifiers,
@@ -27,21 +28,31 @@ export class HotkeyHintController implements ReactiveController {
     host.addController(this)
   }
 
-  /** Current visibility; combine with the action’s enabled state when rendering. */
+  /**
+   * Current visibility. True only while the hotkey can fire: some registration
+   * of it is enabled and in an active scope. A hotkey on an element counts only while focus is inside it.
+   */
   get value(): boolean {
     return this.visible
   }
 
-  /** Subscribes on connection and requests renders only when hint visibility changes. */
+  /**
+   * Subscribes on connection, then requests renders only when hint visibility
+   * changes. Reconnecting always requests one, since the hint may have changed
+   * while disconnected.
+   */
   hostConnected(): void {
     this.update()
+    this.host.requestUpdate()
     const refresh = () => {
       if (this.update()) this.host.requestUpdate()
     }
     const subscription = getKeyStateTracker().store.subscribe(refresh)
+    const registrations = getHotkeyManager().registrations.subscribe(refresh)
     const unsubscribeAppHotkeys = subscribeAppHotkeys(refresh)
     this.unsubscribe = () => {
       subscription.unsubscribe()
+      registrations.unsubscribe()
       unsubscribeAppHotkeys()
     }
   }
@@ -72,7 +83,8 @@ export class HotkeyHintController implements ReactiveController {
         hotkey,
         getKeyStateTracker().store.state.heldKeys,
         typeof this.options === 'function' ? this.options() : this.options,
-      )
+      ) &&
+      getHotkeyManager().hasActiveRegistration(value)
     const changed = next !== this.visible
     this.visible = next
     return changed

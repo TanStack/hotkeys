@@ -2,7 +2,11 @@ import { flushSync, mount, unmount } from 'svelte'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
 import Harness from './ScopesHarness.svelte'
-import { createScopesControls } from './scopes-controls.svelte'
+import {
+  createScopesControls,
+  watchScopesState,
+} from './scopes-controls.svelte'
+import type { HotkeyScopesState } from '@tanstack/hotkeys'
 import type { SvelteAppHotkeyList } from '../src/getAppHotkeys.svelte'
 
 const appHotkeys = defineAppHotkeys({
@@ -83,6 +87,30 @@ describe('HotkeysProvider scopes', () => {
       expect(manager.isScopeActive('panel')).toBe(false)
     } finally {
       unmount(component)
+    }
+  })
+  it('tracks the scopes state when an exclusive scope activates', () => {
+    let state: HotkeyScopesState | undefined
+    const destroy = watchScopesState((value) => (state = value))
+    flushSync()
+    try {
+      expect(state?.exclusive).toBeNull()
+
+      const release = HotkeyManager.getInstance().activateScope('dialog', {
+        exclusive: true,
+      })
+      flushSync()
+      expect(state).toMatchObject({
+        active: ['dialog'],
+        exclusive: 'dialog',
+        suspended: ['global'],
+      })
+
+      release()
+      flushSync()
+      expect(state).toMatchObject({ exclusive: null, suspended: [] })
+    } finally {
+      destroy()
     }
   })
 })

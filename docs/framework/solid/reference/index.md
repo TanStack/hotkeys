@@ -35,6 +35,7 @@ title: "@tanstack/solid-hotkeys"
 - [createHotkeyRecorder](functions/createHotkeyRecorder.md)
 - [createHotkeyRegistrations](functions/createHotkeyRegistrations.md)
 - [createHotkeys](functions/createHotkeys.md)
+- [createHotkeyScopesState](functions/createHotkeyScopesState.md)
 - [createKeyHold](functions/createKeyHold.md)
 - [useAppHotkeys](functions/useAppHotkeys.md)
 - [useCustomHotkeys](functions/useCustomHotkeys.md)

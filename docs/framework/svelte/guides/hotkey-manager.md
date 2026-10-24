@@ -98,7 +98,7 @@ releaseScope()
 
 ### Read scope state
 
-`manager.isScopeActive(scope)` returns whether hotkeys in a scope can fire. `getHotkeyRegistrations` updates when scopes change, so a list filtered with `isScopeActive` stays current.
+`manager.isScopeActive(scope)` returns whether hotkeys in a scope can fire. To list which registered hotkeys are on, read each registration's `status`. See [List the hotkeys on screen](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 
 `manager.scopes` is a store with these fields:
 
@@ -107,23 +107,17 @@ releaseScope()
 - `allowed` lists the active scopes that the exclusive scope allows.
 - `suspended` lists the active scopes that can't fire because another scope is exclusive. It can include `'global'`.
 
-To read it in a component, copy it into state from an effect:
+To read it in a component, use `getHotkeyScopesState`. It updates when scopes activate or release:
 
 ```svelte
 <script lang="ts">
-  import { getHotkeyManager } from '@tanstack/svelte-hotkeys'
+  import { getHotkeyScopesState } from '@tanstack/svelte-hotkeys'
 
-  const manager = getHotkeyManager()
-  let scopes = $state.raw(manager.scopes.state)
-
-  $effect(() => {
-    const subscription = manager.scopes.subscribe((state) => (scopes = state))
-    return () => subscription.unsubscribe()
-  })
+  const scopes = getHotkeyScopesState()
 </script>
 
-{#if scopes.exclusive}
-  <p>Shortcuts belong to {scopes.exclusive}</p>
+{#if scopes.state.exclusive}
+  <p>Shortcuts belong to {scopes.state.exclusive}</p>
 {/if}
 ```
 

@@ -57,13 +57,13 @@ function Tickets() {
       </label>
       <p>
         <button disabled={!enabled} onClick={create}>
-          Create ticket <Hint id="tickets.create" enabled={enabled} />
+          Create ticket <Hint id="tickets.create" />
         </button>
         <button disabled={!enabled} onClick={save}>
-          Save pending <Hint id="tickets.save" enabled={enabled} />
+          Save pending <Hint id="tickets.save" />
         </button>
         <button disabled={!enabled} onClick={archive}>
-          Archive <Hint id="tickets.archive" enabled={enabled} />
+          Archive <Hint id="tickets.archive" />
         </button>
       </p>
       <label>

@@ -3,7 +3,7 @@ id: AlpineCustomHotkeys
 title: AlpineCustomHotkeys
 ---
 
-Defined in: [types.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L74)
+Defined in: [types.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L75)
 
 Custom hotkey state and actions.
 
@@ -15,7 +15,7 @@ Custom hotkey state and actions.
 findConflicts: (id, hotkey) => AppHotkey<string, HotkeyChord | HotkeySequence | null>[];
 ```
 
-Defined in: [types.ts:90](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L90)
+Defined in: [types.ts:91](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L91)
 
 Other app hotkeys that would collide if `id` used `hotkey`.
 
@@ -41,7 +41,7 @@ Other app hotkeys that would collide if `id` used `hotkey`.
 resetCustomHotkey: (id) => void;
 ```
 
-Defined in: [types.ts:86](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L86)
+Defined in: [types.ts:87](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L87)
 
 Restores the default hotkey for an app hotkey.
 
@@ -63,7 +63,7 @@ Restores the default hotkey for an app hotkey.
 resetCustomHotkeys: () => void;
 ```
 
-Defined in: [types.ts:88](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L88)
+Defined in: [types.ts:89](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L89)
 
 Restores every default hotkey.
 
@@ -79,7 +79,7 @@ Restores every default hotkey.
 setCustomHotkey: (id, hotkey) => AppHotkey<string, HotkeyChord | HotkeySequence | null>[];
 ```
 
-Defined in: [types.ts:81](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L81)
+Defined in: [types.ts:82](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L82)
 
 Sets the user's hotkey for an app hotkey. `null` unbinds it.
 Returns conflicting app hotkeys; when any exist, nothing changes.
@@ -106,6 +106,6 @@ Returns conflicting app hotkeys; when any exist, nothing changes.
 readonly value: CustomHotkeys;
 ```
 
-Defined in: [types.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L76)
+Defined in: [types.ts:77](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L77)
 
 The user's hotkeys that differ from the defaults.

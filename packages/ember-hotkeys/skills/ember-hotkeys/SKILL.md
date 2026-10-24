@@ -54,24 +54,25 @@ export default class Editor extends Component {
 
 ## API
 
-| API                                                 | What it's for                                                                                                  |
-| --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `{{useHotkey hotkey callback ...options}}`          | Register one chord, sequence, or app hotkey while the template renders the helper.                             |
-| `{{useHotkeys definitions}}`                        | Register several hotkeys, or a list built from data, in one helper.                                            |
-| `{{onHotkey hotkey callback ...options}}`           | Attach a hotkey to the element the modifier is on, so it fires while focus is inside that element.             |
-| `{{onHotkeys definitions}}`                         | Attach several hotkeys to one element.                                                                         |
-| `createHotkeysScope(defaults?)`                     | Create `useHotkey`, `useHotkeys`, `onHotkey`, `onHotkeys`, and `useHotkeyRecorder` that share default options. |
-| `provideAppHotkeys(appHotkeys, options?)`           | Declare app hotkeys and load the user's custom hotkeys before the app boots, since Ember has no provider.      |
-| `getHotkeyManager().activateScope(scope, options?)` | Turn on a scope, such as an exclusive one for a dialog; it returns the function that turns the scope off.      |
-| `useAppHotkeys(this)`                               | Get the declared app hotkeys with the user's custom hotkeys applied.                                           |
-| `useAppHotkeyList(this)`                            | List every app hotkey with its status, for a cheat sheet or settings screen.                                   |
-| `useCustomHotkeys(this)`                            | Read, change, and reset the user's custom hotkeys, and check a new one for conflicts.                          |
-| `useHotkeyRecorder(this, options)`                  | Record a chord or sequence the user presses, for a settings screen.                                            |
-| `useHotkeyRegistrations(this)`                      | Read `.hotkeys`, every registered hotkey with its options and `meta`.                                          |
-| `useHotkeyHint(this, hotkey, options?)`             | Get whether held modifiers should reveal a shortcut's hint.                                                    |
-| `useKeyHold(this, key)`                             | Get whether one key is held.                                                                                   |
-| `useHeldKeys(this)`                                 | Get every key that's held right now.                                                                           |
-| `useHeldKeyCodes(this)`                             | Map each held key to its physical `event.code`.                                                                |
+| API                                                 | What it's for                                                                                                                                                                          |
+| --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `{{useHotkey hotkey callback ...options}}`          | Register one chord, sequence, or app hotkey while the template renders the helper.                                                                                                     |
+| `{{useHotkeys definitions}}`                        | Register several hotkeys, or a list built from data, in one helper.                                                                                                                    |
+| `{{onHotkey hotkey callback ...options}}`           | Attach a hotkey to the element the modifier is on, so it fires while focus is inside that element.                                                                                     |
+| `{{onHotkeys definitions}}`                         | Attach several hotkeys to one element.                                                                                                                                                 |
+| `createHotkeysScope(defaults?)`                     | Create `useHotkey`, `useHotkeys`, `onHotkey`, `onHotkeys`, and `useHotkeyRecorder` that share default options.                                                                         |
+| `provideAppHotkeys(appHotkeys, options?)`           | Declare app hotkeys and load the user's custom hotkeys before the app boots, since Ember has no provider.                                                                              |
+| `getHotkeyManager().activateScope(scope, options?)` | Turn on a scope, such as an exclusive one for a dialog; it returns the function that turns the scope off.                                                                              |
+| `useAppHotkeys(this)`                               | Get the declared app hotkeys with the user's custom hotkeys applied.                                                                                                                   |
+| `useAppHotkeyList(this)`                            | List every app hotkey with its status, for a cheat sheet or settings screen.                                                                                                           |
+| `useCustomHotkeys(this)`                            | Read, change, and reset the user's custom hotkeys, and check a new one for conflicts.                                                                                                  |
+| `useHotkeyRecorder(this, options)`                  | Record a chord or sequence the user presses, for a settings screen.                                                                                                                    |
+| `useHotkeyRegistrations(this)`                      | Read `.hotkeys`, every registered hotkey with its options, `meta`, and `status` (whether it's enabled and in an active scope).                                                         |
+| `useHotkeyScopesState(this)`                        | Get the active scopes and the exclusive scope that owns the keyboard.                                                                                                                  |
+| `useHotkeyHint(this, hotkey, options?)`             | Get whether held modifiers should reveal a shortcut's hint. False unless a registration of the hotkey can fire: enabled, in an active scope, and with focus inside its element target. |
+| `useKeyHold(this, key)`                             | Get whether one key is held.                                                                                                                                                           |
+| `useHeldKeys(this)`                                 | Get every key that's held right now.                                                                                                                                                   |
+| `useHeldKeyCodes(this)`                             | Map each held key to its physical `event.code`.                                                                                                                                        |
 
 The package also re-exports `@tanstack/hotkeys`, such as `formatForDisplay`, `matchesKeyboardEvent`, and `defineAppHotkeys`.
 

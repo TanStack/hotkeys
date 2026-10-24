@@ -3,33 +3,32 @@
   "baseline": "ad56a4b0dbf3c34d8552eca2cc88c5c7000d520a",
   "items": {
     "skill:packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": {
-      "fingerprint": "02202af8891c5d847d8184cfe6511ea256835dbc60e3da3fec5b931257d4e157",
+      "fingerprint": "f1ffa2a31e85d6e7cfbcf730e4b1f5e62d0bd4a59cf8153832cd3b9f299fd424",
       "snapshot": {
         "docs/framework/alpine/guides/app-hotkeys.md": "536c327d4d9f80219a0dcdd04bb36b684c35567ad76f86327287ae6a21f03199",
         "docs/framework/alpine/quick-start.md": "82877b602b370603286ca41f384f5e38da25f7df30bf707e04ea17018792875c",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "174d8e07e2a17f81cd6d2832c42725b69a2bf2e80d67de2ed669a10d7f29ff3b",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "e6f704998fbe368fae46cbc832f4887edbeef452b4cdb017bd730e63fcd646c6",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "fdc12aafd6098bde8b4e7f5d8a8afb12227ac99cd753e06fc27401d5d8c8fead",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "f712ddb3354230197eb54d6f270d00a41c2b889e60690e70853569fe1a5207ea",
         "packages/alpine-hotkeys/src/createHotkey.ts": "3ee3029171f53f3693980bc975252b3decea27c1920ccc0ec1dd8fe2b3810c9b",
-        "packages/alpine-hotkeys/src/createHotkeysScope.ts": "5fbb79f7f61492c8a68cd28aefb1da5cd0d0aacaf560656ecad814d7649fa747",
+        "packages/alpine-hotkeys/src/createHotkeysScope.ts": "8fb6d17e8fe155327fdac17f9d057d6538c84474c1c464ee25409c23d52e7a85",
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "77a4e764c9917d00ae0f2b8c37fc08ac6733003a5043f7e3e1a046f6936a7188",
         "packages/alpine-hotkeys/src/scope.ts": "d6ce3fe86c87cf6483119baaa48e0950f30480f02ff861656035eb559c596176"
       },
-      "head": "23d1c595900c721c5ff1a53d68ba0f7e0d9b19e6",
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "updated",
-      "reason": "Maintainer review: alpine-hotkeys now lists every hook and function its adapter defines, each with one sentence on what it is for, in an API table that replaces the short task table.",
+      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
       "evidence": [
-        "TypeScript export listing of each adapter src/index.ts: all 127 adapter-defined hooks and functions appear in their skills, plus Alpine owner methods",
-        "intent validate: 12 skills passed (2026-10-19)",
-        "Code fences unchanged since the 2026-10-18 example-project type checks; only the API table and a re-export note changed"
+        "packages/hotkeys/src/hotkey-manager.ts",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "40fc65ef1531cc6aa3d5324b312e5e51b3af7942c863fbc5d6f16e7ec77217c0",
+      "fingerprint": "5f623f1741f51b1b805be93d1389186807b85a0921504d420b521111ad9264cc",
       "snapshot": {
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "003fba191e3d13d4466754644c4d2174a550f48d437028bc163ba6acca6546ad",
         "docs/framework/angular/quick-start.md": "d1cc5f91cd50b579c8a4bd9811e76862308855ce602556e4fa36561bc7d62822",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "765990924c31c6b21317c67d237796b6328ad3468197a1905fcd33b93e162ac8",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "2b0e9e34fb1338d2db1657beffd8664906ef200388854cfc2895cf9f428e00d9",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "5fe1b12a519e8ca5087d78d47050f7a2ec0c70bb9b7d6ebcbb050ee099e3effe",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "1e549ef79db70b5818326068c78ada5d410fdc680a4cb7ca12bdfd9d0de5d0dc",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "3161186944b142feab034a1899b76b178700f4ef371bfffbb694b9ed5a191d32",
@@ -37,21 +36,20 @@
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "46db59ccc34f8158c98328ae152f47cdd182cdeef951bf9dc5c44fa12de1b305",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "cecc7d127934caaab72a694fe527ef7a7b31e660f98cc077dabacd5506e11619"
       },
-      "head": "23d1c595900c721c5ff1a53d68ba0f7e0d9b19e6",
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "updated",
-      "reason": "Maintainer review: angular-hotkeys now lists every hook and function its adapter defines, each with one sentence on what it is for, in an API table that replaces the short task table.",
+      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
       "evidence": [
-        "TypeScript export listing of each adapter src/index.ts: all 127 adapter-defined hooks and functions appear in their skills, plus Alpine owner methods",
-        "intent validate: 12 skills passed (2026-10-19)",
-        "Code fences unchanged since the 2026-10-18 example-project type checks; only the API table and a re-export note changed"
+        "packages/hotkeys/src/hotkey-manager.ts",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
-      "fingerprint": "cbc64511974afced135a47d6b1117c795de06348c382a580622da2a39448efba",
+      "fingerprint": "a40354b6ea8830f3b051a8ad3f884f3e04cb1da71af2829c4c2fd53978046174",
       "snapshot": {
         "docs/framework/ember/guides/app-hotkeys.md": "5162292b3d62257c757ea0146fb5b1cc8c85b130081472b3675be077e8c898de",
         "docs/framework/ember/quick-start.md": "cabdc0cbd2b9ac6d4d7f9f2c8b8d3fc6ef2ac8c23df4cd8ebc9745c99023f8c8",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "196c510841157b8743a5e6e2ca5ca4237ebd24b30019a39e9acf096b1ee45570",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "047dabb323921dbc83995f9f994a11158df84b5bd91701bed54a5810a71285ec",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "3f01e7b8dabf61a801c8fd2e4e6658486ae4f9bdda588594236c38f7b70aed5f",
         "packages/ember-hotkeys/src/onHotkey.ts": "26007837b3c8476c3be6b492701756258a8d09fe6648550742fd1405be1448bd",
@@ -60,24 +58,23 @@
         "packages/ember-hotkeys/src/useHotkey.ts": "66b7b39970c5e61233f352baf14c41d9ac29cc3832e251470930e6507b454f63",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8"
       },
-      "head": "23d1c595900c721c5ff1a53d68ba0f7e0d9b19e6",
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "updated",
-      "reason": "Maintainer review: ember-hotkeys now lists every hook and function its adapter defines, each with one sentence on what it is for, in an API table that replaces the short task table.",
+      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
       "evidence": [
-        "TypeScript export listing of each adapter src/index.ts: all 127 adapter-defined hooks and functions appear in their skills, plus Alpine owner methods",
-        "intent validate: 12 skills passed (2026-10-19)",
-        "Code fences unchanged since the 2026-10-18 example-project type checks; only the API table and a re-export note changed"
+        "packages/hotkeys/src/hotkey-manager.ts",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "345b9ae885d48da8c0b0cfacc3f5786486fc51a6e2830241629fd380bc7bdbeb",
+      "fingerprint": "027b0a6860eee8cf94e9227f982752d3e705c0c11f9237620d16215510839ed5",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "703f9dcea282a1b5cd7cabcd304a233cfda8d79206d3d66d3b024142e5175d24",
-        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "834e151476d14438af1dd94af19fc4f1004e02dc6262c106f08bd758f5c0bcb3",
+        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "a3f793e81c6a6e1e6aaf3d63c6b79114ea7d6f461123d371c0b4f0a23ffd88bc",
         "docs/framework/react/guides/custom-hotkey-recording.md": "ea9b70d7bbeb5846b0284e843960bf667b2ae6ffbe85742fb5ba332de170ca29",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "1717fce82ea43b4947da276026504eb8832dc3094cc41cc7572701a7f27b5e58",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
-        "packages/hotkeys/src/app-hotkeys.ts": "324d060cb09259ea57c826a117e8e9761447405dd588e5f499d3e58c9c792d0a",
+        "packages/hotkeys/src/app-hotkeys.ts": "5bee8b0042a7385c8963aabf9b0ca7b6aad5ef8aab41b2759961a7ac6cf6849c",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
         "packages/hotkeys/src/hotkey-recorder.ts": "2ebed5665e56f5ee87130440fc93f2571aef7940b6153c05204cd0f3e7eea4cc",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
@@ -89,25 +86,25 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "23d1c595900c721c5ff1a53d68ba0f7e0d9b19e6",
-      "outcome": "no-change",
-      "reason": "The AltGr fix (#193) made the recorder treat Windows AltGr as Control+Alt for keys AltGr does not change. The skill and recording reference say nothing about AltGr, so their guidance holds.",
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "updated",
+      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
       "evidence": [
-        "git diff ad56a4b0 daecd950 -- packages/hotkeys/src/hotkey-recorder.ts",
-        "intent validate: 12 skills passed (2026-10-19)"
+        "packages/hotkeys/src/hotkey-manager.ts",
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md"
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "7ece40b4302ae6579c3e3890a7c0099a2a9a44716eb7b42ca3fcafbd9cc3df26",
+      "fingerprint": "bed2ef31e1a81f54691559cae4132e56f7e9ba2333e5e92a615330179da1bdb2",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
-        "docs/framework/react/guides/hotkeys.md": "64b32d7d26f2b678c49f32b38ff89b2610432d65885635cf332b1614a7b61fca",
+        "docs/framework/react/guides/hotkeys.md": "4d12140117ce4ceb3fb9bc17867efe30ae7085609714800e962c927ce07f019f",
         "docs/framework/react/guides/sequences.md": "e66231380dab6222508a1305d83586459b59953c2ecc47b9549e3cb29ffcd355",
-        "docs/guides/sensible-defaults.md": "9fe0d88cd721174427277ef89c10423978421c79a90455fa935f795f61bcef2a",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "9b198e45b8314fc25186dc0e670aba2ff8791711d37e60fd41d157923cbc8553",
-        "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "87ec2f714289f3a0fc126cd0f36bc661927065ae8ea69b225970a96b8c8ffa93",
+        "docs/guides/sensible-defaults.md": "29b63a2aa05a4c7498bc2f235baa20bf4bcccbf9de78642ed5e27b431232ec1f",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "507ec6b32b7b1836276ee6527acdb3240f998d72dfb90f07c9e9820e688e8714",
+        "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "90e6512868c194f6c906711cd16882c204600a3118b08b7a101ff6b409012538",
-        "packages/hotkeys/src/hotkey-manager.ts": "9b87e32e33bbf2ab10195fe2115ff78bf5f23c8903e8547633765f30e9836c1c",
+        "packages/hotkeys/src/hotkey-manager.ts": "0f8c253810bc4027d35185483a09cbd403cdd04c31189288f8a1211c642587d4",
         "packages/hotkeys/src/match.ts": "3a50921a68f79183b4ffac98e07e7fdf043711bc071f419c9cdc03422d25f268",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "25c572e968a78fd8df61f0bc98ba8adb41ecf0874437725e5ba28dd171e44fe1",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -119,62 +116,57 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "451dc7569f71956e5ce5e691ecc18ce14d4240b7edaa20cad58075747416c33d"
       },
-      "head": "23d1c595900c721c5ff1a53d68ba0f7e0d9b19e6",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "no-change",
-      "reason": "The AltGr fix (#193) rewrote the AltGr notes in docs/guides/sensible-defaults.md. The skill says nothing about AltGr, and its defaults and pitfalls are unaffected.",
-      "evidence": [
-        "git diff ad56a4b0 daecd950 -- docs/guides/sensible-defaults.md",
-        "intent validate: 12 skills passed (2026-10-19)"
-      ]
+      "reason": "Internal fix: the preventDefault 'always' check uses the event's composed path so live hotkeys inside shadow roots count. Skill guidance unchanged.",
+      "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
-      "fingerprint": "33eb28169e71a7c7cbf50009a230d2b219126cf73bdce0d839a90e86ffde02ed",
+      "fingerprint": "574f78494c2c097169d5a20dd98281169784765fcc312da686e60d581fb00e56",
       "snapshot": {
         "docs/framework/lit/guides/app-hotkeys.md": "0a2b2dafa00bb21f575d4ac752f0b54803a69fff12a4391cf3a86e59f6471e1f",
         "docs/framework/lit/quick-start.md": "d65ebb31aae582bd90689ac138369f843ad532aab1a667fa52b141249d2f07bf",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "b6595659dbe01e8fd9281b1ecbcf801f8bca8de6c734cf9c3ac7514f7862f602",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "044e792b3c90a99d3c6c3c2da639cf4bf2a6b2a073d13ee2caa54e951807e095",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "659ca9bebf4200bb693c693addb17bd5a943904e482514f2014f5ca426629e96",
         "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "75248405af23fcf9ba1402c2d8b5778e92db2eb8ad4a06629a4ed6d3952f6713",
         "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "5a9465e59c750aba5b3333fe1ca2ddf08acec768f36decd7f82cdd791481e759",
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "92464406579394adab6b5cee41efed8488caebbc92af12bef6069883d2063a64",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "2730f3178f6e5f6695fa0c2f8d25d7040c2ff841d3de486acffef86cfc76395f"
       },
-      "head": "23d1c595900c721c5ff1a53d68ba0f7e0d9b19e6",
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "updated",
-      "reason": "Maintainer review: lit-hotkeys now lists every hook and function its adapter defines, each with one sentence on what it is for, in an API table that replaces the short task table.",
+      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
       "evidence": [
-        "TypeScript export listing of each adapter src/index.ts: all 127 adapter-defined hooks and functions appear in their skills, plus Alpine owner methods",
-        "intent validate: 12 skills passed (2026-10-19)",
-        "Code fences unchanged since the 2026-10-18 example-project type checks; only the API table and a re-export note changed"
+        "packages/hotkeys/src/hotkey-manager.ts",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"
       ]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
-      "fingerprint": "463497f7dffe885917c35acdbd6fb2a0ef72f49532f4501727bc48cbc32db88a",
+      "fingerprint": "55fef972ae50ce2281d49d86e438163721f03630d5abdffcc8d339a18e445e48",
       "snapshot": {
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
         "docs/framework/octane/quick-start.md": "2ddb77d76eefae05feb5183206687bf4fd4ac3b18e43cc5e51a934b361702ea1",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "a876657ed570eba14ce217aa736c2bba0caa9138b628fe86f922fefff0ceba50",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2d8f1849449ed280c1d899737fa388e3f40528b04954d96fe33be1a11b422d44",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "1a14911ef8b89e4cd1a680ca406c4f2fede02e97df85f378bf18200f79d6ec33",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "4884113fa09d9869baf8af1f3bb07ba72558308a03136b3c1b59feb49ce2efbb",
         "packages/octane-hotkeys/src/useHotkey.ts": "9bdb7abb153435073d490d99e704e2e6ef5000f425308f640e3a4ef68317657e",
         "packages/octane-hotkeys/src/useHotkeys.ts": "f864ed03975e9930638cfe9025639619ebdb2c975a55e6950199cba86cb70476"
       },
-      "head": "23d1c595900c721c5ff1a53d68ba0f7e0d9b19e6",
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "updated",
-      "reason": "Maintainer review: octane-hotkeys now lists every hook and function its adapter defines, each with one sentence on what it is for, in an API table that replaces the short task table.",
+      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
       "evidence": [
-        "TypeScript export listing of each adapter src/index.ts: all 127 adapter-defined hooks and functions appear in their skills, plus Alpine owner methods",
-        "intent validate: 12 skills passed (2026-10-19)",
-        "Code fences unchanged since the 2026-10-18 example-project type checks; only the API table and a re-export note changed"
+        "packages/hotkeys/src/hotkey-manager.ts",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"
       ]
     },
     "skill:packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": {
-      "fingerprint": "8ae385e53fe1d7f71e86c8e6021ee185704c635dd5d2ca4ad6dba37d6f65633e",
+      "fingerprint": "8bce0b7e47e8f642d0227363e184a401c78fc344beca15d037557642583b7cc8",
       "snapshot": {
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
         "docs/framework/preact/quick-start.md": "ee1204420dd5acb198b2a15d239a062fee761fa0c6288913776c5e7e72b6bcb1",
-        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "44aa555591a1b581cfaa814a9e3e8bae960af554c9bad91eadf6dfb008f86970",
+        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "d92ebbb92614e1c5f8b32c29bd651f64a71071e18e28fe2ff817d64fe57ee203",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "4388ff0528e9ea44f819896f2687ab962735479cdafaddd1e349dd1bf6dc5479",
         "packages/preact-hotkeys/src/HotkeysProvider.tsx": "046840019caa15b1a0b8a3dad37585f9e92c9a1324a855e5b5921da074033978",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "023eff9348a9209a2e3e99a2b9847da3be72206f98150b478dae81a215059577",
@@ -182,21 +174,20 @@
         "packages/preact-hotkeys/src/useHotkeys.ts": "23ccd2ee8566bc62a8bca00c8a1c40fc4d37c8363b891667ae391f3e44bfa97b",
         "packages/preact-hotkeys/src/utils.ts": "930ee95e471c879bfcc32886c31128d702d92719b23c4bd8c06aa21e324502e9"
       },
-      "head": "23d1c595900c721c5ff1a53d68ba0f7e0d9b19e6",
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "updated",
-      "reason": "Maintainer review: preact-hotkeys now lists every hook and function its adapter defines, each with one sentence on what it is for, in an API table that replaces the short task table.",
+      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
       "evidence": [
-        "TypeScript export listing of each adapter src/index.ts: all 127 adapter-defined hooks and functions appear in their skills, plus Alpine owner methods",
-        "intent validate: 12 skills passed (2026-10-19)",
-        "Code fences unchanged since the 2026-10-18 example-project type checks; only the API table and a re-export note changed"
+        "packages/hotkeys/src/hotkey-manager.ts",
+        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"
       ]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "3dec2b213d467c1067cc5f1e36969d35c1910c5d8147efa2500eeb2448a5fbf3",
+      "fingerprint": "46a32a3fd81e8b1e162b3f07d12801a4977086afbe0f5bce69c9d4a46feba7f6",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
         "docs/framework/react/quick-start.md": "d587fccff19a0cf3c131f832a8eb423d5d4892e78e521aa856fd23485015afe7",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "bbd6aefddd0959e8f40ce5124004f8f8b81f40aad70266cbebefa1a5c720ae76",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "29a7233f6ba5ffecc8a84529353981ce820adee92cfdb8a9441c4a5c50554f9d",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "e45854b2346700249569ce418b0bb5593cd00a018336a60c9ed5cedeb8d49b3e",
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "bdf71bdf0de147134501e44ac03c8525d803f250b31c3d742c674fe01a85f17f",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "023eff9348a9209a2e3e99a2b9847da3be72206f98150b478dae81a215059577",
@@ -221,42 +212,40 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "23d1c595900c721c5ff1a53d68ba0f7e0d9b19e6",
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "updated",
-      "reason": "Maintainer review: react-hotkeys now lists every hook and function its adapter defines, each with one sentence on what it is for, in an API table that replaces the short task table.",
+      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
       "evidence": [
-        "TypeScript export listing of each adapter src/index.ts: all 127 adapter-defined hooks and functions appear in their skills, plus Alpine owner methods",
-        "intent validate: 12 skills passed (2026-10-19)",
-        "Code fences unchanged since the 2026-10-18 example-project type checks; only the API table and a re-export note changed"
+        "packages/hotkeys/src/hotkey-manager.ts",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md"
       ]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
-      "fingerprint": "ac845c244b2d27c395cff98a5ffe4fcb7a48148a38faad301ae20e57131dab2d",
+      "fingerprint": "88cfb62da79d753f62eebbc66b5c386aaec4b4b7513776811da0fcda1d4202e5",
       "snapshot": {
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
         "docs/framework/solid/quick-start.md": "292bf5cc6300e899c6f382e263665a488899fa816bb13ad4994420e390bb2420",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "31b1171a3dbcd137df06d5ad952aa6e255f358d49f37a0c011ac4d30b140c8d6",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "993952b562135b26ef21c97fb5caa2886f405370b93de22db30f689ebb4199d7",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d3dda6cd9aa0a8655aa43f017490797ad3d2de42206446b2403363873b84b133",
         "packages/solid-hotkeys/src/HotkeysProvider.tsx": "3e6ffd504bfb44458c880cba41ac5fc146ba1de88b10854119f32a71134f2953",
         "packages/solid-hotkeys/src/appHotkeys.ts": "5d44d8ce952af7a3e522fd42511a963e9af75c4229a2449cde16a180c6f030f2",
         "packages/solid-hotkeys/src/createHotkey.ts": "afef9eab39dee5a7500fe2f630132ea7f72e3df49fa1abacb9b035c58c5bb971",
         "packages/solid-hotkeys/src/createHotkeys.ts": "a84dbede2c8bdda995d73a02353619a721282e1a92a44127108da54d1d0b821a"
       },
-      "head": "23d1c595900c721c5ff1a53d68ba0f7e0d9b19e6",
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "updated",
-      "reason": "Maintainer review: solid-hotkeys now lists every hook and function its adapter defines, each with one sentence on what it is for, in an API table that replaces the short task table.",
+      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
       "evidence": [
-        "TypeScript export listing of each adapter src/index.ts: all 127 adapter-defined hooks and functions appear in their skills, plus Alpine owner methods",
-        "intent validate: 12 skills passed (2026-10-19)",
-        "Code fences unchanged since the 2026-10-18 example-project type checks; only the API table and a re-export note changed"
+        "packages/hotkeys/src/hotkey-manager.ts",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "0b8a6a2f4a646b787567aa46a6e3ff41fa532a1d64e7bf07dc4855d287143964",
+      "fingerprint": "6fbe00da1a3df0353f8b7897a37ac0d9052abdf6cd0f139229e1c61f4be15c03",
       "snapshot": {
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
         "docs/framework/svelte/quick-start.md": "1ed87e6c76d9225f37db87f0d0e7dfd9f790adbf5b47cf87daa67143d155ce9b",
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "c0587eb7bc4fa64e78a200a5049b4ecacb333435146f98972d55d296293e9714",
+        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "d99ef59e6a695be73d48b954a337d5c91f471268bad8da590a7b4d72f1a8a1c4",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "1d6e065a5d7dbd14073e0617a990a923a4a811df43fa3261253fce45f55b066b",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "d444924b495f5517f3235365d5988b2df86be9f4ef83e89d9ac5385857f76040",
@@ -265,21 +254,20 @@
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "ea5bf5ef7c2e7f6696f3354abe5f011cace7f046cb6a5c768c50cc2b840cf921",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a9662d748fcb8f8d7084411a99d581e29817faf42aa93b6142dfc2f5eea3fb9f"
       },
-      "head": "23d1c595900c721c5ff1a53d68ba0f7e0d9b19e6",
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "updated",
-      "reason": "Maintainer review: svelte-hotkeys now lists every hook and function its adapter defines, each with one sentence on what it is for, in an API table that replaces the short task table.",
+      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
       "evidence": [
-        "TypeScript export listing of each adapter src/index.ts: all 127 adapter-defined hooks and functions appear in their skills, plus Alpine owner methods",
-        "intent validate: 12 skills passed (2026-10-19)",
-        "Code fences unchanged since the 2026-10-18 example-project type checks; only the API table and a re-export note changed"
+        "packages/hotkeys/src/hotkey-manager.ts",
+        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"
       ]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
-      "fingerprint": "a0190b0c4bf6de5d081fa73dce49832eff709bd7a21681cb3e14c62f1a3523e8",
+      "fingerprint": "ac96f13c6fde14fcb0ca586b0ec2c952be261636cfff5bfadcca5cfa74898ea8",
       "snapshot": {
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "9e41458fe7488eedcbd4289019a66cde95b866ffb3081fdd0a808995580460ce",
         "docs/framework/vue/quick-start.md": "b4ca3394dc94e3b814054413afbf5e101fd5998a35daafad715e49de26a4932e",
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "08a25b07c825b12414663a5b9a0e45c10ab6cef442cc82d2184366930e910f7d",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "565e5d5f33ed757855f0a3bcc78d65a191e52c1e3f33f9bf3dc534a4c0e70d3f",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "326ee1fe20c1d75a4ad720f69a3a4df9b9e3a057826115e955deb0ed25d88f9a",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "ad40dec6e2889ca62f3fda57fcbf67e940f4dab5a26cdc69ff99777d2d2e56af",
         "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "00ed1258f648206d16728b78075b381760ddf144a586c60c1027902f2d1017b6",
@@ -288,17 +276,16 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "476a5a50a21aefe6243f9bc6e8c6a679978542d6ad8b52e6a2b0f806cd5ef89a",
         "packages/vue-hotkeys/src/useHotkeys.ts": "f971e9938eca3188b3af0fcc96d095330f9f6abfd70cb848d2de5c80f8d09639"
       },
-      "head": "23d1c595900c721c5ff1a53d68ba0f7e0d9b19e6",
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "updated",
-      "reason": "Maintainer review: vue-hotkeys now lists every hook and function its adapter defines, each with one sentence on what it is for, in an API table that replaces the short task table.",
+      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
       "evidence": [
-        "TypeScript export listing of each adapter src/index.ts: all 127 adapter-defined hooks and functions appear in their skills, plus Alpine owner methods",
-        "intent validate: 12 skills passed (2026-10-19)",
-        "Code fences unchanged since the 2026-10-18 example-project type checks; only the API table and a re-export note changed"
+        "packages/hotkeys/src/hotkey-manager.ts",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "dec587b0200db1f1debdfe912e70036852dfe67d3cae9ccd1823cdef7adaf690",
+      "fingerprint": "cd9093c837657c250149da40c85fa4c98b1b30506fba733551940d3474091d8e",
       "snapshot": {
         "_artifacts/domain_map.yaml": "dd50dde7eec97230c015f793602239e721dacb370936eafd4554988b4a2c1c89",
         "_artifacts/skill_spec.md": "57693ee30406d1a76d7ec201cc480e37611b23141ec70d7f178b0b07f56248fd",
@@ -316,10 +303,10 @@
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
         "docs/framework/preact/quick-start.md": "ee1204420dd5acb198b2a15d239a062fee761fa0c6288913776c5e7e72b6bcb1",
         "docs/framework/react/guides/app-hotkeys.md": "703f9dcea282a1b5cd7cabcd304a233cfda8d79206d3d66d3b024142e5175d24",
-        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "834e151476d14438af1dd94af19fc4f1004e02dc6262c106f08bd758f5c0bcb3",
+        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "a3f793e81c6a6e1e6aaf3d63c6b79114ea7d6f461123d371c0b4f0a23ffd88bc",
         "docs/framework/react/guides/custom-hotkey-recording.md": "ea9b70d7bbeb5846b0284e843960bf667b2ae6ffbe85742fb5ba332de170ca29",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
-        "docs/framework/react/guides/hotkeys.md": "64b32d7d26f2b678c49f32b38ff89b2610432d65885635cf332b1614a7b61fca",
+        "docs/framework/react/guides/hotkeys.md": "4d12140117ce4ceb3fb9bc17867efe30ae7085609714800e962c927ce07f019f",
         "docs/framework/react/guides/sequences.md": "e66231380dab6222508a1305d83586459b59953c2ecc47b9549e3cb29ffcd355",
         "docs/framework/react/quick-start.md": "d587fccff19a0cf3c131f832a8eb423d5d4892e78e521aa856fd23485015afe7",
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
@@ -328,22 +315,22 @@
         "docs/framework/svelte/quick-start.md": "1ed87e6c76d9225f37db87f0d0e7dfd9f790adbf5b47cf87daa67143d155ce9b",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "9e41458fe7488eedcbd4289019a66cde95b866ffb3081fdd0a808995580460ce",
         "docs/framework/vue/quick-start.md": "b4ca3394dc94e3b814054413afbf5e101fd5998a35daafad715e49de26a4932e",
-        "docs/guides/sensible-defaults.md": "9fe0d88cd721174427277ef89c10423978421c79a90455fa935f795f61bcef2a",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "174d8e07e2a17f81cd6d2832c42725b69a2bf2e80d67de2ed669a10d7f29ff3b",
+        "docs/guides/sensible-defaults.md": "29b63a2aa05a4c7498bc2f235baa20bf4bcccbf9de78642ed5e27b431232ec1f",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "e6f704998fbe368fae46cbc832f4887edbeef452b4cdb017bd730e63fcd646c6",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "fdc12aafd6098bde8b4e7f5d8a8afb12227ac99cd753e06fc27401d5d8c8fead",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "f712ddb3354230197eb54d6f270d00a41c2b889e60690e70853569fe1a5207ea",
         "packages/alpine-hotkeys/src/createHotkey.ts": "3ee3029171f53f3693980bc975252b3decea27c1920ccc0ec1dd8fe2b3810c9b",
-        "packages/alpine-hotkeys/src/createHotkeysScope.ts": "5fbb79f7f61492c8a68cd28aefb1da5cd0d0aacaf560656ecad814d7649fa747",
+        "packages/alpine-hotkeys/src/createHotkeysScope.ts": "8fb6d17e8fe155327fdac17f9d057d6538c84474c1c464ee25409c23d52e7a85",
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "77a4e764c9917d00ae0f2b8c37fc08ac6733003a5043f7e3e1a046f6936a7188",
         "packages/alpine-hotkeys/src/scope.ts": "d6ce3fe86c87cf6483119baaa48e0950f30480f02ff861656035eb559c596176",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "765990924c31c6b21317c67d237796b6328ad3468197a1905fcd33b93e162ac8",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "2b0e9e34fb1338d2db1657beffd8664906ef200388854cfc2895cf9f428e00d9",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "5fe1b12a519e8ca5087d78d47050f7a2ec0c70bb9b7d6ebcbb050ee099e3effe",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "1e549ef79db70b5818326068c78ada5d410fdc680a4cb7ca12bdfd9d0de5d0dc",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "3161186944b142feab034a1899b76b178700f4ef371bfffbb694b9ed5a191d32",
         "packages/angular-hotkeys/src/injectHotkey.ts": "b3651b50beb5b94cdadaf3339be17984e79277222918550f53448fca511e0af6",
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "46db59ccc34f8158c98328ae152f47cdd182cdeef951bf9dc5c44fa12de1b305",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "cecc7d127934caaab72a694fe527ef7a7b31e660f98cc077dabacd5506e11619",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "196c510841157b8743a5e6e2ca5ca4237ebd24b30019a39e9acf096b1ee45570",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "047dabb323921dbc83995f9f994a11158df84b5bd91701bed54a5810a71285ec",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "3f01e7b8dabf61a801c8fd2e4e6658486ae4f9bdda588594236c38f7b70aed5f",
         "packages/ember-hotkeys/src/onHotkey.ts": "26007837b3c8476c3be6b492701756258a8d09fe6648550742fd1405be1448bd",
@@ -353,34 +340,34 @@
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "1717fce82ea43b4947da276026504eb8832dc3094cc41cc7572701a7f27b5e58",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "9b198e45b8314fc25186dc0e670aba2ff8791711d37e60fd41d157923cbc8553",
-        "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "87ec2f714289f3a0fc126cd0f36bc661927065ae8ea69b225970a96b8c8ffa93",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "507ec6b32b7b1836276ee6527acdb3240f998d72dfb90f07c9e9820e688e8714",
+        "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "90e6512868c194f6c906711cd16882c204600a3118b08b7a101ff6b409012538",
-        "packages/hotkeys/src/app-hotkeys.ts": "324d060cb09259ea57c826a117e8e9761447405dd588e5f499d3e58c9c792d0a",
+        "packages/hotkeys/src/app-hotkeys.ts": "5bee8b0042a7385c8963aabf9b0ca7b6aad5ef8aab41b2759961a7ac6cf6849c",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
-        "packages/hotkeys/src/hotkey-manager.ts": "9b87e32e33bbf2ab10195fe2115ff78bf5f23c8903e8547633765f30e9836c1c",
+        "packages/hotkeys/src/hotkey-manager.ts": "0f8c253810bc4027d35185483a09cbd403cdd04c31189288f8a1211c642587d4",
         "packages/hotkeys/src/hotkey-recorder.ts": "2ebed5665e56f5ee87130440fc93f2571aef7940b6153c05204cd0f3e7eea4cc",
         "packages/hotkeys/src/match.ts": "3a50921a68f79183b4ffac98e07e7fdf043711bc071f419c9cdc03422d25f268",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "b6595659dbe01e8fd9281b1ecbcf801f8bca8de6c734cf9c3ac7514f7862f602",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "044e792b3c90a99d3c6c3c2da639cf4bf2a6b2a073d13ee2caa54e951807e095",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "659ca9bebf4200bb693c693addb17bd5a943904e482514f2014f5ca426629e96",
         "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "75248405af23fcf9ba1402c2d8b5778e92db2eb8ad4a06629a4ed6d3952f6713",
         "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "5a9465e59c750aba5b3333fe1ca2ddf08acec768f36decd7f82cdd791481e759",
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "92464406579394adab6b5cee41efed8488caebbc92af12bef6069883d2063a64",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "2730f3178f6e5f6695fa0c2f8d25d7040c2ff841d3de486acffef86cfc76395f",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "a876657ed570eba14ce217aa736c2bba0caa9138b628fe86f922fefff0ceba50",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2d8f1849449ed280c1d899737fa388e3f40528b04954d96fe33be1a11b422d44",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "1a14911ef8b89e4cd1a680ca406c4f2fede02e97df85f378bf18200f79d6ec33",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "4884113fa09d9869baf8af1f3bb07ba72558308a03136b3c1b59feb49ce2efbb",
         "packages/octane-hotkeys/src/useHotkey.ts": "9bdb7abb153435073d490d99e704e2e6ef5000f425308f640e3a4ef68317657e",
         "packages/octane-hotkeys/src/useHotkeys.ts": "f864ed03975e9930638cfe9025639619ebdb2c975a55e6950199cba86cb70476",
-        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "44aa555591a1b581cfaa814a9e3e8bae960af554c9bad91eadf6dfb008f86970",
+        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "d92ebbb92614e1c5f8b32c29bd651f64a71071e18e28fe2ff817d64fe57ee203",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "4388ff0528e9ea44f819896f2687ab962735479cdafaddd1e349dd1bf6dc5479",
         "packages/preact-hotkeys/src/HotkeysProvider.tsx": "046840019caa15b1a0b8a3dad37585f9e92c9a1324a855e5b5921da074033978",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "023eff9348a9209a2e3e99a2b9847da3be72206f98150b478dae81a215059577",
         "packages/preact-hotkeys/src/useHotkey.ts": "3a557416b1d8699c018aea0e1787c1b9cbfc161bdba0ecdcce3fb2a5de44f5b9",
         "packages/preact-hotkeys/src/useHotkeys.ts": "23ccd2ee8566bc62a8bca00c8a1c40fc4d37c8363b891667ae391f3e44bfa97b",
         "packages/preact-hotkeys/src/utils.ts": "930ee95e471c879bfcc32886c31128d702d92719b23c4bd8c06aa21e324502e9",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "bbd6aefddd0959e8f40ce5124004f8f8b81f40aad70266cbebefa1a5c720ae76",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "29a7233f6ba5ffecc8a84529353981ce820adee92cfdb8a9441c4a5c50554f9d",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "e45854b2346700249569ce418b0bb5593cd00a018336a60c9ed5cedeb8d49b3e",
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "bdf71bdf0de147134501e44ac03c8525d803f250b31c3d742c674fe01a85f17f",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "023eff9348a9209a2e3e99a2b9847da3be72206f98150b478dae81a215059577",
@@ -404,13 +391,13 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/shortcut-settings.test.tsx": "dccabaf1efac5b20ed5c13d159a07ae37b1079627469332995741c7a6ec37223",
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "31b1171a3dbcd137df06d5ad952aa6e255f358d49f37a0c011ac4d30b140c8d6",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "993952b562135b26ef21c97fb5caa2886f405370b93de22db30f689ebb4199d7",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d3dda6cd9aa0a8655aa43f017490797ad3d2de42206446b2403363873b84b133",
         "packages/solid-hotkeys/src/HotkeysProvider.tsx": "3e6ffd504bfb44458c880cba41ac5fc146ba1de88b10854119f32a71134f2953",
         "packages/solid-hotkeys/src/appHotkeys.ts": "5d44d8ce952af7a3e522fd42511a963e9af75c4229a2449cde16a180c6f030f2",
         "packages/solid-hotkeys/src/createHotkey.ts": "afef9eab39dee5a7500fe2f630132ea7f72e3df49fa1abacb9b035c58c5bb971",
         "packages/solid-hotkeys/src/createHotkeys.ts": "a84dbede2c8bdda995d73a02353619a721282e1a92a44127108da54d1d0b821a",
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "c0587eb7bc4fa64e78a200a5049b4ecacb333435146f98972d55d296293e9714",
+        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "d99ef59e6a695be73d48b954a337d5c91f471268bad8da590a7b4d72f1a8a1c4",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "1d6e065a5d7dbd14073e0617a990a923a4a811df43fa3261253fce45f55b066b",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "d444924b495f5517f3235365d5988b2df86be9f4ef83e89d9ac5385857f76040",
@@ -418,7 +405,7 @@
         "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "ea3295fb5fc85da7e5d266914e264a6916d8cb540697d3f9ca881c844da0bfa8",
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "ea5bf5ef7c2e7f6696f3354abe5f011cace7f046cb6a5c768c50cc2b840cf921",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a9662d748fcb8f8d7084411a99d581e29817faf42aa93b6142dfc2f5eea3fb9f",
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "08a25b07c825b12414663a5b9a0e45c10ab6cef442cc82d2184366930e910f7d",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "565e5d5f33ed757855f0a3bcc78d65a191e52c1e3f33f9bf3dc534a4c0e70d3f",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "326ee1fe20c1d75a4ad720f69a3a4df9b9e3a057826115e955deb0ed25d88f9a",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "ad40dec6e2889ca62f3fda57fcbf67e940f4dab5a26cdc69ff99777d2d2e56af",
         "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "00ed1258f648206d16728b78075b381760ddf144a586c60c1027902f2d1017b6",
@@ -427,13 +414,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "476a5a50a21aefe6243f9bc6e8c6a679978542d6ad8b52e6a2b0f806cd5ef89a",
         "packages/vue-hotkeys/src/useHotkeys.ts": "f971e9938eca3188b3af0fcc96d095330f9f6abfd70cb848d2de5c80f8d09639"
       },
-      "head": "36c645189affb162d5f010f29f1caae464e52c8d",
-      "outcome": "updated",
-      "reason": "Added review.ignore to skill_tree.yaml for .changeset/** and **/CHANGELOG.md, so release bookkeeping, including Version Packages PRs, needs no skill review.",
-      "evidence": [
-        "_artifacts/skill_tree.yaml",
-        "intent maintainer check: the two changesets in this PR are no longer pending"
-      ]
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "no-change",
+      "reason": "Internal fix: the preventDefault 'always' check uses the event's composed path so live hotkeys inside shadow roots count. Skill guidance unchanged.",
+      "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -456,6 +440,2046 @@
       "evidence": [
         "node scripts/verify-package.ts passed for all 11 skill packages and react-hotkeys-devtools (no skills)"
       ]
+    },
+    "source:docs/framework/alpine/guides/hotkey-hints.md": {
+      "fingerprint": "82520472ca44a2130b338867dfdbd19186b21d14a598deda4c48f6d9f24a3ff1",
+      "snapshot": {
+        "docs/framework/alpine/guides/hotkey-hints.md": "18df73eb5a29a15d0ca8169bc5e3fdf0dd5dc477803bfdb3be4499c33773c5af"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/alpine/guides/hotkey-hints.md"]
+    },
+    "source:docs/framework/angular/guides/hotkey-hints.md": {
+      "fingerprint": "313c1b2258131f732be1828a632b745a445e53088b40213f7f65cccd8f7b9d15",
+      "snapshot": {
+        "docs/framework/angular/guides/hotkey-hints.md": "158fa3943e85e6e00ac90b4d8bcde35e7d85579209fe9b9d4e11c564438117a2"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/angular/guides/hotkey-hints.md"]
+    },
+    "source:docs/framework/angular/reference/functions/injectHotkeyHint.md": {
+      "fingerprint": "0cce1ae8017ce95ff22dd25bc20a5b5e52e29fbb46a2f4a3a3fe2846098a0bc0",
+      "snapshot": {
+        "docs/framework/angular/reference/functions/injectHotkeyHint.md": "fd816a8144c9c333f7f0ee39e13620f9e9cf7ce1a7193634c481a00fde38854b"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "out-of-scope",
+      "reason": "Tests or regenerated reference docs.",
+      "evidence": [
+        "docs/framework/angular/reference/functions/injectHotkeyHint.md"
+      ]
+    },
+    "source:docs/framework/ember/guides/hotkey-hints.md": {
+      "fingerprint": "a1baa252f246bb89486a45c15923db84e21bb21c921f3d71f90d0e05e679a3be",
+      "snapshot": {
+        "docs/framework/ember/guides/hotkey-hints.md": "c9b5bb70def542584b21ab724d97336b62f5fe9d68ca0541d19308fcb6d7f715"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/ember/guides/hotkey-hints.md"]
+    },
+    "source:docs/framework/ember/reference/functions/useHotkeyHint.md": {
+      "fingerprint": "2a4a2402f75a6c0686a2c791c82c27e584a9cd15b590c2ab2b51592485118d49",
+      "snapshot": {
+        "docs/framework/ember/reference/functions/useHotkeyHint.md": "0830f4e8c2bf67230c5bfafdfb65b9db345772607e9ddfffbd4835c15a00333a"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "out-of-scope",
+      "reason": "Tests or regenerated reference docs.",
+      "evidence": ["docs/framework/ember/reference/functions/useHotkeyHint.md"]
+    },
+    "source:docs/framework/lit/guides/hotkey-hints.md": {
+      "fingerprint": "0f999f313813d39b1e429da38f70556bc4e18cd9e5abebb2069280036acbba57",
+      "snapshot": {
+        "docs/framework/lit/guides/hotkey-hints.md": "120856eb8ae3573729c286abc87a5c09394fb23f6e218e58f9cd1225565f1c91"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/lit/guides/hotkey-hints.md"]
+    },
+    "source:docs/framework/lit/reference/classes/HotkeyHintController.md": {
+      "fingerprint": "5b3438c183c2cccf91c2c229301ec0e6c89f3e0f8fd91a781cf83167c9a3e8f5",
+      "snapshot": {
+        "docs/framework/lit/reference/classes/HotkeyHintController.md": "8eb1d951c84efe698d6581d6eb89ca5dbbb02024b9cd1ac71b7b420f6281e0ae"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "out-of-scope",
+      "reason": "Tests or regenerated reference docs.",
+      "evidence": [
+        "docs/framework/lit/reference/classes/HotkeyHintController.md"
+      ]
+    },
+    "source:docs/framework/octane/guides/hotkey-hints.md": {
+      "fingerprint": "7e257bc9e0e738b1817e7500b0a560b2eb6e4a2621ce5522ea5e4fa5eb946cd6",
+      "snapshot": {
+        "docs/framework/octane/guides/hotkey-hints.md": "7f5b9800a776b71d93a6bf4469bf2de7be1aa9dd0c0ac6cc4d5eabb18ca68c74"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/octane/guides/hotkey-hints.md"]
+    },
+    "source:docs/framework/octane/reference/functions/useHotkeyHint.md": {
+      "fingerprint": "7f7c6b9e1ace13d1eeda15346f738b3211b067714bb036146f22e992e9f1b140",
+      "snapshot": {
+        "docs/framework/octane/reference/functions/useHotkeyHint.md": "b0b10436e35cdd56ca15c0756fe9f4404111f9eb3aca0298bd4fddc7e6fe33d4"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "out-of-scope",
+      "reason": "Tests or regenerated reference docs.",
+      "evidence": ["docs/framework/octane/reference/functions/useHotkeyHint.md"]
+    },
+    "source:docs/framework/preact/guides/hotkey-hints.md": {
+      "fingerprint": "f3782ec6f24c5d15a4afa506d71659847281b6593a6c7d6737e884b918ee2088",
+      "snapshot": {
+        "docs/framework/preact/guides/hotkey-hints.md": "ec52e2b629f96e0529f80f92565719230bcb3371fc3d75c6684e9a8e7610d1cb"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/preact/guides/hotkey-hints.md"]
+    },
+    "source:docs/framework/preact/reference/functions/useHotkeyHint.md": {
+      "fingerprint": "c85873ba1b80435f9c72ec689f93851c5adfa071900164eb55207b321ef1dc85",
+      "snapshot": {
+        "docs/framework/preact/reference/functions/useHotkeyHint.md": "f7b5721782065f0c567a856240d805055cf052c436beafca7c287235b8e2aaa9"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "out-of-scope",
+      "reason": "Tests or regenerated reference docs.",
+      "evidence": ["docs/framework/preact/reference/functions/useHotkeyHint.md"]
+    },
+    "source:docs/framework/react/guides/hotkey-hints.md": {
+      "fingerprint": "8aa0c84b16678eedc6edc4b629e124cf1dc776317100c30fee1ca1d1922eb207",
+      "snapshot": {
+        "docs/framework/react/guides/hotkey-hints.md": "38abb865f8527d791a903b74268836b30af3cdc2ed6d4693dff5d6d544ff85f3"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/react/guides/hotkey-hints.md"]
+    },
+    "source:docs/framework/react/reference/functions/useHotkeyHint.md": {
+      "fingerprint": "57d985be45ff69e16a1858294792e6f07bd09967fd085f7199cf443e1201e379",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useHotkeyHint.md": "8ad8e2e7f56ff758565f73fb8733d5e4b657fec49d26259eed6032d01ba2e9e9"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "out-of-scope",
+      "reason": "Tests or regenerated reference docs.",
+      "evidence": ["docs/framework/react/reference/functions/useHotkeyHint.md"]
+    },
+    "source:docs/framework/solid/guides/hotkey-hints.md": {
+      "fingerprint": "209e8b94998dc992ea28e9a209adfd7944d8e7448f1e7e75fe481a28566fe9cf",
+      "snapshot": {
+        "docs/framework/solid/guides/hotkey-hints.md": "a00a6748b874d79acc2ff8e7cf56301012bfd977355a29ed76d4f42043c5fc3b"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/solid/guides/hotkey-hints.md"]
+    },
+    "source:docs/framework/solid/reference/functions/createHotkeyHint.md": {
+      "fingerprint": "ece91e92b870115f45867a792f6f468bfda446b9e62745fd9cb1998052b07ba4",
+      "snapshot": {
+        "docs/framework/solid/reference/functions/createHotkeyHint.md": "14d86d5657350d689bf1d67d55504279f5d3991aa79219d5b7c56a2ea58c7dfe"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "out-of-scope",
+      "reason": "Tests or regenerated reference docs.",
+      "evidence": [
+        "docs/framework/solid/reference/functions/createHotkeyHint.md"
+      ]
+    },
+    "source:docs/framework/svelte/guides/hotkey-hints.md": {
+      "fingerprint": "4500ab9116c35b5e47dcee041d075ce2cdf9dd83784f63c989f954c579f8f47c",
+      "snapshot": {
+        "docs/framework/svelte/guides/hotkey-hints.md": "81b324e912b06a2f324495bcca05232be69c58eef24a4c67de8108217560be19"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/svelte/guides/hotkey-hints.md"]
+    },
+    "source:docs/framework/svelte/reference/functions/getHotkeyHint.md": {
+      "fingerprint": "55555f508cfdf04ec3b64b9bdccc676bcc502264f3f2803cfb3b3a6288b0b5bc",
+      "snapshot": {
+        "docs/framework/svelte/reference/functions/getHotkeyHint.md": "e4ecba6e30526efec861d524f76153fafa76d13cb39cfcea822f59e2333fdb41"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "out-of-scope",
+      "reason": "Tests or regenerated reference docs.",
+      "evidence": ["docs/framework/svelte/reference/functions/getHotkeyHint.md"]
+    },
+    "source:docs/framework/svelte/reference/interfaces/SvelteHotkeyHint.md": {
+      "fingerprint": "aae0b5ff38458e47be4067dbfb5ec680ae464bd4e9c3dfd24a245e7601d06b51",
+      "snapshot": {
+        "docs/framework/svelte/reference/interfaces/SvelteHotkeyHint.md": "545d23fcda53fad87c6445db7717481585f88bae2778bbd368ed3a422dc87f41"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": [
+        "docs/framework/svelte/reference/interfaces/SvelteHotkeyHint.md"
+      ]
+    },
+    "source:docs/framework/vue/guides/hotkey-hints.md": {
+      "fingerprint": "ca3be1ebd38e02212edb9c18440c490758762ad7e8b14c1cbf8b5cc1799de933",
+      "snapshot": {
+        "docs/framework/vue/guides/hotkey-hints.md": "bfd09727c7614660b84a39f1824906707a52e47f1df426ea658d045d564e9ce3"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/vue/guides/hotkey-hints.md"]
+    },
+    "source:docs/framework/vue/reference/functions/useHotkeyHint.md": {
+      "fingerprint": "c7a993113d9d9bee980faf4ee0bfc7865f7dbc45e1a7d46a1628576335552e66",
+      "snapshot": {
+        "docs/framework/vue/reference/functions/useHotkeyHint.md": "d48b894f5cae5ea9215f3ecf529ece10a9b26864592d056e2a11549dfcd88501"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "out-of-scope",
+      "reason": "Tests or regenerated reference docs.",
+      "evidence": ["docs/framework/vue/reference/functions/useHotkeyHint.md"]
+    },
+    "source:docs/reference/classes/HotkeyManager.md": {
+      "fingerprint": "63ec4d7023a48c5bf9f5ef2496ad6de587a63df5d94f09a52a2b9c30395702b9",
+      "snapshot": {
+        "docs/reference/classes/HotkeyManager.md": "8d1fdc99928ee2cd7b80a962fdd361e4f7cf41fe57af65fa1502a7e67ff7750e"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": ["docs/reference/classes/HotkeyManager.md"]
+    },
+    "source:docs/reference/functions/getHotkeyManager.md": {
+      "fingerprint": "66e71338a233cefd3058103f535e9d087eb35c91297beb021308f5ff3360a2f3",
+      "snapshot": {
+        "docs/reference/functions/getHotkeyManager.md": "7cf10e8c7ef2e6cfc13510bcac5612140928ec84910fef035d1353cbd07420df"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": ["docs/reference/functions/getHotkeyManager.md"]
+    },
+    "source:examples/alpine/kitchen-sink/index.html": {
+      "fingerprint": "cafd21ca3305c89ad47e5c4eee4ce63feed831a2b3524c5b3cd756fee53a2592",
+      "snapshot": {
+        "examples/alpine/kitchen-sink/index.html": "28e5ae105df69bc3eb0558cc05d2f7ebff90ca5d73ede9ea93652e0a7512a4eb"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["examples/alpine/kitchen-sink/index.html"]
+    },
+    "source:examples/alpine/kitchen-sink/src/main.ts": {
+      "fingerprint": "9ab005df03e0602b60f980c1d3a99537357653a725e570f0c7dac01ec62f5a2f",
+      "snapshot": {
+        "examples/alpine/kitchen-sink/src/main.ts": "dbdb3a81c1a7189a1d888a5ee9cd237832d5bedf7f498448336f64141798b861"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["examples/alpine/kitchen-sink/src/main.ts"]
+    },
+    "source:examples/angular/kitchen-sink/src/app/app.component.ts": {
+      "fingerprint": "51931bb2f7d2e84a260f425e645885deadf2b9a5a9662183840cef8c70a45ac0",
+      "snapshot": {
+        "examples/angular/kitchen-sink/src/app/app.component.ts": "61d7a82142c0849dc8bfcaa2f367082eb6a5972be131890b21316322f212cafe"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["examples/angular/kitchen-sink/src/app/app.component.ts"]
+    },
+    "source:examples/ember/kitchen-sink/app/templates/application.gts": {
+      "fingerprint": "c0457e17267c386d3735103dc176d46f852aee4baa18dca2edcfce2885a239b7",
+      "snapshot": {
+        "examples/ember/kitchen-sink/app/templates/application.gts": "c29af791a82e8544b20650c38c0d3b08aebbc16fc0b42e1efa7e7d4a95285a7e"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["examples/ember/kitchen-sink/app/templates/application.gts"]
+    },
+    "source:examples/lit/kitchen-sink/src/app.ts": {
+      "fingerprint": "d4898c56bbda8cd13dd64f22c868afa93bacfc485964de10c224e53b8402b3a9",
+      "snapshot": {
+        "examples/lit/kitchen-sink/src/app.ts": "185c70ffb3dc72c7d17fdf59fa20115a1502eb421c934031b7093b4aaa58cd3d"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["examples/lit/kitchen-sink/src/app.ts"]
+    },
+    "source:examples/octane/kitchen-sink/src/main.tsrx": {
+      "fingerprint": "0b94f475098b57df8fecdf374393c09a119c8cf19286aafa2823029db968c22d",
+      "snapshot": {
+        "examples/octane/kitchen-sink/src/main.tsrx": "bef21c0d5f91936fc24ed4588e1d5099158f0a2c266898e9f394c33bae5a9d03"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["examples/octane/kitchen-sink/src/main.tsrx"]
+    },
+    "source:examples/preact/kitchen-sink/src/index.tsx": {
+      "fingerprint": "98eec5ebf2e4466ecce3153d8a1777ebb2df4581d2ab1fee5497585d9c3af109",
+      "snapshot": {
+        "examples/preact/kitchen-sink/src/index.tsx": "92dfb640a011f7845445e006113b91bc986ddcb3ada6afd07bc350bf450faebd"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["examples/preact/kitchen-sink/src/index.tsx"]
+    },
+    "source:examples/react/kitchen-sink/src/routes/scopes.tsx": {
+      "fingerprint": "77be60ca3d5df76dcef7541d7c739c44b3f20b110fd944a2e4abe2d1a65173de",
+      "snapshot": {
+        "examples/react/kitchen-sink/src/routes/scopes.tsx": "04efe7640a6c7d7935e898671609893e0dc5206e90bd6dfa4f959215b27c90ba"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["examples/react/kitchen-sink/src/routes/scopes.tsx"]
+    },
+    "source:examples/react/kitchen-sink/src/routes/tickets.tsx": {
+      "fingerprint": "bc7769ec3b7d6d64157d102d5b238165b17d94c21ce0f2636a7557bdda3b74b0",
+      "snapshot": {
+        "examples/react/kitchen-sink/src/routes/tickets.tsx": "94acf194f5a4e72904ed7c9e4ecbdfc5998190546a20ab9443d8f1e9476ccf19"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["examples/react/kitchen-sink/src/routes/tickets.tsx"]
+    },
+    "source:examples/react/kitchen-sink/src/shared.tsx": {
+      "fingerprint": "29a917b01e09ffdaae21b86d76fcc0b53c5b279110bfd90d3cd698cd5749b27b",
+      "snapshot": {
+        "examples/react/kitchen-sink/src/shared.tsx": "7b8e434ee2b5dba54df487d71e83d26b9f5cd1a88c4375285928970026b7e147"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["examples/react/kitchen-sink/src/shared.tsx"]
+    },
+    "source:examples/solid/kitchen-sink/src/index.tsx": {
+      "fingerprint": "8e566d191f693b32251c02ac062f9ba50f005cf79d0f473a5527e3b729ebf095",
+      "snapshot": {
+        "examples/solid/kitchen-sink/src/index.tsx": "f6603ae6ad6e5d00ed9c8290e860cc0dadecdea206d3fd0bce27d6946dbfe8ee"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["examples/solid/kitchen-sink/src/index.tsx"]
+    },
+    "source:examples/svelte/kitchen-sink/src/Hint.svelte": {
+      "fingerprint": "06624d7bb8cbbfd41fe9221276689a15873354441f4747b7cbc4fc8fc17cb15a",
+      "snapshot": {
+        "examples/svelte/kitchen-sink/src/Hint.svelte": "ac1f22da2c0b778a43cba11a15c5f4309fe5c1af94e038ca0fb56a5734710c85"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["examples/svelte/kitchen-sink/src/Hint.svelte"]
+    },
+    "source:examples/svelte/kitchen-sink/src/Tickets.svelte": {
+      "fingerprint": "b7a9721fcbaf6b9cbc2a3d5ba0f28ec4548a29bea2e3d64a71c9e9e1ab7ade66",
+      "snapshot": {
+        "examples/svelte/kitchen-sink/src/Tickets.svelte": "c3d3890a30655c26a960c68224d52a92c48f94aba05304148bd99a0f134fde7c"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["examples/svelte/kitchen-sink/src/Tickets.svelte"]
+    },
+    "source:examples/vue/kitchen-sink/src/Hint.vue": {
+      "fingerprint": "6b45e5aec7409a5e2f96d84446ca4f09bd0c11eb8565b3e3294dfa1d3eed56cd",
+      "snapshot": {
+        "examples/vue/kitchen-sink/src/Hint.vue": "76a7cd9f14f32c052e3cf979eab8106b6e0afb49fcb914637c426854a6df5063"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["examples/vue/kitchen-sink/src/Hint.vue"]
+    },
+    "source:examples/vue/kitchen-sink/src/Tickets.vue": {
+      "fingerprint": "c18942863da51c7e331fe2430a1a3144f64a33c8d2f251b030794bddb257742a",
+      "snapshot": {
+        "examples/vue/kitchen-sink/src/Tickets.vue": "8fb2b512d46ed67ddac76f732a7da74864bd9144ce663655e8d02e7b2f602a7c"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["examples/vue/kitchen-sink/src/Tickets.vue"]
+    },
+    "source:packages/alpine-hotkeys/src/createHotkeyHint.ts": {
+      "fingerprint": "7384ea319ae0eb4ffd35828dbd71a685f709ef239f07bb94255f5a1d510d0e5d",
+      "snapshot": {
+        "packages/alpine-hotkeys/src/createHotkeyHint.ts": "d4388eb36a952f7e392bc69bcff550b466db5a2abdabd9aa1445b399096d7fa3"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Internal refactor with identical behavior; skills unaffected.",
+      "evidence": ["packages/alpine-hotkeys/src/createHotkeyHint.ts"]
+    },
+    "source:packages/alpine-hotkeys/tests/alpine-hotkeys.test.ts": {
+      "fingerprint": "10afb0cc0b5d926fdada5580c25662df3e41ffe6510ff725b8b3f1fe0e7fdde0",
+      "snapshot": {
+        "packages/alpine-hotkeys/tests/alpine-hotkeys.test.ts": "f0025a3116de8aed21eb34526b42782209ec53c26601748695cd6d862ac0e4fc"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "evidence": ["packages/alpine-hotkeys/tests/alpine-hotkeys.test.ts"]
+    },
+    "source:packages/angular-hotkeys/src/injectHotkeyHint.ts": {
+      "fingerprint": "c63e2a9c79c4d18416e114a81e266db55e4c1757e1646dc561bf6a8cfbb27fc5",
+      "snapshot": {
+        "packages/angular-hotkeys/src/injectHotkeyHint.ts": "f165695038618a9fe06df78768e5e9ebfc4cf08c6fd05232423e802f06d8b968"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["packages/angular-hotkeys/src/injectHotkeyHint.ts"]
+    },
+    "source:packages/angular-hotkeys/tests/injectHotkeyHint.test.ts": {
+      "fingerprint": "7c23d3e44ca48c830f5e5298173e523ba8fc3a6864d359e34bb2be484fcc4fcb",
+      "snapshot": {
+        "packages/angular-hotkeys/tests/injectHotkeyHint.test.ts": "75d13a76fdf37b27890f9b7bc30c5827f3beecae9124dad27a84fd3c7f20bf15"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["packages/angular-hotkeys/tests/injectHotkeyHint.test.ts"]
+    },
+    "source:packages/ember-hotkeys/src/useHotkeyHint.ts": {
+      "fingerprint": "915e5eb006a22f3447857b39225c622c44c5364d12bce958f0faf0bf33732f3e",
+      "snapshot": {
+        "packages/ember-hotkeys/src/useHotkeyHint.ts": "62d776872a76e9c578985073099c7892a9f661bdad35204cbd4178f91ebbd0b7"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["packages/ember-hotkeys/src/useHotkeyHint.ts"]
+    },
+    "source:packages/ember-hotkeys/tests/integration/hotkeys.test.gts": {
+      "fingerprint": "b6569bd0fe84bf8e7599801b972be220003614ab2434a87dd46fa17a94f21a38",
+      "snapshot": {
+        "packages/ember-hotkeys/tests/integration/hotkeys.test.gts": "7e3396a193a9c3711db7fd6ad9943dbb70409bac701d8106e054af189b98d04e"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "evidence": ["packages/ember-hotkeys/tests/integration/hotkeys.test.gts"]
+    },
+    "source:packages/hotkeys/tests/scopes.test.ts": {
+      "fingerprint": "37c6be71916d0093c9666428f01b7e6cfaaeb95482625d71d1ba51cf3d637848",
+      "snapshot": {
+        "packages/hotkeys/tests/scopes.test.ts": "39cf279234aa81927cf82b54aa5e9f428e07cd6a0c9ae88303ad97f2b76d14f6"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "out-of-scope",
+      "reason": "Tests or regenerated reference docs.",
+      "evidence": ["packages/hotkeys/tests/scopes.test.ts"]
+    },
+    "source:packages/lit-hotkeys/src/controllers/hotkey-hint.ts": {
+      "fingerprint": "edd97112334d73fa6fea378c771f65f61e4be738ad0654ec0b0367d7a035bc6d",
+      "snapshot": {
+        "packages/lit-hotkeys/src/controllers/hotkey-hint.ts": "5b983e7b089e1d1fb8376976afb590a7ca267198cef078e9f08a65943df85c3c"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["packages/lit-hotkeys/src/controllers/hotkey-hint.ts"]
+    },
+    "source:packages/lit-hotkeys/tests/hotkey-hint.spec.ts": {
+      "fingerprint": "594ffd4d628271b1e3c2982b7f7f67a1bfa29a492da8adf9109cf4b6406d6a0a",
+      "snapshot": {
+        "packages/lit-hotkeys/tests/hotkey-hint.spec.ts": "e6229dfc4b3074abc4ccfd21de1b7e6f99b1588e708e60ef64469310cd8559f4"
+      },
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
+      "outcome": "out-of-scope",
+      "reason": "Tests or regenerated reference docs.",
+      "evidence": ["packages/lit-hotkeys/tests/hotkey-hint.spec.ts"]
+    },
+    "source:packages/octane-hotkeys/src/useHotkeyHint.ts": {
+      "fingerprint": "10736a6674ada040f25a5c71fe0525b6d7baa9b74d0f4b2b23e8741af5883231",
+      "snapshot": {
+        "packages/octane-hotkeys/src/useHotkeyHint.ts": "f3e5f5d85948f5fe3ff222c5f1483e493e85353499a97afab4aa8105d1181b5e"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["packages/octane-hotkeys/src/useHotkeyHint.ts"]
+    },
+    "source:packages/octane-hotkeys/tests/octane-hotkeys.test.ts": {
+      "fingerprint": "e7005d45a48c6e00b3333e498abaeca3b2ad7a121e5c4c55b037935c8e1c32aa",
+      "snapshot": {
+        "packages/octane-hotkeys/tests/octane-hotkeys.test.ts": "643bc33a32f654ed096d13701cb1fa6ea131c0938cd69164eea4b9ff2ac7b0d2"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "evidence": ["packages/octane-hotkeys/tests/octane-hotkeys.test.ts"]
+    },
+    "source:packages/preact-hotkeys/src/useHotkeyHint.ts": {
+      "fingerprint": "78eaa2b08c86d7da8deac7074d59122a6b9fddc0a9c01eac85b781fdc58fd41a",
+      "snapshot": {
+        "packages/preact-hotkeys/src/useHotkeyHint.ts": "fe0e029ef9667423aac24329a8e3c08474a46d14aaf9181a4d72755fd827bb6b"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["packages/preact-hotkeys/src/useHotkeyHint.ts"]
+    },
+    "source:packages/preact-hotkeys/tests/appHotkeys.test.tsx": {
+      "fingerprint": "3b8ab01302de82b3cbdcf6d5e2a3758bac18d6ffb6466f95d5a93c5d5756c8e9",
+      "snapshot": {
+        "packages/preact-hotkeys/tests/appHotkeys.test.tsx": "06b2a0a2ed9fecad2631ea5f0daf1b00da9c670de4cf86cebd641a331f1f9499"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["packages/preact-hotkeys/tests/appHotkeys.test.tsx"]
+    },
+    "source:packages/preact-hotkeys/tests/useHotkeyHint.test.tsx": {
+      "fingerprint": "c48fc246e4d85ed5d039086f998034180243e8f828c5ac1b34b5a4016bfd7142",
+      "snapshot": {
+        "packages/preact-hotkeys/tests/useHotkeyHint.test.tsx": "e583e7cbfd9cd952a6f6e565add79ae0f8b38649429977639a8559380c46177f"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["packages/preact-hotkeys/tests/useHotkeyHint.test.tsx"]
+    },
+    "source:packages/react-hotkeys/src/useHotkeyHint.ts": {
+      "fingerprint": "6eb1d204a78d8e8917073a00213138ecb7e74e10d71941c16b6ed4759d4560a2",
+      "snapshot": {
+        "packages/react-hotkeys/src/useHotkeyHint.ts": "243cb4eea10c9ddf153862d6f6c5e44ee70d5a04c73180b516e42bd5fecaed6a"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["packages/react-hotkeys/src/useHotkeyHint.ts"]
+    },
+    "source:packages/react-hotkeys/tests/appHotkeys.test.tsx": {
+      "fingerprint": "fdf707b51c4da3a5d90684507bed80a2738469df3bbcd23d617f268bb3a81496",
+      "snapshot": {
+        "packages/react-hotkeys/tests/appHotkeys.test.tsx": "e766d1a0c1129d39283d03eea1f65720440d4ca307c4687e9277631af3aeb5a0"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["packages/react-hotkeys/tests/appHotkeys.test.tsx"]
+    },
+    "source:packages/react-hotkeys/tests/useHotkeyHint.test.tsx": {
+      "fingerprint": "e14c1cf92807e43b674bad8e1155b8f22b6940c11aade2716566881ca718df3c",
+      "snapshot": {
+        "packages/react-hotkeys/tests/useHotkeyHint.test.tsx": "2fc14854169fdc3a0c35930217e2989a5660ffbf833d6fdda11631de1080f58d"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "out-of-scope",
+      "reason": "Tests or regenerated reference docs.",
+      "evidence": ["packages/react-hotkeys/tests/useHotkeyHint.test.tsx"]
+    },
+    "source:packages/solid-hotkeys/src/createHotkeyHint.ts": {
+      "fingerprint": "4180b0d6c324483d380e9168c4fb1a11eee3bb130df87e372b14b7fabc8e40b3",
+      "snapshot": {
+        "packages/solid-hotkeys/src/createHotkeyHint.ts": "715dea3b85dcbc7a448d978b2b316452d4f50b28f13b87a354d1ab2cbb1fd317"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["packages/solid-hotkeys/src/createHotkeyHint.ts"]
+    },
+    "source:packages/solid-hotkeys/tests/createHotkeyHint.test.tsx": {
+      "fingerprint": "a7510a58a1dc5db0a12df33541f32b5891353c27670915c10a64a5266976439e",
+      "snapshot": {
+        "packages/solid-hotkeys/tests/createHotkeyHint.test.tsx": "bddd013b4c50d21644a23ece04d9d1827df9685d3b0ff1edb39d9f5044bf9506"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["packages/solid-hotkeys/tests/createHotkeyHint.test.tsx"]
+    },
+    "source:packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts": {
+      "fingerprint": "24c95f4f15482bdf093375a1faafcf97354226ac78a848123b30013a6d356a97",
+      "snapshot": {
+        "packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts": "22925511c7e5bcaaecfc755b186abeab9065751a397ff9b21480c9c1226245c3"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts"]
+    },
+    "source:packages/svelte-hotkeys/tests/getHotkeyHint.test.ts": {
+      "fingerprint": "4aba46ae1619d1a1101ec84957ee324a1777908bea5463a134456900b4390b42",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/getHotkeyHint.test.ts": "f218f0c3b43375b49a6ebb09e4bb04c2b4f3bfab98eb31545ec530fd41e7b66b"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["packages/svelte-hotkeys/tests/getHotkeyHint.test.ts"]
+    },
+    "source:packages/vue-hotkeys/src/useHotkeyHint.ts": {
+      "fingerprint": "cc244bd60a2810a4060cdc4a6ebb4558c30d9b3e554b2952b7ad74bc1d76c575",
+      "snapshot": {
+        "packages/vue-hotkeys/src/useHotkeyHint.ts": "00a09f8380bf71fdb0ecf2686870113835b2b17a8e59f1a2dc29268c2f893a4d"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["packages/vue-hotkeys/src/useHotkeyHint.ts"]
+    },
+    "source:packages/vue-hotkeys/tests/hints.test.ts": {
+      "fingerprint": "c756e3d826950b69a681052bd640e399b0cad0969728a6ce178cb1d183a21138",
+      "snapshot": {
+        "packages/vue-hotkeys/tests/hints.test.ts": "9cb7efa05b3b1f238332e3151f8410d1dce38bf8b734e08fdfa6ec8a98130cc0"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "evidence": ["packages/vue-hotkeys/tests/hints.test.ts"]
+    },
+    "source:docs/framework/alpine/guides/hotkeys.md": {
+      "fingerprint": "28c1203dfc3cb40a9579e7c007cad2c7e91b5eb2b35651235beae2563a9e0bad",
+      "snapshot": {
+        "docs/framework/alpine/guides/hotkeys.md": "e54c37d6d9f84176a7ed23ad2a32803b8d7c6922f8451ea766a9611577629d15"
+      },
+      "head": "9a3ab5127e79e94524708fab8af13ed0fe7715f7",
+      "outcome": "no-change",
+      "reason": "Docs explain when to leave preventDefault 'always' off; the hotkeys-core skill carries the same guidance.",
+      "evidence": [
+        "docs/framework/alpine/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/framework/angular/guides/hotkeys.md": {
+      "fingerprint": "fa62a083ed097057d3126036cb6194ed42664e658bda4611ac4c0cf78d8fecbe",
+      "snapshot": {
+        "docs/framework/angular/guides/hotkeys.md": "c765b7188e90fd7199340ef8aba84f2e11f591e107e3b6d6b141395c78967279"
+      },
+      "head": "9a3ab5127e79e94524708fab8af13ed0fe7715f7",
+      "outcome": "no-change",
+      "reason": "Docs explain when to leave preventDefault 'always' off; the hotkeys-core skill carries the same guidance.",
+      "evidence": [
+        "docs/framework/angular/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/framework/ember/guides/hotkeys.md": {
+      "fingerprint": "4cfa31d30f2644f90bce593835cdcb7058319530eda8ddd571707db8576a8506",
+      "snapshot": {
+        "docs/framework/ember/guides/hotkeys.md": "c37363e1e3c217ed3f9c20e4570be40799a9ccc4fdeafe1ec1426993147dee99"
+      },
+      "head": "9a3ab5127e79e94524708fab8af13ed0fe7715f7",
+      "outcome": "no-change",
+      "reason": "Docs explain when to leave preventDefault 'always' off; the hotkeys-core skill carries the same guidance.",
+      "evidence": [
+        "docs/framework/ember/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/framework/lit/guides/hotkeys.md": {
+      "fingerprint": "d27f953fa42f5de387055a179563d9bc6bbf7baf49efaddfb7d9d575ae8ca19b",
+      "snapshot": {
+        "docs/framework/lit/guides/hotkeys.md": "ecd5098e45f237cc6d43d67f0f01fe89bb27d91f1d68078fe8f05801d57caa09"
+      },
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
+      "outcome": "no-change",
+      "reason": "Review fixes: preventDefault 'always' now defers to live hotkeys on any listener, Lit controllers render on reconnect, Lit guide points to shared options. Skill guidance unchanged.",
+      "evidence": ["docs/framework/lit/guides/hotkeys.md"]
+    },
+    "source:docs/framework/octane/guides/hotkeys.md": {
+      "fingerprint": "c12021a09315d56b928f3f3755815e4448fc1b0147ea002de28872ce83dc4774",
+      "snapshot": {
+        "docs/framework/octane/guides/hotkeys.md": "3e8dcec3bda196a78b5560aaab6c43ec2328420eb58509e2a4561f55df84c790"
+      },
+      "head": "9a3ab5127e79e94524708fab8af13ed0fe7715f7",
+      "outcome": "no-change",
+      "reason": "Docs explain when to leave preventDefault 'always' off; the hotkeys-core skill carries the same guidance.",
+      "evidence": [
+        "docs/framework/octane/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/framework/preact/guides/hotkeys.md": {
+      "fingerprint": "b22a52c066b3f83ae09ce11963ce2d988f673d40a4a303df520061f316995605",
+      "snapshot": {
+        "docs/framework/preact/guides/hotkeys.md": "39d690e8d4c0f5eb702bdf5bb625c79a91416a74f41afbcb5759d42e5b4452d7"
+      },
+      "head": "9a3ab5127e79e94524708fab8af13ed0fe7715f7",
+      "outcome": "no-change",
+      "reason": "Docs explain when to leave preventDefault 'always' off; the hotkeys-core skill carries the same guidance.",
+      "evidence": [
+        "docs/framework/preact/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/framework/solid/guides/hotkeys.md": {
+      "fingerprint": "c17e1a4bdda646e06dd33412060aa14b7eebb0e813ed8f4281b803bee2f92197",
+      "snapshot": {
+        "docs/framework/solid/guides/hotkeys.md": "affc859e4f778f1541188df06874dfd62cfa6e313e5f68c35bb758773fe764c9"
+      },
+      "head": "9a3ab5127e79e94524708fab8af13ed0fe7715f7",
+      "outcome": "no-change",
+      "reason": "Docs explain when to leave preventDefault 'always' off; the hotkeys-core skill carries the same guidance.",
+      "evidence": [
+        "docs/framework/solid/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/framework/svelte/guides/hotkeys.md": {
+      "fingerprint": "a5dbd3cf955f8432cef58fcb370d2cf482d8a6d8b600d7f588d5141f292d311b",
+      "snapshot": {
+        "docs/framework/svelte/guides/hotkeys.md": "e33cf7db6371114f9fbc123a7090d18be5f9caee73dc6c6690d1b4dd175052f5"
+      },
+      "head": "9a3ab5127e79e94524708fab8af13ed0fe7715f7",
+      "outcome": "no-change",
+      "reason": "Docs explain when to leave preventDefault 'always' off; the hotkeys-core skill carries the same guidance.",
+      "evidence": [
+        "docs/framework/svelte/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/framework/vue/guides/hotkeys.md": {
+      "fingerprint": "b27201d8bdf6e77fd17158ba4086f883c2d232ba9e337ef1f40ed03c65cf5f27",
+      "snapshot": {
+        "docs/framework/vue/guides/hotkeys.md": "23c75e9fdf8c7eacf7bec9cdc5b2840502165a1126e2cc7b25b61b31d621e81c"
+      },
+      "head": "9a3ab5127e79e94524708fab8af13ed0fe7715f7",
+      "outcome": "no-change",
+      "reason": "Docs explain when to leave preventDefault 'always' off; the hotkeys-core skill carries the same guidance.",
+      "evidence": [
+        "docs/framework/vue/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/reference/functions/toHotkeyRegistrationView.md": {
+      "fingerprint": "b1777214cb3ca4775f61844c5c7a4815135b7746b8290a2189c78a098ca09aa3",
+      "snapshot": {
+        "docs/reference/functions/toHotkeyRegistrationView.md": "d29b6e8185cbd97fcb4cef301f6d6ba7c1f34fc0e8fd43e8990df556b14c156e"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": ["docs/reference/functions/toHotkeyRegistrationView.md"]
+    },
+    "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
+      "fingerprint": "3f310d8d4c5509367c2fa989c92965cdac48a9429a0761e35b7f1e238cba9e49",
+      "snapshot": {
+        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "5f53baec9e5f3373e4b1292daea198ad91cdc5c85849a2a983016c1068fb6e6d"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": ["docs/reference/interfaces/ActivateHotkeyScopeOptions.md"]
+    },
+    "source:docs/reference/interfaces/HotkeyChordOptions.md": {
+      "fingerprint": "404bc38543e861ec69922d37c22812def0ec459710625c6b99334a6f57192bb2",
+      "snapshot": {
+        "docs/reference/interfaces/HotkeyChordOptions.md": "d6eada3aa2355bd56bfb4edf3e149069591df3e99f3e261421403bbaa6afc996"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": ["docs/reference/interfaces/HotkeyChordOptions.md"]
+    },
+    "source:docs/reference/interfaces/HotkeyChordRegistration.md": {
+      "fingerprint": "f514cd197b6e420ea05d5ae89b9254e0b62b8e2142f85c6acfba4ca56afb1430",
+      "snapshot": {
+        "docs/reference/interfaces/HotkeyChordRegistration.md": "900bb35bac81b47304267dc37b3a560ec6d36913b886adca6cf4457a628c2cc3"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": ["docs/reference/interfaces/HotkeyChordRegistration.md"]
+    },
+    "source:docs/reference/interfaces/HotkeyChordRegistrationView.md": {
+      "fingerprint": "f49134dcdefb2603dca78b1f4939ccc390b19ad74bd19f7b11d1f183fb3e7bb0",
+      "snapshot": {
+        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "880f468ad4f3df515305ac851a3d3b758201469daa7da23a0c09cf96a6d85ef3"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": ["docs/reference/interfaces/HotkeyChordRegistrationView.md"]
+    },
+    "source:docs/reference/interfaces/HotkeyOptions.md": {
+      "fingerprint": "4133fc170ca919556ddec281e2c2e16518b0d1ba9654a9d6ad268ae5c3866a97",
+      "snapshot": {
+        "docs/reference/interfaces/HotkeyOptions.md": "0aa93e7d3507e2e7a27b689278e6d574cb919ba05911b6e5a7974c5939161a5b"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": ["docs/reference/interfaces/HotkeyOptions.md"]
+    },
+    "source:docs/reference/interfaces/HotkeyRegistrationHandle.md": {
+      "fingerprint": "301c7aced22fe44316ad6640048aef49a1e02a431c2d9754d0a53fb849fc78b4",
+      "snapshot": {
+        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "d3821b7c90ae6438f3c926d7e6bce1cef6b33933d5f09d81ed0c394e6cc6102d"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": ["docs/reference/interfaces/HotkeyRegistrationHandle.md"]
+    },
+    "source:docs/reference/interfaces/HotkeyScopesState.md": {
+      "fingerprint": "7a007ba238c2b279533546c575f2ea5751ec5f01e3f8b56f756f0bb8c4589645",
+      "snapshot": {
+        "docs/reference/interfaces/HotkeyScopesState.md": "501c21ebe6438ab83231c52d03834e6e114e7f5647cca258c297a74ecd1f7228"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": ["docs/reference/interfaces/HotkeyScopesState.md"]
+    },
+    "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
+      "fingerprint": "9ce40ae235071ab7685e0dcaf07bd1789692fd4bb3950c8187741c8bb6c5b473",
+      "snapshot": {
+        "docs/reference/interfaces/HotkeySequenceOptions.md": "d028d435b3cd9c027c5d023b5b39b397affda59d91954b5ea19a5f69f7816248"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": ["docs/reference/interfaces/HotkeySequenceOptions.md"]
+    },
+    "source:docs/reference/interfaces/HotkeySequenceRegistration.md": {
+      "fingerprint": "149fb9cfb777b3141cb9b4abb8a1c97846eed6182d246cca745335bced6f447c",
+      "snapshot": {
+        "docs/reference/interfaces/HotkeySequenceRegistration.md": "c44ab6bd9ceeff3a3d687d679aa0a723d16b7b1b879298ce8ea71f94b66de06d"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": ["docs/reference/interfaces/HotkeySequenceRegistration.md"]
+    },
+    "source:docs/reference/interfaces/HotkeySequenceRegistrationView.md": {
+      "fingerprint": "37443384691d186bfdb48967f42cbd620b98aeb92ab259a763ed1298b2841e41",
+      "snapshot": {
+        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "ad0e1f057443f1a46ad3a7e34f2460d331915a92f806b0757668a3e2cc405485"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": [
+        "docs/reference/interfaces/HotkeySequenceRegistrationView.md"
+      ]
+    },
+    "source:docs/reference/type-aliases/HotkeyOptionsFor.md": {
+      "fingerprint": "7fdc4618f808980418e1b2b34df6210cdb64523ba3dfbae3bd4530013189c1c7",
+      "snapshot": {
+        "docs/reference/type-aliases/HotkeyOptionsFor.md": "ee43c56352a9ee3df76dc28bd5a13a10596dca25199f1f6cc4cfaf1f3d369c2c"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": ["docs/reference/type-aliases/HotkeyOptionsFor.md"]
+    },
+    "source:docs/reference/type-aliases/HotkeyRegistration.md": {
+      "fingerprint": "316b2a22813a196d0950b8d20d23e945fc45bab8c350bd1972e285f5f722a990",
+      "snapshot": {
+        "docs/reference/type-aliases/HotkeyRegistration.md": "cb575b12d108217046edada2f8a292eacc86d70de5417be426ae28394dc3e672"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": ["docs/reference/type-aliases/HotkeyRegistration.md"]
+    },
+    "source:docs/reference/type-aliases/HotkeyRegistrationView.md": {
+      "fingerprint": "f240d5e45cce1bf5073844dae3750bdfcd046952f1accb8a3125a6559fe7d3fc",
+      "snapshot": {
+        "docs/reference/type-aliases/HotkeyRegistrationView.md": "ebe8cca61a81c7a057e4d578b5992aa21b99e0c54aa43a65f6573c0459422f3d"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": ["docs/reference/type-aliases/HotkeyRegistrationView.md"]
+    },
+    "source:packages/hotkeys-devtools/src/components/DetailsPanel.tsx": {
+      "fingerprint": "fb0b371c456dfbf2d58b49b9c23b0c0f74f0a02c9c719548e74b39aee6008878",
+      "snapshot": {
+        "packages/hotkeys-devtools/src/components/DetailsPanel.tsx": "46e9a0be54f9de9a6b98bf58a4f8ef4076950839ebd14aeb37f33026262403bc"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "evidence": ["packages/hotkeys-devtools/src/components/DetailsPanel.tsx"]
+    },
+    "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
+      "fingerprint": "de86c88a97ef8682c66903441e37ab48367a00a0cd2d5725b90156c4aeab253b",
+      "snapshot": {
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "25339301d7448d59984bf5701c88c50a7abb640328849a9afd80ed239ca2a466"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": ["packages/hotkeys/tests/hotkey-manager.test.ts"]
+    },
+    "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
+      "fingerprint": "5f8f3fc9042ca4db049e0171afeef1143e99b76c2eb833093a8f162156cfc41e",
+      "snapshot": {
+        "docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": "16cffb8a28668be50008a97fcab46f12037f8c1b5a994ef3819a1e8fca189890"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/alpine/guides/cheat-sheet-ui-helpers.md"]
+    },
+    "source:docs/framework/alpine/guides/hotkey-manager.md": {
+      "fingerprint": "2289743f7b6a03d44b39ae1bb0655fdb7a8a086f4add54c70c83d73bd11f996f",
+      "snapshot": {
+        "docs/framework/alpine/guides/hotkey-manager.md": "9ad2df39b1d48b81d6a79872bd4e9d9a1c366fd1af302cfb0b4a4728517bbfbb"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/alpine/guides/hotkey-manager.md"]
+    },
+    "source:docs/framework/alpine/reference/functions/createHotkeysScope.md": {
+      "fingerprint": "9c472815dbccfc365b2d7ee345d365ccca2b55efb08c22ff6d1834763488978a",
+      "snapshot": {
+        "docs/framework/alpine/reference/functions/createHotkeysScope.md": "4facf16500c9ac831d1f5474e3abb1ddd5cb4d35233990a5dc4d59f8ced2cd67"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": [
+        "docs/framework/alpine/reference/functions/createHotkeysScope.md"
+      ]
+    },
+    "source:docs/framework/alpine/reference/interfaces/AlpineCreateHotkey.md": {
+      "fingerprint": "470c4abf4ef9cd85671e239e3cf9e2d5591e00fffe4252259e974be0fbcee49c",
+      "snapshot": {
+        "docs/framework/alpine/reference/interfaces/AlpineCreateHotkey.md": "26c79ee6656fe0aa9864cf1b47de1935d11709ffa3ddee83d784632b5a7234d3"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": [
+        "docs/framework/alpine/reference/interfaces/AlpineCreateHotkey.md"
+      ]
+    },
+    "source:docs/framework/alpine/reference/interfaces/AlpineCreateHotkeyRecorder.md": {
+      "fingerprint": "6901a4084df85c36e9e5d511fe0b02abaea091372849e0316a4ccaeade59f2d2",
+      "snapshot": {
+        "docs/framework/alpine/reference/interfaces/AlpineCreateHotkeyRecorder.md": "32ac3bebd03d6bb1f1355b5c94305a459ba518dfbc269efd0b00b02566b051dd"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": [
+        "docs/framework/alpine/reference/interfaces/AlpineCreateHotkeyRecorder.md"
+      ]
+    },
+    "source:docs/framework/alpine/reference/interfaces/AlpineCustomHotkeys.md": {
+      "fingerprint": "7b7cf83a1da465975af0f7b66b9c9d795484270485800dbd65d8fb6156e57094",
+      "snapshot": {
+        "docs/framework/alpine/reference/interfaces/AlpineCustomHotkeys.md": "d299f7ceb1ce90e1c2c7859f886f58e2dca4c89520614bddf1a33134932a2174"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": [
+        "docs/framework/alpine/reference/interfaces/AlpineCustomHotkeys.md"
+      ]
+    },
+    "source:docs/framework/alpine/reference/interfaces/AlpineHotkeyRecorder.md": {
+      "fingerprint": "cfcc5d92c4f31b9aec81c1b3b0688d1d00c25efc0525e125d813edfaf34dd783",
+      "snapshot": {
+        "docs/framework/alpine/reference/interfaces/AlpineHotkeyRecorder.md": "1d85faa886f83ad5d9756fbd58f6869ce54b05fabf8400d636c54ec446a3fd31"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": [
+        "docs/framework/alpine/reference/interfaces/AlpineHotkeyRecorder.md"
+      ]
+    },
+    "source:docs/framework/alpine/reference/interfaces/AlpineHotkeyState.md": {
+      "fingerprint": "4a33f2936af2dfbc1e7fba3e4e34ddeb936b6a6af48c34b509dd376db83f7305",
+      "snapshot": {
+        "docs/framework/alpine/reference/interfaces/AlpineHotkeyState.md": "585a418a578d51191b9cce928f57187594131aa313bd4eac7dfe6eeab6d56dd8"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": [
+        "docs/framework/alpine/reference/interfaces/AlpineHotkeyState.md"
+      ]
+    },
+    "source:docs/framework/alpine/reference/interfaces/AlpineHotkeys.md": {
+      "fingerprint": "0793824e019825ede13b5ed7be758e36d882b4244ca5f7c8719bbcf4123e4cd3",
+      "snapshot": {
+        "docs/framework/alpine/reference/interfaces/AlpineHotkeys.md": "fdafb433f913d8cf4ab54a1aa28b6d3a9b57fb9ecc2189107994cdbb6734995c"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": [
+        "docs/framework/alpine/reference/interfaces/AlpineHotkeys.md"
+      ]
+    },
+    "source:docs/framework/alpine/reference/interfaces/DefaultHotkeysOptions.md": {
+      "fingerprint": "c303053f07a3e934c614a8035877749d1373520c9bfc5c2bf9c171da8e39104d",
+      "snapshot": {
+        "docs/framework/alpine/reference/interfaces/DefaultHotkeysOptions.md": "a329bd71d760d85f258b664f7f3be4d37c504e025bb179cbf39058e4c319270b"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": [
+        "docs/framework/alpine/reference/interfaces/DefaultHotkeysOptions.md"
+      ]
+    },
+    "source:docs/framework/alpine/reference/interfaces/HotkeyRegistrationsResult.md": {
+      "fingerprint": "e281cf4023a0d22fb617f10d332574847c3b10d924a510c3cdc5d3484508bc41",
+      "snapshot": {
+        "docs/framework/alpine/reference/interfaces/HotkeyRegistrationsResult.md": "7dbdb7e202f8d952d976c8b4b2362c4971a20cf89f943b3baac18ca16ad3e399"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": [
+        "docs/framework/alpine/reference/interfaces/HotkeyRegistrationsResult.md"
+      ]
+    },
+    "source:docs/framework/alpine/reference/type-aliases/AlpineAppHotkeyOptions.md": {
+      "fingerprint": "811359c07f9ebb7881abc9e84a0f362bbe373594144b1ebcfed142acf16b0449",
+      "snapshot": {
+        "docs/framework/alpine/reference/type-aliases/AlpineAppHotkeyOptions.md": "4dc8eafc61752ca7ca81a89c403afc2435ed99ec5595c5fbd01894d4fe95485a"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": [
+        "docs/framework/alpine/reference/type-aliases/AlpineAppHotkeyOptions.md"
+      ]
+    },
+    "source:docs/framework/alpine/reference/type-aliases/AlpineHotkeyCommonOptions.md": {
+      "fingerprint": "39740646b0814692b9f5aec53fb85f02417d5bc602e3d03b860edbff0ce533f2",
+      "snapshot": {
+        "docs/framework/alpine/reference/type-aliases/AlpineHotkeyCommonOptions.md": "2f790e6c2b06938764fe5198553730589562ac01a23230956a307565425719fc"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": [
+        "docs/framework/alpine/reference/type-aliases/AlpineHotkeyCommonOptions.md"
+      ]
+    },
+    "source:docs/framework/alpine/reference/type-aliases/AlpineHotkeyDefinition.md": {
+      "fingerprint": "887963ecfb4f1c5c1c970810a1fee60c284aca49620acdf555ad2b8d1adf0d5a",
+      "snapshot": {
+        "docs/framework/alpine/reference/type-aliases/AlpineHotkeyDefinition.md": "e2c6a78f7882b755798c6ada2353c4656cfa5dd099d45c09fb6bd0af79894640"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": [
+        "docs/framework/alpine/reference/type-aliases/AlpineHotkeyDefinition.md"
+      ]
+    },
+    "source:docs/framework/alpine/reference/type-aliases/AlpineHotkeyOptionsFor.md": {
+      "fingerprint": "fdd9d6c996645fed890d51a600662148d5adfa5dc26d1555ef46d83ee34629b9",
+      "snapshot": {
+        "docs/framework/alpine/reference/type-aliases/AlpineHotkeyOptionsFor.md": "0f88bababaebf633ef2b59d4797e9f4401c4ff18158b6b54cfa15e7231f67595"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": [
+        "docs/framework/alpine/reference/type-aliases/AlpineHotkeyOptionsFor.md"
+      ]
+    },
+    "source:docs/framework/alpine/reference/type-aliases/AlpineHotkeyTarget.md": {
+      "fingerprint": "e3cfb2f85b4622146a5f9ac95bab8d7ed824ff322b7c3e9fc5f66ae364117979",
+      "snapshot": {
+        "docs/framework/alpine/reference/type-aliases/AlpineHotkeyTarget.md": "a1c8746f204db88ae250e95b6db3a354c49d06171ac3a57aca2db269a89c5b95"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": [
+        "docs/framework/alpine/reference/type-aliases/AlpineHotkeyTarget.md"
+      ]
+    },
+    "source:docs/framework/alpine/reference/type-aliases/MaybeGetter.md": {
+      "fingerprint": "5dcccb86afc4d832c023e081df2bb19c777a6f1778e207f4f8254a2cd841d437",
+      "snapshot": {
+        "docs/framework/alpine/reference/type-aliases/MaybeGetter.md": "300e72c2b3026cde188d98638578c2676a4f43676e2d1165818f3778892726e8"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": [
+        "docs/framework/alpine/reference/type-aliases/MaybeGetter.md"
+      ]
+    },
+    "source:docs/framework/angular/guides/cheat-sheet-ui-helpers.md": {
+      "fingerprint": "b0b29f2d6d903c655d34be3531a62acb27c4cfc89093beac9351bb05c245e555",
+      "snapshot": {
+        "docs/framework/angular/guides/cheat-sheet-ui-helpers.md": "9c30da61cd528e4d55b209240bf1c04cb17aa435e53b4ad286f22df5dcacb47a"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/angular/guides/cheat-sheet-ui-helpers.md"]
+    },
+    "source:docs/framework/angular/guides/hotkey-manager.md": {
+      "fingerprint": "9f08cec192a35daa525dca5ad78146eda35f46888cf60700f024fb5e43540dc2",
+      "snapshot": {
+        "docs/framework/angular/guides/hotkey-manager.md": "dbc66b9e82178da48cc858a2144d0fb308af91aa7e7a8e4263e3202094e4d423"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/angular/guides/hotkey-manager.md"]
+    },
+    "source:docs/framework/angular/reference/functions/injectHotkeyScopesState.md": {
+      "fingerprint": "ca36d5e277c6b434ea18879bd7056fa3988c98d0a51114a39243c1182b382a22",
+      "snapshot": {
+        "docs/framework/angular/reference/functions/injectHotkeyScopesState.md": "26ee53944513d8a6d77262105d27ef4cd70ca71228126066004ad36b576e6008"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": [
+        "docs/framework/angular/reference/functions/injectHotkeyScopesState.md"
+      ]
+    },
+    "source:docs/framework/angular/reference/index.md": {
+      "fingerprint": "302effef80bdb3549f3ee5fc9df3755286c0dee0c0e75cfbb7692e3b091ebd34",
+      "snapshot": {
+        "docs/framework/angular/reference/index.md": "8feccf9ee3d4e135b6fc01c361c0b31bd0aa76ac18da7457564f7d125e2d3e73"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["docs/framework/angular/reference/index.md"]
+    },
+    "source:docs/framework/ember/guides/cheat-sheet-ui-helpers.md": {
+      "fingerprint": "d16d4ba31d35b04b2d3e35a9d85791458db3cec00ada3d99a7b499f0617683a1",
+      "snapshot": {
+        "docs/framework/ember/guides/cheat-sheet-ui-helpers.md": "7e88c9ec2f59d9decd7ac03541dc62900b9aa6c4b93b14cf86116c864621a9c3"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/ember/guides/cheat-sheet-ui-helpers.md"]
+    },
+    "source:docs/framework/ember/guides/hotkey-manager.md": {
+      "fingerprint": "b9173cf919cd70e374ec01081cad63a15fb0e5fa6fa05ed24c892a38e2e732c3",
+      "snapshot": {
+        "docs/framework/ember/guides/hotkey-manager.md": "1aa3163570a39e139783a2117406c3504a560a7e7b9a23dc5db0d070752a5a00"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/ember/guides/hotkey-manager.md"]
+    },
+    "source:docs/framework/ember/reference/functions/useHotkeyScopesState.md": {
+      "fingerprint": "79d2f28cd0b88d6ead0618b55d68539914520c4eb77a4cffaad35be253ed044a",
+      "snapshot": {
+        "docs/framework/ember/reference/functions/useHotkeyScopesState.md": "55f34f78be85db5f5ed53f4782412183924013ea44f25da49ea084159074599d"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": [
+        "docs/framework/ember/reference/functions/useHotkeyScopesState.md"
+      ]
+    },
+    "source:docs/framework/ember/reference/index.md": {
+      "fingerprint": "217678949e2258c21c55d72171053eeb6d2f4830c22036425b130be2f8e4a592",
+      "snapshot": {
+        "docs/framework/ember/reference/index.md": "f2d780240d4cb3a26ffc79a01111241626f647a0ee8c0d88d4998b2d4864f8c5"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["docs/framework/ember/reference/index.md"]
+    },
+    "source:docs/framework/lit/guides/cheat-sheet-ui-helpers.md": {
+      "fingerprint": "9bd4682776f22a510ccd0f0e945dbf6cba1326aa7886367c1758a0de4d4fc3f8",
+      "snapshot": {
+        "docs/framework/lit/guides/cheat-sheet-ui-helpers.md": "aceda772e05bbc90d6c69111bf6b6517be91da52cf67f018c0acd75fb5081f4f"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/lit/guides/cheat-sheet-ui-helpers.md"]
+    },
+    "source:docs/framework/lit/guides/hotkey-manager.md": {
+      "fingerprint": "99499462bb0e5b6cf15bda5aaf1a4b54546ea589695c57d45393c74dc706fbf9",
+      "snapshot": {
+        "docs/framework/lit/guides/hotkey-manager.md": "c431356fa7394c8a1e11e2a9b1a9d151dc314ca29c45f4659553eb9b8bd22706"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/lit/guides/hotkey-manager.md"]
+    },
+    "source:docs/framework/lit/reference/classes/HotkeyScopesStateController.md": {
+      "fingerprint": "2364a6f1f6db8f1d72bdf112e794d0b9797e4b2719876918caea9e09492f222a",
+      "snapshot": {
+        "docs/framework/lit/reference/classes/HotkeyScopesStateController.md": "2359a2ef88fe6271a3ea91d51ecaaa9eb41212362a26855e0ca83fd76840826b"
+      },
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
+      "outcome": "out-of-scope",
+      "reason": "Tests or regenerated reference docs.",
+      "evidence": [
+        "docs/framework/lit/reference/classes/HotkeyScopesStateController.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/index.md": {
+      "fingerprint": "aef21d23b8e548aeaa193179a044c5c57a501cb7eb7e572e2dca391786fc36df",
+      "snapshot": {
+        "docs/framework/lit/reference/index.md": "4d9d81ec6ef63985c778cfe2d1df20fe78b90901ec4509e845623abe9912134a"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["docs/framework/lit/reference/index.md"]
+    },
+    "source:docs/framework/octane/guides/cheat-sheet-ui-helpers.md": {
+      "fingerprint": "d36658a1bb4cfe7a1f8c701a0a19bf72b073b27d91c67f9396c0c52edf43ef52",
+      "snapshot": {
+        "docs/framework/octane/guides/cheat-sheet-ui-helpers.md": "facfcd4b75b5ef21661d86309be63c3cfce05d8fd55fc82090d5e17480c0383a"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/octane/guides/cheat-sheet-ui-helpers.md"]
+    },
+    "source:docs/framework/octane/guides/hotkey-manager.md": {
+      "fingerprint": "94674f1e0431ffd29358cb97962261a509c90b8900b4703617f474b445b1d1b4",
+      "snapshot": {
+        "docs/framework/octane/guides/hotkey-manager.md": "903c655aab6eb2491818baa0cb9049f0470f283dc9e2a00a8c96bf39a050a43c"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/octane/guides/hotkey-manager.md"]
+    },
+    "source:docs/framework/octane/reference/functions/useHotkeyScopesState.md": {
+      "fingerprint": "4a14760123f3c3f1e0ca372c47cd3d827c4213f5bffb3007127c9a481ccb3791",
+      "snapshot": {
+        "docs/framework/octane/reference/functions/useHotkeyScopesState.md": "0fe5133344b9f5d3b18716c64ef1a2fe42f0d4d17ddd41fc9b51696f31bbda57"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": [
+        "docs/framework/octane/reference/functions/useHotkeyScopesState.md"
+      ]
+    },
+    "source:docs/framework/octane/reference/index.md": {
+      "fingerprint": "5e0a4b64b9cd382561ec75c573a78ff19b1e450136710c846b8bc06e3cd41304",
+      "snapshot": {
+        "docs/framework/octane/reference/index.md": "6256c9a6d9984bbb84439ab273e87f257bad6ef0abd79332652ab69ada8f54b1"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["docs/framework/octane/reference/index.md"]
+    },
+    "source:docs/framework/preact/guides/cheat-sheet-ui-helpers.md": {
+      "fingerprint": "b316cb55cfbb630477ab9701209be482e3c7d1e6f18a6bbba8eb36e074b16043",
+      "snapshot": {
+        "docs/framework/preact/guides/cheat-sheet-ui-helpers.md": "6bf728fc9b4629ee53554f2ad73004c2093961a5ff23bd90321355a45301ed0f"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/preact/guides/cheat-sheet-ui-helpers.md"]
+    },
+    "source:docs/framework/preact/guides/hotkey-manager.md": {
+      "fingerprint": "e255f62e61934af90f0bc283fba463482a318a93ca2e2d59ef17b6ea2ce189c3",
+      "snapshot": {
+        "docs/framework/preact/guides/hotkey-manager.md": "fa7ba6ba37b71f51e9006e12f88f88a05a7b57d07678c4c7acb1289ef413821e"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/preact/guides/hotkey-manager.md"]
+    },
+    "source:docs/framework/preact/reference/functions/useHotkeyScopesState.md": {
+      "fingerprint": "28196fb3f7bb16be174302d7853db12c6de1e42a52d76e5686f2e14610477ab0",
+      "snapshot": {
+        "docs/framework/preact/reference/functions/useHotkeyScopesState.md": "234fe789cc806d99f3c156328a503c288c895a5f3c2332b52713596380b480f2"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": [
+        "docs/framework/preact/reference/functions/useHotkeyScopesState.md"
+      ]
+    },
+    "source:docs/framework/preact/reference/index.md": {
+      "fingerprint": "74db15e9e63ac1fb75ebbceb59ef7dd7e648f7c99fcb5cc312fae3b3ccb90a19",
+      "snapshot": {
+        "docs/framework/preact/reference/index.md": "ab5da05f4b7d0ca97eb3d06bd36ed123a93b552cd232b4570e28f4f08bd8e885"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["docs/framework/preact/reference/index.md"]
+    },
+    "source:docs/framework/react/guides/hotkey-manager.md": {
+      "fingerprint": "6a1045908327336ec3811135514232d958045d9461da5f147a581c1b936aad39",
+      "snapshot": {
+        "docs/framework/react/guides/hotkey-manager.md": "7d629b5a1faccd284ae73c94a10b3af7ce3e820bf3f342104071de5f53ed2f47"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/react/guides/hotkey-manager.md"]
+    },
+    "source:docs/framework/react/reference/functions/useHotkeyScopesState.md": {
+      "fingerprint": "6e04abc76cc18c26951ef1f0badb83dee20c906ca91b6a7bfa94c647ee6713b9",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useHotkeyScopesState.md": "cc68085ff33099c0a92ab0e5726e0c7845521ee52a061dc6feaffa3122e0478d"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useHotkeyScopesState.md"
+      ]
+    },
+    "source:docs/framework/react/reference/index.md": {
+      "fingerprint": "ffef2aadb17246d349c9232012a52c495915c190cbc848ab06a7ab37e7402ab5",
+      "snapshot": {
+        "docs/framework/react/reference/index.md": "5199f1cfb8c558629071d0d452b155b3f93de11591aeb858d4ffcfa2fb130e7f"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["docs/framework/react/reference/index.md"]
+    },
+    "source:docs/framework/solid/guides/cheat-sheet-ui-helpers.md": {
+      "fingerprint": "babe05e703e06b8d50942bd08767e15f0707e2ff9126795affeba649d8b7e9bb",
+      "snapshot": {
+        "docs/framework/solid/guides/cheat-sheet-ui-helpers.md": "d32476a153bfbea58e6925c560edc5fa327defe29eb7df95b0ccfb9a4366ff3f"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/solid/guides/cheat-sheet-ui-helpers.md"]
+    },
+    "source:docs/framework/solid/guides/hotkey-manager.md": {
+      "fingerprint": "72dd217693b83e4c84309832f636d4b61e20cd2fc1cd84ba23de0a6eed1b11b4",
+      "snapshot": {
+        "docs/framework/solid/guides/hotkey-manager.md": "6415486a361eb162b31ac2189b2f7eb7a6599f762b6f316d407f6b2578ef49f9"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/solid/guides/hotkey-manager.md"]
+    },
+    "source:docs/framework/solid/reference/functions/createHotkeyScopesState.md": {
+      "fingerprint": "817c0dede67662b70532bf49a4bfbca2b680c7467105b8e3d98658521f355118",
+      "snapshot": {
+        "docs/framework/solid/reference/functions/createHotkeyScopesState.md": "2c152abe5fc14dfff438272bc36641add4ddf63e8c3a69d46d331f95f4e416cb"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": [
+        "docs/framework/solid/reference/functions/createHotkeyScopesState.md"
+      ]
+    },
+    "source:docs/framework/solid/reference/index.md": {
+      "fingerprint": "5b0125950ffc1cf988e5cd607de7d7171fc5457a1fa668d62d5e22a5cb1a6187",
+      "snapshot": {
+        "docs/framework/solid/reference/index.md": "a7d0bb0f3b93db4fd57961009d5a7123f7e667323c2fe2bfe0962c1d4a36973e"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["docs/framework/solid/reference/index.md"]
+    },
+    "source:docs/framework/svelte/guides/cheat-sheet-ui-helpers.md": {
+      "fingerprint": "06c81dfca3f6fbaf901316e8973c1ba61a0c1c6102f320b63262466fd4821f72",
+      "snapshot": {
+        "docs/framework/svelte/guides/cheat-sheet-ui-helpers.md": "1c8cb3208264c108cbd80b5414f5da8e5e4815e0bc1e550434423be59d64677c"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/svelte/guides/cheat-sheet-ui-helpers.md"]
+    },
+    "source:docs/framework/svelte/guides/hotkey-manager.md": {
+      "fingerprint": "d3fbee8d2e490ba13dff0cdc937eb6b70d2910eaa6d25e30f6adaa3891719b54",
+      "snapshot": {
+        "docs/framework/svelte/guides/hotkey-manager.md": "3dd0bb48a109f9331216a3d1b49153f742399232028e8538c9688600ddf08716"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/svelte/guides/hotkey-manager.md"]
+    },
+    "source:docs/framework/svelte/reference/functions/getHotkeyScopesState.md": {
+      "fingerprint": "6f7fb2ffb8495191c339e07506d0c40b6c5e78661433efd1f27d013e947c06ce",
+      "snapshot": {
+        "docs/framework/svelte/reference/functions/getHotkeyScopesState.md": "3e93aef1be5de501a63bfab88ede4476d7f0ec6019a03e4e3003f9d9b2232ba1"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": [
+        "docs/framework/svelte/reference/functions/getHotkeyScopesState.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/index.md": {
+      "fingerprint": "41eb11baae5999fd34ae59ce8e81e01fd008bcbbce0bfbf405bf48781ada9c0d",
+      "snapshot": {
+        "docs/framework/svelte/reference/index.md": "8863658ea6943278a699c8f90b4f5ae99338f1cc3031f1a0177168555fa8f4ac"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["docs/framework/svelte/reference/index.md"]
+    },
+    "source:docs/framework/svelte/reference/interfaces/SvelteHotkeyScopesState.md": {
+      "fingerprint": "2e2fa83c6b2cf155912790fdb34770d590264c1af632bdca708d015878439939",
+      "snapshot": {
+        "docs/framework/svelte/reference/interfaces/SvelteHotkeyScopesState.md": "ae2aca3e2c81af96ad75e82d331dd178b05ba2294702eba697c2f084bb1cb10b"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": [
+        "docs/framework/svelte/reference/interfaces/SvelteHotkeyScopesState.md"
+      ]
+    },
+    "source:docs/framework/vue/guides/cheat-sheet-ui-helpers.md": {
+      "fingerprint": "45ee90fc6a31357b5184476b3b909e2437e1ebc143cb4a0abb89e68bf262a1b5",
+      "snapshot": {
+        "docs/framework/vue/guides/cheat-sheet-ui-helpers.md": "7f7b3c90ecde7b50273d57617d5957576b861cc4a2443c61bb43b6f1ce93424d"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/vue/guides/cheat-sheet-ui-helpers.md"]
+    },
+    "source:docs/framework/vue/guides/hotkey-manager.md": {
+      "fingerprint": "c31fb5090b61ecee9870a51b318132054461fd064ecbc02a2977ced099817fdf",
+      "snapshot": {
+        "docs/framework/vue/guides/hotkey-manager.md": "a8f7fa12b22cc78dfab4b91ee4cb86232e2d654ee8e3c68fe15a10a179082095"
+      },
+      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "outcome": "no-change",
+      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "evidence": ["docs/framework/vue/guides/hotkey-manager.md"]
+    },
+    "source:docs/framework/vue/reference/functions/useHotkeyScopesState.md": {
+      "fingerprint": "6e6f9ea9454f9dd6126a1d2990adb783cf20d3d7af77e67ae381b59e2954f3f6",
+      "snapshot": {
+        "docs/framework/vue/reference/functions/useHotkeyScopesState.md": "845d23d39875c55060504e72a4c3b0674bff6c9c74eeb13962578e7e998a9954"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": [
+        "docs/framework/vue/reference/functions/useHotkeyScopesState.md"
+      ]
+    },
+    "source:docs/framework/vue/reference/index.md": {
+      "fingerprint": "cc583235aae2e283be50d17e185b1e50997fdc43b753a15cf4e6cc025b5795d4",
+      "snapshot": {
+        "docs/framework/vue/reference/index.md": "11fba286aa707bdabb9e0a5507ae42deb365d38ed555a12bf692f833fdb27a08"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["docs/framework/vue/reference/index.md"]
+    },
+    "source:docs/reference/index.md": {
+      "fingerprint": "9a611b77990be4bef9ad2c13616c8ad15c2a18dd6d5f01f95eec2eacb75a241a",
+      "snapshot": {
+        "docs/reference/index.md": "3745141ef0859fff0b5156b1bc83e2a98b55e3d8fc37d1b1d59b916d81a9d974"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "evidence": ["docs/reference/index.md"]
+    },
+    "source:docs/reference/type-aliases/HotkeyRegistrationStatus.md": {
+      "fingerprint": "38543fbbd925807dc94cef9dd358790607fff0d24bc40fb209c63e92bfd602a1",
+      "snapshot": {
+        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "71783284309b35853ca3345b7c04a7f167bf06e4f934f17192cb31d36e236698"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": ["docs/reference/type-aliases/HotkeyRegistrationStatus.md"]
+    },
+    "source:packages/alpine-hotkeys/src/createHotkeyScopesState.ts": {
+      "fingerprint": "efa0da765d7c23fe56e690ebc774b7ea456a343c908ad8239732d0741f3b64a1",
+      "snapshot": {
+        "packages/alpine-hotkeys/src/createHotkeyScopesState.ts": "057d9352b18344ca6ce2905f442aed215b17dbbbae16de5fae6470c41c8e61d7"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["packages/alpine-hotkeys/src/createHotkeyScopesState.ts"]
+    },
+    "source:packages/alpine-hotkeys/src/types.ts": {
+      "fingerprint": "6bedf50c8633837d8ed0da8294c6a4fb7bca83a27a193f1f1d138fa623c22fd8",
+      "snapshot": {
+        "packages/alpine-hotkeys/src/types.ts": "b9c5c90b775eaa545643321deb174417bab92e8ce39a7dc207b0a4af0bbe4d6a"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["packages/alpine-hotkeys/src/types.ts"]
+    },
+    "source:packages/angular-hotkeys/src/index.ts": {
+      "fingerprint": "503a179912614dc48420ac45e5e599032cc717f2dcbf5f9d93e370f0e6cda75b",
+      "snapshot": {
+        "packages/angular-hotkeys/src/index.ts": "7fde0710a3584af78390c1c9c292e36cd334079a729035b1f2ec9a256c4d4469"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["packages/angular-hotkeys/src/index.ts"]
+    },
+    "source:packages/angular-hotkeys/src/injectHotkeyScopesState.ts": {
+      "fingerprint": "db48312044f4065c2b8477ee4a12dec339d74797007a55eca0b40c0e8773fa3f",
+      "snapshot": {
+        "packages/angular-hotkeys/src/injectHotkeyScopesState.ts": "c71f8e7cf5aa4ac558c5fc0771f986a5a19482bc8b8017aeeb5623bcb2905113"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["packages/angular-hotkeys/src/injectHotkeyScopesState.ts"]
+    },
+    "source:packages/angular-hotkeys/tests/scopes.test.ts": {
+      "fingerprint": "569b22d14258cab83b2bcc790380cb5035a4b14cab279369e5e8fe70d993f5df",
+      "snapshot": {
+        "packages/angular-hotkeys/tests/scopes.test.ts": "691bb8678d6315716ee37b25c79e98fbe131c9afa2766d0fe5760b670c9164c3"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "evidence": ["packages/angular-hotkeys/tests/scopes.test.ts"]
+    },
+    "source:packages/ember-hotkeys/src/index.ts": {
+      "fingerprint": "a67de3a816a548d5108f5b1cfb073a8110539e5776399f0d9ae3b443c8f1254f",
+      "snapshot": {
+        "packages/ember-hotkeys/src/index.ts": "47153e1158b823b5571a27e2751d16ce9945f4dc68402cac6e4ba3fb256b7159"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["packages/ember-hotkeys/src/index.ts"]
+    },
+    "source:packages/ember-hotkeys/src/useHotkeyScopesState.ts": {
+      "fingerprint": "f09696791667531dc19e8a8ddd2db5c56c3bf0c4401b171ee908c23a90b8a73e",
+      "snapshot": {
+        "packages/ember-hotkeys/src/useHotkeyScopesState.ts": "1e481826363735dd299abf99048884d8a03f603f1c940e19bd084849e6e127c0"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["packages/ember-hotkeys/src/useHotkeyScopesState.ts"]
+    },
+    "source:packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts": {
+      "fingerprint": "7ee8fff9cb3de31c1b5c7e5253581cf446c3585e26312a406fa7bf4a8d22f3cf",
+      "snapshot": {
+        "packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts": "3df64fbdc22edcee768d9787b5fc02c4d1806dfac7aa43852098decde9891c11"
+      },
+      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
+      "outcome": "no-change",
+      "reason": "Review fixes: preventDefault 'always' now defers to live hotkeys on any listener, Lit controllers render on reconnect, Lit guide points to shared options. Skill guidance unchanged.",
+      "evidence": [
+        "packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts"
+      ]
+    },
+    "source:packages/lit-hotkeys/src/controllers/index.ts": {
+      "fingerprint": "e55ffdff5a1acd25b031fb304d39e5c5edb60b92bb8a5b24f12a8f0b1e9a9ce2",
+      "snapshot": {
+        "packages/lit-hotkeys/src/controllers/index.ts": "cf9d8bab0533dd09053e21304d027fdca9f31079b0a65b8cfc05dcaaf2ca27d2"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["packages/lit-hotkeys/src/controllers/index.ts"]
+    },
+    "source:packages/octane-hotkeys/src/index.ts": {
+      "fingerprint": "c56910c47adb6f5fa8a6fe9e9f2ef38c404be170416a67223bb0d84d3364e06b",
+      "snapshot": {
+        "packages/octane-hotkeys/src/index.ts": "8aa06ebbc843cf21944809b4a9e7c4c3efc73dfdfbd0faf83982586c3a482395"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["packages/octane-hotkeys/src/index.ts"]
+    },
+    "source:packages/octane-hotkeys/src/useHotkeyScopesState.ts": {
+      "fingerprint": "965a15848bd594cb7b26dd89fe64a66ea7f841ffb49ac698aa53f220b7f2b622",
+      "snapshot": {
+        "packages/octane-hotkeys/src/useHotkeyScopesState.ts": "c60d696f940672b5910c8eca30d4ee4987caf60d913e6e5502d057b6e47fea5e"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["packages/octane-hotkeys/src/useHotkeyScopesState.ts"]
+    },
+    "source:packages/octane-hotkeys/tests/fixture.tsrx": {
+      "fingerprint": "96287e6de94be6045c8466e7c90a546ad9b2f0349dadab82e6c09a1a5aef279e",
+      "snapshot": {
+        "packages/octane-hotkeys/tests/fixture.tsrx": "64f94eb56192aed211b092a1fafbd0f198d293c36ece91380a4e0a6619bf12ad"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "evidence": ["packages/octane-hotkeys/tests/fixture.tsrx"]
+    },
+    "source:packages/preact-hotkeys/src/index.ts": {
+      "fingerprint": "3e47210bca133992a784aafad823e4303a875a5259e1ca1f7a5478fa7325f5a0",
+      "snapshot": {
+        "packages/preact-hotkeys/src/index.ts": "3dfd631bb9abca89332a0946f06f90e6fe4df1e9b54f0b79dd85af902bcc8aae"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["packages/preact-hotkeys/src/index.ts"]
+    },
+    "source:packages/preact-hotkeys/src/useHotkeyScopesState.ts": {
+      "fingerprint": "218efac55f273a37386a498a5948bda2950f32a674b920f10843d4322763aa22",
+      "snapshot": {
+        "packages/preact-hotkeys/src/useHotkeyScopesState.ts": "ec49319f970c07a3bff81e8efe93077491c81fd7fc3f8187cac93e52eed3ce43"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["packages/preact-hotkeys/src/useHotkeyScopesState.ts"]
+    },
+    "source:packages/preact-hotkeys/tests/scopes.test.tsx": {
+      "fingerprint": "071401c4fa14c4189e44a00271778bde83372dc5715d37e3ad32435050b24e66",
+      "snapshot": {
+        "packages/preact-hotkeys/tests/scopes.test.tsx": "842501e34e86445d9c0aa60eab551809b4edacc4b37fe92ad69ae272afd9bbfd"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "evidence": ["packages/preact-hotkeys/tests/scopes.test.tsx"]
+    },
+    "source:packages/react-hotkeys/src/index.ts": {
+      "fingerprint": "4983ee348b69b7a2729c033fc6b723f9f0b937b957f23d0d5e996997f8c655a1",
+      "snapshot": {
+        "packages/react-hotkeys/src/index.ts": "3dfd631bb9abca89332a0946f06f90e6fe4df1e9b54f0b79dd85af902bcc8aae"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["packages/react-hotkeys/src/index.ts"]
+    },
+    "source:packages/react-hotkeys/src/useHotkeyScopesState.ts": {
+      "fingerprint": "49e0f5c3460a70a588578ee40a30705dc549d074a255d4fa17adffc6fdd73dc7",
+      "snapshot": {
+        "packages/react-hotkeys/src/useHotkeyScopesState.ts": "f16479fab60036ac1cf1c41d4e0507e13435d410ffeec6b228b6a9d294e604ff"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["packages/react-hotkeys/src/useHotkeyScopesState.ts"]
+    },
+    "source:packages/react-hotkeys/tests/useHotkeyRegistrations.test.tsx": {
+      "fingerprint": "9565d0ab2fdb113a86c2c9ae709be9764bffed74ce79f7f7ec7220b1fa8b86aa",
+      "snapshot": {
+        "packages/react-hotkeys/tests/useHotkeyRegistrations.test.tsx": "ef68f8ca4faa2e485ff33f89cdd78890b1cb8693538445b721a8757e17f80a0f"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "evidence": [
+        "packages/react-hotkeys/tests/useHotkeyRegistrations.test.tsx"
+      ]
+    },
+    "source:packages/solid-hotkeys/src/createHotkeyScopesState.ts": {
+      "fingerprint": "62857fa44b5f9cb5492d9c2e411d993c6bbd0733904aac8d565e076668c0d9eb",
+      "snapshot": {
+        "packages/solid-hotkeys/src/createHotkeyScopesState.ts": "58fd882b14ba9edda5594591f79d263cb180e01b7370414d7be31a79d7368e30"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["packages/solid-hotkeys/src/createHotkeyScopesState.ts"]
+    },
+    "source:packages/solid-hotkeys/src/index.ts": {
+      "fingerprint": "66731a814a1bb922ec9fbb3bff9f1bbf5593f95dfc0cda4b56f554459103397c",
+      "snapshot": {
+        "packages/solid-hotkeys/src/index.ts": "83abb06cc8c00be9ef8095c84982628b0ac8473e742448d5d33e74de1aaed452"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["packages/solid-hotkeys/src/index.ts"]
+    },
+    "source:packages/solid-hotkeys/tests/scopes.test.tsx": {
+      "fingerprint": "349e6fd64fc87f2b7bc4e6bd315fad57796ca348fea9e1747d2c908a7789ec07",
+      "snapshot": {
+        "packages/solid-hotkeys/tests/scopes.test.tsx": "0e240fdb595b9fb48e04ab6e8ff0623233f04ac4996cfbfd9283e1eea53d051b"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "evidence": ["packages/solid-hotkeys/tests/scopes.test.tsx"]
+    },
+    "source:packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts": {
+      "fingerprint": "7f1568fa37786c72f88d4f84b0a12e60fde9867453ed29a3fd2d0ed43cb9ac92",
+      "snapshot": {
+        "packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts": "cbdf34d22e9efbc48f0ad7490fc9c9f38a8eae371bd2771b1fe9916649e38bfb"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts"]
+    },
+    "source:packages/svelte-hotkeys/src/index.ts": {
+      "fingerprint": "5390a8919a56613eb885c946be67fd103673d160f895ae17fdae7998a87ccfce",
+      "snapshot": {
+        "packages/svelte-hotkeys/src/index.ts": "d34632d11780969e48f79cb40fd98162f5d88495e836a8e5411c82885c6d71e1"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["packages/svelte-hotkeys/src/index.ts"]
+    },
+    "source:packages/svelte-hotkeys/tests/scopes-controls.svelte.ts": {
+      "fingerprint": "70de3730c9b6bf8d27d698209c724bac88d56d94ba2bd3ab4d63d4a4c68ecb48",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/scopes-controls.svelte.ts": "08ecea9f0fd74b7fd19fcd12e6389c75eb8591f1f933c41e381ffaf5b12e8472"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "evidence": ["packages/svelte-hotkeys/tests/scopes-controls.svelte.ts"]
+    },
+    "source:packages/svelte-hotkeys/tests/scopes.test.ts": {
+      "fingerprint": "08e545d69dd10e844eab81f57b9c32f868eb8ee056aeade436fcdd8a0b8de1ad",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/scopes.test.ts": "742a03deba58197c7565925c1b0797a17ddc73f586727b1fcd31bf65592f8cf7"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "evidence": ["packages/svelte-hotkeys/tests/scopes.test.ts"]
+    },
+    "source:packages/vue-hotkeys/src/index.ts": {
+      "fingerprint": "ce899f85695243de217b92e0ba0845fee88a1ec7c8c4b6347ee92376a9bf6e3b",
+      "snapshot": {
+        "packages/vue-hotkeys/src/index.ts": "356c26d84c4671508f50cf3adae906a0377bd7bc7bba0247305f77deedb417e3"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["packages/vue-hotkeys/src/index.ts"]
+    },
+    "source:packages/vue-hotkeys/src/useHotkeyScopesState.ts": {
+      "fingerprint": "a6728a0805483e8b3125a87ddc580fba67537b5a4363e087aed00c92e7dd4ab6",
+      "snapshot": {
+        "packages/vue-hotkeys/src/useHotkeyScopesState.ts": "723f18adbb7f41943a977bdaa3a2a435acdc31a76cf7229564f74ee57c657249"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "no-change",
+      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "evidence": ["packages/vue-hotkeys/src/useHotkeyScopesState.ts"]
+    },
+    "source:packages/vue-hotkeys/tests/scopes.test.ts": {
+      "fingerprint": "257131aa7ff8dc288907a343fc19fbccbe9cd9faff3d847f6ab750055a49fd01",
+      "snapshot": {
+        "packages/vue-hotkeys/tests/scopes.test.ts": "5617873404bb3e19f3d6782cc1c04261a5e7f23f2cd314bd229d6e7cce7e29bb"
+      },
+      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "evidence": ["packages/vue-hotkeys/tests/scopes.test.ts"]
+    },
+    "source:docs/reference/classes/AppHotkeysStore.md": {
+      "fingerprint": "f828df2b43041e6744a776337690c0d02b13c98860f9b75de251e8aa013992bb",
+      "snapshot": {
+        "docs/reference/classes/AppHotkeysStore.md": "50a300610a77af4bbc0b172d7cb9c368371a4142a420a64f644bbe1ddc75c76c"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/classes/AppHotkeysStore.md"]
+    },
+    "source:docs/reference/functions/defineAppHotkeys.md": {
+      "fingerprint": "647b508a92a14adcbbc42bc0ef0fa23bd4a233df3d3e08b3ad4c23f2b8b4c923",
+      "snapshot": {
+        "docs/reference/functions/defineAppHotkeys.md": "d04bbc7d0b8e0e1211f2044eac2468374d78a98d00462d33cbf4d8f8db0ceab8"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/functions/defineAppHotkeys.md"]
+    },
+    "source:docs/reference/functions/getAppHotkeyRegistrationOptions.md": {
+      "fingerprint": "92cf5d12da45097cdc4e49ed62acaac928222a0380d4d728310e89c7f85cc0e0",
+      "snapshot": {
+        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "0c617bcad6b46ba6559d016ffe67b420670d16f1de4e6fdd98491d358a6eadf5"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": [
+        "docs/reference/functions/getAppHotkeyRegistrationOptions.md"
+      ]
+    },
+    "source:docs/reference/functions/isAppHotkey.md": {
+      "fingerprint": "f914ae6939c6808d6cb9ae5deeb1782a01c628575c29d343e788374782384994",
+      "snapshot": {
+        "docs/reference/functions/isAppHotkey.md": "98f12cb86a90ab8d18ce90fb073032429ce5447be63dbb4639a17c98f4262bad"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/functions/isAppHotkey.md"]
+    },
+    "source:docs/reference/functions/isCustomHotkey.md": {
+      "fingerprint": "3a08e4334d39705fe2b57bde8ac566a523af316e5d2f859c8ae84a86031e8b20",
+      "snapshot": {
+        "docs/reference/functions/isCustomHotkey.md": "67ec57dabbed31013974a41acf7b34327cf76cb9dc4546262e8160c888e7322a"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/functions/isCustomHotkey.md"]
+    },
+    "source:docs/reference/functions/provideAppHotkeys.md": {
+      "fingerprint": "9305d4b0fc61dfe04dd381dc43efe41f98bbab9f32dd93154875f133a2ced819",
+      "snapshot": {
+        "docs/reference/functions/provideAppHotkeys.md": "da10c53c571e942f6be828a38bc27d8a03778c3d6b156f089a7422753afcc87a"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/functions/provideAppHotkeys.md"]
+    },
+    "source:docs/reference/functions/publishAppHotkeysStore.md": {
+      "fingerprint": "d3a6340168e76506212447895bc32658149f65f5479a4ebfeb28f4f9cfb05ead",
+      "snapshot": {
+        "docs/reference/functions/publishAppHotkeysStore.md": "efcee078292e87d9602ecfa0c75e5a056a281b984d6454b141d3e8e2a0c77168"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/functions/publishAppHotkeysStore.md"]
+    },
+    "source:docs/reference/functions/resolveAppHotkey.md": {
+      "fingerprint": "38f7fe091d9e550b2d793437aefc6541acd5bec211b81a9873261a5a07891f63",
+      "snapshot": {
+        "docs/reference/functions/resolveAppHotkey.md": "e53c24e19564a87633ca3b052187338938ab267284dd7f3818ed246c374de859"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/functions/resolveAppHotkey.md"]
+    },
+    "source:docs/reference/interfaces/AppHotkey.md": {
+      "fingerprint": "2cb6bee7af7e2870e2287f3ac815f56e8df371ee646f9a8f43e190b645acd411",
+      "snapshot": {
+        "docs/reference/interfaces/AppHotkey.md": "a095532ac3088bbf5ca788bdf923168ae6940cfd5afd854f7380b3c4be11f5bc"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/interfaces/AppHotkey.md"]
+    },
+    "source:docs/reference/interfaces/AppHotkeyInput.md": {
+      "fingerprint": "c17190e4db0b14d36cc770cb9efd0cae23232c95654e2669b3deaf8de5bb2c44",
+      "snapshot": {
+        "docs/reference/interfaces/AppHotkeyInput.md": "1f68576d57cf3698eebdcbe939c8b3b232d7cfe044e7ae3b31a1f9189b358d61"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/interfaces/AppHotkeyInput.md"]
+    },
+    "source:docs/reference/interfaces/AppHotkeyListItem.md": {
+      "fingerprint": "c38d3268d7ff0b329ad412c3abe8daf510018f4ea07f00ec42b3710a2d099a15",
+      "snapshot": {
+        "docs/reference/interfaces/AppHotkeyListItem.md": "582e9005cde22ad69d70c50b630b0a720a6ed45ae708dc3da1740f0f3e0d6219"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/interfaces/AppHotkeyListItem.md"]
+    },
+    "source:docs/reference/interfaces/AppHotkeysState.md": {
+      "fingerprint": "a7419b4f629147566d48a1659fe45ab34079b0c31d5ebeaa7a1d01b0d3cadd87",
+      "snapshot": {
+        "docs/reference/interfaces/AppHotkeysState.md": "b07c0f7d396a38576ba9c5380f828745afe830d52fb1352be9abdf0f0e8cfb5f"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/interfaces/AppHotkeysState.md"]
+    },
+    "source:docs/reference/interfaces/AppHotkeysStoreOptions.md": {
+      "fingerprint": "ba071dd4450f86b0ca98300282816ddb0e015cc34a0b1d4d0c176393b70914dc",
+      "snapshot": {
+        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "5c29ca5acee65ef3627f96d10d63cef85d1d709fcc37b7cdd581a64d6e13b9ab"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/interfaces/AppHotkeysStoreOptions.md"]
+    },
+    "source:docs/reference/interfaces/Register.md": {
+      "fingerprint": "5a3817406a9df58f34a9f45636660dd7fd707927437dae0872cc361d2fb82af1",
+      "snapshot": {
+        "docs/reference/interfaces/Register.md": "7b07e9f1bc862741ebedcb80829c2342180070ceace17379dac73885b5ae1cdb"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/interfaces/Register.md"]
+    },
+    "source:docs/reference/type-aliases/AppHotkeyChordOptions.md": {
+      "fingerprint": "d36d30b1e7b9fd262191729948838ac0c1727cfe40c7bca34f38376830be0431",
+      "snapshot": {
+        "docs/reference/type-aliases/AppHotkeyChordOptions.md": "8e653952e92c0332a174f743e7afb3eab2bc9548c69446a96e42f9960743d58c"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/type-aliases/AppHotkeyChordOptions.md"]
+    },
+    "source:docs/reference/type-aliases/AppHotkeyDefaultKind.md": {
+      "fingerprint": "e3c9ec648e05e0c68b421d58d88b9fe03fcc83240ba36b38ac9419d32788f244",
+      "snapshot": {
+        "docs/reference/type-aliases/AppHotkeyDefaultKind.md": "3a6b97eca5267aa32468ab7f74dbf6bee43b831f163d0645bd8efff3a1965986"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/type-aliases/AppHotkeyDefaultKind.md"]
+    },
+    "source:docs/reference/type-aliases/AppHotkeyId.md": {
+      "fingerprint": "13cd19340afc6c30726eaaaea2fd01c3dbeb686b77dc6b603d6e9ead6d7b941c",
+      "snapshot": {
+        "docs/reference/type-aliases/AppHotkeyId.md": "573d414ccb09488974db4f4e5073c97815e1d11091f5e396244a71db2106d728"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/type-aliases/AppHotkeyId.md"]
+    },
+    "source:docs/reference/type-aliases/AppHotkeyOptions.md": {
+      "fingerprint": "9c72544939003f08d6f4464108d117d108cb903c7c307d5fabbdc904811b4a04",
+      "snapshot": {
+        "docs/reference/type-aliases/AppHotkeyOptions.md": "dd13bc7632e78bf3c807fe6ee7d780f89ad773a03158eb743ca5f8f790b4adf2"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/type-aliases/AppHotkeyOptions.md"]
+    },
+    "source:docs/reference/type-aliases/AppHotkeySequenceOptions.md": {
+      "fingerprint": "bda2571a41bde9a3330ba9eb5d8be15854be1dc55cf451fcb74d8ac022502b8a",
+      "snapshot": {
+        "docs/reference/type-aliases/AppHotkeySequenceOptions.md": "127bf99307fe9194d5ab3bb30105e70bee774998f106b9212a22e194c99fb5b6"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/type-aliases/AppHotkeySequenceOptions.md"]
+    },
+    "source:docs/reference/type-aliases/AppHotkeyStatus.md": {
+      "fingerprint": "3f3c262b4152ded4a199e4c78a8701dbcda0a8ad3f65d66985540e21d6a0d5e6",
+      "snapshot": {
+        "docs/reference/type-aliases/AppHotkeyStatus.md": "6b07bdb5226d3fc10790ba14bff85858b3dd8ae0e0d0428082b42dbed4ed7024"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/type-aliases/AppHotkeyStatus.md"]
+    },
+    "source:docs/reference/type-aliases/AppHotkeys.md": {
+      "fingerprint": "bdbcad81cc03052c676df899d9140bfbc89f804c62644ac630f1926dc2de10f2",
+      "snapshot": {
+        "docs/reference/type-aliases/AppHotkeys.md": "3ceec2f33ce55d06ec3b7385b9723106397898f82d266925d1ddfa142829a024"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/type-aliases/AppHotkeys.md"]
+    },
+    "source:docs/reference/type-aliases/CustomHotkeys.md": {
+      "fingerprint": "bf1d46020fa0a30aab23a64c44417bc6e922c30f8a4482e3281d916c7df71d35",
+      "snapshot": {
+        "docs/reference/type-aliases/CustomHotkeys.md": "44ec5b2926da7da2a41b11bb616cdb1c8b9b7a0bb978cf9f68d17683991da7e5"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/type-aliases/CustomHotkeys.md"]
+    },
+    "source:docs/reference/type-aliases/DefinedAppHotkeys.md": {
+      "fingerprint": "8a4ab3c3b32a49845cf5018d40564992086f569f697efec5c5e99f97c29e77fa",
+      "snapshot": {
+        "docs/reference/type-aliases/DefinedAppHotkeys.md": "be0abe9a9a87b9c1c0cc9a4576dd439d1ecc35046cd20b7cece20d2547a4dd2c"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/type-aliases/DefinedAppHotkeys.md"]
+    },
+    "source:docs/reference/type-aliases/RegisteredAppHotkeys.md": {
+      "fingerprint": "ba29005e68c10ac1603365d12f96f48ae71186024d88c06c159432b035544f64",
+      "snapshot": {
+        "docs/reference/type-aliases/RegisteredAppHotkeys.md": "1ed7d6a26ac53dbb104ade03d24267749f8365e6ad765de73053aca6f11c7139"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/type-aliases/RegisteredAppHotkeys.md"]
+    },
+    "source:docs/reference/type-aliases/Target.md": {
+      "fingerprint": "976d4e23e8e78ae594748914939a8235ce56a6c218bed648d31028ae3dc09fac",
+      "snapshot": {
+        "docs/reference/type-aliases/Target.md": "9776565467dd5900e7254fe1638c5ab8eaf3538457f750d24ff3edcc995295eb"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": ["docs/reference/type-aliases/Target.md"]
+    },
+    "source:packages/hotkeys/src/_event-target.ts": {
+      "fingerprint": "622b2f37e65222c024079ac63c92032673b339c29fa1a9adc5d71f61b09509f5",
+      "snapshot": {
+        "packages/hotkeys/src/_event-target.ts": "8feccad15940e5f701cf3b9efbf8a6b2aba02f4fbae9a13b662d81ffb80281f8"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "no-change",
+      "reason": "Internal fix: the preventDefault 'always' check uses the event's composed path so live hotkeys inside shadow roots count. Skill guidance unchanged.",
+      "evidence": ["packages/hotkeys/src/_event-target.ts"]
+    },
+    "source:docs/config.json": {
+      "fingerprint": "0cb4a1bd42647637f05ce7b7ff6121bdd4a0e8a013d45d787bc1c4a07dfebb95",
+      "snapshot": {
+        "docs/config.json": "36232fa7bc9c068ef992988036485655fb9587f7dee6029abe19f19f81a94021"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": ["docs/config.json"]
     }
   }
 }

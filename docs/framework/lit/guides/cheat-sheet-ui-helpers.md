@@ -58,7 +58,7 @@ class ShortcutList extends LitElement {
 
   render() {
     const named = this.registrations.hotkeys.filter(
-      (reg) => reg.options.meta?.name && reg.options.enabled !== false,
+      (reg) => reg.options.meta?.name && reg.status === 'active',
     )
 
     return html`<dl>
@@ -75,28 +75,13 @@ class ShortcutList extends LitElement {
 }
 ```
 
-Filtering by name leaves out hotkeys you didn't mean to list, such as a dialog's `Escape`. Filtering out disabled hotkeys leaves only the ones that work right now.
+Filtering by name leaves out hotkeys you didn't mean to list, such as a dialog's `Escape`. Filtering by `status` leaves only the hotkeys that are on right now.
 
-Each registration view has an `id`, the `hotkey`, its `options` (including `meta`, `enabled`, and `scope`), its `target`, and a `triggerCount`. Narrow with `kind`: chord views add `parsedChord`, and sequence views add `parsedSequence` and `matchedStepCount`, the number of steps the user has pressed so far. [Show sequences in your UI](./sequences#show-sequences-in-your-ui) uses it to show which keys the user has pressed.
+`status` is `'active'` when the hotkey is enabled and its scope is active, `'suspended'` when its [scope](./hotkey-manager#activate-a-scope) is inactive or suspended by an exclusive scope, and `'disabled'` when it has `enabled: false`. `HotkeyRegistrationsController` updates when scopes change, so the list stays current.
+
+Each registration view has an `id`, the `hotkey`, a `status`, its `options` (including `meta`, `enabled`, and `scope`), its `target`, and a `triggerCount`. Narrow with `kind`: chord views add `parsedChord`, and sequence views add `parsedSequence` and `matchedStepCount`, the number of steps the user has pressed so far. [Show sequences in your UI](./sequences#show-sequences-in-your-ui) uses it to show which keys the user has pressed.
 
 A hotkey that several elements register, such as one per list row, appears once for each registration.
-
-If your app [activates scopes](./hotkey-manager#activate-a-scope), also leave out hotkeys whose scope is inactive or suspended:
-
-```ts
-import { getHotkeyManager } from '@tanstack/lit-hotkeys'
-
-const manager = getHotkeyManager()
-
-const named = this.registrations.hotkeys.filter(
-  (reg) =>
-    reg.options.meta?.name &&
-    reg.options.enabled !== false &&
-    manager.isScopeActive(reg.options.scope),
-)
-```
-
-`HotkeyRegistrationsController` updates when scopes change, so the list stays current. [Read scope state](./hotkey-manager#read-scope-state) covers `isScopeActive` and the rest of the manager's scope state.
 
 Registrations exist only while their elements are connected, so this list can't show shortcuts from other pages. To list those, declare them as app hotkeys.
 

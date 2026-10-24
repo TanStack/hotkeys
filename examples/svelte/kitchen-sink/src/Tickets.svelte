@@ -27,9 +27,9 @@
   <label
     ><input type="checkbox" bind:checked={enabled} /> Enable ticket actions</label
   ><button disabled={!enabled} onclick={create}
-    >Create ticket <Hint hotkey="Alt+[KeyC]" {enabled} /></button
+    >Create ticket <Hint hotkey="Alt+[KeyC]" /></button
   ><button disabled={!enabled} onclick={save}
-    >Save pending <Hint hotkey="Alt+[KeyS]" {enabled} /></button
+    >Save pending <Hint hotkey="Alt+[KeyS]" /></button
   ><label>Ticket note <input placeholder="Try Alt + C while typing" /></label>
   <p>
     Create uses ignoreInputs: false. Save uses default filtering. Release before

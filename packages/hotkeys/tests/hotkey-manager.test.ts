@@ -684,6 +684,198 @@ describe('HotkeyManager', () => {
 
       expect(stopPropagationSpy).not.toHaveBeenCalled()
     })
+
+    describe("preventDefault: 'always'", () => {
+      function pressModS() {
+        const event = createKeyboardEvent('keydown', 's', { metaKey: true })
+        const preventDefault = vi.spyOn(event, 'preventDefault')
+        const stopPropagation = vi.spyOn(event, 'stopPropagation')
+        document.dispatchEvent(event)
+        return { preventDefault, stopPropagation }
+      }
+
+      it('prevents the default action of a disabled chord without firing or stopping propagation', () => {
+        const manager = HotkeyManager.getInstance()
+        const callback = vi.fn()
+        manager.register('Mod+S', callback, {
+          platform: 'mac',
+          enabled: false,
+          preventDefault: 'always',
+        })
+
+        const { preventDefault, stopPropagation } = pressModS()
+
+        expect(callback).not.toHaveBeenCalled()
+        expect(preventDefault).toHaveBeenCalled()
+        expect(stopPropagation).not.toHaveBeenCalled()
+      })
+
+      it('leaves the event alone for a disabled chord with preventDefault: true', () => {
+        const manager = HotkeyManager.getInstance()
+        manager.register('Mod+S', vi.fn(), { platform: 'mac', enabled: false })
+
+        expect(pressModS().preventDefault).not.toHaveBeenCalled()
+      })
+
+      it('prevents the default action of a chord in a suspended scope', () => {
+        const manager = HotkeyManager.getInstance()
+        const callback = vi.fn()
+        manager.register('Mod+S', callback, {
+          platform: 'mac',
+          preventDefault: 'always',
+        })
+        const release = manager.activateScope('dialog', { exclusive: true })
+
+        expect(pressModS().preventDefault).toHaveBeenCalled()
+        expect(callback).not.toHaveBeenCalled()
+
+        release()
+        pressModS()
+        expect(callback).toHaveBeenCalledOnce()
+      })
+
+      it('lets a chord that fires decide what happens to the event', () => {
+        const manager = HotkeyManager.getInstance()
+        const callback = vi.fn()
+        manager.register('Mod+S', vi.fn(), {
+          platform: 'mac',
+          enabled: false,
+          preventDefault: 'always',
+        })
+        manager.register('Mod+S', callback, {
+          platform: 'mac',
+          preventDefault: false,
+          conflictBehavior: 'allow',
+        })
+
+        expect(pressModS().preventDefault).not.toHaveBeenCalled()
+        expect(callback).toHaveBeenCalledOnce()
+      })
+
+      it('lets a chord that fires on another target or phase decide', () => {
+        const manager = HotkeyManager.getInstance()
+        const panel = document.createElement('div')
+        const button = document.createElement('button')
+        panel.appendChild(button)
+        document.body.appendChild(panel)
+        const onPanel = vi.fn()
+        const onDocument = vi.fn()
+        // A capture listener on document runs before the panel's listener.
+        manager.register('Mod+S', vi.fn(), {
+          platform: 'mac',
+          enabled: false,
+          capture: true,
+          preventDefault: 'always',
+        })
+        manager.register('Mod+S', onPanel, {
+          platform: 'mac',
+          target: panel,
+          preventDefault: false,
+          stopPropagation: false,
+        })
+        // The panel's listener runs before this bubble listener on document.
+        manager.register('Mod+K', vi.fn(), {
+          platform: 'mac',
+          enabled: false,
+          target: panel,
+          preventDefault: 'always',
+        })
+        manager.register('Mod+K', onDocument, {
+          platform: 'mac',
+          preventDefault: false,
+        })
+
+        for (const key of ['s', 'k']) {
+          const event = createKeyboardEvent('keydown', key, { metaKey: true })
+          const preventDefault = vi.spyOn(event, 'preventDefault')
+          button.dispatchEvent(event)
+          expect(preventDefault).not.toHaveBeenCalled()
+        }
+        expect(onPanel).toHaveBeenCalledOnce()
+        expect(onDocument).toHaveBeenCalledOnce()
+        panel.remove()
+      })
+
+      it('lets a chord that fires inside a shadow root decide', () => {
+        const manager = HotkeyManager.getInstance()
+        const host = document.createElement('div')
+        const editor = document.createElement('div')
+        const button = document.createElement('button')
+        editor.appendChild(button)
+        host.attachShadow({ mode: 'open' }).appendChild(editor)
+        document.body.appendChild(host)
+        const onEditor = vi.fn()
+        // At this document listener, event.target is the shadow host.
+        manager.register('Mod+S', vi.fn(), {
+          platform: 'mac',
+          enabled: false,
+          capture: true,
+          preventDefault: 'always',
+        })
+        manager.register('Mod+S', onEditor, {
+          platform: 'mac',
+          target: editor,
+          preventDefault: false,
+        })
+
+        const event = new KeyboardEvent('keydown', {
+          key: 's',
+          metaKey: true,
+          bubbles: true,
+          composed: true,
+        })
+        // Browsers retarget events leaving a shadow root: listeners outside it
+        // see the host as event.target. happy-dom doesn't, so mimic it.
+        Object.defineProperty(event, 'target', {
+          get(this: KeyboardEvent) {
+            return host.shadowRoot!.contains(this.currentTarget as Node)
+              ? button
+              : host
+          },
+        })
+        const preventDefault = vi.spyOn(event, 'preventDefault')
+        button.dispatchEvent(event)
+
+        expect(preventDefault).not.toHaveBeenCalled()
+        expect(onEditor).toHaveBeenCalledOnce()
+        host.remove()
+      })
+
+      it('lets a sequence that can fire decide', () => {
+        const manager = HotkeyManager.getInstance()
+        manager.register('Mod+K', vi.fn(), {
+          platform: 'mac',
+          enabled: false,
+          preventDefault: 'always',
+        })
+        manager.register(['Mod+K', 'Mod+C'], vi.fn(), {
+          platform: 'mac',
+          preventDefault: false,
+        })
+
+        const event = createKeyboardEvent('keydown', 'k', { metaKey: true })
+        const preventDefault = vi.spyOn(event, 'preventDefault')
+        document.dispatchEvent(event)
+        expect(preventDefault).not.toHaveBeenCalled()
+      })
+
+      it('still skips typing in text fields', () => {
+        const manager = HotkeyManager.getInstance()
+        manager.register('K', vi.fn(), {
+          enabled: false,
+          preventDefault: 'always',
+        })
+        const input = document.createElement('input')
+        document.body.appendChild(input)
+
+        const event = createKeyboardEvent('keydown', 'k')
+        const preventDefault = vi.spyOn(event, 'preventDefault')
+        input.dispatchEvent(event)
+
+        expect(preventDefault).not.toHaveBeenCalled()
+        input.remove()
+      })
+    })
   })
 
   describe('ignoreInputs option', () => {
@@ -1627,6 +1819,26 @@ describe('HotkeyManager', () => {
 
       const regAfter = Array.from(manager.registrations.state.values())[0]!
       expect(toHotkeyRegistrationView(regAfter).hasFired).toBe(true)
+    })
+
+    it('reports whether the registration can fire', () => {
+      const manager = HotkeyManager.getInstance()
+      const handle = manager.register('Mod+S', vi.fn(), { platform: 'mac' })
+      manager.register('Escape', vi.fn(), { scope: 'dialog' })
+      const status = () =>
+        Array.from(
+          manager.registrations.state.values(),
+          (reg) => toHotkeyRegistrationView(reg).status,
+        )
+
+      expect(status()).toEqual(['active', 'suspended'])
+
+      const release = manager.activateScope('dialog', { exclusive: true })
+      expect(status()).toEqual(['suspended', 'active'])
+
+      release()
+      handle.setOptions({ enabled: false })
+      expect(status()).toEqual(['disabled', 'suspended'])
     })
   })
 })

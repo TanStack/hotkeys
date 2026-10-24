@@ -43,15 +43,9 @@ const pages = [
 ] as const
 
 /** A separate component lets each navigation link or button subscribe to its hint. */
-function Hint({
-  hotkey,
-  enabled = true,
-}: {
-  hotkey: RegisterableHotkey
-  enabled?: boolean
-}) {
+function Hint({ hotkey }: { hotkey: RegisterableHotkey }) {
   const visible = useHotkeyHint(hotkey)
-  return visible && enabled ? <kbd>{formatForDisplay(hotkey)}</kbd> : null
+  return visible ? <kbd>{formatForDisplay(hotkey)}</kbd> : null
 }
 
 /** Global shortcuts remain registered while route components mount and unmount. */
@@ -239,10 +233,10 @@ function Tickets() {
       </label>
       <p>
         <button disabled={!enabled} onClick={create}>
-          Create ticket <Hint hotkey="Alt+[KeyC]" enabled={enabled} />
+          Create ticket <Hint hotkey="Alt+[KeyC]" />
         </button>
         <button disabled={!enabled} onClick={save}>
-          Save pending <Hint hotkey="Alt+[KeyS]" enabled={enabled} />
+          Save pending <Hint hotkey="Alt+[KeyS]" />
         </button>
       </p>
       <label>

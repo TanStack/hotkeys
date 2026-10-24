@@ -3,7 +3,7 @@ id: AppHotkeyListItem
 title: AppHotkeyListItem
 ---
 
-Defined in: [app-hotkeys.ts:310](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L310)
+Defined in: [app-hotkeys.ts:311](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L311)
 
 One row of an app hotkey cheat sheet.
 
@@ -21,7 +21,7 @@ One row of an app hotkey cheat sheet.
 appHotkey: T;
 ```
 
-Defined in: [app-hotkeys.ts:311](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L311)
+Defined in: [app-hotkeys.ts:312](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L312)
 
 ***
 
@@ -31,7 +31,7 @@ Defined in: [app-hotkeys.ts:311](https://github.com/TanStack/hotkeys/blob/main/p
 isCustom: boolean;
 ```
 
-Defined in: [app-hotkeys.ts:314](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L314)
+Defined in: [app-hotkeys.ts:315](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L315)
 
 Whether the effective hotkey differs from the declared default.
 
@@ -43,7 +43,7 @@ Whether the effective hotkey differs from the declared default.
 registrations: HotkeyRegistrationView[];
 ```
 
-Defined in: [app-hotkeys.ts:316](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L316)
+Defined in: [app-hotkeys.ts:317](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L317)
 
 Live registrations of this app hotkey (for example, one per list row).
 
@@ -55,4 +55,4 @@ Live registrations of this app hotkey (for example, one per list row).
 status: AppHotkeyStatus;
 ```
 
-Defined in: [app-hotkeys.ts:312](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L312)
+Defined in: [app-hotkeys.ts:313](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L313)
