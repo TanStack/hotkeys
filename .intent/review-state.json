@@ -667,23 +667,23 @@
       "evidence": ["docs/framework/vue/reference/functions/useHotkeyHint.md"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "5e31c632c8e04c06a6413412279465f39301cec4fe546100a6b0f9dfee540c59",
+      "fingerprint": "9992dfc231289e540551962a7b2cf7f8ba8e37ec59ffeb986eb3b79dea2e95c2",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "4fabf3e22a5f985ece9038a711c29d25b5c341311c24870b87e5e19f1616e9ab"
+        "docs/reference/classes/HotkeyManager.md": "bfdb5915454ecb2b7d1e0a67be6e0217bbb4d2a284841ead831f5a51d4ceaf26"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
       "evidence": ["docs/reference/classes/HotkeyManager.md"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "29dd63e384b4b18fd18668a58b9a2bd2cb1b59fa064bac9bcd9461d8c1a58911",
+      "fingerprint": "c3e94bc13cd235c439c88ab3592efd8a62e38e27fdeef5707a93f8f35d2fc45d",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "2f9883bb78f6dedb3b967da1b6572da392e8391f4fea540816806e1e4644766b"
+        "docs/reference/functions/getHotkeyManager.md": "13106d9f3017fccad8c1ae940ca72d8562c9a893b696fad4d344cb34a789d58d"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
       "evidence": ["docs/reference/functions/getHotkeyManager.md"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
@@ -1184,23 +1184,23 @@
       ]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
-      "fingerprint": "4fd071f01177e14f1dede31ec4ca885eefe12a9029e44fa79bc66142ad61945c",
+      "fingerprint": "446152f19da4e50098d64feadad4773a3cabffd4d426f818b05bb91ec683c44a",
       "snapshot": {
-        "docs/reference/functions/toHotkeyRegistrationView.md": "d24722c981a20344a1ad279dec2a5a9a349d1431743cdaa75d6054d598cbbc2e"
+        "docs/reference/functions/toHotkeyRegistrationView.md": "2ff1079ee72649ea236bc6263783031f8c8139018849f88bb8968a3ef9314b9d"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
       "evidence": ["docs/reference/functions/toHotkeyRegistrationView.md"]
     },
     "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
-      "fingerprint": "4cefac9e752047607d7f9e1ed55a6dca2afc8dfd18a92d6988239eae32071be4",
+      "fingerprint": "747f3d10bc0838f355b7fdfe8143470ffa59216a86b152c86613264e85585531",
       "snapshot": {
-        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "961a67d51f970901a631b374340fc68c8c43c04833021945e2b7113c61358b86"
+        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "9a170c0fd928ec6c5fc135c28226e9f3589ddda4cc03ae96d45fa8c614e78ccd"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
       "evidence": ["docs/reference/interfaces/ActivateHotkeyScopeOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordOptions.md": {
@@ -1244,23 +1244,23 @@
       "evidence": ["docs/reference/interfaces/HotkeyOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationHandle.md": {
-      "fingerprint": "949988e1a117e6b5cee39b1ee4e30dc375b6000638d7145c7a3b95f312ea88ba",
+      "fingerprint": "ae6a5e492d83929fcd84df417da5ce738a1bc9d4253467b7bf50404a528e789b",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "00f8bc76bd241a58b2b3c2c0f87531b3ff75b4c3910630391e7245d89eb6af76"
+        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "c609f892198de6e2c9dd97d0ea88c8b1d3f47d2661a38150d7e12c63fe55ecb7"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
       "evidence": ["docs/reference/interfaces/HotkeyRegistrationHandle.md"]
     },
     "source:docs/reference/interfaces/HotkeyScopesState.md": {
-      "fingerprint": "702c22a7b38052259ea7fb63be347a48ee8002148b04798bd17a82ae6a1b688f",
+      "fingerprint": "2ac3662e7ddd9b21a7b1a5cafcb4c698dc140151cd3e6d6dc812b9d0974c8864",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyScopesState.md": "8c9e170b890a273efdf5a142a26373ad5ca33e4c543caad3bfe440684334ed9d"
+        "docs/reference/interfaces/HotkeyScopesState.md": "9639b77fbfefab542880a1f7aa541600785cf3ea3cf94471a220f7e3822c3a48"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
       "evidence": ["docs/reference/interfaces/HotkeyScopesState.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
@@ -1566,13 +1566,13 @@
       "evidence": ["docs/framework/angular/guides/hotkey-manager.md"]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeyScopesState.md": {
-      "fingerprint": "7a48dd567bb42e929a992d5930da3763330c4614f1b3fc7894f1168809ace6d9",
+      "fingerprint": "ca36d5e277c6b434ea18879bd7056fa3988c98d0a51114a39243c1182b382a22",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectHotkeyScopesState.md": "0a2946510db37d7ff96e7990937516c56401fa269cfc413a94b99801ab64d42c"
+        "docs/framework/angular/reference/functions/injectHotkeyScopesState.md": "26ee53944513d8a6d77262105d27ef4cd70ca71228126066004ad36b576e6008"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
-      "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
       "evidence": [
         "docs/framework/angular/reference/functions/injectHotkeyScopesState.md"
       ]
@@ -1608,13 +1608,13 @@
       "evidence": ["docs/framework/ember/guides/hotkey-manager.md"]
     },
     "source:docs/framework/ember/reference/functions/useHotkeyScopesState.md": {
-      "fingerprint": "796dba7553abd9ea5287841a63742adea4aeb1c47b62a5f4b0ee2b260ebc8c08",
+      "fingerprint": "79d2f28cd0b88d6ead0618b55d68539914520c4eb77a4cffaad35be253ed044a",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useHotkeyScopesState.md": "4a2a611e38a7a3142d58cbc7b7799794999a9294ca3039bd411436848f6c2ce8"
+        "docs/framework/ember/reference/functions/useHotkeyScopesState.md": "55f34f78be85db5f5ed53f4782412183924013ea44f25da49ea084159074599d"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
-      "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
       "evidence": [
         "docs/framework/ember/reference/functions/useHotkeyScopesState.md"
       ]
@@ -1650,13 +1650,13 @@
       "evidence": ["docs/framework/lit/guides/hotkey-manager.md"]
     },
     "source:docs/framework/lit/reference/classes/HotkeyScopesStateController.md": {
-      "fingerprint": "523ba8cf9c568ad0d3cd2682d51fcf5ceb59b04052262369366b0cb3ed448118",
+      "fingerprint": "005841d6a65c821e1f2c9ed8628eab85d9ebb6fa1fbcd782e6d6b60436fa39ca",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyScopesStateController.md": "e0fe912909ae9596b1aec2c7107245dd9d2e927a44534df8c281636d1b0ed4c9"
+        "docs/framework/lit/reference/classes/HotkeyScopesStateController.md": "54b8afc30ef6c01f2ab5393c083db42998b6a60f00bc4e6e04501455bc5ce85b"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
-      "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
       "evidence": [
         "docs/framework/lit/reference/classes/HotkeyScopesStateController.md"
       ]
@@ -1692,13 +1692,13 @@
       "evidence": ["docs/framework/octane/guides/hotkey-manager.md"]
     },
     "source:docs/framework/octane/reference/functions/useHotkeyScopesState.md": {
-      "fingerprint": "f4b07c21948e6f51cc380077a8f39e9eaaccc1a6aebe2c611818b9c5a4a31e8a",
+      "fingerprint": "4a14760123f3c3f1e0ca372c47cd3d827c4213f5bffb3007127c9a481ccb3791",
       "snapshot": {
-        "docs/framework/octane/reference/functions/useHotkeyScopesState.md": "fc67f91dec34c9e40b578a723b8e5013b69710f21227184e6c5585da23beeba0"
+        "docs/framework/octane/reference/functions/useHotkeyScopesState.md": "0fe5133344b9f5d3b18716c64ef1a2fe42f0d4d17ddd41fc9b51696f31bbda57"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
-      "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
       "evidence": [
         "docs/framework/octane/reference/functions/useHotkeyScopesState.md"
       ]
@@ -1734,13 +1734,13 @@
       "evidence": ["docs/framework/preact/guides/hotkey-manager.md"]
     },
     "source:docs/framework/preact/reference/functions/useHotkeyScopesState.md": {
-      "fingerprint": "890e647ef21159e02aaaf9a18a1b69fdfda06d7b727b766ecca39e310b64c66a",
+      "fingerprint": "28196fb3f7bb16be174302d7853db12c6de1e42a52d76e5686f2e14610477ab0",
       "snapshot": {
-        "docs/framework/preact/reference/functions/useHotkeyScopesState.md": "8d3c7762b3ff0a13643debf3009e401b18f658afa960eb5cf42eee934ff4619b"
+        "docs/framework/preact/reference/functions/useHotkeyScopesState.md": "234fe789cc806d99f3c156328a503c288c895a5f3c2332b52713596380b480f2"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
-      "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
       "evidence": [
         "docs/framework/preact/reference/functions/useHotkeyScopesState.md"
       ]
@@ -1766,13 +1766,13 @@
       "evidence": ["docs/framework/react/guides/hotkey-manager.md"]
     },
     "source:docs/framework/react/reference/functions/useHotkeyScopesState.md": {
-      "fingerprint": "f468f97004214a7ce4252f8eb5052b64c59281ff8f109479d8148b816c687c1a",
+      "fingerprint": "6e04abc76cc18c26951ef1f0badb83dee20c906ca91b6a7bfa94c647ee6713b9",
       "snapshot": {
-        "docs/framework/react/reference/functions/useHotkeyScopesState.md": "4b3c5152a7186a8d1374c9541e817134e8b19c4c46abcae11125c053a35b7c2b"
+        "docs/framework/react/reference/functions/useHotkeyScopesState.md": "cc68085ff33099c0a92ab0e5726e0c7845521ee52a061dc6feaffa3122e0478d"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
-      "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
       "evidence": [
         "docs/framework/react/reference/functions/useHotkeyScopesState.md"
       ]
@@ -1808,13 +1808,13 @@
       "evidence": ["docs/framework/solid/guides/hotkey-manager.md"]
     },
     "source:docs/framework/solid/reference/functions/createHotkeyScopesState.md": {
-      "fingerprint": "41160d92acb1ecaa9b6a87c0485aed0a111c6b7a7fef219ccd58e1e244b3d616",
+      "fingerprint": "817c0dede67662b70532bf49a4bfbca2b680c7467105b8e3d98658521f355118",
       "snapshot": {
-        "docs/framework/solid/reference/functions/createHotkeyScopesState.md": "cc33e0725c7550f24afb2aa2a24f017d9c69438cd5e52a72da45b2eb4c461c8a"
+        "docs/framework/solid/reference/functions/createHotkeyScopesState.md": "2c152abe5fc14dfff438272bc36641add4ddf63e8c3a69d46d331f95f4e416cb"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
-      "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
       "evidence": [
         "docs/framework/solid/reference/functions/createHotkeyScopesState.md"
       ]
@@ -1850,13 +1850,13 @@
       "evidence": ["docs/framework/svelte/guides/hotkey-manager.md"]
     },
     "source:docs/framework/svelte/reference/functions/getHotkeyScopesState.md": {
-      "fingerprint": "ec1fd4770f834ab5db40c1f36b64edc818390c8053d7cfc00602f1c2862c70f8",
+      "fingerprint": "6f7fb2ffb8495191c339e07506d0c40b6c5e78661433efd1f27d013e947c06ce",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getHotkeyScopesState.md": "ca3192061e94ed072796328fd899cecaaf235c192b4dc80503d33b36afb26617"
+        "docs/framework/svelte/reference/functions/getHotkeyScopesState.md": "3e93aef1be5de501a63bfab88ede4476d7f0ec6019a03e4e3003f9d9b2232ba1"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
-      "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
       "evidence": [
         "docs/framework/svelte/reference/functions/getHotkeyScopesState.md"
       ]
@@ -1872,13 +1872,13 @@
       "evidence": ["docs/framework/svelte/reference/index.md"]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteHotkeyScopesState.md": {
-      "fingerprint": "7105cad549a731fbd1f8ecb807670ed3bfd8df6b34e6273b6350b2a782eb18c8",
+      "fingerprint": "2e2fa83c6b2cf155912790fdb34770d590264c1af632bdca708d015878439939",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/SvelteHotkeyScopesState.md": "a09dfaa817c4936abc168d6dca700319ff9268880a29a80b84033e7904a1758f"
+        "docs/framework/svelte/reference/interfaces/SvelteHotkeyScopesState.md": "ae2aca3e2c81af96ad75e82d331dd178b05ba2294702eba697c2f084bb1cb10b"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
-      "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/SvelteHotkeyScopesState.md"
       ]
@@ -1904,13 +1904,13 @@
       "evidence": ["docs/framework/vue/guides/hotkey-manager.md"]
     },
     "source:docs/framework/vue/reference/functions/useHotkeyScopesState.md": {
-      "fingerprint": "93be7e625944f497c842bd2b4e732eb30b91cebf85bdf31b0d2134c39050f9e0",
+      "fingerprint": "6e6f9ea9454f9dd6126a1d2990adb783cf20d3d7af77e67ae381b59e2954f3f6",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useHotkeyScopesState.md": "d09afca76f47e8ef3be978ed84b56c05eddf0bde0bd4b5c1890c6b0aa9ce7820"
+        "docs/framework/vue/reference/functions/useHotkeyScopesState.md": "845d23d39875c55060504e72a4c3b0674bff6c9c74eeb13962578e7e998a9954"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
-      "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
       "evidence": [
         "docs/framework/vue/reference/functions/useHotkeyScopesState.md"
       ]
@@ -2228,6 +2228,248 @@
       "outcome": "out-of-scope",
       "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
       "evidence": ["packages/vue-hotkeys/tests/scopes.test.ts"]
+    },
+    "source:docs/reference/classes/AppHotkeysStore.md": {
+      "fingerprint": "f828df2b43041e6744a776337690c0d02b13c98860f9b75de251e8aa013992bb",
+      "snapshot": {
+        "docs/reference/classes/AppHotkeysStore.md": "50a300610a77af4bbc0b172d7cb9c368371a4142a420a64f644bbe1ddc75c76c"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/classes/AppHotkeysStore.md"]
+    },
+    "source:docs/reference/functions/defineAppHotkeys.md": {
+      "fingerprint": "647b508a92a14adcbbc42bc0ef0fa23bd4a233df3d3e08b3ad4c23f2b8b4c923",
+      "snapshot": {
+        "docs/reference/functions/defineAppHotkeys.md": "d04bbc7d0b8e0e1211f2044eac2468374d78a98d00462d33cbf4d8f8db0ceab8"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/functions/defineAppHotkeys.md"]
+    },
+    "source:docs/reference/functions/getAppHotkeyRegistrationOptions.md": {
+      "fingerprint": "92cf5d12da45097cdc4e49ed62acaac928222a0380d4d728310e89c7f85cc0e0",
+      "snapshot": {
+        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "0c617bcad6b46ba6559d016ffe67b420670d16f1de4e6fdd98491d358a6eadf5"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": [
+        "docs/reference/functions/getAppHotkeyRegistrationOptions.md"
+      ]
+    },
+    "source:docs/reference/functions/isAppHotkey.md": {
+      "fingerprint": "f914ae6939c6808d6cb9ae5deeb1782a01c628575c29d343e788374782384994",
+      "snapshot": {
+        "docs/reference/functions/isAppHotkey.md": "98f12cb86a90ab8d18ce90fb073032429ce5447be63dbb4639a17c98f4262bad"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/functions/isAppHotkey.md"]
+    },
+    "source:docs/reference/functions/isCustomHotkey.md": {
+      "fingerprint": "3a08e4334d39705fe2b57bde8ac566a523af316e5d2f859c8ae84a86031e8b20",
+      "snapshot": {
+        "docs/reference/functions/isCustomHotkey.md": "67ec57dabbed31013974a41acf7b34327cf76cb9dc4546262e8160c888e7322a"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/functions/isCustomHotkey.md"]
+    },
+    "source:docs/reference/functions/provideAppHotkeys.md": {
+      "fingerprint": "9305d4b0fc61dfe04dd381dc43efe41f98bbab9f32dd93154875f133a2ced819",
+      "snapshot": {
+        "docs/reference/functions/provideAppHotkeys.md": "da10c53c571e942f6be828a38bc27d8a03778c3d6b156f089a7422753afcc87a"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/functions/provideAppHotkeys.md"]
+    },
+    "source:docs/reference/functions/publishAppHotkeysStore.md": {
+      "fingerprint": "d3a6340168e76506212447895bc32658149f65f5479a4ebfeb28f4f9cfb05ead",
+      "snapshot": {
+        "docs/reference/functions/publishAppHotkeysStore.md": "efcee078292e87d9602ecfa0c75e5a056a281b984d6454b141d3e8e2a0c77168"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/functions/publishAppHotkeysStore.md"]
+    },
+    "source:docs/reference/functions/resolveAppHotkey.md": {
+      "fingerprint": "38f7fe091d9e550b2d793437aefc6541acd5bec211b81a9873261a5a07891f63",
+      "snapshot": {
+        "docs/reference/functions/resolveAppHotkey.md": "e53c24e19564a87633ca3b052187338938ab267284dd7f3818ed246c374de859"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/functions/resolveAppHotkey.md"]
+    },
+    "source:docs/reference/interfaces/AppHotkey.md": {
+      "fingerprint": "2cb6bee7af7e2870e2287f3ac815f56e8df371ee646f9a8f43e190b645acd411",
+      "snapshot": {
+        "docs/reference/interfaces/AppHotkey.md": "a095532ac3088bbf5ca788bdf923168ae6940cfd5afd854f7380b3c4be11f5bc"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/interfaces/AppHotkey.md"]
+    },
+    "source:docs/reference/interfaces/AppHotkeyInput.md": {
+      "fingerprint": "c17190e4db0b14d36cc770cb9efd0cae23232c95654e2669b3deaf8de5bb2c44",
+      "snapshot": {
+        "docs/reference/interfaces/AppHotkeyInput.md": "1f68576d57cf3698eebdcbe939c8b3b232d7cfe044e7ae3b31a1f9189b358d61"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/interfaces/AppHotkeyInput.md"]
+    },
+    "source:docs/reference/interfaces/AppHotkeyListItem.md": {
+      "fingerprint": "c38d3268d7ff0b329ad412c3abe8daf510018f4ea07f00ec42b3710a2d099a15",
+      "snapshot": {
+        "docs/reference/interfaces/AppHotkeyListItem.md": "582e9005cde22ad69d70c50b630b0a720a6ed45ae708dc3da1740f0f3e0d6219"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/interfaces/AppHotkeyListItem.md"]
+    },
+    "source:docs/reference/interfaces/AppHotkeysState.md": {
+      "fingerprint": "a7419b4f629147566d48a1659fe45ab34079b0c31d5ebeaa7a1d01b0d3cadd87",
+      "snapshot": {
+        "docs/reference/interfaces/AppHotkeysState.md": "b07c0f7d396a38576ba9c5380f828745afe830d52fb1352be9abdf0f0e8cfb5f"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/interfaces/AppHotkeysState.md"]
+    },
+    "source:docs/reference/interfaces/AppHotkeysStoreOptions.md": {
+      "fingerprint": "ba071dd4450f86b0ca98300282816ddb0e015cc34a0b1d4d0c176393b70914dc",
+      "snapshot": {
+        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "5c29ca5acee65ef3627f96d10d63cef85d1d709fcc37b7cdd581a64d6e13b9ab"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/interfaces/AppHotkeysStoreOptions.md"]
+    },
+    "source:docs/reference/interfaces/Register.md": {
+      "fingerprint": "5a3817406a9df58f34a9f45636660dd7fd707927437dae0872cc361d2fb82af1",
+      "snapshot": {
+        "docs/reference/interfaces/Register.md": "7b07e9f1bc862741ebedcb80829c2342180070ceace17379dac73885b5ae1cdb"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/interfaces/Register.md"]
+    },
+    "source:docs/reference/type-aliases/AppHotkeyChordOptions.md": {
+      "fingerprint": "d36d30b1e7b9fd262191729948838ac0c1727cfe40c7bca34f38376830be0431",
+      "snapshot": {
+        "docs/reference/type-aliases/AppHotkeyChordOptions.md": "8e653952e92c0332a174f743e7afb3eab2bc9548c69446a96e42f9960743d58c"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/type-aliases/AppHotkeyChordOptions.md"]
+    },
+    "source:docs/reference/type-aliases/AppHotkeyDefaultKind.md": {
+      "fingerprint": "e3c9ec648e05e0c68b421d58d88b9fe03fcc83240ba36b38ac9419d32788f244",
+      "snapshot": {
+        "docs/reference/type-aliases/AppHotkeyDefaultKind.md": "3a6b97eca5267aa32468ab7f74dbf6bee43b831f163d0645bd8efff3a1965986"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/type-aliases/AppHotkeyDefaultKind.md"]
+    },
+    "source:docs/reference/type-aliases/AppHotkeyId.md": {
+      "fingerprint": "13cd19340afc6c30726eaaaea2fd01c3dbeb686b77dc6b603d6e9ead6d7b941c",
+      "snapshot": {
+        "docs/reference/type-aliases/AppHotkeyId.md": "573d414ccb09488974db4f4e5073c97815e1d11091f5e396244a71db2106d728"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/type-aliases/AppHotkeyId.md"]
+    },
+    "source:docs/reference/type-aliases/AppHotkeyOptions.md": {
+      "fingerprint": "9c72544939003f08d6f4464108d117d108cb903c7c307d5fabbdc904811b4a04",
+      "snapshot": {
+        "docs/reference/type-aliases/AppHotkeyOptions.md": "dd13bc7632e78bf3c807fe6ee7d780f89ad773a03158eb743ca5f8f790b4adf2"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/type-aliases/AppHotkeyOptions.md"]
+    },
+    "source:docs/reference/type-aliases/AppHotkeySequenceOptions.md": {
+      "fingerprint": "bda2571a41bde9a3330ba9eb5d8be15854be1dc55cf451fcb74d8ac022502b8a",
+      "snapshot": {
+        "docs/reference/type-aliases/AppHotkeySequenceOptions.md": "127bf99307fe9194d5ab3bb30105e70bee774998f106b9212a22e194c99fb5b6"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/type-aliases/AppHotkeySequenceOptions.md"]
+    },
+    "source:docs/reference/type-aliases/AppHotkeyStatus.md": {
+      "fingerprint": "3f3c262b4152ded4a199e4c78a8701dbcda0a8ad3f65d66985540e21d6a0d5e6",
+      "snapshot": {
+        "docs/reference/type-aliases/AppHotkeyStatus.md": "6b07bdb5226d3fc10790ba14bff85858b3dd8ae0e0d0428082b42dbed4ed7024"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/type-aliases/AppHotkeyStatus.md"]
+    },
+    "source:docs/reference/type-aliases/AppHotkeys.md": {
+      "fingerprint": "bdbcad81cc03052c676df899d9140bfbc89f804c62644ac630f1926dc2de10f2",
+      "snapshot": {
+        "docs/reference/type-aliases/AppHotkeys.md": "3ceec2f33ce55d06ec3b7385b9723106397898f82d266925d1ddfa142829a024"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/type-aliases/AppHotkeys.md"]
+    },
+    "source:docs/reference/type-aliases/CustomHotkeys.md": {
+      "fingerprint": "bf1d46020fa0a30aab23a64c44417bc6e922c30f8a4482e3281d916c7df71d35",
+      "snapshot": {
+        "docs/reference/type-aliases/CustomHotkeys.md": "44ec5b2926da7da2a41b11bb616cdb1c8b9b7a0bb978cf9f68d17683991da7e5"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/type-aliases/CustomHotkeys.md"]
+    },
+    "source:docs/reference/type-aliases/DefinedAppHotkeys.md": {
+      "fingerprint": "8a4ab3c3b32a49845cf5018d40564992086f569f697efec5c5e99f97c29e77fa",
+      "snapshot": {
+        "docs/reference/type-aliases/DefinedAppHotkeys.md": "be0abe9a9a87b9c1c0cc9a4576dd439d1ecc35046cd20b7cece20d2547a4dd2c"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/type-aliases/DefinedAppHotkeys.md"]
+    },
+    "source:docs/reference/type-aliases/RegisteredAppHotkeys.md": {
+      "fingerprint": "ba29005e68c10ac1603365d12f96f48ae71186024d88c06c159432b035544f64",
+      "snapshot": {
+        "docs/reference/type-aliases/RegisteredAppHotkeys.md": "1ed7d6a26ac53dbb104ade03d24267749f8365e6ad765de73053aca6f11c7139"
+      },
+      "head": "5b07f208a45afb5b396c628025c52294de62d313",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "evidence": ["docs/reference/type-aliases/RegisteredAppHotkeys.md"]
     }
   }
 }
