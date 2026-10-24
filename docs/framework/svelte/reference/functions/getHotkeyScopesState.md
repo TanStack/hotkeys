@@ -7,7 +7,7 @@ title: getHotkeyScopesState
 function getHotkeyScopesState(): SvelteHotkeyScopesState;
 ```
 
-Defined in: packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts:38
+Defined in: [packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts:38](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts#L38)
 
 Svelte function that returns reactive access to the hotkey manager's scope
 state: the active scopes, the exclusive scope that owns the keyboard, and

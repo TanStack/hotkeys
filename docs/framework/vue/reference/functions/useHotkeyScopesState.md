@@ -7,7 +7,7 @@ title: useHotkeyScopesState
 function useHotkeyScopesState(): Ref<HotkeyScopesState>;
 ```
 
-Defined in: useHotkeyScopesState.ts:26
+Defined in: [useHotkeyScopesState.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyScopesState.ts#L26)
 
 Vue composable that returns a ref of the hotkey manager's scope state: the
 active scopes, the exclusive scope that owns the keyboard, and the scopes

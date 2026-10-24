@@ -7,7 +7,7 @@ title: defineAppHotkeys
 function defineAppHotkeys<T>(definitions): DefinedAppHotkeys<T>;
 ```
 
-Defined in: [app-hotkeys.ts:178](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L178)
+Defined in: [app-hotkeys.ts:179](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L179)
 
 Declares every app hotkey up front, without registering any, so cheat
 sheets and settings screens can list hotkeys whose components have not

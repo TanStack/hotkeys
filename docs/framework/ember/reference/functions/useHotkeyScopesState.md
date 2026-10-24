@@ -7,7 +7,7 @@ title: useHotkeyScopesState
 function useHotkeyScopesState(owner): EmberHotkeyState<HotkeyScopesState>;
 ```
 
-Defined in: packages/ember-hotkeys/src/useHotkeyScopesState.ts:11
+Defined in: [packages/ember-hotkeys/src/useHotkeyScopesState.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeyScopesState.ts#L11)
 
 Reads the hotkey manager's scope state: the active scopes, the exclusive
 scope that owns the keyboard, and the scopes it allows or suspends. Pass the

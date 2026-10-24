@@ -7,7 +7,7 @@ title: createHotkeyScopesState
 function createHotkeyScopesState(): () => HotkeyScopesState;
 ```
 
-Defined in: createHotkeyScopesState.ts:25
+Defined in: [createHotkeyScopesState.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyScopesState.ts#L25)
 
 SolidJS primitive that returns a signal of the hotkey manager's scope state:
 the active scopes, the exclusive scope that owns the keyboard, and the

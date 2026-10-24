@@ -7,6 +7,6 @@ title: AppHotkeyOptions
 type AppHotkeyOptions = AppHotkeyChordOptions & AppHotkeySequenceOptions;
 ```
 
-Defined in: [app-hotkeys.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L43)
+Defined in: [app-hotkeys.ts:44](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L44)
 
 Every declared option. Kind-specific options apply only while the effective hotkey has that kind.

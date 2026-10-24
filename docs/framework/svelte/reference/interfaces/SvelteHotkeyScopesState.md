@@ -3,7 +3,7 @@ id: SvelteHotkeyScopesState
 title: SvelteHotkeyScopesState
 ---
 
-Defined in: packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts:5
+Defined in: [packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts:5](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts#L5)
 
 ## Properties
 
@@ -13,4 +13,4 @@ Defined in: packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts:5
 readonly state: HotkeyScopesState;
 ```
 
-Defined in: packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts:6
+Defined in: [packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts:6](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts#L6)

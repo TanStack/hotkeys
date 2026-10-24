@@ -7,7 +7,7 @@ title: useHotkeyScopesState
 function useHotkeyScopesState(): HotkeyScopesState;
 ```
 
-Defined in: useHotkeyScopesState.ts:21
+Defined in: [useHotkeyScopesState.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyScopesState.ts#L21)
 
 Preact hook that returns the hotkey manager's scope state: the active
 scopes, the exclusive scope that owns the keyboard, and the scopes it
