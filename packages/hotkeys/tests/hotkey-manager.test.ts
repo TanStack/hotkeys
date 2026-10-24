@@ -796,6 +796,51 @@ describe('HotkeyManager', () => {
         panel.remove()
       })
 
+      it('lets a chord that fires inside a shadow root decide', () => {
+        const manager = HotkeyManager.getInstance()
+        const host = document.createElement('div')
+        const editor = document.createElement('div')
+        const button = document.createElement('button')
+        editor.appendChild(button)
+        host.attachShadow({ mode: 'open' }).appendChild(editor)
+        document.body.appendChild(host)
+        const onEditor = vi.fn()
+        // At this document listener, event.target is the shadow host.
+        manager.register('Mod+S', vi.fn(), {
+          platform: 'mac',
+          enabled: false,
+          capture: true,
+          preventDefault: 'always',
+        })
+        manager.register('Mod+S', onEditor, {
+          platform: 'mac',
+          target: editor,
+          preventDefault: false,
+        })
+
+        const event = new KeyboardEvent('keydown', {
+          key: 's',
+          metaKey: true,
+          bubbles: true,
+          composed: true,
+        })
+        // Browsers retarget events leaving a shadow root: listeners outside it
+        // see the host as event.target. happy-dom doesn't, so mimic it.
+        Object.defineProperty(event, 'target', {
+          get(this: KeyboardEvent) {
+            return host.shadowRoot!.contains(this.currentTarget as Node)
+              ? button
+              : host
+          },
+        })
+        const preventDefault = vi.spyOn(event, 'preventDefault')
+        button.dispatchEvent(event)
+
+        expect(preventDefault).not.toHaveBeenCalled()
+        expect(onEditor).toHaveBeenCalledOnce()
+        host.remove()
+      })
+
       it('lets a sequence that can fire decide', () => {
         const manager = HotkeyManager.getInstance()
         manager.register('Mod+K', vi.fn(), {

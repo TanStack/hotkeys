@@ -22,7 +22,6 @@ import {
   optionsEqual,
 } from './_registration'
 import {
-  eventReachesTarget,
   getTargetDocument,
   isEventForTarget,
   shouldIgnoreInputEvent,
@@ -682,11 +681,14 @@ export class HotkeyManager {
     event: KeyboardEvent,
     eventType: 'keydown' | 'keyup',
   ): boolean {
+    // The composed path includes targets inside open shadow roots, which
+    // `event.target` hides from listeners outside them.
+    const path = event.composedPath()
     for (const registration of this.registrations.state.values()) {
       if (
         !this.#isLive(registration) ||
         registration.options.eventType !== eventType ||
-        !eventReachesTarget(event, registration.target) ||
+        !path.includes(registration.target) ||
         (ignoresInputs(registration) &&
           shouldIgnoreInputEvent(
             event,

@@ -95,7 +95,7 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "970c0b6b4b13ae5c4724ed3b78b6defeddd7a49775ea8a5e483f34a7885adc1d",
+      "fingerprint": "bed2ef31e1a81f54691559cae4132e56f7e9ba2333e5e92a615330179da1bdb2",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
         "docs/framework/react/guides/hotkeys.md": "4d12140117ce4ceb3fb9bc17867efe30ae7085609714800e962c927ce07f019f",
@@ -104,7 +104,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "507ec6b32b7b1836276ee6527acdb3240f998d72dfb90f07c9e9820e688e8714",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "90e6512868c194f6c906711cd16882c204600a3118b08b7a101ff6b409012538",
-        "packages/hotkeys/src/hotkey-manager.ts": "3a13c5d6956716e76e52be672647680fbc1307f4acfd1703a89a6c3e9818fb9b",
+        "packages/hotkeys/src/hotkey-manager.ts": "0f8c253810bc4027d35185483a09cbd403cdd04c31189288f8a1211c642587d4",
         "packages/hotkeys/src/match.ts": "3a50921a68f79183b4ffac98e07e7fdf043711bc071f419c9cdc03422d25f268",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "25c572e968a78fd8df61f0bc98ba8adb41ecf0874437725e5ba28dd171e44fe1",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -116,13 +116,10 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "451dc7569f71956e5ce5e691ecc18ce14d4240b7edaa20cad58075747416c33d"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
-      "outcome": "updated",
-      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
-      "evidence": [
-        "packages/hotkeys/src/hotkey-manager.ts",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
-      ]
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "no-change",
+      "reason": "Internal fix: the preventDefault 'always' check uses the event's composed path so live hotkeys inside shadow roots count. Skill guidance unchanged.",
+      "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
       "fingerprint": "574f78494c2c097169d5a20dd98281169784765fcc312da686e60d581fb00e56",
@@ -288,7 +285,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "d4a63b24024e6df6f81635775d59fb98e7dc03a049ebd9ba4eb44d1c9c1c8f47",
+      "fingerprint": "cd9093c837657c250149da40c85fa4c98b1b30506fba733551940d3474091d8e",
       "snapshot": {
         "_artifacts/domain_map.yaml": "dd50dde7eec97230c015f793602239e721dacb370936eafd4554988b4a2c1c89",
         "_artifacts/skill_spec.md": "57693ee30406d1a76d7ec201cc480e37611b23141ec70d7f178b0b07f56248fd",
@@ -348,7 +345,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "90e6512868c194f6c906711cd16882c204600a3118b08b7a101ff6b409012538",
         "packages/hotkeys/src/app-hotkeys.ts": "5bee8b0042a7385c8963aabf9b0ca7b6aad5ef8aab41b2759961a7ac6cf6849c",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
-        "packages/hotkeys/src/hotkey-manager.ts": "3a13c5d6956716e76e52be672647680fbc1307f4acfd1703a89a6c3e9818fb9b",
+        "packages/hotkeys/src/hotkey-manager.ts": "0f8c253810bc4027d35185483a09cbd403cdd04c31189288f8a1211c642587d4",
         "packages/hotkeys/src/hotkey-recorder.ts": "2ebed5665e56f5ee87130440fc93f2571aef7940b6153c05204cd0f3e7eea4cc",
         "packages/hotkeys/src/match.ts": "3a50921a68f79183b4ffac98e07e7fdf043711bc071f419c9cdc03422d25f268",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "044e792b3c90a99d3c6c3c2da639cf4bf2a6b2a073d13ee2caa54e951807e095",
@@ -417,9 +414,9 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "476a5a50a21aefe6243f9bc6e8c6a679978542d6ad8b52e6a2b0f806cd5ef89a",
         "packages/vue-hotkeys/src/useHotkeys.ts": "f971e9938eca3188b3af0fcc96d095330f9f6abfd70cb848d2de5c80f8d09639"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "no-change",
-      "reason": "Focus check extends existing hint behavior covered by adapter skills.",
+      "reason": "Internal fix: the preventDefault 'always' check uses the event's composed path so live hotkeys inside shadow roots count. Skill guidance unchanged.",
       "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
     },
     "source:.changeset/intent-skills.md": {
@@ -653,23 +650,23 @@
       "evidence": ["docs/framework/vue/reference/functions/useHotkeyHint.md"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "7a1ebdd9d0676352ce6a5f1359b3d0f8a21986b3ace53c02a5ab2b80ee130012",
+      "fingerprint": "63ec4d7023a48c5bf9f5ef2496ad6de587a63df5d94f09a52a2b9c30395702b9",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "38f4d8cdab16568822b1c63bb3eea7c272c97a756611a41cc8fe6336668c6cd9"
+        "docs/reference/classes/HotkeyManager.md": "8d1fdc99928ee2cd7b80a962fdd361e4f7cf41fe57af65fa1502a7e67ff7750e"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": ["docs/reference/classes/HotkeyManager.md"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "3dc7566d8ecfd412cb3a53141f60e7a901e775f868ed81448c60a6d1e7bb2a4d",
+      "fingerprint": "66e71338a233cefd3058103f535e9d087eb35c91297beb021308f5ff3360a2f3",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "f96575ab897adfe39f3cb52f1fc704afb41d4d9a450c9578574a11d45770871c"
+        "docs/reference/functions/getHotkeyManager.md": "7cf10e8c7ef2e6cfc13510bcac5612140928ec84910fef035d1353cbd07420df"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": ["docs/reference/functions/getHotkeyManager.md"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
@@ -1167,145 +1164,145 @@
       ]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
-      "fingerprint": "939f535fa15f84443374c203234808b23f02d78232b2df50877a5869e23e36a0",
+      "fingerprint": "b1777214cb3ca4775f61844c5c7a4815135b7746b8290a2189c78a098ca09aa3",
       "snapshot": {
-        "docs/reference/functions/toHotkeyRegistrationView.md": "022dbf74696054503def30712ed8e3dac298f1a008c61a4e405093475f80b840"
+        "docs/reference/functions/toHotkeyRegistrationView.md": "d29b6e8185cbd97fcb4cef301f6d6ba7c1f34fc0e8fd43e8990df556b14c156e"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": ["docs/reference/functions/toHotkeyRegistrationView.md"]
     },
     "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
-      "fingerprint": "5ec1d27ac8c4662653e9f8cda34f980797389be91532348eac5c6333edf1d4e2",
+      "fingerprint": "3f310d8d4c5509367c2fa989c92965cdac48a9429a0761e35b7f1e238cba9e49",
       "snapshot": {
-        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "c23998d96f93717424f85124811ac4e2d91ee5231b23108b205f7f081a49f737"
+        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "5f53baec9e5f3373e4b1292daea198ad91cdc5c85849a2a983016c1068fb6e6d"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": ["docs/reference/interfaces/ActivateHotkeyScopeOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordOptions.md": {
-      "fingerprint": "5be2593358f4e3ea12f653b9ec62a305bfc9082a0dfff57c4c4d21303b4c098c",
+      "fingerprint": "404bc38543e861ec69922d37c22812def0ec459710625c6b99334a6f57192bb2",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordOptions.md": "41e202851d47d0e8741d2d107071de465c15b5af6c4110596d387cd0e49c1736"
+        "docs/reference/interfaces/HotkeyChordOptions.md": "d6eada3aa2355bd56bfb4edf3e149069591df3e99f3e261421403bbaa6afc996"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": ["docs/reference/interfaces/HotkeyChordOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistration.md": {
-      "fingerprint": "917911f3e890f5399a21169c888d432c633ef44483454cb4df785aa1bfd104ba",
+      "fingerprint": "f514cd197b6e420ea05d5ae89b9254e0b62b8e2142f85c6acfba4ca56afb1430",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistration.md": "aa311bb758787a7705515c4337b629386df8082672aad2f39d1f790578fdf092"
+        "docs/reference/interfaces/HotkeyChordRegistration.md": "900bb35bac81b47304267dc37b3a560ec6d36913b886adca6cf4457a628c2cc3"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": ["docs/reference/interfaces/HotkeyChordRegistration.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistrationView.md": {
-      "fingerprint": "583f8c2f999d4216c88b45a3071b29b7ac230088ffa2708032bb1a2c2280e93b",
+      "fingerprint": "f49134dcdefb2603dca78b1f4939ccc390b19ad74bd19f7b11d1f183fb3e7bb0",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "1671e8e2ed368b2f5c36a14c09eafbd82191c00c4022ea7da821a675e2ea115c"
+        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "880f468ad4f3df515305ac851a3d3b758201469daa7da23a0c09cf96a6d85ef3"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": ["docs/reference/interfaces/HotkeyChordRegistrationView.md"]
     },
     "source:docs/reference/interfaces/HotkeyOptions.md": {
-      "fingerprint": "ca5e6ac373fbf21f4ec51e423e7e90bd13c63e14ba23078a99fc0a86ec12daff",
+      "fingerprint": "4133fc170ca919556ddec281e2c2e16518b0d1ba9654a9d6ad268ae5c3866a97",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyOptions.md": "e9a93efb65a3e55ecf91c57b3bb326b9d37d4404172ae50fd0278297b0b4fbfd"
+        "docs/reference/interfaces/HotkeyOptions.md": "0aa93e7d3507e2e7a27b689278e6d574cb919ba05911b6e5a7974c5939161a5b"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": ["docs/reference/interfaces/HotkeyOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationHandle.md": {
-      "fingerprint": "764c586afe3a6b838282105d6c3e8126e15753b58b147eb25727079d7c442600",
+      "fingerprint": "301c7aced22fe44316ad6640048aef49a1e02a431c2d9754d0a53fb849fc78b4",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "4e0aefb635a37fdfb96694b64f1be1f53b7c2e1fa5db2797d7bf66c9148d7daa"
+        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "d3821b7c90ae6438f3c926d7e6bce1cef6b33933d5f09d81ed0c394e6cc6102d"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": ["docs/reference/interfaces/HotkeyRegistrationHandle.md"]
     },
     "source:docs/reference/interfaces/HotkeyScopesState.md": {
-      "fingerprint": "fc525c22b7adb576c076ce845abb896bf8c43798c649e5a362deae32b35b7312",
+      "fingerprint": "7a007ba238c2b279533546c575f2ea5751ec5f01e3f8b56f756f0bb8c4589645",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyScopesState.md": "75b4219121dd87b8ca5aa192b690f2c9b97f6fb6d99e5931cd878acc2439cafb"
+        "docs/reference/interfaces/HotkeyScopesState.md": "501c21ebe6438ab83231c52d03834e6e114e7f5647cca258c297a74ecd1f7228"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": ["docs/reference/interfaces/HotkeyScopesState.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
-      "fingerprint": "9aa543511871fad9244082ca1316582d68614227417b7774ac7997aceccdddb2",
+      "fingerprint": "9ce40ae235071ab7685e0dcaf07bd1789692fd4bb3950c8187741c8bb6c5b473",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceOptions.md": "0761914baeb45f28538abe15602565303f2a9c23052eb459c0a2849d80847fe9"
+        "docs/reference/interfaces/HotkeySequenceOptions.md": "d028d435b3cd9c027c5d023b5b39b397affda59d91954b5ea19a5f69f7816248"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": ["docs/reference/interfaces/HotkeySequenceOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistration.md": {
-      "fingerprint": "a1d167d1e8b57886bfbc96fb0588b7985d444fcc1fb8a975838c1360ee626943",
+      "fingerprint": "149fb9cfb777b3141cb9b4abb8a1c97846eed6182d246cca745335bced6f447c",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistration.md": "f080a4a5062b187fa08a87abdf2d24c6fef1fe7ad2d6dac2ca3c8cb7700add47"
+        "docs/reference/interfaces/HotkeySequenceRegistration.md": "c44ab6bd9ceeff3a3d687d679aa0a723d16b7b1b879298ce8ea71f94b66de06d"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": ["docs/reference/interfaces/HotkeySequenceRegistration.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistrationView.md": {
-      "fingerprint": "64a6ff8315ba496e9b51dd77ec91611fa4e1c561cb46c7b631fc54b15ef98a03",
+      "fingerprint": "37443384691d186bfdb48967f42cbd620b98aeb92ab259a763ed1298b2841e41",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "3d2110cd4a1289dc16d4f40f52fe757e5514c1526293f217a27e10be27bbd1b3"
+        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "ad0e1f057443f1a46ad3a7e34f2460d331915a92f806b0757668a3e2cc405485"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": [
         "docs/reference/interfaces/HotkeySequenceRegistrationView.md"
       ]
     },
     "source:docs/reference/type-aliases/HotkeyOptionsFor.md": {
-      "fingerprint": "5056acbfc8b249d782fb86387204f796261896b1cfcfbbfb6d8f1656c85a68bd",
+      "fingerprint": "7fdc4618f808980418e1b2b34df6210cdb64523ba3dfbae3bd4530013189c1c7",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyOptionsFor.md": "85d64a2e3fa6771ba1515672284e6dd8b11cd9be33cb99f67b0af1fb8070feae"
+        "docs/reference/type-aliases/HotkeyOptionsFor.md": "ee43c56352a9ee3df76dc28bd5a13a10596dca25199f1f6cc4cfaf1f3d369c2c"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": ["docs/reference/type-aliases/HotkeyOptionsFor.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistration.md": {
-      "fingerprint": "fddf186572bf30c1ff52549ed161a7127b8c36a91ab0c6a3a7d060b568f4541b",
+      "fingerprint": "316b2a22813a196d0950b8d20d23e945fc45bab8c350bd1972e285f5f722a990",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistration.md": "ee848969de831a9d66e604b890e26bd98d06893a9f1488e02ed2ea6c1c907367"
+        "docs/reference/type-aliases/HotkeyRegistration.md": "cb575b12d108217046edada2f8a292eacc86d70de5417be426ae28394dc3e672"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": ["docs/reference/type-aliases/HotkeyRegistration.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationView.md": {
-      "fingerprint": "53747d9174d78a5ba78084865f10647679c60a8189c275508489299abf89712d",
+      "fingerprint": "f240d5e45cce1bf5073844dae3750bdfcd046952f1accb8a3125a6559fe7d3fc",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationView.md": "1653d5a79ae3e6099456630f514f5a21034418d5764a731a19dcc95a897d310b"
+        "docs/reference/type-aliases/HotkeyRegistrationView.md": "ebe8cca61a81c7a057e4d578b5992aa21b99e0c54aa43a65f6573c0459422f3d"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": ["docs/reference/type-aliases/HotkeyRegistrationView.md"]
     },
     "source:packages/hotkeys-devtools/src/components/DetailsPanel.tsx": {
@@ -1319,13 +1316,13 @@
       "evidence": ["packages/hotkeys-devtools/src/components/DetailsPanel.tsx"]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "6a0e5ffd746797cd092ea6892168a9b73ed260430cb9bfeae07eb8ed1b2ca9cb",
+      "fingerprint": "de86c88a97ef8682c66903441e37ab48367a00a0cd2d5725b90156c4aeab253b",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "64ad769ba06681aaa29b592eac3e4c3c0910f4e86cc4b553c76fdf696d69d26e"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "25339301d7448d59984bf5701c88c50a7abb640328849a9afd80ed239ca2a466"
       },
-      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": ["packages/hotkeys/tests/hotkey-manager.test.ts"]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
@@ -1919,13 +1916,13 @@
       "evidence": ["docs/reference/index.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationStatus.md": {
-      "fingerprint": "2d29ecee59333ef95f0744a0a49a5d4121f6c04893aee42de501ec97fe848f81",
+      "fingerprint": "38543fbbd925807dc94cef9dd358790607fff0d24bc40fb209c63e92bfd602a1",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "c2e378bf843fc93f04bc52c5d8830bf06aa74e045316af281b82da4ecc20aebf"
+        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "71783284309b35853ca3345b7c04a7f167bf06e4f934f17192cb31d36e236698"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": ["docs/reference/type-aliases/HotkeyRegistrationStatus.md"]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyScopesState.ts": {
@@ -2455,24 +2452,34 @@
       "evidence": ["docs/reference/type-aliases/RegisteredAppHotkeys.md"]
     },
     "source:docs/reference/type-aliases/Target.md": {
-      "fingerprint": "d644ced87ab9db647b3057552ad87e46bcfcb595db90b6e4d1d4c9e33d2f61a4",
+      "fingerprint": "976d4e23e8e78ae594748914939a8235ce56a6c218bed648d31028ae3dc09fac",
       "snapshot": {
-        "docs/reference/type-aliases/Target.md": "7c5f4053621ef6f500d6bb2b32dfe2be2487523edf1df310c43d8d0a7e7cf23d"
+        "docs/reference/type-aliases/Target.md": "9776565467dd5900e7254fe1638c5ab8eaf3538457f750d24ff3edcc995295eb"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": ["docs/reference/type-aliases/Target.md"]
     },
     "source:packages/hotkeys/src/_event-target.ts": {
-      "fingerprint": "8956d441d61210be77391ba544e251d89cce1312728facc9837f03ded7870b87",
+      "fingerprint": "622b2f37e65222c024079ac63c92032673b339c29fa1a9adc5d71f61b09509f5",
       "snapshot": {
-        "packages/hotkeys/src/_event-target.ts": "82972e6c7ca01731ffc82e3cb4923c789b00a1fd8377daa724ed77908cf29b73"
+        "packages/hotkeys/src/_event-target.ts": "8feccad15940e5f701cf3b9efbf8a6b2aba02f4fbae9a13b662d81ffb80281f8"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "no-change",
-      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "reason": "Internal fix: the preventDefault 'always' check uses the event's composed path so live hotkeys inside shadow roots count. Skill guidance unchanged.",
       "evidence": ["packages/hotkeys/src/_event-target.ts"]
+    },
+    "source:docs/config.json": {
+      "fingerprint": "0cb4a1bd42647637f05ce7b7ff6121bdd4a0e8a013d45d787bc1c4a07dfebb95",
+      "snapshot": {
+        "docs/config.json": "36232fa7bc9c068ef992988036485655fb9587f7dee6029abe19f19f81a94021"
+      },
+      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "outcome": "out-of-scope",
+      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "evidence": ["docs/config.json"]
     }
   }
 }
