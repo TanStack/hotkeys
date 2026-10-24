@@ -3,7 +3,7 @@ id: ActivateHotkeyScopeOptions
 title: ActivateHotkeyScopeOptions
 ---
 
-Defined in: [hotkey-manager.ts:398](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L398)
+Defined in: [hotkey-manager.ts:400](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L400)
 
 Options for `HotkeyManager.activateScope`.
 
@@ -19,7 +19,7 @@ optional exclusive?:
 };
 ```
 
-Defined in: [hotkey-manager.ts:405](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L405)
+Defined in: [hotkey-manager.ts:407](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L407)
 
 Suspend every other scope, including `'global'`, until this activation is
 released. Scopes nested in this one stay active. Pass `{ allow }` to keep
@@ -34,7 +34,7 @@ still has to be activated, except `'global'`.
 optional parent?: string;
 ```
 
-Defined in: [hotkey-manager.ts:411](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L411)
+Defined in: [hotkey-manager.ts:413](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L413)
 
 The scope this one is nested in. A nested scope takes precedence over its
 ancestors even when it was activated first, as nested providers are when

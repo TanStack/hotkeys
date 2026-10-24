@@ -10,4 +10,4 @@
 - Scopes follow the component tree, not the DOM, so a portaled dialog keeps its scope.
 - The hotkey that opens an exclusive dialog is suspended with the rest of the page. To close the dialog with the same keys, register that hotkey inside the dialog too.
 - To show which scope owns the keyboard, use the adapter's scope state API, such as `useHotkeyScopesState()` in React. Don't subscribe to `manager.scopes` by hand.
-- To list only hotkeys that can fire, filter the adapter's registrations by `status === 'active'`. `'suspended'` means the hotkey's scope is inactive or suspended, and `'disabled'` means `enabled: false`.
+- To list only hotkeys that are on, filter the adapter's registrations by `status === 'active'`. `'suspended'` means the hotkey's scope is inactive or suspended, and `'disabled'` means `enabled: false`.

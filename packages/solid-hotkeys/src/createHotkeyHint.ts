@@ -19,8 +19,7 @@ import type {
  * The hint shows only while the hotkey can fire: some registration of it is
  * enabled and in an active scope. A sequence reveals its hint from its first
  * step, and an app hotkey matches its registrations by id and uses its
- * effective hotkey (false while unbound). This helper does not register a
- * shortcut or check whether its target is focused.
+ * effective hotkey (false while unbound). This helper does not register a shortcut. A hotkey on an element counts only while focus is inside it.
  */
 export function createHotkeyHint(
   hotkey:

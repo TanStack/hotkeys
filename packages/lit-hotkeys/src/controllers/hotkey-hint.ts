@@ -30,7 +30,7 @@ export class HotkeyHintController implements ReactiveController {
 
   /**
    * Current visibility. True only while the hotkey can fire: some registration
-   * of it is enabled and in an active scope. Focus and `target` are not checked.
+   * of it is enabled and in an active scope. A hotkey on an element counts only while focus is inside it.
    */
   get value(): boolean {
     return this.visible

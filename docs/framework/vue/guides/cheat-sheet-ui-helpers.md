@@ -78,9 +78,9 @@ const named = computed(() =>
 </template>
 ```
 
-Filtering by name leaves out hotkeys you didn't mean to list, such as a dialog's `Escape`. Filtering by `status` leaves only the hotkeys that can fire right now.
+Filtering by name leaves out hotkeys you didn't mean to list, such as a dialog's `Escape`. Filtering by `status` leaves only the hotkeys that are on right now.
 
-`status` is `'active'` when the hotkey can fire, `'suspended'` when its [scope](./hotkeys-provider-and-scopes) is inactive or suspended by an exclusive scope, and `'disabled'` when it has `enabled: false`. `useHotkeyRegistrations` updates when scopes change, so the list stays current.
+`status` is `'active'` when the hotkey is enabled and its scope is active, `'suspended'` when its [scope](./hotkeys-provider-and-scopes) is inactive or suspended by an exclusive scope, and `'disabled'` when it has `enabled: false`. `useHotkeyRegistrations` updates when scopes change, so the list stays current.
 
 Each registration view has an `id`, the `hotkey`, a `status`, its `options` (including `meta`, `enabled`, and `scope`), its `target`, and a `triggerCount`. Narrow with `kind`: chord views add `parsedChord`, and sequence views add `parsedSequence` and `matchedStepCount`, the number of steps the user has pressed so far. [Show sequences in your UI](./sequences#show-sequences-in-your-ui) uses it to show which keys the user has pressed.
 

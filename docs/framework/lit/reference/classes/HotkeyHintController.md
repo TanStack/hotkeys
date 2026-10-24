@@ -59,7 +59,7 @@ get value(): boolean;
 Defined in: [controllers/hotkey-hint.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L35)
 
 Current visibility. True only while the hotkey can fire: some registration
-of it is enabled and in an active scope. Focus and `target` are not checked.
+of it is enabled and in an active scope. A hotkey on an element counts only while focus is inside it.
 
 ##### Returns
 

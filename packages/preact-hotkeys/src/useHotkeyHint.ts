@@ -20,8 +20,7 @@ import type {
  * id and uses its effective hotkey (false while unbound).
  * Uses the nonempty-subset/AltGr rules of `matchesHeldModifiers`; `exact`
  * requires every modifier. A sequence reveals its hint from its first step.
- * Only visibility changes cause a rerender. This helper does not register a
- * shortcut or check whether its target is focused.
+ * Only visibility changes cause a rerender. This helper does not register a shortcut. A hotkey on an element counts only while focus is inside it.
  */
 export function useHotkeyHint(
   hotkey: RegisterableHotkey | AppHotkey,

@@ -115,6 +115,29 @@ it('hides hints for hotkeys that cannot fire', () => {
   act(() => releasePage())
   expect(result.current.edit).toBe(false)
 })
+it('shows hints for element hotkeys only while focus is inside the element', () => {
+  const panel = document.createElement('div')
+  const input = document.createElement('input')
+  const outside = document.createElement('button')
+  panel.appendChild(input)
+  document.body.append(panel, outside)
+  const { result } = renderHook(() => {
+    useHotkey('Alt+P', () => {}, { target: panel })
+    return useHotkeyHint('Alt+P')
+  })
+
+  outside.focus()
+  key('keydown', 'Alt', 'AltLeft', { altKey: true })
+  expect(result.current).toBe(false)
+  key('keyup', 'Alt', 'AltLeft')
+
+  input.focus()
+  key('keydown', 'Alt', 'AltLeft', { altKey: true })
+  expect(result.current).toBe(true)
+
+  panel.remove()
+  outside.remove()
+})
 it('preserves raw code bindings through hook normalization and sequence registration', () => {
   const single = vi.fn(),
     sequence = vi.fn()

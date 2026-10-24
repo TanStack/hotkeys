@@ -18,7 +18,7 @@ import type {
  * while the hotkey can fire: some registration of it is enabled and in an
  * active scope. A sequence reveals its hint from its first step, and an app
  * hotkey matches its registrations by id and uses its effective hotkey (false
- * while unbound). Focus and `target` are not checked.
+ * while unbound). A hotkey on an element counts only while focus is inside it.
  */
 export function useHotkeyHint(
   hotkey: RegisterableHotkey | AppHotkey,

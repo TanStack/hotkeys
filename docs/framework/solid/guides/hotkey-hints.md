@@ -44,7 +44,7 @@ While the user holds Command on macOS, or Control elsewhere, the button reads "S
 - A hotkey without modifiers, such as `Escape` or `G`, never shows a hint.
 - The hotkey must be able to fire. A hint shows only while a registration of the hotkey is enabled and in an active [scope](./hotkeys-provider-and-scopes). A hotkey that nothing registers never shows a hint.
 - Every registration of the hotkey counts, not only the one in your component. If two components register the same hotkey and only one is enabled, both show the hint.
-- Focus doesn't matter. A hint for a hotkey bound to one element's `target` shows while focus is elsewhere.
+- A hotkey bound to an element's `target` shows its hint only while focus is inside that element. A hotkey on `document` or `window` shows it wherever focus is.
 
 To show a hint only while every modifier is held, pass `exact`:
 

@@ -26,6 +26,7 @@ import {
   getTargetDocument,
   isEventForTarget,
   shouldIgnoreInputEvent,
+  targetHasFocus,
 } from './_event-target'
 import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'
 import type { CanonicalModifier } from './key.types'
@@ -181,7 +182,8 @@ export type HotkeyRegistration =
   HotkeyChordRegistration | HotkeySequenceRegistration
 
 /**
- * Whether a registration can fire now:
+ * Whether a registration is on. Focus isn't checked: a registration on an
+ * element also needs focus inside that element to fire.
  * - `'active'`: enabled, and its scope is active
  * - `'suspended'`: enabled, but its scope is inactive or suspended by an exclusive scope
  * - `'disabled'`: registered with `enabled: false`
@@ -190,7 +192,7 @@ export type HotkeyRegistrationStatus = 'active' | 'suspended' | 'disabled'
 
 interface RegistrationViewBase {
   id: string
-  /** Whether the registration can fire now. */
+  /** Whether the registration is enabled and in an active scope. */
   status: HotkeyRegistrationStatus
   target: Target
   triggerCount: number
@@ -1484,11 +1486,13 @@ export class HotkeyManager {
 
   /**
    * Checks whether a hotkey can fire now: at least one registration is
-   * enabled and in an active scope. An app hotkey matches registrations by
-   * id, so custom hotkeys apply. This does not check focus or `target`.
+   * enabled, in an active scope, and listening where key presses go. A
+   * registration on `document` or `window` always is; one on an element is
+   * only while focus is inside that element. An app hotkey matches
+   * registrations by id, so custom hotkeys apply.
    *
    * @param hotkey - A chord, sequence, or app hotkey
-   * @returns True if an enabled registration in an active scope exists
+   * @returns True if a registration that can fire exists
    */
   hasActiveRegistration(hotkey: RegisterableHotkey | AppHotkey): boolean {
     // Checks the brand inline; importing `isAppHotkey` would bundle the app hotkeys store.
@@ -1499,6 +1503,7 @@ export class HotkeyManager {
     for (const registration of this.registrations.state.values()) {
       if (
         this.#isLive(registration) &&
+        targetHasFocus(registration.target) &&
         (id === undefined
           ? areHotkeysEqual(
               registration.hotkey,

@@ -7,6 +7,6 @@ title: Target
 type Target = HTMLElement | Document | Window;
 ```
 
-Defined in: [hotkey-manager.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L50)
+Defined in: [hotkey-manager.ts:51](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L51)
 
 An element, document, or window that hotkeys can listen on.
