@@ -5,11 +5,7 @@ import {
   getDefaultIgnoreInputs,
   handleConflict,
 } from '../src/_registration'
-import {
-  getActiveElementForListenerTarget,
-  isEventForTarget,
-  isInputElement,
-} from '../src/_event-target'
+import { isInputElement } from '../src/_event-target'
 
 describe('registration and event-target helpers', () => {
   describe('isInputElement', () => {
@@ -114,63 +110,6 @@ describe('registration and event-target helpers', () => {
     })
   })
 
-  describe('getActiveElementForListenerTarget', () => {
-    it('returns document.activeElement when target is Document', () => {
-      const input = document.createElement('input')
-      input.type = 'text'
-      document.body.appendChild(input)
-      input.focus()
-      expect(getActiveElementForListenerTarget(document)).toBe(input)
-      document.body.removeChild(input)
-    })
-
-    it('returns document.activeElement when target is Window', () => {
-      const input = document.createElement('input')
-      input.type = 'text'
-      document.body.appendChild(input)
-      input.focus()
-      expect(getActiveElementForListenerTarget(window)).toBe(input)
-      document.body.removeChild(input)
-    })
-
-    it('returns ownerDocument.activeElement when target is HTMLElement', () => {
-      const wrapper = document.createElement('div')
-      const input = document.createElement('input')
-      input.type = 'text'
-      wrapper.appendChild(input)
-      document.body.appendChild(wrapper)
-      input.focus()
-      expect(getActiveElementForListenerTarget(wrapper)).toBe(input)
-      document.body.removeChild(wrapper)
-    })
-
-    it('reads focus from the iframe document when target is inside an iframe', () => {
-      const iframe = document.createElement('iframe')
-      document.body.appendChild(iframe)
-      const idoc = iframe.contentDocument
-      expect(idoc).toBeTruthy()
-      if (!idoc) {
-        document.body.removeChild(iframe)
-        return
-      }
-      const container = idoc.createElement('div')
-      const input = idoc.createElement('input')
-      input.type = 'text'
-      container.appendChild(input)
-      idoc.body.appendChild(container)
-      input.focus()
-
-      expect(getActiveElementForListenerTarget(container)).toBe(input)
-      expect(getActiveElementForListenerTarget(idoc)).toBe(input)
-      const cw = iframe.contentWindow
-      if (cw) {
-        expect(getActiveElementForListenerTarget(cw)).toBe(input)
-      }
-
-      document.body.removeChild(iframe)
-    })
-  })
-
   describe('getDefaultIgnoreInputs', () => {
     it('should return false for Ctrl hotkeys', () => {
       expect(
@@ -263,74 +202,6 @@ describe('registration and event-target helpers', () => {
         conflictBehavior: 'warn',
         scope: 'global',
       })
-    })
-  })
-
-  describe('isEventForTarget', () => {
-    it('should return true when event currentTarget matches document target', () => {
-      const event = new KeyboardEvent('keydown', { key: 'a', bubbles: true })
-      Object.defineProperty(event, 'currentTarget', {
-        value: document,
-        writable: false,
-        configurable: true,
-      })
-      document.dispatchEvent(event)
-      expect(isEventForTarget(event, document)).toBe(true)
-    })
-
-    it('should return true when event currentTarget matches window target', () => {
-      const event = new KeyboardEvent('keydown', { key: 'a', bubbles: true })
-      Object.defineProperty(event, 'currentTarget', {
-        value: window,
-        writable: false,
-        configurable: true,
-      })
-      expect(isEventForTarget(event, window)).toBe(true)
-    })
-
-    it('should return true when target contains event target', () => {
-      const div = document.createElement('div')
-      const span = document.createElement('span')
-      div.appendChild(span)
-      document.body.appendChild(div)
-
-      const event = new KeyboardEvent('keydown', { key: 'a', bubbles: true })
-      span.dispatchEvent(event)
-      Object.defineProperty(event, 'target', {
-        value: span,
-        writable: false,
-        configurable: true,
-      })
-      Object.defineProperty(event, 'currentTarget', {
-        value: div,
-        writable: false,
-        configurable: true,
-      })
-
-      expect(isEventForTarget(event, div)).toBe(true)
-
-      document.body.removeChild(div)
-    })
-
-    it('should return true when currentTarget matches element target', () => {
-      const div = document.createElement('div')
-      document.body.appendChild(div)
-
-      const event = new KeyboardEvent('keydown', { key: 'a', bubbles: true })
-      Object.defineProperty(event, 'target', {
-        value: div,
-        writable: false,
-        configurable: true,
-      })
-      Object.defineProperty(event, 'currentTarget', {
-        value: div,
-        writable: false,
-        configurable: true,
-      })
-
-      expect(isEventForTarget(event, div)).toBe(true)
-
-      document.body.removeChild(div)
     })
   })
 

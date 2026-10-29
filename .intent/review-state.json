@@ -95,16 +95,16 @@
       "evidence": ["packages/hotkeys/src/hotkey-recorder.ts"]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "bed2ef31e1a81f54691559cae4132e56f7e9ba2333e5e92a615330179da1bdb2",
+      "fingerprint": "1603661280b626a40d79be5af3e29c1dd837b293bbaaa3590112a9072b800c13",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
         "docs/framework/react/guides/hotkeys.md": "4d12140117ce4ceb3fb9bc17867efe30ae7085609714800e962c927ce07f019f",
         "docs/framework/react/guides/sequences.md": "e66231380dab6222508a1305d83586459b59953c2ecc47b9549e3cb29ffcd355",
-        "docs/guides/sensible-defaults.md": "29b63a2aa05a4c7498bc2f235baa20bf4bcccbf9de78642ed5e27b431232ec1f",
+        "docs/guides/sensible-defaults.md": "d7c2da2cbe54da67c8ff910338a258d39fc6270c1102760d4ded33e2273cf869",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "507ec6b32b7b1836276ee6527acdb3240f998d72dfb90f07c9e9820e688e8714",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "90e6512868c194f6c906711cd16882c204600a3118b08b7a101ff6b409012538",
-        "packages/hotkeys/src/hotkey-manager.ts": "0f8c253810bc4027d35185483a09cbd403cdd04c31189288f8a1211c642587d4",
+        "packages/hotkeys/src/hotkey-manager.ts": "2507330b7cdcd986ae624d5ad9526516d48d9bc34228d7de9efd7f4bc2440229",
         "packages/hotkeys/src/match.ts": "3a50921a68f79183b4ffac98e07e7fdf043711bc071f419c9cdc03422d25f268",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "25c572e968a78fd8df61f0bc98ba8adb41ecf0874437725e5ba28dd171e44fe1",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -116,10 +116,13 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "451dc7569f71956e5ce5e691ecc18ce14d4240b7edaa20cad58075747416c33d"
       },
-      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "head": "1bce8190963414ca101441f91f103ee97eccd7f0",
       "outcome": "no-change",
-      "reason": "Internal fix: the preventDefault 'always' check uses the event's composed path so live hotkeys inside shadow roots count. Skill guidance unchanged.",
-      "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
+      "reason": "The skill doesn't list which elements count as inputs. Its target rule and its testing advice (dispatch where focus is) still hold.",
+      "evidence": [
+        "docs/guides/sensible-defaults.md",
+        "packages/hotkeys/src/hotkey-manager.ts"
+      ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
       "fingerprint": "2d195e1f1122c0623295b93f5a97f79c968fcf744362c5e93747fa5e2982b321",
@@ -284,7 +287,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "5a45c7ec1e17e7d80d27f091323d466f647f81ac1f5803131ff57045383c0abd",
+      "fingerprint": "f532f3fb7526b85fee59b1130b1b0fcdd664f485f677ef15ac29b210a49388ad",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -314,7 +317,7 @@
         "docs/framework/svelte/quick-start.md": "dac9d02db91eaf3aed4eba39d6fb31a4a460bb3f84ba85c0576d3573b5ecf3d1",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "405eb90a8209f439db06d2e3d861acaa324b6598488c1705575ad56dccbb6ad3",
         "docs/framework/vue/quick-start.md": "80bedac58ab9aee3b4bc5f59582b5b836c37fe14f08ab670eababf88a45e76c2",
-        "docs/guides/sensible-defaults.md": "29b63a2aa05a4c7498bc2f235baa20bf4bcccbf9de78642ed5e27b431232ec1f",
+        "docs/guides/sensible-defaults.md": "d7c2da2cbe54da67c8ff910338a258d39fc6270c1102760d4ded33e2273cf869",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "8c0a3ab25f684d8445925d43dbadabb4e491b12001d78811cbf0d3f41db044c8",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "fdc12aafd6098bde8b4e7f5d8a8afb12227ac99cd753e06fc27401d5d8c8fead",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "f712ddb3354230197eb54d6f270d00a41c2b889e60690e70853569fe1a5207ea",
@@ -344,7 +347,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "90e6512868c194f6c906711cd16882c204600a3118b08b7a101ff6b409012538",
         "packages/hotkeys/src/app-hotkeys.ts": "5bee8b0042a7385c8963aabf9b0ca7b6aad5ef8aab41b2759961a7ac6cf6849c",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
-        "packages/hotkeys/src/hotkey-manager.ts": "0f8c253810bc4027d35185483a09cbd403cdd04c31189288f8a1211c642587d4",
+        "packages/hotkeys/src/hotkey-manager.ts": "2507330b7cdcd986ae624d5ad9526516d48d9bc34228d7de9efd7f4bc2440229",
         "packages/hotkeys/src/hotkey-recorder.ts": "972b374bc2e18a06c09da8595ea29dfa13d62a28c2e503174eb18a02fcc40daf",
         "packages/hotkeys/src/match.ts": "3a50921a68f79183b4ffac98e07e7fdf043711bc071f419c9cdc03422d25f268",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "ecd0100b52a00fc90ce71f244093da667d0c5ff78ecaf632d9db26f1c66c8e40",
@@ -413,10 +416,13 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "7505949604490126567f9b61bb4d5c7d5ad05c2004e67a33dba979651014176c",
         "packages/vue-hotkeys/src/useHotkeys.ts": "f971e9938eca3188b3af0fcc96d095330f9f6abfd70cb848d2de5c80f8d09639"
       },
-      "head": "614339f8f59a0776451f4ccc64cb5cadc20fd145",
+      "head": "1bce8190963414ca101441f91f103ee97eccd7f0",
       "outcome": "no-change",
-      "reason": "Bug fix only; no change to the skill plan.",
-      "evidence": ["packages/hotkeys/src/hotkey-recorder.ts"]
+      "reason": "Bug fix; no change to the skill plan.",
+      "evidence": [
+        "docs/guides/sensible-defaults.md",
+        "packages/hotkeys/src/hotkey-manager.ts"
+      ]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -654,23 +660,23 @@
       "evidence": ["docs/framework/vue/reference/functions/useHotkeyHint.md"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "63ec4d7023a48c5bf9f5ef2496ad6de587a63df5d94f09a52a2b9c30395702b9",
+      "fingerprint": "2e001a0c8ee96cfa4fd8fbaf62b3ff703401ab7925f881785eec132fa89e0363",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "8d1fdc99928ee2cd7b80a962fdd361e4f7cf41fe57af65fa1502a7e67ff7750e"
+        "docs/reference/classes/HotkeyManager.md": "af4aa6c79aa6891e36ed1158672a00a6681859b363554436aed724cd1d2c8a6e"
       },
-      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "head": "1bce8190963414ca101441f91f103ee97eccd7f0",
       "outcome": "out-of-scope",
-      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "reason": "Test or generated reference file; no skill covers it.",
       "evidence": ["docs/reference/classes/HotkeyManager.md"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "66e71338a233cefd3058103f535e9d087eb35c91297beb021308f5ff3360a2f3",
+      "fingerprint": "3fb605a9f34e5ffb27f7a6ec534b3ce8d15bfb4a9351c8b9cc1af387fc9770a9",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "7cf10e8c7ef2e6cfc13510bcac5612140928ec84910fef035d1353cbd07420df"
+        "docs/reference/functions/getHotkeyManager.md": "6b6eb89ac5be86657a764ae482ed819617031f88765928050ecbadba0be750a6"
       },
-      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "head": "1bce8190963414ca101441f91f103ee97eccd7f0",
       "outcome": "out-of-scope",
-      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "reason": "Test or generated reference file; no skill covers it.",
       "evidence": ["docs/reference/functions/getHotkeyManager.md"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
@@ -2474,13 +2480,13 @@
       "evidence": ["docs/reference/type-aliases/Target.md"]
     },
     "source:packages/hotkeys/src/_event-target.ts": {
-      "fingerprint": "622b2f37e65222c024079ac63c92032673b339c29fa1a9adc5d71f61b09509f5",
+      "fingerprint": "7d5f65094e1a9f7ad01dfda093fefede76e97bd680952f7088b5c69cbdfee529",
       "snapshot": {
-        "packages/hotkeys/src/_event-target.ts": "8feccad15940e5f701cf3b9efbf8a6b2aba02f4fbae9a13b662d81ffb80281f8"
+        "packages/hotkeys/src/_event-target.ts": "bda6f90c3ed25385a8339cfe1e0de714905910ffa129a029db4fe099b60126e5"
       },
-      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
-      "outcome": "no-change",
-      "reason": "Internal fix: the preventDefault 'always' check uses the event's composed path so live hotkeys inside shadow roots count. Skill guidance unchanged.",
+      "head": "1bce8190963414ca101441f91f103ee97eccd7f0",
+      "outcome": "out-of-scope",
+      "reason": "Internal input detection; the sensible-defaults guide documents the rules, and no skill restates them.",
       "evidence": ["packages/hotkeys/src/_event-target.ts"]
     },
     "source:docs/config.json": {
@@ -4116,6 +4122,36 @@
       "evidence": [
         "packages/svelte-hotkeys/tests/effect-root-early-destroy.svelte.ts"
       ]
+    },
+    "source:e2e/browser/focus.spec.ts": {
+      "fingerprint": "20eb08b801d0411ab0341c6235b69a567578a2007846494196182676eb1f6837",
+      "snapshot": {
+        "e2e/browser/focus.spec.ts": "ca217d3a69ce507191bc10a5e90dfc166bad322d332c50765c3e7b12900229c2"
+      },
+      "head": "1bce8190963414ca101441f91f103ee97eccd7f0",
+      "outcome": "out-of-scope",
+      "reason": "Test or generated reference file; no skill covers it.",
+      "evidence": ["e2e/browser/focus.spec.ts"]
+    },
+    "source:packages/hotkeys/tests/input-detection.test.ts": {
+      "fingerprint": "2f592b93863a89d0aa7f25977006b2c632f72306e8f084ece08b3cf55f59b042",
+      "snapshot": {
+        "packages/hotkeys/tests/input-detection.test.ts": "8484b61bb6f525428b75e4531d286186ecdc64647b3d87877a56d3f7dc70f884"
+      },
+      "head": "1bce8190963414ca101441f91f103ee97eccd7f0",
+      "outcome": "out-of-scope",
+      "reason": "Test or generated reference file; no skill covers it.",
+      "evidence": ["packages/hotkeys/tests/input-detection.test.ts"]
+    },
+    "source:packages/hotkeys/tests/registration-and-target.test.ts": {
+      "fingerprint": "1d0d1af7244476e53994b2560b7540e6aabdd5710adb2627c80346fb7913b70c",
+      "snapshot": {
+        "packages/hotkeys/tests/registration-and-target.test.ts": "73c343cfca5a8f985e8d1b48b1101568cfd216063d95242b0a6bbdf2d284c75c"
+      },
+      "head": "1bce8190963414ca101441f91f103ee97eccd7f0",
+      "outcome": "out-of-scope",
+      "reason": "Test or generated reference file; no skill covers it.",
+      "evidence": ["packages/hotkeys/tests/registration-and-target.test.ts"]
     }
   }
 }
