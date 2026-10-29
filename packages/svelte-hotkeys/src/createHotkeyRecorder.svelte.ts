@@ -131,8 +131,9 @@ export function createHotkeyRecorder(
   })
 
   // Unlike onDestroy, an effect teardown also runs when an $effect.root that
-  // owns the recorder is destroyed.
-  $effect(() => () => recorder.destroy())
+  // owns the recorder is destroyed. $effect.pre runs now, so the teardown is
+  // in place even if the root is destroyed before effects flush.
+  $effect.pre(() => () => recorder.destroy())
 
   return recorder
 }
