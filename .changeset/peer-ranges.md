@@ -6,7 +6,6 @@
 '@tanstack/svelte-hotkeys': patch
 '@tanstack/svelte-hotkeys-devtools': patch
 '@tanstack/alpine-hotkeys': patch
-'@tanstack/octane-hotkeys': patch
 ---
 
 Fix framework peer ranges so they match the versions each package builds and runs on:
@@ -16,4 +15,3 @@ Fix framework peer ranges so they match the versions each package builds and run
 - Vue `>=3.3.0`. The adapter uses `toValue`, added in Vue 3.3.
 - Svelte `^5.40.0`. The adapter uses `createContext`, added in Svelte 5.40.
 - Alpine `^3.13.0`, down from `^3.15.12`. npm no longer refuses to install the adapter next to Alpine 3.13 and 3.14.
-- Octane `>=0.12.0 <1.0.0 || >=1.0.4`, which excludes `octane` 1.0.0 to 1.0.3, an unrelated package from 2015.
