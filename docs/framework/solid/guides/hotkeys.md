@@ -304,7 +304,7 @@ function Panel() {
   createHotkey('Escape', () => closePanel(), () => ({ target: panel() }))
 
   return (
-    <div ref={setPanel} tabIndex={0}>
+    <div ref={setPanel} tabindex={0}>
       Panel content
     </div>
   )
@@ -314,7 +314,7 @@ function Panel() {
 A `null` target waits until the element is attached.
 
 > [!NOTE]
-> An element receives key presses only while it, or something inside it, has focus. Give it a `tabIndex` if it isn't focusable already.
+> An element receives key presses only while it, or something inside it, has focus. Give it a `tabindex` if it isn't focusable already.
 
 While focus is inside the element, its hotkeys run before hotkeys on `document`. With the default `stopPropagation: true`, a `document` hotkey for the same key doesn't run at all. A sequence with a target advances only on key presses inside the target.
 

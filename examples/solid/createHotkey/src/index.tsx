@@ -1,13 +1,11 @@
 /* @refresh reload */
 import { Show, createEffect, createSignal } from 'solid-js'
-import { render } from 'solid-js/web'
+import { render } from '@solidjs/web'
 import {
   HotkeysProvider,
   createHotkey,
   formatForDisplay,
 } from '@tanstack/solid-hotkeys'
-import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
-import { TanStackDevtools } from '@tanstack/solid-devtools'
 import type { Hotkey } from '@tanstack/solid-hotkeys'
 import './index.css'
 
@@ -200,11 +198,10 @@ function App() {
     setFunctionKeyCount((c) => c + 1)
   })
 
-  createEffect(() => {
-    if (modalOpen()) {
-      modalRef()?.focus()
-    }
-  })
+  createEffect(
+    () => (modalOpen() ? modalRef() : null),
+    (modal) => modal?.focus(),
+  )
 
   createHotkey(
     'Mod+B',
@@ -528,7 +525,7 @@ createHotkey('Mod+Space', () => toggle())`}</pre>
           </p>
 
           <div class="scoped-grid">
-            <div class="scoped-area" ref={setSidebarRef} tabIndex={0}>
+            <div class="scoped-area" ref={setSidebarRef} tabindex={0}>
               <h3>Sidebar (Scoped Area)</h3>
               <p>Click here to focus, then try:</p>
               <div class="hotkey-list">
@@ -557,7 +554,7 @@ createHotkey('Mod+Space', () => toggle())`}</pre>
                   <div
                     class="modal-content"
                     ref={setModalRef}
-                    tabIndex={0}
+                    tabindex={0}
                     onClick={(e) => e.stopPropagation()}
                   >
                     <h3>Modal Dialog (Scoped)</h3>
@@ -650,8 +647,6 @@ createHotkey(
 )`}</pre>
         </section>
       </main>
-
-      <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
     </div>
   )
 }

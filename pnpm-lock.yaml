@@ -237,7 +237,7 @@ importers:
         version: 0.3.4(typescript@6.0.3)
       '@testing-library/jest-dom':
         specifier: ^7.0.1
-        version: 7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@7.2.0))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)))
+        version: 7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@7.2.0))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)))
       '@types/node':
         specifier: ^26.6.4
         version: 26.6.4
@@ -2766,41 +2766,38 @@ importers:
 
   examples/solid/createHeldKeys:
     dependencies:
-      '@tanstack/solid-devtools':
-        specifier: 0.8.14
-        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
+      '@solidjs/web':
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20(solid-js@2.0.0-rc.20)
       '@tanstack/solid-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/solid-hotkeys
-      '@tanstack/solid-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
-        specifier: ^1.9.15
-        version: 1.9.15
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20
     devDependencies:
+      '@solidjs/vite-plugin':
+        specifier: ^3.0.0-next.52
+        version: 3.0.0-next.52(@solidjs/web@2.0.0-rc.20(solid-js@2.0.0-rc.20))(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@2.0.0-rc.20)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       vite:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
-      vite-plugin-solid:
-        specifier: ^2.11.14
-        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
 
   examples/solid/createHotkey:
     dependencies:
-      '@tanstack/solid-devtools':
-        specifier: 0.8.14
-        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
+      '@solidjs/web':
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20(solid-js@2.0.0-rc.20)
       '@tanstack/solid-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/solid-hotkeys
-      '@tanstack/solid-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
-        specifier: ^1.9.15
-        version: 1.9.15
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20
     devDependencies:
+      '@solidjs/vite-plugin':
+        specifier: ^3.0.0-next.52
+        version: 3.0.0-next.52(@solidjs/web@2.0.0-rc.20(solid-js@2.0.0-rc.20))(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@2.0.0-rc.20)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@types/node':
         specifier: ^26.6.4
         version: 26.6.4
@@ -2810,91 +2807,79 @@ importers:
       vite:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
-      vite-plugin-solid:
-        specifier: ^2.11.14
-        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
 
   examples/solid/createHotkey-sequences:
     dependencies:
-      '@tanstack/solid-devtools':
-        specifier: 0.8.14
-        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
+      '@solidjs/web':
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20(solid-js@2.0.0-rc.20)
       '@tanstack/solid-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/solid-hotkeys
-      '@tanstack/solid-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
-        specifier: ^1.9.15
-        version: 1.9.15
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20
     devDependencies:
+      '@solidjs/vite-plugin':
+        specifier: ^3.0.0-next.52
+        version: 3.0.0-next.52(@solidjs/web@2.0.0-rc.20(solid-js@2.0.0-rc.20))(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))))(solid-js@2.0.0-rc.20)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
       vite:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
-      vite-plugin-solid:
-        specifier: ^2.11.14
-        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
 
   examples/solid/createHotkeyRecorder:
     dependencies:
-      '@tanstack/solid-devtools':
-        specifier: 0.8.14
-        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
+      '@solidjs/web':
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20(solid-js@2.0.0-rc.20)
       '@tanstack/solid-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/solid-hotkeys
-      '@tanstack/solid-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
-        specifier: ^1.9.15
-        version: 1.9.15
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20
     devDependencies:
+      '@solidjs/vite-plugin':
+        specifier: ^3.0.0-next.52
+        version: 3.0.0-next.52(@solidjs/web@2.0.0-rc.20(solid-js@2.0.0-rc.20))(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@2.0.0-rc.20)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       vite:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
-      vite-plugin-solid:
-        specifier: ^2.11.14
-        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
 
   examples/solid/createHotkeyRecorder-sequences:
     dependencies:
-      '@tanstack/solid-devtools':
-        specifier: 0.8.14
-        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
+      '@solidjs/web':
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20(solid-js@2.0.0-rc.20)
       '@tanstack/solid-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/solid-hotkeys
-      '@tanstack/solid-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
-        specifier: ^1.9.15
-        version: 1.9.15
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20
     devDependencies:
+      '@solidjs/vite-plugin':
+        specifier: ^3.0.0-next.52
+        version: 3.0.0-next.52(@solidjs/web@2.0.0-rc.20(solid-js@2.0.0-rc.20))(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))))(solid-js@2.0.0-rc.20)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
       vite:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
-      vite-plugin-solid:
-        specifier: ^2.11.14
-        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
 
   examples/solid/createHotkeys:
     dependencies:
-      '@tanstack/solid-devtools':
-        specifier: 0.8.14
-        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
+      '@solidjs/web':
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20(solid-js@2.0.0-rc.20)
       '@tanstack/solid-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/solid-hotkeys
-      '@tanstack/solid-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
-        specifier: ^1.9.15
-        version: 1.9.15
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20
     devDependencies:
+      '@solidjs/vite-plugin':
+        specifier: ^3.0.0-next.52
+        version: 3.0.0-next.52(@solidjs/web@2.0.0-rc.20(solid-js@2.0.0-rc.20))(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@2.0.0-rc.20)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@types/node':
         specifier: ^26.6.4
         version: 26.6.4
@@ -2904,69 +2889,60 @@ importers:
       vite:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
-      vite-plugin-solid:
-        specifier: ^2.11.14
-        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
 
   examples/solid/createHotkeys-sequences:
     dependencies:
-      '@tanstack/solid-devtools':
-        specifier: 0.8.14
-        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
+      '@solidjs/web':
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20(solid-js@2.0.0-rc.20)
       '@tanstack/solid-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/solid-hotkeys
-      '@tanstack/solid-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
-        specifier: ^1.9.15
-        version: 1.9.15
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20
     devDependencies:
+      '@solidjs/vite-plugin':
+        specifier: ^3.0.0-next.52
+        version: 3.0.0-next.52(@solidjs/web@2.0.0-rc.20(solid-js@2.0.0-rc.20))(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))))(solid-js@2.0.0-rc.20)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
       vite:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
-      vite-plugin-solid:
-        specifier: ^2.11.14
-        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
 
   examples/solid/createKeyHold:
     dependencies:
-      '@tanstack/solid-devtools':
-        specifier: 0.8.14
-        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
+      '@solidjs/web':
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20(solid-js@2.0.0-rc.20)
       '@tanstack/solid-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/solid-hotkeys
-      '@tanstack/solid-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
-        specifier: ^1.9.15
-        version: 1.9.15
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20
     devDependencies:
+      '@solidjs/vite-plugin':
+        specifier: ^3.0.0-next.52
+        version: 3.0.0-next.52(@solidjs/web@2.0.0-rc.20(solid-js@2.0.0-rc.20))(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@2.0.0-rc.20)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       vite:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
-      vite-plugin-solid:
-        specifier: ^2.11.14
-        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
 
   examples/solid/kitchen-sink:
     dependencies:
-      '@tanstack/solid-devtools':
-        specifier: 0.8.14
-        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
+      '@solidjs/web':
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20(solid-js@2.0.0-rc.20)
       '@tanstack/solid-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/solid-hotkeys
-      '@tanstack/solid-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
-        specifier: ^1.9.15
-        version: 1.9.15
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20
     devDependencies:
+      '@solidjs/vite-plugin':
+        specifier: ^3.0.0-next.52
+        version: 3.0.0-next.52(@solidjs/web@2.0.0-rc.20(solid-js@2.0.0-rc.20))(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@2.0.0-rc.20)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@types/node':
         specifier: ^26.6.4
         version: 26.6.4
@@ -2976,25 +2952,22 @@ importers:
       vite:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
-      vite-plugin-solid:
-        specifier: ^2.11.14
-        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
 
   examples/solid/scopes:
     dependencies:
-      '@tanstack/solid-devtools':
-        specifier: 0.8.14
-        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
+      '@solidjs/web':
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20(solid-js@2.0.0-rc.20)
       '@tanstack/solid-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/solid-hotkeys
-      '@tanstack/solid-hotkeys-devtools':
-        specifier: workspace:*
-        version: link:../../../packages/solid-hotkeys-devtools
       solid-js:
-        specifier: ^1.9.15
-        version: 1.9.15
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20
     devDependencies:
+      '@solidjs/vite-plugin':
+        specifier: ^3.0.0-next.52
+        version: 3.0.0-next.52(@solidjs/web@2.0.0-rc.20(solid-js@2.0.0-rc.20))(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))))(solid-js@2.0.0-rc.20)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
       '@types/node':
         specifier: ^26.6.4
         version: 26.6.4
@@ -3004,9 +2977,6 @@ importers:
       vite:
         specifier: ^8.3.2
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
-      vite-plugin-solid:
-        specifier: ^2.11.14
-        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
 
   examples/svelte/create-hotkey:
     dependencies:
@@ -3740,7 +3710,7 @@ importers:
     devDependencies:
       vite-plugin-solid:
         specifier: ^2.11.14
-        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
 
   packages/lit-hotkeys:
     dependencies:
@@ -3820,7 +3790,7 @@ importers:
         version: 0.11.2(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@testing-library/react':
         specifier: ^16.3.3
-        version: 16.3.3(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
+        version: 16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.2.3(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@types/react':
         specifier: ^19.3.0
         version: 19.3.0
@@ -3884,17 +3854,20 @@ importers:
         version: link:../hotkeys
     devDependencies:
       '@solidjs/testing-library':
-        specifier: ^0.8.10
-        version: 0.8.10(solid-js@1.9.15)
+        specifier: ^1.0.0-rc.2
+        version: 1.0.0-rc.2(@solidjs/web@2.0.0-rc.20(solid-js@2.0.0-rc.20))(solid-js@2.0.0-rc.20)
+      '@solidjs/vite-plugin':
+        specifier: ^3.0.0-next.52
+        version: 3.0.0-next.52(@solidjs/web@2.0.0-rc.20(solid-js@2.0.0-rc.20))(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@2.0.0-rc.20)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+      '@solidjs/web':
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20(solid-js@2.0.0-rc.20)
       '@testing-library/jest-dom':
         specifier: ^7.0.1
-        version: 7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)))
+        version: 7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)))
       solid-js:
-        specifier: ^1.9.15
-        version: 1.9.15
-      vite-plugin-solid:
-        specifier: ^2.11.14
-        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        specifier: ^2.0.0-rc.19
+        version: 2.0.0-rc.20
 
   packages/solid-hotkeys-devtools:
     dependencies:
@@ -3913,7 +3886,7 @@ importers:
         version: 1.9.15
       vite-plugin-solid:
         specifier: ^2.11.14
-        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+        version: 2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
 
   packages/svelte-hotkeys:
     dependencies:
@@ -5568,6 +5541,9 @@ packages:
   '@emnapi/core@1.11.2':
     resolution: {integrity: sha512-TC8MkTuZUtcTSiFeuC0ksCh9QIJ5+F21MvZ4Wn4ORfYaFJ/0dsiudv5tVkejgwZlwQ39jL9WWDe2lz8x0WglOA==}
 
+  '@emnapi/core@1.11.3':
+    resolution: {integrity: sha512-zLpS5asjEb7lq8jYLq37N6XKaE41DIexlY1rF/z4/tIl3wo13Sqm28fRyfIsKZD+NZ8mM5RoKkpW/rBcuoSZSg==}
+
   '@emnapi/core@1.4.5':
     resolution: {integrity: sha512-XsLw1dEOpkSX/WucdqUhPWP7hDxSvZiY+fsUC14h+FtQ2Ifni4znbBt8punRX+Uj2JG/uDb8nEHVKvrVlvdZ5Q==}
 
@@ -5576,6 +5552,9 @@ packages:
 
   '@emnapi/runtime@1.11.2':
     resolution: {integrity: sha512-kyOl3X0DuTiT1h2ft8r2fYO8JYtU9a9Xis/zBSiGArNaagCOWx90N1k2wxp18czFDH+OgcWGb5ZP/XMt3dcyPA==}
+
+  '@emnapi/runtime@1.11.3':
+    resolution: {integrity: sha512-Xz4Tpyki7XyrpbUK1jR1AhdAdaXyhhY4lZ3neLodmhpuWfy2PAQN5B46sAiU4liOXGLkHypn/qU+jvfWSCYYLA==}
 
   '@emnapi/runtime@1.4.5':
     resolution: {integrity: sha512-++LApOtY0pEEz1zrd9vy1/zXVaVJJ/EbAF3u0fXIzPJEDtnITsBGbbK0EkM72amhl/R5b+5xx0Y/QhcVOpuulg==}
@@ -5588,6 +5567,9 @@ packages:
 
   '@emnapi/wasi-threads@1.2.2':
     resolution: {integrity: sha512-c95qOXkHdydNKhscBTebqEC1CVAZpyqOfVfBzQ1qgzyl3gfeldUjIggDbIZgDKsHLgnsM+igH7TJ/eAasaVuMA==}
+
+  '@emnapi/wasi-threads@1.2.3':
+    resolution: {integrity: sha512-ELEBe8PsLvvJ6QMr0zLt8ffvOHW/dc1m3CEzNMg7aJUv3bMaoDtw2TXyDAwkYBuroxxuHEwhRTLJSe5sya547g==}
 
   '@esbuild/aix-ppc64@0.27.3':
     resolution: {integrity: sha512-9fJMTNFTWZMh5qwrBItuziu834eOCUcEqymSH7pY+zoMVEZg3gcPuBNxH1EvfVYe9h0x/Ptw8KBzv7qxb7l8dg==}
@@ -8418,15 +8400,80 @@ packages:
     peerDependencies:
       solid-js: ^1.6.12
 
-  '@solidjs/testing-library@0.8.10':
-    resolution: {integrity: sha512-qdeuIerwyq7oQTIrrKvV0aL9aFeuwTd86VYD3afdq5HYEwoox1OBTJy4y8A3TFZr8oAR0nujYgCzY/8wgHGfeQ==}
+  '@solidjs/babel-plugin@2.0.0-rc.20':
+    resolution: {integrity: sha512-/5GHINAOaUK+99N7qxkOgcBU2Fn9WhNfaJDg+q/M2gF9fmFqnQOiV+J8gU9gsnEHfiqZvH2vQ4WHxA0kl2OC5g==}
+    peerDependencies:
+      '@babel/core': ^7.20.12 || ^8.0.0
+      '@tsrx/core': 0.1.63
+    peerDependenciesMeta:
+      '@tsrx/core':
+        optional: true
+
+  '@solidjs/compiler-darwin-arm64@2.0.0-rc.20':
+    resolution: {integrity: sha512-3bpcQmjNkzO0sthOEypc1Rmq+tfW9zVjmSSJsoHTl3MUDnxi65L7mHsPfIdo4nQntHqAps4ZEUFy77GqqocHDA==}
+    cpu: [arm64]
+    os: [darwin]
+
+  '@solidjs/compiler-darwin-x64@2.0.0-rc.20':
+    resolution: {integrity: sha512-I2RI6oJkVxMUDPM6faIpd+rWK1hkpw+KlSfE8ZZnDeX+FKa+VlSHCk4EA16jHSCeo1IKxmW3x9cCSlHqzEZKvQ==}
+    cpu: [x64]
+    os: [darwin]
+
+  '@solidjs/compiler-linux-arm64-gnu@2.0.0-rc.20':
+    resolution: {integrity: sha512-41KS1kvbhzQwE3ZEIgpAghVO6LVDVS98URL3rXOARudwTpaflEehNlxSH0RGr6E0UbaeFVfadkFnBOcuSLrMJg==}
+    cpu: [arm64]
+    os: [linux]
+    libc: [glibc]
+
+  '@solidjs/compiler-linux-x64-gnu@2.0.0-rc.20':
+    resolution: {integrity: sha512-YXb8f0HQqbW/YQvRhflSW1yd2sCdi22wIe7pRAdA6YuthnbJbOhxpUw4iBX/dis59aIE5uw8cg8fh8hH4iBpmg==}
+    cpu: [x64]
+    os: [linux]
+    libc: [glibc]
+
+  '@solidjs/compiler-wasm32-wasi@2.0.0-rc.20':
+    resolution: {integrity: sha512-V3ffCekMXznz3iMn08lrkipK9XzTbZumF5Wb3Xd1cMj+caCidz9AMAN0ZBx5XQ3dwyrZ3UfZM/gSkAOcq8LgHw==}
+    engines: {node: '>=14.0.0'}
+
+  '@solidjs/compiler-win32-x64-msvc@2.0.0-rc.20':
+    resolution: {integrity: sha512-GBfYKI5WtIOk0SvYn70PeN6iDpqwJ8mQ9UdT/MxUnBE2UcIvyOv7+g+5mOBqfIHODWnsbLkzf9lk+JCw5gkogg==}
+    cpu: [x64]
+    os: [win32]
+
+  '@solidjs/compiler@2.0.0-rc.20':
+    resolution: {integrity: sha512-veV/ZXim3UeX5Klelp3DiPwseR01/EX/K3i0iVdi+9EZfoRVVzoTIP7lTXP8hTng5/MsFaiZ4mqbDt/57IWHlg==}
+
+  '@solidjs/signals@2.0.0-rc.20':
+    resolution: {integrity: sha512-BIL5dKm0dAtPGsCEuLSNw60spDbmYG5QFK+aHUxPIgPLweA8IeJKd62DiqqqU/jqX0x39ty31GoP1n+ZINkrcg==}
+    engines: {node: '>=22.12.0'}
+
+  '@solidjs/testing-library@1.0.0-rc.2':
+    resolution: {integrity: sha512-QZqIVoyDAqaGgSsWQ3gnYGaG1peFkNF0/n5uM+393g5plZlcvgxmUgdjsQtwrRLVZCrh0K1lp7YHxsAlN5XPkA==}
     engines: {node: '>= 14'}
     peerDependencies:
-      '@solidjs/router': '>=0.9.0'
-      solid-js: '>=1.0.0'
+      '@solidjs/web': '>=2.0.0-0'
+      solid-js: '>=2.0.0-0'
+
+  '@solidjs/vite-plugin@3.0.0-next.52':
+    resolution: {integrity: sha512-Dn4xLGdZxYOFOQpY/wISboBR6sYrfuN2Nxq+h56a6bspCqMq7hhpWYhQwwwo8RvsiVD2/T9o1U76pz/KJ1Wkgw==}
+    engines: {node: '>=22.12.0'}
+    peerDependencies:
+      '@solidjs/start-devtools': ^1.0.0-next.2
+      '@solidjs/web': ^2.0.0-rc.19
+      '@testing-library/jest-dom': ^5.16.6 || ^5.17.0 || ^6.0.0 || ^7.0.0
+      solid-js: ^2.0.0-rc.19
+      vite: ^8.0.0 || ^9.0.0
     peerDependenciesMeta:
-      '@solidjs/router':
+      '@solidjs/start-devtools':
         optional: true
+      '@testing-library/jest-dom':
+        optional: true
+
+  '@solidjs/web@2.0.0-rc.20':
+    resolution: {integrity: sha512-ACGUZ1XBNxiHnWW274na+1JZfuIhiS/BN5XM72wVKNYSopR/NyjVPR4O/nvshtbYlEk1lKJ9d1uBaXDaz6ddYg==}
+    engines: {node: '>=22.12.0'}
+    peerDependencies:
+      solid-js: ^2.0.0-rc.20
 
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
@@ -8592,8 +8639,8 @@ packages:
     resolution: {integrity: sha512-9u41nAP8vLTkF6yO/AwFyzTljhOvQMOyuDXh2KqDKwMVG6OVtr+1YFA76I0fx8kyecrhzd1o7k8VQCzq6M8gqA==}
     engines: {node: '>=18'}
 
-  '@testing-library/dom@10.4.1':
-    resolution: {integrity: sha512-o4PXJQidqJl82ckFaXUeoAW+XysPLauYI43Abki5hABd853iMhitooc6znOnczgbTYmEP6U6/y1ZyKAIsvMKGg==}
+  '@testing-library/dom@10.4.2':
+    resolution: {integrity: sha512-yzr2S9HyAIdhz2/6qHgbs665Q7PKVcDF05vsOlHPxG1mo36gKVesdYVeDLnXgfjJ03CrKRk08knc6+E/9m8v2Q==}
     engines: {node: '>=18'}
 
   '@testing-library/dom@8.20.1':
@@ -13579,6 +13626,12 @@ packages:
     peerDependencies:
       seroval: ^1.0
 
+  seroval-plugins@1.7.0:
+    resolution: {integrity: sha512-WM4rArfPtLZriTuxC5DBvNulEwAaRcjNe/dkMOEesOcuvXf5nEwKf5Bw3AT92WHohqcc45+57GdtsCuBTI0mjw==}
+    engines: {node: '>=20'}
+    peerDependencies:
+      seroval: ^1.0
+
   seroval@1.5.6:
     resolution: {integrity: sha512-rVQVWjjSvlINzaQPZH5JFqsqEsIWdTxY3iJZCnTL/5gQbXIRooVZKI60tVCkOVfzcRPejboxO2t0P89dg5mQaA==}
     engines: {node: '>=10'}
@@ -13586,6 +13639,10 @@ packages:
   seroval@1.6.8:
     resolution: {integrity: sha512-HlSgSAkTk4EqHcje1ptJjfZi1YDv5KbhVJ/d3P7T/nAXua2VmDu+AKDX5VTdFfZf48nDkWB2TKYt0DrCSa+3wg==}
     engines: {node: '>=10'}
+
+  seroval@1.7.0:
+    resolution: {integrity: sha512-FU+LUkmDzWNsJ6oubZFN3dGPKny53DRhPJG6nftEaXDL8MIn19+kEE1Gvc+63Go+qPOwVUlKIdKhsu2HN6tksw==}
+    engines: {node: '>=20'}
 
   serve-index@1.9.2:
     resolution: {integrity: sha512-KDj11HScOaLmrPxl70KYNW1PksP4Nb/CLL2yvC+Qd2kHMPEEpfc4Re2e4FOay+bC/+XQl/7zAcWON3JVo5v3KQ==}
@@ -13738,6 +13795,10 @@ packages:
 
   solid-js@1.9.15:
     resolution: {integrity: sha512-EeiY2xfpZJqPLjXspVEKjAII4yv8NyG//NxZ3IpOFHdUNnnTyL0uJOeS9LWGvA7cFCz5y94cjFwYlmw5Luncsg==}
+
+  solid-js@2.0.0-rc.20:
+    resolution: {integrity: sha512-FxaEI7LHupehFoR9j2CfJAGCoRgiKgeNlzii4szUS6lnD8RkpdtvX1k6WFG71vl5bskXRRsmEQVAXsbIemQOuw==}
+    engines: {node: '>=22.12.0'}
 
   solid-refresh@0.6.3:
     resolution: {integrity: sha512-F3aPsX6hVw9ttm5LYlth8Q15x6MlI/J3Dn+o3EQyRTtTxidepSTwAYdozt01/YA+7ObcciagGEyXIopGZzQtbA==}
@@ -17367,6 +17428,12 @@ snapshots:
       '@emnapi/wasi-threads': 1.2.2
       tslib: 2.8.1
 
+  '@emnapi/core@1.11.3':
+    dependencies:
+      '@emnapi/wasi-threads': 1.2.3
+      tslib: 2.8.1
+    optional: true
+
   '@emnapi/core@1.4.5':
     dependencies:
       '@emnapi/wasi-threads': 1.0.4
@@ -17380,6 +17447,11 @@ snapshots:
   '@emnapi/runtime@1.11.2':
     dependencies:
       tslib: 2.8.1
+
+  '@emnapi/runtime@1.11.3':
+    dependencies:
+      tslib: 2.8.1
+    optional: true
 
   '@emnapi/runtime@1.4.5':
     dependencies:
@@ -17397,6 +17469,11 @@ snapshots:
   '@emnapi/wasi-threads@1.2.2':
     dependencies:
       tslib: 2.8.1
+
+  '@emnapi/wasi-threads@1.2.3':
+    dependencies:
+      tslib: 2.8.1
+    optional: true
 
   '@esbuild/aix-ppc64@0.27.3':
     optional: true
@@ -18407,6 +18484,13 @@ snapshots:
     dependencies:
       '@emnapi/core': 1.11.2
       '@emnapi/runtime': 1.11.2
+      '@tybys/wasm-util': 0.10.4
+    optional: true
+
+  '@napi-rs/wasm-runtime@1.2.4(@emnapi/core@1.11.3)(@emnapi/runtime@1.11.3)':
+    dependencies:
+      '@emnapi/core': 1.11.3
+      '@emnapi/runtime': 1.11.3
       '@tybys/wasm-util': 0.10.4
     optional: true
 
@@ -19551,10 +19635,95 @@ snapshots:
     dependencies:
       solid-js: 1.9.15
 
-  '@solidjs/testing-library@0.8.10(solid-js@1.9.15)':
+  '@solidjs/babel-plugin@2.0.0-rc.20(@babel/core@7.29.7(supports-color@8.1.1))':
     dependencies:
-      '@testing-library/dom': 10.4.1
-      solid-js: 1.9.15
+      '@babel/core': 7.29.7(supports-color@8.1.1)
+      '@babel/helper-module-imports': 7.18.6
+      '@babel/plugin-syntax-jsx': 7.28.6(@babel/core@7.29.7(supports-color@8.1.1))
+      '@babel/types': 7.29.8
+      html-entities: 2.3.3
+      parse5: 7.3.0
+
+  '@solidjs/compiler-darwin-arm64@2.0.0-rc.20':
+    optional: true
+
+  '@solidjs/compiler-darwin-x64@2.0.0-rc.20':
+    optional: true
+
+  '@solidjs/compiler-linux-arm64-gnu@2.0.0-rc.20':
+    optional: true
+
+  '@solidjs/compiler-linux-x64-gnu@2.0.0-rc.20':
+    optional: true
+
+  '@solidjs/compiler-wasm32-wasi@2.0.0-rc.20':
+    dependencies:
+      '@emnapi/core': 1.11.3
+      '@emnapi/runtime': 1.11.3
+      '@napi-rs/wasm-runtime': 1.2.4(@emnapi/core@1.11.3)(@emnapi/runtime@1.11.3)
+    optional: true
+
+  '@solidjs/compiler-win32-x64-msvc@2.0.0-rc.20':
+    optional: true
+
+  '@solidjs/compiler@2.0.0-rc.20':
+    optionalDependencies:
+      '@solidjs/compiler-darwin-arm64': 2.0.0-rc.20
+      '@solidjs/compiler-darwin-x64': 2.0.0-rc.20
+      '@solidjs/compiler-linux-arm64-gnu': 2.0.0-rc.20
+      '@solidjs/compiler-linux-x64-gnu': 2.0.0-rc.20
+      '@solidjs/compiler-wasm32-wasi': 2.0.0-rc.20
+      '@solidjs/compiler-win32-x64-msvc': 2.0.0-rc.20
+
+  '@solidjs/signals@2.0.0-rc.20': {}
+
+  '@solidjs/testing-library@1.0.0-rc.2(@solidjs/web@2.0.0-rc.20(solid-js@2.0.0-rc.20))(solid-js@2.0.0-rc.20)':
+    dependencies:
+      '@solidjs/web': 2.0.0-rc.20(solid-js@2.0.0-rc.20)
+      '@testing-library/dom': 10.4.2
+      solid-js: 2.0.0-rc.20
+
+  '@solidjs/vite-plugin@3.0.0-next.52(@solidjs/web@2.0.0-rc.20(solid-js@2.0.0-rc.20))(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@2.0.0-rc.20)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))':
+    dependencies:
+      '@ampproject/remapping': 2.3.0
+      '@babel/core': 7.29.7(supports-color@8.1.1)
+      '@solidjs/babel-plugin': 2.0.0-rc.20(@babel/core@7.29.7(supports-color@8.1.1))
+      '@solidjs/compiler': 2.0.0-rc.20
+      '@solidjs/web': 2.0.0-rc.20(solid-js@2.0.0-rc.20)
+      '@types/babel__core': 7.20.5
+      merge-anything: 5.1.7
+      solid-js: 2.0.0-rc.20
+      vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
+      vitefu: 1.1.2(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
+    optionalDependencies:
+      '@testing-library/jest-dom': 7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)))
+    transitivePeerDependencies:
+      - '@tsrx/core'
+      - supports-color
+
+  '@solidjs/vite-plugin@3.0.0-next.52(@solidjs/web@2.0.0-rc.20(solid-js@2.0.0-rc.20))(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))))(solid-js@2.0.0-rc.20)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))':
+    dependencies:
+      '@ampproject/remapping': 2.3.0
+      '@babel/core': 7.29.7(supports-color@8.1.1)
+      '@solidjs/babel-plugin': 2.0.0-rc.20(@babel/core@7.29.7(supports-color@8.1.1))
+      '@solidjs/compiler': 2.0.0-rc.20
+      '@solidjs/web': 2.0.0-rc.20(solid-js@2.0.0-rc.20)
+      '@types/babel__core': 7.20.5
+      merge-anything: 5.1.7
+      solid-js: 2.0.0-rc.20
+      vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
+      vitefu: 1.1.2(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+    optionalDependencies:
+      '@testing-library/jest-dom': 7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)))
+    transitivePeerDependencies:
+      - '@tsrx/core'
+      - supports-color
+
+  '@solidjs/web@2.0.0-rc.20(solid-js@2.0.0-rc.20)':
+    dependencies:
+      seroval: 1.7.0
+      seroval-plugins: 1.7.0(seroval@1.7.0)
+      solid-js: 2.0.0-rc.20
 
   '@standard-schema/spec@1.1.0': {}
 
@@ -19827,7 +19996,7 @@ snapshots:
       - solid-js
       - utf-8-validate
 
-  '@testing-library/dom@10.4.1':
+  '@testing-library/dom@10.4.2':
     dependencies:
       '@babel/code-frame': 7.29.7
       '@babel/runtime': 7.29.7
@@ -19849,10 +20018,10 @@ snapshots:
       lz-string: 1.5.0
       pretty-format: 27.5.1
 
-  '@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@7.2.0))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)))':
+  '@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@7.2.0))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)))':
     dependencies:
       '@adobe/css-tools': 4.4.4
-      '@testing-library/dom': 10.4.1
+      '@testing-library/dom': 10.4.2
       aria-query: 5.3.2
       css.escape: 1.5.1
       dom-accessibility-api: 0.6.3
@@ -19861,10 +20030,10 @@ snapshots:
     optionalDependencies:
       vitest: 5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@7.2.0))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
 
-  '@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)))':
+  '@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)))':
     dependencies:
       '@adobe/css-tools': 4.4.4
-      '@testing-library/dom': 10.4.1
+      '@testing-library/dom': 10.4.2
       aria-query: 5.3.2
       css.escape: 1.5.1
       dom-accessibility-api: 0.6.3
@@ -19873,10 +20042,10 @@ snapshots:
     optionalDependencies:
       vitest: 5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
 
-  '@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)))':
+  '@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)))':
     dependencies:
       '@adobe/css-tools': 4.4.4
-      '@testing-library/dom': 10.4.1
+      '@testing-library/dom': 10.4.2
       aria-query: 5.3.2
       css.escape: 1.5.1
       dom-accessibility-api: 0.6.3
@@ -19891,10 +20060,10 @@ snapshots:
       '@testing-library/dom': 8.20.1
       preact: 11.0.1
 
-  '@testing-library/react@16.3.3(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
+  '@testing-library/react@16.3.3(@testing-library/dom@10.4.2)(@types/react-dom@19.2.3(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)':
     dependencies:
       '@babel/runtime': 7.29.2
-      '@testing-library/dom': 10.4.1
+      '@testing-library/dom': 10.4.2
       react: 19.3.0
       react-dom: 19.3.0(react@19.3.0)
     optionalDependencies:
@@ -25849,9 +26018,15 @@ snapshots:
     dependencies:
       seroval: 1.6.8
 
+  seroval-plugins@1.7.0(seroval@1.7.0):
+    dependencies:
+      seroval: 1.7.0
+
   seroval@1.5.6: {}
 
   seroval@1.6.8: {}
+
+  seroval@1.7.0: {}
 
   serve-index@1.9.2(supports-color@8.1.1):
     dependencies:
@@ -26036,6 +26211,13 @@ snapshots:
       csstype: 3.2.3
       seroval: 1.5.6
       seroval-plugins: 1.5.6(seroval@1.5.6)
+
+  solid-js@2.0.0-rc.20:
+    dependencies:
+      '@solidjs/signals': 2.0.0-rc.20
+      csstype: 3.2.3
+      seroval: 1.7.0
+      seroval-plugins: 1.7.0(seroval@1.7.0)
 
   solid-refresh@0.6.3(solid-js@1.9.15)(supports-color@8.1.1):
     dependencies:
@@ -26681,7 +26863,7 @@ snapshots:
 
   verkit@0.4.1: {}
 
-  vite-plugin-solid@2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)):
+  vite-plugin-solid@2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)):
     dependencies:
       '@babel/core': 7.29.0(supports-color@8.1.1)
       '@types/babel__core': 7.20.5
@@ -26692,22 +26874,7 @@ snapshots:
       vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)
       vitefu: 1.1.2(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
     optionalDependencies:
-      '@testing-library/jest-dom': 7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)))
-    transitivePeerDependencies:
-      - supports-color
-
-  vite-plugin-solid@2.11.14(@testing-library/jest-dom@7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))))(solid-js@1.9.15)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)):
-    dependencies:
-      '@babel/core': 7.29.0(supports-color@8.1.1)
-      '@types/babel__core': 7.20.5
-      babel-preset-solid: 1.9.10(@babel/core@7.29.0(supports-color@8.1.1))(solid-js@1.9.15)
-      merge-anything: 5.1.7
-      solid-js: 1.9.15
-      solid-refresh: 0.6.3(solid-js@1.9.15)(supports-color@8.1.1)
-      vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
-      vitefu: 1.1.2(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
-    optionalDependencies:
-      '@testing-library/jest-dom': 7.0.1(@testing-library/dom@10.4.1)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)))
+      '@testing-library/jest-dom': 7.0.1(@testing-library/dom@10.4.2)(vitest@5.0.3(@types/node@26.6.4)(happy-dom@20.14.5)(jsdom@25.0.1(supports-color@8.1.1))(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2)))
     transitivePeerDependencies:
       - supports-color
 

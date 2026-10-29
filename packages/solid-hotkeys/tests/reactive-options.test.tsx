@@ -1,11 +1,12 @@
-import { createHotkeys } from '../src/createHotkeys'
 import { afterEach, expect, it, vi } from 'vitest'
 import { cleanup, render } from '@solidjs/testing-library'
-import { createSignal } from 'solid-js'
+import { createSignal, flush } from 'solid-js'
 import { HotkeyManager } from '@tanstack/hotkeys'
+import { createHotkeys } from '../src/createHotkeys'
 import { createHotkey } from '../src/createHotkey'
 import { createHotkeyRecorder } from '../src/createHotkeyRecorder'
 import { HotkeysProvider } from '../src/HotkeysProvider'
+
 const press = () =>
   document.dispatchEvent(
     new KeyboardEvent('keydown', { key: 'a', bubbles: true }),
@@ -29,6 +30,7 @@ it('updates a direct enabled property getter without user setOptions', () => {
   press()
   expect(callback).toHaveBeenCalledTimes(1)
   setEnabled(false)
+  flush()
   press()
   expect(callback).toHaveBeenCalledTimes(1)
 })
@@ -47,6 +49,7 @@ it('updates provider defaults when its options object is replaced', () => {
   press()
   expect(callback).toHaveBeenCalledTimes(1)
   setEnabled(false)
+  flush()
   press()
   expect(callback).toHaveBeenCalledTimes(1)
 })
@@ -67,6 +70,7 @@ it('updates an active recorder callback property getter', () => {
   render(() => <Child />)
   recorder.startRecording()
   setCurrent(true)
+  flush()
   recorder.cancelRecording()
   expect(second).toHaveBeenCalledOnce()
   expect(first).not.toHaveBeenCalled()
@@ -116,13 +120,16 @@ it('refreshes all provider option groups without replacing registrations or acti
   expect(override).toHaveBeenCalledOnce()
   single.startRecording()
   setEnabled(false)
+  flush()
   single.cancelRecording()
   sequence.startRecording()
   setEnabled(true)
+  flush()
   sequence.cancelRecording()
   expect(first).toHaveBeenCalledOnce()
   expect(second).toHaveBeenCalledOnce()
   setEnabled(false)
+  flush()
   invoke()
   expect(run).toHaveBeenCalledTimes(4)
   expect(override).toHaveBeenCalledTimes(2)

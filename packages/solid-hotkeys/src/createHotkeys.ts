@@ -1,4 +1,4 @@
-import { createEffect, onCleanup, untrack } from 'solid-js'
+import { createEffect, onCleanup } from 'solid-js'
 import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
@@ -50,21 +50,25 @@ export function createHotkeys(
   // Clean up only when this owner disposes, not before every effect re-run.
   onCleanup(() => bindings.destroy())
 
-  createEffect(() => {
-    // Track app hotkeys so registrations move with custom hotkeys.
-    appHotkeys.state()
-    const definitions = prepareHotkeyDefinitions(
-      typeof hotkeys === 'function' ? hotkeys() : hotkeys,
-      {
-        appHotkeysStore: appHotkeys.store,
-        defaults: defaultOptions().hotkey,
-        commonOptions:
-          typeof commonOptions === 'function' ? commonOptions() : commonOptions,
-        // A null target skips registration until the element exists.
-        resolveTarget: (target) => target,
-      },
-    )
-    // Untrack store writes so registrations do not re-trigger this effect.
-    untrack(() => bindings.update(definitions))
-  })
+  createEffect(
+    () => {
+      // Track app hotkeys so registrations move with custom hotkeys.
+      appHotkeys.state()
+      return prepareHotkeyDefinitions(
+        typeof hotkeys === 'function' ? hotkeys() : hotkeys,
+        {
+          appHotkeysStore: appHotkeys.store,
+          defaults: defaultOptions().hotkey,
+          commonOptions:
+            typeof commonOptions === 'function'
+              ? commonOptions()
+              : commonOptions,
+          // A null target skips registration until the element exists.
+          resolveTarget: (target) => target,
+        },
+      )
+    },
+    // The effect half is untracked, so registration writes do not re-run it.
+    (definitions) => bindings.update(definitions),
+  )
 }

@@ -1,9 +1,10 @@
 // @vitest-environment happy-dom
-import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { render } from '@solidjs/testing-library'
 import { HotkeyManager } from '@tanstack/hotkeys'
+import { createSignal, flush } from 'solid-js'
 import { createHotkey } from '../src/createHotkey'
-import { createSignal, type Component } from 'solid-js'
+import type { Component } from 'solid-js'
 
 describe('createHotkey', () => {
   beforeEach(() => {
@@ -151,6 +152,7 @@ describe('createHotkey', () => {
 
       // Update state via button click (triggers re-run)
       getByRole('button').click()
+      flush()
 
       // Trigger hotkey again - count is now 5, callback uses count() for latest
       document.dispatchEvent(
@@ -163,6 +165,7 @@ describe('createHotkey', () => {
       expect(capturedValues).toEqual([0, 5])
 
       getByRole('button').click()
+      flush()
 
       document.dispatchEvent(
         new KeyboardEvent('keydown', {
@@ -204,6 +207,7 @@ describe('createHotkey', () => {
 
       // Disable the hotkey
       getByRole('button').click()
+      flush()
 
       // Should not fire when disabled
       document.dispatchEvent(
@@ -217,6 +221,7 @@ describe('createHotkey', () => {
 
       // Re-enable
       getByRole('button').click()
+      flush()
 
       document.dispatchEvent(
         new KeyboardEvent('keydown', {
@@ -285,6 +290,7 @@ describe('createHotkey', () => {
 
       // Mount the target div
       getByTestId('mount-btn').click()
+      flush()
 
       // Now target is set. Dispatch on the target element for the hotkey to fire
       const targetEl = getByTestId('target')
