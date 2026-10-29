@@ -102,13 +102,13 @@ The skills teach agents to use those APIs directly. The core skills hold the fra
 
 ## Remaining Gaps
 
-| Skill                                 | Question                                                                                                                                        | Status |
-| ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| app-hotkeys                           | Should conflict checks treat `Mod+[KeyP]` as overlapping `Mod+P`? Today a recorded physical binding never conflicts with a logical declaration. | open   |
-| lit-hotkeys                           | Document that `@hotkey` needs `experimentalDecorators`, or support standard decorators                                                          | open   |
-| octane-hotkeys                        | `docs/installation.md` says Octane 0.1.36 within 0.1; the peer range is `>=0.12.0`                                                              | open   |
-| framework skills except react-hotkeys | No executable task checks yet                                                                                                                   | open   |
-| all                                   | Fresh-consumer and discovery evaluations not run                                                                                                | open   |
+| Skill                                 | Question                                                                                                                                        | Status   |
+| ------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| app-hotkeys                           | Should conflict checks treat `Mod+[KeyP]` as overlapping `Mod+P`? Today a recorded physical binding never conflicts with a logical declaration. | open     |
+| lit-hotkeys                           | Document that `@hotkey` needs `experimentalDecorators`, or support standard decorators                                                          | open     |
+| octane-hotkeys                        | `docs/installation.md` says Octane 0.1.36 within 0.1; the peer range is `>=0.12.0`                                                              | resolved |
+| framework skills except react-hotkeys | No executable task checks yet                                                                                                                   | open     |
+| all                                   | Fresh-consumer and discovery evaluations not run                                                                                                | open     |
 
 ## Recommended Skill File Structure
 

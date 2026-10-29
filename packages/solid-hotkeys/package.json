@@ -59,6 +59,6 @@
     "vite-plugin-solid": "^2.11.14"
   },
   "peerDependencies": {
-    "solid-js": ">=1.7.0"
+    "solid-js": "^1.7.0"
   }
 }

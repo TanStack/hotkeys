@@ -68,7 +68,7 @@ export function SaveButton({ onSave }: { onSave: () => void }) {
 
 The package also re-exports `@tanstack/hotkeys`, such as `formatForDisplay`, `matchesKeyboardEvent`, and `defineAppHotkeys`.
 
-No provider is required. In React Server Components frameworks, use the hooks and `HotkeysProvider` in client components.
+No provider is required. In React Server Components frameworks, call the hooks from client components. The package marks `HotkeysProvider` as a client component, so a server layout can render it without a `'use client'` wrapper.
 
 ## A dialog that owns the keyboard
 

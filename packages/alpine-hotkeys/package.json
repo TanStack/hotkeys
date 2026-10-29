@@ -54,6 +54,6 @@
     "alpinejs": "^3.17.4"
   },
   "peerDependencies": {
-    "alpinejs": "^3.15.12"
+    "alpinejs": "^3.13.0"
   }
 }

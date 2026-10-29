@@ -21,7 +21,8 @@
     "production": [
       "default",
       "!{projectRoot}/tests/**/*",
-      "!{projectRoot}/eslint.config.js"
+      "!{projectRoot}/eslint.config.js",
+      "!{projectRoot}/eslint.config.mjs"
     ]
   },
   "targetDefaults": {

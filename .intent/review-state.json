@@ -45,11 +45,11 @@
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
-      "fingerprint": "a40354b6ea8830f3b051a8ad3f884f3e04cb1da71af2829c4c2fd53978046174",
+      "fingerprint": "37777ecd64b32ae83c76d5fb46f339cd6f361b94fb488b4c343316032278c066",
       "snapshot": {
         "docs/framework/ember/guides/app-hotkeys.md": "5162292b3d62257c757ea0146fb5b1cc8c85b130081472b3675be077e8c898de",
         "docs/framework/ember/quick-start.md": "cabdc0cbd2b9ac6d4d7f9f2c8b8d3fc6ef2ac8c23df4cd8ebc9745c99023f8c8",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "047dabb323921dbc83995f9f994a11158df84b5bd91701bed54a5810a71285ec",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "ba4e5144d1b1e5435ffda905009c40b343b8cd829a93ec9553afc576d2388acc",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "3f01e7b8dabf61a801c8fd2e4e6658486ae4f9bdda588594236c38f7b70aed5f",
         "packages/ember-hotkeys/src/onHotkey.ts": "26007837b3c8476c3be6b492701756258a8d09fe6648550742fd1405be1448bd",
@@ -58,12 +58,14 @@
         "packages/ember-hotkeys/src/useHotkey.ts": "66b7b39970c5e61233f352baf14c41d9ac29cc3832e251470930e6507b454f63",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
       "outcome": "updated",
-      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
+      "reason": "The version line now matches the new ember-source peer (>=6.8.3 <6.9.0 || >=6.10.1). Classic builds of 6.8.0 to 6.8.2, 6.9.0 and 6.10.0 don't define @ember/reactive/collections, which src/utils.ts imports.",
       "evidence": [
-        "packages/hotkeys/src/hotkey-manager.ts",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"
+        "packages/ember-hotkeys/package.json",
+        "packages/ember-hotkeys/src/utils.ts",
+        "Classic ember-cli apps with ember-auto-import 2.13.1 and the packed addon: 6.8.3, 6.12.1 (use-ember-modules on and off) and 7.3.1 build and fire K in Chromium; 6.8.0 fails with \"Could not find module @ember/reactive/collections\"",
+        "pnpm test:lib for @tanstack/ember-hotkeys passes (Embroider/Vite suite)"
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
@@ -183,16 +185,16 @@
       ]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "46a32a3fd81e8b1e162b3f07d12801a4977086afbe0f5bce69c9d4a46feba7f6",
+      "fingerprint": "f5a95f6bbeac7e398901b72d4fb3bca1889f65bbb9bd63741e78053e5ad24706",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
         "docs/framework/react/quick-start.md": "d587fccff19a0cf3c131f832a8eb423d5d4892e78e521aa856fd23485015afe7",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "29a7233f6ba5ffecc8a84529353981ce820adee92cfdb8a9441c4a5c50554f9d",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "cfdd50d7cfdca297ce856fbf4c3510ca7d25759eecf7da285b9a7c5f4e7ed0dd",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "e45854b2346700249569ce418b0bb5593cd00a018336a60c9ed5cedeb8d49b3e",
-        "packages/react-hotkeys/src/HotkeysProvider.tsx": "bdf71bdf0de147134501e44ac03c8525d803f250b31c3d742c674fe01a85f17f",
-        "packages/react-hotkeys/src/useAppHotkeys.ts": "023eff9348a9209a2e3e99a2b9847da3be72206f98150b478dae81a215059577",
-        "packages/react-hotkeys/src/useHotkey.ts": "b22e215bf0ba20220b3a76ed4ded3ad724fe7a9c6ce9705acd371adfc004836b",
-        "packages/react-hotkeys/src/useHotkeys.ts": "58275023fd539ac8a9fcb6ceb355aeb491e276191c31a12780065bd0b462ce95",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx": "4e5604bfc2907232bdab60c6ed24a28f4b363dfac1c19883a0c65db6b5ac5bf1",
+        "packages/react-hotkeys/src/useAppHotkeys.ts": "eec5d9a2e281ab8892c56b9482cd930a06deb176581bba9cb409faa35b1bee91",
+        "packages/react-hotkeys/src/useHotkey.ts": "01c7e0b8de39f75028a6eec04abf5eb2cf6fb410177a24603e719eb90c030661",
+        "packages/react-hotkeys/src/useHotkeys.ts": "18fc224f0ec5efee2553fde4840dda78ec0ec7e5dcb2f812279bafcc2384184e",
         "packages/react-hotkeys/src/utils.ts": "e755c6f7e31291c06b0fc8e136a436bb9b52e03f6fcbfc5608d20e339997cc8e",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "25c572e968a78fd8df61f0bc98ba8adb41ecf0874437725e5ba28dd171e44fe1",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -212,12 +214,14 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
       "outcome": "updated",
-      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
+      "reason": "HotkeysProvider and the hooks now ship with 'use client', so a server layout can render HotkeysProvider without a wrapper. Hooks still run only in client components, which the skill keeps.",
       "evidence": [
-        "packages/hotkeys/src/hotkey-manager.ts",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md"
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "scripts/verify-package.ts",
+        "Next.js 16.4.3 build with a server layout rendering HotkeysProvider and HotkeysDevtoolsPanel passes, and K fires in next start and next dev; published 0.17.0 fails with \"createContext is not a function\"",
+        "pnpm test:lib for @tanstack/react-hotkeys passes, including the skill task checks"
       ]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
@@ -285,10 +289,10 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "cd9093c837657c250149da40c85fa4c98b1b30506fba733551940d3474091d8e",
+      "fingerprint": "d4b03d664be71cf8976bd6de64aca17ab947787aed7ace15f9cd4dfdfb5380bb",
       "snapshot": {
-        "_artifacts/domain_map.yaml": "dd50dde7eec97230c015f793602239e721dacb370936eafd4554988b4a2c1c89",
-        "_artifacts/skill_spec.md": "57693ee30406d1a76d7ec201cc480e37611b23141ec70d7f178b0b07f56248fd",
+        "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
+        "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
         "_artifacts/skill_tree.yaml": "c7e0b30458bd11e3a52e728163838166def6ee64419f1b632f1ea36a37e573af",
         "docs/framework/alpine/guides/app-hotkeys.md": "536c327d4d9f80219a0dcdd04bb36b684c35567ad76f86327287ae6a21f03199",
         "docs/framework/alpine/quick-start.md": "82877b602b370603286ca41f384f5e38da25f7df30bf707e04ea17018792875c",
@@ -330,7 +334,7 @@
         "packages/angular-hotkeys/src/injectHotkey.ts": "b3651b50beb5b94cdadaf3339be17984e79277222918550f53448fca511e0af6",
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "46db59ccc34f8158c98328ae152f47cdd182cdeef951bf9dc5c44fa12de1b305",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "cecc7d127934caaab72a694fe527ef7a7b31e660f98cc077dabacd5506e11619",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "047dabb323921dbc83995f9f994a11158df84b5bd91701bed54a5810a71285ec",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "ba4e5144d1b1e5435ffda905009c40b343b8cd829a93ec9553afc576d2388acc",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "3f01e7b8dabf61a801c8fd2e4e6658486ae4f9bdda588594236c38f7b70aed5f",
         "packages/ember-hotkeys/src/onHotkey.ts": "26007837b3c8476c3be6b492701756258a8d09fe6648550742fd1405be1448bd",
@@ -367,12 +371,12 @@
         "packages/preact-hotkeys/src/useHotkey.ts": "3a557416b1d8699c018aea0e1787c1b9cbfc161bdba0ecdcce3fb2a5de44f5b9",
         "packages/preact-hotkeys/src/useHotkeys.ts": "23ccd2ee8566bc62a8bca00c8a1c40fc4d37c8363b891667ae391f3e44bfa97b",
         "packages/preact-hotkeys/src/utils.ts": "930ee95e471c879bfcc32886c31128d702d92719b23c4bd8c06aa21e324502e9",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "29a7233f6ba5ffecc8a84529353981ce820adee92cfdb8a9441c4a5c50554f9d",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "cfdd50d7cfdca297ce856fbf4c3510ca7d25759eecf7da285b9a7c5f4e7ed0dd",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "e45854b2346700249569ce418b0bb5593cd00a018336a60c9ed5cedeb8d49b3e",
-        "packages/react-hotkeys/src/HotkeysProvider.tsx": "bdf71bdf0de147134501e44ac03c8525d803f250b31c3d742c674fe01a85f17f",
-        "packages/react-hotkeys/src/useAppHotkeys.ts": "023eff9348a9209a2e3e99a2b9847da3be72206f98150b478dae81a215059577",
-        "packages/react-hotkeys/src/useHotkey.ts": "b22e215bf0ba20220b3a76ed4ded3ad724fe7a9c6ce9705acd371adfc004836b",
-        "packages/react-hotkeys/src/useHotkeys.ts": "58275023fd539ac8a9fcb6ceb355aeb491e276191c31a12780065bd0b462ce95",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx": "4e5604bfc2907232bdab60c6ed24a28f4b363dfac1c19883a0c65db6b5ac5bf1",
+        "packages/react-hotkeys/src/useAppHotkeys.ts": "eec5d9a2e281ab8892c56b9482cd930a06deb176581bba9cb409faa35b1bee91",
+        "packages/react-hotkeys/src/useHotkey.ts": "01c7e0b8de39f75028a6eec04abf5eb2cf6fb410177a24603e719eb90c030661",
+        "packages/react-hotkeys/src/useHotkeys.ts": "18fc224f0ec5efee2553fde4840dda78ec0ec7e5dcb2f812279bafcc2384184e",
         "packages/react-hotkeys/src/utils.ts": "e755c6f7e31291c06b0fc8e136a436bb9b52e03f6fcbfc5608d20e339997cc8e",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "25c572e968a78fd8df61f0bc98ba8adb41ecf0874437725e5ba28dd171e44fe1",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -414,10 +418,16 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "476a5a50a21aefe6243f9bc6e8c6a679978542d6ad8b52e6a2b0f806cd5ef89a",
         "packages/vue-hotkeys/src/useHotkeys.ts": "f971e9938eca3188b3af0fcc96d095330f9f6abfd70cb848d2de5c80f8d09639"
       },
-      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
-      "outcome": "no-change",
-      "reason": "Internal fix: the preventDefault 'always' check uses the event's composed path so live hotkeys inside shadow roots count. Skill guidance unchanged.",
-      "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "updated",
+      "reason": "Resolved the octane-hotkeys gap: docs/installation.md now says Octane 0.12 or newer, matching the >=0.12.0 peer and the skill. Domains, skill entries and the other gaps are still accurate.",
+      "evidence": [
+        "_artifacts/domain_map.yaml",
+        "_artifacts/skill_spec.md",
+        "_artifacts/skill_tree.yaml",
+        "docs/installation.md",
+        "packages/octane-hotkeys/package.json"
+      ]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -430,15 +440,16 @@
       "evidence": [".changeset/intent-skills.md"]
     },
     "source:scripts/verify-package.ts": {
-      "fingerprint": "fc48112cc743933225c6aa48310529c4288a438cba01ad96378c6898d65dcce6",
+      "fingerprint": "f93157da0086ac1b234efa6b91482b6fed8538ad55f98ab186105837b9e274bc",
       "snapshot": {
-        "scripts/verify-package.ts": "6b2515de4558bc3fa642a6cff2c01b498633302fcd04213570afe38051f0ad00"
+        "scripts/verify-package.ts": "86c307730526309a448097c15fb9e041a8ac9f4bce1bd9328802f694996a0bb6"
       },
-      "head": "ad56a4b0dbf3c34d8552eca2cc88c5c7000d520a",
-      "outcome": "out-of-scope",
-      "reason": "Packaging check now accepts a trailing \"skills\" files entry and requires a packed SKILL.md; it changes no library behavior the guidance covers.",
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Adds package checks for Ember v2 addon metadata and preserved 'use client' directives. Packaging checks aren't covered by skills.",
       "evidence": [
-        "node scripts/verify-package.ts passed for all 11 skill packages and react-hotkeys-devtools (no skills)"
+        "scripts/verify-package.ts",
+        "pnpm exec nx run-many --targets=test:build passes for all 18 packages"
       ]
     },
     "source:docs/framework/alpine/guides/hotkey-hints.md": {
@@ -960,14 +971,17 @@
       "evidence": ["packages/preact-hotkeys/tests/useHotkeyHint.test.tsx"]
     },
     "source:packages/react-hotkeys/src/useHotkeyHint.ts": {
-      "fingerprint": "6eb1d204a78d8e8917073a00213138ecb7e74e10d71941c16b6ed4759d4560a2",
+      "fingerprint": "9ab705624e848526f4e4a1bf2b66c4326eb3bbe252c8e598dc031a188bca2c0f",
       "snapshot": {
-        "packages/react-hotkeys/src/useHotkeyHint.ts": "243cb4eea10c9ddf153862d6f6c5e44ee70d5a04c73180b516e42bd5fecaed6a"
+        "packages/react-hotkeys/src/useHotkeyHint.ts": "39c39deb13b62e0b7bdf065d4c5b19419b7b682185de796479e5bfac9888a916"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
       "outcome": "no-change",
-      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["packages/react-hotkeys/src/useHotkeyHint.ts"]
+      "reason": "Adds a 'use client' directive only. Hook behavior and signatures are unchanged; the React Server Components guidance is reviewed under the react-hotkeys skill item.",
+      "evidence": [
+        "packages/react-hotkeys/src/useHotkeyHint.ts",
+        "pnpm test:lib for @tanstack/react-hotkeys passes"
+      ]
     },
     "source:packages/react-hotkeys/tests/appHotkeys.test.tsx": {
       "fingerprint": "fdf707b51c4da3a5d90684507bed80a2738469df3bbcd23d617f268bb3a81496",
@@ -2088,14 +2102,17 @@
       "evidence": ["packages/react-hotkeys/src/index.ts"]
     },
     "source:packages/react-hotkeys/src/useHotkeyScopesState.ts": {
-      "fingerprint": "49e0f5c3460a70a588578ee40a30705dc549d074a255d4fa17adffc6fdd73dc7",
+      "fingerprint": "96a95553282dbc739bfd645dcb8c7e4b9b59b5da3cc34984c3f7f2d5dc6945d1",
       "snapshot": {
-        "packages/react-hotkeys/src/useHotkeyScopesState.ts": "f16479fab60036ac1cf1c41d4e0507e13435d410ffeec6b228b6a9d294e604ff"
+        "packages/react-hotkeys/src/useHotkeyScopesState.ts": "e23ce667a134f728ebbf65f8eadd418bf0863238cad17bdd5785c91d74988c28"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
       "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["packages/react-hotkeys/src/useHotkeyScopesState.ts"]
+      "reason": "Adds a 'use client' directive only. Hook behavior and signatures are unchanged; the React Server Components guidance is reviewed under the react-hotkeys skill item.",
+      "evidence": [
+        "packages/react-hotkeys/src/useHotkeyScopesState.ts",
+        "pnpm test:lib for @tanstack/react-hotkeys passes"
+      ]
     },
     "source:packages/react-hotkeys/tests/useHotkeyRegistrations.test.tsx": {
       "fingerprint": "9565d0ab2fdb113a86c2c9ae709be9764bffed74ce79f7f7ec7220b1fa8b86aa",
@@ -2480,6 +2497,198 @@
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": ["docs/config.json"]
+    },
+    "source:docs/devtools.md": {
+      "fingerprint": "0531feaff7a5b318e796b8b9a5ea2ebbbc167b535d7affd20222afcb1cc9f3ee",
+      "snapshot": {
+        "docs/devtools.md": "d8c866a6b4c09cdce0ad469f21085f4b4f7795825bc0e33dbcd1cc0d02ad30c3"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Adds the Solid devtools floor (1.9.15) and raises the Svelte devtools floor to 5.40. No skill states devtools install requirements.",
+      "evidence": [
+        "docs/devtools.md",
+        "packages/solid-hotkeys-devtools/package.json",
+        "packages/svelte-hotkeys-devtools/package.json"
+      ]
+    },
+    "source:docs/installation.md": {
+      "fingerprint": "32c482e96e63d6c4422b052ca6d36c30ea3e23921c1a09d359699c90d2bb1058",
+      "snapshot": {
+        "docs/installation.md": "2baaefc4923804cb9cd2cbc65f83caac1a215f6c3d7f9cc2ef000658e4e5443b"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Adds per-framework version floors and a React Server Components note. The skills that state a floor (Ember, Octane) and the React RSC line are reviewed under their own items; the other skills don't repeat install floors.",
+      "evidence": [
+        "docs/installation.md",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md"
+      ]
+    },
+    "source:nx.json": {
+      "fingerprint": "3ac2ee2cc84504f01de5fdd37aed33504b556a9aebe9db53583686777d5d3c5d",
+      "snapshot": {
+        "nx.json": "25eda7832cceecfaa48bba3639c9f0e8a7fa7b82804a438ef5383549e5ac4011"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Excludes the renamed Ember ESLint config from the production build inputs. No guidance depends on Nx cache inputs.",
+      "evidence": ["nx.json"]
+    },
+    "source:packages/ember-hotkeys/eslint.config.js": {
+      "fingerprint": "697130dbc35f4c786d3a78574bd1e08cabfc2e68cea742291b2a80b3631f3684",
+      "snapshot": {
+        "packages/ember-hotkeys/eslint.config.js": null
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Renamed to eslint.config.mjs because the package no longer sets type: module. Lint rules are unchanged.",
+      "evidence": [
+        "packages/ember-hotkeys/eslint.config.mjs",
+        "pnpm test:eslint for @tanstack/ember-hotkeys passes"
+      ]
+    },
+    "source:packages/ember-hotkeys/eslint.config.mjs": {
+      "fingerprint": "0571d999fdb4d7b4862807bf6b80e374188050696fd1d1d70146769e4d193005",
+      "snapshot": {
+        "packages/ember-hotkeys/eslint.config.mjs": "fd75d4b4067a23903d10b6861fd3305f262230488c9b44fe928d2b14336d85f4"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Same config as the old eslint.config.js, renamed so Node loads it as ESM without type: module.",
+      "evidence": [
+        "packages/ember-hotkeys/eslint.config.mjs",
+        "pnpm test:eslint for @tanstack/ember-hotkeys passes"
+      ]
+    },
+    "source:packages/ember-hotkeys/tsdown.config.mts": {
+      "fingerprint": "42976eb0d54b8ab1c0622cc2636860381143cfc90424d2c075429c09265e556b",
+      "snapshot": {
+        "packages/ember-hotkeys/tsdown.config.mts": "e0425c3f43b9031424d17d9ff2a6fbc18cd7a4038f41420503eb33421441f080"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Pins .js and .d.ts output extensions and reports publint errors only. The built files and exports are the same as before, so no guidance changes.",
+      "evidence": [
+        "packages/ember-hotkeys/tsdown.config.mts",
+        "pnpm test:build for @tanstack/ember-hotkeys passes"
+      ]
+    },
+    "source:packages/ember-hotkeys/tsdown.config.ts": {
+      "fingerprint": "41882e9f0620274f3a3431fd1b99fc43be415660845d341880ca78e56d89d9c3",
+      "snapshot": {
+        "packages/ember-hotkeys/tsdown.config.ts": null
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Renamed to tsdown.config.mts because the package no longer sets type: module.",
+      "evidence": ["packages/ember-hotkeys/tsdown.config.mts"]
+    },
+    "source:packages/react-hotkeys-devtools/tsdown.config.ts": {
+      "fingerprint": "b5a3e4683bd5c43760e791535b1e78e69d81acbc6973fb845345a3b2150c2d5e",
+      "snapshot": {
+        "packages/react-hotkeys-devtools/tsdown.config.ts": "31c11692cd78903d3f9b6db7ed8e5fbdce690116f6f6e69e1efdab6f643499ee"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Turns off rolldown's module-level directive warning. Output is unchanged; verify-package checks the directives survive.",
+      "evidence": [
+        "packages/react-hotkeys-devtools/tsdown.config.ts",
+        "pnpm test:build for @tanstack/react-hotkeys-devtools passes"
+      ]
+    },
+    "source:packages/react-hotkeys/src/_appHotkeysStore.ts": {
+      "fingerprint": "bf7cb0cf9fe862d679b29cd7773a125cb72f72fd529f3a35f5088b9366520b84",
+      "snapshot": {
+        "packages/react-hotkeys/src/_appHotkeysStore.ts": "8559856f8904f3ec51376df60636653be14839f94a95c604b3b3a5d4f05df708"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Adds a 'use client' directive only. Hook behavior and signatures are unchanged; the React Server Components guidance is reviewed under the react-hotkeys skill item.",
+      "evidence": [
+        "packages/react-hotkeys/src/_appHotkeysStore.ts",
+        "pnpm test:lib for @tanstack/react-hotkeys passes"
+      ]
+    },
+    "source:packages/react-hotkeys/src/useHeldKeyCodes.ts": {
+      "fingerprint": "afb6972f4a525a47711c2315cae72a2b60d64ab58eb365afbab738c1ef50668d",
+      "snapshot": {
+        "packages/react-hotkeys/src/useHeldKeyCodes.ts": "4835312e094dc6adc4e54da169e08eba450a207edf3c4dcca0b0e1064137cddd"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Adds a 'use client' directive only. Hook behavior and signatures are unchanged; the React Server Components guidance is reviewed under the react-hotkeys skill item.",
+      "evidence": [
+        "packages/react-hotkeys/src/useHeldKeyCodes.ts",
+        "pnpm test:lib for @tanstack/react-hotkeys passes"
+      ]
+    },
+    "source:packages/react-hotkeys/src/useHeldKeys.ts": {
+      "fingerprint": "6a68e250329bf139f18a6d74cb50f73de9d43077f4fd7c775edfc39cf0df9620",
+      "snapshot": {
+        "packages/react-hotkeys/src/useHeldKeys.ts": "898b8675cfb0ea207ce9a00e6150ea964cf473da21465284a4af9405f0e24eed"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Adds a 'use client' directive only. Hook behavior and signatures are unchanged; the React Server Components guidance is reviewed under the react-hotkeys skill item.",
+      "evidence": [
+        "packages/react-hotkeys/src/useHeldKeys.ts",
+        "pnpm test:lib for @tanstack/react-hotkeys passes"
+      ]
+    },
+    "source:packages/react-hotkeys/src/useHotkeyRecorder.ts": {
+      "fingerprint": "0e3b0909feec1eeaf7f88ccf6a1a40aeffe38857916c50cdadee199d07b704e9",
+      "snapshot": {
+        "packages/react-hotkeys/src/useHotkeyRecorder.ts": "ae2a2022eb2fe71258d24b87c6e50bf9e185a9731f46de3d123777f12bcc2e84"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Adds a 'use client' directive only. Hook behavior and signatures are unchanged; the React Server Components guidance is reviewed under the react-hotkeys skill item.",
+      "evidence": [
+        "packages/react-hotkeys/src/useHotkeyRecorder.ts",
+        "pnpm test:lib for @tanstack/react-hotkeys passes"
+      ]
+    },
+    "source:packages/react-hotkeys/src/useHotkeyRegistrations.ts": {
+      "fingerprint": "b51b2325aaf3a0874335cb595e01ce42c0bdc8304170c5e58f0fcea3fb2a599f",
+      "snapshot": {
+        "packages/react-hotkeys/src/useHotkeyRegistrations.ts": "c9d391b896137215cdd38a912ec996bc44b93fb18c9aee7a71e1f12a55609d37"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Adds a 'use client' directive only. Hook behavior and signatures are unchanged; the React Server Components guidance is reviewed under the react-hotkeys skill item.",
+      "evidence": [
+        "packages/react-hotkeys/src/useHotkeyRegistrations.ts",
+        "pnpm test:lib for @tanstack/react-hotkeys passes"
+      ]
+    },
+    "source:packages/react-hotkeys/src/useKeyHold.ts": {
+      "fingerprint": "fcd57f054ff1cdc491f205ea13669fd4b5a9c63dc2e3e707a80e1939400baafd",
+      "snapshot": {
+        "packages/react-hotkeys/src/useKeyHold.ts": "83f6c85e9d4d1e3f6c44d7276fa2acb67ac2247d99d8655fcf2b57d29087de74"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Adds a 'use client' directive only. Hook behavior and signatures are unchanged; the React Server Components guidance is reviewed under the react-hotkeys skill item.",
+      "evidence": [
+        "packages/react-hotkeys/src/useKeyHold.ts",
+        "pnpm test:lib for @tanstack/react-hotkeys passes"
+      ]
+    },
+    "source:packages/react-hotkeys/tsdown.config.ts": {
+      "fingerprint": "71c341bcfa47f7ce6d75cb98410fd0d2668b296981cbd9cb8de8b2882d7bc712",
+      "snapshot": {
+        "packages/react-hotkeys/tsdown.config.ts": "466a0a62a77a99d06fc28294b18a7a96a57841880f479b34669440eb80055d24"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Turns off rolldown's module-level directive warning. Each built file keeps its 'use client', which verify-package checks.",
+      "evidence": [
+        "packages/react-hotkeys/tsdown.config.ts",
+        "pnpm test:build for @tanstack/react-hotkeys passes"
+      ]
     }
   }
 }

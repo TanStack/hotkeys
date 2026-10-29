@@ -60,7 +60,7 @@
     "svelte": "^5.57.1"
   },
   "peerDependencies": {
-    "svelte": "^5.25.0"
+    "svelte": "^5.40.0"
   },
   "engines": {
     "node": ">=20"

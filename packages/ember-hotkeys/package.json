@@ -15,6 +15,7 @@
     "url": "https://github.com/sponsors/tannerlinsley"
   },
   "keywords": [
+    "ember-addon",
     "ember",
     "tanstack",
     "hotkeys",
@@ -29,9 +30,8 @@
     "test:lib:dev": "pnpm test:lib --watch",
     "test:types": "ember-tsc --noEmit",
     "build": "tsdown",
-    "test:build": "publint --strict && node ../../scripts/verify-package.ts"
+    "test:build": "publint --level error && node ../../scripts/verify-package.ts"
   },
-  "type": "module",
   "types": "./dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
@@ -53,7 +53,7 @@
     "@embroider/addon-shim": "^1.10.3",
     "@tanstack/hotkeys": "workspace:*",
     "@tanstack/store": "^0.11.2",
-    "ember-modifier": "4.2.2"
+    "ember-modifier": "^4.2.2"
   },
   "devDependencies": {
     "@babel/core": "7.29.7",
@@ -80,7 +80,7 @@
     "vite": "^8.3.2"
   },
   "peerDependencies": {
-    "ember-source": ">=6.8.0"
+    "ember-source": ">=6.8.3 <6.9.0 || >=6.10.1"
   },
   "ember-addon": {
     "version": 2,

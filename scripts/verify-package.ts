@@ -1,6 +1,12 @@
 import assert from 'node:assert/strict'
 import { execFileSync } from 'node:child_process'
-import { mkdtempSync, readFileSync, rmSync, statSync } from 'node:fs'
+import {
+  existsSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  statSync,
+} from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 
@@ -8,7 +14,8 @@ type ExportTarget = string | { [condition: string]: ExportTarget }
 
 interface PackedManifest {
   name: string
-  type: string
+  type?: string
+  keywords?: Array<string>
   types: string
   main?: string
   engines: { node: string }
@@ -17,6 +24,8 @@ interface PackedManifest {
   dependencies?: Record<string, string>
   'ember-addon'?: { version: number; main: string }
 }
+
+const useClient = /^\s*['"]use client['"]/
 
 // Validate an actual pnpm tarball, not the workspace where unpublished source
 // files and stale build output can mask a broken release.
@@ -37,14 +46,25 @@ try {
     readFileSync(join(packageDirectory, 'package.json'), 'utf8'),
   ) as PackedManifest
 
-  assert.equal(manifest.type, 'module', 'Packages must be ESM')
+  const emberAddon = manifest['ember-addon']?.version === 2
+  if (emberAddon) {
+    // ember-auto-import only treats packages with this keyword as v2 addons.
+    assert.ok(
+      manifest.keywords?.includes('ember-addon'),
+      'Ember v2 addons need the ember-addon keyword',
+    )
+    // Classic builds break when webpack applies strict ESM interop to
+    // `@ember/*` default imports, so v2 addons leave `type` unset.
+    assert.equal(manifest.type, undefined, 'Ember v2 addons must not set type')
+  } else {
+    assert.equal(manifest.type, 'module', 'Packages must be ESM')
+  }
   assert.equal(
     manifest.engines.node,
     manifest.name === '@tanstack/octane-hotkeys' ? '>=22.22.2' : '>=20',
   )
   assert.equal(manifest.types, './dist/index.d.ts')
   assert.equal(manifest.main, undefined, 'Do not restore a legacy main entry')
-  const emberAddon = manifest['ember-addon']?.version === 2
   // Packages that ship Intent skills list `skills` after the build output.
   const shipsSkills = manifest.files.at(-1) === 'skills'
   assert.deepEqual(manifest.files, [
@@ -113,6 +133,20 @@ try {
     )
     const path = join(packageDirectory, file)
     unpackedBytes += statSync(path).size
+    // React Server Components need 'use client' at the top of each built file
+    // whose source declares it.
+    const source = /^dist\/(.+)\.js$/.exec(file)?.[1]
+    const sourceFile = source
+      ? [`src/${source}.ts`, `src/${source}.tsx`].find((candidate) =>
+          existsSync(candidate),
+        )
+      : undefined
+    if (sourceFile && useClient.test(readFileSync(sourceFile, 'utf8'))) {
+      assert.ok(
+        useClient.test(readFileSync(path, 'utf8')),
+        `Lost 'use client' directive: ${file}`,
+      )
+    }
     if (/\.(?:js|ts|svelte|css)$/.test(file)) {
       assert.ok(
         !/sourceMappingURL\s*=/.test(readFileSync(path, 'utf8')),

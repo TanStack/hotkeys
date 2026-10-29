@@ -56,7 +56,7 @@
     "dist"
   ],
   "peerDependencies": {
-    "svelte": "^5.25.0"
+    "svelte": "^5.40.0"
   },
   "dependencies": {
     "@tanstack/devtools-utils": "^0.7.0",

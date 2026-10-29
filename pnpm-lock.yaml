@@ -1315,7 +1315,7 @@ importers:
         specifier: 2.4.0
         version: 2.4.0(@babel/core@7.29.7(supports-color@8.1.1))
       ember-modifier:
-        specifier: 4.2.2
+        specifier: ^4.2.2
         version: 4.2.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       ember-source:
         specifier: 7.3.0
@@ -1385,7 +1385,7 @@ importers:
         specifier: 2.4.0
         version: 2.4.0(@babel/core@7.29.7(supports-color@8.1.1))
       ember-modifier:
-        specifier: 4.2.2
+        specifier: ^4.2.2
         version: 4.2.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
       ember-source:
         specifier: 7.3.0
@@ -3644,7 +3644,7 @@ importers:
         specifier: ^0.11.2
         version: 0.11.2
       ember-modifier:
-        specifier: 4.2.2
+        specifier: ^4.2.2
         version: 4.2.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
     devDependencies:
       '@babel/core':
@@ -3858,10 +3858,10 @@ importers:
         specifier: workspace:*
         version: link:../hotkeys-devtools
       '@types/react-dom':
-        specifier: '>=16.8'
+        specifier: '>=18.0.0'
         version: 19.3.0(@types/react@19.3.0)
       react-dom:
-        specifier: '>=16.8'
+        specifier: '>=18.0.0'
         version: 19.3.0(react@19.3.0)
     devDependencies:
       '@eslint-react/eslint-plugin':
