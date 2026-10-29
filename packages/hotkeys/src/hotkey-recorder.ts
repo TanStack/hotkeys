@@ -265,8 +265,9 @@ export class HotkeyRecorder {
    * and records chords according to `maxSteps`.
    */
   start(): void {
-    // Prevent starting recording if already recording
-    if (this.#keydownHandler) {
+    // Prevent starting recording if already recording. Without a document
+    // there are no key events, and server renders rarely run cleanup.
+    if (this.#keydownHandler || typeof document === 'undefined') {
       return
     }
 

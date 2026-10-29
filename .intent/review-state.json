@@ -70,7 +70,7 @@
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "027b0a6860eee8cf94e9227f982752d3e705c0c11f9237620d16215510839ed5",
+      "fingerprint": "e4a4a258ea0983afe25de1f963ce8cb2f2d2723c9d9edf05c3d230e0b0cf45ae",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "703f9dcea282a1b5cd7cabcd304a233cfda8d79206d3d66d3b024142e5175d24",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "a3f793e81c6a6e1e6aaf3d63c6b79114ea7d6f461123d371c0b4f0a23ffd88bc",
@@ -79,7 +79,7 @@
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
         "packages/hotkeys/src/app-hotkeys.ts": "5bee8b0042a7385c8963aabf9b0ca7b6aad5ef8aab41b2759961a7ac6cf6849c",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
-        "packages/hotkeys/src/hotkey-recorder.ts": "2ebed5665e56f5ee87130440fc93f2571aef7940b6153c05204cd0f3e7eea4cc",
+        "packages/hotkeys/src/hotkey-recorder.ts": "972b374bc2e18a06c09da8595ea29dfa13d62a28c2e503174eb18a02fcc40daf",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
         "packages/react-hotkeys/tests/skills/shortcut-settings/grade.tsx": "270c7b8ff9d30f09a458bc8907efa47813e1e192903cc0ca3a70f6820e39fc90",
         "packages/react-hotkeys/tests/skills/shortcut-settings/mistakes/full-list-storage.tsx": "62d4f4bd79de46fc4900d4f8202c7b16c672060ab66aaead9e7fcd8ea1958c59",
@@ -89,13 +89,10 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
-      "outcome": "updated",
-      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
-      "evidence": [
-        "packages/hotkeys/src/hotkey-manager.ts",
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md"
-      ]
+      "head": "614339f8f59a0776451f4ccc64cb5cadc20fd145",
+      "outcome": "no-change",
+      "reason": "Recorder start without a document and Svelte recorder teardown timing are internal; the skill describes neither.",
+      "evidence": ["packages/hotkeys/src/hotkey-recorder.ts"]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
       "fingerprint": "bed2ef31e1a81f54691559cae4132e56f7e9ba2333e5e92a615330179da1bdb2",
@@ -246,7 +243,7 @@
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "f6d5dd7f7c657a22517d0e042213460a64917ce6702f59a9c9e8fbe52c0a932d",
+      "fingerprint": "aaa74fe01f59f06b3a7eab35118eea3d617ff1e626139d07249ed8027641e64d",
       "snapshot": {
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
         "docs/framework/svelte/quick-start.md": "dac9d02db91eaf3aed4eba39d6fb31a4a460bb3f84ba85c0576d3573b5ecf3d1",
@@ -255,14 +252,14 @@
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "117d9625215435b7a3eb6c5a9f23792a02548059ba114b5737a6b9fb610b276c",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "eb7fb67907a153aae3f0ce61e951e8ea5df46468ae06eb55ad696500839124a3",
         "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "27959499674a4dbfeb048073807baf540586d0f0a63a0dbdde0246c7aa939706",
-        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "6de2683b3fd9dd1a775993193ead174e852198a351d28904c5e228ac196f5a95",
+        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "c18505d6f49d5c2300ab38f3de14f9d007d5c3857b503168d0bad6ae85479ffe",
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "39f0c7ff089f96d616583e011172ff9500211de9a97367b7148b3e8ab3be35a3",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a6a995eea5b1334baef1909da68dea08f8df4e29819bada3549c9a0be86e6dcb"
       },
-      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "head": "614339f8f59a0776451f4ccc64cb5cadc20fd145",
       "outcome": "no-change",
-      "reason": "The skill makes no claim about onDestroy, $effect.root, SSR, or getter keys that this fix changes; its component-based guidance still holds.",
-      "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
+      "reason": "Recorder start without a document and Svelte recorder teardown timing are internal; the skill describes neither.",
+      "evidence": ["packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts"]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
       "fingerprint": "1b9ebaa1dcfb7b147bbed4cf7ac118c3d9eecb27b8c278bb42e2909a55d9c9f2",
@@ -287,7 +284,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "a6282648f2723a1067db7e277aee576a7f93ce2ea963e91e2575c64961999b6c",
+      "fingerprint": "5a45c7ec1e17e7d80d27f091323d466f647f81ac1f5803131ff57045383c0abd",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -348,7 +345,7 @@
         "packages/hotkeys/src/app-hotkeys.ts": "5bee8b0042a7385c8963aabf9b0ca7b6aad5ef8aab41b2759961a7ac6cf6849c",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
         "packages/hotkeys/src/hotkey-manager.ts": "0f8c253810bc4027d35185483a09cbd403cdd04c31189288f8a1211c642587d4",
-        "packages/hotkeys/src/hotkey-recorder.ts": "2ebed5665e56f5ee87130440fc93f2571aef7940b6153c05204cd0f3e7eea4cc",
+        "packages/hotkeys/src/hotkey-recorder.ts": "972b374bc2e18a06c09da8595ea29dfa13d62a28c2e503174eb18a02fcc40daf",
         "packages/hotkeys/src/match.ts": "3a50921a68f79183b4ffac98e07e7fdf043711bc071f419c9cdc03422d25f268",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "ecd0100b52a00fc90ce71f244093da667d0c5ff78ecaf632d9db26f1c66c8e40",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "659ca9bebf4200bb693c693addb17bd5a943904e482514f2014f5ca426629e96",
@@ -404,7 +401,7 @@
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "117d9625215435b7a3eb6c5a9f23792a02548059ba114b5737a6b9fb610b276c",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "eb7fb67907a153aae3f0ce61e951e8ea5df46468ae06eb55ad696500839124a3",
         "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "27959499674a4dbfeb048073807baf540586d0f0a63a0dbdde0246c7aa939706",
-        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "6de2683b3fd9dd1a775993193ead174e852198a351d28904c5e228ac196f5a95",
+        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "c18505d6f49d5c2300ab38f3de14f9d007d5c3857b503168d0bad6ae85479ffe",
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "39f0c7ff089f96d616583e011172ff9500211de9a97367b7148b3e8ab3be35a3",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a6a995eea5b1334baef1909da68dea08f8df4e29819bada3549c9a0be86e6dcb",
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "565e5d5f33ed757855f0a3bcc78d65a191e52c1e3f33f9bf3dc534a4c0e70d3f",
@@ -416,10 +413,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "7505949604490126567f9b61bb4d5c7d5ad05c2004e67a33dba979651014176c",
         "packages/vue-hotkeys/src/useHotkeys.ts": "f971e9938eca3188b3af0fcc96d095330f9f6abfd70cb848d2de5c80f8d09639"
       },
-      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "head": "614339f8f59a0776451f4ccc64cb5cadc20fd145",
       "outcome": "no-change",
-      "reason": "Bug fixes inside existing vue, svelte, and lit skill scopes; no new domain, skill, or failure mode.",
-      "evidence": ["_artifacts/skill_spec.md"]
+      "reason": "Bug fix only; no change to the skill plan.",
+      "evidence": ["packages/hotkeys/src/hotkey-recorder.ts"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -4079,14 +4076,46 @@
       ]
     },
     "source:packages/svelte-hotkeys/tests/effect-root.test.ts": {
-      "fingerprint": "820236249616ccf1ec62205943fe98b03ee3135888bba62231102153f8bb5482",
+      "fingerprint": "5087a00590e7c9d712e7d47d34915440227a41398ffc1356ce2c186374b0d1f4",
       "snapshot": {
-        "packages/svelte-hotkeys/tests/effect-root.test.ts": "365cc9d1dc5cbf8d6615e3ae906a6ba27b03a2013510dc95a5a85c7422eee406"
+        "packages/svelte-hotkeys/tests/effect-root.test.ts": "4c9973b40a66b36b4112f173dbd7c213a544d4db0e09ed5af5171d78b270f0a6"
       },
-      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
-      "outcome": "no-change",
-      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "head": "614339f8f59a0776451f4ccc64cb5cadc20fd145",
+      "outcome": "out-of-scope",
+      "reason": "Test or generated reference file; no skill covers it.",
       "evidence": ["packages/svelte-hotkeys/tests/effect-root.test.ts"]
+    },
+    "source:docs/reference/classes/HotkeyRecorder.md": {
+      "fingerprint": "172fbfaafd03f66c42218b83c279a889e2f01ac8ae23063d8174fe46087c9d9f",
+      "snapshot": {
+        "docs/reference/classes/HotkeyRecorder.md": "35665f0a06f15c9e7ff06350efac8422a4601501ddf5e3ce0e56888d171471a8"
+      },
+      "head": "614339f8f59a0776451f4ccc64cb5cadc20fd145",
+      "outcome": "out-of-scope",
+      "reason": "Test or generated reference file; no skill covers it.",
+      "evidence": ["docs/reference/classes/HotkeyRecorder.md"]
+    },
+    "source:packages/hotkeys/tests/hotkey-recorder-ssr.test.ts": {
+      "fingerprint": "cc1320213a1d9a3add1904eb163614e252ef51fb7f982c3da8c124715c238e8f",
+      "snapshot": {
+        "packages/hotkeys/tests/hotkey-recorder-ssr.test.ts": "9ef19d90b27151f5a10005ba3d39a79911e34658cb425cfcf7e61ba0d5859abb"
+      },
+      "head": "614339f8f59a0776451f4ccc64cb5cadc20fd145",
+      "outcome": "out-of-scope",
+      "reason": "Test or generated reference file; no skill covers it.",
+      "evidence": ["packages/hotkeys/tests/hotkey-recorder-ssr.test.ts"]
+    },
+    "source:packages/svelte-hotkeys/tests/effect-root-early-destroy.svelte.ts": {
+      "fingerprint": "4e2da2524c10939c85fe5ad9c039fb96c8515dbfe720a1edd54a6bcc59d60da6",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/effect-root-early-destroy.svelte.ts": "614ea84d561f6b7f44e75594ed6c297ee88661c52053aeac9f124e67fef0f691"
+      },
+      "head": "614339f8f59a0776451f4ccc64cb5cadc20fd145",
+      "outcome": "out-of-scope",
+      "reason": "Test or generated reference file; no skill covers it.",
+      "evidence": [
+        "packages/svelte-hotkeys/tests/effect-root-early-destroy.svelte.ts"
+      ]
     }
   }
 }
