@@ -1,110 +1,201 @@
 import { normalizeKeyName } from './constants'
 
+type Target = HTMLElement | Document | Window
+
 // Nodes and windows can come from another frame (a same-origin iframe or a
 // popup window), whose DOM classes differ from this window's. These helpers
 // check `nodeType`, `localName`, and properties instead of using `instanceof`,
 // which is false for every object from another frame.
 
-function isNode(target: EventTarget | null): target is Node {
-  return typeof (target as Node | null)?.nodeType === 'number'
+function isElement(node: unknown): node is Element {
+  return (node as Node | null)?.nodeType === 1 // Node.ELEMENT_NODE
 }
 
-function isElement(target: EventTarget | null): target is Element {
-  return isNode(target) && target.nodeType === 1 // Node.ELEMENT_NODE
-}
-
-function isWindow(target: HTMLElement | Document | Window): target is Window {
-  return 'document' in target
+/** Whether a target is a document or window, which receive every key press in their document. */
+export function isDocumentLevel(target: Target): target is Document | Window {
+  return 'document' in target || target.nodeType === 9 // Node.DOCUMENT_NODE
 }
 
 /** Returns the document a listener target belongs to, in any frame. */
-export function getTargetDocument(
-  target: HTMLElement | Document | Window,
-): Document {
-  if (isWindow(target)) return target.document
-  if (target.nodeType === 9) return target as Document // Node.DOCUMENT_NODE
-  return (target as HTMLElement).ownerDocument
+export function getTargetDocument(target: Target): Document {
+  // A document has no owner document
+  return 'document' in target
+    ? target.document
+    : (target.ownerDocument ?? target)
+}
+
+// Focus
+
+/** The focused element, looking inside open shadow roots. */
+function getDeepActiveElement(doc: Document): Element | null {
+  let active = doc.activeElement
+  while (active?.shadowRoot?.activeElement) {
+    active = active.shadowRoot.activeElement
+  }
+  return active
+}
+
+/** The next node a key event bubbles to: a slot, a shadow host, or the parent. */
+function composedParent(node: Node): Node | null {
+  return (
+    (node as Element).assignedSlot ??
+    node.parentNode ??
+    // A shadow root has no parent node; continue from its host.
+    ((node as Partial<ShadowRoot>).host || null)
+  )
 }
 
 /**
  * Whether key presses reach a listener on `target` right now. Document and
  * window listeners receive every key press in their document. An element
  * receives them only while focus is inside it, including inside a shadow
- * root it contains.
+ * root it contains or on content slotted into it.
  */
-export function targetHasFocus(
-  target: HTMLElement | Document | Window,
-): boolean {
-  if (isWindow(target) || target.nodeType === 9) return true
-  // The root's activeElement is the focused element as seen from the target's tree.
-  const active = (target.getRootNode() as Document | ShadowRoot).activeElement
-  return !!active && target.contains(active)
+export function targetHasFocus(target: Target): boolean {
+  if (isDocumentLevel(target)) return true
+  for (
+    let node: Node | null = getDeepActiveElement(target.ownerDocument);
+    node;
+    node = composedParent(node)
+  ) {
+    if (node === target) return true
+  }
+  return false
 }
 
-/**
- * Checks if an element is an input-like element that should be ignored for hotkeys.
- *
- * This includes:
- * - HTMLInputElement (all input types except button, submit, reset)
- * - HTMLTextAreaElement
- * - HTMLSelectElement
- * - Elements with contentEditable enabled
- *
- * Button-type inputs (button, submit, reset) are excluded so hotkeys like
- * Mod+S and Escape fire when the user has tabbed to a form button.
- */
-export function isInputElement(element: EventTarget | null): boolean {
-  if (!isElement(element)) {
-    return false
-  }
+// What blocks a key
 
-  if (element.localName === 'input') {
-    const type = (element as HTMLInputElement).type.toLowerCase()
-    return type !== 'button' && type !== 'submit' && type !== 'reset'
-  }
-
-  if (element.localName === 'textarea' || element.localName === 'select') {
-    return true
-  }
-
-  // Check for contenteditable elements (includes "true", "", "plaintext-only",
-  // and inherited contenteditable from ancestor elements)
-  return (element as HTMLElement).isContentEditable === true
-}
-
-/**
- * Returns the focused element for the document associated with where hotkey
- * listeners are attached (listener root). Use this instead of the global
- * `document.activeElement` so registrations scoped to an iframe (or another
- * document) read focus from the correct tree.
- */
-export function getActiveElementForListenerTarget(
-  target: HTMLElement | Document | Window,
-): Element | null {
-  if (typeof document === 'undefined') {
-    return null
-  }
-
-  return getTargetDocument(target).activeElement
-}
-
+// Plain array literals, not spreads, so bundlers can drop lists a build doesn't use
 const VERTICAL = ['ArrowUp', 'ArrowDown']
 const HORIZONTAL = ['ArrowLeft', 'ArrowRight']
-const ARROWS = [...VERTICAL, ...HORIZONTAL]
-const EDGES = ['Home', 'End']
-const PAGES = ['PageUp', 'PageDown']
+const ENTER = ['Enter']
+const SPACE = ['Space']
 const ACTIVATION = ['Enter', 'Space']
 // Marks widgets that move focus to the item starting with a typed character
 const TYPEAHEAD = 'typeahead'
+const MENU = [
+  'ArrowUp',
+  'ArrowDown',
+  'ArrowLeft',
+  'ArrowRight',
+  'Home',
+  'End',
+  'Enter',
+  'Space',
+  TYPEAHEAD,
+]
+const COMBOBOX = [
+  'ArrowUp',
+  'ArrowDown',
+  'Home',
+  'End',
+  'Enter',
+  'Space',
+  TYPEAHEAD,
+]
+const GRID = [
+  'ArrowUp',
+  'ArrowDown',
+  'ArrowLeft',
+  'ArrowRight',
+  'Home',
+  'End',
+  'PageUp',
+  'PageDown',
+  'Enter',
+  'Space',
+]
+const RADIOS = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'Space']
+const NAVIGATION = [
+  'ArrowUp',
+  'ArrowDown',
+  'ArrowLeft',
+  'ArrowRight',
+  'Home',
+  'End',
+  'PageUp',
+  'PageDown',
+]
+const SPIN = ['ArrowUp', 'ArrowDown', 'Home', 'End', 'PageUp', 'PageDown']
+// Read-only text inputs still move the caret and select text
+const CARET = ['ArrowLeft', 'ArrowRight', 'Home', 'End']
+
+/**
+ * Input types that aren't text fields, with the keys each one keeps. Browsers
+ * report unknown types as `'text'`.
+ */
+const INPUT_KEYS: Record<string, ReadonlyArray<string> | undefined> = {
+  button: ACTIVATION,
+  submit: ACTIVATION,
+  reset: ACTIVATION,
+  image: ACTIVATION,
+  color: ACTIVATION,
+  file: ACTIVATION,
+  checkbox: SPACE,
+  radio: RADIOS,
+  range: NAVIGATION,
+}
+
+function getRole(element: Element): string | undefined {
+  return element.getAttribute('role')?.trim().split(/\s+/)[0]
+}
+
+/**
+ * Checks if an element is a text field that hotkeys should not type over:
+ * - text-entry `<input>` types (text, number, date, and similar) that aren't read-only
+ * - `<textarea>` elements that aren't read-only, and `<select>` elements
+ * - elements with `role="textbox"` or `role="searchbox"`
+ * - contenteditable elements
+ *
+ * Checkbox, radio, range, color, file, and button-type inputs are not text
+ * fields. Hotkeys skip only the keys those controls use themselves.
+ */
+export function isInputElement(element: EventTarget | null): boolean {
+  if (!isElement(element)) return false
+  switch (element.localName) {
+    case 'input': {
+      const input = element as HTMLInputElement
+      return !INPUT_KEYS[input.type] && !input.readOnly
+    }
+    case 'textarea':
+      return !(element as HTMLTextAreaElement).readOnly
+    case 'select':
+      return true
+  }
+  const role = getRole(element)
+  return (
+    role === 'textbox' ||
+    role === 'searchbox' ||
+    // Includes "plaintext-only" and contenteditable inherited from an ancestor
+    (element as HTMLElement).isContentEditable
+  )
+}
+
+/**
+ * Whether the focused custom element may be a text field whose contents can't
+ * be seen from outside:
+ * - a host with focus inside a closed shadow root. Without a `tabindex` it
+ *   can't hold focus itself, and an open root would have shown the focused
+ *   element inside it.
+ * - a form-associated element without a `role` attribute naming another control
+ */
+function isHiddenTextField(element: Element): boolean {
+  if (!element.localName.includes('-')) return false
+  return (element.constructor as { formAssociated?: unknown })
+    .formAssociated === true
+    ? !element.hasAttribute('role')
+    : !element.hasAttribute('tabindex')
+}
 
 /**
  * Returns the keys a control handles itself: activation for buttons and
  * links, and navigation for ARIA widgets, following the WAI-ARIA Authoring
  * Practices keyboard patterns (https://www.w3.org/WAI/ARIA/apg/patterns/).
+ * Editable text fields never get here: they block every key that types text.
  */
 function getOwnedKeys(element: Element): ReadonlyArray<string> {
   const orientation = element.getAttribute('aria-orientation')
-  switch (element.getAttribute('role')?.trim().split(/\s+/)[0]) {
+  switch (getRole(element)) {
     case 'button':
     case 'tab':
     case 'option':
@@ -114,56 +205,64 @@ function getOwnedKeys(element: Element): ReadonlyArray<string> {
     case 'menuitemradio':
       return ACTIVATION
     case 'link':
-      return ['Enter']
+      return ENTER
     case 'checkbox':
     case 'switch':
     case 'radio':
-      return ['Space']
+      return SPACE
     case 'menu':
     case 'menubar':
     case 'tree':
-      return [...ARROWS, ...EDGES, ...ACTIVATION, TYPEAHEAD]
+      return MENU
     case 'listbox':
       return [
         ...(orientation === 'horizontal' ? HORIZONTAL : VERTICAL),
-        ...EDGES,
-        ...ACTIVATION,
+        'Home',
+        'End',
+        'Enter',
+        'Space',
         TYPEAHEAD,
       ]
     case 'combobox':
-      return [...VERTICAL, ...EDGES, ...ACTIVATION, TYPEAHEAD]
+      return COMBOBOX
     case 'tablist':
       return [
         ...(orientation === 'vertical' ? VERTICAL : HORIZONTAL),
-        ...EDGES,
-        ...ACTIVATION,
+        'Home',
+        'End',
+        'Enter',
+        'Space',
       ]
     case 'toolbar':
-      return [...(orientation === 'vertical' ? VERTICAL : HORIZONTAL), ...EDGES]
+      return [
+        ...(orientation === 'vertical' ? VERTICAL : HORIZONTAL),
+        'Home',
+        'End',
+      ]
     case 'grid':
     case 'treegrid':
-      return [...ARROWS, ...EDGES, ...PAGES, ...ACTIVATION]
+      return GRID
     case 'radiogroup':
-      return [...ARROWS, 'Space']
+      return RADIOS
     case 'slider':
-      return [...ARROWS, ...EDGES, ...PAGES]
+      return NAVIGATION
     case 'spinbutton':
-      return [...VERTICAL, ...EDGES, ...PAGES]
+      return SPIN
   }
 
   switch (element.localName) {
     case 'button':
     case 'summary':
       return ACTIVATION
-    case 'input': {
-      const type = (element as HTMLInputElement).type
-      return type === 'button' || type === 'submit' || type === 'reset'
-        ? ACTIVATION
-        : []
-    }
+    case 'input':
+      // Only read-only text inputs aren't listed
+      return INPUT_KEYS[(element as HTMLInputElement).type] ?? CARET
+    case 'textarea':
+      // Only read-only textareas
+      return NAVIGATION
     case 'a':
     case 'area':
-      return element.hasAttribute('href') ? ['Enter'] : []
+      return element.hasAttribute('href') ? ENTER : []
   }
   return []
 }
@@ -180,104 +279,96 @@ function ownsKey(element: Element, event: KeyboardEvent, key: string): boolean {
     return !event.shiftKey && owned.includes(key)
   }
   return (
-    owned.includes(key) ||
-    (owned.includes(TYPEAHEAD) && /^\S$/u.test(event.key))
+    owned.includes(key) || (owned.includes(TYPEAHEAD) && /^.$/u.test(event.key))
   )
 }
 
-/**
- * Whether the focused element or an element on the event's path passes `test`.
- * Only elements inside the registration target count: walking outward from
- * the event's origin stops at the registration target, so a hotkey targeted
- * at a control, or at an element inside it, is not blocked by that control.
- */
-function someElementInsideTarget(
-  event: KeyboardEvent,
-  listenerTarget: HTMLElement | Document | Window,
-  registrationTarget: HTMLElement | Document | Window,
-  test: (element: Element) => boolean,
-): boolean {
-  const scoped =
-    !isWindow(registrationTarget) && registrationTarget.nodeType !== 9
-  const focused = getActiveElementForListenerTarget(listenerTarget)
-  if (
-    focused &&
-    focused !== registrationTarget &&
-    (!scoped || (registrationTarget as HTMLElement).contains(focused)) &&
-    test(focused)
-  ) {
-    return true
-  }
+// The walk
 
-  // The composed path includes elements inside open shadow roots. It is empty
-  // once dispatch has finished, so fall back to the event target.
-  const path = event.composedPath()
-  for (const element of path.length > 0 ? path : [event.target]) {
-    if (element === registrationTarget) break
-    if (isElement(element) && test(element)) return true
-  }
-  return false
+interface Blocker {
+  /** The elements the event passes through, starting where it began. */
+  elements: Array<Element>
+  /** Index of the first element that blocks the key, or -1. */
+  index: number
 }
 
 /**
- * Returns whether a hotkey should skip an event because a focused control
- * inside the registration target handles the key itself:
- * - text inputs, textareas, selects, and contenteditable elements (typing)
- * - buttons, links, and `<summary>` elements (Enter and Space activation)
- * - ARIA widgets such as menus, listboxes, tabs, and grids (navigation keys)
+ * Finds the first element on the event's way out that blocks it, walking out
+ * from the focused element. A key event starts there in a browser. One sent
+ * by a test may start at an ancestor of the focused element or at the
+ * document, and the walk from focus passes through those too. Only an event
+ * that starts where focus can't be seen, such as inside a closed shadow root,
+ * uses its own path.
+ */
+function findBlocker(
+  event: KeyboardEvent,
+  doc: Document,
+  test: (element: Element) => boolean,
+): Blocker {
+  const focused = getDeepActiveElement(doc)
+  let elements: Array<Element> = []
+  for (let node: Node | null = focused; node; node = composedParent(node)) {
+    if (isElement(node)) elements.push(node)
+  }
+  // The path is empty once dispatch has finished.
+  const origin = event.composedPath()[0]
+  if (isElement(origin) && !elements.includes(origin)) {
+    elements = event.composedPath().filter(isElement)
+  }
+  const index = elements.findIndex(
+    (element) =>
+      test(element) ||
+      // Only the focused element itself: its ancestors are often custom elements too
+      (element === focused && isHiddenTextField(element)),
+  )
+  return { elements, index }
+}
+
+/** Whether the blocking element is inside `target`. A target never blocks itself. */
+function blocks({ elements, index }: Blocker, target: Target): boolean {
+  return (
+    index >= 0 && (isDocumentLevel(target) || index < elements.indexOf(target))
+  )
+}
+
+// Every registration the event reaches asks about the same event.
+const ignoreCache = new WeakMap<KeyboardEvent, Blocker>()
+
+/**
+ * Returns whether a hotkey on `target` should skip an event because a control
+ * inside the target handles the key itself:
+ * - text fields, including ARIA text roles and custom elements that hide one (typing)
+ * - buttons, links, `<summary>`, and button-like inputs (Enter and Space activation)
+ * - checkbox, radio, and range inputs, and ARIA widgets such as menus,
+ *   listboxes, tabs, and grids (the keys they use)
+ *
+ * A hotkey targeted at a control receives that control's keys.
  */
 export function shouldIgnoreInputEvent(
   event: KeyboardEvent,
-  listenerTarget: HTMLElement | Document | Window,
-  registrationTarget: HTMLElement | Document | Window,
+  target: Target,
 ): boolean {
-  const key = normalizeKeyName(event.key)
-  return someElementInsideTarget(
-    event,
-    listenerTarget,
-    registrationTarget,
-    (element) => isInputElement(element) || ownsKey(element, event, key),
+  let blocker = ignoreCache.get(event)
+  if (!blocker) {
+    const key = normalizeKeyName(event.key)
+    blocker = findBlocker(
+      event,
+      getTargetDocument(target),
+      (element) => isInputElement(element) || ownsKey(element, event, key),
+    )
+    ignoreCache.set(event, blocker)
+  }
+  return blocks(blocker, target)
+}
+
+/**
+ * Returns whether an event comes from a text field inside `target`, as
+ * `isInputElement` and hidden custom text fields define them. Buttons, links,
+ * and other controls don't count.
+ */
+export function isTypingEvent(event: KeyboardEvent, target: Target): boolean {
+  return blocks(
+    findBlocker(event, getTargetDocument(target), isInputElement),
+    target,
   )
-}
-
-/**
- * Returns whether an event comes from a text input, textarea, select, or
- * contenteditable element in the target's document. Unlike
- * `shouldIgnoreInputEvent`, buttons, links, and ARIA widgets don't count.
- */
-export function isTypingEvent(
-  event: KeyboardEvent,
-  target: HTMLElement | Document | Window,
-): boolean {
-  return someElementInsideTarget(event, target, target, isInputElement)
-}
-
-/**
- * Checks if an event is for the given target (originated from or bubbled to it).
- *
- * For document/window targets, also accepts the document's root element as
- * currentTarget to handle Brave and other browsers where currentTarget may be
- * documentElement instead of document when listeners are attached to document.
- */
-export function isEventForTarget(
-  event: KeyboardEvent,
-  target: HTMLElement | Document | Window,
-): boolean {
-  if (event.currentTarget === target) {
-    return true
-  }
-
-  // Browser compatibility note:
-  // Per the DOM spec, event.currentTarget should equal the element the listener was
-  // attached to. However, some Chromium-based browsers (notably Brave) exhibit
-  // non-standard behavior where event.currentTarget is set to document.documentElement
-  // (<html>) instead of document when a listener is attached to document.
-  // This may be related to privacy/fingerprinting protections.
-  // See: https://dom.spec.whatwg.org/#dom-event-currenttarget
-  if (isWindow(target) || target.nodeType === 9) {
-    return event.currentTarget === getTargetDocument(target).documentElement
-  }
-
-  // For an element, accept events that originated inside it
-  return isNode(event.target) && target.contains(event.target)
 }

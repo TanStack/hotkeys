@@ -159,3 +159,102 @@ test.describe('targets', () => {
     ).toBe(1)
   })
 })
+
+test.describe('controls that are not text fields', () => {
+  const CONTROLS = `
+    <input id="checkbox" type="checkbox">
+    <input id="radio" type="radio" name="r"><input type="radio" name="r">
+    <input id="range" type="range">
+    <input id="color" type="color">
+    <input id="readonly" type="text" value="abc" readonly>
+    <div id="textbox" role="textbox" tabindex="0"></div>
+    <div id="searchbox" role="searchbox" tabindex="0"></div>
+  `
+
+  for (const id of ['checkbox', 'radio', 'range', 'color', 'readonly']) {
+    test(`single keys fire on #${id}`, async ({ page, harness }) => {
+      const hk = await harness(CONTROLS)
+      await hk.register('k', 'K')
+      await page.focus(`#${id}`)
+      await page.keyboard.press('k')
+      expect(await hk.firedNames()).toEqual(['k'])
+    })
+  }
+
+  test('a range input keeps its arrow keys', async ({ page, harness }) => {
+    const hk = await harness(CONTROLS)
+    await hk.register('right', 'ArrowRight')
+    await page.focus('#range')
+    await page.keyboard.press('ArrowRight')
+    expect(await hk.firedNames()).toEqual([])
+    expect(await page.locator('#range').inputValue()).toBe('51')
+  })
+
+  for (const id of ['textbox', 'searchbox']) {
+    test(`#${id} blocks single keys but not Mod chords`, async ({
+      page,
+      harness,
+    }) => {
+      const hk = await harness(CONTROLS)
+      await hk.register('k', 'K')
+      await hk.register('save', 'Mod+S')
+      await page.focus(`#${id}`)
+      await page.keyboard.press('k')
+      await page.keyboard.press(`${hk.mod}+s`)
+      expect(await hk.firedNames()).toEqual(['save'])
+    })
+  }
+})
+
+test.describe('shadow DOM', () => {
+  test('a text field in a closed shadow root blocks single keys', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness('<closed-field></closed-field>')
+    await page.evaluate(() => {
+      customElements.define(
+        'closed-field',
+        class extends HTMLElement {
+          constructor() {
+            super()
+            const root = this.attachShadow({ mode: 'closed' })
+            root.innerHTML = '<input>'
+            // Page code can't reach into a closed root, so focus it from here.
+            this.addEventListener('click', () =>
+              root.querySelector('input')!.focus(),
+            )
+          }
+        },
+      )
+    })
+    await hk.register('k', 'K')
+    await hk.register('save', 'Mod+S')
+    await page.locator('closed-field').dispatchEvent('click')
+    expect(await page.evaluate(() => document.activeElement?.localName)).toBe(
+      'closed-field',
+    )
+    await page.keyboard.press('k')
+    await page.keyboard.press(`${hk.mod}+s`)
+    expect(await hk.firedNames()).toEqual(['save'])
+  })
+
+  test('hasActiveRegistration sees focus on slotted content', async ({
+    page,
+    harness,
+  }) => {
+    await harness('<div id="host"><button id="slotted">Slotted</button></div>')
+    const active = await page.evaluate(() => {
+      const host = document.getElementById('host')!
+      const root = host.attachShadow({ mode: 'open' })
+      root.innerHTML = '<div id="wrapper"><slot></slot></div>'
+      const manager = window.TanStackHotkeys.getHotkeyManager()
+      manager.register('Shift+Q', () => {}, {
+        target: root.getElementById('wrapper')!,
+      })
+      document.getElementById('slotted')!.focus()
+      return manager.hasActiveRegistration('Shift+Q')
+    })
+    expect(active).toBe(true)
+  })
+})

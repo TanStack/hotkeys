@@ -23,7 +23,7 @@ import {
 } from './_registration'
 import {
   getTargetDocument,
-  isEventForTarget,
+  isDocumentLevel,
   shouldIgnoreInputEvent,
   targetHasFocus,
 } from './_event-target'
@@ -690,11 +690,7 @@ export class HotkeyManager {
         registration.options.eventType !== eventType ||
         !path.includes(registration.target) ||
         (ignoresInputs(registration) &&
-          shouldIgnoreInputEvent(
-            event,
-            registration.target,
-            registration.target,
-          ))
+          shouldIgnoreInputEvent(event, registration.target))
       ) {
         continue
       }
@@ -1046,9 +1042,7 @@ export class HotkeyManager {
       if (
         (!live && registration.options.preventDefault !== 'always') ||
         registration.options.eventType !== eventType ||
-        !isEventForTarget(event, target) ||
-        (ignoresInputs(registration) &&
-          shouldIgnoreInputEvent(event, target, registration.target))
+        (ignoresInputs(registration) && shouldIgnoreInputEvent(event, target))
       ) {
         continue
       }
@@ -1169,13 +1163,12 @@ export class HotkeyManager {
       const target = registration.target
       // A window or document target is reached through its document
       const reached = path.includes(
-        (target as Node).nodeType === 1 ? target : getTargetDocument(target),
+        isDocumentLevel(target) ? getTargetDocument(target) : target,
       )
       if (
         reached &&
         !(
-          ignoresInputs(registration) &&
-          shouldIgnoreInputEvent(event, target, target)
+          ignoresInputs(registration) && shouldIgnoreInputEvent(event, target)
         ) &&
         matchKeyboardEvent(
           event,
@@ -1229,10 +1222,9 @@ export class HotkeyManager {
 
     for (const registration of registrations) {
       if (
-        !isEventForTarget(event, target) ||
         !this.#isLive(registration) ||
         (ignoresInputs(registration) &&
-          shouldIgnoreInputEvent(event, target, registration.target)) ||
+          shouldIgnoreInputEvent(event, target)) ||
         registration.options.eventType !== eventType
       ) {
         continue
