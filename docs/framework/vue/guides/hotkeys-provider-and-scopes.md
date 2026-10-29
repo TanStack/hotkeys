@@ -284,6 +284,8 @@ The declared scope also drives conflict checks. `findConflicts` and `setCustomHo
 
 For UI that Vue doesn't render, such as a dialog from another library, activate a scope on the hotkey manager. See [Activate a scope](./hotkey-manager#activate-a-scope).
 
+`HotkeysProvider` and `provideHotkeysContext` need a component, because they use `provide` and `onMounted`. A hotkey registered in an `effectScope` outside a component can't read a provider's defaults, scope, or app hotkeys. Pass `scope` in its options instead. See [Choose a scope for one hotkey](#choose-a-scope-for-one-hotkey).
+
 ## Inspect scopes
 
 The hotkeys [devtools](../../../devtools) group registrations by scope and show which scopes are active, suspended, allowed, or exclusive.

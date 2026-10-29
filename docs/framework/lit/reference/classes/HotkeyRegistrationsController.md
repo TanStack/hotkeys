@@ -3,7 +3,7 @@ id: HotkeyRegistrationsController
 title: HotkeyRegistrationsController
 ---
 
-Defined in: [controllers/hotkey-registrations.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-registrations.ts#L25)
+Defined in: [controllers/hotkey-registrations.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-registrations.ts#L26)
 
 A Lit ReactiveController that reads every hotkey registration, chords and
 sequences, from the singleton HotkeyManager and requests an update when
@@ -37,7 +37,7 @@ class ShortcutPalette extends LitElement {
 new HotkeyRegistrationsController(_host): HotkeyRegistrationsController;
 ```
 
-Defined in: [controllers/hotkey-registrations.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-registrations.ts#L34)
+Defined in: [controllers/hotkey-registrations.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-registrations.ts#L35)
 
 #### Parameters
 
@@ -59,7 +59,7 @@ Defined in: [controllers/hotkey-registrations.ts:34](https://github.com/TanStack
 get hotkeys(): HotkeyRegistrationView[];
 ```
 
-Defined in: [controllers/hotkey-registrations.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-registrations.ts#L30)
+Defined in: [controllers/hotkey-registrations.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-registrations.ts#L31)
 
 Every registration, chords and sequences (public view, no callbacks).
 
@@ -75,7 +75,7 @@ Every registration, chords and sequences (public view, no callbacks).
 hostConnected(): void;
 ```
 
-Defined in: [controllers/hotkey-registrations.ts:38](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-registrations.ts#L38)
+Defined in: [controllers/hotkey-registrations.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-registrations.ts#L39)
 
 Called when the host is connected to the component tree. For custom
 element hosts, this corresponds to the `connectedCallback()` lifecycle,
@@ -99,7 +99,7 @@ ReactiveController.hostConnected
 hostDisconnected(): void;
 ```
 
-Defined in: [controllers/hotkey-registrations.ts:52](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-registrations.ts#L52)
+Defined in: [controllers/hotkey-registrations.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-registrations.ts#L54)
 
 Called when the host is disconnected from the component tree. For custom
 element hosts, this corresponds to the `disconnectedCallback()` lifecycle,

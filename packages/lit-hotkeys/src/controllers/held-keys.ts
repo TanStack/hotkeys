@@ -1,4 +1,5 @@
 import { getKeyStateTracker } from '@tanstack/hotkeys'
+import { isServer } from './_server'
 import type { KeyStateTracker } from '@tanstack/hotkeys'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
@@ -43,6 +44,7 @@ export class HeldKeysController implements ReactiveController {
 
   /** Subscribes to the tracker store and updates the internal state when changes occur. */
   public hostConnected(): void {
+    if (isServer()) return
     const tracker: KeyStateTracker = getKeyStateTracker()
 
     const subscription = tracker.store.subscribe(() => {

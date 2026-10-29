@@ -1,4 +1,5 @@
 import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
+import { isServer } from './_server'
 import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
@@ -41,12 +42,13 @@ export class HotkeyRegistrationsController implements ReactiveController {
       Array.from(manager.registrations.state.values()).map(
         toHotkeyRegistrationView,
       )
+    this._hotkeys = read()
+    if (isServer()) return
     const subscription = manager.registrations.subscribe(() => {
       this._hotkeys = read()
       this._host.requestUpdate()
     })
     this._unsubscribe = () => subscription.unsubscribe()
-    this._hotkeys = read()
   }
 
   public hostDisconnected(): void {

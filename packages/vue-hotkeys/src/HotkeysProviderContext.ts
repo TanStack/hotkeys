@@ -1,5 +1,6 @@
 import {
   computed,
+  hasInjectionContext,
   inject,
   onMounted,
   onScopeDispose,
@@ -168,11 +169,15 @@ export function provideHotkeysContext(
   provide(HotkeysContext, contextValue)
 }
 
+/**
+ * The nearest context, or `null`. Outside a component, such as in a bare
+ * `effectScope`, there is no context to read, so this skips `inject` and its
+ * warning.
+ */
 export function useHotkeysContext() {
-  return inject(HotkeysContext, null)
+  return hasInjectionContext() ? inject(HotkeysContext, null) : null
 }
 
 export function useDefaultHotkeysOptions() {
-  const context = inject(HotkeysContext, null)
-  return context?.defaultOptions ?? DEFAULT_OPTIONS
+  return useHotkeysContext()?.defaultOptions ?? DEFAULT_OPTIONS
 }

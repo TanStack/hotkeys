@@ -125,23 +125,23 @@
       "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
-      "fingerprint": "574f78494c2c097169d5a20dd98281169784765fcc312da686e60d581fb00e56",
+      "fingerprint": "2d195e1f1122c0623295b93f5a97f79c968fcf744362c5e93747fa5e2982b321",
       "snapshot": {
         "docs/framework/lit/guides/app-hotkeys.md": "0a2b2dafa00bb21f575d4ac752f0b54803a69fff12a4391cf3a86e59f6471e1f",
-        "docs/framework/lit/quick-start.md": "d65ebb31aae582bd90689ac138369f843ad532aab1a667fa52b141249d2f07bf",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "044e792b3c90a99d3c6c3c2da639cf4bf2a6b2a073d13ee2caa54e951807e095",
+        "docs/framework/lit/quick-start.md": "cb51d2c81a8d9288d435af6e54366188c4175b9f18a434fbb85643eb13856ae4",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "ecd0100b52a00fc90ce71f244093da667d0c5ff78ecaf632d9db26f1c66c8e40",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "659ca9bebf4200bb693c693addb17bd5a943904e482514f2014f5ca426629e96",
-        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "75248405af23fcf9ba1402c2d8b5778e92db2eb8ad4a06629a4ed6d3952f6713",
-        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "5a9465e59c750aba5b3333fe1ca2ddf08acec768f36decd7f82cdd791481e759",
-        "packages/lit-hotkeys/src/controllers/hotkey.ts": "92464406579394adab6b5cee41efed8488caebbc92af12bef6069883d2063a64",
+        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "4661f2f5468dc484ab02284f1cb96eec411445ef7981390f31d37e491e51a603",
+        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "53f0b7af49f88fce7890790aa6291f44ae05c5553aac133340fd3745edd71631",
+        "packages/lit-hotkeys/src/controllers/hotkey.ts": "3b66db188eb2839ddeab56561bd9ebefdd1ea785490b5c150a81c5b3e96c7b21",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "2730f3178f6e5f6695fa0c2f8d25d7040c2ff841d3de486acffef86cfc76395f"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
       "outcome": "updated",
-      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
+      "reason": "KeyHoldController now accepts a getter key; the API table says to pass one for a key that changes.",
       "evidence": [
-        "packages/hotkeys/src/hotkey-manager.ts",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md:77",
+        "packages/lit-hotkeys/src/controllers/key-hold.ts"
       ]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
@@ -246,48 +246,48 @@
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "b75b48ee186a877c213cfd9b005cb1f90395929ac412b41402ba25f39533eeb8",
+      "fingerprint": "f6d5dd7f7c657a22517d0e042213460a64917ce6702f59a9c9e8fbe52c0a932d",
       "snapshot": {
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
-        "docs/framework/svelte/quick-start.md": "1ed87e6c76d9225f37db87f0d0e7dfd9f790adbf5b47cf87daa67143d155ce9b",
+        "docs/framework/svelte/quick-start.md": "dac9d02db91eaf3aed4eba39d6fb31a4a460bb3f84ba85c0576d3573b5ecf3d1",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "d99ef59e6a695be73d48b954a337d5c91f471268bad8da590a7b4d72f1a8a1c4",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "117d9625215435b7a3eb6c5a9f23792a02548059ba114b5737a6b9fb610b276c",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "eb7fb67907a153aae3f0ce61e951e8ea5df46468ae06eb55ad696500839124a3",
         "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "27959499674a4dbfeb048073807baf540586d0f0a63a0dbdde0246c7aa939706",
-        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "14960d025c687b2167653e047074f16f398c580a578b6266e31de4b3bfb341a1",
-        "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "cc69118ac4076f5c678987f0df18e8e0448bb7a2005effb802ae059d5b347455",
+        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "6de2683b3fd9dd1a775993193ead174e852198a351d28904c5e228ac196f5a95",
+        "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "39f0c7ff089f96d616583e011172ff9500211de9a97367b7148b3e8ab3be35a3",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a6a995eea5b1334baef1909da68dea08f8df4e29819bada3549c9a0be86e6dcb"
       },
-      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
       "outcome": "no-change",
-      "reason": "CI autofix wrapped one import line in createHotkey.svelte.ts. Formatting only; APIs and behavior are unchanged.",
-      "evidence": ["packages/svelte-hotkeys/src/createHotkey.svelte.ts"]
+      "reason": "The skill makes no claim about onDestroy, $effect.root, SSR, or getter keys that this fix changes; its component-based guidance still holds.",
+      "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
-      "fingerprint": "ac96f13c6fde14fcb0ca586b0ec2c952be261636cfff5bfadcca5cfa74898ea8",
+      "fingerprint": "1b9ebaa1dcfb7b147bbed4cf7ac118c3d9eecb27b8c278bb42e2909a55d9c9f2",
       "snapshot": {
-        "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "9e41458fe7488eedcbd4289019a66cde95b866ffb3081fdd0a808995580460ce",
-        "docs/framework/vue/quick-start.md": "b4ca3394dc94e3b814054413afbf5e101fd5998a35daafad715e49de26a4932e",
+        "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "405eb90a8209f439db06d2e3d861acaa324b6598488c1705575ad56dccbb6ad3",
+        "docs/framework/vue/quick-start.md": "80bedac58ab9aee3b4bc5f59582b5b836c37fe14f08ab670eababf88a45e76c2",
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "565e5d5f33ed757855f0a3bcc78d65a191e52c1e3f33f9bf3dc534a4c0e70d3f",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "326ee1fe20c1d75a4ad720f69a3a4df9b9e3a057826115e955deb0ed25d88f9a",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "ad40dec6e2889ca62f3fda57fcbf67e940f4dab5a26cdc69ff99777d2d2e56af",
-        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "00ed1258f648206d16728b78075b381760ddf144a586c60c1027902f2d1017b6",
+        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "9ba86a812416beebe46c86d9e0ffff996e36b7fcb074f6d92ce771c326f1f2c9",
         "packages/vue-hotkeys/src/useAppHotkeys.ts": "924ed5dedd6451332545026bd94441eb7f72cfb4f3c2c07880f34ee652574967",
         "packages/vue-hotkeys/src/useHotkey.ts": "a1c8ed560f921e3af2adf0f8e54e9df8e6516516c6697f19a52bf629ec62e106",
-        "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "476a5a50a21aefe6243f9bc6e8c6a679978542d6ad8b52e6a2b0f806cd5ef89a",
+        "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "7505949604490126567f9b61bb4d5c7d5ad05c2004e67a33dba979651014176c",
         "packages/vue-hotkeys/src/useHotkeys.ts": "f971e9938eca3188b3af0fcc96d095330f9f6abfd70cb848d2de5c80f8d09639"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
-      "outcome": "updated",
-      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "The skill still holds: its default advice is to call composables synchronously in setup, and it makes no SSR, effectScope, or useKeyHold-key claims that this fix changes.",
       "evidence": [
-        "packages/hotkeys/src/hotkey-manager.ts",
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md:76",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md:70"
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "33795dd84a330b45555ac4d8d826aa0d8d9c2564d3d3c1448b309d05b46f801f",
+      "fingerprint": "a6282648f2723a1067db7e277aee576a7f93ce2ea963e91e2575c64961999b6c",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -299,7 +299,7 @@
         "docs/framework/ember/guides/app-hotkeys.md": "5162292b3d62257c757ea0146fb5b1cc8c85b130081472b3675be077e8c898de",
         "docs/framework/ember/quick-start.md": "cabdc0cbd2b9ac6d4d7f9f2c8b8d3fc6ef2ac8c23df4cd8ebc9745c99023f8c8",
         "docs/framework/lit/guides/app-hotkeys.md": "0a2b2dafa00bb21f575d4ac752f0b54803a69fff12a4391cf3a86e59f6471e1f",
-        "docs/framework/lit/quick-start.md": "d65ebb31aae582bd90689ac138369f843ad532aab1a667fa52b141249d2f07bf",
+        "docs/framework/lit/quick-start.md": "cb51d2c81a8d9288d435af6e54366188c4175b9f18a434fbb85643eb13856ae4",
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
         "docs/framework/octane/quick-start.md": "2ddb77d76eefae05feb5183206687bf4fd4ac3b18e43cc5e51a934b361702ea1",
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
@@ -314,9 +314,9 @@
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
         "docs/framework/solid/quick-start.md": "292bf5cc6300e899c6f382e263665a488899fa816bb13ad4994420e390bb2420",
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
-        "docs/framework/svelte/quick-start.md": "1ed87e6c76d9225f37db87f0d0e7dfd9f790adbf5b47cf87daa67143d155ce9b",
-        "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "9e41458fe7488eedcbd4289019a66cde95b866ffb3081fdd0a808995580460ce",
-        "docs/framework/vue/quick-start.md": "b4ca3394dc94e3b814054413afbf5e101fd5998a35daafad715e49de26a4932e",
+        "docs/framework/svelte/quick-start.md": "dac9d02db91eaf3aed4eba39d6fb31a4a460bb3f84ba85c0576d3573b5ecf3d1",
+        "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "405eb90a8209f439db06d2e3d861acaa324b6598488c1705575ad56dccbb6ad3",
+        "docs/framework/vue/quick-start.md": "80bedac58ab9aee3b4bc5f59582b5b836c37fe14f08ab670eababf88a45e76c2",
         "docs/guides/sensible-defaults.md": "29b63a2aa05a4c7498bc2f235baa20bf4bcccbf9de78642ed5e27b431232ec1f",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "8c0a3ab25f684d8445925d43dbadabb4e491b12001d78811cbf0d3f41db044c8",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "fdc12aafd6098bde8b4e7f5d8a8afb12227ac99cd753e06fc27401d5d8c8fead",
@@ -350,11 +350,11 @@
         "packages/hotkeys/src/hotkey-manager.ts": "0f8c253810bc4027d35185483a09cbd403cdd04c31189288f8a1211c642587d4",
         "packages/hotkeys/src/hotkey-recorder.ts": "2ebed5665e56f5ee87130440fc93f2571aef7940b6153c05204cd0f3e7eea4cc",
         "packages/hotkeys/src/match.ts": "3a50921a68f79183b4ffac98e07e7fdf043711bc071f419c9cdc03422d25f268",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "044e792b3c90a99d3c6c3c2da639cf4bf2a6b2a073d13ee2caa54e951807e095",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "ecd0100b52a00fc90ce71f244093da667d0c5ff78ecaf632d9db26f1c66c8e40",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "659ca9bebf4200bb693c693addb17bd5a943904e482514f2014f5ca426629e96",
-        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "75248405af23fcf9ba1402c2d8b5778e92db2eb8ad4a06629a4ed6d3952f6713",
-        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "5a9465e59c750aba5b3333fe1ca2ddf08acec768f36decd7f82cdd791481e759",
-        "packages/lit-hotkeys/src/controllers/hotkey.ts": "92464406579394adab6b5cee41efed8488caebbc92af12bef6069883d2063a64",
+        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "4661f2f5468dc484ab02284f1cb96eec411445ef7981390f31d37e491e51a603",
+        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "53f0b7af49f88fce7890790aa6291f44ae05c5553aac133340fd3745edd71631",
+        "packages/lit-hotkeys/src/controllers/hotkey.ts": "3b66db188eb2839ddeab56561bd9ebefdd1ea785490b5c150a81c5b3e96c7b21",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "2730f3178f6e5f6695fa0c2f8d25d7040c2ff841d3de486acffef86cfc76395f",
         "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2d8f1849449ed280c1d899737fa388e3f40528b04954d96fe33be1a11b422d44",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
@@ -404,22 +404,22 @@
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "117d9625215435b7a3eb6c5a9f23792a02548059ba114b5737a6b9fb610b276c",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "eb7fb67907a153aae3f0ce61e951e8ea5df46468ae06eb55ad696500839124a3",
         "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "27959499674a4dbfeb048073807baf540586d0f0a63a0dbdde0246c7aa939706",
-        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "14960d025c687b2167653e047074f16f398c580a578b6266e31de4b3bfb341a1",
-        "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "cc69118ac4076f5c678987f0df18e8e0448bb7a2005effb802ae059d5b347455",
+        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "6de2683b3fd9dd1a775993193ead174e852198a351d28904c5e228ac196f5a95",
+        "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "39f0c7ff089f96d616583e011172ff9500211de9a97367b7148b3e8ab3be35a3",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a6a995eea5b1334baef1909da68dea08f8df4e29819bada3549c9a0be86e6dcb",
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "565e5d5f33ed757855f0a3bcc78d65a191e52c1e3f33f9bf3dc534a4c0e70d3f",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "326ee1fe20c1d75a4ad720f69a3a4df9b9e3a057826115e955deb0ed25d88f9a",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "ad40dec6e2889ca62f3fda57fcbf67e940f4dab5a26cdc69ff99777d2d2e56af",
-        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "00ed1258f648206d16728b78075b381760ddf144a586c60c1027902f2d1017b6",
+        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "9ba86a812416beebe46c86d9e0ffff996e36b7fcb074f6d92ce771c326f1f2c9",
         "packages/vue-hotkeys/src/useAppHotkeys.ts": "924ed5dedd6451332545026bd94441eb7f72cfb4f3c2c07880f34ee652574967",
         "packages/vue-hotkeys/src/useHotkey.ts": "a1c8ed560f921e3af2adf0f8e54e9df8e6516516c6697f19a52bf629ec62e106",
-        "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "476a5a50a21aefe6243f9bc6e8c6a679978542d6ad8b52e6a2b0f806cd5ef89a",
+        "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "7505949604490126567f9b61bb4d5c7d5ad05c2004e67a33dba979651014176c",
         "packages/vue-hotkeys/src/useHotkeys.ts": "f971e9938eca3188b3af0fcc96d095330f9f6abfd70cb848d2de5c80f8d09639"
       },
-      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
       "outcome": "no-change",
-      "reason": "CI autofix wrapped one import line in createHotkey.svelte.ts. Formatting only; APIs and behavior are unchanged.",
-      "evidence": ["packages/svelte-hotkeys/src/createHotkey.svelte.ts"]
+      "reason": "Bug fixes inside existing vue, svelte, and lit skill scopes; no new domain, skill, or failure mode.",
+      "evidence": ["_artifacts/skill_spec.md"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -507,13 +507,13 @@
       "evidence": ["docs/framework/lit/guides/hotkey-hints.md"]
     },
     "source:docs/framework/lit/reference/classes/HotkeyHintController.md": {
-      "fingerprint": "5b3438c183c2cccf91c2c229301ec0e6c89f3e0f8fd91a781cf83167c9a3e8f5",
+      "fingerprint": "a289eee125ce5ba4b39094bd08f5cabb25274e61c353894958fe7e569776b8b0",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyHintController.md": "8eb1d951c84efe698d6581d6eb89ca5dbbb02024b9cd1ac71b7b420f6281e0ae"
+        "docs/framework/lit/reference/classes/HotkeyHintController.md": "8cf2cb0c35cf1272088e238db387a5defa96903a1516cafe1fc816536daaa778"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
-      "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
       "evidence": [
         "docs/framework/lit/reference/classes/HotkeyHintController.md"
       ]
@@ -897,13 +897,13 @@
       "evidence": ["packages/hotkeys/tests/scopes.test.ts"]
     },
     "source:packages/lit-hotkeys/src/controllers/hotkey-hint.ts": {
-      "fingerprint": "edd97112334d73fa6fea378c771f65f61e4be738ad0654ec0b0367d7a035bc6d",
+      "fingerprint": "d1a2758f197a7bdcad3413d528a4d71aa56821849a3d1d01f4c3bb42bdccc5f7",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/hotkey-hint.ts": "5b983e7b089e1d1fb8376976afb590a7ca267198cef078e9f08a65943df85c3c"
+        "packages/lit-hotkeys/src/controllers/hotkey-hint.ts": "aa33bca5e48c5b9792f55f0f4bd953faac2ed1d3ae4587be64f42414771acff4"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
       "outcome": "no-change",
-      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
       "evidence": ["packages/lit-hotkeys/src/controllers/hotkey-hint.ts"]
     },
     "source:packages/lit-hotkeys/tests/hotkey-hint.spec.ts": {
@@ -1040,14 +1040,14 @@
       "evidence": ["packages/svelte-hotkeys/tests/getHotkeyHint.test.ts"]
     },
     "source:packages/vue-hotkeys/src/useHotkeyHint.ts": {
-      "fingerprint": "cc244bd60a2810a4060cdc4a6ebb4558c30d9b3e554b2952b7ad74bc1d76c575",
+      "fingerprint": "7fed26b7e261e756181491c5de82c5b7a015435af894324e6ec7f0951b453a6b",
       "snapshot": {
-        "packages/vue-hotkeys/src/useHotkeyHint.ts": "00a09f8380bf71fdb0ecf2686870113835b2b17a8e59f1a2dc29268c2f893a4d"
+        "packages/vue-hotkeys/src/useHotkeyHint.ts": "58e1ad3daa67120f2227fb6af641138eabea5c53ba566296aab7ee3c8c0e1028"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
       "outcome": "no-change",
-      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["packages/vue-hotkeys/src/useHotkeyHint.ts"]
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "source:packages/vue-hotkeys/tests/hints.test.ts": {
       "fingerprint": "c756e3d826950b69a681052bd640e399b0cad0969728a6ce178cb1d183a21138",
@@ -1640,13 +1640,13 @@
       "evidence": ["docs/framework/lit/guides/hotkey-manager.md"]
     },
     "source:docs/framework/lit/reference/classes/HotkeyScopesStateController.md": {
-      "fingerprint": "2364a6f1f6db8f1d72bdf112e794d0b9797e4b2719876918caea9e09492f222a",
+      "fingerprint": "bf1b8690f71152cced76505dcf7a1ad0254f6a724ccaaa60df17889e126fc88c",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyScopesStateController.md": "2359a2ef88fe6271a3ea91d51ecaaa9eb41212362a26855e0ca83fd76840826b"
+        "docs/framework/lit/reference/classes/HotkeyScopesStateController.md": "e7c1d17ca055e72d980c535cfda87ab8818461dbd9971fda9653af0bc61b355f"
       },
-      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
-      "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
       "evidence": [
         "docs/framework/lit/reference/classes/HotkeyScopesStateController.md"
       ]
@@ -2008,13 +2008,13 @@
       "evidence": ["packages/ember-hotkeys/src/useHotkeyScopesState.ts"]
     },
     "source:packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts": {
-      "fingerprint": "7ee8fff9cb3de31c1b5c7e5253581cf446c3585e26312a406fa7bf4a8d22f3cf",
+      "fingerprint": "ec5fa79d39e53d102418b181f93ec32271ec6c41e21eff84d2918552d787d03a",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts": "3df64fbdc22edcee768d9787b5fc02c4d1806dfac7aa43852098decde9891c11"
+        "packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts": "0f5b76e2879ef6aee1926685ac4eb6dfbef2930e71d54c3161f549d77c48c4f8"
       },
-      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
       "outcome": "no-change",
-      "reason": "Review fixes: preventDefault 'always' now defers to live hotkeys on any listener, Lit controllers render on reconnect, Lit guide points to shared options. Skill guidance unchanged.",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
       "evidence": [
         "packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts"
       ]
@@ -2205,14 +2205,14 @@
       "evidence": ["packages/vue-hotkeys/src/index.ts"]
     },
     "source:packages/vue-hotkeys/src/useHotkeyScopesState.ts": {
-      "fingerprint": "a6728a0805483e8b3125a87ddc580fba67537b5a4363e087aed00c92e7dd4ab6",
+      "fingerprint": "aec0a83a7be9f04adf31f3e06373585b6e535dd8775d10b13b9038c7d6ede10e",
       "snapshot": {
-        "packages/vue-hotkeys/src/useHotkeyScopesState.ts": "723f18adbb7f41943a977bdaa3a2a435acdc31a76cf7229564f74ee57c657249"
+        "packages/vue-hotkeys/src/useHotkeyScopesState.ts": "7f21c6f5d2f0d96b6f62924e9beae28ca14ecff12d7001cf383e635e01f11733"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
       "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["packages/vue-hotkeys/src/useHotkeyScopesState.ts"]
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "source:packages/vue-hotkeys/tests/scopes.test.ts": {
       "fingerprint": "257131aa7ff8dc288907a343fc19fbccbe9cd9faff3d847f6ab750055a49fd01",
@@ -3613,6 +3613,480 @@
       "evidence": [
         "docs/framework/svelte/reference/type-aliases/CreateHotkeyTarget.md"
       ]
+    },
+    "source:docs/framework/vue/reference/functions/provideHotkeysContext.md": {
+      "fingerprint": "7929f4b57aba947f8621dd4e9087f700e9914cd15405c72ecad641097f2a85ba",
+      "snapshot": {
+        "docs/framework/vue/reference/functions/provideHotkeysContext.md": "e39c1e14d026ec534b83cceade4ba75459cceac7d19cff18e97f84664a8cd98b"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
+    },
+    "source:docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md": {
+      "fingerprint": "c49cfad8432316f818047bbc0172264efee068839323239d2bf947e8b0eec9bc",
+      "snapshot": {
+        "docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md": "f3cf5a5ae1ce7b31735877b9c3936db0e4e22a5e4e3e5080d45f5301d5d33003"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
+    },
+    "source:docs/framework/vue/reference/functions/useHotkeysContext.md": {
+      "fingerprint": "8d432590045f8bfdd42af1f6ceb02388224ce8a3955d5e2e5e80460cd5332b5c",
+      "snapshot": {
+        "docs/framework/vue/reference/functions/useHotkeysContext.md": "829e95e3587b7e34f621bf4383bdfdef00c5bd34a8ff8455f37a07553eb78633"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
+    },
+    "source:docs/framework/vue/reference/functions/useKeyHold.md": {
+      "fingerprint": "425755acd37a2f4eb11b04d32931bd3f91e6790a8bc0d25b9341a8887cce795a",
+      "snapshot": {
+        "docs/framework/vue/reference/functions/useKeyHold.md": "b4d3a8e5bb34ef6a50b482624ee4da682ab682b50a921bd86a38cfb6ad21fd84"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
+    },
+    "source:docs/framework/vue/reference/interfaces/HotkeysProviderOptions.md": {
+      "fingerprint": "9129b0d3cd16d42fb48c5ad1fe75c71437f60aae062a4bcbaa53ece42e88f43c",
+      "snapshot": {
+        "docs/framework/vue/reference/interfaces/HotkeysProviderOptions.md": "2cc2895ecc8c3c27eb94bfb1e46675e914ca3af3eeb9eddd52436f4a32b9a4f4"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
+    },
+    "source:docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md": {
+      "fingerprint": "499a2e7a3c3a12f7c5730b321805f1536fbc42d1d5ac0b633719aa7b7f8e052d",
+      "snapshot": {
+        "docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md": "eff035f9353af214afad107e2ccbc8958fb3970a18d82074fb092c43be2bd731"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
+    },
+    "source:packages/vue-hotkeys/src/defaultOptions.ts": {
+      "fingerprint": "477e881409348b752198622ab3621266551ae94b24789456265a38c0d6f53894",
+      "snapshot": {
+        "packages/vue-hotkeys/src/defaultOptions.ts": "d8510431d3d5bdc7106e76eef2b300b6130091e09c634059993935d0a2262435"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
+    },
+    "source:packages/vue-hotkeys/src/useHeldKeyCodes.ts": {
+      "fingerprint": "9f5d48c0aa08b5ffea2745a9f8856fb3c9e8490edf386528ce639fa19b03b45c",
+      "snapshot": {
+        "packages/vue-hotkeys/src/useHeldKeyCodes.ts": "69c82d02a3548ba47ac319e4060138ff991acf10a11b0c6badde2deb0ef970e0"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
+    },
+    "source:packages/vue-hotkeys/src/useHeldKeys.ts": {
+      "fingerprint": "4752e01419fff0b7bc9104b932a3cc05eb480d88e2c68bdc978a5893bb85cd36",
+      "snapshot": {
+        "packages/vue-hotkeys/src/useHeldKeys.ts": "8b6e2a5c7b86b9216a0d32dc1ab0805a9f3f86e6c168291439af738a448f0012"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
+    },
+    "source:packages/vue-hotkeys/src/useHotkeyRegistrations.ts": {
+      "fingerprint": "1776e8bf3bdea89fe268f32fbfc63da939ebdd4405c336e9f2e38dc0723fe698",
+      "snapshot": {
+        "packages/vue-hotkeys/src/useHotkeyRegistrations.ts": "6ab15c8bb6481b947f861b76a9f12d47d97386be7b64d1a4adc950b1d1ab1659"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
+    },
+    "source:packages/vue-hotkeys/src/useKeyHold.ts": {
+      "fingerprint": "bba9ce608b82844b37f2b6bafcec5d84cf50939f4d1757af86fc751efa4852e0",
+      "snapshot": {
+        "packages/vue-hotkeys/src/useKeyHold.ts": "78908377ab6c4a648e132a68546f0bd6f9b2b4d3f98515ec9570417af932d973"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
+    },
+    "source:packages/vue-hotkeys/src/useStoreSelector.ts": {
+      "fingerprint": "cef8ba521fe700838481c4564b5982e14ccef8bdcdec14fe45618881a05156e5",
+      "snapshot": {
+        "packages/vue-hotkeys/src/useStoreSelector.ts": "3a23556a929d22173334fe6a4c7b423a548d46c1d9b47474ec0b5c95a3df680c"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
+    },
+    "source:packages/vue-hotkeys/tests/effect-scope.test.ts": {
+      "fingerprint": "14c39b3a71a9f6ab432e538ff8c8e644491bfc886eb27201143baad17ee4356d",
+      "snapshot": {
+        "packages/vue-hotkeys/tests/effect-scope.test.ts": "fe12d2f61717bf5fda1392eb7c2465649f954c977908c756c07e803151f97b20"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
+    },
+    "source:packages/vue-hotkeys/tests/ssr.test.ts": {
+      "fingerprint": "fa12ebcd4c4fe0438422fba73377225c7cb2f8ed16cd5c571bbd0c806b99dbbc",
+      "snapshot": {
+        "packages/vue-hotkeys/tests/ssr.test.ts": "ad3b0a909c4a0e05521eb707adcca2d5f945745044ecad436c89b8a34d890a56"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
+    },
+    "source:packages/vue-hotkeys/tests/useKeyHold.test.ts": {
+      "fingerprint": "4e13ed9489f0dade5272bb41c7d89b47f485d989fa420f8277610b80613a226a",
+      "snapshot": {
+        "packages/vue-hotkeys/tests/useKeyHold.test.ts": "9be1cf9923f2ae14b229481c62e04445028c7fa52c796f15576719217833c8f1"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
+    },
+    "source:docs/framework/lit/guides/held-key-state-helpers.md": {
+      "fingerprint": "4518330655b30ff3798a0e110b1b04c6ab7874be6562dcfc3398ac81de69d127",
+      "snapshot": {
+        "docs/framework/lit/guides/held-key-state-helpers.md": "bc20ab354e2919d5bba8485bc359c5e50146ac3e9cfb6270fb6a727213edd41f"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": ["docs/framework/lit/guides/held-key-state-helpers.md"]
+    },
+    "source:docs/framework/lit/reference/classes/AppHotkeysController.md": {
+      "fingerprint": "c73bd934701be78e27215ad3bd133aac42547532e553bc64655c17561053a7a6",
+      "snapshot": {
+        "docs/framework/lit/reference/classes/AppHotkeysController.md": "adc5d5e969c2ddf5e701152ac14edc1c31bacdb8d929a436471bd8a09db26ae3"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/classes/AppHotkeysController.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/classes/HeldKeyCodesController.md": {
+      "fingerprint": "fdb4b85648fa0c32ce16be3be7f6038f73a6d41a6c8e323c534de18d0823c616",
+      "snapshot": {
+        "docs/framework/lit/reference/classes/HeldKeyCodesController.md": "d3b1ac044698364fb4ce55de6880677c4591297b17d62abf6450f6fb76b74bd5"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/classes/HeldKeyCodesController.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/classes/HeldKeysController.md": {
+      "fingerprint": "83829c25b7ad3895fee35683f64c0e30d7d395bf629af411dcc1edea339f6ed1",
+      "snapshot": {
+        "docs/framework/lit/reference/classes/HeldKeysController.md": "b72db2723e1adb36ba103065b8288e681efed1faae9fedeb39c688ce48807cbb"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": ["docs/framework/lit/reference/classes/HeldKeysController.md"]
+    },
+    "source:docs/framework/lit/reference/classes/HotkeyController.md": {
+      "fingerprint": "a8ed23934b42244a71a471ded534190c9b2b346fa372bc90f6a99327379e003c",
+      "snapshot": {
+        "docs/framework/lit/reference/classes/HotkeyController.md": "b174d6868e19ac077e30549bf682d81dd760479f4986bc357366b9d33ad552e4"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": ["docs/framework/lit/reference/classes/HotkeyController.md"]
+    },
+    "source:docs/framework/lit/reference/classes/HotkeyRecorderController.md": {
+      "fingerprint": "408b77d01359529a1abb9fd5ea81b6d0d8aeac6f4d7778bbc1cc548595b7a893",
+      "snapshot": {
+        "docs/framework/lit/reference/classes/HotkeyRecorderController.md": "2a65d8ab480494e44a2b957b8b34466057c408b02e9739433f075410ab36b67f"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/classes/HotkeyRecorderController.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/classes/HotkeyRegistrationsController.md": {
+      "fingerprint": "222506b3526070504e66c997384f3fc47663ed9c4ab8862392576312e96023b2",
+      "snapshot": {
+        "docs/framework/lit/reference/classes/HotkeyRegistrationsController.md": "e8abbc6b51757742b7bd159ec387a94efcae31125d0b55d6d677cc907205e483"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/classes/HotkeyRegistrationsController.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/classes/KeyHoldController.md": {
+      "fingerprint": "ae20bfbef32e2b390494af3f9e0ba1a05ccf39a37a1b6c238e8887580870734c",
+      "snapshot": {
+        "docs/framework/lit/reference/classes/KeyHoldController.md": "aa04848e5ab27954c30172db7a0c541a453522ce3848597e8d5ba9a363509da9"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": ["docs/framework/lit/reference/classes/KeyHoldController.md"]
+    },
+    "source:docs/framework/lit/reference/type-aliases/AppHotkeyControllerOptions.md": {
+      "fingerprint": "0650d360a9f96b49b316ac2d8b1d2a73a50f5ddae93c6c5d4785144c7f62b001",
+      "snapshot": {
+        "docs/framework/lit/reference/type-aliases/AppHotkeyControllerOptions.md": "c83ecfff4419c249c5d4964941485bc68a8879acc109ee441f7293687cb73225"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/type-aliases/AppHotkeyControllerOptions.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/type-aliases/HotkeyControllerChordOptions.md": {
+      "fingerprint": "adbd443ce908117640a1e734bbd40075b96369b98fce55023f7efbf84c1a11d3",
+      "snapshot": {
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerChordOptions.md": "c46710c30023ce04f54469eb137fc041c5e2728bbe484cffcb7a6a0339ba7aa6"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerChordOptions.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/type-aliases/HotkeyControllerCommonOptions.md": {
+      "fingerprint": "4b585d2c7fe7b3456e331c951acfdd97e9110f9e6bb50d74fcd6d9e324262105",
+      "snapshot": {
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerCommonOptions.md": "7de94024f16981c7c8c5c99df6bcedcab7018399f98de7a1473fdc3a9c93e77a"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerCommonOptions.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/type-aliases/HotkeyControllerOptions.md": {
+      "fingerprint": "ca27176fcd35db3cd7dac8954ed93e4e191a4c4177efbc8e6825aa5ef452f1e3",
+      "snapshot": {
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerOptions.md": "c0d340da687b2e18075423f59f7740591527d17e37327568c366aaa2c89de2e1"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerOptions.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/type-aliases/HotkeyControllerOptionsFor.md": {
+      "fingerprint": "cbb0b58beddb730b00c2fe26deb25a801f875812fb34d896e8eddd5c762cb981",
+      "snapshot": {
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerOptionsFor.md": "5155d4416d2daa73c3ad119af4073716fdbc3fbc8fb9a7e096d944f334e6dbc3"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerOptionsFor.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/type-aliases/HotkeyControllerSequenceOptions.md": {
+      "fingerprint": "a04ac5ec962aacd1dca28d85fa16ef1063cd010c2737b0d47513838050ca7e17",
+      "snapshot": {
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerSequenceOptions.md": "2ba279ef655f4838824a95173e67fd9f95ed73afd832f5198a7c58262ef61d90"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerSequenceOptions.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/type-aliases/HotkeyControllerTarget.md": {
+      "fingerprint": "4770698109e7a6d716238af11a81334fca8ed2ec4b8b55a79dfac3b71c857b05",
+      "snapshot": {
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerTarget.md": "fa7e3253802c80d8882af81f0de1b34c383a8519b4372d3f632341d7b3ce0b08"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerTarget.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/functions/createHotkeyRecorder.md": {
+      "fingerprint": "e2b058de7499bfa526ea9ee994add4aeb94f62a3b03b35f8c96c8f64de932510",
+      "snapshot": {
+        "docs/framework/svelte/reference/functions/createHotkeyRecorder.md": "c46cfa7ed0ade3d029dbb6d8a118083d84c7a55945e513d470dc15c4eee2df9b"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/svelte/reference/functions/createHotkeyRecorder.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/functions/createHotkeys.md": {
+      "fingerprint": "5793a2fe8bf2e6e6f6a7e7a155be292a5b54449889984aad1301c43ea452d54d",
+      "snapshot": {
+        "docs/framework/svelte/reference/functions/createHotkeys.md": "b365432a686b383c5c14395ca8e1e1a92f7c954f74f5529046f61fda59a1019a"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": ["docs/framework/svelte/reference/functions/createHotkeys.md"]
+    },
+    "source:docs/framework/svelte/reference/functions/createHotkeysAttachment.md": {
+      "fingerprint": "c1890a34eaf6d5a07fe7fa6bcc2c72620881a49d5391ae7afa717f994f0af76d",
+      "snapshot": {
+        "docs/framework/svelte/reference/functions/createHotkeysAttachment.md": "1f95c7bc8e93b9aa22a7cfba8396dafd1e4c927475e1e4f1a0a8f0badf6c621f"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/svelte/reference/functions/createHotkeysAttachment.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/interfaces/SvelteHotkeyRecorder.md": {
+      "fingerprint": "c1ec6f80e0fab216001d3440435df755da5da580cdc5e3b69a3bde6dff2b93d6",
+      "snapshot": {
+        "docs/framework/svelte/reference/interfaces/SvelteHotkeyRecorder.md": "3550600359cc5c3a12fa0d6bad10e8e86bab0dc1391e602236d4f5da4954ec96"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/svelte/reference/interfaces/SvelteHotkeyRecorder.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/type-aliases/CreateHotkeyDefinition.md": {
+      "fingerprint": "7760f327bdf987f450822b5549be4eb280da753dc6954eeb2daa7da74c33dc02",
+      "snapshot": {
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyDefinition.md": "a41ed96f52b7e87b3c5532a3e66a97d7fee53fd3a80fa963b34d61f5228343a6"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyDefinition.md"
+      ]
+    },
+    "source:packages/lit-hotkeys/src/controllers/_server.ts": {
+      "fingerprint": "47838c855c1ee6d29192e63b6267d3bbd11d2ed54a4445de05f2835dd882924d",
+      "snapshot": {
+        "packages/lit-hotkeys/src/controllers/_server.ts": "2a1f485aad87f2ce0a48700f977f56cdd93ca042bf45e981defa524ff33ae759"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": ["packages/lit-hotkeys/src/controllers/_server.ts"]
+    },
+    "source:packages/lit-hotkeys/src/controllers/held-key-codes.ts": {
+      "fingerprint": "d94495282a945ddf51fe14e2e9f4c7d6c1e15a396e6841597560548a8c8fbed6",
+      "snapshot": {
+        "packages/lit-hotkeys/src/controllers/held-key-codes.ts": "c99a9a719dbe0d428a2ec68aa0af73fe9fcd1599d5dc84eaaffe725bdf7e3643"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": ["packages/lit-hotkeys/src/controllers/held-key-codes.ts"]
+    },
+    "source:packages/lit-hotkeys/src/controllers/held-keys.ts": {
+      "fingerprint": "6dccdc098dd2126be4bc53db508cfc41bd8d50f8b33051a878e77b0757f0fe67",
+      "snapshot": {
+        "packages/lit-hotkeys/src/controllers/held-keys.ts": "851395ea7738deec72efd137e54ca70214aa87bf1ad02745a4e29b83aabf9656"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": ["packages/lit-hotkeys/src/controllers/held-keys.ts"]
+    },
+    "source:packages/lit-hotkeys/src/controllers/hotkey-registrations.ts": {
+      "fingerprint": "0a4e0bf9f2ff1c46623f8f45cf6703297e55b10910e79a245dea8fdbd86ef45c",
+      "snapshot": {
+        "packages/lit-hotkeys/src/controllers/hotkey-registrations.ts": "d37d395aadf05f5fb7760d5d43fa7517cf2f9a8a7e431eeee9cff41e3432443b"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "packages/lit-hotkeys/src/controllers/hotkey-registrations.ts"
+      ]
+    },
+    "source:packages/lit-hotkeys/src/controllers/key-hold.ts": {
+      "fingerprint": "5e8f0338adee3f21f7e9c74a0fb72e34550fd5a0aa9911418a703314342ff5f6",
+      "snapshot": {
+        "packages/lit-hotkeys/src/controllers/key-hold.ts": "7a05b649b7c8caaff9f3012a307356e3ba48d2447767dc472e23a7cb27609b70"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": ["packages/lit-hotkeys/src/controllers/key-hold.ts"]
+    },
+    "source:packages/lit-hotkeys/tests/key-hold.test.ts": {
+      "fingerprint": "2eb6320e508ca9a5757b30d8ef0dba8d6bf4c8308a25539ff468369077aad43d",
+      "snapshot": {
+        "packages/lit-hotkeys/tests/key-hold.test.ts": "736df62f9e6b0a7ef9e157e178f75074ab19aec516f34cd824902a26499c214e"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": ["packages/lit-hotkeys/tests/key-hold.test.ts"]
+    },
+    "source:packages/lit-hotkeys/tests/ssr.test.ts": {
+      "fingerprint": "407d437523e3c47faadf435cacc353fd1924d4885c5a44d92efce02c4a1eaf65",
+      "snapshot": {
+        "packages/lit-hotkeys/tests/ssr.test.ts": "de952a00817f189790a4b0563b4d9286137a380011c2e1fb4a0b392ecef98b84"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": ["packages/lit-hotkeys/tests/ssr.test.ts"]
+    },
+    "source:packages/svelte-hotkeys/tests/effect-root-harness.svelte.ts": {
+      "fingerprint": "e64b3f0c53a1531b1dce79f34f3b8fbe12824dbb547ec38f512d3cab914e86d9",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/effect-root-harness.svelte.ts": "176ed5d3a8a6bcadbadd812c0224ffe19ee24d3c88e110ed44133749abe91677"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "packages/svelte-hotkeys/tests/effect-root-harness.svelte.ts"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/effect-root.test.ts": {
+      "fingerprint": "820236249616ccf1ec62205943fe98b03ee3135888bba62231102153f8bb5482",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/effect-root.test.ts": "365cc9d1dc5cbf8d6615e3ae906a6ba27b03a2013510dc95a5a85c7422eee406"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": ["packages/svelte-hotkeys/tests/effect-root.test.ts"]
     }
   }
 }

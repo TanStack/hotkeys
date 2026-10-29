@@ -123,6 +123,21 @@ createHotkey('Mod+S', () => save(), () => ({ enabled: hasUnsavedChanges }))
 
 When a group of hotkeys turns on and off together, put them in a scope instead. See [Add providers and scopes](#add-providers-and-scopes-optional).
 
+For hotkeys shared across components, create them in an `$effect.root` in a `.svelte.ts` module. They unregister when you call the function that `$effect.root` returns:
+
+```ts
+// shortcuts.svelte.ts
+import { createHotkey } from '@tanstack/svelte-hotkeys'
+
+export function startShortcuts(openPalette: () => void) {
+  return $effect.root(() => {
+    createHotkey('Mod+K', () => openPalette())
+  })
+}
+```
+
+Hotkeys created outside a component can't read a `HotkeysProvider`'s defaults, scope, or app hotkeys.
+
 ## Element hotkeys
 
 A hotkey's default `target` is `document`, so it works wherever focus is on the page. To limit it to one element, create an attachment and attach it to that element:

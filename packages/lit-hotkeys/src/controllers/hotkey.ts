@@ -3,6 +3,7 @@ import {
   prepareHotkeyDefinitions,
 } from '@tanstack/hotkeys/adapter'
 import { getAppHotkeysStore, subscribeAppHotkeys } from './_app-hotkeys'
+import { isServer } from './_server'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 import type {
   AppHotkey,
@@ -107,6 +108,8 @@ export class HotkeyController implements ReactiveController {
 
   /** Registers when connected and a target is available. */
   public hostConnected(): void {
+    // Server rendering registers nothing.
+    if (isServer()) return
     this._connected = true
     this._unsubscribe = subscribeAppHotkeys(() => this._sync())
     this._sync()

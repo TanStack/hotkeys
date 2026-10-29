@@ -1,5 +1,5 @@
-import { useSelector } from '@tanstack/vue-store'
 import { getHotkeyManager } from '@tanstack/hotkeys'
+import { useStoreSelector } from './useStoreSelector'
 import type { HotkeyScopesState } from '@tanstack/hotkeys'
 import type { Ref } from 'vue'
 
@@ -24,5 +24,5 @@ import type { Ref } from 'vue'
  * ```
  */
 export function useHotkeyScopesState(): Ref<HotkeyScopesState> {
-  return useSelector(getHotkeyManager().scopes, (state) => state)
+  return useStoreSelector(getHotkeyManager().scopes, (state) => state)
 }

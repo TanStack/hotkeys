@@ -1,5 +1,6 @@
 import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
 import { getAppHotkeysStore, subscribeAppHotkeys } from './_app-hotkeys'
+import { isServer } from './_server'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 import type {
   AppHotkey,
@@ -96,6 +97,7 @@ export class AppHotkeysController implements ReactiveController {
   }
 
   public hostConnected(): void {
+    if (isServer()) return
     const update = () => this._host.requestUpdate()
     const unsubscribeAppHotkeys = subscribeAppHotkeys(update)
     const registrations = getHotkeyManager().registrations.subscribe(update)

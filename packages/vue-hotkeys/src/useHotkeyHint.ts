@@ -1,5 +1,4 @@
 import { computed, toValue } from 'vue'
-import { useSelector } from '@tanstack/vue-store'
 import {
   getHotkeyManager,
   getKeyStateTracker,
@@ -8,6 +7,7 @@ import {
   resolveAppHotkey,
 } from '@tanstack/hotkeys'
 import { useAppHotkeysStoreSource } from './defaultOptions'
+import { useStoreSelector } from './useStoreSelector'
 import type { ComputedRef, MaybeRefOrGetter } from 'vue'
 import type {
   AppHotkey,
@@ -30,8 +30,11 @@ export function useHotkeyHint(
   const appHotkeys = useAppHotkeysStoreSource()
   const manager = getHotkeyManager()
   // Tracks registration, enabled, and scope changes.
-  const registrations = useSelector(manager.registrations, (state) => state)
-  const held = useSelector(
+  const registrations = useStoreSelector(
+    manager.registrations,
+    (state) => state,
+  )
+  const held = useStoreSelector(
     getKeyStateTracker().store,
     (state) => state.heldKeys,
   )

@@ -3,7 +3,7 @@ id: HotkeyScopesStateController
 title: HotkeyScopesStateController
 ---
 
-Defined in: [controllers/hotkey-scopes-state.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts#L22)
+Defined in: [controllers/hotkey-scopes-state.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts#L23)
 
 A Lit ReactiveController that reads the hotkey manager's scope state: the
 active scopes, the exclusive scope that owns the keyboard, and the scopes it
@@ -34,7 +34,7 @@ class KeyboardOwner extends LitElement {
 new HotkeyScopesStateController(_host): HotkeyScopesStateController;
 ```
 
-Defined in: [controllers/hotkey-scopes-state.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts#L34)
+Defined in: [controllers/hotkey-scopes-state.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts#L35)
 
 #### Parameters
 
@@ -58,7 +58,7 @@ The Lit component that owns this controller.
 get value(): HotkeyScopesState;
 ```
 
-Defined in: [controllers/hotkey-scopes-state.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts#L27)
+Defined in: [controllers/hotkey-scopes-state.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts#L28)
 
 The current scope state.
 
@@ -74,7 +74,7 @@ The current scope state.
 hostConnected(): void;
 ```
 
-Defined in: [controllers/hotkey-scopes-state.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts#L43)
+Defined in: [controllers/hotkey-scopes-state.ts:44](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts#L44)
 
 Subscribes to the scopes store and updates the host when it changes.
 Connecting requests an update too, since scopes may have changed while
@@ -98,7 +98,7 @@ ReactiveController.hostConnected
 hostDisconnected(): void;
 ```
 
-Defined in: [controllers/hotkey-scopes-state.ts:52](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts#L52)
+Defined in: [controllers/hotkey-scopes-state.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts#L54)
 
 Unsubscribes from the scopes store.
 

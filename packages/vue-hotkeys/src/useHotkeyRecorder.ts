@@ -1,7 +1,7 @@
 import { onScopeDispose, toValue, watch } from 'vue'
-import { useSelector } from '@tanstack/vue-store'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { useDefaultHotkeysOptionsSource } from './defaultOptions'
+import { useStoreSelector } from './useStoreSelector'
 import type { MaybeRefOrGetter, Ref } from 'vue'
 import type {
   Hotkey,
@@ -73,9 +73,12 @@ export function useHotkeyRecorder(
   // Overloads already checked the options; either shape is valid here.
   const recorder = new HotkeyRecorder(resolve())
 
-  const isRecording = useSelector(recorder.store, (state) => state.isRecording)
-  const steps = useSelector(recorder.store, (state) => state.steps)
-  const recordedHotkey = useSelector(
+  const isRecording = useStoreSelector(
+    recorder.store,
+    (state) => state.isRecording,
+  )
+  const steps = useStoreSelector(recorder.store, (state) => state.steps)
+  const recordedHotkey = useStoreSelector(
     recorder.store,
     (state) => state.recordedHotkey,
   )

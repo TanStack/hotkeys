@@ -1,5 +1,4 @@
 import { HotkeyRecorder } from '@tanstack/hotkeys'
-import { onDestroy } from 'svelte'
 import { getDefaultHotkeysOptions } from './HotkeysCtx.js'
 import { createStoreSubscriber, resolveMaybeGetter } from './internal.svelte.js'
 import type {
@@ -131,9 +130,9 @@ export function createHotkeyRecorder(
     recorder.setOptions(resolve())
   })
 
-  onDestroy(() => {
-    recorder.destroy()
-  })
+  // Unlike onDestroy, an effect teardown also runs when an $effect.root that
+  // owns the recorder is destroyed.
+  $effect(() => () => recorder.destroy())
 
   return recorder
 }

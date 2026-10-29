@@ -6,6 +6,7 @@ import {
   resolveAppHotkey,
 } from '@tanstack/hotkeys'
 import { getAppHotkeysStore, subscribeAppHotkeys } from './_app-hotkeys'
+import { isServer } from './_server'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 import type {
   AppHotkey,
@@ -44,6 +45,7 @@ export class HotkeyHintController implements ReactiveController {
   hostConnected(): void {
     this.update()
     this.host.requestUpdate()
+    if (isServer()) return
     const refresh = () => {
       if (this.update()) this.host.requestUpdate()
     }

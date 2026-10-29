@@ -130,6 +130,10 @@ useHotkey('Mod+S', () => save(), { enabled: hasUnsavedChanges })
 
 When a group of hotkeys turns on and off together, put them in a scope instead. See [Add providers and scopes](#add-providers-and-scopes-optional).
 
+The composables also work outside a component, in an `effectScope`, such as a shared composable or a module-level store. Their hotkeys unregister when the scope stops.
+
+During server rendering, the composables return the current state and register nothing, so they are safe to call in Nuxt and other SSR apps.
+
 ## Element hotkeys
 
 A hotkey's default `target` is `document`, so it works wherever focus is on the page. To limit it to one element, pass a template ref as `target`:

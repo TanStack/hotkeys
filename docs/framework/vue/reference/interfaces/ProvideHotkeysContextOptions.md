@@ -3,7 +3,7 @@ id: ProvideHotkeysContextOptions
 title: ProvideHotkeysContextOptions
 ---
 
-Defined in: [HotkeysProviderContext.ts:55](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L55)
+Defined in: [HotkeysProviderContext.ts:56](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L56)
 
 Options for `provideHotkeysContext`.
 
@@ -17,7 +17,7 @@ optional appHotkeys?: MaybeRefOrGetter<
 | undefined>;
 ```
 
-Defined in: [HotkeysProviderContext.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L68)
+Defined in: [HotkeysProviderContext.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L69)
 
 Every app hotkey, from `defineAppHotkeys`. Read when the context is
 provided; later changes update the declarations.
@@ -32,7 +32,7 @@ optional customHotkeys?:
   | null;
 ```
 
-Defined in: [HotkeysProviderContext.ts:73](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L73)
+Defined in: [HotkeysProviderContext.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L74)
 
 Starting custom hotkeys, such as saved data. Read once; the context owns
 the state afterwards. Invalid entries are ignored with a warning.
@@ -45,7 +45,7 @@ the state afterwards. Invalid entries are ignored with a warning.
 optional defaultOptions?: MaybeRefOrGetter<HotkeysProviderOptions | undefined>;
 ```
 
-Defined in: [HotkeysProviderContext.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L57)
+Defined in: [HotkeysProviderContext.ts:58](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L58)
 
 Merged with the parent context's defaults.
 
@@ -57,7 +57,7 @@ Merged with the parent context's defaults.
 optional enabled?: MaybeRefOrGetter<boolean | undefined>;
 ```
 
-Defined in: [HotkeysProviderContext.ts:63](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L63)
+Defined in: [HotkeysProviderContext.ts:64](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L64)
 
 See `HotkeysProviderScopeProps['enabled']`.
 
@@ -73,7 +73,7 @@ optional exclusive?: MaybeRefOrGetter<
 | undefined>;
 ```
 
-Defined in: [HotkeysProviderContext.ts:61](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L61)
+Defined in: [HotkeysProviderContext.ts:62](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L62)
 
 See `HotkeysProviderScopeProps['exclusive']`.
 
@@ -85,7 +85,7 @@ See `HotkeysProviderScopeProps['exclusive']`.
 optional onCustomHotkeysChange?: (customHotkeys) => void;
 ```
 
-Defined in: [HotkeysProviderContext.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L75)
+Defined in: [HotkeysProviderContext.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L76)
 
 Called with the custom hotkeys after every change, ready to save.
 
@@ -107,6 +107,6 @@ Called with the custom hotkeys after every change, ready to save.
 optional scope?: MaybeRefOrGetter<string | undefined>;
 ```
 
-Defined in: [HotkeysProviderContext.ts:59](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L59)
+Defined in: [HotkeysProviderContext.ts:60](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L60)
 
 See `HotkeysProviderScopeProps['scope']`.
