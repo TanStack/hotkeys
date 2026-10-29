@@ -181,6 +181,8 @@ The controller reads the function again after each update, so keep the values it
 
 When a group of hotkeys turns on and off together, put them in a scope instead. See [Add scopes](#add-scopes-optional).
 
+During server rendering, controllers register nothing and subscribe to nothing, even with `@lit-labs/ssr`'s `connectedCallback: true` option. Read-side controllers report the current state, so the server HTML matches the first client render.
+
 ## Element hotkeys
 
 A hotkey's default `target` is `document`, so it works wherever focus is on the page. To limit it to one element, pass that element as `target`:

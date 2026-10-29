@@ -1,15 +1,13 @@
-import { useSelector } from '@tanstack/vue-store'
-import { getKeyStateTracker } from '@tanstack/hotkeys'
-import { unref } from 'vue'
+import { computed, toValue } from 'vue'
+import { useHeldKeys } from './useHeldKeys'
 import type { MaybeRefOrGetter, Ref } from 'vue'
 import type { IndividualKey } from '@tanstack/hotkeys'
 
 /**
  * Vue composable that returns a reactive ref indicating whether a specific key is currently being held.
  *
- * This composable uses `useSelector` from `@tanstack/vue-store` to subscribe
- * to the global KeyStateTracker and uses a selector to determine if
- * the specified key is held.
+ * Reads the held keys from the global KeyStateTracker. The key may be a ref
+ * or getter; the result follows it without waiting for a key event.
  *
  * @param key - The key to check (e.g., 'Shift', 'Control', 'A')
  * @returns Reactive ref that is true if the key is currently held down
@@ -49,17 +47,9 @@ import type { IndividualKey } from '@tanstack/hotkeys'
  * ```
  */
 export function useKeyHold(key: MaybeRefOrGetter<IndividualKey>): Ref<boolean> {
-  const tracker = getKeyStateTracker()
-
-  const isHeld = useSelector(tracker.store, (state) => {
-    const keyValue = unref(key)
-    const normalizedKey = (
-      typeof keyValue === 'string' ? keyValue : String(keyValue)
-    ).toLowerCase()
-    return state.heldKeys.some(
-      (heldKey) => heldKey.toLowerCase() === normalizedKey,
-    )
+  const heldKeys = useHeldKeys()
+  return computed(() => {
+    const target = toValue(key).toLowerCase()
+    return heldKeys.value.some((heldKey) => heldKey.toLowerCase() === target)
   })
-
-  return isHeld
 }

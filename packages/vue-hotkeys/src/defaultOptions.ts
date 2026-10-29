@@ -1,5 +1,6 @@
-import { Store, useSelector } from '@tanstack/vue-store'
+import { shallowRef } from 'vue'
 import { useHotkeysContext } from './HotkeysProviderContext'
+import { useStoreSelector } from './useStoreSelector'
 import type { Ref } from 'vue'
 import type { AppHotkeysState, AppHotkeysStore } from '@tanstack/hotkeys'
 
@@ -8,8 +9,6 @@ export function useDefaultHotkeysOptionsSource() {
   const context = useHotkeysContext()
   return () => context?.defaultOptions ?? {}
 }
-
-const NO_APP_HOTKEYS = new Store<AppHotkeysState | null>(null)
 
 /**
  * The provider's app hotkeys store and a ref that tracks its state, so
@@ -20,6 +19,9 @@ export function useAppHotkeysStoreSource(): {
   state: Readonly<Ref<AppHotkeysState | null>>
 } {
   const store = useHotkeysContext()?.appHotkeysStore ?? null
-  const state = useSelector(store?.store ?? NO_APP_HOTKEYS, (value) => value)
+  // Without a provider there is nothing to track.
+  const state = store
+    ? useStoreSelector(store.store, (value) => value)
+    : shallowRef(null)
   return { store, state }
 }

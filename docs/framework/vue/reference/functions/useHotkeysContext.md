@@ -7,7 +7,11 @@ title: useHotkeysContext
 function useHotkeysContext(): HotkeysContextValue | null;
 ```
 
-Defined in: [HotkeysProviderContext.ts:171](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L171)
+Defined in: [HotkeysProviderContext.ts:177](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L177)
+
+The nearest context, or `null`. Outside a component, such as in a bare
+`effectScope`, there is no context to read, so this skips `inject` and its
+warning.
 
 ## Returns
 

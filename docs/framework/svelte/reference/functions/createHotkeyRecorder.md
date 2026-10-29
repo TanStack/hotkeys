@@ -9,7 +9,7 @@ title: createHotkeyRecorder
 function createHotkeyRecorder(options): SvelteHotkeyRecorder<HotkeyChord>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:102](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L102)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:101](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L101)
 
 Svelte function for recording keyboard shortcuts. Options may be a getter.
 
@@ -47,7 +47,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 function createHotkeyRecorder(options): SvelteHotkeyRecorder;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:105](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L105)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:104](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L104)
 
 Svelte function for recording keyboard shortcuts. Options may be a getter.
 
@@ -85,7 +85,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 function createHotkeyRecorder(options): SvelteHotkeyRecorder;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:110](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L110)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:109](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L109)
 
 Svelte function for recording keyboard shortcuts. Options may be a getter.
 
@@ -123,7 +123,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 function createHotkeyRecorder(options): SvelteHotkeyRecorder<HotkeyChord>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:113](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L113)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:112](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L112)
 
 Svelte function for recording keyboard shortcuts. Options may be a getter.
 
@@ -161,7 +161,7 @@ larger `maxSteps`, each chord adds a step; the recording commits on Enter
 function createHotkeyRecorder(options): SvelteHotkeyRecorder;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:116](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L116)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:115](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L115)
 
 Svelte function for recording keyboard shortcuts. Options may be a getter.
 

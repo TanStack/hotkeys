@@ -7,13 +7,12 @@ title: useKeyHold
 function useKeyHold(key): Ref<boolean>;
 ```
 
-Defined in: [useKeyHold.ts:51](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useKeyHold.ts#L51)
+Defined in: [useKeyHold.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useKeyHold.ts#L49)
 
 Vue composable that returns a reactive ref indicating whether a specific key is currently being held.
 
-This composable uses `useSelector` from `@tanstack/vue-store` to subscribe
-to the global KeyStateTracker and uses a selector to determine if
-the specified key is held.
+Reads the held keys from the global KeyStateTracker. The key may be a ref
+or getter; the result follows it without waiting for a key event.
 
 ## Parameters
 

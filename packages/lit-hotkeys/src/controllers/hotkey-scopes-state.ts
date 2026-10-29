@@ -1,4 +1,5 @@
 import { getHotkeyManager } from '@tanstack/hotkeys'
+import { isServer } from './_server'
 import type { HotkeyScopesState } from '@tanstack/hotkeys'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
@@ -42,6 +43,7 @@ export class HotkeyScopesStateController implements ReactiveController {
    */
   public hostConnected(): void {
     this._host.requestUpdate()
+    if (isServer()) return
     const subscription = getHotkeyManager().scopes.subscribe(() =>
       this._host.requestUpdate(),
     )

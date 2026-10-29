@@ -3,7 +3,7 @@ id: HeldKeysController
 title: HeldKeysController
 ---
 
-Defined in: [controllers/held-keys.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/held-keys.ts#L26)
+Defined in: [controllers/held-keys.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/held-keys.ts#L27)
 
 A Lit ReactiveController that tracks all currently held keyboard keys.
 
@@ -38,7 +38,7 @@ class KeyDisplay extends LitElement {
 new HeldKeysController(_host): HeldKeysController;
 ```
 
-Defined in: [controllers/held-keys.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/held-keys.ts#L40)
+Defined in: [controllers/held-keys.ts:41](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/held-keys.ts#L41)
 
 #### Parameters
 
@@ -62,7 +62,7 @@ The Lit component that owns this controller.
 get value(): string[];
 ```
 
-Defined in: [controllers/held-keys.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/held-keys.ts#L33)
+Defined in: [controllers/held-keys.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/held-keys.ts#L34)
 
 Array of currently held key names.
 
@@ -78,7 +78,7 @@ Array of currently held key names.
 hostConnected(): void;
 ```
 
-Defined in: [controllers/held-keys.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/held-keys.ts#L45)
+Defined in: [controllers/held-keys.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/held-keys.ts#L46)
 
 Subscribes to the tracker store and updates the internal state when changes occur.
 
@@ -100,7 +100,7 @@ ReactiveController.hostConnected
 hostDisconnected(): void;
 ```
 
-Defined in: [controllers/held-keys.ts:59](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/held-keys.ts#L59)
+Defined in: [controllers/held-keys.ts:61](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/held-keys.ts#L61)
 
 Unsubscribes from the tracker store and stops tracking the held keys.
 

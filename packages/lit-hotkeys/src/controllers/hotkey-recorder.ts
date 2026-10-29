@@ -1,4 +1,5 @@
 import { HotkeyRecorder } from '@tanstack/hotkeys'
+import { isServer } from './_server'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 import type {
   Hotkey,
@@ -116,6 +117,7 @@ export class HotkeyRecorderController implements ReactiveController {
 
   /** Subscribes to the recorder store and updates the internal state when changes occur. */
   public hostConnected(): void {
+    if (isServer()) return
     const subscription = this._recorder.store.subscribe(() => {
       const { isRecording, recordedHotkey, steps } = this._recorder.store.state
 

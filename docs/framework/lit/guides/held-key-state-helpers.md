@@ -55,6 +55,8 @@ class FileItem extends LitElement {
 }
 ```
 
+To track a key that changes, pass a getter, such as `new KeyHoldController(this, () => this.key)`. The controller reads it again on each update.
+
 ## Tell left and right modifiers apart
 
 `HeldKeyCodesController` maps each held key to the physical key that's down, from `event.code`:

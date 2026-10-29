@@ -7,7 +7,7 @@ title: createHotkeysAttachment
 function createHotkeysAttachment(hotkeys, commonOptions?): Attachment<HTMLElement>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:152](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L152)
+Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:153](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L153)
 
 Create an attachment for element-scoped hotkeys: chords, sequences, and app
 hotkeys listen on the attached element.

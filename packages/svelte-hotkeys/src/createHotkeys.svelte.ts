@@ -2,7 +2,6 @@ import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
 } from '@tanstack/hotkeys/adapter'
-import { onDestroy } from 'svelte'
 import { getHotkeysContext } from './HotkeysCtx.js'
 import {
   createAppHotkeysSubscriber,
@@ -130,7 +129,9 @@ export function createHotkeys(
   commonOptions: MaybeGetter<CreateHotkeyCommonOptions> = {},
 ): void {
   const bindings = bindHotkeys(hotkeys, commonOptions)
-  onDestroy(() => bindings.destroy())
+  // Unlike onDestroy, an effect teardown also runs when an $effect.root that
+  // owns these hotkeys is destroyed.
+  $effect(() => () => bindings.destroy())
 }
 
 /**

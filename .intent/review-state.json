@@ -122,26 +122,28 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "no-change",
       "reason": "Internal fix: the preventDefault 'always' check uses the event's composed path so live hotkeys inside shadow roots count. Skill guidance unchanged.",
-      "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
+      "evidence": [
+        "packages/hotkeys/src/hotkey-manager.ts"
+      ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
-      "fingerprint": "574f78494c2c097169d5a20dd98281169784765fcc312da686e60d581fb00e56",
+      "fingerprint": "2d195e1f1122c0623295b93f5a97f79c968fcf744362c5e93747fa5e2982b321",
       "snapshot": {
         "docs/framework/lit/guides/app-hotkeys.md": "0a2b2dafa00bb21f575d4ac752f0b54803a69fff12a4391cf3a86e59f6471e1f",
-        "docs/framework/lit/quick-start.md": "d65ebb31aae582bd90689ac138369f843ad532aab1a667fa52b141249d2f07bf",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "044e792b3c90a99d3c6c3c2da639cf4bf2a6b2a073d13ee2caa54e951807e095",
+        "docs/framework/lit/quick-start.md": "cb51d2c81a8d9288d435af6e54366188c4175b9f18a434fbb85643eb13856ae4",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "ecd0100b52a00fc90ce71f244093da667d0c5ff78ecaf632d9db26f1c66c8e40",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "659ca9bebf4200bb693c693addb17bd5a943904e482514f2014f5ca426629e96",
-        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "75248405af23fcf9ba1402c2d8b5778e92db2eb8ad4a06629a4ed6d3952f6713",
-        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "5a9465e59c750aba5b3333fe1ca2ddf08acec768f36decd7f82cdd791481e759",
-        "packages/lit-hotkeys/src/controllers/hotkey.ts": "92464406579394adab6b5cee41efed8488caebbc92af12bef6069883d2063a64",
+        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "4661f2f5468dc484ab02284f1cb96eec411445ef7981390f31d37e491e51a603",
+        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "53f0b7af49f88fce7890790aa6291f44ae05c5553aac133340fd3745edd71631",
+        "packages/lit-hotkeys/src/controllers/hotkey.ts": "3b66db188eb2839ddeab56561bd9ebefdd1ea785490b5c150a81c5b3e96c7b21",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "2730f3178f6e5f6695fa0c2f8d25d7040c2ff841d3de486acffef86cfc76395f"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
       "outcome": "updated",
-      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
+      "reason": "KeyHoldController now accepts a getter key; the API table says to pass one for a key that changes.",
       "evidence": [
-        "packages/hotkeys/src/hotkey-manager.ts",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md:77",
+        "packages/lit-hotkeys/src/controllers/key-hold.ts"
       ]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
@@ -246,48 +248,50 @@
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "b75b48ee186a877c213cfd9b005cb1f90395929ac412b41402ba25f39533eeb8",
+      "fingerprint": "f6d5dd7f7c657a22517d0e042213460a64917ce6702f59a9c9e8fbe52c0a932d",
       "snapshot": {
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
-        "docs/framework/svelte/quick-start.md": "1ed87e6c76d9225f37db87f0d0e7dfd9f790adbf5b47cf87daa67143d155ce9b",
+        "docs/framework/svelte/quick-start.md": "dac9d02db91eaf3aed4eba39d6fb31a4a460bb3f84ba85c0576d3573b5ecf3d1",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "d99ef59e6a695be73d48b954a337d5c91f471268bad8da590a7b4d72f1a8a1c4",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "117d9625215435b7a3eb6c5a9f23792a02548059ba114b5737a6b9fb610b276c",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "eb7fb67907a153aae3f0ce61e951e8ea5df46468ae06eb55ad696500839124a3",
         "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "27959499674a4dbfeb048073807baf540586d0f0a63a0dbdde0246c7aa939706",
-        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "14960d025c687b2167653e047074f16f398c580a578b6266e31de4b3bfb341a1",
-        "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "cc69118ac4076f5c678987f0df18e8e0448bb7a2005effb802ae059d5b347455",
+        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "6de2683b3fd9dd1a775993193ead174e852198a351d28904c5e228ac196f5a95",
+        "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "39f0c7ff089f96d616583e011172ff9500211de9a97367b7148b3e8ab3be35a3",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a6a995eea5b1334baef1909da68dea08f8df4e29819bada3549c9a0be86e6dcb"
       },
-      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
       "outcome": "no-change",
-      "reason": "CI autofix wrapped one import line in createHotkey.svelte.ts. Formatting only; APIs and behavior are unchanged.",
-      "evidence": ["packages/svelte-hotkeys/src/createHotkey.svelte.ts"]
+      "reason": "The skill makes no claim about onDestroy, $effect.root, SSR, or getter keys that this fix changes; its component-based guidance still holds.",
+      "evidence": [
+        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"
+      ]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
-      "fingerprint": "ac96f13c6fde14fcb0ca586b0ec2c952be261636cfff5bfadcca5cfa74898ea8",
+      "fingerprint": "1b9ebaa1dcfb7b147bbed4cf7ac118c3d9eecb27b8c278bb42e2909a55d9c9f2",
       "snapshot": {
-        "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "9e41458fe7488eedcbd4289019a66cde95b866ffb3081fdd0a808995580460ce",
-        "docs/framework/vue/quick-start.md": "b4ca3394dc94e3b814054413afbf5e101fd5998a35daafad715e49de26a4932e",
+        "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "405eb90a8209f439db06d2e3d861acaa324b6598488c1705575ad56dccbb6ad3",
+        "docs/framework/vue/quick-start.md": "80bedac58ab9aee3b4bc5f59582b5b836c37fe14f08ab670eababf88a45e76c2",
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "565e5d5f33ed757855f0a3bcc78d65a191e52c1e3f33f9bf3dc534a4c0e70d3f",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "326ee1fe20c1d75a4ad720f69a3a4df9b9e3a057826115e955deb0ed25d88f9a",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "ad40dec6e2889ca62f3fda57fcbf67e940f4dab5a26cdc69ff99777d2d2e56af",
-        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "00ed1258f648206d16728b78075b381760ddf144a586c60c1027902f2d1017b6",
+        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "9ba86a812416beebe46c86d9e0ffff996e36b7fcb074f6d92ce771c326f1f2c9",
         "packages/vue-hotkeys/src/useAppHotkeys.ts": "924ed5dedd6451332545026bd94441eb7f72cfb4f3c2c07880f34ee652574967",
         "packages/vue-hotkeys/src/useHotkey.ts": "a1c8ed560f921e3af2adf0f8e54e9df8e6516516c6697f19a52bf629ec62e106",
-        "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "476a5a50a21aefe6243f9bc6e8c6a679978542d6ad8b52e6a2b0f806cd5ef89a",
+        "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "7505949604490126567f9b61bb4d5c7d5ad05c2004e67a33dba979651014176c",
         "packages/vue-hotkeys/src/useHotkeys.ts": "f971e9938eca3188b3af0fcc96d095330f9f6abfd70cb848d2de5c80f8d09639"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
-      "outcome": "updated",
-      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "The skill still holds: its default advice is to call composables synchronously in setup, and it makes no SSR, effectScope, or useKeyHold-key claims that this fix changes.",
       "evidence": [
-        "packages/hotkeys/src/hotkey-manager.ts",
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md:76",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md:70"
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "33795dd84a330b45555ac4d8d826aa0d8d9c2564d3d3c1448b309d05b46f801f",
+      "fingerprint": "a6282648f2723a1067db7e277aee576a7f93ce2ea963e91e2575c64961999b6c",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -299,7 +303,7 @@
         "docs/framework/ember/guides/app-hotkeys.md": "5162292b3d62257c757ea0146fb5b1cc8c85b130081472b3675be077e8c898de",
         "docs/framework/ember/quick-start.md": "cabdc0cbd2b9ac6d4d7f9f2c8b8d3fc6ef2ac8c23df4cd8ebc9745c99023f8c8",
         "docs/framework/lit/guides/app-hotkeys.md": "0a2b2dafa00bb21f575d4ac752f0b54803a69fff12a4391cf3a86e59f6471e1f",
-        "docs/framework/lit/quick-start.md": "d65ebb31aae582bd90689ac138369f843ad532aab1a667fa52b141249d2f07bf",
+        "docs/framework/lit/quick-start.md": "cb51d2c81a8d9288d435af6e54366188c4175b9f18a434fbb85643eb13856ae4",
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
         "docs/framework/octane/quick-start.md": "2ddb77d76eefae05feb5183206687bf4fd4ac3b18e43cc5e51a934b361702ea1",
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
@@ -314,9 +318,9 @@
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
         "docs/framework/solid/quick-start.md": "292bf5cc6300e899c6f382e263665a488899fa816bb13ad4994420e390bb2420",
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
-        "docs/framework/svelte/quick-start.md": "1ed87e6c76d9225f37db87f0d0e7dfd9f790adbf5b47cf87daa67143d155ce9b",
-        "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "9e41458fe7488eedcbd4289019a66cde95b866ffb3081fdd0a808995580460ce",
-        "docs/framework/vue/quick-start.md": "b4ca3394dc94e3b814054413afbf5e101fd5998a35daafad715e49de26a4932e",
+        "docs/framework/svelte/quick-start.md": "dac9d02db91eaf3aed4eba39d6fb31a4a460bb3f84ba85c0576d3573b5ecf3d1",
+        "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "405eb90a8209f439db06d2e3d861acaa324b6598488c1705575ad56dccbb6ad3",
+        "docs/framework/vue/quick-start.md": "80bedac58ab9aee3b4bc5f59582b5b836c37fe14f08ab670eababf88a45e76c2",
         "docs/guides/sensible-defaults.md": "29b63a2aa05a4c7498bc2f235baa20bf4bcccbf9de78642ed5e27b431232ec1f",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "8c0a3ab25f684d8445925d43dbadabb4e491b12001d78811cbf0d3f41db044c8",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "fdc12aafd6098bde8b4e7f5d8a8afb12227ac99cd753e06fc27401d5d8c8fead",
@@ -350,11 +354,11 @@
         "packages/hotkeys/src/hotkey-manager.ts": "0f8c253810bc4027d35185483a09cbd403cdd04c31189288f8a1211c642587d4",
         "packages/hotkeys/src/hotkey-recorder.ts": "2ebed5665e56f5ee87130440fc93f2571aef7940b6153c05204cd0f3e7eea4cc",
         "packages/hotkeys/src/match.ts": "3a50921a68f79183b4ffac98e07e7fdf043711bc071f419c9cdc03422d25f268",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "044e792b3c90a99d3c6c3c2da639cf4bf2a6b2a073d13ee2caa54e951807e095",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "ecd0100b52a00fc90ce71f244093da667d0c5ff78ecaf632d9db26f1c66c8e40",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "659ca9bebf4200bb693c693addb17bd5a943904e482514f2014f5ca426629e96",
-        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "75248405af23fcf9ba1402c2d8b5778e92db2eb8ad4a06629a4ed6d3952f6713",
-        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "5a9465e59c750aba5b3333fe1ca2ddf08acec768f36decd7f82cdd791481e759",
-        "packages/lit-hotkeys/src/controllers/hotkey.ts": "92464406579394adab6b5cee41efed8488caebbc92af12bef6069883d2063a64",
+        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "4661f2f5468dc484ab02284f1cb96eec411445ef7981390f31d37e491e51a603",
+        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "53f0b7af49f88fce7890790aa6291f44ae05c5553aac133340fd3745edd71631",
+        "packages/lit-hotkeys/src/controllers/hotkey.ts": "3b66db188eb2839ddeab56561bd9ebefdd1ea785490b5c150a81c5b3e96c7b21",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "2730f3178f6e5f6695fa0c2f8d25d7040c2ff841d3de486acffef86cfc76395f",
         "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2d8f1849449ed280c1d899737fa388e3f40528b04954d96fe33be1a11b422d44",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
@@ -404,22 +408,24 @@
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "117d9625215435b7a3eb6c5a9f23792a02548059ba114b5737a6b9fb610b276c",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "eb7fb67907a153aae3f0ce61e951e8ea5df46468ae06eb55ad696500839124a3",
         "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "27959499674a4dbfeb048073807baf540586d0f0a63a0dbdde0246c7aa939706",
-        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "14960d025c687b2167653e047074f16f398c580a578b6266e31de4b3bfb341a1",
-        "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "cc69118ac4076f5c678987f0df18e8e0448bb7a2005effb802ae059d5b347455",
+        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "6de2683b3fd9dd1a775993193ead174e852198a351d28904c5e228ac196f5a95",
+        "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "39f0c7ff089f96d616583e011172ff9500211de9a97367b7148b3e8ab3be35a3",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a6a995eea5b1334baef1909da68dea08f8df4e29819bada3549c9a0be86e6dcb",
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "565e5d5f33ed757855f0a3bcc78d65a191e52c1e3f33f9bf3dc534a4c0e70d3f",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "326ee1fe20c1d75a4ad720f69a3a4df9b9e3a057826115e955deb0ed25d88f9a",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "ad40dec6e2889ca62f3fda57fcbf67e940f4dab5a26cdc69ff99777d2d2e56af",
-        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "00ed1258f648206d16728b78075b381760ddf144a586c60c1027902f2d1017b6",
+        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "9ba86a812416beebe46c86d9e0ffff996e36b7fcb074f6d92ce771c326f1f2c9",
         "packages/vue-hotkeys/src/useAppHotkeys.ts": "924ed5dedd6451332545026bd94441eb7f72cfb4f3c2c07880f34ee652574967",
         "packages/vue-hotkeys/src/useHotkey.ts": "a1c8ed560f921e3af2adf0f8e54e9df8e6516516c6697f19a52bf629ec62e106",
-        "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "476a5a50a21aefe6243f9bc6e8c6a679978542d6ad8b52e6a2b0f806cd5ef89a",
+        "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "7505949604490126567f9b61bb4d5c7d5ad05c2004e67a33dba979651014176c",
         "packages/vue-hotkeys/src/useHotkeys.ts": "f971e9938eca3188b3af0fcc96d095330f9f6abfd70cb848d2de5c80f8d09639"
       },
-      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
       "outcome": "no-change",
-      "reason": "CI autofix wrapped one import line in createHotkey.svelte.ts. Formatting only; APIs and behavior are unchanged.",
-      "evidence": ["packages/svelte-hotkeys/src/createHotkey.svelte.ts"]
+      "reason": "Bug fixes inside existing vue, svelte, and lit skill scopes; no new domain, skill, or failure mode.",
+      "evidence": [
+        "_artifacts/skill_spec.md"
+      ]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -429,7 +435,9 @@
       "head": "ad56a4b0dbf3c34d8552eca2cc88c5c7000d520a",
       "outcome": "out-of-scope",
       "reason": "Release note for shipping the skills; it describes no library behavior the guidance covers.",
-      "evidence": [".changeset/intent-skills.md"]
+      "evidence": [
+        ".changeset/intent-skills.md"
+      ]
     },
     "source:scripts/verify-package.ts": {
       "fingerprint": "f93157da0086ac1b234efa6b91482b6fed8538ad55f98ab186105837b9e274bc",
@@ -452,7 +460,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/alpine/guides/hotkey-hints.md"]
+      "evidence": [
+        "docs/framework/alpine/guides/hotkey-hints.md"
+      ]
     },
     "source:docs/framework/angular/guides/hotkey-hints.md": {
       "fingerprint": "313c1b2258131f732be1828a632b745a445e53088b40213f7f65cccd8f7b9d15",
@@ -462,7 +472,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/angular/guides/hotkey-hints.md"]
+      "evidence": [
+        "docs/framework/angular/guides/hotkey-hints.md"
+      ]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeyHint.md": {
       "fingerprint": "0cce1ae8017ce95ff22dd25bc20a5b5e52e29fbb46a2f4a3a3fe2846098a0bc0",
@@ -484,7 +496,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/ember/guides/hotkey-hints.md"]
+      "evidence": [
+        "docs/framework/ember/guides/hotkey-hints.md"
+      ]
     },
     "source:docs/framework/ember/reference/functions/useHotkeyHint.md": {
       "fingerprint": "2a4a2402f75a6c0686a2c791c82c27e584a9cd15b590c2ab2b51592485118d49",
@@ -494,7 +508,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "out-of-scope",
       "reason": "Tests or regenerated reference docs.",
-      "evidence": ["docs/framework/ember/reference/functions/useHotkeyHint.md"]
+      "evidence": [
+        "docs/framework/ember/reference/functions/useHotkeyHint.md"
+      ]
     },
     "source:docs/framework/lit/guides/hotkey-hints.md": {
       "fingerprint": "0f999f313813d39b1e429da38f70556bc4e18cd9e5abebb2069280036acbba57",
@@ -504,16 +520,18 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/lit/guides/hotkey-hints.md"]
+      "evidence": [
+        "docs/framework/lit/guides/hotkey-hints.md"
+      ]
     },
     "source:docs/framework/lit/reference/classes/HotkeyHintController.md": {
-      "fingerprint": "5b3438c183c2cccf91c2c229301ec0e6c89f3e0f8fd91a781cf83167c9a3e8f5",
+      "fingerprint": "a289eee125ce5ba4b39094bd08f5cabb25274e61c353894958fe7e569776b8b0",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyHintController.md": "8eb1d951c84efe698d6581d6eb89ca5dbbb02024b9cd1ac71b7b420f6281e0ae"
+        "docs/framework/lit/reference/classes/HotkeyHintController.md": "8cf2cb0c35cf1272088e238db387a5defa96903a1516cafe1fc816536daaa778"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
-      "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
       "evidence": [
         "docs/framework/lit/reference/classes/HotkeyHintController.md"
       ]
@@ -526,7 +544,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/octane/guides/hotkey-hints.md"]
+      "evidence": [
+        "docs/framework/octane/guides/hotkey-hints.md"
+      ]
     },
     "source:docs/framework/octane/reference/functions/useHotkeyHint.md": {
       "fingerprint": "7f7c6b9e1ace13d1eeda15346f738b3211b067714bb036146f22e992e9f1b140",
@@ -536,7 +556,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "out-of-scope",
       "reason": "Tests or regenerated reference docs.",
-      "evidence": ["docs/framework/octane/reference/functions/useHotkeyHint.md"]
+      "evidence": [
+        "docs/framework/octane/reference/functions/useHotkeyHint.md"
+      ]
     },
     "source:docs/framework/preact/guides/hotkey-hints.md": {
       "fingerprint": "f3782ec6f24c5d15a4afa506d71659847281b6593a6c7d6737e884b918ee2088",
@@ -546,7 +568,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/preact/guides/hotkey-hints.md"]
+      "evidence": [
+        "docs/framework/preact/guides/hotkey-hints.md"
+      ]
     },
     "source:docs/framework/preact/reference/functions/useHotkeyHint.md": {
       "fingerprint": "c85873ba1b80435f9c72ec689f93851c5adfa071900164eb55207b321ef1dc85",
@@ -556,7 +580,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "out-of-scope",
       "reason": "Tests or regenerated reference docs.",
-      "evidence": ["docs/framework/preact/reference/functions/useHotkeyHint.md"]
+      "evidence": [
+        "docs/framework/preact/reference/functions/useHotkeyHint.md"
+      ]
     },
     "source:docs/framework/react/guides/hotkey-hints.md": {
       "fingerprint": "8aa0c84b16678eedc6edc4b629e124cf1dc776317100c30fee1ca1d1922eb207",
@@ -566,7 +592,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/react/guides/hotkey-hints.md"]
+      "evidence": [
+        "docs/framework/react/guides/hotkey-hints.md"
+      ]
     },
     "source:docs/framework/react/reference/functions/useHotkeyHint.md": {
       "fingerprint": "5be6c63c069a8b796bbb2bea2041789b17acbffdc0cc760d3026e23c29f963ee",
@@ -590,7 +618,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/solid/guides/hotkey-hints.md"]
+      "evidence": [
+        "docs/framework/solid/guides/hotkey-hints.md"
+      ]
     },
     "source:docs/framework/solid/reference/functions/createHotkeyHint.md": {
       "fingerprint": "ece91e92b870115f45867a792f6f468bfda446b9e62745fd9cb1998052b07ba4",
@@ -612,7 +642,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/svelte/guides/hotkey-hints.md"]
+      "evidence": [
+        "docs/framework/svelte/guides/hotkey-hints.md"
+      ]
     },
     "source:docs/framework/svelte/reference/functions/getHotkeyHint.md": {
       "fingerprint": "55555f508cfdf04ec3b64b9bdccc676bcc502264f3f2803cfb3b3a6288b0b5bc",
@@ -622,7 +654,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "out-of-scope",
       "reason": "Tests or regenerated reference docs.",
-      "evidence": ["docs/framework/svelte/reference/functions/getHotkeyHint.md"]
+      "evidence": [
+        "docs/framework/svelte/reference/functions/getHotkeyHint.md"
+      ]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteHotkeyHint.md": {
       "fingerprint": "aae0b5ff38458e47be4067dbfb5ec680ae464bd4e9c3dfd24a245e7601d06b51",
@@ -644,7 +678,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/vue/guides/hotkey-hints.md"]
+      "evidence": [
+        "docs/framework/vue/guides/hotkey-hints.md"
+      ]
     },
     "source:docs/framework/vue/reference/functions/useHotkeyHint.md": {
       "fingerprint": "c7a993113d9d9bee980faf4ee0bfc7865f7dbc45e1a7d46a1628576335552e66",
@@ -654,7 +690,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "out-of-scope",
       "reason": "Tests or regenerated reference docs.",
-      "evidence": ["docs/framework/vue/reference/functions/useHotkeyHint.md"]
+      "evidence": [
+        "docs/framework/vue/reference/functions/useHotkeyHint.md"
+      ]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
       "fingerprint": "63ec4d7023a48c5bf9f5ef2496ad6de587a63df5d94f09a52a2b9c30395702b9",
@@ -664,7 +702,9 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
-      "evidence": ["docs/reference/classes/HotkeyManager.md"]
+      "evidence": [
+        "docs/reference/classes/HotkeyManager.md"
+      ]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
       "fingerprint": "66e71338a233cefd3058103f535e9d087eb35c91297beb021308f5ff3360a2f3",
@@ -674,7 +714,9 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
-      "evidence": ["docs/reference/functions/getHotkeyManager.md"]
+      "evidence": [
+        "docs/reference/functions/getHotkeyManager.md"
+      ]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
       "fingerprint": "cafd21ca3305c89ad47e5c4eee4ce63feed831a2b3524c5b3cd756fee53a2592",
@@ -684,7 +726,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["examples/alpine/kitchen-sink/index.html"]
+      "evidence": [
+        "examples/alpine/kitchen-sink/index.html"
+      ]
     },
     "source:examples/alpine/kitchen-sink/src/main.ts": {
       "fingerprint": "3af00671f13f87de8b318aeef2645372c9d4197f69f884690918d4ef10721005",
@@ -694,7 +738,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
-      "evidence": ["examples/alpine/kitchen-sink/src/main.ts"]
+      "evidence": [
+        "examples/alpine/kitchen-sink/src/main.ts"
+      ]
     },
     "source:examples/angular/kitchen-sink/src/app/app.component.ts": {
       "fingerprint": "51931bb2f7d2e84a260f425e645885deadf2b9a5a9662183840cef8c70a45ac0",
@@ -704,7 +750,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["examples/angular/kitchen-sink/src/app/app.component.ts"]
+      "evidence": [
+        "examples/angular/kitchen-sink/src/app/app.component.ts"
+      ]
     },
     "source:examples/ember/kitchen-sink/app/templates/application.gts": {
       "fingerprint": "c0457e17267c386d3735103dc176d46f852aee4baa18dca2edcfce2885a239b7",
@@ -714,7 +762,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["examples/ember/kitchen-sink/app/templates/application.gts"]
+      "evidence": [
+        "examples/ember/kitchen-sink/app/templates/application.gts"
+      ]
     },
     "source:examples/lit/kitchen-sink/src/app.ts": {
       "fingerprint": "d4898c56bbda8cd13dd64f22c868afa93bacfc485964de10c224e53b8402b3a9",
@@ -724,7 +774,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["examples/lit/kitchen-sink/src/app.ts"]
+      "evidence": [
+        "examples/lit/kitchen-sink/src/app.ts"
+      ]
     },
     "source:examples/octane/kitchen-sink/src/main.tsrx": {
       "fingerprint": "0b94f475098b57df8fecdf374393c09a119c8cf19286aafa2823029db968c22d",
@@ -734,7 +786,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["examples/octane/kitchen-sink/src/main.tsrx"]
+      "evidence": [
+        "examples/octane/kitchen-sink/src/main.tsrx"
+      ]
     },
     "source:examples/preact/kitchen-sink/src/index.tsx": {
       "fingerprint": "98eec5ebf2e4466ecce3153d8a1777ebb2df4581d2ab1fee5497585d9c3af109",
@@ -744,7 +798,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["examples/preact/kitchen-sink/src/index.tsx"]
+      "evidence": [
+        "examples/preact/kitchen-sink/src/index.tsx"
+      ]
     },
     "source:examples/react/kitchen-sink/src/routes/scopes.tsx": {
       "fingerprint": "77be60ca3d5df76dcef7541d7c739c44b3f20b110fd944a2e4abe2d1a65173de",
@@ -754,7 +810,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["examples/react/kitchen-sink/src/routes/scopes.tsx"]
+      "evidence": [
+        "examples/react/kitchen-sink/src/routes/scopes.tsx"
+      ]
     },
     "source:examples/react/kitchen-sink/src/routes/tickets.tsx": {
       "fingerprint": "bc7769ec3b7d6d64157d102d5b238165b17d94c21ce0f2636a7557bdda3b74b0",
@@ -764,7 +822,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["examples/react/kitchen-sink/src/routes/tickets.tsx"]
+      "evidence": [
+        "examples/react/kitchen-sink/src/routes/tickets.tsx"
+      ]
     },
     "source:examples/react/kitchen-sink/src/shared.tsx": {
       "fingerprint": "29a917b01e09ffdaae21b86d76fcc0b53c5b279110bfd90d3cd698cd5749b27b",
@@ -774,7 +834,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["examples/react/kitchen-sink/src/shared.tsx"]
+      "evidence": [
+        "examples/react/kitchen-sink/src/shared.tsx"
+      ]
     },
     "source:examples/solid/kitchen-sink/src/index.tsx": {
       "fingerprint": "8e566d191f693b32251c02ac062f9ba50f005cf79d0f473a5527e3b729ebf095",
@@ -784,7 +846,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["examples/solid/kitchen-sink/src/index.tsx"]
+      "evidence": [
+        "examples/solid/kitchen-sink/src/index.tsx"
+      ]
     },
     "source:examples/svelte/kitchen-sink/src/Hint.svelte": {
       "fingerprint": "06624d7bb8cbbfd41fe9221276689a15873354441f4747b7cbc4fc8fc17cb15a",
@@ -794,7 +858,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["examples/svelte/kitchen-sink/src/Hint.svelte"]
+      "evidence": [
+        "examples/svelte/kitchen-sink/src/Hint.svelte"
+      ]
     },
     "source:examples/svelte/kitchen-sink/src/Tickets.svelte": {
       "fingerprint": "b7a9721fcbaf6b9cbc2a3d5ba0f28ec4548a29bea2e3d64a71c9e9e1ab7ade66",
@@ -804,7 +870,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["examples/svelte/kitchen-sink/src/Tickets.svelte"]
+      "evidence": [
+        "examples/svelte/kitchen-sink/src/Tickets.svelte"
+      ]
     },
     "source:examples/vue/kitchen-sink/src/Hint.vue": {
       "fingerprint": "6b45e5aec7409a5e2f96d84446ca4f09bd0c11eb8565b3e3294dfa1d3eed56cd",
@@ -814,7 +882,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["examples/vue/kitchen-sink/src/Hint.vue"]
+      "evidence": [
+        "examples/vue/kitchen-sink/src/Hint.vue"
+      ]
     },
     "source:examples/vue/kitchen-sink/src/Tickets.vue": {
       "fingerprint": "c18942863da51c7e331fe2430a1a3144f64a33c8d2f251b030794bddb257742a",
@@ -824,7 +894,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["examples/vue/kitchen-sink/src/Tickets.vue"]
+      "evidence": [
+        "examples/vue/kitchen-sink/src/Tickets.vue"
+      ]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyHint.ts": {
       "fingerprint": "7384ea319ae0eb4ffd35828dbd71a685f709ef239f07bb94255f5a1d510d0e5d",
@@ -834,7 +906,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Internal refactor with identical behavior; skills unaffected.",
-      "evidence": ["packages/alpine-hotkeys/src/createHotkeyHint.ts"]
+      "evidence": [
+        "packages/alpine-hotkeys/src/createHotkeyHint.ts"
+      ]
     },
     "source:packages/alpine-hotkeys/tests/alpine-hotkeys.test.ts": {
       "fingerprint": "10afb0cc0b5d926fdada5580c25662df3e41ffe6510ff725b8b3f1fe0e7fdde0",
@@ -844,7 +918,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
-      "evidence": ["packages/alpine-hotkeys/tests/alpine-hotkeys.test.ts"]
+      "evidence": [
+        "packages/alpine-hotkeys/tests/alpine-hotkeys.test.ts"
+      ]
     },
     "source:packages/angular-hotkeys/src/injectHotkeyHint.ts": {
       "fingerprint": "c63e2a9c79c4d18416e114a81e266db55e4c1757e1646dc561bf6a8cfbb27fc5",
@@ -854,7 +930,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["packages/angular-hotkeys/src/injectHotkeyHint.ts"]
+      "evidence": [
+        "packages/angular-hotkeys/src/injectHotkeyHint.ts"
+      ]
     },
     "source:packages/angular-hotkeys/tests/injectHotkeyHint.test.ts": {
       "fingerprint": "7c23d3e44ca48c830f5e5298173e523ba8fc3a6864d359e34bb2be484fcc4fcb",
@@ -864,7 +942,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["packages/angular-hotkeys/tests/injectHotkeyHint.test.ts"]
+      "evidence": [
+        "packages/angular-hotkeys/tests/injectHotkeyHint.test.ts"
+      ]
     },
     "source:packages/ember-hotkeys/src/useHotkeyHint.ts": {
       "fingerprint": "915e5eb006a22f3447857b39225c622c44c5364d12bce958f0faf0bf33732f3e",
@@ -874,7 +954,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["packages/ember-hotkeys/src/useHotkeyHint.ts"]
+      "evidence": [
+        "packages/ember-hotkeys/src/useHotkeyHint.ts"
+      ]
     },
     "source:packages/ember-hotkeys/tests/integration/hotkeys.test.gts": {
       "fingerprint": "b6569bd0fe84bf8e7599801b972be220003614ab2434a87dd46fa17a94f21a38",
@@ -884,7 +966,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
-      "evidence": ["packages/ember-hotkeys/tests/integration/hotkeys.test.gts"]
+      "evidence": [
+        "packages/ember-hotkeys/tests/integration/hotkeys.test.gts"
+      ]
     },
     "source:packages/hotkeys/tests/scopes.test.ts": {
       "fingerprint": "37c6be71916d0093c9666428f01b7e6cfaaeb95482625d71d1ba51cf3d637848",
@@ -894,17 +978,21 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "out-of-scope",
       "reason": "Tests or regenerated reference docs.",
-      "evidence": ["packages/hotkeys/tests/scopes.test.ts"]
+      "evidence": [
+        "packages/hotkeys/tests/scopes.test.ts"
+      ]
     },
     "source:packages/lit-hotkeys/src/controllers/hotkey-hint.ts": {
-      "fingerprint": "edd97112334d73fa6fea378c771f65f61e4be738ad0654ec0b0367d7a035bc6d",
+      "fingerprint": "d1a2758f197a7bdcad3413d528a4d71aa56821849a3d1d01f4c3bb42bdccc5f7",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/hotkey-hint.ts": "5b983e7b089e1d1fb8376976afb590a7ca267198cef078e9f08a65943df85c3c"
+        "packages/lit-hotkeys/src/controllers/hotkey-hint.ts": "aa33bca5e48c5b9792f55f0f4bd953faac2ed1d3ae4587be64f42414771acff4"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
       "outcome": "no-change",
-      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["packages/lit-hotkeys/src/controllers/hotkey-hint.ts"]
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "packages/lit-hotkeys/src/controllers/hotkey-hint.ts"
+      ]
     },
     "source:packages/lit-hotkeys/tests/hotkey-hint.spec.ts": {
       "fingerprint": "594ffd4d628271b1e3c2982b7f7f67a1bfa29a492da8adf9109cf4b6406d6a0a",
@@ -914,7 +1002,9 @@
       "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "out-of-scope",
       "reason": "Tests or regenerated reference docs.",
-      "evidence": ["packages/lit-hotkeys/tests/hotkey-hint.spec.ts"]
+      "evidence": [
+        "packages/lit-hotkeys/tests/hotkey-hint.spec.ts"
+      ]
     },
     "source:packages/octane-hotkeys/src/useHotkeyHint.ts": {
       "fingerprint": "10736a6674ada040f25a5c71fe0525b6d7baa9b74d0f4b2b23e8741af5883231",
@@ -924,7 +1014,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["packages/octane-hotkeys/src/useHotkeyHint.ts"]
+      "evidence": [
+        "packages/octane-hotkeys/src/useHotkeyHint.ts"
+      ]
     },
     "source:packages/octane-hotkeys/tests/octane-hotkeys.test.ts": {
       "fingerprint": "e7005d45a48c6e00b3333e498abaeca3b2ad7a121e5c4c55b037935c8e1c32aa",
@@ -934,7 +1026,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
-      "evidence": ["packages/octane-hotkeys/tests/octane-hotkeys.test.ts"]
+      "evidence": [
+        "packages/octane-hotkeys/tests/octane-hotkeys.test.ts"
+      ]
     },
     "source:packages/preact-hotkeys/src/useHotkeyHint.ts": {
       "fingerprint": "78eaa2b08c86d7da8deac7074d59122a6b9fddc0a9c01eac85b781fdc58fd41a",
@@ -944,7 +1038,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["packages/preact-hotkeys/src/useHotkeyHint.ts"]
+      "evidence": [
+        "packages/preact-hotkeys/src/useHotkeyHint.ts"
+      ]
     },
     "source:packages/preact-hotkeys/tests/appHotkeys.test.tsx": {
       "fingerprint": "3b8ab01302de82b3cbdcf6d5e2a3758bac18d6ffb6466f95d5a93c5d5756c8e9",
@@ -954,7 +1050,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["packages/preact-hotkeys/tests/appHotkeys.test.tsx"]
+      "evidence": [
+        "packages/preact-hotkeys/tests/appHotkeys.test.tsx"
+      ]
     },
     "source:packages/preact-hotkeys/tests/useHotkeyHint.test.tsx": {
       "fingerprint": "c48fc246e4d85ed5d039086f998034180243e8f828c5ac1b34b5a4016bfd7142",
@@ -964,7 +1062,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["packages/preact-hotkeys/tests/useHotkeyHint.test.tsx"]
+      "evidence": [
+        "packages/preact-hotkeys/tests/useHotkeyHint.test.tsx"
+      ]
     },
     "source:packages/react-hotkeys/src/useHotkeyHint.ts": {
       "fingerprint": "9ab705624e848526f4e4a1bf2b66c4326eb3bbe252c8e598dc031a188bca2c0f",
@@ -987,7 +1087,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["packages/react-hotkeys/tests/appHotkeys.test.tsx"]
+      "evidence": [
+        "packages/react-hotkeys/tests/appHotkeys.test.tsx"
+      ]
     },
     "source:packages/react-hotkeys/tests/useHotkeyHint.test.tsx": {
       "fingerprint": "e14c1cf92807e43b674bad8e1155b8f22b6940c11aade2716566881ca718df3c",
@@ -997,7 +1099,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "out-of-scope",
       "reason": "Tests or regenerated reference docs.",
-      "evidence": ["packages/react-hotkeys/tests/useHotkeyHint.test.tsx"]
+      "evidence": [
+        "packages/react-hotkeys/tests/useHotkeyHint.test.tsx"
+      ]
     },
     "source:packages/solid-hotkeys/src/createHotkeyHint.ts": {
       "fingerprint": "4180b0d6c324483d380e9168c4fb1a11eee3bb130df87e372b14b7fabc8e40b3",
@@ -1007,7 +1111,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["packages/solid-hotkeys/src/createHotkeyHint.ts"]
+      "evidence": [
+        "packages/solid-hotkeys/src/createHotkeyHint.ts"
+      ]
     },
     "source:packages/solid-hotkeys/tests/createHotkeyHint.test.tsx": {
       "fingerprint": "a7510a58a1dc5db0a12df33541f32b5891353c27670915c10a64a5266976439e",
@@ -1017,7 +1123,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["packages/solid-hotkeys/tests/createHotkeyHint.test.tsx"]
+      "evidence": [
+        "packages/solid-hotkeys/tests/createHotkeyHint.test.tsx"
+      ]
     },
     "source:packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts": {
       "fingerprint": "111a3fa7ead644af9c2a1ae9427f55340199860e75f030a51c9dbeccb95a04a7",
@@ -1027,7 +1135,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "no-change",
       "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
-      "evidence": ["packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts"]
+      "evidence": [
+        "packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts"
+      ]
     },
     "source:packages/svelte-hotkeys/tests/getHotkeyHint.test.ts": {
       "fingerprint": "4aba46ae1619d1a1101ec84957ee324a1777908bea5463a134456900b4390b42",
@@ -1037,17 +1147,21 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["packages/svelte-hotkeys/tests/getHotkeyHint.test.ts"]
+      "evidence": [
+        "packages/svelte-hotkeys/tests/getHotkeyHint.test.ts"
+      ]
     },
     "source:packages/vue-hotkeys/src/useHotkeyHint.ts": {
-      "fingerprint": "cc244bd60a2810a4060cdc4a6ebb4558c30d9b3e554b2952b7ad74bc1d76c575",
+      "fingerprint": "7fed26b7e261e756181491c5de82c5b7a015435af894324e6ec7f0951b453a6b",
       "snapshot": {
-        "packages/vue-hotkeys/src/useHotkeyHint.ts": "00a09f8380bf71fdb0ecf2686870113835b2b17a8e59f1a2dc29268c2f893a4d"
+        "packages/vue-hotkeys/src/useHotkeyHint.ts": "58e1ad3daa67120f2227fb6af641138eabea5c53ba566296aab7ee3c8c0e1028"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
       "outcome": "no-change",
-      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["packages/vue-hotkeys/src/useHotkeyHint.ts"]
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": [
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
+      ]
     },
     "source:packages/vue-hotkeys/tests/hints.test.ts": {
       "fingerprint": "c756e3d826950b69a681052bd640e399b0cad0969728a6ce178cb1d183a21138",
@@ -1057,7 +1171,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["packages/vue-hotkeys/tests/hints.test.ts"]
+      "evidence": [
+        "packages/vue-hotkeys/tests/hints.test.ts"
+      ]
     },
     "source:docs/framework/alpine/guides/hotkeys.md": {
       "fingerprint": "28c1203dfc3cb40a9579e7c007cad2c7e91b5eb2b35651235beae2563a9e0bad",
@@ -1106,7 +1222,9 @@
       "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
       "outcome": "no-change",
       "reason": "Review fixes: preventDefault 'always' now defers to live hotkeys on any listener, Lit controllers render on reconnect, Lit guide points to shared options. Skill guidance unchanged.",
-      "evidence": ["docs/framework/lit/guides/hotkeys.md"]
+      "evidence": [
+        "docs/framework/lit/guides/hotkeys.md"
+      ]
     },
     "source:docs/framework/octane/guides/hotkeys.md": {
       "fingerprint": "c12021a09315d56b928f3f3755815e4448fc1b0147ea002de28872ce83dc4774",
@@ -1181,7 +1299,9 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
-      "evidence": ["docs/reference/functions/toHotkeyRegistrationView.md"]
+      "evidence": [
+        "docs/reference/functions/toHotkeyRegistrationView.md"
+      ]
     },
     "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
       "fingerprint": "3f310d8d4c5509367c2fa989c92965cdac48a9429a0761e35b7f1e238cba9e49",
@@ -1191,7 +1311,9 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
-      "evidence": ["docs/reference/interfaces/ActivateHotkeyScopeOptions.md"]
+      "evidence": [
+        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md"
+      ]
     },
     "source:docs/reference/interfaces/HotkeyChordOptions.md": {
       "fingerprint": "404bc38543e861ec69922d37c22812def0ec459710625c6b99334a6f57192bb2",
@@ -1201,7 +1323,9 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
-      "evidence": ["docs/reference/interfaces/HotkeyChordOptions.md"]
+      "evidence": [
+        "docs/reference/interfaces/HotkeyChordOptions.md"
+      ]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistration.md": {
       "fingerprint": "f514cd197b6e420ea05d5ae89b9254e0b62b8e2142f85c6acfba4ca56afb1430",
@@ -1211,7 +1335,9 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
-      "evidence": ["docs/reference/interfaces/HotkeyChordRegistration.md"]
+      "evidence": [
+        "docs/reference/interfaces/HotkeyChordRegistration.md"
+      ]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistrationView.md": {
       "fingerprint": "f49134dcdefb2603dca78b1f4939ccc390b19ad74bd19f7b11d1f183fb3e7bb0",
@@ -1221,7 +1347,9 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
-      "evidence": ["docs/reference/interfaces/HotkeyChordRegistrationView.md"]
+      "evidence": [
+        "docs/reference/interfaces/HotkeyChordRegistrationView.md"
+      ]
     },
     "source:docs/reference/interfaces/HotkeyOptions.md": {
       "fingerprint": "4133fc170ca919556ddec281e2c2e16518b0d1ba9654a9d6ad268ae5c3866a97",
@@ -1231,7 +1359,9 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
-      "evidence": ["docs/reference/interfaces/HotkeyOptions.md"]
+      "evidence": [
+        "docs/reference/interfaces/HotkeyOptions.md"
+      ]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationHandle.md": {
       "fingerprint": "301c7aced22fe44316ad6640048aef49a1e02a431c2d9754d0a53fb849fc78b4",
@@ -1241,7 +1371,9 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
-      "evidence": ["docs/reference/interfaces/HotkeyRegistrationHandle.md"]
+      "evidence": [
+        "docs/reference/interfaces/HotkeyRegistrationHandle.md"
+      ]
     },
     "source:docs/reference/interfaces/HotkeyScopesState.md": {
       "fingerprint": "7a007ba238c2b279533546c575f2ea5751ec5f01e3f8b56f756f0bb8c4589645",
@@ -1251,7 +1383,9 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
-      "evidence": ["docs/reference/interfaces/HotkeyScopesState.md"]
+      "evidence": [
+        "docs/reference/interfaces/HotkeyScopesState.md"
+      ]
     },
     "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
       "fingerprint": "9ce40ae235071ab7685e0dcaf07bd1789692fd4bb3950c8187741c8bb6c5b473",
@@ -1261,7 +1395,9 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
-      "evidence": ["docs/reference/interfaces/HotkeySequenceOptions.md"]
+      "evidence": [
+        "docs/reference/interfaces/HotkeySequenceOptions.md"
+      ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistration.md": {
       "fingerprint": "149fb9cfb777b3141cb9b4abb8a1c97846eed6182d246cca745335bced6f447c",
@@ -1271,7 +1407,9 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
-      "evidence": ["docs/reference/interfaces/HotkeySequenceRegistration.md"]
+      "evidence": [
+        "docs/reference/interfaces/HotkeySequenceRegistration.md"
+      ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistrationView.md": {
       "fingerprint": "37443384691d186bfdb48967f42cbd620b98aeb92ab259a763ed1298b2841e41",
@@ -1293,7 +1431,9 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
-      "evidence": ["docs/reference/type-aliases/HotkeyOptionsFor.md"]
+      "evidence": [
+        "docs/reference/type-aliases/HotkeyOptionsFor.md"
+      ]
     },
     "source:docs/reference/type-aliases/HotkeyRegistration.md": {
       "fingerprint": "316b2a22813a196d0950b8d20d23e945fc45bab8c350bd1972e285f5f722a990",
@@ -1303,7 +1443,9 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
-      "evidence": ["docs/reference/type-aliases/HotkeyRegistration.md"]
+      "evidence": [
+        "docs/reference/type-aliases/HotkeyRegistration.md"
+      ]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationView.md": {
       "fingerprint": "f240d5e45cce1bf5073844dae3750bdfcd046952f1accb8a3125a6559fe7d3fc",
@@ -1313,7 +1455,9 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
-      "evidence": ["docs/reference/type-aliases/HotkeyRegistrationView.md"]
+      "evidence": [
+        "docs/reference/type-aliases/HotkeyRegistrationView.md"
+      ]
     },
     "source:packages/hotkeys-devtools/src/components/DetailsPanel.tsx": {
       "fingerprint": "fb0b371c456dfbf2d58b49b9c23b0c0f74f0a02c9c719548e74b39aee6008878",
@@ -1323,7 +1467,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
-      "evidence": ["packages/hotkeys-devtools/src/components/DetailsPanel.tsx"]
+      "evidence": [
+        "packages/hotkeys-devtools/src/components/DetailsPanel.tsx"
+      ]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
       "fingerprint": "de86c88a97ef8682c66903441e37ab48367a00a0cd2d5725b90156c4aeab253b",
@@ -1333,7 +1479,9 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
-      "evidence": ["packages/hotkeys/tests/hotkey-manager.test.ts"]
+      "evidence": [
+        "packages/hotkeys/tests/hotkey-manager.test.ts"
+      ]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
       "fingerprint": "5f8f3fc9042ca4db049e0171afeef1143e99b76c2eb833093a8f162156cfc41e",
@@ -1343,7 +1491,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/alpine/guides/cheat-sheet-ui-helpers.md"]
+      "evidence": [
+        "docs/framework/alpine/guides/cheat-sheet-ui-helpers.md"
+      ]
     },
     "source:docs/framework/alpine/guides/hotkey-manager.md": {
       "fingerprint": "2289743f7b6a03d44b39ae1bb0655fdb7a8a086f4add54c70c83d73bd11f996f",
@@ -1353,7 +1503,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/alpine/guides/hotkey-manager.md"]
+      "evidence": [
+        "docs/framework/alpine/guides/hotkey-manager.md"
+      ]
     },
     "source:docs/framework/alpine/reference/functions/createHotkeysScope.md": {
       "fingerprint": "9c472815dbccfc365b2d7ee345d365ccca2b55efb08c22ff6d1834763488978a",
@@ -1543,7 +1695,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/angular/guides/cheat-sheet-ui-helpers.md"]
+      "evidence": [
+        "docs/framework/angular/guides/cheat-sheet-ui-helpers.md"
+      ]
     },
     "source:docs/framework/angular/guides/hotkey-manager.md": {
       "fingerprint": "9f08cec192a35daa525dca5ad78146eda35f46888cf60700f024fb5e43540dc2",
@@ -1553,7 +1707,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/angular/guides/hotkey-manager.md"]
+      "evidence": [
+        "docs/framework/angular/guides/hotkey-manager.md"
+      ]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeyScopesState.md": {
       "fingerprint": "ca36d5e277c6b434ea18879bd7056fa3988c98d0a51114a39243c1182b382a22",
@@ -1575,7 +1731,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["docs/framework/angular/reference/index.md"]
+      "evidence": [
+        "docs/framework/angular/reference/index.md"
+      ]
     },
     "source:docs/framework/ember/guides/cheat-sheet-ui-helpers.md": {
       "fingerprint": "d16d4ba31d35b04b2d3e35a9d85791458db3cec00ada3d99a7b499f0617683a1",
@@ -1585,7 +1743,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/ember/guides/cheat-sheet-ui-helpers.md"]
+      "evidence": [
+        "docs/framework/ember/guides/cheat-sheet-ui-helpers.md"
+      ]
     },
     "source:docs/framework/ember/guides/hotkey-manager.md": {
       "fingerprint": "b9173cf919cd70e374ec01081cad63a15fb0e5fa6fa05ed24c892a38e2e732c3",
@@ -1595,7 +1755,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/ember/guides/hotkey-manager.md"]
+      "evidence": [
+        "docs/framework/ember/guides/hotkey-manager.md"
+      ]
     },
     "source:docs/framework/ember/reference/functions/useHotkeyScopesState.md": {
       "fingerprint": "79d2f28cd0b88d6ead0618b55d68539914520c4eb77a4cffaad35be253ed044a",
@@ -1617,7 +1779,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["docs/framework/ember/reference/index.md"]
+      "evidence": [
+        "docs/framework/ember/reference/index.md"
+      ]
     },
     "source:docs/framework/lit/guides/cheat-sheet-ui-helpers.md": {
       "fingerprint": "9bd4682776f22a510ccd0f0e945dbf6cba1326aa7886367c1758a0de4d4fc3f8",
@@ -1627,7 +1791,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/lit/guides/cheat-sheet-ui-helpers.md"]
+      "evidence": [
+        "docs/framework/lit/guides/cheat-sheet-ui-helpers.md"
+      ]
     },
     "source:docs/framework/lit/guides/hotkey-manager.md": {
       "fingerprint": "99499462bb0e5b6cf15bda5aaf1a4b54546ea589695c57d45393c74dc706fbf9",
@@ -1637,16 +1803,18 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/lit/guides/hotkey-manager.md"]
+      "evidence": [
+        "docs/framework/lit/guides/hotkey-manager.md"
+      ]
     },
     "source:docs/framework/lit/reference/classes/HotkeyScopesStateController.md": {
-      "fingerprint": "2364a6f1f6db8f1d72bdf112e794d0b9797e4b2719876918caea9e09492f222a",
+      "fingerprint": "bf1b8690f71152cced76505dcf7a1ad0254f6a724ccaaa60df17889e126fc88c",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyScopesStateController.md": "2359a2ef88fe6271a3ea91d51ecaaa9eb41212362a26855e0ca83fd76840826b"
+        "docs/framework/lit/reference/classes/HotkeyScopesStateController.md": "e7c1d17ca055e72d980c535cfda87ab8818461dbd9971fda9653af0bc61b355f"
       },
-      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
-      "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
       "evidence": [
         "docs/framework/lit/reference/classes/HotkeyScopesStateController.md"
       ]
@@ -1659,7 +1827,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["docs/framework/lit/reference/index.md"]
+      "evidence": [
+        "docs/framework/lit/reference/index.md"
+      ]
     },
     "source:docs/framework/octane/guides/cheat-sheet-ui-helpers.md": {
       "fingerprint": "d36658a1bb4cfe7a1f8c701a0a19bf72b073b27d91c67f9396c0c52edf43ef52",
@@ -1669,7 +1839,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/octane/guides/cheat-sheet-ui-helpers.md"]
+      "evidence": [
+        "docs/framework/octane/guides/cheat-sheet-ui-helpers.md"
+      ]
     },
     "source:docs/framework/octane/guides/hotkey-manager.md": {
       "fingerprint": "94674f1e0431ffd29358cb97962261a509c90b8900b4703617f474b445b1d1b4",
@@ -1679,7 +1851,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/octane/guides/hotkey-manager.md"]
+      "evidence": [
+        "docs/framework/octane/guides/hotkey-manager.md"
+      ]
     },
     "source:docs/framework/octane/reference/functions/useHotkeyScopesState.md": {
       "fingerprint": "4a14760123f3c3f1e0ca372c47cd3d827c4213f5bffb3007127c9a481ccb3791",
@@ -1701,7 +1875,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["docs/framework/octane/reference/index.md"]
+      "evidence": [
+        "docs/framework/octane/reference/index.md"
+      ]
     },
     "source:docs/framework/preact/guides/cheat-sheet-ui-helpers.md": {
       "fingerprint": "b316cb55cfbb630477ab9701209be482e3c7d1e6f18a6bbba8eb36e074b16043",
@@ -1711,7 +1887,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/preact/guides/cheat-sheet-ui-helpers.md"]
+      "evidence": [
+        "docs/framework/preact/guides/cheat-sheet-ui-helpers.md"
+      ]
     },
     "source:docs/framework/preact/guides/hotkey-manager.md": {
       "fingerprint": "e255f62e61934af90f0bc283fba463482a318a93ca2e2d59ef17b6ea2ce189c3",
@@ -1721,7 +1899,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/preact/guides/hotkey-manager.md"]
+      "evidence": [
+        "docs/framework/preact/guides/hotkey-manager.md"
+      ]
     },
     "source:docs/framework/preact/reference/functions/useHotkeyScopesState.md": {
       "fingerprint": "28196fb3f7bb16be174302d7853db12c6de1e42a52d76e5686f2e14610477ab0",
@@ -1743,7 +1923,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["docs/framework/preact/reference/index.md"]
+      "evidence": [
+        "docs/framework/preact/reference/index.md"
+      ]
     },
     "source:docs/framework/react/guides/hotkey-manager.md": {
       "fingerprint": "6a1045908327336ec3811135514232d958045d9461da5f147a581c1b936aad39",
@@ -1753,7 +1935,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/react/guides/hotkey-manager.md"]
+      "evidence": [
+        "docs/framework/react/guides/hotkey-manager.md"
+      ]
     },
     "source:docs/framework/react/reference/functions/useHotkeyScopesState.md": {
       "fingerprint": "f795347c3e2cad0712d265ce1daa905f87e385a9cc7d5ca973db04ac70a1bf06",
@@ -1777,7 +1961,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["docs/framework/react/reference/index.md"]
+      "evidence": [
+        "docs/framework/react/reference/index.md"
+      ]
     },
     "source:docs/framework/solid/guides/cheat-sheet-ui-helpers.md": {
       "fingerprint": "babe05e703e06b8d50942bd08767e15f0707e2ff9126795affeba649d8b7e9bb",
@@ -1787,7 +1973,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/solid/guides/cheat-sheet-ui-helpers.md"]
+      "evidence": [
+        "docs/framework/solid/guides/cheat-sheet-ui-helpers.md"
+      ]
     },
     "source:docs/framework/solid/guides/hotkey-manager.md": {
       "fingerprint": "72dd217693b83e4c84309832f636d4b61e20cd2fc1cd84ba23de0a6eed1b11b4",
@@ -1797,7 +1985,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/solid/guides/hotkey-manager.md"]
+      "evidence": [
+        "docs/framework/solid/guides/hotkey-manager.md"
+      ]
     },
     "source:docs/framework/solid/reference/functions/createHotkeyScopesState.md": {
       "fingerprint": "817c0dede67662b70532bf49a4bfbca2b680c7467105b8e3d98658521f355118",
@@ -1819,7 +2009,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["docs/framework/solid/reference/index.md"]
+      "evidence": [
+        "docs/framework/solid/reference/index.md"
+      ]
     },
     "source:docs/framework/svelte/guides/cheat-sheet-ui-helpers.md": {
       "fingerprint": "06c81dfca3f6fbaf901316e8973c1ba61a0c1c6102f320b63262466fd4821f72",
@@ -1829,7 +2021,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/svelte/guides/cheat-sheet-ui-helpers.md"]
+      "evidence": [
+        "docs/framework/svelte/guides/cheat-sheet-ui-helpers.md"
+      ]
     },
     "source:docs/framework/svelte/guides/hotkey-manager.md": {
       "fingerprint": "d3fbee8d2e490ba13dff0cdc937eb6b70d2910eaa6d25e30f6adaa3891719b54",
@@ -1839,7 +2033,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/svelte/guides/hotkey-manager.md"]
+      "evidence": [
+        "docs/framework/svelte/guides/hotkey-manager.md"
+      ]
     },
     "source:docs/framework/svelte/reference/functions/getHotkeyScopesState.md": {
       "fingerprint": "6f7fb2ffb8495191c339e07506d0c40b6c5e78661433efd1f27d013e947c06ce",
@@ -1861,7 +2057,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["docs/framework/svelte/reference/index.md"]
+      "evidence": [
+        "docs/framework/svelte/reference/index.md"
+      ]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteHotkeyScopesState.md": {
       "fingerprint": "2e2fa83c6b2cf155912790fdb34770d590264c1af632bdca708d015878439939",
@@ -1883,7 +2081,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/vue/guides/cheat-sheet-ui-helpers.md"]
+      "evidence": [
+        "docs/framework/vue/guides/cheat-sheet-ui-helpers.md"
+      ]
     },
     "source:docs/framework/vue/guides/hotkey-manager.md": {
       "fingerprint": "c31fb5090b61ecee9870a51b318132054461fd064ecbc02a2977ced099817fdf",
@@ -1893,7 +2093,9 @@
       "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
       "outcome": "no-change",
       "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["docs/framework/vue/guides/hotkey-manager.md"]
+      "evidence": [
+        "docs/framework/vue/guides/hotkey-manager.md"
+      ]
     },
     "source:docs/framework/vue/reference/functions/useHotkeyScopesState.md": {
       "fingerprint": "6e6f9ea9454f9dd6126a1d2990adb783cf20d3d7af77e67ae381b59e2954f3f6",
@@ -1915,7 +2117,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["docs/framework/vue/reference/index.md"]
+      "evidence": [
+        "docs/framework/vue/reference/index.md"
+      ]
     },
     "source:docs/reference/index.md": {
       "fingerprint": "9a611b77990be4bef9ad2c13616c8ad15c2a18dd6d5f01f95eec2eacb75a241a",
@@ -1925,7 +2129,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
-      "evidence": ["docs/reference/index.md"]
+      "evidence": [
+        "docs/reference/index.md"
+      ]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationStatus.md": {
       "fingerprint": "38543fbbd925807dc94cef9dd358790607fff0d24bc40fb209c63e92bfd602a1",
@@ -1935,7 +2141,9 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
-      "evidence": ["docs/reference/type-aliases/HotkeyRegistrationStatus.md"]
+      "evidence": [
+        "docs/reference/type-aliases/HotkeyRegistrationStatus.md"
+      ]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyScopesState.ts": {
       "fingerprint": "efa0da765d7c23fe56e690ebc774b7ea456a343c908ad8239732d0741f3b64a1",
@@ -1945,7 +2153,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["packages/alpine-hotkeys/src/createHotkeyScopesState.ts"]
+      "evidence": [
+        "packages/alpine-hotkeys/src/createHotkeyScopesState.ts"
+      ]
     },
     "source:packages/alpine-hotkeys/src/types.ts": {
       "fingerprint": "6bedf50c8633837d8ed0da8294c6a4fb7bca83a27a193f1f1d138fa623c22fd8",
@@ -1955,7 +2165,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["packages/alpine-hotkeys/src/types.ts"]
+      "evidence": [
+        "packages/alpine-hotkeys/src/types.ts"
+      ]
     },
     "source:packages/angular-hotkeys/src/index.ts": {
       "fingerprint": "503a179912614dc48420ac45e5e599032cc717f2dcbf5f9d93e370f0e6cda75b",
@@ -1965,7 +2177,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["packages/angular-hotkeys/src/index.ts"]
+      "evidence": [
+        "packages/angular-hotkeys/src/index.ts"
+      ]
     },
     "source:packages/angular-hotkeys/src/injectHotkeyScopesState.ts": {
       "fingerprint": "db48312044f4065c2b8477ee4a12dec339d74797007a55eca0b40c0e8773fa3f",
@@ -1975,7 +2189,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["packages/angular-hotkeys/src/injectHotkeyScopesState.ts"]
+      "evidence": [
+        "packages/angular-hotkeys/src/injectHotkeyScopesState.ts"
+      ]
     },
     "source:packages/angular-hotkeys/tests/scopes.test.ts": {
       "fingerprint": "569b22d14258cab83b2bcc790380cb5035a4b14cab279369e5e8fe70d993f5df",
@@ -1985,7 +2201,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
-      "evidence": ["packages/angular-hotkeys/tests/scopes.test.ts"]
+      "evidence": [
+        "packages/angular-hotkeys/tests/scopes.test.ts"
+      ]
     },
     "source:packages/ember-hotkeys/src/index.ts": {
       "fingerprint": "a67de3a816a548d5108f5b1cfb073a8110539e5776399f0d9ae3b443c8f1254f",
@@ -1995,7 +2213,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["packages/ember-hotkeys/src/index.ts"]
+      "evidence": [
+        "packages/ember-hotkeys/src/index.ts"
+      ]
     },
     "source:packages/ember-hotkeys/src/useHotkeyScopesState.ts": {
       "fingerprint": "f09696791667531dc19e8a8ddd2db5c56c3bf0c4401b171ee908c23a90b8a73e",
@@ -2005,16 +2225,18 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["packages/ember-hotkeys/src/useHotkeyScopesState.ts"]
+      "evidence": [
+        "packages/ember-hotkeys/src/useHotkeyScopesState.ts"
+      ]
     },
     "source:packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts": {
-      "fingerprint": "7ee8fff9cb3de31c1b5c7e5253581cf446c3585e26312a406fa7bf4a8d22f3cf",
+      "fingerprint": "ec5fa79d39e53d102418b181f93ec32271ec6c41e21eff84d2918552d787d03a",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts": "3df64fbdc22edcee768d9787b5fc02c4d1806dfac7aa43852098decde9891c11"
+        "packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts": "0f5b76e2879ef6aee1926685ac4eb6dfbef2930e71d54c3161f549d77c48c4f8"
       },
-      "head": "86436b7b0a142b1d8e62fd4ae77f3c7c4ef118fa",
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
       "outcome": "no-change",
-      "reason": "Review fixes: preventDefault 'always' now defers to live hotkeys on any listener, Lit controllers render on reconnect, Lit guide points to shared options. Skill guidance unchanged.",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
       "evidence": [
         "packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts"
       ]
@@ -2027,7 +2249,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["packages/lit-hotkeys/src/controllers/index.ts"]
+      "evidence": [
+        "packages/lit-hotkeys/src/controllers/index.ts"
+      ]
     },
     "source:packages/octane-hotkeys/src/index.ts": {
       "fingerprint": "c56910c47adb6f5fa8a6fe9e9f2ef38c404be170416a67223bb0d84d3364e06b",
@@ -2037,7 +2261,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["packages/octane-hotkeys/src/index.ts"]
+      "evidence": [
+        "packages/octane-hotkeys/src/index.ts"
+      ]
     },
     "source:packages/octane-hotkeys/src/useHotkeyScopesState.ts": {
       "fingerprint": "965a15848bd594cb7b26dd89fe64a66ea7f841ffb49ac698aa53f220b7f2b622",
@@ -2047,7 +2273,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["packages/octane-hotkeys/src/useHotkeyScopesState.ts"]
+      "evidence": [
+        "packages/octane-hotkeys/src/useHotkeyScopesState.ts"
+      ]
     },
     "source:packages/octane-hotkeys/tests/fixture.tsrx": {
       "fingerprint": "96287e6de94be6045c8466e7c90a546ad9b2f0349dadab82e6c09a1a5aef279e",
@@ -2057,7 +2285,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
-      "evidence": ["packages/octane-hotkeys/tests/fixture.tsrx"]
+      "evidence": [
+        "packages/octane-hotkeys/tests/fixture.tsrx"
+      ]
     },
     "source:packages/preact-hotkeys/src/index.ts": {
       "fingerprint": "3e47210bca133992a784aafad823e4303a875a5259e1ca1f7a5478fa7325f5a0",
@@ -2067,7 +2297,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["packages/preact-hotkeys/src/index.ts"]
+      "evidence": [
+        "packages/preact-hotkeys/src/index.ts"
+      ]
     },
     "source:packages/preact-hotkeys/src/useHotkeyScopesState.ts": {
       "fingerprint": "218efac55f273a37386a498a5948bda2950f32a674b920f10843d4322763aa22",
@@ -2077,7 +2309,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["packages/preact-hotkeys/src/useHotkeyScopesState.ts"]
+      "evidence": [
+        "packages/preact-hotkeys/src/useHotkeyScopesState.ts"
+      ]
     },
     "source:packages/preact-hotkeys/tests/scopes.test.tsx": {
       "fingerprint": "071401c4fa14c4189e44a00271778bde83372dc5715d37e3ad32435050b24e66",
@@ -2087,7 +2321,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
-      "evidence": ["packages/preact-hotkeys/tests/scopes.test.tsx"]
+      "evidence": [
+        "packages/preact-hotkeys/tests/scopes.test.tsx"
+      ]
     },
     "source:packages/react-hotkeys/src/index.ts": {
       "fingerprint": "4983ee348b69b7a2729c033fc6b723f9f0b937b957f23d0d5e996997f8c655a1",
@@ -2097,7 +2333,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["packages/react-hotkeys/src/index.ts"]
+      "evidence": [
+        "packages/react-hotkeys/src/index.ts"
+      ]
     },
     "source:packages/react-hotkeys/src/useHotkeyScopesState.ts": {
       "fingerprint": "96a95553282dbc739bfd645dcb8c7e4b9b59b5da3cc34984c3f7f2d5dc6945d1",
@@ -2132,7 +2370,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["packages/solid-hotkeys/src/createHotkeyScopesState.ts"]
+      "evidence": [
+        "packages/solid-hotkeys/src/createHotkeyScopesState.ts"
+      ]
     },
     "source:packages/solid-hotkeys/src/index.ts": {
       "fingerprint": "66731a814a1bb922ec9fbb3bff9f1bbf5593f95dfc0cda4b56f554459103397c",
@@ -2142,7 +2382,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["packages/solid-hotkeys/src/index.ts"]
+      "evidence": [
+        "packages/solid-hotkeys/src/index.ts"
+      ]
     },
     "source:packages/solid-hotkeys/tests/scopes.test.tsx": {
       "fingerprint": "349e6fd64fc87f2b7bc4e6bd315fad57796ca348fea9e1747d2c908a7789ec07",
@@ -2152,7 +2394,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
-      "evidence": ["packages/solid-hotkeys/tests/scopes.test.tsx"]
+      "evidence": [
+        "packages/solid-hotkeys/tests/scopes.test.tsx"
+      ]
     },
     "source:packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts": {
       "fingerprint": "c39420db15f120d59ee9d87ac7b4291b1f23232fa0cb6fbf90940a5a283384b4",
@@ -2162,7 +2406,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "no-change",
       "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
-      "evidence": ["packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts"]
+      "evidence": [
+        "packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts"
+      ]
     },
     "source:packages/svelte-hotkeys/src/index.ts": {
       "fingerprint": "3eadb46211dc418a70cd91d303ef31eb3c9823dd3c8ee546bdea16d160efd6dc",
@@ -2172,7 +2418,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "no-change",
       "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
-      "evidence": ["packages/svelte-hotkeys/src/index.ts"]
+      "evidence": [
+        "packages/svelte-hotkeys/src/index.ts"
+      ]
     },
     "source:packages/svelte-hotkeys/tests/scopes-controls.svelte.ts": {
       "fingerprint": "70de3730c9b6bf8d27d698209c724bac88d56d94ba2bd3ab4d63d4a4c68ecb48",
@@ -2182,7 +2430,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
-      "evidence": ["packages/svelte-hotkeys/tests/scopes-controls.svelte.ts"]
+      "evidence": [
+        "packages/svelte-hotkeys/tests/scopes-controls.svelte.ts"
+      ]
     },
     "source:packages/svelte-hotkeys/tests/scopes.test.ts": {
       "fingerprint": "08e545d69dd10e844eab81f57b9c32f868eb8ee056aeade436fcdd8a0b8de1ad",
@@ -2192,7 +2442,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
-      "evidence": ["packages/svelte-hotkeys/tests/scopes.test.ts"]
+      "evidence": [
+        "packages/svelte-hotkeys/tests/scopes.test.ts"
+      ]
     },
     "source:packages/vue-hotkeys/src/index.ts": {
       "fingerprint": "ce899f85695243de217b92e0ba0845fee88a1ec7c8c4b6347ee92376a9bf6e3b",
@@ -2202,17 +2454,21 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "no-change",
       "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["packages/vue-hotkeys/src/index.ts"]
+      "evidence": [
+        "packages/vue-hotkeys/src/index.ts"
+      ]
     },
     "source:packages/vue-hotkeys/src/useHotkeyScopesState.ts": {
-      "fingerprint": "a6728a0805483e8b3125a87ddc580fba67537b5a4363e087aed00c92e7dd4ab6",
+      "fingerprint": "aec0a83a7be9f04adf31f3e06373585b6e535dd8775d10b13b9038c7d6ede10e",
       "snapshot": {
-        "packages/vue-hotkeys/src/useHotkeyScopesState.ts": "723f18adbb7f41943a977bdaa3a2a435acdc31a76cf7229564f74ee57c657249"
+        "packages/vue-hotkeys/src/useHotkeyScopesState.ts": "7f21c6f5d2f0d96b6f62924e9beae28ca14ecff12d7001cf383e635e01f11733"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
       "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["packages/vue-hotkeys/src/useHotkeyScopesState.ts"]
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": [
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
+      ]
     },
     "source:packages/vue-hotkeys/tests/scopes.test.ts": {
       "fingerprint": "257131aa7ff8dc288907a343fc19fbccbe9cd9faff3d847f6ab750055a49fd01",
@@ -2222,7 +2478,9 @@
       "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
       "outcome": "out-of-scope",
       "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
-      "evidence": ["packages/vue-hotkeys/tests/scopes.test.ts"]
+      "evidence": [
+        "packages/vue-hotkeys/tests/scopes.test.ts"
+      ]
     },
     "source:docs/reference/classes/AppHotkeysStore.md": {
       "fingerprint": "f828df2b43041e6744a776337690c0d02b13c98860f9b75de251e8aa013992bb",
@@ -2232,7 +2490,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/classes/AppHotkeysStore.md"]
+      "evidence": [
+        "docs/reference/classes/AppHotkeysStore.md"
+      ]
     },
     "source:docs/reference/functions/defineAppHotkeys.md": {
       "fingerprint": "647b508a92a14adcbbc42bc0ef0fa23bd4a233df3d3e08b3ad4c23f2b8b4c923",
@@ -2242,7 +2502,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/functions/defineAppHotkeys.md"]
+      "evidence": [
+        "docs/reference/functions/defineAppHotkeys.md"
+      ]
     },
     "source:docs/reference/functions/getAppHotkeyRegistrationOptions.md": {
       "fingerprint": "92cf5d12da45097cdc4e49ed62acaac928222a0380d4d728310e89c7f85cc0e0",
@@ -2264,7 +2526,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/functions/isAppHotkey.md"]
+      "evidence": [
+        "docs/reference/functions/isAppHotkey.md"
+      ]
     },
     "source:docs/reference/functions/isCustomHotkey.md": {
       "fingerprint": "3a08e4334d39705fe2b57bde8ac566a523af316e5d2f859c8ae84a86031e8b20",
@@ -2274,7 +2538,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/functions/isCustomHotkey.md"]
+      "evidence": [
+        "docs/reference/functions/isCustomHotkey.md"
+      ]
     },
     "source:docs/reference/functions/provideAppHotkeys.md": {
       "fingerprint": "9305d4b0fc61dfe04dd381dc43efe41f98bbab9f32dd93154875f133a2ced819",
@@ -2284,7 +2550,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/functions/provideAppHotkeys.md"]
+      "evidence": [
+        "docs/reference/functions/provideAppHotkeys.md"
+      ]
     },
     "source:docs/reference/functions/publishAppHotkeysStore.md": {
       "fingerprint": "d3a6340168e76506212447895bc32658149f65f5479a4ebfeb28f4f9cfb05ead",
@@ -2294,7 +2562,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/functions/publishAppHotkeysStore.md"]
+      "evidence": [
+        "docs/reference/functions/publishAppHotkeysStore.md"
+      ]
     },
     "source:docs/reference/functions/resolveAppHotkey.md": {
       "fingerprint": "38f7fe091d9e550b2d793437aefc6541acd5bec211b81a9873261a5a07891f63",
@@ -2304,7 +2574,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/functions/resolveAppHotkey.md"]
+      "evidence": [
+        "docs/reference/functions/resolveAppHotkey.md"
+      ]
     },
     "source:docs/reference/interfaces/AppHotkey.md": {
       "fingerprint": "2cb6bee7af7e2870e2287f3ac815f56e8df371ee646f9a8f43e190b645acd411",
@@ -2314,7 +2586,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/interfaces/AppHotkey.md"]
+      "evidence": [
+        "docs/reference/interfaces/AppHotkey.md"
+      ]
     },
     "source:docs/reference/interfaces/AppHotkeyInput.md": {
       "fingerprint": "c17190e4db0b14d36cc770cb9efd0cae23232c95654e2669b3deaf8de5bb2c44",
@@ -2324,7 +2598,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/interfaces/AppHotkeyInput.md"]
+      "evidence": [
+        "docs/reference/interfaces/AppHotkeyInput.md"
+      ]
     },
     "source:docs/reference/interfaces/AppHotkeyListItem.md": {
       "fingerprint": "c38d3268d7ff0b329ad412c3abe8daf510018f4ea07f00ec42b3710a2d099a15",
@@ -2334,7 +2610,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/interfaces/AppHotkeyListItem.md"]
+      "evidence": [
+        "docs/reference/interfaces/AppHotkeyListItem.md"
+      ]
     },
     "source:docs/reference/interfaces/AppHotkeysState.md": {
       "fingerprint": "a7419b4f629147566d48a1659fe45ab34079b0c31d5ebeaa7a1d01b0d3cadd87",
@@ -2344,7 +2622,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/interfaces/AppHotkeysState.md"]
+      "evidence": [
+        "docs/reference/interfaces/AppHotkeysState.md"
+      ]
     },
     "source:docs/reference/interfaces/AppHotkeysStoreOptions.md": {
       "fingerprint": "ba071dd4450f86b0ca98300282816ddb0e015cc34a0b1d4d0c176393b70914dc",
@@ -2354,7 +2634,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/interfaces/AppHotkeysStoreOptions.md"]
+      "evidence": [
+        "docs/reference/interfaces/AppHotkeysStoreOptions.md"
+      ]
     },
     "source:docs/reference/interfaces/Register.md": {
       "fingerprint": "5a3817406a9df58f34a9f45636660dd7fd707927437dae0872cc361d2fb82af1",
@@ -2364,7 +2646,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/interfaces/Register.md"]
+      "evidence": [
+        "docs/reference/interfaces/Register.md"
+      ]
     },
     "source:docs/reference/type-aliases/AppHotkeyChordOptions.md": {
       "fingerprint": "d36d30b1e7b9fd262191729948838ac0c1727cfe40c7bca34f38376830be0431",
@@ -2374,7 +2658,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/type-aliases/AppHotkeyChordOptions.md"]
+      "evidence": [
+        "docs/reference/type-aliases/AppHotkeyChordOptions.md"
+      ]
     },
     "source:docs/reference/type-aliases/AppHotkeyDefaultKind.md": {
       "fingerprint": "e3c9ec648e05e0c68b421d58d88b9fe03fcc83240ba36b38ac9419d32788f244",
@@ -2384,7 +2670,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/type-aliases/AppHotkeyDefaultKind.md"]
+      "evidence": [
+        "docs/reference/type-aliases/AppHotkeyDefaultKind.md"
+      ]
     },
     "source:docs/reference/type-aliases/AppHotkeyId.md": {
       "fingerprint": "13cd19340afc6c30726eaaaea2fd01c3dbeb686b77dc6b603d6e9ead6d7b941c",
@@ -2394,7 +2682,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/type-aliases/AppHotkeyId.md"]
+      "evidence": [
+        "docs/reference/type-aliases/AppHotkeyId.md"
+      ]
     },
     "source:docs/reference/type-aliases/AppHotkeyOptions.md": {
       "fingerprint": "9c72544939003f08d6f4464108d117d108cb903c7c307d5fabbdc904811b4a04",
@@ -2404,7 +2694,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/type-aliases/AppHotkeyOptions.md"]
+      "evidence": [
+        "docs/reference/type-aliases/AppHotkeyOptions.md"
+      ]
     },
     "source:docs/reference/type-aliases/AppHotkeySequenceOptions.md": {
       "fingerprint": "bda2571a41bde9a3330ba9eb5d8be15854be1dc55cf451fcb74d8ac022502b8a",
@@ -2414,7 +2706,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/type-aliases/AppHotkeySequenceOptions.md"]
+      "evidence": [
+        "docs/reference/type-aliases/AppHotkeySequenceOptions.md"
+      ]
     },
     "source:docs/reference/type-aliases/AppHotkeyStatus.md": {
       "fingerprint": "3f3c262b4152ded4a199e4c78a8701dbcda0a8ad3f65d66985540e21d6a0d5e6",
@@ -2424,7 +2718,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/type-aliases/AppHotkeyStatus.md"]
+      "evidence": [
+        "docs/reference/type-aliases/AppHotkeyStatus.md"
+      ]
     },
     "source:docs/reference/type-aliases/AppHotkeys.md": {
       "fingerprint": "bdbcad81cc03052c676df899d9140bfbc89f804c62644ac630f1926dc2de10f2",
@@ -2434,7 +2730,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/type-aliases/AppHotkeys.md"]
+      "evidence": [
+        "docs/reference/type-aliases/AppHotkeys.md"
+      ]
     },
     "source:docs/reference/type-aliases/CustomHotkeys.md": {
       "fingerprint": "bf1d46020fa0a30aab23a64c44417bc6e922c30f8a4482e3281d916c7df71d35",
@@ -2444,7 +2742,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/type-aliases/CustomHotkeys.md"]
+      "evidence": [
+        "docs/reference/type-aliases/CustomHotkeys.md"
+      ]
     },
     "source:docs/reference/type-aliases/DefinedAppHotkeys.md": {
       "fingerprint": "8a4ab3c3b32a49845cf5018d40564992086f569f697efec5c5e99f97c29e77fa",
@@ -2454,7 +2754,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/type-aliases/DefinedAppHotkeys.md"]
+      "evidence": [
+        "docs/reference/type-aliases/DefinedAppHotkeys.md"
+      ]
     },
     "source:docs/reference/type-aliases/RegisteredAppHotkeys.md": {
       "fingerprint": "ba29005e68c10ac1603365d12f96f48ae71186024d88c06c159432b035544f64",
@@ -2464,7 +2766,9 @@
       "head": "5b07f208a45afb5b396c628025c52294de62d313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
-      "evidence": ["docs/reference/type-aliases/RegisteredAppHotkeys.md"]
+      "evidence": [
+        "docs/reference/type-aliases/RegisteredAppHotkeys.md"
+      ]
     },
     "source:docs/reference/type-aliases/Target.md": {
       "fingerprint": "976d4e23e8e78ae594748914939a8235ce56a6c218bed648d31028ae3dc09fac",
@@ -2474,7 +2778,9 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
-      "evidence": ["docs/reference/type-aliases/Target.md"]
+      "evidence": [
+        "docs/reference/type-aliases/Target.md"
+      ]
     },
     "source:packages/hotkeys/src/_event-target.ts": {
       "fingerprint": "622b2f37e65222c024079ac63c92032673b339c29fa1a9adc5d71f61b09509f5",
@@ -2484,7 +2790,9 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "no-change",
       "reason": "Internal fix: the preventDefault 'always' check uses the event's composed path so live hotkeys inside shadow roots count. Skill guidance unchanged.",
-      "evidence": ["packages/hotkeys/src/_event-target.ts"]
+      "evidence": [
+        "packages/hotkeys/src/_event-target.ts"
+      ]
     },
     "source:docs/config.json": {
       "fingerprint": "0cb4a1bd42647637f05ce7b7ff6121bdd4a0e8a013d45d787bc1c4a07dfebb95",
@@ -2494,7 +2802,9 @@
       "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
-      "evidence": ["docs/config.json"]
+      "evidence": [
+        "docs/config.json"
+      ]
     },
     "source:docs/devtools.md": {
       "fingerprint": "0531feaff7a5b318e796b8b9a5ea2ebbbc167b535d7affd20222afcb1cc9f3ee",
@@ -2531,7 +2841,9 @@
       "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
       "outcome": "no-change",
       "reason": "Excludes the renamed Ember ESLint config from the production build inputs. No guidance depends on Nx cache inputs.",
-      "evidence": ["nx.json"]
+      "evidence": [
+        "nx.json"
+      ]
     },
     "source:packages/ember-hotkeys/eslint.config.js": {
       "fingerprint": "697130dbc35f4c786d3a78574bd1e08cabfc2e68cea742291b2a80b3631f3684",
@@ -2580,7 +2892,9 @@
       "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
       "outcome": "no-change",
       "reason": "Renamed to tsdown.config.mts because the package no longer sets type: module.",
-      "evidence": ["packages/ember-hotkeys/tsdown.config.mts"]
+      "evidence": [
+        "packages/ember-hotkeys/tsdown.config.mts"
+      ]
     },
     "source:packages/react-hotkeys-devtools/tsdown.config.ts": {
       "fingerprint": "b5a3e4683bd5c43760e791535b1e78e69d81acbc6973fb845345a3b2150c2d5e",
@@ -3044,7 +3358,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Generated reference page; line numbers and the hotkeysPlugin doc comment changed.",
-      "evidence": ["docs/framework/alpine/reference/functions/hotkeysPlugin.md"]
+      "evidence": [
+        "docs/framework/alpine/reference/functions/hotkeysPlugin.md"
+      ]
     },
     "source:examples/alpine/createHeldKeys/src/main.ts": {
       "fingerprint": "a970a6bbb2942767514753a2f50fc3a59a72b13f770f2620cee0a650a77e4bdc",
@@ -3054,7 +3370,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
-      "evidence": ["examples/alpine/createHeldKeys/src/main.ts"]
+      "evidence": [
+        "examples/alpine/createHeldKeys/src/main.ts"
+      ]
     },
     "source:examples/alpine/createHotkey-sequences/src/main.ts": {
       "fingerprint": "291e42f3732289a5500e8aa933111c7695b9ae07f751cf70f2598a3ad7159ea0",
@@ -3064,7 +3382,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
-      "evidence": ["examples/alpine/createHotkey-sequences/src/main.ts"]
+      "evidence": [
+        "examples/alpine/createHotkey-sequences/src/main.ts"
+      ]
     },
     "source:examples/alpine/createHotkey/src/main.ts": {
       "fingerprint": "b8e8c6c0b482c3491e30cc3f3a03e6cbcf96f29a9916649cdce6b126c55970d0",
@@ -3074,7 +3394,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
-      "evidence": ["examples/alpine/createHotkey/src/main.ts"]
+      "evidence": [
+        "examples/alpine/createHotkey/src/main.ts"
+      ]
     },
     "source:examples/alpine/createHotkeyRecorder-sequences/src/main.ts": {
       "fingerprint": "632543d2fe1011ea1b9c099c4dac6c4ccfc4903c7a0103ca3f4bed8f45c840d3",
@@ -3084,7 +3406,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
-      "evidence": ["examples/alpine/createHotkeyRecorder-sequences/src/main.ts"]
+      "evidence": [
+        "examples/alpine/createHotkeyRecorder-sequences/src/main.ts"
+      ]
     },
     "source:examples/alpine/createHotkeyRecorder/src/main.ts": {
       "fingerprint": "9e85988e8403f5d60d285224118a73d37f89d4153121bede0835505154e99ef8",
@@ -3094,7 +3418,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
-      "evidence": ["examples/alpine/createHotkeyRecorder/src/main.ts"]
+      "evidence": [
+        "examples/alpine/createHotkeyRecorder/src/main.ts"
+      ]
     },
     "source:examples/alpine/createHotkeys-sequences/src/main.ts": {
       "fingerprint": "eff5c19a7cf5ad7c097b57bb8da18a4becab21728eda95d6f87bdb88013a50df",
@@ -3104,7 +3430,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
-      "evidence": ["examples/alpine/createHotkeys-sequences/src/main.ts"]
+      "evidence": [
+        "examples/alpine/createHotkeys-sequences/src/main.ts"
+      ]
     },
     "source:examples/alpine/createHotkeys/src/main.ts": {
       "fingerprint": "d31d62c73963d104161807dbceeb8bd06b5e1e17ed917f379ed95fd23b56ce2a",
@@ -3114,7 +3442,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
-      "evidence": ["examples/alpine/createHotkeys/src/main.ts"]
+      "evidence": [
+        "examples/alpine/createHotkeys/src/main.ts"
+      ]
     },
     "source:examples/alpine/createKeyHold/src/main.ts": {
       "fingerprint": "e350c79ef05391a1838c1540ab66c43c7e501921dce91c9422eb44b0c68b3807",
@@ -3124,7 +3454,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
-      "evidence": ["examples/alpine/createKeyHold/src/main.ts"]
+      "evidence": [
+        "examples/alpine/createKeyHold/src/main.ts"
+      ]
     },
     "source:packages/alpine-hotkeys/tests/alpine-instance.test.ts": {
       "fingerprint": "7e33fe648dccd7abe7293c0fa9e5ca5d7b25023dde9568d4af846ebdd3d50363",
@@ -3134,7 +3466,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Tests for using the plugin's Alpine instance, the window.Alpine fallback and the missing-Alpine error; the setup file installs the plugin. Guidance is reviewed under the alpine-hotkeys skill item.",
-      "evidence": ["packages/alpine-hotkeys/tests/alpine-instance.test.ts"]
+      "evidence": [
+        "packages/alpine-hotkeys/tests/alpine-instance.test.ts"
+      ]
     },
     "source:packages/alpine-hotkeys/tests/setup.ts": {
       "fingerprint": "50701ec86eac9c926fd203818974cfe27f6e2cb5638c540915e735899f98ce3b",
@@ -3144,7 +3478,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Tests for using the plugin's Alpine instance, the window.Alpine fallback and the missing-Alpine error; the setup file installs the plugin. Guidance is reviewed under the alpine-hotkeys skill item.",
-      "evidence": ["packages/alpine-hotkeys/tests/setup.ts"]
+      "evidence": [
+        "packages/alpine-hotkeys/tests/setup.ts"
+      ]
     },
     "source:packages/alpine-hotkeys/vitest.config.ts": {
       "fingerprint": "eb075195e56bbad1862845401cf6887d4ffa513423c61104900f80cc73798070",
@@ -3154,7 +3490,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Tests for using the plugin's Alpine instance, the window.Alpine fallback and the missing-Alpine error; the setup file installs the plugin. Guidance is reviewed under the alpine-hotkeys skill item.",
-      "evidence": ["packages/alpine-hotkeys/vitest.config.ts"]
+      "evidence": [
+        "packages/alpine-hotkeys/vitest.config.ts"
+      ]
     },
     "source:packages/angular-hotkeys-devtools/src/AngularHotkeysDevtools.ts": {
       "fingerprint": "c6383c6e5ec3d6450abc0daaf315bcced2682010d6f0f1e323f3beeba9c9a530",
@@ -3176,7 +3514,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/angular-hotkeys-devtools/src/index.ts"]
+      "evidence": [
+        "packages/angular-hotkeys-devtools/src/index.ts"
+      ]
     },
     "source:packages/angular-hotkeys-devtools/src/plugin.ts": {
       "fingerprint": "0f351e2af072b8c44c1550df08beabc0a11a1333440aaf4963c054647c75fb12",
@@ -3186,7 +3526,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/angular-hotkeys-devtools/src/plugin.ts"]
+      "evidence": [
+        "packages/angular-hotkeys-devtools/src/plugin.ts"
+      ]
     },
     "source:packages/angular-hotkeys-devtools/src/production.ts": {
       "fingerprint": "65b9e2742cc640e6b33724ac85cd3bc9b73d3fb30d62a3e155d5d01eb840086b",
@@ -3196,7 +3538,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/angular-hotkeys-devtools/src/production.ts"]
+      "evidence": [
+        "packages/angular-hotkeys-devtools/src/production.ts"
+      ]
     },
     "source:packages/hotkeys-devtools/src/core.tsx": {
       "fingerprint": "6b22a3a7f67e5ee17a05cde52ead2c582d5ed9996fa06839cfcb8085a3fb23f4",
@@ -3206,7 +3550,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/hotkeys-devtools/src/core.tsx"]
+      "evidence": [
+        "packages/hotkeys-devtools/src/core.tsx"
+      ]
     },
     "source:packages/hotkeys-devtools/src/index.ts": {
       "fingerprint": "87a756c155fda12cd148f5db7519db31d5d0cffc454550724cb600ad4acb2be1",
@@ -3216,7 +3562,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/hotkeys-devtools/src/index.ts"]
+      "evidence": [
+        "packages/hotkeys-devtools/src/index.ts"
+      ]
     },
     "source:packages/hotkeys-devtools/src/production.ts": {
       "fingerprint": "f11f433ef428c5eb1ed164919001c5e94f8f847b08dca9c2a9d098cce28e789f",
@@ -3226,7 +3574,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/hotkeys-devtools/src/production.ts"]
+      "evidence": [
+        "packages/hotkeys-devtools/src/production.ts"
+      ]
     },
     "source:packages/hotkeys-devtools/src/types.ts": {
       "fingerprint": "1bcf132f83d0cea68a2ece2cfb1e751c26ac5304d587528e4a5c6a8b9ae4c126",
@@ -3236,7 +3586,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/hotkeys-devtools/src/types.ts"]
+      "evidence": [
+        "packages/hotkeys-devtools/src/types.ts"
+      ]
     },
     "source:packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx": {
       "fingerprint": "a56954864fae440d16b2703fcc1f9d6b6b56a49bcecc4a47ac4d58a0dd16139c",
@@ -3258,7 +3610,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/preact-hotkeys-devtools/src/index.ts"]
+      "evidence": [
+        "packages/preact-hotkeys-devtools/src/index.ts"
+      ]
     },
     "source:packages/preact-hotkeys-devtools/src/plugin.tsx": {
       "fingerprint": "12fcf1ecfe42c791007298a078c1ed1bb35cc578c03706275e5a5ae0a718dd15",
@@ -3268,7 +3622,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/preact-hotkeys-devtools/src/plugin.tsx"]
+      "evidence": [
+        "packages/preact-hotkeys-devtools/src/plugin.tsx"
+      ]
     },
     "source:packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx": {
       "fingerprint": "00dfa8e759888fe01d57bd0d98777050fc42099ad233b0e1f89174e482241d5c",
@@ -3290,7 +3646,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/react-hotkeys-devtools/src/index.ts"]
+      "evidence": [
+        "packages/react-hotkeys-devtools/src/index.ts"
+      ]
     },
     "source:packages/react-hotkeys-devtools/src/plugin.tsx": {
       "fingerprint": "fcc70b32cd873f1e1c84cd96dc64b722f9ddb80833eb97dd4b995493432eb2a1",
@@ -3300,7 +3658,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/react-hotkeys-devtools/src/plugin.tsx"]
+      "evidence": [
+        "packages/react-hotkeys-devtools/src/plugin.tsx"
+      ]
     },
     "source:packages/react-hotkeys-devtools/src/production.ts": {
       "fingerprint": "72433872f8045b2b58c9fb707055176561343a14d280d96ff34a5fe63577024d",
@@ -3310,7 +3670,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/react-hotkeys-devtools/src/production.ts"]
+      "evidence": [
+        "packages/react-hotkeys-devtools/src/production.ts"
+      ]
     },
     "source:packages/solid-hotkeys-devtools/src/SolidHotkeysDevtools.tsx": {
       "fingerprint": "cd8a54b910334f9c83ac0682eacf2d97e7ad47118e389081651cc77d698bf83f",
@@ -3332,7 +3694,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/solid-hotkeys-devtools/src/index.ts"]
+      "evidence": [
+        "packages/solid-hotkeys-devtools/src/index.ts"
+      ]
     },
     "source:packages/solid-hotkeys-devtools/src/plugin.tsx": {
       "fingerprint": "508c46d7ca6e6bb53b0779c55ed946cd0a82a6f89501245ffd92521cd2759648",
@@ -3342,7 +3706,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/solid-hotkeys-devtools/src/plugin.tsx"]
+      "evidence": [
+        "packages/solid-hotkeys-devtools/src/plugin.tsx"
+      ]
     },
     "source:packages/solid-hotkeys-devtools/src/production.ts": {
       "fingerprint": "9fee86a61b2dc189140d22c3f4dfb2f8adf5637200e0507c031c30f53a2578b8",
@@ -3352,7 +3718,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/solid-hotkeys-devtools/src/production.ts"]
+      "evidence": [
+        "packages/solid-hotkeys-devtools/src/production.ts"
+      ]
     },
     "source:packages/svelte-hotkeys-devtools/src/SvelteHotkeysDevtools.ts": {
       "fingerprint": "8a19b065ae654332da8d737443f6b3f4def46de1b49a2ec4b7e7ebba10ac22a5",
@@ -3374,7 +3742,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/svelte-hotkeys-devtools/src/index.ts"]
+      "evidence": [
+        "packages/svelte-hotkeys-devtools/src/index.ts"
+      ]
     },
     "source:packages/svelte-hotkeys-devtools/src/plugin.ts": {
       "fingerprint": "533929ecd03054ed938271763d11c5267984a5b04b29356e5190cae186b75e5f",
@@ -3384,7 +3754,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/svelte-hotkeys-devtools/src/plugin.ts"]
+      "evidence": [
+        "packages/svelte-hotkeys-devtools/src/plugin.ts"
+      ]
     },
     "source:packages/svelte-hotkeys-devtools/src/production.ts": {
       "fingerprint": "41d447ed1ec63a144daaebca94216247473cfbf5d304d7358c2827383a981ad8",
@@ -3394,7 +3766,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/svelte-hotkeys-devtools/src/production.ts"]
+      "evidence": [
+        "packages/svelte-hotkeys-devtools/src/production.ts"
+      ]
     },
     "source:packages/svelte-hotkeys/src/getHeldKeyCodesMap.svelte.ts": {
       "fingerprint": "2291f12354e04fdb4a604b990168032b9e4f85b201e44cf6f0b1946cd8c0f174",
@@ -3404,7 +3778,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "no-change",
       "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
-      "evidence": ["packages/svelte-hotkeys/src/getHeldKeyCodesMap.svelte.ts"]
+      "evidence": [
+        "packages/svelte-hotkeys/src/getHeldKeyCodesMap.svelte.ts"
+      ]
     },
     "source:packages/svelte-hotkeys/src/getHeldKeys.svelte.ts": {
       "fingerprint": "b2e26275e82f023b74fd9cd3113a63e7a0459e8334f92720f22e83b90e031e05",
@@ -3414,7 +3790,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "no-change",
       "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
-      "evidence": ["packages/svelte-hotkeys/src/getHeldKeys.svelte.ts"]
+      "evidence": [
+        "packages/svelte-hotkeys/src/getHeldKeys.svelte.ts"
+      ]
     },
     "source:packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts": {
       "fingerprint": "1d914790aa1f859eb622ec45ed8683131abe30df476877613d5cd1123f95cab7",
@@ -3436,7 +3814,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "no-change",
       "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
-      "evidence": ["packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts"]
+      "evidence": [
+        "packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts"
+      ]
     },
     "source:packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.ts": {
       "fingerprint": "6f4696e5174f60aae37ca8e24b34aa4f1600003334163acebb94baf072808cad",
@@ -3446,7 +3826,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.ts"]
+      "evidence": [
+        "packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.ts"
+      ]
     },
     "source:packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.tsx": {
       "fingerprint": "04f0f781b152e9860f048bfb0e62ea53578cff4e87f56544886b489f9adc1f47",
@@ -3456,7 +3838,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.tsx"]
+      "evidence": [
+        "packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.tsx"
+      ]
     },
     "source:packages/vue-hotkeys-devtools/src/index.ts": {
       "fingerprint": "758e147cf9fd2ca1b77c2bd0661f6d5d3dbaf39eb49f9f98ad0f58e66783c983",
@@ -3466,7 +3850,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/vue-hotkeys-devtools/src/index.ts"]
+      "evidence": [
+        "packages/vue-hotkeys-devtools/src/index.ts"
+      ]
     },
     "source:packages/vue-hotkeys-devtools/src/plugin.ts": {
       "fingerprint": "726d5857fcb74266a44f7cf92a2f404a98b9670aed5aa7cd5c4bc7544e87024e",
@@ -3476,7 +3862,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/vue-hotkeys-devtools/src/plugin.ts"]
+      "evidence": [
+        "packages/vue-hotkeys-devtools/src/plugin.ts"
+      ]
     },
     "source:packages/vue-hotkeys-devtools/src/production.ts": {
       "fingerprint": "edc58d36c59a9931e3fd2d7070b2f42ff066e387818089281cb1d5192f295194",
@@ -3486,7 +3874,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/vue-hotkeys-devtools/src/production.ts"]
+      "evidence": [
+        "packages/vue-hotkeys-devtools/src/production.ts"
+      ]
     },
     "source:packages/vue-hotkeys-devtools/tests/panel.test.ts": {
       "fingerprint": "e51ad0c77bb7950a5699b6751a35bcda844e7aa8c6d42a84995a9e69f14260fd",
@@ -3496,7 +3886,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/vue-hotkeys-devtools/tests/panel.test.ts"]
+      "evidence": [
+        "packages/vue-hotkeys-devtools/tests/panel.test.ts"
+      ]
     },
     "source:packages/vue-hotkeys-devtools/tsconfig.json": {
       "fingerprint": "a4069656b10f6bc4ce06558a5498ccf2c8945a4290edef4347dabcc81f3a3c91",
@@ -3506,7 +3898,9 @@
       "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
-      "evidence": ["packages/vue-hotkeys-devtools/tsconfig.json"]
+      "evidence": [
+        "packages/vue-hotkeys-devtools/tsconfig.json"
+      ]
     },
     "source:docs/framework/svelte/reference/functions/createHotkey.md": {
       "fingerprint": "6781810a382add8dfcc47171fa5cd0c253aba3e10ab683a26ed8cd3e14105794",
@@ -3516,7 +3910,9 @@
       "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
       "outcome": "out-of-scope",
       "reason": "Generated reference page; source line numbers moved after CI autofix reformatted an import in createHotkey.svelte.ts.",
-      "evidence": ["docs/framework/svelte/reference/functions/createHotkey.md"]
+      "evidence": [
+        "docs/framework/svelte/reference/functions/createHotkey.md"
+      ]
     },
     "source:docs/framework/svelte/reference/functions/createHotkeyAttachment.md": {
       "fingerprint": "55410f5675eb6d7c2d335f0a17cb0502d98f27a5f4e894ee4496c9a13a234ea7",
@@ -3612,6 +4008,534 @@
       "reason": "Generated reference page; source line numbers moved after CI autofix reformatted an import in createHotkey.svelte.ts.",
       "evidence": [
         "docs/framework/svelte/reference/type-aliases/CreateHotkeyTarget.md"
+      ]
+    },
+    "source:docs/framework/vue/reference/functions/provideHotkeysContext.md": {
+      "fingerprint": "7929f4b57aba947f8621dd4e9087f700e9914cd15405c72ecad641097f2a85ba",
+      "snapshot": {
+        "docs/framework/vue/reference/functions/provideHotkeysContext.md": "e39c1e14d026ec534b83cceade4ba75459cceac7d19cff18e97f84664a8cd98b"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": [
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
+      ]
+    },
+    "source:docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md": {
+      "fingerprint": "c49cfad8432316f818047bbc0172264efee068839323239d2bf947e8b0eec9bc",
+      "snapshot": {
+        "docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md": "f3cf5a5ae1ce7b31735877b9c3936db0e4e22a5e4e3e5080d45f5301d5d33003"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": [
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
+      ]
+    },
+    "source:docs/framework/vue/reference/functions/useHotkeysContext.md": {
+      "fingerprint": "8d432590045f8bfdd42af1f6ceb02388224ce8a3955d5e2e5e80460cd5332b5c",
+      "snapshot": {
+        "docs/framework/vue/reference/functions/useHotkeysContext.md": "829e95e3587b7e34f621bf4383bdfdef00c5bd34a8ff8455f37a07553eb78633"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": [
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
+      ]
+    },
+    "source:docs/framework/vue/reference/functions/useKeyHold.md": {
+      "fingerprint": "425755acd37a2f4eb11b04d32931bd3f91e6790a8bc0d25b9341a8887cce795a",
+      "snapshot": {
+        "docs/framework/vue/reference/functions/useKeyHold.md": "b4d3a8e5bb34ef6a50b482624ee4da682ab682b50a921bd86a38cfb6ad21fd84"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": [
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
+      ]
+    },
+    "source:docs/framework/vue/reference/interfaces/HotkeysProviderOptions.md": {
+      "fingerprint": "9129b0d3cd16d42fb48c5ad1fe75c71437f60aae062a4bcbaa53ece42e88f43c",
+      "snapshot": {
+        "docs/framework/vue/reference/interfaces/HotkeysProviderOptions.md": "2cc2895ecc8c3c27eb94bfb1e46675e914ca3af3eeb9eddd52436f4a32b9a4f4"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": [
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
+      ]
+    },
+    "source:docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md": {
+      "fingerprint": "499a2e7a3c3a12f7c5730b321805f1536fbc42d1d5ac0b633719aa7b7f8e052d",
+      "snapshot": {
+        "docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md": "eff035f9353af214afad107e2ccbc8958fb3970a18d82074fb092c43be2bd731"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": [
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
+      ]
+    },
+    "source:packages/vue-hotkeys/src/defaultOptions.ts": {
+      "fingerprint": "477e881409348b752198622ab3621266551ae94b24789456265a38c0d6f53894",
+      "snapshot": {
+        "packages/vue-hotkeys/src/defaultOptions.ts": "d8510431d3d5bdc7106e76eef2b300b6130091e09c634059993935d0a2262435"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": [
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
+      ]
+    },
+    "source:packages/vue-hotkeys/src/useHeldKeyCodes.ts": {
+      "fingerprint": "9f5d48c0aa08b5ffea2745a9f8856fb3c9e8490edf386528ce639fa19b03b45c",
+      "snapshot": {
+        "packages/vue-hotkeys/src/useHeldKeyCodes.ts": "69c82d02a3548ba47ac319e4060138ff991acf10a11b0c6badde2deb0ef970e0"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": [
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
+      ]
+    },
+    "source:packages/vue-hotkeys/src/useHeldKeys.ts": {
+      "fingerprint": "4752e01419fff0b7bc9104b932a3cc05eb480d88e2c68bdc978a5893bb85cd36",
+      "snapshot": {
+        "packages/vue-hotkeys/src/useHeldKeys.ts": "8b6e2a5c7b86b9216a0d32dc1ab0805a9f3f86e6c168291439af738a448f0012"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": [
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
+      ]
+    },
+    "source:packages/vue-hotkeys/src/useHotkeyRegistrations.ts": {
+      "fingerprint": "1776e8bf3bdea89fe268f32fbfc63da939ebdd4405c336e9f2e38dc0723fe698",
+      "snapshot": {
+        "packages/vue-hotkeys/src/useHotkeyRegistrations.ts": "6ab15c8bb6481b947f861b76a9f12d47d97386be7b64d1a4adc950b1d1ab1659"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": [
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
+      ]
+    },
+    "source:packages/vue-hotkeys/src/useKeyHold.ts": {
+      "fingerprint": "bba9ce608b82844b37f2b6bafcec5d84cf50939f4d1757af86fc751efa4852e0",
+      "snapshot": {
+        "packages/vue-hotkeys/src/useKeyHold.ts": "78908377ab6c4a648e132a68546f0bd6f9b2b4d3f98515ec9570417af932d973"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": [
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
+      ]
+    },
+    "source:packages/vue-hotkeys/src/useStoreSelector.ts": {
+      "fingerprint": "cef8ba521fe700838481c4564b5982e14ccef8bdcdec14fe45618881a05156e5",
+      "snapshot": {
+        "packages/vue-hotkeys/src/useStoreSelector.ts": "3a23556a929d22173334fe6a4c7b423a548d46c1d9b47474ec0b5c95a3df680c"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": [
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
+      ]
+    },
+    "source:packages/vue-hotkeys/tests/effect-scope.test.ts": {
+      "fingerprint": "14c39b3a71a9f6ab432e538ff8c8e644491bfc886eb27201143baad17ee4356d",
+      "snapshot": {
+        "packages/vue-hotkeys/tests/effect-scope.test.ts": "fe12d2f61717bf5fda1392eb7c2465649f954c977908c756c07e803151f97b20"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": [
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
+      ]
+    },
+    "source:packages/vue-hotkeys/tests/ssr.test.ts": {
+      "fingerprint": "fa12ebcd4c4fe0438422fba73377225c7cb2f8ed16cd5c571bbd0c806b99dbbc",
+      "snapshot": {
+        "packages/vue-hotkeys/tests/ssr.test.ts": "ad3b0a909c4a0e05521eb707adcca2d5f945745044ecad436c89b8a34d890a56"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": [
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
+      ]
+    },
+    "source:packages/vue-hotkeys/tests/useKeyHold.test.ts": {
+      "fingerprint": "4e13ed9489f0dade5272bb41c7d89b47f485d989fa420f8277610b80613a226a",
+      "snapshot": {
+        "packages/vue-hotkeys/tests/useKeyHold.test.ts": "9be1cf9923f2ae14b229481c62e04445028c7fa52c796f15576719217833c8f1"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Internal Vue adapter fix (SSR subscriptions, useKeyHold reactive keys, inject guard), its tests, or regenerated reference docs; no public API change and no skill guidance affected.",
+      "evidence": [
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
+      ]
+    },
+    "source:docs/framework/lit/guides/held-key-state-helpers.md": {
+      "fingerprint": "4518330655b30ff3798a0e110b1b04c6ab7874be6562dcfc3398ac81de69d127",
+      "snapshot": {
+        "docs/framework/lit/guides/held-key-state-helpers.md": "bc20ab354e2919d5bba8485bc359c5e50146ac3e9cfb6270fb6a727213edd41f"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/guides/held-key-state-helpers.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/classes/AppHotkeysController.md": {
+      "fingerprint": "c73bd934701be78e27215ad3bd133aac42547532e553bc64655c17561053a7a6",
+      "snapshot": {
+        "docs/framework/lit/reference/classes/AppHotkeysController.md": "adc5d5e969c2ddf5e701152ac14edc1c31bacdb8d929a436471bd8a09db26ae3"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/classes/AppHotkeysController.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/classes/HeldKeyCodesController.md": {
+      "fingerprint": "fdb4b85648fa0c32ce16be3be7f6038f73a6d41a6c8e323c534de18d0823c616",
+      "snapshot": {
+        "docs/framework/lit/reference/classes/HeldKeyCodesController.md": "d3b1ac044698364fb4ce55de6880677c4591297b17d62abf6450f6fb76b74bd5"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/classes/HeldKeyCodesController.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/classes/HeldKeysController.md": {
+      "fingerprint": "83829c25b7ad3895fee35683f64c0e30d7d395bf629af411dcc1edea339f6ed1",
+      "snapshot": {
+        "docs/framework/lit/reference/classes/HeldKeysController.md": "b72db2723e1adb36ba103065b8288e681efed1faae9fedeb39c688ce48807cbb"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/classes/HeldKeysController.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/classes/HotkeyController.md": {
+      "fingerprint": "a8ed23934b42244a71a471ded534190c9b2b346fa372bc90f6a99327379e003c",
+      "snapshot": {
+        "docs/framework/lit/reference/classes/HotkeyController.md": "b174d6868e19ac077e30549bf682d81dd760479f4986bc357366b9d33ad552e4"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/classes/HotkeyController.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/classes/HotkeyRecorderController.md": {
+      "fingerprint": "408b77d01359529a1abb9fd5ea81b6d0d8aeac6f4d7778bbc1cc548595b7a893",
+      "snapshot": {
+        "docs/framework/lit/reference/classes/HotkeyRecorderController.md": "2a65d8ab480494e44a2b957b8b34466057c408b02e9739433f075410ab36b67f"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/classes/HotkeyRecorderController.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/classes/HotkeyRegistrationsController.md": {
+      "fingerprint": "222506b3526070504e66c997384f3fc47663ed9c4ab8862392576312e96023b2",
+      "snapshot": {
+        "docs/framework/lit/reference/classes/HotkeyRegistrationsController.md": "e8abbc6b51757742b7bd159ec387a94efcae31125d0b55d6d677cc907205e483"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/classes/HotkeyRegistrationsController.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/classes/KeyHoldController.md": {
+      "fingerprint": "ae20bfbef32e2b390494af3f9e0ba1a05ccf39a37a1b6c238e8887580870734c",
+      "snapshot": {
+        "docs/framework/lit/reference/classes/KeyHoldController.md": "aa04848e5ab27954c30172db7a0c541a453522ce3848597e8d5ba9a363509da9"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/classes/KeyHoldController.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/type-aliases/AppHotkeyControllerOptions.md": {
+      "fingerprint": "0650d360a9f96b49b316ac2d8b1d2a73a50f5ddae93c6c5d4785144c7f62b001",
+      "snapshot": {
+        "docs/framework/lit/reference/type-aliases/AppHotkeyControllerOptions.md": "c83ecfff4419c249c5d4964941485bc68a8879acc109ee441f7293687cb73225"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/type-aliases/AppHotkeyControllerOptions.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/type-aliases/HotkeyControllerChordOptions.md": {
+      "fingerprint": "adbd443ce908117640a1e734bbd40075b96369b98fce55023f7efbf84c1a11d3",
+      "snapshot": {
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerChordOptions.md": "c46710c30023ce04f54469eb137fc041c5e2728bbe484cffcb7a6a0339ba7aa6"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerChordOptions.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/type-aliases/HotkeyControllerCommonOptions.md": {
+      "fingerprint": "4b585d2c7fe7b3456e331c951acfdd97e9110f9e6bb50d74fcd6d9e324262105",
+      "snapshot": {
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerCommonOptions.md": "7de94024f16981c7c8c5c99df6bcedcab7018399f98de7a1473fdc3a9c93e77a"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerCommonOptions.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/type-aliases/HotkeyControllerOptions.md": {
+      "fingerprint": "ca27176fcd35db3cd7dac8954ed93e4e191a4c4177efbc8e6825aa5ef452f1e3",
+      "snapshot": {
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerOptions.md": "c0d340da687b2e18075423f59f7740591527d17e37327568c366aaa2c89de2e1"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerOptions.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/type-aliases/HotkeyControllerOptionsFor.md": {
+      "fingerprint": "cbb0b58beddb730b00c2fe26deb25a801f875812fb34d896e8eddd5c762cb981",
+      "snapshot": {
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerOptionsFor.md": "5155d4416d2daa73c3ad119af4073716fdbc3fbc8fb9a7e096d944f334e6dbc3"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerOptionsFor.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/type-aliases/HotkeyControllerSequenceOptions.md": {
+      "fingerprint": "a04ac5ec962aacd1dca28d85fa16ef1063cd010c2737b0d47513838050ca7e17",
+      "snapshot": {
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerSequenceOptions.md": "2ba279ef655f4838824a95173e67fd9f95ed73afd832f5198a7c58262ef61d90"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerSequenceOptions.md"
+      ]
+    },
+    "source:docs/framework/lit/reference/type-aliases/HotkeyControllerTarget.md": {
+      "fingerprint": "4770698109e7a6d716238af11a81334fca8ed2ec4b8b55a79dfac3b71c857b05",
+      "snapshot": {
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerTarget.md": "fa7e3253802c80d8882af81f0de1b34c383a8519b4372d3f632341d7b3ce0b08"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerTarget.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/functions/createHotkeyRecorder.md": {
+      "fingerprint": "e2b058de7499bfa526ea9ee994add4aeb94f62a3b03b35f8c96c8f64de932510",
+      "snapshot": {
+        "docs/framework/svelte/reference/functions/createHotkeyRecorder.md": "c46cfa7ed0ade3d029dbb6d8a118083d84c7a55945e513d470dc15c4eee2df9b"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/svelte/reference/functions/createHotkeyRecorder.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/functions/createHotkeys.md": {
+      "fingerprint": "5793a2fe8bf2e6e6f6a7e7a155be292a5b54449889984aad1301c43ea452d54d",
+      "snapshot": {
+        "docs/framework/svelte/reference/functions/createHotkeys.md": "b365432a686b383c5c14395ca8e1e1a92f7c954f74f5529046f61fda59a1019a"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/svelte/reference/functions/createHotkeys.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/functions/createHotkeysAttachment.md": {
+      "fingerprint": "c1890a34eaf6d5a07fe7fa6bcc2c72620881a49d5391ae7afa717f994f0af76d",
+      "snapshot": {
+        "docs/framework/svelte/reference/functions/createHotkeysAttachment.md": "1f95c7bc8e93b9aa22a7cfba8396dafd1e4c927475e1e4f1a0a8f0badf6c621f"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/svelte/reference/functions/createHotkeysAttachment.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/interfaces/SvelteHotkeyRecorder.md": {
+      "fingerprint": "c1ec6f80e0fab216001d3440435df755da5da580cdc5e3b69a3bde6dff2b93d6",
+      "snapshot": {
+        "docs/framework/svelte/reference/interfaces/SvelteHotkeyRecorder.md": "3550600359cc5c3a12fa0d6bad10e8e86bab0dc1391e602236d4f5da4954ec96"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/svelte/reference/interfaces/SvelteHotkeyRecorder.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/type-aliases/CreateHotkeyDefinition.md": {
+      "fingerprint": "7760f327bdf987f450822b5549be4eb280da753dc6954eeb2daa7da74c33dc02",
+      "snapshot": {
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyDefinition.md": "a41ed96f52b7e87b3c5532a3e66a97d7fee53fd3a80fa963b34d61f5228343a6"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyDefinition.md"
+      ]
+    },
+    "source:packages/lit-hotkeys/src/controllers/_server.ts": {
+      "fingerprint": "47838c855c1ee6d29192e63b6267d3bbd11d2ed54a4445de05f2835dd882924d",
+      "snapshot": {
+        "packages/lit-hotkeys/src/controllers/_server.ts": "2a1f485aad87f2ce0a48700f977f56cdd93ca042bf45e981defa524ff33ae759"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "packages/lit-hotkeys/src/controllers/_server.ts"
+      ]
+    },
+    "source:packages/lit-hotkeys/src/controllers/held-key-codes.ts": {
+      "fingerprint": "d94495282a945ddf51fe14e2e9f4c7d6c1e15a396e6841597560548a8c8fbed6",
+      "snapshot": {
+        "packages/lit-hotkeys/src/controllers/held-key-codes.ts": "c99a9a719dbe0d428a2ec68aa0af73fe9fcd1599d5dc84eaaffe725bdf7e3643"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "packages/lit-hotkeys/src/controllers/held-key-codes.ts"
+      ]
+    },
+    "source:packages/lit-hotkeys/src/controllers/held-keys.ts": {
+      "fingerprint": "6dccdc098dd2126be4bc53db508cfc41bd8d50f8b33051a878e77b0757f0fe67",
+      "snapshot": {
+        "packages/lit-hotkeys/src/controllers/held-keys.ts": "851395ea7738deec72efd137e54ca70214aa87bf1ad02745a4e29b83aabf9656"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "packages/lit-hotkeys/src/controllers/held-keys.ts"
+      ]
+    },
+    "source:packages/lit-hotkeys/src/controllers/hotkey-registrations.ts": {
+      "fingerprint": "0a4e0bf9f2ff1c46623f8f45cf6703297e55b10910e79a245dea8fdbd86ef45c",
+      "snapshot": {
+        "packages/lit-hotkeys/src/controllers/hotkey-registrations.ts": "d37d395aadf05f5fb7760d5d43fa7517cf2f9a8a7e431eeee9cff41e3432443b"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "packages/lit-hotkeys/src/controllers/hotkey-registrations.ts"
+      ]
+    },
+    "source:packages/lit-hotkeys/src/controllers/key-hold.ts": {
+      "fingerprint": "5e8f0338adee3f21f7e9c74a0fb72e34550fd5a0aa9911418a703314342ff5f6",
+      "snapshot": {
+        "packages/lit-hotkeys/src/controllers/key-hold.ts": "7a05b649b7c8caaff9f3012a307356e3ba48d2447767dc472e23a7cb27609b70"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "packages/lit-hotkeys/src/controllers/key-hold.ts"
+      ]
+    },
+    "source:packages/lit-hotkeys/tests/key-hold.test.ts": {
+      "fingerprint": "2eb6320e508ca9a5757b30d8ef0dba8d6bf4c8308a25539ff468369077aad43d",
+      "snapshot": {
+        "packages/lit-hotkeys/tests/key-hold.test.ts": "736df62f9e6b0a7ef9e157e178f75074ab19aec516f34cd824902a26499c214e"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "packages/lit-hotkeys/tests/key-hold.test.ts"
+      ]
+    },
+    "source:packages/lit-hotkeys/tests/ssr.test.ts": {
+      "fingerprint": "407d437523e3c47faadf435cacc353fd1924d4885c5a44d92efce02c4a1eaf65",
+      "snapshot": {
+        "packages/lit-hotkeys/tests/ssr.test.ts": "de952a00817f189790a4b0563b4d9286137a380011c2e1fb4a0b392ecef98b84"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "packages/lit-hotkeys/tests/ssr.test.ts"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/effect-root-harness.svelte.ts": {
+      "fingerprint": "e64b3f0c53a1531b1dce79f34f3b8fbe12824dbb547ec38f512d3cab914e86d9",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/effect-root-harness.svelte.ts": "176ed5d3a8a6bcadbadd812c0224ffe19ee24d3c88e110ed44133749abe91677"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "packages/svelte-hotkeys/tests/effect-root-harness.svelte.ts"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/effect-root.test.ts": {
+      "fingerprint": "820236249616ccf1ec62205943fe98b03ee3135888bba62231102153f8bb5482",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/effect-root.test.ts": "365cc9d1dc5cbf8d6615e3ae906a6ba27b03a2013510dc95a5a85c7422eee406"
+      },
+      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "outcome": "no-change",
+      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
+      "evidence": [
+        "packages/svelte-hotkeys/tests/effect-root.test.ts"
       ]
     }
   }

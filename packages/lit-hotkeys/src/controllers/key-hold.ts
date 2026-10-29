@@ -1,12 +1,15 @@
 import { getKeyStateTracker } from '@tanstack/hotkeys'
+import { isServer } from './_server'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
-import type { IndividualKey, KeyStateTracker } from '@tanstack/hotkeys'
+import type { IndividualKey } from '@tanstack/hotkeys'
 
 /**
  * A Lit ReactiveController that tracks whether a specific key is currently held.
  *
  * Subscribes to the global KeyStateTracker and triggers host updates
- * when the held state of the specified key changes.
+ * when the held state of the specified key changes. Pass a getter to track a
+ * key that changes, such as a reactive property; it is read again on each
+ * host update.
  *
  * @example
  * ```ts
@@ -53,36 +56,45 @@ export class KeyHoldController implements ReactiveController {
 
   /**
    * @param _host - The Lit component that owns this controller.
-   * @param _key - The key to track (e.g. 'Shift', 'Control', 'A').
+   * @param _key - The key to track (e.g. 'Shift', 'Control', 'A'), or a getter.
    */
   constructor(
     private _host: ReactiveControllerHost,
-    private _key: IndividualKey,
+    private _key: IndividualKey | (() => IndividualKey),
   ) {
     this._host.addController(this)
   }
 
   public hostConnected(): void {
-    const tracker: KeyStateTracker = getKeyStateTracker()
-    const normalizedKey: string = this._key.toLowerCase()
-
-    const subscription = tracker.store.subscribe(() => {
-      const isHeld: boolean = tracker.store.state.heldKeys.some(
-        (heldKey: string) => heldKey.toLowerCase() === normalizedKey,
-      )
-
-      if (isHeld !== this._value) {
-        this._value = isHeld
-        this._host.requestUpdate()
-      }
+    if (this._refresh()) this._host.requestUpdate()
+    if (isServer()) return
+    const subscription = getKeyStateTracker().store.subscribe(() => {
+      if (this._refresh()) this._host.requestUpdate()
     })
-
     this._unsubscribe = () => subscription.unsubscribe()
+  }
+
+  /** Re-reads a getter key when host properties trigger an update. */
+  public hostUpdate(): void {
+    this._refresh()
   }
 
   public hostDisconnected(): void {
     this._unsubscribe?.()
     this._unsubscribe = undefined
     this._value = false
+  }
+
+  /** Recomputes the held state and reports whether it changed. */
+  private _refresh(): boolean {
+    const key = (
+      typeof this._key === 'function' ? this._key() : this._key
+    ).toLowerCase()
+    const next = getKeyStateTracker().store.state.heldKeys.some(
+      (heldKey) => heldKey.toLowerCase() === key,
+    )
+    const changed = next !== this._value
+    this._value = next
+    return changed
   }
 }

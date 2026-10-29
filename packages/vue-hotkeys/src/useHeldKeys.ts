@@ -1,5 +1,5 @@
-import { useSelector } from '@tanstack/vue-store'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
+import { useStoreSelector } from './useStoreSelector'
 import type { Ref } from 'vue'
 
 /**
@@ -28,5 +28,5 @@ import type { Ref } from 'vue'
  */
 export function useHeldKeys(): Ref<Array<string>> {
   const tracker = getKeyStateTracker()
-  return useSelector(tracker.store, (state) => state.heldKeys)
+  return useStoreSelector(tracker.store, (state) => state.heldKeys)
 }

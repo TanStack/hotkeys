@@ -3,7 +3,7 @@ id: SvelteHotkeyRecorder
 title: SvelteHotkeyRecorder
 ---
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L15)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L14)
 
 ## Type Parameters
 
@@ -19,7 +19,7 @@ Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:15](http
 cancelRecording: () => void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L27)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L26)
 
 Cancel recording and call onCancel
 
@@ -35,7 +35,7 @@ Cancel recording and call onCancel
 commitRecording: () => void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L29)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L28)
 
 Commit the recorded steps now (multi-step recordings)
 
@@ -51,7 +51,7 @@ Commit the recorded steps now (multi-step recordings)
 readonly isRecording: boolean;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L17)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L16)
 
 Whether recording is currently active
 
@@ -63,7 +63,7 @@ Whether recording is currently active
 readonly recordedHotkey: THotkey | null;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L21)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L20)
 
 The last committed hotkey
 
@@ -75,7 +75,7 @@ The last committed hotkey
 startRecording: () => void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L23)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L22)
 
 Start recording a new hotkey
 
@@ -91,7 +91,7 @@ Start recording a new hotkey
 readonly steps: HotkeySequence;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L19)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L18)
 
 Chords recorded so far in a multi-step recording (for live preview)
 
@@ -103,7 +103,7 @@ Chords recorded so far in a multi-step recording (for live preview)
 stopRecording: () => void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L25)
+Defined in: [packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts#L24)
 
 Stop recording without calling onCancel
 

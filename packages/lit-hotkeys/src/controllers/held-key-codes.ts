@@ -1,4 +1,5 @@
 import { getKeyStateTracker } from '@tanstack/hotkeys'
+import { isServer } from './_server'
 import type { KeyStateTracker } from '@tanstack/hotkeys'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
@@ -47,6 +48,7 @@ export class HeldKeyCodesController implements ReactiveController {
     const tracker: KeyStateTracker = getKeyStateTracker()
     this._value = tracker.store.state.heldCodes
     this._host.requestUpdate()
+    if (isServer()) return
 
     const subscription = tracker.store.subscribe(() => {
       const { heldCodes } = tracker.store.state

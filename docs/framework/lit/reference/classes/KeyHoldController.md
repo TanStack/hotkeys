@@ -3,12 +3,14 @@ id: KeyHoldController
 title: KeyHoldController
 ---
 
-Defined in: [controllers/key-hold.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/key-hold.ts#L43)
+Defined in: [controllers/key-hold.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/key-hold.ts#L46)
 
 A Lit ReactiveController that tracks whether a specific key is currently held.
 
 Subscribes to the global KeyStateTracker and triggers host updates
-when the held state of the specified key changes.
+when the held state of the specified key changes. Pass a getter to track a
+key that changes, such as a reactive property; it is read again on each
+host update.
 
 ## Examples
 
@@ -54,7 +56,7 @@ class ModifierIndicators extends LitElement {
 new KeyHoldController(_host, _key): KeyHoldController;
 ```
 
-Defined in: [controllers/key-hold.ts:58](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/key-hold.ts#L58)
+Defined in: [controllers/key-hold.ts:61](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/key-hold.ts#L61)
 
 #### Parameters
 
@@ -66,9 +68,9 @@ The Lit component that owns this controller.
 
 ##### \_key
 
-`IndividualKey`
+`IndividualKey` \| (() => `IndividualKey`)
 
-The key to track (e.g. 'Shift', 'Control', 'A').
+The key to track (e.g. 'Shift', 'Control', 'A'), or a getter.
 
 #### Returns
 
@@ -84,7 +86,7 @@ The key to track (e.g. 'Shift', 'Control', 'A').
 get value(): boolean;
 ```
 
-Defined in: [controllers/key-hold.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/key-hold.ts#L50)
+Defined in: [controllers/key-hold.ts:53](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/key-hold.ts#L53)
 
 Whether the tracked key is currently held down.
 
@@ -100,7 +102,7 @@ Whether the tracked key is currently held down.
 hostConnected(): void;
 ```
 
-Defined in: [controllers/key-hold.ts:65](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/key-hold.ts#L65)
+Defined in: [controllers/key-hold.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/key-hold.ts#L68)
 
 Called when the host is connected to the component tree. For custom
 element hosts, this corresponds to the `connectedCallback()` lifecycle,
@@ -124,7 +126,7 @@ ReactiveController.hostConnected
 hostDisconnected(): void;
 ```
 
-Defined in: [controllers/key-hold.ts:83](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/key-hold.ts#L83)
+Defined in: [controllers/key-hold.ts:82](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/key-hold.ts#L82)
 
 Called when the host is disconnected from the component tree. For custom
 element hosts, this corresponds to the `disconnectedCallback()` lifecycle,
@@ -139,4 +141,26 @@ document.
 
 ```ts
 ReactiveController.hostDisconnected
+```
+
+***
+
+### hostUpdate()
+
+```ts
+hostUpdate(): void;
+```
+
+Defined in: [controllers/key-hold.ts:78](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/key-hold.ts#L78)
+
+Re-reads a getter key when host properties trigger an update.
+
+#### Returns
+
+`void`
+
+#### Implementation of
+
+```ts
+ReactiveController.hostUpdate
 ```
