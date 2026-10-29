@@ -246,7 +246,7 @@
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "b2da581aa0a1ec35cf79674b9c7d751d15614d4a1538111b446effa964023cd0",
+      "fingerprint": "b75b48ee186a877c213cfd9b005cb1f90395929ac412b41402ba25f39533eeb8",
       "snapshot": {
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
         "docs/framework/svelte/quick-start.md": "1ed87e6c76d9225f37db87f0d0e7dfd9f790adbf5b47cf87daa67143d155ce9b",
@@ -254,19 +254,15 @@
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "117d9625215435b7a3eb6c5a9f23792a02548059ba114b5737a6b9fb610b276c",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "eb7fb67907a153aae3f0ce61e951e8ea5df46468ae06eb55ad696500839124a3",
-        "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "3f3a8b56f5ffe7a9e8115324ffb128a2fa1b9df29a6a65ad0676636315dd7f35",
+        "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "27959499674a4dbfeb048073807baf540586d0f0a63a0dbdde0246c7aa939706",
         "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "14960d025c687b2167653e047074f16f398c580a578b6266e31de4b3bfb341a1",
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "cc69118ac4076f5c678987f0df18e8e0448bb7a2005effb802ae059d5b347455",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a6a995eea5b1334baef1909da68dea08f8df4e29819bada3549c9a0be86e6dcb"
       },
-      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
       "outcome": "no-change",
-      "reason": "Relative imports in the source now end in .js so published types resolve under nodenext. APIs and behavior are unchanged.",
-      "evidence": [
-        "packages/svelte-hotkeys/src/HotkeysCtx.ts",
-        "packages/svelte-hotkeys/src/HotkeysProvider.svelte",
-        "packages/svelte-hotkeys/src/createHotkey.svelte.ts"
-      ]
+      "reason": "CI autofix wrapped one import line in createHotkey.svelte.ts. Formatting only; APIs and behavior are unchanged.",
+      "evidence": ["packages/svelte-hotkeys/src/createHotkey.svelte.ts"]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
       "fingerprint": "ac96f13c6fde14fcb0ca586b0ec2c952be261636cfff5bfadcca5cfa74898ea8",
@@ -291,7 +287,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "e6cee0b3e0d6dc71a3e3646d9276c8526669ea4e13a332fa1e487fdfe697f878",
+      "fingerprint": "33795dd84a330b45555ac4d8d826aa0d8d9c2564d3d3c1448b309d05b46f801f",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -407,7 +403,7 @@
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "117d9625215435b7a3eb6c5a9f23792a02548059ba114b5737a6b9fb610b276c",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "eb7fb67907a153aae3f0ce61e951e8ea5df46468ae06eb55ad696500839124a3",
-        "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "3f3a8b56f5ffe7a9e8115324ffb128a2fa1b9df29a6a65ad0676636315dd7f35",
+        "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "27959499674a4dbfeb048073807baf540586d0f0a63a0dbdde0246c7aa939706",
         "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "14960d025c687b2167653e047074f16f398c580a578b6266e31de4b3bfb341a1",
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "cc69118ac4076f5c678987f0df18e8e0448bb7a2005effb802ae059d5b347455",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a6a995eea5b1334baef1909da68dea08f8df4e29819bada3549c9a0be86e6dcb",
@@ -420,10 +416,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "476a5a50a21aefe6243f9bc6e8c6a679978542d6ad8b52e6a2b0f806cd5ef89a",
         "packages/vue-hotkeys/src/useHotkeys.ts": "f971e9938eca3188b3af0fcc96d095330f9f6abfd70cb848d2de5c80f8d09639"
       },
-      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
       "outcome": "no-change",
-      "reason": "Alpine setup now requires hotkeysPlugin, which the alpine-hotkeys skill item covers; the Svelte changes only add import extensions. Domains, skill entries and gaps are still accurate.",
-      "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
+      "reason": "CI autofix wrapped one import line in createHotkey.svelte.ts. Formatting only; APIs and behavior are unchanged.",
+      "evidence": ["packages/svelte-hotkeys/src/createHotkey.svelte.ts"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -3511,6 +3507,112 @@
       "outcome": "out-of-scope",
       "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
       "evidence": ["packages/vue-hotkeys-devtools/tsconfig.json"]
+    },
+    "source:docs/framework/svelte/reference/functions/createHotkey.md": {
+      "fingerprint": "6781810a382add8dfcc47171fa5cd0c253aba3e10ab683a26ed8cd3e14105794",
+      "snapshot": {
+        "docs/framework/svelte/reference/functions/createHotkey.md": "7853ab61fcb03beb3f29f4da3306c2c5e5f9391d49d6391fdb6ba9499a9fad82"
+      },
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference page; source line numbers moved after CI autofix reformatted an import in createHotkey.svelte.ts.",
+      "evidence": ["docs/framework/svelte/reference/functions/createHotkey.md"]
+    },
+    "source:docs/framework/svelte/reference/functions/createHotkeyAttachment.md": {
+      "fingerprint": "55410f5675eb6d7c2d335f0a17cb0502d98f27a5f4e894ee4496c9a13a234ea7",
+      "snapshot": {
+        "docs/framework/svelte/reference/functions/createHotkeyAttachment.md": "c39dd6eb927cf15825803d623c1716938cdccdd781eb295b6148fd93a1326296"
+      },
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference page; source line numbers moved after CI autofix reformatted an import in createHotkey.svelte.ts.",
+      "evidence": [
+        "docs/framework/svelte/reference/functions/createHotkeyAttachment.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/type-aliases/CreateAppHotkeyOptions.md": {
+      "fingerprint": "6797032e823816c650804c623942fade593358e41b2e29ed864872adf6eb00ab",
+      "snapshot": {
+        "docs/framework/svelte/reference/type-aliases/CreateAppHotkeyOptions.md": "b16789a873e5dc8bd95e9c6e255cf76093f880850bb8e7e6f09ae04a673272d1"
+      },
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference page; source line numbers moved after CI autofix reformatted an import in createHotkey.svelte.ts.",
+      "evidence": [
+        "docs/framework/svelte/reference/type-aliases/CreateAppHotkeyOptions.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/type-aliases/CreateHotkeyChordOptions.md": {
+      "fingerprint": "393709940d746eab2acd9866328c91ec7f642e50cbc43a25104aac8e894d539a",
+      "snapshot": {
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyChordOptions.md": "f7799230ad91da42ed54b9886e35b7d105e9c28232e66d4de13570b313d7e32c"
+      },
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference page; source line numbers moved after CI autofix reformatted an import in createHotkey.svelte.ts.",
+      "evidence": [
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyChordOptions.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/type-aliases/CreateHotkeyCommonOptions.md": {
+      "fingerprint": "24962b2d6c21276fd26358a2277acb1e9977852bc7dec78dc43ca4a3d30a74be",
+      "snapshot": {
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyCommonOptions.md": "34c7b3a4fa566f25e6ddc465b3c5ab01be650becea3e330042bd295977739a5f"
+      },
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference page; source line numbers moved after CI autofix reformatted an import in createHotkey.svelte.ts.",
+      "evidence": [
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyCommonOptions.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/type-aliases/CreateHotkeyOptions.md": {
+      "fingerprint": "6e3d4b4426a1e0cc2f7c62e05ac0740448854a8c695de83b6469038a10a48672",
+      "snapshot": {
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyOptions.md": "0ebd6aead24331755248f39bca1eedd02698af8384e665d6cc6afad2a24495d6"
+      },
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference page; source line numbers moved after CI autofix reformatted an import in createHotkey.svelte.ts.",
+      "evidence": [
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyOptions.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/type-aliases/CreateHotkeyOptionsFor.md": {
+      "fingerprint": "728a2a0385e288c18b3bd35cf4b4d01039cdbb765be81897b6a8fe3256ec6ee6",
+      "snapshot": {
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyOptionsFor.md": "cfb11d686971a31493f33a98b6c56414255b0b0742f0aaa95da6301dda4c554b"
+      },
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference page; source line numbers moved after CI autofix reformatted an import in createHotkey.svelte.ts.",
+      "evidence": [
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyOptionsFor.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/type-aliases/CreateHotkeySequenceOptions.md": {
+      "fingerprint": "fa816fad75bd6d068288b77034fd3fe917faf8a8ed045af858042b428eb60716",
+      "snapshot": {
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeySequenceOptions.md": "bac1d0c1809660c2dbe6d40958974f1987bbe706bfedee2f9957c2a5fe18e3ab"
+      },
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference page; source line numbers moved after CI autofix reformatted an import in createHotkey.svelte.ts.",
+      "evidence": [
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeySequenceOptions.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/type-aliases/CreateHotkeyTarget.md": {
+      "fingerprint": "7942f90fca5ac6183b9a87587bf923ee5f8ae91023dcdd1b5ff0868367e72e4b",
+      "snapshot": {
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyTarget.md": "e5015ad4e487d245fa092d0763886ff183baddbfbd9c6f831c4cf9cd4fb0451d"
+      },
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference page; source line numbers moved after CI autofix reformatted an import in createHotkey.svelte.ts.",
+      "evidence": [
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyTarget.md"
+      ]
     }
   }
 }
