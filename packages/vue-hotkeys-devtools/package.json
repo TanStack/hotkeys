@@ -49,10 +49,9 @@
     "dist"
   ],
   "peerDependencies": {
-    "vue": ">=3.0.0"
+    "vue": ">=3.3.0"
   },
   "dependencies": {
-    "@tanstack/devtools-utils": "^0.7.0",
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {

@@ -1,9 +1,9 @@
 import { createSveltePanel } from '@tanstack/devtools-utils/svelte'
 import { HotkeysDevtoolsCore } from '@tanstack/hotkeys-devtools/production'
-import type { DevtoolsPanelProps } from '@tanstack/devtools-utils/svelte'
+import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools/production'
 import type { Component } from 'svelte'
 
-export interface HotkeysDevtoolsSvelteInit extends Partial<DevtoolsPanelProps> {}
+export interface HotkeysDevtoolsSvelteInit extends Partial<HotkeysDevtoolsPanelProps> {}
 
 const panels = createSveltePanel(HotkeysDevtoolsCore)
 
@@ -21,5 +21,8 @@ function withDefaults(
     })
 }
 
-export const HotkeysDevtoolsPanel = withDefaults(panels[0])
-export const HotkeysDevtoolsPanelNoOp = withDefaults(panels[1])
+// Annotated so the emitted types keep Svelte's default `Component` bindings.
+export const HotkeysDevtoolsPanel: Component<HotkeysDevtoolsSvelteInit> =
+  withDefaults(panels[0])
+export const HotkeysDevtoolsPanelNoOp: Component<HotkeysDevtoolsSvelteInit> =
+  withDefaults(panels[1])

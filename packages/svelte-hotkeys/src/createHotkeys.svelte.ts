@@ -3,11 +3,11 @@ import {
   prepareHotkeyDefinitions,
 } from '@tanstack/hotkeys/adapter'
 import { onDestroy } from 'svelte'
-import { getHotkeysContext } from './HotkeysCtx'
+import { getHotkeysContext } from './HotkeysCtx.js'
 import {
   createAppHotkeysSubscriber,
   resolveMaybeGetter,
-} from './internal.svelte'
+} from './internal.svelte.js'
 import type { Attachment } from 'svelte/attachments'
 import type {
   AppHotkey,
@@ -17,7 +17,7 @@ import type {
   RegisterableHotkeySequence,
 } from '@tanstack/hotkeys'
 import type { AdapterHotkeyDefinition } from '@tanstack/hotkeys/adapter'
-import type { MaybeGetter } from './internal.svelte'
+import type { MaybeGetter } from './internal.svelte.js'
 import type {
   CreateAppHotkeyOptions,
   CreateHotkeyChordOptions,
@@ -25,7 +25,7 @@ import type {
   CreateHotkeyOptions,
   CreateHotkeySequenceOptions,
   CreateHotkeyTarget,
-} from './createHotkey.svelte'
+} from './createHotkey.svelte.js'
 
 /**
  * One hotkey for `createHotkeys`. The hotkey and options may be getters.

@@ -33,7 +33,9 @@ Before starting, load the `@tanstack/hotkeys#hotkeys-core` skill (`npx @tanstack
 
 ```ts no-check
 import Alpine from 'alpinejs'
-import { createHotkeysScope } from '@tanstack/alpine-hotkeys'
+import { createHotkeysScope, hotkeysPlugin } from '@tanstack/alpine-hotkeys'
+
+Alpine.plugin(hotkeysPlugin) // before Alpine.start()
 
 Alpine.data('panel', () => ({
   dirty: false,
@@ -56,13 +58,13 @@ Alpine.data('panel', () => ({
 }))
 ```
 
-For markup-only components, install `Alpine.plugin(hotkeysPlugin)` before `Alpine.start()` and use the `$hotkeys` magic, which is destroyed with its element: `x-init="$hotkeys.createHotkey('Mod+S', () => save())"`.
+Install `Alpine.plugin(hotkeysPlugin)` before `Alpine.start()`. It gives the adapter the app's Alpine instance; without it, the adapter falls back to `window.Alpine` and throws when neither exists. The plugin also adds the `$hotkeys` magic for markup-only components, which is destroyed with its element: `x-init="$hotkeys.createHotkey('Mod+S', () => save())"`.
 
 ## API
 
 | API                                                 | What it's for                                                                                             |
 | --------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `Alpine.plugin(hotkeysPlugin)`                      | Install the `$hotkeys` magic, an owner that's destroyed with its element.                                 |
+| `Alpine.plugin(hotkeysPlugin)`                      | Give the adapter the app's Alpine, and install the `$hotkeys` magic, an owner destroyed with its element. |
 | `createHotkeysScope(defaults?)`                     | Create an owner for one `Alpine.data` component, with optional default options.                           |
 | `provideAppHotkeys(appHotkeys, options?)`           | Declare app hotkeys and load the user's custom hotkeys once at startup, since Alpine has no provider.     |
 | `getHotkeyManager().activateScope(scope, options?)` | Turn on a scope, such as an exclusive one for a dialog; it returns the function that turns the scope off. |

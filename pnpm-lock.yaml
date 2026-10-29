@@ -3989,9 +3989,6 @@ importers:
 
   packages/vue-hotkeys-devtools:
     dependencies:
-      '@tanstack/devtools-utils':
-        specifier: ^0.7.0
-        version: 0.7.0(@angular/core@21.2.10)(@types/react@19.2.14)(preact@10.29.1)(react@19.2.5)(solid-js@1.9.12)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.43(typescript@6.0.3))
       '@tanstack/hotkeys-devtools':
         specifier: workspace:*
         version: link:../hotkeys-devtools
@@ -19713,16 +19710,6 @@ snapshots:
       solid-js: 1.9.15
       svelte: 5.57.1(@typescript-eslint/types@8.70.1)
       vue: 3.5.33(typescript@6.0.3)
-
-  '@tanstack/devtools-utils@0.7.0(@angular/core@21.2.10)(@types/react@19.2.14)(preact@10.29.1)(react@19.2.5)(solid-js@1.9.12)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.43(typescript@6.0.3))':
-    optionalDependencies:
-      '@angular/core': 21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.3)
-      '@types/react': 19.2.14
-      preact: 10.29.1
-      react: 19.2.5
-      solid-js: 1.9.12
-      svelte: 5.57.1(@typescript-eslint/types@8.70.1)
-      vue: 3.5.43(typescript@6.0.3)
 
   '@tanstack/devtools-utils@0.7.0(@angular/core@21.2.10)(@types/react@19.2.14)(preact@11.0.1)(react@19.2.5)(solid-js@1.9.12)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))':
     optionalDependencies:

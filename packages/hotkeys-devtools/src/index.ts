@@ -1,11 +1,16 @@
 'use client'
 
 import * as Devtools from './core'
-import type { ClassType } from '@tanstack/devtools-utils/solid'
+import type { HotkeysDevtoolsCoreClass } from './types'
 
-export const HotkeysDevtoolsCore: ClassType =
+export const HotkeysDevtoolsCore: HotkeysDevtoolsCoreClass =
   process.env.NODE_ENV !== 'development'
     ? Devtools.HotkeysDevtoolsCoreNoOp
     : Devtools.HotkeysDevtoolsCore
 
 export type { HotkeysDevtoolsInit } from './core'
+export type {
+  HotkeysDevtoolsCoreClass,
+  HotkeysDevtoolsPanelProps,
+  HotkeysDevtoolsTheme,
+} from './types'

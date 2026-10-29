@@ -1,14 +1,14 @@
 import { createElement } from 'react'
 import { createReactPanel } from '@tanstack/devtools-utils/react'
 import { HotkeysDevtoolsCore } from '@tanstack/hotkeys-devtools'
-import type { DevtoolsPanelProps } from '@tanstack/devtools-utils/react'
-import type { JSX } from 'react'
+import type { ReactElement } from 'react'
+import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools'
 
-export interface HotkeysDevtoolsReactInit extends Partial<DevtoolsPanelProps> {}
+export interface HotkeysDevtoolsReactInit extends Partial<HotkeysDevtoolsPanelProps> {}
 
 type HotkeysDevtoolsPanelComponent = (
   props?: HotkeysDevtoolsReactInit,
-) => JSX.Element
+) => ReactElement
 
 const panels = createReactPanel(HotkeysDevtoolsCore)
 

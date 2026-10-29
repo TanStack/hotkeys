@@ -1,6 +1,6 @@
-import { getHotkeysContext } from './HotkeysCtx'
-import { createStoreSubscriber } from './internal.svelte'
-import { getHotkeyRegistrations } from './getHotkeyRegistrations.svelte'
+import { getHotkeysContext } from './HotkeysCtx.js'
+import { createStoreSubscriber } from './internal.svelte.js'
+import { getHotkeyRegistrations } from './getHotkeyRegistrations.svelte.js'
 import type {
   AppHotkey,
   AppHotkeyListItem,

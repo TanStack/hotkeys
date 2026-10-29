@@ -78,7 +78,7 @@ Lit currently ships the hotkeys adapter only, so no dedicated Lit devtools packa
 
 # Alpine
 
-Use Alpine 3.13 or newer within version 3. Install the optional `hotkeysPlugin` before `Alpine.start()`, or create a scope explicitly.
+Use Alpine 3.13 or newer within version 3. Install `hotkeysPlugin` with `Alpine.plugin(hotkeysPlugin)` before `Alpine.start()`, so the adapter uses your Alpine instance.
 
 Start with the [Quick Start](./framework/alpine/quick-start), then follow the [guides](./framework/alpine/guides/hotkeys). The package includes the hotkeys adapter; a dedicated Alpine devtools adapter is not provided.
 

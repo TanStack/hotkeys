@@ -1,9 +1,32 @@
-import Alpine from 'alpinejs'
 import { getHotkeyManager } from '@tanstack/hotkeys'
 import { subscribePublishedAppHotkeys } from '@tanstack/hotkeys/adapter'
+import type Alpine from 'alpinejs'
 import type { AppHotkeysStore } from '@tanstack/hotkeys'
 import type { ReadonlyStore } from '@tanstack/store'
 import type { DefaultHotkeysOptions, MaybeGetter } from './types'
+
+type AlpineInstance = typeof Alpine
+
+let pluginAlpine: AlpineInstance | undefined
+
+/** Records the Alpine instance passed to `hotkeysPlugin`. */
+export function setAlpine(alpine: AlpineInstance): void {
+  pluginAlpine = alpine
+}
+
+// Use the page's Alpine instead of importing one. An import would load a
+// second copy when Alpine comes from a script tag, and Alpine's module build
+// touches the DOM when imported, which breaks importing this package in Node.
+function getAlpine(): AlpineInstance {
+  const alpine =
+    pluginAlpine ?? (globalThis as { Alpine?: AlpineInstance }).Alpine
+  if (!alpine) {
+    throw new Error(
+      '[TanStack Hotkeys] Alpine was not found. Call Alpine.plugin(hotkeysPlugin) before Alpine.start(), or set window.Alpine.',
+    )
+  }
+  return alpine
+}
 
 export function read<T>(value: MaybeGetter<T>): T {
   return typeof value === 'function' ? (value as () => T)() : value
@@ -21,10 +44,11 @@ export function createScope(
 
   function effect(callback: () => void) {
     assertActive()
-    const runner = Alpine.effect(() => {
+    const alpine = getAlpine()
+    const runner = alpine.effect(() => {
       if (!destroyed) callback()
     })
-    cleanups.add(() => Alpine.release(runner))
+    cleanups.add(() => alpine.release(runner))
   }
 
   function select<T, TSelected>(
@@ -32,7 +56,7 @@ export function createScope(
     selector: (state: T) => TSelected,
   ) {
     assertActive()
-    const state = Alpine.reactive({ snapshot: store.state })
+    const state = getAlpine().reactive({ snapshot: store.state })
     const subscription = store.subscribe(() => {
       state.snapshot = store.state
     })
@@ -51,7 +75,7 @@ export function createScope(
    */
   function appHotkeys(): AppHotkeysStore | null {
     if (!appHotkeysState) {
-      const state = Alpine.reactive({ version: 0 })
+      const state = getAlpine().reactive({ version: 0 })
       appHotkeysState = state
       cleanups.add(subscribePublishedAppHotkeys(() => state.version++))
     }

@@ -1,7 +1,17 @@
 import { createReactPlugin } from '@tanstack/devtools-utils/react'
 import { HotkeysDevtoolsPanel } from './ReactHotkeysDevtools'
+import type { ReactElement } from 'react'
+import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools'
 
-type HotkeysDevtoolsPluginFactory = ReturnType<typeof createReactPlugin>[0]
+/** A plugin for `TanStackDevtools` from `@tanstack/react-devtools`. */
+export interface HotkeysDevtoolsReactPlugin {
+  name: string
+  id?: string
+  defaultOpen?: boolean
+  render: (el: HTMLElement, props: HotkeysDevtoolsPanelProps) => ReactElement
+}
+
+type HotkeysDevtoolsPluginFactory = () => HotkeysDevtoolsReactPlugin
 
 const plugins = createReactPlugin({
   name: 'TanStack Hotkeys',

@@ -1,5 +1,5 @@
 import { getKeyStateTracker } from '@tanstack/hotkeys'
-import { createStoreSubscriber } from './internal.svelte'
+import { createStoreSubscriber } from './internal.svelte.js'
 
 export interface SvelteHeldKeyCodesMap {
   readonly codes: Record<string, string>

@@ -1,16 +1,18 @@
 import { createComponent, mergeProps } from 'solid-js'
 import { createSolidPanel } from '@tanstack/devtools-utils/solid'
 import { HotkeysDevtoolsCore } from '@tanstack/hotkeys-devtools'
-import type { DevtoolsPanelProps } from '@tanstack/devtools-utils/solid'
+import type { ClassType } from '@tanstack/devtools-utils/solid'
+import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools'
 import type { JSX } from 'solid-js'
 
-export interface HotkeysDevtoolsSolidInit extends Partial<DevtoolsPanelProps> {}
+export interface HotkeysDevtoolsSolidInit extends Partial<HotkeysDevtoolsPanelProps> {}
 
 type HotkeysDevtoolsPanelComponent = (
   props?: HotkeysDevtoolsSolidInit,
 ) => JSX.Element
 
-const panels = createSolidPanel(HotkeysDevtoolsCore)
+// `createSolidPanel` wants the exact class type from `constructCoreClass`.
+const panels = createSolidPanel(HotkeysDevtoolsCore as unknown as ClassType)
 
 function withDefaults(
   Panel: (typeof panels)[number],

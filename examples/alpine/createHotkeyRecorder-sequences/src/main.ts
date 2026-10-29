@@ -1,5 +1,9 @@
 import Alpine from 'alpinejs'
-import { createHotkeysScope, formatForDisplay } from '@tanstack/alpine-hotkeys'
+import {
+  createHotkeysScope,
+  formatForDisplay,
+  hotkeysPlugin,
+} from '@tanstack/alpine-hotkeys'
 import type {
   AlpineHotkeyRecorder,
   AlpineHotkeyState,
@@ -8,6 +12,9 @@ import type {
   HotkeySequence,
 } from '@tanstack/alpine-hotkeys'
 import './index.css'
+
+// Gives every hotkeys scope the app's Alpine instance.
+Alpine.plugin(hotkeysPlugin)
 
 interface Shortcut {
   id: string

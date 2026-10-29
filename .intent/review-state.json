@@ -3,24 +3,25 @@
   "baseline": "ad56a4b0dbf3c34d8552eca2cc88c5c7000d520a",
   "items": {
     "skill:packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": {
-      "fingerprint": "f1ffa2a31e85d6e7cfbcf730e4b1f5e62d0bd4a59cf8153832cd3b9f299fd424",
+      "fingerprint": "f7e6791bcab14d204081461064163520817356a360f08e158b6d860dd513918d",
       "snapshot": {
         "docs/framework/alpine/guides/app-hotkeys.md": "536c327d4d9f80219a0dcdd04bb36b684c35567ad76f86327287ae6a21f03199",
-        "docs/framework/alpine/quick-start.md": "82877b602b370603286ca41f384f5e38da25f7df30bf707e04ea17018792875c",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "e6f704998fbe368fae46cbc832f4887edbeef452b4cdb017bd730e63fcd646c6",
+        "docs/framework/alpine/quick-start.md": "de471401f70d66c2a81182f917f6eef02d808bdda1a2bc6268a6aa1e5365000c",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "8c0a3ab25f684d8445925d43dbadabb4e491b12001d78811cbf0d3f41db044c8",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "fdc12aafd6098bde8b4e7f5d8a8afb12227ac99cd753e06fc27401d5d8c8fead",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "f712ddb3354230197eb54d6f270d00a41c2b889e60690e70853569fe1a5207ea",
         "packages/alpine-hotkeys/src/createHotkey.ts": "3ee3029171f53f3693980bc975252b3decea27c1920ccc0ec1dd8fe2b3810c9b",
         "packages/alpine-hotkeys/src/createHotkeysScope.ts": "8fb6d17e8fe155327fdac17f9d057d6538c84474c1c464ee25409c23d52e7a85",
-        "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "77a4e764c9917d00ae0f2b8c37fc08ac6733003a5043f7e3e1a046f6936a7188",
-        "packages/alpine-hotkeys/src/scope.ts": "d6ce3fe86c87cf6483119baaa48e0950f30480f02ff861656035eb559c596176"
+        "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
+        "packages/alpine-hotkeys/src/scope.ts": "33b2731c6f3754315a6b31fa8dff27805605835c3ae34aa62f92f6fd44d898a6"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "updated",
-      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
+      "reason": "The setup now installs Alpine.plugin(hotkeysPlugin) before Alpine.start(). The adapter no longer imports alpinejs; it uses the plugin's Alpine instance, falls back to window.Alpine, and throws when neither exists. The skill's sample, setup line and API row say so.",
       "evidence": [
-        "packages/hotkeys/src/hotkey-manager.ts",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"
+        "packages/alpine-hotkeys/src/scope.ts",
+        "packages/alpine-hotkeys/src/hotkeysPlugin.ts",
+        "packages/alpine-hotkeys/tests/alpine-instance.test.ts"
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
@@ -245,25 +246,26 @@
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "6fbe00da1a3df0353f8b7897a37ac0d9052abdf6cd0f139229e1c61f4be15c03",
+      "fingerprint": "b2da581aa0a1ec35cf79674b9c7d751d15614d4a1538111b446effa964023cd0",
       "snapshot": {
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
         "docs/framework/svelte/quick-start.md": "1ed87e6c76d9225f37db87f0d0e7dfd9f790adbf5b47cf87daa67143d155ce9b",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "d99ef59e6a695be73d48b954a337d5c91f471268bad8da590a7b4d72f1a8a1c4",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
-        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "1d6e065a5d7dbd14073e0617a990a923a4a811df43fa3261253fce45f55b066b",
-        "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "d444924b495f5517f3235365d5988b2df86be9f4ef83e89d9ac5385857f76040",
-        "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "014992b602a5551445edd04e4cfe408d0a4af97a49e39296c1de60c68b74d842",
-        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "ea3295fb5fc85da7e5d266914e264a6916d8cb540697d3f9ca881c844da0bfa8",
-        "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "ea5bf5ef7c2e7f6696f3354abe5f011cace7f046cb6a5c768c50cc2b840cf921",
-        "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a9662d748fcb8f8d7084411a99d581e29817faf42aa93b6142dfc2f5eea3fb9f"
+        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "117d9625215435b7a3eb6c5a9f23792a02548059ba114b5737a6b9fb610b276c",
+        "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "eb7fb67907a153aae3f0ce61e951e8ea5df46468ae06eb55ad696500839124a3",
+        "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "3f3a8b56f5ffe7a9e8115324ffb128a2fa1b9df29a6a65ad0676636315dd7f35",
+        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "14960d025c687b2167653e047074f16f398c580a578b6266e31de4b3bfb341a1",
+        "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "cc69118ac4076f5c678987f0df18e8e0448bb7a2005effb802ae059d5b347455",
+        "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a6a995eea5b1334baef1909da68dea08f8df4e29819bada3549c9a0be86e6dcb"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
-      "outcome": "updated",
-      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "no-change",
+      "reason": "Relative imports in the source now end in .js so published types resolve under nodenext. APIs and behavior are unchanged.",
       "evidence": [
-        "packages/hotkeys/src/hotkey-manager.ts",
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"
+        "packages/svelte-hotkeys/src/HotkeysCtx.ts",
+        "packages/svelte-hotkeys/src/HotkeysProvider.svelte",
+        "packages/svelte-hotkeys/src/createHotkey.svelte.ts"
       ]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
@@ -289,13 +291,13 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "d4b03d664be71cf8976bd6de64aca17ab947787aed7ace15f9cd4dfdfb5380bb",
+      "fingerprint": "e6cee0b3e0d6dc71a3e3646d9276c8526669ea4e13a332fa1e487fdfe697f878",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
         "_artifacts/skill_tree.yaml": "c7e0b30458bd11e3a52e728163838166def6ee64419f1b632f1ea36a37e573af",
         "docs/framework/alpine/guides/app-hotkeys.md": "536c327d4d9f80219a0dcdd04bb36b684c35567ad76f86327287ae6a21f03199",
-        "docs/framework/alpine/quick-start.md": "82877b602b370603286ca41f384f5e38da25f7df30bf707e04ea17018792875c",
+        "docs/framework/alpine/quick-start.md": "de471401f70d66c2a81182f917f6eef02d808bdda1a2bc6268a6aa1e5365000c",
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "003fba191e3d13d4466754644c4d2174a550f48d437028bc163ba6acca6546ad",
         "docs/framework/angular/quick-start.md": "d1cc5f91cd50b579c8a4bd9811e76862308855ce602556e4fa36561bc7d62822",
         "docs/framework/ember/guides/app-hotkeys.md": "5162292b3d62257c757ea0146fb5b1cc8c85b130081472b3675be077e8c898de",
@@ -320,13 +322,13 @@
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "9e41458fe7488eedcbd4289019a66cde95b866ffb3081fdd0a808995580460ce",
         "docs/framework/vue/quick-start.md": "b4ca3394dc94e3b814054413afbf5e101fd5998a35daafad715e49de26a4932e",
         "docs/guides/sensible-defaults.md": "29b63a2aa05a4c7498bc2f235baa20bf4bcccbf9de78642ed5e27b431232ec1f",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "e6f704998fbe368fae46cbc832f4887edbeef452b4cdb017bd730e63fcd646c6",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "8c0a3ab25f684d8445925d43dbadabb4e491b12001d78811cbf0d3f41db044c8",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "fdc12aafd6098bde8b4e7f5d8a8afb12227ac99cd753e06fc27401d5d8c8fead",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "f712ddb3354230197eb54d6f270d00a41c2b889e60690e70853569fe1a5207ea",
         "packages/alpine-hotkeys/src/createHotkey.ts": "3ee3029171f53f3693980bc975252b3decea27c1920ccc0ec1dd8fe2b3810c9b",
         "packages/alpine-hotkeys/src/createHotkeysScope.ts": "8fb6d17e8fe155327fdac17f9d057d6538c84474c1c464ee25409c23d52e7a85",
-        "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "77a4e764c9917d00ae0f2b8c37fc08ac6733003a5043f7e3e1a046f6936a7188",
-        "packages/alpine-hotkeys/src/scope.ts": "d6ce3fe86c87cf6483119baaa48e0950f30480f02ff861656035eb559c596176",
+        "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
+        "packages/alpine-hotkeys/src/scope.ts": "33b2731c6f3754315a6b31fa8dff27805605835c3ae34aa62f92f6fd44d898a6",
         "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "2b0e9e34fb1338d2db1657beffd8664906ef200388854cfc2895cf9f428e00d9",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "5fe1b12a519e8ca5087d78d47050f7a2ec0c70bb9b7d6ebcbb050ee099e3effe",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "1e549ef79db70b5818326068c78ada5d410fdc680a4cb7ca12bdfd9d0de5d0dc",
@@ -403,12 +405,12 @@
         "packages/solid-hotkeys/src/createHotkeys.ts": "a84dbede2c8bdda995d73a02353619a721282e1a92a44127108da54d1d0b821a",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "d99ef59e6a695be73d48b954a337d5c91f471268bad8da590a7b4d72f1a8a1c4",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
-        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "1d6e065a5d7dbd14073e0617a990a923a4a811df43fa3261253fce45f55b066b",
-        "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "d444924b495f5517f3235365d5988b2df86be9f4ef83e89d9ac5385857f76040",
-        "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "014992b602a5551445edd04e4cfe408d0a4af97a49e39296c1de60c68b74d842",
-        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "ea3295fb5fc85da7e5d266914e264a6916d8cb540697d3f9ca881c844da0bfa8",
-        "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "ea5bf5ef7c2e7f6696f3354abe5f011cace7f046cb6a5c768c50cc2b840cf921",
-        "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a9662d748fcb8f8d7084411a99d581e29817faf42aa93b6142dfc2f5eea3fb9f",
+        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "117d9625215435b7a3eb6c5a9f23792a02548059ba114b5737a6b9fb610b276c",
+        "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "eb7fb67907a153aae3f0ce61e951e8ea5df46468ae06eb55ad696500839124a3",
+        "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "3f3a8b56f5ffe7a9e8115324ffb128a2fa1b9df29a6a65ad0676636315dd7f35",
+        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "14960d025c687b2167653e047074f16f398c580a578b6266e31de4b3bfb341a1",
+        "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "cc69118ac4076f5c678987f0df18e8e0448bb7a2005effb802ae059d5b347455",
+        "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a6a995eea5b1334baef1909da68dea08f8df4e29819bada3549c9a0be86e6dcb",
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "565e5d5f33ed757855f0a3bcc78d65a191e52c1e3f33f9bf3dc534a4c0e70d3f",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "326ee1fe20c1d75a4ad720f69a3a4df9b9e3a057826115e955deb0ed25d88f9a",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "ad40dec6e2889ca62f3fda57fcbf67e940f4dab5a26cdc69ff99777d2d2e56af",
@@ -418,16 +420,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "476a5a50a21aefe6243f9bc6e8c6a679978542d6ad8b52e6a2b0f806cd5ef89a",
         "packages/vue-hotkeys/src/useHotkeys.ts": "f971e9938eca3188b3af0fcc96d095330f9f6abfd70cb848d2de5c80f8d09639"
       },
-      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
-      "outcome": "updated",
-      "reason": "Resolved the octane-hotkeys gap: docs/installation.md now says Octane 0.12 or newer, matching the >=0.12.0 peer and the skill. Domains, skill entries and the other gaps are still accurate.",
-      "evidence": [
-        "_artifacts/domain_map.yaml",
-        "_artifacts/skill_spec.md",
-        "_artifacts/skill_tree.yaml",
-        "docs/installation.md",
-        "packages/octane-hotkeys/package.json"
-      ]
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "no-change",
+      "reason": "Alpine setup now requires hotkeysPlugin, which the alpine-hotkeys skill item covers; the Svelte changes only add import extensions. Domains, skill entries and gaps are still accurate.",
+      "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -695,13 +691,13 @@
       "evidence": ["examples/alpine/kitchen-sink/index.html"]
     },
     "source:examples/alpine/kitchen-sink/src/main.ts": {
-      "fingerprint": "9ab005df03e0602b60f980c1d3a99537357653a725e570f0c7dac01ec62f5a2f",
+      "fingerprint": "3af00671f13f87de8b318aeef2645372c9d4197f69f884690918d4ef10721005",
       "snapshot": {
-        "examples/alpine/kitchen-sink/src/main.ts": "dbdb3a81c1a7189a1d888a5ee9cd237832d5bedf7f498448336f64141798b861"
+        "examples/alpine/kitchen-sink/src/main.ts": "f21fb5a0a2d39c3e33875b7053be6d2b880bbb2d15e1f1ccd894ce70532792fb"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
-      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
       "evidence": ["examples/alpine/kitchen-sink/src/main.ts"]
     },
     "source:examples/angular/kitchen-sink/src/app/app.component.ts": {
@@ -1028,13 +1024,13 @@
       "evidence": ["packages/solid-hotkeys/tests/createHotkeyHint.test.tsx"]
     },
     "source:packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts": {
-      "fingerprint": "24c95f4f15482bdf093375a1faafcf97354226ac78a848123b30013a6d356a97",
+      "fingerprint": "111a3fa7ead644af9c2a1ae9427f55340199860e75f030a51c9dbeccb95a04a7",
       "snapshot": {
-        "packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts": "22925511c7e5bcaaecfc755b186abeab9065751a397ff9b21480c9c1226245c3"
+        "packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts": "9c9410188c920b701a71ce127933fd60539f5a3cac0af3a4614b25b245ba8751"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "no-change",
-      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
       "evidence": ["packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts"]
     },
     "source:packages/svelte-hotkeys/tests/getHotkeyHint.test.ts": {
@@ -2163,23 +2159,23 @@
       "evidence": ["packages/solid-hotkeys/tests/scopes.test.tsx"]
     },
     "source:packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts": {
-      "fingerprint": "7f1568fa37786c72f88d4f84b0a12e60fde9867453ed29a3fd2d0ed43cb9ac92",
+      "fingerprint": "c39420db15f120d59ee9d87ac7b4291b1f23232fa0cb6fbf90940a5a283384b4",
       "snapshot": {
-        "packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts": "cbdf34d22e9efbc48f0ad7490fc9c9f38a8eae371bd2771b1fe9916649e38bfb"
+        "packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts": "8d9b633b722f84363c1dfabf4b97ad861f7b507c98c8363a498e8dfc0c6d5c03"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
       "evidence": ["packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts"]
     },
     "source:packages/svelte-hotkeys/src/index.ts": {
-      "fingerprint": "5390a8919a56613eb885c946be67fd103673d160f895ae17fdae7998a87ccfce",
+      "fingerprint": "3eadb46211dc418a70cd91d303ef31eb3c9823dd3c8ee546bdea16d160efd6dc",
       "snapshot": {
-        "packages/svelte-hotkeys/src/index.ts": "d34632d11780969e48f79cb40fd98162f5d88495e836a8e5411c82885c6d71e1"
+        "packages/svelte-hotkeys/src/index.ts": "095c331919cbeb8a2bc87855f7334c6828087d441f2683b462e12899c6f678b4"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
       "evidence": ["packages/svelte-hotkeys/src/index.ts"]
     },
     "source:packages/svelte-hotkeys/tests/scopes-controls.svelte.ts": {
@@ -2519,18 +2515,16 @@
       ]
     },
     "source:docs/installation.md": {
-      "fingerprint": "32c482e96e63d6c4422b052ca6d36c30ea3e23921c1a09d359699c90d2bb1058",
+      "fingerprint": "c2cdb7d7baafc96be4a0b5ac7b66de30e46d42b47cd1ae17f0596f467cd084d5",
       "snapshot": {
-        "docs/installation.md": "2baaefc4923804cb9cd2cbc65f83caac1a215f6c3d7f9cc2ef000658e4e5443b"
+        "docs/installation.md": "4d42c5fe9581aa4e456ed5d0aeff19835efa42b2368eb1d001f560566a955adc"
       },
-      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "no-change",
-      "reason": "Adds per-framework version floors and a React Server Components note. The skills that state a floor (Ember, Octane) and the React RSC line are reviewed under their own items; the other skills don't repeat install floors.",
+      "reason": "The Alpine line now says to install hotkeysPlugin before Alpine.start(). The alpine-hotkeys skill item covers that setup.",
       "evidence": [
         "docs/installation.md",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md"
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"
       ]
     },
     "source:nx.json": {
@@ -3045,6 +3039,478 @@
         "packages/react-hotkeys/src/HotkeysProvider.tsx",
         "commit 6a7576fb (ci: apply automated fixes)"
       ]
+    },
+    "source:docs/framework/alpine/reference/functions/hotkeysPlugin.md": {
+      "fingerprint": "270b2e732001a6be7bd8655ada70612e3d609b878ab122803f2b3c4be08d408f",
+      "snapshot": {
+        "docs/framework/alpine/reference/functions/hotkeysPlugin.md": "c994b9bdad745c5dba2c64a79a78e82f681e05ef805c88652a9ca896ba240836"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference page; line numbers and the hotkeysPlugin doc comment changed.",
+      "evidence": ["docs/framework/alpine/reference/functions/hotkeysPlugin.md"]
+    },
+    "source:examples/alpine/createHeldKeys/src/main.ts": {
+      "fingerprint": "a970a6bbb2942767514753a2f50fc3a59a72b13f770f2620cee0a650a77e4bdc",
+      "snapshot": {
+        "examples/alpine/createHeldKeys/src/main.ts": "75f29fc337259be17e2792324969fd6b20755f0b2b65f42a5b3bcad7fd37d0bb"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
+      "evidence": ["examples/alpine/createHeldKeys/src/main.ts"]
+    },
+    "source:examples/alpine/createHotkey-sequences/src/main.ts": {
+      "fingerprint": "291e42f3732289a5500e8aa933111c7695b9ae07f751cf70f2598a3ad7159ea0",
+      "snapshot": {
+        "examples/alpine/createHotkey-sequences/src/main.ts": "68c56a393525782c54daabc0b17cb175f3478d64badf579be146e2e62c6dc1a4"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
+      "evidence": ["examples/alpine/createHotkey-sequences/src/main.ts"]
+    },
+    "source:examples/alpine/createHotkey/src/main.ts": {
+      "fingerprint": "b8e8c6c0b482c3491e30cc3f3a03e6cbcf96f29a9916649cdce6b126c55970d0",
+      "snapshot": {
+        "examples/alpine/createHotkey/src/main.ts": "6d42eeda660ae2c2d5812473516265af64531132862433c54687aec3b274dc62"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
+      "evidence": ["examples/alpine/createHotkey/src/main.ts"]
+    },
+    "source:examples/alpine/createHotkeyRecorder-sequences/src/main.ts": {
+      "fingerprint": "632543d2fe1011ea1b9c099c4dac6c4ccfc4903c7a0103ca3f4bed8f45c840d3",
+      "snapshot": {
+        "examples/alpine/createHotkeyRecorder-sequences/src/main.ts": "ba58ecb7f44b6d645a486b4313ba6b7830e5519eab72b6f723172d38c8f5459b"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
+      "evidence": ["examples/alpine/createHotkeyRecorder-sequences/src/main.ts"]
+    },
+    "source:examples/alpine/createHotkeyRecorder/src/main.ts": {
+      "fingerprint": "9e85988e8403f5d60d285224118a73d37f89d4153121bede0835505154e99ef8",
+      "snapshot": {
+        "examples/alpine/createHotkeyRecorder/src/main.ts": "33e70363942721ed75c701d1fa6f446ec4aae52a576dff920cadc085803c747b"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
+      "evidence": ["examples/alpine/createHotkeyRecorder/src/main.ts"]
+    },
+    "source:examples/alpine/createHotkeys-sequences/src/main.ts": {
+      "fingerprint": "eff5c19a7cf5ad7c097b57bb8da18a4becab21728eda95d6f87bdb88013a50df",
+      "snapshot": {
+        "examples/alpine/createHotkeys-sequences/src/main.ts": "2a20cd9ef7e5be9fd96ec8bd9523ce704d635c1c17eb760dd94a3a1976bc53c2"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
+      "evidence": ["examples/alpine/createHotkeys-sequences/src/main.ts"]
+    },
+    "source:examples/alpine/createHotkeys/src/main.ts": {
+      "fingerprint": "d31d62c73963d104161807dbceeb8bd06b5e1e17ed917f379ed95fd23b56ce2a",
+      "snapshot": {
+        "examples/alpine/createHotkeys/src/main.ts": "bb9dfc93077ff80c87530c7d050981c4f522818dff49399fa2adcdaddeedec74"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
+      "evidence": ["examples/alpine/createHotkeys/src/main.ts"]
+    },
+    "source:examples/alpine/createKeyHold/src/main.ts": {
+      "fingerprint": "e350c79ef05391a1838c1540ab66c43c7e501921dce91c9422eb44b0c68b3807",
+      "snapshot": {
+        "examples/alpine/createKeyHold/src/main.ts": "273598da0c63af877680a9a483c43d429473b014f5597461651cc95d5d5798e4"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
+      "evidence": ["examples/alpine/createKeyHold/src/main.ts"]
+    },
+    "source:packages/alpine-hotkeys/tests/alpine-instance.test.ts": {
+      "fingerprint": "7e33fe648dccd7abe7293c0fa9e5ca5d7b25023dde9568d4af846ebdd3d50363",
+      "snapshot": {
+        "packages/alpine-hotkeys/tests/alpine-instance.test.ts": "bec62f08a3be3419b56a5b212ad22c6525ad04d64121348b14b97e4323b5c41b"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Tests for using the plugin's Alpine instance, the window.Alpine fallback and the missing-Alpine error; the setup file installs the plugin. Guidance is reviewed under the alpine-hotkeys skill item.",
+      "evidence": ["packages/alpine-hotkeys/tests/alpine-instance.test.ts"]
+    },
+    "source:packages/alpine-hotkeys/tests/setup.ts": {
+      "fingerprint": "50701ec86eac9c926fd203818974cfe27f6e2cb5638c540915e735899f98ce3b",
+      "snapshot": {
+        "packages/alpine-hotkeys/tests/setup.ts": "8324659e7d2b066b2e08d017292297708110ffb241d2230965cde154f01c56f1"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Tests for using the plugin's Alpine instance, the window.Alpine fallback and the missing-Alpine error; the setup file installs the plugin. Guidance is reviewed under the alpine-hotkeys skill item.",
+      "evidence": ["packages/alpine-hotkeys/tests/setup.ts"]
+    },
+    "source:packages/alpine-hotkeys/vitest.config.ts": {
+      "fingerprint": "eb075195e56bbad1862845401cf6887d4ffa513423c61104900f80cc73798070",
+      "snapshot": {
+        "packages/alpine-hotkeys/vitest.config.ts": "aebbdb2fe7e692881ed192fcbdd9fb3670ad7a6020a6251f566d2705473fba8b"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Tests for using the plugin's Alpine instance, the window.Alpine fallback and the missing-Alpine error; the setup file installs the plugin. Guidance is reviewed under the alpine-hotkeys skill item.",
+      "evidence": ["packages/alpine-hotkeys/vitest.config.ts"]
+    },
+    "source:packages/angular-hotkeys-devtools/src/AngularHotkeysDevtools.ts": {
+      "fingerprint": "c6383c6e5ec3d6450abc0daaf315bcced2682010d6f0f1e323f3beeba9c9a530",
+      "snapshot": {
+        "packages/angular-hotkeys-devtools/src/AngularHotkeysDevtools.ts": "04d2c0b84a0358bcfc252847ceb013c76b4e97a58a53277e175f0f6767031592"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": [
+        "packages/angular-hotkeys-devtools/src/AngularHotkeysDevtools.ts"
+      ]
+    },
+    "source:packages/angular-hotkeys-devtools/src/index.ts": {
+      "fingerprint": "8464af2da5bffcce3ead58a78828171eb4caa2af0fde8f5c0ccf7aa9e6a47733",
+      "snapshot": {
+        "packages/angular-hotkeys-devtools/src/index.ts": "9eaf4367744cf3e590f5ff26e78221ec63fc3e9ba2c0b2fd302ebb4290d1c05e"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/angular-hotkeys-devtools/src/index.ts"]
+    },
+    "source:packages/angular-hotkeys-devtools/src/plugin.ts": {
+      "fingerprint": "0f351e2af072b8c44c1550df08beabc0a11a1333440aaf4963c054647c75fb12",
+      "snapshot": {
+        "packages/angular-hotkeys-devtools/src/plugin.ts": "10bc1286908e0df0f13f9dd36cbec718b70aed71ce1e5675da2664365c538525"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/angular-hotkeys-devtools/src/plugin.ts"]
+    },
+    "source:packages/angular-hotkeys-devtools/src/production.ts": {
+      "fingerprint": "65b9e2742cc640e6b33724ac85cd3bc9b73d3fb30d62a3e155d5d01eb840086b",
+      "snapshot": {
+        "packages/angular-hotkeys-devtools/src/production.ts": "7da4255a4df3c0aef1da462c634bd74ca3b25590315204d9c2456ebf9678b9a3"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/angular-hotkeys-devtools/src/production.ts"]
+    },
+    "source:packages/hotkeys-devtools/src/core.tsx": {
+      "fingerprint": "6b22a3a7f67e5ee17a05cde52ead2c582d5ed9996fa06839cfcb8085a3fb23f4",
+      "snapshot": {
+        "packages/hotkeys-devtools/src/core.tsx": "63cf6ef72a8d29a58292e6fa64d69130955ba746bbc309073e1ec16e7ac21ac5"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/hotkeys-devtools/src/core.tsx"]
+    },
+    "source:packages/hotkeys-devtools/src/index.ts": {
+      "fingerprint": "87a756c155fda12cd148f5db7519db31d5d0cffc454550724cb600ad4acb2be1",
+      "snapshot": {
+        "packages/hotkeys-devtools/src/index.ts": "f69f186759ea06d1f6e1b2514f611b0d8bc36217322c48587018406eb4c2f2ec"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/hotkeys-devtools/src/index.ts"]
+    },
+    "source:packages/hotkeys-devtools/src/production.ts": {
+      "fingerprint": "f11f433ef428c5eb1ed164919001c5e94f8f847b08dca9c2a9d098cce28e789f",
+      "snapshot": {
+        "packages/hotkeys-devtools/src/production.ts": "46d588e21e0ba1f9c3e13ac2d333f8e4a826f8b2a4f6fee627a0fc2478041784"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/hotkeys-devtools/src/production.ts"]
+    },
+    "source:packages/hotkeys-devtools/src/types.ts": {
+      "fingerprint": "1bcf132f83d0cea68a2ece2cfb1e751c26ac5304d587528e4a5c6a8b9ae4c126",
+      "snapshot": {
+        "packages/hotkeys-devtools/src/types.ts": "c7331c3eff5e7a527518678a3aae29e9264bbdd4e17ea4e6a6fb35853edfc99d"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/hotkeys-devtools/src/types.ts"]
+    },
+    "source:packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx": {
+      "fingerprint": "a56954864fae440d16b2703fcc1f9d6b6b56a49bcecc4a47ac4d58a0dd16139c",
+      "snapshot": {
+        "packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx": "a13962faa7f7f245e3ad6b84fde7f55b0bd1f5ab6d01491dc0dc5dc065371dd8"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": [
+        "packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx"
+      ]
+    },
+    "source:packages/preact-hotkeys-devtools/src/index.ts": {
+      "fingerprint": "7731f1314cb3365e58eb6bfa762750a825fa1d88ba7e8eec3a6eab2951358893",
+      "snapshot": {
+        "packages/preact-hotkeys-devtools/src/index.ts": "8403ed4b9b11093aab7468395ecad24912833a003e268f0c6c2dcd0133d54f06"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/preact-hotkeys-devtools/src/index.ts"]
+    },
+    "source:packages/preact-hotkeys-devtools/src/plugin.tsx": {
+      "fingerprint": "12fcf1ecfe42c791007298a078c1ed1bb35cc578c03706275e5a5ae0a718dd15",
+      "snapshot": {
+        "packages/preact-hotkeys-devtools/src/plugin.tsx": "8906f2712262957f597d464036c492eae425e094dd30fccd49521be9fdf6b10a"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/preact-hotkeys-devtools/src/plugin.tsx"]
+    },
+    "source:packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx": {
+      "fingerprint": "00dfa8e759888fe01d57bd0d98777050fc42099ad233b0e1f89174e482241d5c",
+      "snapshot": {
+        "packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx": "ded2c9d5d1794e80e7233543ea50f6e6a632f0eee50006e504c39d60dc0c55e4"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": [
+        "packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx"
+      ]
+    },
+    "source:packages/react-hotkeys-devtools/src/index.ts": {
+      "fingerprint": "da9ecae473bc9723d097b6100b7d9897e3c2c3f4d3de6a7feab13cb4edea9824",
+      "snapshot": {
+        "packages/react-hotkeys-devtools/src/index.ts": "5c9571d38377d444a25c9093cf4d40c151ab583c4568d20d3bed71b5644d8a01"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/react-hotkeys-devtools/src/index.ts"]
+    },
+    "source:packages/react-hotkeys-devtools/src/plugin.tsx": {
+      "fingerprint": "fcc70b32cd873f1e1c84cd96dc64b722f9ddb80833eb97dd4b995493432eb2a1",
+      "snapshot": {
+        "packages/react-hotkeys-devtools/src/plugin.tsx": "63bc3c7ec0189265315ae05a6d3e3c8fd7b5606a19ab5bb0739c3f91f18a9380"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/react-hotkeys-devtools/src/plugin.tsx"]
+    },
+    "source:packages/react-hotkeys-devtools/src/production.ts": {
+      "fingerprint": "72433872f8045b2b58c9fb707055176561343a14d280d96ff34a5fe63577024d",
+      "snapshot": {
+        "packages/react-hotkeys-devtools/src/production.ts": "3c7a08eff652b195552b7042a2800713f96fdd3dc57664a817a92ab7d453d43c"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/react-hotkeys-devtools/src/production.ts"]
+    },
+    "source:packages/solid-hotkeys-devtools/src/SolidHotkeysDevtools.tsx": {
+      "fingerprint": "cd8a54b910334f9c83ac0682eacf2d97e7ad47118e389081651cc77d698bf83f",
+      "snapshot": {
+        "packages/solid-hotkeys-devtools/src/SolidHotkeysDevtools.tsx": "f1af15c3ed641720e915e60c07bea9566785b4af2c8ce0316012969890e641a3"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": [
+        "packages/solid-hotkeys-devtools/src/SolidHotkeysDevtools.tsx"
+      ]
+    },
+    "source:packages/solid-hotkeys-devtools/src/index.ts": {
+      "fingerprint": "6eddde2c0502f20d852d7826f3f7d7c67382d25a3b875cd9f7a6162649628202",
+      "snapshot": {
+        "packages/solid-hotkeys-devtools/src/index.ts": "2579e792ea4a047b670cf0594a0f7fee78f1136ee60d13975b28fbc9bc04b7e8"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/solid-hotkeys-devtools/src/index.ts"]
+    },
+    "source:packages/solid-hotkeys-devtools/src/plugin.tsx": {
+      "fingerprint": "508c46d7ca6e6bb53b0779c55ed946cd0a82a6f89501245ffd92521cd2759648",
+      "snapshot": {
+        "packages/solid-hotkeys-devtools/src/plugin.tsx": "046fb0581cfcd62ae7bf2b273722aff6510ad99b2b83d4d88243286421643a91"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/solid-hotkeys-devtools/src/plugin.tsx"]
+    },
+    "source:packages/solid-hotkeys-devtools/src/production.ts": {
+      "fingerprint": "9fee86a61b2dc189140d22c3f4dfb2f8adf5637200e0507c031c30f53a2578b8",
+      "snapshot": {
+        "packages/solid-hotkeys-devtools/src/production.ts": "3eddfc0da79cd0e3960089bf6d66d45715b6e86f2462309b12e6f62d91e9ab50"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/solid-hotkeys-devtools/src/production.ts"]
+    },
+    "source:packages/svelte-hotkeys-devtools/src/SvelteHotkeysDevtools.ts": {
+      "fingerprint": "8a19b065ae654332da8d737443f6b3f4def46de1b49a2ec4b7e7ebba10ac22a5",
+      "snapshot": {
+        "packages/svelte-hotkeys-devtools/src/SvelteHotkeysDevtools.ts": "55fa300681bbb8faef59e7e14dbcdade65b06c327b3dd66740a45761723bc327"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": [
+        "packages/svelte-hotkeys-devtools/src/SvelteHotkeysDevtools.ts"
+      ]
+    },
+    "source:packages/svelte-hotkeys-devtools/src/index.ts": {
+      "fingerprint": "46ae2d9d13595496b6d3ef42fc4b244d4387251b0038f9f1bc17d111d325f59e",
+      "snapshot": {
+        "packages/svelte-hotkeys-devtools/src/index.ts": "e9f7e5effe31bcb3577dfb0078d7cba3dd3464975f659587e4c396a30ec0902e"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/svelte-hotkeys-devtools/src/index.ts"]
+    },
+    "source:packages/svelte-hotkeys-devtools/src/plugin.ts": {
+      "fingerprint": "533929ecd03054ed938271763d11c5267984a5b04b29356e5190cae186b75e5f",
+      "snapshot": {
+        "packages/svelte-hotkeys-devtools/src/plugin.ts": "7e9591fce562c8cb2aafca8c5e02719bb21bc5e74bbcacc90d072d1d6b286723"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/svelte-hotkeys-devtools/src/plugin.ts"]
+    },
+    "source:packages/svelte-hotkeys-devtools/src/production.ts": {
+      "fingerprint": "41d447ed1ec63a144daaebca94216247473cfbf5d304d7358c2827383a981ad8",
+      "snapshot": {
+        "packages/svelte-hotkeys-devtools/src/production.ts": "6dc22652067face2df6514c8ed51f55fc016f2c36226611c4b2d03f5bb7fa641"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/svelte-hotkeys-devtools/src/production.ts"]
+    },
+    "source:packages/svelte-hotkeys/src/getHeldKeyCodesMap.svelte.ts": {
+      "fingerprint": "2291f12354e04fdb4a604b990168032b9e4f85b201e44cf6f0b1946cd8c0f174",
+      "snapshot": {
+        "packages/svelte-hotkeys/src/getHeldKeyCodesMap.svelte.ts": "032fc8e325fc198e52fb11509968c56a1f3b2890198d8f28f6ddf97934b3fa96"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "no-change",
+      "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
+      "evidence": ["packages/svelte-hotkeys/src/getHeldKeyCodesMap.svelte.ts"]
+    },
+    "source:packages/svelte-hotkeys/src/getHeldKeys.svelte.ts": {
+      "fingerprint": "b2e26275e82f023b74fd9cd3113a63e7a0459e8334f92720f22e83b90e031e05",
+      "snapshot": {
+        "packages/svelte-hotkeys/src/getHeldKeys.svelte.ts": "24d251e52908c758c6bc81d948960d595e6a0309a520d561fa3205f9efeb3c67"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "no-change",
+      "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
+      "evidence": ["packages/svelte-hotkeys/src/getHeldKeys.svelte.ts"]
+    },
+    "source:packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts": {
+      "fingerprint": "1d914790aa1f859eb622ec45ed8683131abe30df476877613d5cd1123f95cab7",
+      "snapshot": {
+        "packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts": "40f69abd1a83ff6cde7b5da17d97cfe7a98898e5a214f0c9738b4358aa9a4760"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "no-change",
+      "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
+      "evidence": [
+        "packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts"
+      ]
+    },
+    "source:packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts": {
+      "fingerprint": "6b3c933a7237a4ffcf8b00a4b2977e4c5e2154af3f33f60b4dedefadb6c9d8e5",
+      "snapshot": {
+        "packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts": "49f2376bc4b2193d54dc4f622ae9e0e7f0032775a89f39edd802f2f802e80bb5"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "no-change",
+      "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
+      "evidence": ["packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts"]
+    },
+    "source:packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.ts": {
+      "fingerprint": "6f4696e5174f60aae37ca8e24b34aa4f1600003334163acebb94baf072808cad",
+      "snapshot": {
+        "packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.ts": "d05211fae8b8ee153d8ecafa676234f443b39333a315c1b4818c54677a3433b4"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.ts"]
+    },
+    "source:packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.tsx": {
+      "fingerprint": "04f0f781b152e9860f048bfb0e62ea53578cff4e87f56544886b489f9adc1f47",
+      "snapshot": {
+        "packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.tsx": null
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.tsx"]
+    },
+    "source:packages/vue-hotkeys-devtools/src/index.ts": {
+      "fingerprint": "758e147cf9fd2ca1b77c2bd0661f6d5d3dbaf39eb49f9f98ad0f58e66783c983",
+      "snapshot": {
+        "packages/vue-hotkeys-devtools/src/index.ts": "32d9b4f08e8693945eac2ec0d1128c0a2cb1a3d5ef88a3e18c91ec4561cdf0aa"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/vue-hotkeys-devtools/src/index.ts"]
+    },
+    "source:packages/vue-hotkeys-devtools/src/plugin.ts": {
+      "fingerprint": "726d5857fcb74266a44f7cf92a2f404a98b9670aed5aa7cd5c4bc7544e87024e",
+      "snapshot": {
+        "packages/vue-hotkeys-devtools/src/plugin.ts": "f84af53877335d790fc9f0ac3bc6a2d14c9ccc5cae1046afef8cfce0e8f68f08"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/vue-hotkeys-devtools/src/plugin.ts"]
+    },
+    "source:packages/vue-hotkeys-devtools/src/production.ts": {
+      "fingerprint": "edc58d36c59a9931e3fd2d7070b2f42ff066e387818089281cb1d5192f295194",
+      "snapshot": {
+        "packages/vue-hotkeys-devtools/src/production.ts": "0554ec0475032f230e90f7ef13528c3fd8d8e5f4a17bcc9f30ebfa4456bcbe07"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/vue-hotkeys-devtools/src/production.ts"]
+    },
+    "source:packages/vue-hotkeys-devtools/tests/panel.test.ts": {
+      "fingerprint": "e51ad0c77bb7950a5699b6751a35bcda844e7aa8c6d42a84995a9e69f14260fd",
+      "snapshot": {
+        "packages/vue-hotkeys-devtools/tests/panel.test.ts": "d5404e738b2dbb2f89b8b43e8c9b77826c0c9e302b0ab83258805d453dbdac53"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/vue-hotkeys-devtools/tests/panel.test.ts"]
+    },
+    "source:packages/vue-hotkeys-devtools/tsconfig.json": {
+      "fingerprint": "a4069656b10f6bc4ce06558a5498ccf2c8945a4290edef4347dabcc81f3a3c91",
+      "snapshot": {
+        "packages/vue-hotkeys-devtools/tsconfig.json": "0648d489019bc097f35ebdc2e8d3359324107b15fbf60fb47337cfcc1e973dff"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/vue-hotkeys-devtools/tsconfig.json"]
     }
   }
 }
