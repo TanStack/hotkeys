@@ -7,7 +7,7 @@ title: useHeldKeys
 function useHeldKeys(): string[];
 ```
 
-Defined in: [useHeldKeys.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHeldKeys.ts#L26)
+Defined in: [useHeldKeys.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHeldKeys.ts#L28)
 
 React hook that returns an array of currently held keyboard keys.
 

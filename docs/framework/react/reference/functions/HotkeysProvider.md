@@ -4,10 +4,10 @@ title: HotkeysProvider
 ---
 
 ```ts
-function HotkeysProvider<T>(__namedParameters): Element;
+function HotkeysProvider<T>(__namedParameters): ReactElement;
 ```
 
-Defined in: [HotkeysProvider.tsx:107](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L107)
+Defined in: [HotkeysProvider.tsx:109](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L109)
 
 Provides default options, app hotkeys, and the user's custom hotkeys.
 
@@ -29,7 +29,7 @@ while it is mounted and enabled; with `exclusive`, only its hotkeys fire.
 
 ## Returns
 
-`Element`
+`ReactElement`
 
 ## Examples
 
