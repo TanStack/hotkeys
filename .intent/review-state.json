@@ -577,14 +577,18 @@
       "evidence": ["docs/framework/react/guides/hotkey-hints.md"]
     },
     "source:docs/framework/react/reference/functions/useHotkeyHint.md": {
-      "fingerprint": "57d985be45ff69e16a1858294792e6f07bd09967fd085f7199cf443e1201e379",
+      "fingerprint": "5be6c63c069a8b796bbb2bea2041789b17acbffdc0cc760d3026e23c29f963ee",
       "snapshot": {
-        "docs/framework/react/reference/functions/useHotkeyHint.md": "8ad8e2e7f56ff758565f73fb8733d5e4b657fec49d26259eed6032d01ba2e9e9"
+        "docs/framework/react/reference/functions/useHotkeyHint.md": "8902b9d92e3148b498643a47e892f1eb1443c9b8bfea0fb20c53e88b3864d455"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
-      "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
-      "evidence": ["docs/framework/react/reference/functions/useHotkeyHint.md"]
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useHotkeyHint.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
     },
     "source:docs/framework/solid/guides/hotkey-hints.md": {
       "fingerprint": "209e8b94998dc992ea28e9a209adfd7944d8e7448f1e7e75fe481a28566fe9cf",
@@ -1760,15 +1764,17 @@
       "evidence": ["docs/framework/react/guides/hotkey-manager.md"]
     },
     "source:docs/framework/react/reference/functions/useHotkeyScopesState.md": {
-      "fingerprint": "6e04abc76cc18c26951ef1f0badb83dee20c906ca91b6a7bfa94c647ee6713b9",
+      "fingerprint": "f795347c3e2cad0712d265ce1daa905f87e385a9cc7d5ca973db04ac70a1bf06",
       "snapshot": {
-        "docs/framework/react/reference/functions/useHotkeyScopesState.md": "cc68085ff33099c0a92ab0e5726e0c7845521ee52a061dc6feaffa3122e0478d"
+        "docs/framework/react/reference/functions/useHotkeyScopesState.md": "8a1ac20b771c862772e71eff02bd21397dafc441a4730d4a1c92b7fc560dbb6c"
       },
-      "head": "5b07f208a45afb5b396c628025c52294de62d313",
-      "outcome": "out-of-scope",
-      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
       "evidence": [
-        "docs/framework/react/reference/functions/useHotkeyScopesState.md"
+        "docs/framework/react/reference/functions/useHotkeyScopesState.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
       ]
     },
     "source:docs/framework/react/reference/index.md": {
@@ -2688,6 +2694,356 @@
       "evidence": [
         "packages/react-hotkeys/tsdown.config.ts",
         "pnpm test:build for @tanstack/react-hotkeys passes"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/HotkeysProvider.md": {
+      "fingerprint": "f9779831e2d3ff91313cc82ed109a6de56433cbab505d85c5a3db7005ed0edd9",
+      "snapshot": {
+        "docs/framework/react/reference/functions/HotkeysProvider.md": "e56cad1df37f41ff16daaa38b58c44f950763c2b7ae07c5f0d8c061595ca203b"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/HotkeysProvider.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useAppHotkeyList.md": {
+      "fingerprint": "9c07a5a3158e36212871f93fe143eedf4c1f98b99aa3d095c3cf48398d12d99d",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useAppHotkeyList.md": "1118395306fb31f44c61eb1b9b4357cfe73252b06d7db059e8a7b372376b91f1"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useAppHotkeyList.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useAppHotkeys.md": {
+      "fingerprint": "9e543d4926bcbd988aef5f4b89351bade660bc7cfd71f0df013def3e1912deb4",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useAppHotkeys.md": "f492b12728e0463d58f13ace3119fd4f27f036f7e0f0aa12ea087bfb5263cbbe"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useAppHotkeys.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useCustomHotkeys.md": {
+      "fingerprint": "20b7cd319d7f0be2a8656913eaed8e2b603dc9fd25f6dafa326a1446615725bd",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useCustomHotkeys.md": "e9d0bc164b67f27531c33146826182183f39483e4e5feb9e3cb176cfdd33abdd"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useCustomHotkeys.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useDefaultHotkeysOptions.md": {
+      "fingerprint": "cf662117c0382dd6622ef91d29bb6f0e6941c17a6307818ca6ad2544e758fb0e",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useDefaultHotkeysOptions.md": "471679488bc62613e860e92c3c18d137b76000bdd2d5fc6606f195a812faf6a8"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useDefaultHotkeysOptions.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useHeldKeyCodes.md": {
+      "fingerprint": "9e036080d9f412b523378028971bc5662c2008d6c2c212a07d74e6172a8fc720",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useHeldKeyCodes.md": "8b82741674f6746db3110c854558324d8328b08fc8d0c1c140c9ac7a8fb2806b"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useHeldKeyCodes.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useHeldKeys.md": {
+      "fingerprint": "882f3beb513659020c7e339f75a0e49fe66e6fc89c560652cccc3d8af4214d3f",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useHeldKeys.md": "154e049ee019e16e142f386882f1af3e3230c59f8753b7d0192a005c905dcd48"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useHeldKeys.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useHotkey.md": {
+      "fingerprint": "5816fe93338875027408f622ee004e6c26f100c3eadb07a5d8372490ccfa5607",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useHotkey.md": "30e57309c8c568b6a138f3387211c5a20f853caf10522a76b2f3f30d556b6422"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useHotkey.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useHotkeyRecorder.md": {
+      "fingerprint": "0f84bff435e3305dc27fc963a78934e427628123dc27b61c43f965e4a237fe90",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useHotkeyRecorder.md": "bd3c421c0f65755ba778f104a83c1d139575dd4f4e57217099c6323cd1cbed28"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useHotkeyRecorder.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useHotkeyRegistrations.md": {
+      "fingerprint": "93bd43b0bad9adf3adb5e9c12e10416c91dd87173b223671197afe6188fa6562",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useHotkeyRegistrations.md": "957838e1da21d617ea8a529c19da6a8bcb18aef37ff170f8b7d75bbfc5f077b3"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useHotkeyRegistrations.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useHotkeys.md": {
+      "fingerprint": "9a3f60ebc7513c51abd258db4151484a85c176549a3327f50ce409600140eeb7",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useHotkeys.md": "d7e5c0259d9e74a6dc790164a73e3bb73d1f2cd208cb1350f005dc84a6380403"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useHotkeys.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useHotkeysContext.md": {
+      "fingerprint": "4a200c839c1591d455a603a88d93a1efbf81416c431a0e3dcc3fada8b9b7fa1b",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useHotkeysContext.md": "48f14c130836777288225c59e855383ff57f5183d5369ff6628c2db96fdb7231"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useHotkeysContext.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useKeyHold.md": {
+      "fingerprint": "39fecf77ed41c287816748aed3e8d2d89148b84db4d100afdb1c9c505cec7692",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useKeyHold.md": "ed7b142b99e40888991365318ff8f7344be13cbc33871e5ec140d0c9b59f08fb"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useKeyHold.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/interfaces/HotkeysProviderOptions.md": {
+      "fingerprint": "47af71a7b465b68573fede0691da030a1c5525cb89ef4e7fc6563f1cdac13796",
+      "snapshot": {
+        "docs/framework/react/reference/interfaces/HotkeysProviderOptions.md": "7b80ab601c57ccca327d795c8ceb2ce15f4bd9532d68d82bc7183fbcc8884337"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/interfaces/HotkeysProviderOptions.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/interfaces/HotkeysProviderProps.md": {
+      "fingerprint": "361a4bded298f7e741ebbc0c6358b3f33c873f28b9f4723e99da3786408404fb",
+      "snapshot": {
+        "docs/framework/react/reference/interfaces/HotkeysProviderProps.md": "6c321229daeb70695c9e64f2f1bb78fd8b59b29f43f9524c9773fe503bdcd166"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/interfaces/HotkeysProviderProps.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/interfaces/ReactHotkeyRecorder.md": {
+      "fingerprint": "95282132fda0d62f19567df06a0f569d65877e0f26239b3adba7cf59c3c17c5b",
+      "snapshot": {
+        "docs/framework/react/reference/interfaces/ReactHotkeyRecorder.md": "ff4d91e44cf511e67faa4e5eb02ec4b6b8ceb8403b432905b0f2aad8c0ebe292"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/interfaces/ReactHotkeyRecorder.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/interfaces/UseCustomHotkeysResult.md": {
+      "fingerprint": "48c204c8765cfab628cc395b4665563b3ccb19d24f2da947f9742dd24e473722",
+      "snapshot": {
+        "docs/framework/react/reference/interfaces/UseCustomHotkeysResult.md": "3fc4726323bf562e052ea2c403a3b536f7e8227a917751f6518839b55de1c1cd"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/interfaces/UseCustomHotkeysResult.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/type-aliases/UseAppHotkeyOptions.md": {
+      "fingerprint": "d4ba6127ae988d382ed4c0989fbde1e81af74f4927d2fe894dfeb12a79a6011a",
+      "snapshot": {
+        "docs/framework/react/reference/type-aliases/UseAppHotkeyOptions.md": "5359dc6a6d13f7b26b7c76eb7d4ca1aebb9e68fd842f958139e146727be4d679"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/type-aliases/UseAppHotkeyOptions.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/type-aliases/UseHotkeyChordOptions.md": {
+      "fingerprint": "a2db52566c7019de55425d51df27e82e9e27b7add3d6702b66ab132752309389",
+      "snapshot": {
+        "docs/framework/react/reference/type-aliases/UseHotkeyChordOptions.md": "76724e75deafa82249acd4b279e2b00423eefc64c6faaeae13f249770d765d43"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/type-aliases/UseHotkeyChordOptions.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/type-aliases/UseHotkeyCommonOptions.md": {
+      "fingerprint": "3f15ed86220eae06c724b77c1b49385cffff8e29a7d89ba5977ff0590758f379",
+      "snapshot": {
+        "docs/framework/react/reference/type-aliases/UseHotkeyCommonOptions.md": "33904836e7c71539dc6acd0c9d9169a4df7235359bed17606564b236ca84f36a"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/type-aliases/UseHotkeyCommonOptions.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/type-aliases/UseHotkeyDefinition.md": {
+      "fingerprint": "42672f263b38761ee4351fa4086b44aa8c30ddf8a65459ad8a625b506700dfc9",
+      "snapshot": {
+        "docs/framework/react/reference/type-aliases/UseHotkeyDefinition.md": "773bd8a53773fe3cbe0f612f2c0e730b0e3010b3afdeec25fcc2e4fda237fb1b"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/type-aliases/UseHotkeyDefinition.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/type-aliases/UseHotkeyOptions.md": {
+      "fingerprint": "3c7a66f068007a4db133deb12866fcb4253384bed051e44fcc434543a9262bf3",
+      "snapshot": {
+        "docs/framework/react/reference/type-aliases/UseHotkeyOptions.md": "6a5ef6c3f78311eae46bf803843a60a6ab91bcbaf70d470f1cdd42cb8ad8cf2c"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/type-aliases/UseHotkeyOptions.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/type-aliases/UseHotkeyOptionsFor.md": {
+      "fingerprint": "cd11c61737c8dcd996884d43614cf9360a9f87154d3a2f0f344a383feb600eb5",
+      "snapshot": {
+        "docs/framework/react/reference/type-aliases/UseHotkeyOptionsFor.md": "ddd2c825ace36c0ea591cf3bb08a720f360ffe0d0e67144a2a96b1ae3fac11bf"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/type-aliases/UseHotkeyOptionsFor.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/type-aliases/UseHotkeySequenceOptions.md": {
+      "fingerprint": "c09db9fdace49c41d575cdab3e38fc956cdd85cf394bdc1a4c0b3d9d56a46923",
+      "snapshot": {
+        "docs/framework/react/reference/type-aliases/UseHotkeySequenceOptions.md": "b9af35aa97e6005aef0247201a96d7a4a2d847d3c530eadb68e43cb7bdb98339"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/type-aliases/UseHotkeySequenceOptions.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/type-aliases/UseHotkeyTarget.md": {
+      "fingerprint": "30beca7f8ff4ddb567680b2dd41f7f3fa245a9bff9e1dec7c26d57d695c69ed1",
+      "snapshot": {
+        "docs/framework/react/reference/type-aliases/UseHotkeyTarget.md": "c6815dc1c41ecda9a2b54dc01e700106680ec6be4d53aae0557f4cbc52e35daa"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/type-aliases/UseHotkeyTarget.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
       ]
     }
   }
