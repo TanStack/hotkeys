@@ -1,4 +1,7 @@
-import { createHotkeys, createHotkeysAttachment } from './createHotkeys.svelte.js'
+import {
+  createHotkeys,
+  createHotkeysAttachment,
+} from './createHotkeys.svelte.js'
 import type { Attachment } from 'svelte/attachments'
 import type {
   AppHotkey,

@@ -12,7 +12,7 @@ function createHotkeyAttachment<T>(
 options?): Attachment<HTMLElement>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:94](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L94)
+Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:97](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L97)
 
 Create an attachment for an element-scoped hotkey: a chord, a sequence, or
 an app hotkey that listens on the attached element.
@@ -60,7 +60,7 @@ function createHotkeyAttachment<T>(
 options?): Attachment<HTMLElement>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L99)
+Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:102](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L102)
 
 Create an attachment for an element-scoped hotkey: a chord, a sequence, or
 an app hotkey that listens on the attached element.
