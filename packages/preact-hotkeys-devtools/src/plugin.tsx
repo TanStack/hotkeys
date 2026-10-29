@@ -1,7 +1,17 @@
 import { createPreactPlugin } from '@tanstack/devtools-utils/preact'
 import { HotkeysDevtoolsPanel } from './PreactHotkeysDevtools'
+import type { JSX } from 'preact'
+import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools'
 
-type HotkeysDevtoolsPluginFactory = ReturnType<typeof createPreactPlugin>[0]
+/** A plugin for `TanStackDevtools` from `@tanstack/preact-devtools`. */
+export interface HotkeysDevtoolsPreactPlugin {
+  name: string
+  id?: string
+  defaultOpen?: boolean
+  render: (el: HTMLElement, props: HotkeysDevtoolsPanelProps) => JSX.Element
+}
+
+type HotkeysDevtoolsPluginFactory = () => HotkeysDevtoolsPreactPlugin
 
 const plugins = createPreactPlugin({
   name: 'TanStack Hotkeys',

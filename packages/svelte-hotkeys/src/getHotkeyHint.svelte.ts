@@ -6,14 +6,14 @@ import {
   matchesHeldModifiers,
   resolveAppHotkey,
 } from '@tanstack/hotkeys'
-import { getHotkeysContext } from './HotkeysCtx'
-import { resolveMaybeGetter } from './internal.svelte'
+import { getHotkeysContext } from './HotkeysCtx.js'
+import { resolveMaybeGetter } from './internal.svelte.js'
 import type {
   AppHotkey,
   HeldModifierOptions,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
-import type { MaybeGetter } from './internal.svelte'
+import type { MaybeGetter } from './internal.svelte.js'
 
 export interface SvelteHotkeyHint {
   readonly visible: boolean

@@ -1,6 +1,7 @@
 import {
   createHotkeysScope,
   formatForDisplay,
+  hotkeysPlugin,
   normalizeHotkey,
   validateHotkey,
 } from '@tanstack/alpine-hotkeys'
@@ -11,6 +12,9 @@ import type {
   HotkeyRegistrationsResult,
 } from '@tanstack/alpine-hotkeys'
 import './index.css'
+
+// Gives every hotkeys scope the app's Alpine instance.
+Alpine.plugin(hotkeysPlugin)
 
 interface DynamicShortcut {
   id: number

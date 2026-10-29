@@ -3,24 +3,25 @@
   "baseline": "ad56a4b0dbf3c34d8552eca2cc88c5c7000d520a",
   "items": {
     "skill:packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": {
-      "fingerprint": "f1ffa2a31e85d6e7cfbcf730e4b1f5e62d0bd4a59cf8153832cd3b9f299fd424",
+      "fingerprint": "f7e6791bcab14d204081461064163520817356a360f08e158b6d860dd513918d",
       "snapshot": {
         "docs/framework/alpine/guides/app-hotkeys.md": "536c327d4d9f80219a0dcdd04bb36b684c35567ad76f86327287ae6a21f03199",
-        "docs/framework/alpine/quick-start.md": "82877b602b370603286ca41f384f5e38da25f7df30bf707e04ea17018792875c",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "e6f704998fbe368fae46cbc832f4887edbeef452b4cdb017bd730e63fcd646c6",
+        "docs/framework/alpine/quick-start.md": "de471401f70d66c2a81182f917f6eef02d808bdda1a2bc6268a6aa1e5365000c",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "8c0a3ab25f684d8445925d43dbadabb4e491b12001d78811cbf0d3f41db044c8",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "fdc12aafd6098bde8b4e7f5d8a8afb12227ac99cd753e06fc27401d5d8c8fead",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "f712ddb3354230197eb54d6f270d00a41c2b889e60690e70853569fe1a5207ea",
         "packages/alpine-hotkeys/src/createHotkey.ts": "3ee3029171f53f3693980bc975252b3decea27c1920ccc0ec1dd8fe2b3810c9b",
         "packages/alpine-hotkeys/src/createHotkeysScope.ts": "8fb6d17e8fe155327fdac17f9d057d6538c84474c1c464ee25409c23d52e7a85",
-        "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "77a4e764c9917d00ae0f2b8c37fc08ac6733003a5043f7e3e1a046f6936a7188",
-        "packages/alpine-hotkeys/src/scope.ts": "d6ce3fe86c87cf6483119baaa48e0950f30480f02ff861656035eb559c596176"
+        "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
+        "packages/alpine-hotkeys/src/scope.ts": "33b2731c6f3754315a6b31fa8dff27805605835c3ae34aa62f92f6fd44d898a6"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "updated",
-      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
+      "reason": "The setup now installs Alpine.plugin(hotkeysPlugin) before Alpine.start(). The adapter no longer imports alpinejs; it uses the plugin's Alpine instance, falls back to window.Alpine, and throws when neither exists. The skill's sample, setup line and API row say so.",
       "evidence": [
-        "packages/hotkeys/src/hotkey-manager.ts",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"
+        "packages/alpine-hotkeys/src/scope.ts",
+        "packages/alpine-hotkeys/src/hotkeysPlugin.ts",
+        "packages/alpine-hotkeys/tests/alpine-instance.test.ts"
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
@@ -45,11 +46,11 @@
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
-      "fingerprint": "a40354b6ea8830f3b051a8ad3f884f3e04cb1da71af2829c4c2fd53978046174",
+      "fingerprint": "37777ecd64b32ae83c76d5fb46f339cd6f361b94fb488b4c343316032278c066",
       "snapshot": {
         "docs/framework/ember/guides/app-hotkeys.md": "5162292b3d62257c757ea0146fb5b1cc8c85b130081472b3675be077e8c898de",
         "docs/framework/ember/quick-start.md": "cabdc0cbd2b9ac6d4d7f9f2c8b8d3fc6ef2ac8c23df4cd8ebc9745c99023f8c8",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "047dabb323921dbc83995f9f994a11158df84b5bd91701bed54a5810a71285ec",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "ba4e5144d1b1e5435ffda905009c40b343b8cd829a93ec9553afc576d2388acc",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "3f01e7b8dabf61a801c8fd2e4e6658486ae4f9bdda588594236c38f7b70aed5f",
         "packages/ember-hotkeys/src/onHotkey.ts": "26007837b3c8476c3be6b492701756258a8d09fe6648550742fd1405be1448bd",
@@ -58,12 +59,14 @@
         "packages/ember-hotkeys/src/useHotkey.ts": "66b7b39970c5e61233f352baf14c41d9ac29cc3832e251470930e6507b454f63",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
       "outcome": "updated",
-      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
+      "reason": "The version line now matches the new ember-source peer (>=6.8.3 <6.9.0 || >=6.10.1). Classic builds of 6.8.0 to 6.8.2, 6.9.0 and 6.10.0 don't define @ember/reactive/collections, which src/utils.ts imports.",
       "evidence": [
-        "packages/hotkeys/src/hotkey-manager.ts",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"
+        "packages/ember-hotkeys/package.json",
+        "packages/ember-hotkeys/src/utils.ts",
+        "Classic ember-cli apps with ember-auto-import 2.13.1 and the packed addon: 6.8.3, 6.12.1 (use-ember-modules on and off) and 7.3.1 build and fire K in Chromium; 6.8.0 fails with \"Could not find module @ember/reactive/collections\"",
+        "pnpm test:lib for @tanstack/ember-hotkeys passes (Embroider/Vite suite)"
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
@@ -183,16 +186,16 @@
       ]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "46a32a3fd81e8b1e162b3f07d12801a4977086afbe0f5bce69c9d4a46feba7f6",
+      "fingerprint": "f5a95f6bbeac7e398901b72d4fb3bca1889f65bbb9bd63741e78053e5ad24706",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
         "docs/framework/react/quick-start.md": "d587fccff19a0cf3c131f832a8eb423d5d4892e78e521aa856fd23485015afe7",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "29a7233f6ba5ffecc8a84529353981ce820adee92cfdb8a9441c4a5c50554f9d",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "cfdd50d7cfdca297ce856fbf4c3510ca7d25759eecf7da285b9a7c5f4e7ed0dd",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "e45854b2346700249569ce418b0bb5593cd00a018336a60c9ed5cedeb8d49b3e",
-        "packages/react-hotkeys/src/HotkeysProvider.tsx": "bdf71bdf0de147134501e44ac03c8525d803f250b31c3d742c674fe01a85f17f",
-        "packages/react-hotkeys/src/useAppHotkeys.ts": "023eff9348a9209a2e3e99a2b9847da3be72206f98150b478dae81a215059577",
-        "packages/react-hotkeys/src/useHotkey.ts": "b22e215bf0ba20220b3a76ed4ded3ad724fe7a9c6ce9705acd371adfc004836b",
-        "packages/react-hotkeys/src/useHotkeys.ts": "58275023fd539ac8a9fcb6ceb355aeb491e276191c31a12780065bd0b462ce95",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx": "4e5604bfc2907232bdab60c6ed24a28f4b363dfac1c19883a0c65db6b5ac5bf1",
+        "packages/react-hotkeys/src/useAppHotkeys.ts": "eec5d9a2e281ab8892c56b9482cd930a06deb176581bba9cb409faa35b1bee91",
+        "packages/react-hotkeys/src/useHotkey.ts": "01c7e0b8de39f75028a6eec04abf5eb2cf6fb410177a24603e719eb90c030661",
+        "packages/react-hotkeys/src/useHotkeys.ts": "18fc224f0ec5efee2553fde4840dda78ec0ec7e5dcb2f812279bafcc2384184e",
         "packages/react-hotkeys/src/utils.ts": "e755c6f7e31291c06b0fc8e136a436bb9b52e03f6fcbfc5608d20e339997cc8e",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "25c572e968a78fd8df61f0bc98ba8adb41ecf0874437725e5ba28dd171e44fe1",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -212,12 +215,14 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
       "outcome": "updated",
-      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
+      "reason": "HotkeysProvider and the hooks now ship with 'use client', so a server layout can render HotkeysProvider without a wrapper. Hooks still run only in client components, which the skill keeps.",
       "evidence": [
-        "packages/hotkeys/src/hotkey-manager.ts",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md"
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "scripts/verify-package.ts",
+        "Next.js 16.4.3 build with a server layout rendering HotkeysProvider and HotkeysDevtoolsPanel passes, and K fires in next start and next dev; published 0.17.0 fails with \"createContext is not a function\"",
+        "pnpm test:lib for @tanstack/react-hotkeys passes, including the skill task checks"
       ]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
@@ -241,26 +246,23 @@
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "6fbe00da1a3df0353f8b7897a37ac0d9052abdf6cd0f139229e1c61f4be15c03",
+      "fingerprint": "b75b48ee186a877c213cfd9b005cb1f90395929ac412b41402ba25f39533eeb8",
       "snapshot": {
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
         "docs/framework/svelte/quick-start.md": "1ed87e6c76d9225f37db87f0d0e7dfd9f790adbf5b47cf87daa67143d155ce9b",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "d99ef59e6a695be73d48b954a337d5c91f471268bad8da590a7b4d72f1a8a1c4",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
-        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "1d6e065a5d7dbd14073e0617a990a923a4a811df43fa3261253fce45f55b066b",
-        "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "d444924b495f5517f3235365d5988b2df86be9f4ef83e89d9ac5385857f76040",
-        "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "014992b602a5551445edd04e4cfe408d0a4af97a49e39296c1de60c68b74d842",
-        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "ea3295fb5fc85da7e5d266914e264a6916d8cb540697d3f9ca881c844da0bfa8",
-        "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "ea5bf5ef7c2e7f6696f3354abe5f011cace7f046cb6a5c768c50cc2b840cf921",
-        "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a9662d748fcb8f8d7084411a99d581e29817faf42aa93b6142dfc2f5eea3fb9f"
+        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "117d9625215435b7a3eb6c5a9f23792a02548059ba114b5737a6b9fb610b276c",
+        "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "eb7fb67907a153aae3f0ce61e951e8ea5df46468ae06eb55ad696500839124a3",
+        "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "27959499674a4dbfeb048073807baf540586d0f0a63a0dbdde0246c7aa939706",
+        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "14960d025c687b2167653e047074f16f398c580a578b6266e31de4b3bfb341a1",
+        "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "cc69118ac4076f5c678987f0df18e8e0448bb7a2005effb802ae059d5b347455",
+        "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a6a995eea5b1334baef1909da68dea08f8df4e29819bada3549c9a0be86e6dcb"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
-      "outcome": "updated",
-      "reason": "Hint rows now say an element-targeted hotkey needs focus inside its element; registration status described as enabled and in an active scope.",
-      "evidence": [
-        "packages/hotkeys/src/hotkey-manager.ts",
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"
-      ]
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "outcome": "no-change",
+      "reason": "CI autofix wrapped one import line in createHotkey.svelte.ts. Formatting only; APIs and behavior are unchanged.",
+      "evidence": ["packages/svelte-hotkeys/src/createHotkey.svelte.ts"]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
       "fingerprint": "ac96f13c6fde14fcb0ca586b0ec2c952be261636cfff5bfadcca5cfa74898ea8",
@@ -285,13 +287,13 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "cd9093c837657c250149da40c85fa4c98b1b30506fba733551940d3474091d8e",
+      "fingerprint": "33795dd84a330b45555ac4d8d826aa0d8d9c2564d3d3c1448b309d05b46f801f",
       "snapshot": {
-        "_artifacts/domain_map.yaml": "dd50dde7eec97230c015f793602239e721dacb370936eafd4554988b4a2c1c89",
-        "_artifacts/skill_spec.md": "57693ee30406d1a76d7ec201cc480e37611b23141ec70d7f178b0b07f56248fd",
+        "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
+        "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
         "_artifacts/skill_tree.yaml": "c7e0b30458bd11e3a52e728163838166def6ee64419f1b632f1ea36a37e573af",
         "docs/framework/alpine/guides/app-hotkeys.md": "536c327d4d9f80219a0dcdd04bb36b684c35567ad76f86327287ae6a21f03199",
-        "docs/framework/alpine/quick-start.md": "82877b602b370603286ca41f384f5e38da25f7df30bf707e04ea17018792875c",
+        "docs/framework/alpine/quick-start.md": "de471401f70d66c2a81182f917f6eef02d808bdda1a2bc6268a6aa1e5365000c",
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "003fba191e3d13d4466754644c4d2174a550f48d437028bc163ba6acca6546ad",
         "docs/framework/angular/quick-start.md": "d1cc5f91cd50b579c8a4bd9811e76862308855ce602556e4fa36561bc7d62822",
         "docs/framework/ember/guides/app-hotkeys.md": "5162292b3d62257c757ea0146fb5b1cc8c85b130081472b3675be077e8c898de",
@@ -316,13 +318,13 @@
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "9e41458fe7488eedcbd4289019a66cde95b866ffb3081fdd0a808995580460ce",
         "docs/framework/vue/quick-start.md": "b4ca3394dc94e3b814054413afbf5e101fd5998a35daafad715e49de26a4932e",
         "docs/guides/sensible-defaults.md": "29b63a2aa05a4c7498bc2f235baa20bf4bcccbf9de78642ed5e27b431232ec1f",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "e6f704998fbe368fae46cbc832f4887edbeef452b4cdb017bd730e63fcd646c6",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "8c0a3ab25f684d8445925d43dbadabb4e491b12001d78811cbf0d3f41db044c8",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "fdc12aafd6098bde8b4e7f5d8a8afb12227ac99cd753e06fc27401d5d8c8fead",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "f712ddb3354230197eb54d6f270d00a41c2b889e60690e70853569fe1a5207ea",
         "packages/alpine-hotkeys/src/createHotkey.ts": "3ee3029171f53f3693980bc975252b3decea27c1920ccc0ec1dd8fe2b3810c9b",
         "packages/alpine-hotkeys/src/createHotkeysScope.ts": "8fb6d17e8fe155327fdac17f9d057d6538c84474c1c464ee25409c23d52e7a85",
-        "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "77a4e764c9917d00ae0f2b8c37fc08ac6733003a5043f7e3e1a046f6936a7188",
-        "packages/alpine-hotkeys/src/scope.ts": "d6ce3fe86c87cf6483119baaa48e0950f30480f02ff861656035eb559c596176",
+        "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
+        "packages/alpine-hotkeys/src/scope.ts": "33b2731c6f3754315a6b31fa8dff27805605835c3ae34aa62f92f6fd44d898a6",
         "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "2b0e9e34fb1338d2db1657beffd8664906ef200388854cfc2895cf9f428e00d9",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "5fe1b12a519e8ca5087d78d47050f7a2ec0c70bb9b7d6ebcbb050ee099e3effe",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "1e549ef79db70b5818326068c78ada5d410fdc680a4cb7ca12bdfd9d0de5d0dc",
@@ -330,7 +332,7 @@
         "packages/angular-hotkeys/src/injectHotkey.ts": "b3651b50beb5b94cdadaf3339be17984e79277222918550f53448fca511e0af6",
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "46db59ccc34f8158c98328ae152f47cdd182cdeef951bf9dc5c44fa12de1b305",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "cecc7d127934caaab72a694fe527ef7a7b31e660f98cc077dabacd5506e11619",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "047dabb323921dbc83995f9f994a11158df84b5bd91701bed54a5810a71285ec",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "ba4e5144d1b1e5435ffda905009c40b343b8cd829a93ec9553afc576d2388acc",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "3f01e7b8dabf61a801c8fd2e4e6658486ae4f9bdda588594236c38f7b70aed5f",
         "packages/ember-hotkeys/src/onHotkey.ts": "26007837b3c8476c3be6b492701756258a8d09fe6648550742fd1405be1448bd",
@@ -367,12 +369,12 @@
         "packages/preact-hotkeys/src/useHotkey.ts": "3a557416b1d8699c018aea0e1787c1b9cbfc161bdba0ecdcce3fb2a5de44f5b9",
         "packages/preact-hotkeys/src/useHotkeys.ts": "23ccd2ee8566bc62a8bca00c8a1c40fc4d37c8363b891667ae391f3e44bfa97b",
         "packages/preact-hotkeys/src/utils.ts": "930ee95e471c879bfcc32886c31128d702d92719b23c4bd8c06aa21e324502e9",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "29a7233f6ba5ffecc8a84529353981ce820adee92cfdb8a9441c4a5c50554f9d",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "cfdd50d7cfdca297ce856fbf4c3510ca7d25759eecf7da285b9a7c5f4e7ed0dd",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "e45854b2346700249569ce418b0bb5593cd00a018336a60c9ed5cedeb8d49b3e",
-        "packages/react-hotkeys/src/HotkeysProvider.tsx": "bdf71bdf0de147134501e44ac03c8525d803f250b31c3d742c674fe01a85f17f",
-        "packages/react-hotkeys/src/useAppHotkeys.ts": "023eff9348a9209a2e3e99a2b9847da3be72206f98150b478dae81a215059577",
-        "packages/react-hotkeys/src/useHotkey.ts": "b22e215bf0ba20220b3a76ed4ded3ad724fe7a9c6ce9705acd371adfc004836b",
-        "packages/react-hotkeys/src/useHotkeys.ts": "58275023fd539ac8a9fcb6ceb355aeb491e276191c31a12780065bd0b462ce95",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx": "4e5604bfc2907232bdab60c6ed24a28f4b363dfac1c19883a0c65db6b5ac5bf1",
+        "packages/react-hotkeys/src/useAppHotkeys.ts": "eec5d9a2e281ab8892c56b9482cd930a06deb176581bba9cb409faa35b1bee91",
+        "packages/react-hotkeys/src/useHotkey.ts": "01c7e0b8de39f75028a6eec04abf5eb2cf6fb410177a24603e719eb90c030661",
+        "packages/react-hotkeys/src/useHotkeys.ts": "18fc224f0ec5efee2553fde4840dda78ec0ec7e5dcb2f812279bafcc2384184e",
         "packages/react-hotkeys/src/utils.ts": "e755c6f7e31291c06b0fc8e136a436bb9b52e03f6fcbfc5608d20e339997cc8e",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "25c572e968a78fd8df61f0bc98ba8adb41ecf0874437725e5ba28dd171e44fe1",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -399,12 +401,12 @@
         "packages/solid-hotkeys/src/createHotkeys.ts": "a84dbede2c8bdda995d73a02353619a721282e1a92a44127108da54d1d0b821a",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "d99ef59e6a695be73d48b954a337d5c91f471268bad8da590a7b4d72f1a8a1c4",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
-        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "1d6e065a5d7dbd14073e0617a990a923a4a811df43fa3261253fce45f55b066b",
-        "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "d444924b495f5517f3235365d5988b2df86be9f4ef83e89d9ac5385857f76040",
-        "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "014992b602a5551445edd04e4cfe408d0a4af97a49e39296c1de60c68b74d842",
-        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "ea3295fb5fc85da7e5d266914e264a6916d8cb540697d3f9ca881c844da0bfa8",
-        "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "ea5bf5ef7c2e7f6696f3354abe5f011cace7f046cb6a5c768c50cc2b840cf921",
-        "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a9662d748fcb8f8d7084411a99d581e29817faf42aa93b6142dfc2f5eea3fb9f",
+        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "117d9625215435b7a3eb6c5a9f23792a02548059ba114b5737a6b9fb610b276c",
+        "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "eb7fb67907a153aae3f0ce61e951e8ea5df46468ae06eb55ad696500839124a3",
+        "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "27959499674a4dbfeb048073807baf540586d0f0a63a0dbdde0246c7aa939706",
+        "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "14960d025c687b2167653e047074f16f398c580a578b6266e31de4b3bfb341a1",
+        "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "cc69118ac4076f5c678987f0df18e8e0448bb7a2005effb802ae059d5b347455",
+        "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a6a995eea5b1334baef1909da68dea08f8df4e29819bada3549c9a0be86e6dcb",
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "565e5d5f33ed757855f0a3bcc78d65a191e52c1e3f33f9bf3dc534a4c0e70d3f",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "326ee1fe20c1d75a4ad720f69a3a4df9b9e3a057826115e955deb0ed25d88f9a",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "ad40dec6e2889ca62f3fda57fcbf67e940f4dab5a26cdc69ff99777d2d2e56af",
@@ -414,10 +416,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "476a5a50a21aefe6243f9bc6e8c6a679978542d6ad8b52e6a2b0f806cd5ef89a",
         "packages/vue-hotkeys/src/useHotkeys.ts": "f971e9938eca3188b3af0fcc96d095330f9f6abfd70cb848d2de5c80f8d09639"
       },
-      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
       "outcome": "no-change",
-      "reason": "Internal fix: the preventDefault 'always' check uses the event's composed path so live hotkeys inside shadow roots count. Skill guidance unchanged.",
-      "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
+      "reason": "CI autofix wrapped one import line in createHotkey.svelte.ts. Formatting only; APIs and behavior are unchanged.",
+      "evidence": ["packages/svelte-hotkeys/src/createHotkey.svelte.ts"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -430,15 +432,16 @@
       "evidence": [".changeset/intent-skills.md"]
     },
     "source:scripts/verify-package.ts": {
-      "fingerprint": "fc48112cc743933225c6aa48310529c4288a438cba01ad96378c6898d65dcce6",
+      "fingerprint": "f93157da0086ac1b234efa6b91482b6fed8538ad55f98ab186105837b9e274bc",
       "snapshot": {
-        "scripts/verify-package.ts": "6b2515de4558bc3fa642a6cff2c01b498633302fcd04213570afe38051f0ad00"
+        "scripts/verify-package.ts": "86c307730526309a448097c15fb9e041a8ac9f4bce1bd9328802f694996a0bb6"
       },
-      "head": "ad56a4b0dbf3c34d8552eca2cc88c5c7000d520a",
-      "outcome": "out-of-scope",
-      "reason": "Packaging check now accepts a trailing \"skills\" files entry and requires a packed SKILL.md; it changes no library behavior the guidance covers.",
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Adds package checks for Ember v2 addon metadata and preserved 'use client' directives. Packaging checks aren't covered by skills.",
       "evidence": [
-        "node scripts/verify-package.ts passed for all 11 skill packages and react-hotkeys-devtools (no skills)"
+        "scripts/verify-package.ts",
+        "pnpm exec nx run-many --targets=test:build passes for all 18 packages"
       ]
     },
     "source:docs/framework/alpine/guides/hotkey-hints.md": {
@@ -566,14 +569,18 @@
       "evidence": ["docs/framework/react/guides/hotkey-hints.md"]
     },
     "source:docs/framework/react/reference/functions/useHotkeyHint.md": {
-      "fingerprint": "57d985be45ff69e16a1858294792e6f07bd09967fd085f7199cf443e1201e379",
+      "fingerprint": "5be6c63c069a8b796bbb2bea2041789b17acbffdc0cc760d3026e23c29f963ee",
       "snapshot": {
-        "docs/framework/react/reference/functions/useHotkeyHint.md": "8ad8e2e7f56ff758565f73fb8733d5e4b657fec49d26259eed6032d01ba2e9e9"
+        "docs/framework/react/reference/functions/useHotkeyHint.md": "8902b9d92e3148b498643a47e892f1eb1443c9b8bfea0fb20c53e88b3864d455"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
-      "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
-      "evidence": ["docs/framework/react/reference/functions/useHotkeyHint.md"]
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useHotkeyHint.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
     },
     "source:docs/framework/solid/guides/hotkey-hints.md": {
       "fingerprint": "209e8b94998dc992ea28e9a209adfd7944d8e7448f1e7e75fe481a28566fe9cf",
@@ -680,13 +687,13 @@
       "evidence": ["examples/alpine/kitchen-sink/index.html"]
     },
     "source:examples/alpine/kitchen-sink/src/main.ts": {
-      "fingerprint": "9ab005df03e0602b60f980c1d3a99537357653a725e570f0c7dac01ec62f5a2f",
+      "fingerprint": "3af00671f13f87de8b318aeef2645372c9d4197f69f884690918d4ef10721005",
       "snapshot": {
-        "examples/alpine/kitchen-sink/src/main.ts": "dbdb3a81c1a7189a1d888a5ee9cd237832d5bedf7f498448336f64141798b861"
+        "examples/alpine/kitchen-sink/src/main.ts": "f21fb5a0a2d39c3e33875b7053be6d2b880bbb2d15e1f1ccd894ce70532792fb"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "out-of-scope",
-      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
+      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
       "evidence": ["examples/alpine/kitchen-sink/src/main.ts"]
     },
     "source:examples/angular/kitchen-sink/src/app/app.component.ts": {
@@ -960,14 +967,17 @@
       "evidence": ["packages/preact-hotkeys/tests/useHotkeyHint.test.tsx"]
     },
     "source:packages/react-hotkeys/src/useHotkeyHint.ts": {
-      "fingerprint": "6eb1d204a78d8e8917073a00213138ecb7e74e10d71941c16b6ed4759d4560a2",
+      "fingerprint": "9ab705624e848526f4e4a1bf2b66c4326eb3bbe252c8e598dc031a188bca2c0f",
       "snapshot": {
-        "packages/react-hotkeys/src/useHotkeyHint.ts": "243cb4eea10c9ddf153862d6f6c5e44ee70d5a04c73180b516e42bd5fecaed6a"
+        "packages/react-hotkeys/src/useHotkeyHint.ts": "39c39deb13b62e0b7bdf065d4c5b19419b7b682185de796479e5bfac9888a916"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
       "outcome": "no-change",
-      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
-      "evidence": ["packages/react-hotkeys/src/useHotkeyHint.ts"]
+      "reason": "Adds a 'use client' directive only. Hook behavior and signatures are unchanged; the React Server Components guidance is reviewed under the react-hotkeys skill item.",
+      "evidence": [
+        "packages/react-hotkeys/src/useHotkeyHint.ts",
+        "pnpm test:lib for @tanstack/react-hotkeys passes"
+      ]
     },
     "source:packages/react-hotkeys/tests/appHotkeys.test.tsx": {
       "fingerprint": "fdf707b51c4da3a5d90684507bed80a2738469df3bbcd23d617f268bb3a81496",
@@ -1010,13 +1020,13 @@
       "evidence": ["packages/solid-hotkeys/tests/createHotkeyHint.test.tsx"]
     },
     "source:packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts": {
-      "fingerprint": "24c95f4f15482bdf093375a1faafcf97354226ac78a848123b30013a6d356a97",
+      "fingerprint": "111a3fa7ead644af9c2a1ae9427f55340199860e75f030a51c9dbeccb95a04a7",
       "snapshot": {
-        "packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts": "22925511c7e5bcaaecfc755b186abeab9065751a397ff9b21480c9c1226245c3"
+        "packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts": "9c9410188c920b701a71ce127933fd60539f5a3cac0af3a4614b25b245ba8751"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "no-change",
-      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
       "evidence": ["packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts"]
     },
     "source:packages/svelte-hotkeys/tests/getHotkeyHint.test.ts": {
@@ -1746,15 +1756,17 @@
       "evidence": ["docs/framework/react/guides/hotkey-manager.md"]
     },
     "source:docs/framework/react/reference/functions/useHotkeyScopesState.md": {
-      "fingerprint": "6e04abc76cc18c26951ef1f0badb83dee20c906ca91b6a7bfa94c647ee6713b9",
+      "fingerprint": "f795347c3e2cad0712d265ce1daa905f87e385a9cc7d5ca973db04ac70a1bf06",
       "snapshot": {
-        "docs/framework/react/reference/functions/useHotkeyScopesState.md": "cc68085ff33099c0a92ab0e5726e0c7845521ee52a061dc6feaffa3122e0478d"
+        "docs/framework/react/reference/functions/useHotkeyScopesState.md": "8a1ac20b771c862772e71eff02bd21397dafc441a4730d4a1c92b7fc560dbb6c"
       },
-      "head": "5b07f208a45afb5b396c628025c52294de62d313",
-      "outcome": "out-of-scope",
-      "reason": "Regenerated reference docs; only \"Defined in\" source line links changed.",
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
       "evidence": [
-        "docs/framework/react/reference/functions/useHotkeyScopesState.md"
+        "docs/framework/react/reference/functions/useHotkeyScopesState.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
       ]
     },
     "source:docs/framework/react/reference/index.md": {
@@ -2088,14 +2100,17 @@
       "evidence": ["packages/react-hotkeys/src/index.ts"]
     },
     "source:packages/react-hotkeys/src/useHotkeyScopesState.ts": {
-      "fingerprint": "49e0f5c3460a70a588578ee40a30705dc549d074a255d4fa17adffc6fdd73dc7",
+      "fingerprint": "96a95553282dbc739bfd645dcb8c7e4b9b59b5da3cc34984c3f7f2d5dc6945d1",
       "snapshot": {
-        "packages/react-hotkeys/src/useHotkeyScopesState.ts": "f16479fab60036ac1cf1c41d4e0507e13435d410ffeec6b228b6a9d294e604ff"
+        "packages/react-hotkeys/src/useHotkeyScopesState.ts": "e23ce667a134f728ebbf65f8eadd418bf0863238cad17bdd5785c91d74988c28"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
       "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["packages/react-hotkeys/src/useHotkeyScopesState.ts"]
+      "reason": "Adds a 'use client' directive only. Hook behavior and signatures are unchanged; the React Server Components guidance is reviewed under the react-hotkeys skill item.",
+      "evidence": [
+        "packages/react-hotkeys/src/useHotkeyScopesState.ts",
+        "pnpm test:lib for @tanstack/react-hotkeys passes"
+      ]
     },
     "source:packages/react-hotkeys/tests/useHotkeyRegistrations.test.tsx": {
       "fingerprint": "9565d0ab2fdb113a86c2c9ae709be9764bffed74ce79f7f7ec7220b1fa8b86aa",
@@ -2140,23 +2155,23 @@
       "evidence": ["packages/solid-hotkeys/tests/scopes.test.tsx"]
     },
     "source:packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts": {
-      "fingerprint": "7f1568fa37786c72f88d4f84b0a12e60fde9867453ed29a3fd2d0ed43cb9ac92",
+      "fingerprint": "c39420db15f120d59ee9d87ac7b4291b1f23232fa0cb6fbf90940a5a283384b4",
       "snapshot": {
-        "packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts": "cbdf34d22e9efbc48f0ad7490fc9c9f38a8eae371bd2771b1fe9916649e38bfb"
+        "packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts": "8d9b633b722f84363c1dfabf4b97ad861f7b507c98c8363a498e8dfc0c6d5c03"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
       "evidence": ["packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts"]
     },
     "source:packages/svelte-hotkeys/src/index.ts": {
-      "fingerprint": "5390a8919a56613eb885c946be67fd103673d160f895ae17fdae7998a87ccfce",
+      "fingerprint": "3eadb46211dc418a70cd91d303ef31eb3c9823dd3c8ee546bdea16d160efd6dc",
       "snapshot": {
-        "packages/svelte-hotkeys/src/index.ts": "d34632d11780969e48f79cb40fd98162f5d88495e836a8e5411c82885c6d71e1"
+        "packages/svelte-hotkeys/src/index.ts": "095c331919cbeb8a2bc87855f7334c6828087d441f2683b462e12899c6f678b4"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
       "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
+      "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
       "evidence": ["packages/svelte-hotkeys/src/index.ts"]
     },
     "source:packages/svelte-hotkeys/tests/scopes-controls.svelte.ts": {
@@ -2480,6 +2495,1124 @@
       "outcome": "out-of-scope",
       "reason": "Tests, sidebar config, or regenerated reference docs.",
       "evidence": ["docs/config.json"]
+    },
+    "source:docs/devtools.md": {
+      "fingerprint": "0531feaff7a5b318e796b8b9a5ea2ebbbc167b535d7affd20222afcb1cc9f3ee",
+      "snapshot": {
+        "docs/devtools.md": "d8c866a6b4c09cdce0ad469f21085f4b4f7795825bc0e33dbcd1cc0d02ad30c3"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Adds the Solid devtools floor (1.9.15) and raises the Svelte devtools floor to 5.40. No skill states devtools install requirements.",
+      "evidence": [
+        "docs/devtools.md",
+        "packages/solid-hotkeys-devtools/package.json",
+        "packages/svelte-hotkeys-devtools/package.json"
+      ]
+    },
+    "source:docs/installation.md": {
+      "fingerprint": "c2cdb7d7baafc96be4a0b5ac7b66de30e46d42b47cd1ae17f0596f467cd084d5",
+      "snapshot": {
+        "docs/installation.md": "4d42c5fe9581aa4e456ed5d0aeff19835efa42b2368eb1d001f560566a955adc"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "no-change",
+      "reason": "The Alpine line now says to install hotkeysPlugin before Alpine.start(). The alpine-hotkeys skill item covers that setup.",
+      "evidence": [
+        "docs/installation.md",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"
+      ]
+    },
+    "source:nx.json": {
+      "fingerprint": "3ac2ee2cc84504f01de5fdd37aed33504b556a9aebe9db53583686777d5d3c5d",
+      "snapshot": {
+        "nx.json": "25eda7832cceecfaa48bba3639c9f0e8a7fa7b82804a438ef5383549e5ac4011"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Excludes the renamed Ember ESLint config from the production build inputs. No guidance depends on Nx cache inputs.",
+      "evidence": ["nx.json"]
+    },
+    "source:packages/ember-hotkeys/eslint.config.js": {
+      "fingerprint": "697130dbc35f4c786d3a78574bd1e08cabfc2e68cea742291b2a80b3631f3684",
+      "snapshot": {
+        "packages/ember-hotkeys/eslint.config.js": null
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Renamed to eslint.config.mjs because the package no longer sets type: module. Lint rules are unchanged.",
+      "evidence": [
+        "packages/ember-hotkeys/eslint.config.mjs",
+        "pnpm test:eslint for @tanstack/ember-hotkeys passes"
+      ]
+    },
+    "source:packages/ember-hotkeys/eslint.config.mjs": {
+      "fingerprint": "0571d999fdb4d7b4862807bf6b80e374188050696fd1d1d70146769e4d193005",
+      "snapshot": {
+        "packages/ember-hotkeys/eslint.config.mjs": "fd75d4b4067a23903d10b6861fd3305f262230488c9b44fe928d2b14336d85f4"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Same config as the old eslint.config.js, renamed so Node loads it as ESM without type: module.",
+      "evidence": [
+        "packages/ember-hotkeys/eslint.config.mjs",
+        "pnpm test:eslint for @tanstack/ember-hotkeys passes"
+      ]
+    },
+    "source:packages/ember-hotkeys/tsdown.config.mts": {
+      "fingerprint": "42976eb0d54b8ab1c0622cc2636860381143cfc90424d2c075429c09265e556b",
+      "snapshot": {
+        "packages/ember-hotkeys/tsdown.config.mts": "e0425c3f43b9031424d17d9ff2a6fbc18cd7a4038f41420503eb33421441f080"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Pins .js and .d.ts output extensions and reports publint errors only. The built files and exports are the same as before, so no guidance changes.",
+      "evidence": [
+        "packages/ember-hotkeys/tsdown.config.mts",
+        "pnpm test:build for @tanstack/ember-hotkeys passes"
+      ]
+    },
+    "source:packages/ember-hotkeys/tsdown.config.ts": {
+      "fingerprint": "41882e9f0620274f3a3431fd1b99fc43be415660845d341880ca78e56d89d9c3",
+      "snapshot": {
+        "packages/ember-hotkeys/tsdown.config.ts": null
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Renamed to tsdown.config.mts because the package no longer sets type: module.",
+      "evidence": ["packages/ember-hotkeys/tsdown.config.mts"]
+    },
+    "source:packages/react-hotkeys-devtools/tsdown.config.ts": {
+      "fingerprint": "b5a3e4683bd5c43760e791535b1e78e69d81acbc6973fb845345a3b2150c2d5e",
+      "snapshot": {
+        "packages/react-hotkeys-devtools/tsdown.config.ts": "31c11692cd78903d3f9b6db7ed8e5fbdce690116f6f6e69e1efdab6f643499ee"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Turns off rolldown's module-level directive warning. Output is unchanged; verify-package checks the directives survive.",
+      "evidence": [
+        "packages/react-hotkeys-devtools/tsdown.config.ts",
+        "pnpm test:build for @tanstack/react-hotkeys-devtools passes"
+      ]
+    },
+    "source:packages/react-hotkeys/src/_appHotkeysStore.ts": {
+      "fingerprint": "bf7cb0cf9fe862d679b29cd7773a125cb72f72fd529f3a35f5088b9366520b84",
+      "snapshot": {
+        "packages/react-hotkeys/src/_appHotkeysStore.ts": "8559856f8904f3ec51376df60636653be14839f94a95c604b3b3a5d4f05df708"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Adds a 'use client' directive only. Hook behavior and signatures are unchanged; the React Server Components guidance is reviewed under the react-hotkeys skill item.",
+      "evidence": [
+        "packages/react-hotkeys/src/_appHotkeysStore.ts",
+        "pnpm test:lib for @tanstack/react-hotkeys passes"
+      ]
+    },
+    "source:packages/react-hotkeys/src/useHeldKeyCodes.ts": {
+      "fingerprint": "afb6972f4a525a47711c2315cae72a2b60d64ab58eb365afbab738c1ef50668d",
+      "snapshot": {
+        "packages/react-hotkeys/src/useHeldKeyCodes.ts": "4835312e094dc6adc4e54da169e08eba450a207edf3c4dcca0b0e1064137cddd"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Adds a 'use client' directive only. Hook behavior and signatures are unchanged; the React Server Components guidance is reviewed under the react-hotkeys skill item.",
+      "evidence": [
+        "packages/react-hotkeys/src/useHeldKeyCodes.ts",
+        "pnpm test:lib for @tanstack/react-hotkeys passes"
+      ]
+    },
+    "source:packages/react-hotkeys/src/useHeldKeys.ts": {
+      "fingerprint": "6a68e250329bf139f18a6d74cb50f73de9d43077f4fd7c775edfc39cf0df9620",
+      "snapshot": {
+        "packages/react-hotkeys/src/useHeldKeys.ts": "898b8675cfb0ea207ce9a00e6150ea964cf473da21465284a4af9405f0e24eed"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Adds a 'use client' directive only. Hook behavior and signatures are unchanged; the React Server Components guidance is reviewed under the react-hotkeys skill item.",
+      "evidence": [
+        "packages/react-hotkeys/src/useHeldKeys.ts",
+        "pnpm test:lib for @tanstack/react-hotkeys passes"
+      ]
+    },
+    "source:packages/react-hotkeys/src/useHotkeyRecorder.ts": {
+      "fingerprint": "0e3b0909feec1eeaf7f88ccf6a1a40aeffe38857916c50cdadee199d07b704e9",
+      "snapshot": {
+        "packages/react-hotkeys/src/useHotkeyRecorder.ts": "ae2a2022eb2fe71258d24b87c6e50bf9e185a9731f46de3d123777f12bcc2e84"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Adds a 'use client' directive only. Hook behavior and signatures are unchanged; the React Server Components guidance is reviewed under the react-hotkeys skill item.",
+      "evidence": [
+        "packages/react-hotkeys/src/useHotkeyRecorder.ts",
+        "pnpm test:lib for @tanstack/react-hotkeys passes"
+      ]
+    },
+    "source:packages/react-hotkeys/src/useHotkeyRegistrations.ts": {
+      "fingerprint": "b51b2325aaf3a0874335cb595e01ce42c0bdc8304170c5e58f0fcea3fb2a599f",
+      "snapshot": {
+        "packages/react-hotkeys/src/useHotkeyRegistrations.ts": "c9d391b896137215cdd38a912ec996bc44b93fb18c9aee7a71e1f12a55609d37"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Adds a 'use client' directive only. Hook behavior and signatures are unchanged; the React Server Components guidance is reviewed under the react-hotkeys skill item.",
+      "evidence": [
+        "packages/react-hotkeys/src/useHotkeyRegistrations.ts",
+        "pnpm test:lib for @tanstack/react-hotkeys passes"
+      ]
+    },
+    "source:packages/react-hotkeys/src/useKeyHold.ts": {
+      "fingerprint": "fcd57f054ff1cdc491f205ea13669fd4b5a9c63dc2e3e707a80e1939400baafd",
+      "snapshot": {
+        "packages/react-hotkeys/src/useKeyHold.ts": "83f6c85e9d4d1e3f6c44d7276fa2acb67ac2247d99d8655fcf2b57d29087de74"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Adds a 'use client' directive only. Hook behavior and signatures are unchanged; the React Server Components guidance is reviewed under the react-hotkeys skill item.",
+      "evidence": [
+        "packages/react-hotkeys/src/useKeyHold.ts",
+        "pnpm test:lib for @tanstack/react-hotkeys passes"
+      ]
+    },
+    "source:packages/react-hotkeys/tsdown.config.ts": {
+      "fingerprint": "71c341bcfa47f7ce6d75cb98410fd0d2668b296981cbd9cb8de8b2882d7bc712",
+      "snapshot": {
+        "packages/react-hotkeys/tsdown.config.ts": "466a0a62a77a99d06fc28294b18a7a96a57841880f479b34669440eb80055d24"
+      },
+      "head": "41f06c51a38fac64409a3d4932cc8958f558ae57",
+      "outcome": "no-change",
+      "reason": "Turns off rolldown's module-level directive warning. Each built file keeps its 'use client', which verify-package checks.",
+      "evidence": [
+        "packages/react-hotkeys/tsdown.config.ts",
+        "pnpm test:build for @tanstack/react-hotkeys passes"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/HotkeysProvider.md": {
+      "fingerprint": "f9779831e2d3ff91313cc82ed109a6de56433cbab505d85c5a3db7005ed0edd9",
+      "snapshot": {
+        "docs/framework/react/reference/functions/HotkeysProvider.md": "e56cad1df37f41ff16daaa38b58c44f950763c2b7ae07c5f0d8c061595ca203b"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/HotkeysProvider.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useAppHotkeyList.md": {
+      "fingerprint": "9c07a5a3158e36212871f93fe143eedf4c1f98b99aa3d095c3cf48398d12d99d",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useAppHotkeyList.md": "1118395306fb31f44c61eb1b9b4357cfe73252b06d7db059e8a7b372376b91f1"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useAppHotkeyList.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useAppHotkeys.md": {
+      "fingerprint": "9e543d4926bcbd988aef5f4b89351bade660bc7cfd71f0df013def3e1912deb4",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useAppHotkeys.md": "f492b12728e0463d58f13ace3119fd4f27f036f7e0f0aa12ea087bfb5263cbbe"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useAppHotkeys.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useCustomHotkeys.md": {
+      "fingerprint": "20b7cd319d7f0be2a8656913eaed8e2b603dc9fd25f6dafa326a1446615725bd",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useCustomHotkeys.md": "e9d0bc164b67f27531c33146826182183f39483e4e5feb9e3cb176cfdd33abdd"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useCustomHotkeys.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useDefaultHotkeysOptions.md": {
+      "fingerprint": "cf662117c0382dd6622ef91d29bb6f0e6941c17a6307818ca6ad2544e758fb0e",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useDefaultHotkeysOptions.md": "471679488bc62613e860e92c3c18d137b76000bdd2d5fc6606f195a812faf6a8"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useDefaultHotkeysOptions.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useHeldKeyCodes.md": {
+      "fingerprint": "9e036080d9f412b523378028971bc5662c2008d6c2c212a07d74e6172a8fc720",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useHeldKeyCodes.md": "8b82741674f6746db3110c854558324d8328b08fc8d0c1c140c9ac7a8fb2806b"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useHeldKeyCodes.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useHeldKeys.md": {
+      "fingerprint": "882f3beb513659020c7e339f75a0e49fe66e6fc89c560652cccc3d8af4214d3f",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useHeldKeys.md": "154e049ee019e16e142f386882f1af3e3230c59f8753b7d0192a005c905dcd48"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useHeldKeys.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useHotkey.md": {
+      "fingerprint": "5816fe93338875027408f622ee004e6c26f100c3eadb07a5d8372490ccfa5607",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useHotkey.md": "30e57309c8c568b6a138f3387211c5a20f853caf10522a76b2f3f30d556b6422"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useHotkey.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useHotkeyRecorder.md": {
+      "fingerprint": "0f84bff435e3305dc27fc963a78934e427628123dc27b61c43f965e4a237fe90",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useHotkeyRecorder.md": "bd3c421c0f65755ba778f104a83c1d139575dd4f4e57217099c6323cd1cbed28"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useHotkeyRecorder.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useHotkeyRegistrations.md": {
+      "fingerprint": "93bd43b0bad9adf3adb5e9c12e10416c91dd87173b223671197afe6188fa6562",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useHotkeyRegistrations.md": "957838e1da21d617ea8a529c19da6a8bcb18aef37ff170f8b7d75bbfc5f077b3"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useHotkeyRegistrations.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useHotkeys.md": {
+      "fingerprint": "9a3f60ebc7513c51abd258db4151484a85c176549a3327f50ce409600140eeb7",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useHotkeys.md": "d7e5c0259d9e74a6dc790164a73e3bb73d1f2cd208cb1350f005dc84a6380403"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useHotkeys.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useHotkeysContext.md": {
+      "fingerprint": "4a200c839c1591d455a603a88d93a1efbf81416c431a0e3dcc3fada8b9b7fa1b",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useHotkeysContext.md": "48f14c130836777288225c59e855383ff57f5183d5369ff6628c2db96fdb7231"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useHotkeysContext.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/functions/useKeyHold.md": {
+      "fingerprint": "39fecf77ed41c287816748aed3e8d2d89148b84db4d100afdb1c9c505cec7692",
+      "snapshot": {
+        "docs/framework/react/reference/functions/useKeyHold.md": "ed7b142b99e40888991365318ff8f7344be13cbc33871e5ec140d0c9b59f08fb"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useKeyHold.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/interfaces/HotkeysProviderOptions.md": {
+      "fingerprint": "47af71a7b465b68573fede0691da030a1c5525cb89ef4e7fc6563f1cdac13796",
+      "snapshot": {
+        "docs/framework/react/reference/interfaces/HotkeysProviderOptions.md": "7b80ab601c57ccca327d795c8ceb2ce15f4bd9532d68d82bc7183fbcc8884337"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/interfaces/HotkeysProviderOptions.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/interfaces/HotkeysProviderProps.md": {
+      "fingerprint": "361a4bded298f7e741ebbc0c6358b3f33c873f28b9f4723e99da3786408404fb",
+      "snapshot": {
+        "docs/framework/react/reference/interfaces/HotkeysProviderProps.md": "6c321229daeb70695c9e64f2f1bb78fd8b59b29f43f9524c9773fe503bdcd166"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/interfaces/HotkeysProviderProps.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/interfaces/ReactHotkeyRecorder.md": {
+      "fingerprint": "95282132fda0d62f19567df06a0f569d65877e0f26239b3adba7cf59c3c17c5b",
+      "snapshot": {
+        "docs/framework/react/reference/interfaces/ReactHotkeyRecorder.md": "ff4d91e44cf511e67faa4e5eb02ec4b6b8ceb8403b432905b0f2aad8c0ebe292"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/interfaces/ReactHotkeyRecorder.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/interfaces/UseCustomHotkeysResult.md": {
+      "fingerprint": "48c204c8765cfab628cc395b4665563b3ccb19d24f2da947f9742dd24e473722",
+      "snapshot": {
+        "docs/framework/react/reference/interfaces/UseCustomHotkeysResult.md": "3fc4726323bf562e052ea2c403a3b536f7e8227a917751f6518839b55de1c1cd"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/interfaces/UseCustomHotkeysResult.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/type-aliases/UseAppHotkeyOptions.md": {
+      "fingerprint": "d4ba6127ae988d382ed4c0989fbde1e81af74f4927d2fe894dfeb12a79a6011a",
+      "snapshot": {
+        "docs/framework/react/reference/type-aliases/UseAppHotkeyOptions.md": "5359dc6a6d13f7b26b7c76eb7d4ca1aebb9e68fd842f958139e146727be4d679"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/type-aliases/UseAppHotkeyOptions.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/type-aliases/UseHotkeyChordOptions.md": {
+      "fingerprint": "a2db52566c7019de55425d51df27e82e9e27b7add3d6702b66ab132752309389",
+      "snapshot": {
+        "docs/framework/react/reference/type-aliases/UseHotkeyChordOptions.md": "76724e75deafa82249acd4b279e2b00423eefc64c6faaeae13f249770d765d43"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/type-aliases/UseHotkeyChordOptions.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/type-aliases/UseHotkeyCommonOptions.md": {
+      "fingerprint": "3f15ed86220eae06c724b77c1b49385cffff8e29a7d89ba5977ff0590758f379",
+      "snapshot": {
+        "docs/framework/react/reference/type-aliases/UseHotkeyCommonOptions.md": "33904836e7c71539dc6acd0c9d9169a4df7235359bed17606564b236ca84f36a"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/type-aliases/UseHotkeyCommonOptions.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/type-aliases/UseHotkeyDefinition.md": {
+      "fingerprint": "42672f263b38761ee4351fa4086b44aa8c30ddf8a65459ad8a625b506700dfc9",
+      "snapshot": {
+        "docs/framework/react/reference/type-aliases/UseHotkeyDefinition.md": "773bd8a53773fe3cbe0f612f2c0e730b0e3010b3afdeec25fcc2e4fda237fb1b"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/type-aliases/UseHotkeyDefinition.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/type-aliases/UseHotkeyOptions.md": {
+      "fingerprint": "3c7a66f068007a4db133deb12866fcb4253384bed051e44fcc434543a9262bf3",
+      "snapshot": {
+        "docs/framework/react/reference/type-aliases/UseHotkeyOptions.md": "6a5ef6c3f78311eae46bf803843a60a6ab91bcbaf70d470f1cdd42cb8ad8cf2c"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/type-aliases/UseHotkeyOptions.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/type-aliases/UseHotkeyOptionsFor.md": {
+      "fingerprint": "cd11c61737c8dcd996884d43614cf9360a9f87154d3a2f0f344a383feb600eb5",
+      "snapshot": {
+        "docs/framework/react/reference/type-aliases/UseHotkeyOptionsFor.md": "ddd2c825ace36c0ea591cf3bb08a720f360ffe0d0e67144a2a96b1ae3fac11bf"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/type-aliases/UseHotkeyOptionsFor.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/type-aliases/UseHotkeySequenceOptions.md": {
+      "fingerprint": "c09db9fdace49c41d575cdab3e38fc956cdd85cf394bdc1a4c0b3d9d56a46923",
+      "snapshot": {
+        "docs/framework/react/reference/type-aliases/UseHotkeySequenceOptions.md": "b9af35aa97e6005aef0247201a96d7a4a2d847d3c530eadb68e43cb7bdb98339"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/type-aliases/UseHotkeySequenceOptions.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/react/reference/type-aliases/UseHotkeyTarget.md": {
+      "fingerprint": "30beca7f8ff4ddb567680b2dd41f7f3fa245a9bff9e1dec7c26d57d695c69ed1",
+      "snapshot": {
+        "docs/framework/react/reference/type-aliases/UseHotkeyTarget.md": "c6815dc1c41ecda9a2b54dc01e700106680ec6be4d53aae0557f4cbc52e35daa"
+      },
+      "head": "6a7576fb36738c24623d5cbfb260941447d42b76",
+      "outcome": "no-change",
+      "reason": "Generated TypeDoc reference. The 'use client' lines shift each 'Defined in' source line by two, and HotkeysProvider now shows its ReactElement return type. No skill guidance depends on either.",
+      "evidence": [
+        "docs/framework/react/reference/type-aliases/UseHotkeyTarget.md",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "commit 6a7576fb (ci: apply automated fixes)"
+      ]
+    },
+    "source:docs/framework/alpine/reference/functions/hotkeysPlugin.md": {
+      "fingerprint": "270b2e732001a6be7bd8655ada70612e3d609b878ab122803f2b3c4be08d408f",
+      "snapshot": {
+        "docs/framework/alpine/reference/functions/hotkeysPlugin.md": "c994b9bdad745c5dba2c64a79a78e82f681e05ef805c88652a9ca896ba240836"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference page; line numbers and the hotkeysPlugin doc comment changed.",
+      "evidence": ["docs/framework/alpine/reference/functions/hotkeysPlugin.md"]
+    },
+    "source:examples/alpine/createHeldKeys/src/main.ts": {
+      "fingerprint": "a970a6bbb2942767514753a2f50fc3a59a72b13f770f2620cee0a650a77e4bdc",
+      "snapshot": {
+        "examples/alpine/createHeldKeys/src/main.ts": "75f29fc337259be17e2792324969fd6b20755f0b2b65f42a5b3bcad7fd37d0bb"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
+      "evidence": ["examples/alpine/createHeldKeys/src/main.ts"]
+    },
+    "source:examples/alpine/createHotkey-sequences/src/main.ts": {
+      "fingerprint": "291e42f3732289a5500e8aa933111c7695b9ae07f751cf70f2598a3ad7159ea0",
+      "snapshot": {
+        "examples/alpine/createHotkey-sequences/src/main.ts": "68c56a393525782c54daabc0b17cb175f3478d64badf579be146e2e62c6dc1a4"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
+      "evidence": ["examples/alpine/createHotkey-sequences/src/main.ts"]
+    },
+    "source:examples/alpine/createHotkey/src/main.ts": {
+      "fingerprint": "b8e8c6c0b482c3491e30cc3f3a03e6cbcf96f29a9916649cdce6b126c55970d0",
+      "snapshot": {
+        "examples/alpine/createHotkey/src/main.ts": "6d42eeda660ae2c2d5812473516265af64531132862433c54687aec3b274dc62"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
+      "evidence": ["examples/alpine/createHotkey/src/main.ts"]
+    },
+    "source:examples/alpine/createHotkeyRecorder-sequences/src/main.ts": {
+      "fingerprint": "632543d2fe1011ea1b9c099c4dac6c4ccfc4903c7a0103ca3f4bed8f45c840d3",
+      "snapshot": {
+        "examples/alpine/createHotkeyRecorder-sequences/src/main.ts": "ba58ecb7f44b6d645a486b4313ba6b7830e5519eab72b6f723172d38c8f5459b"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
+      "evidence": ["examples/alpine/createHotkeyRecorder-sequences/src/main.ts"]
+    },
+    "source:examples/alpine/createHotkeyRecorder/src/main.ts": {
+      "fingerprint": "9e85988e8403f5d60d285224118a73d37f89d4153121bede0835505154e99ef8",
+      "snapshot": {
+        "examples/alpine/createHotkeyRecorder/src/main.ts": "33e70363942721ed75c701d1fa6f446ec4aae52a576dff920cadc085803c747b"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
+      "evidence": ["examples/alpine/createHotkeyRecorder/src/main.ts"]
+    },
+    "source:examples/alpine/createHotkeys-sequences/src/main.ts": {
+      "fingerprint": "eff5c19a7cf5ad7c097b57bb8da18a4becab21728eda95d6f87bdb88013a50df",
+      "snapshot": {
+        "examples/alpine/createHotkeys-sequences/src/main.ts": "2a20cd9ef7e5be9fd96ec8bd9523ce704d635c1c17eb760dd94a3a1976bc53c2"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
+      "evidence": ["examples/alpine/createHotkeys-sequences/src/main.ts"]
+    },
+    "source:examples/alpine/createHotkeys/src/main.ts": {
+      "fingerprint": "d31d62c73963d104161807dbceeb8bd06b5e1e17ed917f379ed95fd23b56ce2a",
+      "snapshot": {
+        "examples/alpine/createHotkeys/src/main.ts": "bb9dfc93077ff80c87530c7d050981c4f522818dff49399fa2adcdaddeedec74"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
+      "evidence": ["examples/alpine/createHotkeys/src/main.ts"]
+    },
+    "source:examples/alpine/createKeyHold/src/main.ts": {
+      "fingerprint": "e350c79ef05391a1838c1540ab66c43c7e501921dce91c9422eb44b0c68b3807",
+      "snapshot": {
+        "examples/alpine/createKeyHold/src/main.ts": "273598da0c63af877680a9a483c43d429473b014f5597461651cc95d5d5798e4"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
+      "evidence": ["examples/alpine/createKeyHold/src/main.ts"]
+    },
+    "source:packages/alpine-hotkeys/tests/alpine-instance.test.ts": {
+      "fingerprint": "7e33fe648dccd7abe7293c0fa9e5ca5d7b25023dde9568d4af846ebdd3d50363",
+      "snapshot": {
+        "packages/alpine-hotkeys/tests/alpine-instance.test.ts": "bec62f08a3be3419b56a5b212ad22c6525ad04d64121348b14b97e4323b5c41b"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Tests for using the plugin's Alpine instance, the window.Alpine fallback and the missing-Alpine error; the setup file installs the plugin. Guidance is reviewed under the alpine-hotkeys skill item.",
+      "evidence": ["packages/alpine-hotkeys/tests/alpine-instance.test.ts"]
+    },
+    "source:packages/alpine-hotkeys/tests/setup.ts": {
+      "fingerprint": "50701ec86eac9c926fd203818974cfe27f6e2cb5638c540915e735899f98ce3b",
+      "snapshot": {
+        "packages/alpine-hotkeys/tests/setup.ts": "8324659e7d2b066b2e08d017292297708110ffb241d2230965cde154f01c56f1"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Tests for using the plugin's Alpine instance, the window.Alpine fallback and the missing-Alpine error; the setup file installs the plugin. Guidance is reviewed under the alpine-hotkeys skill item.",
+      "evidence": ["packages/alpine-hotkeys/tests/setup.ts"]
+    },
+    "source:packages/alpine-hotkeys/vitest.config.ts": {
+      "fingerprint": "eb075195e56bbad1862845401cf6887d4ffa513423c61104900f80cc73798070",
+      "snapshot": {
+        "packages/alpine-hotkeys/vitest.config.ts": "aebbdb2fe7e692881ed192fcbdd9fb3670ad7a6020a6251f566d2705473fba8b"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Tests for using the plugin's Alpine instance, the window.Alpine fallback and the missing-Alpine error; the setup file installs the plugin. Guidance is reviewed under the alpine-hotkeys skill item.",
+      "evidence": ["packages/alpine-hotkeys/vitest.config.ts"]
+    },
+    "source:packages/angular-hotkeys-devtools/src/AngularHotkeysDevtools.ts": {
+      "fingerprint": "c6383c6e5ec3d6450abc0daaf315bcced2682010d6f0f1e323f3beeba9c9a530",
+      "snapshot": {
+        "packages/angular-hotkeys-devtools/src/AngularHotkeysDevtools.ts": "04d2c0b84a0358bcfc252847ceb013c76b4e97a58a53277e175f0f6767031592"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": [
+        "packages/angular-hotkeys-devtools/src/AngularHotkeysDevtools.ts"
+      ]
+    },
+    "source:packages/angular-hotkeys-devtools/src/index.ts": {
+      "fingerprint": "8464af2da5bffcce3ead58a78828171eb4caa2af0fde8f5c0ccf7aa9e6a47733",
+      "snapshot": {
+        "packages/angular-hotkeys-devtools/src/index.ts": "9eaf4367744cf3e590f5ff26e78221ec63fc3e9ba2c0b2fd302ebb4290d1c05e"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/angular-hotkeys-devtools/src/index.ts"]
+    },
+    "source:packages/angular-hotkeys-devtools/src/plugin.ts": {
+      "fingerprint": "0f351e2af072b8c44c1550df08beabc0a11a1333440aaf4963c054647c75fb12",
+      "snapshot": {
+        "packages/angular-hotkeys-devtools/src/plugin.ts": "10bc1286908e0df0f13f9dd36cbec718b70aed71ce1e5675da2664365c538525"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/angular-hotkeys-devtools/src/plugin.ts"]
+    },
+    "source:packages/angular-hotkeys-devtools/src/production.ts": {
+      "fingerprint": "65b9e2742cc640e6b33724ac85cd3bc9b73d3fb30d62a3e155d5d01eb840086b",
+      "snapshot": {
+        "packages/angular-hotkeys-devtools/src/production.ts": "7da4255a4df3c0aef1da462c634bd74ca3b25590315204d9c2456ebf9678b9a3"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/angular-hotkeys-devtools/src/production.ts"]
+    },
+    "source:packages/hotkeys-devtools/src/core.tsx": {
+      "fingerprint": "6b22a3a7f67e5ee17a05cde52ead2c582d5ed9996fa06839cfcb8085a3fb23f4",
+      "snapshot": {
+        "packages/hotkeys-devtools/src/core.tsx": "63cf6ef72a8d29a58292e6fa64d69130955ba746bbc309073e1ec16e7ac21ac5"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/hotkeys-devtools/src/core.tsx"]
+    },
+    "source:packages/hotkeys-devtools/src/index.ts": {
+      "fingerprint": "87a756c155fda12cd148f5db7519db31d5d0cffc454550724cb600ad4acb2be1",
+      "snapshot": {
+        "packages/hotkeys-devtools/src/index.ts": "f69f186759ea06d1f6e1b2514f611b0d8bc36217322c48587018406eb4c2f2ec"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/hotkeys-devtools/src/index.ts"]
+    },
+    "source:packages/hotkeys-devtools/src/production.ts": {
+      "fingerprint": "f11f433ef428c5eb1ed164919001c5e94f8f847b08dca9c2a9d098cce28e789f",
+      "snapshot": {
+        "packages/hotkeys-devtools/src/production.ts": "46d588e21e0ba1f9c3e13ac2d333f8e4a826f8b2a4f6fee627a0fc2478041784"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/hotkeys-devtools/src/production.ts"]
+    },
+    "source:packages/hotkeys-devtools/src/types.ts": {
+      "fingerprint": "1bcf132f83d0cea68a2ece2cfb1e751c26ac5304d587528e4a5c6a8b9ae4c126",
+      "snapshot": {
+        "packages/hotkeys-devtools/src/types.ts": "c7331c3eff5e7a527518678a3aae29e9264bbdd4e17ea4e6a6fb35853edfc99d"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/hotkeys-devtools/src/types.ts"]
+    },
+    "source:packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx": {
+      "fingerprint": "a56954864fae440d16b2703fcc1f9d6b6b56a49bcecc4a47ac4d58a0dd16139c",
+      "snapshot": {
+        "packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx": "a13962faa7f7f245e3ad6b84fde7f55b0bd1f5ab6d01491dc0dc5dc065371dd8"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": [
+        "packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx"
+      ]
+    },
+    "source:packages/preact-hotkeys-devtools/src/index.ts": {
+      "fingerprint": "7731f1314cb3365e58eb6bfa762750a825fa1d88ba7e8eec3a6eab2951358893",
+      "snapshot": {
+        "packages/preact-hotkeys-devtools/src/index.ts": "8403ed4b9b11093aab7468395ecad24912833a003e268f0c6c2dcd0133d54f06"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/preact-hotkeys-devtools/src/index.ts"]
+    },
+    "source:packages/preact-hotkeys-devtools/src/plugin.tsx": {
+      "fingerprint": "12fcf1ecfe42c791007298a078c1ed1bb35cc578c03706275e5a5ae0a718dd15",
+      "snapshot": {
+        "packages/preact-hotkeys-devtools/src/plugin.tsx": "8906f2712262957f597d464036c492eae425e094dd30fccd49521be9fdf6b10a"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/preact-hotkeys-devtools/src/plugin.tsx"]
+    },
+    "source:packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx": {
+      "fingerprint": "00dfa8e759888fe01d57bd0d98777050fc42099ad233b0e1f89174e482241d5c",
+      "snapshot": {
+        "packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx": "ded2c9d5d1794e80e7233543ea50f6e6a632f0eee50006e504c39d60dc0c55e4"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": [
+        "packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx"
+      ]
+    },
+    "source:packages/react-hotkeys-devtools/src/index.ts": {
+      "fingerprint": "da9ecae473bc9723d097b6100b7d9897e3c2c3f4d3de6a7feab13cb4edea9824",
+      "snapshot": {
+        "packages/react-hotkeys-devtools/src/index.ts": "5c9571d38377d444a25c9093cf4d40c151ab583c4568d20d3bed71b5644d8a01"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/react-hotkeys-devtools/src/index.ts"]
+    },
+    "source:packages/react-hotkeys-devtools/src/plugin.tsx": {
+      "fingerprint": "fcc70b32cd873f1e1c84cd96dc64b722f9ddb80833eb97dd4b995493432eb2a1",
+      "snapshot": {
+        "packages/react-hotkeys-devtools/src/plugin.tsx": "63bc3c7ec0189265315ae05a6d3e3c8fd7b5606a19ab5bb0739c3f91f18a9380"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/react-hotkeys-devtools/src/plugin.tsx"]
+    },
+    "source:packages/react-hotkeys-devtools/src/production.ts": {
+      "fingerprint": "72433872f8045b2b58c9fb707055176561343a14d280d96ff34a5fe63577024d",
+      "snapshot": {
+        "packages/react-hotkeys-devtools/src/production.ts": "3c7a08eff652b195552b7042a2800713f96fdd3dc57664a817a92ab7d453d43c"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/react-hotkeys-devtools/src/production.ts"]
+    },
+    "source:packages/solid-hotkeys-devtools/src/SolidHotkeysDevtools.tsx": {
+      "fingerprint": "cd8a54b910334f9c83ac0682eacf2d97e7ad47118e389081651cc77d698bf83f",
+      "snapshot": {
+        "packages/solid-hotkeys-devtools/src/SolidHotkeysDevtools.tsx": "f1af15c3ed641720e915e60c07bea9566785b4af2c8ce0316012969890e641a3"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": [
+        "packages/solid-hotkeys-devtools/src/SolidHotkeysDevtools.tsx"
+      ]
+    },
+    "source:packages/solid-hotkeys-devtools/src/index.ts": {
+      "fingerprint": "6eddde2c0502f20d852d7826f3f7d7c67382d25a3b875cd9f7a6162649628202",
+      "snapshot": {
+        "packages/solid-hotkeys-devtools/src/index.ts": "2579e792ea4a047b670cf0594a0f7fee78f1136ee60d13975b28fbc9bc04b7e8"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/solid-hotkeys-devtools/src/index.ts"]
+    },
+    "source:packages/solid-hotkeys-devtools/src/plugin.tsx": {
+      "fingerprint": "508c46d7ca6e6bb53b0779c55ed946cd0a82a6f89501245ffd92521cd2759648",
+      "snapshot": {
+        "packages/solid-hotkeys-devtools/src/plugin.tsx": "046fb0581cfcd62ae7bf2b273722aff6510ad99b2b83d4d88243286421643a91"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/solid-hotkeys-devtools/src/plugin.tsx"]
+    },
+    "source:packages/solid-hotkeys-devtools/src/production.ts": {
+      "fingerprint": "9fee86a61b2dc189140d22c3f4dfb2f8adf5637200e0507c031c30f53a2578b8",
+      "snapshot": {
+        "packages/solid-hotkeys-devtools/src/production.ts": "3eddfc0da79cd0e3960089bf6d66d45715b6e86f2462309b12e6f62d91e9ab50"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/solid-hotkeys-devtools/src/production.ts"]
+    },
+    "source:packages/svelte-hotkeys-devtools/src/SvelteHotkeysDevtools.ts": {
+      "fingerprint": "8a19b065ae654332da8d737443f6b3f4def46de1b49a2ec4b7e7ebba10ac22a5",
+      "snapshot": {
+        "packages/svelte-hotkeys-devtools/src/SvelteHotkeysDevtools.ts": "55fa300681bbb8faef59e7e14dbcdade65b06c327b3dd66740a45761723bc327"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": [
+        "packages/svelte-hotkeys-devtools/src/SvelteHotkeysDevtools.ts"
+      ]
+    },
+    "source:packages/svelte-hotkeys-devtools/src/index.ts": {
+      "fingerprint": "46ae2d9d13595496b6d3ef42fc4b244d4387251b0038f9f1bc17d111d325f59e",
+      "snapshot": {
+        "packages/svelte-hotkeys-devtools/src/index.ts": "e9f7e5effe31bcb3577dfb0078d7cba3dd3464975f659587e4c396a30ec0902e"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/svelte-hotkeys-devtools/src/index.ts"]
+    },
+    "source:packages/svelte-hotkeys-devtools/src/plugin.ts": {
+      "fingerprint": "533929ecd03054ed938271763d11c5267984a5b04b29356e5190cae186b75e5f",
+      "snapshot": {
+        "packages/svelte-hotkeys-devtools/src/plugin.ts": "7e9591fce562c8cb2aafca8c5e02719bb21bc5e74bbcacc90d072d1d6b286723"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/svelte-hotkeys-devtools/src/plugin.ts"]
+    },
+    "source:packages/svelte-hotkeys-devtools/src/production.ts": {
+      "fingerprint": "41d447ed1ec63a144daaebca94216247473cfbf5d304d7358c2827383a981ad8",
+      "snapshot": {
+        "packages/svelte-hotkeys-devtools/src/production.ts": "6dc22652067face2df6514c8ed51f55fc016f2c36226611c4b2d03f5bb7fa641"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/svelte-hotkeys-devtools/src/production.ts"]
+    },
+    "source:packages/svelte-hotkeys/src/getHeldKeyCodesMap.svelte.ts": {
+      "fingerprint": "2291f12354e04fdb4a604b990168032b9e4f85b201e44cf6f0b1946cd8c0f174",
+      "snapshot": {
+        "packages/svelte-hotkeys/src/getHeldKeyCodesMap.svelte.ts": "032fc8e325fc198e52fb11509968c56a1f3b2890198d8f28f6ddf97934b3fa96"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "no-change",
+      "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
+      "evidence": ["packages/svelte-hotkeys/src/getHeldKeyCodesMap.svelte.ts"]
+    },
+    "source:packages/svelte-hotkeys/src/getHeldKeys.svelte.ts": {
+      "fingerprint": "b2e26275e82f023b74fd9cd3113a63e7a0459e8334f92720f22e83b90e031e05",
+      "snapshot": {
+        "packages/svelte-hotkeys/src/getHeldKeys.svelte.ts": "24d251e52908c758c6bc81d948960d595e6a0309a520d561fa3205f9efeb3c67"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "no-change",
+      "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
+      "evidence": ["packages/svelte-hotkeys/src/getHeldKeys.svelte.ts"]
+    },
+    "source:packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts": {
+      "fingerprint": "1d914790aa1f859eb622ec45ed8683131abe30df476877613d5cd1123f95cab7",
+      "snapshot": {
+        "packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts": "40f69abd1a83ff6cde7b5da17d97cfe7a98898e5a214f0c9738b4358aa9a4760"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "no-change",
+      "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
+      "evidence": [
+        "packages/svelte-hotkeys/src/getHotkeyRegistrations.svelte.ts"
+      ]
+    },
+    "source:packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts": {
+      "fingerprint": "6b3c933a7237a4ffcf8b00a4b2977e4c5e2154af3f33f60b4dedefadb6c9d8e5",
+      "snapshot": {
+        "packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts": "49f2376bc4b2193d54dc4f622ae9e0e7f0032775a89f39edd802f2f802e80bb5"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "no-change",
+      "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
+      "evidence": ["packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts"]
+    },
+    "source:packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.ts": {
+      "fingerprint": "6f4696e5174f60aae37ca8e24b34aa4f1600003334163acebb94baf072808cad",
+      "snapshot": {
+        "packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.ts": "d05211fae8b8ee153d8ecafa676234f443b39333a315c1b4818c54677a3433b4"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.ts"]
+    },
+    "source:packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.tsx": {
+      "fingerprint": "04f0f781b152e9860f048bfb0e62ea53578cff4e87f56544886b489f9adc1f47",
+      "snapshot": {
+        "packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.tsx": null
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.tsx"]
+    },
+    "source:packages/vue-hotkeys-devtools/src/index.ts": {
+      "fingerprint": "758e147cf9fd2ca1b77c2bd0661f6d5d3dbaf39eb49f9f98ad0f58e66783c983",
+      "snapshot": {
+        "packages/vue-hotkeys-devtools/src/index.ts": "32d9b4f08e8693945eac2ec0d1128c0a2cb1a3d5ef88a3e18c91ec4561cdf0aa"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/vue-hotkeys-devtools/src/index.ts"]
+    },
+    "source:packages/vue-hotkeys-devtools/src/plugin.ts": {
+      "fingerprint": "726d5857fcb74266a44f7cf92a2f404a98b9670aed5aa7cd5c4bc7544e87024e",
+      "snapshot": {
+        "packages/vue-hotkeys-devtools/src/plugin.ts": "f84af53877335d790fc9f0ac3bc6a2d14c9ccc5cae1046afef8cfce0e8f68f08"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/vue-hotkeys-devtools/src/plugin.ts"]
+    },
+    "source:packages/vue-hotkeys-devtools/src/production.ts": {
+      "fingerprint": "edc58d36c59a9931e3fd2d7070b2f42ff066e387818089281cb1d5192f295194",
+      "snapshot": {
+        "packages/vue-hotkeys-devtools/src/production.ts": "0554ec0475032f230e90f7ef13528c3fd8d8e5f4a17bcc9f30ebfa4456bcbe07"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/vue-hotkeys-devtools/src/production.ts"]
+    },
+    "source:packages/vue-hotkeys-devtools/tests/panel.test.ts": {
+      "fingerprint": "e51ad0c77bb7950a5699b6751a35bcda844e7aa8c6d42a84995a9e69f14260fd",
+      "snapshot": {
+        "packages/vue-hotkeys-devtools/tests/panel.test.ts": "d5404e738b2dbb2f89b8b43e8c9b77826c0c9e302b0ab83258805d453dbdac53"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/vue-hotkeys-devtools/tests/panel.test.ts"]
+    },
+    "source:packages/vue-hotkeys-devtools/tsconfig.json": {
+      "fingerprint": "a4069656b10f6bc4ce06558a5498ccf2c8945a4290edef4347dabcc81f3a3c91",
+      "snapshot": {
+        "packages/vue-hotkeys-devtools/tsconfig.json": "0648d489019bc097f35ebdc2e8d3359324107b15fbf60fb47337cfcc1e973dff"
+      },
+      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
+      "outcome": "out-of-scope",
+      "reason": "Devtools packages now declare their own panel and plugin types instead of re-exporting @tanstack/devtools-utils types, which import @tanstack/devtools without depending on it. The Vue panel defaults theme to dark and reads the props the Vue devtools dock passes. No skill covers devtools types or the Vue panel.",
+      "evidence": ["packages/vue-hotkeys-devtools/tsconfig.json"]
+    },
+    "source:docs/framework/svelte/reference/functions/createHotkey.md": {
+      "fingerprint": "6781810a382add8dfcc47171fa5cd0c253aba3e10ab683a26ed8cd3e14105794",
+      "snapshot": {
+        "docs/framework/svelte/reference/functions/createHotkey.md": "7853ab61fcb03beb3f29f4da3306c2c5e5f9391d49d6391fdb6ba9499a9fad82"
+      },
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference page; source line numbers moved after CI autofix reformatted an import in createHotkey.svelte.ts.",
+      "evidence": ["docs/framework/svelte/reference/functions/createHotkey.md"]
+    },
+    "source:docs/framework/svelte/reference/functions/createHotkeyAttachment.md": {
+      "fingerprint": "55410f5675eb6d7c2d335f0a17cb0502d98f27a5f4e894ee4496c9a13a234ea7",
+      "snapshot": {
+        "docs/framework/svelte/reference/functions/createHotkeyAttachment.md": "c39dd6eb927cf15825803d623c1716938cdccdd781eb295b6148fd93a1326296"
+      },
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference page; source line numbers moved after CI autofix reformatted an import in createHotkey.svelte.ts.",
+      "evidence": [
+        "docs/framework/svelte/reference/functions/createHotkeyAttachment.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/type-aliases/CreateAppHotkeyOptions.md": {
+      "fingerprint": "6797032e823816c650804c623942fade593358e41b2e29ed864872adf6eb00ab",
+      "snapshot": {
+        "docs/framework/svelte/reference/type-aliases/CreateAppHotkeyOptions.md": "b16789a873e5dc8bd95e9c6e255cf76093f880850bb8e7e6f09ae04a673272d1"
+      },
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference page; source line numbers moved after CI autofix reformatted an import in createHotkey.svelte.ts.",
+      "evidence": [
+        "docs/framework/svelte/reference/type-aliases/CreateAppHotkeyOptions.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/type-aliases/CreateHotkeyChordOptions.md": {
+      "fingerprint": "393709940d746eab2acd9866328c91ec7f642e50cbc43a25104aac8e894d539a",
+      "snapshot": {
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyChordOptions.md": "f7799230ad91da42ed54b9886e35b7d105e9c28232e66d4de13570b313d7e32c"
+      },
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference page; source line numbers moved after CI autofix reformatted an import in createHotkey.svelte.ts.",
+      "evidence": [
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyChordOptions.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/type-aliases/CreateHotkeyCommonOptions.md": {
+      "fingerprint": "24962b2d6c21276fd26358a2277acb1e9977852bc7dec78dc43ca4a3d30a74be",
+      "snapshot": {
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyCommonOptions.md": "34c7b3a4fa566f25e6ddc465b3c5ab01be650becea3e330042bd295977739a5f"
+      },
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference page; source line numbers moved after CI autofix reformatted an import in createHotkey.svelte.ts.",
+      "evidence": [
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyCommonOptions.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/type-aliases/CreateHotkeyOptions.md": {
+      "fingerprint": "6e3d4b4426a1e0cc2f7c62e05ac0740448854a8c695de83b6469038a10a48672",
+      "snapshot": {
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyOptions.md": "0ebd6aead24331755248f39bca1eedd02698af8384e665d6cc6afad2a24495d6"
+      },
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference page; source line numbers moved after CI autofix reformatted an import in createHotkey.svelte.ts.",
+      "evidence": [
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyOptions.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/type-aliases/CreateHotkeyOptionsFor.md": {
+      "fingerprint": "728a2a0385e288c18b3bd35cf4b4d01039cdbb765be81897b6a8fe3256ec6ee6",
+      "snapshot": {
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyOptionsFor.md": "cfb11d686971a31493f33a98b6c56414255b0b0742f0aaa95da6301dda4c554b"
+      },
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference page; source line numbers moved after CI autofix reformatted an import in createHotkey.svelte.ts.",
+      "evidence": [
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyOptionsFor.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/type-aliases/CreateHotkeySequenceOptions.md": {
+      "fingerprint": "fa816fad75bd6d068288b77034fd3fe917faf8a8ed045af858042b428eb60716",
+      "snapshot": {
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeySequenceOptions.md": "bac1d0c1809660c2dbe6d40958974f1987bbe706bfedee2f9957c2a5fe18e3ab"
+      },
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference page; source line numbers moved after CI autofix reformatted an import in createHotkey.svelte.ts.",
+      "evidence": [
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeySequenceOptions.md"
+      ]
+    },
+    "source:docs/framework/svelte/reference/type-aliases/CreateHotkeyTarget.md": {
+      "fingerprint": "7942f90fca5ac6183b9a87587bf923ee5f8ae91023dcdd1b5ff0868367e72e4b",
+      "snapshot": {
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyTarget.md": "e5015ad4e487d245fa092d0763886ff183baddbfbd9c6f831c4cf9cd4fb0451d"
+      },
+      "head": "c4273292a3d1ad2d0cf65bd8f80362c26474bd89",
+      "outcome": "out-of-scope",
+      "reason": "Generated reference page; source line numbers moved after CI autofix reformatted an import in createHotkey.svelte.ts.",
+      "evidence": [
+        "docs/framework/svelte/reference/type-aliases/CreateHotkeyTarget.md"
+      ]
     }
   }
 }

@@ -48,10 +48,10 @@
     "dist"
   ],
   "peerDependencies": {
-    "@types/react": ">=16.8",
-    "@types/react-dom": ">=16.8",
-    "react": ">=16.8",
-    "react-dom": ">=16.8"
+    "@types/react": ">=18.0.0",
+    "@types/react-dom": ">=18.0.0",
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "dependencies": {
     "@tanstack/devtools-utils": "^0.7.0",

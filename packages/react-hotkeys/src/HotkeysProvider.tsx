@@ -1,3 +1,5 @@
+'use client'
+
 import React, {
   createContext,
   useContext,
@@ -11,7 +13,7 @@ import {
   getHotkeysProviderScopeKey,
   mergeHotkeysProviderDefaults,
 } from '@tanstack/hotkeys/adapter'
-import type { ReactNode } from 'react'
+import type { ReactElement, ReactNode } from 'react'
 import type {
   AppHotkeys,
   CustomHotkeys,
@@ -113,8 +115,8 @@ export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
   scope,
   exclusive = false,
   enabled = true,
-}: HotkeysProviderProps<T>) {
-  // eslint-disable-next-line @eslint-react/no-use-context -- React 19+ only; we support React >=16.8
+}: HotkeysProviderProps<T>): ReactElement {
+  // eslint-disable-next-line @eslint-react/no-use-context -- React 19+ only; we support React >=18
   const parent = useContext(HotkeysContext) ?? NO_PARENT
   const [store] = useState(() =>
     appHotkeys
@@ -167,7 +169,7 @@ export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
   )
 
   return (
-    // eslint-disable-next-line @eslint-react/no-context-provider -- React 19+ only; we support React >=16.8
+    // eslint-disable-next-line @eslint-react/no-context-provider -- React 19+ only; we support React >=18
     <HotkeysContext.Provider value={contextValue}>
       {children}
     </HotkeysContext.Provider>
@@ -175,12 +177,12 @@ export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
 }
 
 export function useHotkeysContext() {
-  // eslint-disable-next-line @eslint-react/no-use-context -- React 19+ only; we support React >=16.8
+  // eslint-disable-next-line @eslint-react/no-use-context -- React 19+ only; we support React >=18
   return useContext(HotkeysContext)
 }
 
 export function useDefaultHotkeysOptions() {
-  // eslint-disable-next-line @eslint-react/no-use-context -- React 19+ only; we support React >=16.8
+  // eslint-disable-next-line @eslint-react/no-use-context -- React 19+ only; we support React >=18
   const context = useContext(HotkeysContext)
   return context?.defaultOptions ?? DEFAULT_OPTIONS
 }

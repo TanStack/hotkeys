@@ -1,8 +1,8 @@
 import { createAngularPanel } from '@tanstack/devtools-utils/angular'
 import { HotkeysDevtoolsCore } from '@tanstack/hotkeys-devtools/production'
-import type { DevtoolsPanelProps } from '@tanstack/devtools-utils/angular'
+import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools/production'
 
-export interface HotkeysDevtoolsAngularInit extends Partial<DevtoolsPanelProps> {}
+export interface HotkeysDevtoolsAngularInit extends Partial<HotkeysDevtoolsPanelProps> {}
 
 const [createPanel, HotkeysDevtoolsPanelNoOp] =
   createAngularPanel(HotkeysDevtoolsCore)

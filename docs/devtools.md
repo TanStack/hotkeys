@@ -40,6 +40,8 @@ npm install @tanstack/preact-devtools @tanstack/preact-hotkeys-devtools
 
 # Solid
 
+Requires Solid 1.9.15 or newer within version 1.
+
 ```sh
 npm install @tanstack/solid-devtools @tanstack/solid-hotkeys-devtools
 ```
@@ -60,7 +62,7 @@ npm install @tanstack/vue-hotkeys-devtools
 
 # Svelte
 
-Requires Svelte 5.25 or newer within version 5.
+Requires Svelte 5.40 or newer within version 5.
 
 ```sh
 npm install @tanstack/svelte-devtools @tanstack/svelte-hotkeys-devtools

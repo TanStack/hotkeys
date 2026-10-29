@@ -1,3 +1,5 @@
+'use client'
+
 import { useAppHotkeysStoreState } from './_appHotkeysStore'
 import { useHotkeyRegistrations } from './useHotkeyRegistrations'
 import type {

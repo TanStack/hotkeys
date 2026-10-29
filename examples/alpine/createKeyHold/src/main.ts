@@ -1,7 +1,10 @@
 import Alpine from 'alpinejs'
-import { createHotkeysScope } from '@tanstack/alpine-hotkeys'
+import { createHotkeysScope, hotkeysPlugin } from '@tanstack/alpine-hotkeys'
 import type { AlpineHotkeyState } from '@tanstack/alpine-hotkeys'
 import './index.css'
+
+// Gives every hotkeys scope the app's Alpine instance.
+Alpine.plugin(hotkeysPlugin)
 
 class App {
   private hotkeysScope = createHotkeysScope()

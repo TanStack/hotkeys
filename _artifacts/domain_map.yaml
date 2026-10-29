@@ -757,8 +757,8 @@ gaps:
     status: open
   - skill: octane-hotkeys
     question: docs/installation.md says Octane 0.1.36 within 0.1, but the package peer range is octane >=0.12.0. Which is current?
-    context: The skill follows the peer range.
-    status: open
+    context: The peer range is current. docs/installation.md now says Octane 0.12 or newer, matching the skill.
+    status: resolved
   - skill: all framework skills except react-hotkeys
     question: Executable task checks exist for React only.
     context: Other adapters rely on structural validation and example-project type checks.

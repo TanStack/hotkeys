@@ -7,7 +7,7 @@ title: useHotkeys
 function useHotkeys(hotkeys, commonOptions?): void;
 ```
 
-Defined in: [useHotkeys.ts:59](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeys.ts#L59)
+Defined in: [useHotkeys.ts:61](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeys.ts#L61)
 
 React hook for registering several hotkeys at once: chords, sequences, and
 app hotkeys. Accepts a dynamic array, so it is safe to use with

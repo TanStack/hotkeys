@@ -12,3 +12,4 @@ export const hotkeysDevtoolsPlugin =
     : plugin.hotkeysDevtoolsPlugin
 
 export type { HotkeysDevtoolsAngularInit } from './AngularHotkeysDevtools'
+export type { HotkeysDevtoolsAngularPlugin } from './plugin'

@@ -1,5 +1,5 @@
 import { getKeyStateTracker } from '@tanstack/hotkeys'
-import { createStoreSubscriber } from './internal.svelte'
+import { createStoreSubscriber } from './internal.svelte.js'
 import type { IndividualKey } from '@tanstack/hotkeys'
 
 export interface SvelteHeldKeyState {

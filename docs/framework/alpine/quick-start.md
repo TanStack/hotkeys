@@ -8,11 +8,13 @@ This guide adds keyboard shortcuts to Alpine components. If you haven't installe
 
 ## Register a hotkey
 
-TanStack Hotkeys needs no app-wide setup. In each component, create an owner for its hotkeys with `createHotkeysScope`, register the hotkeys in `init()`, and destroy the owner in `destroy()`:
+Install `hotkeysPlugin` before `Alpine.start()`. Then, in each component, create an owner for its hotkeys with `createHotkeysScope`, register the hotkeys in `init()`, and destroy the owner in `destroy()`:
 
 ```ts
 import Alpine from 'alpinejs'
-import { createHotkeysScope } from '@tanstack/alpine-hotkeys'
+import { createHotkeysScope, hotkeysPlugin } from '@tanstack/alpine-hotkeys'
+
+Alpine.plugin(hotkeysPlugin)
 
 Alpine.data('editor', () => ({
   hotkeys: createHotkeysScope(),
@@ -33,6 +35,8 @@ Alpine.start()
 </div>
 ```
 
+The plugin gives the adapter your Alpine instance, so it never loads its own copy. If Alpine comes from a script tag, install the plugin in an `alpine:init` listener. Without the plugin, the adapter uses `window.Alpine`.
+
 Destroying the owner unregisters every hotkey it created. The adapter runs in the browser, so with server rendering, load it only on the client.
 
 `Mod` is Command on macOS and Control on Windows and Linux, so `Mod+S` is the save shortcut each user already knows. The browser's Save dialog stays closed, and the shortcut still works while the user types in the textarea. [Sensible Defaults](../../guides/sensible-defaults) explains these defaults.
@@ -41,15 +45,7 @@ That's all a hotkey needs. Shared defaults, scopes, and the other features later
 
 ### Use the `$hotkeys` magic
 
-To register hotkeys from markup, install `hotkeysPlugin` before `Alpine.start()`:
-
-```ts
-import Alpine from 'alpinejs'
-import { hotkeysPlugin } from '@tanstack/alpine-hotkeys'
-
-Alpine.plugin(hotkeysPlugin)
-Alpine.start()
-```
+The plugin also adds the `$hotkeys` magic, which registers hotkeys from markup:
 
 ```html
 <div x-data="{ count: 0 }" x-init="$hotkeys.createHotkey('Mod+S', () => count++)">

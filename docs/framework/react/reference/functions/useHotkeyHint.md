@@ -7,7 +7,7 @@ title: useHotkeyHint
 function useHotkeyHint(hotkey, options?): boolean;
 ```
 
-Defined in: [useHotkeyHint.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeyHint.ts#L25)
+Defined in: [useHotkeyHint.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeyHint.ts#L27)
 
 Returns a boolean indicating whether held modifiers reveal this shortcut.
 The hint shows only while the hotkey can fire: some registration of it is

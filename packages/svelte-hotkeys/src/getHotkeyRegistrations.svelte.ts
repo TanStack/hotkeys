@@ -1,5 +1,5 @@
 import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
-import { createStoreSubscriber } from './internal.svelte'
+import { createStoreSubscriber } from './internal.svelte.js'
 import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
 
 export interface SvelteHotkeyRegistrations {

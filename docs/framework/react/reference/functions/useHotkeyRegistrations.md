@@ -7,7 +7,7 @@ title: useHotkeyRegistrations
 function useHotkeyRegistrations(): HotkeyRegistrationView[];
 ```
 
-Defined in: [useHotkeyRegistrations.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeyRegistrations.ts#L31)
+Defined in: [useHotkeyRegistrations.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkeyRegistrations.ts#L33)
 
 React hook that reactively reads every hotkey registration, chords and
 sequences, from the singleton HotkeyManager. Narrow each view with `kind`.

@@ -1,3 +1,5 @@
+'use client'
+
 import { useSelector } from '@tanstack/react-store'
 import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
 import type { HotkeyRegistrationView } from '@tanstack/hotkeys'

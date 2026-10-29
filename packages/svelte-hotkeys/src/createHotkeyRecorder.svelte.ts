@@ -1,7 +1,7 @@
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { onDestroy } from 'svelte'
-import { getDefaultHotkeysOptions } from './HotkeysCtx'
-import { createStoreSubscriber, resolveMaybeGetter } from './internal.svelte'
+import { getDefaultHotkeysOptions } from './HotkeysCtx.js'
+import { createStoreSubscriber, resolveMaybeGetter } from './internal.svelte.js'
 import type {
   Hotkey,
   HotkeyChord,
@@ -10,7 +10,7 @@ import type {
   HotkeySequence,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
-import type { MaybeGetter } from './internal.svelte'
+import type { MaybeGetter } from './internal.svelte.js'
 
 export interface SvelteHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
   /** Whether recording is currently active */

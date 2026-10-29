@@ -2,6 +2,7 @@ import Alpine from 'alpinejs'
 import {
   createHotkeysScope,
   formatForDisplay,
+  hotkeysPlugin,
   isHotkeySequence,
 } from '@tanstack/alpine-hotkeys'
 import type {
@@ -13,6 +14,9 @@ import type {
   RegisterableHotkey,
 } from '@tanstack/alpine-hotkeys'
 import './index.css'
+
+// Gives every hotkeys scope the app's Alpine instance.
+Alpine.plugin(hotkeysPlugin)
 
 const pages = [
   { to: '/', label: 'Tickets', shortcut: 'Alt+[Digit1]' },

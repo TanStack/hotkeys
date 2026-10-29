@@ -12,3 +12,4 @@ export const hotkeysDevtoolsPlugin: typeof plugin.hotkeysDevtoolsPlugin =
     : plugin.hotkeysDevtoolsPlugin
 
 export type { HotkeysDevtoolsPreactInit } from './PreactHotkeysDevtools'
+export type { HotkeysDevtoolsPreactPlugin } from './plugin'

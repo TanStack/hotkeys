@@ -1,5 +1,5 @@
 import { constructCoreClass } from '@tanstack/devtools-utils/solid'
-import type { ClassType } from '@tanstack/devtools-utils/solid'
+import type { HotkeysDevtoolsCoreClass } from './types'
 
 const loadComponent = () => import('./components/index')
 
@@ -7,5 +7,5 @@ export interface HotkeysDevtoolsInit {}
 
 const coreClasses = constructCoreClass(loadComponent)
 
-export const HotkeysDevtoolsCore: ClassType = coreClasses[0]
-export const HotkeysDevtoolsCoreNoOp: ClassType = coreClasses[1]
+export const HotkeysDevtoolsCore: HotkeysDevtoolsCoreClass = coreClasses[0]
+export const HotkeysDevtoolsCoreNoOp: HotkeysDevtoolsCoreClass = coreClasses[1]

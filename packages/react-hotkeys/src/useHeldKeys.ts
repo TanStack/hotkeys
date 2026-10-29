@@ -1,3 +1,5 @@
+'use client'
+
 import { useSelector } from '@tanstack/react-store'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
 

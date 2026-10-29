@@ -1,5 +1,5 @@
 import { getHotkeyManager } from '@tanstack/hotkeys'
-import { createStoreSubscriber } from './internal.svelte'
+import { createStoreSubscriber } from './internal.svelte.js'
 import type { HotkeyScopesState } from '@tanstack/hotkeys'
 
 export interface SvelteHotkeyScopesState {

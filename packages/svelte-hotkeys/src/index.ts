@@ -1,25 +1,25 @@
 // Re-export everything from the core package
 export * from '@tanstack/hotkeys'
 
-export * from './createHotkey.svelte'
-export * from './createHotkeys.svelte'
-export * from './createHotkeyRecorder.svelte'
-export * from './getHeldKeys.svelte'
-export * from './getHotkeyRegistrations.svelte'
-export * from './getHotkeyScopesState.svelte'
-export * from './getHeldKeyCodesMap.svelte'
-export * from './getIsKeyHeld.svelte'
-export * from './getAppHotkeys.svelte'
+export * from './createHotkey.svelte.js'
+export * from './createHotkeys.svelte.js'
+export * from './createHotkeyRecorder.svelte.js'
+export * from './getHeldKeys.svelte.js'
+export * from './getHotkeyRegistrations.svelte.js'
+export * from './getHotkeyScopesState.svelte.js'
+export * from './getHeldKeyCodesMap.svelte.js'
+export * from './getIsKeyHeld.svelte.js'
+export * from './getAppHotkeys.svelte.js'
 export { default as HotkeysProvider } from './HotkeysProvider.svelte'
 export {
   DEFAULT_OPTIONS,
   getDefaultHotkeysOptions,
   getHotkeysContext,
   setHotkeysContext,
-} from './HotkeysCtx'
+} from './HotkeysCtx.js'
 export type {
   HotkeysContextOptions,
   HotkeysProviderOptions,
   HotkeysProviderProps,
-} from './HotkeysCtx'
-export * from './getHotkeyHint.svelte'
+} from './HotkeysCtx.js'
+export * from './getHotkeyHint.svelte.js'

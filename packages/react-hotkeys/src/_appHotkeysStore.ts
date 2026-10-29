@@ -1,3 +1,5 @@
+'use client'
+
 import { Store, useSelector } from '@tanstack/react-store'
 import { useHotkeysContext } from './HotkeysProvider'
 import type { AppHotkeysState, AppHotkeysStore } from '@tanstack/hotkeys'
