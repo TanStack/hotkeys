@@ -52,17 +52,7 @@ export function matchKeyboardEvent(
     return matched('key', implicitShift ? 2 : 3)
   }
 
-  // ASCII alphabetic output is authoritative for Dvorak/Colemak/AZERTY.
-  // Native Latin letters are also authoritative on Key* positions; Alt is the
-  // exception because macOS Option commonly transforms a shortcut's glyph.
-  if (
-    isAsciiLetter(normalized.key) ||
-    (isLatinLetter(normalized.key) &&
-      normalized.code.startsWith('Key') &&
-      !normalized.alt)
-  ) {
-    return noMatch
-  }
+  if (!positionStandsIn(normalized)) return noMatch
 
   // With AltGraph held, only a direct key match counts. Never fall back to
   // the physical key, which would turn AltGr+M (`µ`) into `M`.
@@ -85,6 +75,36 @@ export function matchKeyboardEvent(
       identity: { key: normalized.key, code: normalized.code },
     }
   }
+}
+
+/**
+ * Whether a key's conventional position may stand in for what it typed. Only
+ * output that can't name a shortcut falls back:
+ * - non-Latin letters and symbols, such as Russian `ы` or macOS Option's `–`
+ * - dead keys
+ * - anything on the digit row, where AZERTY types `&` and `é` for 1 and 2
+ * - ASCII symbols typed with Shift, such as `!` for Shift+1
+ * - Latin letters on punctuation keys with Control or Command, so German
+ *   Cmd+ü still fires `Mod+[` (German types `[` with Option)
+ *
+ * A named key (`End` from a NumLock-off numpad), any other ASCII character,
+ * or a Latin letter typed on its own is the key the user meant, wherever it
+ * sits. AZERTY's `+` on the US `/` position is `+`, not `/`.
+ */
+function positionStandsIn({
+  key,
+  code,
+  ctrl,
+  meta,
+  shift,
+  alt,
+}: ReturnType<typeof normalizeKeyboardEvent>): boolean {
+  if (key !== 'Dead' && !isPrintableKey(key)) return false
+  if (code.startsWith('Digit')) return true
+  if (isAsciiLetter(key)) return false
+  if (/^[!-~]$/.test(key)) return shift
+  if (!isLatinLetter(key) || alt) return true
+  return (ctrl || meta) && !code.startsWith('Key')
 }
 
 /** Compares modifiers, excluding synthetic AltGr flags and optionally allowing Shift used to type a glyph. */

@@ -6,6 +6,8 @@
 // - When a key types something else (a symbol, a dead key, or a non-Latin
 //   letter), logical bindings fall back to the conventional key at that
 //   position: Russian KeyS ("ы") fires S, AZERTY Digit1 ("&") fires 1.
+// - An ASCII character or a named key never falls back: German "-" in the
+//   US "/" position is "-", and Dvorak's "'" on KeyQ is not Q.
 // - Physical bindings such as [KeyQ] always follow the position.
 import { describeLayouts } from '../support/layout-cases'
 
@@ -32,6 +34,7 @@ describeLayouts('Layout', {
     'Shift+1',
     'Mod+1',
     '/',
+    'Mod+/',
     'Shift+7',
     '`',
     '^',
@@ -79,6 +82,11 @@ describeLayouts('Layout', {
       { keys: 'KeyZ', matches: ['Y'], parsed: 'Y' },
       { keys: 'Control+KeyY', matches: ['Mod+Z'], parsed: 'Mod+Z' },
       { keys: 'Shift+Digit7', matches: ['/', 'Shift+7'], parsed: 'Shift+/' },
+      // The US "/" position types "-" and Control+- zooms out
+      { keys: 'Slash', matches: [], parsed: '-' },
+      { keys: 'Control+Slash', matches: [], parsed: 'Mod+-' },
+      // NumLock off: the numpad 1 key is End
+      { keys: 'Numpad1', matches: [], parsed: 'End' },
       {
         keys: 'Backquote',
         matches: ['[Backquote]', '`'],
@@ -95,7 +103,7 @@ describeLayouts('Layout', {
         recorded: '[KeyS]',
       },
       { keys: 'Control+KeyS', matches: ['Mod+O'], parsed: 'Mod+O' },
-      { keys: 'KeyQ', matches: ['Q', '[KeyQ]'], parsed: "'" },
+      { keys: 'KeyQ', matches: ['[KeyQ]'], parsed: "'" },
     ],
     // Russian: Cyrillic letters fall back to the Latin key at that position.
     ru: [

@@ -423,7 +423,7 @@ describe('matchesKeyboardEvent', () => {
     it('should preserve native Latin logical letters', () => {
       const event = createKeyboardEvent('ø', { code: 'Semicolon' })
       expect(matchesKeyboardEvent(event, 'ø' as HotkeyChord)).toBe(true)
-      expect(matchesKeyboardEvent(event, ';')).toBe(true)
+      expect(matchesKeyboardEvent(event, ';')).toBe(false)
     })
 
     it('should match punctuation positions on non-Latin layouts', () => {
@@ -928,6 +928,146 @@ describe('matchesKeyboardEvent', () => {
         code: 'Minus',
       })
       expect(matchesKeyboardEvent(event, 'Control+-' as HotkeyChord)).toBe(true)
+    })
+  })
+
+  describe('a reported character beats the key position', () => {
+    const press = (
+      key: string,
+      code: string,
+      modifiers: Parameters<typeof createKeyboardEvent>[1] = {},
+    ) => createKeyboardEvent(key, { ...modifiers, code })
+
+    it.each([
+      [
+        'AZERTY Cmd+= (zoom in) does not fire Mod+/',
+        '=',
+        'Slash',
+        { metaKey: true },
+        'Mod+/',
+      ],
+      [
+        'AZERTY Cmd++ (zoom in) does not fire Mod+/',
+        '+',
+        'Slash',
+        { metaKey: true },
+        'Mod+/',
+      ],
+      [
+        'QWERTZ Cmd+- (zoom out) does not fire Mod+/',
+        '-',
+        'Slash',
+        { metaKey: true },
+        'Mod+/',
+      ],
+      ['QWERTZ - does not fire /', '-', 'Slash', {}, '/'],
+      ['NumLock-off Numpad1 does not fire 1', 'End', 'Numpad1', {}, '1'],
+      ['NumLock-off Numpad8 does not fire 8', 'ArrowUp', 'Numpad8', {}, '8'],
+      ['NumLock-off Numpad0 does not fire 0', 'Insert', 'Numpad0', {}, '0'],
+      [
+        'NumLock-off NumpadDecimal does not fire .',
+        'Delete',
+        'NumpadDecimal',
+        {},
+        '.',
+      ],
+      ['QWERTZ ß does not fire -', 'ß', 'Minus', {}, '-'],
+      ['QWERTZ ü does not fire [', 'ü', 'BracketLeft', {}, '['],
+      [
+        'Ctrl+é on a letter key does not fire Control+E',
+        'é',
+        'KeyE',
+        { ctrlKey: true },
+        'Control+E',
+      ],
+      ['AZERTY ù does not fire quote', 'ù', 'Quote', {}, "'"],
+      ['Norwegian ø does not fire ;', 'ø', 'Semicolon', {}, ';'],
+      ['Dvorak apostrophe does not fire Q', "'", 'KeyQ', {}, 'Q'],
+      [
+        'Dvorak Ctrl+; does not fire Control+Z',
+        ';',
+        'KeyZ',
+        { ctrlKey: true },
+        'Control+Z',
+      ],
+      [
+        'AZERTY Ctrl+, does not fire Control+M',
+        ',',
+        'KeyM',
+        { ctrlKey: true },
+        'Control+M',
+      ],
+    ] as const)('%s', (_, key, code, modifiers, hotkey) => {
+      expect(
+        matchesKeyboardEvent(press(key, code, modifiers), hotkey, 'mac'),
+      ).toBe(false)
+    })
+
+    it.each([
+      ['Russian ы fires S', 'ы', 'KeyS', {}, 'S'],
+      [
+        'Russian Ctrl+ж fires Control+;',
+        'ж',
+        'Semicolon',
+        { ctrlKey: true },
+        'Control+;',
+      ],
+      ['AZERTY & fires 1', '&', 'Digit1', {}, '1'],
+      ['AZERTY é fires 2', 'é', 'Digit2', {}, '2'],
+      ['AZERTY Cmd+& fires Mod+1', '&', 'Digit1', { metaKey: true }, 'Mod+1'],
+      [
+        'US Shift+1 (!) fires Shift+1',
+        '!',
+        'Digit1',
+        { shiftKey: true },
+        'Shift+1',
+      ],
+      [
+        'US Shift+/ (?) fires Shift+/',
+        '?',
+        'Slash',
+        { shiftKey: true },
+        'Shift+/',
+      ],
+      [
+        'US Shift+; (:) fires Shift+;',
+        ':',
+        'Semicolon',
+        { shiftKey: true },
+        'Shift+;',
+      ],
+      ['Option+- (–) fires Alt+-', '–', 'Minus', { altKey: true }, 'Alt+-'],
+      ['Option+O (ø) fires Alt+O', 'ø', 'KeyO', { altKey: true }, 'Alt+O'],
+      [
+        'dead key fires its position',
+        'Dead',
+        'BracketLeft',
+        { altKey: true },
+        'Alt+[',
+      ],
+      ['NumLock-on Numpad1 fires 1', '1', 'Numpad1', {}, '1'],
+      [
+        'QWERTZ Cmd+ü fires Mod+[',
+        'ü',
+        'BracketLeft',
+        { metaKey: true },
+        'Mod+[',
+      ],
+      [
+        'QWERTZ Ctrl+ö fires Control+;',
+        'ö',
+        'Semicolon',
+        { ctrlKey: true },
+        'Control+;',
+      ],
+    ] as const)('%s', (_, key, code, modifiers, hotkey) => {
+      expect(
+        matchesKeyboardEvent(
+          press(key, code, modifiers),
+          hotkey as HotkeyChord,
+          'mac',
+        ),
+      ).toBe(true)
     })
   })
 
