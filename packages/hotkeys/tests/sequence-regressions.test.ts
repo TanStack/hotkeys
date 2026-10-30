@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager } from '../src/hotkey-manager'
 import { createSequenceMatcher } from '../src/match'
-import type { HotkeySequence } from '../src/hotkey.types'
+import type { HotkeyChord, HotkeySequence } from '../src/hotkey.types'
 
 /** Keeps logical output independent from physical position in layout fixtures. */
 function keyEvent(key: string, code: string, options: KeyboardEventInit = {}) {
@@ -71,9 +71,12 @@ describe('sequence match priority', () => {
     HotkeyManager.resetInstance()
     const nextManager = HotkeyManager.getInstance()
     nextManager.register(['G', 'Q'], logical)
-    nextManager.register(['G', '/'], disabled, { enabled: false })
+    nextManager.register(['G', 'Й' as HotkeyChord], disabled, {
+      enabled: false,
+    })
     press('g', 'KeyG')
-    press('/', 'KeyQ')
+    // Russian layout: Q's position types й
+    press('й', 'KeyQ')
     expect(logical).toHaveBeenCalledTimes(2)
     expect(disabled).not.toHaveBeenCalled()
   })

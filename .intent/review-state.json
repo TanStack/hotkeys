@@ -95,12 +95,12 @@
       "evidence": ["packages/hotkeys/src/hotkey-recorder.ts"]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "1603661280b626a40d79be5af3e29c1dd837b293bbaaa3590112a9072b800c13",
+      "fingerprint": "727730dbceed898070ebb1f363736f1aa96059d5ed7aaaf086ae866ee7146f9f",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
         "docs/framework/react/guides/hotkeys.md": "4d12140117ce4ceb3fb9bc17867efe30ae7085609714800e962c927ce07f019f",
         "docs/framework/react/guides/sequences.md": "e66231380dab6222508a1305d83586459b59953c2ecc47b9549e3cb29ffcd355",
-        "docs/guides/sensible-defaults.md": "d7c2da2cbe54da67c8ff910338a258d39fc6270c1102760d4ded33e2273cf869",
+        "docs/guides/sensible-defaults.md": "2f03b09f3d0f8af626d1ce52772148662ae0a4a2f03b1b428fb227cd7580e8bf",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "507ec6b32b7b1836276ee6527acdb3240f998d72dfb90f07c9e9820e688e8714",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "90e6512868c194f6c906711cd16882c204600a3118b08b7a101ff6b409012538",
@@ -116,12 +116,12 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "451dc7569f71956e5ce5e691ecc18ce14d4240b7edaa20cad58075747416c33d"
       },
-      "head": "1bce8190963414ca101441f91f103ee97eccd7f0",
+      "head": "210b3fb5577b3e7381a7c74d70e87cf395ae6682",
       "outcome": "no-change",
-      "reason": "The skill doesn't list which elements count as inputs. Its target rule and its testing advice (dispatch where focus is) still hold.",
+      "reason": "The skill says letters follow the typed character and recommends physical bindings for positions. Both still hold; this change narrows when non-letter keys fall back to their US position, which the skill doesn't describe.",
       "evidence": [
-        "docs/guides/sensible-defaults.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
+        "packages/hotkeys/src/_match.ts",
+        "docs/guides/sensible-defaults.md"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -287,7 +287,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "f532f3fb7526b85fee59b1130b1b0fcdd664f485f677ef15ac29b210a49388ad",
+      "fingerprint": "0be894085ff8415c5482951d2b5f5709fa0a721b76248abd70fd5e7e4550deec",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -317,7 +317,7 @@
         "docs/framework/svelte/quick-start.md": "dac9d02db91eaf3aed4eba39d6fb31a4a460bb3f84ba85c0576d3573b5ecf3d1",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "405eb90a8209f439db06d2e3d861acaa324b6598488c1705575ad56dccbb6ad3",
         "docs/framework/vue/quick-start.md": "80bedac58ab9aee3b4bc5f59582b5b836c37fe14f08ab670eababf88a45e76c2",
-        "docs/guides/sensible-defaults.md": "d7c2da2cbe54da67c8ff910338a258d39fc6270c1102760d4ded33e2273cf869",
+        "docs/guides/sensible-defaults.md": "2f03b09f3d0f8af626d1ce52772148662ae0a4a2f03b1b428fb227cd7580e8bf",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "8c0a3ab25f684d8445925d43dbadabb4e491b12001d78811cbf0d3f41db044c8",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "fdc12aafd6098bde8b4e7f5d8a8afb12227ac99cd753e06fc27401d5d8c8fead",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "f712ddb3354230197eb54d6f270d00a41c2b889e60690e70853569fe1a5207ea",
@@ -416,13 +416,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "7505949604490126567f9b61bb4d5c7d5ad05c2004e67a33dba979651014176c",
         "packages/vue-hotkeys/src/useHotkeys.ts": "f971e9938eca3188b3af0fcc96d095330f9f6abfd70cb848d2de5c80f8d09639"
       },
-      "head": "1bce8190963414ca101441f91f103ee97eccd7f0",
+      "head": "210b3fb5577b3e7381a7c74d70e87cf395ae6682",
       "outcome": "no-change",
-      "reason": "Bug fix; no change to the skill plan.",
-      "evidence": [
-        "docs/guides/sensible-defaults.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
-      ]
+      "reason": "Guide rewording of the fallback rule; no planned skill covers it.",
+      "evidence": ["docs/guides/sensible-defaults.md"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -4152,6 +4149,56 @@
       "outcome": "out-of-scope",
       "reason": "Test or generated reference file; no skill covers it.",
       "evidence": ["packages/hotkeys/tests/registration-and-target.test.ts"]
+    },
+    "source:e2e/layouts/layouts.spec.ts": {
+      "fingerprint": "cbc3e44cece030a233778fe702149fbfdd4623c05813ec656d9c286a1dea358f",
+      "snapshot": {
+        "e2e/layouts/layouts.spec.ts": "133a5ede688011d1a2e113b2db5cbb74b12ae23335a3b4062efbe6b9743834c0"
+      },
+      "head": "210b3fb5577b3e7381a7c74d70e87cf395ae6682",
+      "outcome": "out-of-scope",
+      "reason": "Matcher source and tests; the guidance impact is reviewed on the hotkeys-core skill item.",
+      "evidence": ["e2e/layouts/layouts.spec.ts"]
+    },
+    "source:e2e/support/x11.ts": {
+      "fingerprint": "8027673fe570a431636e3140e971acc14fe40265c47ece45f7ec4eabced12d3f",
+      "snapshot": {
+        "e2e/support/x11.ts": "31994400560bd70a88e0a7f628d26e6224616724a08bb69ad6263d71cf55ba2d"
+      },
+      "head": "210b3fb5577b3e7381a7c74d70e87cf395ae6682",
+      "outcome": "out-of-scope",
+      "reason": "Matcher source and tests; the guidance impact is reviewed on the hotkeys-core skill item.",
+      "evidence": ["e2e/support/x11.ts"]
+    },
+    "source:packages/hotkeys/src/_match.ts": {
+      "fingerprint": "fe575d3d842eaca4a662ed307afaf9183b0b4b221fc758e62b4fef5c47e7d07f",
+      "snapshot": {
+        "packages/hotkeys/src/_match.ts": "441cd96035f1ad043c2680187d07c82c8b4625994b304d3de693f63fc8a1b410"
+      },
+      "head": "210b3fb5577b3e7381a7c74d70e87cf395ae6682",
+      "outcome": "out-of-scope",
+      "reason": "Matcher source and tests; the guidance impact is reviewed on the hotkeys-core skill item.",
+      "evidence": ["packages/hotkeys/src/_match.ts"]
+    },
+    "source:packages/hotkeys/tests/match.test.ts": {
+      "fingerprint": "772ef55007f01169680bcf72ecca934e93c38d7d142bfa323eda2e1d259e9b3e",
+      "snapshot": {
+        "packages/hotkeys/tests/match.test.ts": "a433f330161f4f6c7e0e73221cd7cffb548ff248882acb1460cd21624ca23b12"
+      },
+      "head": "210b3fb5577b3e7381a7c74d70e87cf395ae6682",
+      "outcome": "out-of-scope",
+      "reason": "Matcher source and tests; the guidance impact is reviewed on the hotkeys-core skill item.",
+      "evidence": ["packages/hotkeys/tests/match.test.ts"]
+    },
+    "source:packages/hotkeys/tests/sequence-regressions.test.ts": {
+      "fingerprint": "ce156a0757f986db843d67a425c0df172fb56f8a75fd09b53af57fb588cddc6a",
+      "snapshot": {
+        "packages/hotkeys/tests/sequence-regressions.test.ts": "d996e6e01a3febab251074ab9eed48dfe0ec846e5d7538eaa7dacc70d3facec3"
+      },
+      "head": "210b3fb5577b3e7381a7c74d70e87cf395ae6682",
+      "outcome": "out-of-scope",
+      "reason": "Matcher source and tests; the guidance impact is reviewed on the hotkeys-core skill item.",
+      "evidence": ["packages/hotkeys/tests/sequence-regressions.test.ts"]
     }
   }
 }

@@ -33,6 +33,8 @@ const KEYCODES = {
   KeyS: 39,
   KeyY: 29,
   KeyZ: 52,
+  Slash: 61,
+  Numpad1: 87,
   Home: 110,
   End: 115,
   Space: 65,

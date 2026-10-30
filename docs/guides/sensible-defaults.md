@@ -42,9 +42,18 @@ A logical binding such as `Mod+S` or `?` matches `event.key`, the character the 
 
 - **Non-Latin layouts.** On a Russian layout, the S position types `ы`. `Mod+S` still matches there, so shortcuts work without switching layouts.
 - **macOS Option.** Option changes the character, so Option+S types `ß`. `Alt+S` still matches.
-- **Dead keys and shifted characters.** A dead key reports `Dead`, and AZERTY's digit row types `é` for `2`. The key's position resolves the shortcut.
+- **Dead keys and the digit row.** A dead key reports `Dead`, and AZERTY's digit row types `&` and `é` for `1` and `2`. The key's position resolves the shortcut, so `Mod+1` works on AZERTY.
+- **Symbols typed with Shift.** Shift+1 types `!` on a US layout, and `Shift+1` still matches.
 
-ASCII letters never fall back. If a key types `x`, it matches `X` and nothing else, so a positional fallback can never hijack a Dvorak or Colemak user's shortcut. When one key press could match several registrations on the same target, an exact match takes priority over a fallback.
+Otherwise, the character the key reports wins, wherever the key sits:
+
+- ASCII letters never fall back, and ASCII symbols fall back only on the digit row or with Shift. On AZERTY, the key in the US `/` position types `+`, so Cmd++ zooms the page instead of firing `Mod+/`. On Dvorak, the key that types `'` does not fire `Q`.
+- Latin letters such as `ü`, `ö`, and `ø` match only themselves when typed on their own. With Control or Command held on a punctuation key they fall back, so German Cmd+ü still fires `Mod+[` (German types `[` with Option).
+- Named keys never fall back. With NumLock off, the numpad's 1 key reports `End`, so it fires `End` and not `1`.
+
+When one key press could match several registrations on the same target, an exact match takes priority over a fallback.
+
+A symbol that needs Shift on some layouts, such as `/` on German QWERTZ (Shift+7), matches when typed on its own. With Command held, macOS browsers report the unshifted character instead (`7`), so `Mod+/` can't match there. Register the per-layout combination as well, such as `Mod+Shift+7`.
 
 Letters match without regard to case: `S` and `s` are the same binding.
 
