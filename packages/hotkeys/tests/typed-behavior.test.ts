@@ -262,7 +262,8 @@ afterEach(() => {
   document.body.replaceChildren()
 })
 
-describe('typed hotkeys and real events', () => {
+// Hundreds of thousands of checks: slow CI machines need more than the default 5s
+describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
   it('parse, normalize, and validate the same way', () => {
     expect({
       parse: fingerprint((record) => {

@@ -6730,15 +6730,15 @@
       ]
     },
     "source:packages/hotkeys/tests/typed-behavior.test.ts": {
-      "fingerprint": "8d2317ecc3b2a5a6bc1ad7860b9ab5ffddd81124377c0a1719182b0accc0409f",
+      "fingerprint": "2b05e35a6fc2fe9341f8380b07ce656d40f2dd411f9e3dc731d458747e41f867",
       "snapshot": {
-        "packages/hotkeys/tests/typed-behavior.test.ts": "ece876d7e40ca9a360bfe6b071b9bdc3e16fe87b3ea9b7dbab4f223b4fab6193"
+        "packages/hotkeys/tests/typed-behavior.test.ts": "2f2d850af6dbb4c40c9c93594ed31684f1ed6215e08ad06e91f6b531e7925978"
       },
-      "head": "c905b9314fbacaa036c3f934b499c6f2d0a6f3bb",
+      "head": "e1a3cb4bd08f3906e7f53f0f4e3e4f5fdd1c69f3",
       "outcome": "no-change",
-      "reason": "Formatting-only change from autofix (Prettier line wrapping) in a test file; no guidance affected.",
+      "reason": "Raises the timeout for the typed-behavior fingerprint tests so they finish on slower CI machines; no behavior or guidance change.",
       "evidence": [
-        "Diff of c905b931 only rewraps arrays and objects in typed-behavior.test.ts."
+        "Only adds { timeout: 120_000 } to the describe block in typed-behavior.test.ts."
       ]
     },
     "source:packages/hotkeys/tests/unified-hotkeys.test.ts": {
