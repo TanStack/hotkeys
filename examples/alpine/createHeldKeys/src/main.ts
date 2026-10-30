@@ -25,7 +25,7 @@ class App {
     this.$watch('heldKeys.value', (keys: Array<string>) => {
       if (keys.length > 0) {
         const combo = keys
-          .map((k) => formatForDisplay(k, { useSymbols: true }))
+          .map((k) => formatForDisplay({ key: k }, { useSymbols: true }))
           .join(' + ')
         if (this.history.at(-1) !== combo) {
           this.history = [...this.history.slice(-9), combo]

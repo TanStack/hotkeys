@@ -3,7 +3,7 @@ id: HotkeyOptions
 title: HotkeyOptions
 ---
 
-Defined in: [hotkey-manager.ts:55](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L55)
+Defined in: [hotkey-manager.ts:60](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L60)
 
 Options shared by chords and sequences.
 
@@ -20,7 +20,7 @@ Options shared by chords and sequences.
 optional appHotkeyId?: string;
 ```
 
-Defined in: [hotkey-manager.ts:117](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L117)
+Defined in: [hotkey-manager.ts:122](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L122)
 
 Id of the app hotkey this registration implements. Adapters set this when registering an app hotkey from `defineAppHotkeys`.
 
@@ -32,7 +32,7 @@ Id of the app hotkey this registration implements. Adapters set this when regist
 optional capture?: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:63](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L63)
+Defined in: [hotkey-manager.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L68)
 
 Listen during capture, before descendant listeners. Defaults to `false` (bubble).
 With `stopPropagation: true`, a match on an ancestor prevents the event from
@@ -48,7 +48,7 @@ Changing this option preserves held-key reset state and sequence progress.
 optional conflictBehavior?: ConflictBehavior;
 ```
 
-Defined in: [hotkey-manager.ts:65](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L65)
+Defined in: [hotkey-manager.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L70)
 
 Behavior when this hotkey conflicts with an existing registration on the same target. Defaults to 'warn'
 
@@ -60,7 +60,7 @@ Behavior when this hotkey conflicts with an existing registration on the same ta
 optional enabled?: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:71](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L71)
+Defined in: [hotkey-manager.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L76)
 
 Soft-disable: when `false`, the callback does not run but the registration
 stays in `HotkeyManager` (and in devtools). Toggling this should update the
@@ -74,7 +74,7 @@ existing handle via `setOptions` rather than unregistering. Defaults to `true`.
 optional eventType?: "keydown" | "keyup";
 ```
 
-Defined in: [hotkey-manager.ts:73](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L73)
+Defined in: [hotkey-manager.ts:78](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L78)
 
 The event type to listen for. Defaults to 'keydown'
 
@@ -86,7 +86,7 @@ The event type to listen for. Defaults to 'keydown'
 optional ignoreInputs?: boolean | "auto";
 ```
 
-Defined in: [hotkey-manager.ts:84](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L84)
+Defined in: [hotkey-manager.ts:89](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L89)
 
 Skip keys that a focused control inside the target uses itself: typing in
 text inputs, textarea, select, and contenteditable; Enter/Space on buttons
@@ -105,7 +105,7 @@ even in these controls.
 optional meta?: HotkeyMeta;
 ```
 
-Defined in: [hotkey-manager.ts:105](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L105)
+Defined in: [hotkey-manager.ts:110](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L110)
 
 Optional metadata (name, description, custom fields via declaration merging)
 
@@ -117,7 +117,7 @@ Optional metadata (name, description, custom fields via declaration merging)
 optional platform?: "mac" | "windows" | "linux";
 ```
 
-Defined in: [hotkey-manager.ts:86](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L86)
+Defined in: [hotkey-manager.ts:91](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L91)
 
 The target platform for resolving 'Mod'
 
@@ -129,7 +129,7 @@ The target platform for resolving 'Mod'
 optional preventDefault?: boolean | "always";
 ```
 
-Defined in: [hotkey-manager.ts:96](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L96)
+Defined in: [hotkey-manager.ts:101](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L101)
 
 Prevent the default browser action when the hotkey matches. For a
 sequence, every step that advances it does. Defaults to true.
@@ -147,7 +147,7 @@ treat `'always'` as `true`.
 optional scope?: string;
 ```
 
-Defined in: [hotkey-manager.ts:115](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L115)
+Defined in: [hotkey-manager.ts:120](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L120)
 
 Scope this hotkey belongs to. Defaults to `'global'`, which is always
 active. Other scopes are active while activated with
@@ -165,7 +165,7 @@ activated scope handles it.
 optional stopPropagation?: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:101](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L101)
+Defined in: [hotkey-manager.ts:106](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L106)
 
 Stop event propagation when the hotkey matches. For a sequence, only the
 last step does, so earlier steps reach other listeners. Defaults to true
@@ -178,6 +178,6 @@ last step does, so earlier steps reach other listeners. Defaults to true
 optional target?: Target | null;
 ```
 
-Defined in: [hotkey-manager.ts:103](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L103)
+Defined in: [hotkey-manager.ts:108](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L108)
 
 The DOM element to attach the event listener to. Defaults to document.

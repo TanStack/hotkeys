@@ -7,7 +7,6 @@ export function useHeldKeyCodes(slot?: symbol): Record<string, string> {
   return select(
     getKeyStateTracker().store,
     (state) => state.heldCodes,
-    undefined,
     subSlot(slot, 'held-codes'),
   )
 }

@@ -1,4 +1,4 @@
-import { Store } from '@tanstack/store'
+import { createStore } from './_store'
 import { TargetListeners } from './_target-listeners'
 import { managerRef } from './_manager-ref'
 import { isRecordingEvent } from './_recording-guard'
@@ -13,7 +13,11 @@ import {
   simplifyHotkey,
 } from './parse'
 import { matchKeyboardEvent, parsedChordsEqual } from './_match'
-import { keysEqual, normalizeKeyboardEvent } from './_keyboard-event'
+import {
+  isKeyNameShape,
+  keysEqual,
+  normalizeKeyboardEvent,
+} from './_keyboard-event'
 import {
   GLOBAL_SCOPE,
   defaultHotkeyOptions,
@@ -27,6 +31,7 @@ import {
   shouldIgnoreInputEvent,
   targetHasFocus,
 } from './_event-target'
+import type { Store } from './_store'
 import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'
 import type { CanonicalModifier } from './key.types'
 import type {
@@ -466,7 +471,7 @@ export class HotkeyManager {
    * }
    * ```
    */
-  readonly registrations: Store<Map<string, HotkeyRegistration>> = new Store(
+  readonly registrations: Store<Map<string, HotkeyRegistration>> = createStore(
     new Map(),
   )
   /**
@@ -474,9 +479,9 @@ export class HotkeyManager {
    * devtools can list declared hotkeys that are not registered.
    */
   readonly appHotkeys: Store<AppHotkeysStore | null> =
-    new Store<AppHotkeysStore | null>(null)
+    createStore<AppHotkeysStore | null>(null)
   /** Active scopes. Subscribe to show which hotkeys are suspended. */
-  readonly scopes: Store<HotkeyScopesState> = new Store<HotkeyScopesState>({
+  readonly scopes: Store<HotkeyScopesState> = createStore<HotkeyScopesState>({
     active: [],
     exclusive: null,
     allowed: [],
@@ -546,6 +551,7 @@ export class HotkeyManager {
     const { exclusive } = options
     const allow = exclusive ? (exclusive === true ? [] : exclusive.allow) : null
     if (
+      process.env.NODE_ENV !== 'production' &&
       allow &&
       [...this.#scopeActivations].some(
         (other) => other.allow && other.scope === scope,
@@ -826,6 +832,20 @@ export class HotkeyManager {
         kind: 'chord',
         hotkey: chordString(hotkey, parsedChord),
         parsedChord,
+      }
+    }
+
+    if (process.env.NODE_ENV !== 'production') {
+      const steps =
+        registration.kind === 'sequence'
+          ? registration.parsedSequence
+          : [registration.parsedChord]
+      for (const { key } of steps) {
+        if (key !== undefined && !isKeyNameShape(key)) {
+          console.warn(
+            `Unknown key '${key}' in '${formatForMessage(registration.hotkey)}'. Key names are case-sensitive, such as 'Escape' and 'F1', so this hotkey may never fire.`,
+          )
+        }
       }
     }
 
@@ -1408,44 +1428,6 @@ export class HotkeyManager {
     for (const timer of this.#sequenceResetTimers.values()) clearTimeout(timer)
     this.#sequenceResetTimers.clear()
     this.#notify()
-  }
-
-  /**
-   * Triggers a registration's callback programmatically from devtools.
-   * Creates a synthetic KeyboardEvent from the chord (or a sequence's last step)
-   * and invokes the callback.
-   *
-   * @param id - The registration ID to trigger
-   * @returns True if the registration was found and triggered
-   */
-  triggerRegistration(id: string): boolean {
-    const registration = this.registrations.state.get(id)
-    if (!registration) {
-      return false
-    }
-
-    const context = this.#callbackContext(registration)
-    const parsed =
-      registration.kind === 'chord'
-        ? registration.parsedChord
-        : registration.parsedSequence[registration.parsedSequence.length - 1]!
-    const syntheticEvent = new KeyboardEvent(
-      registration.options.eventType ?? 'keydown',
-      {
-        ...(parsed.code !== undefined
-          ? { code: parsed.code }
-          : { key: parsed.key }),
-        ctrlKey: parsed.ctrl,
-        shiftKey: parsed.shift,
-        altKey: parsed.alt,
-        metaKey: parsed.meta,
-        bubbles: true,
-        cancelable: true,
-      },
-    )
-
-    this.#fire(registration, syntheticEvent, context)
-    return true
   }
 
   /**

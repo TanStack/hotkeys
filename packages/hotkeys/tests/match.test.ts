@@ -484,9 +484,7 @@ describe('matchesKeyboardEvent', () => {
           modifiers: ['Control'],
         }),
       ).toBe(true)
-      expect(matchesKeyboardEvent(event, 'Control+Plus' as HotkeyChord)).toBe(
-        true,
-      )
+      expect(matchesKeyboardEvent(event, 'Control++')).toBe(true)
     })
 
     it('ignores printable hotkeys during composition', () => {
@@ -828,20 +826,33 @@ describe('matchesKeyboardEvent', () => {
     })
   })
 
-  describe('key alias matching', () => {
-    it('should match aliased key names', () => {
-      const event = createKeyboardEvent('Escape')
-      expect(matchesKeyboardEvent(event, 'Esc' as HotkeyChord)).toBe(true)
+  describe('case-sensitive key names', () => {
+    it('does not resolve key aliases', () => {
+      expect(
+        matchesKeyboardEvent(
+          createKeyboardEvent('Escape'),
+          'Esc' as HotkeyChord,
+        ),
+      ).toBe(false)
+      expect(
+        matchesKeyboardEvent(
+          createKeyboardEvent('ArrowUp'),
+          'Up' as HotkeyChord,
+        ),
+      ).toBe(false)
     })
 
-    it('should match arrow key aliases', () => {
-      const event = createKeyboardEvent('ArrowUp')
-      expect(matchesKeyboardEvent(event, 'Up' as HotkeyChord)).toBe(true)
-    })
-
-    it('should match function keys case-insensitively', () => {
+    it('matches named keys only in their canonical spelling', () => {
       const event = createKeyboardEvent('F5')
-      expect(matchesKeyboardEvent(event, 'f5' as HotkeyChord)).toBe(true)
+      expect(matchesKeyboardEvent(event, 'F5')).toBe(true)
+      expect(matchesKeyboardEvent(event, 'f5' as HotkeyChord)).toBe(false)
+    })
+
+    it('still matches letters in any case', () => {
+      expect(matchesKeyboardEvent(createKeyboardEvent('k'), 'K')).toBe(true)
+      expect(
+        matchesKeyboardEvent(createKeyboardEvent('K'), 'k' as HotkeyChord),
+      ).toBe(true)
     })
   })
 

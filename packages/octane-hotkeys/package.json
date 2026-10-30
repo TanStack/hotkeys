@@ -46,8 +46,7 @@
     "skills"
   ],
   "dependencies": {
-    "@tanstack/hotkeys": "workspace:*",
-    "@tanstack/octane-store": "^0.13.0"
+    "@tanstack/hotkeys": "workspace:*"
   },
   "devDependencies": {
     "@tsrx/oxc": "0.20.0",

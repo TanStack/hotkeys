@@ -1,7 +1,7 @@
 'use client'
 
-import { useSelector } from '@tanstack/react-store'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
+import { useSelector } from './_useSelector'
 
 /**
  * React hook that returns a map of currently held key names to their physical `event.code` values.

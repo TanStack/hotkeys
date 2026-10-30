@@ -1,10 +1,11 @@
 'use client'
 
-import { Store, useSelector } from '@tanstack/react-store'
+import { createStore } from '@tanstack/hotkeys/adapter'
+import { useSelector } from './_useSelector'
 import { useHotkeysContext } from './HotkeysProvider'
 import type { AppHotkeysState, AppHotkeysStore } from '@tanstack/hotkeys'
 
-const NO_APP_HOTKEYS = new Store<AppHotkeysState | null>(null)
+const NO_APP_HOTKEYS = createStore<AppHotkeysState | null>(null)
 
 /**
  * The provider's app hotkeys store, re-rendering when app hotkeys or custom

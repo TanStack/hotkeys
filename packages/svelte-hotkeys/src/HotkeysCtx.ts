@@ -1,12 +1,14 @@
 import { createContext, onMount } from 'svelte'
-import { AppHotkeysStore, publishAppHotkeysStore } from '@tanstack/hotkeys'
+import { publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
+  createAppHotkeysStore,
   getHotkeysProviderScopeKey,
   mergeHotkeysProviderDefaults,
 } from '@tanstack/hotkeys/adapter'
 import { activateScopeWhileMounted } from './internal.svelte.js'
 import type {
   AppHotkeys,
+  AppHotkeysStore,
   CustomHotkeys,
   HotkeyChordRecorderOptions,
   HotkeySequenceRecorderOptions,
@@ -99,7 +101,7 @@ export function setHotkeysContextSource(
   const parent = getHotkeysContext()
   const { appHotkeys, customHotkeys } = source()
   const store = appHotkeys
-    ? new AppHotkeysStore(appHotkeys, {
+    ? createAppHotkeysStore(appHotkeys, {
         customHotkeys,
         onCustomHotkeysChange: (custom) =>
           source().onCustomHotkeysChange?.(custom),

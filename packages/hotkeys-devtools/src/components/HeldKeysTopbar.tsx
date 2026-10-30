@@ -20,10 +20,13 @@ export function HeldKeysBar() {
             {(key) => {
               const code = () => state.heldCodes()[key]
               const label = () =>
-                formatForDisplay(key, {
-                  platform,
-                  useSymbols: true,
-                })
+                formatForDisplay(
+                  { key },
+                  {
+                    platform,
+                    useSymbols: true,
+                  },
+                )
               const codeLabel = () => {
                 const c = code()
                 return c || undefined

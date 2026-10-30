@@ -17,7 +17,7 @@ const plugins = [{ name: 'TanStack Hotkeys', component: HotkeysDevtoolsPanel }]
 watch(heldKeys, (keys) => {
   if (keys.length > 0) {
     const combo = keys
-      .map((key) => formatForDisplay(key, { useSymbols: true }))
+      .map((key) => formatForDisplay({ key }, { useSymbols: true }))
       .join(' + ')
     history.value =
       history.value[history.value.length - 1] !== combo
@@ -58,7 +58,7 @@ function KeyDisplay() {
               <template v-for="(key, index) in heldKeys" :key="key">
                 <span v-if="index > 0" class="plus">+</span>
                 <kbd class="large">
-                  {{ formatForDisplay(key, { useSymbols: true }) }}
+                  {{ formatForDisplay({ key }, { useSymbols: true }) }}
                   <small
                     v-if="heldCodes[key] && heldCodes[key] !== key"
                     class="code-label"

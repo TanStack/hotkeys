@@ -1,5 +1,5 @@
 import { getKeyStateTracker } from '@tanstack/hotkeys'
-import { injectSelector } from '@tanstack/angular-store'
+import { injectSelector } from './_injectSelector'
 import type { Signal } from '@angular/core'
 
 /**

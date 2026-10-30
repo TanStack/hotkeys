@@ -20,7 +20,7 @@ function App() {
   React.useEffect(() => {
     if (heldKeys.length > 0) {
       const combo = heldKeys
-        .map((k) => formatForDisplay(k, { useSymbols: true }))
+        .map((k) => formatForDisplay({ key: k }, { useSymbols: true }))
         .join(' + ')
       setHistory((h) => {
         // Only add if different from last entry
@@ -55,7 +55,7 @@ function App() {
                   <React.Fragment key={key}>
                     {index > 0 && <span className="plus">+</span>}
                     <kbd className="large">
-                      {formatForDisplay(key, { useSymbols: true })}
+                      {formatForDisplay({ key }, { useSymbols: true })}
                       {code && code !== key && (
                         <small className="code-label">{code}</small>
                       )}

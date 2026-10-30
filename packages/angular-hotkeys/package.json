@@ -48,7 +48,6 @@
     "skills"
   ],
   "dependencies": {
-    "@tanstack/angular-store": "^0.11.2",
     "@tanstack/hotkeys": "workspace:*"
   },
   "peerDependencies": {

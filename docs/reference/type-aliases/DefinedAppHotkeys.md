@@ -7,7 +7,7 @@ title: DefinedAppHotkeys
 type DefinedAppHotkeys<T> = { readonly [K in keyof T & string]: AppHotkey<K, AppHotkeyDefaultKind<T[K]["hotkey"]>> };
 ```
 
-Defined in: [app-hotkeys.ts:126](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L126)
+Defined in: [app-hotkeys.ts:128](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L128)
 
 The app hotkeys returned by `defineAppHotkeys` for a declaration object.
 

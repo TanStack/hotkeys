@@ -7,7 +7,7 @@ title: setHotkeysContext
 function setHotkeysContext(options?): HotkeysContextValue;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:89](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L89)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:91](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L91)
 
 Sets the hotkeys context for descendants. `HotkeysProvider` calls this; call
 it directly in a component's script instead of rendering the provider.

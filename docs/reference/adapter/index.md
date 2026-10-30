@@ -19,12 +19,15 @@ title: "@tanstack/hotkeys"
 - [AdapterSequenceOptions](type-aliases/AdapterSequenceOptions.md)
 - [HotkeyBindingsCommonOptions](type-aliases/HotkeyBindingsCommonOptions.md)
 - [HotkeyDefinition](type-aliases/HotkeyDefinition.md)
+- [Store](type-aliases/Store.md)
 - [WithTarget](type-aliases/WithTarget.md)
 
 ## Functions
 
 - [activateHotkeysProviderScope](functions/activateHotkeysProviderScope.md)
+- [createAppHotkeysStore](functions/createAppHotkeysStore.md)
 - [createHotkeyBindings](functions/createHotkeyBindings.md)
+- [createStore](functions/createStore.md)
 - [getHotkeysProviderScopeKey](functions/getHotkeysProviderScopeKey.md)
 - [mergeHotkeysProviderDefaults](functions/mergeHotkeysProviderDefaults.md)
 - [prepareHotkeyDefinitions](functions/prepareHotkeyDefinitions.md)

@@ -48,10 +48,16 @@
     "dist"
   ],
   "peerDependencies": {
-    "@angular/core": ">=21.0.0"
+    "@angular/core": ">=21.0.0",
+    "@tanstack/angular-devtools": ">=0.0.13"
+  },
+  "peerDependenciesMeta": {
+    "@tanstack/angular-devtools": {
+      "optional": true
+    }
   },
   "dependencies": {
-    "@tanstack/devtools-utils": "^0.7.0",
+    "@tanstack/devtools-utils": "^0.7.2",
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {

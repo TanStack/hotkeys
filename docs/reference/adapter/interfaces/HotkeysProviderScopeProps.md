@@ -3,7 +3,7 @@ id: HotkeysProviderScopeProps
 title: HotkeysProviderScopeProps
 ---
 
-Defined in: [adapter.ts:329](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L329)
+Defined in: [adapter.ts:333](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L333)
 
 Scope props shared by framework providers.
 
@@ -15,7 +15,7 @@ Scope props shared by framework providers.
 optional enabled?: boolean;
 ```
 
-Defined in: [adapter.ts:347](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L347)
+Defined in: [adapter.ts:351](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L351)
 
 Set false to deactivate this provider's scope, and the scopes of
 providers nested in it, without unmounting. Defaults to true.
@@ -32,7 +32,7 @@ optional exclusive?:
 };
 ```
 
-Defined in: [adapter.ts:342](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L342)
+Defined in: [adapter.ts:346](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L346)
 
 While mounted and enabled, suspend hotkeys in every other scope,
 including `'global'`, except scopes of nested providers. Pass
@@ -47,7 +47,7 @@ with `scope`, for dialogs and other overlays.
 optional scope?: string;
 ```
 
-Defined in: [adapter.ts:335](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L335)
+Defined in: [adapter.ts:339](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L339)
 
 Scope for hotkeys registered inside this provider, active while it is
 mounted and enabled. Defaults to the parent provider's scope, or

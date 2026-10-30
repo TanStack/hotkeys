@@ -37,13 +37,18 @@ it.each([...FUNCTION_KEYS, ...SHARED_NAMED_KEYS])(
     const physical: HotkeyChord = `Alt+[${key}]`
     const event = new KeyboardEvent('keydown', { key, code: key, altKey: true })
     expect(ALL_KEYS.has(key)).toBe(true)
-    expect(normalizeKeyName(key.toLowerCase())).toBe(key)
-    expect(parseHotkey(logical.toLowerCase()).key).toBe(key)
-    expect(validateHotkey(logical.toLowerCase())).toEqual({
+    expect(normalizeKeyName(key)).toBe(key)
+    expect(parseHotkey(logical).key).toBe(key)
+    expect(validateHotkey(logical)).toEqual({
       valid: true,
       warnings: [],
       errors: [],
     })
+    // Key names are case-sensitive: other spellings stay as written and warn
+    expect(normalizeKeyName(key.toLowerCase())).toBe(key.toLowerCase())
+    expect(validateHotkey(logical.toLowerCase()).warnings).toEqual([
+      `Unknown key: '${key.toLowerCase()}'. Key names are case-sensitive, such as 'Escape' and 'F1'.`,
+    ])
     expect(validateHotkey(physical)).toEqual({
       valid: true,
       warnings: [],
@@ -69,12 +74,13 @@ it.each([...FUNCTION_KEYS, ...SHARED_NAMED_KEYS])(
 it.each(LOGICAL_ONLY_NAMED_KEYS)(
   'recognizes the distinct logical name %s',
   (key) => {
-    expect(validateHotkey(key.toLowerCase())).toEqual({
+    expect(validateHotkey(key)).toEqual({
       valid: true,
       warnings: [],
       errors: [],
     })
-    expect(normalizeKeyName(key.toLowerCase())).toBe(key)
+    expect(normalizeKeyName(key)).toBe(key)
+    expect(validateHotkey(key.toLowerCase()).warnings).toHaveLength(1)
   },
 )
 

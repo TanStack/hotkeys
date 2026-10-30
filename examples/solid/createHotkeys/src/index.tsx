@@ -176,7 +176,7 @@ function CommonOptionsDemo() {
 
 interface DynamicShortcut {
   id: number
-  hotkey: string
+  hotkey: Hotkey
   label: string
   description: string
   count: number
@@ -217,7 +217,7 @@ function DynamicHotkeysDemo() {
 
   createHotkeys(() =>
     shortcuts().map((s): CreateHotkeyDefinition => ({
-      hotkey: s.hotkey as Hotkey,
+      hotkey: s.hotkey,
       callback: () => {
         setShortcuts((prev) =>
           prev.map((item) =>
@@ -238,7 +238,8 @@ function DynamicHotkeysDemo() {
       ...prev,
       {
         id: nextId++,
-        hotkey: trimmed,
+        // Typed by the user, so it may not be a valid hotkey
+        hotkey: trimmed as Hotkey,
         label: newLabel().trim(),
         description: newDescription().trim(),
         count: 0,

@@ -63,9 +63,24 @@ describe('validateHotkey', () => {
     })
 
     it('should warn about unknown keys but still be valid', () => {
-      const result = validateHotkey('Control+SomeWeirdKey')
+      const result = validateHotkey('Control+escape')
       expect(result.valid).toBe(true) // Unknown keys are warnings, not errors
-      expect(result.warnings.some((w) => w.includes('Unknown key'))).toBe(true)
+      expect(result.warnings).toEqual([
+        "Unknown key: 'escape'. Key names are case-sensitive, such as 'Escape' and 'F1'.",
+      ])
+    })
+
+    it('accepts keys written like known keys without a lookup table', () => {
+      for (const hotkey of [
+        'Control+Escape',
+        'F24',
+        'Mod+é',
+        'MediaPlayPause',
+        '[KeyA]',
+      ])
+        expect(validateHotkey(hotkey).warnings).toEqual([])
+      for (const hotkey of ['esc', 'f1', 'F25', 'ARROWUP', 'arrowUp'])
+        expect(validateHotkey(hotkey).warnings).toHaveLength(1)
     })
   })
 })
@@ -102,10 +117,10 @@ describe('checkHotkey', () => {
   it('should log warnings to console', () => {
     const warnSpy = vi.spyOn(console, 'warn').mockImplementation(() => {})
 
-    checkHotkey('Control+SomeWeirdKey')
+    checkHotkey('Control+someweirdkey')
 
     expect(warnSpy).toHaveBeenCalled()
-    expect(warnSpy.mock.calls[0]?.[0]).toContain('Control+SomeWeirdKey')
+    expect(warnSpy.mock.calls[0]?.[0]).toContain('Control+someweirdkey')
 
     warnSpy.mockRestore()
   })

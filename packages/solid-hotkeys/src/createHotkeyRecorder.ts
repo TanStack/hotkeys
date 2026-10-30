@@ -1,6 +1,6 @@
 import { createEffect, onCleanup } from 'solid-js'
-import { useSelector } from '@tanstack/solid-store'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
+import { useSelector } from './_useSelector'
 import { useDefaultHotkeysOptionsSource } from './defaultOptions'
 import type {
   Hotkey,

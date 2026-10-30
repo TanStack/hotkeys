@@ -7,15 +7,17 @@ import React, {
   useMemo,
   useState,
 } from 'react'
-import { AppHotkeysStore, publishAppHotkeysStore } from '@tanstack/hotkeys'
+import { publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
   activateHotkeysProviderScope,
+  createAppHotkeysStore,
   getHotkeysProviderScopeKey,
   mergeHotkeysProviderDefaults,
 } from '@tanstack/hotkeys/adapter'
 import type { ReactElement, ReactNode } from 'react'
 import type {
   AppHotkeys,
+  AppHotkeysStore,
   CustomHotkeys,
   HotkeyChordRecorderOptions,
   HotkeySequenceRecorderOptions,
@@ -120,7 +122,7 @@ export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
   const parent = useContext(HotkeysContext) ?? NO_PARENT
   const [store] = useState(() =>
     appHotkeys
-      ? new AppHotkeysStore<T>(appHotkeys, {
+      ? createAppHotkeysStore(appHotkeys, {
           customHotkeys,
           onCustomHotkeysChange,
         })

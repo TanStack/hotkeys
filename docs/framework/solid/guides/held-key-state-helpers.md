@@ -28,6 +28,8 @@ function KeyDisplay() {
 }
 ```
 
+To label each held key the way hotkeys are labeled, pass it to `formatForDisplay` as `{ key }`: `Shift` becomes `⇧` on macOS and `Escape` becomes `Esc`. Held keys come from the browser and can be outside the key types, which the `{ key }` form accepts.
+
 ## Check whether a key is held
 
 `createKeyHold` returns whether one key is held. It updates only when that key is pressed or released, and accepts an accessor for a key that changes:

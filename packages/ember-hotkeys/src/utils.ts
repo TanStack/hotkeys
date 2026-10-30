@@ -3,7 +3,7 @@ import { trackedObject } from '@ember/reactive/collections'
 import { getHotkeyManager } from '@tanstack/hotkeys'
 import { subscribePublishedAppHotkeys } from '@tanstack/hotkeys/adapter'
 import type { AppHotkeysStore } from '@tanstack/hotkeys'
-import type { ReadonlyStore } from '@tanstack/store'
+import type { Store } from '@tanstack/hotkeys/adapter'
 
 export type MaybeGetter<T> = T | (() => T)
 
@@ -13,7 +13,7 @@ export function read<T>(value: MaybeGetter<T>): T {
 
 export function select<T, TSelected>(
   owner: object,
-  store: Pick<ReadonlyStore<T>, 'state' | 'subscribe'>,
+  store: Pick<Store<T>, 'state' | 'subscribe'>,
   selector: (value: T) => TSelected,
 ) {
   const state = trackedObject({ snapshot: store.state })

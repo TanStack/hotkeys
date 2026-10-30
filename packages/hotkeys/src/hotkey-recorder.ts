@@ -1,4 +1,4 @@
-import { Store } from '@tanstack/store'
+import { createStore } from './_store'
 import { findHotkeyConflicts } from './conflicts'
 import {
   beginRecording,
@@ -6,11 +6,11 @@ import {
   endRecording,
 } from './_recording-guard'
 import { chordRejection, hotkeyChordFromKeydown } from './_recorder-chord'
-import { normalizeKeyboardEvent } from './_keyboard-event'
+import { normalizeKeyboardEvent, splitChordParts } from './_keyboard-event'
 import { isModifierKey, parseHotkey, simplifyHotkey } from './parse'
-import { validateHotkey } from './validate'
 import { detectPlatform } from './platform'
 import { isTypingEvent } from './_event-target'
+import type { Store } from './_store'
 import type { HotkeyConflict, HotkeyConflictOptions } from './conflicts'
 import type {
   Hotkey,
@@ -190,9 +190,8 @@ const initialState: HotkeyRecorderState = {
  * ```
  */
 export class HotkeyRecorder {
-  readonly store: Store<HotkeyRecorderState> = new Store<HotkeyRecorderState>(
-    initialState,
-  )
+  readonly store: Store<HotkeyRecorderState> =
+    createStore<HotkeyRecorderState>(initialState)
 
   #keydownHandler: ((event: KeyboardEvent) => void) | null = null
   #optionsSource: HotkeyRecorderOptions | (() => HotkeyRecorderOptions)
@@ -351,11 +350,12 @@ export class HotkeyRecorder {
         return
       }
 
-      const validation = validateHotkey(chord)
-      if (!validation.valid) {
+      // Whitespace characters, such as the non-breaking space from Option+Space
+      // on macOS, can't be written in a hotkey
+      if (splitChordParts(chord).some((part) => !part.trim())) {
         options.onReject?.({
           reason: 'invalid',
-          message: validation.errors.join('; '),
+          message: 'Whitespace keys cannot be recorded',
           hotkey: chord,
         })
         return

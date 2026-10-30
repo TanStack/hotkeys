@@ -1,4 +1,4 @@
-import { HotkeyManager } from '@tanstack/hotkeys'
+import { triggerRegistration } from '../_trigger'
 import { useStyles } from '../styles/use-styles'
 import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
 
@@ -10,7 +10,7 @@ export function ActionButtons(props: ActionButtonsProps) {
   const styles = useStyles()
 
   const handleTrigger = () => {
-    HotkeyManager.getInstance().triggerRegistration(props.registration.id)
+    triggerRegistration(props.registration.id)
   }
 
   return (

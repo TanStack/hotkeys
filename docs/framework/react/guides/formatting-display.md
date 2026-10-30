@@ -21,6 +21,8 @@ The same label can stand for different hotkeys. `Mod+S` follows the character S,
 
 Omit `platform` to use detection. On macOS, the label joins modifier symbols with spaces. Windows and Linux use names joined with `+`. macOS orders modifiers as Control, Option, Shift, Command, so `Mod+Shift+S` displays as `⇧ ⌘ S`, while the hotkey itself stays `Mod+Shift+S`.
 
+`formatForDisplay` accepts hotkeys only, including single keys such as `'Escape'` and modifiers on their own such as `'Shift'`. A key from a `KeyboardEvent`, such as a held key, can be outside the key types: pass it as `{ key }`.
+
 ## Render individual keycaps
 
 Set `parts: true` to get one label per key instead of a joined string:

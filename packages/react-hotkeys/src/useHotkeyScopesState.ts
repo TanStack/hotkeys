@@ -1,7 +1,7 @@
 'use client'
 
-import { useSelector } from '@tanstack/react-store'
 import { getHotkeyManager } from '@tanstack/hotkeys'
+import { useSelector } from './_useSelector'
 import type { HotkeyScopesState } from '@tanstack/hotkeys'
 
 /**

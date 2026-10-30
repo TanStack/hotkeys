@@ -1,5 +1,6 @@
-import { Store } from '@tanstack/store'
+import { createStore } from './_store'
 import { MODIFIER_KEYS, normalizeKeyName } from './constants'
+import type { Store } from './_store'
 
 /**
  * State interface for the KeyStateTracker.
@@ -67,7 +68,7 @@ export class KeyStateTracker {
    * The TanStack Store instance containing the tracker state.
    * Use this to subscribe to state changes or access current state.
    */
-  readonly store: Store<KeyStateTrackerState> = new Store(
+  readonly store: Store<KeyStateTrackerState> = createStore(
     getDefaultKeyStateTrackerState(),
   )
 

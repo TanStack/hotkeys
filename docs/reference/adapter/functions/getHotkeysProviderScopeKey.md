@@ -7,7 +7,7 @@ title: getHotkeysProviderScopeKey
 function getHotkeysProviderScopeKey(options): string | null;
 ```
 
-Defined in: [adapter.ts:368](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L368)
+Defined in: [adapter.ts:372](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L372)
 
 A key for a provider's scope activation, or `null` when the scope should not
 be active. Equal keys mean the same activation, so adapters reactivate only

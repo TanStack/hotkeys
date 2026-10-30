@@ -8,15 +8,17 @@ import {
   toValue,
   watch,
 } from 'vue'
-import { AppHotkeysStore, publishAppHotkeysStore } from '@tanstack/hotkeys'
+import { publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
   activateHotkeysProviderScope,
+  createAppHotkeysStore,
   getHotkeysProviderScopeKey,
   mergeHotkeysProviderDefaults,
 } from '@tanstack/hotkeys/adapter'
 import type { InjectionKey, MaybeRefOrGetter } from 'vue'
 import type {
   AppHotkeys,
+  AppHotkeysStore,
   CustomHotkeys,
   HotkeyChordRecorderOptions,
   HotkeySequenceRecorderOptions,
@@ -102,7 +104,7 @@ export function provideHotkeysContext(
   const parent = inject(HotkeysContext, null)
   const appHotkeys = toValue(options.appHotkeys)
   const store = appHotkeys
-    ? new AppHotkeysStore(appHotkeys, {
+    ? createAppHotkeysStore(appHotkeys, {
         customHotkeys: options.customHotkeys,
         onCustomHotkeysChange: (custom) =>
           options.onCustomHotkeysChange?.(custom),

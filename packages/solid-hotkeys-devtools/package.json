@@ -49,10 +49,16 @@
     "dist"
   ],
   "peerDependencies": {
+    "@tanstack/solid-devtools": ">=0.8.14",
     "solid-js": "^1.9.15"
   },
+  "peerDependenciesMeta": {
+    "@tanstack/solid-devtools": {
+      "optional": true
+    }
+  },
   "dependencies": {
-    "@tanstack/devtools-utils": "^0.7.0",
+    "@tanstack/devtools-utils": "^0.7.2",
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {

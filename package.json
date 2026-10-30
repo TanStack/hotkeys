@@ -75,6 +75,32 @@
       "path": "packages/hotkeys/dist/index.js",
       "import": "{ formatForDisplay }",
       "limit": "3 KB"
+    },
+    {
+      "name": "Provider without app hotkeys",
+      "path": "packages/hotkeys/dist/adapter.js",
+      "import": "{ createAppHotkeysStore }",
+      "limit": "0.5 KB"
+    },
+    {
+      "name": "React useHotkey",
+      "path": "packages/react-hotkeys/dist/index.js",
+      "import": "{ useHotkey }",
+      "ignore": [
+        "react",
+        "react-dom"
+      ],
+      "limit": "11 KB"
+    },
+    {
+      "name": "React useHotkey + HotkeysProvider",
+      "path": "packages/react-hotkeys/dist/index.js",
+      "import": "{ useHotkey, HotkeysProvider }",
+      "ignore": [
+        "react",
+        "react-dom"
+      ],
+      "limit": "12 KB"
     }
   ],
   "nx": {

@@ -270,7 +270,7 @@ describe('hotkey utilities accept sequences', () => {
   })
 
   it('normalizeHotkey normalizes each step', () => {
-    expect(normalizeHotkey(['meta+s', 'esc'] as never, 'mac')).toEqual([
+    expect(normalizeHotkey(['meta+s', 'Escape'] as never, 'mac')).toEqual([
       'Mod+S',
       'Escape',
     ])

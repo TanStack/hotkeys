@@ -22,7 +22,7 @@ This guide describes each default, why it was chosen, and how to change it.
 | Where listeners attach | `document` | `target` |
 | When hotkeys run | After the keyboard handlers of widgets inside the target (bubble phase) | `capture` |
 | Time between sequence steps | 1 second | `timeout` |
-| Duplicate registrations | Allowed, with a console warning | `conflictBehavior` |
+| Duplicate registrations | Allowed, with a console warning in development | `conflictBehavior` |
 | Recording | Records key positions; Escape cancels | `recordBy`, recorder options |
 | Display | Symbols on macOS (`⇧ ⌘ S`), text elsewhere (`Ctrl+Shift+S`) | `formatForDisplay` options |
 
@@ -224,9 +224,11 @@ Sequences are forgiving in a few other ways:
 
 ## Duplicate registrations warn
 
-Registering a hotkey that is already registered on the same target logs a console warning, and both callbacks run. A warning surfaces accidental duplicates during development without breaking an app that intentionally shares a shortcut. Duplicates are compared in canonical form, so `Mod+S` and `Meta+S` are duplicates on macOS.
+Registering a hotkey that is already registered on the same target logs a console warning in development, and both callbacks run. A warning surfaces accidental duplicates during development without breaking an app that intentionally shares a shortcut. Duplicates are compared in canonical form, so `Mod+S` and `Meta+S` are duplicates on macOS.
 
 Set `conflictBehavior` to `'replace'` to replace the existing registration, `'error'` to throw, or `'allow'` to silence the warning.
+
+TanStack Hotkeys logs warnings only in development. Production builds, where bundlers set `process.env.NODE_ENV` to `'production'`, skip them and drop the warning code.
 
 ## Recording captures what the user pressed
 

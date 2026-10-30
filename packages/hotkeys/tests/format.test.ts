@@ -1,7 +1,12 @@
 import { describe, expect, it } from 'vitest'
 import { formatForDisplay, formatHotkey } from '../src/format'
 import { normalizeHotkey } from '../src/parse'
-import type { ParsedHotkeyChord, RegisterableHotkey } from '../src/hotkey.types'
+import type { DisplayHotkeyChord } from '../src/format'
+import type {
+  HotkeyChord,
+  ParsedHotkeyChord,
+  RegisterableHotkey,
+} from '../src/hotkey.types'
 
 /** Strings that parse correctly but are not in the `HotkeyChord` template union. */
 function hk(s: string): RegisterableHotkey {
@@ -104,10 +109,12 @@ describe('formatForDisplay', () => {
       ['Mod+Alt+Shift+S', '⌥ ⇧ ⌘ S'],
       ['Meta+Shift+Alt+Control+S', '⌃ ⌥ ⇧ ⌘ S'],
       ['Mod+Shift++', '⇧ ⌘ +'],
-      ['Mod+Shift', '⇧ ⌘'],
-    ])('orders %s for display without changing its key', (hotkey, display) => {
-      expect(formatForDisplay(hotkey, { platform: 'mac' })).toBe(display)
-    })
+    ] as Array<[HotkeyChord, string]>)(
+      'orders %s for display without changing its key',
+      (hotkey, display) => {
+        expect(formatForDisplay(hotkey, { platform: 'mac' })).toBe(display)
+      },
+    )
 
     it('orders raw physical bindings and parts without changing registration identity', () => {
       const binding = { code: 'KeyS', mod: true, alt: true, shift: true }
@@ -345,9 +352,10 @@ describe('physical display labels', () => {
   })
 
   it('only strips exact letter and digit code patterns', () => {
-    expect(formatForDisplay('[Keyboard]')).toBe('Keyboard')
-    expect(formatForDisplay('[Digit10]')).toBe('Digit10')
-    expect(formatForDisplay('Key11')).toBe('Key11')
+    // Not valid typed hotkeys: checks how untyped input is displayed
+    expect(formatForDisplay('[Keyboard]' as HotkeyChord)).toBe('Keyboard')
+    expect(formatForDisplay('[Digit10]' as HotkeyChord)).toBe('Digit10')
+    expect(formatForDisplay('Key11' as HotkeyChord)).toBe('Key11')
   })
 
   it('preserves overrides, separators, and serialized physical identity', () => {
@@ -393,7 +401,12 @@ describe('layoutMap display labels', () => {
       meta: false,
       modifiers: ['Alt'],
     }
-    for (const hotkey of ['Alt+[KeyQ]', { code: 'KeyQ', alt: true }, parsed]) {
+    const bindings: Array<DisplayHotkeyChord> = [
+      'Alt+[KeyQ]',
+      { code: 'KeyQ', alt: true },
+      parsed,
+    ]
+    for (const hotkey of bindings) {
       expect(formatForDisplay(hotkey, { layoutMap, platform: 'mac' })).toBe(
         '⌥ A',
       )
@@ -453,5 +466,33 @@ describe('layoutMap display labels', () => {
     const next: ReadonlyMap<string, string> = new Map([['KeyQ', 'q']])
     expect(formatForDisplay('[KeyQ]', { layoutMap: first })).toBe('A')
     expect(formatForDisplay('[KeyQ]', { layoutMap: next })).toBe('Q')
+  })
+})
+
+describe('formatForDisplay with single keys', () => {
+  it('formats modifiers on their own with platform labels', () => {
+    expect(formatForDisplay('Shift', { platform: 'mac' })).toBe('⇧')
+    expect(formatForDisplay('Control', { platform: 'windows' })).toBe('Ctrl')
+    expect(formatForDisplay('Meta', { platform: 'windows' })).toBe('Win')
+    expect(formatForDisplay('Meta', { platform: 'linux' })).toBe('Super')
+  })
+
+  it('formats typed keys and keys from events', () => {
+    expect(formatForDisplay('Escape')).toBe('Esc')
+    expect(formatForDisplay('Escape', { useSymbols: false })).toBe('Escape')
+    expect(formatForDisplay('+')).toBe('+')
+    expect(formatForDisplay({ key: 'a' })).toBe('A')
+    expect(formatForDisplay({ key: 'Dead' })).toBe('Dead')
+    expect(formatForDisplay({ key: 'Shift' }, { platform: 'mac' })).toBe('⇧')
+  })
+
+  it('applies keyLabels to keys, and platform labels to modifiers', () => {
+    expect(formatForDisplay('A', { keyLabels: { A: 'Alpha' } })).toBe('Alpha')
+    expect(
+      formatForDisplay('Shift', {
+        platform: 'mac',
+        keyLabels: { Shift: 'Sh' },
+      }),
+    ).toBe('⇧')
   })
 })

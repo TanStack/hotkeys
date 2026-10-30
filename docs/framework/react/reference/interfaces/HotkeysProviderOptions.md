@@ -3,7 +3,7 @@ id: HotkeysProviderOptions
 title: HotkeysProviderOptions
 ---
 
-Defined in: [HotkeysProvider.tsx:26](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L26)
+Defined in: [HotkeysProvider.tsx:28](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L28)
 
 ## Properties
 
@@ -13,7 +13,7 @@ Defined in: [HotkeysProvider.tsx:26](https://github.com/TanStack/hotkeys/blob/ma
 optional hotkey?: UseHotkeyCommonOptions;
 ```
 
-Defined in: [HotkeysProvider.tsx:31](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L31)
+Defined in: [HotkeysProvider.tsx:33](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L33)
 
 Defaults for every hotkey registered by `useHotkey` and `useHotkeys`.
 `requireReset` applies to chords and `timeout` applies to sequences.
@@ -26,6 +26,6 @@ Defaults for every hotkey registered by `useHotkey` and `useHotkeys`.
 optional hotkeyRecorder?: Partial<Omit<HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions, "maxSteps" | "validate" | "onRecord">>;
 ```
 
-Defined in: [HotkeysProvider.tsx:33](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L33)
+Defined in: [HotkeysProvider.tsx:35](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L35)
 
 Defaults for every `useHotkeyRecorder`.

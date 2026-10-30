@@ -31,6 +31,8 @@ export class KeyDisplayComponent {
 }
 ```
 
+To label each held key the way hotkeys are labeled, pass it to `formatForDisplay` as `{ key }`: `Shift` becomes `⇧` on macOS and `Escape` becomes `Esc`. Held keys come from the browser and can be outside the key types, which the `{ key }` form accepts.
+
 ## Check whether a key is held
 
 `injectKeyHold` returns whether one key is held. It updates only when that key is pressed or released, and accepts a getter for a key that changes:

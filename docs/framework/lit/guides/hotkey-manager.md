@@ -62,7 +62,7 @@ manager.isRegistered('Escape', panelElement) // Whether one matches on that targ
 
 `isRegistered` compares hotkeys the way [duplicate detection](./hotkeys#handle-duplicate-hotkeys) does, so `Meta+S` matches a `Mod+S` registration on macOS.
 
-`manager.registrations` is a [TanStack Store](https://tanstack.com/store) that holds every registration in a `Map`, keyed by id. Subscribe to it to run code when registrations change:
+`manager.registrations` is a store that holds every registration in a `Map`, keyed by id. It reads and subscribes like a [TanStack Store](https://tanstack.com/store), so it also works with TanStack Store's framework adapters. Subscribe to it to run code when registrations change:
 
 ```ts
 const subscription = manager.registrations.subscribe((registrations) => {

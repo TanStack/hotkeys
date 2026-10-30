@@ -8,7 +8,7 @@ import {
 } from '@angular/core'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { injectDefaultHotkeysOptions } from './hotkeys-provider'
-import type { Atom, ReadonlyAtom } from '@tanstack/angular-store'
+import type { Store } from '@tanstack/hotkeys/adapter'
 import type { Signal } from '@angular/core'
 import type {
   Hotkey,
@@ -141,7 +141,7 @@ export function injectHotkeyRecorder(
 }
 
 function injectLazyStore<TState, TSelected = NoInfer<TState>>(
-  storeSignal: Signal<Atom<TState> | ReadonlyAtom<TState>>,
+  storeSignal: Signal<Pick<Store<TState>, 'get' | 'subscribe'>>,
   selector: (state: NoInfer<TState>) => TSelected,
 ): Signal<TSelected> {
   const slice = linkedSignal(() => selector(storeSignal().get()))

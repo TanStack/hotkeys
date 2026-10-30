@@ -7,7 +7,7 @@ title: PUNCTUATION_KEYS
 const PUNCTUATION_KEYS: Set<PunctuationKey>;
 ```
 
-Defined in: [constants.ts:233](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L233)
+Defined in: [constants.ts:169](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L169)
 
 Set of all valid punctuation keys commonly used in keyboard shortcuts.
 

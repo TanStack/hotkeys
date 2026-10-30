@@ -50,8 +50,8 @@
     "@tanstack/hotkeys": "workspace:*"
   },
   "dependencies": {
-    "@tanstack/devtools-ui": "^0.7.1",
-    "@tanstack/devtools-utils": "^0.7.0",
+    "@tanstack/devtools-ui": "^0.7.2",
+    "@tanstack/devtools-utils": "^0.7.2",
     "clsx": "^2.1.1",
     "goober": "^2.1.19",
     "match-sorter": "^8.3.0",

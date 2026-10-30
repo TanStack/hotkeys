@@ -1,5 +1,4 @@
 import { createMemo } from 'solid-js'
-import { useSelector } from '@tanstack/solid-store'
 import {
   getHotkeyManager,
   getKeyStateTracker,
@@ -7,6 +6,7 @@ import {
   matchesHeldModifiers,
   resolveAppHotkey,
 } from '@tanstack/hotkeys'
+import { useSelector } from './_useSelector'
 import { useAppHotkeysStoreSource } from './defaultOptions'
 import type {
   AppHotkey,

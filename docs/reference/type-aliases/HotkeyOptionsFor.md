@@ -7,7 +7,7 @@ title: HotkeyOptionsFor
 type HotkeyOptionsFor<T> = [T] extends [never] ? HotkeyChordOptions & HotkeySequenceOptions : T extends readonly [RegisterableHotkeyChord] ? HotkeyChordOptions : T extends RegisterableHotkeySequence ? HotkeySequenceOptions : HotkeyChordOptions;
 ```
 
-Defined in: [hotkey-manager.ts:136](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L136)
+Defined in: [hotkey-manager.ts:141](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L141)
 
 The options type for a hotkey: chord options for chords (including one-step
 tuples), sequence options for sequences.

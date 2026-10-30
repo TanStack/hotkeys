@@ -1,5 +1,5 @@
-import { useSelector } from '@tanstack/preact-store'
 import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
+import { useSelector } from './_useSelector'
 import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
 
 /**

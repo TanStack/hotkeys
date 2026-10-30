@@ -1,4 +1,3 @@
-import { useSelector } from '@tanstack/preact-store'
 import {
   getHotkeyManager,
   getKeyStateTracker,
@@ -6,6 +5,7 @@ import {
   matchesHeldModifiers,
   resolveAppHotkey,
 } from '@tanstack/hotkeys'
+import { useSelector } from './_useSelector'
 import { useAppHotkeysStoreState } from './_appHotkeysStore'
 import type {
   AppHotkey,

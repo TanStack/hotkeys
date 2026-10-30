@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.6",
-    "@tanstack/preact-devtools": "0.10.13",
+    "@tanstack/preact-devtools": "0.10.15",
     "@tanstack/preact-hotkeys-devtools": "^0.11.2",
     "typescript": "6.0.3",
     "vite": "^8.3.2"

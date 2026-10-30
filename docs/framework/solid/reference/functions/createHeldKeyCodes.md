@@ -7,15 +7,14 @@ title: createHeldKeyCodes
 function createHeldKeyCodes(): () => Record<string, string>;
 ```
 
-Defined in: [createHeldKeyCodes.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHeldKeyCodes.ts#L35)
+Defined in: [createHeldKeyCodes.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHeldKeyCodes.ts#L34)
 
 SolidJS primitive that returns a signal of a map from currently held key names to their physical `event.code` values.
 
 This is useful for debugging which physical key was pressed (e.g. distinguishing
 left vs right Shift via "ShiftLeft" / "ShiftRight").
 
-This primitive uses `useSelector` from `@tanstack/solid-store` to subscribe
-to the global KeyStateTracker.
+This primitive subscribes to the global KeyStateTracker.
 
 ## Returns
 

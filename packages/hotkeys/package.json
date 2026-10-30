@@ -50,7 +50,10 @@
     "dist",
     "skills"
   ],
-  "dependencies": {
+  "devDependencies": {
     "@tanstack/store": "^0.11.2"
+  },
+  "inlinedDependencies": {
+    "@tanstack/store": "0.11.2"
   }
 }

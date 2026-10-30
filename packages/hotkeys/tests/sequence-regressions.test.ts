@@ -202,7 +202,7 @@ describe('equivalent sequence conflicts', () => {
   it.each([
     [
       ['Control+S', 'Escape'],
-      ['Ctrl+S', 'Esc'],
+      ['Ctrl+S', 'Escape'],
     ],
     [
       ['Ctrl+Shift+S', 'G'],
@@ -229,15 +229,15 @@ describe('equivalent sequence conflicts', () => {
     const oldCallback = vi.fn()
     const newCallback = vi.fn()
     const oldHandle = manager.register(['Control+S', 'Escape'], oldCallback)
-    // Exercise runtime aliases accepted by the parser but omitted from canonical types.
-    const sequence = ['Ctrl+S', 'Esc'] as unknown as HotkeySequence
+    // Exercise a modifier alias accepted by the parser but omitted from canonical types.
+    const sequence = ['Ctrl+S', 'Escape'] as unknown as HotkeySequence
     manager.register(sequence, newCallback, { conflictBehavior: 'replace' })
     expect(oldHandle.isActive).toBe(false)
     expect(manager.getRegistrationCount()).toBe(1)
     expect([...manager.registrations.state.values()][0]?.hotkey).toEqual(
       sequence,
     )
-    expect(sequence).toEqual(['Ctrl+S', 'Esc'])
+    expect(sequence).toEqual(['Ctrl+S', 'Escape'])
     press('s', 'KeyS', { ctrlKey: true })
     press('Escape', 'Escape')
     expect(oldCallback).not.toHaveBeenCalled()

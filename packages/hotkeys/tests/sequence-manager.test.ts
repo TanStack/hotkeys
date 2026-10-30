@@ -914,23 +914,6 @@ describe('HotkeyManager hasFired', () => {
     expect(view.hasFired).toBe(true)
   })
 
-  it('should set hasFired to true via triggerRegistration', () => {
-    const manager = HotkeyManager.getInstance()
-    const callback = vi.fn()
-
-    const handle = manager.register(['G', 'G'], callback)
-
-    expect(Array.from(manager.registrations.state.values())[0]!.hasFired).toBe(
-      false,
-    )
-
-    manager.triggerRegistration(handle.id)
-
-    expect(Array.from(manager.registrations.state.values())[0]!.hasFired).toBe(
-      true,
-    )
-  })
-
   it('should expose hasFired in the SequenceRegistrationView', () => {
     const manager = HotkeyManager.getInstance()
     const callback = vi.fn()

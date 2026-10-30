@@ -22,7 +22,7 @@ export class AppComponent {
       const keys = this.heldKeys()
       if (keys.length > 0) {
         const combo = keys
-          .map((k) => formatForDisplay(k, { useSymbols: true }))
+          .map((k) => formatForDisplay({ key: k }, { useSymbols: true }))
           .join(' + ')
         this.history.update((h) => {
           if (h[h.length - 1] !== combo) {

@@ -16,41 +16,65 @@ import { useHotkeyRecorder } from '../src/useHotkeyRecorder'
 import { useHotkeyRegistrations } from '../src/useHotkeyRegistrations'
 import { useHotkeyScopesState } from '../src/useHotkeyScopesState'
 import { useKeyHold } from '../src/useKeyHold'
-import type * as VueStore from '@tanstack/vue-store'
 
-// Counts live useSelector subscriptions on any store, including stores that
-// are private to the adapter.
-const live = vi.hoisted(() => ({ count: 0 }))
-vi.mock('@tanstack/vue-store', async (importOriginal) => {
-  const mod = await importOriginal<typeof VueStore>()
+// Counts live subscriptions made by useStoreSelector on any store, including
+// stores that are private to the adapter.
+const selector = vi.hoisted(() => ({ count: 0 }))
+vi.mock('../src/useStoreSelector', async (importOriginal) => {
+  const mod = await importOriginal<typeof import('../src/useStoreSelector')>()
   return {
-    ...mod,
-    useSelector: ((source, selector, options) =>
-      mod.useSelector(
+    useStoreSelector: ((source, select) =>
+      mod.useStoreSelector(
         {
           get: () => source.get(),
           subscribe: (listener: Parameters<typeof source.subscribe>[0]) => {
-            live.count++
+            selector.count++
             const subscription = source.subscribe(listener)
             return {
               unsubscribe: () => {
-                live.count--
+                selector.count--
                 subscription.unsubscribe()
               },
             }
           },
         },
-        selector,
-        options,
-      )) as typeof mod.useSelector,
+        select,
+      )) as typeof mod.useStoreSelector,
   }
 })
 
-/** Live subscribers on a store, read from its atom's subscriber list. */
+/** Live subscribers on each store, counted from when tracking starts. */
+const live = new WeakMap<object, number>()
+
+function trackSubscribers(store: {
+  subscribe: (listener: () => void) => { unsubscribe: () => void }
+}): void {
+  const subscribe = store.subscribe.bind(store)
+  live.set(store, 0)
+  store.subscribe = (listener) => {
+    live.set(store, live.get(store)! + 1)
+    const subscription = subscribe(listener)
+    let active = true
+    return {
+      unsubscribe: () => {
+        if (active) live.set(store, live.get(store)! - 1)
+        active = false
+        subscription.unsubscribe()
+      },
+    }
+  }
+}
+
 function subscriberCount(store: object): number {
-  let count = 0
-  for (let link = (store as any).atom.subs; link; link = link.nextSub) count++
-  return count
+  return live.get(store) ?? 0
+}
+
+for (const store of [
+  getKeyStateTracker().store,
+  getHotkeyManager().registrations,
+  getHotkeyManager().scopes,
+]) {
+  trackSubscribers(store)
 }
 
 function snapshot() {
@@ -59,7 +83,7 @@ function snapshot() {
     tracker: subscriberCount(getKeyStateTracker().store),
     registrations: subscriberCount(manager.registrations),
     scopes: subscriberCount(manager.scopes),
-    useSelector: live.count,
+    useStoreSelector: selector.count,
   }
 }
 

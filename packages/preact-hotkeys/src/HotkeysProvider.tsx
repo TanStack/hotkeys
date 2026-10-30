@@ -1,14 +1,16 @@
 import { createContext } from 'preact'
 import { useContext, useEffect, useMemo, useState } from 'preact/hooks'
-import { AppHotkeysStore, publishAppHotkeysStore } from '@tanstack/hotkeys'
+import { publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
   activateHotkeysProviderScope,
+  createAppHotkeysStore,
   getHotkeysProviderScopeKey,
   mergeHotkeysProviderDefaults,
 } from '@tanstack/hotkeys/adapter'
 import type { ComponentChildren } from 'preact'
 import type {
   AppHotkeys,
+  AppHotkeysStore,
   CustomHotkeys,
   HotkeyChordRecorderOptions,
   HotkeySequenceRecorderOptions,
@@ -112,7 +114,7 @@ export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
   const parent = useContext(HotkeysContext) ?? NO_PARENT
   const [store] = useState(() =>
     appHotkeys
-      ? new AppHotkeysStore<T>(appHotkeys, {
+      ? createAppHotkeysStore(appHotkeys, {
           customHotkeys,
           onCustomHotkeysChange,
         })

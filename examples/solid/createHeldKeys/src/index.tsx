@@ -20,7 +20,7 @@ function App() {
     const keys = heldKeys()
     if (keys.length > 0) {
       const combo = keys
-        .map((k) => formatForDisplay(k, { useSymbols: true }))
+        .map((k) => formatForDisplay({ key: k }, { useSymbols: true }))
         .join(' + ')
       setHistory((h) => {
         if (h[h.length - 1] !== combo) {
@@ -52,7 +52,7 @@ function App() {
                   <>
                     {index > 0 && <span class="plus">+</span>}
                     <kbd class="large">
-                      {formatForDisplay(key, { useSymbols: true })}
+                      {formatForDisplay({ key }, { useSymbols: true })}
                       {code && code !== key && (
                         <small class="code-label">{code}</small>
                       )}

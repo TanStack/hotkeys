@@ -1,5 +1,4 @@
 import { computed } from '@angular/core'
-import { injectSelector } from '@tanstack/angular-store'
 import {
   getHotkeyManager,
   getKeyStateTracker,
@@ -7,6 +6,7 @@ import {
   matchesHeldModifiers,
   resolveAppHotkey,
 } from '@tanstack/hotkeys'
+import { injectSelector } from './_injectSelector'
 import { injectHotkeysContext } from './hotkeys-provider'
 import type { Signal } from '@angular/core'
 import type {

@@ -7,12 +7,11 @@ title: useKeyHold
 function useKeyHold(key): boolean;
 ```
 
-Defined in: [useKeyHold.ts:47](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useKeyHold.ts#L47)
+Defined in: [useKeyHold.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useKeyHold.ts#L46)
 
 React hook that returns whether a specific key is currently being held.
 
-This hook uses `useSelector` from `@tanstack/react-store` to subscribe
-to the global KeyStateTracker and uses a selector to determine if
+This hook subscribes to the global KeyStateTracker and uses a selector to determine if
 the specified key is held.
 
 ## Parameters

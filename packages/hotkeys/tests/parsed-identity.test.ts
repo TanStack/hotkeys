@@ -92,22 +92,6 @@ it('keeps physical identity in standalone handler context', () => {
     parsedChord: { ...modifiers, code: 'KeyS' },
   })
 })
-it('synthesizes code rather than inventing a character when triggering registrations', () => {
-  const single = vi.fn(),
-    sequence = vi.fn()
-  const manager = HotkeyManager.getInstance(),
-    sequences = HotkeyManager.getInstance()
-  const handle = manager.register('Alt+[KeyS]', single)
-  const seq = sequences.register(['[KeyG]', 'Alt+[KeyS]'], sequence)
-  manager.triggerRegistration(handle.id)
-  sequences.triggerRegistration(seq.id)
-  for (const callback of [single, sequence]) {
-    expect(callback.mock.calls[0]![0].code).toBe('KeyS')
-    expect(callback.mock.calls[0]![0].key).toBe('')
-  }
-  expect(single.mock.calls[0]![1].parsedChord).not.toHaveProperty('key')
-  expect(sequence.mock.calls[0]![1].parsedSequence[1]).not.toHaveProperty('key')
-})
 it('recognizes physical action keys and preserves Escape input defaults', () => {
   expect(hasNonModifierKey('[KeyS]')).toBe(true)
   expect(hasNonModifierKey('[ShiftLeft]')).toBe(false)
