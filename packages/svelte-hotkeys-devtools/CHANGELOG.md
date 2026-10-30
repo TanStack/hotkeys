@@ -1,5 +1,25 @@
 # @tanstack/svelte-hotkeys-devtools
 
+## 0.3.2
+
+### Patch Changes
+
+- [#204](https://github.com/TanStack/hotkeys/pull/204) [`5053876`](https://github.com/TanStack/hotkeys/commit/5053876bbd97d6b056cef9eddddcc4e28c249aba) - Fix type errors in the devtools packages with `skipLibCheck: false`. Their declarations used types from `@tanstack/devtools-utils`, which import `@tanstack/devtools` without depending on it, so TypeScript reported `Cannot find module '@tanstack/devtools'`, and with `skipLibCheck: true` the panel props became `any`. The packages now declare their own panel and plugin types. `@tanstack/hotkeys-devtools` exports `HotkeysDevtoolsPanelProps`, `HotkeysDevtoolsTheme` and `HotkeysDevtoolsCoreClass`.
+
+  The React devtools types no longer refer to `JSX` from `react`, which some `@types/react` 18 releases don't export.
+
+- [#204](https://github.com/TanStack/hotkeys/pull/204) [`5053876`](https://github.com/TanStack/hotkeys/commit/5053876bbd97d6b056cef9eddddcc4e28c249aba) - Fix framework peer ranges so they match the versions each package builds and runs on:
+
+  - Preact `>=10.5.2`. Older releases can't resolve `preact/jsx-runtime`.
+  - Solid devtools `^1.9.15`. The panel crashes below 1.9.15, where two copies of Solid get installed.
+  - Vue `>=3.3.0`. The adapter uses `toValue`, added in Vue 3.3.
+  - Svelte `^5.40.0`. The adapter uses `createContext`, added in Svelte 5.40.
+  - Alpine `^3.13.0`, down from `^3.15.12`. npm no longer refuses to install the adapter next to Alpine 3.13 and 3.14.
+
+- [#204](https://github.com/TanStack/hotkeys/pull/204) [`5053876`](https://github.com/TanStack/hotkeys/commit/5053876bbd97d6b056cef9eddddcc4e28c249aba) - Relative imports in the published files now end in `.js`, so the types resolve with `moduleResolution: "nodenext"`. The devtools types also declare `Component<Props>` instead of `Component<Props, {}, string>`, which current Svelte types reject with `skipLibCheck: false`.
+- Updated dependencies [[`5053876`](https://github.com/TanStack/hotkeys/commit/5053876bbd97d6b056cef9eddddcc4e28c249aba)]:
+  - @tanstack/hotkeys-devtools@1.6.1
+
 ## 0.3.1
 
 ### Patch Changes

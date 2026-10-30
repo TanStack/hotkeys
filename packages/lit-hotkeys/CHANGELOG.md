@@ -1,5 +1,17 @@
 # @tanstack/react-hotkeys
 
+## 0.18.1
+
+### Patch Changes
+
+- [#207](https://github.com/TanStack/hotkeys/pull/207) [`48a4870`](https://github.com/TanStack/hotkeys/commit/48a4870279616ef34346645706b7df3ea96a1989) - Fix two Lit controller bugs:
+
+  - Controllers no longer leak store subscriptions during server rendering with `@lit-labs/ssr`'s `connectedCallback: true` option. On the server, they read the current state and subscribe to nothing.
+  - `KeyHoldController` accepts a getter key and reads it again on each host update, so it follows a reactive property. It also reads a key that is already held when it connects.
+
+- Updated dependencies [[`132e0c9`](https://github.com/TanStack/hotkeys/commit/132e0c99cb4c168ba4f7e0cd5abb5e8eadb70864), [`ebd7e84`](https://github.com/TanStack/hotkeys/commit/ebd7e84a529fddecb495d0cc92beb17876c268e9), [`d43b9aa`](https://github.com/TanStack/hotkeys/commit/d43b9aa6e445fd53a5de428e7eb6aaca5f6008ee)]:
+  - @tanstack/hotkeys@0.19.0
+
 ## 0.18.0
 
 ### Minor Changes

@@ -1,5 +1,26 @@
 # @tanstack/alpine-hotkeys
 
+## 0.7.0
+
+### Minor Changes
+
+- [#204](https://github.com/TanStack/hotkeys/pull/204) [`5053876`](https://github.com/TanStack/hotkeys/commit/5053876bbd97d6b056cef9eddddcc4e28c249aba) - The adapter no longer imports `alpinejs`. It uses the Alpine instance passed to `Alpine.plugin(hotkeysPlugin)`, or `window.Alpine` without the plugin. Install the plugin before `Alpine.start()`; using a scope with neither throws an error that says so.
+
+  Before, a page that loaded Alpine from a script tag and the adapter from a CDN got a second copy of Alpine, so held keys and getter options stopped updating with no error. Importing the package in Node also threw `MutationObserver is not defined`, even for helpers such as `formatForDisplay`.
+
+### Patch Changes
+
+- [#204](https://github.com/TanStack/hotkeys/pull/204) [`5053876`](https://github.com/TanStack/hotkeys/commit/5053876bbd97d6b056cef9eddddcc4e28c249aba) - Fix framework peer ranges so they match the versions each package builds and runs on:
+
+  - Preact `>=10.5.2`. Older releases can't resolve `preact/jsx-runtime`.
+  - Solid devtools `^1.9.15`. The panel crashes below 1.9.15, where two copies of Solid get installed.
+  - Vue `>=3.3.0`. The adapter uses `toValue`, added in Vue 3.3.
+  - Svelte `^5.40.0`. The adapter uses `createContext`, added in Svelte 5.40.
+  - Alpine `^3.13.0`, down from `^3.15.12`. npm no longer refuses to install the adapter next to Alpine 3.13 and 3.14.
+
+- Updated dependencies [[`132e0c9`](https://github.com/TanStack/hotkeys/commit/132e0c99cb4c168ba4f7e0cd5abb5e8eadb70864), [`ebd7e84`](https://github.com/TanStack/hotkeys/commit/ebd7e84a529fddecb495d0cc92beb17876c268e9), [`d43b9aa`](https://github.com/TanStack/hotkeys/commit/d43b9aa6e445fd53a5de428e7eb6aaca5f6008ee)]:
+  - @tanstack/hotkeys@0.19.0
+
 ## 0.6.0
 
 ### Minor Changes
