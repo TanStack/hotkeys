@@ -4191,13 +4191,13 @@
       "evidence": ["packages/hotkeys/tests/match.test.ts"]
     },
     "source:packages/hotkeys/tests/sequence-regressions.test.ts": {
-      "fingerprint": "ce156a0757f986db843d67a425c0df172fb56f8a75fd09b53af57fb588cddc6a",
+      "fingerprint": "0df4f71842f1e3aa3bb0e7521a1f5e04d30b1c9a9ff270b7914fdf09b773e32a",
       "snapshot": {
-        "packages/hotkeys/tests/sequence-regressions.test.ts": "d996e6e01a3febab251074ab9eed48dfe0ec846e5d7538eaa7dacc70d3facec3"
+        "packages/hotkeys/tests/sequence-regressions.test.ts": "80db8a2da40225783f823edfba6b5beb97b3bdbd1e754b7952e9eb34957f48c6"
       },
-      "head": "210b3fb5577b3e7381a7c74d70e87cf395ae6682",
+      "head": "2f73a120955c389d30d110aaf63307c077d92323",
       "outcome": "out-of-scope",
-      "reason": "Matcher source and tests; the guidance impact is reviewed on the hotkeys-core skill item.",
+      "reason": "Test fixtures only; the guidance impact is reviewed on the hotkeys-core skill item.",
       "evidence": ["packages/hotkeys/tests/sequence-regressions.test.ts"]
     }
   }
