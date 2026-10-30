@@ -9,7 +9,7 @@ title: formatForDisplay
 function formatForDisplay(hotkey, options): string[][];
 ```
 
-Defined in: [format.ts:111](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L111)
+Defined in: [format.ts:121](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L121)
 
 Formats a hotkey for display in a user interface.
 
@@ -24,8 +24,8 @@ or change matching. Supply a resolved `layoutMap` for layout-aware labels;
 Sequence steps are formatted individually and joined with `sequenceSeparator`
 (a space by default).
 
-To display a single key that is not a hotkey, such as a held key from
-`KeyStateTracker`, use `formatKeyForDisplay`.
+A key reported by a `KeyboardEvent`, such as a held key from
+`KeyStateTracker`, can be outside the key types: pass it as `{ key }`.
 
 ### Parameters
 
@@ -59,6 +59,12 @@ formatForDisplay('Mod+Shift+S', { platform: 'windows' })
 formatForDisplay('Escape')
 // Returns: 'Esc' (on all platforms)
 
+formatForDisplay('Shift', { platform: 'mac' })
+// Returns: '⇧'
+
+formatForDisplay({ key: heldKey })
+// A key from a KeyboardEvent, such as a held key
+
 formatForDisplay(['G', 'H'])
 // Returns: 'G H'
 ```
@@ -69,7 +75,7 @@ formatForDisplay(['G', 'H'])
 function formatForDisplay(hotkey, options): string[];
 ```
 
-Defined in: [format.ts:115](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L115)
+Defined in: [format.ts:125](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L125)
 
 Formats a hotkey for display in a user interface.
 
@@ -84,8 +90,8 @@ or change matching. Supply a resolved `layoutMap` for layout-aware labels;
 Sequence steps are formatted individually and joined with `sequenceSeparator`
 (a space by default).
 
-To display a single key that is not a hotkey, such as a held key from
-`KeyStateTracker`, use `formatKeyForDisplay`.
+A key reported by a `KeyboardEvent`, such as a held key from
+`KeyStateTracker`, can be outside the key types: pass it as `{ key }`.
 
 ### Parameters
 
@@ -119,6 +125,12 @@ formatForDisplay('Mod+Shift+S', { platform: 'windows' })
 formatForDisplay('Escape')
 // Returns: 'Esc' (on all platforms)
 
+formatForDisplay('Shift', { platform: 'mac' })
+// Returns: '⇧'
+
+formatForDisplay({ key: heldKey })
+// A key from a KeyboardEvent, such as a held key
+
 formatForDisplay(['G', 'H'])
 // Returns: 'G H'
 ```
@@ -129,7 +141,7 @@ formatForDisplay(['G', 'H'])
 function formatForDisplay(hotkey, options?): string;
 ```
 
-Defined in: [format.ts:119](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L119)
+Defined in: [format.ts:129](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L129)
 
 Formats a hotkey for display in a user interface.
 
@@ -144,8 +156,8 @@ or change matching. Supply a resolved `layoutMap` for layout-aware labels;
 Sequence steps are formatted individually and joined with `sequenceSeparator`
 (a space by default).
 
-To display a single key that is not a hotkey, such as a held key from
-`KeyStateTracker`, use `formatKeyForDisplay`.
+A key reported by a `KeyboardEvent`, such as a held key from
+`KeyStateTracker`, can be outside the key types: pass it as `{ key }`.
 
 ### Parameters
 
@@ -179,6 +191,12 @@ formatForDisplay('Mod+Shift+S', { platform: 'windows' })
 formatForDisplay('Escape')
 // Returns: 'Esc' (on all platforms)
 
+formatForDisplay('Shift', { platform: 'mac' })
+// Returns: '⇧'
+
+formatForDisplay({ key: heldKey })
+// A key from a KeyboardEvent, such as a held key
+
 formatForDisplay(['G', 'H'])
 // Returns: 'G H'
 ```
@@ -189,7 +207,7 @@ formatForDisplay(['G', 'H'])
 function formatForDisplay(hotkey, options): string | string[] | string[][];
 ```
 
-Defined in: [format.ts:123](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L123)
+Defined in: [format.ts:133](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L133)
 
 Formats a hotkey for display in a user interface.
 
@@ -204,8 +222,8 @@ or change matching. Supply a resolved `layoutMap` for layout-aware labels;
 Sequence steps are formatted individually and joined with `sequenceSeparator`
 (a space by default).
 
-To display a single key that is not a hotkey, such as a held key from
-`KeyStateTracker`, use `formatKeyForDisplay`.
+A key reported by a `KeyboardEvent`, such as a held key from
+`KeyStateTracker`, can be outside the key types: pass it as `{ key }`.
 
 ### Parameters
 
@@ -238,6 +256,12 @@ formatForDisplay('Mod+Shift+S', { platform: 'windows' })
 
 formatForDisplay('Escape')
 // Returns: 'Esc' (on all platforms)
+
+formatForDisplay('Shift', { platform: 'mac' })
+// Returns: '⇧'
+
+formatForDisplay({ key: heldKey })
+// A key from a KeyboardEvent, such as a held key
 
 formatForDisplay(['G', 'H'])
 // Returns: 'G H'

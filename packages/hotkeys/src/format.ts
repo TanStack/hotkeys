@@ -65,8 +65,12 @@ function formatParsedChord(parsed: ParsedHotkeyChord): string {
   return parts.join('+')
 }
 
-/** A single chord to display: a hotkey string, raw object, or parsed hotkey. */
-export type DisplayHotkeyChord = RegisterableHotkeyChord | ParsedHotkeyChord
+/**
+ * A single chord to display: a hotkey string, which includes single keys, a
+ * modifier on its own, a raw object such as `{ key }`, or a parsed hotkey.
+ */
+export type DisplayHotkeyChord =
+  RegisterableHotkeyChord | ParsedHotkeyChord | CanonicalModifier
 
 /** A hotkey to display: a chord or a sequence of chords. */
 export type DisplayHotkey =
@@ -86,8 +90,8 @@ export type DisplayHotkey =
  * Sequence steps are formatted individually and joined with `sequenceSeparator`
  * (a space by default).
  *
- * To display a single key that is not a hotkey, such as a held key from
- * `KeyStateTracker`, use `formatKeyForDisplay`.
+ * A key reported by a `KeyboardEvent`, such as a held key from
+ * `KeyStateTracker`, can be outside the key types: pass it as `{ key }`.
  *
  * @param hotkey - A logical or physical hotkey string, raw object, ParsedHotkeyChord, or sequence
  * @param options - Formatting options
@@ -103,6 +107,12 @@ export type DisplayHotkey =
  *
  * formatForDisplay('Escape')
  * // Returns: 'Esc' (on all platforms)
+ *
+ * formatForDisplay('Shift', { platform: 'mac' })
+ * // Returns: '⇧'
+ *
+ * formatForDisplay({ key: heldKey })
+ * // A key from a KeyboardEvent, such as a held key
  *
  * formatForDisplay(['G', 'H'])
  * // Returns: 'G H'
@@ -229,38 +239,6 @@ function formatKey(
   return numpad
     ? `Numpad ${display.replace(/([a-z])([A-Z])/g, '$1 $2')}`
     : display
-}
-
-/**
- * Formats a single key for display, such as a held key from
- * `KeyStateTracker` or a modifier on its own. Uses the same labels as
- * `formatForDisplay`: `Shift` becomes `⇧` on macOS and `Escape` becomes `Esc`.
- *
- * @param key - A key name, such as a `KeyboardEvent.key` value or a modifier
- * @param options - Formatting options
- *
- * @example
- * ```ts
- * formatKeyForDisplay('Shift', { platform: 'mac' }) // '⇧'
- * formatKeyForDisplay('Meta', { platform: 'windows' }) // 'Win'
- * formatKeyForDisplay('a') // 'A'
- * ```
- */
-export function formatKeyForDisplay(
-  key: string,
-  options: Pick<
-    FormatDisplayOptions,
-    'platform' | 'useSymbols' | 'keyLabels'
-  > = {},
-): string {
-  const symbols = options.useSymbols ?? true
-  return formatKey(
-    normalizeKeyName(key),
-    options.platform ?? detectPlatform(),
-    modifierSymbolsEnabled(options),
-    typeof symbols === 'boolean' ? symbols : (symbols.keys ?? true),
-    options,
-  )
 }
 
 /**

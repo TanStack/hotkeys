@@ -5,7 +5,6 @@ import {
   HotkeyRecorder,
   formatForDisplay,
   formatHotkey,
-  formatKeyForDisplay,
   getHotkeyManager,
   matchesKeyboardEvent,
   normalizeHotkey,
@@ -456,7 +455,7 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
   // Fingerprinted with formatForDisplay before it accepted only hotkeys
   it('display held keys the same way', () => {
     // Whitespace keys are checked separately: formatForDisplay trimmed them
-    // away, and formatKeyForDisplay shows them
+    // away, and { key } shows them
     const heldKeys = new Set(
       [...BASE_EVENTS, ...CHARACTER_EVENTS]
         .map((init) => normalizeKeyName(init.key!))
@@ -474,10 +473,12 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
       fingerprint((record) => {
         for (const key of heldKeys)
           for (const option of options)
-            record(attempt(() => formatKeyForDisplay(key, option)))
+            record(attempt(() => formatForDisplay({ key }, option)))
       }),
     ).toMatchInlineSnapshot(`"32b3ac7ea1c5cc51"`)
-    expect(formatKeyForDisplay(' ', { platform: 'mac' })).toBe('␣')
-    expect(formatKeyForDisplay('\u00a0', { platform: 'mac' })).toBe('\u00a0')
+    expect(formatForDisplay({ key: ' ' }, { platform: 'mac' })).toBe('␣')
+    expect(formatForDisplay({ key: '\u00a0' }, { platform: 'mac' })).toBe(
+      '\u00a0',
+    )
   })
 })

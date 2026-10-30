@@ -1,7 +1,6 @@
 import { Component, input, output } from '@angular/core'
 import {
   formatForDisplay,
-  formatKeyForDisplay,
   injectHeldKeys,
   type Hotkey,
   type HotkeySequence,
@@ -24,5 +23,4 @@ export class ShortcutListItemComponent {
 
   heldKeys = injectHeldKeys()
   readonly formatForDisplay = formatForDisplay
-  readonly formatKeyForDisplay = formatKeyForDisplay
 }

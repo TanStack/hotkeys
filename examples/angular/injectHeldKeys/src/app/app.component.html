@@ -17,7 +17,7 @@
               <span class="plus">+</span>
             }
             <kbd class="large">
-              {{ formatKeyForDisplay(key, { useSymbols: true }) }}
+              {{ formatForDisplay({ key: key }, { useSymbols: true }) }}
               @if (heldCodes()[key] && heldCodes()[key] !== key) {
                 <small class="code-label">{{ heldCodes()[key] }}</small>
               }

@@ -9,6 +9,6 @@ type DisplayHotkey =
 | ReadonlyArray<DisplayHotkeyChord>;
 ```
 
-Defined in: [format.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L72)
+Defined in: [format.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L76)
 
 A hotkey to display: a chord or a sequence of chords.

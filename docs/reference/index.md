@@ -141,7 +141,6 @@ title: "@tanstack/hotkeys"
 - [findHotkeyConflicts](functions/findHotkeyConflicts.md)
 - [formatForDisplay](functions/formatForDisplay.md)
 - [formatHotkey](functions/formatHotkey.md)
-- [formatKeyForDisplay](functions/formatKeyForDisplay.md)
 - [getAppHotkeyRegistrationOptions](functions/getAppHotkeyRegistrationOptions.md)
 - [getHotkeyManager](functions/getHotkeyManager.md)
 - [getKeyStateTracker](functions/getKeyStateTracker.md)

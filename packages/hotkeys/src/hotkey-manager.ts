@@ -1431,44 +1431,6 @@ export class HotkeyManager {
   }
 
   /**
-   * Triggers a registration's callback programmatically from devtools.
-   * Creates a synthetic KeyboardEvent from the chord (or a sequence's last step)
-   * and invokes the callback.
-   *
-   * @param id - The registration ID to trigger
-   * @returns True if the registration was found and triggered
-   */
-  triggerRegistration(id: string): boolean {
-    const registration = this.registrations.state.get(id)
-    if (!registration) {
-      return false
-    }
-
-    const context = this.#callbackContext(registration)
-    const parsed =
-      registration.kind === 'chord'
-        ? registration.parsedChord
-        : registration.parsedSequence[registration.parsedSequence.length - 1]!
-    const syntheticEvent = new KeyboardEvent(
-      registration.options.eventType ?? 'keydown',
-      {
-        ...(parsed.code !== undefined
-          ? { code: parsed.code }
-          : { key: parsed.key }),
-        ctrlKey: parsed.ctrl,
-        shiftKey: parsed.shift,
-        altKey: parsed.alt,
-        metaKey: parsed.meta,
-        bubbles: true,
-        cancelable: true,
-      },
-    )
-
-    this.#fire(registration, syntheticEvent, context)
-    return true
-  }
-
-  /**
    * Gets the number of registered hotkeys, chords and sequences.
    */
   getRegistrationCount(): number {

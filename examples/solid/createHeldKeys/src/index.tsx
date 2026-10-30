@@ -5,7 +5,7 @@ import {
   HotkeysProvider,
   createHeldKeyCodes,
   createHeldKeys,
-  formatKeyForDisplay,
+  formatForDisplay,
 } from '@tanstack/solid-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
 import { TanStackDevtools } from '@tanstack/solid-devtools'
@@ -20,7 +20,7 @@ function App() {
     const keys = heldKeys()
     if (keys.length > 0) {
       const combo = keys
-        .map((k) => formatKeyForDisplay(k, { useSymbols: true }))
+        .map((k) => formatForDisplay({ key: k }, { useSymbols: true }))
         .join(' + ')
       setHistory((h) => {
         if (h[h.length - 1] !== combo) {
@@ -52,7 +52,7 @@ function App() {
                   <>
                     {index > 0 && <span class="plus">+</span>}
                     <kbd class="large">
-                      {formatKeyForDisplay(key, { useSymbols: true })}
+                      {formatForDisplay({ key }, { useSymbols: true })}
                       {code && code !== key && (
                         <small class="code-label">{code}</small>
                       )}

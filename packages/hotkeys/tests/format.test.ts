@@ -1,9 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import {
-  formatForDisplay,
-  formatHotkey,
-  formatKeyForDisplay,
-} from '../src/format'
+import { formatForDisplay, formatHotkey } from '../src/format'
 import { normalizeHotkey } from '../src/parse'
 import type { DisplayHotkeyChord } from '../src/format'
 import type {
@@ -473,25 +469,27 @@ describe('layoutMap display labels', () => {
   })
 })
 
-describe('formatKeyForDisplay', () => {
-  it('formats single keys and modifiers with the same labels as hotkeys', () => {
-    expect(formatKeyForDisplay('Shift', { platform: 'mac' })).toBe('⇧')
-    expect(formatKeyForDisplay('Control', { platform: 'windows' })).toBe('Ctrl')
-    expect(formatKeyForDisplay('Meta', { platform: 'windows' })).toBe('Win')
-    expect(formatKeyForDisplay('Meta', { platform: 'linux' })).toBe('Super')
-    expect(formatKeyForDisplay('a')).toBe('A')
-    expect(formatKeyForDisplay('Escape')).toBe('Esc')
-    expect(formatKeyForDisplay('Escape', { useSymbols: false })).toBe('Escape')
-    expect(formatKeyForDisplay('+')).toBe('+')
-    expect(formatKeyForDisplay('Dead')).toBe('Dead')
+describe('formatForDisplay with single keys', () => {
+  it('formats modifiers on their own with platform labels', () => {
+    expect(formatForDisplay('Shift', { platform: 'mac' })).toBe('⇧')
+    expect(formatForDisplay('Control', { platform: 'windows' })).toBe('Ctrl')
+    expect(formatForDisplay('Meta', { platform: 'windows' })).toBe('Win')
+    expect(formatForDisplay('Meta', { platform: 'linux' })).toBe('Super')
+  })
+
+  it('formats typed keys and keys from events', () => {
+    expect(formatForDisplay('Escape')).toBe('Esc')
+    expect(formatForDisplay('Escape', { useSymbols: false })).toBe('Escape')
+    expect(formatForDisplay('+')).toBe('+')
+    expect(formatForDisplay({ key: 'a' })).toBe('A')
+    expect(formatForDisplay({ key: 'Dead' })).toBe('Dead')
+    expect(formatForDisplay({ key: 'Shift' }, { platform: 'mac' })).toBe('⇧')
   })
 
   it('applies keyLabels to keys, and platform labels to modifiers', () => {
-    expect(formatKeyForDisplay('A', { keyLabels: { A: 'Alpha' } })).toBe(
-      'Alpha',
-    )
+    expect(formatForDisplay('A', { keyLabels: { A: 'Alpha' } })).toBe('Alpha')
     expect(
-      formatKeyForDisplay('Shift', {
+      formatForDisplay('Shift', {
         platform: 'mac',
         keyLabels: { Shift: 'Sh' },
       }),

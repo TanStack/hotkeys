@@ -1,6 +1,6 @@
 <script lang="ts">
   import {
-    formatKeyForDisplay,
+    formatForDisplay,
     getHeldKeys,
     getHeldKeyCodesMap,
   } from '@tanstack/svelte-hotkeys'
@@ -12,7 +12,7 @@
   $effect(() => {
     if (heldKeys.keys.length > 0) {
       const combo = heldKeys.keys
-        .map((k) => formatKeyForDisplay(k, { useSymbols: true }))
+        .map((k) => formatForDisplay({ key: k }, { useSymbols: true }))
         .join(' + ')
       if (history[history.length - 1] !== combo) {
         history = [...history.slice(-9), combo]
@@ -41,7 +41,7 @@
               <span class="plus">+</span>
             {/if}
             <kbd class="large">
-              {formatKeyForDisplay(key, { useSymbols: true })}
+              {formatForDisplay({ key }, { useSymbols: true })}
               {#if code && code !== key}
                 <small class="code-label">{code}</small>
               {/if}

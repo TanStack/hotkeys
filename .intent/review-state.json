@@ -91,16 +91,16 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "7ac8b3e3c8a69c270f6744b35c0d30577673e0477b3986742d5ed9f39825c059",
+      "fingerprint": "7b4b57c4cc049e54a9bd6f69a30ceb58fbbc1820a41b3aa4977d5c9b8aef7eac",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
         "docs/framework/react/guides/hotkeys.md": "1591b315e7f0581265287b04210978fd4b0b85487070e744f7f52e1648e01ebf",
         "docs/framework/react/guides/sequences.md": "e66231380dab6222508a1305d83586459b59953c2ecc47b9549e3cb29ffcd355",
         "docs/guides/sensible-defaults.md": "f104881097a435a8f4874f969cef3d59e2ef17ec97f5a8c121ba303d036539b7",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "34af871e714639db1a97226b475402ea91d5aa09b138456007a7eadc1d6854bc",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "a45229edb827101dd019587c5e20965954a508eb5ba57ef6680e53d084585df8",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "90e6512868c194f6c906711cd16882c204600a3118b08b7a101ff6b409012538",
-        "packages/hotkeys/src/hotkey-manager.ts": "5025ea3627e11b181b6b54ea4da9d1d575cf21aa0bc99cccf159a6088cbc1c69",
+        "packages/hotkeys/src/hotkey-manager.ts": "0c92ebd5c921d1d86c1f6187d29e0f3fcda025d2f68b3d5ec9d3c199e10a3810",
         "packages/hotkeys/src/match.ts": "3a50921a68f79183b4ffac98e07e7fdf043711bc071f419c9cdc03422d25f268",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "25c572e968a78fd8df61f0bc98ba8adb41ecf0874437725e5ba28dd171e44fe1",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -112,11 +112,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "451dc7569f71956e5ce5e691ecc18ce14d4240b7edaa20cad58075747416c33d"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "updated",
-      "reason": "Key names are now case-sensitive and key aliases are gone, so the skill gains a pitfall about spelling key names as the types do, and points to formatKeyForDisplay for held keys.",
+      "reason": "formatKeyForDisplay was removed; the skill now points to formatForDisplay({ key }) for held keys. triggerRegistration moved to devtools and was never named in the skill.",
       "evidence": [
-        "Added a Pitfalls bullet and updated the label row of the instead-of table in hotkeys-core/SKILL.md."
+        "Updated the labels row of the instead-of table in hotkeys-core/SKILL.md."
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -276,7 +276,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "ce60f0db248e34d3c2f2b6b8718a7096ee06bee2aef689abf384e8003f582abe",
+      "fingerprint": "175e59d24dd00cf68a89d8893c18c368a5a9e8f95f2b0efab5aeca1b72dabebd",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -331,12 +331,12 @@
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "1717fce82ea43b4947da276026504eb8832dc3094cc41cc7572701a7f27b5e58",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "34af871e714639db1a97226b475402ea91d5aa09b138456007a7eadc1d6854bc",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "a45229edb827101dd019587c5e20965954a508eb5ba57ef6680e53d084585df8",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "90e6512868c194f6c906711cd16882c204600a3118b08b7a101ff6b409012538",
         "packages/hotkeys/src/app-hotkeys.ts": "cd3e57af64f6292d40c36a44af5c5bb361af4739f2fb90a28a62613385131aa5",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
-        "packages/hotkeys/src/hotkey-manager.ts": "5025ea3627e11b181b6b54ea4da9d1d575cf21aa0bc99cccf159a6088cbc1c69",
+        "packages/hotkeys/src/hotkey-manager.ts": "0c92ebd5c921d1d86c1f6187d29e0f3fcda025d2f68b3d5ec9d3c199e10a3810",
         "packages/hotkeys/src/hotkey-recorder.ts": "7d479391753ffa97e69a7d7cb994cb7053a7ffb3e0aed6dfbfb2dbbdf51a3d24",
         "packages/hotkeys/src/match.ts": "3a50921a68f79183b4ffac98e07e7fdf043711bc071f419c9cdc03422d25f268",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "ecd0100b52a00fc90ce71f244093da667d0c5ff78ecaf632d9db26f1c66c8e40",
@@ -405,10 +405,12 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "7505949604490126567f9b61bb4d5c7d5ad05c2004e67a33dba979651014176c",
         "packages/vue-hotkeys/src/useHotkeys.ts": "f971e9938eca3188b3af0fcc96d095330f9f6abfd70cb848d2de5c80f8d09639"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Skill coverage is unchanged; the new formatKeyForDisplay export is covered by the hotkeys-core skill update.",
-      "evidence": ["hotkeys-core/SKILL.md now names formatKeyForDisplay."]
+      "reason": "Skill coverage is unchanged; no new public API.",
+      "evidence": [
+        "formatKeyForDisplay removed; triggerRegistration moved to devtools."
+      ]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -646,27 +648,27 @@
       "evidence": ["docs/framework/vue/reference/functions/useHotkeyHint.md"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "e9aee4b57fb8953250c39ea1467f9d8e32b7f78d500b603c532a19cb7b14a077",
+      "fingerprint": "44437db901303773f0574349e2d674c0ade6a4b2de6728adfd47202b51e87186",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "e3c7579588a15ca96484e0dce51da7c2f0b9dc78c57430e91681aee07ad815d4"
+        "docs/reference/classes/HotkeyManager.md": "cf4c9adde15060363c12db2d9096319a5312c0bd3d425207876086beeb08b4eb"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "649a26edbf3e39e70bc77ec6132d24e9247b3d25561a53e162d5fa7941497d64",
+      "fingerprint": "b126cc7077f710c0227f97e7a2f27b5730b9044af4e24203db9f502a29ecd3dd",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "5428e74d6c6261d844489354893928376eb3fbbba350e3f17240c95641671fed"
+        "docs/reference/functions/getHotkeyManager.md": "e871efd6695983ab23285354e34b31cd782ca5db2e2fc77d44d022c721d79118"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
@@ -3126,15 +3128,15 @@
       "evidence": ["docs/framework/alpine/reference/functions/hotkeysPlugin.md"]
     },
     "source:examples/alpine/createHeldKeys/src/main.ts": {
-      "fingerprint": "73362a756659fc6fd1c6eaa2461081882b3ff2d6db14107b0b58cd9979a5e235",
+      "fingerprint": "e43774ad3e3e651bc783aba1f736ced9e471818c4db22c072ecba4427ff9bb95",
       "snapshot": {
-        "examples/alpine/createHeldKeys/src/main.ts": "cb7caa403981482eb278d0f408f002c7a74f0a18fffd0195acc5c5dd1aa81c41"
+        "examples/alpine/createHeldKeys/src/main.ts": "6cd328ce842c378338686290843715b7419cb3270ff985b22607af602bcaf104"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:examples/alpine/createHotkey-sequences/src/main.ts": {
@@ -3862,15 +3864,15 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "source:docs/framework/lit/guides/held-key-state-helpers.md": {
-      "fingerprint": "625c3d46e46bba9925649ee653cccb2795a02d28a888c2f3361564764aa6be5a",
+      "fingerprint": "2b4dd8b60e3a8fe1b65ddc953232a795d684b5340cd4c053b497e08a21dc038b",
       "snapshot": {
-        "docs/framework/lit/guides/held-key-state-helpers.md": "388c4cf1df6e552aeb3cbb12ef20ff11f86eba3fd374916b8ca500c18f7c6a45"
+        "docs/framework/lit/guides/held-key-state-helpers.md": "c5d21bc202b34ca0e357f318a894b00999a5efc118b42ed3a4f9845f0229e171"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/framework/lit/reference/classes/AppHotkeysController.md": {
@@ -6154,243 +6156,243 @@
       ]
     },
     "source:docs/framework/alpine/guides/formatting-display.md": {
-      "fingerprint": "eba774be9bd938b4746fe8e96ada3735d7d908e88af774c4d35eb2124ec58015",
+      "fingerprint": "76ec9b1812db34e27db7e5e1bd880ce5b828ee593c16fff26641f02a39c8c6f3",
       "snapshot": {
-        "docs/framework/alpine/guides/formatting-display.md": "c90d468057e360518bfb668ac66378adbd0ae0e8cb63a8503fd4e481a0fbad35"
+        "docs/framework/alpine/guides/formatting-display.md": "92e9b3a67a3565932475f4fd5353f5e84a5f62cbfcfa8905f01d1441e85b9fb0"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/framework/alpine/guides/held-key-state-helpers.md": {
-      "fingerprint": "8a43fda0cc1a9802fd1fbc91f715faa4da3088ed8ca0a95103f3ef18352229fc",
+      "fingerprint": "0aee95b76dab73f7f6c603d362bcb263e6d2710140fba02e09c51366cfbefdd1",
       "snapshot": {
-        "docs/framework/alpine/guides/held-key-state-helpers.md": "70750c534f34c6d3f1c1571a22e0d7e6afe205c6ed1fe2ab28ca9d4b752d547b"
+        "docs/framework/alpine/guides/held-key-state-helpers.md": "9f7e2edf58eb6992f21e9d460f618957fe008fb7eb1d98e293c76ac5fadd35d3"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/framework/angular/guides/formatting-display.md": {
-      "fingerprint": "7577ee9800452470258d6669f0bf2a44e33318740299cc4a87e259ebb9d95004",
+      "fingerprint": "496882107815cf33d4b8cb1edf583f4cb6e0cab23b674c14787a1d0a527a975f",
       "snapshot": {
-        "docs/framework/angular/guides/formatting-display.md": "6387b102f4fa7d2fbb44b3016f4fbf4218967daf0574724237ee913bddce6078"
+        "docs/framework/angular/guides/formatting-display.md": "77c3834243dd7ba609c9093f4c8617403bf1c018b43011291eee6449f7830e74"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/framework/angular/guides/held-key-state-helpers.md": {
-      "fingerprint": "a410ac3e72cdb42be8561d6aff176f79bc49fa5d43d13ff046b72e3cc77d3f4d",
+      "fingerprint": "1e4d1fb31501da964c5f40fc725058754af0c22802f08eaf9eb7abbd052a8a99",
       "snapshot": {
-        "docs/framework/angular/guides/held-key-state-helpers.md": "01ed3312e5d4aa0a23c17962ab1b16cca0182a10a1c02fec69ffc689a581d79c"
+        "docs/framework/angular/guides/held-key-state-helpers.md": "1fb609defaf57da29b82bf8f66b6196c3bad4a522dd6755ccc27893bc6a8719f"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/framework/ember/guides/formatting-display.md": {
-      "fingerprint": "eafdfd78fec0512f99de1f1f4aaa2c9db4b0a25ccd3cf65a1d5c6554b3022e7a",
+      "fingerprint": "419ecda0560a40dab1a6110af97310781df9c0c912e88b7adc6d193873883c10",
       "snapshot": {
-        "docs/framework/ember/guides/formatting-display.md": "241cd8072044d75614a83a08157613e94530740f6de6b99d8402355576aa3472"
+        "docs/framework/ember/guides/formatting-display.md": "cf657d7e6dbafc95c77696bd11b0016bd506e41f0f6415a6d2b3926c3cd5b07a"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/framework/ember/guides/held-key-state-helpers.md": {
-      "fingerprint": "45edaa33160cfe3f3e80816b13c6d2148bf095a9bea08758c830f0b8c09b9e88",
+      "fingerprint": "1361fccbe4aeb7c4980a7423dbd08c9110f1ddf6503af0094fd40fecd7293daf",
       "snapshot": {
-        "docs/framework/ember/guides/held-key-state-helpers.md": "13cf6ad3b6fac6a05afc9f70186c635b2191b7a5845250794468564c9d6920af"
+        "docs/framework/ember/guides/held-key-state-helpers.md": "17cf9d6e6075661c70f3fe7969064f868e5ca56113145d2fa2db629bae2b1f35"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/framework/lit/guides/formatting-display.md": {
-      "fingerprint": "6984bd99522bf14984ed298ac485e5399c98e6c1f21c579bad5daeb44b250781",
+      "fingerprint": "2aea89071bf54313a9a06a46d1519623e6f5de38a8444ad70cd4096a7483153c",
       "snapshot": {
-        "docs/framework/lit/guides/formatting-display.md": "8b271291617f3a81698969237b0f1eac7d8171919f5250458486355b1efe370b"
+        "docs/framework/lit/guides/formatting-display.md": "ecf535e5efd628e789467e382eed4f1e433359df627fc92a21d69d21148597c5"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/framework/octane/guides/formatting-display.md": {
-      "fingerprint": "de3abaf483f5449cfd45a2f416bb5d0c7b900ee276bd7ac7f60f6c1c63b9b47e",
+      "fingerprint": "47602fee03ad399d0806468b71746fb7e664e10fff01fc70fbbcaa9cdfedf053",
       "snapshot": {
-        "docs/framework/octane/guides/formatting-display.md": "6261fc9647469022bc3b020070ab3b5423a3ca5b5af2756925562ed1acad6c17"
+        "docs/framework/octane/guides/formatting-display.md": "15583d0c6b9eaff614bc387f0a6784f31b0b53f2b29f0a1146a79c50ebfe3c12"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/framework/octane/guides/held-key-state-helpers.md": {
-      "fingerprint": "ff2fe971f20fc4a03df033799ccb10973d714f3b8722be649137205b8aa00e24",
+      "fingerprint": "588b2feb0d439ff8a3222761b7a763804c1e75fd532c548e4329dcd0550b65f0",
       "snapshot": {
-        "docs/framework/octane/guides/held-key-state-helpers.md": "a5d380f20a72551cff8ecdfb45382f4b23d2a99c72cd5cb90244633ce2dcab9b"
+        "docs/framework/octane/guides/held-key-state-helpers.md": "4f95c063a8bca02be0d40f97ac4814b4c643ba19f9589451aafe2b435329b444"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/framework/preact/guides/formatting-display.md": {
-      "fingerprint": "33eeb7740f08b31565b4ae2c8eb83c63ac266f3a9ed032e39ac3a46b7bcbda1a",
+      "fingerprint": "82f2646251e251fb22633ca89ee0f23952063750c789c82331bd89a3562f9c0d",
       "snapshot": {
-        "docs/framework/preact/guides/formatting-display.md": "18b2903e5f2437b2d2226518903100bf08cd667a888e1a6a4529920bb6af10d8"
+        "docs/framework/preact/guides/formatting-display.md": "8acd100bcef97bdb0c03c64d81120e80b54848d5e03fff60fc6d42303524470f"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/framework/preact/guides/held-key-state-helpers.md": {
-      "fingerprint": "182b125302476bda7ca563e4430a25d9efaf8337e69126e0b24ef1993a4cdfa8",
+      "fingerprint": "67250b4a593c01f60b2db7e287d39218fbccbe6210015fc6a2898a16364cc20e",
       "snapshot": {
-        "docs/framework/preact/guides/held-key-state-helpers.md": "2d873b2ebdccab9978b5c9d7b28e2449427f9037d866072f21f41f735022fbf2"
+        "docs/framework/preact/guides/held-key-state-helpers.md": "3e5a072950b5026f5e062cb57e054a1fa96d24408920dbc4a69d3a153d7d7a53"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/framework/react/guides/formatting-display.md": {
-      "fingerprint": "85f9a44cd9844e19cb06b154f309ed0af7c6d21e27efbff379ed97ea01c291fb",
+      "fingerprint": "f94b4e9a4f8928ed8e9f3747d14ed8fdb524eb935a1fcae1d88bb9ea388c030c",
       "snapshot": {
-        "docs/framework/react/guides/formatting-display.md": "1979bb91e18bac66bf46cf6899da1a1386c0dddada5d747c5172216f5b5b7d86"
+        "docs/framework/react/guides/formatting-display.md": "98b9ce66ab35a00408065fe05cb1016ed91ca84590d4bad976ef8ed09e07c92a"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/framework/react/guides/held-key-state-helpers.md": {
-      "fingerprint": "b9baad37e175558111cb93f5d1a4c2f418292fe60c23a6aafe52af59b46fd4db",
+      "fingerprint": "29cd216644ff0c39c4ac7b9bf73db415e9a19a8fff64685c2fce19e57fb77967",
       "snapshot": {
-        "docs/framework/react/guides/held-key-state-helpers.md": "cd655057bfa7261520f7138bb9cc7abc96c7f23cca539873d34f4107ecc1bb04"
+        "docs/framework/react/guides/held-key-state-helpers.md": "0cb060c804c7d7ba06d3ba24210587b6d3c18db11d29f34ecc221b4e9ec5eb86"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/framework/solid/guides/formatting-display.md": {
-      "fingerprint": "9f88a5521a65cd9f71abdd54cf84c962d63117129596f8ca3d90dd5cfbee2f71",
+      "fingerprint": "7089f0baa63a1ba1e86d6b4d866fa6c40d1b64f4ff0a8a8ef5d3ae1d09a6eee9",
       "snapshot": {
-        "docs/framework/solid/guides/formatting-display.md": "6729f123c4aa012e906ff6a25d84861e8ae76704b85d3884ac8b8b17cd600e03"
+        "docs/framework/solid/guides/formatting-display.md": "59969100540e43d27df2f98d6836adc6858b5a7509c1317044a6d4c70cc8b00a"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/framework/solid/guides/held-key-state-helpers.md": {
-      "fingerprint": "b596d59e42aa650b38c5a7eef156b5d4104f30690b84ced18576ea90f6a9f655",
+      "fingerprint": "c2a22771ade6594e827a104263fd2a73403de0f29acfc0872144a7b7442e11b7",
       "snapshot": {
-        "docs/framework/solid/guides/held-key-state-helpers.md": "8b208caedeaf0aa31bd107c8223112a210a95da855463c480db66396b67bb29c"
+        "docs/framework/solid/guides/held-key-state-helpers.md": "b0581adf0c7a57bd0bf137fcc7ba3c31be95a07247585213d4ac05e0d40da4bf"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/framework/svelte/guides/formatting-display.md": {
-      "fingerprint": "67b065072fe425e849b86719e69ae5b9d7e7d302ee7aed939baf27c132e765a0",
+      "fingerprint": "fc45f40a4d3b1ccf2437737a2c177d5a6e03f0d7e53314037baf4388cb2400cb",
       "snapshot": {
-        "docs/framework/svelte/guides/formatting-display.md": "5ac9316e596969f2ed2439c4f5d2bf75c32a7bfce2e69d7667a8607bec57b338"
+        "docs/framework/svelte/guides/formatting-display.md": "caf99aab30ec3318e08842282105b11789b882dad0d643860c200308f98f3c22"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/framework/svelte/guides/held-key-state-helpers.md": {
-      "fingerprint": "a8eb395707d01298d9051070faab6de91a387509cdf776a7da363bc611cc8963",
+      "fingerprint": "feefedfc816e009daa8cd8b0eff6cd9a2294e9c0d58314f5893a290b33a52a6f",
       "snapshot": {
-        "docs/framework/svelte/guides/held-key-state-helpers.md": "990c306c135b83d90b5349a5e7aa77828cf6e2ceb18e6ea08566257c8c941b60"
+        "docs/framework/svelte/guides/held-key-state-helpers.md": "4c0f79c78f9c8b181e1c6cdad9cd61004c46210488d759d48eb20c7a1bca0bcb"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/framework/vue/guides/formatting-display.md": {
-      "fingerprint": "fb9b89f48bbce97f69c62a1a1a8841f8177d58d83cbf0bb8ab29f80d5a4f4512",
+      "fingerprint": "688e650b3b60ef87a100fe5eef907e8cd3df6a92da4dd39b907cf8137b322b03",
       "snapshot": {
-        "docs/framework/vue/guides/formatting-display.md": "dda79208642889d348fbf2c34ca4d707dc6e472a40042c407f5bcffda15c08cd"
+        "docs/framework/vue/guides/formatting-display.md": "59f8f6198bac417ffc2d33bef465acf809547ea2f76d926bfe786ac23e2834f2"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/framework/vue/guides/held-key-state-helpers.md": {
-      "fingerprint": "0a3b33c36e7f46abada8cf3f429115aa28161c9fda29c446b3c8f6145e321838",
+      "fingerprint": "3f5b55abad3370c1ffc5b77c15485b3436052dac6b3b7323e78a5fa1849c4186",
       "snapshot": {
-        "docs/framework/vue/guides/held-key-state-helpers.md": "9c1c3d6aed73b813e981f2cf68dc19a787daa4bbf957c90a8d3594eb19b2f526"
+        "docs/framework/vue/guides/held-key-state-helpers.md": "e7132d83eabff5c8d14edc74ea78d1a7350bc696deded2fb46df68b277cdea7f"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/reference/functions/formatForDisplay.md": {
-      "fingerprint": "a4937b7f6a4648cc5ee5d80fd547b27a169f3662e84b2b6f6584593b78816f65",
+      "fingerprint": "46dae4fd839c20197c6d3be8aea53d289011d019337a05750996fd09ca7a281c",
       "snapshot": {
-        "docs/reference/functions/formatForDisplay.md": "23be6862887c17faaf05cf90af83d242d4abbf60e5d0ff038ec9d379c35115ec"
+        "docs/reference/functions/formatForDisplay.md": "8a77748756b0062b144a2af8cd39ee78576a9cba3cd9412b1139b601a07e7679"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/reference/functions/formatKeyForDisplay.md": {
@@ -6406,87 +6408,87 @@
       ]
     },
     "source:docs/reference/interfaces/FormatDisplayOptions.md": {
-      "fingerprint": "8270a4ba5027cc73337eb9242bbfacc64390b66ea13875c6f30b7860de955f77",
+      "fingerprint": "f58149d0966555e5a7b3a76ac2419be532d3557135bc9ed6fe9bca97be5354c9",
       "snapshot": {
-        "docs/reference/interfaces/FormatDisplayOptions.md": "778164029efb27d71c1e2ad04412acbd1cee29b78adb0d07d08a5ae4d8f8002a"
+        "docs/reference/interfaces/FormatDisplayOptions.md": "07317e4d761610813421b736aa42141a2723c3f8aefd6909b062fff552f16000"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/reference/type-aliases/DisplayHotkey.md": {
-      "fingerprint": "9b22bbc9980af19d13dee3ce7d4dbc802d7faf514ffb9d1dff2b7a191ea2277c",
+      "fingerprint": "279cf04e3cc02320b0fccd91bf15802761bd65c4b271dadec07626f5aa54b7e6",
       "snapshot": {
-        "docs/reference/type-aliases/DisplayHotkey.md": "cc699380c29f032ddfd7af3337dc19d0b79ec36008aa13c6e1d4202ebe204276"
+        "docs/reference/type-aliases/DisplayHotkey.md": "35bf73106dc0c581876f6e7d1fe0c804182862908fa0948febe05e814b1043d4"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:docs/reference/type-aliases/DisplayHotkeyChord.md": {
-      "fingerprint": "9516886f9a3db7df301fe298ce17b769df8400117dfac3c6b50f8b4ddd57114f",
+      "fingerprint": "2d3ce4935afcc89569e338da4fd2b3462a6d8a158dd9da9cbdb497b958362681",
       "snapshot": {
-        "docs/reference/type-aliases/DisplayHotkeyChord.md": "7e0006bb8b7b8e17a32a423e3844c7ed39ece6f11cd3ae7777333beb4e025101"
+        "docs/reference/type-aliases/DisplayHotkeyChord.md": "23e89b5fb5993d1968699cab7d0658849b897901b4dd2dfda97b777854a56698"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:examples/alpine/createHeldKeys/index.html": {
-      "fingerprint": "9bd610fab13afadac5d721f2bff4e6c1eecf09b05c7ae084578b965de23c2bce",
+      "fingerprint": "4a65deb60dfbc956d3eb7e6b565966dc57429a110551577e775d06f7160ead3b",
       "snapshot": {
-        "examples/alpine/createHeldKeys/index.html": "da2ace20075c20f81920514570edf301aa09125bb4105edbae05d48cd7a95dfa"
+        "examples/alpine/createHeldKeys/index.html": "3c33b9dc6615001749b66ae41dd46a5c1fe502eb252eb23c38c9115096ebaaca"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:examples/angular/injectHeldKeys/src/app/app.component.html": {
-      "fingerprint": "7e5819dc3cda7f5dcbd8da4929141ee7e39f1a1af32910c7fb4814405ddf3d61",
+      "fingerprint": "115bdbc1b9d90a700143f20913001bf5dcc4791f7416d6dad5c62a6c0d3d37b8",
       "snapshot": {
-        "examples/angular/injectHeldKeys/src/app/app.component.html": "0f168e0bc5dec200585bf9645ea865a4fc9f27f7e59a2055eb116a0c55357459"
+        "examples/angular/injectHeldKeys/src/app/app.component.html": "83d2a4541ae1cb0f83e1e4d6fde7cc27c695863fb69c6f68e718d0220f8feec8"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:examples/angular/injectHeldKeys/src/app/app.component.ts": {
-      "fingerprint": "7584bdd8f07c7537e3b31a2f2ecc06b60c222fb5e8216a0208431538f2bd42da",
+      "fingerprint": "e445840f8032248e7b40da9d25488e16c2bba4ae4c37391977c998bb23df3ec4",
       "snapshot": {
-        "examples/angular/injectHeldKeys/src/app/app.component.ts": "cf7a514f6d8f7ff80e13f58974ad7941c3ff630ae3b43bd7d4b79001bcd9e2ec"
+        "examples/angular/injectHeldKeys/src/app/app.component.ts": "99ddfa452198586c58cb653488672210831a5abaa191e1c69a4ceefcfff9b668"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:examples/angular/injectHotkeyRecorder-sequences/src/app/shortcut-list-item.component.html": {
-      "fingerprint": "df67168e91f7a12e96832d32f3b721fc60a0b4a256e9ce04290cf20944d9bdd4",
+      "fingerprint": "9bb5772669dfbd5754be1339b7575f26491b095d90e0b3a9327f0af2eeee4c64",
       "snapshot": {
-        "examples/angular/injectHotkeyRecorder-sequences/src/app/shortcut-list-item.component.html": "60d7d977205f48d9b838bd2589e9a947922fcabb2cb21aac1d48e9c05e3e1a57"
+        "examples/angular/injectHotkeyRecorder-sequences/src/app/shortcut-list-item.component.html": "8574081d167ebe1d2bce2f71b5b730c1b082e2853352b4e294f33c105eb59267"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:examples/angular/injectHotkeyRecorder-sequences/src/app/shortcut-list-item.component.ts": {
@@ -6502,15 +6504,15 @@
       ]
     },
     "source:examples/angular/injectHotkeyRecorder/src/app/shortcut-list-item.component.html": {
-      "fingerprint": "82672e1d4e5f9adfbffffdee5a647c1555260859eef2d6bb44c8f1be64fa79b1",
+      "fingerprint": "11f60628b65d5ce56d00a6ad7ea49defe982351529d2378d5d238ce8ca93b456",
       "snapshot": {
-        "examples/angular/injectHotkeyRecorder/src/app/shortcut-list-item.component.html": "5446b192477e539890d79707e37c1a7897802b988fe09d538cb12e0bd5eb096f"
+        "examples/angular/injectHotkeyRecorder/src/app/shortcut-list-item.component.html": "16922c8754c9fddf38809c22944aa5e586897f4af3be25ec6ba901c64a5fd3e5"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:examples/angular/injectHotkeyRecorder/src/app/shortcut-list-item.component.ts": {
@@ -6538,75 +6540,75 @@
       ]
     },
     "source:examples/ember/useHeldKeys/app/templates/application.gts": {
-      "fingerprint": "799ed6c29881f94a4e3f2ca846e184c5fd3edb402ad90756c998620d74a8b331",
+      "fingerprint": "10262344dc3ed97b34ac6e4468ea142343ce34252fa19fc775117cd02319e499",
       "snapshot": {
-        "examples/ember/useHeldKeys/app/templates/application.gts": "788a62a208a9bb58b84d3ecc10c9e72cfbd7b77b58a2fc44b0c1f0b563887fa7"
+        "examples/ember/useHeldKeys/app/templates/application.gts": "391e7a140f3a9886fde71e961823cdc0d06226cc269c934ddb832cdd6c26b0da"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:examples/lit/held-keys/src/app.ts": {
-      "fingerprint": "61223ee431649fc563c10dead536b1ff37408bb7e7cd01aa4de202503ffc9492",
+      "fingerprint": "7a907edf878c7e081ca64dba37aeda9a1e356bdc4133356be351280c1f94190b",
       "snapshot": {
-        "examples/lit/held-keys/src/app.ts": "906dc28f1612cb034fcab3b076403c172c29a7cd7ac53bad76e4aec9968637c9"
+        "examples/lit/held-keys/src/app.ts": "012113583ddf271399406c58d51ebf6111b69118f9bfb4b6cef348c5ce781ee3"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:examples/octane/useHeldKeys/src/main.tsrx": {
-      "fingerprint": "438df13c2c16eef7402929928148c6a388b72016ec82ed3a41ed5eafb4c2aec7",
+      "fingerprint": "c4cba52572c661525e473dd268bbef6964a38169ef1af85dd5bca0ad226afce1",
       "snapshot": {
-        "examples/octane/useHeldKeys/src/main.tsrx": "90bb42bcfadb1b39524d3d7f6e825e7baba0d35a0fdcbb1d6c6145ac9746ea01"
+        "examples/octane/useHeldKeys/src/main.tsrx": "e1615e5beb77c8da0b68af6a45f81d682574016839be6cdd32fb866fc9ae5618"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:examples/preact/useHeldKeys/src/index.tsx": {
-      "fingerprint": "d50b654d1e47fda0a4b7a21567c1b23da92930fba7e58123cabb3c6d8c44e83f",
+      "fingerprint": "13fa1e020e89da8737b81bf23920b4072e8cc4ef546b0f60511380139f1afd3b",
       "snapshot": {
-        "examples/preact/useHeldKeys/src/index.tsx": "fb7e21268a7756239a45e7e2d63b407a8a9233a060e58392eda0efd4354e16de"
+        "examples/preact/useHeldKeys/src/index.tsx": "b763d58114f5d443dc2e59467cef1e55b7b178c1ac59a3da68e6a716f42821c8"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:examples/react/useHeldKeys/src/index.tsx": {
-      "fingerprint": "caaf5a67e21cc974e04b0c4db08b61575ba4111bc23ab17f9206abb174852abe",
+      "fingerprint": "c9389674412572887263b3ebd21d91f2ce6b3def40de6013320a4785eb88bf50",
       "snapshot": {
-        "examples/react/useHeldKeys/src/index.tsx": "98277b2e20901ec962fa179ad41e6cc529b6fc80f5f776ab5d036601420a883d"
+        "examples/react/useHeldKeys/src/index.tsx": "7aeccb4ed92f4c53436168437d39b2d185674d8d38e4f3430a7d5a0fb743f3df"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:examples/solid/createHeldKeys/src/index.tsx": {
-      "fingerprint": "7aebfb85c7961f99a709de06f876775195df542410d9a6330772418c086c6741",
+      "fingerprint": "e90337f1d69e3c8dfea59cc00440ff8a6caa2724f4102e32ba26a9b92f51307a",
       "snapshot": {
-        "examples/solid/createHeldKeys/src/index.tsx": "2f0f6a11611b2e792c42ab8108ce4b592e6f7ef2c9f0b278fa348c7a24a8d7f2"
+        "examples/solid/createHeldKeys/src/index.tsx": "9ae719031680d86133e621b59d2dff1eb23ba2d5fbd0179787e981f5263fbb97"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:examples/solid/createHotkeys/src/index.tsx": {
@@ -6622,15 +6624,15 @@
       ]
     },
     "source:examples/svelte/get-held-keys/src/App.svelte": {
-      "fingerprint": "d2ce5b4b8c76a159f91b293758e3ff95af35df0261d0c48810491fd2659193c0",
+      "fingerprint": "b2dd55a35bbbc3da565c533795f531d939e34ca3b76e4bf7b58ae4d0ee72036a",
       "snapshot": {
-        "examples/svelte/get-held-keys/src/App.svelte": "117384a4a16f29584a22a2196623670a8a3a2cfeec646bc44248be3ad9526661"
+        "examples/svelte/get-held-keys/src/App.svelte": "a63a60dd498c5c3f52c5938a4f8ea6dbf20aa38bd3835140b0d8b87d6fe41477"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:examples/vanilla/formatForDisplay/src/main.ts": {
@@ -6646,27 +6648,27 @@
       ]
     },
     "source:examples/vue/useHeldKeys/src/App.vue": {
-      "fingerprint": "f7d133d2c24a9114cf68e7fad85786a8dd7b2a3d8dba80df09dc918c71df8aaa",
+      "fingerprint": "c9a80091ff42a5bb44da3b7b9f338f643e7cfed4f84ee8e26decd76842586ed1",
       "snapshot": {
-        "examples/vue/useHeldKeys/src/App.vue": "fb6ed10a8a3b693de1ea2e3726fdcac9935d05bf4868e1ed289f0489c1529a57"
+        "examples/vue/useHeldKeys/src/App.vue": "ef5f48a1f7481e23a6ee9d2e5b56f6bb0c62ee9c356218cf84dde034e42be98f"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:packages/hotkeys-devtools/src/components/HeldKeysTopbar.tsx": {
-      "fingerprint": "79a8fbfc21d4f2f08d4dd9e8a64cb9fc9680daac08b3307d760977385a07c01c",
+      "fingerprint": "0edc96b6ce89edfbc32e0e233a536e68401b51940bc10e344de189c42944aa1d",
       "snapshot": {
-        "packages/hotkeys-devtools/src/components/HeldKeysTopbar.tsx": "a446418f534c24973e19d3961855c7dfb1da3c431b232d742514a305645befe5"
+        "packages/hotkeys-devtools/src/components/HeldKeysTopbar.tsx": "0257d51e230355c192ea2eea0fa3568c61b8bc5d965553eed7530eca216c9d4c"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:packages/hotkeys/src/_keyboard-event.ts": {
@@ -6682,27 +6684,27 @@
       ]
     },
     "source:packages/hotkeys/src/format.ts": {
-      "fingerprint": "ef12dd98924daef804bcf88e93cd64dc13fef7ec88314134b65bb097d3f34872",
+      "fingerprint": "66dc037b4e4e2eaae1e0de1e3bd31aeca0b23cc04ec487f85d43992952bda2c8",
       "snapshot": {
-        "packages/hotkeys/src/format.ts": "1e90d395202d1594cfa7c0ee7eec5663f8177374fd0d64932e8224fb910e3e73"
+        "packages/hotkeys/src/format.ts": "131dd7394fcd202374f43534e5a726be3de06cf853de1a0c2077a24f112f02d9"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:packages/hotkeys/tests/format.test.ts": {
-      "fingerprint": "1096c1cc2e5865743771fe04b2e7c3f30602e6a4d31ab5bd391f21a004c103d1",
+      "fingerprint": "67429fcce20e209da5bf432f9a0df83ba660673566b2d610e34766dd80eb18f7",
       "snapshot": {
-        "packages/hotkeys/tests/format.test.ts": "2a210868c4b0cd1c0abe4fd28fba188206e991b2d7c442d94892fb11b8c7977a"
+        "packages/hotkeys/tests/format.test.ts": "092aa7f6d7df8c63fdc44f8e924a7af913e8d6e410b9c68296399d86fb8d4e00"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:packages/hotkeys/tests/key-coverage.test.ts": {
@@ -6730,15 +6732,15 @@
       ]
     },
     "source:packages/hotkeys/tests/typed-behavior.test.ts": {
-      "fingerprint": "2b05e35a6fc2fe9341f8380b07ce656d40f2dd411f9e3dc731d458747e41f867",
+      "fingerprint": "e90bff2bcb654154e602d8b8f531323b10563b5e5ba7b3f70ffdbe9e0b2c0c07",
       "snapshot": {
-        "packages/hotkeys/tests/typed-behavior.test.ts": "2f2d850af6dbb4c40c9c93594ed31684f1ed6215e08ad06e91f6b531e7925978"
+        "packages/hotkeys/tests/typed-behavior.test.ts": "f4a47b42f7984b2ad63a5cc362e005f2578f44ace6c7cd24d95f0d3998ebc3ae"
       },
-      "head": "e1a3cb4bd08f3906e7f53f0f4e3e4f5fdd1c69f3",
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
       "outcome": "no-change",
-      "reason": "Raises the timeout for the typed-behavior fingerprint tests so they finish on slower CI machines; no behavior or guidance change.",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
       "evidence": [
-        "Only adds { timeout: 120_000 } to the describe block in typed-behavior.test.ts."
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     },
     "source:packages/hotkeys/tests/unified-hotkeys.test.ts": {
@@ -6775,6 +6777,66 @@
       "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
         "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:packages/hotkeys-devtools/src/_trigger.ts": {
+      "fingerprint": "27abd1cfd95577248a0fc894902d7d9fc68e4205375fc2feed08036afe944ba4",
+      "snapshot": {
+        "packages/hotkeys-devtools/src/_trigger.ts": "539f92509941f0659904734c231979c89c6edb6667bfe9a3f778e7a1d79349d1"
+      },
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
+      "outcome": "no-change",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+      ]
+    },
+    "source:packages/hotkeys-devtools/src/components/ActionButtons.tsx": {
+      "fingerprint": "d9bba92b73800b20f146ae81e518b0143323692c9c25a4689e235b6c13604316",
+      "snapshot": {
+        "packages/hotkeys-devtools/src/components/ActionButtons.tsx": "e9c08636c830ed50952f6bd99bdc1b5b84046ee685fec68fca140ea69c569354"
+      },
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
+      "outcome": "no-change",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+      ]
+    },
+    "source:packages/hotkeys-devtools/tests/trigger.test.ts": {
+      "fingerprint": "997ceb4b558e32437b0b41e5da51f4e99ec49971143412b7af8cd077b9253b73",
+      "snapshot": {
+        "packages/hotkeys-devtools/tests/trigger.test.ts": "4ee68cc3a6298dcfea3190ced926aae266295719c7d389ebf4b8f8f913dd07b8"
+      },
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
+      "outcome": "no-change",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+      ]
+    },
+    "source:packages/hotkeys/tests/parsed-identity.test.ts": {
+      "fingerprint": "d7ca311e2e582dbe207c3f4c2437ff5758f0c1a86d105619d0dd8c541ca5fecb",
+      "snapshot": {
+        "packages/hotkeys/tests/parsed-identity.test.ts": "db08e0fbaab7e8b0590a42872637178b460a6294ca9f6fc96fca022da6701211"
+      },
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
+      "outcome": "no-change",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+      ]
+    },
+    "source:packages/hotkeys/tests/sequence-manager.test.ts": {
+      "fingerprint": "c646bbd6360ad4494b266c2adb05067b04e5da809486993e5711261f5c1442ea",
+      "snapshot": {
+        "packages/hotkeys/tests/sequence-manager.test.ts": "e61f353f49554fe732382a0d64af28b6de6c636fec25bb888f88d9f0fd9130bd"
+      },
+      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
+      "outcome": "no-change",
+      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
       ]
     }
   }

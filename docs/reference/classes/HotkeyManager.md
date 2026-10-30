@@ -137,7 +137,7 @@ manager.activateScope('dialog', { exclusive: { allow: ['global'] } })
 destroy(): void;
 ```
 
-Defined in: [hotkey-manager.ts:1538](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1538)
+Defined in: [hotkey-manager.ts:1500](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1500)
 
 Destroys the manager and removes all listeners.
 
@@ -153,7 +153,7 @@ Destroys the manager and removes all listeners.
 getRegistrationCount(): number;
 ```
 
-Defined in: [hotkey-manager.ts:1474](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1474)
+Defined in: [hotkey-manager.ts:1436](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1436)
 
 Gets the number of registered hotkeys, chords and sequences.
 
@@ -169,7 +169,7 @@ Gets the number of registered hotkeys, chords and sequences.
 hasActiveRegistration(hotkey): boolean;
 ```
 
-Defined in: [hotkey-manager.ts:1511](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1511)
+Defined in: [hotkey-manager.ts:1473](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1473)
 
 Checks whether a hotkey can fire now: at least one registration is
 enabled, in an active scope, and listening where key presses go. A
@@ -200,7 +200,7 @@ True if a registration that can fire exists
 isRegistered(hotkey, target?): boolean;
 ```
 
-Defined in: [hotkey-manager.ts:1485](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1485)
+Defined in: [hotkey-manager.ts:1447](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1447)
 
 Checks if a specific hotkey is registered.
 
@@ -332,34 +332,6 @@ Resets the progress of every in-progress sequence.
 #### Returns
 
 `void`
-
-***
-
-### triggerRegistration()
-
-```ts
-triggerRegistration(id): boolean;
-```
-
-Defined in: [hotkey-manager.ts:1441](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1441)
-
-Triggers a registration's callback programmatically from devtools.
-Creates a synthetic KeyboardEvent from the chord (or a sequence's last step)
-and invokes the callback.
-
-#### Parameters
-
-##### id
-
-`string`
-
-The registration ID to trigger
-
-#### Returns
-
-`boolean`
-
-True if the registration was found and triggered
 
 ***
 
