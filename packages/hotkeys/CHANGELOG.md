@@ -1,5 +1,24 @@
 # @tanstack/hotkeys
 
+## 0.19.0
+
+### Minor Changes
+
+- [#209](https://github.com/TanStack/hotkeys/pull/209) [`132e0c9`](https://github.com/TanStack/hotkeys/commit/132e0c99cb4c168ba4f7e0cd5abb5e8eadb70864) - Input detection now matches what users type into. Single-key hotkeys such as `K` can fire where they were blocked before, so check any hotkeys that relied on the old behavior.
+
+  - Checkbox, radio, range, color, file, and image inputs, and read-only text inputs and textareas, are no longer text fields. Hotkeys skip only the keys each control uses, such as Space on a checkbox and the arrow keys on a range input.
+  - `role="textbox"` and `role="searchbox"` elements count as text fields.
+  - A custom element with focus inside a closed shadow root, or a form-associated custom element without a `role` attribute, counts as a text field, because its contents can't be seen from outside.
+  - `hasActiveRegistration` and hotkey hints see focus on content slotted into a hotkey's target, and focus in nested shadow roots.
+
+- [#210](https://github.com/TanStack/hotkeys/pull/210) [`ebd7e84`](https://github.com/TanStack/hotkeys/commit/ebd7e84a529fddecb495d0cc92beb17876c268e9) - Stop matching a key by its US position when the browser already reports what it typed. On AZERTY, Cmd++ (zoom in) no longer fires `Mod+/`, and on German QWERTZ, Cmd+- (zoom out) no longer fires it either. With NumLock off, the numpad's End and arrow keys no longer fire digit hotkeys.
+
+  Behavior change: an ASCII symbol on another key's position (Dvorak's `'` on Q), a Latin letter such as `ü` or `ø` on a punctuation position without Control or Command, and a named key such as `End` now match only themselves. Non-Latin layouts, macOS Option, dead keys, the digit row, and symbols typed with Shift still fall back to the key's position.
+
+### Patch Changes
+
+- [#208](https://github.com/TanStack/hotkeys/pull/208) [`d43b9aa`](https://github.com/TanStack/hotkeys/commit/d43b9aa6e445fd53a5de428e7eb6aaca5f6008ee) - `HotkeyRecorder.start()` does nothing without a `document`. A recorder started during a server render no longer stays in the shared recording set and suspends hotkey dispatch for the rest of the process.
+
 ## 0.18.0
 
 ### Minor Changes

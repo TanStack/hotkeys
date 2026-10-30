@@ -1,5 +1,23 @@
 # @tanstack/svelte-hotkeys
 
+## 0.17.1
+
+### Patch Changes
+
+- [#204](https://github.com/TanStack/hotkeys/pull/204) [`5053876`](https://github.com/TanStack/hotkeys/commit/5053876bbd97d6b056cef9eddddcc4e28c249aba) - Fix framework peer ranges so they match the versions each package builds and runs on:
+
+  - Preact `>=10.5.2`. Older releases can't resolve `preact/jsx-runtime`.
+  - Solid devtools `^1.9.15`. The panel crashes below 1.9.15, where two copies of Solid get installed.
+  - Vue `>=3.3.0`. The adapter uses `toValue`, added in Vue 3.3.
+  - Svelte `^5.40.0`. The adapter uses `createContext`, added in Svelte 5.40.
+  - Alpine `^3.13.0`, down from `^3.15.12`. npm no longer refuses to install the adapter next to Alpine 3.13 and 3.14.
+
+- [#207](https://github.com/TanStack/hotkeys/pull/207) [`48a4870`](https://github.com/TanStack/hotkeys/commit/48a4870279616ef34346645706b7df3ea96a1989) - `createHotkey`, `createHotkeys`, and `createHotkeyRecorder` now work inside `$effect.root`, such as shared state in a `.svelte.ts` module. They threw `lifecycle_outside_component` before. They clean up when the root is destroyed, and still clean up when a component is destroyed.
+
+- [#204](https://github.com/TanStack/hotkeys/pull/204) [`5053876`](https://github.com/TanStack/hotkeys/commit/5053876bbd97d6b056cef9eddddcc4e28c249aba) - Relative imports in the published files now end in `.js`, so the types resolve with `moduleResolution: "nodenext"`. The devtools types also declare `Component<Props>` instead of `Component<Props, {}, string>`, which current Svelte types reject with `skipLibCheck: false`.
+- Updated dependencies [[`132e0c9`](https://github.com/TanStack/hotkeys/commit/132e0c99cb4c168ba4f7e0cd5abb5e8eadb70864), [`ebd7e84`](https://github.com/TanStack/hotkeys/commit/ebd7e84a529fddecb495d0cc92beb17876c268e9), [`d43b9aa`](https://github.com/TanStack/hotkeys/commit/d43b9aa6e445fd53a5de428e7eb6aaca5f6008ee)]:
+  - @tanstack/hotkeys@0.19.0
+
 ## 0.17.0
 
 ### Minor Changes

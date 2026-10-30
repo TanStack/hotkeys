@@ -1,5 +1,22 @@
 # @tanstack/react-hotkeys-devtools
 
+## 0.12.0
+
+### Minor Changes
+
+- [#204](https://github.com/TanStack/hotkeys/pull/204) [`5053876`](https://github.com/TanStack/hotkeys/commit/5053876bbd97d6b056cef9eddddcc4e28c249aba) - The hooks and `HotkeysProvider` are now marked `'use client'`, so a React Server Component such as a Next.js `app/layout.tsx` can render `HotkeysProvider` without a wrapper. Before, the Next.js build failed with `createContext is not a function`. Server components can still import helpers such as `formatForDisplay` from the package.
+
+  Both packages now require React 18 or newer. The old `>=16.8` range admitted React 16.8 to 16.13, which can't build the package because `@tanstack/react-store` imports `react/jsx-runtime`.
+
+### Patch Changes
+
+- [#204](https://github.com/TanStack/hotkeys/pull/204) [`5053876`](https://github.com/TanStack/hotkeys/commit/5053876bbd97d6b056cef9eddddcc4e28c249aba) - Fix type errors in the devtools packages with `skipLibCheck: false`. Their declarations used types from `@tanstack/devtools-utils`, which import `@tanstack/devtools` without depending on it, so TypeScript reported `Cannot find module '@tanstack/devtools'`, and with `skipLibCheck: true` the panel props became `any`. The packages now declare their own panel and plugin types. `@tanstack/hotkeys-devtools` exports `HotkeysDevtoolsPanelProps`, `HotkeysDevtoolsTheme` and `HotkeysDevtoolsCoreClass`.
+
+  The React devtools types no longer refer to `JSX` from `react`, which some `@types/react` 18 releases don't export.
+
+- Updated dependencies [[`5053876`](https://github.com/TanStack/hotkeys/commit/5053876bbd97d6b056cef9eddddcc4e28c249aba)]:
+  - @tanstack/hotkeys-devtools@1.6.1
+
 ## 0.11.1
 
 ### Patch Changes

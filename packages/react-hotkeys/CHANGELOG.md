@@ -1,5 +1,18 @@
 # @tanstack/react-hotkeys
 
+## 0.18.0
+
+### Minor Changes
+
+- [#204](https://github.com/TanStack/hotkeys/pull/204) [`5053876`](https://github.com/TanStack/hotkeys/commit/5053876bbd97d6b056cef9eddddcc4e28c249aba) - The hooks and `HotkeysProvider` are now marked `'use client'`, so a React Server Component such as a Next.js `app/layout.tsx` can render `HotkeysProvider` without a wrapper. Before, the Next.js build failed with `createContext is not a function`. Server components can still import helpers such as `formatForDisplay` from the package.
+
+  Both packages now require React 18 or newer. The old `>=16.8` range admitted React 16.8 to 16.13, which can't build the package because `@tanstack/react-store` imports `react/jsx-runtime`.
+
+### Patch Changes
+
+- Updated dependencies [[`132e0c9`](https://github.com/TanStack/hotkeys/commit/132e0c99cb4c168ba4f7e0cd5abb5e8eadb70864), [`ebd7e84`](https://github.com/TanStack/hotkeys/commit/ebd7e84a529fddecb495d0cc92beb17876c268e9), [`d43b9aa`](https://github.com/TanStack/hotkeys/commit/d43b9aa6e445fd53a5de428e7eb6aaca5f6008ee)]:
+  - @tanstack/hotkeys@0.19.0
+
 ## 0.17.0
 
 ### Minor Changes
