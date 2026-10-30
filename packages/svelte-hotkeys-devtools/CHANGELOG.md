@@ -1,5 +1,18 @@
 # @tanstack/svelte-hotkeys-devtools
 
+## 0.4.0
+
+### Minor Changes
+
+- [#211](https://github.com/TanStack/hotkeys/pull/211) [`8b93ed5`](https://github.com/TanStack/hotkeys/commit/8b93ed5076532efeffce6b37ee56e4ea007a465b) - Each devtools adapter now lists its TanStack Devtools host as an optional peer dependency at the current release, such as `@tanstack/react-devtools` 0.10.14. Older hosts pass the plugin a theme string instead of props, so the panel ignored the theme, and TypeScript rejects the React plugin since `@tanstack/react-hotkeys-devtools` 0.12.0. Package managers now warn about an old host at install time.
+
+  Update `@tanstack/devtools-utils` and `@tanstack/devtools-ui` to 0.7.2. The Preact panel now unmounts its core on Preact 11 (TanStack/devtools#551).
+
+### Patch Changes
+
+- Updated dependencies [[`8b93ed5`](https://github.com/TanStack/hotkeys/commit/8b93ed5076532efeffce6b37ee56e4ea007a465b), [`8b93ed5`](https://github.com/TanStack/hotkeys/commit/8b93ed5076532efeffce6b37ee56e4ea007a465b)]:
+  - @tanstack/hotkeys-devtools@1.7.0
+
 ## 0.3.2
 
 ### Patch Changes

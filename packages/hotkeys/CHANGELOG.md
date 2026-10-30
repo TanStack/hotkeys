@@ -1,5 +1,26 @@
 # @tanstack/hotkeys
 
+## 0.20.0
+
+### Minor Changes
+
+- [#211](https://github.com/TanStack/hotkeys/pull/211) [`8b93ed5`](https://github.com/TanStack/hotkeys/commit/8b93ed5076532efeffce6b37ee56e4ea007a465b) - Key names are case-sensitive, and key aliases are no longer resolved, which removes the key-name lookup tables from every bundle. Typed hotkeys, recording, matching, and display behave as before.
+
+  - Spellings that the hotkey types don't allow, such as `escape`, `Esc`, `f1`, `Plus`, or `pgdn`, now stay as written and don't match. Use the canonical names: `Escape`, `F1`, `+`, `PageDown`. Letters still match in any case, and modifier aliases such as `Ctrl`, `Cmd`, and `Option` still work.
+  - `validateHotkey` and `checkHotkey` warn about keys that aren't written like a known key, such as `escape`, instead of checking a list of key names. In development, registering such a hotkey logs a warning that it may never fire.
+  - `formatForDisplay` accepts hotkeys only, including single keys and modifiers on their own such as `'Shift'`, instead of any string. Pass a key from a `KeyboardEvent`, such as a held key from `useHeldKeys`, as `{ key }`.
+  - `HotkeyManager.triggerRegistration` moves into the devtools package, which was its only user.
+  - The recorder rejects whitespace characters, such as the non-breaking space from Option+Space on macOS, with the message "Whitespace keys cannot be recorded".
+  - Saved custom hotkeys and display labels ignore names inherited from `Object.prototype`, such as `toString`. Previously, saved custom hotkeys could keep those ids, and `formatForDisplay` could show function source text for them.
+
+- [#211](https://github.com/TanStack/hotkeys/pull/211) [`8b93ed5`](https://github.com/TanStack/hotkeys/commit/8b93ed5076532efeffce6b37ee56e4ea007a465b) - Console warnings and errors are logged only in development. Production builds, where `process.env.NODE_ENV` is `'production'`, skip them and drop the warning code. `checkHotkey` still returns whether a hotkey is valid.
+
+- [#211](https://github.com/TanStack/hotkeys/pull/211) [`8b93ed5`](https://github.com/TanStack/hotkeys/commit/8b93ed5076532efeffce6b37ee56e4ea007a465b) - TanStack Hotkeys no longer depends on `@tanstack/store` or the framework store adapters. Its stores, such as `manager.registrations` and `recorder.store`, keep the same `state`, `get`, `setState`, and `subscribe` API and still work with TanStack Store's framework adapters. Bundles shrink by about 1.3 kB (brotli) in core and about 2.4 kB in the React adapter.
+
+  The stores are no longer `Store` instances from `@tanstack/store`, so `instanceof Store` checks and other TanStack Store features, such as `actions`, no longer apply to them.
+
+- [#211](https://github.com/TanStack/hotkeys/pull/211) [`8b93ed5`](https://github.com/TanStack/hotkeys/commit/8b93ed5076532efeffce6b37ee56e4ea007a465b) - Providers no longer bundle app hotkey support unless the app uses `defineAppHotkeys`. A React app with `HotkeysProvider` and no app hotkeys is about 1 kB smaller (brotli).
+
 ## 0.19.0
 
 ### Minor Changes
