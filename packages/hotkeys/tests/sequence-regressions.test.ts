@@ -13,6 +13,10 @@ function press(key: string, code: string, options: KeyboardEventInit = {}) {
   document.dispatchEvent(keyEvent(key, code, options))
 }
 
+// A Russian layout types й in the Q position. It matches Й exactly and Q
+// through the position fallback, so both candidates compete.
+const RUSSIAN_Q = 'Й' as HotkeyChord
+
 afterEach(() => {
   HotkeyManager.resetInstance()
   vi.useRealTimers()
@@ -26,7 +30,7 @@ describe('sequence match priority', () => {
       const exact = vi.fn()
       const fallback = vi.fn()
       const registrations: Array<[HotkeySequence, typeof exact]> = [
-        [['G', '/'], exact],
+        [['G', RUSSIAN_Q], exact],
         [['G', 'Q'], fallback],
       ]
       for (const [sequence, callback] of reverse
@@ -34,7 +38,7 @@ describe('sequence match priority', () => {
         : registrations)
         manager.register(sequence, callback)
       press('g', 'KeyG')
-      press('/', 'KeyQ')
+      press('й', 'KeyQ')
       expect(exact).toHaveBeenCalledOnce()
       expect(fallback).not.toHaveBeenCalled()
       // A losing match must not leave progress that can fire on the next key.
@@ -50,7 +54,7 @@ describe('sequence match priority', () => {
     manager.register(['G', '[KeyQ]', 'X'], exact)
     manager.register(['G', 'Q', 'X'], fallback)
     press('g', 'KeyG')
-    press('/', 'KeyQ')
+    press('й', 'KeyQ')
     press('x', 'KeyX')
     expect(exact).toHaveBeenCalledOnce()
     expect(fallback).not.toHaveBeenCalled()
@@ -71,7 +75,7 @@ describe('sequence match priority', () => {
     HotkeyManager.resetInstance()
     const nextManager = HotkeyManager.getInstance()
     nextManager.register(['G', 'Q'], logical)
-    nextManager.register(['G', 'Й' as HotkeyChord], disabled, {
+    nextManager.register(['G', RUSSIAN_Q], disabled, {
       enabled: false,
     })
     press('g', 'KeyG')
@@ -142,13 +146,13 @@ it('applies match priority when restarting a partially matched sequence', () => 
   const manager = HotkeyManager.getInstance()
   const exact = vi.fn()
   const fallback = vi.fn()
-  manager.register(['/', 'X'], exact)
+  manager.register([RUSSIAN_Q, 'X'], exact)
   manager.register(['Q', 'Y'], fallback)
   press('q', 'KeyQ')
-  press('/', 'KeyQ')
+  press('й', 'KeyQ')
   press('y', 'KeyY')
   expect(fallback).not.toHaveBeenCalled()
-  press('/', 'KeyQ')
+  press('й', 'KeyQ')
   press('x', 'KeyX')
   expect(exact).toHaveBeenCalledOnce()
 })
@@ -158,12 +162,12 @@ it('uses priority for keyup sequences without letting keydown registrations supp
   const exact = vi.fn()
   const fallback = vi.fn()
   const keydown = vi.fn()
-  manager.register(['G', '/'], exact, { eventType: 'keyup' })
+  manager.register(['G', RUSSIAN_Q], exact, { eventType: 'keyup' })
   manager.register(['G', 'Q'], fallback, { eventType: 'keyup' })
   manager.register(['G', '[KeyQ]'], keydown)
   for (const [key, code] of [
     ['g', 'KeyG'],
-    ['/', 'KeyQ'],
+    ['й', 'KeyQ'],
   ])
     document.dispatchEvent(
       new KeyboardEvent('keyup', { key, code, bubbles: true }),
