@@ -1,5 +1,5 @@
-import { useSelector } from '@tanstack/preact-store'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
+import { useSelector } from './_useSelector'
 
 /**
  * Preact hook that returns a map of currently held key names to their physical `event.code` values.

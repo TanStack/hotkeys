@@ -3,7 +3,7 @@ id: HotkeyRecorder
 title: HotkeyRecorder
 ---
 
-Defined in: [hotkey-recorder.ts:192](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L192)
+Defined in: [hotkey-recorder.ts:193](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L193)
 
 Framework-agnostic class for recording keyboard shortcuts.
 
@@ -87,7 +87,7 @@ Defined in: [hotkey-recorder.ts:220](https://github.com/TanStack/hotkeys/blob/ma
 readonly store: Store<HotkeyRecorderState>;
 ```
 
-Defined in: [hotkey-recorder.ts:193](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L193)
+Defined in: [hotkey-recorder.ts:194](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L194)
 
 ## Methods
 

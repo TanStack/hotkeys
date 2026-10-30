@@ -4,7 +4,8 @@
     "paths": {
       "@tanstack/hotkeys": ["../hotkeys/src/index.ts"],
       "@tanstack/hotkeys/adapter": ["../hotkeys/src/adapter.ts"]
-    }
+    },
+    "types": ["node"]
   },
   "include": ["src"]
 }

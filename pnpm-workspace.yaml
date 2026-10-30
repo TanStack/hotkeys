@@ -16,6 +16,16 @@ minimumReleaseAgeExclude:
   - '@tanstack/octane-store@0.13.0'
   # Preact 11 peer support: published less than 24 hours ago
   - '@tanstack/preact-store@0.13.5'
+  # devtools host peers: published less than 24 hours ago
+  - '@tanstack/angular-devtools@0.0.13'
+  - '@tanstack/devtools@0.16.0'
+  - '@tanstack/devtools-ui@0.7.2'
+  - '@tanstack/devtools-utils@0.7.2'
+  - '@tanstack/preact-devtools@0.10.15'
+  - '@tanstack/react-devtools@0.10.14'
+  - '@tanstack/solid-devtools@0.8.14'
+  - '@tanstack/svelte-devtools@0.1.8'
+  - '@tanstack/vue-devtools@0.2.28'
 packages:
   - 'e2e'
   - 'examples/**/*'

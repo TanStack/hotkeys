@@ -148,8 +148,8 @@ export function assertValidHotkey(hotkey: ValidatableHotkey): void {
 }
 
 /**
- * Validates a hotkey and logs warnings to the console.
- * Useful for development-time feedback.
+ * Validates a hotkey and logs errors and warnings to the console.
+ * Useful for development-time feedback. Logs nothing in production builds.
  *
  * @param hotkey - The hotkey string to validate
  * @returns True if the hotkey is valid (may still have warnings)
@@ -164,18 +164,20 @@ export function assertValidHotkey(hotkey: ValidatableHotkey): void {
 export function checkHotkey(hotkey: ValidatableHotkey): boolean {
   const result = validateHotkey(hotkey)
 
-  if (result.errors.length > 0) {
-    console.error(
-      `Hotkey '${String(hotkey)}' errors:`,
-      result.errors.join('; '),
-    )
-  }
+  if (process.env.NODE_ENV !== 'production') {
+    if (result.errors.length > 0) {
+      console.error(
+        `Hotkey '${String(hotkey)}' errors:`,
+        result.errors.join('; '),
+      )
+    }
 
-  if (result.warnings.length > 0) {
-    console.warn(
-      `Hotkey '${String(hotkey)}' warnings:`,
-      result.warnings.join('; '),
-    )
+    if (result.warnings.length > 0) {
+      console.warn(
+        `Hotkey '${String(hotkey)}' warnings:`,
+        result.warnings.join('; '),
+      )
+    }
   }
 
   return result.valid

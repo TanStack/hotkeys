@@ -7,7 +7,7 @@ title: WithTarget
 type WithTarget<TOptions, TTarget> = Omit<TOptions, "target" | "appHotkeyId"> & object;
 ```
 
-Defined in: [adapter.ts:155](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L155)
+Defined in: [adapter.ts:159](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L159)
 
 Options with a framework-specific target, such as a ref.
 

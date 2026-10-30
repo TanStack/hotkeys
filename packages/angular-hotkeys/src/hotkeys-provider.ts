@@ -8,9 +8,10 @@ import {
   runInInjectionContext,
   signal,
 } from '@angular/core'
-import { AppHotkeysStore, publishAppHotkeysStore } from '@tanstack/hotkeys'
+import { publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
   activateHotkeysProviderScope,
+  createAppHotkeysStore,
   getHotkeysProviderScopeKey,
   mergeHotkeysProviderDefaults,
 } from '@tanstack/hotkeys/adapter'
@@ -19,6 +20,7 @@ import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
 import type {
   AppHotkeys,
   AppHotkeysState,
+  AppHotkeysStore,
   CustomHotkeys,
   HotkeyChordRecorderOptions,
   HotkeySequenceRecorderOptions,
@@ -116,7 +118,7 @@ function createHotkeysContext(
   let store: AppHotkeysStore | null = null
   let appHotkeysState = parent.appHotkeysState
   if (appHotkeys) {
-    store = new AppHotkeysStore(appHotkeys, {
+    store = createAppHotkeysStore(appHotkeys, {
       customHotkeys,
       onCustomHotkeysChange,
     })

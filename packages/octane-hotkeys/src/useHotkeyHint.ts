@@ -40,7 +40,6 @@ export function useHotkeyHint(
   const active = select(
     manager.registrations,
     () => resolved !== null && manager.hasActiveRegistration(hotkey),
-    undefined,
     subSlot(slot, 'hint-active'),
   )
   const held = select(
@@ -52,7 +51,6 @@ export function useHotkeyHint(
         state.heldKeys,
         args[0] as HeldModifierOptions | undefined,
       ),
-    undefined,
     subSlot(slot, 'hint'),
   )
   return active && held

@@ -3,7 +3,7 @@ id: HotkeysContextOptions
 title: HotkeysContextOptions
 ---
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L34)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L36)
 
 Options for `setHotkeysContext` and props for `HotkeysProvider`.
 
@@ -23,7 +23,7 @@ Options for `setHotkeysContext` and props for `HotkeysProvider`.
 optional appHotkeys?: Readonly<Record<string, AppHotkey<string, HotkeyChord | HotkeySequence | null>>>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:41](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L41)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L43)
 
 Every app hotkey, from `defineAppHotkeys`. Read when the context is set;
 listed by `getAppHotkeyList` whether or not they are registered.
@@ -38,7 +38,7 @@ optional customHotkeys?:
   | null;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L46)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:48](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L48)
 
 Starting custom hotkeys, such as saved data. Read once; the context owns
 the state afterwards. Invalid entries are ignored with a warning.
@@ -51,7 +51,7 @@ the state afterwards. Invalid entries are ignored with a warning.
 optional defaultOptions?: HotkeysProviderOptions;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L36)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:38](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L38)
 
 Merged with the parent context's defaults.
 
@@ -63,7 +63,7 @@ Merged with the parent context's defaults.
 optional onCustomHotkeysChange?: (customHotkeys) => void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:48](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L48)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L50)
 
 Called with the custom hotkeys after every change, ready to save.
 

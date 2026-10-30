@@ -1,5 +1,5 @@
-import { useSelector } from '@tanstack/solid-store'
 import { getHotkeyManager } from '@tanstack/hotkeys'
+import { useSelector } from './_useSelector'
 import type { HotkeyScopesState } from '@tanstack/hotkeys'
 
 /**

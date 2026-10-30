@@ -1,11 +1,10 @@
-import { useSelector } from '@tanstack/preact-store'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
+import { useSelector } from './_useSelector'
 
 /**
  * Preact hook that returns an array of currently held keyboard keys.
  *
- * This hook uses `useSelector` from `@tanstack/preact-store` to subscribe
- * to the global KeyStateTracker and updates whenever keys are pressed
+ * This hook subscribes to the global KeyStateTracker and updates whenever keys are pressed
  * or released.
  *
  * @returns Array of currently held key names

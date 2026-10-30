@@ -1,5 +1,5 @@
-import { useSelector } from '@tanstack/solid-store'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
+import { useSelector } from './_useSelector'
 
 /**
  * SolidJS primitive that returns a signal of a map from currently held key names to their physical `event.code` values.
@@ -7,8 +7,7 @@ import { getKeyStateTracker } from '@tanstack/hotkeys'
  * This is useful for debugging which physical key was pressed (e.g. distinguishing
  * left vs right Shift via "ShiftLeft" / "ShiftRight").
  *
- * This primitive uses `useSelector` from `@tanstack/solid-store` to subscribe
- * to the global KeyStateTracker.
+ * This primitive subscribes to the global KeyStateTracker.
  *
  * @returns Signal accessor for record mapping normalized key names to their `event.code` values
  *

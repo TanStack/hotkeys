@@ -104,3 +104,28 @@ describe('adapter bindings', () => {
     expect(getHotkeyManager().registrations.state.size).toBe(0)
   })
 })
+
+describe('createAppHotkeysStore', () => {
+  it('creates a store for app hotkeys from defineAppHotkeys', async () => {
+    const { createAppHotkeysStore } = await import('../src/adapter')
+    const { AppHotkeysStore, defineAppHotkeys } =
+      await import('../src/app-hotkeys')
+    const appHotkeys = defineAppHotkeys({ 'doc.save': { hotkey: 'Mod+S' } })
+    const onCustomHotkeysChange = vi.fn()
+    const store = createAppHotkeysStore(appHotkeys, {
+      customHotkeys: { 'doc.save': 'Mod+Shift+S' },
+      onCustomHotkeysChange,
+    })
+    expect(store).toBeInstanceOf(AppHotkeysStore)
+    expect(store.get('doc.save')?.hotkey).toBe('Mod+Shift+S')
+    store.resetCustomHotkey('doc.save')
+    expect(onCustomHotkeysChange).toHaveBeenCalledWith({})
+  })
+
+  it('throws for app hotkeys not made by defineAppHotkeys', async () => {
+    // A fresh module graph, where defineAppHotkeys has never run
+    vi.resetModules()
+    const { createAppHotkeysStore } = await import('../src/adapter')
+    expect(() => createAppHotkeysStore({}, {})).toThrow(/defineAppHotkeys/)
+  })
+})

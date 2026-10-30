@@ -50,11 +50,13 @@ export function handleConflict(
   }
 
   if (conflictBehavior === 'warn') {
-    console.warn(
-      `'${keyDisplay}' is already registered. Multiple handlers may be triggered. ` +
-        `Use conflictBehavior: 'replace' to replace the existing handler, ` +
-        `or conflictBehavior: 'allow' to suppress this warning.`,
-    )
+    if (process.env.NODE_ENV !== 'production') {
+      console.warn(
+        `'${keyDisplay}' is already registered. Multiple handlers may be triggered. ` +
+          `Use conflictBehavior: 'replace' to replace the existing handler, ` +
+          `or conflictBehavior: 'allow' to suppress this warning.`,
+      )
+    }
     return
   }
 

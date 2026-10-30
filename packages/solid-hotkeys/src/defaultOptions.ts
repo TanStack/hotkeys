@@ -1,4 +1,5 @@
-import { Store, useSelector } from '@tanstack/solid-store'
+import { createStore } from '@tanstack/hotkeys/adapter'
+import { useSelector } from './_useSelector'
 import { useHotkeysContext } from './HotkeysProvider'
 import type { AppHotkeysState, AppHotkeysStore } from '@tanstack/hotkeys'
 
@@ -8,7 +9,7 @@ export function useDefaultHotkeysOptionsSource() {
   return () => context?.defaultOptions ?? {}
 }
 
-const NO_APP_HOTKEYS = new Store<AppHotkeysState | null>(null)
+const NO_APP_HOTKEYS = createStore<AppHotkeysState | null>(null)
 
 /**
  * The provider's app hotkeys store and an accessor that tracks its state, so

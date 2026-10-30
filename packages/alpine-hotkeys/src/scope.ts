@@ -2,7 +2,7 @@ import { getHotkeyManager } from '@tanstack/hotkeys'
 import { subscribePublishedAppHotkeys } from '@tanstack/hotkeys/adapter'
 import type Alpine from 'alpinejs'
 import type { AppHotkeysStore } from '@tanstack/hotkeys'
-import type { ReadonlyStore } from '@tanstack/store'
+import type { Store } from '@tanstack/hotkeys/adapter'
 import type { DefaultHotkeysOptions, MaybeGetter } from './types'
 
 type AlpineInstance = typeof Alpine
@@ -52,7 +52,7 @@ export function createScope(
   }
 
   function select<T, TSelected>(
-    store: Pick<ReadonlyStore<T>, 'state' | 'subscribe'>,
+    store: Pick<Store<T>, 'state' | 'subscribe'>,
     selector: (state: T) => TSelected,
   ) {
     assertActive()

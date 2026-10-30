@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'preact/hooks'
-import { useSelector } from '@tanstack/preact-store'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
+import { useSelector } from './_useSelector'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import type {
   Hotkey,

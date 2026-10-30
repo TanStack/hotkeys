@@ -3,7 +3,7 @@ id: ProvideHotkeysOptions
 title: ProvideHotkeysOptions
 ---
 
-Defined in: [hotkeys-provider.ts:44](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L44)
+Defined in: [hotkeys-provider.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L46)
 
 Options for `provideHotkeys`.
 
@@ -15,7 +15,7 @@ Options for `provideHotkeys`.
 optional appHotkeys?: Readonly<Record<string, AppHotkey<string, HotkeyChord | HotkeySequence | null>>>;
 ```
 
-Defined in: [hotkeys-provider.ts:62](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L62)
+Defined in: [hotkeys-provider.ts:64](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L64)
 
 Every app hotkey, from `defineAppHotkeys`. Listed by
 `injectAppHotkeyList` whether or not they are registered.
@@ -30,7 +30,7 @@ optional customHotkeys?:
   | null;
 ```
 
-Defined in: [hotkeys-provider.ts:67](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L67)
+Defined in: [hotkeys-provider.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L69)
 
 Starting custom hotkeys, such as saved data. Read once; the provider owns
 the state afterwards. Invalid entries are ignored with a warning.
@@ -43,7 +43,7 @@ the state afterwards. Invalid entries are ignored with a warning.
 optional defaultOptions?: HotkeysProviderOptions;
 ```
 
-Defined in: [hotkeys-provider.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L46)
+Defined in: [hotkeys-provider.ts:48](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L48)
 
 Merged with the parent provider's defaults.
 
@@ -55,7 +55,7 @@ Merged with the parent provider's defaults.
 optional enabled?: MaybeGetter<boolean | undefined>;
 ```
 
-Defined in: [hotkeys-provider.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L57)
+Defined in: [hotkeys-provider.ts:59](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L59)
 
 See `HotkeysProviderScopeProps['enabled']`.
 
@@ -71,7 +71,7 @@ optional exclusive?: MaybeGetter<
 | undefined>;
 ```
 
-Defined in: [hotkeys-provider.ts:55](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L55)
+Defined in: [hotkeys-provider.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L57)
 
 See `HotkeysProviderScopeProps['exclusive']`.
 
@@ -83,7 +83,7 @@ See `HotkeysProviderScopeProps['exclusive']`.
 optional onCustomHotkeysChange?: (customHotkeys) => void;
 ```
 
-Defined in: [hotkeys-provider.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L69)
+Defined in: [hotkeys-provider.ts:71](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L71)
 
 Called with the custom hotkeys after every change, ready to save.
 
@@ -105,7 +105,7 @@ Called with the custom hotkeys after every change, ready to save.
 optional scope?: MaybeGetter<string | undefined>;
 ```
 
-Defined in: [hotkeys-provider.ts:53](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L53)
+Defined in: [hotkeys-provider.ts:55](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L55)
 
 See `HotkeysProviderScopeProps['scope']`. Getters, here and for
 `exclusive` and `enabled`, run in the provider's injection context, so

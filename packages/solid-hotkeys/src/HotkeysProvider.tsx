@@ -6,15 +6,17 @@ import {
   onMount,
   useContext,
 } from 'solid-js'
-import { AppHotkeysStore, publishAppHotkeysStore } from '@tanstack/hotkeys'
+import { publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
   activateHotkeysProviderScope,
+  createAppHotkeysStore,
   getHotkeysProviderScopeKey,
   mergeHotkeysProviderDefaults,
 } from '@tanstack/hotkeys/adapter'
 import type { JSX, ParentComponent } from 'solid-js'
 import type {
   AppHotkeys,
+  AppHotkeysStore,
   CustomHotkeys,
   HotkeyChordRecorderOptions,
   HotkeySequenceRecorderOptions,
@@ -99,7 +101,7 @@ export const HotkeysProvider: ParentComponent<HotkeysProviderProps> = (
 ) => {
   const parent = useContext(HotkeysContext)
   const store = props.appHotkeys
-    ? new AppHotkeysStore(props.appHotkeys, {
+    ? createAppHotkeysStore(props.appHotkeys, {
         customHotkeys: props.customHotkeys,
         onCustomHotkeysChange: (custom) =>
           props.onCustomHotkeysChange?.(custom),

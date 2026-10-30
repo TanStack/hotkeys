@@ -44,12 +44,7 @@ export function useHotkeyRecorder(
     subSlot(slot, 'options'),
   )
   useLayoutEffect(() => () => recorder.destroy(), [], subSlot(slot, 'cleanup'))
-  const state = select(
-    recorder.store,
-    (value) => value,
-    undefined,
-    subSlot(slot, 'state'),
-  )
+  const state = select(recorder.store, (value) => value, subSlot(slot, 'state'))
   return {
     ...state,
     startRecording: () => recorder.start(),

@@ -5,7 +5,14 @@
       "@tanstack/hotkeys": ["../hotkeys/src/index.ts"],
       "@tanstack/hotkeys/adapter": ["../hotkeys/src/adapter.ts"]
     },
-    "rootDir": ".."
+    "rootDir": "..",
+    "types": [
+      "ember-source/types",
+      "vite/client",
+      "@embroider/core/virtual",
+      "@glint/ember-tsc/types",
+      "node"
+    ]
   },
   "include": ["src"]
 }

@@ -1,6 +1,5 @@
 'use client'
 
-import { useSelector } from '@tanstack/react-store'
 import {
   getHotkeyManager,
   getKeyStateTracker,
@@ -8,6 +7,7 @@ import {
   matchesHeldModifiers,
   resolveAppHotkey,
 } from '@tanstack/hotkeys'
+import { useSelector } from './_useSelector'
 import { useAppHotkeysStoreState } from './_appHotkeysStore'
 import type {
   AppHotkey,

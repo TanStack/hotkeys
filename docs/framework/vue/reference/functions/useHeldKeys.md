@@ -7,12 +7,11 @@ title: useHeldKeys
 function useHeldKeys(): Ref<string[]>;
 ```
 
-Defined in: [useHeldKeys.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHeldKeys.ts#L29)
+Defined in: [useHeldKeys.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHeldKeys.ts#L28)
 
 Vue composable that returns a reactive ref of currently held keyboard keys.
 
-This composable uses `useSelector` from `@tanstack/vue-store` to subscribe
-to the global KeyStateTracker and updates whenever keys are pressed
+This composable subscribes to the global KeyStateTracker and updates whenever keys are pressed
 or released.
 
 ## Returns

@@ -1,5 +1,5 @@
 import { getHotkeyManager } from '@tanstack/hotkeys'
-import { injectSelector } from '@tanstack/angular-store'
+import { injectSelector } from './_injectSelector'
 import type { HotkeyScopesState } from '@tanstack/hotkeys'
 import type { Signal } from '@angular/core'
 

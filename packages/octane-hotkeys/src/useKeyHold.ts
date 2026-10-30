@@ -8,7 +8,6 @@ export function useKeyHold(key: IndividualKey, slot?: symbol): boolean {
   return select(
     getKeyStateTracker().store,
     (state) => state.heldKeys.includes(key),
-    undefined,
     subSlot(slot, 'key-hold'),
   )
 }

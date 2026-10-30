@@ -11,7 +11,6 @@ export function useHotkeyScopesState(slot?: symbol): HotkeyScopesState {
   return select(
     getHotkeyManager().scopes,
     (state) => state,
-    undefined,
     subSlot(slot, 'hotkey-scopes-state'),
   )
 }

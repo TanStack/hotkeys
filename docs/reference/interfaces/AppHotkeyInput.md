@@ -3,7 +3,7 @@ id: AppHotkeyInput
 title: AppHotkeyInput
 ---
 
-Defined in: [app-hotkeys.ts:47](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L47)
+Defined in: [app-hotkeys.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L49)
 
 One declaration passed to `defineAppHotkeys`.
 
@@ -15,7 +15,7 @@ One declaration passed to `defineAppHotkeys`.
 hotkey: Hotkey | null;
 ```
 
-Defined in: [app-hotkeys.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L49)
+Defined in: [app-hotkeys.ts:51](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L51)
 
 Default hotkey: a chord, a sequence, or `null` for an action without a default.
 
@@ -27,7 +27,7 @@ Default hotkey: a chord, a sequence, or `null` for an action without a default.
 optional meta?: HotkeyMeta;
 ```
 
-Defined in: [app-hotkeys.ts:51](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L51)
+Defined in: [app-hotkeys.ts:53](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L53)
 
 Display metadata for cheat sheets and settings screens.
 
@@ -39,7 +39,7 @@ Display metadata for cheat sheets and settings screens.
 optional options?: AppHotkeyOptions;
 ```
 
-Defined in: [app-hotkeys.ts:63](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L63)
+Defined in: [app-hotkeys.ts:65](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L65)
 
 Options that describe the hotkey itself. Chord defaults accept
 `requireReset`; sequence defaults accept `timeout`.
@@ -52,7 +52,7 @@ Options that describe the hotkey itself. Chord defaults accept
 optional scope?: string;
 ```
 
-Defined in: [app-hotkeys.ts:58](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L58)
+Defined in: [app-hotkeys.ts:60](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L60)
 
 Scope this hotkey fires in, such as `'editor'`. Overrides the scope of the
 provider it registers under. App hotkeys in different scopes may share a

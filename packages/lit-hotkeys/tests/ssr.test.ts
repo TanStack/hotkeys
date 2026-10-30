@@ -13,11 +13,39 @@ import {
   KeyHoldController,
 } from '../src/controllers'
 
-/** Live subscribers on a store, read from its atom's subscriber list. */
+/** Live subscribers on each store, counted from when tracking starts. */
+const live = new WeakMap<object, number>()
+
+function trackSubscribers(store: {
+  subscribe: (listener: () => void) => { unsubscribe: () => void }
+}): void {
+  const subscribe = store.subscribe.bind(store)
+  live.set(store, 0)
+  store.subscribe = (listener) => {
+    live.set(store, live.get(store)! + 1)
+    const subscription = subscribe(listener)
+    let active = true
+    return {
+      unsubscribe: () => {
+        if (active) live.set(store, live.get(store)! - 1)
+        active = false
+        subscription.unsubscribe()
+      },
+    }
+  }
+}
+
 function subscriberCount(store: object): number {
-  let count = 0
-  for (let link = (store as any).atom.subs; link; link = link.nextSub) count++
-  return count
+  return live.get(store) ?? 0
+}
+
+for (const store of [
+  getKeyStateTracker().store,
+  getHotkeyManager().registrations,
+  getHotkeyManager().scopes,
+  getHotkeyManager().appHotkeys,
+]) {
+  trackSubscribers(store)
 }
 
 function snapshot() {

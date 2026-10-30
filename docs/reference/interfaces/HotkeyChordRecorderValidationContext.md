@@ -3,7 +3,7 @@ id: HotkeyChordRecorderValidationContext
 title: HotkeyChordRecorderValidationContext
 ---
 
-Defined in: [hotkey-recorder.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L45)
+Defined in: [hotkey-recorder.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L46)
 
 Validation context for a recorded chord.
 
@@ -15,7 +15,7 @@ Validation context for a recorded chord.
 event: KeyboardEvent;
 ```
 
-Defined in: [hotkey-recorder.ts:48](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L48)
+Defined in: [hotkey-recorder.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L49)
 
 The event that recorded the chord.
 
@@ -27,7 +27,7 @@ The event that recorded the chord.
 kind: "chord";
 ```
 
-Defined in: [hotkey-recorder.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L46)
+Defined in: [hotkey-recorder.ts:47](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L47)
 
 ***
 
@@ -37,6 +37,6 @@ Defined in: [hotkey-recorder.ts:46](https://github.com/TanStack/hotkeys/blob/mai
 parsedChord: ParsedHotkeyChord;
 ```
 
-Defined in: [hotkey-recorder.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L50)
+Defined in: [hotkey-recorder.ts:51](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L51)
 
 The chord with `Mod` resolved for the recorder's platform.

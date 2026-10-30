@@ -1,4 +1,4 @@
-import { Store } from '@tanstack/store'
+import { createStore } from './_store'
 import { TargetListeners } from './_target-listeners'
 import { managerRef } from './_manager-ref'
 import { isRecordingEvent } from './_recording-guard'
@@ -27,6 +27,7 @@ import {
   shouldIgnoreInputEvent,
   targetHasFocus,
 } from './_event-target'
+import type { Store } from './_store'
 import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'
 import type { CanonicalModifier } from './key.types'
 import type {
@@ -466,7 +467,7 @@ export class HotkeyManager {
    * }
    * ```
    */
-  readonly registrations: Store<Map<string, HotkeyRegistration>> = new Store(
+  readonly registrations: Store<Map<string, HotkeyRegistration>> = createStore(
     new Map(),
   )
   /**
@@ -474,9 +475,9 @@ export class HotkeyManager {
    * devtools can list declared hotkeys that are not registered.
    */
   readonly appHotkeys: Store<AppHotkeysStore | null> =
-    new Store<AppHotkeysStore | null>(null)
+    createStore<AppHotkeysStore | null>(null)
   /** Active scopes. Subscribe to show which hotkeys are suspended. */
-  readonly scopes: Store<HotkeyScopesState> = new Store<HotkeyScopesState>({
+  readonly scopes: Store<HotkeyScopesState> = createStore<HotkeyScopesState>({
     active: [],
     exclusive: null,
     allowed: [],
@@ -546,6 +547,7 @@ export class HotkeyManager {
     const { exclusive } = options
     const allow = exclusive ? (exclusive === true ? [] : exclusive.allow) : null
     if (
+      process.env.NODE_ENV !== 'production' &&
       allow &&
       [...this.#scopeActivations].some(
         (other) => other.allow && other.scope === scope,

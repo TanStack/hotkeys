@@ -5,15 +5,17 @@ import {
   useLayoutEffect,
   useRef,
 } from 'octane'
-import { AppHotkeysStore, publishAppHotkeysStore } from '@tanstack/hotkeys'
+import { publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
   activateHotkeysProviderScope,
+  createAppHotkeysStore,
   getHotkeysProviderScopeKey,
   mergeHotkeysProviderDefaults,
 } from '@tanstack/hotkeys/adapter'
 import { subSlot } from './internal'
 import type {
   AppHotkeys,
+  AppHotkeysStore,
   CustomHotkeys,
   HotkeyChordRecorderOptions,
   HotkeySequenceRecorderOptions,
@@ -104,7 +106,7 @@ export function HotkeysProvider({
     subSlot(undefined, 'provider-store'),
   )
   storeRef.current ??= appHotkeys
-    ? new AppHotkeysStore(appHotkeys, {
+    ? createAppHotkeysStore(appHotkeys, {
         customHotkeys,
         onCustomHotkeysChange: (custom) => callbackRef.current?.(custom),
       })

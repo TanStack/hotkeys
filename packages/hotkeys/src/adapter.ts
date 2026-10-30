@@ -25,6 +25,10 @@ import type {
   Target,
 } from './hotkey-manager'
 
+export { createAppHotkeysStore } from './_app-hotkeys-factory'
+export { createStore } from './_store'
+export type { Store } from './_store'
+
 /**
  * A hotkey and its callback, with optional per-binding options. Chords accept
  * `requireReset`; sequences accept `timeout`.

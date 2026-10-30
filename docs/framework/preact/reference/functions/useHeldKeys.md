@@ -7,12 +7,11 @@ title: useHeldKeys
 function useHeldKeys(): string[];
 ```
 
-Defined in: [useHeldKeys.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHeldKeys.ts#L26)
+Defined in: [useHeldKeys.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHeldKeys.ts#L25)
 
 Preact hook that returns an array of currently held keyboard keys.
 
-This hook uses `useSelector` from `@tanstack/preact-store` to subscribe
-to the global KeyStateTracker and updates whenever keys are pressed
+This hook subscribes to the global KeyStateTracker and updates whenever keys are pressed
 or released.
 
 ## Returns

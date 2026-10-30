@@ -313,9 +313,9 @@ Use a target for hotkeys that belong to a focusable element, such as a list or a
 
 ## Handle duplicate hotkeys
 
-When you register a hotkey that is already registered on the same target and in the same scope, TanStack Hotkeys logs a warning, and both callbacks run. Set `conflictBehavior` to change that:
+When you register a hotkey that is already registered on the same target and in the same scope, TanStack Hotkeys logs a warning in development, and both callbacks run. Set `conflictBehavior` to change that:
 
-- `'warn'` (default) logs a warning and keeps both registrations.
+- `'warn'` (default) logs a warning in development and keeps both registrations.
 - `'error'` throws an error.
 - `'replace'` unregisters the existing registration.
 - `'allow'` keeps both without a warning.

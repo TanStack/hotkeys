@@ -24,6 +24,8 @@ The Hotkeys devtools panel lets you:
 
 Install the TanStack Devtools host package and the Hotkeys devtools adapter for your framework.
 
+The adapters need a current TanStack Devtools host, such as `@tanstack/react-devtools` 0.10.14 or newer. Older hosts pass the plugin a theme string instead of props, so the panel ignores the theme and TypeScript rejects the plugin. Both libraries are in beta, so upgrade them together.
+
 <!-- ::start:framework -->
 
 # React

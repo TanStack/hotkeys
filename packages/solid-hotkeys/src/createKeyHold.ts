@@ -1,13 +1,12 @@
 import { createMemo } from 'solid-js'
-import { useSelector } from '@tanstack/solid-store'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
+import { useSelector } from './_useSelector'
 import type { IndividualKey } from '@tanstack/hotkeys'
 
 /**
  * SolidJS primitive that returns whether a specific key is currently being held.
  *
- * This primitive uses `useSelector` from `@tanstack/solid-store` to subscribe
- * to the global KeyStateTracker and uses a selector to determine if the
+ * This primitive subscribes to the global KeyStateTracker and uses a selector to determine if the
  * specified key is held.
  *
  * @param key - The key to check (e.g., 'Shift', 'Control', 'A') - can be an accessor function

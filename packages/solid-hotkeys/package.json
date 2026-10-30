@@ -49,8 +49,7 @@
     "skills"
   ],
   "dependencies": {
-    "@tanstack/hotkeys": "workspace:*",
-    "@tanstack/solid-store": "^0.11.2"
+    "@tanstack/hotkeys": "workspace:*"
   },
   "devDependencies": {
     "@solidjs/testing-library": "^0.8.10",

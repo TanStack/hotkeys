@@ -494,8 +494,8 @@ importers:
         specifier: ^22.2.1
         version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
       '@tanstack/angular-devtools':
-        specifier: ^0.0.12
-        version: 0.0.12(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.0.13
+        version: 0.0.13(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/angular-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/angular-hotkeys
@@ -570,8 +570,8 @@ importers:
         specifier: ^22.2.1
         version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
       '@tanstack/angular-devtools':
-        specifier: ^0.0.12
-        version: 0.0.12(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.0.13
+        version: 0.0.13(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/angular-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/angular-hotkeys
@@ -646,8 +646,8 @@ importers:
         specifier: ^22.2.1
         version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
       '@tanstack/angular-devtools':
-        specifier: ^0.0.12
-        version: 0.0.12(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.0.13
+        version: 0.0.13(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/angular-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/angular-hotkeys
@@ -722,8 +722,8 @@ importers:
         specifier: ^22.2.1
         version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
       '@tanstack/angular-devtools':
-        specifier: ^0.0.12
-        version: 0.0.12(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.0.13
+        version: 0.0.13(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/angular-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/angular-hotkeys
@@ -798,8 +798,8 @@ importers:
         specifier: ^22.2.1
         version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
       '@tanstack/angular-devtools':
-        specifier: ^0.0.12
-        version: 0.0.12(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.0.13
+        version: 0.0.13(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/angular-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/angular-hotkeys
@@ -874,8 +874,8 @@ importers:
         specifier: ^22.2.1
         version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
       '@tanstack/angular-devtools':
-        specifier: ^0.0.12
-        version: 0.0.12(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.0.13
+        version: 0.0.13(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/angular-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/angular-hotkeys
@@ -950,8 +950,8 @@ importers:
         specifier: ^22.2.1
         version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
       '@tanstack/angular-devtools':
-        specifier: ^0.0.12
-        version: 0.0.12(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.0.13
+        version: 0.0.13(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/angular-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/angular-hotkeys
@@ -1026,8 +1026,8 @@ importers:
         specifier: ^22.2.1
         version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
       '@tanstack/angular-devtools':
-        specifier: ^0.0.12
-        version: 0.0.12(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.0.13
+        version: 0.0.13(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/angular-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/angular-hotkeys
@@ -1102,8 +1102,8 @@ importers:
         specifier: ^22.2.1
         version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
       '@tanstack/angular-devtools':
-        specifier: ^0.0.12
-        version: 0.0.12(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.0.13
+        version: 0.0.13(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/angular-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/angular-hotkeys
@@ -1178,8 +1178,8 @@ importers:
         specifier: ^22.2.1
         version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
       '@tanstack/angular-devtools':
-        specifier: ^0.0.12
-        version: 0.0.12(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.0.13
+        version: 0.0.13(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/angular-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/angular-hotkeys
@@ -2184,8 +2184,8 @@ importers:
         specifier: ^2.10.6
         version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
+        specifier: 0.10.15
+        version: 0.10.15(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2209,8 +2209,8 @@ importers:
         specifier: ^2.10.6
         version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
       '@tanstack/preact-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
+        specifier: 0.10.15
+        version: 0.10.15(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2234,8 +2234,8 @@ importers:
         specifier: ^2.10.6
         version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
+        specifier: 0.10.15
+        version: 0.10.15(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2259,8 +2259,8 @@ importers:
         specifier: ^2.10.6
         version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
+        specifier: 0.10.15
+        version: 0.10.15(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2284,8 +2284,8 @@ importers:
         specifier: ^2.10.6
         version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
       '@tanstack/preact-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
+        specifier: 0.10.15
+        version: 0.10.15(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2309,8 +2309,8 @@ importers:
         specifier: ^2.10.6
         version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
+        specifier: 0.10.15
+        version: 0.10.15(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2334,8 +2334,8 @@ importers:
         specifier: ^2.10.6
         version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
       '@tanstack/preact-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
+        specifier: 0.10.15
+        version: 0.10.15(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2359,8 +2359,8 @@ importers:
         specifier: ^2.10.6
         version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
+        specifier: 0.10.15
+        version: 0.10.15(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2384,8 +2384,8 @@ importers:
         specifier: ^2.10.6
         version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
       '@tanstack/preact-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
+        specifier: 0.10.15
+        version: 0.10.15(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2409,8 +2409,8 @@ importers:
         specifier: ^2.10.6
         version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.0.1)(rollup@4.57.1)(supports-color@8.1.1)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.8.2))
       '@tanstack/preact-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
+        specifier: 0.10.15
+        version: 0.10.15(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
       '@tanstack/preact-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/preact-hotkeys-devtools
@@ -2437,8 +2437,8 @@ importers:
         version: 19.3.0(react@19.3.0)
     devDependencies:
       '@tanstack/react-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
+        specifier: 0.10.14
+        version: 0.10.14(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
       '@tanstack/react-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/react-hotkeys-devtools
@@ -2471,8 +2471,8 @@ importers:
         version: 19.3.0(react@19.3.0)
     devDependencies:
       '@tanstack/react-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
+        specifier: 0.10.14
+        version: 0.10.14(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
       '@tanstack/react-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/react-hotkeys-devtools
@@ -2505,8 +2505,8 @@ importers:
         version: 19.3.0(react@19.3.0)
     devDependencies:
       '@tanstack/react-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
+        specifier: 0.10.14
+        version: 0.10.14(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
       '@tanstack/react-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/react-hotkeys-devtools
@@ -2539,8 +2539,8 @@ importers:
         version: 19.3.0(react@19.3.0)
     devDependencies:
       '@tanstack/react-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
+        specifier: 0.10.14
+        version: 0.10.14(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
       '@tanstack/react-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/react-hotkeys-devtools
@@ -2573,8 +2573,8 @@ importers:
         version: 19.3.0(react@19.3.0)
     devDependencies:
       '@tanstack/react-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
+        specifier: 0.10.14
+        version: 0.10.14(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
       '@tanstack/react-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/react-hotkeys-devtools
@@ -2607,8 +2607,8 @@ importers:
         version: 19.3.0(react@19.3.0)
     devDependencies:
       '@tanstack/react-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
+        specifier: 0.10.14
+        version: 0.10.14(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
       '@tanstack/react-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/react-hotkeys-devtools
@@ -2641,8 +2641,8 @@ importers:
         version: 19.3.0(react@19.3.0)
     devDependencies:
       '@tanstack/react-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
+        specifier: 0.10.14
+        version: 0.10.14(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
       '@tanstack/react-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/react-hotkeys-devtools
@@ -2675,8 +2675,8 @@ importers:
         version: 19.3.0(react@19.3.0)
     devDependencies:
       '@tanstack/react-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
+        specifier: 0.10.14
+        version: 0.10.14(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
       '@tanstack/react-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/react-hotkeys-devtools
@@ -2709,8 +2709,8 @@ importers:
         version: 19.3.0(react@19.3.0)
     devDependencies:
       '@tanstack/react-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
+        specifier: 0.10.14
+        version: 0.10.14(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
       '@tanstack/react-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/react-hotkeys-devtools
@@ -2743,8 +2743,8 @@ importers:
         version: 19.3.0(react@19.3.0)
     devDependencies:
       '@tanstack/react-devtools':
-        specifier: 0.10.13
-        version: 0.10.13(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
+        specifier: 0.10.14
+        version: 0.10.14(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
       '@tanstack/react-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/react-hotkeys-devtools
@@ -2767,8 +2767,8 @@ importers:
   examples/solid/createHeldKeys:
     dependencies:
       '@tanstack/solid-devtools':
-        specifier: 0.8.13
-        version: 0.8.13(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: 0.8.14
+        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/solid-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/solid-hotkeys
@@ -2789,8 +2789,8 @@ importers:
   examples/solid/createHotkey:
     dependencies:
       '@tanstack/solid-devtools':
-        specifier: 0.8.13
-        version: 0.8.13(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: 0.8.14
+        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/solid-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/solid-hotkeys
@@ -2817,8 +2817,8 @@ importers:
   examples/solid/createHotkey-sequences:
     dependencies:
       '@tanstack/solid-devtools':
-        specifier: 0.8.13
-        version: 0.8.13(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: 0.8.14
+        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/solid-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/solid-hotkeys
@@ -2839,8 +2839,8 @@ importers:
   examples/solid/createHotkeyRecorder:
     dependencies:
       '@tanstack/solid-devtools':
-        specifier: 0.8.13
-        version: 0.8.13(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: 0.8.14
+        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/solid-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/solid-hotkeys
@@ -2861,8 +2861,8 @@ importers:
   examples/solid/createHotkeyRecorder-sequences:
     dependencies:
       '@tanstack/solid-devtools':
-        specifier: 0.8.13
-        version: 0.8.13(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: 0.8.14
+        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/solid-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/solid-hotkeys
@@ -2883,8 +2883,8 @@ importers:
   examples/solid/createHotkeys:
     dependencies:
       '@tanstack/solid-devtools':
-        specifier: 0.8.13
-        version: 0.8.13(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: 0.8.14
+        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/solid-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/solid-hotkeys
@@ -2911,8 +2911,8 @@ importers:
   examples/solid/createHotkeys-sequences:
     dependencies:
       '@tanstack/solid-devtools':
-        specifier: 0.8.13
-        version: 0.8.13(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: 0.8.14
+        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/solid-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/solid-hotkeys
@@ -2933,8 +2933,8 @@ importers:
   examples/solid/createKeyHold:
     dependencies:
       '@tanstack/solid-devtools':
-        specifier: 0.8.13
-        version: 0.8.13(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: 0.8.14
+        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/solid-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/solid-hotkeys
@@ -2955,8 +2955,8 @@ importers:
   examples/solid/kitchen-sink:
     dependencies:
       '@tanstack/solid-devtools':
-        specifier: 0.8.13
-        version: 0.8.13(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: 0.8.14
+        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/solid-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/solid-hotkeys
@@ -2983,8 +2983,8 @@ importers:
   examples/solid/scopes:
     dependencies:
       '@tanstack/solid-devtools':
-        specifier: 0.8.13
-        version: 0.8.13(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: 0.8.14
+        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/solid-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/solid-hotkeys
@@ -3011,8 +3011,8 @@ importers:
   examples/svelte/create-hotkey:
     dependencies:
       '@tanstack/svelte-devtools':
-        specifier: ^0.1.7
-        version: 0.1.7(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))
+        specifier: ^0.1.8
+        version: 0.1.8(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))
       '@tanstack/svelte-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/svelte-hotkeys
@@ -3036,8 +3036,8 @@ importers:
   examples/svelte/create-hotkey-recorder:
     dependencies:
       '@tanstack/svelte-devtools':
-        specifier: ^0.1.7
-        version: 0.1.7(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))
+        specifier: ^0.1.8
+        version: 0.1.8(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))
       '@tanstack/svelte-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/svelte-hotkeys
@@ -3061,8 +3061,8 @@ importers:
   examples/svelte/create-hotkey-recorder-sequences:
     dependencies:
       '@tanstack/svelte-devtools':
-        specifier: ^0.1.7
-        version: 0.1.7(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))
+        specifier: ^0.1.8
+        version: 0.1.8(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))
       '@tanstack/svelte-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/svelte-hotkeys
@@ -3086,8 +3086,8 @@ importers:
   examples/svelte/create-hotkey-sequences:
     dependencies:
       '@tanstack/svelte-devtools':
-        specifier: ^0.1.7
-        version: 0.1.7(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))
+        specifier: ^0.1.8
+        version: 0.1.8(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))
       '@tanstack/svelte-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/svelte-hotkeys
@@ -3111,8 +3111,8 @@ importers:
   examples/svelte/create-hotkeys:
     dependencies:
       '@tanstack/svelte-devtools':
-        specifier: ^0.1.7
-        version: 0.1.7(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))
+        specifier: ^0.1.8
+        version: 0.1.8(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))
       '@tanstack/svelte-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/svelte-hotkeys
@@ -3136,8 +3136,8 @@ importers:
   examples/svelte/create-hotkeys-sequences:
     dependencies:
       '@tanstack/svelte-devtools':
-        specifier: ^0.1.7
-        version: 0.1.7(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))
+        specifier: ^0.1.8
+        version: 0.1.8(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))
       '@tanstack/svelte-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/svelte-hotkeys
@@ -3161,8 +3161,8 @@ importers:
   examples/svelte/get-held-keys:
     dependencies:
       '@tanstack/svelte-devtools':
-        specifier: ^0.1.7
-        version: 0.1.7(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))
+        specifier: ^0.1.8
+        version: 0.1.8(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))
       '@tanstack/svelte-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/svelte-hotkeys
@@ -3186,8 +3186,8 @@ importers:
   examples/svelte/get-is-key-held:
     dependencies:
       '@tanstack/svelte-devtools':
-        specifier: ^0.1.7
-        version: 0.1.7(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))
+        specifier: ^0.1.8
+        version: 0.1.8(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))
       '@tanstack/svelte-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/svelte-hotkeys
@@ -3211,8 +3211,8 @@ importers:
   examples/svelte/kitchen-sink:
     dependencies:
       '@tanstack/svelte-devtools':
-        specifier: ^0.1.7
-        version: 0.1.7(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))
+        specifier: ^0.1.8
+        version: 0.1.8(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))
       '@tanstack/svelte-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/svelte-hotkeys
@@ -3236,8 +3236,8 @@ importers:
   examples/svelte/scopes:
     dependencies:
       '@tanstack/svelte-devtools':
-        specifier: ^0.1.7
-        version: 0.1.7(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))
+        specifier: ^0.1.8
+        version: 0.1.8(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))
       '@tanstack/svelte-hotkeys':
         specifier: workspace:*
         version: link:../../../packages/svelte-hotkeys
@@ -3281,8 +3281,8 @@ importers:
         version: 3.5.43(typescript@6.0.3)
     devDependencies:
       '@tanstack/vue-devtools':
-        specifier: ^0.2.27
-        version: 0.2.27(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.2.28
+        version: 0.2.28(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/vue-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/vue-hotkeys-devtools
@@ -3312,8 +3312,8 @@ importers:
         version: 3.5.43(typescript@6.0.3)
     devDependencies:
       '@tanstack/vue-devtools':
-        specifier: ^0.2.27
-        version: 0.2.27(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.2.28
+        version: 0.2.28(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/vue-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/vue-hotkeys-devtools
@@ -3343,8 +3343,8 @@ importers:
         version: 3.5.43(typescript@6.0.3)
     devDependencies:
       '@tanstack/vue-devtools':
-        specifier: ^0.2.27
-        version: 0.2.27(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.2.28
+        version: 0.2.28(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/vue-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/vue-hotkeys-devtools
@@ -3374,8 +3374,8 @@ importers:
         version: 3.5.43(typescript@6.0.3)
     devDependencies:
       '@tanstack/vue-devtools':
-        specifier: ^0.2.27
-        version: 0.2.27(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.2.28
+        version: 0.2.28(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/vue-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/vue-hotkeys-devtools
@@ -3405,8 +3405,8 @@ importers:
         version: 3.5.43(typescript@6.0.3)
     devDependencies:
       '@tanstack/vue-devtools':
-        specifier: ^0.2.27
-        version: 0.2.27(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.2.28
+        version: 0.2.28(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/vue-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/vue-hotkeys-devtools
@@ -3436,8 +3436,8 @@ importers:
         version: 3.5.43(typescript@6.0.3)
     devDependencies:
       '@tanstack/vue-devtools':
-        specifier: ^0.2.27
-        version: 0.2.27(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.2.28
+        version: 0.2.28(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/vue-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/vue-hotkeys-devtools
@@ -3467,8 +3467,8 @@ importers:
         version: 3.5.43(typescript@6.0.3)
     devDependencies:
       '@tanstack/vue-devtools':
-        specifier: ^0.2.27
-        version: 0.2.27(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.2.28
+        version: 0.2.28(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/vue-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/vue-hotkeys-devtools
@@ -3498,8 +3498,8 @@ importers:
         version: 3.5.43(typescript@6.0.3)
     devDependencies:
       '@tanstack/vue-devtools':
-        specifier: ^0.2.27
-        version: 0.2.27(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.2.28
+        version: 0.2.28(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/vue-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/vue-hotkeys-devtools
@@ -3529,8 +3529,8 @@ importers:
         version: 3.5.43(typescript@6.0.3)
     devDependencies:
       '@tanstack/vue-devtools':
-        specifier: ^0.2.27
-        version: 0.2.27(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.2.28
+        version: 0.2.28(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/vue-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/vue-hotkeys-devtools
@@ -3560,8 +3560,8 @@ importers:
         version: 3.5.43(typescript@6.0.3)
     devDependencies:
       '@tanstack/vue-devtools':
-        specifier: ^0.2.27
-        version: 0.2.27(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.2.28
+        version: 0.2.28(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/vue-hotkeys-devtools':
         specifier: workspace:*
         version: link:../../../packages/vue-hotkeys-devtools
@@ -3586,9 +3586,6 @@ importers:
       '@tanstack/hotkeys':
         specifier: workspace:*
         version: link:../hotkeys
-      '@tanstack/store':
-        specifier: ^0.11.2
-        version: 0.11.2
     devDependencies:
       '@types/alpinejs':
         specifier: ^3.17.0
@@ -3599,9 +3596,6 @@ importers:
 
   packages/angular-hotkeys:
     dependencies:
-      '@tanstack/angular-store':
-        specifier: ^0.11.2
-        version: 0.11.2(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))
       '@tanstack/hotkeys':
         specifier: workspace:*
         version: link:../hotkeys
@@ -3621,9 +3615,12 @@ importers:
 
   packages/angular-hotkeys-devtools:
     dependencies:
+      '@tanstack/angular-devtools':
+        specifier: '>=0.0.13'
+        version: 0.0.13(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/devtools-utils':
-        specifier: ^0.7.0
-        version: 0.7.0(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@types/react@19.3.0)(preact@10.29.8)(react@19.3.0)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.43(typescript@6.0.3))
+        specifier: ^0.7.2
+        version: 0.7.2(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@types/react@19.3.0)(preact@10.29.8)(react@19.3.0)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.43(typescript@6.0.3))
       '@tanstack/hotkeys-devtools':
         specifier: workspace:*
         version: link:../hotkeys-devtools
@@ -3640,9 +3637,6 @@ importers:
       '@tanstack/hotkeys':
         specifier: workspace:*
         version: link:../hotkeys
-      '@tanstack/store':
-        specifier: ^0.11.2
-        version: 0.11.2
       ember-modifier:
         specifier: ^4.2.2
         version: 4.2.2(@babel/core@7.29.7(supports-color@8.1.1))(supports-color@8.1.1)
@@ -3715,7 +3709,7 @@ importers:
         version: 8.3.2(@types/node@26.6.4)(esbuild@0.28.0)(jiti@2.6.1)(less@4.4.2)(sass-embedded@1.104.1)(sass@1.97.3)(terser@5.46.0)(yaml@2.9.1)
 
   packages/hotkeys:
-    dependencies:
+    devDependencies:
       '@tanstack/store':
         specifier: ^0.11.2
         version: 0.11.2
@@ -3723,11 +3717,11 @@ importers:
   packages/hotkeys-devtools:
     dependencies:
       '@tanstack/devtools-ui':
-        specifier: ^0.7.1
-        version: 0.7.1(csstype@3.2.3)(solid-js@1.9.15)
+        specifier: ^0.7.2
+        version: 0.7.2(csstype@3.2.3)(solid-js@1.9.15)
       '@tanstack/devtools-utils':
-        specifier: ^0.7.0
-        version: 0.7.0(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.3))(@types/react@19.2.14)(preact@10.29.1)(react@19.2.5)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))
+        specifier: ^0.7.2
+        version: 0.7.2(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.3))(@types/react@19.2.14)(preact@10.29.1)(react@19.2.5)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))
       '@tanstack/hotkeys':
         specifier: workspace:*
         version: link:../hotkeys
@@ -3763,9 +3757,6 @@ importers:
       '@tanstack/hotkeys':
         specifier: workspace:*
         version: link:../hotkeys
-      '@tanstack/octane-store':
-        specifier: ^0.13.0
-        version: 0.13.0(octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2)))
     devDependencies:
       '@tsrx/oxc':
         specifier: 0.20.0
@@ -3785,9 +3776,6 @@ importers:
       '@tanstack/hotkeys':
         specifier: workspace:*
         version: link:../hotkeys
-      '@tanstack/preact-store':
-        specifier: ^0.13.5
-        version: 0.13.5(preact@11.0.1)
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
@@ -3802,11 +3790,14 @@ importers:
   packages/preact-hotkeys-devtools:
     dependencies:
       '@tanstack/devtools-utils':
-        specifier: ^0.7.0
-        version: 0.7.0(@angular/core@21.2.10)(@types/react@19.2.14)(preact@11.0.1)(react@19.2.5)(solid-js@1.9.12)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))
+        specifier: ^0.7.2
+        version: 0.7.2(@angular/core@21.2.10)(@types/react@19.2.14)(preact@11.0.1)(react@19.2.5)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))
       '@tanstack/hotkeys-devtools':
         specifier: workspace:*
         version: link:../hotkeys-devtools
+      '@tanstack/preact-devtools':
+        specifier: '>=0.10.15'
+        version: 0.10.15(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
@@ -3820,13 +3811,13 @@ importers:
       '@tanstack/hotkeys':
         specifier: workspace:*
         version: link:../hotkeys
-      '@tanstack/react-store':
-        specifier: ^0.11.2
-        version: 0.11.2(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
     devDependencies:
       '@eslint-react/eslint-plugin':
         specifier: ^4.2.3
         version: 4.2.3(eslint@10.11.0(jiti@2.6.1)(supports-color@8.1.1))(supports-color@8.1.1)(typescript@6.0.3)
+      '@tanstack/react-store':
+        specifier: ^0.11.2
+        version: 0.11.2(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
       '@testing-library/react':
         specifier: ^16.3.3
         version: 16.3.3(@testing-library/dom@10.4.1)(@types/react-dom@19.2.3(@types/react@19.3.0))(@types/react@19.3.0)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)
@@ -3852,11 +3843,14 @@ importers:
   packages/react-hotkeys-devtools:
     dependencies:
       '@tanstack/devtools-utils':
-        specifier: ^0.7.0
-        version: 0.7.0(@angular/core@21.2.10)(@types/react@19.3.0)(preact@10.29.1)(react@19.3.0)(solid-js@1.9.12)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))
+        specifier: ^0.7.2
+        version: 0.7.2(@angular/core@21.2.10)(@types/react@19.3.0)(preact@10.29.1)(react@19.3.0)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))
       '@tanstack/hotkeys-devtools':
         specifier: workspace:*
         version: link:../hotkeys-devtools
+      '@tanstack/react-devtools':
+        specifier: '>=0.10.14'
+        version: 0.10.14(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)
       '@types/react-dom':
         specifier: '>=18.0.0'
         version: 19.3.0(@types/react@19.3.0)
@@ -3888,9 +3882,6 @@ importers:
       '@tanstack/hotkeys':
         specifier: workspace:*
         version: link:../hotkeys
-      '@tanstack/solid-store':
-        specifier: ^0.11.2
-        version: 0.11.2(solid-js@1.9.15)
     devDependencies:
       '@solidjs/testing-library':
         specifier: ^0.8.10
@@ -3908,11 +3899,14 @@ importers:
   packages/solid-hotkeys-devtools:
     dependencies:
       '@tanstack/devtools-utils':
-        specifier: ^0.7.0
-        version: 0.7.0(@angular/core@22.1.7(@angular/compiler@22.1.7)(rxjs@7.8.2)(zone.js@0.16.3))(@types/react@19.2.14)(preact@10.29.1)(react@19.2.5)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))(vue@3.5.33(typescript@6.0.3))
+        specifier: ^0.7.2
+        version: 0.7.2(@angular/core@22.1.7(@angular/compiler@22.1.7)(rxjs@7.8.2)(zone.js@0.16.3))(@types/react@19.2.14)(preact@10.29.1)(react@19.2.5)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))(vue@3.5.33(typescript@6.0.3))
       '@tanstack/hotkeys-devtools':
         specifier: workspace:*
         version: link:../hotkeys-devtools
+      '@tanstack/solid-devtools':
+        specifier: '>=0.8.14'
+        version: 0.8.14(csstype@3.2.3)(solid-js@1.9.15)
     devDependencies:
       solid-js:
         specifier: ^1.9.15
@@ -3946,11 +3940,14 @@ importers:
   packages/svelte-hotkeys-devtools:
     dependencies:
       '@tanstack/devtools-utils':
-        specifier: ^0.7.0
-        version: 0.7.0(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@types/react@19.3.0)(preact@10.29.8)(react@19.3.0)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.43(typescript@6.0.3))
+        specifier: ^0.7.2
+        version: 0.7.2(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@types/react@19.3.0)(preact@10.29.8)(react@19.3.0)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.43(typescript@6.0.3))
       '@tanstack/hotkeys-devtools':
         specifier: workspace:*
         version: link:../hotkeys-devtools
+      '@tanstack/svelte-devtools':
+        specifier: '>=0.1.8'
+        version: 0.1.8(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))
     devDependencies:
       '@sveltejs/package':
         specifier: ^3.0.0
@@ -3973,9 +3970,6 @@ importers:
       '@tanstack/hotkeys':
         specifier: workspace:*
         version: link:../hotkeys
-      '@tanstack/vue-store':
-        specifier: ^0.11.2
-        version: 0.11.2(vue@3.5.43(typescript@6.0.3))
     devDependencies:
       '@vitejs/plugin-vue':
         specifier: ^6.0.9
@@ -3992,6 +3986,9 @@ importers:
       '@tanstack/hotkeys-devtools':
         specifier: workspace:*
         version: link:../hotkeys-devtools
+      '@tanstack/vue-devtools':
+        specifier: '>=0.2.28'
+        version: 0.2.28(csstype@3.2.3)(solid-js@1.9.15)
     devDependencies:
       '@vitejs/plugin-vue':
         specifier: ^6.0.9
@@ -8467,17 +8464,11 @@ packages:
       svelte: ^5.46.4
       vite: ^8.0.0-beta.7 || ^8.0.0
 
-  '@tanstack/angular-devtools@0.0.12':
-    resolution: {integrity: sha512-738bMu4x+DKf5T1QVHMep2NlnzNmE9hayzu2U50VW3t9XNMcYoEccMiYVr8JyDm7TbsE2T/ouZnc+NVHnKBMeA==}
+  '@tanstack/angular-devtools@0.0.13':
+    resolution: {integrity: sha512-w7XccHywjrRj6rGkQrKVOhaNkr5Jsq9xiWVlEnm3btjpGEVKk1menArn1X0fqM06LZS/hxn8Rv/0bJ4rQkd33Q==}
     engines: {node: '>=18'}
     peerDependencies:
       '@angular/core': '>=21.0.0'
-
-  '@tanstack/angular-store@0.11.2':
-    resolution: {integrity: sha512-KdyoiKicx807HbcH98Ses9hRM7tHrn+sq6ZEZsA3FIGF20/bCnOqVxRVef+m14OGgck+9cUlEKgkAH/SKW3sVQ==}
-    peerDependencies:
-      '@angular/common': '>=19.0.0'
-      '@angular/core': '>=19.0.0'
 
   '@tanstack/devtools-client@0.0.8':
     resolution: {integrity: sha512-cG3iZkGWCwN330bLBKa8+9r4Of2AXNoz2zUqcsy/4XsD3105ghVBx78cGyvJj9fSclNomPxoqAnDGXXhg1WLvA==}
@@ -8492,22 +8483,21 @@ packages:
     engines: {node: '>=18'}
     hasBin: true
 
-  '@tanstack/devtools-ui@0.7.1':
-    resolution: {integrity: sha512-3xQ/ezZ2qVNszhjpCN2N3jn7uHc2J1PMgcyjHzH4XZBt9xAQyMMcPNoR2cd7rzReyxWoJpZUWiDBmOJiCtLj9A==}
+  '@tanstack/devtools-ui@0.7.2':
+    resolution: {integrity: sha512-Ij6EpEXkx13OOVMJPCJpMzWzVV/mcsqfXM4d+ZjqCrQtgbt7cd2rsCseuKuYNmuGhJiOLYNXzYU5da7UqCY54g==}
     engines: {node: '>=18'}
     peerDependencies:
-      solid-js: '>=1.9.7'
+      solid-js: ^1.9.13
 
-  '@tanstack/devtools-utils@0.7.0':
-    resolution: {integrity: sha512-D9oosgtwvOe5nHQuhCqO/pxZz923REExp2kTc2YaJQ5+0QjTU3xRU+KkwRbFmlJwEXRcJCeAGF5j9Y72TZQ/xQ==}
+  '@tanstack/devtools-utils@0.7.2':
+    resolution: {integrity: sha512-77pwyXlWsxiJJh/GKXjFNVl2Y2VnqDY4SFN9zsJcIcNElswZNg1Qtl1pPkukZwMcONxAPp7Rfa23O1R5SxOCZA==}
     engines: {node: '>=18'}
-    hasBin: true
     peerDependencies:
       '@angular/core': '>=19.0.0'
       '@types/react': '>=17.0.0'
       preact: '>=10.0.0'
       react: '>=17.0.0'
-      solid-js: '>=1.9.7'
+      solid-js: ^1.9.13
       svelte: '>=5.0.0'
       vue: '>=3.2.0'
     peerDependenciesMeta:
@@ -8526,12 +8516,11 @@ packages:
       vue:
         optional: true
 
-  '@tanstack/devtools@0.15.0':
-    resolution: {integrity: sha512-KyS7Qi82Eq9yG8C+uae3ikAPb+D5rfzVhvOOjXVAHZ/64s6TWJlDWpREw1FrHIYZaI7paErpsExSSKlF5BKA/A==}
+  '@tanstack/devtools@0.16.0':
+    resolution: {integrity: sha512-SgmsZ1RwWgohY+S2GhZ1bCttZ+bICb8EKaI1DUFBrs/CXL67IaW25TouoHflj5fGzrppfDM2ld56+TLuzMwJSA==}
     engines: {node: '>=18'}
-    hasBin: true
     peerDependencies:
-      solid-js: '>=1.9.7'
+      solid-js: ^1.9.13
 
   '@tanstack/eslint-config@0.4.0':
     resolution: {integrity: sha512-V+Cd81W/f65dqKJKpytbwTGx9R+IwxKAHsG/uJ3nSLYEh36hlAr54lRpstUhggQB8nf/cP733cIw8DuD2dzQUg==}
@@ -8548,25 +8537,14 @@ packages:
     engines: {node: '>=20.12.0'}
     hasBin: true
 
-  '@tanstack/octane-store@0.13.0':
-    resolution: {integrity: sha512-No0LCGE4B3bnAMN3FZqXcpDvNbf4MUf1Grq9IxC8by7toXPWYVaBeDt0VkRr5lG7/0ElhNTu50GUA5xmn5Yhzg==}
-    engines: {node: '>=22'}
-    peerDependencies:
-      octane: '>=0.12.0'
-
-  '@tanstack/preact-devtools@0.10.13':
-    resolution: {integrity: sha512-r2INfcd0xvX3JgRuq8vn0Uy722gHiatDFBsgc4Wi9509ozGlEm8KPJXCa7rcg4o0vwyrIjYPgj0Cy4UyA399kQ==}
+  '@tanstack/preact-devtools@0.10.15':
+    resolution: {integrity: sha512-PyhCy7D7Rwp9ucyOYk0D0k6rRSgMdus2eoZs9yltc4bXt9DtqHKfBnI2CfCW1LT3G+BKfjmExbHK72flDV0rLA==}
     engines: {node: '>=18'}
     peerDependencies:
       preact: '>=10.0.0'
 
-  '@tanstack/preact-store@0.13.5':
-    resolution: {integrity: sha512-+ONKQNVqoGBpCbvahHjW39d28vwBVNRUa927m5owRQS6fySTORPKbOV6HYBXt0qHxOA8r0llg1Bfy/FKXsj3qw==}
-    peerDependencies:
-      preact: ^10.0.0 || ^11.0.0-0
-
-  '@tanstack/react-devtools@0.10.13':
-    resolution: {integrity: sha512-r0cdB/14+st2Vxl/1Bodlyq4VC8pf9SykLQDYbGHDc1+V146WQo5B3KlYLkfyxD9Q/6+9NPRQHZyl8fvZVMdRA==}
+  '@tanstack/react-devtools@0.10.14':
+    resolution: {integrity: sha512-wFoNpqiU03MDbY1RljhX4vMUoGWwqpa5AZthWEaJRrojBFWFoB57lzzIM5r+EPGi+BsEX+OcXkn8Zkfoe4hGiA==}
     engines: {node: '>=18'}
     peerDependencies:
       '@types/react': '>=16.8'
@@ -8591,22 +8569,17 @@ packages:
     resolution: {integrity: sha512-X+19pGuuLVPvvAvPYw9v/+ktRk5cCll8AtfpBpOhDRmVgUMrfqze0467xtq8YRVVs/mmo5rVtWn/7Tp32RDBKw==}
     engines: {node: '>=20.19'}
 
-  '@tanstack/solid-devtools@0.8.13':
-    resolution: {integrity: sha512-B16MvCadUxE43ZMyxaPeE6FBbpTXlsnKBZDl9lp6o75s9EeiGdJ1KaB8L+EYx7wFdbFad+779M3Y3n7bc5H02g==}
+  '@tanstack/solid-devtools@0.8.14':
+    resolution: {integrity: sha512-IV0ONBeQMNRBSkVtwkcgsBK2j5huHz3VyhQXuoaOkfOlG/rVnX+suB4Wr+59eJVxm5+T1o7slvxk4a0zcZq3bw==}
     engines: {node: '>=18'}
     peerDependencies:
-      solid-js: '>=1.9.7'
-
-  '@tanstack/solid-store@0.11.2':
-    resolution: {integrity: sha512-lscar3xeRKfs/RQBcZjR9NG55sfMP5Pb8S/URohUqcnSB8Yu19JLE/hPjfSd7pKmCpjYq1ZbjqtpIc5bDE1lAQ==}
-    peerDependencies:
-      solid-js: ^1.6.0
+      solid-js: ^1.9.13
 
   '@tanstack/store@0.11.2':
     resolution: {integrity: sha512-sJ4mjol8uQsHV0gOJzzjwXfh2Fwm+Sz0+8deqiTm4jGbMdjzNSW+xZCFm0kUa870uhd8yi+DpKnZb5Kc4apa0Q==}
 
-  '@tanstack/svelte-devtools@0.1.7':
-    resolution: {integrity: sha512-TbZeL5/v2othEC9hKIqnp+36sZZ81I4CfHFym9ds3CUoGZ2IPHwZq3lITNqe6dCldREsbMjKHCVnQ5wj1Z5MQg==}
+  '@tanstack/svelte-devtools@0.1.8':
+    resolution: {integrity: sha512-nynsVK7BJrsh7JpHwIrxBq+X7XMgKt3c4pXaasBOX5Ly/RN7/0MNemu/hkgomD9OtLedxcaB/0+/FJ/luVA5sg==}
     engines: {node: '>=18'}
     peerDependencies:
       svelte: '>=5.0.0'
@@ -8615,18 +8588,9 @@ packages:
     resolution: {integrity: sha512-WXJavpiNqumNwdBQTM3wBqbHaULgoZ3cIri7xJinKqX/mOGXgc6ZghfAardD2PydP8tOcPf+xhrd1Qk/am9DMg==}
     engines: {node: '>=18'}
 
-  '@tanstack/vue-devtools@0.2.27':
-    resolution: {integrity: sha512-8/wIuSCmF+BTeVEl8qo4NGyMfRsJB//oW4tC7eDpmEPbsNuN2cxk3F29hlwZ19lfVhEm+ccUEK67u62Z6r9hTw==}
+  '@tanstack/vue-devtools@0.2.28':
+    resolution: {integrity: sha512-9u41nAP8vLTkF6yO/AwFyzTljhOvQMOyuDXh2KqDKwMVG6OVtr+1YFA76I0fx8kyecrhzd1o7k8VQCzq6M8gqA==}
     engines: {node: '>=18'}
-
-  '@tanstack/vue-store@0.11.2':
-    resolution: {integrity: sha512-wZmkfsvc0dNvOg/Xb/a7uTPKejleI0dR3HHi0t3ZyVM/23MJ7AC0bH6C7rp2seSY4mIYo0pLLbGJGZ/UpO93Zw==}
-    peerDependencies:
-      '@vue/composition-api': ^1.2.1
-      vue: ^2.5.0 || ^3.0.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
 
   '@testing-library/dom@10.4.1':
     resolution: {integrity: sha512-o4PXJQidqJl82ckFaXUeoAW+XysPLauYI43Abki5hABd853iMhitooc6znOnczgbTYmEP6U6/y1ZyKAIsvMKGg==}
@@ -13772,9 +13736,6 @@ packages:
     resolution: {integrity: sha512-2Dd78bqzzjE6KPkD5fHZmDAKRNe3J15q+YHDrIsy9WEkqttc7GY+kT9OBLSMaPbQaEd0x1BjcmtMtXkfpc+T5A==}
     engines: {node: '>=10.2.0'}
 
-  solid-js@1.9.12:
-    resolution: {integrity: sha512-QzKaSJq2/iDrWR1As6MHZQ8fQkdOBf8GReYb7L5iKwMGceg7HxDcaOHk0at66tNgn9U2U7dXo8ZZpLIAmGMzgw==}
-
   solid-js@1.9.15:
     resolution: {integrity: sha512-EeiY2xfpZJqPLjXspVEKjAII4yv8NyG//NxZ3IpOFHdUNnnTyL0uJOeS9LWGvA7cFCz5y94cjFwYlmw5Luncsg==}
 
@@ -14573,17 +14534,6 @@ packages:
 
   vue-component-type-helpers@3.2.7:
     resolution: {integrity: sha512-+gPp5YGmhfsj1IN+xUo7y0fb4clfnOiiUA39y07yW1VzCRjzVgwLbtmdWlghh7mXrPsEaYc7rrIir/HT6C8vYQ==}
-
-  vue-demi@0.14.10:
-    resolution: {integrity: sha512-nMZBOwuzabUO0nLgIcc6rycZEebF6eeUfaiQx9+WSk8e29IbLvPU9feI6tqW4kTo3hvoYAJkMh8n8D0fuISphg==}
-    engines: {node: '>=12'}
-    hasBin: true
-    peerDependencies:
-      '@vue/composition-api': ^1.0.0-rc.1
-      vue: ^3.0.0-0 || ^2.6.0
-    peerDependenciesMeta:
-      '@vue/composition-api':
-        optional: true
 
   vue-eslint-parser@10.4.1:
     resolution: {integrity: sha512-Gk6gRDj0n/fkRa3C3l0bBheoBckUq/Rs0F/TvMWIS6nzzx67amAViMe9CkNgsP2tXyQONvGiHQESHwFtZ3aYDA==}
@@ -19662,22 +19612,16 @@ snapshots:
       vite: 8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
       vitefu: 1.1.2(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
 
-  '@tanstack/angular-devtools@0.0.12(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)':
+  '@tanstack/angular-devtools@0.0.13(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(csstype@3.2.3)(solid-js@1.9.15)':
     dependencies:
       '@angular/core': 22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)
-      '@tanstack/devtools': 0.15.0(csstype@3.2.3)(solid-js@1.9.15)
+      '@tanstack/devtools': 0.16.0(csstype@3.2.3)(solid-js@1.9.15)
       tslib: 2.8.1
     transitivePeerDependencies:
       - bufferutil
       - csstype
       - solid-js
       - utf-8-validate
-
-  '@tanstack/angular-store@0.11.2(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))':
-    dependencies:
-      '@angular/common': 22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2)
-      '@angular/core': 22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)
-      '@tanstack/store': 0.11.2
 
   '@tanstack/devtools-client@0.0.8':
     dependencies:
@@ -19692,7 +19636,7 @@ snapshots:
 
   '@tanstack/devtools-event-client@0.5.0': {}
 
-  '@tanstack/devtools-ui@0.7.1(csstype@3.2.3)(solid-js@1.9.15)':
+  '@tanstack/devtools-ui@0.7.2(csstype@3.2.3)(solid-js@1.9.15)':
     dependencies:
       clsx: 2.1.1
       dayjs: 1.11.19
@@ -19701,7 +19645,7 @@ snapshots:
     transitivePeerDependencies:
       - csstype
 
-  '@tanstack/devtools-utils@0.7.0(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.3))(@types/react@19.2.14)(preact@10.29.1)(react@19.2.5)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))':
+  '@tanstack/devtools-utils@0.7.2(@angular/core@21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.3))(@types/react@19.2.14)(preact@10.29.1)(react@19.2.5)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))':
     optionalDependencies:
       '@angular/core': 21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.3)
       '@types/react': 19.2.14
@@ -19711,27 +19655,27 @@ snapshots:
       svelte: 5.57.1(@typescript-eslint/types@8.70.1)
       vue: 3.5.33(typescript@6.0.3)
 
-  '@tanstack/devtools-utils@0.7.0(@angular/core@21.2.10)(@types/react@19.2.14)(preact@11.0.1)(react@19.2.5)(solid-js@1.9.12)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))':
+  '@tanstack/devtools-utils@0.7.2(@angular/core@21.2.10)(@types/react@19.2.14)(preact@11.0.1)(react@19.2.5)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))':
     optionalDependencies:
       '@angular/core': 21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.3)
       '@types/react': 19.2.14
       preact: 11.0.1
       react: 19.2.5
-      solid-js: 1.9.12
+      solid-js: 1.9.15
       svelte: 5.57.1(@typescript-eslint/types@8.70.1)
       vue: 3.5.33(typescript@6.0.3)
 
-  '@tanstack/devtools-utils@0.7.0(@angular/core@21.2.10)(@types/react@19.3.0)(preact@10.29.1)(react@19.3.0)(solid-js@1.9.12)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))':
+  '@tanstack/devtools-utils@0.7.2(@angular/core@21.2.10)(@types/react@19.3.0)(preact@10.29.1)(react@19.3.0)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.33(typescript@6.0.3))':
     optionalDependencies:
       '@angular/core': 21.2.10(@angular/compiler@21.2.10)(rxjs@7.8.2)(zone.js@0.16.3)
       '@types/react': 19.3.0
       preact: 10.29.1
       react: 19.3.0
-      solid-js: 1.9.12
+      solid-js: 1.9.15
       svelte: 5.57.1(@typescript-eslint/types@8.70.1)
       vue: 3.5.33(typescript@6.0.3)
 
-  '@tanstack/devtools-utils@0.7.0(@angular/core@22.1.7(@angular/compiler@22.1.7)(rxjs@7.8.2)(zone.js@0.16.3))(@types/react@19.2.14)(preact@10.29.1)(react@19.2.5)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))(vue@3.5.33(typescript@6.0.3))':
+  '@tanstack/devtools-utils@0.7.2(@angular/core@22.1.7(@angular/compiler@22.1.7)(rxjs@7.8.2)(zone.js@0.16.3))(@types/react@19.2.14)(preact@10.29.1)(react@19.2.5)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))(vue@3.5.33(typescript@6.0.3))':
     optionalDependencies:
       '@angular/core': 22.1.7(@angular/compiler@22.1.7)(rxjs@7.8.2)(zone.js@0.16.3)
       '@types/react': 19.2.14
@@ -19741,7 +19685,7 @@ snapshots:
       svelte: 5.57.1(@typescript-eslint/types@8.59.0)
       vue: 3.5.33(typescript@6.0.3)
 
-  '@tanstack/devtools-utils@0.7.0(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@types/react@19.3.0)(preact@10.29.8)(react@19.3.0)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.43(typescript@6.0.3))':
+  '@tanstack/devtools-utils@0.7.2(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@types/react@19.3.0)(preact@10.29.8)(react@19.3.0)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))(vue@3.5.43(typescript@6.0.3))':
     optionalDependencies:
       '@angular/core': 22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)
       '@types/react': 19.3.0
@@ -19751,7 +19695,7 @@ snapshots:
       svelte: 5.57.1(@typescript-eslint/types@8.70.1)
       vue: 3.5.43(typescript@6.0.3)
 
-  '@tanstack/devtools@0.15.0(csstype@3.2.3)(solid-js@1.9.15)':
+  '@tanstack/devtools@0.16.0(csstype@3.2.3)(solid-js@1.9.15)':
     dependencies:
       '@neodrag/core': 3.0.0-next.11
       '@neodrag/solid': 3.0.0-next.11(@neodrag/core@3.0.0-next.11)(solid-js@1.9.15)
@@ -19760,7 +19704,7 @@ snapshots:
       '@solid-primitives/resize-observer': 2.1.3(solid-js@1.9.15)
       '@tanstack/devtools-client': 0.0.8
       '@tanstack/devtools-event-bus': 0.4.3
-      '@tanstack/devtools-ui': 0.7.1(csstype@3.2.3)(solid-js@1.9.15)
+      '@tanstack/devtools-ui': 0.7.2(csstype@3.2.3)(solid-js@1.9.15)
       clsx: 2.1.1
       goober: 2.1.19(csstype@3.2.3)
       solid-js: 1.9.15
@@ -19789,14 +19733,9 @@ snapshots:
 
   '@tanstack/intent@0.5.5': {}
 
-  '@tanstack/octane-store@0.13.0(octane@0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2)))':
+  '@tanstack/preact-devtools@0.10.15(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)':
     dependencies:
-      '@tanstack/store': 0.11.2
-      octane: 0.12.1(@tsrx/oxc@0.20.0(svelte@5.57.1(@typescript-eslint/types@8.70.1)))(@typescript-eslint/types@8.70.1)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(typescript@6.0.3)(vite@8.3.2(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.6.1)(less@4.9.0(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.101.0)(terser@5.49.0)(yaml@2.8.2))
-
-  '@tanstack/preact-devtools@0.10.13(csstype@3.2.3)(preact@11.0.1)(solid-js@1.9.15)':
-    dependencies:
-      '@tanstack/devtools': 0.15.0(csstype@3.2.3)(solid-js@1.9.15)
+      '@tanstack/devtools': 0.16.0(csstype@3.2.3)(solid-js@1.9.15)
       preact: 11.0.1
     transitivePeerDependencies:
       - bufferutil
@@ -19804,14 +19743,9 @@ snapshots:
       - solid-js
       - utf-8-validate
 
-  '@tanstack/preact-store@0.13.5(preact@11.0.1)':
+  '@tanstack/react-devtools@0.10.14(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)':
     dependencies:
-      '@tanstack/store': 0.11.2
-      preact: 11.0.1
-
-  '@tanstack/react-devtools@0.10.13(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.0(react@19.3.0))(react@19.3.0)(solid-js@1.9.15)':
-    dependencies:
-      '@tanstack/devtools': 0.15.0(csstype@3.2.3)(solid-js@1.9.15)
+      '@tanstack/devtools': 0.16.0(csstype@3.2.3)(solid-js@1.9.15)
       '@types/react': 19.3.0
       '@types/react-dom': 19.3.0(@types/react@19.3.0)
       react: 19.3.0
@@ -19845,25 +19779,20 @@ snapshots:
       seroval: 1.6.8
       seroval-plugins: 1.6.8(seroval@1.6.8)
 
-  '@tanstack/solid-devtools@0.8.13(csstype@3.2.3)(solid-js@1.9.15)':
+  '@tanstack/solid-devtools@0.8.14(csstype@3.2.3)(solid-js@1.9.15)':
     dependencies:
-      '@tanstack/devtools': 0.15.0(csstype@3.2.3)(solid-js@1.9.15)
+      '@tanstack/devtools': 0.16.0(csstype@3.2.3)(solid-js@1.9.15)
       solid-js: 1.9.15
     transitivePeerDependencies:
       - bufferutil
       - csstype
       - utf-8-validate
 
-  '@tanstack/solid-store@0.11.2(solid-js@1.9.15)':
-    dependencies:
-      '@tanstack/store': 0.11.2
-      solid-js: 1.9.15
-
   '@tanstack/store@0.11.2': {}
 
-  '@tanstack/svelte-devtools@0.1.7(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))':
+  '@tanstack/svelte-devtools@0.1.8(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.59.0))':
     dependencies:
-      '@tanstack/devtools': 0.15.0(csstype@3.2.3)(solid-js@1.9.15)
+      '@tanstack/devtools': 0.16.0(csstype@3.2.3)(solid-js@1.9.15)
       svelte: 5.57.1(@typescript-eslint/types@8.59.0)
     transitivePeerDependencies:
       - bufferutil
@@ -19871,9 +19800,9 @@ snapshots:
       - solid-js
       - utf-8-validate
 
-  '@tanstack/svelte-devtools@0.1.7(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))':
+  '@tanstack/svelte-devtools@0.1.8(csstype@3.2.3)(solid-js@1.9.15)(svelte@5.57.1(@typescript-eslint/types@8.70.1))':
     dependencies:
-      '@tanstack/devtools': 0.15.0(csstype@3.2.3)(solid-js@1.9.15)
+      '@tanstack/devtools': 0.16.0(csstype@3.2.3)(solid-js@1.9.15)
       svelte: 5.57.1(@typescript-eslint/types@8.70.1)
     transitivePeerDependencies:
       - bufferutil
@@ -19889,20 +19818,14 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  '@tanstack/vue-devtools@0.2.27(csstype@3.2.3)(solid-js@1.9.15)':
+  '@tanstack/vue-devtools@0.2.28(csstype@3.2.3)(solid-js@1.9.15)':
     dependencies:
-      '@tanstack/devtools': 0.15.0(csstype@3.2.3)(solid-js@1.9.15)
+      '@tanstack/devtools': 0.16.0(csstype@3.2.3)(solid-js@1.9.15)
     transitivePeerDependencies:
       - bufferutil
       - csstype
       - solid-js
       - utf-8-validate
-
-  '@tanstack/vue-store@0.11.2(vue@3.5.43(typescript@6.0.3))':
-    dependencies:
-      '@tanstack/store': 0.11.2
-      vue: 3.5.43(typescript@6.0.3)
-      vue-demi: 0.14.10(vue@3.5.43(typescript@6.0.3))
 
   '@testing-library/dom@10.4.1':
     dependencies:
@@ -26108,13 +26031,6 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  solid-js@1.9.12:
-    dependencies:
-      csstype: 3.2.3
-      seroval: 1.5.6
-      seroval-plugins: 1.5.6(seroval@1.5.6)
-    optional: true
-
   solid-js@1.9.15:
     dependencies:
       csstype: 3.2.3
@@ -27151,10 +27067,6 @@ snapshots:
   vscode-uri@3.2.0: {}
 
   vue-component-type-helpers@3.2.7: {}
-
-  vue-demi@0.14.10(vue@3.5.43(typescript@6.0.3)):
-    dependencies:
-      vue: 3.5.43(typescript@6.0.3)
 
   vue-eslint-parser@10.4.1(eslint@10.11.0(jiti@2.6.1)(supports-color@7.2.0))(supports-color@7.2.0):
     dependencies:

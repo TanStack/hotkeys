@@ -10,7 +10,6 @@ export function useHotkeyRegistrations(
   const hotkeys = select(
     getHotkeyManager().registrations,
     (state) => Array.from(state.values()).map(toHotkeyRegistrationView),
-    undefined,
     subSlot(slot, 'hotkeys'),
   )
   return { hotkeys }

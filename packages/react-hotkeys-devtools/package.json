@@ -48,13 +48,19 @@
     "dist"
   ],
   "peerDependencies": {
+    "@tanstack/react-devtools": ">=0.10.14",
     "@types/react": ">=18.0.0",
     "@types/react-dom": ">=18.0.0",
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0"
   },
+  "peerDependenciesMeta": {
+    "@tanstack/react-devtools": {
+      "optional": true
+    }
+  },
   "dependencies": {
-    "@tanstack/devtools-utils": "^0.7.0",
+    "@tanstack/devtools-utils": "^0.7.2",
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {

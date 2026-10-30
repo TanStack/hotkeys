@@ -1,6 +1,6 @@
 import { computed } from '@angular/core'
-import { injectSelector } from '@tanstack/angular-store'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
+import { injectSelector } from './_injectSelector'
 import type { IndividualKey } from '@tanstack/hotkeys'
 import type { Signal } from '@angular/core'
 

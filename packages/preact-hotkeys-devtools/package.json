@@ -47,10 +47,16 @@
     "dist"
   ],
   "peerDependencies": {
+    "@tanstack/preact-devtools": ">=0.10.15",
     "preact": ">=10.5.2"
   },
+  "peerDependenciesMeta": {
+    "@tanstack/preact-devtools": {
+      "optional": true
+    }
+  },
   "dependencies": {
-    "@tanstack/devtools-utils": "^0.7.0",
+    "@tanstack/devtools-utils": "^0.7.2",
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {

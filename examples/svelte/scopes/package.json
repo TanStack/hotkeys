@@ -11,7 +11,7 @@
     "test:types": "tsc"
   },
   "dependencies": {
-    "@tanstack/svelte-devtools": "^0.1.7",
+    "@tanstack/svelte-devtools": "^0.1.8",
     "@tanstack/svelte-hotkeys": "0.17.1",
     "@tanstack/svelte-hotkeys-devtools": "^0.3.2",
     "svelte": "^5.57.1"

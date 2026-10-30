@@ -3,7 +3,7 @@ id: AppHotkeysState
 title: AppHotkeysState
 ---
 
-Defined in: [app-hotkeys.ts:321](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L321)
+Defined in: [app-hotkeys.ts:330](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L330)
 
 State of an `AppHotkeysStore`.
 
@@ -21,7 +21,7 @@ State of an `AppHotkeysStore`.
 appHotkeys: T;
 ```
 
-Defined in: [app-hotkeys.ts:323](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L323)
+Defined in: [app-hotkeys.ts:332](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L332)
 
 Effective app hotkeys: declarations with custom hotkeys applied.
 
@@ -33,6 +33,6 @@ Effective app hotkeys: declarations with custom hotkeys applied.
 customHotkeys: CustomHotkeys<T>;
 ```
 
-Defined in: [app-hotkeys.ts:325](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L325)
+Defined in: [app-hotkeys.ts:334](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L334)
 
 The user's hotkeys that differ from the defaults.

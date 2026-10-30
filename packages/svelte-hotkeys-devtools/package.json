@@ -56,10 +56,16 @@
     "dist"
   ],
   "peerDependencies": {
+    "@tanstack/svelte-devtools": ">=0.1.8",
     "svelte": "^5.40.0"
   },
+  "peerDependenciesMeta": {
+    "@tanstack/svelte-devtools": {
+      "optional": true
+    }
+  },
   "dependencies": {
-    "@tanstack/devtools-utils": "^0.7.0",
+    "@tanstack/devtools-utils": "^0.7.2",
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {

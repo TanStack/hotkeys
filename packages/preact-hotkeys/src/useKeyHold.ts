@@ -1,12 +1,11 @@
-import { useSelector } from '@tanstack/preact-store'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
+import { useSelector } from './_useSelector'
 import type { IndividualKey } from '@tanstack/hotkeys'
 
 /**
  * Preact hook that returns whether a specific key is currently being held.
  *
- * This hook uses `useSelector` from `@tanstack/preact-store` to subscribe
- * to the global KeyStateTracker and uses a selector to determine if
+ * This hook subscribes to the global KeyStateTracker and uses a selector to determine if
  * the specified key is held.
  *
  * @param key - The key to check (e.g., 'Shift', 'Control', 'A')

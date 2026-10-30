@@ -1,10 +1,12 @@
-import { Store } from '@tanstack/store'
 import { getHotkeyManager } from './hotkey-manager'
 import { areHotkeysEqual } from './match'
 import { detectPlatform } from './platform'
 import { isHotkeySequence, simplifyHotkey } from './parse'
 import { validateHotkey } from './validate'
 import { GLOBAL_SCOPE } from './_registration'
+import { setAppHotkeysStoreFactory } from './_app-hotkeys-factory'
+import { createStore } from './_store'
+import type { Store } from './_store'
 import type {
   Hotkey,
   HotkeyChord,
@@ -179,6 +181,9 @@ export type CustomHotkeys<T extends AppHotkeys = RegisteredAppHotkeys> = {
 export function defineAppHotkeys<
   const T extends Record<string, AppHotkeyInput>,
 >(definitions: T & ValidatedAppHotkeyInputs<T>): DefinedAppHotkeys<T> {
+  setAppHotkeysStoreFactory(
+    (appHotkeys, options) => new AppHotkeysStore(appHotkeys, options),
+  )
   const result: Record<string, AppHotkey> = {}
   for (const [id, input] of Object.entries(definitions as T)) {
     const hotkey = input.hotkey === null ? null : simplifyHotkey(input.hotkey)
@@ -258,15 +263,19 @@ function sanitizeCustomHotkeys<T extends AppHotkeys>(
   for (const [id, value] of Object.entries(saved)) {
     if (value === undefined) continue
     if (!(id in appHotkeys)) {
-      console.warn(`Ignoring custom hotkey for unknown app hotkey '${id}'`)
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn(`Ignoring custom hotkey for unknown app hotkey '${id}'`)
+      }
       continue
     }
     const hotkey = parseCustomHotkey(value)
     if (hotkey === undefined) {
-      console.warn(
-        `Ignoring invalid custom hotkey for app hotkey '${id}':`,
-        value,
-      )
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn(
+          `Ignoring invalid custom hotkey for app hotkey '${id}':`,
+          value,
+        )
+      }
       continue
     }
     result[id] = hotkey
@@ -362,7 +371,7 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
       appHotkeys,
       options.customHotkeys,
     )
-    this.store = new Store<AppHotkeysState<T>>({
+    this.store = createStore<AppHotkeysState<T>>({
       appHotkeys: applyCustomHotkeys(appHotkeys, customHotkeys),
       customHotkeys,
     })
@@ -439,7 +448,11 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
   ): Array<AppHotkey> {
     const appHotkey = this.store.state.appHotkeys[id]
     if (!appHotkey) {
-      console.warn(`Cannot set a custom hotkey for unknown app hotkey '${id}'`)
+      if (process.env.NODE_ENV !== 'production') {
+        console.warn(
+          `Cannot set a custom hotkey for unknown app hotkey '${id}'`,
+        )
+      }
       return []
     }
     const next = hotkey === null ? null : simplifyHotkey(hotkey)
