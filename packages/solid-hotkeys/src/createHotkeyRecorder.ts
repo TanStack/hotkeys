@@ -1,4 +1,4 @@
-import { createEffect, onCleanup } from 'solid-js'
+import { createEffect, onCleanup, untrack } from 'solid-js'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { useSelector } from './_useSelector'
 import { useDefaultHotkeysOptionsSource } from './defaultOptions'
@@ -70,7 +70,7 @@ export function createHotkeyRecorder(
     }) as HotkeySequenceRecorderOptions
 
   // Create recorder once synchronously; overloads already checked the options.
-  const recorder = new HotkeyRecorder(resolve())
+  const recorder = new HotkeyRecorder(untrack(resolve))
 
   const isRecording = useSelector(recorder.store, (state) => state.isRecording)
   const steps = useSelector(recorder.store, (state) => state.steps)
@@ -80,8 +80,8 @@ export function createHotkeyRecorder(
   )
 
   // Sync options whenever reactive options change
-  createEffect(() => {
-    recorder.setOptions(resolve())
+  createEffect(resolve, (resolved) => {
+    recorder.setOptions(resolved)
   })
 
   onCleanup(() => {

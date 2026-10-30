@@ -138,14 +138,14 @@ function Panel() {
   createHotkey('Escape', () => closePanel(), () => ({ target: panel() }))
 
   return (
-    <div ref={setPanel} tabIndex={0}>
+    <div ref={setPanel} tabindex={0}>
       ...
     </div>
   )
 }
 ```
 
-A `null` target waits until the element is attached. The element must be focusable to receive key presses, so give it a `tabIndex` if it isn't a control.
+A `null` target waits until the element is attached. The element must be focusable to receive key presses, so give it a `tabindex` if it isn't a control.
 
 ## Add providers and scopes (optional)
 

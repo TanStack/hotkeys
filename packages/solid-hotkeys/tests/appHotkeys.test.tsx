@@ -1,3 +1,4 @@
+import { flush } from 'solid-js'
 // @vitest-environment happy-dom
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, render } from '@solidjs/testing-library'
@@ -11,7 +12,7 @@ import {
 import { createHotkey } from '../src/createHotkey'
 import { createHotkeys } from '../src/createHotkeys'
 import { createHotkeyRecorder } from '../src/createHotkeyRecorder'
-import type { JSX } from 'solid-js'
+import type { Element } from 'solid-js'
 import type { CustomHotkeys, Hotkey } from '@tanstack/hotkeys'
 
 const appHotkeys = defineAppHotkeys({
@@ -34,7 +35,7 @@ function registrations() {
 }
 
 function withProvider(
-  children: () => JSX.Element,
+  children: () => Element,
   props: {
     customHotkeys?: CustomHotkeys<typeof appHotkeys>
     onCustomHotkeysChange?: (custom: CustomHotkeys) => void
@@ -76,6 +77,7 @@ describe('app hotkeys', () => {
 
     custom.setCustomHotkey('doc.save', ['G', 'S'])
     custom.setCustomHotkey('palette.open', 'Mod+K')
+    flush()
     expect(registrations().map((r) => r.hotkey)).toEqual([['G', 'S'], 'Mod+K'])
     press('g')
     press('s')
@@ -144,8 +146,10 @@ describe('createHotkeyRecorder', () => {
     })
     recorder.startRecording()
     press('g', { code: 'KeyG' })
+    flush()
     expect(recorder.steps()).toEqual(['G'])
     press('h', { code: 'KeyH' })
+    flush()
     expect(onRecord).toHaveBeenCalledExactlyOnceWith(['G', 'H'])
     expect(recorder.recordedHotkey()).toEqual(['G', 'H'])
   })

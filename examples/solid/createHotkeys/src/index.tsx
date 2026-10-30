@@ -1,17 +1,13 @@
 import { For, Show, createSignal } from 'solid-js'
-import { render } from 'solid-js/web'
+import { render } from '@solidjs/web'
 import {
   HotkeysProvider,
   createHotkeyRegistrations,
   createHotkeys,
   formatForDisplay,
 } from '@tanstack/solid-hotkeys'
-import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
-import { TanStackDevtools } from '@tanstack/solid-devtools'
 import type { CreateHotkeyDefinition, Hotkey } from '@tanstack/solid-hotkeys'
 import './index.css'
-
-const plugins = [hotkeysDevtoolsPlugin()]
 
 function BasicMultiHotkeys() {
   const [log, setLog] = createSignal<Array<string>>([])
@@ -378,7 +374,7 @@ function RegistrationsViewer() {
           </For>
           <Show when={registrations().length === 0}>
             <tr>
-              <td colSpan={6} class="hint">
+              <td colspan={6} class="hint">
                 No hotkeys registered
               </td>
             </tr>
@@ -407,7 +403,6 @@ function App() {
           <RegistrationsViewer />
         </div>
       </HotkeysProvider>
-      <TanStackDevtools plugins={plugins} />
     </>
   )
 }

@@ -1,9 +1,10 @@
 import {
+  createComponent,
   createContext,
   createEffect,
   createMemo,
-  onCleanup,
-  onMount,
+  onSettled,
+  untrack,
   useContext,
 } from 'solid-js'
 import { publishAppHotkeysStore } from '@tanstack/hotkeys'
@@ -13,7 +14,7 @@ import {
   getHotkeysProviderScopeKey,
   mergeHotkeysProviderDefaults,
 } from '@tanstack/hotkeys/adapter'
-import type { JSX, ParentComponent } from 'solid-js'
+import type { Element, ParentComponent } from 'solid-js'
 import type {
   AppHotkeys,
   AppHotkeysStore,
@@ -50,7 +51,7 @@ interface HotkeysContextValue {
 const HotkeysContext = createContext<HotkeysContextValue | null>(null)
 
 export interface HotkeysProviderProps extends HotkeysProviderScopeProps {
-  children: JSX.Element
+  children: Element
   /**
    * Every app hotkey, from `defineAppHotkeys`. Read when the provider is
    * created; listed by `createAppHotkeyList` whether or not they are registered.
@@ -100,23 +101,27 @@ export const HotkeysProvider: ParentComponent<HotkeysProviderProps> = (
   props,
 ) => {
   const parent = useContext(HotkeysContext)
-  const store = props.appHotkeys
-    ? createAppHotkeysStore(props.appHotkeys, {
-        customHotkeys: props.customHotkeys,
-        onCustomHotkeysChange: (custom) =>
-          props.onCustomHotkeysChange?.(custom),
-      })
-    : null
+  // `appHotkeys` and `customHotkeys` are read once, when the provider is created.
+  const store = untrack(() =>
+    props.appHotkeys
+      ? createAppHotkeysStore(props.appHotkeys, {
+          customHotkeys: props.customHotkeys,
+          onCustomHotkeysChange: (custom) =>
+            props.onCustomHotkeysChange?.(custom),
+        })
+      : null,
+  )
 
   // Keep declarations current (for example after hot module replacement).
-  createEffect(() => {
-    if (props.appHotkeys) store?.setAppHotkeys(props.appHotkeys)
-  })
+  createEffect(
+    () => props.appHotkeys,
+    (appHotkeys) => {
+      if (appHotkeys) store?.setAppHotkeys(appHotkeys)
+    },
+  )
 
   // Publish the store so devtools can list declared hotkeys.
-  onMount(() => {
-    if (store) onCleanup(publishAppHotkeysStore(store))
-  })
+  onSettled(() => (store ? publishAppHotkeysStore(store) : undefined))
 
   const active = () => (parent?.enabled ?? true) && props.enabled !== false
   const defaultOptions = createMemo(() =>
@@ -138,10 +143,9 @@ export const HotkeysProvider: ParentComponent<HotkeysProviderProps> = (
   )
 
   // Activate this provider's scope while mounted and enabled.
-  createEffect(() => {
-    const key = scopeKey()
-    if (key) onCleanup(activateHotkeysProviderScope(key))
-  })
+  createEffect(scopeKey, (key) =>
+    key ? activateHotkeysProviderScope(key) : undefined,
+  )
 
   const contextValue: HotkeysContextValue = {
     appHotkeysStore: store ?? parent?.appHotkeysStore ?? null,
@@ -153,11 +157,14 @@ export const HotkeysProvider: ParentComponent<HotkeysProviderProps> = (
     },
   }
 
-  return (
-    <HotkeysContext.Provider value={contextValue}>
-      {props.children}
-    </HotkeysContext.Provider>
-  )
+  // Built without JSX so the adapter only depends on `solid-js`, not on the
+  // `@solidjs/web` renderer that compiled JSX imports from.
+  return createComponent(HotkeysContext, {
+    value: contextValue,
+    get children() {
+      return props.children
+    },
+  })
 }
 
 export function useHotkeysContext() {

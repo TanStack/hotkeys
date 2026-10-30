@@ -2,13 +2,10 @@ import {
   Show,
   createContext,
   createSignal,
-  onCleanup,
-  onMount,
+  onSettled,
   useContext,
 } from 'solid-js'
-import { Dynamic, render } from 'solid-js/web'
-import { TanStackDevtools } from '@tanstack/solid-devtools'
-import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
+import { Dynamic, render } from '@solidjs/web'
 import {
   HotkeysProvider,
   createHeldKeyCodes,
@@ -28,7 +25,7 @@ import type {
   RegisterableHotkey,
 } from '@tanstack/solid-hotkeys'
 import './styles.css'
-import type { JSX } from 'solid-js'
+import type { JSX } from '@solidjs/web'
 
 const ActivityContext = createContext<(message: string) => void>(() => {})
 const pages = [
@@ -50,10 +47,10 @@ function Hint(props: { hotkey: RegisterableHotkey }) {
 /** Global shortcuts remain registered while route components mount and unmount. */
 function Layout() {
   const [path, setPath] = createSignal(location.hash.slice(1) || '/')
-  onMount(() => {
+  onSettled(() => {
     const update = () => setPath(location.hash.slice(1) || '/')
     window.addEventListener('hashchange', update)
-    onCleanup(() => window.removeEventListener('hashchange', update))
+    return () => window.removeEventListener('hashchange', update)
   })
   const [showShortcuts, setShowShortcuts] = createSignal(false)
   const [activity, setActivity] = createSignal<Array<string>>([])
@@ -87,7 +84,7 @@ function Layout() {
     }),
   )
   return (
-    <ActivityContext.Provider value={log}>
+    <ActivityContext value={log}>
       <header>
         <h1>TanStack Hotkeys kitchen sink</h1>
         <p>
@@ -103,7 +100,7 @@ function Layout() {
         </nav>
         <button
           onClick={() => setShowShortcuts((value) => !value)}
-          aria-expanded={showShortcuts()}
+          aria-expanded={showShortcuts() ? 'true' : 'false'}
         >
           {showShortcuts() ? 'Hide' : 'Show'} shortcuts{' '}
           <Hint hotkey="Alt+Shift+[KeyK]" />
@@ -187,8 +184,7 @@ function Layout() {
           ))}
         </ul>
       </section>
-      <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
-    </ActivityContext.Provider>
+    </ActivityContext>
   )
 }
 /** Single shortcuts share handlers with buttons and respect enabled/input policies. */
@@ -362,7 +358,7 @@ function Editor() {
         {count()}. Release <kbd>{formatForDisplay('Alt+[KeyU]')}</kbd> to log a
         keyup event.
       </p>
-      <fieldset ref={scope} tabIndex={0}>
+      <fieldset ref={scope} tabindex={0}>
         <legend>Propagation</legend>
         <label>
           <input
