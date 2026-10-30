@@ -6730,15 +6730,15 @@
       ]
     },
     "source:packages/hotkeys/tests/typed-behavior.test.ts": {
-      "fingerprint": "d5c4046f5f70d0cd19807202ec3f440aef9acb9a132efa52d9f788f00d5e37dc",
+      "fingerprint": "8d2317ecc3b2a5a6bc1ad7860b9ab5ffddd81124377c0a1719182b0accc0409f",
       "snapshot": {
-        "packages/hotkeys/tests/typed-behavior.test.ts": "1c89fdbf789c0fd3eae7c216ce2658805c47a1ff55e90a8147cfd9247858c15d"
+        "packages/hotkeys/tests/typed-behavior.test.ts": "ece876d7e40ca9a360bfe6b071b9bdc3e16fe87b3ea9b7dbab4f223b4fab6193"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "c905b9314fbacaa036c3f934b499c6f2d0a6f3bb",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Formatting-only change from autofix (Prettier line wrapping) in a test file; no guidance affected.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Diff of c905b931 only rewraps arrays and objects in typed-behavior.test.ts."
       ]
     },
     "source:packages/hotkeys/tests/unified-hotkeys.test.ts": {
