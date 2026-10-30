@@ -8,7 +8,7 @@ import type { Hotkey, InjectHotkeyDefinition } from '@tanstack/angular-hotkeys'
 
 interface DynamicShortcut {
   id: number
-  hotkey: string
+  hotkey: Hotkey
   label: string
   description: string
   count: number
@@ -140,7 +140,7 @@ export class AppComponent {
     // Dynamic hotkeys with meta
     injectHotkeys(() =>
       this.shortcuts().map((s): InjectHotkeyDefinition => ({
-        hotkey: s.hotkey as Hotkey,
+        hotkey: s.hotkey,
         callback: () => {
           this.shortcuts.update((prev) =>
             prev.map((item) =>
@@ -166,7 +166,8 @@ export class AppComponent {
       ...prev,
       {
         id: this.nextId++,
-        hotkey: trimmed,
+        // Typed by the user, so it may not be a valid hotkey
+        hotkey: trimmed as Hotkey,
         label: this.newLabel().trim(),
         description: this.newDescription().trim(),
         count: 0,

@@ -9,7 +9,7 @@ title: formatForDisplay
 function formatForDisplay(hotkey, options): string[][];
 ```
 
-Defined in: [format.ts:109](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L109)
+Defined in: [format.ts:111](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L111)
 
 Formats a hotkey for display in a user interface.
 
@@ -24,13 +24,16 @@ or change matching. Supply a resolved `layoutMap` for layout-aware labels;
 Sequence steps are formatted individually and joined with `sequenceSeparator`
 (a space by default).
 
+To display a single key that is not a hotkey, such as a held key from
+`KeyStateTracker`, use `formatKeyForDisplay`.
+
 ### Parameters
 
 #### hotkey
 
 readonly [`DisplayHotkeyChord`](../type-aliases/DisplayHotkeyChord.md)[]
 
-A logical or physical string, raw object, ParsedHotkeyChord, or sequence
+A logical or physical hotkey string, raw object, ParsedHotkeyChord, or sequence
 
 #### options
 
@@ -66,7 +69,7 @@ formatForDisplay(['G', 'H'])
 function formatForDisplay(hotkey, options): string[];
 ```
 
-Defined in: [format.ts:113](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L113)
+Defined in: [format.ts:115](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L115)
 
 Formats a hotkey for display in a user interface.
 
@@ -81,13 +84,16 @@ or change matching. Supply a resolved `layoutMap` for layout-aware labels;
 Sequence steps are formatted individually and joined with `sequenceSeparator`
 (a space by default).
 
+To display a single key that is not a hotkey, such as a held key from
+`KeyStateTracker`, use `formatKeyForDisplay`.
+
 ### Parameters
 
 #### hotkey
 
 [`DisplayHotkeyChord`](../type-aliases/DisplayHotkeyChord.md)
 
-A logical or physical string, raw object, ParsedHotkeyChord, or sequence
+A logical or physical hotkey string, raw object, ParsedHotkeyChord, or sequence
 
 #### options
 
@@ -123,7 +129,7 @@ formatForDisplay(['G', 'H'])
 function formatForDisplay(hotkey, options?): string;
 ```
 
-Defined in: [format.ts:117](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L117)
+Defined in: [format.ts:119](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L119)
 
 Formats a hotkey for display in a user interface.
 
@@ -138,13 +144,16 @@ or change matching. Supply a resolved `layoutMap` for layout-aware labels;
 Sequence steps are formatted individually and joined with `sequenceSeparator`
 (a space by default).
 
+To display a single key that is not a hotkey, such as a held key from
+`KeyStateTracker`, use `formatKeyForDisplay`.
+
 ### Parameters
 
 #### hotkey
 
 [`DisplayHotkey`](../type-aliases/DisplayHotkey.md)
 
-A logical or physical string, raw object, ParsedHotkeyChord, or sequence
+A logical or physical hotkey string, raw object, ParsedHotkeyChord, or sequence
 
 #### options?
 
@@ -180,7 +189,7 @@ formatForDisplay(['G', 'H'])
 function formatForDisplay(hotkey, options): string | string[] | string[][];
 ```
 
-Defined in: [format.ts:121](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L121)
+Defined in: [format.ts:123](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L123)
 
 Formats a hotkey for display in a user interface.
 
@@ -195,13 +204,16 @@ or change matching. Supply a resolved `layoutMap` for layout-aware labels;
 Sequence steps are formatted individually and joined with `sequenceSeparator`
 (a space by default).
 
+To display a single key that is not a hotkey, such as a held key from
+`KeyStateTracker`, use `formatKeyForDisplay`.
+
 ### Parameters
 
 #### hotkey
 
 [`DisplayHotkey`](../type-aliases/DisplayHotkey.md)
 
-A logical or physical string, raw object, ParsedHotkeyChord, or sequence
+A logical or physical hotkey string, raw object, ParsedHotkeyChord, or sequence
 
 #### options
 

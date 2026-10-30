@@ -68,13 +68,13 @@ const ALL_KEYS: Set<
 | PunctuationKey>;
 ```
 
-Defined in: [constants.ts:305](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L305)
+Defined in: [constants.ts:217](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L217)
 
 Set of all valid non-modifier keys.
 
-This is the union of all key type sets (letters, numbers, function keys, navigation,
-editing, and punctuation). Used primarily for validation to check if a key string
-is recognized and will have type-safe autocomplete support.
+This is the union of all key type sets (letters, numbers, function keys,
+navigation, editing, punctuation, and other named keys): every key with
+type-safe autocomplete support.
 
 ## See
 

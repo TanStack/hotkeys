@@ -3,7 +3,7 @@ id: FormatDisplayOptions
 title: FormatDisplayOptions
 ---
 
-Defined in: [format.ts:218](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L218)
+Defined in: [format.ts:269](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L269)
 
 Options for formatting hotkeys for display.
 
@@ -15,7 +15,7 @@ Options for formatting hotkeys for display.
 optional keyLabels?: Readonly<Record<string, string>>;
 ```
 
-Defined in: [format.ts:233](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L233)
+Defined in: [format.ts:284](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L284)
 
 Final display overrides for logical keys or physical codes; take precedence over layoutMap. Never changes matching.
 
@@ -27,7 +27,7 @@ Final display overrides for logical keys or physical codes; take precedence over
 optional layoutMap?: object;
 ```
 
-Defined in: [format.ts:231](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L231)
+Defined in: [format.ts:282](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L282)
 
 An already-resolved code-to-key map, such as KeyboardLayoutMap or Map.
 Used only for physical bindings. Mapped keys receive normal display formatting;
@@ -58,7 +58,7 @@ get: (code) => string | undefined;
 optional parts?: boolean;
 ```
 
-Defined in: [format.ts:224](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L224)
+Defined in: [format.ts:275](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L275)
 
 Return individual key labels instead of a joined string. Default: false.
 
@@ -70,7 +70,7 @@ Return individual key labels instead of a joined string. Default: false.
 optional platform?: "mac" | "windows" | "linux";
 ```
 
-Defined in: [format.ts:220](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L220)
+Defined in: [format.ts:271](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L271)
 
 The target platform. Defaults to auto-detection.
 
@@ -82,7 +82,7 @@ The target platform. Defaults to auto-detection.
 optional separatorToken?: string | null;
 ```
 
-Defined in: [format.ts:235](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L235)
+Defined in: [format.ts:286](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L286)
 
 Override the separator between display tokens. Defaults to platform-specific formatting when null/undefined.
 
@@ -94,7 +94,7 @@ Override the separator between display tokens. Defaults to platform-specific for
 optional sequenceSeparator?: string;
 ```
 
-Defined in: [format.ts:237](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L237)
+Defined in: [format.ts:288](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L288)
 
 Separator between sequence steps. Default: a space.
 
@@ -111,6 +111,6 @@ optional useSymbols?:
 };
 ```
 
-Defined in: [format.ts:222](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L222)
+Defined in: [format.ts:273](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L273)
 
 Whether to use symbols for the display. Defaults to true.

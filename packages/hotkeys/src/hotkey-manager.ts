@@ -13,7 +13,11 @@ import {
   simplifyHotkey,
 } from './parse'
 import { matchKeyboardEvent, parsedChordsEqual } from './_match'
-import { keysEqual, normalizeKeyboardEvent } from './_keyboard-event'
+import {
+  isKeyNameShape,
+  keysEqual,
+  normalizeKeyboardEvent,
+} from './_keyboard-event'
 import {
   GLOBAL_SCOPE,
   defaultHotkeyOptions,
@@ -828,6 +832,20 @@ export class HotkeyManager {
         kind: 'chord',
         hotkey: chordString(hotkey, parsedChord),
         parsedChord,
+      }
+    }
+
+    if (process.env.NODE_ENV !== 'production') {
+      const steps =
+        registration.kind === 'sequence'
+          ? registration.parsedSequence
+          : [registration.parsedChord]
+      for (const { key } of steps) {
+        if (key !== undefined && !isKeyNameShape(key)) {
+          console.warn(
+            `Unknown key '${key}' in '${formatForMessage(registration.hotkey)}'. Key names are case-sensitive, such as 'Escape' and 'F1', so this hotkey may never fire.`,
+          )
+        }
       }
     }
 

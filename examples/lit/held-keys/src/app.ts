@@ -4,7 +4,7 @@ import { customElement, state } from 'lit/decorators.js'
 import {
   HeldKeyCodesController,
   HeldKeysController,
-  formatForDisplay,
+  formatKeyForDisplay,
 } from '@tanstack/lit-hotkeys'
 
 import appStyles from './index.css?raw'
@@ -42,7 +42,7 @@ export class MyApp extends LitElement {
     const keys = this.heldKeys.value
     if (keys.length > 0) {
       const combo = keys
-        .map((k) => formatForDisplay(k, { useSymbols: true }))
+        .map((k) => formatKeyForDisplay(k, { useSymbols: true }))
         .join(' + ')
       const last = this.history[this.history.length - 1]
       if (last !== combo) {
@@ -76,7 +76,7 @@ export class MyApp extends LitElement {
                       return html`
                         ${index > 0 ? html`<span class="plus">+</span>` : null}
                         <kbd class="large">
-                          ${formatForDisplay(key, { useSymbols: true })}
+                          ${formatKeyForDisplay(key, { useSymbols: true })}
                           ${
                             code && code !== key
                               ? html`<small class="code-label">

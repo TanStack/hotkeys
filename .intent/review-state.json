@@ -64,16 +64,16 @@
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "f7d762aa1eb6926c2f36b947922044dd103f11aadb623a86dada396bbb504deb",
+      "fingerprint": "a618f4422dd2ea09019e0452686c22a424b07b37063b3e80da88411e4dcc88fa",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "f518acca820445dfefde7a8db57f492022def97b96041f1d16573a2851ffa03e",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "a3f793e81c6a6e1e6aaf3d63c6b79114ea7d6f461123d371c0b4f0a23ffd88bc",
         "docs/framework/react/guides/custom-hotkey-recording.md": "ea9b70d7bbeb5846b0284e843960bf667b2ae6ffbe85742fb5ba332de170ca29",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "1717fce82ea43b4947da276026504eb8832dc3094cc41cc7572701a7f27b5e58",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
-        "packages/hotkeys/src/app-hotkeys.ts": "d1fc00e69777f9960da51c7ca02895caa8c001e52fb2b2bff1c1bb731450b3ed",
+        "packages/hotkeys/src/app-hotkeys.ts": "cd3e57af64f6292d40c36a44af5c5bb361af4739f2fb90a28a62613385131aa5",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
-        "packages/hotkeys/src/hotkey-recorder.ts": "082148a59db861e2f3b57495b4d70ae85dc0fdb086f42acb0a0294cf17e374ec",
+        "packages/hotkeys/src/hotkey-recorder.ts": "7d479391753ffa97e69a7d7cb994cb7053a7ffb3e0aed6dfbfb2dbbdf51a3d24",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
         "packages/react-hotkeys/tests/skills/shortcut-settings/grade.tsx": "270c7b8ff9d30f09a458bc8907efa47813e1e192903cc0ca3a70f6820e39fc90",
         "packages/react-hotkeys/tests/skills/shortcut-settings/mistakes/full-list-storage.tsx": "62d4f4bd79de46fc4900d4f8202c7b16c672060ab66aaead9e7fcd8ea1958c59",
@@ -83,24 +83,24 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Skill guidance is unaffected: stores keep the same state/get/setState/subscribe API, providers behave the same, and warnings still appear in development.",
+      "reason": "App hotkey guidance is unchanged: saved custom hotkeys are still validated and unknown ids are still dropped with a warning; own-property checks only harden that path.",
       "evidence": [
-        "grep of skills for store, subscribe, warning, and checkHotkey wording; the two warning mentions remain accurate."
+        "Reviewed app-hotkeys.ts and hotkey-recorder.ts diffs against app-hotkeys/SKILL.md."
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "610bfdd8ab791087ad65c84d09d8c95e110ab8c56ef274cce6e8fc146508cf6e",
+      "fingerprint": "7ac8b3e3c8a69c270f6744b35c0d30577673e0477b3986742d5ed9f39825c059",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
         "docs/framework/react/guides/hotkeys.md": "1591b315e7f0581265287b04210978fd4b0b85487070e744f7f52e1648e01ebf",
         "docs/framework/react/guides/sequences.md": "e66231380dab6222508a1305d83586459b59953c2ecc47b9549e3cb29ffcd355",
         "docs/guides/sensible-defaults.md": "f104881097a435a8f4874f969cef3d59e2ef17ec97f5a8c121ba303d036539b7",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "507ec6b32b7b1836276ee6527acdb3240f998d72dfb90f07c9e9820e688e8714",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "34af871e714639db1a97226b475402ea91d5aa09b138456007a7eadc1d6854bc",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "90e6512868c194f6c906711cd16882c204600a3118b08b7a101ff6b409012538",
-        "packages/hotkeys/src/hotkey-manager.ts": "c824e47f3101b0cd7078894e74083455fdd55e407cf9a7511bd4e0c6668da4a0",
+        "packages/hotkeys/src/hotkey-manager.ts": "5025ea3627e11b181b6b54ea4da9d1d575cf21aa0bc99cccf159a6088cbc1c69",
         "packages/hotkeys/src/match.ts": "3a50921a68f79183b4ffac98e07e7fdf043711bc071f419c9cdc03422d25f268",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "25c572e968a78fd8df61f0bc98ba8adb41ecf0874437725e5ba28dd171e44fe1",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -112,11 +112,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "451dc7569f71956e5ce5e691ecc18ce14d4240b7edaa20cad58075747416c33d"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
-      "outcome": "no-change",
-      "reason": "Skill guidance is unaffected: stores keep the same state/get/setState/subscribe API, providers behave the same, and warnings still appear in development.",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "updated",
+      "reason": "Key names are now case-sensitive and key aliases are gone, so the skill gains a pitfall about spelling key names as the types do, and points to formatKeyForDisplay for held keys.",
       "evidence": [
-        "grep of skills for store, subscribe, warning, and checkHotkey wording; the two warning mentions remain accurate."
+        "Added a Pitfalls bullet and updated the label row of the instead-of table in hotkeys-core/SKILL.md."
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -276,7 +276,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "cc29bd4ca440d60d07f07c28f07f60701df0a46e7a90329848b8c5150d633767",
+      "fingerprint": "ce60f0db248e34d3c2f2b6b8718a7096ee06bee2aef689abf384e8003f582abe",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -331,13 +331,13 @@
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "1717fce82ea43b4947da276026504eb8832dc3094cc41cc7572701a7f27b5e58",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "507ec6b32b7b1836276ee6527acdb3240f998d72dfb90f07c9e9820e688e8714",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "34af871e714639db1a97226b475402ea91d5aa09b138456007a7eadc1d6854bc",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "90e6512868c194f6c906711cd16882c204600a3118b08b7a101ff6b409012538",
-        "packages/hotkeys/src/app-hotkeys.ts": "d1fc00e69777f9960da51c7ca02895caa8c001e52fb2b2bff1c1bb731450b3ed",
+        "packages/hotkeys/src/app-hotkeys.ts": "cd3e57af64f6292d40c36a44af5c5bb361af4739f2fb90a28a62613385131aa5",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
-        "packages/hotkeys/src/hotkey-manager.ts": "c824e47f3101b0cd7078894e74083455fdd55e407cf9a7511bd4e0c6668da4a0",
-        "packages/hotkeys/src/hotkey-recorder.ts": "082148a59db861e2f3b57495b4d70ae85dc0fdb086f42acb0a0294cf17e374ec",
+        "packages/hotkeys/src/hotkey-manager.ts": "5025ea3627e11b181b6b54ea4da9d1d575cf21aa0bc99cccf159a6088cbc1c69",
+        "packages/hotkeys/src/hotkey-recorder.ts": "7d479391753ffa97e69a7d7cb994cb7053a7ffb3e0aed6dfbfb2dbbdf51a3d24",
         "packages/hotkeys/src/match.ts": "3a50921a68f79183b4ffac98e07e7fdf043711bc071f419c9cdc03422d25f268",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "ecd0100b52a00fc90ce71f244093da667d0c5ff78ecaf632d9db26f1c66c8e40",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "659ca9bebf4200bb693c693addb17bd5a943904e482514f2014f5ca426629e96",
@@ -405,12 +405,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "7505949604490126567f9b61bb4d5c7d5ad05c2004e67a33dba979651014176c",
         "packages/vue-hotkeys/src/useHotkeys.ts": "f971e9938eca3188b3af0fcc96d095330f9f6abfd70cb848d2de5c80f8d09639"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Planning artifacts describe skill coverage, which this internal bundle-size change does not alter.",
-      "evidence": [
-        "No new public API beyond adapter-only helpers (createAppHotkeysStore, createStore, Store type)."
-      ]
+      "reason": "Skill coverage is unchanged; the new formatKeyForDisplay export is covered by the hotkeys-core skill update.",
+      "evidence": ["hotkeys-core/SKILL.md now names formatKeyForDisplay."]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -648,27 +646,27 @@
       "evidence": ["docs/framework/vue/reference/functions/useHotkeyHint.md"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "69d7ff1215b8220b8eae2a4c1e8fa9df2f61763ddf35f4cd1db39fc2bc875519",
+      "fingerprint": "e9aee4b57fb8953250c39ea1467f9d8e32b7f78d500b603c532a19cb7b14a077",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "fd793d8f28b18bee4df8dd30e4a9c7cd3024854db74c5c129cc3aa83b68d7c07"
+        "docs/reference/classes/HotkeyManager.md": "e3c7579588a15ca96484e0dce51da7c2f0b9dc78c57430e91681aee07ad815d4"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "bd328730d65ed0c0c9e88d52a0331c36e26654071c78b786f735d6e62468eed1",
+      "fingerprint": "649a26edbf3e39e70bc77ec6132d24e9247b3d25561a53e162d5fa7941497d64",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "06489412a418aacde056367a882b421b7f7139c2d836052909ef7bc3f24d05c5"
+        "docs/reference/functions/getHotkeyManager.md": "5428e74d6c6261d844489354893928376eb3fbbba350e3f17240c95641671fed"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
@@ -1170,171 +1168,171 @@
       ]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
-      "fingerprint": "939f535fa15f84443374c203234808b23f02d78232b2df50877a5869e23e36a0",
+      "fingerprint": "28159911c67ff028336c014d350cf7638916ece724967828c029b38fb0f59fa5",
       "snapshot": {
-        "docs/reference/functions/toHotkeyRegistrationView.md": "022dbf74696054503def30712ed8e3dac298f1a008c61a4e405093475f80b840"
+        "docs/reference/functions/toHotkeyRegistrationView.md": "2922b400584602de1ac8abe067bbce451e945811999a12e00454f75b9e03371e"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
-      "fingerprint": "5ec1d27ac8c4662653e9f8cda34f980797389be91532348eac5c6333edf1d4e2",
+      "fingerprint": "7ee44a619d444b1ebd93501a1df54695023e0cf2cd7a444cb0655bcff8f1f05b",
       "snapshot": {
-        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "c23998d96f93717424f85124811ac4e2d91ee5231b23108b205f7f081a49f737"
+        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "840ff3531009f6c88d03d67e54a44196593ee873ebfaa5bc927f31931e214602"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordOptions.md": {
-      "fingerprint": "5be2593358f4e3ea12f653b9ec62a305bfc9082a0dfff57c4c4d21303b4c098c",
+      "fingerprint": "707df0ba0f2eccb49f398223b47b22358f975e110947246f37f273217d0a1179",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordOptions.md": "41e202851d47d0e8741d2d107071de465c15b5af6c4110596d387cd0e49c1736"
+        "docs/reference/interfaces/HotkeyChordOptions.md": "0c6e3d07495cfa2bcdb1ce38c25d55405006bdf68e53ba697f60f3e0293cb0e8"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistration.md": {
-      "fingerprint": "917911f3e890f5399a21169c888d432c633ef44483454cb4df785aa1bfd104ba",
+      "fingerprint": "5b27b5b9ab8d5628bbad9e2313ac592739d7a203d41995f93e0e2203962da14f",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistration.md": "aa311bb758787a7705515c4337b629386df8082672aad2f39d1f790578fdf092"
+        "docs/reference/interfaces/HotkeyChordRegistration.md": "661e8077633aee1451eb13705d9de8ee92f780a57115b681467c444aca08c388"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistrationView.md": {
-      "fingerprint": "583f8c2f999d4216c88b45a3071b29b7ac230088ffa2708032bb1a2c2280e93b",
+      "fingerprint": "86193dc061ade744540c9e9b284cc51b35b4e23b69423540fb14ce336092340a",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "1671e8e2ed368b2f5c36a14c09eafbd82191c00c4022ea7da821a675e2ea115c"
+        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "a2d3bee2ceec1b377bfce399f44dada5a3e51890fea45d54759bac5d5d702181"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/interfaces/HotkeyOptions.md": {
-      "fingerprint": "ca5e6ac373fbf21f4ec51e423e7e90bd13c63e14ba23078a99fc0a86ec12daff",
+      "fingerprint": "42063ca7090de2fd0a7afa372179cbc644b11192df67a58ea29283061e33036c",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyOptions.md": "e9a93efb65a3e55ecf91c57b3bb326b9d37d4404172ae50fd0278297b0b4fbfd"
+        "docs/reference/interfaces/HotkeyOptions.md": "3b72082523f5207a74957138613b97f32f72cba8f60be4b128c95f88830e086d"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationHandle.md": {
-      "fingerprint": "764c586afe3a6b838282105d6c3e8126e15753b58b147eb25727079d7c442600",
+      "fingerprint": "8558daca0d173c533f1e4c3f871e0effed853b801e53d7ac04ce40b0b0571d7c",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "4e0aefb635a37fdfb96694b64f1be1f53b7c2e1fa5db2797d7bf66c9148d7daa"
+        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "5bfee5ccfbaa20d9a7fc64eb366ec9f076070fad9a02a2d5ffdc3d78427916d7"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/interfaces/HotkeyScopesState.md": {
-      "fingerprint": "fc525c22b7adb576c076ce845abb896bf8c43798c649e5a362deae32b35b7312",
+      "fingerprint": "db47d0cb9da66bbfe97e776c02a07643540efb3d973066ffeed89dc6c6843a73",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyScopesState.md": "75b4219121dd87b8ca5aa192b690f2c9b97f6fb6d99e5931cd878acc2439cafb"
+        "docs/reference/interfaces/HotkeyScopesState.md": "3700c5eb35ec3a475d917109f98fba3278f8482951c7ce376c9ba6f12fe03dd3"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
-      "fingerprint": "9aa543511871fad9244082ca1316582d68614227417b7774ac7997aceccdddb2",
+      "fingerprint": "caf26f9288a03794305756214af7ca1c7d5b77d5d59f4594613dc20e6aaef6e0",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceOptions.md": "0761914baeb45f28538abe15602565303f2a9c23052eb459c0a2849d80847fe9"
+        "docs/reference/interfaces/HotkeySequenceOptions.md": "45d0e2b877ee47e2222f5bb7919e2c4c200f1cf19caaa20c5f90fb04c12574ea"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistration.md": {
-      "fingerprint": "a1d167d1e8b57886bfbc96fb0588b7985d444fcc1fb8a975838c1360ee626943",
+      "fingerprint": "eafb28175850a3613eabd124296d9e757ea3690bdecd9b51e86a9e42a50d80ea",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistration.md": "f080a4a5062b187fa08a87abdf2d24c6fef1fe7ad2d6dac2ca3c8cb7700add47"
+        "docs/reference/interfaces/HotkeySequenceRegistration.md": "bf7c719a1ea5fb80d25255709d98c3ffb64f2a8f60d37111ebef7dcdf84bede7"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistrationView.md": {
-      "fingerprint": "64a6ff8315ba496e9b51dd77ec91611fa4e1c561cb46c7b631fc54b15ef98a03",
+      "fingerprint": "4b03349fbe17952bb1d4300c027e03e8a0bcc8e9810dcf378b58b44d0d8d45ef",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "3d2110cd4a1289dc16d4f40f52fe757e5514c1526293f217a27e10be27bbd1b3"
+        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "3c20ef9bd2476e2d377a8a791c7d081b335c52f58b33eaef3b0c89a014637e20"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/type-aliases/HotkeyOptionsFor.md": {
-      "fingerprint": "5056acbfc8b249d782fb86387204f796261896b1cfcfbbfb6d8f1656c85a68bd",
+      "fingerprint": "705b12b0d3e06e8441f165ec7fa5abdd5305319dc21917f6ba91307250b7a6cb",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyOptionsFor.md": "85d64a2e3fa6771ba1515672284e6dd8b11cd9be33cb99f67b0af1fb8070feae"
+        "docs/reference/type-aliases/HotkeyOptionsFor.md": "34f536e251bc394e7e0655a512acc46c4a6d90ba4c4dcfaf6084b89c9fd98082"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/type-aliases/HotkeyRegistration.md": {
-      "fingerprint": "fddf186572bf30c1ff52549ed161a7127b8c36a91ab0c6a3a7d060b568f4541b",
+      "fingerprint": "80bbf754db51d8f2605d49b6262714258b55b9b1453154ff8aeab538ff21cb52",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistration.md": "ee848969de831a9d66e604b890e26bd98d06893a9f1488e02ed2ea6c1c907367"
+        "docs/reference/type-aliases/HotkeyRegistration.md": "9a075a1d9ff08cced641ad6f77b239a15df321a442714b6db2cfc0bf2f7c0b46"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationView.md": {
-      "fingerprint": "53747d9174d78a5ba78084865f10647679c60a8189c275508489299abf89712d",
+      "fingerprint": "88b1b7ccb3b94844307dddf6285f5e5c3271b1aa947dec725b362db4ccb3488e",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationView.md": "1653d5a79ae3e6099456630f514f5a21034418d5764a731a19dcc95a897d310b"
+        "docs/reference/type-aliases/HotkeyRegistrationView.md": "e8a57ccf13dd7b7b599044e394b39307508522639470ea430091606230c97c11"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:packages/hotkeys-devtools/src/components/DetailsPanel.tsx": {
@@ -1960,25 +1958,27 @@
       "evidence": ["docs/framework/vue/reference/index.md"]
     },
     "source:docs/reference/index.md": {
-      "fingerprint": "9a611b77990be4bef9ad2c13616c8ad15c2a18dd6d5f01f95eec2eacb75a241a",
+      "fingerprint": "e75d562209c8f2a3e3535e6aa8673c0e9081c70fbcc35be2c5d82299b9adf01d",
       "snapshot": {
-        "docs/reference/index.md": "3745141ef0859fff0b5156b1bc83e2a98b55e3d8fc37d1b1d59b916d81a9d974"
+        "docs/reference/index.md": "9666883a4c4d8fd64e44bf6486759102ae0f2a4a4965fd568ceca7696971de08"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
-      "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
-      "evidence": ["docs/reference/index.md"]
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationStatus.md": {
-      "fingerprint": "2d29ecee59333ef95f0744a0a49a5d4121f6c04893aee42de501ec97fe848f81",
+      "fingerprint": "ab117849be7b4071d31987d0a4b1c386e9e42c4c8e7ff9eac94e14d9e2f36362",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "c2e378bf843fc93f04bc52c5d8830bf06aa74e045316af281b82da4ecc20aebf"
+        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "b4ce364cd118f2070ac6ed4a004d85d26445bac68658a836c18f6dbd58547f45"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyScopesState.ts": {
@@ -2276,15 +2276,15 @@
       "evidence": ["packages/vue-hotkeys/tests/scopes.test.ts"]
     },
     "source:docs/reference/classes/AppHotkeysStore.md": {
-      "fingerprint": "8d68360d9dfe4c2c81c4b084e5e79224e321744a4705e2be3b120d7d63aabe12",
+      "fingerprint": "ccea5537859b08a3f7b064e5ef53d5fbb805d5a077c359ff3b0afa2090bdcdcc",
       "snapshot": {
-        "docs/reference/classes/AppHotkeysStore.md": "1e3ad702a0006cbba599159f26b1bf5aa3ee61b2aca38c26c6fa957b4aa4779d"
+        "docs/reference/classes/AppHotkeysStore.md": "abf0cfe6eb682074f251ed1342ecd47258918d07217f6d82e0b3973483a67e15"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/functions/defineAppHotkeys.md": {
@@ -2300,15 +2300,15 @@
       ]
     },
     "source:docs/reference/functions/getAppHotkeyRegistrationOptions.md": {
-      "fingerprint": "421d1659d3681d601313d0fba42afc1fdeb34a83965c77c551bca48fdadd0208",
+      "fingerprint": "f3cf6c4fef2c7d60e8d394867879fdf76a2ae83d7fc1f1b07e80308529faa3db",
       "snapshot": {
-        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "cf0a2c23475811eb0b2821959b3cd83fa8ff36918f71a7ffea64e4c2f449f740"
+        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "c0786010cce0c8405130b878d3560fd752b2b3bd6d28d8d49dfda2375b594baa"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/functions/isAppHotkey.md": {
@@ -2336,39 +2336,39 @@
       ]
     },
     "source:docs/reference/functions/provideAppHotkeys.md": {
-      "fingerprint": "6bb2b8a94adb4259baa47a7d2635da56efe510989fefd4e97ca8486b62d99006",
+      "fingerprint": "b8bbd14050f9cca7ba2997f2cd05dda5626815d79c4ba89a59ed529173f4c746",
       "snapshot": {
-        "docs/reference/functions/provideAppHotkeys.md": "e2109bc183aef4923b1f25cb23e7d1fd96f58ffe6cfdfc4cc0a6b2bf79b7511d"
+        "docs/reference/functions/provideAppHotkeys.md": "e797ca94aa7d2f61b93792071c7761038e3fef65673cce6166c7ddf4df7411ab"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/functions/publishAppHotkeysStore.md": {
-      "fingerprint": "067ce63bf0383740ab7d7d37307b680867f8c5dc4adfd345d64636c98dd3d227",
+      "fingerprint": "41656bf7ffa223bc4f87be4c3945b4476bf1155bde81fc3e5ffcb5210427d9fc",
       "snapshot": {
-        "docs/reference/functions/publishAppHotkeysStore.md": "cef9d31537b343be70436be590bd3c674a10216c941dc8c7771888a95b3ee66d"
+        "docs/reference/functions/publishAppHotkeysStore.md": "d5d5f31e15fc7c6cee7c5169598eb6c4238e6cb4822a0f82f556856a0bbb348a"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/functions/resolveAppHotkey.md": {
-      "fingerprint": "791c80088586d412be3f409efce025d38f29c2d2b68afe84c67d52e13ee69268",
+      "fingerprint": "602f591e77db229c3ff2214348878a0edc5363004dd1fb84fc40698e7493ad08",
       "snapshot": {
-        "docs/reference/functions/resolveAppHotkey.md": "737ac783544004c688c398af59d2a70d7d2a2928427e499ae4a72a3a6efb0d60"
+        "docs/reference/functions/resolveAppHotkey.md": "f2037c3950f80ae4b978b3d38151e2f2ac4e11be3077878284e44df9b7441ccd"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/interfaces/AppHotkey.md": {
@@ -2396,39 +2396,39 @@
       ]
     },
     "source:docs/reference/interfaces/AppHotkeyListItem.md": {
-      "fingerprint": "bb44ca09aa85845b6c5c78cd5e8f888965b53936884decbed365c6d68f6a7c46",
+      "fingerprint": "8848632a4acd6264dd0508b1334d229cee18de72542d92bbd5adf4a0380e96d5",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeyListItem.md": "8f34cf62a174a1200727c4df9c32b0285bebc93623d7c6a90c93545c45e181d6"
+        "docs/reference/interfaces/AppHotkeyListItem.md": "42c691551e0d2c9939fe236cc39a8a83f731ce9ec26ede140ee568b03c420d31"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/interfaces/AppHotkeysState.md": {
-      "fingerprint": "68900a27694b4933bf1813c13df14e260e9b5724330cbd4517a2c9dc713627a3",
+      "fingerprint": "9f188d1d31930fdd7e6054bcb7caee1754291677d482e99e85878518712800ab",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeysState.md": "06007f517982c36f4fcd638ad560e00eca0ab4258461a48f28eee97235ba6ee3"
+        "docs/reference/interfaces/AppHotkeysState.md": "16992d37d2f592a8e569086985586eac28d4fdad562766c0b9b7ab32363c0a6e"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/interfaces/AppHotkeysStoreOptions.md": {
-      "fingerprint": "135feb1dde68d830ed08da08390cb4d0cb6ee35e0d37d8c4e9a2106874eb996f",
+      "fingerprint": "05969f7092b3ff99da4f5ece78fd40a8c2d31bf7c9251288e6df6bf8dd8f480b",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "a9c2a2080272e3a04b00c2cba0f0e6f636d5635366b947cf7d71e7f50d5d0348"
+        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "cbc33ba9f3a8c5858c85324a8d42984a99c6471364292cdfece4610b65ac5e35"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/interfaces/Register.md": {
@@ -2504,15 +2504,15 @@
       ]
     },
     "source:docs/reference/type-aliases/AppHotkeyStatus.md": {
-      "fingerprint": "b9ebcef331a13b66c6557e92ef2dd152a2886f28d799a395c113dcf093eb612f",
+      "fingerprint": "af65e20da1147dffe91578e86a23586d5babc5b4c1fb8277fc5dd03ef0b87ca6",
       "snapshot": {
-        "docs/reference/type-aliases/AppHotkeyStatus.md": "0f6b676981116aeb031a08b7262bc9fa62832c33d82dd591f300e99fc6d1f56f"
+        "docs/reference/type-aliases/AppHotkeyStatus.md": "77d2de024b58f0b2c61cad3071747f31e7166cb1f3c908ee2f31f06c4431c71c"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/type-aliases/AppHotkeys.md": {
@@ -2564,15 +2564,15 @@
       ]
     },
     "source:docs/reference/type-aliases/Target.md": {
-      "fingerprint": "d644ced87ab9db647b3057552ad87e46bcfcb595db90b6e4d1d4c9e33d2f61a4",
+      "fingerprint": "f6627d19939fcd76343abff5b9a400654c5251e3a0416ab193cd3763d34e1d64",
       "snapshot": {
-        "docs/reference/type-aliases/Target.md": "7c5f4053621ef6f500d6bb2b32dfe2be2487523edf1df310c43d8d0a7e7cf23d"
+        "docs/reference/type-aliases/Target.md": "7ef0c12402023fb70770610eb61bef667c9ba77b06e7c99701ed02ec47513c77"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:packages/hotkeys/src/_event-target.ts": {
@@ -2586,14 +2586,16 @@
       "evidence": ["packages/hotkeys/src/_event-target.ts"]
     },
     "source:docs/config.json": {
-      "fingerprint": "0cb4a1bd42647637f05ce7b7ff6121bdd4a0e8a013d45d787bc1c4a07dfebb95",
+      "fingerprint": "bbe02c079b1c1c417c9845cfd903dcbc6de47d13b3777f6ec26c6a85197b6799",
       "snapshot": {
-        "docs/config.json": "36232fa7bc9c068ef992988036485655fb9587f7dee6029abe19f19f81a94021"
+        "docs/config.json": "883ddba51303b84d8ec6110eed42649237b7d7fc71ee3ebe342a342795f4b9af"
       },
-      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
-      "outcome": "out-of-scope",
-      "reason": "Tests, sidebar config, or regenerated reference docs.",
-      "evidence": ["docs/config.json"]
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
     },
     "source:docs/devtools.md": {
       "fingerprint": "0d96d99c22bf4ab92be7d2a0db8af69c80cd3d1c7212491ecc532d1749e7553c",
@@ -3124,14 +3126,16 @@
       "evidence": ["docs/framework/alpine/reference/functions/hotkeysPlugin.md"]
     },
     "source:examples/alpine/createHeldKeys/src/main.ts": {
-      "fingerprint": "a970a6bbb2942767514753a2f50fc3a59a72b13f770f2620cee0a650a77e4bdc",
+      "fingerprint": "73362a756659fc6fd1c6eaa2461081882b3ff2d6db14107b0b58cd9979a5e235",
       "snapshot": {
-        "examples/alpine/createHeldKeys/src/main.ts": "75f29fc337259be17e2792324969fd6b20755f0b2b65f42a5b3bcad7fd37d0bb"
+        "examples/alpine/createHeldKeys/src/main.ts": "cb7caa403981482eb278d0f408f002c7a74f0a18fffd0195acc5c5dd1aa81c41"
       },
-      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
-      "outcome": "out-of-scope",
-      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
-      "evidence": ["examples/alpine/createHeldKeys/src/main.ts"]
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
     },
     "source:examples/alpine/createHotkey-sequences/src/main.ts": {
       "fingerprint": "291e42f3732289a5500e8aa933111c7695b9ae07f751cf70f2598a3ad7159ea0",
@@ -3858,14 +3862,16 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "source:docs/framework/lit/guides/held-key-state-helpers.md": {
-      "fingerprint": "4518330655b30ff3798a0e110b1b04c6ab7874be6562dcfc3398ac81de69d127",
+      "fingerprint": "625c3d46e46bba9925649ee653cccb2795a02d28a888c2f3361564764aa6be5a",
       "snapshot": {
-        "docs/framework/lit/guides/held-key-state-helpers.md": "bc20ab354e2919d5bba8485bc359c5e50146ac3e9cfb6270fb6a727213edd41f"
+        "docs/framework/lit/guides/held-key-state-helpers.md": "388c4cf1df6e552aeb3cbb12ef20ff11f86eba3fd374916b8ca500c18f7c6a45"
       },
-      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
-      "evidence": ["docs/framework/lit/guides/held-key-state-helpers.md"]
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
     },
     "source:docs/framework/lit/reference/classes/AppHotkeysController.md": {
       "fingerprint": "c73bd934701be78e27215ad3bd133aac42547532e553bc64655c17561053a7a6",
@@ -4184,15 +4190,15 @@
       "evidence": ["packages/svelte-hotkeys/tests/effect-root.test.ts"]
     },
     "source:docs/reference/classes/HotkeyRecorder.md": {
-      "fingerprint": "09b053092959b064ef579e7acfa0474896b340b66d4886e4a0da66e9064cca4f",
+      "fingerprint": "b5d797690264252f9877f556645dae43691a59406723dd8a38a46310f6efc1be",
       "snapshot": {
-        "docs/reference/classes/HotkeyRecorder.md": "c1cd5087d40fe1c81542acb8fc1e0927a221828e59923b34539d8d718eb1ef66"
+        "docs/reference/classes/HotkeyRecorder.md": "55d6b9d2e5fb8cfa0ae739cf5b6982123153d97f1ce507dd8e21821411ff9ef9"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:packages/hotkeys/tests/hotkey-recorder-ssr.test.ts": {
@@ -4278,24 +4284,28 @@
       "evidence": ["packages/hotkeys/src/_match.ts"]
     },
     "source:packages/hotkeys/tests/match.test.ts": {
-      "fingerprint": "772ef55007f01169680bcf72ecca934e93c38d7d142bfa323eda2e1d259e9b3e",
+      "fingerprint": "cb19ebad70781e3da9bd0750608bee772e75efb24ee8e8d3b331e49db0ae4f80",
       "snapshot": {
-        "packages/hotkeys/tests/match.test.ts": "a433f330161f4f6c7e0e73221cd7cffb548ff248882acb1460cd21624ca23b12"
+        "packages/hotkeys/tests/match.test.ts": "050203d0606119ba5bc737cc30146e230711dd96507d1e77437d587471986ccd"
       },
-      "head": "210b3fb5577b3e7381a7c74d70e87cf395ae6682",
-      "outcome": "out-of-scope",
-      "reason": "Matcher source and tests; the guidance impact is reviewed on the hotkeys-core skill item.",
-      "evidence": ["packages/hotkeys/tests/match.test.ts"]
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
     },
     "source:packages/hotkeys/tests/sequence-regressions.test.ts": {
-      "fingerprint": "0df4f71842f1e3aa3bb0e7521a1f5e04d30b1c9a9ff270b7914fdf09b773e32a",
+      "fingerprint": "9f235b4f747d09b413f754ab5a6b1397f72accb5cb138ab7be3bd34798239073",
       "snapshot": {
-        "packages/hotkeys/tests/sequence-regressions.test.ts": "80db8a2da40225783f823edfba6b5beb97b3bdbd1e754b7952e9eb34957f48c6"
+        "packages/hotkeys/tests/sequence-regressions.test.ts": "aa7d6e70b184ebcc8c12081f7494fce31cd303c3c953ccc0c5f4cea577599929"
       },
-      "head": "2f73a120955c389d30d110aaf63307c077d92323",
-      "outcome": "out-of-scope",
-      "reason": "Test fixtures only; the guidance impact is reviewed on the hotkeys-core skill item.",
-      "evidence": ["packages/hotkeys/tests/sequence-regressions.test.ts"]
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
     },
     "source:.gitignore": {
       "fingerprint": "a84d15c818af0081559065548b39cfc324106ad5c821ac4408caa442f419fc0d",
@@ -4860,15 +4870,15 @@
       ]
     },
     "source:docs/reference/adapter/functions/createStore.md": {
-      "fingerprint": "8dd1da61c6db9787765f59709468cb3e3d284218ac8b67e3f870af5212f7df65",
+      "fingerprint": "e0c7f0a8e4dde18b56f3a33b0bd14a16bfb4350a77783907b318ea5f613a2e5f",
       "snapshot": {
-        "docs/reference/adapter/functions/createStore.md": "16bd14da1f45cb868ff30f836666147d12644213edde30ba73c5f6c3d828054a"
+        "docs/reference/adapter/functions/createStore.md": "374975d4f0093cd0befdf96b58dcc7d4db69ceaf7dbf164adc5c50d9c968b1d4"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Key tables are built more compactly with identical exported values and types; skills describe key names, not how the tables are built.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "key-tables.test.ts pins every exported table and checks normalizeKeyName and unknown-key warnings against the previous implementation; regenerated docs differ only in line numbers and one comment."
       ]
     },
     "source:docs/reference/adapter/functions/getHotkeysProviderScopeKey.md": {
@@ -5064,15 +5074,15 @@
       ]
     },
     "source:docs/reference/adapter/type-aliases/Store.md": {
-      "fingerprint": "f040174c6312b2ecd62f649d78b8af7ce7eb5108869b0d4c28b734a1b5941571",
+      "fingerprint": "3cd577f1021a9e1df706137e46a9df81e70b04cb1823e5dddadb7ebd53d1c551",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/Store.md": "6c8e071c5807eba990c276b7fe42224793a5bd94f30aef6dfb6a1858bf564509"
+        "docs/reference/adapter/type-aliases/Store.md": "05fdd489e7506f0c4ef5d4cd0ce0bf528471b5003a7a9298ec236f3378da4819"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Key tables are built more compactly with identical exported values and types; skills describe key names, not how the tables are built.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "key-tables.test.ts pins every exported table and checks normalizeKeyName and unknown-key warnings against the previous implementation; regenerated docs differ only in line numbers and one comment."
       ]
     },
     "source:docs/reference/adapter/type-aliases/WithTarget.md": {
@@ -5100,15 +5110,15 @@
       ]
     },
     "source:docs/reference/functions/checkHotkey.md": {
-      "fingerprint": "5c39b16a57e3913f3a213a7d489170b7ec52204a19f2a08ac9dd4979615305ae",
+      "fingerprint": "3c6e95ce89a73171d88060c9a53a04d9036c58190b57c1b40eaf9060d8e806ad",
       "snapshot": {
-        "docs/reference/functions/checkHotkey.md": "71d7bc0c2f94a62703c46ce71e6e31f189dcdb4e40b4689ef9ce20f519f601a3"
+        "docs/reference/functions/checkHotkey.md": "ff9207a9408df5d27821813e8d7fdeb97115a2e2305bfb25dad3c488714a3885"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/functions/getKeyStateTracker.md": {
@@ -5220,15 +5230,15 @@
       ]
     },
     "source:docs/reference/interfaces/ValidationResult.md": {
-      "fingerprint": "60d5866bb52bdcc952fee97710ed9470a8ea27705911a6ea2742d1676691289d",
+      "fingerprint": "0fe460871bc4ca99f97bdf75464646c4bfc32fa0d2e9e2334b28baede4766f26",
       "snapshot": {
-        "docs/reference/interfaces/ValidationResult.md": "9a6af3321c26510e21f2f8c2dc9052373f9532827b973f7ecd17fa997d6537e4"
+        "docs/reference/interfaces/ValidationResult.md": "4bd5b2b28acc86d1be97916b20165efc9de89de2066c1f34210a92fc7d98d02f"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderCommitKeys.md": {
@@ -5460,15 +5470,15 @@
       ]
     },
     "source:packages/hotkeys/src/validate.ts": {
-      "fingerprint": "51c8b7f3ed7c34b1e679487d932c566c07d6013eb0f67efdc25b23a5aad078f6",
+      "fingerprint": "0a16fac9834f08dd26568013132ac573af7fb2a0110cbd2e51dfcfd3e61c7882",
       "snapshot": {
-        "packages/hotkeys/src/validate.ts": "1b3621875e0696bf75768b505b5f232b14caedc725d9b807ba17427f609da4e3"
+        "packages/hotkeys/src/validate.ts": "35272df45145910ef744b1d99620608bfde9d4b25ccb1928ace1b057506865e0"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:packages/hotkeys/tests/adapter.test.ts": {
@@ -5484,15 +5494,15 @@
       ]
     },
     "source:packages/hotkeys/tests/production-logs.test.ts": {
-      "fingerprint": "e44d564ed0e6fe38638387c6246b839d47d478b1401dd4e0fd779f5654518a53",
+      "fingerprint": "5b0bc4d295d32a7eeb1e08145be2091656364a3934101d2783d95b22eac05cb3",
       "snapshot": {
-        "packages/hotkeys/tests/production-logs.test.ts": "34ccec288d02e111912fc92684c8d5b2dcbb4a3973b7120976a660b7337795e0"
+        "packages/hotkeys/tests/production-logs.test.ts": "c602325fd78192fed9ed82e5b9050cb9b412c3e794f68ea64b1c0a5fa3c4531c"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     },
     "source:packages/hotkeys/tests/store.test.ts": {
@@ -5889,6 +5899,882 @@
       "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
       "evidence": [
         "Reviewed the diff for this file against the skills that reference it."
+      ]
+    },
+    "source:docs/framework/ember/reference/classes/useHotkey.md": {
+      "fingerprint": "a87d96a5ffeb7fb947a9cad8820ed65ba73052550e4d7ab720738290f30e7e92",
+      "snapshot": {
+        "docs/framework/ember/reference/classes/useHotkey.md": "d0d97cbe9dae2a6d763e7d539442587b9ab1ee7dc9b4a7574b7901289d626c90"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Key tables are built more compactly with identical exported values and types; skills describe key names, not how the tables are built.",
+      "evidence": [
+        "key-tables.test.ts pins every exported table and checks normalizeKeyName and unknown-key warnings against the previous implementation; regenerated docs differ only in line numbers and one comment."
+      ]
+    },
+    "source:docs/framework/ember/reference/classes/useHotkeys.md": {
+      "fingerprint": "942a5fd69c87dc90a903ad7591af335944521efedf6f4c3fd81f84fd4a59ee38",
+      "snapshot": {
+        "docs/framework/ember/reference/classes/useHotkeys.md": "886c88ed940ff8a4b10d7d5c97298b822479ecf6adf3a8f111a31baf21b3a36a"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Key tables are built more compactly with identical exported values and types; skills describe key names, not how the tables are built.",
+      "evidence": [
+        "key-tables.test.ts pins every exported table and checks normalizeKeyName and unknown-key warnings against the previous implementation; regenerated docs differ only in line numbers and one comment."
+      ]
+    },
+    "source:docs/reference/functions/assertValidHotkey.md": {
+      "fingerprint": "5ada8f7a49dc6def64f255c1f103b8ef5fa183f9947ad6d521494e9eed8f8a67",
+      "snapshot": {
+        "docs/reference/functions/assertValidHotkey.md": "dbbb437814b6344c4d9b276273eefdf23ce788da707bfcf161ab6849e37c23e9"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/reference/functions/isSingleLetterKey.md": {
+      "fingerprint": "5049fa2606149865534a0fc8b33b7524be2808bcbcf7016b320ef33a4b3916e2",
+      "snapshot": {
+        "docs/reference/functions/isSingleLetterKey.md": "8133be8f0922c98a0205a76963466861e2a91ac39430cf8aff8b6b2d71c9d726"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/reference/functions/normalizeKeyName.md": {
+      "fingerprint": "ce8c700e2c8685bcac5c3441fe5aed82315ed9f5cb9cc3fdd9ba7798bec3e11f",
+      "snapshot": {
+        "docs/reference/functions/normalizeKeyName.md": "d00f5f3f8d6e07656681f745c76d8f13cf78f89fab0f611e24dfc058a481fdae"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/reference/functions/validateHotkey.md": {
+      "fingerprint": "57c383d22517b7aa32c4f2712a0984eac48130a8e74775d8ddfd8cabe8629fd0",
+      "snapshot": {
+        "docs/reference/functions/validateHotkey.md": "1e003da6d95b13d9f5eab93a16c5c47102d692f39b69c068a2d8470da8483b7c"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Key tables are built more compactly with identical exported values and types; skills describe key names, not how the tables are built.",
+      "evidence": [
+        "key-tables.test.ts pins every exported table and checks normalizeKeyName and unknown-key warnings against the previous implementation; regenerated docs differ only in line numbers and one comment."
+      ]
+    },
+    "source:docs/reference/type-aliases/ValidatableHotkey.md": {
+      "fingerprint": "deb197e41daa8eed9b28709cc1b83202ee50fc919cac7f63afba09958243fa01",
+      "snapshot": {
+        "docs/reference/type-aliases/ValidatableHotkey.md": "b9e6bf04acaeb532666202ddf5b7c4ceb51f00470043a4f7e9b3d5daf191ae38"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Key tables are built more compactly with identical exported values and types; skills describe key names, not how the tables are built.",
+      "evidence": [
+        "key-tables.test.ts pins every exported table and checks normalizeKeyName and unknown-key warnings against the previous implementation; regenerated docs differ only in line numbers and one comment."
+      ]
+    },
+    "source:docs/reference/variables/ALL_KEYS.md": {
+      "fingerprint": "bf6258c090d2f8ce713e8ddb9cd0f5e8a531352a5f7b0e9d2b036fce4fb8d9d2",
+      "snapshot": {
+        "docs/reference/variables/ALL_KEYS.md": "3e17dc808561a702ee8f2b219796f1ba990cdf2db7e911d12020d5d5bea897d3"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/reference/variables/EDITING_KEYS.md": {
+      "fingerprint": "64e8363a29a9ddc9ea2230e611adc8f1e7d505f3f50f6052b3b6dc0ba5cf5319",
+      "snapshot": {
+        "docs/reference/variables/EDITING_KEYS.md": "a3986f8144cd05e439cfca0d429d0541a00f2d18a82b12fb69974d9c69b70374"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/reference/variables/FUNCTION_KEYS.md": {
+      "fingerprint": "01491775b2667cb731476b88b8859e1c36cc14fabfde68ad242f073cf087aca0",
+      "snapshot": {
+        "docs/reference/variables/FUNCTION_KEYS.md": "0b1819b11fdefc9af2c4d0cb40b1caeecc7064b5b2d867e24626e3f0280e8cf6"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/reference/variables/LETTER_KEYS.md": {
+      "fingerprint": "8bb8930a4e6fa47af7bfec63e4d65f383556adcc8e649b8237f5859c54201864",
+      "snapshot": {
+        "docs/reference/variables/LETTER_KEYS.md": "86bce94ce153921ad832e31b331d6eeaa9ee88bf5ef165acf7a075cd33e61cd9"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/reference/variables/MODIFIER_ALIASES.md": {
+      "fingerprint": "08efd3d3dff330b692df59eae9162d39d3d6f8de5e220f7640a0a5576ad8440f",
+      "snapshot": {
+        "docs/reference/variables/MODIFIER_ALIASES.md": "336a3c15609a12de7fd1cdc0fc7b8ba5c31c7a44c365a5b3b981fbbbdaf3afbc"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/reference/variables/MODIFIER_KEYS.md": {
+      "fingerprint": "f41d61ac558c2e12531b9495cd45ca899196a3b93bf716f5efb974447d9795dd",
+      "snapshot": {
+        "docs/reference/variables/MODIFIER_KEYS.md": "0f50474b3fee90ac432c8db280dcfefee3062fa2ff30ee8acab29f1a682eb348"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/reference/variables/MODIFIER_ORDER.md": {
+      "fingerprint": "26c4ee5e64f5fbea2901bb194da4969ee4374d1a2b3a3615e4e342792b42b3fe",
+      "snapshot": {
+        "docs/reference/variables/MODIFIER_ORDER.md": "9af07023c4e74b62cc32c03946be11258d44d8dd9bc24e2ae4cbe1ae827d42d5"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/reference/variables/NAVIGATION_KEYS.md": {
+      "fingerprint": "9e7d59bcbc07c66d78ff97f721f0d6aaf00dd54bb5ad9227b6d838e75a2252a1",
+      "snapshot": {
+        "docs/reference/variables/NAVIGATION_KEYS.md": "0bdaefd637d3dd06428fc96148e2a388b952db2d17abfe22cb389f23a583b811"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/reference/variables/NUMBER_KEYS.md": {
+      "fingerprint": "91c8bde9634f6f567d8e20f3850979d67f58a4fafa7b63bf1d2931befe81f075",
+      "snapshot": {
+        "docs/reference/variables/NUMBER_KEYS.md": "317dbf8511e4b7f9c91af38bba27ea854e23eff6d7b1eb92ada8e0cb60d2ad37"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/reference/variables/PUNCTUATION_CODE_MAP.md": {
+      "fingerprint": "9baa635e82f25c930eebf0b06e2f0eb143ea88fca586441e357ceaaea98f8f45",
+      "snapshot": {
+        "docs/reference/variables/PUNCTUATION_CODE_MAP.md": "e2d8b22ccf972ec369b622b5c60d90e82dc65dd20088b629fc46086391af0436"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/reference/variables/PUNCTUATION_KEYS.md": {
+      "fingerprint": "8fc6aa53fef19bee8e488a872c8442b847b7c879b37d29e9c8ed8b5160278079",
+      "snapshot": {
+        "docs/reference/variables/PUNCTUATION_KEYS.md": "2508006f6a884972a2c8af56d8b0aa909a889521cd212c5a220acfba6bb742cd"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:packages/hotkeys/src/_named-keys.ts": {
+      "fingerprint": "b7b4da97ff25896c3c61e8e2110c60fbe193978155b36a7765769e3287fd226d",
+      "snapshot": {
+        "packages/hotkeys/src/_named-keys.ts": "1d3c8524b3a5bed2e58ffce4029d166f57b646fbf004ea0d3e11b6785f9a0656"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:packages/hotkeys/src/constants.ts": {
+      "fingerprint": "d0dd243fe5d95b222dcda9e1bb77a96b8525f7b6be45559a8d167aaac4c0446a",
+      "snapshot": {
+        "packages/hotkeys/src/constants.ts": "3c0606eba9381d47bad82d9afde2fedc0846aeae1708f284ebb21f94a81525a3"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:packages/hotkeys/tests/key-tables.test.ts": {
+      "fingerprint": "f475cdf547dee756021e59a0d8c44faa4895d3e4cbbe826f1d76e07f170c60bf",
+      "snapshot": {
+        "packages/hotkeys/tests/key-tables.test.ts": "b3367c4736a811c60c6e5a28ba5a936d82f686840c10bdf80895b8af1cbd2957"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/framework/alpine/guides/formatting-display.md": {
+      "fingerprint": "eba774be9bd938b4746fe8e96ada3735d7d908e88af774c4d35eb2124ec58015",
+      "snapshot": {
+        "docs/framework/alpine/guides/formatting-display.md": "c90d468057e360518bfb668ac66378adbd0ae0e8cb63a8503fd4e481a0fbad35"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/framework/alpine/guides/held-key-state-helpers.md": {
+      "fingerprint": "8a43fda0cc1a9802fd1fbc91f715faa4da3088ed8ca0a95103f3ef18352229fc",
+      "snapshot": {
+        "docs/framework/alpine/guides/held-key-state-helpers.md": "70750c534f34c6d3f1c1571a22e0d7e6afe205c6ed1fe2ab28ca9d4b752d547b"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/framework/angular/guides/formatting-display.md": {
+      "fingerprint": "7577ee9800452470258d6669f0bf2a44e33318740299cc4a87e259ebb9d95004",
+      "snapshot": {
+        "docs/framework/angular/guides/formatting-display.md": "6387b102f4fa7d2fbb44b3016f4fbf4218967daf0574724237ee913bddce6078"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/framework/angular/guides/held-key-state-helpers.md": {
+      "fingerprint": "a410ac3e72cdb42be8561d6aff176f79bc49fa5d43d13ff046b72e3cc77d3f4d",
+      "snapshot": {
+        "docs/framework/angular/guides/held-key-state-helpers.md": "01ed3312e5d4aa0a23c17962ab1b16cca0182a10a1c02fec69ffc689a581d79c"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/framework/ember/guides/formatting-display.md": {
+      "fingerprint": "eafdfd78fec0512f99de1f1f4aaa2c9db4b0a25ccd3cf65a1d5c6554b3022e7a",
+      "snapshot": {
+        "docs/framework/ember/guides/formatting-display.md": "241cd8072044d75614a83a08157613e94530740f6de6b99d8402355576aa3472"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/framework/ember/guides/held-key-state-helpers.md": {
+      "fingerprint": "45edaa33160cfe3f3e80816b13c6d2148bf095a9bea08758c830f0b8c09b9e88",
+      "snapshot": {
+        "docs/framework/ember/guides/held-key-state-helpers.md": "13cf6ad3b6fac6a05afc9f70186c635b2191b7a5845250794468564c9d6920af"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/framework/lit/guides/formatting-display.md": {
+      "fingerprint": "6984bd99522bf14984ed298ac485e5399c98e6c1f21c579bad5daeb44b250781",
+      "snapshot": {
+        "docs/framework/lit/guides/formatting-display.md": "8b271291617f3a81698969237b0f1eac7d8171919f5250458486355b1efe370b"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/framework/octane/guides/formatting-display.md": {
+      "fingerprint": "de3abaf483f5449cfd45a2f416bb5d0c7b900ee276bd7ac7f60f6c1c63b9b47e",
+      "snapshot": {
+        "docs/framework/octane/guides/formatting-display.md": "6261fc9647469022bc3b020070ab3b5423a3ca5b5af2756925562ed1acad6c17"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/framework/octane/guides/held-key-state-helpers.md": {
+      "fingerprint": "ff2fe971f20fc4a03df033799ccb10973d714f3b8722be649137205b8aa00e24",
+      "snapshot": {
+        "docs/framework/octane/guides/held-key-state-helpers.md": "a5d380f20a72551cff8ecdfb45382f4b23d2a99c72cd5cb90244633ce2dcab9b"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/framework/preact/guides/formatting-display.md": {
+      "fingerprint": "33eeb7740f08b31565b4ae2c8eb83c63ac266f3a9ed032e39ac3a46b7bcbda1a",
+      "snapshot": {
+        "docs/framework/preact/guides/formatting-display.md": "18b2903e5f2437b2d2226518903100bf08cd667a888e1a6a4529920bb6af10d8"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/framework/preact/guides/held-key-state-helpers.md": {
+      "fingerprint": "182b125302476bda7ca563e4430a25d9efaf8337e69126e0b24ef1993a4cdfa8",
+      "snapshot": {
+        "docs/framework/preact/guides/held-key-state-helpers.md": "2d873b2ebdccab9978b5c9d7b28e2449427f9037d866072f21f41f735022fbf2"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/framework/react/guides/formatting-display.md": {
+      "fingerprint": "85f9a44cd9844e19cb06b154f309ed0af7c6d21e27efbff379ed97ea01c291fb",
+      "snapshot": {
+        "docs/framework/react/guides/formatting-display.md": "1979bb91e18bac66bf46cf6899da1a1386c0dddada5d747c5172216f5b5b7d86"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/framework/react/guides/held-key-state-helpers.md": {
+      "fingerprint": "b9baad37e175558111cb93f5d1a4c2f418292fe60c23a6aafe52af59b46fd4db",
+      "snapshot": {
+        "docs/framework/react/guides/held-key-state-helpers.md": "cd655057bfa7261520f7138bb9cc7abc96c7f23cca539873d34f4107ecc1bb04"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/framework/solid/guides/formatting-display.md": {
+      "fingerprint": "9f88a5521a65cd9f71abdd54cf84c962d63117129596f8ca3d90dd5cfbee2f71",
+      "snapshot": {
+        "docs/framework/solid/guides/formatting-display.md": "6729f123c4aa012e906ff6a25d84861e8ae76704b85d3884ac8b8b17cd600e03"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/framework/solid/guides/held-key-state-helpers.md": {
+      "fingerprint": "b596d59e42aa650b38c5a7eef156b5d4104f30690b84ced18576ea90f6a9f655",
+      "snapshot": {
+        "docs/framework/solid/guides/held-key-state-helpers.md": "8b208caedeaf0aa31bd107c8223112a210a95da855463c480db66396b67bb29c"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/framework/svelte/guides/formatting-display.md": {
+      "fingerprint": "67b065072fe425e849b86719e69ae5b9d7e7d302ee7aed939baf27c132e765a0",
+      "snapshot": {
+        "docs/framework/svelte/guides/formatting-display.md": "5ac9316e596969f2ed2439c4f5d2bf75c32a7bfce2e69d7667a8607bec57b338"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/framework/svelte/guides/held-key-state-helpers.md": {
+      "fingerprint": "a8eb395707d01298d9051070faab6de91a387509cdf776a7da363bc611cc8963",
+      "snapshot": {
+        "docs/framework/svelte/guides/held-key-state-helpers.md": "990c306c135b83d90b5349a5e7aa77828cf6e2ceb18e6ea08566257c8c941b60"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/framework/vue/guides/formatting-display.md": {
+      "fingerprint": "fb9b89f48bbce97f69c62a1a1a8841f8177d58d83cbf0bb8ab29f80d5a4f4512",
+      "snapshot": {
+        "docs/framework/vue/guides/formatting-display.md": "dda79208642889d348fbf2c34ca4d707dc6e472a40042c407f5bcffda15c08cd"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/framework/vue/guides/held-key-state-helpers.md": {
+      "fingerprint": "0a3b33c36e7f46abada8cf3f429115aa28161c9fda29c446b3c8f6145e321838",
+      "snapshot": {
+        "docs/framework/vue/guides/held-key-state-helpers.md": "9c1c3d6aed73b813e981f2cf68dc19a787daa4bbf957c90a8d3594eb19b2f526"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/reference/functions/formatForDisplay.md": {
+      "fingerprint": "a4937b7f6a4648cc5ee5d80fd547b27a169f3662e84b2b6f6584593b78816f65",
+      "snapshot": {
+        "docs/reference/functions/formatForDisplay.md": "23be6862887c17faaf05cf90af83d242d4abbf60e5d0ff038ec9d379c35115ec"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/reference/functions/formatKeyForDisplay.md": {
+      "fingerprint": "22f378a7170ecee1ae241e883a41bd6dc41fde438827d1d40be8a4d140488a45",
+      "snapshot": {
+        "docs/reference/functions/formatKeyForDisplay.md": "0f94b6d8a2f54d50d21f76a3f14e2a9d39a6f619ca104e25e485e49f79312f4f"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/reference/interfaces/FormatDisplayOptions.md": {
+      "fingerprint": "8270a4ba5027cc73337eb9242bbfacc64390b66ea13875c6f30b7860de955f77",
+      "snapshot": {
+        "docs/reference/interfaces/FormatDisplayOptions.md": "778164029efb27d71c1e2ad04412acbd1cee29b78adb0d07d08a5ae4d8f8002a"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/reference/type-aliases/DisplayHotkey.md": {
+      "fingerprint": "9b22bbc9980af19d13dee3ce7d4dbc802d7faf514ffb9d1dff2b7a191ea2277c",
+      "snapshot": {
+        "docs/reference/type-aliases/DisplayHotkey.md": "cc699380c29f032ddfd7af3337dc19d0b79ec36008aa13c6e1d4202ebe204276"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:docs/reference/type-aliases/DisplayHotkeyChord.md": {
+      "fingerprint": "9516886f9a3db7df301fe298ce17b769df8400117dfac3c6b50f8b4ddd57114f",
+      "snapshot": {
+        "docs/reference/type-aliases/DisplayHotkeyChord.md": "7e0006bb8b7b8e17a32a423e3844c7ed39ece6f11cd3ae7777333beb4e025101"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:examples/alpine/createHeldKeys/index.html": {
+      "fingerprint": "9bd610fab13afadac5d721f2bff4e6c1eecf09b05c7ae084578b965de23c2bce",
+      "snapshot": {
+        "examples/alpine/createHeldKeys/index.html": "da2ace20075c20f81920514570edf301aa09125bb4105edbae05d48cd7a95dfa"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:examples/angular/injectHeldKeys/src/app/app.component.html": {
+      "fingerprint": "7e5819dc3cda7f5dcbd8da4929141ee7e39f1a1af32910c7fb4814405ddf3d61",
+      "snapshot": {
+        "examples/angular/injectHeldKeys/src/app/app.component.html": "0f168e0bc5dec200585bf9645ea865a4fc9f27f7e59a2055eb116a0c55357459"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:examples/angular/injectHeldKeys/src/app/app.component.ts": {
+      "fingerprint": "7584bdd8f07c7537e3b31a2f2ecc06b60c222fb5e8216a0208431538f2bd42da",
+      "snapshot": {
+        "examples/angular/injectHeldKeys/src/app/app.component.ts": "cf7a514f6d8f7ff80e13f58974ad7941c3ff630ae3b43bd7d4b79001bcd9e2ec"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:examples/angular/injectHotkeyRecorder-sequences/src/app/shortcut-list-item.component.html": {
+      "fingerprint": "df67168e91f7a12e96832d32f3b721fc60a0b4a256e9ce04290cf20944d9bdd4",
+      "snapshot": {
+        "examples/angular/injectHotkeyRecorder-sequences/src/app/shortcut-list-item.component.html": "60d7d977205f48d9b838bd2589e9a947922fcabb2cb21aac1d48e9c05e3e1a57"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:examples/angular/injectHotkeyRecorder-sequences/src/app/shortcut-list-item.component.ts": {
+      "fingerprint": "4eb9f2f87c68b31b9d19598bc2854377fb6b53a4bf9540528a72a76deeb9a775",
+      "snapshot": {
+        "examples/angular/injectHotkeyRecorder-sequences/src/app/shortcut-list-item.component.ts": "8d4eb897a2672d230bbffd59e1ba622007d996cddf88d3fa813c166942eaa708"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:examples/angular/injectHotkeyRecorder/src/app/shortcut-list-item.component.html": {
+      "fingerprint": "82672e1d4e5f9adfbffffdee5a647c1555260859eef2d6bb44c8f1be64fa79b1",
+      "snapshot": {
+        "examples/angular/injectHotkeyRecorder/src/app/shortcut-list-item.component.html": "5446b192477e539890d79707e37c1a7897802b988fe09d538cb12e0bd5eb096f"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:examples/angular/injectHotkeyRecorder/src/app/shortcut-list-item.component.ts": {
+      "fingerprint": "0682f2bb982e5fce0931e0a3a41be046c1a40e537fa16c3786a72e13024c5e75",
+      "snapshot": {
+        "examples/angular/injectHotkeyRecorder/src/app/shortcut-list-item.component.ts": "b32aa1b977137b9fc751fe6a8571c726118a4685d0882c5f4af97c9b9a616ad5"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:examples/angular/injectHotkeys/src/app/app.component.ts": {
+      "fingerprint": "c71b34b23b8f0df9b242ed689cd050f6467b7c83f48bc97df2bdcdec7a336cc4",
+      "snapshot": {
+        "examples/angular/injectHotkeys/src/app/app.component.ts": "5f51475129329fc00fd296bb30307bb93ef08962e08790555f49cb1efb05fced"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:examples/ember/useHeldKeys/app/templates/application.gts": {
+      "fingerprint": "799ed6c29881f94a4e3f2ca846e184c5fd3edb402ad90756c998620d74a8b331",
+      "snapshot": {
+        "examples/ember/useHeldKeys/app/templates/application.gts": "788a62a208a9bb58b84d3ecc10c9e72cfbd7b77b58a2fc44b0c1f0b563887fa7"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:examples/lit/held-keys/src/app.ts": {
+      "fingerprint": "61223ee431649fc563c10dead536b1ff37408bb7e7cd01aa4de202503ffc9492",
+      "snapshot": {
+        "examples/lit/held-keys/src/app.ts": "906dc28f1612cb034fcab3b076403c172c29a7cd7ac53bad76e4aec9968637c9"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:examples/octane/useHeldKeys/src/main.tsrx": {
+      "fingerprint": "438df13c2c16eef7402929928148c6a388b72016ec82ed3a41ed5eafb4c2aec7",
+      "snapshot": {
+        "examples/octane/useHeldKeys/src/main.tsrx": "90bb42bcfadb1b39524d3d7f6e825e7baba0d35a0fdcbb1d6c6145ac9746ea01"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:examples/preact/useHeldKeys/src/index.tsx": {
+      "fingerprint": "d50b654d1e47fda0a4b7a21567c1b23da92930fba7e58123cabb3c6d8c44e83f",
+      "snapshot": {
+        "examples/preact/useHeldKeys/src/index.tsx": "fb7e21268a7756239a45e7e2d63b407a8a9233a060e58392eda0efd4354e16de"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:examples/react/useHeldKeys/src/index.tsx": {
+      "fingerprint": "caaf5a67e21cc974e04b0c4db08b61575ba4111bc23ab17f9206abb174852abe",
+      "snapshot": {
+        "examples/react/useHeldKeys/src/index.tsx": "98277b2e20901ec962fa179ad41e6cc529b6fc80f5f776ab5d036601420a883d"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:examples/solid/createHeldKeys/src/index.tsx": {
+      "fingerprint": "7aebfb85c7961f99a709de06f876775195df542410d9a6330772418c086c6741",
+      "snapshot": {
+        "examples/solid/createHeldKeys/src/index.tsx": "2f0f6a11611b2e792c42ab8108ce4b592e6f7ef2c9f0b278fa348c7a24a8d7f2"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:examples/solid/createHotkeys/src/index.tsx": {
+      "fingerprint": "cb6b0c722aee34bed39fc9ea9c8bb63c4cd61ced3adedeb4ccf3dea05c2fa07a",
+      "snapshot": {
+        "examples/solid/createHotkeys/src/index.tsx": "78fd9be4f1b6f0807574aa414a5fbd66a632f94570a94f56a417984b66f49cea"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:examples/svelte/get-held-keys/src/App.svelte": {
+      "fingerprint": "d2ce5b4b8c76a159f91b293758e3ff95af35df0261d0c48810491fd2659193c0",
+      "snapshot": {
+        "examples/svelte/get-held-keys/src/App.svelte": "117384a4a16f29584a22a2196623670a8a3a2cfeec646bc44248be3ad9526661"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:examples/vanilla/formatForDisplay/src/main.ts": {
+      "fingerprint": "56eb3702d1a512c982b8a1905f45c631c1f65a7af50fb6187fcd35b41d3381f2",
+      "snapshot": {
+        "examples/vanilla/formatForDisplay/src/main.ts": "7e785d7ae756627cf413db38cb3be5746cc5852015fc6fc78edc7d5b0fd829ed"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:examples/vue/useHeldKeys/src/App.vue": {
+      "fingerprint": "f7d133d2c24a9114cf68e7fad85786a8dd7b2a3d8dba80df09dc918c71df8aaa",
+      "snapshot": {
+        "examples/vue/useHeldKeys/src/App.vue": "fb6ed10a8a3b693de1ea2e3726fdcac9935d05bf4868e1ed289f0489c1529a57"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:packages/hotkeys-devtools/src/components/HeldKeysTopbar.tsx": {
+      "fingerprint": "79a8fbfc21d4f2f08d4dd9e8a64cb9fc9680daac08b3307d760977385a07c01c",
+      "snapshot": {
+        "packages/hotkeys-devtools/src/components/HeldKeysTopbar.tsx": "a446418f534c24973e19d3961855c7dfb1da3c431b232d742514a305645befe5"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:packages/hotkeys/src/_keyboard-event.ts": {
+      "fingerprint": "c69ca358e87eef6fd7968475411fd88eb7ed182daac2e5f2ae58415dd3d63f61",
+      "snapshot": {
+        "packages/hotkeys/src/_keyboard-event.ts": "8412a21edf9396cbd71fc2b422293da86e59c00db23e822b811774080646d7f7"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:packages/hotkeys/src/format.ts": {
+      "fingerprint": "ef12dd98924daef804bcf88e93cd64dc13fef7ec88314134b65bb097d3f34872",
+      "snapshot": {
+        "packages/hotkeys/src/format.ts": "1e90d395202d1594cfa7c0ee7eec5663f8177374fd0d64932e8224fb910e3e73"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:packages/hotkeys/tests/format.test.ts": {
+      "fingerprint": "1096c1cc2e5865743771fe04b2e7c3f30602e6a4d31ab5bd391f21a004c103d1",
+      "snapshot": {
+        "packages/hotkeys/tests/format.test.ts": "2a210868c4b0cd1c0abe4fd28fba188206e991b2d7c442d94892fb11b8c7977a"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:packages/hotkeys/tests/key-coverage.test.ts": {
+      "fingerprint": "3e987fb968e7d13e432e8b1b4f813630569da504f168763906d05d877c4e4d7f",
+      "snapshot": {
+        "packages/hotkeys/tests/key-coverage.test.ts": "3a9c74e69c7f974a29c5d2823bb269e168b82ef7b12a1910c87670a33197cd12"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:packages/hotkeys/tests/parse.test.ts": {
+      "fingerprint": "4dabf58fa9a6c54120699227495764acb8e909a892f566f1dea0b77ad3bfa714",
+      "snapshot": {
+        "packages/hotkeys/tests/parse.test.ts": "82cf384f5db3715452d4da221866268533dd1fa66266e91da4d50aa96e431177"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:packages/hotkeys/tests/typed-behavior.test.ts": {
+      "fingerprint": "d5c4046f5f70d0cd19807202ec3f440aef9acb9a132efa52d9f788f00d5e37dc",
+      "snapshot": {
+        "packages/hotkeys/tests/typed-behavior.test.ts": "1c89fdbf789c0fd3eae7c216ce2658805c47a1ff55e90a8147cfd9247858c15d"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:packages/hotkeys/tests/unified-hotkeys.test.ts": {
+      "fingerprint": "eb7ca333403ae706648f51156536a2f263674d0f23bf2648be98e6dc6f05539d",
+      "snapshot": {
+        "packages/hotkeys/tests/unified-hotkeys.test.ts": "5cbf94a85a08eff0d82bc531d2ddeab6bf68c1fd70a7160b16e28a4d9c3eb634"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:packages/hotkeys/tests/untrusted-input.test.ts": {
+      "fingerprint": "f7c756ac90b6f9d5552ec23cd606d6c8c335579bbb45ff751212e4ee8463c096",
+      "snapshot": {
+        "packages/hotkeys/tests/untrusted-input.test.ts": "726ba4a69f7e7bb1826744fddf18eac73e0a7d5f667d1c43f5d0cc428172dcfa"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+      ]
+    },
+    "source:packages/hotkeys/tests/validate.test.ts": {
+      "fingerprint": "59ef4f65e32b0cd8af5d0f2b70549b6e9479ec908bcbd151bd92a1f7beeda909",
+      "snapshot": {
+        "packages/hotkeys/tests/validate.test.ts": "e93c6c7cd256bff61f7fa63138066f303c9d6839797ecb2f695bc16cd712a775"
+      },
+      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "outcome": "no-change",
+      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "evidence": [
+        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
       ]
     }
   }

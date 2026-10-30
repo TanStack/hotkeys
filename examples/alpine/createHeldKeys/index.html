@@ -30,7 +30,7 @@
                         </template>
                         <kbd class="large">
                           <span
-                            x-text="` ${formatForDisplay(key, { useSymbols: true })} `"
+                            x-text="` ${formatKeyForDisplay(key, { useSymbols: true })} `"
                           ></span>
                           <template x-if="code &amp;&amp; code !== key">
                             <small class="code-label" x-text="code"></small>

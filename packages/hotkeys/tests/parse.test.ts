@@ -38,7 +38,7 @@ describe('parseHotkey', () => {
     it('should parse function keys', () => {
       expect(parseHotkey('F1').key).toBe('F1')
       expect(parseHotkey('F12').key).toBe('F12')
-      expect(parseHotkey('f5').key).toBe('F5') // Case normalization
+      expect(parseHotkey('f5' as never).key).toBe('f5') // Key names are case-sensitive
     })
 
     it('should parse arrow keys', () => {
@@ -46,11 +46,10 @@ describe('parseHotkey', () => {
       expect(parseHotkey('ArrowDown').key).toBe('ArrowDown')
     })
 
-    it('should handle key aliases', () => {
-      expect(parseHotkey('Esc').key).toBe('Escape')
-      expect(parseHotkey('Return').key).toBe('Enter')
-      expect(parseHotkey('Del').key).toBe('Delete')
-      expect(parseHotkey('Plus').key).toBe('+')
+    it('keeps key names as written instead of resolving aliases', () => {
+      expect(parseHotkey('Esc' as never).key).toBe('Esc')
+      expect(parseHotkey('Return' as never).key).toBe('Return')
+      expect(parseHotkey('Plus' as never).key).toBe('Plus')
       expect(parseHotkey('Mod++', 'mac').key).toBe('+')
     })
   })
@@ -205,16 +204,17 @@ describe('normalizeHotkey', () => {
     expect(normalizeHotkey('Mod+S', 'windows')).toBe('Mod+S')
   })
 
-  it('should normalize key aliases', () => {
-    expect(normalizeHotkey('Ctrl+Esc', 'mac')).toBe('Control+Escape')
-    expect(normalizeHotkey('Ctrl+Esc', 'windows')).toBe('Mod+Escape')
-    expect(normalizeHotkey('Mod+Return', 'mac')).toBe('Mod+Enter')
+  it('should normalize modifier aliases but not key aliases', () => {
+    expect(normalizeHotkey('Ctrl+Escape', 'mac')).toBe('Control+Escape')
+    expect(normalizeHotkey('Ctrl+Escape', 'windows')).toBe('Mod+Escape')
+    expect(normalizeHotkey('Mod+Return', 'mac')).toBe('Mod+Return')
   })
 
   it('should normalize single keys', () => {
-    expect(normalizeHotkey('esc')).toBe('Escape')
+    expect(normalizeHotkey('Escape')).toBe('Escape')
     expect(normalizeHotkey('a')).toBe('A')
-    expect(normalizeHotkey('f1')).toBe('F1')
+    expect(normalizeHotkey('F1')).toBe('F1')
+    expect(normalizeHotkey('f1')).toBe('f1')
   })
 
   it('should normalize shuffled Meta chords to Mod-first on Mac', () => {
@@ -278,15 +278,18 @@ describe('normalizeKeyName', () => {
     expect(normalizeKeyName(undefined as unknown as string)).toBe('')
   })
 
-  it('resolves canonical names and aliases in any case', () => {
-    expect(normalizeKeyName('escape')).toBe('Escape')
-    expect(normalizeKeyName('ESC')).toBe('Escape')
-    expect(normalizeKeyName('Up')).toBe('ArrowUp')
-    expect(normalizeKeyName('PgDn')).toBe('PageDown')
+  it('uppercases letters, names the space key, and keeps other names as written', () => {
+    expect(normalizeKeyName('a')).toBe('A')
+    expect(normalizeKeyName('é')).toBe('É')
     expect(normalizeKeyName(' ')).toBe('Space')
-    expect(normalizeKeyName('plus')).toBe('+')
-    expect(normalizeKeyName('f12')).toBe('F12')
+    expect(normalizeKeyName('Escape')).toBe('Escape')
     expect(normalizeKeyName('Dead')).toBe('Dead')
+    // Key names are case-sensitive, and aliases are not resolved
+    expect(normalizeKeyName('escape')).toBe('escape')
+    expect(normalizeKeyName('Esc')).toBe('Esc')
+    expect(normalizeKeyName('Up')).toBe('Up')
+    expect(normalizeKeyName('f12')).toBe('f12')
+    expect(normalizeKeyName('plus')).toBe('plus')
   })
 })
 

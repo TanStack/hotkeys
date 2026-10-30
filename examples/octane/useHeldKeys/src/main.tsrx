@@ -2,7 +2,7 @@ import { createRoot, useEffect, useState } from 'octane'
 
 import {
   HotkeysProvider,
-  formatForDisplay,
+  formatKeyForDisplay,
   useHeldKeyCodes,
   useHeldKeys,
 } from '@tanstack/octane-hotkeys'
@@ -16,7 +16,7 @@ function App() @{
   useEffect(() => {
     if (heldKeys.length > 0) {
       const combo = heldKeys
-        .map((k) => formatForDisplay(k, { useSymbols: true }))
+        .map((k) => formatKeyForDisplay(k, { useSymbols: true }))
         .join(' + ')
       setHistory((h) => {
         // Only add if different from last entry
@@ -44,7 +44,7 @@ function App() @{
   <>
                       @if (index > 0) { <span className="plus">+</span> }
                       <kbd className="large">
-                        {formatForDisplay(key, { useSymbols: true })}
+                        {formatKeyForDisplay(key, { useSymbols: true })}
                         @if (code && code !== key) { <small className="code-label">{code}</small> }
                       </kbd>
                     </> } } @else { <span className="placeholder">Press any keys...</span> }

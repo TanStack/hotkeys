@@ -22,6 +22,8 @@ function KeyDisplay() @{
 }
 ```
 
+To label each held key the way hotkeys are labeled, pass it to `formatKeyForDisplay`: `Shift` becomes `⇧` on macOS and `Escape` becomes `Esc`.
+
 ## Check whether a key is held
 
 `useKeyHold` returns whether one key is held. The component updates only when that key is pressed or released:

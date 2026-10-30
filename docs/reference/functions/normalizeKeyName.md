@@ -7,9 +7,11 @@ title: normalizeKeyName
 function normalizeKeyName(key): string;
 ```
 
-Defined in: [constants.ts:357](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L357)
+Defined in: [constants.ts:248](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L248)
 
-Normalizes a key name to its canonical form.
+Normalizes a key name from a `KeyboardEvent` or a hotkey: single letters
+become uppercase, and the space character becomes `Space`. Other names are
+returned as written, because key names are case-sensitive.
 
 ## Parameters
 
@@ -17,7 +19,7 @@ Normalizes a key name to its canonical form.
 
 `string`
 
-The key name to normalize (can be an alias, lowercase, etc.)
+The key name to normalize
 
 ## Returns
 
@@ -28,8 +30,7 @@ The canonical key name
 ## Example
 
 ```ts
-normalizeKeyName('esc') // 'Escape'
 normalizeKeyName('a') // 'A'
-normalizeKeyName('f1') // 'F1'
+normalizeKeyName(' ') // 'Space'
 normalizeKeyName('ArrowUp') // 'ArrowUp' (already canonical)
 ```

@@ -6,9 +6,8 @@ import {
   endRecording,
 } from './_recording-guard'
 import { chordRejection, hotkeyChordFromKeydown } from './_recorder-chord'
-import { normalizeKeyboardEvent } from './_keyboard-event'
+import { normalizeKeyboardEvent, splitChordParts } from './_keyboard-event'
 import { isModifierKey, parseHotkey, simplifyHotkey } from './parse'
-import { validateHotkey } from './validate'
 import { detectPlatform } from './platform'
 import { isTypingEvent } from './_event-target'
 import type { Store } from './_store'
@@ -351,11 +350,12 @@ export class HotkeyRecorder {
         return
       }
 
-      const validation = validateHotkey(chord)
-      if (!validation.valid) {
+      // Whitespace characters, such as the non-breaking space from Option+Space
+      // on macOS, can't be written in a hotkey
+      if (splitChordParts(chord).some((part) => !part.trim())) {
         options.onReject?.({
           reason: 'invalid',
-          message: validation.errors.join('; '),
+          message: 'Whitespace keys cannot be recorded',
           hotkey: chord,
         })
         return

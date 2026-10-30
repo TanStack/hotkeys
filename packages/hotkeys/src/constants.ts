@@ -1,4 +1,9 @@
-import { LOGICAL_ONLY_NAMED_KEYS, SHARED_NAMED_KEYS } from './_named-keys'
+import {
+  EDITING_KEY_NAMES,
+  LOGICAL_ONLY_NAMED_KEYS,
+  NAVIGATION_KEY_NAMES,
+  SHARED_NAMED_KEYS,
+} from './_named-keys'
 import type {
   CanonicalModifier,
   EditingKey,
@@ -102,34 +107,9 @@ export const MODIFIER_ALIASES: Record<string, CanonicalModifier | 'Mod'> = {
  * Used for validation and type checking. Letter keys are matched case-insensitively
  * in hotkey matching, but normalized to uppercase in canonical form.
  */
-export const LETTER_KEYS = new Set<LetterKey>([
-  'A',
-  'B',
-  'C',
-  'D',
-  'E',
-  'F',
-  'G',
-  'H',
-  'I',
-  'J',
-  'K',
-  'L',
-  'M',
-  'N',
-  'O',
-  'P',
-  'Q',
-  'R',
-  'S',
-  'T',
-  'U',
-  'V',
-  'W',
-  'X',
-  'Y',
-  'Z',
-])
+export const LETTER_KEYS = /* @__PURE__ */ new Set<LetterKey>(
+  'ABCDEFGHIJKLMNOPQRSTUVWXYZ' as Iterable<LetterKey>,
+)
 
 /**
  * Set of all valid number keys (0-9).
@@ -138,18 +118,9 @@ export const LETTER_KEYS = new Set<LetterKey>([
  * so they're excluded from Shift-based hotkey combinations to avoid
  * layout-dependent behavior.
  */
-export const NUMBER_KEYS = new Set<NumberKey>([
-  '0',
-  '1',
-  '2',
-  '3',
-  '4',
-  '5',
-  '6',
-  '7',
-  '8',
-  '9',
-])
+export const NUMBER_KEYS = /* @__PURE__ */ new Set<NumberKey>(
+  '0123456789' as Iterable<NumberKey>,
+)
 
 /**
  * Set of all valid function keys (F1-F24).
@@ -157,32 +128,9 @@ export const NUMBER_KEYS = new Set<NumberKey>([
  * Function keys are commonly used for system shortcuts (e.g., F12 for DevTools,
  * Alt+F4 to close windows) and application-specific commands.
  */
-export const FUNCTION_KEYS = new Set<FunctionKey>([
-  'F1',
-  'F2',
-  'F3',
-  'F4',
-  'F5',
-  'F6',
-  'F7',
-  'F8',
-  'F9',
-  'F10',
-  'F11',
-  'F12',
-  'F13',
-  'F14',
-  'F15',
-  'F16',
-  'F17',
-  'F18',
-  'F19',
-  'F20',
-  'F21',
-  'F22',
-  'F23',
-  'F24',
-])
+export const FUNCTION_KEYS = /* @__PURE__ */ new Set<FunctionKey>(
+  Array.from({ length: 24 }, (_, i) => `F${i + 1}` as FunctionKey),
+)
 
 /**
  * Set of all valid navigation keys for cursor movement and document navigation.
@@ -191,16 +139,9 @@ export const FUNCTION_KEYS = new Set<FunctionKey>([
  * These keys are commonly combined with modifiers for selection (Shift+ArrowUp) or
  * navigation shortcuts (Alt+ArrowLeft for back).
  */
-export const NAVIGATION_KEYS = new Set<NavigationKey>([
-  'ArrowUp',
-  'ArrowDown',
-  'ArrowLeft',
-  'ArrowRight',
-  'Home',
-  'End',
-  'PageUp',
-  'PageDown',
-])
+export const NAVIGATION_KEYS = /* @__PURE__ */ new Set<NavigationKey>(
+  NAVIGATION_KEY_NAMES,
+)
 
 /**
  * Set of all valid editing and special keys.
@@ -209,14 +150,9 @@ export const NAVIGATION_KEYS = new Set<NavigationKey>([
  * special actions (Escape, Space). These keys are frequently combined with modifiers
  * for editor shortcuts (Mod+Enter to submit, Shift+Tab to go back).
  */
-export const EDITING_KEYS = new Set<EditingKey>([
-  'Enter',
-  'Escape',
-  'Space',
-  'Tab',
-  'Backspace',
-  'Delete',
-])
+export const EDITING_KEYS = /* @__PURE__ */ new Set<EditingKey>(
+  EDITING_KEY_NAMES,
+)
 
 /**
  * Set of all valid punctuation keys commonly used in keyboard shortcuts.
@@ -230,40 +166,9 @@ export const EDITING_KEYS = new Set<EditingKey>([
  * Note: Punctuation keys are affected by Shift (Shift+',' → '<' on US layout),
  * so they're excluded from Shift-based hotkey combinations to avoid layout-dependent behavior.
  */
-export const PUNCTUATION_KEYS = new Set<PunctuationKey>([
-  '/',
-  '[',
-  ']',
-  '\\',
-  '=',
-  '-',
-  ',',
-  '.',
-  ';',
-  '`',
-  "'",
-  '+',
-  '?',
-  '!',
-  '@',
-  '#',
-  '$',
-  '%',
-  '^',
-  '&',
-  '*',
-  '(',
-  ')',
-  '_',
-  '{',
-  '}',
-  '|',
-  ':',
-  '"',
-  '<',
-  '>',
-  '~',
-])
+export const PUNCTUATION_KEYS = /* @__PURE__ */ new Set<PunctuationKey>(
+  '/[]\\=-,.;`\'+?!@#$%^&*()_{}|:"<>~' as Iterable<PunctuationKey>,
+)
 
 /**
  * Maps `KeyboardEvent.code` values for punctuation keys to their canonical characters.
@@ -288,12 +193,19 @@ export const PUNCTUATION_CODE_MAP: Record<string, string> = {
   Slash: '/',
 }
 
+// Builds ALL_KEYS without spreads, so bundlers can drop it when unused
+function union<T extends Array<Iterable<unknown>>>(
+  ...groups: T
+): Set<T[number] extends Iterable<infer Key> ? Key : never> {
+  return new Set(groups.flatMap((group) => [...group]) as Array<never>)
+}
+
 /**
  * Set of all valid non-modifier keys.
  *
- * This is the union of all key type sets (letters, numbers, function keys, navigation,
- * editing, and punctuation). Used primarily for validation to check if a key string
- * is recognized and will have type-safe autocomplete support.
+ * This is the union of all key type sets (letters, numbers, function keys,
+ * navigation, editing, punctuation, and other named keys): every key with
+ * type-safe autocomplete support.
  *
  * @see {@link LETTER_KEYS}
  * @see {@link NUMBER_KEYS}
@@ -302,38 +214,16 @@ export const PUNCTUATION_CODE_MAP: Record<string, string> = {
  * @see {@link EDITING_KEYS}
  * @see {@link PUNCTUATION_KEYS}
  */
-export const ALL_KEYS = new Set([
-  ...LETTER_KEYS,
-  ...NUMBER_KEYS,
-  ...FUNCTION_KEYS,
-  ...NAVIGATION_KEYS,
-  ...EDITING_KEYS,
-  ...PUNCTUATION_KEYS,
-  ...SHARED_NAMED_KEYS,
-  ...LOGICAL_ONLY_NAMED_KEYS,
-])
-
-/**
- * Maps lowercase key names and aliases to their canonical form, so lookups
- * are case-insensitive: `'esc'`, `'Esc'`, and `'ESCAPE'` all become `'Escape'`.
- * Canonical names come from {@link ALL_KEYS}, so validation and normalization
- * share one spelling for every key.
- */
-const CANONICAL_KEY_NAMES = /* @__PURE__ */ new Map<string, string>([
-  ...Array.from(ALL_KEYS, (key): [string, string] => [key.toLowerCase(), key]),
-  ['plus', '+'],
-  ['esc', 'Escape'],
-  ['return', 'Enter'],
-  [' ', 'Space'],
-  ['spacebar', 'Space'],
-  ['del', 'Delete'],
-  ['up', 'ArrowUp'],
-  ['down', 'ArrowDown'],
-  ['left', 'ArrowLeft'],
-  ['right', 'ArrowRight'],
-  ['pgup', 'PageUp'],
-  ['pgdn', 'PageDown'],
-])
+export const ALL_KEYS = /* @__PURE__ */ union(
+  LETTER_KEYS,
+  NUMBER_KEYS,
+  FUNCTION_KEYS,
+  NAVIGATION_KEYS,
+  EDITING_KEYS,
+  PUNCTUATION_KEYS,
+  SHARED_NAMED_KEYS,
+  LOGICAL_ONLY_NAMED_KEYS,
+)
 
 /** Whether a key is a single Unicode letter, such as `'a'` or `'é'`. */
 export function isSingleLetterKey(key: string): boolean {
@@ -341,16 +231,17 @@ export function isSingleLetterKey(key: string): boolean {
 }
 
 /**
- * Normalizes a key name to its canonical form.
+ * Normalizes a key name from a `KeyboardEvent` or a hotkey: single letters
+ * become uppercase, and the space character becomes `Space`. Other names are
+ * returned as written, because key names are case-sensitive.
  *
- * @param key - The key name to normalize (can be an alias, lowercase, etc.)
+ * @param key - The key name to normalize
  * @returns The canonical key name
  *
  * @example
  * ```ts
- * normalizeKeyName('esc') // 'Escape'
  * normalizeKeyName('a') // 'A'
- * normalizeKeyName('f1') // 'F1'
+ * normalizeKeyName(' ') // 'Space'
  * normalizeKeyName('ArrowUp') // 'ArrowUp' (already canonical)
  * ```
  */
@@ -366,5 +257,5 @@ export function normalizeKeyName(key: string): string {
     return upper.length === 1 ? upper : key
   }
 
-  return CANONICAL_KEY_NAMES.get(key.toLowerCase()) ?? key
+  return key === ' ' ? 'Space' : key
 }

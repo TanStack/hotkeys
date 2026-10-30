@@ -65,9 +65,8 @@ function formatParsedChord(parsed: ParsedHotkeyChord): string {
   return parts.join('+')
 }
 
-/** A single chord to display: a string, raw object, or parsed hotkey. */
-export type DisplayHotkeyChord =
-  RegisterableHotkeyChord | ParsedHotkeyChord | (string & {})
+/** A single chord to display: a hotkey string, raw object, or parsed hotkey. */
+export type DisplayHotkeyChord = RegisterableHotkeyChord | ParsedHotkeyChord
 
 /** A hotkey to display: a chord or a sequence of chords. */
 export type DisplayHotkey =
@@ -87,7 +86,10 @@ export type DisplayHotkey =
  * Sequence steps are formatted individually and joined with `sequenceSeparator`
  * (a space by default).
  *
- * @param hotkey - A logical or physical string, raw object, ParsedHotkeyChord, or sequence
+ * To display a single key that is not a hotkey, such as a held key from
+ * `KeyStateTracker`, use `formatKeyForDisplay`.
+ *
+ * @param hotkey - A logical or physical hotkey string, raw object, ParsedHotkeyChord, or sequence
  * @param options - Formatting options
  * @returns Display text, or individual key labels when parts is true (one array per step for sequences)
  *
@@ -174,42 +176,91 @@ function formatChordParts(
     }
     segments.sort((a, b) => modifierIndex(a) - modifierIndex(b))
   }
-  const parts = segments.map((segment) => {
-    const modifier = modifierAlias(segment)
-    if (modifier) {
-      return platform === 'mac'
-        ? modifierSymbols
-          ? MAC_MODIFIER_SYMBOLS[modifier]
-          : MAC_MODIFIER_LABELS[modifier]
-        : platform === 'windows'
-          ? WINDOWS_MODIFIER_LABELS[modifier]
-          : LINUX_MODIFIER_LABELS[modifier]
-    }
-    const code = physicalCodeOf(segment)
-    const label = options.keyLabels?.[code ?? segment]
-    if (label !== undefined) return label
-    // Shorten conventional position labels for display only; stored identity is unchanged.
-    const numpad = code?.startsWith('Numpad') ?? false
-    let displayKey = code ?? segment
-    const mappedKey = code ? options.layoutMap?.get(code) : undefined
-    if (mappedKey) {
-      // Layout entries are logical labels; normalize their case and whitespace names.
-      displayKey = normalizeKeyName(mappedKey)
-    } else if (code) {
-      // Numpad keys keep their names (Add, not +) and gain a prefix below.
-      displayKey = numpad ? code.slice(6) : (codeToLogicalKey(code) ?? code)
-    }
-    const labels = keySymbols
-      ? KEY_DISPLAY_SYMBOLS
-      : PUNCTUATION_KEY_DISPLAY_LABELS
-    const display =
-      (labels as Partial<Record<string, string>>)[displayKey] ?? displayKey
-    // Retain numpad identity while making longer names such as MemoryAdd readable.
-    return numpad
-      ? `Numpad ${display.replace(/([a-z])([A-Z])/g, '$1 $2')}`
-      : display
-  })
-  return parts
+  return segments.map((segment) =>
+    formatKey(segment, platform, modifierSymbols, keySymbols, options),
+  )
+}
+
+/** Own properties only, so names such as `toString` never read Object.prototype. */
+function lookup(
+  table: Readonly<Record<string, string>> | undefined,
+  name: string,
+): string | undefined {
+  return table && Object.hasOwn(table, name) ? table[name] : undefined
+}
+
+function formatKey(
+  segment: string,
+  platform: 'mac' | 'windows' | 'linux',
+  modifierSymbols: boolean,
+  keySymbols: boolean,
+  options: FormatDisplayOptions,
+): string {
+  const modifier = modifierAlias(segment)
+  if (modifier) {
+    return platform === 'mac'
+      ? modifierSymbols
+        ? MAC_MODIFIER_SYMBOLS[modifier]
+        : MAC_MODIFIER_LABELS[modifier]
+      : platform === 'windows'
+        ? WINDOWS_MODIFIER_LABELS[modifier]
+        : LINUX_MODIFIER_LABELS[modifier]
+  }
+  const code = physicalCodeOf(segment)
+  const label = lookup(options.keyLabels, code ?? segment)
+  if (label !== undefined) return label
+  // Shorten conventional position labels for display only; stored identity is unchanged.
+  const numpad = code?.startsWith('Numpad') ?? false
+  let displayKey = code ?? segment
+  const mappedKey = code ? options.layoutMap?.get(code) : undefined
+  if (mappedKey) {
+    // Layout entries are logical labels; normalize their case and whitespace names.
+    displayKey = normalizeKeyName(mappedKey)
+  } else if (code) {
+    // Numpad keys keep their names (Add, not +) and gain a prefix below.
+    displayKey = numpad ? code.slice(6) : (codeToLogicalKey(code) ?? code)
+  }
+  const display =
+    lookup(
+      keySymbols ? KEY_DISPLAY_SYMBOLS : PUNCTUATION_KEY_DISPLAY_LABELS,
+      displayKey,
+    ) ?? displayKey
+  // Retain numpad identity while making longer names such as MemoryAdd readable.
+  return numpad
+    ? `Numpad ${display.replace(/([a-z])([A-Z])/g, '$1 $2')}`
+    : display
+}
+
+/**
+ * Formats a single key for display, such as a held key from
+ * `KeyStateTracker` or a modifier on its own. Uses the same labels as
+ * `formatForDisplay`: `Shift` becomes `⇧` on macOS and `Escape` becomes `Esc`.
+ *
+ * @param key - A key name, such as a `KeyboardEvent.key` value or a modifier
+ * @param options - Formatting options
+ *
+ * @example
+ * ```ts
+ * formatKeyForDisplay('Shift', { platform: 'mac' }) // '⇧'
+ * formatKeyForDisplay('Meta', { platform: 'windows' }) // 'Win'
+ * formatKeyForDisplay('a') // 'A'
+ * ```
+ */
+export function formatKeyForDisplay(
+  key: string,
+  options: Pick<
+    FormatDisplayOptions,
+    'platform' | 'useSymbols' | 'keyLabels'
+  > = {},
+): string {
+  const symbols = options.useSymbols ?? true
+  return formatKey(
+    normalizeKeyName(key),
+    options.platform ?? detectPlatform(),
+    modifierSymbolsEnabled(options),
+    typeof symbols === 'boolean' ? symbols : (symbols.keys ?? true),
+    options,
+  )
 }
 
 /**

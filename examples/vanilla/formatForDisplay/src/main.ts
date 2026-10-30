@@ -5,6 +5,7 @@ import {
 } from '@tanstack/hotkeys'
 import type {
   FormatDisplayOptions,
+  HotkeyChord,
   ParsedHotkeyChord,
   RegisterableHotkeyChord,
 } from '@tanstack/hotkeys'
@@ -32,7 +33,7 @@ app.innerHTML = `
 const input = (id: string) => document.getElementById(id) as HTMLInputElement
 const select = (id: string) => document.getElementById(id) as HTMLSelectElement
 const element = (id: string) => document.getElementById(id)!
-const samples = [
+const samples: Array<HotkeyChord> = [
   'Mod+S',
   'Mod+Shift+ArrowUp',
   'Shift+ArrowDown',
@@ -46,7 +47,8 @@ const samples = [
   'Escape',
   'Control++',
   'Alt+.',
-  'Alt+ß',
+  // A key typed by the layout rather than named in the key types
+  'Alt+ß' as HotkeyChord,
   'Alt+[KeyS]',
   'Mod+[Digit2]',
   'Shift+[ArrowUp]',
@@ -105,7 +107,8 @@ function render() {
     ...(input('labels').checked ? { keyLabels } : {}),
     ...(input('layout').checked ? { layoutMap } : {}),
   }
-  const hotkey = input('binding').value
+  // Typed by the user and validated below
+  const hotkey = input('binding').value as HotkeyChord
   const validation = validateHotkey(hotkey)
   element('error').textContent = validation.valid
     ? ''

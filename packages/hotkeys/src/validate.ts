@@ -1,5 +1,5 @@
-import { ALL_KEYS, normalizeKeyName } from './constants'
 import {
+  isKeyNameShape,
   modifierAlias,
   physicalCodeOf,
   splitChordParts,
@@ -102,10 +102,10 @@ function validateChord(hotkey: string): ValidationResult {
     )
   }
 
-  // Aliases such as Esc normalize to a known key
-  if (!isKnownKey(normalizeKeyName(keyPart))) {
+  // Key names are case-sensitive, so a lowercase name never matches
+  if (physicalCodeOf(keyPart) === undefined && !isKeyNameShape(keyPart)) {
     warnings.push(
-      `Unknown key: '${keyPart}'. This may still work but won't have type-safe autocomplete.`,
+      `Unknown key: '${keyPart}'. Key names are case-sensitive, such as 'Escape' and 'F1'.`,
     )
   }
 
@@ -114,15 +114,6 @@ function validateChord(hotkey: string): ValidationResult {
     warnings,
     errors,
   }
-}
-
-/** Physical codes, single characters, and named keys are known. */
-function isKnownKey(key: string): boolean {
-  return (
-    physicalCodeOf(key) !== undefined ||
-    Array.from(key).length === 1 ||
-    ALL_KEYS.has(key as never)
-  )
 }
 
 /**

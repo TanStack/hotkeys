@@ -3,7 +3,7 @@ id: HotkeyRecorder
 title: HotkeyRecorder
 ---
 
-Defined in: [hotkey-recorder.ts:193](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L193)
+Defined in: [hotkey-recorder.ts:192](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L192)
 
 Framework-agnostic class for recording keyboard shortcuts.
 
@@ -47,7 +47,7 @@ recorder.destroy()
 new HotkeyRecorder(options): HotkeyRecorder;
 ```
 
-Defined in: [hotkey-recorder.ts:217](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L217)
+Defined in: [hotkey-recorder.ts:216](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L216)
 
 #### Parameters
 
@@ -66,7 +66,7 @@ Defined in: [hotkey-recorder.ts:217](https://github.com/TanStack/hotkeys/blob/ma
 new HotkeyRecorder(options): HotkeyRecorder;
 ```
 
-Defined in: [hotkey-recorder.ts:220](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L220)
+Defined in: [hotkey-recorder.ts:219](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L219)
 
 #### Parameters
 
@@ -87,7 +87,7 @@ Defined in: [hotkey-recorder.ts:220](https://github.com/TanStack/hotkeys/blob/ma
 readonly store: Store<HotkeyRecorderState>;
 ```
 
-Defined in: [hotkey-recorder.ts:194](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L194)
+Defined in: [hotkey-recorder.ts:193](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L193)
 
 ## Methods
 
@@ -153,7 +153,7 @@ all event listeners are properly removed.
 setOptions(options): void;
 ```
 
-Defined in: [hotkey-recorder.ts:233](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L233)
+Defined in: [hotkey-recorder.ts:232](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L232)
 
 Updates the recorder options, including callbacks.
 This allows framework adapters to sync callback changes without recreating the recorder.
@@ -176,7 +176,7 @@ This allows framework adapters to sync callback changes without recreating the r
 start(): void;
 ```
 
-Defined in: [hotkey-recorder.ts:267](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L267)
+Defined in: [hotkey-recorder.ts:266](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L266)
 
 Start recording a new hotkey.
 

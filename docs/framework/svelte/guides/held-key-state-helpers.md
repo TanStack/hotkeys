@@ -26,6 +26,8 @@ Each function returns an object with a reactive getter. Read the getter where yo
 </div>
 ```
 
+To label each held key the way hotkeys are labeled, pass it to `formatKeyForDisplay`: `Shift` becomes `⇧` on macOS and `Escape` becomes `Esc`.
+
 ## Check whether a key is held
 
 `getIsKeyHeld(key).held` tells you whether one key is held. It updates only when that key is pressed or released:

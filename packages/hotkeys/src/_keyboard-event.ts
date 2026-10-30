@@ -55,8 +55,9 @@ export function codeToLogicalKey(code: string): string | undefined {
   if (/^Digit[0-9]$/i.test(code)) return code.slice(5)
   if (/^Numpad[0-9]$/i.test(code)) return code.slice(6)
 
-  const punctuation = PUNCTUATION_CODE_MAP[code]
-  if (punctuation) return punctuation
+  // Own properties only, so codes such as `toString` never read Object.prototype
+  if (Object.hasOwn(PUNCTUATION_CODE_MAP, code))
+    return PUNCTUATION_CODE_MAP[code]
 
   const named: Record<string, string> = {
     NumpadAdd: '+',
@@ -67,7 +68,7 @@ export function codeToLogicalKey(code: string): string | undefined {
     NumpadEnter: 'Enter',
     Space: 'Space',
   }
-  return named[code]
+  return Object.hasOwn(named, code) ? named[code] : undefined
 }
 
 /**
@@ -152,4 +153,13 @@ export function assertLogicalKey(key: string): void {
       'Logical key must not contain a bracketed physical code. Use the code field instead.',
     )
   }
+}
+
+/**
+ * Whether a key is written like a key the library knows: one character,
+ * F1-F24, or a capitalized name such as `Escape`. Key names are
+ * case-sensitive, so `escape` and `f1` don't qualify.
+ */
+export function isKeyNameShape(key: string): boolean {
+  return /^(?:.|F(?:[1-9]|1\d|2[0-4])|[A-Z][a-z][A-Za-z\d]*)$/su.test(key)
 }

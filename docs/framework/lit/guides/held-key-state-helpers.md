@@ -30,6 +30,8 @@ class KeyDisplay extends LitElement {
 }
 ```
 
+To label each held key the way hotkeys are labeled, pass it to `formatKeyForDisplay`: `Shift` becomes `⇧` on macOS and `Escape` becomes `Esc`.
+
 ## Check whether a key is held
 
 `KeyHoldController` tracks whether one key is held. It updates the element only when that key is pressed or released:

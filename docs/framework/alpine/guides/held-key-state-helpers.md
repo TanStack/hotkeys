@@ -33,6 +33,8 @@ Alpine.data('keyDisplay', () => {
 })
 ```
 
+To label each held key the way hotkeys are labeled, pass it to `formatKeyForDisplay`: `Shift` becomes `⇧` on macOS and `Escape` becomes `Esc`.
+
 ```html
 <div x-data="keyDisplay" x-text="label"></div>
 ```

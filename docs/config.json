@@ -2297,6 +2297,10 @@
           "to": "reference/functions/formatForDisplay"
         },
         {
+          "label": "formatKeyForDisplay",
+          "to": "reference/functions/formatKeyForDisplay"
+        },
+        {
           "label": "FormatDisplayOptions",
           "to": "reference/interfaces/FormatDisplayOptions"
         },

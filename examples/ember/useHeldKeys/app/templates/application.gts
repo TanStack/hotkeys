@@ -6,7 +6,7 @@ import { modifier } from 'ember-modifier'
 import { cancel, schedule } from '@ember/runloop'
 import { on } from '@ember/modifier'
 import {
-  formatForDisplay,
+  formatKeyForDisplay,
   useHeldKeys,
   useHeldKeyCodes,
 } from '@tanstack/ember-hotkeys'
@@ -27,7 +27,7 @@ class App extends Component {
   recordHistory = modifier((_element, [keys]: [Array<string>]) => {
     if (keys.length === 0) return
     const combo = keys
-      .map((key) => formatForDisplay(key, { useSymbols: true }))
+      .map((key) => formatKeyForDisplay(key, { useSymbols: true }))
       .join(' + ')
     const timer = schedule('afterRender', () => {
       if (this.history.at(-1) !== combo) {
@@ -56,7 +56,7 @@ class App extends Component {
               }}{{#let (this.keyCode key) as |code|}}
                   {{#if (gt index 0)}}<span class='plus'>+</span>{{/if}}
                   <kbd class='large'>
-                    {{formatForDisplay key (hash useSymbols=true)}}
+                    {{formatKeyForDisplay key (hash useSymbols=true)}}
                     {{#if (and code (neq code key))}}<small
                         class='code-label'
                       >{{code}}</small>{{/if}}

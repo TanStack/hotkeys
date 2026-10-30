@@ -60,3 +60,25 @@ export const LOGICAL_ONLY_NAMED_KEYS = [
   'Hankaku',
   'ZenkakuHankaku',
 ] as const
+
+/** Arrow, Home/End, and PageUp/PageDown keys. */
+export const NAVIGATION_KEY_NAMES = [
+  'ArrowUp',
+  'ArrowDown',
+  'ArrowLeft',
+  'ArrowRight',
+  'Home',
+  'End',
+  'PageUp',
+  'PageDown',
+] as const
+
+/** Editing and special keys. */
+export const EDITING_KEY_NAMES = [
+  'Enter',
+  'Escape',
+  'Space',
+  'Tab',
+  'Backspace',
+  'Delete',
+] as const
