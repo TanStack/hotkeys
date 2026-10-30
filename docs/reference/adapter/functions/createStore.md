@@ -7,7 +7,7 @@ title: createStore
 function createStore<T>(initialState): Store<T>;
 ```
 
-Defined in: \_store.ts:33
+Defined in: [\_store.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/_store.ts#L33)
 
 Creates a store. Listeners run synchronously after each change, and an
 update to an equal value (by `Object.is`) notifies no one.
