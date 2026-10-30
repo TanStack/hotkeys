@@ -144,7 +144,10 @@ const RAW_CHORDS = [
     { key, ctrl: true, shift: true },
     { key, alt: true, meta: true },
   ]),
-  ...PHYSICAL_CODES.flatMap((code) => [{ code }, { code, mod: true, alt: true }]),
+  ...PHYSICAL_CODES.flatMap((code) => [
+    { code },
+    { code, mod: true, alt: true },
+  ]),
 ]
 const SEQUENCES = KEYS.slice(0, 200).map(
   (key, i) =>
@@ -224,7 +227,10 @@ const EVENTS: Array<KeyboardEventInit> = [
 const CHARACTER_EVENTS: Array<KeyboardEventInit> = []
 for (let point = 0x20; point <= 0x2fff; point++) {
   const key = String.fromCodePoint(point)
-  CHARACTER_EVENTS.push({ key, code: '' }, { key, code: 'KeyA', shiftKey: true })
+  CHARACTER_EVENTS.push(
+    { key, code: '' },
+    { key, code: 'KeyA', shiftKey: true },
+  )
 }
 
 /** Hashes every result, so a single changed output changes the fingerprint. */
@@ -299,7 +305,10 @@ describe('typed hotkeys and real events', () => {
         { platform, useSymbols: { modifiers: false } },
         { platform, parts: true },
         { platform, layoutMap },
-        { platform, keyLabels: { Escape: 'Esc!', KeyA: 'A-key', '/': 'slash' } },
+        {
+          platform,
+          keyLabels: { Escape: 'Esc!', KeyA: 'A-key', '/': 'slash' },
+        },
         { platform, separatorToken: ' + ' },
       ],
     )
