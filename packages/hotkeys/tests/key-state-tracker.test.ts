@@ -483,4 +483,46 @@ describe('KeyStateTracker', () => {
       expect(tracker.isKeyHeld('A')).toBe(true)
     })
   })
+
+  describe('lost keyups', () => {
+    it('forgets held keys when a native context menu opens', () => {
+      const tracker = KeyStateTracker.getInstance()
+      dispatchKey('keydown', 'Shift', 'ShiftLeft', { shiftKey: true })
+      dispatchKey('keydown', 'ContextMenu', 'ContextMenu', { shiftKey: true })
+      document.dispatchEvent(
+        trusted(
+          new MouseEvent('contextmenu', { bubbles: true, shiftKey: true }),
+        ),
+      )
+      // Shift is still reported as held, so it stays.
+      expect(tracker.getHeldKeys()).toEqual(['Shift'])
+      document.dispatchEvent(
+        trusted(new MouseEvent('contextmenu', { bubbles: true })),
+      )
+      expect(tracker.getHeldKeys()).toEqual([])
+    })
+
+    it('keeps held keys when the page shows its own context menu', () => {
+      const tracker = KeyStateTracker.getInstance()
+      dispatchKey('keydown', 'k', 'KeyK')
+      const event = new MouseEvent('contextmenu', {
+        bubbles: true,
+        cancelable: true,
+      })
+      event.preventDefault()
+      document.dispatchEvent(event)
+      expect(tracker.getHeldKeys()).toEqual(['K'])
+    })
+
+    it('forgets held keys when the page is hidden', () => {
+      const tracker = KeyStateTracker.getInstance()
+      dispatchKey('keydown', 'k', 'KeyK')
+      const hidden = vi.spyOn(document, 'hidden', 'get').mockReturnValue(false)
+      document.dispatchEvent(new Event('visibilitychange', { bubbles: true }))
+      expect(tracker.getHeldKeys()).toEqual(['K'])
+      hidden.mockReturnValue(true)
+      document.dispatchEvent(new Event('visibilitychange', { bubbles: true }))
+      expect(tracker.getHeldKeys()).toEqual([])
+    })
+  })
 })

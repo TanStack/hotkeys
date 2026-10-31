@@ -16,7 +16,9 @@ import { matchKeyboardEvent, parsedChordsEqual } from './_match'
 import {
   isKeyNameShape,
   keysEqual,
+  modifierAlias,
   normalizeKeyboardEvent,
+  splitChordParts,
 } from './_keyboard-event'
 import {
   GLOBAL_SCOPE,
@@ -872,6 +874,17 @@ export class HotkeyManager {
           )
         }
       }
+      // Parsing drops unknown modifiers, so 'Ctl+K' would fire on a bare K.
+      for (const step of isHotkeySequence(hotkey) ? hotkey : [hotkey]) {
+        if (typeof step !== 'string') continue
+        for (const part of splitChordParts(step).slice(0, -1)) {
+          if (!modifierAlias(part.trim())) {
+            console.warn(
+              `Unknown modifier '${part.trim()}' in '${formatForMessage(registration.hotkey)}'. It is ignored, so this hotkey fires without it.`,
+            )
+          }
+        }
+      }
     }
 
     // Check for existing registrations with the same hotkey and target
@@ -885,9 +898,10 @@ export class HotkeyManager {
       )
     }
 
-    this.registrations.setState((prev) => new Map(prev).set(id, registration))
-
+    // Listen first, so a target that can't listen leaves no registration.
     this.#listeners.add(target, !!registration.options.capture, id)
+
+    this.registrations.setState((prev) => new Map(prev).set(id, registration))
 
     const manager = this
     return {
@@ -1157,8 +1171,14 @@ export class HotkeyManager {
         continue
       }
 
-      // Only execute callback if requireReset is not active or hasn't fired yet
-      if (!registration.options.requireReset || !registration.hasFired) {
+      // requireReset skips auto-repeats until release. A keydown that isn't a
+      // repeat is a new press, even when the last release was never seen,
+      // such as the key's keyup that macOS drops while Command is held.
+      if (
+        !registration.options.requireReset ||
+        !registration.hasFired ||
+        !event.repeat
+      ) {
         // Set the latch before callbacks can update options and copy this registration.
         if (registration.options.requireReset) {
           registration.hasFired = true
@@ -1404,7 +1424,7 @@ export class HotkeyManager {
   }
 
   /**
-   * Finds an existing registration on the same target and scope whose steps
+   * Finds an existing registration on the same target, scope, and event type whose steps
    * resolve to the same identity. Each side keeps its own platform, so `Mod+S` on macOS
    * and `Mod+S` on Windows are different bindings.
    */
@@ -1416,6 +1436,7 @@ export class HotkeyManager {
       if (
         registration.target === candidate.target &&
         registration.options.scope === candidate.options.scope &&
+        registration.options.eventType === candidate.options.eventType &&
         sameResolvedSteps(resolvedSteps(registration), steps)
       ) {
         return registration

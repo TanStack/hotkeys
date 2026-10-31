@@ -3,10 +3,10 @@
   "baseline": "ad56a4b0dbf3c34d8552eca2cc88c5c7000d520a",
   "items": {
     "skill:packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": {
-      "fingerprint": "47d770049cf64364301b4a22c655c5f0bb440bef24ef3a760fb88299ccf4058f",
+      "fingerprint": "0d946ee200e3c95a62b1ac2e92c5fddbd46735a7cededda1d083665899295535",
       "snapshot": {
         "docs/framework/alpine/guides/app-hotkeys.md": "55bc28d92b05369212fe069ee1bc402ba341eead4ea8c0a6220aaaba3db2ddf9",
-        "docs/framework/alpine/quick-start.md": "de471401f70d66c2a81182f917f6eef02d808bdda1a2bc6268a6aa1e5365000c",
+        "docs/framework/alpine/quick-start.md": "cca1aa4d9bbcf1ed7b9b4fb2b9cdf35880d9c2f9d6a64b0ca49dd1a4d746eb76",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "8c0a3ab25f684d8445925d43dbadabb4e491b12001d78811cbf0d3f41db044c8",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "fdc12aafd6098bde8b4e7f5d8a8afb12227ac99cd753e06fc27401d5d8c8fead",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "f712ddb3354230197eb54d6f270d00a41c2b889e60690e70853569fe1a5207ea",
@@ -15,11 +15,12 @@
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "6de5d72206289c2ad4b3719cd69474450770cb006abf951f1419ed70a58bdb7c"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "no-change",
-      "reason": "Guidance is still accurate: undefined options now keep their defaults, nullish and empty hotkeys register nothing, hint helpers return false for no hotkey, and providers apply changed customHotkeys. No skill recommends forwarding undefined, null targets meaning document, the ?? [] workaround, or remounting the provider for saved data.",
+      "reason": "The quick start only copies the guide's $refs caveat for null targets; the skill makes no claim about null targets or $refs.",
       "evidence": [
-        "grep of skills for null, undefined, ?? [], target, customHotkeys, and 'once'; references still pass customHotkeys the same way, and 'an undefined target means document' remains true."
+        "docs/framework/alpine/quick-start.md",
+        "grep of the Alpine skill for null and $refs"
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
@@ -91,16 +92,16 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "67f9a249ba288b20282a7af7c90b892948b47fce53ab28d7d1dfc41315ee1e35",
+      "fingerprint": "3103a6a08ec0d2252f2bb000a285e95a5e9785627ce11f8a0a4f724ab74b5a26",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
-        "docs/framework/react/guides/hotkeys.md": "9adbed31e63b22869579555ed079207cfeedbe6f9524c8fd1a289756fa22f0a3",
+        "docs/framework/react/guides/hotkeys.md": "057f320c6ed3629ee9b13501e9e3c1f2ccd302395edd6983abfd1398c172f22b",
         "docs/framework/react/guides/sequences.md": "e66231380dab6222508a1305d83586459b59953c2ecc47b9549e3cb29ffcd355",
-        "docs/guides/sensible-defaults.md": "f104881097a435a8f4874f969cef3d59e2ef17ec97f5a8c121ba303d036539b7",
+        "docs/guides/sensible-defaults.md": "3ca71598b3de383974ec16c5b0fd10855735237853ccddb711680b98d2a437f2",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "a45229edb827101dd019587c5e20965954a508eb5ba57ef6680e53d084585df8",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
-        "packages/hotkeys/skills/hotkeys-core/references/testing.md": "90e6512868c194f6c906711cd16882c204600a3118b08b7a101ff6b409012538",
-        "packages/hotkeys/src/hotkey-manager.ts": "eb680546fb42f8c95fd33d1766b0ca4bfa041a7a4154a4777a949f65a4559b90",
+        "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
+        "packages/hotkeys/src/hotkey-manager.ts": "f7c09528f4a5194bb0a55a776f5b3933a200cb217b5761e523002b25ad6accb3",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "d7747b87eae074ab3620484f64cf13ea9c27d24d059d56d9a9a07ccf0c2d3e06",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -112,18 +113,20 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "no-change",
-      "reason": "Guidance is still accurate: undefined options now keep their defaults, nullish and empty hotkeys register nothing, hint helpers return false for no hotkey, and providers apply changed customHotkeys. No skill recommends forwarding undefined, null targets meaning document, the ?? [] workaround, or remounting the provider for saved data.",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "updated",
+      "reason": "references/testing.md now says a keydown without repeat is a new press that fires a requireReset chord again. SKILL.md stays accurate: chords still repeat while held, and requireReset still stops auto-repeats.",
       "evidence": [
-        "grep of skills for null, undefined, ?? [], target, customHotkeys, and 'once'; references still pass customHotkeys the same way, and 'an undefined target means document' remains true."
+        "packages/hotkeys/skills/hotkeys-core/references/testing.md",
+        "packages/hotkeys/src/hotkey-manager.ts",
+        "docs/guides/sensible-defaults.md"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
-      "fingerprint": "7c7b736d98688774885c5791949f0c37a4e3e1540bdf479a6549aa41726dc984",
+      "fingerprint": "d29723cfa91c4e7bc61c43484e3332a16d3a2af47837333faa01869c68a03b29",
       "snapshot": {
         "docs/framework/lit/guides/app-hotkeys.md": "c091b64c939cdc0fe4013efa3416a475c80555ab56e7d18956582b88fa8215ae",
-        "docs/framework/lit/quick-start.md": "cb51d2c81a8d9288d435af6e54366188c4175b9f18a434fbb85643eb13856ae4",
+        "docs/framework/lit/quick-start.md": "fd738e4fc1bad5b588d00c885cad37c633030e13de86b1f5870699043387430a",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "ecd0100b52a00fc90ce71f244093da667d0c5ff78ecaf632d9db26f1c66c8e40",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "659ca9bebf4200bb693c693addb17bd5a943904e482514f2014f5ca426629e96",
         "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "4661f2f5468dc484ab02284f1cb96eec411445ef7981390f31d37e491e51a603",
@@ -131,12 +134,10 @@
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "2cd53d54c3240e93c7256a59f54aec5022de1eece74da09d301ecf4ee2e3b7fc",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "2730f3178f6e5f6695fa0c2f8d25d7040c2ff841d3de486acffef86cfc76395f"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "no-change",
-      "reason": "Guidance is still accurate: undefined options now keep their defaults, nullish and empty hotkeys register nothing, hint helpers return false for no hotkey, and providers apply changed customHotkeys. No skill recommends forwarding undefined, null targets meaning document, the ?? [] workaround, or remounting the provider for saved data.",
-      "evidence": [
-        "grep of skills for null, undefined, ?? [], target, customHotkeys, and 'once'; references still pass customHotkeys the same way, and 'an undefined target means document' remains true."
-      ]
+      "reason": "The quick start now says @hotkey needs experimentalDecorators and useDefineForClassFields: false, which the skill already states.",
+      "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
       "fingerprint": "254e9713db3e3ee983c38f7ec40a76506a10fca74aa9084d81b5ccc001569b51",
@@ -276,19 +277,19 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "42363416edaf561dece44580ad71be9da38ea987251dcf32a6635538253f0e71",
+      "fingerprint": "6e03c9084f36a09acc446033f24e86d7c7b111aa6a66f539ee34152f35fa25f5",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
         "_artifacts/skill_tree.yaml": "c7e0b30458bd11e3a52e728163838166def6ee64419f1b632f1ea36a37e573af",
         "docs/framework/alpine/guides/app-hotkeys.md": "55bc28d92b05369212fe069ee1bc402ba341eead4ea8c0a6220aaaba3db2ddf9",
-        "docs/framework/alpine/quick-start.md": "de471401f70d66c2a81182f917f6eef02d808bdda1a2bc6268a6aa1e5365000c",
+        "docs/framework/alpine/quick-start.md": "cca1aa4d9bbcf1ed7b9b4fb2b9cdf35880d9c2f9d6a64b0ca49dd1a4d746eb76",
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "003fba191e3d13d4466754644c4d2174a550f48d437028bc163ba6acca6546ad",
         "docs/framework/angular/quick-start.md": "d1cc5f91cd50b579c8a4bd9811e76862308855ce602556e4fa36561bc7d62822",
         "docs/framework/ember/guides/app-hotkeys.md": "fbe213ed8b89a59c6915c9ecfcfe8a1dbd184a0535e5d2b48fe8b8f06108d342",
         "docs/framework/ember/quick-start.md": "cabdc0cbd2b9ac6d4d7f9f2c8b8d3fc6ef2ac8c23df4cd8ebc9745c99023f8c8",
         "docs/framework/lit/guides/app-hotkeys.md": "c091b64c939cdc0fe4013efa3416a475c80555ab56e7d18956582b88fa8215ae",
-        "docs/framework/lit/quick-start.md": "cb51d2c81a8d9288d435af6e54366188c4175b9f18a434fbb85643eb13856ae4",
+        "docs/framework/lit/quick-start.md": "fd738e4fc1bad5b588d00c885cad37c633030e13de86b1f5870699043387430a",
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
         "docs/framework/octane/quick-start.md": "2ddb77d76eefae05feb5183206687bf4fd4ac3b18e43cc5e51a934b361702ea1",
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
@@ -297,7 +298,7 @@
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "a3f793e81c6a6e1e6aaf3d63c6b79114ea7d6f461123d371c0b4f0a23ffd88bc",
         "docs/framework/react/guides/custom-hotkey-recording.md": "ea9b70d7bbeb5846b0284e843960bf667b2ae6ffbe85742fb5ba332de170ca29",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
-        "docs/framework/react/guides/hotkeys.md": "9adbed31e63b22869579555ed079207cfeedbe6f9524c8fd1a289756fa22f0a3",
+        "docs/framework/react/guides/hotkeys.md": "057f320c6ed3629ee9b13501e9e3c1f2ccd302395edd6983abfd1398c172f22b",
         "docs/framework/react/guides/sequences.md": "e66231380dab6222508a1305d83586459b59953c2ecc47b9549e3cb29ffcd355",
         "docs/framework/react/quick-start.md": "d587fccff19a0cf3c131f832a8eb423d5d4892e78e521aa856fd23485015afe7",
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
@@ -306,7 +307,7 @@
         "docs/framework/svelte/quick-start.md": "dac9d02db91eaf3aed4eba39d6fb31a4a460bb3f84ba85c0576d3573b5ecf3d1",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "405eb90a8209f439db06d2e3d861acaa324b6598488c1705575ad56dccbb6ad3",
         "docs/framework/vue/quick-start.md": "80bedac58ab9aee3b4bc5f59582b5b836c37fe14f08ab670eababf88a45e76c2",
-        "docs/guides/sensible-defaults.md": "f104881097a435a8f4874f969cef3d59e2ef17ec97f5a8c121ba303d036539b7",
+        "docs/guides/sensible-defaults.md": "3ca71598b3de383974ec16c5b0fd10855735237853ccddb711680b98d2a437f2",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "8c0a3ab25f684d8445925d43dbadabb4e491b12001d78811cbf0d3f41db044c8",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "fdc12aafd6098bde8b4e7f5d8a8afb12227ac99cd753e06fc27401d5d8c8fead",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "f712ddb3354230197eb54d6f270d00a41c2b889e60690e70853569fe1a5207ea",
@@ -333,10 +334,10 @@
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "a45229edb827101dd019587c5e20965954a508eb5ba57ef6680e53d084585df8",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
-        "packages/hotkeys/skills/hotkeys-core/references/testing.md": "90e6512868c194f6c906711cd16882c204600a3118b08b7a101ff6b409012538",
+        "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/app-hotkeys.ts": "a6176a749dd7439146c335e769dfae1a2cd72ace029f9cbc64b52ff5fe2d9d03",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
-        "packages/hotkeys/src/hotkey-manager.ts": "eb680546fb42f8c95fd33d1766b0ca4bfa041a7a4154a4777a949f65a4559b90",
+        "packages/hotkeys/src/hotkey-manager.ts": "f7c09528f4a5194bb0a55a776f5b3933a200cb217b5761e523002b25ad6accb3",
         "packages/hotkeys/src/hotkey-recorder.ts": "7d479391753ffa97e69a7d7cb994cb7053a7ffb3e0aed6dfbfb2dbbdf51a3d24",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "ecd0100b52a00fc90ce71f244093da667d0c5ff78ecaf632d9db26f1c66c8e40",
@@ -405,10 +406,13 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "76815116b5ecf5af434a3ff041df5c0e01e11d0ef41e77ee2893d560e1565879",
         "packages/vue-hotkeys/src/useHotkeys.ts": "fafa900972db553504a850657d2e1829d53928e09bbdd219f6afc24eb9942bd2"
       },
-      "head": "730c6d5bcd2096d3a2612cac32e2473d0f46d4a9",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "no-change",
-      "reason": "Comparison fix inside AppHotkeysStore; skill tree and mappings are unchanged.",
-      "evidence": ["packages/hotkeys/src/app-hotkeys.ts"]
+      "reason": "Edge-case fixes in matching, registration and the key state tracker, plus doc corrections; the skill tree and mappings are unchanged.",
+      "evidence": [
+        "packages/hotkeys/src/hotkey-manager.ts",
+        "docs/guides/sensible-defaults.md"
+      ]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -642,23 +646,23 @@
       "evidence": ["docs/framework/vue/reference/functions/useHotkeyHint.md"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "19807e4ac46f7e107ad7f8f3fb609f77ffc3b84cf976cf9baf078c25e8841c8a",
+      "fingerprint": "0d2368c5f0c596246c87020aae2ca2ae437ab28228b9ff9dd86e70fc6e8023f0",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "cb2803441b337d7686e80ba463c58b4eaaa06f9fb1753202de2ef5b7b9439e2f"
+        "docs/reference/classes/HotkeyManager.md": "dd8ec8af633ef13271785a28472a07a8b6a9a1d58b4923046de45576c5b84cf8"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
       "evidence": ["docs/reference/classes/HotkeyManager.md"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "e934d83f42e8a1c5192d82c23ba81c08f26db73df5ee7f4af603f1817234675f",
+      "fingerprint": "cd7982839c933a1ec0e090babc955ef81076f8bed35e7b92c39c6266d6b4368d",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "f96f51066f1d1c0d2369ffbe45b071e67fcd7a374dce91d6da418f2ae0fc6b79"
+        "docs/reference/functions/getHotkeyManager.md": "3f0f5d20c61e8178aaa7ff4698f61b28aa3b0fa587787f76179bd61e5bfb8402"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
       "evidence": ["docs/reference/functions/getHotkeyManager.md"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
@@ -1042,235 +1046,235 @@
       "evidence": ["packages/vue-hotkeys/tests/hints.test.ts"]
     },
     "source:docs/framework/alpine/guides/hotkeys.md": {
-      "fingerprint": "94d551023f2f9c57b2053dd8bf06cdf5c000eaebc54fb7decb5f920f7602876c",
+      "fingerprint": "147afebc83a07845e7ea9b38b8c3696c6cf649b31b0712528fbab7ddbede28e7",
       "snapshot": {
-        "docs/framework/alpine/guides/hotkeys.md": "e6f3c48ea3cc94395cadf106f9981b64b9e2ed068a817b519ce5897092ddb26c"
+        "docs/framework/alpine/guides/hotkeys.md": "f9aae7d90ded83da0aed84bce26f6fbabdb0c39f8d8a0e792fb4e6dd5fe280f8"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Guide wording fix (duplicate check includes event type, or an Alpine sentence); no skill makes the corrected claim.",
       "evidence": ["docs/framework/alpine/guides/hotkeys.md"]
     },
     "source:docs/framework/angular/guides/hotkeys.md": {
-      "fingerprint": "3475e0d21c50d9b97117d06a1c5f1c5dd3c27caf04acb0acee364650d21046e6",
+      "fingerprint": "cecb3fb6d09dcbb55bdb79ab3951413bb93e860e5470d5fd6769c793b3c024cb",
       "snapshot": {
-        "docs/framework/angular/guides/hotkeys.md": "a74b92eb1b3781d12701e7f66f46c5927b9e4f18bc0723b72746333c06ff4bdb"
+        "docs/framework/angular/guides/hotkeys.md": "06187b07f02f3a0da85baf23fe841a7c4a3e8b68ddce56ac1ebe673d3da62369"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Guide wording fix (duplicate check includes event type, or an Alpine sentence); no skill makes the corrected claim.",
       "evidence": ["docs/framework/angular/guides/hotkeys.md"]
     },
     "source:docs/framework/ember/guides/hotkeys.md": {
-      "fingerprint": "0122406698f0678abce391101545ef3674a170489cb4e179b7aad2ae196eb9c6",
+      "fingerprint": "46978502d50ad4b27b32a631c4c13f76212a76a3832c142c9f0ca6e1a2e276c4",
       "snapshot": {
-        "docs/framework/ember/guides/hotkeys.md": "524934c81eb29fd6c54a4b507e7a18a1744fa6f94496a3a85066f3ac412ca7f9"
+        "docs/framework/ember/guides/hotkeys.md": "1de9d9e50cef8cb0119fa944cb1acce8761f2d990bc53365ec43b71a651dd0a9"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Guide wording fix (duplicate check includes event type, or an Alpine sentence); no skill makes the corrected claim.",
       "evidence": ["docs/framework/ember/guides/hotkeys.md"]
     },
     "source:docs/framework/lit/guides/hotkeys.md": {
-      "fingerprint": "9e0e0957640b2f8618285342cd7ca8ae3be724ea7998fc946145e1521e0d069a",
+      "fingerprint": "73569c33addde5464258a8b22055135ebdb69164f0a5cf1c43f14848948ee609",
       "snapshot": {
-        "docs/framework/lit/guides/hotkeys.md": "079586230bb586243c61a691d7c22872377750180e79b2db79a2b744766e32c8"
+        "docs/framework/lit/guides/hotkeys.md": "d711134c87387447573935d5b258351786b05816c529b97800cb44844c1e346d"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Guide wording fix (duplicate check includes event type, or an Alpine sentence); no skill makes the corrected claim.",
       "evidence": ["docs/framework/lit/guides/hotkeys.md"]
     },
     "source:docs/framework/octane/guides/hotkeys.md": {
-      "fingerprint": "32fef6799a3fedf481a5bf3339bb8e0fb7c8781fe69a844797327d4d39edc708",
+      "fingerprint": "9713c1d1a6a70a8993505f1eb189fd498241daed358be75cad4201fc5efecf94",
       "snapshot": {
-        "docs/framework/octane/guides/hotkeys.md": "5c5214082be9fbf42f6acedacb3246ac6a6a7b356a673d285eb9716474b159f4"
+        "docs/framework/octane/guides/hotkeys.md": "71a28c190e5d2c1cf7df04101798488fd38246c070785b948fc197fe94593d99"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Guide wording fix (duplicate check includes event type, or an Alpine sentence); no skill makes the corrected claim.",
       "evidence": ["docs/framework/octane/guides/hotkeys.md"]
     },
     "source:docs/framework/preact/guides/hotkeys.md": {
-      "fingerprint": "f9ce1297e99d9745ca6fd30a4397b39a5d98d97c17becb8be34afd22566e03b5",
+      "fingerprint": "ff55aebfb17b4b7f8f2a7f0c5c069637c766ba1ee75ed42c2e9681e66f45fc84",
       "snapshot": {
-        "docs/framework/preact/guides/hotkeys.md": "fc1bd312020e02b60827f7516d14bb8f95a34c8bc6501c5c10163d6eb2d71054"
+        "docs/framework/preact/guides/hotkeys.md": "649b5b82268d6e0da7e6f0cfe2d6409d8f20b76d1558bec14c9b3e0060f6050c"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Guide wording fix (duplicate check includes event type, or an Alpine sentence); no skill makes the corrected claim.",
       "evidence": ["docs/framework/preact/guides/hotkeys.md"]
     },
     "source:docs/framework/solid/guides/hotkeys.md": {
-      "fingerprint": "955485e349323849b8ac67d0774b67f97859f80fc92515381cf082f64c354d70",
+      "fingerprint": "08a1ca7822b02a3644b3d66a04e226b44a3c2f355a73fa924cb556ae888a93aa",
       "snapshot": {
-        "docs/framework/solid/guides/hotkeys.md": "c98dc07972ab07a88591016af8ca998371669d955beef34fc8a2d6936049ed67"
+        "docs/framework/solid/guides/hotkeys.md": "2d753972163fddeedd74c70d8db22fc5a84da27e3de2ac5daa9fa26324a5bde6"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Guide wording fix (duplicate check includes event type, or an Alpine sentence); no skill makes the corrected claim.",
       "evidence": ["docs/framework/solid/guides/hotkeys.md"]
     },
     "source:docs/framework/svelte/guides/hotkeys.md": {
-      "fingerprint": "5b231f77e9f60a4d079d897f5867ac26cae82449eaa66b7b4982a8ee2c45b4a5",
+      "fingerprint": "5a16df7c9bca33d99d404696d2b60f5bed0c05aa82c1aec51e66fe782a602bd2",
       "snapshot": {
-        "docs/framework/svelte/guides/hotkeys.md": "cc516e601a1db581bae86547d9605433f5a3540a6f5db04db26c18fa5e796ab1"
+        "docs/framework/svelte/guides/hotkeys.md": "530323a8b9a62a3377e3a3312b2f0fbb1eb941f04ba800e54caa571bd5575094"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Guide wording fix (duplicate check includes event type, or an Alpine sentence); no skill makes the corrected claim.",
       "evidence": ["docs/framework/svelte/guides/hotkeys.md"]
     },
     "source:docs/framework/vue/guides/hotkeys.md": {
-      "fingerprint": "e4d83acdb2d58e980e464b55a5d615bce1f1f473af1c4fdf9c326a6e9706dea5",
+      "fingerprint": "6301b076c751689bebbe8271406efa8fc8b72f076bf808269e94ee31852f0f93",
       "snapshot": {
-        "docs/framework/vue/guides/hotkeys.md": "c52cc0507059d8c644fa137167105c12eb26c204fd86ff270f8180471d2da3c8"
+        "docs/framework/vue/guides/hotkeys.md": "abbee061b12ef00b300b0d783c9e4310811dfb10eafb619d6a7874d38b962128"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Guide wording fix (duplicate check includes event type, or an Alpine sentence); no skill makes the corrected claim.",
       "evidence": ["docs/framework/vue/guides/hotkeys.md"]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
-      "fingerprint": "47916b4d37837c9bc206db359e17f557c4417901ba61905010e1b3699b71b84d",
+      "fingerprint": "b64086dcdb39feb88c7c629a699fac5930a5481132740096ad5728a557fc27ea",
       "snapshot": {
-        "docs/reference/functions/toHotkeyRegistrationView.md": "4fd2506a1571af8bdc213655eb0e7a9165d62569033a2d04e3c5ff5e70bd5831"
+        "docs/reference/functions/toHotkeyRegistrationView.md": "1ee644c352007d10365e19b23007eb23691aeee7231ff045e88443a4adb2bf15"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
       "evidence": ["docs/reference/functions/toHotkeyRegistrationView.md"]
     },
     "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
-      "fingerprint": "e634dfbf2c1961aee5a1377c5f17500d93e4bdae4401eaa4d3fd03260660c81e",
+      "fingerprint": "6ed512b202dafa1516434e5e98d7ad31a9582d15c7053e64b96f472ed7b2a696",
       "snapshot": {
-        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "a8a858ef958530fb975951998ea80d4e6542f8ba9d0da6f3f6ea920ec75f2f81"
+        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "f8b39890e871a9eb6a531c4ab87ec261037e5d2d9938ae05f18ad5f9c62f3e93"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
       "evidence": ["docs/reference/interfaces/ActivateHotkeyScopeOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordOptions.md": {
-      "fingerprint": "377c9e1547e7eb4d29152adbacbd882cb3c0ac1c29fd8f809a6fe26b84c62083",
+      "fingerprint": "4f1d1984ded622d7d7fc0a562cc8e390ffdd5aae69a282c662fb884595d725d8",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordOptions.md": "68899eab54c9cf9cc6df35c498258bc521fa3c4ebc4235e3df5ccb213693b32b"
+        "docs/reference/interfaces/HotkeyChordOptions.md": "d59096f6a49b8911c3994ebc9643a6911565c694d815981e8ae486c07b53d0a7"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
       "evidence": ["docs/reference/interfaces/HotkeyChordOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistration.md": {
-      "fingerprint": "0a3152a40a9bee19f9d59e398561ad2bf15410514172dbc34bef4bc3144d205b",
+      "fingerprint": "375c0627f86d68eed11242f3b78e2d78630f04a9e3650e1d3065b225378e44ac",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistration.md": "c050bb91a8e781137ef09d4d01c2c0f46a1202eeb0b820aa0ca78adc276acd9c"
+        "docs/reference/interfaces/HotkeyChordRegistration.md": "7dad10000fbe1fd0d2b5039a21d2a3583ed266a96360456fb19468b5443bdc4f"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
       "evidence": ["docs/reference/interfaces/HotkeyChordRegistration.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistrationView.md": {
-      "fingerprint": "12e4aedb992d04689c134f655986da0f6cc97162505fca47c332f4f3c7747e43",
+      "fingerprint": "e85c228455ee44b56a51acf1934b35d76b518abc5b4727173f2db854fd3be520",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "64516b81089c002c0d3ae6ff14adcbd7591f9116dd0e9df5c9efe0fc91003fe1"
+        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "abf24e1daf3ba9a9accbe5198e792cee1d11cdaddfe139ad72c0a2eb7295e475"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
       "evidence": ["docs/reference/interfaces/HotkeyChordRegistrationView.md"]
     },
     "source:docs/reference/interfaces/HotkeyOptions.md": {
-      "fingerprint": "5758997f30951582cb90f2fee4a81d39631f46a419932ae656ba3ddc8b5923f1",
+      "fingerprint": "4599945e587b4fff4b1a1a6e54d2fdb507fe663da34dcd5eb0f242551e0d3295",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyOptions.md": "049efe7e0dd3065f2c4ab5461af42cfc8a62bb05194de7863f4ed4a85e5feace"
+        "docs/reference/interfaces/HotkeyOptions.md": "c90e5817269484c8c9eb331d18b5a173dc5754d54c8926f786662222a54f1a10"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
       "evidence": ["docs/reference/interfaces/HotkeyOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationHandle.md": {
-      "fingerprint": "616fa3acebf4d750767dd3cf01a176a0dd4985b4b4994a478072080c3ebae46e",
+      "fingerprint": "ac5dd3527eaa2b2857c2f53bafba016c256c08bb058d3d9156d07982ad811ad6",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "479481ddb62764ca05ec2f28ea7289cba348e8b0a72bf49f0908b357ec6a9ee3"
+        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "0a571ed6518b3c765af680ecac273c93f509faca4e3f65620d90749ceee7e758"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
       "evidence": ["docs/reference/interfaces/HotkeyRegistrationHandle.md"]
     },
     "source:docs/reference/interfaces/HotkeyScopesState.md": {
-      "fingerprint": "2492cf7d1974a104dc1669d2de62e18248b93e22a0942fcb02d9df181b521329",
+      "fingerprint": "842baae83c293caaadeceaf0899f0396cb0b513ee67420531a56709e559dc679",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyScopesState.md": "51e52f2925ee8645f3619dbd019eab42a6a8b0ef2dde791c47fc2341dc284a02"
+        "docs/reference/interfaces/HotkeyScopesState.md": "7116293f6870bbd45f6d7b9b106390ecd052c3d6bc69eb69aa2a456d54bae990"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
       "evidence": ["docs/reference/interfaces/HotkeyScopesState.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
-      "fingerprint": "083854e1f4855a75e9d5a6c1749feedaad2f05d132eca66d4617c0c8cc855c0a",
+      "fingerprint": "ee3675742f14eea3a5157fbd3215c3f6d85b016dc4770c6350a772b3b30d9625",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceOptions.md": "bba0972aa6a0764b93d733ee25bcbf11f27030ce18a324e894e020d388a06821"
+        "docs/reference/interfaces/HotkeySequenceOptions.md": "be22570a5843e901c168f4c6957f8593b3318e64e268249a6802864c7da8ea11"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
       "evidence": ["docs/reference/interfaces/HotkeySequenceOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistration.md": {
-      "fingerprint": "2525e3d7fe038fcb6f992ebccd2c91bcd7da24a96ce64e81215f5e3df9d916f9",
+      "fingerprint": "90388e90ebad2e2058d518036a68cc2e6f385805baf2c75ed2d74f674ed915e1",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistration.md": "b51daa2ce59f36ccb2c14770c8b8296920e2b620e51268d26beb83be18050b3e"
+        "docs/reference/interfaces/HotkeySequenceRegistration.md": "10b974628172b22af8e1d9a155197b78ed43cf8840ab6ae1a7f6d8ab423a8bac"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
       "evidence": ["docs/reference/interfaces/HotkeySequenceRegistration.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistrationView.md": {
-      "fingerprint": "a1810f30a5fdfa5520b5318745f720fa1413e10cb29372d49d92445625fd7d0a",
+      "fingerprint": "05924f2a150b5e1ab695461c02493d92e9282bbda5252ea17f930d61ef2be0be",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "71911e492efd86658227a1a073d14fd4176908c3e208654f93aa27764c58cf8a"
+        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "1c337bd649ac055a70f6728d095a82803a8b9113b1525628ca52fbce5b7765cd"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
       "evidence": [
         "docs/reference/interfaces/HotkeySequenceRegistrationView.md"
       ]
     },
     "source:docs/reference/type-aliases/HotkeyOptionsFor.md": {
-      "fingerprint": "f71e96f3a5435411588ad2c3891958fe755a95f225690ec24111a14949db2927",
+      "fingerprint": "157468fd474dbf4bb644c300b4416e99f33c9640e78973092e723a54003c75d1",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyOptionsFor.md": "1187ae9bb4a7b58470a5f00869bfc344ecd92c9b7105a233421ba0ec37b297de"
+        "docs/reference/type-aliases/HotkeyOptionsFor.md": "3f7e3e34aa6427a5a2a8f4b433da1b85c3699c8b1f44469a026fc4a4ee96dbdd"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
       "evidence": ["docs/reference/type-aliases/HotkeyOptionsFor.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistration.md": {
-      "fingerprint": "97e1802f546e0ddaee8b1bc19521473a8a9be95f239d322ee97316a8ff42ae16",
+      "fingerprint": "b039ec19177267dfd54a8e69cf15fcfb558b219b0f22bbe251690378b1dd584b",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistration.md": "649f840be07fa95c860354cc5ffde92b073b897a8d55261e9355ec4c14fea394"
+        "docs/reference/type-aliases/HotkeyRegistration.md": "8b3ffb7ea4b0a58352f23ef24fead58b89be38d78ba1fca53d5111f3e042b0b6"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
       "evidence": ["docs/reference/type-aliases/HotkeyRegistration.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationView.md": {
-      "fingerprint": "1069da99dbc990a1e6dfd2fb75dd9d6e74e3c09607a38bdaa745f3d0d82eb78d",
+      "fingerprint": "9b7f637111f6270d66c473a8be07cefdae345e0e2b8ce8226bce8c18d3797841",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationView.md": "cb086ed1567e65f51fc18a1a9090b9618b56d5e2fb8639427e7668eef348d85c"
+        "docs/reference/type-aliases/HotkeyRegistrationView.md": "ee2ac5170f178e6a6ff4a347782c4f57c37625b0b45a1ff106e387a7f9d71f77"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
       "evidence": ["docs/reference/type-aliases/HotkeyRegistrationView.md"]
     },
     "source:packages/hotkeys-devtools/src/components/DetailsPanel.tsx": {
@@ -1284,13 +1288,13 @@
       "evidence": ["packages/hotkeys-devtools/src/components/DetailsPanel.tsx"]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "de86c88a97ef8682c66903441e37ab48367a00a0cd2d5725b90156c4aeab253b",
+      "fingerprint": "1a9b0e017634c8c5a9825eda712278cf5de75479a66fb18f1f942dedc95b27b9",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "25339301d7448d59984bf5701c88c50a7abb640328849a9afd80ed239ca2a466"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "68d9978af1fe26184c591c49b8cf6dcd745d0205502b8122fc43e6d03a46b79a"
       },
-      "head": "391443cd0c92b1040b7a9f3270c97c48850f4f36",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "out-of-scope",
-      "reason": "Tests, sidebar config, or regenerated reference docs.",
+      "reason": "Tests for the edge-case fixes; no skill guidance depends on them.",
       "evidence": ["packages/hotkeys/tests/hotkey-manager.test.ts"]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
@@ -1908,13 +1912,13 @@
       ]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationStatus.md": {
-      "fingerprint": "6a9e0efd895704a7ffa7d93e6591424cb9187b4f74582ea4633936e17e9593f8",
+      "fingerprint": "35d73df39da7728f662bb78aee848479ddbc8be3774c467cc0411683c0fda787",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "ca37a3849cf03ec434cbe49b6e6f85d014bae2f0265c7fddfe9d2ea5e118578b"
+        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "8be6675eeb05768fddf1ffae0f455cabc093eeb75d0fec3af10a089d2ca00ee6"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
       "evidence": ["docs/reference/type-aliases/HotkeyRegistrationStatus.md"]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyScopesState.ts": {
@@ -2484,13 +2488,13 @@
       ]
     },
     "source:docs/reference/type-aliases/Target.md": {
-      "fingerprint": "792a1bfb163d1cb30641c335607d0b34d1e406cb8505d5d37d14494056f98e21",
+      "fingerprint": "befdae331e3315a34b8bb8525ea3c4149ff07787bada49f34e32b583daac031b",
       "snapshot": {
-        "docs/reference/type-aliases/Target.md": "4bdbdc71191dfa071e418e0936c959e9f806ce73e4ac0280e1311c73a2624d2f"
+        "docs/reference/type-aliases/Target.md": "84cc5c044194b249863dc4bc2b49af1bb2f0eeb453a48ed5f779c8517e87635a"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
       "evidence": ["docs/reference/type-aliases/Target.md"]
     },
     "source:packages/hotkeys/src/_event-target.ts": {
@@ -4182,26 +4186,24 @@
       "evidence": ["e2e/support/x11.ts"]
     },
     "source:packages/hotkeys/src/_match.ts": {
-      "fingerprint": "fe575d3d842eaca4a662ed307afaf9183b0b4b221fc758e62b4fef5c47e7d07f",
+      "fingerprint": "123390662522be087efc81f1f947d2e7295b87b10f1a018418eda63aa6f30604",
       "snapshot": {
-        "packages/hotkeys/src/_match.ts": "441cd96035f1ad043c2680187d07c82c8b4625994b304d3de693f63fc8a1b410"
+        "packages/hotkeys/src/_match.ts": "93d79b1e01dad3433b238a031852809b1f6d3a6cfcb8eadc83015086fb718b27"
       },
-      "head": "210b3fb5577b3e7381a7c74d70e87cf395ae6682",
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
       "outcome": "out-of-scope",
-      "reason": "Matcher source and tests; the guidance impact is reviewed on the hotkeys-core skill item.",
+      "reason": "Internal edge-case fix (IME composition, collator, listener order, tracker resets, duplicate check, validate JSDoc); the skills make no claim it changes.",
       "evidence": ["packages/hotkeys/src/_match.ts"]
     },
     "source:packages/hotkeys/tests/match.test.ts": {
-      "fingerprint": "cb19ebad70781e3da9bd0750608bee772e75efb24ee8e8d3b331e49db0ae4f80",
+      "fingerprint": "8740d71c596b28185c9c135b2fea14295f374829eff87de3b784ff8d8ed67e43",
       "snapshot": {
-        "packages/hotkeys/tests/match.test.ts": "050203d0606119ba5bc737cc30146e230711dd96507d1e77437d587471986ccd"
+        "packages/hotkeys/tests/match.test.ts": "340ef40d2eb33ce84b0bbba9af6ec1ffbf5f0092773fccde4466543b4b6d74cb"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
-      "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
-      "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
-      ]
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Tests for the edge-case fixes; no skill guidance depends on them.",
+      "evidence": ["packages/hotkeys/tests/match.test.ts"]
     },
     "source:packages/hotkeys/tests/sequence-regressions.test.ts": {
       "fingerprint": "9f235b4f747d09b413f754ab5a6b1397f72accb5cb138ab7be3bd34798239073",
@@ -4982,40 +4984,34 @@
       "evidence": ["docs/reference/adapter/type-aliases/WithTarget.md"]
     },
     "source:docs/reference/classes/KeyStateTracker.md": {
-      "fingerprint": "7f64a816f9e7bcd3faede7d09c4c330f86789fd9398ddf60e99129f19d356c53",
+      "fingerprint": "8759bbb25b1ec9a197e3b8efa061deb4cb76871cb86d598083ccfb4475d236e1",
       "snapshot": {
-        "docs/reference/classes/KeyStateTracker.md": "5af083dadab704c06b293645002fdb020578d1b43ec77ac268516d54ad2da097"
+        "docs/reference/classes/KeyStateTracker.md": "81e58b056bf7432bd5ad74ffcd9ed4759e01ab2cf0a970283fde50c97e1613aa"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
-      "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
-      "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
-      ]
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
+      "evidence": ["docs/reference/classes/KeyStateTracker.md"]
     },
     "source:docs/reference/functions/checkHotkey.md": {
-      "fingerprint": "3c6e95ce89a73171d88060c9a53a04d9036c58190b57c1b40eaf9060d8e806ad",
+      "fingerprint": "6a883a77d90c6206344b28adb26fb13b54c572e693308a6761403450ba2ee949",
       "snapshot": {
-        "docs/reference/functions/checkHotkey.md": "ff9207a9408df5d27821813e8d7fdeb97115a2e2305bfb25dad3c488714a3885"
+        "docs/reference/functions/checkHotkey.md": "1253dd0705a6da9f184f0be6b28864dafd8c7a23c3408ff24dc8d7be4f08bf18"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
-      "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
-      "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
-      ]
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
+      "evidence": ["docs/reference/functions/checkHotkey.md"]
     },
     "source:docs/reference/functions/getKeyStateTracker.md": {
-      "fingerprint": "05b94923732791a68986c899c0f650deb594a2197539a7dd11a09fcf866383eb",
+      "fingerprint": "bc298b3783cae841d488a91c8bfcded99c8a3bddc9d386f183083cbe1fb3343c",
       "snapshot": {
-        "docs/reference/functions/getKeyStateTracker.md": "353e8f2ca95f613016e84fa55b709f770c7f1765f2ceb35fb5a5777bf087bef1"
+        "docs/reference/functions/getKeyStateTracker.md": "ba5e77a323e37ebb3e3f129fb8c5412ea453c116066df6effb359ee062c17b56"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
-      "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
-      "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
-      ]
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
+      "evidence": ["docs/reference/functions/getKeyStateTracker.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderOptions.md": {
       "fingerprint": "f857e35be3bc01829812e5d01855e87ec79638b605e5fb1a6813c7cf0766b78e",
@@ -5114,16 +5110,14 @@
       ]
     },
     "source:docs/reference/interfaces/ValidationResult.md": {
-      "fingerprint": "0fe460871bc4ca99f97bdf75464646c4bfc32fa0d2e9e2334b28baede4766f26",
+      "fingerprint": "6f583a0116738f92b031236811117de973af7c569a8c73d59ca38f1234560380",
       "snapshot": {
-        "docs/reference/interfaces/ValidationResult.md": "4bd5b2b28acc86d1be97916b20165efc9de89de2066c1f34210a92fc7d98d02f"
+        "docs/reference/interfaces/ValidationResult.md": "d2c0a848b63adae9cfc0d91a48641b469c85e5902dded7f567f073f32261567c"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
-      "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
-      "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
-      ]
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
+      "evidence": ["docs/reference/interfaces/ValidationResult.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderCommitKeys.md": {
       "fingerprint": "62acfa97ecfd9bf2d24d1051292cdacb29a9fbdca91faccd6eb38714af6cd80a",
@@ -5338,28 +5332,24 @@
       "evidence": ["packages/hotkeys/src/adapter.ts"]
     },
     "source:packages/hotkeys/src/key-state-tracker.ts": {
-      "fingerprint": "6eb2c803a0aca6278da52fdec8898e99f659ce443cf1bedb072462dc0ce86c6f",
+      "fingerprint": "b6e75fac7e5e679007ba69603c04d407918b671d333ec54322ae23e9c7b25f8c",
       "snapshot": {
-        "packages/hotkeys/src/key-state-tracker.ts": "f14df791614081a15078c5732a3226e0d492903e1d683ad09c3efa89da0f8b2b"
+        "packages/hotkeys/src/key-state-tracker.ts": "f95dcba04f52df3c84a42b3ff3812e5b33d7beb6ea942c13ce5f00760c7231ad"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
-      "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
-      "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
-      ]
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Internal edge-case fix (IME composition, collator, listener order, tracker resets, duplicate check, validate JSDoc); the skills make no claim it changes.",
+      "evidence": ["packages/hotkeys/src/key-state-tracker.ts"]
     },
     "source:packages/hotkeys/src/validate.ts": {
-      "fingerprint": "0a16fac9834f08dd26568013132ac573af7fb2a0110cbd2e51dfcfd3e61c7882",
+      "fingerprint": "a5ab4733b2c1abc6fdb40fead93b47a9591db8281ea93deaa3ec16c15b2602d1",
       "snapshot": {
-        "packages/hotkeys/src/validate.ts": "35272df45145910ef744b1d99620608bfde9d4b25ccb1928ace1b057506865e0"
+        "packages/hotkeys/src/validate.ts": "464655c48265f2657e2df5db4dc2cb184eec225be164f0e8cee7e2e4b96a43ba"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
-      "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
-      "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
-      ]
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Internal edge-case fix (IME composition, collator, listener order, tracker resets, duplicate check, validate JSDoc); the skills make no claim it changes.",
+      "evidence": ["packages/hotkeys/src/validate.ts"]
     },
     "source:packages/hotkeys/tests/adapter.test.ts": {
       "fingerprint": "49fc3ca851c4e5c5e0fd973e368f1311aaa1826c32f6042734c344d29f9fb1fa",
@@ -6038,16 +6028,14 @@
       ]
     },
     "source:docs/framework/alpine/guides/held-key-state-helpers.md": {
-      "fingerprint": "0aee95b76dab73f7f6c603d362bcb263e6d2710140fba02e09c51366cfbefdd1",
+      "fingerprint": "ae6397bfbbb874c663a4fda88c3daaffa1ff4c5f82df501e0cd81f5fd73e714f",
       "snapshot": {
-        "docs/framework/alpine/guides/held-key-state-helpers.md": "9f7e2edf58eb6992f21e9d460f618957fe008fb7eb1d98e293c76ac5fadd35d3"
+        "docs/framework/alpine/guides/held-key-state-helpers.md": "4dda600cf374a6a2dcfcbb0600ad386d70587084624e5cef2373c444d85e4969"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
-      "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
-      "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
-      ]
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Guide wording fix (duplicate check includes event type, or an Alpine sentence); no skill makes the corrected claim.",
+      "evidence": ["docs/framework/alpine/guides/held-key-state-helpers.md"]
     },
     "source:docs/framework/angular/guides/formatting-display.md": {
       "fingerprint": "496882107815cf33d4b8cb1edf583f4cb6e0cab23b674c14787a1d0a527a975f",
@@ -6542,16 +6530,14 @@
       ]
     },
     "source:packages/hotkeys/src/_keyboard-event.ts": {
-      "fingerprint": "c69ca358e87eef6fd7968475411fd88eb7ed182daac2e5f2ae58415dd3d63f61",
+      "fingerprint": "6442dc24114535e68cecf9ce04d3b49bb3b51c7ee8a7e8fc9a3f5d29235552c9",
       "snapshot": {
-        "packages/hotkeys/src/_keyboard-event.ts": "8412a21edf9396cbd71fc2b422293da86e59c00db23e822b811774080646d7f7"
+        "packages/hotkeys/src/_keyboard-event.ts": "d55d40deee1222291c27375d8672a018ff82b19d560307199d3b104ea6e58401"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
-      "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
-      "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
-      ]
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Internal edge-case fix (IME composition, collator, listener order, tracker resets, duplicate check, validate JSDoc); the skills make no claim it changes.",
+      "evidence": ["packages/hotkeys/src/_keyboard-event.ts"]
     },
     "source:packages/hotkeys/src/format.ts": {
       "fingerprint": "66dc037b4e4e2eaae1e0de1e3bd31aeca0b23cc04ec487f85d43992952bda2c8",
@@ -7280,6 +7266,36 @@
       "outcome": "out-of-scope",
       "reason": "Test file; it adds no guidance for agents.",
       "evidence": ["packages/vue-hotkeys/tests/unset-values.test.ts"]
+    },
+    "source:packages/hotkeys/src/_target-listeners.ts": {
+      "fingerprint": "76d61a356a49b0724b112a7cffb80f86f2501001225797c47fba2def37e030f7",
+      "snapshot": {
+        "packages/hotkeys/src/_target-listeners.ts": "76bc00bf40502dc653afde016f4c6143db74d14201bd3551c7380df31b493dfb"
+      },
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Internal edge-case fix (IME composition, collator, listener order, tracker resets, duplicate check, validate JSDoc); the skills make no claim it changes.",
+      "evidence": ["packages/hotkeys/src/_target-listeners.ts"]
+    },
+    "source:packages/hotkeys/tests/capture.test.ts": {
+      "fingerprint": "e649d334c7f19e96152c65e1d7994fce17d7848b5a1c5163d8094c2ea125c301",
+      "snapshot": {
+        "packages/hotkeys/tests/capture.test.ts": "4eef0b10fc2211f9ec364553bfe719db52c1751cf20136e3da4ba5d0b339d216"
+      },
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Tests for the edge-case fixes; no skill guidance depends on them.",
+      "evidence": ["packages/hotkeys/tests/capture.test.ts"]
+    },
+    "source:packages/hotkeys/tests/key-state-tracker.test.ts": {
+      "fingerprint": "83db6b06a9048f4d9587f0342688448958c41afc9900a0758b96b98cdd01bb6f",
+      "snapshot": {
+        "packages/hotkeys/tests/key-state-tracker.test.ts": "601d367ce5e6d9030d40a302d20c39a832689f8ecbd7e81ff84747009db9ceca"
+      },
+      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "outcome": "out-of-scope",
+      "reason": "Tests for the edge-case fixes; no skill guidance depends on them.",
+      "evidence": ["packages/hotkeys/tests/key-state-tracker.test.ts"]
     }
   }
 }

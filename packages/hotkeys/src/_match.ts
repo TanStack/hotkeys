@@ -23,11 +23,8 @@ export function matchKeyboardEvent(
   const normalized = normalizeKeyboardEvent(event, platform)
   const noMatch: KeyboardEventMatch = { matched: false, score: 0 }
 
-  if (
-    normalized.isComposing &&
-    (parsed.code !== undefined || isPrintableKey(parsed.key))
-  )
-    return noMatch
+  // Keys pressed while composing belong to the input method editor.
+  if (normalized.isComposing) return noMatch
   if (normalized.altGraph && (parsed.ctrl || parsed.alt)) return noMatch
   // Outside Windows, AltGr is not Control+Alt. When it typed no new character
   // (AltGr+Home), it is a modifier no binding includes, so AltGr+F never fires F.

@@ -13,10 +13,12 @@ function createKeyboardEvent(
     altKey?: boolean
     metaKey?: boolean
     code?: string
+    repeat?: boolean
   } = {},
 ): KeyboardEvent {
   return new KeyboardEvent(type, {
     key,
+    repeat: options.repeat ?? false,
     ctrlKey: options.ctrlKey ?? false,
     shiftKey: options.shiftKey ?? false,
     altKey: options.altKey ?? false,
@@ -413,8 +415,11 @@ describe('HotkeyManager', () => {
       document.dispatchEvent(event1)
       expect(callback).toHaveBeenCalledTimes(1)
 
-      // Second press should not fire (keys still held)
-      const event2 = createKeyboardEvent('keydown', 's', { metaKey: true })
+      // An auto-repeat should not fire (keys still held)
+      const event2 = createKeyboardEvent('keydown', 's', {
+        metaKey: true,
+        repeat: true,
+      })
       document.dispatchEvent(event2)
       expect(callback).toHaveBeenCalledTimes(1)
     })
@@ -465,7 +470,10 @@ describe('HotkeyManager', () => {
       expect(callback).toHaveBeenCalledTimes(1)
 
       // Second keydown while keys still held - should call preventDefault but NOT callback
-      const event2 = createKeyboardEvent('keydown', 's', { metaKey: true })
+      const event2 = createKeyboardEvent('keydown', 's', {
+        metaKey: true,
+        repeat: true,
+      })
       const preventDefaultSpy2 = vi.spyOn(event2, 'preventDefault')
       document.dispatchEvent(event2)
 
@@ -492,7 +500,10 @@ describe('HotkeyManager', () => {
       expect(callback).toHaveBeenCalledTimes(1)
 
       // Second keydown while keys still held - should call stopPropagation but NOT callback
-      const event2 = createKeyboardEvent('keydown', 's', { metaKey: true })
+      const event2 = createKeyboardEvent('keydown', 's', {
+        metaKey: true,
+        repeat: true,
+      })
       const stopPropagationSpy2 = vi.spyOn(event2, 'stopPropagation')
       document.dispatchEvent(event2)
 
@@ -1839,6 +1850,127 @@ describe('HotkeyManager', () => {
       release()
       handle.setOptions({ enabled: false })
       expect(status()).toEqual(['disabled', 'suspended'])
+    })
+  })
+})
+
+describe('HotkeyManager edge cases', () => {
+  beforeEach(() => {
+    HotkeyManager.resetInstance()
+  })
+
+  afterEach(() => {
+    HotkeyManager.resetInstance()
+    vi.restoreAllMocks()
+  })
+
+  describe('requireReset after a lost keyup', () => {
+    it('fires again on a new press when the keyup never arrived', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Mod+K', callback, {
+        platform: 'mac',
+        requireReset: true,
+      })
+      // macOS drops K's keyup while Command is held.
+      for (let press = 0; press < 3; press++) {
+        document.dispatchEvent(
+          createKeyboardEvent('keydown', 'k', { metaKey: true }),
+        )
+        document.dispatchEvent(
+          createKeyboardEvent('keydown', 'k', { metaKey: true, repeat: true }),
+        )
+      }
+      expect(callback).toHaveBeenCalledTimes(3)
+    })
+  })
+
+  describe('a target that is not an EventTarget', () => {
+    it('throws without leaving a registration behind', () => {
+      const manager = HotkeyManager.getInstance()
+      expect(() =>
+        manager.register('K', () => {}, {
+          target: (() => {}) as unknown as HTMLElement,
+        }),
+      ).toThrow()
+      expect(manager.registrations.state.size).toBe(0)
+      expect(() => HotkeyManager.resetInstance()).not.toThrow()
+    })
+  })
+
+  describe('registrations for different event types', () => {
+    it('are not duplicates', () => {
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+      const manager = HotkeyManager.getInstance()
+      const down = vi.fn()
+      const up = vi.fn()
+      manager.register('K', down)
+      manager.register('K', up, {
+        eventType: 'keyup',
+        conflictBehavior: 'replace',
+      })
+      expect(() =>
+        manager.register('K', () => {}, {
+          eventType: 'keyup',
+          conflictBehavior: 'allow',
+        }),
+      ).not.toThrow()
+      expect(() =>
+        manager.register('Shift+K', () => {}, {
+          eventType: 'keyup',
+          conflictBehavior: 'error',
+        }),
+      ).not.toThrow()
+      expect(() =>
+        manager.register('Shift+K', () => {}, { conflictBehavior: 'error' }),
+      ).not.toThrow()
+      expect(warn).not.toHaveBeenCalled()
+
+      document.dispatchEvent(createKeyboardEvent('keydown', 'k'))
+      document.dispatchEvent(createKeyboardEvent('keyup', 'k'))
+      expect(down).toHaveBeenCalledOnce()
+      expect(up).toHaveBeenCalledOnce()
+    })
+
+    it('still conflict with the same event type', () => {
+      const manager = HotkeyManager.getInstance()
+      manager.register('K', () => {}, { eventType: 'keyup' })
+      expect(() =>
+        manager.register('K', () => {}, {
+          eventType: 'keyup',
+          conflictBehavior: 'error',
+        }),
+      ).toThrow()
+    })
+  })
+
+  describe('unknown modifiers', () => {
+    it('warn in development', () => {
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+      const manager = HotkeyManager.getInstance()
+      manager.register('Ctl+K' as never, () => {})
+      manager.register(['G', 'Shift+Comand+S'] as never, () => {})
+      expect(warn.mock.calls.map(([message]) => message)).toEqual([
+        "Unknown modifier 'Ctl' in 'Ctl+K'. It is ignored, so this hotkey fires without it.",
+        "Unknown modifier 'Comand' in 'G Shift+Comand+S'. It is ignored, so this hotkey fires without it.",
+      ])
+    })
+
+    it('do not warn for known modifiers and aliases', () => {
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+      const manager = HotkeyManager.getInstance()
+      for (const hotkey of [
+        'Mod+Shift+K',
+        'Control+Alt+Meta+K',
+        'Ctrl+Cmd+Option+K',
+        'Mod++',
+        'Control++',
+        '+',
+        { key: 'K', mod: true },
+      ] as const)
+        manager.register(hotkey as never, () => {}, {
+          conflictBehavior: 'allow',
+        })
+      expect(warn).not.toHaveBeenCalled()
     })
   })
 })
