@@ -1,5 +1,12 @@
 # @tanstack/preact-hotkeys-devtools
 
+## 0.12.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tanstack/hotkeys-devtools@1.7.2
+
 ## 0.12.1
 
 ### Patch Changes
