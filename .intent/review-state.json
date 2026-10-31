@@ -92,7 +92,7 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "9aa02d7f7b089cd13d5293014d2289197eb3a7fc58467b5db9f340b6f3c7da57",
+      "fingerprint": "8e8c586d58bb1f1a5592f0025b6ec863398ab2249e2da499e841de35b7edaaf3",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
         "docs/framework/react/guides/hotkeys.md": "057f320c6ed3629ee9b13501e9e3c1f2ccd302395edd6983abfd1398c172f22b",
@@ -101,7 +101,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "a45229edb827101dd019587c5e20965954a508eb5ba57ef6680e53d084585df8",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
-        "packages/hotkeys/src/hotkey-manager.ts": "65e4a965ec11d0a502e373fe066544b5a1aa13db2729d19a9f082da1f9bca984",
+        "packages/hotkeys/src/hotkey-manager.ts": "c3cc595ce95940415856e0229f8915b22323b00f2b264a5911122aafa19d0d32",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "d7747b87eae074ab3620484f64cf13ea9c27d24d059d56d9a9a07ccf0c2d3e06",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -113,10 +113,13 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "be1777ffc313bbb47a7feb5a5ea6c8baf13be710",
+      "head": "b123a2311042fb33af27b1bb916465f446117b0d",
       "outcome": "no-change",
-      "reason": "Removed the development-only unknown-modifier warning again; the skill makes no claim about unknown modifiers, and TypeScript rejects them.",
-      "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
+      "reason": "HotkeyManager.register now returns an inactive handle for a missing hotkey or an empty sequence instead of throwing; no skill says register throws for these, and adapters already skip them.",
+      "evidence": [
+        "packages/hotkeys/src/hotkey-manager.ts",
+        "grep of skills for register and throw"
+      ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
       "fingerprint": "d29723cfa91c4e7bc61c43484e3332a16d3a2af47837333faa01869c68a03b29",
@@ -273,7 +276,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "10728d4221835546c00247985722e9498c3c2e04b4b2c5ed5d6c71cdb529a782",
+      "fingerprint": "6f19651797a120d2466e1ed5628ad4deb4c990c323796406b733cbb936b3328a",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -333,7 +336,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/app-hotkeys.ts": "a6176a749dd7439146c335e769dfae1a2cd72ace029f9cbc64b52ff5fe2d9d03",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
-        "packages/hotkeys/src/hotkey-manager.ts": "65e4a965ec11d0a502e373fe066544b5a1aa13db2729d19a9f082da1f9bca984",
+        "packages/hotkeys/src/hotkey-manager.ts": "c3cc595ce95940415856e0229f8915b22323b00f2b264a5911122aafa19d0d32",
         "packages/hotkeys/src/hotkey-recorder.ts": "7d479391753ffa97e69a7d7cb994cb7053a7ffb3e0aed6dfbfb2dbbdf51a3d24",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "ecd0100b52a00fc90ce71f244093da667d0c5ff78ecaf632d9db26f1c66c8e40",
@@ -402,9 +405,9 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "76815116b5ecf5af434a3ff041df5c0e01e11d0ef41e77ee2893d560e1565879",
         "packages/vue-hotkeys/src/useHotkeys.ts": "fafa900972db553504a850657d2e1829d53928e09bbdd219f6afc24eb9942bd2"
       },
-      "head": "be1777ffc313bbb47a7feb5a5ea6c8baf13be710",
+      "head": "b123a2311042fb33af27b1bb916465f446117b0d",
       "outcome": "no-change",
-      "reason": "Removed a development-only warning; the skill tree and mappings are unchanged.",
+      "reason": "Register returns an inactive handle instead of throwing for inputs the types reject; skill tree and mappings unchanged.",
       "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
     },
     "source:.changeset/intent-skills.md": {
@@ -6677,16 +6680,14 @@
       ]
     },
     "source:packages/hotkeys/tests/sequence-manager.test.ts": {
-      "fingerprint": "c646bbd6360ad4494b266c2adb05067b04e5da809486993e5711261f5c1442ea",
+      "fingerprint": "8ec7b8322ed95bc8890e5c7edb848c6165f205e113b8e1a8b21707f9415fe732",
       "snapshot": {
-        "packages/hotkeys/tests/sequence-manager.test.ts": "e61f353f49554fe732382a0d64af28b6de6c636fec25bb888f88d9f0fd9130bd"
+        "packages/hotkeys/tests/sequence-manager.test.ts": "811a621cd296e0b4d8647ad474920d7fdb54465c2b96d54093c2c72a9029518d"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
-      "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
-      "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
-      ]
+      "head": "b123a2311042fb33af27b1bb916465f446117b0d",
+      "outcome": "out-of-scope",
+      "reason": "Tests for the edge-case fixes; no skill guidance depends on them.",
+      "evidence": ["packages/hotkeys/tests/sequence-manager.test.ts"]
     },
     "source:docs/framework/angular/reference/functions/injectHotkey.md": {
       "fingerprint": "201c5e3b5655c645d3de05e6fdc6a6ac84ecdb5eff87510445d328cf09db5915",
@@ -7127,13 +7128,13 @@
       "evidence": ["packages/hotkeys/tests/app-hotkeys.test.ts"]
     },
     "source:packages/hotkeys/tests/unset-values.test.ts": {
-      "fingerprint": "47cd760d83ac64ad18764a87896a7bc534733ae5d4f2ce415206130e86fb2c72",
+      "fingerprint": "2e0245f63aac03d456c243cd5ac08fb19b99507a388d1c18fd4905a678e85069",
       "snapshot": {
-        "packages/hotkeys/tests/unset-values.test.ts": "c92dd11e3b26310e42b20793477c1558a1d51cf7e2b4666f2b2ac00e3ecce888"
+        "packages/hotkeys/tests/unset-values.test.ts": "d7b7a8253f0b3153558e9b7d82f82626fd809adf0034c2c3d6cb255887072b4e"
       },
-      "head": "730c6d5bcd2096d3a2612cac32e2473d0f46d4a9",
+      "head": "b123a2311042fb33af27b1bb916465f446117b0d",
       "outcome": "out-of-scope",
-      "reason": "Test file; it adds no guidance for agents.",
+      "reason": "Tests for the edge-case fixes; no skill guidance depends on them.",
       "evidence": ["packages/hotkeys/tests/unset-values.test.ts"]
     },
     "source:packages/lit-hotkeys/tests/unset-values.test.ts": {

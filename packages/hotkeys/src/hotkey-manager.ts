@@ -778,19 +778,14 @@ export class HotkeyManager {
     callback: HotkeyCallback,
     options: HotkeyChordOptions & HotkeySequenceOptions = {},
   ): HotkeyRegistrationHandle {
-    // Adapter hooks skip a missing hotkey; the manager API requires one.
-    if ((input as RegisterableHotkey | null | undefined) == null) {
-      throw new Error(
-        'A hotkey is required. Skip registration when there is no hotkey.',
-      )
-    }
     const hotkey = simplifyHotkey(input)
-    if (isHotkeySequence(hotkey) && hotkey.length === 0) {
-      throw new Error('Sequence must contain at least one hotkey')
-    }
-
-    // In SSR environments, return a no-op handle since there's no DOM to attach listeners to
-    if (typeof document === 'undefined' && !options.target) {
+    // Nothing to listen for: no hotkey, an empty sequence, or no DOM during
+    // server rendering. The handle stays inactive.
+    if (
+      (hotkey as RegisterableHotkey | null | undefined) == null ||
+      (isHotkeySequence(hotkey) && hotkey.length === 0) ||
+      (typeof document === 'undefined' && !options.target)
+    ) {
       let currentCallback = callback
       return {
         id: generateId(),

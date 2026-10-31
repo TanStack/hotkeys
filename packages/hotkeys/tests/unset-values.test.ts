@@ -250,11 +250,12 @@ describe('nullish hotkeys', () => {
   })
 
   it.each([undefined, null])(
-    'register throws a clear error for %s',
+    'register returns an inactive handle for %s',
     (hotkey) => {
-      expect(() =>
-        getHotkeyManager().register(hotkey as never, () => {}),
-      ).toThrow('A hotkey is required')
+      const handle = getHotkeyManager().register(hotkey as never, () => {})
+      expect(handle.isActive).toBe(false)
+      expect(getHotkeyManager().registrations.state.size).toBe(0)
+      expect(() => handle.unregister()).not.toThrow()
     },
   )
 
