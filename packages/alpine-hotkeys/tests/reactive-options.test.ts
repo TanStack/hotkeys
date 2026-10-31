@@ -1,6 +1,6 @@
 import Alpine from 'alpinejs'
 import { expect, it, vi } from 'vitest'
-import { createHotkeysScope, HotkeyManager } from '../src'
+import { createHotkeyRecorder, createHotkeysScope, HotkeyManager } from '../src'
 it('tracks an enabled property getter', async () => {
   const state = Alpine.reactive({ enabled: true }),
     callback = vi.fn(),
@@ -43,8 +43,9 @@ it.each(['single', 'sequence'] as const)(
       }
       const recorder =
         kind === 'single'
-          ? scope.createHotkeyRecorder(options)
-          : scope.createHotkeyRecorder(
+          ? createHotkeyRecorder(scope, options)
+          : createHotkeyRecorder(
+              scope,
               Object.defineProperties(
                 { maxSteps: Infinity },
                 Object.getOwnPropertyDescriptors(options),

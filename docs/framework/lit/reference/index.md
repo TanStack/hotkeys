@@ -24,6 +24,7 @@ title: "@tanstack/lit-hotkeys"
 - [HotkeyControllerOptionsFor](type-aliases/HotkeyControllerOptionsFor.md)
 - [HotkeyControllerSequenceOptions](type-aliases/HotkeyControllerSequenceOptions.md)
 - [HotkeyControllerTarget](type-aliases/HotkeyControllerTarget.md)
+- [HotkeyDecorator](type-aliases/HotkeyDecorator.md)
 
 ## Functions
 

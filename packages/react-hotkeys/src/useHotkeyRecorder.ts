@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { withDefaults } from '@tanstack/hotkeys/adapter'
 import { useSelector } from './_useSelector'
@@ -110,13 +110,13 @@ export function useHotkeyRecorder(
     }
   }, [])
 
-  return {
-    isRecording,
-    steps,
-    recordedHotkey,
+  // Created once so the actions keep their identity across renders.
+  const [actions] = useState(() => ({
     startRecording: () => recorderRef.current?.start(),
     stopRecording: () => recorderRef.current?.stop(),
     cancelRecording: () => recorderRef.current?.cancel(),
     commitRecording: () => recorderRef.current?.commit(),
-  }
+  }))
+
+  return { isRecording, steps, recordedHotkey, ...actions }
 }

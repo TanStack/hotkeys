@@ -7,6 +7,7 @@ import {
   resolveAppHotkey,
 } from '@tanstack/hotkeys'
 import { injectSelector } from './_injectSelector'
+import { runOutsideZone } from './_zone'
 import { injectHotkeysContext } from './hotkeys-provider'
 import type { Signal } from '@angular/core'
 import type {
@@ -38,7 +39,7 @@ export function injectHotkeyHint(
   // Tracks registration, enabled, and scope changes.
   const registrations = injectSelector(manager.registrations, (state) => state)
   const held = injectSelector(
-    getKeyStateTracker().store,
+    runOutsideZone(getKeyStateTracker).store,
     (state) => state.heldKeys,
   )
   return computed(() => {

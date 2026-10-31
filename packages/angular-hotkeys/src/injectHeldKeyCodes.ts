@@ -1,5 +1,6 @@
 import { getKeyStateTracker } from '@tanstack/hotkeys'
 import { injectSelector } from './_injectSelector'
+import { runOutsideZone } from './_zone'
 import type { Signal } from '@angular/core'
 
 /**
@@ -26,6 +27,6 @@ import type { Signal } from '@angular/core'
  * ```
  */
 export function injectHeldKeyCodes(): Signal<Record<string, string>> {
-  const tracker = getKeyStateTracker()
+  const tracker = runOutsideZone(getKeyStateTracker)
   return injectSelector(tracker.store, (state) => state.heldCodes)
 }

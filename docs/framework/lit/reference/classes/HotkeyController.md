@@ -3,7 +3,7 @@ id: HotkeyController
 title: HotkeyController
 ---
 
-Defined in: [controllers/hotkey.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L76)
+Defined in: [controllers/hotkey.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L70)
 
 A Lit ReactiveController that registers a hotkey when the host element is
 connected and unregisters it when the host is disconnected. The hotkey can
@@ -20,12 +20,6 @@ the hotkey or options to re-read them after each host update.
 class MyElement extends LitElement {
   private save = new HotkeyController(this, 'Mod+S', () => this.doSave())
   private top = new HotkeyController(this, ['G', 'G'], () => this.scrollToTop())
-
-  constructor() {
-    super()
-    this.addController(this.save)
-    this.addController(this.top)
-  }
 }
 ```
 
@@ -45,7 +39,7 @@ new HotkeyController(
    options?): HotkeyController;
 ```
 
-Defined in: [controllers/hotkey.ts:88](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L88)
+Defined in: [controllers/hotkey.ts:82](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L82)
 
 #### Parameters
 
@@ -53,7 +47,7 @@ Defined in: [controllers/hotkey.ts:88](https://github.com/TanStack/hotkeys/blob/
 
 `ReactiveControllerHost`
 
-The Lit component that owns this controller. Add the controller with `addController()`.
+The Lit component that owns this controller. The controller adds itself to it.
 
 ##### hotkey
 
@@ -90,7 +84,7 @@ new HotkeyController(
    options?): HotkeyController;
 ```
 
-Defined in: [controllers/hotkey.ts:94](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L94)
+Defined in: [controllers/hotkey.ts:88](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L88)
 
 #### Parameters
 
@@ -122,7 +116,7 @@ Defined in: [controllers/hotkey.ts:94](https://github.com/TanStack/hotkeys/blob/
 hostConnected(): void;
 ```
 
-Defined in: [controllers/hotkey.ts:112](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L112)
+Defined in: [controllers/hotkey.ts:107](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L107)
 
 Registers when connected and a target is available.
 
@@ -144,7 +138,7 @@ ReactiveController.hostConnected
 hostDisconnected(): void;
 ```
 
-Defined in: [controllers/hotkey.ts:150](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L150)
+Defined in: [controllers/hotkey.ts:146](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L146)
 
 Releases registrations when the host disconnects.
 
@@ -166,7 +160,7 @@ ReactiveController.hostDisconnected
 hostUpdated(): void;
 ```
 
-Defined in: [controllers/hotkey.ts:121](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L121)
+Defined in: [controllers/hotkey.ts:117](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L117)
 
 Refreshes options after rendering, when scoped targets are available.
 

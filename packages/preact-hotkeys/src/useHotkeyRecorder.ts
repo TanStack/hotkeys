@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'preact/hooks'
+import { useLayoutEffect, useRef, useState } from 'preact/hooks'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { withDefaults } from '@tanstack/hotkeys/adapter'
 import { useSelector } from './_useSelector'
@@ -101,20 +101,20 @@ export function useHotkeyRecorder(
     (state) => state.recordedHotkey,
   )
 
-  // Cleanup on unmount
-  useEffect(() => {
+  // Cleanup on unmount. Preact 11 runs plain effect cleanups after paint.
+  useLayoutEffect(() => {
     return () => {
       recorderRef.current?.destroy()
     }
   }, [])
 
-  return {
-    isRecording,
-    steps,
-    recordedHotkey,
+  // Created once so the actions keep their identity across renders.
+  const [actions] = useState(() => ({
     startRecording: () => recorderRef.current?.start(),
     stopRecording: () => recorderRef.current?.stop(),
     cancelRecording: () => recorderRef.current?.cancel(),
     commitRecording: () => recorderRef.current?.commit(),
-  }
+  }))
+
+  return { isRecording, steps, recordedHotkey, ...actions }
 }

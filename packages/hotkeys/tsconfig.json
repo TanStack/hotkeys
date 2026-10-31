@@ -2,7 +2,9 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     // For process.env.NODE_ENV, which bundlers replace
-    "types": ["node"]
+    "types": ["node"],
+    // src/adapter.ts imports the main entry by package name
+    "paths": { "@tanstack/hotkeys": ["./src/index.ts"] }
   },
   "include": ["src", "vite.config.ts", "tests"],
   "exclude": ["eslint.config.js"]

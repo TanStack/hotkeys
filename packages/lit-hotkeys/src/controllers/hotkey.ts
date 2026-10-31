@@ -64,12 +64,6 @@ type MaybeGetter<T> = T | (() => T)
  * class MyElement extends LitElement {
  *   private save = new HotkeyController(this, 'Mod+S', () => this.doSave())
  *   private top = new HotkeyController(this, ['G', 'G'], () => this.scrollToTop())
- *
- *   constructor() {
- *     super()
- *     this.addController(this.save)
- *     this.addController(this.top)
- *   }
  * }
  * ```
  */
@@ -80,7 +74,7 @@ export class HotkeyController implements ReactiveController {
   private _unsubscribe: (() => void) | undefined
 
   /**
-   * @param host - The Lit component that owns this controller. Add the controller with `addController()`.
+   * @param host - The Lit component that owns this controller. The controller adds itself to it.
    * @param hotkey - The chord, sequence, or app hotkey to register, or a getter. A getter is read on connection and after host updates. `undefined`, `null`, or `''` registers nothing, for an optional shortcut.
    * @param callback - Called with the host as `this`.
    * @param options - Options or a getter. Property getters are read on connection and after host updates.
@@ -106,12 +100,14 @@ export class HotkeyController implements ReactiveController {
     private _options: MaybeGetter<HotkeyControllerCommonOptions> = {},
   ) {
     this._boundCallback = callback.bind(this._host)
+    this._host.addController(this)
   }
 
   /** Registers when connected and a target is available. */
   public hostConnected(): void {
-    // Server rendering registers nothing.
-    if (isServer()) return
+    // Server rendering registers nothing. Adding the controller again while
+    // connected calls this twice, so skip the second call.
+    if (this._connected || isServer()) return
     this._connected = true
     this._unsubscribe = subscribeAppHotkeys(() => this._sync())
     this._sync()

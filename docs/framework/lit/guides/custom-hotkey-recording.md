@@ -202,11 +202,9 @@ class ShortcutSettings extends LitElement {
 
   constructor() {
     super()
-    // Register each action with its current hotkey
+    // Register each action with its current hotkey. Each controller adds itself.
     for (const action of ['save', 'undo', 'search'] as const) {
-      this.addController(
-        new HotkeyController(this, () => this.shortcuts[action], () => this.run(action)),
-      )
+      new HotkeyController(this, () => this.shortcuts[action], () => this.run(action))
     }
   }
 

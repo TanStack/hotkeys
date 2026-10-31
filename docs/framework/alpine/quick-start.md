@@ -55,6 +55,8 @@ The plugin also adds the `$hotkeys` magic, which registers hotkeys from markup:
 
 `$hotkeys` is an owner that the plugin destroys with its element. It uses the built-in defaults. Register each hotkey with either `$hotkeys` or your own owner, not both.
 
+Call `$hotkeys.create*` in `x-init` or `init()`, and read `.value` anywhere. In a reactive expression such as `x-text`, each evaluation calls `create*` again and adds a new subscription.
+
 ## Register several hotkeys
 
 When a component has more than one hotkey, register them together with `createHotkeys`:

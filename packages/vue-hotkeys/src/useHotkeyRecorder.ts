@@ -1,6 +1,7 @@
 import { onScopeDispose, toValue, watch } from 'vue'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { withDefaults } from '@tanstack/hotkeys/adapter'
+import { useLive } from './_useLive'
 import { useDefaultHotkeysOptionsSource } from './defaultOptions'
 import { useStoreSelector } from './useStoreSelector'
 import type { MaybeRefOrGetter, Ref } from 'vue'
@@ -87,6 +88,9 @@ export function useHotkeyRecorder(
   const stopWatcher = watch(resolve, (resolved) =>
     recorder.setOptions(resolved),
   )
+
+  // A page cached by <KeepAlive> stops recording when hidden.
+  watch(useLive(), (live) => live || recorder.stop())
 
   onScopeDispose(() => {
     stopWatcher()

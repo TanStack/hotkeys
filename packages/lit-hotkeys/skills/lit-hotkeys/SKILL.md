@@ -41,17 +41,12 @@ export class MyEditor extends LitElement {
   @hotkey('Mod+K')
   openSearch() {}
 
-  constructor() {
-    super()
-    this.addController(
-      new HotkeyController(
-        this,
-        'Mod+S',
-        () => this.save(),
-        () => ({ enabled: this.dirty }),
-      ),
-    )
-  }
+  private saveHotkey = new HotkeyController(
+    this,
+    'Mod+S',
+    () => this.save(),
+    () => ({ enabled: this.dirty }),
+  )
 
   save() {}
 
@@ -66,7 +61,7 @@ export class MyEditor extends LitElement {
 | API                                                      | What it's for                                                                                                                                                                                     |
 | -------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `@hotkey(hotkey, options?)`                              | Run the decorated method when the hotkey fires, with options fixed when the class is defined.                                                                                                     |
-| `new HotkeyController(host, hotkey, callback, options?)` | Register a hotkey whose options can change; add it with `this.addController(...)`.                                                                                                                |
+| `new HotkeyController(host, hotkey, callback, options?)` | Register a hotkey whose options can change. It adds itself to `host`, so a class field is enough.                                                                                                 |
 | `provideAppHotkeys(appHotkeys, options?)`                | Declare app hotkeys and load the user's custom hotkeys once at startup, since Lit has no provider.                                                                                                |
 | `getHotkeyManager().activateScope(scope, options?)`      | Turn on a scope, such as an exclusive one for a dialog; it returns the function that turns the scope off.                                                                                         |
 | `new AppHotkeysController(host)`                         | Read `appHotkeys`, the cheat sheet `list`, and `customHotkeys`, and change custom hotkeys with `setCustomHotkey`, `resetCustomHotkey`, and `findConflicts`.                                       |
@@ -82,9 +77,9 @@ The package also re-exports `@tanstack/hotkeys`, such as `formatForDisplay`, `ma
 
 ## Pitfalls
 
-- **Add `HotkeyController` to its host.** It is the only controller that doesn't add itself, so without `this.addController(...)` it never registers.
-- **`@hotkey` is a legacy decorator.** It needs `"experimentalDecorators": true` and `"useDefineForClassFields": false`; with standard decorators it fails with TS1241. Use `HotkeyController` in that case.
-- **Decorator options are fixed when the class is defined.** For options that read instance state, or a `target` from a `ref`, use `HotkeyController` with an options function, which reruns after each update.
+- **`@hotkey` works with standard and legacy decorators.** It needs no tsconfig change. Lit's `@property` and `@state` have their own rules: with standard decorators they need `accessor` fields; with `"experimentalDecorators": true` they need `"useDefineForClassFields": false`. Match the project's existing mode.
+- **Decorator options are fixed when the class is defined.** For options that read instance state, or a `target` from a `ref`, use `HotkeyController` with an options function, which reruns after each update of its host.
+- **Render a `ref` target in the controller's host.** The options function reruns only when the host updates. If a child element renders the target, keep it in a reactive property or call `requestUpdate()` on the host when it changes.
 - **Release every scope you activate.** Lit has no provider, so a dialog activates its scope in `connectedCallback` with `this.release = getHotkeyManager().activateScope('dialog-1', { exclusive: true })` and calls `this.release()` in `disconnectedCallback`. A forgotten release keeps every other hotkey suspended. Give each open dialog its own scope name.
 
 When declaring app hotkeys, building a cheat sheet, or letting users rebind shortcuts, load `@tanstack/hotkeys#app-hotkeys` and read [app hotkeys in Lit](references/app-hotkeys.md).

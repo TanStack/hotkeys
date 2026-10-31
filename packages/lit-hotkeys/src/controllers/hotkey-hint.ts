@@ -50,6 +50,8 @@ export class HotkeyHintController implements ReactiveController {
    * while disconnected.
    */
   hostConnected(): void {
+    // Adding the controller again while connected calls this twice.
+    if (this.unsubscribe) return
     this.update()
     this.host.requestUpdate()
     if (isServer()) return

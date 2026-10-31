@@ -48,13 +48,8 @@ export class PanelComponent {
       () => this.save(),
       () => ({ enabled: this.isDirty() }),
     )
-    injectHotkey(
-      'Escape',
-      () => this.close(),
-      () => ({
-        target: this.panel()?.nativeElement ?? null,
-      }),
-    )
+    // A viewChild signal target registers once the element renders.
+    injectHotkey('Escape', () => this.close(), { target: this.panel })
   }
 
   save() {}
@@ -69,7 +64,7 @@ export class PanelComponent {
 | `injectHotkey(hotkey, callback, options?)`   | Register one chord, sequence, or app hotkey for the component's or service's lifetime; options can be a function that reads signals.                                                               |
 | `injectHotkeys(definitions, commonOptions?)` | Register several hotkeys, or a function returning a list built from data, in one call.                                                                                                             |
 | `provideHotkeys(options)`                    | Set default options, a scope (`exclusive` for dialogs), `enabled`, and app hotkeys in the app config or a component's `providers`.                                                                 |
-| `injectHotkeysContext()`                     | Read the nearest provided defaults and enabled state, or `null` without a provider.                                                                                                                |
+| `injectHotkeysContext()`                     | Read the nearest provided defaults and enabled state. Activates that provider's scope.                                                                                                             |
 | `injectDefaultHotkeysOptions()`              | Read the default options merged from every provider above.                                                                                                                                         |
 | `injectAppHotkeys()`                         | Get a signal of the declared app hotkeys with the user's custom hotkeys applied.                                                                                                                   |
 | `injectAppHotkeyList()`                      | Get a signal listing every app hotkey with its status, for a cheat sheet or settings screen.                                                                                                       |
@@ -116,7 +111,9 @@ A component's `providers` apply to the component itself, so it can register its 
 
 ## Pitfalls
 
-- **Pass options as a function.** `{ enabled: this.isDirty() }` is read once, in the constructor. A `viewChild` read there is `undefined`, and an undefined target means `document`. Use `() => ({ ... })`.
+- **Pass options as a function.** `{ enabled: this.isDirty() }` is read once, in the constructor. Use `() => ({ ... })`.
+- **Pass the `viewChild` signal as `target`, not its value.** `this.panel()` in the constructor is `undefined`, and an undefined target means `document`. `{ target: this.panel }` waits for the element.
+- **An exclusive provider with no hotkeys never activates.** Angular creates providers lazily. Call `injectHotkeysContext()` in the component's constructor to activate the scope.
 - **Replace `@HostListener('document:keydown')` and `(keydown.control.s)` bindings with `injectHotkey`.**
 - **Register runtime lists in the constructor.** `injectHotkey` throws outside an injection context, such as in `ngOnInit`. For hotkeys from data, use `injectHotkeys(() => this.items().map(...))`.
 - **Call the inject functions directly.** A shortcut service or `injectShortcut(keys: string)` wrapper has to cast strings to hotkeys, which turns off type checking and drops sequences, signal options, and app hotkeys.

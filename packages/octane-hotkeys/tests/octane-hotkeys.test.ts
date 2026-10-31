@@ -157,6 +157,22 @@ describe('compiled Octane hooks', () => {
     key('k')
     expect(capture.records).toHaveLength(2)
   })
+
+  it('keeps recorder actions stable across renders', () => {
+    const first = capture.recorder!
+    key('b')
+    expect(value('#other')).toBe('1')
+    const next = capture.recorder!
+    expect(next).not.toBe(first)
+    expect(next.startRecording).toBe(first.startRecording)
+    expect(next.stopRecording).toBe(first.stopRecording)
+    expect(next.cancelRecording).toBe(first.cancelRecording)
+    expect(next.commitRecording).toBe(first.commitRecording)
+    // The two recorders in one component keep their own actions.
+    expect(capture.sequenceRecorder!.startRecording).not.toBe(
+      next.startRecording,
+    )
+  })
 })
 
 it('inherits provider defaults, updates them, and respects nested and per-call overrides', () => {

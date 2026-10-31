@@ -5,7 +5,7 @@ title: AlpineCreateHotkeyRecorder
 
 Defined in: [types.ts:115](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L115)
 
-Creates a recorder; `maxSteps` (default 1) selects chords or sequences.
+`$hotkeyRecorder`: creates a recorder; `maxSteps` (default 1) selects chords or sequences.
 
 ## Call Signature
 
@@ -15,7 +15,7 @@ AlpineCreateHotkeyRecorder(options): AlpineHotkeyRecorder<HotkeyChord>;
 
 Defined in: [types.ts:116](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L116)
 
-Creates a recorder; `maxSteps` (default 1) selects chords or sequences.
+`$hotkeyRecorder`: creates a recorder; `maxSteps` (default 1) selects chords or sequences.
 
 ### Parameters
 
@@ -35,7 +35,7 @@ AlpineCreateHotkeyRecorder(options): AlpineHotkeyRecorder;
 
 Defined in: [types.ts:117](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L117)
 
-Creates a recorder; `maxSteps` (default 1) selects chords or sequences.
+`$hotkeyRecorder`: creates a recorder; `maxSteps` (default 1) selects chords or sequences.
 
 ### Parameters
 
@@ -55,7 +55,7 @@ AlpineCreateHotkeyRecorder(options): AlpineHotkeyRecorder;
 
 Defined in: [types.ts:121](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L121)
 
-Creates a recorder; `maxSteps` (default 1) selects chords or sequences.
+`$hotkeyRecorder`: creates a recorder; `maxSteps` (default 1) selects chords or sequences.
 
 ### Parameters
 
@@ -75,7 +75,7 @@ AlpineCreateHotkeyRecorder(options): AlpineHotkeyRecorder<HotkeyChord>;
 
 Defined in: [types.ts:122](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L122)
 
-Creates a recorder; `maxSteps` (default 1) selects chords or sequences.
+`$hotkeyRecorder`: creates a recorder; `maxSteps` (default 1) selects chords or sequences.
 
 ### Parameters
 
@@ -95,7 +95,7 @@ AlpineCreateHotkeyRecorder(options): AlpineHotkeyRecorder;
 
 Defined in: [types.ts:123](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L123)
 
-Creates a recorder; `maxSteps` (default 1) selects chords or sequences.
+`$hotkeyRecorder`: creates a recorder; `maxSteps` (default 1) selects chords or sequences.
 
 ### Parameters
 

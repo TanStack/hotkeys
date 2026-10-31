@@ -31,6 +31,8 @@ export class EditorComponent {
 
 Call it in an injection context, such as a constructor or a field initializer.
 
+In apps that use zone.js, hotkeys listen outside the Angular zone, so typing doesn't run change detection on every key. Callbacks run inside the zone, so the view updates after a hotkey fires.
+
 `Mod` is Command on macOS and Control on Windows and Linux, so `Mod+S` is the save shortcut each user already knows. The browser's Save dialog stays closed, and the shortcut still works while the user types in the textarea. [Sensible Defaults](../../guides/sensible-defaults) explains these defaults.
 
 That's all a hotkey needs. Providers, scopes, and the other features later in this guide are optional, so add them as your app grows.
@@ -173,14 +175,12 @@ export class PanelComponent {
 
   constructor() {
     // Fires only while the panel, or something inside it, has focus
-    injectHotkey('Escape', () => this.closePanel(), () => ({
-      target: this.panel()?.nativeElement ?? null,
-    }))
+    injectHotkey('Escape', () => this.closePanel(), { target: this.panel })
   }
 }
 ```
 
-A `null` target waits until the element is rendered. The element must be focusable to receive key presses, so give it a `tabindex` if it isn't a control.
+The hotkey registers once the element renders. The element must be focusable to receive key presses, so give it a `tabindex` if it isn't a control.
 
 ## Add providers and scopes (optional)
 

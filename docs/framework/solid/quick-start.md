@@ -147,6 +147,21 @@ function Panel() {
 
 A `null` target waits until the element is attached. The element must be focusable to receive key presses, so give it a `tabIndex` if it isn't a control.
 
+Solid doesn't clear a ref when the element is removed, so the signal keeps a removed element. For an element inside `<Show>` or `<For>`, register the hotkey in the element's `ref` callback instead:
+
+```tsx
+<Show when={open()}>
+  <div
+    ref={(el) => createHotkey('Escape', () => closePanel(), { target: el })}
+    tabIndex={0}
+  >
+    ...
+  </div>
+</Show>
+```
+
+The callback runs each time the element is created, and the hotkey unregisters when the element is removed.
+
 ## Add providers and scopes (optional)
 
 So far, every hotkey uses the built-in defaults and belongs to the global scope, so it is active whenever its component is rendered. You don't need a provider for that.

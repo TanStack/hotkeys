@@ -7,7 +7,7 @@ title: subscribePublishedAppHotkeys
 function subscribePublishedAppHotkeys(onChange): () => void;
 ```
 
-Defined in: [adapter.ts:336](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L336)
+Defined in: [adapter.ts:341](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L341)
 
 Calls `onChange` when the store published with `publishAppHotkeysStore` or
 `provideAppHotkeys` changes, or when its app hotkeys or custom hotkeys

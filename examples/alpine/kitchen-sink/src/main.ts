@@ -1,5 +1,6 @@
 import Alpine from 'alpinejs'
 import {
+  createHotkeyRecorder,
   createHotkeysScope,
   formatForDisplay,
   hotkeysPlugin,
@@ -340,7 +341,7 @@ class Recording {
         meta: { name: 'Recorded sequence', group: 'Recording' },
       },
     )
-    this.recorder = this.hotkeysScope.createHotkeyRecorder(() => ({
+    this.recorder = createHotkeyRecorder(this.hotkeysScope, () => ({
       recordBy: this.mode,
       ignoreInputs: false,
       detectConflicts: {
@@ -365,7 +366,7 @@ class Recording {
         (this.problem = 'Recording cancelled. Binding unchanged.'),
     }))
     // maxSteps above 1 records sequences; one step records a chord.
-    this.sequenceRecorder = this.hotkeysScope.createHotkeyRecorder(() => ({
+    this.sequenceRecorder = createHotkeyRecorder(this.hotkeysScope, () => ({
       maxSteps: Infinity,
       recordBy: this.mode,
       ignoreInputs: false,

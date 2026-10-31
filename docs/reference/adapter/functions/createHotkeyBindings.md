@@ -7,7 +7,7 @@ title: createHotkeyBindings
 function createHotkeyBindings(): object;
 ```
 
-Defined in: [adapter.ts:66](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L66)
+Defined in: [adapter.ts:71](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L71)
 
 Reconciles adapter registrations while retaining handles for option updates.
 

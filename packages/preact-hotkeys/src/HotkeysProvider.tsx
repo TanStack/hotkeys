@@ -1,5 +1,5 @@
 import { createContext } from 'preact'
-import { useContext, useEffect, useMemo, useState } from 'preact/hooks'
+import { useContext, useLayoutEffect, useMemo, useState } from 'preact/hooks'
 import { publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
   activateHotkeysProviderScope,
@@ -132,22 +132,23 @@ export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
     parent: parent.defaultOptions.hotkey?.scope,
   })
 
-  // Activate this provider's scope while mounted and enabled.
-  useEffect(() => {
+  // Activate this provider's scope while mounted and enabled. Layout effects
+  // run in the commit; Preact runs plain effects after paint.
+  useLayoutEffect(() => {
     return scopeKey ? activateHotkeysProviderScope(scopeKey) : undefined
   }, [scopeKey])
 
   // Keep the latest callback and saved custom hotkeys. Saved data with the
   // same value, such as an inline JSON.parse, keeps the user's changes.
-  useEffect(() => {
+  useLayoutEffect(() => {
     store?.setOptions({ customHotkeys, onCustomHotkeysChange })
   }, [store, customHotkeys, onCustomHotkeysChange])
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (appHotkeys) store?.setAppHotkeys(appHotkeys)
   }, [store, appHotkeys])
 
   // Publish the store so devtools can list declared hotkeys.
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!store) return
     return publishAppHotkeysStore(store)
   }, [store])

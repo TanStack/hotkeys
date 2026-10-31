@@ -15,6 +15,7 @@ import {
   getHotkeysProviderScopeKey,
   mergeHotkeysProviderDefaults,
 } from '@tanstack/hotkeys/adapter'
+import { useLive } from './_useLive'
 import type { InjectionKey, MaybeRefOrGetter } from 'vue'
 import type {
   AppHotkeys,
@@ -87,8 +88,8 @@ export interface ProvideHotkeysContextOptions {
  *
  * Nest contexts to create hotkey scopes. A nested context inherits app
  * hotkeys and merges default options. With `scope`, its hotkeys fire only
- * while the component is mounted and enabled; with `exclusive`, only its
- * hotkeys fire.
+ * while the component is mounted, enabled, and not hidden by `<KeepAlive>`;
+ * with `exclusive`, only its hotkeys fire.
  *
  * @example
  * ```ts
@@ -134,8 +135,13 @@ export function provideHotkeysContext(
     }
   }
 
+  // A page cached by <KeepAlive> releases its scope while hidden.
+  const live = useLive()
   const active = computed(
-    () => (parent?.enabled ?? true) && toValue(options.enabled) !== false,
+    () =>
+      live.value &&
+      (parent?.enabled ?? true) &&
+      toValue(options.enabled) !== false,
   )
   const defaultOptions = computed(() =>
     mergeHotkeysProviderDefaults(

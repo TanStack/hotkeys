@@ -143,6 +143,22 @@ function Panel() {
 
 The element must be focusable to receive key presses, so give it a `tabIndex` if it isn't a control.
 
+A ref works for an element the component always renders. For an element that mounts later, such as one a child shows from its own state, keep the element in state with a callback ref:
+
+```tsx
+import { useState } from 'preact/hooks'
+
+function Sidebar() {
+  const [panel, setPanel] = useState<HTMLDivElement | null>(null)
+
+  useHotkey('Escape', () => closePanel(), { target: panel })
+
+  return <CollapsiblePanel panelRef={setPanel} />
+}
+```
+
+The hotkey registers when the element mounts and unregisters when it unmounts. [Elements that mount later](./guides/hotkeys#elements-that-mount-later) explains why.
+
 ## Add providers and scopes (optional)
 
 So far, every hotkey uses the built-in defaults and belongs to the global scope, so it is active whenever its component is mounted. You don't need a provider for that.

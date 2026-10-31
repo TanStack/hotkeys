@@ -22,6 +22,8 @@ function Editor() @{
 
 Write hook calls in compiler-enabled `.tsrx` components. The Octane compiler tracks hooks by call site, so call them at the top level of the component, not in loops or conditions.
 
+A custom hook in a plain `.ts` file needs the compiler too when it calls the same hook more than once. Start the file with `/** @jsxImportSource octane */`, or import a value such as `useState` from `octane`. Otherwise the calls share one slot, and only the last one works. See [Custom hooks](./guides/hotkeys#custom-hooks).
+
 `Mod` is Command on macOS and Control on Windows and Linux, so `Mod+S` is the save shortcut each user already knows. The browser's Save dialog stays closed, and the shortcut still works while the user types in the textarea. [Sensible Defaults](../../guides/sensible-defaults) explains these defaults.
 
 That's all a hotkey needs. Providers, scopes, and the other features later in this guide are optional, so add them as your app grows.

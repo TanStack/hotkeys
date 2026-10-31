@@ -13,7 +13,8 @@ import type { HotkeysProviderOptions } from './HotkeysProviderContext'
  *
  * Nest providers to create hotkey scopes. A nested provider inherits app
  * hotkeys and merges default options. With `scope`, its hotkeys fire only
- * while it is mounted and enabled; with `exclusive`, only its hotkeys fire.
+ * while it is mounted, enabled, and not hidden by `<KeepAlive>`; with
+ * `exclusive`, only its hotkeys fire.
  *
  * @example
  * ```vue

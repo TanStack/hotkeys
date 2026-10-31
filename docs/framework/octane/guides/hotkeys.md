@@ -112,6 +112,28 @@ useHotkey(['G', { key: 'H', shift: true }], () => goToHistory())
 
 The hook registers every chord and sequence step as a string, so `context.hotkey` shows `'Mod+Shift+S'` for the first object above. [Match a key's position instead](../../../guides/sensible-defaults.md#match-a-keys-position-instead) explains codes such as `[KeyW]`.
 
+### Custom hooks
+
+You can group hotkeys in a custom hook. The compiler gives each hook call its own slot only in modules it compiles:
+
+- `.tsrx` and `.tsx` files.
+- `.ts` and `.js` files that import a value from `octane`, such as `useState`. A type-only import doesn't count.
+- `.ts` and `.js` files that start with `/** @jsxImportSource octane */`.
+
+In any other `.ts` file, a custom hook that calls the same hook more than once gives every call one shared slot. Only the last call works, and nothing warns. Add the pragma to fix it:
+
+```ts
+/** @jsxImportSource octane */
+import { useHotkey } from '@tanstack/octane-hotkeys'
+
+export function useEditorShortcuts(editor: Editor) {
+  useHotkey('Mod+B', () => editor.toggleBold())
+  useHotkey('Mod+I', () => editor.toggleItalic())
+}
+```
+
+Without the pragma, only `Mod+I` would register. A custom hook that calls each hook once works in any file. To register a list in one call, use [`useHotkeys`](#register-multiple-hotkeys).
+
 ## Hotkey options
 
 Pass options as the third argument:

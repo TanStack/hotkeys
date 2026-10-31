@@ -8,7 +8,7 @@ redirect_from:
 
 These functions report which keys the user is holding right now. They're optional helpers for your UI: show which modifiers are down, or change a button while Shift is held. You don't need them to register hotkeys. To show a button's shortcut while the user holds its modifiers, see [Hotkey Hints](./hotkey-hints).
 
-Create them on an owner from `createHotkeysScope`. Each returns an object with a reactive `value`, so read `value` where you need it.
+Create them on an owner from `createHotkeysScope`. Each returns an object with a reactive `value`, so read `value` where you need it. Call `create*` in `x-init` or `init()`, and read `.value` anywhere. In a reactive expression such as `x-text`, each evaluation calls `create*` again and adds a new subscription.
 
 ## Show which keys are held
 

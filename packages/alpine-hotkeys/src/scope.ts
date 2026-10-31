@@ -28,6 +28,9 @@ function getAlpine(): AlpineInstance {
   return alpine
 }
 
+/** The internal scope behind each `createHotkeysScope` owner. */
+export const ownerScopes = new WeakMap<object, HotkeysScope>()
+
 export function read<T>(value: MaybeGetter<T>): T {
   return typeof value === 'function' ? (value as () => T)() : value
 }
@@ -45,10 +48,22 @@ export function createScope(
   function effect(callback: () => void) {
     assertActive()
     const alpine = getAlpine()
+    let error: unknown
+    let first = true
     const runner = alpine.effect(() => {
-      if (!destroyed) callback()
+      if (destroyed) return
+      try {
+        callback()
+      } catch (e) {
+        // A throw from a re-run would stop Alpine's update queue for the
+        // whole page. Only the first run throws, to the caller.
+        if (first) error = e
+        else reportError(e)
+      }
     })
+    first = false
     cleanups.add(() => alpine.release(runner))
+    if (error) throw error
   }
 
   function select<T, TSelected>(

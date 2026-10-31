@@ -1,5 +1,6 @@
 import Alpine from 'alpinejs'
 import {
+  createHotkeyRecorder,
   createHotkeysScope,
   formatForDisplay,
   hotkeysPlugin,
@@ -84,7 +85,7 @@ class App {
   private hotkeysScope = createHotkeysScope()
 
   usage0 =
-    'const recorder = scope.createHotkeyRecorder({\n  onRecord: (value) => this.updateShortcut(value),\n  onCancel: () => this.cancelEditing(),\n  onClear: () => this.clearShortcut(),\n})\nscope.createHotkeys(() => this.definitions)\nconst registrations = scope.createHotkeyRegistrations()\nrecorder.startRecording()'
+    'const recorder = createHotkeyRecorder(scope, {\n  onRecord: (value) => this.updateShortcut(value),\n  onCancel: () => this.cancelEditing(),\n  onClear: () => this.clearShortcut(),\n})\nscope.createHotkeys(() => this.definitions)\nconst registrations = scope.createHotkeyRegistrations()\nrecorder.startRecording()'
   shortcuts: Array<Shortcut> = INITIAL_SHORTCUTS
   editingId: string | null = null
   draftName = ''
@@ -146,7 +147,7 @@ class App {
     this.handleCancel = this.handleCancel.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
     this.handleCreateNew = this.handleCreateNew.bind(this)
-    this.recorder = this.hotkeysScope.createHotkeyRecorder({
+    this.recorder = createHotkeyRecorder(this.hotkeysScope, {
       onRecord: (hotkey: Hotkey) => {
         if (this.editingId) {
           this.shortcuts = this.shortcuts.map((s) =>

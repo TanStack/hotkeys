@@ -133,6 +133,7 @@ title: "@tanstack/hotkeys"
 - [areHotkeysEqual](functions/areHotkeysEqual.md)
 - [assertValidHotkey](functions/assertValidHotkey.md)
 - [checkHotkey](functions/checkHotkey.md)
+- [createAppHotkeysStore](functions/createAppHotkeysStore.md)
 - [createHotkeyChordHandler](functions/createHotkeyChordHandler.md)
 - [createMultiHotkeyChordHandler](functions/createMultiHotkeyChordHandler.md)
 - [createSequenceMatcher](functions/createSequenceMatcher.md)
