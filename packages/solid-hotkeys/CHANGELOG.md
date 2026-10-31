@@ -1,5 +1,37 @@
 # @tanstack/solid-hotkeys
 
+## 0.19.0
+
+### Minor Changes
+
+- [#214](https://github.com/TanStack/hotkeys/pull/214) [`a179ef6`](https://github.com/TanStack/hotkeys/commit/a179ef6d3410dfe6fc932e09f55330d16297507f) - Hotkey hooks and functions in every adapter accept `undefined` and `null` as the hotkey, for components with an optional shortcut. No hotkey registers nothing, and its hint is `false`. When a hotkey changes to `undefined` or `null`, its registration is removed; when it changes back, it registers again. Before, a nullish hotkey threw: in React it unmounted the tree, in Vue, Solid, Angular, and Svelte the old hotkey kept firing, Ember failed to render, and Alpine stopped updating the page. In Angular, `injectHotkey(() => this.shortcut(), …)` now works with an optional input, without `?? []`.
+
+  - The plural forms skip a definition whose `hotkey` is nullish.
+  - An empty hotkey, such as `''` or `{ key: '' }`, also registers nothing, so clearing a hotkey to `''` removes its registration. Before, an empty hotkey registered and fired on `keydown` events with no key, such as those some autofill tools send.
+  - `HotkeyManager.register` still requires a hotkey. It throws a clear error for `undefined`, `null`, or an empty hotkey, as it already did for an empty sequence.
+  - `hasActiveRegistration` and `matchesHeldModifiers` return `false` for no hotkey.
+  - The Lit `@hotkey` decorator still needs a hotkey, because it is set when the class is defined.
+
+### Patch Changes
+
+- [#214](https://github.com/TanStack/hotkeys/pull/214) [`a179ef6`](https://github.com/TanStack/hotkeys/commit/a179ef6d3410dfe6fc932e09f55330d16297507f) - `HotkeysProvider` now applies a changed `customHotkeys` prop. Before, the provider read it only on the first render, so saved shortcuts that loaded asynchronously, or another user's shortcuts after sign-in, were ignored until the provider remounted.
+
+  - When the value of `customHotkeys` changes, it replaces the current custom hotkeys without calling `onCustomHotkeysChange`. The prop is compared by value, so passing equal data again, such as `JSON.parse(localStorage.getItem('hotkeys'))` on every render, keeps changes the user made since. `undefined` leaves the custom hotkeys unchanged, such as while saved data loads, and `null` clears them, such as on sign-out.
+  - `AppHotkeysStore.setOptions` accepts `customHotkeys` with the same behavior. Lit, Alpine, and Ember apps can call it on the store that `provideAppHotkeys` returns when saved data loads later.
+  - In Angular, `provideHotkeys` accepts `customHotkeys` as a signal or function. In Vue, `provideHotkeysContext` accepts it as a ref or getter.
+
+- [#214](https://github.com/TanStack/hotkeys/pull/214) [`a179ef6`](https://github.com/TanStack/hotkeys/commit/a179ef6d3410dfe6fc932e09f55330d16297507f) - An option set to `undefined` now keeps its default, the same as leaving it out. Before, a wrapper component that forwarded unset props, such as `preventDefault: props.preventDefault`, turned off `preventDefault` and `stopPropagation`, so `Mod+S` also opened the browser's Save dialog. `eventType: undefined` made a hotkey never fire, and `scope: undefined` moved a hotkey out of its provider's scope.
+
+  - This applies to `register`, provider defaults, `createHotkeysScope` defaults in Alpine and Ember, and recorder options merged with provider defaults.
+  - In `setOptions`, `undefined` resets an option to its default, or removes it when it has no default.
+
+  Behavior changes:
+
+  - In React and Preact, a `null` target registers nothing, like a ref that is still empty. Before, it listened on `document`. To listen on `document`, leave out `target`. `prepareHotkeyDefinitions` in `@tanstack/hotkeys/adapter` does the same when no `resolveTarget` is given, which also applies to Svelte. Vue, Solid, Angular, Lit, Alpine, Ember, and Octane already skipped a `null` target.
+
+- Updated dependencies [[`a179ef6`](https://github.com/TanStack/hotkeys/commit/a179ef6d3410dfe6fc932e09f55330d16297507f), [`a179ef6`](https://github.com/TanStack/hotkeys/commit/a179ef6d3410dfe6fc932e09f55330d16297507f), [`a179ef6`](https://github.com/TanStack/hotkeys/commit/a179ef6d3410dfe6fc932e09f55330d16297507f)]:
+  - @tanstack/hotkeys@0.21.0
+
 ## 0.18.0
 
 ### Minor Changes
