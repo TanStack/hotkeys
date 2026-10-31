@@ -7,7 +7,7 @@ title: useHotkeysContext
 function useHotkeysContext(): HotkeysContextValue | null;
 ```
 
-Defined in: [HotkeysProvider.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L72)
+Defined in: [HotkeysProvider.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L74)
 
 Reads the nearest provider, or null outside a provider.
 

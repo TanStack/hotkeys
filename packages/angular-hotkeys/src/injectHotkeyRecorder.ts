@@ -7,6 +7,7 @@ import {
   untracked,
 } from '@angular/core'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
+import { withDefaults } from '@tanstack/hotkeys/adapter'
 import { injectDefaultHotkeysOptions } from './hotkeys-provider'
 import type { Store } from '@tanstack/hotkeys/adapter'
 import type { Signal } from '@angular/core'
@@ -97,10 +98,12 @@ export function injectHotkeyRecorder(
         typeof options === 'function' ? options() : options
 
       // Overloads already checked the options; either shape is valid here.
-      return new HotkeyRecorder({
-        ...defaultOptions.hotkeyRecorder,
-        ...resolvedOptions,
-      } as HotkeySequenceRecorderOptions)
+      return new HotkeyRecorder(
+        withDefaults(
+          defaultOptions.hotkeyRecorder,
+          resolvedOptions,
+        ) as HotkeySequenceRecorderOptions,
+      )
     }),
   )
 
@@ -119,10 +122,9 @@ export function injectHotkeyRecorder(
   // Sync options on every effect run (matches React's sync on render)
   effect(() => {
     const resolved = typeof options === 'function' ? options() : options
-    recorderSignal().setOptions({
-      ...defaultOptions.hotkeyRecorder,
-      ...resolved,
-    })
+    recorderSignal().setOptions(
+      withDefaults(defaultOptions.hotkeyRecorder, resolved),
+    )
   })
 
   destroyRef.onDestroy(() => {

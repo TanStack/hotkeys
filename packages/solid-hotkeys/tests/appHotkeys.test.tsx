@@ -11,6 +11,7 @@ import {
 import { createHotkey } from '../src/createHotkey'
 import { createHotkeys } from '../src/createHotkeys'
 import { createHotkeyRecorder } from '../src/createHotkeyRecorder'
+import { createSignal } from 'solid-js'
 import type { JSX } from 'solid-js'
 import type { CustomHotkeys, Hotkey } from '@tanstack/hotkeys'
 
@@ -127,6 +128,47 @@ describe('app hotkeys', () => {
       createHotkey(appHotkeys['doc.save'], () => {}, { timeout: 300 })
       return null
     })
+  })
+})
+
+describe('HotkeysProvider customHotkeys prop', () => {
+  it('applies saved data that changes after the first render', () => {
+    const [saved, setSaved] = createSignal<CustomHotkeys<
+      typeof appHotkeys
+    > | null>(null)
+    const onCustomHotkeysChange = vi.fn()
+    let custom!: ReturnType<typeof useCustomHotkeys>
+    render(() => (
+      <HotkeysProvider
+        appHotkeys={appHotkeys}
+        customHotkeys={saved()}
+        onCustomHotkeysChange={onCustomHotkeysChange}
+      >
+        {/* A nested provider without appHotkeys shares the store. */}
+        <HotkeysProvider scope="nested">
+          {(() => {
+            custom = useCustomHotkeys()
+            return null
+          })()}
+        </HotkeysProvider>
+      </HotkeysProvider>
+    ))
+
+    setSaved({ 'doc.save': 'Mod+Shift+S' })
+    expect(custom.customHotkeys()).toEqual({ 'doc.save': 'Mod+Shift+S' })
+    expect(onCustomHotkeysChange).not.toHaveBeenCalled()
+
+    // The same value again keeps the user's change.
+    custom.setCustomHotkey('palette.open', 'Mod+K')
+    setSaved({ 'doc.save': 'Mod+Shift+S' })
+    expect(custom.customHotkeys()).toEqual({
+      'doc.save': 'Mod+Shift+S',
+      'palette.open': 'Mod+K',
+    })
+
+    // Another user's data replaces it.
+    setSaved({ 'nav.home': ['G', 'G'] })
+    expect(custom.customHotkeys()).toEqual({ 'nav.home': ['G', 'G'] })
   })
 })
 

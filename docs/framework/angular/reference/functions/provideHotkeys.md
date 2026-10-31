@@ -7,7 +7,7 @@ title: provideHotkeys
 function provideHotkeys(options?): Provider;
 ```
 
-Defined in: [hotkeys-provider.ts:233](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L233)
+Defined in: [hotkeys-provider.ts:245](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L245)
 
 Provides default options, app hotkeys, and the user's custom hotkeys to an
 injector, such as the application or a component.

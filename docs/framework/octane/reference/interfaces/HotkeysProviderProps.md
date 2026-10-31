@@ -42,10 +42,12 @@ optional customHotkeys?:
   | null;
 ```
 
-Defined in: [HotkeysProvider.ts:66](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L66)
+Defined in: [HotkeysProvider.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L68)
 
-Starting custom hotkeys, such as saved data. Read once; the provider owns
-the state afterwards. Invalid entries are ignored with a warning.
+The user's saved custom hotkeys. When the value changes, such as after
+saved data loads or the user signs in, it replaces the current custom
+hotkeys. `undefined` leaves them unchanged; `null` clears them. Invalid
+entries are ignored with a warning.
 
 ***
 
@@ -67,7 +69,7 @@ Merged with the parent provider's defaults.
 optional onCustomHotkeysChange?: (customHotkeys) => void;
 ```
 
-Defined in: [HotkeysProvider.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L68)
+Defined in: [HotkeysProvider.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L70)
 
 Called with the custom hotkeys after every change, ready to save.
 

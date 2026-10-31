@@ -14,7 +14,10 @@ import type {
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
 
-/** Modifier hint controller. Getter arguments can read reactive host properties. */
+/**
+ * Modifier hint controller. Getter arguments can read reactive host
+ * properties. No hotkey (`undefined`, `null`, or `''`) is never visible.
+ */
 export class HotkeyHintController implements ReactiveController {
   private unsubscribe?: () => void
   private visible = false
@@ -23,7 +26,11 @@ export class HotkeyHintController implements ReactiveController {
   constructor(
     private host: ReactiveControllerHost,
     private hotkey:
-      RegisterableHotkey | AppHotkey | (() => RegisterableHotkey | AppHotkey),
+      | RegisterableHotkey
+      | AppHotkey
+      | null
+      | undefined
+      | (() => RegisterableHotkey | AppHotkey | null | undefined),
     private options: HeldModifierOptions | (() => HeldModifierOptions) = {},
   ) {
     host.addController(this)

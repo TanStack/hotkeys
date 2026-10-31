@@ -3,7 +3,7 @@ id: HotkeysProviderOptions
 title: HotkeysProviderOptions
 ---
 
-Defined in: [hotkeys-provider.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L30)
+Defined in: [hotkeys-provider.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L31)
 
 ## Properties
 
@@ -13,7 +13,7 @@ Defined in: [hotkeys-provider.ts:30](https://github.com/TanStack/hotkeys/blob/ma
 optional hotkey?: InjectHotkeyCommonOptions;
 ```
 
-Defined in: [hotkeys-provider.ts:35](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L35)
+Defined in: [hotkeys-provider.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L36)
 
 Defaults for every hotkey registered by `injectHotkey` and `injectHotkeys`.
 `requireReset` applies to chords and `timeout` applies to sequences.
@@ -26,6 +26,6 @@ Defaults for every hotkey registered by `injectHotkey` and `injectHotkeys`.
 optional hotkeyRecorder?: Partial<Omit<HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions, "maxSteps" | "validate" | "onRecord">>;
 ```
 
-Defined in: [hotkeys-provider.ts:37](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L37)
+Defined in: [hotkeys-provider.ts:38](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L38)
 
 Defaults for every `injectHotkeyRecorder`.

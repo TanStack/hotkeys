@@ -3,16 +3,18 @@ id: onHotkey
 title: onHotkey
 ---
 
-Defined in: [packages/ember-hotkeys/src/onHotkey.ts:11](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/onHotkey.ts#L11)
+Defined in: [packages/ember-hotkeys/src/onHotkey.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/onHotkey.ts#L15)
 
-Attaches a hotkey (chord, sequence, or app hotkey) to the element that owns the modifier.
+Attaches a hotkey (chord, sequence, or app hotkey) to the element that owns
+the modifier. `undefined`, `null`, or `''` registers nothing, for an
+optional shortcut.
 
 ## Extends
 
 - `default`\<\{
   `Args`: \{
      `Named`: [`ElementHotkeyOptions`](../type-aliases/ElementHotkeyOptions.md);
-     `Positional`: \[`RegisterableHotkey` \| `AppHotkey`, `HotkeyCallback`\];
+     `Positional`: \[`RegisterableHotkey` \| `AppHotkey` \| `null` \| `undefined`, `HotkeyCallback`\];
   \};
   `Element`: `HTMLElement`;
 \}\>
@@ -42,7 +44,9 @@ An instance of an Owner (for service injection etc.).
      `Named`: [`ElementHotkeyOptions`](../type-aliases/ElementHotkeyOptions.md);
      `Positional`: \[
         \| `RegisterableHotkey`
-       \| `AppHotkey`\<`string`, HotkeyChord \| HotkeySequence \| null\>, `HotkeyCallback`\];
+        \| `AppHotkey`\<`string`, HotkeyChord \| HotkeySequence \| null\>
+        \| `null`
+       \| `undefined`, `HotkeyCallback`\];
   \};
   `Element`: `HTMLElement`;
 \}\>
@@ -59,7 +63,10 @@ The positional and named arguments passed to the modifier.
 Modifier<{
   Element: HTMLElement
   Args: {
-    Positional: [RegisterableHotkey | AppHotkey, HotkeyCallback]
+    Positional: [
+      RegisterableHotkey | AppHotkey | null | undefined,
+      HotkeyCallback,
+    ]
     Named: ElementHotkeyOptions
   }
 }>.constructor
@@ -85,7 +92,9 @@ Defined in: node\_modules/.pnpm/@glint+template@1.9.0/node\_modules/@glint/templ
 
 ...\[
   \| `RegisterableHotkey`
-  \| `AppHotkey`\<`string`, HotkeyChord \| HotkeySequence \| null\>, `HotkeyCallback`, `NamedArgs`\<[`ElementHotkeyOptions`](../type-aliases/ElementHotkeyOptions.md)\>\]
+  \| `AppHotkey`\<`string`, HotkeyChord \| HotkeySequence \| null\>
+  \| `null`
+  \| `undefined`, `HotkeyCallback`, `NamedArgs`\<[`ElementHotkeyOptions`](../type-aliases/ElementHotkeyOptions.md)\>\]
 
 #### Returns
 
@@ -108,7 +117,7 @@ modify(
    options): void;
 ```
 
-Defined in: [packages/ember-hotkeys/src/onHotkey.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/onHotkey.ts#L20)
+Defined in: [packages/ember-hotkeys/src/onHotkey.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/onHotkey.ts#L27)
 
 Called when the modifier is installed and any time any tracked state used
 in the modifier changes.
@@ -152,7 +161,9 @@ The element to which the modifier is applied.
 
 \[
   \| `RegisterableHotkey`
-  \| `AppHotkey`\<`string`, HotkeyChord \| HotkeySequence \| null\>, `HotkeyCallback`\]
+  \| `AppHotkey`\<`string`, HotkeyChord \| HotkeySequence \| null\>
+  \| `null`
+  \| `undefined`, `HotkeyCallback`\]
 
 The positional arguments to the modifier.
 

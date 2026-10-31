@@ -12,7 +12,7 @@ function useHotkey<T>(
    options?): void;
 ```
 
-Defined in: [useHotkey.ts:88](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L88)
+Defined in: [useHotkey.ts:89](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L89)
 
 Preact hook for registering a hotkey: a chord such as `'Mod+S'`, a sequence
 such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
@@ -40,9 +40,10 @@ call-site options.
 
 #### hotkey
 
-`T`
+`T` \| `null` \| `undefined`
 
-A chord string, RawHotkeyChord object, sequence, or app hotkey
+A chord string, RawHotkeyChord object, sequence, or app hotkey.
+  `undefined`, `null`, or `''` registers nothing, for an optional shortcut.
 
 #### callback
 
@@ -88,7 +89,7 @@ function useHotkey<T>(
    options?): void;
 ```
 
-Defined in: [useHotkey.ts:93](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L93)
+Defined in: [useHotkey.ts:94](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L94)
 
 Preact hook for registering a hotkey: a chord such as `'Mod+S'`, a sequence
 such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
@@ -116,9 +117,10 @@ call-site options.
 
 #### hotkey
 
-`T`
+`T` \| `null` \| `undefined`
 
-A chord string, RawHotkeyChord object, sequence, or app hotkey
+A chord string, RawHotkeyChord object, sequence, or app hotkey.
+  `undefined`, `null`, or `''` registers nothing, for an optional shortcut.
 
 #### callback
 

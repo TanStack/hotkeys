@@ -122,7 +122,7 @@ function Root() {
 ```
 
 - `customHotkeys` holds only the hotkeys that differ from the declared defaults, keyed by id. `null` means the user unbound that hotkey. Saving differences means users who never changed a hotkey get new defaults when you change them.
-- The provider reads `customHotkeys` once and owns the state afterwards. Saved data can outlive the code that wrote it, so unknown ids and invalid hotkeys are ignored with a warning in development.
+- When the `customHotkeys` value changes, such as after saved data loads or another user signs in, it replaces the current custom hotkeys without calling `onCustomHotkeysChange`. Passing equal data again, such as parsing local storage on every render, keeps the user's changes. `undefined` leaves the custom hotkeys unchanged, such as while saved data loads, and `null` clears them, such as on sign-out. Saved data can outlive the code that wrote it, so unknown ids and invalid hotkeys are ignored with a warning in development.
 - `onCustomHotkeysChange` receives the complete custom hotkeys after every change, ready to save. Storage can be anything: local storage, a server, or a user profile.
 
 The [hotkey recorder](./custom-hotkey-recording) records `Mod` rather than platform-specific modifiers, so a hotkey saved on one platform works on others.

@@ -3,7 +3,7 @@ id: EmberHotkeysScope
 title: EmberHotkeysScope
 ---
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L12)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L13)
 
 Helpers, modifiers, and recorder factories with shared defaults. Owners retain their own cleanup.
 
@@ -15,7 +15,7 @@ Helpers, modifiers, and recorder factories with shared defaults. Owners retain t
 onHotkey: typeof onHotkey;
 ```
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L13)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L14)
 
 ***
 
@@ -25,7 +25,7 @@ Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:13](https://github
 onHotkeys: typeof onHotkeys;
 ```
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L14)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L15)
 
 ***
 
@@ -35,7 +35,7 @@ Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:14](https://github
 useHotkey: typeof useHotkey;
 ```
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L15)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L16)
 
 ***
 
@@ -51,7 +51,7 @@ useHotkeyRecorder: {
 };
 ```
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L17)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L18)
 
 #### Call Signature
 
@@ -191,4 +191,4 @@ Enter (unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at
 useHotkeys: typeof useHotkeys;
 ```
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L16)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L17)

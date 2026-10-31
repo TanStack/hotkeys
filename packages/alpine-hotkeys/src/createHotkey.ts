@@ -10,7 +10,7 @@ import type {
 
 export function createHotkey(
   scope: HotkeysScope,
-  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey>,
+  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey | null | undefined>,
   callback: HotkeyCallback,
   options: MaybeGetter<AlpineHotkeyCommonOptions> = {},
 ) {

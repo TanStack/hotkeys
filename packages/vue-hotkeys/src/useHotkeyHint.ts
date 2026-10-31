@@ -21,10 +21,11 @@ import type {
  * enabled and in an active scope. Pass refs or getters to track changing
  * hotkeys and options. A sequence reveals its hint from its first step, and
  * an app hotkey matches its registrations by id and uses its effective hotkey
- * (false while unbound). This helper does not register a shortcut. A hotkey on an element counts only while focus is inside it.
+ * (false while unbound). No hotkey (`undefined`, `null`, or `''`) returns
+ * false. This helper does not register a shortcut. A hotkey on an element counts only while focus is inside it.
  */
 export function useHotkeyHint(
-  hotkey: MaybeRefOrGetter<RegisterableHotkey | AppHotkey>,
+  hotkey: MaybeRefOrGetter<RegisterableHotkey | AppHotkey | null | undefined>,
   options: MaybeRefOrGetter<HeldModifierOptions> = {},
 ): ComputedRef<boolean> {
   const appHotkeys = useAppHotkeysStoreSource()

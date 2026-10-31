@@ -19,6 +19,42 @@ export const defaultHotkeyOptions = {
 }
 
 /**
+ * Merges option layers left to right. A key set to `undefined` keeps the
+ * earlier layer's value, so an unset option keeps its default. Getters are
+ * read once.
+ */
+export function definedOptions<T extends object>(
+  ...layers: ReadonlyArray<object | undefined>
+): T {
+  const result: Record<string, unknown> = {}
+  for (const layer of layers) {
+    if (!layer) continue
+    for (const key of Object.keys(layer)) {
+      const value = (layer as Record<string, unknown>)[key]
+      if (value !== undefined) result[key] = value
+    }
+  }
+  return result as T
+}
+
+/**
+ * Merges options over defaults for an API whose `setOptions` treats
+ * `undefined` as "clear". An unset option takes its default, or stays
+ * `undefined` to clear an earlier value when it has no default.
+ */
+export function withDefaults<T extends object>(
+  defaults: object | undefined,
+  options: T | undefined,
+): T {
+  return { ...options, ...definedOptions<T>(defaults, options) }
+}
+
+/** Whether a parsed chord has a key. An empty one would match key-less events. */
+export function chordHasKey(chord: ParsedHotkeyChord): boolean {
+  return chord.code !== undefined || !!chord.key
+}
+
+/**
  * Resolves `ignoreInputs: 'auto'` from the hotkey (the first step of a sequence).
  * Ctrl/Meta shortcuts and Escape fire in inputs; single keys and Shift/Alt combos are ignored.
  */

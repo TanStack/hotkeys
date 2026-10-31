@@ -171,6 +171,63 @@ describe('app hotkeys', () => {
   })
 })
 
+describe('HotkeysProvider customHotkeys prop', () => {
+  it('applies saved data that changes after setup', async () => {
+    const saved = ref<CustomHotkeys<typeof appHotkeys> | null>(null)
+    const onChange = vi.fn()
+    let custom!: ReturnType<typeof useCustomHotkeys>
+    const Child = defineComponent({
+      setup() {
+        custom = useCustomHotkeys()
+        return () => h('div')
+      },
+    })
+    mount(
+      defineComponent({
+        setup() {
+          return () =>
+            h(
+              HotkeysProvider,
+              {
+                appHotkeys,
+                customHotkeys: saved.value,
+                onCustomHotkeysChange: onChange,
+              },
+              {
+                // A nested provider without appHotkeys shares the store.
+                default: () =>
+                  h(
+                    HotkeysProvider,
+                    { scope: 'nested' },
+                    { default: () => h(Child) },
+                  ),
+              },
+            )
+        },
+      }),
+    )
+
+    saved.value = { 'doc.save': 'Mod+Shift+S' }
+    await nextTick()
+    expect(custom.customHotkeys.value).toEqual({ 'doc.save': 'Mod+Shift+S' })
+    expect(onChange).not.toHaveBeenCalled()
+
+    // The same value again keeps the user's change.
+    custom.setCustomHotkey('palette.open', 'Mod+K')
+    saved.value = { 'doc.save': 'Mod+Shift+S' }
+    await nextTick()
+    expect(custom.customHotkeys.value).toEqual({
+      'doc.save': 'Mod+Shift+S',
+      'palette.open': 'Mod+K',
+    })
+
+    // Another user's data replaces it.
+    saved.value = { 'nav.home': ['G', 'G'] }
+    await nextTick()
+    expect(custom.customHotkeys.value).toEqual({ 'nav.home': ['G', 'G'] })
+  })
+})
+
 describe('useHotkeyRecorder', () => {
   it('records up to maxSteps', () => {
     const onRecord = vi.fn<(hotkey: Hotkey) => void>()

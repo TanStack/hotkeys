@@ -21,11 +21,16 @@ import type {
  * enabled and in an active scope. Pass getters to track changing hotkeys and
  * options. A sequence reveals its hint from its first step, and an app hotkey
  * matches its registrations by id and uses its effective hotkey (false while
- * unbound). This helper does not register a shortcut. A hotkey on an element counts only while focus is inside it.
+ * unbound). No hotkey (`undefined`, `null`, or `''`) returns false. This
+ * helper does not register a shortcut. A hotkey on an element counts only while focus is inside it.
  */
 export function injectHotkeyHint(
   hotkey:
-    RegisterableHotkey | AppHotkey | (() => RegisterableHotkey | AppHotkey),
+    | RegisterableHotkey
+    | AppHotkey
+    | null
+    | undefined
+    | (() => RegisterableHotkey | AppHotkey | null | undefined),
   options: HeldModifierOptions | (() => HeldModifierOptions) = {},
 ): Signal<boolean> {
   const context = injectHotkeysContext()

@@ -3,7 +3,7 @@ id: HotkeysProviderProps
 title: HotkeysProviderProps
 ---
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:53](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L53)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:55](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L55)
 
 Options for `setHotkeysContext` and props for `HotkeysProvider`.
 
@@ -36,7 +36,7 @@ listed by `getAppHotkeyList` whether or not they are registered.
 children: Snippet;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L54)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:56](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L56)
 
 ***
 
@@ -48,10 +48,12 @@ optional customHotkeys?:
   | null;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:48](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L48)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L50)
 
-Starting custom hotkeys, such as saved data. Read once; the context owns
-the state afterwards. Invalid entries are ignored with a warning.
+The user's saved custom hotkeys. When the value changes, such as after
+saved data loads or the user signs in, it replaces the current custom
+hotkeys. `undefined` leaves them unchanged; `null` clears them. Invalid
+entries are ignored with a warning.
 
 #### Inherited from
 
@@ -81,7 +83,7 @@ Merged with the parent context's defaults.
 optional onCustomHotkeysChange?: (customHotkeys) => void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L50)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:52](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L52)
 
 Called with the custom hotkeys after every change, ready to save.
 

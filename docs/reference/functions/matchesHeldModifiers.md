@@ -10,19 +10,22 @@ function matchesHeldModifiers(
    options?): boolean;
 ```
 
-Defined in: [hint.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hint.ts#L24)
+Defined in: [hint.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hint.ts#L25)
 
 Returns whether held modifiers should reveal a shortcut hint.
 By default, any nonempty subset of the binding's modifiers qualifies; an
 unrelated modifier hides the hint. `exact` requires every binding modifier.
 Nonmodifier keys are ignored. This does not check registration or focus.
-A sequence reveals its hint from its first step.
+A sequence reveals its hint from its first step. Returns false for no
+hotkey (`undefined`, `null`, or `''`).
 
 ## Parameters
 
 ### hotkey
 
-[`RegisterableHotkey`](../type-aliases/RegisterableHotkey.md)
+  \| [`RegisterableHotkey`](../type-aliases/RegisterableHotkey.md)
+  \| `null`
+  \| `undefined`
 
 ### heldKeys
 

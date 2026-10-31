@@ -19,11 +19,16 @@ import type {
  * The hint shows only while the hotkey can fire: some registration of it is
  * enabled and in an active scope. A sequence reveals its hint from its first
  * step, and an app hotkey matches its registrations by id and uses its
- * effective hotkey (false while unbound). This helper does not register a shortcut. A hotkey on an element counts only while focus is inside it.
+ * effective hotkey (false while unbound). No hotkey (`undefined`, `null`, or
+ * `''`) returns false. This helper does not register a shortcut. A hotkey on an element counts only while focus is inside it.
  */
 export function createHotkeyHint(
   hotkey:
-    RegisterableHotkey | AppHotkey | (() => RegisterableHotkey | AppHotkey),
+    | RegisterableHotkey
+    | AppHotkey
+    | null
+    | undefined
+    | (() => RegisterableHotkey | AppHotkey | null | undefined),
   options: HeldModifierOptions | (() => HeldModifierOptions) = {},
 ): () => boolean {
   const appHotkeys = useAppHotkeysStoreSource()

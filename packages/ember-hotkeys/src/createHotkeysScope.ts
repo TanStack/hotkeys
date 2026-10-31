@@ -1,3 +1,4 @@
+import { definedOptions, withDefaults } from '@tanstack/hotkeys/adapter'
 import { OnHotkey } from './onHotkey'
 import { OnHotkeys } from './onHotkeys'
 import { UseHotkey } from './useHotkey'
@@ -30,8 +31,7 @@ export function createHotkeysScope(
         ...[element, args, options]: Parameters<OnHotkey['modify']>
       ) {
         super.modify(element, args, {
-          ...read(defaultOptions).hotkey,
-          ...options,
+          ...definedOptions(read(defaultOptions).hotkey, options),
         })
       }
     },
@@ -40,29 +40,32 @@ export function createHotkeysScope(
         ...[element, args, options]: Parameters<OnHotkeys['modify']>
       ) {
         super.modify(element, args, {
-          ...read(defaultOptions).hotkey,
-          ...options,
+          ...definedOptions(read(defaultOptions).hotkey, options),
         })
       }
     },
     useHotkey: class extends UseHotkey {
       override compute(...[args, options]: Parameters<UseHotkey['compute']>) {
-        super.compute(args, { ...read(defaultOptions).hotkey, ...options })
+        super.compute(args, {
+          ...definedOptions(read(defaultOptions).hotkey, options),
+        })
       }
     },
     useHotkeys: class extends UseHotkeys {
       override compute(...[args, options]: Parameters<UseHotkeys['compute']>) {
-        super.compute(args, { ...read(defaultOptions).hotkey, ...options })
+        super.compute(args, {
+          ...definedOptions(read(defaultOptions).hotkey, options),
+        })
       }
     },
     useHotkeyRecorder: ((owner: object, options: MaybeGetter<object>) =>
       useHotkeyRecorder(
         owner,
         () =>
-          ({
-            ...read(defaultOptions).hotkeyRecorder,
-            ...read(options),
-          }) as HotkeySequenceRecorderOptions,
+          withDefaults(
+            read(defaultOptions).hotkeyRecorder,
+            read(options),
+          ) as HotkeySequenceRecorderOptions,
       )) as typeof useHotkeyRecorder,
   }
 }

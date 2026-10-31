@@ -18,14 +18,15 @@ import type {
  * while the hotkey can fire: some registration of it is enabled and in an
  * active scope. A sequence reveals its hint from its first step, and an app
  * hotkey matches its registrations by id and uses its effective hotkey (false
- * while unbound). A hotkey on an element counts only while focus is inside it.
+ * while unbound). No hotkey (`undefined`, `null`, or `''`) returns false. A
+ * hotkey on an element counts only while focus is inside it.
  */
 export function useHotkeyHint(
-  hotkey: RegisterableHotkey | AppHotkey,
+  hotkey: RegisterableHotkey | AppHotkey | null | undefined,
   options?: HeldModifierOptions,
 ): boolean
 export function useHotkeyHint(
-  hotkey: RegisterableHotkey | AppHotkey,
+  hotkey: RegisterableHotkey | AppHotkey | null | undefined,
   ...rest: [options?: HeldModifierOptions, slot?: symbol]
 ): boolean {
   const [args, slot] = splitSlot(rest)

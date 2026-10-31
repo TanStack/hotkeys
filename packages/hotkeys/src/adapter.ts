@@ -4,8 +4,12 @@ import {
   isAppHotkey,
   resolveAppHotkey,
 } from './app-hotkeys'
-import { isHotkeySequence, normalizeHotkey } from './parse'
-import { defaultHotkeyOptions } from './_registration'
+import { isHotkeySequence, normalizeHotkey, parseHotkey } from './parse'
+import {
+  chordHasKey,
+  defaultHotkeyOptions,
+  definedOptions,
+} from './_registration'
 import { detectPlatform } from './platform'
 import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'
 import type {
@@ -27,6 +31,7 @@ import type {
 
 export { createAppHotkeysStore } from './_app-hotkeys-factory'
 export { createStore } from './_store'
+export { definedOptions, withDefaults } from './_registration'
 export type { Store } from './_store'
 
 /**
@@ -43,6 +48,12 @@ export type HotkeyDefinition =
       hotkey: RegisterableHotkeySequence
       callback: HotkeyCallback
       options?: HotkeySequenceOptions
+    }
+  | {
+      /** No hotkey. Registers nothing. */
+      hotkey: null | undefined
+      callback: HotkeyCallback
+      options?: HotkeyChordOptions & HotkeySequenceOptions
     }
 
 /** Options shared by every definition. Each option applies only to the kinds that support it. */
@@ -66,7 +77,8 @@ export function createHotkeyBindings() {
   return {
     /**
      * Registers new definitions, updates existing ones in place, and removes
-     * stale ones. Definitions with an empty sequence or a null target are skipped.
+     * stale ones. Definitions with no hotkey (undefined, null, empty string, or
+     * empty sequence) or a null target are skipped.
      */
     update(
       definitions: ReadonlyArray<HotkeyDefinition>,
@@ -79,14 +91,14 @@ export function createHotkeyBindings() {
         register: () => HotkeyRegistrationHandle
       }> = []
       definitions.forEach((definition, index) => {
-        const merged: ResolvedOptions = {
-          ...commonOptions,
-          ...definition.options,
-        }
+        // `undefined` means "not set", so it keeps the default.
+        const merged = definedOptions<ResolvedOptions>(
+          commonOptions,
+          definition.options,
+        )
         const options: ResolvedOptions = {
           ...defaultHotkeyOptions,
           ...merged,
-          ignoreInputs: merged.ignoreInputs ?? 'auto',
           target:
             'target' in merged
               ? (merged.target ?? null)
@@ -95,14 +107,22 @@ export function createHotkeyBindings() {
                 : document,
           platform: merged.platform ?? detectPlatform(),
         }
+        // Only a hotkey registers: not undefined, null, '', or [].
         if (
           !options.target ||
+          !definition.hotkey ||
           (isHotkeySequence(definition.hotkey) &&
             definition.hotkey.length === 0)
         ) {
           return
         }
-        const hotkey = normalizeHotkey(definition.hotkey, options.platform)
+        // A step without a key, such as '' or { key: '', ctrl: true },
+        // registers nothing.
+        const parsed = parseHotkey(definition.hotkey, options.platform)
+        if (!(Array.isArray(parsed) ? parsed : [parsed]).every(chordHasKey)) {
+          return
+        }
+        const hotkey = normalizeHotkey(parsed, options.platform)
         if (isHotkeySequence(hotkey)) delete options.requireReset
         else delete options.timeout
         prepared.push({
@@ -242,9 +262,10 @@ export type AdapterHotkeyDefinition<TTarget> =
   | {
       /**
        * A hotkey whose kind is not known statically, such as user data typed
-       * `Hotkey`. Accepts only shared options.
+       * `Hotkey`. Accepts only shared options. `undefined`, `null`, and `''`
+       * register nothing, for an optional shortcut.
        */
-      hotkey: RegisterableHotkey
+      hotkey: RegisterableHotkey | null | undefined
       callback: HotkeyCallback
       options?: AdapterHotkeyOptions<TTarget>
     }
@@ -260,7 +281,7 @@ export interface PrepareHotkeyDefinitionsOptions<TTarget> {
   /**
    * Resolves a framework target, such as a ref. Return `undefined` for the
    * document or `null` to skip registration until the target exists.
-   * Without it, targets pass through and `null` means document.
+   * Without it, targets pass through, so `null` skips registration.
    */
   resolveTarget?: (target: TTarget) => Target | null | undefined
 }
@@ -284,18 +305,19 @@ export function prepareHotkeyDefinitions<TTarget>(
       declared = getAppHotkeyRegistrationOptions(appHotkey)
       hotkey = appHotkey.hotkey ?? []
     }
-    const { target, ...merged } = {
-      ...options.defaults,
-      ...declared,
-      ...options.commonOptions,
-      ...definition.options,
-    } as AdapterCommonOptions<TTarget>
+    // `undefined` means "not set", so it keeps the earlier layer's value.
+    const { target, ...merged } = definedOptions<AdapterCommonOptions<TTarget>>(
+      options.defaults,
+      declared,
+      options.commonOptions,
+      definition.options,
+    )
     const resolved =
       target === undefined
         ? undefined
         : options.resolveTarget
           ? options.resolveTarget(target)
-          : ((target as Target | null) ?? undefined)
+          : (target as Target | null)
     return {
       hotkey,
       callback: definition.callback,
@@ -359,8 +381,11 @@ export function mergeHotkeysProviderDefaults<
   T extends { hotkey?: object; hotkeyRecorder?: object },
 >(parent: T | undefined, own: T | undefined, scope: string | undefined): T {
   return {
-    hotkey: { ...parent?.hotkey, ...own?.hotkey, ...(scope && { scope }) },
-    hotkeyRecorder: { ...parent?.hotkeyRecorder, ...own?.hotkeyRecorder },
+    hotkey: {
+      ...definedOptions(parent?.hotkey, own?.hotkey),
+      ...(scope && { scope }),
+    },
+    hotkeyRecorder: definedOptions(parent?.hotkeyRecorder, own?.hotkeyRecorder),
   } as T
 }
 

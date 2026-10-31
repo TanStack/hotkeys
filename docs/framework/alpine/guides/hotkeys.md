@@ -92,6 +92,12 @@ To register hotkeys from markup, install `hotkeysPlugin` and call the same funct
 
 The plugin destroys `$hotkeys` with its element. The rest of this guide uses an owner from `createHotkeysScope`.
 
+### Optional hotkeys
+
+A hotkey of `undefined`, `null`, or `''` registers nothing, so a component can take an optional shortcut. When the hotkey changes to one of these values, its registration is removed. When it changes back to a hotkey, it registers again. Hints for no hotkey are hidden.
+
+To keep a hotkey registered, and listed in devtools and cheat sheets, but stop it from firing, set `enabled: false` instead.
+
 ### Write a chord as a string or an object
 
 Write most chords as strings. Your editor autocompletes them, and TypeScript rejects a string that isn't a valid chord:

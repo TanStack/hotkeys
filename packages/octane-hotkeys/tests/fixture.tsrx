@@ -133,6 +133,26 @@ function AppHotkeysConsumer() @{
   </div>
 }
 
+export function SavedHotkeysFixture() @{
+  const [saved, setSaved] = useState<Record<string, Hotkey | null> | null>(null);
+  <HotkeysProvider
+    appHotkeys={appHotkeys}
+    customHotkeys={saved}
+    onCustomHotkeysChange={(custom) => appCapture.changes.push(custom)}
+  >
+    <button id="saved-load" onClick={() => setSaved({ 'doc.save': 'Control+E' })}>Load</button>
+    <button id="saved-switch" onClick={() => setSaved({ 'nav.home': ['G', 'G'] })}>Switch user</button>
+    <HotkeysProvider scope="nested">
+      <SavedHotkeysConsumer />
+    </HotkeysProvider>
+  </HotkeysProvider>
+}
+
+function SavedHotkeysConsumer() @{
+  appCapture.custom = useCustomHotkeys();
+  <output id="saved-custom">{JSON.stringify(appCapture.custom.customHotkeys)}</output>
+}
+
 export const scopedAppHotkeys = defineAppHotkeys({
   'doc.save': { hotkey: 'Control+S' },
 });
@@ -174,4 +194,33 @@ function ScopedAppHotkeys() @{
   });
   const list = useAppHotkeyList();
   <output id="scope-statuses">{list.map((item) => item.status).join(',')}</output>
+}
+
+export const optionalCapture: { count: number } = { count: 0 };
+
+export function OptionalHotkeyFixture() @{
+  const [shortcut, setShortcut] = useState<Hotkey | null | undefined>(undefined);
+  useHotkey(shortcut, () => { optionalCapture.count++ });
+  useHotkeys([
+    { hotkey: 'A', callback: () => {} },
+    { hotkey: shortcut, callback: () => { optionalCapture.count++ } },
+  ]);
+  const hint = useHotkeyHint(shortcut);
+  <div>
+    <button id="optional-set" onClick={() => setShortcut('Control+K')}>Set</button>
+    <button id="optional-clear" onClick={() => setShortcut(null)}>Clear</button>
+    <output id="optional-hint">{String(hint)}</output>
+  </div>
+}
+
+/** Unset props, forwarded the way a wrapper component would. */
+const forwarded: { preventDefault?: boolean; stopPropagation?: boolean } = {};
+
+export function ForwardedOptionsFixture() @{
+  useHotkey('Control+S', () => {}, {
+    platform: 'windows',
+    preventDefault: forwarded.preventDefault,
+    stopPropagation: forwarded.stopPropagation,
+  });
+  <div>{'forwarded'}</div>
 }

@@ -9,7 +9,7 @@ title: injectHotkeyRecorder
 function injectHotkeyRecorder(options): AngularHotkeyRecorder<HotkeyChord>;
 ```
 
-Defined in: [injectHotkeyRecorder.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L70)
+Defined in: [injectHotkeyRecorder.ts:71](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L71)
 
 Angular inject-based API for recording keyboard shortcuts.
 
@@ -59,7 +59,7 @@ export class ShortcutSettingsComponent {
 function injectHotkeyRecorder(options): AngularHotkeyRecorder;
 ```
 
-Defined in: [injectHotkeyRecorder.ts:73](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L73)
+Defined in: [injectHotkeyRecorder.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L74)
 
 Angular inject-based API for recording keyboard shortcuts.
 
@@ -109,7 +109,7 @@ export class ShortcutSettingsComponent {
 function injectHotkeyRecorder(options): AngularHotkeyRecorder;
 ```
 
-Defined in: [injectHotkeyRecorder.ts:78](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L78)
+Defined in: [injectHotkeyRecorder.ts:79](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L79)
 
 Angular inject-based API for recording keyboard shortcuts.
 
@@ -159,7 +159,7 @@ export class ShortcutSettingsComponent {
 function injectHotkeyRecorder(options): AngularHotkeyRecorder<HotkeyChord>;
 ```
 
-Defined in: [injectHotkeyRecorder.ts:81](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L81)
+Defined in: [injectHotkeyRecorder.ts:82](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L82)
 
 Angular inject-based API for recording keyboard shortcuts.
 
@@ -209,7 +209,7 @@ export class ShortcutSettingsComponent {
 function injectHotkeyRecorder(options): AngularHotkeyRecorder;
 ```
 
-Defined in: [injectHotkeyRecorder.ts:84](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L84)
+Defined in: [injectHotkeyRecorder.ts:85](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyRecorder.ts#L85)
 
 Angular inject-based API for recording keyboard shortcuts.
 

@@ -15,17 +15,20 @@ export interface HeldModifierOptions {
  * By default, any nonempty subset of the binding's modifiers qualifies; an
  * unrelated modifier hides the hint. `exact` requires every binding modifier.
  * Nonmodifier keys are ignored. This does not check registration or focus.
- * A sequence reveals its hint from its first step.
+ * A sequence reveals its hint from its first step. Returns false for no
+ * hotkey (`undefined`, `null`, or `''`).
  *
  * @example
  * matchesHeldModifiers('Alt+Shift+[KeyK]', ['Alt']) // true
  * matchesHeldModifiers('Alt+Shift+[KeyK]', ['Alt', 'Control']) // false
  */
 export function matchesHeldModifiers(
-  hotkey: RegisterableHotkey,
+  hotkey: RegisterableHotkey | null | undefined,
   heldKeys: ReadonlyArray<string>,
   options: HeldModifierOptions = {},
 ): boolean {
+  // No hotkey, such as an unset optional prop, has no hint.
+  if (!hotkey) return false
   // AltGraph (AltGr) types alternate characters such as @ or € on many layouts.
   // It can synthesize Ctrl+Alt; character entry should not reveal shortcut hints.
   if (heldKeys.includes('AltGraph')) return false

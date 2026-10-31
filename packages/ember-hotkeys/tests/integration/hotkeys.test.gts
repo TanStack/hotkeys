@@ -6,7 +6,7 @@ import { tracked } from '@glimmer/tracking'
 import { on } from '@ember/modifier'
 import { array } from '@ember/helper'
 import {
-  createHotkeysScope, useHotkey, useHotkeys,
+  createHotkeysScope, useHotkey, useHotkeys, onHotkey, onHotkeys,
   useHeldKeys, useHeldKeyCodes, useKeyHold, useHotkeyHint,
   useHotkeyRecorder, useHotkeyRegistrations, useHotkeyScopesState,
   HotkeyManager, KeyStateTracker, getHotkeyManager,
@@ -233,5 +233,64 @@ module('Ember scoped defaults and recorder parity', (hooks) => {
     scoped.accept = true
     scoped.sequenceRecorder.commitRecording()
     assert.deepEqual(records, ['[KeyS]', '[KeyG]'])
+  })
+})
+
+let optional: Optional
+
+class Optional extends Component {
+  @tracked shortcut: Hotkey | null | undefined = undefined
+  @tracked count = 0
+  hint = useHotkeyHint(this, () => this.shortcut)
+  run = () => { this.count++ }
+
+  constructor(...args: ConstructorParameters<typeof Component>) {
+    super(...args)
+    optional = this
+  }
+
+  get definitions(): Array<EmberHotkeyDefinition> {
+    return [{ hotkey: this.shortcut, callback: this.run }]
+  }
+
+  <template>
+    {{useHotkey this.shortcut this.run}}
+    {{useHotkeys this.definitions}}
+    <div id="optional-element" tabindex="0" {{onHotkey this.shortcut this.run}} {{onHotkeys this.definitions}}></div>
+    <output id="optional-count">{{this.count}}</output>
+    <output id="optional-hint">{{if this.hint.value "yes" "no"}}</output>
+  </template>
+}
+
+module('Ember hotkeys: optional hotkeys', (hooks) => {
+  setupRenderingTest(hooks)
+  hooks.afterEach(async () => {
+    await clearRender()
+    HotkeyManager.resetInstance()
+    KeyStateTracker.resetInstance()
+  })
+
+  test('an unset hotkey renders, registers nothing, and has no hint', async (assert) => {
+    await render(<template><Optional /></template>)
+    assert.strictEqual(getHotkeyManager().registrations.state.size, 0)
+    await key('Control', 'keydown', { ctrlKey: true })
+    assert.dom('#optional-hint').hasText('no')
+  })
+
+  test('a hotkey that becomes unset unregisters, and registers again when set', async (assert) => {
+    await render(<template><Optional /></template>)
+    optional.shortcut = 'Control+K'
+    await settled()
+    assert.strictEqual(getHotkeyManager().registrations.state.size, 4)
+    optional.shortcut = null
+    await settled()
+    assert.strictEqual(getHotkeyManager().registrations.state.size, 0)
+    await key('k', 'keydown', { ctrlKey: true })
+    assert.dom('#optional-count').hasText('0')
+    optional.shortcut = 'Control+K'
+    await settled()
+    assert.strictEqual(getHotkeyManager().registrations.state.size, 4)
+    await key('k', 'keydown', { ctrlKey: true })
+    assert.dom('#optional-count').hasText('2')
   })
 })

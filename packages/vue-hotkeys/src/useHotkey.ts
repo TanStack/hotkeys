@@ -65,6 +65,7 @@ export type UseAppHotkeyOptions<T extends AppHotkey = AppHotkey> =
  * sequence registers as its chord. An app hotkey uses its effective hotkey
  * from `HotkeysProvider` (including the user's custom hotkey) and its
  * declared meta and options, and registers nothing while unbound.
+ * `undefined`, `null`, or `''` registers nothing, for an optional shortcut.
  *
  * @example
  * ```ts
@@ -74,17 +75,17 @@ export type UseAppHotkeyOptions<T extends AppHotkey = AppHotkey> =
  * ```
  */
 export function useHotkey<T extends AppHotkey>(
-  hotkey: MaybeRefOrGetter<T>,
+  hotkey: MaybeRefOrGetter<T | null | undefined>,
   callback: HotkeyCallback,
   options?: MaybeRefOrGetter<UseAppHotkeyOptions<T>>,
 ): void
 export function useHotkey<const T extends RegisterableHotkey>(
-  hotkey: MaybeRefOrGetter<T>,
+  hotkey: MaybeRefOrGetter<T | null | undefined>,
   callback: HotkeyCallback<HotkeyCallbackContextFor<T>>,
   options?: MaybeRefOrGetter<UseHotkeyOptionsFor<T>>,
 ): void
 export function useHotkey(
-  hotkey: MaybeRefOrGetter<RegisterableHotkey | AppHotkey>,
+  hotkey: MaybeRefOrGetter<RegisterableHotkey | AppHotkey | null | undefined>,
   callback: HotkeyCallback,
   options: MaybeRefOrGetter<UseHotkeyCommonOptions> = {},
 ): void {

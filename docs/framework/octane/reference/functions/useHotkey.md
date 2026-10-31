@@ -12,11 +12,12 @@ function useHotkey<T>(
    options?): void;
 ```
 
-Defined in: [useHotkey.ts:48](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkey.ts#L48)
+Defined in: [useHotkey.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkey.ts#L49)
 
 Registers one hotkey: a chord such as `'Mod+S'`, a sequence such as
 `['G', 'G']`, or an app hotkey from `defineAppHotkeys`. The callback and
-options are refreshed after every commit.
+options are refreshed after every commit. `undefined`, `null`, or `''`
+registers nothing, for an optional shortcut.
 
 ### Type Parameters
 
@@ -28,7 +29,7 @@ options are refreshed after every commit.
 
 #### hotkey
 
-`T`
+`T` \| `null` \| `undefined`
 
 #### callback
 
@@ -51,11 +52,12 @@ function useHotkey<T>(
    options?): void;
 ```
 
-Defined in: [useHotkey.ts:53](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkey.ts#L53)
+Defined in: [useHotkey.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkey.ts#L54)
 
 Registers one hotkey: a chord such as `'Mod+S'`, a sequence such as
 `['G', 'G']`, or an app hotkey from `defineAppHotkeys`. The callback and
-options are refreshed after every commit.
+options are refreshed after every commit. `undefined`, `null`, or `''`
+registers nothing, for an optional shortcut.
 
 ### Type Parameters
 
@@ -67,7 +69,7 @@ options are refreshed after every commit.
 
 #### hotkey
 
-`T`
+`T` \| `null` \| `undefined`
 
 #### callback
 
