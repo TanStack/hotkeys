@@ -642,23 +642,23 @@
       "evidence": ["docs/framework/vue/reference/functions/useHotkeyHint.md"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "0d2368c5f0c596246c87020aae2ca2ae437ab28228b9ff9dd86e70fc6e8023f0",
+      "fingerprint": "6e5914755a9fb84d6f4a4818d7ec9d66bfb96130e263debdcdd90b2354dca338",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "dd8ec8af633ef13271785a28472a07a8b6a9a1d58b4923046de45576c5b84cf8"
+        "docs/reference/classes/HotkeyManager.md": "2ab68160cf670237b523edbfa8380101bf852468f5394e1a857eee9bd979fb14"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "head": "828566f3a7668f0802680d337dbc6a08e4f7793e",
       "outcome": "out-of-scope",
-      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
+      "reason": "Regenerated reference docs; only source line links changed.",
       "evidence": ["docs/reference/classes/HotkeyManager.md"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "cd7982839c933a1ec0e090babc955ef81076f8bed35e7b92c39c6266d6b4368d",
+      "fingerprint": "9c2bd583077b2f1d38194cfb39d06774b64c2dd5c6849e18e058d6d9d7204ec8",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "3f0f5d20c61e8178aaa7ff4698f61b28aa3b0fa587787f76179bd61e5bfb8402"
+        "docs/reference/functions/getHotkeyManager.md": "9d98a955e5fbb6f88047f69b71aa67a441c4a99151e674211f953e69dc88e96d"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "head": "828566f3a7668f0802680d337dbc6a08e4f7793e",
       "outcome": "out-of-scope",
-      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
+      "reason": "Regenerated reference docs; only source line links changed.",
       "evidence": ["docs/reference/functions/getHotkeyManager.md"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
