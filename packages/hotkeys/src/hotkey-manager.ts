@@ -337,6 +337,25 @@ function generateId(): string {
   return `hotkey_${++registrationIdCounter}`
 }
 
+/** A handle for a registration that listens for nothing. */
+function inactiveHandle(callback: HotkeyCallback): HotkeyRegistrationHandle {
+  let currentCallback = callback
+  return {
+    id: generateId(),
+    unregister: () => {},
+    get callback() {
+      return currentCallback
+    },
+    set callback(newCallback: HotkeyCallback) {
+      currentCallback = newCallback
+    },
+    setOptions: () => {},
+    get isActive() {
+      return false
+    },
+  }
+}
+
 /** Defaults for a registration of the given kind. */
 function registrationDefaults(
   kind: HotkeyRegistration['kind'],
@@ -786,21 +805,7 @@ export class HotkeyManager {
       (isHotkeySequence(hotkey) && hotkey.length === 0) ||
       (typeof document === 'undefined' && !options.target)
     ) {
-      let currentCallback = callback
-      return {
-        id: generateId(),
-        unregister: () => {},
-        get callback() {
-          return currentCallback
-        },
-        set callback(newCallback: HotkeyCallback) {
-          currentCallback = newCallback
-        },
-        setOptions: () => {},
-        get isActive() {
-          return false
-        },
-      }
+      return inactiveHandle(callback)
     }
 
     const id = generateId()
@@ -852,12 +857,9 @@ export class HotkeyManager {
       registration.kind === 'sequence'
         ? registration.parsedSequence
         : [registration.parsedChord]
-    // An empty key would match key-less events, such as autofill's.
-    if (!steps.every(chordHasKey)) {
-      throw new Error(
-        `Hotkey '${formatForMessage(registration.hotkey)}' has no key. Skip registration when there is no hotkey.`,
-      )
-    }
+    // An empty key would match key-less events, such as autofill's, so a
+    // hotkey with an empty step registers nothing.
+    if (!steps.every(chordHasKey)) return inactiveHandle(callback)
 
     if (process.env.NODE_ENV !== 'production') {
       for (const { key } of steps) {

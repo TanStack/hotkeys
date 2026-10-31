@@ -92,7 +92,7 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "8e8c586d58bb1f1a5592f0025b6ec863398ab2249e2da499e841de35b7edaaf3",
+      "fingerprint": "e03653582b7bc0dfded033edf6f43e7f8a9be4d132d18e61d961ebf4de08d773",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
         "docs/framework/react/guides/hotkeys.md": "057f320c6ed3629ee9b13501e9e3c1f2ccd302395edd6983abfd1398c172f22b",
@@ -101,7 +101,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "a45229edb827101dd019587c5e20965954a508eb5ba57ef6680e53d084585df8",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
-        "packages/hotkeys/src/hotkey-manager.ts": "c3cc595ce95940415856e0229f8915b22323b00f2b264a5911122aafa19d0d32",
+        "packages/hotkeys/src/hotkey-manager.ts": "71fcd3ce0a8f8dbc6892aa9c39d8428d1db39fa2392594d4b3c3124f96f42b54",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "d7747b87eae074ab3620484f64cf13ea9c27d24d059d56d9a9a07ccf0c2d3e06",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -113,12 +113,12 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "b123a2311042fb33af27b1bb916465f446117b0d",
+      "head": "51891f65f771268240b7687890a53ff0e7c9b313",
       "outcome": "no-change",
-      "reason": "HotkeyManager.register now returns an inactive handle for a missing hotkey or an empty sequence instead of throwing; no skill says register throws for these, and adapters already skip them.",
+      "reason": "register returns an inactive handle instead of throwing for a hotkey with an empty key; no skill says register throws, and adapters already skip these.",
       "evidence": [
         "packages/hotkeys/src/hotkey-manager.ts",
-        "grep of skills for register and throw"
+        "grep of skills for register, throw, and empty"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -276,7 +276,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "6f19651797a120d2466e1ed5628ad4deb4c990c323796406b733cbb936b3328a",
+      "fingerprint": "8a93e4ed2bf0d5e9fc67094731d40cc82f280a03135579c1e809bc7d010175ca",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -336,7 +336,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/app-hotkeys.ts": "a6176a749dd7439146c335e769dfae1a2cd72ace029f9cbc64b52ff5fe2d9d03",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
-        "packages/hotkeys/src/hotkey-manager.ts": "c3cc595ce95940415856e0229f8915b22323b00f2b264a5911122aafa19d0d32",
+        "packages/hotkeys/src/hotkey-manager.ts": "71fcd3ce0a8f8dbc6892aa9c39d8428d1db39fa2392594d4b3c3124f96f42b54",
         "packages/hotkeys/src/hotkey-recorder.ts": "7d479391753ffa97e69a7d7cb994cb7053a7ffb3e0aed6dfbfb2dbbdf51a3d24",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "ecd0100b52a00fc90ce71f244093da667d0c5ff78ecaf632d9db26f1c66c8e40",
@@ -405,9 +405,9 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "76815116b5ecf5af434a3ff041df5c0e01e11d0ef41e77ee2893d560e1565879",
         "packages/vue-hotkeys/src/useHotkeys.ts": "fafa900972db553504a850657d2e1829d53928e09bbdd219f6afc24eb9942bd2"
       },
-      "head": "b123a2311042fb33af27b1bb916465f446117b0d",
+      "head": "51891f65f771268240b7687890a53ff0e7c9b313",
       "outcome": "no-change",
-      "reason": "Register returns an inactive handle instead of throwing for inputs the types reject; skill tree and mappings unchanged.",
+      "reason": "Internal change to how register handles empty keys; skill tree and mappings unchanged.",
       "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
     },
     "source:.changeset/intent-skills.md": {
@@ -642,21 +642,21 @@
       "evidence": ["docs/framework/vue/reference/functions/useHotkeyHint.md"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "6e5914755a9fb84d6f4a4818d7ec9d66bfb96130e263debdcdd90b2354dca338",
+      "fingerprint": "9393494f35f08237b3feff9573274afca1465549cf092ed0a578fc02c231c023",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "2ab68160cf670237b523edbfa8380101bf852468f5394e1a857eee9bd979fb14"
+        "docs/reference/classes/HotkeyManager.md": "4ed4a61a4d1535f0955e60f60d79c7c46f029f87f81052f8f76811b015d10d14"
       },
-      "head": "828566f3a7668f0802680d337dbc6a08e4f7793e",
+      "head": "51891f65f771268240b7687890a53ff0e7c9b313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only source line links changed.",
       "evidence": ["docs/reference/classes/HotkeyManager.md"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "9c2bd583077b2f1d38194cfb39d06774b64c2dd5c6849e18e058d6d9d7204ec8",
+      "fingerprint": "54f944eeed447dfc481869080589ee325925f23c4e06610648851e481fecebd8",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "9d98a955e5fbb6f88047f69b71aa67a441c4a99151e674211f953e69dc88e96d"
+        "docs/reference/functions/getHotkeyManager.md": "a3fec2161205fc139080ee9cf37e3b2091df774a7460f666344e63586729238a"
       },
-      "head": "828566f3a7668f0802680d337dbc6a08e4f7793e",
+      "head": "51891f65f771268240b7687890a53ff0e7c9b313",
       "outcome": "out-of-scope",
       "reason": "Regenerated reference docs; only source line links changed.",
       "evidence": ["docs/reference/functions/getHotkeyManager.md"]
@@ -1142,13 +1142,13 @@
       "evidence": ["docs/reference/functions/toHotkeyRegistrationView.md"]
     },
     "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
-      "fingerprint": "6ed512b202dafa1516434e5e98d7ad31a9582d15c7053e64b96f472ed7b2a696",
+      "fingerprint": "eb773995227e295097b0096d25aa4561f300a6d347a4228e1f23a9a173926da8",
       "snapshot": {
-        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "f8b39890e871a9eb6a531c4ab87ec261037e5d2d9938ae05f18ad5f9c62f3e93"
+        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "62fe487a4660e1367dd0cf5f95db5b2533b12bfbb4ae73a06adddda1c34c08ec"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "head": "51891f65f771268240b7687890a53ff0e7c9b313",
       "outcome": "out-of-scope",
-      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
+      "reason": "Regenerated reference docs; only source line links changed.",
       "evidence": ["docs/reference/interfaces/ActivateHotkeyScopeOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordOptions.md": {
@@ -1202,13 +1202,13 @@
       "evidence": ["docs/reference/interfaces/HotkeyRegistrationHandle.md"]
     },
     "source:docs/reference/interfaces/HotkeyScopesState.md": {
-      "fingerprint": "842baae83c293caaadeceaf0899f0396cb0b513ee67420531a56709e559dc679",
+      "fingerprint": "c13752529c4b462ba7eee1ceb81a89f3102ac08ea3efc9bc09fc8562ef62c917",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyScopesState.md": "7116293f6870bbd45f6d7b9b106390ecd052c3d6bc69eb69aa2a456d54bae990"
+        "docs/reference/interfaces/HotkeyScopesState.md": "145a26cf18bb05c5b5950d54426c132805d79d8b905d7abf465fca4c77ccab37"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "head": "51891f65f771268240b7687890a53ff0e7c9b313",
       "outcome": "out-of-scope",
-      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
+      "reason": "Regenerated reference docs; only source line links changed.",
       "evidence": ["docs/reference/interfaces/HotkeyScopesState.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
@@ -7128,11 +7128,11 @@
       "evidence": ["packages/hotkeys/tests/app-hotkeys.test.ts"]
     },
     "source:packages/hotkeys/tests/unset-values.test.ts": {
-      "fingerprint": "2e0245f63aac03d456c243cd5ac08fb19b99507a388d1c18fd4905a678e85069",
+      "fingerprint": "5d9502f1681e65b4b61f433dca538365a2fe9663eabe30e4c5d2fe926e3e45a6",
       "snapshot": {
-        "packages/hotkeys/tests/unset-values.test.ts": "d7b7a8253f0b3153558e9b7d82f82626fd809adf0034c2c3d6cb255887072b4e"
+        "packages/hotkeys/tests/unset-values.test.ts": "bcfa8aa450679b98a8d1a7adb86652e2b9949de3edaf08acf58edbaaec54e86e"
       },
-      "head": "b123a2311042fb33af27b1bb916465f446117b0d",
+      "head": "51891f65f771268240b7687890a53ff0e7c9b313",
       "outcome": "out-of-scope",
       "reason": "Tests for the edge-case fixes; no skill guidance depends on them.",
       "evidence": ["packages/hotkeys/tests/unset-values.test.ts"]
