@@ -271,9 +271,9 @@ describe('nullish hotkeys', () => {
 
 describe('empty keys with modifiers', () => {
   it.each([
-    { key: '', ctrl: true },
-    { key: '', shift: true },
-    ['G', { key: '', mod: true }],
+    [{ key: '', ctrl: true }],
+    [{ key: '', shift: true }],
+    [['G', { key: '', mod: true }]],
   ])('adapter bindings skip %j', (hotkey) => {
     const bindings = createHotkeyBindings()
     bindings.update([{ hotkey: hotkey as never, callback: () => {} }])

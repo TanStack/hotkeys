@@ -265,11 +265,20 @@ describe('AppHotkeysStore.setOptions customHotkeys', () => {
     })
   })
 
-  it('treats null and {} as nothing saved', () => {
+  it('keeps user changes for {} when nothing was passed', () => {
     const store = new AppHotkeysStore(appHotkeys)
     store.setCustomHotkey('doc.find', 'Mod+G')
-    store.setOptions({ customHotkeys: null })
     store.setOptions({ customHotkeys: {} })
+    expect(store.customHotkeys).toEqual({ 'doc.find': 'Mod+G' })
+  })
+
+  it('clears user changes when saved data changes from {} to null', () => {
+    const store = new AppHotkeysStore(appHotkeys, { customHotkeys: {} })
+    store.setCustomHotkey('doc.find', 'Mod+G')
+    store.setOptions({ customHotkeys: null })
+    expect(store.customHotkeys).toEqual({})
+    store.setCustomHotkey('doc.find', 'Mod+G')
+    store.setOptions({ customHotkeys: null })
     expect(store.customHotkeys).toEqual({ 'doc.find': 'Mod+G' })
   })
 

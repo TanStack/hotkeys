@@ -322,6 +322,15 @@ describe('HotkeysProvider customHotkeys prop', () => {
     })
   })
 
+  it('clears user changes when saved data changes from {} to null', () => {
+    const view = renderWithSaved({})
+    act(() => {
+      view.result.current.setCustomHotkey('palette.open', 'Mod+K')
+    })
+    view.setSaved(null)
+    expect(view.result.current.customHotkeys).toEqual({})
+  })
+
   it("replaces custom hotkeys with another user's saved data", () => {
     const view = renderWithSaved({ 'doc.find': 'Mod+G' })
     view.setSaved({ 'palette.open': 'Mod+K' })

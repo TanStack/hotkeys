@@ -64,14 +64,14 @@
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "611ca75c1f7533989c99ab4823fbbc208f016bd9e25fe70c66f5507cbbf35b49",
+      "fingerprint": "5669ff24b91f3ed8e523424f6c6f4735c4c892c43de05c10b44b804b39d84beb",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "7b2eeb5971fdb405cf89d6a07d037af00d4f7872e7090fd689d9aaa64f11ebf6",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "a3f793e81c6a6e1e6aaf3d63c6b79114ea7d6f461123d371c0b4f0a23ffd88bc",
         "docs/framework/react/guides/custom-hotkey-recording.md": "ea9b70d7bbeb5846b0284e843960bf667b2ae6ffbe85742fb5ba332de170ca29",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "7c431ae3bee4ffcd22676ac533adfcd29cfb22ed68cb7dc47d1470a8744d7276",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
-        "packages/hotkeys/src/app-hotkeys.ts": "996d6b900a0c56999bb6fa0c47924beb125361bfb352f755db766521309ad625",
+        "packages/hotkeys/src/app-hotkeys.ts": "a6176a749dd7439146c335e769dfae1a2cd72ace029f9cbc64b52ff5fe2d9d03",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
         "packages/hotkeys/src/hotkey-recorder.ts": "7d479391753ffa97e69a7d7cb994cb7053a7ffb3e0aed6dfbfb2dbbdf51a3d24",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
@@ -83,11 +83,11 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "updated",
-      "reason": "Providers now apply a changed customHotkeys prop (undefined keeps, null clears) and AppHotkeysStore.setOptions accepts customHotkeys, so the 'provider reads customHotkeys once' workaround was removed.",
+      "head": "730c6d5bcd2096d3a2612cac32e2473d0f46d4a9",
+      "outcome": "no-change",
+      "reason": "A change from {} to null now clears custom hotkeys, matching the skill's existing line that null clears them, such as on sign-out.",
       "evidence": [
-        "Removed the read-once bullet and added store.setOptions({ customHotkeys }) guidance in app-hotkeys/SKILL.md."
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md customHotkeys sentence"
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
@@ -276,7 +276,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "8c9dda3a4bca769ce111898b2e09313394be5670b96fbc4f7199b31a26d1412d",
+      "fingerprint": "42363416edaf561dece44580ad71be9da38ea987251dcf32a6635538253f0e71",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -334,7 +334,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "a45229edb827101dd019587c5e20965954a508eb5ba57ef6680e53d084585df8",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "90e6512868c194f6c906711cd16882c204600a3118b08b7a101ff6b409012538",
-        "packages/hotkeys/src/app-hotkeys.ts": "996d6b900a0c56999bb6fa0c47924beb125361bfb352f755db766521309ad625",
+        "packages/hotkeys/src/app-hotkeys.ts": "a6176a749dd7439146c335e769dfae1a2cd72ace029f9cbc64b52ff5fe2d9d03",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
         "packages/hotkeys/src/hotkey-manager.ts": "eb680546fb42f8c95fd33d1766b0ca4bfa041a7a4154a4777a949f65a4559b90",
         "packages/hotkeys/src/hotkey-recorder.ts": "7d479391753ffa97e69a7d7cb994cb7053a7ffb3e0aed6dfbfb2dbbdf51a3d24",
@@ -405,12 +405,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "76815116b5ecf5af434a3ff041df5c0e01e11d0ef41e77ee2893d560e1565879",
         "packages/vue-hotkeys/src/useHotkeys.ts": "fafa900972db553504a850657d2e1829d53928e09bbdd219f6afc24eb9942bd2"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "730c6d5bcd2096d3a2612cac32e2473d0f46d4a9",
       "outcome": "no-change",
-      "reason": "Guide edits add an Optional hotkeys section and the customHotkeys undefined/null rule; the skill tree, skill boundaries, and mappings are unchanged.",
-      "evidence": [
-        "docs/framework/*/guides/hotkeys.md and app-hotkeys.md diffs"
-      ]
+      "reason": "Comparison fix inside AppHotkeysStore; skill tree and mappings are unchanged.",
+      "evidence": ["packages/hotkeys/src/app-hotkeys.ts"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -964,11 +962,11 @@
       "evidence": ["packages/react-hotkeys/src/useHotkeyHint.ts"]
     },
     "source:packages/react-hotkeys/tests/appHotkeys.test.tsx": {
-      "fingerprint": "72ad268dd0166ee1738d0bd39a5583769e79cbbbdcbc9daeb8fe6889393aa4f6",
+      "fingerprint": "7d9719add6a08501c13b6bd65215158fa688871d74903d2709fa60dedee34561",
       "snapshot": {
-        "packages/react-hotkeys/tests/appHotkeys.test.tsx": "88f9c0605108ec2ccddf020a4e7cc1febdba681ebce88654db677743d30a00e3"
+        "packages/react-hotkeys/tests/appHotkeys.test.tsx": "f2b7a3bcd61882b96455d7bbd045c3c2518c4511f4e373d84e0d0fb29f739e3d"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "730c6d5bcd2096d3a2612cac32e2473d0f46d4a9",
       "outcome": "out-of-scope",
       "reason": "Test file; it adds no guidance for agents.",
       "evidence": ["packages/react-hotkeys/tests/appHotkeys.test.tsx"]
@@ -2214,13 +2212,13 @@
       "evidence": ["packages/vue-hotkeys/tests/scopes.test.ts"]
     },
     "source:docs/reference/classes/AppHotkeysStore.md": {
-      "fingerprint": "c856fd5d1ca34accc519778de37572bb6fe65f0e2f19e1c8e8dfec565c84c932",
+      "fingerprint": "66c51807900d59f3974c87dd487a8f0181a80a61e4eb0c0cb12a0451b9d28469",
       "snapshot": {
-        "docs/reference/classes/AppHotkeysStore.md": "aabb3448db02c94afd7ce73553f0918a8f796f0f218527e6a92af3e374f23e54"
+        "docs/reference/classes/AppHotkeysStore.md": "611319babb404109a912e0bc7f6d3546969b069d66cdb565020e0101af9b9872"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "730c6d5bcd2096d3a2612cac32e2473d0f46d4a9",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs after source line numbers moved.",
       "evidence": ["docs/reference/classes/AppHotkeysStore.md"]
     },
     "source:docs/reference/functions/defineAppHotkeys.md": {
@@ -2236,13 +2234,13 @@
       ]
     },
     "source:docs/reference/functions/getAppHotkeyRegistrationOptions.md": {
-      "fingerprint": "77780bf60b1aca3651df1f7a44467b95f2405de7faa2e70341f276217b7a040a",
+      "fingerprint": "1211fa5b30ee2d5597febcc7092e25a49c48d93b8dd81289f0ea96c0c1961c4f",
       "snapshot": {
-        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "b0a4b06af27aa35d858013ea37075b621c567ed2b9bc07c8e4c9136deef87b4e"
+        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "b7ce8c461bee1e80c800720a5c78f03208acc2821434163edd1dd61298a050eb"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "730c6d5bcd2096d3a2612cac32e2473d0f46d4a9",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs after source line numbers moved.",
       "evidence": [
         "docs/reference/functions/getAppHotkeyRegistrationOptions.md"
       ]
@@ -2272,33 +2270,33 @@
       ]
     },
     "source:docs/reference/functions/provideAppHotkeys.md": {
-      "fingerprint": "1ea4036b75af0c0ae0fcc07a8762cdbda8381b889bfd05650e3dd89fc9de97fd",
+      "fingerprint": "636c17f1c82718851d14d050430ff426d6cfe698c3716be5f76a8d3e2470c23b",
       "snapshot": {
-        "docs/reference/functions/provideAppHotkeys.md": "1e0e001b5dc49c7e254717e9c533b9c023f802261dc72471bfe10c5b3ea310b4"
+        "docs/reference/functions/provideAppHotkeys.md": "b1c36fe647251f9c0d4e5d085922eecfb8dbba3b329acaec47734371c709cbf4"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "730c6d5bcd2096d3a2612cac32e2473d0f46d4a9",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs after source line numbers moved.",
       "evidence": ["docs/reference/functions/provideAppHotkeys.md"]
     },
     "source:docs/reference/functions/publishAppHotkeysStore.md": {
-      "fingerprint": "cf6b5bbe023fcd5e2c7547f448bf23706e7bbc5bda0b135c1d5449b9edb6f965",
+      "fingerprint": "74130499d992137c7c73e5c59598e04c48570da88f85ec1a04376407ab694877",
       "snapshot": {
-        "docs/reference/functions/publishAppHotkeysStore.md": "0c4323d92f544e31d790570f8606647bcdd1c47736bcd451aefa6c2cd0665f34"
+        "docs/reference/functions/publishAppHotkeysStore.md": "c060b1192325ab5af176d3967f76d1871ebd07dd07f8e964efea0e2d0c90c8eb"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "730c6d5bcd2096d3a2612cac32e2473d0f46d4a9",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs after source line numbers moved.",
       "evidence": ["docs/reference/functions/publishAppHotkeysStore.md"]
     },
     "source:docs/reference/functions/resolveAppHotkey.md": {
-      "fingerprint": "f37415884afa1b86e8c1d25148b50f26b86453dc89158698ace1ebd566d79a4a",
+      "fingerprint": "110d404d7c42e2e06382da49868b1259e1d641f2e02911cf4cca7c9ad8bc451e",
       "snapshot": {
-        "docs/reference/functions/resolveAppHotkey.md": "8e37a846564593cbb0274a0b3560a556aabd3da0e6f66de33bcaa83c1ecbba07"
+        "docs/reference/functions/resolveAppHotkey.md": "b2ddfb5dbd10d5988621be1711f5899408b01998ec55ed65a9c1e19d24ad1079"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "730c6d5bcd2096d3a2612cac32e2473d0f46d4a9",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs after source line numbers moved.",
       "evidence": ["docs/reference/functions/resolveAppHotkey.md"]
     },
     "source:docs/reference/interfaces/AppHotkey.md": {
@@ -2326,33 +2324,33 @@
       ]
     },
     "source:docs/reference/interfaces/AppHotkeyListItem.md": {
-      "fingerprint": "40bcd9ec69c083589fe6980af7fffa368cbcb052ccf31d0b68157b6dd577865d",
+      "fingerprint": "ac1dfdc303939a50178b60ab27607fbe34cc16807a1d16ae8f086fe2fa15f865",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeyListItem.md": "1ffa1b798c23c8e4c3c9adc4901f381d54109eb95f9a0c22d86d8a7d32e88299"
+        "docs/reference/interfaces/AppHotkeyListItem.md": "0f75ce2a6c7fb01a8ce872e37d977809989b7f9f750ea7b3f106a6b0e8048f5c"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "730c6d5bcd2096d3a2612cac32e2473d0f46d4a9",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs after source line numbers moved.",
       "evidence": ["docs/reference/interfaces/AppHotkeyListItem.md"]
     },
     "source:docs/reference/interfaces/AppHotkeysState.md": {
-      "fingerprint": "53cc3026b51496eccc5d62c4093966c90e5b3509a1a1b4d65ba956eb48830543",
+      "fingerprint": "b70c28f7f189a62291750aa508526f8a18f2f18dd06888d35bc8d83c2668f67b",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeysState.md": "9980d9a594e34c7edb13d805ed2d0c025e137ca2bde510daa4256fceef1f7670"
+        "docs/reference/interfaces/AppHotkeysState.md": "bedd79e5d0c28d17551b4a93e78174a93cbbcf2b64d5af8979c3a7979ce2efee"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "730c6d5bcd2096d3a2612cac32e2473d0f46d4a9",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs after source line numbers moved.",
       "evidence": ["docs/reference/interfaces/AppHotkeysState.md"]
     },
     "source:docs/reference/interfaces/AppHotkeysStoreOptions.md": {
-      "fingerprint": "b3ec100be48e54b0b8bbb3fd809a6383a3218831fc43a6b7a8d081ed9ddcee4a",
+      "fingerprint": "f06efaf0914de58920ed543c99f73cb848c8605174a46fee8aaf726de0f7e75e",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "1b9556566552a8f726badd4c1ae11ef7d62d3955806bf39008299895c85b8ba8"
+        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "32fb9871161affc5eebf9fd48823fed13c8e1a5775118f6682e66c6b66227b38"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "730c6d5bcd2096d3a2612cac32e2473d0f46d4a9",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs after source line numbers moved.",
       "evidence": ["docs/reference/interfaces/AppHotkeysStoreOptions.md"]
     },
     "source:docs/reference/interfaces/Register.md": {
@@ -2428,13 +2426,13 @@
       ]
     },
     "source:docs/reference/type-aliases/AppHotkeyStatus.md": {
-      "fingerprint": "7b26c626ea271f31e17656041f65c1de0842d785a151276c5503fb11085cb9d1",
+      "fingerprint": "d6efb42bb9805904490cc5ebbf6a26c06bce0f4cf9eebdcdb81e927dd25c8e03",
       "snapshot": {
-        "docs/reference/type-aliases/AppHotkeyStatus.md": "781ff57c0964069a8b8ba0bb7b4abc9262faa246183b6b8200865f923d11e36c"
+        "docs/reference/type-aliases/AppHotkeyStatus.md": "88310569ecfcfd598b81a350d73bbdeb29354d14d612ddeb779aacbe81eaf072"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "730c6d5bcd2096d3a2612cac32e2473d0f46d4a9",
       "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
+      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs after source line numbers moved.",
       "evidence": ["docs/reference/type-aliases/AppHotkeyStatus.md"]
     },
     "source:docs/reference/type-aliases/AppHotkeys.md": {
@@ -7140,21 +7138,21 @@
       "evidence": ["packages/hotkeys/src/hint.ts"]
     },
     "source:packages/hotkeys/tests/app-hotkeys.test.ts": {
-      "fingerprint": "9b92ffd394f7718535345fe124bcffe72ab778bdaefd468f4b123f66eb16747c",
+      "fingerprint": "98e93fea7881b941c31dcb2e6fc1cee95d75c4fbc334bdc0e1781eeda1a86415",
       "snapshot": {
-        "packages/hotkeys/tests/app-hotkeys.test.ts": "3ff9c0102accdaef7b2f2ca5d875b21e7a7158bcc2b236cd1782a7efae185ddd"
+        "packages/hotkeys/tests/app-hotkeys.test.ts": "6320a793ad1f8520103776d98192ff35be27072f182d87d9e511ec43e73d3425"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "730c6d5bcd2096d3a2612cac32e2473d0f46d4a9",
       "outcome": "out-of-scope",
       "reason": "Test file; it adds no guidance for agents.",
       "evidence": ["packages/hotkeys/tests/app-hotkeys.test.ts"]
     },
     "source:packages/hotkeys/tests/unset-values.test.ts": {
-      "fingerprint": "bacdddf288fbfb8ca0f2170057a2ba8cba63676cb686ad8c2c110b7f944d8f45",
+      "fingerprint": "47cd760d83ac64ad18764a87896a7bc534733ae5d4f2ce415206130e86fb2c72",
       "snapshot": {
-        "packages/hotkeys/tests/unset-values.test.ts": "ae427f73fa45ab9ecf9e292ce7783f62e7d2ccf1405f7154a27f4c92df84d2c2"
+        "packages/hotkeys/tests/unset-values.test.ts": "c92dd11e3b26310e42b20793477c1558a1d51cf7e2b4666f2b2ac00e3ecce888"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "730c6d5bcd2096d3a2612cac32e2473d0f46d4a9",
       "outcome": "out-of-scope",
       "reason": "Test file; it adds no guidance for agents.",
       "evidence": ["packages/hotkeys/tests/unset-values.test.ts"]

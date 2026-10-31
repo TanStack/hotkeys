@@ -323,7 +323,11 @@ function copySavedCustomHotkeys(saved: unknown): unknown {
 
 /** Whether two saved custom hotkeys objects hold the same data. */
 function sameSavedCustomHotkeys(left: unknown, right: unknown): boolean {
-  return sameSavedValue(left ?? {}, right ?? {})
+  // Never passed equals {}. null is a distinct value, so a change to it clears.
+  return sameSavedValue(
+    left === undefined ? {} : left,
+    right === undefined ? {} : right,
+  )
 }
 
 /** Whether two sanitized custom hotkeys objects bind the same hotkeys. */
@@ -400,8 +404,8 @@ export interface AppHotkeysStoreOptions<T extends AppHotkeys = AppHotkeys> {
    * The user's saved custom hotkeys. Invalid entries are ignored with a
    * warning. Passing a different value to `setOptions` later, such as data
    * that finished loading or another user's data, replaces the current
-   * custom hotkeys. `undefined` leaves them unchanged; `null` means nothing
-   * is saved.
+   * custom hotkeys. `undefined` leaves them unchanged; a change to `null`
+   * clears them.
    */
   customHotkeys?: CustomHotkeys<T> | null
   /** Called with the custom hotkeys after every change, ready to save. */
