@@ -60,8 +60,10 @@ export interface HotkeysProviderProps extends HotkeysProviderScopeProps {
    */
   appHotkeys?: AppHotkeys
   /**
-   * Starting custom hotkeys, such as saved data. Read once; the provider owns
-   * the state afterwards. Invalid entries are ignored with a warning.
+   * The user's saved custom hotkeys. When the value changes, such as after
+   * saved data loads or the user signs in, it replaces the current custom
+   * hotkeys. `undefined` leaves them unchanged; `null` clears them. Invalid
+   * entries are ignored with a warning.
    */
   customHotkeys?: CustomHotkeys | null
   /** Called with the custom hotkeys after every change, ready to save. */
@@ -118,6 +120,15 @@ export function HotkeysProvider({
     },
     [store, appHotkeys],
     subSlot(undefined, 'provider-declarations'),
+  )
+  // Apply saved custom hotkeys whose value changes, such as data that loads
+  // after the first render.
+  useLayoutEffect(
+    () => {
+      store?.setOptions({ customHotkeys })
+    },
+    [store, customHotkeys],
+    subSlot(undefined, 'provider-custom-hotkeys'),
   )
   // Publish the store so devtools can list declared hotkeys.
   useLayoutEffect(

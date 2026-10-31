@@ -9,7 +9,7 @@ title: createHotkeyRecorder
 function createHotkeyRecorder(options): SolidHotkeyRecorder<HotkeyChord>;
 ```
 
-Defined in: [createHotkeyRecorder.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L45)
+Defined in: [createHotkeyRecorder.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L46)
 
 Solid primitive for recording keyboard shortcuts. Options may be an accessor.
 
@@ -41,7 +41,7 @@ const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: se
 function createHotkeyRecorder(options): SolidHotkeyRecorder;
 ```
 
-Defined in: [createHotkeyRecorder.ts:48](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L48)
+Defined in: [createHotkeyRecorder.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L49)
 
 Solid primitive for recording keyboard shortcuts. Options may be an accessor.
 
@@ -73,7 +73,7 @@ const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: se
 function createHotkeyRecorder(options): SolidHotkeyRecorder;
 ```
 
-Defined in: [createHotkeyRecorder.ts:53](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L53)
+Defined in: [createHotkeyRecorder.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L54)
 
 Solid primitive for recording keyboard shortcuts. Options may be an accessor.
 
@@ -105,7 +105,7 @@ const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: se
 function createHotkeyRecorder(options): SolidHotkeyRecorder<HotkeyChord>;
 ```
 
-Defined in: [createHotkeyRecorder.ts:56](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L56)
+Defined in: [createHotkeyRecorder.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L57)
 
 Solid primitive for recording keyboard shortcuts. Options may be an accessor.
 
@@ -137,7 +137,7 @@ const sequenceRecorder = createHotkeyRecorder({ maxSteps: Infinity, onRecord: se
 function createHotkeyRecorder(options): SolidHotkeyRecorder;
 ```
 
-Defined in: [createHotkeyRecorder.ts:59](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L59)
+Defined in: [createHotkeyRecorder.ts:60](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L60)
 
 Solid primitive for recording keyboard shortcuts. Options may be an accessor.
 

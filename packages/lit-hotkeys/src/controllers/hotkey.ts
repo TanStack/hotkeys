@@ -81,25 +81,27 @@ export class HotkeyController implements ReactiveController {
 
   /**
    * @param host - The Lit component that owns this controller. Add the controller with `addController()`.
-   * @param hotkey - The chord, sequence, or app hotkey to register, or a getter. A getter is read on connection and after host updates.
+   * @param hotkey - The chord, sequence, or app hotkey to register, or a getter. A getter is read on connection and after host updates. `undefined`, `null`, or `''` registers nothing, for an optional shortcut.
    * @param callback - Called with the host as `this`.
    * @param options - Options or a getter. Property getters are read on connection and after host updates.
    */
   constructor(
     host: ReactiveControllerHost,
-    hotkey: MaybeGetter<AppHotkey>,
+    hotkey: MaybeGetter<AppHotkey | null | undefined>,
     callback: HotkeyCallback,
     options?: MaybeGetter<AppHotkeyControllerOptions>,
   )
   constructor(
     host: ReactiveControllerHost,
-    hotkey: MaybeGetter<RegisterableHotkey>,
+    hotkey: MaybeGetter<RegisterableHotkey | null | undefined>,
     callback: HotkeyCallback,
     options?: MaybeGetter<HotkeyControllerCommonOptions>,
   )
   constructor(
     private _host: ReactiveControllerHost,
-    private _hotkey: MaybeGetter<RegisterableHotkey | AppHotkey>,
+    private _hotkey: MaybeGetter<
+      RegisterableHotkey | AppHotkey | null | undefined
+    >,
     callback: HotkeyCallback,
     private _options: MaybeGetter<HotkeyControllerCommonOptions> = {},
   ) {

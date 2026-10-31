@@ -12,7 +12,7 @@ function createHotkey<T>(
    options?): void;
 ```
 
-Defined in: [createHotkey.ts:65](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L65)
+Defined in: [createHotkey.ts:66](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L66)
 
 Solid primitive for registering a hotkey: a chord such as `'Mod+S'`, a
 sequence such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
@@ -22,6 +22,7 @@ Chords accept `requireReset`; sequences accept `timeout`. A one-step
 sequence registers as its chord. An app hotkey uses its effective hotkey
 from `HotkeysProvider` (including the user's custom hotkey) and its
 declared meta and options, and registers nothing while unbound.
+`undefined`, `null`, or `''` registers nothing, for an optional shortcut.
 
 ### Type Parameters
 
@@ -33,7 +34,7 @@ declared meta and options, and registers nothing while unbound.
 
 #### hotkey
 
-`MaybeAccessor`\<`T`\>
+`MaybeAccessor`\<`T` \| `null` \| `undefined`\>
 
 #### callback
 
@@ -64,7 +65,7 @@ function createHotkey<T>(
    options?): void;
 ```
 
-Defined in: [createHotkey.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L70)
+Defined in: [createHotkey.ts:71](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L71)
 
 Solid primitive for registering a hotkey: a chord such as `'Mod+S'`, a
 sequence such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
@@ -74,6 +75,7 @@ Chords accept `requireReset`; sequences accept `timeout`. A one-step
 sequence registers as its chord. An app hotkey uses its effective hotkey
 from `HotkeysProvider` (including the user's custom hotkey) and its
 declared meta and options, and registers nothing while unbound.
+`undefined`, `null`, or `''` registers nothing, for an optional shortcut.
 
 ### Type Parameters
 
@@ -85,7 +87,7 @@ declared meta and options, and registers nothing while unbound.
 
 #### hotkey
 
-`MaybeAccessor`\<`T`\>
+`MaybeAccessor`\<`T` \| `null` \| `undefined`\>
 
 #### callback
 

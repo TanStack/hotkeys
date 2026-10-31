@@ -2,6 +2,7 @@ import { matchKeyboardEvent, parsedChordsEqual } from './_match'
 import { formatHotkey } from './format'
 import { isHotkeySequence, isModifierKey, parseHotkey } from './parse'
 import { detectPlatform } from './platform'
+import { chordHasKey } from './_registration'
 import { normalizeKeyName } from './constants'
 import { normalizeKeyboardEvent } from './_keyboard-event'
 import type {
@@ -54,7 +55,11 @@ export function matchesKeyboardEvent(
   chord: HotkeyChord | ParsedHotkeyChord,
   platform: 'mac' | 'windows' | 'linux' = detectPlatform(),
 ): boolean {
-  return matchKeyboardEvent(event, chord, platform).matched
+  const parsed =
+    typeof chord === 'string' ? parseHotkey(chord, platform) : chord
+  // Registrations always have a key; a chord passed here may not.
+  if (!chordHasKey(parsed)) return false
+  return matchKeyboardEvent(event, parsed, platform).matched
 }
 
 /**

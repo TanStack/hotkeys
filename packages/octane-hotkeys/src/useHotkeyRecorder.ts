@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef } from 'octane'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
+import { withDefaults } from '@tanstack/hotkeys/adapter'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import { select, subSlot } from './internal'
 import type { OctaneHotkeyRecorder } from './types'
@@ -29,10 +30,10 @@ export function useHotkeyRecorder(
 ): OctaneHotkeyRecorder {
   const defaults = useDefaultHotkeysOptions()
   // Overloads already checked the options; either shape is valid here.
-  const merged = {
-    ...defaults.hotkeyRecorder,
-    ...options,
-  } as HotkeySequenceRecorderOptions
+  const merged = withDefaults(
+    defaults.hotkeyRecorder,
+    options,
+  ) as HotkeySequenceRecorderOptions
   const ref = useRef<HotkeyRecorder | null>(null, subSlot(slot, 'recorder'))
   ref.current ??= new HotkeyRecorder(merged)
   const recorder = ref.current

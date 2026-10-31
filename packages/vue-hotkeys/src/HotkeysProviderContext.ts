@@ -70,10 +70,12 @@ export interface ProvideHotkeysContextOptions {
    */
   appHotkeys?: MaybeRefOrGetter<AppHotkeys | undefined>
   /**
-   * Starting custom hotkeys, such as saved data. Read once; the context owns
-   * the state afterwards. Invalid entries are ignored with a warning.
+   * The user's saved custom hotkeys. When the value changes, such as after
+   * saved data loads or the user signs in, it replaces the current custom
+   * hotkeys. `undefined` leaves them unchanged; `null` clears them. Invalid
+   * entries are ignored with a warning.
    */
-  customHotkeys?: CustomHotkeys | null
+  customHotkeys?: MaybeRefOrGetter<CustomHotkeys | null | undefined>
   /** Called with the custom hotkeys after every change, ready to save. */
   onCustomHotkeysChange?: (customHotkeys: CustomHotkeys) => void
 }
@@ -105,7 +107,7 @@ export function provideHotkeysContext(
   const appHotkeys = toValue(options.appHotkeys)
   const store = appHotkeys
     ? createAppHotkeysStore(appHotkeys, {
-        customHotkeys: options.customHotkeys,
+        customHotkeys: toValue(options.customHotkeys),
         onCustomHotkeysChange: (custom) =>
           options.onCustomHotkeysChange?.(custom),
       })
@@ -118,6 +120,13 @@ export function provideHotkeysContext(
       (next) => {
         if (next) store.setAppHotkeys(next)
       },
+    )
+    // Apply saved custom hotkeys whose value changes, such as data that
+    // loads after setup. Deep, so changes made in place are seen too.
+    watch(
+      () => toValue(options.customHotkeys),
+      (customHotkeys) => store.setOptions({ customHotkeys }),
+      { deep: true },
     )
     // Publish the store so devtools can list declared hotkeys.
     if (typeof document !== 'undefined') {

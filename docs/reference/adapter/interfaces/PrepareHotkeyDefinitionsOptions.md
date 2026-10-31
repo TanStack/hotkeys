@@ -3,7 +3,7 @@ id: PrepareHotkeyDefinitionsOptions
 title: PrepareHotkeyDefinitionsOptions
 ---
 
-Defined in: [adapter.ts:253](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L253)
+Defined in: [adapter.ts:274](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L274)
 
 Context for `prepareHotkeyDefinitions`.
 
@@ -23,7 +23,7 @@ optional appHotkeysStore?:
   | null;
 ```
 
-Defined in: [adapter.ts:255](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L255)
+Defined in: [adapter.ts:276](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L276)
 
 The provider's app hotkeys store, so app hotkeys use custom hotkeys.
 
@@ -35,7 +35,7 @@ The provider's app hotkeys store, so app hotkeys use custom hotkeys.
 optional commonOptions?: AdapterCommonOptions<TTarget>;
 ```
 
-Defined in: [adapter.ts:259](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L259)
+Defined in: [adapter.ts:280](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L280)
 
 Options for every definition, applied after app hotkey declarations.
 
@@ -47,7 +47,7 @@ Options for every definition, applied after app hotkey declarations.
 optional defaults?: AdapterCommonOptions<TTarget>;
 ```
 
-Defined in: [adapter.ts:257](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L257)
+Defined in: [adapter.ts:278](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L278)
 
 Provider defaults, applied first.
 
@@ -59,11 +59,11 @@ Provider defaults, applied first.
 optional resolveTarget?: (target) => Target | null | undefined;
 ```
 
-Defined in: [adapter.ts:265](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L265)
+Defined in: [adapter.ts:286](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L286)
 
 Resolves a framework target, such as a ref. Return `undefined` for the
 document or `null` to skip registration until the target exists.
-Without it, targets pass through and `null` means document.
+Without it, targets pass through, so `null` skips registration.
 
 #### Parameters
 

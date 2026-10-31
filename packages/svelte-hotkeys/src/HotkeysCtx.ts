@@ -42,8 +42,10 @@ export interface HotkeysContextOptions extends HotkeysProviderScopeProps {
    */
   appHotkeys?: AppHotkeys
   /**
-   * Starting custom hotkeys, such as saved data. Read once; the context owns
-   * the state afterwards. Invalid entries are ignored with a warning.
+   * The user's saved custom hotkeys. When the value changes, such as after
+   * saved data loads or the user signs in, it replaces the current custom
+   * hotkeys. `undefined` leaves them unchanged; `null` clears them. Invalid
+   * entries are ignored with a warning.
    */
   customHotkeys?: CustomHotkeys | null
   /** Called with the custom hotkeys after every change, ready to save. */

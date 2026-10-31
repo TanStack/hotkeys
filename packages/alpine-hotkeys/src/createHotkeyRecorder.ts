@@ -1,4 +1,5 @@
 import { HotkeyRecorder } from '@tanstack/hotkeys'
+import { withDefaults } from '@tanstack/hotkeys/adapter'
 import { read } from './scope'
 import type {
   HotkeyRecorderOptions,
@@ -15,10 +16,10 @@ export function createHotkeyRecorder(
   // The scope's overloads already checked the options; either shape is valid.
   const instance = new HotkeyRecorder(
     () =>
-      ({
-        ...scope.defaultOptions().hotkeyRecorder,
-        ...read(options),
-      }) as HotkeySequenceRecorderOptions,
+      withDefaults(
+        scope.defaultOptions().hotkeyRecorder,
+        read(options),
+      ) as HotkeySequenceRecorderOptions,
   )
   const state = scope.select(instance.store, (value) => value)
   scope.addCleanup(() => instance.destroy())

@@ -27,15 +27,18 @@ provided; later changes update the declarations.
 ### customHotkeys?
 
 ```ts
-optional customHotkeys?: 
+optional customHotkeys?: MaybeRefOrGetter<
   | CustomHotkeys<Readonly<Record<string, AppHotkey<string, HotkeyChord | HotkeySequence | null>>>>
-  | null;
+  | null
+| undefined>;
 ```
 
-Defined in: [HotkeysProviderContext.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L76)
+Defined in: [HotkeysProviderContext.ts:78](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L78)
 
-Starting custom hotkeys, such as saved data. Read once; the context owns
-the state afterwards. Invalid entries are ignored with a warning.
+The user's saved custom hotkeys. When the value changes, such as after
+saved data loads or the user signs in, it replaces the current custom
+hotkeys. `undefined` leaves them unchanged; `null` clears them. Invalid
+entries are ignored with a warning.
 
 ***
 
@@ -85,7 +88,7 @@ See `HotkeysProviderScopeProps['exclusive']`.
 optional onCustomHotkeysChange?: (customHotkeys) => void;
 ```
 
-Defined in: [HotkeysProviderContext.ts:78](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L78)
+Defined in: [HotkeysProviderContext.ts:80](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L80)
 
 Called with the custom hotkeys after every change, ready to save.
 

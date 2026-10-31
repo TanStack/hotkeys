@@ -12,7 +12,7 @@ function createHotkey<T>(
    options?): void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:66](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L66)
+Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:67](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L67)
 
 Svelte function for registering a hotkey on the document: a chord such as
 `'Mod+S'`, a sequence such as `['G', 'G']`, or an app hotkey from
@@ -23,6 +23,7 @@ Chords accept `requireReset`; sequences accept `timeout`. A one-step
 sequence registers as its chord. An app hotkey uses its effective hotkey
 from `HotkeysProvider` (including the user's custom hotkey) and its
 declared meta and options, and registers nothing while unbound.
+`undefined`, `null`, or `''` registers nothing, for an optional shortcut.
 
 ### Type Parameters
 
@@ -34,7 +35,7 @@ declared meta and options, and registers nothing while unbound.
 
 #### hotkey
 
-`MaybeGetter`\<`T`\>
+`MaybeGetter`\<`T` \| `null` \| `undefined`\>
 
 #### callback
 
@@ -67,7 +68,7 @@ function createHotkey<T>(
    options?): void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:71](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L71)
+Defined in: [packages/svelte-hotkeys/src/createHotkey.svelte.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkey.svelte.ts#L72)
 
 Svelte function for registering a hotkey on the document: a chord such as
 `'Mod+S'`, a sequence such as `['G', 'G']`, or an app hotkey from
@@ -78,6 +79,7 @@ Chords accept `requireReset`; sequences accept `timeout`. A one-step
 sequence registers as its chord. An app hotkey uses its effective hotkey
 from `HotkeysProvider` (including the user's custom hotkey) and its
 declared meta and options, and registers nothing while unbound.
+`undefined`, `null`, or `''` registers nothing, for an optional shortcut.
 
 ### Type Parameters
 
@@ -89,7 +91,7 @@ declared meta and options, and registers nothing while unbound.
 
 #### hotkey
 
-`MaybeGetter`\<`T`\>
+`MaybeGetter`\<`T` \| `null` \| `undefined`\>
 
 #### callback
 

@@ -95,11 +95,12 @@ const HotkeysProvider: DefineComponent<ExtractPropTypes<{
 }, any>;
 ```
 
-Defined in: [HotkeysProvider.tsx:37](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProvider.tsx#L37)
+Defined in: [HotkeysProvider.tsx:38](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProvider.tsx#L38)
 
 Vue component that provides default options, app hotkeys, and the user's
-custom hotkeys. `customHotkeys` is read once; listen to
-`custom-hotkeys-change` to save changes.
+custom hotkeys. A new `customHotkeys` value replaces the current custom
+hotkeys, `undefined` leaves them unchanged, and `null` clears them. Listen
+to `custom-hotkeys-change` to save changes.
 
 Nest providers to create hotkey scopes. A nested provider inherits app
 hotkeys and merges default options. With `scope`, its hotkeys fire only

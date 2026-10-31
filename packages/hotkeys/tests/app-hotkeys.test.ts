@@ -239,3 +239,83 @@ describe('adapter helpers', () => {
     expect(isCustomHotkey(custom, 'windows')).toBe(true)
   })
 })
+
+describe('AppHotkeysStore.setOptions customHotkeys', () => {
+  it('applies saved data that arrives after the store is created', () => {
+    const onChange = vi.fn()
+    const store = new AppHotkeysStore(appHotkeys, {
+      onCustomHotkeysChange: onChange,
+    })
+    store.setOptions({ customHotkeys: { 'doc.save': 'Mod+Shift+S' } })
+    expect(store.appHotkeys['doc.save'].hotkey).toBe('Mod+Shift+S')
+    expect(store.customHotkeys).toEqual({ 'doc.save': 'Mod+Shift+S' })
+    expect(onChange).not.toHaveBeenCalled()
+  })
+
+  it('keeps user changes when the same saved data is passed again', () => {
+    const store = new AppHotkeysStore(appHotkeys, {
+      customHotkeys: { 'doc.save': 'Mod+Shift+S' },
+    })
+    store.setCustomHotkey('doc.find', 'Mod+G')
+    store.setOptions({ customHotkeys: { 'doc.save': 'Mod+Shift+S' } })
+    store.setOptions({})
+    expect(store.customHotkeys).toEqual({
+      'doc.save': 'Mod+Shift+S',
+      'doc.find': 'Mod+G',
+    })
+  })
+
+  it('treats null and {} as nothing saved', () => {
+    const store = new AppHotkeysStore(appHotkeys)
+    store.setCustomHotkey('doc.find', 'Mod+G')
+    store.setOptions({ customHotkeys: null })
+    store.setOptions({ customHotkeys: {} })
+    expect(store.customHotkeys).toEqual({ 'doc.find': 'Mod+G' })
+  })
+
+  it('leaves custom hotkeys unchanged for undefined, such as during a refetch', () => {
+    const store = new AppHotkeysStore(appHotkeys, {
+      customHotkeys: { 'doc.save': 'Mod+Shift+S' },
+    })
+    store.setCustomHotkey('doc.find', 'Mod+G')
+    store.setOptions({ customHotkeys: undefined })
+    store.setOptions({ customHotkeys: { 'doc.save': 'Mod+Shift+S' } })
+    expect(store.customHotkeys).toEqual({
+      'doc.save': 'Mod+Shift+S',
+      'doc.find': 'Mod+G',
+    })
+  })
+
+  it("replaces custom hotkeys with another user's data", () => {
+    const store = new AppHotkeysStore(appHotkeys, {
+      customHotkeys: { 'doc.save': 'Mod+Shift+S' },
+    })
+    store.setOptions({ customHotkeys: { 'nav.home': ['G', 'G'] } })
+    expect(store.customHotkeys).toEqual({ 'nav.home': ['G', 'G'] })
+    expect(store.appHotkeys['doc.save'].hotkey).toBe('Mod+S')
+    store.setOptions({ customHotkeys: null })
+    expect(store.customHotkeys).toEqual({})
+  })
+
+  it('sees saved data changed in place', () => {
+    const saved: CustomHotkeys<typeof appHotkeys> = {}
+    const store = new AppHotkeysStore(appHotkeys, { customHotkeys: saved })
+    saved['doc.save'] = 'Mod+Shift+S'
+    store.setOptions({ customHotkeys: saved })
+    expect(store.customHotkeys).toEqual({ 'doc.save': 'Mod+Shift+S' })
+  })
+
+  it('drops invalid entries and does not notify when nothing changes', () => {
+    vi.spyOn(console, 'warn').mockImplementation(() => {})
+    const store = new AppHotkeysStore(appHotkeys)
+    const listener = vi.fn()
+    store.store.subscribe(listener)
+    store.setOptions({
+      customHotkeys: { 'doc.save': 42 } as unknown as CustomHotkeys<
+        typeof appHotkeys
+      >,
+    })
+    expect(store.customHotkeys).toEqual({})
+    expect(listener).not.toHaveBeenCalled()
+  })
+})

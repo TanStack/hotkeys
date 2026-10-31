@@ -57,9 +57,12 @@ The Lit component that owns this controller. Add the controller with `addControl
 
 ##### hotkey
 
-`MaybeGetter`\<`AppHotkey`\<`string`, `HotkeyChord` \| `HotkeySequence` \| `null`\>\>
+`MaybeGetter`\<
+  \| `AppHotkey`\<`string`, `HotkeyChord` \| `HotkeySequence` \| `null`\>
+  \| `null`
+  \| `undefined`\>
 
-The chord, sequence, or app hotkey to register, or a getter. A getter is read on connection and after host updates.
+The chord, sequence, or app hotkey to register, or a getter. A getter is read on connection and after host updates. `undefined`, `null`, or `''` registers nothing, for an optional shortcut.
 
 ##### callback
 
@@ -97,7 +100,7 @@ Defined in: [controllers/hotkey.ts:94](https://github.com/TanStack/hotkeys/blob/
 
 ##### hotkey
 
-`MaybeGetter`\<`RegisterableHotkey`\>
+`MaybeGetter`\<`RegisterableHotkey` \| `null` \| `undefined`\>
 
 ##### callback
 
@@ -119,7 +122,7 @@ Defined in: [controllers/hotkey.ts:94](https://github.com/TanStack/hotkeys/blob/
 hostConnected(): void;
 ```
 
-Defined in: [controllers/hotkey.ts:110](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L110)
+Defined in: [controllers/hotkey.ts:112](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L112)
 
 Registers when connected and a target is available.
 
@@ -141,7 +144,7 @@ ReactiveController.hostConnected
 hostDisconnected(): void;
 ```
 
-Defined in: [controllers/hotkey.ts:148](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L148)
+Defined in: [controllers/hotkey.ts:150](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L150)
 
 Releases registrations when the host disconnects.
 
@@ -163,7 +166,7 @@ ReactiveController.hostDisconnected
 hostUpdated(): void;
 ```
 
-Defined in: [controllers/hotkey.ts:119](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L119)
+Defined in: [controllers/hotkey.ts:121](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L121)
 
 Refreshes options after rendering, when scoped targets are available.
 

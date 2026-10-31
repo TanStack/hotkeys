@@ -7,6 +7,6 @@ title: HotkeyBindingsCommonOptions
 type HotkeyBindingsCommonOptions = HotkeyChordOptions & HotkeySequenceOptions;
 ```
 
-Defined in: [adapter.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L49)
+Defined in: [adapter.ts:60](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L60)
 
 Options shared by every definition. Each option applies only to the kinds that support it.

@@ -9,7 +9,7 @@ title: useHotkeyRecorder
 function useHotkeyRecorder(options): OctaneHotkeyRecorder<HotkeyChord>;
 ```
 
-Defined in: [useHotkeyRecorder.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkeyRecorder.ts#L20)
+Defined in: [useHotkeyRecorder.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkeyRecorder.ts#L21)
 
 Records a shortcut and destroys the recorder on unmount. With the default
 `maxSteps: 1`, the first valid chord is recorded. With a larger `maxSteps`,
@@ -33,7 +33,7 @@ each chord adds a step; the recording commits on Enter (unless
 function useHotkeyRecorder(options): OctaneHotkeyRecorder;
 ```
 
-Defined in: [useHotkeyRecorder.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkeyRecorder.ts#L23)
+Defined in: [useHotkeyRecorder.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/useHotkeyRecorder.ts#L24)
 
 Records a shortcut and destroys the recorder on unmount. With the default
 `maxSteps: 1`, the first valid chord is recorded. With a larger `maxSteps`,

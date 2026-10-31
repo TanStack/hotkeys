@@ -9,7 +9,7 @@ title: useHotkeyRecorder
 function useHotkeyRecorder(options): PreactHotkeyRecorder<HotkeyChord>;
 ```
 
-Defined in: [useHotkeyRecorder.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L68)
+Defined in: [useHotkeyRecorder.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L69)
 
 Preact hook for recording keyboard shortcuts.
 
@@ -64,7 +64,7 @@ const recorder = useHotkeyRecorder({
 function useHotkeyRecorder(options): PreactHotkeyRecorder;
 ```
 
-Defined in: [useHotkeyRecorder.ts:71](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L71)
+Defined in: [useHotkeyRecorder.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L72)
 
 Preact hook for recording keyboard shortcuts.
 

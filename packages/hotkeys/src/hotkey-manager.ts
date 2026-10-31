@@ -20,7 +20,9 @@ import {
 } from './_keyboard-event'
 import {
   GLOBAL_SCOPE,
+  chordHasKey,
   defaultHotkeyOptions,
+  definedOptions,
   getDefaultIgnoreInputs,
   handleConflict,
   optionsEqual,
@@ -333,6 +335,18 @@ function chordString(
  */
 function generateId(): string {
   return `hotkey_${++registrationIdCounter}`
+}
+
+/** Defaults for a registration of the given kind. */
+function registrationDefaults(
+  kind: HotkeyRegistration['kind'],
+): Partial<HotkeyChordOptions & HotkeySequenceOptions> {
+  return {
+    ...defaultHotkeyOptions,
+    ...(kind === 'sequence'
+      ? { timeout: DEFAULT_SEQUENCE_TIMEOUT }
+      : { requireReset: false }),
+  }
 }
 
 /** Drops options that do not apply to a registration's kind. */
@@ -764,6 +778,12 @@ export class HotkeyManager {
     callback: HotkeyCallback,
     options: HotkeyChordOptions & HotkeySequenceOptions = {},
   ): HotkeyRegistrationHandle {
+    // Adapter hooks skip a missing hotkey; the manager API requires one.
+    if ((input as RegisterableHotkey | null | undefined) == null) {
+      throw new Error(
+        'A hotkey is required. Skip registration when there is no hotkey.',
+      )
+    }
     const hotkey = simplifyHotkey(input)
     if (isHotkeySequence(hotkey) && hotkey.length === 0) {
       throw new Error('Sequence must contain at least one hotkey')
@@ -795,14 +815,12 @@ export class HotkeyManager {
     const target = options.target ?? document
 
     const sequence = isHotkeySequence(hotkey)
+    const kind = sequence ? 'sequence' : 'chord'
+    // `undefined` means "not set", so it keeps the default.
     const resolvedOptions = {
-      ...defaultHotkeyOptions,
-      ...(sequence
-        ? { timeout: DEFAULT_SEQUENCE_TIMEOUT }
-        : { requireReset: false }),
-      ...optionsForKind(sequence ? 'sequence' : 'chord', options),
+      ...registrationDefaults(kind),
+      ...optionsForKind(kind, definedOptions(options)),
       platform,
-      ignoreInputs: options.ignoreInputs ?? 'auto',
     }
     const common = {
       id,
@@ -835,11 +853,18 @@ export class HotkeyManager {
       }
     }
 
+    const steps =
+      registration.kind === 'sequence'
+        ? registration.parsedSequence
+        : [registration.parsedChord]
+    // An empty key would match key-less events, such as autofill's.
+    if (!steps.every(chordHasKey)) {
+      throw new Error(
+        `Hotkey '${formatForMessage(registration.hotkey)}' has no key. Skip registration when there is no hotkey.`,
+      )
+    }
+
     if (process.env.NODE_ENV !== 'production') {
-      const steps =
-        registration.kind === 'sequence'
-          ? registration.parsedSequence
-          : [registration.parsedChord]
       for (const { key } of steps) {
         if (key !== undefined && !isKeyNameShape(key)) {
           console.warn(
@@ -885,9 +910,20 @@ export class HotkeyManager {
         manager.registrations.setState((prev) => {
           const reg = prev.get(id)
           if (!reg) return prev
-          const options = {
-            ...reg.options,
-            ...optionsForKind(reg.kind, newOptions),
+          // `undefined` resets an option to its default, or removes it when
+          // it has none.
+          const defaults: Record<string, unknown> = {
+            ...registrationDefaults(reg.kind),
+            platform: reg.options.platform,
+          }
+          const options: Record<string, unknown> = { ...reg.options }
+          const entries: Array<[string, unknown]> = Object.entries(
+            optionsForKind(reg.kind, newOptions),
+          )
+          for (const [key, value] of entries) {
+            if (value !== undefined) options[key] = value
+            else if (key in defaults) options[key] = defaults[key]
+            else delete options[key]
           }
           if (optionsEqual(reg.options, options)) return prev
           const capture = !!reg.options.capture
@@ -1467,10 +1503,14 @@ export class HotkeyManager {
    * only while focus is inside that element. An app hotkey matches
    * registrations by id, so custom hotkeys apply.
    *
-   * @param hotkey - A chord, sequence, or app hotkey
+   * @param hotkey - A chord, sequence, or app hotkey. No hotkey
+   *   (`undefined`, `null`, or `''`) returns false.
    * @returns True if a registration that can fire exists
    */
-  hasActiveRegistration(hotkey: RegisterableHotkey | AppHotkey): boolean {
+  hasActiveRegistration(
+    hotkey: RegisterableHotkey | AppHotkey | null | undefined,
+  ): boolean {
+    if (!hotkey) return false
     // Checks the brand inline; importing `isAppHotkey` would bundle the app hotkeys store.
     const id =
       typeof hotkey === 'object' && '~appHotkey' in hotkey

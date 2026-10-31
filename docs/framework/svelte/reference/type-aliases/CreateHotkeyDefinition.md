@@ -22,7 +22,7 @@ type CreateHotkeyDefinition =
 }
   | {
   callback: HotkeyCallback;
-  hotkey: MaybeGetter<RegisterableHotkey>;
+  hotkey: MaybeGetter<RegisterableHotkey | null | undefined>;
   options?: MaybeGetter<CreateHotkeyOptions>;
 };
 ```
@@ -140,7 +140,7 @@ optional options?: MaybeGetter<CreateAppHotkeyOptions>;
 ```ts
 {
   callback: HotkeyCallback;
-  hotkey: MaybeGetter<RegisterableHotkey>;
+  hotkey: MaybeGetter<RegisterableHotkey | null | undefined>;
   options?: MaybeGetter<CreateHotkeyOptions>;
 }
 ```
@@ -154,10 +154,11 @@ callback: HotkeyCallback;
 #### hotkey
 
 ```ts
-hotkey: MaybeGetter<RegisterableHotkey>;
+hotkey: MaybeGetter<RegisterableHotkey | null | undefined>;
 ```
 
-A hotkey whose kind is not known statically. Accepts only shared options.
+A hotkey whose kind is not known statically. Accepts only shared
+options. `undefined`, `null`, or `''` registers nothing.
 
 #### options?
 

@@ -22,12 +22,12 @@ type AdapterHotkeyDefinition<TTarget> =
 }
   | {
   callback: HotkeyCallback;
-  hotkey: RegisterableHotkey;
+  hotkey: RegisterableHotkey | null | undefined;
   options?: AdapterHotkeyOptions<TTarget>;
 };
 ```
 
-Defined in: [adapter.ts:218](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L218)
+Defined in: [adapter.ts:238](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L238)
 
 One hotkey and its callback for adapter APIs such as `useHotkeys`. Chords
 accept `requireReset`; sequences accept `timeout`; hotkeys of unknown kind
@@ -147,7 +147,7 @@ optional options?: Omit<AdapterCommonOptions<TTarget>, "meta">;
 ```ts
 {
   callback: HotkeyCallback;
-  hotkey: RegisterableHotkey;
+  hotkey: RegisterableHotkey | null | undefined;
   options?: AdapterHotkeyOptions<TTarget>;
 }
 ```
@@ -161,11 +161,12 @@ callback: HotkeyCallback;
 #### hotkey
 
 ```ts
-hotkey: RegisterableHotkey;
+hotkey: RegisterableHotkey | null | undefined;
 ```
 
 A hotkey whose kind is not known statically, such as user data typed
-`Hotkey`. Accepts only shared options.
+`Hotkey`. Accepts only shared options. `undefined`, `null`, and `''`
+register nothing, for an optional shortcut.
 
 #### options?
 

@@ -7,7 +7,7 @@ title: createHotkeyBindings
 function createHotkeyBindings(): object;
 ```
 
-Defined in: [adapter.ts:55](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L55)
+Defined in: [adapter.ts:66](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L66)
 
 Reconciles adapter registrations while retaining handles for option updates.
 
@@ -30,7 +30,8 @@ update(definitions, commonOptions?): void;
 ```
 
 Registers new definitions, updates existing ones in place, and removes
-stale ones. Definitions with an empty sequence or a null target are skipped.
+stale ones. Definitions with no hotkey (undefined, null, empty string, or
+empty sequence) or a null target are skipped.
 
 #### Parameters
 

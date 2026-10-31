@@ -7,7 +7,7 @@ title: HotkeysProvider
 function HotkeysProvider<T>(__namedParameters): Element;
 ```
 
-Defined in: [HotkeysProvider.tsx:104](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L104)
+Defined in: [HotkeysProvider.tsx:106](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L106)
 
 Provides default options, app hotkeys, and the user's custom hotkeys.
 

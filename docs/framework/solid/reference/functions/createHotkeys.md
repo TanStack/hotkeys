@@ -7,14 +7,15 @@ title: createHotkeys
 function createHotkeys(hotkeys, commonOptions?): void;
 ```
 
-Defined in: [createHotkeys.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L39)
+Defined in: [createHotkeys.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeys.ts#L40)
 
 Solid primitive for registering several hotkeys at once: chords, sequences,
 and app hotkeys. Pass an accessor for a reactive list.
 
 Options merge in this order: provider defaults, app hotkey declaration,
 commonOptions, per-hotkey options. Each option applies only to the kinds
-that support it. Unbound app hotkeys and empty sequences register nothing.
+that support it. Unbound app hotkeys, empty sequences, and `undefined`,
+`null`, or `''` hotkeys register nothing.
 A `null` target skips registration until it is set.
 
 ## Parameters

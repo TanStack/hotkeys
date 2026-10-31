@@ -12,7 +12,7 @@ function injectHotkey<T>(
    options?): void;
 ```
 
-Defined in: [injectHotkey.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L70)
+Defined in: [injectHotkey.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L72)
 
 Angular inject-based API for registering a hotkey: a chord such as
 `'Mod+S'`, a sequence such as `['G', 'G']`, or an app hotkey from
@@ -21,7 +21,9 @@ Angular inject-based API for registering a hotkey: a chord such as
 Chords accept `requireReset`; sequences accept `timeout`. A one-step
 sequence registers as its chord. An app hotkey uses its effective hotkey
 from `provideHotkeys` (including the user's custom hotkey) and its declared
-meta and options, and registers nothing while unbound.
+meta and options, and registers nothing while unbound. A hotkey of
+`undefined`, `null`, or `''` registers nothing, for an optional shortcut
+such as `() => this.shortcut()`; when it changes to a hotkey, it registers.
 
 ### Type Parameters
 
@@ -33,7 +35,7 @@ meta and options, and registers nothing while unbound.
 
 #### hotkey
 
-`MaybeGetter`\<`T`\>
+`MaybeGetter`\<`T` \| `null` \| `undefined`\>
 
 #### callback
 
@@ -69,7 +71,7 @@ function injectHotkey<T>(
    options?): void;
 ```
 
-Defined in: [injectHotkey.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L75)
+Defined in: [injectHotkey.ts:77](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L77)
 
 Angular inject-based API for registering a hotkey: a chord such as
 `'Mod+S'`, a sequence such as `['G', 'G']`, or an app hotkey from
@@ -78,7 +80,9 @@ Angular inject-based API for registering a hotkey: a chord such as
 Chords accept `requireReset`; sequences accept `timeout`. A one-step
 sequence registers as its chord. An app hotkey uses its effective hotkey
 from `provideHotkeys` (including the user's custom hotkey) and its declared
-meta and options, and registers nothing while unbound.
+meta and options, and registers nothing while unbound. A hotkey of
+`undefined`, `null`, or `''` registers nothing, for an optional shortcut
+such as `() => this.shortcut()`; when it changes to a hotkey, it registers.
 
 ### Type Parameters
 
@@ -90,7 +94,7 @@ meta and options, and registers nothing while unbound.
 
 #### hotkey
 
-`MaybeGetter`\<`T`\>
+`MaybeGetter`\<`T` \| `null` \| `undefined`\>
 
 #### callback
 

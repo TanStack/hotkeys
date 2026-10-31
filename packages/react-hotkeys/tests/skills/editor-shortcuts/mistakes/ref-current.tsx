@@ -1,4 +1,4 @@
-// Mistake: ref.current is null on the first render, so Delete listens on document.
+// Mistake: ref.current is null on the first render, so Delete never registers.
 import React, { useRef } from 'react'
 import { HotkeysProvider, useHotkey } from '../../../../src'
 import type { EditorProps } from '../fixture'

@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
+import { withDefaults } from '@tanstack/hotkeys/adapter'
 import { useSelector } from './_useSelector'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import type {
@@ -76,10 +77,10 @@ export function useHotkeyRecorder(
 export function useHotkeyRecorder(
   options: HotkeyRecorderOptions,
 ): ReactHotkeyRecorder {
-  const mergedOptions = {
-    ...useDefaultHotkeysOptions().hotkeyRecorder,
-    ...options,
-  } as HotkeyRecorderOptions
+  const mergedOptions = withDefaults(
+    useDefaultHotkeysOptions().hotkeyRecorder,
+    options,
+  )
 
   const recorderRef = useRef<HotkeyRecorder | null>(null)
 

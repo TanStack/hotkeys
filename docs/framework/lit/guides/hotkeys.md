@@ -96,6 +96,12 @@ Keep the values the functions read in reactive properties, so a change triggers 
 
 That lets you register a hotkey the user chose, such as one from the [hotkey recorder](./custom-hotkey-recording). To let users change hotkeys across your app and save their choices, see [App Hotkeys](./app-hotkeys).
 
+### Optional hotkeys
+
+A hotkey of `undefined`, `null`, or `''` registers nothing in `HotkeyController`, so an element can take an optional shortcut. The `@hotkey` decorator always needs a hotkey. When the hotkey changes to one of these values, its registration is removed. When it changes back to a hotkey, it registers again. Hints for no hotkey are hidden.
+
+To keep a hotkey registered, and listed in devtools and cheat sheets, but stop it from firing, set `enabled: false` instead.
+
 ### Write a chord as a string or an object
 
 Write most chords as strings. Your editor autocompletes them, and TypeScript rejects a string that isn't a valid chord:

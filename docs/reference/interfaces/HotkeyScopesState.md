@@ -3,7 +3,7 @@ id: HotkeyScopesState
 title: HotkeyScopesState
 ---
 
-Defined in: [hotkey-manager.ts:383](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L383)
+Defined in: [hotkey-manager.ts:397](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L397)
 
 Active hotkey scopes, published on `HotkeyManager.scopes`.
 
@@ -15,7 +15,7 @@ Active hotkey scopes, published on `HotkeyManager.scopes`.
 active: readonly string[];
 ```
 
-Defined in: [hotkey-manager.ts:388](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L388)
+Defined in: [hotkey-manager.ts:402](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L402)
 
 Activated scopes, lowest precedence first. `'global'` is always active
 and not listed.
@@ -28,7 +28,7 @@ and not listed.
 allowed: readonly string[];
 ```
 
-Defined in: [hotkey-manager.ts:395](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L395)
+Defined in: [hotkey-manager.ts:409](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L409)
 
 Scopes the exclusive scope allows that are active, possibly including
 `'global'`. Empty when no scope is exclusive.
@@ -41,7 +41,7 @@ Scopes the exclusive scope allows that are active, possibly including
 exclusive: string | null;
 ```
 
-Defined in: [hotkey-manager.ts:390](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L390)
+Defined in: [hotkey-manager.ts:404](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L404)
 
 The exclusive scope that owns the keyboard, or `null` when none is active.
 
@@ -53,7 +53,7 @@ The exclusive scope that owns the keyboard, or `null` when none is active.
 suspended: readonly string[];
 ```
 
-Defined in: [hotkey-manager.ts:400](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L400)
+Defined in: [hotkey-manager.ts:414](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L414)
 
 Scopes that are active but cannot fire because another scope is
 exclusive, possibly including `'global'`.

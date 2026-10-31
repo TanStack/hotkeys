@@ -25,10 +25,11 @@ export interface SvelteHotkeyHint {
  * fire: some registration of it is enabled and in an active scope. Pass
  * getters to track changing hotkeys and options. A sequence reveals its hint
  * from its first step, and an app hotkey matches its registrations by id and
- * uses its effective hotkey (false while unbound). This helper does not register a shortcut. A hotkey on an element counts only while focus is inside it.
+ * uses its effective hotkey (false while unbound). No hotkey (`undefined`,
+ * `null`, or `''`) returns false. This helper does not register a shortcut. A hotkey on an element counts only while focus is inside it.
  */
 export function getHotkeyHint(
-  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey>,
+  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey | null | undefined>,
   options: MaybeGetter<HeldModifierOptions> = {},
 ): SvelteHotkeyHint {
   const tracker = getKeyStateTracker()

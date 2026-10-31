@@ -60,8 +60,10 @@ export interface HotkeysProviderProps<
    */
   appHotkeys?: T
   /**
-   * Starting custom hotkeys, such as saved data. Read once; the provider owns
-   * the state afterwards. Invalid entries are ignored with a warning.
+   * The user's saved custom hotkeys. When the value changes, such as after
+   * saved data loads or the user signs in, it replaces the current custom
+   * hotkeys. `undefined` leaves them unchanged; `null` clears them. Invalid
+   * entries are ignored with a warning.
    */
   customHotkeys?: CustomHotkeys<T> | null
   /** Called with the custom hotkeys after every change, ready to save. */
@@ -143,10 +145,11 @@ export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
     return scopeKey ? activateHotkeysProviderScope(scopeKey) : undefined
   }, [scopeKey])
 
-  // Keep the latest callback and declarations without resetting custom hotkeys.
+  // Keep the latest callback and saved custom hotkeys. Saved data with the
+  // same value, such as an inline JSON.parse, keeps the user's changes.
   useEffect(() => {
-    store?.setOptions({ onCustomHotkeysChange })
-  }, [store, onCustomHotkeysChange])
+    store?.setOptions({ customHotkeys, onCustomHotkeysChange })
+  }, [store, customHotkeys, onCustomHotkeysChange])
   useEffect(() => {
     if (appHotkeys) store?.setAppHotkeys(appHotkeys)
   }, [store, appHotkeys])

@@ -1,5 +1,6 @@
 import { onScopeDispose, toValue, watch } from 'vue'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
+import { withDefaults } from '@tanstack/hotkeys/adapter'
 import { useDefaultHotkeysOptionsSource } from './defaultOptions'
 import { useStoreSelector } from './useStoreSelector'
 import type { MaybeRefOrGetter, Ref } from 'vue'
@@ -65,10 +66,10 @@ export function useHotkeyRecorder(
 ): VueHotkeyRecorder {
   const defaultOptions = useDefaultHotkeysOptionsSource()
   const resolve = () =>
-    ({
-      ...defaultOptions().hotkeyRecorder,
-      ...toValue(options),
-    }) as HotkeySequenceRecorderOptions
+    withDefaults(
+      defaultOptions().hotkeyRecorder,
+      toValue(options),
+    ) as HotkeySequenceRecorderOptions
 
   // Overloads already checked the options; either shape is valid here.
   const recorder = new HotkeyRecorder(resolve())

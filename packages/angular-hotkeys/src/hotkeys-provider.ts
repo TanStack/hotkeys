@@ -7,6 +7,7 @@ import {
   inject,
   runInInjectionContext,
   signal,
+  untracked,
 } from '@angular/core'
 import { publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
@@ -63,10 +64,12 @@ export interface ProvideHotkeysOptions {
    */
   appHotkeys?: AppHotkeys
   /**
-   * Starting custom hotkeys, such as saved data. Read once; the provider owns
-   * the state afterwards. Invalid entries are ignored with a warning.
+   * The user's saved custom hotkeys. When the value changes, such as after
+   * saved data loads or the user signs in, it replaces the current custom
+   * hotkeys. `undefined` leaves them unchanged; `null` clears them. Invalid
+   * entries are ignored with a warning.
    */
-  customHotkeys?: CustomHotkeys | null
+  customHotkeys?: MaybeGetter<CustomHotkeys | null | undefined>
   /** Called with the custom hotkeys after every change, ready to save. */
   onCustomHotkeysChange?: (customHotkeys: CustomHotkeys) => void
 }
@@ -118,10 +121,19 @@ function createHotkeysContext(
   let store: AppHotkeysStore | null = null
   let appHotkeysState = parent.appHotkeysState
   if (appHotkeys) {
-    store = createAppHotkeysStore(appHotkeys, {
-      customHotkeys,
+    const owned = createAppHotkeysStore(appHotkeys, {
+      customHotkeys: read(customHotkeys),
       onCustomHotkeysChange,
     })
+    store = owned
+    // Apply saved custom hotkeys whose value changes, such as data that
+    // loads after the app starts.
+    if (typeof customHotkeys === 'function') {
+      effect(() => {
+        const next = read(customHotkeys)
+        untracked(() => owned.setOptions({ customHotkeys: next }))
+      })
+    }
     const state = signal<AppHotkeysState | null>(store.store.state)
     const subscription = store.store.subscribe(() =>
       state.set(store!.store.state),

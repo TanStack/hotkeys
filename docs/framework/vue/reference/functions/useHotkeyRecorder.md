@@ -9,7 +9,7 @@ title: useHotkeyRecorder
 function useHotkeyRecorder(options): VueHotkeyRecorder<HotkeyChord>;
 ```
 
-Defined in: [useHotkeyRecorder.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L46)
+Defined in: [useHotkeyRecorder.ts:47](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L47)
 
 Vue composable for recording keyboard shortcuts. Options may be a ref or getter.
 
@@ -41,7 +41,7 @@ const sequenceRecorder = useHotkeyRecorder({ maxSteps: Infinity, onRecord: save 
 function useHotkeyRecorder(options): VueHotkeyRecorder;
 ```
 
-Defined in: [useHotkeyRecorder.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L49)
+Defined in: [useHotkeyRecorder.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L50)
 
 Vue composable for recording keyboard shortcuts. Options may be a ref or getter.
 
@@ -73,7 +73,7 @@ const sequenceRecorder = useHotkeyRecorder({ maxSteps: Infinity, onRecord: save 
 function useHotkeyRecorder(options): VueHotkeyRecorder;
 ```
 
-Defined in: [useHotkeyRecorder.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L54)
+Defined in: [useHotkeyRecorder.ts:55](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L55)
 
 Vue composable for recording keyboard shortcuts. Options may be a ref or getter.
 
@@ -105,7 +105,7 @@ const sequenceRecorder = useHotkeyRecorder({ maxSteps: Infinity, onRecord: save 
 function useHotkeyRecorder(options): VueHotkeyRecorder<HotkeyChord>;
 ```
 
-Defined in: [useHotkeyRecorder.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L57)
+Defined in: [useHotkeyRecorder.ts:58](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L58)
 
 Vue composable for recording keyboard shortcuts. Options may be a ref or getter.
 
@@ -137,7 +137,7 @@ const sequenceRecorder = useHotkeyRecorder({ maxSteps: Infinity, onRecord: save 
 function useHotkeyRecorder(options): VueHotkeyRecorder;
 ```
 
-Defined in: [useHotkeyRecorder.ts:60](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L60)
+Defined in: [useHotkeyRecorder.ts:61](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeyRecorder.ts#L61)
 
 Vue composable for recording keyboard shortcuts. Options may be a ref or getter.
 

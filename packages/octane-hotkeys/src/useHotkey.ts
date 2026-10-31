@@ -43,20 +43,21 @@ export type UseAppHotkeyOptions<T extends AppHotkey = AppHotkey> =
 /**
  * Registers one hotkey: a chord such as `'Mod+S'`, a sequence such as
  * `['G', 'G']`, or an app hotkey from `defineAppHotkeys`. The callback and
- * options are refreshed after every commit.
+ * options are refreshed after every commit. `undefined`, `null`, or `''`
+ * registers nothing, for an optional shortcut.
  */
 export function useHotkey<T extends AppHotkey>(
-  hotkey: T,
+  hotkey: T | null | undefined,
   callback: HotkeyCallback,
   options?: UseAppHotkeyOptions<T>,
 ): void
 export function useHotkey<const T extends RegisterableHotkey>(
-  hotkey: T,
+  hotkey: T | null | undefined,
   callback: HotkeyCallback<HotkeyCallbackContextFor<T>>,
   options?: UseHotkeyOptionsFor<T>,
 ): void
 export function useHotkey(
-  hotkey: RegisterableHotkey | AppHotkey,
+  hotkey: RegisterableHotkey | AppHotkey | null | undefined,
   callback: HotkeyCallback,
   ...rest: [options?: UseHotkeyCommonOptions, slot?: symbol]
 ): void {

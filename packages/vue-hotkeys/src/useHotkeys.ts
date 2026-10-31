@@ -55,8 +55,11 @@ export type UseHotkeyDefinition =
       options?: MaybeRefOrGetter<UseAppHotkeyOptions>
     }
   | {
-      /** A hotkey whose kind is not known statically. Accepts only shared options. */
-      hotkey: MaybeRefOrGetter<RegisterableHotkey>
+      /**
+       * A hotkey whose kind is not known statically. Accepts only shared
+       * options. `undefined`, `null`, or `''` registers nothing.
+       */
+      hotkey: MaybeRefOrGetter<RegisterableHotkey | null | undefined>
       callback: HotkeyCallback
       options?: MaybeRefOrGetter<UseHotkeyOptions>
     }
@@ -76,7 +79,8 @@ function resolveEnabled<T extends { enabled?: MaybeRefOrGetter<boolean> }>(
  *
  * Options merge in this order: provider defaults, app hotkey declaration,
  * commonOptions, per-hotkey options. Each option applies only to the kinds
- * that support it. Unbound app hotkeys and empty sequences register nothing.
+ * that support it. Unbound app hotkeys, empty sequences, and `undefined`,
+ * `null`, or `''` hotkeys register nothing.
  * A target that resolves to `null` skips registration until it is set.
  *
  * @example
