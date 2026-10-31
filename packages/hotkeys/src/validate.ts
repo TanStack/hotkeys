@@ -147,9 +147,13 @@ export function assertValidHotkey(hotkey: ValidatableHotkey): void {
  *
  * @example
  * ```ts
- * checkHotkey('Alt+C')
- * // Console: Warning: Alt+C may not work reliably on macOS...
+ * checkHotkey('Control+escape')
+ * // Console: Hotkey 'Control+escape' warnings: Unknown key: 'escape'. Key names are case-sensitive, such as 'Escape' and 'F1'.
  * // Returns: true
+ *
+ * checkHotkey('Ctl+K')
+ * // Console: Hotkey 'Ctl+K' errors: Unknown modifier: 'Ctl'
+ * // Returns: false
  * ```
  */
 export function checkHotkey(hotkey: ValidatableHotkey): boolean {

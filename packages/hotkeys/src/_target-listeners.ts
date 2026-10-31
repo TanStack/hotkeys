@@ -30,11 +30,7 @@ export class TargetListeners {
 
   add(target: Target, capture: boolean, id: string): void {
     if (typeof document === 'undefined') return
-    let phases = this.#targets.get(target)
-    if (!phases) {
-      phases = new Map()
-      this.#targets.set(target, phases)
-    }
+    const phases = this.#targets.get(target) ?? new Map()
     let group = phases.get(capture)
     if (!group) {
       const ids = new Set<string>()
@@ -63,9 +59,11 @@ export class TargetListeners {
           this.dispatch(event, target, eventType, capture, pending, first)
         }
       group = { ids, keydown: listener('keydown'), keyup: listener('keyup') }
-      phases.set(capture, group)
+      // Attach first, so a target that can't listen leaves nothing behind.
       target.addEventListener('keydown', group.keydown, capture)
       target.addEventListener('keyup', group.keyup, capture)
+      phases.set(capture, group)
+      this.#targets.set(target, phases)
     }
     group.ids.add(id)
   }

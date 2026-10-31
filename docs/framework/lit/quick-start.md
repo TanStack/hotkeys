@@ -8,7 +8,7 @@ This guide adds keyboard shortcuts to Lit elements. If you haven't installed Tan
 
 ## Register a hotkey
 
-TanStack Hotkeys needs no special setup. To register a keyboard shortcut, decorate the method that handles it with `@hotkey`:
+To register a keyboard shortcut, decorate the method that handles it with `@hotkey`:
 
 ```ts
 import { LitElement, html } from 'lit'
@@ -27,6 +27,8 @@ class MyEditor extends LitElement {
   }
 }
 ```
+
+`@hotkey` is a legacy TypeScript decorator, so set `experimentalDecorators: true` and `useDefineForClassFields: false` in your `tsconfig.json`. Without it, use [`HotkeyController`](#hotkeys-follow-your-elements) instead.
 
 `Mod` is Command on macOS and Control on Windows and Linux, so `Mod+S` is the save shortcut each user already knows. The browser's Save dialog stays closed, and the shortcut still works while the user types in the textarea. [Sensible Defaults](../../guides/sensible-defaults) explains these defaults.
 
