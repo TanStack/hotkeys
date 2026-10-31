@@ -337,6 +337,25 @@ function generateId(): string {
   return `hotkey_${++registrationIdCounter}`
 }
 
+/** A handle for a registration that listens for nothing. */
+function inactiveHandle(callback: HotkeyCallback): HotkeyRegistrationHandle {
+  let currentCallback = callback
+  return {
+    id: generateId(),
+    unregister: () => {},
+    get callback() {
+      return currentCallback
+    },
+    set callback(newCallback: HotkeyCallback) {
+      currentCallback = newCallback
+    },
+    setOptions: () => {},
+    get isActive() {
+      return false
+    },
+  }
+}
+
 /** Defaults for a registration of the given kind. */
 function registrationDefaults(
   kind: HotkeyRegistration['kind'],
@@ -778,34 +797,15 @@ export class HotkeyManager {
     callback: HotkeyCallback,
     options: HotkeyChordOptions & HotkeySequenceOptions = {},
   ): HotkeyRegistrationHandle {
-    // Adapter hooks skip a missing hotkey; the manager API requires one.
-    if ((input as RegisterableHotkey | null | undefined) == null) {
-      throw new Error(
-        'A hotkey is required. Skip registration when there is no hotkey.',
-      )
-    }
     const hotkey = simplifyHotkey(input)
-    if (isHotkeySequence(hotkey) && hotkey.length === 0) {
-      throw new Error('Sequence must contain at least one hotkey')
-    }
-
-    // In SSR environments, return a no-op handle since there's no DOM to attach listeners to
-    if (typeof document === 'undefined' && !options.target) {
-      let currentCallback = callback
-      return {
-        id: generateId(),
-        unregister: () => {},
-        get callback() {
-          return currentCallback
-        },
-        set callback(newCallback: HotkeyCallback) {
-          currentCallback = newCallback
-        },
-        setOptions: () => {},
-        get isActive() {
-          return false
-        },
-      }
+    // Nothing to listen for: no hotkey, an empty sequence, or no DOM during
+    // server rendering. The handle stays inactive.
+    if (
+      (hotkey as RegisterableHotkey | null | undefined) == null ||
+      (isHotkeySequence(hotkey) && hotkey.length === 0) ||
+      (typeof document === 'undefined' && !options.target)
+    ) {
+      return inactiveHandle(callback)
     }
 
     const id = generateId()
@@ -857,12 +857,9 @@ export class HotkeyManager {
       registration.kind === 'sequence'
         ? registration.parsedSequence
         : [registration.parsedChord]
-    // An empty key would match key-less events, such as autofill's.
-    if (!steps.every(chordHasKey)) {
-      throw new Error(
-        `Hotkey '${formatForMessage(registration.hotkey)}' has no key. Skip registration when there is no hotkey.`,
-      )
-    }
+    // An empty key would match key-less events, such as autofill's, so a
+    // hotkey with an empty step registers nothing.
+    if (!steps.every(chordHasKey)) return inactiveHandle(callback)
 
     if (process.env.NODE_ENV !== 'production') {
       for (const { key } of steps) {
@@ -885,9 +882,10 @@ export class HotkeyManager {
       )
     }
 
-    this.registrations.setState((prev) => new Map(prev).set(id, registration))
-
+    // Listen first, so a target that can't listen leaves no registration.
     this.#listeners.add(target, !!registration.options.capture, id)
+
+    this.registrations.setState((prev) => new Map(prev).set(id, registration))
 
     const manager = this
     return {
@@ -1157,8 +1155,14 @@ export class HotkeyManager {
         continue
       }
 
-      // Only execute callback if requireReset is not active or hasn't fired yet
-      if (!registration.options.requireReset || !registration.hasFired) {
+      // requireReset skips auto-repeats until release. A keydown that isn't a
+      // repeat is a new press, even when the last release was never seen,
+      // such as the key's keyup that macOS drops while Command is held.
+      if (
+        !registration.options.requireReset ||
+        !registration.hasFired ||
+        !event.repeat
+      ) {
         // Set the latch before callbacks can update options and copy this registration.
         if (registration.options.requireReset) {
           registration.hasFired = true
@@ -1404,7 +1408,7 @@ export class HotkeyManager {
   }
 
   /**
-   * Finds an existing registration on the same target and scope whose steps
+   * Finds an existing registration on the same target, scope, and event type whose steps
    * resolve to the same identity. Each side keeps its own platform, so `Mod+S` on macOS
    * and `Mod+S` on Windows are different bindings.
    */
@@ -1416,6 +1420,7 @@ export class HotkeyManager {
       if (
         registration.target === candidate.target &&
         registration.options.scope === candidate.options.scope &&
+        registration.options.eventType === candidate.options.eventType &&
         sameResolvedSteps(resolvedSteps(registration), steps)
       ) {
         return registration

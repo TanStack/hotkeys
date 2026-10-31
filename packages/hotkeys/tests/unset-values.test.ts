@@ -201,12 +201,16 @@ describe('empty hotkeys', () => {
     ['empty string', ''],
     ['blank string', '  '],
     ['chord object with an empty key', { key: '' }],
+    ['chord object with an empty code', { code: '' }],
     ['sequence with an empty step', ['G', '']],
-  ])('register throws for an %s', (_, hotkey) => {
-    expect(() =>
-      getHotkeyManager().register(hotkey as never, () => {}),
-    ).toThrow(/has no key/)
+  ])('register returns an inactive handle for an %s', (_, hotkey) => {
+    const callback = vi.fn()
+    const handle = getHotkeyManager().register(hotkey as never, callback)
+    expect(handle.isActive).toBe(false)
     expect(getHotkeyManager().registrations.state.size).toBe(0)
+    document.dispatchEvent(new Event('keydown'))
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: '' }))
+    expect(callback).not.toHaveBeenCalled()
   })
 
   it('adapter bindings register nothing, and a cleared hotkey unregisters', () => {
@@ -250,11 +254,12 @@ describe('nullish hotkeys', () => {
   })
 
   it.each([undefined, null])(
-    'register throws a clear error for %s',
+    'register returns an inactive handle for %s',
     (hotkey) => {
-      expect(() =>
-        getHotkeyManager().register(hotkey as never, () => {}),
-      ).toThrow('A hotkey is required')
+      const handle = getHotkeyManager().register(hotkey as never, () => {})
+      expect(handle.isActive).toBe(false)
+      expect(getHotkeyManager().registrations.state.size).toBe(0)
+      expect(() => handle.unregister()).not.toThrow()
     },
   )
 

@@ -41,7 +41,7 @@ To label each held key the way hotkeys are labeled, pass it to `formatForDisplay
 
 ## Check whether a key is held
 
-`createKeyHold` tracks whether one key is held. It updates only when that key is pressed or released, and accepts a getter for a key that changes:
+`createKeyHold` tracks whether one key is held. Its value changes only when that key is pressed or released, and it accepts a getter for a key that changes:
 
 ```ts
 Alpine.data('fileItem', (file: File) => {

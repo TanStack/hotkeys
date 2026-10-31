@@ -139,9 +139,11 @@ describe('HotkeyManager', () => {
       expect(handle.isActive).toBe(false)
     })
 
-    it('should throw for empty sequence', () => {
+    it('should register nothing for an empty sequence', () => {
       const manager = HotkeyManager.getInstance()
-      expect(() => manager.register([], vi.fn())).toThrow()
+      const handle = manager.register([], vi.fn())
+      expect(handle.isActive).toBe(false)
+      expect(manager.registrations.state.size).toBe(0)
     })
   })
 
