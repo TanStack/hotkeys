@@ -1,5 +1,12 @@
 # @tanstack/angular-hotkeys-devtools
 
+## 0.4.2
+
+### Patch Changes
+
+- Updated dependencies []:
+  - @tanstack/hotkeys-devtools@1.7.2
+
 ## 0.4.1
 
 ### Patch Changes
