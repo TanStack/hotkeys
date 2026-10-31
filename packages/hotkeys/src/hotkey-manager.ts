@@ -16,9 +16,7 @@ import { matchKeyboardEvent, parsedChordsEqual } from './_match'
 import {
   isKeyNameShape,
   keysEqual,
-  modifierAlias,
   normalizeKeyboardEvent,
-  splitChordParts,
 } from './_keyboard-event'
 import {
   GLOBAL_SCOPE,
@@ -872,17 +870,6 @@ export class HotkeyManager {
           console.warn(
             `Unknown key '${key}' in '${formatForMessage(registration.hotkey)}'. Key names are case-sensitive, such as 'Escape' and 'F1', so this hotkey may never fire.`,
           )
-        }
-      }
-      // Parsing drops unknown modifiers, so 'Ctl+K' would fire on a bare K.
-      for (const step of isHotkeySequence(hotkey) ? hotkey : [hotkey]) {
-        if (typeof step !== 'string') continue
-        for (const part of splitChordParts(step).slice(0, -1)) {
-          if (!modifierAlias(part.trim())) {
-            console.warn(
-              `Unknown modifier '${part.trim()}' in '${formatForMessage(registration.hotkey)}'. It is ignored, so this hotkey fires without it.`,
-            )
-          }
         }
       }
     }

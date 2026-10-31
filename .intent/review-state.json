@@ -92,7 +92,7 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "3103a6a08ec0d2252f2bb000a285e95a5e9785627ce11f8a0a4f724ab74b5a26",
+      "fingerprint": "9aa02d7f7b089cd13d5293014d2289197eb3a7fc58467b5db9f340b6f3c7da57",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
         "docs/framework/react/guides/hotkeys.md": "057f320c6ed3629ee9b13501e9e3c1f2ccd302395edd6983abfd1398c172f22b",
@@ -101,7 +101,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "a45229edb827101dd019587c5e20965954a508eb5ba57ef6680e53d084585df8",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
-        "packages/hotkeys/src/hotkey-manager.ts": "f7c09528f4a5194bb0a55a776f5b3933a200cb217b5761e523002b25ad6accb3",
+        "packages/hotkeys/src/hotkey-manager.ts": "65e4a965ec11d0a502e373fe066544b5a1aa13db2729d19a9f082da1f9bca984",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "d7747b87eae074ab3620484f64cf13ea9c27d24d059d56d9a9a07ccf0c2d3e06",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -113,14 +113,10 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "updated",
-      "reason": "references/testing.md now says a keydown without repeat is a new press that fires a requireReset chord again. SKILL.md stays accurate: chords still repeat while held, and requireReset still stops auto-repeats.",
-      "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/references/testing.md",
-        "packages/hotkeys/src/hotkey-manager.ts",
-        "docs/guides/sensible-defaults.md"
-      ]
+      "head": "be1777ffc313bbb47a7feb5a5ea6c8baf13be710",
+      "outcome": "no-change",
+      "reason": "Removed the development-only unknown-modifier warning again; the skill makes no claim about unknown modifiers, and TypeScript rejects them.",
+      "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
       "fingerprint": "d29723cfa91c4e7bc61c43484e3332a16d3a2af47837333faa01869c68a03b29",
@@ -277,7 +273,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "6e03c9084f36a09acc446033f24e86d7c7b111aa6a66f539ee34152f35fa25f5",
+      "fingerprint": "10728d4221835546c00247985722e9498c3c2e04b4b2c5ed5d6c71cdb529a782",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -337,7 +333,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/app-hotkeys.ts": "a6176a749dd7439146c335e769dfae1a2cd72ace029f9cbc64b52ff5fe2d9d03",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
-        "packages/hotkeys/src/hotkey-manager.ts": "f7c09528f4a5194bb0a55a776f5b3933a200cb217b5761e523002b25ad6accb3",
+        "packages/hotkeys/src/hotkey-manager.ts": "65e4a965ec11d0a502e373fe066544b5a1aa13db2729d19a9f082da1f9bca984",
         "packages/hotkeys/src/hotkey-recorder.ts": "7d479391753ffa97e69a7d7cb994cb7053a7ffb3e0aed6dfbfb2dbbdf51a3d24",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "ecd0100b52a00fc90ce71f244093da667d0c5ff78ecaf632d9db26f1c66c8e40",
@@ -406,13 +402,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "76815116b5ecf5af434a3ff041df5c0e01e11d0ef41e77ee2893d560e1565879",
         "packages/vue-hotkeys/src/useHotkeys.ts": "fafa900972db553504a850657d2e1829d53928e09bbdd219f6afc24eb9942bd2"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "head": "be1777ffc313bbb47a7feb5a5ea6c8baf13be710",
       "outcome": "no-change",
-      "reason": "Edge-case fixes in matching, registration and the key state tracker, plus doc corrections; the skill tree and mappings are unchanged.",
-      "evidence": [
-        "packages/hotkeys/src/hotkey-manager.ts",
-        "docs/guides/sensible-defaults.md"
-      ]
+      "reason": "Removed a development-only warning; the skill tree and mappings are unchanged.",
+      "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -1288,11 +1281,11 @@
       "evidence": ["packages/hotkeys-devtools/src/components/DetailsPanel.tsx"]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "1a9b0e017634c8c5a9825eda712278cf5de75479a66fb18f1f942dedc95b27b9",
+      "fingerprint": "af7c39effa6503bd3bbc5ea1b88886c76fa25b36293d67048efb3d34e6566e50",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "68d9978af1fe26184c591c49b8cf6dcd745d0205502b8122fc43e6d03a46b79a"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "75ef9969a70f906bb0f5da4950fdb4c37ab98c51ccf072ad40857827174febe6"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "head": "be1777ffc313bbb47a7feb5a5ea6c8baf13be710",
       "outcome": "out-of-scope",
       "reason": "Tests for the edge-case fixes; no skill guidance depends on them.",
       "evidence": ["packages/hotkeys/tests/hotkey-manager.test.ts"]

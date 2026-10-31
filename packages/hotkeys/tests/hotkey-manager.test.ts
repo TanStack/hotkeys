@@ -1942,35 +1942,4 @@ describe('HotkeyManager edge cases', () => {
       ).toThrow()
     })
   })
-
-  describe('unknown modifiers', () => {
-    it('warn in development', () => {
-      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
-      const manager = HotkeyManager.getInstance()
-      manager.register('Ctl+K' as never, () => {})
-      manager.register(['G', 'Shift+Comand+S'] as never, () => {})
-      expect(warn.mock.calls.map(([message]) => message)).toEqual([
-        "Unknown modifier 'Ctl' in 'Ctl+K'. It is ignored, so this hotkey fires without it.",
-        "Unknown modifier 'Comand' in 'G Shift+Comand+S'. It is ignored, so this hotkey fires without it.",
-      ])
-    })
-
-    it('do not warn for known modifiers and aliases', () => {
-      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
-      const manager = HotkeyManager.getInstance()
-      for (const hotkey of [
-        'Mod+Shift+K',
-        'Control+Alt+Meta+K',
-        'Ctrl+Cmd+Option+K',
-        'Mod++',
-        'Control++',
-        '+',
-        { key: 'K', mod: true },
-      ] as const)
-        manager.register(hotkey as never, () => {}, {
-          conflictBehavior: 'allow',
-        })
-      expect(warn).not.toHaveBeenCalled()
-    })
-  })
 })
