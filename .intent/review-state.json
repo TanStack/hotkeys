@@ -259,11 +259,11 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "d0a2954687222bdd3b360f002d399e39812f7e243527f262b2e4021da80e1bbf",
+      "fingerprint": "de07064a5e1a14c2687728d1e14549aa9e83479f284042f3b53324098803bb58",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
-        "_artifacts/skill_tree.yaml": "c7e0b30458bd11e3a52e728163838166def6ee64419f1b632f1ea36a37e573af",
+        "_artifacts/skill_tree.yaml": "bff31ee525c55a3e572083903c5b8deb444cd850845ae2dc1e4b886ce2236a12",
         "docs/framework/alpine/guides/app-hotkeys.md": "e5c2a2a0cbbc35e793cf3e88bdbafd863153f8784ee1af27f2a81fe7f259bb9b",
         "docs/framework/alpine/quick-start.md": "81496af3a8038080110f79f3369ab58fce72d8bb0c593965f32cfc287e2dbfcb",
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
@@ -391,10 +391,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "30c85870c2ae2b4c2529f8486f9df02f38b1dac9283689789e8bba74c6022ba7",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
-      "outcome": "no-change",
-      "reason": "Bug fixes and docs for existing adapter features; no new skill is needed.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "head": "6aa30bf6a2c11593cf5bd9a544c09828006f1c5b",
+      "outcome": "updated",
+      "reason": "Synced skill_tree.yaml sources for the new Alpine and Ember recorder modules.",
+      "evidence": ["_artifacts/skill_tree.yaml"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
