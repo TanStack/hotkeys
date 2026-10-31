@@ -201,6 +201,7 @@ describe('empty hotkeys', () => {
     ['empty string', ''],
     ['blank string', '  '],
     ['chord object with an empty key', { key: '' }],
+    ['chord object with an empty code', { code: '' }],
     ['sequence with an empty step', ['G', '']],
   ])('register returns an inactive handle for an %s', (_, hotkey) => {
     const callback = vi.fn()

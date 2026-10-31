@@ -510,7 +510,14 @@ describe('KeyStateTracker', () => {
         cancelable: true,
       })
       event.preventDefault()
-      document.dispatchEvent(event)
+      document.dispatchEvent(trusted(event))
+      expect(tracker.getHeldKeys()).toEqual(['K'])
+    })
+
+    it('keeps held keys when page code dispatches a context menu event', () => {
+      const tracker = KeyStateTracker.getInstance()
+      dispatchKey('keydown', 'k', 'KeyK')
+      document.dispatchEvent(new MouseEvent('contextmenu', { bubbles: true }))
       expect(tracker.getHeldKeys()).toEqual(['K'])
     })
 

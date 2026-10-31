@@ -146,7 +146,7 @@ export class KeyStateTracker {
     // held key, such as the ContextMenu key itself, never arrives. A page
     // that prevented the event shows its own menu and keeps focus.
     const onContextMenu = (event: MouseEvent) => {
-      if (event.defaultPrevented) return
+      if (event.defaultPrevented || !event.isTrusted) return
       // Modifiers are still reported on the event, so keep the held ones.
       const reconciled = this.#reconcileModifiers(event)
       if (this.#releaseNonModifiers() || reconciled) this.#syncState()

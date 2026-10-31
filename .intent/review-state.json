@@ -5296,14 +5296,14 @@
       ]
     },
     "source:packages/hotkeys/src/_registration.ts": {
-      "fingerprint": "2e8d2d21eedd47d2127f7dba277f1f042078a4c912c01f9725b9d740159ed516",
+      "fingerprint": "fd8e9c29e2d9d18d55775075a4641b1e36451f8b27bbe20d81b338c05470f3fd",
       "snapshot": {
-        "packages/hotkeys/src/_registration.ts": "ecc969226003bd09d30b5aea22d9e820ce48e8643d6716fe3108ad46dfb822dc"
+        "packages/hotkeys/src/_registration.ts": "d8bbf8985ad73f98ea21154635638299083f76cc6185f1e9a7b57cbdd2c3b378"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "6bd7da15dfda1f7c7100b38c597e6ed597d96943",
       "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
-      "evidence": ["packages/hotkeys/src/_registration.ts"]
+      "reason": "Edge-case fix (empty physical code registers nothing; synthetic contextmenu ignored). Skills describe hotkey usage, which is unchanged.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/src/_store.ts": {
       "fingerprint": "01d160bae20ef0906e8cc1d503ff6ea509c970130a580d2bbb3e54201f5523af",
@@ -5328,14 +5328,14 @@
       "evidence": ["packages/hotkeys/src/adapter.ts"]
     },
     "source:packages/hotkeys/src/key-state-tracker.ts": {
-      "fingerprint": "b6e75fac7e5e679007ba69603c04d407918b671d333ec54322ae23e9c7b25f8c",
+      "fingerprint": "e9ffd10007968fd38efe249963aa86dfa3d720e8392cce16897a6b9fcc04f4e8",
       "snapshot": {
-        "packages/hotkeys/src/key-state-tracker.ts": "f95dcba04f52df3c84a42b3ff3812e5b33d7beb6ea942c13ce5f00760c7231ad"
+        "packages/hotkeys/src/key-state-tracker.ts": "a2ffd7f015f7661cc8e3672641ceddea687b54736b47c8d7cea0a66fb6706222"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Internal edge-case fix (IME composition, collator, listener order, tracker resets, duplicate check, validate JSDoc); the skills make no claim it changes.",
-      "evidence": ["packages/hotkeys/src/key-state-tracker.ts"]
+      "head": "6bd7da15dfda1f7c7100b38c597e6ed597d96943",
+      "outcome": "no-change",
+      "reason": "Edge-case fix (empty physical code registers nothing; synthetic contextmenu ignored). Skills describe hotkey usage, which is unchanged.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/src/validate.ts": {
       "fingerprint": "a5ab4733b2c1abc6fdb40fead93b47a9591db8281ea93deaa3ec16c15b2602d1",
@@ -7128,14 +7128,14 @@
       "evidence": ["packages/hotkeys/tests/app-hotkeys.test.ts"]
     },
     "source:packages/hotkeys/tests/unset-values.test.ts": {
-      "fingerprint": "5d9502f1681e65b4b61f433dca538365a2fe9663eabe30e4c5d2fe926e3e45a6",
+      "fingerprint": "178a1807362b269b5738f98672b6d944b288d71c747e1af57f5ed151ee71a910",
       "snapshot": {
-        "packages/hotkeys/tests/unset-values.test.ts": "bcfa8aa450679b98a8d1a7adb86652e2b9949de3edaf08acf58edbaaec54e86e"
+        "packages/hotkeys/tests/unset-values.test.ts": "c8abc708351c95f938846a1ce6ea7c45585e95dbf907db19a2612d34a4ab218c"
       },
-      "head": "51891f65f771268240b7687890a53ff0e7c9b313",
-      "outcome": "out-of-scope",
-      "reason": "Tests for the edge-case fixes; no skill guidance depends on them.",
-      "evidence": ["packages/hotkeys/tests/unset-values.test.ts"]
+      "head": "6bd7da15dfda1f7c7100b38c597e6ed597d96943",
+      "outcome": "no-change",
+      "reason": "Edge-case fix (empty physical code registers nothing; synthetic contextmenu ignored). Skills describe hotkey usage, which is unchanged.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/lit-hotkeys/tests/unset-values.test.ts": {
       "fingerprint": "c7a2a383d2d51f47f0cb7be46107bfd8a1dbdce83642ed877524b3e4c2ec3595",
@@ -7282,14 +7282,14 @@
       "evidence": ["packages/hotkeys/tests/capture.test.ts"]
     },
     "source:packages/hotkeys/tests/key-state-tracker.test.ts": {
-      "fingerprint": "83db6b06a9048f4d9587f0342688448958c41afc9900a0758b96b98cdd01bb6f",
+      "fingerprint": "c1f82b296b3bda7c13d80203e6a30b8dd69778787df77acedac9f58006feb903",
       "snapshot": {
-        "packages/hotkeys/tests/key-state-tracker.test.ts": "601d367ce5e6d9030d40a302d20c39a832689f8ecbd7e81ff84747009db9ceca"
+        "packages/hotkeys/tests/key-state-tracker.test.ts": "d2b585d43f8d930d6d45b624864ec6a8c24f5559025ddf3071ce7417c6e192b2"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Tests for the edge-case fixes; no skill guidance depends on them.",
-      "evidence": ["packages/hotkeys/tests/key-state-tracker.test.ts"]
+      "head": "6bd7da15dfda1f7c7100b38c597e6ed597d96943",
+      "outcome": "no-change",
+      "reason": "Edge-case fix (empty physical code registers nothing; synthetic contextmenu ignored). Skills describe hotkey usage, which is unchanged.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     }
   }
 }

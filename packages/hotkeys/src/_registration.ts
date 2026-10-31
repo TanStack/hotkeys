@@ -51,7 +51,7 @@ export function withDefaults<T extends object>(
 
 /** Whether a parsed chord has a key. An empty one would match key-less events. */
 export function chordHasKey(chord: ParsedHotkeyChord): boolean {
-  return chord.code !== undefined || !!chord.key
+  return !!(chord.code || chord.key)
 }
 
 /**
