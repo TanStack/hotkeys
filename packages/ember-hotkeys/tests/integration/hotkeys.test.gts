@@ -262,12 +262,27 @@ class Optional extends Component {
   </template>
 }
 
+class LateHint extends Component {
+  hint = useHotkeyHint(this, 'Control+K')
+  <template><output id="late-hint">{{if this.hint.value "yes" "no"}}</output></template>
+}
+
 module('Ember hotkeys: optional hotkeys', (hooks) => {
   setupRenderingTest(hooks)
   hooks.afterEach(async () => {
     await clearRender()
     HotkeyManager.resetInstance()
     KeyStateTracker.resetInstance()
+  })
+
+  test('a hint shows for a hotkey registered while its modifier is held', async (assert) => {
+    await render(<template><LateHint /></template>)
+    await key('Control', 'keydown', { ctrlKey: true })
+    assert.dom('#late-hint').hasText('no')
+    const handle = getHotkeyManager().register('Control+K', () => {})
+    await settled()
+    assert.dom('#late-hint').hasText('yes')
+    handle.unregister()
   })
 
   test('an unset hotkey renders, registers nothing, and has no hint', async (assert) => {

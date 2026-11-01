@@ -141,7 +141,7 @@ function Panel() {
 }
 ```
 
-The element must be focusable to receive key presses, so give it a `tabIndex` if it isn't a control.
+The hotkey fires while focus is on the element or inside it. If nothing there can take focus, give the element a `tabIndex`.
 
 A ref works for an element the component always renders. For an element that mounts later, such as one a child shows from its own state, keep the element in state with a callback ref:
 

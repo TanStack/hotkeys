@@ -3,30 +3,30 @@
   "baseline": "ad56a4b0dbf3c34d8552eca2cc88c5c7000d520a",
   "items": {
     "skill:packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": {
-      "fingerprint": "86ddc923960c2f915ba8d6542750d3a77b08667d85327320d660f946a1e73456",
+      "fingerprint": "4cedf670cf2c1475454d58e7b1ef4afc7e9f3fdafd4fc4942384c312faaa10de",
       "snapshot": {
         "docs/framework/alpine/guides/app-hotkeys.md": "e5c2a2a0cbbc35e793cf3e88bdbafd863153f8784ee1af27f2a81fe7f259bb9b",
-        "docs/framework/alpine/quick-start.md": "81496af3a8038080110f79f3369ab58fce72d8bb0c593965f32cfc287e2dbfcb",
+        "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "0b86889ea9327f24e0f66ab9ba5eb783aaffb492c028e1b6cac257690ca5d462",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "d182e659acc9f0a28e9198f590163db1541b30eec6d347fb378022f775cf316d",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "f712ddb3354230197eb54d6f270d00a41c2b889e60690e70853569fe1a5207ea",
         "packages/alpine-hotkeys/src/createHotkey.ts": "2eaac78690d6737f2f73f756b01df17a02075f498666e5745cc34f2d0e6086b5",
-        "packages/alpine-hotkeys/src/createHotkeyRecorder.ts": "79e35883b387332d739ed0cfc4c50c63f7b80c7078be68535fdebd292a5eb951",
+        "packages/alpine-hotkeys/src/createHotkeyRecorder.ts": "1d93677561619b55d36c3f61ce564ee86ff6fe99e1dc891823d39c59e70d8287",
         "packages/alpine-hotkeys/src/createHotkeysScope.ts": "0f06480dc1fa7448124205b3af2811e96377b98bad73369d953e6e8ccb1baa30",
         "packages/alpine-hotkeys/src/hotkeyRecorderPlugin.ts": "8ff86447e513f47002c49ed9f60269d485b0cd65b87277bb52cf2d8286ddbd36",
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
-        "packages/alpine-hotkeys/src/scope.ts": "621be5548c437b3b54315d75ee1fdf06627ebff4f9885bf330e1fc2dd7cc3135"
+        "packages/alpine-hotkeys/src/scope.ts": "d32e8bd75b0db71b01f42343f9220a4b10b9c91d17542b1acb61db9068c46d6c"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
-      "outcome": "updated",
-      "reason": "Skill updated for this PR's adapter fixes (API changes, new pitfalls and target guidance).",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "outcome": "no-change",
+      "reason": "The quick-start focus sentence changed to say a target hotkey fires while focus is on the element or inside it; the skill keeps its tabindex example, which is still correct.",
       "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "f8dc25642f4bbe4bac069478e954b06ca2408cb831efb2be3acb712b21081c46",
+      "fingerprint": "d0e570a4b2f2c27b79228f2d1144c91afba74e2979d4a762919139db481374de",
       "snapshot": {
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
-        "docs/framework/angular/quick-start.md": "0c692f40ad38bfb297e6242bbbdb8fdf61f055d164620bbc8f701772e103ae84",
+        "docs/framework/angular/quick-start.md": "af3ea39ae8eb6a356454c1018a6c2899d72211362733f8ff7e09055344e37331",
         "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "aeb786b5b6d3b930c36357cb738e71ab3a0c131718d9f19ab40df43fd7f845dd",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "5fe1b12a519e8ca5087d78d47050f7a2ec0c70bb9b7d6ebcbb050ee099e3effe",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "eee1e9ea2b21a6961ebd937a3ba89218823a37afa8a2ee5e5e52cbb05dbced51",
@@ -35,16 +35,16 @@
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "d431ed7df4440d09cbed88d3201751853330d0b927949886e53cc583a75e7668",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "fed0f6769a2a8539db1c243a6ce76bddfbc669ffcde75dfe077c95484fc7c2c6"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
-      "outcome": "updated",
-      "reason": "Skill updated for this PR's adapter fixes (API changes, new pitfalls and target guidance).",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "outcome": "no-change",
+      "reason": "The quick-start focus sentence changed to say a target hotkey fires while focus is on the element or inside it; the skill keeps its tabindex example, which is still correct.",
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
-      "fingerprint": "0d3c8b6e112011e7c308c68de49f124153b558933faca98900daed30825fc0ba",
+      "fingerprint": "b9df52d66302d44be1c71683e52a534a0aed57205d94093132f06a4192bf7bab",
       "snapshot": {
         "docs/framework/ember/guides/app-hotkeys.md": "fbe213ed8b89a59c6915c9ecfcfe8a1dbd184a0535e5d2b48fe8b8f06108d342",
-        "docs/framework/ember/quick-start.md": "cabdc0cbd2b9ac6d4d7f9f2c8b8d3fc6ef2ac8c23df4cd8ebc9745c99023f8c8",
+        "docs/framework/ember/quick-start.md": "d5d1d06886ec2584081dcc44b4ed8f10b79e344b5a621dd5c870c58c36977b72",
         "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "94a86a8ba12fa15834eca84a9a8de82d75886e23682602ed8ea783d11b94842d",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "69f52ddf5f42b459901278c563357f796529295846f9b80159e79df39ea5e384",
@@ -55,9 +55,9 @@
         "packages/ember-hotkeys/src/useHotkeyRecorder.ts": "f963076a871a9e007a687aa1056e762f525448f0db2ceeeb929d1c85df236c44",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
-      "outcome": "updated",
-      "reason": "Skill updated for this PR's adapter fixes (API changes, new pitfalls and target guidance).",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "outcome": "no-change",
+      "reason": "The quick-start focus sentence changed to say a target hotkey fires while focus is on the element or inside it; the skill keeps its tabindex example, which is still correct.",
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
@@ -88,13 +88,13 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "72f8cdc91df79f86948d920fad64c843bfa8643f1c319f89e6b82d6104bcbb52",
+      "fingerprint": "9f8036eccd403b03532e2bff706a9e33e50e2722b7cf9e76a717d70148dfa64a",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
         "docs/framework/react/guides/hotkeys.md": "5e6ee56c4c945deef0cfcdcc6df73f1ed57602aaffb751ccf2483be586009627",
         "docs/framework/react/guides/sequences.md": "e66231380dab6222508a1305d83586459b59953c2ecc47b9549e3cb29ffcd355",
         "docs/guides/sensible-defaults.md": "3ca71598b3de383974ec16c5b0fd10855735237853ccddb711680b98d2a437f2",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "a45229edb827101dd019587c5e20965954a508eb5ba57ef6680e53d084585df8",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "e7f38e9901edb606b13c914e2f14e2660a7b6159cc8015b2735e2df3e4051000",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/hotkey-manager.ts": "71fcd3ce0a8f8dbc6892aa9c39d8428d1db39fa2392594d4b3c3124f96f42b54",
@@ -109,16 +109,18 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
-      "outcome": "no-change",
-      "reason": "Only a React guide changed; core skill guidance is unaffected.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "outcome": "updated",
+      "reason": "Corrected the target focus rule: focus on the element or inside it, tabindex only when nothing there can take focus.",
+      "evidence": [
+        "packages/hotkeys/src/_target-listeners.ts attaches to the target and receives bubbled events"
+      ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
-      "fingerprint": "ef0afe9a8155b29cc4cba1de90ebaf920939656dac0a2c93bdda4caa0b99a153",
+      "fingerprint": "e2efc0dc6fe2db5a3ba3fd51a6d0e250b24e758100e2fe0edf5b8bde446ab0ab",
       "snapshot": {
         "docs/framework/lit/guides/app-hotkeys.md": "da53124e5996f174e42e37a69a1b46757c7112506060fd79688fdbe4b1637b9c",
-        "docs/framework/lit/quick-start.md": "09f5d3938de75f1508f8d3a203ff195f5067a586f9d1db9e944716ffb19089ec",
+        "docs/framework/lit/quick-start.md": "0401af0a16eed1571514ce2e7cb0114e52e4d276f97a77cd1b26b2d8fe1f65b7",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "4e5593e8d4373475d4e6006e30ec663d7f0f3fcf0aa881fc403efe58b9cf7606",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "659ca9bebf4200bb693c693addb17bd5a943904e482514f2014f5ca426629e96",
         "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "284c1974350c7465174e9fa47d22e55888a5a7462f98ca39cc1ccb65eadab5a2",
@@ -126,33 +128,35 @@
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "76ac338e601032ac00b6c9e78d4de25ba80e10b7e3aa193eccc65964e1bdb25c",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "324326b5cc6d2e7120ef004450a4ad721c564a79f419fa99978452b62a51c38a"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
-      "outcome": "updated",
-      "reason": "Skill updated for this PR's adapter fixes (API changes, new pitfalls and target guidance).",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "outcome": "no-change",
+      "reason": "The quick-start focus sentence changed to say a target hotkey fires while focus is on the element or inside it; the skill keeps its tabindex example, which is still correct.",
       "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
-      "fingerprint": "67dba018da118f1b3ac81f87d829a1361431510e36aee09ae7f2abd286bfbb93",
+      "fingerprint": "70e869fb38e92f97ebaaa36f35ff2f81888a70bd780e6feda7e64136aa4b4e73",
       "snapshot": {
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
-        "docs/framework/octane/quick-start.md": "f59e4f6c637855f76cb9077c20bfaae258bb4dd9b9799cb41f610e99ece5bf27",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "73a71a4cee61153a9f318acefc3e34d8f4c2c5759d4d9ed3a36b5b8ff806e737",
+        "docs/framework/octane/quick-start.md": "a2646bea315fd6420d32b816b541ea763e1d4c4947e4614956b6d36ed9edc56f",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2e99d82716cbbdacc5a576194bd088092cdeccd954253e7d6538658fd93ab479",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "4e9a9adac5d1717caf67eaccbd3f5cb9780bad4db5c420290512bbab34f319fd",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "4884113fa09d9869baf8af1f3bb07ba72558308a03136b3c1b59feb49ce2efbb",
         "packages/octane-hotkeys/src/useHotkey.ts": "d8da1d0cf0eb528667a25e750a2e51405e4e293bd10e22173546967b5c9d392b",
         "packages/octane-hotkeys/src/useHotkeys.ts": "f864ed03975e9930638cfe9025639619ebdb2c975a55e6950199cba86cb70476"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
       "outcome": "updated",
-      "reason": "Skill updated for this PR's adapter fixes (API changes, new pitfalls and target guidance).",
-      "evidence": ["packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"]
+      "reason": "Corrected the custom-hook pitfall: uncompiled calls share one slot per hook in a component, even across different custom hooks.",
+      "evidence": [
+        "packages/octane-hotkeys/src/internal.ts subSlot falls back to Symbol.for(tag) when no slot is passed"
+      ]
     },
     "skill:packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": {
-      "fingerprint": "3fe988ba3f4d80a40b15bb4aca2c75a1976947a7a0f798336aac1b090467d48a",
+      "fingerprint": "43e05f7549280b1cfa59f79178aafebda258a380231fe8f48cb42b085bf3e120",
       "snapshot": {
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
-        "docs/framework/preact/quick-start.md": "66fa1d81de854c3ca1eef47c6238bfb4ad3745047ac14e0fa6e093e643acfcdd",
+        "docs/framework/preact/quick-start.md": "a264a85a4a2d765edc551c82f46e45c2eb53721e18129eb19550f6962fa245c3",
         "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "c35faf0403eaabf3d6a1b823ea159a1f3bb100c76902aa94c8fa4a2c6e4de6de",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "4388ff0528e9ea44f819896f2687ab962735479cdafaddd1e349dd1bf6dc5479",
         "packages/preact-hotkeys/src/HotkeysProvider.tsx": "3aa56742b97f7e697d4e48c2098df6ffa5e6b237a2cc989d89b88d8fc924c6d3",
@@ -161,16 +165,16 @@
         "packages/preact-hotkeys/src/useHotkeys.ts": "832bf0156ff46db00140617bd3fea8055ca712a1a82d3cef7800776d42b02ebf",
         "packages/preact-hotkeys/src/utils.ts": "118090c4255527f52773133741355445fff8e41605ec6a9fc69c792730e96b9f"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
-      "outcome": "updated",
-      "reason": "Skill updated for this PR's adapter fixes (API changes, new pitfalls and target guidance).",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "outcome": "no-change",
+      "reason": "The quick-start focus sentence changed to say a target hotkey fires while focus is on the element or inside it; the skill keeps its tabindex example, which is still correct.",
       "evidence": ["packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "7b6aabf5e9ef624c56c9c7d692dde958c5ccd58830f4a19cadff3d10a40c4444",
+      "fingerprint": "d006c570623d877808a464069fc0a0aaa485bfa54fd77593d86ccd0898825e4d",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
-        "docs/framework/react/quick-start.md": "7e35eb74ab342e7032f16cbc0589aa3019a9a17a839c1957557546edc40783f8",
+        "docs/framework/react/quick-start.md": "500e53dc13e515eadb3c2db4d359878e12354df0284eef7f6c02701f836fb4f8",
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "356b60f0bc5527420c5796a92a580add802548bed5863c1d297268172c61b0cb",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "e45854b2346700249569ce418b0bb5593cd00a018336a60c9ed5cedeb8d49b3e",
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "6204393b615aa83d4e81f74c760026c17e67e140518db157380dea6929c20659",
@@ -196,16 +200,16 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
-      "outcome": "updated",
-      "reason": "Skill updated for this PR's adapter fixes (API changes, new pitfalls and target guidance).",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "outcome": "no-change",
+      "reason": "The quick-start focus sentence changed to say a target hotkey fires while focus is on the element or inside it; the skill keeps its tabindex example, which is still correct.",
       "evidence": ["packages/react-hotkeys/skills/react-hotkeys/SKILL.md"]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
-      "fingerprint": "1890928731471258b41a9b6a9726cb65667b7efd5e4d6c4ebd3e83590684a706",
+      "fingerprint": "196e62b1ad7e7374772f9a88d76d681838df87e1d12fe6a7e6ae59854a89311f",
       "snapshot": {
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
-        "docs/framework/solid/quick-start.md": "0a5ac05217352af096dd0462161bce4a0f6d8d89d2fddf19fc553f448ddd0b20",
+        "docs/framework/solid/quick-start.md": "ebd2d15005ecd12a4eb9e13bf29d6445c3f0d08a891d16cf7cc80614464af558",
         "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "f19b7d104855149cfb592b11f20541520ba720bbd938169666b888ba7eeefcf0",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d3dda6cd9aa0a8655aa43f017490797ad3d2de42206446b2403363873b84b133",
         "packages/solid-hotkeys/src/HotkeysProvider.tsx": "886423ba0dfa4a8d769d6e5e65e491b3cb342f20a8c7662321843c4c25f5fb3d",
@@ -213,16 +217,16 @@
         "packages/solid-hotkeys/src/createHotkey.ts": "3be9476087da2b53e809ad5ac59b2f791f38cc4d88e2b151258e668a9fc92294",
         "packages/solid-hotkeys/src/createHotkeys.ts": "de2c71ca0b15af7482c89b3bba4b6c7685571c6163c360f06e92d567b7384905"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
-      "outcome": "updated",
-      "reason": "Skill updated for this PR's adapter fixes (API changes, new pitfalls and target guidance).",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "outcome": "no-change",
+      "reason": "The quick-start focus sentence changed to say a target hotkey fires while focus is on the element or inside it; the skill keeps its tabindex example, which is still correct.",
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "e933c1412f257d06867006748a5ca38d35ed51b6a400954e16df15528769f5fb",
+      "fingerprint": "b40eccd7308b42508bf7c23041255ab28e8434a2ddd052832f7b30f00717fdb1",
       "snapshot": {
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
-        "docs/framework/svelte/quick-start.md": "dac9d02db91eaf3aed4eba39d6fb31a4a460bb3f84ba85c0576d3573b5ecf3d1",
+        "docs/framework/svelte/quick-start.md": "bb190234865370dd55d20d6c2e53d266021bb47208b3c5eea373f7b7a2c66883",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "d99ef59e6a695be73d48b954a337d5c91f471268bad8da590a7b4d72f1a8a1c4",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "a229e803efdc9b52c034b3b0784714973fdae1e9756d417e81b4ba611077262c",
@@ -232,73 +236,71 @@
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "9dba19b9d793ca7dedf08b6762b6797bc3f537d6106f046aeaa48b14bc7cc868",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a6a995eea5b1334baef1909da68dea08f8df4e29819bada3549c9a0be86e6dcb"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
       "outcome": "no-change",
-      "reason": "Guidance is still accurate: undefined options now keep their defaults, nullish and empty hotkeys register nothing, hint helpers return false for no hotkey, and providers apply changed customHotkeys. No skill recommends forwarding undefined, null targets meaning document, the ?? [] workaround, or remounting the provider for saved data.",
-      "evidence": [
-        "grep of skills for null, undefined, ?? [], target, customHotkeys, and 'once'; references still pass customHotkeys the same way, and 'an undefined target means document' remains true."
-      ]
+      "reason": "The quick-start focus sentence changed to say a target hotkey fires while focus is on the element or inside it; the skill keeps its tabindex example, which is still correct.",
+      "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
-      "fingerprint": "b5153fae5b6f844014880357253274dd3c71baed2ca560204c69d7eada186e4b",
+      "fingerprint": "49a405e8fdff49147201ee227d70bf832209fad6690238a3a0fe185a09c114c8",
       "snapshot": {
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
-        "docs/framework/vue/quick-start.md": "80bedac58ab9aee3b4bc5f59582b5b836c37fe14f08ab670eababf88a45e76c2",
+        "docs/framework/vue/quick-start.md": "4647a77aeac8014b20ccaaa10872fca8e7845bfb5416c68723fc25f2de79b0c7",
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "565e5d5f33ed757855f0a3bcc78d65a191e52c1e3f33f9bf3dc534a4c0e70d3f",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "326ee1fe20c1d75a4ad720f69a3a4df9b9e3a057826115e955deb0ed25d88f9a",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "f15ab799773868c19e94a19f4624706fb395831851b8a590f60934e405aa66e4",
         "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "8f0eee85f6ac77a14ea6a4c3ac2ee450db061e8751948f1df15b805d9e5d44f4",
         "packages/vue-hotkeys/src/useAppHotkeys.ts": "924ed5dedd6451332545026bd94441eb7f72cfb4f3c2c07880f34ee652574967",
         "packages/vue-hotkeys/src/useHotkey.ts": "74257a7e0f62393770877121eac31d405cf7daad416dc167feab08e4e9bbe4b9",
-        "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "30c85870c2ae2b4c2529f8486f9df02f38b1dac9283689789e8bba74c6022ba7",
+        "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "a01421929263460bd7aca172c4142ffc177ae5c4ba31743afc8a18a7f6c0e77b",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
       "outcome": "no-change",
-      "reason": "Changes here need no skill guidance: Vue KeepAlive handling is automatic, and core usage is unchanged.",
+      "reason": "The quick-start focus sentence changed to say a target hotkey fires while focus is on the element or inside it; the skill keeps its tabindex example, which is still correct.",
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "de07064a5e1a14c2687728d1e14549aa9e83479f284042f3b53324098803bb58",
+      "fingerprint": "c9533d11478723052929438fb75f9040c57f6406517d735b4a128d92efc8250e",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
         "_artifacts/skill_tree.yaml": "bff31ee525c55a3e572083903c5b8deb444cd850845ae2dc1e4b886ce2236a12",
         "docs/framework/alpine/guides/app-hotkeys.md": "e5c2a2a0cbbc35e793cf3e88bdbafd863153f8784ee1af27f2a81fe7f259bb9b",
-        "docs/framework/alpine/quick-start.md": "81496af3a8038080110f79f3369ab58fce72d8bb0c593965f32cfc287e2dbfcb",
+        "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
-        "docs/framework/angular/quick-start.md": "0c692f40ad38bfb297e6242bbbdb8fdf61f055d164620bbc8f701772e103ae84",
+        "docs/framework/angular/quick-start.md": "af3ea39ae8eb6a356454c1018a6c2899d72211362733f8ff7e09055344e37331",
         "docs/framework/ember/guides/app-hotkeys.md": "fbe213ed8b89a59c6915c9ecfcfe8a1dbd184a0535e5d2b48fe8b8f06108d342",
-        "docs/framework/ember/quick-start.md": "cabdc0cbd2b9ac6d4d7f9f2c8b8d3fc6ef2ac8c23df4cd8ebc9745c99023f8c8",
+        "docs/framework/ember/quick-start.md": "d5d1d06886ec2584081dcc44b4ed8f10b79e344b5a621dd5c870c58c36977b72",
         "docs/framework/lit/guides/app-hotkeys.md": "da53124e5996f174e42e37a69a1b46757c7112506060fd79688fdbe4b1637b9c",
-        "docs/framework/lit/quick-start.md": "09f5d3938de75f1508f8d3a203ff195f5067a586f9d1db9e944716ffb19089ec",
+        "docs/framework/lit/quick-start.md": "0401af0a16eed1571514ce2e7cb0114e52e4d276f97a77cd1b26b2d8fe1f65b7",
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
-        "docs/framework/octane/quick-start.md": "f59e4f6c637855f76cb9077c20bfaae258bb4dd9b9799cb41f610e99ece5bf27",
+        "docs/framework/octane/quick-start.md": "a2646bea315fd6420d32b816b541ea763e1d4c4947e4614956b6d36ed9edc56f",
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
-        "docs/framework/preact/quick-start.md": "66fa1d81de854c3ca1eef47c6238bfb4ad3745047ac14e0fa6e093e643acfcdd",
+        "docs/framework/preact/quick-start.md": "a264a85a4a2d765edc551c82f46e45c2eb53721e18129eb19550f6962fa245c3",
         "docs/framework/react/guides/app-hotkeys.md": "7b2eeb5971fdb405cf89d6a07d037af00d4f7872e7090fd689d9aaa64f11ebf6",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "a3f793e81c6a6e1e6aaf3d63c6b79114ea7d6f461123d371c0b4f0a23ffd88bc",
         "docs/framework/react/guides/custom-hotkey-recording.md": "ea9b70d7bbeb5846b0284e843960bf667b2ae6ffbe85742fb5ba332de170ca29",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
         "docs/framework/react/guides/hotkeys.md": "5e6ee56c4c945deef0cfcdcc6df73f1ed57602aaffb751ccf2483be586009627",
         "docs/framework/react/guides/sequences.md": "e66231380dab6222508a1305d83586459b59953c2ecc47b9549e3cb29ffcd355",
-        "docs/framework/react/quick-start.md": "7e35eb74ab342e7032f16cbc0589aa3019a9a17a839c1957557546edc40783f8",
+        "docs/framework/react/quick-start.md": "500e53dc13e515eadb3c2db4d359878e12354df0284eef7f6c02701f836fb4f8",
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
-        "docs/framework/solid/quick-start.md": "0a5ac05217352af096dd0462161bce4a0f6d8d89d2fddf19fc553f448ddd0b20",
+        "docs/framework/solid/quick-start.md": "ebd2d15005ecd12a4eb9e13bf29d6445c3f0d08a891d16cf7cc80614464af558",
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
-        "docs/framework/svelte/quick-start.md": "dac9d02db91eaf3aed4eba39d6fb31a4a460bb3f84ba85c0576d3573b5ecf3d1",
+        "docs/framework/svelte/quick-start.md": "bb190234865370dd55d20d6c2e53d266021bb47208b3c5eea373f7b7a2c66883",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
-        "docs/framework/vue/quick-start.md": "80bedac58ab9aee3b4bc5f59582b5b836c37fe14f08ab670eababf88a45e76c2",
+        "docs/framework/vue/quick-start.md": "4647a77aeac8014b20ccaaa10872fca8e7845bfb5416c68723fc25f2de79b0c7",
         "docs/guides/sensible-defaults.md": "3ca71598b3de383974ec16c5b0fd10855735237853ccddb711680b98d2a437f2",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "0b86889ea9327f24e0f66ab9ba5eb783aaffb492c028e1b6cac257690ca5d462",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "d182e659acc9f0a28e9198f590163db1541b30eec6d347fb378022f775cf316d",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "f712ddb3354230197eb54d6f270d00a41c2b889e60690e70853569fe1a5207ea",
         "packages/alpine-hotkeys/src/createHotkey.ts": "2eaac78690d6737f2f73f756b01df17a02075f498666e5745cc34f2d0e6086b5",
-        "packages/alpine-hotkeys/src/createHotkeyRecorder.ts": "79e35883b387332d739ed0cfc4c50c63f7b80c7078be68535fdebd292a5eb951",
+        "packages/alpine-hotkeys/src/createHotkeyRecorder.ts": "1d93677561619b55d36c3f61ce564ee86ff6fe99e1dc891823d39c59e70d8287",
         "packages/alpine-hotkeys/src/createHotkeysScope.ts": "0f06480dc1fa7448124205b3af2811e96377b98bad73369d953e6e8ccb1baa30",
         "packages/alpine-hotkeys/src/hotkeyRecorderPlugin.ts": "8ff86447e513f47002c49ed9f60269d485b0cd65b87277bb52cf2d8286ddbd36",
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
-        "packages/alpine-hotkeys/src/scope.ts": "621be5548c437b3b54315d75ee1fdf06627ebff4f9885bf330e1fc2dd7cc3135",
+        "packages/alpine-hotkeys/src/scope.ts": "d32e8bd75b0db71b01f42343f9220a4b10b9c91d17542b1acb61db9068c46d6c",
         "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "aeb786b5b6d3b930c36357cb738e71ab3a0c131718d9f19ab40df43fd7f845dd",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "5fe1b12a519e8ca5087d78d47050f7a2ec0c70bb9b7d6ebcbb050ee099e3effe",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "eee1e9ea2b21a6961ebd937a3ba89218823a37afa8a2ee5e5e52cbb05dbced51",
@@ -317,7 +319,7 @@
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "7c431ae3bee4ffcd22676ac533adfcd29cfb22ed68cb7dc47d1470a8744d7276",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "a45229edb827101dd019587c5e20965954a508eb5ba57ef6680e53d084585df8",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "e7f38e9901edb606b13c914e2f14e2660a7b6159cc8015b2735e2df3e4051000",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/app-hotkeys.ts": "a6176a749dd7439146c335e769dfae1a2cd72ace029f9cbc64b52ff5fe2d9d03",
@@ -331,7 +333,7 @@
         "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "393686f43b22d9e722554ad922b4a7c4df4ab053d472e3f9038c6f119e8dc1bc",
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "76ac338e601032ac00b6c9e78d4de25ba80e10b7e3aa193eccc65964e1bdb25c",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "324326b5cc6d2e7120ef004450a4ad721c564a79f419fa99978452b62a51c38a",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "73a71a4cee61153a9f318acefc3e34d8f4c2c5759d4d9ed3a36b5b8ff806e737",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2e99d82716cbbdacc5a576194bd088092cdeccd954253e7d6538658fd93ab479",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "4e9a9adac5d1717caf67eaccbd3f5cb9780bad4db5c420290512bbab34f319fd",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "4884113fa09d9869baf8af1f3bb07ba72558308a03136b3c1b59feb49ce2efbb",
@@ -388,13 +390,13 @@
         "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "8f0eee85f6ac77a14ea6a4c3ac2ee450db061e8751948f1df15b805d9e5d44f4",
         "packages/vue-hotkeys/src/useAppHotkeys.ts": "924ed5dedd6451332545026bd94441eb7f72cfb4f3c2c07880f34ee652574967",
         "packages/vue-hotkeys/src/useHotkey.ts": "74257a7e0f62393770877121eac31d405cf7daad416dc167feab08e4e9bbe4b9",
-        "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "30c85870c2ae2b4c2529f8486f9df02f38b1dac9283689789e8bba74c6022ba7",
+        "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "a01421929263460bd7aca172c4142ffc177ae5c4ba31743afc8a18a7f6c0e77b",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "6aa30bf6a2c11593cf5bd9a544c09828006f1c5b",
-      "outcome": "updated",
-      "reason": "Synced skill_tree.yaml sources for the new Alpine and Ember recorder modules.",
-      "evidence": ["_artifacts/skill_tree.yaml"]
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "outcome": "no-change",
+      "reason": "Doc wording and adapter bug fixes; no skill boundaries, sources, or domains changed.",
+      "evidence": ["_artifacts/skill_tree.yaml sources unchanged"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -834,24 +836,24 @@
       "evidence": ["packages/angular-hotkeys/tests/injectHotkeyHint.test.ts"]
     },
     "source:packages/ember-hotkeys/src/useHotkeyHint.ts": {
-      "fingerprint": "af14c5ecbf30efdf5ed96b4c1109d662ea69044f7b473d7a75db2ac005309cfc",
+      "fingerprint": "414b7b5ccc765476cb42608f07b1ce10ddec449b9994132c4e2e2000f173984c",
       "snapshot": {
-        "packages/ember-hotkeys/src/useHotkeyHint.ts": "e6fde395342676692d2b443e3d4b7653fa87e04691923e31fe1ad062f1e2d2e3"
+        "packages/ember-hotkeys/src/useHotkeyHint.ts": "f6a755814168540f39c58719df4184c07fa5a92f9b1412ff7121bbbcaa7cb254"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
       "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
+      "reason": "Internal tracking fix; the hint API and documented behavior are the same.",
       "evidence": ["packages/ember-hotkeys/src/useHotkeyHint.ts"]
     },
     "source:packages/ember-hotkeys/tests/integration/hotkeys.test.gts": {
-      "fingerprint": "76c62efe51bbf055b63a6446d5ddc601248c43d2547e26ecfc1805f81e613840",
+      "fingerprint": "6d83b714a13f75c36215793cfd475bc7d66cd114deef97bb0c2ead217e375363",
       "snapshot": {
-        "packages/ember-hotkeys/tests/integration/hotkeys.test.gts": "1d5181af8f87ae3fe1a3f405be5a8b99e938ee97b744346c15d8b9422a4aa76a"
+        "packages/ember-hotkeys/tests/integration/hotkeys.test.gts": "81b4f2fff184adaa76c42d50381339f39e253db194078837a4c2effa9cfa97e3"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
       "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Test-only change; no public API or documented behavior changed.",
+      "evidence": ["packages/ember-hotkeys/tests/integration/hotkeys.test.gts"]
     },
     "source:packages/hotkeys/tests/scopes.test.ts": {
       "fingerprint": "37c6be71916d0093c9666428f01b7e6cfaaeb95482625d71d1ba51cf3d637848",
@@ -1064,14 +1066,14 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/octane/guides/hotkeys.md": {
-      "fingerprint": "0bdde0e35b782cb2432ea9e973c4430ad4f3b9db7a0121c162acace16fb50d92",
+      "fingerprint": "16446395561f8f260cf4f425ac448ee2ee5bb807630b20f3f1fd6f615576c939",
       "snapshot": {
-        "docs/framework/octane/guides/hotkeys.md": "f0fec58ef4d84cd49d779ad892b4111ae13dce3455909414283687e29cad5a6b"
+        "docs/framework/octane/guides/hotkeys.md": "64092c532c4a29e1b8cfacdffcebcc5b370b0cb4c9dc8bbe28dbdbdee5582d1c"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
-      "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "outcome": "updated",
+      "reason": "Octane skill pitfall updated to match the corrected custom-hook rule.",
+      "evidence": ["packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"]
     },
     "source:docs/framework/preact/guides/hotkeys.md": {
       "fingerprint": "886f82c50057b524c7924de5c917e65e2cdd98472027dee931150b6a7fde37b5",
@@ -7202,14 +7204,14 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/alpine/reference/functions/hotkeyRecorderPlugin.md": {
-      "fingerprint": "4fbbcd6368b482574b2286880caecc7c70b584089d5b80cab5891c2a95a0e2f9",
+      "fingerprint": "76e942df4a6354a382bd90df6a99eaa3547458eb397b6bc100801d8e6fd29bb6",
       "snapshot": {
-        "docs/framework/alpine/reference/functions/hotkeyRecorderPlugin.md": "7cbaa3ac87e1ffaa8aabff95bafe55565c79b55a16a1fd7cea74299d802f1ee3"
+        "docs/framework/alpine/reference/functions/hotkeyRecorderPlugin.md": "0af5883bbed5adb4906018a6e59bbcc9aab810361f6f9bd2160a3e66cad8a99d"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
       "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Generated reference now links its source line; content is the same.",
+      "evidence": ["autofix commit 31151e3a"]
     },
     "source:docs/framework/alpine/reference/index.md": {
       "fingerprint": "413957805ab64eb5821d349c14f826828acf06828498441e0481b91413bfaeb7",
@@ -7452,24 +7454,24 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/alpine-hotkeys/tests/effect-errors.test.ts": {
-      "fingerprint": "158b720e4c9f09316f740311b04908d59768a8e10a188dcd004f32bb582bcf23",
+      "fingerprint": "9b8bde84eaf611bdcdcdab36622a1080c1d1eb4eeea3b5784a16c0c41482c50d",
       "snapshot": {
-        "packages/alpine-hotkeys/tests/effect-errors.test.ts": "155a12240348ed6286a7fc0e4578ea97eed7ea634e08278baaf8dd1ca6733be1"
+        "packages/alpine-hotkeys/tests/effect-errors.test.ts": "848c0783401f0569ff4d7419c2617227c560fcaa5281873adbfb3d376d47236f"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
       "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Test-only change; no public API or documented behavior changed.",
+      "evidence": ["packages/alpine-hotkeys/tests/effect-errors.test.ts"]
     },
     "source:packages/alpine-hotkeys/tests/reactive-options.test.ts": {
-      "fingerprint": "f5d314a0ce799c579a58ef9f1cf824401c708e663ac52de0495e7b9e64d8c877",
+      "fingerprint": "27556ede959afac9f1c3c57d6ed76215ac3a53ace02862d61c1183a83fa9ea3b",
       "snapshot": {
-        "packages/alpine-hotkeys/tests/reactive-options.test.ts": "a4cbd7cc921c98340c5122c16bff665aa096e8fa6d3490ff221b2e12d78600e8"
+        "packages/alpine-hotkeys/tests/reactive-options.test.ts": "7f4494c01d8feab5be1b3d2f2cb98e935f815eeccc7f4fdccff978838eb2213f"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "head": "a2b4251465aa76f5a71927a8259e5a33c953e377",
       "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Test-only change; no public API or documented behavior changed.",
+      "evidence": ["packages/alpine-hotkeys/tests/reactive-options.test.ts"]
     },
     "source:packages/angular-hotkeys/src/_zone.ts": {
       "fingerprint": "32f40b85f7f4bcdf188e088e061cf4d99c49ed6450147a3dcbb1ad883fa79d27",
@@ -7682,14 +7684,14 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/vue-hotkeys/tests/keep-alive.test.ts": {
-      "fingerprint": "72b6aa087eb64ceb9682cdb73fb04918b0cb2250614599e72020330a7ff90a97",
+      "fingerprint": "20a7e3bd3f3218571dde8b848401f54a3bdcd8acdee6ce14747189799069512f",
       "snapshot": {
-        "packages/vue-hotkeys/tests/keep-alive.test.ts": "de5587f103926b115bbc5480152e20a35374dfe64edf1703155bc44531123454"
+        "packages/vue-hotkeys/tests/keep-alive.test.ts": "d8f280697328870d54fb16d0d19cca77398fb9f48185ae04e91b93f9626c3991"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
       "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Test-only change; no public API or documented behavior changed.",
+      "evidence": ["packages/vue-hotkeys/tests/keep-alive.test.ts"]
     }
   }
 }

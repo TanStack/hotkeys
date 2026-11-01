@@ -57,3 +57,20 @@ it('throws a first-run conflict to the caller', () => {
     scope().createHotkey('B', () => {}, { conflictBehavior: 'error' }),
   ).toThrow(/already registered/)
 })
+
+it('releases a hotkey whose first run failed', async () => {
+  getHotkeyManager().register('B', () => {})
+  const state = Alpine.reactive({ hotkey: 'B' as Hotkey })
+  const callback = vi.fn()
+  expect(() =>
+    scope().createHotkey(() => state.hotkey, callback, {
+      conflictBehavior: 'error',
+    }),
+  ).toThrow(/already registered/)
+
+  // The failed call has no effect left to re-run.
+  state.hotkey = 'C'
+  await Alpine.nextTick()
+  press('c')
+  expect(callback).not.toHaveBeenCalled()
+})

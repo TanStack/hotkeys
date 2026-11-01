@@ -141,6 +141,10 @@ describe('<KeepAlive>', () => {
 
     await show('b')
     expect(recorder.isRecording.value).toBe(false)
+
+    // A retained action can't restart it while the page is hidden.
+    recorder.startRecording()
+    expect(recorder.isRecording.value).toBe(false)
   })
 
   it('keeps hotkeys and scopes of pages outside <KeepAlive> as before', async () => {

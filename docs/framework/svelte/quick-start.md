@@ -153,7 +153,7 @@ A hotkey's default `target` is `document`, so it works wherever focus is on the 
 <div tabindex="0" {@attach closeOnEscape}>...</div>
 ```
 
-`createHotkeysAttachment` does the same for an array of hotkeys. The element must be focusable to receive key presses, so give it a `tabindex` if it isn't a control.
+`createHotkeysAttachment` does the same for an array of hotkeys. The hotkey fires while focus is on the element or inside it. If nothing there can take focus, give the element a `tabindex`.
 
 ## Add providers and scopes (optional)
 

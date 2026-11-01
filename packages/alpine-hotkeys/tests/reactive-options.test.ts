@@ -61,3 +61,20 @@ it.each(['single', 'sequence'] as const)(
     }
   },
 )
+
+it('creates a recorder from an owner read through Alpine state', () => {
+  // Alpine component data wraps stored objects in reactive proxies.
+  const owner = createHotkeysScope()
+  const data = Alpine.reactive({ hotkeys: owner as object })
+  expect(data.hotkeys).not.toBe(owner)
+  try {
+    const recorder = createHotkeyRecorder(data.hotkeys as typeof owner, {
+      onRecord() {},
+    })
+    recorder.startRecording()
+    expect(recorder.isRecording).toBe(true)
+    recorder.cancelRecording()
+  } finally {
+    owner.destroy()
+  }
+})

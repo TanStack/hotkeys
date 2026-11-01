@@ -145,7 +145,7 @@ function Panel() {
 }
 ```
 
-A `null` target waits until the element is attached. The element must be focusable to receive key presses, so give it a `tabIndex` if it isn't a control.
+A `null` target waits until the element is attached. The hotkey fires while focus is on the element or inside it. If nothing there can take focus, give the element a `tabIndex`.
 
 Solid doesn't clear a ref when the element is removed, so the signal keeps a removed element. For an element inside `<Show>` or `<For>`, register the hotkey in the element's `ref` callback instead:
 

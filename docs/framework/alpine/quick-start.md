@@ -185,7 +185,7 @@ Alpine.data('panel', () => ({
 </div>
 ```
 
-`$refs` holds elements that exist when `init()` runs. For an element that Alpine adds later, such as one inside `x-if`, keep the element in component state and return it from the getter. A `null` target waits until the element exists. The element must be focusable to receive key presses, so give it a `tabindex` if it isn't a control.
+`$refs` holds elements that exist when `init()` runs. For an element that Alpine adds later, such as one inside `x-if`, keep the element in component state and return it from the getter. A `null` target waits until the element exists. The hotkey fires while focus is on the element or inside it. If nothing there can take focus, give the element a `tabindex`.
 
 ## Add defaults and scopes (optional)
 

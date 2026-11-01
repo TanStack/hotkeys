@@ -207,7 +207,7 @@ class MyPanel extends LitElement {
 }
 ```
 
-A `null` target waits until the element renders. The controller reads the target after each update of its own element, so render the target in that element. See [Hotkey targets](./guides/hotkeys#hotkey-targets) for a target that another element renders. The element must be focusable to receive key presses, so give it a `tabindex` if it isn't a control.
+A `null` target waits until the element renders. The controller reads the target after each update of its own element, so render the target in that element. See [Hotkey targets](./guides/hotkeys#hotkey-targets) for a target that another element renders. The hotkey fires while focus is on the element or inside it. If nothing there can take focus, give the element a `tabindex`.
 
 ## Add scopes (optional)
 

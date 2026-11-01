@@ -32,6 +32,9 @@ export function useHotkeyHint(
   // Tracks registration, enabled, and scope changes.
   const registrations = select(owner, manager.registrations, (state) => state)
   return select(owner, getKeyStateTracker().store, (state) => {
+    // Read registrations first, so a render that returns false still tracks
+    // them. A hotkey registered while its modifier is held then shows.
+    const registered = registrations.value.size > 0
     const value = read(hotkey)
     const resolved = isAppHotkey(value)
       ? resolveAppHotkey(value, appHotkeys()).hotkey
@@ -39,7 +42,7 @@ export function useHotkeyHint(
     return (
       resolved !== null &&
       matchesHeldModifiers(resolved, state.heldKeys, read(options)) &&
-      registrations.value.size > 0 &&
+      registered &&
       manager.hasActiveRegistration(value)
     )
   })

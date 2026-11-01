@@ -31,6 +31,14 @@ function getAlpine(): AlpineInstance {
 /** The internal scope behind each `createHotkeysScope` owner. */
 export const ownerScopes = new WeakMap<object, HotkeysScope>()
 
+/**
+ * Returns an owner's scope. Alpine data wraps stored objects in reactive
+ * proxies, so `this.hotkeys` can be a proxy of the owner.
+ */
+export function scopeOf(owner: object): HotkeysScope {
+  return ownerScopes.get(getAlpine().raw(owner))!
+}
+
 export function read<T>(value: MaybeGetter<T>): T {
   return typeof value === 'function' ? (value as () => T)() : value
 }
@@ -62,8 +70,12 @@ export function createScope(
       }
     })
     first = false
+    // A failed first run leaves nothing behind, so the effect doesn't re-run.
+    if (error) {
+      alpine.release(runner)
+      throw error
+    }
     cleanups.add(() => alpine.release(runner))
-    if (error) throw error
   }
 
   function select<T, TSelected>(

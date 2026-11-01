@@ -1,6 +1,6 @@
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { withDefaults } from '@tanstack/hotkeys/adapter'
-import { ownerScopes, read } from './scope'
+import { read, scopeOf } from './scope'
 import type {
   HotkeyChord,
   HotkeyChordRecorderOptions,
@@ -41,7 +41,7 @@ export function createHotkeyRecorder(
   owner: AlpineHotkeys,
   options: MaybeGetter<HotkeyRecorderOptions>,
 ): AlpineHotkeyRecorder {
-  return createRecorder(ownerScopes.get(owner)!, options)
+  return createRecorder(scopeOf(owner), options)
 }
 
 export function createRecorder(

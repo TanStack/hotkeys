@@ -120,7 +120,7 @@ You can group hotkeys in a custom hook. The compiler gives each hook call its ow
 - `.ts` and `.js` files that import a value from `octane`, such as `useState`. A type-only import doesn't count.
 - `.ts` and `.js` files that start with `/** @jsxImportSource octane */`.
 
-In any other `.ts` file, a custom hook that calls the same hook more than once gives every call one shared slot. Only the last call works, and nothing warns. Add the pragma to fix it:
+Calls from any other `.ts` file get no slot of their own. In one component, all such calls to the same hook share one slot, even when they come from different custom hooks. Only the last call works, and nothing warns. Add the pragma to every file with a custom hook:
 
 ```ts
 /** @jsxImportSource octane */
@@ -132,7 +132,7 @@ export function useEditorShortcuts(editor: Editor) {
 }
 ```
 
-Without the pragma, only `Mod+I` would register. A custom hook that calls each hook once works in any file. To register a list in one call, use [`useHotkeys`](#register-multiple-hotkeys).
+Without the pragma, only `Mod+I` would register. The same happens when one component uses two such custom hooks that each call `useHotkey` once. To register a list in one call, use [`useHotkeys`](#register-multiple-hotkeys).
 
 ## Hotkey options
 

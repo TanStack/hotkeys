@@ -180,7 +180,7 @@ export class PanelComponent {
 }
 ```
 
-The hotkey registers once the element renders. The element must be focusable to receive key presses, so give it a `tabindex` if it isn't a control.
+The hotkey registers once the element renders. The hotkey fires while focus is on the element or inside it. If nothing there can take focus, give the element a `tabindex`.
 
 ## Add providers and scopes (optional)
 

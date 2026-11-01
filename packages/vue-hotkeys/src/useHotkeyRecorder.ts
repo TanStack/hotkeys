@@ -89,8 +89,10 @@ export function useHotkeyRecorder(
     recorder.setOptions(resolved),
   )
 
-  // A page cached by <KeepAlive> stops recording when hidden.
-  watch(useLive(), (live) => live || recorder.stop())
+  // A page cached by <KeepAlive> stops recording when hidden, and can't
+  // start again until shown.
+  const live = useLive()
+  watch(live, (isLive) => isLive || recorder.stop())
 
   onScopeDispose(() => {
     stopWatcher()
@@ -101,7 +103,9 @@ export function useHotkeyRecorder(
     isRecording,
     steps,
     recordedHotkey,
-    startRecording: () => recorder.start(),
+    startRecording: () => {
+      if (live.value) recorder.start()
+    },
     stopRecording: () => recorder.stop(),
     cancelRecording: () => recorder.cancel(),
     commitRecording: () => recorder.commit(),
