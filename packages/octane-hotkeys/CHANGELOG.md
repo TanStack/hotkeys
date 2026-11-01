@@ -1,5 +1,13 @@
 # @tanstack/octane-hotkeys
 
+## 0.9.2
+
+### Patch Changes
+
+- [#218](https://github.com/TanStack/hotkeys/pull/218) [`93b8b5e`](https://github.com/TanStack/hotkeys/commit/93b8b5e2102f1e973496fef8fbff086bfddc89f5) - `useHotkeyRecorder` returns the same action functions on every render, so memoized children and effects that depend on them no longer re-run.
+- Updated dependencies [[`93b8b5e`](https://github.com/TanStack/hotkeys/commit/93b8b5e2102f1e973496fef8fbff086bfddc89f5)]:
+  - @tanstack/hotkeys@0.22.1
+
 ## 0.9.1
 
 ### Patch Changes

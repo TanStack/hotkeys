@@ -1,6 +1,6 @@
 {
   "name": "@tanstack/svelte-hotkeys-devtools",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "Svelte devtools for TanStack Hotkeys",
   "author": "Tanner Linsley",
   "license": "MIT",
