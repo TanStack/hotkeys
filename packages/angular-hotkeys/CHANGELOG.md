@@ -1,5 +1,17 @@
 # @tanstack/angular-hotkeys
 
+## 0.20.0
+
+### Minor Changes
+
+- [#218](https://github.com/TanStack/hotkeys/pull/218) [`93b8b5e`](https://github.com/TanStack/hotkeys/commit/93b8b5e2102f1e973496fef8fbff086bfddc89f5) - - In zone.js apps, hotkey and key state listeners run outside the Angular zone, so typing no longer triggers change detection. Hotkey and recorder callbacks still run inside the zone.
+  - A target can be an `ElementRef` or a signal of one, such as `viewChild('panel')`.
+
+### Patch Changes
+
+- Updated dependencies [[`93b8b5e`](https://github.com/TanStack/hotkeys/commit/93b8b5e2102f1e973496fef8fbff086bfddc89f5)]:
+  - @tanstack/hotkeys@0.22.1
+
 ## 0.19.1
 
 ### Patch Changes

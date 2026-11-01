@@ -1,5 +1,14 @@
 # @tanstack/preact-hotkeys
 
+## 0.19.2
+
+### Patch Changes
+
+- [#218](https://github.com/TanStack/hotkeys/pull/218) [`93b8b5e`](https://github.com/TanStack/hotkeys/commit/93b8b5e2102f1e973496fef8fbff086bfddc89f5) - - Hotkeys, scopes and the recorder register and clean up in layout effects, so they're ready before the next event after a render. On Preact 11, a removed component's hotkey no longer fires.
+  - `useHotkeyRecorder` returns the same action functions on every render.
+- Updated dependencies [[`93b8b5e`](https://github.com/TanStack/hotkeys/commit/93b8b5e2102f1e973496fef8fbff086bfddc89f5)]:
+  - @tanstack/hotkeys@0.22.1
+
 ## 0.19.1
 
 ### Patch Changes

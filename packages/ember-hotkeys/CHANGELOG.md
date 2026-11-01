@@ -1,5 +1,17 @@
 # @tanstack/ember-hotkeys
 
+## 0.9.0
+
+### Minor Changes
+
+- [#218](https://github.com/TanStack/hotkeys/pull/218) [`93b8b5e`](https://github.com/TanStack/hotkeys/commit/93b8b5e2102f1e973496fef8fbff086bfddc89f5) - - **Breaking:** `EmberHotkeysScope.useHotkeyRecorder` is removed, which takes about 1.7 KB (brotli) off `createHotkeysScope`. Pass the scope to `useHotkeyRecorder(owner, options, scope)` to use its recorder defaults.
+  - `useKeyHold` and `useHotkeyHint` re-render only when their value changes, not on every key.
+
+### Patch Changes
+
+- Updated dependencies [[`93b8b5e`](https://github.com/TanStack/hotkeys/commit/93b8b5e2102f1e973496fef8fbff086bfddc89f5)]:
+  - @tanstack/hotkeys@0.22.1
+
 ## 0.8.1
 
 ### Patch Changes

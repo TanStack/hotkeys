@@ -1,5 +1,17 @@
 # @tanstack/alpine-hotkeys
 
+## 0.10.0
+
+### Minor Changes
+
+- [#218](https://github.com/TanStack/hotkeys/pull/218) [`93b8b5e`](https://github.com/TanStack/hotkeys/commit/93b8b5e2102f1e973496fef8fbff086bfddc89f5) - - **Breaking:** the recorder is no longer part of `$hotkeys` and `createHotkeysScope`, which removes about 1.6 KB (brotli) from every app. Use `createHotkeyRecorder($hotkeys, options)`, or register `hotkeyRecorderPlugin` and use `$hotkeyRecorder(options)`.
+  - An error in a hotkey effect, such as a conflict after a reactive hotkey changes, is reported instead of stopping Alpine's update queue.
+
+### Patch Changes
+
+- Updated dependencies [[`93b8b5e`](https://github.com/TanStack/hotkeys/commit/93b8b5e2102f1e973496fef8fbff086bfddc89f5)]:
+  - @tanstack/hotkeys@0.22.1
+
 ## 0.9.1
 
 ### Patch Changes

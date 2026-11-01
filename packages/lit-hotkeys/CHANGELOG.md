@@ -1,5 +1,19 @@
 # @tanstack/react-hotkeys
 
+## 0.21.0
+
+### Minor Changes
+
+- [#218](https://github.com/TanStack/hotkeys/pull/218) [`93b8b5e`](https://github.com/TanStack/hotkeys/commit/93b8b5e2102f1e973496fef8fbff086bfddc89f5) - - `@hotkey` works with standard (TC39) decorators as well as `experimentalDecorators`. It calls a subclass's override of the decorated method, and with standard decorators it also works on `#private` methods.
+  - `HotkeyController` adds itself to its host, so a class field is enough.
+  - `HeldKeysController` reports keys already held when the host connects or moves.
+  - Adding a controller to its host twice no longer subscribes twice.
+
+### Patch Changes
+
+- Updated dependencies [[`93b8b5e`](https://github.com/TanStack/hotkeys/commit/93b8b5e2102f1e973496fef8fbff086bfddc89f5)]:
+  - @tanstack/hotkeys@0.22.1
+
 ## 0.20.1
 
 ### Patch Changes
