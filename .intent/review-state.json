@@ -5688,13 +5688,13 @@
       ]
     },
     "source:pnpm-workspace.yaml": {
-      "fingerprint": "236735677025bb642b3535728f1cffd282ab59a7b1966563dda9db6a655d4d2b",
+      "fingerprint": "82deb9e47dea10634af36a4ddaa5801bae8a61a5c5847dea308e2a2c4756cde4",
       "snapshot": {
-        "pnpm-workspace.yaml": "8d1ff21fe2b180c67b8d9191dadd1b941820fde85822939e5bc82a4ace030520"
+        "pnpm-workspace.yaml": "19f87851366291439baf06b5a7d5ee3c238cfe7968ef7ac28b9b68a7df6c4ba5"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "c3fb4f36ab029d029dd39d0ee3796cb679ebb25c",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "reason": "Workspace globs exclude example build output, and Analog gets an h3 package extension; no skill change.",
       "evidence": ["pnpm-workspace.yaml"]
     },
     "source:docs/framework/ember/reference/classes/useHotkey.md": {
