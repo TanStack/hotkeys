@@ -17,6 +17,8 @@ reviews:
   path_filters:
     # Generated API reference (matches .cursorignore)
     - '!docs/**/reference/**'
+    # Examples: built, type-checked, and covered by e2e suites
+    - '!examples/**'
     # Lock files
     - '!**/package-lock.json'
     - '!**/yarn.lock'
