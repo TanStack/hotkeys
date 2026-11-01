@@ -1,5 +1,5 @@
 ---
-title: Register Hotkeys with useHotkey and useHotkeys
+title: Register Hotkeys with useHotkey and useHotkeys in React
 id: hotkeys
 description: Register keyboard shortcuts in React with useHotkey and useHotkeys. Write chords and sequences, set options, turn hotkeys on and off, and listen on one element.
 ---

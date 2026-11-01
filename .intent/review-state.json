@@ -61,11 +61,11 @@
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "5669ff24b91f3ed8e523424f6c6f4735c4c892c43de05c10b44b804b39d84beb",
+      "fingerprint": "b8cc87ef999d5ed52c0c55d30392037224eb9b76d20be5b47e4cec6151624d76",
       "snapshot": {
-        "docs/framework/react/guides/app-hotkeys.md": "7b2eeb5971fdb405cf89d6a07d037af00d4f7872e7090fd689d9aaa64f11ebf6",
-        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "a3f793e81c6a6e1e6aaf3d63c6b79114ea7d6f461123d371c0b4f0a23ffd88bc",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "ea9b70d7bbeb5846b0284e843960bf667b2ae6ffbe85742fb5ba332de170ca29",
+        "docs/framework/react/guides/app-hotkeys.md": "8f38ea6fda3e05e5b5e6445c376fdfecd4ea0118fb897e822ba6f2e8e6114885",
+        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "3ecbdb39093471c9c3f112a3c60e21fb0eb511ae1eaa7c66644c88bf92021a17",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "7c431ae3bee4ffcd22676ac533adfcd29cfb22ed68cb7dc47d1470a8744d7276",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
         "packages/hotkeys/src/app-hotkeys.ts": "a6176a749dd7439146c335e769dfae1a2cd72ace029f9cbc64b52ff5fe2d9d03",
@@ -80,19 +80,17 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "730c6d5bcd2096d3a2612cac32e2473d0f46d4a9",
+      "head": "b13e9407de5f00dcbe2622ed0d8ce9a233af1c00",
       "outcome": "no-change",
-      "reason": "A change from {} to null now clears custom hotkeys, matching the skill's existing line that null clears them, such as on sign-out.",
-      "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md customHotkeys sentence"
-      ]
+      "reason": "React guide titles now name React, matching the other frameworks; content unchanged.",
+      "evidence": ["packages/hotkeys/skills/app-hotkeys/SKILL.md"]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "20b4c90aa51ac4540e6aa10d796a9a7d318a0c122166b952876f2e38600ee988",
+      "fingerprint": "25e0ef9a7aa8ff1c14a06cbd3de9e600ea26f93876305078a74c9bf3b4fc2620",
       "snapshot": {
-        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
-        "docs/framework/react/guides/hotkeys.md": "5e6ee56c4c945deef0cfcdcc6df73f1ed57602aaffb751ccf2483be586009627",
-        "docs/framework/react/guides/sequences.md": "e66231380dab6222508a1305d83586459b59953c2ecc47b9549e3cb29ffcd355",
+        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
+        "docs/framework/react/guides/hotkeys.md": "86d90e75bd74762ab0eaee5a1c41d919338dcfa6238ff7186567d0d6dad0b0e5",
+        "docs/framework/react/guides/sequences.md": "b02147fb593f5190b1b219739afa6609067407f6566ded142cccc76ac02d25c8",
         "docs/guides/sensible-defaults.md": "3ca71598b3de383974ec16c5b0fd10855735237853ccddb711680b98d2a437f2",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "2c7a38d692ab6dd292222a36935688154b4b858372f34c2be44c0289e0e2abec",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
@@ -109,9 +107,9 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
-      "outcome": "updated",
-      "reason": "Added the server-rendering pitfall: set the provider or scope platform from the request user agent and format labels with the adapter formatter.",
+      "head": "b13e9407de5f00dcbe2622ed0d8ce9a233af1c00",
+      "outcome": "no-change",
+      "reason": "React guide titles now name React, matching the other frameworks; content unchanged.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -167,9 +165,9 @@
       "evidence": ["packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "ef4dd6d67642c00cefb07eef47b46d5c8aec0977c11d6f20629c6a92399cdc83",
+      "fingerprint": "aaa8e50fbbe58140de8077591b447d32c8506887267721bb6216a18133afdcd1",
       "snapshot": {
-        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
+        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/quick-start.md": "f8afa1a28c8e78f72ac7e9f88ab34c7abcead4527e7c229c584abcf8768fac00",
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "4f59c5efbce3ba0c54e2a47d9b868a31780225dc306132a3903fee5894ae1ed4",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "e45854b2346700249569ce418b0bb5593cd00a018336a60c9ed5cedeb8d49b3e",
@@ -196,9 +194,9 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "head": "b13e9407de5f00dcbe2622ed0d8ce9a233af1c00",
       "outcome": "no-change",
-      "reason": "Platform options now use the exported HotkeyPlatform type; same values, no skill change.",
+      "reason": "React guide titles now name React, matching the other frameworks; content unchanged.",
       "evidence": ["packages/react-hotkeys/skills/react-hotkeys/SKILL.md"]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
@@ -257,7 +255,7 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "2ef0238ff7f91f7dac9653309b11fe951ba10084a7a6ec6bab077dbdc58d74ac",
+      "fingerprint": "c1ecc5c3b9226040991b8b8847e7db102c576193d67d82e4c291db365b60bf4a",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -274,12 +272,12 @@
         "docs/framework/octane/quick-start.md": "c4ad9cec236f5e884f699aae19931d808bfd3c18933c36b0d2f5d7d5a06ce16c",
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
         "docs/framework/preact/quick-start.md": "b991913fea74d18f6ae096d46b54e6ca8ca85cb69df463c6ce12f3f8c9e5757b",
-        "docs/framework/react/guides/app-hotkeys.md": "7b2eeb5971fdb405cf89d6a07d037af00d4f7872e7090fd689d9aaa64f11ebf6",
-        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "a3f793e81c6a6e1e6aaf3d63c6b79114ea7d6f461123d371c0b4f0a23ffd88bc",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "ea9b70d7bbeb5846b0284e843960bf667b2ae6ffbe85742fb5ba332de170ca29",
-        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
-        "docs/framework/react/guides/hotkeys.md": "5e6ee56c4c945deef0cfcdcc6df73f1ed57602aaffb751ccf2483be586009627",
-        "docs/framework/react/guides/sequences.md": "e66231380dab6222508a1305d83586459b59953c2ecc47b9549e3cb29ffcd355",
+        "docs/framework/react/guides/app-hotkeys.md": "8f38ea6fda3e05e5b5e6445c376fdfecd4ea0118fb897e822ba6f2e8e6114885",
+        "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "3ecbdb39093471c9c3f112a3c60e21fb0eb511ae1eaa7c66644c88bf92021a17",
+        "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
+        "docs/framework/react/guides/hotkeys.md": "86d90e75bd74762ab0eaee5a1c41d919338dcfa6238ff7186567d0d6dad0b0e5",
+        "docs/framework/react/guides/sequences.md": "b02147fb593f5190b1b219739afa6609067407f6566ded142cccc76ac02d25c8",
         "docs/framework/react/quick-start.md": "f8afa1a28c8e78f72ac7e9f88ab34c7abcead4527e7c229c584abcf8768fac00",
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
         "docs/framework/solid/quick-start.md": "84a8fd673b881fbad9fee55113b19eeb1ba11b702714a5cdf53c8cbf6683c83a",
@@ -389,9 +387,9 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "head": "b13e9407de5f00dcbe2622ed0d8ce9a233af1c00",
       "outcome": "no-change",
-      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
+      "reason": "React guide titles now name React, matching the other frameworks; content unchanged.",
       "evidence": ["_artifacts"]
     },
     "source:.changeset/intent-skills.md": {
@@ -528,13 +526,13 @@
       "evidence": ["docs/framework/preact/reference/functions/useHotkeyHint.md"]
     },
     "source:docs/framework/react/guides/hotkey-hints.md": {
-      "fingerprint": "8aa0c84b16678eedc6edc4b629e124cf1dc776317100c30fee1ca1d1922eb207",
+      "fingerprint": "f8542e4ae61b6b9766008bc5f4d8f57bbfa1a0bf0ac5c679900886c818cebcb0",
       "snapshot": {
-        "docs/framework/react/guides/hotkey-hints.md": "38abb865f8527d791a903b74268836b30af3cdc2ed6d4693dff5d6d544ff85f3"
+        "docs/framework/react/guides/hotkey-hints.md": "046e497783ec8460e100df36063d6dca807873f41c675ef684cde016fa195718"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
+      "head": "b13e9407de5f00dcbe2622ed0d8ce9a233af1c00",
       "outcome": "no-change",
-      "reason": "Hint focus behavior and status wording are reflected in the skills updated in this review.",
+      "reason": "React guide titles now name React, matching the other frameworks; content unchanged.",
       "evidence": ["docs/framework/react/guides/hotkey-hints.md"]
     },
     "source:docs/framework/react/reference/functions/useHotkeyHint.md": {
@@ -6066,26 +6064,24 @@
       ]
     },
     "source:docs/framework/react/guides/formatting-display.md": {
-      "fingerprint": "59f60ebbc15d8e7440ff6e23dc6c9441f7b87d55fb132481e560118b946cc859",
+      "fingerprint": "24922ae83d477f2d5d57798cf74a2f40054f76c7686a7164090b501973487c3c",
       "snapshot": {
-        "docs/framework/react/guides/formatting-display.md": "bb22c134bb8d47ec99d742790d400fcca02ae6dc378596542650689eb943d1ee"
+        "docs/framework/react/guides/formatting-display.md": "296a3ee22dffebd7c2bde568ab50b25702eb86ef7644ba119e7caa8018113d21"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "b13e9407de5f00dcbe2622ed0d8ce9a233af1c00",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "reason": "React guide titles now name React, matching the other frameworks; content unchanged.",
       "evidence": ["docs/framework/react/guides/formatting-display.md"]
     },
     "source:docs/framework/react/guides/held-key-state-helpers.md": {
-      "fingerprint": "29cd216644ff0c39c4ac7b9bf73db415e9a19a8fff64685c2fce19e57fb77967",
+      "fingerprint": "7199d5d535b36b2a90b2fc1ab33a60e8784180d854731ab9b1c292c8663e348c",
       "snapshot": {
-        "docs/framework/react/guides/held-key-state-helpers.md": "0cb060c804c7d7ba06d3ba24210587b6d3c18db11d29f34ecc221b4e9ec5eb86"
+        "docs/framework/react/guides/held-key-state-helpers.md": "d7c05465bf82640e4bed3230f009e3ba1e06237f321536a827425cc4c2732bb0"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
+      "head": "b13e9407de5f00dcbe2622ed0d8ce9a233af1c00",
       "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
-      "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
-      ]
+      "reason": "React guide titles now name React, matching the other frameworks; content unchanged.",
+      "evidence": ["docs/framework/react/guides/held-key-state-helpers.md"]
     },
     "source:docs/framework/solid/guides/formatting-display.md": {
       "fingerprint": "59642b8d03d8a32e5f9711cc9706c250295825fbcdfe997199128fcd85872f26",

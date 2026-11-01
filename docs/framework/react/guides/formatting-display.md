@@ -1,5 +1,5 @@
 ---
-title: Displaying Hotkeys in Your UI
+title: Displaying Hotkeys in Your React UI
 id: formatting-display
 description: Format React hotkeys as platform-appropriate labels and keycaps, such as ⌘ S on macOS and Ctrl+S on Windows, for menus, buttons, and cheat sheets.
 ---

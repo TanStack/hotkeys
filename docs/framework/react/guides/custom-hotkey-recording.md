@@ -1,5 +1,5 @@
 ---
-title: Record Custom Hotkeys with useHotkeyRecorder
+title: Record Custom Hotkeys with useHotkeyRecorder in React
 id: custom-hotkey-recording
 description: Let users choose their own keyboard shortcuts in React by pressing the keys they want, with validation, conflict checks, and sequences.
 redirect_from:

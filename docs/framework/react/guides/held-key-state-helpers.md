@@ -1,5 +1,5 @@
 ---
-title: Track Held Keys and Modifier State
+title: Track Held Keys and Modifier State in React
 id: held-key-state-helpers
 description: Track which keys are held down in React, tell left and right modifiers apart, and change your UI while a key is held.
 redirect_from:

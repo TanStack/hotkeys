@@ -1,5 +1,5 @@
 ---
-title: Multi-Key Sequences and Vim-Style Shortcuts
+title: Multi-Key Sequences and Vim-Style Shortcuts in React
 id: sequences
 description: Register multi-key sequences in React, such as G then H, set the time allowed between steps, and show users which keys they've pressed so far.
 ---
