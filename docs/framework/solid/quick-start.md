@@ -87,6 +87,8 @@ function SaveButton() {
 
 The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. `HotkeyChord` checks the string, so a typo in the binding is a type error. Use `Hotkey` for a value that can also be a sequence.
 
+If your app renders on the server, such as with SolidStart or TanStack Start, use `createFormatForDisplay` instead, so the server's HTML shows the user's platform. See [Format labels in server-rendered apps](./guides/formatting-display#format-labels-in-server-rendered-apps).
+
 ## Hotkeys follow your components
 
 A hotkey is registered when the component that creates it renders, and removed when that component is disposed. Put each hotkey in the component it belongs to, so it is active only while that component is rendered:

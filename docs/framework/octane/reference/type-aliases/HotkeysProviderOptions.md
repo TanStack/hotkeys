@@ -7,4 +7,4 @@ title: HotkeysProviderOptions
 type HotkeysProviderOptions = DefaultHotkeysOptions;
 ```
 
-Defined in: [HotkeysProvider.ts:51](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L51)
+Defined in: [HotkeysProvider.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L57)

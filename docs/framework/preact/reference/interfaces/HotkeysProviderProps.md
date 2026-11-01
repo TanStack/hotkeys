@@ -3,7 +3,7 @@ id: HotkeysProviderProps
 title: HotkeysProviderProps
 ---
 
-Defined in: [HotkeysProvider.tsx:46](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L46)
+Defined in: [HotkeysProvider.tsx:52](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L52)
 
 ## Extends
 
@@ -23,7 +23,7 @@ Defined in: [HotkeysProvider.tsx:46](https://github.com/TanStack/hotkeys/blob/ma
 optional appHotkeys?: T;
 ```
 
-Defined in: [HotkeysProvider.tsx:54](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L54)
+Defined in: [HotkeysProvider.tsx:60](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L60)
 
 Every app hotkey, from `defineAppHotkeys`. Listed by `useAppHotkeyList`
 whether or not their components have mounted.
@@ -36,7 +36,7 @@ whether or not their components have mounted.
 children: ComponentChildren;
 ```
 
-Defined in: [HotkeysProvider.tsx:49](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L49)
+Defined in: [HotkeysProvider.tsx:55](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L55)
 
 ***
 
@@ -46,7 +46,7 @@ Defined in: [HotkeysProvider.tsx:49](https://github.com/TanStack/hotkeys/blob/ma
 optional customHotkeys?: CustomHotkeys<T> | null;
 ```
 
-Defined in: [HotkeysProvider.tsx:61](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L61)
+Defined in: [HotkeysProvider.tsx:67](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L67)
 
 The user's saved custom hotkeys. When the value changes, such as after
 saved data loads or the user signs in, it replaces the current custom
@@ -61,7 +61,7 @@ entries are ignored with a warning.
 optional defaultOptions?: HotkeysProviderOptions;
 ```
 
-Defined in: [HotkeysProvider.tsx:65](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L65)
+Defined in: [HotkeysProvider.tsx:71](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L71)
 
 Merged with the parent provider's defaults.
 
@@ -73,7 +73,7 @@ Merged with the parent provider's defaults.
 optional onCustomHotkeysChange?: (customHotkeys) => void;
 ```
 
-Defined in: [HotkeysProvider.tsx:63](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L63)
+Defined in: [HotkeysProvider.tsx:69](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/HotkeysProvider.tsx#L69)
 
 Called with the custom hotkeys after every change, ready to save.
 

@@ -19,7 +19,7 @@ formatForDisplay('Mod+[Digit2]', { platform: 'windows' }) // 'Ctrl+2'
 
 The same label can stand for different hotkeys. `Mod+S` follows the character S, and `Mod+[KeyS]` follows the key in the S position. See [Match a key's position instead](../../../guides/sensible-defaults.md#match-a-keys-position-instead). Labels for positions shorten `KeyS` to `S` and `Digit2` to `2`, keep readable numpad labels, and reuse punctuation and special-key symbols. Formatting doesn't change the stored hotkey or guess the user's keyboard layout.
 
-Omit `platform` to use detection. On macOS, the label joins modifier symbols with spaces. Windows and Linux use names joined with `+`. macOS orders modifiers as Control, Option, Shift, Command, so `Mod+Shift+S` displays as `⇧ ⌘ S`, while the hotkey itself stays `Mod+Shift+S`.
+Omit `platform` to detect it in the browser. On macOS, the label joins modifier symbols with spaces. Windows and Linux use names joined with `+`. macOS orders modifiers as Control, Option, Shift, Command, so `Mod+Shift+S` displays as `⇧ ⌘ S`, while the hotkey itself stays `Mod+Shift+S`.
 
 `formatForDisplay` accepts hotkeys only, including single keys such as `'Escape'` and modifiers on their own such as `'Shift'`. A key from a `KeyboardEvent`, such as a held key, can be outside the key types: pass it as `{ key }`.
 
@@ -92,6 +92,10 @@ formatForDisplay('Mod+[KeyQ]', {
 ```
 
 `keyLabels` wins over a layout entry, which wins over the fallback label. Layout entries get normal letter casing and key symbols, and missing or empty entries fall back. All of these options affect display only.
+
+## Labels in server templates
+
+Alpine runs only in the browser, so `formatForDisplay` detects the user's platform there. If your server templates, such as Laravel Blade or Rails views, also print shortcut labels, the server doesn't know the platform. Either let Alpine render those labels, such as with `x-text`, or detect the platform from the request's `User-Agent` header with the rules `detectPlatform` uses: `'mac'` if it contains `mac`, `'windows'` if it contains `win`, and `'linux'` otherwise, ignoring case.
 
 ## Parse, compare, and store hotkeys
 

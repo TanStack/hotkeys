@@ -851,6 +851,10 @@
               "to": "framework/react/reference/functions/useDefaultHotkeysOptions"
             },
             {
+              "label": "useFormatForDisplay",
+              "to": "framework/react/reference/functions/useFormatForDisplay"
+            },
+            {
               "label": "useHotkey",
               "to": "framework/react/reference/functions/useHotkey"
             },
@@ -920,6 +924,10 @@
               "to": "framework/preact/reference/functions/useDefaultHotkeysOptions"
             },
             {
+              "label": "useFormatForDisplay",
+              "to": "framework/preact/reference/functions/useFormatForDisplay"
+            },
+            {
               "label": "useHotkey",
               "to": "framework/preact/reference/functions/useHotkey"
             },
@@ -980,6 +988,10 @@
         {
           "label": "solid",
           "children": [
+            {
+              "label": "createFormatForDisplay",
+              "to": "framework/solid/reference/functions/createFormatForDisplay"
+            },
             {
               "label": "createHotkey",
               "to": "framework/solid/reference/functions/createHotkey"
@@ -1052,6 +1064,10 @@
             {
               "label": "injectDefaultHotkeysOptions",
               "to": "framework/angular/reference/functions/injectDefaultHotkeysOptions"
+            },
+            {
+              "label": "injectFormatForDisplay",
+              "to": "framework/angular/reference/functions/injectFormatForDisplay"
             },
             {
               "label": "injectHotkey",
@@ -1133,6 +1149,10 @@
             {
               "label": "useDefaultHotkeysOptions",
               "to": "framework/vue/reference/functions/useDefaultHotkeysOptions"
+            },
+            {
+              "label": "useFormatForDisplay",
+              "to": "framework/vue/reference/functions/useFormatForDisplay"
             },
             {
               "label": "useHotkey",
@@ -1267,6 +1287,10 @@
             {
               "label": "getDefaultHotkeysOptions",
               "to": "framework/svelte/reference/functions/getDefaultHotkeysOptions"
+            },
+            {
+              "label": "getFormatForDisplay",
+              "to": "framework/svelte/reference/functions/getFormatForDisplay"
             },
             {
               "label": "getHotkeyRegistrations",
@@ -1411,6 +1435,10 @@
               "to": "framework/ember/reference/functions/createHotkeysScope"
             },
             {
+              "label": "useFormatForDisplay",
+              "to": "framework/ember/reference/functions/useFormatForDisplay"
+            },
+            {
               "label": "useHotkeyRegistrations",
               "to": "framework/ember/reference/functions/useHotkeyRegistrations"
             },
@@ -1482,6 +1510,10 @@
             {
               "label": "useDefaultHotkeysOptions",
               "to": "framework/octane/reference/functions/useDefaultHotkeysOptions"
+            },
+            {
+              "label": "useFormatForDisplay",
+              "to": "framework/octane/reference/functions/useFormatForDisplay"
             },
             {
               "label": "useHotkey",
@@ -2319,6 +2351,14 @@
         {
           "label": "DisplayHotkeyChord",
           "to": "reference/type-aliases/DisplayHotkeyChord"
+        },
+        {
+          "label": "detectPlatform",
+          "to": "reference/functions/detectPlatform"
+        },
+        {
+          "label": "HotkeyPlatform",
+          "to": "reference/type-aliases/HotkeyPlatform"
         },
         {
           "label": "formatHotkey",

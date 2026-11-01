@@ -6,6 +6,15 @@ description: Format Angular hotkeys as platform-appropriate labels and keycaps, 
 
 Use `formatForDisplay` whenever a hotkey appears in a menu, button, tooltip, cheat sheet, or shortcut settings panel. It accepts chord strings, including physical ones such as `'Mod+[KeyS]'`, chord objects, parsed chords, and sequences. Store the hotkey itself, and format it when you render. A label is for reading, not for registering.
 
+A label depends on the user's platform: `Mod+S` is `⌘ S` on macOS and `Ctrl+S` elsewhere. Pick the API by where your labels render:
+
+| Where labels render | Use |
+| --- | --- |
+| Only in the browser, such as an app without server rendering | `formatForDisplay(hotkey)` |
+| On the server, then hydrated | `injectFormatForDisplay()`, with the provider's `platform` set from the request. See [Format labels in server-rendered apps](#format-labels-in-server-rendered-apps) |
+| In a static or prerendered page | `formatForDisplay` in a block that renders only in the browser. See [Static and prerendered pages](#static-and-prerendered-pages) |
+| Anywhere, for a platform you already know | `formatForDisplay(hotkey, { platform })` |
+
 ## Format a hotkey
 
 ```ts
@@ -19,7 +28,7 @@ formatForDisplay('Mod+[Digit2]', { platform: 'windows' }) // 'Ctrl+2'
 
 The same label can stand for different hotkeys. `Mod+S` follows the character S, and `Mod+[KeyS]` follows the key in the S position. See [Match a key's position instead](../../../guides/sensible-defaults.md#match-a-keys-position-instead). Labels for positions shorten `KeyS` to `S` and `Digit2` to `2`, keep readable numpad labels, and reuse punctuation and special-key symbols. Formatting doesn't change the stored hotkey or guess the user's keyboard layout.
 
-Omit `platform` to use detection. On macOS, the label joins modifier symbols with spaces. Windows and Linux use names joined with `+`. macOS orders modifiers as Control, Option, Shift, Command, so `Mod+Shift+S` displays as `⇧ ⌘ S`, while the hotkey itself stays `Mod+Shift+S`.
+Omit `platform` to detect it in the browser. On macOS, the label joins modifier symbols with spaces. Windows and Linux use names joined with `+`. macOS orders modifiers as Control, Option, Shift, Command, so `Mod+Shift+S` displays as `⇧ ⌘ S`, while the hotkey itself stays `Mod+Shift+S`.
 
 `formatForDisplay` accepts hotkeys only, including single keys such as `'Escape'` and modifiers on their own such as `'Shift'`. A key from a `KeyboardEvent`, such as a held key, can be outside the key types: pass it as `{ key }`.
 
@@ -92,6 +101,145 @@ formatForDisplay('Mod+[KeyQ]', {
 ```
 
 `keyLabels` wins over a layout entry, which wins over the fallback label. Layout entries get normal letter casing and key symbols, and missing or empty entries fall back. All of these options affect display only.
+
+The browser's `KeyboardLayoutMap` exists only in the browser, and it loads after the page renders. In a server-rendered app, render fallback labels first and pass the map once it loads, as above. The first render then matches the server's HTML. `keyLabels` works anywhere, including on the server.
+
+## Format labels in server-rendered apps
+
+The server doesn't know the user's platform. Without one, a label rendered on the server uses `'linux'`, so a Mac user gets `Ctrl+S` in the server's HTML and `⌘ S` once Angular hydrates the component. To render the right label from the start:
+
+1. Read the request's `User-Agent` header on the server, and pass `detectPlatform(userAgent)` as the provider's `platform`.
+2. Format labels with `injectFormatForDisplay()` instead of `formatForDisplay`.
+
+```ts
+import { REQUEST, inject } from '@angular/core'
+import { detectPlatform, provideHotkeys } from '@tanstack/angular-hotkeys'
+
+provideHotkeys({
+  defaultOptions: () => ({
+    platform: detectPlatform(
+      inject(REQUEST)?.headers.get('user-agent') ?? undefined,
+    ),
+  }),
+})
+```
+
+```ts
+import { Component } from '@angular/core'
+import { injectFormatForDisplay } from '@tanstack/angular-hotkeys'
+
+@Component({
+  selector: 'app-toolbar',
+  template: `
+    <ul>
+      @for (command of commands; track command.id) {
+        <li>{{ command.name }} <kbd>{{ format(command.hotkey) }}</kbd></li>
+      }
+    </ul>
+  `,
+})
+export class ToolbarComponent {
+  // Call it in an injection context, such as a field initializer
+  readonly format = injectFormatForDisplay()
+}
+```
+
+`injectFormatForDisplay` returns a function with the same options as `formatForDisplay`. Inject it once, then call the function anywhere, including in templates. The function reads the provider's `platform` each time it runs, so a template updates when the platform changes. A `platform` passed to the function wins over the provider's.
+
+In the browser, `detectPlatform()` reads the browser's own `navigator`, so the server and the browser get the same platform for practically every user. The provider's `platform` is also the default platform for hotkeys and recorders inside it. An inner provider inherits it.
+
+Without a provider `platform`, `injectFormatForDisplay` renders `'linux'` labels on the server. Mac users see `Ctrl+S` until Angular hydrates the component. Set the provider's `platform` to avoid that.
+
+The provider must run on the server too, so provide it where the request is available, as shown for each framework below.
+
+### Angular SSR
+
+The `REQUEST` token from `@angular/core` is the current request on the server and `null` in the browser. Without a user agent, `detectPlatform` reads the browser's `navigator`, so the same provider works on both sides. Add it to the application config that the browser and server configs share:
+
+```ts
+// src/app/app.config.ts
+import { REQUEST, inject } from '@angular/core'
+import type { ApplicationConfig } from '@angular/core'
+import { provideClientHydration } from '@angular/platform-browser'
+import { detectPlatform, provideHotkeys } from '@tanstack/angular-hotkeys'
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideClientHydration(),
+    provideHotkeys({
+      defaultOptions: () => ({
+        platform: detectPlatform(
+          inject(REQUEST)?.headers.get('user-agent') ?? undefined,
+        ),
+      }),
+    }),
+  ],
+}
+```
+
+`REQUEST` is also `null` when a route is prerendered. See [Static and prerendered pages](#static-and-prerendered-pages).
+
+### Analog
+
+`injectRequest()` from `@analogjs/router/tokens` returns the server's request on the server and `null` in the browser. The request is a Node.js request, so read the header from `headers`:
+
+```ts
+// src/app/app.config.ts
+import type { ApplicationConfig } from '@angular/core'
+import { injectRequest } from '@analogjs/router/tokens'
+import { detectPlatform, provideHotkeys } from '@tanstack/angular-hotkeys'
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    // ...your other providers
+    provideHotkeys({
+      defaultOptions: () => ({
+        platform: detectPlatform(injectRequest()?.headers['user-agent']),
+      }),
+    }),
+  ],
+}
+```
+
+### Render a label only in the browser
+
+To skip server rendering for a label instead, render it in a `@defer` block. On the server, Angular renders only the block's `@placeholder`. In the browser, plain `formatForDisplay` detects the platform:
+
+```ts
+import { Component } from '@angular/core'
+import { formatForDisplay } from '@tanstack/angular-hotkeys'
+
+@Component({
+  selector: 'app-save-button',
+  template: `
+    <button (click)="save()">
+      Save
+      @defer (on immediate) {
+        <kbd>{{ formatForDisplay('Mod+S') }}</kbd>
+      } @placeholder {
+        <kbd>&nbsp;</kbd>
+      }
+    </button>
+  `,
+})
+export class SaveButtonComponent {
+  protected readonly formatForDisplay = formatForDisplay
+
+  save() {
+    // ...
+  }
+}
+```
+
+To set a label from code instead, store it in a signal and set it in `afterNextRender`, which runs only in the browser. Don't switch templates with `isPlatformBrowser`: the server and the browser then render different content, which breaks hydration. A placeholder with the label's width keeps the layout from shifting.
+
+### Static and prerendered pages
+
+A page rendered at build time has no request and no user, so neither `formatForDisplay` nor `injectFormatForDisplay` can know the platform. This includes routes with `RenderMode.Prerender` in `app.routes.server.ts`, and Analog's prerendered routes. Render platform-specific labels in the browser, as above. `injectFormatForDisplay` without a provider `platform` also works there: it shows `'linux'` labels until Angular hydrates the component, then switches. To render labels for each user instead, set the route's render mode to `RenderMode.Server`.
+
+### Development warning
+
+In development, formatting a label on the server without a platform logs a warning once, because users on macOS and Windows would get a `'linux'` label first. The warning names the missing setting. It isn't included in production builds.
 
 ## Parse, compare, and store hotkeys
 

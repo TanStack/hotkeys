@@ -101,6 +101,8 @@ export default class SaveButton extends Component {
 
 The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. `HotkeyChord` checks the string, so a typo in the binding is a type error. Use `Hotkey` for a value that can also be a sequence.
 
+If your app renders on the server with FastBoot, use `useFormatForDisplay` with a scope's `platform` instead, so the server's HTML shows the user's platform. See [Format labels in server-rendered apps](./guides/formatting-display#format-labels-in-server-rendered-apps).
+
 ## Hotkeys follow your components
 
 A hotkey is registered when its helper renders, and unregistered when the helper is removed from the template. Put each hotkey in the component it belongs to, so it is active only while that component is rendered:

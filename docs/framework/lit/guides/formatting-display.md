@@ -19,7 +19,7 @@ formatForDisplay('Mod+[Digit2]', { platform: 'windows' }) // 'Ctrl+2'
 
 The same label can stand for different hotkeys. `Mod+S` follows the character S, and `Mod+[KeyS]` follows the key in the S position. See [Match a key's position instead](../../../guides/sensible-defaults.md#match-a-keys-position-instead). Labels for positions shorten `KeyS` to `S` and `Digit2` to `2`, keep readable numpad labels, and reuse punctuation and special-key symbols. Formatting doesn't change the stored hotkey or guess the user's keyboard layout.
 
-Omit `platform` to use detection. On macOS, the label joins modifier symbols with spaces. Windows and Linux use names joined with `+`. macOS orders modifiers as Control, Option, Shift, Command, so `Mod+Shift+S` displays as `⇧ ⌘ S`, while the hotkey itself stays `Mod+Shift+S`.
+Omit `platform` to detect it in the browser. On macOS, the label joins modifier symbols with spaces. Windows and Linux use names joined with `+`. macOS orders modifiers as Control, Option, Shift, Command, so `Mod+Shift+S` displays as `⇧ ⌘ S`, while the hotkey itself stays `Mod+Shift+S`.
 
 `formatForDisplay` accepts hotkeys only, including single keys such as `'Escape'` and modifiers on their own such as `'Shift'`. A key from a `KeyboardEvent`, such as a held key, can be outside the key types: pass it as `{ key }`.
 
@@ -92,6 +92,47 @@ formatForDisplay('Mod+[KeyQ]', {
 ```
 
 `keyLabels` wins over a layout entry, which wins over the fallback label. Layout entries get normal letter casing and key symbols, and missing or empty entries fall back. All of these options affect display only.
+
+## Format labels in server-rendered apps
+
+With Lit SSR (`@lit-labs/ssr`), the server doesn't know the user's platform. A label formatted on the server without a `platform` uses `'linux'`, so a Mac user gets `Ctrl+S` in the server's HTML. Hydration doesn't fix it: Lit expects the browser's first render to match the server's HTML, and keeps the server's text.
+
+Lit has no provider, so pass the platform yourself. Give the element a `platform` property, and pass it to `formatForDisplay`:
+
+```ts
+import { LitElement, html } from 'lit'
+import { customElement, property } from 'lit/decorators.js'
+import { formatForDisplay } from '@tanstack/lit-hotkeys'
+import type { HotkeyPlatform } from '@tanstack/lit-hotkeys'
+
+@customElement('save-button')
+class SaveButton extends LitElement {
+  @property() platform?: HotkeyPlatform
+
+  render() {
+    return html`
+      <button>
+        Save <kbd>${formatForDisplay('Mod+S', { platform: this.platform })}</kbd>
+      </button>
+    `
+  }
+}
+```
+
+On the server, set the attribute from the request's `User-Agent` header:
+
+```ts
+import { render } from '@lit-labs/ssr'
+import { html } from 'lit'
+import { detectPlatform } from '@tanstack/lit-hotkeys'
+
+const platform = detectPlatform(userAgent)
+const result = render(html`<save-button platform=${platform}></save-button>`)
+```
+
+The attribute is part of the server's HTML, so the element reads the same `platform` when it upgrades in the browser. Pass it on to child elements that show labels, such as `.platform=${this.platform}`. An element that renders only in the browser can call `formatForDisplay(hotkey)` without a platform.
+
+The browser's `KeyboardLayoutMap` loads only in the browser, after hydration. Render fallback labels first and pass the map once it loads. `keyLabels` works anywhere, including on the server.
 
 ## Parse, compare, and store hotkeys
 

@@ -1,6 +1,11 @@
-import { Component, provideZonelessChangeDetection } from '@angular/core'
+import {
+  Component,
+  InjectionToken,
+  inject,
+  provideZonelessChangeDetection,
+} from '@angular/core'
 import { TestBed } from '@angular/core/testing'
-import { HotkeyManager } from '@tanstack/hotkeys'
+import { HotkeyManager, detectPlatform } from '@tanstack/hotkeys'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { provideHotkeys } from '../src/hotkeys-provider'
 import { injectFormatForDisplay } from '../src/injectFormatForDisplay'
@@ -45,6 +50,27 @@ afterEach(() => {
 })
 
 describe('provider platform', () => {
+  it('reads defaults from a getter in the injection context', async () => {
+    // Stands in for Angular's REQUEST token during server rendering.
+    const USER_AGENT = new InjectionToken<string>('USER_AGENT')
+    TestBed.configureTestingModule({
+      providers: [
+        provideZonelessChangeDetection(),
+        {
+          provide: USER_AGENT,
+          useValue: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)',
+        },
+        provideHotkeys({
+          defaultOptions: () => ({
+            platform: detectPlatform(inject(USER_AGENT)),
+          }),
+        }),
+      ],
+    })
+    const fixture = TestBed.createComponent(Label)
+    await fixture.whenStable()
+    expect(fixture.nativeElement.querySelector('kbd').textContent).toBe('⌘ S')
+  })
   it.each([
     ['mac', '⌘ S'],
     ['windows', 'Ctrl+S'],

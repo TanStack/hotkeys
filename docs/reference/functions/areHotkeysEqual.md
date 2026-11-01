@@ -29,7 +29,7 @@ remain distinct even when one keyboard event could match both.
 
 ### platform?
 
-`"mac"` \| `"windows"` \| `"linux"`
+[`HotkeyPlatform`](../type-aliases/HotkeyPlatform.md) = `...`
 
 ## Returns
 

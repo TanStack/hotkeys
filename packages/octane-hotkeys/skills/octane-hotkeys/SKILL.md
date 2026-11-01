@@ -77,6 +77,7 @@ No provider is required. Use Octane 0.12 or newer, with hooks in compiler-enable
 - **Hooks are tracked by call site.** Use `useHotkeys(items.map(...))` for lists, not `useHotkey` in a loop.
 - **Custom hooks in plain `.ts` and `.js` files need the compiler.** Calls from a `.ts` or `.js` file that the compiler skips share one slot per hook in each component, even across different custom hooks, so only the last `useHotkey` call works. The compiler handles a file that imports a value from `octane` or starts with `/** @jsxImportSource octane */`. A type-only import doesn't count. `.tsrx` and `.tsx` files are fine.
 - **Call the hooks directly.** A `useShortcut(keys: string)` wrapper has to cast strings to hotkeys, which turns off type checking and drops sequences, options, and app hotkeys.
+- **Server-rendered labels need the user's platform.** On the server, `formatForDisplay` can't see the user's OS, so it renders Linux labels that differ after hydration for Mac and Windows users. Set the provider's `defaultOptions.platform` to `detectPlatform(userAgent)` from the request's `User-Agent` header, and format labels with `const format = useFormatForDisplay()` at the top of the component, then `format(hotkey)`. Keep plain `formatForDisplay` for labels that render only in the browser.
 
 When declaring app hotkeys, building a cheat sheet, or letting users rebind shortcuts, load `@tanstack/hotkeys#app-hotkeys` and read [app hotkeys in Octane](references/app-hotkeys.md).
 

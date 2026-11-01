@@ -88,6 +88,7 @@ No provider is required. Call these at the top level of a component's `<script>`
 - **Call `setHotkeysContext` before creating the component's hotkeys.** It applies to the component itself, so a hotkey created first lands in the outer scope, which an exclusive context then suspends. It reads its options once; for `enabled` or `exclusive` that change, wrap the component in `<HotkeysProvider>`. Give each open dialog its own scope name.
 - **The callback isn't tracked.** Read state and props inside it.
 - **Call the functions directly.** A `createShortcut(keys: string)` wrapper has to cast strings to hotkeys, which turns off type checking and drops sequences, getter options, and app hotkeys.
+- **Server-rendered labels need the user's platform.** On the server, `formatForDisplay` can't see the user's OS, so it renders Linux labels that differ after hydration for Mac and Windows users. Set the provider's `defaultOptions.platform` to `detectPlatform(userAgent)` from the request's `User-Agent` header, and format labels with `const format = getFormatForDisplay()` during component initialization, then `format(hotkey)`. Keep plain `formatForDisplay` for labels that render only in the browser.
 
 When declaring app hotkeys, building a cheat sheet, or letting users rebind shortcuts, load `@tanstack/hotkeys#app-hotkeys` and read [app hotkeys in Svelte](references/app-hotkeys.md).
 

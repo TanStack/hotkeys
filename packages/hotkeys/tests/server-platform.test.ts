@@ -72,7 +72,7 @@ describe('on a server runtime', () => {
     expect(formatForDisplay('Mod+S')).toBe('Ctrl+S')
     formatForDisplay('Mod+K')
     expect(warn).toHaveBeenCalledOnce()
-    expect(warn.mock.calls[0]![0]).toMatch(/defaultOptions\.platform/)
+    expect(warn.mock.calls[0]![0]).toMatch(/detectPlatform\(userAgent\)/)
   })
 
   it('does not warn for a label with a platform', async () => {

@@ -3,7 +3,7 @@ id: HotkeysContextValue
 title: HotkeysContextValue
 ---
 
-Defined in: [hotkeys-provider.ts:77](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L77)
+Defined in: [hotkeys-provider.ts:87](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L87)
 
 ## Properties
 
@@ -15,7 +15,7 @@ readonly appHotkeysState: Signal<
 | null>;
 ```
 
-Defined in: [hotkeys-provider.ts:84](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L84)
+Defined in: [hotkeys-provider.ts:94](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L94)
 
 Tracks app hotkeys and custom hotkeys so signals and effects re-run.
 
@@ -29,7 +29,7 @@ readonly appHotkeysStore:
   | null;
 ```
 
-Defined in: [hotkeys-provider.ts:82](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L82)
+Defined in: [hotkeys-provider.ts:92](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L92)
 
 ***
 
@@ -39,7 +39,7 @@ Defined in: [hotkeys-provider.ts:82](https://github.com/TanStack/hotkeys/blob/ma
 readonly defaultOptions: HotkeysProviderOptions;
 ```
 
-Defined in: [hotkeys-provider.ts:79](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L79)
+Defined in: [hotkeys-provider.ts:89](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L89)
 
 Merged with every ancestor provider's defaults, including `hotkey.scope`.
 
@@ -51,6 +51,6 @@ Merged with every ancestor provider's defaults, including `hotkey.scope`.
 readonly enabled: Signal<boolean>;
 ```
 
-Defined in: [hotkeys-provider.ts:81](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L81)
+Defined in: [hotkeys-provider.ts:91](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L91)
 
 Whether this provider and every ancestor are enabled.
