@@ -329,6 +329,7 @@ class RenderCost extends Component {
 
   <template>
     {{useHotkey "Mod+S" this.noop}}
+    {{useHotkey "Q" this.noop}}
     <output id="cost-hold">{{this.holdText}}</output>
     <output id="cost-hint">{{this.hintText}}</output>
   </template>
@@ -348,7 +349,8 @@ module('Ember hotkeys: display helper render cost', (hooks) => {
     await render(<template><RenderCost /></template>)
     holdReads = 0
     hintReads = 0
-    for (const unrelated of 'qwertyuiop') {
+    // Q fires a registered hotkey, which publishes new registrations.
+    for (const unrelated of 'qwertyuiopq') {
       await key(unrelated)
       await key(unrelated, 'keyup')
     }

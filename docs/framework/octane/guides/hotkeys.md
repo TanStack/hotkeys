@@ -120,7 +120,7 @@ You can group hotkeys in a custom hook. The compiler gives each hook call its ow
 - `.ts` and `.js` files that import a value from `octane`, such as `useState`. A type-only import doesn't count.
 - `.ts` and `.js` files that start with `/** @jsxImportSource octane */`.
 
-Calls from any other `.ts` file get no slot of their own. In one component, all such calls to the same hook share one slot, even when they come from different custom hooks. Only the last call works, and nothing warns. Add the pragma to every file with a custom hook:
+Calls from any other `.ts` or `.js` file get no slot of their own. In one component, all such calls to the same hook share one slot, even when they come from different custom hooks. Only the last call works, and nothing warns. Add the pragma to every file with a custom hook:
 
 ```ts
 /** @jsxImportSource octane */

@@ -134,23 +134,21 @@
       "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
-      "fingerprint": "70e869fb38e92f97ebaaa36f35ff2f81888a70bd780e6feda7e64136aa4b4e73",
+      "fingerprint": "a75604ca0cfbcabe0c4894d556456fe964bb81b0af448fce585c7de9bdc24a11",
       "snapshot": {
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
-        "docs/framework/octane/quick-start.md": "a2646bea315fd6420d32b816b541ea763e1d4c4947e4614956b6d36ed9edc56f",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2e99d82716cbbdacc5a576194bd088092cdeccd954253e7d6538658fd93ab479",
+        "docs/framework/octane/quick-start.md": "5496356f36afcb42677c4fa1ed618813d69b7b22bd782fac240cb94c64d90f6e",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "bc6d4b68b077d92ead298470a6e76b7ab61cbcb2762ee9b5873590c4bed5ef94",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "4e9a9adac5d1717caf67eaccbd3f5cb9780bad4db5c420290512bbab34f319fd",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "4884113fa09d9869baf8af1f3bb07ba72558308a03136b3c1b59feb49ce2efbb",
         "packages/octane-hotkeys/src/useHotkey.ts": "d8da1d0cf0eb528667a25e750a2e51405e4e293bd10e22173546967b5c9d392b",
         "packages/octane-hotkeys/src/useHotkeys.ts": "f864ed03975e9930638cfe9025639619ebdb2c975a55e6950199cba86cb70476"
       },
-      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "head": "6b4f6c487211c51b9a58d757c4bddb0459747542",
       "outcome": "updated",
-      "reason": "Corrected the custom-hook pitfall: uncompiled calls share one slot per hook in a component, even across different custom hooks.",
-      "evidence": [
-        "packages/octane-hotkeys/src/internal.ts subSlot falls back to Symbol.for(tag) when no slot is passed"
-      ]
+      "reason": "Custom-hook pitfall now covers plain .js files as well as .ts.",
+      "evidence": ["docs/framework/octane/guides/hotkeys.md"]
     },
     "skill:packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": {
       "fingerprint": "43e05f7549280b1cfa59f79178aafebda258a380231fe8f48cb42b085bf3e120",
@@ -242,7 +240,7 @@
       "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
-      "fingerprint": "49a405e8fdff49147201ee227d70bf832209fad6690238a3a0fe185a09c114c8",
+      "fingerprint": "47fb2c2baab48bdf5f6508acc6a57310df5ac3f22fbcc7a869a3e59f09199ba0",
       "snapshot": {
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "4647a77aeac8014b20ccaaa10872fca8e7845bfb5416c68723fc25f2de79b0c7",
@@ -252,16 +250,16 @@
         "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "8f0eee85f6ac77a14ea6a4c3ac2ee450db061e8751948f1df15b805d9e5d44f4",
         "packages/vue-hotkeys/src/useAppHotkeys.ts": "924ed5dedd6451332545026bd94441eb7f72cfb4f3c2c07880f34ee652574967",
         "packages/vue-hotkeys/src/useHotkey.ts": "74257a7e0f62393770877121eac31d405cf7daad416dc167feab08e4e9bbe4b9",
-        "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "a01421929263460bd7aca172c4142ffc177ae5c4ba31743afc8a18a7f6c0e77b",
+        "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "head": "6b4f6c487211c51b9a58d757c4bddb0459747542",
       "outcome": "no-change",
-      "reason": "The quick-start focus sentence changed to say a target hotkey fires while focus is on the element or inside it; the skill keeps its tabindex example, which is still correct.",
+      "reason": "Internal adapter fixes (Alpine failed-call cleanup, Ember hint tracking, Vue KeepAlive recorder) keep the documented API and behavior.",
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "c9533d11478723052929438fb75f9040c57f6406517d735b4a128d92efc8250e",
+      "fingerprint": "0a10a5cc229cd0baa6595541bf359061266249be1e6875325b1e4d6d85338083",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -275,7 +273,7 @@
         "docs/framework/lit/guides/app-hotkeys.md": "da53124e5996f174e42e37a69a1b46757c7112506060fd79688fdbe4b1637b9c",
         "docs/framework/lit/quick-start.md": "0401af0a16eed1571514ce2e7cb0114e52e4d276f97a77cd1b26b2d8fe1f65b7",
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
-        "docs/framework/octane/quick-start.md": "a2646bea315fd6420d32b816b541ea763e1d4c4947e4614956b6d36ed9edc56f",
+        "docs/framework/octane/quick-start.md": "5496356f36afcb42677c4fa1ed618813d69b7b22bd782fac240cb94c64d90f6e",
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
         "docs/framework/preact/quick-start.md": "a264a85a4a2d765edc551c82f46e45c2eb53721e18129eb19550f6962fa245c3",
         "docs/framework/react/guides/app-hotkeys.md": "7b2eeb5971fdb405cf89d6a07d037af00d4f7872e7090fd689d9aaa64f11ebf6",
@@ -333,7 +331,7 @@
         "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "393686f43b22d9e722554ad922b4a7c4df4ab053d472e3f9038c6f119e8dc1bc",
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "76ac338e601032ac00b6c9e78d4de25ba80e10b7e3aa193eccc65964e1bdb25c",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "324326b5cc6d2e7120ef004450a4ad721c564a79f419fa99978452b62a51c38a",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2e99d82716cbbdacc5a576194bd088092cdeccd954253e7d6538658fd93ab479",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "bc6d4b68b077d92ead298470a6e76b7ab61cbcb2762ee9b5873590c4bed5ef94",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "4e9a9adac5d1717caf67eaccbd3f5cb9780bad4db5c420290512bbab34f319fd",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "4884113fa09d9869baf8af1f3bb07ba72558308a03136b3c1b59feb49ce2efbb",
@@ -390,13 +388,13 @@
         "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "8f0eee85f6ac77a14ea6a4c3ac2ee450db061e8751948f1df15b805d9e5d44f4",
         "packages/vue-hotkeys/src/useAppHotkeys.ts": "924ed5dedd6451332545026bd94441eb7f72cfb4f3c2c07880f34ee652574967",
         "packages/vue-hotkeys/src/useHotkey.ts": "74257a7e0f62393770877121eac31d405cf7daad416dc167feab08e4e9bbe4b9",
-        "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "a01421929263460bd7aca172c4142ffc177ae5c4ba31743afc8a18a7f6c0e77b",
+        "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "head": "6b4f6c487211c51b9a58d757c4bddb0459747542",
       "outcome": "no-change",
-      "reason": "Doc wording and adapter bug fixes; no skill boundaries, sources, or domains changed.",
-      "evidence": ["_artifacts/skill_tree.yaml sources unchanged"]
+      "reason": "Internal adapter fixes (Alpine failed-call cleanup, Ember hint tracking, Vue KeepAlive recorder) keep the documented API and behavior.",
+      "evidence": ["_artifacts"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -836,23 +834,23 @@
       "evidence": ["packages/angular-hotkeys/tests/injectHotkeyHint.test.ts"]
     },
     "source:packages/ember-hotkeys/src/useHotkeyHint.ts": {
-      "fingerprint": "414b7b5ccc765476cb42608f07b1ce10ddec449b9994132c4e2e2000f173984c",
+      "fingerprint": "a9cd89425c9409800c1eca500456ec2dc5fdcb700882a41127570622b46d2416",
       "snapshot": {
-        "packages/ember-hotkeys/src/useHotkeyHint.ts": "f6a755814168540f39c58719df4184c07fa5a92f9b1412ff7121bbbcaa7cb254"
+        "packages/ember-hotkeys/src/useHotkeyHint.ts": "be1f0792a5e4560f39c8c876494139fcb0b06d96ff519a1ffe76c089d26507b8"
       },
-      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "head": "6b4f6c487211c51b9a58d757c4bddb0459747542",
       "outcome": "no-change",
-      "reason": "Internal tracking fix; the hint API and documented behavior are the same.",
+      "reason": "Implementation, test, or doc-wording change already reflected in the mapped skills.",
       "evidence": ["packages/ember-hotkeys/src/useHotkeyHint.ts"]
     },
     "source:packages/ember-hotkeys/tests/integration/hotkeys.test.gts": {
-      "fingerprint": "6d83b714a13f75c36215793cfd475bc7d66cd114deef97bb0c2ead217e375363",
+      "fingerprint": "7f405b303de7b1c876757a92e0f4d2ec4aa23d49e27627d000ee2ac959882452",
       "snapshot": {
-        "packages/ember-hotkeys/tests/integration/hotkeys.test.gts": "81b4f2fff184adaa76c42d50381339f39e253db194078837a4c2effa9cfa97e3"
+        "packages/ember-hotkeys/tests/integration/hotkeys.test.gts": "f62924942d69042e13791ae74a1b014b7beca850895af53c41595cea7069fe89"
       },
-      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "head": "6b4f6c487211c51b9a58d757c4bddb0459747542",
       "outcome": "no-change",
-      "reason": "Test-only change; no public API or documented behavior changed.",
+      "reason": "Implementation, test, or doc-wording change already reflected in the mapped skills.",
       "evidence": ["packages/ember-hotkeys/tests/integration/hotkeys.test.gts"]
     },
     "source:packages/hotkeys/tests/scopes.test.ts": {
@@ -1066,14 +1064,14 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/octane/guides/hotkeys.md": {
-      "fingerprint": "16446395561f8f260cf4f425ac448ee2ee5bb807630b20f3f1fd6f615576c939",
+      "fingerprint": "43cdf55ed2065326efa2020cf099688b6ca3645954811de8151c241e69b941b3",
       "snapshot": {
-        "docs/framework/octane/guides/hotkeys.md": "64092c532c4a29e1b8cfacdffcebcc5b370b0cb4c9dc8bbe28dbdbdee5582d1c"
+        "docs/framework/octane/guides/hotkeys.md": "57374c5b13508d3bd7e0afcecd8570f70d95a6bf08e3b6ac051e6ed5dde742e4"
       },
-      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
-      "outcome": "updated",
-      "reason": "Octane skill pitfall updated to match the corrected custom-hook rule.",
-      "evidence": ["packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"]
+      "head": "6b4f6c487211c51b9a58d757c4bddb0459747542",
+      "outcome": "no-change",
+      "reason": "Implementation, test, or doc-wording change already reflected in the mapped skills.",
+      "evidence": ["docs/framework/octane/guides/hotkeys.md"]
     },
     "source:docs/framework/preact/guides/hotkeys.md": {
       "fingerprint": "886f82c50057b524c7924de5c917e65e2cdd98472027dee931150b6a7fde37b5",
@@ -7454,13 +7452,13 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/alpine-hotkeys/tests/effect-errors.test.ts": {
-      "fingerprint": "9b8bde84eaf611bdcdcdab36622a1080c1d1eb4eeea3b5784a16c0c41482c50d",
+      "fingerprint": "87c77797e849ee672ca0662e839bdf35a31183c03b68b076bbaba1e946ef029e",
       "snapshot": {
-        "packages/alpine-hotkeys/tests/effect-errors.test.ts": "848c0783401f0569ff4d7419c2617227c560fcaa5281873adbfb3d376d47236f"
+        "packages/alpine-hotkeys/tests/effect-errors.test.ts": "d4c122fa104adbfc16dfe42d595238a2eed56ea5519e4f9b87706c0b2524bee8"
       },
-      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "head": "6b4f6c487211c51b9a58d757c4bddb0459747542",
       "outcome": "no-change",
-      "reason": "Test-only change; no public API or documented behavior changed.",
+      "reason": "Implementation, test, or doc-wording change already reflected in the mapped skills.",
       "evidence": ["packages/alpine-hotkeys/tests/effect-errors.test.ts"]
     },
     "source:packages/alpine-hotkeys/tests/reactive-options.test.ts": {
@@ -7684,14 +7682,24 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/vue-hotkeys/tests/keep-alive.test.ts": {
-      "fingerprint": "20a7e3bd3f3218571dde8b848401f54a3bdcd8acdee6ce14747189799069512f",
+      "fingerprint": "6244bf4d35145e8446f1e533b9dc0489ebd7cd5bc9ca1740b272f7cafdf88e30",
       "snapshot": {
-        "packages/vue-hotkeys/tests/keep-alive.test.ts": "d8f280697328870d54fb16d0d19cca77398fb9f48185ae04e91b93f9626c3991"
+        "packages/vue-hotkeys/tests/keep-alive.test.ts": "f87970b2fc7591546824d3028c937e664ab3c45d9bc3cb698872327411ef8a50"
       },
-      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "head": "6b4f6c487211c51b9a58d757c4bddb0459747542",
       "outcome": "no-change",
-      "reason": "Test-only change; no public API or documented behavior changed.",
+      "reason": "Implementation, test, or doc-wording change already reflected in the mapped skills.",
       "evidence": ["packages/vue-hotkeys/tests/keep-alive.test.ts"]
+    },
+    "source:packages/alpine-hotkeys/src/createHotkeys.ts": {
+      "fingerprint": "9a1ead191cff53a7ac6fa543f2436389ec9bc71e64ee6ab4d5cb46dac8a971aa",
+      "snapshot": {
+        "packages/alpine-hotkeys/src/createHotkeys.ts": "6c9d29de0a3a78f1310a0a841e88cc0104a94c530216fcfbf43ee180e55a1a22"
+      },
+      "head": "6b4f6c487211c51b9a58d757c4bddb0459747542",
+      "outcome": "no-change",
+      "reason": "Implementation, test, or doc-wording change already reflected in the mapped skills.",
+      "evidence": ["packages/alpine-hotkeys/src/createHotkeys.ts"]
     }
   }
 }

@@ -1,4 +1,4 @@
-import { KeepAlive, defineComponent, h, nextTick, ref } from 'vue'
+import { KeepAlive, defineComponent, h, nextTick, onActivated, ref } from 'vue'
 import { mount } from '@vue/test-utils'
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
 import { afterEach, describe, expect, it, vi } from 'vitest'
@@ -145,6 +145,43 @@ describe('<KeepAlive>', () => {
     // A retained action can't restart it while the page is hidden.
     recorder.startRecording()
     expect(recorder.isRecording.value).toBe(false)
+  })
+
+  it('keeps the last recorded hotkey when the page is hidden and shown', async () => {
+    let recorder!: ReturnType<typeof useHotkeyRecorder>
+    const { show } = mountPages({
+      a: page(() =>
+        child(() => (recorder = useHotkeyRecorder({ onRecord() {} }))),
+      ),
+      b: page(() => null),
+    })
+    await nextTick()
+    recorder.startRecording()
+    press('k')
+    expect(recorder.recordedHotkey.value).toBe('[KeyK]')
+
+    await show('b')
+    await show('a')
+    expect(recorder.recordedHotkey.value).toBe('[KeyK]')
+  })
+
+  it('starts recording from an onActivated hook in a cached page', async () => {
+    let recorder!: ReturnType<typeof useHotkeyRecorder>
+    let shown = 0
+    const { show } = mountPages({
+      a: page(() =>
+        child(() => {
+          recorder = useHotkeyRecorder({ onRecord() {} })
+          // The first activation runs on mount, before any hiding.
+          onActivated(() => shown++ && recorder.startRecording())
+        }),
+      ),
+      b: page(() => null),
+    })
+    await nextTick()
+    await show('b')
+    await show('a')
+    expect(recorder.isRecording.value).toBe(true)
   })
 
   it('keeps hotkeys and scopes of pages outside <KeepAlive> as before', async () => {

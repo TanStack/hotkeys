@@ -74,3 +74,19 @@ it('releases a hotkey whose first run failed', async () => {
   press('c')
   expect(callback).not.toHaveBeenCalled()
 })
+
+it('removes earlier hotkeys of a call whose first run failed', () => {
+  getHotkeyManager().register('B', () => {})
+  const callback = vi.fn()
+  expect(() =>
+    scope().createHotkeys(
+      [
+        { hotkey: 'A', callback },
+        { hotkey: 'B', callback },
+      ],
+      { conflictBehavior: 'error' },
+    ),
+  ).toThrow(/already registered/)
+  press('a')
+  expect(callback).not.toHaveBeenCalled()
+})
