@@ -23,3 +23,4 @@ export type {
   HotkeysProviderProps,
 } from './HotkeysCtx.js'
 export * from './getHotkeyHint.svelte.js'
+export * from './getFormatForDisplay.js'

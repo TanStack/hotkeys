@@ -4,6 +4,7 @@ import {
   useHotkey, useHotkeys,
   useHeldKeys, useHeldKeyCodes, useKeyHold, useHotkeyHint,
   useHotkeyRecorder, useHotkeyRegistrations, useHotkeyScopesState,
+  useFormatForDisplay,
   defineAppHotkeys, useAppHotkeyList, useCustomHotkeys,
 } from '@tanstack/octane-hotkeys';
 import type {
@@ -223,4 +224,36 @@ export function ForwardedOptionsFixture() @{
     stopPropagation: forwarded.stopPropagation,
   });
   <div>{'forwarded'}</div>
+}
+
+type Platform = 'mac' | 'windows' | 'linux';
+
+export const platformCapture: {
+  fired: number;
+  records: unknown[];
+  recorder?: OctaneHotkeyRecorder;
+} = { fired: 0, records: [] };
+
+export function FormatLabel({ platform }: { platform?: Platform }) @{
+  const format = useFormatForDisplay();
+  <kbd>{format('Mod+S', { platform })}</kbd>
+}
+
+export function PlatformFixture({ platform, label, hotkey }: {
+  platform?: Platform;
+  label?: Platform;
+  hotkey?: Platform;
+}) @{
+  <HotkeysProvider defaultOptions={{ platform }}>
+    <PlatformConsumer label={label} hotkey={hotkey} />
+  </HotkeysProvider>
+}
+
+function PlatformConsumer({ label, hotkey }: { label?: Platform; hotkey?: Platform }) @{
+  useHotkey('Mod+S', () => { platformCapture.fired++ }, { platform: hotkey });
+  platformCapture.recorder = useHotkeyRecorder({
+    recordBy: 'key',
+    onRecord: (value) => platformCapture.records.push(value),
+  });
+  <FormatLabel platform={label} />
 }

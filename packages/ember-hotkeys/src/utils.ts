@@ -8,11 +8,8 @@ import type { DefaultHotkeysOptions } from './types'
 
 export type MaybeGetter<T> = T | (() => T)
 
-/** The defaults behind each `createHotkeysScope` result. */
-export const scopeDefaults = new WeakMap<
-  object,
-  MaybeGetter<DefaultHotkeysOptions>
->()
+/** Reads the merged defaults behind each `createHotkeysScope` result. */
+export const scopeDefaults = new WeakMap<object, () => DefaultHotkeysOptions>()
 
 export function read<T>(value: MaybeGetter<T>): T {
   return typeof value === 'function' ? (value as () => T)() : value

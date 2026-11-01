@@ -61,7 +61,7 @@ export function useHotkeyRecorder(
   const recorder = new HotkeyRecorder(
     () =>
       withDefaults(
-        scope && read(scopeDefaults.get(scope)!).hotkeyRecorder,
+        scope && scopeDefaults.get(scope)!().hotkeyRecorder,
         read(options),
       ) as HotkeySequenceRecorderOptions,
   )

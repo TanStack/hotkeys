@@ -30,6 +30,12 @@ import type { InjectHotkeyCommonOptions } from './injectHotkey'
 
 export interface HotkeysProviderOptions {
   /**
+   * The user's platform, for labels from `injectFormatForDisplay`, hotkeys,
+   * and recorders. Detected when unset. On a server, set it from the request
+   * with `detectPlatform(userAgent)`.
+   */
+  platform?: 'mac' | 'windows' | 'linux'
+  /**
    * Defaults for every hotkey registered by `injectHotkey` and `injectHotkeys`.
    * `requireReset` applies to chords and `timeout` applies to sequences.
    */

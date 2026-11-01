@@ -29,6 +29,12 @@ import type { UseHotkeyCommonOptions } from './useHotkey'
 
 export interface HotkeysProviderOptions {
   /**
+   * The user's platform, for labels from `useFormatForDisplay`, hotkeys, and
+   * recorders. On a server, set it from the request with
+   * `detectPlatform(userAgent)`.
+   */
+  platform?: 'mac' | 'windows' | 'linux'
+  /**
    * Defaults for every hotkey registered by `useHotkey` and `useHotkeys`.
    * `requireReset` applies to chords and `timeout` applies to sequences.
    */

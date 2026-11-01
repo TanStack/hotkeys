@@ -26,6 +26,12 @@ import type { CreateHotkeyCommonOptions } from './createHotkey'
 
 export interface HotkeysProviderOptions {
   /**
+   * The user's platform, for labels from `createFormatForDisplay`, hotkeys,
+   * and recorders. On a server, set it from the request with
+   * `detectPlatform(userAgent)`.
+   */
+  platform?: 'mac' | 'windows' | 'linux'
+  /**
    * Defaults for every hotkey registered by `createHotkey` and `createHotkeys`.
    * `requireReset` applies to chords and `timeout` applies to sequences.
    */

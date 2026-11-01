@@ -1,6 +1,9 @@
 import { isServerRuntime } from './_server'
 import type { CanonicalModifier } from './key.types'
 
+/** A platform for resolving `Mod` and formatting labels. */
+export type HotkeyPlatform = 'mac' | 'windows' | 'linux'
+
 /**
  * Detects a platform from a user agent string, or from the browser's
  * `navigator` when called without one.
@@ -26,9 +29,7 @@ import type { CanonicalModifier } from './key.types'
  * detectPlatform(request.headers.get('user-agent') ?? undefined)
  * ```
  */
-export function detectPlatform(
-  userAgent?: string,
-): 'mac' | 'windows' | 'linux' {
+export function detectPlatform(userAgent?: string): HotkeyPlatform {
   let platform = ''
   let agent = userAgent
   if (agent === undefined) {
