@@ -7,7 +7,7 @@ title: AdapterAppHotkeyOptions
 type AdapterAppHotkeyOptions<T, TTarget> = Omit<[T["defaultHotkey"]] extends [HotkeySequence] ? AdapterSequenceOptions<TTarget> : [T["defaultHotkey"]] extends [HotkeyChord] ? AdapterChordOptions<TTarget> : AdapterCommonOptions<TTarget>, "meta">;
 ```
 
-Defined in: [adapter.ts:232](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L232)
+Defined in: [adapter.ts:239](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L239)
 
 Call-site options for an app hotkey. `meta` comes from the declaration.
 Kind-specific options follow the declared default: `requireReset` for a

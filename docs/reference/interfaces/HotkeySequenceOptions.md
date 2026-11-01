@@ -3,7 +3,7 @@ id: HotkeySequenceOptions
 title: HotkeySequenceOptions
 ---
 
-Defined in: [hotkey-manager.ts:134](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L134)
+Defined in: [hotkey-manager.ts:143](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L143)
 
 Options for a sequence such as `['G', 'G']`.
 
@@ -12,6 +12,27 @@ Options for a sequence such as `['G', 'G']`.
 - [`HotkeyOptions`](HotkeyOptions.md)
 
 ## Properties
+
+### afterDelegatedHandlers?
+
+```ts
+optional afterDelegatedHandlers?: boolean;
+```
+
+Defined in: [hotkey-manager.ts:133](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L133)
+
+Run after key handlers that a framework calls from one listener on its
+root or the document, such as React's `onKeyDown`, so handlers inside the
+target run first and can stop the hotkey. An element target then listens
+on its document instead of the element, and a stop by an earlier listener
+on the document skips the hotkey. Applies only to the bubble phase.
+Adapters for frameworks that delegate key events set this.
+
+#### Inherited from
+
+[`HotkeyOptions`](HotkeyOptions.md).[`afterDelegatedHandlers`](HotkeyOptions.md#afterdelegatedhandlers)
+
+***
 
 ### appHotkeyId?
 
@@ -237,6 +258,6 @@ The DOM element to attach the event listener to. Defaults to document.
 optional timeout?: number;
 ```
 
-Defined in: [hotkey-manager.ts:136](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L136)
+Defined in: [hotkey-manager.ts:145](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L145)
 
 Maximum time between steps in milliseconds. Default: 1000

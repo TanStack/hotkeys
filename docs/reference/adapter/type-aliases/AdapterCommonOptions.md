@@ -7,7 +7,7 @@ title: AdapterCommonOptions
 type AdapterCommonOptions<TTarget> = AdapterChordOptions<TTarget> & AdapterSequenceOptions<TTarget>;
 ```
 
-Defined in: [adapter.ts:211](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L211)
+Defined in: [adapter.ts:218](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L218)
 
 Options applied to every hotkey, such as defaults. Each applies to the kinds that support it.
 

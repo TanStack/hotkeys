@@ -3,7 +3,7 @@ id: HotkeyChordOptions
 title: HotkeyChordOptions
 ---
 
-Defined in: [hotkey-manager.ts:128](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L128)
+Defined in: [hotkey-manager.ts:137](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L137)
 
 Options for a single chord such as `'Mod+S'`.
 
@@ -12,6 +12,27 @@ Options for a single chord such as `'Mod+S'`.
 - [`HotkeyOptions`](HotkeyOptions.md)
 
 ## Properties
+
+### afterDelegatedHandlers?
+
+```ts
+optional afterDelegatedHandlers?: boolean;
+```
+
+Defined in: [hotkey-manager.ts:133](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L133)
+
+Run after key handlers that a framework calls from one listener on its
+root or the document, such as React's `onKeyDown`, so handlers inside the
+target run first and can stop the hotkey. An element target then listens
+on its document instead of the element, and a stop by an earlier listener
+on the document skips the hotkey. Applies only to the bubble phase.
+Adapters for frameworks that delegate key events set this.
+
+#### Inherited from
+
+[`HotkeyOptions`](HotkeyOptions.md).[`afterDelegatedHandlers`](HotkeyOptions.md#afterdelegatedhandlers)
+
+***
 
 ### appHotkeyId?
 
@@ -182,7 +203,7 @@ treat `'always'` as `true`.
 optional requireReset?: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:130](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L130)
+Defined in: [hotkey-manager.ts:139](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L139)
 
 If true, only trigger once until all keys are released. Default: false
 

@@ -7,7 +7,7 @@ title: prepareHotkeyDefinitions
 function prepareHotkeyDefinitions<TTarget>(definitions, options?): HotkeyDefinition[];
 ```
 
-Defined in: [adapter.ts:304](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L304)
+Defined in: [adapter.ts:311](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L311)
 
 Converts adapter definitions into `createHotkeyBindings` definitions.
 Options merge in this order: defaults, app hotkey declaration, common

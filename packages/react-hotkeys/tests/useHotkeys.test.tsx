@@ -13,6 +13,7 @@ describe('useHotkeys', () => {
 
   afterEach(() => {
     HotkeyManager.resetInstance()
+    document.body.replaceChildren()
   })
 
   it('should register multiple hotkey handlers', () => {
@@ -236,6 +237,8 @@ describe('useHotkeys', () => {
     const callback = vi.fn()
     const targetA = document.createElement('div')
     const targetB = document.createElement('div')
+    // Events reach element targets through the document.
+    document.body.append(targetA, targetB)
 
     const { rerender } = renderHook(
       ({ target }: { target: HTMLElement }) =>
