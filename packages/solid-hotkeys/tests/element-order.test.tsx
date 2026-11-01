@@ -3,7 +3,7 @@ import { afterEach, expect, it } from 'vitest'
 import { render } from '@solidjs/testing-library'
 import { clearDelegatedEvents, delegateEvents } from 'solid-js/web'
 import { createSignal } from 'solid-js'
-import { HotkeyManager } from '@tanstack/hotkeys'
+import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
 import { createHotkey } from '../src/createHotkey'
 
 // Solid runs onKeyDown from one listener on the document. A hotkey must run
@@ -83,5 +83,16 @@ it('runs a document hotkey after onKeyDown handlers that load later', () => {
   const child = getByTestId('child')
   child.focus()
   press(child, 'j')
+  expect(log).toEqual(['child'])
+})
+
+it('runs after onKeyDown handlers when the manager listened on the document first', () => {
+  clearDelegatedEvents()
+  // A hotkey registered through core attaches the document listener first.
+  getHotkeyManager().register('X', () => {})
+  const { getByTestId } = render(() => <Panel childStops />)
+  const child = getByTestId('child')
+  child.focus()
+  press(child)
   expect(log).toEqual(['child'])
 })

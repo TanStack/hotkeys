@@ -86,7 +86,7 @@
       "evidence": ["packages/hotkeys/skills/app-hotkeys/SKILL.md"]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "75b242a8702e9f12e2e205b438edd0c5d69d247d7ba2a8bbfb0b1bc13f788fd4",
+      "fingerprint": "efa944bb08abb036ec47dd98f855d97ce8b63dcb025c33f944b4a72b8063f035",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "86d90e75bd74762ab0eaee5a1c41d919338dcfa6238ff7186567d0d6dad0b0e5",
@@ -95,7 +95,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6e1100b775f2dacd74f5b69fd310dd235e76830d877f28ad783d68a1a226f3b2",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
-        "packages/hotkeys/src/hotkey-manager.ts": "4b44914f33bc8dc0c063ca7a49a9707efec770713e1603baee90ea5cc83ad9a8",
+        "packages/hotkeys/src/hotkey-manager.ts": "a68f291edfae159bfc819829f71c6de9086e6947621a9cec99daf7bb1e647ce7",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "d7747b87eae074ab3620484f64cf13ea9c27d24d059d56d9a9a07ccf0c2d3e06",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -107,9 +107,9 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "ac43e8aa85754a38841423ea5129c99d60654078",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: delegated listeners move after listeners added since, such as Solid delegating late, and cleanup uses the document a listener attached to. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -255,7 +255,7 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "dd50fc195577a1b89527c838f8bff61a688036f5ac3aabb50a82b18673a76b71",
+      "fingerprint": "ff9db62a095f2f72ae902ef8c094614149fedf1526f5cbedd88c11a777a57c7e",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -318,7 +318,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/app-hotkeys.ts": "a6176a749dd7439146c335e769dfae1a2cd72ace029f9cbc64b52ff5fe2d9d03",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
-        "packages/hotkeys/src/hotkey-manager.ts": "4b44914f33bc8dc0c063ca7a49a9707efec770713e1603baee90ea5cc83ad9a8",
+        "packages/hotkeys/src/hotkey-manager.ts": "a68f291edfae159bfc819829f71c6de9086e6947621a9cec99daf7bb1e647ce7",
         "packages/hotkeys/src/hotkey-recorder.ts": "7d479391753ffa97e69a7d7cb994cb7053a7ffb3e0aed6dfbfb2dbbdf51a3d24",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "4e5593e8d4373475d4e6006e30ec663d7f0f3fcf0aa881fc403efe58b9cf7606",
@@ -387,9 +387,9 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "ac43e8aa85754a38841423ea5129c99d60654078",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: delegated listeners move after listeners added since, such as Solid delegating late, and cleanup uses the document a listener attached to. No skill change.",
       "evidence": ["_artifacts"]
     },
     "source:.changeset/intent-skills.md": {
@@ -620,23 +620,23 @@
       "evidence": ["docs/framework/vue/reference/functions/useHotkeyHint.md"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "80fc1a7398206a1f7de81b082e71670a0f02d44d786c7fba098112309814bfdb",
+      "fingerprint": "5c6c5fd26b660a13444bf5de80b5198ef0bfb78d363d664d743fe33f255d81f6",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "7eeb8c0b291558f8db7241247774b5cf6136421216d67ba641a05f09c7fc7d92"
+        "docs/reference/classes/HotkeyManager.md": "2efbe64150cfaccf968713fd1d450e1bda0a96425bd5ac908ed0a33b386d74c3"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "ac43e8aa85754a38841423ea5129c99d60654078",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: delegated listeners move after listeners added since, such as Solid delegating late, and cleanup uses the document a listener attached to. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "70907af16050f2d033476405c3d40241df1458d236abb2ec2d17e3a14580def3",
+      "fingerprint": "feb8a56669b40ba368b464c6c9a43c8b6a923f89d676fc57f505a65e1ad73dc9",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "8340b254011580bdf963b751ac5e857c033b7030c620abcbd35a7ed74b74af17"
+        "docs/reference/functions/getHotkeyManager.md": "615899be71474a81149e247a4e51ac8eeb3e1f631b0d96fbda0bec0907121af8"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "ac43e8aa85754a38841423ea5129c99d60654078",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: delegated listeners move after listeners added since, such as Solid delegating late, and cleanup uses the document a listener attached to. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
@@ -7124,14 +7124,14 @@
       "evidence": ["packages/vue-hotkeys/tests/unset-values.test.ts"]
     },
     "source:packages/hotkeys/src/_target-listeners.ts": {
-      "fingerprint": "76d61a356a49b0724b112a7cffb80f86f2501001225797c47fba2def37e030f7",
+      "fingerprint": "8b4f5af45dbf1594d30c803f2c797ec06cee8258f9b8c2c120517f2153335ccc",
       "snapshot": {
-        "packages/hotkeys/src/_target-listeners.ts": "76bc00bf40502dc653afde016f4c6143db74d14201bd3551c7380df31b493dfb"
+        "packages/hotkeys/src/_target-listeners.ts": "68af9c4a01acad6c4eb95888112b51ffa7d8641b8a7d6e832b17a563b3f8836c"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Internal edge-case fix (IME composition, collator, listener order, tracker resets, duplicate check, validate JSDoc); the skills make no claim it changes.",
-      "evidence": ["packages/hotkeys/src/_target-listeners.ts"]
+      "head": "ac43e8aa85754a38841423ea5129c99d60654078",
+      "outcome": "no-change",
+      "reason": "Review fixes: delegated listeners move after listeners added since, such as Solid delegating late, and cleanup uses the document a listener attached to. No skill change.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/tests/capture.test.ts": {
       "fingerprint": "e649d334c7f19e96152c65e1d7994fce17d7848b5a1c5163d8094c2ea125c301",
@@ -10990,13 +10990,13 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/tests/delegated-handlers.test.ts": {
-      "fingerprint": "f5d2c8ea2666bd0c2324ef154412d6cf3f69fda3468863041d47706566407512",
+      "fingerprint": "02338b2ed67592a0bea2e1008a5f85233c6954fe5f5d4a5e9c9fdc385c731cf6",
       "snapshot": {
-        "packages/hotkeys/tests/delegated-handlers.test.ts": "bf64643524b0091c18d7b5b732f830c42609907728af7fb237d528ebdfa23ae7"
+        "packages/hotkeys/tests/delegated-handlers.test.ts": "dbaf4774bed9653475dcc0db617b9e40dfe5d23bb1cfded99ec115b864150325"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "ac43e8aa85754a38841423ea5129c99d60654078",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: delegated listeners move after listeners added since, such as Solid delegating late, and cleanup uses the document a listener attached to. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/octane-hotkeys/tests/element-order.test.ts": {
@@ -11050,13 +11050,13 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/solid-hotkeys/tests/element-order.test.tsx": {
-      "fingerprint": "764eb5d698f1da734e25b349899dbfc4232154756b858a548a82d4d1d283af0e",
+      "fingerprint": "840e2a189e97f954606417594a0f101c375c8c9e9a17f92bf8ee5489ccc5b18c",
       "snapshot": {
-        "packages/solid-hotkeys/tests/element-order.test.tsx": "a839c5ba328b510d2103ac7864a5af4929ae5f65c413ada3a529e5461d3d1b95"
+        "packages/solid-hotkeys/tests/element-order.test.tsx": "13bf7d0ec0220c8ac7efbe0ae6b27f58d3060e863ae519708114eb6ecfc6cc11"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "ac43e8aa85754a38841423ea5129c99d60654078",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: delegated listeners move after listeners added since, such as Solid delegating late, and cleanup uses the document a listener attached to. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/svelte-hotkeys/tests/ElementOrder.svelte": {

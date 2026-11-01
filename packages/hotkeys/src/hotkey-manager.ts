@@ -554,6 +554,8 @@ export class HotkeyManager {
   #listeners = new TargetListeners((...args) =>
     this.#processTargetEvent(...args),
   )
+  /** Where each registration listens, kept so cleanup finds a target that moved documents. */
+  #listenerTargets = new Map<string, Target>()
   /** Events that continue a sequence in progress, decided before any listener runs. */
   #sequenceOwned = new WeakMap<KeyboardEvent, boolean>()
   /** Physical keys whose keydown a sequence owned, so their repeats and keyup are owned too. */
@@ -907,11 +909,14 @@ export class HotkeyManager {
     }
 
     // Listen first, so a target that can't listen leaves no registration.
+    const listenOn = listenerTarget(registration)
     this.#listeners.add(
-      listenerTarget(registration),
+      listenOn,
       !!registration.options.capture,
       id,
+      !!registration.options.afterDelegatedHandlers,
     )
+    this.#listenerTargets.set(id, listenOn)
 
     this.registrations.setState((prev) => new Map(prev).set(id, registration))
 
@@ -953,11 +958,17 @@ export class HotkeyManager {
           }
           if (optionsEqual(reg.options, options)) return prev
           const capture = !!reg.options.capture
-          const from = listenerTarget(reg)
+          const from = manager.#listenerTargets.get(id) ?? reg.target
           const to = listenerTarget({ target: reg.target, options })
           if (capture !== !!options.capture || from !== to) {
             manager.#listeners.remove(from, capture, id)
-            manager.#listeners.add(to, !!options.capture, id)
+            manager.#listeners.add(
+              to,
+              !!options.capture,
+              id,
+              !!options.afterDelegatedHandlers,
+            )
+            manager.#listenerTargets.set(id, to)
           }
           return new Map(prev).set(id, { ...reg, options })
         })
@@ -985,10 +996,11 @@ export class HotkeyManager {
     })
 
     this.#listeners.remove(
-      listenerTarget(registration),
+      this.#listenerTargets.get(id) ?? registration.target,
       !!registration.options.capture,
       id,
     )
+    this.#listenerTargets.delete(id)
     this.#clearSequenceReset(id)
   }
 
@@ -1624,6 +1636,7 @@ export class HotkeyManager {
     for (const timer of this.#sequenceResetTimers.values()) clearTimeout(timer)
     this.#sequenceResetTimers.clear()
     this.#listeners.destroy()
+    this.#listenerTargets.clear()
     this.registrations.setState(() => new Map())
     this.appHotkeys.setState(() => null)
   }

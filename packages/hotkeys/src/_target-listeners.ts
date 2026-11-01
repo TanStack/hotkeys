@@ -28,10 +28,21 @@ export class TargetListeners {
     ) => void,
   ) {}
 
-  add(target: Target, capture: boolean, id: string): void {
+  /**
+   * Adds a registration to the target's shared listener. With `last`, an
+   * existing listener moves after listeners added since it, such as one a
+   * framework attached later to delegate key events.
+   */
+  add(target: Target, capture: boolean, id: string, last = false): void {
     if (typeof document === 'undefined') return
     const phases = this.#targets.get(target) ?? new Map()
     let group = phases.get(capture)
+    if (group && last) {
+      for (const type of ['keydown', 'keyup'] as const) {
+        target.removeEventListener(type, group[type], capture)
+        target.addEventListener(type, group[type], capture)
+      }
+    }
     if (!group) {
       const ids = new Set<string>()
       const listener =

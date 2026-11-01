@@ -1,4 +1,4 @@
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager } from '../src/hotkey-manager'
 import type { HotkeyChordOptions, Target } from '../src/hotkey-manager'
 
@@ -239,5 +239,41 @@ describe('afterDelegatedHandlers', () => {
     press(child)
 
     expect(log).toEqual(['hotkey', 'child'])
+  })
+})
+
+describe('afterDelegatedHandlers listener bookkeeping', () => {
+  it('removes the listener from the document it attached to after the target moves', () => {
+    const { panel } = panelWithChild()
+    const handle = register('hotkey', panel)
+    const other = document.implementation.createHTMLDocument()
+    other.body.append(other.adoptNode(panel))
+    const remove = vi.spyOn(document, 'removeEventListener')
+
+    handle.unregister()
+
+    expect(remove.mock.calls.map(([type]) => type)).toEqual([
+      'keydown',
+      'keyup',
+    ])
+    remove.mockRestore()
+  })
+
+  it('moves the document listener after listeners added since, such as a framework that delegates later', () => {
+    const { panel, child } = panelWithChild()
+    // An earlier hotkey attached the document listener first.
+    HotkeyManager.getInstance().register('X', () => {})
+    const stop = (event: Event) => {
+      log.push('delegated')
+      event.stopPropagation()
+    }
+    document.addEventListener('keydown', stop)
+    cleanups.push(() => document.removeEventListener('keydown', stop))
+    register('hotkey', panel)
+
+    child.focus()
+    press(child)
+
+    expect(log).toEqual(['delegated'])
   })
 })
