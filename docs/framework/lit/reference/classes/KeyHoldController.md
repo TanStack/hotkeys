@@ -126,7 +126,7 @@ ReactiveController.hostConnected
 hostDisconnected(): void;
 ```
 
-Defined in: [controllers/key-hold.ts:82](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/key-hold.ts#L82)
+Defined in: [controllers/key-hold.ts:84](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/key-hold.ts#L84)
 
 Called when the host is disconnected from the component tree. For custom
 element hosts, this corresponds to the `disconnectedCallback()` lifecycle,
@@ -151,7 +151,7 @@ ReactiveController.hostDisconnected
 hostUpdate(): void;
 ```
 
-Defined in: [controllers/key-hold.ts:78](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/key-hold.ts#L78)
+Defined in: [controllers/key-hold.ts:80](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/key-hold.ts#L80)
 
 Re-reads a getter key when host properties trigger an update.
 

@@ -1,9 +1,9 @@
 // @vitest-environment happy-dom
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
 import { render } from '@solidjs/testing-library'
-import { HotkeyManager } from '@tanstack/hotkeys'
+import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
 import { createHotkey } from '../src/createHotkey'
-import { createSignal, type Component } from 'solid-js'
+import { Show, createSignal, type Component } from 'solid-js'
 
 describe('createHotkey', () => {
   beforeEach(() => {
@@ -296,6 +296,47 @@ describe('createHotkey', () => {
       targetEl.dispatchEvent(event)
 
       expect(callback).toHaveBeenCalled()
+    })
+
+    it('registers from a ref callback and cleans up when the element is removed', () => {
+      const callback = vi.fn()
+      const [open, setOpen] = createSignal(false)
+
+      const TestComponent: Component = () => (
+        <Show when={open()}>
+          <div
+            data-testid="panel"
+            ref={(el) => createHotkey('K', callback, { target: el })}
+          />
+        </Show>
+      )
+
+      const { getByTestId } = render(() => <TestComponent />)
+      const registrations = () => getHotkeyManager().registrations.state.size
+      const pressK = () => {
+        const panel = getByTestId('panel')
+        panel.dispatchEvent(
+          new KeyboardEvent('keydown', { key: 'k', bubbles: true }),
+        )
+        panel.dispatchEvent(
+          new KeyboardEvent('keyup', { key: 'k', bubbles: true }),
+        )
+      }
+      expect(registrations()).toBe(0)
+
+      setOpen(true)
+      expect(registrations()).toBe(1)
+      pressK()
+      expect(callback).toHaveBeenCalledTimes(1)
+
+      setOpen(false)
+      expect(registrations()).toBe(0)
+
+      // A new node replaces the removed one.
+      setOpen(true)
+      expect(registrations()).toBe(1)
+      pressK()
+      expect(callback).toHaveBeenCalledTimes(2)
     })
   })
 })

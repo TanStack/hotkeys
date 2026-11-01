@@ -100,7 +100,7 @@ ReactiveController.hostConnected
 hostDisconnected(): void;
 ```
 
-Defined in: [controllers/hotkey-hint.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L75)
+Defined in: [controllers/hotkey-hint.ts:77](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L77)
 
 Releases the subscription and clears cached visibility while disconnected.
 
@@ -122,7 +122,7 @@ ReactiveController.hostDisconnected
 hostUpdate(): void;
 ```
 
-Defined in: [controllers/hotkey-hint.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L70)
+Defined in: [controllers/hotkey-hint.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L72)
 
 Re-evaluates getter arguments when host properties trigger an update.
 

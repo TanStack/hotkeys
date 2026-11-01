@@ -4,7 +4,9 @@ import {
   registerDestructor,
 } from '@ember/destroyable'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
-import { read, select } from './utils'
+import { withDefaults } from '@tanstack/hotkeys/adapter'
+import { read, scopeDefaults, select } from './utils'
+import type { EmberHotkeysScope } from './createHotkeysScope'
 import type { EmberHotkeyRecorder } from './types'
 import type {
   HotkeyChord,
@@ -20,36 +22,48 @@ import type { MaybeGetter } from './utils'
  * With a larger `maxSteps`, each chord adds a step; the recording commits on
  * Enter (unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at
  * `maxSteps`, and `onRecord` receives a chord (one step) or a sequence.
+ * Pass a scope from `createHotkeysScope` to apply its `hotkeyRecorder`
+ * defaults.
  */
 export function useHotkeyRecorder(
   owner: object,
   options: HotkeyChordRecorderOptions,
+  scope?: EmberHotkeysScope,
 ): EmberHotkeyRecorder<HotkeyChord>
 export function useHotkeyRecorder(
   owner: object,
   options: HotkeySequenceRecorderOptions,
+  scope?: EmberHotkeysScope,
 ): EmberHotkeyRecorder
 // Getter overloads list sequences first: TypeScript keeps a lambda's parameter
 // types from the first overload it tries, and sequence types also fit chords.
 export function useHotkeyRecorder(
   owner: object,
   options: () => HotkeySequenceRecorderOptions,
+  scope?: EmberHotkeysScope,
 ): EmberHotkeyRecorder
 export function useHotkeyRecorder(
   owner: object,
   options: () => HotkeyChordRecorderOptions,
+  scope?: EmberHotkeysScope,
 ): EmberHotkeyRecorder<HotkeyChord>
 export function useHotkeyRecorder(
   owner: object,
   options: () => HotkeyRecorderOptions,
+  scope?: EmberHotkeysScope,
 ): EmberHotkeyRecorder
 export function useHotkeyRecorder(
   owner: object,
   options: MaybeGetter<HotkeyRecorderOptions>,
+  scope?: EmberHotkeysScope,
 ): EmberHotkeyRecorder {
   // Overloads already checked the options; either shape is valid here.
   const recorder = new HotkeyRecorder(
-    () => read(options) as HotkeySequenceRecorderOptions,
+    () =>
+      withDefaults(
+        scope && read(scopeDefaults.get(scope)!).hotkeyRecorder,
+        read(options),
+      ) as HotkeySequenceRecorderOptions,
   )
   const state = select(owner, recorder.store, (value) => value)
   registerDestructor(owner, () => recorder.destroy())

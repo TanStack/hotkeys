@@ -3,7 +3,9 @@ import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   HotkeyManager,
   KeyStateTracker,
+  createHotkeyRecorder,
   createHotkeysScope,
+  hotkeyRecorderPlugin,
   hotkeysPlugin,
   getHotkeyManager,
   getKeyStateTracker,
@@ -152,7 +154,7 @@ describe('Alpine lifecycle', () => {
   it('records shortcuts and sequences and stops active recording on destruction', () => {
     const hotkeys = scope()
     const onRecord = vi.fn()
-    const recorder = hotkeys.createHotkeyRecorder({
+    const recorder = createHotkeyRecorder(hotkeys, {
       onRecord,
       recordBy: 'key',
       platform: 'mac',
@@ -162,7 +164,7 @@ describe('Alpine lifecycle', () => {
     key('k', 'keydown', { ctrlKey: true })
     expect(onRecord).toHaveBeenCalledWith('Control+K')
     expect(recorder.isRecording).toBe(false)
-    const sequence = hotkeys.createHotkeyRecorder({
+    const sequence = createHotkeyRecorder(hotkeys, {
       maxSteps: Infinity,
       onRecord,
       recordBy: 'key',
@@ -206,6 +208,26 @@ describe('Alpine lifecycle', () => {
     await flush()
     expect(getHotkeyManager().registrations.state.size).toBe(0)
   })
+
+  it('owns $hotkeyRecorder recorders for an element and stops them on removal', async () => {
+    Alpine.plugin(hotkeyRecorderPlugin)
+    document.body.innerHTML = `<div x-data="{ recorder: null, init() { this.recorder = this.$hotkeyRecorder({ recordBy: 'key', platform: 'mac', onRecord: (value) => this.$el.dataset.recorded = value }) } }">
+      <span x-text="recorder.isRecording"></span>
+    </div>`
+    const element = document.body.firstElementChild as HTMLElement
+    Alpine.initTree(element)
+    const data = Alpine.$data(element) as {
+      recorder: { startRecording: () => void; isRecording: boolean }
+    }
+    data.recorder.startRecording()
+    await flush()
+    expect(element.querySelector('span')!.textContent).toBe('true')
+    key('k', 'keydown', { ctrlKey: true })
+    expect(element.dataset.recorded).toBe('Control+K')
+    data.recorder.startRecording()
+    Alpine.destroyTree(element)
+    expect(data.recorder.isRecording).toBe(false)
+  })
 })
 
 it('applies reactive scoped defaults with per-call and per-definition overrides', async () => {
@@ -245,11 +267,11 @@ it('applies reactive scoped defaults with per-call and per-definition overrides'
     views.filter((r) => r.kind === 'chord')[0]!.options,
   ).not.toHaveProperty('timeout')
   const onRecord = vi.fn()
-  const recorder = hotkeys.createHotkeyRecorder({ onRecord })
+  const recorder = createHotkeyRecorder(hotkeys, { onRecord })
   recorder.startRecording()
   key('k', 'keydown', { code: 'KeyK' })
   expect(onRecord).toHaveBeenCalledWith('K')
-  const sequence = hotkeys.createHotkeyRecorder({
+  const sequence = createHotkeyRecorder(hotkeys, {
     maxSteps: Infinity,
     onRecord,
     commitKeys: 'enter',

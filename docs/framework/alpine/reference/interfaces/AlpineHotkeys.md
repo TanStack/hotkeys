@@ -5,7 +5,7 @@ title: AlpineHotkeys
 
 Defined in: [types.ts:127](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L127)
 
-Registrations, recorders, and reactive state owned by one Alpine component.
+Registrations and reactive state owned by one Alpine component.
 
 ## Properties
 
@@ -15,7 +15,7 @@ Registrations, recorders, and reactive state owned by one Alpine component.
 createAppHotkeyList: () => AlpineHotkeyState<AppHotkeyListItem<AppHotkey<string, HotkeyChord | HotkeySequence | null>>[]>;
 ```
 
-Defined in: [types.ts:162](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L162)
+Defined in: [types.ts:160](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L160)
 
 Read every app hotkey with its live status through `.value`.
 
@@ -31,7 +31,7 @@ Read every app hotkey with its live status through `.value`.
 createAppHotkeys: () => AlpineHotkeyState<Readonly<Record<string, AppHotkey<string, HotkeyChord | HotkeySequence | null>>>>;
 ```
 
-Defined in: [types.ts:160](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L160)
+Defined in: [types.ts:158](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L158)
 
 Read the effective app hotkeys from `provideAppHotkeys` through `.value`.
 
@@ -47,7 +47,7 @@ Read the effective app hotkeys from `provideAppHotkeys` through `.value`.
 createCustomHotkeys: () => AlpineCustomHotkeys;
 ```
 
-Defined in: [types.ts:166](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L166)
+Defined in: [types.ts:164](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L164)
 
 Read and change the user's custom hotkeys.
 
@@ -131,18 +131,6 @@ Read whether held modifiers reveal a hotkey through `.value`. No hotkey
 #### Returns
 
 [`AlpineHotkeyState`](AlpineHotkeyState.md)\<`boolean`\>
-
-***
-
-### createHotkeyRecorder
-
-```ts
-createHotkeyRecorder: AlpineCreateHotkeyRecorder;
-```
-
-Defined in: [types.ts:158](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L158)
-
-Create a recorder whose options can follow Alpine state.
 
 ***
 
@@ -232,7 +220,7 @@ Read whether a key is held through `.value`.
 destroy: () => void;
 ```
 
-Defined in: [types.ts:168](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L168)
+Defined in: [types.ts:166](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L166)
 
 Release every registration, subscription, effect, and recorder. Idempotent.
 

@@ -80,6 +80,7 @@ The state these return is accessors, including the recorder's fields. No provide
 
 - **Pass options as an accessor.** `{ enabled: isDirty() }` is read once, during setup, so the hotkey never follows the signal. Use `() => ({ enabled: isDirty() })`. The hotkey and `createHotkeys`' definitions also accept accessors.
 - **Keep element targets in a signal.** A `let el` variable is still `undefined` when the options are read, and an undefined target means `document`. Use `ref={setEl}` and `() => ({ target: el() })`; a `null` target waits for the element.
+- **Register hotkeys for removable elements in their `ref`.** Solid never calls a `ref` with `null`, so a signal keeps an element that `<Show>` or `<For>` removed, and the hotkey stays registered on it. Use `ref={(el) => createHotkey('K', cb, { target: el })}`; the hotkey unregisters when the element is removed.
 - **The callback isn't tracked.** Read props inside it, as `() => props.onClose()`, rather than passing `props.onClose` itself.
 - **Register a dialog's hotkeys in a child of its provider.** A primitive uses the nearest `HotkeysProvider` above its component, so a dialog that renders `<HotkeysProvider scope={...} exclusive>` and creates `Escape` itself puts it in the suspended outer scope. Give each open dialog its own scope name, such as `` `dialog-${createUniqueId()}` ``.
 - **Call the primitives directly.** A `createShortcut(keys: string)` wrapper has to cast strings to hotkeys, which turns off type checking and drops sequences, accessor options, and app hotkeys.

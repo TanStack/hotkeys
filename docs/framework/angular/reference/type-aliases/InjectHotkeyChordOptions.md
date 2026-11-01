@@ -7,6 +7,6 @@ title: InjectHotkeyChordOptions
 type InjectHotkeyChordOptions = AdapterChordOptions<InjectHotkeyTarget>;
 ```
 
-Defined in: [injectHotkey.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L29)
+Defined in: [injectHotkey.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L34)
 
 Options for a chord such as `'Mod+S'`.

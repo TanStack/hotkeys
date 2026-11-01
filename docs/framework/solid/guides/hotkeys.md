@@ -324,6 +324,31 @@ A `null` target waits until the element is attached.
 
 While focus is inside the element, its hotkeys run before hotkeys on `document`. With the default `stopPropagation: true`, a `document` hotkey for the same key doesn't run at all. A sequence with a target advances only on key presses inside the target.
 
+### Elements that are removed
+
+Solid doesn't call a `ref` with `null` when it removes an element, so a signal set by `ref` keeps the removed element, and the hotkey stays registered on it until the component unmounts. Keep the signal for an element the component always renders.
+
+For an element inside `<Show>`, `<For>`, or another control flow that removes it, call `createHotkey` in the element's `ref` callback:
+
+```tsx
+import { Show } from 'solid-js'
+
+function Panel(props: { open: boolean }) {
+  return (
+    <Show when={props.open}>
+      <div
+        ref={(el) => createHotkey('Escape', () => closePanel(), { target: el })}
+        tabIndex={0}
+      >
+        Panel content
+      </div>
+    </Show>
+  )
+}
+```
+
+The `ref` callback runs inside the branch that renders the element. So the hotkey registers each time the element is created, and unregisters when Solid removes it.
+
 ### A target is not a scope
 
 A target and a [scope](./hotkeys-provider-and-scopes) both limit when a hotkey works, in different ways:

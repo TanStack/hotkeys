@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'preact/hooks'
+import { useLayoutEffect, useRef } from 'preact/hooks'
 import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
@@ -75,9 +75,10 @@ export function useHotkeys(
     null,
   )
 
-  // Publish registrations, callbacks, and options after commit, never during
-  // render. Refs resolve here, after they attach.
-  useEffect(() => {
+  // Publish registrations, callbacks, and options in the commit, never during
+  // render. Refs resolve here, after they attach. Layout effects run before
+  // the next event; Preact runs plain effects after paint.
+  useLayoutEffect(() => {
     bindingsRef.current ??= createHotkeyBindings()
     const { hotkeys, ...context } = latestRef.current
     bindingsRef.current.update(
@@ -85,7 +86,7 @@ export function useHotkeys(
     )
   })
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     return () => {
       bindingsRef.current?.destroy()
       bindingsRef.current = null

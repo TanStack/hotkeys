@@ -32,18 +32,22 @@ provideAppHotkeys(appHotkeys, {
 
 The app hotkey methods throw until `provideAppHotkeys` has run. When saved shortcuts come from a server, await them first. Register inside a getter so registrations follow rebinding: `this.hotkeys.createHotkey(() => appHotkeys.value['doc.save'], save)`, with `const appHotkeys = this.hotkeys.createAppHotkeys()`. Build a cheat sheet from `createAppHotkeyList().value`.
 
-A settings row records with the owner's `createHotkeyRecorder`:
+A settings row records with `createHotkeyRecorder` on its owner:
 
 ```ts
 import Alpine from 'alpinejs'
-import { createHotkeysScope, formatForDisplay } from '@tanstack/alpine-hotkeys'
+import {
+  createHotkeyRecorder,
+  createHotkeysScope,
+  formatForDisplay,
+} from '@tanstack/alpine-hotkeys'
 import type { AppHotkeyId } from '@tanstack/alpine-hotkeys'
 
 Alpine.data('shortcutRow', (id: AppHotkeyId) => {
   const hotkeys = createHotkeysScope()
   const appHotkeys = hotkeys.createAppHotkeys()
   const custom = hotkeys.createCustomHotkeys()
-  const recorder = hotkeys.createHotkeyRecorder({
+  const recorder = createHotkeyRecorder(hotkeys, {
     maxSteps: Infinity,
     validate: (hotkey) => {
       const [conflict] = custom.findConflicts(id, hotkey)

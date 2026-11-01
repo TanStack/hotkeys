@@ -55,7 +55,7 @@ save(event: KeyboardEvent, context: HotkeyChordCallbackContext) {
 }
 ```
 
-The method runs with the element as `this`, so it reads the element's current properties.
+The method runs with the element as `this`, so it reads the element's current properties. The decorator looks the method up each time the hotkey fires, so a subclass that overrides it runs the override. `@hotkey` works with standard and legacy decorators. With standard decorators, it also works on `#private` methods.
 
 Decorator arguments are fixed when the class is defined. When the hotkey or its options change, use `HotkeyController` and pass them as functions. The controller reads them when the element connects and after each update. When only the options change, it updates the existing registration. When the hotkey or its `target` changes, it replaces the registration:
 
@@ -70,17 +70,12 @@ class MyEditor extends LitElement {
   @property({ attribute: false }) saveHotkey: Hotkey = 'Mod+S'
   @property({ type: Boolean }) readOnly = false
 
-  constructor() {
-    super()
-    this.addController(
-      new HotkeyController(
-        this,
-        () => this.saveHotkey,
-        () => this.save(),
-        () => ({ enabled: !this.readOnly }),
-      ),
-    )
-  }
+  private saveController = new HotkeyController(
+    this,
+    () => this.saveHotkey,
+    () => this.save(),
+    () => ({ enabled: !this.readOnly }),
+  )
 
   save() {
     saveDocument()
@@ -132,16 +127,11 @@ saveAs() {}
 @hotkey({ code: 'KeyW' }) // Same as '[KeyW]'
 moveUp() {}
 
-constructor() {
-  super()
-  this.addController(
-    new HotkeyController(
-      this,
-      () => ({ key: this.binding.key, mod: this.binding.mod, shift: this.binding.shift }),
-      () => this.runAction(),
-    ),
-  )
-}
+private actionHotkey = new HotkeyController(
+  this,
+  () => ({ key: this.binding.key, mod: this.binding.mod, shift: this.binding.shift }),
+  () => this.runAction(),
+)
 ```
 
 Sequence steps can be strings, objects, or a mix:
@@ -272,25 +262,18 @@ class SettingsDialog extends LitElement {
 For a condition that doesn't match an element, pass `enabled` from a `HotkeyController` options function:
 
 ```ts
-constructor() {
-  super()
-  this.addController(
-    new HotkeyController(this, 'Mod+S', () => this.save(), () => ({
-      enabled: this.hasUnsavedChanges,
-    })),
-  )
-}
+private saveHotkey = new HotkeyController(this, 'Mod+S', () => this.save(), () => ({
+  enabled: this.hasUnsavedChanges,
+}))
 ```
 
 A disabled hotkey stays registered, and changing `enabled` doesn't register it again. While disabled, it ignores key presses, so pressing `Mod+S` opens the browser's Save dialog. To keep the dialog closed, set `preventDefault: 'always'`:
 
 ```ts
-this.addController(
-  new HotkeyController(this, 'Mod+S', () => this.save(), () => ({
-    enabled: this.hasUnsavedChanges,
-    preventDefault: 'always',
-  })),
-)
+private saveHotkey = new HotkeyController(this, 'Mod+S', () => this.save(), () => ({
+  enabled: this.hasUnsavedChanges,
+  preventDefault: 'always',
+}))
 ```
 
 With `'always'`, a hotkey that can't fire, because it's disabled or its scope is inactive or suspended, still prevents the browser's action. It doesn't stop propagation, and when another hotkey handles the key, that hotkey's options apply instead. Sequences treat `'always'` as `true`. To apply it to several hotkeys, put it in a [shared options object](#share-options). We recommend it for most hotkeys, but not for hotkeys you turn off to hand the key back to the browser, such as `Mod+C` or `Tab`. See [Hotkeys that can't fire leave the key alone](../../../guides/sensible-defaults.md#hotkeys-that-cant-fire-leave-the-key-alone).
@@ -315,15 +298,10 @@ import { HotkeyController } from '@tanstack/lit-hotkeys'
 class MyPanel extends LitElement {
   private panel = createRef<HTMLDivElement>()
 
-  constructor() {
-    super()
-    // Fires only while the panel, or something inside it, has focus
-    this.addController(
-      new HotkeyController(this, 'Escape', () => this.closePanel(), () => ({
-        target: this.panel.value ?? null,
-      })),
-    )
-  }
+  // Fires only while the panel, or something inside it, has focus
+  private closeHotkey = new HotkeyController(this, 'Escape', () => this.closePanel(), () => ({
+    target: this.panel.value ?? null,
+  }))
 
   render() {
     return html`<div ${ref(this.panel)} tabindex="0">Panel content</div>`
@@ -332,6 +310,10 @@ class MyPanel extends LitElement {
 ```
 
 A `null` target waits until the element renders.
+
+The controller reads the options function when its element connects and after each of its element's updates. Render the target in the controller's own element, as above, so each render that adds or replaces the target also updates the hotkey.
+
+When another element renders the target, such as a child that shows it from its own state, the controller's element doesn't update, so the hotkey keeps the old target or none. Either keep the element in a reactive property, for example set from an event the child dispatches, or call `this.requestUpdate()` on the controller's element after the target changes. You can also register the hotkey in the child with its own `HotkeyController`.
 
 > [!NOTE]
 > An element receives key presses only while it, or something inside it, has focus. Give it a `tabindex` if it isn't focusable already.

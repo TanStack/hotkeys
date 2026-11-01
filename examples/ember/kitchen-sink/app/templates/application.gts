@@ -8,6 +8,7 @@ import {
   formatForDisplay,
   isHotkeySequence,
   useHotkeyHint,
+  useHotkeyRecorder,
   useHeldKeys,
   useHeldKeyCodes,
   useKeyHold,
@@ -27,7 +28,6 @@ const {
   onHotkeys,
   useHotkey,
   useHotkeys,
-  useHotkeyRecorder,
 } = createHotkeysScope({ hotkey: { requireReset: true } })
 
 const eq = (a: unknown, b: unknown) => a === b

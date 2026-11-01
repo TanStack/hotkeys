@@ -7,7 +7,7 @@ title: injectHeldKeys
 function injectHeldKeys(): Signal<string[]>;
 ```
 
-Defined in: [injectHeldKeys.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHeldKeys.ts#L23)
+Defined in: [injectHeldKeys.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHeldKeys.ts#L24)
 
 Angular inject-based API that returns a signal of currently held keyboard keys.
 

@@ -7,7 +7,7 @@ title: injectKeyHold
 function injectKeyHold(key): Signal<boolean>;
 ```
 
-Defined in: [injectKeyHold.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectKeyHold.ts#L40)
+Defined in: [injectKeyHold.ts:41](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectKeyHold.ts#L41)
 
 Angular inject-based API that returns a signal that is true when the given key is held.
 

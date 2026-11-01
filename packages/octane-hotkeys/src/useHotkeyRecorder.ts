@@ -11,6 +11,11 @@ import type {
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
 
+type RecorderActions = Omit<
+  OctaneHotkeyRecorder,
+  'isRecording' | 'steps' | 'recordedHotkey'
+>
+
 /**
  * Records a shortcut and destroys the recorder on unmount. With the default
  * `maxSteps: 1`, the first valid chord is recorded. With a larger `maxSteps`,
@@ -34,9 +39,25 @@ export function useHotkeyRecorder(
     defaults.hotkeyRecorder,
     options,
   ) as HotkeySequenceRecorderOptions
-  const ref = useRef<HotkeyRecorder | null>(null, subSlot(slot, 'recorder'))
-  ref.current ??= new HotkeyRecorder(merged)
-  const recorder = ref.current
+  // The actions are created with the recorder, so they keep their identity
+  // across renders.
+  const ref = useRef<[HotkeyRecorder, RecorderActions] | null>(
+    null,
+    subSlot(slot, 'recorder'),
+  )
+  if (!ref.current) {
+    const recorder = new HotkeyRecorder(merged)
+    ref.current = [
+      recorder,
+      {
+        startRecording: () => recorder.start(),
+        stopRecording: () => recorder.stop(),
+        cancelRecording: () => recorder.cancel(),
+        commitRecording: () => recorder.commit(),
+      },
+    ]
+  }
+  const [recorder, actions] = ref.current
   useLayoutEffect(
     () => {
       recorder.setOptions(merged)
@@ -46,11 +67,5 @@ export function useHotkeyRecorder(
   )
   useLayoutEffect(() => () => recorder.destroy(), [], subSlot(slot, 'cleanup'))
   const state = select(recorder.store, (value) => value, subSlot(slot, 'state'))
-  return {
-    ...state,
-    startRecording: () => recorder.start(),
-    stopRecording: () => recorder.stop(),
-    cancelRecording: () => recorder.cancel(),
-    commitRecording: () => recorder.commit(),
-  }
+  return { ...state, ...actions }
 }

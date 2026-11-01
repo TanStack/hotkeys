@@ -97,6 +97,8 @@ export class AppHotkeysController implements ReactiveController {
   }
 
   public hostConnected(): void {
+    // Adding the controller again while connected calls this twice.
+    if (this._unsubscribe) return
     if (isServer()) return
     const update = () => this._host.requestUpdate()
     const unsubscribeAppHotkeys = subscribeAppHotkeys(update)

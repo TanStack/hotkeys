@@ -7,7 +7,7 @@ title: useHotkeys
 function useHotkeys(hotkeys, commonOptions?): void;
 ```
 
-Defined in: [useHotkeys.ts:94](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeys.ts#L94)
+Defined in: [useHotkeys.ts:95](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeys.ts#L95)
 
 Vue composable for registering several hotkeys at once: chords, sequences,
 and app hotkeys. The list, each hotkey, and options may be refs or getters.

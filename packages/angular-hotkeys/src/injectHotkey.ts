@@ -1,4 +1,5 @@
 import { injectHotkeys } from './injectHotkeys'
+import type { ElementRef, Signal } from '@angular/core'
 import type {
   AppHotkey,
   HotkeyCallback,
@@ -16,11 +17,15 @@ import type {
 } from '@tanstack/hotkeys/adapter'
 
 /**
- * The element to listen on. A `null` target skips registration, so pass a
- * getter such as `() => ({ target: this.element() })` for elements that
- * attach after the view renders.
+ * The element to listen on: an element, an `ElementRef`, or a signal of
+ * either, such as `viewChild<ElementRef>('panel')`. A `null` target, or a
+ * signal of `undefined`, skips registration until the element exists.
  */
-export type InjectHotkeyTarget = Target | null
+export type InjectHotkeyTarget =
+  | Target
+  | ElementRef<Target>
+  | Signal<Target | ElementRef<Target> | null | undefined>
+  | null
 
 /** Options shared by chords and sequences. */
 export type InjectHotkeyOptions = AdapterHotkeyOptions<InjectHotkeyTarget>

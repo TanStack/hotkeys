@@ -3612,6 +3612,9 @@ importers:
       typescript:
         specifier: 6.0.3
         version: 6.0.3
+      zone.js:
+        specifier: ~0.16.3
+        version: 0.16.3
 
   packages/angular-hotkeys-devtools:
     dependencies:

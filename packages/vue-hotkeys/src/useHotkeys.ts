@@ -3,6 +3,7 @@ import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
 } from '@tanstack/hotkeys/adapter'
+import { useLive } from './_useLive'
 import {
   useAppHotkeysStoreSource,
   useDefaultHotkeysOptionsSource,
@@ -98,9 +99,12 @@ export function useHotkeys(
   const defaultOptions = useDefaultHotkeysOptionsSource()
   const appHotkeys = useAppHotkeysStoreSource()
   const bindings = createHotkeyBindings()
+  const live = useLive()
 
   const stopWatcher = watch(
     () => {
+      // A page cached by <KeepAlive> unregisters while hidden.
+      if (!live.value) return []
       // Track app hotkeys so registrations move with custom hotkeys.
       void appHotkeys.state.value
       const definitions: Array<AdapterHotkeyDefinition<UseHotkeyTarget>> =

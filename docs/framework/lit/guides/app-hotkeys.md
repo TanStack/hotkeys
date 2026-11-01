@@ -75,14 +75,9 @@ class Editor extends LitElement {
   @hotkey(appHotkeys['nav.home'])
   goHome() {}
 
-  constructor() {
-    super()
-    this.addController(
-      new HotkeyController(this, appHotkeys['doc.save'], () => this.save(), () => ({
-        enabled: this.dirty,
-      })),
-    )
-  }
+  private saveHotkey = new HotkeyController(this, appHotkeys['doc.save'], () => this.save(), () => ({
+    enabled: this.dirty,
+  }))
 }
 ```
 

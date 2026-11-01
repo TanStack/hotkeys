@@ -5,7 +5,7 @@ description: Register multi-key sequences in Alpine components, such as G then H
 ---
 
 > [!IMPORTANT]
-> `scope.createHotkeySequence`, `scope.createHotkeySequences`, and `scope.createHotkeySequenceRecorder` were removed in `@tanstack/alpine-hotkeys` v0.3.0. Pass a sequence to `scope.createHotkey` or `scope.createHotkeys` instead, and record one with `scope.createHotkeyRecorder` and `maxSteps: Infinity`.
+> `scope.createHotkeySequence`, `scope.createHotkeySequences`, and `scope.createHotkeySequenceRecorder` were removed in `@tanstack/alpine-hotkeys` v0.3.0. Pass a sequence to `scope.createHotkey` or `scope.createHotkeys` instead, and record one with `createHotkeyRecorder` and `maxSteps: Infinity`.
 
 A sequence is a hotkey made of chords pressed one after another, such as `G` then `H` to go home. Vim-style navigation, two-step commands such as VS Code's `Ctrl+K` then `Ctrl+C`, and cheat codes are all sequences.
 

@@ -1,16 +1,21 @@
-import { getHotkeyManager } from './hotkey-manager'
+// Import shared state by package name, not by path. A CDN such as jsDelivr
+// bundles each entry on its own, and a relative import would give this entry
+// a second HotkeyManager and app hotkeys factory.
 import {
+  detectPlatform,
   getAppHotkeyRegistrationOptions,
+  getHotkeyManager,
   isAppHotkey,
+  isHotkeySequence,
+  normalizeHotkey,
+  parseHotkey,
   resolveAppHotkey,
-} from './app-hotkeys'
-import { isHotkeySequence, normalizeHotkey, parseHotkey } from './parse'
+} from '@tanstack/hotkeys'
 import {
   chordHasKey,
   defaultHotkeyOptions,
   definedOptions,
 } from './_registration'
-import { detectPlatform } from './platform'
 import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'
 import type {
   HotkeyCallback,
@@ -29,7 +34,7 @@ import type {
   Target,
 } from './hotkey-manager'
 
-export { createAppHotkeysStore } from './_app-hotkeys-factory'
+export { createAppHotkeysStore } from '@tanstack/hotkeys'
 export { createStore } from './_store'
 export { definedOptions, withDefaults } from './_registration'
 export type { Store } from './_store'

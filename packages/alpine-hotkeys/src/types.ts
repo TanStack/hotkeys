@@ -111,7 +111,7 @@ export interface AlpineCreateHotkey {
   ): void
 }
 
-/** Creates a recorder; `maxSteps` (default 1) selects chords or sequences. */
+/** `$hotkeyRecorder`: creates a recorder; `maxSteps` (default 1) selects chords or sequences. */
 export interface AlpineCreateHotkeyRecorder {
   (options: HotkeyChordRecorderOptions): AlpineHotkeyRecorder<HotkeyChord>
   (options: HotkeySequenceRecorderOptions): AlpineHotkeyRecorder
@@ -123,7 +123,7 @@ export interface AlpineCreateHotkeyRecorder {
   (options: () => HotkeyRecorderOptions): AlpineHotkeyRecorder
 }
 
-/** Registrations, recorders, and reactive state owned by one Alpine component. */
+/** Registrations and reactive state owned by one Alpine component. */
 export interface AlpineHotkeys {
   /**
    * Register one hotkey: a chord such as `'Mod+S'`, a sequence such as
@@ -154,8 +154,6 @@ export interface AlpineHotkeys {
   createHotkeyRegistrations: () => HotkeyRegistrationsResult
   /** Read the active, exclusive, allowed, and suspended scopes through `.value`. */
   createHotkeyScopesState: () => AlpineHotkeyState<HotkeyScopesState>
-  /** Create a recorder whose options can follow Alpine state. */
-  createHotkeyRecorder: AlpineCreateHotkeyRecorder
   /** Read the effective app hotkeys from `provideAppHotkeys` through `.value`. */
   createAppHotkeys: () => AlpineHotkeyState<RegisteredAppHotkeys>
   /** Read every app hotkey with its live status through `.value`. */

@@ -28,9 +28,11 @@ class MyEditor extends LitElement {
 }
 ```
 
-`@hotkey` is a legacy TypeScript decorator, so set `experimentalDecorators: true` and `useDefineForClassFields: false` in your `tsconfig.json`. Without it, use [`HotkeyController`](#hotkeys-follow-your-elements) instead.
-
 `Mod` is Command on macOS and Control on Windows and Linux, so `Mod+S` is the save shortcut each user already knows. The browser's Save dialog stays closed, and the shortcut still works while the user types in the textarea. [Sensible Defaults](../../guides/sensible-defaults) explains these defaults.
+
+`@hotkey` works with standard decorators and with TypeScript's legacy decorators (`experimentalDecorators: true`), and needs no other setup.
+
+Lit's own decorators have their own rules. With standard decorators, declare `@property` and `@state` fields with the `accessor` keyword. With legacy decorators, set `useDefineForClassFields: false`. The examples here use legacy decorators. See Lit's [decorators guide](https://lit.dev/docs/components/decorators/).
 
 That's all a hotkey needs. Controllers, scopes, and the other features later in this guide are optional, so add them as your app grows.
 
@@ -168,18 +170,13 @@ import { HotkeyController } from '@tanstack/lit-hotkeys'
 class MyEditor extends LitElement {
   @state() private hasUnsavedChanges = false
 
-  constructor() {
-    super()
-    this.addController(
-      new HotkeyController(this, 'Mod+S', () => this.save(), () => ({
-        enabled: this.hasUnsavedChanges,
-      })),
-    )
-  }
+  private saveHotkey = new HotkeyController(this, 'Mod+S', () => this.save(), () => ({
+    enabled: this.hasUnsavedChanges,
+  }))
 }
 ```
 
-The controller reads the function again after each update, so keep the values it reads in reactive properties.
+A controller adds itself to the element you pass, so a class field is enough. It reads the function again after each update, so keep the values it reads in reactive properties.
 
 When a group of hotkeys turns on and off together, put them in a scope instead. See [Add scopes](#add-scopes-optional).
 
@@ -199,15 +196,10 @@ import { HotkeyController } from '@tanstack/lit-hotkeys'
 class MyPanel extends LitElement {
   private panel = createRef<HTMLDivElement>()
 
-  constructor() {
-    super()
-    // Fires only while the panel, or something inside it, has focus
-    this.addController(
-      new HotkeyController(this, 'Escape', () => this.closePanel(), () => ({
-        target: this.panel.value ?? null,
-      })),
-    )
-  }
+  // Fires only while the panel, or something inside it, has focus
+  private closeHotkey = new HotkeyController(this, 'Escape', () => this.closePanel(), () => ({
+    target: this.panel.value ?? null,
+  }))
 
   render() {
     return html`<div ${ref(this.panel)} tabindex="0">...</div>`
@@ -215,7 +207,7 @@ class MyPanel extends LitElement {
 }
 ```
 
-A `null` target waits until the element renders. The element must be focusable to receive key presses, so give it a `tabindex` if it isn't a control.
+A `null` target waits until the element renders. The controller reads the target after each update of its own element, so render the target in that element. See [Hotkey targets](./guides/hotkeys#hotkey-targets) for a target that another element renders. The hotkey fires while focus is on the element or inside it. If nothing there can take focus, give the element a `tabindex`.
 
 ## Add scopes (optional)
 

@@ -1,31 +1,31 @@
-import { definedOptions, withDefaults } from '@tanstack/hotkeys/adapter'
+import { definedOptions } from '@tanstack/hotkeys/adapter'
 import { OnHotkey } from './onHotkey'
 import { OnHotkeys } from './onHotkeys'
 import { UseHotkey } from './useHotkey'
 import { UseHotkeys } from './useHotkeys'
-import { useHotkeyRecorder } from './useHotkeyRecorder'
-import { read } from './utils'
-import type { HotkeySequenceRecorderOptions } from '@tanstack/hotkeys'
+import { read, scopeDefaults } from './utils'
 import type { DefaultHotkeysOptions } from './types'
 import type { MaybeGetter } from './utils'
 
-/** Helpers, modifiers, and recorder factories with shared defaults. Owners retain their own cleanup. */
+/**
+ * Helpers and modifiers with shared defaults. Owners retain their own cleanup.
+ * Pass the scope to `useHotkeyRecorder` to apply its recorder defaults.
+ */
 export interface EmberHotkeysScope {
   onHotkey: typeof OnHotkey
   onHotkeys: typeof OnHotkeys
   useHotkey: typeof UseHotkey
   useHotkeys: typeof UseHotkeys
-  useHotkeyRecorder: typeof useHotkeyRecorder
 }
 
 /**
- * Creates contextual helpers, modifiers, and recorders with shared, optionally reactive defaults.
+ * Creates contextual helpers and modifiers with shared, optionally reactive defaults.
  * Pass the scope to child components through arguments to share configuration.
  */
 export function createHotkeysScope(
   defaultOptions: MaybeGetter<DefaultHotkeysOptions> = {},
 ): EmberHotkeysScope {
-  return {
+  const scope: EmberHotkeysScope = {
     onHotkey: class extends OnHotkey {
       override modify(
         ...[element, args, options]: Parameters<OnHotkey['modify']>
@@ -58,14 +58,7 @@ export function createHotkeysScope(
         })
       }
     },
-    useHotkeyRecorder: ((owner: object, options: MaybeGetter<object>) =>
-      useHotkeyRecorder(
-        owner,
-        () =>
-          withDefaults(
-            read(defaultOptions).hotkeyRecorder,
-            read(options),
-          ) as HotkeySequenceRecorderOptions,
-      )) as typeof useHotkeyRecorder,
   }
+  scopeDefaults.set(scope, defaultOptions)
+  return scope
 }

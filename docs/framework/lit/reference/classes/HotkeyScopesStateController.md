@@ -98,7 +98,7 @@ ReactiveController.hostConnected
 hostDisconnected(): void;
 ```
 
-Defined in: [controllers/hotkey-scopes-state.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts#L54)
+Defined in: [controllers/hotkey-scopes-state.ts:56](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts#L56)
 
 Unsubscribes from the scopes store.
 

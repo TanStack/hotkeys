@@ -3,66 +3,62 @@
   "baseline": "ad56a4b0dbf3c34d8552eca2cc88c5c7000d520a",
   "items": {
     "skill:packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": {
-      "fingerprint": "0d946ee200e3c95a62b1ac2e92c5fddbd46735a7cededda1d083665899295535",
+      "fingerprint": "4cedf670cf2c1475454d58e7b1ef4afc7e9f3fdafd4fc4942384c312faaa10de",
       "snapshot": {
-        "docs/framework/alpine/guides/app-hotkeys.md": "55bc28d92b05369212fe069ee1bc402ba341eead4ea8c0a6220aaaba3db2ddf9",
-        "docs/framework/alpine/quick-start.md": "cca1aa4d9bbcf1ed7b9b4fb2b9cdf35880d9c2f9d6a64b0ca49dd1a4d746eb76",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "8c0a3ab25f684d8445925d43dbadabb4e491b12001d78811cbf0d3f41db044c8",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "fdc12aafd6098bde8b4e7f5d8a8afb12227ac99cd753e06fc27401d5d8c8fead",
+        "docs/framework/alpine/guides/app-hotkeys.md": "e5c2a2a0cbbc35e793cf3e88bdbafd863153f8784ee1af27f2a81fe7f259bb9b",
+        "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "0b86889ea9327f24e0f66ab9ba5eb783aaffb492c028e1b6cac257690ca5d462",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "d182e659acc9f0a28e9198f590163db1541b30eec6d347fb378022f775cf316d",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "f712ddb3354230197eb54d6f270d00a41c2b889e60690e70853569fe1a5207ea",
         "packages/alpine-hotkeys/src/createHotkey.ts": "2eaac78690d6737f2f73f756b01df17a02075f498666e5745cc34f2d0e6086b5",
-        "packages/alpine-hotkeys/src/createHotkeysScope.ts": "8fb6d17e8fe155327fdac17f9d057d6538c84474c1c464ee25409c23d52e7a85",
+        "packages/alpine-hotkeys/src/createHotkeyRecorder.ts": "1d93677561619b55d36c3f61ce564ee86ff6fe99e1dc891823d39c59e70d8287",
+        "packages/alpine-hotkeys/src/createHotkeysScope.ts": "0f06480dc1fa7448124205b3af2811e96377b98bad73369d953e6e8ccb1baa30",
+        "packages/alpine-hotkeys/src/hotkeyRecorderPlugin.ts": "8ff86447e513f47002c49ed9f60269d485b0cd65b87277bb52cf2d8286ddbd36",
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
-        "packages/alpine-hotkeys/src/scope.ts": "6de5d72206289c2ad4b3719cd69474450770cb006abf951f1419ed70a58bdb7c"
+        "packages/alpine-hotkeys/src/scope.ts": "d32e8bd75b0db71b01f42343f9220a4b10b9c91d17542b1acb61db9068c46d6c"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
       "outcome": "no-change",
-      "reason": "The quick start only copies the guide's $refs caveat for null targets; the skill makes no claim about null targets or $refs.",
-      "evidence": [
-        "docs/framework/alpine/quick-start.md",
-        "grep of the Alpine skill for null and $refs"
-      ]
+      "reason": "The quick-start focus sentence changed to say a target hotkey fires while focus is on the element or inside it; the skill keeps its tabindex example, which is still correct.",
+      "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "5e41cf307080a6c796cdea893e8a3896140a930a2bfc1c299b31031c1baa0853",
+      "fingerprint": "d0e570a4b2f2c27b79228f2d1144c91afba74e2979d4a762919139db481374de",
       "snapshot": {
-        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "003fba191e3d13d4466754644c4d2174a550f48d437028bc163ba6acca6546ad",
-        "docs/framework/angular/quick-start.md": "d1cc5f91cd50b579c8a4bd9811e76862308855ce602556e4fa36561bc7d62822",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "2b0e9e34fb1338d2db1657beffd8664906ef200388854cfc2895cf9f428e00d9",
+        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
+        "docs/framework/angular/quick-start.md": "af3ea39ae8eb6a356454c1018a6c2899d72211362733f8ff7e09055344e37331",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "aeb786b5b6d3b930c36357cb738e71ab3a0c131718d9f19ab40df43fd7f845dd",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "5fe1b12a519e8ca5087d78d47050f7a2ec0c70bb9b7d6ebcbb050ee099e3effe",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts": "70c8a36dd34c2de1fbb61aabc36f098e5de5c77a71f14880dde5b97e856fc69b",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts": "eee1e9ea2b21a6961ebd937a3ba89218823a37afa8a2ee5e5e52cbb05dbced51",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "3161186944b142feab034a1899b76b178700f4ef371bfffbb694b9ed5a191d32",
-        "packages/angular-hotkeys/src/injectHotkey.ts": "8974a1a3e79b35e82b6fd906c9c9527d87eebbc5ae0496d5b197e52bab8d6dad",
-        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "cd99257530e54ce7dcef02f3669fffbf29239ef9437f68967d189d49c9ee2a10",
-        "packages/angular-hotkeys/src/injectHotkeys.ts": "cecc7d127934caaab72a694fe527ef7a7b31e660f98cc077dabacd5506e11619"
+        "packages/angular-hotkeys/src/injectHotkey.ts": "03ea85098b0ed95e323e8d1e35b61b2683b7bc2d68f67e56e15ce2da92177a6f",
+        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "d431ed7df4440d09cbed88d3201751853330d0b927949886e53cc583a75e7668",
+        "packages/angular-hotkeys/src/injectHotkeys.ts": "fed0f6769a2a8539db1c243a6ce76bddfbc669ffcde75dfe077c95484fc7c2c6"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
       "outcome": "no-change",
-      "reason": "Guidance is still accurate: undefined options now keep their defaults, nullish and empty hotkeys register nothing, hint helpers return false for no hotkey, and providers apply changed customHotkeys. No skill recommends forwarding undefined, null targets meaning document, the ?? [] workaround, or remounting the provider for saved data.",
-      "evidence": [
-        "grep of skills for null, undefined, ?? [], target, customHotkeys, and 'once'; references still pass customHotkeys the same way, and 'an undefined target means document' remains true."
-      ]
+      "reason": "The quick-start focus sentence changed to say a target hotkey fires while focus is on the element or inside it; the skill keeps its tabindex example, which is still correct.",
+      "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
-      "fingerprint": "f031a17639b84de1b583510db8a96bbdfac6a7ca43b02d383338bed32c505cdd",
+      "fingerprint": "b9df52d66302d44be1c71683e52a534a0aed57205d94093132f06a4192bf7bab",
       "snapshot": {
         "docs/framework/ember/guides/app-hotkeys.md": "fbe213ed8b89a59c6915c9ecfcfe8a1dbd184a0535e5d2b48fe8b8f06108d342",
-        "docs/framework/ember/quick-start.md": "cabdc0cbd2b9ac6d4d7f9f2c8b8d3fc6ef2ac8c23df4cd8ebc9745c99023f8c8",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "ba4e5144d1b1e5435ffda905009c40b343b8cd829a93ec9553afc576d2388acc",
+        "docs/framework/ember/quick-start.md": "d5d1d06886ec2584081dcc44b4ed8f10b79e344b5a621dd5c870c58c36977b72",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "94a86a8ba12fa15834eca84a9a8de82d75886e23682602ed8ea783d11b94842d",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
-        "packages/ember-hotkeys/src/createHotkeysScope.ts": "8f1942a5ee2f629c6f28b0fe7505e692cdee2a500dab78e91ab3164c33b93e09",
+        "packages/ember-hotkeys/src/createHotkeysScope.ts": "69f52ddf5f42b459901278c563357f796529295846f9b80159e79df39ea5e384",
         "packages/ember-hotkeys/src/onHotkey.ts": "0cd156d6a90b341d7f1006df47911b3033ba523a68758274c00df7c8cb9dfbff",
         "packages/ember-hotkeys/src/onHotkeys.ts": "a0ef3d3d1065ea4a28021827b363701a7efd2bb07606f9689fe58259080decc2",
         "packages/ember-hotkeys/src/useAppHotkeys.ts": "b304f96bfaa0418a246f65405ef0f89645f9935e9723a5027244eae8aebfa512",
         "packages/ember-hotkeys/src/useHotkey.ts": "afddc8e2c34ec8bb6351d4162d38710c60927c60cbb0cc6695b5dfd751d32159",
+        "packages/ember-hotkeys/src/useHotkeyRecorder.ts": "f963076a871a9e007a687aa1056e762f525448f0db2ceeeb929d1c85df236c44",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
       "outcome": "no-change",
-      "reason": "Guidance is still accurate: undefined options now keep their defaults, nullish and empty hotkeys register nothing, hint helpers return false for no hotkey, and providers apply changed customHotkeys. No skill recommends forwarding undefined, null targets meaning document, the ?? [] workaround, or remounting the provider for saved data.",
-      "evidence": [
-        "grep of skills for null, undefined, ?? [], target, customHotkeys, and 'once'; references still pass customHotkeys the same way, and 'an undefined target means document' remains true."
-      ]
+      "reason": "The quick-start focus sentence changed to say a target hotkey fires while focus is on the element or inside it; the skill keeps its tabindex example, which is still correct.",
+      "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
       "fingerprint": "5669ff24b91f3ed8e523424f6c6f4735c4c892c43de05c10b44b804b39d84beb",
@@ -92,13 +88,13 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "e03653582b7bc0dfded033edf6f43e7f8a9be4d132d18e61d961ebf4de08d773",
+      "fingerprint": "9f8036eccd403b03532e2bff706a9e33e50e2722b7cf9e76a717d70148dfa64a",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
-        "docs/framework/react/guides/hotkeys.md": "057f320c6ed3629ee9b13501e9e3c1f2ccd302395edd6983abfd1398c172f22b",
+        "docs/framework/react/guides/hotkeys.md": "5e6ee56c4c945deef0cfcdcc6df73f1ed57602aaffb751ccf2483be586009627",
         "docs/framework/react/guides/sequences.md": "e66231380dab6222508a1305d83586459b59953c2ecc47b9549e3cb29ffcd355",
         "docs/guides/sensible-defaults.md": "3ca71598b3de383974ec16c5b0fd10855735237853ccddb711680b98d2a437f2",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "a45229edb827101dd019587c5e20965954a508eb5ba57ef6680e53d084585df8",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "e7f38e9901edb606b13c914e2f14e2660a7b6159cc8015b2735e2df3e4051000",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/hotkey-manager.ts": "71fcd3ce0a8f8dbc6892aa9c39d8428d1db39fa2392594d4b3c3124f96f42b54",
@@ -113,76 +109,71 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "51891f65f771268240b7687890a53ff0e7c9b313",
-      "outcome": "no-change",
-      "reason": "register returns an inactive handle instead of throwing for a hotkey with an empty key; no skill says register throws, and adapters already skip these.",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "outcome": "updated",
+      "reason": "Corrected the target focus rule: focus on the element or inside it, tabindex only when nothing there can take focus.",
       "evidence": [
-        "packages/hotkeys/src/hotkey-manager.ts",
-        "grep of skills for register, throw, and empty"
+        "packages/hotkeys/src/_target-listeners.ts attaches to the target and receives bubbled events"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
-      "fingerprint": "d29723cfa91c4e7bc61c43484e3332a16d3a2af47837333faa01869c68a03b29",
+      "fingerprint": "e2efc0dc6fe2db5a3ba3fd51a6d0e250b24e758100e2fe0edf5b8bde446ab0ab",
       "snapshot": {
-        "docs/framework/lit/guides/app-hotkeys.md": "c091b64c939cdc0fe4013efa3416a475c80555ab56e7d18956582b88fa8215ae",
-        "docs/framework/lit/quick-start.md": "fd738e4fc1bad5b588d00c885cad37c633030e13de86b1f5870699043387430a",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "ecd0100b52a00fc90ce71f244093da667d0c5ff78ecaf632d9db26f1c66c8e40",
+        "docs/framework/lit/guides/app-hotkeys.md": "da53124e5996f174e42e37a69a1b46757c7112506060fd79688fdbe4b1637b9c",
+        "docs/framework/lit/quick-start.md": "0401af0a16eed1571514ce2e7cb0114e52e4d276f97a77cd1b26b2d8fe1f65b7",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "4e5593e8d4373475d4e6006e30ec663d7f0f3fcf0aa881fc403efe58b9cf7606",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "659ca9bebf4200bb693c693addb17bd5a943904e482514f2014f5ca426629e96",
-        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "4661f2f5468dc484ab02284f1cb96eec411445ef7981390f31d37e491e51a603",
-        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "53f0b7af49f88fce7890790aa6291f44ae05c5553aac133340fd3745edd71631",
-        "packages/lit-hotkeys/src/controllers/hotkey.ts": "2cd53d54c3240e93c7256a59f54aec5022de1eece74da09d301ecf4ee2e3b7fc",
-        "packages/lit-hotkeys/src/decorators/hotkey.ts": "2730f3178f6e5f6695fa0c2f8d25d7040c2ff841d3de486acffef86cfc76395f"
+        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "284c1974350c7465174e9fa47d22e55888a5a7462f98ca39cc1ccb65eadab5a2",
+        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "393686f43b22d9e722554ad922b4a7c4df4ab053d472e3f9038c6f119e8dc1bc",
+        "packages/lit-hotkeys/src/controllers/hotkey.ts": "76ac338e601032ac00b6c9e78d4de25ba80e10b7e3aa193eccc65964e1bdb25c",
+        "packages/lit-hotkeys/src/decorators/hotkey.ts": "324326b5cc6d2e7120ef004450a4ad721c564a79f419fa99978452b62a51c38a"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
       "outcome": "no-change",
-      "reason": "The quick start now says @hotkey needs experimentalDecorators and useDefineForClassFields: false, which the skill already states.",
+      "reason": "The quick-start focus sentence changed to say a target hotkey fires while focus is on the element or inside it; the skill keeps its tabindex example, which is still correct.",
       "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
-      "fingerprint": "254e9713db3e3ee983c38f7ec40a76506a10fca74aa9084d81b5ccc001569b51",
+      "fingerprint": "a75604ca0cfbcabe0c4894d556456fe964bb81b0af448fce585c7de9bdc24a11",
       "snapshot": {
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
-        "docs/framework/octane/quick-start.md": "2ddb77d76eefae05feb5183206687bf4fd4ac3b18e43cc5e51a934b361702ea1",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2d8f1849449ed280c1d899737fa388e3f40528b04954d96fe33be1a11b422d44",
+        "docs/framework/octane/quick-start.md": "5496356f36afcb42677c4fa1ed618813d69b7b22bd782fac240cb94c64d90f6e",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "bc6d4b68b077d92ead298470a6e76b7ab61cbcb2762ee9b5873590c4bed5ef94",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "4e9a9adac5d1717caf67eaccbd3f5cb9780bad4db5c420290512bbab34f319fd",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "4884113fa09d9869baf8af1f3bb07ba72558308a03136b3c1b59feb49ce2efbb",
         "packages/octane-hotkeys/src/useHotkey.ts": "d8da1d0cf0eb528667a25e750a2e51405e4e293bd10e22173546967b5c9d392b",
         "packages/octane-hotkeys/src/useHotkeys.ts": "f864ed03975e9930638cfe9025639619ebdb2c975a55e6950199cba86cb70476"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "no-change",
-      "reason": "Guidance is still accurate: undefined options now keep their defaults, nullish and empty hotkeys register nothing, hint helpers return false for no hotkey, and providers apply changed customHotkeys. No skill recommends forwarding undefined, null targets meaning document, the ?? [] workaround, or remounting the provider for saved data.",
-      "evidence": [
-        "grep of skills for null, undefined, ?? [], target, customHotkeys, and 'once'; references still pass customHotkeys the same way, and 'an undefined target means document' remains true."
-      ]
+      "head": "6b4f6c487211c51b9a58d757c4bddb0459747542",
+      "outcome": "updated",
+      "reason": "Custom-hook pitfall now covers plain .js files as well as .ts.",
+      "evidence": ["docs/framework/octane/guides/hotkeys.md"]
     },
     "skill:packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": {
-      "fingerprint": "b8f9255b7e0467296237c7bfdf51a428a471ddf889b8111560e8b0f5b7c7afcd",
+      "fingerprint": "43e05f7549280b1cfa59f79178aafebda258a380231fe8f48cb42b085bf3e120",
       "snapshot": {
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
-        "docs/framework/preact/quick-start.md": "ee1204420dd5acb198b2a15d239a062fee761fa0c6288913776c5e7e72b6bcb1",
-        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "70f923af689e43c917d4f8a3a966a00b0baeb789f15ac3a394b5b68dce265afd",
+        "docs/framework/preact/quick-start.md": "a264a85a4a2d765edc551c82f46e45c2eb53721e18129eb19550f6962fa245c3",
+        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "c35faf0403eaabf3d6a1b823ea159a1f3bb100c76902aa94c8fa4a2c6e4de6de",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "4388ff0528e9ea44f819896f2687ab962735479cdafaddd1e349dd1bf6dc5479",
-        "packages/preact-hotkeys/src/HotkeysProvider.tsx": "58e684c3c9077496851162afde839f6c069dd1da7f34216cc9be97c67e69a1b9",
+        "packages/preact-hotkeys/src/HotkeysProvider.tsx": "3aa56742b97f7e697d4e48c2098df6ffa5e6b237a2cc989d89b88d8fc924c6d3",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "023eff9348a9209a2e3e99a2b9847da3be72206f98150b478dae81a215059577",
         "packages/preact-hotkeys/src/useHotkey.ts": "6d66b813038e063f62aa8c8fb9be3020739854e1133885f70720b1036e789e84",
-        "packages/preact-hotkeys/src/useHotkeys.ts": "23ccd2ee8566bc62a8bca00c8a1c40fc4d37c8363b891667ae391f3e44bfa97b",
+        "packages/preact-hotkeys/src/useHotkeys.ts": "832bf0156ff46db00140617bd3fea8055ca712a1a82d3cef7800776d42b02ebf",
         "packages/preact-hotkeys/src/utils.ts": "118090c4255527f52773133741355445fff8e41605ec6a9fc69c792730e96b9f"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "updated",
-      "reason": "A null target now registers nothing instead of listening on document; the ref.current mistake now explains that.",
-      "evidence": [
-        "Updated the 'Pass the ref, not ref.current' bullet in preact-hotkeys/SKILL.md."
-      ]
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "outcome": "no-change",
+      "reason": "The quick-start focus sentence changed to say a target hotkey fires while focus is on the element or inside it; the skill keeps its tabindex example, which is still correct.",
+      "evidence": ["packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "38804dfba879e4598d8508297dccc84a9131ce9544ec5d25ce68b8e683ba8d29",
+      "fingerprint": "d006c570623d877808a464069fc0a0aaa485bfa54fd77593d86ccd0898825e4d",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
-        "docs/framework/react/quick-start.md": "d587fccff19a0cf3c131f832a8eb423d5d4892e78e521aa856fd23485015afe7",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "7a2174d10ceed282f6080652d482a801c229209d84f1582689ef66a4f9ac2c3a",
+        "docs/framework/react/quick-start.md": "500e53dc13e515eadb3c2db4d359878e12354df0284eef7f6c02701f836fb4f8",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "356b60f0bc5527420c5796a92a580add802548bed5863c1d297268172c61b0cb",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "e45854b2346700249569ce418b0bb5593cd00a018336a60c9ed5cedeb8d49b3e",
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "6204393b615aa83d4e81f74c760026c17e67e140518db157380dea6929c20659",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "eec5d9a2e281ab8892c56b9482cd930a06deb176581bba9cb409faa35b1bee91",
@@ -207,37 +198,33 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "updated",
-      "reason": "A null target now registers nothing instead of listening on document; the ref.current mistake now explains that.",
-      "evidence": [
-        "Updated the 'Pass the ref, not ref.current' bullet in react-hotkeys/SKILL.md; editor-shortcuts task, mistake comment, and grader expectation updated."
-      ]
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "outcome": "no-change",
+      "reason": "The quick-start focus sentence changed to say a target hotkey fires while focus is on the element or inside it; the skill keeps its tabindex example, which is still correct.",
+      "evidence": ["packages/react-hotkeys/skills/react-hotkeys/SKILL.md"]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
-      "fingerprint": "2ac985e4bff86564c0e0d4eb6c98b40f0d413541bf590e9b1df55d98a41e524c",
+      "fingerprint": "196e62b1ad7e7374772f9a88d76d681838df87e1d12fe6a7e6ae59854a89311f",
       "snapshot": {
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
-        "docs/framework/solid/quick-start.md": "292bf5cc6300e899c6f382e263665a488899fa816bb13ad4994420e390bb2420",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "993952b562135b26ef21c97fb5caa2886f405370b93de22db30f689ebb4199d7",
+        "docs/framework/solid/quick-start.md": "ebd2d15005ecd12a4eb9e13bf29d6445c3f0d08a891d16cf7cc80614464af558",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "f19b7d104855149cfb592b11f20541520ba720bbd938169666b888ba7eeefcf0",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d3dda6cd9aa0a8655aa43f017490797ad3d2de42206446b2403363873b84b133",
         "packages/solid-hotkeys/src/HotkeysProvider.tsx": "886423ba0dfa4a8d769d6e5e65e491b3cb342f20a8c7662321843c4c25f5fb3d",
         "packages/solid-hotkeys/src/appHotkeys.ts": "5d44d8ce952af7a3e522fd42511a963e9af75c4229a2449cde16a180c6f030f2",
         "packages/solid-hotkeys/src/createHotkey.ts": "3be9476087da2b53e809ad5ac59b2f791f38cc4d88e2b151258e668a9fc92294",
         "packages/solid-hotkeys/src/createHotkeys.ts": "de2c71ca0b15af7482c89b3bba4b6c7685571c6163c360f06e92d567b7384905"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
       "outcome": "no-change",
-      "reason": "Guidance is still accurate: undefined options now keep their defaults, nullish and empty hotkeys register nothing, hint helpers return false for no hotkey, and providers apply changed customHotkeys. No skill recommends forwarding undefined, null targets meaning document, the ?? [] workaround, or remounting the provider for saved data.",
-      "evidence": [
-        "grep of skills for null, undefined, ?? [], target, customHotkeys, and 'once'; references still pass customHotkeys the same way, and 'an undefined target means document' remains true."
-      ]
+      "reason": "The quick-start focus sentence changed to say a target hotkey fires while focus is on the element or inside it; the skill keeps its tabindex example, which is still correct.",
+      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "e933c1412f257d06867006748a5ca38d35ed51b6a400954e16df15528769f5fb",
+      "fingerprint": "b40eccd7308b42508bf7c23041255ab28e8434a2ddd052832f7b30f00717fdb1",
       "snapshot": {
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
-        "docs/framework/svelte/quick-start.md": "dac9d02db91eaf3aed4eba39d6fb31a4a460bb3f84ba85c0576d3573b5ecf3d1",
+        "docs/framework/svelte/quick-start.md": "bb190234865370dd55d20d6c2e53d266021bb47208b3c5eea373f7b7a2c66883",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "d99ef59e6a695be73d48b954a337d5c91f471268bad8da590a7b4d72f1a8a1c4",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "a229e803efdc9b52c034b3b0784714973fdae1e9756d417e81b4ba611077262c",
@@ -247,91 +234,90 @@
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "9dba19b9d793ca7dedf08b6762b6797bc3f537d6106f046aeaa48b14bc7cc868",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a6a995eea5b1334baef1909da68dea08f8df4e29819bada3549c9a0be86e6dcb"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
       "outcome": "no-change",
-      "reason": "Guidance is still accurate: undefined options now keep their defaults, nullish and empty hotkeys register nothing, hint helpers return false for no hotkey, and providers apply changed customHotkeys. No skill recommends forwarding undefined, null targets meaning document, the ?? [] workaround, or remounting the provider for saved data.",
-      "evidence": [
-        "grep of skills for null, undefined, ?? [], target, customHotkeys, and 'once'; references still pass customHotkeys the same way, and 'an undefined target means document' remains true."
-      ]
+      "reason": "The quick-start focus sentence changed to say a target hotkey fires while focus is on the element or inside it; the skill keeps its tabindex example, which is still correct.",
+      "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
-      "fingerprint": "cb7cb70095dc7cffd6cc6857820ce38880f33b50aba6c0bfacf618ad1d510707",
+      "fingerprint": "47fb2c2baab48bdf5f6508acc6a57310df5ac3f22fbcc7a869a3e59f09199ba0",
       "snapshot": {
-        "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "405eb90a8209f439db06d2e3d861acaa324b6598488c1705575ad56dccbb6ad3",
-        "docs/framework/vue/quick-start.md": "80bedac58ab9aee3b4bc5f59582b5b836c37fe14f08ab670eababf88a45e76c2",
+        "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
+        "docs/framework/vue/quick-start.md": "4647a77aeac8014b20ccaaa10872fca8e7845bfb5416c68723fc25f2de79b0c7",
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "565e5d5f33ed757855f0a3bcc78d65a191e52c1e3f33f9bf3dc534a4c0e70d3f",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "326ee1fe20c1d75a4ad720f69a3a4df9b9e3a057826115e955deb0ed25d88f9a",
-        "packages/vue-hotkeys/src/HotkeysProvider.tsx": "33ace8f8d2f3a6ed68c4ac62646da4ae89ea69d48cd1349988d06968d695b844",
-        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "43cc11f980b4a9f4c840e8db67f64940b11f3bf062791de6675d259fd88cb1d0",
+        "packages/vue-hotkeys/src/HotkeysProvider.tsx": "f15ab799773868c19e94a19f4624706fb395831851b8a590f60934e405aa66e4",
+        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "8f0eee85f6ac77a14ea6a4c3ac2ee450db061e8751948f1df15b805d9e5d44f4",
         "packages/vue-hotkeys/src/useAppHotkeys.ts": "924ed5dedd6451332545026bd94441eb7f72cfb4f3c2c07880f34ee652574967",
         "packages/vue-hotkeys/src/useHotkey.ts": "74257a7e0f62393770877121eac31d405cf7daad416dc167feab08e4e9bbe4b9",
-        "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "76815116b5ecf5af434a3ff041df5c0e01e11d0ef41e77ee2893d560e1565879",
-        "packages/vue-hotkeys/src/useHotkeys.ts": "fafa900972db553504a850657d2e1829d53928e09bbdd219f6afc24eb9942bd2"
+        "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
+        "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "6b4f6c487211c51b9a58d757c4bddb0459747542",
       "outcome": "no-change",
-      "reason": "Guidance is still accurate: undefined options now keep their defaults, nullish and empty hotkeys register nothing, hint helpers return false for no hotkey, and providers apply changed customHotkeys. No skill recommends forwarding undefined, null targets meaning document, the ?? [] workaround, or remounting the provider for saved data.",
-      "evidence": [
-        "grep of skills for null, undefined, ?? [], target, customHotkeys, and 'once'; references still pass customHotkeys the same way, and 'an undefined target means document' remains true."
-      ]
+      "reason": "Internal adapter fixes (Alpine failed-call cleanup, Ember hint tracking, Vue KeepAlive recorder) keep the documented API and behavior.",
+      "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "8a93e4ed2bf0d5e9fc67094731d40cc82f280a03135579c1e809bc7d010175ca",
+      "fingerprint": "0a10a5cc229cd0baa6595541bf359061266249be1e6875325b1e4d6d85338083",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
-        "_artifacts/skill_tree.yaml": "c7e0b30458bd11e3a52e728163838166def6ee64419f1b632f1ea36a37e573af",
-        "docs/framework/alpine/guides/app-hotkeys.md": "55bc28d92b05369212fe069ee1bc402ba341eead4ea8c0a6220aaaba3db2ddf9",
-        "docs/framework/alpine/quick-start.md": "cca1aa4d9bbcf1ed7b9b4fb2b9cdf35880d9c2f9d6a64b0ca49dd1a4d746eb76",
-        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "003fba191e3d13d4466754644c4d2174a550f48d437028bc163ba6acca6546ad",
-        "docs/framework/angular/quick-start.md": "d1cc5f91cd50b579c8a4bd9811e76862308855ce602556e4fa36561bc7d62822",
+        "_artifacts/skill_tree.yaml": "bff31ee525c55a3e572083903c5b8deb444cd850845ae2dc1e4b886ce2236a12",
+        "docs/framework/alpine/guides/app-hotkeys.md": "e5c2a2a0cbbc35e793cf3e88bdbafd863153f8784ee1af27f2a81fe7f259bb9b",
+        "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
+        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
+        "docs/framework/angular/quick-start.md": "af3ea39ae8eb6a356454c1018a6c2899d72211362733f8ff7e09055344e37331",
         "docs/framework/ember/guides/app-hotkeys.md": "fbe213ed8b89a59c6915c9ecfcfe8a1dbd184a0535e5d2b48fe8b8f06108d342",
-        "docs/framework/ember/quick-start.md": "cabdc0cbd2b9ac6d4d7f9f2c8b8d3fc6ef2ac8c23df4cd8ebc9745c99023f8c8",
-        "docs/framework/lit/guides/app-hotkeys.md": "c091b64c939cdc0fe4013efa3416a475c80555ab56e7d18956582b88fa8215ae",
-        "docs/framework/lit/quick-start.md": "fd738e4fc1bad5b588d00c885cad37c633030e13de86b1f5870699043387430a",
+        "docs/framework/ember/quick-start.md": "d5d1d06886ec2584081dcc44b4ed8f10b79e344b5a621dd5c870c58c36977b72",
+        "docs/framework/lit/guides/app-hotkeys.md": "da53124e5996f174e42e37a69a1b46757c7112506060fd79688fdbe4b1637b9c",
+        "docs/framework/lit/quick-start.md": "0401af0a16eed1571514ce2e7cb0114e52e4d276f97a77cd1b26b2d8fe1f65b7",
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
-        "docs/framework/octane/quick-start.md": "2ddb77d76eefae05feb5183206687bf4fd4ac3b18e43cc5e51a934b361702ea1",
+        "docs/framework/octane/quick-start.md": "5496356f36afcb42677c4fa1ed618813d69b7b22bd782fac240cb94c64d90f6e",
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
-        "docs/framework/preact/quick-start.md": "ee1204420dd5acb198b2a15d239a062fee761fa0c6288913776c5e7e72b6bcb1",
+        "docs/framework/preact/quick-start.md": "a264a85a4a2d765edc551c82f46e45c2eb53721e18129eb19550f6962fa245c3",
         "docs/framework/react/guides/app-hotkeys.md": "7b2eeb5971fdb405cf89d6a07d037af00d4f7872e7090fd689d9aaa64f11ebf6",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "a3f793e81c6a6e1e6aaf3d63c6b79114ea7d6f461123d371c0b4f0a23ffd88bc",
         "docs/framework/react/guides/custom-hotkey-recording.md": "ea9b70d7bbeb5846b0284e843960bf667b2ae6ffbe85742fb5ba332de170ca29",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
-        "docs/framework/react/guides/hotkeys.md": "057f320c6ed3629ee9b13501e9e3c1f2ccd302395edd6983abfd1398c172f22b",
+        "docs/framework/react/guides/hotkeys.md": "5e6ee56c4c945deef0cfcdcc6df73f1ed57602aaffb751ccf2483be586009627",
         "docs/framework/react/guides/sequences.md": "e66231380dab6222508a1305d83586459b59953c2ecc47b9549e3cb29ffcd355",
-        "docs/framework/react/quick-start.md": "d587fccff19a0cf3c131f832a8eb423d5d4892e78e521aa856fd23485015afe7",
+        "docs/framework/react/quick-start.md": "500e53dc13e515eadb3c2db4d359878e12354df0284eef7f6c02701f836fb4f8",
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
-        "docs/framework/solid/quick-start.md": "292bf5cc6300e899c6f382e263665a488899fa816bb13ad4994420e390bb2420",
+        "docs/framework/solid/quick-start.md": "ebd2d15005ecd12a4eb9e13bf29d6445c3f0d08a891d16cf7cc80614464af558",
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
-        "docs/framework/svelte/quick-start.md": "dac9d02db91eaf3aed4eba39d6fb31a4a460bb3f84ba85c0576d3573b5ecf3d1",
-        "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "405eb90a8209f439db06d2e3d861acaa324b6598488c1705575ad56dccbb6ad3",
-        "docs/framework/vue/quick-start.md": "80bedac58ab9aee3b4bc5f59582b5b836c37fe14f08ab670eababf88a45e76c2",
+        "docs/framework/svelte/quick-start.md": "bb190234865370dd55d20d6c2e53d266021bb47208b3c5eea373f7b7a2c66883",
+        "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
+        "docs/framework/vue/quick-start.md": "4647a77aeac8014b20ccaaa10872fca8e7845bfb5416c68723fc25f2de79b0c7",
         "docs/guides/sensible-defaults.md": "3ca71598b3de383974ec16c5b0fd10855735237853ccddb711680b98d2a437f2",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "8c0a3ab25f684d8445925d43dbadabb4e491b12001d78811cbf0d3f41db044c8",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "fdc12aafd6098bde8b4e7f5d8a8afb12227ac99cd753e06fc27401d5d8c8fead",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "0b86889ea9327f24e0f66ab9ba5eb783aaffb492c028e1b6cac257690ca5d462",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "d182e659acc9f0a28e9198f590163db1541b30eec6d347fb378022f775cf316d",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "f712ddb3354230197eb54d6f270d00a41c2b889e60690e70853569fe1a5207ea",
         "packages/alpine-hotkeys/src/createHotkey.ts": "2eaac78690d6737f2f73f756b01df17a02075f498666e5745cc34f2d0e6086b5",
-        "packages/alpine-hotkeys/src/createHotkeysScope.ts": "8fb6d17e8fe155327fdac17f9d057d6538c84474c1c464ee25409c23d52e7a85",
+        "packages/alpine-hotkeys/src/createHotkeyRecorder.ts": "1d93677561619b55d36c3f61ce564ee86ff6fe99e1dc891823d39c59e70d8287",
+        "packages/alpine-hotkeys/src/createHotkeysScope.ts": "0f06480dc1fa7448124205b3af2811e96377b98bad73369d953e6e8ccb1baa30",
+        "packages/alpine-hotkeys/src/hotkeyRecorderPlugin.ts": "8ff86447e513f47002c49ed9f60269d485b0cd65b87277bb52cf2d8286ddbd36",
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
-        "packages/alpine-hotkeys/src/scope.ts": "6de5d72206289c2ad4b3719cd69474450770cb006abf951f1419ed70a58bdb7c",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "2b0e9e34fb1338d2db1657beffd8664906ef200388854cfc2895cf9f428e00d9",
+        "packages/alpine-hotkeys/src/scope.ts": "d32e8bd75b0db71b01f42343f9220a4b10b9c91d17542b1acb61db9068c46d6c",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "aeb786b5b6d3b930c36357cb738e71ab3a0c131718d9f19ab40df43fd7f845dd",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "5fe1b12a519e8ca5087d78d47050f7a2ec0c70bb9b7d6ebcbb050ee099e3effe",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts": "70c8a36dd34c2de1fbb61aabc36f098e5de5c77a71f14880dde5b97e856fc69b",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts": "eee1e9ea2b21a6961ebd937a3ba89218823a37afa8a2ee5e5e52cbb05dbced51",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "3161186944b142feab034a1899b76b178700f4ef371bfffbb694b9ed5a191d32",
-        "packages/angular-hotkeys/src/injectHotkey.ts": "8974a1a3e79b35e82b6fd906c9c9527d87eebbc5ae0496d5b197e52bab8d6dad",
-        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "cd99257530e54ce7dcef02f3669fffbf29239ef9437f68967d189d49c9ee2a10",
-        "packages/angular-hotkeys/src/injectHotkeys.ts": "cecc7d127934caaab72a694fe527ef7a7b31e660f98cc077dabacd5506e11619",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "ba4e5144d1b1e5435ffda905009c40b343b8cd829a93ec9553afc576d2388acc",
+        "packages/angular-hotkeys/src/injectHotkey.ts": "03ea85098b0ed95e323e8d1e35b61b2683b7bc2d68f67e56e15ce2da92177a6f",
+        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "d431ed7df4440d09cbed88d3201751853330d0b927949886e53cc583a75e7668",
+        "packages/angular-hotkeys/src/injectHotkeys.ts": "fed0f6769a2a8539db1c243a6ce76bddfbc669ffcde75dfe077c95484fc7c2c6",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "94a86a8ba12fa15834eca84a9a8de82d75886e23682602ed8ea783d11b94842d",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
-        "packages/ember-hotkeys/src/createHotkeysScope.ts": "8f1942a5ee2f629c6f28b0fe7505e692cdee2a500dab78e91ab3164c33b93e09",
+        "packages/ember-hotkeys/src/createHotkeysScope.ts": "69f52ddf5f42b459901278c563357f796529295846f9b80159e79df39ea5e384",
         "packages/ember-hotkeys/src/onHotkey.ts": "0cd156d6a90b341d7f1006df47911b3033ba523a68758274c00df7c8cb9dfbff",
         "packages/ember-hotkeys/src/onHotkeys.ts": "a0ef3d3d1065ea4a28021827b363701a7efd2bb07606f9689fe58259080decc2",
         "packages/ember-hotkeys/src/useAppHotkeys.ts": "b304f96bfaa0418a246f65405ef0f89645f9935e9723a5027244eae8aebfa512",
         "packages/ember-hotkeys/src/useHotkey.ts": "afddc8e2c34ec8bb6351d4162d38710c60927c60cbb0cc6695b5dfd751d32159",
+        "packages/ember-hotkeys/src/useHotkeyRecorder.ts": "f963076a871a9e007a687aa1056e762f525448f0db2ceeeb929d1c85df236c44",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "7c431ae3bee4ffcd22676ac533adfcd29cfb22ed68cb7dc47d1470a8744d7276",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "a45229edb827101dd019587c5e20965954a508eb5ba57ef6680e53d084585df8",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "e7f38e9901edb606b13c914e2f14e2660a7b6159cc8015b2735e2df3e4051000",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/app-hotkeys.ts": "a6176a749dd7439146c335e769dfae1a2cd72ace029f9cbc64b52ff5fe2d9d03",
@@ -339,26 +325,26 @@
         "packages/hotkeys/src/hotkey-manager.ts": "71fcd3ce0a8f8dbc6892aa9c39d8428d1db39fa2392594d4b3c3124f96f42b54",
         "packages/hotkeys/src/hotkey-recorder.ts": "7d479391753ffa97e69a7d7cb994cb7053a7ffb3e0aed6dfbfb2dbbdf51a3d24",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "ecd0100b52a00fc90ce71f244093da667d0c5ff78ecaf632d9db26f1c66c8e40",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "4e5593e8d4373475d4e6006e30ec663d7f0f3fcf0aa881fc403efe58b9cf7606",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "659ca9bebf4200bb693c693addb17bd5a943904e482514f2014f5ca426629e96",
-        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "4661f2f5468dc484ab02284f1cb96eec411445ef7981390f31d37e491e51a603",
-        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "53f0b7af49f88fce7890790aa6291f44ae05c5553aac133340fd3745edd71631",
-        "packages/lit-hotkeys/src/controllers/hotkey.ts": "2cd53d54c3240e93c7256a59f54aec5022de1eece74da09d301ecf4ee2e3b7fc",
-        "packages/lit-hotkeys/src/decorators/hotkey.ts": "2730f3178f6e5f6695fa0c2f8d25d7040c2ff841d3de486acffef86cfc76395f",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2d8f1849449ed280c1d899737fa388e3f40528b04954d96fe33be1a11b422d44",
+        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "284c1974350c7465174e9fa47d22e55888a5a7462f98ca39cc1ccb65eadab5a2",
+        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "393686f43b22d9e722554ad922b4a7c4df4ab053d472e3f9038c6f119e8dc1bc",
+        "packages/lit-hotkeys/src/controllers/hotkey.ts": "76ac338e601032ac00b6c9e78d4de25ba80e10b7e3aa193eccc65964e1bdb25c",
+        "packages/lit-hotkeys/src/decorators/hotkey.ts": "324326b5cc6d2e7120ef004450a4ad721c564a79f419fa99978452b62a51c38a",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "bc6d4b68b077d92ead298470a6e76b7ab61cbcb2762ee9b5873590c4bed5ef94",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "4e9a9adac5d1717caf67eaccbd3f5cb9780bad4db5c420290512bbab34f319fd",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "4884113fa09d9869baf8af1f3bb07ba72558308a03136b3c1b59feb49ce2efbb",
         "packages/octane-hotkeys/src/useHotkey.ts": "d8da1d0cf0eb528667a25e750a2e51405e4e293bd10e22173546967b5c9d392b",
         "packages/octane-hotkeys/src/useHotkeys.ts": "f864ed03975e9930638cfe9025639619ebdb2c975a55e6950199cba86cb70476",
-        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "70f923af689e43c917d4f8a3a966a00b0baeb789f15ac3a394b5b68dce265afd",
+        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "c35faf0403eaabf3d6a1b823ea159a1f3bb100c76902aa94c8fa4a2c6e4de6de",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "4388ff0528e9ea44f819896f2687ab962735479cdafaddd1e349dd1bf6dc5479",
-        "packages/preact-hotkeys/src/HotkeysProvider.tsx": "58e684c3c9077496851162afde839f6c069dd1da7f34216cc9be97c67e69a1b9",
+        "packages/preact-hotkeys/src/HotkeysProvider.tsx": "3aa56742b97f7e697d4e48c2098df6ffa5e6b237a2cc989d89b88d8fc924c6d3",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "023eff9348a9209a2e3e99a2b9847da3be72206f98150b478dae81a215059577",
         "packages/preact-hotkeys/src/useHotkey.ts": "6d66b813038e063f62aa8c8fb9be3020739854e1133885f70720b1036e789e84",
-        "packages/preact-hotkeys/src/useHotkeys.ts": "23ccd2ee8566bc62a8bca00c8a1c40fc4d37c8363b891667ae391f3e44bfa97b",
+        "packages/preact-hotkeys/src/useHotkeys.ts": "832bf0156ff46db00140617bd3fea8055ca712a1a82d3cef7800776d42b02ebf",
         "packages/preact-hotkeys/src/utils.ts": "118090c4255527f52773133741355445fff8e41605ec6a9fc69c792730e96b9f",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "7a2174d10ceed282f6080652d482a801c229209d84f1582689ef66a4f9ac2c3a",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "356b60f0bc5527420c5796a92a580add802548bed5863c1d297268172c61b0cb",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "e45854b2346700249569ce418b0bb5593cd00a018336a60c9ed5cedeb8d49b3e",
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "6204393b615aa83d4e81f74c760026c17e67e140518db157380dea6929c20659",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "eec5d9a2e281ab8892c56b9482cd930a06deb176581bba9cb409faa35b1bee91",
@@ -382,7 +368,7 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/shortcut-settings.test.tsx": "dccabaf1efac5b20ed5c13d159a07ae37b1079627469332995741c7a6ec37223",
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "993952b562135b26ef21c97fb5caa2886f405370b93de22db30f689ebb4199d7",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "f19b7d104855149cfb592b11f20541520ba720bbd938169666b888ba7eeefcf0",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d3dda6cd9aa0a8655aa43f017490797ad3d2de42206446b2403363873b84b133",
         "packages/solid-hotkeys/src/HotkeysProvider.tsx": "886423ba0dfa4a8d769d6e5e65e491b3cb342f20a8c7662321843c4c25f5fb3d",
         "packages/solid-hotkeys/src/appHotkeys.ts": "5d44d8ce952af7a3e522fd42511a963e9af75c4229a2449cde16a180c6f030f2",
@@ -398,17 +384,17 @@
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a6a995eea5b1334baef1909da68dea08f8df4e29819bada3549c9a0be86e6dcb",
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "565e5d5f33ed757855f0a3bcc78d65a191e52c1e3f33f9bf3dc534a4c0e70d3f",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "326ee1fe20c1d75a4ad720f69a3a4df9b9e3a057826115e955deb0ed25d88f9a",
-        "packages/vue-hotkeys/src/HotkeysProvider.tsx": "33ace8f8d2f3a6ed68c4ac62646da4ae89ea69d48cd1349988d06968d695b844",
-        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "43cc11f980b4a9f4c840e8db67f64940b11f3bf062791de6675d259fd88cb1d0",
+        "packages/vue-hotkeys/src/HotkeysProvider.tsx": "f15ab799773868c19e94a19f4624706fb395831851b8a590f60934e405aa66e4",
+        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "8f0eee85f6ac77a14ea6a4c3ac2ee450db061e8751948f1df15b805d9e5d44f4",
         "packages/vue-hotkeys/src/useAppHotkeys.ts": "924ed5dedd6451332545026bd94441eb7f72cfb4f3c2c07880f34ee652574967",
         "packages/vue-hotkeys/src/useHotkey.ts": "74257a7e0f62393770877121eac31d405cf7daad416dc167feab08e4e9bbe4b9",
-        "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "76815116b5ecf5af434a3ff041df5c0e01e11d0ef41e77ee2893d560e1565879",
-        "packages/vue-hotkeys/src/useHotkeys.ts": "fafa900972db553504a850657d2e1829d53928e09bbdd219f6afc24eb9942bd2"
+        "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
+        "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "51891f65f771268240b7687890a53ff0e7c9b313",
+      "head": "6b4f6c487211c51b9a58d757c4bddb0459747542",
       "outcome": "no-change",
-      "reason": "Internal change to how register handles empty keys; skill tree and mappings unchanged.",
-      "evidence": ["packages/hotkeys/src/hotkey-manager.ts"]
+      "reason": "Internal adapter fixes (Alpine failed-call cleanup, Ember hint tracking, Vue KeepAlive recorder) keep the documented API and behavior.",
+      "evidence": ["_artifacts"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -454,16 +440,14 @@
       "evidence": ["docs/framework/angular/guides/hotkey-hints.md"]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeyHint.md": {
-      "fingerprint": "d25f50982467aa196e56fc64e7c1904ebee38323a2a08248994e4d6ccfc17577",
+      "fingerprint": "d733e9f10f2dd420a5a40242b5f5af92a4b1487eef494a88111780a2d279f930",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectHotkeyHint.md": "6038da675bfdca7141a5d8e82a4a4d2f3f8e1e66bac45be45c882ec2c0bd97d9"
+        "docs/framework/angular/reference/functions/injectHotkeyHint.md": "c4ade1e883dd1462d81d489ddf24113def426921bd8810bb1e3e88cf5daaf71f"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/angular/reference/functions/injectHotkeyHint.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/ember/guides/hotkey-hints.md": {
       "fingerprint": "a1baa252f246bb89486a45c15923db84e21bb21c921f3d71f90d0e05e679a3be",
@@ -496,16 +480,14 @@
       "evidence": ["docs/framework/lit/guides/hotkey-hints.md"]
     },
     "source:docs/framework/lit/reference/classes/HotkeyHintController.md": {
-      "fingerprint": "889f59cacbe672cd4a9c444153edb013ce838a299a90fe90dbbd9ea6a4a3a2a3",
+      "fingerprint": "f022adafe103ffc29a55f2537b3208e1abbb0286c075faa80930f43e88caabd8",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyHintController.md": "801222da5ba50d09436d595abba3b86f9c758381eb51b0b62427fa339af0534e"
+        "docs/framework/lit/reference/classes/HotkeyHintController.md": "857164547da67452f90edbe708078f5088689716d8ba8feb747106e5e651f852"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/lit/reference/classes/HotkeyHintController.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/octane/guides/hotkey-hints.md": {
       "fingerprint": "7e257bc9e0e738b1817e7500b0a560b2eb6e4a2621ce5522ea5e4fa5eb946cd6",
@@ -672,14 +654,14 @@
       "evidence": ["examples/alpine/kitchen-sink/index.html"]
     },
     "source:examples/alpine/kitchen-sink/src/main.ts": {
-      "fingerprint": "3af00671f13f87de8b318aeef2645372c9d4197f69f884690918d4ef10721005",
+      "fingerprint": "9f46089f11d418321c678471f437f97cefad4c7bc1d5f7c9aa9bd8792791be0b",
       "snapshot": {
-        "examples/alpine/kitchen-sink/src/main.ts": "f21fb5a0a2d39c3e33875b7053be6d2b880bbb2d15e1f1ccd894ce70532792fb"
+        "examples/alpine/kitchen-sink/src/main.ts": "28dbd9eba5829d58b79431cefb037ec96625fd61c4df8a0aba8e2df6e4de6d4a"
       },
-      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
-      "outcome": "out-of-scope",
-      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
-      "evidence": ["examples/alpine/kitchen-sink/src/main.ts"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:examples/angular/kitchen-sink/src/app/app.component.ts": {
       "fingerprint": "51931bb2f7d2e84a260f425e645885deadf2b9a5a9662183840cef8c70a45ac0",
@@ -692,14 +674,14 @@
       "evidence": ["examples/angular/kitchen-sink/src/app/app.component.ts"]
     },
     "source:examples/ember/kitchen-sink/app/templates/application.gts": {
-      "fingerprint": "c0457e17267c386d3735103dc176d46f852aee4baa18dca2edcfce2885a239b7",
+      "fingerprint": "5f62433d101c258643066df646d84004227c0add41f9513a53a998b22dbc8d63",
       "snapshot": {
-        "examples/ember/kitchen-sink/app/templates/application.gts": "c29af791a82e8544b20650c38c0d3b08aebbc16fc0b42e1efa7e7d4a95285a7e"
+        "examples/ember/kitchen-sink/app/templates/application.gts": "121d1a2c23cbce9a394f30ac122d8d47aa523ebc01921b9e2850f4d4d242f313"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
-      "outcome": "out-of-scope",
-      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["examples/ember/kitchen-sink/app/templates/application.gts"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:examples/lit/kitchen-sink/src/app.ts": {
       "fingerprint": "d4898c56bbda8cd13dd64f22c868afa93bacfc485964de10c224e53b8402b3a9",
@@ -822,24 +804,24 @@
       "evidence": ["packages/alpine-hotkeys/src/createHotkeyHint.ts"]
     },
     "source:packages/alpine-hotkeys/tests/alpine-hotkeys.test.ts": {
-      "fingerprint": "10afb0cc0b5d926fdada5580c25662df3e41ffe6510ff725b8b3f1fe0e7fdde0",
+      "fingerprint": "11c4d5394ca85422ac2d3b682a9262f56d7cab88470c064e8a5413fb7bef0a22",
       "snapshot": {
-        "packages/alpine-hotkeys/tests/alpine-hotkeys.test.ts": "f0025a3116de8aed21eb34526b42782209ec53c26601748695cd6d862ac0e4fc"
+        "packages/alpine-hotkeys/tests/alpine-hotkeys.test.ts": "633953595d5c408ee6d43c6b3e5607a72a991c033bd6763ce2fd72da46bdb1f5"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
-      "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
-      "evidence": ["packages/alpine-hotkeys/tests/alpine-hotkeys.test.ts"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/angular-hotkeys/src/injectHotkeyHint.ts": {
-      "fingerprint": "2389aedf79958fb7fd1952e22087f80247c60d90cf6c3ad6f9c26f9b45932d73",
+      "fingerprint": "20fc6ba88f7a97a49ea95a946d08d32c113531ba22f3aadebfa35d50f16bfa68",
       "snapshot": {
-        "packages/angular-hotkeys/src/injectHotkeyHint.ts": "d207534da083444402879551a6fe862fc597f612846e4180f9660713c594f7e8"
+        "packages/angular-hotkeys/src/injectHotkeyHint.ts": "c30ed7689055604128f5583a34b113d2d2474a153db8b245bdee399855bb5af8"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
-      "evidence": ["packages/angular-hotkeys/src/injectHotkeyHint.ts"]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/angular-hotkeys/tests/injectHotkeyHint.test.ts": {
       "fingerprint": "7c23d3e44ca48c830f5e5298173e523ba8fc3a6864d359e34bb2be484fcc4fcb",
@@ -852,23 +834,23 @@
       "evidence": ["packages/angular-hotkeys/tests/injectHotkeyHint.test.ts"]
     },
     "source:packages/ember-hotkeys/src/useHotkeyHint.ts": {
-      "fingerprint": "af14c5ecbf30efdf5ed96b4c1109d662ea69044f7b473d7a75db2ac005309cfc",
+      "fingerprint": "a9cd89425c9409800c1eca500456ec2dc5fdcb700882a41127570622b46d2416",
       "snapshot": {
-        "packages/ember-hotkeys/src/useHotkeyHint.ts": "e6fde395342676692d2b443e3d4b7653fa87e04691923e31fe1ad062f1e2d2e3"
+        "packages/ember-hotkeys/src/useHotkeyHint.ts": "be1f0792a5e4560f39c8c876494139fcb0b06d96ff519a1ffe76c089d26507b8"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "6b4f6c487211c51b9a58d757c4bddb0459747542",
       "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
+      "reason": "Implementation, test, or doc-wording change already reflected in the mapped skills.",
       "evidence": ["packages/ember-hotkeys/src/useHotkeyHint.ts"]
     },
     "source:packages/ember-hotkeys/tests/integration/hotkeys.test.gts": {
-      "fingerprint": "172a0db40928cfb990721dea63b29ef836d64e674cdb150897367a100a789ed3",
+      "fingerprint": "7f405b303de7b1c876757a92e0f4d2ec4aa23d49e27627d000ee2ac959882452",
       "snapshot": {
-        "packages/ember-hotkeys/tests/integration/hotkeys.test.gts": "8d4619075ff81bf79d3ba48a332d47a7f0a12884ada927c8e25d4790d2f61866"
+        "packages/ember-hotkeys/tests/integration/hotkeys.test.gts": "f62924942d69042e13791ae74a1b014b7beca850895af53c41595cea7069fe89"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Test file; it adds no guidance for agents.",
+      "head": "6b4f6c487211c51b9a58d757c4bddb0459747542",
+      "outcome": "no-change",
+      "reason": "Implementation, test, or doc-wording change already reflected in the mapped skills.",
       "evidence": ["packages/ember-hotkeys/tests/integration/hotkeys.test.gts"]
     },
     "source:packages/hotkeys/tests/scopes.test.ts": {
@@ -882,14 +864,14 @@
       "evidence": ["packages/hotkeys/tests/scopes.test.ts"]
     },
     "source:packages/lit-hotkeys/src/controllers/hotkey-hint.ts": {
-      "fingerprint": "5325b3798f97b88fb23ed462245de298b17c684bc12edcf5666cc4b01166537b",
+      "fingerprint": "ff47c807ab3a9c80c0a003a4f5b1be10315b2cfde73dd92d38e6b8e8ac227a5f",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/hotkey-hint.ts": "8bd9b3c0d3ba5ab7b67ddff8cb02be9cdc81d1906d2d9d6b864e7dbfa9cda530"
+        "packages/lit-hotkeys/src/controllers/hotkey-hint.ts": "6646bfbcdeba68047fc99e456bb2248a4df5e7767a189081cecd782a5d5f0f97"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
-      "evidence": ["packages/lit-hotkeys/src/controllers/hotkey-hint.ts"]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/lit-hotkeys/tests/hotkey-hint.spec.ts": {
       "fingerprint": "594ffd4d628271b1e3c2982b7f7f67a1bfa29a492da8adf9109cf4b6406d6a0a",
@@ -912,14 +894,14 @@
       "evidence": ["packages/octane-hotkeys/src/useHotkeyHint.ts"]
     },
     "source:packages/octane-hotkeys/tests/octane-hotkeys.test.ts": {
-      "fingerprint": "42de9a211db859357fd484cb086cc6291f1d7ff0a0e744f11ee10caa37e70ca4",
+      "fingerprint": "c6ee58143eb50d8c219a4393177d92f11eafefa47c82fc6b0076823ff0568209",
       "snapshot": {
-        "packages/octane-hotkeys/tests/octane-hotkeys.test.ts": "8496ca632b3b04c6ed35fd4cf8590d350d437602d8961a5c04a57d8757b61517"
+        "packages/octane-hotkeys/tests/octane-hotkeys.test.ts": "372e31f0d61b4bf2f7e4f0a5d9d5a4cad0749bee51c15584dcffa3c2b9f037c2"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Test file; it adds no guidance for agents.",
-      "evidence": ["packages/octane-hotkeys/tests/octane-hotkeys.test.ts"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/preact-hotkeys/src/useHotkeyHint.ts": {
       "fingerprint": "f11faa47ca8676628089dc488facd199e99011e9edf50334673b073caaf3c916",
@@ -1052,14 +1034,14 @@
       "evidence": ["docs/framework/alpine/guides/hotkeys.md"]
     },
     "source:docs/framework/angular/guides/hotkeys.md": {
-      "fingerprint": "cecb3fb6d09dcbb55bdb79ab3951413bb93e860e5470d5fd6769c793b3c024cb",
+      "fingerprint": "b4ca47b7c1f2843a43275cb6ed753b3a2e76a0d9712476a2016d7ca1ad019098",
       "snapshot": {
-        "docs/framework/angular/guides/hotkeys.md": "06187b07f02f3a0da85baf23fe841a7c4a3e8b68ddce56ac1ebe673d3da62369"
+        "docs/framework/angular/guides/hotkeys.md": "2c414b7e4be6f16cf4adfd064429fad202fec1a8b331d69252e58ea38a0b88d9"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Guide wording fix (duplicate check includes event type, or an Alpine sentence); no skill makes the corrected claim.",
-      "evidence": ["docs/framework/angular/guides/hotkeys.md"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/ember/guides/hotkeys.md": {
       "fingerprint": "46978502d50ad4b27b32a631c4c13f76212a76a3832c142c9f0ca6e1a2e276c4",
@@ -1072,44 +1054,44 @@
       "evidence": ["docs/framework/ember/guides/hotkeys.md"]
     },
     "source:docs/framework/lit/guides/hotkeys.md": {
-      "fingerprint": "73569c33addde5464258a8b22055135ebdb69164f0a5cf1c43f14848948ee609",
+      "fingerprint": "93ae38138e3bdeceb27779e93c6388d9241b7cc76fd18d31beee16e6dcc1d39c",
       "snapshot": {
-        "docs/framework/lit/guides/hotkeys.md": "d711134c87387447573935d5b258351786b05816c529b97800cb44844c1e346d"
+        "docs/framework/lit/guides/hotkeys.md": "2718d1588b129bc4748d1387d4f69c74257570f797d4bacf503794bbf2760abe"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Guide wording fix (duplicate check includes event type, or an Alpine sentence); no skill makes the corrected claim.",
-      "evidence": ["docs/framework/lit/guides/hotkeys.md"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/octane/guides/hotkeys.md": {
-      "fingerprint": "9713c1d1a6a70a8993505f1eb189fd498241daed358be75cad4201fc5efecf94",
+      "fingerprint": "43cdf55ed2065326efa2020cf099688b6ca3645954811de8151c241e69b941b3",
       "snapshot": {
-        "docs/framework/octane/guides/hotkeys.md": "71a28c190e5d2c1cf7df04101798488fd38246c070785b948fc197fe94593d99"
+        "docs/framework/octane/guides/hotkeys.md": "57374c5b13508d3bd7e0afcecd8570f70d95a6bf08e3b6ac051e6ed5dde742e4"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Guide wording fix (duplicate check includes event type, or an Alpine sentence); no skill makes the corrected claim.",
+      "head": "6b4f6c487211c51b9a58d757c4bddb0459747542",
+      "outcome": "no-change",
+      "reason": "Implementation, test, or doc-wording change already reflected in the mapped skills.",
       "evidence": ["docs/framework/octane/guides/hotkeys.md"]
     },
     "source:docs/framework/preact/guides/hotkeys.md": {
-      "fingerprint": "ff55aebfb17b4b7f8f2a7f0c5c069637c766ba1ee75ed42c2e9681e66f45fc84",
+      "fingerprint": "886f82c50057b524c7924de5c917e65e2cdd98472027dee931150b6a7fde37b5",
       "snapshot": {
-        "docs/framework/preact/guides/hotkeys.md": "649b5b82268d6e0da7e6f0cfe2d6409d8f20b76d1558bec14c9b3e0060f6050c"
+        "docs/framework/preact/guides/hotkeys.md": "453c330a8209afabcbcbf8fa83c569fee8083d104d6f9376dae48be143175df9"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Guide wording fix (duplicate check includes event type, or an Alpine sentence); no skill makes the corrected claim.",
-      "evidence": ["docs/framework/preact/guides/hotkeys.md"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/solid/guides/hotkeys.md": {
-      "fingerprint": "08a1ca7822b02a3644b3d66a04e226b44a3c2f355a73fa924cb556ae888a93aa",
+      "fingerprint": "8c780656bb3abbae3a848d0121c18a7a5ef213eaba9fe2ec093098dc411d1189",
       "snapshot": {
-        "docs/framework/solid/guides/hotkeys.md": "2d753972163fddeedd74c70d8db22fc5a84da27e3de2ac5daa9fa26324a5bde6"
+        "docs/framework/solid/guides/hotkeys.md": "f001ca51161c905e72234093870e7571438bd37b2a9f456338aa0de53a687cfd"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Guide wording fix (duplicate check includes event type, or an Alpine sentence); no skill makes the corrected claim.",
-      "evidence": ["docs/framework/solid/guides/hotkeys.md"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/svelte/guides/hotkeys.md": {
       "fingerprint": "5a16df7c9bca33d99d404696d2b60f5bed0c05aa82c1aec51e66fe782a602bd2",
@@ -1316,16 +1298,14 @@
       ]
     },
     "source:docs/framework/alpine/reference/functions/createHotkeysScope.md": {
-      "fingerprint": "9c472815dbccfc365b2d7ee345d365ccca2b55efb08c22ff6d1834763488978a",
+      "fingerprint": "3195ed4c5c4739ef76289c3c7cf94334069fb7b33155b9d626abae5de10c33e3",
       "snapshot": {
-        "docs/framework/alpine/reference/functions/createHotkeysScope.md": "4facf16500c9ac831d1f5474e3abb1ddd5cb4d35233990a5dc4d59f8ced2cd67"
+        "docs/framework/alpine/reference/functions/createHotkeysScope.md": "3412034fb7d9cb41db559081344d26dd656ca825a3e5208eb206d88d0240f28f"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": [
-        "docs/framework/alpine/reference/functions/createHotkeysScope.md"
-      ]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/alpine/reference/interfaces/AlpineCreateHotkey.md": {
       "fingerprint": "093cf495bc3dbf48ad06ab6a4a9136d0d621ea0544ab46bd0a110abbfa57aaa4",
@@ -1340,16 +1320,14 @@
       ]
     },
     "source:docs/framework/alpine/reference/interfaces/AlpineCreateHotkeyRecorder.md": {
-      "fingerprint": "6901a4084df85c36e9e5d511fe0b02abaea091372849e0316a4ccaeade59f2d2",
+      "fingerprint": "47dd664dda35be07910d8f88e9f6677680cd4e707fc1f24fdb0dad9149b83fa8",
       "snapshot": {
-        "docs/framework/alpine/reference/interfaces/AlpineCreateHotkeyRecorder.md": "32ac3bebd03d6bb1f1355b5c94305a459ba518dfbc269efd0b00b02566b051dd"
+        "docs/framework/alpine/reference/interfaces/AlpineCreateHotkeyRecorder.md": "e38866f2903f0806a205fc9947da727774cc97b81fad272321910ef9e0b7ff17"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": [
-        "docs/framework/alpine/reference/interfaces/AlpineCreateHotkeyRecorder.md"
-      ]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/alpine/reference/interfaces/AlpineCustomHotkeys.md": {
       "fingerprint": "7b7cf83a1da465975af0f7b66b9c9d795484270485800dbd65d8fb6156e57094",
@@ -1388,28 +1366,24 @@
       ]
     },
     "source:docs/framework/alpine/reference/interfaces/AlpineHotkeys.md": {
-      "fingerprint": "7ef892665de9f2e947ad22065a38a55f642f6794bff4b3b9d05bf53a53435254",
+      "fingerprint": "ee9c10acbb84bda4e7940c7774b476dcc25fa9bd1af710158244144cbfd543fc",
       "snapshot": {
-        "docs/framework/alpine/reference/interfaces/AlpineHotkeys.md": "91bb6d7ed3a0cab6ec02300fed06e7ef91b77552c9293195b18a3cdc27db177e"
+        "docs/framework/alpine/reference/interfaces/AlpineHotkeys.md": "e7196c8d5043fe8cf816c2c5a54eb61e25768ab6396e4d9f213ac32b4907fcb8"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/alpine/reference/interfaces/AlpineHotkeys.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/alpine/reference/interfaces/DefaultHotkeysOptions.md": {
-      "fingerprint": "33507a701d129933c93597cd4a7c2a6d86cf85f0b141656b36f9d29b703aaccc",
+      "fingerprint": "8ad208ba7f5960f8bec80c61b03328044c4f080aa68eed9f23f1734864f8d252",
       "snapshot": {
-        "docs/framework/alpine/reference/interfaces/DefaultHotkeysOptions.md": "798e0c73193a670827466ccbb49637ef496759755084f15e84f54091455d417a"
+        "docs/framework/alpine/reference/interfaces/DefaultHotkeysOptions.md": "5b1913b4382bcfd0538eced2d6fd677ce3ac3b75e4d49796d43591a8762b1a48"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/alpine/reference/interfaces/DefaultHotkeysOptions.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/alpine/reference/interfaces/HotkeyRegistrationsResult.md": {
       "fingerprint": "e281cf4023a0d22fb617f10d332574847c3b10d924a510c3cdc5d3484508bc41",
@@ -1606,26 +1580,24 @@
       ]
     },
     "source:docs/framework/lit/reference/classes/HotkeyScopesStateController.md": {
-      "fingerprint": "bf1b8690f71152cced76505dcf7a1ad0254f6a724ccaaa60df17889e126fc88c",
+      "fingerprint": "510f8ac38260283a6ce78305dddd5eb9aff45c96c2f1dc718531a50cc4d2aaa0",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyScopesStateController.md": "e7c1d17ca055e72d980c535cfda87ab8818461dbd9971fda9653af0bc61b355f"
+        "docs/framework/lit/reference/classes/HotkeyScopesStateController.md": "97c7313382ca1a8f724a8387b8fdd49fa1cdbdf2c0c1f3cbe4831abdf62a7929"
       },
-      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
-      "evidence": [
-        "docs/framework/lit/reference/classes/HotkeyScopesStateController.md"
-      ]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/lit/reference/index.md": {
-      "fingerprint": "aef21d23b8e548aeaa193179a044c5c57a501cb7eb7e572e2dca391786fc36df",
+      "fingerprint": "1ae80d9b8a268c4d79c095635493d380ea8cb36755e42c85e737d6f080fe5792",
       "snapshot": {
-        "docs/framework/lit/reference/index.md": "4d9d81ec6ef63985c778cfe2d1df20fe78b90901ec4509e845623abe9912134a"
+        "docs/framework/lit/reference/index.md": "45c4f0efafa2d8f25f36d13914d880b3b75d2ab6f23d02312fc6759adb9bbec9"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Source or guide change is reflected in the skills updated in this review (status, scope state API, preventDefault 'always', hints).",
-      "evidence": ["docs/framework/lit/reference/index.md"]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/octane/guides/cheat-sheet-ui-helpers.md": {
       "fingerprint": "d36658a1bb4cfe7a1f8c701a0a19bf72b073b27d91c67f9396c0c52edf43ef52",
@@ -1896,16 +1868,14 @@
       "evidence": ["docs/framework/vue/reference/index.md"]
     },
     "source:docs/reference/index.md": {
-      "fingerprint": "e75d562209c8f2a3e3535e6aa8673c0e9081c70fbcc35be2c5d82299b9adf01d",
+      "fingerprint": "a2a1a4fe61e85a6fc080eef9180f46bd79edf64b209b15cccd2b52b3ff1d2bee",
       "snapshot": {
-        "docs/reference/index.md": "9666883a4c4d8fd64e44bf6486759102ae0f2a4a4965fd568ceca7696971de08"
+        "docs/reference/index.md": "69b44df71aa9b0e668429a7e4fa4bbcdf51b1a824e4351cc6d96afd3ac9dac81"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
-      "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
-      ]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationStatus.md": {
       "fingerprint": "35d73df39da7728f662bb78aee848479ddbc8be3774c467cc0411683c0fda787",
@@ -1928,14 +1898,14 @@
       "evidence": ["packages/alpine-hotkeys/src/createHotkeyScopesState.ts"]
     },
     "source:packages/alpine-hotkeys/src/types.ts": {
-      "fingerprint": "6fecde452aac212ccefdc61f9c8c4b1bc85c362711cfebf26b863db8ac1477cf",
+      "fingerprint": "d7bf8ab0a72bdfcbf9b69a8c7b21dd3c5aa542d1151a3294d458be06329a6bc4",
       "snapshot": {
-        "packages/alpine-hotkeys/src/types.ts": "549d8ad89e958f37cee19e1afb813905b6247dd013f019f4b4c664be0600a6d3"
+        "packages/alpine-hotkeys/src/types.ts": "feac465c57915acd8383d6b2fdef222593f75501dc6b55d565c026c56a6d629e"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
-      "evidence": ["packages/alpine-hotkeys/src/types.ts"]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/angular-hotkeys/src/index.ts": {
       "fingerprint": "503a179912614dc48420ac45e5e599032cc717f2dcbf5f9d93e370f0e6cda75b",
@@ -1960,14 +1930,14 @@
       ]
     },
     "source:packages/angular-hotkeys/tests/scopes.test.ts": {
-      "fingerprint": "569b22d14258cab83b2bcc790380cb5035a4b14cab279369e5e8fe70d993f5df",
+      "fingerprint": "391e43d45feae00e703b4fc433fc3578142a58e7f7d1c173d1772719ed970917",
       "snapshot": {
-        "packages/angular-hotkeys/tests/scopes.test.ts": "691bb8678d6315716ee37b25c79e98fbe131c9afa2766d0fe5760b670c9164c3"
+        "packages/angular-hotkeys/tests/scopes.test.ts": "98c58c3ecf056067714031b698424cf1ace3f7824a03e02459f51f4203c17283"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
-      "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
-      "evidence": ["packages/angular-hotkeys/tests/scopes.test.ts"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/ember-hotkeys/src/index.ts": {
       "fingerprint": "a67de3a816a548d5108f5b1cfb073a8110539e5776399f0d9ae3b443c8f1254f",
@@ -1990,16 +1960,14 @@
       "evidence": ["packages/ember-hotkeys/src/useHotkeyScopesState.ts"]
     },
     "source:packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts": {
-      "fingerprint": "ec5fa79d39e53d102418b181f93ec32271ec6c41e21eff84d2918552d787d03a",
+      "fingerprint": "99e2e14c2902bfa756244f0fd04837d1e5ea7ae175ea43d8209be18c955de0a5",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts": "0f5b76e2879ef6aee1926685ac4eb6dfbef2930e71d54c3161f549d77c48c4f8"
+        "packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts": "d0f01d286ed90909f0c89ef08a8209533dba090d3da1f8a7e3dd654ab6ca88e4"
       },
-      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
-      "evidence": [
-        "packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts"
-      ]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/lit-hotkeys/src/controllers/index.ts": {
       "fingerprint": "e55ffdff5a1acd25b031fb304d39e5c5edb60b92bb8a5b24f12a8f0b1e9a9ce2",
@@ -2504,16 +2472,14 @@
       "evidence": ["packages/hotkeys/src/_event-target.ts"]
     },
     "source:docs/config.json": {
-      "fingerprint": "bbe02c079b1c1c417c9845cfd903dcbc6de47d13b3777f6ec26c6a85197b6799",
+      "fingerprint": "1e47cd0daa7ca4577e3075df7c8fdf7b5215d378eb0ae80fa4818b7cdac95160",
       "snapshot": {
-        "docs/config.json": "883ddba51303b84d8ec6110eed42649237b7d7fc71ee3ebe342a342795f4b9af"
+        "docs/config.json": "bc046b29b01bb9157daa11100e9b40e4f906fc412def541d2d67bd32d9c71f2b"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
-      "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
-      ]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/devtools.md": {
       "fingerprint": "0d96d99c22bf4ab92be7d2a0db8af69c80cd3d1c7212491ecc532d1749e7553c",
@@ -2649,14 +2615,14 @@
       ]
     },
     "source:packages/react-hotkeys/src/useHotkeyRecorder.ts": {
-      "fingerprint": "e3a2d6d13019f32237c21dbdeadb7260886c503f83deeb770404f6437071d8c7",
+      "fingerprint": "ba51aee476523113cea594659e5b5453380a725367552544c77f086e9af9886c",
       "snapshot": {
-        "packages/react-hotkeys/src/useHotkeyRecorder.ts": "05c8ddf74d49f38ff8fb71211fa1f123ba26b8f0894a14242f8bf53ed65d4cef"
+        "packages/react-hotkeys/src/useHotkeyRecorder.ts": "13cf465ceaa31400a802679c47cf7a1331d56394bf7a6911fa0cafd8415ca542"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
-      "evidence": ["packages/react-hotkeys/src/useHotkeyRecorder.ts"]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/react-hotkeys/src/useHotkeyRegistrations.ts": {
       "fingerprint": "c3de9a5a3ffa9436da9f59dbce7f697b7cbb7ada4b36b9a5dd8adc3b38cbc4bd",
@@ -3066,24 +3032,24 @@
       "evidence": ["examples/alpine/createHotkey/src/main.ts"]
     },
     "source:examples/alpine/createHotkeyRecorder-sequences/src/main.ts": {
-      "fingerprint": "632543d2fe1011ea1b9c099c4dac6c4ccfc4903c7a0103ca3f4bed8f45c840d3",
+      "fingerprint": "6b52bdf654d022cfbd7833060f415d0242fee557c9cc67b48009a28d5a4ee7ea",
       "snapshot": {
-        "examples/alpine/createHotkeyRecorder-sequences/src/main.ts": "ba58ecb7f44b6d645a486b4313ba6b7830e5519eab72b6f723172d38c8f5459b"
+        "examples/alpine/createHotkeyRecorder-sequences/src/main.ts": "8a791a366b723b38dc1d7a1906b98dd92750b95bf5b7a346b8e230c1664014de"
       },
-      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
-      "outcome": "out-of-scope",
-      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
-      "evidence": ["examples/alpine/createHotkeyRecorder-sequences/src/main.ts"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:examples/alpine/createHotkeyRecorder/src/main.ts": {
-      "fingerprint": "9e85988e8403f5d60d285224118a73d37f89d4153121bede0835505154e99ef8",
+      "fingerprint": "f29f26b79722039b81270bb4ba44ecbf26f0e1ff0fda19dfe8a24a033ae2e59d",
       "snapshot": {
-        "examples/alpine/createHotkeyRecorder/src/main.ts": "33e70363942721ed75c701d1fa6f446ec4aae52a576dff920cadc085803c747b"
+        "examples/alpine/createHotkeyRecorder/src/main.ts": "c7e79621b9008b2db3c0b1c5b25c84963e38ab13e633e41854163905f861fc14"
       },
-      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
-      "outcome": "out-of-scope",
-      "reason": "Examples install hotkeysPlugin before Alpine.start(), as the adapter now requires. No guidance depends on the examples.",
-      "evidence": ["examples/alpine/createHotkeyRecorder/src/main.ts"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:examples/alpine/createHotkeys-sequences/src/main.ts": {
       "fingerprint": "eff5c19a7cf5ad7c097b57bb8da18a4becab21728eda95d6f87bdb88013a50df",
@@ -3604,40 +3570,34 @@
       ]
     },
     "source:docs/framework/vue/reference/functions/provideHotkeysContext.md": {
-      "fingerprint": "905d1d098538d3703b06786de1b6ff30a1fc6e8a9d5655d10f9b9523abb08dc7",
+      "fingerprint": "84bfeeb1bbaf8b96f5079fd7c0ec0e51801c197d774f055ecc17100e1f0f1624",
       "snapshot": {
-        "docs/framework/vue/reference/functions/provideHotkeysContext.md": "ebacf7d2b9d2d796c09681a597a11d3d20d76c84d9de4333f8ff3a575975a848"
+        "docs/framework/vue/reference/functions/provideHotkeysContext.md": "a195dc0b64a09c1aa1ca4dc605a60354b858ec3af19927ba7991d2467459bf51"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/vue/reference/functions/provideHotkeysContext.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "8f419e15d4a09571ca17fe665e3d3e5c402c7e75a9dda1e2d00872e774706044",
+      "fingerprint": "5f797c4cd1fff8a7f3b381e3a7258ee55d7375da1dd1ad92749d9e6a72567428",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md": "25df7d9673fb23491cd9f314eb65e308804106159e9bcd142b3ca266e9cee428"
+        "docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md": "d946e7c768384e31f9bb61e5a019c75386f0c400f30ad6bfb483a9a114d5911b"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/vue/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "3ada1a1053c8ba3af92d86aeb9f900a556f3e2de2d2f6fd37c5958381a919f7b",
+      "fingerprint": "170a3ebcfaba1bc5fc9ff1b97ed80f69bd2ae9bbc1169cc03dcec82114c3fb04",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useHotkeysContext.md": "70dd184e433290565eb00e99ab46b82e89b80ceb36526e2f7c68a5947b61e0f9"
+        "docs/framework/vue/reference/functions/useHotkeysContext.md": "2cb2c60dbfbb131d10b4868c83084e1dde5856c45f60ad8d072814997982e575"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/vue/reference/functions/useHotkeysContext.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/vue/reference/functions/useKeyHold.md": {
       "fingerprint": "425755acd37a2f4eb11b04d32931bd3f91e6790a8bc0d25b9341a8887cce795a",
@@ -3650,28 +3610,24 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "source:docs/framework/vue/reference/interfaces/HotkeysProviderOptions.md": {
-      "fingerprint": "dac5045711e404d340c9f309f36a487286e18f7cf27e46c0907ab83aa1c606fa",
+      "fingerprint": "f8987a35a99c0ddd3eef0576cc469bed15562f6b3b75f9f83aca71d0fc509ffe",
       "snapshot": {
-        "docs/framework/vue/reference/interfaces/HotkeysProviderOptions.md": "1475b3b5c5aba316ff639d28d1cb383ea58b06c0422aaa63c1688edebdb008a3"
+        "docs/framework/vue/reference/interfaces/HotkeysProviderOptions.md": "6252229cad479b222449f56b4cbf6a0674e32c4ac4c2e334d91c3ac93105cd34"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
-      "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
-      ]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md": {
-      "fingerprint": "bb54e132e5a1a6dfb4bbac7c13df7c81144d7d1bb795d052e7227ed3c977fa71",
+      "fingerprint": "83fbb4fd7d628d08d784fa820b77ffd6b5b36c21fda6b58904bf0328d250f9c8",
       "snapshot": {
-        "docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md": "c96d7ca15249c4d27ef3f02bc466a55725e73a4340be6813aa7b2ece66bbd7c1"
+        "docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md": "dc8f72e2904b6d2bd4ab5e2cafe847043b0c69987529c10ec5dca48b118a890c"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/vue-hotkeys/src/defaultOptions.ts": {
       "fingerprint": "477e881409348b752198622ab3621266551ae94b24789456265a38c0d6f53894",
@@ -3782,82 +3738,74 @@
       ]
     },
     "source:docs/framework/lit/reference/classes/AppHotkeysController.md": {
-      "fingerprint": "c73bd934701be78e27215ad3bd133aac42547532e553bc64655c17561053a7a6",
+      "fingerprint": "5268624cb1a926fc9e4c56cf41f0a315ef912ae58df7f6e20edcb17e2a320049",
       "snapshot": {
-        "docs/framework/lit/reference/classes/AppHotkeysController.md": "adc5d5e969c2ddf5e701152ac14edc1c31bacdb8d929a436471bd8a09db26ae3"
+        "docs/framework/lit/reference/classes/AppHotkeysController.md": "1feae42c72cb9d9be0f2179e447092c60c017eda3cd03ce7d8c1484f31e667fd"
       },
-      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
-      "evidence": [
-        "docs/framework/lit/reference/classes/AppHotkeysController.md"
-      ]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/lit/reference/classes/HeldKeyCodesController.md": {
-      "fingerprint": "fdb4b85648fa0c32ce16be3be7f6038f73a6d41a6c8e323c534de18d0823c616",
+      "fingerprint": "93f0e28ccf3fa3f711728b03b71c507dd3e3aa6649554cfae8c7b59ea9332238",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HeldKeyCodesController.md": "d3b1ac044698364fb4ce55de6880677c4591297b17d62abf6450f6fb76b74bd5"
+        "docs/framework/lit/reference/classes/HeldKeyCodesController.md": "938ffefced04f1d1d6cc5c61746dbaac6dd5dd266212924c3a1f1248b550dfd5"
       },
-      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
-      "evidence": [
-        "docs/framework/lit/reference/classes/HeldKeyCodesController.md"
-      ]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/lit/reference/classes/HeldKeysController.md": {
-      "fingerprint": "83829c25b7ad3895fee35683f64c0e30d7d395bf629af411dcc1edea339f6ed1",
+      "fingerprint": "e1d85fc1145eec7568906459eed1d518836b1012c02bcfcc095b09b1e46f1b66",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HeldKeysController.md": "b72db2723e1adb36ba103065b8288e681efed1faae9fedeb39c688ce48807cbb"
+        "docs/framework/lit/reference/classes/HeldKeysController.md": "32c0cd3cb36142d61f5c70f40a9e13b507372c11296a04c19e8de40aca8a8eca"
       },
-      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
-      "evidence": ["docs/framework/lit/reference/classes/HeldKeysController.md"]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/lit/reference/classes/HotkeyController.md": {
-      "fingerprint": "0beea3aa3edf607af2a4f4559996746c153bfdd04f0833c772dc9a3d752e66e5",
+      "fingerprint": "3afd8812cf3e46f932bedb9ef06bfb5ac5534656ae867841b050b1734d0f8a83",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyController.md": "9ce7a20fd7cc96f90ce378609750c5845949258b3055c0625c8fe98ec563571a"
+        "docs/framework/lit/reference/classes/HotkeyController.md": "a0e186535967217f34904572c5668eff745f13e70b69c758c70b0835ad8bcedf"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": ["docs/framework/lit/reference/classes/HotkeyController.md"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/lit/reference/classes/HotkeyRecorderController.md": {
-      "fingerprint": "408b77d01359529a1abb9fd5ea81b6d0d8aeac6f4d7778bbc1cc548595b7a893",
+      "fingerprint": "4038ada6a79f2fa5716e05f0590af8598df4f78df16d1ce54ed5b9f5c2b50058",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyRecorderController.md": "2a65d8ab480494e44a2b957b8b34466057c408b02e9739433f075410ab36b67f"
+        "docs/framework/lit/reference/classes/HotkeyRecorderController.md": "4ec25a34addf9e3d753ca08e0389b9a36d32e914357d714950376829486362ed"
       },
-      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
-      "evidence": [
-        "docs/framework/lit/reference/classes/HotkeyRecorderController.md"
-      ]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/lit/reference/classes/HotkeyRegistrationsController.md": {
-      "fingerprint": "222506b3526070504e66c997384f3fc47663ed9c4ab8862392576312e96023b2",
+      "fingerprint": "df955fabf8ed53e88057033378776e8a11e886e566daa846ab7023596feb5a61",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyRegistrationsController.md": "e8abbc6b51757742b7bd159ec387a94efcae31125d0b55d6d677cc907205e483"
+        "docs/framework/lit/reference/classes/HotkeyRegistrationsController.md": "4f1c041ce1ca2832c6bd144257999634ef3cdd9fec63cd490b1df1fb3b086c98"
       },
-      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
-      "evidence": [
-        "docs/framework/lit/reference/classes/HotkeyRegistrationsController.md"
-      ]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/lit/reference/classes/KeyHoldController.md": {
-      "fingerprint": "ae20bfbef32e2b390494af3f9e0ba1a05ccf39a37a1b6c238e8887580870734c",
+      "fingerprint": "e41dae89310187b8198b7fc66dfea1b6326ed280895b73a3fcbc700e93d4cb6f",
       "snapshot": {
-        "docs/framework/lit/reference/classes/KeyHoldController.md": "aa04848e5ab27954c30172db7a0c541a453522ce3848597e8d5ba9a363509da9"
+        "docs/framework/lit/reference/classes/KeyHoldController.md": "54150763e8840190ac7d5db9ed19517a9cd22dfd2ee7094afbbbaa87063d3042"
       },
-      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
-      "evidence": ["docs/framework/lit/reference/classes/KeyHoldController.md"]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/lit/reference/type-aliases/AppHotkeyControllerOptions.md": {
       "fingerprint": "0650d360a9f96b49b316ac2d8b1d2a73a50f5ddae93c6c5d4785144c7f62b001",
@@ -4012,46 +3960,44 @@
       "evidence": ["packages/lit-hotkeys/src/controllers/_server.ts"]
     },
     "source:packages/lit-hotkeys/src/controllers/held-key-codes.ts": {
-      "fingerprint": "d94495282a945ddf51fe14e2e9f4c7d6c1e15a396e6841597560548a8c8fbed6",
+      "fingerprint": "bdb78c5816f0ae846917626d6de3c0644399027ae5574ccba2b23d0c9af2bfaf",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/held-key-codes.ts": "c99a9a719dbe0d428a2ec68aa0af73fe9fcd1599d5dc84eaaffe725bdf7e3643"
+        "packages/lit-hotkeys/src/controllers/held-key-codes.ts": "26cf610eaed0ed22d160ac71bf9163480d17c3954cb863ac053de01d06037391"
       },
-      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
-      "evidence": ["packages/lit-hotkeys/src/controllers/held-key-codes.ts"]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/lit-hotkeys/src/controllers/held-keys.ts": {
-      "fingerprint": "6dccdc098dd2126be4bc53db508cfc41bd8d50f8b33051a878e77b0757f0fe67",
+      "fingerprint": "4f04ae2d61808adb9a4f71fb904f414ef51552697d55d28d81ebe354633fca55",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/held-keys.ts": "851395ea7738deec72efd137e54ca70214aa87bf1ad02745a4e29b83aabf9656"
+        "packages/lit-hotkeys/src/controllers/held-keys.ts": "7f1dbedc568c954a996422328f0efc14a266b5cfe82ef94ae3acf3fbabc4b15d"
       },
-      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
-      "evidence": ["packages/lit-hotkeys/src/controllers/held-keys.ts"]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/lit-hotkeys/src/controllers/hotkey-registrations.ts": {
-      "fingerprint": "0a4e0bf9f2ff1c46623f8f45cf6703297e55b10910e79a245dea8fdbd86ef45c",
+      "fingerprint": "6bc73ac18508e920af45230ee2f08f313c42542f27ab13fb08d530477f76b577",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/hotkey-registrations.ts": "d37d395aadf05f5fb7760d5d43fa7517cf2f9a8a7e431eeee9cff41e3432443b"
+        "packages/lit-hotkeys/src/controllers/hotkey-registrations.ts": "96e9c6898eae112291b088ab90724632b86a86739b85a8625fe9dadae6df7b72"
       },
-      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
-      "evidence": [
-        "packages/lit-hotkeys/src/controllers/hotkey-registrations.ts"
-      ]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/lit-hotkeys/src/controllers/key-hold.ts": {
-      "fingerprint": "5e8f0338adee3f21f7e9c74a0fb72e34550fd5a0aa9911418a703314342ff5f6",
+      "fingerprint": "7779c5d1925c958c3b0d5956ae6e1857578066abb37a1c5f9e4f9e78502c3053",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/key-hold.ts": "7a05b649b7c8caaff9f3012a307356e3ba48d2447767dc472e23a7cb27609b70"
+        "packages/lit-hotkeys/src/controllers/key-hold.ts": "36d34eaec56e77ff4faae83342f189af0dfbe184ea59454d9e6e52b9ffdbe135"
       },
-      "head": "5053876bbd97d6b056cef9eddddcc4e28c249aba",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Adapter bug fix (SSR subscriptions, reactive key-hold keys, cleanup outside components), its tests, user docs, or regenerated reference docs; covered by the skill review.",
-      "evidence": ["packages/lit-hotkeys/src/controllers/key-hold.ts"]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/lit-hotkeys/tests/key-hold.test.ts": {
       "fingerprint": "2eb6320e508ca9a5757b30d8ef0dba8d6bf4c8308a25539ff468369077aad43d",
@@ -4234,40 +4180,34 @@
       "evidence": ["docs/framework/angular/guides/app-hotkeys.md"]
     },
     "source:docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": {
-      "fingerprint": "39199dc44426a9b58fe4ae4e1603cd340262045816feddfeac8165ff330f30b7",
+      "fingerprint": "bd511ae82952e940d6dbb73bc83a9dfa58b646b3db70707e07e0cc015f9da29a",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": "d286e8a97fb5d332f01ec0083d78317387a40bd028a5460ea657df74ba902f5c"
+        "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": "2c79a44cbe21fcf7f8ae9c6d947cfe5da111150c4faa3ba59c2a9cde8d1009c6"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeysContext.md": {
-      "fingerprint": "e9cf123cebe6e95d536c5049d9cce34f9629b5403643ff3a6f5436000a77c8ef",
+      "fingerprint": "c197f9a82ffd254f48a628b677467a694de7a9a70ab6b71f206d1d479e69220e",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectHotkeysContext.md": "6bcc9759196ba96adc261d97b897ce5a6265384af5572b13564a168f6e59430c"
+        "docs/framework/angular/reference/functions/injectHotkeysContext.md": "0718a70ac3e80c866f660dc31e98bdbc08b5d7cbbd0f6382ecdf77df44ed3c38"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/angular/reference/functions/injectHotkeysContext.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/angular/reference/functions/provideHotkeys.md": {
-      "fingerprint": "ebd81b87992134c84369d5830994f599e913234e6660e27fdf38580b9c320702",
+      "fingerprint": "be8681d4bc9db7aec713501f8c842f67482ade5c4c4691a242a9c9347a094b7b",
       "snapshot": {
-        "docs/framework/angular/reference/functions/provideHotkeys.md": "68d7cde41bfdec31feb901c6c1226a3eeff46ec92b2f017bab71f26ec746dba2"
+        "docs/framework/angular/reference/functions/provideHotkeys.md": "18b3d00948185ad75cdd54d2bd370611188bceb5145cf3f0fa1ae297fe59a869"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/angular/reference/functions/provideHotkeys.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/angular/reference/interfaces/HotkeysContextValue.md": {
       "fingerprint": "a953ab687062bcaa3c6732d10af2de015ed419bc34a58e1d76b3c6d48b94185f",
@@ -4434,16 +4374,14 @@
       ]
     },
     "source:docs/framework/preact/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "974f897f7ff3ea0e530ebd35060d5313a64ac509ff4f3e2d9ea56ba75deb02cd",
+      "fingerprint": "c86984902f0aa0c528e18e73d29ace9a6f5d4f96bac1a90b033dc18e5d802374",
       "snapshot": {
-        "docs/framework/preact/reference/functions/useDefaultHotkeysOptions.md": "6ca4f006cbcadaefbdee93cd5567806630c53826251e19b929a27f47dc499761"
+        "docs/framework/preact/reference/functions/useDefaultHotkeysOptions.md": "774d35d6b5ad8265e66c141f2434f8c526a775541ce2df818adf548f29a2d20d"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/preact/reference/functions/useDefaultHotkeysOptions.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/preact/reference/functions/useHeldKeys.md": {
       "fingerprint": "5280eebb6cd8969e0857db882538954c4fbe3219155ca82437ae5454a94d3efd",
@@ -4458,16 +4396,14 @@
       ]
     },
     "source:docs/framework/preact/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "18692ca28f93dcaca91e021823a76177541a5af5d943df5ad26bbdf99899e326",
+      "fingerprint": "bccaaf4a4ce6754ddf51eba2a820036079fa0bbe27f599ed9c1c56585e36b7d9",
       "snapshot": {
-        "docs/framework/preact/reference/functions/useHotkeysContext.md": "c4cac912b8d9da741789eda092ce327e43fc5b751d7a4a4d0a2f2b08fa1c5c7e"
+        "docs/framework/preact/reference/functions/useHotkeysContext.md": "b6f67af273ce676c2c6f459e4c59947cc6b93db17d02b65e209504c07efa0030"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/preact/reference/functions/useHotkeysContext.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/preact/reference/functions/useKeyHold.md": {
       "fingerprint": "b81f4edcd16fa0df8e66a65d94f4ed8c1489f650ffc366ee20fe27f14dad2cd7",
@@ -4728,16 +4664,14 @@
       ]
     },
     "source:docs/reference/adapter/functions/activateHotkeysProviderScope.md": {
-      "fingerprint": "954e365c3fa7c5a0d8fe13d6bfa270f26deedb7b5288c36ea696a7f08ef5a869",
+      "fingerprint": "37182d4577cb9b78a1d2b582b4befe24973aea3088ccb5e78396b4bc7729bdea",
       "snapshot": {
-        "docs/reference/adapter/functions/activateHotkeysProviderScope.md": "627f936b45237087e8419ba25cffddc816bd0a3f37c3427ffb0221d6a8fa889d"
+        "docs/reference/adapter/functions/activateHotkeysProviderScope.md": "1f0fd231bbe16e76e4d11f3cb39b65819cc02b6ee62296894bf8f6795002067b"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/reference/adapter/functions/activateHotkeysProviderScope.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/createAppHotkeysStore.md": {
       "fingerprint": "1f94a59a3af07b31422a5c114eb21c28baebd531227a217477f70858bdf7796f",
@@ -4752,14 +4686,14 @@
       ]
     },
     "source:docs/reference/adapter/functions/createHotkeyBindings.md": {
-      "fingerprint": "2c0b633ad067886198331cce2922db819adc9671136078cb0bda261460af7f87",
+      "fingerprint": "2a1498a17971a176dd6cfb2693b07971fec61f9a7e597275d4626c6e07a63492",
       "snapshot": {
-        "docs/reference/adapter/functions/createHotkeyBindings.md": "b1cda3b5b78ee2d204e4f26826eef0eee8850dfdd78ab3f985d32352cb9de921"
+        "docs/reference/adapter/functions/createHotkeyBindings.md": "f87a7efabed8866ebfd40f456259a5648f6d29cfa0880fdae0412ca3398264b3"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": ["docs/reference/adapter/functions/createHotkeyBindings.md"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/createStore.md": {
       "fingerprint": "e0c7f0a8e4dde18b56f3a33b0bd14a16bfb4350a77783907b318ea5f613a2e5f",
@@ -4774,52 +4708,44 @@
       ]
     },
     "source:docs/reference/adapter/functions/getHotkeysProviderScopeKey.md": {
-      "fingerprint": "99a508f16bab1c589ef5ae9edaae35476ab15c64bd9e512e19e60de0269bd4ee",
+      "fingerprint": "9f8cece350b9c1626cde51aa34ccf7c107d9910fa94c5a34aa12651b059ecd54",
       "snapshot": {
-        "docs/reference/adapter/functions/getHotkeysProviderScopeKey.md": "63cff52136bad63aa9f080f5054362ca5fc7f2f9c4b9420d4f3f1d8d9e521165"
+        "docs/reference/adapter/functions/getHotkeysProviderScopeKey.md": "5efb8b2eb4034d630db6d92a2b36ade482548a3818aa92615e6070e3d3d4afcb"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/reference/adapter/functions/getHotkeysProviderScopeKey.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md": {
-      "fingerprint": "3a7e6640e1fe525bb0a7c376b4d4599afecd71fd53b0490a8374b2e46ccd1ee1",
+      "fingerprint": "0a15da9018b82ca819e9c07eb70630fbc694b8142b3c610666416bb54e73925a",
       "snapshot": {
-        "docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md": "7c635d17e443df5c1b9f5f035de558ea33f843823a5f803ab4401fedd1fbdb7f"
+        "docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md": "5aee22fe83e4aedcfa1f01c10a882905134cbe7de4a902ae4f1fb97c4243fbfc"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/prepareHotkeyDefinitions.md": {
-      "fingerprint": "f7af2bc5154fe425df3206b69a5e4739e84d80ed805e213ef678ee07f48bd195",
+      "fingerprint": "6e85b2d77e62bdb0690f2762d169b512d2d3e970aac3f0a37c0c85ba0070d661",
       "snapshot": {
-        "docs/reference/adapter/functions/prepareHotkeyDefinitions.md": "26e7e68df833e73f0e18d1a250cca545845976b43eb9b831e40fd262c71b7cb6"
+        "docs/reference/adapter/functions/prepareHotkeyDefinitions.md": "8ce979182ff64b3fbc7c37aa54e5be1d2adba9ac8e288bb98a283e27769681e2"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/reference/adapter/functions/prepareHotkeyDefinitions.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/subscribePublishedAppHotkeys.md": {
-      "fingerprint": "4c8d322d37ffb47b71c27dae7fb88c8330d2f5bd37d9c986d8c38a84586ee457",
+      "fingerprint": "3206fbf98194625765bb52412602da51bb0a3744705cb8589e542bb6db60189a",
       "snapshot": {
-        "docs/reference/adapter/functions/subscribePublishedAppHotkeys.md": "43c06f24eb5c94bd9af09cdeb6ef574b2c2d89898ebaaccf0e9d838ef3e43788"
+        "docs/reference/adapter/functions/subscribePublishedAppHotkeys.md": "9282c0aaed6e433d0e90a5db6911a86e46dbbcb30a69e87acdcfddcdf339e195"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/reference/adapter/functions/subscribePublishedAppHotkeys.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/index.md": {
       "fingerprint": "07e4729c3e866e62a608f36b2cfd515178a94bc3de798e576b3e5d46c58da0df",
@@ -4832,130 +4758,114 @@
       "evidence": ["docs/reference/adapter/index.md"]
     },
     "source:docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md": {
-      "fingerprint": "bed99492cd286b1f62764e2db6f7627872a4974f1bb56c5d8c433dfad492c553",
+      "fingerprint": "0c46aa10678bf6a76bd2a0de544d98a3c7f3ecb2dae2ccf8f0e42f3069a13b53",
       "snapshot": {
-        "docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md": "891fdd12bfdeea820059f9ae7ebfdcb3a6ed1fca47d807931c8fcb2eae61b21f"
+        "docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md": "13f6067b8dfce65c77e6f797bb2c7428a0cfd98ae4736e0b1bcca8ca5042cec8"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md": {
-      "fingerprint": "a84b016e7a5f21ec22333c824853a52e5ca08cd09d76b914e294c513aac1de88",
+      "fingerprint": "06d30cf923beb81104b3f7d3483c703ed28a936ad7cba1d5c357c8edfaf963a0",
       "snapshot": {
-        "docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md": "e36f486f676a4a9ebc44fce7f8814c91a9133713945e3f597dd21b34336fc0c8"
+        "docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md": "0843342695009dfb0691add0a4ec62e9abf04f52dafba9de7e73faac71caeda7"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/AdapterAppHotkeyOptions.md": {
-      "fingerprint": "a64cda73aadb56faf2c37eed31694218490ae1c43b5023880156ddeeb624d771",
+      "fingerprint": "a5b7e7cb71f3689b4ad341bf4ec8f9ff624ca87a46197c37da5a885a2c794345",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterAppHotkeyOptions.md": "7aabeaa4f75b42b754f08d3e95742ab7b065222975e653dac71885bdc2ec104f"
+        "docs/reference/adapter/type-aliases/AdapterAppHotkeyOptions.md": "b3105d2297af0155ff5e07a4ad7e1066953000411367a011a87de80ceab8c9d9"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/reference/adapter/type-aliases/AdapterAppHotkeyOptions.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/AdapterChordOptions.md": {
-      "fingerprint": "2760a2e83529aedc1096d4a1628f2249be92eeb69671334e3c510dc1acf31962",
+      "fingerprint": "e80a5cf1f0d134c7ce7d0c9857e15d0d23cdaecc409c6cd156de0730abe74539",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterChordOptions.md": "39594a4d64b8a766ca7035007d5aa46362456dfc8c5362587075a1e85d8a5771"
+        "docs/reference/adapter/type-aliases/AdapterChordOptions.md": "64ae6462de56d0970763126c82c1129efb72f12ef063f6ca6c06f179fe6249c8"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": ["docs/reference/adapter/type-aliases/AdapterChordOptions.md"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/AdapterCommonOptions.md": {
-      "fingerprint": "8d592602d2b0dcc352696f62e0698a6728db00538f08bd5f781588b4b4a7f501",
+      "fingerprint": "5b96ed2c12499288f44de67c2a9174efab019c5483ce6ed5f598c0f72a2764c9",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterCommonOptions.md": "7103c9e4a173095c2b4e12debe2eec220ebe7182ffdf69fd69af1abfdd5cd244"
+        "docs/reference/adapter/type-aliases/AdapterCommonOptions.md": "845e1373cdbc1e9d5a24dd269e3d4e276e52462d4255db344ccac23a9941b93c"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/reference/adapter/type-aliases/AdapterCommonOptions.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/AdapterHotkeyDefinition.md": {
-      "fingerprint": "751603fb7af3b048d4249e15f0f394f513291ae4e0d25eb1120777baa0ff0016",
+      "fingerprint": "15098f73895612b865160a5cd2baa9d47c9630c1a98b29273dd5d74a59dd974f",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterHotkeyDefinition.md": "8eb2fd6bec07daa12bf37b7dc8f24c1b5d903e0218c2f4936712ae5230d0f5f5"
+        "docs/reference/adapter/type-aliases/AdapterHotkeyDefinition.md": "a37d382b7bff65b33fd4c43fb1ad997b6fc29c9617b4728218400eea2594fa76"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/reference/adapter/type-aliases/AdapterHotkeyDefinition.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/AdapterHotkeyOptions.md": {
-      "fingerprint": "617571d8ac3552e65fa47a07b5f51d2e703158052e37a9f4025e000ba5d7151f",
+      "fingerprint": "6795f944c702a71c602182595f117c52c23e92ab4ecb9a866010a91a89efefb4",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterHotkeyOptions.md": "7e2bf51b0a5f59daafaada7005a60effcc2750fab469a6ac9a6a60915a8b3eae"
+        "docs/reference/adapter/type-aliases/AdapterHotkeyOptions.md": "4e1a0324d24d7f407dfbd9ec63bd3a0c44634d08b86c823af61168a263ef748f"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/reference/adapter/type-aliases/AdapterHotkeyOptions.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/AdapterOptionsFor.md": {
-      "fingerprint": "eef4123ae5b30cf905e7aa93a2d36c79ab85cc9324be3935a536810428f54739",
+      "fingerprint": "b0d33ca6abbb12b07b15c20015c045adf7f0dbd30f7743b09b809776ce6ec5c2",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterOptionsFor.md": "5b02343142e275c08df0843429cb2604916c5bd3c26000b3bcd7d7e6c2eeb3ce"
+        "docs/reference/adapter/type-aliases/AdapterOptionsFor.md": "d43a0b5c70707d1cd6b460f950edb5f27e9e0bef674215d4fe2ecda64bbafc5d"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": ["docs/reference/adapter/type-aliases/AdapterOptionsFor.md"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/AdapterSequenceOptions.md": {
-      "fingerprint": "c2a602f160ef8ce8bff68af677a0911c47d7b9d29ae961ffa77ce2a12d7859d1",
+      "fingerprint": "7a10c73385f10a5e64911fc85cc08dfc27ac6a2215dddc271f57e9f397daada5",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterSequenceOptions.md": "e987c4a208bfe5db593cbc8ef4bd4c7e1854c97ee8d1aba693e180784f0373bc"
+        "docs/reference/adapter/type-aliases/AdapterSequenceOptions.md": "837fa05e41f5a7f5c5f3d60bfcac243cb28d0295ea92941af833edee200a8cc8"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/reference/adapter/type-aliases/AdapterSequenceOptions.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/HotkeyBindingsCommonOptions.md": {
-      "fingerprint": "c86d2333e9fb6f7e0dff1c6581429cfb78fddb7da4e3938bbdf6194422037d1e",
+      "fingerprint": "e9d511a161a6c03f5d0d5edd0dd9eb8b6ebfecac58358a686820fdfb61851b4e",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/HotkeyBindingsCommonOptions.md": "531c37465b21a03f6327f6e25fcc4b7b4a43ce7f88b71c7c240aeb9b1bf2b824"
+        "docs/reference/adapter/type-aliases/HotkeyBindingsCommonOptions.md": "44b7c3c8cc97a0d56983ef6bc4919f1284ac30688e5b25873be4c3b68b3d94e4"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/reference/adapter/type-aliases/HotkeyBindingsCommonOptions.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/HotkeyDefinition.md": {
-      "fingerprint": "cb6eda7cdfea53f6ef34c1215b258cac8da398e75b697f487ee53524a96f2164",
+      "fingerprint": "24d157244c2ec770e53da3d31dae758b6457a5d0700297aa690b14b8b9e8fa67",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/HotkeyDefinition.md": "7c2eb2f6472f5be9a0bf9479cb1db09b2d3b1687c600de1cc5441caa4e587693"
+        "docs/reference/adapter/type-aliases/HotkeyDefinition.md": "3af1a4d775f0e41bba889c14653a79bf311fe9670314405af819ed805d31b389"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": ["docs/reference/adapter/type-aliases/HotkeyDefinition.md"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/type-aliases/Store.md": {
       "fingerprint": "3cd577f1021a9e1df706137e46a9df81e70b04cb1823e5dddadb7ebd53d1c551",
@@ -4970,14 +4880,14 @@
       ]
     },
     "source:docs/reference/adapter/type-aliases/WithTarget.md": {
-      "fingerprint": "79c281ac80689ab590ce6278abcbe1d399bf546a05cbcb88c4cfb53a507f340f",
+      "fingerprint": "9a3e89d13254c7eb13e185735fe5121a5fc5dbfa04e718d79f728afe63df8afb",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/WithTarget.md": "a2bc74043aa3a599fc536267838c2590bb781f0602aa2a3880aa16b4e2f6c30c"
+        "docs/reference/adapter/type-aliases/WithTarget.md": "1d6a46aa7e7f713eb80303af926769caae44c9b551992eb7c431e8a41ee7f25e"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": ["docs/reference/adapter/type-aliases/WithTarget.md"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/classes/KeyStateTracker.md": {
       "fingerprint": "8759bbb25b1ec9a197e3b8efa061deb4cb76871cb86d598083ccfb4475d236e1",
@@ -5188,28 +5098,24 @@
       ]
     },
     "source:packages/angular-hotkeys/src/injectHeldKeyCodes.ts": {
-      "fingerprint": "091bf33f40f8f7496624eedb0a88702206efb3c20bf77c2cfb451f80413556bd",
+      "fingerprint": "e35c295096c9068b6861715b8f83c06fb245d912564c206f82e7d81b019b5c64",
       "snapshot": {
-        "packages/angular-hotkeys/src/injectHeldKeyCodes.ts": "5c178e1cfa34b42e6d950884540df2f51d15f073aed2e887d989907067bc1fe1"
+        "packages/angular-hotkeys/src/injectHeldKeyCodes.ts": "b423ef43f615aa3c61c513042ab4b0eb88207de41a853a06bf6eca05f17d4c68"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
-      "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
-      ]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/angular-hotkeys/src/injectHeldKeys.ts": {
-      "fingerprint": "d402bac992ac02d35845067ce71d7d61611a80d79c66abd01e240f544a75b097",
+      "fingerprint": "686c5b65dc5f06089dbb42775edcb4a02a2f61009085476e6c9b6054a2e866b8",
       "snapshot": {
-        "packages/angular-hotkeys/src/injectHeldKeys.ts": "d592acdf18f2226cc34c19d96e0b64562349c4f3a822212e1361915dd3bc0ba3"
+        "packages/angular-hotkeys/src/injectHeldKeys.ts": "c44b78f7d62d62e08d12b81437c41436ce0f2d56bf21510e81d9d8edc08b11f4"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
-      "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
-      ]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/angular-hotkeys/src/injectHotkeyRegistrations.ts": {
       "fingerprint": "30b2ff92e401613695abb962f2802d098d25f866a46af2d99918d80df943b45c",
@@ -5224,16 +5130,14 @@
       ]
     },
     "source:packages/angular-hotkeys/src/injectKeyHold.ts": {
-      "fingerprint": "f309140c7df50151711a0d912588d2b2d1b3cbe53c84e27f7ddd94bea2ede4e3",
+      "fingerprint": "02d21945f35b62fb7ffb8b856c8ee60c76e8c45d927d533f3737cb81aa5ac09f",
       "snapshot": {
-        "packages/angular-hotkeys/src/injectKeyHold.ts": "8db380ab5ab50a10038c4b9cd29ddf2b6863b10429bc5e3432b086b3eb524ced"
+        "packages/angular-hotkeys/src/injectKeyHold.ts": "ab37b4d67e4f2ad64785755ad1795d2813f9536e2f49adbe6aaa6cbe5b43ef50"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
-      "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
-      ]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/angular-hotkeys/tsconfig.docs.json": {
       "fingerprint": "d6f11749eb8188613c65bf0a4682d0cc01b6f735438c47f381466aae5a0cbbec",
@@ -5248,16 +5152,14 @@
       ]
     },
     "source:packages/ember-hotkeys/src/utils.ts": {
-      "fingerprint": "7f0a0f8a42103b963b34a439ad59363ed288144154d66cd105b414b28907152b",
+      "fingerprint": "18f04a64be1052828daf2a2a0c3167027bd96440d16efe6155fbbe1f354b09ee",
       "snapshot": {
-        "packages/ember-hotkeys/src/utils.ts": "72da4ad9049d97d71cee8f10523e1c650083c4050449035778fd81e232c613fc"
+        "packages/ember-hotkeys/src/utils.ts": "4347eb0cb325dd90c8717a7e73a3bd6f24d5ee666b4ec27686e87f5840c6c835"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
-      "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
-      ]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/ember-hotkeys/tsconfig.docs.json": {
       "fingerprint": "5a0b923213eb2824c82df256d6984612e872d6f45f1df1166b5f9035067a6e5f",
@@ -5318,14 +5220,14 @@
       ]
     },
     "source:packages/hotkeys/src/adapter.ts": {
-      "fingerprint": "5a86901fecf42ee72c3ce8e8acd7bd78fc0ba8098c172b3c94b84809f2bd02f6",
+      "fingerprint": "26f6936a61cf702f975c31dc5bf7177fa458bff9dd2ecab8ade7207be95d4964",
       "snapshot": {
-        "packages/hotkeys/src/adapter.ts": "72816de40fd099c751efb22046c3a3f94025dc1b2f40d16ccfc27c157f203bc3"
+        "packages/hotkeys/src/adapter.ts": "8abe84570a3db97a383b17b0b2338be97064eaffbeb1ba265ea5f9e4c6f0d98f"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
-      "evidence": ["packages/hotkeys/src/adapter.ts"]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/src/key-state-tracker.ts": {
       "fingerprint": "e9ffd10007968fd38efe249963aa86dfa3d720e8392cce16897a6b9fcc04f4e8",
@@ -5348,16 +5250,14 @@
       "evidence": ["packages/hotkeys/src/validate.ts"]
     },
     "source:packages/hotkeys/tests/adapter.test.ts": {
-      "fingerprint": "49fc3ca851c4e5c5e0fd973e368f1311aaa1826c32f6042734c344d29f9fb1fa",
+      "fingerprint": "e790aa9b447e69903919b593386c04a44d3f4bed9a477b5604a8f0c9fea8a8ca",
       "snapshot": {
-        "packages/hotkeys/tests/adapter.test.ts": "6e33e8d27a513dc219f23f3917ca8ecb994ee096ebe1ccbaacb4692a0fc9b882"
+        "packages/hotkeys/tests/adapter.test.ts": "4dc71ad20c6e307fc9d4cac3e244d018e3eae472aca942f9bc7e80e77e527320"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
-      "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
-      ]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/tests/production-logs.test.ts": {
       "fingerprint": "5b0bc4d295d32a7eeb1e08145be2091656364a3934101d2783d95b22eac05cb3",
@@ -5384,28 +5284,24 @@
       ]
     },
     "source:packages/hotkeys/tsconfig.json": {
-      "fingerprint": "a5fefd02cd3b020bcb266683b823e298d16f1eb9905cefe7c29ef10e41a7490a",
+      "fingerprint": "cdbd84600ffd051fee6992786ca89b2d1c259607d1d3e60c86d181f5295e4c6a",
       "snapshot": {
-        "packages/hotkeys/tsconfig.json": "8e9865f026bf53b5a4de1a19a565b17320ed18d60e9444a7398c8f3bc3434bed"
+        "packages/hotkeys/tsconfig.json": "6ef4e7c81620fb6d8c71d4eb783559434cac4af125ba21d66adb8679020804de"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
-      "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
-      ]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/tsdown.config.ts": {
-      "fingerprint": "f44e2c78e8dcd19c051f698159b1f0b620ce457c4ccd6253538e4f0ee65123c7",
+      "fingerprint": "0381c8a4e25188fceaa410a433d0e4b888b5ef599e4a8ba77932769504684e08",
       "snapshot": {
-        "packages/hotkeys/tsdown.config.ts": "beed69b180f14a5b991afa362245d344ce6ad87c105fe8fcd5175fe3d8ab9533"
+        "packages/hotkeys/tsdown.config.ts": "401655a25d1318ac482fd82272445c98d16e89efe5eed5ff17cfdf1e8c295778"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
-      "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
-      ]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/lit-hotkeys/tsconfig.docs.json": {
       "fingerprint": "0fb4d01a815a4ca74c8ed0bb33cc3d74efcc1e4114eb2207dfea9333b55d5dc8",
@@ -5456,14 +5352,14 @@
       ]
     },
     "source:packages/octane-hotkeys/src/useHotkeyRecorder.ts": {
-      "fingerprint": "213cf6bf56db98445eace642916ba3efc6ae3c974ab955ccc3f8b5cd52a97fc3",
+      "fingerprint": "e8c83bf4603e71e22be70956501af4a5377b840eb872f236b1e5227b58020f80",
       "snapshot": {
-        "packages/octane-hotkeys/src/useHotkeyRecorder.ts": "51d32fd1446edeaaebaf8201d722aa15bfda2a2352928c61783aa6c7b5540695"
+        "packages/octane-hotkeys/src/useHotkeyRecorder.ts": "6c9b091657312f46c5050aa2a1a00ef0d026d10712be84fb685166a2ec5dbbd3"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
-      "evidence": ["packages/octane-hotkeys/src/useHotkeyRecorder.ts"]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/octane-hotkeys/src/useHotkeyRegistrations.ts": {
       "fingerprint": "9bd1a0cc0e51bd74eaf95309cdd96d83618ef4cfc9d8c2838625c36369210f42",
@@ -5562,14 +5458,14 @@
       ]
     },
     "source:packages/preact-hotkeys/src/useHotkeyRecorder.ts": {
-      "fingerprint": "715914a1126281049609a85917fbd8bf3c3dc32a453edd7521760e63163037e7",
+      "fingerprint": "7f8fc1dbaf9907d03849f535431f30e87e8ea2d0bee16b3e2979871849e8a88a",
       "snapshot": {
-        "packages/preact-hotkeys/src/useHotkeyRecorder.ts": "026bd16778752da52c9f3cf4d0f408dd0ea07e5451b66cabd223ec558f50196d"
+        "packages/preact-hotkeys/src/useHotkeyRecorder.ts": "ed11f297a547dee9f917f6b8845e938577b81b7500fdc8fc176ca48e5ce3f5fd"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
-      "evidence": ["packages/preact-hotkeys/src/useHotkeyRecorder.ts"]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/preact-hotkeys/src/useHotkeyRegistrations.ts": {
       "fingerprint": "588c8464718b346a562ba341be21e676d2a7c41a48f3755b2599d8808ca967aa",
@@ -6024,14 +5920,14 @@
       ]
     },
     "source:docs/framework/alpine/guides/held-key-state-helpers.md": {
-      "fingerprint": "ae6397bfbbb874c663a4fda88c3daaffa1ff4c5f82df501e0cd81f5fd73e714f",
+      "fingerprint": "276247497a61456184ea3d777b9967aefe841854b30e0a9e185a74685c6ff273",
       "snapshot": {
-        "docs/framework/alpine/guides/held-key-state-helpers.md": "4dda600cf374a6a2dcfcbb0600ad386d70587084624e5cef2373c444d85e4969"
+        "docs/framework/alpine/guides/held-key-state-helpers.md": "3b31febeeba1ed07dff51b0cd7ac108d135be3f0f52b694efdea8ec721cd0e8c"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Guide wording fix (duplicate check includes event type, or an Alpine sentence); no skill makes the corrected claim.",
-      "evidence": ["docs/framework/alpine/guides/held-key-state-helpers.md"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/angular/guides/formatting-display.md": {
       "fingerprint": "496882107815cf33d4b8cb1edf583f4cb6e0cab23b674c14787a1d0a527a975f",
@@ -6690,38 +6586,34 @@
       "evidence": ["packages/hotkeys/tests/sequence-manager.test.ts"]
     },
     "source:docs/framework/angular/reference/functions/injectHotkey.md": {
-      "fingerprint": "201c5e3b5655c645d3de05e6fdc6a6ac84ecdb5eff87510445d328cf09db5915",
+      "fingerprint": "2f1d8c5dd6307fbb2b05000cf5def2c6e351d2b32b7e26abada13905f140958d",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectHotkey.md": "e1b7d37527129c72cf2e0f472edcbfe61a85d83b436d4f9076d3b1ff292ed87c"
+        "docs/framework/angular/reference/functions/injectHotkey.md": "2d23eef4f3ee402c56abf6014c4d0866c268dde891f0ea0998ff1979c4022ba6"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": ["docs/framework/angular/reference/functions/injectHotkey.md"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeyRecorder.md": {
-      "fingerprint": "fbbc4275bf22ea0cd06d180e7b5a504f04280d227b929aa1c6b6ca474377ea38",
+      "fingerprint": "e132c7d8035c6853245d2508e41c4c479280bd6a2bed87dd0d6432fcb8cc8653",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectHotkeyRecorder.md": "011df8cbce402b282c8343665a4c84a1cac328a15e00adc8d746623832a89268"
+        "docs/framework/angular/reference/functions/injectHotkeyRecorder.md": "01388263abb14a8311e544c715d3a061b8467106c15b07341a5378aca16cbcb9"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/angular/reference/functions/injectHotkeyRecorder.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/angular/reference/interfaces/AngularHotkeyRecorder.md": {
-      "fingerprint": "cb06b2d9ef7fa9bcee6812f75496269dcecad06428ca0429eafaa82e3d507a3f",
+      "fingerprint": "c49a48cd05583e69fa1f54fe56f885a9cfdcf0c09e4e07429b1a24bfc96c7fcb",
       "snapshot": {
-        "docs/framework/angular/reference/interfaces/AngularHotkeyRecorder.md": "7e2b180115c8b77ee1d4bd884efee1ba082bd8c709269f79aa7d218ceee301cb"
+        "docs/framework/angular/reference/interfaces/AngularHotkeyRecorder.md": "31d52a7bcb3bc4f226f1ad55790d7f7cbcb34a831c53d7d5cddc2c3a28ed6491"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/angular/reference/interfaces/AngularHotkeyRecorder.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/ember/reference/classes/onHotkey.md": {
       "fingerprint": "6579bcacfddbfdeab4d7094929e6e4d12de4539fb839d8b743c6e508df29f0b0",
@@ -6734,28 +6626,24 @@
       "evidence": ["docs/framework/ember/reference/classes/onHotkey.md"]
     },
     "source:docs/framework/ember/reference/functions/createHotkeysScope.md": {
-      "fingerprint": "fbba9362c025bbd46dfdeac735569e8079b447dc7ca5d30246ed32e84f2adc6c",
+      "fingerprint": "ed06ed737034dc368d006188d68adc4d08d3578830730581177ebf4bd05e1465",
       "snapshot": {
-        "docs/framework/ember/reference/functions/createHotkeysScope.md": "528bc9287d87519644b89928ac20799af14a84c867d35ebcb4c926363505a4dd"
+        "docs/framework/ember/reference/functions/createHotkeysScope.md": "21ccd727035b640f013f5eb77e5702f9ecad50b24ee44e3eee2f562d72d7d81b"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/ember/reference/functions/createHotkeysScope.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/ember/reference/interfaces/EmberHotkeysScope.md": {
-      "fingerprint": "f1320f51cb6048350f3546ec794cb13482d76f9b918786fc1df0bedae2500b2a",
+      "fingerprint": "90a441b32bb9207a5018bd0e54a9adb08def8693789c096decc1f9a59a6498b3",
       "snapshot": {
-        "docs/framework/ember/reference/interfaces/EmberHotkeysScope.md": "175ebf9c0235c6c3bacb62ac64993c498607e0e219cbc8bced6f59c964510f49"
+        "docs/framework/ember/reference/interfaces/EmberHotkeysScope.md": "554f553c849829e2b05770ff61107bd08a40e73999cad10124e5cc5913b19694"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/ember/reference/interfaces/EmberHotkeysScope.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/octane/reference/functions/useHotkey.md": {
       "fingerprint": "2973da146a0d373e9a7469177c72c3323f3b263bbce1bd62642167b73b894ede",
@@ -6768,16 +6656,14 @@
       "evidence": ["docs/framework/octane/reference/functions/useHotkey.md"]
     },
     "source:docs/framework/octane/reference/functions/useHotkeyRecorder.md": {
-      "fingerprint": "62aee0b97bf927bfdd2bc18b4fba2e4c330aeb35b51f4cda97f36dcf1790253d",
+      "fingerprint": "85a8edbdcdaa205fb3374072641b22998a08d0b97cb94af3f0f42b80d3aa2d52",
       "snapshot": {
-        "docs/framework/octane/reference/functions/useHotkeyRecorder.md": "c97f18f21deec5c0a5bb77b472948c2437c92e26d00b82a8e911e01150891a9a"
+        "docs/framework/octane/reference/functions/useHotkeyRecorder.md": "8439efd5bfaba9febf8334894b552d8457ef39814bd5d74f1fbbeb254cf8d2b4"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/octane/reference/functions/useHotkeyRecorder.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/preact/reference/functions/useHotkey.md": {
       "fingerprint": "263fbb505eca0da5c59c0136fe2b4269d07e1ad19eed7a6c865fdee3c34426d2",
@@ -6868,60 +6754,54 @@
       "evidence": ["docs/framework/vue/reference/functions/useHotkey.md"]
     },
     "source:docs/framework/vue/reference/functions/useHotkeyRecorder.md": {
-      "fingerprint": "952810872e12f5638e3d4e54e188d500a2a78aab28cab144898e1abed0febdc5",
+      "fingerprint": "e0ab0fe53c08ccfbd647b4df2df917fd17f565460cb1c8d9722b7a29f19219de",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useHotkeyRecorder.md": "dde088a2d9c6e277e91f178a02c040d48f0f610d6895812d830c138e06afdcd2"
+        "docs/framework/vue/reference/functions/useHotkeyRecorder.md": "9bbe5979a55699abda1793e8c80b837e8605c88be57cb11cf4fdf005bbc1d88c"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/vue/reference/functions/useHotkeyRecorder.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/vue/reference/functions/useHotkeys.md": {
-      "fingerprint": "3b89d8babfdcb088f669439b81d7aa17fb9483fc1eb136e3a6f48daf1784ca3b",
+      "fingerprint": "202ba352d6d1671801ab2223ac355ac5e7d0a16162d7e25204792c388ebdc41a",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useHotkeys.md": "f5a3a36c039d53df717987f493c5aa70a40e039f08016f86d53b2ee6af4d6632"
+        "docs/framework/vue/reference/functions/useHotkeys.md": "738396739fec0f92fce5af8f9891596de07fb10da2e1ad4ce95adcc927984ad4"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": ["docs/framework/vue/reference/functions/useHotkeys.md"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/vue/reference/interfaces/VueHotkeyRecorder.md": {
-      "fingerprint": "1fd8c1a6bc2e0683278fe0c48285c2e8fe2544fd9293a1929c8438b876a73ec9",
+      "fingerprint": "071284e4e1ac770a641afcabef0ca41e7b93567396c6c70f02dfd740ed155992",
       "snapshot": {
-        "docs/framework/vue/reference/interfaces/VueHotkeyRecorder.md": "6a2305735516a69b7c13edee618e2e304c05a1f764f2825822e44d7cc02372d9"
+        "docs/framework/vue/reference/interfaces/VueHotkeyRecorder.md": "eb123850c1b57c90dde473e27ce819e19cad5074b65e0e448a2b222fcb2a2dbd"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/vue/reference/interfaces/VueHotkeyRecorder.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/vue/reference/type-aliases/UseHotkeyDefinition.md": {
-      "fingerprint": "f344c61399ee8ee39c34d729b2fcbee90cc1ebcb0996297c6a410396ca775af9",
+      "fingerprint": "d4c4e46d7bb3590479e488f692ffad0a165888d3163bf88314a87dcb70091ca8",
       "snapshot": {
-        "docs/framework/vue/reference/type-aliases/UseHotkeyDefinition.md": "b21ae2572bc4685c219e7ce9e3e85a0adf9cdd43f2203c112170c5c7a15ac4c4"
+        "docs/framework/vue/reference/type-aliases/UseHotkeyDefinition.md": "363cad9230b2eeea9416a32b0a84ece865a5792311d5478793ffe1f6ce8ce0cd"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/framework/vue/reference/type-aliases/UseHotkeyDefinition.md"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/vue/reference/variables/HotkeysProvider.md": {
-      "fingerprint": "c0e6aef6beeea785ec58e479b5185bbacadadba0abd3745cbbca31417703d2b4",
+      "fingerprint": "018c0c9cecf2fcea4846acc5b40d2d66ae2e4ac8ec47324b71709fa697c8c9fa",
       "snapshot": {
-        "docs/framework/vue/reference/variables/HotkeysProvider.md": "82302cfd088c5c2bd002342a19df93e5158c4597bd9fea661665ab1f1a8e16d0"
+        "docs/framework/vue/reference/variables/HotkeysProvider.md": "746ae317dbc25ff30f714ed874fdb6fb01eff1fa965bc90ad74cdcac153864a1"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": ["docs/framework/vue/reference/variables/HotkeysProvider.md"]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/definedOptions.md": {
       "fingerprint": "48ac68536b5d75e3fcc2f05de080aabd458ce463489e111966f90c7691631342",
@@ -7290,6 +7170,536 @@
       "outcome": "no-change",
       "reason": "Edge-case fix (empty physical code registers nothing; synthetic contextmenu ignored). Skills describe hotkey usage, which is unchanged.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/alpine/guides/custom-hotkey-recording.md": {
+      "fingerprint": "811ee0771b7232325233ec3a6a4c60fc2498079ee1875c175c64c24cae816c45",
+      "snapshot": {
+        "docs/framework/alpine/guides/custom-hotkey-recording.md": "8e9ed8764753cbb425ec7149e7af10ef1486eca098236526c52bc4e587d99646"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/alpine/guides/sequences.md": {
+      "fingerprint": "e2d6dcf06a99f53c644e83146a6a2e5d8093343012e67e999bd5aed812ce857c",
+      "snapshot": {
+        "docs/framework/alpine/guides/sequences.md": "0e108c1c8cd20913999cd4968f9c57fd8e123e4af56ecf7e2946bb8f8ebb1d84"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/alpine/reference/functions/createHotkeyRecorder.md": {
+      "fingerprint": "72b4216e8d8f7a1b9a6119eed76cdbf9ac6f5659573026cbbc0c4b3080184b2d",
+      "snapshot": {
+        "docs/framework/alpine/reference/functions/createHotkeyRecorder.md": "747d127e217edb99b4eabc0816755d522afdef148989f71436e34265da69e942"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/alpine/reference/functions/hotkeyRecorderPlugin.md": {
+      "fingerprint": "76e942df4a6354a382bd90df6a99eaa3547458eb397b6bc100801d8e6fd29bb6",
+      "snapshot": {
+        "docs/framework/alpine/reference/functions/hotkeyRecorderPlugin.md": "0af5883bbed5adb4906018a6e59bbcc9aab810361f6f9bd2160a3e66cad8a99d"
+      },
+      "head": "31151e3ac8ef68c6f1152132b539f0609856637c",
+      "outcome": "no-change",
+      "reason": "Generated reference now links its source line; content is the same.",
+      "evidence": ["autofix commit 31151e3a"]
+    },
+    "source:docs/framework/alpine/reference/index.md": {
+      "fingerprint": "413957805ab64eb5821d349c14f826828acf06828498441e0481b91413bfaeb7",
+      "snapshot": {
+        "docs/framework/alpine/reference/index.md": "ed51f9dfb64ca232369c8a77dcd868636ee2ab811d8c6c1ce890d1ac61c2bf1a"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/angular/reference/functions/injectHeldKeyCodes.md": {
+      "fingerprint": "25075c30f9095aa04364b802969f548d4cb6d53134a0baecca9d5335cd36ebd1",
+      "snapshot": {
+        "docs/framework/angular/reference/functions/injectHeldKeyCodes.md": "68190c0a164924b7db1d92b68c89258e0351646341d0eae73c0174a42b2a0e5f"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/angular/reference/functions/injectHeldKeys.md": {
+      "fingerprint": "adce6f6f905a05992c2b54b3604a048b4655644323462a025d318370819ce6fe",
+      "snapshot": {
+        "docs/framework/angular/reference/functions/injectHeldKeys.md": "62a18509b36fbc76c5f6ef897c4a9b9a4bca3a296b4f99f3a726966ba03f62f7"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/angular/reference/functions/injectHotkeys.md": {
+      "fingerprint": "a8d85c70a8803164eab2a08d915257332cbe664a95b3c61ecbf2c215cc59be5e",
+      "snapshot": {
+        "docs/framework/angular/reference/functions/injectHotkeys.md": "f8f6edb8d8e62b492fa60856a0a00b9cfdc39224c0ce7aec3a9e67821cc3f467"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/angular/reference/functions/injectKeyHold.md": {
+      "fingerprint": "7fc31554d06399f0762856c25fd624da62cb2a645082c9e161b14d7a1b900767",
+      "snapshot": {
+        "docs/framework/angular/reference/functions/injectKeyHold.md": "493309482d89a113e282f85867f34ab0cd054d51178915cc95fac0ba16cec856"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/angular/reference/type-aliases/InjectAppHotkeyOptions.md": {
+      "fingerprint": "e90c789dcd60d570baea3af6604af800d7f397f34cc71bb1f6172cbc05469b97",
+      "snapshot": {
+        "docs/framework/angular/reference/type-aliases/InjectAppHotkeyOptions.md": "a0bac181260f733d12404d3315b8c78e334deddca99eccae4eef6ccb5638e150"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/angular/reference/type-aliases/InjectHotkeyChordOptions.md": {
+      "fingerprint": "17b7d2e14d802eacd2233bcdc1faa621972f6511ae77acb2234f968a147d115b",
+      "snapshot": {
+        "docs/framework/angular/reference/type-aliases/InjectHotkeyChordOptions.md": "89c99fc4d59826fa4fec19e401a8ad71ee31c16ac8b348befecb013ae7956e38"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/angular/reference/type-aliases/InjectHotkeyCommonOptions.md": {
+      "fingerprint": "be50dcfeb5b15c724b7f104c297865b729ea80f7fc91ea36925b5fb74c14b651",
+      "snapshot": {
+        "docs/framework/angular/reference/type-aliases/InjectHotkeyCommonOptions.md": "4f47ef6c9b24a4b8a00103c7f85120fdf7c710d7a90eb35099e120162586bbc4"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/angular/reference/type-aliases/InjectHotkeyDefinition.md": {
+      "fingerprint": "f000308aa16c16b4d9599ff7b08da21b31b2e4c55b0953f15d23ddd28455ef84",
+      "snapshot": {
+        "docs/framework/angular/reference/type-aliases/InjectHotkeyDefinition.md": "05b4922165e821edcad1800e823a6ba5a652b668267f549b104919c144681d2d"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/angular/reference/type-aliases/InjectHotkeyOptions.md": {
+      "fingerprint": "35ca8fc65c1206b7b86ebb72a70ef5193f9835d25c51f072b6b1fb2bd935c392",
+      "snapshot": {
+        "docs/framework/angular/reference/type-aliases/InjectHotkeyOptions.md": "985daf653fdfe14dfabe36369e9474a422c6cea9457bda079c4ffe1bb696decc"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/angular/reference/type-aliases/InjectHotkeyOptionsFor.md": {
+      "fingerprint": "b9a991be9df96987d1147fc0fc173f7535dc8af596ebdc66b7e902252c4c56c3",
+      "snapshot": {
+        "docs/framework/angular/reference/type-aliases/InjectHotkeyOptionsFor.md": "edbb179f92bedf819fc20fea56d9a439a695f7b56e2c52b8134f7e012dfc2da7"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/angular/reference/type-aliases/InjectHotkeySequenceOptions.md": {
+      "fingerprint": "4514fa001c81d22b53e91cb4b900cf71829c872ceccbbb1cb3152c0e98771869",
+      "snapshot": {
+        "docs/framework/angular/reference/type-aliases/InjectHotkeySequenceOptions.md": "2195fe3fa2b09f6e9c42eb0e268c789a1e0db0e13dd3256780737d2700fc8d88"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/angular/reference/type-aliases/InjectHotkeyTarget.md": {
+      "fingerprint": "e09c1b62b9b1f098dde7d58922652f3d0a67e29b8bab79aaeda1661d87feac60",
+      "snapshot": {
+        "docs/framework/angular/reference/type-aliases/InjectHotkeyTarget.md": "e5678a19ecf2860da5b3d5901fa4e4f58afbae36e7ab00e0a98550fb17a83379"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/ember/guides/custom-hotkey-recording.md": {
+      "fingerprint": "96028e5b60cfac32bb5fb48af6d700a84e9df7528a29fc5a48a36ed2e22767d8",
+      "snapshot": {
+        "docs/framework/ember/guides/custom-hotkey-recording.md": "1127352f0cdfad075503c1b11e9ace98a46ec7a30cc0e99e8d3324d1819bed7d"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/ember/reference/functions/useHotkeyRecorder.md": {
+      "fingerprint": "3cac61c6c4b2a7afa331d48317ce68006d8ed65324e0ec3d162c4c3c4a38c78e",
+      "snapshot": {
+        "docs/framework/ember/reference/functions/useHotkeyRecorder.md": "042f59d300f85a12bc928d7aaf2382c568651cdf8edb9851346ce2df492d9845"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/ember/reference/type-aliases/MaybeGetter.md": {
+      "fingerprint": "0d5732397e4c8c3693a0b9c3bbd71fbecb4131c8f66571b5813aca1f704f069f",
+      "snapshot": {
+        "docs/framework/ember/reference/type-aliases/MaybeGetter.md": "593b32b0ecaae3299c7db474955db2a404ffbcbe7d67c0ad806a4bc7dd362d1a"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/lit/guides/custom-hotkey-recording.md": {
+      "fingerprint": "11b4debc6a80e29926d1977e5c0ca06e5e6f41d0c2b001c1e812fc620d2e895b",
+      "snapshot": {
+        "docs/framework/lit/guides/custom-hotkey-recording.md": "3afef284f4033d1f54044a4c890f1c2541126bef2fc9aae63b663874db8ec1f4"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/lit/reference/functions/hotkey.md": {
+      "fingerprint": "908381e4a6e2722fd5349522fa27ddc772323a7be0bed22b509d18804627914d",
+      "snapshot": {
+        "docs/framework/lit/reference/functions/hotkey.md": "ce36c5441f701035f223f5e8be3767fba16bdd046103edaf2d199efbcefc7c5e"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/lit/reference/type-aliases/HotkeyDecorator.md": {
+      "fingerprint": "6a060e3775143a0512887cb4eb0c6fc9f5d15d2c89fe4921816ca4d5dfa95ce4",
+      "snapshot": {
+        "docs/framework/lit/reference/type-aliases/HotkeyDecorator.md": "f72381a1cb51ad9edf8cf6ad1fb6464cea716f1746f0d1223472b27fc9c6a6df"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/reference/functions/createAppHotkeysStore.md": {
+      "fingerprint": "8c3a5704c71d56bc2b506d9461184b982e0dda76b6268a37e394205a22eef70c",
+      "snapshot": {
+        "docs/reference/functions/createAppHotkeysStore.md": "32e0d037f3ff46ea3284454fda0f5a7ca26cc1e77aa22999d444bf3985c071d1"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/reference/interfaces/HotkeyConflictOptions.md": {
+      "fingerprint": "ffce92c86466e92756c3b01dc8cd24a971cf8245bcd867e3fc3d2dadd998c000",
+      "snapshot": {
+        "docs/reference/interfaces/HotkeyConflictOptions.md": "2416202b3cddc6ba5b41da2ba1f912ac684ff34a5a2f8fbfcad9fe1d7c031348"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:examples/alpine/createHotkeyRecorder-sequences/index.html": {
+      "fingerprint": "939f281a693752605ed9b5cac6b9c6d30d1efc2eb379e217ee8169569a7a1103",
+      "snapshot": {
+        "examples/alpine/createHotkeyRecorder-sequences/index.html": "e75056fc7640b183e1935351a2f336850789c6ed4a419e68f36a876053c84b35"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:knip.json": {
+      "fingerprint": "5be24d299745c35fded560690e190940722855741a422f08ca1cd0d57c7001a9",
+      "snapshot": {
+        "knip.json": "ed1b34771d86d83e1ca515a75d428aebf05bd108f4f0968eceac623070548955"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/alpine-hotkeys/src/index.ts": {
+      "fingerprint": "e29ddd24dfc499075e7c8c9d6f755fdc8383677c76fa663b60aac2d23ca2da24",
+      "snapshot": {
+        "packages/alpine-hotkeys/src/index.ts": "b59c7b7900104eec0abed7aaac5adbef3f10cf8d07350bf29550a8e8a9f4e9dc"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/alpine-hotkeys/tests/effect-errors.test.ts": {
+      "fingerprint": "87c77797e849ee672ca0662e839bdf35a31183c03b68b076bbaba1e946ef029e",
+      "snapshot": {
+        "packages/alpine-hotkeys/tests/effect-errors.test.ts": "d4c122fa104adbfc16dfe42d595238a2eed56ea5519e4f9b87706c0b2524bee8"
+      },
+      "head": "6b4f6c487211c51b9a58d757c4bddb0459747542",
+      "outcome": "no-change",
+      "reason": "Implementation, test, or doc-wording change already reflected in the mapped skills.",
+      "evidence": ["packages/alpine-hotkeys/tests/effect-errors.test.ts"]
+    },
+    "source:packages/alpine-hotkeys/tests/reactive-options.test.ts": {
+      "fingerprint": "27556ede959afac9f1c3c57d6ed76215ac3a53ace02862d61c1183a83fa9ea3b",
+      "snapshot": {
+        "packages/alpine-hotkeys/tests/reactive-options.test.ts": "7f4494c01d8feab5be1b3d2f2cb98e935f815eeccc7f4fdccff978838eb2213f"
+      },
+      "head": "a2b4251465aa76f5a71927a8259e5a33c953e377",
+      "outcome": "no-change",
+      "reason": "Test-only change; no public API or documented behavior changed.",
+      "evidence": ["packages/alpine-hotkeys/tests/reactive-options.test.ts"]
+    },
+    "source:packages/angular-hotkeys/src/_zone.ts": {
+      "fingerprint": "32f40b85f7f4bcdf188e088e061cf4d99c49ed6450147a3dcbb1ad883fa79d27",
+      "snapshot": {
+        "packages/angular-hotkeys/src/_zone.ts": "f19d61b093d6f0a20a0fc12c3dc95319d3df7317fa2cca8b9471dd80af7a9ea1"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/angular-hotkeys/tests/targets.test.ts": {
+      "fingerprint": "25343857852fb8aa0acf481e9c83ff623b4c959dc0b84acd5d85088fc2168728",
+      "snapshot": {
+        "packages/angular-hotkeys/tests/targets.test.ts": "87f00901ca64e83cb64b936b13de54592c1a0e5defb501a4dc1510c4b29c5b95"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/angular-hotkeys/tests/zone.test.ts": {
+      "fingerprint": "069ab777d9760e76595ce82d857763ccd1d817c6410ae9c68ed0da08dcf541d9",
+      "snapshot": {
+        "packages/angular-hotkeys/tests/zone.test.ts": "eb4b3b5337bdfefc34bf34edb781121b0b2f2530c445f86a3d8fc7f2ac480e82"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/hotkeys/src/index.ts": {
+      "fingerprint": "0a938f7cd7fd68c1ac2460d1090d6756b4164cbb32dcb3000d98a39f1d7dc9ea",
+      "snapshot": {
+        "packages/hotkeys/src/index.ts": "0bc6e86820d3b763aea8f05a7c34257441842a6a2bc58174352342458a2538f0"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/hotkeys/vitest.config.ts": {
+      "fingerprint": "0c5ca64d471f1c03cbcced1faf5c2bd3da5e7db4f3ad34e9e3a3fc21b1ba1c16",
+      "snapshot": {
+        "packages/hotkeys/vitest.config.ts": "0a444ba1d0745a19f468cabb80f7bca9c0c7de7474dbf7fce5e71afa4505e15a"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/lit-hotkeys/tests/decorator-types.test.ts": {
+      "fingerprint": "b909146f36ef6eb7148a076b7f9a58891d183e65f7cd223a31c6337a64e302f5",
+      "snapshot": {
+        "packages/lit-hotkeys/tests/decorator-types.test.ts": "ced6287be71ea3f01cbe0dc382b4dc2c57e2ab0d56e43a76e7c4caf61b0263f9"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/lit-hotkeys/tests/decorators.test.ts": {
+      "fingerprint": "cc173fb49b9ff461dea83c80625719719dd50d3f6a15e6ec122fa52efa937f36",
+      "snapshot": {
+        "packages/lit-hotkeys/tests/decorators.test.ts": "b850c32a67fb7b183d1175ce58cb52fc54c7d5cfd26549b0c53bf91838d1ac2b"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/lit-hotkeys/tests/fixtures/decorated.ts": {
+      "fingerprint": "fda9fc1c076714ccdff3c35a244d85597457aa41a94c805a9bb4d2a784291999",
+      "snapshot": {
+        "packages/lit-hotkeys/tests/fixtures/decorated.ts": "5f45ea91771a112ee23ef4f936fc71fdca560a4406be430b4affa6ce9c9da0e6"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/lit-hotkeys/tests/lifecycle.test.ts": {
+      "fingerprint": "47c39d4f9fa550d3026106f9bcb9cbefa4d9e313465fb044e46e2c6f2c37c076",
+      "snapshot": {
+        "packages/lit-hotkeys/tests/lifecycle.test.ts": "7091a3c97714f81a346e524ea3ecf0cbd3feb0d5b29b965b1002cd83f116786d"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/octane-hotkeys/tests/custom-hooks.test.ts": {
+      "fingerprint": "503fe9d10081aa0226261fd8c2be4db436533db44667f307f42fa3e3cc5055b9",
+      "snapshot": {
+        "packages/octane-hotkeys/tests/custom-hooks.test.ts": "50b6481ecc6e87687fb7e81f1c07459fb6c8701dc98d1d2fb385c44cd2221dae"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/octane-hotkeys/tests/custom-hooks/fixture.tsrx": {
+      "fingerprint": "1d52bbfcbaefb84a3878713fbeeb1038ab1b6a5a2f938864a97c61554b230763",
+      "snapshot": {
+        "packages/octane-hotkeys/tests/custom-hooks/fixture.tsrx": "3a5832da858462685d6a84dcee86560c7968fa5ae95623b26b9cc024d27b6056"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/octane-hotkeys/tests/custom-hooks/octane-import.ts": {
+      "fingerprint": "511835feec502d0b8b5ba71139dae12df742811cb7ba200590f9091baa1f5f6f",
+      "snapshot": {
+        "packages/octane-hotkeys/tests/custom-hooks/octane-import.ts": "a93d80088b30ea3fa526c408a723ab570015ed97154c9eb8e2fca66ccb390cc7"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/octane-hotkeys/tests/custom-hooks/pragma.ts": {
+      "fingerprint": "9486f7bc3bb4d095bcd8b4e7201e6bda72e487fa2e4e0aecc863befdcea5dd8c",
+      "snapshot": {
+        "packages/octane-hotkeys/tests/custom-hooks/pragma.ts": "985fd3d0642465527d910186aef99e127160ab5c3bf9fe46ea1051d99e50e865"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/octane-hotkeys/tests/custom-hooks/tsx-hook.tsx": {
+      "fingerprint": "23b3d957a0b9b1555f5e1cafeb760d4659def9ede891efe4b7ffb0d3a3b70395",
+      "snapshot": {
+        "packages/octane-hotkeys/tests/custom-hooks/tsx-hook.tsx": "1517e00e4c40f50df9db697501053d9506525a56c10b86325249a559d406e00f"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/preact-hotkeys/tests/effect-timing.test.tsx": {
+      "fingerprint": "300fb359c8c64b2012de5d3dc242fab2fac85c738c4582c336093007695bf0a7",
+      "snapshot": {
+        "packages/preact-hotkeys/tests/effect-timing.test.tsx": "c84b5c5466a94b672ecb79c3964a35c2432a1b125b4ec0da625f31c6121bbed3"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/preact-hotkeys/tests/useHotkey.test.tsx": {
+      "fingerprint": "a22336f3108c5d9b5f1b9ba4ba74b217e3d5d95b822b898a1cfc50effc138e68",
+      "snapshot": {
+        "packages/preact-hotkeys/tests/useHotkey.test.tsx": "6ea2a6a3d587eae328ad2bd7baa4696b70d65c60032cbf424d65e2727a671410"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/preact-hotkeys/tests/useHotkeyRecorder.test.tsx": {
+      "fingerprint": "9a881e98d29c0b64569e7538c898dda27881665282da1820da808dab5225ce8b",
+      "snapshot": {
+        "packages/preact-hotkeys/tests/useHotkeyRecorder.test.tsx": "26b26265056d9a85de3761a3876c7b72c98700160b66a2bc6ebfb85129326658"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/react-hotkeys/tests/useHotkey.test.tsx": {
+      "fingerprint": "e557d00cd1aa57804c345988297887da63bb1ae1e5b8d20efe60d4318c0d64f3",
+      "snapshot": {
+        "packages/react-hotkeys/tests/useHotkey.test.tsx": "9eb0f33bf18639e377bbaa23223fb19714531d77ac1952ae7378b46f62c435cc"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/react-hotkeys/tests/useHotkeyRecorder.test.tsx": {
+      "fingerprint": "5c7f8d8d56e62d134d7fe0666a03cbabf9c0506e73cc7c41b07b1e73af326c31",
+      "snapshot": {
+        "packages/react-hotkeys/tests/useHotkeyRecorder.test.tsx": "b740d6c6bc50a6b2fa5fa3a23f10665bf5be93c7f26c686769cf81c21537dda9"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/solid-hotkeys/tests/createHotkey.test.tsx": {
+      "fingerprint": "ce9d15da8699cb4bb859a423b75fe08bd5732c32bae721ab5ea59d7af76587ec",
+      "snapshot": {
+        "packages/solid-hotkeys/tests/createHotkey.test.tsx": "7ca9a17fac06de564981466c84e1b1ba4c8604c8e5acaff710de17756c29625b"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/vue-hotkeys/src/_useLive.ts": {
+      "fingerprint": "90a824fed7a72e361fd984e1128b8ff0f70823dc6736a458335ffb5cfe5b4836",
+      "snapshot": {
+        "packages/vue-hotkeys/src/_useLive.ts": "b2c7fda990df6dd077152263ec580e3da6d4c3ba9c34ae072cb9479e2df18b51"
+      },
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/vue-hotkeys/tests/keep-alive.test.ts": {
+      "fingerprint": "6244bf4d35145e8446f1e533b9dc0489ebd7cd5bc9ca1740b272f7cafdf88e30",
+      "snapshot": {
+        "packages/vue-hotkeys/tests/keep-alive.test.ts": "f87970b2fc7591546824d3028c937e664ab3c45d9bc3cb698872327411ef8a50"
+      },
+      "head": "6b4f6c487211c51b9a58d757c4bddb0459747542",
+      "outcome": "no-change",
+      "reason": "Implementation, test, or doc-wording change already reflected in the mapped skills.",
+      "evidence": ["packages/vue-hotkeys/tests/keep-alive.test.ts"]
+    },
+    "source:packages/alpine-hotkeys/src/createHotkeys.ts": {
+      "fingerprint": "9a1ead191cff53a7ac6fa543f2436389ec9bc71e64ee6ab4d5cb46dac8a971aa",
+      "snapshot": {
+        "packages/alpine-hotkeys/src/createHotkeys.ts": "6c9d29de0a3a78f1310a0a841e88cc0104a94c530216fcfbf43ee180e55a1a22"
+      },
+      "head": "6b4f6c487211c51b9a58d757c4bddb0459747542",
+      "outcome": "no-change",
+      "reason": "Implementation, test, or doc-wording change already reflected in the mapped skills.",
+      "evidence": ["packages/alpine-hotkeys/src/createHotkeys.ts"]
     }
   }
 }

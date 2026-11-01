@@ -27,7 +27,7 @@ type UseHotkeyDefinition =
 };
 ```
 
-Defined in: [useHotkeys.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeys.ts#L36)
+Defined in: [useHotkeys.ts:37](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeys.ts#L37)
 
 One hotkey for `useHotkeys`. The hotkey and options may be refs or getters.
 Chords accept `requireReset`; sequences accept `timeout`; hotkeys of unknown

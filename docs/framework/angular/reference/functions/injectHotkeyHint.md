@@ -7,7 +7,7 @@ title: injectHotkeyHint
 function injectHotkeyHint(hotkey, options?): Signal<boolean>;
 ```
 
-Defined in: [injectHotkeyHint.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyHint.ts#L27)
+Defined in: [injectHotkeyHint.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeyHint.ts#L28)
 
 Returns a signal indicating whether held modifiers reveal this shortcut.
 The hint shows only while the hotkey can fire: some registration of it is

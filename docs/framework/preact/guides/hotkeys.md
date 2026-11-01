@@ -310,6 +310,45 @@ A `null` target, or a ref whose `current` is still `null`, registers nothing unt
 
 While focus is inside the element, its hotkeys run before hotkeys on `document`. With the default `stopPropagation: true`, a `document` hotkey for the same key doesn't run at all. A sequence with a target advances only on key presses inside the target.
 
+### Elements that mount later
+
+The hook reads a ref's `current` after its component renders. Setting a ref doesn't render the component, so a ref misses an element that mounts after the component, such as one a child shows from its own state. The hotkey then registers only at the component's next render, and can stay on a removed element.
+
+Use a ref for an element the component always renders. For any other element, keep it in state with a callback ref:
+
+```tsx
+import { useState } from 'preact/hooks'
+
+function Sidebar() {
+  const [panel, setPanel] = useState<HTMLDivElement | null>(null)
+
+  useHotkey('Escape', () => closePanel(), { target: panel })
+
+  return <CollapsiblePanel panelRef={setPanel} />
+}
+
+function CollapsiblePanel({
+  panelRef,
+}: {
+  panelRef: (element: HTMLDivElement | null) => void
+}) {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <button onClick={() => setOpen(!open)}>Toggle</button>
+      {open && (
+        <div ref={panelRef} tabIndex={0}>
+          Panel content
+        </div>
+      )}
+    </>
+  )
+}
+```
+
+Setting the state renders `Sidebar`, so the hotkey registers when the element mounts, moves when the element is replaced, and unregisters when it unmounts.
+
 ### A target is not a scope
 
 A target and a [scope](./hotkeys-provider-and-scopes) both limit when a hotkey works, in different ways:

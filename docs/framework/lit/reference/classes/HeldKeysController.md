@@ -100,7 +100,7 @@ ReactiveController.hostConnected
 hostDisconnected(): void;
 ```
 
-Defined in: [controllers/held-keys.ts:61](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/held-keys.ts#L61)
+Defined in: [controllers/held-keys.ts:65](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/held-keys.ts#L65)
 
 Unsubscribes from the tracker store and stops tracking the held keys.
 

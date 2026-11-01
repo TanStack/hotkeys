@@ -22,6 +22,8 @@ function Editor() @{
 
 Write hook calls in compiler-enabled `.tsrx` components. The Octane compiler tracks hooks by call site, so call them at the top level of the component, not in loops or conditions.
 
+A custom hook in a plain `.ts` or `.js` file needs the compiler too. Start the file with `/** @jsxImportSource octane */`, or import a value such as `useState` from `octane`. Otherwise every such call to the same hook in a component shares one slot, and only the last one works. See [Custom hooks](./guides/hotkeys#custom-hooks).
+
 `Mod` is Command on macOS and Control on Windows and Linux, so `Mod+S` is the save shortcut each user already knows. The browser's Save dialog stays closed, and the shortcut still works while the user types in the textarea. [Sensible Defaults](../../guides/sensible-defaults) explains these defaults.
 
 That's all a hotkey needs. Providers, scopes, and the other features later in this guide are optional, so add them as your app grows.
@@ -138,7 +140,7 @@ function Panel() @{
 }
 ```
 
-A target must be an element, not a ref object. A `null` target waits until the element mounts. The element must be focusable to receive key presses, so give it a `tabIndex` if it isn't a control.
+A target must be an element, not a ref object. A `null` target waits until the element mounts. The hotkey fires while focus is on the element or inside it. If nothing there can take focus, give the element a `tabIndex`.
 
 ## Add providers and scopes (optional)
 

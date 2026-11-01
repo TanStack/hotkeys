@@ -177,12 +177,12 @@ class ScopedExample extends Component {
     hotkey: { enabled: this.enabled, timeout: 321 },
     hotkeyRecorder: { recordBy: this.recordBy },
   }))
-  recorder = this.hotkeys.useHotkeyRecorder(this, () => ({
+  recorder = useHotkeyRecorder(this, () => ({
     onRecord: (value) => records.push(value), validate: () => this.accept,
-  }))
-  sequenceRecorder = this.hotkeys.useHotkeyRecorder(this, () => ({
+  }), this.hotkeys)
+  sequenceRecorder = useHotkeyRecorder(this, () => ({
     maxSteps: Infinity, onRecord: (value) => records.push(value), validate: () => this.accept,
-  }))
+  }), this.hotkeys)
   run = () => { this.count++ }
   get definitions(): Array<EmberHotkeyDefinition> { return [{ hotkey: 'B', callback: this.run, options: { enabled: true } }] }
   get sequences(): Array<EmberHotkeyDefinition> { return [{ hotkey: ['X', 'X'], callback: this.run, options: { enabled: true } }] }
@@ -262,12 +262,27 @@ class Optional extends Component {
   </template>
 }
 
+class LateHint extends Component {
+  hint = useHotkeyHint(this, 'Control+K')
+  <template><output id="late-hint">{{if this.hint.value "yes" "no"}}</output></template>
+}
+
 module('Ember hotkeys: optional hotkeys', (hooks) => {
   setupRenderingTest(hooks)
   hooks.afterEach(async () => {
     await clearRender()
     HotkeyManager.resetInstance()
     KeyStateTracker.resetInstance()
+  })
+
+  test('a hint shows for a hotkey registered while its modifier is held', async (assert) => {
+    await render(<template><LateHint /></template>)
+    await key('Control', 'keydown', { ctrlKey: true })
+    assert.dom('#late-hint').hasText('no')
+    const handle = getHotkeyManager().register('Control+K', () => {})
+    await settled()
+    assert.dom('#late-hint').hasText('yes')
+    handle.unregister()
   })
 
   test('an unset hotkey renders, registers nothing, and has no hint', async (assert) => {
@@ -292,5 +307,63 @@ module('Ember hotkeys: optional hotkeys', (hooks) => {
     assert.strictEqual(getHotkeyManager().registrations.state.size, 4)
     await key('k', 'keydown', { ctrlKey: true })
     assert.dom('#optional-count').hasText('2')
+  })
+})
+
+let renderCost: RenderCost
+let holdReads = 0
+let hintReads = 0
+
+class RenderCost extends Component {
+  @tracked holdKey: 'Shift' | 'Alt' = 'Shift'
+  hold = useKeyHold(this, () => this.holdKey)
+  hint = useHotkeyHint(this, 'Mod+S')
+
+  constructor(...args: ConstructorParameters<typeof Component>) {
+    super(...args)
+    renderCost = this
+  }
+
+  get holdText() { holdReads++; return this.hold.value ? 'yes' : 'no' }
+  get hintText() { hintReads++; return this.hint.value ? 'yes' : 'no' }
+
+  <template>
+    {{useHotkey "Mod+S" this.noop}}
+    {{useHotkey "Q" this.noop}}
+    <output id="cost-hold">{{this.holdText}}</output>
+    <output id="cost-hint">{{this.hintText}}</output>
+  </template>
+
+  noop = () => {}
+}
+
+module('Ember hotkeys: display helper render cost', (hooks) => {
+  setupRenderingTest(hooks)
+  hooks.afterEach(async () => {
+    await clearRender()
+    HotkeyManager.resetInstance()
+    KeyStateTracker.resetInstance()
+  })
+
+  test('hold and hint consumers re-render only when their value changes', async (assert) => {
+    await render(<template><RenderCost /></template>)
+    holdReads = 0
+    hintReads = 0
+    // Q fires a registered hotkey, which publishes new registrations.
+    for (const unrelated of 'qwertyuiopq') {
+      await key(unrelated)
+      await key(unrelated, 'keyup')
+    }
+    assert.strictEqual(holdReads, 0)
+    assert.strictEqual(hintReads, 0)
+    await key('Shift', 'keydown', { shiftKey: true })
+    assert.dom('#cost-hold').hasText('yes')
+    // A getter key switches without a key event.
+    renderCost.holdKey = 'Alt'
+    await settled()
+    assert.dom('#cost-hold').hasText('no')
+    await key('Shift', 'keyup')
+    await key('Alt', 'keydown', { altKey: true })
+    assert.dom('#cost-hold').hasText('yes')
   })
 })

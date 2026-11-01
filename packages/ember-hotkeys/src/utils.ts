@@ -4,8 +4,15 @@ import { getHotkeyManager } from '@tanstack/hotkeys'
 import { subscribePublishedAppHotkeys } from '@tanstack/hotkeys/adapter'
 import type { AppHotkeysStore } from '@tanstack/hotkeys'
 import type { Store } from '@tanstack/hotkeys/adapter'
+import type { DefaultHotkeysOptions } from './types'
 
 export type MaybeGetter<T> = T | (() => T)
+
+/** The defaults behind each `createHotkeysScope` result. */
+export const scopeDefaults = new WeakMap<
+  object,
+  MaybeGetter<DefaultHotkeysOptions>
+>()
 
 export function read<T>(value: MaybeGetter<T>): T {
   return typeof value === 'function' ? (value as () => T)() : value
@@ -16,14 +23,22 @@ export function select<T, TSelected>(
   store: Pick<Store<T>, 'state' | 'subscribe'>,
   selector: (value: T) => TSelected,
 ) {
-  const state = trackedObject({ snapshot: store.state })
+  const state = trackedObject({ version: 0 })
+  let last: TSelected | undefined
+  // Invalidate consumers only when the selected value changes. The getter
+  // still runs the selector while tracking, so getter inputs stay tracked.
   const subscription = store.subscribe(() => {
-    state.snapshot = store.state
+    const next = selector(store.state)
+    if (!Object.is(next, last)) {
+      last = next
+      state.version++
+    }
   })
   registerDestructor(owner, () => subscription.unsubscribe())
   return {
     get value() {
-      return selector(state.snapshot)
+      void state.version
+      return (last = selector(store.state))
     },
   }
 }

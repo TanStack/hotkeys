@@ -92,7 +92,7 @@ Platform used to resolve Mod in the candidate. Registrations retain their own pl
 ### scope?
 
 ```ts
-optional scope?: "all" | "overlapping";
+optional scope?: "overlapping" | "all";
 ```
 
 Defined in: [conflicts.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L23)

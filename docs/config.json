@@ -1232,6 +1232,10 @@
               "to": "framework/lit/reference/type-aliases/HotkeyControllerOptionsFor"
             },
             {
+              "label": "HotkeyDecorator",
+              "to": "framework/lit/reference/type-aliases/HotkeyDecorator"
+            },
+            {
               "label": "HotkeyControllerSequenceOptions",
               "to": "framework/lit/reference/type-aliases/HotkeyControllerSequenceOptions"
             },
@@ -1342,8 +1346,16 @@
           "label": "alpine",
           "children": [
             {
+              "label": "createHotkeyRecorder",
+              "to": "framework/alpine/reference/functions/createHotkeyRecorder"
+            },
+            {
               "label": "createHotkeysScope",
               "to": "framework/alpine/reference/functions/createHotkeysScope"
+            },
+            {
+              "label": "hotkeyRecorderPlugin",
+              "to": "framework/alpine/reference/functions/hotkeyRecorderPlugin"
             },
             {
               "label": "hotkeysPlugin",

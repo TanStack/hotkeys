@@ -193,7 +193,9 @@ function createHotkeysContext(
  * inherits app hotkeys and merges default options. With `scope`, hotkeys
  * injected in the component and its children fire only while it exists and
  * is enabled; with `exclusive`, only they fire. The scope activates when the
- * first hotkey in it is injected.
+ * first hotkey in it is injected. Angular creates the provider lazily, so a
+ * component with no hotkeys of its own calls `injectHotkeysContext()` to
+ * activate its scope.
  *
  * @example
  * ```ts
@@ -225,6 +227,21 @@ function createHotkeysContext(
  *
  * @example
  * ```ts
+ * // An overlay with no hotkeys that suspends the page's hotkeys.
+ * @Component({
+ *   selector: 'app-loading-overlay',
+ *   providers: [provideHotkeys({ scope: 'loading', exclusive: true })],
+ *   template: `...`,
+ * })
+ * export class LoadingOverlay {
+ *   constructor() {
+ *     injectHotkeysContext()
+ *   }
+ * }
+ * ```
+ *
+ * @example
+ * ```ts
  * // A scope that follows the providing component's input.
  * @Component({
  *   selector: 'app-folder',
@@ -249,6 +266,10 @@ export function provideHotkeys(options: ProvideHotkeysOptions = {}): Provider {
   }
 }
 
+/**
+ * Returns the nearest provider's context. Injecting it activates that
+ * provider's scope.
+ */
 export function injectHotkeysContext(): HotkeysContextValue {
   return inject(HOTKEYS_INJECTION_TOKEN)
 }

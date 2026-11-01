@@ -29,9 +29,15 @@ export function useHotkeyHint(
 ): EmberHotkeyState<boolean> {
   const appHotkeys = trackPublishedAppHotkeys(owner)
   const manager = getHotkeyManager()
-  // Tracks registration, enabled, and scope changes.
-  const registrations = select(owner, manager.registrations, (state) => state)
+  // Tracks registration, enabled, and scope changes, but invalidates only
+  // when this hotkey's result changes (firing any hotkey publishes too).
+  const active = select(owner, manager.registrations, () =>
+    manager.hasActiveRegistration(read(hotkey)),
+  )
   return select(owner, getKeyStateTracker().store, (state) => {
+    // Read it first, so a render that returns false still tracks it. A
+    // hotkey registered while its modifier is held then shows.
+    const isActive = active.value
     const value = read(hotkey)
     const resolved = isAppHotkey(value)
       ? resolveAppHotkey(value, appHotkeys()).hotkey
@@ -39,8 +45,7 @@ export function useHotkeyHint(
     return (
       resolved !== null &&
       matchesHeldModifiers(resolved, state.heldKeys, read(options)) &&
-      registrations.value.size > 0 &&
-      manager.hasActiveRegistration(value)
+      isActive
     )
   })
 }

@@ -50,7 +50,7 @@ Use the first mechanism that fits:
 1. **Lifetime.** A hotkey registered in a component exists while that component is mounted. A dialog's `Escape` belongs in the dialog.
 2. **`enabled`.** A condition inside a mounted component.
 3. **Scope.** A group that turns on and off together, such as a dialog, pane, or tab. An `exclusive` scope suspends every other scope, including global hotkeys, while it is active.
-4. **`target`.** Only while focus is inside one element, which must be focusable (`tabindex="0"`).
+4. **`target`.** Only while focus is on one element or inside it. If nothing there can take focus, give the element `tabindex="0"`.
 
 When nesting scopes, stacking dialogs, or keeping some hotkeys working during an exclusive scope, read [scopes](references/scopes.md).
 

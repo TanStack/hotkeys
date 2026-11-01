@@ -44,8 +44,12 @@ export class HeldKeysController implements ReactiveController {
 
   /** Subscribes to the tracker store and updates the internal state when changes occur. */
   public hostConnected(): void {
-    if (isServer()) return
+    // Adding the controller again while connected calls this twice.
+    if (this._unsubscribe) return
     const tracker: KeyStateTracker = getKeyStateTracker()
+    this._value = tracker.store.state.heldKeys
+    this._host.requestUpdate()
+    if (isServer()) return
 
     const subscription = tracker.store.subscribe(() => {
       const { heldKeys } = tracker.store.state

@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs'
+import { resolve } from 'node:path'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { createHotkeyBindings } from '../src/adapter'
 import { HotkeyManager, getHotkeyManager } from '../src/hotkey-manager'
@@ -127,5 +129,24 @@ describe('createAppHotkeysStore', () => {
     vi.resetModules()
     const { createAppHotkeysStore } = await import('../src/adapter')
     expect(() => createAppHotkeysStore({}, {})).toThrow(/defineAppHotkeys/)
+  })
+})
+
+describe('adapter entry', () => {
+  // A CDN such as jsDelivr bundles each entry on its own. A relative value
+  // import of a module with shared state would give the adapter entry its own
+  // HotkeyManager or app hotkeys factory.
+  it('imports shared state by package name', () => {
+    const source = readFileSync(resolve(__dirname, '../src/adapter.ts'), 'utf8')
+    const relative = [
+      ...source.matchAll(
+        /^(?:import|export) (?!type )[^;]*?from '(\.[^']+)'/gms,
+      ),
+    ].map((match) => match[1])
+    expect(relative.sort()).toEqual([
+      './_registration',
+      './_registration',
+      './_store',
+    ])
   })
 })

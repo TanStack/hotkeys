@@ -1,6 +1,7 @@
-import { onScopeDispose, toValue, watch } from 'vue'
+import { getCurrentInstance, onScopeDispose, toValue, watch } from 'vue'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { withDefaults } from '@tanstack/hotkeys/adapter'
+import { useLive } from './_useLive'
 import { useDefaultHotkeysOptionsSource } from './defaultOptions'
 import { useStoreSelector } from './useStoreSelector'
 import type { MaybeRefOrGetter, Ref } from 'vue'
@@ -88,6 +89,20 @@ export function useHotkeyRecorder(
     recorder.setOptions(resolved),
   )
 
+  // A page cached by <KeepAlive> stops recording when hidden, and can't
+  // start again until shown. The start check reads Vue's own flag, because
+  // a descendant's onActivated hook can run before useLive's ref updates.
+  const instance = getCurrentInstance()
+  const hidden = () => {
+    for (let i: any = instance; i; i = i.parent)
+      if (i.isDeactivated) return true
+    return false
+  }
+  watch(
+    useLive(),
+    (live) => live || (recorder.store.state.isRecording && recorder.stop()),
+  )
+
   onScopeDispose(() => {
     stopWatcher()
     recorder.destroy()
@@ -97,7 +112,9 @@ export function useHotkeyRecorder(
     isRecording,
     steps,
     recordedHotkey,
-    startRecording: () => recorder.start(),
+    startRecording: () => {
+      if (!hidden()) recorder.start()
+    },
     stopRecording: () => recorder.stop(),
     cancelRecording: () => recorder.cancel(),
     commitRecording: () => recorder.commit(),
