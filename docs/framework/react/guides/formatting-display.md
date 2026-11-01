@@ -268,8 +268,11 @@ The [Astro example](../examples/useFormatForDisplay-astro) shows this setup.
 To skip server rendering for a label instead, render it after hydration. In the browser, plain `formatForDisplay` detects the platform:
 
 ```tsx
+'use client'
+
 import { useSyncExternalStore } from 'react'
 import { formatForDisplay } from '@tanstack/react-hotkeys'
+import type { Hotkey } from '@tanstack/react-hotkeys'
 
 const subscribe = () => () => {}
 
@@ -278,10 +281,17 @@ function ClientOnly({ children, fallback = null }: { children: React.ReactNode; 
   return hydrated ? children : fallback
 }
 
+// Formats when it renders, which happens only in the browser
+function ShortcutLabel({ hotkey }: { hotkey: Hotkey }) {
+  return <kbd>{formatForDisplay(hotkey)}</kbd>
+}
+
 <ClientOnly fallback={<kbd>&nbsp;</kbd>}>
-  <kbd>{formatForDisplay('Mod+S')}</kbd>
+  <ShortcutLabel hotkey="Mod+S" />
 </ClientOnly>
 ```
+
+Format inside the component that `ClientOnly` renders, as `ShortcutLabel` does. A `formatForDisplay` call written directly as a child runs in the parent, which can be a Next.js Server Component, so the server's label would be passed in.
 
 Framework wrappers do the same: TanStack Router's `<ClientOnly>`, `next/dynamic` with `ssr: false`, or `client:only="react"` on an Astro island. A fallback with the label's width keeps the layout from shifting.
 
