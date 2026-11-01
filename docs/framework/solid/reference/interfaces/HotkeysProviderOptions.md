@@ -3,7 +3,7 @@ id: HotkeysProviderOptions
 title: HotkeysProviderOptions
 ---
 
-Defined in: [HotkeysProvider.tsx:27](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L27)
+Defined in: [HotkeysProvider.tsx:28](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L28)
 
 ## Properties
 
@@ -13,7 +13,7 @@ Defined in: [HotkeysProvider.tsx:27](https://github.com/TanStack/hotkeys/blob/ma
 optional hotkey?: CreateHotkeyCommonOptions;
 ```
 
-Defined in: [HotkeysProvider.tsx:38](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L38)
+Defined in: [HotkeysProvider.tsx:39](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L39)
 
 Defaults for every hotkey registered by `createHotkey` and `createHotkeys`.
 `requireReset` applies to chords and `timeout` applies to sequences.
@@ -26,7 +26,7 @@ Defaults for every hotkey registered by `createHotkey` and `createHotkeys`.
 optional hotkeyRecorder?: Partial<Omit<HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions, "maxSteps" | "validate" | "onRecord">>;
 ```
 
-Defined in: [HotkeysProvider.tsx:40](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L40)
+Defined in: [HotkeysProvider.tsx:41](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L41)
 
 Defaults for every `createHotkeyRecorder`.
 
@@ -35,10 +35,10 @@ Defaults for every `createHotkeyRecorder`.
 ### platform?
 
 ```ts
-optional platform?: "mac" | "windows" | "linux";
+optional platform?: HotkeyPlatform;
 ```
 
-Defined in: [HotkeysProvider.tsx:33](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L33)
+Defined in: [HotkeysProvider.tsx:34](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L34)
 
 The user's platform, for labels from `createFormatForDisplay`, hotkeys,
 and recorders. On a server, set it from the request with

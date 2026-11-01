@@ -11,6 +11,7 @@ import type {
   AppHotkeysStore,
   CustomHotkeys,
   HotkeyChordRecorderOptions,
+  HotkeyPlatform,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
 import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
@@ -23,7 +24,7 @@ export interface HotkeysProviderOptions {
    * recorders. On a server, set it from the request with
    * `detectPlatform(userAgent)`.
    */
-  platform?: 'mac' | 'windows' | 'linux'
+  platform?: HotkeyPlatform
   /**
    * Defaults for every hotkey registered by `createHotkey` and `createHotkeys`.
    * `requireReset` applies to chords and `timeout` applies to sequences.

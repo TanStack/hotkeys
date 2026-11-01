@@ -3,7 +3,7 @@ id: EmberHotkeyState
 title: EmberHotkeyState
 ---
 
-Defined in: [packages/ember-hotkeys/src/types.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L19)
+Defined in: [packages/ember-hotkeys/src/types.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L20)
 
 A reactive value. Read `.value` where the framework tracks dependencies.
 
@@ -21,4 +21,4 @@ A reactive value. Read `.value` where the framework tracks dependencies.
 readonly value: T;
 ```
 
-Defined in: [packages/ember-hotkeys/src/types.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L20)
+Defined in: [packages/ember-hotkeys/src/types.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L21)

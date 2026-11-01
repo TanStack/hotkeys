@@ -19,6 +19,7 @@ import {
 // Stateless apart from a once-only dev warning, so a copy per entry is fine.
 import { warnServerPlatform } from './_server'
 import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'
+import type { HotkeyPlatform } from './platform'
 import type {
   HotkeyCallback,
   HotkeyChord,
@@ -35,8 +36,6 @@ import type {
   HotkeySequenceOptions,
   Target,
 } from './hotkey-manager'
-
-type Platform = 'mac' | 'windows' | 'linux'
 
 export { createAppHotkeysStore } from '@tanstack/hotkeys'
 export { createStore } from './_store'
@@ -390,7 +389,7 @@ export interface HotkeysProviderScopeProps {
  */
 export function mergeHotkeysProviderDefaults<
   T extends {
-    platform?: Platform
+    platform?: HotkeyPlatform
     hotkey?: object
     hotkeyRecorder?: object
   },
@@ -422,7 +421,7 @@ export function mergeHotkeysProviderDefaults<
  * provider sets one, for a `useSyncExternalStore` server snapshot. Warns once
  * in development on the server.
  */
-export function getServerPlatformSnapshot(): Platform {
+export function getServerPlatformSnapshot(): HotkeyPlatform {
   warnServerPlatform()
   return 'linux'
 }

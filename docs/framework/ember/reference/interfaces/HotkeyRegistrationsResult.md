@@ -3,7 +3,7 @@ id: HotkeyRegistrationsResult
 title: HotkeyRegistrationsResult
 ---
 
-Defined in: [packages/ember-hotkeys/src/types.ts:51](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L51)
+Defined in: [packages/ember-hotkeys/src/types.ts:52](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L52)
 
 Live registration views from the shared hotkey manager.
 
@@ -15,6 +15,6 @@ Live registration views from the shared hotkey manager.
 readonly hotkeys: HotkeyRegistrationView[];
 ```
 
-Defined in: [packages/ember-hotkeys/src/types.ts:53](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L53)
+Defined in: [packages/ember-hotkeys/src/types.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L54)
 
 Every registration, chords and sequences. Narrow each view with `kind`.

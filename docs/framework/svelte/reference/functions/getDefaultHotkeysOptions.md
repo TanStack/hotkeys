@@ -7,7 +7,7 @@ title: getDefaultHotkeysOptions
 function getDefaultHotkeysOptions(): HotkeysProviderOptions;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:156](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L156)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:157](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L157)
 
 ## Returns
 

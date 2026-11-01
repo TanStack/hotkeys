@@ -15,7 +15,7 @@ function HotkeysProvider(__namedParameters): ElementDescriptor<{
 }>;
 ```
 
-Defined in: [HotkeysProvider.ts:96](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L96)
+Defined in: [HotkeysProvider.ts:97](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L97)
 
 Sets defaults, app hotkeys, and custom hotkeys for descendant components.
 

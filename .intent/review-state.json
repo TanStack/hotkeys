@@ -23,21 +23,21 @@
       "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "760382837337466c798cbadbbc161d0c82b54be99bd511d85c5e8b05bb9cad34",
+      "fingerprint": "7e165e26cb012b896f36d33b9e193b69f8c229379f57e6cf33b4af7840dcdac1",
       "snapshot": {
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
         "docs/framework/angular/quick-start.md": "a83133bb560ee15100e06a86b229f966557630f07d682585373997ca87589dce",
         "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "644a777c52a1ef882879320671517bb1349066612e3da4314e83211294eb21de",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "5fe1b12a519e8ca5087d78d47050f7a2ec0c70bb9b7d6ebcbb050ee099e3effe",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts": "b0868bd5df07f89183fb45ad6fb3e4203578e02676c229bd27460ae172ad448c",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts": "11e40eab3b96a8b7cf519b0da8d28e1f5488c44ab49817b952f8e594d8b500b1",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "3161186944b142feab034a1899b76b178700f4ef371bfffbb694b9ed5a191d32",
         "packages/angular-hotkeys/src/injectHotkey.ts": "03ea85098b0ed95e323e8d1e35b61b2683b7bc2d68f67e56e15ce2da92177a6f",
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "d431ed7df4440d09cbed88d3201751853330d0b927949886e53cc583a75e7668",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "fed0f6769a2a8539db1c243a6ce76bddfbc669ffcde75dfe077c95484fc7c2c6"
       },
-      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
-      "outcome": "updated",
-      "reason": "API table lists the adapter formatter for server-rendered labels.",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "outcome": "no-change",
+      "reason": "Platform options now use the exported HotkeyPlatform type; same values, no skill change.",
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
@@ -132,48 +132,48 @@
       "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
-      "fingerprint": "a3b9d24ffc4a65a9798eba88a0e24ba2bcc257a62b7a95f30881ed7cf7b4ef40",
+      "fingerprint": "c9059d20eedafdaf981f7a69587d5f7a3794bec22108a2f40d51db81c940065c",
       "snapshot": {
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
         "docs/framework/octane/quick-start.md": "c4ad9cec236f5e884f699aae19931d808bfd3c18933c36b0d2f5d7d5a06ce16c",
         "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2e207c6e733ab9b471588670dbefe787d5a613a6ae9663d2086830e300aee89e",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
-        "packages/octane-hotkeys/src/HotkeysProvider.ts": "6f3620f316d55f9c837cfd5dd6a6d4adcef9e30351f71e459b37363fec51798c",
+        "packages/octane-hotkeys/src/HotkeysProvider.ts": "171e35ae48fb27d0409184043236529ff778a01e3bc377df54903e51ccdc1187",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "4884113fa09d9869baf8af1f3bb07ba72558308a03136b3c1b59feb49ce2efbb",
         "packages/octane-hotkeys/src/useHotkey.ts": "d8da1d0cf0eb528667a25e750a2e51405e4e293bd10e22173546967b5c9d392b",
         "packages/octane-hotkeys/src/useHotkeys.ts": "f864ed03975e9930638cfe9025639619ebdb2c975a55e6950199cba86cb70476"
       },
-      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
-      "outcome": "updated",
-      "reason": "API table lists the adapter formatter for server-rendered labels.",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "outcome": "no-change",
+      "reason": "Platform options now use the exported HotkeyPlatform type; same values, no skill change.",
       "evidence": ["packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"]
     },
     "skill:packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": {
-      "fingerprint": "38a7ae9d60a4622230ef43029ac5119198ec7f4248e3a9bec54bf1221908c69e",
+      "fingerprint": "ba6188d2b0c7113b2a5ef52d4fba2310fa0db61572eeb0c78c4cc20672eb2216",
       "snapshot": {
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
         "docs/framework/preact/quick-start.md": "b991913fea74d18f6ae096d46b54e6ca8ca85cb69df463c6ce12f3f8c9e5757b",
         "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "89b1ce6d371eb7fcaed7c7014bc93b6d930ec05f695fbd1cfde3d3c36aa81796",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "4388ff0528e9ea44f819896f2687ab962735479cdafaddd1e349dd1bf6dc5479",
-        "packages/preact-hotkeys/src/HotkeysProvider.tsx": "a1e5132cf2ec59b55d53ef52eb2508bb348f926a0b534beec901a00761cc69e7",
+        "packages/preact-hotkeys/src/HotkeysProvider.tsx": "5f8e15778b85c9cc5914c37ce463c211ddf4fc0e64f643a11ccbc0d272b19dc8",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "023eff9348a9209a2e3e99a2b9847da3be72206f98150b478dae81a215059577",
         "packages/preact-hotkeys/src/useHotkey.ts": "6d66b813038e063f62aa8c8fb9be3020739854e1133885f70720b1036e789e84",
         "packages/preact-hotkeys/src/useHotkeys.ts": "832bf0156ff46db00140617bd3fea8055ca712a1a82d3cef7800776d42b02ebf",
         "packages/preact-hotkeys/src/utils.ts": "118090c4255527f52773133741355445fff8e41605ec6a9fc69c792730e96b9f"
       },
-      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
-      "outcome": "updated",
-      "reason": "API table lists the adapter formatter for server-rendered labels.",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "outcome": "no-change",
+      "reason": "Platform options now use the exported HotkeyPlatform type; same values, no skill change.",
       "evidence": ["packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "7a821f4b70edc068f32546c37c85a57ee2358cd77e2cca25673db5f4f86994d2",
+      "fingerprint": "ef4dd6d67642c00cefb07eef47b46d5c8aec0977c11d6f20629c6a92399cdc83",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
         "docs/framework/react/quick-start.md": "f8afa1a28c8e78f72ac7e9f88ab34c7abcead4527e7c229c584abcf8768fac00",
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "4f59c5efbce3ba0c54e2a47d9b868a31780225dc306132a3903fee5894ae1ed4",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "e45854b2346700249569ce418b0bb5593cd00a018336a60c9ed5cedeb8d49b3e",
-        "packages/react-hotkeys/src/HotkeysProvider.tsx": "63de8ea29daa90db070f4f8bc6fc08654c4855bd9827343a0c17ace8a1de1261",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx": "93b2ed4764cde56855b602de3e5ef7acdc657758b16fd2784877003b649bec5a",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "eec5d9a2e281ab8892c56b9482cd930a06deb176581bba9cb409faa35b1bee91",
         "packages/react-hotkeys/src/useHotkey.ts": "ef8cf4158781c0f2fb873e30d33065f42ac8b8739e8702a1b05d90cfe697df31",
         "packages/react-hotkeys/src/useHotkeys.ts": "18fc224f0ec5efee2553fde4840dda78ec0ec7e5dcb2f812279bafcc2384184e",
@@ -196,68 +196,68 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
-      "outcome": "updated",
-      "reason": "API table lists the adapter formatter for server-rendered labels.",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "outcome": "no-change",
+      "reason": "Platform options now use the exported HotkeyPlatform type; same values, no skill change.",
       "evidence": ["packages/react-hotkeys/skills/react-hotkeys/SKILL.md"]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
-      "fingerprint": "3de47726d5bacab59bf1183025d5d16ff4dc3b0bd51bddc1bd31ff02a728ffce",
+      "fingerprint": "d5f92a5c963c2db0b735862d2c4791939cafaab5b70963347591a83c9e94e927",
       "snapshot": {
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
         "docs/framework/solid/quick-start.md": "84a8fd673b881fbad9fee55113b19eeb1ba11b702714a5cdf53c8cbf6683c83a",
         "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "b44dd638d4b46fecd9883319ed623291ede33f2c2b5ffe41d7486ce19686e803",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d3dda6cd9aa0a8655aa43f017490797ad3d2de42206446b2403363873b84b133",
-        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "970406fa54271383bf1d471a2679f6af4128b796362013a8471e159f473b5419",
+        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "72b57a5785a2e5215c33c7c2768fe2e18972e35987ae21e352a37539111f342a",
         "packages/solid-hotkeys/src/appHotkeys.ts": "5d44d8ce952af7a3e522fd42511a963e9af75c4229a2449cde16a180c6f030f2",
         "packages/solid-hotkeys/src/createHotkey.ts": "3be9476087da2b53e809ad5ac59b2f791f38cc4d88e2b151258e668a9fc92294",
         "packages/solid-hotkeys/src/createHotkeys.ts": "de2c71ca0b15af7482c89b3bba4b6c7685571c6163c360f06e92d567b7384905"
       },
-      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
-      "outcome": "updated",
-      "reason": "API table lists the adapter formatter for server-rendered labels.",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "outcome": "no-change",
+      "reason": "Platform options now use the exported HotkeyPlatform type; same values, no skill change.",
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "0957d356d3ba5cc5f4074d0d54d5f0ce96003de8e022c9093fa424b88171bb6d",
+      "fingerprint": "63984813845c2e64d025b37361f0407707ac98e97304da704e11e54d2babdfaa",
       "snapshot": {
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
         "docs/framework/svelte/quick-start.md": "6fdf6ea3a44b3cd7fbf115b6d464460302af1b58112ca0b5b00723b4f5faab45",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "8dcc12e17d2389322ab8056f27faf03bb2f314c75b92ed851b0390024d4b8c9f",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
-        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "b20881dcf111bb368afc913fe1570417097ee69b418e865c580a80d5795facfc",
+        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "31852d1e1545c073eb06d6d99722e025b09130a11828ddc203ac02809477dd25",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "f2562d31a17ccec7788c93eeb4dad9b25ae984f9a5c7d569a44b30cc0ce2528b",
         "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "e54e51788da91adcd4b85872436917eeaed040cccd4a10cb62de3a50e8e36522",
         "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "0dcfe7ecbaa7a202fd3be9e88ca24d95cd8965267374ea709435e19a13a4857b",
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "9dba19b9d793ca7dedf08b6762b6797bc3f537d6106f046aeaa48b14bc7cc868",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a6a995eea5b1334baef1909da68dea08f8df4e29819bada3549c9a0be86e6dcb"
       },
-      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
-      "outcome": "updated",
-      "reason": "API table lists the adapter formatter for server-rendered labels.",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "outcome": "no-change",
+      "reason": "Platform options now use the exported HotkeyPlatform type; same values, no skill change.",
       "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
-      "fingerprint": "2e7f8ac60dd7abd73a9e8bc67b48055d85a8d31d0434c191852378b8c28e8721",
+      "fingerprint": "7d4bfded91a12ee7a75f36827631fdeb33f61398abea539bd29065300711ecdd",
       "snapshot": {
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "00dfe1e45bcd475457bbf078aacb98f1cc78f0666a4ddedad38a285415e03875",
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "cb9e40505873cce1bf322cf9519763d60c0577170c0100c795f08fdff3924276",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "326ee1fe20c1d75a4ad720f69a3a4df9b9e3a057826115e955deb0ed25d88f9a",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "f15ab799773868c19e94a19f4624706fb395831851b8a590f60934e405aa66e4",
-        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "b88ed32156be0f3c89cc3d9437377c7aaaf5394b118a4ed26f428945b20c20d1",
+        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "97631e3bce8ff5b7d2adedb68477c7e3cadb8627d01ba025a1cffdee196f8e9f",
         "packages/vue-hotkeys/src/useAppHotkeys.ts": "924ed5dedd6451332545026bd94441eb7f72cfb4f3c2c07880f34ee652574967",
         "packages/vue-hotkeys/src/useHotkey.ts": "74257a7e0f62393770877121eac31d405cf7daad416dc167feab08e4e9bbe4b9",
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
-      "outcome": "updated",
-      "reason": "API table lists the adapter formatter for server-rendered labels.",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "outcome": "no-change",
+      "reason": "Platform options now use the exported HotkeyPlatform type; same values, no skill change.",
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "140f3d2b83e886f864c0291f27d747963b44d128648421fd903dba906595e17e",
+      "fingerprint": "2ef0238ff7f91f7dac9653309b11fe951ba10084a7a6ec6bab077dbdc58d74ac",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -299,7 +299,7 @@
         "packages/alpine-hotkeys/src/scope.ts": "d32e8bd75b0db71b01f42343f9220a4b10b9c91d17542b1acb61db9068c46d6c",
         "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "644a777c52a1ef882879320671517bb1349066612e3da4314e83211294eb21de",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "5fe1b12a519e8ca5087d78d47050f7a2ec0c70bb9b7d6ebcbb050ee099e3effe",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts": "b0868bd5df07f89183fb45ad6fb3e4203578e02676c229bd27460ae172ad448c",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts": "11e40eab3b96a8b7cf519b0da8d28e1f5488c44ab49817b952f8e594d8b500b1",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "3161186944b142feab034a1899b76b178700f4ef371bfffbb694b9ed5a191d32",
         "packages/angular-hotkeys/src/injectHotkey.ts": "03ea85098b0ed95e323e8d1e35b61b2683b7bc2d68f67e56e15ce2da92177a6f",
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "d431ed7df4440d09cbed88d3201751853330d0b927949886e53cc583a75e7668",
@@ -331,20 +331,20 @@
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "324326b5cc6d2e7120ef004450a4ad721c564a79f419fa99978452b62a51c38a",
         "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2e207c6e733ab9b471588670dbefe787d5a613a6ae9663d2086830e300aee89e",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
-        "packages/octane-hotkeys/src/HotkeysProvider.ts": "6f3620f316d55f9c837cfd5dd6a6d4adcef9e30351f71e459b37363fec51798c",
+        "packages/octane-hotkeys/src/HotkeysProvider.ts": "171e35ae48fb27d0409184043236529ff778a01e3bc377df54903e51ccdc1187",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "4884113fa09d9869baf8af1f3bb07ba72558308a03136b3c1b59feb49ce2efbb",
         "packages/octane-hotkeys/src/useHotkey.ts": "d8da1d0cf0eb528667a25e750a2e51405e4e293bd10e22173546967b5c9d392b",
         "packages/octane-hotkeys/src/useHotkeys.ts": "f864ed03975e9930638cfe9025639619ebdb2c975a55e6950199cba86cb70476",
         "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "89b1ce6d371eb7fcaed7c7014bc93b6d930ec05f695fbd1cfde3d3c36aa81796",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "4388ff0528e9ea44f819896f2687ab962735479cdafaddd1e349dd1bf6dc5479",
-        "packages/preact-hotkeys/src/HotkeysProvider.tsx": "a1e5132cf2ec59b55d53ef52eb2508bb348f926a0b534beec901a00761cc69e7",
+        "packages/preact-hotkeys/src/HotkeysProvider.tsx": "5f8e15778b85c9cc5914c37ce463c211ddf4fc0e64f643a11ccbc0d272b19dc8",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "023eff9348a9209a2e3e99a2b9847da3be72206f98150b478dae81a215059577",
         "packages/preact-hotkeys/src/useHotkey.ts": "6d66b813038e063f62aa8c8fb9be3020739854e1133885f70720b1036e789e84",
         "packages/preact-hotkeys/src/useHotkeys.ts": "832bf0156ff46db00140617bd3fea8055ca712a1a82d3cef7800776d42b02ebf",
         "packages/preact-hotkeys/src/utils.ts": "118090c4255527f52773133741355445fff8e41605ec6a9fc69c792730e96b9f",
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "4f59c5efbce3ba0c54e2a47d9b868a31780225dc306132a3903fee5894ae1ed4",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "e45854b2346700249569ce418b0bb5593cd00a018336a60c9ed5cedeb8d49b3e",
-        "packages/react-hotkeys/src/HotkeysProvider.tsx": "63de8ea29daa90db070f4f8bc6fc08654c4855bd9827343a0c17ace8a1de1261",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx": "93b2ed4764cde56855b602de3e5ef7acdc657758b16fd2784877003b649bec5a",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "eec5d9a2e281ab8892c56b9482cd930a06deb176581bba9cb409faa35b1bee91",
         "packages/react-hotkeys/src/useHotkey.ts": "ef8cf4158781c0f2fb873e30d33065f42ac8b8739e8702a1b05d90cfe697df31",
         "packages/react-hotkeys/src/useHotkeys.ts": "18fc224f0ec5efee2553fde4840dda78ec0ec7e5dcb2f812279bafcc2384184e",
@@ -368,13 +368,13 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1",
         "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "b44dd638d4b46fecd9883319ed623291ede33f2c2b5ffe41d7486ce19686e803",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d3dda6cd9aa0a8655aa43f017490797ad3d2de42206446b2403363873b84b133",
-        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "970406fa54271383bf1d471a2679f6af4128b796362013a8471e159f473b5419",
+        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "72b57a5785a2e5215c33c7c2768fe2e18972e35987ae21e352a37539111f342a",
         "packages/solid-hotkeys/src/appHotkeys.ts": "5d44d8ce952af7a3e522fd42511a963e9af75c4229a2449cde16a180c6f030f2",
         "packages/solid-hotkeys/src/createHotkey.ts": "3be9476087da2b53e809ad5ac59b2f791f38cc4d88e2b151258e668a9fc92294",
         "packages/solid-hotkeys/src/createHotkeys.ts": "de2c71ca0b15af7482c89b3bba4b6c7685571c6163c360f06e92d567b7384905",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "8dcc12e17d2389322ab8056f27faf03bb2f314c75b92ed851b0390024d4b8c9f",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
-        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "b20881dcf111bb368afc913fe1570417097ee69b418e865c580a80d5795facfc",
+        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "31852d1e1545c073eb06d6d99722e025b09130a11828ddc203ac02809477dd25",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "f2562d31a17ccec7788c93eeb4dad9b25ae984f9a5c7d569a44b30cc0ce2528b",
         "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "e54e51788da91adcd4b85872436917eeaed040cccd4a10cb62de3a50e8e36522",
         "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "0dcfe7ecbaa7a202fd3be9e88ca24d95cd8965267374ea709435e19a13a4857b",
@@ -383,15 +383,15 @@
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "cb9e40505873cce1bf322cf9519763d60c0577170c0100c795f08fdff3924276",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "326ee1fe20c1d75a4ad720f69a3a4df9b9e3a057826115e955deb0ed25d88f9a",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "f15ab799773868c19e94a19f4624706fb395831851b8a590f60934e405aa66e4",
-        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "b88ed32156be0f3c89cc3d9437377c7aaaf5394b118a4ed26f428945b20c20d1",
+        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "97631e3bce8ff5b7d2adedb68477c7e3cadb8627d01ba025a1cffdee196f8e9f",
         "packages/vue-hotkeys/src/useAppHotkeys.ts": "924ed5dedd6451332545026bd94441eb7f72cfb4f3c2c07880f34ee652574967",
         "packages/vue-hotkeys/src/useHotkey.ts": "74257a7e0f62393770877121eac31d405cf7daad416dc167feab08e4e9bbe4b9",
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "No change needed for this skill.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": ["_artifacts"]
     },
     "source:.changeset/intent-skills.md": {
@@ -2660,13 +2660,13 @@
       ]
     },
     "source:docs/framework/react/reference/functions/HotkeysProvider.md": {
-      "fingerprint": "5b960f79585034e46131a8da77a009c0ebeb9046cde5544010ece97ef847868c",
+      "fingerprint": "eb3b464e2acd9967ddb08f067a9ad19bbfd3ba72b625495b2ce32d0625de436a",
       "snapshot": {
-        "docs/framework/react/reference/functions/HotkeysProvider.md": "384db6d028f2d9fcd9954c08dc94587370e1a4ad46a9fffaf76754bdec0fdee8"
+        "docs/framework/react/reference/functions/HotkeysProvider.md": "65ca78d1eb48aacad2108430ba26e4814be4afeb4e0dc33a81d6cb80da011dfd"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/react/reference/functions/HotkeysProvider.md"
       ]
@@ -2714,13 +2714,13 @@
       ]
     },
     "source:docs/framework/react/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "3712a15892206178a6769dad16feb9ea4f073a35e8a08d55ae0e78b13e6ab79c",
+      "fingerprint": "7cf6938fdfffd442465da1efc804a17a5bd215df273f7d1f6363a45cecd1d5cf",
       "snapshot": {
-        "docs/framework/react/reference/functions/useDefaultHotkeysOptions.md": "c3249c0ae0013632f31d08bd52030c8b22430212df21d78a230b1d0f75a304e1"
+        "docs/framework/react/reference/functions/useDefaultHotkeysOptions.md": "8eb02b310ad61ad657594a62379b6ad4382f9629faef1a81f2419d148f9753af"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/react/reference/functions/useDefaultHotkeysOptions.md"
       ]
@@ -2802,13 +2802,13 @@
       ]
     },
     "source:docs/framework/react/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "0ea36de8478be4350dac1c0c25240529c940f1411bc501c9942b19b58e4ee251",
+      "fingerprint": "4809e14579dfe1cabae8b722cc1077a03489ff0faeb777edb8bfeeb54faa6eb9",
       "snapshot": {
-        "docs/framework/react/reference/functions/useHotkeysContext.md": "698dbabe105a884e41e4a13bff2fac0fc172863d09c61d64773f6a24e6474ca0"
+        "docs/framework/react/reference/functions/useHotkeysContext.md": "dcc8fca8e405f2b4d467b0b9811a7d1ba5ae1176458753c6e77b60951a17c3d0"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/react/reference/functions/useHotkeysContext.md"
       ]
@@ -2826,25 +2826,25 @@
       ]
     },
     "source:docs/framework/react/reference/interfaces/HotkeysProviderOptions.md": {
-      "fingerprint": "ea82eaa10ecc14df286ab60d680c09a8efa47c3422a197f125e231c4246866fb",
+      "fingerprint": "6e8c4174d306de3361d67cf8e6caf120862b549bf674aac190e2d04254806b45",
       "snapshot": {
-        "docs/framework/react/reference/interfaces/HotkeysProviderOptions.md": "8320d14717449956ee3a8acbc2dfdd2bd8765e5fc0ab4754536f0d0fead49d68"
+        "docs/framework/react/reference/interfaces/HotkeysProviderOptions.md": "530b9dd0a0f28b01970ee881703d8c74733c68e8b8966ce6050fd2361d5a34c0"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/react/reference/interfaces/HotkeysProviderOptions.md"
       ]
     },
     "source:docs/framework/react/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "4c24bafa41d122464cd3fa5a2c1c3f156a8f8f2fa8bbd7b3b5cad400fd49af28",
+      "fingerprint": "601c1d8bbabfdd70644d1846355f9cde61eea2fc5f6d032dfbeabcd868b98394",
       "snapshot": {
-        "docs/framework/react/reference/interfaces/HotkeysProviderProps.md": "b83092a446ce32a83aa818bf2143cf700a8498cf32ab256596a24099112c665d"
+        "docs/framework/react/reference/interfaces/HotkeysProviderProps.md": "89ea6f69f6d0e1cc0bd0b3b0b84f3bac7554f3cbe2893c3730503ffe7fa643cc"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/react/reference/interfaces/HotkeysProviderProps.md"
       ]
@@ -3568,37 +3568,37 @@
       ]
     },
     "source:docs/framework/vue/reference/functions/provideHotkeysContext.md": {
-      "fingerprint": "e2aa99094c69508f71a2a51af79b7edd21138fc97fcb3f790e017bd8b640bdc8",
+      "fingerprint": "7c3bdc20ec3a705e7de06d1f53cd07849a9bdc8d64f2cef903a728690cd960e1",
       "snapshot": {
-        "docs/framework/vue/reference/functions/provideHotkeysContext.md": "8ee9a4b510bf8e401ddc4de9b1a00e13b84174b5d991b336b3334330d141c4b4"
+        "docs/framework/vue/reference/functions/provideHotkeysContext.md": "4379551821ea0698c6addbb0e8f1b1b48d6ebcb8935626a4a929f925f41e9f56"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/vue/reference/functions/provideHotkeysContext.md"
       ]
     },
     "source:docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "8dd7a98105555a2a66643749720f2f15432a8897bfb540695e99353ce65d0955",
+      "fingerprint": "c4b49ab4d748774d95735a23047ee3d5c047f6c5c424319b08bd2077de4861a9",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md": "b98524be033554f2dc112b8e352e0d2ed0c4804ffb19512a62865c942a938889"
+        "docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md": "f61b9644c97840b7b32e2f89e4f5b710d3897e0adf2222c467bfd8916511ced1"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md"
       ]
     },
     "source:docs/framework/vue/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "576d52c2b1b05b632ea481a000f3ef35c3ed84855e2f9d68dbcc8d617f030d90",
+      "fingerprint": "3b4e7209393f2054f6e5bb9888af6dcd64287d2c0f7ce540706e9564ba46ede6",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useHotkeysContext.md": "c6bb9f0bf17e0505037386d9dbc86d5574e7e8f477bbbd6cbe5a2647f693a699"
+        "docs/framework/vue/reference/functions/useHotkeysContext.md": "1ac31b880c27dad197ece3d3f9478ac56ef1d9305338851a7213d54629c33a32"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/vue/reference/functions/useHotkeysContext.md"
       ]
@@ -3614,25 +3614,25 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "source:docs/framework/vue/reference/interfaces/HotkeysProviderOptions.md": {
-      "fingerprint": "a206485988ab9973c81aa6afe72e383fd36311b1d8dbef627fa4007d75397b49",
+      "fingerprint": "ea28c22cc8db224cf627849ace851faa1953209cc91db3877446db9961f52bc5",
       "snapshot": {
-        "docs/framework/vue/reference/interfaces/HotkeysProviderOptions.md": "59104d044d39623e0b04b0078bb157fe2ac98e503c1e3fff571dd62c73bb27a7"
+        "docs/framework/vue/reference/interfaces/HotkeysProviderOptions.md": "6506650d5f4c812286294e901f97a4386785e8912f0213f6946a3cda440f9f1d"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/vue/reference/interfaces/HotkeysProviderOptions.md"
       ]
     },
     "source:docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md": {
-      "fingerprint": "25e415abf7387a2b247dc8bbe60f1c0983d82b6e4c6da50d5a418141e8a3e3db",
+      "fingerprint": "d621ac6c575e10c5e2c84f20b7403bf348a72c954de843b583606713d8111429",
       "snapshot": {
-        "docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md": "4ff2b4a2fb1d4a6f8606e99a606147f1a6347d65b3b37c04f687f0772380c2e7"
+        "docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md": "6b3a916ea769e72ad82d252416d6b9a831673b47e7abc97dea770f39c8899993"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md"
       ]
@@ -4186,97 +4186,97 @@
       "evidence": ["docs/framework/angular/guides/app-hotkeys.md"]
     },
     "source:docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": {
-      "fingerprint": "72b23867825196b1e4b31ba9c88b5705eccdf3b455fb2bdeb1bb97f2bb4500c6",
+      "fingerprint": "ec560e665756cb9f83904e08ed17260261b6757ede60a43a0d93c5cf010c9668",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": "1481ae7fba5bfb3f12a2cffa6d9a280f68b8ae7b091327160f72960c50eae865"
+        "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": "f30ef59da801f769c0f0d3bc9c17b2320658a11a03d842794164b9ccf98c1808"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md"
       ]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeysContext.md": {
-      "fingerprint": "1b1f525d198300ccbe3b562a787e677abb72d019da7840ac55cadf3afccad7a0",
+      "fingerprint": "c4c40e4d5a9434284630ce09d42e7e92a4684e9fe29ba6f3f45f3e6f47025d18",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectHotkeysContext.md": "343961ceab233e4e3157d2528f77e9b1c3f204332e95db6aa1289fe7ed738d24"
+        "docs/framework/angular/reference/functions/injectHotkeysContext.md": "efd35f35e2d6ba8f9d0997a5b0cda81018a79128b6f13dd03b3536b51e7b2c2d"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/angular/reference/functions/injectHotkeysContext.md"
       ]
     },
     "source:docs/framework/angular/reference/functions/provideHotkeys.md": {
-      "fingerprint": "52464e899bb6a20fdbaf0021f51b947d942ebb5b615906e21ed66480fd5aa1b4",
+      "fingerprint": "76eebf86cf20545aa497396a5755162efa2ec0969610ffc04edd1d8836ad39fd",
       "snapshot": {
-        "docs/framework/angular/reference/functions/provideHotkeys.md": "fea59dc02796e784e5111771eeb298dbb930280c73d01b3dd3e4361f8bb27723"
+        "docs/framework/angular/reference/functions/provideHotkeys.md": "1d5142efbde786ab30b1b70bf109a6e588c168c36c7b419cf79da98358aeee7f"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/angular/reference/functions/provideHotkeys.md"
       ]
     },
     "source:docs/framework/angular/reference/interfaces/HotkeysContextValue.md": {
-      "fingerprint": "542af8740a003f09978cbbb9e9ffcd3d50b865df6bdecfc1ded0902cc3fd039f",
+      "fingerprint": "2e72e965e1d8c5685c9901e27edd49db7ef6a27bf27756e7c80ddc6f0704f106",
       "snapshot": {
-        "docs/framework/angular/reference/interfaces/HotkeysContextValue.md": "4b36e02cc1f3b2436532ea35588c1df3086d8b17a0f4b0a3cf47dd82fe62cc04"
+        "docs/framework/angular/reference/interfaces/HotkeysContextValue.md": "ac0ecf217097771bbb6f8f32ae093bda3f8243698e9304e33e189662da3c8154"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/angular/reference/interfaces/HotkeysContextValue.md"
       ]
     },
     "source:docs/framework/angular/reference/interfaces/HotkeysProviderOptions.md": {
-      "fingerprint": "7b92bed2d5da8dc07820dd7b5ba5bbc06c78b71dd74fab3989aacf2c22c2dccf",
+      "fingerprint": "af8f17c9adf038cb72ac31600c8c3c03bbe26da039d9bbb6f2246bc923ac688f",
       "snapshot": {
-        "docs/framework/angular/reference/interfaces/HotkeysProviderOptions.md": "5f5b3f9e4bb3bb6c454c9c28a13aaaa7c7cb7f0c6b78f592ba4b31dd9151c12d"
+        "docs/framework/angular/reference/interfaces/HotkeysProviderOptions.md": "7c8fcc05c6a9f32ca56157240fbb15e9924adad1d0d9fde5e5de1235fb4d6521"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/angular/reference/interfaces/HotkeysProviderOptions.md"
       ]
     },
     "source:docs/framework/angular/reference/interfaces/ProvideHotkeysOptions.md": {
-      "fingerprint": "21f67a886cf7b1afb4a3e5ff7dac278fb05481d6bd6f8eae1b5de0e1da775570",
+      "fingerprint": "d7afedf2a1cba402ffb46843bc1d8bf90623e5610078e95b76a851d8d8cb374f",
       "snapshot": {
-        "docs/framework/angular/reference/interfaces/ProvideHotkeysOptions.md": "21236bc6f21abdc765cd0006f57141f8d952c40888914d2d3198856042c8db14"
+        "docs/framework/angular/reference/interfaces/ProvideHotkeysOptions.md": "02a60ad34c1e2dfb0220f69a4ca607d41f26b4595f723ca938fec64fb902f1f5"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/angular/reference/interfaces/ProvideHotkeysOptions.md"
       ]
     },
     "source:docs/framework/angular/reference/type-aliases/MaybeGetter.md": {
-      "fingerprint": "7bc280a3a2aee19d399d22a7e9645b6b9b25db8c84602e5088deb4a041ac9d36",
+      "fingerprint": "7519cee138987041642d2cad2358c90fb9a5467ba6c43868f197f7d925a16424",
       "snapshot": {
-        "docs/framework/angular/reference/type-aliases/MaybeGetter.md": "55974ed2d74c309a381b4aa5e7ab7030a43276d37aee444ca904f8089d6c9b17"
+        "docs/framework/angular/reference/type-aliases/MaybeGetter.md": "04f3eb4567e4d3aec1584e845bfc41426f4fe1368ecfb16f89d0e5fedf21d636"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/angular/reference/type-aliases/MaybeGetter.md"
       ]
     },
     "source:docs/framework/angular/reference/variables/HOTKEYS_INJECTION_TOKEN.md": {
-      "fingerprint": "511c10fc907d34f06c5e13815ce83cc79363671b2d28838d67422be991aeeca5",
+      "fingerprint": "e2b872d63bbf850a58cdc4f0d5609fe3ca55616b6b4f68a68076f75860fc8e65",
       "snapshot": {
-        "docs/framework/angular/reference/variables/HOTKEYS_INJECTION_TOKEN.md": "2d8cbcc0434dcb1c7a640df82d9d964918baee2b9c5a0a002fc935b9f87caaa1"
+        "docs/framework/angular/reference/variables/HOTKEYS_INJECTION_TOKEN.md": "ab3d87eb516bce0cbdbc71ab36883aa91982a3c93ccf476bea1d9d55cde3aaa5"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/angular/reference/variables/HOTKEYS_INJECTION_TOKEN.md"
       ]
@@ -4292,73 +4292,73 @@
       "evidence": ["docs/framework/octane/guides/app-hotkeys.md"]
     },
     "source:docs/framework/octane/reference/functions/HotkeysProvider.md": {
-      "fingerprint": "d9cc2eacc0bcdc3cf2bac2c0ced75a841cd847de611034abd8592e1b80b0fe07",
+      "fingerprint": "c7f6696544db71bd6631401f140e766f039b5bfd990b16ef164edce900ba33af",
       "snapshot": {
-        "docs/framework/octane/reference/functions/HotkeysProvider.md": "0c593aa1d0dcb51cc4de35eb3256990bd35c89a38d34033840c24f3c09613462"
+        "docs/framework/octane/reference/functions/HotkeysProvider.md": "0eaa4174e9a29d4f9b2c4b4959e874d907a802bce5294ba002cce1d3de5ede36"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/octane/reference/functions/HotkeysProvider.md"
       ]
     },
     "source:docs/framework/octane/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "ce803a69d6375e290f9f975fac2b4b89a9de01683547ef075215b15a9f277eaa",
+      "fingerprint": "25a5fd4c28d3d4968e6aff8935f08f511370608a65fb6801931d8282fc7e1d06",
       "snapshot": {
-        "docs/framework/octane/reference/functions/useDefaultHotkeysOptions.md": "c2ff4db1b1fc93c7a8ea5aa1a6d6613ac1bea28c8a7fdcb04aa3a7fe1de51924"
+        "docs/framework/octane/reference/functions/useDefaultHotkeysOptions.md": "0694896199150d0a1620676108e775ed713fcae39631571ce686b1c90c39ac80"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/octane/reference/functions/useDefaultHotkeysOptions.md"
       ]
     },
     "source:docs/framework/octane/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "82140200d706c52ae01f7af9bc4bafcd50943695baf7e720ce981b1c6c99e517",
+      "fingerprint": "6dc2f270fbd762f10bb186c007e12be0a79ba0371cfc6825a8eb3b713b1b6b6c",
       "snapshot": {
-        "docs/framework/octane/reference/functions/useHotkeysContext.md": "cd8ba46e05f82c3b7434f37bc456784e8835335d8a77ba2369f0128ac8f837f4"
+        "docs/framework/octane/reference/functions/useHotkeysContext.md": "978ada382e6aaf150a2cb9ec39c58f70153e5bb020ac849b967512230ee628b0"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/octane/reference/functions/useHotkeysContext.md"
       ]
     },
     "source:docs/framework/octane/reference/interfaces/DefaultHotkeysOptions.md": {
-      "fingerprint": "f885057493e184eaea395ce014914a4545c5cb563606397733b94188b11d7f12",
+      "fingerprint": "3fc5f8cf6df4087734bd9a298127595c8247ca36c16e9a31132503490f6dd883",
       "snapshot": {
-        "docs/framework/octane/reference/interfaces/DefaultHotkeysOptions.md": "7bc0a98112b0d8c661b66a2b0d91356898491e70669d04e0a62b1586867459f8"
+        "docs/framework/octane/reference/interfaces/DefaultHotkeysOptions.md": "a71cb30970051120591d3c6ccd3b85e5e751df5eeacd983ea51cc386780dcca2"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/octane/reference/interfaces/DefaultHotkeysOptions.md"
       ]
     },
     "source:docs/framework/octane/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "45751bd95ec4a62e0e901eb27c991e26b48d8e33c162949eff5274785f5ab550",
+      "fingerprint": "809161fc7d05e8385a42607fcbc2f4c23d5136ccdc7beb56eed1ae779855b4f9",
       "snapshot": {
-        "docs/framework/octane/reference/interfaces/HotkeysProviderProps.md": "96209d5e6e5fac23991cd8f4f24ffa060d9b4457dd8ff40e270fb30a7c42dfc4"
+        "docs/framework/octane/reference/interfaces/HotkeysProviderProps.md": "5ff9cc3bc61a1b863b62dfbeafe52a4f50925ef82ce2aaf0b899eaabcad147b1"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/octane/reference/interfaces/HotkeysProviderProps.md"
       ]
     },
     "source:docs/framework/octane/reference/type-aliases/HotkeysProviderOptions.md": {
-      "fingerprint": "ad7fa8677075ebafcac1c36f1f4780c9b15bc90309ddc2335eaec3589ddd1195",
+      "fingerprint": "fd136c3c70791014e68b61dece412e3162e5b565e5b87bd87874c1e3b9ff7515",
       "snapshot": {
-        "docs/framework/octane/reference/type-aliases/HotkeysProviderOptions.md": "606d1921b404aa4b605d35d8eff9bce257967b1ecc986e86245284e37206ab6e"
+        "docs/framework/octane/reference/type-aliases/HotkeysProviderOptions.md": "5d6e67f6dd67f066d503f8e731b256550dd47801fe56e1f9ed4f04f891340f6d"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/octane/reference/type-aliases/HotkeysProviderOptions.md"
       ]
@@ -4374,25 +4374,25 @@
       "evidence": ["docs/framework/preact/guides/app-hotkeys.md"]
     },
     "source:docs/framework/preact/reference/functions/HotkeysProvider.md": {
-      "fingerprint": "2dbe9e6d26b7cf905ad3bc561075b483fa470ffb53105506006d7ebac885e235",
+      "fingerprint": "5c3c052f69de7a6d248885c445a728bb824d3507f4c73a97cd292d75c7ec96e2",
       "snapshot": {
-        "docs/framework/preact/reference/functions/HotkeysProvider.md": "e00181c99a96cd5f459905e9ab2855db080bca0243747293f5fa68d08197bd0c"
+        "docs/framework/preact/reference/functions/HotkeysProvider.md": "f3f12da3771af81748d5dd53ec695a2369bc14b29e1b57d6b1362f71a0a1291a"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/preact/reference/functions/HotkeysProvider.md"
       ]
     },
     "source:docs/framework/preact/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "c6eaa1c6df08c0c61bd3d89e4e9365a3954c14344af443ef31df0277a0d5cb56",
+      "fingerprint": "9271393cf1b7318f6910b48f1242f91afbab4168ce48c4e15e1f32c306c30da6",
       "snapshot": {
-        "docs/framework/preact/reference/functions/useDefaultHotkeysOptions.md": "cd4efdc03f42ee79e84f567e4240c7e460c13f2da6b3c9f9652c9a1ce3597ed6"
+        "docs/framework/preact/reference/functions/useDefaultHotkeysOptions.md": "cbd06d055bfaf276c26a7b54e4a306fbb713fc69a31e205cd083d40dc8973e52"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/preact/reference/functions/useDefaultHotkeysOptions.md"
       ]
@@ -4410,13 +4410,13 @@
       ]
     },
     "source:docs/framework/preact/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "efa8d2cd52d35792fcb5bae8653661e8c87c4e3633b698b34d9bbdfa270aeaf7",
+      "fingerprint": "14327e5a7981bd14be8079c816bd2a609ecf430f6a8612317bff65a2327b25d1",
       "snapshot": {
-        "docs/framework/preact/reference/functions/useHotkeysContext.md": "5bce20947fd89b58a0b368623a0570e11f0956a68db17576c4d8de078d269902"
+        "docs/framework/preact/reference/functions/useHotkeysContext.md": "edea9ba34a90a847b0fed3085c0b8db527b623ad5307ba1321d490fdc06b8579"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/preact/reference/functions/useHotkeysContext.md"
       ]
@@ -4434,25 +4434,25 @@
       ]
     },
     "source:docs/framework/preact/reference/interfaces/HotkeysProviderOptions.md": {
-      "fingerprint": "24c9d7d332f79ad886b9059a1b5256e02450abe239c166be2a1bb02b51e77b0a",
+      "fingerprint": "6af0a3c095ae4b8b830a2aa58fd860ea5918c451e47c427cf51a4d9a044917b8",
       "snapshot": {
-        "docs/framework/preact/reference/interfaces/HotkeysProviderOptions.md": "73ba566b3f5cf328fe210fc889448d4fb6cf08258f758060c591e84a0c7fb8d2"
+        "docs/framework/preact/reference/interfaces/HotkeysProviderOptions.md": "6370e24da411b9de9389c003e74132cc1a65a7b0f6222464c8c0c81837b9df0b"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/preact/reference/interfaces/HotkeysProviderOptions.md"
       ]
     },
     "source:docs/framework/preact/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "59cc770383b8417aed5df03aeae973a8773679c32be01d945bcefdd0b626088f",
+      "fingerprint": "ac588e7c848a6ebb756bb6802271ba66187d0d5534b6e96bc1869d75b4d0e577",
       "snapshot": {
-        "docs/framework/preact/reference/interfaces/HotkeysProviderProps.md": "5304281e62095f0f5449db86dcd422cccb44d4f0727c259e4429acdb8bfb767e"
+        "docs/framework/preact/reference/interfaces/HotkeysProviderProps.md": "e22fd20539f3406b5e9fa6041d995479d3f973c49a79a454ce96827bbeb969b7"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/preact/reference/interfaces/HotkeysProviderProps.md"
       ]
@@ -4504,61 +4504,61 @@
       ]
     },
     "source:docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "a741f190246e9a9f73427fac8b1beccfcad8239d757be388fd15228578fb7b68",
+      "fingerprint": "f16bb1d97c83fa4fb80b062b5581617c556bd4e85e10c283a7060089caad68db",
       "snapshot": {
-        "docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md": "4fefbb61ac87f21605a0f21a52c70fff114da47898e4adfac6207ee5a91084da"
+        "docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md": "97e3d7a8ad7f5e9ca922f6c697a7a016d363c95446363afe4d56b37a27760302"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md"
       ]
     },
     "source:docs/framework/solid/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "0d1c974394cd2a7d4b2dc79fa990115d2a6be7b8a634ee2b44c491194856ea7e",
+      "fingerprint": "8c914c5e373644bb34513b7e89cbfec9566c4a923c0df4506d5d6d43744b7880",
       "snapshot": {
-        "docs/framework/solid/reference/functions/useHotkeysContext.md": "b3c26162cba6a82aeab74e05ab8a6656b7f5a9e14bf62a0c1a0f7814da89e58d"
+        "docs/framework/solid/reference/functions/useHotkeysContext.md": "b26b1d1705d7e58ef495fc7dcf3e8e0fe459fcf78dac1a2ccc9dbfd355446944"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/solid/reference/functions/useHotkeysContext.md"
       ]
     },
     "source:docs/framework/solid/reference/interfaces/HotkeysProviderOptions.md": {
-      "fingerprint": "684d8691db79386a7b02bad87cf9171836f8c4babfc20f2ff467d21b9fc6befb",
+      "fingerprint": "a24153de00aeb2f23d77f238a0027b6c966bab699b123450efa1a4ae0438686d",
       "snapshot": {
-        "docs/framework/solid/reference/interfaces/HotkeysProviderOptions.md": "1b29f413acab2f6485387a57148182eff48f60c795bbec4c0c8525d61ce90d72"
+        "docs/framework/solid/reference/interfaces/HotkeysProviderOptions.md": "10b75223a2f6ae62531a4f63ffe3d9f2ee5ceadea2917580ef78a60707312682"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/solid/reference/interfaces/HotkeysProviderOptions.md"
       ]
     },
     "source:docs/framework/solid/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "71aea4faaaadcbd82cc39cc954cdd22e4a2a97d82073bcbdbe68fe5067a19c9d",
+      "fingerprint": "d1f2f588a74a015d5ed06649e13ccb7b901bbcb9dd4c1c1352d5f4e145cf6512",
       "snapshot": {
-        "docs/framework/solid/reference/interfaces/HotkeysProviderProps.md": "d37c1ab50f749fcfd285b330c15785452dff4059dd3af4d229474d454bdd95ac"
+        "docs/framework/solid/reference/interfaces/HotkeysProviderProps.md": "058387071a53d3255890a4a8ffed8e16ea5dcc7f5e850edd0bbddc69eb26c8b7"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/solid/reference/interfaces/HotkeysProviderProps.md"
       ]
     },
     "source:docs/framework/solid/reference/variables/HotkeysProvider.md": {
-      "fingerprint": "6f222e3c57078f8f043577ac9eac55c5a0768003bd8ff98f3550a0ef3e50a28d",
+      "fingerprint": "131961cfd389ad65062c9e9a53e4318c74b1394566d1f2d32bef2c45008ddc14",
       "snapshot": {
-        "docs/framework/solid/reference/variables/HotkeysProvider.md": "cd08c0aa27df8f83ac23d8bd490bfa17fd14c495566b284f694fc73a383fd5d3"
+        "docs/framework/solid/reference/variables/HotkeysProvider.md": "10a3c12dcfaccf45c036fcd1c4f3328b72e7708f05d1ab1ff12c5e03e55ffdfd"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/solid/reference/variables/HotkeysProvider.md"
       ]
@@ -4574,85 +4574,85 @@
       "evidence": ["docs/framework/svelte/guides/app-hotkeys.md"]
     },
     "source:docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md": {
-      "fingerprint": "1f0b78aa535717aa13650f67c2fbbc80bd56eff2f29ee604d13689d23d6d385c",
+      "fingerprint": "8cc48a831f5d792b5a4929af8e9538490887ee88a489df7cb61cf68f24d202fc",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md": "56ed6d923e8d197554e37a392e899b71b07ca96751fc4eac27a36b84da8e65f4"
+        "docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md": "fa11f0c42adac99933970237022091a7350bb6fdfec7d047efcfbe8fda27b5e9"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md"
       ]
     },
     "source:docs/framework/svelte/reference/functions/getHotkeysContext.md": {
-      "fingerprint": "7e0c51bfa5a32ffee1107a936b241a18f9f472e7b5ea318711cf19dafba0b445",
+      "fingerprint": "4bc077675c04ee67185ffb6a2e42ccb23fd3bcb7c171d2bdbc2071a25c6413b4",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getHotkeysContext.md": "5d28db8f004c2fa034ad15144373510fc86be53eb0363f6806d3ff4bde5c2c5e"
+        "docs/framework/svelte/reference/functions/getHotkeysContext.md": "ee371a8fbec27326a457dea14bcbc3192cc7430012f5e589e07dc9e5ad2507b4"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/svelte/reference/functions/getHotkeysContext.md"
       ]
     },
     "source:docs/framework/svelte/reference/functions/setHotkeysContext.md": {
-      "fingerprint": "1f671b75d7ae0ea1cfc062284ae04c5091812da36c706eaff1c801a02a77467f",
+      "fingerprint": "42c1e9b32ffd7dc774111105c47fcff97083f316efe5c5099f44a25404e93338",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/setHotkeysContext.md": "87e887e17fccade94b3be083d82ca95b544524d280369d2d16d53c20bbeb0c07"
+        "docs/framework/svelte/reference/functions/setHotkeysContext.md": "dc9c29d28ff92021665429978604fa157bea054fcae135d235119c5959b94408"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/svelte/reference/functions/setHotkeysContext.md"
       ]
     },
     "source:docs/framework/svelte/reference/interfaces/HotkeysContextOptions.md": {
-      "fingerprint": "bddcabab3c77d5f58b9929d0886e3cf14c7e983c554b758a62b0ae7347653c02",
+      "fingerprint": "fd301cc98fee2fc4070eb1f7652d8cc9bf2522d77786cb36f9105f7e82f3e9cb",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/HotkeysContextOptions.md": "5dfde061b736731d91312fa1814c0b559d037554c7d455b399198a28b2bb4933"
+        "docs/framework/svelte/reference/interfaces/HotkeysContextOptions.md": "17563b80fa123555e92d47c01caf770950c5674734a41b5d2ebc8004810b0d7e"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/HotkeysContextOptions.md"
       ]
     },
     "source:docs/framework/svelte/reference/interfaces/HotkeysProviderOptions.md": {
-      "fingerprint": "96bbb11afa8346755e402626b5aa6dc97466ca7bca718550648f3835f4b19a61",
+      "fingerprint": "97de7352b9facb315827e4a6ae2a34d76389dd193f3cd8ccdcf1e15121d82ceb",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/HotkeysProviderOptions.md": "01985b257886881e4fedbc2f5cff0b2d61432f0e301fec0c0f9011e760773605"
+        "docs/framework/svelte/reference/interfaces/HotkeysProviderOptions.md": "321275d06d01ac76dcdea6e7789202a082af9aaa4ee5311c71086688814f928c"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/HotkeysProviderOptions.md"
       ]
     },
     "source:docs/framework/svelte/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "9843339ea41a8ffc2f9037a524fadcf838f874afde231d0f140b9f1b615bd81f",
+      "fingerprint": "f9e35459c865673352153338437bb29d0e115fedf2ddcca44688a7e6f458eda3",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/HotkeysProviderProps.md": "0102e148db4f92fb41ead3a14fc578b05c8567567c2f891f3a2179917d195fcd"
+        "docs/framework/svelte/reference/interfaces/HotkeysProviderProps.md": "f03d8e8028353f3561951458749c9873164934762c5d644fbac61420e020e30f"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/HotkeysProviderProps.md"
       ]
     },
     "source:docs/framework/svelte/reference/variables/DEFAULT_OPTIONS.md": {
-      "fingerprint": "ee7316da29e80df300f2f57947eaec08789ddeb00fd36fe9e49f2f39399d4483",
+      "fingerprint": "83419c507b5787a92c2fff7663a415826d3904e22a25a851b43bcb4ce1d9d423",
       "snapshot": {
-        "docs/framework/svelte/reference/variables/DEFAULT_OPTIONS.md": "81f468414bae787d5fedc702cba258ee663ccc0b0040c865ec27d6621d1bc38b"
+        "docs/framework/svelte/reference/variables/DEFAULT_OPTIONS.md": "1f0524f55acb0cb83f8dcc2c5c12f4e93939a7ca4e984309d48625befba49eae"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/svelte/reference/variables/DEFAULT_OPTIONS.md"
       ]
@@ -4680,13 +4680,13 @@
       ]
     },
     "source:docs/reference/adapter/functions/activateHotkeysProviderScope.md": {
-      "fingerprint": "3a622f9775045efe42f8f8e3a14c54e1a33b2cf184b22e4349457b1e7271a80d",
+      "fingerprint": "67cf3be56ca52ed2fdfc8aba38d66b07516488527fba5c508f256645c9e88316",
       "snapshot": {
-        "docs/reference/adapter/functions/activateHotkeysProviderScope.md": "d1a493dc91a3eb545ab5bd8709ea94b65f049845830d3141d7bdc7b6840e0949"
+        "docs/reference/adapter/functions/activateHotkeysProviderScope.md": "d97175b321595a2473a8861df311bf19c1dd354d6ecb66ca9d7bce319ef438be"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/reference/adapter/functions/activateHotkeysProviderScope.md"
       ]
@@ -4704,13 +4704,13 @@
       ]
     },
     "source:docs/reference/adapter/functions/createHotkeyBindings.md": {
-      "fingerprint": "0250f1af936c8d72b11d0db1cba169cc2281b29863263ef72af794aa06058fdf",
+      "fingerprint": "e98c02ba1a1b9dbbd5c622590a36606b5116b079b709a97a91d439c1083acc41",
       "snapshot": {
-        "docs/reference/adapter/functions/createHotkeyBindings.md": "32da6484bc430676315bde449fdc105de7a1f306944fa50723abe1389a44b872"
+        "docs/reference/adapter/functions/createHotkeyBindings.md": "bc46eb83ac8c64dacae0f3958787eaf8d92b15bc7cb6b1a0566c80347a1b2592"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": ["docs/reference/adapter/functions/createHotkeyBindings.md"]
     },
     "source:docs/reference/adapter/functions/createStore.md": {
@@ -4726,49 +4726,49 @@
       ]
     },
     "source:docs/reference/adapter/functions/getHotkeysProviderScopeKey.md": {
-      "fingerprint": "7363f48bc4e818c762351f9eafe9cb78be3d2eabfda304f46e81dfaa350eb716",
+      "fingerprint": "02a6cbe92f2c3472f36e9605f0e3016e5869d1f48d117c26e3ca75d4db2afce4",
       "snapshot": {
-        "docs/reference/adapter/functions/getHotkeysProviderScopeKey.md": "9a7958bd4d13c8d0af554f469782f894d4317865a4b798002639ce84b293107a"
+        "docs/reference/adapter/functions/getHotkeysProviderScopeKey.md": "b7d587652c2b01683c812579f86b868272e1ff85c052fb98bc2e7b358f5ef131"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/reference/adapter/functions/getHotkeysProviderScopeKey.md"
       ]
     },
     "source:docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md": {
-      "fingerprint": "b748ed0824e8a08315908d0ef2938d15e4af3fb78d4cd9daf9d46ad644d95992",
+      "fingerprint": "bbaba8fa1af3ee0524f5b74cc4e9ddd3f12f3f6e5bef7905c0d1e717467b535b",
       "snapshot": {
-        "docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md": "b359dd7b24fbb2b424fc0737aaf9f53700fbd89508098b6b9590743776777709"
+        "docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md": "62fd525d5c89d383fb419ba8394aa3fbe2961f33233dcfd3ab77b4ffd541e5f1"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md"
       ]
     },
     "source:docs/reference/adapter/functions/prepareHotkeyDefinitions.md": {
-      "fingerprint": "2be7375c6fc3b7528d54165370d22f08308bf7317a068365760293720492cded",
+      "fingerprint": "5d9ed1361de14ce770c784830a2ce04f2bcee4c54b5ab512b1614b7aa3680040",
       "snapshot": {
-        "docs/reference/adapter/functions/prepareHotkeyDefinitions.md": "80242241a57ee993cbcfb3a43b1fa6a964e7a980f9f038bb83135355bcf8c859"
+        "docs/reference/adapter/functions/prepareHotkeyDefinitions.md": "2bbaf42eda4c05db48869b7db7e82cea2c95a0011f172346827e3cda38bb711b"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/reference/adapter/functions/prepareHotkeyDefinitions.md"
       ]
     },
     "source:docs/reference/adapter/functions/subscribePublishedAppHotkeys.md": {
-      "fingerprint": "f595826a79f719e2420d4c3be1a846046851f79200067b569db85d648daa1cd2",
+      "fingerprint": "d39b5915b073643d51e63d0bf444faaef54c543205d40382cedac254e257c54d",
       "snapshot": {
-        "docs/reference/adapter/functions/subscribePublishedAppHotkeys.md": "9e8f745c97ecf2019deaac1657aea5fd55e1a34c9cbb0e6cf23ebf37dd6cd3f6"
+        "docs/reference/adapter/functions/subscribePublishedAppHotkeys.md": "8500064eaecc508a4c05750dfeae9d2c9f5756ea315414a9ad729c95564b323f"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/reference/adapter/functions/subscribePublishedAppHotkeys.md"
       ]
@@ -4784,129 +4784,129 @@
       "evidence": ["docs/reference/adapter/index.md"]
     },
     "source:docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md": {
-      "fingerprint": "8eabb468c8558ed12c3d8d96cb4738f09875d336497caa16864913886ee88dc9",
+      "fingerprint": "036b46e4e85f040053878affea4f2d9a341a31ed9f3a38bf29326ed13ae6f58a",
       "snapshot": {
-        "docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md": "72a1835e2220fa2c09cb20b82a038fcc2318de7a31d93d6cfa2043b079abc721"
+        "docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md": "a3f0aec1226a3924d641f35e105c66443d07138cf67e56115124d52d07ac78b9"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md"
       ]
     },
     "source:docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md": {
-      "fingerprint": "ef6e507d5bcbe000f79ca0a8b27ba48aa053d45fe8b3eee2353b7b635f3859b1",
+      "fingerprint": "9377c61000b93ed8fe9abf00a2c327df24a332f2b9efaf2e9e4546a38bb3bc15",
       "snapshot": {
-        "docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md": "606115acb309f0db4a4ad3d9a71b850ec5c0e0f42cececd5704382b0478e1259"
+        "docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md": "ab2ddd8682a151e10b6857d1696a37153cf39a986044d5d92cde1d69a96d7bfd"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md"
       ]
     },
     "source:docs/reference/adapter/type-aliases/AdapterAppHotkeyOptions.md": {
-      "fingerprint": "5f8f849946acb6540739c1fb7f65c48232ea41bec8eb90b66c61dbbffc5c04a2",
+      "fingerprint": "a17f6bc20d84b7eb1fa846a5f7fd34a021a076b168f4c5e0303749ac049e36ac",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterAppHotkeyOptions.md": "6ca50828cd359c0190556ed6d970ed9d4d7010ed339ffd796a905fd3a84fd7b0"
+        "docs/reference/adapter/type-aliases/AdapterAppHotkeyOptions.md": "2e4bd12c41b8999b434e60e018b4ea40fa7f6f743cc270c4356f3ec83f64f710"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/reference/adapter/type-aliases/AdapterAppHotkeyOptions.md"
       ]
     },
     "source:docs/reference/adapter/type-aliases/AdapterChordOptions.md": {
-      "fingerprint": "0f983db345efc6904de38630964cfb5c93bdf074d87c89eac924d19ea677f131",
+      "fingerprint": "ed6b1b1367b81cbd2e02e875b38b9eef4fe55ebe02911f5eda26d6608096405f",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterChordOptions.md": "92bf97037d2312a8e9fc22ee37d0a71a6843649ab9718a69359e647e724d14b9"
+        "docs/reference/adapter/type-aliases/AdapterChordOptions.md": "5c1ff21b2f6d9b4686d671ded038958477c3bd4b322125cf2bc8c81f19a35489"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": ["docs/reference/adapter/type-aliases/AdapterChordOptions.md"]
     },
     "source:docs/reference/adapter/type-aliases/AdapterCommonOptions.md": {
-      "fingerprint": "626ab23f92676841d6def33ddda630fa8f81233c15129423a773133d971d9964",
+      "fingerprint": "c8f30c3ba4aa8f25895278f9caa607406bbb8777d81488003caa1900e4681222",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterCommonOptions.md": "6c9e44349ed4b88859184d6ce4125f67c0d65c66691d2699c1652fafbb425b08"
+        "docs/reference/adapter/type-aliases/AdapterCommonOptions.md": "81ab7501c478750ce8c58c7022ed20ccab565d10c597e5a111bbe6c8c808bb02"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/reference/adapter/type-aliases/AdapterCommonOptions.md"
       ]
     },
     "source:docs/reference/adapter/type-aliases/AdapterHotkeyDefinition.md": {
-      "fingerprint": "a479a8d29cd6e4d6466fba902f5a9b2e516d3a405cbfe3a64c86764530fb1192",
+      "fingerprint": "f8ad215da1f63cbd529b51c831b3424f472426ba9ca0aa914f60abf0fa7a7c4c",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterHotkeyDefinition.md": "3353319e2d2567018583f1b39508535b491e724d1131adb7b68f100a3d9f54f0"
+        "docs/reference/adapter/type-aliases/AdapterHotkeyDefinition.md": "44cf6515adeb36b771c7b5c6ff2f5735b940cab7fb2829e3ec0e65ec32d689ba"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/reference/adapter/type-aliases/AdapterHotkeyDefinition.md"
       ]
     },
     "source:docs/reference/adapter/type-aliases/AdapterHotkeyOptions.md": {
-      "fingerprint": "08ae517d94e57b3067090ef886ab90acb379178af663010092583b425bd92177",
+      "fingerprint": "acfa2cc2db97209ec5718791c46729fb106d7a24c8506a5de7a7dfa87b82cace",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterHotkeyOptions.md": "3c74bddf7deb9a6c2856138de28f778bccf9851037bc7a55de276efd122a634a"
+        "docs/reference/adapter/type-aliases/AdapterHotkeyOptions.md": "2e84aff3038b1e68560f98d0f5a92cdb80b144f6fea547fc94482d389b1e1fc2"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/reference/adapter/type-aliases/AdapterHotkeyOptions.md"
       ]
     },
     "source:docs/reference/adapter/type-aliases/AdapterOptionsFor.md": {
-      "fingerprint": "bdb2240313b1c28f1a240e51a7ea4a907633b2d4ce98f7a153af3d3d351e7ec1",
+      "fingerprint": "54ee73c43753ade35da8f05245583198fcdac716859983b88c5e2efd0c026d59",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterOptionsFor.md": "a9171c500e3f31115998e809af7f410e6fbd4d91abdda2044f0564a985b58d67"
+        "docs/reference/adapter/type-aliases/AdapterOptionsFor.md": "b5a2829948d969dbd2d99aecd0dc6aa51860330de86ced1198a701aa61ecd9f3"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": ["docs/reference/adapter/type-aliases/AdapterOptionsFor.md"]
     },
     "source:docs/reference/adapter/type-aliases/AdapterSequenceOptions.md": {
-      "fingerprint": "06788e84fcc9835821be047c82db9f554b5cf43c2be1ae9084cd464eeda25ec5",
+      "fingerprint": "c48ba3528c6238055593969237d5755cc9b646398b7ed190324fa6f1de86e02c",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/AdapterSequenceOptions.md": "5f98926172a07419c6ebab213ff119bdc4bdb4646b00820d483f2da5d6b6d6bc"
+        "docs/reference/adapter/type-aliases/AdapterSequenceOptions.md": "aafd1a2d528ba945f7c3cdf20a76db73b9428997e5d0d3207c8b08c2e1c02466"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/reference/adapter/type-aliases/AdapterSequenceOptions.md"
       ]
     },
     "source:docs/reference/adapter/type-aliases/HotkeyBindingsCommonOptions.md": {
-      "fingerprint": "be21159ca5a8c8509524ef8ffc2db45a7f37745c3bd05576cec52bb6873d0056",
+      "fingerprint": "c37b4e362b6ffd6b57a69819a75a611bae9a20a8ba1342c1dca6a5ca9b76b098",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/HotkeyBindingsCommonOptions.md": "4ba7afd8615aee9c0818e239dc3f2a3b6e10a6e30c8aaa74d4c6330b999ebe84"
+        "docs/reference/adapter/type-aliases/HotkeyBindingsCommonOptions.md": "b37ff79f8ed1501476190cdd534db721cfb81d0d0ddcc1f96351313c028f088e"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/reference/adapter/type-aliases/HotkeyBindingsCommonOptions.md"
       ]
     },
     "source:docs/reference/adapter/type-aliases/HotkeyDefinition.md": {
-      "fingerprint": "2a5592a2fffa9c00dd12e799c589e69812c2374cc73731129a19b793aa800119",
+      "fingerprint": "ce83831ed4b0886ebe31c24fe21b4cb93dcdad8f4a05051151130fc571d2297a",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/HotkeyDefinition.md": "575f83cee967f8fb4e44daa0d3ffac674badc7d51daa8852710e5906cc5c688a"
+        "docs/reference/adapter/type-aliases/HotkeyDefinition.md": "02ded444bd2e71a9b86562090ef9a1fc44048b83ad119701d9bfb728d846d26e"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": ["docs/reference/adapter/type-aliases/HotkeyDefinition.md"]
     },
     "source:docs/reference/adapter/type-aliases/Store.md": {
@@ -4922,13 +4922,13 @@
       ]
     },
     "source:docs/reference/adapter/type-aliases/WithTarget.md": {
-      "fingerprint": "4936f906bf584b75a601b6a9ba07cfcabaafd2a9a73b8880cee88861d5c4ddfd",
+      "fingerprint": "fc42197fb3c1ef5b139552b5eb667fc652eea55b771bf7fadf4aa1fee4e7374d",
       "snapshot": {
-        "docs/reference/adapter/type-aliases/WithTarget.md": "e5b689761bcb116bc6f63de61bcb26b50874054962062b5129350a2435a6e0b6"
+        "docs/reference/adapter/type-aliases/WithTarget.md": "a98abc540505e7e24496e4e1c9bbcee62330fe6f0509852c2471fc0892831972"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": ["docs/reference/adapter/type-aliases/WithTarget.md"]
     },
     "source:docs/reference/classes/KeyStateTracker.md": {
@@ -5262,13 +5262,13 @@
       ]
     },
     "source:packages/hotkeys/src/adapter.ts": {
-      "fingerprint": "5807818e03a3f362e1a5311e523753db4a32743a681080174621d3eaf502a8f8",
+      "fingerprint": "b7849f290fb27db159c35e5d456837541a1c5b7194e6c559ee07a673e07165db",
       "snapshot": {
-        "packages/hotkeys/src/adapter.ts": "adb269081e21bf3c779861af4b1a109fcd2287430bdc0f45ddbf470fe7a9eacc"
+        "packages/hotkeys/src/adapter.ts": "d3bcbb12cd6377969d50b799b8a6d925d0d668abb47f8a0ea151865ba5565c71"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": ["packages/hotkeys/src/adapter.ts"]
     },
     "source:packages/hotkeys/src/key-state-tracker.ts": {
@@ -7738,13 +7738,13 @@
       ]
     },
     "source:docs/framework/ember/reference/interfaces/DefaultHotkeysOptions.md": {
-      "fingerprint": "2f92a22585a908484e41c0198bdf133d147a774c8a12433cee277798656b20a5",
+      "fingerprint": "c2bd37d8cb5f25d4b4069e1b5e3f008188647a49863ab9b7327c14741d44b111",
       "snapshot": {
-        "docs/framework/ember/reference/interfaces/DefaultHotkeysOptions.md": "b7ebdd025b4011a146df3952a11a3ca87f5fb63e397ff78574269de5336cf3a7"
+        "docs/framework/ember/reference/interfaces/DefaultHotkeysOptions.md": "e452e052e6b446729a4cacd4cd9f5a12f1f9a17d39f94ad9256684f499ed3f3e"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/framework/ember/reference/interfaces/DefaultHotkeysOptions.md"
       ]
@@ -7822,13 +7822,13 @@
       ]
     },
     "source:docs/reference/adapter/functions/getServerPlatformSnapshot.md": {
-      "fingerprint": "192dc36735317e2e2f55b8c818d729302f42121559360b6e9a9cd3a3994bcfa6",
+      "fingerprint": "ebb2cf0d83ebc421c9e368779b37139b481eb9041af567f636c60ed8ab18fbb7",
       "snapshot": {
-        "docs/reference/adapter/functions/getServerPlatformSnapshot.md": "eff027cfbd858c94247866ea9f7daaacdb09915a495c55da26fad83fe277096f"
+        "docs/reference/adapter/functions/getServerPlatformSnapshot.md": "d3eb156f882472226407c007d9d5ad875b2c425294cb823199cb57a76ee951ea"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": [
         "docs/reference/adapter/functions/getServerPlatformSnapshot.md"
       ]
@@ -7894,13 +7894,13 @@
       "evidence": ["packages/angular-hotkeys/tests/platform.test.ts"]
     },
     "source:packages/ember-hotkeys/src/types.ts": {
-      "fingerprint": "7134628d7f782c61dd72e1f7c6c376d03cb0603ec9decdcc1b2577361aad7e4d",
+      "fingerprint": "3e8fa1132d34be26ac12b81661b3a7939808bd7e891a1fc2edf25331743b8edd",
       "snapshot": {
-        "packages/ember-hotkeys/src/types.ts": "e87a31a4b0fd4b4a51d995593eb69f649998f43522b4a3a58913b65fece0799c"
+        "packages/ember-hotkeys/src/types.ts": "aca9e556333223a19ed4f559b62cf433bbfa57b7689c44e412938006dc2685a5"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": ["packages/ember-hotkeys/src/types.ts"]
     },
     "source:packages/ember-hotkeys/src/useFormatForDisplay.ts": {
@@ -8006,13 +8006,13 @@
       "evidence": ["packages/preact-hotkeys/tests/useFormatForDisplay.test.tsx"]
     },
     "source:packages/react-hotkeys/src/_usePlatform.ts": {
-      "fingerprint": "a6e987c9612a1c65f6fdf31a54b4dd74c60839aef3ef9b1d9b0e51385c2f5196",
+      "fingerprint": "5e3343eff2cf6c1dca41fb96303a0c81a17c708f0ee9b7e76d4753cdfa315f6d",
       "snapshot": {
-        "packages/react-hotkeys/src/_usePlatform.ts": "e1114d523fff58d295fdaa1a476bb68574d1c4bf0204f8e2d654588b1c2de480"
+        "packages/react-hotkeys/src/_usePlatform.ts": "af0f8b5a3b03693084d033e012046fd35bf75583d57f9a7d92af5a6b872eef5b"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": ["packages/react-hotkeys/src/_usePlatform.ts"]
     },
     "source:packages/react-hotkeys/src/useFormatForDisplay.ts": {
@@ -10894,6 +10894,112 @@
       "outcome": "no-change",
       "reason": "Scopes examples now use HotkeysProvider directly instead of a local Scope wrapper; skills already show HotkeysProvider for scopes.",
       "evidence": ["examples/vue/scopes/src/TabsDemo.vue"]
+    },
+    "source:.coderabbit.yaml": {
+      "fingerprint": "39e1a1d1231a63a7c8fb91ecc43d83d2accb453675a5fe8bb72bf79392b53784",
+      "snapshot": {
+        ".coderabbit.yaml": "23c55910775966e6489170f900a05f7e36acbf780e2d7511a6a56f077a0c1a81"
+      },
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "outcome": "no-change",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
+      "evidence": [".coderabbit.yaml"]
+    },
+    "source:docs/framework/ember/reference/interfaces/EmberCustomHotkeys.md": {
+      "fingerprint": "18d59acbaf1c46b25e45f08d80d1b7bbae25353ae3eb10918a5af6ce6261aa54",
+      "snapshot": {
+        "docs/framework/ember/reference/interfaces/EmberCustomHotkeys.md": "bc492d2759956f7a8cda7fb50f75222947932dd458995aa49f5acec7c06322fb"
+      },
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "outcome": "no-change",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
+      "evidence": [
+        "docs/framework/ember/reference/interfaces/EmberCustomHotkeys.md"
+      ]
+    },
+    "source:docs/framework/ember/reference/interfaces/EmberHotkeyRecorder.md": {
+      "fingerprint": "8b9afe25b24e77ee42c04cf948965336ea09d973c4f9935754ac6ec71a25d37d",
+      "snapshot": {
+        "docs/framework/ember/reference/interfaces/EmberHotkeyRecorder.md": "387155aec848e8488f4b1426d35d75fec5d174b2f6c2a9b8c0b550d2f390c0cf"
+      },
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "outcome": "no-change",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
+      "evidence": [
+        "docs/framework/ember/reference/interfaces/EmberHotkeyRecorder.md"
+      ]
+    },
+    "source:docs/framework/ember/reference/interfaces/EmberHotkeyState.md": {
+      "fingerprint": "69389690fe3a6f0e9ebd14ea1910c03da5a5c8bcf2e6c4f3c407679f89b1471d",
+      "snapshot": {
+        "docs/framework/ember/reference/interfaces/EmberHotkeyState.md": "d64b71b586fbff648eb2c124e1936c824ec78038992f874261e112a4dc861021"
+      },
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "outcome": "no-change",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
+      "evidence": [
+        "docs/framework/ember/reference/interfaces/EmberHotkeyState.md"
+      ]
+    },
+    "source:docs/framework/ember/reference/interfaces/HotkeyRegistrationsResult.md": {
+      "fingerprint": "921aea08592cd437470791c4cd9aa73f9d3e84a18f82c46a28aefc0ca2d8bde3",
+      "snapshot": {
+        "docs/framework/ember/reference/interfaces/HotkeyRegistrationsResult.md": "dd02ce5c5b478122875cabf3561c3bdaef2e9444c144c3dcbeaf860a48223c36"
+      },
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "outcome": "no-change",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
+      "evidence": [
+        "docs/framework/ember/reference/interfaces/HotkeyRegistrationsResult.md"
+      ]
+    },
+    "source:docs/framework/ember/reference/type-aliases/EmberAppHotkeyList.md": {
+      "fingerprint": "27825d0443c110ab6e5a03fea908806e67554fc5efd554bab96251dc12f9bd27",
+      "snapshot": {
+        "docs/framework/ember/reference/type-aliases/EmberAppHotkeyList.md": "79a85bf351df046c08c73b4db0dce4fe1dd5d511f4b85b6b3143b7ca08788405"
+      },
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "outcome": "no-change",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
+      "evidence": [
+        "docs/framework/ember/reference/type-aliases/EmberAppHotkeyList.md"
+      ]
+    },
+    "source:docs/framework/ember/reference/type-aliases/EmberHotkeyCommonOptions.md": {
+      "fingerprint": "c98c90923ec96427f294f13c5ed5938e4f8c0aae372b442e72f7ad6f836d382a",
+      "snapshot": {
+        "docs/framework/ember/reference/type-aliases/EmberHotkeyCommonOptions.md": "3ec2a499fecc2467552cf1e289e05a7a37d3eebad5fd18d077930f33b33af2a3"
+      },
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "outcome": "no-change",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
+      "evidence": [
+        "docs/framework/ember/reference/type-aliases/EmberHotkeyCommonOptions.md"
+      ]
+    },
+    "source:docs/framework/ember/reference/type-aliases/EmberHotkeyDefinition.md": {
+      "fingerprint": "ff0a0a3e99238fe853cea431d66dd2dfb652abcb8cf9103aa05cc887979de493",
+      "snapshot": {
+        "docs/framework/ember/reference/type-aliases/EmberHotkeyDefinition.md": "374881ae1a2d317947464541e19c6cec898d8a1ad05d52661714a10c7e19705c"
+      },
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "outcome": "no-change",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
+      "evidence": [
+        "docs/framework/ember/reference/type-aliases/EmberHotkeyDefinition.md"
+      ]
+    },
+    "source:docs/framework/ember/reference/type-aliases/EmberHotkeyTarget.md": {
+      "fingerprint": "0da779dade797068409434fdaf645ddceff35df04a01dc0f303790f8518b9d69",
+      "snapshot": {
+        "docs/framework/ember/reference/type-aliases/EmberHotkeyTarget.md": "5f2763ef52c2a4f284af56b919cdb7b46b7fe7537d322d9e76faa399255d5f56"
+      },
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "outcome": "no-change",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
+      "evidence": [
+        "docs/framework/ember/reference/type-aliases/EmberHotkeyTarget.md"
+      ]
     }
   }
 }

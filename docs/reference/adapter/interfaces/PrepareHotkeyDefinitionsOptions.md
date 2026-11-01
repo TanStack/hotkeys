@@ -3,7 +3,7 @@ id: PrepareHotkeyDefinitionsOptions
 title: PrepareHotkeyDefinitionsOptions
 ---
 
-Defined in: [adapter.ts:283](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L283)
+Defined in: [adapter.ts:282](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L282)
 
 Context for `prepareHotkeyDefinitions`.
 
@@ -23,7 +23,7 @@ optional appHotkeysStore?:
   | null;
 ```
 
-Defined in: [adapter.ts:285](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L285)
+Defined in: [adapter.ts:284](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L284)
 
 The provider's app hotkeys store, so app hotkeys use custom hotkeys.
 
@@ -35,7 +35,7 @@ The provider's app hotkeys store, so app hotkeys use custom hotkeys.
 optional commonOptions?: AdapterCommonOptions<TTarget>;
 ```
 
-Defined in: [adapter.ts:289](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L289)
+Defined in: [adapter.ts:288](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L288)
 
 Options for every definition, applied after app hotkey declarations.
 
@@ -47,7 +47,7 @@ Options for every definition, applied after app hotkey declarations.
 optional defaults?: AdapterCommonOptions<TTarget>;
 ```
 
-Defined in: [adapter.ts:287](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L287)
+Defined in: [adapter.ts:286](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L286)
 
 Provider defaults, applied first.
 
@@ -59,7 +59,7 @@ Provider defaults, applied first.
 optional resolveTarget?: (target) => Target | null | undefined;
 ```
 
-Defined in: [adapter.ts:295](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L295)
+Defined in: [adapter.ts:294](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L294)
 
 Resolves a framework target, such as a ref. Return `undefined` for the
 document or `null` to skip registration until the target exists.
