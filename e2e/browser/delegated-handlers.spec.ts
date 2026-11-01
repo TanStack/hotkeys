@@ -125,3 +125,37 @@ test.describe('afterDelegatedHandlers', () => {
     expect(await hk.firedNames()).toEqual(['hotkey', 'child', 'panel'])
   })
 })
+
+test('runs an element hotkey inside a closed shadow root after handlers delegated there', async ({
+  page,
+  harness,
+}) => {
+  const hk = await harness('<div id="host"></div>')
+  await page.evaluate(() => {
+    const host = document.getElementById('host')!
+    const shadow = host.attachShadow({ mode: 'closed' })
+    shadow.innerHTML =
+      '<div id="root"><div id="panel" tabindex="0"><span id="child" tabindex="0">child</span></div></div>'
+    const root = shadow.getElementById('root')!
+    const panel = shadow.getElementById('panel')!
+    const child = shadow.getElementById('child')!
+    root.addEventListener('keydown', (event) => {
+      if (event.composedPath()[0] === child) {
+        window.harness.fired.push({
+          name: 'child',
+        } as (typeof window.harness.fired)[0])
+      }
+    })
+    window.TanStackHotkeys.getHotkeyManager().register(
+      'K',
+      () =>
+        window.harness.fired.push({
+          name: 'hotkey',
+        } as (typeof window.harness.fired)[0]),
+      { target: panel, afterDelegatedHandlers: true },
+    )
+    child.focus()
+  })
+  await page.keyboard.press('k')
+  expect(await hk.firedNames()).toEqual(['child', 'hotkey'])
+})

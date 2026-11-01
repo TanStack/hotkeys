@@ -17,7 +17,6 @@ describe('useHotkeys with sequences', () => {
 
   afterEach(() => {
     HotkeyManager.resetInstance()
-    document.body.replaceChildren()
   })
 
   it('should register multiple sequence handlers', () => {
@@ -152,8 +151,6 @@ describe('useHotkeys with sequences', () => {
     const callback = vi.fn()
     const targetA = document.createElement('div')
     const targetB = document.createElement('div')
-    // Events reach element targets through the document.
-    document.body.append(targetA, targetB)
 
     const { rerender } = renderHook(
       ({ target }: { target: HTMLElement }) =>

@@ -86,7 +86,7 @@
       "evidence": ["packages/hotkeys/skills/app-hotkeys/SKILL.md"]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "efa944bb08abb036ec47dd98f855d97ce8b63dcb025c33f944b4a72b8063f035",
+      "fingerprint": "40a136c964fba7bec831e33a97f8bb47fcad1eb8e2af74b203f03ab48810d803",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "86d90e75bd74762ab0eaee5a1c41d919338dcfa6238ff7186567d0d6dad0b0e5",
@@ -95,7 +95,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6e1100b775f2dacd74f5b69fd310dd235e76830d877f28ad783d68a1a226f3b2",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
-        "packages/hotkeys/src/hotkey-manager.ts": "a68f291edfae159bfc819829f71c6de9086e6947621a9cec99daf7bb1e647ce7",
+        "packages/hotkeys/src/hotkey-manager.ts": "cb50eb9bce4ed4e61a7d4ec13e54fe81137a261ef98d72ae5a06e1ee7b6bfa4a",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "d7747b87eae074ab3620484f64cf13ea9c27d24d059d56d9a9a07ccf0c2d3e06",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -107,9 +107,9 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "ac43e8aa85754a38841423ea5129c99d60654078",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Review fixes: delegated listeners move after listeners added since, such as Solid delegating late, and cleanup uses the document a listener attached to. No skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -255,7 +255,7 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "ff9db62a095f2f72ae902ef8c094614149fedf1526f5cbedd88c11a777a57c7e",
+      "fingerprint": "241e80825d2c2386a958d8339951eb7bf90c1d99789e6c1b9c7148ace265b274",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -318,7 +318,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/app-hotkeys.ts": "a6176a749dd7439146c335e769dfae1a2cd72ace029f9cbc64b52ff5fe2d9d03",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
-        "packages/hotkeys/src/hotkey-manager.ts": "a68f291edfae159bfc819829f71c6de9086e6947621a9cec99daf7bb1e647ce7",
+        "packages/hotkeys/src/hotkey-manager.ts": "cb50eb9bce4ed4e61a7d4ec13e54fe81137a261ef98d72ae5a06e1ee7b6bfa4a",
         "packages/hotkeys/src/hotkey-recorder.ts": "7d479391753ffa97e69a7d7cb994cb7053a7ffb3e0aed6dfbfb2dbbdf51a3d24",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "4e5593e8d4373475d4e6006e30ec663d7f0f3fcf0aa881fc403efe58b9cf7606",
@@ -387,9 +387,9 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "ac43e8aa85754a38841423ea5129c99d60654078",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Review fixes: delegated listeners move after listeners added since, such as Solid delegating late, and cleanup uses the document a listener attached to. No skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["_artifacts"]
     },
     "source:.changeset/intent-skills.md": {
@@ -620,23 +620,23 @@
       "evidence": ["docs/framework/vue/reference/functions/useHotkeyHint.md"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "5c6c5fd26b660a13444bf5de80b5198ef0bfb78d363d664d743fe33f255d81f6",
+      "fingerprint": "53389f62a065545751cae856416b89b0f5aa7ef67da88b36c85ce28e86e00534",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "2efbe64150cfaccf968713fd1d450e1bda0a96425bd5ac908ed0a33b386d74c3"
+        "docs/reference/classes/HotkeyManager.md": "eb459a6e53661bb1418aa94e95f347ce8f374fd3f5b9a457f1a314878bcf0a6e"
       },
-      "head": "ac43e8aa85754a38841423ea5129c99d60654078",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Review fixes: delegated listeners move after listeners added since, such as Solid delegating late, and cleanup uses the document a listener attached to. No skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "feb8a56669b40ba368b464c6c9a43c8b6a923f89d676fc57f505a65e1ad73dc9",
+      "fingerprint": "17431d911c32919c114874fef94622b3816778f3b3badd7db67e89369db786a3",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "615899be71474a81149e247a4e51ac8eeb3e1f631b0d96fbda0bec0907121af8"
+        "docs/reference/functions/getHotkeyManager.md": "54d4441fbc7ea2b978d74fa52b33c86f3c119ae0e011579e9d571df1a14ed830"
       },
-      "head": "ac43e8aa85754a38841423ea5129c99d60654078",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Review fixes: delegated listeners move after listeners added since, such as Solid delegating late, and cleanup uses the document a listener attached to. No skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
@@ -1110,143 +1110,143 @@
       "evidence": ["docs/framework/vue/guides/hotkeys.md"]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
-      "fingerprint": "eba9be53d2f9a83067c643cfcc66a6aaae014807ca21633359e39c663754aab6",
+      "fingerprint": "f23dfc3fa895e564366e622d17b74723be5fc8c5db369a581955340c4ebf5bdb",
       "snapshot": {
-        "docs/reference/functions/toHotkeyRegistrationView.md": "ab575b2de34dc09fc01f0f4f56186b7bd5e4b172580fc64539fc6692bcdc3e4c"
+        "docs/reference/functions/toHotkeyRegistrationView.md": "7e749967771199567f077085fea5001f5c1560eaa1ccd73fd00541b4b44fdd0a"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
-      "fingerprint": "2b339a74382e2651ad7f128c45594176f2313bbf229d8f63c434e14314d50888",
+      "fingerprint": "4b6105e0279768375e8d12cded479eca62e3601fe9e00314738de09fa1fe327d",
       "snapshot": {
-        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "8d544f034cfdca2683a825f297bbda306c1231b887e7a1bca3c5d5d9de7de5bf"
+        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "9faf8776734b425d06cc19fc02ddd20077319806e6eff4df0cde86138bb57edb"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordOptions.md": {
-      "fingerprint": "301d122a898fee858c62b314f8a35b6f4772bd823eff0869a9b46b5abbdad61c",
+      "fingerprint": "ff52e6a133a92e8287694a10d843f93f3e6de784b662d97b4d7d87666d4bf684",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordOptions.md": "3a2f0359c112745bca9ed2e3d5e669590e6b8acf8cb8165e6520f45c6bdb9250"
+        "docs/reference/interfaces/HotkeyChordOptions.md": "f02c798e04851795535779b52b22560977da906059586d778fbf39910a932786"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistration.md": {
-      "fingerprint": "427c3128a0d31fc007da79e85977a68028d982887303aa3f100926cf4e19f962",
+      "fingerprint": "8ff8e82b26a5f185fd28ce6502b48bf163408ab5d919ea1a9ed23062e147880b",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistration.md": "f29d758c9509e5850b80b7a90e0e0e10beb5adab599f47ad2836ed69fa96ee78"
+        "docs/reference/interfaces/HotkeyChordRegistration.md": "97b1bde7804864d72fa80cc8986a4e4b9db7d55f27b8e5dbb3dfc4f6ece1be5a"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistrationView.md": {
-      "fingerprint": "10da586243c49dcd94fbc50c5eb15f317e6cac11d150ff2b50824450d60e4102",
+      "fingerprint": "1784be5d9c069db020391d948595c0fe7372a71707f72f231e734912f6a6291d",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "78ea56f76e0930943a9480e8e26964ee50b1a927d7d61eaa7b57a236092f574d"
+        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "aeffa6e9e899ca2bac7b353a4e52d062611c579452ceb561fd625cb808f07a35"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/interfaces/HotkeyOptions.md": {
-      "fingerprint": "6e815451efbd1be220f55948aafabc7f3248b7b402b2cd4df26a44a20a0b8c93",
+      "fingerprint": "9dcb9e5747b0276b1b75f109f7427711fcbb8a86f3282d64d1cba2eff91917a5",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyOptions.md": "0b3a15c75e873e75dd6d3772171a6113c9e1fc00e3c5745ab85fe2b54434acbd"
+        "docs/reference/interfaces/HotkeyOptions.md": "57ebacec59a28f4e2cb467fe9d9c8341c7e8f40cb266e906c0af9e9c47c8cfad"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationHandle.md": {
-      "fingerprint": "12132e280d55fa8b824eca4e4a78820e22ca795fb7ff67eafd5ad2bbc08f6b32",
+      "fingerprint": "ade221649662786a9789012beae47108a40d43a6af310a30a62c0454d1574419",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "29494bc84611404791c983f674625c22581114abd4102ac8437520c2144b067a"
+        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "d49f7cbaaa9ea4730d649b87a65bd09ae376c9693179fb19f8cd41571e8396c5"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/interfaces/HotkeyScopesState.md": {
-      "fingerprint": "916624414dbe028c83d9a01b13c0bf60c95813aed491604426a536e6dc8d646d",
+      "fingerprint": "ce51cacc7eebdbce653422fa52c6066a001726f5c72d42047b3dfc3661a6ab0c",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyScopesState.md": "f998fb0ec543ea2fb2646d6eb9f56e450c14b8eb86749e261edcd35d684f9454"
+        "docs/reference/interfaces/HotkeyScopesState.md": "57c1472cf5d5da48d618b480345b3c7d5bf833da4b7d133ca7fe421a7fa9a9fe"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
-      "fingerprint": "02e6aff687732b7581cacf46a94c407c3af9ee376efd3e234f39c8a3ada7fc54",
+      "fingerprint": "6f857734559a8e2cafb3399dfa62d8a1cfeab33823b828f76550ff9400a1c740",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceOptions.md": "edb85a34c85f3093cd37ad6bdef030adf9a93e57e446645343f537cf4512f562"
+        "docs/reference/interfaces/HotkeySequenceOptions.md": "8ae657594f7e1dadc2ec798a9484176c382760f7b991c7dfb5d9acdb23189bce"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistration.md": {
-      "fingerprint": "4533e65c8e17e1190b1f692e451d28c81ee7e9a30d3d4a33da7bcf991e1e59df",
+      "fingerprint": "1f8e6ccb608e308b752ad22223e421dc3897895876f89267638f5a41b0e87fa9",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistration.md": "fe6c6c747fc1eb412c4b3369b92604ba6000ee077676827be0fe8d8ac01cac36"
+        "docs/reference/interfaces/HotkeySequenceRegistration.md": "9684fec0ceff57f92c62f729af36a9b647ae01e1d78f4c8b0ed41a7406410d6d"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistrationView.md": {
-      "fingerprint": "4140dcbf6fb174566fd8bc9ad52a259b104fe1666ce3e4d44159e8d31be326a5",
+      "fingerprint": "7cf36bee673b3d91a53c48f3846f8358d40d18bd46e2e8d9fbe996662c3cb590",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "8c75d49e62487da51cc881bff302fb2debff1d2c2ccc368f9311b2e9667bea39"
+        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "1ebe0f4a705261df5d3f9d73b7c5c084fec17049bc0b6a512be182676c0bdbc6"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/type-aliases/HotkeyOptionsFor.md": {
-      "fingerprint": "078fe69f7a56baed3c9821d83c31a39d89c3f789faa90cd763f4b79f3293ca49",
+      "fingerprint": "2f88ed9204fd0e4d69fa764989bb610e51a082d5760a866d61d35d44314827a1",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyOptionsFor.md": "3f58c1a108a13234299bc05f646afca16344d2b7f577c3fc8477f684427e1d9a"
+        "docs/reference/type-aliases/HotkeyOptionsFor.md": "54e2a20881edd4c8c2f5b89db82486ca61c132e09893af6a0602eca3d4d064f3"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistration.md": {
-      "fingerprint": "acb72476b6f9367c3d352ddd29f6d26ddf451802ba5d5a847cd7af1546a3d59d",
+      "fingerprint": "a97577220ce4fea529c2017df4309a7ea676c3a8d021eb54bf2ac16b770f1607",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistration.md": "4497888d4a56ec9d3aaccfcd23b4f75050f496063adbbf10aab6f14b64ae03c5"
+        "docs/reference/type-aliases/HotkeyRegistration.md": "8942d68957fa637b03f2fc1a3552aa5ba2d956595ae1c4be43273b32ed44338c"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationView.md": {
-      "fingerprint": "7873c1ae41404a312b75212024ec4965e156e9e0ba080b61a8fd6c168e1016fb",
+      "fingerprint": "7ff1082ec977a0e4aa34f33786a7351fbfb02cfdb514338c412f215070f0e0bf",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationView.md": "663402e385f977738c36a40d049c95c4efc88842eaf70042489873bdf2a03288"
+        "docs/reference/type-aliases/HotkeyRegistrationView.md": "d1da844a8f84b949e2cbc49b54b39717f4da49c3cdcb631ec9ae4a948f5025ae"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys-devtools/src/components/DetailsPanel.tsx": {
@@ -1872,13 +1872,13 @@
       "evidence": ["docs/reference/index.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationStatus.md": {
-      "fingerprint": "eec06e9021666c6fb208927ea00af2a5e050462f36732104f2efc1a8b958d1c5",
+      "fingerprint": "787256096450c4815d022519e81de03f16471e9e25f469d8483d975472bef03c",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "2e6c9ec90bf34d7dbd533ef97aeab7c5192d41ee3878a2f7f2fbf1dfd17dc5e7"
+        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "25f5bd0e6b79fd5527beb5d788e5f6fead58672a8ec81e9539993eff5db99c26"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyScopesState.ts": {
@@ -7124,13 +7124,13 @@
       "evidence": ["packages/vue-hotkeys/tests/unset-values.test.ts"]
     },
     "source:packages/hotkeys/src/_target-listeners.ts": {
-      "fingerprint": "8b4f5af45dbf1594d30c803f2c797ec06cee8258f9b8c2c120517f2153335ccc",
+      "fingerprint": "335634cb17c6d3aa9d301d238a03b720cd05a7b028ada20b046814bcbdee7c93",
       "snapshot": {
-        "packages/hotkeys/src/_target-listeners.ts": "68af9c4a01acad6c4eb95888112b51ffa7d8641b8a7d6e832b17a563b3f8836c"
+        "packages/hotkeys/src/_target-listeners.ts": "db83d501ab764ea357f7d6fbee74ff4d067fa2cc2a9c05cc483f54f8df02c044"
       },
-      "head": "ac43e8aa85754a38841423ea5129c99d60654078",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Review fixes: delegated listeners move after listeners added since, such as Solid delegating late, and cleanup uses the document a listener attached to. No skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/tests/capture.test.ts": {
@@ -10980,23 +10980,23 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:e2e/browser/delegated-handlers.spec.ts": {
-      "fingerprint": "26838600e1bba8221555af76c51ea5b1c769cc143ba5788418d28811836d6f44",
+      "fingerprint": "88f14068f021977c4517734a23f39a42fe53adb1b276808fb1c82dfd80954f70",
       "snapshot": {
-        "e2e/browser/delegated-handlers.spec.ts": "d761dfb91d180f2bd89ff6c087f0d216d04205d69fb532997df937c334c03208"
+        "e2e/browser/delegated-handlers.spec.ts": "675ef850e21b297b68160edef66c2e0aba2664031601c700a8bd5df7748ac809"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/tests/delegated-handlers.test.ts": {
-      "fingerprint": "02338b2ed67592a0bea2e1008a5f85233c6954fe5f5d4a5e9c9fdc385c731cf6",
+      "fingerprint": "f84036e7ffed35836d86f445350f8bf08984be71dff95ab31c5dd9316aa9b4e7",
       "snapshot": {
-        "packages/hotkeys/tests/delegated-handlers.test.ts": "dbaf4774bed9653475dcc0db617b9e40dfe5d23bb1cfded99ec115b864150325"
+        "packages/hotkeys/tests/delegated-handlers.test.ts": "6067f55d464c8196fa7a9c59198a3c0be0c8577c243725d7bb6a14fd5d368897"
       },
-      "head": "ac43e8aa85754a38841423ea5129c99d60654078",
+      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
       "outcome": "no-change",
-      "reason": "Review fixes: delegated listeners move after listeners added since, such as Solid delegating late, and cleanup uses the document a listener attached to. No skill change.",
+      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/octane-hotkeys/tests/element-order.test.ts": {

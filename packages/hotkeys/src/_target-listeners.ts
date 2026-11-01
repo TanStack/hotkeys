@@ -1,4 +1,4 @@
-type Target = HTMLElement | Document | Window
+type Target = HTMLElement | Document | Window | ShadowRoot
 type EventType = 'keydown' | 'keyup'
 type ListenerGroup = {
   ids: Set<string>

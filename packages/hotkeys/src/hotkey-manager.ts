@@ -126,8 +126,9 @@ export interface HotkeyOptions {
    * Run after key handlers that a framework calls from one listener on its
    * root or the document, such as React's `onKeyDown`, so handlers inside the
    * target run first and can stop the hotkey. An element target then listens
-   * on its document instead of the element, and a stop by an earlier listener
-   * on the document skips the hotkey. Applies only to the bubble phase.
+   * on its document, or on its closed shadow root, instead of the element. A
+   * stop by an earlier listener there skips the hotkey. Applies only to the
+   * bubble phase.
    * Adapters for frameworks that delegate key events set this.
    */
   afterDelegatedHandlers?: boolean
@@ -390,19 +391,37 @@ function optionsForKind(
   return rest
 }
 
+/** A node a registration's listener can attach to. */
+type ListenerTarget = Target | ShadowRoot
+
 /**
- * Where a registration listens: its target, or the target's document for an
- * element target that runs after delegated handlers in the bubble phase.
+ * Where a registration listens: its target, or for an element target that
+ * runs after delegated handlers in the bubble phase, the node where handlers
+ * delegated around it have already run. That is its document, unless the
+ * element is in a closed shadow root, which hides it from listeners outside,
+ * or in a tree outside any document, which events never leave.
  */
 function listenerTarget({
   target,
   options,
-}: Pick<HotkeyRegistration, 'target' | 'options'>): Target {
-  return options.afterDelegatedHandlers &&
-    !options.capture &&
-    !isDocumentLevel(target)
-    ? getTargetDocument(target)
-    : target
+}: Pick<HotkeyRegistration, 'target' | 'options'>): ListenerTarget {
+  if (
+    !options.afterDelegatedHandlers ||
+    options.capture ||
+    isDocumentLevel(target)
+  ) {
+    return target
+  }
+  let root = target.getRootNode() as ListenerTarget
+  while ('host' in root && root.mode === 'open') {
+    root = root.host.getRootNode() as ListenerTarget
+  }
+  return root
+}
+
+/** Whether a registration's shared listener moves after listeners added before it joins. */
+function movesAfterDelegatedHandlers(options: HotkeyOptions): boolean {
+  return !!options.afterDelegatedHandlers && !options.capture
 }
 
 /** Steps with Mod already resolved for the registration's platform. */
@@ -555,7 +574,7 @@ export class HotkeyManager {
     this.#processTargetEvent(...args),
   )
   /** Where each registration listens, kept so cleanup finds a target that moved documents. */
-  #listenerTargets = new Map<string, Target>()
+  #listenerTargets = new Map<string, ListenerTarget>()
   /** Events that continue a sequence in progress, decided before any listener runs. */
   #sequenceOwned = new WeakMap<KeyboardEvent, boolean>()
   /** Physical keys whose keydown a sequence owned, so their repeats and keyup are owned too. */
@@ -914,7 +933,7 @@ export class HotkeyManager {
       listenOn,
       !!registration.options.capture,
       id,
-      !!registration.options.afterDelegatedHandlers,
+      movesAfterDelegatedHandlers(registration.options),
     )
     this.#listenerTargets.set(id, listenOn)
 
@@ -966,9 +985,14 @@ export class HotkeyManager {
               to,
               !!options.capture,
               id,
-              !!options.afterDelegatedHandlers,
+              movesAfterDelegatedHandlers(options),
             )
             manager.#listenerTargets.set(id, to)
+          } else if (
+            movesAfterDelegatedHandlers(options) &&
+            !movesAfterDelegatedHandlers(reg.options)
+          ) {
+            manager.#listeners.add(to, capture, id, true)
           }
           return new Map(prev).set(id, { ...reg, options })
         })
@@ -1081,7 +1105,7 @@ export class HotkeyManager {
    */
   #processTargetEvent(
     event: KeyboardEvent,
-    target: Target,
+    target: ListenerTarget,
     eventType: 'keydown' | 'keyup',
     capture: boolean,
     ids: Set<string>,
@@ -1093,13 +1117,14 @@ export class HotkeyManager {
       this.#sequenceOwned.set(event, this.#isOwnedBySequence(event, eventType))
     }
     if (capture) {
-      this.#processRound(event, target, eventType, capture, ids)
+      // Capture listeners are always on the registrations' own target.
+      this.#processRound(event, target as Target, eventType, capture, ids)
       return
     }
-    // Element targets that run after delegated handlers listen here, on their
-    // document. Run them as if the event reached each target: inner targets
-    // first, each as its own round, then this target's own registrations.
-    const rounds = new Map<Target, Set<string>>()
+    // Element targets that run after delegated handlers listen here, usually
+    // on their document. Run them as if the event reached each target: inner
+    // targets first, each as its own round, then this target's own.
+    const rounds = new Map<ListenerTarget, Set<string>>()
     for (const id of ids) {
       const registration = this.registrations.state.get(id)
       if (!registration) continue
@@ -1127,7 +1152,14 @@ export class HotkeyManager {
           this.registrations.state.get(id)?.options.afterDelegatedHandlers
         if (!event.cancelBubble || (!delegated && arrivedStopped)) round.add(id)
       }
-      this.#processRound(event, roundTarget, eventType, capture, round)
+      // Rounds are keyed by registration targets.
+      this.#processRound(
+        event,
+        roundTarget as Target,
+        eventType,
+        capture,
+        round,
+      )
     }
   }
 

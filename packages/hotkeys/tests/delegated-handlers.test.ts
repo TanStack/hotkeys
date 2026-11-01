@@ -277,3 +277,48 @@ describe('afterDelegatedHandlers listener bookkeeping', () => {
     expect(log).toEqual(['delegated'])
   })
 })
+
+describe('afterDelegatedHandlers listener placement', () => {
+  it('reaches an element that is not in a document', () => {
+    const panel = document.createElement('div')
+    const child = document.createElement('span')
+    panel.append(child)
+    register('hotkey', panel)
+
+    press(child)
+
+    expect(log).toEqual(['hotkey'])
+  })
+
+  it('does not move a shared capture listener', () => {
+    const manager = HotkeyManager.getInstance()
+    manager.register('X', () => {}, { capture: true })
+    const later = () => log.push('later capture listener')
+    document.addEventListener('keydown', later, true)
+    cleanups.push(() => document.removeEventListener('keydown', later, true))
+    register('hotkey', document, { capture: true, stopPropagation: false })
+
+    press(document.body)
+
+    expect(log).toEqual(['hotkey', 'later capture listener'])
+  })
+
+  it('moves the listener when setOptions turns the option on', () => {
+    const { child } = panelWithChild()
+    const handle = register('hotkey', document, {
+      afterDelegatedHandlers: false,
+    })
+    const stop = (event: Event) => {
+      log.push('delegated')
+      event.stopPropagation()
+    }
+    document.addEventListener('keydown', stop)
+    cleanups.push(() => document.removeEventListener('keydown', stop))
+    handle.setOptions({ afterDelegatedHandlers: true })
+
+    child.focus()
+    press(child)
+
+    expect(log).toEqual(['delegated'])
+  })
+})

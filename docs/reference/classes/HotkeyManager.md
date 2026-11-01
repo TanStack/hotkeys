@@ -3,7 +3,7 @@ id: HotkeyManager
 title: HotkeyManager
 ---
 
-Defined in: [hotkey-manager.ts:511](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L511)
+Defined in: [hotkey-manager.ts:530](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L530)
 
 Singleton manager for hotkey registrations, including sequences.
 
@@ -39,7 +39,7 @@ top.unregister()
 readonly appHotkeys: Store<AppHotkeysStore | null>;
 ```
 
-Defined in: [hotkey-manager.ts:538](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L538)
+Defined in: [hotkey-manager.ts:557](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L557)
 
 The app hotkeys store published by a framework provider, so tools such as
 devtools can list declared hotkeys that are not registered.
@@ -52,7 +52,7 @@ devtools can list declared hotkeys that are not registered.
 readonly registrations: Store<Map<string, HotkeyRegistration>>;
 ```
 
-Defined in: [hotkey-manager.ts:531](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L531)
+Defined in: [hotkey-manager.ts:550](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L550)
 
 The TanStack Store containing all hotkey registrations, chords and sequences.
 Use this to subscribe to registration changes or access current registrations.
@@ -81,7 +81,7 @@ for (const [id, reg] of manager.registrations.state) {
 readonly scopes: Store<HotkeyScopesState>;
 ```
 
-Defined in: [hotkey-manager.ts:541](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L541)
+Defined in: [hotkey-manager.ts:560](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L560)
 
 Active scopes. Subscribe to show which hotkeys are suspended.
 
@@ -93,7 +93,7 @@ Active scopes. Subscribe to show which hotkeys are suspended.
 activateScope(scope, options?): () => void;
 ```
 
-Defined in: [hotkey-manager.ts:605](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L605)
+Defined in: [hotkey-manager.ts:624](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L624)
 
 Activates a scope until the returned function is called. Activations are
 counted, so a scope stays active until every activation is released.
@@ -137,7 +137,7 @@ manager.activateScope('dialog', { exclusive: { allow: ['global'] } })
 destroy(): void;
 ```
 
-Defined in: [hotkey-manager.ts:1635](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1635)
+Defined in: [hotkey-manager.ts:1667](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1667)
 
 Destroys the manager and removes all listeners.
 
@@ -153,7 +153,7 @@ Destroys the manager and removes all listeners.
 getRegistrationCount(): number;
 ```
 
-Defined in: [hotkey-manager.ts:1567](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1567)
+Defined in: [hotkey-manager.ts:1599](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1599)
 
 Gets the number of registered hotkeys, chords and sequences.
 
@@ -169,7 +169,7 @@ Gets the number of registered hotkeys, chords and sequences.
 hasActiveRegistration(hotkey): boolean;
 ```
 
-Defined in: [hotkey-manager.ts:1605](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1605)
+Defined in: [hotkey-manager.ts:1637](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1637)
 
 Checks whether a hotkey can fire now: at least one registration is
 enabled, in an active scope, and listening where key presses go. A
@@ -203,7 +203,7 @@ True if a registration that can fire exists
 isRegistered(hotkey, target?): boolean;
 ```
 
-Defined in: [hotkey-manager.ts:1578](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1578)
+Defined in: [hotkey-manager.ts:1610](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1610)
 
 Checks if a specific hotkey is registered.
 
@@ -235,7 +235,7 @@ True if a matching registration exists
 isScopeActive(scope?): boolean;
 ```
 
-Defined in: [hotkey-manager.ts:641](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L641)
+Defined in: [hotkey-manager.ts:660](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L660)
 
 Whether hotkeys in a scope can fire: the scope is `'global'` or
 activated, and either no scope is exclusive or this scope is the
@@ -262,7 +262,7 @@ register<T>(
 options?): HotkeyRegistrationHandle<HotkeyOptionsFor<T>>;
 ```
 
-Defined in: [hotkey-manager.ts:816](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L816)
+Defined in: [hotkey-manager.ts:835](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L835)
 
 Registers a hotkey handler and returns a handle for updating the registration.
 
@@ -328,7 +328,7 @@ handle.unregister()
 resetSequenceProgress(): void;
 ```
 
-Defined in: [hotkey-manager.ts:1552](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1552)
+Defined in: [hotkey-manager.ts:1584](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L1584)
 
 Resets the progress of every in-progress sequence.
 
@@ -344,7 +344,7 @@ Resets the progress of every in-progress sequence.
 static getInstance(): HotkeyManager;
 ```
 
-Defined in: [hotkey-manager.ts:573](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L573)
+Defined in: [hotkey-manager.ts:592](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L592)
 
 Gets the singleton instance of HotkeyManager.
 
@@ -360,7 +360,7 @@ Gets the singleton instance of HotkeyManager.
 static resetInstance(): void;
 ```
 
-Defined in: [hotkey-manager.ts:580](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L580)
+Defined in: [hotkey-manager.ts:599](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L599)
 
 Resets the singleton instance. Useful for testing.
 
