@@ -23,10 +23,10 @@
       "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "7e165e26cb012b896f36d33b9e193b69f8c229379f57e6cf33b4af7840dcdac1",
+      "fingerprint": "c64871abd85489ea13f741a3fae7746d04c619c548fdcc6b0fb2a90bbe8d0b16",
       "snapshot": {
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
-        "docs/framework/angular/quick-start.md": "a83133bb560ee15100e06a86b229f966557630f07d682585373997ca87589dce",
+        "docs/framework/angular/quick-start.md": "3f9bd6e926aca66237a2f4fc975ad6a11786894ddc3201593ca90590c19dfc6c",
         "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "644a777c52a1ef882879320671517bb1349066612e3da4314e83211294eb21de",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "5fe1b12a519e8ca5087d78d47050f7a2ec0c70bb9b7d6ebcbb050ee099e3effe",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "11e40eab3b96a8b7cf519b0da8d28e1f5488c44ab49817b952f8e594d8b500b1",
@@ -35,9 +35,9 @@
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "d431ed7df4440d09cbed88d3201751853330d0b927949886e53cc583a75e7668",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "fed0f6769a2a8539db1c243a6ce76bddfbc669ffcde75dfe077c95484fc7c2c6"
       },
-      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "head": "3601e316e0c9af4d2062356762d4d176728ae716",
       "outcome": "no-change",
-      "reason": "Platform options now use the exported HotkeyPlatform type; same values, no skill change.",
+      "reason": "Review fixes: the server warning guards process for Workers, the React client-only snippet formats in a child component, and quick starts mention the provider platform; skills already cover the setup.",
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
@@ -130,10 +130,10 @@
       "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
-      "fingerprint": "c9059d20eedafdaf981f7a69587d5f7a3794bec22108a2f40d51db81c940065c",
+      "fingerprint": "e87dc11d1c50c1bcf96cef09b0250aade08f050ff74936011f943cfe3410a5e0",
       "snapshot": {
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
-        "docs/framework/octane/quick-start.md": "c4ad9cec236f5e884f699aae19931d808bfd3c18933c36b0d2f5d7d5a06ce16c",
+        "docs/framework/octane/quick-start.md": "19f6043a79f76e144ba05ead4bfcff1372a84fde377248de629cebb857733f6e",
         "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2e207c6e733ab9b471588670dbefe787d5a613a6ae9663d2086830e300aee89e",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "171e35ae48fb27d0409184043236529ff778a01e3bc377df54903e51ccdc1187",
@@ -141,9 +141,9 @@
         "packages/octane-hotkeys/src/useHotkey.ts": "d8da1d0cf0eb528667a25e750a2e51405e4e293bd10e22173546967b5c9d392b",
         "packages/octane-hotkeys/src/useHotkeys.ts": "f864ed03975e9930638cfe9025639619ebdb2c975a55e6950199cba86cb70476"
       },
-      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "head": "3601e316e0c9af4d2062356762d4d176728ae716",
       "outcome": "no-change",
-      "reason": "Platform options now use the exported HotkeyPlatform type; same values, no skill change.",
+      "reason": "Review fixes: the server warning guards process for Workers, the React client-only snippet formats in a child component, and quick starts mention the provider platform; skills already cover the setup.",
       "evidence": ["packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"]
     },
     "skill:packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": {
@@ -165,10 +165,10 @@
       "evidence": ["packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "aaa8e50fbbe58140de8077591b447d32c8506887267721bb6216a18133afdcd1",
+      "fingerprint": "6394ea81f435355c0d33cd19b06bdbf6e9ead12502e58682b2c51acbb4ed4faa",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
-        "docs/framework/react/quick-start.md": "f8afa1a28c8e78f72ac7e9f88ab34c7abcead4527e7c229c584abcf8768fac00",
+        "docs/framework/react/quick-start.md": "23a6c1a998120d968a87b37c4f340b71052fc94e97eb52decd16b91bd655a638",
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "4f59c5efbce3ba0c54e2a47d9b868a31780225dc306132a3903fee5894ae1ed4",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "e45854b2346700249569ce418b0bb5593cd00a018336a60c9ed5cedeb8d49b3e",
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "93b2ed4764cde56855b602de3e5ef7acdc657758b16fd2784877003b649bec5a",
@@ -194,16 +194,16 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "b13e9407de5f00dcbe2622ed0d8ce9a233af1c00",
+      "head": "3601e316e0c9af4d2062356762d4d176728ae716",
       "outcome": "no-change",
-      "reason": "React guide titles now name React, matching the other frameworks; content unchanged.",
+      "reason": "Review fixes: the server warning guards process for Workers, the React client-only snippet formats in a child component, and quick starts mention the provider platform; skills already cover the setup.",
       "evidence": ["packages/react-hotkeys/skills/react-hotkeys/SKILL.md"]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
-      "fingerprint": "d5f92a5c963c2db0b735862d2c4791939cafaab5b70963347591a83c9e94e927",
+      "fingerprint": "dacee0804cfe06dd0e7505f114f6e6ccec548abfddd7c266a0f8cb377f4a2893",
       "snapshot": {
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
-        "docs/framework/solid/quick-start.md": "84a8fd673b881fbad9fee55113b19eeb1ba11b702714a5cdf53c8cbf6683c83a",
+        "docs/framework/solid/quick-start.md": "74e8d20b975f1bab90f99e00226670a1fec555459650e498264415c03f79f0ef",
         "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "b44dd638d4b46fecd9883319ed623291ede33f2c2b5ffe41d7486ce19686e803",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d3dda6cd9aa0a8655aa43f017490797ad3d2de42206446b2403363873b84b133",
         "packages/solid-hotkeys/src/HotkeysProvider.tsx": "72b57a5785a2e5215c33c7c2768fe2e18972e35987ae21e352a37539111f342a",
@@ -211,9 +211,9 @@
         "packages/solid-hotkeys/src/createHotkey.ts": "3be9476087da2b53e809ad5ac59b2f791f38cc4d88e2b151258e668a9fc92294",
         "packages/solid-hotkeys/src/createHotkeys.ts": "de2c71ca0b15af7482c89b3bba4b6c7685571c6163c360f06e92d567b7384905"
       },
-      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "head": "3601e316e0c9af4d2062356762d4d176728ae716",
       "outcome": "no-change",
-      "reason": "Platform options now use the exported HotkeyPlatform type; same values, no skill change.",
+      "reason": "Review fixes: the server warning guards process for Workers, the React client-only snippet formats in a child component, and quick starts mention the provider platform; skills already cover the setup.",
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
@@ -255,7 +255,7 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "2f9cf112100976217d5aaffd6b845e611745638fc6e1ad7ecee8213da1e1010e",
+      "fingerprint": "4a177faa279cdacdcfaab8e0e81ec3af5ecd35fa2561d50131b771173e55c9cd",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -263,13 +263,13 @@
         "docs/framework/alpine/guides/app-hotkeys.md": "e5c2a2a0cbbc35e793cf3e88bdbafd863153f8784ee1af27f2a81fe7f259bb9b",
         "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
-        "docs/framework/angular/quick-start.md": "a83133bb560ee15100e06a86b229f966557630f07d682585373997ca87589dce",
+        "docs/framework/angular/quick-start.md": "3f9bd6e926aca66237a2f4fc975ad6a11786894ddc3201593ca90590c19dfc6c",
         "docs/framework/ember/guides/app-hotkeys.md": "fbe213ed8b89a59c6915c9ecfcfe8a1dbd184a0535e5d2b48fe8b8f06108d342",
         "docs/framework/ember/quick-start.md": "70680043f3655e5f915094be4fbc8a2099932a325f472d0851a5dac7a1524340",
         "docs/framework/lit/guides/app-hotkeys.md": "da53124e5996f174e42e37a69a1b46757c7112506060fd79688fdbe4b1637b9c",
         "docs/framework/lit/quick-start.md": "0f1e0a406ae61dc62ea0659b95e734828a1181a591990331f1e8405f637a0094",
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
-        "docs/framework/octane/quick-start.md": "c4ad9cec236f5e884f699aae19931d808bfd3c18933c36b0d2f5d7d5a06ce16c",
+        "docs/framework/octane/quick-start.md": "19f6043a79f76e144ba05ead4bfcff1372a84fde377248de629cebb857733f6e",
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
         "docs/framework/preact/quick-start.md": "b991913fea74d18f6ae096d46b54e6ca8ca85cb69df463c6ce12f3f8c9e5757b",
         "docs/framework/react/guides/app-hotkeys.md": "8f38ea6fda3e05e5b5e6445c376fdfecd4ea0118fb897e822ba6f2e8e6114885",
@@ -278,9 +278,9 @@
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "86d90e75bd74762ab0eaee5a1c41d919338dcfa6238ff7186567d0d6dad0b0e5",
         "docs/framework/react/guides/sequences.md": "b02147fb593f5190b1b219739afa6609067407f6566ded142cccc76ac02d25c8",
-        "docs/framework/react/quick-start.md": "f8afa1a28c8e78f72ac7e9f88ab34c7abcead4527e7c229c584abcf8768fac00",
+        "docs/framework/react/quick-start.md": "23a6c1a998120d968a87b37c4f340b71052fc94e97eb52decd16b91bd655a638",
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
-        "docs/framework/solid/quick-start.md": "84a8fd673b881fbad9fee55113b19eeb1ba11b702714a5cdf53c8cbf6683c83a",
+        "docs/framework/solid/quick-start.md": "74e8d20b975f1bab90f99e00226670a1fec555459650e498264415c03f79f0ef",
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
         "docs/framework/svelte/quick-start.md": "6fdf6ea3a44b3cd7fbf115b6d464460302af1b58112ca0b5b00723b4f5faab45",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
@@ -387,9 +387,9 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "b08446058f9beffdc098319de8fc6a538675e580",
+      "head": "3601e316e0c9af4d2062356762d4d176728ae716",
       "outcome": "no-change",
-      "reason": "Guide fixes from review: Outlet imports, null user agent in the Preact render, and a shared-cache note; covered by the core skill pitfall.",
+      "reason": "Review fixes: the server warning guards process for Workers, the React client-only snippet formats in a child component, and quick starts mention the provider platform; skills already cover the setup.",
       "evidence": ["_artifacts"]
     },
     "source:.changeset/intent-skills.md": {
@@ -6064,13 +6064,13 @@
       ]
     },
     "source:docs/framework/react/guides/formatting-display.md": {
-      "fingerprint": "9c0be8c26ba32d9b7b940653922dd8c857c85c4bf6fe2d0b51e3cec660cff96c",
+      "fingerprint": "5f36dc2717ec2fb48c99bec16521e5452c3b313d23fe1a1f8c73a51e5d92f7cc",
       "snapshot": {
-        "docs/framework/react/guides/formatting-display.md": "f7967b74f76e1c294c19fe623eddfe2ba39bb49a4bb537c6172e64849b04320c"
+        "docs/framework/react/guides/formatting-display.md": "66bd70812178cdc1393911f6ab8209191161216cb1b8109e6c030318ce12dc61"
       },
-      "head": "b08446058f9beffdc098319de8fc6a538675e580",
+      "head": "3601e316e0c9af4d2062356762d4d176728ae716",
       "outcome": "no-change",
-      "reason": "Guide fixes from review: Outlet imports, null user agent in the Preact render, and a shared-cache note; covered by the core skill pitfall.",
+      "reason": "Review fixes: the server warning guards process for Workers, the React client-only snippet formats in a child component, and quick starts mention the provider platform; skills already cover the setup.",
       "evidence": ["docs/framework/react/guides/formatting-display.md"]
     },
     "source:docs/framework/react/guides/held-key-state-helpers.md": {
@@ -7920,14 +7920,14 @@
       "evidence": ["packages/ember-hotkeys/tests/integration/platform.test.gts"]
     },
     "source:packages/hotkeys/src/_server.ts": {
-      "fingerprint": "39653a18075b7da6a46c8578d9bb93fd9edbba65a5cc8a4a5386c9cec8a2ed98",
+      "fingerprint": "94c5297018556539c9dc39065bbc0dd8bbf46450c209402af5582ddb48fcbc00",
       "snapshot": {
-        "packages/hotkeys/src/_server.ts": "b614225d49a8f56c12c0384776c3bdcd14c3ee4d5c32cf4a9a2e3295f6de19d3"
+        "packages/hotkeys/src/_server.ts": "db9f254edbb035031d4419a45c0d5fb4851ceb79097c59dce49e971403f0fd78"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "ad7f4a4eebf53067643e7401d057af72b121660b",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
-      "evidence": ["packages/hotkeys/src/_server.ts"]
+      "reason": "The server label warning skips runtimes without process, such as Workers; same warning, no skill change.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/src/platform.ts": {
       "fingerprint": "7779a68bc1c9ff8ca54a6c31ff13c7413738fb4047914950a538a5060b99383e",
@@ -7940,13 +7940,13 @@
       "evidence": ["packages/hotkeys/src/platform.ts"]
     },
     "source:packages/hotkeys/tests/server-platform.test.ts": {
-      "fingerprint": "9e9aa63448ccda673379df4b088bfc43aa78ac75306663614195138158b9456a",
+      "fingerprint": "2d41f1258a412d2ec65b77be55afd89805e31ff6e5366e7bbfd1a39d88de02ce",
       "snapshot": {
-        "packages/hotkeys/tests/server-platform.test.ts": "749ad89c51e7122f4ca960e1ccca3dba09a1f43a764c794c7ed4cdb5a0ea041a"
+        "packages/hotkeys/tests/server-platform.test.ts": "9e5014fabce57ed5845392e5566bfab8e6709921ad71b08f138dd70e1562634f"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "3601e316e0c9af4d2062356762d4d176728ae716",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "reason": "Review fixes: the server warning guards process for Workers, the React client-only snippet formats in a child component, and quick starts mention the provider platform; skills already cover the setup.",
       "evidence": ["packages/hotkeys/tests/server-platform.test.ts"]
     },
     "source:packages/octane-hotkeys/src/useFormatForDisplay.ts": {

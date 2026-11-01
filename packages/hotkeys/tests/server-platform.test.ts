@@ -197,3 +197,12 @@ describe('a missing header', () => {
     expect(detectPlatform(null)).toBe('linux')
   })
 })
+
+describe('without process', () => {
+  it('formats a label on a server runtime that has no process', async () => {
+    vi.stubGlobal('navigator', { userAgent: 'Cloudflare-Workers' })
+    vi.stubGlobal('process', undefined)
+    const { formatForDisplay } = await load()
+    expect(formatForDisplay('Mod+S')).toBe('Ctrl+S')
+  })
+})
