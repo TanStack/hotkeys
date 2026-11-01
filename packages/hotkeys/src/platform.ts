@@ -1,34 +1,49 @@
+import { isServerRuntime } from './_server'
 import type { CanonicalModifier } from './key.types'
 
 /**
- * Detects the current platform based on browser navigator properties.
+ * Detects a platform from a user agent string, or from the browser's
+ * `navigator` when called without one.
  *
  * Used internally to resolve platform-adaptive modifiers like 'Mod' (Command on Mac,
- * Control elsewhere) and for platform-specific hotkey formatting.
+ * Control elsewhere) and for platform-specific hotkey formatting. During server
+ * rendering, pass the request's `User-Agent` header to detect the user's
+ * platform instead of the server's.
  *
+ * @param userAgent - A user agent string, such as a request's `User-Agent` header.
+ * When omitted, reads `navigator`.
  * @returns The detected platform: 'mac', 'windows', or 'linux'
- * @remarks Defaults to 'linux' in SSR environments where navigator is undefined
+ * @remarks Without a user agent, returns 'linux' on a server runtime (no
+ * `navigator`, or Node, Deno, Bun, or Cloudflare Workers), where `navigator`
+ * describes the server.
  *
  * @example
  * ```ts
  * const platform = detectPlatform() // 'mac' | 'windows' | 'linux'
  * const modifier = resolveModifier('Mod', platform) // 'Meta' on Mac, 'Control' elsewhere
+ *
+ * // On the server
+ * detectPlatform(request.headers.get('user-agent') ?? undefined)
  * ```
  */
-export function detectPlatform(): 'mac' | 'windows' | 'linux' {
-  if (typeof navigator === 'undefined') {
-    return 'linux' // Default for SSR
+export function detectPlatform(
+  userAgent?: string,
+): 'mac' | 'windows' | 'linux' {
+  let platform = ''
+  let agent = userAgent
+  if (agent === undefined) {
+    if (isServerRuntime()) return 'linux'
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    platform = navigator.platform?.toLowerCase() ?? ''
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
+    agent = navigator.userAgent ?? ''
   }
+  agent = agent.toLowerCase()
 
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  const platform = navigator.platform?.toLowerCase() ?? ''
-  // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-  const userAgent = navigator.userAgent?.toLowerCase() ?? ''
-
-  if (platform.includes('mac') || userAgent.includes('mac')) {
+  if (platform.includes('mac') || agent.includes('mac')) {
     return 'mac'
   }
-  if (platform.includes('win') || userAgent.includes('win')) {
+  if (platform.includes('win') || agent.includes('win')) {
     return 'windows'
   }
   return 'linux'
