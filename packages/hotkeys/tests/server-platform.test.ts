@@ -184,3 +184,16 @@ describe('mergeHotkeysProviderDefaults', () => {
     })
   })
 })
+
+describe('a missing header', () => {
+  it('treats null like no user agent', async () => {
+    vi.stubGlobal('navigator', { platform: 'MacIntel', userAgent: agents.mac })
+    const { detectPlatform } = await load()
+    expect(detectPlatform(null)).toBe('mac')
+    vi.stubGlobal('navigator', {
+      platform: 'MacIntel',
+      userAgent: 'Node.js/26',
+    })
+    expect(detectPlatform(null)).toBe('linux')
+  })
+})

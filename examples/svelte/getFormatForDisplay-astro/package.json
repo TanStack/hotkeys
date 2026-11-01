@@ -1,0 +1,25 @@
+{
+  "name": "@tanstack/hotkeys-example-svelte-get-format-for-display-astro",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --port=3069",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test:types": "astro check && svelte-check --tsconfig ./tsconfig.json"
+  },
+  "dependencies": {
+    "@astrojs/node": "^11.1.9",
+    "@astrojs/svelte": "^9.1.2",
+    "@tanstack/svelte-hotkeys": "0.19.2",
+    "astro": "^7.4.4",
+    "svelte": "^5.57.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "svelte-check": "^4.7.7",
+    "typescript": "6.0.3"
+  }
+}

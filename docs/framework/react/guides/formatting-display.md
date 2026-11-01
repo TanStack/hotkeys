@@ -4,6 +4,9 @@ id: formatting-display
 description: Format React hotkeys as platform-appropriate labels and keycaps, such as ⌘ S on macOS and Ctrl+S on Windows, for menus, buttons, and cheat sheets.
 ---
 
+> [!NOTE]
+> Showing hotkey labels on the page is one of the few parts of TanStack Hotkeys that needs extra care in server-rendered apps. The server doesn't know the user's operating system, so a label it renders can differ from the label the browser renders, which causes a hydration error. The library has helpers that prevent this. See [Format labels in server-rendered apps](#format-labels-in-server-rendered-apps).
+
 Use `formatForDisplay` whenever a hotkey appears in a menu, button, tooltip, cheat sheet, or shortcut settings panel. It accepts chord strings, including physical ones such as `'Mod+[KeyS]'`, chord objects, parsed chords, and sequences. Store the hotkey itself, and format it when you render. A label is for reading, not for registering.
 
 A label depends on the user's platform: `Mod+S` is `⌘ S` on macOS and `Ctrl+S` elsewhere. Pick the API by where your labels render:
@@ -169,6 +172,8 @@ function RootComponent() {
 }
 ```
 
+The [TanStack Start example](../examples/useFormatForDisplay-tanstack-start) shows this setup.
+
 ### Next.js (App Router)
 
 Read the header in a server component, such as the root layout, and pass the platform to the provider. The provider is a client component, so Next sends the value to the browser with the page:
@@ -179,7 +184,7 @@ import { headers } from 'next/headers'
 import { HotkeysProvider, detectPlatform } from '@tanstack/react-hotkeys'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const userAgent = (await headers()).get('user-agent') ?? undefined
+  const userAgent = (await headers()).get('user-agent')
 
   return (
     <html lang="en">
@@ -195,6 +200,8 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
 Reading `headers()` renders the layout on each request. For a page that should stay static, see [Static and prerendered pages](#static-and-prerendered-pages).
 
+The [Next.js example](../examples/useFormatForDisplay-nextjs) shows this setup.
+
 ### React Router (framework mode)
 
 Detect the platform in the root route's loader, and read it in the root component. React Router sends loader data to the browser with the page:
@@ -205,7 +212,7 @@ import { HotkeysProvider, detectPlatform } from '@tanstack/react-hotkeys'
 import type { Route } from './+types/root'
 
 export function loader({ request }: Route.LoaderArgs) {
-  return { platform: detectPlatform(request.headers.get('user-agent') ?? undefined) }
+  return { platform: detectPlatform(request.headers.get('user-agent')) }
 }
 
 export default function App({ loaderData }: Route.ComponentProps) {
@@ -216,6 +223,8 @@ export default function App({ loaderData }: Route.ComponentProps) {
   )
 }
 ```
+
+The [React Router example](../examples/useFormatForDisplay-react-router) shows this setup.
 
 ### Astro
 
@@ -228,7 +237,7 @@ import { detectPlatform } from '@tanstack/react-hotkeys'
 import Shortcuts from '../components/Shortcuts'
 
 export const prerender = false
-const platform = detectPlatform(Astro.request.headers.get('user-agent') ?? undefined)
+const platform = detectPlatform(Astro.request.headers.get('user-agent'))
 ---
 
 <Shortcuts client:load platform={platform} />
@@ -247,6 +256,8 @@ export default function Shortcuts({ platform }: { platform: HotkeyPlatform }) {
   )
 }
 ```
+
+The [Astro example](../examples/useFormatForDisplay-astro) shows this setup.
 
 ### Render a label only in the browser
 
@@ -299,4 +310,4 @@ A parsed chord's modifiers are already resolved for one platform. To store it as
 
 Use `validateHotkey` when you accept a hotkey from somewhere else, such as a settings file. It returns `valid`, `errors`, and `warnings`, and names the failing step of a sequence. It can't promise that the browser or operating system delivers the shortcut. To check hotkeys as users record them, see [Validate and check conflicts](./custom-hotkey-recording#validate-and-check-conflicts).
 
-Try these options together in the [vanilla formatter playground](../../../framework/vanilla/examples/formatForDisplay). For a full list of your app's shortcuts, see [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers).
+Try these options together with the format toggles in the [server-rendered cheat sheet example](../examples/useFormatForDisplay-tanstack-start). For a full list of your app's shortcuts, see [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers).

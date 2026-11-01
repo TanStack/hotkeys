@@ -14,7 +14,7 @@ export type HotkeyPlatform = 'mac' | 'windows' | 'linux'
  * platform instead of the server's.
  *
  * @param userAgent - A user agent string, such as a request's `User-Agent` header.
- * When omitted, reads `navigator`.
+ * When omitted or `null` (a missing header), reads `navigator`.
  * @returns The detected platform: 'mac', 'windows', or 'linux'
  * @remarks Without a user agent, returns 'linux' on a server runtime (no
  * `navigator`, or Node, Deno, Bun, or Cloudflare Workers), where `navigator`
@@ -26,13 +26,13 @@ export type HotkeyPlatform = 'mac' | 'windows' | 'linux'
  * const modifier = resolveModifier('Mod', platform) // 'Meta' on Mac, 'Control' elsewhere
  *
  * // On the server
- * detectPlatform(request.headers.get('user-agent') ?? undefined)
+ * detectPlatform(request.headers.get('user-agent'))
  * ```
  */
-export function detectPlatform(userAgent?: string): HotkeyPlatform {
+export function detectPlatform(userAgent?: string | null): HotkeyPlatform {
   let platform = ''
   let agent = userAgent
-  if (agent === undefined) {
+  if (agent == null) {
     if (isServerRuntime()) return 'linux'
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     platform = navigator.platform?.toLowerCase() ?? ''

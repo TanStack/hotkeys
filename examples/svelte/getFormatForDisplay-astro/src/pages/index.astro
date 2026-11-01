@@ -1,0 +1,23 @@
+---
+import { detectPlatform } from '@tanstack/svelte-hotkeys'
+import Shortcuts from '../components/Shortcuts.svelte'
+import '../styles.css'
+
+// Render on each request, so the page can read the User-Agent header
+export const prerender = false
+
+const platform = detectPlatform(
+  Astro.request.headers.get('user-agent'),
+)
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Shortcut cheat sheet</title>
+  </head>
+  <body>
+    <Shortcuts client:load platform={platform} />
+  </body>
+</html>

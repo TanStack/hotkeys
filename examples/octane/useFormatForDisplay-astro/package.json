@@ -1,0 +1,25 @@
+{
+  "name": "@tanstack/hotkeys-example-octane-use-format-for-display-astro",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --port=3069",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "tsrx-tsc --noEmit",
+    "test:types": "astro check && tsrx-tsc --noEmit"
+  },
+  "dependencies": {
+    "@astrojs/node": "^11.1.9",
+    "@octanejs/astro": "0.0.42",
+    "@tanstack/octane-hotkeys": "workspace:*",
+    "astro": "^7.4.4",
+    "octane": "0.12.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@tsrx/oxc": "0.20.0",
+    "@tsrx/typescript-plugin": "^0.3.138",
+    "typescript": "6.0.3"
+  }
+}

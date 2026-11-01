@@ -1,0 +1,27 @@
+{
+  "name": "@tanstack/hotkeys-example-react-use-format-for-display-astro",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --port=3069",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test:types": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/node": "^11.1.9",
+    "@astrojs/react": "^7.1.2",
+    "@tanstack/react-hotkeys": "^0.20.2",
+    "astro": "^7.4.4",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "6.0.3"
+  }
+}

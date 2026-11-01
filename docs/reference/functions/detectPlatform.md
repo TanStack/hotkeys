@@ -21,10 +21,10 @@ platform instead of the server's.
 
 ### userAgent?
 
-`string`
+`string` \| `null`
 
 A user agent string, such as a request's `User-Agent` header.
-When omitted, reads `navigator`.
+When omitted or `null` (a missing header), reads `navigator`.
 
 ## Returns
 
@@ -45,5 +45,5 @@ const platform = detectPlatform() // 'mac' | 'windows' | 'linux'
 const modifier = resolveModifier('Mod', platform) // 'Meta' on Mac, 'Control' elsewhere
 
 // On the server
-detectPlatform(request.headers.get('user-agent') ?? undefined)
+detectPlatform(request.headers.get('user-agent'))
 ```

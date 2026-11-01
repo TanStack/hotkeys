@@ -47,3 +47,18 @@ jobs:
         run: pnpm --filter @tanstack/hotkeys-e2e exec playwright install --with-deps chromium firefox
       - name: Run Keyboard Layout Tests
         run: xvfb-run --auto-servernum --server-args="-screen 0 1280x800x24" pnpm test:e2e:layouts
+
+  server-rendering:
+    name: Server Rendering
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Setup Tools
+        uses: TanStack/config/.github/setup@466151b2d479656b38942cd84a0a3dce29d48de3
+      - name: Install Browsers
+        run: pnpm --filter @tanstack/hotkeys-e2e exec playwright install --with-deps chromium
+      - name: Run Server Rendering Tests
+        run: pnpm test:e2e:ssr

@@ -1,0 +1,29 @@
+{
+  "name": "@tanstack/hotkeys-example-svelte-get-format-for-display-sveltekit",
+  "private": true,
+  "type": "module",
+  "imports": {
+    "#lib/*": "./src/lib/*"
+  },
+  "scripts": {
+    "dev": "vite dev --port=3069",
+    "build": "vite build",
+    "preview": "vite preview",
+    "start": "node build",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test:types": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
+  },
+  "dependencies": {
+    "@tanstack/svelte-hotkeys": "0.19.2",
+    "svelte": "^5.57.1"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-node": "^6.0.1",
+    "@sveltejs/kit": "^3.1.1",
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "svelte-check": "^4.7.7",
+    "typescript": "6.0.3",
+    "vite": "^8.3.2"
+  }
+}

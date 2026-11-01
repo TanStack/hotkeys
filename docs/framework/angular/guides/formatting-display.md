@@ -118,7 +118,7 @@ import { detectPlatform, provideHotkeys } from '@tanstack/angular-hotkeys'
 provideHotkeys({
   defaultOptions: () => ({
     platform: detectPlatform(
-      inject(REQUEST)?.headers.get('user-agent') ?? undefined,
+      inject(REQUEST)?.headers.get('user-agent'),
     ),
   }),
 })
@@ -169,7 +169,7 @@ export const appConfig: ApplicationConfig = {
     provideHotkeys({
       defaultOptions: () => ({
         platform: detectPlatform(
-          inject(REQUEST)?.headers.get('user-agent') ?? undefined,
+          inject(REQUEST)?.headers.get('user-agent'),
         ),
       }),
     }),
@@ -178,6 +178,8 @@ export const appConfig: ApplicationConfig = {
 ```
 
 `REQUEST` is also `null` when a route is prerendered. See [Static and prerendered pages](#static-and-prerendered-pages).
+
+The [Angular SSR example](../examples/injectFormatForDisplay-angular-ssr) shows this setup.
 
 ### Analog
 
@@ -200,6 +202,8 @@ export const appConfig: ApplicationConfig = {
   ],
 }
 ```
+
+The [Analog example](../examples/injectFormatForDisplay-analog) shows this setup.
 
 ### Render a label only in the browser
 
@@ -262,4 +266,4 @@ A parsed chord's modifiers are already resolved for one platform. To store it as
 
 Use `validateHotkey` when you accept a hotkey from somewhere else, such as a settings file. It returns `valid`, `errors`, and `warnings`, and names the failing step of a sequence. It can't promise that the browser or operating system delivers the shortcut. To check hotkeys as users record them, see [Validate and check conflicts](./custom-hotkey-recording#validate-and-check-conflicts).
 
-Try these options together in the [vanilla formatter playground](../../../framework/vanilla/examples/formatForDisplay). For a full list of your app's shortcuts, see [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers).
+Try these options together with the format toggles in the [server-rendered cheat sheet example](../examples/injectFormatForDisplay-angular-ssr). For a full list of your app's shortcuts, see [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers).

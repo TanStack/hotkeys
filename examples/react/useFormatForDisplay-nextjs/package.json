@@ -1,0 +1,25 @@
+{
+  "name": "@tanstack/hotkeys-example-react-use-format-for-display-nextjs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev --port=3069",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test:types": "next typegen && tsc"
+  },
+  "dependencies": {
+    "@tanstack/react-hotkeys": "^0.20.2",
+    "next": "^16.4.3",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "typescript": "6.0.3"
+  }
+}

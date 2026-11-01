@@ -179,7 +179,7 @@ import { detectPlatform } from '@tanstack/octane-hotkeys'
 import { Shortcuts } from '../components/Shortcuts.tsrx'
 
 export const prerender = false
-const platform = detectPlatform(Astro.request.headers.get('user-agent') ?? undefined)
+const platform = detectPlatform(Astro.request.headers.get('user-agent'))
 ---
 
 <Shortcuts client:load platform={platform} />
@@ -196,6 +196,8 @@ export function Shortcuts({ platform }: { platform: HotkeyPlatform }) @{
   </HotkeysProvider>
 }
 ```
+
+The [Astro example](../examples/useFormatForDisplay-astro) shows this setup.
 
 ### Your own server
 
@@ -220,7 +222,7 @@ import { detectPlatform } from '@tanstack/octane-hotkeys'
 import { App } from './App.tsrx'
 
 export function render(request: Request) {
-  const platform = detectPlatform(request.headers.get('user-agent') ?? undefined)
+  const platform = detectPlatform(request.headers.get('user-agent'))
   return renderToString(App, { platform }) // { html, css }
 }
 ```
@@ -235,6 +237,8 @@ hydrateRoot(document.getElementById('app')!, App, { platform: detectPlatform() }
 ```
 
 Put `css` in the page's `<head>` and `html` in the element you hydrate. `render` takes a Fetch API `Request`. In Express, pass `req.headers['user-agent']` to `detectPlatform` instead. Octane's [server-side rendering guide](https://github.com/octanejs/octane/blob/main/docs/ssr.md) covers compiling the server build and streaming.
+
+The [server rendering example](../examples/useFormatForDisplay-server) shows this setup.
 
 ### Render a label only in the browser
 
@@ -288,4 +292,4 @@ A parsed chord's modifiers are already resolved for one platform. To store it as
 
 Use `validateHotkey` when you accept a hotkey from somewhere else, such as a settings file. It returns `valid`, `errors`, and `warnings`, and names the failing step of a sequence. It can't promise that the browser or operating system delivers the shortcut. To check hotkeys as users record them, see [Validate and check conflicts](./custom-hotkey-recording#validate-and-check-conflicts).
 
-Try these options together in the [vanilla formatter playground](../../../framework/vanilla/examples/formatForDisplay). For a full list of your app's shortcuts, see [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers).
+Try these options together with the format toggles in the [server-rendered cheat sheet example](../examples/useFormatForDisplay-astro). For a full list of your app's shortcuts, see [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers).

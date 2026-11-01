@@ -177,6 +177,8 @@ export const load: LayoutServerLoad = ({ request }) => {
 
 A prerendered page gets no `platform` from this load function. Don't return `detectPlatform()` without a user agent: on the server it returns `'linux'`, and the browser would keep it, for labels and for `Mod`. For prerendered pages, see [Static and prerendered pages](#static-and-prerendered-pages).
 
+The [SvelteKit example](../examples/getFormatForDisplay-sveltekit) shows this setup.
+
 ### Astro
 
 Each Svelte island is mounted on its own, and context doesn't cross islands, so render the provider inside the island and pass the platform from the page. The page must render on demand to have a request: add `export const prerender = false`, or use `output: 'server'`.
@@ -188,7 +190,7 @@ import { detectPlatform } from '@tanstack/svelte-hotkeys'
 import Shortcuts from '../components/Shortcuts.svelte'
 
 export const prerender = false
-const platform = detectPlatform(Astro.request.headers.get('user-agent') ?? undefined)
+const platform = detectPlatform(Astro.request.headers.get('user-agent'))
 ---
 
 <Shortcuts client:load platform={platform} />
@@ -208,6 +210,8 @@ const platform = detectPlatform(Astro.request.headers.get('user-agent') ?? undef
   <CheatSheet />
 </HotkeysProvider>
 ```
+
+The [Astro example](../examples/getFormatForDisplay-astro) shows this setup.
 
 ### Render a label only in the browser
 
@@ -262,4 +266,4 @@ A parsed chord's modifiers are already resolved for one platform. To store it as
 
 Use `validateHotkey` when you accept a hotkey from somewhere else, such as a settings file. It returns `valid`, `errors`, and `warnings`, and names the failing step of a sequence. It can't promise that the browser or operating system delivers the shortcut. To check hotkeys as users record them, see [Validate and check conflicts](./custom-hotkey-recording#validate-and-check-conflicts).
 
-Try these options together in the [vanilla formatter playground](../../../framework/vanilla/examples/formatForDisplay). For a full list of your app's shortcuts, see [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers).
+Try these options together with the format toggles in the [server-rendered cheat sheet example](../examples/getFormatForDisplay-sveltekit). For a full list of your app's shortcuts, see [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers).

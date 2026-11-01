@@ -23,11 +23,11 @@
       "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "d38c2f0ad733b756041fe2a0ed258db334a43fcea80b730c69eaf86600361509",
+      "fingerprint": "1ad0a0d3e83e5fd0bcc344e9a6a77a0cc7f2c516efc90cf1376726420916019a",
       "snapshot": {
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
         "docs/framework/angular/quick-start.md": "a83133bb560ee15100e06a86b229f966557630f07d682585373997ca87589dce",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "f5aeea10597e6d531d703f6d383524eca6ff09b4271cd19545367a30b01486a5",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "9ddafbfebb915be2cd029f534426756c14925bf2a0696070ffb581380b0bd4d3",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "5fe1b12a519e8ca5087d78d47050f7a2ec0c70bb9b7d6ebcbb050ee099e3effe",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "b0868bd5df07f89183fb45ad6fb3e4203578e02676c229bd27460ae172ad448c",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "3161186944b142feab034a1899b76b178700f4ef371bfffbb694b9ed5a191d32",
@@ -35,9 +35,9 @@
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "d431ed7df4440d09cbed88d3201751853330d0b927949886e53cc583a75e7668",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "fed0f6769a2a8539db1c243a6ce76bddfbc669ffcde75dfe077c95484fc7c2c6"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
       "outcome": "updated",
-      "reason": "Added the server-rendering pitfall: set the provider or scope platform from the request user agent and format labels with the adapter formatter.",
+      "reason": "Angular pitfall snippet drops `?? undefined`: detectPlatform now accepts null from headers.get.",
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
@@ -257,7 +257,7 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "661629cf43e0f9eca435ddf71bf34458858f79c5b4cac08ce6d9080f257b7904",
+      "fingerprint": "9739ea6857311dcd0d909f551752891a678890e3d5820a89511f4f89c2462aca",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -297,7 +297,7 @@
         "packages/alpine-hotkeys/src/hotkeyRecorderPlugin.ts": "8ff86447e513f47002c49ed9f60269d485b0cd65b87277bb52cf2d8286ddbd36",
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "d32e8bd75b0db71b01f42343f9220a4b10b9c91d17542b1acb61db9068c46d6c",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "f5aeea10597e6d531d703f6d383524eca6ff09b4271cd19545367a30b01486a5",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "9ddafbfebb915be2cd029f534426756c14925bf2a0696070ffb581380b0bd4d3",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "5fe1b12a519e8ca5087d78d47050f7a2ec0c70bb9b7d6ebcbb050ee099e3effe",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "b0868bd5df07f89183fb45ad6fb3e4203578e02676c229bd27460ae172ad448c",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "3161186944b142feab034a1899b76b178700f4ef371bfffbb694b9ed5a191d32",
@@ -389,10 +389,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
       "outcome": "no-change",
-      "reason": "New formatter files belong to the existing adapter skills; no skill boundaries change.",
-      "evidence": ["_artifacts/skill_tree.yaml"]
+      "reason": "Examples, docs links, e2e suite and detectPlatform accepting null need no skill change; skills already cover server-rendered labels.",
+      "evidence": ["_artifacts"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -2470,13 +2470,13 @@
       "evidence": ["packages/hotkeys/src/_event-target.ts"]
     },
     "source:docs/config.json": {
-      "fingerprint": "f0b51682a17b6b08f3e249ab35c8dde242c787938fc0995535f5e7f980d9cf99",
+      "fingerprint": "16af19e58bf175bcade10250b5940fc7dfc72e689088fcbbbc8ee9fea3e4e40e",
       "snapshot": {
-        "docs/config.json": "6c1dd24becb60b51628302d127079ca21d77040c8c1f0c23bf4f1d89dcc8aeee"
+        "docs/config.json": "0317434ef0d4db6bbba0b6472b8f82477dc987b1e4df9c285713d9e170721271"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
       "evidence": ["docs/config.json"]
     },
     "source:docs/devtools.md": {
@@ -5688,16 +5688,14 @@
       ]
     },
     "source:pnpm-workspace.yaml": {
-      "fingerprint": "b03b00098fff50b9a1b88bacff5ae26b767ee0b2f554eacc4f850843192265e3",
+      "fingerprint": "236735677025bb642b3535728f1cffd282ab59a7b1966563dda9db6a655d4d2b",
       "snapshot": {
-        "pnpm-workspace.yaml": "ea0035cd4b8aa643cde5f61c46a6b2b5df260c665872578fb6740df44ac58570"
+        "pnpm-workspace.yaml": "8d1ff21fe2b180c67b8d9191dadd1b941820fde85822939e5bc82a4ace030520"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
-      "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
-      ]
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["pnpm-workspace.yaml"]
     },
     "source:docs/framework/ember/reference/classes/useHotkey.md": {
       "fingerprint": "016b5b9106a3df40894685f1248d72cde558ed82703e7cfc903d538d0bc4a5f4",
@@ -5950,13 +5948,13 @@
       ]
     },
     "source:docs/framework/alpine/guides/formatting-display.md": {
-      "fingerprint": "eed2f962f33b9f79f40f0e3ef2e249871d7e386f5ede277943fdaff5a3939938",
+      "fingerprint": "48b36b78072749d674fa3ff28ba0e408541feef82929d7b0b8c2ffc88df6ed3a",
       "snapshot": {
-        "docs/framework/alpine/guides/formatting-display.md": "732c4a7c464027ab6aa1a3bdf6181ee4529c1dca8bc342dd505efc3e451fd8a5"
+        "docs/framework/alpine/guides/formatting-display.md": "9c8b76245e3abdc3907206b9ea6db34d13d357f5b4bdf3cfed156c9dc309d490"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
       "evidence": ["docs/framework/alpine/guides/formatting-display.md"]
     },
     "source:docs/framework/alpine/guides/held-key-state-helpers.md": {
@@ -5970,13 +5968,13 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/angular/guides/formatting-display.md": {
-      "fingerprint": "4c913e6c73e46c5045cd02ae9909082c4e47721618a7fb4a46e31f19b13758f6",
+      "fingerprint": "86ba52b2195da55d4ba9d38a013104542fb6bff8b9813ff7d663283e9cd1c78e",
       "snapshot": {
-        "docs/framework/angular/guides/formatting-display.md": "a5a57eda91d2d480c053f0f64fe250e8b33cc768be560c6004a4991a33a9e932"
+        "docs/framework/angular/guides/formatting-display.md": "cae26e7fdbb6930e01972da14ddbce67e601f38a78b3d5402209d171abfd3804"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
       "evidence": ["docs/framework/angular/guides/formatting-display.md"]
     },
     "source:docs/framework/angular/guides/held-key-state-helpers.md": {
@@ -5992,13 +5990,13 @@
       ]
     },
     "source:docs/framework/ember/guides/formatting-display.md": {
-      "fingerprint": "35bffd00f823e9d03364709a54f5612aad30545d6a7484ccc2a5b8a5a08d63b3",
+      "fingerprint": "fe9c86cdf6af7eaface5f1a9bb6bf4e54beecf205e3598c658b95498963969a2",
       "snapshot": {
-        "docs/framework/ember/guides/formatting-display.md": "cdd36b7ca2fe2b82eb0be4a040e6c61d76d6b6dc6505e360abbd6ef60f2568b5"
+        "docs/framework/ember/guides/formatting-display.md": "d547ae27a63dcc0bc85f78869c2fdc2ac541ca9bdbf542e84b5af84e45985d76"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
       "evidence": ["docs/framework/ember/guides/formatting-display.md"]
     },
     "source:docs/framework/ember/guides/held-key-state-helpers.md": {
@@ -6014,23 +6012,23 @@
       ]
     },
     "source:docs/framework/lit/guides/formatting-display.md": {
-      "fingerprint": "f113a37355420239ef0e368dafac523d679b0c0b28f218048fdee0468d78b9c6",
+      "fingerprint": "bef8c4e6abce53574f51624cbb87af9fc9d66bae5e3ca4ca2e7c73fd043bedb0",
       "snapshot": {
-        "docs/framework/lit/guides/formatting-display.md": "0a8a0ffb11b0778d49d6175fdf072701d120f706283c12b41d09cde864ae4e3d"
+        "docs/framework/lit/guides/formatting-display.md": "ca702f88fbe70a007eba7ec53bbe3179b8f56c529e834a75f7d2d625b10ad1b9"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
       "evidence": ["docs/framework/lit/guides/formatting-display.md"]
     },
     "source:docs/framework/octane/guides/formatting-display.md": {
-      "fingerprint": "ecadd1b0251257ad8a3cba861d632ba415086e26d350053889706f61831b06f1",
+      "fingerprint": "b4256c0f52aa4105456cec948f625fb9e56cd2ee44ec2ad19ef039cfb862611e",
       "snapshot": {
-        "docs/framework/octane/guides/formatting-display.md": "6bcdb3bd1e355ff09c2a55302887e758fcba4b071d65a390cf9cc143b0c8c79e"
+        "docs/framework/octane/guides/formatting-display.md": "41cd13218bd3b5dc52eebd1749ee01f58000ab85f71f5ebf432a0f3040c03dc1"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
       "evidence": ["docs/framework/octane/guides/formatting-display.md"]
     },
     "source:docs/framework/octane/guides/held-key-state-helpers.md": {
@@ -6046,13 +6044,13 @@
       ]
     },
     "source:docs/framework/preact/guides/formatting-display.md": {
-      "fingerprint": "ddf6a17c149a78dbebbf34d941ff39f237219648daab7c49cc06bb306b18bfbf",
+      "fingerprint": "86ec80e29a2330c253dec2136528bd4c11d1561f540dbb2ea7a218093f7d0b89",
       "snapshot": {
-        "docs/framework/preact/guides/formatting-display.md": "f969dab73cd23c801622ac6dd9dead1cf8933d5fcaa187a31d2059fe6f760c79"
+        "docs/framework/preact/guides/formatting-display.md": "fb2c819a90c9a6747568c245ef3327c28bda2132584acca24e34582f13f9ba97"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
       "evidence": ["docs/framework/preact/guides/formatting-display.md"]
     },
     "source:docs/framework/preact/guides/held-key-state-helpers.md": {
@@ -6068,13 +6066,13 @@
       ]
     },
     "source:docs/framework/react/guides/formatting-display.md": {
-      "fingerprint": "cdc5800cd6fc0040a9a51b345a57c1fa5a3322d72193c4fbe2fa8a27869ba8c7",
+      "fingerprint": "59f60ebbc15d8e7440ff6e23dc6c9441f7b87d55fb132481e560118b946cc859",
       "snapshot": {
-        "docs/framework/react/guides/formatting-display.md": "33dd590fb041a096f21ba920ad3193f6825f9bd8cd71aea684dee1faf4386cad"
+        "docs/framework/react/guides/formatting-display.md": "bb22c134bb8d47ec99d742790d400fcca02ae6dc378596542650689eb943d1ee"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
       "evidence": ["docs/framework/react/guides/formatting-display.md"]
     },
     "source:docs/framework/react/guides/held-key-state-helpers.md": {
@@ -6090,13 +6088,13 @@
       ]
     },
     "source:docs/framework/solid/guides/formatting-display.md": {
-      "fingerprint": "1388cad8450a336338cc9b393432c79c50bbbd742556c990340ff92a9ea1ec90",
+      "fingerprint": "1face4986c1f68b859d0633c367a6e85770ab18133558cfbfa1bdb2530475e93",
       "snapshot": {
-        "docs/framework/solid/guides/formatting-display.md": "4e545aedcefd1982dc082b6b3f661fe63ee7f23865b050396495b6c8f61e83b8"
+        "docs/framework/solid/guides/formatting-display.md": "aeec65625c01848e26c58a1320ff234aab05de193acfa4608f02ec28e7a87387"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
       "evidence": ["docs/framework/solid/guides/formatting-display.md"]
     },
     "source:docs/framework/solid/guides/held-key-state-helpers.md": {
@@ -6112,13 +6110,13 @@
       ]
     },
     "source:docs/framework/svelte/guides/formatting-display.md": {
-      "fingerprint": "57a34bdd2895e08c974591d5785d13bfcb96f7edcb7bd5afd1078ba7a6b99cdc",
+      "fingerprint": "02643577f9e004d1f367981f5fd8cabe2fd584ca1d31fd944050bed0e6c98e0b",
       "snapshot": {
-        "docs/framework/svelte/guides/formatting-display.md": "757072543e13f7ebf0fc910c562f86ad48279d740e1777b86e8778a6841afd2d"
+        "docs/framework/svelte/guides/formatting-display.md": "255ba25251b95b0ff0053f1443c25e4780e192d2fde1613f036cf26822b329cd"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
       "evidence": ["docs/framework/svelte/guides/formatting-display.md"]
     },
     "source:docs/framework/svelte/guides/held-key-state-helpers.md": {
@@ -6134,13 +6132,13 @@
       ]
     },
     "source:docs/framework/vue/guides/formatting-display.md": {
-      "fingerprint": "2a434d538bfcf975a3a8d45037c402875bdc75b85607ce7d3b0f0f4aeae5dd90",
+      "fingerprint": "167e4d8ccb50c507ddbb2fae73b2669213cd522548afa70a37928c4442cbfcc8",
       "snapshot": {
-        "docs/framework/vue/guides/formatting-display.md": "1cf62c7c934956ba86ef38d9f8e90a1449a7bbbb87de2524a48b3f945b4f0fbb"
+        "docs/framework/vue/guides/formatting-display.md": "528912ef3a5241019012bb01d08077b99f51d3180edbd5e06792c8ef929e5877"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
       "evidence": ["docs/framework/vue/guides/formatting-display.md"]
     },
     "source:docs/framework/vue/guides/held-key-state-helpers.md": {
@@ -6400,16 +6398,14 @@
       ]
     },
     "source:examples/vanilla/formatForDisplay/src/main.ts": {
-      "fingerprint": "56eb3702d1a512c982b8a1905f45c631c1f65a7af50fb6187fcd35b41d3381f2",
+      "fingerprint": "bcca450eb430eaedb305755dd5d47de238286ce45693847fd2fb5296f2a5afdb",
       "snapshot": {
-        "examples/vanilla/formatForDisplay/src/main.ts": "7e785d7ae756627cf413db38cb3be5746cc5852015fc6fc78edc7d5b0fd829ed"
+        "examples/vanilla/formatForDisplay/src/main.ts": null
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
-      "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
-      ]
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vanilla/formatForDisplay/src/main.ts"]
     },
     "source:examples/vue/useHeldKeys/src/App.vue": {
       "fingerprint": "c9a80091ff42a5bb44da3b7b9f338f643e7cfed4f84ee8e26decd76842586ed1",
@@ -7838,13 +7834,13 @@
       ]
     },
     "source:docs/reference/functions/detectPlatform.md": {
-      "fingerprint": "d491d2ba6eafbfb4cdc3dee8e34f03d7d2eac6aa51f1851c3d888f76086c702b",
+      "fingerprint": "b9cf5055e1a4d194a726d08eebdc6ffb7b2a551ec8d1df174c9fa9fae2b75078",
       "snapshot": {
-        "docs/reference/functions/detectPlatform.md": "f37a14be4f26dcf88add57da91c03fee5a03a191c2159be79c0811d700542087"
+        "docs/reference/functions/detectPlatform.md": "b2aac405ba30a27e88b0375a2e16dfa5459a551b19b2c4c85914b5e5d985dfaa"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
       "evidence": ["docs/reference/functions/detectPlatform.md"]
     },
     "source:docs/reference/functions/formatHotkey.md": {
@@ -7938,23 +7934,23 @@
       "evidence": ["packages/hotkeys/src/_server.ts"]
     },
     "source:packages/hotkeys/src/platform.ts": {
-      "fingerprint": "a55ea1114fbc0893a29b5d7ca867ee08cebbacf9fe7ced6d865f628c3eb4389b",
+      "fingerprint": "7779a68bc1c9ff8ca54a6c31ff13c7413738fb4047914950a538a5060b99383e",
       "snapshot": {
-        "packages/hotkeys/src/platform.ts": "597c7d6b1a9997e8ffab3167d56eade721c4663ab75bd099d5627a8026ce3833"
+        "packages/hotkeys/src/platform.ts": "71f8e3eb5e515e91ca5e578d663d967ae1ebc47c1eda13e0ed782ce8482bf2ac"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
       "evidence": ["packages/hotkeys/src/platform.ts"]
     },
     "source:packages/hotkeys/tests/server-platform.test.ts": {
-      "fingerprint": "6a7c5669bd6676dde4c032afa54301201fcf328f94fa65c1df0cbe982bafb291",
+      "fingerprint": "9e9aa63448ccda673379df4b088bfc43aa78ac75306663614195138158b9456a",
       "snapshot": {
-        "packages/hotkeys/tests/server-platform.test.ts": "8a3842fd4d772a62d8684d45194fd26c1d151f9c370b481fd3c9dcd64bd086c0"
+        "packages/hotkeys/tests/server-platform.test.ts": "749ad89c51e7122f4ca960e1ccca3dba09a1f43a764c794c7ed4cdb5a0ea041a"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
       "evidence": ["packages/hotkeys/tests/server-platform.test.ts"]
     },
     "source:packages/octane-hotkeys/src/useFormatForDisplay.ts": {
@@ -8168,6 +8164,2576 @@
       "outcome": "no-change",
       "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
       "evidence": ["packages/vue-hotkeys/tests/platform.test.ts"]
+    },
+    "source:.github/workflows/e2e.yml": {
+      "fingerprint": "40a1773bb6bcd076779536096e4de8cc8be6a22b4caadc4a9f45aa7805cc1a62",
+      "snapshot": {
+        ".github/workflows/e2e.yml": "8243fd92b99ca3451a69080e9cb1f26d4f912c6745b8ac990a98352c88a52ac8"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [".github/workflows/e2e.yml"]
+    },
+    "source:.prettierignore": {
+      "fingerprint": "a64c366e04d8d50aa5f89fb8f36c7b3d59985dcb6cefc0397bea3103d46e2edb",
+      "snapshot": {
+        ".prettierignore": "9b42afe2f8a6014a5996ccc9ec1b198abb6cf935c1c8a463c3516a48cd6ee613"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [".prettierignore"]
+    },
+    "source:e2e/README.md": {
+      "fingerprint": "d08a715a1e080a791a5ff250138ddbe1e708c58d009aae358033e8651793c401",
+      "snapshot": {
+        "e2e/README.md": "50cad6318b58608d2f31856042b10e910214910059a438824402c9ae44a0190e"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["e2e/README.md"]
+    },
+    "source:e2e/playwright.ssr.config.ts": {
+      "fingerprint": "1acb192293ee09c9b6638adfbcc838887b777c3083b09d2f6af57840c8d8a952",
+      "snapshot": {
+        "e2e/playwright.ssr.config.ts": "edd429dae6a4f4cec3de5b27463e3b5700b2899f2511b887b9ab5c8b6ceba8aa"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["e2e/playwright.ssr.config.ts"]
+    },
+    "source:e2e/ssr/cheat-sheet.spec.ts": {
+      "fingerprint": "fd769b23a69d9d85ed3a20d6d7e7aa17ab21c2d4de12001b28f1a397afb13609",
+      "snapshot": {
+        "e2e/ssr/cheat-sheet.spec.ts": "66926c4294fc7e611d2db8a91d57e420895c4b45d9a304d0d656b43e3568b6a9"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["e2e/ssr/cheat-sheet.spec.ts"]
+    },
+    "source:e2e/ssr/examples.ts": {
+      "fingerprint": "578e1ba40ae95fa5e574862fae5066f757549f7fbc7ed6aeabf8e6cfc8830324",
+      "snapshot": {
+        "e2e/ssr/examples.ts": "ff6e65160a780ef1f9aa3ebcc946903eb8052b684a8fb455d48c519f7a59c44f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["e2e/ssr/examples.ts"]
+    },
+    "source:examples/angular/injectFormatForDisplay-analog/index.html": {
+      "fingerprint": "525b71e449c511e56c7e03b21729b3b91cf5f9e0cc15d9d516ac031dedc8eb31",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-analog/index.html": "f022655a44020684652d7cb09d2f5f3c0bfc1a15baf75f6c956e1caf1bbe266d"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/angular/injectFormatForDisplay-analog/index.html"]
+    },
+    "source:examples/angular/injectFormatForDisplay-analog/src/app/app.config.server.ts": {
+      "fingerprint": "261cfb9a9c67503306d2aaae48312c8f2ac8ee9ca2a39cd6726b09c7afe38449",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-analog/src/app/app.config.server.ts": "70d732dbb634ff9b34b018bc461ff3e85143bccedfdc5a0486017f40d433e391"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-analog/src/app/app.config.server.ts"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-analog/src/app/app.config.ts": {
+      "fingerprint": "2b8e37002469f879a662cd2a6ba619c0198d0980d023e8337f3f896687aeb669",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-analog/src/app/app.config.ts": "e96eac2e83febc3d7975049767b6dfb6cc4780514f45bab309356758697eb04c"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-analog/src/app/app.config.ts"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-analog/src/app/app.ts": {
+      "fingerprint": "b19941dc6e9f693122facafd4e9b330c768f93338a8af1b4d228a66bff75b44c",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-analog/src/app/app.ts": "4d4d93ccdb999f509846dff7323c21afebdf32c36361b0161d47cb02cafd5259"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-analog/src/app/app.ts"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-analog/src/app/cheat-sheet-page.ts": {
+      "fingerprint": "28f3d366c305301ea49204d9e1dad720fe90dcbe5d3ca219f0bbb3c76aa55f9a",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-analog/src/app/cheat-sheet-page.ts": "52e0ce1aba006b34b9ff6628eb34cba5cdbf994fa5621ffa65c4b768a5d86ae9"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-analog/src/app/cheat-sheet-page.ts"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-analog/src/app/commands.ts": {
+      "fingerprint": "647dc690f6ae5f0ed813de4c152eeb56b5d148947a8acf9a133fac8fad740e3a",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-analog/src/app/commands.ts": "81e865e77885855e33c9fa9ee09c322d994a9cd07c6de0b6171208a378634262"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-analog/src/app/commands.ts"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-analog/src/app/format-options.ts": {
+      "fingerprint": "762beaa18cecde8605f344743b31ddde0d2878eaa3354ccaa74fa6cb56fabce4",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-analog/src/app/format-options.ts": "ad1e5ba4620b49566ba0f6dc0854ef02825416e1743541d76e1f1c5fee9e76cc"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-analog/src/app/format-options.ts"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-analog/src/app/pages/index.page.ts": {
+      "fingerprint": "d8a2028a4ff550905c7f448d6f92248567a47cd9169cb3e623bcbf8719e8d420",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-analog/src/app/pages/index.page.ts": "a4f0965884c461c1ef0bc15aa76412e4ca5ffa37a8fab9b3d17f3c4233b18022"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-analog/src/app/pages/index.page.ts"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-analog/src/main.server.ts": {
+      "fingerprint": "5541865dca764cf5f7b250446e202d7e21bef66cb8dffc6714642113db2f869f",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-analog/src/main.server.ts": "47284de0b81a3b4147bbf088164fa50ebb3f7a00e6c5558a9c57c4842f3cb443"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-analog/src/main.server.ts"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-analog/src/main.ts": {
+      "fingerprint": "5a734f18c616f7c8efb178563bd60d5c3748121be1c2d5f1d8ede4d00660f79d",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-analog/src/main.ts": "ed5bd163470333e929621ba65ae2df2bfd2bc80efe263045f35f588fba5ca83c"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/angular/injectFormatForDisplay-analog/src/main.ts"]
+    },
+    "source:examples/angular/injectFormatForDisplay-analog/src/styles.css": {
+      "fingerprint": "9b2b6b09c5e9752c9f5be7cf732536d9dd7f601f4d155107ea55f8a2b4acd1a0",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-analog/src/styles.css": "d27567ee527dfeddcf65ece76a9429ed175f97a9c6cc126fadc44e128c1bab6f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-analog/src/styles.css"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-analog/tsconfig.json": {
+      "fingerprint": "f83bebaac8db1146d5bda8ca9524143106c2953093f3f3d5fb255e59dea0b013",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-analog/tsconfig.json": "82e61a3d54f81ac2acf0c38c2b99823716a7ad4ba25f7e86e5e8d7135d793eff"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-analog/tsconfig.json"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-analog/vite.config.ts": {
+      "fingerprint": "ec9c242b353bd8af5d48827123455ce74f6fb504039cb71af2a70ec9b3e77df7",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-analog/vite.config.ts": "0841791099be86eb3b230dde2417846ad33a609ea30d2f45fa2562226ff2d23a"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-analog/vite.config.ts"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-angular-ssr/angular.json": {
+      "fingerprint": "a41e0a29821a8363ee433f867b09930b5c1457edd6f900b66278a1516eb15ae4",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-angular-ssr/angular.json": "e078c6b7a50686a06041ac2476d527eb63591817b88d3b5ccb663863c702e034"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-angular-ssr/angular.json"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-angular-ssr/src/app/app.config.server.ts": {
+      "fingerprint": "b7897f8b2f8f634afd6565e95d8b3d20a1f18ceebcf54ff7b6ccc9b629562f08",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/app/app.config.server.ts": "a97947ed0d9537fa38aa360de7a3427cd58ac807025940375655c8ac337af418"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/app/app.config.server.ts"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-angular-ssr/src/app/app.config.ts": {
+      "fingerprint": "4d5015969bf7472a504cf5e47198018005f5b56be0c2ae9cd0549e5b71f01cf1",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/app/app.config.ts": "bbe45c76436591b5ba65d8ab6f6ef72e1c5f568afdb199e45e37b654b55f079b"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/app/app.config.ts"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-angular-ssr/src/app/app.routes.server.ts": {
+      "fingerprint": "debf00a58985fc1da94e5b6432727aa0efabecd33171581ef21fc353ec7970a5",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/app/app.routes.server.ts": "932f02cfc68deb99e543233905dc688aac82277bdae0475a46b1d746888f682d"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/app/app.routes.server.ts"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-angular-ssr/src/app/app.routes.ts": {
+      "fingerprint": "1bc268294ce985fefbc358511ec223d141f67a0a7c230fadc31ebc20714430b1",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/app/app.routes.ts": "13d42db63365082d0f93703c42813e0a2994ce1d6e2414a1608b2c71e8a36fab"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/app/app.routes.ts"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-angular-ssr/src/app/app.ts": {
+      "fingerprint": "86d8df08c4d87f1a27cd60f18e18ce41dd85ca0147ca4595f127e25b42216fda",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/app/app.ts": "4d4d93ccdb999f509846dff7323c21afebdf32c36361b0161d47cb02cafd5259"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/app/app.ts"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-angular-ssr/src/app/cheat-sheet-page.ts": {
+      "fingerprint": "918af9686a78f8003d3e898c1cdb103fb929b5d4cbe0bfbab40b248bc57d9a52",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/app/cheat-sheet-page.ts": "52e0ce1aba006b34b9ff6628eb34cba5cdbf994fa5621ffa65c4b768a5d86ae9"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/app/cheat-sheet-page.ts"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-angular-ssr/src/app/commands.ts": {
+      "fingerprint": "e3a7d9ab7801a61fa2511c8dac546244a4647c7b051f3044ace236cf7fe455ba",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/app/commands.ts": "81e865e77885855e33c9fa9ee09c322d994a9cd07c6de0b6171208a378634262"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/app/commands.ts"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-angular-ssr/src/app/format-options.ts": {
+      "fingerprint": "7f5b941a07cd7355566481ed1dd8c4b335bef58a55748553ddc4efdf6768eab8",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/app/format-options.ts": "ad1e5ba4620b49566ba0f6dc0854ef02825416e1743541d76e1f1c5fee9e76cc"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/app/format-options.ts"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-angular-ssr/src/index.html": {
+      "fingerprint": "7494bcfaf06130f12446e651ca9b90991f992759bc0ac63cf44fb4da928b6e6d",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/index.html": "2719831c2ea92713ecb1f3e36178a8ed52149e0c79597ad19d0524291ae2f544"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/index.html"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-angular-ssr/src/main.server.ts": {
+      "fingerprint": "86865b369ee7e858d3ae2f12da5a670593bc31f53be7c5d7190c0541fa768874",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/main.server.ts": "a34737a0efea2fbc3855ea9a51bae39c9201eaf0efcd06853f12ca958960c137"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/main.server.ts"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-angular-ssr/src/main.ts": {
+      "fingerprint": "aeb67d30277c1c83ee5b145127a9c9874d3718529df43712083c05dc41a13045",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/main.ts": "ed5bd163470333e929621ba65ae2df2bfd2bc80efe263045f35f588fba5ca83c"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/main.ts"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-angular-ssr/src/server.ts": {
+      "fingerprint": "7e5c1a7cf916b3298b3baaf69c0f30ac6c8ba4429ccc26fcf5a553d9d7adea0f",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/server.ts": "7dbc9f950065c2ca809216230da65a02ce503c1e63cbb9d793d341a3d1b3e4a6"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/server.ts"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-angular-ssr/src/styles.css": {
+      "fingerprint": "e37cb0c5f316be7cc9162eb2953ee9057ebe7300373f4be5847b174e2ed2ed63",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/styles.css": "d27567ee527dfeddcf65ece76a9429ed175f97a9c6cc126fadc44e128c1bab6f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-angular-ssr/src/styles.css"
+      ]
+    },
+    "source:examples/angular/injectFormatForDisplay-angular-ssr/tsconfig.json": {
+      "fingerprint": "266cd500c3ca425232512d88bb3384b512bf4f825640b952265818be50a82028",
+      "snapshot": {
+        "examples/angular/injectFormatForDisplay-angular-ssr/tsconfig.json": "fe3450759ad3b55b82b0cda9452478086c2b6ca8beba181caf9d655d8b53d973"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/angular/injectFormatForDisplay-angular-ssr/tsconfig.json"
+      ]
+    },
+    "source:examples/octane/useFormatForDisplay-astro/.gitignore": {
+      "fingerprint": "bd6adf2b02a5276e585319fb0a43e9eab39623258ccdd616021bc9edadc0bcb7",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-astro/.gitignore": "12b9c38c2f5cae81757c15088959eb66b3e372353c80179f2d3cf41eac6948fb"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/octane/useFormatForDisplay-astro/.gitignore"]
+    },
+    "source:examples/octane/useFormatForDisplay-astro/astro.config.mjs": {
+      "fingerprint": "ff9aff1026e417a5ce1d3ff1028048ca2602033175cf6bd4bc7d7b0449e52b7a",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-astro/astro.config.mjs": "8f3000c921cd6929ae59cf1c1f122252ad2bc4721c938c38a2e0c6eb5e2d262a"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/octane/useFormatForDisplay-astro/astro.config.mjs"]
+    },
+    "source:examples/octane/useFormatForDisplay-astro/src/CheatSheetPage.tsrx": {
+      "fingerprint": "ee2c43f4ec2720732804297e42363d9efe71185a130e32f2dc376f1903ca1996",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-astro/src/CheatSheetPage.tsrx": "1064dc534147df9f9370694c76a07d8bcabee5b41c5db3c390cde53f4c6662c0"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/octane/useFormatForDisplay-astro/src/CheatSheetPage.tsrx"
+      ]
+    },
+    "source:examples/octane/useFormatForDisplay-astro/src/commands.ts": {
+      "fingerprint": "4f4e22ac501613696facaaf73cddbc3449aa6e18eed570bf042ca2b40af1b359",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-astro/src/commands.ts": "178f01660e9925b5680fc7bb7beb8be9b5d63c44ae4f772e3dcd7deac642d27b"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/octane/useFormatForDisplay-astro/src/commands.ts"]
+    },
+    "source:examples/octane/useFormatForDisplay-astro/src/components/Shortcuts.tsrx": {
+      "fingerprint": "66544495c1810b1b79933acdc63895c9c9c0657784c65f38dbfc81f2c03b9b42",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-astro/src/components/Shortcuts.tsrx": "fa143ffb536501a4bbdb9506ab811b123cd0685722674e9490af6cff80cf788d"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/octane/useFormatForDisplay-astro/src/components/Shortcuts.tsrx"
+      ]
+    },
+    "source:examples/octane/useFormatForDisplay-astro/src/format-options.ts": {
+      "fingerprint": "bc9441ab678b7fdb6ee43483600bbbfbdb01c3ba054c809479c6ca0787eecbf3",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-astro/src/format-options.ts": "1db3ceab827748e7e8693c6ef87f05f95805a71cb5465a1a54e352e6f8445608"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/octane/useFormatForDisplay-astro/src/format-options.ts"
+      ]
+    },
+    "source:examples/octane/useFormatForDisplay-astro/src/pages/index.astro": {
+      "fingerprint": "a38d573963e52a37dee7ca9dd1926f44371165dc4cafb22434fa3e96bedef05e",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-astro/src/pages/index.astro": "bb3b0dec9ecdcfae6f50a13d425aac826794e735604a45698e7eef57a6267b77"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/octane/useFormatForDisplay-astro/src/pages/index.astro"
+      ]
+    },
+    "source:examples/octane/useFormatForDisplay-astro/src/styles.css": {
+      "fingerprint": "39102c0ed0df9b7188d1c7a5d274ece790287de3847352d81ccda2123e0d5189",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-astro/src/styles.css": "d27567ee527dfeddcf65ece76a9429ed175f97a9c6cc126fadc44e128c1bab6f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/octane/useFormatForDisplay-astro/src/styles.css"]
+    },
+    "source:examples/octane/useFormatForDisplay-astro/src/tsrx.d.ts": {
+      "fingerprint": "f7a54d2ec4722c97984747b845f733d03c73074d0286ec2642b14750135c87b7",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-astro/src/tsrx.d.ts": "db08ad53d6b62d0d1a3b234056fa075f743e3631fba7e5013f6e600d750e29d1"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/octane/useFormatForDisplay-astro/src/tsrx.d.ts"]
+    },
+    "source:examples/octane/useFormatForDisplay-astro/tsconfig.json": {
+      "fingerprint": "feadbca2d57fedbad77efa879629eb52bf913f88ca14d8c2eac3882353dd13cb",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-astro/tsconfig.json": "0f6d49b6a67fac95535c345834d8ebbb2c96ab7eebf4da17fa661a9a83a77cb3"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/octane/useFormatForDisplay-astro/tsconfig.json"]
+    },
+    "source:examples/octane/useFormatForDisplay-server/index.html": {
+      "fingerprint": "2a2eccb4180937c112a05eb0f9c4880ab8502347186fc7f330082309b308bb1f",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-server/index.html": "77a7c62bb54698c0a10e6b54efef07b8e54b817e9b2da9c088798cd265db26c5"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/octane/useFormatForDisplay-server/index.html"]
+    },
+    "source:examples/octane/useFormatForDisplay-server/server.js": {
+      "fingerprint": "b170d57b8cbdeb953d1294e532a2122aae2d5edfa57cfdb93fd56a4eed1f54ef",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-server/server.js": "8f7538c71ba3c6739eed884d62f64a306ac25bedff95f5d97629483a352b9607"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/octane/useFormatForDisplay-server/server.js"]
+    },
+    "source:examples/octane/useFormatForDisplay-server/src/App.tsrx": {
+      "fingerprint": "a8f9f542e509e77a107d44f6b4a2457588edba78318220d774aa2dd5a261f767",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-server/src/App.tsrx": "5b72ee4f0d33369ee82a9c43adb49b94adbeabafff1edb86012e96a77eb16aac"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/octane/useFormatForDisplay-server/src/App.tsrx"]
+    },
+    "source:examples/octane/useFormatForDisplay-server/src/CheatSheetPage.tsrx": {
+      "fingerprint": "71c00c2cb17b28715aebde10e5edf1a22e014541ee61929ad8793ad2180a3890",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-server/src/CheatSheetPage.tsrx": "1064dc534147df9f9370694c76a07d8bcabee5b41c5db3c390cde53f4c6662c0"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/octane/useFormatForDisplay-server/src/CheatSheetPage.tsrx"
+      ]
+    },
+    "source:examples/octane/useFormatForDisplay-server/src/commands.ts": {
+      "fingerprint": "1fabd753c00b632524ad9a24c2ffdb510200a76a8a9cefb26a8647666503c0f8",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-server/src/commands.ts": "178f01660e9925b5680fc7bb7beb8be9b5d63c44ae4f772e3dcd7deac642d27b"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/octane/useFormatForDisplay-server/src/commands.ts"]
+    },
+    "source:examples/octane/useFormatForDisplay-server/src/entry-client.ts": {
+      "fingerprint": "84d95d4cebf3b0af14c741e77d518c50b6bc49d835681c9a1cc3576ba0f0e5b9",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-server/src/entry-client.ts": "ff80c6ef77b59d7ad51099d7e8310fe079516d7a9d77e713c713d59ebf73cb21"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/octane/useFormatForDisplay-server/src/entry-client.ts"
+      ]
+    },
+    "source:examples/octane/useFormatForDisplay-server/src/entry-server.ts": {
+      "fingerprint": "96a204bccd761ecbe2eafa149d42ca8a9e12ca8b2c26408cffadb047b6d471aa",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-server/src/entry-server.ts": "8540a2e4cc9b61f67478624e0680a7f736fbfecfba4107c92cb6c8d3c26568de"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/octane/useFormatForDisplay-server/src/entry-server.ts"
+      ]
+    },
+    "source:examples/octane/useFormatForDisplay-server/src/format-options.ts": {
+      "fingerprint": "5aa6547031427354fd7ec71bdd086e5001f5956b46e599ea2c85d047c8a14f71",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-server/src/format-options.ts": "1db3ceab827748e7e8693c6ef87f05f95805a71cb5465a1a54e352e6f8445608"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/octane/useFormatForDisplay-server/src/format-options.ts"
+      ]
+    },
+    "source:examples/octane/useFormatForDisplay-server/src/styles.css": {
+      "fingerprint": "d90b3afac57c3201a245904466240821df759deed223d5ab7bb1526d59420c26",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-server/src/styles.css": "d27567ee527dfeddcf65ece76a9429ed175f97a9c6cc126fadc44e128c1bab6f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/octane/useFormatForDisplay-server/src/styles.css"]
+    },
+    "source:examples/octane/useFormatForDisplay-server/tsconfig.json": {
+      "fingerprint": "33445337d4de57d43171d87f823555ec90d44b5b5e5e95cac5a347a4e73b62e9",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-server/tsconfig.json": "a29d003e602e6aca165236900ae9953ab6a90c51153a6c9db9cc4ae10249ab0a"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/octane/useFormatForDisplay-server/tsconfig.json"]
+    },
+    "source:examples/octane/useFormatForDisplay-server/vite.config.ts": {
+      "fingerprint": "c4599ae3b9093e03c3230741fde826661aef4af9fe73cf81db0858d864479ae9",
+      "snapshot": {
+        "examples/octane/useFormatForDisplay-server/vite.config.ts": "f3cd0d7a2da2d3d34b1f261ac2e6b49ee8c18409e603449fd2239a077860e22b"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/octane/useFormatForDisplay-server/vite.config.ts"]
+    },
+    "source:examples/preact/useFormatForDisplay-astro/.gitignore": {
+      "fingerprint": "a3cda5dae77dd41d3c983826d8f3ccfeb52ee0b286249e03b9faafb4094cb24d",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-astro/.gitignore": "12b9c38c2f5cae81757c15088959eb66b3e372353c80179f2d3cf41eac6948fb"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/preact/useFormatForDisplay-astro/.gitignore"]
+    },
+    "source:examples/preact/useFormatForDisplay-astro/astro.config.mjs": {
+      "fingerprint": "7538144b29b0f18ff045cbbebf1ddf5a48ebff69fa1439bea02794e36d9a9878",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-astro/astro.config.mjs": "698408223e8e12546dcd8e8f05305b10ad9149437af07802ec505879b79c6958"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/preact/useFormatForDisplay-astro/astro.config.mjs"]
+    },
+    "source:examples/preact/useFormatForDisplay-astro/eslint.config.js": {
+      "fingerprint": "dcbddbb5321728684ea25da84211cdafa6a81246e5ad5abc9fde2859552e9fb4",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-astro/eslint.config.js": "83bdfe4bb0faca1e0371af070a3df9d7f539f934c3d46f8d4be1c7a6648e2ca0"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/preact/useFormatForDisplay-astro/eslint.config.js"]
+    },
+    "source:examples/preact/useFormatForDisplay-astro/src/CheatSheetPage.tsx": {
+      "fingerprint": "788bd45bb766cac3beacabf1f73a385e4869b281c7844a4dc8f7f6610c037280",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-astro/src/CheatSheetPage.tsx": "a49ba25c91d0040a565b48efcfbd51f08a7596af5cd1a5704ae4f721da96a70e"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/preact/useFormatForDisplay-astro/src/CheatSheetPage.tsx"
+      ]
+    },
+    "source:examples/preact/useFormatForDisplay-astro/src/commands.ts": {
+      "fingerprint": "fd9e0f6688bb87731ff72a549bcc939c4a0305c4d9bb727a2a89bd0b69b06fcb",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-astro/src/commands.ts": "f19874491fc1e5f92b9091cb9505998a2c33fb4406a6ead6173d95e39a26c582"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/preact/useFormatForDisplay-astro/src/commands.ts"]
+    },
+    "source:examples/preact/useFormatForDisplay-astro/src/components/Shortcuts.tsx": {
+      "fingerprint": "ac9a4ea81d4d62b5673127119a14a8244ed11cd6ca6232c8b874af65ef3a02f3",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-astro/src/components/Shortcuts.tsx": "c2d023055a244108099fc746cb86b49d6613739d38addd91b56e0c0b3a3deccf"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/preact/useFormatForDisplay-astro/src/components/Shortcuts.tsx"
+      ]
+    },
+    "source:examples/preact/useFormatForDisplay-astro/src/format-options.ts": {
+      "fingerprint": "93602b737b1be7f3c693b5d350c14fcdf53a629413af53f27af52ada0961c5e3",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-astro/src/format-options.ts": "ef2a7769d821e05c105d10b1f5c2bd718daff22924916b0d70d12a4f4e9dbda2"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/preact/useFormatForDisplay-astro/src/format-options.ts"
+      ]
+    },
+    "source:examples/preact/useFormatForDisplay-astro/src/pages/index.astro": {
+      "fingerprint": "16ca74adabc5d7c6b8f182a591a10a32a52f8ffbca5c6aa7fdd0931deb950781",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-astro/src/pages/index.astro": "d68077a55590e2666ff35dfc831702673312b28afab006c2624aa25671a7b2f5"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/preact/useFormatForDisplay-astro/src/pages/index.astro"
+      ]
+    },
+    "source:examples/preact/useFormatForDisplay-astro/src/styles.css": {
+      "fingerprint": "dcdfa928ceb9f67b43ba527799783cbf1220819d8ad279d67ab5b0d3efdcb7e4",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-astro/src/styles.css": "d27567ee527dfeddcf65ece76a9429ed175f97a9c6cc126fadc44e128c1bab6f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/preact/useFormatForDisplay-astro/src/styles.css"]
+    },
+    "source:examples/preact/useFormatForDisplay-astro/tsconfig.json": {
+      "fingerprint": "8d611d7ece9d0df34a5c9895334fa81198568f8ee26f527449ea5ee5d6873e4c",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-astro/tsconfig.json": "97ac606a86a6b62da75aecd3015c9757fbe6ec8ab141d5dfeaa0d768795a2336"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/preact/useFormatForDisplay-astro/tsconfig.json"]
+    },
+    "source:examples/preact/useFormatForDisplay-vite-ssr/eslint.config.js": {
+      "fingerprint": "c5666dcd1b8eb4c060d4ff6fa6d636d5c52a1f9d87a13d02db3456df3da77037",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-vite-ssr/eslint.config.js": "37cd95a0b51f2c8d4c6bbcc0f7a99fca126d8512df6ea30c40c532b2adbbf6b9"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/preact/useFormatForDisplay-vite-ssr/eslint.config.js"
+      ]
+    },
+    "source:examples/preact/useFormatForDisplay-vite-ssr/index.html": {
+      "fingerprint": "5854ea31d5f910c0a6b1ae62e71c2ae2a103ec75180b5993a52b171a880df606",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-vite-ssr/index.html": "9f54a605ef213f9c6310f89cd1d99ae13db6b51c8c0a0eb505a19f4eb93902be"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/preact/useFormatForDisplay-vite-ssr/index.html"]
+    },
+    "source:examples/preact/useFormatForDisplay-vite-ssr/server.js": {
+      "fingerprint": "a461d09920d85cfac41f698182e124f922a1aa84222d2a6058276f5ba00db853",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-vite-ssr/server.js": "ae11925e0ba8044f3e91217764dcb8b1b9bb29d760c2d8a5967ebcadb9e94a9c"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/preact/useFormatForDisplay-vite-ssr/server.js"]
+    },
+    "source:examples/preact/useFormatForDisplay-vite-ssr/src/App.tsx": {
+      "fingerprint": "dd1a5c7cf2cf1435f8d260758e0c3917a3155a1315d01bdfeb331426a7788e29",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-vite-ssr/src/App.tsx": "38cf98c3964e276b59235c02e47ddd2d66678fe636ec521a4952852678636c22"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/preact/useFormatForDisplay-vite-ssr/src/App.tsx"]
+    },
+    "source:examples/preact/useFormatForDisplay-vite-ssr/src/CheatSheetPage.tsx": {
+      "fingerprint": "47267050cbf5f1a6de514dc1e7c9626238d2efc0781b5a44fbe05aa08c08ed5c",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-vite-ssr/src/CheatSheetPage.tsx": "a49ba25c91d0040a565b48efcfbd51f08a7596af5cd1a5704ae4f721da96a70e"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/preact/useFormatForDisplay-vite-ssr/src/CheatSheetPage.tsx"
+      ]
+    },
+    "source:examples/preact/useFormatForDisplay-vite-ssr/src/commands.ts": {
+      "fingerprint": "4feb9e3ebfb6f6bd6a495907010365c70b39744a17ac6be9f2f8533958eb2658",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-vite-ssr/src/commands.ts": "f19874491fc1e5f92b9091cb9505998a2c33fb4406a6ead6173d95e39a26c582"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/preact/useFormatForDisplay-vite-ssr/src/commands.ts"
+      ]
+    },
+    "source:examples/preact/useFormatForDisplay-vite-ssr/src/entry-client.tsx": {
+      "fingerprint": "e608236dd0029247d5cd9dabdae0fdc4559054317b46279f84e41473a5e7fa4e",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-vite-ssr/src/entry-client.tsx": "c725cee2263cc1d6a03c77d2affa6a338fe0b257fe40646e2b7f52b8c582dd27"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/preact/useFormatForDisplay-vite-ssr/src/entry-client.tsx"
+      ]
+    },
+    "source:examples/preact/useFormatForDisplay-vite-ssr/src/entry-server.tsx": {
+      "fingerprint": "47d138a3817200a39325937c873ebef07dfbd2e535df607c8a5f53a53cd8e9f9",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-vite-ssr/src/entry-server.tsx": "cc9adf7256c9282384ffe0c3e21043cf763d34081e9506e4d30b39b8942c6ff0"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/preact/useFormatForDisplay-vite-ssr/src/entry-server.tsx"
+      ]
+    },
+    "source:examples/preact/useFormatForDisplay-vite-ssr/src/format-options.ts": {
+      "fingerprint": "945ff43fe88bf76330c62c91b731349bc5119a1fc87fae3199aafd0f0dce82fd",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-vite-ssr/src/format-options.ts": "ef2a7769d821e05c105d10b1f5c2bd718daff22924916b0d70d12a4f4e9dbda2"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/preact/useFormatForDisplay-vite-ssr/src/format-options.ts"
+      ]
+    },
+    "source:examples/preact/useFormatForDisplay-vite-ssr/src/styles.css": {
+      "fingerprint": "9c084ce02f2987ef70ba5590ecb54dbcfcd9b9619a125d5ad9f9dd0b794de6f8",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-vite-ssr/src/styles.css": "d27567ee527dfeddcf65ece76a9429ed175f97a9c6cc126fadc44e128c1bab6f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/preact/useFormatForDisplay-vite-ssr/src/styles.css"
+      ]
+    },
+    "source:examples/preact/useFormatForDisplay-vite-ssr/tsconfig.json": {
+      "fingerprint": "6978defdc05d70c82952f1d4ca2413421aaf4ce66574abcb8dea348a6ec51725",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-vite-ssr/tsconfig.json": "555f87bd8c69b7f7cf75ffe5695b30c297e941285a1719bb304a10de7ca400a8"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/preact/useFormatForDisplay-vite-ssr/tsconfig.json"]
+    },
+    "source:examples/preact/useFormatForDisplay-vite-ssr/vite.config.ts": {
+      "fingerprint": "a713cbe0ddd1022e320d52987a955d66fbb8050d6a038522207020856e9c3b3b",
+      "snapshot": {
+        "examples/preact/useFormatForDisplay-vite-ssr/vite.config.ts": "7410c90b6727b56ee83dac0e3d1b1a9a170347f285a8811256c6634c0a3ed120"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/preact/useFormatForDisplay-vite-ssr/vite.config.ts"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-astro/.gitignore": {
+      "fingerprint": "3d34ffc8982e38170f2d4e64a20fa3a3dba34277240fa6f3e19be8cefa8ec571",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-astro/.gitignore": "12b9c38c2f5cae81757c15088959eb66b3e372353c80179f2d3cf41eac6948fb"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/react/useFormatForDisplay-astro/.gitignore"]
+    },
+    "source:examples/react/useFormatForDisplay-astro/astro.config.mjs": {
+      "fingerprint": "06bb45cc09d746c0756dc0bb6d36cb8eea196b8d57c30aa526b0423641ad71fe",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-astro/astro.config.mjs": "4ea0f877a7177a0916c4fd17fdebdd8d64d93a3dde824a757349057d13835d3f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/react/useFormatForDisplay-astro/astro.config.mjs"]
+    },
+    "source:examples/react/useFormatForDisplay-astro/eslint.config.js": {
+      "fingerprint": "f90138188cd9c4e878bc7ea0e3447c3a9ef0cce712dfced199ec1621f601f03a",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-astro/eslint.config.js": "83bdfe4bb0faca1e0371af070a3df9d7f539f934c3d46f8d4be1c7a6648e2ca0"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/react/useFormatForDisplay-astro/eslint.config.js"]
+    },
+    "source:examples/react/useFormatForDisplay-astro/src/CheatSheetPage.tsx": {
+      "fingerprint": "e556256d443192d1cc539791ce5ea282c8544440261203d6a836e688156edf08",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-astro/src/CheatSheetPage.tsx": "bb1550cd8235ce3aeff780312352250eff824051d02ee8159219bde313d62c8f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-astro/src/CheatSheetPage.tsx"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-astro/src/commands.ts": {
+      "fingerprint": "7917c3223caba8290da08b65d1c1f171bc232e754d16329cd2b651591a198ac0",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-astro/src/commands.ts": "e39d3bdc2abb444eac6d6df721db1e0e025a4b61930c8293a6f24aba20579751"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/react/useFormatForDisplay-astro/src/commands.ts"]
+    },
+    "source:examples/react/useFormatForDisplay-astro/src/components/Shortcuts.tsx": {
+      "fingerprint": "a3f8bc563a75c478508af9165539db986177a97df65e280b0c1cf8fa86738d02",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-astro/src/components/Shortcuts.tsx": "34156530073d1628aab0436de039a128c481f4bc74a0ee0ae21aff82ed89dbd5"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-astro/src/components/Shortcuts.tsx"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-astro/src/format-options.ts": {
+      "fingerprint": "fa00afd2ab2c39db9ed2ec100a20caa76da809ed560da2b1ecfd6a9b989d4507",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-astro/src/format-options.ts": "cf6748f42a8529c7080685910f9156cd9efa48bc4ce504763b3e38e044ec4db3"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-astro/src/format-options.ts"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-astro/src/pages/index.astro": {
+      "fingerprint": "26d54548603f9146e39bf3e8e45dc76a1ecf1507a90ee079f554b700c45ddda8",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-astro/src/pages/index.astro": "9bf1507264b037343f3959b0a8cdceea956cf5b042acf1a3bafd0be1e23686dc"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-astro/src/pages/index.astro"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-astro/src/styles.css": {
+      "fingerprint": "34bfce497f7e328cce2f8a9bf2e1303bf9721eb7e0a32df85bb742ddb54883e4",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-astro/src/styles.css": "d27567ee527dfeddcf65ece76a9429ed175f97a9c6cc126fadc44e128c1bab6f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/react/useFormatForDisplay-astro/src/styles.css"]
+    },
+    "source:examples/react/useFormatForDisplay-astro/tsconfig.json": {
+      "fingerprint": "aedd00f1f1b88507d4a7b850b69e67b825b014736d574f3183dfc25408bfb5b1",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-astro/tsconfig.json": "2329b2017544a1e33da01f14ba26a4ea182d2952712540e6306008b3c8b3c4ee"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/react/useFormatForDisplay-astro/tsconfig.json"]
+    },
+    "source:examples/react/useFormatForDisplay-nextjs/.gitignore": {
+      "fingerprint": "cce6868a712ee886c5a3e11890a5e7fb66c6ab623d8d03c2c7f2773d9c287c03",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-nextjs/.gitignore": "827c8471c8eaed66d8739eb128d8bc925ee433eeb5220274b422e6c99bfe7ca2"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/react/useFormatForDisplay-nextjs/.gitignore"]
+    },
+    "source:examples/react/useFormatForDisplay-nextjs/app/layout.tsx": {
+      "fingerprint": "89704bed1c75c01394d4c82cd664c6ded9981cd777e9002b9149c50e6e1496e7",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-nextjs/app/layout.tsx": "af8bfa6eab8cdefafe84288a97e93cab1d60f0bda57834a895a5513224718e76"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/react/useFormatForDisplay-nextjs/app/layout.tsx"]
+    },
+    "source:examples/react/useFormatForDisplay-nextjs/app/page.tsx": {
+      "fingerprint": "bf27111900f72bcc73d494fe1cec3e02f8035e8103858cbc2e36ad53833f0a78",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-nextjs/app/page.tsx": "75f5ec3279b4704a265495092367ce89e4b08807e5bf7a32fff616337e523eb7"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/react/useFormatForDisplay-nextjs/app/page.tsx"]
+    },
+    "source:examples/react/useFormatForDisplay-nextjs/eslint.config.js": {
+      "fingerprint": "b9fe8cde88df48455e46b86fa547a54bd2d11be58d5a41d70e498b26d0ad3447",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-nextjs/eslint.config.js": "306b3e40a482634a688380f8a2c181725733224d570f20974161d36bad753d55"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/react/useFormatForDisplay-nextjs/eslint.config.js"]
+    },
+    "source:examples/react/useFormatForDisplay-nextjs/next.config.ts": {
+      "fingerprint": "3d96ee57a32d25a087b98d0b80d93dd519d74eaf281b353e9282bce039b6a566",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-nextjs/next.config.ts": "d64b38edbe6597d7ff54e8fd2b122a6e27557e93c52734fcae509eda9114dcfa"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/react/useFormatForDisplay-nextjs/next.config.ts"]
+    },
+    "source:examples/react/useFormatForDisplay-nextjs/src/CheatSheetPage.tsx": {
+      "fingerprint": "9deefe71a8c5731728bc7e11ba03d371ac0c3691aa6996057b4af46f0384afe4",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-nextjs/src/CheatSheetPage.tsx": "bb1550cd8235ce3aeff780312352250eff824051d02ee8159219bde313d62c8f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-nextjs/src/CheatSheetPage.tsx"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-nextjs/src/commands.ts": {
+      "fingerprint": "447228e7c7ae7bb82510ee26eb61a614fdb29a0841b1626b0ea77f5da8ba015e",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-nextjs/src/commands.ts": "e39d3bdc2abb444eac6d6df721db1e0e025a4b61930c8293a6f24aba20579751"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/react/useFormatForDisplay-nextjs/src/commands.ts"]
+    },
+    "source:examples/react/useFormatForDisplay-nextjs/src/format-options.ts": {
+      "fingerprint": "25ca5b0daa9d921a26435b766685df7c3a921309363a51ddb47a781aee5593fe",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-nextjs/src/format-options.ts": "cf6748f42a8529c7080685910f9156cd9efa48bc4ce504763b3e38e044ec4db3"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-nextjs/src/format-options.ts"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-nextjs/src/styles.css": {
+      "fingerprint": "252f7414b05ff07d35a4091de28ec4949a7376c934acd3aed269222383ce731f",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-nextjs/src/styles.css": "d27567ee527dfeddcf65ece76a9429ed175f97a9c6cc126fadc44e128c1bab6f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/react/useFormatForDisplay-nextjs/src/styles.css"]
+    },
+    "source:examples/react/useFormatForDisplay-nextjs/tsconfig.json": {
+      "fingerprint": "1765428c2ddb1664889609b001e25ca641b911441254f2ae88b89dcf196eb7c4",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-nextjs/tsconfig.json": "e2f5bf046ccab1325693da2c0f4199998991d49eff0bb735bd423bd884336eaa"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/react/useFormatForDisplay-nextjs/tsconfig.json"]
+    },
+    "source:examples/react/useFormatForDisplay-react-router/.gitignore": {
+      "fingerprint": "4dc06c8b49a8d06c9ab2bab8ab69e302371f959bd25f57368a708c1c649d80c7",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-react-router/.gitignore": "6fdf42d876d10a378b2b3bff6a5a86feadf2cb7804cd530ff4c4e485cc9bd49f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/react/useFormatForDisplay-react-router/.gitignore"]
+    },
+    "source:examples/react/useFormatForDisplay-react-router/app/CheatSheetPage.tsx": {
+      "fingerprint": "a4c2ee86f2d6d229f742995a4f91b1d8ac187be8c618631bfcd6407118ae53e6",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-react-router/app/CheatSheetPage.tsx": "bb1550cd8235ce3aeff780312352250eff824051d02ee8159219bde313d62c8f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-react-router/app/CheatSheetPage.tsx"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-react-router/app/commands.ts": {
+      "fingerprint": "d6bd25e84e1c4c3fe9d04b8f15ab7fb3d84f8c61f91b503ad9795fb0267db3cc",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-react-router/app/commands.ts": "e39d3bdc2abb444eac6d6df721db1e0e025a4b61930c8293a6f24aba20579751"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-react-router/app/commands.ts"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-react-router/app/format-options.ts": {
+      "fingerprint": "099b522375493b88465fa3d68550ed646520c996e509b9c3da38508adf416d5a",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-react-router/app/format-options.ts": "cf6748f42a8529c7080685910f9156cd9efa48bc4ce504763b3e38e044ec4db3"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-react-router/app/format-options.ts"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-react-router/app/root.tsx": {
+      "fingerprint": "982a0436281dec721f795174d1f86119597ff115bddd35f1416ec07de8da01b4",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-react-router/app/root.tsx": "e3fee631f42d477d472b997c403b9c063585100966a9701e0d93dfa6e08ff071"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-react-router/app/root.tsx"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-react-router/app/routes.ts": {
+      "fingerprint": "0f9110da941cdf17755324141aa011a61ddbff97c6bc92afb6d8d120228b240e",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-react-router/app/routes.ts": "6d9bddb3321fcee53ef5aed82222203ebcdc0bb12edf07d31e8abe63b63d96f8"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-react-router/app/routes.ts"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-react-router/app/routes/home.tsx": {
+      "fingerprint": "f6e582a913a3c936b377735ad2e096ce056b7b80dcbb78c21c1af6086a16ed74",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-react-router/app/routes/home.tsx": "424a8c9489b05d38c5fa329d11f9bc9d880fbb758eca8ad61e80f9ff2897f769"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-react-router/app/routes/home.tsx"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-react-router/app/styles.css": {
+      "fingerprint": "fd9af8b094ca063a0f63c7b40a36d2e6b87dcf6de42b12656a1be6011230d58f",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-react-router/app/styles.css": "d27567ee527dfeddcf65ece76a9429ed175f97a9c6cc126fadc44e128c1bab6f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-react-router/app/styles.css"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-react-router/eslint.config.js": {
+      "fingerprint": "d97d2f71951b6fc8f4d8ff0b13770e129c2606c7373b394767c4e1653ba71147",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-react-router/eslint.config.js": "c51702377f997fc54b43e933cdd78f66743612a6a4aa6c4a23c90aa237bd7818"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-react-router/eslint.config.js"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-react-router/react-router.config.ts": {
+      "fingerprint": "21681dd19218f15edea763890796c8a60337a9e9190c7482cd5c9f8b85dd5142",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-react-router/react-router.config.ts": "e0dd3485f9e3d5a9b3e390073c0952cffced62d6df1deb0351a4157ae181f1ef"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-react-router/react-router.config.ts"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-react-router/tsconfig.json": {
+      "fingerprint": "6314baa211ec1475c6b5438f38f018dafeb4749bdb0ecc62dc31f71e2fb0e76f",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-react-router/tsconfig.json": "b0f5509425a719053c4ff49d0fd83080356ad19392026f6ef6b1f1ed5bf44cca"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-react-router/tsconfig.json"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-react-router/vite.config.ts": {
+      "fingerprint": "3566d4920d22c08adb3df65c0bd047d11ece32b065cf8edd26bea3b7c1da7e95",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-react-router/vite.config.ts": "f35404596c17461e0401c68c61d27f9335003d585d81261dca7a18048e6622d5"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-react-router/vite.config.ts"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-tanstack-start/eslint.config.js": {
+      "fingerprint": "62c52df84eaf6c26c58855fc199e3affdf1405e91fd13af08c199472c5fe5b71",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-tanstack-start/eslint.config.js": "dfb101a90e6fd442ab5b314dc9b3322e4c1272295f75e2846cfec5225207dd0d"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-tanstack-start/eslint.config.js"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-tanstack-start/src/CheatSheetPage.tsx": {
+      "fingerprint": "39d13550285cea9ca4f56d98a9953192e231c7cff78a2c99d524ccff92f0d034",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-tanstack-start/src/CheatSheetPage.tsx": "bb1550cd8235ce3aeff780312352250eff824051d02ee8159219bde313d62c8f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-tanstack-start/src/CheatSheetPage.tsx"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-tanstack-start/src/commands.ts": {
+      "fingerprint": "9ef0af2cd3e472f89109790417187388f969d35685e1b08e3618265354109757",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-tanstack-start/src/commands.ts": "e39d3bdc2abb444eac6d6df721db1e0e025a4b61930c8293a6f24aba20579751"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-tanstack-start/src/commands.ts"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-tanstack-start/src/format-options.ts": {
+      "fingerprint": "28796cf4fb5cbcd330b769ae4d6b00e20e9119e0f73174f9dec04447f4ab3b66",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-tanstack-start/src/format-options.ts": "cf6748f42a8529c7080685910f9156cd9efa48bc4ce504763b3e38e044ec4db3"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-tanstack-start/src/format-options.ts"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-tanstack-start/src/routeTree.gen.ts": {
+      "fingerprint": "8356bfdd9b29570997f7173292ade8d5ca16ef5d26a98c7dd0c60208ed69572e",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-tanstack-start/src/routeTree.gen.ts": "f4a843c61899ede2abbc4a7153e6a00557765f737b724b152463c533c4e0ddb0"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-tanstack-start/src/routeTree.gen.ts"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-tanstack-start/src/router.tsx": {
+      "fingerprint": "bc6d2fe705a05b4771542636d2a1d1b36953ed5d0094634244fd3e3956c37cb6",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-tanstack-start/src/router.tsx": "7aa79433610e6fe8d6730f1e9140206cf03dd976779cbd436cea8afaf31d51b9"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-tanstack-start/src/router.tsx"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-tanstack-start/src/routes/__root.tsx": {
+      "fingerprint": "c1929fbc7b21c6555de714a215e9d25ceab2425009988f404d1f2248efaab753",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-tanstack-start/src/routes/__root.tsx": "bf52b948f767f5acd2cd2001b138a8da8418b8eb8b0833c952712abcc61cd2fb"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-tanstack-start/src/routes/__root.tsx"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-tanstack-start/src/routes/index.tsx": {
+      "fingerprint": "a463414f28a0786e763fd99f391f82e73e7cfc9b438274be5bbd426d2ed4be5b",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-tanstack-start/src/routes/index.tsx": "92ca96a64d26196dd908e9cb88c19708410f9199587ae852a5071af83ef4535b"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-tanstack-start/src/routes/index.tsx"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-tanstack-start/src/styles.css": {
+      "fingerprint": "949d43248c6931f842c5b9b17202adcf12300a7cae3004342448cc35c43b8a42",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-tanstack-start/src/styles.css": "d27567ee527dfeddcf65ece76a9429ed175f97a9c6cc126fadc44e128c1bab6f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-tanstack-start/src/styles.css"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-tanstack-start/tsconfig.json": {
+      "fingerprint": "1b53113d81938de40707c233dc457121c08719dfa42da017216c7753b38b4f6e",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-tanstack-start/tsconfig.json": "6a2c1ed44ad412629c79d57e896a97d4fe3193032f8007bc853af97d60812339"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-tanstack-start/tsconfig.json"
+      ]
+    },
+    "source:examples/react/useFormatForDisplay-tanstack-start/vite.config.ts": {
+      "fingerprint": "9080679b5be7c6c38e94877dc926aa62279fcc65712fd1b317e115796d291059",
+      "snapshot": {
+        "examples/react/useFormatForDisplay-tanstack-start/vite.config.ts": "f88b33f5cbb420e1c81510bb04c34ca74aebdfa320747cebffbf0577ef7b84c4"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/react/useFormatForDisplay-tanstack-start/vite.config.ts"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-astro/.gitignore": {
+      "fingerprint": "853376052704fa22fbe0a58117b8fec5be247bf8c5700df329114b1e2e22f26a",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-astro/.gitignore": "21b455fc34711e815862d64935158eb0378ceceb7803d459206bff159f62b5a0"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/solid/createFormatForDisplay-astro/.gitignore"]
+    },
+    "source:examples/solid/createFormatForDisplay-astro/astro.config.mjs": {
+      "fingerprint": "513465b6a7250e5f3bfb2008bf446a37878ad93e02c531cb23b14a8f7e4b96fc",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-astro/astro.config.mjs": "3f7a6678e6d856248ec48d4f12ad6ca73991b89ed96a71b0885ee9430ce9cdb3"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-astro/astro.config.mjs"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-astro/eslint.config.js": {
+      "fingerprint": "e01b723c265ed9b7c7c5d4696c4b196e8958e3843ed89617afffa878b6d3cc07",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-astro/eslint.config.js": "83bdfe4bb0faca1e0371af070a3df9d7f539f934c3d46f8d4be1c7a6648e2ca0"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-astro/eslint.config.js"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-astro/src/CheatSheetPage.tsx": {
+      "fingerprint": "b84bffe1e1ad15e491b9063080b69bbccb6b07c7448cce759f96f1a03a49bee3",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-astro/src/CheatSheetPage.tsx": "a6dda85f3ea4149764746bdfb74795fb093f35ed109f51a2c815b1b39afdf911"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-astro/src/CheatSheetPage.tsx"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-astro/src/commands.ts": {
+      "fingerprint": "01b8065d7405e1b8d6adc19ef54e2fdb1feb4fda8e4e00e50b1b3a293141d66d",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-astro/src/commands.ts": "b16351cfb0d3547041791da6f394d0ad7027f11dfd1124f24aa2354e5f262fa1"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-astro/src/commands.ts"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-astro/src/components/Shortcuts.tsx": {
+      "fingerprint": "b722c72810328ee8b6677a57d19656b630ffcc1fcfb5867e3d554db9fcd103ef",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-astro/src/components/Shortcuts.tsx": "dbeed4a132807b37e38afedbae8e48eebebac8883e619da8dc5108f9a1c3c3dc"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-astro/src/components/Shortcuts.tsx"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-astro/src/format-options.ts": {
+      "fingerprint": "48960dad3e68d9cf344f023656b1fd1161b4e686225e70a5187083db62e231ab",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-astro/src/format-options.ts": "2143c48e44b8aefc4d9a3505232290d1a6fb1a36d31b7e2db630c31874c29a77"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-astro/src/format-options.ts"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-astro/src/pages/index.astro": {
+      "fingerprint": "f049de134182d8f4d7e6459e8983ed454191a418ca24b49f54fef990fc48c099",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-astro/src/pages/index.astro": "46b73b9f41e3a4e7a444ebd3754580e4a2366617255416f64ed231e80cd2e4db"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-astro/src/pages/index.astro"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-astro/src/styles.css": {
+      "fingerprint": "b0ef4dfa17eea6190d84a78368b43a67a73d0c4c39de5f5f18e2603f084ae960",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-astro/src/styles.css": "d27567ee527dfeddcf65ece76a9429ed175f97a9c6cc126fadc44e128c1bab6f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/solid/createFormatForDisplay-astro/src/styles.css"]
+    },
+    "source:examples/solid/createFormatForDisplay-astro/tsconfig.json": {
+      "fingerprint": "71e4d047691d93433ad67129ece9bb2f82799caa94fe41a046faf0f41d65bc12",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-astro/tsconfig.json": "21e5d1087a3f241246ae7323b7d69b257cf048a4cfb465b0a10bad698d3a3288"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/solid/createFormatForDisplay-astro/tsconfig.json"]
+    },
+    "source:examples/solid/createFormatForDisplay-solid-start/.gitignore": {
+      "fingerprint": "b21965499d5c8f873f3f1cf47891efc46d793e08677ff52fd4e746ac19c47a42",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-solid-start/.gitignore": "b66151a34c864fb1bec18512f448db91c937b70b7d9462f988c4336946750743"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-solid-start/.gitignore"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-solid-start/eslint.config.js": {
+      "fingerprint": "74f4c32f4914d959565e2f0b3dbe0923ed1b7ea05cf6e33bcc1fd4c25b17f68e",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-solid-start/eslint.config.js": "65c0ebbc2043ae623d2fdf0910620d8cb28a000dff5b75e4cbb47edaccbd6a7d"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-solid-start/eslint.config.js"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-solid-start/src/CheatSheetPage.tsx": {
+      "fingerprint": "9f9a5ae83b3e29cafefe38290cb7086372e5b3990feba1c9b189b510336a8429",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-solid-start/src/CheatSheetPage.tsx": "a6dda85f3ea4149764746bdfb74795fb093f35ed109f51a2c815b1b39afdf911"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-solid-start/src/CheatSheetPage.tsx"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-solid-start/src/app.tsx": {
+      "fingerprint": "02b4338eb83a065d2b6206186c3bd67e4071da23f34c613b14e8f74ae9a6b85f",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-solid-start/src/app.tsx": "d2a953536c2effdc006d510302bb896881dbc668a1b217c998d077fb9cba7ad6"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-solid-start/src/app.tsx"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-solid-start/src/commands.ts": {
+      "fingerprint": "b313f1738f2db3abb134489fb5efcf6ca83945dc4ef686a7dc5f6bb0993a4582",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-solid-start/src/commands.ts": "b16351cfb0d3547041791da6f394d0ad7027f11dfd1124f24aa2354e5f262fa1"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-solid-start/src/commands.ts"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-solid-start/src/entry-client.tsx": {
+      "fingerprint": "f61d8386b8e2a6872e4d3c1a6858bb9fdb60cff63138e7a8df5623af8acc042a",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-solid-start/src/entry-client.tsx": "e7ac7193eb898242a28a41e344615799e641976d52c24b6e8b8533e108464f8b"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-solid-start/src/entry-client.tsx"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-solid-start/src/entry-server.tsx": {
+      "fingerprint": "8461271e1760a037c0cc7914b6f2c7a46f3ad89f41a2b354e94dbdca5b6e683b",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-solid-start/src/entry-server.tsx": "70061b3a5be359494a2b3a962f12f32522509d718ef58e64adf58f56c201abe4"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-solid-start/src/entry-server.tsx"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-solid-start/src/format-options.ts": {
+      "fingerprint": "1d1258486b7848b6303d6cdd82d74bff2569622d59c103d22686df233ec67a28",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-solid-start/src/format-options.ts": "2143c48e44b8aefc4d9a3505232290d1a6fb1a36d31b7e2db630c31874c29a77"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-solid-start/src/format-options.ts"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-solid-start/src/routes/index.tsx": {
+      "fingerprint": "0b8f2ea86d553caf5fa3c14b61da4c2c25916e57213ca1eefbf272e2c6f8de54",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-solid-start/src/routes/index.tsx": "bec3777bf52f70b30beec13351827e50e04f0cd2e3a0a95708d2bb0db4498650"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-solid-start/src/routes/index.tsx"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-solid-start/src/styles.css": {
+      "fingerprint": "e55c8d253bdab90f9b462a50161e2595cc96ddc45b5d700abb70dfa3ae24a845",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-solid-start/src/styles.css": "d27567ee527dfeddcf65ece76a9429ed175f97a9c6cc126fadc44e128c1bab6f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-solid-start/src/styles.css"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-solid-start/tsconfig.json": {
+      "fingerprint": "910d170d7484766b106fa297d0f5fa570b5145490ca04c2689b2855282fa6eff",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-solid-start/tsconfig.json": "7f237abfdd0eee1f781159ac3cd2f4f5d06ed5b66f6504df6e6e15a6b32a55b9"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-solid-start/tsconfig.json"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-solid-start/vite.config.ts": {
+      "fingerprint": "c3b13f0ea77d2c47f99219310f1debdc4fc12197b0dea28b8fcf20e74fb74eb9",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-solid-start/vite.config.ts": "c2543ab962857d130ed5d0582d7fbaec0c01a47d96b1a7498a239e13ad677a5e"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-solid-start/vite.config.ts"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-tanstack-start/.gitignore": {
+      "fingerprint": "07d98e1be317242817335a2459e880b109de17cbd1b209af9000cd14c83f5946",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-tanstack-start/.gitignore": "86c1becbc197e0728c0f6a14d18a73047b0ec5bd81ae4da2aa5d10b242e46514"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-tanstack-start/.gitignore"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-tanstack-start/eslint.config.js": {
+      "fingerprint": "8111d403c0896c86c23870e972e7967687da2204922125f3ec8133ad4ea91b2b",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-tanstack-start/eslint.config.js": "dfb101a90e6fd442ab5b314dc9b3322e4c1272295f75e2846cfec5225207dd0d"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-tanstack-start/eslint.config.js"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-tanstack-start/src/CheatSheetPage.tsx": {
+      "fingerprint": "b9d6ac4ea7dd470adadd0b6b24ce576c59616a50443a46d6ba89c31257d55d43",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-tanstack-start/src/CheatSheetPage.tsx": "a6dda85f3ea4149764746bdfb74795fb093f35ed109f51a2c815b1b39afdf911"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-tanstack-start/src/CheatSheetPage.tsx"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-tanstack-start/src/commands.ts": {
+      "fingerprint": "cda1b106c8d8a2533b04633004d1097cf5f6d9bde95fc50e64f35885a47242b8",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-tanstack-start/src/commands.ts": "b16351cfb0d3547041791da6f394d0ad7027f11dfd1124f24aa2354e5f262fa1"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-tanstack-start/src/commands.ts"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-tanstack-start/src/format-options.ts": {
+      "fingerprint": "36dfbc3d8c6cf647cceeb759fda558fbe3630f437e3e0d3aab6a1416728a311f",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-tanstack-start/src/format-options.ts": "2143c48e44b8aefc4d9a3505232290d1a6fb1a36d31b7e2db630c31874c29a77"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-tanstack-start/src/format-options.ts"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-tanstack-start/src/routeTree.gen.ts": {
+      "fingerprint": "fbb8804015fb2cfea27b72f1148799baa22a855c80c6a529171ea5dd5aa69ed9",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-tanstack-start/src/routeTree.gen.ts": "354c405ae5f3890fe1574b090c3e84a9a3fc81a03a51cabd2e1a22a2df0661e1"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-tanstack-start/src/routeTree.gen.ts"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-tanstack-start/src/router.tsx": {
+      "fingerprint": "d65d668964080e1bdf42121a2498cda970c4b0e474b9d4da543901e3f17db034",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-tanstack-start/src/router.tsx": "5799bf578538cae693e010b1701dcc54f548e12258160d7e5ab4299029ae33ac"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-tanstack-start/src/router.tsx"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-tanstack-start/src/routes/__root.tsx": {
+      "fingerprint": "490962780232dd21eef2e4d0887745bc06f0de90a56a272c69d71d94a87c3da2",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-tanstack-start/src/routes/__root.tsx": "4ca879187eff014b4f848da82535535bcd1122870cc7501b11f6d9fe4eb86e55"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-tanstack-start/src/routes/__root.tsx"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-tanstack-start/src/routes/index.tsx": {
+      "fingerprint": "a68904023fecc26470c64cd28f6dde0f44af195c37ddea0997b1257f17803eca",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-tanstack-start/src/routes/index.tsx": "e351225777400da57cfc45cf19c1b8832bb78178efbd5277d5c7420a5b7fe691"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-tanstack-start/src/routes/index.tsx"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-tanstack-start/src/styles.css": {
+      "fingerprint": "8e0687b77fc31f62c9cdd04b8376ff8ebe14e4be534457db34674b8f4a29c344",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-tanstack-start/src/styles.css": "d27567ee527dfeddcf65ece76a9429ed175f97a9c6cc126fadc44e128c1bab6f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-tanstack-start/src/styles.css"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-tanstack-start/tsconfig.json": {
+      "fingerprint": "5abe651252cd8ec4b275bc2e3303f689bc990c349fa03365fea9e678d16fc8df",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-tanstack-start/tsconfig.json": "24b0e95df13d6b6a10a1344972ae740b9d473c29280856814f8c7190b8c94ff0"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-tanstack-start/tsconfig.json"
+      ]
+    },
+    "source:examples/solid/createFormatForDisplay-tanstack-start/vite.config.ts": {
+      "fingerprint": "6361b89486863b92a8e408fc4a9f490fe36792cce39496449dda42251de4a791",
+      "snapshot": {
+        "examples/solid/createFormatForDisplay-tanstack-start/vite.config.ts": "ef7db523661d938695979d362f784f99d47119d12b4e50667df60201c75ffb67"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/solid/createFormatForDisplay-tanstack-start/vite.config.ts"
+      ]
+    },
+    "source:examples/svelte/getFormatForDisplay-astro/.gitignore": {
+      "fingerprint": "dacc75f52e5d1295df9f775b13784d42402a1e70db24c65fe1046657eadf6f35",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-astro/.gitignore": "12b9c38c2f5cae81757c15088959eb66b3e372353c80179f2d3cf41eac6948fb"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/svelte/getFormatForDisplay-astro/.gitignore"]
+    },
+    "source:examples/svelte/getFormatForDisplay-astro/astro.config.mjs": {
+      "fingerprint": "90d085d121e5870c9f86db3188cfc11f839bb6de312f22f7742803d8ebb14636",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-astro/astro.config.mjs": "238fab7828c67db544d88ef755b57b2bff4d566cc6a65fd74320950b7a23f5a1"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/svelte/getFormatForDisplay-astro/astro.config.mjs"]
+    },
+    "source:examples/svelte/getFormatForDisplay-astro/eslint.config.js": {
+      "fingerprint": "1bc38d032859d0911e4a4517da4b49fbb27366d9fc98c46cfc4180101259a521",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-astro/eslint.config.js": "be35e8c8aef57f6206e76b0d9727990c145e62d278a7357988e2ea0419c7d529"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/svelte/getFormatForDisplay-astro/eslint.config.js"]
+    },
+    "source:examples/svelte/getFormatForDisplay-astro/src/CheatSheetPage.svelte": {
+      "fingerprint": "641d40fa6df98fc64d8abacce28186f580d27d0c6b811b933d2a453215ed9c95",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-astro/src/CheatSheetPage.svelte": "8fb96cbfb33af9aec8c882ec129ea5a84162f9e3d7c1438f2cf017b088b3abd4"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/svelte/getFormatForDisplay-astro/src/CheatSheetPage.svelte"
+      ]
+    },
+    "source:examples/svelte/getFormatForDisplay-astro/src/commands.ts": {
+      "fingerprint": "87ad35b08a677d27806cc34fae73d01216171889c14834a1f73976bfaa110ebb",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-astro/src/commands.ts": "c39e48d190c4f79313a729ebb797b7122e3646cf990018d2d862bd04692e167d"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/svelte/getFormatForDisplay-astro/src/commands.ts"]
+    },
+    "source:examples/svelte/getFormatForDisplay-astro/src/components/Shortcuts.svelte": {
+      "fingerprint": "eabb5c5c03cc8522743d9142ad9825a8093951687c2954f842648c89b414e79d",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-astro/src/components/Shortcuts.svelte": "17a37eb02acc331854f86ed157ca99c8a0661774dcaa3192ff21f9ae62bfaad1"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/svelte/getFormatForDisplay-astro/src/components/Shortcuts.svelte"
+      ]
+    },
+    "source:examples/svelte/getFormatForDisplay-astro/src/format-options.ts": {
+      "fingerprint": "7abc1eda5770cd4db1989903a995694301a0ad7343d07283394dbaee50a0320f",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-astro/src/format-options.ts": "18d7d29def701681242eb16e4c3ff7ebe513305402f2ec2bf75cd4b9a70d3ae1"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/svelte/getFormatForDisplay-astro/src/format-options.ts"
+      ]
+    },
+    "source:examples/svelte/getFormatForDisplay-astro/src/pages/index.astro": {
+      "fingerprint": "fcdb11386d04c01b3f0b1b5206970945b4b0f4f3f976c911de02a9954a8c8ff2",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-astro/src/pages/index.astro": "b8addf216ff4f24e2de8a3a4322f637e81ad347fea2db135f7e1f75ebb590f43"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/svelte/getFormatForDisplay-astro/src/pages/index.astro"
+      ]
+    },
+    "source:examples/svelte/getFormatForDisplay-astro/src/styles.css": {
+      "fingerprint": "1cf5112141dfdde31528d6299fa7f8652453de454c83e549fb0add8bf9193796",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-astro/src/styles.css": "d27567ee527dfeddcf65ece76a9429ed175f97a9c6cc126fadc44e128c1bab6f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/svelte/getFormatForDisplay-astro/src/styles.css"]
+    },
+    "source:examples/svelte/getFormatForDisplay-astro/svelte.config.js": {
+      "fingerprint": "ea27e0b83679a796b8c40c9861ef30c4652d4ca3a584da2bf78c3b07c0fe2ae5",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-astro/svelte.config.js": "011907b874ca072615e31db49e2c43ef3b60eb81fa23f7a75d52ac69d94d4191"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/svelte/getFormatForDisplay-astro/svelte.config.js"]
+    },
+    "source:examples/svelte/getFormatForDisplay-astro/tsconfig.json": {
+      "fingerprint": "09f73c66e991b6e4cdd1ff0e96b16b7102d738e6a988b84a1cf4f493bb251967",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-astro/tsconfig.json": "9f7dd2c2f4698d7a81196afc29701c7324ced4e84c89a8ecd8d942a716893a20"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/svelte/getFormatForDisplay-astro/tsconfig.json"]
+    },
+    "source:examples/svelte/getFormatForDisplay-sveltekit/.gitignore": {
+      "fingerprint": "dd94dba5d562eb80f55493e95d9f2d27031b707fbda24f63610f56d2faa1b072",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-sveltekit/.gitignore": "a5bbfb2a543a06420000c181f21828a732f1a657ca9ab5be1cde22fc2fee07c3"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/svelte/getFormatForDisplay-sveltekit/.gitignore"]
+    },
+    "source:examples/svelte/getFormatForDisplay-sveltekit/eslint.config.js": {
+      "fingerprint": "a024abfdf7b0d077685332486f81d852132d0ce64ae06be50a17f05be0de4a34",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-sveltekit/eslint.config.js": "d7c4c902d244888d0aa4d9fe8ccbada268959f5980828646a28e14deb459bb79"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/svelte/getFormatForDisplay-sveltekit/eslint.config.js"
+      ]
+    },
+    "source:examples/svelte/getFormatForDisplay-sveltekit/src/app.html": {
+      "fingerprint": "71597b34b317906be37c51bdf4bc43c80360eb08f534a58afd2ef692db1d9b7b",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-sveltekit/src/app.html": "b1e55b46c179d960b1f94c2e116e130219f09487fba02341df1bc1ef151c1878"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/svelte/getFormatForDisplay-sveltekit/src/app.html"]
+    },
+    "source:examples/svelte/getFormatForDisplay-sveltekit/src/lib/CheatSheetPage.svelte": {
+      "fingerprint": "9802b19694bfcefe11b31fdab63549b598f8fc9db8e546799ca641f9cc6d4865",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-sveltekit/src/lib/CheatSheetPage.svelte": "8fb96cbfb33af9aec8c882ec129ea5a84162f9e3d7c1438f2cf017b088b3abd4"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/svelte/getFormatForDisplay-sveltekit/src/lib/CheatSheetPage.svelte"
+      ]
+    },
+    "source:examples/svelte/getFormatForDisplay-sveltekit/src/lib/commands.ts": {
+      "fingerprint": "c95f6ef6a4581cde21cba01623a2c7c593f3067f3abacde9dee36e974ad532ee",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-sveltekit/src/lib/commands.ts": "c39e48d190c4f79313a729ebb797b7122e3646cf990018d2d862bd04692e167d"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/svelte/getFormatForDisplay-sveltekit/src/lib/commands.ts"
+      ]
+    },
+    "source:examples/svelte/getFormatForDisplay-sveltekit/src/lib/format-options.ts": {
+      "fingerprint": "e9771a00c322cc7e8b29bdb9a955f8dafaf03119075294809e1d5f80dc8231a3",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-sveltekit/src/lib/format-options.ts": "18d7d29def701681242eb16e4c3ff7ebe513305402f2ec2bf75cd4b9a70d3ae1"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/svelte/getFormatForDisplay-sveltekit/src/lib/format-options.ts"
+      ]
+    },
+    "source:examples/svelte/getFormatForDisplay-sveltekit/src/lib/styles.css": {
+      "fingerprint": "a75c3a6878652e1d34beede90a6d767f4cab99925846f9f2d94854266b68c580",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-sveltekit/src/lib/styles.css": "d27567ee527dfeddcf65ece76a9429ed175f97a9c6cc126fadc44e128c1bab6f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/svelte/getFormatForDisplay-sveltekit/src/lib/styles.css"
+      ]
+    },
+    "source:examples/svelte/getFormatForDisplay-sveltekit/src/routes/+layout.server.ts": {
+      "fingerprint": "37243a79b2113199848ce8e3e2d8f4d8e488a40ac82343ef52ff6355706c2d07",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-sveltekit/src/routes/+layout.server.ts": "8e67b6911aa915442e2a033ea90d0b6b6ca55fde6b267253f64557f90840cc69"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/svelte/getFormatForDisplay-sveltekit/src/routes/+layout.server.ts"
+      ]
+    },
+    "source:examples/svelte/getFormatForDisplay-sveltekit/src/routes/+layout.svelte": {
+      "fingerprint": "42cc30d3fc900289a5b544c29604d729f86df5002c6ab51999c7a025c3d544af",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-sveltekit/src/routes/+layout.svelte": "2b7047e7b003712fa57f3b630e0a2db2d5796c964176a96c333d03bd16646395"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/svelte/getFormatForDisplay-sveltekit/src/routes/+layout.svelte"
+      ]
+    },
+    "source:examples/svelte/getFormatForDisplay-sveltekit/src/routes/+page.svelte": {
+      "fingerprint": "a2499bde93297065e5762a2cf794d2dc9462e485999ed9b430fd46ac7c85d46e",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-sveltekit/src/routes/+page.svelte": "ad58fc7e0b16fa134dd8833da37682f6604164d05140c7872c192803d22bc2d3"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/svelte/getFormatForDisplay-sveltekit/src/routes/+page.svelte"
+      ]
+    },
+    "source:examples/svelte/getFormatForDisplay-sveltekit/tsconfig.json": {
+      "fingerprint": "e92c0202cd8ee034065044ee7fe3069129e646dfd6b262ac213ce13e6b9d45f7",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-sveltekit/tsconfig.json": "f860976ed3a5a3a0cfadc16af963e8ddb71e378449181cdd1301c003808add4c"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/svelte/getFormatForDisplay-sveltekit/tsconfig.json"
+      ]
+    },
+    "source:examples/svelte/getFormatForDisplay-sveltekit/vite.config.ts": {
+      "fingerprint": "7c34228bc2387529b9ebba3e354ca3d70efd1d167849b38ad2c7f3f168838051",
+      "snapshot": {
+        "examples/svelte/getFormatForDisplay-sveltekit/vite.config.ts": "8b2a83d600539a0bc52a8ca35e5928c36f57155e8a1ca3334895ff9eb8574455"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/svelte/getFormatForDisplay-sveltekit/vite.config.ts"
+      ]
+    },
+    "source:examples/vanilla/formatForDisplay/eslint.config.js": {
+      "fingerprint": "0214b59ce6d0658a3bf4869e0494a40c2246d9f61126930b455a0cb9bd02f36e",
+      "snapshot": {
+        "examples/vanilla/formatForDisplay/eslint.config.js": null
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vanilla/formatForDisplay/eslint.config.js"]
+    },
+    "source:examples/vanilla/formatForDisplay/index.html": {
+      "fingerprint": "4de655883a400e7440377e687d3672e4d683f5d8afc78c28eb4490c17cbe209e",
+      "snapshot": {
+        "examples/vanilla/formatForDisplay/index.html": null
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vanilla/formatForDisplay/index.html"]
+    },
+    "source:examples/vanilla/formatForDisplay/src/styles.css": {
+      "fingerprint": "490187de25c677d0dc3334743ac4a52c5f1f90d4699de37e8a0e9511912a4b66",
+      "snapshot": {
+        "examples/vanilla/formatForDisplay/src/styles.css": null
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vanilla/formatForDisplay/src/styles.css"]
+    },
+    "source:examples/vanilla/formatForDisplay/tsconfig.json": {
+      "fingerprint": "ed33b5800ad090ebf62151c9a178535b0809925c22b0a3657147938c84073822",
+      "snapshot": {
+        "examples/vanilla/formatForDisplay/tsconfig.json": null
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vanilla/formatForDisplay/tsconfig.json"]
+    },
+    "source:examples/vanilla/formatForDisplay/vite.config.ts": {
+      "fingerprint": "2517a820d231e5dd6b4218e933356e88844180db909428b9f69023393f8ac71c",
+      "snapshot": {
+        "examples/vanilla/formatForDisplay/vite.config.ts": null
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vanilla/formatForDisplay/vite.config.ts"]
+    },
+    "source:examples/vue/useFormatForDisplay-astro/.gitignore": {
+      "fingerprint": "11d0703701642a5aa89976836f490065125bcab39424e5f1dc26eb67aa98ee08",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-astro/.gitignore": "12b9c38c2f5cae81757c15088959eb66b3e372353c80179f2d3cf41eac6948fb"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-astro/.gitignore"]
+    },
+    "source:examples/vue/useFormatForDisplay-astro/astro.config.mjs": {
+      "fingerprint": "525e0e924d0909f96c4ebbe2a4244202cfe927a9193af7bb520c5ffa21f508ff",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-astro/astro.config.mjs": "faed1dfe5a15c5fd6cddcd11e073b624d0d4ae250e8e90cd73c5f36e62734129"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-astro/astro.config.mjs"]
+    },
+    "source:examples/vue/useFormatForDisplay-astro/eslint.config.js": {
+      "fingerprint": "f4d53942fc9d75490e12cd9c23a8a97a5df6c9df1e8f5204c83bfbede34b9be3",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-astro/eslint.config.js": "a47317c4535ea800fa1ed19bef7dafd732ef3e0e398956e59e0ca0bfc54eaa7e"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-astro/eslint.config.js"]
+    },
+    "source:examples/vue/useFormatForDisplay-astro/src/commands.ts": {
+      "fingerprint": "33bf49ea1215568fd6f576505cfce78079662f6d87c240b553c1a063822486fd",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-astro/src/commands.ts": "a5b7895c7f578b9fd21cb3003840f969694e74a3ffe321556298488b78d36aaf"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-astro/src/commands.ts"]
+    },
+    "source:examples/vue/useFormatForDisplay-astro/src/components/CheatSheetPage.vue": {
+      "fingerprint": "05a298a5cef3c11c33260abdb8fdcf6bd49ef836ba4d9289779b7e7d050dd7b9",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-astro/src/components/CheatSheetPage.vue": "e509beab544e507e74a8a7eb1cf8ae403624cd8a334aeb3fe86d6e941eb1f082"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-astro/src/components/CheatSheetPage.vue"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-astro/src/components/HotkeyLabel.vue": {
+      "fingerprint": "74ddde18e9db855880bfac73c2b06bb35e6efd157f4474d1bde404ea0dbe7ee9",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-astro/src/components/HotkeyLabel.vue": "9bae25f125d61855ac640d413a7c49e2774dc9e431029c8f3a0107f63fc8b751"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-astro/src/components/HotkeyLabel.vue"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-astro/src/components/Shortcuts.vue": {
+      "fingerprint": "cbcb45d7daa1e47d9233a62386655fe2dee49f7c6c4be16136ee5000d3aa9e11",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-astro/src/components/Shortcuts.vue": "ea49e2b1feba4bdfa096eed11b939572fbc9be73686cdfbc8b7a97f1ba6beab2"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-astro/src/components/Shortcuts.vue"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-astro/src/format-options.ts": {
+      "fingerprint": "4b19bc78ec9fd1e398f7dd1be2ca9e85507b03a8f50b6a9a5a53fc6f7e94ced2",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-astro/src/format-options.ts": "f959fe237b99dc127a7dc305b9f843c926d9d4ef2ca4d59269b976376e85288c"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-astro/src/format-options.ts"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-astro/src/pages/index.astro": {
+      "fingerprint": "218a8c4de91c024b6ec6aa912bfe37e6761ab6260427f74a3a465c322ec2f1e1",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-astro/src/pages/index.astro": "005f3df603a3094e9130c4ec6f8764ec25ae581047bbae9d10a6ebc67bb39362"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-astro/src/pages/index.astro"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-astro/src/styles.css": {
+      "fingerprint": "413e771f99c722b1902b230dbc2fd6771104d07a008686f8bcd80b7b039337fa",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-astro/src/styles.css": "d27567ee527dfeddcf65ece76a9429ed175f97a9c6cc126fadc44e128c1bab6f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-astro/src/styles.css"]
+    },
+    "source:examples/vue/useFormatForDisplay-astro/tsconfig.json": {
+      "fingerprint": "3292ed3c9c005dd37b93d02608dfb2cf5dfacf30c7d31bb04c9a173515d4bb8c",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-astro/tsconfig.json": "9f7dd2c2f4698d7a81196afc29701c7324ced4e84c89a8ecd8d942a716893a20"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-astro/tsconfig.json"]
+    },
+    "source:examples/vue/useFormatForDisplay-nuxt/.gitignore": {
+      "fingerprint": "3fa950e2eb848f082f0b5e05a54760307f40b4cf2f898ba3a4056a451dca9977",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-nuxt/.gitignore": "92f5c2c1f26c2f829be935baa7821b91eeefda8943faa53099cd51b25e898eec"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-nuxt/.gitignore"]
+    },
+    "source:examples/vue/useFormatForDisplay-nuxt/app/app.vue": {
+      "fingerprint": "bbfd3c3d5b502f401691a83ace3bf661cd720aed801edd97761b7db050d4445a",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-nuxt/app/app.vue": "4b842f5c15047b7e377837cb13e22b8efe89501367089b0b279714664a225d2a"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-nuxt/app/app.vue"]
+    },
+    "source:examples/vue/useFormatForDisplay-nuxt/app/commands.ts": {
+      "fingerprint": "3e3c934ae725fdc2def10c947512d6db86764d6a1c84aed8a4ad9cb921f40a39",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-nuxt/app/commands.ts": "a5b7895c7f578b9fd21cb3003840f969694e74a3ffe321556298488b78d36aaf"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-nuxt/app/commands.ts"]
+    },
+    "source:examples/vue/useFormatForDisplay-nuxt/app/components/CheatSheetPage.vue": {
+      "fingerprint": "a6f82f45e4082397987aabee5ac1a02baca78663111c2fc1db9e5a4d5abea67b",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-nuxt/app/components/CheatSheetPage.vue": "e509beab544e507e74a8a7eb1cf8ae403624cd8a334aeb3fe86d6e941eb1f082"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-nuxt/app/components/CheatSheetPage.vue"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-nuxt/app/components/HotkeyLabel.vue": {
+      "fingerprint": "a1550dde951016167a995e595c20ca4fe8beed1673507390e21e811542705db3",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-nuxt/app/components/HotkeyLabel.vue": "9bae25f125d61855ac640d413a7c49e2774dc9e431029c8f3a0107f63fc8b751"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-nuxt/app/components/HotkeyLabel.vue"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-nuxt/app/format-options.ts": {
+      "fingerprint": "d052ea1abcda624dc99f23bf2c7b68cb9479b937a510b8726f7b4f6c4d020e58",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-nuxt/app/format-options.ts": "f959fe237b99dc127a7dc305b9f843c926d9d4ef2ca4d59269b976376e85288c"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-nuxt/app/format-options.ts"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-nuxt/app/pages/index.vue": {
+      "fingerprint": "960644cf376b2acfc5e063f1c54450822ca94572bd3be52978249203780882dd",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-nuxt/app/pages/index.vue": "ef78514ba804b74aa056fa9dd760207adabe1bb2aa781936efadc731165d67f4"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-nuxt/app/pages/index.vue"]
+    },
+    "source:examples/vue/useFormatForDisplay-nuxt/app/styles.css": {
+      "fingerprint": "d0e4aa58e99cb0b9a9b01c19b39a3aff4a4fa1a19dd586ca86c0852126c05dcd",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-nuxt/app/styles.css": "d27567ee527dfeddcf65ece76a9429ed175f97a9c6cc126fadc44e128c1bab6f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-nuxt/app/styles.css"]
+    },
+    "source:examples/vue/useFormatForDisplay-nuxt/eslint.config.js": {
+      "fingerprint": "44a866d8bc639c70ca0408b1c20f1ae450d21dde593a96a4ae1e9f01d975d1bc",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-nuxt/eslint.config.js": "d1b25511a294064f78df474424808ac758a5eb66ac650f27f157d6981b52ae82"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-nuxt/eslint.config.js"]
+    },
+    "source:examples/vue/useFormatForDisplay-nuxt/nuxt.config.ts": {
+      "fingerprint": "02be5d0d36b1fb5c5e7a9f0443bde56d19b13ba953da50035757f44db7a10ec6",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-nuxt/nuxt.config.ts": "0f7cff9e800744582381566e99d48b275cc811ad7a85fd46dac68eda46d5a808"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-nuxt/nuxt.config.ts"]
+    },
+    "source:examples/vue/useFormatForDisplay-nuxt/tsconfig.json": {
+      "fingerprint": "02f23f336dc69f62617e2c1d90ef8841740c158ddd2cacdd91d62b540b59f40e",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-nuxt/tsconfig.json": "665bfd2725ef0790a0173aacdd820037c4420f3df365ae3873953f8c953b9b08"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-nuxt/tsconfig.json"]
+    },
+    "source:examples/vue/useFormatForDisplay-vite-ssr/eslint.config.js": {
+      "fingerprint": "af4bd7edcff81629fc557858e9774bd145b0966271c72a0789206540f151ce78",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vite-ssr/eslint.config.js": "0da4f0e1ea819f871cd08c816b7a868203e1add536fccbfc4761eaffa4fa5e1e"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-vite-ssr/eslint.config.js"]
+    },
+    "source:examples/vue/useFormatForDisplay-vite-ssr/index.html": {
+      "fingerprint": "f62378b1169e37996e055b4d8cc01d8e81ada8d081eaa6a5bf1de793a45e9d27",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vite-ssr/index.html": "7a24a9a8f1217aae2e8f4f27d601feae902f0835aaa53790f7bc3f2748ca9266"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-vite-ssr/index.html"]
+    },
+    "source:examples/vue/useFormatForDisplay-vite-ssr/server.ts": {
+      "fingerprint": "1dc4bf0d1722a55c3e30aba880626a7e77ecd27fcd66e7b7064794d2a82bf67e",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vite-ssr/server.ts": "453c6fc829c7e528b29a2c496fd88f9a7333eb8a273304c9f6bca8d19f72083f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-vite-ssr/server.ts"]
+    },
+    "source:examples/vue/useFormatForDisplay-vite-ssr/src/App.vue": {
+      "fingerprint": "160797d275dc0fa0fdbb77ee5b4c2801a5b2521fcd6f3a7178ce60c2aa3b7590",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vite-ssr/src/App.vue": "0dab3752abc62b9f99f55594a75a8bfe7903c024d2a74ba88f842967e644d456"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-vite-ssr/src/App.vue"]
+    },
+    "source:examples/vue/useFormatForDisplay-vite-ssr/src/commands.ts": {
+      "fingerprint": "ff6234fe2db9e7036e14a12d52a267a85967d7cd3354ea9e04d7056d1da1c1c4",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vite-ssr/src/commands.ts": "a5b7895c7f578b9fd21cb3003840f969694e74a3ffe321556298488b78d36aaf"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-vite-ssr/src/commands.ts"]
+    },
+    "source:examples/vue/useFormatForDisplay-vite-ssr/src/components/CheatSheetPage.vue": {
+      "fingerprint": "e80fa5270b7f379dc7115a1dda90ec20c9ed6014bae94041a650857150711a1d",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vite-ssr/src/components/CheatSheetPage.vue": "e509beab544e507e74a8a7eb1cf8ae403624cd8a334aeb3fe86d6e941eb1f082"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-vite-ssr/src/components/CheatSheetPage.vue"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-vite-ssr/src/components/HotkeyLabel.vue": {
+      "fingerprint": "c044f2a4d98221f1f993c0c95083eb73653ed5eea70d60756b22e9f0731b8eb5",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vite-ssr/src/components/HotkeyLabel.vue": "9bae25f125d61855ac640d413a7c49e2774dc9e431029c8f3a0107f63fc8b751"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-vite-ssr/src/components/HotkeyLabel.vue"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-vite-ssr/src/entry-client.ts": {
+      "fingerprint": "cd9b9165698df104ef5761fb25b5825f3ba48e441ef3c30bcd351520e82e2c51",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vite-ssr/src/entry-client.ts": "d62b6b6458281e6890523a61a08f8a6a0086e13a802eba3b2882d9ed009986fc"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-vite-ssr/src/entry-client.ts"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-vite-ssr/src/entry-server.ts": {
+      "fingerprint": "bb8a75dda94fa7a99d5ddb1e69032c086f37cbba1ab72884b0613850fdfd6903",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vite-ssr/src/entry-server.ts": "4cfcb2ce5e92398196ae833b9d9aa7a321a2d6a3138ead103e5e960a36f45440"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-vite-ssr/src/entry-server.ts"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-vite-ssr/src/format-options.ts": {
+      "fingerprint": "4802723be6a0dd545626729ceff776511c142167d3ea358bbe460f2e1a7237d7",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vite-ssr/src/format-options.ts": "f959fe237b99dc127a7dc305b9f843c926d9d4ef2ca4d59269b976376e85288c"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-vite-ssr/src/format-options.ts"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-vite-ssr/src/main.ts": {
+      "fingerprint": "22d91d3e5d6da5fb7187583ce9631b74854065ab441a0f25d23953fb5d47d89a",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vite-ssr/src/main.ts": "3cfdc5f3a11800236e7d051b410d9c363978617c7be22253b49b33c402e37bba"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-vite-ssr/src/main.ts"]
+    },
+    "source:examples/vue/useFormatForDisplay-vite-ssr/src/styles.css": {
+      "fingerprint": "d839cf58d6180d0238dec6a5259f73fc5221a245b237a6a74f5b0785cfd6adfe",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vite-ssr/src/styles.css": "d27567ee527dfeddcf65ece76a9429ed175f97a9c6cc126fadc44e128c1bab6f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-vite-ssr/src/styles.css"]
+    },
+    "source:examples/vue/useFormatForDisplay-vite-ssr/tsconfig.json": {
+      "fingerprint": "42e5ad1072bd49147f908b04d763c1771b436894906b4f932b4e5e67585b18cc",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vite-ssr/tsconfig.json": "626a649d2050b1ab09749e10335a9bd0c1894d6fedd0246bfb43f6b621501536"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-vite-ssr/tsconfig.json"]
+    },
+    "source:examples/vue/useFormatForDisplay-vite-ssr/vite.config.ts": {
+      "fingerprint": "7552c6eeb17f437651b86b1e690c9021ad6653f1cf263f83761133958e8491fd",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vite-ssr/vite.config.ts": "de5b56ab35f88af4c532665929cdc85a855a19209fcfa37c391daebb764ff89d"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-vite-ssr/vite.config.ts"]
+    },
+    "source:examples/vue/useFormatForDisplay-vitepress/.gitignore": {
+      "fingerprint": "219fc04e334e228c5926aa62dbc98d0c6875be3a41aeddd0a670a73c89fb31fd",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vitepress/.gitignore": "a1334408cf05ff10913946d01b1c25fe1c105d8b7d29163ba7699f41f20abfc9"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-vitepress/.gitignore"]
+    },
+    "source:examples/vue/useFormatForDisplay-vitepress/.vitepress/config.ts": {
+      "fingerprint": "8e68e4079e4ad819a5d6cf6227a05418a125870604dfd2dd54cc6e3b717ea461",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vitepress/.vitepress/config.ts": "264ff7db9c92b2ec69532cb1106ab251417820a5d094d9eb714444cd6ba41a8e"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-vitepress/.vitepress/config.ts"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-vitepress/.vitepress/theme/CheatSheetPage.vue": {
+      "fingerprint": "681c219893a1b8e404c4fd45a374fa06d1fef097ca2776cb46c3ce3ad4d57308",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vitepress/.vitepress/theme/CheatSheetPage.vue": "7a3a697ac536775feaf345f7cd7a5b97ac5be139f90e6572e400c5b45fd4abdf"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-vitepress/.vitepress/theme/CheatSheetPage.vue"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-vitepress/.vitepress/theme/HotkeyLabel.vue": {
+      "fingerprint": "87106e51ab761bbbf5080fb4136c4e5958ae224aa9d491a78094729d5dc5a13c",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vitepress/.vitepress/theme/HotkeyLabel.vue": "9bae25f125d61855ac640d413a7c49e2774dc9e431029c8f3a0107f63fc8b751"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-vitepress/.vitepress/theme/HotkeyLabel.vue"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-vitepress/.vitepress/theme/commands.ts": {
+      "fingerprint": "dd7a78a38b35cb2e396b073d5f94ead5ead2d6a656e8c471ba8e8c86c0af85b9",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vitepress/.vitepress/theme/commands.ts": "a5b7895c7f578b9fd21cb3003840f969694e74a3ffe321556298488b78d36aaf"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-vitepress/.vitepress/theme/commands.ts"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-vitepress/.vitepress/theme/format-options.ts": {
+      "fingerprint": "33a78977a9f1dc96eff06a26d5fdf7ec3b8a3a37ccea71c6049cfcf350e3af90",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vitepress/.vitepress/theme/format-options.ts": "f959fe237b99dc127a7dc305b9f843c926d9d4ef2ca4d59269b976376e85288c"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-vitepress/.vitepress/theme/format-options.ts"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-vitepress/.vitepress/theme/index.ts": {
+      "fingerprint": "8562c50fa5b099b97f3732d760bbbb4d6b214de17c992e95dc4471d235970ff0",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vitepress/.vitepress/theme/index.ts": "259230ee1289403138db0d79b9bfcb262147aec945b5a0a90ff239e347e7fe0f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-vitepress/.vitepress/theme/index.ts"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-vitepress/.vitepress/theme/styles.css": {
+      "fingerprint": "6e25b2a86b0aaa405fbd262e9a1bb9236af9f5ed44093342d3816e02a24021b5",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vitepress/.vitepress/theme/styles.css": "d27567ee527dfeddcf65ece76a9429ed175f97a9c6cc126fadc44e128c1bab6f"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-vitepress/.vitepress/theme/styles.css"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-vitepress/eslint.config.js": {
+      "fingerprint": "78dbccc31b77872ca1b56e697afbc6c523e0fd3911c80f5bdfefe1ddb5a11617",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vitepress/eslint.config.js": "6d41217f33b017eb6c633cec2a5bc8120376c52cd44854008aca611243c6596d"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": [
+        "examples/vue/useFormatForDisplay-vitepress/eslint.config.js"
+      ]
+    },
+    "source:examples/vue/useFormatForDisplay-vitepress/index.md": {
+      "fingerprint": "5909eb93543e419fb67968f4e819a2092ab1aa53d764d02d590b4d8954d8fc5d",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vitepress/index.md": "409412347271ee19938e3904f82089d7993254141ecab546f0da0868e6dd351a"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-vitepress/index.md"]
+    },
+    "source:examples/vue/useFormatForDisplay-vitepress/tsconfig.json": {
+      "fingerprint": "610fe2008017fc1cf8f79156f9baa9f2d5a74d738894733460e9f6676ba3384f",
+      "snapshot": {
+        "examples/vue/useFormatForDisplay-vitepress/tsconfig.json": "f688ac0cbc6c62a930e3a6e6e60530b116417c62540a4c469a2e2d82ceb30921"
+      },
+      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "outcome": "no-change",
+      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "evidence": ["examples/vue/useFormatForDisplay-vitepress/tsconfig.json"]
     }
   }
 }

@@ -1,0 +1,24 @@
+{
+  "name": "@tanstack/hotkeys-example-solid-create-format-for-display-tanstack-start",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev --port=3069",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test:types": "tsc"
+  },
+  "dependencies": {
+    "@tanstack/solid-hotkeys": "^0.19.2",
+    "@tanstack/solid-router": "^1.170.43",
+    "@tanstack/solid-start": "^1.169.4",
+    "solid-js": "^1.9.15"
+  },
+  "devDependencies": {
+    "typescript": "6.0.3",
+    "vite": "^8.3.2",
+    "vite-plugin-solid": "^2.11.14"
+  }
+}

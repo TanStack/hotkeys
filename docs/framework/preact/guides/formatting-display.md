@@ -157,7 +157,7 @@ import { define } from '../utils.ts'
 import Shortcuts from '../islands/Shortcuts.tsx'
 
 export default define.page(({ req }) => {
-  const platform = detectPlatform(req.headers.get('user-agent') ?? undefined)
+  const platform = detectPlatform(req.headers.get('user-agent'))
 
   return <Shortcuts platform={platform} />
 })
@@ -190,7 +190,7 @@ import { detectPlatform } from '@tanstack/preact-hotkeys'
 import Shortcuts from '../components/Shortcuts'
 
 export const prerender = false
-const platform = detectPlatform(Astro.request.headers.get('user-agent') ?? undefined)
+const platform = detectPlatform(Astro.request.headers.get('user-agent'))
 ---
 
 <Shortcuts client:load platform={platform} />
@@ -209,6 +209,8 @@ export default function Shortcuts({ platform }: { platform: HotkeyPlatform }) {
   )
 }
 ```
+
+The [Astro example](../examples/useFormatForDisplay-astro) shows this setup.
 
 ### Vite server rendering
 
@@ -248,7 +250,9 @@ import { App } from './App'
 hydrate(<App platform={detectPlatform()} />, document.getElementById('app')!)
 ```
 
-Your server calls `render` with the request's `User-Agent` header: `request.headers.get('user-agent') ?? undefined` for a Fetch API `Request`, or `req.headers['user-agent']` in Express.
+Your server calls `render` with the request's `User-Agent` header: `request.headers.get('user-agent')` for a Fetch API `Request`, or `req.headers['user-agent']` in Express.
+
+The [Vite SSR example](../examples/useFormatForDisplay-vite-ssr) shows this setup.
 
 ### Render a label only in the browser
 
@@ -301,4 +305,4 @@ A parsed chord's modifiers are already resolved for one platform. To store it as
 
 Use `validateHotkey` when you accept a hotkey from somewhere else, such as a settings file. It returns `valid`, `errors`, and `warnings`, and names the failing step of a sequence. It can't promise that the browser or operating system delivers the shortcut. To check hotkeys as users record them, see [Validate and check conflicts](./custom-hotkey-recording#validate-and-check-conflicts).
 
-Try these options together in the [vanilla formatter playground](../../../framework/vanilla/examples/formatForDisplay). For a full list of your app's shortcuts, see [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers).
+Try these options together with the format toggles in the [server-rendered cheat sheet example](../examples/useFormatForDisplay-astro). For a full list of your app's shortcuts, see [Cheat Sheet UI Helpers](./cheat-sheet-ui-helpers).

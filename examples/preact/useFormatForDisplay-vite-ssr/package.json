@@ -1,0 +1,24 @@
+{
+  "name": "@tanstack/hotkeys-example-preact-use-format-for-display-vite-ssr",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "vite build --outDir dist/client && vite build --ssr src/entry-server.tsx --outDir dist/server",
+    "start": "node server.js --production",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test:types": "tsc"
+  },
+  "dependencies": {
+    "@tanstack/preact-hotkeys": "^0.19.2",
+    "preact": "^11.0.1",
+    "preact-render-to-string": "^6.8.2"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.10.6",
+    "@types/node": "^26.6.4",
+    "typescript": "6.0.3",
+    "vite": "^8.3.2"
+  }
+}

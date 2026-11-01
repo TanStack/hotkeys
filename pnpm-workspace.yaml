@@ -30,6 +30,12 @@ packages:
   - 'e2e'
   - 'examples/**/*'
   - 'packages/*'
+packageExtensions:
+  # @analogjs/vite-plugin-nitro imports h3 v1 without declaring it, so it
+  # resolves the hoisted h3 v2 and fails to load.
+  '@analogjs/vite-plugin-nitro':
+    dependencies:
+      h3: ^1.15.11
 onlyBuiltDependencies:
   - esbuild
 
