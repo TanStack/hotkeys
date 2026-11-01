@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useHotkey } from '@tanstack/vue-hotkeys'
+import { HotkeysProvider, useHotkey } from '@tanstack/vue-hotkeys'
 import FolderPane from './FolderPane.vue'
 import Key from './Key.vue'
-import Scope from './Scope.vue'
+import ScopeFrame from './ScopeFrame.vue'
 
 // `enabled` turns a scope off without unmounting it.
 const folders = ['Inbox', 'Archive', 'Spam'] as const
@@ -23,18 +23,20 @@ useHotkey('Alt+[Digit3]', () => (current.value = 'Spam'))
       <Key hotkey="Alt+3" />.
     </p>
     <div class="folders">
-      <Scope
+      <HotkeysProvider
         v-for="name in folders"
         :key="name"
         :scope="name.toLowerCase()"
         :enabled="current === name"
       >
-        <FolderPane
-          :name="name"
-          :current="current === name"
-          @select="current = name"
-        />
-      </Scope>
+        <ScopeFrame :scope="name.toLowerCase()" :enabled="current === name">
+          <FolderPane
+            :name="name"
+            :current="current === name"
+            @select="current = name"
+          />
+        </ScopeFrame>
+      </HotkeysProvider>
     </div>
   </section>
 </template>

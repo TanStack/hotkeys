@@ -1,11 +1,4 @@
-import {
-  For,
-  Show,
-  createContext,
-  createSignal,
-  splitProps,
-  useContext,
-} from 'solid-js'
+import { For, Show, createContext, createSignal, useContext } from 'solid-js'
 import { Portal, render } from 'solid-js/web'
 import {
   HotkeysProvider,
@@ -39,18 +32,26 @@ function App() {
               </p>
             </header>
             <ScopeFrame>
-              <Scope scope="palette">
-                <Palette />
-              </Scope>
-              <Scope scope="document">
-                <NestedDemo />
-              </Scope>
-              <Scope scope="mail">
-                <TabsDemo />
-              </Scope>
-              <Scope scope="settings">
-                <DialogDemo />
-              </Scope>
+              <HotkeysProvider scope="palette">
+                <ScopeFrame scope="palette">
+                  <Palette />
+                </ScopeFrame>
+              </HotkeysProvider>
+              <HotkeysProvider scope="document">
+                <ScopeFrame scope="document">
+                  <NestedDemo />
+                </ScopeFrame>
+              </HotkeysProvider>
+              <HotkeysProvider scope="mail">
+                <ScopeFrame scope="mail">
+                  <TabsDemo />
+                </ScopeFrame>
+              </HotkeysProvider>
+              <HotkeysProvider scope="settings">
+                <ScopeFrame scope="settings">
+                  <DialogDemo />
+                </ScopeFrame>
+              </HotkeysProvider>
               <ActivityLog />
             </ScopeFrame>
           </div>
@@ -74,17 +75,7 @@ interface ScopeProps {
   children: JSX.Element
 }
 
-/** A `HotkeysProvider` with a box around its children, labeled with its props. */
-function Scope(props: ScopeProps) {
-  const [local, others] = splitProps(props, ['children'])
-  return (
-    <HotkeysProvider {...others}>
-      <ScopeFrame {...others}>{local.children}</ScopeFrame>
-    </HotkeysProvider>
-  )
-}
-
-/** The box alone, for content rendered apart from its provider, such as a dialog. */
+/** A box labeled with its provider's props. Render it inside the provider. */
 function ScopeFrame(props: Partial<ScopeProps>) {
   const label = () => {
     const { scope = 'global', exclusive, enabled } = props
@@ -161,9 +152,11 @@ function NestedDemo() {
         Show comment box
       </label>
       <Show when={showComments()}>
-        <Scope scope="comments">
-          <CommentBox />
-        </Scope>
+        <HotkeysProvider scope="comments">
+          <ScopeFrame scope="comments">
+            <CommentBox />
+          </ScopeFrame>
+        </HotkeysProvider>
       </Show>
     </section>
   )
@@ -209,13 +202,21 @@ function TabsDemo() {
       <div class="folders">
         <For each={folders}>
           {(name) => (
-            <Scope scope={name.toLowerCase()} enabled={current() === name}>
-              <FolderPane
-                name={name}
-                current={current() === name}
-                onSelect={() => setCurrent(name)}
-              />
-            </Scope>
+            <HotkeysProvider
+              scope={name.toLowerCase()}
+              enabled={current() === name}
+            >
+              <ScopeFrame
+                scope={name.toLowerCase()}
+                enabled={current() === name}
+              >
+                <FolderPane
+                  name={name}
+                  current={current() === name}
+                  onSelect={() => setCurrent(name)}
+                />
+              </ScopeFrame>
+            </HotkeysProvider>
           )}
         </For>
       </div>
@@ -337,9 +338,11 @@ function Dialog(props: {
               <Key hotkey="Escape" /> closes it. The folder hotkeys are
               suspended, and so is anything you did not allow above.
             </p>
-            <Scope scope="dialog-steps">
-              <Steps />
-            </Scope>
+            <HotkeysProvider scope="dialog-steps">
+              <ScopeFrame scope="dialog-steps">
+                <Steps />
+              </ScopeFrame>
+            </HotkeysProvider>
             <div class="actions">
               <button class="secondary" onClick={() => props.onClose()}>
                 Cancel
