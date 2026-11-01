@@ -29,6 +29,9 @@ minimumReleaseAgeExclude:
 packages:
   - 'e2e'
   - 'examples/**/*'
+  # Build output can contain its own package.json, such as Analog's server.
+  - '!examples/**/dist/**'
+  - '!examples/**/.output/**'
   - 'packages/*'
 packageExtensions:
   # @analogjs/vite-plugin-nitro imports h3 v1 without declaring it, so it

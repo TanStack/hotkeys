@@ -524,48 +524,6 @@ importers:
         specifier: ^8.3.2
         version: 8.3.5(@types/node@26.6.4)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1)
 
-  examples/angular/injectFormatForDisplay-analog/dist/analog/server:
-    dependencies:
-      '@analogjs/content':
-        specifier: 2.9.4
-        version: 2.9.4(e45f6f1b8f8ef223a0a31ea30216cfb0)
-      '@angular/common':
-        specifier: 22.2.1
-        version: 22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2)
-      '@angular/core':
-        specifier: 22.2.1
-        version: 22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)
-      '@angular/platform-browser':
-        specifier: 22.2.1
-        version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))
-      '@angular/router':
-        specifier: 22.2.1
-        version: 22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.1(@angular/common@22.2.1(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.1(@angular/compiler@22.2.1)(rxjs@7.8.2)(zone.js@0.16.3)))(rxjs@7.8.2)
-      esprima:
-        specifier: 4.0.1
-        version: 4.0.1
-      front-matter:
-        specifier: 4.0.2
-        version: 4.0.2
-      github-slugger:
-        specifier: 2.0.0
-        version: 2.0.0
-      js-yaml:
-        specifier: 3.15.2
-        version: 3.15.2
-      marked:
-        specifier: 15.0.12
-        version: 15.0.12
-      marked-gfm-heading-id:
-        specifier: 4.1.4
-        version: 4.1.4(marked@15.0.12)
-      marked-mangle:
-        specifier: 1.1.14
-        version: 1.1.14(marked@15.0.12)
-      rxjs:
-        specifier: 7.8.2
-        version: 7.8.2
-
   examples/angular/injectFormatForDisplay-angular-ssr:
     dependencies:
       '@angular/common':
