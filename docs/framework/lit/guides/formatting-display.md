@@ -137,6 +137,8 @@ The attribute is part of the server's HTML, so the element reads the same `platf
 
 The browser's `KeyboardLayoutMap` loads only in the browser, after hydration. Render fallback labels first and pass the map once it loads. `keyLabels` works anywhere, including on the server.
 
+Pages rendered this way depend on the request's `User-Agent` header. If a CDN or another shared cache stores them, it can serve one user's labels, and the platform that `Mod` resolves to, to other users. Keep these pages out of shared caches, or add the platform to the cache key. `Vary: User-Agent` also works, but it splits the cache into many small entries.
+
 ## Parse, compare, and store hotkeys
 
 `parseHotkey` returns each chord's key, as either a logical `key` or a physical `code`, plus its modifiers with `Mod` resolved. Check which one you have before reading it:

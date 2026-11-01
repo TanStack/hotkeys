@@ -153,6 +153,8 @@ Vue has no fallback for a missing platform. Without a provider `platform`, `useF
 
 The provider must render on the server too, so wrap your app in it where the request is available, as shown for each framework below.
 
+Pages rendered this way depend on the request's `User-Agent` header. If a CDN or another shared cache stores them, it can serve one user's labels, and the platform that `Mod` resolves to, to other users. Keep these pages out of shared caches, or add the platform to the cache key. `Vary: User-Agent` also works, but it splits the cache into many small entries.
+
 ### Nuxt
 
 `useRequestHeader` returns the request's header on the server and `undefined` in the browser. `detectPlatform(undefined)` reads the browser's `navigator`, so the same line works on both sides:

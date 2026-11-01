@@ -149,12 +149,15 @@ Without a provider `platform`, `useFormatForDisplay` renders `'linux'` labels on
 
 The provider must render on the server too, so wrap your app in it where the request is available, as shown for each framework below.
 
+Pages rendered this way depend on the request's `User-Agent` header. If a CDN or another shared cache stores them, it can serve one user's labels, and the platform that `Mod` resolves to, to other users. Keep these pages out of shared caches, or add the platform to the cache key. `Vary: User-Agent` also works, but it splits the cache into many small entries.
+
 ### TanStack Start
 
 `createIsomorphicFn` reads the request header on the server and the browser's `navigator` in the browser, so no loader is needed:
 
 ```tsx
 // src/routes/__root.tsx
+import { Outlet } from '@tanstack/react-router'
 import { createIsomorphicFn } from '@tanstack/react-start'
 import { getRequestHeader } from '@tanstack/react-start/server'
 import { HotkeysProvider, detectPlatform } from '@tanstack/react-hotkeys'
@@ -208,6 +211,7 @@ Detect the platform in the root route's loader, and read it in the root componen
 
 ```tsx
 // app/root.tsx
+import { Outlet } from 'react-router'
 import { HotkeysProvider, detectPlatform } from '@tanstack/react-hotkeys'
 import type { Route } from './+types/root'
 

@@ -147,6 +147,8 @@ Without a provider `platform`, `useFormatForDisplay` renders `'linux'` labels on
 
 The provider must render on the server too, so wrap your app in it where the request is available, as shown for each setup below.
 
+Pages rendered this way depend on the request's `User-Agent` header. If a CDN or another shared cache stores them, it can serve one user's labels, and the platform that `Mod` resolves to, to other users. Keep these pages out of shared caches, or add the platform to the cache key. `Vary: User-Agent` also works, but it splits the cache into many small entries.
+
 ### TanStack Start
 
 `@octanejs/tanstack-start` runs TanStack Start with Octane. `createIsomorphicFn` reads the request header on the server and the browser's `navigator` in the browser, so no loader is needed:

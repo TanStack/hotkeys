@@ -177,6 +177,8 @@ In the browser, `fastboot.request` is `null`, so `detectPlatform()` reads the br
 
 Without a scope `platform`, `useFormatForDisplay` renders `'linux'` labels in FastBoot. By default, the app replaces the server's HTML when it boots in the browser, so the labels then switch to the browser's platform. Mac users see `Ctrl+S` until the app boots. Set the scope's `platform` to avoid that.
 
+Pages rendered this way depend on the request's `User-Agent` header. If a CDN or another shared cache stores them, it can serve one user's labels, and the platform that `Mod` resolves to, to other users. Keep these pages out of shared caches, or add the platform to the cache key. `Vary: User-Agent` also works, but it splits the cache into many small entries.
+
 ### Render a label only in the browser
 
 To leave a label out of the server's HTML instead, check the `fastboot` service's `isFastBoot`. In the browser, plain `formatForDisplay` detects the platform:

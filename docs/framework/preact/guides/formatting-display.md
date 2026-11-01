@@ -149,6 +149,8 @@ Without a provider `platform`, `useFormatForDisplay` detects the platform the sa
 
 The provider must render on the server too, so wrap your app in it where the request is available, as shown for each framework below.
 
+Pages rendered this way depend on the request's `User-Agent` header. If a CDN or another shared cache stores them, it can serve one user's labels, and the platform that `Mod` resolves to, to other users. Keep these pages out of shared caches, or add the platform to the cache key. `Vary: User-Agent` also works, but it splits the cache into many small entries.
+
 ### Fresh
 
 Each island hydrates as its own Preact app, so a provider outside the island exists only on the server. Render the provider inside the island, and pass the platform from the route. A route component receives the request as `req`:
@@ -239,7 +241,7 @@ import { renderToString } from 'preact-render-to-string'
 import { detectPlatform } from '@tanstack/preact-hotkeys'
 import { App } from './App'
 
-export function render(userAgent: string | undefined) {
+export function render(userAgent: string | null | undefined) {
   return renderToString(<App platform={detectPlatform(userAgent)} />)
 }
 ```

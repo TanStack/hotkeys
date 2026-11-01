@@ -86,13 +86,13 @@
       "evidence": ["packages/hotkeys/skills/app-hotkeys/SKILL.md"]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "25e0ef9a7aa8ff1c14a06cbd3de9e600ea26f93876305078a74c9bf3b4fc2620",
+      "fingerprint": "be19393442becc0b62671c83bc42cd5028f6b70accb3b2fa20dcd762dd031bd1",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "86d90e75bd74762ab0eaee5a1c41d919338dcfa6238ff7186567d0d6dad0b0e5",
         "docs/framework/react/guides/sequences.md": "b02147fb593f5190b1b219739afa6609067407f6566ded142cccc76ac02d25c8",
         "docs/guides/sensible-defaults.md": "3ca71598b3de383974ec16c5b0fd10855735237853ccddb711680b98d2a437f2",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "2c7a38d692ab6dd292222a36935688154b4b858372f34c2be44c0289e0e2abec",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6e1100b775f2dacd74f5b69fd310dd235e76830d877f28ad783d68a1a226f3b2",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/hotkey-manager.ts": "71fcd3ce0a8f8dbc6892aa9c39d8428d1db39fa2392594d4b3c3124f96f42b54",
@@ -107,9 +107,9 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "b13e9407de5f00dcbe2622ed0d8ce9a233af1c00",
-      "outcome": "no-change",
-      "reason": "React guide titles now name React, matching the other frameworks; content unchanged.",
+      "head": "b08446058f9beffdc098319de8fc6a538675e580",
+      "outcome": "updated",
+      "reason": "Server-rendered labels pitfall now says to keep user-agent-dependent pages out of shared caches.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -255,7 +255,7 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "c1ecc5c3b9226040991b8b8847e7db102c576193d67d82e4c291db365b60bf4a",
+      "fingerprint": "2f9cf112100976217d5aaffd6b845e611745638fc6e1ad7ecee8213da1e1010e",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -313,7 +313,7 @@
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "7c431ae3bee4ffcd22676ac533adfcd29cfb22ed68cb7dc47d1470a8744d7276",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "2c7a38d692ab6dd292222a36935688154b4b858372f34c2be44c0289e0e2abec",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6e1100b775f2dacd74f5b69fd310dd235e76830d877f28ad783d68a1a226f3b2",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/app-hotkeys.ts": "a6176a749dd7439146c335e769dfae1a2cd72ace029f9cbc64b52ff5fe2d9d03",
@@ -387,9 +387,9 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "b13e9407de5f00dcbe2622ed0d8ce9a233af1c00",
+      "head": "b08446058f9beffdc098319de8fc6a538675e580",
       "outcome": "no-change",
-      "reason": "React guide titles now name React, matching the other frameworks; content unchanged.",
+      "reason": "Guide fixes from review: Outlet imports, null user agent in the Preact render, and a shared-cache note; covered by the core skill pitfall.",
       "evidence": ["_artifacts"]
     },
     "source:.changeset/intent-skills.md": {
@@ -5966,13 +5966,13 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/angular/guides/formatting-display.md": {
-      "fingerprint": "5d2057fc54f66767a966bb3d153e971e600a0872e4245b8fb41e65e64aaff5b7",
+      "fingerprint": "478e69da13bef43a4774466e673abe6844fb91a759e7b7f9553c739a1f90e2a0",
       "snapshot": {
-        "docs/framework/angular/guides/formatting-display.md": "7fb9524b585c975b4ce4f36885ca4e6a3fb0dc0be373a4643dd705e0dc6a8700"
+        "docs/framework/angular/guides/formatting-display.md": "c3da2efdef95d6186c385a921be206a19eb2d34a3f99c5b50b559c6b6f38b1fb"
       },
-      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "head": "b08446058f9beffdc098319de8fc6a538675e580",
       "outcome": "no-change",
-      "reason": "Generated reference or example change covered by the updated skills.",
+      "reason": "Guide fixes from review: Outlet imports, null user agent in the Preact render, and a shared-cache note; covered by the core skill pitfall.",
       "evidence": ["docs/framework/angular/guides/formatting-display.md"]
     },
     "source:docs/framework/angular/guides/held-key-state-helpers.md": {
@@ -5988,13 +5988,13 @@
       ]
     },
     "source:docs/framework/ember/guides/formatting-display.md": {
-      "fingerprint": "86f773d7233ffd5da012c82dcf0505a7209c23cc40efcd5533e7edd87bfdd7e5",
+      "fingerprint": "af6364c53d4c452b570892a1f387c99fc54d3bc0243121b20728cd83b9ab816c",
       "snapshot": {
-        "docs/framework/ember/guides/formatting-display.md": "7b686e246d14aaf2f9babbed03f6732387c2e0d436effe4a470b0d89a953fa83"
+        "docs/framework/ember/guides/formatting-display.md": "96f362d008c50e8c6b035a2d061f895fcfd0914ef63255f74a3d7eda53e29916"
       },
-      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "head": "b08446058f9beffdc098319de8fc6a538675e580",
       "outcome": "no-change",
-      "reason": "Generated reference or example change covered by the updated skills.",
+      "reason": "Guide fixes from review: Outlet imports, null user agent in the Preact render, and a shared-cache note; covered by the core skill pitfall.",
       "evidence": ["docs/framework/ember/guides/formatting-display.md"]
     },
     "source:docs/framework/ember/guides/held-key-state-helpers.md": {
@@ -6010,23 +6010,23 @@
       ]
     },
     "source:docs/framework/lit/guides/formatting-display.md": {
-      "fingerprint": "2ec4dc2773d142425e742ea14397444dfbb239d1713bd2110de607d810279323",
+      "fingerprint": "edfbd4a7439cdb1f293b97bd0819859ff191b027940f816a319f0638b4758dd7",
       "snapshot": {
-        "docs/framework/lit/guides/formatting-display.md": "da0ea05a8d0b4afadf954cfa13fb3db868f4dae937574a32b960993ee9ba2647"
+        "docs/framework/lit/guides/formatting-display.md": "d7be5ee9f384279c6a30e14034045848c706058a1deafe69d7ceaf08f23d1b31"
       },
-      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "head": "b08446058f9beffdc098319de8fc6a538675e580",
       "outcome": "no-change",
-      "reason": "Generated reference or example change covered by the updated skills.",
+      "reason": "Guide fixes from review: Outlet imports, null user agent in the Preact render, and a shared-cache note; covered by the core skill pitfall.",
       "evidence": ["docs/framework/lit/guides/formatting-display.md"]
     },
     "source:docs/framework/octane/guides/formatting-display.md": {
-      "fingerprint": "ede8a8b1d21659dc8c5875ff2f182a1ffc6c0fb7dc788b25b9428397f01dcaf7",
+      "fingerprint": "a2d47cdc406146bf80d5a67898dbf36686649c571c7327a4d12ccdb0370b896d",
       "snapshot": {
-        "docs/framework/octane/guides/formatting-display.md": "f391084ef4a1c31aa468a93530bf93a0300ca38d9d4d6b087ebcb1188ab1722b"
+        "docs/framework/octane/guides/formatting-display.md": "7789c5af0ca95fe709ecf78969610df1d95be0a861d122a74537fdc9901d53ab"
       },
-      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "head": "b08446058f9beffdc098319de8fc6a538675e580",
       "outcome": "no-change",
-      "reason": "Generated reference or example change covered by the updated skills.",
+      "reason": "Guide fixes from review: Outlet imports, null user agent in the Preact render, and a shared-cache note; covered by the core skill pitfall.",
       "evidence": ["docs/framework/octane/guides/formatting-display.md"]
     },
     "source:docs/framework/octane/guides/held-key-state-helpers.md": {
@@ -6042,13 +6042,13 @@
       ]
     },
     "source:docs/framework/preact/guides/formatting-display.md": {
-      "fingerprint": "0c198c2d1f35b16ece2ddb19b49b6e04890c77ca2d644d759a3c30288c3553b7",
+      "fingerprint": "89e9f7a7e1b5d285b0b5274260154dfb43ff1e8d277a087b8879c0438d2bcc02",
       "snapshot": {
-        "docs/framework/preact/guides/formatting-display.md": "287fdd518cf6807ef706e25f94353aa1e87e27a6f410cb75152e1f9d358a20a4"
+        "docs/framework/preact/guides/formatting-display.md": "19ea7e36265c7bd2fbdf07da507f9db710ffa73086f64a8ff6630d6c5ed9468c"
       },
-      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "head": "b08446058f9beffdc098319de8fc6a538675e580",
       "outcome": "no-change",
-      "reason": "Generated reference or example change covered by the updated skills.",
+      "reason": "Guide fixes from review: Outlet imports, null user agent in the Preact render, and a shared-cache note; covered by the core skill pitfall.",
       "evidence": ["docs/framework/preact/guides/formatting-display.md"]
     },
     "source:docs/framework/preact/guides/held-key-state-helpers.md": {
@@ -6064,13 +6064,13 @@
       ]
     },
     "source:docs/framework/react/guides/formatting-display.md": {
-      "fingerprint": "24922ae83d477f2d5d57798cf74a2f40054f76c7686a7164090b501973487c3c",
+      "fingerprint": "9c0be8c26ba32d9b7b940653922dd8c857c85c4bf6fe2d0b51e3cec660cff96c",
       "snapshot": {
-        "docs/framework/react/guides/formatting-display.md": "296a3ee22dffebd7c2bde568ab50b25702eb86ef7644ba119e7caa8018113d21"
+        "docs/framework/react/guides/formatting-display.md": "f7967b74f76e1c294c19fe623eddfe2ba39bb49a4bb537c6172e64849b04320c"
       },
-      "head": "b13e9407de5f00dcbe2622ed0d8ce9a233af1c00",
+      "head": "b08446058f9beffdc098319de8fc6a538675e580",
       "outcome": "no-change",
-      "reason": "React guide titles now name React, matching the other frameworks; content unchanged.",
+      "reason": "Guide fixes from review: Outlet imports, null user agent in the Preact render, and a shared-cache note; covered by the core skill pitfall.",
       "evidence": ["docs/framework/react/guides/formatting-display.md"]
     },
     "source:docs/framework/react/guides/held-key-state-helpers.md": {
@@ -6084,13 +6084,13 @@
       "evidence": ["docs/framework/react/guides/held-key-state-helpers.md"]
     },
     "source:docs/framework/solid/guides/formatting-display.md": {
-      "fingerprint": "59642b8d03d8a32e5f9711cc9706c250295825fbcdfe997199128fcd85872f26",
+      "fingerprint": "7ebff4e6cbe6f2d264ae7eafd490b31865534bbb3d35c439f5b690c4992541ae",
       "snapshot": {
-        "docs/framework/solid/guides/formatting-display.md": "979f089cbc117b8a778d64834adb0797547519c01bd18fed68f74e706be60f8e"
+        "docs/framework/solid/guides/formatting-display.md": "6cdd21c468f45b64caf4c813d030149d80e6da95cefcee33de4834ecfaeb3758"
       },
-      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "head": "b08446058f9beffdc098319de8fc6a538675e580",
       "outcome": "no-change",
-      "reason": "Generated reference or example change covered by the updated skills.",
+      "reason": "Guide fixes from review: Outlet imports, null user agent in the Preact render, and a shared-cache note; covered by the core skill pitfall.",
       "evidence": ["docs/framework/solid/guides/formatting-display.md"]
     },
     "source:docs/framework/solid/guides/held-key-state-helpers.md": {
@@ -6106,13 +6106,13 @@
       ]
     },
     "source:docs/framework/svelte/guides/formatting-display.md": {
-      "fingerprint": "464cd96cf40c1b8a980dfa6bd7fc63a740659d3a78dfde836d157ee2c323166a",
+      "fingerprint": "d5f7f8b9e2f1066e5ab7add6490c00de22ec6c0f0ab4060ec8446c0a1a167842",
       "snapshot": {
-        "docs/framework/svelte/guides/formatting-display.md": "a6b2635bf519e653774bb11c3b414c8838caf92ea0742d63fecc5da3e0bf192d"
+        "docs/framework/svelte/guides/formatting-display.md": "7b623faacc4b4f6d385877f467acf3a2ddd9a9673d0748e802016eb71fc508e0"
       },
-      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "head": "b08446058f9beffdc098319de8fc6a538675e580",
       "outcome": "no-change",
-      "reason": "Generated reference or example change covered by the updated skills.",
+      "reason": "Guide fixes from review: Outlet imports, null user agent in the Preact render, and a shared-cache note; covered by the core skill pitfall.",
       "evidence": ["docs/framework/svelte/guides/formatting-display.md"]
     },
     "source:docs/framework/svelte/guides/held-key-state-helpers.md": {
@@ -6128,13 +6128,13 @@
       ]
     },
     "source:docs/framework/vue/guides/formatting-display.md": {
-      "fingerprint": "b2e2aa44a0fb984bdb3a225bfc2c6cb13f773947c0b05fe88c0ba293cc6ced74",
+      "fingerprint": "727a16bc14ed154f8640eaa3044c356d8275c49eb62c9e0b7cbde4900a93c63d",
       "snapshot": {
-        "docs/framework/vue/guides/formatting-display.md": "092150eda73fdd8bb5887808a2ff4d8543cb6c715def3104cdbdc19959caf412"
+        "docs/framework/vue/guides/formatting-display.md": "66e7679c30a9af99ee4db352b0ac03b62d176afd39cb84ad43b4341d4ef71933"
       },
-      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "head": "b08446058f9beffdc098319de8fc6a538675e580",
       "outcome": "no-change",
-      "reason": "Generated reference or example change covered by the updated skills.",
+      "reason": "Guide fixes from review: Outlet imports, null user agent in the Preact render, and a shared-cache note; covered by the core skill pitfall.",
       "evidence": ["docs/framework/vue/guides/formatting-display.md"]
     },
     "source:docs/framework/vue/guides/held-key-state-helpers.md": {

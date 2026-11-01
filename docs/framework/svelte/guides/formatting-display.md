@@ -148,6 +148,8 @@ Svelte has no fallback for a missing platform. Without a provider `platform`, `g
 
 The provider must render on the server too, so wrap your app in it where the request is available, as shown for each framework below.
 
+Pages rendered this way depend on the request's `User-Agent` header. If a CDN or another shared cache stores them, it can serve one user's labels, and the platform that `Mod` resolves to, to other users. Keep these pages out of shared caches, or add the platform to the cache key. `Vary: User-Agent` also works, but it splits the cache into many small entries.
+
 ### SvelteKit
 
 Detect the platform in the root layout's server `load` function, and read it in the root layout. SvelteKit sends load data to the browser with the page:

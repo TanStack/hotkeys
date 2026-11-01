@@ -152,6 +152,8 @@ Without a provider `platform`, `createFormatForDisplay` renders `'linux'` labels
 
 The provider must render on the server too, so wrap your app in it where the request is available, as shown for each framework below.
 
+Pages rendered this way depend on the request's `User-Agent` header. If a CDN or another shared cache stores them, it can serve one user's labels, and the platform that `Mod` resolves to, to other users. Keep these pages out of shared caches, or add the platform to the cache key. `Vary: User-Agent` also works, but it splits the cache into many small entries.
+
 ### SolidStart
 
 `getRequestEvent()` from `solid-js/web` returns the current request on the server and `undefined` in the browser. Without a user agent, `detectPlatform` reads the browser's `navigator`, so the same code works on both sides:
@@ -186,6 +188,7 @@ The [SolidStart example](../examples/createFormatForDisplay-solid-start) shows t
 
 ```tsx
 // src/routes/__root.tsx
+import { Outlet } from '@tanstack/solid-router'
 import { createIsomorphicFn } from '@tanstack/solid-start'
 import { getRequestHeader } from '@tanstack/solid-start/server'
 import { HotkeysProvider, detectPlatform } from '@tanstack/solid-hotkeys'

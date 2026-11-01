@@ -155,6 +155,8 @@ Without a provider `platform`, `injectFormatForDisplay` renders `'linux'` labels
 
 The provider must run on the server too, so provide it where the request is available, as shown for each framework below.
 
+Pages rendered this way depend on the request's `User-Agent` header. If a CDN or another shared cache stores them, it can serve one user's labels, and the platform that `Mod` resolves to, to other users. Keep these pages out of shared caches, or add the platform to the cache key. `Vary: User-Agent` also works, but it splits the cache into many small entries.
+
 ### Angular SSR
 
 The `REQUEST` token from `@angular/core` is the current request on the server and `null` in the browser. Without a user agent, `detectPlatform` reads the browser's `navigator`, so the same provider works on both sides. Add it to the application config that the browser and server configs share:
