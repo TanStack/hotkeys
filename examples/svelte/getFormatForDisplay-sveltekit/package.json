@@ -10,8 +10,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "start": "node build",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "svelte-kit sync && eslint .",
+    "lint:fix": "svelte-kit sync && eslint . --fix",
     "test:types": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json"
   },
   "dependencies": {
