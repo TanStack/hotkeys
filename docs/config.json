@@ -851,6 +851,10 @@
               "to": "framework/react/reference/functions/useDefaultHotkeysOptions"
             },
             {
+              "label": "useFormatForDisplay",
+              "to": "framework/react/reference/functions/useFormatForDisplay"
+            },
+            {
               "label": "useHotkey",
               "to": "framework/react/reference/functions/useHotkey"
             },
@@ -920,6 +924,10 @@
               "to": "framework/preact/reference/functions/useDefaultHotkeysOptions"
             },
             {
+              "label": "useFormatForDisplay",
+              "to": "framework/preact/reference/functions/useFormatForDisplay"
+            },
+            {
               "label": "useHotkey",
               "to": "framework/preact/reference/functions/useHotkey"
             },
@@ -980,6 +988,10 @@
         {
           "label": "solid",
           "children": [
+            {
+              "label": "createFormatForDisplay",
+              "to": "framework/solid/reference/functions/createFormatForDisplay"
+            },
             {
               "label": "createHotkey",
               "to": "framework/solid/reference/functions/createHotkey"
@@ -1052,6 +1064,10 @@
             {
               "label": "injectDefaultHotkeysOptions",
               "to": "framework/angular/reference/functions/injectDefaultHotkeysOptions"
+            },
+            {
+              "label": "injectFormatForDisplay",
+              "to": "framework/angular/reference/functions/injectFormatForDisplay"
             },
             {
               "label": "injectHotkey",
@@ -1133,6 +1149,10 @@
             {
               "label": "useDefaultHotkeysOptions",
               "to": "framework/vue/reference/functions/useDefaultHotkeysOptions"
+            },
+            {
+              "label": "useFormatForDisplay",
+              "to": "framework/vue/reference/functions/useFormatForDisplay"
             },
             {
               "label": "useHotkey",
@@ -1267,6 +1287,10 @@
             {
               "label": "getDefaultHotkeysOptions",
               "to": "framework/svelte/reference/functions/getDefaultHotkeysOptions"
+            },
+            {
+              "label": "getFormatForDisplay",
+              "to": "framework/svelte/reference/functions/getFormatForDisplay"
             },
             {
               "label": "getHotkeyRegistrations",
@@ -1411,6 +1435,10 @@
               "to": "framework/ember/reference/functions/createHotkeysScope"
             },
             {
+              "label": "useFormatForDisplay",
+              "to": "framework/ember/reference/functions/useFormatForDisplay"
+            },
+            {
               "label": "useHotkeyRegistrations",
               "to": "framework/ember/reference/functions/useHotkeyRegistrations"
             },
@@ -1482,6 +1510,10 @@
             {
               "label": "useDefaultHotkeysOptions",
               "to": "framework/octane/reference/functions/useDefaultHotkeysOptions"
+            },
+            {
+              "label": "useFormatForDisplay",
+              "to": "framework/octane/reference/functions/useFormatForDisplay"
             },
             {
               "label": "useHotkey",
@@ -2321,6 +2353,14 @@
           "to": "reference/type-aliases/DisplayHotkeyChord"
         },
         {
+          "label": "detectPlatform",
+          "to": "reference/functions/detectPlatform"
+        },
+        {
+          "label": "HotkeyPlatform",
+          "to": "reference/type-aliases/HotkeyPlatform"
+        },
+        {
           "label": "formatHotkey",
           "to": "reference/functions/formatHotkey"
         },
@@ -2423,15 +2463,6 @@
       "children": [],
       "frameworks": [
         {
-          "label": "vanilla",
-          "children": [
-            {
-              "label": "formatForDisplay",
-              "to": "framework/vanilla/examples/formatForDisplay"
-            }
-          ]
-        },
-        {
           "label": "react",
           "children": [
             {
@@ -2473,6 +2504,22 @@
             {
               "label": "useKeyhold",
               "to": "framework/react/examples/useKeyhold"
+            },
+            {
+              "label": "useFormatForDisplay (TanStack Start)",
+              "to": "framework/react/examples/useFormatForDisplay-tanstack-start"
+            },
+            {
+              "label": "useFormatForDisplay (Next.js)",
+              "to": "framework/react/examples/useFormatForDisplay-nextjs"
+            },
+            {
+              "label": "useFormatForDisplay (React Router)",
+              "to": "framework/react/examples/useFormatForDisplay-react-router"
+            },
+            {
+              "label": "useFormatForDisplay (Astro)",
+              "to": "framework/react/examples/useFormatForDisplay-astro"
             }
           ]
         },
@@ -2518,6 +2565,14 @@
             {
               "label": "useKeyhold",
               "to": "framework/preact/examples/useKeyhold"
+            },
+            {
+              "label": "useFormatForDisplay (Vite SSR)",
+              "to": "framework/preact/examples/useFormatForDisplay-vite-ssr"
+            },
+            {
+              "label": "useFormatForDisplay (Astro)",
+              "to": "framework/preact/examples/useFormatForDisplay-astro"
             }
           ]
         },
@@ -2563,6 +2618,18 @@
             {
               "label": "createKeyHold",
               "to": "framework/solid/examples/createKeyHold"
+            },
+            {
+              "label": "createFormatForDisplay (SolidStart)",
+              "to": "framework/solid/examples/createFormatForDisplay-solid-start"
+            },
+            {
+              "label": "createFormatForDisplay (TanStack Start)",
+              "to": "framework/solid/examples/createFormatForDisplay-tanstack-start"
+            },
+            {
+              "label": "createFormatForDisplay (Astro)",
+              "to": "framework/solid/examples/createFormatForDisplay-astro"
             }
           ]
         },
@@ -2608,6 +2675,14 @@
             {
               "label": "injectKeyHold",
               "to": "framework/angular/examples/injectKeyHold"
+            },
+            {
+              "label": "injectFormatForDisplay (Angular SSR)",
+              "to": "framework/angular/examples/injectFormatForDisplay-angular-ssr"
+            },
+            {
+              "label": "injectFormatForDisplay (Analog)",
+              "to": "framework/angular/examples/injectFormatForDisplay-analog"
             }
           ]
         },
@@ -2653,6 +2728,22 @@
             {
               "label": "useKeyhold",
               "to": "framework/vue/examples/useKeyhold"
+            },
+            {
+              "label": "useFormatForDisplay (Nuxt)",
+              "to": "framework/vue/examples/useFormatForDisplay-nuxt"
+            },
+            {
+              "label": "useFormatForDisplay (Vite SSR)",
+              "to": "framework/vue/examples/useFormatForDisplay-vite-ssr"
+            },
+            {
+              "label": "useFormatForDisplay (Astro)",
+              "to": "framework/vue/examples/useFormatForDisplay-astro"
+            },
+            {
+              "label": "useFormatForDisplay (VitePress)",
+              "to": "framework/vue/examples/useFormatForDisplay-vitepress"
             }
           ]
         },
@@ -2731,6 +2822,14 @@
             {
               "label": "get-is-key-held",
               "to": "framework/svelte/examples/get-is-key-held"
+            },
+            {
+              "label": "getFormatForDisplay (SvelteKit)",
+              "to": "framework/svelte/examples/getFormatForDisplay-sveltekit"
+            },
+            {
+              "label": "getFormatForDisplay (Astro)",
+              "to": "framework/svelte/examples/getFormatForDisplay-astro"
             }
           ]
         },
@@ -2858,6 +2957,14 @@
             {
               "label": "useKeyHold",
               "to": "framework/octane/examples/useKeyHold"
+            },
+            {
+              "label": "useFormatForDisplay (server rendering)",
+              "to": "framework/octane/examples/useFormatForDisplay-server"
+            },
+            {
+              "label": "useFormatForDisplay (Astro)",
+              "to": "framework/octane/examples/useFormatForDisplay-astro"
             }
           ]
         }

@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { createHotkey } from '@tanstack/svelte-hotkeys'
+  import { HotkeysProvider, createHotkey } from '@tanstack/svelte-hotkeys'
   import Key from './Key.svelte'
-  import Scope from './Scope.svelte'
   import ScopeFrame from './ScopeFrame.svelte'
   import Steps from './Steps.svelte'
   import type { Attachment } from 'svelte/attachments'
@@ -44,7 +43,11 @@
         <Key hotkey="Escape" /> closes it. The folder hotkeys are suspended, and so
         is anything you did not allow above.
       </p>
-      <Scope scope="dialog-steps"><Steps /></Scope>
+      <HotkeysProvider scope="dialog-steps">
+        <ScopeFrame scope="dialog-steps">
+          <Steps />
+        </ScopeFrame>
+      </HotkeysProvider>
       <div class="actions">
         <button class="secondary" onclick={onClose}>Cancel</button>
         <button onclick={onSave}>Save</button>

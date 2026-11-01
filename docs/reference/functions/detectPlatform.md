@@ -4,29 +4,46 @@ title: detectPlatform
 ---
 
 ```ts
-function detectPlatform(): "mac" | "windows" | "linux";
+function detectPlatform(userAgent?): HotkeyPlatform;
 ```
 
-Defined in: [platform.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/platform.ts#L18)
+Defined in: [platform.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/platform.ts#L32)
 
-Detects the current platform based on browser navigator properties.
+Detects a platform from a user agent string, or from the browser's
+`navigator` when called without one.
 
 Used internally to resolve platform-adaptive modifiers like 'Mod' (Command on Mac,
-Control elsewhere) and for platform-specific hotkey formatting.
+Control elsewhere) and for platform-specific hotkey formatting. During server
+rendering, pass the request's `User-Agent` header to detect the user's
+platform instead of the server's.
+
+## Parameters
+
+### userAgent?
+
+`string` \| `null`
+
+A user agent string, such as a request's `User-Agent` header.
+When omitted or `null` (a missing header), reads `navigator`.
 
 ## Returns
 
-`"mac"` \| `"windows"` \| `"linux"`
+[`HotkeyPlatform`](../type-aliases/HotkeyPlatform.md)
 
 The detected platform: 'mac', 'windows', or 'linux'
 
 ## Remarks
 
-Defaults to 'linux' in SSR environments where navigator is undefined
+Without a user agent, returns 'linux' on a server runtime (no
+`navigator`, or Node, Deno, Bun, or Cloudflare Workers), where `navigator`
+describes the server.
 
 ## Example
 
 ```ts
 const platform = detectPlatform() // 'mac' | 'windows' | 'linux'
 const modifier = resolveModifier('Mod', platform) // 'Meta' on Mac, 'Control' elsewhere
+
+// On the server
+detectPlatform(request.headers.get('user-agent'))
 ```

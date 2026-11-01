@@ -1,5 +1,5 @@
 ---
-title: Show Keyboard Shortcut Hints While a Modifier Is Held
+title: Show Keyboard Shortcut Hints While a Modifier Is Held in React
 id: hotkey-hints
 description: Reveal keyboard shortcut hints next to buttons in React while the user holds a modifier, with useHotkeyHint.
 ---

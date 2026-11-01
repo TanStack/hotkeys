@@ -7,6 +7,7 @@ import {
   WINDOWS_MODIFIER_LABELS,
 } from './display-labels'
 import { MODIFIER_ORDER, normalizeKeyName } from './constants'
+import { warnServerPlatform } from './_server'
 import { detectPlatform } from './platform'
 import {
   assertLogicalKey,
@@ -152,13 +153,19 @@ export function formatForDisplay(
   return options.parts ? parts : parts.join(chordSeparator(options))
 }
 
+/** Detects the platform for a label, warning in development on a server. */
+function detectDisplayPlatform(): 'mac' | 'windows' | 'linux' {
+  warnServerPlatform()
+  return detectPlatform()
+}
+
 function modifierSymbolsEnabled(options: FormatDisplayOptions): boolean {
   const symbols = options.useSymbols ?? true
   return typeof symbols === 'boolean' ? symbols : (symbols.modifiers ?? true)
 }
 
 function chordSeparator(options: FormatDisplayOptions): string {
-  const platform = options.platform ?? detectPlatform()
+  const platform = options.platform ?? detectDisplayPlatform()
   return (
     options.separatorToken ??
     (platform === 'mac' && modifierSymbolsEnabled(options) ? ' ' : '+')
@@ -169,7 +176,7 @@ function formatChordParts(
   hotkey: DisplayHotkeyChord,
   options: FormatDisplayOptions,
 ): Array<string> {
-  const platform = options.platform ?? detectPlatform()
+  const platform = options.platform ?? detectDisplayPlatform()
   const symbols = options.useSymbols ?? true
   const modifierSymbols = modifierSymbolsEnabled(options)
   const keySymbols =

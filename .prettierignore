@@ -11,3 +11,13 @@ pnpm-lock.yaml
 .angular
 **/test-results
 **/playwright-report
+**/.next
+**/.nuxt
+**/.output
+**/.nitro
+**/.astro
+**/.vinxi
+**/.react-router
+**/.vitepress/cache
+**/.vitepress/dist
+**/.tanstack

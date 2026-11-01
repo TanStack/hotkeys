@@ -1,9 +1,9 @@
 <script lang="ts">
-  import { createHotkey } from '@tanstack/svelte-hotkeys'
+  import { HotkeysProvider, createHotkey } from '@tanstack/svelte-hotkeys'
   import { getActivity } from './activity.svelte'
   import CommentBox from './CommentBox.svelte'
   import Key from './Key.svelte'
-  import Scope from './Scope.svelte'
+  import ScopeFrame from './ScopeFrame.svelte'
 
   const activity = getActivity()
   let showComments = $state(true)
@@ -22,6 +22,10 @@
     Show comment box
   </label>
   {#if showComments}
-    <Scope scope="comments"><CommentBox /></Scope>
+    <HotkeysProvider scope="comments">
+      <ScopeFrame scope="comments">
+        <CommentBox />
+      </ScopeFrame>
+    </HotkeysProvider>
   {/if}
 </section>

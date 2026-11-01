@@ -7,7 +7,6 @@ import ActivityLog from './ActivityLog.vue'
 import DialogDemo from './DialogDemo.vue'
 import NestedDemo from './NestedDemo.vue'
 import Palette from './Palette.vue'
-import Scope from './Scope.vue'
 import ScopeFrame from './ScopeFrame.vue'
 import TabsDemo from './TabsDemo.vue'
 
@@ -30,10 +29,26 @@ provideActivity()
         </p>
       </header>
       <ScopeFrame>
-        <Scope scope="palette"><Palette /></Scope>
-        <Scope scope="document"><NestedDemo /></Scope>
-        <Scope scope="mail"><TabsDemo /></Scope>
-        <Scope scope="settings"><DialogDemo /></Scope>
+        <HotkeysProvider scope="palette">
+          <ScopeFrame scope="palette">
+            <Palette />
+          </ScopeFrame>
+        </HotkeysProvider>
+        <HotkeysProvider scope="document">
+          <ScopeFrame scope="document">
+            <NestedDemo />
+          </ScopeFrame>
+        </HotkeysProvider>
+        <HotkeysProvider scope="mail">
+          <ScopeFrame scope="mail">
+            <TabsDemo />
+          </ScopeFrame>
+        </HotkeysProvider>
+        <HotkeysProvider scope="settings">
+          <ScopeFrame scope="settings">
+            <DialogDemo />
+          </ScopeFrame>
+        </HotkeysProvider>
         <ActivityLog />
       </ScopeFrame>
     </div>

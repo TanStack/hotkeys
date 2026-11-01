@@ -3,10 +3,11 @@ id: EmberHotkeysScope
 title: EmberHotkeysScope
 ---
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L14)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L18)
 
 Helpers and modifiers with shared defaults. Owners retain their own cleanup.
-Pass the scope to `useHotkeyRecorder` to apply its recorder defaults.
+Pass the scope to `useHotkeyRecorder` to apply its recorder defaults, and to
+`useFormatForDisplay` to apply its `platform`.
 
 ## Properties
 
@@ -16,7 +17,7 @@ Pass the scope to `useHotkeyRecorder` to apply its recorder defaults.
 onHotkey: typeof onHotkey;
 ```
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L15)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L19)
 
 ***
 
@@ -26,7 +27,7 @@ Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:15](https://github
 onHotkeys: typeof onHotkeys;
 ```
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L16)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L20)
 
 ***
 
@@ -36,7 +37,7 @@ Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:16](https://github
 useHotkey: typeof useHotkey;
 ```
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L17)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L21)
 
 ***
 
@@ -46,4 +47,4 @@ Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:17](https://github
 useHotkeys: typeof useHotkeys;
 ```
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L18)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L22)

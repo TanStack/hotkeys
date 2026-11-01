@@ -30,6 +30,7 @@ title: "@tanstack/hotkeys"
 - [createStore](functions/createStore.md)
 - [definedOptions](functions/definedOptions.md)
 - [getHotkeysProviderScopeKey](functions/getHotkeysProviderScopeKey.md)
+- [getServerPlatformSnapshot](functions/getServerPlatformSnapshot.md)
 - [mergeHotkeysProviderDefaults](functions/mergeHotkeysProviderDefaults.md)
 - [prepareHotkeyDefinitions](functions/prepareHotkeyDefinitions.md)
 - [subscribePublishedAppHotkeys](functions/subscribePublishedAppHotkeys.md)

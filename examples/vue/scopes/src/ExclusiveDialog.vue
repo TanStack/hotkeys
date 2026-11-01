@@ -1,7 +1,6 @@
 <script setup lang="ts">
-import { useHotkey } from '@tanstack/vue-hotkeys'
+import { HotkeysProvider, useHotkey } from '@tanstack/vue-hotkeys'
 import Key from './Key.vue'
-import Scope from './Scope.vue'
 import ScopeFrame from './ScopeFrame.vue'
 import Steps from './Steps.vue'
 import type { ExclusiveOption } from './activity'
@@ -33,7 +32,11 @@ useHotkey('Mod+S', () => emit('save'))
             <Key hotkey="Escape" /> closes it. The folder hotkeys are suspended,
             and so is anything you did not allow above.
           </p>
-          <Scope scope="dialog-steps"><Steps /></Scope>
+          <HotkeysProvider scope="dialog-steps">
+            <ScopeFrame scope="dialog-steps">
+              <Steps />
+            </ScopeFrame>
+          </HotkeysProvider>
           <div class="actions">
             <button class="secondary" @click="emit('close')">Cancel</button>
             <button @click="emit('save')">Save</button>

@@ -16,7 +16,10 @@ import {
   defaultHotkeyOptions,
   definedOptions,
 } from './_registration'
+// Stateless apart from a once-only dev warning, so a copy per entry is fine.
+import { warnServerPlatform } from './_server'
 import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'
+import type { HotkeyPlatform } from './platform'
 import type {
   HotkeyCallback,
   HotkeyChord,
@@ -381,17 +384,46 @@ export interface HotkeysProviderScopeProps {
 /**
  * Merges a provider's default options over its parent's. A provider with a
  * `scope` sets `hotkey.scope`, so hotkeys registered inside it use that scope.
+ * A provider's `platform` is inherited, and is the default platform for its
+ * hotkeys and recorders; `hotkey.platform` and `hotkeyRecorder.platform` win.
  */
 export function mergeHotkeysProviderDefaults<
-  T extends { hotkey?: object; hotkeyRecorder?: object },
+  T extends {
+    platform?: HotkeyPlatform
+    hotkey?: object
+    hotkeyRecorder?: object
+  },
 >(parent: T | undefined, own: T | undefined, scope: string | undefined): T {
+  const parentPlatform = { platform: parent?.platform }
+  const ownPlatform = { platform: own?.platform }
   return {
+    ...definedOptions(parentPlatform, ownPlatform),
     hotkey: {
-      ...definedOptions(parent?.hotkey, own?.hotkey),
+      ...definedOptions(
+        parentPlatform,
+        parent?.hotkey,
+        ownPlatform,
+        own?.hotkey,
+      ),
       ...(scope && { scope }),
     },
-    hotkeyRecorder: definedOptions(parent?.hotkeyRecorder, own?.hotkeyRecorder),
-  } as T
+    hotkeyRecorder: definedOptions(
+      parentPlatform,
+      parent?.hotkeyRecorder,
+      ownPlatform,
+      own?.hotkeyRecorder,
+    ),
+  }
+}
+
+/**
+ * The platform to render with during server rendering and hydration when no
+ * provider sets one, for a `useSyncExternalStore` server snapshot. Warns once
+ * in development on the server.
+ */
+export function getServerPlatformSnapshot(): HotkeyPlatform {
+  warnServerPlatform()
+  return 'linux'
 }
 
 /**

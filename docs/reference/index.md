@@ -74,6 +74,7 @@ title: "@tanstack/hotkeys"
 - [HotkeyCallbackContextFor](type-aliases/HotkeyCallbackContextFor.md)
 - [HotkeyChord](type-aliases/HotkeyChord.md)
 - [HotkeyOptionsFor](type-aliases/HotkeyOptionsFor.md)
+- [HotkeyPlatform](type-aliases/HotkeyPlatform.md)
 - [HotkeyRecorderCommitKeys](type-aliases/HotkeyRecorderCommitKeys.md)
 - [HotkeyRecorderOptions](type-aliases/HotkeyRecorderOptions.md)
 - [HotkeyRecorderValidationContext](type-aliases/HotkeyRecorderValidationContext.md)

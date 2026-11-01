@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { createHotkey } from '@tanstack/svelte-hotkeys'
+  import { HotkeysProvider, createHotkey } from '@tanstack/svelte-hotkeys'
   import FolderPane from './FolderPane.svelte'
   import Key from './Key.svelte'
-  import Scope from './Scope.svelte'
+  import ScopeFrame from './ScopeFrame.svelte'
 
   // `enabled` turns a scope off without unmounting it.
   const folders = ['Inbox', 'Archive', 'Spam'] as const
@@ -22,13 +22,15 @@
   </p>
   <div class="folders">
     {#each folders as name (name)}
-      <Scope scope={name.toLowerCase()} enabled={current === name}>
-        <FolderPane
-          {name}
-          current={current === name}
-          onSelect={() => (current = name)}
-        />
-      </Scope>
+      <HotkeysProvider scope={name.toLowerCase()} enabled={current === name}>
+        <ScopeFrame scope={name.toLowerCase()} enabled={current === name}>
+          <FolderPane
+            {name}
+            current={current === name}
+            onSelect={() => (current = name)}
+          />
+        </ScopeFrame>
+      </HotkeysProvider>
     {/each}
   </div>
 </section>

@@ -1,4 +1,7 @@
-import { definedOptions } from '@tanstack/hotkeys/adapter'
+import {
+  definedOptions,
+  mergeHotkeysProviderDefaults,
+} from '@tanstack/hotkeys/adapter'
 import { OnHotkey } from './onHotkey'
 import { OnHotkeys } from './onHotkeys'
 import { UseHotkey } from './useHotkey'
@@ -9,7 +12,8 @@ import type { MaybeGetter } from './utils'
 
 /**
  * Helpers and modifiers with shared defaults. Owners retain their own cleanup.
- * Pass the scope to `useHotkeyRecorder` to apply its recorder defaults.
+ * Pass the scope to `useHotkeyRecorder` to apply its recorder defaults, and to
+ * `useFormatForDisplay` to apply its `platform`.
  */
 export interface EmberHotkeysScope {
   onHotkey: typeof OnHotkey
@@ -25,13 +29,16 @@ export interface EmberHotkeysScope {
 export function createHotkeysScope(
   defaultOptions: MaybeGetter<DefaultHotkeysOptions> = {},
 ): EmberHotkeysScope {
+  // Puts `platform` into the hotkey and recorder defaults.
+  const defaults = () =>
+    mergeHotkeysProviderDefaults(undefined, read(defaultOptions), undefined)
   const scope: EmberHotkeysScope = {
     onHotkey: class extends OnHotkey {
       override modify(
         ...[element, args, options]: Parameters<OnHotkey['modify']>
       ) {
         super.modify(element, args, {
-          ...definedOptions(read(defaultOptions).hotkey, options),
+          ...definedOptions(defaults().hotkey, options),
         })
       }
     },
@@ -40,25 +47,25 @@ export function createHotkeysScope(
         ...[element, args, options]: Parameters<OnHotkeys['modify']>
       ) {
         super.modify(element, args, {
-          ...definedOptions(read(defaultOptions).hotkey, options),
+          ...definedOptions(defaults().hotkey, options),
         })
       }
     },
     useHotkey: class extends UseHotkey {
       override compute(...[args, options]: Parameters<UseHotkey['compute']>) {
         super.compute(args, {
-          ...definedOptions(read(defaultOptions).hotkey, options),
+          ...definedOptions(defaults().hotkey, options),
         })
       }
     },
     useHotkeys: class extends UseHotkeys {
       override compute(...[args, options]: Parameters<UseHotkeys['compute']>) {
         super.compute(args, {
-          ...definedOptions(read(defaultOptions).hotkey, options),
+          ...definedOptions(defaults().hotkey, options),
         })
       }
     },
   }
-  scopeDefaults.set(scope, defaultOptions)
+  scopeDefaults.set(scope, defaults)
   return scope
 }

@@ -66,6 +66,7 @@ export class PanelComponent {
 | `provideHotkeys(options)`                    | Set default options, a scope (`exclusive` for dialogs), `enabled`, and app hotkeys in the app config or a component's `providers`.                                                                 |
 | `injectHotkeysContext()`                     | Read the nearest provided defaults and enabled state. Activates that provider's scope.                                                                                                             |
 | `injectDefaultHotkeysOptions()`              | Read the default options merged from every provider above.                                                                                                                                         |
+| `injectFormatForDisplay()`                   | Get `formatForDisplay` with the provider's `platform` filled in, for labels in server-rendered apps. Call it in an injection context.                                                              |
 | `injectAppHotkeys()`                         | Get a signal of the declared app hotkeys with the user's custom hotkeys applied.                                                                                                                   |
 | `injectAppHotkeyList()`                      | Get a signal listing every app hotkey with its status, for a cheat sheet or settings screen.                                                                                                       |
 | `injectCustomHotkeys()`                      | Read, change, and reset the user's custom hotkeys, and check a new one for conflicts.                                                                                                              |
@@ -117,6 +118,7 @@ A component's `providers` apply to the component itself, so it can register its 
 - **Replace `@HostListener('document:keydown')` and `(keydown.control.s)` bindings with `injectHotkey`.**
 - **Register runtime lists in the constructor.** `injectHotkey` throws outside an injection context, such as in `ngOnInit`. For hotkeys from data, use `injectHotkeys(() => this.items().map(...))`.
 - **Call the inject functions directly.** A shortcut service or `injectShortcut(keys: string)` wrapper has to cast strings to hotkeys, which turns off type checking and drops sequences, signal options, and app hotkeys.
+- **Server-rendered labels need the user's platform.** On the server, `formatForDisplay` can't see the user's OS, so it renders Linux labels that differ after hydration for Mac and Windows users. Pass `provideHotkeys({ defaultOptions: () => ({ platform: detectPlatform(inject(REQUEST)?.headers.get('user-agent')) }) })`, and format labels with `format = injectFormatForDisplay()` as a field, then `format(hotkey)` in the template. Keep plain `formatForDisplay` for labels that render only in the browser.
 
 When declaring app hotkeys, building a cheat sheet, or letting users rebind shortcuts, load `@tanstack/hotkeys#app-hotkeys` and read [app hotkeys in Angular](references/app-hotkeys.md).
 

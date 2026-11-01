@@ -11,6 +11,7 @@ import type {
   AppHotkeysStore,
   CustomHotkeys,
   HotkeyChordRecorderOptions,
+  HotkeyPlatform,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
 import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
@@ -18,6 +19,12 @@ import type { CreateHotkeyCommonOptions } from './createHotkey.svelte.js'
 import type { Snippet } from 'svelte'
 
 export interface HotkeysProviderOptions {
+  /**
+   * The user's platform, for labels from `getFormatForDisplay`, hotkeys, and
+   * recorders. On a server, set it from the request with
+   * `detectPlatform(userAgent)`.
+   */
+  platform?: HotkeyPlatform
   /**
    * Defaults for every hotkey registered by `createHotkey` and `createHotkeys`.
    * `requireReset` applies to chords and `timeout` applies to sequences.

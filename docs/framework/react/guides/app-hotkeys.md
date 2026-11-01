@@ -1,5 +1,5 @@
 ---
-title: App Hotkeys and Custom Shortcuts
+title: App Hotkeys and Custom Shortcuts in React
 id: app-hotkeys
 description: Declare every hotkey in your React app in one place, list them in cheat sheets, and let users change them and save their choices.
 ---

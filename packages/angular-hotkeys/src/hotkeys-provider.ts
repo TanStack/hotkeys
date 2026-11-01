@@ -24,11 +24,18 @@ import type {
   AppHotkeysStore,
   CustomHotkeys,
   HotkeyChordRecorderOptions,
+  HotkeyPlatform,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
 import type { InjectHotkeyCommonOptions } from './injectHotkey'
 
 export interface HotkeysProviderOptions {
+  /**
+   * The user's platform, for labels from `injectFormatForDisplay`, hotkeys,
+   * and recorders. Detected when unset. On a server, set it from the request
+   * with `detectPlatform(userAgent)`.
+   */
+  platform?: HotkeyPlatform
   /**
    * Defaults for every hotkey registered by `injectHotkey` and `injectHotkeys`.
    * `requireReset` applies to chords and `timeout` applies to sequences.
@@ -45,8 +52,12 @@ export interface HotkeysProviderOptions {
 
 /** Options for `provideHotkeys`. */
 export interface ProvideHotkeysOptions {
-  /** Merged with the parent provider's defaults. */
-  defaultOptions?: HotkeysProviderOptions
+  /**
+   * Merged with the parent provider's defaults. A getter runs in the
+   * provider's injection context, so it can `inject(REQUEST)` to set
+   * `platform` from the request during server rendering.
+   */
+  defaultOptions?: MaybeGetter<HotkeysProviderOptions>
   /**
    * See `HotkeysProviderScopeProps['scope']`. Getters, here and for
    * `exclusive` and `enabled`, run in the provider's injection context, so
@@ -152,7 +163,7 @@ function createHotkeysContext(
   const defaultOptions = computed(() =>
     mergeHotkeysProviderDefaults(
       parent.defaultOptions,
-      options.defaultOptions,
+      read(options.defaultOptions),
       read(options.scope),
     ),
   )

@@ -1,0 +1,24 @@
+{
+  "name": "@tanstack/hotkeys-example-preact-use-format-for-display-astro",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev --port=3069",
+    "build": "astro build",
+    "preview": "astro preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test:types": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/node": "^11.1.9",
+    "@astrojs/preact": "^6.1.1",
+    "@tanstack/preact-hotkeys": "^0.19.2",
+    "astro": "^7.4.4",
+    "preact": "^11.0.1"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "typescript": "6.0.3"
+  }
+}

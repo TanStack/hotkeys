@@ -7,7 +7,7 @@ title: AdapterOptionsFor
 type AdapterOptionsFor<T, TTarget> = [T] extends [never] ? AdapterCommonOptions<TTarget> : T extends readonly [unknown] ? AdapterChordOptions<TTarget> : T extends ReadonlyArray<unknown> ? AdapterSequenceOptions<TTarget> : AdapterChordOptions<TTarget>;
 ```
 
-Defined in: [adapter.ts:212](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L212)
+Defined in: [adapter.ts:215](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L215)
 
 Chord options for chords, sequence options for sequences.
 

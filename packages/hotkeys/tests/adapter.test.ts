@@ -146,6 +146,7 @@ describe('adapter entry', () => {
     expect(relative.sort()).toEqual([
       './_registration',
       './_registration',
+      './_server',
       './_store',
     ])
   })

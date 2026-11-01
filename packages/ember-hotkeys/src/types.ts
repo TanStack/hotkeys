@@ -4,6 +4,7 @@ import type {
   CustomHotkeys,
   Hotkey,
   HotkeyChordRecorderOptions,
+  HotkeyPlatform,
   HotkeyRegistrationView,
   HotkeySequence,
   HotkeySequenceRecorderOptions,
@@ -83,6 +84,13 @@ export interface EmberCustomHotkeys {
 
 /** Shared defaults; call-specific options take precedence. */
 export interface DefaultHotkeysOptions {
+  /**
+   * The user's platform, for labels from `useFormatForDisplay`, hotkeys, and
+   * recorders. `hotkey.platform` and `hotkeyRecorder.platform` win. Detected
+   * when unset. On a server, set it from the request with
+   * `detectPlatform(userAgent)`.
+   */
+  platform?: HotkeyPlatform
   /** Defaults for every hotkey. `requireReset` applies to chords and `timeout` to sequences. */
   hotkey?: EmberHotkeyCommonOptions
   /** Defaults for every recorder. */
