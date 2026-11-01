@@ -23,11 +23,11 @@
       "evidence": ["packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "1ad0a0d3e83e5fd0bcc344e9a6a77a0cc7f2c516efc90cf1376726420916019a",
+      "fingerprint": "760382837337466c798cbadbbc161d0c82b54be99bd511d85c5e8b05bb9cad34",
       "snapshot": {
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
         "docs/framework/angular/quick-start.md": "a83133bb560ee15100e06a86b229f966557630f07d682585373997ca87589dce",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "9ddafbfebb915be2cd029f534426756c14925bf2a0696070ffb581380b0bd4d3",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "644a777c52a1ef882879320671517bb1349066612e3da4314e83211294eb21de",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "5fe1b12a519e8ca5087d78d47050f7a2ec0c70bb9b7d6ebcbb050ee099e3effe",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "b0868bd5df07f89183fb45ad6fb3e4203578e02676c229bd27460ae172ad448c",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "3161186944b142feab034a1899b76b178700f4ef371bfffbb694b9ed5a191d32",
@@ -35,17 +35,17 @@
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "d431ed7df4440d09cbed88d3201751853330d0b927949886e53cc583a75e7668",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "fed0f6769a2a8539db1c243a6ce76bddfbc669ffcde75dfe077c95484fc7c2c6"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
       "outcome": "updated",
-      "reason": "Angular pitfall snippet drops `?? undefined`: detectPlatform now accepts null from headers.get.",
+      "reason": "API table lists the adapter formatter for server-rendered labels.",
       "evidence": ["packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
-      "fingerprint": "70d05feaf66ccfa4eada4e75f83b217beabaca4c3d3a3be1091fb1e26082885d",
+      "fingerprint": "00b2463481d280511711fdbf3485d2ca07846a88b5758f958955c30064a0cc80",
       "snapshot": {
         "docs/framework/ember/guides/app-hotkeys.md": "fbe213ed8b89a59c6915c9ecfcfe8a1dbd184a0535e5d2b48fe8b8f06108d342",
         "docs/framework/ember/quick-start.md": "70680043f3655e5f915094be4fbc8a2099932a325f472d0851a5dac7a1524340",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "09bd81c8ededab8d8fada9bf9051d20721474e7cf11e90e01acd9ae92a24d639",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "a6bdf35ab45404e6af23458d3aeee05da853e06f8c54894405389a8ff372a4f1",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "6bcb35cd5de4fc7c87f1dba3f7952998d8c79db0add0af2fc2d3dfc379d0df6d",
         "packages/ember-hotkeys/src/onHotkey.ts": "0cd156d6a90b341d7f1006df47911b3033ba523a68758274c00df7c8cb9dfbff",
@@ -55,9 +55,9 @@
         "packages/ember-hotkeys/src/useHotkeyRecorder.ts": "40e7f4d02718755786d43f90fa5c2748abd6b46afbfe6dd864ca74cb7895a379",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
       "outcome": "updated",
-      "reason": "Added the server-rendering pitfall: set the provider or scope platform from the request user agent and format labels with the adapter formatter.",
+      "reason": "API table lists the adapter formatter for server-rendered labels.",
       "evidence": ["packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
@@ -132,28 +132,28 @@
       "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
-      "fingerprint": "c2507d7ab55b6b8b2ffd794588c3252be5b17da512c823f0342f3424ab912c3a",
+      "fingerprint": "a3b9d24ffc4a65a9798eba88a0e24ba2bcc257a62b7a95f30881ed7cf7b4ef40",
       "snapshot": {
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
         "docs/framework/octane/quick-start.md": "c4ad9cec236f5e884f699aae19931d808bfd3c18933c36b0d2f5d7d5a06ce16c",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "0044035ea9671c1e58febe872156b2b8d95b85e7f5fe0f6774a26837f8f51948",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2e207c6e733ab9b471588670dbefe787d5a613a6ae9663d2086830e300aee89e",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "6f3620f316d55f9c837cfd5dd6a6d4adcef9e30351f71e459b37363fec51798c",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "4884113fa09d9869baf8af1f3bb07ba72558308a03136b3c1b59feb49ce2efbb",
         "packages/octane-hotkeys/src/useHotkey.ts": "d8da1d0cf0eb528667a25e750a2e51405e4e293bd10e22173546967b5c9d392b",
         "packages/octane-hotkeys/src/useHotkeys.ts": "f864ed03975e9930638cfe9025639619ebdb2c975a55e6950199cba86cb70476"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
       "outcome": "updated",
-      "reason": "Added the server-rendering pitfall: set the provider or scope platform from the request user agent and format labels with the adapter formatter.",
+      "reason": "API table lists the adapter formatter for server-rendered labels.",
       "evidence": ["packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"]
     },
     "skill:packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": {
-      "fingerprint": "0a689a557ff775df2e8265cfb4b50101167973a0361e869d3aa8f675fed5f544",
+      "fingerprint": "38a7ae9d60a4622230ef43029ac5119198ec7f4248e3a9bec54bf1221908c69e",
       "snapshot": {
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
         "docs/framework/preact/quick-start.md": "b991913fea74d18f6ae096d46b54e6ca8ca85cb69df463c6ce12f3f8c9e5757b",
-        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "08563102709da552cf562b0f5d78c978e4fe0480256e678a2d477e3c9a06aa62",
+        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "89b1ce6d371eb7fcaed7c7014bc93b6d930ec05f695fbd1cfde3d3c36aa81796",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "4388ff0528e9ea44f819896f2687ab962735479cdafaddd1e349dd1bf6dc5479",
         "packages/preact-hotkeys/src/HotkeysProvider.tsx": "a1e5132cf2ec59b55d53ef52eb2508bb348f926a0b534beec901a00761cc69e7",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "023eff9348a9209a2e3e99a2b9847da3be72206f98150b478dae81a215059577",
@@ -161,17 +161,17 @@
         "packages/preact-hotkeys/src/useHotkeys.ts": "832bf0156ff46db00140617bd3fea8055ca712a1a82d3cef7800776d42b02ebf",
         "packages/preact-hotkeys/src/utils.ts": "118090c4255527f52773133741355445fff8e41605ec6a9fc69c792730e96b9f"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
       "outcome": "updated",
-      "reason": "Added the server-rendering pitfall: set the provider or scope platform from the request user agent and format labels with the adapter formatter.",
+      "reason": "API table lists the adapter formatter for server-rendered labels.",
       "evidence": ["packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "2fb4f1322d2a35c455e4d4525f2dd3eb569a623a340eec2f96188260f521811e",
+      "fingerprint": "7a821f4b70edc068f32546c37c85a57ee2358cd77e2cca25673db5f4f86994d2",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "1d39ab010d5bd99955b761dc7298987b332e15846546990dcf2a1ecfb5068469",
         "docs/framework/react/quick-start.md": "f8afa1a28c8e78f72ac7e9f88ab34c7abcead4527e7c229c584abcf8768fac00",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "41b297e658c9a0f8f6b867be794f6be12fba4c38674cad20908748015d1dcf20",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "4f59c5efbce3ba0c54e2a47d9b868a31780225dc306132a3903fee5894ae1ed4",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "e45854b2346700249569ce418b0bb5593cd00a018336a60c9ed5cedeb8d49b3e",
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "63de8ea29daa90db070f4f8bc6fc08654c4855bd9827343a0c17ace8a1de1261",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "eec5d9a2e281ab8892c56b9482cd930a06deb176581bba9cb409faa35b1bee91",
@@ -196,34 +196,34 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
       "outcome": "updated",
-      "reason": "Added the server-rendering pitfall: set the provider or scope platform from the request user agent and format labels with the adapter formatter.",
+      "reason": "API table lists the adapter formatter for server-rendered labels.",
       "evidence": ["packages/react-hotkeys/skills/react-hotkeys/SKILL.md"]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
-      "fingerprint": "e259dd94ac88aaf3e7427960f8fe3cdb394b7ae8dd3c28b60b41b723707ddf35",
+      "fingerprint": "3de47726d5bacab59bf1183025d5d16ff4dc3b0bd51bddc1bd31ff02a728ffce",
       "snapshot": {
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
         "docs/framework/solid/quick-start.md": "84a8fd673b881fbad9fee55113b19eeb1ba11b702714a5cdf53c8cbf6683c83a",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "db6437b32a134e06bdb2c567a0da4691cd8377f1dd1e0236cabdbc09221515e6",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "b44dd638d4b46fecd9883319ed623291ede33f2c2b5ffe41d7486ce19686e803",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d3dda6cd9aa0a8655aa43f017490797ad3d2de42206446b2403363873b84b133",
         "packages/solid-hotkeys/src/HotkeysProvider.tsx": "970406fa54271383bf1d471a2679f6af4128b796362013a8471e159f473b5419",
         "packages/solid-hotkeys/src/appHotkeys.ts": "5d44d8ce952af7a3e522fd42511a963e9af75c4229a2449cde16a180c6f030f2",
         "packages/solid-hotkeys/src/createHotkey.ts": "3be9476087da2b53e809ad5ac59b2f791f38cc4d88e2b151258e668a9fc92294",
         "packages/solid-hotkeys/src/createHotkeys.ts": "de2c71ca0b15af7482c89b3bba4b6c7685571c6163c360f06e92d567b7384905"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
       "outcome": "updated",
-      "reason": "Added the server-rendering pitfall: set the provider or scope platform from the request user agent and format labels with the adapter formatter.",
+      "reason": "API table lists the adapter formatter for server-rendered labels.",
       "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "9048534951feeabe674196cab37648e0db5117416427712579e9cbc6f8e52a84",
+      "fingerprint": "0957d356d3ba5cc5f4074d0d54d5f0ce96003de8e022c9093fa424b88171bb6d",
       "snapshot": {
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
         "docs/framework/svelte/quick-start.md": "6fdf6ea3a44b3cd7fbf115b6d464460302af1b58112ca0b5b00723b4f5faab45",
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "f46a017063b4473aeaaba81d70d604df246ee825317dd58beed14b271ab4b0c5",
+        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "8dcc12e17d2389322ab8056f27faf03bb2f314c75b92ed851b0390024d4b8c9f",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "b20881dcf111bb368afc913fe1570417097ee69b418e865c580a80d5795facfc",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "f2562d31a17ccec7788c93eeb4dad9b25ae984f9a5c7d569a44b30cc0ce2528b",
@@ -232,17 +232,17 @@
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "9dba19b9d793ca7dedf08b6762b6797bc3f537d6106f046aeaa48b14bc7cc868",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a6a995eea5b1334baef1909da68dea08f8df4e29819bada3549c9a0be86e6dcb"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
       "outcome": "updated",
-      "reason": "Added the server-rendering pitfall: set the provider or scope platform from the request user agent and format labels with the adapter formatter.",
+      "reason": "API table lists the adapter formatter for server-rendered labels.",
       "evidence": ["packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
-      "fingerprint": "74df656c0e172d30fead0d6a9b0cfb196099dbe5b389bacde8d2b195816c42a9",
+      "fingerprint": "2e7f8ac60dd7abd73a9e8bc67b48055d85a8d31d0434c191852378b8c28e8721",
       "snapshot": {
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "00dfe1e45bcd475457bbf078aacb98f1cc78f0666a4ddedad38a285415e03875",
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "7b9918868dd27fe6ec82be1c0c9c678dc2155937d0466a159bed5a5176c1e240",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "cb9e40505873cce1bf322cf9519763d60c0577170c0100c795f08fdff3924276",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "326ee1fe20c1d75a4ad720f69a3a4df9b9e3a057826115e955deb0ed25d88f9a",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "f15ab799773868c19e94a19f4624706fb395831851b8a590f60934e405aa66e4",
         "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "b88ed32156be0f3c89cc3d9437377c7aaaf5394b118a4ed26f428945b20c20d1",
@@ -251,13 +251,13 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
       "outcome": "updated",
-      "reason": "Added the server-rendering pitfall: set the provider or scope platform from the request user agent and format labels with the adapter formatter.",
+      "reason": "API table lists the adapter formatter for server-rendered labels.",
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "9739ea6857311dcd0d909f551752891a678890e3d5820a89511f4f89c2462aca",
+      "fingerprint": "140f3d2b83e886f864c0291f27d747963b44d128648421fd903dba906595e17e",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -297,14 +297,14 @@
         "packages/alpine-hotkeys/src/hotkeyRecorderPlugin.ts": "8ff86447e513f47002c49ed9f60269d485b0cd65b87277bb52cf2d8286ddbd36",
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "d32e8bd75b0db71b01f42343f9220a4b10b9c91d17542b1acb61db9068c46d6c",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "9ddafbfebb915be2cd029f534426756c14925bf2a0696070ffb581380b0bd4d3",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "644a777c52a1ef882879320671517bb1349066612e3da4314e83211294eb21de",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "5fe1b12a519e8ca5087d78d47050f7a2ec0c70bb9b7d6ebcbb050ee099e3effe",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "b0868bd5df07f89183fb45ad6fb3e4203578e02676c229bd27460ae172ad448c",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "3161186944b142feab034a1899b76b178700f4ef371bfffbb694b9ed5a191d32",
         "packages/angular-hotkeys/src/injectHotkey.ts": "03ea85098b0ed95e323e8d1e35b61b2683b7bc2d68f67e56e15ce2da92177a6f",
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "d431ed7df4440d09cbed88d3201751853330d0b927949886e53cc583a75e7668",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "fed0f6769a2a8539db1c243a6ce76bddfbc669ffcde75dfe077c95484fc7c2c6",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "09bd81c8ededab8d8fada9bf9051d20721474e7cf11e90e01acd9ae92a24d639",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "a6bdf35ab45404e6af23458d3aeee05da853e06f8c54894405389a8ff372a4f1",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "6bcb35cd5de4fc7c87f1dba3f7952998d8c79db0add0af2fc2d3dfc379d0df6d",
         "packages/ember-hotkeys/src/onHotkey.ts": "0cd156d6a90b341d7f1006df47911b3033ba523a68758274c00df7c8cb9dfbff",
@@ -329,20 +329,20 @@
         "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "393686f43b22d9e722554ad922b4a7c4df4ab053d472e3f9038c6f119e8dc1bc",
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "76ac338e601032ac00b6c9e78d4de25ba80e10b7e3aa193eccc65964e1bdb25c",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "324326b5cc6d2e7120ef004450a4ad721c564a79f419fa99978452b62a51c38a",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "0044035ea9671c1e58febe872156b2b8d95b85e7f5fe0f6774a26837f8f51948",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2e207c6e733ab9b471588670dbefe787d5a613a6ae9663d2086830e300aee89e",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "6f3620f316d55f9c837cfd5dd6a6d4adcef9e30351f71e459b37363fec51798c",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "4884113fa09d9869baf8af1f3bb07ba72558308a03136b3c1b59feb49ce2efbb",
         "packages/octane-hotkeys/src/useHotkey.ts": "d8da1d0cf0eb528667a25e750a2e51405e4e293bd10e22173546967b5c9d392b",
         "packages/octane-hotkeys/src/useHotkeys.ts": "f864ed03975e9930638cfe9025639619ebdb2c975a55e6950199cba86cb70476",
-        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "08563102709da552cf562b0f5d78c978e4fe0480256e678a2d477e3c9a06aa62",
+        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "89b1ce6d371eb7fcaed7c7014bc93b6d930ec05f695fbd1cfde3d3c36aa81796",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "4388ff0528e9ea44f819896f2687ab962735479cdafaddd1e349dd1bf6dc5479",
         "packages/preact-hotkeys/src/HotkeysProvider.tsx": "a1e5132cf2ec59b55d53ef52eb2508bb348f926a0b534beec901a00761cc69e7",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "023eff9348a9209a2e3e99a2b9847da3be72206f98150b478dae81a215059577",
         "packages/preact-hotkeys/src/useHotkey.ts": "6d66b813038e063f62aa8c8fb9be3020739854e1133885f70720b1036e789e84",
         "packages/preact-hotkeys/src/useHotkeys.ts": "832bf0156ff46db00140617bd3fea8055ca712a1a82d3cef7800776d42b02ebf",
         "packages/preact-hotkeys/src/utils.ts": "118090c4255527f52773133741355445fff8e41605ec6a9fc69c792730e96b9f",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "41b297e658c9a0f8f6b867be794f6be12fba4c38674cad20908748015d1dcf20",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "4f59c5efbce3ba0c54e2a47d9b868a31780225dc306132a3903fee5894ae1ed4",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "e45854b2346700249569ce418b0bb5593cd00a018336a60c9ed5cedeb8d49b3e",
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "63de8ea29daa90db070f4f8bc6fc08654c4855bd9827343a0c17ace8a1de1261",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "eec5d9a2e281ab8892c56b9482cd930a06deb176581bba9cb409faa35b1bee91",
@@ -366,13 +366,13 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/shortcut-settings.test.tsx": "dccabaf1efac5b20ed5c13d159a07ae37b1079627469332995741c7a6ec37223",
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "db6437b32a134e06bdb2c567a0da4691cd8377f1dd1e0236cabdbc09221515e6",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "b44dd638d4b46fecd9883319ed623291ede33f2c2b5ffe41d7486ce19686e803",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d3dda6cd9aa0a8655aa43f017490797ad3d2de42206446b2403363873b84b133",
         "packages/solid-hotkeys/src/HotkeysProvider.tsx": "970406fa54271383bf1d471a2679f6af4128b796362013a8471e159f473b5419",
         "packages/solid-hotkeys/src/appHotkeys.ts": "5d44d8ce952af7a3e522fd42511a963e9af75c4229a2449cde16a180c6f030f2",
         "packages/solid-hotkeys/src/createHotkey.ts": "3be9476087da2b53e809ad5ac59b2f791f38cc4d88e2b151258e668a9fc92294",
         "packages/solid-hotkeys/src/createHotkeys.ts": "de2c71ca0b15af7482c89b3bba4b6c7685571c6163c360f06e92d567b7384905",
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "f46a017063b4473aeaaba81d70d604df246ee825317dd58beed14b271ab4b0c5",
+        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "8dcc12e17d2389322ab8056f27faf03bb2f314c75b92ed851b0390024d4b8c9f",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "b20881dcf111bb368afc913fe1570417097ee69b418e865c580a80d5795facfc",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "f2562d31a17ccec7788c93eeb4dad9b25ae984f9a5c7d569a44b30cc0ce2528b",
@@ -380,7 +380,7 @@
         "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "0dcfe7ecbaa7a202fd3be9e88ca24d95cd8965267374ea709435e19a13a4857b",
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "9dba19b9d793ca7dedf08b6762b6797bc3f537d6106f046aeaa48b14bc7cc868",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "a6a995eea5b1334baef1909da68dea08f8df4e29819bada3549c9a0be86e6dcb",
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "7b9918868dd27fe6ec82be1c0c9c678dc2155937d0466a159bed5a5176c1e240",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "cb9e40505873cce1bf322cf9519763d60c0577170c0100c795f08fdff3924276",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "326ee1fe20c1d75a4ad720f69a3a4df9b9e3a057826115e955deb0ed25d88f9a",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "f15ab799773868c19e94a19f4624706fb395831851b8a590f60934e405aa66e4",
         "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "b88ed32156be0f3c89cc3d9437377c7aaaf5394b118a4ed26f428945b20c20d1",
@@ -389,9 +389,9 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
       "outcome": "no-change",
-      "reason": "Examples, docs links, e2e suite and detectPlatform accepting null need no skill change; skills already cover server-rendered labels.",
+      "reason": "No change needed for this skill.",
       "evidence": ["_artifacts"]
     },
     "source:.changeset/intent-skills.md": {
@@ -5968,13 +5968,13 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/angular/guides/formatting-display.md": {
-      "fingerprint": "86ba52b2195da55d4ba9d38a013104542fb6bff8b9813ff7d663283e9cd1c78e",
+      "fingerprint": "5d2057fc54f66767a966bb3d153e971e600a0872e4245b8fb41e65e64aaff5b7",
       "snapshot": {
-        "docs/framework/angular/guides/formatting-display.md": "cae26e7fdbb6930e01972da14ddbce67e601f38a78b3d5402209d171abfd3804"
+        "docs/framework/angular/guides/formatting-display.md": "7fb9524b585c975b4ce4f36885ca4e6a3fb0dc0be373a4643dd705e0dc6a8700"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "reason": "Generated reference or example change covered by the updated skills.",
       "evidence": ["docs/framework/angular/guides/formatting-display.md"]
     },
     "source:docs/framework/angular/guides/held-key-state-helpers.md": {
@@ -5990,13 +5990,13 @@
       ]
     },
     "source:docs/framework/ember/guides/formatting-display.md": {
-      "fingerprint": "fe9c86cdf6af7eaface5f1a9bb6bf4e54beecf205e3598c658b95498963969a2",
+      "fingerprint": "86f773d7233ffd5da012c82dcf0505a7209c23cc40efcd5533e7edd87bfdd7e5",
       "snapshot": {
-        "docs/framework/ember/guides/formatting-display.md": "d547ae27a63dcc0bc85f78869c2fdc2ac541ca9bdbf542e84b5af84e45985d76"
+        "docs/framework/ember/guides/formatting-display.md": "7b686e246d14aaf2f9babbed03f6732387c2e0d436effe4a470b0d89a953fa83"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "reason": "Generated reference or example change covered by the updated skills.",
       "evidence": ["docs/framework/ember/guides/formatting-display.md"]
     },
     "source:docs/framework/ember/guides/held-key-state-helpers.md": {
@@ -6012,23 +6012,23 @@
       ]
     },
     "source:docs/framework/lit/guides/formatting-display.md": {
-      "fingerprint": "bef8c4e6abce53574f51624cbb87af9fc9d66bae5e3ca4ca2e7c73fd043bedb0",
+      "fingerprint": "2ec4dc2773d142425e742ea14397444dfbb239d1713bd2110de607d810279323",
       "snapshot": {
-        "docs/framework/lit/guides/formatting-display.md": "ca702f88fbe70a007eba7ec53bbe3179b8f56c529e834a75f7d2d625b10ad1b9"
+        "docs/framework/lit/guides/formatting-display.md": "da0ea05a8d0b4afadf954cfa13fb3db868f4dae937574a32b960993ee9ba2647"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "reason": "Generated reference or example change covered by the updated skills.",
       "evidence": ["docs/framework/lit/guides/formatting-display.md"]
     },
     "source:docs/framework/octane/guides/formatting-display.md": {
-      "fingerprint": "b4256c0f52aa4105456cec948f625fb9e56cd2ee44ec2ad19ef039cfb862611e",
+      "fingerprint": "ede8a8b1d21659dc8c5875ff2f182a1ffc6c0fb7dc788b25b9428397f01dcaf7",
       "snapshot": {
-        "docs/framework/octane/guides/formatting-display.md": "41cd13218bd3b5dc52eebd1749ee01f58000ab85f71f5ebf432a0f3040c03dc1"
+        "docs/framework/octane/guides/formatting-display.md": "f391084ef4a1c31aa468a93530bf93a0300ca38d9d4d6b087ebcb1188ab1722b"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "reason": "Generated reference or example change covered by the updated skills.",
       "evidence": ["docs/framework/octane/guides/formatting-display.md"]
     },
     "source:docs/framework/octane/guides/held-key-state-helpers.md": {
@@ -6044,13 +6044,13 @@
       ]
     },
     "source:docs/framework/preact/guides/formatting-display.md": {
-      "fingerprint": "86ec80e29a2330c253dec2136528bd4c11d1561f540dbb2ea7a218093f7d0b89",
+      "fingerprint": "0c198c2d1f35b16ece2ddb19b49b6e04890c77ca2d644d759a3c30288c3553b7",
       "snapshot": {
-        "docs/framework/preact/guides/formatting-display.md": "fb2c819a90c9a6747568c245ef3327c28bda2132584acca24e34582f13f9ba97"
+        "docs/framework/preact/guides/formatting-display.md": "287fdd518cf6807ef706e25f94353aa1e87e27a6f410cb75152e1f9d358a20a4"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "reason": "Generated reference or example change covered by the updated skills.",
       "evidence": ["docs/framework/preact/guides/formatting-display.md"]
     },
     "source:docs/framework/preact/guides/held-key-state-helpers.md": {
@@ -6088,13 +6088,13 @@
       ]
     },
     "source:docs/framework/solid/guides/formatting-display.md": {
-      "fingerprint": "1face4986c1f68b859d0633c367a6e85770ab18133558cfbfa1bdb2530475e93",
+      "fingerprint": "59642b8d03d8a32e5f9711cc9706c250295825fbcdfe997199128fcd85872f26",
       "snapshot": {
-        "docs/framework/solid/guides/formatting-display.md": "aeec65625c01848e26c58a1320ff234aab05de193acfa4608f02ec28e7a87387"
+        "docs/framework/solid/guides/formatting-display.md": "979f089cbc117b8a778d64834adb0797547519c01bd18fed68f74e706be60f8e"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "reason": "Generated reference or example change covered by the updated skills.",
       "evidence": ["docs/framework/solid/guides/formatting-display.md"]
     },
     "source:docs/framework/solid/guides/held-key-state-helpers.md": {
@@ -6110,13 +6110,13 @@
       ]
     },
     "source:docs/framework/svelte/guides/formatting-display.md": {
-      "fingerprint": "02643577f9e004d1f367981f5fd8cabe2fd584ca1d31fd944050bed0e6c98e0b",
+      "fingerprint": "464cd96cf40c1b8a980dfa6bd7fc63a740659d3a78dfde836d157ee2c323166a",
       "snapshot": {
-        "docs/framework/svelte/guides/formatting-display.md": "255ba25251b95b0ff0053f1443c25e4780e192d2fde1613f036cf26822b329cd"
+        "docs/framework/svelte/guides/formatting-display.md": "a6b2635bf519e653774bb11c3b414c8838caf92ea0742d63fecc5da3e0bf192d"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "reason": "Generated reference or example change covered by the updated skills.",
       "evidence": ["docs/framework/svelte/guides/formatting-display.md"]
     },
     "source:docs/framework/svelte/guides/held-key-state-helpers.md": {
@@ -6132,13 +6132,13 @@
       ]
     },
     "source:docs/framework/vue/guides/formatting-display.md": {
-      "fingerprint": "167e4d8ccb50c507ddbb2fae73b2669213cd522548afa70a37928c4442cbfcc8",
+      "fingerprint": "b2e2aa44a0fb984bdb3a225bfc2c6cb13f773947c0b05fe88c0ba293cc6ced74",
       "snapshot": {
-        "docs/framework/vue/guides/formatting-display.md": "528912ef3a5241019012bb01d08077b99f51d3180edbd5e06792c8ef929e5877"
+        "docs/framework/vue/guides/formatting-display.md": "092150eda73fdd8bb5887808a2ff4d8543cb6c715def3104cdbdc19959caf412"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "reason": "Generated reference or example change covered by the updated skills.",
       "evidence": ["docs/framework/vue/guides/formatting-display.md"]
     },
     "source:docs/framework/vue/guides/held-key-state-helpers.md": {
@@ -10734,6 +10734,166 @@
       "outcome": "no-change",
       "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
       "evidence": ["examples/vue/useFormatForDisplay-vitepress/tsconfig.json"]
+    },
+    "source:examples/angular/scopes/src/app/app.component.ts": {
+      "fingerprint": "b86166b315f22b6b8f2b1499ed8bb0fdc4293f8872ec9b6762d9f48d6f8c41b7",
+      "snapshot": {
+        "examples/angular/scopes/src/app/app.component.ts": "71a29499c0735b247ab8e33a82813f97b4e008e186185592ec1758143c99d945"
+      },
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "outcome": "no-change",
+      "reason": "Scopes examples now use HotkeysProvider directly instead of a local Scope wrapper; skills already show HotkeysProvider for scopes.",
+      "evidence": ["examples/angular/scopes/src/app/app.component.ts"]
+    },
+    "source:examples/angular/scopes/src/styles.css": {
+      "fingerprint": "1071b137f7a70b0604eedb3dd6d5660c44408b6e855791710fbaa985c3fc1a1f",
+      "snapshot": {
+        "examples/angular/scopes/src/styles.css": "bd39a8335350ea00762af14cee089671456695dff6ecec0c7edfc08b04da5cf3"
+      },
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "outcome": "no-change",
+      "reason": "Scopes examples now use HotkeysProvider directly instead of a local Scope wrapper; skills already show HotkeysProvider for scopes.",
+      "evidence": ["examples/angular/scopes/src/styles.css"]
+    },
+    "source:examples/octane/scopes/src/main.tsrx": {
+      "fingerprint": "ee6e32f5e13860663a0ac4240ce5671c2dba76c9b21c8a41c4893c6ef7f80d38",
+      "snapshot": {
+        "examples/octane/scopes/src/main.tsrx": "25b93d2ac805625877c22d69bc6e662078c7e359e9cc65c3e3fad6504af576d8"
+      },
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "outcome": "no-change",
+      "reason": "Scopes examples now use HotkeysProvider directly instead of a local Scope wrapper; skills already show HotkeysProvider for scopes.",
+      "evidence": ["examples/octane/scopes/src/main.tsrx"]
+    },
+    "source:examples/preact/scopes/src/index.tsx": {
+      "fingerprint": "86f81407be15dddc4c85854fd5a333d4af234eec16ddac82618d82607dc3f132",
+      "snapshot": {
+        "examples/preact/scopes/src/index.tsx": "d9d7c5366fbd5252b800aea594b955b1dff28eceee956e6acae02f0901c8a793"
+      },
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "outcome": "no-change",
+      "reason": "Scopes examples now use HotkeysProvider directly instead of a local Scope wrapper; skills already show HotkeysProvider for scopes.",
+      "evidence": ["examples/preact/scopes/src/index.tsx"]
+    },
+    "source:examples/react/scopes/src/index.tsx": {
+      "fingerprint": "08e1e88004adc1e0985cd6c2655adde3d155062a34262451c10e88c2f44d8e97",
+      "snapshot": {
+        "examples/react/scopes/src/index.tsx": "c93ce847cd6185f00e14df0f385bf656ee8aa0c9cd598a65f6e4edb97bd6087f"
+      },
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "outcome": "no-change",
+      "reason": "Scopes examples now use HotkeysProvider directly instead of a local Scope wrapper; skills already show HotkeysProvider for scopes.",
+      "evidence": ["examples/react/scopes/src/index.tsx"]
+    },
+    "source:examples/solid/scopes/src/index.tsx": {
+      "fingerprint": "1e7c47ecc24f8c545353d275e79270b0d048922c23945d1cf4e2b212bc5746b0",
+      "snapshot": {
+        "examples/solid/scopes/src/index.tsx": "41cb6ca875b98731324d5b730d8f954ec650f7888774eeb558a0f4e3b30988fa"
+      },
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "outcome": "no-change",
+      "reason": "Scopes examples now use HotkeysProvider directly instead of a local Scope wrapper; skills already show HotkeysProvider for scopes.",
+      "evidence": ["examples/solid/scopes/src/index.tsx"]
+    },
+    "source:examples/svelte/scopes/src/App.svelte": {
+      "fingerprint": "69da308f1fb1d291d5e00a66ba3a422c8efc4876953c6f06154e7c40e8390aef",
+      "snapshot": {
+        "examples/svelte/scopes/src/App.svelte": "ec573787eba1e2af11edaf8645b8e54fcabc23aae6e42ff47df4851cc3533ac4"
+      },
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "outcome": "no-change",
+      "reason": "Scopes examples now use HotkeysProvider directly instead of a local Scope wrapper; skills already show HotkeysProvider for scopes.",
+      "evidence": ["examples/svelte/scopes/src/App.svelte"]
+    },
+    "source:examples/svelte/scopes/src/ExclusiveDialog.svelte": {
+      "fingerprint": "0b2e11770211e4c91fcd76089d333c0bab83ab94141cdc3ffa5dba3e20b8ec8d",
+      "snapshot": {
+        "examples/svelte/scopes/src/ExclusiveDialog.svelte": "adc657a50f7a80570074385f0183b60fad02afbb6aca38e8db4ed458c2c07117"
+      },
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "outcome": "no-change",
+      "reason": "Scopes examples now use HotkeysProvider directly instead of a local Scope wrapper; skills already show HotkeysProvider for scopes.",
+      "evidence": ["examples/svelte/scopes/src/ExclusiveDialog.svelte"]
+    },
+    "source:examples/svelte/scopes/src/NestedDemo.svelte": {
+      "fingerprint": "53cd9b1f82aea6046959413975774da68ab67a386e2716212b251cd82e0df8a8",
+      "snapshot": {
+        "examples/svelte/scopes/src/NestedDemo.svelte": "3b09720108dab5e194e58536039371317fe35d6313c726974b41ea5d1b2c42a2"
+      },
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "outcome": "no-change",
+      "reason": "Scopes examples now use HotkeysProvider directly instead of a local Scope wrapper; skills already show HotkeysProvider for scopes.",
+      "evidence": ["examples/svelte/scopes/src/NestedDemo.svelte"]
+    },
+    "source:examples/svelte/scopes/src/Scope.svelte": {
+      "fingerprint": "e73719fa9dc1750d50f8d22d7d63a5dbf679fbc45dc72125797fd29d8c47472e",
+      "snapshot": {
+        "examples/svelte/scopes/src/Scope.svelte": null
+      },
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "outcome": "no-change",
+      "reason": "Scopes examples now use HotkeysProvider directly instead of a local Scope wrapper; skills already show HotkeysProvider for scopes.",
+      "evidence": ["examples/svelte/scopes/src/Scope.svelte"]
+    },
+    "source:examples/svelte/scopes/src/TabsDemo.svelte": {
+      "fingerprint": "62c2d9427ee1be97fcf54e76bdae5045955987f56a78cb368d4ef01073d5f06d",
+      "snapshot": {
+        "examples/svelte/scopes/src/TabsDemo.svelte": "7cf6e6f4e729076d3fce01bca324e85718d853f5b9007b1ce882b2c8955d5d96"
+      },
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "outcome": "no-change",
+      "reason": "Scopes examples now use HotkeysProvider directly instead of a local Scope wrapper; skills already show HotkeysProvider for scopes.",
+      "evidence": ["examples/svelte/scopes/src/TabsDemo.svelte"]
+    },
+    "source:examples/vue/scopes/src/App.vue": {
+      "fingerprint": "dd0847729696cf721cb4c8abe1eb24ca9a4ecc62b8091a1e1e0fac1eda1bca52",
+      "snapshot": {
+        "examples/vue/scopes/src/App.vue": "d653723a32e6d2e351dbc4ff8d128e62d263c4bdbf168116de98736f720c2f0c"
+      },
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "outcome": "no-change",
+      "reason": "Scopes examples now use HotkeysProvider directly instead of a local Scope wrapper; skills already show HotkeysProvider for scopes.",
+      "evidence": ["examples/vue/scopes/src/App.vue"]
+    },
+    "source:examples/vue/scopes/src/ExclusiveDialog.vue": {
+      "fingerprint": "e5ecd7e557389f3fcd41d03d06a71518465b75ac044c755884c36843f6eeb1f9",
+      "snapshot": {
+        "examples/vue/scopes/src/ExclusiveDialog.vue": "f56dad9b53599445db07bf185cfc058d7387bf39f5c726d6fd7aaeef3963618e"
+      },
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "outcome": "no-change",
+      "reason": "Scopes examples now use HotkeysProvider directly instead of a local Scope wrapper; skills already show HotkeysProvider for scopes.",
+      "evidence": ["examples/vue/scopes/src/ExclusiveDialog.vue"]
+    },
+    "source:examples/vue/scopes/src/NestedDemo.vue": {
+      "fingerprint": "b37b0ae790ab73d7bfb97f452c9f2ed36195bdfb14fb6c9c9e5c4f52ec39e142",
+      "snapshot": {
+        "examples/vue/scopes/src/NestedDemo.vue": "a79fea4d8f65dd70fa1ed8594cf4540bcd898ee56f44d2d1a58869800088fcd6"
+      },
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "outcome": "no-change",
+      "reason": "Scopes examples now use HotkeysProvider directly instead of a local Scope wrapper; skills already show HotkeysProvider for scopes.",
+      "evidence": ["examples/vue/scopes/src/NestedDemo.vue"]
+    },
+    "source:examples/vue/scopes/src/Scope.vue": {
+      "fingerprint": "67376d72e031b2f0028acafa983c7f341fca8215302682c4e005d7eb09560960",
+      "snapshot": {
+        "examples/vue/scopes/src/Scope.vue": null
+      },
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "outcome": "no-change",
+      "reason": "Scopes examples now use HotkeysProvider directly instead of a local Scope wrapper; skills already show HotkeysProvider for scopes.",
+      "evidence": ["examples/vue/scopes/src/Scope.vue"]
+    },
+    "source:examples/vue/scopes/src/TabsDemo.vue": {
+      "fingerprint": "d0c9c3766f77e3c34d714243e20579259b3bfdbbdbe6955a8d2a8ca065c0aacf",
+      "snapshot": {
+        "examples/vue/scopes/src/TabsDemo.vue": "bcc42d8ddd7b1557c06938c6ab1bfa91d6857d3c419c2058d89e12cf750016bb"
+      },
+      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
+      "outcome": "no-change",
+      "reason": "Scopes examples now use HotkeysProvider directly instead of a local Scope wrapper; skills already show HotkeysProvider for scopes.",
+      "evidence": ["examples/vue/scopes/src/TabsDemo.vue"]
     }
   }
 }

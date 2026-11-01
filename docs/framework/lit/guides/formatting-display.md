@@ -4,6 +4,9 @@ id: formatting-display
 description: Format Lit hotkeys as platform-appropriate labels and keycaps, such as ⌘ S on macOS and Ctrl+S on Windows, for menus, buttons, and cheat sheets.
 ---
 
+> [!NOTE]
+> Showing hotkey labels on the page is one of the few parts of TanStack Hotkeys that needs extra care in server-rendered apps. The server doesn't know the user's operating system, so a label it renders can be wrong for the user, and Lit keeps the server's text after hydration. Lit has no provider, so pass the platform to `formatForDisplay` yourself. See [Format labels in server-rendered apps](#format-labels-in-server-rendered-apps).
+
 Use `formatForDisplay` whenever a hotkey appears in a menu, button, tooltip, cheat sheet, or shortcut settings panel. It accepts chord strings, including physical ones such as `'Mod+[KeyS]'`, chord objects, parsed chords, and sequences. Store the hotkey itself, and format it when you render. A label is for reading, not for registering.
 
 ## Format a hotkey
