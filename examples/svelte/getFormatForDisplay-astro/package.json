@@ -13,7 +13,7 @@
   "dependencies": {
     "@astrojs/node": "^11.1.9",
     "@astrojs/svelte": "^9.1.2",
-    "@tanstack/svelte-hotkeys": "0.19.2",
+    "@tanstack/svelte-hotkeys": "0.20.0",
     "astro": "^7.4.4",
     "svelte": "^5.57.1"
   },
