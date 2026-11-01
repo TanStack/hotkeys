@@ -29,7 +29,7 @@ Use `{{useHotkey "Mod+S" this.save enabled=this.enabled}}` in a template.
 new useHotkey(owner?): UseHotkey;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/index.d.ts:28
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/index.d.ts:28
 
 #### Parameters
 
@@ -94,7 +94,7 @@ Helper.[Invoke]
 optional [OWNER]?: Owner;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:77
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:77
 
 **`Internal`**
 
@@ -112,7 +112,7 @@ Helper.[OWNER]
 [RECOMPUTE_TAG]: DirtyableTag;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/-internals/glimmer/lib/helper.d.ts:103
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/-internals/glimmer/lib/helper.d.ts:103
 
 #### Inherited from
 
@@ -128,7 +128,7 @@ Helper.[RECOMPUTE_TAG]
 optional concatenatedProperties?: string | string[];
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:637
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:637
 
 #### Inherited from
 
@@ -144,7 +144,7 @@ Helper.concatenatedProperties
 optional mergedProperties?: unknown[];
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:638
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:638
 
 #### Inherited from
 
@@ -160,7 +160,7 @@ Helper.mergedProperties
 readonly static optional _lazyInjections?: () => void;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:636
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:636
 
 #### Returns
 
@@ -180,7 +180,7 @@ Helper._lazyInjections
 readonly static optional _onLookup?: (debugContainerKey) => void;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:635
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:635
 
 #### Parameters
 
@@ -206,7 +206,7 @@ Helper._onLookup
 static _without: any[] | undefined;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/mixin.d.ts:113
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/mixin.d.ts:113
 
 **`Internal`**
 
@@ -224,7 +224,7 @@ Helper._without
 static optional [INIT_FACTORY]?: null;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/mixin.d.ts:114
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/mixin.d.ts:114
 
 #### Inherited from
 
@@ -240,7 +240,7 @@ Helper.[INIT_FACTORY]
 static [IS_CLASSIC_HELPER]: boolean;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/-internals/glimmer/lib/helper.d.ts:100
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/-internals/glimmer/lib/helper.d.ts:100
 
 #### Inherited from
 
@@ -265,7 +265,7 @@ static helper: {
 };
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/-internals/glimmer/lib/helper.d.ts:102
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/-internals/glimmer/lib/helper.d.ts:102
 
 #### Call Signature
 
@@ -399,7 +399,7 @@ Helper.helper
 readonly static isClass: boolean;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:633
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:633
 
 #### Inherited from
 
@@ -415,7 +415,7 @@ Helper.isClass
 static isHelperFactory: boolean;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/-internals/glimmer/lib/helper.d.ts:99
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/-internals/glimmer/lib/helper.d.ts:99
 
 #### Inherited from
 
@@ -431,7 +431,7 @@ Helper.isHelperFactory
 readonly static isMethod: boolean;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:634
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:634
 
 #### Inherited from
 
@@ -447,7 +447,7 @@ Helper.isMethod
 static mixins: Mixin[] | undefined;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/mixin.d.ts:105
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/mixin.d.ts:105
 
 **`Internal`**
 
@@ -465,7 +465,7 @@ Helper.mixins
 static ownerConstructor: any;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/mixin.d.ts:111
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/mixin.d.ts:111
 
 **`Internal`**
 
@@ -487,7 +487,7 @@ static properties:
   | undefined;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/mixin.d.ts:107
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/mixin.d.ts:107
 
 **`Internal`**
 
@@ -505,7 +505,7 @@ Helper.properties
 static PrototypeMixin: any;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:629
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:629
 
 #### Inherited from
 
@@ -521,7 +521,7 @@ Helper.PrototypeMixin
 static superclass: any;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:630
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:630
 
 #### Inherited from
 
@@ -539,7 +539,7 @@ Helper.superclass
 get _debugContainerKey(): false | `${string}:${string}`;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/index.d.ts:30
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/index.d.ts:30
 
 ##### Returns
 
@@ -561,7 +561,7 @@ Helper._debugContainerKey
 get isDestroyed(): boolean;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:270
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:270
 
 Destroyed object property flag.
 
@@ -585,7 +585,7 @@ false
 set isDestroyed(_value): void;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:271
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:271
 
 ##### Parameters
 
@@ -613,7 +613,7 @@ Helper.isDestroyed
 get isDestroying(): boolean;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:282
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:282
 
 Destruction scheduled flag. The `destroy()` method has been called.
 
@@ -637,7 +637,7 @@ false
 set isDestroying(_value): void;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:283
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:283
 
 ##### Parameters
 
@@ -663,7 +663,7 @@ Helper.isDestroying
 _super(...args): any;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:73
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:73
 
 **`Internal`**
 
@@ -696,7 +696,7 @@ addObserver<Target>(
    method): this;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:322
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:322
 
 Adds an observer on a property.
 
@@ -822,7 +822,7 @@ Helper.addObserver
 addObserver(key, method): this;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:323
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:323
 
 ##### Parameters
 
@@ -852,7 +852,7 @@ Helper.addObserver
 cacheFor<K>(key): unknown;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:394
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:394
 
 Returns the cached value of a computed property, if it exists.
 This allows you to inspect the value of a computed property
@@ -941,7 +941,7 @@ Helper.compute
 decrementProperty(keyName, decrement?): number;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:368
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:368
 
 Set the value of a property to the current value minus some amount.
 
@@ -988,7 +988,7 @@ Helper.decrementProperty
 destroy(): this;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:298
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:298
 
 Destroys an object by setting the `isDestroyed` flag and removing its
 metadata, which effectively destroys observers and bindings.
@@ -1025,7 +1025,7 @@ Helper.destroy
 get<K>(key): UseHotkey[K];
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:119
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:119
 
 Retrieves the value of a property from the object.
 
@@ -1096,7 +1096,7 @@ Helper.get
 get(key): unknown;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:120
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:120
 
 ##### Parameters
 
@@ -1124,7 +1124,7 @@ Helper.get
 getProperties<L>(list): { [Key in keyof useHotkey]: useHotkey[Key] };
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:142
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:142
 
 To get the values of multiple properties at once, call `getProperties`
 with a list of strings or an array:
@@ -1175,7 +1175,7 @@ Helper.getProperties
 getProperties<L>(...list): { [Key in keyof useHotkey]: useHotkey[Key] };
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:145
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:145
 
 ##### Type Parameters
 
@@ -1205,7 +1205,7 @@ Helper.getProperties
 getProperties<L>(list): { [Key in string]: unknown };
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:148
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:148
 
 ##### Type Parameters
 
@@ -1235,7 +1235,7 @@ Helper.getProperties
 getProperties<L>(...list): { [Key in string]: unknown };
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:151
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:151
 
 ##### Type Parameters
 
@@ -1267,7 +1267,7 @@ Helper.getProperties
 incrementProperty(keyName, increment?): number;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:353
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:353
 
 Set the value of a property to the current value plus some amount.
 
@@ -1314,7 +1314,7 @@ Helper.incrementProperty
 init(properties): void;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/-internals/glimmer/lib/helper.d.ts:105
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/-internals/glimmer/lib/helper.d.ts:105
 
 An overridable method called when objects are instantiated. By default,
 does nothing unless it is overridden during class definition.
@@ -1372,7 +1372,7 @@ Helper.init
 notifyPropertyChange(keyName): this;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:234
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:234
 
 Convenience method to call `propertyWillChange` and `propertyDidChange` in
 succession.
@@ -1414,7 +1414,7 @@ Helper.notifyPropertyChange
 recompute(): void;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/-internals/glimmer/lib/helper.d.ts:142
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/-internals/glimmer/lib/helper.d.ts:142
 
 On a class-based helper, it may be useful to force a recomputation of that
 helpers value. This is akin to `rerender` on a component.
@@ -1478,7 +1478,7 @@ removeObserver<Target>(
    method): this;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:337
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:337
 
 Remove an observer you have previously registered on this object. Pass
 the same key, target, and method you passed to `addObserver()` and your
@@ -1530,7 +1530,7 @@ Helper.removeObserver
 removeObserver(key, method): this;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:338
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:338
 
 ##### Parameters
 
@@ -1560,7 +1560,7 @@ Helper.removeObserver
 reopen(...args): this;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:79
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:79
 
 #### Parameters
 
@@ -1588,7 +1588,7 @@ Helper.reopen
 set<K, T>(key, value): T;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:198
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:198
 
 Sets the provided key or path to the value.
 
@@ -1718,7 +1718,7 @@ Helper.set
 set<T>(key, value): T;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:199
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:199
 
 ##### Type Parameters
 
@@ -1756,7 +1756,7 @@ Helper.set
 setProperties<K, P>(hash): P;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:214
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:214
 
 Sets a list of properties at once. These properties are set inside
 a single `beginPropertyChanges` and `endPropertyChanges` batch, so
@@ -1806,7 +1806,7 @@ Helper.setProperties
 setProperties<T>(hash): T;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:217
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:217
 
 ##### Type Parameters
 
@@ -1838,7 +1838,7 @@ Helper.setProperties
 toggleProperty(keyName): boolean;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:382
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/observable.d.ts:382
 
 Set the value of a boolean property to the opposite of its
 current value.
@@ -1879,7 +1879,7 @@ Helper.toggleProperty
 toString(): string;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:345
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:345
 
 Returns a string representation which attempts to provide more information
 than Javascript's `toString` typically does, in a generic way for all Ember
@@ -1939,7 +1939,7 @@ Helper.toString
 willDestroy(): void;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:305
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:305
 
 Override to implement teardown.
 
@@ -1965,7 +1965,7 @@ Helper.willDestroy
 static applyPartial(obj): Record<string, any>;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/mixin.d.ts:145
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/mixin.d.ts:145
 
 **`Internal`**
 
@@ -1995,7 +1995,7 @@ Helper.applyPartial
 readonly static create<C>(this): InstanceType<C>;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:482
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:482
 
 Creates an instance of a class. Accepts either no arguments, or an object
 containing values to initialize the newly instantiated object with.
@@ -2069,7 +2069,7 @@ Helper.create
 readonly static create<C, I, K, Args>(this, ...args): InstanceType<C> & MergeArray<Args>;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:483
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:483
 
 Creates an instance of a class. Accepts either no arguments, or an object
 containing values to initialize the newly instantiated object with.
@@ -2161,7 +2161,7 @@ Helper.create
 readonly static detectInstance(obj): obj is CoreObject;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:585
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:585
 
 #### Parameters
 
@@ -2187,7 +2187,7 @@ Helper.detectInstance
 readonly static extend<Statics, Instance, M>(this, ...mixins?): Readonly<Statics> & EmberClassConstructor<Instance> & MergeArray<M>;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:440
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:440
 
 Creates a new subclass.
 
@@ -2329,7 +2329,7 @@ Helper.extend
 static keys(): Set<string>;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/mixin.d.ts:157
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/mixin.d.ts:157
 
 **`Internal`**
 
@@ -2351,7 +2351,7 @@ Helper.keys
 readonly static proto(): CoreObject;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:631
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:631
 
 #### Returns
 
@@ -2371,7 +2371,7 @@ Helper.proto
 readonly static reopenClass<C>(this, ...mixins): C;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:583
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:583
 
 Augments a constructor's own properties and functions:
 
@@ -2472,7 +2472,7 @@ Helper.reopenClass
 static toString(): string;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:632
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:632
 
 #### Returns
 
@@ -2492,7 +2492,7 @@ Helper.toString
 readonly static willReopen(): void;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:521
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/core.d.ts:521
 
 #### Returns
 
@@ -2512,7 +2512,7 @@ Helper.willReopen
 static without(...args): Mixin;
 ```
 
-Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/mixin.d.ts:155
+Defined in: node\_modules/.pnpm/ember-source@7.3.0\_@glimmer+component@2.1.1\_supports-color@8.1.1/node\_modules/ember-source/types/stable/@ember/object/mixin.d.ts:155
 
 **`Internal`**
 
