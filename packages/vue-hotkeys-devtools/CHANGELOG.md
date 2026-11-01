@@ -1,5 +1,23 @@
 # @tanstack/vue-hotkeys-devtools
 
+## 0.13.0
+
+### Minor Changes
+
+- [#221](https://github.com/TanStack/hotkeys/pull/221) [`5bf96b6`](https://github.com/TanStack/hotkeys/commit/5bf96b68bba67b0e288bb7886c5f4516417a528f) - Server-rendered hotkey labels can match the user's platform.
+
+  - `detectPlatform(userAgent)` detects the platform from a user agent string, such as a request's `User-Agent` header. `null`, as from a missing header, works like no argument. A new `HotkeyPlatform` type names the result.
+  - Without a user agent, `detectPlatform()` returns `'linux'` on Node, Deno, Bun, and Cloudflare Workers instead of the server's own OS.
+  - In development, formatting a label on the server without a platform warns once.
+  - Providers accept `defaultOptions.platform`, which is also the default platform for their hotkeys and recorders.
+  - Adapters that render on the server add a formatter hook that uses the provider's platform: `useFormatForDisplay` (React, Preact, Octane, Vue, Ember), `createFormatForDisplay` (Solid), `getFormatForDisplay` (Svelte), and `injectFormatForDisplay` (Angular).
+  - Angular's `provideHotkeys` accepts `defaultOptions` as a getter that runs in the injection context, so it can read the request with `inject(REQUEST)`.
+
+### Patch Changes
+
+- Updated dependencies [[`5bf96b6`](https://github.com/TanStack/hotkeys/commit/5bf96b68bba67b0e288bb7886c5f4516417a528f)]:
+  - @tanstack/hotkeys-devtools@1.8.0
+
 ## 0.12.3
 
 ### Patch Changes
