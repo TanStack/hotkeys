@@ -86,7 +86,7 @@
       "evidence": ["packages/hotkeys/skills/app-hotkeys/SKILL.md"]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "53c13ff94e7912a824600ac060dd451df3e8be125f9eaaf25389b224bcef5976",
+      "fingerprint": "af526ea24bd3c1c9a262d9b7223562f11ed300341b1ebd333c12bc32086f0279",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "03b024ba6a23d6b87a7b99be8a30b54fd5d82ba27e075ba0c00f648c82759e5f",
@@ -95,7 +95,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "b2f1f75449b485987385929ff6bee233a8cd661c04f35a73153faac28ff6225a",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
-        "packages/hotkeys/src/hotkey-manager.ts": "ace2fa6ed4451e7433c772c6b3c9d92f9372649b94bb3db4604fd36b18356ca4",
+        "packages/hotkeys/src/hotkey-manager.ts": "d7d22855f02e8f8e0ed5f4ee40be0741d1f5d21e1cc7fc9f53a146d908f35c09",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "d7747b87eae074ab3620484f64cf13ea9c27d24d059d56d9a9a07ccf0c2d3e06",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -107,12 +107,12 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
-      "outcome": "updated",
-      "reason": "Escape pitfall now says ignoreDefaultPrevented only sees preventDefault() before the hotkey runs, names Lit per-hotkey options, and sends later-preventing libraries such as Bits UI to exclusive scopes.",
+      "head": "ca7a72338a53e04a2b9df56eb0a95084dda57432",
+      "outcome": "no-change",
+      "reason": "Internal keyup cancellation and sequence ownership fixes; the skill makes no claims about either.",
       "evidence": [
         "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "docs/guides/sensible-defaults.md"
+        "packages/hotkeys/src/hotkey-manager.ts"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -258,7 +258,7 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "37537f09ac9bb2481dd793525eb4c96cbb28d145cacf3b99eb71014f3a12d951",
+      "fingerprint": "5d6c7dc0181f4bbd8a601ed343c58ac1effe5246177b171e29356fb51f79be37",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -321,7 +321,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/app-hotkeys.ts": "a6176a749dd7439146c335e769dfae1a2cd72ace029f9cbc64b52ff5fe2d9d03",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
-        "packages/hotkeys/src/hotkey-manager.ts": "ace2fa6ed4451e7433c772c6b3c9d92f9372649b94bb3db4604fd36b18356ca4",
+        "packages/hotkeys/src/hotkey-manager.ts": "d7d22855f02e8f8e0ed5f4ee40be0741d1f5d21e1cc7fc9f53a146d908f35c09",
         "packages/hotkeys/src/hotkey-recorder.ts": "7d479391753ffa97e69a7d7cb994cb7053a7ffb3e0aed6dfbfb2dbbdf51a3d24",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "4e5593e8d4373475d4e6006e30ec663d7f0f3fcf0aa881fc403efe58b9cf7606",
@@ -390,7 +390,7 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
+      "head": "ca7a72338a53e04a2b9df56eb0a95084dda57432",
       "outcome": "no-change",
       "reason": "No new skill, domain or task.",
       "evidence": ["_artifacts/skill_spec.md"]
@@ -623,30 +623,24 @@
       "evidence": ["docs/framework/vue/reference/functions/useHotkeyHint.md"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "9882734aa2a9b4f272f1ae473d2b806b0bb940aad26f85f946a3fdf754296e02",
+      "fingerprint": "cd23b806d28b595b407f1f788535cbb32625f53947d4ec36b6ec3d49ab888004",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "a674e1dbe242a0a58bd8cd527b41c42a0f018f137fb028fd57de66a104afd55b"
+        "docs/reference/classes/HotkeyManager.md": "e89bd481055ccfce64d208512fb0ac36a018b3802b2c02cc350a7ef2fbe1e597"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
+      "head": "ca7a72338a53e04a2b9df56eb0a95084dda57432",
       "outcome": "no-change",
-      "reason": "Generated reference: updated eventType description and shifted line numbers.",
-      "evidence": [
-        "docs/reference/classes/HotkeyManager.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
-      ]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/classes/HotkeyManager.md"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "45003bb1fa938820523cb5e7eb9c75601f7f34c4757db5b85109475577e29a84",
+      "fingerprint": "7cdcb74c3e4c4ff225ea12b0c3fb250742a70727e155284f092f86ca0278a753",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "f2aa1c00ea4dc86bac826297aaa2ea8c14904a442cd1ec49317fdfd91e8d4caf"
+        "docs/reference/functions/getHotkeyManager.md": "8f27e4729d6d4adb1e3412571a0764d313a22b30161f912155394dca3e254ca3"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
+      "head": "ca7a72338a53e04a2b9df56eb0a95084dda57432",
       "outcome": "no-change",
-      "reason": "Generated reference: updated eventType description and shifted line numbers.",
-      "evidence": [
-        "docs/reference/functions/getHotkeyManager.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
-      ]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/functions/getHotkeyManager.md"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
       "fingerprint": "cafd21ca3305c89ad47e5c4eee4ce63feed831a2b3524c5b3cd756fee53a2592",
@@ -1338,11 +1332,11 @@
       "evidence": ["packages/hotkeys-devtools/src/components/DetailsPanel.tsx"]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "902f10a320fcf06b81fea59c29773106d45f90d7ee907aec47d7fdcd4b13c7dc",
+      "fingerprint": "dcb94dd5f3c9898182d0ab0ff5592b79808ae25a907f83d40a61eb50aa4ac6ea",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "b3cf935fcafdf1c5a4f21d4df858d4bc895328fd06a43f302f976b8d14c9f871"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "0944ce36c4792bed6430b526af1564f9ce9a812e943fe305b71f67c31ea8a68f"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
+      "head": "ca7a72338a53e04a2b9df56eb0a95084dda57432",
       "outcome": "no-change",
       "reason": "Tests only; no guidance change.",
       "evidence": ["packages/hotkeys/tests/hotkey-manager.test.ts"]
@@ -11279,11 +11273,11 @@
       "evidence": ["e2e/browser/chords.spec.ts"]
     },
     "source:packages/hotkeys/tests/default-prevented.test.ts": {
-      "fingerprint": "3fae6b67b0e19dc75bdbdd6ec89486fe2e2d76ad223fa82fae31f5f6e5e96abc",
+      "fingerprint": "0ab2059befe9edbb9a6c1ae1b38668f7e718552effdfdb129c6682b7dd4ba520",
       "snapshot": {
-        "packages/hotkeys/tests/default-prevented.test.ts": "6d41b2a42382df2aff3c60848dc63767d5d39d63488c2033142f74f3de6d46c3"
+        "packages/hotkeys/tests/default-prevented.test.ts": "a3687fa6adbeee3343e6f0e81aadc4728a167c66eecc73c21d39918dfa842079"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
+      "head": "ca7a72338a53e04a2b9df56eb0a95084dda57432",
       "outcome": "no-change",
       "reason": "Tests only; no guidance change.",
       "evidence": ["packages/hotkeys/tests/default-prevented.test.ts"]

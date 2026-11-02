@@ -1233,12 +1233,10 @@ export class HotkeyManager {
       }
     }
     // A new press cancels a keyup chord's press in progress, so its release
-    // doesn't fire, even when the new press continues a sequence. An older
-    // cancellation is forgotten.
+    // doesn't fire, even when the new press continues a sequence.
     if (eventType === 'keydown' && !event.repeat) {
       for (const { id } of registrations) {
         if (this.#pendingReleases.get(id)) this.#pendingReleases.set(id, null)
-        else this.#pendingReleases.delete(id)
       }
     }
     if (isRecordingEvent(event) || this.#sequenceOwned.get(event)) return
@@ -1407,6 +1405,7 @@ export class HotkeyManager {
         registration.currentIndex === 0 ||
         !this.#isLive(registration) ||
         registration.options.eventType !== eventType ||
+        this.#skipsPrevented(registration, event) ||
         now - registration.lastKeyTime >
           (registration.options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT)
       ) {

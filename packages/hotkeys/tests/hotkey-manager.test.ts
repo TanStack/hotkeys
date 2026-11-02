@@ -2018,6 +2018,23 @@ describe('HotkeyManager edge cases', () => {
       expect(callback).not.toHaveBeenCalled()
     })
 
+    it('stays cancelled through more key presses before the release', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Control+K', callback, {
+        platform: 'windows',
+        eventType: 'keyup',
+      })
+      key('keydown', 'k', { code: 'KeyK', ctrlKey: true })
+      key('keydown', 'j', { code: 'KeyJ', ctrlKey: true })
+      key('keydown', 'l', { code: 'KeyL', ctrlKey: true })
+      key('keyup', 'k', { code: 'KeyK', ctrlKey: true })
+      key('keyup', 'Control', { code: 'ControlLeft' })
+      expect(callback).not.toHaveBeenCalled()
+      key('keydown', 'k', { code: 'KeyK', ctrlKey: true })
+      key('keyup', 'k', { code: 'KeyK', ctrlKey: true })
+      expect(callback).toHaveBeenCalledOnce()
+    })
+
     it('does not fire after a key that continues a sequence', () => {
       const manager = HotkeyManager.getInstance()
       const callback = vi.fn()
