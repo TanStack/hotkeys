@@ -40,7 +40,7 @@ export function useHotkeys(
     null,
     subSlot(slot, 'bindings'),
   )
-  ref.current ??= createHotkeyBindings()
+  ref.current ??= createHotkeyBindings({ afterDelegatedHandlers: true })
   const bindings = ref.current
   useLayoutEffect(
     () => {

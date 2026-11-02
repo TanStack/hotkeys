@@ -1,4 +1,5 @@
 import { createEffect, onCleanup, untrack } from 'solid-js'
+import { delegateEvents } from 'solid-js/web'
 import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
@@ -46,7 +47,7 @@ export function createHotkeys(
 ): void {
   const defaultOptions = useDefaultHotkeysOptionsSource()
   const appHotkeys = useAppHotkeysStoreSource()
-  const bindings = createHotkeyBindings()
+  const bindings = createHotkeyBindings({ afterDelegatedHandlers: true })
 
   // Clean up only when this owner disposes, not before every effect re-run.
   onCleanup(() => bindings.destroy())
@@ -65,6 +66,10 @@ export function createHotkeys(
         resolveTarget: (target) => target,
       },
     )
+    // Solid's onKeyDown listener on the document must come before the
+    // hotkeys' listener there, even when the first module that uses
+    // onKeyDown loads later. This runs only in the browser.
+    delegateEvents(['keydown', 'keyup'])
     // Untrack store writes so registrations do not re-trigger this effect.
     untrack(() => bindings.update(definitions))
   })

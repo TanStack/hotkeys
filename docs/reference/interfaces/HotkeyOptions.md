@@ -14,6 +14,24 @@ Options shared by chords and sequences.
 
 ## Properties
 
+### afterDelegatedHandlers?
+
+```ts
+optional afterDelegatedHandlers?: boolean;
+```
+
+Defined in: [hotkey-manager.ts:134](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L134)
+
+Run after key handlers that a framework calls from one listener on its
+root or the document, such as React's `onKeyDown`, so handlers inside the
+target run first and can stop the hotkey. An element target then listens
+on its document, or on its closed shadow root, instead of the element. A
+stop by an earlier listener there skips the hotkey. Applies only to the
+bubble phase.
+Adapters for frameworks that delegate key events set this.
+
+***
+
 ### appHotkeyId?
 
 ```ts

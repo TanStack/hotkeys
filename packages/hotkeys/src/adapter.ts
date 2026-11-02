@@ -70,8 +70,14 @@ export type HotkeyBindingsCommonOptions = HotkeyChordOptions &
 
 type ResolvedOptions = HotkeyChordOptions & HotkeySequenceOptions
 
-/** Reconciles adapter registrations while retaining handles for option updates. */
-export function createHotkeyBindings() {
+/**
+ * Reconciles adapter registrations while retaining handles for option updates.
+ * Adapters for frameworks that delegate key events, such as React, pass
+ * `{ afterDelegatedHandlers: true }`.
+ */
+export function createHotkeyBindings(
+  adapterOptions: Pick<HotkeyOptions, 'afterDelegatedHandlers'> = {},
+) {
   const registrations = new Map<
     string,
     {
@@ -107,6 +113,7 @@ export function createHotkeyBindings() {
         const options: ResolvedOptions = {
           ...defaultHotkeyOptions,
           ...merged,
+          ...adapterOptions,
           target:
             'target' in merged
               ? (merged.target ?? null)
@@ -186,7 +193,7 @@ export function createHotkeyBindings() {
 /** Options with a framework-specific target, such as a ref. */
 export type WithTarget<TOptions, TTarget> = Omit<
   TOptions,
-  'target' | 'appHotkeyId'
+  'target' | 'appHotkeyId' | 'afterDelegatedHandlers'
 > & {
   /** The element to listen on. Defaults to document. */
   target?: TTarget

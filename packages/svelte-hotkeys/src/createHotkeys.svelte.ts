@@ -75,7 +75,7 @@ function bindHotkeys(
   const subscribeAppHotkeys = createAppHotkeysSubscriber(
     context?.appHotkeysStore ?? null,
   )
-  const bindings = createHotkeyBindings()
+  const bindings = createHotkeyBindings({ afterDelegatedHandlers: true })
 
   $effect(() => {
     if (typeof document === 'undefined') {
