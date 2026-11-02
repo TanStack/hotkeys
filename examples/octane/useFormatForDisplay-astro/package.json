@@ -11,15 +11,15 @@
   },
   "dependencies": {
     "@astrojs/node": "^11.1.9",
-    "@octanejs/astro": "0.0.42",
+    "@octanejs/astro": "0.0.46",
     "@tanstack/octane-hotkeys": "workspace:*",
     "astro": "^7.4.4",
-    "octane": "0.12.1"
+    "octane": "0.16.6"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
-    "@tsrx/oxc": "0.20.0",
-    "@tsrx/typescript-plugin": "^0.3.138",
+    "@tsrx/oxc": "0.23.0",
+    "@tsrx/typescript-plugin": "^0.6.3",
     "typescript": "6.0.3"
   }
 }

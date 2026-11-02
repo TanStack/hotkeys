@@ -15,11 +15,11 @@
     "@astrojs/svelte": "^9.1.2",
     "@tanstack/svelte-hotkeys": "0.20.0",
     "astro": "^7.4.4",
-    "svelte": "^5.57.1"
+    "svelte": "^5.57.3"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
-    "svelte-check": "^4.7.7",
+    "svelte-check": "^4.7.8",
     "typescript": "6.0.3"
   }
 }

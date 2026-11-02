@@ -61,7 +61,7 @@
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^6.0.9",
-    "vue": "^3.5.43"
+    "@vitejs/plugin-vue": "^6.0.10",
+    "vue": "^3.5.44"
   }
 }

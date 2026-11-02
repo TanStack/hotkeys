@@ -54,8 +54,8 @@
   "devDependencies": {
     "@solidjs/testing-library": "^0.8.10",
     "@testing-library/jest-dom": "^7.0.1",
-    "solid-js": "^1.9.15",
-    "vite-plugin-solid": "^2.11.14"
+    "solid-js": "^1.9.18",
+    "vite-plugin-solid": "^2.11.15"
   },
   "peerDependencies": {
     "solid-js": "^1.7.0"

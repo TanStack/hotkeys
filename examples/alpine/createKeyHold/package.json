@@ -12,11 +12,11 @@
   },
   "dependencies": {
     "@tanstack/alpine-hotkeys": "workspace:*",
-    "alpinejs": "^3.17.4"
+    "alpinejs": "^3.17.5"
   },
   "devDependencies": {
     "@types/alpinejs": "^3.17.0",
     "typescript": "6.0.3",
-    "vite": "^8.3.2"
+    "vite": "^8.3.5"
   }
 }
