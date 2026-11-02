@@ -1255,12 +1255,9 @@ export class HotkeyManager {
       // A keyup chord also sees its keydown, to prevent it and await the release.
       const press = eventType === 'keydown' && firesOn === 'keyup'
       const skipped = this.#skips(registration, event)
-      // A release that another listener handled ends the press too.
-      if (skipped && !press) this.#pendingReleases.delete(registration.id)
       if (
         (!live && preventDefault !== 'always') ||
         (firesOn !== eventType && !press) ||
-        (skipped && !press) ||
         (ignoresInputs(registration) && shouldIgnoreInputEvent(event, target))
       ) {
         continue
@@ -1292,11 +1289,12 @@ export class HotkeyManager {
             !event.getModifierState(eventKey)))
       ) {
         const pending = this.#pendingReleases.get(registration.id)
+        // A release that another listener handled ends the press too.
         this.#pendingReleases.delete(registration.id)
-        if (!pending) continue
+        if (!pending || skipped) continue
         if (!result.matched) result = pending
       }
-      if (!result.matched) continue
+      if (skipped || !result.matched) continue
       if (!live) {
         reserved = true
         continue

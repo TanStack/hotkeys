@@ -298,7 +298,7 @@ Turn it on if a component in your app calls `preventDefault()` on keys it handle
 
 ### Let an open overlay handle Escape
 
-A native modal `<dialog>` or an open popover gets Escape on its own. While one is open, hotkeys outside it skip Escape, so the browser closes it and your hotkey doesn't run. A hotkey targeted at the dialog or popover, or at an element inside it, still receives Escape. TanStack Hotkeys finds these elements in the document, not inside shadow roots.
+A native modal `<dialog>` or an open popover gets Escape on its own, except a `popover="manual"` popover, which doesn't close on Escape. While one is open, hotkeys outside it skip Escape, so the browser closes it and your hotkey doesn't run. A hotkey targeted at the dialog or popover, or at an element inside it, still receives Escape. TanStack Hotkeys finds these elements in the document, not inside shadow roots.
 
 For other overlays, when the option above can't help, a global `Escape` hotkey and an open overlay both act on one key press:
 
@@ -398,7 +398,7 @@ See [scopes](../framework/ember/guides/hotkey-manager.md#activate-a-scope) to gi
 
 # Octane
 
-No component library for Octane is widespread yet. Native modal dialogs and popovers get Escape on their own, as in every framework.
+No component library for Octane is widespread yet. Native modal dialogs and popovers that close on Escape get it on their own, as in every framework.
 
 See [scopes](../framework/octane/guides/hotkeys-provider-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
 
