@@ -1255,6 +1255,27 @@ export class HotkeyManager {
       // A keyup chord also sees its keydown, to prevent it and await the release.
       const press = eventType === 'keydown' && firesOn === 'keyup'
       const skipped = this.#skips(registration, event)
+      const { parsedChord, id } = registration
+      const { platform } = registration.options
+      let result: KeyboardEventMatch | undefined
+      // A release ends a recorded press, even while the hotkey can't fire.
+      let released: KeyboardEventMatch | null | undefined
+      if (
+        eventType === 'keyup' &&
+        firesOn === 'keyup' &&
+        this.#pendingReleases.has(id)
+      ) {
+        result = matchKeyboardEvent(event, parsedChord, platform)
+        if (
+          result.matched ||
+          // The other Control or Shift key may still hold the modifier down.
+          (parsedChord.modifiers.includes(eventKey as CanonicalModifier) &&
+            !event.getModifierState(eventKey))
+        ) {
+          released = this.#pendingReleases.get(id)
+          this.#pendingReleases.delete(id)
+        }
+      }
       if (
         (!live && preventDefault !== 'always') ||
         (firesOn !== eventType && !press) ||
@@ -1262,37 +1283,22 @@ export class HotkeyManager {
       ) {
         continue
       }
-      const { parsedChord } = registration
-      let result = matchKeyboardEvent(
-        event,
-        parsedChord,
-        registration.options.platform,
-      )
+      result ??= matchKeyboardEvent(event, parsedChord, platform)
       if (press) {
         if (result.matched) {
           if (skipped) {
-            this.#pendingReleases.set(registration.id, null)
+            this.#pendingReleases.set(id, null)
           } else {
             if (preventDefault) this.#prevent(event)
-            if (live) this.#pendingReleases.set(registration.id, result)
+            if (live) this.#pendingReleases.set(id, result)
           }
         }
         continue
       }
-      if (
-        eventType === 'keyup' &&
-        live &&
-        this.#pendingReleases.has(registration.id) &&
-        (result.matched ||
-          // The other Control or Shift key may still hold the modifier down.
-          (parsedChord.modifiers.includes(eventKey as CanonicalModifier) &&
-            !event.getModifierState(eventKey)))
-      ) {
-        const pending = this.#pendingReleases.get(registration.id)
+      if (released !== undefined) {
         // A release that another listener handled ends the press too.
-        this.#pendingReleases.delete(registration.id)
-        if (!pending || skipped) continue
-        if (!result.matched) result = pending
+        if (!released || skipped) continue
+        if (!result.matched) result = released
       }
       if (skipped || !result.matched) continue
       if (!live) {

@@ -2035,6 +2035,21 @@ describe('HotkeyManager edge cases', () => {
       expect(callback).toHaveBeenCalledOnce()
     })
 
+    it('does not fire on a release after the key was released while disabled', () => {
+      const callback = vi.fn()
+      const handle = HotkeyManager.getInstance().register(
+        'Control+K',
+        callback,
+        { platform: 'windows', eventType: 'keyup' },
+      )
+      key('keydown', 'k', { code: 'KeyK', ctrlKey: true })
+      handle.setOptions({ enabled: false })
+      key('keyup', 'k', { code: 'KeyK', ctrlKey: true })
+      handle.setOptions({ enabled: true })
+      key('keyup', 'Control', { code: 'ControlLeft' })
+      expect(callback).not.toHaveBeenCalled()
+    })
+
     it('does not fire after a key that continues a sequence', () => {
       const manager = HotkeyManager.getInstance()
       const callback = vi.fn()

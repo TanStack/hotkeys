@@ -86,7 +86,7 @@
       "evidence": ["packages/hotkeys/skills/app-hotkeys/SKILL.md"]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "bc2592c1bf99858c14af745b818e03e6cfa6e376386ae858ca6c376c47913775",
+      "fingerprint": "20cfa2be414a13cb2e2471b5749ef5dbff3782cddc6f566b8536ab4d3c87f6a5",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "03b024ba6a23d6b87a7b99be8a30b54fd5d82ba27e075ba0c00f648c82759e5f",
@@ -95,7 +95,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6c6a979ac38e4808b7714ba2f7614eee9e447c76cb37a23eb21ad2693acb69e8",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
-        "packages/hotkeys/src/hotkey-manager.ts": "99fc7a3c5d943c93f4bdf7e8475941200dad6719b78a0fad6d6a54a79f080b20",
+        "packages/hotkeys/src/hotkey-manager.ts": "e59bba43977f090bfa44ad4ac75f9e895e2adb2f0694789cc362a28dffca5e25",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "d7747b87eae074ab3620484f64cf13ea9c27d24d059d56d9a9a07ccf0c2d3e06",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -107,12 +107,12 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "030372422c638df511179a26750b62893a9178ce",
-      "outcome": "updated",
-      "reason": "Escape pitfall now excludes popover=\"manual\" from the native popovers that get Escape.",
+      "head": "f3c7a6e8da6f9112c7a92402aff0c3efeaa751a1",
+      "outcome": "no-change",
+      "reason": "Internal keyup release bookkeeping while a hotkey is disabled; the skill makes no claim about it.",
       "evidence": [
         "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "docs/guides/sensible-defaults.md"
+        "packages/hotkeys/src/hotkey-manager.ts"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -258,7 +258,7 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "cb08931d15607d26dafb30a0e3586857e0893f2151ca0d7ec4e0dfca3e0c4dd1",
+      "fingerprint": "1fb046a200ae2254a480e3f355a470689a10e0a410a6acd80e40a5636ca05da9",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -321,7 +321,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/app-hotkeys.ts": "a6176a749dd7439146c335e769dfae1a2cd72ace029f9cbc64b52ff5fe2d9d03",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
-        "packages/hotkeys/src/hotkey-manager.ts": "99fc7a3c5d943c93f4bdf7e8475941200dad6719b78a0fad6d6a54a79f080b20",
+        "packages/hotkeys/src/hotkey-manager.ts": "e59bba43977f090bfa44ad4ac75f9e895e2adb2f0694789cc362a28dffca5e25",
         "packages/hotkeys/src/hotkey-recorder.ts": "7d479391753ffa97e69a7d7cb994cb7053a7ffb3e0aed6dfbfb2dbbdf51a3d24",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "4e5593e8d4373475d4e6006e30ec663d7f0f3fcf0aa881fc403efe58b9cf7606",
@@ -390,7 +390,7 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "030372422c638df511179a26750b62893a9178ce",
+      "head": "f3c7a6e8da6f9112c7a92402aff0c3efeaa751a1",
       "outcome": "no-change",
       "reason": "No new skill, domain or task.",
       "evidence": ["_artifacts/skill_spec.md"]
@@ -623,21 +623,21 @@
       "evidence": ["docs/framework/vue/reference/functions/useHotkeyHint.md"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "8e9b36aef60105666b96194e9d7fb655cf1a7877b2d56bd746807ac9125a632c",
+      "fingerprint": "8207f1779d8adfda716cc5cbf191f31ef30cfb7e4ecf63c2da472c3cb3631562",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "6a0044b56ec0d1e9062ed01e973f1d6cb1f9b6e9e96e8cf3b1af61c07b8fc171"
+        "docs/reference/classes/HotkeyManager.md": "569d1b646f621a3caac0fdcc8a3de2b517e3115ed39803d3d2c14b5bb6e88e1b"
       },
-      "head": "030372422c638df511179a26750b62893a9178ce",
+      "head": "f3c7a6e8da6f9112c7a92402aff0c3efeaa751a1",
       "outcome": "no-change",
       "reason": "Generated reference: shifted line numbers only.",
       "evidence": ["docs/reference/classes/HotkeyManager.md"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "45003bb1fa938820523cb5e7eb9c75601f7f34c4757db5b85109475577e29a84",
+      "fingerprint": "5afac21c3c4344df7e432b57ef316412bc9929d7a12f48d72be8c2f647e75c67",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "f2aa1c00ea4dc86bac826297aaa2ea8c14904a442cd1ec49317fdfd91e8d4caf"
+        "docs/reference/functions/getHotkeyManager.md": "759a2862889f9d53552a59953c6c7f0cb60fcb01a8aab228337fd2e3bee93fb4"
       },
-      "head": "030372422c638df511179a26750b62893a9178ce",
+      "head": "f3c7a6e8da6f9112c7a92402aff0c3efeaa751a1",
       "outcome": "no-change",
       "reason": "Generated reference: shifted line numbers only.",
       "evidence": ["docs/reference/functions/getHotkeyManager.md"]
@@ -1292,11 +1292,11 @@
       "evidence": ["packages/hotkeys-devtools/src/components/DetailsPanel.tsx"]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "dcb94dd5f3c9898182d0ab0ff5592b79808ae25a907f83d40a61eb50aa4ac6ea",
+      "fingerprint": "d0f7da5c06779ffaabade424774546f676080a509fa03a56a16394aad3f69866",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "0944ce36c4792bed6430b526af1564f9ce9a812e943fe305b71f67c31ea8a68f"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "050d2f56da6e69416a61f8757ed458453d54550fbfb8d3ec58d899932634c231"
       },
-      "head": "ca7a72338a53e04a2b9df56eb0a95084dda57432",
+      "head": "f3c7a6e8da6f9112c7a92402aff0c3efeaa751a1",
       "outcome": "no-change",
       "reason": "Tests only; no guidance change.",
       "evidence": ["packages/hotkeys/tests/hotkey-manager.test.ts"]
