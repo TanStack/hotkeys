@@ -1884,6 +1884,212 @@ describe('HotkeyManager edge cases', () => {
     })
   })
 
+  describe('keyup chords', () => {
+    function key(
+      type: 'keydown' | 'keyup',
+      key: string,
+      init: KeyboardEventInit = {},
+    ): KeyboardEvent {
+      const event = new KeyboardEvent(type, {
+        key,
+        bubbles: true,
+        cancelable: true,
+        ...init,
+      })
+      document.dispatchEvent(event)
+      return event
+    }
+
+    it('prevents the keydown so the browser does not act on it', () => {
+      const save = vi.fn()
+      HotkeyManager.getInstance().register('Mod+S', save, {
+        platform: 'windows',
+        eventType: 'keyup',
+      })
+      const down = key('keydown', 's', { code: 'KeyS', ctrlKey: true })
+      expect(down.defaultPrevented).toBe(true)
+      expect(save).not.toHaveBeenCalled()
+      key('keyup', 's', { code: 'KeyS', ctrlKey: true })
+      expect(save).toHaveBeenCalledOnce()
+    })
+
+    it('leaves the keydown alone with preventDefault: false', () => {
+      HotkeyManager.getInstance().register('Mod+S', () => {}, {
+        platform: 'windows',
+        eventType: 'keyup',
+        preventDefault: false,
+      })
+      const down = key('keydown', 's', { code: 'KeyS', ctrlKey: true })
+      expect(down.defaultPrevented).toBe(false)
+    })
+
+    it('fires when Command is released, since macOS drops the key keyup', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Mod+K', callback, {
+        platform: 'mac',
+        eventType: 'keyup',
+      })
+      key('keydown', 'Meta', { code: 'MetaLeft', metaKey: true })
+      key('keydown', 'k', { code: 'KeyK', metaKey: true })
+      key('keyup', 'Meta', { code: 'MetaLeft' })
+      expect(callback).toHaveBeenCalledOnce()
+    })
+
+    it('fires once when the modifier is released before the key', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Mod+K', callback, {
+        platform: 'windows',
+        eventType: 'keyup',
+      })
+      key('keydown', 'Control', { code: 'ControlLeft', ctrlKey: true })
+      key('keydown', 'k', { code: 'KeyK', ctrlKey: true })
+      key('keyup', 'Control', { code: 'ControlLeft' })
+      key('keyup', 'k', { code: 'KeyK' })
+      expect(callback).toHaveBeenCalledOnce()
+    })
+
+    it('fires once when the key is released before the modifier', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Mod+K', callback, {
+        platform: 'mac',
+        eventType: 'keyup',
+      })
+      key('keydown', 'k', { code: 'KeyK', metaKey: true })
+      key('keyup', 'k', { code: 'KeyK', metaKey: true })
+      key('keyup', 'Meta', { code: 'MetaLeft' })
+      expect(callback).toHaveBeenCalledOnce()
+    })
+
+    it('does not fire when another key is pressed before the release', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Mod+K', callback, {
+        platform: 'mac',
+        eventType: 'keyup',
+      })
+      key('keydown', 'k', { code: 'KeyK', metaKey: true })
+      key('keydown', 'j', { code: 'KeyJ', metaKey: true })
+      key('keyup', 'Meta', { code: 'MetaLeft' })
+      expect(callback).not.toHaveBeenCalled()
+    })
+
+    it('does not fire on a later modifier tap after a lost release', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Mod+K', callback, {
+        platform: 'mac',
+        eventType: 'keyup',
+      })
+      // The window loses focus before either key is released.
+      key('keydown', 'Meta', { code: 'MetaLeft', metaKey: true })
+      key('keydown', 'k', { code: 'KeyK', metaKey: true })
+      key('keydown', 'Meta', { code: 'MetaLeft', metaKey: true })
+      key('keyup', 'Meta', { code: 'MetaLeft' })
+      expect(callback).not.toHaveBeenCalled()
+    })
+
+    it('fires once when one of two held Control keys is released first', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Control+K', callback, {
+        platform: 'windows',
+        eventType: 'keyup',
+      })
+      key('keydown', 'Control', { code: 'ControlLeft', ctrlKey: true })
+      key('keydown', 'Control', { code: 'ControlRight', ctrlKey: true })
+      key('keydown', 'k', { code: 'KeyK', ctrlKey: true })
+      key('keyup', 'Control', {
+        code: 'ControlLeft',
+        ctrlKey: true,
+        modifierControl: true,
+      } as KeyboardEventInit)
+      key('keyup', 'k', { code: 'KeyK', ctrlKey: true })
+      key('keyup', 'Control', { code: 'ControlRight' })
+      expect(callback).toHaveBeenCalledOnce()
+    })
+
+    it('does not fire on the key release after another key is pressed', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Control+K', callback, {
+        platform: 'windows',
+        eventType: 'keyup',
+      })
+      key('keydown', 'k', { code: 'KeyK', ctrlKey: true })
+      key('keydown', 'j', { code: 'KeyJ', ctrlKey: true })
+      key('keyup', 'k', { code: 'KeyK', ctrlKey: true })
+      key('keyup', 'Control', { code: 'ControlLeft' })
+      expect(callback).not.toHaveBeenCalled()
+    })
+
+    it('stays cancelled through more key presses before the release', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Control+K', callback, {
+        platform: 'windows',
+        eventType: 'keyup',
+      })
+      key('keydown', 'k', { code: 'KeyK', ctrlKey: true })
+      key('keydown', 'j', { code: 'KeyJ', ctrlKey: true })
+      key('keydown', 'l', { code: 'KeyL', ctrlKey: true })
+      key('keyup', 'k', { code: 'KeyK', ctrlKey: true })
+      key('keyup', 'Control', { code: 'ControlLeft' })
+      expect(callback).not.toHaveBeenCalled()
+      key('keydown', 'k', { code: 'KeyK', ctrlKey: true })
+      key('keyup', 'k', { code: 'KeyK', ctrlKey: true })
+      expect(callback).toHaveBeenCalledOnce()
+    })
+
+    it('does not fire after a key that continues a sequence', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+      const sequence = vi.fn()
+      manager.register('Control+K', callback, {
+        platform: 'windows',
+        eventType: 'keyup',
+      })
+      manager.register(['Control+K', 'Control+J'], sequence, {
+        platform: 'windows',
+      })
+      key('keydown', 'k', { code: 'KeyK', ctrlKey: true })
+      key('keydown', 'j', { code: 'KeyJ', ctrlKey: true })
+      key('keyup', 'k', { code: 'KeyK', ctrlKey: true })
+      key('keyup', 'Control', { code: 'ControlLeft' })
+      expect(sequence).toHaveBeenCalledOnce()
+      expect(callback).not.toHaveBeenCalled()
+    })
+
+    it('fires when enabled by its own keydown, to end a mode', () => {
+      const manager = HotkeyManager.getInstance()
+      const end = vi.fn()
+      const release = manager.register('Space', end, {
+        eventType: 'keyup',
+        enabled: false,
+      })
+      manager.register('Space', () => release.setOptions({ enabled: true }))
+      key('keydown', ' ', { code: 'Space' })
+      key('keyup', ' ', { code: 'Space' })
+      expect(end).toHaveBeenCalledOnce()
+    })
+
+    it('does not fire on the release of a press another key cancelled', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Escape', callback, {
+        eventType: 'keyup',
+      })
+      key('keydown', 'Escape', { code: 'Escape' })
+      key('keydown', 'j', { code: 'KeyJ' })
+      key('keyup', 'Escape', { code: 'Escape' })
+      expect(callback).not.toHaveBeenCalled()
+    })
+
+    it('does not fire when a modifier outside the chord is released', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Mod+K', callback, {
+        platform: 'mac',
+        eventType: 'keyup',
+      })
+      key('keydown', 'k', { code: 'KeyK', metaKey: true })
+      key('keyup', 'Shift', { code: 'ShiftLeft', metaKey: true })
+      expect(callback).not.toHaveBeenCalled()
+    })
+  })
+
   describe('a target that is not an EventTarget', () => {
     it('throws without leaving a registration behind', () => {
       const manager = HotkeyManager.getInstance()

@@ -86,16 +86,16 @@
       "evidence": ["packages/hotkeys/skills/app-hotkeys/SKILL.md"]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "40a136c964fba7bec831e33a97f8bb47fcad1eb8e2af74b203f03ab48810d803",
+      "fingerprint": "bc2592c1bf99858c14af745b818e03e6cfa6e376386ae858ca6c376c47913775",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
-        "docs/framework/react/guides/hotkeys.md": "86d90e75bd74762ab0eaee5a1c41d919338dcfa6238ff7186567d0d6dad0b0e5",
-        "docs/framework/react/guides/sequences.md": "b02147fb593f5190b1b219739afa6609067407f6566ded142cccc76ac02d25c8",
-        "docs/guides/sensible-defaults.md": "4c25cc81f5339e0b7168c01aa6f9aebd82f470697ec7c1ffb71adb9ef9a3517a",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6e1100b775f2dacd74f5b69fd310dd235e76830d877f28ad783d68a1a226f3b2",
+        "docs/framework/react/guides/hotkeys.md": "03b024ba6a23d6b87a7b99be8a30b54fd5d82ba27e075ba0c00f648c82759e5f",
+        "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
+        "docs/guides/sensible-defaults.md": "dcb2ebf73a5c0ea5b61f9081ca6672021d81508e0a0c319e064f3aaaebb6ba9c",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6c6a979ac38e4808b7714ba2f7614eee9e447c76cb37a23eb21ad2693acb69e8",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
-        "packages/hotkeys/src/hotkey-manager.ts": "cb50eb9bce4ed4e61a7d4ec13e54fe81137a261ef98d72ae5a06e1ee7b6bfa4a",
+        "packages/hotkeys/src/hotkey-manager.ts": "99fc7a3c5d943c93f4bdf7e8475941200dad6719b78a0fad6d6a54a79f080b20",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "d7747b87eae074ab3620484f64cf13ea9c27d24d059d56d9a9a07ccf0c2d3e06",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -107,10 +107,13 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
-      "outcome": "no-change",
-      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "head": "030372422c638df511179a26750b62893a9178ce",
+      "outcome": "updated",
+      "reason": "Escape pitfall now excludes popover=\"manual\" from the native popovers that get Escape.",
+      "evidence": [
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
+        "docs/guides/sensible-defaults.md"
+      ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
       "fingerprint": "561e508e2d86e97ed7b3ecaf8eec61151511ed248918819623d92c59fb71f23d",
@@ -255,7 +258,7 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "241e80825d2c2386a958d8339951eb7bf90c1d99789e6c1b9c7148ace265b274",
+      "fingerprint": "cb08931d15607d26dafb30a0e3586857e0893f2151ca0d7ec4e0dfca3e0c4dd1",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -276,8 +279,8 @@
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
         "docs/framework/react/guides/custom-hotkey-recording.md": "3ecbdb39093471c9c3f112a3c60e21fb0eb511ae1eaa7c66644c88bf92021a17",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
-        "docs/framework/react/guides/hotkeys.md": "86d90e75bd74762ab0eaee5a1c41d919338dcfa6238ff7186567d0d6dad0b0e5",
-        "docs/framework/react/guides/sequences.md": "b02147fb593f5190b1b219739afa6609067407f6566ded142cccc76ac02d25c8",
+        "docs/framework/react/guides/hotkeys.md": "03b024ba6a23d6b87a7b99be8a30b54fd5d82ba27e075ba0c00f648c82759e5f",
+        "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
         "docs/framework/react/quick-start.md": "23a6c1a998120d968a87b37c4f340b71052fc94e97eb52decd16b91bd655a638",
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
         "docs/framework/solid/quick-start.md": "74e8d20b975f1bab90f99e00226670a1fec555459650e498264415c03f79f0ef",
@@ -285,7 +288,7 @@
         "docs/framework/svelte/quick-start.md": "6fdf6ea3a44b3cd7fbf115b6d464460302af1b58112ca0b5b00723b4f5faab45",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "00dfe1e45bcd475457bbf078aacb98f1cc78f0666a4ddedad38a285415e03875",
-        "docs/guides/sensible-defaults.md": "4c25cc81f5339e0b7168c01aa6f9aebd82f470697ec7c1ffb71adb9ef9a3517a",
+        "docs/guides/sensible-defaults.md": "dcb2ebf73a5c0ea5b61f9081ca6672021d81508e0a0c319e064f3aaaebb6ba9c",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "0b86889ea9327f24e0f66ab9ba5eb783aaffb492c028e1b6cac257690ca5d462",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "d182e659acc9f0a28e9198f590163db1541b30eec6d347fb378022f775cf316d",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "f712ddb3354230197eb54d6f270d00a41c2b889e60690e70853569fe1a5207ea",
@@ -313,12 +316,12 @@
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "7c431ae3bee4ffcd22676ac533adfcd29cfb22ed68cb7dc47d1470a8744d7276",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6e1100b775f2dacd74f5b69fd310dd235e76830d877f28ad783d68a1a226f3b2",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6c6a979ac38e4808b7714ba2f7614eee9e447c76cb37a23eb21ad2693acb69e8",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/app-hotkeys.ts": "a6176a749dd7439146c335e769dfae1a2cd72ace029f9cbc64b52ff5fe2d9d03",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
-        "packages/hotkeys/src/hotkey-manager.ts": "cb50eb9bce4ed4e61a7d4ec13e54fe81137a261ef98d72ae5a06e1ee7b6bfa4a",
+        "packages/hotkeys/src/hotkey-manager.ts": "99fc7a3c5d943c93f4bdf7e8475941200dad6719b78a0fad6d6a54a79f080b20",
         "packages/hotkeys/src/hotkey-recorder.ts": "7d479391753ffa97e69a7d7cb994cb7053a7ffb3e0aed6dfbfb2dbbdf51a3d24",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "4e5593e8d4373475d4e6006e30ec663d7f0f3fcf0aa881fc403efe58b9cf7606",
@@ -387,10 +390,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
+      "head": "030372422c638df511179a26750b62893a9178ce",
       "outcome": "no-change",
-      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
-      "evidence": ["_artifacts"]
+      "reason": "No new skill, domain or task.",
+      "evidence": ["_artifacts/skill_spec.md"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -620,24 +623,24 @@
       "evidence": ["docs/framework/vue/reference/functions/useHotkeyHint.md"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "53389f62a065545751cae856416b89b0f5aa7ef67da88b36c85ce28e86e00534",
+      "fingerprint": "8e9b36aef60105666b96194e9d7fb655cf1a7877b2d56bd746807ac9125a632c",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "eb459a6e53661bb1418aa94e95f347ce8f374fd3f5b9a457f1a314878bcf0a6e"
+        "docs/reference/classes/HotkeyManager.md": "6a0044b56ec0d1e9062ed01e973f1d6cb1f9b6e9e96e8cf3b1af61c07b8fc171"
       },
-      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
+      "head": "030372422c638df511179a26750b62893a9178ce",
       "outcome": "no-change",
-      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/classes/HotkeyManager.md"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "17431d911c32919c114874fef94622b3816778f3b3badd7db67e89369db786a3",
+      "fingerprint": "45003bb1fa938820523cb5e7eb9c75601f7f34c4757db5b85109475577e29a84",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "54d4441fbc7ea2b978d74fa52b33c86f3c119ae0e011579e9d571df1a14ed830"
+        "docs/reference/functions/getHotkeyManager.md": "f2aa1c00ea4dc86bac826297aaa2ea8c14904a442cd1ec49317fdfd91e8d4caf"
       },
-      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
+      "head": "030372422c638df511179a26750b62893a9178ce",
       "outcome": "no-change",
-      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/functions/getHotkeyManager.md"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
       "fingerprint": "cafd21ca3305c89ad47e5c4eee4ce63feed831a2b3524c5b3cd756fee53a2592",
@@ -850,13 +853,13 @@
       "evidence": ["packages/ember-hotkeys/tests/integration/hotkeys.test.gts"]
     },
     "source:packages/hotkeys/tests/scopes.test.ts": {
-      "fingerprint": "37c6be71916d0093c9666428f01b7e6cfaaeb95482625d71d1ba51cf3d637848",
+      "fingerprint": "6f70999143f0d2298617fb98221633de67554123baf4a9076d39a7ea802c2f0b",
       "snapshot": {
-        "packages/hotkeys/tests/scopes.test.ts": "39cf279234aa81927cf82b54aa5e9f428e07cd6a0c9ae88303ad97f2b76d14f6"
+        "packages/hotkeys/tests/scopes.test.ts": "c6c480ad6a2c9510ce3c538c8686ba1b938b70f9f41f163936bd951232574b6f"
       },
-      "head": "913a63d40d46cd3bd189a485da167ce064edcba0",
-      "outcome": "out-of-scope",
-      "reason": "Tests or regenerated reference docs.",
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "no-change",
+      "reason": "Tests only; no guidance change.",
       "evidence": ["packages/hotkeys/tests/scopes.test.ts"]
     },
     "source:packages/lit-hotkeys/src/controllers/hotkey-hint.ts": {
@@ -1020,234 +1023,263 @@
       "evidence": ["packages/vue-hotkeys/tests/hints.test.ts"]
     },
     "source:docs/framework/alpine/guides/hotkeys.md": {
-      "fingerprint": "147afebc83a07845e7ea9b38b8c3696c6cf649b31b0712528fbab7ddbede28e7",
+      "fingerprint": "f43c3935011d185920b6935e3e613d23c6ce8b5f5bfb070985b86aea05e78dac",
       "snapshot": {
-        "docs/framework/alpine/guides/hotkeys.md": "f9aae7d90ded83da0aed84bce26f6fbabdb0c39f8d8a0e792fb4e6dd5fe280f8"
+        "docs/framework/alpine/guides/hotkeys.md": "5d93592c764b83378e1a55e899f768b59995ff46f038495f28aabf4812466c6a"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Guide wording fix (duplicate check includes event type, or an Alpine sentence); no skill makes the corrected claim.",
-      "evidence": ["docs/framework/alpine/guides/hotkeys.md"]
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "evidence": [
+        "docs/framework/alpine/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/framework/angular/guides/hotkeys.md": {
-      "fingerprint": "b4ca47b7c1f2843a43275cb6ed753b3a2e76a0d9712476a2016d7ca1ad019098",
+      "fingerprint": "0a53716c413a5fe32010b08b69c03196b466a65271f6b1e1e2ecb767e4faeab0",
       "snapshot": {
-        "docs/framework/angular/guides/hotkeys.md": "2c414b7e4be6f16cf4adfd064429fad202fec1a8b331d69252e58ea38a0b88d9"
+        "docs/framework/angular/guides/hotkeys.md": "b566f27a11c568bbafd8832c3598f93f8e062a95d08d9370af326d015f0117f4"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
-      "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "evidence": [
+        "docs/framework/angular/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/framework/ember/guides/hotkeys.md": {
-      "fingerprint": "46978502d50ad4b27b32a631c4c13f76212a76a3832c142c9f0ca6e1a2e276c4",
+      "fingerprint": "c65857fc901c2d2bcfe781dcb2ab39e683f28abce8da314648ea4bb75d42c8af",
       "snapshot": {
-        "docs/framework/ember/guides/hotkeys.md": "1de9d9e50cef8cb0119fa944cb1acce8761f2d990bc53365ec43b71a651dd0a9"
+        "docs/framework/ember/guides/hotkeys.md": "8270526554653a2e084b9f9c948e656963f64dbc194662b531f0f58f94e8f8d4"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Guide wording fix (duplicate check includes event type, or an Alpine sentence); no skill makes the corrected claim.",
-      "evidence": ["docs/framework/ember/guides/hotkeys.md"]
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "evidence": [
+        "docs/framework/ember/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/framework/lit/guides/hotkeys.md": {
-      "fingerprint": "93ae38138e3bdeceb27779e93c6388d9241b7cc76fd18d31beee16e6dcc1d39c",
+      "fingerprint": "bc007e4ad2712c54864f90568d3b9b2c242649274d987a3eaaf45025b51867f9",
       "snapshot": {
-        "docs/framework/lit/guides/hotkeys.md": "2718d1588b129bc4748d1387d4f69c74257570f797d4bacf503794bbf2760abe"
+        "docs/framework/lit/guides/hotkeys.md": "ad1b6193ee96953f35cd093199ae990b8d9df53ee64321185cead6e2dae0daa4"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
-      "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "evidence": [
+        "docs/framework/lit/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/framework/octane/guides/hotkeys.md": {
-      "fingerprint": "43cdf55ed2065326efa2020cf099688b6ca3645954811de8151c241e69b941b3",
+      "fingerprint": "51f317b559534986998090727ab8f9560b0fd28d0616ce97de9af3e0e47b0af7",
       "snapshot": {
-        "docs/framework/octane/guides/hotkeys.md": "57374c5b13508d3bd7e0afcecd8570f70d95a6bf08e3b6ac051e6ed5dde742e4"
+        "docs/framework/octane/guides/hotkeys.md": "3336c2ccaa09b3b34ab170c5ba699f31f8fea34934d5859a6f14768810ed5011"
       },
-      "head": "6b4f6c487211c51b9a58d757c4bddb0459747542",
-      "outcome": "no-change",
-      "reason": "Implementation, test, or doc-wording change already reflected in the mapped skills.",
-      "evidence": ["docs/framework/octane/guides/hotkeys.md"]
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "evidence": [
+        "docs/framework/octane/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/framework/preact/guides/hotkeys.md": {
-      "fingerprint": "886f82c50057b524c7924de5c917e65e2cdd98472027dee931150b6a7fde37b5",
+      "fingerprint": "57455f09eeacea0be46dd5e67b49429f660622e4aef98bd40adaa2b9db089a6b",
       "snapshot": {
-        "docs/framework/preact/guides/hotkeys.md": "453c330a8209afabcbcbf8fa83c569fee8083d104d6f9376dae48be143175df9"
+        "docs/framework/preact/guides/hotkeys.md": "58f57c9c8b363ea50c7a1ee995a34739260d89d445f30291b092f98774f4caa7"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
-      "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "evidence": [
+        "docs/framework/preact/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/framework/solid/guides/hotkeys.md": {
-      "fingerprint": "8c780656bb3abbae3a848d0121c18a7a5ef213eaba9fe2ec093098dc411d1189",
+      "fingerprint": "6c25b1324d2e7640afe7f73c96cbc3abc1578e444b28dc4ec0bf7fc2712b9686",
       "snapshot": {
-        "docs/framework/solid/guides/hotkeys.md": "f001ca51161c905e72234093870e7571438bd37b2a9f456338aa0de53a687cfd"
+        "docs/framework/solid/guides/hotkeys.md": "1567cb148cde0095a59cf329c8182f0bd00f585e221af0b9f1419676cabe197e"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
-      "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "evidence": [
+        "docs/framework/solid/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/framework/svelte/guides/hotkeys.md": {
-      "fingerprint": "5a16df7c9bca33d99d404696d2b60f5bed0c05aa82c1aec51e66fe782a602bd2",
+      "fingerprint": "5ed5311cc614e9154b016bbe807dbf19447fe4df5ed347d4b37b93541512ac50",
       "snapshot": {
-        "docs/framework/svelte/guides/hotkeys.md": "530323a8b9a62a3377e3a3312b2f0fbb1eb941f04ba800e54caa571bd5575094"
+        "docs/framework/svelte/guides/hotkeys.md": "ab06376b1bf6c6e11790c1bf36d0b051633791eb8333cde619b1e481b11538f9"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Guide wording fix (duplicate check includes event type, or an Alpine sentence); no skill makes the corrected claim.",
-      "evidence": ["docs/framework/svelte/guides/hotkeys.md"]
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "evidence": [
+        "docs/framework/svelte/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/framework/vue/guides/hotkeys.md": {
-      "fingerprint": "6301b076c751689bebbe8271406efa8fc8b72f076bf808269e94ee31852f0f93",
+      "fingerprint": "41b1eb7c12d139be2641cc78beedae9738ca4f86a5694b7aedf4c297aedb0814",
       "snapshot": {
-        "docs/framework/vue/guides/hotkeys.md": "abbee061b12ef00b300b0d783c9e4310811dfb10eafb619d6a7874d38b962128"
+        "docs/framework/vue/guides/hotkeys.md": "388394b68d4460045e9d6dc0c184e7120662511f8f403597d9c4652e00edebcc"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Guide wording fix (duplicate check includes event type, or an Alpine sentence); no skill makes the corrected claim.",
-      "evidence": ["docs/framework/vue/guides/hotkeys.md"]
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "evidence": [
+        "docs/framework/vue/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
-      "fingerprint": "f23dfc3fa895e564366e622d17b74723be5fc8c5db369a581955340c4ebf5bdb",
+      "fingerprint": "91d0a9876751883b55b36731877000f09d4757151f75e9387d47290dd3ea6b19",
       "snapshot": {
-        "docs/reference/functions/toHotkeyRegistrationView.md": "7e749967771199567f077085fea5001f5c1560eaa1ccd73fd00541b4b44fdd0a"
+        "docs/reference/functions/toHotkeyRegistrationView.md": "bc66115ed8d09589055e2c30fc68cf763865740ff5e47e7a904f074c84ef8019"
       },
-      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/functions/toHotkeyRegistrationView.md"]
     },
     "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
-      "fingerprint": "4b6105e0279768375e8d12cded479eca62e3601fe9e00314738de09fa1fe327d",
+      "fingerprint": "0effafabcac80a6c80753a3ae80724778646cd8a6495309fc3b4711b11378c81",
       "snapshot": {
-        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "9faf8776734b425d06cc19fc02ddd20077319806e6eff4df0cde86138bb57edb"
+        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "54e16ac4e2c81221d6218bf871ff059af2b1ccb99f31b3dbb4b491796e6c12be"
       },
-      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/interfaces/ActivateHotkeyScopeOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordOptions.md": {
-      "fingerprint": "ff52e6a133a92e8287694a10d843f93f3e6de784b662d97b4d7d87666d4bf684",
+      "fingerprint": "e6e46792929a0d295b39c8f321fa87a65ee5c4705e41e36e030390fcb52adab6",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordOptions.md": "f02c798e04851795535779b52b22560977da906059586d778fbf39910a932786"
+        "docs/reference/interfaces/HotkeyChordOptions.md": "d636c790a018d357f136a8be4af99c7d6cdfeaa34db113e45e3685504c46d3c5"
       },
-      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/interfaces/HotkeyChordOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistration.md": {
-      "fingerprint": "8ff8e82b26a5f185fd28ce6502b48bf163408ab5d919ea1a9ed23062e147880b",
+      "fingerprint": "82d4d2ff88ec0f32ebd40469c5c1a6c473ca583be8b7c3125849bc8bd8e0a3fe",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistration.md": "97b1bde7804864d72fa80cc8986a4e4b9db7d55f27b8e5dbb3dfc4f6ece1be5a"
+        "docs/reference/interfaces/HotkeyChordRegistration.md": "25dda4fa6f816e77c4ac52034909fef2c905ded56c72e18c2b015f5963570f24"
       },
-      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/interfaces/HotkeyChordRegistration.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistrationView.md": {
-      "fingerprint": "1784be5d9c069db020391d948595c0fe7372a71707f72f231e734912f6a6291d",
+      "fingerprint": "f3990e1a306dea8adefbbd12a45df6c5e95796944091a44d17659fdcb8c2899c",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "aeffa6e9e899ca2bac7b353a4e52d062611c579452ceb561fd625cb808f07a35"
+        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "96b9d4e6f70848be3a13b770e6c88281f711b4550a55c8c6fe8cca6e1db42541"
       },
-      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/interfaces/HotkeyChordRegistrationView.md"]
     },
     "source:docs/reference/interfaces/HotkeyOptions.md": {
-      "fingerprint": "9dcb9e5747b0276b1b75f109f7427711fcbb8a86f3282d64d1cba2eff91917a5",
+      "fingerprint": "87791e3d925d9f55e6445088e08e788858695cc7d9f0cd76b0f57b1b46dd9c2e",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyOptions.md": "57ebacec59a28f4e2cb467fe9d9c8341c7e8f40cb266e906c0af9e9c47c8cfad"
+        "docs/reference/interfaces/HotkeyOptions.md": "51e96a12ba67508949518125870d01e68b2497c7a86f398e5c8e13c39914d250"
       },
-      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/interfaces/HotkeyOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationHandle.md": {
-      "fingerprint": "ade221649662786a9789012beae47108a40d43a6af310a30a62c0454d1574419",
+      "fingerprint": "998137171689b828795ebc541fa42ca4568b717777c9aa190938a43beb66bba4",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "d49f7cbaaa9ea4730d649b87a65bd09ae376c9693179fb19f8cd41571e8396c5"
+        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "0060050301acbc6139bf36be9e804dacb4b10066b749b8211d3316a01c1e697a"
       },
-      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/interfaces/HotkeyRegistrationHandle.md"]
     },
     "source:docs/reference/interfaces/HotkeyScopesState.md": {
-      "fingerprint": "ce51cacc7eebdbce653422fa52c6066a001726f5c72d42047b3dfc3661a6ab0c",
+      "fingerprint": "22a91e7eef36aca81f28840f33a7dc08f78414b2ff2786ffee1af3086aa8de91",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyScopesState.md": "57c1472cf5d5da48d618b480345b3c7d5bf833da4b7d133ca7fe421a7fa9a9fe"
+        "docs/reference/interfaces/HotkeyScopesState.md": "21b547a1617f1bf557de323cf5e7fa948cb1cf1d0c266d9cf2b4b3c06337eb3d"
       },
-      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/interfaces/HotkeyScopesState.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
-      "fingerprint": "6f857734559a8e2cafb3399dfa62d8a1cfeab33823b828f76550ff9400a1c740",
+      "fingerprint": "38057c7ca5a50056e335e37a6a521cda824b83d90eac53d3392811214ee8fa5f",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceOptions.md": "8ae657594f7e1dadc2ec798a9484176c382760f7b991c7dfb5d9acdb23189bce"
+        "docs/reference/interfaces/HotkeySequenceOptions.md": "ebaed39cdf6ec78c2610aad2ca9bc3d44cf75ef9b914b1313913efcb9e73d294"
       },
-      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/interfaces/HotkeySequenceOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistration.md": {
-      "fingerprint": "1f8e6ccb608e308b752ad22223e421dc3897895876f89267638f5a41b0e87fa9",
+      "fingerprint": "8e4c24eb0a9810875dbe0a422eecd33fcc7e029897585576b165f07114582ee4",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistration.md": "9684fec0ceff57f92c62f729af36a9b647ae01e1d78f4c8b0ed41a7406410d6d"
+        "docs/reference/interfaces/HotkeySequenceRegistration.md": "02f044b329e2eed63d0e1df670db14bf7669e6b4cba42a1b961e890e2ea2cd1a"
       },
-      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/interfaces/HotkeySequenceRegistration.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistrationView.md": {
-      "fingerprint": "7cf36bee673b3d91a53c48f3846f8358d40d18bd46e2e8d9fbe996662c3cb590",
+      "fingerprint": "8f6f03a75de4bc40cbf0a801350746bc5ba1fc0e72525b8b910ed5a15773a36a",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "1ebe0f4a705261df5d3f9d73b7c5c084fec17049bc0b6a512be182676c0bdbc6"
+        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "8f0ccd2c0f0ae91709f70fe62ef8d1a68b696704e291d6963d5579bf802a2ebd"
       },
-      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": [
+        "docs/reference/interfaces/HotkeySequenceRegistrationView.md"
+      ]
     },
     "source:docs/reference/type-aliases/HotkeyOptionsFor.md": {
-      "fingerprint": "2f88ed9204fd0e4d69fa764989bb610e51a082d5760a866d61d35d44314827a1",
+      "fingerprint": "c9eda9a975e389b44a3eb55bf48e0497ed6021702f8189ff0615630f2cf6f4bc",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyOptionsFor.md": "54e2a20881edd4c8c2f5b89db82486ca61c132e09893af6a0602eca3d4d064f3"
+        "docs/reference/type-aliases/HotkeyOptionsFor.md": "1a7c775ffaf9c5c363faae9d405ac7bddd615e4e3f55bef64885201f1b97dd15"
       },
-      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/type-aliases/HotkeyOptionsFor.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistration.md": {
-      "fingerprint": "a97577220ce4fea529c2017df4309a7ea676c3a8d021eb54bf2ac16b770f1607",
+      "fingerprint": "122b1a23b01f6b66e87871b24ea1adca569454fcc2b6f66e1758af6728324a88",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistration.md": "8942d68957fa637b03f2fc1a3552aa5ba2d956595ae1c4be43273b32ed44338c"
+        "docs/reference/type-aliases/HotkeyRegistration.md": "ca709b4f2651b0fe16b53340aa8716f33a63d48c0669e86d9bf5443bfd893879"
       },
-      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/type-aliases/HotkeyRegistration.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationView.md": {
-      "fingerprint": "7ff1082ec977a0e4aa34f33786a7351fbfb02cfdb514338c412f215070f0e0bf",
+      "fingerprint": "bde6c36f3b7fb87a6392538aa6b22d4c6339db47027563b4d1edfaf2a5b2bbed",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationView.md": "d1da844a8f84b949e2cbc49b54b39717f4da49c3cdcb631ec9ae4a948f5025ae"
+        "docs/reference/type-aliases/HotkeyRegistrationView.md": "5fb3ce9576c5aabaceb390949c862b8694f6bc87cd8a85066f26e20465c5c9c8"
       },
-      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/type-aliases/HotkeyRegistrationView.md"]
     },
     "source:packages/hotkeys-devtools/src/components/DetailsPanel.tsx": {
       "fingerprint": "fb0b371c456dfbf2d58b49b9c23b0c0f74f0a02c9c719548e74b39aee6008878",
@@ -1260,13 +1292,13 @@
       "evidence": ["packages/hotkeys-devtools/src/components/DetailsPanel.tsx"]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "af7c39effa6503bd3bbc5ea1b88886c76fa25b36293d67048efb3d34e6566e50",
+      "fingerprint": "dcb94dd5f3c9898182d0ab0ff5592b79808ae25a907f83d40a61eb50aa4ac6ea",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "75ef9969a70f906bb0f5da4950fdb4c37ab98c51ccf072ad40857827174febe6"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "0944ce36c4792bed6430b526af1564f9ce9a812e943fe305b71f67c31ea8a68f"
       },
-      "head": "be1777ffc313bbb47a7feb5a5ea6c8baf13be710",
-      "outcome": "out-of-scope",
-      "reason": "Tests for the edge-case fixes; no skill guidance depends on them.",
+      "head": "ca7a72338a53e04a2b9df56eb0a95084dda57432",
+      "outcome": "no-change",
+      "reason": "Tests only; no guidance change.",
       "evidence": ["packages/hotkeys/tests/hotkey-manager.test.ts"]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
@@ -1872,14 +1904,14 @@
       "evidence": ["docs/reference/index.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationStatus.md": {
-      "fingerprint": "787256096450c4815d022519e81de03f16471e9e25f469d8483d975472bef03c",
+      "fingerprint": "bcb1fc9395d38bf01804d44b0fda9b787e1c469cf923b877d7978bb51556818d",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "25f5bd0e6b79fd5527beb5d788e5f6fead58672a8ec81e9539993eff5db99c26"
+        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "ebcad1e51a3db4fc90c52f1ce26abd07d2e46d3bbcabbbfa99da50d5240d27c9"
       },
-      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/type-aliases/HotkeyRegistrationStatus.md"]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyScopesState.ts": {
       "fingerprint": "efa0da765d7c23fe56e690ebc774b7ea456a343c908ad8239732d0741f3b64a1",
@@ -2450,20 +2482,23 @@
       "snapshot": {
         "docs/reference/type-aliases/Target.md": "84cc5c044194b249863dc4bc2b49af1bb2f0eeb453a48ed5f779c8517e87635a"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
+      "outcome": "no-change",
+      "reason": "Generated reference: shifted line numbers only.",
       "evidence": ["docs/reference/type-aliases/Target.md"]
     },
     "source:packages/hotkeys/src/_event-target.ts": {
-      "fingerprint": "7d5f65094e1a9f7ad01dfda093fefede76e97bd680952f7088b5c69cbdfee529",
+      "fingerprint": "f722b08bf415cddcd53e006652e95f738bdaca063fa46c4e8c29f6e2b4b0d92f",
       "snapshot": {
-        "packages/hotkeys/src/_event-target.ts": "bda6f90c3ed25385a8339cfe1e0de714905910ffa129a029db4fe099b60126e5"
+        "packages/hotkeys/src/_event-target.ts": "980452c30f97b0e598205066e78c47e9f8fad0618f182d90e24717617f7a129c"
       },
-      "head": "1bce8190963414ca101441f91f103ee97eccd7f0",
-      "outcome": "out-of-scope",
-      "reason": "Internal input detection; the sensible-defaults guide documents the rules, and no skill restates them.",
-      "evidence": ["packages/hotkeys/src/_event-target.ts"]
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
+      "outcome": "no-change",
+      "reason": "Tests, changesets or internal helper; covered by the updated core skill pitfall.",
+      "evidence": [
+        "packages/hotkeys/src/_event-target.ts",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/config.json": {
       "fingerprint": "16af19e58bf175bcade10250b5940fc7dfc72e689088fcbbbc8ee9fea3e4e40e",
@@ -4150,16 +4185,14 @@
       "evidence": ["packages/hotkeys/tests/match.test.ts"]
     },
     "source:packages/hotkeys/tests/sequence-regressions.test.ts": {
-      "fingerprint": "9f235b4f747d09b413f754ab5a6b1397f72accb5cb138ab7be3bd34798239073",
+      "fingerprint": "ebec84a24e1692ac1b1d7994ae399a209b7fecbc4de5c767e29d6d104af2d3aa",
       "snapshot": {
-        "packages/hotkeys/tests/sequence-regressions.test.ts": "aa7d6e70b184ebcc8c12081f7494fce31cd303c3c953ccc0c5f4cea577599929"
+        "packages/hotkeys/tests/sequence-regressions.test.ts": "e3847509a95daeb7714ce5e62d9cfae58f96910a5f8e3b7c2df861b215ac206d"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
-      "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
-      ]
+      "reason": "Tests only; no guidance change.",
+      "evidence": ["packages/hotkeys/tests/sequence-regressions.test.ts"]
     },
     "source:.gitignore": {
       "fingerprint": "a84d15c818af0081559065548b39cfc324106ad5c821ac4408caa442f419fc0d",
@@ -7164,14 +7197,17 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/alpine/guides/sequences.md": {
-      "fingerprint": "e2d6dcf06a99f53c644e83146a6a2e5d8093343012e67e999bd5aed812ce857c",
+      "fingerprint": "c94ab4f36d0be8edf5fb8774629003d1a8a89d86582e1051f72c00b3bece0dbb",
       "snapshot": {
-        "docs/framework/alpine/guides/sequences.md": "0e108c1c8cd20913999cd4968f9c57fd8e123e4af56ecf7e2946bb8f8ebb1d84"
+        "docs/framework/alpine/guides/sequences.md": "8943b74239f2dc17907c0d903932593c4b7d6152f9cf97a1763181b9a4dc5490"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
-      "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "New section on a sequence that starts a longer one; hotkeys-core SKILL.md has the matching pitfall.",
+      "evidence": [
+        "docs/framework/alpine/guides/sequences.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/framework/alpine/reference/functions/createHotkeyRecorder.md": {
       "fingerprint": "72b4216e8d8f7a1b9a6119eed76cdbf9ac6f5659573026cbbc0c4b3080184b2d",
@@ -11078,6 +11114,146 @@
       "outcome": "no-change",
       "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:docs/framework/angular/guides/sequences.md": {
+      "fingerprint": "1dd54844b314a34fa71e3329c0ee89f69cb61c140d0dc11899dcad0fd93229ae",
+      "snapshot": {
+        "docs/framework/angular/guides/sequences.md": "5be3182ea9327c05edd273a8af28da107cf5e51d80984afadf69760180f7491c"
+      },
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "New section on a sequence that starts a longer one; hotkeys-core SKILL.md has the matching pitfall.",
+      "evidence": [
+        "docs/framework/angular/guides/sequences.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/framework/ember/guides/sequences.md": {
+      "fingerprint": "16105d4e67e1ffb3b61018fe9d98176342723936f4a517c9b3d3aa6b9f022815",
+      "snapshot": {
+        "docs/framework/ember/guides/sequences.md": "95b4631d90f463a3293bcb091534e52238d264db48226ec895dfc82dea580b41"
+      },
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "New section on a sequence that starts a longer one; hotkeys-core SKILL.md has the matching pitfall.",
+      "evidence": [
+        "docs/framework/ember/guides/sequences.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/framework/lit/guides/sequences.md": {
+      "fingerprint": "112e6dc07e15aa0aff09ec9d8a07f3f16f3a0dea2b9ae3e7024a56c8311a7a15",
+      "snapshot": {
+        "docs/framework/lit/guides/sequences.md": "df1a6034c73d5c7f4d174e54ed047b728470a358633b688880c5f4aa87a738d5"
+      },
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "New section on a sequence that starts a longer one; hotkeys-core SKILL.md has the matching pitfall.",
+      "evidence": [
+        "docs/framework/lit/guides/sequences.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/framework/octane/guides/sequences.md": {
+      "fingerprint": "f5bfac3942a84773df2b361b9c5846b3697a0adfbba5d433376564e8e95a0d14",
+      "snapshot": {
+        "docs/framework/octane/guides/sequences.md": "277f2b59ad0f80c694f6850b3a5a56114a8ff847dae4f753da8a25d8ea740a14"
+      },
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "New section on a sequence that starts a longer one; hotkeys-core SKILL.md has the matching pitfall.",
+      "evidence": [
+        "docs/framework/octane/guides/sequences.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/framework/preact/guides/sequences.md": {
+      "fingerprint": "6566b4877d94623cb94ab63f21771e0960b891e392137f6183fd1e0026d4bc1e",
+      "snapshot": {
+        "docs/framework/preact/guides/sequences.md": "c1e665468c5ea6d5ad566962d490f41970ed7c8cf7f6a6548004f1c4cbf559b6"
+      },
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "New section on a sequence that starts a longer one; hotkeys-core SKILL.md has the matching pitfall.",
+      "evidence": [
+        "docs/framework/preact/guides/sequences.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/framework/solid/guides/sequences.md": {
+      "fingerprint": "4b8040bfbdccd387e162c0ecade81bf0249f40775c371f4d50df4de0b9af6734",
+      "snapshot": {
+        "docs/framework/solid/guides/sequences.md": "da90a03306304ebaa523a392850d4c22a10c1d639f3c8baa9e25b62d1b4ba61f"
+      },
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "New section on a sequence that starts a longer one; hotkeys-core SKILL.md has the matching pitfall.",
+      "evidence": [
+        "docs/framework/solid/guides/sequences.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/framework/svelte/guides/sequences.md": {
+      "fingerprint": "1709488a1b34b598db8c1c5fa367e521bfa9a5d3951d64592136b24489ca4e1b",
+      "snapshot": {
+        "docs/framework/svelte/guides/sequences.md": "0a40a6e898c514ae0b153b27e8a216cd54e4031182db23addd6e2ce261944b56"
+      },
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "New section on a sequence that starts a longer one; hotkeys-core SKILL.md has the matching pitfall.",
+      "evidence": [
+        "docs/framework/svelte/guides/sequences.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/framework/vue/guides/sequences.md": {
+      "fingerprint": "ea30275f2d2f3f3ed8b6a39927f0d8e3c34aa4c64d229c3613c198584f024050",
+      "snapshot": {
+        "docs/framework/vue/guides/sequences.md": "50f9c4ef0714cfe0b491b3d29f94d04cc1bc99143c97b07a8461a0bdf95bcad6"
+      },
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "New section on a sequence that starts a longer one; hotkeys-core SKILL.md has the matching pitfall.",
+      "evidence": [
+        "docs/framework/vue/guides/sequences.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:e2e/browser/chords.spec.ts": {
+      "fingerprint": "25a360cba4f4e103472f70bed3e4471fbc026f87b5f868c91ab34c7366aea757",
+      "snapshot": {
+        "e2e/browser/chords.spec.ts": "5f741d057ae88ffa0caccff95500ca4e4395f7e4fd09470c069546ba1e92a476"
+      },
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "no-change",
+      "reason": "Tests or changesets only; no guidance change.",
+      "evidence": ["e2e/browser/chords.spec.ts"]
+    },
+    "source:packages/hotkeys/tests/default-prevented.test.ts": {
+      "fingerprint": "fa5662f93d36c52bd35fd0e0a04393ae67b8f3e578e1ff6ffe53627a2cabb229",
+      "snapshot": {
+        "packages/hotkeys/tests/default-prevented.test.ts": "955f67066df9907fd29f89020a798d109ad4e0bf57f42ae429ef5ccf17c8a260"
+      },
+      "head": "030372422c638df511179a26750b62893a9178ce",
+      "outcome": "no-change",
+      "reason": "Tests, changesets or internal keyup cancellation fix; covered by the core skill.",
+      "evidence": [
+        "packages/hotkeys/tests/default-prevented.test.ts",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:e2e/browser/native-overlays.spec.ts": {
+      "fingerprint": "2898d63d3de5826629953df5c3a64951f08e6ffa11d4c5ba7b3ca6d019f7ca3f",
+      "snapshot": {
+        "e2e/browser/native-overlays.spec.ts": "c32f271e851fb91d9ddb7e8dc9230516385165e842e4d79ad90e7f2a2ad06d17"
+      },
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
+      "outcome": "no-change",
+      "reason": "Tests, changesets or internal helper; covered by the updated core skill pitfall.",
+      "evidence": [
+        "e2e/browser/native-overlays.spec.ts",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     }
   }
 }

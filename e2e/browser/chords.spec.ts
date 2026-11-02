@@ -112,6 +112,53 @@ test.describe('chords', () => {
     ])
   })
 
+  test('keyup chords prevent the keydown and fire when the modifier is released first', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness()
+    await hk.register('up', 'Mod+K', { eventType: 'keyup' })
+    // Bubbling on window runs after the manager's document listener.
+    await page.evaluate(() => {
+      window.addEventListener('keydown', (event) => {
+        if (event.key === 'k')
+          document.body.dataset.prevented = String(event.defaultPrevented)
+      })
+    })
+    await page.keyboard.down(hk.mod)
+    await page.keyboard.down('k')
+    expect(await hk.fired()).toEqual([])
+    await page.keyboard.up(hk.mod)
+    await page.keyboard.up('k')
+    expect(await hk.fired()).toMatchObject([
+      { name: 'up', type: 'keyup', key: hk.mod },
+    ])
+    expect(await page.evaluate(() => document.body.dataset.prevented)).toBe(
+      'true',
+    )
+  })
+
+  test('ignoreDefaultPrevented skips a key a component already handled', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness()
+    await hk.register('skips', 'Escape', { ignoreDefaultPrevented: true })
+    await hk.register('fires', 'Escape', { stopPropagation: false })
+    // Radix UI and Zag.js close a layer on Escape from a document capture listener.
+    await page.evaluate(() => {
+      document.addEventListener(
+        'keydown',
+        (event) => {
+          if (event.key === 'Escape') event.preventDefault()
+        },
+        { capture: true },
+      )
+    })
+    await page.keyboard.press('Escape')
+    expect(await hk.firedNames()).toEqual(['fires'])
+  })
+
   test('requireReset fires once per hold, auto-repeat included', async ({
     page,
     harness,
