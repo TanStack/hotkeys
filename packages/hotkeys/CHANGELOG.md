@@ -1,5 +1,27 @@
 # @tanstack/hotkeys
 
+## 0.24.0
+
+### Minor Changes
+
+- [#225](https://github.com/TanStack/hotkeys/pull/225) [`b5e429a`](https://github.com/TanStack/hotkeys/commit/b5e429ab26366a9ed188c9e7cd774fb93dbee1f1) - Run element-target hotkeys after the framework's own key handlers in React, Svelte, Solid, and Octane. An `onKeyDown` handler inside the target, such as an autocomplete that closes on Escape, now runs first and can stop the hotkey. Before, the hotkey ran first and its default `stopPropagation` kept the key from those handlers.
+
+  These adapters set the new `afterDelegatedHandlers` option, so an element target listens on its document, or on its closed shadow root. Framework handlers outside the target also run before the hotkey now. In Solid, a stop by an `onKeyDown` handler also skips document hotkeys, even when the hotkey registered before the first component that uses `onKeyDown` loaded.
+
+- [#228](https://github.com/TanStack/hotkeys/pull/228) [`d3adb24`](https://github.com/TanStack/hotkeys/commit/d3adb24ae133507b02401404f11b931b86fb2255) - Add the `ignoreDefaultPrevented` option. A hotkey with it skips a key press that another listener already handled with `preventDefault()`, such as a Radix UI or shadcn/ui dropdown closing on Escape. A hotkey's own `preventDefault` doesn't count. Set it in a provider's default options to apply it to every hotkey.
+
+- [#228](https://github.com/TanStack/hotkeys/pull/228) [`d3adb24`](https://github.com/TanStack/hotkeys/commit/d3adb24ae133507b02401404f11b931b86fb2255) - Fire a keyup chord when the user releases its key or one of its modifiers, whichever comes first. Before, releasing the modifier first meant the chord never fired, and on macOS a keyup `Mod` chord never fired at all, because macOS sends no keyup for a key released while Command is held.
+
+  A keyup chord now also prevents its keydown's default action, so a keyup `Mod+S` stops the browser's Save dialog. Set `preventDefault: false` to let the browser act on the keydown.
+
+- [#228](https://github.com/TanStack/hotkeys/pull/228) [`d3adb24`](https://github.com/TanStack/hotkeys/commit/d3adb24ae133507b02401404f11b931b86fb2255) - Leave Escape to an open modal `<dialog>` or a popover that closes on Escape, which is any popover except `popover="manual"`. While one is open, hotkeys outside it skip Escape, so the browser closes it instead of a global `Escape` hotkey keeping it open. A hotkey targeted at the dialog or popover, or at an element inside it, still receives Escape.
+
+### Patch Changes
+
+- [#228](https://github.com/TanStack/hotkeys/pull/228) [`d3adb24`](https://github.com/TanStack/hotkeys/commit/d3adb24ae133507b02401404f11b931b86fb2255) - Fix hotkeys in a scope that stopped firing when a provider with the same scope mounted inside it. The inner provider replaced the scope's parent with the scope itself, so the scope dropped out of an exclusive ancestor such as a dialog.
+
+- [#223](https://github.com/TanStack/hotkeys/pull/223) [`04c7445`](https://github.com/TanStack/hotkeys/commit/04c7445967e059f4bffa050b49c9f9d65260a959) - Fix `formatForDisplay` throwing during server rendering on runtimes without `process`, such as Cloudflare Workers.
+
 ## 0.23.0
 
 ### Minor Changes
