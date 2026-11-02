@@ -172,7 +172,7 @@ It isn't the default because turning a hotkey off is often how an app hands a ke
 
 - **Editing and clipboard shortcuts.** A grid that enables `Mod+C`, `Mod+A`, or `Mod+Z` only while cells are selected blocks native copy, select all, and undo the rest of the time. `Mod` chords fire in text fields by default, so this includes undo while typing.
 - **Single keys behind an [off switch](#single-key-shortcuts-need-an-off-switch).** When a user turns off single-key shortcuts, `Space` and the arrow keys still don't scroll, and `/` still doesn't open Firefox's quick find.
-- **Focus and native dialogs.** A disabled `Tab` hotkey keeps focus from moving off buttons and links, and a disabled `Escape` hotkey stops a native `<dialog>` from closing.
+- **Focus.** A disabled `Tab` hotkey keeps focus from moving off buttons and links.
 
 If you set `'always'` in shared defaults, set `preventDefault: true` on hotkeys like these, so the browser takes over while they're off.
 
@@ -298,9 +298,11 @@ Turn it on if a component in your app calls `preventDefault()` on keys it handle
 
 ### Let an open overlay handle Escape
 
-When the option above can't help, a global `Escape` hotkey and an open overlay both act on one key press:
+A native modal `<dialog>` or an open popover gets Escape on its own. While one is open, hotkeys outside it skip Escape, so the browser closes it and your hotkey doesn't run. A hotkey targeted at the dialog or popover, or at an element inside it, still receives Escape. TanStack Hotkeys finds these elements in the document, not inside shadow roots.
 
-- With the default `preventDefault` and `stopPropagation`, the hotkey takes the key press. A native `<dialog>` or popover closes only when Escape's keydown isn't prevented, and a library that listens on `window` never receives a key that stopped propagating at the document. The overlay stays open and your hotkey runs.
+For other overlays, when the option above can't help, a global `Escape` hotkey and an open overlay both act on one key press:
+
+- With the default `preventDefault` and `stopPropagation`, the hotkey takes the key press. A library that listens on `window` never receives a key that stopped propagating at the document, so the overlay stays open and your hotkey runs.
 - A library that closes without calling `preventDefault()`, or after your hotkeys run, closes the overlay, and your hotkey runs too.
 
 Give the overlay its own exclusive scope while it's open, around the overlay's content. Global hotkeys are suspended while the scope is active, and a hotkey that can't fire leaves the key alone, so Escape reaches only the overlay. For a menu or popover, you can instead pass `enabled: !open` to the global hotkey.
@@ -369,7 +371,7 @@ See [scopes](../framework/svelte/guides/hotkeys-provider-and-scopes.md#group-hot
 
 These overlays stay open:
 
-- Material Web dialogs, which use a native `<dialog>`
+- Material Web dialogs, which keep their native `<dialog>` inside a shadow root
 - Shoelace dialogs, drawers, and dropdowns, in browsers with `CloseWatcher`
 - Vaadin overlays
 
@@ -396,7 +398,7 @@ See [scopes](../framework/ember/guides/hotkey-manager.md#activate-a-scope) to gi
 
 # Octane
 
-No component library for Octane is widespread yet. Native `<dialog>` and popover elements are affected, as in every framework.
+No component library for Octane is widespread yet. Native modal dialogs and popovers get Escape on their own, as in every framework.
 
 See [scopes](../framework/octane/guides/hotkeys-provider-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
 

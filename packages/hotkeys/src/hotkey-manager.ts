@@ -28,6 +28,7 @@ import {
   optionsEqual,
 } from './_registration'
 import {
+  closesNativeLayer,
   getTargetDocument,
   isDocumentLevel,
   shouldIgnoreInputEvent,
@@ -797,7 +798,7 @@ export class HotkeyManager {
       if (
         !this.#isLive(registration) ||
         registration.options.eventType !== eventType ||
-        this.#skipsPrevented(registration, event) ||
+        this.#skips(registration, event) ||
         !path.includes(registration.target) ||
         (ignoresInputs(registration) &&
           shouldIgnoreInputEvent(event, registration.target))
@@ -1253,7 +1254,7 @@ export class HotkeyManager {
       const { eventType: firesOn, preventDefault } = registration.options
       // A keyup chord also sees its keydown, to prevent it and await the release.
       const press = eventType === 'keydown' && firesOn === 'keyup'
-      const skipped = this.#skipsPrevented(registration, event)
+      const skipped = this.#skips(registration, event)
       // A release that another listener handled ends the press too.
       if (skipped && !press) this.#pendingReleases.delete(registration.id)
       if (
@@ -1405,7 +1406,7 @@ export class HotkeyManager {
         registration.currentIndex === 0 ||
         !this.#isLive(registration) ||
         registration.options.eventType !== eventType ||
-        this.#skipsPrevented(registration, event) ||
+        this.#skips(registration, event) ||
         now - registration.lastKeyTime >
           (registration.options.timeout ?? DEFAULT_SEQUENCE_TIMEOUT)
       ) {
@@ -1477,7 +1478,7 @@ export class HotkeyManager {
         (ignoresInputs(registration) &&
           shouldIgnoreInputEvent(event, target)) ||
         registration.options.eventType !== eventType ||
-        this.#skipsPrevented(registration, event)
+        this.#skips(registration, event)
       ) {
         continue
       }
@@ -1565,15 +1566,17 @@ export class HotkeyManager {
     event.preventDefault()
   }
 
-  /** Whether another listener prevented the event, and the registration skips such events. */
-  #skipsPrevented(
-    registration: HotkeyRegistration,
-    event: KeyboardEvent,
-  ): boolean {
+  /**
+   * Whether the registration skips the event: Escape belongs to an open modal
+   * dialog or popover outside its target, or another listener prevented the
+   * event and the registration skips such events.
+   */
+  #skips(registration: HotkeyRegistration, event: KeyboardEvent): boolean {
     return (
-      !!registration.options.ignoreDefaultPrevented &&
-      event.defaultPrevented &&
-      !this.#prevented.has(event)
+      closesNativeLayer(event, registration.target) ||
+      (!!registration.options.ignoreDefaultPrevented &&
+        event.defaultPrevented &&
+        !this.#prevented.has(event))
     )
   }
 

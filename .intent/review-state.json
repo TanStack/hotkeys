@@ -86,16 +86,16 @@
       "evidence": ["packages/hotkeys/skills/app-hotkeys/SKILL.md"]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "af526ea24bd3c1c9a262d9b7223562f11ed300341b1ebd333c12bc32086f0279",
+      "fingerprint": "6be4d710a7b6f31a2939e813461a6909968d57edb82526af6866669ed980b7a9",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "03b024ba6a23d6b87a7b99be8a30b54fd5d82ba27e075ba0c00f648c82759e5f",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/guides/sensible-defaults.md": "b9aae0b7a47f37691e60fea4e74cc72ce56c97296a404630eaf46fca6338509c",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "b2f1f75449b485987385929ff6bee233a8cd661c04f35a73153faac28ff6225a",
+        "docs/guides/sensible-defaults.md": "c53e14a7db9ed8a7f7b449f09267f22cafdc170d938e82b7fe141923b889e5db",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "c37072d0b01db8389dc94e63e378a3d141a18334d78ae9ea787fef48f63c26b9",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
-        "packages/hotkeys/src/hotkey-manager.ts": "d7d22855f02e8f8e0ed5f4ee40be0741d1f5d21e1cc7fc9f53a146d908f35c09",
+        "packages/hotkeys/src/hotkey-manager.ts": "c54e45b90fd3765fe04ec3320d1835dbb58bdf1337c898a2064fdc4a3ffb44db",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "d7747b87eae074ab3620484f64cf13ea9c27d24d059d56d9a9a07ccf0c2d3e06",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -107,12 +107,13 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "ca7a72338a53e04a2b9df56eb0a95084dda57432",
-      "outcome": "no-change",
-      "reason": "Internal keyup cancellation and sequence ownership fixes; the skill makes no claims about either.",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
+      "outcome": "updated",
+      "reason": "Escape pitfall now says native modal dialogs and popovers get Escape on their own; library guidance unchanged.",
       "evidence": [
         "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
+        "docs/guides/sensible-defaults.md",
+        "packages/hotkeys/src/_event-target.ts"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -258,7 +259,7 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "5d6c7dc0181f4bbd8a601ed343c58ac1effe5246177b171e29356fb51f79be37",
+      "fingerprint": "9823275f24cf8d632e60f78eccb126ddbbf8e0ba11adff02f713800d1e0b7f72",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -288,7 +289,7 @@
         "docs/framework/svelte/quick-start.md": "6fdf6ea3a44b3cd7fbf115b6d464460302af1b58112ca0b5b00723b4f5faab45",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "00dfe1e45bcd475457bbf078aacb98f1cc78f0666a4ddedad38a285415e03875",
-        "docs/guides/sensible-defaults.md": "b9aae0b7a47f37691e60fea4e74cc72ce56c97296a404630eaf46fca6338509c",
+        "docs/guides/sensible-defaults.md": "c53e14a7db9ed8a7f7b449f09267f22cafdc170d938e82b7fe141923b889e5db",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "0b86889ea9327f24e0f66ab9ba5eb783aaffb492c028e1b6cac257690ca5d462",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "d182e659acc9f0a28e9198f590163db1541b30eec6d347fb378022f775cf316d",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "f712ddb3354230197eb54d6f270d00a41c2b889e60690e70853569fe1a5207ea",
@@ -316,12 +317,12 @@
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "7c431ae3bee4ffcd22676ac533adfcd29cfb22ed68cb7dc47d1470a8744d7276",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "b2f1f75449b485987385929ff6bee233a8cd661c04f35a73153faac28ff6225a",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "c37072d0b01db8389dc94e63e378a3d141a18334d78ae9ea787fef48f63c26b9",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/app-hotkeys.ts": "a6176a749dd7439146c335e769dfae1a2cd72ace029f9cbc64b52ff5fe2d9d03",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
-        "packages/hotkeys/src/hotkey-manager.ts": "d7d22855f02e8f8e0ed5f4ee40be0741d1f5d21e1cc7fc9f53a146d908f35c09",
+        "packages/hotkeys/src/hotkey-manager.ts": "c54e45b90fd3765fe04ec3320d1835dbb58bdf1337c898a2064fdc4a3ffb44db",
         "packages/hotkeys/src/hotkey-recorder.ts": "7d479391753ffa97e69a7d7cb994cb7053a7ffb3e0aed6dfbfb2dbbdf51a3d24",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "4e5593e8d4373475d4e6006e30ec663d7f0f3fcf0aa881fc403efe58b9cf7606",
@@ -390,7 +391,7 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "ca7a72338a53e04a2b9df56eb0a95084dda57432",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
       "reason": "No new skill, domain or task.",
       "evidence": ["_artifacts/skill_spec.md"]
@@ -623,21 +624,21 @@
       "evidence": ["docs/framework/vue/reference/functions/useHotkeyHint.md"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "cd23b806d28b595b407f1f788535cbb32625f53947d4ec36b6ec3d49ab888004",
+      "fingerprint": "584c71c7b6a6996c4b497bb7bac3df1518cade4d7d0d23e2c3fbd7f01f90b9b0",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "e89bd481055ccfce64d208512fb0ac36a018b3802b2c02cc350a7ef2fbe1e597"
+        "docs/reference/classes/HotkeyManager.md": "02b83af8b60f5dbc1b2c7f606fac139e137aa1af8e48a1c460d785f36bc31dde"
       },
-      "head": "ca7a72338a53e04a2b9df56eb0a95084dda57432",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
       "reason": "Generated reference: shifted line numbers only.",
       "evidence": ["docs/reference/classes/HotkeyManager.md"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "7cdcb74c3e4c4ff225ea12b0c3fb250742a70727e155284f092f86ca0278a753",
+      "fingerprint": "63bf4c7809e5c69edf2475941d216abab9749398a086320eb685a2e26c576842",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "8f27e4729d6d4adb1e3412571a0764d313a22b30161f912155394dca3e254ca3"
+        "docs/reference/functions/getHotkeyManager.md": "34da362c3d252f6c11618b6bd82f64dfb7b651e52d0635e32d1f1695d8b5c4ec"
       },
-      "head": "ca7a72338a53e04a2b9df56eb0a95084dda57432",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
       "reason": "Generated reference: shifted line numbers only.",
       "evidence": ["docs/reference/functions/getHotkeyManager.md"]
@@ -1140,186 +1141,146 @@
       ]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
-      "fingerprint": "c4e62d9298626237c2679868ccba2cc0521855f905c3be4cef1678effd0e4a80",
+      "fingerprint": "91d0a9876751883b55b36731877000f09d4757151f75e9387d47290dd3ea6b19",
       "snapshot": {
-        "docs/reference/functions/toHotkeyRegistrationView.md": "37d9c28d9b287d346c440056359f1407971d6d98b1b7e8fd045b28503e42c5b3"
+        "docs/reference/functions/toHotkeyRegistrationView.md": "bc66115ed8d09589055e2c30fc68cf763865740ff5e47e7a904f074c84ef8019"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Generated reference: updated eventType description and shifted line numbers.",
-      "evidence": [
-        "docs/reference/functions/toHotkeyRegistrationView.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
-      ]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/functions/toHotkeyRegistrationView.md"]
     },
     "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
-      "fingerprint": "b4163a8971c00e773503a633c756d5289791646a3f60a727b40f63c665d3a95d",
+      "fingerprint": "0effafabcac80a6c80753a3ae80724778646cd8a6495309fc3b4711b11378c81",
       "snapshot": {
-        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "4b9082253f4c97e1bbc2711534fea951bb540aa997b9a8cce366782d9baeeedf"
+        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "54e16ac4e2c81221d6218bf871ff059af2b1ccb99f31b3dbb4b491796e6c12be"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Generated reference: updated eventType description and shifted line numbers.",
-      "evidence": [
-        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
-      ]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/interfaces/ActivateHotkeyScopeOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordOptions.md": {
-      "fingerprint": "b5c2eb34764ee6eb4e2b84cde59f688cd6d7f647f1b005229f21921958b3a269",
+      "fingerprint": "e6e46792929a0d295b39c8f321fa87a65ee5c4705e41e36e030390fcb52adab6",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordOptions.md": "bb929be31544e650938fe393356d29da05d5d0825862b18ac2983ffd3a60981b"
+        "docs/reference/interfaces/HotkeyChordOptions.md": "d636c790a018d357f136a8be4af99c7d6cdfeaa34db113e45e3685504c46d3c5"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Generated reference: updated eventType description and shifted line numbers.",
-      "evidence": [
-        "docs/reference/interfaces/HotkeyChordOptions.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
-      ]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/interfaces/HotkeyChordOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistration.md": {
-      "fingerprint": "cdb390b4f37dd6862203e58179c82068a95441b921bd2a938820ad480c2ebc17",
+      "fingerprint": "82d4d2ff88ec0f32ebd40469c5c1a6c473ca583be8b7c3125849bc8bd8e0a3fe",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistration.md": "cbc1f4a55ef39e6e2c39601be8d820303f57b095b43842a3d82139a5fec06641"
+        "docs/reference/interfaces/HotkeyChordRegistration.md": "25dda4fa6f816e77c4ac52034909fef2c905ded56c72e18c2b015f5963570f24"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Generated reference: updated eventType description and shifted line numbers.",
-      "evidence": [
-        "docs/reference/interfaces/HotkeyChordRegistration.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
-      ]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/interfaces/HotkeyChordRegistration.md"]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistrationView.md": {
-      "fingerprint": "84e29a75543c092bbf1a8ca6faf15be98cbb6581684af46380cd558c3591b12d",
+      "fingerprint": "f3990e1a306dea8adefbbd12a45df6c5e95796944091a44d17659fdcb8c2899c",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "48fa8754cc4edbca286da3f95dea90e5b84928adc3b3b2efa340fa4ba2e78c43"
+        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "96b9d4e6f70848be3a13b770e6c88281f711b4550a55c8c6fe8cca6e1db42541"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Generated reference: updated eventType description and shifted line numbers.",
-      "evidence": [
-        "docs/reference/interfaces/HotkeyChordRegistrationView.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
-      ]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/interfaces/HotkeyChordRegistrationView.md"]
     },
     "source:docs/reference/interfaces/HotkeyOptions.md": {
-      "fingerprint": "670d2ed4f8ebb2c98aa8819cfb722d31a89ccdf29ad09e8fcd23b712c16d339e",
+      "fingerprint": "87791e3d925d9f55e6445088e08e788858695cc7d9f0cd76b0f57b1b46dd9c2e",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyOptions.md": "952ffdacf17b28fe95e6932e616d9e6e7a66344010127afc77bef30d544e172f"
+        "docs/reference/interfaces/HotkeyOptions.md": "51e96a12ba67508949518125870d01e68b2497c7a86f398e5c8e13c39914d250"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Generated reference: updated eventType description and shifted line numbers.",
-      "evidence": [
-        "docs/reference/interfaces/HotkeyOptions.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
-      ]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/interfaces/HotkeyOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationHandle.md": {
-      "fingerprint": "44b4d36aace13d92dc10e5c01c066e54001993de0d01e12e2ecabfeb50fbfcf4",
+      "fingerprint": "998137171689b828795ebc541fa42ca4568b717777c9aa190938a43beb66bba4",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "feff34210b7314ea3c093d1b5dbf0184f26243e72bb47a5ea797a62c0d1f2721"
+        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "0060050301acbc6139bf36be9e804dacb4b10066b749b8211d3316a01c1e697a"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Generated reference: updated eventType description and shifted line numbers.",
-      "evidence": [
-        "docs/reference/interfaces/HotkeyRegistrationHandle.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
-      ]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/interfaces/HotkeyRegistrationHandle.md"]
     },
     "source:docs/reference/interfaces/HotkeyScopesState.md": {
-      "fingerprint": "9b652b025a45aad65f6d6d7e84a9f8a464f7999027e12172fe9f766f000832d5",
+      "fingerprint": "22a91e7eef36aca81f28840f33a7dc08f78414b2ff2786ffee1af3086aa8de91",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyScopesState.md": "9fff298e0cf8cfceb98782e37d764d76e00ffc2f376198a3640a5d59fef29a59"
+        "docs/reference/interfaces/HotkeyScopesState.md": "21b547a1617f1bf557de323cf5e7fa948cb1cf1d0c266d9cf2b4b3c06337eb3d"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Generated reference: updated eventType description and shifted line numbers.",
-      "evidence": [
-        "docs/reference/interfaces/HotkeyScopesState.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
-      ]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/interfaces/HotkeyScopesState.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
-      "fingerprint": "3b08e1c49a9c3777ac8b7b6af114d818ae59a1cbe06121b5c31a2b16e06bd3dd",
+      "fingerprint": "38057c7ca5a50056e335e37a6a521cda824b83d90eac53d3392811214ee8fa5f",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceOptions.md": "b09310b487cbe7c9bd34e3033a3cd8d9099dd955d9177e4009453d9480a1e290"
+        "docs/reference/interfaces/HotkeySequenceOptions.md": "ebaed39cdf6ec78c2610aad2ca9bc3d44cf75ef9b914b1313913efcb9e73d294"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Generated reference: updated eventType description and shifted line numbers.",
-      "evidence": [
-        "docs/reference/interfaces/HotkeySequenceOptions.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
-      ]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/interfaces/HotkeySequenceOptions.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistration.md": {
-      "fingerprint": "930c6ef8cf0cec0c8f0853042723231595c8232a8ef3e82d59d6e2faf09f0dad",
+      "fingerprint": "8e4c24eb0a9810875dbe0a422eecd33fcc7e029897585576b165f07114582ee4",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistration.md": "ae1154d02082be48314dff9779030489a6fd28c7c590849414383efd6a86d124"
+        "docs/reference/interfaces/HotkeySequenceRegistration.md": "02f044b329e2eed63d0e1df670db14bf7669e6b4cba42a1b961e890e2ea2cd1a"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Generated reference: updated eventType description and shifted line numbers.",
-      "evidence": [
-        "docs/reference/interfaces/HotkeySequenceRegistration.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
-      ]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/interfaces/HotkeySequenceRegistration.md"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistrationView.md": {
-      "fingerprint": "68e6c7841647f9764aed070740e69512117c77d2bef27719096cf2f951ded019",
+      "fingerprint": "8f6f03a75de4bc40cbf0a801350746bc5ba1fc0e72525b8b910ed5a15773a36a",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "ed34106817686ba103b23eaff4451e6e73b76cfc712dda9aaf83a1cb2ec0a59c"
+        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "8f0ccd2c0f0ae91709f70fe62ef8d1a68b696704e291d6963d5579bf802a2ebd"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Generated reference: updated eventType description and shifted line numbers.",
+      "reason": "Generated reference: shifted line numbers only.",
       "evidence": [
-        "docs/reference/interfaces/HotkeySequenceRegistrationView.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
+        "docs/reference/interfaces/HotkeySequenceRegistrationView.md"
       ]
     },
     "source:docs/reference/type-aliases/HotkeyOptionsFor.md": {
-      "fingerprint": "2a5e81e82946ee78e5e09a5bfa2271f81afb449e89805b26b218435435020c80",
+      "fingerprint": "c9eda9a975e389b44a3eb55bf48e0497ed6021702f8189ff0615630f2cf6f4bc",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyOptionsFor.md": "1842255c4ac6f4fefa65e50dc13d3c94ccf3fad5c0eeb6989315c650d95548f4"
+        "docs/reference/type-aliases/HotkeyOptionsFor.md": "1a7c775ffaf9c5c363faae9d405ac7bddd615e4e3f55bef64885201f1b97dd15"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Generated reference: updated eventType description and shifted line numbers.",
-      "evidence": [
-        "docs/reference/type-aliases/HotkeyOptionsFor.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
-      ]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/type-aliases/HotkeyOptionsFor.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistration.md": {
-      "fingerprint": "adf76a25f0f8a643f5a3911f8032ab030f55dd65b2dcebf91ac0e6f87857b6a9",
+      "fingerprint": "122b1a23b01f6b66e87871b24ea1adca569454fcc2b6f66e1758af6728324a88",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistration.md": "5370d03a51ad76232aad4b2aedde94fe192c9de0d437d09663e3f0aba4e363b7"
+        "docs/reference/type-aliases/HotkeyRegistration.md": "ca709b4f2651b0fe16b53340aa8716f33a63d48c0669e86d9bf5443bfd893879"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Generated reference: updated eventType description and shifted line numbers.",
-      "evidence": [
-        "docs/reference/type-aliases/HotkeyRegistration.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
-      ]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/type-aliases/HotkeyRegistration.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationView.md": {
-      "fingerprint": "de61dba0d5d52086dabac593f116d9eff364ca697a408526544e17689162900c",
+      "fingerprint": "bde6c36f3b7fb87a6392538aa6b22d4c6339db47027563b4d1edfaf2a5b2bbed",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationView.md": "34670e0a980dcac22cfe02f356987894ac75dcc6a8272e7256f6d02fb10a8fab"
+        "docs/reference/type-aliases/HotkeyRegistrationView.md": "5fb3ce9576c5aabaceb390949c862b8694f6bc87cd8a85066f26e20465c5c9c8"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Generated reference: updated eventType description and shifted line numbers.",
-      "evidence": [
-        "docs/reference/type-aliases/HotkeyRegistrationView.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
-      ]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/type-aliases/HotkeyRegistrationView.md"]
     },
     "source:packages/hotkeys-devtools/src/components/DetailsPanel.tsx": {
       "fingerprint": "fb0b371c456dfbf2d58b49b9c23b0c0f74f0a02c9c719548e74b39aee6008878",
@@ -1944,17 +1905,14 @@
       "evidence": ["docs/reference/index.md"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationStatus.md": {
-      "fingerprint": "3f35cc4b2d87620d12b60ab65af7c03dbb683f7dee0f271efc1ba31d1394b425",
+      "fingerprint": "bcb1fc9395d38bf01804d44b0fda9b787e1c469cf923b877d7978bb51556818d",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "d6cbad5ff5c552a232e786e892ad91a4724032fa5a0f7e8613ccfe90efbf1fbe"
+        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "ebcad1e51a3db4fc90c52f1ce26abd07d2e46d3bbcabbbfa99da50d5240d27c9"
       },
-      "head": "8d35782ee20588e7dcc9145ac0c48ba0f8691cc6",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Generated reference: updated eventType description and shifted line numbers.",
-      "evidence": [
-        "docs/reference/type-aliases/HotkeyRegistrationStatus.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
-      ]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/type-aliases/HotkeyRegistrationStatus.md"]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyScopesState.ts": {
       "fingerprint": "efa0da765d7c23fe56e690ebc774b7ea456a343c908ad8239732d0741f3b64a1",
@@ -2521,27 +2479,27 @@
       ]
     },
     "source:docs/reference/type-aliases/Target.md": {
-      "fingerprint": "411278eedf81cfd5fb7ea685d6b0199b75847e5d9da494df1d41f89a97280bbf",
+      "fingerprint": "befdae331e3315a34b8bb8525ea3c4149ff07787bada49f34e32b583daac031b",
       "snapshot": {
-        "docs/reference/type-aliases/Target.md": "a52b54e30586614e62606954f8ba1d64164bbbd9488c8d2053b5c18cc9b34ce4"
+        "docs/reference/type-aliases/Target.md": "84cc5c044194b249863dc4bc2b49af1bb2f0eeb453a48ed5f779c8517e87635a"
       },
-      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
       "outcome": "no-change",
-      "reason": "Generated reference and keyup docs: keyup chords now fire on the first release and prevent their keydown. No skill or reference covers keyup chord timing.",
-      "evidence": [
-        "docs/reference/type-aliases/Target.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
-      ]
+      "reason": "Generated reference: shifted line numbers only.",
+      "evidence": ["docs/reference/type-aliases/Target.md"]
     },
     "source:packages/hotkeys/src/_event-target.ts": {
-      "fingerprint": "7d5f65094e1a9f7ad01dfda093fefede76e97bd680952f7088b5c69cbdfee529",
+      "fingerprint": "f722b08bf415cddcd53e006652e95f738bdaca063fa46c4e8c29f6e2b4b0d92f",
       "snapshot": {
-        "packages/hotkeys/src/_event-target.ts": "bda6f90c3ed25385a8339cfe1e0de714905910ffa129a029db4fe099b60126e5"
+        "packages/hotkeys/src/_event-target.ts": "980452c30f97b0e598205066e78c47e9f8fad0618f182d90e24717617f7a129c"
       },
-      "head": "1bce8190963414ca101441f91f103ee97eccd7f0",
-      "outcome": "out-of-scope",
-      "reason": "Internal input detection; the sensible-defaults guide documents the rules, and no skill restates them.",
-      "evidence": ["packages/hotkeys/src/_event-target.ts"]
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
+      "outcome": "no-change",
+      "reason": "Tests, changesets or internal helper; covered by the updated core skill pitfall.",
+      "evidence": [
+        "packages/hotkeys/src/_event-target.ts",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/config.json": {
       "fingerprint": "16af19e58bf175bcade10250b5940fc7dfc72e689088fcbbbc8ee9fea3e4e40e",
@@ -11281,6 +11239,19 @@
       "outcome": "no-change",
       "reason": "Tests only; no guidance change.",
       "evidence": ["packages/hotkeys/tests/default-prevented.test.ts"]
+    },
+    "source:e2e/browser/native-overlays.spec.ts": {
+      "fingerprint": "2898d63d3de5826629953df5c3a64951f08e6ffa11d4c5ba7b3ca6d019f7ca3f",
+      "snapshot": {
+        "e2e/browser/native-overlays.spec.ts": "c32f271e851fb91d9ddb7e8dc9230516385165e842e4d79ad90e7f2a2ad06d17"
+      },
+      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
+      "outcome": "no-change",
+      "reason": "Tests, changesets or internal helper; covered by the updated core skill pitfall.",
+      "evidence": [
+        "e2e/browser/native-overlays.spec.ts",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     }
   }
 }
