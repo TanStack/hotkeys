@@ -34,6 +34,7 @@ import {
   targetHasFocus,
 } from './_event-target'
 import type { Store } from './_store'
+import type { KeyboardEventMatch } from './match'
 import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'
 import type { CanonicalModifier } from './key.types'
 import type {
@@ -76,8 +77,18 @@ export interface HotkeyOptions {
    * existing handle via `setOptions` rather than unregistering. Defaults to `true`.
    */
   enabled?: boolean
-  /** The event type to listen for. Defaults to 'keydown' */
+  /**
+   * The event type to listen for. Defaults to 'keydown'. A 'keyup' chord fires
+   * when its key or one of its modifiers is released, whichever comes first,
+   * and `preventDefault` applies to its keydown too.
+   */
   eventType?: 'keydown' | 'keyup'
+  /**
+   * Skip a key press that a listener outside TanStack Hotkeys already handled
+   * by calling `preventDefault()`, such as a component library's dialog that
+   * closes on Escape. Defaults to `false`.
+   */
+  ignoreDefaultPrevented?: boolean
   /**
    * Skip keys that a focused control inside the target uses itself: typing in
    * text inputs, textarea, select, and contenteditable; Enter/Space on buttons
@@ -577,6 +588,15 @@ export class HotkeyManager {
   #listenerTargets = new Map<string, ListenerTarget>()
   /** Events that continue a sequence in progress, decided before any listener runs. */
   #sequenceOwned = new WeakMap<KeyboardEvent, boolean>()
+  /**
+   * Keyup chords whose keydown matched. Releasing one of the chord's
+   * modifiers fires them, because the key's own keyup may come after the
+   * modifier's or, on macOS while Command is held, not at all. `null` marks a
+   * press that `ignoreDefaultPrevented` skipped, so its release is skipped too.
+   */
+  #pendingReleases = new Map<string, KeyboardEventMatch | null>()
+  /** Events this manager prevented, so its own prevention never skips a hotkey. */
+  #prevented = new WeakSet<KeyboardEvent>()
   /** Physical keys whose keydown a sequence owned, so their repeats and keyup are owned too. */
   #sequenceOwnedKeys = new Set<string>()
   /** Timers that clear a sequence's progress once its timeout passes. */
@@ -672,7 +692,10 @@ export class HotkeyManager {
     const parents = new Map<string, string>()
     const latest = new Map<string, number>()
     for (const activation of this.#scopeActivations) {
-      parents.set(activation.scope, activation.parent)
+      // A provider nested in one with the same scope keeps the outer parent.
+      if (activation.parent !== activation.scope) {
+        parents.set(activation.scope, activation.parent)
+      }
       latest.set(
         activation.scope,
         Math.max(latest.get(activation.scope) ?? 0, activation.order),
@@ -772,6 +795,7 @@ export class HotkeyManager {
       if (
         !this.#isLive(registration) ||
         registration.options.eventType !== eventType ||
+        this.#skipsPrevented(registration, event) ||
         !path.includes(registration.target) ||
         (ignoresInputs(registration) &&
           shouldIgnoreInputEvent(event, registration.target))
@@ -1025,6 +1049,7 @@ export class HotkeyManager {
       id,
     )
     this.#listenerTargets.delete(id)
+    this.#pendingReleases.delete(id)
     this.#clearSequenceReset(id)
   }
 
@@ -1212,21 +1237,54 @@ export class HotkeyManager {
     // A chord that can't fire but has `preventDefault: 'always'` matched.
     let reserved = false
 
+    const eventKey = normalizeKeyName(event.key)
     // Exact logical/explicit-code matches outrank compatibility fallbacks.
     for (const registration of registrations) {
       const live = this.#isLive(registration)
+      const { eventType: firesOn, preventDefault } = registration.options
+      // A keyup chord also sees its keydown, to prevent it and await the release.
+      const press = eventType === 'keydown' && firesOn === 'keyup'
+      // A new press ends an earlier one whose release went unseen.
+      if (press && !event.repeat) this.#pendingReleases.delete(registration.id)
+      const skipped = this.#skipsPrevented(registration, event)
       if (
-        (!live && registration.options.preventDefault !== 'always') ||
-        registration.options.eventType !== eventType ||
+        (!live && preventDefault !== 'always') ||
+        (firesOn !== eventType && !press) ||
+        (skipped && !press) ||
         (ignoresInputs(registration) && shouldIgnoreInputEvent(event, target))
       ) {
         continue
       }
-      const result = matchKeyboardEvent(
+      const { parsedChord } = registration
+      let result = matchKeyboardEvent(
         event,
-        registration.parsedChord,
+        parsedChord,
         registration.options.platform,
       )
+      if (press) {
+        if (skipped) {
+          if (result.matched) this.#pendingReleases.set(registration.id, null)
+        } else if (result.matched) {
+          if (preventDefault) this.#prevent(event)
+          if (live && parsedChord.modifiers.length > 0) {
+            this.#pendingReleases.set(registration.id, result)
+          }
+        }
+        continue
+      }
+      if (
+        eventType === 'keyup' &&
+        this.#pendingReleases.has(registration.id) &&
+        (result.matched ||
+          // The other Control or Shift key may still hold the modifier down.
+          (parsedChord.modifiers.includes(eventKey as CanonicalModifier) &&
+            !event.getModifierState(eventKey)))
+      ) {
+        const pending = this.#pendingReleases.get(registration.id)
+        this.#pendingReleases.delete(registration.id)
+        if (!pending) continue
+        if (!result.matched) result = pending
+      }
       if (!result.matched) continue
       if (!live) {
         reserved = true
@@ -1242,7 +1300,7 @@ export class HotkeyManager {
       matches.size === 0 &&
       !this.#handledByLiveHotkey(event, eventType)
     ) {
-      event.preventDefault()
+      this.#prevent(event)
     }
 
     // Among the best matches, the most recently activated scope handles the key.
@@ -1407,7 +1465,8 @@ export class HotkeyManager {
         !this.#isLive(registration) ||
         (ignoresInputs(registration) &&
           shouldIgnoreInputEvent(event, target)) ||
-        registration.options.eventType !== eventType
+        registration.options.eventType !== eventType ||
+        this.#skipsPrevented(registration, event)
       ) {
         continue
       }
@@ -1462,7 +1521,7 @@ export class HotkeyManager {
         } else if (registration.options.preventDefault) {
           // Earlier steps keep the browser's action too, such as Ctrl+K in
           // Ctrl+K then Ctrl+C. Propagation stops only on the last step.
-          event.preventDefault()
+          this.#prevent(event)
         }
       } else if (registration.currentIndex > 0) {
         // A mismatched or weaker candidate cannot carry stale progress forward.
@@ -1489,10 +1548,28 @@ export class HotkeyManager {
     }
   }
 
+  #prevent(event: KeyboardEvent): void {
+    // An event another listener prevented first stays theirs.
+    if (!event.defaultPrevented) this.#prevented.add(event)
+    event.preventDefault()
+  }
+
+  /** Whether another listener prevented the event, and the registration skips such events. */
+  #skipsPrevented(
+    registration: HotkeyRegistration,
+    event: KeyboardEvent,
+  ): boolean {
+    return (
+      !!registration.options.ignoreDefaultPrevented &&
+      event.defaultPrevented &&
+      !this.#prevented.has(event)
+    )
+  }
+
   /** Applies a matched registration's preventDefault and stopPropagation options. */
   #consume(registration: HotkeyRegistration, event: KeyboardEvent): void {
     if (registration.options.preventDefault) {
-      event.preventDefault()
+      this.#prevent(event)
     }
     if (registration.options.stopPropagation) {
       event.stopPropagation()
@@ -1512,7 +1589,10 @@ export class HotkeyManager {
     // for mutation-based fields like hasFired.
     this.#notify()
 
+    const prevented: boolean = event.defaultPrevented
     registration.callback(event, context)
+    // A callback's own preventDefault counts as the hotkey's.
+    if (!prevented && event.defaultPrevented) this.#prevented.add(event)
   }
 
   #callbackContext(registration: HotkeyRegistration): HotkeyCallbackContext {
