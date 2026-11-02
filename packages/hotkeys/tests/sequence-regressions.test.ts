@@ -371,3 +371,20 @@ describe('sequence steps before the last', () => {
     subscription.unsubscribe()
   })
 })
+
+describe('a sequence that starts a longer one', () => {
+  it('completes without waiting for the longer sequence', () => {
+    const manager = HotkeyManager.getInstance()
+    const fired: Array<string> = []
+    manager.register(['G', 'G'], () => fired.push('G G'))
+    manager.register(['G', 'G', 'G'], () => fired.push('G G G'))
+    press('g', 'KeyG')
+    press('g', 'KeyG')
+    expect(fired).toEqual(['G G'])
+    press('g', 'KeyG')
+    expect(fired).toEqual(['G G', 'G G G'])
+    // Each sequence tracks its own progress, so the fourth G completes G G again.
+    press('g', 'KeyG')
+    expect(fired).toEqual(['G G', 'G G G', 'G G'])
+  })
+})

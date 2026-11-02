@@ -3,7 +3,7 @@ id: HotkeySequenceRegistration
 title: HotkeySequenceRegistration
 ---
 
-Defined in: [hotkey-manager.ts:186](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L186)
+Defined in: [hotkey-manager.ts:199](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L199)
 
 A registered sequence in the HotkeyManager.
 
@@ -19,7 +19,7 @@ A registered sequence in the HotkeyManager.
 callback: HotkeyCallback;
 ```
 
-Defined in: [hotkey-manager.ts:165](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L165)
+Defined in: [hotkey-manager.ts:178](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L178)
 
 The callback to invoke
 
@@ -37,7 +37,7 @@ RegistrationBase.callback
 currentIndex: number;
 ```
 
-Defined in: [hotkey-manager.ts:191](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L191)
+Defined in: [hotkey-manager.ts:204](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L204)
 
 Steps matched in the current attempt
 
@@ -49,7 +49,7 @@ Steps matched in the current attempt
 hasFired: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:173](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L173)
+Defined in: [hotkey-manager.ts:186](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L186)
 
 Whether this registration has fired (and, for requireReset chords, needs a reset)
 
@@ -67,7 +67,7 @@ RegistrationBase.hasFired
 hotkey: HotkeySequence;
 ```
 
-Defined in: [hotkey-manager.ts:188](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L188)
+Defined in: [hotkey-manager.ts:201](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L201)
 
 ***
 
@@ -77,7 +77,7 @@ Defined in: [hotkey-manager.ts:188](https://github.com/TanStack/hotkeys/blob/mai
 id: string;
 ```
 
-Defined in: [hotkey-manager.ts:163](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L163)
+Defined in: [hotkey-manager.ts:176](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L176)
 
 Unique identifier for this registration
 
@@ -95,7 +95,7 @@ RegistrationBase.id
 kind: "sequence";
 ```
 
-Defined in: [hotkey-manager.ts:187](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L187)
+Defined in: [hotkey-manager.ts:200](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L200)
 
 ***
 
@@ -105,7 +105,7 @@ Defined in: [hotkey-manager.ts:187](https://github.com/TanStack/hotkeys/blob/mai
 lastKeyTime: number;
 ```
 
-Defined in: [hotkey-manager.ts:193](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L193)
+Defined in: [hotkey-manager.ts:206](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L206)
 
 `Date.now()` when the last step in the current attempt matched
 
@@ -117,7 +117,7 @@ Defined in: [hotkey-manager.ts:193](https://github.com/TanStack/hotkeys/blob/mai
 options: HotkeySequenceOptions;
 ```
 
-Defined in: [hotkey-manager.ts:167](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L167)
+Defined in: [hotkey-manager.ts:180](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L180)
 
 Resolved options for this registration
 
@@ -135,7 +135,7 @@ RegistrationBase.options
 parsedSequence: ParsedHotkeyChord[];
 ```
 
-Defined in: [hotkey-manager.ts:189](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L189)
+Defined in: [hotkey-manager.ts:202](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L202)
 
 ***
 
@@ -145,7 +145,7 @@ Defined in: [hotkey-manager.ts:189](https://github.com/TanStack/hotkeys/blob/mai
 target: Target;
 ```
 
-Defined in: [hotkey-manager.ts:169](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L169)
+Defined in: [hotkey-manager.ts:182](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L182)
 
 The resolved target element for this registration
 
@@ -163,7 +163,7 @@ RegistrationBase.target
 triggerCount: number;
 ```
 
-Defined in: [hotkey-manager.ts:171](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L171)
+Defined in: [hotkey-manager.ts:184](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L184)
 
 How many times this registration's callback has been triggered
 
