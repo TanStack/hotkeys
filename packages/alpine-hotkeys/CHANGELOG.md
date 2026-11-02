@@ -1,5 +1,12 @@
 # @tanstack/alpine-hotkeys
 
+## 0.11.1
+
+### Patch Changes
+
+- Updated dependencies [[`b5e429a`](https://github.com/TanStack/hotkeys/commit/b5e429ab26366a9ed188c9e7cd774fb93dbee1f1), [`04c7445`](https://github.com/TanStack/hotkeys/commit/04c7445967e059f4bffa050b49c9f9d65260a959)]:
+  - @tanstack/hotkeys@0.24.0
+
 ## 0.11.0
 
 ### Minor Changes

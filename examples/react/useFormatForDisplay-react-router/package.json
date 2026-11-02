@@ -13,7 +13,7 @@
   "dependencies": {
     "@react-router/node": "^8.5.1",
     "@react-router/serve": "^8.5.1",
-    "@tanstack/react-hotkeys": "^0.21.0",
+    "@tanstack/react-hotkeys": "^0.22.0",
     "isbot": "^5.2.2",
     "react": "^19.3.0",
     "react-dom": "^19.3.0",
