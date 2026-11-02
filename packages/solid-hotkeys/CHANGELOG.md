@@ -1,5 +1,18 @@
 # @tanstack/solid-hotkeys
 
+## 0.21.0
+
+### Minor Changes
+
+- [#225](https://github.com/TanStack/hotkeys/pull/225) [`b5e429a`](https://github.com/TanStack/hotkeys/commit/b5e429ab26366a9ed188c9e7cd774fb93dbee1f1) - Run element-target hotkeys after the framework's own key handlers in React, Svelte, Solid, and Octane. An `onKeyDown` handler inside the target, such as an autocomplete that closes on Escape, now runs first and can stop the hotkey. Before, the hotkey ran first and its default `stopPropagation` kept the key from those handlers.
+
+  These adapters set the new `afterDelegatedHandlers` option, so an element target listens on its document, or on its closed shadow root. Framework handlers outside the target also run before the hotkey now. In Solid, a stop by an `onKeyDown` handler also skips document hotkeys, even when the hotkey registered before the first component that uses `onKeyDown` loaded.
+
+### Patch Changes
+
+- Updated dependencies [[`b5e429a`](https://github.com/TanStack/hotkeys/commit/b5e429ab26366a9ed188c9e7cd774fb93dbee1f1), [`04c7445`](https://github.com/TanStack/hotkeys/commit/04c7445967e059f4bffa050b49c9f9d65260a959)]:
+  - @tanstack/hotkeys@0.24.0
+
 ## 0.20.0
 
 ### Minor Changes
