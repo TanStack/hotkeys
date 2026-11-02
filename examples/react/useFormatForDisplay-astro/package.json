@@ -15,8 +15,8 @@
     "@astrojs/react": "^7.1.2",
     "@tanstack/react-hotkeys": "^0.21.0",
     "astro": "^7.4.4",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",

@@ -49,10 +49,10 @@
     "@tanstack/hotkeys": "workspace:*"
   },
   "devDependencies": {
-    "@tsrx/oxc": "0.20.0",
-    "@tsrx/typescript-plugin": "^0.3.138",
-    "octane": "0.12.1",
-    "vite": "^8.3.2"
+    "@tsrx/oxc": "0.23.0",
+    "@tsrx/typescript-plugin": "^0.6.3",
+    "octane": "0.16.6",
+    "vite": "^8.3.5"
   },
   "peerDependencies": {
     "octane": ">=0.12.0"

@@ -12,17 +12,17 @@
   },
   "dependencies": {
     "@tanstack/react-hotkeys": "^0.21.0",
-    "@tanstack/react-router": "^1.170.41",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "@tanstack/react-router": "^1.170.46",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
     "@tanstack/react-devtools": "0.10.14",
     "@tanstack/react-hotkeys-devtools": "^0.14.0",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
-    "@vitejs/plugin-react": "^6.1.1",
+    "@vitejs/plugin-react": "^6.1.2",
     "typescript": "6.0.3",
-    "vite": "^8.3.2"
+    "vite": "^8.3.5"
   }
 }

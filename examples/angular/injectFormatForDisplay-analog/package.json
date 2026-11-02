@@ -10,23 +10,23 @@
   },
   "private": true,
   "dependencies": {
-    "@analogjs/router": "^2.9.4",
-    "@angular/common": "^22.2.1",
-    "@angular/compiler": "^22.2.1",
-    "@angular/core": "^22.2.1",
-    "@angular/platform-browser": "^22.2.1",
-    "@angular/platform-server": "^22.2.1",
-    "@angular/router": "^22.2.1",
+    "@analogjs/router": "^2.9.5",
+    "@angular/common": "^22.2.4",
+    "@angular/compiler": "^22.2.4",
+    "@angular/core": "^22.2.4",
+    "@angular/platform-browser": "^22.2.4",
+    "@angular/platform-server": "^22.2.4",
+    "@angular/router": "^22.2.4",
     "@tanstack/angular-hotkeys": "^0.21.0",
     "rxjs": "~7.8.2",
-    "tslib": "^2.8.1"
+    "tslib": "^2.9.1"
   },
   "devDependencies": {
-    "@analogjs/platform": "^2.9.4",
-    "@analogjs/vite-plugin-angular": "^2.9.4",
-    "@angular/build": "^22.2.1",
-    "@angular/compiler-cli": "^22.2.1",
+    "@analogjs/platform": "^2.9.5",
+    "@analogjs/vite-plugin-angular": "^2.9.5",
+    "@angular/build": "^22.2.5",
+    "@angular/compiler-cli": "^22.2.4",
     "typescript": "6.0.3",
-    "vite": "^8.3.2"
+    "vite": "^8.3.5"
   }
 }

@@ -11,13 +11,13 @@
   },
   "dependencies": {
     "@tanstack/octane-hotkeys": "workspace:*",
-    "octane": "0.12.1"
+    "octane": "0.16.6"
   },
   "devDependencies": {
-    "@tsrx/oxc": "0.20.0",
-    "@tsrx/typescript-plugin": "^0.3.138",
+    "@tsrx/oxc": "0.23.0",
+    "@tsrx/typescript-plugin": "^0.6.3",
     "@types/node": "^26.6.4",
     "typescript": "6.0.3",
-    "vite": "^8.3.2"
+    "vite": "^8.3.5"
   }
 }
