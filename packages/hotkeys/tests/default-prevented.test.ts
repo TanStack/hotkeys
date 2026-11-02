@@ -144,4 +144,20 @@ describe('ignoreDefaultPrevented', () => {
       expect(callback).toHaveBeenCalledOnce()
     },
   )
+
+  it('ends a keyup chord press when another listener prevents its release', () => {
+    const callback = vi.fn()
+    HotkeyManager.getInstance().register('Mod+K', callback, {
+      platform: 'windows',
+      eventType: 'keyup',
+      ignoreDefaultPrevented: true,
+    })
+    const prevent = (event: KeyboardEvent) => event.preventDefault()
+    press(document.body, 'k', 'KeyK', { ctrlKey: true })
+    document.addEventListener('keyup', prevent, { capture: true })
+    press(document.body, 'k', 'KeyK', { ctrlKey: true }, 'keyup')
+    document.removeEventListener('keyup', prevent, { capture: true })
+    press(document.body, 'Control', 'ControlLeft', {}, 'keyup')
+    expect(callback).not.toHaveBeenCalled()
+  })
 })

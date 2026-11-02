@@ -3,7 +3,7 @@ id: HotkeyChordRegistration
 title: HotkeyChordRegistration
 ---
 
-Defined in: [hotkey-manager.ts:188](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L188)
+Defined in: [hotkey-manager.ts:189](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L189)
 
 A registered chord in the HotkeyManager.
 
@@ -19,7 +19,7 @@ A registered chord in the HotkeyManager.
 optional activeMatch?: object;
 ```
 
-Defined in: [hotkey-manager.ts:193](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L193)
+Defined in: [hotkey-manager.ts:194](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L194)
 
 The concrete key/code that activated a requireReset registration.
 
@@ -43,7 +43,7 @@ key: string;
 callback: HotkeyCallback;
 ```
 
-Defined in: [hotkey-manager.ts:176](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L176)
+Defined in: [hotkey-manager.ts:177](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L177)
 
 The callback to invoke
 
@@ -61,7 +61,7 @@ RegistrationBase.callback
 hasFired: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:184](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L184)
+Defined in: [hotkey-manager.ts:185](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L185)
 
 Whether this registration has fired (and, for requireReset chords, needs a reset)
 
@@ -79,7 +79,7 @@ RegistrationBase.hasFired
 hotkey: HotkeyChord;
 ```
 
-Defined in: [hotkey-manager.ts:190](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L190)
+Defined in: [hotkey-manager.ts:191](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L191)
 
 ***
 
@@ -89,7 +89,7 @@ Defined in: [hotkey-manager.ts:190](https://github.com/TanStack/hotkeys/blob/mai
 id: string;
 ```
 
-Defined in: [hotkey-manager.ts:174](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L174)
+Defined in: [hotkey-manager.ts:175](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L175)
 
 Unique identifier for this registration
 
@@ -107,7 +107,7 @@ RegistrationBase.id
 kind: "chord";
 ```
 
-Defined in: [hotkey-manager.ts:189](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L189)
+Defined in: [hotkey-manager.ts:190](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L190)
 
 ***
 
@@ -117,7 +117,7 @@ Defined in: [hotkey-manager.ts:189](https://github.com/TanStack/hotkeys/blob/mai
 options: HotkeyChordOptions;
 ```
 
-Defined in: [hotkey-manager.ts:178](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L178)
+Defined in: [hotkey-manager.ts:179](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L179)
 
 Resolved options for this registration
 
@@ -135,7 +135,7 @@ RegistrationBase.options
 parsedChord: ParsedHotkeyChord;
 ```
 
-Defined in: [hotkey-manager.ts:191](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L191)
+Defined in: [hotkey-manager.ts:192](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L192)
 
 ***
 
@@ -145,7 +145,7 @@ Defined in: [hotkey-manager.ts:191](https://github.com/TanStack/hotkeys/blob/mai
 target: Target;
 ```
 
-Defined in: [hotkey-manager.ts:180](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L180)
+Defined in: [hotkey-manager.ts:181](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L181)
 
 The resolved target element for this registration
 
@@ -163,7 +163,7 @@ RegistrationBase.target
 triggerCount: number;
 ```
 
-Defined in: [hotkey-manager.ts:182](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L182)
+Defined in: [hotkey-manager.ts:183](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L183)
 
 How many times this registration's callback has been triggered
 

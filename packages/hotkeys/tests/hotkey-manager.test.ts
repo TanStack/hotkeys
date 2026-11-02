@@ -2005,6 +2005,62 @@ describe('HotkeyManager edge cases', () => {
       expect(callback).toHaveBeenCalledOnce()
     })
 
+    it('does not fire on the key release after another key is pressed', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Control+K', callback, {
+        platform: 'windows',
+        eventType: 'keyup',
+      })
+      key('keydown', 'k', { code: 'KeyK', ctrlKey: true })
+      key('keydown', 'j', { code: 'KeyJ', ctrlKey: true })
+      key('keyup', 'k', { code: 'KeyK', ctrlKey: true })
+      key('keyup', 'Control', { code: 'ControlLeft' })
+      expect(callback).not.toHaveBeenCalled()
+    })
+
+    it('does not fire after a key that continues a sequence', () => {
+      const manager = HotkeyManager.getInstance()
+      const callback = vi.fn()
+      const sequence = vi.fn()
+      manager.register('Control+K', callback, {
+        platform: 'windows',
+        eventType: 'keyup',
+      })
+      manager.register(['Control+K', 'Control+J'], sequence, {
+        platform: 'windows',
+      })
+      key('keydown', 'k', { code: 'KeyK', ctrlKey: true })
+      key('keydown', 'j', { code: 'KeyJ', ctrlKey: true })
+      key('keyup', 'k', { code: 'KeyK', ctrlKey: true })
+      key('keyup', 'Control', { code: 'ControlLeft' })
+      expect(sequence).toHaveBeenCalledOnce()
+      expect(callback).not.toHaveBeenCalled()
+    })
+
+    it('fires when enabled by its own keydown, to end a mode', () => {
+      const manager = HotkeyManager.getInstance()
+      const end = vi.fn()
+      const release = manager.register('Space', end, {
+        eventType: 'keyup',
+        enabled: false,
+      })
+      manager.register('Space', () => release.setOptions({ enabled: true }))
+      key('keydown', ' ', { code: 'Space' })
+      key('keyup', ' ', { code: 'Space' })
+      expect(end).toHaveBeenCalledOnce()
+    })
+
+    it('does not fire on the release of a press another key cancelled', () => {
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register('Escape', callback, {
+        eventType: 'keyup',
+      })
+      key('keydown', 'Escape', { code: 'Escape' })
+      key('keydown', 'j', { code: 'KeyJ' })
+      key('keyup', 'Escape', { code: 'Escape' })
+      expect(callback).not.toHaveBeenCalled()
+    })
+
     it('does not fire when a modifier outside the chord is released', () => {
       const callback = vi.fn()
       HotkeyManager.getInstance().register('Mod+K', callback, {

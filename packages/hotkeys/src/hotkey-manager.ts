@@ -80,7 +80,8 @@ export interface HotkeyOptions {
   /**
    * The event type to listen for. Defaults to 'keydown'. A 'keyup' chord fires
    * when its key or one of its modifiers is released, whichever comes first,
-   * and `preventDefault` applies to its keydown too.
+   * unless another key was pressed in between. `preventDefault` applies to
+   * its keydown too.
    */
   eventType?: 'keydown' | 'keyup'
   /**
@@ -592,7 +593,8 @@ export class HotkeyManager {
    * Keyup chords whose keydown matched. Releasing one of the chord's
    * modifiers fires them, because the key's own keyup may come after the
    * modifier's or, on macOS while Command is held, not at all. `null` marks a
-   * press that `ignoreDefaultPrevented` skipped, so its release is skipped too.
+   * press that another key cancelled or that `ignoreDefaultPrevented`
+   * skipped, so its release doesn't fire.
    */
   #pendingReleases = new Map<string, KeyboardEventMatch | null>()
   /** Events this manager prevented, so its own prevention never skips a hotkey. */
@@ -1230,6 +1232,15 @@ export class HotkeyManager {
         }
       }
     }
+    // A new press cancels a keyup chord's press in progress, so its release
+    // doesn't fire, even when the new press continues a sequence. An older
+    // cancellation is forgotten.
+    if (eventType === 'keydown' && !event.repeat) {
+      for (const { id } of registrations) {
+        if (this.#pendingReleases.get(id)) this.#pendingReleases.set(id, null)
+        else this.#pendingReleases.delete(id)
+      }
+    }
     if (isRecordingEvent(event) || this.#sequenceOwned.get(event)) return
 
     const matches = new Map<string, ReturnType<typeof matchKeyboardEvent>>()
@@ -1244,9 +1255,9 @@ export class HotkeyManager {
       const { eventType: firesOn, preventDefault } = registration.options
       // A keyup chord also sees its keydown, to prevent it and await the release.
       const press = eventType === 'keydown' && firesOn === 'keyup'
-      // A new press ends an earlier one whose release went unseen.
-      if (press && !event.repeat) this.#pendingReleases.delete(registration.id)
       const skipped = this.#skipsPrevented(registration, event)
+      // A release that another listener handled ends the press too.
+      if (skipped && !press) this.#pendingReleases.delete(registration.id)
       if (
         (!live && preventDefault !== 'always') ||
         (firesOn !== eventType && !press) ||
@@ -1262,18 +1273,19 @@ export class HotkeyManager {
         registration.options.platform,
       )
       if (press) {
-        if (skipped) {
-          if (result.matched) this.#pendingReleases.set(registration.id, null)
-        } else if (result.matched) {
-          if (preventDefault) this.#prevent(event)
-          if (live && parsedChord.modifiers.length > 0) {
-            this.#pendingReleases.set(registration.id, result)
+        if (result.matched) {
+          if (skipped) {
+            this.#pendingReleases.set(registration.id, null)
+          } else {
+            if (preventDefault) this.#prevent(event)
+            if (live) this.#pendingReleases.set(registration.id, result)
           }
         }
         continue
       }
       if (
         eventType === 'keyup' &&
+        live &&
         this.#pendingReleases.has(registration.id) &&
         (result.matched ||
           // The other Control or Shift key may still hold the modifier down.
