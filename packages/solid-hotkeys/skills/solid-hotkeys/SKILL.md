@@ -48,7 +48,7 @@ export function Editor() {
     () => ({ target: panel() }),
   )
 
-  return <div ref={setPanel} tabIndex={0} onInput={() => setIsDirty(true)} />
+  return <div ref={setPanel} tabindex={0} onInput={() => setIsDirty(true)} />
 }
 ```
 
@@ -61,6 +61,7 @@ export function Editor() {
 | `<HotkeysProvider>`                          | Set default options, a scope (`exclusive` for dialogs), `enabled`, and app hotkeys for the components inside it.                                                                                      |
 | `useHotkeysContext()`                        | Read the nearest provider's merged defaults and enabled state, or `null` outside a provider.                                                                                                          |
 | `useDefaultHotkeysOptions()`                 | Read the default options merged from every provider above.                                                                                                                                            |
+| `createFormatForDisplay()`                   | Get `formatForDisplay` with the provider's `platform` filled in, for labels in server-rendered apps.                                                                                                  |
 | `useAppHotkeys()`                            | Get an accessor of the declared app hotkeys with the user's custom hotkeys applied.                                                                                                                   |
 | `createAppHotkeyList()`                      | Get an accessor listing every app hotkey with its status, for a cheat sheet or settings screen.                                                                                                       |
 | `useCustomHotkeys()`                         | Read, change, and reset the user's custom hotkeys, and check a new one for conflicts.                                                                                                                 |
@@ -80,9 +81,11 @@ The state these return is accessors, including the recorder's fields. No provide
 
 - **Pass options as an accessor.** `{ enabled: isDirty() }` is read once, during setup, so the hotkey never follows the signal. Use `() => ({ enabled: isDirty() })`. The hotkey and `createHotkeys`' definitions also accept accessors.
 - **Keep element targets in a signal.** A `let el` variable is still `undefined` when the options are read, and an undefined target means `document`. Use `ref={setEl}` and `() => ({ target: el() })`; a `null` target waits for the element.
+- **Give removable elements their own component.** For an element inside `<Show>` or `<For>`, call `createHotkey` with a signal `target` in a component that renders the element, so the hotkey unregisters when Solid removes the component. Don't call `createHotkey` in a `ref` callback: Solid 2 runs it outside the component's owner, and it throws.
 - **The callback isn't tracked.** Read props inside it, as `() => props.onClose()`, rather than passing `props.onClose` itself.
 - **Register a dialog's hotkeys in a child of its provider.** A primitive uses the nearest `HotkeysProvider` above its component, so a dialog that renders `<HotkeysProvider scope={...} exclusive>` and creates `Escape` itself puts it in the suspended outer scope. Give each open dialog its own scope name, such as `` `dialog-${createUniqueId()}` ``.
 - **Call the primitives directly.** A `createShortcut(keys: string)` wrapper has to cast strings to hotkeys, which turns off type checking and drops sequences, accessor options, and app hotkeys.
+- **Server-rendered labels need the user's platform.** On the server, `formatForDisplay` can't see the user's OS, so it renders Linux labels that differ after hydration for Mac and Windows users. Set the provider's `defaultOptions.platform` to `detectPlatform(userAgent)` from the request's `User-Agent` header, and format labels with `const format = createFormatForDisplay()` in the component, then `format(hotkey)`. Keep plain `formatForDisplay` for labels that render only in the browser.
 
 When declaring app hotkeys, building a cheat sheet, or letting users rebind shortcuts, load `@tanstack/hotkeys#app-hotkeys` and read [app hotkeys in Solid](references/app-hotkeys.md).
 

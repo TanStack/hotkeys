@@ -1,5 +1,87 @@
 # @tanstack/hotkeys
 
+## 0.24.0
+
+### Minor Changes
+
+- [#225](https://github.com/TanStack/hotkeys/pull/225) [`b5e429a`](https://github.com/TanStack/hotkeys/commit/b5e429ab26366a9ed188c9e7cd774fb93dbee1f1) - Run element-target hotkeys after the framework's own key handlers in React, Svelte, Solid, and Octane. An `onKeyDown` handler inside the target, such as an autocomplete that closes on Escape, now runs first and can stop the hotkey. Before, the hotkey ran first and its default `stopPropagation` kept the key from those handlers.
+
+  These adapters set the new `afterDelegatedHandlers` option, so an element target listens on its document, or on its closed shadow root. Framework handlers outside the target also run before the hotkey now. In Solid, a stop by an `onKeyDown` handler also skips document hotkeys, even when the hotkey registered before the first component that uses `onKeyDown` loaded.
+
+- [#228](https://github.com/TanStack/hotkeys/pull/228) [`d3adb24`](https://github.com/TanStack/hotkeys/commit/d3adb24ae133507b02401404f11b931b86fb2255) - Add the `ignoreDefaultPrevented` option. A hotkey with it skips a key press that another listener already handled with `preventDefault()`, such as a Radix UI or shadcn/ui dropdown closing on Escape. A hotkey's own `preventDefault` doesn't count. Set it in a provider's default options to apply it to every hotkey.
+
+- [#228](https://github.com/TanStack/hotkeys/pull/228) [`d3adb24`](https://github.com/TanStack/hotkeys/commit/d3adb24ae133507b02401404f11b931b86fb2255) - Fire a keyup chord when the user releases its key or one of its modifiers, whichever comes first. Before, releasing the modifier first meant the chord never fired, and on macOS a keyup `Mod` chord never fired at all, because macOS sends no keyup for a key released while Command is held.
+
+  A keyup chord now also prevents its keydown's default action, so a keyup `Mod+S` stops the browser's Save dialog. Set `preventDefault: false` to let the browser act on the keydown.
+
+- [#228](https://github.com/TanStack/hotkeys/pull/228) [`d3adb24`](https://github.com/TanStack/hotkeys/commit/d3adb24ae133507b02401404f11b931b86fb2255) - Leave Escape to an open modal `<dialog>` or a popover that closes on Escape, which is any popover except `popover="manual"`. While one is open, hotkeys outside it skip Escape, so the browser closes it instead of a global `Escape` hotkey keeping it open. A hotkey targeted at the dialog or popover, or at an element inside it, still receives Escape.
+
+### Patch Changes
+
+- [#228](https://github.com/TanStack/hotkeys/pull/228) [`d3adb24`](https://github.com/TanStack/hotkeys/commit/d3adb24ae133507b02401404f11b931b86fb2255) - Fix hotkeys in a scope that stopped firing when a provider with the same scope mounted inside it. The inner provider replaced the scope's parent with the scope itself, so the scope dropped out of an exclusive ancestor such as a dialog.
+
+- [#223](https://github.com/TanStack/hotkeys/pull/223) [`04c7445`](https://github.com/TanStack/hotkeys/commit/04c7445967e059f4bffa050b49c9f9d65260a959) - Fix `formatForDisplay` throwing during server rendering on runtimes without `process`, such as Cloudflare Workers.
+
+## 0.23.0
+
+### Minor Changes
+
+- [#221](https://github.com/TanStack/hotkeys/pull/221) [`5bf96b6`](https://github.com/TanStack/hotkeys/commit/5bf96b68bba67b0e288bb7886c5f4516417a528f) - Server-rendered hotkey labels can match the user's platform.
+
+  - `detectPlatform(userAgent)` detects the platform from a user agent string, such as a request's `User-Agent` header. `null`, as from a missing header, works like no argument. A new `HotkeyPlatform` type names the result.
+  - Without a user agent, `detectPlatform()` returns `'linux'` on Node, Deno, Bun, and Cloudflare Workers instead of the server's own OS.
+  - In development, formatting a label on the server without a platform warns once.
+  - Providers accept `defaultOptions.platform`, which is also the default platform for their hotkeys and recorders.
+  - Adapters that render on the server add a formatter hook that uses the provider's platform: `useFormatForDisplay` (React, Preact, Octane, Vue, Ember), `createFormatForDisplay` (Solid), `getFormatForDisplay` (Svelte), and `injectFormatForDisplay` (Angular).
+  - Angular's `provideHotkeys` accepts `defaultOptions` as a getter that runs in the injection context, so it can read the request with `inject(REQUEST)`.
+
+## 0.22.1
+
+### Patch Changes
+
+- [#218](https://github.com/TanStack/hotkeys/pull/218) [`93b8b5e`](https://github.com/TanStack/hotkeys/commit/93b8b5e2102f1e973496fef8fbff086bfddc89f5) - `@tanstack/hotkeys/adapter` imports the hotkey manager and app hotkeys from `@tanstack/hotkeys` instead of its own copy. CDNs such as jsDelivr bundle each entry on its own, so adapters loaded from them registered hotkeys on a second manager, and providers given app hotkeys threw. `createAppHotkeysStore` is also exported from `@tanstack/hotkeys`.
+
+## 0.22.0
+
+### Minor Changes
+
+- [#216](https://github.com/TanStack/hotkeys/pull/216) [`a080a84`](https://github.com/TanStack/hotkeys/commit/a080a848a117f91e99f27ec002ac2dcc3338d25c) - Fix several edge cases in hotkey matching, registration and held-key tracking.
+
+  - **IME composition:** no hotkey fires while the user composes text with an input method editor, including named keys such as Enter, Escape and the arrows, and the Enter that Safari sends right after composition ends (`keyCode` 229). Before, those keys fired and could prevent the keydown the editor needed.
+  - **`requireReset`:** a new press that isn't an automatic repeat fires again, even when the last keyup was never seen, such as the one macOS drops while Command is held.
+  - **Held keys:** the key state tracker clears held keys when the page is hidden and when a native context menu opens. Modifiers the event still reports stay held, and a context menu the page shows or dispatches itself clears nothing.
+  - **Duplicate registrations:** a `keydown` and a `keyup` registration of the same hotkey are no longer duplicates, so they don't warn, and `conflictBehavior: 'replace'` no longer removes the other one.
+  - **Invalid targets:** registering with a target that can't listen for events throws without leaving a registration behind, so `resetInstance()` and `destroy()` keep working.
+  - **Missing hotkeys:** `HotkeyManager.register` returns an inactive handle instead of throwing for an `undefined` or `null` hotkey, an empty sequence, or a hotkey with an empty key such as `''`, `{ key: '' }` or `{ code: '' }`. Nothing is registered, so these still never fire.
+  - **Speed:** letter keys compare through one cached `Intl.Collator`, which makes dispatching a letter about 3 times faster with many hotkeys registered.
+
+## 0.21.0
+
+### Minor Changes
+
+- [#214](https://github.com/TanStack/hotkeys/pull/214) [`a179ef6`](https://github.com/TanStack/hotkeys/commit/a179ef6d3410dfe6fc932e09f55330d16297507f) - `HotkeysProvider` now applies a changed `customHotkeys` prop. Before, the provider read it only on the first render, so saved shortcuts that loaded asynchronously, or another user's shortcuts after sign-in, were ignored until the provider remounted.
+
+  - When the value of `customHotkeys` changes, it replaces the current custom hotkeys without calling `onCustomHotkeysChange`. The prop is compared by value, so passing equal data again, such as `JSON.parse(localStorage.getItem('hotkeys'))` on every render, keeps changes the user made since. `undefined` leaves the custom hotkeys unchanged, such as while saved data loads, and `null` clears them, such as on sign-out.
+  - `AppHotkeysStore.setOptions` accepts `customHotkeys` with the same behavior. Lit, Alpine, and Ember apps can call it on the store that `provideAppHotkeys` returns when saved data loads later.
+  - In Angular, `provideHotkeys` accepts `customHotkeys` as a signal or function. In Vue, `provideHotkeysContext` accepts it as a ref or getter.
+
+- [#214](https://github.com/TanStack/hotkeys/pull/214) [`a179ef6`](https://github.com/TanStack/hotkeys/commit/a179ef6d3410dfe6fc932e09f55330d16297507f) - Hotkey hooks and functions in every adapter accept `undefined` and `null` as the hotkey, for components with an optional shortcut. No hotkey registers nothing, and its hint is `false`. When a hotkey changes to `undefined` or `null`, its registration is removed; when it changes back, it registers again. Before, a nullish hotkey threw: in React it unmounted the tree, in Vue, Solid, Angular, and Svelte the old hotkey kept firing, Ember failed to render, and Alpine stopped updating the page. In Angular, `injectHotkey(() => this.shortcut(), …)` now works with an optional input, without `?? []`.
+
+  - The plural forms skip a definition whose `hotkey` is nullish.
+  - An empty hotkey, such as `''` or `{ key: '' }`, also registers nothing, so clearing a hotkey to `''` removes its registration. Before, an empty hotkey registered and fired on `keydown` events with no key, such as those some autofill tools send.
+  - `HotkeyManager.register` still requires a hotkey. It throws a clear error for `undefined`, `null`, or an empty hotkey, as it already did for an empty sequence.
+  - `hasActiveRegistration` and `matchesHeldModifiers` return `false` for no hotkey.
+  - The Lit `@hotkey` decorator still needs a hotkey, because it is set when the class is defined.
+
+- [#214](https://github.com/TanStack/hotkeys/pull/214) [`a179ef6`](https://github.com/TanStack/hotkeys/commit/a179ef6d3410dfe6fc932e09f55330d16297507f) - An option set to `undefined` now keeps its default, the same as leaving it out. Before, a wrapper component that forwarded unset props, such as `preventDefault: props.preventDefault`, turned off `preventDefault` and `stopPropagation`, so `Mod+S` also opened the browser's Save dialog. `eventType: undefined` made a hotkey never fire, and `scope: undefined` moved a hotkey out of its provider's scope.
+
+  - This applies to `register`, provider defaults, `createHotkeysScope` defaults in Alpine and Ember, and recorder options merged with provider defaults.
+  - In `setOptions`, `undefined` resets an option to its default, or removes it when it has no default.
+
+  Behavior changes:
+
+  - In React and Preact, a `null` target registers nothing, like a ref that is still empty. Before, it listened on `document`. To listen on `document`, leave out `target`. `prepareHotkeyDefinitions` in `@tanstack/hotkeys/adapter` does the same when no `resolveTarget` is given, which also applies to Svelte. Vue, Solid, Angular, Lit, Alpine, Ember, and Octane already skipped a `null` target.
+
 ## 0.20.0
 
 ### Minor Changes

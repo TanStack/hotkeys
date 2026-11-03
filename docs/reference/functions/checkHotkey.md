@@ -7,7 +7,7 @@ title: checkHotkey
 function checkHotkey(hotkey): boolean;
 ```
 
-Defined in: [validate.ts:155](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L155)
+Defined in: [validate.ts:159](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L159)
 
 Validates a hotkey and logs errors and warnings to the console.
 Useful for development-time feedback. Logs nothing in production builds.
@@ -29,7 +29,11 @@ True if the hotkey is valid (may still have warnings)
 ## Example
 
 ```ts
-checkHotkey('Alt+C')
-// Console: Warning: Alt+C may not work reliably on macOS...
+checkHotkey('Control+escape')
+// Console: Hotkey 'Control+escape' warnings: Unknown key: 'escape'. Key names are case-sensitive, such as 'Escape' and 'F1'.
 // Returns: true
+
+checkHotkey('Ctl+K')
+// Console: Hotkey 'Ctl+K' errors: Unknown modifier: 'Ctl'
+// Returns: false
 ```

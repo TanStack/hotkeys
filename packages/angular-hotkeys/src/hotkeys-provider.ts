@@ -7,6 +7,7 @@ import {
   inject,
   runInInjectionContext,
   signal,
+  untracked,
 } from '@angular/core'
 import { publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
@@ -23,11 +24,18 @@ import type {
   AppHotkeysStore,
   CustomHotkeys,
   HotkeyChordRecorderOptions,
+  HotkeyPlatform,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
 import type { InjectHotkeyCommonOptions } from './injectHotkey'
 
 export interface HotkeysProviderOptions {
+  /**
+   * The user's platform, for labels from `injectFormatForDisplay`, hotkeys,
+   * and recorders. Detected when unset. On a server, set it from the request
+   * with `detectPlatform(userAgent)`.
+   */
+  platform?: HotkeyPlatform
   /**
    * Defaults for every hotkey registered by `injectHotkey` and `injectHotkeys`.
    * `requireReset` applies to chords and `timeout` applies to sequences.
@@ -44,8 +52,12 @@ export interface HotkeysProviderOptions {
 
 /** Options for `provideHotkeys`. */
 export interface ProvideHotkeysOptions {
-  /** Merged with the parent provider's defaults. */
-  defaultOptions?: HotkeysProviderOptions
+  /**
+   * Merged with the parent provider's defaults. A getter runs in the
+   * provider's injection context, so it can `inject(REQUEST)` to set
+   * `platform` from the request during server rendering.
+   */
+  defaultOptions?: MaybeGetter<HotkeysProviderOptions>
   /**
    * See `HotkeysProviderScopeProps['scope']`. Getters, here and for
    * `exclusive` and `enabled`, run in the provider's injection context, so
@@ -63,10 +75,12 @@ export interface ProvideHotkeysOptions {
    */
   appHotkeys?: AppHotkeys
   /**
-   * Starting custom hotkeys, such as saved data. Read once; the provider owns
-   * the state afterwards. Invalid entries are ignored with a warning.
+   * The user's saved custom hotkeys. When the value changes, such as after
+   * saved data loads or the user signs in, it replaces the current custom
+   * hotkeys. `undefined` leaves them unchanged; `null` clears them. Invalid
+   * entries are ignored with a warning.
    */
-  customHotkeys?: CustomHotkeys | null
+  customHotkeys?: MaybeGetter<CustomHotkeys | null | undefined>
   /** Called with the custom hotkeys after every change, ready to save. */
   onCustomHotkeysChange?: (customHotkeys: CustomHotkeys) => void
 }
@@ -118,10 +132,19 @@ function createHotkeysContext(
   let store: AppHotkeysStore | null = null
   let appHotkeysState = parent.appHotkeysState
   if (appHotkeys) {
-    store = createAppHotkeysStore(appHotkeys, {
-      customHotkeys,
+    const owned = createAppHotkeysStore(appHotkeys, {
+      customHotkeys: read(customHotkeys),
       onCustomHotkeysChange,
     })
+    store = owned
+    // Apply saved custom hotkeys whose value changes, such as data that
+    // loads after the app starts.
+    if (typeof customHotkeys === 'function') {
+      effect(() => {
+        const next = read(customHotkeys)
+        untracked(() => owned.setOptions({ customHotkeys: next }))
+      })
+    }
     const state = signal<AppHotkeysState | null>(store.store.state)
     const subscription = store.store.subscribe(() =>
       state.set(store!.store.state),
@@ -140,7 +163,7 @@ function createHotkeysContext(
   const defaultOptions = computed(() =>
     mergeHotkeysProviderDefaults(
       parent.defaultOptions,
-      options.defaultOptions,
+      read(options.defaultOptions),
       read(options.scope),
     ),
   )
@@ -181,7 +204,9 @@ function createHotkeysContext(
  * inherits app hotkeys and merges default options. With `scope`, hotkeys
  * injected in the component and its children fire only while it exists and
  * is enabled; with `exclusive`, only they fire. The scope activates when the
- * first hotkey in it is injected.
+ * first hotkey in it is injected. Angular creates the provider lazily, so a
+ * component with no hotkeys of its own calls `injectHotkeysContext()` to
+ * activate its scope.
  *
  * @example
  * ```ts
@@ -213,6 +238,21 @@ function createHotkeysContext(
  *
  * @example
  * ```ts
+ * // An overlay with no hotkeys that suspends the page's hotkeys.
+ * @Component({
+ *   selector: 'app-loading-overlay',
+ *   providers: [provideHotkeys({ scope: 'loading', exclusive: true })],
+ *   template: `...`,
+ * })
+ * export class LoadingOverlay {
+ *   constructor() {
+ *     injectHotkeysContext()
+ *   }
+ * }
+ * ```
+ *
+ * @example
+ * ```ts
  * // A scope that follows the providing component's input.
  * @Component({
  *   selector: 'app-folder',
@@ -237,6 +277,10 @@ export function provideHotkeys(options: ProvideHotkeysOptions = {}): Provider {
   }
 }
 
+/**
+ * Returns the nearest provider's context. Injecting it activates that
+ * provider's scope.
+ */
 export function injectHotkeysContext(): HotkeysContextValue {
   return inject(HOTKEYS_INJECTION_TOKEN)
 }

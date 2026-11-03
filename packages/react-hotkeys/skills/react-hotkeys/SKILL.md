@@ -55,6 +55,7 @@ export function SaveButton({ onSave }: { onSave: () => void }) {
 | `<HotkeysProvider>`                       | Set default options, a scope (`exclusive` for dialogs), `enabled`, and app hotkeys for the components inside it.                                                                                                                     |
 | `useHotkeysContext()`                     | Read the nearest provider's merged defaults and enabled state, or `null` outside a provider.                                                                                                                                         |
 | `useDefaultHotkeysOptions()`              | Read the default options merged from every provider above.                                                                                                                                                                           |
+| `useFormatForDisplay()`                   | Get `formatForDisplay` with the provider's `platform` filled in. Use it for labels in server-rendered apps; call it at the top of the component.                                                                                     |
 | `useAppHotkeys()`                         | Get the declared app hotkeys with the user's custom hotkeys applied, to pass to the register API.                                                                                                                                    |
 | `useAppHotkeyList()`                      | List every app hotkey with its status, including ones whose components aren't mounted, for a cheat sheet or settings screen.                                                                                                         |
 | `useCustomHotkeys()`                      | Read, change, and reset the user's custom hotkeys, and check a new one for conflicts.                                                                                                                                                |
@@ -101,11 +102,13 @@ A hook uses the nearest `HotkeysProvider` above its component. Registering `Esca
 
 ## Pitfalls
 
-- **Pass the ref, not `ref.current`.** `target: listRef.current` is `null` on the first render, and a `null` target means `document`, so the hotkey works page-wide. Pass `target: listRef`; a ref that is still empty waits for its element.
+- **Pass the ref, not `ref.current`.** `target: listRef.current` is `null` on the first render, and a `null` target registers nothing, so the hotkey doesn't work until the component renders again. Pass `target: listRef` for an element the component always renders.
+- **Keep elements that mount later in state.** The hook reads a ref only after its component renders, so it misses an element that mounts later, such as one a child shows from its own state. Use `const [el, setEl] = useState<HTMLElement | null>(null)`, `target: el`, and `ref={setEl}`; the hotkey registers when the element mounts and unregisters when it unmounts.
 - **No dependency arrays or `useCallback`.** The hooks read the hotkey, callback, and options on every render, so inline callbacks always see current state.
 - **Call the hooks directly.** A `useShortcut(keys: string)` wrapper has to cast strings to hotkeys, which turns off type checking and drops sequences, options, app hotkeys, and the typed callback context.
 - **`matchesKeyboardEvent` takes the DOM event.** In a widget's `onKeyDown`, pass `event.nativeEvent`.
 - **In tests,** set `<HotkeysProvider defaultOptions={{ hotkey: { platform: 'mac' } }}>`.
+- **Server-rendered labels need the user's platform.** On the server, `formatForDisplay` can't see the user's OS, so it renders Linux labels that differ after hydration for Mac and Windows users. Set the provider's `defaultOptions.platform` to `detectPlatform(userAgent)` from the request's `User-Agent` header, and format labels with `const format = useFormatForDisplay()` at the top of the component, then `format(hotkey)`. Keep plain `formatForDisplay` for labels that render only in the browser.
 
 When declaring app hotkeys, building a cheat sheet, or letting users rebind shortcuts, load `@tanstack/hotkeys#app-hotkeys` and read [app hotkeys in React](references/app-hotkeys.md).
 

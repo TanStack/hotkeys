@@ -62,7 +62,8 @@ export type UseAppHotkeyOptions<T extends AppHotkey = AppHotkey> =
  * Options merge in this order: provider defaults, app hotkey declaration,
  * call-site options.
  *
- * @param hotkey - A chord string, RawHotkeyChord object, sequence, or app hotkey
+ * @param hotkey - A chord string, RawHotkeyChord object, sequence, or app hotkey.
+ *   `undefined`, `null`, or `''` registers nothing, for an optional shortcut.
  * @param callback - The function to call when the hotkey is pressed
  * @param options - Options for the hotkey behavior
  *
@@ -86,17 +87,17 @@ export type UseAppHotkeyOptions<T extends AppHotkey = AppHotkey> =
  * ```
  */
 export function useHotkey<T extends AppHotkey>(
-  hotkey: T,
+  hotkey: T | null | undefined,
   callback: HotkeyCallback,
   options?: UseAppHotkeyOptions<T>,
 ): void
 export function useHotkey<const T extends RegisterableHotkey>(
-  hotkey: T,
+  hotkey: T | null | undefined,
   callback: HotkeyCallback<HotkeyCallbackContextFor<T>>,
   options?: UseHotkeyOptionsFor<T>,
 ): void
 export function useHotkey(
-  hotkey: RegisterableHotkey | AppHotkey,
+  hotkey: RegisterableHotkey | AppHotkey | null | undefined,
   callback: HotkeyCallback,
   options?: UseHotkeyCommonOptions,
 ): void {

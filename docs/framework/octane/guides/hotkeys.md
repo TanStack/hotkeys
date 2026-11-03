@@ -72,6 +72,12 @@ function Editor({ saveHotkey, readOnly }: EditorProps) @{
 
 That lets you register a hotkey the user chose, such as one from the [hotkey recorder](./custom-hotkey-recording). To let users change hotkeys across your app and save their choices, see [App Hotkeys](./app-hotkeys).
 
+### Optional hotkeys
+
+A hotkey of `undefined`, `null`, or `''` registers nothing, so a component can take an optional shortcut. When the hotkey changes to one of these values, its registration is removed. When it changes back to a hotkey, it registers again. Hints for no hotkey are hidden.
+
+To keep a hotkey registered, and listed in devtools and cheat sheets, but stop it from firing, set `enabled: false` instead.
+
 ### Write a chord as a string or an object
 
 Write most chords as strings. Your editor autocompletes them, and TypeScript rejects a string that isn't a valid chord:
@@ -106,6 +112,28 @@ useHotkey(['G', { key: 'H', shift: true }], () => goToHistory())
 
 The hook registers every chord and sequence step as a string, so `context.hotkey` shows `'Mod+Shift+S'` for the first object above. [Match a key's position instead](../../../guides/sensible-defaults.md#match-a-keys-position-instead) explains codes such as `[KeyW]`.
 
+### Custom hooks
+
+You can group hotkeys in a custom hook. The compiler gives each hook call its own slot only in modules it compiles:
+
+- `.tsrx` and `.tsx` files.
+- `.ts` and `.js` files that import a value from `octane`, such as `useState`. A type-only import doesn't count.
+- `.ts` and `.js` files that start with `/** @jsxImportSource octane */`.
+
+Calls from any other `.ts` or `.js` file get no slot of their own. In one component, all such calls to the same hook share one slot, even when they come from different custom hooks. Only the last call works, and nothing warns. Add the pragma to every file with a custom hook:
+
+```ts
+/** @jsxImportSource octane */
+import { useHotkey } from '@tanstack/octane-hotkeys'
+
+export function useEditorShortcuts(editor: Editor) {
+  useHotkey('Mod+B', () => editor.toggleBold())
+  useHotkey('Mod+I', () => editor.toggleItalic())
+}
+```
+
+Without the pragma, only `Mod+I` would register. The same happens when one component uses two such custom hooks that each call `useHotkey` once. To register a list in one call, use [`useHotkeys`](#register-multiple-hotkeys).
+
 ## Hotkey options
 
 Pass options as the third argument:
@@ -122,6 +150,7 @@ useHotkey('Enter', () => submit(), { ignoreInputs: false })
 | `preventDefault` | `true` | Stops the browser's own action, such as the Save dialog for `Mod+S`. `'always'` also stops it while the hotkey can't fire. |
 | `stopPropagation` | `true` | Stops the key press from reaching other listeners |
 | `ignoreInputs` | `'auto'` | Skips key presses that type in a text field or operate a focused control. See [Typing in inputs does not trigger shortcuts](../../../guides/sensible-defaults.md#typing-in-inputs-does-not-trigger-shortcuts). |
+| `ignoreDefaultPrevented` | `false` | Skips a key press that another listener already handled with `preventDefault()`, such as a component library's dialog closing on Escape. See [Component libraries that handle the same keys](../../../guides/sensible-defaults.md#component-libraries-that-handle-the-same-keys). |
 | `eventType` | `'keydown'` | Fires on `'keydown'` or `'keyup'` |
 | `capture` | `false` | Runs before the keyboard handlers of elements inside the target. See [Hotkeys run after the page's own handlers](../../../guides/sensible-defaults.md#hotkeys-run-after-the-pages-own-handlers). |
 | `requireReset` | `false` | Chords only. Fires once per press instead of again on each automatic repeat while the key is held. |
@@ -317,7 +346,7 @@ Use a target for hotkeys that belong to a focusable element, such as a list or a
 
 ## Handle duplicate hotkeys
 
-When you register a hotkey that is already registered on the same target and in the same scope, TanStack Hotkeys logs a warning in development, and both callbacks run. Set `conflictBehavior` to change that:
+When you register a hotkey that is already registered on the same target, in the same scope, and for the same event type, TanStack Hotkeys logs a warning in development, and both callbacks run. Set `conflictBehavior` to change that:
 
 - `'warn'` (default) logs a warning in development and keeps both registrations.
 - `'error'` throws an error.

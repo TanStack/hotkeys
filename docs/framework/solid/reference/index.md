@@ -28,6 +28,7 @@ title: "@tanstack/solid-hotkeys"
 ## Functions
 
 - [createAppHotkeyList](functions/createAppHotkeyList.md)
+- [createFormatForDisplay](functions/createFormatForDisplay.md)
 - [createHeldKeyCodes](functions/createHeldKeyCodes.md)
 - [createHeldKeys](functions/createHeldKeys.md)
 - [createHotkey](functions/createHotkey.md)

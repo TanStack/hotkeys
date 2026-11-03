@@ -79,7 +79,24 @@ export class Editor {
 
 A hotkey registered with `injectHotkey` or `injectHotkeys` uses the scope of the nearest provider that sets one. Hotkeys outside any scoped provider, including those under the `provideHotkeys` in your application config, are in the `'global'` scope, which is always active. A provider without `scope` uses its parent's scope.
 
-The scope activates when the first hotkey in it is injected, and stays active until the component is destroyed. A provider with no hotkeys under it never activates, so an exclusive provider needs at least one hotkey inside it before it suspends anything.
+The scope activates when the first hotkey in it is injected, and stays active until the component is destroyed. Angular creates a provider only when something injects it, so a provider with no hotkeys under it never activates. To activate it anyway, such as for an exclusive overlay that has no hotkeys of its own, call `injectHotkeysContext()` in the component:
+
+```ts
+import { Component } from '@angular/core'
+import { injectHotkeysContext, provideHotkeys } from '@tanstack/angular-hotkeys'
+
+@Component({
+  selector: 'app-loading-overlay',
+  providers: [provideHotkeys({ scope: 'loading', exclusive: true })],
+  template: `...`,
+})
+export class LoadingOverlay {
+  constructor() {
+    // Activates the scope now, so the page's hotkeys stop while it shows
+    injectHotkeysContext()
+  }
+}
+```
 
 Scopes are names, not instances. Two components that provide the `editor` scope share one scope, and it stays active until both are destroyed. Give each region its own name when you need to turn them on and off separately.
 
@@ -101,9 +118,7 @@ export class Editor {
     injectHotkey('Mod+B', () => this.toggleBold())
 
     // Also has a target: works only while focus is inside the outline
-    injectHotkey('Delete', () => this.deleteHeading(), () => ({
-      target: this.outline()?.nativeElement ?? null,
-    }))
+    injectHotkey('Delete', () => this.deleteHeading(), { target: this.outline })
   }
 }
 ```
@@ -196,6 +211,47 @@ The folder's hotkeys don't check which folder is current. Without scopes, each w
 `enabled` is inherited. Disabling a provider also deactivates every scope nested in it. A provider without its own `scope` has no scope to deactivate, so disabling it affects only the scoped providers inside it.
 
 Hotkeys in an inactive scope stay registered. Devtools list them under their inactive scope, and [`injectAppHotkeyList`](./cheat-sheet-ui-helpers#list-every-app-hotkey) reports their app hotkeys as `'suspended'`.
+
+### Pages kept alive by route reuse
+
+A custom `RouteReuseStrategy` detaches a page instead of destroying it. Ionic's page stack does the same. A detached page keeps its hotkeys and its scope, so its hotkeys still fire, and a detached exclusive scope still suspends the visible page.
+
+Give the page a scope, and turn it off with `enabled` while the page is detached. `<router-outlet>` emits the page component on `(detach)` and `(attach)`:
+
+```ts
+@Component({
+  selector: 'app-inbox',
+  providers: [
+    provideHotkeys({ scope: 'inbox', enabled: () => inject(Inbox).attached() }),
+  ],
+  template: `...`,
+})
+export class Inbox {
+  readonly attached = signal(true)
+
+  constructor() {
+    injectHotkey('C', () => this.compose())
+  }
+}
+
+@Component({
+  selector: 'app-root',
+  imports: [RouterOutlet],
+  template: `
+    <router-outlet
+      (attach)="setAttached($event, true)"
+      (detach)="setAttached($event, false)"
+    />
+  `,
+})
+export class App {
+  setAttached(page: unknown, attached: boolean) {
+    if (page instanceof Inbox) page.attached.set(attached)
+  }
+}
+```
+
+With Ionic, set `attached` in the page's `ionViewWillEnter` and `ionViewWillLeave` hooks instead. Hotkeys that name another scope with the `scope` option, such as `'global'`, keep firing.
 
 ## Exclusive scopes
 

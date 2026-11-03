@@ -7,7 +7,7 @@ title: createHotkeys
 function createHotkeys(hotkeys, commonOptions?): void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:127](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L127)
+Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:131](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L131)
 
 Svelte function for registering several hotkeys at once on the document:
 chords, sequences, and app hotkeys. Pass getters for reactive values. Use
@@ -15,7 +15,8 @@ chords, sequences, and app hotkeys. Pass getters for reactive values. Use
 
 Options merge in this order: provider defaults, app hotkey declaration,
 commonOptions, per-hotkey options. Each option applies only to the kinds
-that support it. Unbound app hotkeys and empty sequences register nothing.
+that support it. Unbound app hotkeys, empty sequences, and `undefined`,
+`null`, or `''` hotkeys register nothing.
 
 ## Parameters
 

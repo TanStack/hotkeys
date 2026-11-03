@@ -1,8 +1,8 @@
 // @vitest-environment happy-dom
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { render } from '@solidjs/testing-library'
-import { HotkeyManager } from '@tanstack/hotkeys'
-import { createSignal, flush } from 'solid-js'
+import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
+import { Show, createSignal, flush } from 'solid-js'
 import { createHotkey } from '../src/createHotkey'
 import type { Component } from 'solid-js'
 
@@ -302,6 +302,54 @@ describe('createHotkey', () => {
       targetEl.dispatchEvent(event)
 
       expect(callback).toHaveBeenCalled()
+    })
+
+    it('registers in a component inside <Show> and cleans up when it is removed', () => {
+      const callback = vi.fn()
+      const [open, setOpen] = createSignal(false)
+
+      const Panel: Component = () => {
+        const [panel, setPanel] = createSignal<HTMLDivElement | null>(null)
+        createHotkey('K', callback, () => ({ target: panel() }))
+        return <div data-testid="panel" ref={setPanel} />
+      }
+      const TestComponent: Component = () => (
+        <Show when={open()}>
+          <Panel />
+        </Show>
+      )
+
+      const { getByTestId } = render(() => <TestComponent />)
+      const registrations = () => getHotkeyManager().registrations.state.size
+      const pressK = () => {
+        const panel = getByTestId('panel')
+        panel.dispatchEvent(
+          new KeyboardEvent('keydown', { key: 'k', bubbles: true }),
+        )
+        panel.dispatchEvent(
+          new KeyboardEvent('keyup', { key: 'k', bubbles: true }),
+        )
+      }
+      expect(registrations()).toBe(0)
+
+      setOpen(true)
+
+      flush()
+      expect(registrations()).toBe(1)
+      pressK()
+      expect(callback).toHaveBeenCalledTimes(1)
+
+      setOpen(false)
+
+      flush()
+      expect(registrations()).toBe(0)
+
+      // A new node replaces the removed one.
+      setOpen(true)
+      flush()
+      expect(registrations()).toBe(1)
+      pressK()
+      expect(callback).toHaveBeenCalledTimes(2)
     })
   })
 })

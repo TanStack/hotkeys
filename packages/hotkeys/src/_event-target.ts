@@ -331,6 +331,47 @@ function blocks({ elements, index }: Blocker, target: Target): boolean {
   )
 }
 
+// Native layers
+
+/** Open modal dialogs and popovers that close on Escape, per event. */
+const layerCache = new WeakMap<KeyboardEvent, ReadonlyArray<Element>>()
+
+/**
+ * Returns whether Escape will close a modal `<dialog>` or an open popover that
+ * `target` isn't inside. The browser closes it only when Escape's keydown
+ * isn't prevented, so hotkeys outside it leave Escape alone.
+ */
+export function closesNativeLayer(
+  event: KeyboardEvent,
+  target: Target,
+): boolean {
+  if (event.type !== 'keydown' || event.key !== 'Escape') return false
+  let layers = layerCache.get(event)
+  if (!layers) {
+    const found: Array<Element> = []
+    for (const selector of ['dialog:modal', ':popover-open']) {
+      // Browsers without popovers reject the selector.
+      try {
+        found.push(...getTargetDocument(target).querySelectorAll(selector))
+      } catch {}
+    }
+    layers = found.filter(
+      (layer) => (layer as HTMLElement).popover !== 'manual',
+    )
+    layerCache.set(event, layers)
+  }
+  return layers.some((layer) => {
+    for (
+      let node: Node | null = isDocumentLevel(target) ? null : target;
+      node;
+      node = composedParent(node)
+    ) {
+      if (node === layer) return false
+    }
+    return true
+  })
+}
+
 // Every registration the event reaches asks about the same event.
 const ignoreCache = new WeakMap<KeyboardEvent, Blocker>()
 

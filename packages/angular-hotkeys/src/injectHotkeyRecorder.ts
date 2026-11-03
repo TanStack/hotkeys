@@ -1,5 +1,6 @@
 import {
   DestroyRef,
+  NgZone,
   computed,
   effect,
   inject,
@@ -7,6 +8,7 @@ import {
   untracked,
 } from '@angular/core'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
+import { withDefaults } from '@tanstack/hotkeys/adapter'
 import { injectDefaultHotkeysOptions } from './hotkeys-provider'
 import type { Store } from '@tanstack/hotkeys/adapter'
 import type { Signal } from '@angular/core'
@@ -89,19 +91,26 @@ export function injectHotkeyRecorder(
 ): AngularHotkeyRecorder {
   const defaultOptions = injectDefaultHotkeysOptions()
   const destroyRef = inject(DestroyRef)
+  const zone = inject(NgZone)
+
+  // Callbacks run in the zone, so their changes update the view.
+  const resolve = (): HotkeySequenceRecorderOptions => {
+    const resolved: Record<string, any> = withDefaults(
+      defaultOptions.hotkeyRecorder,
+      typeof options === 'function' ? options() : options,
+    )
+    for (const key of ['onRecord', 'onCancel', 'onClear', 'onReject']) {
+      const callback = resolved[key]
+      if (callback)
+        resolved[key] = (...args: Array<any>) => zone.run(callback, null, args)
+    }
+    // Overloads already checked the options; either shape is valid here.
+    return resolved as never
+  }
 
   // Stable signal to lazy initialize the recorder
   const recorderSignal = computed(() =>
-    untracked(() => {
-      const resolvedOptions =
-        typeof options === 'function' ? options() : options
-
-      // Overloads already checked the options; either shape is valid here.
-      return new HotkeyRecorder({
-        ...defaultOptions.hotkeyRecorder,
-        ...resolvedOptions,
-      } as HotkeySequenceRecorderOptions)
-    }),
+    untracked(() => new HotkeyRecorder(resolve())),
   )
 
   // Subscribe to recorder state
@@ -118,11 +127,7 @@ export function injectHotkeyRecorder(
 
   // Sync options on every effect run (matches React's sync on render)
   effect(() => {
-    const resolved = typeof options === 'function' ? options() : options
-    recorderSignal().setOptions({
-      ...defaultOptions.hotkeyRecorder,
-      ...resolved,
-    })
+    recorderSignal().setOptions(resolve())
   })
 
   destroyRef.onDestroy(() => {
@@ -133,7 +138,10 @@ export function injectHotkeyRecorder(
     isRecording,
     steps,
     recordedHotkey,
-    startRecording: () => recorderSignal().start(),
+    // Its listeners attach outside the zone, so keys don't run change
+    // detection while recording.
+    startRecording: () =>
+      zone.runOutsideAngular(() => recorderSignal().start()),
     stopRecording: () => recorderSignal().stop(),
     cancelRecording: () => recorderSignal().cancel(),
     commitRecording: () => recorderSignal().commit(),

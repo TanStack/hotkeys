@@ -177,6 +177,22 @@ describe('hotkey scopes', () => {
     expect([page.mock.calls.length, panel.mock.calls.length]).toEqual([0, 1])
   })
 
+  it('keeps a scope nested in itself under its real parent', () => {
+    const manager = HotkeyManager.getInstance()
+    const panel = vi.fn()
+    manager.register('Control+S', panel, { ...options, scope: 'panel' })
+    manager.activateScope('editor', { exclusive: true })
+    manager.activateScope('panel', { parent: 'editor' })
+    // A provider mounted later inside another provider with the same scope.
+    const releaseInner = manager.activateScope('panel', { parent: 'panel' })
+    expect(manager.isScopeActive('panel')).toBe(true)
+    press()
+    expect(panel).toHaveBeenCalledTimes(1)
+    releaseInner()
+    press()
+    expect(panel).toHaveBeenCalledTimes(2)
+  })
+
   it('lets a newer scope in another branch beat an older nested scope', () => {
     const manager = HotkeyManager.getInstance()
     const dialog = vi.fn()

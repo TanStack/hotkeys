@@ -17,9 +17,15 @@ afterEach(() => {
   vi.restoreAllMocks()
 })
 
-function press(target: EventTarget, type = 'keydown', key = 's') {
+function press(
+  target: EventTarget,
+  type = 'keydown',
+  key = 's',
+  repeat = false,
+) {
   const event = new KeyboardEvent(type, {
     key,
+    repeat,
     code: `Key${key.toUpperCase()}`,
     ctrlKey: true,
     bubbles: true,
@@ -245,7 +251,7 @@ it('preserves requireReset through phase changes inside callbacks', () => {
     stopPropagation: false,
   })
   press(child)
-  press(child)
+  press(child, 'keydown', 's', true)
   expect(callback).toHaveBeenCalledOnce()
   press(child, 'keyup')
   press(child)

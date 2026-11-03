@@ -6,6 +6,9 @@ redirect_from:
   - framework/ember/guides/hotkey-recording
 ---
 
+> [!IMPORTANT]
+> `createHotkeysScope(...).useHotkeyRecorder` was removed in `@tanstack/ember-hotkeys` v0.9.0, so apps that set defaults but don't record hotkeys don't ship the recorder. Pass the scope as the third argument instead: `useHotkeyRecorder(this, options, this.hotkeys)`.
+
 `useHotkeyRecorder` lets users choose a hotkey by pressing it, as shortcut editors in system settings and IDEs do. You only need it if users can change your app's hotkeys. To save their choices and list them in a cheat sheet, pair it with [app hotkeys](./app-hotkeys).
 
 While any recorder is listening, registered hotkeys don't fire, so pressing `Mod+S` to record it doesn't also save. You don't need to disable them yourself.
@@ -248,6 +251,6 @@ export default class ShortcutSettings extends Component {
 | `onReject` | None | Called with the reason when a recording is rejected |
 | `platform` | Detected | The platform that decides what `Mod` means |
 
-To change the defaults for every recorder, create them from `createHotkeysScope`, such as `createHotkeysScope({ hotkeyRecorder: { idleTimeoutMs: 2000 } }).useHotkeyRecorder(this, options)`. The [`useHotkeyRecorder` reference](../reference/functions/useHotkeyRecorder.md) lists the types.
+To change the defaults for several recorders, pass `hotkeyRecorder` options to `createHotkeysScope`, and pass the scope as the third argument: `useHotkeyRecorder(this, options, createHotkeysScope({ hotkeyRecorder: { idleTimeoutMs: 2000 } }))`. Options you pass to `useHotkeyRecorder` take precedence. The [`useHotkeyRecorder` reference](../reference/functions/useHotkeyRecorder.md) lists the types.
 
 The [useHotkeyRecorder example](../examples/useHotkeyRecorder) records chords, and the [sequences example](../examples/useHotkeyRecorder-sequences) records sequences.

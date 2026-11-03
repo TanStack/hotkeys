@@ -20,6 +20,8 @@ import type { EmberHotkeyCommonOptions, EmberHotkeyDefinition } from './types'
 function copyHotkey(
   hotkey: EmberHotkeyDefinition['hotkey'],
 ): EmberHotkeyDefinition['hotkey'] {
+  // No hotkey (undefined or null) registers nothing; keep it as is.
+  if (hotkey == null) return hotkey
   if (typeof hotkey === 'string' || isAppHotkey(hotkey)) return hotkey
   if (isHotkeySequence(hotkey)) return [...hotkey]
   return { ...hotkey }

@@ -2,7 +2,9 @@ import { flushSync, mount, unmount } from 'svelte'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
 import Harness from './AppHotkeysHarness.svelte'
+import PropHarness from './CustomHotkeysPropHarness.svelte'
 import type { ChildApi } from './AppHotkeysChild.svelte'
+import type { CustomHotkeys } from '@tanstack/hotkeys'
 
 const appHotkeys = defineAppHotkeys({
   'doc.save': { hotkey: 'Mod+S', meta: { name: 'Save' } },
@@ -85,5 +87,46 @@ describe('app hotkeys', () => {
       await unmount(component)
     }
     expect(registrations()).toHaveLength(0)
+  })
+})
+
+describe('HotkeysProvider customHotkeys prop', () => {
+  it('applies saved data that changes after the first render', () => {
+    const onCustomHotkeysChange = vi.fn()
+    let api!: ChildApi
+    let setSaved!: (next: CustomHotkeys | null) => void
+    const component = mount(PropHarness, {
+      target: document.body,
+      props: {
+        appHotkeys,
+        onCustomHotkeysChange,
+        ready: (value: ChildApi) => (api = value),
+        setSaved: (set: (next: CustomHotkeys | null) => void) =>
+          (setSaved = set),
+      },
+    })
+    flushSync()
+    try {
+      setSaved({ 'doc.save': 'Mod+Shift+S' })
+      flushSync()
+      expect(api.custom.current).toEqual({ 'doc.save': 'Mod+Shift+S' })
+      expect(onCustomHotkeysChange).not.toHaveBeenCalled()
+
+      // The same value again keeps the user's change.
+      api.custom.setCustomHotkey('palette.open', 'Mod+K')
+      setSaved({ 'doc.save': 'Mod+Shift+S' })
+      flushSync()
+      expect(api.custom.current).toEqual({
+        'doc.save': 'Mod+Shift+S',
+        'palette.open': 'Mod+K',
+      })
+
+      // Another user's data replaces it.
+      setSaved({ 'nav.home': ['G', 'G'] })
+      flushSync()
+      expect(api.custom.current).toEqual({ 'nav.home': ['G', 'G'] })
+    } finally {
+      unmount(component)
+    }
   })
 })

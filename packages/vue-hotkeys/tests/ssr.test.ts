@@ -8,6 +8,7 @@ import {
 } from '@tanstack/hotkeys'
 import { describe, expect, it, vi } from 'vitest'
 import { HotkeysProvider } from '../src/HotkeysProvider'
+import { useFormatForDisplay } from '../src/useFormatForDisplay'
 import { useHeldKeyCodes } from '../src/useHeldKeyCodes'
 import { useHeldKeys } from '../src/useHeldKeys'
 import { useHotkey } from '../src/useHotkey'
@@ -144,5 +145,27 @@ describe('server rendering', () => {
       )
     }
     expect(snapshot()).toEqual(before)
+  })
+})
+
+describe('useFormatForDisplay on the server', () => {
+  const Label = defineComponent({
+    setup() {
+      const format = useFormatForDisplay()
+      return () => h('kbd', format('Mod+S'))
+    },
+  })
+
+  const render = (platform: 'mac' | 'windows') =>
+    renderToString(
+      createSSRApp({
+        render: () =>
+          h(HotkeysProvider, { defaultOptions: { platform } }, () => h(Label)),
+      }),
+    )
+
+  it("renders labels for the provider's platform", async () => {
+    expect(await render('mac')).toContain('<kbd>⌘ S</kbd>')
+    expect(await render('windows')).toContain('<kbd>Ctrl+S</kbd>')
   })
 })

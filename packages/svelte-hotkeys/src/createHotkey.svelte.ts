@@ -53,6 +53,7 @@ export type CreateAppHotkeyOptions<T extends AppHotkey = AppHotkey> =
  * sequence registers as its chord. An app hotkey uses its effective hotkey
  * from `HotkeysProvider` (including the user's custom hotkey) and its
  * declared meta and options, and registers nothing while unbound.
+ * `undefined`, `null`, or `''` registers nothing, for an optional shortcut.
  *
  * @example
  * ```svelte
@@ -64,17 +65,17 @@ export type CreateAppHotkeyOptions<T extends AppHotkey = AppHotkey> =
  * ```
  */
 export function createHotkey<T extends AppHotkey>(
-  hotkey: MaybeGetter<T>,
+  hotkey: MaybeGetter<T | null | undefined>,
   callback: HotkeyCallback,
   options?: MaybeGetter<CreateAppHotkeyOptions<T>>,
 ): void
 export function createHotkey<const T extends RegisterableHotkey>(
-  hotkey: MaybeGetter<T>,
+  hotkey: MaybeGetter<T | null | undefined>,
   callback: HotkeyCallback<HotkeyCallbackContextFor<T>>,
   options?: MaybeGetter<CreateHotkeyOptionsFor<T>>,
 ): void
 export function createHotkey(
-  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey>,
+  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey | null | undefined>,
   callback: HotkeyCallback,
   options: MaybeGetter<CreateHotkeyCommonOptions> = {},
 ): void {
@@ -83,7 +84,8 @@ export function createHotkey(
 
 /**
  * Create an attachment for an element-scoped hotkey: a chord, a sequence, or
- * an app hotkey that listens on the attached element.
+ * an app hotkey that listens on the attached element. `undefined`, `null`,
+ * or `''` registers nothing, for an optional shortcut.
  *
  * @example
  * ```svelte
@@ -95,17 +97,17 @@ export function createHotkey(
  * ```
  */
 export function createHotkeyAttachment<T extends AppHotkey>(
-  hotkey: MaybeGetter<T>,
+  hotkey: MaybeGetter<T | null | undefined>,
   callback: HotkeyCallback,
   options?: MaybeGetter<CreateAppHotkeyOptions<T>>,
 ): Attachment<HTMLElement>
 export function createHotkeyAttachment<const T extends RegisterableHotkey>(
-  hotkey: MaybeGetter<T>,
+  hotkey: MaybeGetter<T | null | undefined>,
   callback: HotkeyCallback<HotkeyCallbackContextFor<T>>,
   options?: MaybeGetter<CreateHotkeyOptionsFor<T>>,
 ): Attachment<HTMLElement>
 export function createHotkeyAttachment(
-  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey>,
+  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey | null | undefined>,
   callback: HotkeyCallback,
   options: MaybeGetter<CreateHotkeyCommonOptions> = {},
 ): Attachment<HTMLElement> {

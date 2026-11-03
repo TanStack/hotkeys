@@ -275,6 +275,62 @@ describe('useAppHotkeys and useCustomHotkeys', () => {
   })
 })
 
+describe('HotkeysProvider customHotkeys prop', () => {
+  function renderWithSaved(saved: CustomHotkeys<typeof appHotkeys> | null) {
+    let current = saved
+    const onCustomHotkeysChange = vi.fn()
+    const view = renderHook(() => useCustomHotkeys(), {
+      wrapper: ({ children }: { children: ComponentChildren }) => (
+        <HotkeysProvider
+          appHotkeys={appHotkeys}
+          // A new object on every render, like an inline JSON.parse.
+          customHotkeys={current && { ...current }}
+          onCustomHotkeysChange={onCustomHotkeysChange}
+        >
+          {/* A nested provider without appHotkeys shares the store. */}
+          <HotkeysProvider scope="nested">{children}</HotkeysProvider>
+        </HotkeysProvider>
+      ),
+    })
+    return {
+      ...view,
+      onCustomHotkeysChange,
+      setSaved(next: CustomHotkeys<typeof appHotkeys> | null) {
+        current = next
+        view.rerender()
+      },
+    }
+  }
+
+  it('applies saved data that loads after the first render', () => {
+    const view = renderWithSaved(null)
+    expect(view.result.current.customHotkeys).toEqual({})
+    view.setSaved({ 'doc.find': 'Mod+G' })
+    expect(view.result.current.customHotkeys).toEqual({ 'doc.find': 'Mod+G' })
+    expect(view.onCustomHotkeysChange).not.toHaveBeenCalled()
+  })
+
+  it('keeps user changes while the saved value stays the same', () => {
+    const view = renderWithSaved({ 'doc.find': 'Mod+G' })
+    act(() => {
+      view.result.current.setCustomHotkey('palette.open', 'Mod+K')
+    })
+    view.rerender()
+    expect(view.result.current.customHotkeys).toEqual({
+      'doc.find': 'Mod+G',
+      'palette.open': 'Mod+K',
+    })
+  })
+
+  it("replaces custom hotkeys with another user's saved data", () => {
+    const view = renderWithSaved({ 'doc.find': 'Mod+G' })
+    view.setSaved({ 'palette.open': 'Mod+K' })
+    expect(view.result.current.customHotkeys).toEqual({
+      'palette.open': 'Mod+K',
+    })
+  })
+})
+
 describe('useAppHotkeyList', () => {
   it('lists unmounted app hotkeys and tracks status as they mount', () => {
     const wrapper = wrapperWith({ customHotkeys: { 'doc.find': 'Mod+G' } })

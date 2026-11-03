@@ -21,6 +21,9 @@
         "@embroider/shared-internals",
         "@glint/tsserver-plugin"
       ]
+    },
+    "packages/octane-hotkeys": {
+      "ignore": ["tests/custom-hooks/**"]
     }
   }
 }

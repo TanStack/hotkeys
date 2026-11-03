@@ -204,6 +204,12 @@ const current = ref('inbox')
 
 Hotkeys in an inactive scope stay registered. Devtools list them under their inactive scope, and [`useAppHotkeyList`](./cheat-sheet-ui-helpers#list-every-app-hotkey) reports their app hotkeys as `'suspended'`.
 
+### Pages cached by `<KeepAlive>`
+
+A page cached by `<KeepAlive>` stops its hotkeys while it is hidden. Its hotkeys unregister, and its providers release their scopes, so a cached dialog's exclusive scope doesn't block the visible page. When the page shows again, its hotkeys and scopes come back. Recorders on a hidden page stop recording.
+
+This also applies to `<RouterView>` and `<NuxtPage keepalive>` pages that use `<KeepAlive>`.
+
 ## Exclusive scopes
 
 An exclusive scope suspends every other scope while it is active, including `'global'`. Use it for dialogs, menus, and other overlays that should own the keyboard:

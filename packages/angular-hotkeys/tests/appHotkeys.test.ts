@@ -1,4 +1,4 @@
-import { provideZonelessChangeDetection } from '@angular/core'
+import { provideZonelessChangeDetection, signal } from '@angular/core'
 import { TestBed } from '@angular/core/testing'
 import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
 import { afterEach, describe, expect, it, vi } from 'vitest'
@@ -119,6 +119,44 @@ describe('app hotkeys', () => {
       // @ts-expect-error requireReset applies only to chords
       injectHotkey(['D', 'D'], () => {}, { requireReset: true })
     })
+  })
+})
+
+describe('provideHotkeys customHotkeys signal', () => {
+  it('applies saved data that changes after the app starts', () => {
+    const saved = signal<CustomHotkeys<typeof appHotkeys> | null>(null)
+    const onChange = vi.fn()
+    TestBed.configureTestingModule({
+      providers: [
+        provideZonelessChangeDetection(),
+        provideHotkeys({
+          appHotkeys,
+          customHotkeys: saved,
+          onCustomHotkeysChange: onChange,
+        }),
+      ],
+    })
+    const custom = TestBed.runInInjectionContext(() => injectCustomHotkeys())
+    TestBed.flushEffects()
+
+    saved.set({ 'doc.save': 'Mod+Shift+S' })
+    TestBed.flushEffects()
+    expect(custom.customHotkeys()).toEqual({ 'doc.save': 'Mod+Shift+S' })
+    expect(onChange).not.toHaveBeenCalled()
+
+    // The same value again keeps the user's change.
+    custom.setCustomHotkey('palette.open', 'Mod+K')
+    saved.set({ 'doc.save': 'Mod+Shift+S' })
+    TestBed.flushEffects()
+    expect(custom.customHotkeys()).toEqual({
+      'doc.save': 'Mod+Shift+S',
+      'palette.open': 'Mod+K',
+    })
+
+    // Another user's data replaces it.
+    saved.set({ 'nav.home': ['G', 'G'] })
+    TestBed.flushEffects()
+    expect(custom.customHotkeys()).toEqual({ 'nav.home': ['G', 'G'] })
   })
 })
 

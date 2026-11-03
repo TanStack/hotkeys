@@ -19,18 +19,25 @@ import type { MaybeGetter } from './utils'
  * The hint shows only while the hotkey can fire: some registration of it is
  * enabled and in an active scope. A sequence reveals its hint from its first
  * step, and an app hotkey matches its registrations by id and uses its
- * effective hotkey (false while unbound). A hotkey on an element counts only while focus is inside it.
+ * effective hotkey (false while unbound). No hotkey (`undefined`, `null`, or
+ * `''`) returns false. A hotkey on an element counts only while focus is inside it.
  */
 export function useHotkeyHint(
   owner: object,
-  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey>,
+  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey | null | undefined>,
   options: MaybeGetter<HeldModifierOptions> = {},
 ): EmberHotkeyState<boolean> {
   const appHotkeys = trackPublishedAppHotkeys(owner)
   const manager = getHotkeyManager()
-  // Tracks registration, enabled, and scope changes.
-  const registrations = select(owner, manager.registrations, (state) => state)
+  // Tracks registration, enabled, and scope changes, but invalidates only
+  // when this hotkey's result changes (firing any hotkey publishes too).
+  const active = select(owner, manager.registrations, () =>
+    manager.hasActiveRegistration(read(hotkey)),
+  )
   return select(owner, getKeyStateTracker().store, (state) => {
+    // Read it first, so a render that returns false still tracks it. A
+    // hotkey registered while its modifier is held then shows.
+    const isActive = active.value
     const value = read(hotkey)
     const resolved = isAppHotkey(value)
       ? resolveAppHotkey(value, appHotkeys()).hotkey
@@ -38,8 +45,7 @@ export function useHotkeyHint(
     return (
       resolved !== null &&
       matchesHeldModifiers(resolved, state.heldKeys, read(options)) &&
-      registrations.value.size > 0 &&
-      manager.hasActiveRegistration(value)
+      isActive
     )
   })
 }

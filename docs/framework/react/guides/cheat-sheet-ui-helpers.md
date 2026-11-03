@@ -1,5 +1,5 @@
 ---
-title: Building a Keyboard Shortcut Cheat Sheet
+title: Building a Keyboard Shortcut Cheat Sheet in React
 id: cheat-sheet-ui-helpers
 description: Build a keyboard shortcut cheat sheet or help dialog in React from the hotkeys your app registers or declares, so the list always matches the real hotkeys.
 ---

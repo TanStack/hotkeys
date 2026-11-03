@@ -42,6 +42,8 @@ export class HotkeyScopesStateController implements ReactiveController {
    * disconnected.
    */
   public hostConnected(): void {
+    // Adding the controller again while connected calls this twice.
+    if (this._unsubscribe) return
     this._host.requestUpdate()
     if (isServer()) return
     const subscription = getHotkeyManager().scopes.subscribe(() =>

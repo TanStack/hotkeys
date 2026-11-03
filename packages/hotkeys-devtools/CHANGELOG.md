@@ -1,5 +1,51 @@
 # @tanstack/hotkeys-devtools
 
+## 1.8.1
+
+### Patch Changes
+
+- Updated dependencies [[`b5e429a`](https://github.com/TanStack/hotkeys/commit/b5e429ab26366a9ed188c9e7cd774fb93dbee1f1), [`d3adb24`](https://github.com/TanStack/hotkeys/commit/d3adb24ae133507b02401404f11b931b86fb2255), [`d3adb24`](https://github.com/TanStack/hotkeys/commit/d3adb24ae133507b02401404f11b931b86fb2255), [`d3adb24`](https://github.com/TanStack/hotkeys/commit/d3adb24ae133507b02401404f11b931b86fb2255), [`d3adb24`](https://github.com/TanStack/hotkeys/commit/d3adb24ae133507b02401404f11b931b86fb2255), [`04c7445`](https://github.com/TanStack/hotkeys/commit/04c7445967e059f4bffa050b49c9f9d65260a959)]:
+  - @tanstack/hotkeys@0.24.0
+
+## 1.8.0
+
+### Minor Changes
+
+- [#221](https://github.com/TanStack/hotkeys/pull/221) [`5bf96b6`](https://github.com/TanStack/hotkeys/commit/5bf96b68bba67b0e288bb7886c5f4516417a528f) - Server-rendered hotkey labels can match the user's platform.
+
+  - `detectPlatform(userAgent)` detects the platform from a user agent string, such as a request's `User-Agent` header. `null`, as from a missing header, works like no argument. A new `HotkeyPlatform` type names the result.
+  - Without a user agent, `detectPlatform()` returns `'linux'` on Node, Deno, Bun, and Cloudflare Workers instead of the server's own OS.
+  - In development, formatting a label on the server without a platform warns once.
+  - Providers accept `defaultOptions.platform`, which is also the default platform for their hotkeys and recorders.
+  - Adapters that render on the server add a formatter hook that uses the provider's platform: `useFormatForDisplay` (React, Preact, Octane, Vue, Ember), `createFormatForDisplay` (Solid), `getFormatForDisplay` (Svelte), and `injectFormatForDisplay` (Angular).
+  - Angular's `provideHotkeys` accepts `defaultOptions` as a getter that runs in the injection context, so it can read the request with `inject(REQUEST)`.
+
+### Patch Changes
+
+- Updated dependencies [[`5bf96b6`](https://github.com/TanStack/hotkeys/commit/5bf96b68bba67b0e288bb7886c5f4516417a528f)]:
+  - @tanstack/hotkeys@0.23.0
+
+## 1.7.3
+
+### Patch Changes
+
+- Updated dependencies [[`93b8b5e`](https://github.com/TanStack/hotkeys/commit/93b8b5e2102f1e973496fef8fbff086bfddc89f5)]:
+  - @tanstack/hotkeys@0.22.1
+
+## 1.7.2
+
+### Patch Changes
+
+- Updated dependencies [[`a080a84`](https://github.com/TanStack/hotkeys/commit/a080a848a117f91e99f27ec002ac2dcc3338d25c)]:
+  - @tanstack/hotkeys@0.22.0
+
+## 1.7.1
+
+### Patch Changes
+
+- Updated dependencies [[`a179ef6`](https://github.com/TanStack/hotkeys/commit/a179ef6d3410dfe6fc932e09f55330d16297507f), [`a179ef6`](https://github.com/TanStack/hotkeys/commit/a179ef6d3410dfe6fc932e09f55330d16297507f), [`a179ef6`](https://github.com/TanStack/hotkeys/commit/a179ef6d3410dfe6fc932e09f55330d16297507f)]:
+  - @tanstack/hotkeys@0.21.0
+
 ## 1.7.0
 
 ### Minor Changes

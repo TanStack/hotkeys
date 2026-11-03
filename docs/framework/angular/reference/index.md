@@ -33,6 +33,7 @@ title: "@tanstack/angular-hotkeys"
 - [injectAppHotkeys](functions/injectAppHotkeys.md)
 - [injectCustomHotkeys](functions/injectCustomHotkeys.md)
 - [injectDefaultHotkeysOptions](functions/injectDefaultHotkeysOptions.md)
+- [injectFormatForDisplay](functions/injectFormatForDisplay.md)
 - [injectHeldKeyCodes](functions/injectHeldKeyCodes.md)
 - [injectHeldKeys](functions/injectHeldKeys.md)
 - [injectHotkey](functions/injectHotkey.md)

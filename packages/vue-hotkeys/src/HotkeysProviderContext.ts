@@ -15,18 +15,26 @@ import {
   getHotkeysProviderScopeKey,
   mergeHotkeysProviderDefaults,
 } from '@tanstack/hotkeys/adapter'
+import { useLive } from './_useLive'
 import type { InjectionKey, MaybeRefOrGetter } from 'vue'
 import type {
   AppHotkeys,
   AppHotkeysStore,
   CustomHotkeys,
   HotkeyChordRecorderOptions,
+  HotkeyPlatform,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
 import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
 import type { UseHotkeyCommonOptions } from './useHotkey'
 
 export interface HotkeysProviderOptions {
+  /**
+   * The user's platform, for labels from `useFormatForDisplay`, hotkeys, and
+   * recorders. On a server, set it from the request with
+   * `detectPlatform(userAgent)`.
+   */
+  platform?: HotkeyPlatform
   /**
    * Defaults for every hotkey registered by `useHotkey` and `useHotkeys`.
    * `requireReset` applies to chords and `timeout` applies to sequences.
@@ -70,10 +78,12 @@ export interface ProvideHotkeysContextOptions {
    */
   appHotkeys?: MaybeRefOrGetter<AppHotkeys | undefined>
   /**
-   * Starting custom hotkeys, such as saved data. Read once; the context owns
-   * the state afterwards. Invalid entries are ignored with a warning.
+   * The user's saved custom hotkeys. When the value changes, such as after
+   * saved data loads or the user signs in, it replaces the current custom
+   * hotkeys. `undefined` leaves them unchanged; `null` clears them. Invalid
+   * entries are ignored with a warning.
    */
-  customHotkeys?: CustomHotkeys | null
+  customHotkeys?: MaybeRefOrGetter<CustomHotkeys | null | undefined>
   /** Called with the custom hotkeys after every change, ready to save. */
   onCustomHotkeysChange?: (customHotkeys: CustomHotkeys) => void
 }
@@ -85,8 +95,8 @@ export interface ProvideHotkeysContextOptions {
  *
  * Nest contexts to create hotkey scopes. A nested context inherits app
  * hotkeys and merges default options. With `scope`, its hotkeys fire only
- * while the component is mounted and enabled; with `exclusive`, only its
- * hotkeys fire.
+ * while the component is mounted, enabled, and not hidden by `<KeepAlive>`;
+ * with `exclusive`, only its hotkeys fire.
  *
  * @example
  * ```ts
@@ -105,7 +115,7 @@ export function provideHotkeysContext(
   const appHotkeys = toValue(options.appHotkeys)
   const store = appHotkeys
     ? createAppHotkeysStore(appHotkeys, {
-        customHotkeys: options.customHotkeys,
+        customHotkeys: toValue(options.customHotkeys),
         onCustomHotkeysChange: (custom) =>
           options.onCustomHotkeysChange?.(custom),
       })
@@ -119,14 +129,26 @@ export function provideHotkeysContext(
         if (next) store.setAppHotkeys(next)
       },
     )
+    // Apply saved custom hotkeys whose value changes, such as data that
+    // loads after setup. Deep, so changes made in place are seen too.
+    watch(
+      () => toValue(options.customHotkeys),
+      (customHotkeys) => store.setOptions({ customHotkeys }),
+      { deep: true },
+    )
     // Publish the store so devtools can list declared hotkeys.
     if (typeof document !== 'undefined') {
       onScopeDispose(publishAppHotkeysStore(store))
     }
   }
 
+  // A page cached by <KeepAlive> releases its scope while hidden.
+  const live = useLive()
   const active = computed(
-    () => (parent?.enabled ?? true) && toValue(options.enabled) !== false,
+    () =>
+      live.value &&
+      (parent?.enabled ?? true) &&
+      toValue(options.enabled) !== false,
   )
   const defaultOptions = computed(() =>
     mergeHotkeysProviderDefaults(

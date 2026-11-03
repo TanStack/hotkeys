@@ -3,7 +3,7 @@ id: HotkeysProviderProps
 title: HotkeysProviderProps
 ---
 
-Defined in: [HotkeysProvider.tsx:52](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L52)
+Defined in: [HotkeysProvider.tsx:59](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L59)
 
 ## Extends
 
@@ -17,7 +17,7 @@ Defined in: [HotkeysProvider.tsx:52](https://github.com/TanStack/hotkeys/blob/ma
 optional appHotkeys?: Readonly<Record<string, AppHotkey<string, HotkeyChord | HotkeySequence | null>>>;
 ```
 
-Defined in: [HotkeysProvider.tsx:58](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L58)
+Defined in: [HotkeysProvider.tsx:65](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L65)
 
 Every app hotkey, from `defineAppHotkeys`. Read when the provider is
 created; listed by `createAppHotkeyList` whether or not they are registered.
@@ -30,7 +30,7 @@ created; listed by `createAppHotkeyList` whether or not they are registered.
 children: Element;
 ```
 
-Defined in: [HotkeysProvider.tsx:53](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L53)
+Defined in: [HotkeysProvider.tsx:60](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L60)
 
 ***
 
@@ -42,10 +42,12 @@ optional customHotkeys?:
   | null;
 ```
 
-Defined in: [HotkeysProvider.tsx:63](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L63)
+Defined in: [HotkeysProvider.tsx:72](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L72)
 
-Starting custom hotkeys, such as saved data. Read once; the provider owns
-the state afterwards. Invalid entries are ignored with a warning.
+The user's saved custom hotkeys. When the value changes, such as after
+saved data loads or the user signs in, it replaces the current custom
+hotkeys. `undefined` leaves them unchanged; `null` clears them. Invalid
+entries are ignored with a warning.
 
 ***
 
@@ -55,7 +57,7 @@ the state afterwards. Invalid entries are ignored with a warning.
 optional defaultOptions?: HotkeysProviderOptions;
 ```
 
-Defined in: [HotkeysProvider.tsx:67](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L67)
+Defined in: [HotkeysProvider.tsx:76](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L76)
 
 Merged with the parent provider's defaults.
 
@@ -67,7 +69,7 @@ Merged with the parent provider's defaults.
 optional onCustomHotkeysChange?: (customHotkeys) => void;
 ```
 
-Defined in: [HotkeysProvider.tsx:65](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L65)
+Defined in: [HotkeysProvider.tsx:74](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L74)
 
 Called with the custom hotkeys after every change, ready to save.
 

@@ -8,12 +8,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@solidjs/web": "^2.0.0-rc.19",
-    "@tanstack/solid-hotkeys": "^0.18.0",
-    "solid-js": "^2.0.0-rc.19"
+    "@solidjs/web": "^2.0.0-rc.20",
+    "@tanstack/solid-hotkeys": "^0.21.0",
+    "solid-js": "^2.0.0-rc.20"
   },
   "devDependencies": {
-    "@solidjs/vite-plugin": "^3.0.0-next.52",
+    "@solidjs/vite-plugin": "^3.0.0-next.55",
     "vite": "^8.3.2"
   }
 }

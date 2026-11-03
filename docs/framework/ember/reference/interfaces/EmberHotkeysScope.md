@@ -3,9 +3,11 @@ id: EmberHotkeysScope
 title: EmberHotkeysScope
 ---
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:12](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L12)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L18)
 
-Helpers, modifiers, and recorder factories with shared defaults. Owners retain their own cleanup.
+Helpers and modifiers with shared defaults. Owners retain their own cleanup.
+Pass the scope to `useHotkeyRecorder` to apply its recorder defaults, and to
+`useFormatForDisplay` to apply its `platform`.
 
 ## Properties
 
@@ -15,7 +17,7 @@ Helpers, modifiers, and recorder factories with shared defaults. Owners retain t
 onHotkey: typeof onHotkey;
 ```
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:13](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L13)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L19)
 
 ***
 
@@ -25,7 +27,7 @@ Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:13](https://github
 onHotkeys: typeof onHotkeys;
 ```
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L14)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L20)
 
 ***
 
@@ -35,153 +37,7 @@ Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:14](https://github
 useHotkey: typeof useHotkey;
 ```
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L15)
-
-***
-
-### useHotkeyRecorder
-
-```ts
-useHotkeyRecorder: {
-  (owner, options): EmberHotkeyRecorder<HotkeyChord>;
-  (owner, options): EmberHotkeyRecorder;
-  (owner, options): EmberHotkeyRecorder;
-  (owner, options): EmberHotkeyRecorder<HotkeyChord>;
-  (owner, options): EmberHotkeyRecorder;
-};
-```
-
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L17)
-
-#### Call Signature
-
-```ts
-(owner, options): EmberHotkeyRecorder<HotkeyChord>;
-```
-
-Creates an owned recorder with autotracked state and current callback
-options. With the default `maxSteps: 1`, the first valid chord is recorded.
-With a larger `maxSteps`, each chord adds a step; the recording commits on
-Enter (unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at
-`maxSteps`, and `onRecord` receives a chord (one step) or a sequence.
-
-##### Parameters
-
-###### owner
-
-`object`
-
-###### options
-
-`HotkeyChordRecorderOptions`
-
-##### Returns
-
-[`EmberHotkeyRecorder`](EmberHotkeyRecorder.md)\<`HotkeyChord`\>
-
-#### Call Signature
-
-```ts
-(owner, options): EmberHotkeyRecorder;
-```
-
-Creates an owned recorder with autotracked state and current callback
-options. With the default `maxSteps: 1`, the first valid chord is recorded.
-With a larger `maxSteps`, each chord adds a step; the recording commits on
-Enter (unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at
-`maxSteps`, and `onRecord` receives a chord (one step) or a sequence.
-
-##### Parameters
-
-###### owner
-
-`object`
-
-###### options
-
-`HotkeySequenceRecorderOptions`
-
-##### Returns
-
-[`EmberHotkeyRecorder`](EmberHotkeyRecorder.md)
-
-#### Call Signature
-
-```ts
-(owner, options): EmberHotkeyRecorder;
-```
-
-Creates an owned recorder with autotracked state and current callback
-options. With the default `maxSteps: 1`, the first valid chord is recorded.
-With a larger `maxSteps`, each chord adds a step; the recording commits on
-Enter (unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at
-`maxSteps`, and `onRecord` receives a chord (one step) or a sequence.
-
-##### Parameters
-
-###### owner
-
-`object`
-
-###### options
-
-() => `HotkeySequenceRecorderOptions`
-
-##### Returns
-
-[`EmberHotkeyRecorder`](EmberHotkeyRecorder.md)
-
-#### Call Signature
-
-```ts
-(owner, options): EmberHotkeyRecorder<HotkeyChord>;
-```
-
-Creates an owned recorder with autotracked state and current callback
-options. With the default `maxSteps: 1`, the first valid chord is recorded.
-With a larger `maxSteps`, each chord adds a step; the recording commits on
-Enter (unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at
-`maxSteps`, and `onRecord` receives a chord (one step) or a sequence.
-
-##### Parameters
-
-###### owner
-
-`object`
-
-###### options
-
-() => `HotkeyChordRecorderOptions`
-
-##### Returns
-
-[`EmberHotkeyRecorder`](EmberHotkeyRecorder.md)\<`HotkeyChord`\>
-
-#### Call Signature
-
-```ts
-(owner, options): EmberHotkeyRecorder;
-```
-
-Creates an owned recorder with autotracked state and current callback
-options. With the default `maxSteps: 1`, the first valid chord is recorded.
-With a larger `maxSteps`, each chord adds a step; the recording commits on
-Enter (unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at
-`maxSteps`, and `onRecord` receives a chord (one step) or a sequence.
-
-##### Parameters
-
-###### owner
-
-`object`
-
-###### options
-
-() => `HotkeyRecorderOptions`
-
-##### Returns
-
-[`EmberHotkeyRecorder`](EmberHotkeyRecorder.md)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L21)
 
 ***
 
@@ -191,4 +47,4 @@ Enter (unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at
 useHotkeys: typeof useHotkeys;
 ```
 
-Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L16)
+Defined in: [packages/ember-hotkeys/src/createHotkeysScope.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/createHotkeysScope.ts#L22)

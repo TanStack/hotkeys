@@ -10,11 +10,9 @@ function isRef(value: unknown): value is React.RefObject<HTMLElement | null> {
 }
 
 /**
- * Resolves a hook target. A ref that is still null skips registration;
- * a null target means document.
+ * Resolves a hook target. A null target, or a ref that is still null, skips
+ * registration. Omit the target to listen on the document.
  */
-export function resolveTarget(
-  target: UseHotkeyTarget,
-): Target | null | undefined {
-  return isRef(target) ? target.current : (target ?? undefined)
+export function resolveTarget(target: UseHotkeyTarget): Target | null {
+  return isRef(target) ? target.current : target
 }

@@ -21,6 +21,7 @@ This guide describes each default, why it was chosen, and how to change it.
 | When a chord fires | On keydown, and again on each automatic repeat while held | `eventType`, `requireReset` |
 | Where listeners attach | `document` | `target` |
 | When hotkeys run | After the keyboard handlers of widgets inside the target (bubble phase) | `capture` |
+| Keys another listener prevented | Hotkeys still fire | `ignoreDefaultPrevented` |
 | Time between sequence steps | 1 second | `timeout` |
 | Duplicate registrations | Allowed, with a console warning in development | `conflictBehavior` |
 | Recording | Records key positions; Escape cancels | `recordBy`, recorder options |
@@ -86,7 +87,7 @@ The exception is Shift that is needed to type a symbol. On a US layout, `?` is t
 Two kinds of key events never match ordinary shortcuts:
 
 - **AltGr.** On Windows and Linux, AltGr types characters such as `@` and `€` on many layouts. A character it types matches a binding for that character, but never a `Control+Alt` shortcut, so typing an email address does not run a command. When AltGr+key types nothing new, such as AltGr+Home, or AltGr+F on a layout with nothing on that key, it does not fire `Home` or `F`. Windows reports AltGr as Control+Alt, so there it fires `Control+Alt` shortcuts instead: AltGr+Home triggers `Control+Alt+Home`, as in native Windows apps.
-- **IME composition.** While the user composes text with an input method editor, such as for Japanese, Chinese, or Korean, character and physical bindings do not fire. Named keys such as `Escape` still do.
+- **IME composition.** While the user composes text with an input method editor, such as for Japanese, Chinese, or Korean, no hotkey fires, because the editor uses those keys: Enter commits the text, Escape cancels it, and the arrow keys pick a candidate. This includes the Enter that Safari sends right after composition ends.
 
 ## Typing in inputs does not trigger shortcuts
 
@@ -171,7 +172,7 @@ It isn't the default because turning a hotkey off is often how an app hands a ke
 
 - **Editing and clipboard shortcuts.** A grid that enables `Mod+C`, `Mod+A`, or `Mod+Z` only while cells are selected blocks native copy, select all, and undo the rest of the time. `Mod` chords fire in text fields by default, so this includes undo while typing.
 - **Single keys behind an [off switch](#single-key-shortcuts-need-an-off-switch).** When a user turns off single-key shortcuts, `Space` and the arrow keys still don't scroll, and `/` still doesn't open Firefox's quick find.
-- **Focus and native dialogs.** A disabled `Tab` hotkey keeps focus from moving off buttons and links, and a disabled `Escape` hotkey stops a native `<dialog>` from closing.
+- **Focus.** A disabled `Tab` hotkey keeps focus from moving off buttons and links.
 
 If you set `'always'` in shared defaults, set `preventDefault: true` on hotkeys like these, so the browser takes over while they're off.
 
@@ -189,9 +190,9 @@ Shortcuts with `Mod`, Control, or Alt, and keys that don't type characters, such
 
 Chords fire on `keydown`, when the user presses the key, rather than on release. Holding a key fires the chord again on each automatic repeat, as holding Control+Z in a text editor repeats undo.
 
-For a toggle, such as opening and closing a panel, repeating is usually wrong: holding the key would make the panel flicker. Set `requireReset: true` to fire once per press. Releasing the key or any of its modifiers allows the chord to fire again.
+For a toggle, such as opening and closing a panel, repeating is usually wrong: holding the key would make the panel flicker. Set `requireReset: true` to fire once per press. Releasing the key or any of its modifiers allows the chord to fire again. So does a new press that isn't an automatic repeat, so a lost keyup, such as the one macOS drops while Command is held, never blocks the chord.
 
-Set `eventType: 'keyup'` to fire on release instead, for example to end a mode that started when a key went down.
+Set `eventType: 'keyup'` to fire on release instead, for example to end a mode that started when a key went down. A keyup chord fires when the user releases its key or one of its modifiers, whichever comes first, unless another key was pressed in between. So `Mod+K` on keyup works on macOS, which sends no keyup for a key released while Command is held. A keyup chord also prevents its keydown, so the browser doesn't act on it, such as opening the Save dialog for `Mod+S`. Set `preventDefault: false` to let the browser act.
 
 ## Listeners attach to the document
 
@@ -207,9 +208,201 @@ No listeners are attached during server rendering.
 
 Hotkeys listen during the bubble phase, so a focused widget's own keyboard handler runs first. If a tab strip, editor, or menu handles a key and stops propagation, your hotkey never sees it. Usually that is what users expect: the widget they are working in should win.
 
+React, Svelte, Solid, and Octane run `onKeyDown` handlers from one listener on the app's root or the document. In those frameworks, a hotkey with an element target runs after all of those handlers, including handlers on elements outside its target, such as a dialog that closes on Escape. Its `stopPropagation` can't keep the key from them. In the other frameworks, handlers outside the target run after the hotkey.
+
 Set `capture: true` when an app-level shortcut has to win anyway. It works with both `keydown` and `keyup` hotkeys. For example, a tab strip that ignores modifiers might treat `Mod+Backspace` as Backspace and close a tab before a document-level "close view" hotkey runs. With `capture: true`, the hotkey runs first, and the default `stopPropagation: true` keeps the key from the tab strip. Set `stopPropagation: false` if the widget should still receive it.
 
 Capture doesn't change which keys a hotkey skips. Typing in inputs and keys that focused controls keep for themselves are still skipped while `ignoreInputs` is on.
+
+## Component libraries that handle the same keys
+
+Component libraries close dialogs, menus, and popovers on Escape, and editors handle chords such as `Mod+B`. When a hotkey uses the same key, one key press can reach both. What happens depends on where the library listens and whether it calls `preventDefault()`.
+
+### Skip keys a library already handled
+
+Many libraries call `preventDefault()` on a key they handle and let it keep going. Your hotkey then runs too, so one Escape press closes a dropdown and also clears the user's selection. Set `ignoreDefaultPrevented: true` in your shared defaults (see [Changing the defaults](#changing-the-defaults)) so hotkeys skip a key that another listener already prevented. A hotkey's own `preventDefault` doesn't count, so hotkeys on an element and on the document still work together.
+
+The option sees a library's `preventDefault()` only when the library's listener runs before your hotkey's: on an element inside the page, or on the document during the capture phase. A library that adds a document listener when an overlay opens runs after your hotkeys, so the option can't help.
+
+<!-- ::start:framework -->
+
+# React
+
+Turn it on if you use:
+
+- Radix UI or shadcn/ui, including vaul and cmdk, which close dialogs, popovers, selects, and menus on Escape
+- Chakra UI or Ark UI
+- react-select
+- Tiptap or ProseMirror, CodeMirror, or Lexical, which handle chords such as `Mod+B` and `Mod+Z` in the editor
+
+React Aria, Base UI, MUI's dialogs and menus, Headless UI's menus and listboxes, and Monaco stop the keys they handle, so your hotkeys never see them.
+
+# Preact
+
+Component libraries reach Preact through `preact/compat` and behave as they do in React. Turn the option on if you use:
+
+- Radix UI or shadcn/ui, including vaul and cmdk
+- Chakra UI or Ark UI
+- react-select
+- Tiptap or ProseMirror, CodeMirror, or Lexical
+
+# Solid
+
+Turn it on if you use Ark UI.
+
+Kobalte, and solid-ui and shadcn-solid built on it, call `preventDefault()` on Escape from a document listener that is added when the overlay opens, so it runs after your hotkeys. Corvu doesn't call `preventDefault()`. For these libraries, see [Let an open overlay handle Escape](#let-an-open-overlay-handle-escape).
+
+# Angular
+
+Turn it on if you use:
+
+- Angular Material or the Angular CDK: dialogs, bottom sheets, menus, and selects
+- spartan/ui
+- ng-zorro-antd: modals, selects, tooltips, and popovers
+
+PrimeNG's dialogs, drawers, and popovers, and ng-bootstrap's dropdowns and typeaheads, handle Escape after your hotkeys. See [Let an open overlay handle Escape](#let-an-open-overlay-handle-escape).
+
+# Vue
+
+Turn it on if you use:
+
+- Ark UI
+- Tiptap or ProseMirror, or CodeMirror
+- PrimeVue's CascadeSelect, TreeSelect, ContextMenu, TieredMenu, or DatePicker
+
+Reka UI, and shadcn-vue and Nuxt UI built on it, don't call `preventDefault()` on Escape, unlike Radix UI in React. Neither do most other Vue overlay libraries. For these libraries, see [Let an open overlay handle Escape](#let-an-open-overlay-handle-escape).
+
+# Svelte
+
+Turn it on if you use Skeleton or Ark UI.
+
+Bits UI, and shadcn-svelte built on it, and Melt UI call `preventDefault()` on Escape from a document listener that is added when the overlay opens, so it runs after your hotkeys. For these libraries, see [Let an open overlay handle Escape](#let-an-open-overlay-handle-escape).
+
+# Lit
+
+Turn it on if you use the menus and selects of Material Web, Spectrum Web Components, or FAST.
+
+# Alpine
+
+Most Alpine components handle Escape with `@keydown.escape.window` and don't call `preventDefault()`, so the option rarely helps. See [Let an open overlay handle Escape](#let-an-open-overlay-handle-escape).
+
+# Ember
+
+Turn it on if you use ember-headlessui's menus. ember-power-select and ember-basic-dropdown close on Escape without calling `preventDefault()`. See [Let an open overlay handle Escape](#let-an-open-overlay-handle-escape).
+
+# Octane
+
+Turn it on if a component in your app calls `preventDefault()` on keys it handles and lets them keep going.
+
+<!-- ::end:framework -->
+
+### Let an open overlay handle Escape
+
+A native modal `<dialog>` or an open popover gets Escape on its own, except a `popover="manual"` popover, which doesn't close on Escape. While one is open, hotkeys outside it skip Escape, so the browser closes it and your hotkey doesn't run. A hotkey targeted at the dialog or popover, or at an element inside it, still receives Escape. TanStack Hotkeys finds these elements in the document, not inside shadow roots.
+
+For other overlays, when the option above can't help, a global `Escape` hotkey and an open overlay both act on one key press:
+
+- With the default `preventDefault` and `stopPropagation`, the hotkey takes the key press. A library that listens on `window` never receives a key that stopped propagating at the document, so the overlay stays open and your hotkey runs.
+- A library that closes without calling `preventDefault()`, or after your hotkeys run, closes the overlay, and your hotkey runs too.
+
+Give the overlay its own exclusive scope while it's open, around the overlay's content. Global hotkeys are suspended while the scope is active, and a hotkey that can't fire leaves the key alone, so Escape reaches only the overlay. For a menu or popover, you can instead pass `enabled: !open` to the global hotkey.
+
+<!-- ::start:framework -->
+
+# React
+
+These overlays stay open:
+
+- Headless UI's `Dialog`
+- Ant Design's modals, drawers, dropdowns, and popovers
+
+Mantine's modals, drawers, popovers, menus, and comboboxes close on Escape without calling `preventDefault()`, so they close and your hotkey runs too.
+
+See [scopes](../framework/react/guides/hotkeys-provider-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
+
+# Preact
+
+These overlays stay open:
+
+- Headless UI's `Dialog`
+- Ant Design's modals, drawers, dropdowns, and popovers
+
+Mantine's overlays close on Escape and your hotkey runs too.
+
+See [scopes](../framework/preact/guides/hotkeys-provider-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
+
+# Solid
+
+Kobalte, solid-ui, shadcn-solid, and Corvu overlays close on Escape and your hotkey runs too.
+
+See [scopes](../framework/solid/guides/hotkeys-provider-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
+
+# Angular
+
+These overlays stay open:
+
+- ng-bootstrap's modals and offcanvas
+
+PrimeNG's dialogs, drawers, and popovers, and ng-bootstrap's dropdowns and typeaheads, close on Escape and your hotkey runs too.
+
+See [scopes](../framework/angular/guides/provide-hotkeys-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
+
+# Vue
+
+These overlays stay open:
+
+- Reka UI, shadcn-vue, and Nuxt UI: dialogs, popovers, selects, and menus
+- Headless UI's `Dialog`
+- Vuetify's dialogs and menus
+- Naive UI's modals, drawers, and dropdowns
+- Quasar's dialogs and menus
+
+PrimeVue's dialogs, drawers, and popovers, and Element Plus's dialogs, drawers, and dropdowns, close on Escape and your hotkey runs too.
+
+See [scopes](../framework/vue/guides/hotkeys-provider-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
+
+# Svelte
+
+Bits UI, shadcn-svelte, Melt UI, and Flowbite Svelte overlays close on Escape and your hotkey runs too.
+
+See [scopes](../framework/svelte/guides/hotkeys-provider-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
+
+# Lit
+
+These overlays stay open:
+
+- Material Web dialogs, which keep their native `<dialog>` inside a shadow root
+- Shoelace dialogs, drawers, and dropdowns, in browsers with `CloseWatcher`
+- Vaadin overlays
+
+Web Awesome and Ionic overlays close on Escape and your hotkey runs too.
+
+See [scopes](../framework/lit/guides/hotkey-manager.md#activate-a-scope) to give an overlay its own scope.
+
+# Alpine
+
+These overlays stay open:
+
+- Pines and Penguin UI modals, slide-overs, and dropdowns
+- Any component that closes with `@keydown.escape.window`
+
+Flowbite's modals, drawers, and popovers close on Escape and your hotkey runs too.
+
+See [scopes](../framework/alpine/guides/hotkey-manager.md#activate-a-scope) to give an overlay its own scope.
+
+# Ember
+
+ember-power-select, ember-basic-dropdown, and ember-bootstrap close on Escape and your hotkey runs too.
+
+See [scopes](../framework/ember/guides/hotkey-manager.md#activate-a-scope) to give an overlay its own scope.
+
+# Octane
+
+No component library for Octane is widespread yet. Native modal dialogs and popovers that close on Escape get it on their own, as in every framework.
+
+See [scopes](../framework/octane/guides/hotkeys-provider-and-scopes.md#group-hotkeys-into-scopes) to give an overlay its own scope.
+
+<!-- ::end:framework -->
 
 ## Sequences allow 1 second between steps
 
@@ -245,7 +438,7 @@ While recording:
 
 ## Held keys reset when the window loses focus
 
-Key state tracking marks a key as held on keydown and releases it on keyup. If the window loses focus while a key is down, such as when the user switches apps with Command+Tab, the browser never delivers the keyup. Held keys are therefore cleared when the window loses focus.
+Key state tracking marks a key as held on keydown and releases it on keyup. If the window loses focus while a key is down, such as when the user switches apps with Command+Tab, the browser never delivers the keyup. Held keys are therefore cleared when the window loses focus, and when the page is hidden, such as when the user switches tabs. A native context menu also takes the keyup, so opening one, with the ContextMenu key or a right-click, clears every held key except the modifiers the event still reports. A context menu the page shows itself, by calling `preventDefault()` on the `contextmenu` event, keeps focus and clears nothing.
 
 On macOS, the system can also swallow the keyup of a key pressed with Command. Releasing a modifier clears any other keys still marked as held, so no key is stuck.
 

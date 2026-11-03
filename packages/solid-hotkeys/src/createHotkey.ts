@@ -54,6 +54,7 @@ type MaybeAccessor<T> = T | (() => T)
  * sequence registers as its chord. An app hotkey uses its effective hotkey
  * from `HotkeysProvider` (including the user's custom hotkey) and its
  * declared meta and options, and registers nothing while unbound.
+ * `undefined`, `null`, or `''` registers nothing, for an optional shortcut.
  *
  * @example
  * ```tsx
@@ -63,17 +64,17 @@ type MaybeAccessor<T> = T | (() => T)
  * ```
  */
 export function createHotkey<T extends AppHotkey>(
-  hotkey: MaybeAccessor<T>,
+  hotkey: MaybeAccessor<T | null | undefined>,
   callback: HotkeyCallback,
   options?: MaybeAccessor<CreateAppHotkeyOptions<T>>,
 ): void
 export function createHotkey<const T extends RegisterableHotkey>(
-  hotkey: MaybeAccessor<T>,
+  hotkey: MaybeAccessor<T | null | undefined>,
   callback: HotkeyCallback<HotkeyCallbackContextFor<T>>,
   options?: MaybeAccessor<CreateHotkeyOptionsFor<T>>,
 ): void
 export function createHotkey(
-  hotkey: MaybeAccessor<RegisterableHotkey | AppHotkey>,
+  hotkey: MaybeAccessor<RegisterableHotkey | AppHotkey | null | undefined>,
   callback: HotkeyCallback,
   options: MaybeAccessor<CreateHotkeyCommonOptions> = {},
 ): void {

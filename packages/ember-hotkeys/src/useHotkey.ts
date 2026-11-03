@@ -12,10 +12,14 @@ import type { EmberHotkeyCommonOptions } from './types'
  * `"Mod+S"`, a sequence such as `(array "G" "G")`, or an app hotkey.
  *
  * Use `{{useHotkey "Mod+S" this.save enabled=this.enabled}}` in a template.
+ * `undefined`, `null`, or `''` registers nothing, for an optional shortcut.
  */
 export class UseHotkey extends Helper<{
   Args: {
-    Positional: [RegisterableHotkey | AppHotkey, HotkeyCallback]
+    Positional: [
+      RegisterableHotkey | AppHotkey | null | undefined,
+      HotkeyCallback,
+    ]
     Named: EmberHotkeyCommonOptions
   }
   Return: void
@@ -23,7 +27,10 @@ export class UseHotkey extends Helper<{
   private bindings = createOwnedBindings(this)
 
   compute(
-    [hotkey, callback]: [RegisterableHotkey | AppHotkey, HotkeyCallback],
+    [hotkey, callback]: [
+      RegisterableHotkey | AppHotkey | null | undefined,
+      HotkeyCallback,
+    ],
     options: EmberHotkeyCommonOptions,
   ): void {
     this.bindings.set([{ hotkey, callback, options } as never], {})

@@ -107,6 +107,12 @@ A plain options object is read once, so it keeps the values it had when the comp
 
 That lets you register a hotkey the user chose, such as one from the [hotkey recorder](./custom-hotkey-recording). To let users change hotkeys across your app and save their choices, see [App Hotkeys](./app-hotkeys).
 
+### Optional hotkeys
+
+A hotkey of `undefined`, `null`, or `''` registers nothing, so a component can take an optional shortcut. When the hotkey changes to one of these values, its registration is removed. When it changes back to a hotkey, it registers again. Hints for no hotkey are hidden.
+
+To keep a hotkey registered, and listed in devtools and cheat sheets, but stop it from firing, set `enabled: false` instead.
+
 ### Write a chord as a string or an object
 
 Write most chords as strings. Your editor autocompletes them, and TypeScript rejects a string that isn't a valid chord:
@@ -160,6 +166,7 @@ injectHotkey('Enter', () => this.submit(), { ignoreInputs: false })
 | `preventDefault` | `true` | Stops the browser's own action, such as the Save dialog for `Mod+S`. `'always'` also stops it while the hotkey can't fire. |
 | `stopPropagation` | `true` | Stops the key press from reaching other listeners |
 | `ignoreInputs` | `'auto'` | Skips key presses that type in a text field or operate a focused control. See [Typing in inputs does not trigger shortcuts](../../../guides/sensible-defaults.md#typing-in-inputs-does-not-trigger-shortcuts). |
+| `ignoreDefaultPrevented` | `false` | Skips a key press that another listener already handled with `preventDefault()`, such as a component library's dialog closing on Escape. See [Component libraries that handle the same keys](../../../guides/sensible-defaults.md#component-libraries-that-handle-the-same-keys). |
 | `eventType` | `'keydown'` | Fires on `'keydown'` or `'keyup'` |
 | `capture` | `false` | Runs before the keyboard handlers of elements inside the target. See [Hotkeys run after the page's own handlers](../../../guides/sensible-defaults.md#hotkeys-run-after-the-pages-own-handlers). |
 | `requireReset` | `false` | Chords only. Fires once per press instead of again on each automatic repeat while the key is held. |
@@ -263,7 +270,7 @@ export class RichTextEditorComponent {
         { hotkey: 'Mod+I', callback: () => this.toggleItalic() },
         { hotkey: 'Mod+Z', callback: () => this.undo(), options: { enabled: this.canUndo() } },
       ],
-      () => ({ target: this.editor()?.nativeElement ?? null }),
+      { target: this.editor },
     )
   }
 }
@@ -344,7 +351,7 @@ When a group of hotkeys turns on and off together, use [scopes](./provide-hotkey
 
 ## Hotkey targets
 
-A hotkey listens on `document` by default, so it works wherever focus is on the page. Set `target` to an element, `document`, or `window` to listen somewhere else. Read the element with `viewChild`, and pass the options as a function:
+A hotkey listens on `document` by default, so it works wherever focus is on the page. Set `target` to an element, an `ElementRef`, `document`, or `window` to listen somewhere else. To listen on an element in the template, pass its `viewChild` signal:
 
 ```ts
 import { Component, ElementRef, viewChild } from '@angular/core'
@@ -359,14 +366,12 @@ export class PanelComponent {
 
   constructor() {
     // Fires only while the panel, or something inside it, has focus
-    injectHotkey('Escape', () => this.closePanel(), () => ({
-      target: this.panel()?.nativeElement ?? null,
-    }))
+    injectHotkey('Escape', () => this.closePanel(), { target: this.panel })
   }
 }
 ```
 
-A `null` target waits until the element is rendered.
+The hotkey reads the signal, so it registers once the element renders and moves if the element changes. A `null` target, or a signal of `undefined`, registers nothing until the element exists.
 
 > [!NOTE]
 > An element receives key presses only while it, or something inside it, has focus. Give it a `tabindex` if it isn't focusable already.
@@ -384,7 +389,7 @@ Use a target for hotkeys that belong to a focusable element, such as a list or a
 
 ## Handle duplicate hotkeys
 
-When you register a hotkey that is already registered on the same target and in the same scope, TanStack Hotkeys logs a warning in development, and both callbacks run. Set `conflictBehavior` to change that:
+When you register a hotkey that is already registered on the same target, in the same scope, and for the same event type, TanStack Hotkeys logs a warning in development, and both callbacks run. Set `conflictBehavior` to change that:
 
 - `'warn'` (default) logs a warning in development and keeps both registrations.
 - `'error'` throws an error.

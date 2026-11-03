@@ -1,5 +1,5 @@
 ---
-title: Multi-Key Sequences and Vim-Style Shortcuts
+title: Multi-Key Sequences and Vim-Style Shortcuts in React
 id: sequences
 description: Register multi-key sequences in React, such as G then H, set the time allowed between steps, and show users which keys they've pressed so far.
 ---
@@ -104,6 +104,16 @@ useHotkeys([
 ```
 
 Sharing first steps isn't a duplicate, so TanStack Hotkeys doesn't warn. Two sequences with all the same steps are duplicates. See [Handle duplicate hotkeys](./hotkeys#handle-duplicate-hotkeys).
+
+### A sequence that starts a longer one
+
+When one sequence is the start of another, such as `['G', 'G']` and `['G', 'G', 'G']`, the shorter one doesn't wait to see whether the user is typing the longer one. It runs as soon as its last key is pressed:
+
+- The second G runs `['G', 'G']`.
+- The third G runs `['G', 'G', 'G']`. The user gets both actions.
+- A fourth G runs `['G', 'G']` again, because each sequence tracks its own progress.
+
+TanStack Hotkeys doesn't warn about this. Choose sequences where neither one starts the other, such as `['G', 'G']` and `['G', 'B']`. [App hotkeys](./app-hotkeys) report these pairs as conflicts, and so does the [hotkey recorder](./custom-hotkey-recording) with `detectConflicts` on.
 
 ### Sequences and chords on the same key
 

@@ -7,11 +7,18 @@ import type {
 } from '@tanstack/hotkeys'
 import type { ElementHotkeyOptions } from './onHotkeys'
 
-/** Attaches a hotkey (chord, sequence, or app hotkey) to the element that owns the modifier. */
+/**
+ * Attaches a hotkey (chord, sequence, or app hotkey) to the element that owns
+ * the modifier. `undefined`, `null`, or `''` registers nothing, for an
+ * optional shortcut.
+ */
 export class OnHotkey extends Modifier<{
   Element: HTMLElement
   Args: {
-    Positional: [RegisterableHotkey | AppHotkey, HotkeyCallback]
+    Positional: [
+      RegisterableHotkey | AppHotkey | null | undefined,
+      HotkeyCallback,
+    ]
     Named: ElementHotkeyOptions
   }
 }> {
@@ -19,7 +26,10 @@ export class OnHotkey extends Modifier<{
 
   override modify(
     element: HTMLElement,
-    [hotkey, callback]: [RegisterableHotkey | AppHotkey, HotkeyCallback],
+    [hotkey, callback]: [
+      RegisterableHotkey | AppHotkey | null | undefined,
+      HotkeyCallback,
+    ],
     options: ElementHotkeyOptions,
   ): void {
     this.bindings.set([{ hotkey, callback, options } as never], {}, element)

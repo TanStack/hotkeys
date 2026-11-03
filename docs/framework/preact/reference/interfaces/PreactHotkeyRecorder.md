@@ -3,7 +3,7 @@ id: PreactHotkeyRecorder
 title: PreactHotkeyRecorder
 ---
 
-Defined in: [useHotkeyRecorder.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L14)
+Defined in: [useHotkeyRecorder.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L15)
 
 ## Type Parameters
 
@@ -19,7 +19,7 @@ Defined in: [useHotkeyRecorder.ts:14](https://github.com/TanStack/hotkeys/blob/m
 cancelRecording: () => void;
 ```
 
-Defined in: [useHotkeyRecorder.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L26)
+Defined in: [useHotkeyRecorder.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L27)
 
 Cancel recording and call onCancel
 
@@ -35,7 +35,7 @@ Cancel recording and call onCancel
 commitRecording: () => void;
 ```
 
-Defined in: [useHotkeyRecorder.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L28)
+Defined in: [useHotkeyRecorder.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L29)
 
 Commit the recorded steps now (multi-step recordings)
 
@@ -51,7 +51,7 @@ Commit the recorded steps now (multi-step recordings)
 isRecording: boolean;
 ```
 
-Defined in: [useHotkeyRecorder.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L16)
+Defined in: [useHotkeyRecorder.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L17)
 
 Whether recording is currently active
 
@@ -63,7 +63,7 @@ Whether recording is currently active
 recordedHotkey: THotkey | null;
 ```
 
-Defined in: [useHotkeyRecorder.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L20)
+Defined in: [useHotkeyRecorder.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L21)
 
 The last committed hotkey
 
@@ -75,7 +75,7 @@ The last committed hotkey
 startRecording: () => void;
 ```
 
-Defined in: [useHotkeyRecorder.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L22)
+Defined in: [useHotkeyRecorder.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L23)
 
 Start recording a new hotkey
 
@@ -91,7 +91,7 @@ Start recording a new hotkey
 steps: HotkeySequence;
 ```
 
-Defined in: [useHotkeyRecorder.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L18)
+Defined in: [useHotkeyRecorder.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L19)
 
 Chords recorded so far in a multi-step recording (for live preview)
 
@@ -103,7 +103,7 @@ Chords recorded so far in a multi-step recording (for live preview)
 stopRecording: () => void;
 ```
 
-Defined in: [useHotkeyRecorder.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L24)
+Defined in: [useHotkeyRecorder.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L25)
 
 Stop recording without calling onCancel
 

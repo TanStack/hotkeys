@@ -1,8 +1,8 @@
 // @vitest-environment happy-dom
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { cleanup, render } from '@testing-library/preact'
-import { useRef } from 'preact/hooks'
-import { HotkeyManager } from '@tanstack/hotkeys'
+import { cleanup, fireEvent, render } from '@testing-library/preact'
+import { useRef, useState } from 'preact/hooks'
+import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
 import { useHotkey } from '../src/useHotkey'
 import type { HotkeyCallback } from '@tanstack/hotkeys'
 import { act } from 'preact/test-utils'
@@ -251,6 +251,52 @@ describe('useHotkey', () => {
       )
 
       expect(callback).not.toHaveBeenCalled()
+    })
+
+    it('follows an element that a child mounts with a callback ref', () => {
+      const callback = vi.fn()
+
+      function Panel({
+        panelRef,
+      }: {
+        panelRef: (el: HTMLDivElement | null) => void
+      }) {
+        const [open, setOpen] = useState(false)
+        return (
+          <>
+            <button onClick={() => setOpen(!open)}>toggle</button>
+            {open && <div data-testid="panel" ref={panelRef} />}
+          </>
+        )
+      }
+
+      function Owner() {
+        const [panel, setPanel] = useState<HTMLDivElement | null>(null)
+        useHotkey('K', callback, { target: panel })
+        return <Panel panelRef={setPanel} />
+      }
+
+      const { getByText, getByTestId } = render(<Owner />)
+      const registrations = () => getHotkeyManager().registrations.state.size
+      const pressK = () => {
+        fireEvent.keyDown(getByTestId('panel'), { key: 'k' })
+        fireEvent.keyUp(getByTestId('panel'), { key: 'k' })
+      }
+      expect(registrations()).toBe(0)
+
+      fireEvent.click(getByText('toggle'))
+      expect(registrations()).toBe(1)
+      pressK()
+      expect(callback).toHaveBeenCalledTimes(1)
+
+      fireEvent.click(getByText('toggle'))
+      expect(registrations()).toBe(0)
+
+      // A new node replaces the removed one.
+      fireEvent.click(getByText('toggle'))
+      expect(registrations()).toBe(1)
+      pressK()
+      expect(callback).toHaveBeenCalledTimes(2)
     })
   })
 })

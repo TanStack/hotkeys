@@ -262,6 +262,8 @@ skills:
     sources:
       - src/createHotkeysScope.ts
       - src/hotkeysPlugin.ts
+      - src/createHotkeyRecorder.ts
+      - src/hotkeyRecorderPlugin.ts
       - src/scope.ts
       - src/createHotkey.ts
       - src/createAppHotkeys.ts
@@ -292,6 +294,7 @@ skills:
       - src/onHotkey.ts
       - src/onHotkeys.ts
       - src/createHotkeysScope.ts
+      - src/useHotkeyRecorder.ts
       - src/useAppHotkeys.ts
       - TanStack/hotkeys:docs/framework/ember/quick-start.md
       - TanStack/hotkeys:docs/framework/ember/guides/app-hotkeys.md

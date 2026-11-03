@@ -1,37 +1,44 @@
+import {
+  definedOptions,
+  mergeHotkeysProviderDefaults,
+} from '@tanstack/hotkeys/adapter'
 import { OnHotkey } from './onHotkey'
 import { OnHotkeys } from './onHotkeys'
 import { UseHotkey } from './useHotkey'
 import { UseHotkeys } from './useHotkeys'
-import { useHotkeyRecorder } from './useHotkeyRecorder'
-import { read } from './utils'
-import type { HotkeySequenceRecorderOptions } from '@tanstack/hotkeys'
+import { read, scopeDefaults } from './utils'
 import type { DefaultHotkeysOptions } from './types'
 import type { MaybeGetter } from './utils'
 
-/** Helpers, modifiers, and recorder factories with shared defaults. Owners retain their own cleanup. */
+/**
+ * Helpers and modifiers with shared defaults. Owners retain their own cleanup.
+ * Pass the scope to `useHotkeyRecorder` to apply its recorder defaults, and to
+ * `useFormatForDisplay` to apply its `platform`.
+ */
 export interface EmberHotkeysScope {
   onHotkey: typeof OnHotkey
   onHotkeys: typeof OnHotkeys
   useHotkey: typeof UseHotkey
   useHotkeys: typeof UseHotkeys
-  useHotkeyRecorder: typeof useHotkeyRecorder
 }
 
 /**
- * Creates contextual helpers, modifiers, and recorders with shared, optionally reactive defaults.
+ * Creates contextual helpers and modifiers with shared, optionally reactive defaults.
  * Pass the scope to child components through arguments to share configuration.
  */
 export function createHotkeysScope(
   defaultOptions: MaybeGetter<DefaultHotkeysOptions> = {},
 ): EmberHotkeysScope {
-  return {
+  // Puts `platform` into the hotkey and recorder defaults.
+  const defaults = () =>
+    mergeHotkeysProviderDefaults(undefined, read(defaultOptions), undefined)
+  const scope: EmberHotkeysScope = {
     onHotkey: class extends OnHotkey {
       override modify(
         ...[element, args, options]: Parameters<OnHotkey['modify']>
       ) {
         super.modify(element, args, {
-          ...read(defaultOptions).hotkey,
-          ...options,
+          ...definedOptions(defaults().hotkey, options),
         })
       }
     },
@@ -40,29 +47,25 @@ export function createHotkeysScope(
         ...[element, args, options]: Parameters<OnHotkeys['modify']>
       ) {
         super.modify(element, args, {
-          ...read(defaultOptions).hotkey,
-          ...options,
+          ...definedOptions(defaults().hotkey, options),
         })
       }
     },
     useHotkey: class extends UseHotkey {
       override compute(...[args, options]: Parameters<UseHotkey['compute']>) {
-        super.compute(args, { ...read(defaultOptions).hotkey, ...options })
+        super.compute(args, {
+          ...definedOptions(defaults().hotkey, options),
+        })
       }
     },
     useHotkeys: class extends UseHotkeys {
       override compute(...[args, options]: Parameters<UseHotkeys['compute']>) {
-        super.compute(args, { ...read(defaultOptions).hotkey, ...options })
+        super.compute(args, {
+          ...definedOptions(defaults().hotkey, options),
+        })
       }
     },
-    useHotkeyRecorder: ((owner: object, options: MaybeGetter<object>) =>
-      useHotkeyRecorder(
-        owner,
-        () =>
-          ({
-            ...read(defaultOptions).hotkeyRecorder,
-            ...read(options),
-          }) as HotkeySequenceRecorderOptions,
-      )) as typeof useHotkeyRecorder,
   }
+  scopeDefaults.set(scope, defaults)
+  return scope
 }

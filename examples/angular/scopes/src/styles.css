@@ -238,8 +238,14 @@ button kbd {
 }
 
 /* Angular host elements */
-app-scope,
 app-scope-frame,
+app-palette,
+app-nested-demo,
+app-comment-box,
+app-tabs-demo,
+app-folder-pane,
+app-dialog-demo,
+app-steps,
 app-activity-log {
   display: block;
 }

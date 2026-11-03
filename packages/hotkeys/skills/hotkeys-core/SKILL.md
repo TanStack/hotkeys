@@ -50,7 +50,7 @@ Use the first mechanism that fits:
 1. **Lifetime.** A hotkey registered in a component exists while that component is mounted. A dialog's `Escape` belongs in the dialog.
 2. **`enabled`.** A condition inside a mounted component.
 3. **Scope.** A group that turns on and off together, such as a dialog, pane, or tab. An `exclusive` scope suspends every other scope, including global hotkeys, while it is active.
-4. **`target`.** Only while focus is inside one element, which must be focusable (`tabindex="0"`).
+4. **`target`.** Only while focus is on one element or inside it. If nothing there can take focus, give the element `tabindex="0"`.
 
 When nesting scopes, stacking dialogs, or keeping some hotkeys working during an exclusive scope, read [scopes](references/scopes.md).
 
@@ -63,9 +63,12 @@ When nesting scopes, stacking dialogs, or keeping some hotkeys working during an
 - **Letters follow the typed character.** For position-based controls such as WASD, use physical bindings such as `'[KeyW]'`. Keep letters for mnemonic commands such as `Mod+S`.
 - **Each open exclusive scope needs its own name.** A reusable dialog with a fixed scope name breaks when one dialog opens another: both share one scope and both handle `Escape`. Build the name per instance.
 - **A chord on a sequence's first key runs every time the sequence starts.** With `G` and `['G', 'G']`, the first `G` runs the chord. Later keys belong to the sequence. To show "waiting for the next key", read `matchedStepCount` from the adapter's registrations list.
+- **A sequence that starts a longer one doesn't wait for it.** With `['G', 'G']` and `['G', 'G', 'G']`, three G presses run both, with no warning. Pick sequences where neither one starts the other.
+- **Component libraries handle Escape too.** A global `Escape` hotkey can run alongside a library's dropdown or dialog closing, or keep a library's overlay open. Native modal dialogs and popovers get Escape on their own, except `popover="manual"`: hotkeys outside them skip it. Set `ignoreDefaultPrevented: true` in the adapter's shared defaults (on each hotkey in Lit) for libraries that call `preventDefault()` before the hotkey runs, such as Radix UI and shadcn/ui in React. The option can't see a `preventDefault()` that comes after the hotkey, as in Bits UI, so give open overlays an exclusive scope for those and the rest. The sensible defaults guide lists libraries per framework.
 - **Single-character shortcuts need an off switch.** For WCAG 2.1.4, `K`, `?`, and `['G', 'H']` need a user setting passed as `enabled`, or an app hotkey users can remap.
 - **react-hotkeys-hook names don't carry over.** `useHotkeys` and `HotkeysProvider` share names, not signatures: there's no dependency array, `preventDefault` is on by default, and sequences are arrays. Remove the old library, so two libraries don't handle the same keys.
 - **Install only the adapter.** A separately installed `@tanstack/hotkeys` at another version is a second copy, and scopes don't apply across copies.
+- **Server-rendered labels need the user's platform.** On a server, `formatForDisplay` renders Linux labels, because the server can't see the user's OS. Read the request's `User-Agent` header, pass `detectPlatform(userAgent)` as the platform of the adapter's provider or scope, and format labels with the adapter's formatter, such as `useFormatForDisplay`. Those pages then depend on the user agent, so keep them out of shared caches or add the platform to the cache key.
 
 When writing tests for hotkeys, read [testing](references/testing.md).
 

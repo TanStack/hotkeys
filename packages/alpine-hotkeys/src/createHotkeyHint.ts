@@ -16,7 +16,7 @@ import type {
 
 export function createHotkeyHint(
   scope: HotkeysScope,
-  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey>,
+  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey | null | undefined>,
   options: MaybeGetter<HeldModifierOptions> = {},
 ) {
   const manager = getHotkeyManager()

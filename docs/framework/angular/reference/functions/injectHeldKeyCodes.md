@@ -7,7 +7,7 @@ title: injectHeldKeyCodes
 function injectHeldKeyCodes(): Signal<Record<string, string>>;
 ```
 
-Defined in: [injectHeldKeyCodes.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHeldKeyCodes.ts#L28)
+Defined in: [injectHeldKeyCodes.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHeldKeyCodes.ts#L29)
 
 Angular inject-based API that returns a signal of a map from held key names to their physical `event.code` values.
 

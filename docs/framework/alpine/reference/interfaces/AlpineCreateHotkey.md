@@ -30,7 +30,7 @@ Registers a hotkey: a chord, a sequence, or an app hotkey.
 
 #### hotkey
 
-[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<`T`\>
+[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<`T` \| `null` \| `undefined`\>
 
 #### callback
 
@@ -67,7 +67,7 @@ Registers a hotkey: a chord, a sequence, or an app hotkey.
 
 #### hotkey
 
-[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<`T`\>
+[`MaybeGetter`](../type-aliases/MaybeGetter.md)\<`T` \| `null` \| `undefined`\>
 
 #### callback
 

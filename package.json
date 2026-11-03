@@ -35,6 +35,7 @@
     "test:e2e": "pnpm --filter @tanstack/hotkeys-e2e test:e2e",
     "test:e2e:layouts": "pnpm --filter @tanstack/hotkeys-e2e test:e2e:layouts",
     "test:e2e:layouts:docker": "pnpm --filter @tanstack/hotkeys-e2e test:e2e:layouts:docker",
+    "test:e2e:ssr": "nx run-many --skip-nx-cache --targets=build --projects='@tanstack/hotkeys-example-*-format-for-display-*' && pnpm --filter @tanstack/hotkeys-e2e test:e2e:ssr",
     "test:eslint": "nx affected --target=test:eslint --exclude=examples/**",
     "test:knip": "knip",
     "test:lib": "nx affected --targets=test:lib --exclude=examples/**",

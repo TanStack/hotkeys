@@ -3,7 +3,7 @@ id: HotkeysProviderProps
 title: HotkeysProviderProps
 ---
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:53](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L53)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:62](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L62)
 
 Options for `setHotkeysContext` and props for `HotkeysProvider`.
 
@@ -19,7 +19,7 @@ Options for `setHotkeysContext` and props for `HotkeysProvider`.
 optional appHotkeys?: Readonly<Record<string, AppHotkey<string, HotkeyChord | HotkeySequence | null>>>;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:43](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L43)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L50)
 
 Every app hotkey, from `defineAppHotkeys`. Read when the context is set;
 listed by `getAppHotkeyList` whether or not they are registered.
@@ -36,7 +36,7 @@ listed by `getAppHotkeyList` whether or not they are registered.
 children: Snippet;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L54)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:63](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L63)
 
 ***
 
@@ -48,10 +48,12 @@ optional customHotkeys?:
   | null;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:48](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L48)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L57)
 
-Starting custom hotkeys, such as saved data. Read once; the context owns
-the state afterwards. Invalid entries are ignored with a warning.
+The user's saved custom hotkeys. When the value changes, such as after
+saved data loads or the user signs in, it replaces the current custom
+hotkeys. `undefined` leaves them unchanged; `null` clears them. Invalid
+entries are ignored with a warning.
 
 #### Inherited from
 
@@ -65,7 +67,7 @@ the state afterwards. Invalid entries are ignored with a warning.
 optional defaultOptions?: HotkeysProviderOptions;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:38](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L38)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L45)
 
 Merged with the parent context's defaults.
 
@@ -81,7 +83,7 @@ Merged with the parent context's defaults.
 optional onCustomHotkeysChange?: (customHotkeys) => void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L50)
+Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:59](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L59)
 
 Called with the custom hotkeys after every change, ready to save.
 

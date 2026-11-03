@@ -80,7 +80,9 @@ export function useHotkeys(
   // Publish registrations, callbacks, and options after commit, never during
   // render. Refs resolve here, after they attach.
   useEffect(() => {
-    bindingsRef.current ??= createHotkeyBindings()
+    bindingsRef.current ??= createHotkeyBindings({
+      afterDelegatedHandlers: true,
+    })
     const { hotkeys, ...context } = latestRef.current
     bindingsRef.current.update(
       prepareHotkeyDefinitions(hotkeys, { ...context, resolveTarget }),

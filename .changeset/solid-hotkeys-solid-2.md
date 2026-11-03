@@ -1,8 +1,8 @@
 ---
-'@tanstack/solid-hotkeys': minor
+'@tanstack/solid-hotkeys': major
 ---
 
-Support Solid 2. `@tanstack/solid-hotkeys` now requires `solid-js` 2 (`>=2.0.0-rc.19 <3.0.0`); stay on 0.18.x for Solid 1.
+Support Solid 2. `@tanstack/solid-hotkeys` now requires `solid-js` 2 (`>=2.0.0-rc.20 <3.0.0`); stay on 1.x for Solid 1.
 
 - The primitives keep their API. Reactive options are tracked by split effects (compute reads the options, the effect applies them), `HotkeysProvider` publishes its store in `onSettled`, and provider props read once at creation are read untracked.
 - `HotkeysProvider` renders the Solid 2 context without JSX, so the adapter depends on `solid-js` only.

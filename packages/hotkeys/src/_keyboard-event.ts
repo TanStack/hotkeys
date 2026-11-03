@@ -40,8 +40,13 @@ export function normalizeKeyboardEvent(
     meta: Boolean(event.metaKey),
     altGraph: altGraph && !controlAlt,
     location: event.location,
+    // Safari sends the Enter that commits a composition after compositionend,
+    // with isComposing false but keyCode 229.
     isComposing:
-      Boolean(event.isComposing) || key === 'Process' || key === 'Unidentified',
+      Boolean(event.isComposing) ||
+      event.keyCode === 229 ||
+      key === 'Process' ||
+      key === 'Unidentified',
   }
 }
 
@@ -138,12 +143,17 @@ export function isLatinLetter(key: string): boolean {
   return /^\p{Script_Extensions=Latin}$/u.test(key)
 }
 
+let collator: Intl.Collator | undefined
+
 /** Compares letters without case, preserving accents and avoiding expansions such as ß → SS. */
 export function keysEqual(left: string, right: string): boolean {
+  if (left === right) return true
   if (/^\p{Letter}$/u.test(left) && /^\p{Letter}$/u.test(right)) {
-    return left.localeCompare(right, undefined, { sensitivity: 'accent' }) === 0
+    // One collator is much cheaper than localeCompare on every key press.
+    collator ??= new Intl.Collator(undefined, { sensitivity: 'accent' })
+    return collator.compare(left, right) === 0
   }
-  return left === right
+  return false
 }
 
 /** Rejects reserved physical-token syntax in logical object fields while allowing Unicode characters. */

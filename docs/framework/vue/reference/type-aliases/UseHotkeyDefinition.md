@@ -22,12 +22,12 @@ type UseHotkeyDefinition =
 }
   | {
   callback: HotkeyCallback;
-  hotkey: MaybeRefOrGetter<RegisterableHotkey>;
+  hotkey: MaybeRefOrGetter<RegisterableHotkey | null | undefined>;
   options?: MaybeRefOrGetter<UseHotkeyOptions>;
 };
 ```
 
-Defined in: [useHotkeys.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeys.ts#L36)
+Defined in: [useHotkeys.ts:37](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeys.ts#L37)
 
 One hotkey for `useHotkeys`. The hotkey and options may be refs or getters.
 Chords accept `requireReset`; sequences accept `timeout`; hotkeys of unknown
@@ -140,7 +140,7 @@ optional options?: MaybeRefOrGetter<UseAppHotkeyOptions>;
 ```ts
 {
   callback: HotkeyCallback;
-  hotkey: MaybeRefOrGetter<RegisterableHotkey>;
+  hotkey: MaybeRefOrGetter<RegisterableHotkey | null | undefined>;
   options?: MaybeRefOrGetter<UseHotkeyOptions>;
 }
 ```
@@ -154,10 +154,11 @@ callback: HotkeyCallback;
 #### hotkey
 
 ```ts
-hotkey: MaybeRefOrGetter<RegisterableHotkey>;
+hotkey: MaybeRefOrGetter<RegisterableHotkey | null | undefined>;
 ```
 
-A hotkey whose kind is not known statically. Accepts only shared options.
+A hotkey whose kind is not known statically. Accepts only shared
+options. `undefined`, `null`, or `''` registers nothing.
 
 #### options?
 

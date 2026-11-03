@@ -3,6 +3,7 @@ import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
 } from '@tanstack/hotkeys/adapter'
+import { useLive } from './_useLive'
 import {
   useAppHotkeysStoreSource,
   useDefaultHotkeysOptionsSource,
@@ -55,8 +56,11 @@ export type UseHotkeyDefinition =
       options?: MaybeRefOrGetter<UseAppHotkeyOptions>
     }
   | {
-      /** A hotkey whose kind is not known statically. Accepts only shared options. */
-      hotkey: MaybeRefOrGetter<RegisterableHotkey>
+      /**
+       * A hotkey whose kind is not known statically. Accepts only shared
+       * options. `undefined`, `null`, or `''` registers nothing.
+       */
+      hotkey: MaybeRefOrGetter<RegisterableHotkey | null | undefined>
       callback: HotkeyCallback
       options?: MaybeRefOrGetter<UseHotkeyOptions>
     }
@@ -76,7 +80,8 @@ function resolveEnabled<T extends { enabled?: MaybeRefOrGetter<boolean> }>(
  *
  * Options merge in this order: provider defaults, app hotkey declaration,
  * commonOptions, per-hotkey options. Each option applies only to the kinds
- * that support it. Unbound app hotkeys and empty sequences register nothing.
+ * that support it. Unbound app hotkeys, empty sequences, and `undefined`,
+ * `null`, or `''` hotkeys register nothing.
  * A target that resolves to `null` skips registration until it is set.
  *
  * @example
@@ -94,9 +99,12 @@ export function useHotkeys(
   const defaultOptions = useDefaultHotkeysOptionsSource()
   const appHotkeys = useAppHotkeysStoreSource()
   const bindings = createHotkeyBindings()
+  const live = useLive()
 
   const stopWatcher = watch(
     () => {
+      // A page cached by <KeepAlive> unregisters while hidden.
+      if (!live.value) return []
       // Track app hotkeys so registrations move with custom hotkeys.
       void appHotkeys.state.value
       const definitions: Array<AdapterHotkeyDefinition<UseHotkeyTarget>> =

@@ -1,5 +1,5 @@
 import { createContext } from 'preact'
-import { useContext, useEffect, useMemo, useState } from 'preact/hooks'
+import { useContext, useLayoutEffect, useMemo, useState } from 'preact/hooks'
 import { publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
   activateHotkeysProviderScope,
@@ -13,12 +13,19 @@ import type {
   AppHotkeysStore,
   CustomHotkeys,
   HotkeyChordRecorderOptions,
+  HotkeyPlatform,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
 import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
 import type { UseHotkeyCommonOptions } from './useHotkey'
 
 export interface HotkeysProviderOptions {
+  /**
+   * The user's platform, for labels from `useFormatForDisplay`, hotkeys, and
+   * recorders. Defaults to detection. When server rendering, set it from the
+   * request with `detectPlatform(userAgent)`.
+   */
+  platform?: HotkeyPlatform
   /**
    * Defaults for every hotkey registered by `useHotkey` and `useHotkeys`.
    * `requireReset` applies to chords and `timeout` applies to sequences.
@@ -53,8 +60,10 @@ export interface HotkeysProviderProps<
    */
   appHotkeys?: T
   /**
-   * Starting custom hotkeys, such as saved data. Read once; the provider owns
-   * the state afterwards. Invalid entries are ignored with a warning.
+   * The user's saved custom hotkeys. When the value changes, such as after
+   * saved data loads or the user signs in, it replaces the current custom
+   * hotkeys. `undefined` leaves them unchanged; `null` clears them. Invalid
+   * entries are ignored with a warning.
    */
   customHotkeys?: CustomHotkeys<T> | null
   /** Called with the custom hotkeys after every change, ready to save. */
@@ -130,21 +139,23 @@ export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
     parent: parent.defaultOptions.hotkey?.scope,
   })
 
-  // Activate this provider's scope while mounted and enabled.
-  useEffect(() => {
+  // Activate this provider's scope while mounted and enabled. Layout effects
+  // run in the commit; Preact runs plain effects after paint.
+  useLayoutEffect(() => {
     return scopeKey ? activateHotkeysProviderScope(scopeKey) : undefined
   }, [scopeKey])
 
-  // Keep the latest callback and declarations without resetting custom hotkeys.
-  useEffect(() => {
-    store?.setOptions({ onCustomHotkeysChange })
-  }, [store, onCustomHotkeysChange])
-  useEffect(() => {
+  // Keep the latest callback and saved custom hotkeys. Saved data with the
+  // same value, such as an inline JSON.parse, keeps the user's changes.
+  useLayoutEffect(() => {
+    store?.setOptions({ customHotkeys, onCustomHotkeysChange })
+  }, [store, customHotkeys, onCustomHotkeysChange])
+  useLayoutEffect(() => {
     if (appHotkeys) store?.setAppHotkeys(appHotkeys)
   }, [store, appHotkeys])
 
   // Publish the store so devtools can list declared hotkeys.
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!store) return
     return publishAppHotkeysStore(store)
   }, [store])

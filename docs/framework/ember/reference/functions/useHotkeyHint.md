@@ -10,13 +10,14 @@ function useHotkeyHint(
 options?): EmberHotkeyState<boolean>;
 ```
 
-Defined in: [packages/ember-hotkeys/src/useHotkeyHint.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeyHint.ts#L24)
+Defined in: [packages/ember-hotkeys/src/useHotkeyHint.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/useHotkeyHint.ts#L25)
 
 Recomputes for held modifiers and tracked changes to the hotkey or options.
 The hint shows only while the hotkey can fire: some registration of it is
 enabled and in an active scope. A sequence reveals its hint from its first
 step, and an app hotkey matches its registrations by id and uses its
-effective hotkey (false while unbound). A hotkey on an element counts only while focus is inside it.
+effective hotkey (false while unbound). No hotkey (`undefined`, `null`, or
+`''`) returns false. A hotkey on an element counts only while focus is inside it.
 
 ## Parameters
 
@@ -28,7 +29,9 @@ effective hotkey (false while unbound). A hotkey on an element counts only while
 
 [`MaybeGetter`](../type-aliases/MaybeGetter.md)\<
   \| `RegisterableHotkey`
-  \| `AppHotkey`\<`string`, HotkeyChord \| HotkeySequence \| null\>\>
+  \| `AppHotkey`\<`string`, HotkeyChord \| HotkeySequence \| null\>
+  \| `null`
+  \| `undefined`\>
 
 ### options?
 

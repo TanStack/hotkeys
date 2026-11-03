@@ -7,12 +7,14 @@ import type { HotkeysProviderOptions } from './HotkeysProviderContext'
 
 /**
  * Vue component that provides default options, app hotkeys, and the user's
- * custom hotkeys. `customHotkeys` is read once; listen to
- * `custom-hotkeys-change` to save changes.
+ * custom hotkeys. A new `customHotkeys` value replaces the current custom
+ * hotkeys, `undefined` leaves them unchanged, and `null` clears them. Listen
+ * to `custom-hotkeys-change` to save changes.
  *
  * Nest providers to create hotkey scopes. A nested provider inherits app
  * hotkeys and merges default options. With `scope`, its hotkeys fire only
- * while it is mounted and enabled; with `exclusive`, only its hotkeys fire.
+ * while it is mounted, enabled, and not hidden by `<KeepAlive>`; with
+ * `exclusive`, only its hotkeys fire.
  *
  * @example
  * ```vue
@@ -68,7 +70,7 @@ export const HotkeysProvider = defineComponent({
     provideHotkeysContext({
       defaultOptions: () => props.defaultOptions,
       appHotkeys: () => props.appHotkeys,
-      customHotkeys: props.customHotkeys,
+      customHotkeys: () => props.customHotkeys,
       scope: () => props.scope,
       exclusive: () => props.exclusive,
       enabled: () => props.enabled,

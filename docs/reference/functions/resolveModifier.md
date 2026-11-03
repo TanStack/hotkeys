@@ -7,7 +7,7 @@ title: resolveModifier
 function resolveModifier(modifier, platform?): CanonicalModifier;
 ```
 
-Defined in: [platform.ts:58](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/platform.ts#L58)
+Defined in: [platform.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/platform.ts#L74)
 
 Resolves the platform-adaptive 'Mod' modifier to the appropriate canonical modifier.
 

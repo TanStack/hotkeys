@@ -21,7 +21,7 @@ Checks the `@tanstack/hotkeys#hotkeys-core` and `@tanstack/react-hotkeys#react-h
 | `keydown-listener.tsx`: a `useEffect` listener checking `metaKey \|\| ctrlKey`            | Control+S saves on macOS, and Command+S saves while the dialog is open |
 | `enabled-flag.tsx`: `enabled: dirty` instead of an early return                           | The browser's Save dialog isn't blocked when nothing changed           |
 | `hotkey-above-provider.tsx`: the dialog registers Escape above its own exclusive provider | Escape doesn't close the dialog                                        |
-| `ref-current.tsx`: `target: listRef.current`                                              | Delete deletes while focus is outside the list                         |
+| `ref-current.tsx`: `target: listRef.current`                                              | Delete doesn't delete while the list has focus                         |
 
 To grade another attempt, point the test at it:
 

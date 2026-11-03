@@ -1,4 +1,5 @@
 import { injectHotkeys } from './injectHotkeys'
+import type { ElementRef, Signal } from '@angular/core'
 import type {
   AppHotkey,
   HotkeyCallback,
@@ -16,11 +17,15 @@ import type {
 } from '@tanstack/hotkeys/adapter'
 
 /**
- * The element to listen on. A `null` target skips registration, so pass a
- * getter such as `() => ({ target: this.element() })` for elements that
- * attach after the view renders.
+ * The element to listen on: an element, an `ElementRef`, or a signal of
+ * either, such as `viewChild<ElementRef>('panel')`. A `null` target, or a
+ * signal of `undefined`, skips registration until the element exists.
  */
-export type InjectHotkeyTarget = Target | null
+export type InjectHotkeyTarget =
+  | Target
+  | ElementRef<Target>
+  | Signal<Target | ElementRef<Target> | null | undefined>
+  | null
 
 /** Options shared by chords and sequences. */
 export type InjectHotkeyOptions = AdapterHotkeyOptions<InjectHotkeyTarget>
@@ -53,7 +58,9 @@ type MaybeGetter<T> = T | (() => T)
  * Chords accept `requireReset`; sequences accept `timeout`. A one-step
  * sequence registers as its chord. An app hotkey uses its effective hotkey
  * from `provideHotkeys` (including the user's custom hotkey) and its declared
- * meta and options, and registers nothing while unbound.
+ * meta and options, and registers nothing while unbound. A hotkey of
+ * `undefined`, `null`, or `''` registers nothing, for an optional shortcut
+ * such as `() => this.shortcut()`; when it changes to a hotkey, it registers.
  *
  * @example
  * ```ts
@@ -68,17 +75,17 @@ type MaybeGetter<T> = T | (() => T)
  * ```
  */
 export function injectHotkey<T extends AppHotkey>(
-  hotkey: MaybeGetter<T>,
+  hotkey: MaybeGetter<T | null | undefined>,
   callback: HotkeyCallback,
   options?: MaybeGetter<InjectAppHotkeyOptions<T>>,
 ): void
 export function injectHotkey<const T extends RegisterableHotkey>(
-  hotkey: MaybeGetter<T>,
+  hotkey: MaybeGetter<T | null | undefined>,
   callback: HotkeyCallback<HotkeyCallbackContextFor<T>>,
   options?: MaybeGetter<InjectHotkeyOptionsFor<T>>,
 ): void
 export function injectHotkey(
-  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey>,
+  hotkey: MaybeGetter<RegisterableHotkey | AppHotkey | null | undefined>,
   callback: HotkeyCallback,
   options: MaybeGetter<InjectHotkeyCommonOptions> = {},
 ): void {

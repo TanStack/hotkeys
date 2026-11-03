@@ -55,7 +55,7 @@ save(event: KeyboardEvent, context: HotkeyChordCallbackContext) {
 }
 ```
 
-The method runs with the element as `this`, so it reads the element's current properties.
+The method runs with the element as `this`, so it reads the element's current properties. The decorator looks the method up each time the hotkey fires, so a subclass that overrides it runs the override. `@hotkey` works with standard and legacy decorators. With standard decorators, it also works on `#private` methods.
 
 Decorator arguments are fixed when the class is defined. When the hotkey or its options change, use `HotkeyController` and pass them as functions. The controller reads them when the element connects and after each update. When only the options change, it updates the existing registration. When the hotkey or its `target` changes, it replaces the registration:
 
@@ -70,17 +70,12 @@ class MyEditor extends LitElement {
   @property({ attribute: false }) saveHotkey: Hotkey = 'Mod+S'
   @property({ type: Boolean }) readOnly = false
 
-  constructor() {
-    super()
-    this.addController(
-      new HotkeyController(
-        this,
-        () => this.saveHotkey,
-        () => this.save(),
-        () => ({ enabled: !this.readOnly }),
-      ),
-    )
-  }
+  private saveController = new HotkeyController(
+    this,
+    () => this.saveHotkey,
+    () => this.save(),
+    () => ({ enabled: !this.readOnly }),
+  )
 
   save() {
     saveDocument()
@@ -95,6 +90,12 @@ class MyEditor extends LitElement {
 Keep the values the functions read in reactive properties, so a change triggers an update. A controller callback receives `HotkeyCallbackContext`, which can belong to either kind of hotkey, so check `context.kind` before reading `context.parsedChord`.
 
 That lets you register a hotkey the user chose, such as one from the [hotkey recorder](./custom-hotkey-recording). To let users change hotkeys across your app and save their choices, see [App Hotkeys](./app-hotkeys).
+
+### Optional hotkeys
+
+A hotkey of `undefined`, `null`, or `''` registers nothing in `HotkeyController`, so an element can take an optional shortcut. The `@hotkey` decorator always needs a hotkey. When the hotkey changes to one of these values, its registration is removed. When it changes back to a hotkey, it registers again. Hints for no hotkey are hidden.
+
+To keep a hotkey registered, and listed in devtools and cheat sheets, but stop it from firing, set `enabled: false` instead.
 
 ### Write a chord as a string or an object
 
@@ -126,16 +127,11 @@ saveAs() {}
 @hotkey({ code: 'KeyW' }) // Same as '[KeyW]'
 moveUp() {}
 
-constructor() {
-  super()
-  this.addController(
-    new HotkeyController(
-      this,
-      () => ({ key: this.binding.key, mod: this.binding.mod, shift: this.binding.shift }),
-      () => this.runAction(),
-    ),
-  )
-}
+private actionHotkey = new HotkeyController(
+  this,
+  () => ({ key: this.binding.key, mod: this.binding.mod, shift: this.binding.shift }),
+  () => this.runAction(),
+)
 ```
 
 Sequence steps can be strings, objects, or a mix:
@@ -164,6 +160,7 @@ submit() {}
 | `preventDefault` | `true` | Stops the browser's own action, such as the Save dialog for `Mod+S`. `'always'` also stops it while the hotkey can't fire. |
 | `stopPropagation` | `true` | Stops the key press from reaching other listeners |
 | `ignoreInputs` | `'auto'` | Skips key presses that type in a text field or operate a focused control. See [Typing in inputs does not trigger shortcuts](../../../guides/sensible-defaults.md#typing-in-inputs-does-not-trigger-shortcuts). |
+| `ignoreDefaultPrevented` | `false` | Skips a key press that another listener already handled with `preventDefault()`, such as a component library's dialog closing on Escape. See [Component libraries that handle the same keys](../../../guides/sensible-defaults.md#component-libraries-that-handle-the-same-keys). |
 | `eventType` | `'keydown'` | Fires on `'keydown'` or `'keyup'` |
 | `capture` | `false` | Runs before the keyboard handlers of elements inside the target. See [Hotkeys run after the page's own handlers](../../../guides/sensible-defaults.md#hotkeys-run-after-the-pages-own-handlers). |
 | `requireReset` | `false` | Chords only. Fires once per press instead of again on each automatic repeat while the key is held. |
@@ -266,25 +263,18 @@ class SettingsDialog extends LitElement {
 For a condition that doesn't match an element, pass `enabled` from a `HotkeyController` options function:
 
 ```ts
-constructor() {
-  super()
-  this.addController(
-    new HotkeyController(this, 'Mod+S', () => this.save(), () => ({
-      enabled: this.hasUnsavedChanges,
-    })),
-  )
-}
+private saveHotkey = new HotkeyController(this, 'Mod+S', () => this.save(), () => ({
+  enabled: this.hasUnsavedChanges,
+}))
 ```
 
 A disabled hotkey stays registered, and changing `enabled` doesn't register it again. While disabled, it ignores key presses, so pressing `Mod+S` opens the browser's Save dialog. To keep the dialog closed, set `preventDefault: 'always'`:
 
 ```ts
-this.addController(
-  new HotkeyController(this, 'Mod+S', () => this.save(), () => ({
-    enabled: this.hasUnsavedChanges,
-    preventDefault: 'always',
-  })),
-)
+private saveHotkey = new HotkeyController(this, 'Mod+S', () => this.save(), () => ({
+  enabled: this.hasUnsavedChanges,
+  preventDefault: 'always',
+}))
 ```
 
 With `'always'`, a hotkey that can't fire, because it's disabled or its scope is inactive or suspended, still prevents the browser's action. It doesn't stop propagation, and when another hotkey handles the key, that hotkey's options apply instead. Sequences treat `'always'` as `true`. To apply it to several hotkeys, put it in a [shared options object](#share-options). We recommend it for most hotkeys, but not for hotkeys you turn off to hand the key back to the browser, such as `Mod+C` or `Tab`. See [Hotkeys that can't fire leave the key alone](../../../guides/sensible-defaults.md#hotkeys-that-cant-fire-leave-the-key-alone).
@@ -309,15 +299,10 @@ import { HotkeyController } from '@tanstack/lit-hotkeys'
 class MyPanel extends LitElement {
   private panel = createRef<HTMLDivElement>()
 
-  constructor() {
-    super()
-    // Fires only while the panel, or something inside it, has focus
-    this.addController(
-      new HotkeyController(this, 'Escape', () => this.closePanel(), () => ({
-        target: this.panel.value ?? null,
-      })),
-    )
-  }
+  // Fires only while the panel, or something inside it, has focus
+  private closeHotkey = new HotkeyController(this, 'Escape', () => this.closePanel(), () => ({
+    target: this.panel.value ?? null,
+  }))
 
   render() {
     return html`<div ${ref(this.panel)} tabindex="0">Panel content</div>`
@@ -326,6 +311,10 @@ class MyPanel extends LitElement {
 ```
 
 A `null` target waits until the element renders.
+
+The controller reads the options function when its element connects and after each of its element's updates. Render the target in the controller's own element, as above, so each render that adds or replaces the target also updates the hotkey.
+
+When another element renders the target, such as a child that shows it from its own state, the controller's element doesn't update, so the hotkey keeps the old target or none. Either keep the element in a reactive property, for example set from an event the child dispatches, or call `this.requestUpdate()` on the controller's element after the target changes. You can also register the hotkey in the child with its own `HotkeyController`.
 
 > [!NOTE]
 > An element receives key presses only while it, or something inside it, has focus. Give it a `tabindex` if it isn't focusable already.
@@ -343,7 +332,7 @@ Use a target for hotkeys that belong to a focusable element, such as a list or a
 
 ## Handle duplicate hotkeys
 
-When you register a hotkey that is already registered on the same target and in the same scope, TanStack Hotkeys logs a warning in development, and both callbacks run. Set `conflictBehavior` to change that:
+When you register a hotkey that is already registered on the same target, in the same scope, and for the same event type, TanStack Hotkeys logs a warning in development, and both callbacks run. Set `conflictBehavior` to change that:
 
 - `'warn'` (default) logs a warning in development and keeps both registrations.
 - `'error'` throws an error.

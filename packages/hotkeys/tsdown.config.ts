@@ -13,7 +13,9 @@ export default defineConfig({
   exports: true,
   // Types picked from @tanstack/store, a devDependency, are inlined. npm never
   // publishes node_modules folders, so emit them under dist/vendor instead.
-  deps: { onlyBundle: ['@tanstack/store'] },
+  // The adapter entry imports the main entry by package name, so CDNs that
+  // bundle each entry on their own still share one manager.
+  deps: { onlyBundle: ['@tanstack/store'], neverBundle: ['@tanstack/hotkeys'] },
   outputOptions: {
     entryFileNames: ({ name }) =>
       `${name.replace(/^node_modules\/.*\/node_modules\//, 'vendor/')}.js`,

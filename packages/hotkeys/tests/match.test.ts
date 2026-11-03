@@ -495,6 +495,40 @@ describe('matchesKeyboardEvent', () => {
       expect(matchesKeyboardEvent(event, '/')).toBe(false)
     })
 
+    it('ignores named keys and Mod chords during composition', () => {
+      for (const hotkey of ['Enter', 'Escape', 'ArrowDown', 'Tab'] as const) {
+        const event = createKeyboardEvent(hotkey, { isComposing: true })
+        expect(matchesKeyboardEvent(event, hotkey)).toBe(false)
+      }
+      const modEnter = createKeyboardEvent('Enter', {
+        metaKey: true,
+        isComposing: true,
+      })
+      expect(matchesKeyboardEvent(modEnter, 'Mod+Enter', 'mac')).toBe(false)
+    })
+
+    it("treats keyCode 229 as composition, as in Safari's commit Enter", () => {
+      const event = {
+        ...createKeyboardEvent('Enter', { code: 'Enter' }),
+        keyCode: 229,
+      } as KeyboardEvent
+      expect(matchesKeyboardEvent(event, 'Enter')).toBe(false)
+      expect(
+        matchesKeyboardEvent(
+          createKeyboardEvent('Enter', { code: 'Enter' }),
+          'Enter',
+        ),
+      ).toBe(true)
+    })
+
+    it('compares letters without case but keeps accents', () => {
+      const press = (key: string) => createKeyboardEvent(key, { code: '' })
+      expect(matchesKeyboardEvent(press('s'), 'S')).toBe(true)
+      expect(matchesKeyboardEvent(press('é'), 'É' as HotkeyChord)).toBe(true)
+      expect(matchesKeyboardEvent(press('e'), 'É' as HotkeyChord)).toBe(false)
+      expect(matchesKeyboardEvent(press('ß'), 'SS' as HotkeyChord)).toBe(false)
+    })
+
     it('does not interpret AltGraph character entry as Control+Alt', () => {
       const event = createKeyboardEvent('@', {
         ctrlKey: true,

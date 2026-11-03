@@ -41,7 +41,7 @@ describe('skill task: editor shortcuts', () => {
     [
       'ref.current as target',
       RefCurrent,
-      'Delete deleted while focus was outside the file list',
+      "Delete didn't delete while the file list had focus",
     ],
   ])('rejects %s', (_name, Editor, failure) => {
     expect(gradeEditor(Editor)).toContain(failure)

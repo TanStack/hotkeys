@@ -1,13 +1,25 @@
-import { getHotkeyManager } from './hotkey-manager'
+// Import shared state by package name, not by path. A CDN such as jsDelivr
+// bundles each entry on its own, and a relative import would give this entry
+// a second HotkeyManager and app hotkeys factory.
 import {
+  detectPlatform,
   getAppHotkeyRegistrationOptions,
+  getHotkeyManager,
   isAppHotkey,
+  isHotkeySequence,
+  normalizeHotkey,
+  parseHotkey,
   resolveAppHotkey,
-} from './app-hotkeys'
-import { isHotkeySequence, normalizeHotkey } from './parse'
-import { defaultHotkeyOptions } from './_registration'
-import { detectPlatform } from './platform'
+} from '@tanstack/hotkeys'
+import {
+  chordHasKey,
+  defaultHotkeyOptions,
+  definedOptions,
+} from './_registration'
+// Stateless apart from a once-only dev warning, so a copy per entry is fine.
+import { warnServerPlatform } from './_server'
 import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'
+import type { HotkeyPlatform } from './platform'
 import type {
   HotkeyCallback,
   HotkeyChord,
@@ -25,8 +37,9 @@ import type {
   Target,
 } from './hotkey-manager'
 
-export { createAppHotkeysStore } from './_app-hotkeys-factory'
+export { createAppHotkeysStore } from '@tanstack/hotkeys'
 export { createStore } from './_store'
+export { definedOptions, withDefaults } from './_registration'
 export type { Store } from './_store'
 
 /**
@@ -44,6 +57,12 @@ export type HotkeyDefinition =
       callback: HotkeyCallback
       options?: HotkeySequenceOptions
     }
+  | {
+      /** No hotkey. Registers nothing. */
+      hotkey: null | undefined
+      callback: HotkeyCallback
+      options?: HotkeyChordOptions & HotkeySequenceOptions
+    }
 
 /** Options shared by every definition. Each option applies only to the kinds that support it. */
 export type HotkeyBindingsCommonOptions = HotkeyChordOptions &
@@ -51,8 +70,14 @@ export type HotkeyBindingsCommonOptions = HotkeyChordOptions &
 
 type ResolvedOptions = HotkeyChordOptions & HotkeySequenceOptions
 
-/** Reconciles adapter registrations while retaining handles for option updates. */
-export function createHotkeyBindings() {
+/**
+ * Reconciles adapter registrations while retaining handles for option updates.
+ * Adapters for frameworks that delegate key events, such as React, pass
+ * `{ afterDelegatedHandlers: true }`.
+ */
+export function createHotkeyBindings(
+  adapterOptions: Pick<HotkeyOptions, 'afterDelegatedHandlers'> = {},
+) {
   const registrations = new Map<
     string,
     {
@@ -66,7 +91,8 @@ export function createHotkeyBindings() {
   return {
     /**
      * Registers new definitions, updates existing ones in place, and removes
-     * stale ones. Definitions with an empty sequence or a null target are skipped.
+     * stale ones. Definitions with no hotkey (undefined, null, empty string, or
+     * empty sequence) or a null target are skipped.
      */
     update(
       definitions: ReadonlyArray<HotkeyDefinition>,
@@ -79,14 +105,15 @@ export function createHotkeyBindings() {
         register: () => HotkeyRegistrationHandle
       }> = []
       definitions.forEach((definition, index) => {
-        const merged: ResolvedOptions = {
-          ...commonOptions,
-          ...definition.options,
-        }
+        // `undefined` means "not set", so it keeps the default.
+        const merged = definedOptions<ResolvedOptions>(
+          commonOptions,
+          definition.options,
+        )
         const options: ResolvedOptions = {
           ...defaultHotkeyOptions,
           ...merged,
-          ignoreInputs: merged.ignoreInputs ?? 'auto',
+          ...adapterOptions,
           target:
             'target' in merged
               ? (merged.target ?? null)
@@ -95,14 +122,22 @@ export function createHotkeyBindings() {
                 : document,
           platform: merged.platform ?? detectPlatform(),
         }
+        // Only a hotkey registers: not undefined, null, '', or [].
         if (
           !options.target ||
+          !definition.hotkey ||
           (isHotkeySequence(definition.hotkey) &&
             definition.hotkey.length === 0)
         ) {
           return
         }
-        const hotkey = normalizeHotkey(definition.hotkey, options.platform)
+        // A step without a key, such as '' or { key: '', ctrl: true },
+        // registers nothing.
+        const parsed = parseHotkey(definition.hotkey, options.platform)
+        if (!(Array.isArray(parsed) ? parsed : [parsed]).every(chordHasKey)) {
+          return
+        }
+        const hotkey = normalizeHotkey(parsed, options.platform)
         if (isHotkeySequence(hotkey)) delete options.requireReset
         else delete options.timeout
         prepared.push({
@@ -158,7 +193,7 @@ export function createHotkeyBindings() {
 /** Options with a framework-specific target, such as a ref. */
 export type WithTarget<TOptions, TTarget> = Omit<
   TOptions,
-  'target' | 'appHotkeyId'
+  'target' | 'appHotkeyId' | 'afterDelegatedHandlers'
 > & {
   /** The element to listen on. Defaults to document. */
   target?: TTarget
@@ -242,9 +277,10 @@ export type AdapterHotkeyDefinition<TTarget> =
   | {
       /**
        * A hotkey whose kind is not known statically, such as user data typed
-       * `Hotkey`. Accepts only shared options.
+       * `Hotkey`. Accepts only shared options. `undefined`, `null`, and `''`
+       * register nothing, for an optional shortcut.
        */
-      hotkey: RegisterableHotkey
+      hotkey: RegisterableHotkey | null | undefined
       callback: HotkeyCallback
       options?: AdapterHotkeyOptions<TTarget>
     }
@@ -260,7 +296,7 @@ export interface PrepareHotkeyDefinitionsOptions<TTarget> {
   /**
    * Resolves a framework target, such as a ref. Return `undefined` for the
    * document or `null` to skip registration until the target exists.
-   * Without it, targets pass through and `null` means document.
+   * Without it, targets pass through, so `null` skips registration.
    */
   resolveTarget?: (target: TTarget) => Target | null | undefined
 }
@@ -284,18 +320,19 @@ export function prepareHotkeyDefinitions<TTarget>(
       declared = getAppHotkeyRegistrationOptions(appHotkey)
       hotkey = appHotkey.hotkey ?? []
     }
-    const { target, ...merged } = {
-      ...options.defaults,
-      ...declared,
-      ...options.commonOptions,
-      ...definition.options,
-    } as AdapterCommonOptions<TTarget>
+    // `undefined` means "not set", so it keeps the earlier layer's value.
+    const { target, ...merged } = definedOptions<AdapterCommonOptions<TTarget>>(
+      options.defaults,
+      declared,
+      options.commonOptions,
+      definition.options,
+    )
     const resolved =
       target === undefined
         ? undefined
         : options.resolveTarget
           ? options.resolveTarget(target)
-          : ((target as Target | null) ?? undefined)
+          : (target as Target | null)
     return {
       hotkey,
       callback: definition.callback,
@@ -354,14 +391,46 @@ export interface HotkeysProviderScopeProps {
 /**
  * Merges a provider's default options over its parent's. A provider with a
  * `scope` sets `hotkey.scope`, so hotkeys registered inside it use that scope.
+ * A provider's `platform` is inherited, and is the default platform for its
+ * hotkeys and recorders; `hotkey.platform` and `hotkeyRecorder.platform` win.
  */
 export function mergeHotkeysProviderDefaults<
-  T extends { hotkey?: object; hotkeyRecorder?: object },
+  T extends {
+    platform?: HotkeyPlatform
+    hotkey?: object
+    hotkeyRecorder?: object
+  },
 >(parent: T | undefined, own: T | undefined, scope: string | undefined): T {
+  const parentPlatform = { platform: parent?.platform }
+  const ownPlatform = { platform: own?.platform }
   return {
-    hotkey: { ...parent?.hotkey, ...own?.hotkey, ...(scope && { scope }) },
-    hotkeyRecorder: { ...parent?.hotkeyRecorder, ...own?.hotkeyRecorder },
-  } as T
+    ...definedOptions(parentPlatform, ownPlatform),
+    hotkey: {
+      ...definedOptions(
+        parentPlatform,
+        parent?.hotkey,
+        ownPlatform,
+        own?.hotkey,
+      ),
+      ...(scope && { scope }),
+    },
+    hotkeyRecorder: definedOptions(
+      parentPlatform,
+      parent?.hotkeyRecorder,
+      ownPlatform,
+      own?.hotkeyRecorder,
+    ),
+  }
+}
+
+/**
+ * The platform to render with during server rendering and hydration when no
+ * provider sets one, for a `useSyncExternalStore` server snapshot. Warns once
+ * in development on the server.
+ */
+export function getServerPlatformSnapshot(): HotkeyPlatform {
+  warnServerPlatform()
+  return 'linux'
 }
 
 /**

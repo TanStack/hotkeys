@@ -87,6 +87,8 @@ useHotkey(saveHotkey, () => save())
 
 The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. `HotkeyChord` checks the string, so a typo in the binding is a type error. Use `Hotkey` for a value that can also be a sequence.
 
+If your app renders on the server, such as with Nuxt, use `useFormatForDisplay` instead, and set the provider's `platform` from the request, so the server's HTML shows the user's platform. See [Format labels in server-rendered apps](./guides/formatting-display#format-labels-in-server-rendered-apps).
+
 ## Hotkeys follow your components
 
 A hotkey is registered when the component that calls the composable mounts, and unregistered when that component unmounts. Put each hotkey in the component it belongs to, so it is active only while that component is mounted:
@@ -154,7 +156,7 @@ useHotkey('Escape', () => closePanel(), { target: panel })
 </template>
 ```
 
-The element must be focusable to receive key presses, so give it a `tabindex` if it isn't a control.
+The hotkey fires while focus is on the element or inside it. If nothing there can take focus, give the element a `tabindex`.
 
 ## Add providers and scopes (optional)
 

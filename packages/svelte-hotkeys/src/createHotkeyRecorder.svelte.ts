@@ -1,4 +1,5 @@
 import { HotkeyRecorder } from '@tanstack/hotkeys'
+import { withDefaults } from '@tanstack/hotkeys/adapter'
 import { getDefaultHotkeysOptions } from './HotkeysCtx.js'
 import { createStoreSubscriber, resolveMaybeGetter } from './internal.svelte.js'
 import type {
@@ -119,10 +120,10 @@ export function createHotkeyRecorder(
   options: MaybeGetter<HotkeyRecorderOptions>,
 ): SvelteHotkeyRecorder {
   const resolve = () =>
-    ({
-      ...getDefaultHotkeysOptions().hotkeyRecorder,
-      ...resolveMaybeGetter(options),
-    }) as HotkeySequenceRecorderOptions
+    withDefaults(
+      getDefaultHotkeysOptions().hotkeyRecorder,
+      resolveMaybeGetter(options),
+    ) as HotkeySequenceRecorderOptions
   // Overloads already checked the options; either shape is valid here.
   const recorder = new SvelteHotkeyRecorderState(resolve())
 

@@ -100,18 +100,18 @@ export type MaybeGetter<T> = T | (() => T)
 /** Registers a hotkey: a chord, a sequence, or an app hotkey. */
 export interface AlpineCreateHotkey {
   <T extends AppHotkey>(
-    hotkey: MaybeGetter<T>,
+    hotkey: MaybeGetter<T | null | undefined>,
     callback: HotkeyCallback,
     options?: MaybeGetter<AlpineAppHotkeyOptions<T>>,
   ): void
   <const T extends RegisterableHotkey>(
-    hotkey: MaybeGetter<T>,
+    hotkey: MaybeGetter<T | null | undefined>,
     callback: HotkeyCallback<HotkeyCallbackContextFor<T>>,
     options?: MaybeGetter<AlpineHotkeyOptionsFor<T>>,
   ): void
 }
 
-/** Creates a recorder; `maxSteps` (default 1) selects chords or sequences. */
+/** `$hotkeyRecorder`: creates a recorder; `maxSteps` (default 1) selects chords or sequences. */
 export interface AlpineCreateHotkeyRecorder {
   (options: HotkeyChordRecorderOptions): AlpineHotkeyRecorder<HotkeyChord>
   (options: HotkeySequenceRecorderOptions): AlpineHotkeyRecorder
@@ -123,11 +123,12 @@ export interface AlpineCreateHotkeyRecorder {
   (options: () => HotkeyRecorderOptions): AlpineHotkeyRecorder
 }
 
-/** Registrations, recorders, and reactive state owned by one Alpine component. */
+/** Registrations and reactive state owned by one Alpine component. */
 export interface AlpineHotkeys {
   /**
    * Register one hotkey: a chord such as `'Mod+S'`, a sequence such as
    * `['G', 'G']`, or an app hotkey. Getters track changing hotkeys and options.
+   * `undefined`, `null`, or `''` registers nothing, for an optional shortcut.
    */
   createHotkey: AlpineCreateHotkey
   /** Reconcile a list of hotkeys. Definition options override common options. */
@@ -141,17 +142,18 @@ export interface AlpineHotkeys {
   createHeldKeyCodes: () => AlpineHotkeyState<Record<string, string>>
   /** Read whether a key is held through `.value`. */
   createKeyHold: (key: MaybeGetter<IndividualKey>) => AlpineHotkeyState<boolean>
-  /** Read whether held modifiers reveal a hotkey through `.value`. */
+  /**
+   * Read whether held modifiers reveal a hotkey through `.value`. No hotkey
+   * (`undefined`, `null`, or `''`) is never visible.
+   */
   createHotkeyHint: (
-    hotkey: MaybeGetter<RegisterableHotkey | AppHotkey>,
+    hotkey: MaybeGetter<RegisterableHotkey | AppHotkey | null | undefined>,
     options?: MaybeGetter<HeldModifierOptions>,
   ) => AlpineHotkeyState<boolean>
   /** Read live registrations, including disabled entries. */
   createHotkeyRegistrations: () => HotkeyRegistrationsResult
   /** Read the active, exclusive, allowed, and suspended scopes through `.value`. */
   createHotkeyScopesState: () => AlpineHotkeyState<HotkeyScopesState>
-  /** Create a recorder whose options can follow Alpine state. */
-  createHotkeyRecorder: AlpineCreateHotkeyRecorder
   /** Read the effective app hotkeys from `provideAppHotkeys` through `.value`. */
   createAppHotkeys: () => AlpineHotkeyState<RegisteredAppHotkeys>
   /** Read every app hotkey with its live status through `.value`. */

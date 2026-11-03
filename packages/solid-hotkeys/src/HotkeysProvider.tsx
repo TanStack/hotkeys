@@ -20,12 +20,19 @@ import type {
   AppHotkeysStore,
   CustomHotkeys,
   HotkeyChordRecorderOptions,
+  HotkeyPlatform,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
 import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
 import type { CreateHotkeyCommonOptions } from './createHotkey'
 
 export interface HotkeysProviderOptions {
+  /**
+   * The user's platform, for labels from `createFormatForDisplay`, hotkeys,
+   * and recorders. On a server, set it from the request with
+   * `detectPlatform(userAgent)`.
+   */
+  platform?: HotkeyPlatform
   /**
    * Defaults for every hotkey registered by `createHotkey` and `createHotkeys`.
    * `requireReset` applies to chords and `timeout` applies to sequences.
@@ -58,8 +65,10 @@ export interface HotkeysProviderProps extends HotkeysProviderScopeProps {
    */
   appHotkeys?: AppHotkeys
   /**
-   * Starting custom hotkeys, such as saved data. Read once; the provider owns
-   * the state afterwards. Invalid entries are ignored with a warning.
+   * The user's saved custom hotkeys. When the value changes, such as after
+   * saved data loads or the user signs in, it replaces the current custom
+   * hotkeys. `undefined` leaves them unchanged; `null` clears them. Invalid
+   * entries are ignored with a warning.
    */
   customHotkeys?: CustomHotkeys | null
   /** Called with the custom hotkeys after every change, ready to save. */
@@ -101,7 +110,8 @@ export const HotkeysProvider: ParentComponent<HotkeysProviderProps> = (
   props,
 ) => {
   const parent = useContext(HotkeysContext)
-  // `appHotkeys` and `customHotkeys` are read once, when the provider is created.
+  // Created once; the effects below apply later `appHotkeys` and
+  // `customHotkeys` values.
   const store = untrack(() =>
     props.appHotkeys
       ? createAppHotkeysStore(props.appHotkeys, {
@@ -118,6 +128,13 @@ export const HotkeysProvider: ParentComponent<HotkeysProviderProps> = (
     (appHotkeys) => {
       if (appHotkeys) store?.setAppHotkeys(appHotkeys)
     },
+  )
+
+  // Apply saved custom hotkeys whose value changes, such as data that loads
+  // after the first render.
+  createEffect(
+    () => props.customHotkeys,
+    (customHotkeys) => store?.setOptions({ customHotkeys }),
   )
 
   // Publish the store so devtools can list declared hotkeys.

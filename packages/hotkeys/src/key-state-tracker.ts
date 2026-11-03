@@ -137,15 +137,19 @@ export class KeyStateTracker {
       // marked as held. On macOS, the OS intercepts modifier+key combos
       // (e.g. Cmd+S) and swallows the keyup event for the non-modifier key,
       // leaving it permanently stuck in the held set.
-      if (MODIFIER_KEYS.has(key)) {
-        for (const [entryIdentity, entry] of this.#heldEntries) {
-          if (!MODIFIER_KEYS.has(entry.key)) {
-            this.#heldEntries.delete(entryIdentity)
-          }
-        }
-      }
+      if (MODIFIER_KEYS.has(key)) this.#releaseNonModifiers()
 
       this.#syncState()
+    }
+
+    // A native context menu takes focus without a blur, so the keyup of a
+    // held key, such as the ContextMenu key itself, never arrives. A page
+    // that prevented the event shows its own menu and keeps focus.
+    const onContextMenu = (event: MouseEvent) => {
+      if (event.defaultPrevented || !event.isTrusted) return
+      // Modifiers are still reported on the event, so keep the held ones.
+      const reconciled = this.#reconcileModifiers(event)
+      if (this.#releaseNonModifiers() || reconciled) this.#syncState()
     }
 
     const onMouse = (event: MouseEvent) => {
@@ -169,6 +173,9 @@ export class KeyStateTracker {
       ['mousemove', onMouse as EventListener, true],
       ['mousedown', onMouse as EventListener, true],
       ['blur', onBlur, false],
+      ['contextmenu', onContextMenu as EventListener, false],
+      // Switching tabs or apps can hide the page without a window blur.
+      ['visibilitychange', () => document.hidden && onBlur(), false],
     ]
     for (const [type, listener, capture] of this.#listeners) {
       window.addEventListener(type, listener, capture)
@@ -192,6 +199,18 @@ export class KeyStateTracker {
         (entry.key === 'Shift' && !event.shiftKey) ||
         (entry.key === 'Meta' && !event.metaKey)
       if (released) {
+        this.#heldEntries.delete(identity)
+        changed = true
+      }
+    }
+    return changed
+  }
+
+  /** Forgets every held key that isn't a modifier. Returns whether any was held. */
+  #releaseNonModifiers(): boolean {
+    let changed = false
+    for (const [identity, entry] of this.#heldEntries) {
+      if (!MODIFIER_KEYS.has(entry.key)) {
         this.#heldEntries.delete(identity)
         changed = true
       }

@@ -1,4 +1,4 @@
-type Target = HTMLElement | Document | Window
+type Target = HTMLElement | Document | Window | ShadowRoot
 type EventType = 'keydown' | 'keyup'
 type ListenerGroup = {
   ids: Set<string>
@@ -28,14 +28,21 @@ export class TargetListeners {
     ) => void,
   ) {}
 
-  add(target: Target, capture: boolean, id: string): void {
+  /**
+   * Adds a registration to the target's shared listener. With `last`, an
+   * existing listener moves after listeners added since it, such as one a
+   * framework attached later to delegate key events.
+   */
+  add(target: Target, capture: boolean, id: string, last = false): void {
     if (typeof document === 'undefined') return
-    let phases = this.#targets.get(target)
-    if (!phases) {
-      phases = new Map()
-      this.#targets.set(target, phases)
-    }
+    const phases = this.#targets.get(target) ?? new Map()
     let group = phases.get(capture)
+    if (group && last) {
+      for (const type of ['keydown', 'keyup'] as const) {
+        target.removeEventListener(type, group[type], capture)
+        target.addEventListener(type, group[type], capture)
+      }
+    }
     if (!group) {
       const ids = new Set<string>()
       const listener =
@@ -63,9 +70,11 @@ export class TargetListeners {
           this.dispatch(event, target, eventType, capture, pending, first)
         }
       group = { ids, keydown: listener('keydown'), keyup: listener('keyup') }
-      phases.set(capture, group)
+      // Attach first, so a target that can't listen leaves nothing behind.
       target.addEventListener('keydown', group.keydown, capture)
       target.addEventListener('keyup', group.keyup, capture)
+      phases.set(capture, group)
+      this.#targets.set(target, phases)
     }
     group.ids.add(id)
   }

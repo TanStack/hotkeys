@@ -56,10 +56,18 @@ function App() @{
           </p>
         </header>
         <ScopeFrame>
-          <Scope scope="palette"><Palette /></Scope>
-          <Scope scope="document"><NestedDemo /></Scope>
-          <Scope scope="mail"><TabsDemo /></Scope>
-          <Scope scope="settings"><DialogDemo /></Scope>
+          <HotkeysProvider scope="palette">
+            <ScopeFrame scope="palette"><Palette /></ScopeFrame>
+          </HotkeysProvider>
+          <HotkeysProvider scope="document">
+            <ScopeFrame scope="document"><NestedDemo /></ScopeFrame>
+          </HotkeysProvider>
+          <HotkeysProvider scope="mail">
+            <ScopeFrame scope="mail"><TabsDemo /></ScopeFrame>
+          </HotkeysProvider>
+          <HotkeysProvider scope="settings">
+            <ScopeFrame scope="settings"><DialogDemo /></ScopeFrame>
+          </HotkeysProvider>
           <ActivityLog />
         </ScopeFrame>
       </div>
@@ -71,26 +79,7 @@ function App() @{
 // Providers drawn as boxes
 // ---------------------------------------------------------------------------
 
-/** A `HotkeysProvider` with a box around its children, labeled with its props. */
-function Scope({
-  scope,
-  exclusive,
-  enabled,
-  children,
-}: {
-  scope: string
-  exclusive?: ExclusiveOption
-  enabled?: boolean
-  children?: unknown
-}) @{
-  <HotkeysProvider scope={scope} exclusive={exclusive} enabled={enabled}>
-    <ScopeFrame scope={scope} exclusive={exclusive} enabled={enabled}>
-      {children}
-    </ScopeFrame>
-  </HotkeysProvider>
-}
-
-/** The box alone, for content rendered apart from its provider, such as a dialog. */
+/** A box labeled with its provider's props. Render it inside the provider. */
 function ScopeFrame({
   scope = 'global',
   exclusive,
@@ -166,7 +155,11 @@ function NestedDemo() @{
       />{' '}
       Show comment box
     </label>
-    @if (showComments) { <Scope scope="comments"><CommentBox /></Scope> }
+    @if (showComments) {
+      <HotkeysProvider scope="comments">
+        <ScopeFrame scope="comments"><CommentBox /></ScopeFrame>
+      </HotkeysProvider>
+    }
   </section>
 }
 
@@ -205,13 +198,15 @@ function TabsDemo() @{
     </p>
     <div className="folders">
       @for (const name of folders; key name) {
-        <Scope scope={name.toLowerCase()} enabled={current === name}>
-          <FolderPane
-            name={name}
-            current={current === name}
-            onSelect={() => setCurrent(name)}
-          />
-        </Scope>
+        <HotkeysProvider scope={name.toLowerCase()} enabled={current === name}>
+          <ScopeFrame scope={name.toLowerCase()} enabled={current === name}>
+            <FolderPane
+              name={name}
+              current={current === name}
+              onSelect={() => setCurrent(name)}
+            />
+          </ScopeFrame>
+        </HotkeysProvider>
       }
     </div>
   </section>
@@ -319,7 +314,9 @@ function Dialog({
           <Key hotkey="Escape" /> closes it. The folder hotkeys are suspended,
           and so is anything you did not allow above.
         </p>
-        <Scope scope="dialog-steps"><Steps /></Scope>
+        <HotkeysProvider scope="dialog-steps">
+          <ScopeFrame scope="dialog-steps"><Steps /></ScopeFrame>
+        </HotkeysProvider>
         <div className="actions">
           <button className="secondary" onClick={onClose}>Cancel</button>
           <button onClick={onSave}>Save</button>

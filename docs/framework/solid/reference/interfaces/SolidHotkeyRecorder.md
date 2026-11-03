@@ -3,7 +3,7 @@ id: SolidHotkeyRecorder
 title: SolidHotkeyRecorder
 ---
 
-Defined in: [createHotkeyRecorder.ts:14](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L14)
+Defined in: [createHotkeyRecorder.ts:15](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L15)
 
 ## Type Parameters
 
@@ -19,7 +19,7 @@ Defined in: [createHotkeyRecorder.ts:14](https://github.com/TanStack/hotkeys/blo
 cancelRecording: () => void;
 ```
 
-Defined in: [createHotkeyRecorder.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L26)
+Defined in: [createHotkeyRecorder.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L27)
 
 Cancel recording and call onCancel
 
@@ -35,7 +35,7 @@ Cancel recording and call onCancel
 commitRecording: () => void;
 ```
 
-Defined in: [createHotkeyRecorder.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L28)
+Defined in: [createHotkeyRecorder.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L29)
 
 Commit the recorded steps now (multi-step recordings)
 
@@ -51,7 +51,7 @@ Commit the recorded steps now (multi-step recordings)
 isRecording: () => boolean;
 ```
 
-Defined in: [createHotkeyRecorder.ts:16](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L16)
+Defined in: [createHotkeyRecorder.ts:17](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L17)
 
 Whether recording is currently active
 
@@ -67,7 +67,7 @@ Whether recording is currently active
 recordedHotkey: () => THotkey | null;
 ```
 
-Defined in: [createHotkeyRecorder.ts:20](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L20)
+Defined in: [createHotkeyRecorder.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L21)
 
 The last committed hotkey
 
@@ -83,7 +83,7 @@ The last committed hotkey
 startRecording: () => void;
 ```
 
-Defined in: [createHotkeyRecorder.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L22)
+Defined in: [createHotkeyRecorder.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L23)
 
 Start recording a new hotkey
 
@@ -99,7 +99,7 @@ Start recording a new hotkey
 steps: () => HotkeySequence;
 ```
 
-Defined in: [createHotkeyRecorder.ts:18](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L18)
+Defined in: [createHotkeyRecorder.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L19)
 
 Chords recorded so far in a multi-step recording (for live preview)
 
@@ -115,7 +115,7 @@ Chords recorded so far in a multi-step recording (for live preview)
 stopRecording: () => void;
 ```
 
-Defined in: [createHotkeyRecorder.ts:24](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L24)
+Defined in: [createHotkeyRecorder.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkeyRecorder.ts#L25)
 
 Stop recording without calling onCancel
 

@@ -1,6 +1,7 @@
 import { computed } from '@angular/core'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
 import { injectSelector } from './_injectSelector'
+import { runOutsideZone } from './_zone'
 import type { IndividualKey } from '@tanstack/hotkeys'
 import type { Signal } from '@angular/core'
 
@@ -40,7 +41,7 @@ import type { Signal } from '@angular/core'
 export function injectKeyHold(
   key: IndividualKey | (() => IndividualKey),
 ): Signal<boolean> {
-  const tracker = getKeyStateTracker()
+  const tracker = runOutsideZone(getKeyStateTracker)
   const heldKeysSelector = injectSelector(
     tracker.store,
     (state) => state.heldKeys,

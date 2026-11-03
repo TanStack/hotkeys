@@ -6,7 +6,10 @@ redirect_from:
   - framework/alpine/guides/hotkey-recording
 ---
 
-`createHotkeyRecorder` lets users choose a hotkey by pressing it, as shortcut editors in system settings and IDEs do. Create it on an owner from `createHotkeysScope`. You only need it if users can change your app's hotkeys. To save their choices and list them in a cheat sheet, pair it with [app hotkeys](./app-hotkeys).
+> [!IMPORTANT]
+> `scope.createHotkeyRecorder` was removed in `@tanstack/alpine-hotkeys` v0.10.0, so apps that don't record hotkeys don't ship the recorder. Call `createHotkeyRecorder(scope, options)` instead, or `$hotkeyRecorder(options)` after you install `hotkeyRecorderPlugin`.
+
+`createHotkeyRecorder` lets users choose a hotkey by pressing it, as shortcut editors in system settings and IDEs do. Pass it an owner from `createHotkeysScope`, which destroys the recorder with its other hotkeys. You only need it if users can change your app's hotkeys. To save their choices and list them in a cheat sheet, pair it with [app hotkeys](./app-hotkeys).
 
 While any recorder is listening, registered hotkeys don't fire, so pressing `Mod+S` to record it doesn't also save. You don't need to disable them yourself.
 
@@ -14,11 +17,15 @@ While any recorder is listening, registered hotkeys don't fire, so pressing `Mod
 
 ```ts
 import Alpine from 'alpinejs'
-import { createHotkeysScope, formatForDisplay } from '@tanstack/alpine-hotkeys'
+import {
+  createHotkeyRecorder,
+  createHotkeysScope,
+  formatForDisplay,
+} from '@tanstack/alpine-hotkeys'
 
 Alpine.data('shortcutRecorder', () => {
   const hotkeys = createHotkeysScope()
-  const recorder = hotkeys.createHotkeyRecorder({
+  const recorder = createHotkeyRecorder(hotkeys, {
     onRecord: (hotkey) => console.log('Recorded:', hotkey), // e.g. 'Mod+Shift+[KeyS]'
   })
 
@@ -46,6 +53,32 @@ Alpine.data('shortcutRecorder', () => {
 
 The recorder records the key's position by default, so Option+S on macOS records `Alt+[KeyS]`, even though it types `ß`. It records `Mod` rather than Command or Control, so the hotkey works on every platform. Pass the result straight to `createHotkey`, and label it with `formatForDisplay`. [Recording captures what the user pressed](../../../guides/sensible-defaults.md#recording-captures-what-the-user-pressed) explains these defaults. Set `recordBy: 'key'` to record the character instead.
 
+### Use the `$hotkeyRecorder` magic
+
+Install `hotkeyRecorderPlugin` to add the `$hotkeyRecorder` magic. It creates a recorder that the plugin destroys with its element:
+
+```ts
+import Alpine from 'alpinejs'
+import { hotkeyRecorderPlugin, hotkeysPlugin } from '@tanstack/alpine-hotkeys'
+
+Alpine.plugin(hotkeysPlugin)
+Alpine.plugin(hotkeyRecorderPlugin)
+```
+
+```html
+<div
+  x-data="{ recorder: null, hotkey: null }"
+  x-init="recorder = $hotkeyRecorder({ onRecord: (value) => (hotkey = value) })"
+>
+  <button @click="recorder.startRecording()" x-text="recorder.isRecording ? 'Press keys...' : 'Record'"></button>
+  <span x-text="hotkey"></span>
+</div>
+```
+
+`$hotkeyRecorder` uses the built-in defaults. Call it in `x-init` or `init()`, not in a reactive expression.
+
+### Recorder state and controls
+
 The recorder has its state and controls. State members are reactive getters, so read them from the recorder instead of destructuring them once:
 
 | Member | Description |
@@ -65,7 +98,7 @@ Set `maxSteps: Infinity` to let users record a sequence. Each chord adds a step,
 ```ts
 Alpine.data('sequenceRecorder', () => {
   const hotkeys = createHotkeysScope()
-  const recorder = hotkeys.createHotkeyRecorder({
+  const recorder = createHotkeyRecorder(hotkeys, {
     maxSteps: Infinity,
     onRecord: (hotkey) => console.log('Recorded:', hotkey), // 'Mod+[KeyS]' or ['[KeyG]', '[KeyG]']
   })
@@ -89,7 +122,7 @@ Alpine.data('sequenceRecorder', () => {
 
 A one-step recording commits as a chord, so the result can always go straight to `createHotkey`. With `maxSteps: Infinity`, `onRecord` and `validate` receive a `Hotkey`, which can be a chord or a sequence. See [Sequences](./sequences) for how sequences match.
 
-Options can also be a getter, such as `this.hotkeys.createHotkeyRecorder(() => ({ maxSteps: Infinity, recordBy: this.mode, onRecord }))`, so the recorder follows Alpine state.
+Options can also be a getter, such as `createHotkeyRecorder(this.hotkeys, () => ({ maxSteps: Infinity, recordBy: this.mode, onRecord }))`, so the recorder follows Alpine state.
 
 ## Keys the recorder handles
 
@@ -112,7 +145,7 @@ By default, the recorder ignores typing in text fields, so other fields on the p
 Pass `validate` to accept or reject each recording before it commits. Return `true` to accept, or `false` or a message to reject:
 
 ```ts
-this.hotkeys.createHotkeyRecorder({
+createHotkeyRecorder(this.hotkeys, {
   validate: (_hotkey, { parsedChord }) =>
     parsedChord.modifiers.length > 0 || 'Include a modifier.',
   onReject: ({ message }) => setError(message),
@@ -123,7 +156,7 @@ this.hotkeys.createHotkeyRecorder({
 The second argument has the `event` that recorded the chord and `parsedChord`, with `Mod` resolved. With `maxSteps: Infinity`, a recording can be a chord or a sequence, so check `kind` first. A sequence's context has `events` and `parsedSequence`, with one entry per step:
 
 ```ts
-this.hotkeys.createHotkeyRecorder({
+createHotkeyRecorder(this.hotkeys, {
   maxSteps: Infinity,
   validate: (_hotkey, context) =>
     context.kind === 'sequence' ||
@@ -140,7 +173,7 @@ A rejected recording keeps listening, so the user can try again. A rejected sequ
 Set `detectConflicts: true` to reject a hotkey that's already registered:
 
 ```ts
-this.hotkeys.createHotkeyRecorder({
+createHotkeyRecorder(this.hotkeys, {
   detectConflicts: true,
   onReject: ({ reason, message, conflicts }) => {
     // reason is 'conflict', and conflicts lists the registrations it collides with
@@ -177,7 +210,11 @@ For a few hotkeys in one component, Alpine state is enough:
 
 ```ts
 import Alpine from 'alpinejs'
-import { createHotkeysScope, formatForDisplay } from '@tanstack/alpine-hotkeys'
+import {
+  createHotkeyRecorder,
+  createHotkeysScope,
+  formatForDisplay,
+} from '@tanstack/alpine-hotkeys'
 import type { AlpineHotkeyRecorder, Hotkey } from '@tanstack/alpine-hotkeys'
 
 type Action = 'save' | 'undo' | 'search'
@@ -189,7 +226,7 @@ Alpine.data('shortcutSettings', () => ({
   editing: null as Action | null,
   recorder: null as AlpineHotkeyRecorder | null,
   init() {
-    this.recorder = this.hotkeys.createHotkeyRecorder({
+    this.recorder = createHotkeyRecorder(this.hotkeys, {
       maxSteps: Infinity,
       onRecord: (hotkey) => {
         if (this.editing) this.shortcuts = { ...this.shortcuts, [this.editing]: hotkey }
@@ -247,6 +284,6 @@ Alpine.data('shortcutSettings', () => ({
 | `onReject` | None | Called with the reason when a recording is rejected |
 | `platform` | Detected | The platform that decides what `Mod` means |
 
-To change the defaults for every recorder an owner creates, pass `hotkeyRecorder` options to `createHotkeysScope`, such as `createHotkeysScope({ hotkeyRecorder: { idleTimeoutMs: 2000 } })`. The [`AlpineCreateHotkeyRecorder` reference](../reference/interfaces/AlpineCreateHotkeyRecorder.md) lists the types.
+To change the defaults for every recorder on an owner, pass `hotkeyRecorder` options to `createHotkeysScope`, such as `createHotkeysScope({ hotkeyRecorder: { idleTimeoutMs: 2000 } })`. The [`createHotkeyRecorder` reference](../reference/functions/createHotkeyRecorder.md) lists the types.
 
 The [createHotkeyRecorder example](../examples/createHotkeyRecorder) records chords, and the [sequences example](../examples/createHotkeyRecorder-sequences) records sequences.

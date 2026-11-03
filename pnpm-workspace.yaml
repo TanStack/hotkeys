@@ -29,7 +29,20 @@ minimumReleaseAgeExclude:
 packages:
   - 'e2e'
   - 'examples/**/*'
+  # Build output can contain its own package.json, such as Analog's server.
+  - '!examples/**/dist/**'
+  - '!examples/**/.output/**'
   - 'packages/*'
+  # No Solid 2 release of Astro's Solid integration or SolidStart yet, so these
+  # stay on Solid 1 and the published @tanstack/solid-hotkeys 0.x.
+  - '!examples/solid/createFormatForDisplay-astro'
+  - '!examples/solid/createFormatForDisplay-solid-start'
+packageExtensions:
+  # @analogjs/vite-plugin-nitro imports h3 v1 without declaring it, so it
+  # resolves the hoisted h3 v2 and fails to load.
+  '@analogjs/vite-plugin-nitro':
+    dependencies:
+      h3: ^1.15.11
 onlyBuiltDependencies:
   - esbuild
 

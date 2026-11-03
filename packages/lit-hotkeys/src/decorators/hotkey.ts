@@ -1,5 +1,5 @@
 import { HotkeyController } from '../controllers/hotkey'
-import type { LitElement } from 'lit'
+import type { ReactiveElement } from 'lit'
 import type {
   AppHotkey,
   HotkeyCallback,
@@ -14,25 +14,37 @@ import type {
 } from '../controllers/hotkey'
 
 /**
- * A method decorator. The method's context parameter can be typed as the
- * context for the decorated hotkey's kind, such as `HotkeyChordCallbackContext`.
+ * A method decorator for legacy (`experimentalDecorators`) and standard
+ * decorators. The method's context parameter can be typed as the context for
+ * the decorated hotkey's kind, such as `HotkeyChordCallbackContext`.
  */
-type HotkeyDecorator<
+export type HotkeyDecorator<
   TContext extends HotkeyCallbackContext = HotkeyCallbackContext,
-> = <T extends HotkeyCallback<TContext>>(
-  proto: LitElement,
-  propertyKey: string,
-  descriptor?: TypedPropertyDescriptor<T>,
-) => void
+> = {
+  // Legacy decorators.
+  <T extends HotkeyCallback<TContext>>(
+    proto: ReactiveElement,
+    name: string | symbol,
+    descriptor?: TypedPropertyDescriptor<T>,
+  ): void
+  // Standard decorators.
+  <THost extends ReactiveElement, T extends HotkeyCallback<TContext>>(
+    method: T,
+    context: ClassMethodDecoratorContext<THost, T>,
+  ): void
+}
 
 /**
  * Decorator that registers a hotkey on the element when it connects and
  * unregisters when it disconnects: a chord such as `'Mod+S'`, a sequence such
  * as `['G', 'G']`, or an app hotkey. Uses {@link HotkeyController} under the hood.
  *
+ * Works with legacy (`experimentalDecorators`) and standard decorators. The
+ * method is looked up when the hotkey fires, so subclass overrides run.
+ *
  * @param hotkey - The chord, sequence, or app hotkey to listen for.
  * @param options - Optional registration options (target, platform, enabled, etc.).
- * @returns A method decorator for use on LitElement methods.
+ * @returns A method decorator for use on Lit element methods.
  *
  * @example
  * ```ts
@@ -55,43 +67,35 @@ export function hotkey<const T extends RegisterableHotkey>(
 ): HotkeyDecorator<HotkeyCallbackContextFor<T>>
 export function hotkey(
   hotkey: RegisterableHotkey | AppHotkey,
-  options: HotkeyControllerCommonOptions = {},
+  options?: HotkeyControllerCommonOptions,
 ): HotkeyDecorator {
-  return function <T extends HotkeyCallback>(
-    proto: LitElement,
-    propertyKey: string,
-    descriptor?: TypedPropertyDescriptor<T>,
-  ) {
-    const originalConnected = proto.connectedCallback
-    const controllerKey = Symbol(`@hotkey:${propertyKey}`)
-
-    proto.connectedCallback = function () {
-      originalConnected.call(this)
-
-      const host = this as unknown as {
-        [key: symbol]: HotkeyController | undefined
-        addController: (c: unknown) => void
-        [key: string]: unknown
-      }
-
-      if (!host[controllerKey]) {
-        const callback: HotkeyCallback = descriptor?.value
-          ? descriptor.value.bind(this)
-          : (host[propertyKey] as HotkeyCallback)
-
-        if (typeof callback !== 'function') {
-          throw new Error(`@hotkey decorator can only be applied to functions`)
-        }
-
-        const controller = new HotkeyController(
-          this,
-          hotkey as RegisterableHotkey,
-          callback,
-          options,
-        )
-        host[controllerKey] = controller
-        this.addController(controller)
-      }
+  return (
+    proto: ReactiveElement | HotkeyCallback,
+    context: string | symbol | ClassMethodDecoratorContext,
+  ) => {
+    const standard = typeof context === 'object'
+    const init = (host: ReactiveElement) => {
+      new HotkeyController(
+        host,
+        hotkey as RegisterableHotkey,
+        // Look the method up on each call so subclass overrides run.
+        // `access.get` also reaches `#private` methods.
+        function (this: any, event, callbackContext) {
+          return (standard ? context.access.get(this) : this[context]).call(
+            this,
+            event,
+            callbackContext,
+          )
+        },
+        options,
+      )
+    }
+    if (standard) {
+      context.addInitializer(function (this: unknown) {
+        init(this as ReactiveElement)
+      })
+    } else {
+      ;(proto.constructor as typeof ReactiveElement).addInitializer(init)
     }
   }
 }

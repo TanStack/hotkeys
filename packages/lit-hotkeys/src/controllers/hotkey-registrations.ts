@@ -37,6 +37,8 @@ export class HotkeyRegistrationsController implements ReactiveController {
   }
 
   public hostConnected(): void {
+    // Adding the controller again while connected calls this twice.
+    if (this._unsubscribe) return
     const manager = getHotkeyManager()
     const read = () =>
       Array.from(manager.registrations.state.values()).map(

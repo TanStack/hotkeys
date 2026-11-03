@@ -10,7 +10,7 @@ import {
 import { TestBed } from '@angular/core/testing'
 import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { provideHotkeys } from '../src/hotkeys-provider'
+import { injectHotkeysContext, provideHotkeys } from '../src/hotkeys-provider'
 import { injectAppHotkeyList } from '../src/injectAppHotkeys'
 import { injectHotkey } from '../src/injectHotkey'
 import { injectHotkeyScopesState } from '../src/injectHotkeyScopesState'
@@ -181,6 +181,27 @@ describe('provideHotkeys scopes', () => {
     TestBed.tick()
     expect(activate).not.toHaveBeenCalled()
   })
+  it('activates an exclusive provider with no hotkeys once its context is injected', () => {
+    const root = setup()
+    const outer = vi.fn()
+    run(root, () => injectHotkey('Mod+S', outer))
+
+    const dialog = nest(root, { scope: 'dialog', exclusive: true })
+    // The provider factory is lazy, so nothing activates it yet.
+    TestBed.tick()
+    press('s')
+    expect(outer).toHaveBeenCalledTimes(1)
+
+    run(dialog, () => injectHotkeysContext())
+    press('s')
+    expect(outer).toHaveBeenCalledTimes(1)
+    expect(HotkeyManager.getInstance().scopes.state.exclusive).toBe('dialog')
+
+    dialog.destroy()
+    press('s')
+    expect(outer).toHaveBeenCalledTimes(2)
+  })
+
   it('exposes the scopes state as a signal', () => {
     const root = setup()
     const state = run(root, () => injectHotkeyScopesState())

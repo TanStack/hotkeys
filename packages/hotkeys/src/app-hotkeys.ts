@@ -284,6 +284,69 @@ function sanitizeCustomHotkeys<T extends AppHotkeys>(
   return result
 }
 
+/** Whether two saved values hold the same data. Nothing saved equals `{}`. */
+function sameSavedValue(left: unknown, right: unknown): boolean {
+  if (Object.is(left, right)) return true
+  if (Array.isArray(left) || Array.isArray(right)) {
+    return (
+      Array.isArray(left) &&
+      Array.isArray(right) &&
+      left.length === right.length &&
+      left.every((step, i) => Object.is(step, right[i]))
+    )
+  }
+  if (typeof left !== 'object' || typeof right !== 'object') return false
+  if (left === null || right === null) return false
+  const keys = Object.keys(left)
+  return (
+    keys.length === Object.keys(right).length &&
+    keys.every(
+      (key) =>
+        Object.hasOwn(right, key) &&
+        sameSavedValue(
+          (left as Record<string, unknown>)[key],
+          (right as Record<string, unknown>)[key],
+        ),
+    )
+  )
+}
+
+/** Copies saved custom hotkeys, so later changes made in place are detected. */
+function copySavedCustomHotkeys(saved: unknown): unknown {
+  if (typeof saved !== 'object' || saved === null) return saved
+  const copy: Record<string, unknown> = {}
+  for (const [id, value] of Object.entries(saved)) {
+    copy[id] = Array.isArray(value) ? [...value] : value
+  }
+  return copy
+}
+
+/** Whether two saved custom hotkeys objects hold the same data. */
+function sameSavedCustomHotkeys(left: unknown, right: unknown): boolean {
+  // Never passed equals {}. null is a distinct value, so a change to it clears.
+  return sameSavedValue(
+    left === undefined ? {} : left,
+    right === undefined ? {} : right,
+  )
+}
+
+/** Whether two sanitized custom hotkeys objects bind the same hotkeys. */
+function sameCustomHotkeys(
+  left: Record<string, Hotkey | null>,
+  right: Record<string, Hotkey | null>,
+  platform: Platform,
+): boolean {
+  const keys = Object.keys(left)
+  return (
+    keys.length === Object.keys(right).length &&
+    keys.every(
+      (key) =>
+        Object.hasOwn(right, key) &&
+        hotkeysEqual(left[key] ?? null, right[key] ?? null, platform),
+    )
+  )
+}
+
 /** Whether two app hotkeys can apply at the same time. */
 function scopesOverlap(a: AppHotkey, b: AppHotkey): boolean {
   const left = a.scope ?? GLOBAL_SCOPE
@@ -337,7 +400,13 @@ export interface AppHotkeysState<T extends AppHotkeys = AppHotkeys> {
 
 /** Options for `AppHotkeysStore`. */
 export interface AppHotkeysStoreOptions<T extends AppHotkeys = AppHotkeys> {
-  /** Starting custom hotkeys, such as saved data. Invalid entries are ignored with a warning. */
+  /**
+   * The user's saved custom hotkeys. Invalid entries are ignored with a
+   * warning. Passing a different value to `setOptions` later, such as data
+   * that finished loading or another user's data, replaces the current
+   * custom hotkeys. `undefined` leaves them unchanged; a change to `null`
+   * clears them.
+   */
   customHotkeys?: CustomHotkeys<T> | null
   /** Called with the custom hotkeys after every change, ready to save. */
   onCustomHotkeysChange?: (customHotkeys: CustomHotkeys<T>) => void
@@ -364,10 +433,13 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
   readonly store: Store<AppHotkeysState<T>>
   #declarations: T
   #options: AppHotkeysStoreOptions<T>
+  /** The `customHotkeys` option last passed in, compared by value. */
+  #savedCustomHotkeys: unknown
 
   constructor(appHotkeys: T, options: AppHotkeysStoreOptions<T> = {}) {
     this.#declarations = appHotkeys
     this.#options = options
+    this.#savedCustomHotkeys = copySavedCustomHotkeys(options.customHotkeys)
     const customHotkeys = sanitizeCustomHotkeys(
       appHotkeys,
       options.customHotkeys,
@@ -392,9 +464,36 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
     return this.store.state.customHotkeys
   }
 
-  /** Updates callbacks and other options without resetting custom hotkeys. */
-  setOptions(options: Omit<AppHotkeysStoreOptions<T>, 'customHotkeys'>): void {
-    this.#options = { ...this.#options, ...options }
+  /**
+   * Updates options. Providers call it with their props on every update.
+   *
+   * When `customHotkeys` differs from the value last passed in, it replaces
+   * the current custom hotkeys. An equal value, such as the same saved data
+   * parsed again, keeps changes the user made since. `undefined` changes
+   * nothing, such as while saved data loads; `null` clears them, such as on
+   * sign-out. Replacing does not call `onCustomHotkeysChange`, because the
+   * data came from the app.
+   */
+  setOptions(options: AppHotkeysStoreOptions<T>): void {
+    const { customHotkeys, ...rest } = options
+    this.#options = { ...this.#options, ...rest }
+    if (customHotkeys === undefined) return
+    if (sameSavedCustomHotkeys(customHotkeys, this.#savedCustomHotkeys)) return
+    this.#savedCustomHotkeys = copySavedCustomHotkeys(customHotkeys)
+    const next = sanitizeCustomHotkeys(this.#declarations, customHotkeys)
+    if (
+      sameCustomHotkeys(
+        next as Record<string, Hotkey | null>,
+        this.store.state.customHotkeys as Record<string, Hotkey | null>,
+        this.#platform,
+      )
+    ) {
+      return
+    }
+    this.store.setState(() => ({
+      appHotkeys: applyCustomHotkeys(this.#declarations, next),
+      customHotkeys: next,
+    }))
   }
 
   /**

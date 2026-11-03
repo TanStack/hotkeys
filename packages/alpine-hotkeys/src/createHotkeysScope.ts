@@ -1,4 +1,4 @@
-import { createScope } from './scope'
+import { createScope, ownerScopes } from './scope'
 import { createHotkey } from './createHotkey'
 import { createHotkeys } from './createHotkeys'
 import { createHeldKeys } from './createHeldKeys'
@@ -7,18 +7,12 @@ import { createKeyHold } from './createKeyHold'
 import { createHotkeyHint } from './createHotkeyHint'
 import { createHotkeyRegistrations } from './createHotkeyRegistrations'
 import { createHotkeyScopesState } from './createHotkeyScopesState'
-import { createHotkeyRecorder } from './createHotkeyRecorder'
 import {
   createAppHotkeyList,
   createAppHotkeys,
   createCustomHotkeys,
 } from './createAppHotkeys'
-import type {
-  AlpineCreateHotkeyRecorder,
-  AlpineHotkeys,
-  DefaultHotkeysOptions,
-  MaybeGetter,
-} from './types'
+import type { AlpineHotkeys, DefaultHotkeysOptions, MaybeGetter } from './types'
 
 export type { AlpineHotkeys, DefaultHotkeysOptions, MaybeGetter } from './types'
 
@@ -31,7 +25,7 @@ export function createHotkeysScope(
   defaultOptions: MaybeGetter<DefaultHotkeysOptions> = {},
 ): AlpineHotkeys {
   const scope = createScope(defaultOptions)
-  return {
+  const owner: AlpineHotkeys = {
     createHotkey: (
       ...args: Parameters<typeof createHotkey> extends [unknown, ...infer TArgs]
         ? TArgs
@@ -45,11 +39,11 @@ export function createHotkeysScope(
     createHotkeyRegistrations: (...args) =>
       createHotkeyRegistrations(scope, ...args),
     createHotkeyScopesState: () => createHotkeyScopesState(scope),
-    createHotkeyRecorder: ((options) =>
-      createHotkeyRecorder(scope, options)) as AlpineCreateHotkeyRecorder,
     createAppHotkeys: () => createAppHotkeys(scope),
     createAppHotkeyList: () => createAppHotkeyList(scope),
     createCustomHotkeys: () => createCustomHotkeys(scope),
     destroy: scope.destroy,
   }
+  ownerScopes.set(owner, scope)
+  return owner
 }

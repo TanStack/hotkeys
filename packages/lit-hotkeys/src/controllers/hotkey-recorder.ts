@@ -117,6 +117,8 @@ export class HotkeyRecorderController implements ReactiveController {
 
   /** Subscribes to the recorder store and updates the internal state when changes occur. */
   public hostConnected(): void {
+    // Adding the controller again while connected calls this twice.
+    if (this._unsubscribe) return
     if (isServer()) return
     const subscription = this._recorder.store.subscribe(() => {
       const { isRecording, recordedHotkey, steps } = this._recorder.store.state

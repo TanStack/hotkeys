@@ -32,6 +32,7 @@ title: "@tanstack/vue-hotkeys"
 - [useAppHotkeys](functions/useAppHotkeys.md)
 - [useCustomHotkeys](functions/useCustomHotkeys.md)
 - [useDefaultHotkeysOptions](functions/useDefaultHotkeysOptions.md)
+- [useFormatForDisplay](functions/useFormatForDisplay.md)
 - [useHeldKeyCodes](functions/useHeldKeyCodes.md)
 - [useHeldKeys](functions/useHeldKeys.md)
 - [useHotkey](functions/useHotkey.md)

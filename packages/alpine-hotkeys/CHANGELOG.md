@@ -1,5 +1,75 @@
 # @tanstack/alpine-hotkeys
 
+## 0.11.1
+
+### Patch Changes
+
+- Updated dependencies [[`b5e429a`](https://github.com/TanStack/hotkeys/commit/b5e429ab26366a9ed188c9e7cd774fb93dbee1f1), [`d3adb24`](https://github.com/TanStack/hotkeys/commit/d3adb24ae133507b02401404f11b931b86fb2255), [`d3adb24`](https://github.com/TanStack/hotkeys/commit/d3adb24ae133507b02401404f11b931b86fb2255), [`d3adb24`](https://github.com/TanStack/hotkeys/commit/d3adb24ae133507b02401404f11b931b86fb2255), [`d3adb24`](https://github.com/TanStack/hotkeys/commit/d3adb24ae133507b02401404f11b931b86fb2255), [`04c7445`](https://github.com/TanStack/hotkeys/commit/04c7445967e059f4bffa050b49c9f9d65260a959)]:
+  - @tanstack/hotkeys@0.24.0
+
+## 0.11.0
+
+### Minor Changes
+
+- [#221](https://github.com/TanStack/hotkeys/pull/221) [`5bf96b6`](https://github.com/TanStack/hotkeys/commit/5bf96b68bba67b0e288bb7886c5f4516417a528f) - Server-rendered hotkey labels can match the user's platform.
+
+  - `detectPlatform(userAgent)` detects the platform from a user agent string, such as a request's `User-Agent` header. `null`, as from a missing header, works like no argument. A new `HotkeyPlatform` type names the result.
+  - Without a user agent, `detectPlatform()` returns `'linux'` on Node, Deno, Bun, and Cloudflare Workers instead of the server's own OS.
+  - In development, formatting a label on the server without a platform warns once.
+  - Providers accept `defaultOptions.platform`, which is also the default platform for their hotkeys and recorders.
+  - Adapters that render on the server add a formatter hook that uses the provider's platform: `useFormatForDisplay` (React, Preact, Octane, Vue, Ember), `createFormatForDisplay` (Solid), `getFormatForDisplay` (Svelte), and `injectFormatForDisplay` (Angular).
+  - Angular's `provideHotkeys` accepts `defaultOptions` as a getter that runs in the injection context, so it can read the request with `inject(REQUEST)`.
+
+### Patch Changes
+
+- Updated dependencies [[`5bf96b6`](https://github.com/TanStack/hotkeys/commit/5bf96b68bba67b0e288bb7886c5f4516417a528f)]:
+  - @tanstack/hotkeys@0.23.0
+
+## 0.10.0
+
+### Minor Changes
+
+- [#218](https://github.com/TanStack/hotkeys/pull/218) [`93b8b5e`](https://github.com/TanStack/hotkeys/commit/93b8b5e2102f1e973496fef8fbff086bfddc89f5) - - **Breaking:** the recorder is no longer part of `$hotkeys` and `createHotkeysScope`, which removes about 1.6 KB (brotli) from every app. Use `createHotkeyRecorder($hotkeys, options)`, or register `hotkeyRecorderPlugin` and use `$hotkeyRecorder(options)`.
+  - An error in a hotkey effect, such as a conflict after a reactive hotkey changes, is reported instead of stopping Alpine's update queue.
+
+### Patch Changes
+
+- Updated dependencies [[`93b8b5e`](https://github.com/TanStack/hotkeys/commit/93b8b5e2102f1e973496fef8fbff086bfddc89f5)]:
+  - @tanstack/hotkeys@0.22.1
+
+## 0.9.1
+
+### Patch Changes
+
+- Updated dependencies [[`a080a84`](https://github.com/TanStack/hotkeys/commit/a080a848a117f91e99f27ec002ac2dcc3338d25c)]:
+  - @tanstack/hotkeys@0.22.0
+
+## 0.9.0
+
+### Minor Changes
+
+- [#214](https://github.com/TanStack/hotkeys/pull/214) [`a179ef6`](https://github.com/TanStack/hotkeys/commit/a179ef6d3410dfe6fc932e09f55330d16297507f) - Hotkey hooks and functions in every adapter accept `undefined` and `null` as the hotkey, for components with an optional shortcut. No hotkey registers nothing, and its hint is `false`. When a hotkey changes to `undefined` or `null`, its registration is removed; when it changes back, it registers again. Before, a nullish hotkey threw: in React it unmounted the tree, in Vue, Solid, Angular, and Svelte the old hotkey kept firing, Ember failed to render, and Alpine stopped updating the page. In Angular, `injectHotkey(() => this.shortcut(), …)` now works with an optional input, without `?? []`.
+
+  - The plural forms skip a definition whose `hotkey` is nullish.
+  - An empty hotkey, such as `''` or `{ key: '' }`, also registers nothing, so clearing a hotkey to `''` removes its registration. Before, an empty hotkey registered and fired on `keydown` events with no key, such as those some autofill tools send.
+  - `HotkeyManager.register` still requires a hotkey. It throws a clear error for `undefined`, `null`, or an empty hotkey, as it already did for an empty sequence.
+  - `hasActiveRegistration` and `matchesHeldModifiers` return `false` for no hotkey.
+  - The Lit `@hotkey` decorator still needs a hotkey, because it is set when the class is defined.
+
+### Patch Changes
+
+- [#214](https://github.com/TanStack/hotkeys/pull/214) [`a179ef6`](https://github.com/TanStack/hotkeys/commit/a179ef6d3410dfe6fc932e09f55330d16297507f) - An option set to `undefined` now keeps its default, the same as leaving it out. Before, a wrapper component that forwarded unset props, such as `preventDefault: props.preventDefault`, turned off `preventDefault` and `stopPropagation`, so `Mod+S` also opened the browser's Save dialog. `eventType: undefined` made a hotkey never fire, and `scope: undefined` moved a hotkey out of its provider's scope.
+
+  - This applies to `register`, provider defaults, `createHotkeysScope` defaults in Alpine and Ember, and recorder options merged with provider defaults.
+  - In `setOptions`, `undefined` resets an option to its default, or removes it when it has no default.
+
+  Behavior changes:
+
+  - In React and Preact, a `null` target registers nothing, like a ref that is still empty. Before, it listened on `document`. To listen on `document`, leave out `target`. `prepareHotkeyDefinitions` in `@tanstack/hotkeys/adapter` does the same when no `resolveTarget` is given, which also applies to Svelte. Vue, Solid, Angular, Lit, Alpine, Ember, and Octane already skipped a `null` target.
+
+- Updated dependencies [[`a179ef6`](https://github.com/TanStack/hotkeys/commit/a179ef6d3410dfe6fc932e09f55330d16297507f), [`a179ef6`](https://github.com/TanStack/hotkeys/commit/a179ef6d3410dfe6fc932e09f55330d16297507f), [`a179ef6`](https://github.com/TanStack/hotkeys/commit/a179ef6d3410dfe6fc932e09f55330d16297507f)]:
+  - @tanstack/hotkeys@0.21.0
+
 ## 0.8.0
 
 ### Minor Changes

@@ -4,12 +4,20 @@ title: createHotkeyBindings
 ---
 
 ```ts
-function createHotkeyBindings(): object;
+function createHotkeyBindings(adapterOptions?): object;
 ```
 
-Defined in: [adapter.ts:55](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L55)
+Defined in: [adapter.ts:78](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L78)
 
 Reconciles adapter registrations while retaining handles for option updates.
+Adapters for frameworks that delegate key events, such as React, pass
+`{ afterDelegatedHandlers: true }`.
+
+## Parameters
+
+### adapterOptions?
+
+`Pick`\<`HotkeyOptions`, `"afterDelegatedHandlers"`\> = `{}`
 
 ## Returns
 
@@ -30,7 +38,8 @@ update(definitions, commonOptions?): void;
 ```
 
 Registers new definitions, updates existing ones in place, and removes
-stale ones. Definitions with an empty sequence or a null target are skipped.
+stale ones. Definitions with no hotkey (undefined, null, empty string, or
+empty sequence) or a null target are skipped.
 
 #### Parameters
 

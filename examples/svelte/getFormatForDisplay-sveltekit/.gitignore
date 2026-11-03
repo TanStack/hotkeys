@@ -1,0 +1,4 @@
+build
+.svelte-kit
+# The root .gitignore ignores lib folders
+!src/lib

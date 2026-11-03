@@ -45,7 +45,7 @@ export function createHotkeys(
 ): void {
   const defaultOptions = useDefaultHotkeysOptionsSource()
   const appHotkeys = useAppHotkeysStoreSource()
-  const bindings = createHotkeyBindings()
+  const bindings = createHotkeyBindings({ afterDelegatedHandlers: true })
 
   // Clean up only when this owner disposes, not before every effect re-run.
   onCleanup(() => bindings.destroy())

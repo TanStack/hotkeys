@@ -60,6 +60,7 @@ useHotkey('Escape', () => closePanel(), { target: panel })
 | `provideHotkeysContext(options)`          | Provide the same options from a component's setup instead of rendering `HotkeysProvider`; they apply to its children.                                                                                    |
 | `useHotkeysContext()`                     | Read the nearest provider's merged defaults and enabled state, or `null` outside a provider.                                                                                                             |
 | `useDefaultHotkeysOptions()`              | Read the default options merged from every provider above.                                                                                                                                               |
+| `useFormatForDisplay()`                   | Get `formatForDisplay` with the provider's `platform` filled in, for labels in server-rendered apps. Call it in `setup`.                                                                                 |
 | `useAppHotkeys()`                         | Get a computed ref of the declared app hotkeys with the user's custom hotkeys applied.                                                                                                                   |
 | `useAppHotkeyList()`                      | Get a computed ref listing every app hotkey with its status, for a cheat sheet or settings screen.                                                                                                       |
 | `useCustomHotkeys()`                      | Read, change, and reset the user's custom hotkeys, and check a new one for conflicts.                                                                                                                    |
@@ -82,6 +83,7 @@ No provider is required. Call the composables synchronously in setup.
 - **Destructure the recorder.** Templates unwrap only top-level refs, so `v-if="recorder.isRecording"` is always true. Use `const { isRecording, startRecording } = useHotkeyRecorder(...)`.
 - **The callback isn't tracked.** Read refs and props inside it.
 - **Call the composables directly.** A `useShortcut(keys: string)` wrapper has to cast strings to hotkeys, which turns off type checking and drops sequences, reactive options, and app hotkeys.
+- **Server-rendered labels need the user's platform.** On the server, `formatForDisplay` can't see the user's OS, so it renders Linux labels that differ after hydration for Mac and Windows users. Set the provider's `defaultOptions.platform` to `detectPlatform(userAgent)` from the request's `User-Agent` header, and format labels with `const format = useFormatForDisplay()` in `setup`, then `format(hotkey)`. Keep plain `formatForDisplay` for labels that render only in the browser.
 
 When declaring app hotkeys, building a cheat sheet, or letting users rebind shortcuts, load `@tanstack/hotkeys#app-hotkeys` and read [app hotkeys in Vue](references/app-hotkeys.md).
 

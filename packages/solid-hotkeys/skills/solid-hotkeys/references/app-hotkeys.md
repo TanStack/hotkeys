@@ -19,7 +19,7 @@ declare module '@tanstack/solid-hotkeys' {
 ```
 
 ```tsx no-check
-import type { JSX } from 'solid-js'
+import type { JSX } from '@solidjs/web'
 import { HotkeysProvider } from '@tanstack/solid-hotkeys'
 import type { CustomHotkeys } from '@tanstack/solid-hotkeys'
 import { appHotkeys } from './app-hotkeys'

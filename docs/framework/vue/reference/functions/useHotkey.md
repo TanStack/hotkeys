@@ -12,7 +12,7 @@ function useHotkey<T>(
    options?): void;
 ```
 
-Defined in: [useHotkey.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L76)
+Defined in: [useHotkey.ts:77](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L77)
 
 Vue composable for registering a hotkey: a chord such as `'Mod+S'`, a
 sequence such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
@@ -22,6 +22,7 @@ Chords accept `requireReset`; sequences accept `timeout`. A one-step
 sequence registers as its chord. An app hotkey uses its effective hotkey
 from `HotkeysProvider` (including the user's custom hotkey) and its
 declared meta and options, and registers nothing while unbound.
+`undefined`, `null`, or `''` registers nothing, for an optional shortcut.
 
 ### Type Parameters
 
@@ -33,7 +34,7 @@ declared meta and options, and registers nothing while unbound.
 
 #### hotkey
 
-`MaybeRefOrGetter`\<`T`\>
+`MaybeRefOrGetter`\<`T` \| `null` \| `undefined`\>
 
 #### callback
 
@@ -64,7 +65,7 @@ function useHotkey<T>(
    options?): void;
 ```
 
-Defined in: [useHotkey.ts:81](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L81)
+Defined in: [useHotkey.ts:82](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L82)
 
 Vue composable for registering a hotkey: a chord such as `'Mod+S'`, a
 sequence such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
@@ -74,6 +75,7 @@ Chords accept `requireReset`; sequences accept `timeout`. A one-step
 sequence registers as its chord. An app hotkey uses its effective hotkey
 from `HotkeysProvider` (including the user's custom hotkey) and its
 declared meta and options, and registers nothing while unbound.
+`undefined`, `null`, or `''` registers nothing, for an optional shortcut.
 
 ### Type Parameters
 
@@ -85,7 +87,7 @@ declared meta and options, and registers nothing while unbound.
 
 #### hotkey
 
-`MaybeRefOrGetter`\<`T`\>
+`MaybeRefOrGetter`\<`T` \| `null` \| `undefined`\>
 
 #### callback
 

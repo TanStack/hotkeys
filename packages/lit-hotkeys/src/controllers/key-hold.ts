@@ -66,6 +66,8 @@ export class KeyHoldController implements ReactiveController {
   }
 
   public hostConnected(): void {
+    // Adding the controller again while connected calls this twice.
+    if (this._unsubscribe) return
     if (this._refresh()) this._host.requestUpdate()
     if (isServer()) return
     const subscription = getKeyStateTracker().store.subscribe(() => {

@@ -3,7 +3,7 @@ id: HotkeyChordRegistrationView
 title: HotkeyChordRegistrationView
 ---
 
-Defined in: [hotkey-manager.ts:207](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L207)
+Defined in: [hotkey-manager.ts:232](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L232)
 
 Public view of a chord registration, without its callback.
 
@@ -19,7 +19,7 @@ Public view of a chord registration, without its callback.
 hasFired: boolean;
 ```
 
-Defined in: [hotkey-manager.ts:203](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L203)
+Defined in: [hotkey-manager.ts:228](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L228)
 
 #### Inherited from
 
@@ -35,7 +35,7 @@ RegistrationViewBase.hasFired
 hotkey: HotkeyChord;
 ```
 
-Defined in: [hotkey-manager.ts:209](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L209)
+Defined in: [hotkey-manager.ts:234](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L234)
 
 ***
 
@@ -45,7 +45,7 @@ Defined in: [hotkey-manager.ts:209](https://github.com/TanStack/hotkeys/blob/mai
 id: string;
 ```
 
-Defined in: [hotkey-manager.ts:198](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L198)
+Defined in: [hotkey-manager.ts:223](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L223)
 
 #### Inherited from
 
@@ -61,7 +61,7 @@ RegistrationViewBase.id
 kind: "chord";
 ```
 
-Defined in: [hotkey-manager.ts:208](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L208)
+Defined in: [hotkey-manager.ts:233](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L233)
 
 ***
 
@@ -71,7 +71,7 @@ Defined in: [hotkey-manager.ts:208](https://github.com/TanStack/hotkeys/blob/mai
 options: HotkeyChordOptions;
 ```
 
-Defined in: [hotkey-manager.ts:211](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L211)
+Defined in: [hotkey-manager.ts:236](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L236)
 
 ***
 
@@ -81,7 +81,7 @@ Defined in: [hotkey-manager.ts:211](https://github.com/TanStack/hotkeys/blob/mai
 parsedChord: ParsedHotkeyChord;
 ```
 
-Defined in: [hotkey-manager.ts:210](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L210)
+Defined in: [hotkey-manager.ts:235](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L235)
 
 ***
 
@@ -91,7 +91,7 @@ Defined in: [hotkey-manager.ts:210](https://github.com/TanStack/hotkeys/blob/mai
 status: HotkeyRegistrationStatus;
 ```
 
-Defined in: [hotkey-manager.ts:200](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L200)
+Defined in: [hotkey-manager.ts:225](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L225)
 
 Whether the registration is enabled and in an active scope.
 
@@ -109,7 +109,7 @@ RegistrationViewBase.status
 target: Target;
 ```
 
-Defined in: [hotkey-manager.ts:201](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L201)
+Defined in: [hotkey-manager.ts:226](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L226)
 
 #### Inherited from
 
@@ -125,7 +125,7 @@ RegistrationViewBase.target
 triggerCount: number;
 ```
 
-Defined in: [hotkey-manager.ts:202](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L202)
+Defined in: [hotkey-manager.ts:227](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-manager.ts#L227)
 
 #### Inherited from
 

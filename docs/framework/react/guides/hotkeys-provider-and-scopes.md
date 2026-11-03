@@ -1,5 +1,5 @@
 ---
-title: HotkeysProvider, Default Options, and Hotkey Scopes
+title: HotkeysProvider, Default Options, and Hotkey Scopes in React
 id: hotkeys-provider-and-scopes
 description: Use HotkeysProvider in React to set default options for hotkeys and recorders, provide app hotkeys, and turn groups of hotkeys on and off with the dialogs, panels, and tabs they belong to.
 ---

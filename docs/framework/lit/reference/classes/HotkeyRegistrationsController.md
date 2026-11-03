@@ -99,7 +99,7 @@ ReactiveController.hostConnected
 hostDisconnected(): void;
 ```
 
-Defined in: [controllers/hotkey-registrations.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-registrations.ts#L54)
+Defined in: [controllers/hotkey-registrations.ts:56](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-registrations.ts#L56)
 
 Called when the host is disconnected from the component tree. For custom
 element hosts, this corresponds to the `disconnectedCallback()` lifecycle,

@@ -18,6 +18,8 @@ metadata:
 sources:
   - src/createHotkeysScope.ts
   - src/hotkeysPlugin.ts
+  - src/createHotkeyRecorder.ts
+  - src/hotkeyRecorderPlugin.ts
   - src/scope.ts
   - src/createHotkey.ts
   - src/createAppHotkeys.ts
@@ -62,12 +64,14 @@ Install `Alpine.plugin(hotkeysPlugin)` before `Alpine.start()`. It gives the ada
 
 ## API
 
-| API                                                 | What it's for                                                                                             |
-| --------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| `Alpine.plugin(hotkeysPlugin)`                      | Give the adapter the app's Alpine, and install the `$hotkeys` magic, an owner destroyed with its element. |
-| `createHotkeysScope(defaults?)`                     | Create an owner for one `Alpine.data` component, with optional default options.                           |
-| `provideAppHotkeys(appHotkeys, options?)`           | Declare app hotkeys and load the user's custom hotkeys once at startup, since Alpine has no provider.     |
-| `getHotkeyManager().activateScope(scope, options?)` | Turn on a scope, such as an exclusive one for a dialog; it returns the function that turns the scope off. |
+| API                                                 | What it's for                                                                                                                         |
+| --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `Alpine.plugin(hotkeysPlugin)`                      | Give the adapter the app's Alpine, and install the `$hotkeys` magic, an owner destroyed with its element.                             |
+| `createHotkeysScope(defaults?)`                     | Create an owner for one `Alpine.data` component, with optional default options.                                                       |
+| `createHotkeyRecorder(owner, options)`              | Record a chord or sequence the user presses, for a settings screen. The owner destroys it and supplies its `hotkeyRecorder` defaults. |
+| `Alpine.plugin(hotkeyRecorderPlugin)`               | Install the `$hotkeyRecorder(options)` magic, which creates recorders destroyed with their element.                                   |
+| `provideAppHotkeys(appHotkeys, options?)`           | Declare app hotkeys and load the user's custom hotkeys once at startup, since Alpine has no provider.                                 |
+| `getHotkeyManager().activateScope(scope, options?)` | Turn on a scope, such as an exclusive one for a dialog; it returns the function that turns the scope off.                             |
 
 Each owner has these methods. Read their state through `.value`, or `.hotkeys` for registrations.
 
@@ -75,7 +79,6 @@ Each owner has these methods. Read their state through `.value`, or `.hotkeys` f
 | -------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `createHotkey(hotkey, callback, options?)`   | Register one chord, sequence, or app hotkey until the owner is destroyed; options can be a getter.                                                                                     |
 | `createHotkeys(definitions, commonOptions?)` | Register several hotkeys, or a getter of a list built from data, in one call.                                                                                                          |
-| `createHotkeyRecorder(options)`              | Record a chord or sequence the user presses, for a settings screen.                                                                                                                    |
 | `createAppHotkeys()`                         | Get the declared app hotkeys with the user's custom hotkeys applied.                                                                                                                   |
 | `createAppHotkeyList()`                      | List every app hotkey with its status, for a cheat sheet or settings screen.                                                                                                           |
 | `createCustomHotkeys()`                      | Read, change, and reset the user's custom hotkeys, and check a new one for conflicts.                                                                                                  |
@@ -95,6 +98,8 @@ The package also re-exports `@tanstack/hotkeys`, such as `formatForDisplay`, `ma
 - **`createHotkeysScope` isn't a hotkey scope.** It only owns registrations and sets defaults. For a dialog, activate a real scope in `init()` with `release = getHotkeyManager().activateScope(name, { exclusive: true })`, pass `{ scope: name }` to the dialog's hotkeys, and call `release()` in `destroy()`. Give each open dialog its own name.
 - **Pass options as a getter.** `{ enabled: this.dirty }` is read once. Use `() => ({ enabled: this.dirty })`.
 - **Use either `$hotkeys` or your own owner for a hotkey, not both.** Otherwise it registers twice.
+- **Call `create*` in `x-init` or `init()`, and read `.value` anywhere.** Calling `create*` inside a reactive expression such as `x-text="$hotkeys.createHeldKeys().value"` creates a new subscription on every evaluation.
+- **Owners have no `createHotkeyRecorder` method** since v0.10.0. Call `createHotkeyRecorder(this.hotkeys, options)`, so apps that don't record don't ship the recorder.
 - With server rendering, load the adapter only in the browser.
 
 When declaring app hotkeys, building a cheat sheet, or letting users rebind shortcuts, load `@tanstack/hotkeys#app-hotkeys` and read [app hotkeys in Alpine](references/app-hotkeys.md).

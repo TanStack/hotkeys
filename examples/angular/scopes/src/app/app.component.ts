@@ -95,38 +95,6 @@ export class ScopeFrame {
   })
 }
 
-/**
- * Provides a hotkey scope to the content inside it, with a box around it. The
- * provider's getters run in this component's injection context, so they can
- * read its inputs.
- */
-@Component({
-  selector: 'app-scope',
-  standalone: true,
-  imports: [ScopeFrame],
-  providers: [
-    provideHotkeys({
-      scope: () => inject(Scope).scope(),
-      exclusive: () => inject(Scope).exclusive(),
-      enabled: () => inject(Scope).enabled(),
-    }),
-  ],
-  template: `
-    <app-scope-frame
-      [scope]="scope()"
-      [exclusive]="exclusive()"
-      [enabled]="enabled()"
-    >
-      <ng-content />
-    </app-scope-frame>
-  `,
-})
-export class Scope {
-  readonly scope = input.required<string>()
-  readonly exclusive = input<ExclusiveOption | undefined>(undefined)
-  readonly enabled = input<boolean | undefined>(undefined)
-}
-
 // ---------------------------------------------------------------------------
 // A hotkey in its own scope, so a dialog can allow just this one
 // ---------------------------------------------------------------------------
@@ -134,18 +102,22 @@ export class Scope {
 @Component({
   selector: 'app-palette',
   standalone: true,
-  imports: [Key],
+  imports: [Key, ScopeFrame],
+  providers: [provideHotkeys({ scope: 'palette' })],
   template: `
-    <section class="demo-section">
-      <h2>Command palette</h2>
-      <p>
-        <app-key hotkey="Mod+K" /> lives in its own <code>palette</code> scope,
-        so an exclusive dialog can allow it without allowing everything else.
-      </p>
-      <div class="counter">
-        Opened {{ opened() }} {{ opened() === 1 ? 'time' : 'times' }}
-      </div>
-    </section>
+    <app-scope-frame scope="palette">
+      <section class="demo-section">
+        <h2>Command palette</h2>
+        <p>
+          <app-key hotkey="Mod+K" /> lives in its own <code>palette</code>
+          scope, so an exclusive dialog can allow it without allowing everything
+          else.
+        </p>
+        <div class="counter">
+          Opened {{ opened() }} {{ opened() === 1 ? 'time' : 'times' }}
+        </div>
+      </section>
+    </app-scope-frame>
   `,
 })
 export class Palette {
@@ -167,11 +139,15 @@ export class Palette {
 @Component({
   selector: 'app-comment-box',
   standalone: true,
+  imports: [ScopeFrame],
+  providers: [provideHotkeys({ scope: 'comments' })],
   template: `
-    <div class="panel">
-      <strong>Comments</strong>
-      <p>{{ comments() }} posted</p>
-    </div>
+    <app-scope-frame scope="comments">
+      <div class="panel">
+        <strong>Comments</strong>
+        <p>{{ comments() }} posted</p>
+      </div>
+    </app-scope-frame>
   `,
 })
 export class CommentBox {
@@ -189,27 +165,30 @@ export class CommentBox {
 @Component({
   selector: 'app-nested-demo',
   standalone: true,
-  imports: [CommentBox, Key, Scope],
+  imports: [CommentBox, Key, ScopeFrame],
+  providers: [provideHotkeys({ scope: 'document' })],
   template: `
-    <section class="demo-section">
-      <h2>Nested scopes</h2>
-      <p>
-        The document and its comment box both register
-        <app-key hotkey="Mod+S" />. The comment box is nested, so it wins while
-        it is mounted. Hide it and the document handles the key again.
-      </p>
-      <label>
-        <input
-          type="checkbox"
-          [checked]="showComments()"
-          (change)="showComments.set($any($event.target).checked)"
-        />
-        Show comment box
-      </label>
-      @if (showComments()) {
-        <app-scope scope="comments"><app-comment-box /></app-scope>
-      }
-    </section>
+    <app-scope-frame scope="document">
+      <section class="demo-section">
+        <h2>Nested scopes</h2>
+        <p>
+          The document and its comment box both register
+          <app-key hotkey="Mod+S" />. The comment box is nested, so it wins
+          while it is mounted. Hide it and the document handles the key again.
+        </p>
+        <label>
+          <input
+            type="checkbox"
+            [checked]="showComments()"
+            (change)="showComments.set($any($event.target).checked)"
+          />
+          Show comment box
+        </label>
+        @if (showComments()) {
+          <app-comment-box />
+        }
+      </section>
+    </app-scope-frame>
   `,
 })
 export class NestedDemo {
@@ -228,15 +207,24 @@ export class NestedDemo {
 @Component({
   selector: 'app-folder-pane',
   standalone: true,
+  imports: [ScopeFrame],
+  providers: [
+    provideHotkeys({
+      scope: () => inject(FolderPane).name().toLowerCase(),
+      enabled: () => inject(FolderPane).current(),
+    }),
+  ],
   template: `
-    <button
-      class="panel folder"
-      [attr.data-current]="current()"
-      (click)="selected.emit()"
-    >
-      <strong>{{ name() }}</strong>
-      <span>{{ items() }} items</span>
-    </button>
+    <app-scope-frame [scope]="name().toLowerCase()" [enabled]="current()">
+      <button
+        class="panel folder"
+        [attr.data-current]="current()"
+        (click)="selected.emit()"
+      >
+        <strong>{{ name() }}</strong>
+        <span>{{ items() }} items</span>
+      </button>
+    </app-scope-frame>
   `,
 })
 export class FolderPane {
@@ -257,32 +245,30 @@ export class FolderPane {
 @Component({
   selector: 'app-tabs-demo',
   standalone: true,
-  imports: [FolderPane, Key, Scope],
+  imports: [FolderPane, Key, ScopeFrame],
+  providers: [provideHotkeys({ scope: 'mail' })],
   template: `
-    <section class="demo-section">
-      <h2>Enabled scopes</h2>
-      <p>
-        All three folders stay in the page and register
-        <app-key hotkey="Alt+N" />. Only the selected folder's provider is
-        <code>enabled</code>, so the key adds to that one. Switch with
-        <app-key hotkey="Alt+1" />, <app-key hotkey="Alt+2" />, and
-        <app-key hotkey="Alt+3" />.
-      </p>
-      <div class="folders">
-        @for (name of folders; track name) {
-          <app-scope
-            [scope]="name.toLowerCase()"
-            [enabled]="current() === name"
-          >
+    <app-scope-frame scope="mail">
+      <section class="demo-section">
+        <h2>Enabled scopes</h2>
+        <p>
+          All three folders stay in the page and register
+          <app-key hotkey="Alt+N" />. Only the selected folder's provider is
+          <code>enabled</code>, so the key adds to that one. Switch with
+          <app-key hotkey="Alt+1" />, <app-key hotkey="Alt+2" />, and
+          <app-key hotkey="Alt+3" />.
+        </p>
+        <div class="folders">
+          @for (name of folders; track name) {
             <app-folder-pane
               [name]="name"
               [current]="current() === name"
               (selected)="current.set(name)"
             />
-          </app-scope>
-        }
-      </div>
-    </section>
+          }
+        </div>
+      </section>
+    </app-scope-frame>
   `,
 })
 export class TabsDemo {
@@ -304,13 +290,16 @@ export class TabsDemo {
 @Component({
   selector: 'app-steps',
   standalone: true,
-  imports: [Key],
+  imports: [Key, ScopeFrame],
+  providers: [provideHotkeys({ scope: 'dialog-steps' })],
   template: `
-    <div class="panel">
-      Step {{ step() }} of 3. <app-key hotkey="Alt+N" /> moves to the next step.
-      It is in the nested <code>dialog-steps</code> scope, so it still works,
-      and it takes the key from the suspended folders.
-    </div>
+    <app-scope-frame scope="dialog-steps">
+      <div class="panel">
+        Step {{ step() }} of 3. <app-key hotkey="Alt+N" /> moves to the next
+        step. It is in the nested <code>dialog-steps</code> scope, so it still
+        works, and it takes the key from the suspended folders.
+      </div>
+    </app-scope-frame>
   `,
 })
 export class Steps {
@@ -327,13 +316,13 @@ export class Steps {
 
 /**
  * The dialog provides its own exclusive scope. Its element moves to the body,
- * outside the boxes above; the scope still comes from the injector tree, not
- * from where it renders.
+ * outside the providers above; the scope still comes from the injector tree,
+ * not from where it renders.
  */
 @Component({
   selector: 'app-exclusive-dialog',
   standalone: true,
-  imports: [Key, Scope, ScopeFrame, Steps],
+  imports: [Key, ScopeFrame, Steps],
   providers: [
     provideHotkeys({
       scope: 'dialog',
@@ -356,7 +345,7 @@ export class Steps {
             document. <app-key hotkey="Escape" /> closes it. The folder hotkeys
             are suspended, and so is anything you did not allow above.
           </p>
-          <app-scope scope="dialog-steps"><app-steps /></app-scope>
+          <app-steps />
           <div class="actions">
             <button class="secondary" (click)="closed.emit()">Cancel</button>
             <button (click)="saved.emit()">Save</button>
@@ -389,39 +378,42 @@ export class ExclusiveDialog implements OnInit, OnDestroy {
 @Component({
   selector: 'app-dialog-demo',
   standalone: true,
-  imports: [ExclusiveDialog, Key],
+  imports: [ExclusiveDialog, Key, ScopeFrame],
+  providers: [provideHotkeys({ scope: 'settings' })],
   template: `
-    <section class="demo-section">
-      <h2>Exclusive scopes</h2>
-      <p>
-        An exclusive provider suspends every other scope while it exists,
-        including <code>global</code>. Scopes nested inside it keep working.
-        List scopes in <code>allow</code> to keep them working too.
-      </p>
-      <fieldset>
-        <legend>Allow while the dialog is open</legend>
-        @for (scope of allowOptions; track scope) {
-          <label>
-            <input
-              type="checkbox"
-              [checked]="allow().includes(scope)"
-              (change)="toggle(scope, $any($event.target).checked)"
-            />
-            <code>{{ scope }}</code>
-          </label>
+    <app-scope-frame scope="settings">
+      <section class="demo-section">
+        <h2>Exclusive scopes</h2>
+        <p>
+          An exclusive provider suspends every other scope while it exists,
+          including <code>global</code>. Scopes nested inside it keep working.
+          List scopes in <code>allow</code> to keep them working too.
+        </p>
+        <fieldset>
+          <legend>Allow while the dialog is open</legend>
+          @for (scope of allowOptions; track scope) {
+            <label>
+              <input
+                type="checkbox"
+                [checked]="allow().includes(scope)"
+                (change)="toggle(scope, $any($event.target).checked)"
+              />
+              <code>{{ scope }}</code>
+            </label>
+          }
+        </fieldset>
+        <button (click)="open.set(true)">
+          Open dialog <app-key hotkey="Alt+D" />
+        </button>
+        @if (open()) {
+          <app-exclusive-dialog
+            [exclusive]="exclusive()"
+            (closed)="open.set(false)"
+            (saved)="save()"
+          />
         }
-      </fieldset>
-      <button (click)="open.set(true)">
-        Open dialog <app-key hotkey="Alt+D" />
-      </button>
-      @if (open()) {
-        <app-exclusive-dialog
-          [exclusive]="exclusive()"
-          (closed)="open.set(false)"
-          (saved)="save()"
-        />
-      }
-    </section>
+      </section>
+    </app-scope-frame>
   `,
 })
 export class DialogDemo {
@@ -489,15 +481,7 @@ export class ActivityLog {
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [
-    ActivityLog,
-    DialogDemo,
-    NestedDemo,
-    Palette,
-    Scope,
-    ScopeFrame,
-    TabsDemo,
-  ],
+  imports: [ActivityLog, DialogDemo, NestedDemo, Palette, ScopeFrame, TabsDemo],
   template: `
     <div class="app">
       <header>
@@ -510,10 +494,10 @@ export class ActivityLog {
         </p>
       </header>
       <app-scope-frame>
-        <app-scope scope="palette"><app-palette /></app-scope>
-        <app-scope scope="document"><app-nested-demo /></app-scope>
-        <app-scope scope="mail"><app-tabs-demo /></app-scope>
-        <app-scope scope="settings"><app-dialog-demo /></app-scope>
+        <app-palette />
+        <app-nested-demo />
+        <app-tabs-demo />
+        <app-dialog-demo />
         <app-activity-log />
       </app-scope-frame>
     </div>
