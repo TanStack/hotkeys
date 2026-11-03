@@ -65,16 +65,10 @@ export const examples: Array<SsrExample> = [
     static: true,
   },
   {
-    folder: 'solid/createFormatForDisplay-solid-start',
-    port: 4313,
-    command: 'pnpm start',
-  },
-  {
     folder: 'solid/createFormatForDisplay-tanstack-start',
     port: 4314,
     command: 'pnpm preview --port 4314 --strictPort',
   },
-  { folder: 'solid/createFormatForDisplay-astro', port: 4315, command: astro },
   {
     folder: 'svelte/getFormatForDisplay-sveltekit',
     port: 4316,

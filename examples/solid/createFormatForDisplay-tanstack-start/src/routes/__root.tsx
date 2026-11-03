@@ -7,10 +7,10 @@ import {
 } from '@tanstack/solid-router'
 import { createIsomorphicFn } from '@tanstack/solid-start'
 import { getRequestHeader } from '@tanstack/solid-start/server'
-import { HydrationScript } from 'solid-js/web'
+import { HydrationScript } from '@solidjs/web'
 import { HotkeysProvider, detectPlatform } from '@tanstack/solid-hotkeys'
 import stylesUrl from '../styles.css?url'
-import type { JSX } from 'solid-js'
+import type { JSX } from '@solidjs/web'
 
 // The request's User-Agent on the server, the browser's navigator in the browser
 const getPlatform = createIsomorphicFn()

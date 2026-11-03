@@ -1,3 +1,4 @@
+import { flush } from 'solid-js'
 // @vitest-environment happy-dom
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { cleanup, render } from '@solidjs/testing-library'
@@ -12,7 +13,7 @@ import { createHotkey } from '../src/createHotkey'
 import { createHotkeys } from '../src/createHotkeys'
 import { createHotkeyRecorder } from '../src/createHotkeyRecorder'
 import { createSignal } from 'solid-js'
-import type { JSX } from 'solid-js'
+import type { Element } from 'solid-js'
 import type { CustomHotkeys, Hotkey } from '@tanstack/hotkeys'
 
 const appHotkeys = defineAppHotkeys({
@@ -35,7 +36,7 @@ function registrations() {
 }
 
 function withProvider(
-  children: () => JSX.Element,
+  children: () => Element,
   props: {
     customHotkeys?: CustomHotkeys<typeof appHotkeys>
     onCustomHotkeysChange?: (custom: CustomHotkeys) => void
@@ -77,6 +78,7 @@ describe('app hotkeys', () => {
 
     custom.setCustomHotkey('doc.save', ['G', 'S'])
     custom.setCustomHotkey('palette.open', 'Mod+K')
+    flush()
     expect(registrations().map((r) => r.hotkey)).toEqual([['G', 'S'], 'Mod+K'])
     press('g')
     press('s')
@@ -155,12 +157,15 @@ describe('HotkeysProvider customHotkeys prop', () => {
     ))
 
     setSaved({ 'doc.save': 'Mod+Shift+S' })
+
+    flush()
     expect(custom.customHotkeys()).toEqual({ 'doc.save': 'Mod+Shift+S' })
     expect(onCustomHotkeysChange).not.toHaveBeenCalled()
 
     // The same value again keeps the user's change.
     custom.setCustomHotkey('palette.open', 'Mod+K')
     setSaved({ 'doc.save': 'Mod+Shift+S' })
+    flush()
     expect(custom.customHotkeys()).toEqual({
       'doc.save': 'Mod+Shift+S',
       'palette.open': 'Mod+K',
@@ -168,6 +173,7 @@ describe('HotkeysProvider customHotkeys prop', () => {
 
     // Another user's data replaces it.
     setSaved({ 'nav.home': ['G', 'G'] })
+    flush()
     expect(custom.customHotkeys()).toEqual({ 'nav.home': ['G', 'G'] })
   })
 })
@@ -186,8 +192,10 @@ describe('createHotkeyRecorder', () => {
     })
     recorder.startRecording()
     press('g', { code: 'KeyG' })
+    flush()
     expect(recorder.steps()).toEqual(['G'])
     press('h', { code: 'KeyH' })
+    flush()
     expect(onRecord).toHaveBeenCalledExactlyOnceWith(['G', 'H'])
     expect(recorder.recordedHotkey()).toEqual(['G', 'H'])
   })

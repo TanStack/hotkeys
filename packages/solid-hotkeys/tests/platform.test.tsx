@@ -1,4 +1,4 @@
-import { createSignal } from 'solid-js'
+import { createSignal, flush } from 'solid-js'
 import { render } from '@solidjs/testing-library'
 import { HotkeyManager } from '@tanstack/hotkeys'
 import { afterEach, describe, expect, it, vi } from 'vitest'
@@ -6,7 +6,7 @@ import { HotkeysProvider } from '../src/HotkeysProvider'
 import { createFormatForDisplay } from '../src/createFormatForDisplay'
 import { createHotkey } from '../src/createHotkey'
 import { createHotkeyRecorder } from '../src/createHotkeyRecorder'
-import type { JSX } from 'solid-js'
+import type { Element } from 'solid-js'
 
 type Platform = 'mac' | 'windows' | 'linux'
 
@@ -19,7 +19,7 @@ function press(init: KeyboardEventInit) {
   )
 }
 
-function renderIn(platform: Platform, child: () => JSX.Element) {
+function renderIn(platform: Platform, child: () => Element) {
   return render(() => (
     <HotkeysProvider defaultOptions={{ platform }}>{child()}</HotkeysProvider>
   ))
@@ -43,6 +43,7 @@ describe('provider platform', () => {
     ))
     expect(container.textContent).toBe('⌘ S')
     setPlatform('windows')
+    flush()
     expect(container.textContent).toBe('Ctrl+S')
     unmount()
   })

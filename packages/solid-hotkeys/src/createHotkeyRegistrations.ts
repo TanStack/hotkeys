@@ -1,3 +1,4 @@
+import { createStore } from 'solid-js'
 import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
 import { useSelector } from './_useSelector'
 import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
@@ -19,7 +20,15 @@ import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
  * ```
  */
 export function createHotkeyRegistrations(): () => Array<HotkeyRegistrationView> {
-  return useSelector(getHotkeyManager().registrations, (state) =>
+  const views = useSelector(getHotkeyManager().registrations, (state) =>
     Array.from(state.values()).map(toHotkeyRegistrationView),
   )
+  // Views are rebuilt on every change; reconciling them by id keeps each
+  // registration's identity, so `<For>` rows update in place.
+  const [registrations] = createStore<Array<HotkeyRegistrationView>>(
+    () => views(),
+    [],
+    { key: 'id' },
+  )
+  return () => registrations
 }

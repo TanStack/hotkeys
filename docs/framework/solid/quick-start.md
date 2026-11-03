@@ -140,29 +140,16 @@ function Panel() {
   createHotkey('Escape', () => closePanel(), () => ({ target: panel() }))
 
   return (
-    <div ref={setPanel} tabIndex={0}>
+    <div ref={setPanel} tabindex={0}>
       ...
     </div>
   )
 }
 ```
 
-A `null` target waits until the element is attached. The hotkey fires while focus is on the element or inside it. If nothing there can take focus, give the element a `tabIndex`.
+A `null` target waits until the element is attached. The hotkey fires while focus is on the element or inside it. If nothing there can take focus, give the element a `tabindex`.
 
-Solid doesn't clear a ref when the element is removed, so the signal keeps a removed element. For an element inside `<Show>` or `<For>`, register the hotkey in the element's `ref` callback instead:
-
-```tsx
-<Show when={open()}>
-  <div
-    ref={(el) => createHotkey('Escape', () => closePanel(), { target: el })}
-    tabIndex={0}
-  >
-    ...
-  </div>
-</Show>
-```
-
-The callback runs each time the element is created, and the hotkey unregisters when the element is removed.
+For an element inside `<Show>` or `<For>`, put the element and its `createHotkey` call in their own component, like `Panel` above. The hotkey unregisters when Solid removes the component.
 
 ## Add providers and scopes (optional)
 

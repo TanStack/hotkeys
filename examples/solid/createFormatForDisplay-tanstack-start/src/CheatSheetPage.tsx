@@ -1,4 +1,4 @@
-import { For, Show, createSignal, onMount } from 'solid-js'
+import { For, Show, createSignal, onSettled } from 'solid-js'
 import {
   createFormatForDisplay,
   createHotkeys,
@@ -54,7 +54,9 @@ function Header() {
   // Read only in the browser after hydration, so it can't cause a mismatch
   const [browserPlatform, setBrowserPlatform] =
     createSignal<HotkeyPlatform | null>(null)
-  onMount(() => setBrowserPlatform(detectPlatform()))
+  onSettled(() => {
+    setBrowserPlatform(detectPlatform())
+  })
 
   return (
     <header class="header">

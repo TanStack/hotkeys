@@ -1,17 +1,13 @@
 import { For, Show, createContext, createSignal, useContext } from 'solid-js'
-import { Portal, render } from 'solid-js/web'
+import { Portal, render } from '@solidjs/web'
 import {
   HotkeysProvider,
   createHotkey,
   formatForDisplay,
 } from '@tanstack/solid-hotkeys'
-import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
-import { TanStackDevtools } from '@tanstack/solid-devtools'
-import type { JSX } from 'solid-js'
+import type { JSX } from '@solidjs/web'
 import type { Hotkey } from '@tanstack/solid-hotkeys'
 import './index.css'
-
-const plugins = [hotkeysDevtoolsPlugin()]
 
 // Every hotkey below is a plain `createHotkey` call with no `scope` option. It
 // registers in the scope of the nearest `HotkeysProvider` that sets one.
@@ -27,8 +23,7 @@ function App() {
               <p>
                 Each nested <code>HotkeysProvider</code> with a{' '}
                 <code>scope</code> is a scope. Its hotkeys fire while it is
-                mounted and enabled. Open the hotkeys devtools to see which
-                scopes are active, suspended, or allowed.
+                mounted and enabled.
               </p>
             </header>
             <ScopeFrame>
@@ -57,7 +52,6 @@ function App() {
           </div>
         </ActivityProvider>
       </HotkeysProvider>
-      <TanStackDevtools plugins={plugins} />
     </>
   )
 }
@@ -400,16 +394,15 @@ function ActivityProvider(props: { children: JSX.Element }) {
   }
   const clear = () => setEntries([])
   return (
-    <ActivityContext.Provider value={{ entries, log, clear }}>
+    <ActivityContext value={{ entries, log, clear }}>
       {props.children}
-    </ActivityContext.Provider>
+    </ActivityContext>
   )
 }
 
+// A default-less context throws when its provider is missing.
 function useActivity() {
-  const activity = useContext(ActivityContext)
-  if (!activity) throw new Error('Missing ActivityProvider')
-  return activity
+  return useContext(ActivityContext)
 }
 
 function useLog() {

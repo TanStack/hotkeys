@@ -1,7 +1,7 @@
 // @vitest-environment happy-dom
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 import { render } from '@solidjs/testing-library'
-import { createSignal } from 'solid-js'
+import { createSignal, flush } from 'solid-js'
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
 import { createHotkey } from '../src/createHotkey'
 import { createHotkeyHint } from '../src/createHotkeyHint'
@@ -30,12 +30,14 @@ it('a hotkey that becomes undefined or null unregisters, and a value registers a
   expect(registrationCount()).toBe(1)
   for (const unset of [undefined, null]) {
     setShortcut(unset)
+    flush()
     expect(registrationCount()).toBe(0)
     expect(hint()).toBe(false)
     press()
     expect(onRun).not.toHaveBeenCalled()
   }
   setShortcut('K')
+  flush()
   expect(registrationCount()).toBe(1)
   press()
   expect(onRun).toHaveBeenCalledOnce()

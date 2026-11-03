@@ -156,6 +156,9 @@ Pages rendered this way depend on the request's `User-Agent` header. If a CDN or
 
 ### SolidStart
 
+> [!NOTE]
+> SolidStart and Astro's Solid integration don't support Solid 2 yet. This section and its example use Solid 1 with `@tanstack/solid-hotkeys` 1.x.
+
 `getRequestEvent()` from `solid-js/web` returns the current request on the server and `undefined` in the browser. Without a user agent, `detectPlatform` reads the browser's `navigator`, so the same code works on both sides:
 
 ```tsx
@@ -210,6 +213,9 @@ The [TanStack Start example](../examples/createFormatForDisplay-tanstack-start) 
 
 ### Astro
 
+> [!NOTE]
+> SolidStart and Astro's Solid integration don't support Solid 2 yet. This section and its example use Solid 1 with `@tanstack/solid-hotkeys` 1.x.
+
 Each Solid island is its own Solid app, so render the provider inside the island and pass the platform from the page. The page must render on demand to have a request: add `export const prerender = false`, or use `output: 'server'`.
 
 ```astro
@@ -246,13 +252,15 @@ The [Astro example](../examples/createFormatForDisplay-astro) shows this setup.
 To skip server rendering for a label instead, render it after hydration. In the browser, plain `formatForDisplay` detects the platform:
 
 ```tsx
-import { Show, createSignal, onMount } from 'solid-js'
+import { Show, createSignal, onSettled } from 'solid-js'
 import { formatForDisplay } from '@tanstack/solid-hotkeys'
 import type { JSX } from 'solid-js'
 
 function ClientOnly(props: { children: JSX.Element; fallback?: JSX.Element }) {
   const [mounted, setMounted] = createSignal(false)
-  onMount(() => setMounted(true))
+  onSettled(() => {
+    setMounted(true)
+  })
   return (
     <Show when={mounted()} fallback={props.fallback}>
       {props.children}
@@ -265,7 +273,7 @@ function ClientOnly(props: { children: JSX.Element; fallback?: JSX.Element }) {
 </ClientOnly>
 ```
 
-`onMount` runs only in the browser, after hydration, so the server and the first render in the browser both show the fallback. Framework wrappers do the same: TanStack Router's `<ClientOnly>` from `@tanstack/solid-router`, SolidStart's `clientOnly()`, or `client:only="solid-js"` on an Astro island. A fallback with the label's width keeps the layout from shifting.
+`onSettled` runs only in the browser, after hydration, so the server and the first render in the browser both show the fallback. Framework wrappers do the same: TanStack Router's `<ClientOnly>` from `@tanstack/solid-router`, SolidStart's `clientOnly()`, or `client:only="solid-js"` on an Astro island. A fallback with the label's width keeps the layout from shifting.
 
 Don't use `<NoHydration>` or an `isServer` check for labels. `<NoHydration>` keeps the server's label, and rendering different content on the server and in the browser breaks hydration.
 

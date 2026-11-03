@@ -99,7 +99,7 @@ function Editor() {
   // Also has a target: works only while focus is inside the outline
   createHotkey('Delete', () => deleteHeading(), () => ({ target: outline() }))
 
-  return <nav ref={setOutline} tabIndex={0}>...</nav>
+  return <nav ref={setOutline} tabindex={0}>...</nav>
 }
 ```
 

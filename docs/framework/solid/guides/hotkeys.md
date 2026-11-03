@@ -311,7 +311,7 @@ function Panel() {
   createHotkey('Escape', () => closePanel(), () => ({ target: panel() }))
 
   return (
-    <div ref={setPanel} tabIndex={0}>
+    <div ref={setPanel} tabindex={0}>
       Panel content
     </div>
   )
@@ -321,34 +321,37 @@ function Panel() {
 A `null` target waits until the element is attached.
 
 > [!NOTE]
-> An element receives key presses only while it, or something inside it, has focus. Give it a `tabIndex` if it isn't focusable already.
+> An element receives key presses only while it, or something inside it, has focus. Give it a `tabindex` if it isn't focusable already.
 
 While focus is inside the element, its hotkeys run before hotkeys on `document`. With the default `stopPropagation: true`, a `document` hotkey for the same key doesn't run at all. A sequence with a target advances only on key presses inside the target.
 
 ### Elements that are removed
 
-Solid doesn't call a `ref` with `null` when it removes an element, so a signal set by `ref` keeps the removed element, and the hotkey stays registered on it until the component unmounts. Keep the signal for an element the component always renders.
-
-For an element inside `<Show>`, `<For>`, or another control flow that removes it, call `createHotkey` in the element's `ref` callback:
+For an element inside `<Show>`, `<For>`, or another control flow that removes it, put the element and its `createHotkey` call in their own component. A `ref` callback runs outside the component's owner, so don't call `createHotkey` there:
 
 ```tsx
-import { Show } from 'solid-js'
+import { Show, createSignal } from 'solid-js'
+
+function PanelBody() {
+  const [panel, setPanel] = createSignal<HTMLDivElement | null>(null)
+  createHotkey('Escape', () => closePanel(), () => ({ target: panel() }))
+  return (
+    <div ref={setPanel} tabindex={0}>
+      Panel content
+    </div>
+  )
+}
 
 function Panel(props: { open: boolean }) {
   return (
     <Show when={props.open}>
-      <div
-        ref={(el) => createHotkey('Escape', () => closePanel(), { target: el })}
-        tabIndex={0}
-      >
-        Panel content
-      </div>
+      <PanelBody />
     </Show>
   )
 }
 ```
 
-The `ref` callback runs inside the branch that renders the element. So the hotkey registers each time the element is created, and unregisters when Solid removes it.
+The hotkey registers each time `<Show>` creates `PanelBody`, and unregisters when Solid removes it.
 
 ### A target is not a scope
 

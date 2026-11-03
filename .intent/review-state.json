@@ -203,21 +203,23 @@
       "evidence": ["packages/react-hotkeys/skills/react-hotkeys/SKILL.md"]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
-      "fingerprint": "645b6917b6912a02771f785ad286243031c6e249452f34568be3af6eadb98566",
+      "fingerprint": "0a4b922f7913b6e976f4bd98719adc8e1f01850e290c4ac61223e5a2e7405607",
       "snapshot": {
-        "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
-        "docs/framework/solid/quick-start.md": "74e8d20b975f1bab90f99e00226670a1fec555459650e498264415c03f79f0ef",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "b44dd638d4b46fecd9883319ed623291ede33f2c2b5ffe41d7486ce19686e803",
-        "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d3dda6cd9aa0a8655aa43f017490797ad3d2de42206446b2403363873b84b133",
-        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "72b57a5785a2e5215c33c7c2768fe2e18972e35987ae21e352a37539111f342a",
+        "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "073eb36a16f7e3f23baa36ed5121c9d90f5e20daf7e39a0b2e2799d3f60e8850",
+        "docs/framework/solid/quick-start.md": "b6f74d6397d52352ebe6a504803b8f922c528c5dd502070a11665eb9595c24ce",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "df09c21c814bc6c07641ee7bac50b4ea38ea9a89b5644c7e1e04591e4d36ed1e",
+        "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "9e0eb2bf7e9651ed7d1da3c40eb8bc1d1ebaa3a92e093ee670c8e2f7d33e0a9c",
+        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "a35ba3ea2cccea09b96512ba38b1d3a3270479900e93a4647b04063cab2817c6",
         "packages/solid-hotkeys/src/appHotkeys.ts": "5d44d8ce952af7a3e522fd42511a963e9af75c4229a2449cde16a180c6f030f2",
         "packages/solid-hotkeys/src/createHotkey.ts": "3be9476087da2b53e809ad5ac59b2f791f38cc4d88e2b151258e668a9fc92294",
-        "packages/solid-hotkeys/src/createHotkeys.ts": "61fe0f81f807d94150d066b50309d286f10531002a13b92baed1c21946c41a6b"
+        "packages/solid-hotkeys/src/createHotkeys.ts": "f6f2acce5131601ed34195eb75c4ee51f4bd247558561fad83a6c28d2cbe37c3"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
-      "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
-      "evidence": ["packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"]
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: docs/framework/solid/guides/hotkeys-provider-and-scopes.md, docs/framework/solid/quick-start.md, packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md, packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md, packages/solid-hotkeys/src/HotkeysProvider.tsx, packages/solid-hotkeys/src/createHotkeys.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
       "fingerprint": "b66ca4826ffde88dd1f33fd93407d74705e103f5c6e184b2fec3bc2266582144",
@@ -258,7 +260,7 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "1fb046a200ae2254a480e3f355a470689a10e0a410a6acd80e40a5636ca05da9",
+      "fingerprint": "175b6569ecf79d8ef22b52ba34bb072a3fc4d83e89f5544d296b55f6f33282fa",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -282,8 +284,8 @@
         "docs/framework/react/guides/hotkeys.md": "03b024ba6a23d6b87a7b99be8a30b54fd5d82ba27e075ba0c00f648c82759e5f",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
         "docs/framework/react/quick-start.md": "23a6c1a998120d968a87b37c4f340b71052fc94e97eb52decd16b91bd655a638",
-        "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
-        "docs/framework/solid/quick-start.md": "74e8d20b975f1bab90f99e00226670a1fec555459650e498264415c03f79f0ef",
+        "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "073eb36a16f7e3f23baa36ed5121c9d90f5e20daf7e39a0b2e2799d3f60e8850",
+        "docs/framework/solid/quick-start.md": "b6f74d6397d52352ebe6a504803b8f922c528c5dd502070a11665eb9595c24ce",
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
         "docs/framework/svelte/quick-start.md": "6fdf6ea3a44b3cd7fbf115b6d464460302af1b58112ca0b5b00723b4f5faab45",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
@@ -367,12 +369,12 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/shortcut-settings.test.tsx": "dccabaf1efac5b20ed5c13d159a07ae37b1079627469332995741c7a6ec37223",
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "b44dd638d4b46fecd9883319ed623291ede33f2c2b5ffe41d7486ce19686e803",
-        "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d3dda6cd9aa0a8655aa43f017490797ad3d2de42206446b2403363873b84b133",
-        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "72b57a5785a2e5215c33c7c2768fe2e18972e35987ae21e352a37539111f342a",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "df09c21c814bc6c07641ee7bac50b4ea38ea9a89b5644c7e1e04591e4d36ed1e",
+        "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "9e0eb2bf7e9651ed7d1da3c40eb8bc1d1ebaa3a92e093ee670c8e2f7d33e0a9c",
+        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "a35ba3ea2cccea09b96512ba38b1d3a3270479900e93a4647b04063cab2817c6",
         "packages/solid-hotkeys/src/appHotkeys.ts": "5d44d8ce952af7a3e522fd42511a963e9af75c4229a2449cde16a180c6f030f2",
         "packages/solid-hotkeys/src/createHotkey.ts": "3be9476087da2b53e809ad5ac59b2f791f38cc4d88e2b151258e668a9fc92294",
-        "packages/solid-hotkeys/src/createHotkeys.ts": "61fe0f81f807d94150d066b50309d286f10531002a13b92baed1c21946c41a6b",
+        "packages/solid-hotkeys/src/createHotkeys.ts": "f6f2acce5131601ed34195eb75c4ee51f4bd247558561fad83a6c28d2cbe37c3",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "8dcc12e17d2389322ab8056f27faf03bb2f314c75b92ed851b0390024d4b8c9f",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "31852d1e1545c073eb06d6d99722e025b09130a11828ddc203ac02809477dd25",
@@ -390,10 +392,12 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "f3c7a6e8da6f9112c7a92402aff0c3efeaa751a1",
-      "outcome": "no-change",
-      "reason": "No new skill, domain or task.",
-      "evidence": ["_artifacts/skill_spec.md"]
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: docs/framework/solid/guides/hotkeys-provider-and-scopes.md, docs/framework/solid/quick-start.md, packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md, packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md, packages/solid-hotkeys/src/HotkeysProvider.tsx, packages/solid-hotkeys/src/createHotkeys.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -743,14 +747,16 @@
       "evidence": ["examples/react/kitchen-sink/src/shared.tsx"]
     },
     "source:examples/solid/kitchen-sink/src/index.tsx": {
-      "fingerprint": "8e566d191f693b32251c02ac062f9ba50f005cf79d0f473a5527e3b729ebf095",
+      "fingerprint": "ca230fdf9652a2939d5f1fd84ddcb8d56224991245be567a58d4bee3fca6b490",
       "snapshot": {
-        "examples/solid/kitchen-sink/src/index.tsx": "f6603ae6ad6e5d00ed9c8290e860cc0dadecdea206d3fd0bce27d6946dbfe8ee"
+        "examples/solid/kitchen-sink/src/index.tsx": "215e91715f277dfaa1051a53e88439f31d896057871c324d66b0f081955e9ec7"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
-      "outcome": "out-of-scope",
-      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["examples/solid/kitchen-sink/src/index.tsx"]
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/kitchen-sink/src/index.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
     },
     "source:examples/svelte/kitchen-sink/src/Hint.svelte": {
       "fingerprint": "06624d7bb8cbbfd41fe9221276689a15873354441f4747b7cbc4fc8fc17cb15a",
@@ -973,14 +979,16 @@
       "evidence": ["packages/solid-hotkeys/src/createHotkeyHint.ts"]
     },
     "source:packages/solid-hotkeys/tests/createHotkeyHint.test.tsx": {
-      "fingerprint": "a7510a58a1dc5db0a12df33541f32b5891353c27670915c10a64a5266976439e",
+      "fingerprint": "ca0acb520d84c02e5b355a1f8c4d46965925fe3620cb9f1741b9c76f82ccb935",
       "snapshot": {
-        "packages/solid-hotkeys/tests/createHotkeyHint.test.tsx": "bddd013b4c50d21644a23ece04d9d1827df9685d3b0ff1edb39d9f5044bf9506"
+        "packages/solid-hotkeys/tests/createHotkeyHint.test.tsx": "f30b9c89e714cb39a9c0355aaccebb54f5ecb27e0e2c4b43e5cb7d081ad921d9"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
-      "outcome": "out-of-scope",
-      "reason": "Tests, examples, or generated reference docs for the hint behavior change; no guidance depends on them.",
-      "evidence": ["packages/solid-hotkeys/tests/createHotkeyHint.test.tsx"]
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: packages/solid-hotkeys/tests/createHotkeyHint.test.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
     },
     "source:packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts": {
       "fingerprint": "2984befcc87fa99c1cbf46d8a355adbfaf1490d21339e71a53a7e36723cc8bf4",
@@ -1101,16 +1109,15 @@
       ]
     },
     "source:docs/framework/solid/guides/hotkeys.md": {
-      "fingerprint": "6c25b1324d2e7640afe7f73c96cbc3abc1578e444b28dc4ec0bf7fc2712b9686",
+      "fingerprint": "639b3246b8042fd221960e78eb22bb277381c95aeb3b5b8fb3bb46c5397d806e",
       "snapshot": {
-        "docs/framework/solid/guides/hotkeys.md": "1567cb148cde0095a59cf329c8182f0bd00f585e221af0b9f1419676cabe197e"
+        "docs/framework/solid/guides/hotkeys.md": "3dd84eea11f726b50c77cbf837ffa259d21ee617bef27ae31ae7514109918969"
       },
-      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
       "outcome": "updated",
-      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
       "evidence": [
-        "docs/framework/solid/guides/hotkeys.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "Changed: docs/framework/solid/guides/hotkeys.md at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
       ]
     },
     "source:docs/framework/svelte/guides/hotkeys.md": {
@@ -2126,14 +2133,16 @@
       "evidence": ["packages/solid-hotkeys/src/index.ts"]
     },
     "source:packages/solid-hotkeys/tests/scopes.test.tsx": {
-      "fingerprint": "349e6fd64fc87f2b7bc4e6bd315fad57796ca348fea9e1747d2c908a7789ec07",
+      "fingerprint": "e80c13e4b2b7d68a5036f12a6002b964811eb2ad3630376132c5e21a761e3b3e",
       "snapshot": {
-        "packages/solid-hotkeys/tests/scopes.test.tsx": "0e240fdb595b9fb48e04ab6e8ff0623233f04ac4996cfbfd9283e1eea53d051b"
+        "packages/solid-hotkeys/tests/scopes.test.tsx": "75db4c36747bca51ce6a859b60ec5b10789921d7e5c53e88b7b5bb3c655beb25"
       },
-      "head": "2a31087b3ede3d5bb6b720009643ee65acb422e2",
-      "outcome": "out-of-scope",
-      "reason": "Generated reference docs, tests, or devtools display; no skill guidance depends on them.",
-      "evidence": ["packages/solid-hotkeys/tests/scopes.test.tsx"]
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: packages/solid-hotkeys/tests/scopes.test.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
     },
     "source:packages/svelte-hotkeys/src/getHotkeyScopesState.svelte.ts": {
       "fingerprint": "c39420db15f120d59ee9d87ac7b4291b1f23232fa0cb6fbf90940a5a283384b4",
@@ -2523,16 +2532,15 @@
       ]
     },
     "source:docs/installation.md": {
-      "fingerprint": "c2cdb7d7baafc96be4a0b5ac7b66de30e46d42b47cd1ae17f0596f467cd084d5",
+      "fingerprint": "55b59e0301724cf85cedb768271d3ccc8192bc150b1739ecbe4d4f1a46d7c0a9",
       "snapshot": {
-        "docs/installation.md": "4d42c5fe9581aa4e456ed5d0aeff19835efa42b2368eb1d001f560566a955adc"
+        "docs/installation.md": "7fde0556a906ed6c0f89af45b49aca414e73f9897dc323eb85f4b6eb8c970d79"
       },
-      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
-      "outcome": "no-change",
-      "reason": "The Alpine line now says to install hotkeysPlugin before Alpine.start(). The alpine-hotkeys skill item covers that setup.",
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
       "evidence": [
-        "docs/installation.md",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md"
+        "Changed: docs/installation.md at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
       ]
     },
     "source:nx.json": {
@@ -5587,15 +5595,15 @@
       ]
     },
     "source:packages/solid-hotkeys/src/_useSelector.ts": {
-      "fingerprint": "7c7938d512028001d845770579db80fac1db09ff07e1debffcd3741b2f4d6c38",
+      "fingerprint": "2398f0b3ea872abdf5e0280d1558c4fe2581b84c43e6b92bea0fbc85a246890d",
       "snapshot": {
-        "packages/solid-hotkeys/src/_useSelector.ts": "14e941f7e66026de12f84da2d1cccd07c8c0f8843b1807944e7e61a95469db48"
+        "packages/solid-hotkeys/src/_useSelector.ts": "9ee0f54c6c9c82609097fdbec2ca7cb05e2ea3182220cb1892032325e4c3f47b"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
-      "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Changed: packages/solid-hotkeys/src/_useSelector.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
       ]
     },
     "source:packages/solid-hotkeys/src/createHeldKeyCodes.ts": {
@@ -5623,25 +5631,27 @@
       ]
     },
     "source:packages/solid-hotkeys/src/createHotkeyRecorder.ts": {
-      "fingerprint": "c283a2d40860d22cb37cfbb17e19cb7a638d4a16f91afaa3effa4d4e537aa24b",
+      "fingerprint": "da122e4ff619b88a78affa0883a9ee9780bb01a866c54ec46f4809caa957554e",
       "snapshot": {
-        "packages/solid-hotkeys/src/createHotkeyRecorder.ts": "241d2046744f1a19508ba47c425c0ff8615bc0f6b9c831c18ae8a8c031cff2c3"
+        "packages/solid-hotkeys/src/createHotkeyRecorder.ts": "f8d8a3d797546ce31770394f529106d8cfa64062d2a90428c1a2115abf7d1e4d"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
-      "evidence": ["packages/solid-hotkeys/src/createHotkeyRecorder.ts"]
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: packages/solid-hotkeys/src/createHotkeyRecorder.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
     },
     "source:packages/solid-hotkeys/src/createHotkeyRegistrations.ts": {
-      "fingerprint": "5d724e1b3a478eacdfcd1af8c0edacca727a4a1f1b6f382bbdb037706d76471a",
+      "fingerprint": "fd6d32413e6c17c16cbadb185cb0eaed27f34ae15f81e9a26833ed3548c17d00",
       "snapshot": {
-        "packages/solid-hotkeys/src/createHotkeyRegistrations.ts": "72252a0a441faf48ec11cd4a5c236db8ca5a89bc24f930d2bd6c18c58d61827d"
+        "packages/solid-hotkeys/src/createHotkeyRegistrations.ts": "354925da774af13c7f08884b09edc1d792fb10eaa2aa8d0c07b4b88de9340791"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
-      "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Changed: packages/solid-hotkeys/src/createHotkeyRegistrations.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
       ]
     },
     "source:packages/solid-hotkeys/src/createKeyHold.ts": {
@@ -5693,14 +5703,16 @@
       ]
     },
     "source:pnpm-workspace.yaml": {
-      "fingerprint": "82deb9e47dea10634af36a4ddaa5801bae8a61a5c5847dea308e2a2c4756cde4",
+      "fingerprint": "bee7674f8d6e8b7d008a6850b447bfec0d5f49c3e1b237a88a85cb1da48e26a9",
       "snapshot": {
-        "pnpm-workspace.yaml": "19f87851366291439baf06b5a7d5ee3c238cfe7968ef7ac28b9b68a7df6c4ba5"
+        "pnpm-workspace.yaml": "7200a557d56633a069912b479e9ce04c8daa5c441fe5f82775c1ce29bc8a052f"
       },
-      "head": "c3fb4f36ab029d029dd39d0ee3796cb679ebb25c",
-      "outcome": "no-change",
-      "reason": "Workspace globs exclude example build output, and Analog gets an h3 package extension; no skill change.",
-      "evidence": ["pnpm-workspace.yaml"]
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: pnpm-workspace.yaml at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
     },
     "source:docs/framework/ember/reference/classes/useHotkey.md": {
       "fingerprint": "016b5b9106a3df40894685f1248d72cde558ed82703e7cfc903d538d0bc4a5f4",
@@ -6091,14 +6103,16 @@
       "evidence": ["docs/framework/react/guides/held-key-state-helpers.md"]
     },
     "source:docs/framework/solid/guides/formatting-display.md": {
-      "fingerprint": "7ebff4e6cbe6f2d264ae7eafd490b31865534bbb3d35c439f5b690c4992541ae",
+      "fingerprint": "d74f11ce4acee0cb435f8619fb3c26a5d86a1f8ae800440940b21439f8ea1656",
       "snapshot": {
-        "docs/framework/solid/guides/formatting-display.md": "6cdd21c468f45b64caf4c813d030149d80e6da95cefcee33de4834ecfaeb3758"
+        "docs/framework/solid/guides/formatting-display.md": "97d4eb4f3ee5368595c23ba69d5ffb49305699a7cadd09e27ca76ae527604f41"
       },
-      "head": "b08446058f9beffdc098319de8fc6a538675e580",
-      "outcome": "no-change",
-      "reason": "Guide fixes from review: Outlet imports, null user agent in the Preact render, and a shared-cache note; covered by the core skill pitfall.",
-      "evidence": ["docs/framework/solid/guides/formatting-display.md"]
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: docs/framework/solid/guides/formatting-display.md at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
     },
     "source:docs/framework/solid/guides/held-key-state-helpers.md": {
       "fingerprint": "c2a22771ade6594e827a104263fd2a73403de0f29acfc0872144a7b7442e11b7",
@@ -6365,27 +6379,27 @@
       ]
     },
     "source:examples/solid/createHeldKeys/src/index.tsx": {
-      "fingerprint": "e90337f1d69e3c8dfea59cc00440ff8a6caa2724f4102e32ba26a9b92f51307a",
+      "fingerprint": "1e4d36dffc54c964ab1e225e3f6c9fed3e512eac97e05797fba344e76e95d2a4",
       "snapshot": {
-        "examples/solid/createHeldKeys/src/index.tsx": "9ae719031680d86133e621b59d2dff1eb23ba2d5fbd0179787e981f5263fbb97"
+        "examples/solid/createHeldKeys/src/index.tsx": "d295fb2bf130b4dc50772b2b234042bb25eabf4366a6f82e5ddc12b5a4d7957d"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
-      "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+        "Changed: examples/solid/createHeldKeys/src/index.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
       ]
     },
     "source:examples/solid/createHotkeys/src/index.tsx": {
-      "fingerprint": "cb6b0c722aee34bed39fc9ea9c8bb63c4cd61ced3adedeb4ccf3dea05c2fa07a",
+      "fingerprint": "ff2f8419978fad2d1b1a09d0f42c9948f08a31c34b9ab9277b7c45396761c792",
       "snapshot": {
-        "examples/solid/createHotkeys/src/index.tsx": "78fd9be4f1b6f0807574aa414a5fbd66a632f94570a94f56a417984b66f49cea"
+        "examples/solid/createHotkeys/src/index.tsx": "2150d0909bb9b2c05ba459612b220145038eb2be36432e7ccddc4821a1b8cedb"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
-      "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Changed: examples/solid/createHotkeys/src/index.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
       ]
     },
     "source:examples/svelte/get-held-keys/src/App.svelte": {
@@ -7063,24 +7077,28 @@
       "evidence": ["packages/react-hotkeys/tests/unset-values.test.tsx"]
     },
     "source:packages/solid-hotkeys/tests/appHotkeys.test.tsx": {
-      "fingerprint": "fbf1a3d2927e6e42d5fc34b9409216cfcb9a342db6725f9d86c7d675718f7c74",
+      "fingerprint": "876ef524dbdbf8651d77c561474d93c42eef8dd76431a95f721be847d207c2f0",
       "snapshot": {
-        "packages/solid-hotkeys/tests/appHotkeys.test.tsx": "f4af7332166b60f5b72537fed6cfea8b23ccfd6857077e8fc6e824206554030a"
+        "packages/solid-hotkeys/tests/appHotkeys.test.tsx": "47b204c10d92773309794cefc3c806fc43d32fac33899b84ffb6731490031833"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Test file; it adds no guidance for agents.",
-      "evidence": ["packages/solid-hotkeys/tests/appHotkeys.test.tsx"]
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: packages/solid-hotkeys/tests/appHotkeys.test.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
     },
     "source:packages/solid-hotkeys/tests/unset-values.test.tsx": {
-      "fingerprint": "8e965c71da4b0be85301675cc24afe38a86ef8b78278aeb5f55722e02f094957",
+      "fingerprint": "c99a0aa6da825b724e7f6c7e09886fd5ebdd0b6e3f734e55814f2c2a4b5f3663",
       "snapshot": {
-        "packages/solid-hotkeys/tests/unset-values.test.tsx": "f366cc819550704723a8ad6e1425e7caf851eac3928f6da17adf5dd719efb809"
+        "packages/solid-hotkeys/tests/unset-values.test.tsx": "63b1e18a7e8c54f878c019393ebcea42cb46ae3428657f41f0e8ee46c194b94f"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Test file; it adds no guidance for agents.",
-      "evidence": ["packages/solid-hotkeys/tests/unset-values.test.tsx"]
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: packages/solid-hotkeys/tests/unset-values.test.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
     },
     "source:packages/svelte-hotkeys/tests/CustomHotkeysPropHarness.svelte": {
       "fingerprint": "e248880e4d7e43203a13a8e1682f032f1471b08db2499f789966e5c32b647baa",
@@ -7680,14 +7698,16 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/solid-hotkeys/tests/createHotkey.test.tsx": {
-      "fingerprint": "ce9d15da8699cb4bb859a423b75fe08bd5732c32bae721ab5ea59d7af76587ec",
+      "fingerprint": "320aaa2899b30def76091414ab4b73d5c417628b309e392cf7f751ae0ebd41d3",
       "snapshot": {
-        "packages/solid-hotkeys/tests/createHotkey.test.tsx": "7ca9a17fac06de564981466c84e1b1ba4c8604c8e5acaff710de17756c29625b"
+        "packages/solid-hotkeys/tests/createHotkey.test.tsx": "f079f3341c949682988fea766e983e9065ea9f2f740e746c4daa63c507a14bd6"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
-      "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: packages/solid-hotkeys/tests/createHotkey.test.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
     },
     "source:packages/vue-hotkeys/src/_useLive.ts": {
       "fingerprint": "90a824fed7a72e361fd984e1128b8ff0f70823dc6736a458335ffb5cfe5b4836",
@@ -8050,34 +8070,40 @@
       "evidence": ["packages/solid-hotkeys/src/createFormatForDisplay.ts"]
     },
     "source:packages/solid-hotkeys/tests/platform.server.test.tsx": {
-      "fingerprint": "fa62af325a22e66e1d09ac75e22899d1748a56727b792eb9d3a3c60c5c817b03",
+      "fingerprint": "7b47f6c240d5ddaadd61ee045a62deaf7ffea4205e00d2a8297934960c31873a",
       "snapshot": {
-        "packages/solid-hotkeys/tests/platform.server.test.tsx": "4f629d5355a0e7c75ae2a5dd348d194f57444379b3986243cd21ed61593ab6a2"
+        "packages/solid-hotkeys/tests/platform.server.test.tsx": "0d36970e11c9724ede8541491be2e5132e5200bc327806acfca512f178b95515"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
-      "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
-      "evidence": ["packages/solid-hotkeys/tests/platform.server.test.tsx"]
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: packages/solid-hotkeys/tests/platform.server.test.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
     },
     "source:packages/solid-hotkeys/tests/platform.test.tsx": {
-      "fingerprint": "46febbd950b2a385472cc6a41546157e2aac02c4c9bb3af67e7bd039f9a28204",
+      "fingerprint": "517b3ec03f61fee77d47c164b9636707f28d50ea08c6c7da49be4a1b8c27e0dd",
       "snapshot": {
-        "packages/solid-hotkeys/tests/platform.test.tsx": "9d105ebf21beb9420742e1326329ac0ff3536ed7796ffa16ab84da419e66cefd"
+        "packages/solid-hotkeys/tests/platform.test.tsx": "c56ea978821dce92c302a819cc9990839e8bdd00c92bf50c2ad86bd33e3b00b1"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
-      "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
-      "evidence": ["packages/solid-hotkeys/tests/platform.test.tsx"]
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: packages/solid-hotkeys/tests/platform.test.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
     },
     "source:packages/solid-hotkeys/vitest.config.ts": {
-      "fingerprint": "42f277cfce8888815213042fe9bdd28bc44e8eb0826c2d12585f69f80fc76090",
+      "fingerprint": "8d425b8030bdcb5daed0469e27507b3c4fce5ea245813845361a196671dfb6d2",
       "snapshot": {
-        "packages/solid-hotkeys/vitest.config.ts": "14256b9e807fd33159836f9f27d857a6c43380f19e6333d502fca6af77aa3104"
+        "packages/solid-hotkeys/vitest.config.ts": "9e26c14ab109559c7d75a8616fe2a20fe700d700b3ad7e87e013496cd858b3b5"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
-      "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
-      "evidence": ["packages/solid-hotkeys/vitest.config.ts"]
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: packages/solid-hotkeys/vitest.config.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
     },
     "source:packages/svelte-hotkeys/src/getFormatForDisplay.ts": {
       "fingerprint": "5766329c479e6a0aaae5aa88206807ac34c3ddcad6a457cbb6bfe1e870e80221",
@@ -8220,14 +8246,16 @@
       "evidence": ["e2e/ssr/cheat-sheet.spec.ts"]
     },
     "source:e2e/ssr/examples.ts": {
-      "fingerprint": "578e1ba40ae95fa5e574862fae5066f757549f7fbc7ed6aeabf8e6cfc8830324",
+      "fingerprint": "088cb38fc9e1eef6cf57b37ea1eaf497cbd30aeab1d8027248f65dd78e9e23c6",
       "snapshot": {
-        "e2e/ssr/examples.ts": "ff6e65160a780ef1f9aa3ebcc946903eb8052b684a8fb455d48c519f7a59c44f"
+        "e2e/ssr/examples.ts": "5d8b90511f18a070161500e954835e4acbf26ba2c1c562bbde4536f81156a4d6"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
-      "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
-      "evidence": ["e2e/ssr/examples.ts"]
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: e2e/ssr/examples.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
     },
     "source:examples/angular/injectFormatForDisplay-analog/index.html": {
       "fingerprint": "525b71e449c511e56c7e03b21729b3b91cf5f9e0cc15d9d516ac031dedc8eb31",
@@ -9800,15 +9828,15 @@
       ]
     },
     "source:examples/solid/createFormatForDisplay-tanstack-start/src/CheatSheetPage.tsx": {
-      "fingerprint": "b9d6ac4ea7dd470adadd0b6b24ce576c59616a50443a46d6ba89c31257d55d43",
+      "fingerprint": "9a09b5dedc2f91d202583c4e7e2babdbc21b627aa0c8d7b3558a7288e2228915",
       "snapshot": {
-        "examples/solid/createFormatForDisplay-tanstack-start/src/CheatSheetPage.tsx": "a6dda85f3ea4149764746bdfb74795fb093f35ed109f51a2c815b1b39afdf911"
+        "examples/solid/createFormatForDisplay-tanstack-start/src/CheatSheetPage.tsx": "8f46916b9b802265a07877bb7c146c902f8f83580f99f41929d5372ca884d8dc"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
-      "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
       "evidence": [
-        "examples/solid/createFormatForDisplay-tanstack-start/src/CheatSheetPage.tsx"
+        "Changed: examples/solid/createFormatForDisplay-tanstack-start/src/CheatSheetPage.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
       ]
     },
     "source:examples/solid/createFormatForDisplay-tanstack-start/src/commands.ts": {
@@ -9860,15 +9888,15 @@
       ]
     },
     "source:examples/solid/createFormatForDisplay-tanstack-start/src/routes/__root.tsx": {
-      "fingerprint": "490962780232dd21eef2e4d0887745bc06f0de90a56a272c69d71d94a87c3da2",
+      "fingerprint": "78c124aae2bb011534761a7cbaa6daa0253e26df5d88fe031ff05aeb3b000122",
       "snapshot": {
-        "examples/solid/createFormatForDisplay-tanstack-start/src/routes/__root.tsx": "4ca879187eff014b4f848da82535535bcd1122870cc7501b11f6d9fe4eb86e55"
+        "examples/solid/createFormatForDisplay-tanstack-start/src/routes/__root.tsx": "daeefad72f1f4fbb2490e27e0058636c1a3a0422be56e7f20c54d12eecccf9fc"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
-      "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
       "evidence": [
-        "examples/solid/createFormatForDisplay-tanstack-start/src/routes/__root.tsx"
+        "Changed: examples/solid/createFormatForDisplay-tanstack-start/src/routes/__root.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
       ]
     },
     "source:examples/solid/createFormatForDisplay-tanstack-start/src/routes/index.tsx": {
@@ -9896,27 +9924,27 @@
       ]
     },
     "source:examples/solid/createFormatForDisplay-tanstack-start/tsconfig.json": {
-      "fingerprint": "5abe651252cd8ec4b275bc2e3303f689bc990c349fa03365fea9e678d16fc8df",
+      "fingerprint": "8c1a798ec92e262dc3a5ddf409b6a54e6b45e3e723a4cef0d921bdf667585e71",
       "snapshot": {
-        "examples/solid/createFormatForDisplay-tanstack-start/tsconfig.json": "24b0e95df13d6b6a10a1344972ae740b9d473c29280856814f8c7190b8c94ff0"
+        "examples/solid/createFormatForDisplay-tanstack-start/tsconfig.json": "664b3f5b29ccecb81703be69edc3a321d25f1673d8839aae7318a3fe961a4876"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
-      "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
       "evidence": [
-        "examples/solid/createFormatForDisplay-tanstack-start/tsconfig.json"
+        "Changed: examples/solid/createFormatForDisplay-tanstack-start/tsconfig.json at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
       ]
     },
     "source:examples/solid/createFormatForDisplay-tanstack-start/vite.config.ts": {
-      "fingerprint": "6361b89486863b92a8e408fc4a9f490fe36792cce39496449dda42251de4a791",
+      "fingerprint": "2bbd13ab65b89f44be4a012a68a47a33d5f02030a57ed0a5b508a4dc74eaaf1f",
       "snapshot": {
-        "examples/solid/createFormatForDisplay-tanstack-start/vite.config.ts": "ef7db523661d938695979d362f784f99d47119d12b4e50667df60201c75ffb67"
+        "examples/solid/createFormatForDisplay-tanstack-start/vite.config.ts": "9b1aff937e9671f80d5bcc2aecfbe9b5f2f97c5b1fa78616d3af73aadca4da1f"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
-      "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
       "evidence": [
-        "examples/solid/createFormatForDisplay-tanstack-start/vite.config.ts"
+        "Changed: examples/solid/createFormatForDisplay-tanstack-start/vite.config.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
       ]
     },
     "source:examples/svelte/getFormatForDisplay-astro/.gitignore": {
@@ -10790,14 +10818,16 @@
       "evidence": ["examples/react/scopes/src/index.tsx"]
     },
     "source:examples/solid/scopes/src/index.tsx": {
-      "fingerprint": "1e7c47ecc24f8c545353d275e79270b0d048922c23945d1cf4e2b212bc5746b0",
+      "fingerprint": "68993f55f99e8e6b77d6d70dd4ade51d555fd2e2ea50cc173c98349bef35949e",
       "snapshot": {
-        "examples/solid/scopes/src/index.tsx": "41cb6ca875b98731324d5b730d8f954ec650f7888774eeb558a0f4e3b30988fa"
+        "examples/solid/scopes/src/index.tsx": "9035b51e4349cec34c11127f3751bffe4e577e99aac41e30827636509225bb42"
       },
-      "head": "b7da4dd43790a2c4936382bea1fdf3940948ca4b",
-      "outcome": "no-change",
-      "reason": "Scopes examples now use HotkeysProvider directly instead of a local Scope wrapper; skills already show HotkeysProvider for scopes.",
-      "evidence": ["examples/solid/scopes/src/index.tsx"]
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/scopes/src/index.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
     },
     "source:examples/svelte/scopes/src/App.svelte": {
       "fingerprint": "69da308f1fb1d291d5e00a66ba3a422c8efc4876953c6f06154e7c40e8390aef",
@@ -11086,14 +11116,16 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/solid-hotkeys/tests/element-order.test.tsx": {
-      "fingerprint": "840e2a189e97f954606417594a0f101c375c8c9e9a17f92bf8ee5489ccc5b18c",
+      "fingerprint": "132193b7709e11c28d094b5f318d82dbc9f1b38bf7620644ed4f71a272d36e61",
       "snapshot": {
-        "packages/solid-hotkeys/tests/element-order.test.tsx": "13bf7d0ec0220c8ac7efbe0ae6b27f58d3060e863ae519708114eb6ecfc6cc11"
+        "packages/solid-hotkeys/tests/element-order.test.tsx": "af5dfcf5158ce1259b0f307f313ee07d6a161c3275a6ca6555cb1eb9f9b1e7e2"
       },
-      "head": "ac43e8aa85754a38841423ea5129c99d60654078",
-      "outcome": "no-change",
-      "reason": "Review fixes: delegated listeners move after listeners added since, such as Solid delegating late, and cleanup uses the document a listener attached to. No skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: packages/solid-hotkeys/tests/element-order.test.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
     },
     "source:packages/svelte-hotkeys/tests/ElementOrder.svelte": {
       "fingerprint": "57bcae9cb9a07342825afc1c8ef3e91f8a04221f4c01da1438bf65e2d44a092f",
@@ -11253,6 +11285,642 @@
       "evidence": [
         "e2e/browser/native-overlays.spec.ts",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:.github/workflows/autofix.yml": {
+      "fingerprint": "4a04ac4c45fff90086de5c70c0db4b666c376c0d20fe30a4ebd09330f4ffaff5",
+      "snapshot": {
+        ".github/workflows/autofix.yml": "49be3144eab79d146ac7a362198a036926398070ff5feccb336ff526f7b4fa42"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: .github/workflows/autofix.yml at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:.github/workflows/pr.yml": {
+      "fingerprint": "1078f4bda104c4021fa75547f4e4fc07c71ebe6dcafa5e1477036d4943b55a47",
+      "snapshot": {
+        ".github/workflows/pr.yml": "9f8277d2d3ebd11a1f4aa5d67b824052ee07b8264bc79e45bff3653ab634da1f"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: .github/workflows/pr.yml at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:.github/workflows/release.yml": {
+      "fingerprint": "dee72bbd696bd67efe1d0927fe6d0a8dc5663c695652189440fc93c7c5ad31cb",
+      "snapshot": {
+        ".github/workflows/release.yml": "30250d2a4cfe44a60540285eae2ddcfec77eb02238223e7f0dddf08a390942a1"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: .github/workflows/release.yml at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:CONTRIBUTING.md": {
+      "fingerprint": "2ec14db7b3383ae568c82bb5de87b28b2121a17689131630805c72a0692c0597",
+      "snapshot": {
+        "CONTRIBUTING.md": "fe5196988571f29b62e28e1532bfa10bcce905833de09ba139c7d5c1e985f2b5"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: CONTRIBUTING.md at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:docs/agent-skills.md": {
+      "fingerprint": "5ce61445c8c4093bc1f24e9d0eeb15e98604ff77c878cf8335f02f4cc393bb92",
+      "snapshot": {
+        "docs/agent-skills.md": "0003f11edaf2d404c227650f6b306f92cb1edd1af8c7a6e95688977310fa357b"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: docs/agent-skills.md at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:e2e/.gitignore": {
+      "fingerprint": "4a13c3ccc4b11d8b9ebcf939356fcf80de46625296dd7248d3469fab25d82172",
+      "snapshot": {
+        "e2e/.gitignore": "9960a45e45ba8d01fb66c5cbc5168104201938597a32858ccd05184035c5690c"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: e2e/.gitignore at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:e2e/browser/held-keys-and-recorder.spec.ts": {
+      "fingerprint": "3c54fc007f71e2122896526ceccb53a4241392e65e0b3803edbbbf373a435ce3",
+      "snapshot": {
+        "e2e/browser/held-keys-and-recorder.spec.ts": "8c18c26634ba75dbd2c3f3408b5b437682925d8bbc5f5ff6d2dbce79f58b281b"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: e2e/browser/held-keys-and-recorder.spec.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:e2e/browser/sequences-and-scopes.spec.ts": {
+      "fingerprint": "d522ece23bdf84dc0ab205af2c2a34fcfc30de011be389f0a7e87583cbf6bdbd",
+      "snapshot": {
+        "e2e/browser/sequences-and-scopes.spec.ts": "720a524243baea790ae10569abfae98170ab444d5a2b4fb825f0564916f3760d"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: e2e/browser/sequences-and-scopes.spec.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:e2e/docker/Dockerfile": {
+      "fingerprint": "d0ca5be6d2bf26c89f038ac1452f3df551544a5edfb993651b0636ca91e28616",
+      "snapshot": {
+        "e2e/docker/Dockerfile": "c212bcdc5a23ef320fedc7e2005d481d33cbdd35fc8f62cf3851d44c4384d839"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: e2e/docker/Dockerfile at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:e2e/docker/tanstack.xkb": {
+      "fingerprint": "a928aba54c2625b09ee984af1d11bc05899aee470c4432cfb10b1b9ef4c1ce05",
+      "snapshot": {
+        "e2e/docker/tanstack.xkb": "d9ce508b2e2ad5ddf0166d670002fe31e2653996305665fd1250007be77d4f22"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: e2e/docker/tanstack.xkb at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:e2e/eslint.config.js": {
+      "fingerprint": "529b45779e15af3810f660715fd5e39239c21cf227595448ad3380223d75f350",
+      "snapshot": {
+        "e2e/eslint.config.js": "48f8922b7281262d1332c2400d4520341f96a2caa3ed319bcd47e82e34aee685"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: e2e/eslint.config.js at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:e2e/layouts/alt-graph.spec.ts": {
+      "fingerprint": "0fbf017f3098191ccce5d6f4fb20d23a2a2dd7e7c7397a17d2f0f8b8196bc7e4",
+      "snapshot": {
+        "e2e/layouts/alt-graph.spec.ts": "526467490f182ab86c46fdfe681670cedec20ad7d3bf3a6292ffe6da88926880"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: e2e/layouts/alt-graph.spec.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:e2e/playwright.config.ts": {
+      "fingerprint": "fd983c303aa03661d468151d92b7c617529dcaa057ab927340ce6d5b3eee0618",
+      "snapshot": {
+        "e2e/playwright.config.ts": "f3b15b1f1bb829c5fd0ba4737798982004a46678c2f2bdd118b5c5cd30d9d5df"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: e2e/playwright.config.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:e2e/playwright.layouts.config.ts": {
+      "fingerprint": "155b912961a752d5c9c62f05e95323666e31608c710b6d6d7921f12cfb2e19c6",
+      "snapshot": {
+        "e2e/playwright.layouts.config.ts": "3db40105f2110db60c3660a01f50d9b8e2f890563262d4dd9bbde38d50e40b75"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: e2e/playwright.layouts.config.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:e2e/scripts/layouts-docker.ts": {
+      "fingerprint": "b96a5d5e62fd37c8f2692321dfc244a16a5395aca772d5edd8756b18fdc7f491",
+      "snapshot": {
+        "e2e/scripts/layouts-docker.ts": "d9483fed03eeeb29a767f5033a534d2c7dcebc31e7f6ef878c78d206f2acc963"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: e2e/scripts/layouts-docker.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:e2e/support/bundle.ts": {
+      "fingerprint": "b68421818234005d4cb26dec187235936d7ffe2c2eb58747ee54db144ba1d0c6",
+      "snapshot": {
+        "e2e/support/bundle.ts": "1024ba39fb4203af3273fd5b27b1f8085008f4a6a24c5ae692f5403d697797cd"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: e2e/support/bundle.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:e2e/support/fixtures.ts": {
+      "fingerprint": "41b5a85d6d81922bb489b87517bdb07d96b25ea4f907a95d3fa840e9e636b4bd",
+      "snapshot": {
+        "e2e/support/fixtures.ts": "935abcea023c9559dd21e9bd8abb550d61ef20599615f84f24d509fa60f58f14"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: e2e/support/fixtures.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:e2e/support/layout-cases.ts": {
+      "fingerprint": "a41eb9c90a7f12217ac0cb78b2070bc2af28b703b949096fd031e7fb40776a14",
+      "snapshot": {
+        "e2e/support/layout-cases.ts": "0e1f7370810c2fa2be8e1c6b5e262859afcb8d050539d561b7a4fca06c21867f"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: e2e/support/layout-cases.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:e2e/support/layout-fixtures.ts": {
+      "fingerprint": "40f791f66eedcc2f1de7d0282859e30bde806f68ac7caf720f7f807bb50f2e51",
+      "snapshot": {
+        "e2e/support/layout-fixtures.ts": "8b2c01bb10f7d99e8f6d57d0290add9be52dd14649873b147cc5f2c747a901ea"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: e2e/support/layout-fixtures.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:e2e/support/page.ts": {
+      "fingerprint": "a2a4e20c4546fafc7d6786fed1d92544f45217f5e98e7383fbfd7df87eae25fe",
+      "snapshot": {
+        "e2e/support/page.ts": "967db90bbdc2923e84135561bb82f1ca2fb27c09f991b23a78299430466db487"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: e2e/support/page.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:e2e/tsconfig.json": {
+      "fingerprint": "df743c23e250240369f6c416b23b40af80a3349e223eacbe4fcface26da33377",
+      "snapshot": {
+        "e2e/tsconfig.json": "bb58e7cf62e64d14bb6e2f17e8a41b43d7d9581a2ea67d3f89c637784b3db7ed"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: e2e/tsconfig.json at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createHeldKeys/tsconfig.json": {
+      "fingerprint": "d142d05ba0ecbc30c9b1b92b0922123b678d295647ca4cc2f079401fe1738d9e",
+      "snapshot": {
+        "examples/solid/createHeldKeys/tsconfig.json": "716abc7c4743c77a4a880a9d4c839d8286c7fe0609491782c89ef0dfd9633a12"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createHeldKeys/tsconfig.json at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createHeldKeys/vite.config.ts": {
+      "fingerprint": "9216dd6adeefb8bfa0e087338e5522f302915694ad836b6bf3bfe016bf3f43af",
+      "snapshot": {
+        "examples/solid/createHeldKeys/vite.config.ts": "fb32fc53a0b16800b2358ca3c4def19e6db0126db3c3cd529f2d3274339b5344"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createHeldKeys/vite.config.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createHotkey-sequences/src/index.tsx": {
+      "fingerprint": "cff401392959b9e76561d47b2bd25a8721d8ed3eaa721fe23b75ce01b2565e83",
+      "snapshot": {
+        "examples/solid/createHotkey-sequences/src/index.tsx": "abf638529310a28c0db5880aefac30e90c400e7584e48bff240676a3e77dd648"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createHotkey-sequences/src/index.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createHotkey-sequences/tsconfig.json": {
+      "fingerprint": "bf764b14d20d8242240657ef8537dbd98dca96cb95f65979b0f949a4b5707fa6",
+      "snapshot": {
+        "examples/solid/createHotkey-sequences/tsconfig.json": "716abc7c4743c77a4a880a9d4c839d8286c7fe0609491782c89ef0dfd9633a12"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createHotkey-sequences/tsconfig.json at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createHotkey-sequences/vite.config.ts": {
+      "fingerprint": "99480d6c861b584b28c1b71bbf48bdc2e64fc58d9118e47bfbe93ca087895df4",
+      "snapshot": {
+        "examples/solid/createHotkey-sequences/vite.config.ts": "fb32fc53a0b16800b2358ca3c4def19e6db0126db3c3cd529f2d3274339b5344"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createHotkey-sequences/vite.config.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createHotkey/src/index.tsx": {
+      "fingerprint": "bd335c5a27a5f5b8d8f179c2b99d929c293aa05a0496752013f4da3ee7b48c3f",
+      "snapshot": {
+        "examples/solid/createHotkey/src/index.tsx": "21eef5a401ad11673d82592036ac268869ab7deb33745060d5b7d1d6e962b6e3"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createHotkey/src/index.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createHotkey/tsconfig.json": {
+      "fingerprint": "c3b97a1e79cf21a2a4a56a3daab2cb2171ed396c92cf0ece322cc1bfe79c9aa2",
+      "snapshot": {
+        "examples/solid/createHotkey/tsconfig.json": "9823a5038fde7f226e8c1336ece417ea7d8ba446f5dc9fc14cbbc99392f814e4"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createHotkey/tsconfig.json at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createHotkey/vite.config.ts": {
+      "fingerprint": "04964ce7d3fc433ef679e1cd509113abc0accf3e7c25005ef74d66a6febef262",
+      "snapshot": {
+        "examples/solid/createHotkey/vite.config.ts": "fb32fc53a0b16800b2358ca3c4def19e6db0126db3c3cd529f2d3274339b5344"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createHotkey/vite.config.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createHotkeyRecorder-sequences/src/index.tsx": {
+      "fingerprint": "c70bf35ca66fc2b1287d971066a76a3a5f564b4d417673659d398ec4ed3f262d",
+      "snapshot": {
+        "examples/solid/createHotkeyRecorder-sequences/src/index.tsx": "1530546f654d1300dd75b08b238ed12f55947ed614dd5b5f2e23e39853805b06"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createHotkeyRecorder-sequences/src/index.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createHotkeyRecorder-sequences/tsconfig.json": {
+      "fingerprint": "00060d7a0e4b457b1f5629e5aa1f41075519152507bb5f09e1084ab8a08656d8",
+      "snapshot": {
+        "examples/solid/createHotkeyRecorder-sequences/tsconfig.json": "716abc7c4743c77a4a880a9d4c839d8286c7fe0609491782c89ef0dfd9633a12"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createHotkeyRecorder-sequences/tsconfig.json at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createHotkeyRecorder-sequences/vite.config.ts": {
+      "fingerprint": "cec7dfa9217143f404c3744e43910b3394877b1f9e60f86e0f772276d2d341a1",
+      "snapshot": {
+        "examples/solid/createHotkeyRecorder-sequences/vite.config.ts": "fb32fc53a0b16800b2358ca3c4def19e6db0126db3c3cd529f2d3274339b5344"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createHotkeyRecorder-sequences/vite.config.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createHotkeyRecorder/src/index.tsx": {
+      "fingerprint": "2d2fa92a8cacb4530d187dd1c6d2f535bd020cc81ebac7e5055cf4d6ab9db461",
+      "snapshot": {
+        "examples/solid/createHotkeyRecorder/src/index.tsx": "9cb9acbe6961ea261c915e2ba58169ec9cba334c99ce96abe6e906c9ca46c393"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createHotkeyRecorder/src/index.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createHotkeyRecorder/tsconfig.json": {
+      "fingerprint": "fa33e36f5c7e8dca8777831086798e0ce995619ac1abbe57b85394ce2f153991",
+      "snapshot": {
+        "examples/solid/createHotkeyRecorder/tsconfig.json": "716abc7c4743c77a4a880a9d4c839d8286c7fe0609491782c89ef0dfd9633a12"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createHotkeyRecorder/tsconfig.json at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createHotkeyRecorder/vite.config.ts": {
+      "fingerprint": "0b52b1a0743ca71ebe0f3373d0a5d2a7c789379253ab1bed36c4bc59f6dc4e33",
+      "snapshot": {
+        "examples/solid/createHotkeyRecorder/vite.config.ts": "fb32fc53a0b16800b2358ca3c4def19e6db0126db3c3cd529f2d3274339b5344"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createHotkeyRecorder/vite.config.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createHotkeys-sequences/src/index.tsx": {
+      "fingerprint": "717d57a89c047e9bdb92ad25fddf5dfa7c1b9c8224dd31d20aa3b860992000e9",
+      "snapshot": {
+        "examples/solid/createHotkeys-sequences/src/index.tsx": "8366bc537aa37ccaae9cf19d39f016eea37c2692a2b6684292fb0e0d79b3df05"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createHotkeys-sequences/src/index.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createHotkeys-sequences/tsconfig.json": {
+      "fingerprint": "6c4c50ef624ff226038a74723db51fe18bcb2b55b087e5ea458ad6a6ac3805c1",
+      "snapshot": {
+        "examples/solid/createHotkeys-sequences/tsconfig.json": "716abc7c4743c77a4a880a9d4c839d8286c7fe0609491782c89ef0dfd9633a12"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createHotkeys-sequences/tsconfig.json at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createHotkeys-sequences/vite.config.ts": {
+      "fingerprint": "2afce15ad54040517ad0c87946a0076a496910e72724d21a6a06fef3a8232edf",
+      "snapshot": {
+        "examples/solid/createHotkeys-sequences/vite.config.ts": "fb32fc53a0b16800b2358ca3c4def19e6db0126db3c3cd529f2d3274339b5344"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createHotkeys-sequences/vite.config.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createHotkeys/tsconfig.json": {
+      "fingerprint": "c22077faeda9d3d0ce759c8216cb08d5bffb3529dd2b76e6e1ef250255295fe4",
+      "snapshot": {
+        "examples/solid/createHotkeys/tsconfig.json": "9823a5038fde7f226e8c1336ece417ea7d8ba446f5dc9fc14cbbc99392f814e4"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createHotkeys/tsconfig.json at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createHotkeys/vite.config.ts": {
+      "fingerprint": "867d057c4afacd9d4ec983867a97fcca264f96e69658b899702874fecfaf3916",
+      "snapshot": {
+        "examples/solid/createHotkeys/vite.config.ts": "fb32fc53a0b16800b2358ca3c4def19e6db0126db3c3cd529f2d3274339b5344"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createHotkeys/vite.config.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createKeyHold/src/index.tsx": {
+      "fingerprint": "16cf875f66520102e86b64779d4bcb881bb8e20c7ec9231b7327e06bdb65cc33",
+      "snapshot": {
+        "examples/solid/createKeyHold/src/index.tsx": "423a7a3538ecaa56acce65fbbb8d746acc4997ce1af925432c7e9d091807fe6d"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createKeyHold/src/index.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createKeyHold/tsconfig.json": {
+      "fingerprint": "68e2c89fa8424073756608da04bf8ed7c7a5a3f51e1845f155b46dd76312d50d",
+      "snapshot": {
+        "examples/solid/createKeyHold/tsconfig.json": "716abc7c4743c77a4a880a9d4c839d8286c7fe0609491782c89ef0dfd9633a12"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createKeyHold/tsconfig.json at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/createKeyHold/vite.config.ts": {
+      "fingerprint": "ad185d955a832852db29d3bf761123727b584d38d5ccb9d4c59c7d9d4057b6f5",
+      "snapshot": {
+        "examples/solid/createKeyHold/vite.config.ts": "fb32fc53a0b16800b2358ca3c4def19e6db0126db3c3cd529f2d3274339b5344"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/createKeyHold/vite.config.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/kitchen-sink/tsconfig.json": {
+      "fingerprint": "c9d1ba76593359a7e042d87e96a003ff0377b9a3ad17bca4cefa3e518b48812e",
+      "snapshot": {
+        "examples/solid/kitchen-sink/tsconfig.json": "9823a5038fde7f226e8c1336ece417ea7d8ba446f5dc9fc14cbbc99392f814e4"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/kitchen-sink/tsconfig.json at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/kitchen-sink/vite.config.ts": {
+      "fingerprint": "6c2ba04c7e94d83e3a95b8d3169d284b502c41bbb8d79a4fd93b7fb6c3761643",
+      "snapshot": {
+        "examples/solid/kitchen-sink/vite.config.ts": "fb32fc53a0b16800b2358ca3c4def19e6db0126db3c3cd529f2d3274339b5344"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/kitchen-sink/vite.config.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/scopes/tsconfig.json": {
+      "fingerprint": "02dcb3c7482d972465a037ce3f33df52cd4e85e081e7d2a240b346ae269f53ba",
+      "snapshot": {
+        "examples/solid/scopes/tsconfig.json": "9823a5038fde7f226e8c1336ece417ea7d8ba446f5dc9fc14cbbc99392f814e4"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/scopes/tsconfig.json at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:examples/solid/scopes/vite.config.ts": {
+      "fingerprint": "28635ea27836a92b8e0ba8101000ef0cf18dcc51493a5209ae1023311910e96f",
+      "snapshot": {
+        "examples/solid/scopes/vite.config.ts": "fb32fc53a0b16800b2358ca3c4def19e6db0126db3c3cd529f2d3274339b5344"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: examples/solid/scopes/vite.config.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:packages/hotkeys/tests/alt-graph.test.ts": {
+      "fingerprint": "53121226d0c6d8c210c664d70a8ce95946b451e38063e9c6ee2a8a5617b387f2",
+      "snapshot": {
+        "packages/hotkeys/tests/alt-graph.test.ts": "874c32b7e100967c9323e3ab2b7d34974f809e9f15a9500e5b00a1481a098b5d"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/alt-graph.test.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:packages/solid-hotkeys/tests/createHotkeys-sequences.test.tsx": {
+      "fingerprint": "c12821eb542cf1b937c062742a62698e8e34a8d1daf4a697ed14499813248956",
+      "snapshot": {
+        "packages/solid-hotkeys/tests/createHotkeys-sequences.test.tsx": "3d3ca076179875fa0ead1983199a2e16db4f5d50d7592a8aa6be74751951c9fc"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: packages/solid-hotkeys/tests/createHotkeys-sequences.test.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:packages/solid-hotkeys/tests/createHotkeys.test.tsx": {
+      "fingerprint": "0b81f197909c1e613109a2731dadca376e80198440377b7e7bae76550a035260",
+      "snapshot": {
+        "packages/solid-hotkeys/tests/createHotkeys.test.tsx": "9c65c48486000d23f6097ec3b1c99e1bcc599c693bdca4a04e2270e4408bdd61"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: packages/solid-hotkeys/tests/createHotkeys.test.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:packages/solid-hotkeys/tests/reactive-options.test.tsx": {
+      "fingerprint": "45cde667714bebc7ce8c50a4d7ec66b7e968094340e6a54f5b11bd9767b5dd3f",
+      "snapshot": {
+        "packages/solid-hotkeys/tests/reactive-options.test.tsx": "f953d325260978e5c820c9e5197f486ac4f5a810c78d6c2e4a5efb14c4cbbdf6"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: packages/solid-hotkeys/tests/reactive-options.test.tsx at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:packages/solid-hotkeys/tsconfig.json": {
+      "fingerprint": "0bcc451bd1673f6ca1113542d21dfb35c7efd444b640da9d370bf29bf0b0d0f8",
+      "snapshot": {
+        "packages/solid-hotkeys/tsconfig.json": "55228fbe756f6c8ef2ce2788396545125451ff7099b1511a2d6983a092af3509"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: packages/solid-hotkeys/tsconfig.json at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
+      ]
+    },
+    "source:packages/solid-hotkeys/tsdown.config.ts": {
+      "fingerprint": "08f03aafe9190b84f440c425f54a41511f5b66825cb0a0111f9e92ac5bb4adaa",
+      "snapshot": {
+        "packages/solid-hotkeys/tsdown.config.ts": "2417f6aebd51ac5cba86104520edf5950230cdfa546772b9ba87a4c8eaeb2c93"
+      },
+      "head": "08802d6c214fdcf0a3c2303f1b730b945320d1a9",
+      "outcome": "updated",
+      "reason": "Solid 2 port: solid-hotkeys skill now uses Solid 2 APIs (tabindex, JSX from @solidjs/web) and gives removable elements their own component instead of registering in a ref callback; other changes are Solid 2 test, build, and example updates with no guidance impact",
+      "evidence": [
+        "Changed: packages/solid-hotkeys/tsdown.config.ts at 08802d6c214fdcf0a3c2303f1b730b945320d1a9"
       ]
     }
   }

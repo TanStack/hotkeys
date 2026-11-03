@@ -1,5 +1,5 @@
 /* @refresh reload */
-import { render } from 'solid-js/web'
+import { render } from '@solidjs/web'
 import { createEffect, createSignal } from 'solid-js'
 import {
   HotkeysProvider,
@@ -7,8 +7,6 @@ import {
   createHeldKeys,
   formatForDisplay,
 } from '@tanstack/solid-hotkeys'
-import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
-import { TanStackDevtools } from '@tanstack/solid-devtools'
 import './index.css'
 
 function App() {
@@ -16,8 +14,7 @@ function App() {
   const heldCodes = createHeldKeyCodes()
   const [history, setHistory] = createSignal<Array<string>>([])
 
-  createEffect(() => {
-    const keys = heldKeys()
+  createEffect(heldKeys, (keys) => {
     if (keys.length > 0) {
       const combo = keys
         .map((k) => formatForDisplay({ key: k }, { useSymbols: true }))
@@ -120,8 +117,6 @@ function KeyDisplay() {
           </ul>
         </section>
       </main>
-
-      <TanStackDevtools plugins={[hotkeysDevtoolsPlugin()]} />
     </div>
   )
 }

@@ -1,5 +1,4 @@
-import { createEffect, onCleanup, untrack } from 'solid-js'
-import { delegateEvents } from 'solid-js/web'
+import { createEffect, onCleanup } from 'solid-js'
 import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
@@ -26,8 +25,7 @@ export type CreateHotkeyDefinition = AdapterHotkeyDefinition<CreateHotkeyTarget>
  *
  * Options merge in this order: provider defaults, app hotkey declaration,
  * commonOptions, per-hotkey options. Each option applies only to the kinds
- * that support it. Unbound app hotkeys, empty sequences, and `undefined`,
- * `null`, or `''` hotkeys register nothing.
+ * that support it. Unbound app hotkeys and empty sequences register nothing.
  * A `null` target skips registration until it is set.
  *
  * @example
@@ -52,25 +50,25 @@ export function createHotkeys(
   // Clean up only when this owner disposes, not before every effect re-run.
   onCleanup(() => bindings.destroy())
 
-  createEffect(() => {
-    // Track app hotkeys so registrations move with custom hotkeys.
-    appHotkeys.state()
-    const definitions = prepareHotkeyDefinitions(
-      typeof hotkeys === 'function' ? hotkeys() : hotkeys,
-      {
-        appHotkeysStore: appHotkeys.store,
-        defaults: defaultOptions().hotkey,
-        commonOptions:
-          typeof commonOptions === 'function' ? commonOptions() : commonOptions,
-        // A null target skips registration until the element exists.
-        resolveTarget: (target) => target,
-      },
-    )
-    // Solid's onKeyDown listener on the document must come before the
-    // hotkeys' listener there, even when the first module that uses
-    // onKeyDown loads later. This runs only in the browser.
-    delegateEvents(['keydown', 'keyup'])
-    // Untrack store writes so registrations do not re-trigger this effect.
-    untrack(() => bindings.update(definitions))
-  })
+  createEffect(
+    () => {
+      // Track app hotkeys so registrations move with custom hotkeys.
+      appHotkeys.state()
+      return prepareHotkeyDefinitions(
+        typeof hotkeys === 'function' ? hotkeys() : hotkeys,
+        {
+          appHotkeysStore: appHotkeys.store,
+          defaults: defaultOptions().hotkey,
+          commonOptions:
+            typeof commonOptions === 'function'
+              ? commonOptions()
+              : commonOptions,
+          // A null target skips registration until the element exists.
+          resolveTarget: (target) => target,
+        },
+      )
+    },
+    // The effect half is untracked, so registration writes do not re-run it.
+    (definitions) => bindings.update(definitions),
+  )
 }
