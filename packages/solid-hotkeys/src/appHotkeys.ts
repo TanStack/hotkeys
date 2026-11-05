@@ -14,7 +14,7 @@ function useRequiredStore(name: string) {
   const source = useAppHotkeysStoreSource()
   if (!source.store) {
     throw new Error(
-      `${name} requires a HotkeysProvider with an appHotkeys prop`,
+      `[hotkeys] ${name} requires a HotkeysProvider with an appHotkeys prop`,
     )
   }
   return {

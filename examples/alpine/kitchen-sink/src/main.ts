@@ -12,9 +12,21 @@ import type {
   Hotkey,
   HotkeyRegistrationsResult,
   RecorderKeyMode,
+  RecorderRejection,
   RegisterableHotkey,
 } from '@tanstack/alpine-hotkeys'
 import './index.css'
+
+// The recorder sends a reason code, so the app writes the text
+const rejectionText = ({ reason, message }: RecorderRejection) =>
+  message ??
+  {
+    'alt-graph': 'AltGr types characters. Record by key to use them.',
+    'missing-code': 'This key has no physical key code.',
+    whitespace: "Whitespace keys can't be recorded.",
+    validation: 'This hotkey is not allowed.',
+    conflict: 'This hotkey is already in use.',
+  }[reason]
 
 // Gives every hotkeys scope the app's Alpine instance.
 Alpine.plugin(hotkeysPlugin)
@@ -351,7 +363,7 @@ class Recording {
         (context.kind === 'chord' &&
           context.parsedChord.modifiers.length > 0) ||
         'Include a modifier for this action.',
-      onReject: ({ message }) => (this.problem = message),
+      onReject: (rejection) => (this.problem = rejectionText(rejection)),
       onRecord: (value) => {
         this.hotkey = value
         this.problem = ''
@@ -385,7 +397,8 @@ class Recording {
           `Recorded sequence ${formatForDisplay(value, { sequenceSeparator: ' → ' })}`,
         )
       },
-      onReject: (reason) => (this.sequenceProblem = reason.message),
+      onReject: (rejection) =>
+        (this.sequenceProblem = rejectionText(rejection)),
       onClear: () => {
         this.sequence = ['[KeyX]', '[KeyY]']
         this.sequenceProblem = 'Restored default sequence.'

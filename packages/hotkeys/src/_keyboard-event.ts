@@ -164,9 +164,7 @@ export function keysEqual(left: string, right: string): boolean {
 /** Rejects reserved physical-token syntax in logical object fields while allowing Unicode characters. */
 export function assertLogicalKey(key: string): void {
   if (/^\[.*\]$/s.test(key.trim())) {
-    throw new Error(
-      'Logical key must not contain a bracketed physical code. Use the code field instead.',
-    )
+    throw new Error(`[hotkeys] Put '${key}' in the code field, not key`)
   }
 }
 

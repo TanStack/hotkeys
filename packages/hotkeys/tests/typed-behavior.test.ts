@@ -443,7 +443,7 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
       {
         "fired": "56845bf2eb1c5d52",
         "recorded": "b99a3f21d18e091a",
-        "recorders": "d6d2f05bc882d528",
+        "recorders": "a6b29704b190722e",
       }
     `)
   })

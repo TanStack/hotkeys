@@ -11,7 +11,8 @@ function requireStore(
   store: () => AppHotkeysStore | null,
 ): AppHotkeysStore<RegisteredAppHotkeys> {
   const current = store()
-  if (!current) throw new Error('App hotkeys require provideAppHotkeys()')
+  if (!current)
+    throw new Error('[hotkeys] App hotkeys require provideAppHotkeys()')
   return current
 }
 

@@ -658,9 +658,7 @@ export class HotkeyManager {
         (other) => other.allow && other.scope === scope,
       )
     ) {
-      console.warn(
-        `Exclusive hotkey scope '${scope}' is already active. Hotkeys from both activations will fire; give each a unique scope.`,
-      )
+      console.warn(`[hotkeys] Exclusive scope '${scope}' is already active`)
     }
     const activation: ScopeActivation = {
       scope,
@@ -938,7 +936,7 @@ export class HotkeyManager {
       for (const { key } of steps) {
         if (key !== undefined && !isKeyNameShape(key)) {
           console.warn(
-            `Unknown key '${key}' in '${formatForMessage(registration.hotkey)}'. Key names are case-sensitive, such as 'Escape' and 'F1', so this hotkey may never fire.`,
+            `[hotkeys] Unknown key '${key}' in '${formatForMessage(registration.hotkey)}' (names are case-sensitive)`,
           )
         }
       }

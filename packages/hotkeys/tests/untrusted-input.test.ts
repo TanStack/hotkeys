@@ -89,8 +89,7 @@ describe('recording whitespace', () => {
     const { onRecord, onReject } = record(' ')
     expect(onRecord).not.toHaveBeenCalled()
     expect(onReject).toHaveBeenCalledWith({
-      reason: 'invalid',
-      message: 'Whitespace keys cannot be recorded',
+      reason: 'whitespace',
       hotkey: 'Alt+ ',
     })
   })
@@ -106,7 +105,7 @@ describe('registering a hotkey with an unknown key name', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
     getHotkeyManager().register(['G', 'escape'] as never, () => {})
     expect(warn).toHaveBeenCalledWith(
-      "Unknown key 'escape' in 'G escape'. Key names are case-sensitive, such as 'Escape' and 'F1', so this hotkey may never fire.",
+      "[hotkeys] Unknown key 'escape' in 'G escape' (names are case-sensitive)",
     )
   })
 

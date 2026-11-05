@@ -265,17 +265,14 @@ function sanitizeCustomHotkeys<T extends AppHotkeys>(
     // Own ids only: saved data can hold names such as toString or __proto__
     if (!Object.hasOwn(appHotkeys, id)) {
       if (process.env.NODE_ENV !== 'production') {
-        console.warn(`Ignoring custom hotkey for unknown app hotkey '${id}'`)
+        console.warn(`[hotkeys] Unknown app hotkey '${id}'`)
       }
       continue
     }
     const hotkey = parseCustomHotkey(value)
     if (hotkey === undefined) {
       if (process.env.NODE_ENV !== 'production') {
-        console.warn(
-          `Ignoring invalid custom hotkey for app hotkey '${id}':`,
-          value,
-        )
+        console.warn(`[hotkeys] Invalid custom hotkey for '${id}'`)
       }
       continue
     }
@@ -550,9 +547,7 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
     const appHotkey = this.get(id)
     if (!appHotkey) {
       if (process.env.NODE_ENV !== 'production') {
-        console.warn(
-          `Cannot set a custom hotkey for unknown app hotkey '${id}'`,
-        )
+        console.warn(`[hotkeys] Unknown app hotkey '${id}'`)
       }
       return []
     }

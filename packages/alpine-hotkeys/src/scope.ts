@@ -22,7 +22,7 @@ function getAlpine(): AlpineInstance {
     pluginAlpine ?? (globalThis as { Alpine?: AlpineInstance }).Alpine
   if (!alpine) {
     throw new Error(
-      '[TanStack Hotkeys] Alpine was not found. Call Alpine.plugin(hotkeysPlugin) before Alpine.start(), or set window.Alpine.',
+      '[hotkeys] Alpine not found. Call Alpine.plugin(hotkeysPlugin) before Alpine.start(), or set window.Alpine',
     )
   }
   return alpine
@@ -50,7 +50,8 @@ export function createScope(
   let destroyed = false
 
   function assertActive() {
-    if (destroyed) throw new Error('Cannot use a destroyed hotkeys scope')
+    if (destroyed)
+      throw new Error('[hotkeys] Cannot use a destroyed hotkeys scope')
   }
 
   function effect(callback: () => void) {

@@ -1,0 +1,42 @@
+---
+id: HotkeyIssue
+title: HotkeyIssue
+---
+
+Defined in: [validate.ts:201](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L201)
+
+One problem found by `validateHotkey`.
+
+## Properties
+
+### part?
+
+```ts
+optional part?: string;
+```
+
+Defined in: [validate.ts:204](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L204)
+
+The part of the chord with the problem, such as `'Ctl'` in `'Ctl+K'`.
+
+***
+
+### reason
+
+```ts
+reason: HotkeyIssueReason;
+```
+
+Defined in: [validate.ts:202](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L202)
+
+***
+
+### step?
+
+```ts
+optional step?: number;
+```
+
+Defined in: [validate.ts:206](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L206)
+
+For a sequence, the index of the step with the problem.

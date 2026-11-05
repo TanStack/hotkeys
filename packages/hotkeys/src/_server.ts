@@ -27,7 +27,7 @@ export function warnServerPlatform(): void {
   ) {
     warned = true
     console.warn(
-      "[TanStack Hotkeys] A hotkey label was formatted during server rendering without a platform, so it uses 'linux'. Mac and Windows users get a different label after hydration. Read the platform from the request with `detectPlatform(userAgent)`, set it as the `platform` of your hotkeys provider or scope, and format labels with your adapter's formatter, such as `useFormatForDisplay`. Or render the labels only in the browser. See the server rendering section of the Displaying Hotkeys guide.",
+      "[hotkeys] Server-rendered label uses 'linux'. Set the provider's platform with detectPlatform(userAgent)",
     )
   }
 }

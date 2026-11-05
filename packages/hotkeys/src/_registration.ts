@@ -94,21 +94,13 @@ export function handleConflict(
 
   if (conflictBehavior === 'warn') {
     if (process.env.NODE_ENV !== 'production') {
-      console.warn(
-        `'${keyDisplay}' is already registered. Multiple handlers may be triggered. ` +
-          `Use conflictBehavior: 'replace' to replace the existing handler, ` +
-          `or conflictBehavior: 'allow' to suppress this warning.`,
-      )
+      console.warn(`[hotkeys] '${keyDisplay}' is already registered`)
     }
     return
   }
 
   if (conflictBehavior === 'error') {
-    throw new Error(
-      `'${keyDisplay}' is already registered. ` +
-        `Use conflictBehavior: 'replace' to replace the existing handler, ` +
-        `or conflictBehavior: 'allow' to allow multiple registrations.`,
-    )
+    throw new Error(`[hotkeys] '${keyDisplay}' is already registered`)
   }
 
   // At this point, conflictBehavior must be 'replace'

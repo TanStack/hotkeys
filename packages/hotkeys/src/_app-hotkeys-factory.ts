@@ -23,7 +23,7 @@ export function createAppHotkeysStore<T extends AppHotkeys>(
   options: AppHotkeysStoreOptions<T>,
 ): AppHotkeysStore<T> {
   if (!factory) {
-    throw new Error('[hotkeys] App hotkeys must come from defineAppHotkeys.')
+    throw new Error('[hotkeys] App hotkeys must come from defineAppHotkeys')
   }
   return factory(appHotkeys, options) as unknown as AppHotkeysStore<T>
 }

@@ -3,7 +3,7 @@ id: RecorderRejection
 title: RecorderRejection
 ---
 
-Defined in: [hotkey-recorder.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L25)
+Defined in: [hotkey-recorder.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L39)
 
 ## Properties
 
@@ -13,7 +13,7 @@ Defined in: [hotkey-recorder.ts:25](https://github.com/TanStack/hotkeys/blob/mai
 optional conflicts?: HotkeyConflict[];
 ```
 
-Defined in: [hotkey-recorder.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L30)
+Defined in: [hotkey-recorder.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L45)
 
 ***
 
@@ -23,26 +23,28 @@ Defined in: [hotkey-recorder.ts:30](https://github.com/TanStack/hotkeys/blob/mai
 optional hotkey?: Hotkey;
 ```
 
-Defined in: [hotkey-recorder.ts:29](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L29)
+Defined in: [hotkey-recorder.ts:44](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L44)
 
 The rejected chord or sequence, when one was recorded.
 
 ***
 
-### message
+### message?
 
 ```ts
-message: string;
+optional message?: string;
 ```
 
-Defined in: [hotkey-recorder.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L27)
+Defined in: [hotkey-recorder.ts:42](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L42)
+
+The message your `validate` callback returned, when it returned one.
 
 ***
 
 ### reason
 
 ```ts
-reason: "invalid" | "missing-code" | "alt-graph" | "conflict" | "validation";
+reason: RecorderRejectionReason;
 ```
 
-Defined in: [hotkey-recorder.ts:26](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L26)
+Defined in: [hotkey-recorder.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L40)

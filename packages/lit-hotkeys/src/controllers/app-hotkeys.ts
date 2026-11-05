@@ -14,7 +14,9 @@ import type {
 function requireStore(): AppHotkeysStore<RegisteredAppHotkeys> {
   const store = getAppHotkeysStore()
   if (!store) {
-    throw new Error('AppHotkeysController requires provideAppHotkeys()')
+    throw new Error(
+      '[hotkeys] AppHotkeysController requires provideAppHotkeys()',
+    )
   }
   return store
 }
