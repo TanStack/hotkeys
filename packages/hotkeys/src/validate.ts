@@ -1,5 +1,6 @@
 import {
   isKeyNameShape,
+  isModifierCode,
   modifierAlias,
   physicalCodeOf,
   splitChordParts,
@@ -16,6 +17,7 @@ export type ValidatableHotkey = Hotkey | (string & {}) | ReadonlyArray<string>
  * Checks for:
  * - Valid syntax (modifier+...+key format)
  * - Known modifiers
+ * - A key that isn't a modifier
  * - Known keys
  *
  * @param hotkey - The hotkey string to validate
@@ -92,18 +94,25 @@ function validateChord(hotkey: string): ValidationResult {
     }
   }
 
+  const code = physicalCodeOf(keyPart)
   if (
     keyPart.length > 1 &&
     (keyPart.startsWith('[') || keyPart.endsWith(']')) &&
-    physicalCodeOf(keyPart) === undefined
+    code === undefined
   ) {
     errors.push(
       'Invalid physical key: use a bracketed KeyboardEvent.code, such as [KeyS]',
     )
   }
 
+  if (code !== undefined ? isModifierCode(code) : modifierAlias(keyPart)) {
+    errors.push(
+      `Missing a key: '${keyPart}' is a modifier, and modifier-only hotkeys aren't supported`,
+    )
+  }
+
   // Key names are case-sensitive, so a lowercase name never matches
-  if (physicalCodeOf(keyPart) === undefined && !isKeyNameShape(keyPart)) {
+  if (code === undefined && !isKeyNameShape(keyPart)) {
     warnings.push(
       `Unknown key: '${keyPart}'. Key names are case-sensitive, such as 'Escape' and 'F1'.`,
     )

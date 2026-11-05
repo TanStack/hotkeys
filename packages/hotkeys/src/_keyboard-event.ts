@@ -124,6 +124,11 @@ export function physicalCodeOf(token: string): string | undefined {
     : undefined
 }
 
+/** Whether a `KeyboardEvent.code` is a modifier key, such as `ShiftLeft`. */
+export function isModifierCode(code: string): boolean {
+  return /^(Control|Shift|Alt|Meta)(Left|Right)$/.test(code)
+}
+
 /** Splits modifier tokens while retaining a trailing literal plus: `Control++` → `['Control', '+']`. */
 export function splitChordParts(hotkey: string): Array<string> {
   if (!hotkey.endsWith('+')) return hotkey.split('+')

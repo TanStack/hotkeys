@@ -9,7 +9,7 @@ title: parseHotkey
 function parseHotkey(hotkey, platform?): ParsedHotkeyChord;
 ```
 
-Defined in: [parse.ts:211](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L211)
+Defined in: [parse.ts:193](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L193)
 
 Parses a hotkey, resolving `Mod` for the platform. A chord, written as a
 string or an object, returns one parsed chord. A sequence returns one
@@ -48,7 +48,7 @@ parseHotkey(['G', 'Shift+G']) // [{ key: 'G', ... }, { key: 'G', shift: true, ..
 function parseHotkey(hotkey, platform?): ParsedHotkeyChord[];
 ```
 
-Defined in: [parse.ts:215](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L215)
+Defined in: [parse.ts:197](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L197)
 
 Parses a hotkey, resolving `Mod` for the platform. A chord, written as a
 string or an object, returns one parsed chord. A sequence returns one
@@ -89,7 +89,7 @@ function parseHotkey(hotkey, platform?):
   | ParsedHotkeyChord[];
 ```
 
-Defined in: [parse.ts:219](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L219)
+Defined in: [parse.ts:201](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L201)
 
 Parses a hotkey, resolving `Mod` for the platform. A chord, written as a
 string or an object, returns one parsed chord. A sequence returns one

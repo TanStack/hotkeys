@@ -16,7 +16,6 @@ it('accepts finite physical code families inside brackets', () => {
     | '[NumpadEnter]'
     | '[Enter]'
     | '[IntlBackslash]'
-    | '[ShiftRight]'
     | '[F24]'
     | '[AudioVolumeUp]'
   >().toExtend<PhysicalKey>()
@@ -34,6 +33,8 @@ it('rejects misspelled, unbracketed, and unidentified physical tokens', () => {
     | '[Numpad10]'
     | '[NumpadPlus]'
     | '[ControlMiddle]'
+    | '[ShiftRight]'
+    | '[MetaLeft]'
     | '[F25]'
     | '[Unidentified]'
     | '[]'
@@ -43,4 +44,16 @@ it('rejects misspelled, unbracketed, and unidentified physical tokens', () => {
   expectTypeOf<Extract<`Mod+${InvalidToken}`, RegisterableHotkey>>().toBeNever()
   expectTypeOf<string>().not.toExtend<PhysicalKeyCode>()
   expectTypeOf<`[${string}]`>().not.toExtend<PhysicalKey>()
+})
+
+it('rejects modifier-only hotkeys', () => {
+  type ModifierOnly =
+    | 'Shift'
+    | 'Mod'
+    | 'Shift+Alt+Mod'
+    | '[ShiftLeft]'
+    | 'Shift+[ShiftLeft]'
+    | 'Mod+[MetaRight]'
+  expectTypeOf<Extract<ModifierOnly, HotkeyChord>>().toBeNever()
+  expectTypeOf<Extract<ModifierOnly, RegisterableHotkey>>().toBeNever()
 })

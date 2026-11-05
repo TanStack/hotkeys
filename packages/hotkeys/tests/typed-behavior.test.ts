@@ -51,10 +51,6 @@ const PHYSICAL_CODES = [
   ...LETTERS.map((letter) => `Key${letter}`),
   ...DIGITS.map((digit) => `Digit${digit}`),
   ...DIGITS.map((digit) => `Numpad${digit}`),
-  ...['Alt', 'Control', 'Meta', 'Shift'].flatMap((m) => [
-    `${m}Left`,
-    `${m}Right`,
-  ]),
   ...EDITING,
   ...NAVIGATION,
   ...FUNCTION_KEYS,
@@ -283,9 +279,9 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
       }),
     }).toMatchInlineSnapshot(`
       {
-        "normalize": "0d92ff2ad9236594",
-        "parse": "d02540157b06b9cb",
-        "validate": "8be13344638ee910",
+        "normalize": "2f8d3b4125c77706",
+        "parse": "3be93ce9312f6274",
+        "validate": "abb64bf0441e727b",
       }
     `)
   })
@@ -325,8 +321,8 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
       }),
     }).toMatchInlineSnapshot(`
       {
-        "formatForDisplay": "7943b4ce623dc19d",
-        "formatHotkey": "8cf79e51bf8a74c9",
+        "formatForDisplay": "e13b2f18c001c58f",
+        "formatHotkey": "057f4145f7131f5e",
       }
     `)
   })
@@ -369,7 +365,7 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
     }).toMatchInlineSnapshot(`
       {
         "events": "462410f6b9f4d67d",
-        "matching": "a1049dfe50debf64",
+        "matching": "c04eb8660bab32be",
       }
     `)
   })
@@ -445,7 +441,7 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
 
     expect({ recorded, recorders, fired }).toMatchInlineSnapshot(`
       {
-        "fired": "065cc7708e138a89",
+        "fired": "56845bf2eb1c5d52",
         "recorded": "b99a3f21d18e091a",
         "recorders": "d6d2f05bc882d528",
       }

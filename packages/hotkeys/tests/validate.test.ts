@@ -48,6 +48,26 @@ describe('validateHotkey', () => {
         true,
       )
     })
+
+    it.each([
+      'Shift',
+      'Mod',
+      'Shift+Alt+Mod',
+      '[ShiftLeft]',
+      'Shift+[ShiftLeft]',
+    ])('should reject the modifier-only hotkey %s', (hotkey) => {
+      const result = validateHotkey(hotkey)
+      expect(result.valid).toBe(false)
+      expect(result.errors).toEqual([
+        `Missing a key: '${hotkey.split('+').pop()}' is a modifier, and modifier-only hotkeys aren't supported`,
+      ])
+    })
+
+    it('should name the sequence step that is modifier-only', () => {
+      expect(validateHotkey(['G', 'Control']).errors).toEqual([
+        "Step 2: Missing a key: 'Control' is a modifier, and modifier-only hotkeys aren't supported",
+      ])
+    })
   })
 
   describe('warnings', () => {

@@ -86,16 +86,16 @@
       "evidence": ["packages/hotkeys/skills/app-hotkeys/SKILL.md"]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "20cfa2be414a13cb2e2471b5749ef5dbff3782cddc6f566b8536ab4d3c87f6a5",
+      "fingerprint": "7a3511fbbc4b486a2ea73a9372f6f629e9bc8efaf1bad1ff0d711faa0e118277",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "03b024ba6a23d6b87a7b99be8a30b54fd5d82ba27e075ba0c00f648c82759e5f",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/guides/sensible-defaults.md": "dcb2ebf73a5c0ea5b61f9081ca6672021d81508e0a0c319e064f3aaaebb6ba9c",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6c6a979ac38e4808b7714ba2f7614eee9e447c76cb37a23eb21ad2693acb69e8",
+        "docs/guides/sensible-defaults.md": "8b4d1a9d2692f8a7b3f72a6d57ad5ec1edc40fbef83a8fb1c4373b6230a65efd",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "f66687cdd042126a506b9d2baef2ae5df622522d64c94920a91bc4b2bd144641",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
-        "packages/hotkeys/src/hotkey-manager.ts": "e59bba43977f090bfa44ad4ac75f9e895e2adb2f0694789cc362a28dffca5e25",
+        "packages/hotkeys/src/hotkey-manager.ts": "2739ee09a618b94a882b1ac1f078df476449b177185b9ac8656f780460e91ee3",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "d7747b87eae074ab3620484f64cf13ea9c27d24d059d56d9a9a07ccf0c2d3e06",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -107,12 +107,12 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "f3c7a6e8da6f9112c7a92402aff0c3efeaa751a1",
-      "outcome": "no-change",
-      "reason": "Internal keyup release bookkeeping while a hotkey is disabled; the skill makes no claim about it.",
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "updated",
+      "reason": "Key-names pitfall now says a modifier-only hotkey, or one with an unknown modifier, registers nothing. Later edits only touched comments and the guide wording.",
       "evidence": [
         "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
+        "docs/guides/sensible-defaults.md"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -258,7 +258,7 @@
       "evidence": ["packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"]
     },
     "planning:_artifacts": {
-      "fingerprint": "1fb046a200ae2254a480e3f355a470689a10e0a410a6acd80e40a5636ca05da9",
+      "fingerprint": "378333e28dfebbf4c754a0998f14f46b56b5d6c320570ab3d1e1347758bafad1",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -288,7 +288,7 @@
         "docs/framework/svelte/quick-start.md": "6fdf6ea3a44b3cd7fbf115b6d464460302af1b58112ca0b5b00723b4f5faab45",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "00dfe1e45bcd475457bbf078aacb98f1cc78f0666a4ddedad38a285415e03875",
-        "docs/guides/sensible-defaults.md": "dcb2ebf73a5c0ea5b61f9081ca6672021d81508e0a0c319e064f3aaaebb6ba9c",
+        "docs/guides/sensible-defaults.md": "8b4d1a9d2692f8a7b3f72a6d57ad5ec1edc40fbef83a8fb1c4373b6230a65efd",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "0b86889ea9327f24e0f66ab9ba5eb783aaffb492c028e1b6cac257690ca5d462",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "d182e659acc9f0a28e9198f590163db1541b30eec6d347fb378022f775cf316d",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "f712ddb3354230197eb54d6f270d00a41c2b889e60690e70853569fe1a5207ea",
@@ -316,12 +316,12 @@
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "7c431ae3bee4ffcd22676ac533adfcd29cfb22ed68cb7dc47d1470a8744d7276",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "6c6a979ac38e4808b7714ba2f7614eee9e447c76cb37a23eb21ad2693acb69e8",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md": "f66687cdd042126a506b9d2baef2ae5df622522d64c94920a91bc4b2bd144641",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/app-hotkeys.ts": "a6176a749dd7439146c335e769dfae1a2cd72ace029f9cbc64b52ff5fe2d9d03",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
-        "packages/hotkeys/src/hotkey-manager.ts": "e59bba43977f090bfa44ad4ac75f9e895e2adb2f0694789cc362a28dffca5e25",
+        "packages/hotkeys/src/hotkey-manager.ts": "2739ee09a618b94a882b1ac1f078df476449b177185b9ac8656f780460e91ee3",
         "packages/hotkeys/src/hotkey-recorder.ts": "7d479391753ffa97e69a7d7cb994cb7053a7ffb3e0aed6dfbfb2dbbdf51a3d24",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "4e5593e8d4373475d4e6006e30ec663d7f0f3fcf0aa881fc403efe58b9cf7606",
@@ -390,7 +390,7 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "f3c7a6e8da6f9112c7a92402aff0c3efeaa751a1",
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
       "outcome": "no-change",
       "reason": "No new skill, domain or task.",
       "evidence": ["_artifacts/skill_spec.md"]
@@ -623,23 +623,23 @@
       "evidence": ["docs/framework/vue/reference/functions/useHotkeyHint.md"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "8207f1779d8adfda716cc5cbf191f31ef30cfb7e4ecf63c2da472c3cb3631562",
+      "fingerprint": "b7a54699c451a02714c3faffbe369bec6fdd28fac6f39f975dca899c8c4eaecf",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "569d1b646f621a3caac0fdcc8a3de2b517e3115ed39803d3d2c14b5bb6e88e1b"
+        "docs/reference/classes/HotkeyManager.md": "9bea2403802facaf2411494e08e2bab5e96a6936e8091e6423d511c7e3946cb8"
       },
-      "head": "f3c7a6e8da6f9112c7a92402aff0c3efeaa751a1",
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
       "outcome": "no-change",
-      "reason": "Generated reference: shifted line numbers only.",
+      "reason": "Generated reference: line numbers shifted by a comment edit.",
       "evidence": ["docs/reference/classes/HotkeyManager.md"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "5afac21c3c4344df7e432b57ef316412bc9929d7a12f48d72be8c2f647e75c67",
+      "fingerprint": "672f92f3c83ebe97fbffd3859a1f9613754bd1dfd147ef429ee58e4552188ed9",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "759a2862889f9d53552a59953c6c7f0cb60fcb01a8aab228337fd2e3bee93fb4"
+        "docs/reference/functions/getHotkeyManager.md": "22df1d9539b8862a1932430c46d81176d6aa42d8da27e15bd5d151c9830ac4b4"
       },
-      "head": "f3c7a6e8da6f9112c7a92402aff0c3efeaa751a1",
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
       "outcome": "no-change",
-      "reason": "Generated reference: shifted line numbers only.",
+      "reason": "Generated reference: line numbers shifted by a comment edit.",
       "evidence": ["docs/reference/functions/getHotkeyManager.md"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
@@ -2488,16 +2488,16 @@
       "evidence": ["docs/reference/type-aliases/Target.md"]
     },
     "source:packages/hotkeys/src/_event-target.ts": {
-      "fingerprint": "f722b08bf415cddcd53e006652e95f738bdaca063fa46c4e8c29f6e2b4b0d92f",
+      "fingerprint": "26ac99cef5a4f5f460cef6cd60568744db596fdfa58f1783939652c687a02fe2",
       "snapshot": {
-        "packages/hotkeys/src/_event-target.ts": "980452c30f97b0e598205066e78c47e9f8fad0618f182d90e24717617f7a129c"
+        "packages/hotkeys/src/_event-target.ts": "dcc6bb64796da730594f778b938b05edccc9e7ecd6346a718a39f1e20af89ee3"
       },
-      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
       "outcome": "no-change",
-      "reason": "Tests, changesets or internal helper; covered by the updated core skill pitfall.",
+      "reason": "Stacked modal dialogs: only the top one takes Escape. The skill makes no claim about native dialogs; the guide documents it.",
       "evidence": [
         "packages/hotkeys/src/_event-target.ts",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "docs/guides/sensible-defaults.md"
       ]
     },
     "source:docs/config.json": {
@@ -4947,14 +4947,17 @@
       "evidence": ["docs/reference/classes/KeyStateTracker.md"]
     },
     "source:docs/reference/functions/checkHotkey.md": {
-      "fingerprint": "6a883a77d90c6206344b28adb26fb13b54c572e693308a6761403450ba2ee949",
+      "fingerprint": "2aa3d893e74f8cea2a45ff05d36fb33acbae8e6e1ab2f2d480d442ea90731bbf",
       "snapshot": {
-        "docs/reference/functions/checkHotkey.md": "1253dd0705a6da9f184f0be6b28864dafd8c7a23c3408ff24dc8d7be4f08bf18"
+        "docs/reference/functions/checkHotkey.md": "1fb28eddf21caf53dbc2eff3e3750f0c55cdc3781890f7446b82db10a3c5073d"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
-      "evidence": ["docs/reference/functions/checkHotkey.md"]
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "no-change",
+      "reason": "Generated reference: line numbers and JSDoc for modifier-only validation and PhysicalKeyCode; covered by the updated core skill pitfall.",
+      "evidence": [
+        "docs/reference/functions/checkHotkey.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/reference/functions/getKeyStateTracker.md": {
       "fingerprint": "bc298b3783cae841d488a91c8bfcded99c8a3bddc9d386f183083cbe1fb3343c",
@@ -5063,14 +5066,17 @@
       ]
     },
     "source:docs/reference/interfaces/ValidationResult.md": {
-      "fingerprint": "6f583a0116738f92b031236811117de973af7c569a8c73d59ca38f1234560380",
+      "fingerprint": "6cafc54d3252b57568189473f58dc25aac75c35767f9e4504f0698eff7bb4179",
       "snapshot": {
-        "docs/reference/interfaces/ValidationResult.md": "d2c0a848b63adae9cfc0d91a48641b469c85e5902dded7f567f073f32261567c"
+        "docs/reference/interfaces/ValidationResult.md": "997e27fadd7d9c33fbda1e131cb2d2295af0deaf9ced757f41bc13d82614b18a"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Regenerated reference docs; only source line links changed, plus the checkHotkey example.",
-      "evidence": ["docs/reference/interfaces/ValidationResult.md"]
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "no-change",
+      "reason": "Generated reference: line numbers and JSDoc for modifier-only validation and PhysicalKeyCode; covered by the updated core skill pitfall.",
+      "evidence": [
+        "docs/reference/interfaces/ValidationResult.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderCommitKeys.md": {
       "fingerprint": "62acfa97ecfd9bf2d24d1051292cdacb29a9fbdca91faccd6eb38714af6cd80a",
@@ -5245,14 +5251,17 @@
       ]
     },
     "source:packages/hotkeys/src/_registration.ts": {
-      "fingerprint": "fd8e9c29e2d9d18d55775075a4641b1e36451f8b27bbe20d81b338c05470f3fd",
+      "fingerprint": "eec273fc73bd576c9113a25e22ac178748fd2cbca75cfbb8738a48bc4615e5ea",
       "snapshot": {
-        "packages/hotkeys/src/_registration.ts": "d8bbf8985ad73f98ea21154635638299083f76cc6185f1e9a7b57cbdd2c3b378"
+        "packages/hotkeys/src/_registration.ts": "5d84614c486355aa0764b5f7bdc0d638187fac25c8e40d4022f55a73c769c559"
       },
-      "head": "6bd7da15dfda1f7c7100b38c597e6ed597d96943",
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
       "outcome": "no-change",
-      "reason": "Edge-case fix (empty physical code registers nothing; synthetic contextmenu ignored). Skills describe hotkey usage, which is unchanged.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Unknown modifiers and modifier-only hotkeys register nothing; covered by the updated core skill pitfall.",
+      "evidence": [
+        "packages/hotkeys/src/_registration.ts",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:packages/hotkeys/src/_store.ts": {
       "fingerprint": "01d160bae20ef0906e8cc1d503ff6ea509c970130a580d2bbb3e54201f5523af",
@@ -5267,14 +5276,17 @@
       ]
     },
     "source:packages/hotkeys/src/adapter.ts": {
-      "fingerprint": "3a499c14ea61d6ae7ee1aeb6622252f4eb6d8f56c3059d0628cdf077c15df6d0",
+      "fingerprint": "d6805447d3aae02f954102956b2c7c558e18a62d6b57085976a335dc5ef34bdc",
       "snapshot": {
-        "packages/hotkeys/src/adapter.ts": "8f27f3fcc6192294d0d06935ba21694155addcfd0ae7c2b87df954eb9b4d6ff9"
+        "packages/hotkeys/src/adapter.ts": "0a955ae0d8c91eb42c6e6c7f4ac19e8fcd3e180ac1a872d8b78ef2ff9655a997"
       },
-      "head": "04c7445967e059f4bffa050b49c9f9d65260a959",
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
       "outcome": "no-change",
-      "reason": "Element-target hotkeys in React, Svelte, Solid and Octane now run after the framework key handlers, through the adapter-only afterDelegatedHandlers option. No skill states the old order, so no skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Comment update: steps without a usable key register nothing; covered by the updated core skill pitfall.",
+      "evidence": [
+        "packages/hotkeys/src/adapter.ts",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:packages/hotkeys/src/key-state-tracker.ts": {
       "fingerprint": "e9ffd10007968fd38efe249963aa86dfa3d720e8392cce16897a6b9fcc04f4e8",
@@ -5287,14 +5299,17 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/src/validate.ts": {
-      "fingerprint": "a5ab4733b2c1abc6fdb40fead93b47a9591db8281ea93deaa3ec16c15b2602d1",
+      "fingerprint": "bb1de9b497e39c2fd901cc99b6f16346d60dc32369888e88f2d6e6ba73534628",
       "snapshot": {
-        "packages/hotkeys/src/validate.ts": "464655c48265f2657e2df5db4dc2cb184eec225be164f0e8cee7e2e4b96a43ba"
+        "packages/hotkeys/src/validate.ts": "ea2b7b71f74c92753c0517cac220ddef13d5689d0f022b78faa42cd060e1f493"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Internal edge-case fix (IME composition, collator, listener order, tracker resets, duplicate check, validate JSDoc); the skills make no claim it changes.",
-      "evidence": ["packages/hotkeys/src/validate.ts"]
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "no-change",
+      "reason": "Unknown modifiers and modifier-only hotkeys register nothing; covered by the updated core skill pitfall.",
+      "evidence": [
+        "packages/hotkeys/src/validate.ts",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:packages/hotkeys/tests/adapter.test.ts": {
       "fingerprint": "01d1dc825dcdbf2902190e057e48e8ea34af39b1817dcdd83340338516f5e1d2",
@@ -5725,15 +5740,16 @@
       ]
     },
     "source:docs/reference/functions/assertValidHotkey.md": {
-      "fingerprint": "5ada8f7a49dc6def64f255c1f103b8ef5fa183f9947ad6d521494e9eed8f8a67",
+      "fingerprint": "46166fa9eeda82a4d8880ea48e3b1e74e87cb4b770f2bcc68a74195fbdb49976",
       "snapshot": {
-        "docs/reference/functions/assertValidHotkey.md": "dbbb437814b6344c4d9b276273eefdf23ce788da707bfcf161ab6849e37c23e9"
+        "docs/reference/functions/assertValidHotkey.md": "c6a107784cf58abc975188774427fec8b53f987cf7fd6d6e10250b140b2275f1"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Generated reference: line numbers and JSDoc for modifier-only validation and PhysicalKeyCode; covered by the updated core skill pitfall.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "docs/reference/functions/assertValidHotkey.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
       ]
     },
     "source:docs/reference/functions/isSingleLetterKey.md": {
@@ -5761,15 +5777,16 @@
       ]
     },
     "source:docs/reference/functions/validateHotkey.md": {
-      "fingerprint": "57c383d22517b7aa32c4f2712a0984eac48130a8e74775d8ddfd8cabe8629fd0",
+      "fingerprint": "cebbdc0843277b5fab1a35c2c46a6021253f41062a51894a9305847a3ff1414d",
       "snapshot": {
-        "docs/reference/functions/validateHotkey.md": "1e003da6d95b13d9f5eab93a16c5c47102d692f39b69c068a2d8470da8483b7c"
+        "docs/reference/functions/validateHotkey.md": "53f59d9b3327e71f7c0c48b54d07650514f8c5daf0c92d98556ef983e95340ab"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
       "outcome": "no-change",
-      "reason": "Key tables are built more compactly with identical exported values and types; skills describe key names, not how the tables are built.",
+      "reason": "Generated reference: line numbers and JSDoc for modifier-only validation and PhysicalKeyCode; covered by the updated core skill pitfall.",
       "evidence": [
-        "key-tables.test.ts pins every exported table and checks normalizeKeyName and unknown-key warnings against the previous implementation; regenerated docs differ only in line numbers and one comment."
+        "docs/reference/functions/validateHotkey.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
       ]
     },
     "source:docs/reference/type-aliases/ValidatableHotkey.md": {
@@ -6435,14 +6452,17 @@
       ]
     },
     "source:packages/hotkeys/src/_keyboard-event.ts": {
-      "fingerprint": "6442dc24114535e68cecf9ce04d3b49bb3b51c7ee8a7e8fc9a3f5d29235552c9",
+      "fingerprint": "60698b6b341822b3cfa6f7bb35b076d16780fc209936dfe0037b22293ca9fa67",
       "snapshot": {
-        "packages/hotkeys/src/_keyboard-event.ts": "d55d40deee1222291c27375d8672a018ff82b19d560307199d3b104ea6e58401"
+        "packages/hotkeys/src/_keyboard-event.ts": "375406d3cf99f0fe70c17eb87d812ae19f8812d13c55397a44d12b285725281b"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Internal edge-case fix (IME composition, collator, listener order, tracker resets, duplicate check, validate JSDoc); the skills make no claim it changes.",
-      "evidence": ["packages/hotkeys/src/_keyboard-event.ts"]
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "no-change",
+      "reason": "Unknown modifiers and modifier-only hotkeys register nothing; covered by the updated core skill pitfall.",
+      "evidence": [
+        "packages/hotkeys/src/_keyboard-event.ts",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:packages/hotkeys/src/format.ts": {
       "fingerprint": "64b0b3bae16a572e8eadb8982d0b118a4cea0183552ff67fa5aee8d2a967a69b",
@@ -6491,16 +6511,14 @@
       ]
     },
     "source:packages/hotkeys/tests/typed-behavior.test.ts": {
-      "fingerprint": "e90bff2bcb654154e602d8b8f531323b10563b5e5ba7b3f70ffdbe9e0b2c0c07",
+      "fingerprint": "f9f4909e430771366e9ea657bd786290b71e164a12a2b850c9c7388195d402ec",
       "snapshot": {
-        "packages/hotkeys/tests/typed-behavior.test.ts": "f4a47b42f7984b2ad63a5cc362e005f2578f44ace6c7cd24d95f0d3998ebc3ae"
+        "packages/hotkeys/tests/typed-behavior.test.ts": "dfcb969eb5f9c20af38af9ac91636465851f24c95a4042f70abc8685be59a940"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
-      "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
-      "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
-      ]
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "out-of-scope",
+      "reason": "Tests for unusable hotkeys and stacked modal dialogs; no guidance claim.",
+      "evidence": ["packages/hotkeys/tests/typed-behavior.test.ts"]
     },
     "source:packages/hotkeys/tests/unified-hotkeys.test.ts": {
       "fingerprint": "eb7ca333403ae706648f51156536a2f263674d0f23bf2648be98e6dc6f05539d",
@@ -6515,28 +6533,24 @@
       ]
     },
     "source:packages/hotkeys/tests/untrusted-input.test.ts": {
-      "fingerprint": "f7c756ac90b6f9d5552ec23cd606d6c8c335579bbb45ff751212e4ee8463c096",
+      "fingerprint": "a09b466075b3862ef0b2d862d6c9ee35caa72fb3fb27d5fc22424d6800003d14",
       "snapshot": {
-        "packages/hotkeys/tests/untrusted-input.test.ts": "726ba4a69f7e7bb1826744fddf18eac73e0a7d5f667d1c43f5d0cc428172dcfa"
+        "packages/hotkeys/tests/untrusted-input.test.ts": "cefc290fc46b5003d4a197f867d5be0878370ec39793df1bd91c3ba38cadad6a"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
-      "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
-      "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
-      ]
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "out-of-scope",
+      "reason": "Tests for unusable hotkeys and stacked modal dialogs; no guidance claim.",
+      "evidence": ["packages/hotkeys/tests/untrusted-input.test.ts"]
     },
     "source:packages/hotkeys/tests/validate.test.ts": {
-      "fingerprint": "59ef4f65e32b0cd8af5d0f2b70549b6e9479ec908bcbd151bd92a1f7beeda909",
+      "fingerprint": "c5d357473f48d523292c925f9850ca0c48b91836bb869e620255efc918749067",
       "snapshot": {
-        "packages/hotkeys/tests/validate.test.ts": "e93c6c7cd256bff61f7fa63138066f303c9d6839797ecb2f695bc16cd712a775"
+        "packages/hotkeys/tests/validate.test.ts": "9962bfc33f41de3644a1310ee0ee3b589987ca0e2b0c9fbc817544d1ae0015c0"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
-      "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
-      "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
-      ]
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "out-of-scope",
+      "reason": "Tests for unusable hotkeys and stacked modal dialogs; no guidance claim.",
+      "evidence": ["packages/hotkeys/tests/validate.test.ts"]
     },
     "source:packages/hotkeys-devtools/src/_trigger.ts": {
       "fingerprint": "27abd1cfd95577248a0fc894902d7d9fc68e4205375fc2feed08036afe944ba4",
@@ -6819,24 +6833,30 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/reference/adapter/functions/definedOptions.md": {
-      "fingerprint": "48ac68536b5d75e3fcc2f05de080aabd458ce463489e111966f90c7691631342",
+      "fingerprint": "1f908ed85f9770b1d969257872ca6caf8af02574ba0056273d2f2f36e87bb684",
       "snapshot": {
-        "docs/reference/adapter/functions/definedOptions.md": "d397d0207df4542a6c2aa030c429eab30d03909288e2616f9867f224b325cf8a"
+        "docs/reference/adapter/functions/definedOptions.md": "3363cfa29ad7659395c5f75924c39d47cb16d834379642bf455ec1f7a67bb0ae"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": ["docs/reference/adapter/functions/definedOptions.md"]
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "no-change",
+      "reason": "Generated reference: line numbers and JSDoc for modifier-only validation and PhysicalKeyCode; covered by the updated core skill pitfall.",
+      "evidence": [
+        "docs/reference/adapter/functions/definedOptions.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/reference/adapter/functions/withDefaults.md": {
-      "fingerprint": "01ed3c4917c31bf43a60aa56e2731bdc777694c31205c47dfb49361daea3bdae",
+      "fingerprint": "fb9421fc41c23d61ee5ee4daf8bc1cb8562c2a945cfea7b483cb295da94b5ed7",
       "snapshot": {
-        "docs/reference/adapter/functions/withDefaults.md": "c2e5a9e01a32b9f998f690472fc2decfcf985167703f3154d3c4b56ba62ac720"
+        "docs/reference/adapter/functions/withDefaults.md": "be1e0d318ce1b9094e8a49724c1cca1db6037b5854f5822b1788dd278f83d063"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": ["docs/reference/adapter/functions/withDefaults.md"]
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "no-change",
+      "reason": "Generated reference: line numbers and JSDoc for modifier-only validation and PhysicalKeyCode; covered by the updated core skill pitfall.",
+      "evidence": [
+        "docs/reference/adapter/functions/withDefaults.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/reference/functions/areHotkeysEqual.md": {
       "fingerprint": "a554a5e0e5d1c558f8e2e8da135ae9a9caa0a3d670705b5ae47dc722c314985f",
@@ -11243,17 +11263,154 @@
       ]
     },
     "source:e2e/browser/native-overlays.spec.ts": {
-      "fingerprint": "2898d63d3de5826629953df5c3a64951f08e6ffa11d4c5ba7b3ca6d019f7ca3f",
+      "fingerprint": "0a5cd032250b76fb1f551771eaa6418758b17041edf22891b55192d685639f62",
       "snapshot": {
-        "e2e/browser/native-overlays.spec.ts": "c32f271e851fb91d9ddb7e8dc9230516385165e842e4d79ad90e7f2a2ad06d17"
+        "e2e/browser/native-overlays.spec.ts": "68b0ee21236b625db473d418205c159a109fa1af9f7e7058279b57896161f6a6"
       },
-      "head": "46fc2f373294720e5e734ea6610bafec2d845f51",
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "out-of-scope",
+      "reason": "Tests for unusable hotkeys and stacked modal dialogs; no guidance claim.",
+      "evidence": ["e2e/browser/native-overlays.spec.ts"]
+    },
+    "source:docs/reference/functions/hasNonModifierKey.md": {
+      "fingerprint": "748cf4031d55af2143c45c7a295019b0c2de01c1c3f033ff9b4f07bd489e4983",
+      "snapshot": {
+        "docs/reference/functions/hasNonModifierKey.md": "262552ecbcd80ca684a114ed6ea5371330633b2df545dfeaa75a680ad4ef5414"
+      },
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
       "outcome": "no-change",
-      "reason": "Tests, changesets or internal helper; covered by the updated core skill pitfall.",
+      "reason": "Generated reference: line numbers and JSDoc for modifier-only validation and PhysicalKeyCode; covered by the updated core skill pitfall.",
       "evidence": [
-        "e2e/browser/native-overlays.spec.ts",
+        "docs/reference/functions/hasNonModifierKey.md",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md"
       ]
+    },
+    "source:docs/reference/functions/isHotkeySequence.md": {
+      "fingerprint": "a70e9ddd101763fcf8c8fadd266d3fd739b48e7b607155bd47c5fbc674d1b015",
+      "snapshot": {
+        "docs/reference/functions/isHotkeySequence.md": "270a3c6c9fd13369e90751c18870f63c96ec8b1523f2b3b7aab3c3a34791cb22"
+      },
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "no-change",
+      "reason": "Generated reference: line numbers and JSDoc for modifier-only validation and PhysicalKeyCode; covered by the updated core skill pitfall.",
+      "evidence": [
+        "docs/reference/functions/isHotkeySequence.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/reference/functions/isModifierKey.md": {
+      "fingerprint": "74edb36ed43120f9649f916b26646645429197a522de3027a9601af371d44d43",
+      "snapshot": {
+        "docs/reference/functions/isModifierKey.md": "d71c99bade3135e0a58b256e869b20b2c9ca68ff54a67a383460dc38dd463da5"
+      },
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "no-change",
+      "reason": "Generated reference: line numbers and JSDoc for modifier-only validation and PhysicalKeyCode; covered by the updated core skill pitfall.",
+      "evidence": [
+        "docs/reference/functions/isModifierKey.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/reference/functions/normalizeHotkey.md": {
+      "fingerprint": "2199ff10d5a678e64afd6fac865f35a7765b6ef78dbacb1ba2d334fafa665dbd",
+      "snapshot": {
+        "docs/reference/functions/normalizeHotkey.md": "d6d6d1d6d27f440298cc1d2bf042ce1744e765dad03927324b7bdd20611514e9"
+      },
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "no-change",
+      "reason": "Generated reference: line numbers and JSDoc for modifier-only validation and PhysicalKeyCode; covered by the updated core skill pitfall.",
+      "evidence": [
+        "docs/reference/functions/normalizeHotkey.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/reference/functions/parseHotkey.md": {
+      "fingerprint": "f700466f45e7753bea22622d62b5941f30cde217cabcf42d4fa6355061f0fe32",
+      "snapshot": {
+        "docs/reference/functions/parseHotkey.md": "d8290ea2d41b6a2f6632c3df0e31904e8dacb04c56fd50f4f558eb735813d707"
+      },
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "no-change",
+      "reason": "Generated reference: line numbers and JSDoc for modifier-only validation and PhysicalKeyCode; covered by the updated core skill pitfall.",
+      "evidence": [
+        "docs/reference/functions/parseHotkey.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/reference/functions/parseKeyboardEvent.md": {
+      "fingerprint": "4d0bc059e27131fab79175d77f8a587b9ce0670c5b9885824dffe0825fab9895",
+      "snapshot": {
+        "docs/reference/functions/parseKeyboardEvent.md": "02e2e21dc20705862da79113a1f1f49464bc6ddf063fa9f9d2f11c333244f063"
+      },
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "no-change",
+      "reason": "Generated reference: line numbers and JSDoc for modifier-only validation and PhysicalKeyCode; covered by the updated core skill pitfall.",
+      "evidence": [
+        "docs/reference/functions/parseKeyboardEvent.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/reference/functions/simplifyHotkey.md": {
+      "fingerprint": "ffcc2060f6faae5e3c1d6f9983a1013a60db47a5e0cf1b40cb7a63f0b9e3821b",
+      "snapshot": {
+        "docs/reference/functions/simplifyHotkey.md": "162fd878179b3501009733866f4a58dd5e1280f8ff12c7fda56bef278dbdd0d5"
+      },
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "no-change",
+      "reason": "Generated reference: line numbers and JSDoc for modifier-only validation and PhysicalKeyCode; covered by the updated core skill pitfall.",
+      "evidence": [
+        "docs/reference/functions/simplifyHotkey.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:docs/reference/type-aliases/PhysicalKeyCode.md": {
+      "fingerprint": "447778418bd03df32fd96df33639830febbe580fd288ade892248cad59c014a1",
+      "snapshot": {
+        "docs/reference/type-aliases/PhysicalKeyCode.md": "229a9dfc38a6c7bb378d183d6e160e3bc0f900f2c44a2608db60d6cd607a7dc0"
+      },
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "no-change",
+      "reason": "Generated reference: line numbers and JSDoc for modifier-only validation and PhysicalKeyCode; covered by the updated core skill pitfall.",
+      "evidence": [
+        "docs/reference/type-aliases/PhysicalKeyCode.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:packages/hotkeys/src/key.types.ts": {
+      "fingerprint": "2214b8c083a8dbc7c6f8337bc8959c22fdf4a355bde5e3f30f7515f4f6e8399e",
+      "snapshot": {
+        "packages/hotkeys/src/key.types.ts": "69cfb942ea31a834f92da180bdf900e1bb8009af30c835de43a391697149ac0d"
+      },
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "no-change",
+      "reason": "Unknown modifiers and modifier-only hotkeys register nothing; covered by the updated core skill pitfall.",
+      "evidence": [
+        "packages/hotkeys/src/key.types.ts",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:packages/hotkeys/src/parse.ts": {
+      "fingerprint": "c9126eb8b47e39270470c871cee9bd07f372c93a7a45fe358e4e0573ced36620",
+      "snapshot": {
+        "packages/hotkeys/src/parse.ts": "917c6cee750fe9cbdd2253945b4a30b89de4d14113bbcaf23bdf42888e071f17"
+      },
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "no-change",
+      "reason": "Unknown modifiers and modifier-only hotkeys register nothing; covered by the updated core skill pitfall.",
+      "evidence": [
+        "packages/hotkeys/src/parse.ts",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
+    },
+    "source:packages/hotkeys/tests/physical-key.test.ts": {
+      "fingerprint": "af5f9c8e2f7025a8c2ad03103c6fabd8034deb1fa2b147d83a7a8f00b74630fb",
+      "snapshot": {
+        "packages/hotkeys/tests/physical-key.test.ts": "e434937f58ad58d6def9998cc1dad912139d281a4c6334cc4a92e89482657f2b"
+      },
+      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "outcome": "out-of-scope",
+      "reason": "Tests for unusable hotkeys and stacked modal dialogs; no guidance claim.",
+      "evidence": ["packages/hotkeys/tests/physical-key.test.ts"]
     }
   }
 }

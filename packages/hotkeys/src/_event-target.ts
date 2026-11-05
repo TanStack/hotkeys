@@ -336,6 +336,12 @@ function blocks({ elements, index }: Blocker, target: Target): boolean {
 /** Open modal dialogs and popovers that close on Escape, per event. */
 const layerCache = new WeakMap<KeyboardEvent, ReadonlyArray<Element>>()
 
+/** Whether `node` is `layer` or inside it, across shadow roots. */
+function isInside(node: Node | null, layer: Element): boolean {
+  for (; node; node = composedParent(node)) if (node === layer) return true
+  return false
+}
+
 /**
  * Returns whether Escape will close a modal `<dialog>` or an open popover that
  * `target` isn't inside. The browser closes it only when Escape's keydown
@@ -348,28 +354,32 @@ export function closesNativeLayer(
   if (event.type !== 'keydown' || event.key !== 'Escape') return false
   let layers = layerCache.get(event)
   if (!layers) {
-    const found: Array<Element> = []
-    for (const selector of ['dialog:modal', ':popover-open']) {
+    const doc = getTargetDocument(target)
+    const focused = getDeepActiveElement(doc)
+    const query = (selector: string): Array<Element> => {
       // Browsers without popovers reject the selector.
       try {
-        found.push(...getTargetDocument(target).querySelectorAll(selector))
-      } catch {}
+        return [...doc.querySelectorAll(selector)]
+      } catch {
+        return []
+      }
     }
-    layers = found.filter(
-      (layer) => (layer as HTMLElement).popover !== 'manual',
-    )
+    const dialogs = query('dialog:modal')
+    // Focus can't leave the topmost modal dialog. So while focus is inside a
+    // modal dialog, the ones that don't contain it are underneath, and Escape
+    // doesn't close them.
+    const holding = dialogs.filter((dialog) => isInside(focused, dialog))
+    layers = [
+      ...(holding.length ? holding : dialogs),
+      ...query(':popover-open').filter(
+        (layer) => (layer as HTMLElement).popover !== 'manual',
+      ),
+    ]
     layerCache.set(event, layers)
   }
-  return layers.some((layer) => {
-    for (
-      let node: Node | null = isDocumentLevel(target) ? null : target;
-      node;
-      node = composedParent(node)
-    ) {
-      if (node === layer) return false
-    }
-    return true
-  })
+  return layers.some(
+    (layer) => isDocumentLevel(target) || !isInside(target, layer),
+  )
 }
 
 // Every registration the event reaches asks about the same event.

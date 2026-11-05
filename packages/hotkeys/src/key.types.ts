@@ -157,8 +157,9 @@ export type NonPunctuationKey =
 
 /**
  * Supported physical KeyboardEvent.code names, independent of keyboard layout.
- * Letter, digit, numpad, and sided modifier names use finite template unions.
- * `Unidentified` is excluded because it cannot identify a physical key.
+ * Letter, digit, and numpad names use finite template unions. Modifier codes
+ * such as `ShiftLeft` are excluded, because modifier-only hotkeys aren't
+ * supported. `Unidentified` is excluded because it cannot identify a physical key.
  *
  * @see https://www.w3.org/TR/uievents-code/
  */
@@ -166,7 +167,6 @@ export type PhysicalKeyCode =
   | `Key${LetterKey}`
   | `Digit${NumberKey}`
   | `Numpad${NumberKey}`
-  | `${'Alt' | 'Control' | 'Meta' | 'Shift'}${'Left' | 'Right'}`
   | EditingKey
   | NavigationKey
   | FunctionKey

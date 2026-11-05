@@ -929,8 +929,9 @@ export class HotkeyManager {
       registration.kind === 'sequence'
         ? registration.parsedSequence
         : [registration.parsedChord]
-    // An empty key would match key-less events, such as autofill's, so a
-    // hotkey with an empty step registers nothing.
+    // A step without a usable key registers nothing: an empty key would match
+    // key-less events, such as autofill's, and modifier-only steps and unknown
+    // modifiers aren't supported.
     if (!steps.every(chordHasKey)) return inactiveHandle(callback)
 
     if (process.env.NODE_ENV !== 'production') {
