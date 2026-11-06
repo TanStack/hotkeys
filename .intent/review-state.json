@@ -660,23 +660,23 @@
       "evidence": ["docs/framework/vue/reference/functions/useHotkeyHint.md"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "52b8e76c21781dbcfb5f63e4c45c8e6dd2533b3e8beecccd94ff6bb4cfc9054a",
+      "fingerprint": "801881d8eb6c666b5635a51637d1de3e2a07dc506a8d56245f2c251274fde8bc",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "fa4e514a47efc411c35752403470c59dcc76553be4f3935e4a7e6a28cb7bf222"
+        "docs/reference/classes/HotkeyManager.md": "941baebeef6a64263c52ace1c18598cdeb204915451abf377613b16209f38cfb"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "out-of-scope",
-      "reason": "Generated API reference for reason codes and shifted source lines.",
+      "head": "e82acbc9cd32dc5084a9d3cb93468d0d90675a69",
+      "outcome": "no-change",
+      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts and hotkey-manager.ts grew.",
       "evidence": ["docs/reference/classes/HotkeyManager.md"]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "b2586d30c4f23ff49b41b04f13d95339dd916c0b247424a3eda7342415744510",
+      "fingerprint": "b60a1de45d8a6dccac90eceb9c613856a93d6866ec0fb2a6eb32dc782297587c",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "0b33193efc1b399a83e5b92d09f5dded3c0329e3282a9711c39ef2e360441bf8"
+        "docs/reference/functions/getHotkeyManager.md": "2c9c643fe444767516fe78d9830f67eda71c94ba3bbd09951065ed9fb622975d"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "out-of-scope",
-      "reason": "Generated API reference for reason codes and shifted source lines.",
+      "head": "e82acbc9cd32dc5084a9d3cb93468d0d90675a69",
+      "outcome": "no-change",
+      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts and hotkey-manager.ts grew.",
       "evidence": ["docs/reference/functions/getHotkeyManager.md"]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
@@ -2243,13 +2243,13 @@
       "evidence": ["packages/vue-hotkeys/tests/scopes.test.ts"]
     },
     "source:docs/reference/classes/AppHotkeysStore.md": {
-      "fingerprint": "62ded7232f026ab61a59b83e337448dfbfc2c5fd9e0102066f551f172fe94781",
+      "fingerprint": "cf7a83809c82b3859fe8aecd1f66f7e2c9f338f8ea48be4d74da57d7fd4fc311",
       "snapshot": {
-        "docs/reference/classes/AppHotkeysStore.md": "50c2610c3b79d4db59d29cbd6840832ac7e3680d2e7975cf58c96c314254f61c"
+        "docs/reference/classes/AppHotkeysStore.md": "b42a26d081250f1f87728665456fd365ef6449a6a139600b86a6a3f3eb00ee4f"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "out-of-scope",
-      "reason": "Generated API reference for reason codes and shifted source lines.",
+      "head": "e82acbc9cd32dc5084a9d3cb93468d0d90675a69",
+      "outcome": "no-change",
+      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts and hotkey-manager.ts grew.",
       "evidence": ["docs/reference/classes/AppHotkeysStore.md"]
     },
     "source:docs/reference/functions/defineAppHotkeys.md": {
@@ -2265,13 +2265,13 @@
       ]
     },
     "source:docs/reference/functions/getAppHotkeyRegistrationOptions.md": {
-      "fingerprint": "e6929b1aaaccafe3b3dc00fa475e4d8b8e8e31beeb6f6268a919003b1394299b",
+      "fingerprint": "c8cce7251d3f79eca6598ecc0d618d258ee395ac8d5cd0a07a2a733df8862f5a",
       "snapshot": {
-        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "cd44149bb5183124908afde0c09e5e601220861dc8cc9d8f568e47379e930255"
+        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "9884a05a4fe9dac2686e59ee4bc4b39d7cdc000cd14c34dae73bd44e9800a54e"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "out-of-scope",
-      "reason": "Generated API reference for reason codes and shifted source lines.",
+      "head": "e82acbc9cd32dc5084a9d3cb93468d0d90675a69",
+      "outcome": "no-change",
+      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts and hotkey-manager.ts grew.",
       "evidence": [
         "docs/reference/functions/getAppHotkeyRegistrationOptions.md"
       ]
@@ -2301,33 +2301,33 @@
       ]
     },
     "source:docs/reference/functions/provideAppHotkeys.md": {
-      "fingerprint": "63e246bd786fe35c56744a8535eb8ea5464445c30afba0c35ae1bd3cae701bae",
+      "fingerprint": "6579534bf427ff142f2137b7f3214c2a33e7b37a9ef8ed004cc2d550d6cc0aa1",
       "snapshot": {
-        "docs/reference/functions/provideAppHotkeys.md": "942036aca05baf0b569a5b72de4e988615e1368af9e9ce9ee6712f6928a415d4"
+        "docs/reference/functions/provideAppHotkeys.md": "7333c3aaa42a99dcd1c2fa95b1760b06bb4e3dd2a68c29cd1f0541d8152a1461"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "out-of-scope",
-      "reason": "Generated API reference for reason codes and shifted source lines.",
+      "head": "e82acbc9cd32dc5084a9d3cb93468d0d90675a69",
+      "outcome": "no-change",
+      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts and hotkey-manager.ts grew.",
       "evidence": ["docs/reference/functions/provideAppHotkeys.md"]
     },
     "source:docs/reference/functions/publishAppHotkeysStore.md": {
-      "fingerprint": "7eb097a0c6593f4cabc0513d9cbbdf5d55f41fe44ff389c85d3b45057d855d84",
+      "fingerprint": "2bee900c541d62cb590bb6005487488ccff94319fb643690349cb988992f2818",
       "snapshot": {
-        "docs/reference/functions/publishAppHotkeysStore.md": "3d2cd162f0b594d58d15ff75094137318496798e0aec83b87ea99bc58fa27700"
+        "docs/reference/functions/publishAppHotkeysStore.md": "a48765aa34417b6e29b463123a16dd09d132e7a524c5853e29155f245cce9098"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "out-of-scope",
-      "reason": "Generated API reference for reason codes and shifted source lines.",
+      "head": "e82acbc9cd32dc5084a9d3cb93468d0d90675a69",
+      "outcome": "no-change",
+      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts and hotkey-manager.ts grew.",
       "evidence": ["docs/reference/functions/publishAppHotkeysStore.md"]
     },
     "source:docs/reference/functions/resolveAppHotkey.md": {
-      "fingerprint": "d9e6239bdc8f51aab1f416e974cfbc7af86bb104d6c2b52619ee98d4db18064d",
+      "fingerprint": "e2ffd8b74ffe014d58d2e2ff861329b5ad96baf38e190d4831d717ae8f13517a",
       "snapshot": {
-        "docs/reference/functions/resolveAppHotkey.md": "b7439eaa1c8ec33c57a8e5903fefd101d2610e78338ca5ba84194570264aeca5"
+        "docs/reference/functions/resolveAppHotkey.md": "89b49d121bfa2e557744e9e68de8ca378c3f322316d5bc6c6e57eed17b26e632"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "out-of-scope",
-      "reason": "Generated API reference for reason codes and shifted source lines.",
+      "head": "e82acbc9cd32dc5084a9d3cb93468d0d90675a69",
+      "outcome": "no-change",
+      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts and hotkey-manager.ts grew.",
       "evidence": ["docs/reference/functions/resolveAppHotkey.md"]
     },
     "source:docs/reference/interfaces/AppHotkey.md": {
@@ -2355,33 +2355,33 @@
       ]
     },
     "source:docs/reference/interfaces/AppHotkeyListItem.md": {
-      "fingerprint": "1079747ba86b7f801bb9cbca881338745ada4cf4a6195c99d90821b315e86a3d",
+      "fingerprint": "78c0e6d8d8687c9d82cf69642379688f266e7840a1433833b96b4bf1b2cda6b7",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeyListItem.md": "b15231bfc1d208b1a1e760382cf6bdd07116d0310e5cdff76a9d3ac8483f46ef"
+        "docs/reference/interfaces/AppHotkeyListItem.md": "f0f33efc0ae4cd910c9979e4d94a42eb616a76fadca25445a17feefd3613adcf"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "out-of-scope",
-      "reason": "Generated API reference for reason codes and shifted source lines.",
+      "head": "e82acbc9cd32dc5084a9d3cb93468d0d90675a69",
+      "outcome": "no-change",
+      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts and hotkey-manager.ts grew.",
       "evidence": ["docs/reference/interfaces/AppHotkeyListItem.md"]
     },
     "source:docs/reference/interfaces/AppHotkeysState.md": {
-      "fingerprint": "9d543d39a2452cb48e0d7f65336ff237ffb8939156874724abd1e59d9e4be441",
+      "fingerprint": "06e9ce58a39a13f98e4a21716794ef866dc21290bb8a832e64d81d52079dac2b",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeysState.md": "421cd4d133e26c52977e92aecea917fbce983a5ecbb6e1f87ae0a4c0fcb5bc42"
+        "docs/reference/interfaces/AppHotkeysState.md": "bda224a3beb18d38f862936929eb0c6b7cb20a801752727069c319d86316e403"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "out-of-scope",
-      "reason": "Generated API reference for reason codes and shifted source lines.",
+      "head": "e82acbc9cd32dc5084a9d3cb93468d0d90675a69",
+      "outcome": "no-change",
+      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts and hotkey-manager.ts grew.",
       "evidence": ["docs/reference/interfaces/AppHotkeysState.md"]
     },
     "source:docs/reference/interfaces/AppHotkeysStoreOptions.md": {
-      "fingerprint": "f77ff25c9421f45e55363213fac1a8e642c33f87241d1003a362a4bd0c55168c",
+      "fingerprint": "3113a34019bad3af0ec8178685f126ccfb3dea1b0496f5a000cec3e8514aac3d",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "29f918423701af475ccc333ed91145242235604521341f2755843b88e982f121"
+        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "a1a948ee432abe2e48f7fabc47a63742088c20bb18a20e777ee692a390250ec0"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "out-of-scope",
-      "reason": "Generated API reference for reason codes and shifted source lines.",
+      "head": "e82acbc9cd32dc5084a9d3cb93468d0d90675a69",
+      "outcome": "no-change",
+      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts and hotkey-manager.ts grew.",
       "evidence": ["docs/reference/interfaces/AppHotkeysStoreOptions.md"]
     },
     "source:docs/reference/interfaces/Register.md": {
@@ -2457,13 +2457,13 @@
       ]
     },
     "source:docs/reference/type-aliases/AppHotkeyStatus.md": {
-      "fingerprint": "d7391b957c1f97978295e9895927b6c36d303d4cc6e0e3750d59e1c4335bf145",
+      "fingerprint": "2d8055ecbcb3287a8338e5e81a9ab16b6eca27ccda71ea1443a66d4935e73841",
       "snapshot": {
-        "docs/reference/type-aliases/AppHotkeyStatus.md": "b4e3943c7ec66ea0deea293082f2be77520d427fa9d96fe8e6943ea8c6aa936c"
+        "docs/reference/type-aliases/AppHotkeyStatus.md": "af4f2e61bbc2dfb7017c7743f5abc63976e760f61ce8cb1457b1ac8ebf429bc1"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "out-of-scope",
-      "reason": "Generated API reference for reason codes and shifted source lines.",
+      "head": "e82acbc9cd32dc5084a9d3cb93468d0d90675a69",
+      "outcome": "no-change",
+      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts and hotkey-manager.ts grew.",
       "evidence": ["docs/reference/type-aliases/AppHotkeyStatus.md"]
     },
     "source:docs/reference/type-aliases/AppHotkeys.md": {
