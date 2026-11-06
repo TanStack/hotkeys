@@ -161,7 +161,7 @@ export function assertValidHotkey(hotkey: ValidatableHotkey): void {
 export function checkHotkey(hotkey: ValidatableHotkey): boolean {
   const result = validateHotkey(hotkey)
 
-  if (process.env.NODE_ENV !== 'production') {
+  if (typeof process !== 'undefined' && process.env.NODE_ENV !== 'production') {
     if (result.errors.length > 0) {
       console.error(
         `[hotkeys] Invalid hotkey '${String(hotkey)}': ${describeIssues(result.errors)}`,

@@ -17,8 +17,9 @@ let warned = false
  * users on macOS and Windows after hydration.
  */
 export function warnServerPlatform(): void {
-  // `process` can be missing in browsers and Workers. Checking NODE_ENV first
-  // lets production builds drop the whole block.
+  // `process` can be missing in browsers and Workers. Keep this check inline,
+  // like every dev-only guard: rolldown and esbuild keep the block in
+  // production builds when it comes from a shared variable or function.
   if (
     typeof process !== 'undefined' &&
     process.env.NODE_ENV !== 'production' &&

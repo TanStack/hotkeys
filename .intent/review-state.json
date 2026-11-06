@@ -71,14 +71,14 @@
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "3d76441096213cf46b1e46c2b5cd95c2f5fc0af05c67ff580c08edb6536fbc35",
+      "fingerprint": "59c8f84fa60084dcc71cdd8f61424528aff34029c22774de49cb9d697612f538",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "8f38ea6fda3e05e5b5e6445c376fdfecd4ea0118fb897e822ba6f2e8e6114885",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
         "docs/framework/react/guides/custom-hotkey-recording.md": "36f17bd33b5326bd396974ba24e5c06e3ec4218ad25045c0ee4910635f292ea7",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "7c431ae3bee4ffcd22676ac533adfcd29cfb22ed68cb7dc47d1470a8744d7276",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
-        "packages/hotkeys/src/app-hotkeys.ts": "a2461ff1a0c41bdc04e001efc415dadff3ecefed47bc35ec095ee20213bbc817",
+        "packages/hotkeys/src/app-hotkeys.ts": "e157e790649509e92b42105ccf2da77392ef8243969cc3f00d375eb7a5c745b1",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
         "packages/hotkeys/src/hotkey-recorder.ts": "61fc7bf0c290e7806113638a09b382e975a21d90dab989b6aff720530ea47397",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
@@ -90,16 +90,16 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "b846fa18c44f94b03d414a4d7df592c5371cc669",
       "outcome": "no-change",
-      "reason": "A validate message still reaches onReject, and the skill never quoted built-in rejection text.",
+      "reason": "Dev-only warnings now check that process exists before reading NODE_ENV. No API, docs, or skill guidance changes.",
       "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/references/recording.md",
-        "packages/hotkeys/src/hotkey-recorder.ts"
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "packages/hotkeys/src/app-hotkeys.ts"
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "1807e951b1d5f17f94ef756b20ba5507a0ff014f8baaeaef8afd2167bf34c138",
+      "fingerprint": "3cc900650185c909a84d0964daec3c4397299cba7594ad92ef2ffe7e8f182f2e",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "03b024ba6a23d6b87a7b99be8a30b54fd5d82ba27e075ba0c00f648c82759e5f",
@@ -108,7 +108,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
-        "packages/hotkeys/src/hotkey-manager.ts": "9e82dbde02f76f0b931fceca294619a08efed6abd790679c661b3654f85a26ce",
+        "packages/hotkeys/src/hotkey-manager.ts": "f88bdcaa130e8b0d95d96cd5033bb9f0db49ffd0e3301a81c8f7e112c6f942af",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "d7747b87eae074ab3620484f64cf13ea9c27d24d059d56d9a9a07ccf0c2d3e06",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -120,12 +120,12 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "updated",
-      "reason": "validateHotkey now returns reason codes; the case-sensitivity pitfall says to map them to your own messages.",
+      "head": "b846fa18c44f94b03d414a4d7df592c5371cc669",
+      "outcome": "no-change",
+      "reason": "Dev-only warnings now check that process exists before reading NODE_ENV. No API, docs, or skill guidance changes.",
       "evidence": [
         "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "packages/hotkeys/src/validate.ts"
+        "packages/hotkeys/src/hotkey-manager.ts"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -292,7 +292,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "8cc204f0e67a3b006bf674272f63280ec5649743932bed7348616fbab5ef6891",
+      "fingerprint": "e489e5e861c69f561d98321d5218cfe4aed53486b54b96b2d5695fef303782ce",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -353,9 +353,9 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
-        "packages/hotkeys/src/app-hotkeys.ts": "a2461ff1a0c41bdc04e001efc415dadff3ecefed47bc35ec095ee20213bbc817",
+        "packages/hotkeys/src/app-hotkeys.ts": "e157e790649509e92b42105ccf2da77392ef8243969cc3f00d375eb7a5c745b1",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
-        "packages/hotkeys/src/hotkey-manager.ts": "9e82dbde02f76f0b931fceca294619a08efed6abd790679c661b3654f85a26ce",
+        "packages/hotkeys/src/hotkey-manager.ts": "f88bdcaa130e8b0d95d96cd5033bb9f0db49ffd0e3301a81c8f7e112c6f942af",
         "packages/hotkeys/src/hotkey-recorder.ts": "61fc7bf0c290e7806113638a09b382e975a21d90dab989b6aff720530ea47397",
         "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "4e5593e8d4373475d4e6006e30ec663d7f0f3fcf0aa881fc403efe58b9cf7606",
@@ -424,10 +424,13 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "b846fa18c44f94b03d414a4d7df592c5371cc669",
       "outcome": "no-change",
-      "reason": "No new skill, domain or task.",
-      "evidence": ["_artifacts/skill_spec.md"]
+      "reason": "Dev-only warnings now check that process exists before reading NODE_ENV. No API, docs, or skill guidance changes.",
+      "evidence": [
+        "packages/hotkeys/src/app-hotkeys.ts",
+        "packages/hotkeys/src/hotkey-manager.ts"
+      ]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -5266,17 +5269,14 @@
       ]
     },
     "source:packages/hotkeys/src/_registration.ts": {
-      "fingerprint": "3edc2ef8ce7f0071cd076e8544259dcbc0c28e925a7dc3a8fd114164a6058973",
+      "fingerprint": "5858bf2f8d2a265788e3469e3980ab3433e23d7ea1d9bbf7000fe8df17a43213",
       "snapshot": {
-        "packages/hotkeys/src/_registration.ts": "97a77abf9bc421a0fe59e46b96916dd1c58dae5b913faf618a3db6157ca30ba3"
+        "packages/hotkeys/src/_registration.ts": "0437ff82c4d74bcb2d8b186ffda16cf1cc8c2b6b097b80568114d1771f8c872e"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "b846fa18c44f94b03d414a4d7df592c5371cc669",
       "outcome": "no-change",
-      "reason": "Reason codes and one-line [hotkeys] messages; covered by the updated core skill pitfall.",
-      "evidence": [
-        "packages/hotkeys/src/_registration.ts",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
-      ]
+      "reason": "Dev-only warnings now check that process exists before reading NODE_ENV. No API, docs, or skill guidance changes.",
+      "evidence": ["packages/hotkeys/src/_registration.ts"]
     },
     "source:packages/hotkeys/src/_store.ts": {
       "fingerprint": "01d160bae20ef0906e8cc1d503ff6ea509c970130a580d2bbb3e54201f5523af",
@@ -5314,17 +5314,14 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/src/validate.ts": {
-      "fingerprint": "c52f3a09ce6533a5d3dad1754df016647e154922566cf13d9184babf1863cc23",
+      "fingerprint": "6af8ee5b18c34f71a878d1577552881156c8d451086015a977ee4cc8cb0dd88d",
       "snapshot": {
-        "packages/hotkeys/src/validate.ts": "d9c8a08f07ff1236db9ba1553c0a3438f5f367ef32bfe650a8ceab169594e911"
+        "packages/hotkeys/src/validate.ts": "1626039d647242cadcc42dce145a65b84a2b3bd7ed401bc123fcfbb4c90c8ecb"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "b846fa18c44f94b03d414a4d7df592c5371cc669",
       "outcome": "no-change",
-      "reason": "Reason codes and one-line [hotkeys] messages; covered by the updated core skill pitfall.",
-      "evidence": [
-        "packages/hotkeys/src/validate.ts",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
-      ]
+      "reason": "Dev-only warnings now check that process exists before reading NODE_ENV. No API, docs, or skill guidance changes.",
+      "evidence": ["packages/hotkeys/src/validate.ts"]
     },
     "source:packages/hotkeys/tests/adapter.test.ts": {
       "fingerprint": "01d1dc825dcdbf2902190e057e48e8ea34af39b1817dcdd83340338516f5e1d2",
@@ -5337,16 +5334,14 @@
       "evidence": ["packages/hotkeys/tests/adapter.test.ts"]
     },
     "source:packages/hotkeys/tests/production-logs.test.ts": {
-      "fingerprint": "5b0bc4d295d32a7eeb1e08145be2091656364a3934101d2783d95b22eac05cb3",
+      "fingerprint": "3b8593af9f699a34244dd45f6d3c0715d7f3513c27896e0e55884897caa4d3cf",
       "snapshot": {
-        "packages/hotkeys/tests/production-logs.test.ts": "c602325fd78192fed9ed82e5b9050cb9b412c3e794f68ea64b1c0a5fa3c4531c"
+        "packages/hotkeys/tests/production-logs.test.ts": "06a550fbbf73eb45dd7dec516cef9e3c5b7312861f8d6414afe2fca9d14a752d"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "b846fa18c44f94b03d414a4d7df592c5371cc669",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
-      "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
-      ]
+      "reason": "Dev-only warnings now check that process exists before reading NODE_ENV. No API, docs, or skill guidance changes.",
+      "evidence": ["packages/hotkeys/tests/production-logs.test.ts"]
     },
     "source:packages/hotkeys/tests/store.test.ts": {
       "fingerprint": "7e3b0ed74178ccbe4fc414dfdeb4f1022404bd9bfa9303fcaa6749e75b5c93a2",
@@ -7992,17 +7987,14 @@
       "evidence": ["packages/ember-hotkeys/tests/integration/platform.test.gts"]
     },
     "source:packages/hotkeys/src/_server.ts": {
-      "fingerprint": "11e1dc95713fd0f5760d128a1da5514ccc56e8a4a14d38b409602baa0cb516c7",
+      "fingerprint": "0cb5ac4b1cbb1a9facc1ac4809d4fd0e3b9e6085efe409c5e15ff79bbfe8e5e4",
       "snapshot": {
-        "packages/hotkeys/src/_server.ts": "8d2784ccae3c7ab0cabb03bf43fb03ee3d1bf62af5d15771630b7cebf3fee2dd"
+        "packages/hotkeys/src/_server.ts": "dd432aa439f148e6043b89a489973c551a5f85f2cb71ef533faa4a013eeeee2f"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "b846fa18c44f94b03d414a4d7df592c5371cc669",
       "outcome": "no-change",
-      "reason": "Reason codes and one-line [hotkeys] messages; covered by the updated core skill pitfall.",
-      "evidence": [
-        "packages/hotkeys/src/_server.ts",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
-      ]
+      "reason": "Dev-only warnings now check that process exists before reading NODE_ENV. No API, docs, or skill guidance changes.",
+      "evidence": ["packages/hotkeys/src/_server.ts"]
     },
     "source:packages/hotkeys/src/platform.ts": {
       "fingerprint": "7779a68bc1c9ff8ca54a6c31ff13c7413738fb4047914950a538a5060b99383e",

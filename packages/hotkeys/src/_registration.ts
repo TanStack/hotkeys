@@ -93,7 +93,10 @@ export function handleConflict(
   }
 
   if (conflictBehavior === 'warn') {
-    if (process.env.NODE_ENV !== 'production') {
+    if (
+      typeof process !== 'undefined' &&
+      process.env.NODE_ENV !== 'production'
+    ) {
       console.warn(`[hotkeys] '${keyDisplay}' is already registered`)
     }
     return

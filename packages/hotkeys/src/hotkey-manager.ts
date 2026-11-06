@@ -652,6 +652,7 @@ export class HotkeyManager {
     const { exclusive } = options
     const allow = exclusive ? (exclusive === true ? [] : exclusive.allow) : null
     if (
+      typeof process !== 'undefined' &&
       process.env.NODE_ENV !== 'production' &&
       allow &&
       [...this.#scopeActivations].some(
@@ -932,7 +933,10 @@ export class HotkeyManager {
     // modifiers aren't supported.
     if (!steps.every(chordHasKey)) return inactiveHandle(callback)
 
-    if (process.env.NODE_ENV !== 'production') {
+    if (
+      typeof process !== 'undefined' &&
+      process.env.NODE_ENV !== 'production'
+    ) {
       for (const { key } of steps) {
         if (key !== undefined && !isKeyNameShape(key)) {
           console.warn(
