@@ -25,10 +25,22 @@ import {
 import type {
   Hotkey,
   RecorderKeyMode,
+  RecorderRejection,
   RegisterableHotkey,
 } from '@tanstack/solid-hotkeys'
 import './styles.css'
 import type { JSX } from 'solid-js'
+
+// The recorder sends a reason code, so the app writes the text
+const rejectionText = ({ reason, message }: RecorderRejection) =>
+  message ??
+  {
+    'alt-graph': 'AltGr types characters. Record by key to use them.',
+    'missing-code': 'This key has no physical key code.',
+    whitespace: "Whitespace keys can't be recorded.",
+    validation: 'This hotkey is not allowed.',
+    conflict: 'This hotkey is already in use.',
+  }[reason]
 
 const ActivityContext = createContext<(message: string) => void>(() => {})
 const pages = [
@@ -493,7 +505,7 @@ function Recording() {
     validate: (_, context) =>
       (context.kind === 'chord' && context.parsedChord.modifiers.length > 0) ||
       'Include a modifier for this action.',
-    onReject: ({ message }) => setProblem(message),
+    onReject: (rejection) => setProblem(rejectionText(rejection)),
     onRecord: (value) => {
       setHotkey(value)
       setProblem('')
@@ -526,7 +538,7 @@ function Recording() {
         `Recorded sequence ${formatForDisplay(value, { sequenceSeparator: ' → ' })}`,
       )
     },
-    onReject: (reason) => setSequenceProblem(reason.message),
+    onReject: (rejection) => setSequenceProblem(rejectionText(rejection)),
     onClear: () => {
       setSequence(['[KeyX]', '[KeyY]'])
       setSequenceProblem('Restored default sequence.')

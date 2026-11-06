@@ -48,6 +48,7 @@ function countLogs(run: () => void): number {
 }
 
 afterEach(() => {
+  vi.unstubAllGlobals()
   vi.unstubAllEnvs()
   vi.restoreAllMocks()
   HotkeyManager.resetInstance()
@@ -64,6 +65,15 @@ describe('console output', () => {
     (_, run) => {
       vi.stubEnv('NODE_ENV', 'production')
       expect(countLogs(run)).toBe(0)
+    },
+  )
+
+  // Plain ESM from a CDN has no bundler to replace process.env
+  it.each(Object.entries(scenarios))(
+    'does not throw for %s without process',
+    (_, run) => {
+      vi.stubGlobal('process', undefined)
+      expect(() => countLogs(run)).not.toThrow()
     },
   )
 

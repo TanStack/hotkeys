@@ -47,7 +47,7 @@ it.each([...FUNCTION_KEYS, ...SHARED_NAMED_KEYS])(
     // Key names are case-sensitive: other spellings stay as written and warn
     expect(normalizeKeyName(key.toLowerCase())).toBe(key.toLowerCase())
     expect(validateHotkey(logical.toLowerCase()).warnings).toEqual([
-      `Unknown key: '${key.toLowerCase()}'. Key names are case-sensitive, such as 'Escape' and 'F1'.`,
+      { reason: 'unknown-key', part: key.toLowerCase() },
     ])
     expect(validateHotkey(physical)).toEqual({
       valid: true,

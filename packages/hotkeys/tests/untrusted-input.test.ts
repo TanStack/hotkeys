@@ -6,6 +6,8 @@ import {
   defineAppHotkeys,
   formatForDisplay,
   getHotkeyManager,
+  matchesKeyboardEvent,
+  parseHotkey,
 } from '../src'
 import { codeToLogicalKey } from '../src/_keyboard-event'
 import type { HotkeyChord } from '../src'
@@ -87,8 +89,7 @@ describe('recording whitespace', () => {
     const { onRecord, onReject } = record(' ')
     expect(onRecord).not.toHaveBeenCalled()
     expect(onReject).toHaveBeenCalledWith({
-      reason: 'invalid',
-      message: 'Whitespace keys cannot be recorded',
+      reason: 'whitespace',
       hotkey: 'Alt+ ',
     })
   })
@@ -104,7 +105,7 @@ describe('registering a hotkey with an unknown key name', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
     getHotkeyManager().register(['G', 'escape'] as never, () => {})
     expect(warn).toHaveBeenCalledWith(
-      "Unknown key 'escape' in 'G escape'. Key names are case-sensitive, such as 'Escape' and 'F1', so this hotkey may never fire.",
+      "[hotkeys] Unknown key 'escape' in 'G escape' (names are case-sensitive)",
     )
   })
 
@@ -121,5 +122,66 @@ describe('registering a hotkey with an unknown key name', () => {
     ] as Array<HotkeyChord>)
       manager.register(hotkey, () => {})
     expect(warn).not.toHaveBeenCalled()
+  })
+})
+
+describe('hotkeys without a usable key', () => {
+  // TypeScript rejects all of these, but untyped input can still pass them.
+  const UNUSABLE: Array<[string, unknown]> = [
+    ['an unknown modifier', 'Ctl+K'],
+    ['an unknown modifier after a known one', 'Shift+Ctl+K'],
+    ['only modifiers', 'Shift+Alt+Mod'],
+    ['a lone modifier', 'Shift'],
+    ['a modifier code', '[ShiftLeft]'],
+    ['a modifier code after its modifier', 'Shift+[ShiftLeft]'],
+    ['a chord object with a modifier key', { key: 'Shift', shift: true }],
+    ['a chord object with a modifier code', { code: 'MetaLeft' }],
+    ['a sequence with an unknown modifier', ['G', 'Ctl+K']],
+    ['a sequence with a modifier step', ['G', 'Shift']],
+  ]
+
+  // Key presses that the hotkeys above used to match
+  function pressAll() {
+    for (const type of ['keydown', 'keyup']) {
+      for (const init of [
+        { key: 'k', code: 'KeyK' },
+        { key: 'g', code: 'KeyG' },
+        { key: 'Shift', code: 'ShiftLeft', shiftKey: type === 'keydown' },
+        { key: 'Meta', code: 'MetaLeft', metaKey: type === 'keydown' },
+      ]) {
+        document.dispatchEvent(new KeyboardEvent(type, init))
+      }
+    }
+  }
+
+  it.each(UNUSABLE)('register nothing for %s', (_, hotkey) => {
+    const callback = vi.fn()
+    for (const eventType of ['keydown', 'keyup'] as const) {
+      const handle = getHotkeyManager().register(hotkey as never, callback, {
+        eventType,
+      })
+      expect(handle.isActive).toBe(false)
+    }
+    expect(getHotkeyManager().registrations.state.size).toBe(0)
+    pressAll()
+    expect(callback).not.toHaveBeenCalled()
+  })
+
+  it('an unknown modifier leaves the chord without a key', () => {
+    expect(parseHotkey('Ctl+K' as never)).toMatchObject({
+      key: '',
+      ctrl: false,
+    })
+    const k = new KeyboardEvent('keydown', { key: 'k', code: 'KeyK' })
+    expect(matchesKeyboardEvent(k, 'Ctl+K' as never)).toBe(false)
+  })
+
+  it('a modifier-only chord matches no key press', () => {
+    const shiftUp = new KeyboardEvent('keyup', {
+      key: 'Shift',
+      code: 'ShiftLeft',
+    })
+    expect(matchesKeyboardEvent(shiftUp, '[ShiftLeft]' as never)).toBe(false)
+    expect(matchesKeyboardEvent(shiftUp, 'Shift' as never)).toBe(false)
   })
 })

@@ -131,8 +131,8 @@ export function createHotkeyBindings(
         ) {
           return
         }
-        // A step without a key, such as '' or { key: '', ctrl: true },
-        // registers nothing.
+        // A step without a usable key, such as '', { key: '', ctrl: true },
+        // 'Shift', or 'Ctl+K', registers nothing.
         const parsed = parseHotkey(definition.hotkey, options.platform)
         if (!(Array.isArray(parsed) ? parsed : [parsed]).every(chordHasKey)) {
           return

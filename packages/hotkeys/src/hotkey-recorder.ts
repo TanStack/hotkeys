@@ -22,9 +22,24 @@ import type {
 /** Event property used to record a binding. Physical codes are the default. */
 export type RecorderKeyMode = 'code' | 'key'
 
+/**
+ * Why the recorder rejected a key press or a recording:
+ *
+ * - `'alt-graph'`: AltGr typed a character, which physical recording can't
+ *   record. Record by key to accept characters.
+ * - `'missing-code'`: the event has no usable physical key code.
+ * - `'whitespace'`: the key is a whitespace character, which a hotkey can't
+ *   hold.
+ * - `'validation'`: your `validate` callback rejected the recording.
+ * - `'conflict'`: the recording conflicts with registered hotkeys.
+ */
+export type RecorderRejectionReason =
+  'alt-graph' | 'missing-code' | 'whitespace' | 'validation' | 'conflict'
+
 export interface RecorderRejection {
-  reason: 'missing-code' | 'alt-graph' | 'invalid' | 'conflict' | 'validation'
-  message: string
+  reason: RecorderRejectionReason
+  /** The message your `validate` callback returned, when it returned one. */
+  message?: string
   /** The rejected chord or sequence, when one was recorded. */
   hotkey?: Hotkey
   conflicts?: Array<HotkeyConflict>
@@ -101,7 +116,7 @@ interface HotkeyRecorderBaseOptions extends RecorderOptions {
 export interface HotkeyChordRecorderOptions extends HotkeyRecorderBaseOptions {
   /** Maximum number of chords to record. Default: 1 */
   maxSteps?: 1
-  /** Return true to accept, or false/a message to reject while staying in recording mode. */
+  /** Return true to accept, or false or a message to reject while staying in recording mode. The message is passed to `onReject`. */
   validate?: (
     hotkey: HotkeyChord,
     context: HotkeyChordRecorderValidationContext,
@@ -117,7 +132,7 @@ export interface HotkeyChordRecorderOptions extends HotkeyRecorderBaseOptions {
 export interface HotkeySequenceRecorderOptions extends HotkeyRecorderBaseOptions {
   /** Maximum number of chords to record. Reaching it commits automatically. Use `Infinity` for no limit. */
   maxSteps: number
-  /** Return true to accept, or false/a message to reject while staying in recording mode. */
+  /** Return true to accept, or false or a message to reject while staying in recording mode. The message is passed to `onReject`. */
   validate?: (
     hotkey: Hotkey,
     context: HotkeyRecorderValidationContext,
@@ -353,11 +368,7 @@ export class HotkeyRecorder {
       // Whitespace characters, such as the non-breaking space from Option+Space
       // on macOS, can't be written in a hotkey
       if (splitChordParts(chord).some((part) => !part.trim())) {
-        options.onReject?.({
-          reason: 'invalid',
-          message: 'Whitespace keys cannot be recorded',
-          hotkey: chord,
-        })
+        options.onReject?.({ reason: 'whitespace', hotkey: chord })
         return
       }
 
@@ -413,10 +424,7 @@ export class HotkeyRecorder {
     if (accepted !== undefined && accepted !== true) {
       rejectAndKeepRecording({
         reason: 'validation',
-        message:
-          typeof accepted === 'string'
-            ? accepted
-            : `This ${single ? 'shortcut' : 'sequence'} is not allowed.`,
+        ...(typeof accepted === 'string' && { message: accepted }),
         hotkey,
       })
       return
@@ -433,7 +441,6 @@ export class HotkeyRecorder {
       if (conflicts.length) {
         rejectAndKeepRecording({
           reason: 'conflict',
-          message: `This ${single ? 'shortcut' : 'sequence'} conflicts with a registered hotkey.`,
           hotkey,
           conflicts,
         })

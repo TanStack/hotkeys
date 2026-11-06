@@ -3,7 +3,7 @@ id: AppHotkeysController
 title: AppHotkeysController
 ---
 
-Defined in: [controllers/app-hotkeys.ts:42](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L42)
+Defined in: [controllers/app-hotkeys.ts:44](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L44)
 
 A Lit ReactiveController for app hotkeys provided with `provideAppHotkeys`:
 the effective app hotkeys, a cheat sheet list with live status, and the
@@ -37,7 +37,7 @@ class CheatSheet extends LitElement {
 new AppHotkeysController(_host): AppHotkeysController;
 ```
 
-Defined in: [controllers/app-hotkeys.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L45)
+Defined in: [controllers/app-hotkeys.ts:47](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L47)
 
 #### Parameters
 
@@ -59,7 +59,7 @@ Defined in: [controllers/app-hotkeys.ts:45](https://github.com/TanStack/hotkeys/
 get appHotkeys(): RegisteredAppHotkeys;
 ```
 
-Defined in: [controllers/app-hotkeys.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L50)
+Defined in: [controllers/app-hotkeys.ts:52](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L52)
 
 Effective app hotkeys, typed by `Register`.
 
@@ -77,7 +77,7 @@ Effective app hotkeys, typed by `Register`.
 get customHotkeys(): CustomHotkeys;
 ```
 
-Defined in: [controllers/app-hotkeys.ts:66](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L66)
+Defined in: [controllers/app-hotkeys.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L68)
 
 The user's hotkeys that differ from the defaults.
 
@@ -95,7 +95,7 @@ The user's hotkeys that differ from the defaults.
 get list(): AppHotkeyListItem<AppHotkey<string, HotkeyChord | HotkeySequence | null>>[];
 ```
 
-Defined in: [controllers/app-hotkeys.ts:55](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L55)
+Defined in: [controllers/app-hotkeys.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L57)
 
 Every app hotkey with its live status, in declaration order.
 
@@ -111,7 +111,7 @@ Every app hotkey with its live status, in declaration order.
 findConflicts(id, hotkey): AppHotkey<string, HotkeyChord | HotkeySequence | null>[];
 ```
 
-Defined in: [controllers/app-hotkeys.ts:92](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L92)
+Defined in: [controllers/app-hotkeys.ts:94](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L94)
 
 Other app hotkeys that would collide if `id` used `hotkey`.
 
@@ -137,7 +137,7 @@ Other app hotkeys that would collide if `id` used `hotkey`.
 hostConnected(): void;
 ```
 
-Defined in: [controllers/app-hotkeys.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L99)
+Defined in: [controllers/app-hotkeys.ts:101](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L101)
 
 Called when the host is connected to the component tree. For custom
 element hosts, this corresponds to the `connectedCallback()` lifecycle,
@@ -161,7 +161,7 @@ ReactiveController.hostConnected
 hostDisconnected(): void;
 ```
 
-Defined in: [controllers/app-hotkeys.ts:112](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L112)
+Defined in: [controllers/app-hotkeys.ts:114](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L114)
 
 Called when the host is disconnected from the component tree. For custom
 element hosts, this corresponds to the `disconnectedCallback()` lifecycle,
@@ -186,7 +186,7 @@ ReactiveController.hostDisconnected
 resetCustomHotkey(id): void;
 ```
 
-Defined in: [controllers/app-hotkeys.ts:82](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L82)
+Defined in: [controllers/app-hotkeys.ts:84](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L84)
 
 Restores the default hotkey for an app hotkey.
 
@@ -208,7 +208,7 @@ Restores the default hotkey for an app hotkey.
 resetCustomHotkeys(): void;
 ```
 
-Defined in: [controllers/app-hotkeys.ts:87](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L87)
+Defined in: [controllers/app-hotkeys.ts:89](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L89)
 
 Restores every default hotkey.
 
@@ -224,7 +224,7 @@ Restores every default hotkey.
 setCustomHotkey(id, hotkey): AppHotkey<string, HotkeyChord | HotkeySequence | null>[];
 ```
 
-Defined in: [controllers/app-hotkeys.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L74)
+Defined in: [controllers/app-hotkeys.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/app-hotkeys.ts#L76)
 
 Sets the user's hotkey for an app hotkey. `null` unbinds it.
 Returns conflicting app hotkeys; when any exist, nothing changes.

@@ -13,7 +13,9 @@ import type {
 function requireStore(name: string) {
   const store = getHotkeysContext()?.appHotkeysStore
   if (!store) {
-    throw new Error(`${name} requires a HotkeysProvider with appHotkeys`)
+    throw new Error(
+      `[hotkeys] ${name} requires a HotkeysProvider with appHotkeys`,
+    )
   }
   return {
     store: store as unknown as AppHotkeysStore<RegisteredAppHotkeys>,

@@ -17,7 +17,9 @@ function useRequiredStore(
     subSlot(slot, `${name}-store`),
   )
   if (!store) {
-    throw new Error(`${name} requires a HotkeysProvider with appHotkeys`)
+    throw new Error(
+      `[hotkeys] ${name} requires a HotkeysProvider with appHotkeys`,
+    )
   }
   return store
 }

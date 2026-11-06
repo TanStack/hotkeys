@@ -8,7 +8,7 @@ function requireStore(
 ): AppHotkeysStore<RegisteredAppHotkeys> {
   const store = scope.appHotkeys()
   if (!store) {
-    throw new Error('App hotkeys require provideAppHotkeys()')
+    throw new Error('[hotkeys] App hotkeys require provideAppHotkeys()')
   }
   return store
 }

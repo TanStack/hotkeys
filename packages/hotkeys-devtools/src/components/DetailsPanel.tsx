@@ -15,10 +15,12 @@ import {
   getBindingKind,
   useRegistrationConflicts,
 } from '../_registrations'
+import { describeHotkeyIssues } from '../_issues'
 import { ActionButtons } from './ActionButtons'
 import type {
   AppHotkeyListItem,
   ConflictBehavior,
+  Hotkey,
   HotkeyChordRegistrationView,
   HotkeyRegistrationView,
   HotkeySequenceRegistrationView,
@@ -59,6 +61,28 @@ function KeyBreakdownPlatformTable(props: {
         )}
       </For>
     </div>
+  )
+}
+
+/** Readable validation problems, such as a key name in the wrong case. */
+function IssuesSection(props: {
+  hotkey: Hotkey
+  styles: ReturnType<typeof useStyles>
+}) {
+  const issues = createMemo(() => describeHotkeyIssues(props.hotkey))
+  return (
+    <Show when={issues().length > 0}>
+      <div class={props.styles().detailSection}>
+        <div class={props.styles().detailSectionHeader}>
+          Issues ({issues().length})
+        </div>
+        <div class={props.styles().conflictList}>
+          <For each={issues()}>
+            {(issue) => <div class={props.styles().issueItem}>{issue}</div>}
+          </For>
+        </div>
+      </div>
+    </Show>
   )
 }
 
@@ -308,6 +332,8 @@ function HotkeyDetails(props: {
             </div>
           </div>
         </div>
+
+        <IssuesSection hotkey={reg().hotkey} styles={styles} />
 
         <Show when={allConflicts().length > 0}>
           <div class={styles().detailSection}>
@@ -635,6 +661,8 @@ function SequenceDetails(props: {
           </div>
         </div>
 
+        <IssuesSection hotkey={liveReg().hotkey} styles={styles} />
+
         <Show when={allConflicts().length > 0}>
           <div class={styles().detailSection}>
             <div class={styles().detailSectionHeader}>
@@ -709,6 +737,9 @@ function AppHotkeyDetails(props: {
         </div>
       </div>
       <div class={styles().detailsGrid}>
+        <Show when={appHotkey().hotkey}>
+          {(hotkey) => <IssuesSection hotkey={hotkey()} styles={styles} />}
+        </Show>
         <div class={styles().detailSection}>
           <div class={styles().detailSectionHeader}>Meta</div>
           <div>

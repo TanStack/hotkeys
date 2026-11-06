@@ -14,7 +14,7 @@ import type {
 function injectRequiredStore(name: string) {
   const context = injectHotkeysContext()
   if (!context.appHotkeysStore) {
-    throw new Error(`${name} requires provideHotkeys with appHotkeys`)
+    throw new Error(`[hotkeys] ${name} requires provideHotkeys with appHotkeys`)
   }
   return {
     store:

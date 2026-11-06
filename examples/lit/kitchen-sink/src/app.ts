@@ -12,8 +12,23 @@ import {
   hotkey,
   isHotkeySequence,
 } from '@tanstack/lit-hotkeys'
-import type { Hotkey, RecorderKeyMode } from '@tanstack/lit-hotkeys'
+import type {
+  Hotkey,
+  RecorderKeyMode,
+  RecorderRejection,
+} from '@tanstack/lit-hotkeys'
 import './styles.css'
+
+// The recorder sends a reason code, so the app writes the text
+const rejectionText = ({ reason, message }: RecorderRejection) =>
+  message ??
+  {
+    'alt-graph': 'AltGr types characters. Record by key to use them.',
+    'missing-code': 'This key has no physical key code.',
+    whitespace: "Whitespace keys can't be recorded.",
+    validation: 'This hotkey is not allowed.',
+    conflict: 'This hotkey is already in use.',
+  }[reason]
 
 // Light DOM keeps the shared example CSS small and makes scoped targets easy to inspect.
 class DemoElement extends LitElement {
@@ -352,7 +367,7 @@ class Recording extends DemoElement {
       this.binding = this.initial
     },
     onReject: (r) => {
-      this.problem = r.message
+      this.problem = rejectionText(r)
     },
     onCancel: () => {
       this.problem = 'Cancelled'
@@ -376,7 +391,7 @@ class Recording extends DemoElement {
       this.sequence = ['[KeyX]', '[KeyY]']
     },
     onReject: (r) => {
-      this.problem = r.message
+      this.problem = rejectionText(r)
     },
     onCancel: () => {
       this.problem = 'Cancelled'

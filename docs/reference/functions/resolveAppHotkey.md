@@ -7,7 +7,7 @@ title: resolveAppHotkey
 function resolveAppHotkey(appHotkey, store): AppHotkey;
 ```
 
-Defined in: [app-hotkeys.ts:638](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L638)
+Defined in: [app-hotkeys.ts:642](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L642)
 
 Returns the provider's version of an app hotkey, so custom hotkeys apply
 even when a component imports the declaration directly. Falls back to the

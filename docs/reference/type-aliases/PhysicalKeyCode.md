@@ -8,7 +8,6 @@ type PhysicalKeyCode =
   | `Key${LetterKey}`
   | `Digit${NumberKey}`
   | `Numpad${NumberKey}`
-  | `${"Alt" | "Control" | "Meta" | "Shift"}${"Left" | "Right"}`
   | EditingKey
   | NavigationKey
   | FunctionKey
@@ -39,11 +38,12 @@ type PhysicalKeyCode =
   | "Suspend";
 ```
 
-Defined in: [key.types.ts:165](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L165)
+Defined in: [key.types.ts:166](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/key.types.ts#L166)
 
 Supported physical KeyboardEvent.code names, independent of keyboard layout.
-Letter, digit, numpad, and sided modifier names use finite template unions.
-`Unidentified` is excluded because it cannot identify a physical key.
+Letter, digit, and numpad names use finite template unions. Modifier codes
+such as `ShiftLeft` are excluded, because modifier-only hotkeys aren't
+supported. `Unidentified` is excluded because it cannot identify a physical key.
 
 ## See
 

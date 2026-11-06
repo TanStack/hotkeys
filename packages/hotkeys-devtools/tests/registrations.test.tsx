@@ -219,6 +219,21 @@ describe('shared devtools registrations', () => {
     },
   )
 
+  it('describes validation warnings in the details', () => {
+    vi.spyOn(console, 'warn').mockImplementation(() => {})
+    const manager = HotkeyManager.getInstance()
+    const typo = manager.register(['G', 'escape'] as never, () => {}, options)
+    const clean = manager.register('Mod+S', () => {}, options)
+    const issues = (id: string) =>
+      Array.from(mount(id).querySelectorAll('.issueItem'), (n) => n.textContent)
+    expect(issues(typo.id)).toEqual([
+      "Step 2: 'escape' isn't a known key name, so the hotkey may never fire. Key names are case-sensitive, such as Escape and F1.",
+    ])
+    dispose?.()
+    expect(issues(clean.id)).toEqual([])
+    vi.restoreAllMocks()
+  })
+
   it('distinguishes logical, physical, and mixed registrations', () => {
     const manager = HotkeyManager.getInstance()
     manager.register('Mod+S', () => {}, options)

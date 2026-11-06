@@ -22,7 +22,22 @@ import {
   provideHotkeys,
 } from '@tanstack/angular-hotkeys'
 import type { ElementRef } from '@angular/core'
-import type { Hotkey, RecorderKeyMode } from '@tanstack/angular-hotkeys'
+import type {
+  Hotkey,
+  RecorderKeyMode,
+  RecorderRejection,
+} from '@tanstack/angular-hotkeys'
+
+// The recorder sends a reason code, so the app writes the text
+const rejectionText = ({ reason, message }: RecorderRejection) =>
+  message ??
+  {
+    'alt-graph': 'AltGr types characters. Record by key to use them.',
+    'missing-code': 'This key has no physical key code.',
+    whitespace: "Whitespace keys can't be recorded.",
+    validation: 'This hotkey is not allowed.',
+    conflict: 'This hotkey is already in use.',
+  }[reason]
 
 @Injectable({ providedIn: 'root' })
 export class Activity {
@@ -398,7 +413,7 @@ export class Recording {
       this.problem.set('')
     },
     onClear: () => this.hotkey.set(this.initial),
-    onReject: (r) => this.problem.set(r.message),
+    onReject: (r) => this.problem.set(rejectionText(r)),
     onCancel: () => this.problem.set('Cancelled'),
   }))
   // maxSteps above 1 records sequences; one step records a chord.
@@ -419,7 +434,7 @@ export class Recording {
       this.problem.set('')
     },
     onClear: () => this.sequence.set(['[KeyX]', '[KeyY]']),
-    onReject: (r) => this.problem.set(r.message),
+    onReject: (r) => this.problem.set(rejectionText(r)),
     onCancel: () => this.problem.set('Cancelled'),
   }))
   constructor() {

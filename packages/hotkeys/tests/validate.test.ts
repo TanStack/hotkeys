@@ -33,7 +33,7 @@ describe('validateHotkey', () => {
     it('should reject empty strings', () => {
       const result = validateHotkey('')
       expect(result.valid).toBe(false)
-      expect(result.errors).toContain('Hotkey cannot be empty')
+      expect(result.errors).toEqual([{ reason: 'empty' }])
     })
 
     it('should reject whitespace-only strings', () => {
@@ -44,9 +44,29 @@ describe('validateHotkey', () => {
     it('should report unknown modifiers', () => {
       const result = validateHotkey('Unknown+A')
       expect(result.valid).toBe(false)
-      expect(result.errors.some((e) => e.includes('Unknown modifier'))).toBe(
-        true,
-      )
+      expect(result.errors).toEqual([
+        { reason: 'unknown-modifier', part: 'Unknown' },
+      ])
+    })
+
+    it.each([
+      'Shift',
+      'Mod',
+      'Shift+Alt+Mod',
+      '[ShiftLeft]',
+      'Shift+[ShiftLeft]',
+    ])('should reject the modifier-only hotkey %s', (hotkey) => {
+      const result = validateHotkey(hotkey)
+      expect(result.valid).toBe(false)
+      expect(result.errors).toEqual([
+        { reason: 'modifier-only', part: hotkey.split('+').pop() },
+      ])
+    })
+
+    it('should name the sequence step that is modifier-only', () => {
+      expect(validateHotkey(['G', 'Control']).errors).toEqual([
+        { reason: 'modifier-only', part: 'Control', step: 1 },
+      ])
     })
   })
 
@@ -66,7 +86,7 @@ describe('validateHotkey', () => {
       const result = validateHotkey('Control+escape')
       expect(result.valid).toBe(true) // Unknown keys are warnings, not errors
       expect(result.warnings).toEqual([
-        "Unknown key: 'escape'. Key names are case-sensitive, such as 'Escape' and 'F1'.",
+        { reason: 'unknown-key', part: 'escape' },
       ])
     })
 
@@ -97,8 +117,13 @@ describe('assertValidHotkey', () => {
     expect(() => assertValidHotkey('Unknown+A')).toThrow('Invalid hotkey')
   })
 
-  it('should include error message in thrown error', () => {
-    expect(() => assertValidHotkey('')).toThrow('Hotkey cannot be empty')
+  it('should include the reasons in the thrown error', () => {
+    expect(() => assertValidHotkey('')).toThrow(
+      "[hotkeys] Invalid hotkey '': empty",
+    )
+    expect(() => assertValidHotkey(['G', 'Ctl+K'])).toThrow(
+      "step 2 unknown-modifier 'Ctl'",
+    )
   })
 })
 

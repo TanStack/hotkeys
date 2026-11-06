@@ -8,9 +8,24 @@ import {
   useHotkeys,
 } from '@tanstack/octane-hotkeys'
 
-import type { Hotkey, UseHotkeyDefinition } from '@tanstack/octane-hotkeys'
+import type {
+  Hotkey,
+  HotkeyIssue,
+  UseHotkeyDefinition,
+} from '@tanstack/octane-hotkeys'
 
 import './index.css'
+
+// validateHotkey sends reason codes, so the app writes the text
+const issueText = ({ reason, part }: HotkeyIssue) =>
+  ({
+    empty: 'Enter a hotkey.',
+    'empty-part': 'Remove the empty part between + signs.',
+    'unknown-modifier': `Unknown modifier ${part}.`,
+    'invalid-physical-key': `${part} isn't a physical key code.`,
+    'modifier-only': `Add a key after ${part}.`,
+    'unknown-key': `Unknown key ${part}. Key names are case-sensitive.`,
+  })[reason]
 
 function App() @{  <>
         <HotkeysProvider>
@@ -243,7 +258,9 @@ function DynamicHotkeysDemo() @{
     if (!newLabel.trim()) return
     const validation = validateHotkey(trimmed)
     if (!validation.valid || validation.warnings.length > 0) {
-      setError([...validation.errors, ...validation.warnings].join(' '))
+      setError(
+        [...validation.errors, ...validation.warnings].map(issueText).join(' '),
+      )
       return
     }
     setError('')

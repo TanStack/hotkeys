@@ -7,14 +7,16 @@ title: validateHotkey
 function validateHotkey(hotkey): ValidationResult;
 ```
 
-Defined in: [validate.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L36)
+Defined in: [validate.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L39)
 
 Validates a hotkey and returns any warnings or errors.
-Sequences are validated step by step, and messages name the failing step.
+Each issue has a `reason` code, so apps can write their own messages.
+Issues in a sequence carry the index of their `step`.
 
 Checks for:
 - Valid syntax (modifier+...+key format)
 - Known modifiers
+- A key that isn't a modifier
 - Known keys
 
 ## Parameters
@@ -38,8 +40,8 @@ validateHotkey('Mod+S')
 // { valid: true, warnings: [], errors: [] }
 
 validateHotkey('')
-// { valid: false, warnings: [], errors: ['Hotkey cannot be empty'] }
+// { valid: false, warnings: [], errors: [{ reason: 'empty' }] }
 
 validateHotkey(['G', 'Foo+H'])
-// { valid: false, warnings: [], errors: ["Step 2: Unknown modifier: 'Foo'"] }
+// { valid: false, warnings: [], errors: [{ reason: 'unknown-modifier', part: 'Foo', step: 1 }] }
 ```
