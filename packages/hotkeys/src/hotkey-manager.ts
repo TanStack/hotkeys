@@ -652,15 +652,14 @@ export class HotkeyManager {
     const { exclusive } = options
     const allow = exclusive ? (exclusive === true ? [] : exclusive.allow) : null
     if (
+      typeof process !== 'undefined' &&
       process.env.NODE_ENV !== 'production' &&
       allow &&
       [...this.#scopeActivations].some(
         (other) => other.allow && other.scope === scope,
       )
     ) {
-      console.warn(
-        `Exclusive hotkey scope '${scope}' is already active. Hotkeys from both activations will fire; give each a unique scope.`,
-      )
+      console.warn(`[hotkeys] Exclusive scope '${scope}' is already active`)
     }
     const activation: ScopeActivation = {
       scope,
@@ -929,15 +928,19 @@ export class HotkeyManager {
       registration.kind === 'sequence'
         ? registration.parsedSequence
         : [registration.parsedChord]
-    // An empty key would match key-less events, such as autofill's, so a
-    // hotkey with an empty step registers nothing.
+    // A step without a usable key registers nothing: an empty key would match
+    // key-less events, such as autofill's, and modifier-only steps and unknown
+    // modifiers aren't supported.
     if (!steps.every(chordHasKey)) return inactiveHandle(callback)
 
-    if (process.env.NODE_ENV !== 'production') {
+    if (
+      typeof process !== 'undefined' &&
+      process.env.NODE_ENV !== 'production'
+    ) {
       for (const { key } of steps) {
         if (key !== undefined && !isKeyNameShape(key)) {
           console.warn(
-            `Unknown key '${key}' in '${formatForMessage(registration.hotkey)}'. Key names are case-sensitive, such as 'Escape' and 'F1', so this hotkey may never fire.`,
+            `[hotkeys] Unknown key '${key}' in '${formatForMessage(registration.hotkey)}' (names are case-sensitive)`,
           )
         }
       }

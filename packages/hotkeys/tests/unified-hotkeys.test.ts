@@ -286,7 +286,9 @@ describe('hotkey utilities accept sequences', () => {
   it('validateHotkey names the failing step', () => {
     expect(validateHotkey(['G', 'H']).valid).toBe(true)
     expect(validateHotkey([])).toMatchObject({ valid: false })
-    expect(validateHotkey(['G', 'Hyper+H']).errors[0]).toMatch(/^Step 2: /)
+    expect(validateHotkey(['G', 'Hyper+H']).errors[0]).toMatchObject({
+      step: 1,
+    })
   })
 
   it('formatForDisplay and matchesHeldModifiers accept sequences', () => {

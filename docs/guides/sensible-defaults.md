@@ -84,6 +84,8 @@ The [hotkey recorder](#recording-captures-what-the-user-pressed) records positio
 
 The exception is Shift that is needed to type a symbol. On a US layout, `?` is typed with Shift+/, so `?` matches without listing `Shift`. This applies to printable symbols, not letters, so `K` and `Shift+K` remain different bindings.
 
+Every hotkey needs a key that isn't a modifier. TypeScript rejects modifier-only hotkey strings such as `Shift+Alt+Mod` or `[ShiftLeft]`, and strings with an unknown modifier such as `Ctl+K`. A hotkey that does either anyway, such as one from plain JavaScript, saved data, or a chord object like `{ key: 'Shift' }`, registers nothing. To act while keys are held, use the held-key APIs instead.
+
 Two kinds of key events never match ordinary shortcuts:
 
 - **AltGr.** On Windows and Linux, AltGr types characters such as `@` and `€` on many layouts. A character it types matches a binding for that character, but never a `Control+Alt` shortcut, so typing an email address does not run a command. When AltGr+key types nothing new, such as AltGr+Home, or AltGr+F on a layout with nothing on that key, it does not fire `Home` or `F`. Windows reports AltGr as Control+Alt, so there it fires `Control+Alt` shortcuts instead: AltGr+Home triggers `Control+Alt+Home`, as in native Windows apps.
@@ -298,7 +300,7 @@ Turn it on if a component in your app calls `preventDefault()` on keys it handle
 
 ### Let an open overlay handle Escape
 
-A native modal `<dialog>` or an open popover gets Escape on its own, except a `popover="manual"` popover, which doesn't close on Escape. While one is open, hotkeys outside it skip Escape, so the browser closes it and your hotkey doesn't run. A hotkey targeted at the dialog or popover, or at an element inside it, still receives Escape. TanStack Hotkeys finds these elements in the document, not inside shadow roots.
+A native modal `<dialog>` or an open popover gets Escape on its own, except a `popover="manual"` popover, which doesn't close on Escape. While one is open, hotkeys outside it skip Escape, so the browser closes it and your hotkey doesn't run. A hotkey targeted at the dialog or popover, or at an element inside it, still receives Escape. When modal dialogs stack, only the top one counts: a hotkey targeted inside it receives Escape, and hotkeys in the dialogs underneath skip it. TanStack Hotkeys finds these elements in the document, not inside shadow roots.
 
 For other overlays, when the option above can't help, a global `Escape` hotkey and an open overlay both act on one key press:
 

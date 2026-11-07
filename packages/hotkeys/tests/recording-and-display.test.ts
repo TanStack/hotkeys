@@ -176,6 +176,16 @@ it('keeps recording after rejection and clears with only onClear', () => {
   expect(onClear).toHaveBeenCalledOnce()
   expect(r.store.state.isRecording).toBe(false)
 })
+it('rejects without a message when validate returns false', () => {
+  const onReject = vi.fn()
+  const r = recorder({ onRecord: vi.fn(), onReject, validate: () => false })
+  r.start()
+  press('s', 'KeyS')
+  expect(onReject).toHaveBeenCalledWith({
+    reason: 'validation',
+    hotkey: '[KeyS]',
+  })
+})
 it('checks conflicts without creating a manager', () => {
   HotkeyManager.resetInstance()
   expect(findHotkeyConflicts('Mod+S')).toEqual([])

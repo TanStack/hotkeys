@@ -68,7 +68,7 @@ it('creates a scope before Alpine is available, and explains the fix on first us
   const { createHotkeysScope } = await loadAdapter()
   const hotkeys = createHotkeysScope()
   expect(() => hotkeys.createHotkey('K', () => {})).toThrow(
-    'Call Alpine.plugin(hotkeysPlugin) before Alpine.start(), or set window.Alpine.',
+    'Call Alpine.plugin(hotkeysPlugin) before Alpine.start(), or set window.Alpine',
   )
   hotkeys.destroy()
 })

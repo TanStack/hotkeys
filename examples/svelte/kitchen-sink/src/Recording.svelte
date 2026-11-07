@@ -6,7 +6,22 @@
     createHotkeyRecorder,
     isHotkeySequence,
   } from '@tanstack/svelte-hotkeys'
-  import type { Hotkey, RecorderKeyMode } from '@tanstack/svelte-hotkeys'
+  import type {
+    Hotkey,
+    RecorderKeyMode,
+    RecorderRejection,
+  } from '@tanstack/svelte-hotkeys'
+
+  // The recorder sends a reason code, so the app writes the text
+  const rejectionText = ({ reason, message }: RecorderRejection) =>
+    message ??
+    {
+      'alt-graph': 'AltGr types characters. Record by key to use them.',
+      'missing-code': 'This key has no physical key code.',
+      whitespace: "Whitespace keys can't be recorded.",
+      validation: 'This hotkey is not allowed.',
+      conflict: 'This hotkey is already in use.',
+    }[reason]
   const log = getContext<(message: string) => void>('log')
   const initial: Hotkey = 'Alt+[KeyR]'
   let hotkey = $state<Hotkey>(initial),
@@ -41,7 +56,7 @@
       hotkey = initial
     },
     onReject: (r) => {
-      problem = r.message
+      problem = rejectionText(r)
     },
     onCancel: () => {
       problem = 'Cancelled'
@@ -68,7 +83,7 @@
       sequence = ['[KeyX]', '[KeyY]']
     },
     onReject: (r) => {
-      problem = r.message
+      problem = rejectionText(r)
     },
     onCancel: () => {
       problem = 'Cancelled'

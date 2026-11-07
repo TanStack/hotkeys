@@ -111,7 +111,7 @@ Pass `validate` to accept or reject each recording before it commits. Return `tr
 injectHotkeyRecorder({
   validate: (_hotkey, { parsedChord }) =>
     parsedChord.modifiers.length > 0 || 'Include a modifier.',
-  onReject: ({ message }) => setError(message),
+  onReject: ({ message }) => setError(message ?? 'Try another shortcut.'),
   onRecord: (hotkey) => saveHotkey(hotkey),
 })
 ```
@@ -138,9 +138,8 @@ Set `detectConflicts: true` to reject a hotkey that's already registered:
 ```ts
 injectHotkeyRecorder({
   detectConflicts: true,
-  onReject: ({ reason, message, conflicts }) => {
-    // reason is 'conflict', and conflicts lists the registrations it collides with
-    setError(message)
+  onReject: ({ reason }) => {
+    if (reason === 'conflict') setError('That shortcut is already in use.')
   },
   onRecord: (hotkey) => saveHotkey(hotkey),
 })
@@ -161,7 +160,7 @@ detectConflicts: {
 
 A conflict check finds hotkeys that could collide. It can't promise which callback a key press would run, because propagation, typing in fields, other listeners, and pages that haven't rendered all affect that. To check app hotkeys, including ones on pages that haven't rendered, use `findConflicts` from [app hotkeys](./app-hotkeys#change-hotkeys) instead.
 
-`onReject` receives a `reason`: `'conflict'`, `'validation'`, `'invalid'`, `'missing-code'` for a key press with no physical code, or `'alt-graph'` for AltGr typing a character. It also receives a `message`, the rejected `hotkey` when there is one, and the `conflicts` for a conflict.
+`onReject` receives a `reason`: `'conflict'`, `'validation'`, `'whitespace'` for a whitespace character, `'missing-code'` for a key press with no physical code, or `'alt-graph'` for AltGr typing a character. It also receives the rejected `hotkey` when there is one, the `conflicts` for a conflict, and the `message` your `validate` callback returned. The recorder sends no text of its own, so map each `reason` to your app's wording.
 
 To check a hotkey outside a recording, call `findHotkeyConflicts(hotkey, options)`. It takes the same options, and returns [registration views](./cheat-sheet-ui-helpers#list-the-hotkeys-on-screen).
 

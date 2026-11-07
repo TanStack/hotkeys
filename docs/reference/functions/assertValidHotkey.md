@@ -7,7 +7,7 @@ title: assertValidHotkey
 function assertValidHotkey(hotkey): void;
 ```
 
-Defined in: [validate.ts:132](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L132)
+Defined in: [validate.ts:134](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L134)
 
 Validates a hotkey and throws an error if invalid.
 Useful for development-time validation.
@@ -32,5 +32,5 @@ Error if the hotkey is invalid
 
 ```ts
 assertValidHotkey('Mod+S') // OK
-assertValidHotkey('') // Throws Error: Invalid hotkey: Hotkey cannot be empty
+assertValidHotkey('') // Throws Error: [hotkeys] Invalid hotkey '': empty
 ```

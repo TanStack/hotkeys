@@ -47,16 +47,8 @@ export function chordRejection(
   if (options.recordBy === 'key') return undefined
   // AltGr is character entry, often reported as synthetic Ctrl+Alt; macOS Option is handled separately.
   if (normalizeKeyboardEvent(event, options.platform).altGraph)
-    return {
-      reason: 'alt-graph',
-      message:
-        'AltGraph character entry cannot be recorded as a physical shortcut. Use key mode for characters.',
-    }
-  if (!hasUsableCode(event))
-    return {
-      reason: 'missing-code',
-      message: 'This event has no usable physical key code.',
-    }
+    return { reason: 'alt-graph' }
+  if (!hasUsableCode(event)) return { reason: 'missing-code' }
   return undefined
 }
 

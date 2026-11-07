@@ -6,7 +6,22 @@ import {
   useHotkey,
   useHotkeyRecorder,
 } from '@tanstack/vue-hotkeys'
-import type { Hotkey, RecorderKeyMode } from '@tanstack/vue-hotkeys'
+import type {
+  Hotkey,
+  RecorderKeyMode,
+  RecorderRejection,
+} from '@tanstack/vue-hotkeys'
+
+// The recorder sends a reason code, so the app writes the text
+const rejectionText = ({ reason, message }: RecorderRejection) =>
+  message ??
+  {
+    'alt-graph': 'AltGr types characters. Record by key to use them.',
+    'missing-code': 'This key has no physical key code.',
+    whitespace: "Whitespace keys can't be recorded.",
+    validation: 'This hotkey is not allowed.',
+    conflict: 'This hotkey is already in use.',
+  }[reason]
 
 const log = inject<(message: string) => void>('log')!
 const initial: Hotkey = 'Alt+[KeyR]'
@@ -38,7 +53,7 @@ const recorder = useHotkeyRecorder(() => ({
     hotkey.value = initial
   },
   onReject: (r) => {
-    problem.value = r.message
+    problem.value = rejectionText(r)
   },
   onCancel: () => {
     problem.value = 'Cancelled'
@@ -65,7 +80,7 @@ const seq = useHotkeyRecorder(() => ({
     sequence.value = ['[KeyX]', '[KeyY]']
   },
   onReject: (r) => {
-    problem.value = r.message
+    problem.value = rejectionText(r)
   },
   onCancel: () => {
     problem.value = 'Cancelled'

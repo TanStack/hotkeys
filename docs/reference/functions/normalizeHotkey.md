@@ -9,7 +9,7 @@ title: normalizeHotkey
 function normalizeHotkey(hotkey, platform?): HotkeyChord;
 ```
 
-Defined in: [parse.ts:255](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L255)
+Defined in: [parse.ts:237](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L237)
 
 Normalizes a hotkey to its canonical string form. Accepts a chord string, a
 chord object, a parsed chord, or a sequence of any of these. Each sequence
@@ -55,7 +55,7 @@ normalizeHotkey(parseKeyboardEvent(event)) // The chord the event pressed
 function normalizeHotkey(hotkey, platform?): Hotkey;
 ```
 
-Defined in: [parse.ts:259](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L259)
+Defined in: [parse.ts:241](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/parse.ts#L241)
 
 Normalizes a hotkey to its canonical string form. Accepts a chord string, a
 chord object, a parsed chord, or a sequence of any of these. Each sequence

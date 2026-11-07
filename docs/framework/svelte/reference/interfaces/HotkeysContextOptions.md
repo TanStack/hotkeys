@@ -42,8 +42,8 @@ Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:57](https://github.com/Ta
 
 The user's saved custom hotkeys. When the value changes, such as after
 saved data loads or the user signs in, it replaces the current custom
-hotkeys. `undefined` leaves them unchanged; `null` clears them. Invalid
-entries are ignored with a warning.
+hotkeys. `undefined` leaves them unchanged; `null` clears them. Unknown
+ids and invalid entries are ignored.
 
 ***
 

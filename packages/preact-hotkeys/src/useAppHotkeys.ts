@@ -13,7 +13,7 @@ function useRequiredStore(hook: string): AppHotkeysStore<RegisteredAppHotkeys> {
   const store = useAppHotkeysStoreState()
   if (!store) {
     throw new Error(
-      `${hook} requires a HotkeysProvider with an appHotkeys prop`,
+      `[hotkeys] ${hook} requires a HotkeysProvider with an appHotkeys prop`,
     )
   }
   // Not a no-op once apps augment `Register`.

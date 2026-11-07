@@ -656,6 +656,14 @@ const stylesFactory = (theme: 'light' | 'dark') => {
       border-radius: ${border.radius.sm};
       border: 1px solid ${t(colors.blue[200], colors.blue[800] + alpha[30])};
     `,
+    issueItem: css`
+      font-size: ${fontSize.xs};
+      color: ${t(colors.yellow[700], colors.yellow[400])};
+      padding: ${size[1]} ${size[2]};
+      background: ${t(colors.yellow[50], colors.yellow[900] + alpha[20])};
+      border-radius: ${border.radius.sm};
+      border: 1px solid ${t(colors.yellow[200], colors.yellow[800] + alpha[30])};
+    `,
     optionRow: css`
       display: flex;
       justify-content: space-between;

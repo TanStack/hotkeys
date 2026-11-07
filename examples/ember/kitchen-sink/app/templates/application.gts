@@ -21,8 +21,21 @@ import type {
   RegisterableHotkey,
   HotkeyRegistrationView,
   RecorderKeyMode,
+  RecorderRejection,
   HotkeyCallback,
 } from '@tanstack/ember-hotkeys'
+
+// The recorder sends a reason code, so the app writes the text
+const rejectionText = ({ reason, message }: RecorderRejection) =>
+  message ??
+  {
+    'alt-graph': 'AltGr types characters. Record by key to use them.',
+    'missing-code': 'This key has no physical key code.',
+    whitespace: "Whitespace keys can't be recorded.",
+    validation: 'This hotkey is not allowed.',
+    conflict: 'This hotkey is already in use.',
+  }[reason]
+
 const {
   onHotkey,
   onHotkeys,
@@ -550,7 +563,7 @@ class Recording extends Component<{
       (context.kind === 'chord' &&
         context.parsedChord.modifiers.length > 0) ||
       'Include a modifier for this action.',
-    onReject: ({ message }) => (this.problem = message),
+    onReject: (rejection) => (this.problem = rejectionText(rejection)),
     onRecord: (value) => {
       this.hotkey = value
       this.problem = ''
@@ -583,7 +596,7 @@ class Recording extends Component<{
         `Recorded sequence ${formatForDisplay(value, { sequenceSeparator: ' → ' })}`,
       )
     },
-    onReject: (reason) => (this.sequenceProblem = reason.message),
+    onReject: (rejection) => (this.sequenceProblem = rejectionText(rejection)),
     onClear: () => {
       this.sequence = ['[KeyX]', '[KeyY]']
       this.sequenceProblem = 'Restored default sequence.'

@@ -12,8 +12,21 @@ import {
 import type {
   EmberHotkeyDefinition,
   Hotkey,
+  HotkeyIssue,
   HotkeyRegistrationView,
 } from '@tanstack/ember-hotkeys'
+
+// validateHotkey sends reason codes, so the app writes the text
+const issueText = ({ reason, part }: HotkeyIssue) =>
+  ({
+    empty: 'Enter a hotkey.',
+    'empty-part': 'Remove the empty part between + signs.',
+    'unknown-modifier': `Unknown modifier ${part}.`,
+    'invalid-physical-key': `${part} isn't a physical key code.`,
+    'modifier-only': `Add a key after ${part}.`,
+    'unknown-key': `Unknown key ${part}. Key names are case-sensitive.`,
+  })[reason]
+
 const eq = (a: unknown, b: unknown) => a === b
 const neq = (a: unknown, b: unknown) => a !== b
 const gt = (a: number, b: number) => a > b
@@ -275,7 +288,9 @@ class DynamicHotkeysDemo extends Component {
     if (!this.newLabel.trim()) return
     const validation = validateHotkey(trimmed)
     if (!validation.valid || validation.warnings.length > 0) {
-      this.error = [...validation.errors, ...validation.warnings].join(' ')
+      this.error = [...validation.errors, ...validation.warnings]
+        .map(issueText)
+        .join(' ')
       return
     }
     this.error = ''

@@ -6,6 +6,7 @@ import {
   splitChordParts,
 } from './_keyboard-event'
 import { MODIFIER_ORDER, normalizeKeyName } from './constants'
+import { chordHasKey } from './_registration'
 import { detectPlatform, resolveModifier } from './platform'
 import type { CanonicalModifier, Key } from './key.types'
 import type {
@@ -72,36 +73,17 @@ function parseChordString(
   chord: string,
   platform: Platform,
 ): ParsedHotkeyChord {
-  const parts = splitChordParts(chord)
+  const parts = splitChordParts(chord).map((part) => part.trim())
+  // The last part is the key, and every other part is a modifier
+  const key = normalizeKeyName(parts.pop()!)
   const modifiers: Set<CanonicalModifier> = new Set()
-  let key = ''
 
-  for (let i = 0; i < parts.length; i++) {
-    const part = parts[i]!.trim()
-
-    if (i === parts.length - 1) {
-      // Last part is always the key
-      key = normalizeKeyName(part)
-    } else {
-      // All other parts are modifiers
-      const alias = modifierAlias(part)
-
-      if (alias) {
-        const resolved = resolveModifier(alias, platform)
-        modifiers.add(resolved)
-      } else {
-        // Unknown modifier, treat as part of the key if it's the only part
-        // or ignore if there are more parts
-        if (parts.length === 1) {
-          key = normalizeKeyName(part)
-        }
-      }
-    }
-  }
-
-  // If no key was found (empty string), use the last part as-is
-  if (!key && parts.length > 0) {
-    key = normalizeKeyName(parts[parts.length - 1]!.trim())
+  for (const part of parts) {
+    const alias = modifierAlias(part)
+    // An unknown modifier leaves the chord without a key, so it registers
+    // nothing instead of firing on the bare key.
+    if (!alias) return toParsedChord({ key: '' }, false, false, false, false)
+    modifiers.add(resolveModifier(alias, platform))
   }
 
   const code = physicalCodeOf(key)
@@ -347,20 +329,7 @@ export function hasNonModifierKey(
   chord: HotkeyChord | ParsedHotkeyChord | (string & {}),
   platform: Platform = detectPlatform(),
 ): boolean {
-  const parsed =
-    typeof chord === 'string' ? parseChordString(chord, platform) : chord
-
-  if (parsed.code !== undefined) {
-    // Physical modifier codes identify a side, but still are not action keys.
-    return (
-      parsed.code.length > 0 &&
-      !/^(Control|Shift|Alt|Meta)(Left|Right)$/.test(parsed.code)
-    )
-  }
-
-  // Check if the key part is actually a modifier
-  const keyIsModifier = isModifierKey(parsed.key)
-
-  // A valid hotkey must have a non-modifier key
-  return !keyIsModifier && parsed.key.length > 0
+  return chordHasKey(
+    typeof chord === 'string' ? parseChordString(chord, platform) : chord,
+  )
 }

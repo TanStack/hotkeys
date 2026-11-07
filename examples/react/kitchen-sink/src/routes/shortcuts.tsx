@@ -12,7 +12,19 @@ import type {
   AppHotkeyId,
   Hotkey,
   RecorderKeyMode,
+  RecorderRejection,
 } from '@tanstack/react-hotkeys'
+
+// The recorder sends a reason code, so the app writes the text
+const rejectionText = ({ reason, message }: RecorderRejection) =>
+  message ??
+  {
+    'alt-graph': 'AltGr types characters. Record by key to use them.',
+    'missing-code': 'This key has no physical key code.',
+    whitespace: "Whitespace keys can't be recorded.",
+    validation: 'This hotkey is not allowed.',
+    conflict: 'This hotkey is already in use.',
+  }[reason]
 
 export const Route = createLazyRoute('/shortcuts')({ component: Shortcuts })
 
@@ -77,7 +89,8 @@ function Shortcuts() {
         `Conflicts with ${conflicts.map((c) => c.meta?.name ?? c.id).join(', ')}.`
       )
     },
-    onReject: ({ message }) => setNotice({ message, tone: 'error' }),
+    onReject: (rejection) =>
+      setNotice({ message: rejectionText(rejection), tone: 'error' }),
     onRecord: (hotkey) => {
       if (!editing) return
       setCustomHotkey(editing, hotkey)

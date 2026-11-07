@@ -1,13 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import {
-  AppHotkeysStore,
-  HotkeyManager,
-  checkHotkey,
-  defineAppHotkeys,
-  getHotkeyManager,
-} from '../src'
-
-const appHotkeys = defineAppHotkeys({ 'doc.save': { hotkey: 'Mod+S' } })
+import { HotkeyManager, checkHotkey, getHotkeyManager } from '../src'
 
 // Every console call in the library, each triggered once
 const scenarios: Record<string, () => void> = {
@@ -25,19 +17,6 @@ const scenarios: Record<string, () => void> = {
     manager.activateScope('dialog', { exclusive: true })
     manager.activateScope('dialog', { exclusive: true })
   },
-  'custom hotkey for an unknown id': () =>
-    new AppHotkeysStore(appHotkeys, {
-      customHotkeys: { 'doc.missing': 'Mod+M' } as never,
-    }),
-  'invalid custom hotkey': () =>
-    new AppHotkeysStore(appHotkeys, {
-      customHotkeys: { 'doc.save': 42 } as never,
-    }),
-  'setCustomHotkey for an unknown id': () =>
-    new AppHotkeysStore(appHotkeys).setCustomHotkey(
-      'doc.missing' as never,
-      'Mod+M',
-    ),
 }
 
 function countLogs(run: () => void): number {
@@ -48,6 +27,7 @@ function countLogs(run: () => void): number {
 }
 
 afterEach(() => {
+  vi.unstubAllGlobals()
   vi.unstubAllEnvs()
   vi.restoreAllMocks()
   HotkeyManager.resetInstance()
@@ -66,6 +46,23 @@ describe('console output', () => {
       expect(countLogs(run)).toBe(0)
     },
   )
+
+  // Plain ESM from a CDN has no bundler to replace process.env
+  it.each(Object.entries(scenarios))(
+    'does not throw for %s without process',
+    (_, run) => {
+      vi.stubGlobal('process', undefined)
+      expect(() => countLogs(run)).not.toThrow()
+    },
+  )
+
+  // Every scope other than global reaches the exclusive-scope check
+  it('activates a non-exclusive scope without process', () => {
+    vi.stubGlobal('process', undefined)
+    const manager = getHotkeyManager()
+    expect(() => manager.activateScope('panel')).not.toThrow()
+    expect(manager.isScopeActive('panel')).toBe(true)
+  })
 
   it('still returns validity from checkHotkey in production', () => {
     vi.stubEnv('NODE_ENV', 'production')

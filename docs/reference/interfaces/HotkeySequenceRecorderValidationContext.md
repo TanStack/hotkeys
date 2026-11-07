@@ -3,7 +3,7 @@ id: HotkeySequenceRecorderValidationContext
 title: HotkeySequenceRecorderValidationContext
 ---
 
-Defined in: [hotkey-recorder.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L54)
+Defined in: [hotkey-recorder.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L69)
 
 Validation context for a recorded sequence.
 
@@ -15,7 +15,7 @@ Validation context for a recorded sequence.
 events: readonly KeyboardEvent[];
 ```
 
-Defined in: [hotkey-recorder.ts:57](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L57)
+Defined in: [hotkey-recorder.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L72)
 
 The event that recorded each step.
 
@@ -27,7 +27,7 @@ The event that recorded each step.
 kind: "sequence";
 ```
 
-Defined in: [hotkey-recorder.ts:55](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L55)
+Defined in: [hotkey-recorder.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L70)
 
 ***
 
@@ -37,6 +37,6 @@ Defined in: [hotkey-recorder.ts:55](https://github.com/TanStack/hotkeys/blob/mai
 parsedSequence: ParsedHotkeyChord[];
 ```
 
-Defined in: [hotkey-recorder.ts:59](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L59)
+Defined in: [hotkey-recorder.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L74)
 
 Each step with `Mod` resolved for the recorder's platform.

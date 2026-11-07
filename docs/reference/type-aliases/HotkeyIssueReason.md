@@ -1,0 +1,26 @@
+---
+id: HotkeyIssueReason
+title: HotkeyIssueReason
+---
+
+```ts
+type HotkeyIssueReason = 
+  | "empty"
+  | "empty-part"
+  | "unknown-modifier"
+  | "invalid-physical-key"
+  | "modifier-only"
+  | "unknown-key";
+```
+
+Defined in: [validate.ts:192](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/validate.ts#L192)
+
+Why a hotkey is invalid or may never fire:
+
+- `'empty'`: the hotkey or sequence is empty.
+- `'empty-part'`: a part between `+` signs is empty or whitespace.
+- `'unknown-modifier'`: a modifier isn't one the library knows, such as `Ctl`.
+- `'invalid-physical-key'`: a bracketed key isn't a `KeyboardEvent.code`.
+- `'modifier-only'`: the key is a modifier, such as `Shift` or `[ShiftLeft]`.
+- `'unknown-key'` (warning): the key isn't written like a known key name.
+  Key names are case-sensitive, so `escape` never matches `Escape`.

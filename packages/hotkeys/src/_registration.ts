@@ -1,3 +1,4 @@
+import { isModifierCode, modifierAlias } from './_keyboard-event'
 import type { ConflictBehavior, ParsedHotkeyChord } from './hotkey.types'
 
 /** The scope of hotkeys that do not name one. It is always active unless an exclusive scope is active. */
@@ -49,9 +50,15 @@ export function withDefaults<T extends object>(
   return { ...options, ...definedOptions<T>(defaults, options) }
 }
 
-/** Whether a parsed chord has a key. An empty one would match key-less events. */
+/**
+ * Whether a parsed chord has a key that isn't a modifier. A chord without one
+ * registers nothing: an empty key would match key-less events, and a
+ * modifier-only chord isn't supported.
+ */
 export function chordHasKey(chord: ParsedHotkeyChord): boolean {
-  return !!(chord.code || chord.key)
+  return chord.code !== undefined
+    ? !!chord.code && !isModifierCode(chord.code)
+    : !!chord.key && !modifierAlias(chord.key)
 }
 
 /**
@@ -86,22 +93,17 @@ export function handleConflict(
   }
 
   if (conflictBehavior === 'warn') {
-    if (process.env.NODE_ENV !== 'production') {
-      console.warn(
-        `'${keyDisplay}' is already registered. Multiple handlers may be triggered. ` +
-          `Use conflictBehavior: 'replace' to replace the existing handler, ` +
-          `or conflictBehavior: 'allow' to suppress this warning.`,
-      )
+    if (
+      typeof process !== 'undefined' &&
+      process.env.NODE_ENV !== 'production'
+    ) {
+      console.warn(`[hotkeys] '${keyDisplay}' is already registered`)
     }
     return
   }
 
   if (conflictBehavior === 'error') {
-    throw new Error(
-      `'${keyDisplay}' is already registered. ` +
-        `Use conflictBehavior: 'replace' to replace the existing handler, ` +
-        `or conflictBehavior: 'allow' to allow multiple registrations.`,
-    )
+    throw new Error(`[hotkeys] '${keyDisplay}' is already registered`)
   }
 
   // At this point, conflictBehavior must be 'replace'
