@@ -1,4 +1,5 @@
 import { normalizeKeyName } from './constants'
+import { codeToLogicalKey } from './_keyboard-event'
 
 type Target = HTMLElement | Document | Window
 
@@ -401,7 +402,11 @@ export function shouldIgnoreInputEvent(
 ): boolean {
   let blocker = ignoreCache.get(event)
   if (!blocker) {
-    const key = normalizeKeyName(event.key)
+    // Read an Unidentified key from its position, as the matcher does
+    const key =
+      event.key === 'Unidentified'
+        ? (codeToLogicalKey(event.code) ?? event.key)
+        : normalizeKeyName(event.key)
     blocker = findBlocker(
       event,
       getTargetDocument(target),

@@ -211,6 +211,25 @@ it('preserves native activation for a physical-code binding', () => {
   expect(callback).not.toHaveBeenCalled()
 })
 
+// Keys the browser reports as Unidentified still match by position (#229)
+it('preserves native activation for an Unidentified key', () => {
+  const element = focusControl()
+  const space = vi.fn()
+  const physical = vi.fn()
+  const enter = vi.fn()
+  HotkeyManager.getInstance().register('Space', space)
+  HotkeyManager.getInstance().register('Shift+[Space]', physical)
+  HotkeyManager.getInstance().register('Enter', enter)
+  dispatchKey(element, 'Unidentified', { code: 'Space' })
+  dispatchKey(element, 'Unidentified', { code: 'Space', shiftKey: true })
+  dispatchKey(element, 'Unidentified', { code: 'NumpadEnter' })
+  expect(space).not.toHaveBeenCalled()
+  expect(enter).not.toHaveBeenCalled()
+
+  // Shift+Space isn't activation, so the hotkey still fires
+  expect(physical).toHaveBeenCalledOnce()
+})
+
 it('preserves native activation in an iframe for an iframe document target', () => {
   const iframe = document.createElement('iframe')
   document.body.appendChild(iframe)

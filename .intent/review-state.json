@@ -2525,16 +2525,15 @@
       "evidence": ["docs/reference/type-aliases/Target.md"]
     },
     "source:packages/hotkeys/src/_event-target.ts": {
-      "fingerprint": "26ac99cef5a4f5f460cef6cd60568744db596fdfa58f1783939652c687a02fe2",
+      "fingerprint": "7f966ad519414a5796f0c0c236e8e488563a44840d676cb929d2784aaae5b404",
       "snapshot": {
-        "packages/hotkeys/src/_event-target.ts": "dcc6bb64796da730594f778b938b05edccc9e7ecd6346a718a39f1e20af89ee3"
+        "packages/hotkeys/src/_event-target.ts": "e96ac4e5d9e753a52eaf5642f1248ea8b6316c7cc750cd8dfbc33f4d647cd564"
       },
-      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "head": "56025b56d4448f75f550d8c6b98e2098db8f8413",
       "outcome": "no-change",
-      "reason": "Stacked modal dialogs: only the top one takes Escape. The skill makes no claim about native dialogs; the guide documents it.",
+      "reason": "Ownership checks now read an Unidentified key from its code, matching the matcher's fallback; no skill describes Unidentified handling or native activation internals.",
       "evidence": [
-        "packages/hotkeys/src/_event-target.ts",
-        "docs/guides/sensible-defaults.md"
+        "grep for Unidentified and composition in packages/*/skills and _artifacts finds no matching guidance."
       ]
     },
     "source:docs/config.json": {
@@ -11856,6 +11855,18 @@
       "reason": "Core fix for #229 and its tests; skills don't describe Unidentified or composition matching.",
       "evidence": [
         "git diff origin/main shows matching, recorder, and test changes only; no skill text references this behavior."
+      ]
+    },
+    "source:packages/hotkeys/tests/native-activation.test.ts": {
+      "fingerprint": "5ff287604803cd117aa253bafb51e0e544c2442d272bb18ce4d688e23d1755fc",
+      "snapshot": {
+        "packages/hotkeys/tests/native-activation.test.ts": "436f71f34534e2fcf82f80a036cb6d3e770444324d3df2dc65c7f8f3939a3cc3"
+      },
+      "head": "56025b56d4448f75f550d8c6b98e2098db8f8413",
+      "outcome": "no-change",
+      "reason": "Ownership checks now read an Unidentified key from its code, matching the matcher's fallback; no skill describes Unidentified handling or native activation internals.",
+      "evidence": [
+        "grep for Unidentified and composition in packages/*/skills and _artifacts finds no matching guidance."
       ]
     }
   }
