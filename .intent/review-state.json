@@ -71,14 +71,14 @@
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "59c8f84fa60084dcc71cdd8f61424528aff34029c22774de49cb9d697612f538",
+      "fingerprint": "d52c7d2955f60da45140c1bacdaea6163a119dbc55c100889179b2c31a137285",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "8f38ea6fda3e05e5b5e6445c376fdfecd4ea0118fb897e822ba6f2e8e6114885",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
         "docs/framework/react/guides/custom-hotkey-recording.md": "36f17bd33b5326bd396974ba24e5c06e3ec4218ad25045c0ee4910635f292ea7",
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md": "7c431ae3bee4ffcd22676ac533adfcd29cfb22ed68cb7dc47d1470a8744d7276",
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md": "0dc668ed5bcdc50b9ad290847f551d8da35cbb2c1f061ca363aa1bcb78d31b28",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
-        "packages/hotkeys/src/app-hotkeys.ts": "e157e790649509e92b42105ccf2da77392ef8243969cc3f00d375eb7a5c745b1",
+        "packages/hotkeys/src/app-hotkeys.ts": "d407aec4f59370cfd5dc3a8a4feca02af8153520020144dd0f0f4cf506d09de5",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
         "packages/hotkeys/src/hotkey-recorder.ts": "61fc7bf0c290e7806113638a09b382e975a21d90dab989b6aff720530ea47397",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
@@ -90,9 +90,9 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "b846fa18c44f94b03d414a4d7df592c5371cc669",
-      "outcome": "no-change",
-      "reason": "Dev-only warnings now check that process exists before reading NODE_ENV. No API, docs, or skill guidance changes.",
+      "head": "33cb28743ebe6330713fb89c920ce983ed4098d2",
+      "outcome": "updated",
+      "reason": "Unknown saved ids are now dropped silently, so the skill no longer says they warn.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
         "packages/hotkeys/src/app-hotkeys.ts"
@@ -292,7 +292,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "e489e5e861c69f561d98321d5218cfe4aed53486b54b96b2d5695fef303782ce",
+      "fingerprint": "a80256e44bef11a12c5b65fa31c184f2aeec2cd06db735fb772272dc8095ea47",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -348,12 +348,12 @@
         "packages/ember-hotkeys/src/useHotkey.ts": "afddc8e2c34ec8bb6351d4162d38710c60927c60cbb0cc6695b5dfd751d32159",
         "packages/ember-hotkeys/src/useHotkeyRecorder.ts": "40e7f4d02718755786d43f90fa5c2748abd6b46afbfe6dd864ca74cb7895a379",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8",
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md": "7c431ae3bee4ffcd22676ac533adfcd29cfb22ed68cb7dc47d1470a8744d7276",
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md": "0dc668ed5bcdc50b9ad290847f551d8da35cbb2c1f061ca363aa1bcb78d31b28",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
-        "packages/hotkeys/src/app-hotkeys.ts": "e157e790649509e92b42105ccf2da77392ef8243969cc3f00d375eb7a5c745b1",
+        "packages/hotkeys/src/app-hotkeys.ts": "d407aec4f59370cfd5dc3a8a4feca02af8153520020144dd0f0f4cf506d09de5",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
         "packages/hotkeys/src/hotkey-manager.ts": "f88bdcaa130e8b0d95d96cd5033bb9f0db49ffd0e3301a81c8f7e112c6f942af",
         "packages/hotkeys/src/hotkey-recorder.ts": "61fc7bf0c290e7806113638a09b382e975a21d90dab989b6aff720530ea47397",
@@ -424,12 +424,12 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "b846fa18c44f94b03d414a4d7df592c5371cc669",
+      "head": "33cb28743ebe6330713fb89c920ce983ed4098d2",
       "outcome": "no-change",
-      "reason": "Dev-only warnings now check that process exists before reading NODE_ENV. No API, docs, or skill guidance changes.",
+      "reason": "App hotkeys no longer warn about unknown ids or invalid saved hotkeys. No API change.",
       "evidence": [
-        "packages/hotkeys/src/app-hotkeys.ts",
-        "packages/hotkeys/src/hotkey-manager.ts"
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "packages/hotkeys/src/app-hotkeys.ts"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -2243,13 +2243,13 @@
       "evidence": ["packages/vue-hotkeys/tests/scopes.test.ts"]
     },
     "source:docs/reference/classes/AppHotkeysStore.md": {
-      "fingerprint": "cf7a83809c82b3859fe8aecd1f66f7e2c9f338f8ea48be4d74da57d7fd4fc311",
+      "fingerprint": "199b861c416791990157d8511a98c72ec2a6c63e8c4d72527daa7f265686aca1",
       "snapshot": {
-        "docs/reference/classes/AppHotkeysStore.md": "b42a26d081250f1f87728665456fd365ef6449a6a139600b86a6a3f3eb00ee4f"
+        "docs/reference/classes/AppHotkeysStore.md": "73fb949f3afeb7adb749265d9822ccebe0d3be2d47dffcc469d41d4fe7e5d79b"
       },
-      "head": "e82acbc9cd32dc5084a9d3cb93468d0d90675a69",
+      "head": "33cb28743ebe6330713fb89c920ce983ed4098d2",
       "outcome": "no-change",
-      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts and hotkey-manager.ts grew.",
+      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts shrank.",
       "evidence": ["docs/reference/classes/AppHotkeysStore.md"]
     },
     "source:docs/reference/functions/defineAppHotkeys.md": {
@@ -2265,13 +2265,13 @@
       ]
     },
     "source:docs/reference/functions/getAppHotkeyRegistrationOptions.md": {
-      "fingerprint": "c8cce7251d3f79eca6598ecc0d618d258ee395ac8d5cd0a07a2a733df8862f5a",
+      "fingerprint": "6eaa6cf14ae399c7829ed4d6eadf6191dada58dfdef260545daf7c6e4a9ff79d",
       "snapshot": {
-        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "9884a05a4fe9dac2686e59ee4bc4b39d7cdc000cd14c34dae73bd44e9800a54e"
+        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "7a4a194ebda99ddcef4280b51711272df715296c6fb3801565cb81884ae4318e"
       },
-      "head": "e82acbc9cd32dc5084a9d3cb93468d0d90675a69",
+      "head": "33cb28743ebe6330713fb89c920ce983ed4098d2",
       "outcome": "no-change",
-      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts and hotkey-manager.ts grew.",
+      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts shrank.",
       "evidence": [
         "docs/reference/functions/getAppHotkeyRegistrationOptions.md"
       ]
@@ -2301,33 +2301,33 @@
       ]
     },
     "source:docs/reference/functions/provideAppHotkeys.md": {
-      "fingerprint": "6579534bf427ff142f2137b7f3214c2a33e7b37a9ef8ed004cc2d550d6cc0aa1",
+      "fingerprint": "9664c06bb1c1e430a3bfa3f8ee655cc2ab109b5d351fcf9b95bebc49fdc5a666",
       "snapshot": {
-        "docs/reference/functions/provideAppHotkeys.md": "7333c3aaa42a99dcd1c2fa95b1760b06bb4e3dd2a68c29cd1f0541d8152a1461"
+        "docs/reference/functions/provideAppHotkeys.md": "581d11596a68ec3d7abe7183818a0ba1c62bc7e78f2f4d97f54f09221a10c865"
       },
-      "head": "e82acbc9cd32dc5084a9d3cb93468d0d90675a69",
+      "head": "33cb28743ebe6330713fb89c920ce983ed4098d2",
       "outcome": "no-change",
-      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts and hotkey-manager.ts grew.",
+      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts shrank.",
       "evidence": ["docs/reference/functions/provideAppHotkeys.md"]
     },
     "source:docs/reference/functions/publishAppHotkeysStore.md": {
-      "fingerprint": "2bee900c541d62cb590bb6005487488ccff94319fb643690349cb988992f2818",
+      "fingerprint": "72d42bfd5c8bc5b5e94e4b08b6f571af4daedaf9180e0e89c1cb020cc59e1b6b",
       "snapshot": {
-        "docs/reference/functions/publishAppHotkeysStore.md": "a48765aa34417b6e29b463123a16dd09d132e7a524c5853e29155f245cce9098"
+        "docs/reference/functions/publishAppHotkeysStore.md": "c99bd0e4dd9f8bc7351b2ca4bfbb5c445c6b5b554b781d9a0cdb5d0c1c554b95"
       },
-      "head": "e82acbc9cd32dc5084a9d3cb93468d0d90675a69",
+      "head": "33cb28743ebe6330713fb89c920ce983ed4098d2",
       "outcome": "no-change",
-      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts and hotkey-manager.ts grew.",
+      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts shrank.",
       "evidence": ["docs/reference/functions/publishAppHotkeysStore.md"]
     },
     "source:docs/reference/functions/resolveAppHotkey.md": {
-      "fingerprint": "e2ffd8b74ffe014d58d2e2ff861329b5ad96baf38e190d4831d717ae8f13517a",
+      "fingerprint": "9439b35e21aefc449ec6c1896e83dd9a6869f8959c7116e70df0ab7efc1fdadc",
       "snapshot": {
-        "docs/reference/functions/resolveAppHotkey.md": "89b49d121bfa2e557744e9e68de8ca378c3f322316d5bc6c6e57eed17b26e632"
+        "docs/reference/functions/resolveAppHotkey.md": "9e716d5700546819fae2c21032bad94e8a728a0cc32c8e0a9d946799192ebcaf"
       },
-      "head": "e82acbc9cd32dc5084a9d3cb93468d0d90675a69",
+      "head": "33cb28743ebe6330713fb89c920ce983ed4098d2",
       "outcome": "no-change",
-      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts and hotkey-manager.ts grew.",
+      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts shrank.",
       "evidence": ["docs/reference/functions/resolveAppHotkey.md"]
     },
     "source:docs/reference/interfaces/AppHotkey.md": {
@@ -2355,33 +2355,33 @@
       ]
     },
     "source:docs/reference/interfaces/AppHotkeyListItem.md": {
-      "fingerprint": "78c0e6d8d8687c9d82cf69642379688f266e7840a1433833b96b4bf1b2cda6b7",
+      "fingerprint": "a80a27eb40c48f2da172bab93f6ef28b26b8c5c7eeb8d0869f17ad96ed31cc4f",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeyListItem.md": "f0f33efc0ae4cd910c9979e4d94a42eb616a76fadca25445a17feefd3613adcf"
+        "docs/reference/interfaces/AppHotkeyListItem.md": "83908279727b7be6a6df17799d406ef5becb6f728916aa855648c7c3af37eaa0"
       },
-      "head": "e82acbc9cd32dc5084a9d3cb93468d0d90675a69",
+      "head": "33cb28743ebe6330713fb89c920ce983ed4098d2",
       "outcome": "no-change",
-      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts and hotkey-manager.ts grew.",
+      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts shrank.",
       "evidence": ["docs/reference/interfaces/AppHotkeyListItem.md"]
     },
     "source:docs/reference/interfaces/AppHotkeysState.md": {
-      "fingerprint": "06e9ce58a39a13f98e4a21716794ef866dc21290bb8a832e64d81d52079dac2b",
+      "fingerprint": "9bc0772b25ce6e19243cfab9e268d0114f1f7656047cfc10f2e880db12028cea",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeysState.md": "bda224a3beb18d38f862936929eb0c6b7cb20a801752727069c319d86316e403"
+        "docs/reference/interfaces/AppHotkeysState.md": "08c6e72b3dcbe676ef9df456dbd825d399513ee2bfa103a16e138b2b0aa17c08"
       },
-      "head": "e82acbc9cd32dc5084a9d3cb93468d0d90675a69",
+      "head": "33cb28743ebe6330713fb89c920ce983ed4098d2",
       "outcome": "no-change",
-      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts and hotkey-manager.ts grew.",
+      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts shrank.",
       "evidence": ["docs/reference/interfaces/AppHotkeysState.md"]
     },
     "source:docs/reference/interfaces/AppHotkeysStoreOptions.md": {
-      "fingerprint": "3113a34019bad3af0ec8178685f126ccfb3dea1b0496f5a000cec3e8514aac3d",
+      "fingerprint": "0c8b9935ecd082547a860589a7cc12d2a2928fdbe81f59fc858b9c0561b9977a",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "a1a948ee432abe2e48f7fabc47a63742088c20bb18a20e777ee692a390250ec0"
+        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "322ee3ab48e8aac4242ba3a01391202edb2cd4b4759f0c1b618b17204f63e475"
       },
-      "head": "e82acbc9cd32dc5084a9d3cb93468d0d90675a69",
+      "head": "33cb28743ebe6330713fb89c920ce983ed4098d2",
       "outcome": "no-change",
-      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts and hotkey-manager.ts grew.",
+      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts shrank.",
       "evidence": ["docs/reference/interfaces/AppHotkeysStoreOptions.md"]
     },
     "source:docs/reference/interfaces/Register.md": {
@@ -2457,13 +2457,13 @@
       ]
     },
     "source:docs/reference/type-aliases/AppHotkeyStatus.md": {
-      "fingerprint": "2d8055ecbcb3287a8338e5e81a9ab16b6eca27ccda71ea1443a66d4935e73841",
+      "fingerprint": "d8079463e88f368576a79a38e698ede623f78e365e3accfca482b7f4b85ce1ff",
       "snapshot": {
-        "docs/reference/type-aliases/AppHotkeyStatus.md": "af4f2e61bbc2dfb7017c7743f5abc63976e760f61ce8cb1457b1ac8ebf429bc1"
+        "docs/reference/type-aliases/AppHotkeyStatus.md": "1651f5fd45d5c1e24a6343ecad24aa9ed828fa3cec962a763370ab9ef44b47ae"
       },
-      "head": "e82acbc9cd32dc5084a9d3cb93468d0d90675a69",
+      "head": "33cb28743ebe6330713fb89c920ce983ed4098d2",
       "outcome": "no-change",
-      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts and hotkey-manager.ts grew.",
+      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts shrank.",
       "evidence": ["docs/reference/type-aliases/AppHotkeyStatus.md"]
     },
     "source:docs/reference/type-aliases/AppHotkeys.md": {
@@ -5334,13 +5334,13 @@
       "evidence": ["packages/hotkeys/tests/adapter.test.ts"]
     },
     "source:packages/hotkeys/tests/production-logs.test.ts": {
-      "fingerprint": "3b8593af9f699a34244dd45f6d3c0715d7f3513c27896e0e55884897caa4d3cf",
+      "fingerprint": "374269bb4727a77782269fefcefc9d3b99e626753aa0f397e83910cbe4fe9cff",
       "snapshot": {
-        "packages/hotkeys/tests/production-logs.test.ts": "06a550fbbf73eb45dd7dec516cef9e3c5b7312861f8d6414afe2fca9d14a752d"
+        "packages/hotkeys/tests/production-logs.test.ts": "f4f5a61514595135b708755f31b011d30b627d2e689a42bd1abfee91258f0d90"
       },
-      "head": "b846fa18c44f94b03d414a4d7df592c5371cc669",
+      "head": "33cb28743ebe6330713fb89c920ce983ed4098d2",
       "outcome": "no-change",
-      "reason": "Dev-only warnings now check that process exists before reading NODE_ENV. No API, docs, or skill guidance changes.",
+      "reason": "App hotkeys no longer warn about unknown ids or invalid saved hotkeys, so their log scenarios are gone. No API change.",
       "evidence": ["packages/hotkeys/tests/production-logs.test.ts"]
     },
     "source:packages/hotkeys/tests/store.test.ts": {
@@ -6563,13 +6563,13 @@
       "evidence": ["packages/hotkeys/tests/unified-hotkeys.test.ts"]
     },
     "source:packages/hotkeys/tests/untrusted-input.test.ts": {
-      "fingerprint": "3c4e7321829c8948b47eab96aefd4dec7b972fa9d6c415e2e29d1e9fdd57b9f3",
+      "fingerprint": "cf604b3076353acc0870d947f4c3989a28d9f81610cf828118381dbeff019ab9",
       "snapshot": {
-        "packages/hotkeys/tests/untrusted-input.test.ts": "6356f4734fb20ec5f3edb442d624f10b2221d728612a75c0a5ae6a8233ee3418"
+        "packages/hotkeys/tests/untrusted-input.test.ts": "e4bac3ee0c6130727a3015368d017e7457232c6c84e1207edb337a0b77232949"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "out-of-scope",
-      "reason": "Tests for reason codes and shorter messages; no guidance claim.",
+      "head": "33cb28743ebe6330713fb89c920ce983ed4098d2",
+      "outcome": "no-change",
+      "reason": "App hotkeys no longer warn about unknown ids or invalid saved hotkeys. No API change.",
       "evidence": ["packages/hotkeys/tests/untrusted-input.test.ts"]
     },
     "source:packages/hotkeys/tests/validate.test.ts": {
@@ -7063,13 +7063,13 @@
       "evidence": ["packages/hotkeys/src/hint.ts"]
     },
     "source:packages/hotkeys/tests/app-hotkeys.test.ts": {
-      "fingerprint": "98e93fea7881b941c31dcb2e6fc1cee95d75c4fbc334bdc0e1781eeda1a86415",
+      "fingerprint": "331cdd31cbbadb041938ae102fb89ffe769e9b7269442260c0d9855858c8aa5f",
       "snapshot": {
-        "packages/hotkeys/tests/app-hotkeys.test.ts": "6320a793ad1f8520103776d98192ff35be27072f182d87d9e511ec43e73d3425"
+        "packages/hotkeys/tests/app-hotkeys.test.ts": "cd269a077fd1475479335986676379f8f5338f36a922c5dc56b31056934dc53a"
       },
-      "head": "730c6d5bcd2096d3a2612cac32e2473d0f46d4a9",
-      "outcome": "out-of-scope",
-      "reason": "Test file; it adds no guidance for agents.",
+      "head": "33cb28743ebe6330713fb89c920ce983ed4098d2",
+      "outcome": "no-change",
+      "reason": "App hotkeys no longer warn about unknown ids or invalid saved hotkeys. No API change.",
       "evidence": ["packages/hotkeys/tests/app-hotkeys.test.ts"]
     },
     "source:packages/hotkeys/tests/unset-values.test.ts": {

@@ -1,13 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import {
-  AppHotkeysStore,
-  HotkeyManager,
-  checkHotkey,
-  defineAppHotkeys,
-  getHotkeyManager,
-} from '../src'
-
-const appHotkeys = defineAppHotkeys({ 'doc.save': { hotkey: 'Mod+S' } })
+import { HotkeyManager, checkHotkey, getHotkeyManager } from '../src'
 
 // Every console call in the library, each triggered once
 const scenarios: Record<string, () => void> = {
@@ -25,19 +17,6 @@ const scenarios: Record<string, () => void> = {
     manager.activateScope('dialog', { exclusive: true })
     manager.activateScope('dialog', { exclusive: true })
   },
-  'custom hotkey for an unknown id': () =>
-    new AppHotkeysStore(appHotkeys, {
-      customHotkeys: { 'doc.missing': 'Mod+M' } as never,
-    }),
-  'invalid custom hotkey': () =>
-    new AppHotkeysStore(appHotkeys, {
-      customHotkeys: { 'doc.save': 42 } as never,
-    }),
-  'setCustomHotkey for an unknown id': () =>
-    new AppHotkeysStore(appHotkeys).setCustomHotkey(
-      'doc.missing' as never,
-      'Mod+M',
-    ),
 }
 
 function countLogs(run: () => void): number {

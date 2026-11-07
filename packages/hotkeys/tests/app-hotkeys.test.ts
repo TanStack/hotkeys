@@ -103,7 +103,7 @@ describe('AppHotkeysStore', () => {
     expect(store.appHotkeys['nav.home']).toBe(appHotkeys['nav.home'])
   })
 
-  it('ignores unknown ids and invalid saved hotkeys with a warning', () => {
+  it('silently ignores unknown ids and invalid saved hotkeys', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
     const store = new AppHotkeysStore(appHotkeys, {
       customHotkeys: {
@@ -113,7 +113,7 @@ describe('AppHotkeysStore', () => {
         'doc.find': ['Mod+G'],
       } as unknown as CustomHotkeys<typeof appHotkeys>,
     })
-    expect(warn).toHaveBeenCalledTimes(3)
+    expect(warn).not.toHaveBeenCalled()
     expect(store.customHotkeys).toEqual({ 'doc.find': 'Mod+G' })
   })
 

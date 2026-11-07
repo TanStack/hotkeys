@@ -35,7 +35,7 @@ describe('names that exist on Object.prototype', () => {
       expect(codeToLogicalKey(name)).toBeUndefined()
   })
 
-  it('are dropped from saved custom hotkeys with a warning', () => {
+  it('are silently dropped from saved custom hotkeys', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
     const appHotkeys = defineAppHotkeys({ 'doc.save': { hotkey: 'Mod+S' } })
     const saved = JSON.parse(
@@ -43,7 +43,7 @@ describe('names that exist on Object.prototype', () => {
     )
     const store = new AppHotkeysStore(appHotkeys, { customHotkeys: saved })
     expect(Object.keys(store.store.state.customHotkeys)).toEqual(['doc.save'])
-    expect(warn).toHaveBeenCalledTimes(3)
+    expect(warn).not.toHaveBeenCalled()
     expect(({} as Record<string, unknown>).polluted).toBeUndefined()
   })
 

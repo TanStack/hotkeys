@@ -253,7 +253,7 @@ function applyCustomHotkeys<T extends AppHotkeys>(
   return result as T
 }
 
-/** Keeps only valid custom hotkeys for known ids, warning about the rest. */
+/** Keeps only valid custom hotkeys for known ids and silently drops the rest. */
 function sanitizeCustomHotkeys<T extends AppHotkeys>(
   appHotkeys: T,
   saved: unknown,
@@ -263,26 +263,9 @@ function sanitizeCustomHotkeys<T extends AppHotkeys>(
   for (const [id, value] of Object.entries(saved)) {
     if (value === undefined) continue
     // Own ids only: saved data can hold names such as toString or __proto__
-    if (!Object.hasOwn(appHotkeys, id)) {
-      if (
-        typeof process !== 'undefined' &&
-        process.env.NODE_ENV !== 'production'
-      ) {
-        console.warn(`[hotkeys] Unknown app hotkey '${id}'`)
-      }
-      continue
-    }
+    if (!Object.hasOwn(appHotkeys, id)) continue
     const hotkey = parseCustomHotkey(value)
-    if (hotkey === undefined) {
-      if (
-        typeof process !== 'undefined' &&
-        process.env.NODE_ENV !== 'production'
-      ) {
-        console.warn(`[hotkeys] Invalid custom hotkey for '${id}'`)
-      }
-      continue
-    }
-    result[id] = hotkey
+    if (hotkey !== undefined) result[id] = hotkey
   }
   return result
 }
@@ -551,15 +534,7 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
     hotkey: Hotkey | null,
   ): Array<AppHotkey> {
     const appHotkey = this.get(id)
-    if (!appHotkey) {
-      if (
-        typeof process !== 'undefined' &&
-        process.env.NODE_ENV !== 'production'
-      ) {
-        console.warn(`[hotkeys] Unknown app hotkey '${id}'`)
-      }
-      return []
-    }
+    if (!appHotkey) return []
     const next = hotkey === null ? null : simplifyHotkey(hotkey)
     if (next !== null) {
       const conflicts = this.findConflicts(id, next)

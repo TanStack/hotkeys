@@ -3,7 +3,7 @@ id: AppHotkeysStoreOptions
 title: AppHotkeysStoreOptions
 ---
 
-Defined in: [app-hotkeys.ts:405](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L405)
+Defined in: [app-hotkeys.ts:388](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L388)
 
 Options for `AppHotkeysStore`.
 
@@ -21,7 +21,7 @@ Options for `AppHotkeysStore`.
 optional customHotkeys?: CustomHotkeys<T> | null;
 ```
 
-Defined in: [app-hotkeys.ts:413](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L413)
+Defined in: [app-hotkeys.ts:396](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L396)
 
 The user's saved custom hotkeys. Invalid entries are ignored with a
 warning. Passing a different value to `setOptions` later, such as data
@@ -37,7 +37,7 @@ clears them.
 optional onCustomHotkeysChange?: (customHotkeys) => void;
 ```
 
-Defined in: [app-hotkeys.ts:415](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L415)
+Defined in: [app-hotkeys.ts:398](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L398)
 
 Called with the custom hotkeys after every change, ready to save.
 
@@ -59,6 +59,6 @@ Called with the custom hotkeys after every change, ready to save.
 optional platform?: Platform;
 ```
 
-Defined in: [app-hotkeys.ts:417](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L417)
+Defined in: [app-hotkeys.ts:400](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L400)
 
 Platform used to compare hotkeys. Defaults to detection.

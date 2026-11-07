@@ -7,7 +7,7 @@ title: AppHotkeyStatus
 type AppHotkeyStatus = "active" | "suspended" | "disabled" | "inactive" | "unbound";
 ```
 
-Defined in: [app-hotkeys.ts:383](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L383)
+Defined in: [app-hotkeys.ts:366](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L366)
 
 Status of an app hotkey in the running app.
 - `'active'`: at least one enabled registration

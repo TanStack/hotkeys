@@ -3,7 +3,7 @@ id: AppHotkeysStore
 title: AppHotkeysStore
 ---
 
-Defined in: [app-hotkeys.ts:435](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L435)
+Defined in: [app-hotkeys.ts:418](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L418)
 
 Holds declared app hotkeys and the user's custom hotkeys. Framework
 providers create one and expose it through hooks; devtools read it from
@@ -34,7 +34,7 @@ store.setCustomHotkey('doc.save', 'Mod+Shift+S')
 new AppHotkeysStore<T>(appHotkeys, options?): AppHotkeysStore<T>;
 ```
 
-Defined in: [app-hotkeys.ts:442](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L442)
+Defined in: [app-hotkeys.ts:425](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L425)
 
 #### Parameters
 
@@ -58,7 +58,7 @@ Defined in: [app-hotkeys.ts:442](https://github.com/TanStack/hotkeys/blob/main/p
 readonly store: Store<AppHotkeysState<T>>;
 ```
 
-Defined in: [app-hotkeys.ts:436](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L436)
+Defined in: [app-hotkeys.ts:419](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L419)
 
 ## Accessors
 
@@ -70,7 +70,7 @@ Defined in: [app-hotkeys.ts:436](https://github.com/TanStack/hotkeys/blob/main/p
 get appHotkeys(): T;
 ```
 
-Defined in: [app-hotkeys.ts:461](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L461)
+Defined in: [app-hotkeys.ts:444](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L444)
 
 Effective app hotkeys.
 
@@ -88,7 +88,7 @@ Effective app hotkeys.
 get customHotkeys(): CustomHotkeys<T>;
 ```
 
-Defined in: [app-hotkeys.ts:466](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L466)
+Defined in: [app-hotkeys.ts:449](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L449)
 
 The user's hotkeys that differ from the defaults.
 
@@ -107,7 +107,7 @@ findConflicts(id, hotkey): AppHotkey<string,
   | null>[];
 ```
 
-Defined in: [app-hotkeys.ts:530](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L530)
+Defined in: [app-hotkeys.ts:513](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L513)
 
 Other app hotkeys that would collide if `id` used `hotkey`. App hotkeys
 collide when their scopes match or either is `'global'`, and their
@@ -143,7 +143,7 @@ get(id):
   | undefined;
 ```
 
-Defined in: [app-hotkeys.ts:520](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L520)
+Defined in: [app-hotkeys.ts:503](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L503)
 
 Effective app hotkey for an id, or `undefined` when it is not declared.
 
@@ -169,7 +169,7 @@ Effective app hotkey for an id, or `undefined` when it is not declared.
 getList(registrations): AppHotkeyListItem<T[keyof T]>[];
 ```
 
-Defined in: [app-hotkeys.ts:602](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L602)
+Defined in: [app-hotkeys.ts:577](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L577)
 
 Joins app hotkeys with live registrations, in declaration order.
 Adapters call this with the manager's registration views.
@@ -192,7 +192,7 @@ Adapters call this with the manager's registration views.
 resetCustomHotkey(id): void;
 ```
 
-Defined in: [app-hotkeys.ts:579](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L579)
+Defined in: [app-hotkeys.ts:554](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L554)
 
 Restores the default hotkey for an app hotkey.
 
@@ -214,7 +214,7 @@ keyof `T` & `string`
 resetCustomHotkeys(): void;
 ```
 
-Defined in: [app-hotkeys.ts:586](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L586)
+Defined in: [app-hotkeys.ts:561](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L561)
 
 Restores every default hotkey.
 
@@ -230,7 +230,7 @@ Restores every default hotkey.
 setAppHotkeys(appHotkeys): void;
 ```
 
-Defined in: [app-hotkeys.ts:506](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L506)
+Defined in: [app-hotkeys.ts:489](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L489)
 
 Replaces the declarations, for example after hot module replacement.
 Custom hotkeys for ids that still exist are kept.
@@ -256,7 +256,7 @@ setCustomHotkey(id, hotkey): AppHotkey<string,
   | null>[];
 ```
 
-Defined in: [app-hotkeys.ts:549](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L549)
+Defined in: [app-hotkeys.ts:532](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L532)
 
 Sets the user's hotkey for an app hotkey. `null` unbinds it. A hotkey
 equal to the default removes the customization.
@@ -288,7 +288,7 @@ Conflicting app hotkeys. When any exist, nothing changes.
 setOptions(options): void;
 ```
 
-Defined in: [app-hotkeys.ts:480](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L480)
+Defined in: [app-hotkeys.ts:463](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L463)
 
 Updates options. Providers call it with their props on every update.
 

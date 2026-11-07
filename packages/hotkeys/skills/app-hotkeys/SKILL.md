@@ -52,7 +52,7 @@ Augment `Register` in the adapter module you import from, such as `declare modul
 
 - **Register the app hotkey, not its value.** Pass `appHotkeys['doc.save']`. Passing `.hotkey` registers the declared default, so the user's rebinding never applies, and the list reports the shortcut as `'inactive'`.
 - **Save what `onCustomHotkeysChange` receives.** It holds only the shortcuts the user changed, so users still get new defaults. Saving every effective hotkey freezes today's defaults into their data.
-- **Ids are a storage contract.** Saved data is keyed by id, and unknown ids are dropped with a warning, so renaming an id discards users' customizations.
+- **Ids are a storage contract.** Saved data is keyed by id, and unknown ids are silently dropped, so renaming an id discards users' customizations.
 - **`setCustomHotkey` returns conflicts and changes nothing when there are any.** Check the result before reporting success, or reject the key press earlier by calling `findConflicts` in the recorder's `validate`.
 - **Declare scopes on app hotkeys that share keys.** An app hotkey without a scope, or in `'global'`, conflicts with every other app hotkey on the same keys, so rebinding is rejected.
 - **Conflict checks treat physical and logical bindings as different.** A recorded `Mod+[KeyP]` doesn't conflict with a declared `Mod+P`, although Command+P runs both. Declaring rebindable defaults in the recorder's form, such as `Mod+[KeyP]`, makes them comparable.
