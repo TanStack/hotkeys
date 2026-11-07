@@ -33,7 +33,8 @@ export interface KeyboardEventMatch {
  * Also handles "dead key" events where `event.key` is `'Dead'` instead of the expected
  * character. This commonly occurs on macOS with Option+letter combinations (e.g., Option+E,
  * Option+I, Option+U, Option+N) and on Windows/Linux with international keyboard layouts.
- * In these cases, `event.code` is used to determine the physical key.
+ * In these cases, `event.code` is used to determine the physical key. An
+ * `'Unidentified'` key also falls back to `code`, except on letter keys.
  *
  * @param event - The KeyboardEvent to check
  * @param chord - The chord string or parsed chord to match against

@@ -41,12 +41,18 @@ export function normalizeKeyboardEvent(
     altGraph: altGraph && !controlAlt,
     location: event.location,
     // Safari sends the Enter that commits a composition after compositionend,
-    // with isComposing false but keyCode 229.
+    // with isComposing false but keyCode 229. An `Unidentified` key is ignored
+    // only without a usable code: Chrome on Linux Wayland sends Ctrl+Backquote
+    // as an `Unidentified` key with its code. One on a modifier key, such as
+    // `ControlLeft`, is ignored like a modifier press.
     isComposing:
       Boolean(event.isComposing) ||
       event.keyCode === 229 ||
       key === 'Process' ||
-      key === 'Unidentified',
+      (key === 'Unidentified' &&
+        (!event.code ||
+          event.code === 'Unidentified' ||
+          isModifierCode(event.code))),
   }
 }
 

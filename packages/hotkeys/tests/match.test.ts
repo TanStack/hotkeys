@@ -1117,8 +1117,56 @@ describe('matchesKeyboardEvent', () => {
   })
 
   describe('edge cases', () => {
-    it('should not match when event.key is Unidentified', () => {
+    it('should not guess a letter when event.key is Unidentified', () => {
       const event = createKeyboardEvent('Unidentified', { code: 'KeyA' })
+      expect(matchesKeyboardEvent(event, 'A')).toBe(false)
+    })
+
+    // Chrome on Linux Wayland reports Ctrl+` as key Unidentified (#229)
+    it('matches an Unidentified key by its code, except logical letters', () => {
+      const backquote = {
+        ...createKeyboardEvent('Unidentified', {
+          code: 'Backquote',
+          ctrlKey: true,
+        }),
+        keyCode: 192,
+      } as KeyboardEvent
+      expect(matchesKeyboardEvent(backquote, 'Control+`', 'linux')).toBe(true)
+      expect(
+        matchesKeyboardEvent(backquote, 'Control+[Backquote]', 'linux'),
+      ).toBe(true)
+      expect(matchesKeyboardEvent(backquote, '`', 'linux')).toBe(false)
+      expect(matchesKeyboardEvent(backquote, 'Control+-', 'linux')).toBe(false)
+
+      const space = createKeyboardEvent('Unidentified', {
+        code: 'Space',
+        ctrlKey: true,
+      })
+      expect(matchesKeyboardEvent(space, 'Control+Space', 'linux')).toBe(true)
+      const digit = createKeyboardEvent('Unidentified', {
+        code: 'Digit2',
+        ctrlKey: true,
+      })
+      expect(matchesKeyboardEvent(digit, 'Control+2', 'linux')).toBe(true)
+
+      // Layouts such as AZERTY move letters, so only physical bindings match
+      const letter = createKeyboardEvent('Unidentified', {
+        code: 'KeyQ',
+        ctrlKey: true,
+      })
+      expect(matchesKeyboardEvent(letter, 'Control+Q', 'linux')).toBe(false)
+      expect(matchesKeyboardEvent(letter, 'Control+[KeyQ]', 'linux')).toBe(true)
+
+      const codeless = createKeyboardEvent('Unidentified', { code: '' })
+      expect(matchesKeyboardEvent(codeless, 'A')).toBe(false)
+    })
+
+    it('ignores Unidentified keys with keyCode 229, as Android IMEs send', () => {
+      const event = {
+        ...createKeyboardEvent('Unidentified', { code: 'KeyA' }),
+        keyCode: 229,
+      } as KeyboardEvent
+      expect(matchesKeyboardEvent(event, '[KeyA]')).toBe(false)
       expect(matchesKeyboardEvent(event, 'A')).toBe(false)
     })
 

@@ -102,6 +102,27 @@ it('preserves shifted layout letters and Unicode in key mode', () => {
   press('ß', 'Minus')
   expect(onRecord).toHaveBeenLastCalledWith('ß')
 })
+// Chrome on Linux Wayland reports Ctrl+` as key Unidentified (#229)
+it('records an Unidentified key by code, and skips it in key mode', () => {
+  const onRecord = vi.fn(),
+    r = recorder({ onRecord, platform: 'linux' })
+  r.start()
+  press('Unidentified', 'Backquote', { ctrlKey: true })
+  expect(onRecord).toHaveBeenCalledWith('Mod+[Backquote]')
+
+  const onKeyRecord = vi.fn(),
+    keyMode = recorder({
+      recordBy: 'key',
+      onRecord: onKeyRecord,
+      platform: 'linux',
+    })
+  keyMode.start()
+  press('Unidentified', 'Backquote', { ctrlKey: true })
+  expect(onKeyRecord).not.toHaveBeenCalled()
+  expect(keyMode.store.state.isRecording).toBe(true)
+  press('k', 'KeyK', { ctrlKey: true })
+  expect(onKeyRecord).toHaveBeenCalledWith('Mod+K')
+})
 it('rejects missing codes and AltGraph while ignoring IME', () => {
   const onRecord = vi.fn(),
     onReject = vi.fn(),

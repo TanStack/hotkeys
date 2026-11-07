@@ -3,7 +3,7 @@ id: CreateHotkeyChordHandlerOptions
 title: CreateHotkeyChordHandlerOptions
 ---
 
-Defined in: [match.ts:68](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L68)
+Defined in: [match.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L69)
 
 Options for creating a chord handler.
 
@@ -15,7 +15,7 @@ Options for creating a chord handler.
 optional platform?: "mac" | "windows" | "linux";
 ```
 
-Defined in: [match.ts:74](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L74)
+Defined in: [match.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L75)
 
 The target platform for resolving 'Mod'
 
@@ -27,7 +27,7 @@ The target platform for resolving 'Mod'
 optional preventDefault?: boolean;
 ```
 
-Defined in: [match.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L70)
+Defined in: [match.ts:71](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L71)
 
 Prevent the default browser action when the chord matches. Defaults to true
 
@@ -39,6 +39,6 @@ Prevent the default browser action when the chord matches. Defaults to true
 optional stopPropagation?: boolean;
 ```
 
-Defined in: [match.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L72)
+Defined in: [match.ts:73](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L73)
 
 Stop event propagation when the chord matches. Defaults to true

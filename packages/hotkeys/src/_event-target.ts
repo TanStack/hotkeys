@@ -1,4 +1,5 @@
 import { normalizeKeyName } from './constants'
+import { codeToLogicalKey } from './_keyboard-event'
 
 type Target = HTMLElement | Document | Window
 
@@ -272,14 +273,19 @@ function getOwnedKeys(element: Element): ReadonlyArray<string> {
  * are never owned; Enter and Space are owned only without modifiers, while
  * navigation and typeahead keys allow Shift (for example, to extend a selection).
  */
-function ownsKey(element: Element, event: KeyboardEvent, key: string): boolean {
+function ownsKey(
+  element: Element,
+  event: KeyboardEvent,
+  key: string,
+  produced: string,
+): boolean {
   if (event.ctrlKey || event.metaKey || event.altKey) return false
   const owned = getOwnedKeys(element)
   if (key === 'Enter' || key === 'Space') {
     return !event.shiftKey && owned.includes(key)
   }
   return (
-    owned.includes(key) || (owned.includes(TYPEAHEAD) && /^.$/u.test(event.key))
+    owned.includes(key) || (owned.includes(TYPEAHEAD) && /^.$/u.test(produced))
   )
 }
 
@@ -401,11 +407,18 @@ export function shouldIgnoreInputEvent(
 ): boolean {
   let blocker = ignoreCache.get(event)
   if (!blocker) {
-    const key = normalizeKeyName(event.key)
+    // Read an Unidentified key from its position, as the matcher does. A
+    // named code such as `Enter` or `ArrowDown` is also its key name.
+    const produced =
+      event.key === 'Unidentified'
+        ? (codeToLogicalKey(event.code) ?? event.code)
+        : event.key
+    const key = normalizeKeyName(produced)
     blocker = findBlocker(
       event,
       getTargetDocument(target),
-      (element) => isInputElement(element) || ownsKey(element, event, key),
+      (element) =>
+        isInputElement(element) || ownsKey(element, event, key, produced),
     )
     ignoreCache.set(event, blocker)
   }

@@ -99,7 +99,7 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "3cc900650185c909a84d0964daec3c4397299cba7594ad92ef2ffe7e8f182f2e",
+      "fingerprint": "40b3d1c3fb1ca0ca87f6e6e15541c9737100a123700b23d35ae6805e0d2e1f38",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "03b024ba6a23d6b87a7b99be8a30b54fd5d82ba27e075ba0c00f648c82759e5f",
@@ -109,7 +109,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/hotkey-manager.ts": "f88bdcaa130e8b0d95d96cd5033bb9f0db49ffd0e3301a81c8f7e112c6f942af",
-        "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
+        "packages/hotkeys/src/match.ts": "26a90ff0957e70c90384edc93bd6f5e2f2a43b12b234e9aed5a4b75d915678ac",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "d7747b87eae074ab3620484f64cf13ea9c27d24d059d56d9a9a07ccf0c2d3e06",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/grade.tsx": "788977826276b0b1e54938f43a61a946c4d8bed722ece406089e8b486bd8fdb5",
@@ -120,12 +120,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "b846fa18c44f94b03d414a4d7df592c5371cc669",
+      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
       "outcome": "no-change",
-      "reason": "Dev-only warnings now check that process exists before reading NODE_ENV. No API, docs, or skill guidance changes.",
+      "reason": "Unidentified keys with a usable code now match like other keys; no skill or planning artifact covers Unidentified, dead-key, or composition matching.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "packages/hotkeys/src/hotkey-manager.ts"
+        "grep for Unidentified, dead key, composition and fallback in packages/*/skills and _artifacts finds no matching guidance; only a JSDoc sentence in match.ts changed."
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -292,7 +291,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "dc70fd0c88cb095181335f4a82a8f851b0709f29967afd14d795d74306ac866a",
+      "fingerprint": "9447a5b9edaed52549c6d2c2101276b1737e05ead1e23471a8c84396f6cc6817",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -357,7 +356,7 @@
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
         "packages/hotkeys/src/hotkey-manager.ts": "f88bdcaa130e8b0d95d96cd5033bb9f0db49ffd0e3301a81c8f7e112c6f942af",
         "packages/hotkeys/src/hotkey-recorder.ts": "61fc7bf0c290e7806113638a09b382e975a21d90dab989b6aff720530ea47397",
-        "packages/hotkeys/src/match.ts": "95ba478312b40b95307f4e4ef9ca87b211978296557505416e2c6c0f041cc81d",
+        "packages/hotkeys/src/match.ts": "26a90ff0957e70c90384edc93bd6f5e2f2a43b12b234e9aed5a4b75d915678ac",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "4e5593e8d4373475d4e6006e30ec663d7f0f3fcf0aa881fc403efe58b9cf7606",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "659ca9bebf4200bb693c693addb17bd5a943904e482514f2014f5ca426629e96",
         "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "d340525ff6295085096bbf1c09e646a18a345360e3194ebaad2f671b7e4d0978",
@@ -424,22 +423,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
+      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
       "outcome": "no-change",
-      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys, matching the code.",
+      "reason": "Unidentified keys with a usable code now match like other keys; no skill or planning artifact covers Unidentified, dead-key, or composition matching.",
       "evidence": [
-        "docs/framework/alpine/guides/app-hotkeys.md",
-        "docs/framework/ember/guides/app-hotkeys.md",
-        "docs/framework/lit/guides/app-hotkeys.md",
-        "docs/framework/react/guides/app-hotkeys.md",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts",
-        "packages/hotkeys/src/app-hotkeys.ts",
-        "packages/octane-hotkeys/src/HotkeysProvider.ts",
-        "packages/preact-hotkeys/src/HotkeysProvider.tsx",
-        "packages/react-hotkeys/src/HotkeysProvider.tsx",
-        "packages/solid-hotkeys/src/HotkeysProvider.tsx",
-        "packages/svelte-hotkeys/src/HotkeysCtx.ts",
-        "packages/vue-hotkeys/src/HotkeysProviderContext.ts"
+        "grep for Unidentified, dead key, composition and fallback in packages/*/skills and _artifacts finds no matching guidance; only a JSDoc sentence in match.ts changed."
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -1339,14 +1327,16 @@
       "evidence": ["packages/hotkeys-devtools/src/components/DetailsPanel.tsx"]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "d0f7da5c06779ffaabade424774546f676080a509fa03a56a16394aad3f69866",
+      "fingerprint": "0572f70467f839fe6c01b6d74b58473dcab1fac988f47a242fa9eb513dbb6402",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "050d2f56da6e69416a61f8757ed458453d54550fbfb8d3ec58d899932634c231"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "1e4e0dcae91590a31e6cbcc1c1968ab0b316863a48bda047f1e18ea9ad7219d7"
       },
-      "head": "f3c7a6e8da6f9112c7a92402aff0c3efeaa751a1",
+      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
       "outcome": "no-change",
-      "reason": "Tests only; no guidance change.",
-      "evidence": ["packages/hotkeys/tests/hotkey-manager.test.ts"]
+      "reason": "Core fix for #229 and its tests; skills don't describe Unidentified or composition matching.",
+      "evidence": [
+        "git diff origin/main shows matching, recorder, and test changes only; no skill text references this behavior."
+      ]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
       "fingerprint": "5f8f3fc9042ca4db049e0171afeef1143e99b76c2eb833093a8f162156cfc41e",
@@ -2535,16 +2525,15 @@
       "evidence": ["docs/reference/type-aliases/Target.md"]
     },
     "source:packages/hotkeys/src/_event-target.ts": {
-      "fingerprint": "26ac99cef5a4f5f460cef6cd60568744db596fdfa58f1783939652c687a02fe2",
+      "fingerprint": "d0a18f1cb51443b96d91fce247630f6654b06a2af5363932aada72f646a251e0",
       "snapshot": {
-        "packages/hotkeys/src/_event-target.ts": "dcc6bb64796da730594f778b938b05edccc9e7ecd6346a718a39f1e20af89ee3"
+        "packages/hotkeys/src/_event-target.ts": "55fa75ff6fd7c43665c317e14809da42fc0438a2498ebc5665ecd02cc1f99760"
       },
-      "head": "24f618ff48e83d4dabd039860ee41408326800aa",
+      "head": "8272236cbd6f4ccb1f31c074afcf2a58b0fb186c",
       "outcome": "no-change",
-      "reason": "Stacked modal dialogs: only the top one takes Escape. The skill makes no claim about native dialogs; the guide documents it.",
+      "reason": "Ownership checks read Unidentified named codes and typeahead characters from the code, matching the matcher; no skill describes these internals.",
       "evidence": [
-        "packages/hotkeys/src/_event-target.ts",
-        "docs/guides/sensible-defaults.md"
+        "grep for Unidentified and composition in packages/*/skills and _artifacts finds no matching guidance."
       ]
     },
     "source:docs/config.json": {
@@ -4212,34 +4201,40 @@
       "evidence": ["e2e/support/x11.ts"]
     },
     "source:packages/hotkeys/src/_match.ts": {
-      "fingerprint": "123390662522be087efc81f1f947d2e7295b87b10f1a018418eda63aa6f30604",
+      "fingerprint": "9afd24b3d504673f46ceeed27a6266c44b7267b6034daaca90b1ff54599bb0f0",
       "snapshot": {
-        "packages/hotkeys/src/_match.ts": "93d79b1e01dad3433b238a031852809b1f6d3a6cfcb8eadc83015086fb718b27"
+        "packages/hotkeys/src/_match.ts": "3d4303d8b696f429126f0885c131fa7be9d57aecb4acc1ebba576bf3f2b1f254"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Internal edge-case fix (IME composition, collator, listener order, tracker resets, duplicate check, validate JSDoc); the skills make no claim it changes.",
-      "evidence": ["packages/hotkeys/src/_match.ts"]
+      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
+      "outcome": "no-change",
+      "reason": "Core fix for #229 and its tests; skills don't describe Unidentified or composition matching.",
+      "evidence": [
+        "git diff origin/main shows matching, recorder, and test changes only; no skill text references this behavior."
+      ]
     },
     "source:packages/hotkeys/tests/match.test.ts": {
-      "fingerprint": "8740d71c596b28185c9c135b2fea14295f374829eff87de3b784ff8d8ed67e43",
+      "fingerprint": "5f18417829bf647e3415501861f8cfb9eeaa2c9e604938b93244393e5f54549a",
       "snapshot": {
-        "packages/hotkeys/tests/match.test.ts": "340ef40d2eb33ce84b0bbba9af6ec1ffbf5f0092773fccde4466543b4b6d74cb"
+        "packages/hotkeys/tests/match.test.ts": "8909bd17ac268295343cd11ced72744772778063e5dfa2dcd4d435738ceb743d"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Tests for the edge-case fixes; no skill guidance depends on them.",
-      "evidence": ["packages/hotkeys/tests/match.test.ts"]
+      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
+      "outcome": "no-change",
+      "reason": "Core fix for #229 and its tests; skills don't describe Unidentified or composition matching.",
+      "evidence": [
+        "git diff origin/main shows matching, recorder, and test changes only; no skill text references this behavior."
+      ]
     },
     "source:packages/hotkeys/tests/sequence-regressions.test.ts": {
-      "fingerprint": "ebec84a24e1692ac1b1d7994ae399a209b7fecbc4de5c767e29d6d104af2d3aa",
+      "fingerprint": "6d73559224885f8ba9fca5209d398193962c5136d056b9ae5ab52456c63513ce",
       "snapshot": {
-        "packages/hotkeys/tests/sequence-regressions.test.ts": "e3847509a95daeb7714ce5e62d9cfae58f96910a5f8e3b7c2df861b215ac206d"
+        "packages/hotkeys/tests/sequence-regressions.test.ts": "8284daf4ed3b52befa87f1431cb8df9a7156a5e3b9a26924ef7d6c01de02908f"
       },
-      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "head": "7f8e893b9c7e67fcd4c09c9b6868ef40f7525f5a",
       "outcome": "no-change",
-      "reason": "Tests only; no guidance change.",
-      "evidence": ["packages/hotkeys/tests/sequence-regressions.test.ts"]
+      "reason": "An Unidentified key on a modifier code is ignored like a modifier press, as before this PR; no skill describes Unidentified handling.",
+      "evidence": [
+        "grep for Unidentified and composition in packages/*/skills and _artifacts finds no matching guidance."
+      ]
     },
     "source:.gitignore": {
       "fingerprint": "a84d15c818af0081559065548b39cfc324106ad5c821ac4408caa442f419fc0d",
@@ -6496,16 +6491,15 @@
       ]
     },
     "source:packages/hotkeys/src/_keyboard-event.ts": {
-      "fingerprint": "33ebceda5b9227317b4d2fa2532cf93c42b152dea8e3b6ab70de5762b6899b1b",
+      "fingerprint": "a41c7c8046d7e627e18f9dd9c9d69ff995669608c38e60db4ef885d6f0a97a72",
       "snapshot": {
-        "packages/hotkeys/src/_keyboard-event.ts": "f57d3d5d2029b6205b3d7c62c437e8ee9101f71c4011b77c010fa83a9c93d35c"
+        "packages/hotkeys/src/_keyboard-event.ts": "e223eca443524a19bb23ec56c861b9090356c6afcd335a9b953d518b086af741"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "7f8e893b9c7e67fcd4c09c9b6868ef40f7525f5a",
       "outcome": "no-change",
-      "reason": "Reason codes and one-line [hotkeys] messages; covered by the updated core skill pitfall.",
+      "reason": "An Unidentified key on a modifier code is ignored like a modifier press, as before this PR; no skill describes Unidentified handling.",
       "evidence": [
-        "packages/hotkeys/src/_keyboard-event.ts",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "grep for Unidentified and composition in packages/*/skills and _artifacts finds no matching guidance."
       ]
     },
     "source:packages/hotkeys/src/format.ts": {
@@ -6553,14 +6547,16 @@
       ]
     },
     "source:packages/hotkeys/tests/typed-behavior.test.ts": {
-      "fingerprint": "ea218ad6a8e56998da672de94e71760ec739ce750bc889aab1fed0521c3da1fb",
+      "fingerprint": "8f843a82bcb209dee531c8b34ffc746be6cb51074998a5975b3a7cc82199f5b2",
       "snapshot": {
-        "packages/hotkeys/tests/typed-behavior.test.ts": "d0677318c3997b40e63eb3f3a4d11f2ae427e542d6a5f61884eac5dc728d5063"
+        "packages/hotkeys/tests/typed-behavior.test.ts": "36390f4330d81f9d40ae077ed0cae071e71b3b398797d42c0e853fd3216f65b2"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "out-of-scope",
-      "reason": "Tests for reason codes and shorter messages; no guidance claim.",
-      "evidence": ["packages/hotkeys/tests/typed-behavior.test.ts"]
+      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
+      "outcome": "no-change",
+      "reason": "Core fix for #229 and its tests; skills don't describe Unidentified or composition matching.",
+      "evidence": [
+        "git diff origin/main shows matching, recorder, and test changes only; no skill text references this behavior."
+      ]
     },
     "source:packages/hotkeys/tests/unified-hotkeys.test.ts": {
       "fingerprint": "2203e5d97f9f0130343962e0f41fc5c40cbb130e0c7f10244cdb2b8d602fba0b",
@@ -6899,44 +6895,44 @@
       ]
     },
     "source:docs/reference/functions/areHotkeysEqual.md": {
-      "fingerprint": "a554a5e0e5d1c558f8e2e8da135ae9a9caa0a3d670705b5ae47dc722c314985f",
+      "fingerprint": "5cb9e9aac5cf4a5e1ce4bfd1e707a575cef1619ebf9fad518068d9ddda6a011e",
       "snapshot": {
-        "docs/reference/functions/areHotkeysEqual.md": "f33bc4fc1d09a0d7400b6aa0cb7eb5e89ae32eda79c0d083512f7c7a78c57dab"
+        "docs/reference/functions/areHotkeysEqual.md": "45de28431ee2947d0dd6752ce9786286769a878c65f2ee81c3c5cb549862e9af"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
-      "evidence": ["docs/reference/functions/areHotkeysEqual.md"]
+      "reason": "Regenerated TypeDoc page: line-number shifts and the matchesKeyboardEvent JSDoc sentence; no skill guidance depends on it.",
+      "evidence": ["pnpm generate-docs output after the match.ts JSDoc change."]
     },
     "source:docs/reference/functions/createHotkeyChordHandler.md": {
-      "fingerprint": "8f520d0b6c69f675fa9130c4e15029d44383853ce00fd2e48853ce6bf81e2084",
+      "fingerprint": "83ab84f5fe617937391602bc0aefe83ee11354e882b84561a23f3dcdcdb76666",
       "snapshot": {
-        "docs/reference/functions/createHotkeyChordHandler.md": "fbdc0ced48b8ab965539ce72091ed9a72622a4455bd42067d97c5faeb047b979"
+        "docs/reference/functions/createHotkeyChordHandler.md": "ee79126647a911009d591d59fb007e259daf75daac81cce23e16b4ed331e8074"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": ["docs/reference/functions/createHotkeyChordHandler.md"]
+      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
+      "outcome": "no-change",
+      "reason": "Regenerated TypeDoc page: line-number shifts and the matchesKeyboardEvent JSDoc sentence; no skill guidance depends on it.",
+      "evidence": ["pnpm generate-docs output after the match.ts JSDoc change."]
     },
     "source:docs/reference/functions/createMultiHotkeyChordHandler.md": {
-      "fingerprint": "d5d38d61b3109647056cbb325589486ce68e1e58045493401c8a92f440410fb3",
+      "fingerprint": "22cf461eac26aade8aa5f446311e26cbc240d75bb20a54a880de992136321a94",
       "snapshot": {
-        "docs/reference/functions/createMultiHotkeyChordHandler.md": "d7ca088876bf26b6ccb697f7c36d5f5c9071809621c448a49c09af52d679884a"
+        "docs/reference/functions/createMultiHotkeyChordHandler.md": "aaaa6cc21f156ab15b7a8fb165b0283a133cdaabaa92c64b5c0d754470ad35cf"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": ["docs/reference/functions/createMultiHotkeyChordHandler.md"]
+      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
+      "outcome": "no-change",
+      "reason": "Regenerated TypeDoc page: line-number shifts and the matchesKeyboardEvent JSDoc sentence; no skill guidance depends on it.",
+      "evidence": ["pnpm generate-docs output after the match.ts JSDoc change."]
     },
     "source:docs/reference/functions/createSequenceMatcher.md": {
-      "fingerprint": "e18c0f02682d7113fe3f5c64baa96cd19637c21af8c563ffeaf35de886f058aa",
+      "fingerprint": "5fbfedc6764ad2d807f29c82211083a3f4c396e15475ed71f36d12141dc59134",
       "snapshot": {
-        "docs/reference/functions/createSequenceMatcher.md": "67b8c6bf01105530c07eeeb12c13343462b4e95d7d697692517f6be06681249c"
+        "docs/reference/functions/createSequenceMatcher.md": "1b873a1bc9669af40946680f6a3cd0e315ce95c06349da08dc82cb14e19eaed7"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": ["docs/reference/functions/createSequenceMatcher.md"]
+      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
+      "outcome": "no-change",
+      "reason": "Regenerated TypeDoc page: line-number shifts and the matchesKeyboardEvent JSDoc sentence; no skill guidance depends on it.",
+      "evidence": ["pnpm generate-docs output after the match.ts JSDoc change."]
     },
     "source:docs/reference/functions/matchesHeldModifiers.md": {
       "fingerprint": "409c3d27be9736ca1eb1a64921cd151893762e3e2ec4f1a4bc527647a7d1920f",
@@ -6949,26 +6945,24 @@
       "evidence": ["docs/reference/functions/matchesHeldModifiers.md"]
     },
     "source:docs/reference/functions/matchesKeyboardEvent.md": {
-      "fingerprint": "cb988f28f88ceb5bcf2ee1c31ff9b0801ec3c3b9f85ec9aeef2d4636fc61a7ae",
+      "fingerprint": "c8524a30543406d1767833f202990a1f740d91543c330b61d30c5f4c2807716f",
       "snapshot": {
-        "docs/reference/functions/matchesKeyboardEvent.md": "0dc8851e6ba8f50488dba2ab0e0c412e42d3d95d756b26cdc90ec734ca59a81d"
+        "docs/reference/functions/matchesKeyboardEvent.md": "4c4d8142b04f36faf1854eabb111835b5d382c21d1166ca5632ecdbda9e584d9"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": ["docs/reference/functions/matchesKeyboardEvent.md"]
+      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
+      "outcome": "no-change",
+      "reason": "Regenerated TypeDoc page: line-number shifts and the matchesKeyboardEvent JSDoc sentence; no skill guidance depends on it.",
+      "evidence": ["pnpm generate-docs output after the match.ts JSDoc change."]
     },
     "source:docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": {
-      "fingerprint": "763e7b78bb020095afbaa88277a5a1f60e73cc796e5df9334952902373d07c4a",
+      "fingerprint": "b5b8b107dc7a78cefc046463a26a024f9ee96c801d52b3d3e0d86149884529d4",
       "snapshot": {
-        "docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": "2a0ca2a5de2609ca53518b0ff5856992e066b7a552bdc2f05960fc747ba11b75"
+        "docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": "80e49dac96700bc9279ae883db81915d43ae9d42ee11e3066a43ca1f6f8ed97b"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": [
-        "docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md"
-      ]
+      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
+      "outcome": "no-change",
+      "reason": "Regenerated TypeDoc page: line-number shifts and the matchesKeyboardEvent JSDoc sentence; no skill guidance depends on it.",
+      "evidence": ["pnpm generate-docs output after the match.ts JSDoc change."]
     },
     "source:docs/reference/interfaces/KeyboardEventMatch.md": {
       "fingerprint": "3d58c3eb18721a55149a801963881a691123e96416731a1b30d1379f08e2e7d3",
@@ -6981,24 +6975,24 @@
       "evidence": ["docs/reference/interfaces/KeyboardEventMatch.md"]
     },
     "source:docs/reference/type-aliases/MultiHotkeyChordHandler.md": {
-      "fingerprint": "494d2a7d4333baf775ba9b0e4543bfca4be70d786a79f2125bbc827d98ef5485",
+      "fingerprint": "0bedb75d15aeaddfa1a96e45602c7cc7fef17093746d2b62c210875348800fd1",
       "snapshot": {
-        "docs/reference/type-aliases/MultiHotkeyChordHandler.md": "97dba7b9efd57e6a9c4d2aa8f39fc94bbd5fced46a8d7d6abe3150218bcf5295"
+        "docs/reference/type-aliases/MultiHotkeyChordHandler.md": "76ee94aa3b0349e27a16257e807d0c9049f002b8a75e1371d1e32adcbf356830"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": ["docs/reference/type-aliases/MultiHotkeyChordHandler.md"]
+      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
+      "outcome": "no-change",
+      "reason": "Regenerated TypeDoc page: line-number shifts and the matchesKeyboardEvent JSDoc sentence; no skill guidance depends on it.",
+      "evidence": ["pnpm generate-docs output after the match.ts JSDoc change."]
     },
     "source:docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": {
-      "fingerprint": "2a0f29397009f57f77ddd629226f8b85dc21a93132e85d93a8dda25cc8ebf66b",
+      "fingerprint": "2b5e2339d7c97b620a3c2c1996fe184e17c9a309820719cefc8f5a7dc8e90f2a",
       "snapshot": {
-        "docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": "92810a3582fcd14af583d0781e4227089d884754d8d9ff3d327b297362e5d327"
+        "docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": "b9d5e442c60875df5b452a113554538d205f7a592c69a2312dfa95c82ef29272"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Generated TypeDoc reference regenerated by pnpm generate-docs; the behavior it documents is reviewed through the skill items.",
-      "evidence": ["docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md"]
+      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
+      "outcome": "no-change",
+      "reason": "Regenerated TypeDoc page: line-number shifts and the matchesKeyboardEvent JSDoc sentence; no skill guidance depends on it.",
+      "evidence": ["pnpm generate-docs output after the match.ts JSDoc change."]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyRecorder.ts": {
       "fingerprint": "fa4414336c960632c262b4d13e54de02ef630c600024c1c5349285c4baf9546f",
@@ -11840,27 +11834,40 @@
       "evidence": ["packages/hotkeys-devtools/tests/registrations.test.tsx"]
     },
     "source:packages/hotkeys/src/_recorder-chord.ts": {
-      "fingerprint": "6fdda4489b1c26bac50cb46a1b5f11f9aa30ac5adf2cd02d2a5c1041b8f77346",
+      "fingerprint": "ae51e5b0eb0ddafca926da2f03e9712722ec16a14b331fd521c6502d8a453f9a",
       "snapshot": {
-        "packages/hotkeys/src/_recorder-chord.ts": "ea8de8f9616d6512a0c620f165699205adfe7a9c42f51a2565889bf07843e27d"
+        "packages/hotkeys/src/_recorder-chord.ts": "d36dd4eeeed5bea9142db41e8bd025ad5ed979e3ebbb6f8dabd66a2dd49ffeeb"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
       "outcome": "no-change",
-      "reason": "Reason codes and one-line [hotkeys] messages; covered by the updated core skill pitfall.",
+      "reason": "Core fix for #229 and its tests; skills don't describe Unidentified or composition matching.",
       "evidence": [
-        "packages/hotkeys/src/_recorder-chord.ts",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "git diff origin/main shows matching, recorder, and test changes only; no skill text references this behavior."
       ]
     },
     "source:packages/hotkeys/tests/recording-and-display.test.ts": {
-      "fingerprint": "648aec055aaec3c1f9f650551ae7980a0e1753a282e455375a5a7c921e113a56",
+      "fingerprint": "0bf10c17a960b248dda3fdef520a94bc7b740d13bdb0a1e8ec67802ec8b2fd1d",
       "snapshot": {
-        "packages/hotkeys/tests/recording-and-display.test.ts": "6755a172b9cf95d540b05f47e729c1970cbd8f8f71e93a87ab0afec2e13b9ad2"
+        "packages/hotkeys/tests/recording-and-display.test.ts": "eba8df9d9f7f185035ba2c49c0a1065cd878244aecdafea8ad71bc32483f891d"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "out-of-scope",
-      "reason": "Tests for reason codes and shorter messages; no guidance claim.",
-      "evidence": ["packages/hotkeys/tests/recording-and-display.test.ts"]
+      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
+      "outcome": "no-change",
+      "reason": "Core fix for #229 and its tests; skills don't describe Unidentified or composition matching.",
+      "evidence": [
+        "git diff origin/main shows matching, recorder, and test changes only; no skill text references this behavior."
+      ]
+    },
+    "source:packages/hotkeys/tests/native-activation.test.ts": {
+      "fingerprint": "2ad7c7f2a0c7181808b0768301d54239d3130051088d036bc83bc2f7bd92f082",
+      "snapshot": {
+        "packages/hotkeys/tests/native-activation.test.ts": "39f071ebecef70d88c50612d677e2d96880d6eb0b4a92e06d16609d2a260fcf8"
+      },
+      "head": "8272236cbd6f4ccb1f31c074afcf2a58b0fb186c",
+      "outcome": "no-change",
+      "reason": "Ownership checks read Unidentified named codes and typeahead characters from the code, matching the matcher; no skill describes these internals.",
+      "evidence": [
+        "grep for Unidentified and composition in packages/*/skills and _artifacts finds no matching guidance."
+      ]
     }
   }
 }

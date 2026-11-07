@@ -211,6 +211,43 @@ it('preserves native activation for a physical-code binding', () => {
   expect(callback).not.toHaveBeenCalled()
 })
 
+// Keys the browser reports as Unidentified still match by position (#229)
+it('preserves native activation for an Unidentified key', () => {
+  const element = focusControl()
+  const space = vi.fn()
+  const physical = vi.fn()
+  const enter = vi.fn()
+  HotkeyManager.getInstance().register('Space', space)
+  HotkeyManager.getInstance().register('Shift+[Space]', physical)
+  HotkeyManager.getInstance().register('Enter', enter)
+  dispatchKey(element, 'Unidentified', { code: 'Space' })
+  dispatchKey(element, 'Unidentified', { code: 'Space', shiftKey: true })
+  dispatchKey(element, 'Unidentified', { code: 'NumpadEnter' })
+  expect(space).not.toHaveBeenCalled()
+  expect(enter).not.toHaveBeenCalled()
+
+  // Shift+Space isn't activation, so the hotkey still fires
+  expect(physical).toHaveBeenCalledOnce()
+
+  // Named codes are read as their key names
+  const enterCode = vi.fn()
+  HotkeyManager.getInstance().register('[Enter]', enterCode)
+  dispatchKey(element, 'Unidentified', { code: 'Enter' })
+  expect(enterCode).not.toHaveBeenCalled()
+})
+
+it('lets a focused widget keep Unidentified navigation and typeahead keys', () => {
+  const element = focusControl('<div role="listbox" tabindex="0"></div>')
+  const arrow = vi.fn()
+  const digit = vi.fn()
+  HotkeyManager.getInstance().register('[ArrowDown]', arrow)
+  HotkeyManager.getInstance().register('1', digit)
+  dispatchKey(element, 'Unidentified', { code: 'ArrowDown' })
+  dispatchKey(element, 'Unidentified', { code: 'Digit1' })
+  expect(arrow).not.toHaveBeenCalled()
+  expect(digit).not.toHaveBeenCalled()
+})
+
 it('preserves native activation in an iframe for an iframe document target', () => {
   const iframe = document.createElement('iframe')
   document.body.appendChild(iframe)

@@ -10,7 +10,8 @@ import type { HotkeyChord } from './hotkey.types'
 
 /**
  * Converts a keydown to a replayable chord, preserving physical codes by default.
- * Returns null for composition, modifier-only input, or unusable physical input.
+ * Returns null for composition, modifier-only input, unusable physical input,
+ * or an `Unidentified` key in key mode.
  * Key mode retains the produced character; neither mode guesses layout letters.
  */
 export function hotkeyChordFromKeydown(
@@ -33,7 +34,10 @@ export function hotkeyChordFromKeydown(
     const { key: _key, code: _code, ...modifiers } = parsed
     return normalizeHotkey({ ...modifiers, code: event.code }, platform)
   }
-  return parsed.key ? normalizeHotkey(parsed, platform) : null
+  // An `Unidentified` key has no name to record. Code mode records its position.
+  return parsed.key && parsed.key !== 'Unidentified'
+    ? normalizeHotkey(parsed, platform)
+    : null
 }
 
 /**

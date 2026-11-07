@@ -194,6 +194,9 @@ const BASE_EVENTS: Array<KeyboardEventInit> = [
   { key: 'AltGraph', code: 'AltRight' },
   { key: 'Dead', code: 'BracketLeft' },
   { key: 'Unidentified', code: '' },
+  { key: 'Unidentified', code: 'Unidentified' },
+  { key: 'Unidentified', code: 'Backquote' },
+  { key: 'Unidentified', code: 'KeyQ' },
   { key: 'Process', code: 'KeyA' },
   { key: 'é', code: 'Digit2' },
   { key: 'ß', code: 'Minus' },
@@ -364,8 +367,8 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
       }),
     }).toMatchInlineSnapshot(`
       {
-        "events": "462410f6b9f4d67d",
-        "matching": "c04eb8660bab32be",
+        "events": "e48d045d4ad761db",
+        "matching": "cd1778e4b46ed2c0",
       }
     `)
   })
@@ -441,9 +444,9 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
 
     expect({ recorded, recorders, fired }).toMatchInlineSnapshot(`
       {
-        "fired": "56845bf2eb1c5d52",
-        "recorded": "b99a3f21d18e091a",
-        "recorders": "a6b29704b190722e",
+        "fired": "1cb1073fa3d97268",
+        "recorded": "1bdaa84326534fa8",
+        "recorders": "0728c15d38153172",
       }
     `)
   })

@@ -79,6 +79,8 @@ export function matchKeyboardEvent(
  * output that can't name a shortcut falls back:
  * - non-Latin letters and symbols, such as Russian `ы` or macOS Option's `–`
  * - dead keys
+ * - `Unidentified` keys, except on letter positions, which layouts such as
+ *   AZERTY rearrange. Chrome on Linux Wayland reports Ctrl+` this way.
  * - anything on the digit row, where AZERTY types `&` and `é` for 1 and 2
  * - ASCII symbols typed with Shift, such as `!` for Shift+1
  * - Latin letters on punctuation keys with Control or Command, so German
@@ -96,6 +98,7 @@ function positionStandsIn({
   shift,
   alt,
 }: ReturnType<typeof normalizeKeyboardEvent>): boolean {
+  if (key === 'Unidentified') return !code.startsWith('Key')
   if (key !== 'Dead' && !isPrintableKey(key)) return false
   if (code.startsWith('Digit')) return true
   if (isAsciiLetter(key)) return false

@@ -631,6 +631,47 @@ describe('HotkeyManager', () => {
       expect(explicit).toHaveBeenCalledOnce()
       expect(implicit).not.toHaveBeenCalled()
     })
+
+    // Chrome on Linux Wayland reports Ctrl+` as key Unidentified (#229)
+    it('fires logical and physical hotkeys for an Unidentified key', () => {
+      const manager = HotkeyManager.getInstance()
+      const logical = vi.fn()
+      const physical = vi.fn()
+      manager.register('Control+`', logical, { platform: 'linux' })
+      manager.register('Meta+[Backquote]', physical, { platform: 'linux' })
+
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 'Unidentified', {
+          ctrlKey: true,
+          code: 'Backquote',
+        }),
+      )
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 'Unidentified', {
+          metaKey: true,
+          code: 'Backquote',
+        }),
+      )
+      expect(logical).toHaveBeenCalledOnce()
+      expect(physical).toHaveBeenCalledOnce()
+    })
+
+    it('prefers a physical binding over the fallback for an Unidentified key', () => {
+      const manager = HotkeyManager.getInstance()
+      const logical = vi.fn()
+      const physical = vi.fn()
+      manager.register('Control+`', logical, { platform: 'linux' })
+      manager.register('Control+[Backquote]', physical, { platform: 'linux' })
+
+      document.dispatchEvent(
+        createKeyboardEvent('keydown', 'Unidentified', {
+          ctrlKey: true,
+          code: 'Backquote',
+        }),
+      )
+      expect(physical).toHaveBeenCalledOnce()
+      expect(logical).not.toHaveBeenCalled()
+    })
   })
 
   describe('preventDefault and stopPropagation', () => {
