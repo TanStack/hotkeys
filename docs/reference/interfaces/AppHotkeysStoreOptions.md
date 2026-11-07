@@ -23,8 +23,8 @@ optional customHotkeys?: CustomHotkeys<T> | null;
 
 Defined in: [app-hotkeys.ts:396](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/app-hotkeys.ts#L396)
 
-The user's saved custom hotkeys. Invalid entries are ignored with a
-warning. Passing a different value to `setOptions` later, such as data
+The user's saved custom hotkeys. Unknown ids and invalid entries are
+ignored. Passing a different value to `setOptions` later, such as data
 that finished loading or another user's data, replaces the current
 custom hotkeys. `undefined` leaves them unchanged; a change to `null`
 clears them.

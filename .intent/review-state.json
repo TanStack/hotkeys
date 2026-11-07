@@ -3,9 +3,9 @@
   "baseline": "ad56a4b0dbf3c34d8552eca2cc88c5c7000d520a",
   "items": {
     "skill:packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": {
-      "fingerprint": "d16d991a7bfc4e46bfcf9884797934dbe12321aee67a32d1efb0159177a06406",
+      "fingerprint": "5a7642c6069c236fd6cc9238fc5c21adddb041f30823e34db4ec673f04739078",
       "snapshot": {
-        "docs/framework/alpine/guides/app-hotkeys.md": "e5c2a2a0cbbc35e793cf3e88bdbafd863153f8784ee1af27f2a81fe7f259bb9b",
+        "docs/framework/alpine/guides/app-hotkeys.md": "cdefefaa71aa9c36da99d314ab0279aa791dcf651bb1fd4cebf7263ba661078a",
         "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "0b86889ea9327f24e0f66ab9ba5eb783aaffb492c028e1b6cac257690ca5d462",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "d182e659acc9f0a28e9198f590163db1541b30eec6d347fb378022f775cf316d",
@@ -17,40 +17,39 @@
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "187998883302dc3fed6b49a58c9fd57222bffd89923efd4c5d84fb0beecf5ec4"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Only the app hotkeys provider error gained a [hotkeys] prefix; the skill does not quote error text.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys. The skill makes no such claim.",
       "evidence": [
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md",
-        "packages/alpine-hotkeys/src/createAppHotkeys.ts",
-        "packages/alpine-hotkeys/src/scope.ts"
+        "docs/framework/alpine/guides/app-hotkeys.md"
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "f8ee1311e8825dff898fece076e38412d023be768a627b48b375fe7f5cf4ca12",
+      "fingerprint": "609e7270efaef13384e2e2eafb27bb87742d87bd0aa2e09a77085f1892f7be98",
       "snapshot": {
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
         "docs/framework/angular/quick-start.md": "3f9bd6e926aca66237a2f4fc975ad6a11786894ddc3201593ca90590c19dfc6c",
         "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "644a777c52a1ef882879320671517bb1349066612e3da4314e83211294eb21de",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "5fe1b12a519e8ca5087d78d47050f7a2ec0c70bb9b7d6ebcbb050ee099e3effe",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts": "11e40eab3b96a8b7cf519b0da8d28e1f5488c44ab49817b952f8e594d8b500b1",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts": "6818eb145de639a99b7ee71e8f2a68d165b12db428183da4a42ce51fc6f073dd",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "03ea85098b0ed95e323e8d1e35b61b2683b7bc2d68f67e56e15ce2da92177a6f",
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "d431ed7df4440d09cbed88d3201751853330d0b927949886e53cc583a75e7668",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "fed0f6769a2a8539db1c243a6ce76bddfbc669ffcde75dfe077c95484fc7c2c6"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Only the app hotkeys provider error gained a [hotkeys] prefix; the skill does not quote error text.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys. The skill makes no such claim.",
       "evidence": [
         "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md",
-        "packages/angular-hotkeys/src/injectAppHotkeys.ts"
+        "packages/angular-hotkeys/src/hotkeys-provider.ts"
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
-      "fingerprint": "67237faa7423bcc6f30364f25f9bdeb5bf41cfd11e64334f1412b2978d6ef56e",
+      "fingerprint": "ee61c83d58171d8a06ff2abc7a8cf422be89952661f5a93b71129f9451c1ebf2",
       "snapshot": {
-        "docs/framework/ember/guides/app-hotkeys.md": "fbe213ed8b89a59c6915c9ecfcfe8a1dbd184a0535e5d2b48fe8b8f06108d342",
+        "docs/framework/ember/guides/app-hotkeys.md": "c7c52789e2c869e773cb14b25f8a1dc8e5533569211bac45b0f124eb7c260695",
         "docs/framework/ember/quick-start.md": "70680043f3655e5f915094be4fbc8a2099932a325f472d0851a5dac7a1524340",
         "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "a6bdf35ab45404e6af23458d3aeee05da853e06f8c54894405389a8ff372a4f1",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
@@ -62,23 +61,23 @@
         "packages/ember-hotkeys/src/useHotkeyRecorder.ts": "40e7f4d02718755786d43f90fa5c2748abd6b46afbfe6dd864ca74cb7895a379",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Only the app hotkeys provider error gained a [hotkeys] prefix; the skill does not quote error text.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys. The skill makes no such claim.",
       "evidence": [
         "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md",
-        "packages/ember-hotkeys/src/useAppHotkeys.ts"
+        "docs/framework/ember/guides/app-hotkeys.md"
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "d52c7d2955f60da45140c1bacdaea6163a119dbc55c100889179b2c31a137285",
+      "fingerprint": "10701615aa7d6adfd567940ea7a4c1a0b4f53681b33204929403ce510e94993d",
       "snapshot": {
-        "docs/framework/react/guides/app-hotkeys.md": "8f38ea6fda3e05e5b5e6445c376fdfecd4ea0118fb897e822ba6f2e8e6114885",
+        "docs/framework/react/guides/app-hotkeys.md": "eb1f5087ec449c52b0fe342237c77fa511dee20bdd56b70d609e1a4e5c7ebbc6",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
         "docs/framework/react/guides/custom-hotkey-recording.md": "36f17bd33b5326bd396974ba24e5c06e3ec4218ad25045c0ee4910635f292ea7",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "0dc668ed5bcdc50b9ad290847f551d8da35cbb2c1f061ca363aa1bcb78d31b28",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
-        "packages/hotkeys/src/app-hotkeys.ts": "d407aec4f59370cfd5dc3a8a4feca02af8153520020144dd0f0f4cf506d09de5",
+        "packages/hotkeys/src/app-hotkeys.ts": "a1147f798a8523b52aa350bb7cb04b9cd7dcf3819d9094ac09db944a1700b4b7",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
         "packages/hotkeys/src/hotkey-recorder.ts": "61fc7bf0c290e7806113638a09b382e975a21d90dab989b6aff720530ea47397",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
@@ -90,11 +89,12 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "33cb28743ebe6330713fb89c920ce983ed4098d2",
-      "outcome": "updated",
-      "reason": "Unknown saved ids are now dropped silently, so the skill no longer says they warn.",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
+      "outcome": "no-change",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys. The skill makes no such claim.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/framework/react/guides/app-hotkeys.md",
         "packages/hotkeys/src/app-hotkeys.ts"
       ]
     },
@@ -129,9 +129,9 @@
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
-      "fingerprint": "9ec3e14490c024230b720b12cbdcd2911aa2647f8e1ec12fc5ab7e9b595b6a9e",
+      "fingerprint": "58452fa4ba044c1ed3987e0a3c5d037d4129cbe1204c691f8bc3a74f83b55b5c",
       "snapshot": {
-        "docs/framework/lit/guides/app-hotkeys.md": "da53124e5996f174e42e37a69a1b46757c7112506060fd79688fdbe4b1637b9c",
+        "docs/framework/lit/guides/app-hotkeys.md": "b001df84eb320a4af7759ab163f837bac0fe3b36014b4b5de9366102073af97b",
         "docs/framework/lit/quick-start.md": "0f1e0a406ae61dc62ea0659b95e734828a1181a591990331f1e8405f637a0094",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "4e5593e8d4373475d4e6006e30ec663d7f0f3fcf0aa881fc403efe58b9cf7606",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "659ca9bebf4200bb693c693addb17bd5a943904e482514f2014f5ca426629e96",
@@ -140,63 +140,63 @@
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "76ac338e601032ac00b6c9e78d4de25ba80e10b7e3aa193eccc65964e1bdb25c",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "324326b5cc6d2e7120ef004450a4ad721c564a79f419fa99978452b62a51c38a"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Only the app hotkeys provider error gained a [hotkeys] prefix; the skill does not quote error text.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys. The skill makes no such claim.",
       "evidence": [
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md",
-        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts"
+        "docs/framework/lit/guides/app-hotkeys.md"
       ]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
-      "fingerprint": "b60b9cffb571ccc0ed109882e8852aae81240f269518e24b54b9600158c8ac4d",
+      "fingerprint": "b88104044493e408ad7809e06176caeaa8298a597d5995a2e817ea1d1f542737",
       "snapshot": {
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
         "docs/framework/octane/quick-start.md": "19f6043a79f76e144ba05ead4bfcff1372a84fde377248de629cebb857733f6e",
         "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2e207c6e733ab9b471588670dbefe787d5a613a6ae9663d2086830e300aee89e",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
-        "packages/octane-hotkeys/src/HotkeysProvider.ts": "171e35ae48fb27d0409184043236529ff778a01e3bc377df54903e51ccdc1187",
+        "packages/octane-hotkeys/src/HotkeysProvider.ts": "0b9583e2a191b07ffd2cabbcb59c1c5c3605788c7965e9e9c68ecb73b6f5996c",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "0fc7d7f72d19fbe3ed5c0d13d8355cc8d1576e0382b631fe128540480edf2993",
         "packages/octane-hotkeys/src/useHotkey.ts": "d8da1d0cf0eb528667a25e750a2e51405e4e293bd10e22173546967b5c9d392b",
         "packages/octane-hotkeys/src/useHotkeys.ts": "d60be365f0ad1bde6228fd84d5d0b5abf3d8b6b6ec539ffcc23cac956a8e42e5"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Only the app hotkeys provider error gained a [hotkeys] prefix; the skill does not quote error text.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys. The skill makes no such claim.",
       "evidence": [
         "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md",
-        "packages/octane-hotkeys/src/useAppHotkeys.ts"
+        "packages/octane-hotkeys/src/HotkeysProvider.ts"
       ]
     },
     "skill:packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": {
-      "fingerprint": "090874240f3a88bb2321c3b20f6b89950e8c935f8d71fe2c9544b2e057d9ce51",
+      "fingerprint": "767e5d80aad7e8a963866014988ec30f3eec24fb0e843fcff92f20a863ee66a6",
       "snapshot": {
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
         "docs/framework/preact/quick-start.md": "b991913fea74d18f6ae096d46b54e6ca8ca85cb69df463c6ce12f3f8c9e5757b",
         "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "89b1ce6d371eb7fcaed7c7014bc93b6d930ec05f695fbd1cfde3d3c36aa81796",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "4388ff0528e9ea44f819896f2687ab962735479cdafaddd1e349dd1bf6dc5479",
-        "packages/preact-hotkeys/src/HotkeysProvider.tsx": "5f8e15778b85c9cc5914c37ce463c211ddf4fc0e64f643a11ccbc0d272b19dc8",
+        "packages/preact-hotkeys/src/HotkeysProvider.tsx": "06337dacdc92a1095576225c085e6703237527e214453faa01f64d5ae9a365a1",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "9c4cc235f7d692d52f2adf308240bd6e5b6741ecdc27cb0a19b3fbaeb728bef3",
         "packages/preact-hotkeys/src/useHotkey.ts": "6d66b813038e063f62aa8c8fb9be3020739854e1133885f70720b1036e789e84",
         "packages/preact-hotkeys/src/useHotkeys.ts": "832bf0156ff46db00140617bd3fea8055ca712a1a82d3cef7800776d42b02ebf",
         "packages/preact-hotkeys/src/utils.ts": "118090c4255527f52773133741355445fff8e41605ec6a9fc69c792730e96b9f"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Only the app hotkeys provider error gained a [hotkeys] prefix; the skill does not quote error text.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys. The skill makes no such claim.",
       "evidence": [
         "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md",
-        "packages/preact-hotkeys/src/useAppHotkeys.ts"
+        "packages/preact-hotkeys/src/HotkeysProvider.tsx"
       ]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "b296fe1a9ddca71580db8bfc81d5bc04b789f2a49f4b6f49932f52ac9c69337c",
+      "fingerprint": "39cc15768b958cb063f481502e395be8d3a21dbfcfc82278378b42f4ebb5fd51",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/quick-start.md": "23a6c1a998120d968a87b37c4f340b71052fc94e97eb52decd16b91bd655a638",
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "4f59c5efbce3ba0c54e2a47d9b868a31780225dc306132a3903fee5894ae1ed4",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "e45854b2346700249569ce418b0bb5593cd00a018336a60c9ed5cedeb8d49b3e",
-        "packages/react-hotkeys/src/HotkeysProvider.tsx": "93b2ed4764cde56855b602de3e5ef7acdc657758b16fd2784877003b649bec5a",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx": "8727052465cd2807f7decff828c585df7f62cb3c2267df58f09d38d94d035ba8",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "5b384b0361eabbb7c5faaa3a9083015413f212e9a02aa8234f0747714dd08453",
         "packages/react-hotkeys/src/useHotkey.ts": "ef8cf4158781c0f2fb873e30d33065f42ac8b8739e8702a1b05d90cfe697df31",
         "packages/react-hotkeys/src/useHotkeys.ts": "abbbfb36bc41f523e1864203929010299cd16a95ad35a78a8a9ec90c9984b25f",
@@ -219,97 +219,97 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Only the app hotkeys provider error gained a [hotkeys] prefix; the skill does not quote error text.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys. The skill makes no such claim.",
       "evidence": [
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/react-hotkeys/src/useAppHotkeys.ts"
+        "packages/react-hotkeys/src/HotkeysProvider.tsx"
       ]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
-      "fingerprint": "742896ac13d38c88d737e9f27cb22b2196bcac79cd13e71699113b3b69049f13",
+      "fingerprint": "f25fc54c8203e05543d9a47de7762313e4cc340acbff47f57854ade92b4f8cba",
       "snapshot": {
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
         "docs/framework/solid/quick-start.md": "74e8d20b975f1bab90f99e00226670a1fec555459650e498264415c03f79f0ef",
         "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "b44dd638d4b46fecd9883319ed623291ede33f2c2b5ffe41d7486ce19686e803",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d3dda6cd9aa0a8655aa43f017490797ad3d2de42206446b2403363873b84b133",
-        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "72b57a5785a2e5215c33c7c2768fe2e18972e35987ae21e352a37539111f342a",
+        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "5c585a35b064a83be8747db95c8f01a4a22a729fa911e5236db05960ad98fd72",
         "packages/solid-hotkeys/src/appHotkeys.ts": "f4a4a1878c514fb977f1ffe1e17ecf83dc531f872b9619e65c78c5c7ef2adeb7",
         "packages/solid-hotkeys/src/createHotkey.ts": "3be9476087da2b53e809ad5ac59b2f791f38cc4d88e2b151258e668a9fc92294",
         "packages/solid-hotkeys/src/createHotkeys.ts": "61fe0f81f807d94150d066b50309d286f10531002a13b92baed1c21946c41a6b"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Only the app hotkeys provider error gained a [hotkeys] prefix; the skill does not quote error text.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys. The skill makes no such claim.",
       "evidence": [
         "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md",
-        "packages/solid-hotkeys/src/appHotkeys.ts"
+        "packages/solid-hotkeys/src/HotkeysProvider.tsx"
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "932ca308b24c11d7992b7f53104b7f4842e831e09e446e9eac477654dda0b47c",
+      "fingerprint": "8dbb9f8cb128fabac64c274b4c1075f1794ae5eef4ef6676e48d0b8033c1bf8f",
       "snapshot": {
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
         "docs/framework/svelte/quick-start.md": "6fdf6ea3a44b3cd7fbf115b6d464460302af1b58112ca0b5b00723b4f5faab45",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "8dcc12e17d2389322ab8056f27faf03bb2f314c75b92ed851b0390024d4b8c9f",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
-        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "31852d1e1545c073eb06d6d99722e025b09130a11828ddc203ac02809477dd25",
+        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "42dbfc0bb548bb3ee421dd302c070a4593162bb0fb792a36a1666d5bc8d950b6",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "f2562d31a17ccec7788c93eeb4dad9b25ae984f9a5c7d569a44b30cc0ce2528b",
         "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "e54e51788da91adcd4b85872436917eeaed040cccd4a10cb62de3a50e8e36522",
         "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "0dcfe7ecbaa7a202fd3be9e88ca24d95cd8965267374ea709435e19a13a4857b",
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "73fbd19b1defc901d5e5b11c05000ffe1625bf15f983911d2c2243e3853569d5",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "cce27b167f1f81638889f409784505b51cab6270f9b3cab10bce95f8ff36b8f9"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Only the app hotkeys provider error gained a [hotkeys] prefix; the skill does not quote error text.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys. The skill makes no such claim.",
       "evidence": [
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md",
-        "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts"
+        "packages/svelte-hotkeys/src/HotkeysCtx.ts"
       ]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
-      "fingerprint": "7ac102202f909a8589f7ae85232d2bd2f3d8fd909c4742de43af29aa614a4c87",
+      "fingerprint": "f3af547eb3f5b1555f78ffda26b848d621a87c54cfa532d75e1c1bea2dd58d4f",
       "snapshot": {
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "00dfe1e45bcd475457bbf078aacb98f1cc78f0666a4ddedad38a285415e03875",
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "cb9e40505873cce1bf322cf9519763d60c0577170c0100c795f08fdff3924276",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "326ee1fe20c1d75a4ad720f69a3a4df9b9e3a057826115e955deb0ed25d88f9a",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "f15ab799773868c19e94a19f4624706fb395831851b8a590f60934e405aa66e4",
-        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "97631e3bce8ff5b7d2adedb68477c7e3cadb8627d01ba025a1cffdee196f8e9f",
+        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "eb10964f68c3212a340c495fed527889f6d543e06a5b0dbb55161c4706cec8f9",
         "packages/vue-hotkeys/src/useAppHotkeys.ts": "6589a4fffede9663990a4852d3aff6627c945a65abdcd9f6493385814e34769f",
         "packages/vue-hotkeys/src/useHotkey.ts": "74257a7e0f62393770877121eac31d405cf7daad416dc167feab08e4e9bbe4b9",
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Only the app hotkeys provider error gained a [hotkeys] prefix; the skill does not quote error text.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys. The skill makes no such claim.",
       "evidence": [
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md",
-        "packages/vue-hotkeys/src/useAppHotkeys.ts"
+        "packages/vue-hotkeys/src/HotkeysProviderContext.ts"
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "a80256e44bef11a12c5b65fa31c184f2aeec2cd06db735fb772272dc8095ea47",
+      "fingerprint": "dc70fd0c88cb095181335f4a82a8f851b0709f29967afd14d795d74306ac866a",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
         "_artifacts/skill_tree.yaml": "bff31ee525c55a3e572083903c5b8deb444cd850845ae2dc1e4b886ce2236a12",
-        "docs/framework/alpine/guides/app-hotkeys.md": "e5c2a2a0cbbc35e793cf3e88bdbafd863153f8784ee1af27f2a81fe7f259bb9b",
+        "docs/framework/alpine/guides/app-hotkeys.md": "cdefefaa71aa9c36da99d314ab0279aa791dcf651bb1fd4cebf7263ba661078a",
         "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
         "docs/framework/angular/quick-start.md": "3f9bd6e926aca66237a2f4fc975ad6a11786894ddc3201593ca90590c19dfc6c",
-        "docs/framework/ember/guides/app-hotkeys.md": "fbe213ed8b89a59c6915c9ecfcfe8a1dbd184a0535e5d2b48fe8b8f06108d342",
+        "docs/framework/ember/guides/app-hotkeys.md": "c7c52789e2c869e773cb14b25f8a1dc8e5533569211bac45b0f124eb7c260695",
         "docs/framework/ember/quick-start.md": "70680043f3655e5f915094be4fbc8a2099932a325f472d0851a5dac7a1524340",
-        "docs/framework/lit/guides/app-hotkeys.md": "da53124e5996f174e42e37a69a1b46757c7112506060fd79688fdbe4b1637b9c",
+        "docs/framework/lit/guides/app-hotkeys.md": "b001df84eb320a4af7759ab163f837bac0fe3b36014b4b5de9366102073af97b",
         "docs/framework/lit/quick-start.md": "0f1e0a406ae61dc62ea0659b95e734828a1181a591990331f1e8405f637a0094",
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
         "docs/framework/octane/quick-start.md": "19f6043a79f76e144ba05ead4bfcff1372a84fde377248de629cebb857733f6e",
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
         "docs/framework/preact/quick-start.md": "b991913fea74d18f6ae096d46b54e6ca8ca85cb69df463c6ce12f3f8c9e5757b",
-        "docs/framework/react/guides/app-hotkeys.md": "8f38ea6fda3e05e5b5e6445c376fdfecd4ea0118fb897e822ba6f2e8e6114885",
+        "docs/framework/react/guides/app-hotkeys.md": "eb1f5087ec449c52b0fe342237c77fa511dee20bdd56b70d609e1a4e5c7ebbc6",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
         "docs/framework/react/guides/custom-hotkey-recording.md": "36f17bd33b5326bd396974ba24e5c06e3ec4218ad25045c0ee4910635f292ea7",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
@@ -334,7 +334,7 @@
         "packages/alpine-hotkeys/src/scope.ts": "187998883302dc3fed6b49a58c9fd57222bffd89923efd4c5d84fb0beecf5ec4",
         "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "644a777c52a1ef882879320671517bb1349066612e3da4314e83211294eb21de",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "5fe1b12a519e8ca5087d78d47050f7a2ec0c70bb9b7d6ebcbb050ee099e3effe",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts": "11e40eab3b96a8b7cf519b0da8d28e1f5488c44ab49817b952f8e594d8b500b1",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts": "6818eb145de639a99b7ee71e8f2a68d165b12db428183da4a42ce51fc6f073dd",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "03ea85098b0ed95e323e8d1e35b61b2683b7bc2d68f67e56e15ce2da92177a6f",
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "d431ed7df4440d09cbed88d3201751853330d0b927949886e53cc583a75e7668",
@@ -353,7 +353,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
-        "packages/hotkeys/src/app-hotkeys.ts": "d407aec4f59370cfd5dc3a8a4feca02af8153520020144dd0f0f4cf506d09de5",
+        "packages/hotkeys/src/app-hotkeys.ts": "a1147f798a8523b52aa350bb7cb04b9cd7dcf3819d9094ac09db944a1700b4b7",
         "packages/hotkeys/src/conflicts.ts": "750fe91126e87f062500d11d9bf19116d77c8509fdaa7644c847d49f1cbf40a3",
         "packages/hotkeys/src/hotkey-manager.ts": "f88bdcaa130e8b0d95d96cd5033bb9f0db49ffd0e3301a81c8f7e112c6f942af",
         "packages/hotkeys/src/hotkey-recorder.ts": "61fc7bf0c290e7806113638a09b382e975a21d90dab989b6aff720530ea47397",
@@ -366,20 +366,20 @@
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "324326b5cc6d2e7120ef004450a4ad721c564a79f419fa99978452b62a51c38a",
         "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2e207c6e733ab9b471588670dbefe787d5a613a6ae9663d2086830e300aee89e",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
-        "packages/octane-hotkeys/src/HotkeysProvider.ts": "171e35ae48fb27d0409184043236529ff778a01e3bc377df54903e51ccdc1187",
+        "packages/octane-hotkeys/src/HotkeysProvider.ts": "0b9583e2a191b07ffd2cabbcb59c1c5c3605788c7965e9e9c68ecb73b6f5996c",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "0fc7d7f72d19fbe3ed5c0d13d8355cc8d1576e0382b631fe128540480edf2993",
         "packages/octane-hotkeys/src/useHotkey.ts": "d8da1d0cf0eb528667a25e750a2e51405e4e293bd10e22173546967b5c9d392b",
         "packages/octane-hotkeys/src/useHotkeys.ts": "d60be365f0ad1bde6228fd84d5d0b5abf3d8b6b6ec539ffcc23cac956a8e42e5",
         "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "89b1ce6d371eb7fcaed7c7014bc93b6d930ec05f695fbd1cfde3d3c36aa81796",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "4388ff0528e9ea44f819896f2687ab962735479cdafaddd1e349dd1bf6dc5479",
-        "packages/preact-hotkeys/src/HotkeysProvider.tsx": "5f8e15778b85c9cc5914c37ce463c211ddf4fc0e64f643a11ccbc0d272b19dc8",
+        "packages/preact-hotkeys/src/HotkeysProvider.tsx": "06337dacdc92a1095576225c085e6703237527e214453faa01f64d5ae9a365a1",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "9c4cc235f7d692d52f2adf308240bd6e5b6741ecdc27cb0a19b3fbaeb728bef3",
         "packages/preact-hotkeys/src/useHotkey.ts": "6d66b813038e063f62aa8c8fb9be3020739854e1133885f70720b1036e789e84",
         "packages/preact-hotkeys/src/useHotkeys.ts": "832bf0156ff46db00140617bd3fea8055ca712a1a82d3cef7800776d42b02ebf",
         "packages/preact-hotkeys/src/utils.ts": "118090c4255527f52773133741355445fff8e41605ec6a9fc69c792730e96b9f",
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "4f59c5efbce3ba0c54e2a47d9b868a31780225dc306132a3903fee5894ae1ed4",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "e45854b2346700249569ce418b0bb5593cd00a018336a60c9ed5cedeb8d49b3e",
-        "packages/react-hotkeys/src/HotkeysProvider.tsx": "93b2ed4764cde56855b602de3e5ef7acdc657758b16fd2784877003b649bec5a",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx": "8727052465cd2807f7decff828c585df7f62cb3c2267df58f09d38d94d035ba8",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "5b384b0361eabbb7c5faaa3a9083015413f212e9a02aa8234f0747714dd08453",
         "packages/react-hotkeys/src/useHotkey.ts": "ef8cf4158781c0f2fb873e30d33065f42ac8b8739e8702a1b05d90cfe697df31",
         "packages/react-hotkeys/src/useHotkeys.ts": "abbbfb36bc41f523e1864203929010299cd16a95ad35a78a8a9ec90c9984b25f",
@@ -403,13 +403,13 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1",
         "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "b44dd638d4b46fecd9883319ed623291ede33f2c2b5ffe41d7486ce19686e803",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d3dda6cd9aa0a8655aa43f017490797ad3d2de42206446b2403363873b84b133",
-        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "72b57a5785a2e5215c33c7c2768fe2e18972e35987ae21e352a37539111f342a",
+        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "5c585a35b064a83be8747db95c8f01a4a22a729fa911e5236db05960ad98fd72",
         "packages/solid-hotkeys/src/appHotkeys.ts": "f4a4a1878c514fb977f1ffe1e17ecf83dc531f872b9619e65c78c5c7ef2adeb7",
         "packages/solid-hotkeys/src/createHotkey.ts": "3be9476087da2b53e809ad5ac59b2f791f38cc4d88e2b151258e668a9fc92294",
         "packages/solid-hotkeys/src/createHotkeys.ts": "61fe0f81f807d94150d066b50309d286f10531002a13b92baed1c21946c41a6b",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "8dcc12e17d2389322ab8056f27faf03bb2f314c75b92ed851b0390024d4b8c9f",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
-        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "31852d1e1545c073eb06d6d99722e025b09130a11828ddc203ac02809477dd25",
+        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "42dbfc0bb548bb3ee421dd302c070a4593162bb0fb792a36a1666d5bc8d950b6",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "f2562d31a17ccec7788c93eeb4dad9b25ae984f9a5c7d569a44b30cc0ce2528b",
         "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "e54e51788da91adcd4b85872436917eeaed040cccd4a10cb62de3a50e8e36522",
         "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "0dcfe7ecbaa7a202fd3be9e88ca24d95cd8965267374ea709435e19a13a4857b",
@@ -418,18 +418,28 @@
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "cb9e40505873cce1bf322cf9519763d60c0577170c0100c795f08fdff3924276",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "326ee1fe20c1d75a4ad720f69a3a4df9b9e3a057826115e955deb0ed25d88f9a",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "f15ab799773868c19e94a19f4624706fb395831851b8a590f60934e405aa66e4",
-        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "97631e3bce8ff5b7d2adedb68477c7e3cadb8627d01ba025a1cffdee196f8e9f",
+        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "eb10964f68c3212a340c495fed527889f6d543e06a5b0dbb55161c4706cec8f9",
         "packages/vue-hotkeys/src/useAppHotkeys.ts": "6589a4fffede9663990a4852d3aff6627c945a65abdcd9f6493385814e34769f",
         "packages/vue-hotkeys/src/useHotkey.ts": "74257a7e0f62393770877121eac31d405cf7daad416dc167feab08e4e9bbe4b9",
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "835f6af7892f5d8a35925821be8a61b923d022fa6f7966f50db58687afdff367",
         "packages/vue-hotkeys/src/useHotkeys.ts": "be50b9a76c2f8d47901eea4bf66f688559fb7337d1123a1128bc13ba89dd8aef"
       },
-      "head": "33cb28743ebe6330713fb89c920ce983ed4098d2",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "App hotkeys no longer warn about unknown ids or invalid saved hotkeys. No API change.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys, matching the code.",
       "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/hotkeys/src/app-hotkeys.ts"
+        "docs/framework/alpine/guides/app-hotkeys.md",
+        "docs/framework/ember/guides/app-hotkeys.md",
+        "docs/framework/lit/guides/app-hotkeys.md",
+        "docs/framework/react/guides/app-hotkeys.md",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts",
+        "packages/hotkeys/src/app-hotkeys.ts",
+        "packages/octane-hotkeys/src/HotkeysProvider.ts",
+        "packages/preact-hotkeys/src/HotkeysProvider.tsx",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx",
+        "packages/solid-hotkeys/src/HotkeysProvider.tsx",
+        "packages/svelte-hotkeys/src/HotkeysCtx.ts",
+        "packages/vue-hotkeys/src/HotkeysProviderContext.ts"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -2375,13 +2385,13 @@
       "evidence": ["docs/reference/interfaces/AppHotkeysState.md"]
     },
     "source:docs/reference/interfaces/AppHotkeysStoreOptions.md": {
-      "fingerprint": "0c8b9935ecd082547a860589a7cc12d2a2928fdbe81f59fc858b9c0561b9977a",
+      "fingerprint": "bd7db8250c4c095e321178401d1b8ad7104c2d801cb637e9c7262bac73eaf24e",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "322ee3ab48e8aac4242ba3a01391202edb2cd4b4759f0c1b618b17204f63e475"
+        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "67caf1542429710f4b30cc30d4923cb9a6dad7be22d1acd467a0f00f7720ea5f"
       },
-      "head": "33cb28743ebe6330713fb89c920ce983ed4098d2",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Generated reference docs only moved source line numbers after app-hotkeys.ts shrank.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys, matching the code.",
       "evidence": ["docs/reference/interfaces/AppHotkeysStoreOptions.md"]
     },
     "source:docs/reference/interfaces/Register.md": {
@@ -2906,13 +2916,13 @@
       ]
     },
     "source:docs/framework/react/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "601c1d8bbabfdd70644d1846355f9cde61eea2fc5f6d032dfbeabcd868b98394",
+      "fingerprint": "aa1cb2889b1ab40ce2c56a3c0f8a1c69956d18b124c676ab44ddb1827e6948b0",
       "snapshot": {
-        "docs/framework/react/reference/interfaces/HotkeysProviderProps.md": "89ea6f69f6d0e1cc0bd0b3b0b84f3bac7554f3cbe2893c3730503ffe7fa643cc"
+        "docs/framework/react/reference/interfaces/HotkeysProviderProps.md": "42a2c0a74805fa769babd58617691c6f5ab51dc2f0bcb07508d0977ca55a74a6"
       },
-      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys, matching the code.",
       "evidence": [
         "docs/framework/react/reference/interfaces/HotkeysProviderProps.md"
       ]
@@ -3694,13 +3704,13 @@
       ]
     },
     "source:docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md": {
-      "fingerprint": "d621ac6c575e10c5e2c84f20b7403bf348a72c954de843b583606713d8111429",
+      "fingerprint": "97bf6952b9bb4289f5cf51537ba4a88d94fd4e1b35159d257e7b458c5e51831a",
       "snapshot": {
-        "docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md": "6b3a916ea769e72ad82d252416d6b9a831673b47e7abc97dea770f39c8899993"
+        "docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md": "413a3d0387a3001cc60a7c099c79b2a2c2f70d2de9d2b8b4ed404e9a9efaea44"
       },
-      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys, matching the code.",
       "evidence": [
         "docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md"
       ]
@@ -4242,13 +4252,13 @@
       "evidence": ["Not committed with this PR."]
     },
     "source:docs/framework/angular/guides/app-hotkeys.md": {
-      "fingerprint": "699f52ca63a27315bbeb0390adaef752e3a50942b6030a2a8f19ed84c098115a",
+      "fingerprint": "52cce18d62e93f40f9c2b1b2c24eaa9cc807910f5816cf20c2f39a0aa7ca5ff0",
       "snapshot": {
-        "docs/framework/angular/guides/app-hotkeys.md": "955f261865ead4d060b016035f4291b3cd64f4e1b2486b0bf8817a4d75f181e8"
+        "docs/framework/angular/guides/app-hotkeys.md": "7fd51f90b675943d95df3146fcb6f464d412c0b4a214eeae43da97d79e0295e7"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys, matching the code.",
       "evidence": ["docs/framework/angular/guides/app-hotkeys.md"]
     },
     "source:docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": {
@@ -4312,13 +4322,13 @@
       ]
     },
     "source:docs/framework/angular/reference/interfaces/ProvideHotkeysOptions.md": {
-      "fingerprint": "d7afedf2a1cba402ffb46843bc1d8bf90623e5610078e95b76a851d8d8cb374f",
+      "fingerprint": "0571fc941751bec6a5d5e9824d334095ab1485733f6c12d8c15af10333a6297e",
       "snapshot": {
-        "docs/framework/angular/reference/interfaces/ProvideHotkeysOptions.md": "02a60ad34c1e2dfb0220f69a4ca607d41f26b4595f723ca938fec64fb902f1f5"
+        "docs/framework/angular/reference/interfaces/ProvideHotkeysOptions.md": "c6e331a5acb60462b143037cd269926626e5124c0115579e134011ea8c4f13e1"
       },
-      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys, matching the code.",
       "evidence": [
         "docs/framework/angular/reference/interfaces/ProvideHotkeysOptions.md"
       ]
@@ -4348,13 +4358,13 @@
       ]
     },
     "source:docs/framework/octane/guides/app-hotkeys.md": {
-      "fingerprint": "86c706bf7d3adf4bade3a0757a1b42d3a8d30dd4267d190dbd3a21cf44b13fb6",
+      "fingerprint": "ef8489f19eaa326829e431b7766d3da54d2aee875fde5974e7561ef82f6e12be",
       "snapshot": {
-        "docs/framework/octane/guides/app-hotkeys.md": "d960041df42d685aade35f4fcad5891d8f2166e5e305b31983737e18fe85e79e"
+        "docs/framework/octane/guides/app-hotkeys.md": "838453485c71401c8d2f65f7481b42f160c86ddecdff3c3d94d23a609fb08fa8"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys, matching the code.",
       "evidence": ["docs/framework/octane/guides/app-hotkeys.md"]
     },
     "source:docs/framework/octane/reference/functions/HotkeysProvider.md": {
@@ -4406,13 +4416,13 @@
       ]
     },
     "source:docs/framework/octane/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "809161fc7d05e8385a42607fcbc2f4c23d5136ccdc7beb56eed1ae779855b4f9",
+      "fingerprint": "e4a3f2edc451949db16363d8e5b4a76e838a086c8f0057303b0e152daf9f702a",
       "snapshot": {
-        "docs/framework/octane/reference/interfaces/HotkeysProviderProps.md": "5ff9cc3bc61a1b863b62dfbeafe52a4f50925ef82ce2aaf0b899eaabcad147b1"
+        "docs/framework/octane/reference/interfaces/HotkeysProviderProps.md": "b1368fa0c2904568afad56d9415d4d917a1e60ad68328d23d32fd3d206178c53"
       },
-      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys, matching the code.",
       "evidence": [
         "docs/framework/octane/reference/interfaces/HotkeysProviderProps.md"
       ]
@@ -4430,13 +4440,13 @@
       ]
     },
     "source:docs/framework/preact/guides/app-hotkeys.md": {
-      "fingerprint": "121b5b05ff5554ce54f47b583b839c5a03434f49687b2d6ab323b57f6dac1070",
+      "fingerprint": "c94e89174af87b1c0c7ff69d88f30ab0a6918a63b2bbbf1c15ff9a0e755b51b5",
       "snapshot": {
-        "docs/framework/preact/guides/app-hotkeys.md": "3d1257819412d37031ef7423645f43bf1b5ef60b79f39bee058e11cc5982c83a"
+        "docs/framework/preact/guides/app-hotkeys.md": "ada75854846211b2bae4891eba51605baabd72f3691f2937a2a6834dcc25a11b"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys, matching the code.",
       "evidence": ["docs/framework/preact/guides/app-hotkeys.md"]
     },
     "source:docs/framework/preact/reference/functions/HotkeysProvider.md": {
@@ -4512,25 +4522,25 @@
       ]
     },
     "source:docs/framework/preact/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "ac588e7c848a6ebb756bb6802271ba66187d0d5534b6e96bc1869d75b4d0e577",
+      "fingerprint": "3245bbba37f0a8e934217af19714bb80cee4700fcafe3445302dd11c3ddc9721",
       "snapshot": {
-        "docs/framework/preact/reference/interfaces/HotkeysProviderProps.md": "e22fd20539f3406b5e9fa6041d995479d3f973c49a79a454ce96827bbeb969b7"
+        "docs/framework/preact/reference/interfaces/HotkeysProviderProps.md": "151e777d2b5fb8dd270883062244648053e3d45f1771cc6e44bafb289f18fe1c"
       },
-      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys, matching the code.",
       "evidence": [
         "docs/framework/preact/reference/interfaces/HotkeysProviderProps.md"
       ]
     },
     "source:docs/framework/solid/guides/app-hotkeys.md": {
-      "fingerprint": "ce2561dfbb5034455971107f45339bbdfa584214ef660fb0e4559ab72bd7a852",
+      "fingerprint": "be77378cef3bf26e02ca2e1d921f1bc24c8e6fad9b73f989047fba15e94c039f",
       "snapshot": {
-        "docs/framework/solid/guides/app-hotkeys.md": "de29b668d89880f025d8315a53fb43d17404341ebcf583a9f34aa16c74ee964f"
+        "docs/framework/solid/guides/app-hotkeys.md": "7224fcee862fcf5e8ff5513b3ecf60615bcf81d63d02d01820ad92856706a0d6"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys, matching the code.",
       "evidence": ["docs/framework/solid/guides/app-hotkeys.md"]
     },
     "source:docs/framework/solid/reference/functions/createHeldKeyCodes.md": {
@@ -4606,13 +4616,13 @@
       ]
     },
     "source:docs/framework/solid/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "d1f2f588a74a015d5ed06649e13ccb7b901bbcb9dd4c1c1352d5f4e145cf6512",
+      "fingerprint": "41d00075e982aa2db94bd2ce7d0261e9c6905979dad7f88353634132cec6c14d",
       "snapshot": {
-        "docs/framework/solid/reference/interfaces/HotkeysProviderProps.md": "058387071a53d3255890a4a8ffed8e16ea5dcc7f5e850edd0bbddc69eb26c8b7"
+        "docs/framework/solid/reference/interfaces/HotkeysProviderProps.md": "6ab730bdbd753e85a480cdbb4ff45e52a9e07c5692eec7a6a01d07ad32240f06"
       },
-      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys, matching the code.",
       "evidence": [
         "docs/framework/solid/reference/interfaces/HotkeysProviderProps.md"
       ]
@@ -4630,13 +4640,13 @@
       ]
     },
     "source:docs/framework/svelte/guides/app-hotkeys.md": {
-      "fingerprint": "6f092e6cfaaaac7582b8fcedf091f3eca842672eaff9f963db136eeb26774b16",
+      "fingerprint": "2691574da2fc28de405e8986792918ca1620e900c34f2d5153c5dabbed93269a",
       "snapshot": {
-        "docs/framework/svelte/guides/app-hotkeys.md": "7b17e2e67bf55e9499bc40ffc868b93a793471b3b2591a252357458efee620bb"
+        "docs/framework/svelte/guides/app-hotkeys.md": "61398de49e8237620b8eb555eb404abe9cd2e0aa61b67484b770b99e6cff555a"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys, matching the code.",
       "evidence": ["docs/framework/svelte/guides/app-hotkeys.md"]
     },
     "source:docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md": {
@@ -4676,13 +4686,13 @@
       ]
     },
     "source:docs/framework/svelte/reference/interfaces/HotkeysContextOptions.md": {
-      "fingerprint": "fd301cc98fee2fc4070eb1f7652d8cc9bf2522d77786cb36f9105f7e82f3e9cb",
+      "fingerprint": "600a6ee76e2e27e95c0af5e095d4d4ace3d26a95a030d83252b1095db6f581a4",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/HotkeysContextOptions.md": "17563b80fa123555e92d47c01caf770950c5674734a41b5d2ebc8004810b0d7e"
+        "docs/framework/svelte/reference/interfaces/HotkeysContextOptions.md": "cad2a6d539375e5fbd453a88f488a0f3bcd7ad5a3175ad8fb00ee05729ce4c3e"
       },
-      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys, matching the code.",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/HotkeysContextOptions.md"
       ]
@@ -4700,13 +4710,13 @@
       ]
     },
     "source:docs/framework/svelte/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "f9e35459c865673352153338437bb29d0e115fedf2ddcca44688a7e6f458eda3",
+      "fingerprint": "6647f94fc504962d54324c8b744db9ad1e1b1b8605b5141956fbdbbc84ddd0d3",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/HotkeysProviderProps.md": "f03d8e8028353f3561951458749c9873164934762c5d644fbac61420e020e30f"
+        "docs/framework/svelte/reference/interfaces/HotkeysProviderProps.md": "bcbdbdb7878098940f99856c6cc138835f778bfa50459b6e623617d295ff49aa"
       },
-      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys, matching the code.",
       "evidence": [
         "docs/framework/svelte/reference/interfaces/HotkeysProviderProps.md"
       ]
@@ -4724,13 +4734,13 @@
       ]
     },
     "source:docs/framework/vue/guides/app-hotkeys.md": {
-      "fingerprint": "8fa50dbabc78058203ba23a5eb36da79f146a79a55772b783b385b79c3db948f",
+      "fingerprint": "8ba221531ec8d204c5b6fb702940eda68add4d0efbf04247a6a29e804213ccb1",
       "snapshot": {
-        "docs/framework/vue/guides/app-hotkeys.md": "7fb3bb49897ff399b61c4b7d60cd30803cc00fa1f917a5d81858dbc465ea1758"
+        "docs/framework/vue/guides/app-hotkeys.md": "ad23520f49160e0a64dc83e66eddede3d6345d2e75c9b799d23ae4377240d3c1"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
+      "head": "3c7e70738c0eb8e780ed14af983cb081b5495527",
       "outcome": "no-change",
-      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
+      "reason": "Docs and JSDoc stop promising a warning for unknown or invalid saved custom hotkeys, matching the code.",
       "evidence": ["docs/framework/vue/guides/app-hotkeys.md"]
     },
     "source:docs/framework/vue/reference/functions/useHeldKeys.md": {

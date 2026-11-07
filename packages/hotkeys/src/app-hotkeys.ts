@@ -387,8 +387,8 @@ export interface AppHotkeysState<T extends AppHotkeys = AppHotkeys> {
 /** Options for `AppHotkeysStore`. */
 export interface AppHotkeysStoreOptions<T extends AppHotkeys = AppHotkeys> {
   /**
-   * The user's saved custom hotkeys. Invalid entries are ignored with a
-   * warning. Passing a different value to `setOptions` later, such as data
+   * The user's saved custom hotkeys. Unknown ids and invalid entries are
+   * ignored. Passing a different value to `setOptions` later, such as data
    * that finished loading or another user's data, replaces the current
    * custom hotkeys. `undefined` leaves them unchanged; a change to `null`
    * clears them.
