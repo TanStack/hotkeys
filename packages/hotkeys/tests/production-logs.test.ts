@@ -56,6 +56,14 @@ describe('console output', () => {
     },
   )
 
+  // Every scope other than global reaches the exclusive-scope check
+  it('activates a non-exclusive scope without process', () => {
+    vi.stubGlobal('process', undefined)
+    const manager = getHotkeyManager()
+    expect(() => manager.activateScope('panel')).not.toThrow()
+    expect(manager.isScopeActive('panel')).toBe(true)
+  })
+
   it('still returns validity from checkHotkey in production', () => {
     vi.stubEnv('NODE_ENV', 'production')
     expect(checkHotkey('')).toBe(false)

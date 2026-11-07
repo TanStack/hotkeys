@@ -5344,13 +5344,13 @@
       "evidence": ["packages/hotkeys/tests/adapter.test.ts"]
     },
     "source:packages/hotkeys/tests/production-logs.test.ts": {
-      "fingerprint": "374269bb4727a77782269fefcefc9d3b99e626753aa0f397e83910cbe4fe9cff",
+      "fingerprint": "c4c0748b7b25d7f99f7c703f76cbbc461993d913e05f154247fcefa0d842a7be",
       "snapshot": {
-        "packages/hotkeys/tests/production-logs.test.ts": "f4f5a61514595135b708755f31b011d30b627d2e689a42bd1abfee91258f0d90"
+        "packages/hotkeys/tests/production-logs.test.ts": "0ec33b0c66d2610f2e831ce1e8cbdb31bcec7d28fdab909d4b6cb19183ed6a44"
       },
-      "head": "33cb28743ebe6330713fb89c920ce983ed4098d2",
+      "head": "8c85422ddf819f20fbf80c2760953d99909bfea3",
       "outcome": "no-change",
-      "reason": "App hotkeys no longer warn about unknown ids or invalid saved hotkeys, so their log scenarios are gone. No API change.",
+      "reason": "Adds a test that a non-exclusive scope activates when process is undefined. No API or guidance change.",
       "evidence": ["packages/hotkeys/tests/production-logs.test.ts"]
     },
     "source:packages/hotkeys/tests/store.test.ts": {
