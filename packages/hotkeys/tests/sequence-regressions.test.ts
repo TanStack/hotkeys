@@ -109,6 +109,28 @@ describe.each(['key', 'code'] as const)(
       },
     )
 
+    // Chrome on Linux Wayland reports Ctrl+` as key Unidentified (#229)
+    it('treats an Unidentified key as a key press, not composition', () => {
+      const step = mode === 'key' ? 'Control+`' : 'Control+[Backquote]'
+      const matcher = createSequenceMatcher([g, step], { platform: 'linux' })
+      const unidentified = () =>
+        keyEvent('Unidentified', 'Backquote', { ctrlKey: true })
+      matcher.match(keyEvent('g', 'KeyG'))
+      expect(matcher.match(unidentified())).toBe(true)
+
+      // Without a usable code it tells us nothing, so progress is kept
+      matcher.match(keyEvent('g', 'KeyG'))
+      expect(matcher.match(keyEvent('Unidentified', ''))).toBe(false)
+      expect(matcher.match(keyEvent('Unidentified', 'Unidentified'))).toBe(
+        false,
+      )
+      expect(matcher.getProgress()).toBe(1)
+
+      // On another key it resets progress, like any wrong key
+      matcher.match(keyEvent('Unidentified', 'Minus', { ctrlKey: true }))
+      expect(matcher.getProgress()).toBe(0)
+    })
+
     it('ignoring events does not extend the standalone timeout', () => {
       vi.useFakeTimers()
       const matcher = createSequenceMatcher([g, c], { timeout: 100 })
