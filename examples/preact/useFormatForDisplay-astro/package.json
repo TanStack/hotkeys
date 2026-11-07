@@ -11,11 +11,11 @@
     "test:types": "astro check"
   },
   "dependencies": {
-    "@astrojs/node": "^11.1.9",
-    "@astrojs/preact": "^6.1.1",
+    "@astrojs/node": "^11.1.11",
+    "@astrojs/preact": "^6.1.2",
     "@tanstack/preact-hotkeys": "^0.20.1",
-    "astro": "^7.4.4",
-    "preact": "^11.0.1"
+    "astro": "^7.4.7",
+    "preact": "^11.2.0"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",

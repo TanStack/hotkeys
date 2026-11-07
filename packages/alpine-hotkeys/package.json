@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@types/alpinejs": "^3.17.0",
-    "alpinejs": "^3.17.4"
+    "alpinejs": "^3.17.5"
   },
   "peerDependencies": {
     "alpinejs": "^3.13.0"
