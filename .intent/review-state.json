@@ -4225,15 +4225,15 @@
       ]
     },
     "source:packages/hotkeys/tests/sequence-regressions.test.ts": {
-      "fingerprint": "5c82e114847321b7e8f0005f782f1b8fd0016d42062d3f0c482eb1b7a89e4b90",
+      "fingerprint": "6d73559224885f8ba9fca5209d398193962c5136d056b9ae5ab52456c63513ce",
       "snapshot": {
-        "packages/hotkeys/tests/sequence-regressions.test.ts": "5ca8e059c5d5a6f110141dc2f518bff433d24357eda0c6181bc00b1dca55094f"
+        "packages/hotkeys/tests/sequence-regressions.test.ts": "8284daf4ed3b52befa87f1431cb8df9a7156a5e3b9a26924ef7d6c01de02908f"
       },
-      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
+      "head": "7f8e893b9c7e67fcd4c09c9b6868ef40f7525f5a",
       "outcome": "no-change",
-      "reason": "Core fix for #229 and its tests; skills don't describe Unidentified or composition matching.",
+      "reason": "An Unidentified key on a modifier code is ignored like a modifier press, as before this PR; no skill describes Unidentified handling.",
       "evidence": [
-        "git diff origin/main shows matching, recorder, and test changes only; no skill text references this behavior."
+        "grep for Unidentified and composition in packages/*/skills and _artifacts finds no matching guidance."
       ]
     },
     "source:.gitignore": {
@@ -6491,15 +6491,15 @@
       ]
     },
     "source:packages/hotkeys/src/_keyboard-event.ts": {
-      "fingerprint": "2479edb62dc0e40fd84f79bd00aa5a45e016bc94207d184a317fc3761177291b",
+      "fingerprint": "a41c7c8046d7e627e18f9dd9c9d69ff995669608c38e60db4ef885d6f0a97a72",
       "snapshot": {
-        "packages/hotkeys/src/_keyboard-event.ts": "1ccb3a0830c55055e223416e14aba4a379b5a3b11e2863bc3cf459de164438de"
+        "packages/hotkeys/src/_keyboard-event.ts": "e223eca443524a19bb23ec56c861b9090356c6afcd335a9b953d518b086af741"
       },
-      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
+      "head": "7f8e893b9c7e67fcd4c09c9b6868ef40f7525f5a",
       "outcome": "no-change",
-      "reason": "Core fix for #229 and its tests; skills don't describe Unidentified or composition matching.",
+      "reason": "An Unidentified key on a modifier code is ignored like a modifier press, as before this PR; no skill describes Unidentified handling.",
       "evidence": [
-        "git diff origin/main shows matching, recorder, and test changes only; no skill text references this behavior."
+        "grep for Unidentified and composition in packages/*/skills and _artifacts finds no matching guidance."
       ]
     },
     "source:packages/hotkeys/src/format.ts": {

@@ -124,11 +124,29 @@ describe.each(['key', 'code'] as const)(
       expect(matcher.match(keyEvent('Unidentified', 'Unidentified'))).toBe(
         false,
       )
+      // A modifier key is never a step
+      expect(
+        matcher.match(
+          keyEvent('Unidentified', 'ControlLeft', { ctrlKey: true }),
+        ),
+      ).toBe(false)
       expect(matcher.getProgress()).toBe(1)
 
       // On another key it resets progress, like any wrong key
       matcher.match(keyEvent('Unidentified', 'Minus', { ctrlKey: true }))
       expect(matcher.getProgress()).toBe(0)
+    })
+
+    it('keeps manager progress across an Unidentified modifier key', () => {
+      const step = mode === 'key' ? 'Control+C' : 'Control+[KeyC]'
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register([g, step], callback, {
+        platform: 'linux',
+      })
+      press('g', 'KeyG')
+      press('Unidentified', 'ControlLeft', { ctrlKey: true })
+      press('c', 'KeyC', { ctrlKey: true })
+      expect(callback).toHaveBeenCalledOnce()
     })
 
     it('ignoring events does not extend the standalone timeout', () => {
