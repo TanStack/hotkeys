@@ -2525,13 +2525,13 @@
       "evidence": ["docs/reference/type-aliases/Target.md"]
     },
     "source:packages/hotkeys/src/_event-target.ts": {
-      "fingerprint": "7f966ad519414a5796f0c0c236e8e488563a44840d676cb929d2784aaae5b404",
+      "fingerprint": "d0a18f1cb51443b96d91fce247630f6654b06a2af5363932aada72f646a251e0",
       "snapshot": {
-        "packages/hotkeys/src/_event-target.ts": "e96ac4e5d9e753a52eaf5642f1248ea8b6316c7cc750cd8dfbc33f4d647cd564"
+        "packages/hotkeys/src/_event-target.ts": "55fa75ff6fd7c43665c317e14809da42fc0438a2498ebc5665ecd02cc1f99760"
       },
-      "head": "56025b56d4448f75f550d8c6b98e2098db8f8413",
+      "head": "8272236cbd6f4ccb1f31c074afcf2a58b0fb186c",
       "outcome": "no-change",
-      "reason": "Ownership checks now read an Unidentified key from its code, matching the matcher's fallback; no skill describes Unidentified handling or native activation internals.",
+      "reason": "Ownership checks read Unidentified named codes and typeahead characters from the code, matching the matcher; no skill describes these internals.",
       "evidence": [
         "grep for Unidentified and composition in packages/*/skills and _artifacts finds no matching guidance."
       ]
@@ -11858,13 +11858,13 @@
       ]
     },
     "source:packages/hotkeys/tests/native-activation.test.ts": {
-      "fingerprint": "5ff287604803cd117aa253bafb51e0e544c2442d272bb18ce4d688e23d1755fc",
+      "fingerprint": "2ad7c7f2a0c7181808b0768301d54239d3130051088d036bc83bc2f7bd92f082",
       "snapshot": {
-        "packages/hotkeys/tests/native-activation.test.ts": "436f71f34534e2fcf82f80a036cb6d3e770444324d3df2dc65c7f8f3939a3cc3"
+        "packages/hotkeys/tests/native-activation.test.ts": "39f071ebecef70d88c50612d677e2d96880d6eb0b4a92e06d16609d2a260fcf8"
       },
-      "head": "56025b56d4448f75f550d8c6b98e2098db8f8413",
+      "head": "8272236cbd6f4ccb1f31c074afcf2a58b0fb186c",
       "outcome": "no-change",
-      "reason": "Ownership checks now read an Unidentified key from its code, matching the matcher's fallback; no skill describes Unidentified handling or native activation internals.",
+      "reason": "Ownership checks read Unidentified named codes and typeahead characters from the code, matching the matcher; no skill describes these internals.",
       "evidence": [
         "grep for Unidentified and composition in packages/*/skills and _artifacts finds no matching guidance."
       ]
