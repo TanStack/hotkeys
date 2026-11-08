@@ -100,12 +100,12 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "da13a6cd53743b22dca836b05e846d1c42755f838a16896466c76552808f296b",
+      "fingerprint": "01ec481dbb489a23be722da4b3ea83eb6efe3aab37b995fb8f9c7ddb4f498161",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/guides/sensible-defaults.md": "8b4d1a9d2692f8a7b3f72a6d57ad5ec1edc40fbef83a8fb1c4373b6230a65efd",
+        "docs/guides/sensible-defaults.md": "26d2b564622899e420f99bbe59a9ec71613157ac8a66af46220e58a2c3397965",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
@@ -121,32 +121,30 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "42b2512f6854dcfedf37d737e63b487d06c5964c",
       "outcome": "no-change",
-      "reason": "The core skill only says a target limits a hotkey to focus inside one element; the React guide change (unset targets wait) doesn't change that guidance.",
+      "reason": "Merge of main. The skill and planning items changed through #238 and #239 (Lit override and dispose()), which recorded their own reviews. The skill_spec.md conflict kept both: #239's Lit dispose() row and log entry, and this branch's Vue component-ref row and element-target log entry. This branch's Lit guide target note and the regenerated Lit reference line shift need no further skill change.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "Adapter and core tests for unset targets pass: packages/hotkeys/tests/unset-values.test.ts, react/preact/vue/solid unset-values tests, angular targets.test.ts, octane ref-targets.test.ts"
+        "Changed: docs/guides/sensible-defaults.md at 42b2512f6854dcfedf37d737e63b487d06c5964c"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
-      "fingerprint": "de37e0a0c1123bb32ddb6c91cceb363152c2346c1d2cf34d8b934fc4aaddf445",
+      "fingerprint": "2786cc289b2049d7232472bfdb4eebf3b661757d60c0892aef0ab98dbf19de16",
       "snapshot": {
         "docs/framework/lit/guides/app-hotkeys.md": "b001df84eb320a4af7759ab163f837bac0fe3b36014b4b5de9366102073af97b",
         "docs/framework/lit/quick-start.md": "0f1e0a406ae61dc62ea0659b95e734828a1181a591990331f1e8405f637a0094",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "5690f120148b5314bab1eb13244ae578bd78f55b1b11d8c6637489ca2750d187",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "b2e8d9a31ecc0f97bc0c073608a06572ff555cf5f2d7e52316315e4783fdaacd",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
-        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2a4ea438b8322f0f547dd10af7e94882cc2cfaa58def039c19f976ab9aa14670",
-        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "6c988296c7e85b02953f1392f50ce46be19920b2e0fd1fd8ec613e072d5d4e3b",
-        "packages/lit-hotkeys/src/controllers/hotkey.ts": "937133f585c4baa402400cc9ae6ea00957617c6483d0f7d58d2a8af34b128b83",
-        "packages/lit-hotkeys/src/decorators/hotkey.ts": "46c9522a6d617f37826898bfda2b0eba52204fafb5fa895a356603b2ddbf5f01"
+        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
+        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "69e4018c8375779f0392cf0383f5d3f1faeb14e0dee831a2c0b4dbd6e60cd36d",
+        "packages/lit-hotkeys/src/controllers/hotkey.ts": "6f1dd627c166013111da04e1ac708f6dd2cf2523b42a3f56bdde46500208e44d",
+        "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "42b2512f6854dcfedf37d737e63b487d06c5964c",
       "outcome": "no-change",
-      "reason": "Lit's controller JSDoc now says null or undefined targets wait; the skill's ref and controller-host pitfalls still hold.",
+      "reason": "Merge of main. The skill and planning items changed through #238 and #239 (Lit override and dispose()), which recorded their own reviews. The skill_spec.md conflict kept both: #239's Lit dispose() row and log entry, and this branch's Vue component-ref row and element-target log entry. This branch's Lit guide target note and the regenerated Lit reference line shift need no further skill change.",
       "evidence": [
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md",
-        "Adapter and core tests for unset targets pass: packages/hotkeys/tests/unset-values.test.ts, react/preact/vue/solid unset-values tests, angular targets.test.ts, octane ref-targets.test.ts"
+        "Changed: packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md, packages/lit-hotkeys/src/controllers/app-hotkeys.ts, packages/lit-hotkeys/src/controllers/hotkey-recorder.ts, packages/lit-hotkeys/src/controllers/hotkey.ts, packages/lit-hotkeys/src/decorators/hotkey.ts at 42b2512f6854dcfedf37d737e63b487d06c5964c"
       ]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
@@ -299,10 +297,10 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "ce8738990cc0893b79529532ab743048886b2280d0777fd615cd1f8aa0f2e176",
+      "fingerprint": "f2d976e16d91186b5f3a39fb4ba88152d560f333d1aae4cb0d9eb25d406a9873",
       "snapshot": {
-        "_artifacts/domain_map.yaml": "31775e4c90923c0c7550ef1da7e0965d103938f6a50010d399700d6f7fa00d89",
-        "_artifacts/skill_spec.md": "45dab1669f6f6527ba739c2184f867d7fc9b3c51a3eef1a6185f4e6563b92d46",
+        "_artifacts/domain_map.yaml": "a5d786d09bc9c5c90e55f8d7bc5fee008837ee62d88fad54b7e5ad0e2d24b1d7",
+        "_artifacts/skill_spec.md": "8dcd5a45c683562d0368163b7d1383f70c5991d29a3cbf26f925f9021ba6a14f",
         "_artifacts/skill_tree.yaml": "bff31ee525c55a3e572083903c5b8deb444cd850845ae2dc1e4b886ce2236a12",
         "docs/framework/alpine/guides/app-hotkeys.md": "cdefefaa71aa9c36da99d314ab0279aa791dcf651bb1fd4cebf7263ba661078a",
         "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
@@ -329,7 +327,7 @@
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
-        "docs/guides/sensible-defaults.md": "8b4d1a9d2692f8a7b3f72a6d57ad5ec1edc40fbef83a8fb1c4373b6230a65efd",
+        "docs/guides/sensible-defaults.md": "26d2b564622899e420f99bbe59a9ec71613157ac8a66af46220e58a2c3397965",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "b8a7e9ce42d7a9cfacc9bd405a5f0be43064e81f76616a6f31504ccb32c0d59a",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "69ba6d06582aaf28328e74c12888bcf8b1d89b2ae2a01d7f6a41eb82eef848e3",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4c43866e1e60dbfcdac1c5acb3b5bd1f372d722d47e51cb8922b22f1c372fa45",
@@ -365,12 +363,12 @@
         "packages/hotkeys/src/hotkey-manager.ts": "340ae1e61d8e08fe56edb0bb73f41434dae03ad15a374c2a0864450b64276443",
         "packages/hotkeys/src/hotkey-recorder.ts": "a19c8e64b939faa51b4554e71e71485f4d419539e4c9c287fdbb07955362a3e7",
         "packages/hotkeys/src/match.ts": "204f0159ccdd1bfaed96b1b03ad805f7fa9a74c011e70760749d1e0c326b7e8a",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "5690f120148b5314bab1eb13244ae578bd78f55b1b11d8c6637489ca2750d187",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "b2e8d9a31ecc0f97bc0c073608a06572ff555cf5f2d7e52316315e4783fdaacd",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
-        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2a4ea438b8322f0f547dd10af7e94882cc2cfaa58def039c19f976ab9aa14670",
-        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "6c988296c7e85b02953f1392f50ce46be19920b2e0fd1fd8ec613e072d5d4e3b",
-        "packages/lit-hotkeys/src/controllers/hotkey.ts": "937133f585c4baa402400cc9ae6ea00957617c6483d0f7d58d2a8af34b128b83",
-        "packages/lit-hotkeys/src/decorators/hotkey.ts": "46c9522a6d617f37826898bfda2b0eba52204fafb5fa895a356603b2ddbf5f01",
+        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
+        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "69e4018c8375779f0392cf0383f5d3f1faeb14e0dee831a2c0b4dbd6e60cd36d",
+        "packages/lit-hotkeys/src/controllers/hotkey.ts": "6f1dd627c166013111da04e1ac708f6dd2cf2523b42a3f56bdde46500208e44d",
+        "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef",
         "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "13f491353cc62049743a352bcf4aa3160e8b5db2913360f6f3686e8c99781ce1",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "d18e8ffb2503f4dfd4aec75aaa8ec6974c3a9cea6e7174287ec8ea18cc77f101",
@@ -431,14 +429,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "1cb4d010a0a2d55c8fd0140dc2fee8e018c15b00",
-      "outcome": "updated",
-      "reason": "domain_map.yaml mechanisms for React, Preact, Solid, Angular, and Octane now say unset targets wait; Octane's ref-object failure mode became a mounts-later one; Vue gains a component-ref failure mode. skill_spec.md inventory, framework mistakes, and a 2026-11-08 source-sync entry match. skill_tree.yaml descriptions and purposes still hold (they name element/ref targets generally).",
+      "head": "42b2512f6854dcfedf37d737e63b487d06c5964c",
+      "outcome": "no-change",
+      "reason": "Merge of main. The skill and planning items changed through #238 and #239 (Lit override and dispose()), which recorded their own reviews. The skill_spec.md conflict kept both: #239's Lit dispose() row and log entry, and this branch's Vue component-ref row and element-target log entry. This branch's Lit guide target note and the regenerated Lit reference line shift need no further skill change.",
       "evidence": [
-        "_artifacts/domain_map.yaml",
-        "_artifacts/skill_spec.md",
-        "_artifacts/skill_tree.yaml",
-        "intent validate passes for the four updated skills"
+        "Changed: _artifacts/domain_map.yaml, _artifacts/skill_spec.md, docs/guides/sensible-defaults.md, packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md, packages/lit-hotkeys/src/controllers/app-hotkeys.ts, packages/lit-hotkeys/src/controllers/hotkey-recorder.ts, packages/lit-hotkeys/src/controllers/hotkey.ts, packages/lit-hotkeys/src/decorators/hotkey.ts at 42b2512f6854dcfedf37d737e63b487d06c5964c"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -1179,14 +1174,16 @@
       "evidence": ["docs/framework/ember/guides/hotkeys.md"]
     },
     "source:docs/framework/lit/guides/hotkeys.md": {
-      "fingerprint": "d7ca9994a5901587179e17637d15ab62b79eba5f6b31052c2a6398fe1076ada8",
+      "fingerprint": "71a16b9870bf4eba9228755e12618bcf3313f3a30cef625c306eefef83e8421c",
       "snapshot": {
-        "docs/framework/lit/guides/hotkeys.md": "a08d49f9b01421541ad3c8569b69bad79076af8c90fbf5679942993ff439c19d"
+        "docs/framework/lit/guides/hotkeys.md": "fc4f87c8efea487135c8e03e68578208f94cff1b06f6c28dfba1dd384af3170b"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "42b2512f6854dcfedf37d737e63b487d06c5964c",
       "outcome": "no-change",
-      "reason": "The lit targets guide now says null or undefined targets wait and only an omitted target means document; the lit-hotkeys skill makes no claim about undefined targets.",
-      "evidence": ["docs/framework/lit/guides/hotkeys.md"]
+      "reason": "Merge of main. The skill and planning items changed through #238 and #239 (Lit override and dispose()), which recorded their own reviews. The skill_spec.md conflict kept both: #239's Lit dispose() row and log entry, and this branch's Vue component-ref row and element-target log entry. This branch's Lit guide target note and the regenerated Lit reference line shift need no further skill change.",
+      "evidence": [
+        "Changed: docs/framework/lit/guides/hotkeys.md at 42b2512f6854dcfedf37d737e63b487d06c5964c"
+      ]
     },
     "source:docs/framework/octane/guides/hotkeys.md": {
       "fingerprint": "f8a5b67437a2f63194f3b337fb66a28523f8aad40a082d855957ba7822df759d",
@@ -3861,14 +3858,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/classes/HotkeyController.md": {
-      "fingerprint": "492583f934e25351f0d5920dc0090ff9c16e5e21f2f9f429e57a4705c02f4643",
+      "fingerprint": "51d0338d6ab61e1e59a7eeafbaefa406c76e60621e51ecd7906e7f13ce475a12",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyController.md": "afe4db91762de1824383398d10e18badba06d09f58a710fec0f602ce65168f26"
+        "docs/framework/lit/reference/classes/HotkeyController.md": "d8aecad82ee9d06fe6f94bca272e9dc25b5acf2a689261ced5ef5ad064aaf043"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "42b2512f6854dcfedf37d737e63b487d06c5964c",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Merge of main. The skill and planning items changed through #238 and #239 (Lit override and dispose()), which recorded their own reviews. The skill_spec.md conflict kept both: #239's Lit dispose() row and log entry, and this branch's Vue component-ref row and element-target log entry. This branch's Lit guide target note and the regenerated Lit reference line shift need no further skill change.",
+      "evidence": [
+        "Changed: docs/framework/lit/reference/classes/HotkeyController.md at 42b2512f6854dcfedf37d737e63b487d06c5964c"
+      ]
     },
     "source:docs/framework/lit/reference/classes/HotkeyRecorderController.md": {
       "fingerprint": "9bad9711e733aace7705cd37921baeeeac4804c4c6cdccd101c822176a60ea01",
