@@ -98,12 +98,12 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "9adfa4de8e1105f3af0a1b9ccc1e311c8bacc5e7e89d586f05a6cdb969da10d8",
+      "fingerprint": "414b966e7eff6038566a02019f35ea09b079e934b3f5b0b7f330e73288c0d310",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "03b024ba6a23d6b87a7b99be8a30b54fd5d82ba27e075ba0c00f648c82759e5f",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/guides/sensible-defaults.md": "3407ceafd874c1a3896f297bbe0ab994d35e94aa7071b7787765b21eb5fb7c74",
+        "docs/guides/sensible-defaults.md": "26d2b564622899e420f99bbe59a9ec71613157ac8a66af46220e58a2c3397965",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
@@ -119,9 +119,9 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "4a8ad984c6435656e8337b1353becce6c32b0c47",
       "outcome": "no-change",
-      "reason": "sensible-defaults.md gained a note that on Windows a Latin letter typed with Ctrl+Alt on a letter key no longer falls back to its position. hotkeys-core only says letters follow the typed character and points WASD-style controls at physical bindings; it says nothing about layout fallbacks, AltGr, or Ctrl+Alt, so its guidance stays accurate.",
+      "reason": "sensible-defaults.md notes that on Windows a Latin letter typed with Ctrl+Alt on a letter key no longer falls back to its position, while symbols such as German Ctrl+Alt+E (€) and the digit row still do. hotkeys-core only says letters follow the typed character and points WASD-style controls at physical bindings; it says nothing about layout fallbacks, AltGr, or Ctrl+Alt, so its guidance stays accurate.",
       "evidence": [
         "docs/guides/sensible-defaults.md",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md",
@@ -292,7 +292,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "fa17e3135cb731454e04e488571b004d584fc75f32870703c1feec1cc102f67c",
+      "fingerprint": "964cd4ae4ecd2dd917a202eae4a2f92ea7c0455904869b964883c3df12e01ebe",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -322,7 +322,7 @@
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
-        "docs/guides/sensible-defaults.md": "3407ceafd874c1a3896f297bbe0ab994d35e94aa7071b7787765b21eb5fb7c74",
+        "docs/guides/sensible-defaults.md": "26d2b564622899e420f99bbe59a9ec71613157ac8a66af46220e58a2c3397965",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "b8a7e9ce42d7a9cfacc9bd405a5f0be43064e81f76616a6f31504ccb32c0d59a",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "69ba6d06582aaf28328e74c12888bcf8b1d89b2ae2a01d7f6a41eb82eef848e3",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4c43866e1e60dbfcdac1c5acb3b5bd1f372d722d47e51cb8922b22f1c372fa45",
@@ -424,9 +424,9 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "b3e8f6c870734a967881c5b155ddced5c737d5162e6f44e5c095bd2be81fd0e6"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "4a8ad984c6435656e8337b1353becce6c32b0c47",
       "outcome": "no-change",
-      "reason": "domain_map.yaml, skill_spec.md and skill_tree.yaml cover registration, scopes, display, app hotkeys, recording and testing. None records layout-fallback rules (skill_spec notes no skill covers AltGr), so the Windows Ctrl+Alt letter fallback change leaves all three accurate.",
+      "reason": "domain_map.yaml, skill_spec.md and skill_tree.yaml cover registration, scopes, display, app hotkeys, recording and testing. None records layout-fallback rules (skill_spec notes no skill covers AltGr), so the Windows Ctrl+Alt letter fallback note leaves all three accurate.",
       "evidence": [
         "_artifacts/domain_map.yaml",
         "_artifacts/skill_spec.md",
