@@ -654,6 +654,129 @@ describe('matchesKeyboardEvent', () => {
       expect(matchesKeyboardEvent(event, '[KeyM]')).toBe(false)
     })
 
+    describe('Control+Alt without AltGraph', () => {
+      // Windows treats Left Ctrl + Left Alt as AltGr. A browser that does not
+      // report AltGraph for it sends a plain Control+Alt event.
+      const controlAlt = (
+        key: string,
+        code: string,
+        options: { shiftKey?: boolean } = {},
+      ) =>
+        createKeyboardEvent(key, {
+          ctrlKey: true,
+          altKey: true,
+          code,
+          ...options,
+        })
+
+      it('does not fall back for a Latin letter typed on a letter key on Windows', () => {
+        expect(
+          matchesKeyboardEvent(
+            controlAlt('ą', 'KeyA'),
+            'Control+Alt+A',
+            'windows',
+          ),
+        ).toBe(false)
+        expect(
+          matchesKeyboardEvent(
+            controlAlt('Ą', 'KeyA', { shiftKey: true }),
+            'Control+Alt+Shift+A',
+            'windows',
+          ),
+        ).toBe(false)
+        expect(
+          matchesKeyboardEvent(
+            controlAlt('ł', 'KeyL'),
+            'Control+Alt+L',
+            'windows',
+          ),
+        ).toBe(false)
+      })
+
+      it('still matches physical bindings on Windows', () => {
+        expect(
+          matchesKeyboardEvent(
+            controlAlt('ą', 'KeyA'),
+            'Control+Alt+[KeyA]',
+            'windows',
+          ),
+        ).toBe(true)
+      })
+
+      it('keeps falling back for non-Latin layouts on Windows', () => {
+        expect(
+          matchesKeyboardEvent(
+            controlAlt('ф', 'KeyA'),
+            'Control+Alt+A',
+            'windows',
+          ),
+        ).toBe(true)
+      })
+
+      it('keeps matching ASCII letters on Windows', () => {
+        expect(
+          matchesKeyboardEvent(
+            controlAlt('a', 'KeyA'),
+            'Control+Alt+A',
+            'windows',
+          ),
+        ).toBe(true)
+      })
+
+      it('keeps falling back for Latin letters on punctuation keys on Windows', () => {
+        // German types ü on the US [ position; Ctrl+Alt+ü types nothing new
+        expect(
+          matchesKeyboardEvent(
+            controlAlt('ü', 'BracketLeft'),
+            'Control+Alt+[',
+            'windows',
+          ),
+        ).toBe(true)
+      })
+
+      it('keeps falling back on the digit row on Windows', () => {
+        // Danish Ctrl+Alt+2 types @, and AZERTY Ctrl+Alt+1 types &. Telling
+        // them apart needs real Windows event shapes, so the row still falls back.
+        expect(
+          matchesKeyboardEvent(
+            controlAlt('@', 'Digit2'),
+            'Control+Alt+2',
+            'windows',
+          ),
+        ).toBe(true)
+        expect(
+          matchesKeyboardEvent(
+            controlAlt('&', 'Digit1'),
+            'Control+Alt+1',
+            'windows',
+          ),
+        ).toBe(true)
+      })
+
+      it('keeps the Alt fallback for Latin letters on Windows without Control', () => {
+        expect(
+          matchesKeyboardEvent(
+            createKeyboardEvent('ı', { altKey: true, code: 'KeyI' }),
+            'Alt+I',
+            'windows',
+          ),
+        ).toBe(true)
+      })
+
+      it.each(['mac', 'linux'] as const)(
+        'keeps the Latin letter fallback on %s',
+        (platform) => {
+          expect(
+            matchesKeyboardEvent(
+              controlAlt('ą', 'KeyA'),
+              'Control+Alt+A',
+              platform,
+            ),
+          ).toBe(true)
+        },
+      )
+    })
+
     it('ignores the AltGraph state macOS reports for Option', () => {
       const event = createKeyboardEvent('µ', {
         altKey: true,
@@ -856,7 +979,7 @@ describe('matchesKeyboardEvent', () => {
         ctrlKey: true,
         code: 'KeyA',
       })
-      expect(matchesKeyboardEvent(event, 'Control+Alt+A')).toBe(true)
+      expect(matchesKeyboardEvent(event, 'Control+Alt+A', 'mac')).toBe(true)
     })
   })
 
