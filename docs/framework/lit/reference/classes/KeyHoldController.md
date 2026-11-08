@@ -98,6 +98,23 @@ Whether the tracked key is currently held down.
 
 ## Methods
 
+### dispose()
+
+```ts
+dispose(): void;
+```
+
+Defined in: [controllers/key-hold.ts:94](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/key-hold.ts#L94)
+
+Releases the controller now and removes it from its host. Use it to
+remove a controller early: Lit's `removeController` alone leaves it active.
+
+#### Returns
+
+`void`
+
+***
+
 ### hostConnected()
 
 ```ts
