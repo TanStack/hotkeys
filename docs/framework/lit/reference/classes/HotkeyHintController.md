@@ -73,6 +73,23 @@ of it is enabled and in an active scope. A hotkey on an element counts only whil
 
 ## Methods
 
+### dispose()
+
+```ts
+dispose(): void;
+```
+
+Defined in: [controllers/hotkey-hint.ts:87](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-hint.ts#L87)
+
+Releases the controller now and removes it from its host. Use it to
+remove a controller early: Lit's `removeController` alone leaves it active.
+
+#### Returns
+
+`void`
+
+***
+
 ### hostConnected()
 
 ```ts

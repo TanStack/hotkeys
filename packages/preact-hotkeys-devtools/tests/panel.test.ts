@@ -8,7 +8,7 @@ import {
 import { hotkeysDevtoolsPlugin } from '../src/plugin'
 
 const core = vi.hoisted(() => ({ mount: vi.fn(), unmount: vi.fn() }))
-vi.mock('@tanstack/hotkeys-devtools', () => ({
+vi.mock('@tanstack/hotkeys-devtools/production', () => ({
   HotkeysDevtoolsCore: class {
     mount = core.mount
     unmount = core.unmount

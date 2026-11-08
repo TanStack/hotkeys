@@ -87,6 +87,15 @@ export class KeyHoldController implements ReactiveController {
     this._value = false
   }
 
+  /**
+   * Releases the controller now and removes it from its host. Use it to
+   * remove a controller early: Lit's `removeController` alone leaves it active.
+   */
+  public dispose(): void {
+    this.hostDisconnected()
+    this._host.removeController(this)
+  }
+
   /** Recomputes the held state and reports whether it changed. */
   private _refresh(): boolean {
     const key = (

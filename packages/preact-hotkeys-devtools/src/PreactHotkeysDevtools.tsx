@@ -1,7 +1,7 @@
 import { createPreactPanel } from '@tanstack/devtools-utils/preact'
-import { HotkeysDevtoolsCore } from '@tanstack/hotkeys-devtools'
+import { HotkeysDevtoolsCore } from '@tanstack/hotkeys-devtools/production'
 import { h } from 'preact'
-import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools'
+import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools/production'
 import type { JSX } from 'preact'
 
 export interface HotkeysDevtoolsPreactInit extends Partial<HotkeysDevtoolsPanelProps> {}
