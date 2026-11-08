@@ -318,7 +318,7 @@ function Panel() {
 }
 ```
 
-A `null` target waits until the element is attached.
+A `null` or `undefined` target waits until the element is attached. Only an omitted `target` listens on `document`, so a wrapper that forwards an unset `target` waits too. Set `target: document` to choose the document explicitly.
 
 > [!NOTE]
 > An element receives key presses only while it, or something inside it, has focus. Give it a `tabIndex` if it isn't focusable already.

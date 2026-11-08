@@ -9,7 +9,7 @@ title: injectHotkeys
 function injectHotkeys(hotkeys, commonOptions?): void;
 ```
 
-Defined in: [injectHotkeys.ts:46](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L46)
+Defined in: [injectHotkeys.ts:47](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkeys.ts#L47)
 
 Angular inject-based API for registering several hotkeys at once: chords,
 sequences, and app hotkeys. Pass a getter for a reactive list.
@@ -18,8 +18,9 @@ Options merge in this order: provider defaults, app hotkey declaration,
 commonOptions, per-hotkey options. Each option applies only to the kinds
 that support it. Unbound app hotkeys and empty sequences register nothing.
 A target may be an element, an `ElementRef`, or a signal of either, such
-as `viewChild('panel')`. A `null` target, or a signal of `undefined`, skips
-registration until the element exists.
+as `viewChild('panel')`. A `null` or `undefined` target, or a signal of
+either, skips registration until the element exists. Omit `target` for the
+document.
 
 ## Parameters
 

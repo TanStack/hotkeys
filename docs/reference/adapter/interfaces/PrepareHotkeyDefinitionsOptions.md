@@ -61,11 +61,12 @@ Provider defaults, applied first.
 optional resolveTarget?: (target) => Target | null | undefined;
 ```
 
-Defined in: [adapter.ts:301](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L301)
+Defined in: [adapter.ts:302](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/adapter.ts#L302)
 
-Resolves a framework target, such as a ref. Return `undefined` for the
-document or `null` to skip registration until the target exists.
-Without it, targets pass through, so `null` skips registration.
+Resolves a framework target, such as a ref. Return `null` or `undefined`
+to skip registration until the target exists. Without it, targets pass
+through. Only an omitted `target` listens on the document; a `target` set
+to `null` or `undefined` waits.
 
 #### Parameters
 

@@ -21,7 +21,10 @@ export interface EmberHotkeyState<T> {
   readonly value: T
 }
 
-/** The element to listen on. A `null` target skips registration until it is set. */
+/**
+ * The element to listen on. A `null` or `undefined` target skips registration
+ * until it is set. Omit `target` for the document.
+ */
 export type EmberHotkeyTarget = Target | null
 
 /** One hotkey for `useHotkeys` and `onHotkeys`: a chord, a sequence, or an app hotkey. */

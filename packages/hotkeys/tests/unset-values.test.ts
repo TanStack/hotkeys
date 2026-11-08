@@ -196,6 +196,73 @@ describe('null targets', () => {
   })
 })
 
+describe('unset targets', () => {
+  const targets = () =>
+    [...getHotkeyManager().registrations.state.values()].map(
+      (registration) => registration.target,
+    )
+
+  it('wait when a target option is set to undefined', () => {
+    const bindings = createHotkeyBindings()
+    bindings.update(
+      prepareHotkeyDefinitions([
+        { hotkey: 'K', callback: () => {}, options: { target: undefined } },
+      ]),
+    )
+    expect(targets()).toEqual([])
+    bindings.update(
+      prepareHotkeyDefinitions([{ hotkey: 'K', callback: () => {} }], {
+        commonOptions: { target: undefined },
+      }),
+    )
+    expect(targets()).toEqual([])
+    bindings.destroy()
+  })
+
+  it('wait when resolveTarget returns undefined', () => {
+    const bindings = createHotkeyBindings()
+    const ref: { current?: HTMLElement } = {}
+    const prepare = () =>
+      prepareHotkeyDefinitions(
+        [{ hotkey: 'K', callback: () => {}, options: { target: ref } }],
+        { resolveTarget: (target) => target.current },
+      )
+    bindings.update(prepare())
+    expect(targets()).toEqual([])
+    ref.current = document.body.appendChild(document.createElement('div'))
+    bindings.update(prepare())
+    expect(targets()).toEqual([ref.current])
+    bindings.destroy()
+    ref.current.remove()
+  })
+
+  it('use the document only when no layer sets a target', () => {
+    const bindings = createHotkeyBindings()
+    bindings.update(
+      prepareHotkeyDefinitions(
+        [{ hotkey: 'K', callback: () => {}, options: { enabled: true } }],
+        { defaults: { preventDefault: true }, commonOptions: {} },
+      ),
+    )
+    expect(targets()).toEqual([document])
+    bindings.destroy()
+  })
+
+  it('keep an earlier layer target when a later layer is undefined', () => {
+    const element = document.body.appendChild(document.createElement('div'))
+    const bindings = createHotkeyBindings()
+    bindings.update(
+      prepareHotkeyDefinitions(
+        [{ hotkey: 'K', callback: () => {}, options: { target: undefined } }],
+        { commonOptions: { target: element } },
+      ),
+    )
+    expect(targets()).toEqual([element])
+    bindings.destroy()
+    element.remove()
+  })
+})
+
 describe('empty hotkeys', () => {
   it.each([
     ['empty string', ''],

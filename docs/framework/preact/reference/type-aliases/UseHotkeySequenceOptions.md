@@ -9,6 +9,6 @@ title: UseHotkeySequenceOptions
 type UseHotkeySequenceOptions = AdapterSequenceOptions<UseHotkeyTarget>;
 ```
 
-Defined in: [useHotkey.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L33)
+Defined in: [useHotkey.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L36)
 
 Options for a sequence such as `['G', 'G']`.

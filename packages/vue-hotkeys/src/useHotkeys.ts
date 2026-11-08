@@ -82,7 +82,8 @@ function resolveEnabled<T extends { enabled?: MaybeRefOrGetter<boolean> }>(
  * commonOptions, per-hotkey options. Each option applies only to the kinds
  * that support it. Unbound app hotkeys, empty sequences, and `undefined`,
  * `null`, or `''` hotkeys register nothing.
- * A target that resolves to `null` skips registration until it is set.
+ * A target that resolves to `null` or `undefined` skips registration until it
+ * is set. A component target listens on its root element.
  *
  * @example
  * ```ts
@@ -121,7 +122,14 @@ export function useHotkeys(
         defaults: resolveEnabled(defaultOptions().hotkey),
         commonOptions: resolveEnabled(toValue(commonOptions)),
         // A target that resolves to null skips registration until it is set.
-        resolveTarget: (target) => toValue(target),
+        resolveTarget: (target) => {
+          const value = toValue(target)
+          if (!value || !('$el' in value)) return value
+          // A component listens on its root element. A fragment or text root
+          // has no single element, so it waits.
+          const element = value.$el as Node | null
+          return element?.nodeType === 1 ? (element as HTMLElement) : null
+        },
       })
     },
     (definitions) => bindings.update(definitions),

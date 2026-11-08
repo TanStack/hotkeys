@@ -351,7 +351,7 @@ export default class Panel extends Component {
 }
 ```
 
-The modifier registers the hotkey when the element renders and unregisters it when the element is removed. `onHotkeys` does the same for an array of hotkeys. The `useHotkey` and `useHotkeys` helpers also accept a `target` named argument, such as `window` from a component property.
+The modifier registers the hotkey when the element renders and unregisters it when the element is removed. `onHotkeys` does the same for an array of hotkeys. The `useHotkey` and `useHotkeys` helpers also accept a `target` named argument, such as `window` from a component property. A `target` that is `null` or `undefined` registers nothing until it is set. Leave the argument out to listen on `document`.
 
 > [!NOTE]
 > An element receives key presses only while it, or something inside it, has focus. Give it a `tabindex` if it isn't focusable already.

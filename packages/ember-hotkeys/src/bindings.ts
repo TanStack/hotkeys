@@ -49,7 +49,7 @@ export function createOwnedBindings(owner: object) {
         commonOptions: element
           ? { ...commonOptions, target: element }
           : commonOptions,
-        // A modifier always listens on its element; otherwise a null target
+        // A modifier always listens on its element; otherwise an unset target
         // skips registration until it is set.
         resolveTarget: element ? () => element : (target) => target,
       }),

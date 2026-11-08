@@ -9,7 +9,7 @@ title: UseAppHotkeyOptions
 type UseAppHotkeyOptions<T> = AdapterAppHotkeyOptions<T, UseHotkeyTarget>;
 ```
 
-Defined in: [useHotkey.ts:48](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L48)
+Defined in: [useHotkey.ts:51](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L51)
 
 Options for an app hotkey at the call site. `meta` comes from the declaration.
 Kind-specific options follow the declared default: `requireReset` for a chord,

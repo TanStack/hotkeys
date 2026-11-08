@@ -28,7 +28,7 @@ export type CreateHotkeyDefinition = AdapterHotkeyDefinition<CreateHotkeyTarget>
  * commonOptions, per-hotkey options. Each option applies only to the kinds
  * that support it. Unbound app hotkeys, empty sequences, and `undefined`,
  * `null`, or `''` hotkeys register nothing.
- * A `null` target skips registration until it is set.
+ * A `null` or `undefined` target skips registration until it is set.
  *
  * @example
  * ```tsx
@@ -63,7 +63,7 @@ export function createHotkeys(
         defaults: defaultOptions().hotkey,
         commonOptions:
           typeof commonOptions === 'function' ? commonOptions() : commonOptions,
-        // A null target skips registration until the element exists.
+        // An unset target skips registration until the element exists.
         resolveTarget: (target) => target,
       },
     )

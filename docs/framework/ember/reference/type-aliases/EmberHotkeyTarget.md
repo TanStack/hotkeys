@@ -9,6 +9,7 @@ title: EmberHotkeyTarget
 type EmberHotkeyTarget = Target | null;
 ```
 
-Defined in: [packages/ember-hotkeys/src/types.ts:25](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L25)
+Defined in: [packages/ember-hotkeys/src/types.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/ember-hotkeys/src/types.ts#L28)
 
-The element to listen on. A `null` target skips registration until it is set.
+The element to listen on. A `null` or `undefined` target skips registration
+until it is set. Omit `target` for the document.
