@@ -349,6 +349,22 @@ describe('AppHotkeysStore.setOptions platform', () => {
     subscription.unsubscribe()
   })
 
+  it('notifies once, with the new hotkeys, when both change', () => {
+    const store = new AppHotkeysStore(appHotkeys, { platform: 'mac' })
+    const seen: Array<unknown> = []
+    const subscription = store.store.subscribe(() =>
+      seen.push(store.appHotkeys['doc.save'].hotkey),
+    )
+
+    store.setOptions({
+      platform: 'windows',
+      customHotkeys: { 'doc.save': 'Mod+Shift+S' },
+    })
+
+    expect(seen).toEqual(['Mod+Shift+S'])
+    subscription.unsubscribe()
+  })
+
   it('does not notify when the platform is unchanged or not passed', () => {
     const store = new AppHotkeysStore(appHotkeys, { platform: 'mac' })
     const listener = vi.fn()

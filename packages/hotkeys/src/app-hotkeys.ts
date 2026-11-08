@@ -471,10 +471,21 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
     const platformChanged =
       'platform' in rest && rest.platform !== this.#options.platform
     this.#options = { ...this.#options, ...rest }
-    // `isCustom` in `getList` depends on the platform, so notify subscribers.
-    if (platformChanged) this.store.setState((state) => ({ ...state }))
-    if (customHotkeys === undefined) return
-    if (sameSavedCustomHotkeys(customHotkeys, this.#savedCustomHotkeys)) return
+    // `isCustom` in `getList` depends on the platform, so notify subscribers
+    // once, after any saved custom hotkeys are applied.
+    if (!this.#applySavedCustomHotkeys(customHotkeys) && platformChanged) {
+      this.store.setState((state) => ({ ...state }))
+    }
+  }
+
+  /** Replaces the custom hotkeys with saved data. Returns whether they changed. */
+  #applySavedCustomHotkeys(
+    customHotkeys: CustomHotkeys<T> | null | undefined,
+  ): boolean {
+    if (customHotkeys === undefined) return false
+    if (sameSavedCustomHotkeys(customHotkeys, this.#savedCustomHotkeys)) {
+      return false
+    }
     this.#savedCustomHotkeys = copySavedCustomHotkeys(customHotkeys)
     const next = sanitizeCustomHotkeys(this.#declarations, customHotkeys)
     if (
@@ -484,12 +495,13 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
         this.#platform,
       )
     ) {
-      return
+      return false
     }
     this.store.setState(() => ({
       appHotkeys: applyCustomHotkeys(this.#declarations, next),
       customHotkeys: next,
     }))
+    return true
   }
 
   /**

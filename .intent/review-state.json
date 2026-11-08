@@ -70,14 +70,14 @@
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "2477c8571b89a365f620f377008f06bb6c066aca63d93598c4bb72ac6245c75b",
+      "fingerprint": "9e144460172f5098d5ac6dd7842b3ce27c4feb722c2e358e415d290bcd81f76a",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "eb1f5087ec449c52b0fe342237c77fa511dee20bdd56b70d609e1a4e5c7ebbc6",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
         "docs/framework/react/guides/custom-hotkey-recording.md": "36f17bd33b5326bd396974ba24e5c06e3ec4218ad25045c0ee4910635f292ea7",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "0dc668ed5bcdc50b9ad290847f551d8da35cbb2c1f061ca363aa1bcb78d31b28",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
-        "packages/hotkeys/src/app-hotkeys.ts": "82126fd0cc86bc5c3dc33dbcaa681fda7e5d1a9d80f2b6c3b42ff7561dcc0c23",
+        "packages/hotkeys/src/app-hotkeys.ts": "cfff88da5894a09e7a88aac86fc6b78cdbafeb39553d832a52782ca588d0941e",
         "packages/hotkeys/src/conflicts.ts": "0459c63dccec1b3706c93552bfcd66243f90ae918c6e7e445fce046fe79cc2ad",
         "packages/hotkeys/src/hotkey-recorder.ts": "a19c8e64b939faa51b4554e71e71485f4d419539e4c9c287fdbb07955362a3e7",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
@@ -89,12 +89,11 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "12bcb588b1ba22c0356cf25315dc90abf3679092",
       "outcome": "no-change",
-      "reason": "App hotkeys now compare on the provider platform, and formatting docs warn against formatForDisplay for server-rendered labels. The skill already says to use the formatter hook on the server and makes no claim about which platform app hotkey checks use.",
+      "reason": "AppHotkeysStore.setOptions now notifies once, after applying saved custom hotkeys, when the platform changes too. No guidance changes; the app hotkeys skill makes no claim about notification order.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md"
       ]
     },
@@ -292,7 +291,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "aab60c1ea4dc9bd44295ac9c0d0a504328628f76dc9d95f9abe53a09465796d8",
+      "fingerprint": "a2f127519bd6165fe17c5cf8f80914fc159e7f78d50046eb4ecc90522c74b72f",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -353,7 +352,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
-        "packages/hotkeys/src/app-hotkeys.ts": "82126fd0cc86bc5c3dc33dbcaa681fda7e5d1a9d80f2b6c3b42ff7561dcc0c23",
+        "packages/hotkeys/src/app-hotkeys.ts": "cfff88da5894a09e7a88aac86fc6b78cdbafeb39553d832a52782ca588d0941e",
         "packages/hotkeys/src/conflicts.ts": "0459c63dccec1b3706c93552bfcd66243f90ae918c6e7e445fce046fe79cc2ad",
         "packages/hotkeys/src/hotkey-manager.ts": "340ae1e61d8e08fe56edb0bb73f41434dae03ad15a374c2a0864450b64276443",
         "packages/hotkeys/src/hotkey-recorder.ts": "a19c8e64b939faa51b4554e71e71485f4d419539e4c9c287fdbb07955362a3e7",
@@ -424,13 +423,10 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "b3e8f6c870734a967881c5b155ddced5c737d5162e6f44e5c095bd2be81fd0e6"
       },
-      "head": "c516af53ae85e81b08262587232d2adaf91965e8",
-      "outcome": "updated",
-      "reason": "Skills now limit plain formatForDisplay to browser-only labels when no provider or scope sets platform, matching the guides.",
-      "evidence": [
-        "_artifacts",
-        "docs/framework/react/guides/formatting-display.md"
-      ]
+      "head": "12bcb588b1ba22c0356cf25315dc90abf3679092",
+      "outcome": "no-change",
+      "reason": "AppHotkeysStore.setOptions now notifies once, after applying saved custom hotkeys, when the platform changes too. No guidance changes; the app hotkeys skill makes no claim about notification order.",
+      "evidence": ["packages/hotkeys/skills/app-hotkeys/SKILL.md", "_artifacts"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -2302,16 +2298,15 @@
       ]
     },
     "source:docs/reference/classes/AppHotkeysStore.md": {
-      "fingerprint": "c8339c7c23e0099b2858a80ec9b59811823579930a9504a9611d6c5a03fe55da",
+      "fingerprint": "c3c3b41f66b9ead36ec2584ad1f79b0f1b20a9693190147768e2d035262f6867",
       "snapshot": {
-        "docs/reference/classes/AppHotkeysStore.md": "0b63b9f1c6d2d13896810afeaccb4224bc687d4b657ceb20f16a3557af093997"
+        "docs/reference/classes/AppHotkeysStore.md": "9a547c972fbd4214f836777ead89ec8a4b81f6bca1f9fe337b062e99b28b3e7a"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "12bcb588b1ba22c0356cf25315dc90abf3679092",
       "outcome": "no-change",
-      "reason": "App hotkeys now compare on the provider platform, and formatting docs warn against formatForDisplay for server-rendered labels. The skill already says to use the formatter hook on the server and makes no claim about which platform app hotkey checks use.",
+      "reason": "AppHotkeysStore.setOptions now notifies once, after applying saved custom hotkeys, when the platform changes too. No guidance changes; the app hotkeys skill makes no claim about notification order.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "docs/reference/classes/AppHotkeysStore.md"
       ]
     },
@@ -2326,16 +2321,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/getAppHotkeyRegistrationOptions.md": {
-      "fingerprint": "5babe5ad6f84ce2a0956d05ddfef5310960652bdf32e324700e1fb9b6eb4a27c",
+      "fingerprint": "96f4c4078014fcf0b7e3185727b43b694faf43733df455c9946caefe507d44a5",
       "snapshot": {
-        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "3abf61517900927ca79fb66c553cc222eb93109e27b872cf5a1bc16b948badcc"
+        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "f1f65d78e8cef5b9569cd7f2b96402ef1f5c336d1bd0001b24009f3439f1fd06"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "12bcb588b1ba22c0356cf25315dc90abf3679092",
       "outcome": "no-change",
-      "reason": "App hotkeys now compare on the provider platform, and formatting docs warn against formatForDisplay for server-rendered labels. The skill already says to use the formatter hook on the server and makes no claim about which platform app hotkey checks use.",
+      "reason": "AppHotkeysStore.setOptions now notifies once, after applying saved custom hotkeys, when the platform changes too. No guidance changes; the app hotkeys skill makes no claim about notification order.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "docs/reference/functions/getAppHotkeyRegistrationOptions.md"
       ]
     },
@@ -2360,44 +2354,41 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/provideAppHotkeys.md": {
-      "fingerprint": "36428a8042052f4a3c042da8dcadf4ce3386f07a2f0ebd0f0ee606fcecc7a4c6",
+      "fingerprint": "4dbb76c27eff9c6674cb4c09193cb82e2b26137afbc8cbdb73bf92ac742705c2",
       "snapshot": {
-        "docs/reference/functions/provideAppHotkeys.md": "bebc9075a0f218d990a28e274bb5dcaddc27058b4cd7a8e8479b2aa4ad2196ac"
+        "docs/reference/functions/provideAppHotkeys.md": "79117050fdc2fbe219e51f2f0542a0ae3f4dd2e60e952d3aeb984f4c43c93e82"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "12bcb588b1ba22c0356cf25315dc90abf3679092",
       "outcome": "no-change",
-      "reason": "App hotkeys now compare on the provider platform, and formatting docs warn against formatForDisplay for server-rendered labels. The skill already says to use the formatter hook on the server and makes no claim about which platform app hotkey checks use.",
+      "reason": "AppHotkeysStore.setOptions now notifies once, after applying saved custom hotkeys, when the platform changes too. No guidance changes; the app hotkeys skill makes no claim about notification order.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "docs/reference/functions/provideAppHotkeys.md"
       ]
     },
     "source:docs/reference/functions/publishAppHotkeysStore.md": {
-      "fingerprint": "3dbe4175e897f2aac91af251958a8cf46bf12e9dd252bbe045cbffaf916a2b09",
+      "fingerprint": "171a5f7a228243d71f2a94ab3539bfdd7a72e471a9712e07a3c9559e006bbd34",
       "snapshot": {
-        "docs/reference/functions/publishAppHotkeysStore.md": "89af3e714753bcd9281169f642446d578615b911b10f7619f9f7b9dbe72e7ee6"
+        "docs/reference/functions/publishAppHotkeysStore.md": "bfba051c3cbe26e5f5967cb43a8111d8fdc381b37b0dd7d833fbf9459dfd885b"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "12bcb588b1ba22c0356cf25315dc90abf3679092",
       "outcome": "no-change",
-      "reason": "App hotkeys now compare on the provider platform, and formatting docs warn against formatForDisplay for server-rendered labels. The skill already says to use the formatter hook on the server and makes no claim about which platform app hotkey checks use.",
+      "reason": "AppHotkeysStore.setOptions now notifies once, after applying saved custom hotkeys, when the platform changes too. No guidance changes; the app hotkeys skill makes no claim about notification order.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "docs/reference/functions/publishAppHotkeysStore.md"
       ]
     },
     "source:docs/reference/functions/resolveAppHotkey.md": {
-      "fingerprint": "d99fd861e28645796d39ea5175f03913dff781d9e04fefbbef85edc5e8b3feaa",
+      "fingerprint": "bbaf45555904fc0af81ee76f0c05e24611f96b68ce82387899674831bd823635",
       "snapshot": {
-        "docs/reference/functions/resolveAppHotkey.md": "d351f6f42c00907d3ae3cca88f183a2e2c90e132f9c148beeea18003716517a9"
+        "docs/reference/functions/resolveAppHotkey.md": "caaa0d6e3a00cf6fc54eaed3acbfb3913e901fb5362effa9926cee3082954077"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "12bcb588b1ba22c0356cf25315dc90abf3679092",
       "outcome": "no-change",
-      "reason": "App hotkeys now compare on the provider platform, and formatting docs warn against formatForDisplay for server-rendered labels. The skill already says to use the formatter hook on the server and makes no claim about which platform app hotkey checks use.",
+      "reason": "AppHotkeysStore.setOptions now notifies once, after applying saved custom hotkeys, when the platform changes too. No guidance changes; the app hotkeys skill makes no claim about notification order.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "docs/reference/functions/resolveAppHotkey.md"
       ]
     },
@@ -7050,16 +7041,15 @@
       "evidence": ["packages/hotkeys/src/hint.ts", "git diff origin/main"]
     },
     "source:packages/hotkeys/tests/app-hotkeys.test.ts": {
-      "fingerprint": "9c8c7a5ad5dcd224630462a6b563beffdadc476982cb844842a1caf647c12ff6",
+      "fingerprint": "60e4ae30f3cbe1d189f28c5857abb02bb77f428c689fabfc765d1b4f8ac9c1ff",
       "snapshot": {
-        "packages/hotkeys/tests/app-hotkeys.test.ts": "31a54c17d523ef26ccc83d7c34f7500fa36741f1b236b19d4f77b098f0a9b7c4"
+        "packages/hotkeys/tests/app-hotkeys.test.ts": "72e598d8f51a46dc8dd0e5f557a85c06b338b03940088de37625fc35afcb02b7"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "12bcb588b1ba22c0356cf25315dc90abf3679092",
       "outcome": "no-change",
-      "reason": "App hotkeys now compare on the provider platform, and formatting docs warn against formatForDisplay for server-rendered labels. The skill already says to use the formatter hook on the server and makes no claim about which platform app hotkey checks use.",
+      "reason": "AppHotkeysStore.setOptions now notifies once, after applying saved custom hotkeys, when the platform changes too. No guidance changes; the app hotkeys skill makes no claim about notification order.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "packages/hotkeys/tests/app-hotkeys.test.ts"
       ]
     },
