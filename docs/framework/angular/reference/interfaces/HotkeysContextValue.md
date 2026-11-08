@@ -17,7 +17,7 @@ readonly appHotkeysState: Signal<
 | null>;
 ```
 
-Defined in: [hotkeys-provider.ts:95](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L95)
+Defined in: [hotkeys-provider.ts:98](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L98)
 
 Tracks app hotkeys and custom hotkeys so signals and effects re-run.
 
@@ -31,7 +31,7 @@ readonly appHotkeysStore:
   | null;
 ```
 
-Defined in: [hotkeys-provider.ts:93](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L93)
+Defined in: [hotkeys-provider.ts:96](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L96)
 
 ***
 
@@ -41,9 +41,10 @@ Defined in: [hotkeys-provider.ts:93](https://github.com/TanStack/hotkeys/blob/ma
 readonly defaultOptions: HotkeysProviderOptions;
 ```
 
-Defined in: [hotkeys-provider.ts:90](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L90)
+Defined in: [hotkeys-provider.ts:93](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L93)
 
 Merged with every ancestor provider's defaults, including `hotkey.scope`.
+Reading it in a `computed` or `effect` tracks changes to the defaults.
 
 ***
 
@@ -53,6 +54,6 @@ Merged with every ancestor provider's defaults, including `hotkey.scope`.
 readonly enabled: Signal<boolean>;
 ```
 
-Defined in: [hotkeys-provider.ts:92](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L92)
+Defined in: [hotkeys-provider.ts:95](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L95)
 
 Whether this provider and every ancestor are enabled.
