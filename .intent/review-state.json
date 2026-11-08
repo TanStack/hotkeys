@@ -70,16 +70,16 @@
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "bd9c46b35f99d5395e3a3fad22a0ad9b6390c388be0371c66d6b71858eb6cb29",
+      "fingerprint": "d26522fff9c3858ce3872ee2165192b0dd7108269820c3cbba0271e5357fb144",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "eb1f5087ec449c52b0fe342237c77fa511dee20bdd56b70d609e1a4e5c7ebbc6",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "36f17bd33b5326bd396974ba24e5c06e3ec4218ad25045c0ee4910635f292ea7",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "cfae40c653dcbb3117301add3d2f05516a6eab5d1fac2144bc5e13c7a5e32f95",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "0dc668ed5bcdc50b9ad290847f551d8da35cbb2c1f061ca363aa1bcb78d31b28",
-        "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
+        "packages/hotkeys/skills/app-hotkeys/references/recording.md": "d808080c8c6245063d2ef0ee0d6d316df242ad8ed958d9cc6ff7de0c4dcca68a",
         "packages/hotkeys/src/app-hotkeys.ts": "5ad2e0ca37e21a4a4fbd1eabc9b5bb4981f7530bca1dfd2286a2fa9205793608",
         "packages/hotkeys/src/conflicts.ts": "0459c63dccec1b3706c93552bfcd66243f90ae918c6e7e445fce046fe79cc2ad",
-        "packages/hotkeys/src/hotkey-recorder.ts": "a19c8e64b939faa51b4554e71e71485f4d419539e4c9c287fdbb07955362a3e7",
+        "packages/hotkeys/src/hotkey-recorder.ts": "c80a6af537307cc9b0541d9cf80c42e5a206d8266d4b377f97bc6ad2889af6c5",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
         "packages/react-hotkeys/tests/skills/shortcut-settings/grade.tsx": "c3538737712f00d52a4b6290d078a37f4c4d8881b9ce512f205f9e531b982f5e",
         "packages/react-hotkeys/tests/skills/shortcut-settings/mistakes/full-list-storage.tsx": "62d4f4bd79de46fc4900d4f8202c7b16c672060ab66aaead9e7fcd8ea1958c59",
@@ -89,21 +89,22 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
-      "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
+      "outcome": "updated",
+      "reason": "The recording reference now says Tab and Shift+Tab cancel and move focus, and that recordTab records Tab, matching the recorder and guides.",
       "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md"
+        "packages/hotkeys/skills/app-hotkeys/references/recording.md",
+        "packages/hotkeys/src/hotkey-recorder.ts",
+        "docs/framework/react/guides/custom-hotkey-recording.md"
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "5a09185969cdf40c434dce31222f999c81d80496b1f2f06009512257097797f8",
+      "fingerprint": "13bd714581bfb8fe90604cf74a5a6405e1fc071741438fea9f6ff436ce3e1342",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "03b024ba6a23d6b87a7b99be8a30b54fd5d82ba27e075ba0c00f648c82759e5f",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/guides/sensible-defaults.md": "8b4d1a9d2692f8a7b3f72a6d57ad5ec1edc40fbef83a8fb1c4373b6230a65efd",
+        "docs/guides/sensible-defaults.md": "f432dd151138b7d52ef35760f9406c366d9d2dcc842d0c4d8ccbce2d820f7572",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
@@ -119,12 +120,12 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
       "outcome": "no-change",
-      "reason": "Code examples changed only in import order (oxfmt sortImports), and the covered sources changed only by formatter output. Guidance and APIs are unchanged.",
+      "reason": "sensible-defaults now covers Tab leaving the recorder and document-level Tab hotkeys blocking focus. hotkeys-core describes neither recorder keys nor Tab bindings, and the recorder guidance lives in app-hotkeys.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "git diff origin/main: only import lines change"
+        "docs/guides/sensible-defaults.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -291,7 +292,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "819cbe227c44ba3dfd9afd7f8c257679d97dd987d4f44d56bdb31c6396e264f6",
+      "fingerprint": "5b66b8431fefbe6eede59d0f3983a14c27cc6c64750d0f87f8517b1b77b83a2f",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -310,7 +311,7 @@
         "docs/framework/preact/quick-start.md": "d9cd9759e454cb4cbb050c189f3dee97d1141238ea30e623e5308dcc7cf29328",
         "docs/framework/react/guides/app-hotkeys.md": "eb1f5087ec449c52b0fe342237c77fa511dee20bdd56b70d609e1a4e5c7ebbc6",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "36f17bd33b5326bd396974ba24e5c06e3ec4218ad25045c0ee4910635f292ea7",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "cfae40c653dcbb3117301add3d2f05516a6eab5d1fac2144bc5e13c7a5e32f95",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "03b024ba6a23d6b87a7b99be8a30b54fd5d82ba27e075ba0c00f648c82759e5f",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
@@ -321,7 +322,7 @@
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
-        "docs/guides/sensible-defaults.md": "8b4d1a9d2692f8a7b3f72a6d57ad5ec1edc40fbef83a8fb1c4373b6230a65efd",
+        "docs/guides/sensible-defaults.md": "f432dd151138b7d52ef35760f9406c366d9d2dcc842d0c4d8ccbce2d820f7572",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "b8a7e9ce42d7a9cfacc9bd405a5f0be43064e81f76616a6f31504ccb32c0d59a",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "69ba6d06582aaf28328e74c12888bcf8b1d89b2ae2a01d7f6a41eb82eef848e3",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4c43866e1e60dbfcdac1c5acb3b5bd1f372d722d47e51cb8922b22f1c372fa45",
@@ -348,14 +349,14 @@
         "packages/ember-hotkeys/src/useHotkeyRecorder.ts": "62e88767d073da768bd423268a5687390ac9b0ff7e9a28fd3ccc201bf827f540",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "0dc668ed5bcdc50b9ad290847f551d8da35cbb2c1f061ca363aa1bcb78d31b28",
-        "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
+        "packages/hotkeys/skills/app-hotkeys/references/recording.md": "d808080c8c6245063d2ef0ee0d6d316df242ad8ed958d9cc6ff7de0c4dcca68a",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/app-hotkeys.ts": "5ad2e0ca37e21a4a4fbd1eabc9b5bb4981f7530bca1dfd2286a2fa9205793608",
         "packages/hotkeys/src/conflicts.ts": "0459c63dccec1b3706c93552bfcd66243f90ae918c6e7e445fce046fe79cc2ad",
         "packages/hotkeys/src/hotkey-manager.ts": "340ae1e61d8e08fe56edb0bb73f41434dae03ad15a374c2a0864450b64276443",
-        "packages/hotkeys/src/hotkey-recorder.ts": "a19c8e64b939faa51b4554e71e71485f4d419539e4c9c287fdbb07955362a3e7",
+        "packages/hotkeys/src/hotkey-recorder.ts": "c80a6af537307cc9b0541d9cf80c42e5a206d8266d4b377f97bc6ad2889af6c5",
         "packages/hotkeys/src/match.ts": "204f0159ccdd1bfaed96b1b03ad805f7fa9a74c011e70760749d1e0c326b7e8a",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "5690f120148b5314bab1eb13244ae578bd78f55b1b11d8c6637489ca2750d187",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
@@ -423,10 +424,13 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "b3e8f6c870734a967881c5b155ddced5c737d5162e6f44e5c095bd2be81fd0e6"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
       "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
-      "evidence": ["packages/hotkeys/skills/app-hotkeys/SKILL.md", "_artifacts"]
+      "reason": "Tab handling and recordTab extend the existing recorder; no new skill, domain, or task.",
+      "evidence": [
+        "packages/hotkeys/src/hotkey-recorder.ts",
+        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
+      ]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -4133,14 +4137,17 @@
       ]
     },
     "source:docs/reference/classes/HotkeyRecorder.md": {
-      "fingerprint": "f276c8a5dc77ffa0e82dee2eaf000740e2da5044a67e2fcd81653ee5a55f04b4",
+      "fingerprint": "91faa299e4d750d0901c5a878bc6eeb30671453474dcb8bc93fc4a1582e98713",
       "snapshot": {
-        "docs/reference/classes/HotkeyRecorder.md": "812873f528d7ba5e2f1419dc500fb88ef201bc47216b640597c7d50ec7bf5847"
+        "docs/reference/classes/HotkeyRecorder.md": "01d9cea807ac18b158fca8be2a79b55a580da69a6941656cc38203eb83e9448e"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Regenerated reference for the new recordTab option and the updated onCancel and class comments; skills already point to the recorder options.",
+      "evidence": [
+        "docs/reference/classes/HotkeyRecorder.md",
+        "packages/hotkeys/src/hotkey-recorder.ts"
+      ]
     },
     "source:packages/hotkeys/tests/hotkey-recorder-ssr.test.ts": {
       "fingerprint": "394b648ffc52be332ca1ab001ee62311b653f8162c126029f9856e8728ebdbc4",
@@ -5013,14 +5020,17 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderOptions.md": {
-      "fingerprint": "e5fa234f33563cb0d8ca47c675d2bd6144519d9e038b605bad79771a0cf032cb",
+      "fingerprint": "51f198bd6c4f68492f4de2fcac40a242e04ef1e6ae494a41adc0e7ad3198d22a",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRecorderOptions.md": "b75357b7d30e4ab0e47731926a3676b64ec961c68a538318727cb45130286a5b"
+        "docs/reference/interfaces/HotkeyChordRecorderOptions.md": "a62584f5116455f6a01011c63a89242a2a3fa0e47e2b6d60be917b1908e507b3"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Regenerated reference for the new recordTab option and the updated onCancel and class comments; skills already point to the recorder options.",
+      "evidence": [
+        "docs/reference/interfaces/HotkeyChordRecorderOptions.md",
+        "packages/hotkeys/src/hotkey-recorder.ts"
+      ]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderValidationContext.md": {
       "fingerprint": "5553c470e946c2e08aa2c2fb85c112af029bd0973f40e723f81459a079f18d3b",
@@ -5043,14 +5053,17 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRecorderOptions.md": {
-      "fingerprint": "73b6645c833b994c07fd5ad437793f451e6c0c072e244fa29a885d19e28d6331",
+      "fingerprint": "2afd9ee21b3edf8253c98fd098d02656d220e4316c25a1ab69023bc13ceea3f2",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRecorderOptions.md": "576515cac70ddfdd824c32f03edeceec360bf2cd77e0985f5d31f5c5a78678da"
+        "docs/reference/interfaces/HotkeySequenceRecorderOptions.md": "8d0e2e9405d997f7ed3da2787c3d01ee1be08a5ac8e0d618f0a5973d0c684109"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Regenerated reference for the new recordTab option and the updated onCancel and class comments; skills already point to the recorder options.",
+      "evidence": [
+        "docs/reference/interfaces/HotkeySequenceRecorderOptions.md",
+        "packages/hotkeys/src/hotkey-recorder.ts"
+      ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md": {
       "fingerprint": "a8c7716a2198d830c84af1cdfa2c430bd02ef5c52b00fef3e903dd3b9c1d769d",
@@ -5113,14 +5126,17 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderOptions.md": {
-      "fingerprint": "ced9637468042633453595c7c672b9ec5d8002dbec54c5fc940752956a956854",
+      "fingerprint": "4fbcf2cd23bfe321234b63eaa19dfb598e34f78c50b7114e4a4a560d4f619e85",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRecorderOptions.md": "03eab9a05dd982753a85a46f9d4dd4a7b9f5b3ee75290c40be34e7e69c640171"
+        "docs/reference/type-aliases/HotkeyRecorderOptions.md": "2b8112f84f9f676f6aa95a348e944f8c1a209d7c4144e1a4d5f64e36dee66899"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Regenerated reference for the new recordTab option and the updated onCancel and class comments; skills already point to the recorder options.",
+      "evidence": [
+        "docs/reference/type-aliases/HotkeyRecorderOptions.md",
+        "packages/hotkeys/src/hotkey-recorder.ts"
+      ]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderValidationContext.md": {
       "fingerprint": "8d4a2b2926f03d394a2ade486d45f156928c0c6a3e4090c2804a4c5489587c60",
@@ -6536,16 +6552,14 @@
       "evidence": ["packages/hotkeys/tests/parse.test.ts", "test:lib passes"]
     },
     "source:packages/hotkeys/tests/typed-behavior.test.ts": {
-      "fingerprint": "8f843a82bcb209dee531c8b34ffc746be6cb51074998a5975b3a7cc82199f5b2",
+      "fingerprint": "3fb81f936e9d424c9262778d7e6909758ec2371ad21e49c937895d14b23aad47",
       "snapshot": {
-        "packages/hotkeys/tests/typed-behavior.test.ts": "36390f4330d81f9d40ae077ed0cae071e71b3b398797d42c0e853fd3216f65b2"
+        "packages/hotkeys/tests/typed-behavior.test.ts": "6b175eac93b76d2110809827d13242c3fc3e1bbce9d23dcb1c58ede1cc9f2c07"
       },
-      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
-      "outcome": "no-change",
-      "reason": "Core fix for #229 and its tests; skills don't describe Unidentified or composition matching.",
-      "evidence": [
-        "git diff origin/main shows matching, recorder, and test changes only; no skill text references this behavior."
-      ]
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
+      "outcome": "out-of-scope",
+      "reason": "Tests for Tab leaving the recorder; they describe no guidance.",
+      "evidence": ["packages/hotkeys/tests/typed-behavior.test.ts"]
     },
     "source:packages/hotkeys/tests/unified-hotkeys.test.ts": {
       "fingerprint": "2203e5d97f9f0130343962e0f41fc5c40cbb130e0c7f10244cdb2b8d602fba0b",
@@ -7252,16 +7266,16 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/alpine/guides/custom-hotkey-recording.md": {
-      "fingerprint": "008884caf84929afc3c95f5aaf415e58085306837af6d1b95b46412f17c3b39d",
+      "fingerprint": "b212bb97bc6b62e200e34add790388386e7a0279ddfee9280c2397b6650c72a9",
       "snapshot": {
-        "docs/framework/alpine/guides/custom-hotkey-recording.md": "323a3a458ea5ef9bfa2ee229fdcb82965294a099eee0fcf691e04e6e47ef2571"
+        "docs/framework/alpine/guides/custom-hotkey-recording.md": "fb61104bc5bb90e273fd5f71f5329df957ffda05bd90bbaa4ca70ea7b0f955f7"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
+      "outcome": "updated",
+      "reason": "Guide lists Tab and Shift+Tab in the recorder keys table and documents recordTab; the app-hotkeys recording reference says the same.",
       "evidence": [
         "docs/framework/alpine/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
       ]
     },
     "source:docs/framework/alpine/guides/sequences.md": {
@@ -7428,16 +7442,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/ember/guides/custom-hotkey-recording.md": {
-      "fingerprint": "22fe20cbb077890ec3294ea7216443e957450b35263656d2c05daa1582f2aa4e",
+      "fingerprint": "31c110ff3e74b8d3c16bb4b93a241389f3de04c8fe90536ab3ccbc0bef761dd4",
       "snapshot": {
-        "docs/framework/ember/guides/custom-hotkey-recording.md": "390b8dabb9ef7e9ca5db2d2f26656d03ceb71c4af7dc80ff97ed54e8aa55e416"
+        "docs/framework/ember/guides/custom-hotkey-recording.md": "e6858c86caba1010a202c16fe87aa4323535c27c3a394c7c734e92c27bc48f74"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
+      "outcome": "updated",
+      "reason": "Guide lists Tab and Shift+Tab in the recorder keys table and documents recordTab; the app-hotkeys recording reference says the same.",
       "evidence": [
         "docs/framework/ember/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
       ]
     },
     "source:docs/framework/ember/reference/functions/useHotkeyRecorder.md": {
@@ -7461,16 +7475,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/guides/custom-hotkey-recording.md": {
-      "fingerprint": "9b3607ae195ff5abe6b54d7cbd98b1b083887d6c1f6dc85af44ebe7c6658d76f",
+      "fingerprint": "ce35ca4f3ddaff9f9c48403d1b65c886879abeef0ca6b1e7e51e08d5597e351f",
       "snapshot": {
-        "docs/framework/lit/guides/custom-hotkey-recording.md": "181106e4e6e88c94f61e0383da3eda0235cd4da039ea0f3278378a205bad5e72"
+        "docs/framework/lit/guides/custom-hotkey-recording.md": "8245b4ff2ee698a038a24652864690fcc583ff087e243ab1f0e0d654319d8f58"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
+      "outcome": "updated",
+      "reason": "Guide lists Tab and Shift+Tab in the recorder keys table and documents recordTab; the app-hotkeys recording reference says the same.",
       "evidence": [
         "docs/framework/lit/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
       ]
     },
     "source:docs/framework/lit/reference/functions/hotkey.md": {
@@ -11667,16 +11681,16 @@
       "evidence": ["packages/hotkeys/tests/physical-key.test.ts"]
     },
     "source:docs/framework/angular/guides/custom-hotkey-recording.md": {
-      "fingerprint": "2964e07ded5e894acf6e54c57b85a407d62f118e8bab9dc37220bcaa8cf7c0a9",
+      "fingerprint": "e4f9eee91b6717d72b678761c103d24258068aec59769935c3d2d34af27d9cf2",
       "snapshot": {
-        "docs/framework/angular/guides/custom-hotkey-recording.md": "c7a6781543ea7f1ae4db71ea50ee4ba48c7f71065173ce540567c9af835da19d"
+        "docs/framework/angular/guides/custom-hotkey-recording.md": "3465646dce707e638298cdbd535f2b56daa1441799d91c277919618de70fa09f"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
+      "outcome": "updated",
+      "reason": "Guide lists Tab and Shift+Tab in the recorder keys table and documents recordTab; the app-hotkeys recording reference says the same.",
       "evidence": [
         "docs/framework/angular/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
       ]
     },
     "source:docs/framework/ember/reference/functions/useAppHotkeyList.md": {
@@ -11710,16 +11724,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/guides/custom-hotkey-recording.md": {
-      "fingerprint": "c4df2b18ad9fe335746fc7d9443c24adb586be8f6c1bf2b7376bb36fb64bceaf",
+      "fingerprint": "09b384d50bc55aef8766ea868efbd36280acb319f62dd80c01fa2c604ac33b25",
       "snapshot": {
-        "docs/framework/octane/guides/custom-hotkey-recording.md": "315c00e4919462e89adad795a203e94a65df6309d7e054949adea78efd71f5e5"
+        "docs/framework/octane/guides/custom-hotkey-recording.md": "14b15e2bf2bc561dfd74e927ef793e55d92a674619c05e23bc5740a1ad669452"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
+      "outcome": "updated",
+      "reason": "Guide lists Tab and Shift+Tab in the recorder keys table and documents recordTab; the app-hotkeys recording reference says the same.",
       "evidence": [
         "docs/framework/octane/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
       ]
     },
     "source:docs/framework/octane/reference/functions/useAppHotkeyList.md": {
@@ -11753,42 +11767,42 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/guides/custom-hotkey-recording.md": {
-      "fingerprint": "b789f8eda20da0464a43b508103528871b8730423294d5e4992aa3a1df1cc525",
+      "fingerprint": "4a998b10e9ff12435b6f42d86bb3e67bc5ac6a0696e84c410989e66ec1768e4e",
       "snapshot": {
-        "docs/framework/preact/guides/custom-hotkey-recording.md": "bda4a9338e7c2bae6b9cddd9f280539c256eb33c8681e554a68c5e4a55c92c1a"
+        "docs/framework/preact/guides/custom-hotkey-recording.md": "cba57604200e988a3864f9564b73863c0be97737128e3a85dbaf154132615e90"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
+      "outcome": "updated",
+      "reason": "Guide lists Tab and Shift+Tab in the recorder keys table and documents recordTab; the app-hotkeys recording reference says the same.",
       "evidence": [
         "docs/framework/preact/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
       ]
     },
     "source:docs/framework/solid/guides/custom-hotkey-recording.md": {
-      "fingerprint": "9f9282c53207ba277d56615ae80fc4eeb268c6df2a16613c2f8f26dca0fb8f2b",
+      "fingerprint": "5b809470bfefe665d6951cdfc57311f6fd313751129d4ddb878eff3dd33d9a21",
       "snapshot": {
-        "docs/framework/solid/guides/custom-hotkey-recording.md": "9c10ac347f6fc35f8da9f4491592bab58b8cc9c8481553e61a11e49447f05bbc"
+        "docs/framework/solid/guides/custom-hotkey-recording.md": "a731e65fac914c45234ee9d85a6dd1f81cca3d2bdd5edb66c29827bb8d62ab77"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
+      "outcome": "updated",
+      "reason": "Guide lists Tab and Shift+Tab in the recorder keys table and documents recordTab; the app-hotkeys recording reference says the same.",
       "evidence": [
         "docs/framework/solid/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
       ]
     },
     "source:docs/framework/svelte/guides/custom-hotkey-recording.md": {
-      "fingerprint": "99f56a54625b90ddcde3c482df974e08743b6c8c47f2cb062ca932b0fd9e638d",
+      "fingerprint": "3ce16f37cfd1e100b0b8f5f4f55c13485e477239005901118b337e481afa02b6",
       "snapshot": {
-        "docs/framework/svelte/guides/custom-hotkey-recording.md": "5f5d8e5169431c10c71cda96579013044e5c40a74a9386032f39c1a46aa82ebe"
+        "docs/framework/svelte/guides/custom-hotkey-recording.md": "65e45791267d8b9f04f604834b468838cbd5fc5cf66a9a9a64cf2c34da5e9cce"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
+      "outcome": "updated",
+      "reason": "Guide lists Tab and Shift+Tab in the recorder keys table and documents recordTab; the app-hotkeys recording reference says the same.",
       "evidence": [
         "docs/framework/svelte/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
       ]
     },
     "source:docs/framework/svelte/reference/functions/getAppHotkeyList.md": {
@@ -11852,16 +11866,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/guides/custom-hotkey-recording.md": {
-      "fingerprint": "8babc2ec1c93dd89f489b89734bbd0a0e6b3f503df20a488f81ad4f3b775853a",
+      "fingerprint": "06f4904a27bea1ef64c7cc3a073bd44e2df8a2ae788b7f2413890ff88c1f1724",
       "snapshot": {
-        "docs/framework/vue/guides/custom-hotkey-recording.md": "bd076c5e66c6f30f7179b2d313129f6c4989b002afbfd0a4690e3c34ed7fcbc2"
+        "docs/framework/vue/guides/custom-hotkey-recording.md": "3bf83ccb8f1d184a3547245d3c5ff019347c4ceebea25b59e745066d89a34e4b"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
+      "outcome": "updated",
+      "reason": "Guide lists Tab and Shift+Tab in the recorder keys table and documents recordTab; the app-hotkeys recording reference says the same.",
       "evidence": [
         "docs/framework/vue/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
       ]
     },
     "source:docs/framework/vue/reference/functions/useAppHotkeyList.md": {
@@ -17587,6 +17601,26 @@
       "outcome": "no-change",
       "reason": "E2E test infrastructure only: layout fixture probes real key input before each case, and the Docker image matches @playwright/test 1.65.0. No library behavior or guidance changes.",
       "evidence": ["e2e/support/fixtures.ts"]
+    },
+    "source:e2e/browser/held-keys-and-recorder.spec.ts": {
+      "fingerprint": "fecbac889b7bd5469760b22fc9f0375025c84ec1fa205267394388f7e9468c91",
+      "snapshot": {
+        "e2e/browser/held-keys-and-recorder.spec.ts": "1c900da74f8beb8a50940e1890386c771e5a20d422cb7463b44f300668dc6580"
+      },
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
+      "outcome": "out-of-scope",
+      "reason": "Tests for Tab leaving the recorder; they describe no guidance.",
+      "evidence": ["e2e/browser/held-keys-and-recorder.spec.ts"]
+    },
+    "source:packages/hotkeys/tests/recorder-tab.test.ts": {
+      "fingerprint": "9796d31221d0e2ee80e933ca31fb15a7675c000ea4dd5bf5fe44a3a94879140b",
+      "snapshot": {
+        "packages/hotkeys/tests/recorder-tab.test.ts": "87af3eab196cabc93832cb9b9084c459f5dbd9b5418a15dd2c66b174bfe80681"
+      },
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
+      "outcome": "out-of-scope",
+      "reason": "Tests for Tab leaving the recorder; they describe no guidance.",
+      "evidence": ["packages/hotkeys/tests/recorder-tab.test.ts"]
     }
   }
 }
