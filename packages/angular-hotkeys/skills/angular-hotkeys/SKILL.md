@@ -115,6 +115,7 @@ A component's `providers` apply to the component itself, so it can register its 
 - **Pass options as a function.** `{ enabled: this.isDirty() }` is read once, in the constructor. Use `() => ({ ... })`.
 - **Pass the `viewChild` signal as `target`, not its value.** `this.panel()` in the constructor is `undefined`, and an undefined target means `document`. `{ target: this.panel }` waits for the element.
 - **An exclusive provider with no hotkeys never activates.** Angular creates providers lazily. Call `injectHotkeysContext()` in the component's constructor to activate the scope.
+- **Put scoped providers in a component's `providers`, not `Route.providers`.** The router keeps a route's injector after navigation, so its scope stays active on the next page, and an exclusive one suspends every other hotkey. Provide the scope on the page component, or add `withAutoCleanupInjectors()` to `provideRouter`.
 - **Replace `@HostListener('document:keydown')` and `(keydown.control.s)` bindings with `injectHotkey`.**
 - **Hotkeys in a service outside any component can't update a view through plain fields.** Callbacks registered in a component or directive mark that component for check, so field changes render in OnPush and zoneless apps. A root or route-level service has no component to mark; store the state its hotkeys change in signals.
 - **Register runtime lists in the constructor.** `injectHotkey` throws outside an injection context, such as in `ngOnInit`. For hotkeys from data, use `injectHotkeys(() => this.items().map(...))`.

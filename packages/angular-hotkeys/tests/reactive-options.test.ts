@@ -1,7 +1,8 @@
 import { provideZonelessChangeDetection, signal } from '@angular/core'
 import { TestBed } from '@angular/core/testing'
-import { HotkeyManager } from '@tanstack/hotkeys'
+import { HotkeyManager, HotkeyRecorder } from '@tanstack/hotkeys'
 import { expect, it, vi } from 'vitest'
+import { provideHotkeys } from '../src/hotkeys-provider'
 import { injectHotkey } from '../src/injectHotkey'
 import { injectHotkeyRecorder } from '../src/injectHotkeyRecorder'
 it('updates a property getter without user setOptions', () => {
@@ -74,3 +75,27 @@ it.each(['single', 'sequence'] as const)(
     }
   },
 )
+
+it('updates a recorder when the provider recorder defaults change', () => {
+  const ignoreInputs = signal(true)
+  TestBed.configureTestingModule({
+    providers: [
+      provideZonelessChangeDetection(),
+      provideHotkeys({
+        defaultOptions: () => ({ hotkeyRecorder: { ignoreInputs: ignoreInputs() } }),
+      }),
+    ],
+  })
+  const setOptions = vi.spyOn(HotkeyRecorder.prototype, 'setOptions')
+  try {
+    TestBed.runInInjectionContext(() => injectHotkeyRecorder({ onRecord() {} }))
+    TestBed.flushEffects()
+    expect(setOptions.mock.lastCall?.[0].ignoreInputs).toBe(true)
+    ignoreInputs.set(false)
+    TestBed.flushEffects()
+    expect(setOptions.mock.lastCall?.[0].ignoreInputs).toBe(false)
+  } finally {
+    setOptions.mockRestore()
+    TestBed.resetTestingModule()
+  }
+})

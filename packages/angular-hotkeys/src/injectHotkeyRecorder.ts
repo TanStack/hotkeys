@@ -10,7 +10,7 @@ import {
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { withDefaults } from '@tanstack/hotkeys/adapter'
 import { injectWrapCallback } from './_zone'
-import { injectDefaultHotkeysOptions } from './hotkeys-provider'
+import { injectHotkeysContext } from './hotkeys-provider'
 import type { Signal } from '@angular/core'
 import type {
   Hotkey,
@@ -90,16 +90,17 @@ export function injectHotkeyRecorder(
 export function injectHotkeyRecorder(
   options: HotkeyRecorderOptions | (() => HotkeyRecorderOptions),
 ): AngularHotkeyRecorder {
-  const defaultOptions = injectDefaultHotkeysOptions()
+  const context = injectHotkeysContext()
   const destroyRef = inject(DestroyRef)
   const zone = inject(NgZone)
   const wrapCallback = injectWrapCallback()
 
+  // Reads the provider defaults on each call, so the sync effect tracks them.
   // Callbacks run in the zone and mark the component for check, so their
   // changes update the view.
   const resolve = (): HotkeySequenceRecorderOptions => {
     const resolved: Record<string, any> = withDefaults(
-      defaultOptions.hotkeyRecorder,
+      context.defaultOptions.hotkeyRecorder,
       typeof options === 'function' ? options() : options,
     )
     for (const key of ['onRecord', 'onCancel', 'onClear', 'onReject']) {
