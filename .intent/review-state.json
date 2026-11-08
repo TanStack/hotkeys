@@ -26,25 +26,23 @@
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "521452b89a2b60d284d45a87d2cd2cfe3ab0365c8074d9af2a42058aaab5ad5d",
+      "fingerprint": "0a666e3f2e1ad32ae1fbe5486768107199c7dba48b63d00bcbdbd731c38057d3",
       "snapshot": {
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
-        "docs/framework/angular/quick-start.md": "2eb59bbc55c4845b7d1176becd127d8bc449e88ee93ee52c4cb28df799339ac0",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "d3c806c6d52abe338dfc11a8e7453b93febfa2dbb1767730ec2af436e16f66b8",
+        "docs/framework/angular/quick-start.md": "7cc94e2f2a712f1748357b17784723b327122c43d2051d8d17639adb6af725b6",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "45902e01aeb2e2e2db042892f9fc408c0cf94fb44f361ed4cc54aae687535fe9",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "62debc1f800b07a1a82f879aee2ea37c63aaff22d1c80f9c1a5320388e6d00b5",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "03ea85098b0ed95e323e8d1e35b61b2683b7bc2d68f67e56e15ce2da92177a6f",
-        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "41e4d63a2ffa88f02f6c76d58cc871f8c97b6e77e5f0bbeab92bff50f380af81",
-        "packages/angular-hotkeys/src/injectHotkeys.ts": "25f100bcc3bf1deb60b9c13a62ba7201b85d8d317be93ba244d9b2f85274bb18"
+        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "66bb3b44fe2cfd26fac392592cb3e672a3b1ac99bcd86d0e10c64ec0b4dfb378",
+        "packages/angular-hotkeys/src/injectHotkeys.ts": "5f93f900d7c5b99d3582786c89c0e9341d3845e1ab576cb007072d575233192d"
       },
-      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
+      "head": "a420ab9f3606db43122a3f74bdeefc4b38fb319a",
       "outcome": "no-change",
-      "reason": "Only the recorder JSDoc changed, to mention Tab cancelling. The adapter skill lists the recorder API without describing its keys; the app-hotkeys recording reference covers them.",
+      "reason": "Merge of main after #237 merged. The pending items changed through #237 (Angular markForCheck), #238 and #239, which recorded their own reviews; this branch's change needs nothing more from them. Any skill_spec.md conflict kept both sides' rows and log entries.",
       "evidence": [
-        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
+        "Changed: docs/framework/angular/quick-start.md, packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md, packages/angular-hotkeys/src/injectHotkeyRecorder.ts, packages/angular-hotkeys/src/injectHotkeys.ts at a420ab9f3606db43122a3f74bdeefc4b38fb319a"
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
@@ -291,15 +289,15 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "2b9a1e5248e8aacfb17f6aeb5e2f8dcd0a1bff8404dac5209f113e25661df478",
+      "fingerprint": "fe6ac6178c1b18d31250ba37431279ea5d4638f106bc8785b009098f37459871",
       "snapshot": {
-        "_artifacts/domain_map.yaml": "dd791b9fa3d82d64f7d890c05380fc452024d4c860085915f9ef35f226e61b39",
-        "_artifacts/skill_spec.md": "af65b5a42cbc2b52811445f45c49f2c4656c27613ab152c5c27399e441a12490",
+        "_artifacts/domain_map.yaml": "e7a86bd4a0a7a6abe0f77745dcff4123834148e911cfa0f5ba7271917ef99c3a",
+        "_artifacts/skill_spec.md": "acd8c08345c795984dffbb11c5957c4cad561030d1b601fda00b0b64e9ef5b19",
         "_artifacts/skill_tree.yaml": "bff31ee525c55a3e572083903c5b8deb444cd850845ae2dc1e4b886ce2236a12",
         "docs/framework/alpine/guides/app-hotkeys.md": "cdefefaa71aa9c36da99d314ab0279aa791dcf651bb1fd4cebf7263ba661078a",
         "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
-        "docs/framework/angular/quick-start.md": "2eb59bbc55c4845b7d1176becd127d8bc449e88ee93ee52c4cb28df799339ac0",
+        "docs/framework/angular/quick-start.md": "7cc94e2f2a712f1748357b17784723b327122c43d2051d8d17639adb6af725b6",
         "docs/framework/ember/guides/app-hotkeys.md": "c7c52789e2c869e773cb14b25f8a1dc8e5533569211bac45b0f124eb7c260695",
         "docs/framework/ember/quick-start.md": "b68bb08e413da376299f10925ece54685dcccfbeea98af088f1c58b3c5456f37",
         "docs/framework/lit/guides/app-hotkeys.md": "b001df84eb320a4af7759ab163f837bac0fe3b36014b4b5de9366102073af97b",
@@ -331,13 +329,13 @@
         "packages/alpine-hotkeys/src/hotkeyRecorderPlugin.ts": "8ff86447e513f47002c49ed9f60269d485b0cd65b87277bb52cf2d8286ddbd36",
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "5b2b94b41d520f3beb60d2ceb15081799873c84c0ff244289d9b3698168c0ead",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "d3c806c6d52abe338dfc11a8e7453b93febfa2dbb1767730ec2af436e16f66b8",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "45902e01aeb2e2e2db042892f9fc408c0cf94fb44f361ed4cc54aae687535fe9",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "62debc1f800b07a1a82f879aee2ea37c63aaff22d1c80f9c1a5320388e6d00b5",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "03ea85098b0ed95e323e8d1e35b61b2683b7bc2d68f67e56e15ce2da92177a6f",
-        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "41e4d63a2ffa88f02f6c76d58cc871f8c97b6e77e5f0bbeab92bff50f380af81",
-        "packages/angular-hotkeys/src/injectHotkeys.ts": "25f100bcc3bf1deb60b9c13a62ba7201b85d8d317be93ba244d9b2f85274bb18",
+        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "66bb3b44fe2cfd26fac392592cb3e672a3b1ac99bcd86d0e10c64ec0b4dfb378",
+        "packages/angular-hotkeys/src/injectHotkeys.ts": "5f93f900d7c5b99d3582786c89c0e9341d3845e1ab576cb007072d575233192d",
         "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "d2c51c3efe9a55f605f643f657f6da6d46e3b00acaf879f95acdc3d4ade8fabb",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "6bcb35cd5de4fc7c87f1dba3f7952998d8c79db0add0af2fc2d3dfc379d0df6d",
@@ -423,11 +421,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "b3e8f6c870734a967881c5b155ddced5c737d5162e6f44e5c095bd2be81fd0e6"
       },
-      "head": "4e7ba19ffd08f5ce37390b0b35db583004277af2",
+      "head": "a420ab9f3606db43122a3f74bdeefc4b38fb319a",
       "outcome": "no-change",
-      "reason": "Merge of main. These items changed through #238 (Windows Ctrl+Alt fallback note) and #239 (Lit override and dispose()), which recorded their own skill and planning reviews; the Lit skill and planning records already describe that work. This branch's recorder Tab change adds nothing they need, and the regenerated Lit recorder reference only shifts line numbers.",
+      "reason": "Merge of main after #237 merged. The pending items changed through #237 (Angular markForCheck), #238 and #239, which recorded their own reviews; this branch's change needs nothing more from them. Any skill_spec.md conflict kept both sides' rows and log entries.",
       "evidence": [
-        "Changed: _artifacts/domain_map.yaml, _artifacts/skill_spec.md, docs/guides/sensible-defaults.md, packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md, packages/lit-hotkeys/src/controllers/app-hotkeys.ts, packages/lit-hotkeys/src/controllers/hotkey-recorder.ts, packages/lit-hotkeys/src/controllers/hotkey.ts, packages/lit-hotkeys/src/decorators/hotkey.ts at 4e7ba19ffd08f5ce37390b0b35db583004277af2"
+        "Changed: _artifacts/domain_map.yaml, _artifacts/skill_spec.md, docs/framework/angular/quick-start.md, packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md, packages/angular-hotkeys/src/injectHotkeyRecorder.ts, packages/angular-hotkeys/src/injectHotkeys.ts at a420ab9f3606db43122a3f74bdeefc4b38fb319a"
       ]
     },
     "source:.changeset/intent-skills.md": {
