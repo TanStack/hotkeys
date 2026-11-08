@@ -83,6 +83,12 @@ export type DisplayHotkey =
 /**
  * Formats a hotkey for display in a user interface.
  *
+ * In a server-rendered app, format labels with your adapter's formatter,
+ * such as `useFormatForDisplay`, or pass `platform`. Called directly,
+ * `formatForDisplay` never reads a provider's `platform`. Without a
+ * `platform` option, it renders Linux labels on the server, so Mac users get
+ * a different label after hydration.
+ *
  * On macOS, uses symbols (⇧⌘S) in Control, Option, Shift, Command order.
  * Display ordering does not change the normalized hotkey used for registration.
  * On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
@@ -255,7 +261,10 @@ function formatKey(
  * Options for formatting hotkeys for display.
  */
 export interface FormatDisplayOptions {
-  /** The target platform. Defaults to auto-detection. */
+  /**
+   * The target platform. Without it, `formatForDisplay` detects the platform
+   * in the browser and uses `'linux'` on a server.
+   */
   platform?: 'mac' | 'windows' | 'linux'
   /** Whether to use symbols for the display. Defaults to true. */
   useSymbols?: boolean | { modifiers?: boolean; keys?: boolean }

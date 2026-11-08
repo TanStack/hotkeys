@@ -328,3 +328,65 @@ describe('AppHotkeysStore.setOptions customHotkeys', () => {
     expect(listener).not.toHaveBeenCalled()
   })
 })
+
+describe('AppHotkeysStore.setOptions platform', () => {
+  const isSaveCustom = (store: AppHotkeysStore<typeof appHotkeys>) =>
+    store.getList([]).find((item) => item.appHotkey.id === 'doc.save')!.isCustom
+
+  it('compares hotkeys on the new platform and notifies subscribers', () => {
+    const store = new AppHotkeysStore(appHotkeys, {
+      customHotkeys: { 'doc.save': 'Meta+S' },
+      platform: 'mac',
+    })
+    const listener = vi.fn()
+    const subscription = store.store.subscribe(listener)
+    expect(isSaveCustom(store)).toBe(false)
+
+    store.setOptions({ platform: 'windows' })
+
+    expect(isSaveCustom(store)).toBe(true)
+    expect(listener).toHaveBeenCalledTimes(1)
+    subscription.unsubscribe()
+  })
+
+  it('notifies once, with the new hotkeys, when both change', () => {
+    const store = new AppHotkeysStore(appHotkeys, { platform: 'mac' })
+    const seen: Array<unknown> = []
+    const subscription = store.store.subscribe(() =>
+      seen.push(store.appHotkeys['doc.save'].hotkey),
+    )
+
+    store.setOptions({
+      platform: 'windows',
+      customHotkeys: { 'doc.save': 'Mod+Shift+S' },
+    })
+
+    expect(seen).toEqual(['Mod+Shift+S'])
+    subscription.unsubscribe()
+  })
+
+  it('keeps saved hotkeys that only match on the current platform', () => {
+    const store = new AppHotkeysStore(appHotkeys, {
+      customHotkeys: { 'doc.save': 'Mod+G' },
+      platform: 'mac',
+    })
+
+    // Equal to Mod+G on macOS, but not after a switch to Windows
+    store.setOptions({ customHotkeys: { 'doc.save': 'Meta+G' } })
+    store.setOptions({ platform: 'windows' })
+
+    expect(store.appHotkeys['doc.save'].hotkey).toBe('Meta+G')
+  })
+
+  it('does not notify when the platform is unchanged or not passed', () => {
+    const store = new AppHotkeysStore(appHotkeys, { platform: 'mac' })
+    const listener = vi.fn()
+    const subscription = store.store.subscribe(listener)
+
+    store.setOptions({ platform: 'mac' })
+    store.setOptions({ onCustomHotkeysChange: () => {} })
+
+    expect(listener).not.toHaveBeenCalled()
+    subscription.unsubscribe()
+  })
+})

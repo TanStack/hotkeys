@@ -28,9 +28,10 @@ import type { UseHotkeyCommonOptions } from './useHotkey'
 
 export interface HotkeysProviderOptions {
   /**
-   * The user's platform, for labels from `useFormatForDisplay`, hotkeys, and
-   * recorders. Defaults to detection. When server rendering, set it from the
-   * request with `detectPlatform(userAgent)`.
+   * The user's platform, for labels from `useFormatForDisplay`, hotkeys,
+   * recorders, and app hotkey checks such as conflicts. Defaults to detection.
+   * When server rendering, set it from the request with
+   * `detectPlatform(userAgent)`.
    */
   platform?: HotkeyPlatform
   /**
@@ -129,11 +130,14 @@ export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
 }: HotkeysProviderProps<T>): ReactElement {
   // eslint-disable-next-line @eslint-react/no-use-context -- React 19+ only; we support React >=18
   const parent = useContext(HotkeysContext) ?? NO_PARENT
+  // App hotkeys compare hotkeys, such as for conflicts, on this platform.
+  const platform = defaultOptions.platform ?? parent.defaultOptions.platform
   const [store] = useState(() =>
     appHotkeys
       ? createAppHotkeysStore(appHotkeys, {
           customHotkeys,
           onCustomHotkeysChange,
+          platform,
         })
       : null,
   )
@@ -152,11 +156,12 @@ export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
     return scopeKey ? activateHotkeysProviderScope(scopeKey) : undefined
   }, [scopeKey])
 
-  // Keep the latest callback and saved custom hotkeys. Saved data with the
-  // same value, such as an inline JSON.parse, keeps the user's changes.
+  // Keep the latest callback, platform, and saved custom hotkeys. Saved data
+  // with the same value, such as an inline JSON.parse, keeps the user's
+  // changes.
   useEffect(() => {
-    store?.setOptions({ customHotkeys, onCustomHotkeysChange })
-  }, [store, customHotkeys, onCustomHotkeysChange])
+    store?.setOptions({ customHotkeys, onCustomHotkeysChange, platform })
+  }, [store, customHotkeys, onCustomHotkeysChange, platform])
   useEffect(() => {
     if (appHotkeys) store?.setAppHotkeys(appHotkeys)
   }, [store, appHotkeys])

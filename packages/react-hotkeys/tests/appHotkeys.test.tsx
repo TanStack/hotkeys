@@ -3,6 +3,7 @@
 import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
 import { act, renderHook } from '@testing-library/react'
 import React from 'react'
+import { renderToString } from 'react-dom/server'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import {
@@ -75,6 +76,7 @@ beforeEach(() => HotkeyManager.resetInstance())
 afterEach(() => {
   HotkeyManager.resetInstance()
   vi.restoreAllMocks()
+  vi.unstubAllGlobals()
 })
 
 describe('useHotkey with app hotkeys', () => {
@@ -440,5 +442,85 @@ describe('useHotkeyRecorder', () => {
       // @ts-expect-error idleTimeoutMs needs maxSteps above 1
       useHotkeyRecorder({ idleTimeoutMs: 500, onRecord: () => {} })
     })
+  })
+})
+
+describe('app hotkeys and the provider platform', () => {
+  function platformWrapper(platform: 'mac' | 'windows', nested = false) {
+    return ({ children }: { children: ReactNode }) => {
+      const provider = (
+        <HotkeysProvider
+          appHotkeys={appHotkeys}
+          customHotkeys={{ 'doc.save': 'Meta+S' }}
+          defaultOptions={nested ? undefined : { platform }}
+        >
+          {children}
+        </HotkeysProvider>
+      )
+      return nested ? (
+        <HotkeysProvider defaultOptions={{ platform }}>
+          {provider}
+        </HotkeysProvider>
+      ) : (
+        provider
+      )
+    }
+  }
+
+  function saveItem(list: ReturnType<typeof useAppHotkeyList>) {
+    return list.find((item) => item.appHotkey.id === 'doc.save')!
+  }
+
+  it('compares custom hotkeys on the provider platform', () => {
+    const { result } = renderWithCustom(
+      () => useAppHotkeyList(),
+      platformWrapper('mac'),
+    )
+
+    // Meta+S is Mod+S only on macOS, which the test environment never detects
+    expect(saveItem(result.current.value).isCustom).toBe(false)
+    expect(
+      result.current.custom
+        .findConflicts('palette.open', 'Meta+F')
+        .map((appHotkey) => appHotkey.id),
+    ).toEqual(['doc.find'])
+  })
+
+  it('compares custom hotkeys on the provider platform during server rendering', () => {
+    vi.stubGlobal('navigator', { userAgent: 'Node.js/26', platform: '' })
+    function SaveStatus() {
+      return <output>{String(saveItem(useAppHotkeyList()).isCustom)}</output>
+    }
+
+    const html = renderToString(
+      platformWrapper('mac')({ children: <SaveStatus /> }),
+    )
+
+    expect(html).toContain('<output>false</output>')
+  })
+
+  it('uses a platform inherited from a parent provider', () => {
+    const { result } = renderWithCustom(
+      () => useAppHotkeyList(),
+      platformWrapper('mac', true),
+    )
+
+    expect(saveItem(result.current.value).isCustom).toBe(false)
+  })
+
+  it('follows a change to the provider platform', () => {
+    let platform: 'mac' | 'windows' = 'mac'
+    const wrapper = ({ children }: { children: ReactNode }) =>
+      platformWrapper(platform)({ children })
+    const { result, rerender } = renderWithCustom(
+      () => useAppHotkeyList(),
+      wrapper,
+    )
+    expect(saveItem(result.current.value).isCustom).toBe(false)
+
+    platform = 'windows'
+    rerender()
+
+    expect(saveItem(result.current.value).isCustom).toBe(true)
   })
 })

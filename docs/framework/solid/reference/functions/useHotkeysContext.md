@@ -9,7 +9,7 @@ title: useHotkeysContext
 function useHotkeysContext(): HotkeysContextValue | null;
 ```
 
-Defined in: [HotkeysProvider.tsx:179](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L179)
+Defined in: [HotkeysProvider.tsx:184](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L184)
 
 ## Returns
 

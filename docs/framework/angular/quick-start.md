@@ -84,21 +84,22 @@ injectHotkeys([
 
 ## Show the shortcut
 
-Label a button or menu item with `formatForDisplay`. Format the same value you register, so the label always matches the binding:
+Label a button or menu item with `injectFormatForDisplay`. Format the same value you register, so the label always matches the binding:
 
 ```ts
 import { Component } from '@angular/core'
-import { formatForDisplay, injectHotkey } from '@tanstack/angular-hotkeys'
+import { injectFormatForDisplay, injectHotkey } from '@tanstack/angular-hotkeys'
 import type { HotkeyChord } from '@tanstack/angular-hotkeys'
 
 const saveHotkey: HotkeyChord = 'Mod+S'
 
 @Component({
   selector: 'app-save-button',
-  template: `<button (click)="save()">Save <kbd>{{ saveLabel }}</kbd></button>`,
+  template: `<button (click)="save()">Save <kbd>{{ format(saveHotkey) }}</kbd></button>`,
 })
 export class SaveButtonComponent {
-  readonly saveLabel = formatForDisplay(saveHotkey)
+  readonly saveHotkey = saveHotkey
+  readonly format = injectFormatForDisplay()
 
   constructor() {
     injectHotkey(saveHotkey, () => this.save())
@@ -112,7 +113,7 @@ export class SaveButtonComponent {
 
 The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. `HotkeyChord` checks the string, so a typo in the binding is a type error. Use `Hotkey` for a value that can also be a sequence.
 
-If your app renders on the server, such as with Angular SSR or Analog, use `injectFormatForDisplay` instead, and set the `platform` in `provideHotkeys` from the request, so the server's HTML shows the user's platform. See [Format labels in server-rendered apps](./guides/formatting-display#format-labels-in-server-rendered-apps).
+If your app renders on the server, such as with Angular SSR or Analog, set the `platform` in `provideHotkeys` from the request, so the server renders the user's labels without hydration errors, as shown in [Format labels in server-rendered apps](./guides/formatting-display#format-labels-in-server-rendered-apps).
 
 ## Hotkeys follow your components
 

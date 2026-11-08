@@ -28,8 +28,8 @@ import type { CreateHotkeyCommonOptions } from './createHotkey'
 export interface HotkeysProviderOptions {
   /**
    * The user's platform, for labels from `createFormatForDisplay`, hotkeys,
-   * and recorders. On a server, set it from the request with
-   * `detectPlatform(userAgent)`.
+   * recorders, and app hotkey checks such as conflicts. On a server, set it
+   * from the request with `detectPlatform(userAgent)`.
    */
   platform?: HotkeyPlatform
   /**
@@ -114,19 +114,15 @@ export const HotkeysProvider: ParentComponent<HotkeysProviderProps> = (
         customHotkeys: props.customHotkeys,
         onCustomHotkeysChange: (custom) =>
           props.onCustomHotkeysChange?.(custom),
+        // App hotkeys compare hotkeys, such as for conflicts, on this platform.
+        platform:
+          props.defaultOptions?.platform ?? parent?.defaultOptions.platform,
       })
     : null
 
   // Keep declarations current (for example after hot module replacement).
   createEffect(() => {
     if (props.appHotkeys) store?.setAppHotkeys(props.appHotkeys)
-  })
-
-  // Apply saved custom hotkeys whose value changes, such as data that loads
-  // after the first render.
-  createEffect(() => {
-    const customHotkeys = props.customHotkeys
-    store?.setOptions({ customHotkeys })
   })
 
   // Publish the store so devtools can list declared hotkeys.
@@ -142,6 +138,15 @@ export const HotkeysProvider: ParentComponent<HotkeysProviderProps> = (
       props.scope,
     ),
   )
+  // Apply the platform and saved custom hotkeys whose value changes, such as
+  // data that loads after the first render. One call applies both together.
+  if (store) {
+    createEffect(() => {
+      const customHotkeys = props.customHotkeys
+      const platform = defaultOptions().platform
+      store.setOptions({ customHotkeys, platform })
+    })
+  }
   // Compared by value, so a new `exclusive` object does not reactivate the
   // scope and lose its precedence.
   const scopeKey = createMemo(() =>

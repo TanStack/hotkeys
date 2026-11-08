@@ -15,7 +15,7 @@ Defined in: [HotkeysProvider.tsx:29](https://github.com/TanStack/hotkeys/blob/ma
 optional hotkey?: UseHotkeyCommonOptions;
 ```
 
-Defined in: [HotkeysProvider.tsx:40](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L40)
+Defined in: [HotkeysProvider.tsx:41](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L41)
 
 Defaults for every hotkey registered by `useHotkey` and `useHotkeys`.
 `requireReset` applies to chords and `timeout` applies to sequences.
@@ -28,7 +28,7 @@ Defaults for every hotkey registered by `useHotkey` and `useHotkeys`.
 optional hotkeyRecorder?: Partial<Omit<HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions, "maxSteps" | "validate" | "onRecord">>;
 ```
 
-Defined in: [HotkeysProvider.tsx:42](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L42)
+Defined in: [HotkeysProvider.tsx:43](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L43)
 
 Defaults for every `useHotkeyRecorder`.
 
@@ -40,8 +40,9 @@ Defaults for every `useHotkeyRecorder`.
 optional platform?: HotkeyPlatform;
 ```
 
-Defined in: [HotkeysProvider.tsx:35](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L35)
+Defined in: [HotkeysProvider.tsx:36](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L36)
 
-The user's platform, for labels from `useFormatForDisplay`, hotkeys, and
-recorders. Defaults to detection. When server rendering, set it from the
-request with `detectPlatform(userAgent)`.
+The user's platform, for labels from `useFormatForDisplay`, hotkeys,
+recorders, and app hotkey checks such as conflicts. Defaults to detection.
+When server rendering, set it from the request with
+`detectPlatform(userAgent)`.

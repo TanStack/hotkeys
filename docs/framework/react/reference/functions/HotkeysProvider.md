@@ -9,7 +9,7 @@ title: HotkeysProvider
 function HotkeysProvider<T>(__namedParameters): ReactElement;
 ```
 
-Defined in: [HotkeysProvider.tsx:120](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L120)
+Defined in: [HotkeysProvider.tsx:121](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L121)
 
 Provides default options, app hotkeys, and the user's custom hotkeys.
 

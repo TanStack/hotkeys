@@ -15,7 +15,7 @@ Defined in: [HotkeysProvider.ts:27](https://github.com/TanStack/hotkeys/blob/mai
 optional hotkey?: UseHotkeyCommonOptions;
 ```
 
-Defined in: [HotkeysProvider.ts:38](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L38)
+Defined in: [HotkeysProvider.ts:39](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L39)
 
 Defaults for every hotkey registered by `useHotkey` and `useHotkeys`.
 `requireReset` applies to chords and `timeout` applies to sequences.
@@ -28,7 +28,7 @@ Defaults for every hotkey registered by `useHotkey` and `useHotkeys`.
 optional hotkeyRecorder?: Partial<Omit<HotkeyChordRecorderOptions & HotkeySequenceRecorderOptions, "maxSteps" | "validate" | "onRecord">>;
 ```
 
-Defined in: [HotkeysProvider.ts:40](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L40)
+Defined in: [HotkeysProvider.ts:41](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L41)
 
 Defaults for every `useHotkeyRecorder`.
 
@@ -40,8 +40,9 @@ Defaults for every `useHotkeyRecorder`.
 optional platform?: HotkeyPlatform;
 ```
 
-Defined in: [HotkeysProvider.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L33)
+Defined in: [HotkeysProvider.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L34)
 
-The user's platform, for labels from `useFormatForDisplay`, hotkeys, and
-recorders. Defaults to detection. When server rendering, set it from the
-request with `detectPlatform(userAgent)`.
+The user's platform, for labels from `useFormatForDisplay`, hotkeys,
+recorders, and app hotkey checks such as conflicts. Defaults to detection.
+When server rendering, set it from the request with
+`detectPlatform(userAgent)`.

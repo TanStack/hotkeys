@@ -32,8 +32,8 @@ import type { InjectHotkeyCommonOptions } from './injectHotkey'
 export interface HotkeysProviderOptions {
   /**
    * The user's platform, for labels from `injectFormatForDisplay`, hotkeys,
-   * and recorders. Detected when unset. On a server, set it from the request
-   * with `detectPlatform(userAgent)`.
+   * recorders, and app hotkey checks such as conflicts. Detected when unset. On
+   * a server, set it from the request with `detectPlatform(userAgent)`.
    */
   platform?: HotkeyPlatform
   /**
@@ -135,16 +135,12 @@ function createHotkeysContext(
     const owned = createAppHotkeysStore(appHotkeys, {
       customHotkeys: read(customHotkeys),
       onCustomHotkeysChange,
+      // App hotkeys compare hotkeys, such as for conflicts, on this platform.
+      platform:
+        read(options.defaultOptions)?.platform ??
+        parent.defaultOptions.platform,
     })
     store = owned
-    // Apply saved custom hotkeys whose value changes, such as data that
-    // loads after the app starts.
-    if (typeof customHotkeys === 'function') {
-      effect(() => {
-        const next = read(customHotkeys)
-        untracked(() => owned.setOptions({ customHotkeys: next }))
-      })
-    }
     const state = signal<AppHotkeysState | null>(store.store.state)
     const subscription = store.store.subscribe(() =>
       state.set(store!.store.state),
@@ -167,6 +163,17 @@ function createHotkeysContext(
       read(options.scope),
     ),
   )
+  if (store) {
+    const owned = store
+    // Apply the platform and saved custom hotkeys whose value changes, such as
+    // data that loads after the app starts. One call applies both together.
+    effect(() => {
+      const next =
+        typeof customHotkeys === 'function' ? read(customHotkeys) : undefined
+      const platform = defaultOptions().platform
+      untracked(() => owned.setOptions({ customHotkeys: next, platform }))
+    })
+  }
   // Compared by value, so a new `exclusive` object does not reactivate the
   // scope and lose its precedence.
   const scopeKey = computed(() =>

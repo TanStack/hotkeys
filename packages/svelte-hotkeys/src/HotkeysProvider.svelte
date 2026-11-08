@@ -28,10 +28,14 @@
     if (appHotkeys) context.appHotkeysStore?.setAppHotkeys(appHotkeys)
   })
 
-  // Apply saved custom hotkeys whose value changes, such as data that loads
-  // after the first render. Only a provider with appHotkeys owns a store.
+  // Apply the platform and saved custom hotkeys whose value changes, such as
+  // data that loads after the first render. Only a provider with appHotkeys
+  // owns a store.
   $effect(() => {
-    if (appHotkeys) context.appHotkeysStore?.setOptions({ customHotkeys })
+    const platform = context.defaultOptions.platform
+    if (appHotkeys) {
+      context.appHotkeysStore?.setOptions({ customHotkeys, platform })
+    }
   })
 </script>
 

@@ -18,6 +18,7 @@ function x11(command: string, ...args: Array<string>): string {
  */
 const KEYCODES = {
   AltGr: 108,
+  Escape: 9,
   Control: 37,
   Alt: 64,
   Shift: 50,

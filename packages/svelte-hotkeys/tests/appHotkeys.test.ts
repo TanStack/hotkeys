@@ -130,3 +130,35 @@ describe('HotkeysProvider customHotkeys prop', () => {
     }
   })
 })
+
+describe('app hotkeys and the provider platform', () => {
+  it('compares custom hotkeys on the provider platform', () => {
+    let api!: ChildApi
+    let setPlatform!: (next: 'mac' | 'windows') => void
+    const component = mount(Harness, {
+      target: document.body,
+      props: {
+        appHotkeys,
+        customHotkeys: { 'doc.save': 'Meta+S' },
+        platform: 'mac',
+        setPlatform: (set: (next: 'mac' | 'windows') => void) =>
+          (setPlatform = set),
+        ready: (value: ChildApi) => (api = value),
+      },
+    })
+    flushSync()
+    try {
+      // Meta+S is Mod+S only on macOS, which the test environment never detects
+      expect(api.list.current[0]!.isCustom).toBe(false)
+      expect(
+        api.custom.findConflicts('palette.open', 'Meta+S').map((a) => a.id),
+      ).toEqual(['doc.save'])
+
+      setPlatform('windows')
+      flushSync()
+      expect(api.list.current[0]!.isCustom).toBe(true)
+    } finally {
+      unmount(component)
+    }
+  })
+})

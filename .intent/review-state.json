@@ -26,32 +26,32 @@
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "b1ecbe0349a2084a8efc6a9bf5bc270f4697523e6b321950c25f5699173206d0",
+      "fingerprint": "927cb913983b72ff7a6f7cdedd049bdee5429ebed51db870177c20f4ef119179",
       "snapshot": {
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
-        "docs/framework/angular/quick-start.md": "3f9bd6e926aca66237a2f4fc975ad6a11786894ddc3201593ca90590c19dfc6c",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "644a777c52a1ef882879320671517bb1349066612e3da4314e83211294eb21de",
+        "docs/framework/angular/quick-start.md": "2eb59bbc55c4845b7d1176becd127d8bc449e88ee93ee52c4cb28df799339ac0",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "d3c806c6d52abe338dfc11a8e7453b93febfa2dbb1767730ec2af436e16f66b8",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts": "ea7536f1a8345cc7feda2315fbb094983bf09335c8fff9638d855dd9e825d72e",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts": "62debc1f800b07a1a82f879aee2ea37c63aaff22d1c80f9c1a5320388e6d00b5",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "03ea85098b0ed95e323e8d1e35b61b2683b7bc2d68f67e56e15ce2da92177a6f",
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "5ea65c992dc0bce0fcaf06f2c143080e1b65be788961cb8f23f6ae91e8885311",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "25f100bcc3bf1deb60b9c13a62ba7201b85d8d317be93ba244d9b2f85274bb18"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Code examples changed only in import order (oxfmt sortImports), and the covered sources changed only by formatter output. Guidance and APIs are unchanged.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md",
-        "git diff origin/main: only import lines change"
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
-      "fingerprint": "ac7f0f596eb536aadf1bcafeacff34fdf4d092a310e26d1e2fdda47a47a5eab6",
+      "fingerprint": "b4c0c84cdaaa61e5fa6ed092683a343e4a15d08be4dd67709d971939f32fcada",
       "snapshot": {
         "docs/framework/ember/guides/app-hotkeys.md": "c7c52789e2c869e773cb14b25f8a1dc8e5533569211bac45b0f124eb7c260695",
-        "docs/framework/ember/quick-start.md": "70680043f3655e5f915094be4fbc8a2099932a325f472d0851a5dac7a1524340",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "a6bdf35ab45404e6af23458d3aeee05da853e06f8c54894405389a8ff372a4f1",
+        "docs/framework/ember/quick-start.md": "b68bb08e413da376299f10925ece54685dcccfbeea98af088f1c58b3c5456f37",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "d2c51c3efe9a55f605f643f657f6da6d46e3b00acaf879f95acdc3d4ade8fabb",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "6bcb35cd5de4fc7c87f1dba3f7952998d8c79db0add0af2fc2d3dfc379d0df6d",
         "packages/ember-hotkeys/src/onHotkey.ts": "0cd156d6a90b341d7f1006df47911b3033ba523a68758274c00df7c8cb9dfbff",
@@ -61,23 +61,23 @@
         "packages/ember-hotkeys/src/useHotkeyRecorder.ts": "62e88767d073da768bd423268a5687390ac9b0ff7e9a28fd3ccc201bf827f540",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Code examples changed only in import order (oxfmt sortImports), and the covered sources changed only by formatter output. Guidance and APIs are unchanged.",
+      "head": "c516af53ae85e81b08262587232d2adaf91965e8",
+      "outcome": "updated",
+      "reason": "Skills now limit plain formatForDisplay to browser-only labels when no provider or scope sets platform, matching the guides.",
       "evidence": [
         "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md",
-        "git diff origin/main: only import lines change"
+        "docs/framework/react/guides/formatting-display.md"
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "8f105d19bbdf6b04c21a62b76fd58f9d2d63503f7451cffe902123a2aa62064e",
+      "fingerprint": "bd9c46b35f99d5395e3a3fad22a0ad9b6390c388be0371c66d6b71858eb6cb29",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "eb1f5087ec449c52b0fe342237c77fa511dee20bdd56b70d609e1a4e5c7ebbc6",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
         "docs/framework/react/guides/custom-hotkey-recording.md": "36f17bd33b5326bd396974ba24e5c06e3ec4218ad25045c0ee4910635f292ea7",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "0dc668ed5bcdc50b9ad290847f551d8da35cbb2c1f061ca363aa1bcb78d31b28",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
-        "packages/hotkeys/src/app-hotkeys.ts": "ddf5b5d69a4e81d0d0d5b1c1125b47d12073a009b7c2efc03001f227f61db092",
+        "packages/hotkeys/src/app-hotkeys.ts": "5ad2e0ca37e21a4a4fbd1eabc9b5bb4981f7530bca1dfd2286a2fa9205793608",
         "packages/hotkeys/src/conflicts.ts": "0459c63dccec1b3706c93552bfcd66243f90ae918c6e7e445fce046fe79cc2ad",
         "packages/hotkeys/src/hotkey-recorder.ts": "a19c8e64b939faa51b4554e71e71485f4d419539e4c9c287fdbb07955362a3e7",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
@@ -89,12 +89,12 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Code examples changed only in import order (oxfmt sortImports), and the covered sources changed only by formatter output. Guidance and APIs are unchanged.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "git diff origin/main: only import lines change"
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md"
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
@@ -148,54 +148,54 @@
       ]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
-      "fingerprint": "5d77c0fd41db6cd8c591483916f7de3dbce3052a8ee72c42ff8b5d8f15c78485",
+      "fingerprint": "5cacb81c6d0a37de3ff6915382fa572e168e870509188e1a1425946c9d8e751f",
       "snapshot": {
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
-        "docs/framework/octane/quick-start.md": "19f6043a79f76e144ba05ead4bfcff1372a84fde377248de629cebb857733f6e",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2e207c6e733ab9b471588670dbefe787d5a613a6ae9663d2086830e300aee89e",
+        "docs/framework/octane/quick-start.md": "cbb3844d20ea1b3609c444c0614ac910ec9e22811d46d9175baa470738da97f9",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "cae463ad7f9d31b4922a96534db78a83ac768ba38915463a2c8bbfb428d7292e",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
-        "packages/octane-hotkeys/src/HotkeysProvider.ts": "acd48d8f9946422f18a50ab40e1f1f4135db91e3c2a563ab8fc4fd77e68e3966",
+        "packages/octane-hotkeys/src/HotkeysProvider.ts": "d18e8ffb2503f4dfd4aec75aaa8ec6974c3a9cea6e7174287ec8ea18cc77f101",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "0fc7d7f72d19fbe3ed5c0d13d8355cc8d1576e0382b631fe128540480edf2993",
         "packages/octane-hotkeys/src/useHotkey.ts": "490586731422fd204ea65f08ff44fd9c4b102042ac8b278a4fab590ad7b878c7",
         "packages/octane-hotkeys/src/useHotkeys.ts": "faf937961a3ee7931f7fa73c5a11c60947fbbdf42636bff44d9169a7cb40a600"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Code examples changed only in import order (oxfmt sortImports), and the covered sources changed only by formatter output. Guidance and APIs are unchanged.",
+      "head": "c516af53ae85e81b08262587232d2adaf91965e8",
+      "outcome": "updated",
+      "reason": "Skills now limit plain formatForDisplay to browser-only labels when no provider or scope sets platform, matching the guides.",
       "evidence": [
         "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md",
-        "git diff origin/main: only import lines change"
+        "docs/framework/react/guides/formatting-display.md"
       ]
     },
     "skill:packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": {
-      "fingerprint": "b1519ef1a1b8d33b92dae3477e11735a3c723921f1f7284bcf0177c9dbcbbaf6",
+      "fingerprint": "aad12c1fbc79a1222eae21507b353f49b205ebcf7459917a3a1d3b9634ee36fd",
       "snapshot": {
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
-        "docs/framework/preact/quick-start.md": "b991913fea74d18f6ae096d46b54e6ca8ca85cb69df463c6ce12f3f8c9e5757b",
-        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "aec8b0be997769ba20a61a83f4c0b664c6f6020dfab531219a9700771701b00c",
+        "docs/framework/preact/quick-start.md": "d9cd9759e454cb4cbb050c189f3dee97d1141238ea30e623e5308dcc7cf29328",
+        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "6aadaa9d56377608f67bab4afd72947b81faf4de08f3170d1f7e5489f67e7c31",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "f1379c2c148231363d89ddc107333ab2e103a3df92d394e6265f2b685685c53e",
-        "packages/preact-hotkeys/src/HotkeysProvider.tsx": "c977b974811033bd1b218e40afe38854caa8e7bb243df8464f91f9eb52c84707",
+        "packages/preact-hotkeys/src/HotkeysProvider.tsx": "6c8a5774e46b86002b1fa1f7766665942ec3e2ff6b3c0da37eb4d8247d316392",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "9c4cc235f7d692d52f2adf308240bd6e5b6741ecdc27cb0a19b3fbaeb728bef3",
         "packages/preact-hotkeys/src/useHotkey.ts": "39c64d006438ba9f3af02c3d504b1b4ea2ab3f80c3441253a18a42416df48c96",
         "packages/preact-hotkeys/src/useHotkeys.ts": "dd4e288866368082653ef208e6fcddf7937f16c5e7fc301d0afd05e1ab596fae",
         "packages/preact-hotkeys/src/utils.ts": "69283bd48d761aa9b480823ec18ec5e252b45f5545c7318f2ccb0b0a38c0b346"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Code examples changed only in import order (oxfmt sortImports), and the covered sources changed only by formatter output. Guidance and APIs are unchanged.",
+      "head": "c516af53ae85e81b08262587232d2adaf91965e8",
+      "outcome": "updated",
+      "reason": "Skills now limit plain formatForDisplay to browser-only labels when no provider or scope sets platform, matching the guides.",
       "evidence": [
         "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md",
-        "git diff origin/main: only import lines change"
+        "docs/framework/react/guides/formatting-display.md"
       ]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "ddb4a0216223a0b4fa80eba5f3d68adf1c452b4f114b5451b78d567017ecac34",
+      "fingerprint": "bb429eec471081e76785e93c3289c11c710a9f60a2305a1619e58f6b3a35b263",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
-        "docs/framework/react/quick-start.md": "23a6c1a998120d968a87b37c4f340b71052fc94e97eb52decd16b91bd655a638",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "3acfdb4c4732e723b81bae2fca0eec2077b0a92734878fa316170b9a42343f4b",
+        "docs/framework/react/quick-start.md": "7e515e89dfac678fcb022668de87537dbb6e7a1297d5e2ee7d29223884eb7c20",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "cd5c824939e6b557a72ebe8ed68c7eac893ab1bc00d94371ddbf76c6f36282c7",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "daf40fa16fc1b44c0e556f6ab7a791bc875b55a86c408cacce575b4fcb53a07c",
-        "packages/react-hotkeys/src/HotkeysProvider.tsx": "e867670f9b0f949faa364332f8034001653bb23823b8c0d193c9c8b6b8d3f3d7",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx": "7fc1fc155087034182f5447681da9b4dd5309e62cba2c7b2b69afeed3b44c706",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "5b384b0361eabbb7c5faaa3a9083015413f212e9a02aa8234f0747714dd08453",
         "packages/react-hotkeys/src/useHotkey.ts": "65127d9c51ab4db4357f7f08f8dc8ef9f3ad07e9ded50e0db97764c82f92f46d",
         "packages/react-hotkeys/src/useHotkeys.ts": "06bbbedad17301004fe047e00c2469034d471872a49dbe448d507355d350741d",
@@ -218,80 +218,80 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Code examples changed only in import order (oxfmt sortImports), and the covered sources changed only by formatter output. Guidance and APIs are unchanged.",
+      "head": "c516af53ae85e81b08262587232d2adaf91965e8",
+      "outcome": "updated",
+      "reason": "Skills now limit plain formatForDisplay to browser-only labels when no provider or scope sets platform, matching the guides.",
       "evidence": [
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "git diff origin/main: only import lines change"
+        "docs/framework/react/guides/formatting-display.md"
       ]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
-      "fingerprint": "203f5bea84dfbcd213795cbec724dea1bd4bcb78f6068ffd988b864c9b31ece8",
+      "fingerprint": "0ed73d29fdd430aa95f59c12d3bccf37a7da8fe53fff9789d93eda2fd4944437",
       "snapshot": {
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
-        "docs/framework/solid/quick-start.md": "74e8d20b975f1bab90f99e00226670a1fec555459650e498264415c03f79f0ef",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "e3b3a43e779117411a03e878ae04141c3bff8cdd594a1a0e48bc87283d9217ff",
+        "docs/framework/solid/quick-start.md": "b9eca3313e57f3a878fc683fd36baabd6b880bbbea18a6aff1fc74e05488ef7f",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "18610c60ad1b27d916d80b9fd4fa57cf246cc244b9a8e34d23ccf76903b898f6",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d6b972c0d90e136e1334850ea1ba428b919d47221026c0fb984f774a436158e5",
-        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "3c805ac2013796be345193157845a7d6753c377e9160eb434d525dc0f7f877a0",
+        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "8b1eb4e0b6dcc8af8196c3bbf246dda154d94aefbbaf49e7f07e0e1cf5a69808",
         "packages/solid-hotkeys/src/appHotkeys.ts": "fa27dd5582b2629764c9a164b704b3772e267d90b24af8d252818e4f97827d3a",
         "packages/solid-hotkeys/src/createHotkey.ts": "3be9476087da2b53e809ad5ac59b2f791f38cc4d88e2b151258e668a9fc92294",
         "packages/solid-hotkeys/src/createHotkeys.ts": "667785bb3195a4b9195791ebcf79351cd42251898974fe92b2c7ac1ef4e2d0bb"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Code examples changed only in import order (oxfmt sortImports), and the covered sources changed only by formatter output. Guidance and APIs are unchanged.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md",
-        "git diff origin/main: only import lines change"
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "5443efe224b4b7c8ddffb613a472a33823f92cf0f3ad3daee1b9ea6326acefbf",
+      "fingerprint": "44fe2f7db6f0d102e2d5125ce15190d898af1352b728e254e84d75aff55602e9",
       "snapshot": {
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
-        "docs/framework/svelte/quick-start.md": "6fdf6ea3a44b3cd7fbf115b6d464460302af1b58112ca0b5b00723b4f5faab45",
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "8dcc12e17d2389322ab8056f27faf03bb2f314c75b92ed851b0390024d4b8c9f",
+        "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
+        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "c6886be2d6b94b91f833b542c94d6935e2714f127cba10916078385f4c7b7a9f",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
-        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "213b21959a40780d663d3a921e03c1f2d5770bc022aa4f613f9cc81f379f7a80",
-        "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "a3a07348934150824a8c84aa86cd4b3ce4c3324d0d2d0f61a98f5ab1cd11a6aa",
+        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "72d83959df76bbf8c07cd4f3b1e63bf490e4436c03bb17215730a289abd530f7",
+        "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "833be55b51359560378b1014a0e6718e41a77c55f9b41b79ba964c7f47cf660f",
         "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "fc6dac92966f1f506450526ca87a9d2de715ba36202b09446f9f325503abb906",
         "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "0dcfe7ecbaa7a202fd3be9e88ca24d95cd8965267374ea709435e19a13a4857b",
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "86000611dcf85054f0bbf702f5919f7796297adb342011784ccdba6c4938a175",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "bbde849c4842dfe7050a85c32e4f6fa5b8d55a854af7df8c24774546d2a1eefd"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Code examples changed only in import order (oxfmt sortImports), and the covered sources changed only by formatter output. Guidance and APIs are unchanged.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md",
-        "git diff origin/main: only import lines change"
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"
       ]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
-      "fingerprint": "91e551bc83e4eb7ecb10a5da92b18be7ecfe328780199c3cbe4b6124e10e710d",
+      "fingerprint": "f42c562c2a64065b3c7c9a5527ecc65e0c89667fe353df101b157216173d8934",
       "snapshot": {
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
-        "docs/framework/vue/quick-start.md": "00dfe1e45bcd475457bbf078aacb98f1cc78f0666a4ddedad38a285415e03875",
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "d7f5f552c121e88300e9d6dc8413e04ad7731a930cdc9f79678c2fded5f74066",
+        "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "561fc92f1eeaf87791544cb34c2ead4013fb92809e213fc7777f2c02bd2f6513",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "772db9ad3bf5ab0388daf44a947abfff769b756b359584a423a91054a238857f",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "566511eecf3a7a69390c6f9adbf47b9ba8d547ebcd9733be117434ca8ca69b1f",
-        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "02c7d3c7a31250839a4ebd11cfc9741002ee43fd371a2a0a6701ed1a638264b3",
+        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "dcd9049cbfd34a8fdf5cbfbf9e2fa05f123de07acf00319bdaa5f78fb13814c3",
         "packages/vue-hotkeys/src/useAppHotkeys.ts": "7cb397f7d0f77507c5c433dc731a710575b8b91a317aa010f173b8a51bb8abe8",
         "packages/vue-hotkeys/src/useHotkey.ts": "a85b16b0a843c488ad7ef77c864ac82d3e0ff91c1066d9432a8d8a1be345cef5",
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "b3e8f6c870734a967881c5b155ddced5c737d5162e6f44e5c095bd2be81fd0e6"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Code examples changed only in import order (oxfmt sortImports), and the covered sources changed only by formatter output. Guidance and APIs are unchanged.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md",
-        "git diff origin/main: only import lines change"
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "2555e3be54e4bbdeaf58eac28ecda6cfbb99518c4944395bb0ba76cc1a7d5d3f",
+      "fingerprint": "819cbe227c44ba3dfd9afd7f8c257679d97dd987d4f44d56bdb31c6396e264f6",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -299,28 +299,28 @@
         "docs/framework/alpine/guides/app-hotkeys.md": "cdefefaa71aa9c36da99d314ab0279aa791dcf651bb1fd4cebf7263ba661078a",
         "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
-        "docs/framework/angular/quick-start.md": "3f9bd6e926aca66237a2f4fc975ad6a11786894ddc3201593ca90590c19dfc6c",
+        "docs/framework/angular/quick-start.md": "2eb59bbc55c4845b7d1176becd127d8bc449e88ee93ee52c4cb28df799339ac0",
         "docs/framework/ember/guides/app-hotkeys.md": "c7c52789e2c869e773cb14b25f8a1dc8e5533569211bac45b0f124eb7c260695",
-        "docs/framework/ember/quick-start.md": "70680043f3655e5f915094be4fbc8a2099932a325f472d0851a5dac7a1524340",
+        "docs/framework/ember/quick-start.md": "b68bb08e413da376299f10925ece54685dcccfbeea98af088f1c58b3c5456f37",
         "docs/framework/lit/guides/app-hotkeys.md": "b001df84eb320a4af7759ab163f837bac0fe3b36014b4b5de9366102073af97b",
         "docs/framework/lit/quick-start.md": "0f1e0a406ae61dc62ea0659b95e734828a1181a591990331f1e8405f637a0094",
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
-        "docs/framework/octane/quick-start.md": "19f6043a79f76e144ba05ead4bfcff1372a84fde377248de629cebb857733f6e",
+        "docs/framework/octane/quick-start.md": "cbb3844d20ea1b3609c444c0614ac910ec9e22811d46d9175baa470738da97f9",
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
-        "docs/framework/preact/quick-start.md": "b991913fea74d18f6ae096d46b54e6ca8ca85cb69df463c6ce12f3f8c9e5757b",
+        "docs/framework/preact/quick-start.md": "d9cd9759e454cb4cbb050c189f3dee97d1141238ea30e623e5308dcc7cf29328",
         "docs/framework/react/guides/app-hotkeys.md": "eb1f5087ec449c52b0fe342237c77fa511dee20bdd56b70d609e1a4e5c7ebbc6",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
         "docs/framework/react/guides/custom-hotkey-recording.md": "36f17bd33b5326bd396974ba24e5c06e3ec4218ad25045c0ee4910635f292ea7",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "03b024ba6a23d6b87a7b99be8a30b54fd5d82ba27e075ba0c00f648c82759e5f",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/framework/react/quick-start.md": "23a6c1a998120d968a87b37c4f340b71052fc94e97eb52decd16b91bd655a638",
+        "docs/framework/react/quick-start.md": "7e515e89dfac678fcb022668de87537dbb6e7a1297d5e2ee7d29223884eb7c20",
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
-        "docs/framework/solid/quick-start.md": "74e8d20b975f1bab90f99e00226670a1fec555459650e498264415c03f79f0ef",
+        "docs/framework/solid/quick-start.md": "b9eca3313e57f3a878fc683fd36baabd6b880bbbea18a6aff1fc74e05488ef7f",
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
-        "docs/framework/svelte/quick-start.md": "6fdf6ea3a44b3cd7fbf115b6d464460302af1b58112ca0b5b00723b4f5faab45",
+        "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
-        "docs/framework/vue/quick-start.md": "00dfe1e45bcd475457bbf078aacb98f1cc78f0666a4ddedad38a285415e03875",
+        "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
         "docs/guides/sensible-defaults.md": "8b4d1a9d2692f8a7b3f72a6d57ad5ec1edc40fbef83a8fb1c4373b6230a65efd",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "b8a7e9ce42d7a9cfacc9bd405a5f0be43064e81f76616a6f31504ccb32c0d59a",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "69ba6d06582aaf28328e74c12888bcf8b1d89b2ae2a01d7f6a41eb82eef848e3",
@@ -331,14 +331,14 @@
         "packages/alpine-hotkeys/src/hotkeyRecorderPlugin.ts": "8ff86447e513f47002c49ed9f60269d485b0cd65b87277bb52cf2d8286ddbd36",
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "5b2b94b41d520f3beb60d2ceb15081799873c84c0ff244289d9b3698168c0ead",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "644a777c52a1ef882879320671517bb1349066612e3da4314e83211294eb21de",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "d3c806c6d52abe338dfc11a8e7453b93febfa2dbb1767730ec2af436e16f66b8",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts": "ea7536f1a8345cc7feda2315fbb094983bf09335c8fff9638d855dd9e825d72e",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts": "62debc1f800b07a1a82f879aee2ea37c63aaff22d1c80f9c1a5320388e6d00b5",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "03ea85098b0ed95e323e8d1e35b61b2683b7bc2d68f67e56e15ce2da92177a6f",
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "5ea65c992dc0bce0fcaf06f2c143080e1b65be788961cb8f23f6ae91e8885311",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "25f100bcc3bf1deb60b9c13a62ba7201b85d8d317be93ba244d9b2f85274bb18",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "a6bdf35ab45404e6af23458d3aeee05da853e06f8c54894405389a8ff372a4f1",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "d2c51c3efe9a55f605f643f657f6da6d46e3b00acaf879f95acdc3d4ade8fabb",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "6bcb35cd5de4fc7c87f1dba3f7952998d8c79db0add0af2fc2d3dfc379d0df6d",
         "packages/ember-hotkeys/src/onHotkey.ts": "0cd156d6a90b341d7f1006df47911b3033ba523a68758274c00df7c8cb9dfbff",
@@ -352,7 +352,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
-        "packages/hotkeys/src/app-hotkeys.ts": "ddf5b5d69a4e81d0d0d5b1c1125b47d12073a009b7c2efc03001f227f61db092",
+        "packages/hotkeys/src/app-hotkeys.ts": "5ad2e0ca37e21a4a4fbd1eabc9b5bb4981f7530bca1dfd2286a2fa9205793608",
         "packages/hotkeys/src/conflicts.ts": "0459c63dccec1b3706c93552bfcd66243f90ae918c6e7e445fce046fe79cc2ad",
         "packages/hotkeys/src/hotkey-manager.ts": "340ae1e61d8e08fe56edb0bb73f41434dae03ad15a374c2a0864450b64276443",
         "packages/hotkeys/src/hotkey-recorder.ts": "a19c8e64b939faa51b4554e71e71485f4d419539e4c9c287fdbb07955362a3e7",
@@ -363,22 +363,22 @@
         "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "6c988296c7e85b02953f1392f50ce46be19920b2e0fd1fd8ec613e072d5d4e3b",
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "c8b8c7fd2379178d5bcc176c5d44c5212f3294206ac35a1e6d5d88df2ac02708",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "46c9522a6d617f37826898bfda2b0eba52204fafb5fa895a356603b2ddbf5f01",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2e207c6e733ab9b471588670dbefe787d5a613a6ae9663d2086830e300aee89e",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "cae463ad7f9d31b4922a96534db78a83ac768ba38915463a2c8bbfb428d7292e",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
-        "packages/octane-hotkeys/src/HotkeysProvider.ts": "acd48d8f9946422f18a50ab40e1f1f4135db91e3c2a563ab8fc4fd77e68e3966",
+        "packages/octane-hotkeys/src/HotkeysProvider.ts": "d18e8ffb2503f4dfd4aec75aaa8ec6974c3a9cea6e7174287ec8ea18cc77f101",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "0fc7d7f72d19fbe3ed5c0d13d8355cc8d1576e0382b631fe128540480edf2993",
         "packages/octane-hotkeys/src/useHotkey.ts": "490586731422fd204ea65f08ff44fd9c4b102042ac8b278a4fab590ad7b878c7",
         "packages/octane-hotkeys/src/useHotkeys.ts": "faf937961a3ee7931f7fa73c5a11c60947fbbdf42636bff44d9169a7cb40a600",
-        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "aec8b0be997769ba20a61a83f4c0b664c6f6020dfab531219a9700771701b00c",
+        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "6aadaa9d56377608f67bab4afd72947b81faf4de08f3170d1f7e5489f67e7c31",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "f1379c2c148231363d89ddc107333ab2e103a3df92d394e6265f2b685685c53e",
-        "packages/preact-hotkeys/src/HotkeysProvider.tsx": "c977b974811033bd1b218e40afe38854caa8e7bb243df8464f91f9eb52c84707",
+        "packages/preact-hotkeys/src/HotkeysProvider.tsx": "6c8a5774e46b86002b1fa1f7766665942ec3e2ff6b3c0da37eb4d8247d316392",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "9c4cc235f7d692d52f2adf308240bd6e5b6741ecdc27cb0a19b3fbaeb728bef3",
         "packages/preact-hotkeys/src/useHotkey.ts": "39c64d006438ba9f3af02c3d504b1b4ea2ab3f80c3441253a18a42416df48c96",
         "packages/preact-hotkeys/src/useHotkeys.ts": "dd4e288866368082653ef208e6fcddf7937f16c5e7fc301d0afd05e1ab596fae",
         "packages/preact-hotkeys/src/utils.ts": "69283bd48d761aa9b480823ec18ec5e252b45f5545c7318f2ccb0b0a38c0b346",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "3acfdb4c4732e723b81bae2fca0eec2077b0a92734878fa316170b9a42343f4b",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "cd5c824939e6b557a72ebe8ed68c7eac893ab1bc00d94371ddbf76c6f36282c7",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "daf40fa16fc1b44c0e556f6ab7a791bc875b55a86c408cacce575b4fcb53a07c",
-        "packages/react-hotkeys/src/HotkeysProvider.tsx": "e867670f9b0f949faa364332f8034001653bb23823b8c0d193c9c8b6b8d3f3d7",
+        "packages/react-hotkeys/src/HotkeysProvider.tsx": "7fc1fc155087034182f5447681da9b4dd5309e62cba2c7b2b69afeed3b44c706",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "5b384b0361eabbb7c5faaa3a9083015413f212e9a02aa8234f0747714dd08453",
         "packages/react-hotkeys/src/useHotkey.ts": "65127d9c51ab4db4357f7f08f8dc8ef9f3ad07e9ded50e0db97764c82f92f46d",
         "packages/react-hotkeys/src/useHotkeys.ts": "06bbbedad17301004fe047e00c2469034d471872a49dbe448d507355d350741d",
@@ -400,36 +400,33 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/shortcut-settings.test.tsx": "c6e0204269f0c8ef42ae6832f5b96eb6a3d2df552cc2c21511aa545e0ee4cd24",
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "e3b3a43e779117411a03e878ae04141c3bff8cdd594a1a0e48bc87283d9217ff",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "18610c60ad1b27d916d80b9fd4fa57cf246cc244b9a8e34d23ccf76903b898f6",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d6b972c0d90e136e1334850ea1ba428b919d47221026c0fb984f774a436158e5",
-        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "3c805ac2013796be345193157845a7d6753c377e9160eb434d525dc0f7f877a0",
+        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "8b1eb4e0b6dcc8af8196c3bbf246dda154d94aefbbaf49e7f07e0e1cf5a69808",
         "packages/solid-hotkeys/src/appHotkeys.ts": "fa27dd5582b2629764c9a164b704b3772e267d90b24af8d252818e4f97827d3a",
         "packages/solid-hotkeys/src/createHotkey.ts": "3be9476087da2b53e809ad5ac59b2f791f38cc4d88e2b151258e668a9fc92294",
         "packages/solid-hotkeys/src/createHotkeys.ts": "667785bb3195a4b9195791ebcf79351cd42251898974fe92b2c7ac1ef4e2d0bb",
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "8dcc12e17d2389322ab8056f27faf03bb2f314c75b92ed851b0390024d4b8c9f",
+        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "c6886be2d6b94b91f833b542c94d6935e2714f127cba10916078385f4c7b7a9f",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
-        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "213b21959a40780d663d3a921e03c1f2d5770bc022aa4f613f9cc81f379f7a80",
-        "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "a3a07348934150824a8c84aa86cd4b3ce4c3324d0d2d0f61a98f5ab1cd11a6aa",
+        "packages/svelte-hotkeys/src/HotkeysCtx.ts": "72d83959df76bbf8c07cd4f3b1e63bf490e4436c03bb17215730a289abd530f7",
+        "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "833be55b51359560378b1014a0e6718e41a77c55f9b41b79ba964c7f47cf660f",
         "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "fc6dac92966f1f506450526ca87a9d2de715ba36202b09446f9f325503abb906",
         "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "0dcfe7ecbaa7a202fd3be9e88ca24d95cd8965267374ea709435e19a13a4857b",
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "86000611dcf85054f0bbf702f5919f7796297adb342011784ccdba6c4938a175",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "bbde849c4842dfe7050a85c32e4f6fa5b8d55a854af7df8c24774546d2a1eefd",
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "d7f5f552c121e88300e9d6dc8413e04ad7731a930cdc9f79678c2fded5f74066",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "561fc92f1eeaf87791544cb34c2ead4013fb92809e213fc7777f2c02bd2f6513",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "772db9ad3bf5ab0388daf44a947abfff769b756b359584a423a91054a238857f",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "566511eecf3a7a69390c6f9adbf47b9ba8d547ebcd9733be117434ca8ca69b1f",
-        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "02c7d3c7a31250839a4ebd11cfc9741002ee43fd371a2a0a6701ed1a638264b3",
+        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "dcd9049cbfd34a8fdf5cbfbf9e2fa05f123de07acf00319bdaa5f78fb13814c3",
         "packages/vue-hotkeys/src/useAppHotkeys.ts": "7cb397f7d0f77507c5c433dc731a710575b8b91a317aa010f173b8a51bb8abe8",
         "packages/vue-hotkeys/src/useHotkey.ts": "a85b16b0a843c488ad7ef77c864ac82d3e0ff91c1066d9432a8d8a1be345cef5",
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "b3e8f6c870734a967881c5b155ddced5c737d5162e6f44e5c095bd2be81fd0e6"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Covered skills and sources changed only by formatter import order. Skill scope, tasks, and decisions are unchanged.",
-      "evidence": [
-        "_artifacts",
-        "git diff origin/main: only import lines change"
-      ]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": ["packages/hotkeys/skills/app-hotkeys/SKILL.md", "_artifacts"]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -970,16 +967,16 @@
       "evidence": ["packages/octane-hotkeys/src/useHotkeyHint.ts"]
     },
     "source:packages/octane-hotkeys/tests/octane-hotkeys.test.ts": {
-      "fingerprint": "7f52e9a0e2bbe4df3b2791407614ab8e16415f66bc553a6bfc79211838cd6dcd",
+      "fingerprint": "ab028a8404ea741ecc31d6c4efc6471144f17afd0ae8b3f2dd87c113f8c6de6b",
       "snapshot": {
-        "packages/octane-hotkeys/tests/octane-hotkeys.test.ts": "ed372794aa73cbeb191e39b3c50479ac17f876b3033d0c487461a9b01db75151"
+        "packages/octane-hotkeys/tests/octane-hotkeys.test.ts": "14e2cf09f8f6947e4ba7a01c4ada5b27d51111be63dff520dd093b5a8e883d78"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
       "evidence": [
-        "packages/octane-hotkeys/tests/octane-hotkeys.test.ts",
-        "test:lib passes"
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/octane-hotkeys/tests/octane-hotkeys.test.ts"
       ]
     },
     "source:packages/preact-hotkeys/src/useHotkeyHint.ts": {
@@ -996,16 +993,16 @@
       ]
     },
     "source:packages/preact-hotkeys/tests/appHotkeys.test.tsx": {
-      "fingerprint": "762ae8500d4b3038fcd8c6ac18141975f072ca135c66a858f25a57da9ec2eaf2",
+      "fingerprint": "02d73fbb5739c46f4463a05e3873ca891400c2be11d95ed37b53a2966165a9fe",
       "snapshot": {
-        "packages/preact-hotkeys/tests/appHotkeys.test.tsx": "8958a33faabbb88349c0d9026984dcec89ae1061462b15e0ac5deeff3b341073"
+        "packages/preact-hotkeys/tests/appHotkeys.test.tsx": "dbcba6c21cb51781c677fbca211c3381733e1649400b486475890feb459bdf89"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
       "evidence": [
-        "packages/preact-hotkeys/tests/appHotkeys.test.tsx",
-        "test:lib passes"
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/preact-hotkeys/tests/appHotkeys.test.tsx"
       ]
     },
     "source:packages/preact-hotkeys/tests/useHotkeyHint.test.tsx": {
@@ -1035,16 +1032,16 @@
       ]
     },
     "source:packages/react-hotkeys/tests/appHotkeys.test.tsx": {
-      "fingerprint": "d18fe26cbf33a39cb350919f52ec9dbe59c5ef37f3b52d66fde0406116158d33",
+      "fingerprint": "0d3138f2d073c23965df6367ffcd9e57a2a5a2e84f08f2c59649751a8232686d",
       "snapshot": {
-        "packages/react-hotkeys/tests/appHotkeys.test.tsx": "b47bd80f5635084a62475f6a8c086cb75472214d9a73f3e2155fa6b3c0dfee2a"
+        "packages/react-hotkeys/tests/appHotkeys.test.tsx": "54b79a25b05175de81e1e9f99697168137d77665cced17fe7816d2d1078c8d5c"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
       "evidence": [
-        "packages/react-hotkeys/tests/appHotkeys.test.tsx",
-        "test:lib passes"
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/react-hotkeys/tests/appHotkeys.test.tsx"
       ]
     },
     "source:packages/react-hotkeys/tests/useHotkeyHint.test.tsx": {
@@ -2106,14 +2103,18 @@
       ]
     },
     "source:packages/octane-hotkeys/tests/fixture.tsrx": {
-      "fingerprint": "0dfcb5d5d2256abc14877230802f8cdbb4642c6cdedb7401d1e8acc35f3c3fb2",
+      "fingerprint": "78902ab4819796897e8773bea8f6e82ce1e93755798062a2bcf7fb08882decc3",
       "snapshot": {
-        "packages/octane-hotkeys/tests/fixture.tsrx": "f06d6ac7bf90b8800bff5dbd0011a2d953c42d0a421591239b50e90b5aafbf51"
+        "packages/octane-hotkeys/tests/fixture.tsrx": "a896d9da790da0c8f95f83a7264a15acd74bf3807a6db73c44eaebedfa7412f4"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
-      "evidence": ["packages/octane-hotkeys/tests/fixture.tsrx"]
+      "reason": "App hotkeys now compare on the provider platform, and formatting docs warn against formatForDisplay for server-rendered labels. The skill already says to use the formatter hook on the server and makes no claim about which platform app hotkey checks use.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/octane-hotkeys/tests/fixture.tsrx"
+      ]
     },
     "source:packages/preact-hotkeys/src/index.ts": {
       "fingerprint": "99f73f291a3d285017b11bb6d52c200233161e2f384c687129604cfa35559bef",
@@ -2297,14 +2298,17 @@
       ]
     },
     "source:docs/reference/classes/AppHotkeysStore.md": {
-      "fingerprint": "f2f7cea5f7716c54e3df51b2b50dc900bcb32c5172baf36cd19b75fd7b8753ef",
+      "fingerprint": "9cb85572879468ebd5c0cc9269fd243038108b1bb7a44424127befd2b12284d4",
       "snapshot": {
-        "docs/reference/classes/AppHotkeysStore.md": "e6b776ea352cb5a5d9f4ca2318aa623a1bbe20a0b9f5a95a2a3980c29890e62a"
+        "docs/reference/classes/AppHotkeysStore.md": "38e5263f142171dacc14d604d55be762390e1b31bab45cfab551a85e5461ac68"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/reference/classes/AppHotkeysStore.md"
+      ]
     },
     "source:docs/reference/functions/defineAppHotkeys.md": {
       "fingerprint": "04058d3c01f24a944b74d1bc91b542819d9a144eb0c318f2cedbb708240855bb",
@@ -2317,14 +2321,17 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/getAppHotkeyRegistrationOptions.md": {
-      "fingerprint": "bffd17dceb3f1331bfa91bd947b81816d70d9edf2890d19845ee252864275d02",
+      "fingerprint": "99da330d6fc902869cb94cdf78c0c21059579f94d0417e6a298d86bac2c263b5",
       "snapshot": {
-        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "c3873c96e05ca7b85731e949776c44dc5a302a8ab413ebd2459a8ff0cac2d6da"
+        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "5d46d4ba73652b6c79d1daf6edcd046bb866e32c2d16fa6fb3d9f5d69bd41f9d"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/reference/functions/getAppHotkeyRegistrationOptions.md"
+      ]
     },
     "source:docs/reference/functions/isAppHotkey.md": {
       "fingerprint": "edd33e0d7b8d4f818f36d46bc2a1b0d8e0372c5177f3a398e2cb36579bf4b04c",
@@ -2347,34 +2354,43 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/provideAppHotkeys.md": {
-      "fingerprint": "524b01d55a1aba00c470c5392529766d6b655d903949b8b9ea223b2fdccb249a",
+      "fingerprint": "09f93eb10d4537155a183d42eef5c333745c5313d7b7705563ce741527c5922f",
       "snapshot": {
-        "docs/reference/functions/provideAppHotkeys.md": "6dc230184b877601345bafa685157eceae465732205e056c4773b6d811307a77"
+        "docs/reference/functions/provideAppHotkeys.md": "a0ad72a7bd32e0c383a1a69af552645f3dfa397f48d1fd1156def3869fb43d79"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/reference/functions/provideAppHotkeys.md"
+      ]
     },
     "source:docs/reference/functions/publishAppHotkeysStore.md": {
-      "fingerprint": "2c66e833bf6b244f71a36eee6650e583e1190f974b2206e0531dd03e78c400db",
+      "fingerprint": "7799f860aab52a47c888822d410e424fc1c5d7038e690a2c5fec950a130cebca",
       "snapshot": {
-        "docs/reference/functions/publishAppHotkeysStore.md": "d731152332fce1d3faf03659e64856b878ea870ee0398f9830ec48f386e9cd64"
+        "docs/reference/functions/publishAppHotkeysStore.md": "01526ce1022b2d0bdceeaa99c4e8e4fbe53e92c7ce031a00dd8bf878bdf11fc8"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/reference/functions/publishAppHotkeysStore.md"
+      ]
     },
     "source:docs/reference/functions/resolveAppHotkey.md": {
-      "fingerprint": "b52ab8f447a89bb389f008329eea5268c1e34dd2d2e29e33b32ed0ff5bce5b16",
+      "fingerprint": "55bace6c04983db952dff0366b9e63b7c769ecddcc32239552a23ca8718f2f21",
       "snapshot": {
-        "docs/reference/functions/resolveAppHotkey.md": "60bdb4dc2aa620806b9e7176471f4bfda0607f475a1ddb9f6d0231748128af88"
+        "docs/reference/functions/resolveAppHotkey.md": "65fb8177d8f3e90644501f250da1ff337397aa46c470aaa2f0b4fe2623ae871f"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/reference/functions/resolveAppHotkey.md"
+      ]
     },
     "source:docs/reference/interfaces/AppHotkey.md": {
       "fingerprint": "91c447b9649b9bf70c7f7d5c212464857193ac9f25ca993bfcbee51a602854f6",
@@ -2397,34 +2413,43 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/interfaces/AppHotkeyListItem.md": {
-      "fingerprint": "716b769423dd6d1582f51e84af75be9514489287826dd6f7d09a3300814901b2",
+      "fingerprint": "1d8f316cbe588b94ea0814c8a9036669d33f31fe22cba9ce5c0bf5cc8ee7b12a",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeyListItem.md": "037ad2fa16d2d3e19c4089a92f07bf1e15ec8a160c265e047b582e10e140d921"
+        "docs/reference/interfaces/AppHotkeyListItem.md": "c67e4d2f0887340e2fdf726f7aed82b2932ee2393afaa69c9d119fd9be219f60"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/reference/interfaces/AppHotkeyListItem.md"
+      ]
     },
     "source:docs/reference/interfaces/AppHotkeysState.md": {
-      "fingerprint": "1b80bb84e3cba7151e31be24ef3cfe91fe8400b6343e371fff9aa7826c219951",
+      "fingerprint": "10c83b3d96a3b41747b3fd958b1bef39a1a281dfec6a5c3c641e3c7a4a5c9aa5",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeysState.md": "26b5d9f5faecfa3793605fd8eee9fa5bc9c1502d9ca99b1cfd32d91ef9a2fec5"
+        "docs/reference/interfaces/AppHotkeysState.md": "8ff23f06e7bd6538d5cd35f602d6dd659cd4c34c619fa17db9a2332a9bde0b57"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/reference/interfaces/AppHotkeysState.md"
+      ]
     },
     "source:docs/reference/interfaces/AppHotkeysStoreOptions.md": {
-      "fingerprint": "604a56a0ddb9f7c8d5af364e583218d32b02f0f841575bbc98bf5105f4e78158",
+      "fingerprint": "11f9d1eb296d6d1fda49f3e9ac1cebbfbcd2c0e43bbe521009a353b819c1d16d",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "c27c8b4152c7997b537e74423992b49cf5d31544a5d829e5cc1d2dbf122738cf"
+        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "b8f45849ecb8d58a732c19ed60e12f4b8620126a2665072e6a2d5a493c7abea3"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/reference/interfaces/AppHotkeysStoreOptions.md"
+      ]
     },
     "source:docs/reference/interfaces/Register.md": {
       "fingerprint": "adb6ef8cb2ac13e70ce294a0e2cd41aa7e8a2e7671bdbfe69c5048558a451641",
@@ -2487,14 +2512,17 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/AppHotkeyStatus.md": {
-      "fingerprint": "139bf5419e2923647d08dd5264b34c1870cf1c1adaf36579aed1b8b991c42b45",
+      "fingerprint": "b49ff730f0da9ca40fe1854d142b5905cbd9b73d7c5556c80f6766cbb8cc26aa",
       "snapshot": {
-        "docs/reference/type-aliases/AppHotkeyStatus.md": "113587f5f32adf34d5de633ae94096a76a3023a45f4a19ca907d63c4d6a01050"
+        "docs/reference/type-aliases/AppHotkeyStatus.md": "4014de2ae42aa3c407a19482714b126b13ee840ebc59d54a8d50e3e1f45f2e25"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/reference/type-aliases/AppHotkeyStatus.md"
+      ]
     },
     "source:docs/reference/type-aliases/AppHotkeys.md": {
       "fingerprint": "4b0b44b254e786d98a9bc13ab8986d79269c5a5d6fcfd714225ef1f1eb11eafd",
@@ -2754,14 +2782,17 @@
       ]
     },
     "source:docs/framework/react/reference/functions/HotkeysProvider.md": {
-      "fingerprint": "48d8e2282cbc740711da901405f4fec356b9c41ae59cb150a7fe0a71e3fab609",
+      "fingerprint": "1738f966f97091952d9bebe6e901e072694c099ec3ea2215559057c0ec206b00",
       "snapshot": {
-        "docs/framework/react/reference/functions/HotkeysProvider.md": "47b6d32a18aab928ced548514c194a2de684221505f8fbb8b5865339f7aa6e53"
+        "docs/framework/react/reference/functions/HotkeysProvider.md": "7fa7c52be4527bfbd014f2010c9484ae5b8157739a9987c28bfb851545d10034"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/react/reference/functions/HotkeysProvider.md"
+      ]
     },
     "source:docs/framework/react/reference/functions/useAppHotkeyList.md": {
       "fingerprint": "0d627b308c9d7aa9cf9207cf63ecd998dd562f4de73c1870659735912bac583a",
@@ -2794,14 +2825,17 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/react/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "ef0a2e92ef995199c6e6f248ca26446d35f115cb37e9ff5372a62df22d001aca",
+      "fingerprint": "bdeceb2134e0ee775a1922f7eabbbe0373c6dccb9770869d5f94ee2ae83b4ea1",
       "snapshot": {
-        "docs/framework/react/reference/functions/useDefaultHotkeysOptions.md": "d2c63e3e25f2bf86c8a7e180a0244f4febbfb473b0bbf9121d7127e8f7b49edb"
+        "docs/framework/react/reference/functions/useDefaultHotkeysOptions.md": "1036f61a765f7cdaa710dfb47dd9d00aa8f4a37c3393c9178d421878a9661bf9"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/react/reference/functions/useDefaultHotkeysOptions.md"
+      ]
     },
     "source:docs/framework/react/reference/functions/useHeldKeyCodes.md": {
       "fingerprint": "7232b60c409c226f315d11507f7e91418ece3881622e2617a66d3fc12332b4d8",
@@ -2864,14 +2898,17 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/react/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "2b08f2d558b55b0f407bf7716862da1f9eac9e878e0f37e67920cf7c8f68bcfb",
+      "fingerprint": "6b4a80e7bf33426db358d334b7aa7772a079184e5f88941f01a9fad61c758206",
       "snapshot": {
-        "docs/framework/react/reference/functions/useHotkeysContext.md": "3123d669ba0ad29f068d8e3f3b684f525d15f23cd91209b8c9e5ef5df27a5f5d"
+        "docs/framework/react/reference/functions/useHotkeysContext.md": "276c2fc3e80245db8fd9792a0ab36d2d0b57386ce5a1d8922804fb04f0b07486"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/react/reference/functions/useHotkeysContext.md"
+      ]
     },
     "source:docs/framework/react/reference/functions/useKeyHold.md": {
       "fingerprint": "97083cacaa76629e2545736be9d9be4ad5816057b8c7f6d735b5177c130c7946",
@@ -2884,24 +2921,30 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/react/reference/interfaces/HotkeysProviderOptions.md": {
-      "fingerprint": "aba7b3b6e4719577ed15cee34f667b5d85dc2fa10d55122682f072a2eb864eaf",
+      "fingerprint": "cdca03f07a405958755cc410a6c09786ccf0dfaf4c22fab421f542d75e2874bf",
       "snapshot": {
-        "docs/framework/react/reference/interfaces/HotkeysProviderOptions.md": "4ea8017eede89558d9ae0a6cf338ed9644d9dad0d4a3ee2d184259462da16932"
+        "docs/framework/react/reference/interfaces/HotkeysProviderOptions.md": "1a392c5f6e1d01c326c45275bbd1f0ed5da879fbd97e12ecb7e62ade499a93fc"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/react/reference/interfaces/HotkeysProviderOptions.md"
+      ]
     },
     "source:docs/framework/react/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "d13ed1f092dd6734603b5b76811d554dc96c047b3cb636e0bb3b443ec844e95d",
+      "fingerprint": "2834c13552c83b22b00296bb108b977a3d0151bf4f11456c3be318901c7b9aa6",
       "snapshot": {
-        "docs/framework/react/reference/interfaces/HotkeysProviderProps.md": "3c9297005db7f63c1e9932a16ebef3e8dcc2a41b559dc814f9591d49816762bf"
+        "docs/framework/react/reference/interfaces/HotkeysProviderProps.md": "1095fd8c1d632b9649c8ec146baedede962043d184597467565f4edae0a79ee6"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/react/reference/interfaces/HotkeysProviderProps.md"
+      ]
     },
     "source:docs/framework/react/reference/interfaces/ReactHotkeyRecorder.md": {
       "fingerprint": "ca26a0df5b62709c6e4cf77539d429bd386639f32f6c58946075b04e69a34913",
@@ -3618,24 +3661,30 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "2bc960880c2604be223258c53ccb342ca9cc6a95a1a2e4d15ceeef929d4b83db",
+      "fingerprint": "50c244cbc262e9ff5124c9c8f1f414684227ca9976ea90b37a9b521bc751b9e1",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md": "8abe72c4587f6d713485bed8d966d10445ad115c551f32bbf67e7f3b0b8cdf51"
+        "docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md": "3a163185f9b4626510d8a7331c7a3ec836d3231b60167011cb0a4a2a308530e8"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md"
+      ]
     },
     "source:docs/framework/vue/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "0fa2d5289712cf606d052b275a6885dc685fb1980756a318d78818577c29b0eb",
+      "fingerprint": "cbab2efc1626e4de05db80593280ce517049f91ed1574e867e04652317184ee0",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useHotkeysContext.md": "7efe97c4b9ca72775a4840a846daed96671c3e4d668a50d4d3460d241cc23671"
+        "docs/framework/vue/reference/functions/useHotkeysContext.md": "b1c9aef644ae7febdc4c6543d239f598338624d63ac1d95eb3dd6985e343f9b4"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/framework/vue/reference/functions/useHotkeysContext.md"
+      ]
     },
     "source:docs/framework/vue/reference/functions/useKeyHold.md": {
       "fingerprint": "a66a88ab6bc2a99e83fb048f598aef26be52375792ca397225159ea258e00de9",
@@ -3648,14 +3697,17 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/interfaces/HotkeysProviderOptions.md": {
-      "fingerprint": "81c7467190150801ccaea4a86a6673a6d120d725224526a9d3be17212ec4f3ab",
+      "fingerprint": "ce00fcce44d464eb1290d54905a7c104ee50cd85b521b5608b090a36ac8956c3",
       "snapshot": {
-        "docs/framework/vue/reference/interfaces/HotkeysProviderOptions.md": "bcb25ee8dad33f4e9884c0bccbcf78dfd501585fcb588650d137370f79fa741a"
+        "docs/framework/vue/reference/interfaces/HotkeysProviderOptions.md": "68e07b7b26e018bccaa36e14071169fd68e5a02ea04d985ad7af38df43533537"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/vue/reference/interfaces/HotkeysProviderOptions.md"
+      ]
     },
     "source:docs/framework/vue/reference/interfaces/ProvideHotkeysContextOptions.md": {
       "fingerprint": "77ae62b52740e9f24e721471e4da31682850f3380ad1fa3cde7d2785b0075a3b",
@@ -4162,13 +4214,13 @@
       "evidence": ["e2e/layouts/layouts.spec.ts"]
     },
     "source:e2e/support/x11.ts": {
-      "fingerprint": "8027673fe570a431636e3140e971acc14fe40265c47ece45f7ec4eabced12d3f",
+      "fingerprint": "ca063723def3419bfbebd8bf1ce8bf2be1679a2969ad6510e06ce6e96e7483a4",
       "snapshot": {
-        "e2e/support/x11.ts": "31994400560bd70a88e0a7f628d26e6224616724a08bb69ad6263d71cf55ba2d"
+        "e2e/support/x11.ts": "dff9cae03a461282a571f520a1b01b3dcc4d97f7b7bed0865ac8f25897690d67"
       },
-      "head": "210b3fb5577b3e7381a7c74d70e87cf395ae6682",
-      "outcome": "out-of-scope",
-      "reason": "Matcher source and tests; the guidance impact is reviewed on the hotkeys-core skill item.",
+      "head": "257929f0da34cecc64d5987127147b99e584f4e2",
+      "outcome": "no-change",
+      "reason": "E2E test infrastructure only: layout fixture probes real key input before each case, and the Docker image matches @playwright/test 1.65.0. No library behavior or guidance changes.",
       "evidence": ["e2e/support/x11.ts"]
     },
     "source:packages/hotkeys/src/_match.ts": {
@@ -4226,34 +4278,43 @@
       "evidence": ["docs/framework/angular/guides/app-hotkeys.md"]
     },
     "source:docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": {
-      "fingerprint": "454575c7354a166dc406679053f392327b464dbcff237dd9002c97cfe0cbc6d1",
+      "fingerprint": "d5d718a1edf230b9fae5d92c67246d2e5ea421acae0b1900bdece4f2ab011d22",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": "809c6e7a475f73374106373b7eb8cedbcc2366930ca4567b9dbd4e6ecd974633"
+        "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": "ab50068c829ca7df9e3530f39fffd0426b8efe2cdce68de5e6f3674d9bd16a30"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md"
+      ]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeysContext.md": {
-      "fingerprint": "8b8f40c34109058eb3ad1c1198515afcb1d05686b0df09066dc894966da9a8d6",
+      "fingerprint": "18c7769c426015a3f39658cf4cd3deeeb5327be58ea004f9b3aeea3f392c4957",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectHotkeysContext.md": "d89bf3a01804bd067ff0228bf58723e1e7251419f303867e3babb18d0e224a45"
+        "docs/framework/angular/reference/functions/injectHotkeysContext.md": "7441a7fa09dd7168fec1dd1b618dbe9de52d99a7a7103fc231c397f65595735a"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/framework/angular/reference/functions/injectHotkeysContext.md"
+      ]
     },
     "source:docs/framework/angular/reference/functions/provideHotkeys.md": {
-      "fingerprint": "435d91dc0352f640341d360d3659dd03886561738bc4c18393f2416ea994dc3d",
+      "fingerprint": "8fc79f3628a5bef7940b5cb76e654e4c03f5bfae364181f859c97b5b130cfb93",
       "snapshot": {
-        "docs/framework/angular/reference/functions/provideHotkeys.md": "64923ca6bee55c41d35f34b52362a02a16bde06704c254529a56e73c5c697c30"
+        "docs/framework/angular/reference/functions/provideHotkeys.md": "63634d2b3de05022c114db6e6b9c188d9f3486fcf17ac07fd0b24f6de05dbd03"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/framework/angular/reference/functions/provideHotkeys.md"
+      ]
     },
     "source:docs/framework/angular/reference/interfaces/HotkeysContextValue.md": {
       "fingerprint": "5870f46d95ac3186a8525db3d186e0b1da52e0e8a42d6c5aae70e60cdcbbe155",
@@ -4266,14 +4327,17 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/interfaces/HotkeysProviderOptions.md": {
-      "fingerprint": "e82d3911eec04c3fda7d588490dc6e0e193f7dc3873376f0498efbab79b26539",
+      "fingerprint": "6bc7cd8e86a3c8f967335bfe3bcd1f591dd4bf9bc3f66e9a5433715b3b63eccd",
       "snapshot": {
-        "docs/framework/angular/reference/interfaces/HotkeysProviderOptions.md": "7095d499ebee10034421225142ffd827e1911c02c5cd39715aaa2708419fa237"
+        "docs/framework/angular/reference/interfaces/HotkeysProviderOptions.md": "38edfc96294ba90c2a9125230965fb21ea1777c936d5c00e70a3134c2a5df10b"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/angular/reference/interfaces/HotkeysProviderOptions.md"
+      ]
     },
     "source:docs/framework/angular/reference/interfaces/ProvideHotkeysOptions.md": {
       "fingerprint": "a6b52040438502cbbee85fa9b6abb4302c2c3f39aa3b165e4ebb5cfb1def2ae3",
@@ -4316,64 +4380,82 @@
       "evidence": ["docs/framework/octane/guides/app-hotkeys.md"]
     },
     "source:docs/framework/octane/reference/functions/HotkeysProvider.md": {
-      "fingerprint": "c102fc219e0019700a31107eb88f4b94b381d54b2f405a36653e68067ccbb7b0",
+      "fingerprint": "0f832dcf2717dbb31a891c26f12504a5668d66d102786d17768e961b4208ff6f",
       "snapshot": {
-        "docs/framework/octane/reference/functions/HotkeysProvider.md": "40390c89b06d86d00683e76d5282180c2413fa7100cedefcc526ee65e42d1d8c"
+        "docs/framework/octane/reference/functions/HotkeysProvider.md": "c2b26d5f810d356ff0e5f3e00658e3c83fe64f7e9a713a878fd8ca4de49c4044"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/octane/reference/functions/HotkeysProvider.md"
+      ]
     },
     "source:docs/framework/octane/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "00674273eeb41ec0f18a8320502b7021e43fbdcfe6deab08d4b44a64b74d7e81",
+      "fingerprint": "431f740040d4fed3da74263c91fc99508c4c88552e1e173b21fe8dcca0fa7017",
       "snapshot": {
-        "docs/framework/octane/reference/functions/useDefaultHotkeysOptions.md": "f5278220dc02e8a3bd165378e27a9c1c8b4732c2c56af76ad10c16d8345d3c6c"
+        "docs/framework/octane/reference/functions/useDefaultHotkeysOptions.md": "365a3966ccb230ffcad7296a3903c86a71b999d8c5ae8a03aba5b1331e61c449"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/octane/reference/functions/useDefaultHotkeysOptions.md"
+      ]
     },
     "source:docs/framework/octane/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "4d0f314c90ad20e52cc7223ca01e9ee4d694a73ea4d36b407075a6147665816f",
+      "fingerprint": "655212114b564a5392a026fb8b22cc6bab8ae94cbbb0af41369aadbbaf85de1d",
       "snapshot": {
-        "docs/framework/octane/reference/functions/useHotkeysContext.md": "cb671b8175cf77a3b73a02ee724814d21dd9db6312b33bfd6dfb91c265badebe"
+        "docs/framework/octane/reference/functions/useHotkeysContext.md": "e68a7a0f368e735660ab6666d99f28a3daed951705ae44ac0c7d27100f98d043"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/octane/reference/functions/useHotkeysContext.md"
+      ]
     },
     "source:docs/framework/octane/reference/interfaces/DefaultHotkeysOptions.md": {
-      "fingerprint": "5f2174e344379a7a0b716d54107f4a86a3afa1561f891e30a9ae24b89fe96db0",
+      "fingerprint": "ef6fbc1bc7e89c5260ab30b960e1acafd417a4136469c2b9f71a381184d838f5",
       "snapshot": {
-        "docs/framework/octane/reference/interfaces/DefaultHotkeysOptions.md": "f1e9339ae1e7fd6201557b41fea52b9ccf9cbb5623c980978c195e715065fae8"
+        "docs/framework/octane/reference/interfaces/DefaultHotkeysOptions.md": "d8cc658f6f36ca382c308ed6f51edfe9a6f07ccaa12b0c4111dc928801aa288e"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/octane/reference/interfaces/DefaultHotkeysOptions.md"
+      ]
     },
     "source:docs/framework/octane/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "560c37ce5d4d49d650a267f18e6bd2c9deac6f3ed171444f316b0f9ad7414880",
+      "fingerprint": "c939f0202b054866f278f2638e953f7be9a885388bcd5ccba95f22c4c8b09742",
       "snapshot": {
-        "docs/framework/octane/reference/interfaces/HotkeysProviderProps.md": "3684a1e00d38c606f091cd1317c102a6eee5cb0d9b0e80b8422e44e29772af10"
+        "docs/framework/octane/reference/interfaces/HotkeysProviderProps.md": "470a9ed9dd6ebe1e9b833ee0d46261be742f74e46e81f8d08adf8eb2365a7cde"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/octane/reference/interfaces/HotkeysProviderProps.md"
+      ]
     },
     "source:docs/framework/octane/reference/type-aliases/HotkeysProviderOptions.md": {
-      "fingerprint": "8ac0d045f92d1f4a2b6dd752b7b41c7752c7c8c522bf36ce0aec3bd9d759942b",
+      "fingerprint": "01334545f159a6c8e48c8bc5f9f051b7eb06df2393f177c66bfbde885131065e",
       "snapshot": {
-        "docs/framework/octane/reference/type-aliases/HotkeysProviderOptions.md": "dbb3c0590345b0645ec6d123c97cac88801eddede8475262848eab1adb14c889"
+        "docs/framework/octane/reference/type-aliases/HotkeysProviderOptions.md": "7713f93c8f4816a1d1c51798c2faf46fd83e2887df2af49e6ab0f49a7dd0123d"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/octane/reference/type-aliases/HotkeysProviderOptions.md"
+      ]
     },
     "source:docs/framework/preact/guides/app-hotkeys.md": {
       "fingerprint": "c94e89174af87b1c0c7ff69d88f30ab0a6918a63b2bbbf1c15ff9a0e755b51b5",
@@ -4386,24 +4468,30 @@
       "evidence": ["docs/framework/preact/guides/app-hotkeys.md"]
     },
     "source:docs/framework/preact/reference/functions/HotkeysProvider.md": {
-      "fingerprint": "96497d29cf814ae6de1083e71c368e9302e04752ad0b816730b698b001600155",
+      "fingerprint": "748e4b90d029fbdec4e4472894f87b9b804d1d0bc9c127c2bd8b209ea0a84710",
       "snapshot": {
-        "docs/framework/preact/reference/functions/HotkeysProvider.md": "ce9271d2c6cb27749d5dd41af8c97c9a5ed4c8167a42a5c43f23b86deae3de8e"
+        "docs/framework/preact/reference/functions/HotkeysProvider.md": "a598aa3bb28d5ab3097d582d397330c8ac3146b14d8e35999060d95da04973d3"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/preact/reference/functions/HotkeysProvider.md"
+      ]
     },
     "source:docs/framework/preact/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "086468c38280b9359f23291a33ca0a0c67fd764b224959e25fa58d3124a31c65",
+      "fingerprint": "516c31e8dad6aff59092993152a448302cc2a15f885889e47988b5839b049015",
       "snapshot": {
-        "docs/framework/preact/reference/functions/useDefaultHotkeysOptions.md": "08939dd5da8c23b1df73f576515c7728eb9d85a11f14a593c47cdf90bb8bb5b8"
+        "docs/framework/preact/reference/functions/useDefaultHotkeysOptions.md": "f28f843068da83e66d9d42a8ec615e64d7a78c888e18b6f56f623b323687303b"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/preact/reference/functions/useDefaultHotkeysOptions.md"
+      ]
     },
     "source:docs/framework/preact/reference/functions/useHeldKeys.md": {
       "fingerprint": "27dcf1b7cd5cc21e1024ef4421deae4a8d3ea0b07f52d8eb152a5ba52dd8f2fc",
@@ -4416,14 +4504,17 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "e1772ebf2cc5c90d1371f6eaad6f2d2f74e86e670bab0232b444f30910ac5fd8",
+      "fingerprint": "d36f530c99a131eefce1d6541279166f2835a526c45716da9f264cac53c1e5a1",
       "snapshot": {
-        "docs/framework/preact/reference/functions/useHotkeysContext.md": "68f27ff38ed8b0b6a422076ec2ba6abeb7060b69d4e7b3cb2fb8a7b04d52fd82"
+        "docs/framework/preact/reference/functions/useHotkeysContext.md": "0a02ab149929572a1566a82a5f276d112cd188ac10804bcc7df402e6b00aa71a"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/preact/reference/functions/useHotkeysContext.md"
+      ]
     },
     "source:docs/framework/preact/reference/functions/useKeyHold.md": {
       "fingerprint": "9f060824e63af8d3b713ce924080fcab6f1f71dd5714c52ef26475a2d882d321",
@@ -4436,24 +4527,30 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/reference/interfaces/HotkeysProviderOptions.md": {
-      "fingerprint": "89ff59fb3559bd562d1c6159f48c7c51383f7c260743366d8040b55eca3fbd8b",
+      "fingerprint": "7174f5c4bb936b4a9695ccb8e6650713c5a3351c74888ce8f0c24acdb257806f",
       "snapshot": {
-        "docs/framework/preact/reference/interfaces/HotkeysProviderOptions.md": "235a2394ee8301772421eb843b222271c6dcc86a3febc4dc5e8647779c2412cc"
+        "docs/framework/preact/reference/interfaces/HotkeysProviderOptions.md": "6b5c6613b1fc5b95c3924a711b4571225b20ec7b44fe5d5f62aded40e9d038fd"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/preact/reference/interfaces/HotkeysProviderOptions.md"
+      ]
     },
     "source:docs/framework/preact/reference/interfaces/HotkeysProviderProps.md": {
-      "fingerprint": "a3edbbfe6d24393c4e4bc3876ba7247f445f4d004f240b4e4b330469b4126046",
+      "fingerprint": "84abb8cf501c86762838139b28e7ed2c1743f14cfa44ca4cf8aa38e80d464fd3",
       "snapshot": {
-        "docs/framework/preact/reference/interfaces/HotkeysProviderProps.md": "3f121fcea6627ff7f7ffc657fd78a70ff38f1b25ac749842e21e14b6f2fe17b0"
+        "docs/framework/preact/reference/interfaces/HotkeysProviderProps.md": "3fb9c9e415febb7bee0941d04fc47603e6594bf5083e24629f9203540202973a"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/preact/reference/interfaces/HotkeysProviderProps.md"
+      ]
     },
     "source:docs/framework/solid/guides/app-hotkeys.md": {
       "fingerprint": "be77378cef3bf26e02ca2e1d921f1bc24c8e6fad9b73f989047fba15e94c039f",
@@ -4496,34 +4593,43 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "400e913c8745412398de1d3f1a583f327d3f6108b1f49f7e9d179ac44516d748",
+      "fingerprint": "d671264203c7526e84834c175b800aa48053b346f326a0b4ad4bd2cd7d9fc6d1",
       "snapshot": {
-        "docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md": "6c3246d10cbe61d0d3ee244cc597771313646ede216cc4fbe660b3d233452480"
+        "docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md": "376478b69f9db5537e7373584123821bc14d41e0d7202f5e2bdca06b724e33b8"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md"
+      ]
     },
     "source:docs/framework/solid/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "7a3060d826a93347b99f70656e28bab53e2d06cc936302674e06582c8111cf22",
+      "fingerprint": "317e7ca474bf2436e1a6fd1012110188f3b70855405cdfdf7a15df23f3a01a70",
       "snapshot": {
-        "docs/framework/solid/reference/functions/useHotkeysContext.md": "bd29db9f86319c25f6e820449dfeb126815ce346609435256c585f252cd189bf"
+        "docs/framework/solid/reference/functions/useHotkeysContext.md": "b82e6ad20a5ac7aaf698e22092aeee901f37b3df32b92f601e66cbdf03d3b116"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/framework/solid/reference/functions/useHotkeysContext.md"
+      ]
     },
     "source:docs/framework/solid/reference/interfaces/HotkeysProviderOptions.md": {
-      "fingerprint": "a8f435266f4e4917a0feeac66c01fecf0f8001a043b4d70d18ce308e3758add0",
+      "fingerprint": "eb6f05cf76ffa9fb160709f099b1f6b3ae769fe033e7cf6437991f32f178d17e",
       "snapshot": {
-        "docs/framework/solid/reference/interfaces/HotkeysProviderOptions.md": "87fafdb12477f09d4f3227f59ff59c446e931821f5868f43995fff6682fe1e32"
+        "docs/framework/solid/reference/interfaces/HotkeysProviderOptions.md": "ba312b4774a61cd36c4fec5d761b8a04e691cad909be905291f3e8531f0fc6f5"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/solid/reference/interfaces/HotkeysProviderOptions.md"
+      ]
     },
     "source:docs/framework/solid/reference/interfaces/HotkeysProviderProps.md": {
       "fingerprint": "6f8f566a106a33ce366cc722bd9e265eebf2798ea8850806eb2bc68eb089378c",
@@ -4556,24 +4662,32 @@
       "evidence": ["docs/framework/svelte/guides/app-hotkeys.md"]
     },
     "source:docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md": {
-      "fingerprint": "225ef536675008ca7cc45e928c2fbc360d3758c17b7739bba50b262cd36cf339",
+      "fingerprint": "6a620af1a7e7f0342daa1e2e1083ede51a1295e38fdd742751631836715d35b4",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md": "96f508d52963c9095bac6076bd67de258926008a5b3c3980b1e0a035f65ab40f"
+        "docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md": "2dc30f690be9cbf68d4b52d636d1a2d2a129a75571c663f313880891d74b1b43"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "App hotkeys now compare on the provider platform, and formatting docs warn against formatForDisplay for server-rendered labels. The skill already says to use the formatter hook on the server and makes no claim about which platform app hotkey checks use.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/svelte/reference/functions/getDefaultHotkeysOptions.md"
+      ]
     },
     "source:docs/framework/svelte/reference/functions/getHotkeysContext.md": {
-      "fingerprint": "5dce457fdd0cfb8accece3a57de0fb8c8670e2ca0b3bf7efaa8bea8324ef2586",
+      "fingerprint": "45769ae417c3c01a283a5aa71db2e248abdef8c011ed69027e3376ba32609163",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getHotkeysContext.md": "b19012c1a12e811041d7c93a9b95d0591aa599fbb2e6e340862d08a90f6f73f9"
+        "docs/framework/svelte/reference/functions/getHotkeysContext.md": "f537dcc1fd9f824ba67703cec038625689a930f57f35074e04e88b6eeb037ca0"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "App hotkeys now compare on the provider platform, and formatting docs warn against formatForDisplay for server-rendered labels. The skill already says to use the formatter hook on the server and makes no claim about which platform app hotkey checks use.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/svelte/reference/functions/getHotkeysContext.md"
+      ]
     },
     "source:docs/framework/svelte/reference/functions/setHotkeysContext.md": {
       "fingerprint": "1c9134681041b37635e94a0c1657a7eb4c409e0b986d92ec7adf54df46c58033",
@@ -4596,14 +4710,17 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/svelte/reference/interfaces/HotkeysProviderOptions.md": {
-      "fingerprint": "cbfce966896be7f6400999564baddfbbfbb6ddd48380262d9e92d09bdcd9a8ec",
+      "fingerprint": "28fc83c12214948128b80b552cc28ae54fcf5e54da12b33497360d6dcc5b5608",
       "snapshot": {
-        "docs/framework/svelte/reference/interfaces/HotkeysProviderOptions.md": "0c548e466d7b4107cde5fc4aba95152e0acc93593157a026297f6ab4ca2ea16d"
+        "docs/framework/svelte/reference/interfaces/HotkeysProviderOptions.md": "5d6e26e715362d3c77f8dd647895682f4bef0e63c4aa24ac4d5c785a52d86974"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/svelte/reference/interfaces/HotkeysProviderOptions.md"
+      ]
     },
     "source:docs/framework/svelte/reference/interfaces/HotkeysProviderProps.md": {
       "fingerprint": "a5c9b0fb2ce331bc3a9b86e7f867542348c0bb710389dfcf699f9f1100a0ec1c",
@@ -5861,16 +5978,16 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/angular/guides/formatting-display.md": {
-      "fingerprint": "3e9b0df2941770c7aa301533df5dd23dba3a9d5ba3196feb70f2abfb69dfc1fc",
+      "fingerprint": "17ff1138778c5c860981914950de718b1da06f1ba540b55318eb4bad318c726a",
       "snapshot": {
-        "docs/framework/angular/guides/formatting-display.md": "f67fb2e09f4ef9226d837bb5fbd647d5594a44932c87e02d331eb1636fa00bbf"
+        "docs/framework/angular/guides/formatting-display.md": "746cdac75527e92b39bc652afb180de5422b0efa3fbfc35c49a32122cd174cc7"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
       "evidence": [
-        "docs/framework/angular/guides/formatting-display.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/angular/guides/formatting-display.md"
       ]
     },
     "source:docs/framework/angular/guides/held-key-state-helpers.md": {
@@ -5886,16 +6003,16 @@
       ]
     },
     "source:docs/framework/ember/guides/formatting-display.md": {
-      "fingerprint": "dc69a5efa57c4c48a019936195eee936bf59b7628e9d2c996a3fc66a16b3d61b",
+      "fingerprint": "a473c75f2347650effa25812eb2803abd1da34ce66a58bc6f955b18ea73960c7",
       "snapshot": {
-        "docs/framework/ember/guides/formatting-display.md": "6ffe22e6ca700e2e4bfdefd7c0c7af616f7a5f2fa3272f8e1d55b070b21755a7"
+        "docs/framework/ember/guides/formatting-display.md": "f7503ded6f8f60049fc88aec16bb7f67c8cc51c526bfe399eb0768f334787c1e"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
       "evidence": [
-        "docs/framework/ember/guides/formatting-display.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/ember/guides/formatting-display.md"
       ]
     },
     "source:docs/framework/ember/guides/held-key-state-helpers.md": {
@@ -5924,16 +6041,16 @@
       ]
     },
     "source:docs/framework/octane/guides/formatting-display.md": {
-      "fingerprint": "adf5b61cd874dd52541633360a5361d87d51ea95c011c5f8a23989c40a3e50ff",
+      "fingerprint": "193cfc8f6f7482193669be977a0ae2507683e8e938c1a91b094b65ca0b38915a",
       "snapshot": {
-        "docs/framework/octane/guides/formatting-display.md": "9459ef3eab3a160b08f85013a90da571750cabeccd1a58b48f9dd2097f64c951"
+        "docs/framework/octane/guides/formatting-display.md": "462fdcb1df3671cf153efa35258ce37fa73f5a114a4f515422e2cce06cda2524"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
       "evidence": [
-        "docs/framework/octane/guides/formatting-display.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/octane/guides/formatting-display.md"
       ]
     },
     "source:docs/framework/octane/guides/held-key-state-helpers.md": {
@@ -5949,16 +6066,16 @@
       ]
     },
     "source:docs/framework/preact/guides/formatting-display.md": {
-      "fingerprint": "0a7a863cca7f5e6fb86aae24af48e3cd4d13cca2e47a6460b0bcb7315ee9ce29",
+      "fingerprint": "09cc4dacabdfe3544fccfb84974ed98d5cd4819e710e669e7418b10c17cca3e9",
       "snapshot": {
-        "docs/framework/preact/guides/formatting-display.md": "97db10958e71112fd226796e5f23eb7c1101589f1bca13ffc4330f78d9cc414e"
+        "docs/framework/preact/guides/formatting-display.md": "080467724eb65b1d978a7f1a284af4872a896458867136307d23d5aa04187210"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
       "evidence": [
-        "docs/framework/preact/guides/formatting-display.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/preact/guides/formatting-display.md"
       ]
     },
     "source:docs/framework/preact/guides/held-key-state-helpers.md": {
@@ -5974,16 +6091,16 @@
       ]
     },
     "source:docs/framework/react/guides/formatting-display.md": {
-      "fingerprint": "1995d21ba6db09abbe818d457d4b946935ee9d4a18b513a48b1dcc2289872628",
+      "fingerprint": "a1b881293a756031fff3c4605caefb31bb5d5860593a036f290e165ad8dd9ec6",
       "snapshot": {
-        "docs/framework/react/guides/formatting-display.md": "3b487b3e4d6fe0ebfb669d446431b2788ded7fda9c03e306af68f7bbd9019919"
+        "docs/framework/react/guides/formatting-display.md": "340e003d3b28b60f8c0ab93a7e1ddf5060bdf87c39b50d9744084434eff31b9e"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "562e3d20b3f440f927f655d694c87585b8c0258b",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "React guide step 2 now notes Server Components pass platform to formatForDisplay. The React skill already covers passing platform.",
       "evidence": [
-        "docs/framework/react/guides/formatting-display.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/react/guides/formatting-display.md"
       ]
     },
     "source:docs/framework/react/guides/held-key-state-helpers.md": {
@@ -5997,16 +6114,16 @@
       "evidence": ["docs/framework/react/guides/held-key-state-helpers.md"]
     },
     "source:docs/framework/solid/guides/formatting-display.md": {
-      "fingerprint": "960e783d93234c3bc27b126070857527935dab22acabe17505e229698e60986a",
+      "fingerprint": "97c152893e2825a2208aad98bca16ed6a419be4cbf99e27b1a70076cad25bac1",
       "snapshot": {
-        "docs/framework/solid/guides/formatting-display.md": "31afd0b9274db00dbb9559ab285f8db55c566a084c25ced67e5f610d725b686e"
+        "docs/framework/solid/guides/formatting-display.md": "ae68da32e33e6023300d5fb3afb2b072e3e8e69b14bc4022bf4bde2e060ebd14"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
       "evidence": [
-        "docs/framework/solid/guides/formatting-display.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/solid/guides/formatting-display.md"
       ]
     },
     "source:docs/framework/solid/guides/held-key-state-helpers.md": {
@@ -6022,16 +6139,16 @@
       ]
     },
     "source:docs/framework/svelte/guides/formatting-display.md": {
-      "fingerprint": "772fbd256c6e20c407eb67aad502758c5741d831cd4654e4e4193f2b4520b16f",
+      "fingerprint": "ade6e58a5c2bd393ccb903c8538dfd0a3335a27e69ca9cc10350cd634f645ca0",
       "snapshot": {
-        "docs/framework/svelte/guides/formatting-display.md": "61c2fa1bb0728db3cde83d866db390178a11a5a771742a0876a125e0868f79bf"
+        "docs/framework/svelte/guides/formatting-display.md": "2a63f0cf59e2684b22f96da57f6c39e70b9f8e25f96f0490f0b6c70288cef9e2"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
       "evidence": [
-        "docs/framework/svelte/guides/formatting-display.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/svelte/guides/formatting-display.md"
       ]
     },
     "source:docs/framework/svelte/guides/held-key-state-helpers.md": {
@@ -6047,16 +6164,16 @@
       ]
     },
     "source:docs/framework/vue/guides/formatting-display.md": {
-      "fingerprint": "470665f885253b7d5da18b2030a87232d69a7ccbc9b71191a19ee443891d5273",
+      "fingerprint": "b08fd6c1584acb2b43693891d098f950f585ac197484f5fb78a0881cc20bc3a8",
       "snapshot": {
-        "docs/framework/vue/guides/formatting-display.md": "ef241633413a6a2eb2b22467f9765761950fd6591f7089bda4fb4bba1e1ea765"
+        "docs/framework/vue/guides/formatting-display.md": "4a43c52da5a6947d750ba179382efcba2ddca22a5f80f45eb6b8b54a484db50a"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
       "evidence": [
-        "docs/framework/vue/guides/formatting-display.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/vue/guides/formatting-display.md"
       ]
     },
     "source:docs/framework/vue/guides/held-key-state-helpers.md": {
@@ -6072,14 +6189,18 @@
       ]
     },
     "source:docs/reference/functions/formatForDisplay.md": {
-      "fingerprint": "1bdb37577612efb821c5da6014611d40edd0e5a2b5f4819fa336d7f23c97427d",
+      "fingerprint": "d12ea2fcaa1e2430091866faf45f63e2d5f854413c3bd4ab3bce5c6350509185",
       "snapshot": {
-        "docs/reference/functions/formatForDisplay.md": "e9e046bbef226b6d1fd7fe574e08bed8053aa7e18eebc85faddf49061034b5a8"
+        "docs/reference/functions/formatForDisplay.md": "163470312ee9900576d32dd2ee2d867592389c6b94958650b9c5bcaa131f1113"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
+        "docs/reference/functions/formatForDisplay.md"
+      ]
     },
     "source:docs/reference/functions/formatKeyForDisplay.md": {
       "fingerprint": "22f378a7170ecee1ae241e883a41bd6dc41fde438827d1d40be8a4d140488a45",
@@ -6094,14 +6215,18 @@
       ]
     },
     "source:docs/reference/interfaces/FormatDisplayOptions.md": {
-      "fingerprint": "12eb59de56d907679de805b0831aa38d9e45448a30dac34f4d45ce9dbf998c6f",
+      "fingerprint": "9fb34673c416536c79b004ca912842468fa630cfe303b9d3429a8f7559f6b019",
       "snapshot": {
-        "docs/reference/interfaces/FormatDisplayOptions.md": "c67a265ce397e5233ecf99934b51adc705c7d0f5c2cda1bb1555b2b77b8506db"
+        "docs/reference/interfaces/FormatDisplayOptions.md": "a072fb3f1e10493555e5c5986620bfc2da37c547516997aa3b51024abcd86cb1"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
+        "docs/reference/interfaces/FormatDisplayOptions.md"
+      ]
     },
     "source:docs/reference/type-aliases/DisplayHotkey.md": {
       "fingerprint": "c527bba6ef2096c0db517c2d0c0fef29d1b0a5b6cf278ed51cd26bd9da1b5cb3",
@@ -6365,14 +6490,18 @@
       ]
     },
     "source:packages/hotkeys/src/format.ts": {
-      "fingerprint": "bf80e3fecf04b2fbab6bb876c81afbdf287f43504eff9a52d733e971541a2df2",
+      "fingerprint": "1131aa5cd210c54a346d89cca114d67c1a9d1c50be4e9748da7f5de10d7533d1",
       "snapshot": {
-        "packages/hotkeys/src/format.ts": "7d726681bc53ea25090599be57b9dcb2b8f311963bc322691978891aa0b3edf1"
+        "packages/hotkeys/src/format.ts": "9897596cc39380b15ffd955f6a73e83d7c8bf369e267695b9206c495b0ab4c6b"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
-      "evidence": ["packages/hotkeys/src/format.ts", "git diff origin/main"]
+      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
+        "packages/hotkeys/src/format.ts"
+      ]
     },
     "source:packages/hotkeys/tests/format.test.ts": {
       "fingerprint": "67429fcce20e209da5bf432f9a0df83ba660673566b2d610e34766dd80eb18f7",
@@ -6861,14 +6990,17 @@
       "evidence": ["packages/alpine-hotkeys/tests/unset-values.test.ts"]
     },
     "source:packages/angular-hotkeys/tests/appHotkeys.test.ts": {
-      "fingerprint": "af92ed622c67e8f08eb41322a0ccdbd6eccea8df89c6302ea412d51f5d7284a0",
+      "fingerprint": "97692eea535f1c327aa0ba1eca22969dad94dcc5191edd1f8064121c5c1498ba",
       "snapshot": {
-        "packages/angular-hotkeys/tests/appHotkeys.test.ts": "a612a9787a2ede2d1dfa6707a0308adc8e88daab588304806d99a6e31f8bf5e7"
+        "packages/angular-hotkeys/tests/appHotkeys.test.ts": "676bf1c1a7f900a8efef3bb96c95f9386ac86c93a9bdfa9cf2a6ae7e500f5727"
       },
-      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
-      "outcome": "out-of-scope",
-      "reason": "Test file; it adds no guidance for agents.",
-      "evidence": ["packages/angular-hotkeys/tests/appHotkeys.test.ts"]
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "outcome": "no-change",
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/angular-hotkeys/tests/appHotkeys.test.ts"
+      ]
     },
     "source:packages/angular-hotkeys/tests/unset-values.test.ts": {
       "fingerprint": "c3edcdc09cbe1c19599377df6112461c2d6512021d00ac4de6f0824001bd9d23",
@@ -6916,14 +7048,17 @@
       "evidence": ["packages/hotkeys/src/hint.ts", "git diff origin/main"]
     },
     "source:packages/hotkeys/tests/app-hotkeys.test.ts": {
-      "fingerprint": "331cdd31cbbadb041938ae102fb89ffe769e9b7269442260c0d9855858c8aa5f",
+      "fingerprint": "baec2b617215cc61e57c2ba98019b05aea9495c1100b0f6738d0e24708026936",
       "snapshot": {
-        "packages/hotkeys/tests/app-hotkeys.test.ts": "cd269a077fd1475479335986676379f8f5338f36a922c5dc56b31056934dc53a"
+        "packages/hotkeys/tests/app-hotkeys.test.ts": "449583b97f4141e383ffb05d5792b953292d90bdcf0268292694cb2fa4ff3524"
       },
-      "head": "33cb28743ebe6330713fb89c920ce983ed4098d2",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "App hotkeys no longer warn about unknown ids or invalid saved hotkeys. No API change.",
-      "evidence": ["packages/hotkeys/tests/app-hotkeys.test.ts"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "packages/hotkeys/tests/app-hotkeys.test.ts"
+      ]
     },
     "source:packages/hotkeys/tests/unset-values.test.ts": {
       "fingerprint": "ff782d9b1567c2a97b22291857fdf78796ee13857f4dc77e09d86405e47a4d24",
@@ -6978,16 +7113,16 @@
       ]
     },
     "source:packages/solid-hotkeys/tests/appHotkeys.test.tsx": {
-      "fingerprint": "355d1143f72bf8f81114992a787a6a15a30c98b55e5d0e562c403719d45be656",
+      "fingerprint": "33c51ebb93acb7c1adacedf97080382355dd4c5d51e1965fb10092f4cc570a0b",
       "snapshot": {
-        "packages/solid-hotkeys/tests/appHotkeys.test.tsx": "8bae503c7d645c19024325376ea88f64ff62f4d09ed782e10f8c1ec81546fc6f"
+        "packages/solid-hotkeys/tests/appHotkeys.test.tsx": "dc904010562ddb781eef040ca7a043e2d5282b5c915f14e7d64514c1691c40ff"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
       "evidence": [
-        "packages/solid-hotkeys/tests/appHotkeys.test.tsx",
-        "test:lib passes"
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/solid-hotkeys/tests/appHotkeys.test.tsx"
       ]
     },
     "source:packages/solid-hotkeys/tests/unset-values.test.tsx": {
@@ -7026,16 +7161,16 @@
       "evidence": ["packages/svelte-hotkeys/tests/UnsetOptionsHarness.svelte"]
     },
     "source:packages/svelte-hotkeys/tests/appHotkeys.test.ts": {
-      "fingerprint": "96c054a4b8e9634d8daf979cda50486608d6faadcf705405a0e707494d7e7ab6",
+      "fingerprint": "942fafdbd9bc07140dfb98f9954c3b99a10307e69ff2354e2e2f94be289ff9b4",
       "snapshot": {
-        "packages/svelte-hotkeys/tests/appHotkeys.test.ts": "b43f39f74811c9e0ebf88f98d067923f157b77973becc766165efa5103e89ef3"
+        "packages/svelte-hotkeys/tests/appHotkeys.test.ts": "7ca095abd2d3c070e1c7522cc88eabd3fc3da169bba5975148911376ab48119c"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
       "evidence": [
-        "packages/svelte-hotkeys/tests/appHotkeys.test.ts",
-        "test:lib passes"
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/svelte-hotkeys/tests/appHotkeys.test.ts"
       ]
     },
     "source:packages/svelte-hotkeys/tests/unset-values-harness.svelte.ts": {
@@ -7061,16 +7196,16 @@
       "evidence": ["packages/svelte-hotkeys/tests/unset-values.test.ts"]
     },
     "source:packages/vue-hotkeys/tests/appHotkeys.test.ts": {
-      "fingerprint": "b43c93a3219b6e99d1ecbe91e4f324a6f57c7b11c96fd74db17a2177ee2ecad3",
+      "fingerprint": "faa0f329f1a9365b6e9d2b7c1db0211fed3571fc1715a9784c3b146e1413be79",
       "snapshot": {
-        "packages/vue-hotkeys/tests/appHotkeys.test.ts": "a3137e2e07af53d48b048c7b2c7d514c6aa82a9d198d7884a3e7a0f1b6a30d9e"
+        "packages/vue-hotkeys/tests/appHotkeys.test.ts": "8b59636b32c289a66d890ed573e61d60c7009c8f286a1f1a7b83c3a8710c43a0"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
       "evidence": [
-        "packages/vue-hotkeys/tests/appHotkeys.test.ts",
-        "test:lib passes"
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/vue-hotkeys/tests/appHotkeys.test.ts"
       ]
     },
     "source:packages/vue-hotkeys/tests/unset-values.test.ts": {
@@ -7698,24 +7833,32 @@
       "evidence": ["packages/alpine-hotkeys/src/createHotkeys.ts"]
     },
     "source:docs/framework/angular/reference/functions/injectFormatForDisplay.md": {
-      "fingerprint": "0d28499fcc56ec1b9b402abd258d0cf736c16fe881cc6fc67b2697eeada4fcab",
+      "fingerprint": "1aaf0410ab8b103012f2620eba6fbc27946f159d4135349f3dbdcfde978a31e9",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectFormatForDisplay.md": "9a8890622c8d433d1e21d911438db874a1c122e8416acb46331d44ec4ec00170"
+        "docs/framework/angular/reference/functions/injectFormatForDisplay.md": "0262c3c88403166d945952ba12505b5a476f03cbb43e2db52b52f70c76093a59"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
+        "docs/framework/angular/reference/functions/injectFormatForDisplay.md"
+      ]
     },
     "source:docs/framework/ember/reference/functions/useFormatForDisplay.md": {
-      "fingerprint": "65a863d8a563abbc3ab67148dc7a28e7c7d241b8b55dfb4e69e89e8393731ed5",
+      "fingerprint": "9cfe6ecae0d04e32325e81483463006ce733552631387bd1b24dac40649815dc",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useFormatForDisplay.md": "8c02889b0264e7578d1478e6a96f5bf1d39d9554d1d2f537b2db122a35358b70"
+        "docs/framework/ember/reference/functions/useFormatForDisplay.md": "25085f989afee3703c4622b68725c4da6686de02aae5a6ad7a2891267989c28d"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
+        "docs/framework/ember/reference/functions/useFormatForDisplay.md"
+      ]
     },
     "source:docs/framework/ember/reference/interfaces/DefaultHotkeysOptions.md": {
       "fingerprint": "cae9240aecc77cb29fa457629e155620852f3bf2c03140726ef632ad34fa836d",
@@ -7728,64 +7871,88 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/reference/functions/useFormatForDisplay.md": {
-      "fingerprint": "b55f1022acf6f8ee958ba16b82ee6b7fcda4c41ad010f9c73564413fcef2bfea",
+      "fingerprint": "17205fdbc6cfbe0e8dd60361578e0ef2504908ecd5eed79809231b190c609b43",
       "snapshot": {
-        "docs/framework/octane/reference/functions/useFormatForDisplay.md": "36bf44eb07a2bd10ac0fee311c414895880f03a8c93a0b2ffca527f5b8755249"
+        "docs/framework/octane/reference/functions/useFormatForDisplay.md": "f643bc58a415d91a23c059038243be28c6512334982d1d2237fe160818cdc70e"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
+        "docs/framework/octane/reference/functions/useFormatForDisplay.md"
+      ]
     },
     "source:docs/framework/preact/reference/functions/useFormatForDisplay.md": {
-      "fingerprint": "6645dbba3a6f1e092c2b86c19dbc9d156379f67b756d97b6873402b25efb475d",
+      "fingerprint": "b9ba246ddf84117262187f0e082cf7c98dd150d8cfa23e922ab8347520759a0c",
       "snapshot": {
-        "docs/framework/preact/reference/functions/useFormatForDisplay.md": "da6715e6deecee6ef0935d1f7be9e870b26b81f4b33abf1274c35100c1bc710f"
+        "docs/framework/preact/reference/functions/useFormatForDisplay.md": "3777eb830445eb016a61e00010aa0847d56cb4a9682d8f6e6ba163c5133bf5d1"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
+        "docs/framework/preact/reference/functions/useFormatForDisplay.md"
+      ]
     },
     "source:docs/framework/react/reference/functions/useFormatForDisplay.md": {
-      "fingerprint": "c10e5f72ff4abf244e4505bf98e0d1aaf6b96bc9267ea1af3e5c0d386aee3e77",
+      "fingerprint": "07f4e6f24ec540f602dd0e10d91a9bd8c69184e0387d075ca4fd77c88459cf6b",
       "snapshot": {
-        "docs/framework/react/reference/functions/useFormatForDisplay.md": "ccd0edff738f005a86b4b96991c983618cced0be5419ae9960e4daa22cbf3992"
+        "docs/framework/react/reference/functions/useFormatForDisplay.md": "3def7bb3bededb51ee9594209c726fb3d77948343278ae742f0a845d28a98593"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
+        "docs/framework/react/reference/functions/useFormatForDisplay.md"
+      ]
     },
     "source:docs/framework/solid/reference/functions/createFormatForDisplay.md": {
-      "fingerprint": "c749df42589845d34dc5baf7e1c8a57396f0727c4d7f8aaab08f5bee4e4e8cd5",
+      "fingerprint": "088fb2c14f48712812ae1a1980f70cc740f21b3866dbde6a0677294652188bdc",
       "snapshot": {
-        "docs/framework/solid/reference/functions/createFormatForDisplay.md": "205e60902bebfc47aa4cfe079192b47c05953a3f78ebac30d3354c8651ee05a3"
+        "docs/framework/solid/reference/functions/createFormatForDisplay.md": "11bc6f80ba2554921015807639ca07cdcef17f37b24cf4b3244b72d883e0803c"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
+        "docs/framework/solid/reference/functions/createFormatForDisplay.md"
+      ]
     },
     "source:docs/framework/svelte/reference/functions/getFormatForDisplay.md": {
-      "fingerprint": "a12fae859812f41e88a337ccb1f4b12be7a4b5c82c170d95e8b64d6054d89f99",
+      "fingerprint": "6c771d770936eafa07b9fab78b5958f6958ee25c01dc2f0d2f06c354d1dcd955",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getFormatForDisplay.md": "21166d181169d7b59348624f0cf04b5d1da8645076f1a26e4b958001f3a41e7e"
+        "docs/framework/svelte/reference/functions/getFormatForDisplay.md": "165e7bfc7228b319ebf8977519742d8c59f4130833c3eccb13536ce7d77eeac6"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
+        "docs/framework/svelte/reference/functions/getFormatForDisplay.md"
+      ]
     },
     "source:docs/framework/vue/reference/functions/useFormatForDisplay.md": {
-      "fingerprint": "ffd60ae1ecb5cf2246b78ba72d4b44e12f5978c827f6d7b017ed8fc41fc79b9c",
+      "fingerprint": "d95b69bc4eefbe1257d755352d7f2a0a9e74bb669e12bf7652c1d0f977a6a05f",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useFormatForDisplay.md": "4161c47881b7e2bfa299db73b46275878570c213d69bf4ca638117f7c986a129"
+        "docs/framework/vue/reference/functions/useFormatForDisplay.md": "6477555b1105b379ff8c8aee0fb57d73ab85424cc6637621c72f64af1ac67455"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "App hotkeys now compare on the provider platform, and formatting docs warn against formatForDisplay for server-rendered labels. The skill already says to use the formatter hook on the server and makes no claim about which platform app hotkey checks use.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "docs/framework/vue/reference/functions/useFormatForDisplay.md"
+      ]
     },
     "source:docs/reference/adapter/functions/getServerPlatformSnapshot.md": {
       "fingerprint": "716312779f3abfaf6b254e343f34453dc38fbd7b57754d939e857608fe177a19",
@@ -13107,13 +13274,13 @@
       ]
     },
     "source:e2e/support/layout-fixtures.ts": {
-      "fingerprint": "04ac07fa3cce3ae940a1e99b0be7bb43ba227d6c090e1d6622a683a77c99bcaa",
+      "fingerprint": "f9b1f765118d44c6fa1a7aed0762cfa1fb726f78d0d08a1a10f3d0e14e0450a5",
       "snapshot": {
-        "e2e/support/layout-fixtures.ts": "77633e7a837cd30e02f4fb3795becbe492fa82556dc36dd164999931ee68e3bf"
+        "e2e/support/layout-fixtures.ts": "feec7e6a8fab37ae7f6347bfc8e65d03077cb308fa011cd88d88af814b754808"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "257929f0da34cecc64d5987127147b99e584f4e2",
       "outcome": "no-change",
-      "reason": "E2E workspace: oxfmt import sorting and line wrapping only; no behavior change.",
+      "reason": "E2E test infrastructure only: layout fixture probes real key input before each case, and the Docker image matches @playwright/test 1.65.0. No library behavior or guidance changes.",
       "evidence": ["e2e/support/layout-fixtures.ts"]
     },
     "source:eslint.config.js": {
@@ -17387,6 +17554,39 @@
         "scripts/verify-links.ts",
         "git diff origin/main: only import lines change"
       ]
+    },
+    "source:packages/svelte-hotkeys/tests/AppHotkeysHarness.svelte": {
+      "fingerprint": "fcfa346f1b4d1ea22ec98f48798bf19ca04ec624f98da55410d53f6b84f0c082",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/AppHotkeysHarness.svelte": "2d3dc58520834f010ce7c6238c2eaa56ae8a11bb76fa1e1e3d36f4023988e81e"
+      },
+      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "outcome": "no-change",
+      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "evidence": [
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/svelte-hotkeys/tests/AppHotkeysHarness.svelte"
+      ]
+    },
+    "source:e2e/docker/Dockerfile": {
+      "fingerprint": "432d499e20a56547e892efb87b48a2731f58b9fb23f4a2a30f5b4ed671457a83",
+      "snapshot": {
+        "e2e/docker/Dockerfile": "7764d334910ac5dd9908be088b7d89dea97e9b5e1c5f76541963333bfc396a6f"
+      },
+      "head": "257929f0da34cecc64d5987127147b99e584f4e2",
+      "outcome": "no-change",
+      "reason": "E2E test infrastructure only: layout fixture probes real key input before each case, and the Docker image matches @playwright/test 1.65.0. No library behavior or guidance changes.",
+      "evidence": ["e2e/docker/Dockerfile"]
+    },
+    "source:e2e/support/fixtures.ts": {
+      "fingerprint": "79a05dce774d135c07d8aaa6e5b5495d9251af7317fa3b4a0304a7c4e45126da",
+      "snapshot": {
+        "e2e/support/fixtures.ts": "33c3c26eb52484e80c7e0875c4b4a89e9f3408ae766939482afb711f276fd310"
+      },
+      "head": "257929f0da34cecc64d5987127147b99e584f4e2",
+      "outcome": "no-change",
+      "reason": "E2E test infrastructure only: layout fixture probes real key input before each case, and the Docker image matches @playwright/test 1.65.0. No library behavior or guidance changes.",
+      "evidence": ["e2e/support/fixtures.ts"]
     }
   }
 }

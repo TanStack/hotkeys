@@ -318,23 +318,6 @@ function sameSavedCustomHotkeys(left: unknown, right: unknown): boolean {
   )
 }
 
-/** Whether two sanitized custom hotkeys objects bind the same hotkeys. */
-function sameCustomHotkeys(
-  left: Record<string, Hotkey | null>,
-  right: Record<string, Hotkey | null>,
-  platform: Platform,
-): boolean {
-  const keys = Object.keys(left)
-  return (
-    keys.length === Object.keys(right).length &&
-    keys.every(
-      (key) =>
-        Object.hasOwn(right, key) &&
-        hotkeysEqual(left[key] ?? null, right[key] ?? null, platform),
-    )
-  )
-}
-
 /** Whether two app hotkeys can apply at the same time. */
 function scopesOverlap(a: AppHotkey, b: AppHotkey): boolean {
   const left = a.scope ?? GLOBAL_SCOPE
@@ -468,24 +451,34 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
    */
   setOptions(options: AppHotkeysStoreOptions<T>): void {
     const { customHotkeys, ...rest } = options
+    const platformChanged =
+      'platform' in rest && rest.platform !== this.#options.platform
     this.#options = { ...this.#options, ...rest }
-    if (customHotkeys === undefined) return
-    if (sameSavedCustomHotkeys(customHotkeys, this.#savedCustomHotkeys)) return
+    // `isCustom` in `getList` depends on the platform, so notify subscribers
+    // once, after any saved custom hotkeys are applied.
+    if (!this.#applySavedCustomHotkeys(customHotkeys) && platformChanged) {
+      this.store.setState((state) => ({ ...state }))
+    }
+  }
+
+  /** Replaces the custom hotkeys with saved data. Returns whether they changed. */
+  #applySavedCustomHotkeys(
+    customHotkeys: CustomHotkeys<T> | null | undefined,
+  ): boolean {
+    if (customHotkeys === undefined) return false
+    if (sameSavedCustomHotkeys(customHotkeys, this.#savedCustomHotkeys)) {
+      return false
+    }
     this.#savedCustomHotkeys = copySavedCustomHotkeys(customHotkeys)
     const next = sanitizeCustomHotkeys(this.#declarations, customHotkeys)
-    if (
-      sameCustomHotkeys(
-        next as Record<string, Hotkey | null>,
-        this.store.state.customHotkeys as Record<string, Hotkey | null>,
-        this.#platform,
-      )
-    ) {
-      return
-    }
+    // Compared exactly, not on the current platform, so a binding such as
+    // Meta+S stays as saved if the platform changes later.
+    if (sameSavedValue(next, this.store.state.customHotkeys)) return false
     this.store.setState(() => ({
       appHotkeys: applyCustomHotkeys(this.#declarations, next),
       customHotkeys: next,
     }))
+    return true
   }
 
   /**

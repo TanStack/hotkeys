@@ -30,9 +30,9 @@ import type { UseHotkeyCommonOptions } from './useHotkey'
 
 export interface HotkeysProviderOptions {
   /**
-   * The user's platform, for labels from `useFormatForDisplay`, hotkeys, and
-   * recorders. On a server, set it from the request with
-   * `detectPlatform(userAgent)`.
+   * The user's platform, for labels from `useFormatForDisplay`, hotkeys,
+   * recorders, and app hotkey checks such as conflicts. On a server, set it
+   * from the request with `detectPlatform(userAgent)`.
    */
   platform?: HotkeyPlatform
   /**
@@ -118,6 +118,10 @@ export function provideHotkeysContext(
         customHotkeys: toValue(options.customHotkeys),
         onCustomHotkeysChange: (custom) =>
           options.onCustomHotkeysChange?.(custom),
+        // App hotkeys compare hotkeys, such as for conflicts, on this platform.
+        platform:
+          toValue(options.defaultOptions)?.platform ??
+          parent?.defaultOptions.platform,
       })
     : null
 
@@ -128,13 +132,6 @@ export function provideHotkeysContext(
       (next) => {
         if (next) store.setAppHotkeys(next)
       },
-    )
-    // Apply saved custom hotkeys whose value changes, such as data that
-    // loads after setup. Deep, so changes made in place are seen too.
-    watch(
-      () => toValue(options.customHotkeys),
-      (customHotkeys) => store.setOptions({ customHotkeys }),
-      { deep: true },
     )
     // Publish the store so devtools can list declared hotkeys.
     if (typeof document !== 'undefined') {
@@ -157,6 +154,20 @@ export function provideHotkeysContext(
       toValue(options.scope),
     ),
   )
+  if (store) {
+    // Apply the platform and saved custom hotkeys whose value changes, such
+    // as data that loads after setup. Deep, so changes made in place are seen
+    // too. One call applies both together.
+    watch(
+      [
+        () => toValue(options.customHotkeys),
+        () => defaultOptions.value.platform,
+      ],
+      ([customHotkeys, platform]) =>
+        store.setOptions({ customHotkeys, platform }),
+      { deep: true },
+    )
+  }
   // Compared by value, so a new `exclusive` object does not reactivate the
   // scope and lose its precedence.
   const scopeKey = computed(() =>

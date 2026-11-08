@@ -257,3 +257,24 @@ function PlatformConsumer({ label, hotkey }: { label?: Platform; hotkey?: Platfo
   });
   <FormatLabel platform={label} />
 }
+
+const platformAppHotkeys = defineAppHotkeys({
+  'doc.save': { hotkey: 'Mod+S' },
+});
+
+export function PlatformAppHotkeysFixture() @{
+  const [platform, setPlatform] = useState<'mac' | 'windows'>('mac');
+  <HotkeysProvider
+    appHotkeys={platformAppHotkeys}
+    customHotkeys={{ 'doc.save': 'Meta+S' }}
+    defaultOptions={{ platform }}
+  >
+    <button id="platform-windows" onClick={() => setPlatform('windows')}>Windows</button>
+    <PlatformAppHotkeysConsumer />
+  </HotkeysProvider>
+}
+
+function PlatformAppHotkeysConsumer() @{
+  const list = useAppHotkeyList();
+  <output id="platform-custom">{String(list[0]!.isCustom)}</output>
+}

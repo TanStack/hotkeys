@@ -42,6 +42,6 @@ optional platform?: HotkeyPlatform;
 
 Defined in: [HotkeysProviderContext.ts:37](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/HotkeysProviderContext.ts#L37)
 
-The user's platform, for labels from `useFormatForDisplay`, hotkeys, and
-recorders. On a server, set it from the request with
-`detectPlatform(userAgent)`.
+The user's platform, for labels from `useFormatForDisplay`, hotkeys,
+recorders, and app hotkey checks such as conflicts. On a server, set it
+from the request with `detectPlatform(userAgent)`.
