@@ -275,11 +275,11 @@
       ]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
-      "fingerprint": "fa3042df72e175ab3c5cc7db94c80f031864328d774acb0d510ec66b19650de2",
+      "fingerprint": "3c989b2b3cac71a7e1c9a434a03bc59714fcfc4f14043595272e8540427c6313",
       "snapshot": {
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "2a7d39eac5adc26fb31a29306686fefb234a230f374446e0981307450df01777",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "7397ca11ac3e1460390758d388f603e3cc3189880a6471fe224be4b79420e61a",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "772db9ad3bf5ab0388daf44a947abfff769b756b359584a423a91054a238857f",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "566511eecf3a7a69390c6f9adbf47b9ba8d547ebcd9733be117434ca8ca69b1f",
         "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "dcd9049cbfd34a8fdf5cbfbf9e2fa05f123de07acf00319bdaa5f78fb13814c3",
@@ -288,9 +288,9 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "1cb4d010a0a2d55c8fd0140dc2fee8e018c15b00",
       "outcome": "updated",
-      "reason": "Vue now unwraps a component ref to its root element. Added a pitfall: component refs work as targets, and a component without a single root registers nothing.",
+      "reason": "Vue now unwraps a component ref to its root element. Added a pitfall: component refs work as targets, a component without a single root registers nothing, and a root added or swapped later isn't followed.",
       "evidence": [
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md",
         "Adapter and core tests for unset targets pass: packages/hotkeys/tests/unset-values.test.ts, react/preact/vue/solid unset-values tests, angular targets.test.ts, octane ref-targets.test.ts",
@@ -299,10 +299,10 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "c2a491ba7244372501b1702fe8d0ff238b664ccf056c0d7c92f00bc72890693c",
+      "fingerprint": "ce8738990cc0893b79529532ab743048886b2280d0777fd615cd1f8aa0f2e176",
       "snapshot": {
-        "_artifacts/domain_map.yaml": "9d6e999f7dc637b44562e987512ae6dc5e2f0fdc4dd7a8a73c951b069efc8f27",
-        "_artifacts/skill_spec.md": "83a4a94fb0f5ddc2c104f0c560162193fa3b0d7d39dbf04a1ee68c1c7b14d39a",
+        "_artifacts/domain_map.yaml": "31775e4c90923c0c7550ef1da7e0965d103938f6a50010d399700d6f7fa00d89",
+        "_artifacts/skill_spec.md": "45dab1669f6f6527ba739c2184f867d7fc9b3c51a3eef1a6185f4e6563b92d46",
         "_artifacts/skill_tree.yaml": "bff31ee525c55a3e572083903c5b8deb444cd850845ae2dc1e4b886ce2236a12",
         "docs/framework/alpine/guides/app-hotkeys.md": "cdefefaa71aa9c36da99d314ab0279aa791dcf651bb1fd4cebf7263ba661078a",
         "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
@@ -422,7 +422,7 @@
         "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "0dcfe7ecbaa7a202fd3be9e88ca24d95cd8965267374ea709435e19a13a4857b",
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "86000611dcf85054f0bbf702f5919f7796297adb342011784ccdba6c4938a175",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "bbde849c4842dfe7050a85c32e4f6fa5b8d55a854af7df8c24774546d2a1eefd",
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "2a7d39eac5adc26fb31a29306686fefb234a230f374446e0981307450df01777",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "7397ca11ac3e1460390758d388f603e3cc3189880a6471fe224be4b79420e61a",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "772db9ad3bf5ab0388daf44a947abfff769b756b359584a423a91054a238857f",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "566511eecf3a7a69390c6f9adbf47b9ba8d547ebcd9733be117434ca8ca69b1f",
         "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "dcd9049cbfd34a8fdf5cbfbf9e2fa05f123de07acf00319bdaa5f78fb13814c3",
@@ -431,7 +431,7 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "1cb4d010a0a2d55c8fd0140dc2fee8e018c15b00",
       "outcome": "updated",
       "reason": "domain_map.yaml mechanisms for React, Preact, Solid, Angular, and Octane now say unset targets wait; Octane's ref-object failure mode became a mounts-later one; Vue gains a component-ref failure mode. skill_spec.md inventory, framework mistakes, and a 2026-11-08 source-sync entry match. skill_tree.yaml descriptions and purposes still hold (they name element/ref targets generally).",
       "evidence": [
@@ -1232,11 +1232,11 @@
       ]
     },
     "source:docs/framework/vue/guides/hotkeys.md": {
-      "fingerprint": "6399130710671ad02213b77e7c58857d9d071ca69511f66c53a7979e200baaea",
+      "fingerprint": "d58d9aa6d88286996705ede1a60e986033ff4ceaaf6e23a44a46d82d4f47bbe0",
       "snapshot": {
-        "docs/framework/vue/guides/hotkeys.md": "6b3b3ed276835ec91f4b5fb5d597dc446da3bb9f3eb259fdc33d05e6c8740bc5"
+        "docs/framework/vue/guides/hotkeys.md": "74b81a6bd78ad6d06cc21080dff7dae446067adc5ccb793dd6de0f68585c719b"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "1cb4d010a0a2d55c8fd0140dc2fee8e018c15b00",
       "outcome": "updated",
       "reason": "The vue targets guide now says null or undefined targets wait and only an omitted target means document; the vue-hotkeys skill was updated to match.",
       "evidence": ["docs/framework/vue/guides/hotkeys.md"]
@@ -5283,11 +5283,11 @@
       ]
     },
     "source:packages/hotkeys/src/adapter.ts": {
-      "fingerprint": "31185b8fc1102e92982c3cf356ece9d74ada818bc7690b2996dd604a658ba6fd",
+      "fingerprint": "8aa5584ee808d3fec6fae3b0bc7ce63cc4ec1e9fbd8e3aa8b10d9938cbde5eaf",
       "snapshot": {
-        "packages/hotkeys/src/adapter.ts": "08692f86d3d19ceef600a755bf90cf17b649ed42804e09c4f72de002b06bb2a6"
+        "packages/hotkeys/src/adapter.ts": "012a056436497f7b3da04fbaa916e04b4ff8b81a083d8dff5ead49d68a1c0aa4"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "1cb4d010a0a2d55c8fd0140dc2fee8e018c15b00",
       "outcome": "no-change",
       "reason": "prepareHotkeyDefinitions now treats a target set to undefined, or a resolveTarget result of undefined, like null (waits); only an omitted target listens on document. This is the adapter-author entry point, out of the skills' scope; the adapter skills that described the old rule were updated.",
       "evidence": [

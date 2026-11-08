@@ -6,6 +6,7 @@
 '@tanstack/solid-hotkeys': patch
 '@tanstack/angular-hotkeys': patch
 '@tanstack/octane-hotkeys': patch
+'@tanstack/svelte-hotkeys': patch
 '@tanstack/lit-hotkeys': patch
 '@tanstack/alpine-hotkeys': patch
 '@tanstack/ember-hotkeys': patch

@@ -352,7 +352,7 @@ useHotkey('Escape', () => closePanel(), { target: card })
 </template>
 ```
 
-A component whose template has more than one root node, or only text, has no root element, so its hotkey registers nothing. Put the ref on an element instead.
+The hotkey reads the root element when the ref is set and doesn't follow later changes inside the component. A component whose template has more than one root node, or only text, has no root element, so its hotkey registers nothing. A root element that the component adds or replaces later, such as one behind `v-if`, isn't picked up. Put the ref on an element instead.
 
 > [!NOTE]
 > An element receives key presses only while it, or something inside it, has focus. Give it a `tabindex` if it isn't focusable already.

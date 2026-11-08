@@ -406,7 +406,7 @@ skills:
         priority: HIGH
         status: active
       - mistake: Targeting a component ref whose component has no single root element
-        mechanism: A component target listens on its root element; a fragment or text root has none, so the hotkey registers nothing.
+        mechanism: A component target listens on its root element when the ref is set; a fragment or text root has none, and a root added or swapped later (v-if) isn't followed, so the hotkey registers nothing or stays on the old element.
         wrong_pattern: '<MultiRootPanel ref="panel" /> with useHotkey(''Escape'', close, { target: panel })'
         correct_pattern: Put the ref on an element inside the component, or give the component one root element
         source: src/useHotkeys.ts; docs/framework/vue/guides/hotkeys.md

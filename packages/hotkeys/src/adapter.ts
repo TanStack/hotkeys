@@ -342,7 +342,7 @@ export function prepareHotkeyDefinitions<TTarget>(
     return {
       hotkey,
       callback: definition.callback,
-      options: layers.some((layer) => layer && 'target' in layer)
+      options: layers.some((layer) => layer && Object.hasOwn(layer, 'target'))
         ? { ...merged, target: resolved ?? null }
         : merged,
     } as HotkeyDefinition
