@@ -1,5 +1,19 @@
 # @tanstack/hotkeys
 
+## 0.25.0
+
+### Minor Changes
+
+- [#230](https://github.com/TanStack/hotkeys/pull/230) [`779b8a4`](https://github.com/TanStack/hotkeys/commit/779b8a4a51af526b84bf0e1244431e4e45634114) - `validateHotkey` and the recorder now return reason codes instead of English text, so apps write their own messages. Each error and warning from `validateHotkey` is a `HotkeyIssue` such as `{ reason: 'unknown-modifier', part: 'Ctl' }`, and issues in a sequence carry the index of their `step` instead of a `Step 2:` prefix. A `RecorderRejection` keeps its `reason` but no longer has a built-in `message`. It has a `message` only when your `validate` callback returns one. The `'invalid'` rejection reason is now `'whitespace'`. The devtools panel lists each problem in a hotkey's details, in plain words. Console warnings and thrown errors are now one short line that starts with `[hotkeys]`. App hotkeys no longer warn about saved custom hotkeys with an unknown id or an invalid value; they're still dropped. `setCustomHotkey` with an unknown id no longer warns either. Development warnings no longer throw a `ReferenceError` where `process` is undefined, such as plain ESM loaded from a CDN.
+
+- [#230](https://github.com/TanStack/hotkeys/pull/230) [`779b8a4`](https://github.com/TanStack/hotkeys/commit/779b8a4a51af526b84bf0e1244431e4e45634114) - A hotkey with an unknown modifier or no key besides modifiers now registers nothing, and `validateHotkey` reports both as errors. Before, an unknown modifier was dropped, so `Ctl+K` from plain JavaScript or saved data fired on a bare K. `parseHotkey` now returns an empty key for it, so `normalizeHotkey` and `formatForDisplay` return an empty string. Modifier-only hotkeys such as `Shift+Alt+Mod` never fired, and a modifier code such as `[ShiftLeft]` fired on every Shift release. The types no longer accept modifier codes such as `[ShiftLeft]` as a key. Use the held-key APIs to act while modifiers are held.
+
+### Patch Changes
+
+- [#230](https://github.com/TanStack/hotkeys/pull/230) [`779b8a4`](https://github.com/TanStack/hotkeys/commit/779b8a4a51af526b84bf0e1244431e4e45634114) - When modal dialogs stack, a hotkey targeted inside the top one receives Escape again. Before, the dialog underneath also counted, so the hotkey skipped Escape and the browser closed the top dialog instead.
+
+- [#232](https://github.com/TanStack/hotkeys/pull/232) [`846509d`](https://github.com/TanStack/hotkeys/commit/846509d2366c7c47a00b4f35eb6fdda8d3b43632) - A key press that the browser reports as `Unidentified` but with a usable `event.code` now fires hotkeys. Chrome on Linux Wayland reports Ctrl+Backquote this way, so ``Control+` `` and `Control+[Backquote]` never fired there. Such a press was treated as IME composition. It now counts as a normal key press: physical bindings match its code, and logical bindings fall back to its position as they do for dead keys, except on letter keys, which layouts such as AZERTY rearrange. `Unidentified` presses without a usable code, or with `keyCode` 229 as Android keyboards send while composing, are still ignored. The recorder records such a press by its code, and skips it in key mode.
+
 ## 0.24.0
 
 ### Minor Changes

@@ -17,7 +17,7 @@
     "@angular/platform-server": "^22.2.5",
     "@angular/router": "^22.2.5",
     "@angular/ssr": "^22.2.6",
-    "@tanstack/angular-hotkeys": "^0.21.1",
+    "@tanstack/angular-hotkeys": "^0.21.2",
     "express": "^5.3.0",
     "rxjs": "~7.8.2",
     "tslib": "^2.9.1"
