@@ -1,5 +1,12 @@
 # @tanstack/hotkeys-devtools
 
+## 1.9.1
+
+### Patch Changes
+
+- Updated dependencies [[`32727ea`](https://github.com/TanStack/hotkeys/commit/32727ea6b761671d6717cd9c8e4e7f78f514d98f)]:
+  - @tanstack/hotkeys@0.25.1
+
 ## 1.9.0
 
 ### Minor Changes
