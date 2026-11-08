@@ -10,6 +10,7 @@ import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
 } from '@tanstack/hotkeys/adapter'
+import { injectWrapCallback } from './_zone'
 import { injectHotkeysContext } from './hotkeys-provider'
 import type { AdapterHotkeyDefinition } from '@tanstack/hotkeys/adapter'
 import type {
@@ -53,6 +54,7 @@ export function injectHotkeys(
 ): void {
   const context = injectHotkeysContext()
   const zone = inject(NgZone)
+  const wrapCallback = injectWrapCallback()
   const bindings = createHotkeyBindings()
   inject(DestroyRef).onDestroy(() => bindings.destroy())
 
@@ -74,10 +76,10 @@ export function injectHotkeys(
         },
       },
     )
-    // Callbacks run in the zone, so their changes update the view.
+    // Callbacks run in the zone and mark the component for check, so their
+    // changes update the view.
     for (const definition of definitions) {
-      const callback = definition.callback
-      definition.callback = (...args) => zone.run(callback, null, args)
+      definition.callback = wrapCallback(definition.callback)
     }
     // Listeners attached outside the zone don't run change detection on
     // every keystroke.

@@ -513,6 +513,13 @@ skills:
         source: src/injectHotkeys.ts
         priority: MEDIUM
         status: active
+      - mistake: Changing plain fields from hotkeys in a root service
+        mechanism: Callbacks mark the registering component for check; a root service has no component, so OnPush and zoneless views don't refresh.
+        wrong_pattern: "@Injectable({ providedIn: 'root' }) class Shortcuts { open = false; constructor() { injectHotkey('Mod+K', () => (this.open = true)) } }"
+        correct_pattern: "readonly open = signal(false); injectHotkey('Mod+K', () => this.open.set(true))"
+        source: src/_zone.ts
+        priority: MEDIUM
+        status: active
   - name: lit-hotkeys
     slug: lit-hotkeys
     domain: framework-bindings
