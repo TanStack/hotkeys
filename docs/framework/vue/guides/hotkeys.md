@@ -332,7 +332,27 @@ useHotkey('Escape', () => closePanel(), { target: panel })
 </template>
 ```
 
-A `null` target waits until the element is mounted.
+A target that is `null` or `undefined` waits until the element is mounted. Only an omitted `target` listens on `document`, so a wrapper that forwards an unset `target` waits too. Set `target: document` to choose the document explicitly.
+
+A template ref on a component listens on the component's root element:
+
+```vue
+<script setup lang="ts">
+import { useTemplateRef } from 'vue'
+import { useHotkey } from '@tanstack/vue-hotkeys'
+import PanelCard from './PanelCard.vue'
+
+const card = useTemplateRef<InstanceType<typeof PanelCard>>('card')
+
+useHotkey('Escape', () => closePanel(), { target: card })
+</script>
+
+<template>
+  <PanelCard ref="card" tabindex="0" />
+</template>
+```
+
+The hotkey reads the root element when the ref is set and doesn't follow later changes inside the component. A component whose template has more than one root node, or only text, has no root element, so its hotkey registers nothing. A root element that the component adds or replaces later, such as one behind `v-if`, isn't picked up. Put the ref on an element instead.
 
 > [!NOTE]
 > An element receives key presses only while it, or something inside it, has focus. Give it a `tabindex` if it isn't focusable already.

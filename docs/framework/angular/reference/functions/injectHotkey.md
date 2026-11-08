@@ -15,7 +15,7 @@ function injectHotkey<T>(
 ): void;
 ```
 
-Defined in: [injectHotkey.ts:77](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L77)
+Defined in: [injectHotkey.ts:78](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L78)
 
 Angular inject-based API for registering a hotkey: a chord such as
 `'Mod+S'`, a sequence such as `['G', 'G']`, or an app hotkey from
@@ -75,7 +75,7 @@ function injectHotkey<T>(
 ): void;
 ```
 
-Defined in: [injectHotkey.ts:82](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L82)
+Defined in: [injectHotkey.ts:83](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L83)
 
 Angular inject-based API for registering a hotkey: a chord such as
 `'Mod+S'`, a sequence such as `['G', 'G']`, or an app hotkey from

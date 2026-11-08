@@ -18,7 +18,7 @@ Options merge in this order: provider defaults, app hotkey declaration,
 commonOptions, per-hotkey options. Each option applies only to the kinds
 that support it. Unbound app hotkeys, empty sequences, and `undefined`,
 `null`, or `''` hotkeys register nothing.
-A `null` target skips registration until it is set.
+A `null` or `undefined` target skips registration until it is set.
 
 ## Parameters
 

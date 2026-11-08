@@ -30,7 +30,10 @@ export interface AlpineHotkeyState<T> {
   readonly value: T
 }
 
-/** The element to listen on. A `null` target skips registration until it is set. */
+/**
+ * The element to listen on. A `null` or `undefined` target skips registration
+ * until it is set. Omit `target` for the document.
+ */
 export type AlpineHotkeyTarget = Target | null
 
 /** One hotkey for `createHotkeys`: a chord, a sequence, or an app hotkey. */

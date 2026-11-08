@@ -49,8 +49,10 @@ export function useHotkeys(
           appHotkeysStore,
           defaults: context?.defaultOptions.hotkey,
           commonOptions,
-          // A null target skips registration until it is set.
-          resolveTarget: (target) => target,
+          // Reads a ref object after each render. An unset target skips
+          // registration until it is set.
+          resolveTarget: (target) =>
+            target && 'current' in target ? target.current : target,
         }),
       )
     },

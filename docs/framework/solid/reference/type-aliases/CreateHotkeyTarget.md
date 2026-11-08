@@ -11,6 +11,6 @@ type CreateHotkeyTarget = Target | null;
 
 Defined in: [createHotkey.ts:23](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/createHotkey.ts#L23)
 
-The element to listen on. A `null` target skips registration, so pass an
-accessor such as `() => ({ target: element() })` for elements that attach
-after mount.
+The element to listen on. A `null` or `undefined` target skips
+registration, so pass an accessor such as `() => ({ target: element() })`
+for elements that attach after mount. Omit `target` for the document.

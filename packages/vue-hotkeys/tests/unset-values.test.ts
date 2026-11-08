@@ -1,7 +1,14 @@
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
 import { mount } from '@vue/test-utils'
 import { afterEach, expect, it, vi } from 'vitest'
-import { defineComponent, h, nextTick, ref } from 'vue'
+import {
+  Fragment,
+  defineComponent,
+  h,
+  nextTick,
+  ref,
+  useTemplateRef,
+} from 'vue'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import { useHotkey } from '../src/useHotkey'
 import { useHotkeyHint } from '../src/useHotkeyHint'
@@ -116,5 +123,109 @@ it('options forwarded as undefined keep the provider defaults', () => {
     }),
   )
   expect(pressCtrlS().defaultPrevented).toBe(false)
+  wrapper.unmount()
+})
+
+const pressIn = (target: EventTarget) =>
+  target.dispatchEvent(
+    new KeyboardEvent('keydown', { key: 'k', bubbles: true }),
+  )
+const registeredTargets = () =>
+  [...getHotkeyManager().registrations.state.values()].map(
+    (registration) => registration.target,
+  )
+
+it('a ref target that is still undefined waits, then registers on its element', async () => {
+  const onRun = vi.fn()
+  const visible = ref(false)
+  const panel = ref<HTMLElement>()
+  const wrapper = mount(
+    defineComponent({
+      setup() {
+        useHotkey('K', onRun, { target: panel })
+        return () =>
+          visible.value ? h('div', { ref: panel, tabindex: 0 }) : null
+      },
+    }),
+    { attachTo: document.body },
+  )
+  expect(registrationCount()).toBe(0)
+  press()
+  expect(onRun).not.toHaveBeenCalled()
+  visible.value = true
+  await nextTick()
+  await nextTick()
+  expect(registeredTargets()).toEqual([panel.value])
+  pressIn(panel.value!)
+  expect(onRun).toHaveBeenCalledOnce()
+  wrapper.unmount()
+})
+
+const Child = defineComponent({
+  setup: () => () => h('div', { tabindex: 0, class: 'child' }),
+})
+
+it('a component ref target listens on the component root element', async () => {
+  const onRun = vi.fn()
+  const child = ref<InstanceType<typeof Child> | null>(null)
+  const wrapper = mount(
+    defineComponent({
+      setup() {
+        useHotkey('K', onRun, { target: child })
+        return () => h('main', [h(Child, { ref: child }), h('button')])
+      },
+    }),
+    { attachTo: document.body },
+  )
+  await nextTick()
+  const root = wrapper.find('.child').element
+  expect(registeredTargets()).toEqual([root])
+  pressIn(wrapper.find('button').element)
+  press()
+  expect(onRun).not.toHaveBeenCalled()
+  pressIn(root)
+  expect(onRun).toHaveBeenCalledOnce()
+  wrapper.unmount()
+})
+
+it('a component template ref works as a target', async () => {
+  const onRun = vi.fn()
+  const wrapper = mount(
+    defineComponent({
+      setup() {
+        const child = useTemplateRef<InstanceType<typeof Child>>('child')
+        useHotkey('K', onRun, { target: child })
+        return () => h(Child, { ref: 'child' })
+      },
+    }),
+    { attachTo: document.body },
+  )
+  await nextTick()
+  const root = wrapper.find('.child').element
+  expect(registeredTargets()).toEqual([root])
+  pressIn(root)
+  expect(onRun).toHaveBeenCalledOnce()
+  wrapper.unmount()
+})
+
+it('a component with a fragment root registers nothing and does not throw', async () => {
+  const errors: Array<unknown> = []
+  const FragmentChild = defineComponent({
+    setup: () => () => h(Fragment, [h('span'), h('span')]),
+  })
+  const child = ref<InstanceType<typeof FragmentChild> | null>(null)
+  const wrapper = mount(
+    defineComponent({
+      setup() {
+        useHotkey('K', () => {}, { target: child })
+        return () => h(FragmentChild, { ref: child })
+      },
+    }),
+    { global: { config: { errorHandler: (error) => errors.push(error) } } },
+  )
+  await nextTick()
+  expect(child.value).not.toBeNull()
+  expect(errors).toEqual([])
+  expect(registrationCount()).toBe(0)
   wrapper.unmount()
 })

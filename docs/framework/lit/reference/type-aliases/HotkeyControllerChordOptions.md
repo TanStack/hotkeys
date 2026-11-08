@@ -9,6 +9,6 @@ title: HotkeyControllerChordOptions
 type HotkeyControllerChordOptions = AdapterChordOptions<HotkeyControllerTarget>;
 ```
 
-Defined in: [controllers/hotkey.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L31)
+Defined in: [controllers/hotkey.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L34)
 
 Options for a chord such as `'Mod+S'`.
