@@ -33,9 +33,11 @@ function fieldCounter(changeDetection: ChangeDetectionStrategy) {
       injectHotkey('K', () => this.count++)
     }
   }
-  Component({ selector: 'app-counter', template: '{{ count }}', changeDetection })(
-    FieldCounter,
-  )
+  Component({
+    selector: 'app-counter',
+    template: '{{ count }}',
+    changeDetection,
+  })(FieldCounter)
   return FieldCounter
 }
 

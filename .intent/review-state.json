@@ -26,24 +26,28 @@
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "927cb913983b72ff7a6f7cdedd049bdee5429ebed51db870177c20f4ef119179",
+      "fingerprint": "983bcaaaec176b6a088dd510641a33654fb00d6781d25710037339b1699135ed",
       "snapshot": {
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
-        "docs/framework/angular/quick-start.md": "2eb59bbc55c4845b7d1176becd127d8bc449e88ee93ee52c4cb28df799339ac0",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "d3c806c6d52abe338dfc11a8e7453b93febfa2dbb1767730ec2af436e16f66b8",
+        "docs/framework/angular/quick-start.md": "9d94e6ea2395162c76e835cb2e19e202f6239c5a18d4d0e8f003aa29a14efc7f",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "34987efaf09ac56759665fba997999c3d2c9fc5049fee1145504e004db5a6239",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "62debc1f800b07a1a82f879aee2ea37c63aaff22d1c80f9c1a5320388e6d00b5",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "03ea85098b0ed95e323e8d1e35b61b2683b7bc2d68f67e56e15ce2da92177a6f",
-        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "5ea65c992dc0bce0fcaf06f2c143080e1b65be788961cb8f23f6ae91e8885311",
-        "packages/angular-hotkeys/src/injectHotkeys.ts": "25f100bcc3bf1deb60b9c13a62ba7201b85d8d317be93ba244d9b2f85274bb18"
+        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "f6333a571d6726b76eb7c183cf25a777f49615eaca0331a49d91b5b21cc704cd",
+        "packages/angular-hotkeys/src/injectHotkeys.ts": "5f93f900d7c5b99d3582786c89c0e9341d3845e1ab576cb007072d575233192d"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
-      "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
+      "outcome": "updated",
+      "reason": "Callbacks from injectHotkeys and injectHotkeyRecorder now mark the registering component for check, so plain fields render in OnPush and zoneless apps. Existing guidance stays accurate; added one pitfall: a root service has no component to mark, so its hotkeys should change signals.",
       "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"
+        "packages/angular-hotkeys/src/_zone.ts",
+        "packages/angular-hotkeys/tests/change-detection.test.ts",
+        "packages/angular-hotkeys/tests/zone.test.ts",
+        "intent validate packages/angular-hotkeys/skills: passed",
+        "pnpm vitest run in packages/angular-hotkeys: 11 files, 64 tests pass (zone/zoneless x Default/OnPush x field/signal, recorder, root service, unmatched keys)",
+        "Not run: fresh-consumer session"
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
@@ -291,15 +295,15 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "819cbe227c44ba3dfd9afd7f8c257679d97dd987d4f44d56bdb31c6396e264f6",
+      "fingerprint": "720060cb4c4cc10e8103e5035f4a542a28c48fb0eaf43d08061f935a11c9fc83",
       "snapshot": {
-        "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
-        "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
+        "_artifacts/domain_map.yaml": "252e4ecb04e4ac121cd8d74ee7923a8ffbec452f7bed2cdedc91ee86bc373a7b",
+        "_artifacts/skill_spec.md": "d3c1baed8637e6ac52aa031daaed81192239fd22d0c4c93425166d1f6ac668fb",
         "_artifacts/skill_tree.yaml": "bff31ee525c55a3e572083903c5b8deb444cd850845ae2dc1e4b886ce2236a12",
         "docs/framework/alpine/guides/app-hotkeys.md": "cdefefaa71aa9c36da99d314ab0279aa791dcf651bb1fd4cebf7263ba661078a",
         "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
-        "docs/framework/angular/quick-start.md": "2eb59bbc55c4845b7d1176becd127d8bc449e88ee93ee52c4cb28df799339ac0",
+        "docs/framework/angular/quick-start.md": "9d94e6ea2395162c76e835cb2e19e202f6239c5a18d4d0e8f003aa29a14efc7f",
         "docs/framework/ember/guides/app-hotkeys.md": "c7c52789e2c869e773cb14b25f8a1dc8e5533569211bac45b0f124eb7c260695",
         "docs/framework/ember/quick-start.md": "b68bb08e413da376299f10925ece54685dcccfbeea98af088f1c58b3c5456f37",
         "docs/framework/lit/guides/app-hotkeys.md": "b001df84eb320a4af7759ab163f837bac0fe3b36014b4b5de9366102073af97b",
@@ -331,13 +335,13 @@
         "packages/alpine-hotkeys/src/hotkeyRecorderPlugin.ts": "8ff86447e513f47002c49ed9f60269d485b0cd65b87277bb52cf2d8286ddbd36",
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "5b2b94b41d520f3beb60d2ceb15081799873c84c0ff244289d9b3698168c0ead",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "d3c806c6d52abe338dfc11a8e7453b93febfa2dbb1767730ec2af436e16f66b8",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "34987efaf09ac56759665fba997999c3d2c9fc5049fee1145504e004db5a6239",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "62debc1f800b07a1a82f879aee2ea37c63aaff22d1c80f9c1a5320388e6d00b5",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "03ea85098b0ed95e323e8d1e35b61b2683b7bc2d68f67e56e15ce2da92177a6f",
-        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "5ea65c992dc0bce0fcaf06f2c143080e1b65be788961cb8f23f6ae91e8885311",
-        "packages/angular-hotkeys/src/injectHotkeys.ts": "25f100bcc3bf1deb60b9c13a62ba7201b85d8d317be93ba244d9b2f85274bb18",
+        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "f6333a571d6726b76eb7c183cf25a777f49615eaca0331a49d91b5b21cc704cd",
+        "packages/angular-hotkeys/src/injectHotkeys.ts": "5f93f900d7c5b99d3582786c89c0e9341d3845e1ab576cb007072d575233192d",
         "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "d2c51c3efe9a55f605f643f657f6da6d46e3b00acaf879f95acdc3d4ade8fabb",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "6bcb35cd5de4fc7c87f1dba3f7952998d8c79db0add0af2fc2d3dfc379d0df6d",
@@ -423,10 +427,14 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "b3e8f6c870734a967881c5b155ddced5c737d5162e6f44e5c095bd2be81fd0e6"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
-      "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
-      "evidence": ["packages/hotkeys/skills/app-hotkeys/SKILL.md", "_artifacts"]
+      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
+      "outcome": "updated",
+      "reason": "domain_map.yaml and skill_spec.md list the new Angular root-service failure mode, and skill_spec.md records revision 3. skill_tree.yaml is accurate: the skill's sources, description, and references are unchanged.",
+      "evidence": [
+        "_artifacts/domain_map.yaml",
+        "_artifacts/skill_spec.md",
+        "_artifacts/skill_tree.yaml"
+      ]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -6650,24 +6658,30 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeyRecorder.md": {
-      "fingerprint": "0b4543ebe2e4ed7fe47d88c16fe19c2a6175a22ee378b1860a1f538d4135b408",
+      "fingerprint": "4db53f95449ad317219b6be5aafb4de671a4caed2970572f4b964c905c15f34f",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectHotkeyRecorder.md": "217bc9494c74a2f4a1b04c988e7a503de6b07344d3364f71cb1799b823848442"
+        "docs/framework/angular/reference/functions/injectHotkeyRecorder.md": "e3e969350cfb9d543ffdaf853ad65b1a76330a71eb9037f1a81e524f2070e1c8"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Regenerated TypeDoc page: only Defined-in line numbers shift because injectHotkeys.ts and injectHotkeyRecorder.ts gained an import line. No API or JSDoc change.",
+      "evidence": [
+        "docs/framework/angular/reference/functions/injectHotkeyRecorder.md",
+        "git diff origin/main: only Defined-in lines change"
+      ]
     },
     "source:docs/framework/angular/reference/interfaces/AngularHotkeyRecorder.md": {
-      "fingerprint": "5f3bf5da4c47c085bdbfa0af937cd414394ba957fad093415bcb1cf0fd546eca",
+      "fingerprint": "3d32cf453d7d9eef067d9e14d669c4283a083325354edf3e63818250cbd9316d",
       "snapshot": {
-        "docs/framework/angular/reference/interfaces/AngularHotkeyRecorder.md": "360938c439d0109f6bd687e2a864db722fcb2944e27d7e337aa104f197d7c3f6"
+        "docs/framework/angular/reference/interfaces/AngularHotkeyRecorder.md": "56ff12083d714db30206f94d9c30fe0eeeecb5985d74b80c9762b98d02007556"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Regenerated TypeDoc page: only Defined-in line numbers shift because injectHotkeys.ts and injectHotkeyRecorder.ts gained an import line. No API or JSDoc change.",
+      "evidence": [
+        "docs/framework/angular/reference/interfaces/AngularHotkeyRecorder.md",
+        "git diff origin/main: only Defined-in lines change"
+      ]
     },
     "source:docs/framework/ember/reference/classes/onHotkey.md": {
       "fingerprint": "ffe22af1e14096b340219b0cfbc50e6ea066ab28e7da6f0b00fcd71ee73119b5",
@@ -7328,14 +7342,17 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeys.md": {
-      "fingerprint": "8a7e13ced27e711f9f0ce8091644deb0e7341139e393b13a924886b56b8edba1",
+      "fingerprint": "4d4a59298eb522fd1de5f35561ec94c2f8daede94ea346ec5f9883fb0371264e",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectHotkeys.md": "7012f3466d4b9213dfb45608b41c4c9d8d38de7fc10a71aabc3bcdb6fc8fb694"
+        "docs/framework/angular/reference/functions/injectHotkeys.md": "19cf898e707bf7d89136e4e88e7e66b73bdb38bb4e80ad346e9789e329b2938e"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Regenerated TypeDoc page: only Defined-in line numbers shift because injectHotkeys.ts and injectHotkeyRecorder.ts gained an import line. No API or JSDoc change.",
+      "evidence": [
+        "docs/framework/angular/reference/functions/injectHotkeys.md",
+        "git diff origin/main: only Defined-in lines change"
+      ]
     },
     "source:docs/framework/angular/reference/functions/injectKeyHold.md": {
       "fingerprint": "d5ae91fc8ee72c96d09e422544f28432b4b856095ea9f16d24d86851471ee52d",
@@ -7378,14 +7395,17 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/type-aliases/InjectHotkeyDefinition.md": {
-      "fingerprint": "e703224526223090b625fc922fe882b7320992bdea9fe27f0185a5d05673ee87",
+      "fingerprint": "f57390c002076f00e297157be154fcb8344ab0fcd10295011604f6ea86ba161c",
       "snapshot": {
-        "docs/framework/angular/reference/type-aliases/InjectHotkeyDefinition.md": "898d58d2d3db9bfe218bff7e04ab94a8f204b287c83d8d09f3fb214fecd4c7f4"
+        "docs/framework/angular/reference/type-aliases/InjectHotkeyDefinition.md": "2e477ea7dee31ac9915ec0ac70b0eebac7c40871e208467cca18acd12681e86d"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Regenerated TypeDoc page: only Defined-in line numbers shift because injectHotkeys.ts and injectHotkeyRecorder.ts gained an import line. No API or JSDoc change.",
+      "evidence": [
+        "docs/framework/angular/reference/type-aliases/InjectHotkeyDefinition.md",
+        "git diff origin/main: only Defined-in lines change"
+      ]
     },
     "source:docs/framework/angular/reference/type-aliases/InjectHotkeyOptions.md": {
       "fingerprint": "9432c46de2783d1ee3032734a0e047bd20d7049fd0e093aaeec9bb762e105229",
@@ -7564,14 +7584,17 @@
       "evidence": ["packages/alpine-hotkeys/tests/reactive-options.test.ts"]
     },
     "source:packages/angular-hotkeys/src/_zone.ts": {
-      "fingerprint": "32f40b85f7f4bcdf188e088e061cf4d99c49ed6450147a3dcbb1ad883fa79d27",
+      "fingerprint": "7d3b304c52cfb1442a2fb2c600435fef77cf4cf5048014670a186e37b03e2396",
       "snapshot": {
-        "packages/angular-hotkeys/src/_zone.ts": "f19d61b093d6f0a20a0fc12c3dc95319d3df7317fa2cca8b9471dd80af7a9ea1"
+        "packages/angular-hotkeys/src/_zone.ts": "8232fa6d7943510265613962774a0f2f25d258ce1485e4fee12b20c27b653d14"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
-      "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
+      "outcome": "updated",
+      "reason": "New internal injectWrapCallback helper runs callbacks in the zone and marks the component for check. The angular-hotkeys skill was updated in this review for the root-service case.",
+      "evidence": [
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md",
+        "pnpm vitest run in packages/angular-hotkeys: 11 files, 64 tests pass (zone/zoneless x Default/OnPush x field/signal, recorder, root service, unmatched keys)"
+      ]
     },
     "source:packages/angular-hotkeys/tests/targets.test.ts": {
       "fingerprint": "25343857852fb8aa0acf481e9c83ff623b4c959dc0b84acd5d85088fc2168728",
@@ -7584,14 +7607,17 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/angular-hotkeys/tests/zone.test.ts": {
-      "fingerprint": "069ab777d9760e76595ce82d857763ccd1d817c6410ae9c68ed0da08dcf541d9",
+      "fingerprint": "cf397f11ec90d19e95ffe4b076b5498d397387118ec2c726861b00d447a127ba",
       "snapshot": {
-        "packages/angular-hotkeys/tests/zone.test.ts": "eb4b3b5337bdfefc34bf34edb781121b0b2f2530c445f86a3d8fc7f2ac480e82"
+        "packages/angular-hotkeys/tests/zone.test.ts": "57fa41bcee57cf476645026ae3c1d162279956d6e9c9652cff82917c42c8b849"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
       "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Test-only change covering the change detection fix; tests aren't skill guidance.",
+      "evidence": [
+        "packages/angular-hotkeys/tests/zone.test.ts",
+        "pnpm vitest run in packages/angular-hotkeys: 11 files, 64 tests pass (zone/zoneless x Default/OnPush x field/signal, recorder, root service, unmatched keys)"
+      ]
     },
     "source:packages/hotkeys/src/index.ts": {
       "fingerprint": "0a938f7cd7fd68c1ac2460d1090d6756b4164cbb32dcb3000d98a39f1d7dc9ea",
@@ -17587,6 +17613,19 @@
       "outcome": "no-change",
       "reason": "E2E test infrastructure only: layout fixture probes real key input before each case, and the Docker image matches @playwright/test 1.65.0. No library behavior or guidance changes.",
       "evidence": ["e2e/support/fixtures.ts"]
+    },
+    "source:packages/angular-hotkeys/tests/change-detection.test.ts": {
+      "fingerprint": "6329e5035804085d392513c22015b38cc079ce64466c694d4fa44834f464977e",
+      "snapshot": {
+        "packages/angular-hotkeys/tests/change-detection.test.ts": "6ca89c37cbf35fb1042e9332ba9612b9284c0e09980b1fbf6f324cd6b21fdbe8"
+      },
+      "head": "172b721fe97f85855a4174e94d705f3e7327b52f",
+      "outcome": "no-change",
+      "reason": "Test-only change covering the change detection fix (reformatted by oxfmt); tests aren't skill guidance.",
+      "evidence": [
+        "packages/angular-hotkeys/tests/change-detection.test.ts",
+        "pnpm vitest run in packages/angular-hotkeys: 11 files, 64 tests pass"
+      ]
     }
   }
 }
