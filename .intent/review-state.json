@@ -17580,13 +17580,13 @@
       "evidence": ["packages/preact-hotkeys-devtools/src/production.ts"]
     },
     "source:packages/preact-hotkeys-devtools/tests/production.test.ts": {
-      "fingerprint": "19e0964d7675941af04ba61ce4f44870ee3244f593fe0f4ffc3dc6a39aed4ec3",
+      "fingerprint": "44e65108bbb514d0877596b55b9d2922b1df68cf287f444e9c7f777c58c57a60",
       "snapshot": {
-        "packages/preact-hotkeys-devtools/tests/production.test.ts": "64e4288837b01a83fd345d4d7d40f729ed85736a5bb7efe76f99aa0d8aa62a93"
+        "packages/preact-hotkeys-devtools/tests/production.test.ts": "eb70a2c29f77fb4c26247e9221d74a87021b3ec776bb0df0dee04793fc6896e6"
       },
-      "head": "b50789481979bab69a44ce57138643760e3896ba",
+      "head": "13f7c81b9e2bc3d86ab137f79c9e58314323739e",
       "outcome": "out-of-scope",
-      "reason": "Devtools adapter tests: panel tests mock the /production core, and new production tests check which core each entry mounts under NODE_ENV production and development. No skill covers devtools tests.",
+      "reason": "Devtools adapter tests: production tests check which core each entry mounts under NODE_ENV production and development; the entry name is now typed. No skill covers devtools tests.",
       "evidence": ["packages/preact-hotkeys-devtools/tests/production.test.ts"]
     },
     "source:packages/react-hotkeys-devtools/tests/panel.test.ts": {
@@ -17600,13 +17600,13 @@
       "evidence": ["packages/react-hotkeys-devtools/tests/panel.test.ts"]
     },
     "source:packages/react-hotkeys-devtools/tests/production.test.ts": {
-      "fingerprint": "1bbfaf88a5b4bc2a4b00b8782cdcef92d17a2ef2768f57ac34f247a342eca4f6",
+      "fingerprint": "ca9f7f5f31b8ca337c1aa132d1c76a1a4fd33b50e4b680b807cd2ea42f25220d",
       "snapshot": {
-        "packages/react-hotkeys-devtools/tests/production.test.ts": "237b7feccade5671a76a2d75aa1a1c74e95e1bb8a84bc9a53cf8c49a082cf493"
+        "packages/react-hotkeys-devtools/tests/production.test.ts": "31102dea36c9a3534a8f372f03e43d5cff6786276f20b21abab2d715a48909b7"
       },
-      "head": "b50789481979bab69a44ce57138643760e3896ba",
+      "head": "13f7c81b9e2bc3d86ab137f79c9e58314323739e",
       "outcome": "out-of-scope",
-      "reason": "Devtools adapter tests: panel tests mock the /production core, and new production tests check which core each entry mounts under NODE_ENV production and development. No skill covers devtools tests.",
+      "reason": "Devtools adapter tests: production tests check which core each entry mounts under NODE_ENV production and development; the entry name is now typed. No skill covers devtools tests.",
       "evidence": ["packages/react-hotkeys-devtools/tests/production.test.ts"]
     },
     "source:packages/solid-hotkeys-devtools/tests/panel.test.ts": {
@@ -17620,23 +17620,23 @@
       "evidence": ["packages/solid-hotkeys-devtools/tests/panel.test.ts"]
     },
     "source:packages/solid-hotkeys-devtools/tests/production.test.ts": {
-      "fingerprint": "4a5bb8270d767ec4cf3f1251b7c47626861eba45b6deae0b9dea4d500b1c2c41",
+      "fingerprint": "510ae7fe580533c715ce9902f76353c66e97fe56f5cc2f137af5b4231934141c",
       "snapshot": {
-        "packages/solid-hotkeys-devtools/tests/production.test.ts": "02c1f5c4ce57246bc4da776a2b7a6f9e5486ecc8a14a70b8a39e38dc8855cf0b"
+        "packages/solid-hotkeys-devtools/tests/production.test.ts": "d182dc46da6e280685f1f98156f9cb6d55a0e590fd88028fae74b4c5b4537f43"
       },
-      "head": "b50789481979bab69a44ce57138643760e3896ba",
+      "head": "13f7c81b9e2bc3d86ab137f79c9e58314323739e",
       "outcome": "out-of-scope",
-      "reason": "Devtools adapter tests: panel tests mock the /production core, and new production tests check which core each entry mounts under NODE_ENV production and development. No skill covers devtools tests.",
+      "reason": "Devtools adapter tests: production tests check which core each entry mounts under NODE_ENV production and development; the entry name is now typed. No skill covers devtools tests.",
       "evidence": ["packages/solid-hotkeys-devtools/tests/production.test.ts"]
     },
     "source:packages/vue-hotkeys-devtools/tests/production.test.ts": {
-      "fingerprint": "4adcf8a23af604dfde9896136617b56c79913fc8b6d42a98e1111bdf2f12dd3a",
+      "fingerprint": "025d77e46f5a8f7767b0d93e6a1a53a90bbfcdea84f9a4e6032e090ca7d8a727",
       "snapshot": {
-        "packages/vue-hotkeys-devtools/tests/production.test.ts": "1c25a90d9b2d04867831d5672b90b1ed43d086ebc76ff1a6a182663b34ab60bc"
+        "packages/vue-hotkeys-devtools/tests/production.test.ts": "b13e6271627df258b9273d90c0ff6211b33bd3213f7adf85f0a20c1aa04436d7"
       },
-      "head": "b50789481979bab69a44ce57138643760e3896ba",
+      "head": "13f7c81b9e2bc3d86ab137f79c9e58314323739e",
       "outcome": "out-of-scope",
-      "reason": "Devtools adapter tests: panel tests mock the /production core, and new production tests check which core each entry mounts under NODE_ENV production and development. No skill covers devtools tests.",
+      "reason": "Devtools adapter tests: production tests check which core each entry mounts under NODE_ENV production and development; the entry name is now typed. No skill covers devtools tests.",
       "evidence": ["packages/vue-hotkeys-devtools/tests/production.test.ts"]
     }
   }
