@@ -23,8 +23,8 @@ component with no hotkeys of its own calls `injectHotkeysContext()` to
 activate its scope.
 
 Put a scoped provider in a component's `providers`, not `Route.providers`.
-The router keeps a route's injector after navigation unless the app uses
-`withAutoCleanupInjectors()`, so the scope would stay active.
+By default, the router keeps a route's injector after navigation, so the
+scope would stay active.
 
 ## Parameters
 

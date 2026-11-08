@@ -127,7 +127,7 @@ export class EditPage {
 }
 ```
 
-If the scope must stay in `Route.providers`, add [`withAutoCleanupInjectors()`](https://angular.dev/api/router/withAutoCleanupInjectors) to `provideRouter`. The router then destroys a route's injector when its page leaves, and the scope ends with it.
+If the scope must stay in `Route.providers`, and your app uses Angular 22.2 or later, add [`withAutoCleanupInjectors()`](https://angular.dev/api/router/withAutoCleanupInjectors) to `provideRouter`. The router then destroys a route's injector when its page leaves, and the scope ends with it. This works with the default route reuse strategy. A custom `RouteReuseStrategy` must return `true` from `shouldDestroyInjector`, and the router keeps the injectors of pages it stores.
 
 ## Scopes and targets
 
