@@ -4214,13 +4214,13 @@
       "evidence": ["e2e/layouts/layouts.spec.ts"]
     },
     "source:e2e/support/x11.ts": {
-      "fingerprint": "8027673fe570a431636e3140e971acc14fe40265c47ece45f7ec4eabced12d3f",
+      "fingerprint": "ca063723def3419bfbebd8bf1ce8bf2be1679a2969ad6510e06ce6e96e7483a4",
       "snapshot": {
-        "e2e/support/x11.ts": "31994400560bd70a88e0a7f628d26e6224616724a08bb69ad6263d71cf55ba2d"
+        "e2e/support/x11.ts": "dff9cae03a461282a571f520a1b01b3dcc4d97f7b7bed0865ac8f25897690d67"
       },
-      "head": "210b3fb5577b3e7381a7c74d70e87cf395ae6682",
-      "outcome": "out-of-scope",
-      "reason": "Matcher source and tests; the guidance impact is reviewed on the hotkeys-core skill item.",
+      "head": "257929f0da34cecc64d5987127147b99e584f4e2",
+      "outcome": "no-change",
+      "reason": "E2E test infrastructure only: layout fixture probes real key input before each case, and the Docker image matches @playwright/test 1.65.0. No library behavior or guidance changes.",
       "evidence": ["e2e/support/x11.ts"]
     },
     "source:packages/hotkeys/src/_match.ts": {
@@ -13274,13 +13274,13 @@
       ]
     },
     "source:e2e/support/layout-fixtures.ts": {
-      "fingerprint": "04ac07fa3cce3ae940a1e99b0be7bb43ba227d6c090e1d6622a683a77c99bcaa",
+      "fingerprint": "f9b1f765118d44c6fa1a7aed0762cfa1fb726f78d0d08a1a10f3d0e14e0450a5",
       "snapshot": {
-        "e2e/support/layout-fixtures.ts": "77633e7a837cd30e02f4fb3795becbe492fa82556dc36dd164999931ee68e3bf"
+        "e2e/support/layout-fixtures.ts": "feec7e6a8fab37ae7f6347bfc8e65d03077cb308fa011cd88d88af814b754808"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "257929f0da34cecc64d5987127147b99e584f4e2",
       "outcome": "no-change",
-      "reason": "E2E workspace: oxfmt import sorting and line wrapping only; no behavior change.",
+      "reason": "E2E test infrastructure only: layout fixture probes real key input before each case, and the Docker image matches @playwright/test 1.65.0. No library behavior or guidance changes.",
       "evidence": ["e2e/support/layout-fixtures.ts"]
     },
     "source:eslint.config.js": {
@@ -17567,6 +17567,26 @@
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "packages/svelte-hotkeys/tests/AppHotkeysHarness.svelte"
       ]
+    },
+    "source:e2e/docker/Dockerfile": {
+      "fingerprint": "432d499e20a56547e892efb87b48a2731f58b9fb23f4a2a30f5b4ed671457a83",
+      "snapshot": {
+        "e2e/docker/Dockerfile": "7764d334910ac5dd9908be088b7d89dea97e9b5e1c5f76541963333bfc396a6f"
+      },
+      "head": "257929f0da34cecc64d5987127147b99e584f4e2",
+      "outcome": "no-change",
+      "reason": "E2E test infrastructure only: layout fixture probes real key input before each case, and the Docker image matches @playwright/test 1.65.0. No library behavior or guidance changes.",
+      "evidence": ["e2e/docker/Dockerfile"]
+    },
+    "source:e2e/support/fixtures.ts": {
+      "fingerprint": "79a05dce774d135c07d8aaa6e5b5495d9251af7317fa3b4a0304a7c4e45126da",
+      "snapshot": {
+        "e2e/support/fixtures.ts": "33c3c26eb52484e80c7e0875c4b4a89e9f3408ae766939482afb711f276fd310"
+      },
+      "head": "257929f0da34cecc64d5987127147b99e584f4e2",
+      "outcome": "no-change",
+      "reason": "E2E test infrastructure only: layout fixture probes real key input before each case, and the Docker image matches @playwright/test 1.65.0. No library behavior or guidance changes.",
+      "evidence": ["e2e/support/fixtures.ts"]
     }
   }
 }
