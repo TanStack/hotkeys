@@ -49,7 +49,7 @@ export function matchKeyboardEvent(
     return matched('key', implicitShift ? 2 : 3)
   }
 
-  if (!positionStandsIn(normalized)) return noMatch
+  if (!positionStandsIn(normalized, platform)) return noMatch
 
   // With AltGraph held, only a direct key match counts. Never fall back to
   // the physical key, which would turn AltGr+M (`µ`) into `M`.
@@ -83,28 +83,36 @@ export function matchKeyboardEvent(
  *   AZERTY rearrange. Chrome on Linux Wayland reports Ctrl+` this way.
  * - anything on the digit row, where AZERTY types `&` and `é` for 1 and 2
  * - ASCII symbols typed with Shift, such as `!` for Shift+1
+ * - Latin letters typed with Alt, such as macOS Option+A typing `å`
  * - Latin letters on punctuation keys with Control or Command, so German
  *   Cmd+ü still fires `Mod+[` (German types `[` with Option)
  *
  * A named key (`End` from a NumLock-off numpad), any other ASCII character,
  * or a Latin letter typed on its own is the key the user meant, wherever it
- * sits. AZERTY's `+` on the US `/` position is `+`, not `/`.
+ * sits. AZERTY's `+` on the US `/` position is `+`, not `/`. So is a Latin
+ * letter typed with Control+Alt on a Windows letter key: Windows treats
+ * Control+Alt as AltGr, so Polish Control+Alt+A types `ą`.
  */
-function positionStandsIn({
-  key,
-  code,
-  ctrl,
-  meta,
-  shift,
-  alt,
-}: ReturnType<typeof normalizeKeyboardEvent>): boolean {
+function positionStandsIn(
+  {
+    key,
+    code,
+    ctrl,
+    meta,
+    shift,
+    alt,
+  }: ReturnType<typeof normalizeKeyboardEvent>,
+  platform: 'mac' | 'windows' | 'linux',
+): boolean {
   if (key === 'Unidentified') return !code.startsWith('Key')
   if (key !== 'Dead' && !isPrintableKey(key)) return false
   if (code.startsWith('Digit')) return true
   if (isAsciiLetter(key)) return false
   if (/^[!-~]$/.test(key)) return shift
-  if (!isLatinLetter(key) || alt) return true
-  return (ctrl || meta) && !code.startsWith('Key')
+  if (!isLatinLetter(key)) return true
+  const letterKey = code.startsWith('Key')
+  if (alt && !(letterKey && ctrl && platform === 'windows')) return true
+  return (ctrl || meta) && !letterKey
 }
 
 /** Compares modifiers, excluding synthetic AltGr flags and optionally allowing Shift used to type a glyph. */
