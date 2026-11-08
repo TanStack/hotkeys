@@ -7316,14 +7316,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeys.md": {
-      "fingerprint": "f6da6da688e89c30769ccc76a4720414b64a8c6e3f8f15fe85ca6a9f91857ed3",
+      "fingerprint": "2785f29ab283e34701d587fb899b29c900af970cad2e7706c9760e2b3a7e95eb",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectHotkeys.md": "2c369e87a5a3d415dd9303b30c0fc86204428517ed2489cc4566eb5648dea73f"
+        "docs/framework/angular/reference/functions/injectHotkeys.md": "12971a92ba980d60c88f9a2af43a3b8c544687917f637c3f1b4064d2bebcc012"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "3885b80b25bccd95b9261bc9484fabe3f3432229",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Regenerated Angular injectHotkeys reference after merging main: only a Defined-in line number moved. No skill describes it.",
+      "evidence": [
+        "Changed: docs/framework/angular/reference/functions/injectHotkeys.md at 3885b80b25bccd95b9261bc9484fabe3f3432229"
+      ]
     },
     "source:docs/framework/angular/reference/functions/injectKeyHold.md": {
       "fingerprint": "d5ae91fc8ee72c96d09e422544f28432b4b856095ea9f16d24d86851471ee52d",
