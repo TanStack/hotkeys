@@ -37,6 +37,7 @@
   "types": "./dist/index.d.ts",
   "exports": {
     ".": "./dist/index.js",
+    "./production": "./dist/production.js",
     "./package.json": "./package.json"
   },
   "sideEffects": false,
