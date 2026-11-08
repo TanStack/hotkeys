@@ -115,7 +115,7 @@ The browser's `KeyboardLayoutMap` exists only in the browser, and it loads after
 The server doesn't know the user's platform. Without one, a label rendered on the server uses `'linux'`, so a Mac user gets `Ctrl+S` in the server's HTML and `⌘ S` once React hydrates, with a hydration mismatch. To render the right label from the start:
 
 1. Read the request's `User-Agent` header on the server, and pass `detectPlatform(userAgent)` as the provider's `platform`.
-2. Format labels with `useFormatForDisplay()` instead of `formatForDisplay`. `formatForDisplay` doesn't read the provider, so it ignores the platform from step 1.
+2. Format labels with `useFormatForDisplay()` instead of `formatForDisplay`. `formatForDisplay` doesn't read the provider, so it ignores the platform from step 1. A React Server Component can't call hooks, so pass the platform to `formatForDisplay` there instead. See [Next.js](#nextjs-app-router).
 
 ```tsx
 import { HotkeysProvider, detectPlatform } from '@tanstack/react-hotkeys'
