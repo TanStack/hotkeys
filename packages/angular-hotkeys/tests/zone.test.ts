@@ -2,10 +2,12 @@
 import 'zone.js'
 import {
   ApplicationRef,
+  ChangeDetectionStrategy,
+  Component,
   NgZone,
   provideZoneChangeDetection,
 } from '@angular/core'
-import { TestBed } from '@angular/core/testing'
+import { ComponentFixtureAutoDetect, TestBed } from '@angular/core/testing'
 import { HotkeyManager, KeyStateTracker } from '@tanstack/hotkeys'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { injectHeldKeys } from '../src/injectHeldKeys'
@@ -92,4 +94,54 @@ describe('zone.js apps', () => {
     expect(recorder.recordedHotkey()).not.toBeNull()
     expect(inZone).toEqual([true])
   })
+})
+
+describe('zone.js views', () => {
+  function counter(changeDetection: ChangeDetectionStrategy) {
+    class Counter {
+      count = 0
+      recorded = ''
+      recorder = injectHotkeyRecorder({
+        onRecord: (hotkey) => (this.recorded = hotkey),
+      })
+      constructor() {
+        injectHotkey('K', () => this.count++)
+      }
+    }
+    Component({
+      selector: 'app-counter',
+      template: '{{ count }} {{ recorded }}',
+      changeDetection,
+    })(Counter)
+    TestBed.configureTestingModule({
+      providers: [
+        provideZoneChangeDetection(),
+        { provide: ComponentFixtureAutoDetect, useValue: true },
+      ],
+    })
+    return TestBed.createComponent(Counter)
+  }
+
+  for (const [name, strategy] of [
+    ['Default', ChangeDetectionStrategy.Default],
+    ['OnPush', ChangeDetectionStrategy.OnPush],
+  ] as const) {
+    it(`updates a ${name} view when a callback changes a field`, async () => {
+      const fixture = counter(strategy)
+      await fixture.whenStable()
+      expect(fixture.nativeElement.textContent.trim()).toBe('0')
+      type('k', 'KeyK')
+      await fixture.whenStable()
+      expect(fixture.nativeElement.textContent.trim()).toBe('1')
+    })
+
+    it(`updates a ${name} view when onRecord changes a field`, async () => {
+      const fixture = counter(strategy)
+      await fixture.whenStable()
+      fixture.componentInstance.recorder.startRecording()
+      type('j', 'KeyJ')
+      await fixture.whenStable()
+      expect(fixture.nativeElement.textContent.trim()).toBe('0 [KeyJ]')
+    })
+  }
 })
