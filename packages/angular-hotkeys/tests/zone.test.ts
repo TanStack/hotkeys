@@ -123,7 +123,7 @@ describe('zone.js views', () => {
   }
 
   for (const [name, strategy] of [
-    ['Default', ChangeDetectionStrategy.Default],
+    ['Eager', ChangeDetectionStrategy.Eager],
     ['OnPush', ChangeDetectionStrategy.OnPush],
   ] as const) {
     it(`updates a ${name} view when a callback changes a field`, async () => {

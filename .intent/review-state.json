@@ -26,11 +26,11 @@
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "983bcaaaec176b6a088dd510641a33654fb00d6781d25710037339b1699135ed",
+      "fingerprint": "d7cb5b97d0c8948a5514de7acafc81f116dd42c57da3a7e2a2be3dee64aa6253",
       "snapshot": {
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
-        "docs/framework/angular/quick-start.md": "9d94e6ea2395162c76e835cb2e19e202f6239c5a18d4d0e8f003aa29a14efc7f",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "34987efaf09ac56759665fba997999c3d2c9fc5049fee1145504e004db5a6239",
+        "docs/framework/angular/quick-start.md": "25ae0b7755dd97c13360f630d9ebc1534119dd72298ae26de1ce9cc1bf90dfec",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "45902e01aeb2e2e2db042892f9fc408c0cf94fb44f361ed4cc54aae687535fe9",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "62debc1f800b07a1a82f879aee2ea37c63aaff22d1c80f9c1a5320388e6d00b5",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
@@ -38,15 +38,15 @@
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "f6333a571d6726b76eb7c183cf25a777f49615eaca0331a49d91b5b21cc704cd",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "5f93f900d7c5b99d3582786c89c0e9341d3845e1ab576cb007072d575233192d"
       },
-      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
+      "head": "b0b1c63235b066b92922a2b4f370ddefed059f86",
       "outcome": "updated",
-      "reason": "Callbacks from injectHotkeys and injectHotkeyRecorder now mark the registering component for check, so plain fields render in OnPush and zoneless apps. Existing guidance stays accurate; added one pitfall: a root service has no component to mark, so its hotkeys should change signals.",
+      "reason": "Callbacks from injectHotkeys and injectHotkeyRecorder now mark the registering component for check, so plain fields render in OnPush and zoneless apps. Existing guidance stays accurate; added one pitfall: a service outside any component (root or route-level) has no component to mark, so its hotkeys should change signals.",
       "evidence": [
         "packages/angular-hotkeys/src/_zone.ts",
         "packages/angular-hotkeys/tests/change-detection.test.ts",
         "packages/angular-hotkeys/tests/zone.test.ts",
         "intent validate packages/angular-hotkeys/skills: passed",
-        "pnpm vitest run in packages/angular-hotkeys: 11 files, 64 tests pass (zone/zoneless x Default/OnPush x field/signal, recorder, root service, unmatched keys)",
+        "pnpm vitest run in packages/angular-hotkeys: 11 files, 64 tests pass (zone/zoneless x Eager/OnPush x field/signal, recorder, root service, unmatched keys)",
         "Not run: fresh-consumer session"
       ]
     },
@@ -295,15 +295,15 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "720060cb4c4cc10e8103e5035f4a542a28c48fb0eaf43d08061f935a11c9fc83",
+      "fingerprint": "899df464081b0170c32f73cb901d8f4ae5245c75ffb519ad25328fea30269586",
       "snapshot": {
         "_artifacts/domain_map.yaml": "252e4ecb04e4ac121cd8d74ee7923a8ffbec452f7bed2cdedc91ee86bc373a7b",
-        "_artifacts/skill_spec.md": "d3c1baed8637e6ac52aa031daaed81192239fd22d0c4c93425166d1f6ac668fb",
+        "_artifacts/skill_spec.md": "90a0956bf71ae6c743acf9ca456e18aa73d93c6f6ee3306c730e6cf4faff09bc",
         "_artifacts/skill_tree.yaml": "bff31ee525c55a3e572083903c5b8deb444cd850845ae2dc1e4b886ce2236a12",
         "docs/framework/alpine/guides/app-hotkeys.md": "cdefefaa71aa9c36da99d314ab0279aa791dcf651bb1fd4cebf7263ba661078a",
         "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
-        "docs/framework/angular/quick-start.md": "9d94e6ea2395162c76e835cb2e19e202f6239c5a18d4d0e8f003aa29a14efc7f",
+        "docs/framework/angular/quick-start.md": "25ae0b7755dd97c13360f630d9ebc1534119dd72298ae26de1ce9cc1bf90dfec",
         "docs/framework/ember/guides/app-hotkeys.md": "c7c52789e2c869e773cb14b25f8a1dc8e5533569211bac45b0f124eb7c260695",
         "docs/framework/ember/quick-start.md": "b68bb08e413da376299f10925ece54685dcccfbeea98af088f1c58b3c5456f37",
         "docs/framework/lit/guides/app-hotkeys.md": "b001df84eb320a4af7759ab163f837bac0fe3b36014b4b5de9366102073af97b",
@@ -335,7 +335,7 @@
         "packages/alpine-hotkeys/src/hotkeyRecorderPlugin.ts": "8ff86447e513f47002c49ed9f60269d485b0cd65b87277bb52cf2d8286ddbd36",
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "5b2b94b41d520f3beb60d2ceb15081799873c84c0ff244289d9b3698168c0ead",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "34987efaf09ac56759665fba997999c3d2c9fc5049fee1145504e004db5a6239",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "45902e01aeb2e2e2db042892f9fc408c0cf94fb44f361ed4cc54aae687535fe9",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "62debc1f800b07a1a82f879aee2ea37c63aaff22d1c80f9c1a5320388e6d00b5",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
@@ -427,9 +427,9 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "b3e8f6c870734a967881c5b155ddced5c737d5162e6f44e5c095bd2be81fd0e6"
       },
-      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
+      "head": "b0b1c63235b066b92922a2b4f370ddefed059f86",
       "outcome": "updated",
-      "reason": "domain_map.yaml and skill_spec.md list the new Angular root-service failure mode, and skill_spec.md records revision 3. skill_tree.yaml is accurate: the skill's sources, description, and references are unchanged.",
+      "reason": "domain_map.yaml and skill_spec.md list the new Angular service-outside-a-component failure mode, and skill_spec.md records revision 3. skill_tree.yaml is accurate: the skill's sources, description, and references are unchanged.",
       "evidence": [
         "_artifacts/domain_map.yaml",
         "_artifacts/skill_spec.md",
@@ -7607,16 +7607,16 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/angular-hotkeys/tests/zone.test.ts": {
-      "fingerprint": "cf397f11ec90d19e95ffe4b076b5498d397387118ec2c726861b00d447a127ba",
+      "fingerprint": "4a577af406dfa1ed48faad86de1167be05e1b1f7d1b3fb3eedfe70a906cdfed5",
       "snapshot": {
-        "packages/angular-hotkeys/tests/zone.test.ts": "57fa41bcee57cf476645026ae3c1d162279956d6e9c9652cff82917c42c8b849"
+        "packages/angular-hotkeys/tests/zone.test.ts": "a3883a9be16603d98e2deb4510dad929d2a356d6fdf64c2527fa5192e68ade38"
       },
-      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
+      "head": "b0b1c63235b066b92922a2b4f370ddefed059f86",
       "outcome": "no-change",
       "reason": "Test-only change covering the change detection fix; tests aren't skill guidance.",
       "evidence": [
         "packages/angular-hotkeys/tests/zone.test.ts",
-        "pnpm vitest run in packages/angular-hotkeys: 11 files, 64 tests pass (zone/zoneless x Default/OnPush x field/signal, recorder, root service, unmatched keys)"
+        "pnpm vitest run in packages/angular-hotkeys: 11 files, 64 tests pass (zone/zoneless x Eager/OnPush x field/signal, recorder, root service, unmatched keys)"
       ]
     },
     "source:packages/hotkeys/src/index.ts": {
@@ -17615,16 +17615,16 @@
       "evidence": ["e2e/support/fixtures.ts"]
     },
     "source:packages/angular-hotkeys/tests/change-detection.test.ts": {
-      "fingerprint": "6329e5035804085d392513c22015b38cc079ce64466c694d4fa44834f464977e",
+      "fingerprint": "917cbba2e216e6eab31d28c71e010ce8fff91935ab3fe81c28a11b76f15c3659",
       "snapshot": {
-        "packages/angular-hotkeys/tests/change-detection.test.ts": "6ca89c37cbf35fb1042e9332ba9612b9284c0e09980b1fbf6f324cd6b21fdbe8"
+        "packages/angular-hotkeys/tests/change-detection.test.ts": "e67ab1dba38e7928e8f56e694bf6b0720ff5bfb9a469e8bee8b213f25e550eda"
       },
-      "head": "172b721fe97f85855a4174e94d705f3e7327b52f",
+      "head": "b0b1c63235b066b92922a2b4f370ddefed059f86",
       "outcome": "no-change",
-      "reason": "Test-only change covering the change detection fix (reformatted by oxfmt); tests aren't skill guidance.",
+      "reason": "Test-only change covering the change detection fix; tests aren't skill guidance.",
       "evidence": [
         "packages/angular-hotkeys/tests/change-detection.test.ts",
-        "pnpm vitest run in packages/angular-hotkeys: 11 files, 64 tests pass"
+        "pnpm vitest run in packages/angular-hotkeys: 11 files, 64 tests pass (zone/zoneless x Eager/OnPush x field/signal, recorder, root service, unmatched keys)"
       ]
     }
   }

@@ -165,5 +165,5 @@ The skills teach agents to use those APIs directly. The core skills hold the fra
 ### Batch 1 revision 3 — 2026-11-08 — Angular change detection
 
 - **Source sync:** `injectHotkeys` and `injectHotkeyRecorder` now mark the registering component for check after each callback (`src/_zone.ts`), so plain field changes render in OnPush components and zoneless apps. Keys that fire no hotkey still don't run change detection.
-- **Changes:** `angular-hotkeys` gained one pitfall: a root service has no component to mark, so its hotkeys should change signals. The Angular failure modes in `domain_map.yaml` and the table above list it. `skill_tree.yaml` is unchanged.
+- **Changes:** `angular-hotkeys` gained one pitfall: a service outside any component, such as a root service, has no component to mark, so its hotkeys should change signals. The Angular failure modes in `domain_map.yaml` and the table above list it. `skill_tree.yaml` is unchanged.
 - **Checks:** `packages/angular-hotkeys/tests/change-detection.test.ts` and `tests/zone.test.ts` cover zone and zoneless, Default and OnPush, field and signal callbacks, the recorder, and a root service. `intent validate` passes. Not run: fresh-consumer sessions.

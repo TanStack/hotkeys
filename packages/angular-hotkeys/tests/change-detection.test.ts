@@ -22,7 +22,7 @@ function type(key: string, code?: string) {
 }
 
 const strategies = [
-  ['Default', ChangeDetectionStrategy.Default],
+  ['Eager', ChangeDetectionStrategy.Eager],
   ['OnPush', ChangeDetectionStrategy.OnPush],
 ] as const
 
