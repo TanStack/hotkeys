@@ -26,23 +26,23 @@
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "bc3f634fa09ca224e50c0e168f0a1424a5b5c31c403380ab4485d0366fd84409",
+      "fingerprint": "b1d8792f4caee7750099129172ff9dd17f4d2e9e03c911642f6022515a674e81",
       "snapshot": {
-        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "2677af5bab55d38813b254ebe59ed59393ad7846afb7ec73be01304d3a2e0176",
+        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "9cc0d3f2a26ee41b3d67f11f8d84c616ae90ab8432e79b3cb7bdef02a31d09ff",
         "docs/framework/angular/quick-start.md": "7cc94e2f2a712f1748357b17784723b327122c43d2051d8d17639adb6af725b6",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "3a338d34f069d978f738d3e05896a88c765e4a7a793d973edfc31fe647dc77ff",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "80b4739a0ce05a5921e5f8dafcb30fec2c83b24b608a359b7b1d7ac30c31fc37",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "73d0c4768121bc54eed662145d552d2d7f93d4d54e072754dc5a9fecfda6b95b",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "03ea85098b0ed95e323e8d1e35b61b2683b7bc2d68f67e56e15ce2da92177a6f",
-        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "6d7fd9c56c52b6245ed331771c6e30615d708abb24bdd2ee00d564a75778f961",
+        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "232908e432cec34e781d6f35222c2ad2395a9ba99c9922e93d100ee794337287",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "5f93f900d7c5b99d3582786c89c0e9341d3845e1ab576cb007072d575233192d"
       },
-      "head": "4ce9adc5287af96e4f62050d411228e32009bc92",
-      "outcome": "no-change",
-      "reason": "Merge of main after #237 merged. These items changed through #237, #238 and #239, which recorded their own reviews. The skill_spec.md conflict kept #239's Lit row and this branch's Angular row with the Route.providers pitfall; this branch's log entry is renumbered as revision 5.",
+      "head": "8a74d11b07f3149b2d21c70766425442acdb0010",
+      "outcome": "updated",
+      "reason": "The Angular skill and domain_map.yaml now qualify withAutoCleanupInjectors(): a custom reuse strategy must report stored pages through retrieveStoredRouteHandles(), and a stored page keeps its injector and scope, so its scope must be disabled on detach (checked against @angular/router 22.2.5 routeInjectorCleanup). The recorder now clears options removed from provider defaults or getters; the new test covers it. No skill claims anything about removed options.",
       "evidence": [
-        "Changed: docs/framework/angular/quick-start.md at 4ce9adc5287af96e4f62050d411228e32009bc92"
+        "Changed: docs/framework/angular/guides/provide-hotkeys-and-scopes.md, packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md, packages/angular-hotkeys/src/injectHotkeyRecorder.ts at 8a74d11b07f3149b2d21c70766425442acdb0010"
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
@@ -288,14 +288,14 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "818f2a9858175bf40f779ad6c78720f1328bd533c294d77f7526c45fe7074584",
+      "fingerprint": "c4cd4027976f00c53cb6f84d9ae6916c3f047994ed8930141759dff9864436c9",
       "snapshot": {
-        "_artifacts/domain_map.yaml": "a69f13307f9a3911919996d3e1604af90091eeefad35048498f69fa97e8dcea3",
+        "_artifacts/domain_map.yaml": "aee026605b7372679160c705117d1e4c8154444b0d57be63e9b409675412e857",
         "_artifacts/skill_spec.md": "b451580341ef295b0c09dc382d2d30a7099327adaddcfe38ef1e7c91a2b277d2",
         "_artifacts/skill_tree.yaml": "bff31ee525c55a3e572083903c5b8deb444cd850845ae2dc1e4b886ce2236a12",
         "docs/framework/alpine/guides/app-hotkeys.md": "cdefefaa71aa9c36da99d314ab0279aa791dcf651bb1fd4cebf7263ba661078a",
         "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
-        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "2677af5bab55d38813b254ebe59ed59393ad7846afb7ec73be01304d3a2e0176",
+        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "9cc0d3f2a26ee41b3d67f11f8d84c616ae90ab8432e79b3cb7bdef02a31d09ff",
         "docs/framework/angular/quick-start.md": "7cc94e2f2a712f1748357b17784723b327122c43d2051d8d17639adb6af725b6",
         "docs/framework/ember/guides/app-hotkeys.md": "c7c52789e2c869e773cb14b25f8a1dc8e5533569211bac45b0f124eb7c260695",
         "docs/framework/ember/quick-start.md": "b68bb08e413da376299f10925ece54685dcccfbeea98af088f1c58b3c5456f37",
@@ -328,12 +328,12 @@
         "packages/alpine-hotkeys/src/hotkeyRecorderPlugin.ts": "8ff86447e513f47002c49ed9f60269d485b0cd65b87277bb52cf2d8286ddbd36",
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "5b2b94b41d520f3beb60d2ceb15081799873c84c0ff244289d9b3698168c0ead",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "3a338d34f069d978f738d3e05896a88c765e4a7a793d973edfc31fe647dc77ff",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "80b4739a0ce05a5921e5f8dafcb30fec2c83b24b608a359b7b1d7ac30c31fc37",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "73d0c4768121bc54eed662145d552d2d7f93d4d54e072754dc5a9fecfda6b95b",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "03ea85098b0ed95e323e8d1e35b61b2683b7bc2d68f67e56e15ce2da92177a6f",
-        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "6d7fd9c56c52b6245ed331771c6e30615d708abb24bdd2ee00d564a75778f961",
+        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "232908e432cec34e781d6f35222c2ad2395a9ba99c9922e93d100ee794337287",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "5f93f900d7c5b99d3582786c89c0e9341d3845e1ab576cb007072d575233192d",
         "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "d2c51c3efe9a55f605f643f657f6da6d46e3b00acaf879f95acdc3d4ade8fabb",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
@@ -420,11 +420,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "b3e8f6c870734a967881c5b155ddced5c737d5162e6f44e5c095bd2be81fd0e6"
       },
-      "head": "4ce9adc5287af96e4f62050d411228e32009bc92",
-      "outcome": "no-change",
-      "reason": "Merge of main after #237 merged. These items changed through #237, #238 and #239, which recorded their own reviews. The skill_spec.md conflict kept #239's Lit row and this branch's Angular row with the Route.providers pitfall; this branch's log entry is renumbered as revision 5.",
+      "head": "8a74d11b07f3149b2d21c70766425442acdb0010",
+      "outcome": "updated",
+      "reason": "The Angular skill and domain_map.yaml now qualify withAutoCleanupInjectors(): a custom reuse strategy must report stored pages through retrieveStoredRouteHandles(), and a stored page keeps its injector and scope, so its scope must be disabled on detach (checked against @angular/router 22.2.5 routeInjectorCleanup). The recorder now clears options removed from provider defaults or getters; the new test covers it. No skill claims anything about removed options.",
       "evidence": [
-        "Changed: _artifacts/domain_map.yaml, _artifacts/skill_spec.md, docs/framework/angular/quick-start.md, docs/guides/sensible-defaults.md, packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md, packages/lit-hotkeys/src/controllers/app-hotkeys.ts, packages/lit-hotkeys/src/controllers/hotkey-recorder.ts, packages/lit-hotkeys/src/controllers/hotkey.ts, packages/lit-hotkeys/src/decorators/hotkey.ts at 4ce9adc5287af96e4f62050d411228e32009bc92"
+        "Changed: _artifacts/domain_map.yaml, docs/framework/angular/guides/provide-hotkeys-and-scopes.md, packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md, packages/angular-hotkeys/src/injectHotkeyRecorder.ts at 8a74d11b07f3149b2d21c70766425442acdb0010"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -16698,16 +16698,15 @@
       "evidence": ["packages/angular-hotkeys-devtools/tsconfig.json"]
     },
     "source:packages/angular-hotkeys/tests/reactive-options.test.ts": {
-      "fingerprint": "b8700ef43c82d652b32a91ec81948638a69ed25e77b0cfb1c1eee1fb9f2b09f1",
+      "fingerprint": "5eb3fcb3be532cb4ff467320175a557a8753736d337255d1807f1b1f53e5cbcd",
       "snapshot": {
-        "packages/angular-hotkeys/tests/reactive-options.test.ts": "319711a73eaaa00e26591c01cbe81d29b145c4515744ed9b809d9b76dae917b3"
+        "packages/angular-hotkeys/tests/reactive-options.test.ts": "1c5cf8b0e1db0e6f619ad1c860f8097075f3d50932526a4e11c9f0e168bcf23c"
       },
-      "head": "9f37d489e293077f4043814e1833d6c97093065d",
-      "outcome": "no-change",
-      "reason": "Adds a test that a signal-driven provider hotkeyRecorder default reaches an injected recorder. Tests are not skill guidance; the angular-hotkeys skill review covers the behavior.",
+      "head": "8a74d11b07f3149b2d21c70766425442acdb0010",
+      "outcome": "updated",
+      "reason": "The Angular skill and domain_map.yaml now qualify withAutoCleanupInjectors(): a custom reuse strategy must report stored pages through retrieveStoredRouteHandles(), and a stored page keeps its injector and scope, so its scope must be disabled on detach (checked against @angular/router 22.2.5 routeInjectorCleanup). The recorder now clears options removed from provider defaults or getters; the new test covers it. No skill claims anything about removed options.",
       "evidence": [
-        "packages/angular-hotkeys/tests/reactive-options.test.ts",
-        "pnpm vitest run in packages/angular-hotkeys: 11 files, 65 tests pass"
+        "Changed: packages/angular-hotkeys/tests/reactive-options.test.ts at 8a74d11b07f3149b2d21c70766425442acdb0010"
       ]
     },
     "source:packages/ember-hotkeys/src/useKeyHold.ts": {
