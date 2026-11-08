@@ -26,26 +26,27 @@
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "70577abdd19bf6dde5fd97e02b62dd1040bd282cb08ce86d1b4ff8add5ee35e5",
+      "fingerprint": "e8d9ed0bf19936dde722b70beb77525c447819a67df1a39da16c62d963c97325",
       "snapshot": {
-        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "38f6edb292463e635c1901320bc052d52e2211cdd9dbfe39497b5d7b75f7d21c",
+        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "2677af5bab55d38813b254ebe59ed59393ad7846afb7ec73be01304d3a2e0176",
         "docs/framework/angular/quick-start.md": "25ae0b7755dd97c13360f630d9ebc1534119dd72298ae26de1ce9cc1bf90dfec",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "857bfa8f355503a409dc31992770de0082a0cef8e02c029ae482e8c187c7cdd8",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "3a338d34f069d978f738d3e05896a88c765e4a7a793d973edfc31fe647dc77ff",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts": "7111ad7c227bde801d534c0556e4d38f7185770c9ed7e2a354abef90dd8a2a9c",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts": "73d0c4768121bc54eed662145d552d2d7f93d4d54e072754dc5a9fecfda6b95b",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "03ea85098b0ed95e323e8d1e35b61b2683b7bc2d68f67e56e15ce2da92177a6f",
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "6d7fd9c56c52b6245ed331771c6e30615d708abb24bdd2ee00d564a75778f961",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "5f93f900d7c5b99d3582786c89c0e9341d3845e1ab576cb007072d575233192d"
       },
-      "head": "9f37d489e293077f4043814e1833d6c97093065d",
+      "head": "1d397863b84624141c11e2acf1eb8cb2928b3d2a",
       "outcome": "updated",
-      "reason": "injectHotkeyRecorder now reads provider hotkeyRecorder defaults on each sync instead of copying them at injection, so signal-driven defaults update it. The skill made no claim about recorder defaults being snapshotted, so existing guidance stays accurate. Added one pitfall: a scoped provideHotkeys in Route.providers outlives navigation unless withAutoCleanupInjectors() is used.",
+      "reason": "injectHotkeyRecorder now reads provider hotkeyRecorder defaults on each sync instead of copying them at injection, so signal-driven defaults update it. The skill made no claim about recorder defaults being snapshotted, so existing guidance stays accurate. Added one pitfall: a scoped provideHotkeys in Route.providers outlives navigation by default; it names withAutoCleanupInjectors() as an alternative with its Angular 22.2 floor and shouldDestroyInjector requirement.",
       "evidence": [
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts",
         "packages/angular-hotkeys/src/hotkeys-provider.ts",
         "packages/angular-hotkeys/tests/reactive-options.test.ts",
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md",
+        "@angular/router 22.2.5 types/router.d.ts (withAutoCleanupInjectors @publicApi 22.2) and fesm2022/_router-chunk.mjs (shouldDestroyInjector ?? false; BaseRouteReuseStrategy returns true)",
         "Scratch @angular/router 22.2.5 TestBed run: route-level exclusive scope suspended the next page's K hotkey (0 calls); with withAutoCleanupInjectors() it fired (1 call)",
         "intent validate packages/angular-hotkeys/skills: passed",
         "pnpm vitest run in packages/angular-hotkeys: 11 files, 65 tests pass",
@@ -297,14 +298,14 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "cba775dfc42a3b52f595d16f76937e694f19d380a6fa9c503771239063fd3c5d",
+      "fingerprint": "062d339b0b0d03a31529cbb545cf8b333b71d6a2807ed2b70405d71a82ca9700",
       "snapshot": {
-        "_artifacts/domain_map.yaml": "2a9464e44e021d5859e2359632167833a375a18cd7429c876d74f2c692288a56",
-        "_artifacts/skill_spec.md": "a88e14b5272ac031af7f4d9c9e6fdf7ed100f926fbf99ee7bea0fc6d915a3deb",
+        "_artifacts/domain_map.yaml": "3e3187c977ee6f4a6589c08d79f5cf3177474fbac47f42463cc91021f25922a3",
+        "_artifacts/skill_spec.md": "de993767dc8acb2ea87cb76d639e8f173c4eea7efe47daa25fd343729478d373",
         "_artifacts/skill_tree.yaml": "bff31ee525c55a3e572083903c5b8deb444cd850845ae2dc1e4b886ce2236a12",
         "docs/framework/alpine/guides/app-hotkeys.md": "cdefefaa71aa9c36da99d314ab0279aa791dcf651bb1fd4cebf7263ba661078a",
         "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
-        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "38f6edb292463e635c1901320bc052d52e2211cdd9dbfe39497b5d7b75f7d21c",
+        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "2677af5bab55d38813b254ebe59ed59393ad7846afb7ec73be01304d3a2e0176",
         "docs/framework/angular/quick-start.md": "25ae0b7755dd97c13360f630d9ebc1534119dd72298ae26de1ce9cc1bf90dfec",
         "docs/framework/ember/guides/app-hotkeys.md": "c7c52789e2c869e773cb14b25f8a1dc8e5533569211bac45b0f124eb7c260695",
         "docs/framework/ember/quick-start.md": "b68bb08e413da376299f10925ece54685dcccfbeea98af088f1c58b3c5456f37",
@@ -337,9 +338,9 @@
         "packages/alpine-hotkeys/src/hotkeyRecorderPlugin.ts": "8ff86447e513f47002c49ed9f60269d485b0cd65b87277bb52cf2d8286ddbd36",
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "5b2b94b41d520f3beb60d2ceb15081799873c84c0ff244289d9b3698168c0ead",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "857bfa8f355503a409dc31992770de0082a0cef8e02c029ae482e8c187c7cdd8",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "3a338d34f069d978f738d3e05896a88c765e4a7a793d973edfc31fe647dc77ff",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts": "7111ad7c227bde801d534c0556e4d38f7185770c9ed7e2a354abef90dd8a2a9c",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts": "73d0c4768121bc54eed662145d552d2d7f93d4d54e072754dc5a9fecfda6b95b",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "03ea85098b0ed95e323e8d1e35b61b2683b7bc2d68f67e56e15ce2da92177a6f",
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "6d7fd9c56c52b6245ed331771c6e30615d708abb24bdd2ee00d564a75778f961",
@@ -429,9 +430,9 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "b3e8f6c870734a967881c5b155ddced5c737d5162e6f44e5c095bd2be81fd0e6"
       },
-      "head": "9f37d489e293077f4043814e1833d6c97093065d",
+      "head": "1d397863b84624141c11e2acf1eb8cb2928b3d2a",
       "outcome": "updated",
-      "reason": "Added the Route.providers scope failure mode to domain_map.yaml and the Angular row of skill_spec.md, plus a revision 4 entry recording the recorder fix and the decision to leave injectDefaultHotkeysOptions returning a snapshot. skill_tree.yaml is unchanged: no skill was added or split.",
+      "reason": "Added the Route.providers scope failure mode to domain_map.yaml and the Angular row of skill_spec.md, plus a revision 4 entry recording the recorder fix, the withAutoCleanupInjectors caveats, and the decision to leave injectDefaultHotkeysOptions returning a snapshot. skill_tree.yaml is unchanged: no skill was added or split.",
       "evidence": [
         "_artifacts/domain_map.yaml",
         "_artifacts/skill_spec.md",
@@ -4314,13 +4315,13 @@
       ]
     },
     "source:docs/framework/angular/reference/functions/provideHotkeys.md": {
-      "fingerprint": "b305af8716ea46cc93de382451ec62b8bfbbda1480856b7631c1549b6b61f24a",
+      "fingerprint": "3915afef0253f79748ef66d433fb471e692730327be69e476204b23a99d2e449",
       "snapshot": {
-        "docs/framework/angular/reference/functions/provideHotkeys.md": "8cc997a6bcb1e8ed92ad5ebaeb1b39584d23839b109bbf5c2bd69a867139b18e"
+        "docs/framework/angular/reference/functions/provideHotkeys.md": "e70c266042622ce8421e7e276efc81ec09d6cfeb8ab8efe7429c865221d46bd9"
       },
-      "head": "9f37d489e293077f4043814e1833d6c97093065d",
+      "head": "1d397863b84624141c11e2acf1eb8cb2928b3d2a",
       "outcome": "no-change",
-      "reason": "Generated typedoc page: line-number shifts in hotkeys-provider.ts source links, plus the new JSDoc notes on injectDefaultHotkeysOptions, HotkeysContextValue.defaultOptions, and provideHotkeys placement. The angular-hotkeys skill already carries the placement pitfall and makes no claim about injectDefaultHotkeysOptions reactivity.",
+      "reason": "Generated typedoc page: hotkeys-provider.ts source line shifts plus the new JSDoc on provideHotkeys placement. The angular-hotkeys skill already carries the placement pitfall.",
       "evidence": [
         "docs/framework/angular/reference/functions/provideHotkeys.md",
         "packages/angular-hotkeys/src/hotkeys-provider.ts"
