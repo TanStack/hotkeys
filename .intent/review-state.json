@@ -128,23 +128,26 @@
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
-      "fingerprint": "813e48131b098cec135404bc3c459bbcb692f3881cd951e03071d75f8d148b1d",
+      "fingerprint": "62d592c303290085fef69e7736d7b7a997b2f8e891f6da64e6d01ad887f68caa",
       "snapshot": {
         "docs/framework/lit/guides/app-hotkeys.md": "b001df84eb320a4af7759ab163f837bac0fe3b36014b4b5de9366102073af97b",
         "docs/framework/lit/quick-start.md": "0f1e0a406ae61dc62ea0659b95e734828a1181a591990331f1e8405f637a0094",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "5690f120148b5314bab1eb13244ae578bd78f55b1b11d8c6637489ca2750d187",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "b2e8d9a31ecc0f97bc0c073608a06572ff555cf5f2d7e52316315e4783fdaacd",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
-        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2a4ea438b8322f0f547dd10af7e94882cc2cfaa58def039c19f976ab9aa14670",
-        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "6c988296c7e85b02953f1392f50ce46be19920b2e0fd1fd8ec613e072d5d4e3b",
-        "packages/lit-hotkeys/src/controllers/hotkey.ts": "c8b8c7fd2379178d5bcc176c5d44c5212f3294206ac35a1e6d5d88df2ac02708",
-        "packages/lit-hotkeys/src/decorators/hotkey.ts": "46c9522a6d617f37826898bfda2b0eba52204fafb5fa895a356603b2ddbf5f01"
+        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
+        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "69e4018c8375779f0392cf0383f5d3f1faeb14e0dee831a2c0b4dbd6e60cd36d",
+        "packages/lit-hotkeys/src/controllers/hotkey.ts": "042ef72211df8490512540d2bdd878f5e3c04bbd1fd46b31e11b27d5a6b18dbb",
+        "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Code examples changed only in import order (oxfmt sortImports), and the covered sources changed only by formatter output. Guidance and APIs are unchanged.",
+      "head": "d7697a1da0bba002ac8491eb6d24e02c45c08e47",
+      "outcome": "updated",
+      "reason": "Every Lit controller gained dispose(), and @hotkey on a subclass override now replaces the parent hotkeys for that method instead of registering twice. Added two pitfalls: remove a controller with dispose(), since removeController leaves it registered, and decorating an override replaces the parent hotkeys. The API table and other pitfalls stay accurate.",
       "evidence": [
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md",
-        "git diff origin/main: only import lines change"
+        "packages/lit-hotkeys/src/controllers/hotkey.ts",
+        "packages/lit-hotkeys/src/decorators/hotkey.ts",
+        "pnpm vitest run in packages/lit-hotkeys: 90 passed (decorators.test.ts covers re-decorated overrides in both decorator modes; lifecycle.test.ts covers dispose() on all nine controllers)",
+        "pnpm exec intent validate: 12 skill files passed",
+        "Fresh-consumer check not run"
       ]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
@@ -291,10 +294,10 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "819cbe227c44ba3dfd9afd7f8c257679d97dd987d4f44d56bdb31c6396e264f6",
+      "fingerprint": "bdc4e94f99455dfd6e7ce36b7faee387f9c0fd9ea619d4585f82fbcbc9d55455",
       "snapshot": {
-        "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
-        "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
+        "_artifacts/domain_map.yaml": "dd791b9fa3d82d64f7d890c05380fc452024d4c860085915f9ef35f226e61b39",
+        "_artifacts/skill_spec.md": "af65b5a42cbc2b52811445f45c49f2c4656c27613ab152c5c27399e441a12490",
         "_artifacts/skill_tree.yaml": "bff31ee525c55a3e572083903c5b8deb444cd850845ae2dc1e4b886ce2236a12",
         "docs/framework/alpine/guides/app-hotkeys.md": "cdefefaa71aa9c36da99d314ab0279aa791dcf651bb1fd4cebf7263ba661078a",
         "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
@@ -357,12 +360,12 @@
         "packages/hotkeys/src/hotkey-manager.ts": "340ae1e61d8e08fe56edb0bb73f41434dae03ad15a374c2a0864450b64276443",
         "packages/hotkeys/src/hotkey-recorder.ts": "a19c8e64b939faa51b4554e71e71485f4d419539e4c9c287fdbb07955362a3e7",
         "packages/hotkeys/src/match.ts": "204f0159ccdd1bfaed96b1b03ad805f7fa9a74c011e70760749d1e0c326b7e8a",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "5690f120148b5314bab1eb13244ae578bd78f55b1b11d8c6637489ca2750d187",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "b2e8d9a31ecc0f97bc0c073608a06572ff555cf5f2d7e52316315e4783fdaacd",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
-        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2a4ea438b8322f0f547dd10af7e94882cc2cfaa58def039c19f976ab9aa14670",
-        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "6c988296c7e85b02953f1392f50ce46be19920b2e0fd1fd8ec613e072d5d4e3b",
-        "packages/lit-hotkeys/src/controllers/hotkey.ts": "c8b8c7fd2379178d5bcc176c5d44c5212f3294206ac35a1e6d5d88df2ac02708",
-        "packages/lit-hotkeys/src/decorators/hotkey.ts": "46c9522a6d617f37826898bfda2b0eba52204fafb5fa895a356603b2ddbf5f01",
+        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
+        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "69e4018c8375779f0392cf0383f5d3f1faeb14e0dee831a2c0b4dbd6e60cd36d",
+        "packages/lit-hotkeys/src/controllers/hotkey.ts": "042ef72211df8490512540d2bdd878f5e3c04bbd1fd46b31e11b27d5a6b18dbb",
+        "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef",
         "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "cae463ad7f9d31b4922a96534db78a83ac768ba38915463a2c8bbfb428d7292e",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "d18e8ffb2503f4dfd4aec75aaa8ec6974c3a9cea6e7174287ec8ea18cc77f101",
@@ -423,10 +426,14 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "b3e8f6c870734a967881c5b155ddced5c737d5162e6f44e5c095bd2be81fd0e6"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
-      "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
-      "evidence": ["packages/hotkeys/skills/app-hotkeys/SKILL.md", "_artifacts"]
+      "head": "d7697a1da0bba002ac8491eb6d24e02c45c08e47",
+      "outcome": "updated",
+      "reason": "domain_map.yaml records the removeController failure mode for lit-hotkeys; skill_spec.md adds it to the framework table and logs batch 1 revision 3. skill_tree.yaml is unchanged: the lit-hotkeys description, sources and references still match.",
+      "evidence": [
+        "_artifacts/domain_map.yaml",
+        "_artifacts/skill_spec.md",
+        "_artifacts/skill_tree.yaml"
+      ]
     },
     "source:.changeset/intent-skills.md": {
       "fingerprint": "a3f3a7466ee28fed505a518e9cd18cfda96a2282d207d73317b00d60b4430f62",
@@ -512,13 +519,13 @@
       "evidence": ["docs/framework/lit/guides/hotkey-hints.md"]
     },
     "source:docs/framework/lit/reference/classes/HotkeyHintController.md": {
-      "fingerprint": "1e35e4e6b3ccdb0a602be7a3a21d739547c009e0e5113af865b2a9669dfd827d",
+      "fingerprint": "19efab8a3b0c60a7892799c4b91210f165c24bc9ea143d1b1e514efcaf48a9c1",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyHintController.md": "974fefcc73d95f5b46183cb4e1548ee0357e3d213dcca4192a39606cb8c887b6"
+        "docs/framework/lit/reference/classes/HotkeyHintController.md": "039c5e3303e6310349d05ae538491d671c67dbf77555a23c8d633f04b17adbdb"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "473d2d9707fa603ff3063386156fc1042bf75b21",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: adds the new dispose() methods and the updated @hotkey JSDoc. The skill points to the .d.ts files for signatures.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/guides/hotkey-hints.md": {
@@ -931,17 +938,14 @@
       "evidence": ["packages/hotkeys/tests/scopes.test.ts", "test:lib passes"]
     },
     "source:packages/lit-hotkeys/src/controllers/hotkey-hint.ts": {
-      "fingerprint": "190bd50586e8d5b2696f9cc13125351b8b87448d67a3b795bb33cc3853a63f76",
+      "fingerprint": "d6048da55013dba5cc3251e48aef6415d1b15a7eed5fba586a35f733cc858110",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/hotkey-hint.ts": "04a80ce68b780ee179fa2895ef5be025ae57f95731781a5cf53cdcb1661dc1d9"
+        "packages/lit-hotkeys/src/controllers/hotkey-hint.ts": "e8ed5d4921e09e615947a88a60564bc2f118f01ee048e668034ede5ae6ecdc4f"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "473d2d9707fa603ff3063386156fc1042bf75b21",
       "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
-      "evidence": [
-        "packages/lit-hotkeys/src/controllers/hotkey-hint.ts",
-        "git diff origin/main"
-      ]
+      "reason": "Adds dispose() to this controller; the lit-hotkeys pitfall updated in this review says every controller has dispose().",
+      "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:packages/lit-hotkeys/tests/hotkey-hint.spec.ts": {
       "fingerprint": "1a74aa8f5a30cc35c4477eb382913bdc91d5b197dae78108aa5f0f4223bbed13",
@@ -1175,17 +1179,14 @@
       ]
     },
     "source:docs/framework/lit/guides/hotkeys.md": {
-      "fingerprint": "bc007e4ad2712c54864f90568d3b9b2c242649274d987a3eaaf45025b51867f9",
+      "fingerprint": "0e5de13fb745a978d6c8cd7502dc029361c51584cea0c639ebf354eed3f5a4ba",
       "snapshot": {
-        "docs/framework/lit/guides/hotkeys.md": "ad1b6193ee96953f35cd093199ae990b8d9df53ee64321185cead6e2dae0daa4"
+        "docs/framework/lit/guides/hotkeys.md": "9bed9da7893a77294205396d40ee99a5ab8093dc5874938706a4437aabd9a4a3"
       },
-      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
-      "outcome": "updated",
-      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
-      "evidence": [
-        "docs/framework/lit/guides/hotkeys.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
-      ]
+      "head": "d7697a1da0bba002ac8491eb6d24e02c45c08e47",
+      "outcome": "no-change",
+      "reason": "The guide now documents dispose() for changing lists and the re-decorated override rule; both are reflected in the lit-hotkeys pitfalls updated in this review.",
+      "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:docs/framework/octane/guides/hotkeys.md": {
       "fingerprint": "51f317b559534986998090727ab8f9560b0fd28d0616ce97de9af3e0e47b0af7",
@@ -1696,13 +1697,13 @@
       ]
     },
     "source:docs/framework/lit/reference/classes/HotkeyScopesStateController.md": {
-      "fingerprint": "fe439ea1349e1d5e6315578ee2121443f323112b964b131ae710b3c36e99b97f",
+      "fingerprint": "4e1f78d08d888959951f3612f851fe07d527659d9bc5f291a075e5428d97a0c1",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyScopesStateController.md": "f5a521b653f10815686d8ec8c9de7538c72aeb5e78a1200583054c6af6d8f352"
+        "docs/framework/lit/reference/classes/HotkeyScopesStateController.md": "376332fd1f40612700be10e3db50b89241a075ed89ab92f632bfebdc34adceca"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "473d2d9707fa603ff3063386156fc1042bf75b21",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: adds the new dispose() methods and the updated @hotkey JSDoc. The skill points to the .d.ts files for signatures.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/index.md": {
@@ -2061,14 +2062,14 @@
       "evidence": ["packages/ember-hotkeys/src/useHotkeyScopesState.ts"]
     },
     "source:packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts": {
-      "fingerprint": "99e2e14c2902bfa756244f0fd04837d1e5ea7ae175ea43d8209be18c955de0a5",
+      "fingerprint": "f57d147f388ee2693ad113dc8d46399fc57a0d4bb85790bb9582dbd83295ca68",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts": "d0f01d286ed90909f0c89ef08a8209533dba090d3da1f8a7e3dd654ab6ca88e4"
+        "packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts": "8097cd150630c323cec68e163a76fa6c55d83acba68c4e7a7e5ab248b6185973"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "head": "473d2d9707fa603ff3063386156fc1042bf75b21",
       "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Adds dispose() to this controller; the lit-hotkeys pitfall updated in this review says every controller has dispose().",
+      "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:packages/lit-hotkeys/src/controllers/index.ts": {
       "fingerprint": "e55ffdff5a1acd25b031fb304d39e5c5edb60b92bb8a5b24f12a8f0b1e9a9ce2",
@@ -3842,73 +3843,73 @@
       ]
     },
     "source:docs/framework/lit/reference/classes/AppHotkeysController.md": {
-      "fingerprint": "76168344a79f8f44b6c80071e3e934911d789f52c9a8d94ba9b57a920427653d",
+      "fingerprint": "69054ede1c85ec6127038fc140f5d500e38e36f85192ac8a38fc41fda090b710",
       "snapshot": {
-        "docs/framework/lit/reference/classes/AppHotkeysController.md": "db2fa5c9346fe9e3da8f1cd106ffdf19776a5a73a50479d5cb51d1ea86904dcd"
+        "docs/framework/lit/reference/classes/AppHotkeysController.md": "9014a46c0091a210aea8f38822e9350e137bd49448dd6ffe3f14cc59e42d6fcb"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "473d2d9707fa603ff3063386156fc1042bf75b21",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: adds the new dispose() methods and the updated @hotkey JSDoc. The skill points to the .d.ts files for signatures.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/classes/HeldKeyCodesController.md": {
-      "fingerprint": "8538d1f16fb116360373d672d6c847e54afa3a9b9505aa31c3239c79c2103355",
+      "fingerprint": "3c843d3341beb09432e8f54785921fb668c75e8e3fb8c075ccbdaba06b168144",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HeldKeyCodesController.md": "8212933ec4257a23dad9aa8d50049fd4da25c3a4e62e15745faed2265b3f3cc4"
+        "docs/framework/lit/reference/classes/HeldKeyCodesController.md": "fbf4ddbb8fbd6124f8937b90d7d2367a750a789cd12f39c983458a961f0050a5"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "473d2d9707fa603ff3063386156fc1042bf75b21",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: adds the new dispose() methods and the updated @hotkey JSDoc. The skill points to the .d.ts files for signatures.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/classes/HeldKeysController.md": {
-      "fingerprint": "4986c8d294c6731690dc342d1eff76528f905a04e3b2a2e61dff7d3fe641e412",
+      "fingerprint": "87b87c2a104a4940f4773805da4e7da1ee55b50963e4bec568c9a24627c911de",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HeldKeysController.md": "52693d26adffb37b8934a277663949ad13ec47e9df5f78bfafd86f98a80d0a16"
+        "docs/framework/lit/reference/classes/HeldKeysController.md": "e1018541bf420d4a61ef11362fc975810ed837bdd2d7a4ace134ea3bad4e9519"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "473d2d9707fa603ff3063386156fc1042bf75b21",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: adds the new dispose() methods and the updated @hotkey JSDoc. The skill points to the .d.ts files for signatures.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/classes/HotkeyController.md": {
-      "fingerprint": "cc06948f918adc60cae2cd2bf5ab54bbf054ea259ea6069d63e4a35bb3051075",
+      "fingerprint": "bee842edd7e743d3228d1ca0d38742ec81aad92d2690a289b67ebe199fcf758b",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyController.md": "97f2376b1e0013467426b5e3ac1706058a350aa439eb23479c85b60fca1a78c4"
+        "docs/framework/lit/reference/classes/HotkeyController.md": "ff7c20825705d3279a03352d28c9801182b9d4e05d0f004e55e0f178250d76dc"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "473d2d9707fa603ff3063386156fc1042bf75b21",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: adds the new dispose() methods and the updated @hotkey JSDoc. The skill points to the .d.ts files for signatures.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/classes/HotkeyRecorderController.md": {
-      "fingerprint": "9bad9711e733aace7705cd37921baeeeac4804c4c6cdccd101c822176a60ea01",
+      "fingerprint": "e73b97f13fd10fdc53fdae85a472730584d34058727448a086171144afb71227",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyRecorderController.md": "bd62386114b5b55c876c110b737247f629f75c3e72fc72be627cd7ff5c77e83a"
+        "docs/framework/lit/reference/classes/HotkeyRecorderController.md": "535811e3566cdd9c3abe7e62d06ae5637b248e575faf9469b34a63e1190324ec"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "473d2d9707fa603ff3063386156fc1042bf75b21",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: adds the new dispose() methods and the updated @hotkey JSDoc. The skill points to the .d.ts files for signatures.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/classes/HotkeyRegistrationsController.md": {
-      "fingerprint": "f1e789cd7144d7f7b7420be0b1b16fb20944b61f6fa1f19205462752746393ba",
+      "fingerprint": "b53b1f6b807c87485767d98501ecf64e5865eee8d75fe98ca3a31b9132009d8a",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyRegistrationsController.md": "41099bc479d2058b746f612ffb4b754e63fecc28505b62f2ed9af1ea22f4bce3"
+        "docs/framework/lit/reference/classes/HotkeyRegistrationsController.md": "d10fbd380d5eb970115c3a268c160b23d8a3e6932abfb2b5d6f551cae5a50a51"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "473d2d9707fa603ff3063386156fc1042bf75b21",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: adds the new dispose() methods and the updated @hotkey JSDoc. The skill points to the .d.ts files for signatures.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/classes/KeyHoldController.md": {
-      "fingerprint": "6e71082b2fa8754958d91c9465852d43d81c1da164749a5acff4c1a47c29097a",
+      "fingerprint": "d0a19f112cbf078ce112088e6e663b8eebb7ab933d5839672e55b79eb5c1423a",
       "snapshot": {
-        "docs/framework/lit/reference/classes/KeyHoldController.md": "dc4b95338a2dbe5c1e4c3e758388f2c70279519ba93b48971f1aeb6b7941062b"
+        "docs/framework/lit/reference/classes/KeyHoldController.md": "a9cbabb763a49188c6affc37ae8e19aed8a43bceaf5029f49c202af097502674"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "473d2d9707fa603ff3063386156fc1042bf75b21",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: adds the new dispose() methods and the updated @hotkey JSDoc. The skill points to the .d.ts files for signatures.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/type-aliases/AppHotkeyControllerOptions.md": {
@@ -4042,47 +4043,44 @@
       "evidence": ["packages/lit-hotkeys/src/controllers/_server.ts"]
     },
     "source:packages/lit-hotkeys/src/controllers/held-key-codes.ts": {
-      "fingerprint": "bdb78c5816f0ae846917626d6de3c0644399027ae5574ccba2b23d0c9af2bfaf",
+      "fingerprint": "96063febc63f734d6dbe30ec2ca189194b854bab5b79917d02f33f0c7e07882d",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/held-key-codes.ts": "26cf610eaed0ed22d160ac71bf9163480d17c3954cb863ac053de01d06037391"
+        "packages/lit-hotkeys/src/controllers/held-key-codes.ts": "5f9339299017cb4bbbbcccc9fa72d5153609d1b9048f5122d72139fddeb93e3d"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "head": "473d2d9707fa603ff3063386156fc1042bf75b21",
       "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Adds dispose() to this controller; the lit-hotkeys pitfall updated in this review says every controller has dispose().",
+      "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:packages/lit-hotkeys/src/controllers/held-keys.ts": {
-      "fingerprint": "4f04ae2d61808adb9a4f71fb904f414ef51552697d55d28d81ebe354633fca55",
+      "fingerprint": "034100ced13bb7683540429d381f7d88ee841c8b451c83646a7adcfef76327ea",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/held-keys.ts": "7f1dbedc568c954a996422328f0efc14a266b5cfe82ef94ae3acf3fbabc4b15d"
+        "packages/lit-hotkeys/src/controllers/held-keys.ts": "0381ebaca7695330ac87f9a8d3ad892cc6ba2c25a01bd0d04938cb65f4eb29f7"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "head": "473d2d9707fa603ff3063386156fc1042bf75b21",
       "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Adds dispose() to this controller; the lit-hotkeys pitfall updated in this review says every controller has dispose().",
+      "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:packages/lit-hotkeys/src/controllers/hotkey-registrations.ts": {
-      "fingerprint": "6bc73ac18508e920af45230ee2f08f313c42542f27ab13fb08d530477f76b577",
+      "fingerprint": "3cd762376ebdbd5ef43ef29de3eb92675dc2001123dad455187e7e9b01adfd97",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/hotkey-registrations.ts": "96e9c6898eae112291b088ab90724632b86a86739b85a8625fe9dadae6df7b72"
+        "packages/lit-hotkeys/src/controllers/hotkey-registrations.ts": "5f9aa5bca13295b1abc7ad924fc77ba187faf834888e6c3846bfb56e07636bfc"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "head": "473d2d9707fa603ff3063386156fc1042bf75b21",
       "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Adds dispose() to this controller; the lit-hotkeys pitfall updated in this review says every controller has dispose().",
+      "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:packages/lit-hotkeys/src/controllers/key-hold.ts": {
-      "fingerprint": "e166db621ccab212dbb73bc3ccbd84ac8c1667876363b8bc5795b104573464b9",
+      "fingerprint": "8805e81b19e26b7207de3dbf578a3630bbbc05a703cadc74d93636e17dad468f",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/key-hold.ts": "06480d1b8391fd5457aca88f986168af5dd20d19223f2f97ab45d801ba6ea07d"
+        "packages/lit-hotkeys/src/controllers/key-hold.ts": "9b8cd99c4489be739219fce16b6b472b20b78c693deb523b7ac5fb646b384122"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "473d2d9707fa603ff3063386156fc1042bf75b21",
       "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
-      "evidence": [
-        "packages/lit-hotkeys/src/controllers/key-hold.ts",
-        "git diff origin/main"
-      ]
+      "reason": "Adds dispose() to this controller; the lit-hotkeys pitfall updated in this review says every controller has dispose().",
+      "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:packages/lit-hotkeys/tests/key-hold.test.ts": {
       "fingerprint": "0d3607284f04be292857e6b00f21fdae91a08972cea926a60f9281b09503311b",
@@ -7474,23 +7472,23 @@
       ]
     },
     "source:docs/framework/lit/reference/functions/hotkey.md": {
-      "fingerprint": "0249aa4057b56a195215f7131104752abd651795f61a9b9ae580ccd996edacee",
+      "fingerprint": "bc2085b4fe87bd750b8ec98dc1d35361a784ba12a40c3352dfaea3f27519af10",
       "snapshot": {
-        "docs/framework/lit/reference/functions/hotkey.md": "21d4ed85557f774ea0a8fa9af4cc4b2f83ebe3ec8567f70faa875430730790d9"
+        "docs/framework/lit/reference/functions/hotkey.md": "357d3be0767cc53113a0fc81f2d47bd57af42d797ed957eb7f46a56d9daa2f07"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "473d2d9707fa603ff3063386156fc1042bf75b21",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: adds the new dispose() methods and the updated @hotkey JSDoc. The skill points to the .d.ts files for signatures.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/type-aliases/HotkeyDecorator.md": {
-      "fingerprint": "13b366053070b3f188b2412aeb769dde5de03b657370d65f00421348b3a9623a",
+      "fingerprint": "98d0de8cee41a1425beb6c21d4cf768b89b772fe93cf26f572bb3355fcbd4dff",
       "snapshot": {
-        "docs/framework/lit/reference/type-aliases/HotkeyDecorator.md": "393c12c551348dda169701928b1bb76be920cd6d053c12c7ff2ed295fa9fad22"
+        "docs/framework/lit/reference/type-aliases/HotkeyDecorator.md": "f1afeefeee797d87f5534dd64dd57e351bfb62693e213af9caa2c3887b66e073"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "473d2d9707fa603ff3063386156fc1042bf75b21",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "reason": "Regenerated TypeDoc page: adds the new dispose() methods and the updated @hotkey JSDoc. The skill points to the .d.ts files for signatures.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/createAppHotkeysStore.md": {
@@ -7630,40 +7628,34 @@
       ]
     },
     "source:packages/lit-hotkeys/tests/decorators.test.ts": {
-      "fingerprint": "4de3056ecba2bb4015162d78dc55472523d85e65de7d6c3a7d09495c27e8962d",
+      "fingerprint": "0b46db5b515a10cbba1de3c65f00be6d36be2f73e82f8dfc9bf459ec11cbaaa2",
       "snapshot": {
-        "packages/lit-hotkeys/tests/decorators.test.ts": "1c5d9e55b49b39bcd0def0d7e457f78a078d991907c95322347a12eee3472965"
+        "packages/lit-hotkeys/tests/decorators.test.ts": "41a4beed5ca981ca1f2247a2582b345464500a3d12fd78ad00eef533b7f74b67"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "d7697a1da0bba002ac8491eb6d24e02c45c08e47",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
-      "evidence": [
-        "packages/lit-hotkeys/tests/decorators.test.ts",
-        "test:lib passes"
-      ]
+      "reason": "Tests for the behavior covered by the lit-hotkeys skill review in this PR.",
+      "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:packages/lit-hotkeys/tests/fixtures/decorated.ts": {
-      "fingerprint": "fda9fc1c076714ccdff3c35a244d85597457aa41a94c805a9bb4d2a784291999",
+      "fingerprint": "15195c8a65479ad9f0fec9e2939c605c23c03597bb50af19bb2a79702176e902",
       "snapshot": {
-        "packages/lit-hotkeys/tests/fixtures/decorated.ts": "5f45ea91771a112ee23ef4f936fc71fdca560a4406be430b4affa6ce9c9da0e6"
+        "packages/lit-hotkeys/tests/fixtures/decorated.ts": "0fc46bfc35f6a9c1c43135997b1faeccf291e5df0636f83d06bb4788a14044c1"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "head": "473d2d9707fa603ff3063386156fc1042bf75b21",
       "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Tests for the behavior covered by the lit-hotkeys skill review in this PR.",
+      "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:packages/lit-hotkeys/tests/lifecycle.test.ts": {
-      "fingerprint": "b83d8a726e8c2ec7c53b107a90cf15bf8c1a6d2877d46eef6af7b5cea86f1bd2",
+      "fingerprint": "949623e90cb6b056604115abfb0d8752dae5ccea61175a020577dbd172913cee",
       "snapshot": {
-        "packages/lit-hotkeys/tests/lifecycle.test.ts": "3377676d14273c26124808c09ff021aca8bf17f4bd7d506bcf064dbc2d0575b5"
+        "packages/lit-hotkeys/tests/lifecycle.test.ts": "256c69f2fe50d085bdad7e18768df39ec69857054f709c34fa1d70924ca0d467"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "473d2d9707fa603ff3063386156fc1042bf75b21",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
-      "evidence": [
-        "packages/lit-hotkeys/tests/lifecycle.test.ts",
-        "test:lib passes"
-      ]
+      "reason": "Tests for the behavior covered by the lit-hotkeys skill review in this PR.",
+      "evidence": ["packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md"]
     },
     "source:packages/octane-hotkeys/tests/custom-hooks.test.ts": {
       "fingerprint": "be8e6262c77533b09d8a3620d1d58f6122b29a78fcf93cb5d66a85257601ebaf",

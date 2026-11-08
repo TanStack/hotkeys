@@ -11,14 +11,16 @@ title: hotkey
 function hotkey<T>(hotkey, options?): HotkeyDecorator;
 ```
 
-Defined in: [decorators/hotkey.ts:60](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/decorators/hotkey.ts#L60)
+Defined in: [decorators/hotkey.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/decorators/hotkey.ts#L69)
 
 Decorator that registers a hotkey on the element when it connects and
 unregisters when it disconnects: a chord such as `'Mod+S'`, a sequence such
 as `['G', 'G']`, or an app hotkey. Uses [HotkeyController](../classes/HotkeyController.md) under the hood.
 
 Works with legacy (`experimentalDecorators`) and standard decorators. The
-method is looked up when the hotkey fires, so subclass overrides run.
+method is looked up when the hotkey fires, so subclass overrides run. A
+subclass that decorates an override replaces the parent's hotkeys for that
+method; an override without `@hotkey` keeps them.
 
 ### Type Parameters
 
@@ -64,14 +66,16 @@ class MyElement extends LitElement {
 function hotkey<T>(hotkey, options?): HotkeyDecorator<HotkeyCallbackContextFor<T>>;
 ```
 
-Defined in: [decorators/hotkey.ts:64](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/decorators/hotkey.ts#L64)
+Defined in: [decorators/hotkey.ts:73](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/decorators/hotkey.ts#L73)
 
 Decorator that registers a hotkey on the element when it connects and
 unregisters when it disconnects: a chord such as `'Mod+S'`, a sequence such
 as `['G', 'G']`, or an app hotkey. Uses [HotkeyController](../classes/HotkeyController.md) under the hood.
 
 Works with legacy (`experimentalDecorators`) and standard decorators. The
-method is looked up when the hotkey fires, so subclass overrides run.
+method is looked up when the hotkey fires, so subclass overrides run. A
+subclass that decorates an override replaces the parent's hotkeys for that
+method; an override without `@hotkey` keeps them.
 
 ### Type Parameters
 
