@@ -26,10 +26,10 @@
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "e8d9ed0bf19936dde722b70beb77525c447819a67df1a39da16c62d963c97325",
+      "fingerprint": "bc3f634fa09ca224e50c0e168f0a1424a5b5c31c403380ab4485d0366fd84409",
       "snapshot": {
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "2677af5bab55d38813b254ebe59ed59393ad7846afb7ec73be01304d3a2e0176",
-        "docs/framework/angular/quick-start.md": "25ae0b7755dd97c13360f630d9ebc1534119dd72298ae26de1ce9cc1bf90dfec",
+        "docs/framework/angular/quick-start.md": "7cc94e2f2a712f1748357b17784723b327122c43d2051d8d17639adb6af725b6",
         "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "3a338d34f069d978f738d3e05896a88c765e4a7a793d973edfc31fe647dc77ff",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "73d0c4768121bc54eed662145d552d2d7f93d4d54e072754dc5a9fecfda6b95b",
@@ -38,19 +38,11 @@
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "6d7fd9c56c52b6245ed331771c6e30615d708abb24bdd2ee00d564a75778f961",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "5f93f900d7c5b99d3582786c89c0e9341d3845e1ab576cb007072d575233192d"
       },
-      "head": "1d397863b84624141c11e2acf1eb8cb2928b3d2a",
-      "outcome": "updated",
-      "reason": "injectHotkeyRecorder now reads provider hotkeyRecorder defaults on each sync instead of copying them at injection, so signal-driven defaults update it. The skill made no claim about recorder defaults being snapshotted, so existing guidance stays accurate. Added one pitfall: a scoped provideHotkeys in Route.providers outlives navigation by default; it names withAutoCleanupInjectors() as an alternative with its Angular 22.2 floor and shouldDestroyInjector requirement.",
+      "head": "4ce9adc5287af96e4f62050d411228e32009bc92",
+      "outcome": "no-change",
+      "reason": "Merge of main after #237 merged. These items changed through #237, #238 and #239, which recorded their own reviews. The skill_spec.md conflict kept #239's Lit row and this branch's Angular row with the Route.providers pitfall; this branch's log entry is renumbered as revision 5.",
       "evidence": [
-        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts",
-        "packages/angular-hotkeys/tests/reactive-options.test.ts",
-        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md",
-        "@angular/router 22.2.5 types/router.d.ts (withAutoCleanupInjectors @publicApi 22.2) and fesm2022/_router-chunk.mjs (shouldDestroyInjector ?? false; BaseRouteReuseStrategy returns true)",
-        "Scratch @angular/router 22.2.5 TestBed run: route-level exclusive scope suspended the next page's K hotkey (0 calls); with withAutoCleanupInjectors() it fired (1 call)",
-        "intent validate packages/angular-hotkeys/skills: passed",
-        "pnpm vitest run in packages/angular-hotkeys: 11 files, 65 tests pass",
-        "Not run: fresh-consumer session"
+        "Changed: docs/framework/angular/quick-start.md at 4ce9adc5287af96e4f62050d411228e32009bc92"
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
@@ -105,12 +97,12 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "5a09185969cdf40c434dce31222f999c81d80496b1f2f06009512257097797f8",
+      "fingerprint": "414b966e7eff6038566a02019f35ea09b079e934b3f5b0b7f330e73288c0d310",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "03b024ba6a23d6b87a7b99be8a30b54fd5d82ba27e075ba0c00f648c82759e5f",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/guides/sensible-defaults.md": "8b4d1a9d2692f8a7b3f72a6d57ad5ec1edc40fbef83a8fb1c4373b6230a65efd",
+        "docs/guides/sensible-defaults.md": "26d2b564622899e420f99bbe59a9ec71613157ac8a66af46220e58a2c3397965",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
@@ -126,32 +118,30 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "4ce9adc5287af96e4f62050d411228e32009bc92",
       "outcome": "no-change",
-      "reason": "Code examples changed only in import order (oxfmt sortImports), and the covered sources changed only by formatter output. Guidance and APIs are unchanged.",
+      "reason": "Merge of main after #237 merged. These items changed through #237, #238 and #239, which recorded their own reviews. The skill_spec.md conflict kept #239's Lit row and this branch's Angular row with the Route.providers pitfall; this branch's log entry is renumbered as revision 5.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "git diff origin/main: only import lines change"
+        "Changed: docs/guides/sensible-defaults.md at 4ce9adc5287af96e4f62050d411228e32009bc92"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
-      "fingerprint": "813e48131b098cec135404bc3c459bbcb692f3881cd951e03071d75f8d148b1d",
+      "fingerprint": "62d592c303290085fef69e7736d7b7a997b2f8e891f6da64e6d01ad887f68caa",
       "snapshot": {
         "docs/framework/lit/guides/app-hotkeys.md": "b001df84eb320a4af7759ab163f837bac0fe3b36014b4b5de9366102073af97b",
         "docs/framework/lit/quick-start.md": "0f1e0a406ae61dc62ea0659b95e734828a1181a591990331f1e8405f637a0094",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "5690f120148b5314bab1eb13244ae578bd78f55b1b11d8c6637489ca2750d187",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "b2e8d9a31ecc0f97bc0c073608a06572ff555cf5f2d7e52316315e4783fdaacd",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
-        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2a4ea438b8322f0f547dd10af7e94882cc2cfaa58def039c19f976ab9aa14670",
-        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "6c988296c7e85b02953f1392f50ce46be19920b2e0fd1fd8ec613e072d5d4e3b",
-        "packages/lit-hotkeys/src/controllers/hotkey.ts": "c8b8c7fd2379178d5bcc176c5d44c5212f3294206ac35a1e6d5d88df2ac02708",
-        "packages/lit-hotkeys/src/decorators/hotkey.ts": "46c9522a6d617f37826898bfda2b0eba52204fafb5fa895a356603b2ddbf5f01"
+        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
+        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "69e4018c8375779f0392cf0383f5d3f1faeb14e0dee831a2c0b4dbd6e60cd36d",
+        "packages/lit-hotkeys/src/controllers/hotkey.ts": "042ef72211df8490512540d2bdd878f5e3c04bbd1fd46b31e11b27d5a6b18dbb",
+        "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "4ce9adc5287af96e4f62050d411228e32009bc92",
       "outcome": "no-change",
-      "reason": "Code examples changed only in import order (oxfmt sortImports), and the covered sources changed only by formatter output. Guidance and APIs are unchanged.",
+      "reason": "Merge of main after #237 merged. These items changed through #237, #238 and #239, which recorded their own reviews. The skill_spec.md conflict kept #239's Lit row and this branch's Angular row with the Route.providers pitfall; this branch's log entry is renumbered as revision 5.",
       "evidence": [
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md",
-        "git diff origin/main: only import lines change"
+        "Changed: packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md, packages/lit-hotkeys/src/controllers/app-hotkeys.ts, packages/lit-hotkeys/src/controllers/hotkey-recorder.ts, packages/lit-hotkeys/src/controllers/hotkey.ts, packages/lit-hotkeys/src/decorators/hotkey.ts at 4ce9adc5287af96e4f62050d411228e32009bc92"
       ]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
@@ -298,15 +288,15 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "062d339b0b0d03a31529cbb545cf8b333b71d6a2807ed2b70405d71a82ca9700",
+      "fingerprint": "818f2a9858175bf40f779ad6c78720f1328bd533c294d77f7526c45fe7074584",
       "snapshot": {
-        "_artifacts/domain_map.yaml": "3e3187c977ee6f4a6589c08d79f5cf3177474fbac47f42463cc91021f25922a3",
-        "_artifacts/skill_spec.md": "de993767dc8acb2ea87cb76d639e8f173c4eea7efe47daa25fd343729478d373",
+        "_artifacts/domain_map.yaml": "a69f13307f9a3911919996d3e1604af90091eeefad35048498f69fa97e8dcea3",
+        "_artifacts/skill_spec.md": "b451580341ef295b0c09dc382d2d30a7099327adaddcfe38ef1e7c91a2b277d2",
         "_artifacts/skill_tree.yaml": "bff31ee525c55a3e572083903c5b8deb444cd850845ae2dc1e4b886ce2236a12",
         "docs/framework/alpine/guides/app-hotkeys.md": "cdefefaa71aa9c36da99d314ab0279aa791dcf651bb1fd4cebf7263ba661078a",
         "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "2677af5bab55d38813b254ebe59ed59393ad7846afb7ec73be01304d3a2e0176",
-        "docs/framework/angular/quick-start.md": "25ae0b7755dd97c13360f630d9ebc1534119dd72298ae26de1ce9cc1bf90dfec",
+        "docs/framework/angular/quick-start.md": "7cc94e2f2a712f1748357b17784723b327122c43d2051d8d17639adb6af725b6",
         "docs/framework/ember/guides/app-hotkeys.md": "c7c52789e2c869e773cb14b25f8a1dc8e5533569211bac45b0f124eb7c260695",
         "docs/framework/ember/quick-start.md": "b68bb08e413da376299f10925ece54685dcccfbeea98af088f1c58b3c5456f37",
         "docs/framework/lit/guides/app-hotkeys.md": "b001df84eb320a4af7759ab163f837bac0fe3b36014b4b5de9366102073af97b",
@@ -328,7 +318,7 @@
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
-        "docs/guides/sensible-defaults.md": "8b4d1a9d2692f8a7b3f72a6d57ad5ec1edc40fbef83a8fb1c4373b6230a65efd",
+        "docs/guides/sensible-defaults.md": "26d2b564622899e420f99bbe59a9ec71613157ac8a66af46220e58a2c3397965",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "b8a7e9ce42d7a9cfacc9bd405a5f0be43064e81f76616a6f31504ccb32c0d59a",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "69ba6d06582aaf28328e74c12888bcf8b1d89b2ae2a01d7f6a41eb82eef848e3",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4c43866e1e60dbfcdac1c5acb3b5bd1f372d722d47e51cb8922b22f1c372fa45",
@@ -364,12 +354,12 @@
         "packages/hotkeys/src/hotkey-manager.ts": "340ae1e61d8e08fe56edb0bb73f41434dae03ad15a374c2a0864450b64276443",
         "packages/hotkeys/src/hotkey-recorder.ts": "a19c8e64b939faa51b4554e71e71485f4d419539e4c9c287fdbb07955362a3e7",
         "packages/hotkeys/src/match.ts": "204f0159ccdd1bfaed96b1b03ad805f7fa9a74c011e70760749d1e0c326b7e8a",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "5690f120148b5314bab1eb13244ae578bd78f55b1b11d8c6637489ca2750d187",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "b2e8d9a31ecc0f97bc0c073608a06572ff555cf5f2d7e52316315e4783fdaacd",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
-        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2a4ea438b8322f0f547dd10af7e94882cc2cfaa58def039c19f976ab9aa14670",
-        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "6c988296c7e85b02953f1392f50ce46be19920b2e0fd1fd8ec613e072d5d4e3b",
-        "packages/lit-hotkeys/src/controllers/hotkey.ts": "c8b8c7fd2379178d5bcc176c5d44c5212f3294206ac35a1e6d5d88df2ac02708",
-        "packages/lit-hotkeys/src/decorators/hotkey.ts": "46c9522a6d617f37826898bfda2b0eba52204fafb5fa895a356603b2ddbf5f01",
+        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
+        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "69e4018c8375779f0392cf0383f5d3f1faeb14e0dee831a2c0b4dbd6e60cd36d",
+        "packages/lit-hotkeys/src/controllers/hotkey.ts": "042ef72211df8490512540d2bdd878f5e3c04bbd1fd46b31e11b27d5a6b18dbb",
+        "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef",
         "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "cae463ad7f9d31b4922a96534db78a83ac768ba38915463a2c8bbfb428d7292e",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "d18e8ffb2503f4dfd4aec75aaa8ec6974c3a9cea6e7174287ec8ea18cc77f101",
@@ -430,13 +420,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "b3e8f6c870734a967881c5b155ddced5c737d5162e6f44e5c095bd2be81fd0e6"
       },
-      "head": "1d397863b84624141c11e2acf1eb8cb2928b3d2a",
-      "outcome": "updated",
-      "reason": "Added the Route.providers scope failure mode to domain_map.yaml and the Angular row of skill_spec.md, plus a revision 4 entry recording the recorder fix, the withAutoCleanupInjectors caveats, and the decision to leave injectDefaultHotkeysOptions returning a snapshot. skill_tree.yaml is unchanged: no skill was added or split.",
+      "head": "4ce9adc5287af96e4f62050d411228e32009bc92",
+      "outcome": "no-change",
+      "reason": "Merge of main after #237 merged. These items changed through #237, #238 and #239, which recorded their own reviews. The skill_spec.md conflict kept #239's Lit row and this branch's Angular row with the Route.providers pitfall; this branch's log entry is renumbered as revision 5.",
       "evidence": [
-        "_artifacts/domain_map.yaml",
-        "_artifacts/skill_spec.md",
-        "_artifacts/skill_tree.yaml"
+        "Changed: _artifacts/domain_map.yaml, _artifacts/skill_spec.md, docs/framework/angular/quick-start.md, docs/guides/sensible-defaults.md, packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md, packages/lit-hotkeys/src/controllers/app-hotkeys.ts, packages/lit-hotkeys/src/controllers/hotkey-recorder.ts, packages/lit-hotkeys/src/controllers/hotkey.ts, packages/lit-hotkeys/src/decorators/hotkey.ts at 4ce9adc5287af96e4f62050d411228e32009bc92"
       ]
     },
     "source:.changeset/intent-skills.md": {
