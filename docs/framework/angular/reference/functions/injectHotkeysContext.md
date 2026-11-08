@@ -9,7 +9,7 @@ title: injectHotkeysContext
 function injectHotkeysContext(): HotkeysContextValue;
 ```
 
-Defined in: [hotkeys-provider.ts:291](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L291)
+Defined in: [hotkeys-provider.ts:298](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L298)
 
 Returns the nearest provider's context. Injecting it activates that
 provider's scope.

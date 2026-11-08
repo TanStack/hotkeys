@@ -10,7 +10,7 @@ import {
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { withDefaults } from '@tanstack/hotkeys/adapter'
 import { injectWrapCallback } from './_zone'
-import { injectDefaultHotkeysOptions } from './hotkeys-provider'
+import { injectHotkeysContext } from './hotkeys-provider'
 import type { Signal } from '@angular/core'
 import type {
   Hotkey,
@@ -91,16 +91,17 @@ export function injectHotkeyRecorder(
 export function injectHotkeyRecorder(
   options: HotkeyRecorderOptions | (() => HotkeyRecorderOptions),
 ): AngularHotkeyRecorder {
-  const defaultOptions = injectDefaultHotkeysOptions()
+  const context = injectHotkeysContext()
   const destroyRef = inject(DestroyRef)
   const zone = inject(NgZone)
   const wrapCallback = injectWrapCallback()
 
+  // Reads the provider defaults on each call, so the sync effect tracks them.
   // Callbacks run in the zone and mark the component for check, so their
   // changes update the view.
   const resolve = (): HotkeySequenceRecorderOptions => {
     const resolved: Record<string, any> = withDefaults(
-      defaultOptions.hotkeyRecorder,
+      context.defaultOptions.hotkeyRecorder,
       typeof options === 'function' ? options() : options,
     )
     for (const key of ['onRecord', 'onCancel', 'onClear', 'onReject']) {
@@ -111,9 +112,18 @@ export function injectHotkeyRecorder(
     return resolved as never
   }
 
+  // Keys sent to the recorder last time. A key that disappears from the
+  // options is sent as `undefined`, which restores the recorder's default
+  // instead of keeping the old value.
+  let syncedKeys: Array<string> = []
+
   // Stable signal to lazy initialize the recorder
   const recorderSignal = computed(() =>
-    untracked(() => new HotkeyRecorder(resolve())),
+    untracked(() => {
+      const initial = resolve()
+      syncedKeys = Object.keys(initial)
+      return new HotkeyRecorder(initial)
+    }),
   )
 
   // Subscribe to recorder state
@@ -130,7 +140,10 @@ export function injectHotkeyRecorder(
 
   // Sync options on every effect run (matches React's sync on render)
   effect(() => {
-    recorderSignal().setOptions(resolve())
+    const next: Record<string, unknown> = { ...resolve() }
+    for (const key of syncedKeys) if (!(key in next)) next[key] = undefined
+    syncedKeys = Object.keys(next)
+    recorderSignal().setOptions(next)
   })
 
   destroyRef.onDestroy(() => {

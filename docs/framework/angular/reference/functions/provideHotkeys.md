@@ -9,7 +9,7 @@ title: provideHotkeys
 function provideHotkeys(options?): Provider;
 ```
 
-Defined in: [hotkeys-provider.ts:280](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L280)
+Defined in: [hotkeys-provider.ts:287](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L287)
 
 Provides default options, app hotkeys, and the user's custom hotkeys to an
 injector, such as the application or a component.
@@ -21,6 +21,10 @@ is enabled; with `exclusive`, only they fire. The scope activates when the
 first hotkey in it is injected. Angular creates the provider lazily, so a
 component with no hotkeys of its own calls `injectHotkeysContext()` to
 activate its scope.
+
+Put a scoped provider in a component's `providers`, not `Route.providers`.
+By default, the router keeps a route's injector after navigation, so the
+scope would stay active.
 
 ## Parameters
 
