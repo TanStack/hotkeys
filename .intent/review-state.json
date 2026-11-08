@@ -26,11 +26,11 @@
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "92d96abb919a8f954de9e25573188230db90beda0a6a5160682aaab72def72a8",
+      "fingerprint": "15aa19db6ece99a770f82829c77d91586d94d22c77702cc6a043f31f07d032cc",
       "snapshot": {
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
         "docs/framework/angular/quick-start.md": "2eb59bbc55c4845b7d1176becd127d8bc449e88ee93ee52c4cb28df799339ac0",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "644a777c52a1ef882879320671517bb1349066612e3da4314e83211294eb21de",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "d3c806c6d52abe338dfc11a8e7453b93febfa2dbb1767730ec2af436e16f66b8",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "99affbcaa511e7286035f6486cfc49b2e3c95256967d107167f6fc4986f20ffc",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
@@ -38,20 +38,20 @@
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "5ea65c992dc0bce0fcaf06f2c143080e1b65be788961cb8f23f6ae91e8885311",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "25f100bcc3bf1deb60b9c13a62ba7201b85d8d317be93ba244d9b2f85274bb18"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
-      "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "head": "c516af53ae85e81b08262587232d2adaf91965e8",
+      "outcome": "updated",
+      "reason": "Skills now limit plain formatForDisplay to browser-only labels when no provider or scope sets platform, matching the guides.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md",
+        "docs/framework/react/guides/formatting-display.md"
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
-      "fingerprint": "39e6611c2b7cddf92eeb5515e5dd133893021338c8e9d36c6d9c220ab555ddeb",
+      "fingerprint": "b4c0c84cdaaa61e5fa6ed092683a343e4a15d08be4dd67709d971939f32fcada",
       "snapshot": {
         "docs/framework/ember/guides/app-hotkeys.md": "c7c52789e2c869e773cb14b25f8a1dc8e5533569211bac45b0f124eb7c260695",
         "docs/framework/ember/quick-start.md": "b68bb08e413da376299f10925ece54685dcccfbeea98af088f1c58b3c5456f37",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "a6bdf35ab45404e6af23458d3aeee05da853e06f8c54894405389a8ff372a4f1",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "d2c51c3efe9a55f605f643f657f6da6d46e3b00acaf879f95acdc3d4ade8fabb",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "6bcb35cd5de4fc7c87f1dba3f7952998d8c79db0add0af2fc2d3dfc379d0df6d",
         "packages/ember-hotkeys/src/onHotkey.ts": "0cd156d6a90b341d7f1006df47911b3033ba523a68758274c00df7c8cb9dfbff",
@@ -61,12 +61,12 @@
         "packages/ember-hotkeys/src/useHotkeyRecorder.ts": "62e88767d073da768bd423268a5687390ac9b0ff7e9a28fd3ccc201bf827f540",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
-      "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "head": "c516af53ae85e81b08262587232d2adaf91965e8",
+      "outcome": "updated",
+      "reason": "Skills now limit plain formatForDisplay to browser-only labels when no provider or scope sets platform, matching the guides.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md"
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md",
+        "docs/framework/react/guides/formatting-display.md"
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
@@ -149,31 +149,31 @@
       ]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
-      "fingerprint": "0dfb242716ff9ebd7d5a22ab37a2f288413f53eaa5058a7bf317610ae6333b44",
+      "fingerprint": "5cacb81c6d0a37de3ff6915382fa572e168e870509188e1a1425946c9d8e751f",
       "snapshot": {
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
         "docs/framework/octane/quick-start.md": "cbb3844d20ea1b3609c444c0614ac910ec9e22811d46d9175baa470738da97f9",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2e207c6e733ab9b471588670dbefe787d5a613a6ae9663d2086830e300aee89e",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "cae463ad7f9d31b4922a96534db78a83ac768ba38915463a2c8bbfb428d7292e",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "d18e8ffb2503f4dfd4aec75aaa8ec6974c3a9cea6e7174287ec8ea18cc77f101",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "0fc7d7f72d19fbe3ed5c0d13d8355cc8d1576e0382b631fe128540480edf2993",
         "packages/octane-hotkeys/src/useHotkey.ts": "490586731422fd204ea65f08ff44fd9c4b102042ac8b278a4fab590ad7b878c7",
         "packages/octane-hotkeys/src/useHotkeys.ts": "faf937961a3ee7931f7fa73c5a11c60947fbbdf42636bff44d9169a7cb40a600"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
-      "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "head": "c516af53ae85e81b08262587232d2adaf91965e8",
+      "outcome": "updated",
+      "reason": "Skills now limit plain formatForDisplay to browser-only labels when no provider or scope sets platform, matching the guides.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md"
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md",
+        "docs/framework/react/guides/formatting-display.md"
       ]
     },
     "skill:packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": {
-      "fingerprint": "b5b066fed714faea1db2c249900123ab25396583ba5b6a5f07f0f4c86cb849bb",
+      "fingerprint": "aad12c1fbc79a1222eae21507b353f49b205ebcf7459917a3a1d3b9634ee36fd",
       "snapshot": {
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
         "docs/framework/preact/quick-start.md": "d9cd9759e454cb4cbb050c189f3dee97d1141238ea30e623e5308dcc7cf29328",
-        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "72770f69f46bc535722a255f8c86c44d6cba21c6748c036165e1e77c1686487a",
+        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "6aadaa9d56377608f67bab4afd72947b81faf4de08f3170d1f7e5489f67e7c31",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "f1379c2c148231363d89ddc107333ab2e103a3df92d394e6265f2b685685c53e",
         "packages/preact-hotkeys/src/HotkeysProvider.tsx": "6c8a5774e46b86002b1fa1f7766665942ec3e2ff6b3c0da37eb4d8247d316392",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "9c4cc235f7d692d52f2adf308240bd6e5b6741ecdc27cb0a19b3fbaeb728bef3",
@@ -181,20 +181,20 @@
         "packages/preact-hotkeys/src/useHotkeys.ts": "dd4e288866368082653ef208e6fcddf7937f16c5e7fc301d0afd05e1ab596fae",
         "packages/preact-hotkeys/src/utils.ts": "69283bd48d761aa9b480823ec18ec5e252b45f5545c7318f2ccb0b0a38c0b346"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
-      "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "head": "c516af53ae85e81b08262587232d2adaf91965e8",
+      "outcome": "updated",
+      "reason": "Skills now limit plain formatForDisplay to browser-only labels when no provider or scope sets platform, matching the guides.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"
+        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md",
+        "docs/framework/react/guides/formatting-display.md"
       ]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "99e208384c90cb66bb2ed1239c36e0f7a0aba210b7bec8133b8e152cc9709d81",
+      "fingerprint": "bb429eec471081e76785e93c3289c11c710a9f60a2305a1619e58f6b3a35b263",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/quick-start.md": "7e515e89dfac678fcb022668de87537dbb6e7a1297d5e2ee7d29223884eb7c20",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "8e903f6dfd8a6c10850bfcb95340dd6b3588b61d9fdbc5726fb48f1c54ef8743",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "cd5c824939e6b557a72ebe8ed68c7eac893ab1bc00d94371ddbf76c6f36282c7",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "daf40fa16fc1b44c0e556f6ab7a791bc875b55a86c408cacce575b4fcb53a07c",
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "7fc1fc155087034182f5447681da9b4dd5309e62cba2c7b2b69afeed3b44c706",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "5b384b0361eabbb7c5faaa3a9083015413f212e9a02aa8234f0747714dd08453",
@@ -219,40 +219,40 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
-      "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "head": "c516af53ae85e81b08262587232d2adaf91965e8",
+      "outcome": "updated",
+      "reason": "Skills now limit plain formatForDisplay to browser-only labels when no provider or scope sets platform, matching the guides.",
       "evidence": [
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md"
+        "docs/framework/react/guides/formatting-display.md"
       ]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
-      "fingerprint": "d79ecce0a534249b341f8397f3d6f5723fe3bfced5a9782436997a1b694d7bea",
+      "fingerprint": "a9672acae247e630b6e6cfeac1ce62b31c20df3cce6bfaf3f7e9a28801c7a073",
       "snapshot": {
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
         "docs/framework/solid/quick-start.md": "b9eca3313e57f3a878fc683fd36baabd6b880bbbea18a6aff1fc74e05488ef7f",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "e3b3a43e779117411a03e878ae04141c3bff8cdd594a1a0e48bc87283d9217ff",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "18610c60ad1b27d916d80b9fd4fa57cf246cc244b9a8e34d23ccf76903b898f6",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d6b972c0d90e136e1334850ea1ba428b919d47221026c0fb984f774a436158e5",
         "packages/solid-hotkeys/src/HotkeysProvider.tsx": "ff22502ee23bb97c66d7345b732533665d951d738645e470dfa9ea9940eb3594",
         "packages/solid-hotkeys/src/appHotkeys.ts": "fa27dd5582b2629764c9a164b704b3772e267d90b24af8d252818e4f97827d3a",
         "packages/solid-hotkeys/src/createHotkey.ts": "3be9476087da2b53e809ad5ac59b2f791f38cc4d88e2b151258e668a9fc92294",
         "packages/solid-hotkeys/src/createHotkeys.ts": "667785bb3195a4b9195791ebcf79351cd42251898974fe92b2c7ac1ef4e2d0bb"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
-      "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "head": "c516af53ae85e81b08262587232d2adaf91965e8",
+      "outcome": "updated",
+      "reason": "Skills now limit plain formatForDisplay to browser-only labels when no provider or scope sets platform, matching the guides.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md",
+        "docs/framework/react/guides/formatting-display.md"
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "10a92adcff3af7be71abd0f025c3b379a71e369dc1c2f38b334cf3969007e7c4",
+      "fingerprint": "fdcd7923aa169d7617d97f675931aa53a80efd442f881f46aaf0f2f1a30771ad",
       "snapshot": {
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "8dcc12e17d2389322ab8056f27faf03bb2f314c75b92ed851b0390024d4b8c9f",
+        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "c6886be2d6b94b91f833b542c94d6935e2714f127cba10916078385f4c7b7a9f",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "72d83959df76bbf8c07cd4f3b1e63bf490e4436c03bb17215730a289abd530f7",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "0f65d9e5d3592fe47d1878b34b8f0b92eea549490341127c56768b0f8a1344a8",
@@ -261,20 +261,20 @@
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "86000611dcf85054f0bbf702f5919f7796297adb342011784ccdba6c4938a175",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "bbde849c4842dfe7050a85c32e4f6fa5b8d55a854af7df8c24774546d2a1eefd"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
-      "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "head": "c516af53ae85e81b08262587232d2adaf91965e8",
+      "outcome": "updated",
+      "reason": "Skills now limit plain formatForDisplay to browser-only labels when no provider or scope sets platform, matching the guides.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"
+        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md",
+        "docs/framework/react/guides/formatting-display.md"
       ]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
-      "fingerprint": "bc7f72d716da396a2d8f0325c9bf06800dc3282c224d2c3249983e3fa0dfea62",
+      "fingerprint": "5e75284837b2cb153a1d3141c584c7747da217f0b379ccd2e36964740a304ee9",
       "snapshot": {
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "d7f5f552c121e88300e9d6dc8413e04ad7731a930cdc9f79678c2fded5f74066",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "561fc92f1eeaf87791544cb34c2ead4013fb92809e213fc7777f2c02bd2f6513",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "772db9ad3bf5ab0388daf44a947abfff769b756b359584a423a91054a238857f",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "566511eecf3a7a69390c6f9adbf47b9ba8d547ebcd9733be117434ca8ca69b1f",
         "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "e0afb290f454330d0fec3dd775beca2fbf941df95e51146351988a62fd802872",
@@ -283,16 +283,16 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "b3e8f6c870734a967881c5b155ddced5c737d5162e6f44e5c095bd2be81fd0e6"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
-      "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "head": "c516af53ae85e81b08262587232d2adaf91965e8",
+      "outcome": "updated",
+      "reason": "Skills now limit plain formatForDisplay to browser-only labels when no provider or scope sets platform, matching the guides.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md",
+        "docs/framework/react/guides/formatting-display.md"
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "dd96b8ed793d649e96911dd3b7ce1ff2b43d72615a7d92fad79433aacfb98d10",
+      "fingerprint": "aab60c1ea4dc9bd44295ac9c0d0a504328628f76dc9d95f9abe53a09465796d8",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -332,14 +332,14 @@
         "packages/alpine-hotkeys/src/hotkeyRecorderPlugin.ts": "8ff86447e513f47002c49ed9f60269d485b0cd65b87277bb52cf2d8286ddbd36",
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "5b2b94b41d520f3beb60d2ceb15081799873c84c0ff244289d9b3698168c0ead",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "644a777c52a1ef882879320671517bb1349066612e3da4314e83211294eb21de",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "d3c806c6d52abe338dfc11a8e7453b93febfa2dbb1767730ec2af436e16f66b8",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "99affbcaa511e7286035f6486cfc49b2e3c95256967d107167f6fc4986f20ffc",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "03ea85098b0ed95e323e8d1e35b61b2683b7bc2d68f67e56e15ce2da92177a6f",
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "5ea65c992dc0bce0fcaf06f2c143080e1b65be788961cb8f23f6ae91e8885311",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "25f100bcc3bf1deb60b9c13a62ba7201b85d8d317be93ba244d9b2f85274bb18",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "a6bdf35ab45404e6af23458d3aeee05da853e06f8c54894405389a8ff372a4f1",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "d2c51c3efe9a55f605f643f657f6da6d46e3b00acaf879f95acdc3d4ade8fabb",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "6bcb35cd5de4fc7c87f1dba3f7952998d8c79db0add0af2fc2d3dfc379d0df6d",
         "packages/ember-hotkeys/src/onHotkey.ts": "0cd156d6a90b341d7f1006df47911b3033ba523a68758274c00df7c8cb9dfbff",
@@ -364,20 +364,20 @@
         "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "6c988296c7e85b02953f1392f50ce46be19920b2e0fd1fd8ec613e072d5d4e3b",
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "c8b8c7fd2379178d5bcc176c5d44c5212f3294206ac35a1e6d5d88df2ac02708",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "46c9522a6d617f37826898bfda2b0eba52204fafb5fa895a356603b2ddbf5f01",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "2e207c6e733ab9b471588670dbefe787d5a613a6ae9663d2086830e300aee89e",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "cae463ad7f9d31b4922a96534db78a83ac768ba38915463a2c8bbfb428d7292e",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "d18e8ffb2503f4dfd4aec75aaa8ec6974c3a9cea6e7174287ec8ea18cc77f101",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "0fc7d7f72d19fbe3ed5c0d13d8355cc8d1576e0382b631fe128540480edf2993",
         "packages/octane-hotkeys/src/useHotkey.ts": "490586731422fd204ea65f08ff44fd9c4b102042ac8b278a4fab590ad7b878c7",
         "packages/octane-hotkeys/src/useHotkeys.ts": "faf937961a3ee7931f7fa73c5a11c60947fbbdf42636bff44d9169a7cb40a600",
-        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "72770f69f46bc535722a255f8c86c44d6cba21c6748c036165e1e77c1686487a",
+        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "6aadaa9d56377608f67bab4afd72947b81faf4de08f3170d1f7e5489f67e7c31",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "f1379c2c148231363d89ddc107333ab2e103a3df92d394e6265f2b685685c53e",
         "packages/preact-hotkeys/src/HotkeysProvider.tsx": "6c8a5774e46b86002b1fa1f7766665942ec3e2ff6b3c0da37eb4d8247d316392",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "9c4cc235f7d692d52f2adf308240bd6e5b6741ecdc27cb0a19b3fbaeb728bef3",
         "packages/preact-hotkeys/src/useHotkey.ts": "39c64d006438ba9f3af02c3d504b1b4ea2ab3f80c3441253a18a42416df48c96",
         "packages/preact-hotkeys/src/useHotkeys.ts": "dd4e288866368082653ef208e6fcddf7937f16c5e7fc301d0afd05e1ab596fae",
         "packages/preact-hotkeys/src/utils.ts": "69283bd48d761aa9b480823ec18ec5e252b45f5545c7318f2ccb0b0a38c0b346",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "8e903f6dfd8a6c10850bfcb95340dd6b3588b61d9fdbc5726fb48f1c54ef8743",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "cd5c824939e6b557a72ebe8ed68c7eac893ab1bc00d94371ddbf76c6f36282c7",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "daf40fa16fc1b44c0e556f6ab7a791bc875b55a86c408cacce575b4fcb53a07c",
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "7fc1fc155087034182f5447681da9b4dd5309e62cba2c7b2b69afeed3b44c706",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "5b384b0361eabbb7c5faaa3a9083015413f212e9a02aa8234f0747714dd08453",
@@ -401,13 +401,13 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/shortcut-settings.test.tsx": "c6e0204269f0c8ef42ae6832f5b96eb6a3d2df552cc2c21511aa545e0ee4cd24",
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "e3b3a43e779117411a03e878ae04141c3bff8cdd594a1a0e48bc87283d9217ff",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "18610c60ad1b27d916d80b9fd4fa57cf246cc244b9a8e34d23ccf76903b898f6",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d6b972c0d90e136e1334850ea1ba428b919d47221026c0fb984f774a436158e5",
         "packages/solid-hotkeys/src/HotkeysProvider.tsx": "ff22502ee23bb97c66d7345b732533665d951d738645e470dfa9ea9940eb3594",
         "packages/solid-hotkeys/src/appHotkeys.ts": "fa27dd5582b2629764c9a164b704b3772e267d90b24af8d252818e4f97827d3a",
         "packages/solid-hotkeys/src/createHotkey.ts": "3be9476087da2b53e809ad5ac59b2f791f38cc4d88e2b151258e668a9fc92294",
         "packages/solid-hotkeys/src/createHotkeys.ts": "667785bb3195a4b9195791ebcf79351cd42251898974fe92b2c7ac1ef4e2d0bb",
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "8dcc12e17d2389322ab8056f27faf03bb2f314c75b92ed851b0390024d4b8c9f",
+        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "c6886be2d6b94b91f833b542c94d6935e2714f127cba10916078385f4c7b7a9f",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "72d83959df76bbf8c07cd4f3b1e63bf490e4436c03bb17215730a289abd530f7",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "0f65d9e5d3592fe47d1878b34b8f0b92eea549490341127c56768b0f8a1344a8",
@@ -415,7 +415,7 @@
         "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "0dcfe7ecbaa7a202fd3be9e88ca24d95cd8965267374ea709435e19a13a4857b",
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "86000611dcf85054f0bbf702f5919f7796297adb342011784ccdba6c4938a175",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "bbde849c4842dfe7050a85c32e4f6fa5b8d55a854af7df8c24774546d2a1eefd",
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "d7f5f552c121e88300e9d6dc8413e04ad7731a930cdc9f79678c2fded5f74066",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "561fc92f1eeaf87791544cb34c2ead4013fb92809e213fc7777f2c02bd2f6513",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "772db9ad3bf5ab0388daf44a947abfff769b756b359584a423a91054a238857f",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "566511eecf3a7a69390c6f9adbf47b9ba8d547ebcd9733be117434ca8ca69b1f",
         "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "e0afb290f454330d0fec3dd775beca2fbf941df95e51146351988a62fd802872",
@@ -424,12 +424,12 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "b3e8f6c870734a967881c5b155ddced5c737d5162e6f44e5c095bd2be81fd0e6"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
-      "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "head": "c516af53ae85e81b08262587232d2adaf91965e8",
+      "outcome": "updated",
+      "reason": "Skills now limit plain formatForDisplay to browser-only labels when no provider or scope sets platform, matching the guides.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "_artifacts"
+        "_artifacts",
+        "docs/framework/react/guides/formatting-display.md"
       ]
     },
     "source:.changeset/intent-skills.md": {
