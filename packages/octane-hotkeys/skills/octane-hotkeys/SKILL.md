@@ -73,7 +73,7 @@ No provider is required. Use Octane 0.12 or newer, with hooks in compiler-enable
 
 ## Pitfalls
 
-- **Targets are elements, not ref objects.** Keep the element in state with a callback ref, as above; a `null` target waits for the element.
+- **Keep elements that mount later in state.** A ref object such as `useRef<HTMLDivElement | null>(null)` works as `target`, but the hook reads `ref.current` only after its component renders, so it misses an element that mounts later, such as one a child shows from its own state. Keep such an element in state with a callback ref, as above. A `null` or `undefined` target, or an unset ref, waits for the element.
 - **Register a dialog's hotkeys in a child of its provider.** A hook uses the nearest `HotkeysProvider` above its component, so a dialog that renders `<HotkeysProvider scope={...} exclusive>` and registers `Escape` itself puts it in the suspended outer scope. Give each open dialog its own scope name, such as `` `dialog-${useId()}` ``.
 - **Hooks are tracked by call site.** Use `useHotkeys(items.map(...))` for lists, not `useHotkey` in a loop.
 - **Custom hooks in plain `.ts` and `.js` files need the compiler.** Calls from a `.ts` or `.js` file that the compiler skips share one slot per hook in each component, even across different custom hooks, so only the last `useHotkey` call works. The compiler handles a file that imports a value from `octane` or starts with `/** @jsxImportSource octane */`. A type-only import doesn't count. `.tsrx` and `.tsx` files are fine.

@@ -15,9 +15,12 @@ import type {
 } from '@tanstack/hotkeys/adapter'
 import type { RefObject } from 'preact'
 
-/** A Preact ref, element, document, or window to listen on. */
+/**
+ * A Preact ref, element, document, or window to listen on. A `null` or
+ * `undefined` target, or a ref that is still unset, waits for the element.
+ */
 export type UseHotkeyTarget =
-  | RefObject<HTMLElement | null>
+  | RefObject<HTMLElement | null | undefined>
   | HTMLElement
   | Document
   | Window

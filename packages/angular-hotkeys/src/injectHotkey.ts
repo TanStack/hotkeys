@@ -18,8 +18,9 @@ import type {
 
 /**
  * The element to listen on: an element, an `ElementRef`, or a signal of
- * either, such as `viewChild<ElementRef>('panel')`. A `null` target, or a
- * signal of `undefined`, skips registration until the element exists.
+ * either, such as `viewChild<ElementRef>('panel')`. A `null` or `undefined`
+ * target, or a signal of either, skips registration until the element exists.
+ * Omit `target` for the document.
  */
 export type InjectHotkeyTarget =
   | Target

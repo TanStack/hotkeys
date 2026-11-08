@@ -340,7 +340,7 @@ Alpine.data('panel', () => ({
 </div>
 ```
 
-`$refs` holds elements that exist when `init()` runs. For an element that Alpine adds later, such as one inside `x-if`, keep the element in component state and return it from the getter. A `null` target waits until the element exists.
+`$refs` holds elements that exist when `init()` runs. For an element that Alpine adds later, such as one inside `x-if`, keep the element in component state and return it from the getter. A `null` or `undefined` target waits until the element exists. Only an omitted `target` listens on `document`; set `target: document` to choose it explicitly.
 
 > [!NOTE]
 > An element receives key presses only while it, or something inside it, has focus. Give it a `tabindex` if it isn't focusable already.

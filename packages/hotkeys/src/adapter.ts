@@ -294,9 +294,10 @@ export interface PrepareHotkeyDefinitionsOptions<TTarget> {
   /** Options for every definition, applied after app hotkey declarations. */
   commonOptions?: AdapterCommonOptions<TTarget>
   /**
-   * Resolves a framework target, such as a ref. Return `undefined` for the
-   * document or `null` to skip registration until the target exists.
-   * Without it, targets pass through, so `null` skips registration.
+   * Resolves a framework target, such as a ref. Return `null` or `undefined`
+   * to skip registration until the target exists. Without it, targets pass
+   * through. Only an omitted `target` listens on the document; a `target` set
+   * to `null` or `undefined` waits.
    */
   resolveTarget?: (target: TTarget) => Target | null | undefined
 }
@@ -320,24 +321,30 @@ export function prepareHotkeyDefinitions<TTarget>(
       declared = getAppHotkeyRegistrationOptions(appHotkey)
       hotkey = appHotkey.hotkey ?? []
     }
-    // `undefined` means "not set", so it keeps the earlier layer's value.
-    const { target, ...merged } = definedOptions<AdapterCommonOptions<TTarget>>(
+    const layers = [
       options.defaults,
       declared,
       options.commonOptions,
       definition.options,
+    ]
+    // `undefined` means "not set", so it keeps the earlier layer's value.
+    const { target, ...merged } = definedOptions<AdapterCommonOptions<TTarget>>(
+      ...layers,
     )
+    // Only an omitted `target` means the document. A target that is set but
+    // not there yet, such as an unmounted ref, waits like `null`.
     const resolved =
       target === undefined
-        ? undefined
+        ? null
         : options.resolveTarget
           ? options.resolveTarget(target)
           : (target as Target | null)
     return {
       hotkey,
       callback: definition.callback,
-      options:
-        resolved === undefined ? merged : { ...merged, target: resolved },
+      options: layers.some((layer) => layer && Object.hasOwn(layer, 'target'))
+        ? { ...merged, target: resolved ?? null }
+        : merged,
     } as HotkeyDefinition
   })
 }

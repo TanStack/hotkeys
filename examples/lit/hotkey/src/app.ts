@@ -61,10 +61,10 @@ export class MyApp extends LitElement {
 
     // Scoped hotkeys read their target from a ref. A null target skips
     // registration until the element renders.
-    const sidebar = () => ({ target: this.sidebarRef.value ?? null })
-    const editor = () => ({ target: this.editorRef.value ?? null })
+    const sidebar = () => ({ target: this.sidebarRef.value })
+    const editor = () => ({ target: this.editorRef.value })
     const modal = () => ({
-      target: this.modalOpen ? (this.modalRef.value ?? null) : null,
+      target: this.modalOpen ? this.modalRef.value : null,
     })
 
     this.addController(
@@ -530,7 +530,7 @@ this.addController(
     this,
     'Mod+B',
     () => console.log('Sidebar shortcut!'),
-    () => ({ target: this.sidebarRef.value ?? null }),
+    () => ({ target: this.sidebarRef.value }),
   ),
 )
 
@@ -540,7 +540,7 @@ this.addController(
     this,
     'Escape',
     () => (this.modalOpen = false),
-    () => ({ target: this.modalOpen ? (this.modalRef.value ?? null) : null }),
+    () => ({ target: this.modalOpen ? this.modalRef.value : null }),
   ),
 )
 
@@ -550,7 +550,7 @@ this.addController(
     this,
     'Mod+S',
     () => saveEditorContent(),
-    () => ({ target: this.editorRef.value ?? null }),
+    () => ({ target: this.editorRef.value }),
   ),
 )`}</pre>
         </section>

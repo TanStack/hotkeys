@@ -245,7 +245,7 @@ injectHotkey('Mod+Space', () => toggle())</pre>
         <code>target</code> option. Use a getter for reactive targets (like
         Solid):
         <code
-          >() =&gt; (&#123; target: this.sidebarRef()?.nativeElement ?? null
+          >() =&gt; (&#123; target: this.sidebarRef()?.nativeElement
           &#125;)</code
         >
       </p>
@@ -348,21 +348,21 @@ private readonly sidebarRef = viewChild&lt;ElementRef&lt;HTMLDivElement&gt;&gt;(
 injectHotkey(
   'Mod+B',
   () => console.log('Sidebar shortcut!'),
-  () => (&#123; target: this.sidebarRef()?.nativeElement ?? null &#125;)
+  () => (&#123; target: this.sidebarRef()?.nativeElement &#125;)
 )
 
 // Scoped to modal (only when open)
 injectHotkey(
   'Escape',
   () => this.modalOpen.set(false),
-  () => (&#123; target: this.modalRef()?.nativeElement ?? null, enabled: this.modalOpen() &#125;)
+  () => (&#123; target: this.modalRef()?.nativeElement, enabled: this.modalOpen() &#125;)
 )
 
 // Scoped to editor
 injectHotkey(
   'Mod+S',
   () => saveEditorContent(),
-  () => (&#123; target: this.editorRef()?.nativeElement ?? null &#125;)
+  () => (&#123; target: this.editorRef()?.nativeElement &#125;)
 )</pre>
     </section>
   </main>

@@ -15,7 +15,7 @@ function useHotkey<T>(
 ): void;
 ```
 
-Defined in: [useHotkey.ts:77](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L77)
+Defined in: [useHotkey.ts:82](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L82)
 
 Vue composable for registering a hotkey: a chord such as `'Mod+S'`, a
 sequence such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
@@ -69,7 +69,7 @@ function useHotkey<T>(
 ): void;
 ```
 
-Defined in: [useHotkey.ts:82](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L82)
+Defined in: [useHotkey.ts:87](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkey.ts#L87)
 
 Vue composable for registering a hotkey: a chord such as `'Mod+S'`, a
 sequence such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.

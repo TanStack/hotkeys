@@ -9,6 +9,6 @@ title: UseHotkeyOptions
 type UseHotkeyOptions = AdapterHotkeyOptions<UseHotkeyTarget>;
 ```
 
-Defined in: [useHotkey.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L28)
+Defined in: [useHotkey.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L31)
 
 Options shared by chords and sequences.

@@ -16,9 +16,9 @@ import type {
 } from '@tanstack/hotkeys/adapter'
 
 /**
- * The element to listen on. A `null` target skips registration, so pass an
- * accessor such as `() => ({ target: element() })` for elements that attach
- * after mount.
+ * The element to listen on. A `null` or `undefined` target skips
+ * registration, so pass an accessor such as `() => ({ target: element() })`
+ * for elements that attach after mount. Omit `target` for the document.
  */
 export type CreateHotkeyTarget = Target | null
 

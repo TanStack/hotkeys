@@ -15,7 +15,7 @@ function useHotkey<T>(
 ): void;
 ```
 
-Defined in: [useHotkey.ts:92](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L92)
+Defined in: [useHotkey.ts:95](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L95)
 
 Preact hook for registering a hotkey: a chord such as `'Mod+S'`, a sequence
 such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.
@@ -93,7 +93,7 @@ function useHotkey<T>(
 ): void;
 ```
 
-Defined in: [useHotkey.ts:97](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L97)
+Defined in: [useHotkey.ts:100](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L100)
 
 Preact hook for registering a hotkey: a chord such as `'Mod+S'`, a sequence
 such as `['G', 'G']`, or an app hotkey from `defineAppHotkeys`.

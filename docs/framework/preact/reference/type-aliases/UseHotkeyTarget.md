@@ -7,13 +7,14 @@ title: UseHotkeyTarget
 
 ```ts
 type UseHotkeyTarget = 
-  | RefObject<HTMLElement | null>
+  | RefObject<HTMLElement | null | undefined>
   | HTMLElement
   | Document
   | Window
   | null;
 ```
 
-Defined in: [useHotkey.ts:19](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L19)
+Defined in: [useHotkey.ts:22](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L22)
 
-A Preact ref, element, document, or window to listen on.
+A Preact ref, element, document, or window to listen on. A `null` or
+`undefined` target, or a ref that is still unset, waits for the element.

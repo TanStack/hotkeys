@@ -2,7 +2,7 @@
 
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
 import { act, cleanup, render } from '@testing-library/preact'
-import { useState } from 'preact/hooks'
+import { useRef, useState } from 'preact/hooks'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import { useHotkey } from '../src/useHotkey'
@@ -106,6 +106,53 @@ describe('null targets', () => {
       new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }),
     )
     expect(onClose).toHaveBeenCalledOnce()
+  })
+})
+
+describe('undefined targets', () => {
+  it('wait for a ref that is still undefined, then register on its element', () => {
+    const onClose = vi.fn()
+    let show: () => void = () => {}
+    function Panel() {
+      // Untyped code can leave a ref unset; it waits like null.
+      const panelRef = useRef<HTMLDivElement>(undefined)
+      const [visible, setVisible] = useState(false)
+      show = () => setVisible(true)
+      useHotkey('Escape', onClose, { target: panelRef })
+      return visible ? <div ref={panelRef as never} tabIndex={0} /> : null
+    }
+    const { container } = render(<Panel />)
+    expect(registrationCount()).toBe(0)
+    document.body.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }),
+    )
+    expect(onClose).not.toHaveBeenCalled()
+    act(() => show())
+    const panel = container.querySelector('div')!
+    expect(
+      [...getHotkeyManager().registrations.state.values()][0]!.target,
+    ).toBe(panel)
+    panel.dispatchEvent(
+      new KeyboardEvent('keydown', { key: 'Escape', bubbles: true }),
+    )
+    expect(onClose).toHaveBeenCalledOnce()
+  })
+
+  it('wait when a wrapper forwards an unset target, and use the document when target is omitted', () => {
+    function Shortcut(props: { target?: HTMLElement; forward: boolean }) {
+      useHotkey(
+        'Escape',
+        () => {},
+        props.forward ? { target: props.target } : {},
+      )
+      return null
+    }
+    const { rerender } = render(<Shortcut forward />)
+    expect(registrationCount()).toBe(0)
+    rerender(<Shortcut forward={false} />)
+    expect(
+      [...getHotkeyManager().registrations.state.values()][0]!.target,
+    ).toBe(document)
   })
 })
 

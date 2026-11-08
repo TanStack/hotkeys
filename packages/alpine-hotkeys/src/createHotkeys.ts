@@ -25,7 +25,7 @@ export function createHotkeys(
           appHotkeysStore: scope.appHotkeys(),
           defaults: scope.defaultOptions().hotkey,
           commonOptions: read(options),
-          // A null target skips registration until it is set.
+          // An unset target skips registration until it is set.
           resolveTarget: (target) => target,
         }),
       ),

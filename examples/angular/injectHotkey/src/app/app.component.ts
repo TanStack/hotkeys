@@ -209,7 +209,7 @@ export class AppComponent {
           'Sidebar shortcut triggered! This only works when the sidebar area is focused.',
         )
       },
-      () => ({ target: this.sidebarRef()?.nativeElement ?? null }),
+      () => ({ target: this.sidebarRef()?.nativeElement }),
     )
     injectHotkey(
       'Mod+N',
@@ -217,7 +217,7 @@ export class AppComponent {
         this.lastHotkey.set('Mod+N')
         this.sidebarShortcutCount.update((c) => c + 1)
       },
-      () => ({ target: this.sidebarRef()?.nativeElement ?? null }),
+      () => ({ target: this.sidebarRef()?.nativeElement }),
     )
 
     // Scoped: modal (Solid-style getter)
@@ -229,7 +229,7 @@ export class AppComponent {
         this.modalOpen.set(false)
       },
       () => ({
-        target: this.modalRef()?.nativeElement ?? null,
+        target: this.modalRef()?.nativeElement,
         enabled: this.modalOpen(),
       }),
     )
@@ -241,7 +241,7 @@ export class AppComponent {
         alert('Modal submit shortcut!')
       },
       () => ({
-        target: this.modalRef()?.nativeElement ?? null,
+        target: this.modalRef()?.nativeElement,
         enabled: this.modalOpen(),
       }),
     )
@@ -257,7 +257,7 @@ export class AppComponent {
           `Editor content saved: "${content.substring(0, 50)}${content.length > 50 ? '...' : ''}"`,
         )
       },
-      () => ({ target: this.editorRef()?.nativeElement ?? null }),
+      () => ({ target: this.editorRef()?.nativeElement }),
     )
     injectHotkey(
       'Mod+/',
@@ -268,7 +268,7 @@ export class AppComponent {
           (prev) => prev + '\n// Comment added via shortcut',
         )
       },
-      () => ({ target: this.editorRef()?.nativeElement ?? null }),
+      () => ({ target: this.editorRef()?.nativeElement }),
     )
     injectHotkey(
       'Mod+K',
@@ -277,7 +277,7 @@ export class AppComponent {
         this.editorShortcutCount.update((c) => c + 1)
         this.editorContent.set('')
       },
-      () => ({ target: this.editorRef()?.nativeElement ?? null }),
+      () => ({ target: this.editorRef()?.nativeElement }),
     )
     injectHotkey('J', () => {
       this.lastHotkey.set('J')

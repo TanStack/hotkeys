@@ -9,7 +9,7 @@ title: AlpineAppHotkeyOptions
 type AlpineAppHotkeyOptions<T> = AdapterAppHotkeyOptions<T, AlpineHotkeyTarget>;
 ```
 
-Defined in: [types.ts:47](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L47)
+Defined in: [types.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/alpine-hotkeys/src/types.ts#L50)
 
 Call-site options for an app hotkey, typed by its declared default kind.
 

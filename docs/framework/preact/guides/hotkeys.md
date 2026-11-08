@@ -307,7 +307,7 @@ function Panel() {
 > [!NOTE]
 > An element receives key presses only while it, or something inside it, has focus. Give it a `tabIndex` if it isn't focusable already.
 
-A `null` target, or a ref whose `current` is still `null`, registers nothing until the element exists. To listen on `document`, omit `target`.
+A `null` or `undefined` target, or a ref whose `current` is still unset, registers nothing until the element exists. Only an omitted `target` listens on `document`, so a wrapper that forwards an unset `target` waits too. Set `target: document` to choose the document explicitly.
 
 While focus is inside the element, its hotkeys run before hotkeys on `document`. With the default `stopPropagation: true`, a `document` hotkey for the same key doesn't run at all. A sequence with a target advances only on key presses inside the target.
 
