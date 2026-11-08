@@ -42,6 +42,6 @@ optional platform?: HotkeyPlatform;
 
 Defined in: [packages/svelte-hotkeys/src/HotkeysCtx.ts:27](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/HotkeysCtx.ts#L27)
 
-The user's platform, for labels from `getFormatForDisplay`, hotkeys, and
-recorders. On a server, set it from the request with
-`detectPlatform(userAgent)`.
+The user's platform, for labels from `getFormatForDisplay`, hotkeys,
+recorders, and app hotkey checks such as conflicts. On a server, set it
+from the request with `detectPlatform(userAgent)`.

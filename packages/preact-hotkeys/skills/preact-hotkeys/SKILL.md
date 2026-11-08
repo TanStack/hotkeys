@@ -106,7 +106,7 @@ A hook uses the nearest `HotkeysProvider` above its component. Registering `Esca
 - **Keep elements that mount later in state.** The hook reads a ref only after its component renders, so it misses an element that mounts later, such as one a child shows from its own state. Use `const [el, setEl] = useState<HTMLElement | null>(null)`, `target: el`, and `ref={setEl}`; the hotkey registers when the element mounts and unregisters when it unmounts.
 - **No dependency arrays or `useCallback`.** The hooks read the hotkey, callback, and options on every render, so inline callbacks always see current state.
 - **Call the hooks directly.** A `useShortcut(keys: string)` wrapper has to cast strings to hotkeys, which turns off type checking and drops sequences, options, app hotkeys, and the typed callback context.
-- **In tests,** set `<HotkeysProvider defaultOptions={{ hotkey: { platform: 'mac' } }}>`.
+- **In tests,** set `<HotkeysProvider defaultOptions={{ platform: 'mac' }}>`. It applies to hotkeys, recorders, labels, and app hotkey conflict checks.
 - **Server-rendered labels need the user's platform.** On the server, `formatForDisplay` can't see the user's OS, so it renders Linux labels that differ after hydration for Mac and Windows users. Set the provider's `defaultOptions.platform` to `detectPlatform(userAgent)` from the request's `User-Agent` header, and format labels with `const format = useFormatForDisplay()` at the top of the component, then `format(hotkey)`. Keep plain `formatForDisplay` for labels that render only in the browser.
 
 When declaring app hotkeys, building a cheat sheet, or letting users rebind shortcuts, load `@tanstack/hotkeys#app-hotkeys` and read [app hotkeys in Preact](references/app-hotkeys.md).

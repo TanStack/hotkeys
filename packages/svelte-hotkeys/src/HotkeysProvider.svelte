@@ -33,6 +33,12 @@
   $effect(() => {
     if (appHotkeys) context.appHotkeysStore?.setOptions({ customHotkeys })
   })
+
+  // App hotkeys compare hotkeys, such as for conflicts, on this platform.
+  $effect(() => {
+    const platform = context.defaultOptions.platform
+    if (appHotkeys) context.appHotkeysStore?.setOptions({ platform })
+  })
 </script>
 
 {@render children()}

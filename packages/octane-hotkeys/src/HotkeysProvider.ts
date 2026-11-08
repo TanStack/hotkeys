@@ -26,9 +26,10 @@ import type { UseHotkeyCommonOptions } from './useHotkey'
 
 export interface DefaultHotkeysOptions {
   /**
-   * The user's platform, for labels from `useFormatForDisplay`, hotkeys, and
-   * recorders. Defaults to detection. When server rendering, set it from the
-   * request with `detectPlatform(userAgent)`.
+   * The user's platform, for labels from `useFormatForDisplay`, hotkeys,
+   * recorders, and app hotkey checks such as conflicts. Defaults to detection.
+   * When server rendering, set it from the request with
+   * `detectPlatform(userAgent)`.
    */
   platform?: HotkeyPlatform
   /**
@@ -110,6 +111,8 @@ export function HotkeysProvider({
     subSlot(undefined, 'provider-callback'),
   )
   callbackRef.current = onCustomHotkeysChange
+  // App hotkeys compare hotkeys, such as for conflicts, on this platform.
+  const platform = defaultOptions?.platform ?? parent?.defaultOptions.platform
   const storeRef = useRef<AppHotkeysStore | null | undefined>(
     undefined,
     subSlot(undefined, 'provider-store'),
@@ -118,6 +121,7 @@ export function HotkeysProvider({
     ? createAppHotkeysStore(appHotkeys, {
         customHotkeys,
         onCustomHotkeysChange: (custom) => callbackRef.current?.(custom),
+        platform,
       })
     : null
   const store = storeRef.current
@@ -128,13 +132,13 @@ export function HotkeysProvider({
     [store, appHotkeys],
     subSlot(undefined, 'provider-declarations'),
   )
-  // Apply saved custom hotkeys whose value changes, such as data that loads
-  // after the first render.
+  // Apply the platform and saved custom hotkeys whose value changes, such as
+  // data that loads after the first render.
   useLayoutEffect(
     () => {
-      store?.setOptions({ customHotkeys })
+      store?.setOptions({ customHotkeys, platform })
     },
-    [store, customHotkeys],
+    [store, customHotkeys, platform],
     subSlot(undefined, 'provider-custom-hotkeys'),
   )
   // Publish the store so devtools can list declared hotkeys.

@@ -33,6 +33,12 @@ should set the provider's `defaultOptions.platform` from the request with
 
 Formats a hotkey for display in a user interface.
 
+In a server-rendered app, format labels with your adapter's formatter,
+such as `useFormatForDisplay`, or pass `platform`. Called directly,
+`formatForDisplay` never reads a provider's `platform`. Without a
+`platform` option, it renders Linux labels on the server, so Mac users get
+a different label after hydration.
+
 On macOS, uses symbols (⇧⌘S) in Control, Option, Shift, Command order.
 Display ordering does not change the normalized hotkey used for registration.
 On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
@@ -94,6 +100,12 @@ formatForDisplay(['G', 'H'])
 ```
 
 Formats a hotkey for display in a user interface.
+
+In a server-rendered app, format labels with your adapter's formatter,
+such as `useFormatForDisplay`, or pass `platform`. Called directly,
+`formatForDisplay` never reads a provider's `platform`. Without a
+`platform` option, it renders Linux labels on the server, so Mac users get
+a different label after hydration.
 
 On macOS, uses symbols (⇧⌘S) in Control, Option, Shift, Command order.
 Display ordering does not change the normalized hotkey used for registration.
@@ -157,6 +169,12 @@ formatForDisplay(['G', 'H'])
 
 Formats a hotkey for display in a user interface.
 
+In a server-rendered app, format labels with your adapter's formatter,
+such as `useFormatForDisplay`, or pass `platform`. Called directly,
+`formatForDisplay` never reads a provider's `platform`. Without a
+`platform` option, it renders Linux labels on the server, so Mac users get
+a different label after hydration.
+
 On macOS, uses symbols (⇧⌘S) in Control, Option, Shift, Command order.
 Display ordering does not change the normalized hotkey used for registration.
 On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
@@ -218,6 +236,12 @@ formatForDisplay(['G', 'H'])
 ```
 
 Formats a hotkey for display in a user interface.
+
+In a server-rendered app, format labels with your adapter's formatter,
+such as `useFormatForDisplay`, or pass `platform`. Called directly,
+`formatForDisplay` never reads a provider's `platform`. Without a
+`platform` option, it renders Linux labels on the server, so Mac users get
+a different label after hydration.
 
 On macOS, uses symbols (⇧⌘S) in Control, Option, Shift, Command order.
 Display ordering does not change the normalized hotkey used for registration.

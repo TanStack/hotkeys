@@ -15,6 +15,7 @@ import {
   Fixture,
   ForwardedOptionsFixture,
   OptionalHotkeyFixture,
+  PlatformAppHotkeysFixture,
   ProviderFixture,
   SavedHotkeysFixture,
   ScopesFixture,
@@ -260,6 +261,17 @@ it('applies saved custom hotkeys that load after the first render', () => {
 
   click('#saved-switch')
   expect(value('#saved-custom')).toBe('{"nav.home":["G","G"]}')
+})
+
+it('compares app hotkeys on the provider platform', () => {
+  flushSync(() => root.render(PlatformAppHotkeysFixture))
+  flush()
+  // Meta+S is Mod+S only on macOS, which the test environment never detects
+  expect(value('#platform-custom')).toBe('false')
+
+  click('#platform-windows')
+  flush()
+  expect(value('#platform-custom')).toBe('true')
 })
 
 it('scopes hotkeys through nested, exclusive, and disabled providers', () => {

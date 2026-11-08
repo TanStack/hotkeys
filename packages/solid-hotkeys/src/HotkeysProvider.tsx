@@ -28,8 +28,8 @@ import type { CreateHotkeyCommonOptions } from './createHotkey'
 export interface HotkeysProviderOptions {
   /**
    * The user's platform, for labels from `createFormatForDisplay`, hotkeys,
-   * and recorders. On a server, set it from the request with
-   * `detectPlatform(userAgent)`.
+   * recorders, and app hotkey checks such as conflicts. On a server, set it
+   * from the request with `detectPlatform(userAgent)`.
    */
   platform?: HotkeyPlatform
   /**
@@ -114,6 +114,9 @@ export const HotkeysProvider: ParentComponent<HotkeysProviderProps> = (
         customHotkeys: props.customHotkeys,
         onCustomHotkeysChange: (custom) =>
           props.onCustomHotkeysChange?.(custom),
+        // App hotkeys compare hotkeys, such as for conflicts, on this platform.
+        platform:
+          props.defaultOptions?.platform ?? parent?.defaultOptions.platform,
       })
     : null
 
@@ -142,6 +145,12 @@ export const HotkeysProvider: ParentComponent<HotkeysProviderProps> = (
       props.scope,
     ),
   )
+  if (store) {
+    createEffect(() => {
+      const platform = defaultOptions().platform
+      store.setOptions({ platform })
+    })
+  }
   // Compared by value, so a new `exclusive` object does not reactivate the
   // scope and lose its precedence.
   const scopeKey = createMemo(() =>

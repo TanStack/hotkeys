@@ -435,3 +435,37 @@ describe('useHotkeyRecorder', () => {
     })
   })
 })
+
+describe('app hotkeys and the provider platform', () => {
+  it('compares custom hotkeys on the provider platform', () => {
+    let platform: 'mac' | 'windows' = 'mac'
+    const wrapper = ({ children }: { children?: ComponentChildren }) => (
+      <HotkeysProvider
+        appHotkeys={appHotkeys}
+        customHotkeys={{ 'doc.save': 'Meta+S' }}
+        defaultOptions={{ platform }}
+      >
+        {children}
+      </HotkeysProvider>
+    )
+    const { result, rerender } = renderWithCustom(
+      () => useAppHotkeyList(),
+      wrapper,
+    )
+    const isSaveCustom = () =>
+      result.current.value.find((item) => item.appHotkey.id === 'doc.save')!
+        .isCustom
+
+    // Meta+S is Mod+S only on macOS, which the test environment never detects
+    expect(isSaveCustom()).toBe(false)
+    expect(
+      result.current.custom
+        .findConflicts('palette.open', 'Meta+F')
+        .map((appHotkey) => appHotkey.id),
+    ).toEqual(['doc.find'])
+
+    platform = 'windows'
+    rerender()
+    expect(isSaveCustom()).toBe(true)
+  })
+})

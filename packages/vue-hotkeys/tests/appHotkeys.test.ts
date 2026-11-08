@@ -252,3 +252,45 @@ describe('useHotkeyRecorder', () => {
     wrapper.unmount()
   })
 })
+
+describe('app hotkeys and the provider platform', () => {
+  it('compares custom hotkeys on the provider platform', async () => {
+    const platform = ref<'mac' | 'windows'>('mac')
+    let list!: ReturnType<typeof useAppHotkeyList>
+    let custom!: ReturnType<typeof useCustomHotkeys>
+    const Child = defineComponent({
+      setup() {
+        list = useAppHotkeyList()
+        custom = useCustomHotkeys()
+        return () => h('div')
+      },
+    })
+    const wrapper = mount(
+      defineComponent({
+        setup() {
+          return () =>
+            h(
+              HotkeysProvider,
+              {
+                appHotkeys,
+                customHotkeys: { 'doc.save': 'Meta+S' },
+                defaultOptions: { platform: platform.value },
+              },
+              () => h(Child),
+            )
+        },
+      }),
+    )
+
+    // Meta+S is Mod+S only on macOS, which the test environment never detects
+    expect(list.value[0]!.isCustom).toBe(false)
+    expect(
+      custom.findConflicts('palette.open', 'Meta+S').map((a) => a.id),
+    ).toEqual(['doc.save'])
+
+    platform.value = 'windows'
+    await nextTick()
+    expect(list.value[0]!.isCustom).toBe(true)
+    wrapper.unmount()
+  })
+})

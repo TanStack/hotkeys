@@ -4,10 +4,10 @@ id: formatting-display
 description: Format Preact hotkeys as platform-appropriate labels and keycaps, such as ⌘ S on macOS and Ctrl+S on Windows, for menus, buttons, and cheat sheets.
 ---
 
-> [!NOTE]
-> Showing hotkey labels on the page is one of the few parts of TanStack Hotkeys that needs extra care in server-rendered apps. The server doesn't know the user's operating system, so a label it renders can differ from the label the browser renders, which causes a hydration error. The library has helpers that prevent this. See [Format labels in server-rendered apps](#format-labels-in-server-rendered-apps).
+> [!WARNING]
+> **Server rendering? Don't render labels with `formatForDisplay`.** It doesn't read the provider's `platform`, so without a `platform` option it renders Linux labels on the server, such as `Ctrl+S`. When Preact hydrates, Mac users see the label change to `⌘ S`, and a label in an attribute, such as a `title`, keeps `Ctrl+S`. Use `useFormatForDisplay()` instead, and set the provider's `platform` from the request. See [Format labels in server-rendered apps](#format-labels-in-server-rendered-apps).
 
-Use `formatForDisplay` whenever a hotkey appears in a menu, button, tooltip, cheat sheet, or shortcut settings panel. It accepts chord strings, including physical ones such as `'Mod+[KeyS]'`, chord objects, parsed chords, and sequences. Store the hotkey itself, and format it when you render. A label is for reading, not for registering.
+Format a hotkey as a label whenever it appears in a menu, button, tooltip, cheat sheet, or shortcut settings panel. `formatForDisplay` accepts chord strings, including physical ones such as `'Mod+[KeyS]'`, chord objects, parsed chords, and sequences. Store the hotkey itself, and format it when you render. A label is for reading, not for registering.
 
 A label depends on the user's platform: `Mod+S` is `⌘ S` on macOS and `Ctrl+S` elsewhere. Pick the API by where your labels render:
 
@@ -19,6 +19,9 @@ A label depends on the user's platform: `Mod+S` is `⌘ S` on macOS and `Ctrl+S`
 | Anywhere, for a platform you already know | `formatForDisplay(hotkey, { platform })` |
 
 ## Format a hotkey
+
+> [!IMPORTANT]
+> `formatForDisplay` is for labels that render only in the browser, or that pass a `platform`. It never reads the provider's `platform`. For labels in a server-rendered app, use `useFormatForDisplay()`. It returns a function with the same options.
 
 ```ts
 import { formatForDisplay } from '@tanstack/preact-hotkeys'
@@ -112,7 +115,7 @@ The browser's `KeyboardLayoutMap` exists only in the browser, and it loads after
 The server doesn't know the user's platform. Without one, a label rendered on the server uses `'linux'`, so a Mac user gets `Ctrl+S` in the server's HTML. When Preact hydrates, it replaces the label's text with `⌘ S`, so the label changes in front of the user. Preact doesn't update attributes during hydration, so a label in an attribute, such as a `title`, keeps `Ctrl+S`. To render the right label from the start:
 
 1. Read the request's `User-Agent` header on the server, and pass `detectPlatform(userAgent)` as the provider's `platform`.
-2. Format labels with `useFormatForDisplay()` instead of `formatForDisplay`.
+2. Format labels with `useFormatForDisplay()` instead of `formatForDisplay`. `formatForDisplay` doesn't read the provider, so it ignores the platform from step 1.
 
 ```tsx
 import { HotkeysProvider, detectPlatform } from '@tanstack/preact-hotkeys'
@@ -143,7 +146,7 @@ function Toolbar() {
 
 `useFormatForDisplay` returns a function with the same options as `formatForDisplay`. Call the hook once at the top of the component, then call the function anywhere, including in loops and conditions. A `platform` passed to the function wins over the provider's.
 
-In the browser, `detectPlatform()` reads the browser's own `navigator`, so the server and the browser get the same platform for practically every user. The provider's `platform` is also the default platform for hotkeys and recorders inside it. An inner provider inherits it.
+In the browser, `detectPlatform()` reads the browser's own `navigator`, so the server and the browser get the same platform for practically every user. The provider's `platform` is also the default platform for hotkeys and recorders inside it. The provider that holds `appHotkeys` also compares app hotkeys on its platform, such as for conflicts. An inner provider inherits it.
 
 Without a provider `platform`, `useFormatForDisplay` detects the platform the same way `formatForDisplay` does: `'linux'` on the server and the user's platform in the browser. It doesn't hold the server's label until hydration finishes, so the label changes as described above. Set the provider's `platform` in every server-rendered Preact app.
 

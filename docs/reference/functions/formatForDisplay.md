@@ -11,9 +11,15 @@ title: formatForDisplay
 function formatForDisplay(hotkey, options): string[][];
 ```
 
-Defined in: [format.ts:125](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L125)
+Defined in: [format.ts:131](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L131)
 
 Formats a hotkey for display in a user interface.
+
+In a server-rendered app, format labels with your adapter's formatter,
+such as `useFormatForDisplay`, or pass `platform`. Called directly,
+`formatForDisplay` never reads a provider's `platform`. Without a
+`platform` option, it renders Linux labels on the server, so Mac users get
+a different label after hydration.
 
 On macOS, uses symbols (⇧⌘S) in Control, Option, Shift, Command order.
 Display ordering does not change the normalized hotkey used for registration.
@@ -77,9 +83,15 @@ formatForDisplay(['G', 'H'])
 function formatForDisplay(hotkey, options): string[];
 ```
 
-Defined in: [format.ts:129](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L129)
+Defined in: [format.ts:135](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L135)
 
 Formats a hotkey for display in a user interface.
+
+In a server-rendered app, format labels with your adapter's formatter,
+such as `useFormatForDisplay`, or pass `platform`. Called directly,
+`formatForDisplay` never reads a provider's `platform`. Without a
+`platform` option, it renders Linux labels on the server, so Mac users get
+a different label after hydration.
 
 On macOS, uses symbols (⇧⌘S) in Control, Option, Shift, Command order.
 Display ordering does not change the normalized hotkey used for registration.
@@ -143,9 +155,15 @@ formatForDisplay(['G', 'H'])
 function formatForDisplay(hotkey, options?): string;
 ```
 
-Defined in: [format.ts:133](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L133)
+Defined in: [format.ts:139](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L139)
 
 Formats a hotkey for display in a user interface.
+
+In a server-rendered app, format labels with your adapter's formatter,
+such as `useFormatForDisplay`, or pass `platform`. Called directly,
+`formatForDisplay` never reads a provider's `platform`. Without a
+`platform` option, it renders Linux labels on the server, so Mac users get
+a different label after hydration.
 
 On macOS, uses symbols (⇧⌘S) in Control, Option, Shift, Command order.
 Display ordering does not change the normalized hotkey used for registration.
@@ -209,9 +227,15 @@ formatForDisplay(['G', 'H'])
 function formatForDisplay(hotkey, options): string | string[] | string[][];
 ```
 
-Defined in: [format.ts:137](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L137)
+Defined in: [format.ts:143](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L143)
 
 Formats a hotkey for display in a user interface.
+
+In a server-rendered app, format labels with your adapter's formatter,
+such as `useFormatForDisplay`, or pass `platform`. Called directly,
+`formatForDisplay` never reads a provider's `platform`. Without a
+`platform` option, it renders Linux labels on the server, so Mac users get
+a different label after hydration.
 
 On macOS, uses symbols (⇧⌘S) in Control, Option, Shift, Command order.
 Display ordering does not change the normalized hotkey used for registration.

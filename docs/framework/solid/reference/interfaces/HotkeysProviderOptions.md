@@ -43,5 +43,5 @@ optional platform?: HotkeyPlatform;
 Defined in: [HotkeysProvider.tsx:34](https://github.com/TanStack/hotkeys/blob/main/packages/solid-hotkeys/src/HotkeysProvider.tsx#L34)
 
 The user's platform, for labels from `createFormatForDisplay`, hotkeys,
-and recorders. On a server, set it from the request with
-`detectPlatform(userAgent)`.
+recorders, and app hotkey checks such as conflicts. On a server, set it
+from the request with `detectPlatform(userAgent)`.

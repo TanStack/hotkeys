@@ -468,7 +468,11 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
    */
   setOptions(options: AppHotkeysStoreOptions<T>): void {
     const { customHotkeys, ...rest } = options
+    const platformChanged =
+      'platform' in rest && rest.platform !== this.#options.platform
     this.#options = { ...this.#options, ...rest }
+    // `isCustom` in `getList` depends on the platform, so notify subscribers.
+    if (platformChanged) this.store.setState((state) => ({ ...state }))
     if (customHotkeys === undefined) return
     if (sameSavedCustomHotkeys(customHotkeys, this.#savedCustomHotkeys)) return
     this.#savedCustomHotkeys = copySavedCustomHotkeys(customHotkeys)

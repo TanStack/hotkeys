@@ -20,9 +20,9 @@ import type { CreateHotkeyCommonOptions } from './createHotkey.svelte.js'
 
 export interface HotkeysProviderOptions {
   /**
-   * The user's platform, for labels from `getFormatForDisplay`, hotkeys, and
-   * recorders. On a server, set it from the request with
-   * `detectPlatform(userAgent)`.
+   * The user's platform, for labels from `getFormatForDisplay`, hotkeys,
+   * recorders, and app hotkey checks such as conflicts. On a server, set it
+   * from the request with `detectPlatform(userAgent)`.
    */
   platform?: HotkeyPlatform
   /**
@@ -108,10 +108,12 @@ export function setHotkeysContextSource(
   source: () => HotkeysContextOptions,
 ): HotkeysContextValue {
   const parent = getHotkeysContext()
-  const { appHotkeys, customHotkeys } = source()
+  const { appHotkeys, customHotkeys, defaultOptions } = source()
   const store = appHotkeys
     ? createAppHotkeysStore(appHotkeys, {
         customHotkeys,
+        // App hotkeys compare hotkeys, such as for conflicts, on this platform.
+        platform: defaultOptions?.platform ?? parent?.defaultOptions.platform,
         onCustomHotkeysChange: (custom) =>
           source().onCustomHotkeysChange?.(custom),
       })

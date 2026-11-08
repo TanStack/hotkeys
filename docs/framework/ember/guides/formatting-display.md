@@ -4,10 +4,10 @@ id: formatting-display
 description: Format Ember hotkeys as platform-appropriate labels and keycaps, such as ⌘ S on macOS and Ctrl+S on Windows, for menus, buttons, and cheat sheets.
 ---
 
-> [!NOTE]
-> Showing hotkey labels on the page is one of the few parts of TanStack Hotkeys that needs extra care in server-rendered apps. The server doesn't know the user's operating system, so a label it renders can differ from the label the browser renders, which causes a hydration error. The library has helpers that prevent this. See [Format labels in server-rendered apps](#format-labels-in-server-rendered-apps).
+> [!WARNING]
+> **Server rendering? Don't render labels with `formatForDisplay`.** It doesn't read the scope's `platform`, so without a `platform` option it renders Linux labels on the server, such as `Ctrl+S`. When the app boots in the browser, Mac users see the label change to `⌘ S`. Use `useFormatForDisplay(scope)` instead, and set the scope's `platform` from the request. See [Format labels in server-rendered apps](#format-labels-in-server-rendered-apps).
 
-Use `formatForDisplay` whenever a hotkey appears in a menu, button, tooltip, cheat sheet, or shortcut settings panel. It accepts chord strings, including physical ones such as `'Mod+[KeyS]'`, chord objects, parsed chords, and sequences. Store the hotkey itself, and format it when you render. A label is for reading, not for registering.
+Format a hotkey as a label whenever it appears in a menu, button, tooltip, cheat sheet, or shortcut settings panel. `formatForDisplay` accepts chord strings, including physical ones such as `'Mod+[KeyS]'`, chord objects, parsed chords, and sequences. Store the hotkey itself, and format it when you render. A label is for reading, not for registering.
 
 A label depends on the user's platform: `Mod+S` is `⌘ S` on macOS and `Ctrl+S` elsewhere. Pick the API by where your labels render:
 
@@ -19,6 +19,9 @@ A label depends on the user's platform: `Mod+S` is `⌘ S` on macOS and `Ctrl+S`
 | Anywhere, for a platform you already know | `formatForDisplay(hotkey, { platform })` |
 
 ## Format a hotkey
+
+> [!IMPORTANT]
+> `formatForDisplay` is for labels that render only in the browser, or that pass a `platform`. It never reads the scope's `platform`. For labels in a server-rendered app, use `useFormatForDisplay(scope)`. It returns a function with the same options.
 
 ```ts
 import { formatForDisplay } from '@tanstack/ember-hotkeys'
@@ -112,7 +115,7 @@ The browser's `KeyboardLayoutMap` exists only in the browser, and it loads after
 The server doesn't know the user's platform. Without one, a label rendered in FastBoot uses `'linux'`, so a Mac user gets `Ctrl+S` in the server's HTML and `⌘ S` once the app boots in the browser. To render the right label from the start:
 
 1. Read the request's `User-Agent` header from the `fastboot` service, and pass `detectPlatform(userAgent)` as the `platform` of a `createHotkeysScope` scope.
-2. Format labels with `useFormatForDisplay(scope)` instead of `formatForDisplay`.
+2. Format labels with `useFormatForDisplay(scope)` instead of `formatForDisplay`. `formatForDisplay` doesn't read the scope, so it ignores the platform from step 1.
 
 Create the scope in a component near the top of your app, such as the one your application template renders:
 

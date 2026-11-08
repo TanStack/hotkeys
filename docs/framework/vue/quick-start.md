@@ -66,28 +66,29 @@ useHotkeys([
 
 ## Show the shortcut
 
-Label a button or menu item with `formatForDisplay`. Format the same value you register, so the label always matches the binding:
+Label a button or menu item with `useFormatForDisplay`. Format the same value you register, so the label always matches the binding:
 
 ```vue
 <script setup lang="ts">
-import { formatForDisplay, useHotkey } from '@tanstack/vue-hotkeys'
+import { useFormatForDisplay, useHotkey } from '@tanstack/vue-hotkeys'
 import type { HotkeyChord } from '@tanstack/vue-hotkeys'
 
 const saveHotkey: HotkeyChord = 'Mod+S'
 
 useHotkey(saveHotkey, () => save())
+const format = useFormatForDisplay()
 </script>
 
 <template>
   <button @click="save">
-    Save <kbd>{{ formatForDisplay(saveHotkey) }}</kbd>
+    Save <kbd>{{ format(saveHotkey) }}</kbd>
   </button>
 </template>
 ```
 
 The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. `HotkeyChord` checks the string, so a typo in the binding is a type error. Use `Hotkey` for a value that can also be a sequence.
 
-If your app renders on the server, such as with Nuxt, use `useFormatForDisplay` instead, and set the provider's `platform` from the request, so the server's HTML shows the user's platform. See [Format labels in server-rendered apps](./guides/formatting-display#format-labels-in-server-rendered-apps).
+If your app renders on the server, such as with Nuxt, set the provider's `platform` from the request, so the server renders the user's labels without hydration errors, as shown in [Format labels in server-rendered apps](./guides/formatting-display#format-labels-in-server-rendered-apps).
 
 ## Hotkeys follow your components
 

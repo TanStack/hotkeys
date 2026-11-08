@@ -64,26 +64,27 @@ createHotkeys([
 
 ## Show the shortcut
 
-Label a button or menu item with `formatForDisplay`. Format the same value you register, so the label always matches the binding:
+Label a button or menu item with `getFormatForDisplay`. Format the same value you register, so the label always matches the binding:
 
 ```svelte
 <script lang="ts">
-  import { createHotkey, formatForDisplay } from '@tanstack/svelte-hotkeys'
+  import { createHotkey, getFormatForDisplay } from '@tanstack/svelte-hotkeys'
   import type { HotkeyChord } from '@tanstack/svelte-hotkeys'
 
   const saveHotkey: HotkeyChord = 'Mod+S'
 
   createHotkey(saveHotkey, () => save())
+  const format = getFormatForDisplay()
 </script>
 
 <button onclick={save}>
-  Save <kbd>{formatForDisplay(saveHotkey)}</kbd>
+  Save <kbd>{format(saveHotkey)}</kbd>
 </button>
 ```
 
 The label is `⌘ S` on macOS and `Ctrl+S` on Windows and Linux. `HotkeyChord` checks the string, so a typo in the binding is a type error. Use `Hotkey` for a value that can also be a sequence.
 
-If your app renders on the server, such as with SvelteKit, use `getFormatForDisplay` instead, and set the provider's `platform` from the request, so the server's HTML shows the user's platform. See [Format labels in server-rendered apps](./guides/formatting-display#format-labels-in-server-rendered-apps).
+If your app renders on the server, such as with SvelteKit, set the provider's `platform` from the request, so the server renders the user's labels without hydration errors, as shown in [Format labels in server-rendered apps](./guides/formatting-display#format-labels-in-server-rendered-apps).
 
 ## Hotkeys follow your components
 
