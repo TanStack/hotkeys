@@ -100,12 +100,12 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "13bd714581bfb8fe90604cf74a5a6405e1fc071741438fea9f6ff436ce3e1342",
+      "fingerprint": "ac8dc27c139a9814eab99dd6fefd0b76607042fe7861c3896287223cb6e78bbd",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "03b024ba6a23d6b87a7b99be8a30b54fd5d82ba27e075ba0c00f648c82759e5f",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/guides/sensible-defaults.md": "f432dd151138b7d52ef35760f9406c366d9d2dcc842d0c4d8ccbce2d820f7572",
+        "docs/guides/sensible-defaults.md": "d9af1bb74d1bbd74cff5e700540a9a9359544c9503aa51c505bd8b955d44efb2",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
@@ -121,33 +121,30 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
+      "head": "4e7ba19ffd08f5ce37390b0b35db583004277af2",
       "outcome": "no-change",
-      "reason": "sensible-defaults now covers Tab leaving the recorder and document-level Tab hotkeys blocking focus. hotkeys-core describes neither recorder keys nor Tab bindings, and the recorder guidance lives in app-hotkeys.",
+      "reason": "Merge of main. These items changed through #238 (Windows Ctrl+Alt fallback note) and #239 (Lit override and dispose()), which recorded their own skill and planning reviews; the Lit skill and planning records already describe that work. This branch's recorder Tab change adds nothing they need, and the regenerated Lit recorder reference only shifts line numbers.",
       "evidence": [
-        "docs/guides/sensible-defaults.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "Changed: docs/guides/sensible-defaults.md at 4e7ba19ffd08f5ce37390b0b35db583004277af2"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
-      "fingerprint": "5ea2436b8c884c4bcaeda380bafef31c033585af5a03fb8b00a6649e34bdb119",
+      "fingerprint": "9baed42426802d5d7d8dcd2a239d6bb72836e20a82bd7a697d5cd553044f0124",
       "snapshot": {
         "docs/framework/lit/guides/app-hotkeys.md": "b001df84eb320a4af7759ab163f837bac0fe3b36014b4b5de9366102073af97b",
         "docs/framework/lit/quick-start.md": "0f1e0a406ae61dc62ea0659b95e734828a1181a591990331f1e8405f637a0094",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "5690f120148b5314bab1eb13244ae578bd78f55b1b11d8c6637489ca2750d187",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "b2e8d9a31ecc0f97bc0c073608a06572ff555cf5f2d7e52316315e4783fdaacd",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
-        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2a4ea438b8322f0f547dd10af7e94882cc2cfaa58def039c19f976ab9aa14670",
-        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "5e34ee1eb542297afc22ac0c15604f0be0d1fe44fecdd32b432f7074681685ec",
-        "packages/lit-hotkeys/src/controllers/hotkey.ts": "c8b8c7fd2379178d5bcc176c5d44c5212f3294206ac35a1e6d5d88df2ac02708",
-        "packages/lit-hotkeys/src/decorators/hotkey.ts": "46c9522a6d617f37826898bfda2b0eba52204fafb5fa895a356603b2ddbf5f01"
+        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
+        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "1e255a98935901ca485f8f81fa1166d2b2a0a72777a3c925913e8d3824a2aefa",
+        "packages/lit-hotkeys/src/controllers/hotkey.ts": "042ef72211df8490512540d2bdd878f5e3c04bbd1fd46b31e11b27d5a6b18dbb",
+        "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef"
       },
-      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
+      "head": "4e7ba19ffd08f5ce37390b0b35db583004277af2",
       "outcome": "no-change",
-      "reason": "Only the recorder JSDoc changed, to mention Tab cancelling. The adapter skill lists the recorder API without describing its keys; the app-hotkeys recording reference covers them.",
+      "reason": "Merge of main. These items changed through #238 (Windows Ctrl+Alt fallback note) and #239 (Lit override and dispose()), which recorded their own skill and planning reviews; the Lit skill and planning records already describe that work. This branch's recorder Tab change adds nothing they need, and the regenerated Lit recorder reference only shifts line numbers.",
       "evidence": [
-        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
+        "Changed: packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md, packages/lit-hotkeys/src/controllers/app-hotkeys.ts, packages/lit-hotkeys/src/controllers/hotkey-recorder.ts, packages/lit-hotkeys/src/controllers/hotkey.ts, packages/lit-hotkeys/src/decorators/hotkey.ts at 4e7ba19ffd08f5ce37390b0b35db583004277af2"
       ]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
@@ -294,10 +291,10 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "9f7ce4e2ace63ed3ff5a97ebfcfe22aa5c1405bba715c54216f002fc27c8c06b",
+      "fingerprint": "2b9a1e5248e8aacfb17f6aeb5e2f8dcd0a1bff8404dac5209f113e25661df478",
       "snapshot": {
-        "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
-        "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
+        "_artifacts/domain_map.yaml": "dd791b9fa3d82d64f7d890c05380fc452024d4c860085915f9ef35f226e61b39",
+        "_artifacts/skill_spec.md": "af65b5a42cbc2b52811445f45c49f2c4656c27613ab152c5c27399e441a12490",
         "_artifacts/skill_tree.yaml": "bff31ee525c55a3e572083903c5b8deb444cd850845ae2dc1e4b886ce2236a12",
         "docs/framework/alpine/guides/app-hotkeys.md": "cdefefaa71aa9c36da99d314ab0279aa791dcf651bb1fd4cebf7263ba661078a",
         "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
@@ -324,7 +321,7 @@
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
-        "docs/guides/sensible-defaults.md": "f432dd151138b7d52ef35760f9406c366d9d2dcc842d0c4d8ccbce2d820f7572",
+        "docs/guides/sensible-defaults.md": "d9af1bb74d1bbd74cff5e700540a9a9359544c9503aa51c505bd8b955d44efb2",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "b8a7e9ce42d7a9cfacc9bd405a5f0be43064e81f76616a6f31504ccb32c0d59a",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "69ba6d06582aaf28328e74c12888bcf8b1d89b2ae2a01d7f6a41eb82eef848e3",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4c43866e1e60dbfcdac1c5acb3b5bd1f372d722d47e51cb8922b22f1c372fa45",
@@ -360,12 +357,12 @@
         "packages/hotkeys/src/hotkey-manager.ts": "340ae1e61d8e08fe56edb0bb73f41434dae03ad15a374c2a0864450b64276443",
         "packages/hotkeys/src/hotkey-recorder.ts": "d0008d3442dec938f91f0b8d0584f1b2d01fa169a143a649f7a5024f1eb5e469",
         "packages/hotkeys/src/match.ts": "204f0159ccdd1bfaed96b1b03ad805f7fa9a74c011e70760749d1e0c326b7e8a",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "5690f120148b5314bab1eb13244ae578bd78f55b1b11d8c6637489ca2750d187",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "b2e8d9a31ecc0f97bc0c073608a06572ff555cf5f2d7e52316315e4783fdaacd",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
-        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2a4ea438b8322f0f547dd10af7e94882cc2cfaa58def039c19f976ab9aa14670",
-        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "5e34ee1eb542297afc22ac0c15604f0be0d1fe44fecdd32b432f7074681685ec",
-        "packages/lit-hotkeys/src/controllers/hotkey.ts": "c8b8c7fd2379178d5bcc176c5d44c5212f3294206ac35a1e6d5d88df2ac02708",
-        "packages/lit-hotkeys/src/decorators/hotkey.ts": "46c9522a6d617f37826898bfda2b0eba52204fafb5fa895a356603b2ddbf5f01",
+        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
+        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "1e255a98935901ca485f8f81fa1166d2b2a0a72777a3c925913e8d3824a2aefa",
+        "packages/lit-hotkeys/src/controllers/hotkey.ts": "042ef72211df8490512540d2bdd878f5e3c04bbd1fd46b31e11b27d5a6b18dbb",
+        "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef",
         "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "cae463ad7f9d31b4922a96534db78a83ac768ba38915463a2c8bbfb428d7292e",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "d18e8ffb2503f4dfd4aec75aaa8ec6974c3a9cea6e7174287ec8ea18cc77f101",
@@ -426,12 +423,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "b3e8f6c870734a967881c5b155ddced5c737d5162e6f44e5c095bd2be81fd0e6"
       },
-      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
+      "head": "4e7ba19ffd08f5ce37390b0b35db583004277af2",
       "outcome": "no-change",
-      "reason": "Tab handling and recordTab extend the existing recorder; no new skill, domain, or task.",
+      "reason": "Merge of main. These items changed through #238 (Windows Ctrl+Alt fallback note) and #239 (Lit override and dispose()), which recorded their own skill and planning reviews; the Lit skill and planning records already describe that work. This branch's recorder Tab change adds nothing they need, and the regenerated Lit recorder reference only shifts line numbers.",
       "evidence": [
-        "packages/hotkeys/src/hotkey-recorder.ts",
-        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
+        "Changed: _artifacts/domain_map.yaml, _artifacts/skill_spec.md, docs/guides/sensible-defaults.md, packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md, packages/lit-hotkeys/src/controllers/app-hotkeys.ts, packages/lit-hotkeys/src/controllers/hotkey-recorder.ts, packages/lit-hotkeys/src/controllers/hotkey.ts, packages/lit-hotkeys/src/decorators/hotkey.ts at 4e7ba19ffd08f5ce37390b0b35db583004277af2"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -3891,16 +3887,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/classes/HotkeyRecorderController.md": {
-      "fingerprint": "55868c4a951bf468225602a28df2c26e263ee8812fc13be0846b5b18a0e19b00",
+      "fingerprint": "888c36361859e96607ef1e7b038d6a93bcfa034dcced0367ddbd63b43c5c5f0c",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyRecorderController.md": "056a77fdbe8a533d49b406e938673a5f4738fc0d78d56d94b51f926cc54af1db"
+        "docs/framework/lit/reference/classes/HotkeyRecorderController.md": "82c56199c69f6d8c5ef51c9a6a85aaacf5cfb505042f05b8e7aedeb51ad13456"
       },
-      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
+      "head": "4e7ba19ffd08f5ce37390b0b35db583004277af2",
       "outcome": "no-change",
-      "reason": "Regenerated reference for recordTab and the recorder comments that now mention Tab; skills already point to the recorder options.",
+      "reason": "Merge of main. These items changed through #238 (Windows Ctrl+Alt fallback note) and #239 (Lit override and dispose()), which recorded their own skill and planning reviews; the Lit skill and planning records already describe that work. This branch's recorder Tab change adds nothing they need, and the regenerated Lit recorder reference only shifts line numbers.",
       "evidence": [
-        "docs/framework/lit/reference/classes/HotkeyRecorderController.md",
-        "packages/hotkeys/src/hotkey-recorder.ts"
+        "Changed: docs/framework/lit/reference/classes/HotkeyRecorderController.md at 4e7ba19ffd08f5ce37390b0b35db583004277af2"
       ]
     },
     "source:docs/framework/lit/reference/classes/HotkeyRegistrationsController.md": {
