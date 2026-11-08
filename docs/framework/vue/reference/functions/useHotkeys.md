@@ -9,7 +9,7 @@ title: useHotkeys
 function useHotkeys(hotkeys, commonOptions?): void;
 ```
 
-Defined in: [useHotkeys.ts:95](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeys.ts#L95)
+Defined in: [useHotkeys.ts:96](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useHotkeys.ts#L96)
 
 Vue composable for registering several hotkeys at once: chords, sequences,
 and app hotkeys. The list, each hotkey, and options may be refs or getters.
@@ -18,7 +18,8 @@ Options merge in this order: provider defaults, app hotkey declaration,
 commonOptions, per-hotkey options. Each option applies only to the kinds
 that support it. Unbound app hotkeys, empty sequences, and `undefined`,
 `null`, or `''` hotkeys register nothing.
-A target that resolves to `null` skips registration until it is set.
+A target that resolves to `null` or `undefined` skips registration until it
+is set. A component target listens on its root element.
 
 ## Parameters
 

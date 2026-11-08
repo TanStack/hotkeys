@@ -9,7 +9,7 @@ title: InjectHotkeyOptionsFor
 type InjectHotkeyOptionsFor<T> = AdapterOptionsFor<T, InjectHotkeyTarget>;
 ```
 
-Defined in: [injectHotkey.ts:44](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L44)
+Defined in: [injectHotkey.ts:45](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/injectHotkey.ts#L45)
 
 The options type for a hotkey: chord options for chords, sequence options for sequences.
 

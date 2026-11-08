@@ -9,6 +9,6 @@ title: UseHotkeySequenceOptions
 type UseHotkeySequenceOptions = AdapterSequenceOptions<UseHotkeyTarget>;
 ```
 
-Defined in: [useHotkey.ts:34](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L34)
+Defined in: [useHotkey.ts:37](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/useHotkey.ts#L37)
 
 Options for a sequence such as `['G', 'G']`.

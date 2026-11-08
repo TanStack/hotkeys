@@ -20,7 +20,10 @@ import type {
 } from '@tanstack/hotkeys/adapter'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
-/** The element to listen on. A `null` target skips registration until it is set. */
+/**
+ * The element to listen on. A `null` or `undefined` target skips registration
+ * until it is set. Omit `target` for the document.
+ */
 export type HotkeyControllerTarget = Target | null
 
 /** Options shared by chords and sequences. */
@@ -135,7 +138,7 @@ export class HotkeyController implements ReactiveController {
         ],
         {
           appHotkeysStore: getAppHotkeysStore(),
-          // A null target skips registration until the element exists.
+          // An unset target skips registration until the element exists.
           resolveTarget: (target) => target,
         },
       ),

@@ -79,6 +79,7 @@ No provider is required. Call the composables synchronously in setup.
 ## Pitfalls
 
 - **Pass the ref, not `.value`.** `{ enabled: isDirty.value }` is read once, so the hotkey never turns on, and `{ target: panel.value }` is `null` in setup, so the hotkey never registers. Pass `isDirty` and `panel`. `enabled` and `target` accept refs and getters; for other options that depend on state, pass a getter for the whole options object.
+- **A component ref listens on the component's root element.** `useTemplateRef<InstanceType<typeof Panel>>('panel')` works as `target`. A component with more than one root node, or a text root, has no root element, so the hotkey registers nothing; put the ref on an element instead.
 - **Put the provider around the dialog component.** A `HotkeysProvider` in a component's own template, or `provideHotkeysContext` in its own setup, applies only to its children. Register the dialog's hotkeys in a child component, and give each open dialog its own scope name, such as `` `dialog-${useId()}` ``.
 - **Destructure the recorder.** Templates unwrap only top-level refs, so `v-if="recorder.isRecording"` is always true. Use `const { isRecording, startRecording } = useHotkeyRecorder(...)`.
 - **The callback isn't tracked.** Read refs and props inside it.

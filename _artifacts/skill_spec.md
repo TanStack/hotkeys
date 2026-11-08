@@ -21,13 +21,13 @@ The skills teach agents to use those APIs directly. The core skills hold the fra
 | react-hotkeys   | framework | framework-bindings | Hooks, refs, providers, dialog scopes, app hotkey wiring                                                           | 2 + shared    |
 | preact-hotkeys  | framework | framework-bindings | Same as React with Preact imports                                                                                  | 2 + shared    |
 | solid-hotkeys   | framework | framework-bindings | Primitives, accessor options, signal targets                                                                       | 2 + shared    |
-| vue-hotkeys     | framework | framework-bindings | Composables, refs and getters, provideHotkeysContext, recorder refs                                                | 3 + shared    |
+| vue-hotkeys     | framework | framework-bindings | Composables, refs and getters, component-ref targets, provideHotkeysContext, recorder refs                         | 4 + shared    |
 | svelte-hotkeys  | framework | framework-bindings | Getter options, attachments, setHotkeysContext, reactive getters                                                   | 3 + shared    |
 | angular-hotkeys | framework | framework-bindings | Inject functions, signal options, provideHotkeys scopes, per-instance scope tokens                                 | 4 + shared    |
 | lit-hotkeys     | framework | framework-bindings | Decorator, controllers, manager scopes, decorator mode                                                             | 4 + shared    |
 | alpine-hotkeys  | framework | framework-bindings | Owners, $hotkeys magic, getter options, manager scopes                                                             | 3 + shared    |
 | ember-hotkeys   | framework | framework-bindings | Template helpers, modifiers, owner-bound readers, manager scopes                                                   | 3 + shared    |
-| octane-hotkeys  | framework | framework-bindings | Hooks in .tsrx, element-state targets, providers                                                                   | 2 + shared    |
+| octane-hotkeys  | framework | framework-bindings | Hooks in .tsrx, ref and element-state targets, providers                                                           | 2 + shared    |
 
 "Shared" failure modes are listed under hotkeys-core, app-hotkeys, and lit-hotkeys with a `skills` list in `domain_map.yaml`: hand-written listeners, facades, topmost-dialog tracking, reused exclusive scope names, registering an app hotkey's value, and loading custom hotkeys late.
 
@@ -69,13 +69,13 @@ The skills teach agents to use those APIs directly. The core skills hold the fra
 | react-hotkeys   | ref.current as target (HIGH, task check); hotkey above its own provider (HIGH, task check)                                                                                                 |
 | preact-hotkeys  | ref.current as target (HIGH); hotkey above its own provider (HIGH)                                                                                                                         |
 | solid-hotkeys   | plain options object (HIGH); unassigned element variable as target (HIGH)                                                                                                                  |
-| vue-hotkeys     | ref.value instead of the ref (HIGH); provider in the same component (HIGH); nested recorder refs in templates (MEDIUM)                                                                     |
+| vue-hotkeys     | ref.value instead of the ref (HIGH); provider in the same component (HIGH); nested recorder refs in templates (MEDIUM); component ref without a single root (MEDIUM)                       |
 | svelte-hotkeys  | plain options object (HIGH); destructuring reactive getters (HIGH); hotkeys before setHotkeysContext (HIGH)                                                                                |
 | angular-hotkeys | @HostListener (HIGH); plain options object (HIGH); shared exclusive scope across instances (HIGH); outside an injection context (MEDIUM)                                                   |
 | lit-hotkeys     | unreleased manager scope (HIGH, also alpine and ember); HotkeyController not added to host (HIGH); @hotkey with standard decorators (MEDIUM); instance state in decorator options (MEDIUM) |
 | alpine-hotkeys  | owner never destroyed (HIGH); createHotkeysScope mistaken for a scope (HIGH); plain options object (HIGH)                                                                                  |
 | ember-hotkeys   | unbound method callback (HIGH); string sequence in a template (MEDIUM); createHotkeysScope mistaken for a scope (HIGH)                                                                     |
-| octane-hotkeys  | ref object as target (HIGH); hooks in loops (MEDIUM)                                                                                                                                       |
+| octane-hotkeys  | ref object for an element that mounts later (HIGH); hooks in loops (MEDIUM)                                                                                                                |
 
 ## Tensions
 
@@ -161,3 +161,9 @@ The skills teach agents to use those APIs directly. The core skills hold the fra
 - **Changes:** the short task-to-API table in each of the 10 framework skills became an `## API` table with one row per export, 127 in all. Lit, Alpine, and Ember also list the two core calls they need, `provideAppHotkeys` and `getHotkeyManager().activateScope`; Alpine lists its 12 owner methods separately. Each table ends with a note that the adapter re-exports `@tanstack/hotkeys`. Core functions aren't repeated in each skill.
 - **Source sync:** the AltGr fix (#193) changed `hotkey-recorder.ts` and the AltGr notes in `docs/guides/sensible-defaults.md`. No skill covers AltGr, so `hotkeys-core` and `app-hotkeys` are unchanged.
 - **Checks:** a TypeScript export listing confirmed every adapter export appears in its skill; `intent validate` passes.
+
+### Source sync — 2026-11-08 — element targets that aren't ready yet
+
+- **Source:** branch `fix/unset-element-targets` from `06ce5e34`. `prepareHotkeyDefinitions` now treats a `target` that is set to `undefined`, or a `resolveTarget` result of `undefined`, like `null`: the hotkey waits. Only an omitted `target` listens on `document`. Vue unwraps a component ref to its root element (a fragment or text root waits). Octane accepts ref objects as `target`, like React.
+- **Changes:** the Angular, Solid, and Octane skills no longer say an undefined target means `document`; Octane drops "targets are elements, not ref objects" for a mounts-later pitfall; Vue gains a component-ref pitfall. `domain_map.yaml` mechanisms for React, Preact, Solid, Angular, and Octane follow the new rule, and Vue gains one failure mode. React, Preact, Lit, and core skills were reviewed with no change: their target guidance still holds.
+- **Checks:** `intent validate` passes; adapter tests cover each case (core, React, Preact, Vue, Solid, Angular, Octane). Not run: fresh-consumer sessions.

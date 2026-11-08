@@ -17,8 +17,14 @@ import type {
 } from '@tanstack/hotkeys/adapter'
 import type { UseHotkeyDefinition } from './useHotkeys'
 
-/** The element to listen on. A `null` target skips registration until it is set. */
-export type UseHotkeyTarget = Target | null
+/**
+ * A ref object, element, document, or window to listen on. A `null` or
+ * `undefined` target, or a ref that is still unset, waits for the element.
+ */
+export type UseHotkeyTarget =
+  | { current: HTMLElement | null | undefined }
+  | Target
+  | null
 
 /** Options shared by chords and sequences. */
 export type UseHotkeyOptions = AdapterHotkeyOptions<UseHotkeyTarget>

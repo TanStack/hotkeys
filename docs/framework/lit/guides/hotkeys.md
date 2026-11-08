@@ -301,7 +301,7 @@ class MyPanel extends LitElement {
 
   // Fires only while the panel, or something inside it, has focus
   private closeHotkey = new HotkeyController(this, 'Escape', () => this.closePanel(), () => ({
-    target: this.panel.value ?? null,
+    target: this.panel.value,
   }))
 
   render() {
@@ -310,7 +310,7 @@ class MyPanel extends LitElement {
 }
 ```
 
-A `null` target waits until the element renders.
+A `null` or `undefined` target waits until the element renders. Only an omitted `target` listens on `document`; set `target: document` to choose it explicitly.
 
 The controller reads the options function when its element connects and after each of its element's updates. Render the target in the controller's own element, as above, so each render that adds or replaces the target also updates the hotkey.
 

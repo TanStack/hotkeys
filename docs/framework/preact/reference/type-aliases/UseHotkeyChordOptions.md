@@ -9,6 +9,6 @@ title: UseHotkeyChordOptions
 type UseHotkeyChordOptions = AdapterChordOptions<UseHotkeyTarget>;
 ```
 
-Defined in: [useHotkey.ts:30](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L30)
+Defined in: [useHotkey.ts:33](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkey.ts#L33)
 
 Options for a chord such as `'Mod+S'`.

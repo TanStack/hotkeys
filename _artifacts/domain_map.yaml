@@ -300,7 +300,7 @@ skills:
         reason: Provider, registration, cheat sheet, and settings wiring are needed only for catalogs and rebinding
     failure_modes:
       - mistake: Passing ref.current as target
-        mechanism: ref.current is null during the first render and a null target means document, so the hotkey listens page-wide until a later render.
+        mechanism: ref.current is null or undefined during the first render, and an unset target waits, so the hotkey registers only at a later render.
         wrong_pattern: "useHotkey('Delete', remove, { target: listRef.current })"
         correct_pattern: "useHotkey('Delete', remove, { target: listRef })"
         source: src/utils.ts (resolveTarget); tests/skills/editor-shortcuts
@@ -333,7 +333,7 @@ skills:
         reason: Provider, registration, cheat sheet, and settings wiring are needed only for catalogs and rebinding
     failure_modes:
       - mistake: Passing ref.current as target
-        mechanism: 'Same as React: a null target on the first render means document.'
+        mechanism: 'Same as React: an unset target on the first render waits until a later render.'
         wrong_pattern: "useHotkey('Delete', remove, { target: listRef.current })"
         correct_pattern: "useHotkey('Delete', remove, { target: listRef })"
         source: src/utils.ts
@@ -373,7 +373,7 @@ skills:
         priority: HIGH
         status: active
       - mistake: Passing an unassigned element variable as target
-        mechanism: An undefined target means document.
+        mechanism: An undefined target waits, and nothing re-reads a plain variable, so the hotkey never registers.
         wrong_pattern: "let el; createHotkey('Delete', remove, { target: el })"
         correct_pattern: "const [el, setEl] = createSignal(null); createHotkey('Delete', remove, () => ({ target: el() }))"
         source: packages/hotkeys/src/adapter.ts
@@ -404,6 +404,13 @@ skills:
         correct_pattern: "useHotkey('Mod+S', save, { enabled: isDirty, target: panel })"
         source: src/useHotkeys.ts
         priority: HIGH
+        status: active
+      - mistake: Targeting a component ref whose component has no single root element
+        mechanism: A component target listens on its root element; a fragment or text root has none, so the hotkey registers nothing.
+        wrong_pattern: '<MultiRootPanel ref="panel" /> with useHotkey(''Escape'', close, { target: panel })'
+        correct_pattern: Put the ref on an element inside the component, or give the component one root element
+        source: src/useHotkeys.ts; docs/framework/vue/guides/hotkeys.md
+        priority: MEDIUM
         status: active
       - mistake: Using nested recorder refs in templates
         mechanism: Templates unwrap only top-level refs, so v-if="recorder.isRecording" is always truthy.
@@ -486,7 +493,7 @@ skills:
         priority: HIGH
         status: active
       - mistake: Passing a plain options object that reads signals
-        mechanism: The object is read once in the constructor; a viewChild target is undefined there and means document.
+        mechanism: The object is read once in the constructor; a viewChild target is undefined there, so the hotkey waits and never registers.
         wrong_pattern: "injectHotkey('Mod+S', save, { enabled: this.isDirty() })"
         correct_pattern: "injectHotkey('Mod+S', save, () => ({ enabled: this.isDirty() }))"
         source: src/injectHotkey.ts
@@ -656,11 +663,11 @@ skills:
       - topic: app hotkeys in Octane
         reason: Provider, registration, cheat sheet, and settings wiring are needed only for catalogs and rebinding
     failure_modes:
-      - mistake: Passing a ref object as target
-        mechanism: Octane targets must be elements; keep the element in state with a callback ref.
-        wrong_pattern: "useHotkey('Escape', close, { target: panelRef })"
+      - mistake: Using a ref object for an element that mounts later
+        mechanism: The hook reads ref.current only after its component renders, so it misses an element a child shows from its own state. Ref objects work for elements the component always renders.
+        wrong_pattern: "useHotkey('Escape', close, { target: panelRef }) with <Child panelRef={panelRef} /> showing the element later"
         correct_pattern: 'const [panel, setPanel] = useState(null); ref={setPanel}; { target: panel }'
-        source: src/useHotkey.ts
+        source: src/useHotkeys.ts; docs/framework/octane/guides/hotkeys.md
         priority: HIGH
         status: active
       - mistake: Calling hooks in loops or conditions

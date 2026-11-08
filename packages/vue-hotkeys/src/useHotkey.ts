@@ -14,13 +14,18 @@ import type {
   AdapterOptionsFor,
   AdapterSequenceOptions,
 } from '@tanstack/hotkeys/adapter'
-import type { MaybeRefOrGetter } from 'vue'
+import type { ComponentPublicInstance, MaybeRefOrGetter } from 'vue'
 
 /**
- * The element to listen on: a ref, getter, element, or null. A target that
- * resolves to `null` skips registration until it is set. Defaults to document.
+ * The element to listen on: a ref, getter, element, or component instance,
+ * such as a template ref on a component, which listens on its root element.
+ * A target that resolves to `null` or `undefined`, or a component without a
+ * single root element, skips registration until it is set. Omit it for the
+ * document.
  */
-export type UseHotkeyTarget = MaybeRefOrGetter<Target | null>
+export type UseHotkeyTarget = MaybeRefOrGetter<
+  Target | ComponentPublicInstance | null | undefined
+>
 
 /** Lets `enabled` be a ref or getter. */
 type WithReactiveEnabled<TOptions> = Omit<TOptions, 'enabled'> & {

@@ -113,7 +113,7 @@ A component's `providers` apply to the component itself, so it can register its 
 ## Pitfalls
 
 - **Pass options as a function.** `{ enabled: this.isDirty() }` is read once, in the constructor. Use `() => ({ ... })`.
-- **Pass the `viewChild` signal as `target`, not its value.** `this.panel()` in the constructor is `undefined`, and an undefined target means `document`. `{ target: this.panel }` waits for the element.
+- **Pass the `viewChild` signal as `target`, not its value.** `{ target: this.panel() }` reads the signal once in the constructor, where it is `undefined`, so the hotkey waits and never registers. `{ target: this.panel }` waits for the element and follows it. Reading the value inside an options function, such as `() => ({ target: this.panel()?.nativeElement })`, also works.
 - **An exclusive provider with no hotkeys never activates.** Angular creates providers lazily. Call `injectHotkeysContext()` in the component's constructor to activate the scope.
 - **Replace `@HostListener('document:keydown')` and `(keydown.control.s)` bindings with `injectHotkey`.**
 - **Register runtime lists in the constructor.** `injectHotkey` throws outside an injection context, such as in `ngOnInit`. For hotkeys from data, use `injectHotkeys(() => this.items().map(...))`.
