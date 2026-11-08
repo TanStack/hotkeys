@@ -80,6 +80,15 @@ export class HotkeyHintController implements ReactiveController {
     this.visible = false
   }
 
+  /**
+   * Releases the controller now and removes it from its host. Use it to
+   * remove a controller early: Lit's `removeController` alone leaves it active.
+   */
+  dispose(): void {
+    this.hostDisconnected()
+    this.host.removeController(this)
+  }
+
   /** Recomputes visibility and reports whether the host needs another render. */
   private update(): boolean {
     const value =

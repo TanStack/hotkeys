@@ -103,6 +103,23 @@ it('ignores an extra addController for a HotkeyController on a connected host', 
   expect(registrations()).toEqual([])
 })
 
+it('dispose() unregisters a HotkeyController and removes it from its host', async () => {
+  const host = new PlainHost()
+  document.body.append(host)
+  await host.updateComplete
+  const controller = new HotkeyController(host, 'X', () => {})
+  expect(registrations()).toEqual(['X'])
+
+  controller.dispose()
+  expect(registrations()).toEqual([])
+  // Lit's removeController alone would leave X registered after this.
+  host.remove()
+  document.body.append(host)
+  await host.updateComplete
+  getHotkeyManager().appHotkeys.setState(() => null)
+  expect(registrations()).toEqual([])
+})
+
 const readControllers: Array<
   [string, (host: LitElement) => ReactiveController, () => void]
 > = [
@@ -156,6 +173,26 @@ it.each(readControllers)(
     await host.updateComplete
     host.addController(create(host))
     host.remove()
+    const requestUpdate = vi.spyOn(host, 'requestUpdate')
+    change()
+    expect(requestUpdate).not.toHaveBeenCalled()
+  },
+)
+
+it.each(readControllers)(
+  '%s dispose() unsubscribes and removes it from its host',
+  async (_name, create, change) => {
+    const host = new PlainHost()
+    document.body.append(host)
+    await host.updateComplete
+    const controller = create(host) as ReactiveController & {
+      dispose(): void
+    }
+    controller.dispose()
+    // Reconnecting must not subscribe it again.
+    host.remove()
+    document.body.append(host)
+    await host.updateComplete
     const requestUpdate = vi.spyOn(host, 'requestUpdate')
     change()
     expect(requestUpdate).not.toHaveBeenCalled()

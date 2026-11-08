@@ -564,6 +564,13 @@ skills:
         source: src/decorators/hotkey.ts
         priority: MEDIUM
         status: active
+      - mistake: Removing a HotkeyController with removeController
+        mechanism: Lit's removeController doesn't call hostDisconnected, so the hotkey stays registered after the host disconnects.
+        wrong_pattern: this.removeController(this.tools.get(id))
+        correct_pattern: this.tools.get(id).dispose()
+        source: src/controllers/hotkey.ts; packages/lit-hotkeys/tests/lifecycle.test.ts
+        priority: MEDIUM
+        status: active
   - name: alpine-hotkeys
     slug: alpine-hotkeys
     domain: framework-bindings

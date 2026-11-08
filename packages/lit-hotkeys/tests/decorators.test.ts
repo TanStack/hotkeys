@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
 import * as lit from 'lit'
 import ts from 'typescript'
-import { afterEach, describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import * as decorators from '../src/decorators/hotkey'
 import type { LitElement } from 'lit'
 // Type-only, so Vitest never loads the decorator syntax.
@@ -63,6 +63,7 @@ const press = (key: string, init: KeyboardEventInit = {}) =>
   )
 
 afterEach(() => {
+  vi.restoreAllMocks()
   document.body.replaceChildren()
   HotkeyManager.resetInstance()
 })
@@ -108,6 +109,57 @@ describe.each(Object.entries(modes))(
       press('k')
       expect(host.calls).toEqual(['sub'])
     })
+
+    const hotkeys = () =>
+      Array.from(getHotkeyManager().registrations.state.values()).map(
+        (registration) => registration.hotkey,
+      )
+
+    it('replaces the parent hotkey when an override is decorated with the same key', () => {
+      const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
+      const { DecoratedSameKey } = runFixture(options)
+      const host = mount(DecoratedSameKey)
+      expect(hotkeys().filter((hotkey) => hotkey === 'K')).toHaveLength(1)
+      press('k')
+      expect(host.calls).toEqual(['same key'])
+      expect(warn).not.toHaveBeenCalled()
+    })
+
+    it('moves the method to the key of a decorated override', () => {
+      const { DecoratedNewKey } = runFixture(options)
+      const host = mount(DecoratedNewKey)
+      expect(hotkeys()).toContain('J')
+      expect(hotkeys()).not.toContain('K')
+      press('k')
+      press('j')
+      expect(host.calls).toEqual(['new key'])
+      host.remove()
+      expect(hotkeys()).toEqual([])
+    })
+
+    it('keeps the nearest decorated hotkey for an undecorated override', () => {
+      const { DecoratedGrandchild } = runFixture(options)
+      const host = mount(DecoratedGrandchild)
+      press('k')
+      press('j')
+      expect(host.calls).toEqual(['grandchild'])
+    })
+
+    it('registers every decorator stacked on one method', () => {
+      const { DecoratedStacked, DecoratedRestacked } = runFixture(options)
+      const base = mount(DecoratedStacked)
+      press('a')
+      press('b')
+      expect(base.calls).toEqual(['both', 'both'])
+      base.remove()
+
+      const sub = mount(DecoratedRestacked)
+      expect(hotkeys().sort()).toEqual(['C', 'D'])
+      press('a')
+      press('c')
+      press('d')
+      expect(sub.calls).toEqual(['restacked', 'restacked'])
+    })
   },
 )
 
@@ -129,4 +181,55 @@ it('calls a #private method with standard decorators', () => {
   const host = mount(DecoratedPrivate!)
   press('p')
   expect(host.calls).toEqual(['private'])
+})
+
+it('registers #private methods of a class and its subclass separately', () => {
+  const { PrivateSub } = run(
+    `
+    import { LitElement } from 'lit'
+    import { hotkey } from '../../src/decorators/hotkey'
+    export class PrivateBase extends LitElement {
+      calls = []
+      @hotkey('P')
+      #onKey() {
+        this.calls.push('base')
+      }
+    }
+    export class PrivateSub extends PrivateBase {
+      @hotkey('Q')
+      #onKey() {
+        this.calls.push('sub')
+      }
+    }
+    `,
+    modes.standard,
+  )
+  const host = mount(PrivateSub!)
+  press('p')
+  press('q')
+  expect(host.calls).toEqual(['base', 'sub'])
+})
+
+it('keeps stacked hotkeys when another decorator wraps the method between them', () => {
+  const { Wrapped } = run(
+    `
+    import { LitElement } from 'lit'
+    import { hotkey } from '../../src/decorators/hotkey'
+    const wrap = (method) => function (...args) { return method.apply(this, args) }
+    export class Wrapped extends LitElement {
+      calls = []
+      @hotkey('A')
+      @wrap
+      @hotkey('B')
+      both() {
+        this.calls.push('both')
+      }
+    }
+    `,
+    modes.standard,
+  )
+  const host = mount(Wrapped!)
+  press('a')
+  press('b')
+  expect(host.calls).toEqual(['both', 'both'])
 })

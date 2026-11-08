@@ -12,7 +12,7 @@ type HotkeyDecorator<TContext> = {
 };
 ```
 
-Defined in: [decorators/hotkey.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/decorators/hotkey.ts#L21)
+Defined in: [decorators/hotkey.ts:28](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/decorators/hotkey.ts#L28)
 
 A method decorator for legacy (`experimentalDecorators`) and standard
 decorators. The method's context parameter can be typed as the context for

@@ -226,7 +226,7 @@ Chords recorded so far in a multi-step recording (for live preview).
 cancelRecording(): void;
 ```
 
-Defined in: [controllers/hotkey-recorder.ts:171](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L171)
+Defined in: [controllers/hotkey-recorder.ts:180](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L180)
 
 Cancel recording without saving.
 
@@ -242,9 +242,26 @@ Cancel recording without saving.
 commitRecording(): void;
 ```
 
-Defined in: [controllers/hotkey-recorder.ts:176](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L176)
+Defined in: [controllers/hotkey-recorder.ts:185](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L185)
 
 Commit the recorded steps now (multi-step recordings).
+
+#### Returns
+
+`void`
+
+***
+
+### dispose()
+
+```ts
+dispose(): void;
+```
+
+Defined in: [controllers/hotkey-recorder.ts:156](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L156)
+
+Releases the controller now and removes it from its host. Use it to
+remove a controller early: Lit's `removeController` alone leaves it active.
 
 #### Returns
 
@@ -302,7 +319,7 @@ ReactiveController.hostDisconnected
 setOptions(options): void;
 ```
 
-Defined in: [controllers/hotkey-recorder.ts:153](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L153)
+Defined in: [controllers/hotkey-recorder.ts:162](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L162)
 
 Updates the recorder options (e.g. callbacks).
 
@@ -324,7 +341,7 @@ Updates the recorder options (e.g. callbacks).
 startRecording(): void;
 ```
 
-Defined in: [controllers/hotkey-recorder.ts:161](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L161)
+Defined in: [controllers/hotkey-recorder.ts:170](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L170)
 
 Start recording a new hotkey.
 
@@ -340,7 +357,7 @@ Start recording a new hotkey.
 stopRecording(): void;
 ```
 
-Defined in: [controllers/hotkey-recorder.ts:166](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L166)
+Defined in: [controllers/hotkey-recorder.ts:175](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-recorder.ts#L175)
 
 Stop recording (same as cancel but without calling onCancel).
 

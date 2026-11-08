@@ -64,18 +64,18 @@ The skills teach agents to use those APIs directly. The core skills hold the fra
 
 ### Framework skills
 
-| Skill           | Mistakes                                                                                                                                                                                   |
-| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| react-hotkeys   | ref.current as target (HIGH, task check); hotkey above its own provider (HIGH, task check)                                                                                                 |
-| preact-hotkeys  | ref.current as target (HIGH); hotkey above its own provider (HIGH)                                                                                                                         |
-| solid-hotkeys   | plain options object (HIGH); unassigned element variable as target (HIGH)                                                                                                                  |
-| vue-hotkeys     | ref.value instead of the ref (HIGH); provider in the same component (HIGH); nested recorder refs in templates (MEDIUM)                                                                     |
-| svelte-hotkeys  | plain options object (HIGH); destructuring reactive getters (HIGH); hotkeys before setHotkeysContext (HIGH)                                                                                |
-| angular-hotkeys | @HostListener (HIGH); plain options object (HIGH); shared exclusive scope across instances (HIGH); outside an injection context (MEDIUM); plain fields in a root-service callback (MEDIUM) |
-| lit-hotkeys     | unreleased manager scope (HIGH, also alpine and ember); HotkeyController not added to host (HIGH); @hotkey with standard decorators (MEDIUM); instance state in decorator options (MEDIUM) |
-| alpine-hotkeys  | owner never destroyed (HIGH); createHotkeysScope mistaken for a scope (HIGH); plain options object (HIGH)                                                                                  |
-| ember-hotkeys   | unbound method callback (HIGH); string sequence in a template (MEDIUM); createHotkeysScope mistaken for a scope (HIGH)                                                                     |
-| octane-hotkeys  | ref object as target (HIGH); hooks in loops (MEDIUM)                                                                                                                                       |
+| Skill           | Mistakes                                                                                                                                                                                                                                   |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| react-hotkeys   | ref.current as target (HIGH, task check); hotkey above its own provider (HIGH, task check)                                                                                                                                                 |
+| preact-hotkeys  | ref.current as target (HIGH); hotkey above its own provider (HIGH)                                                                                                                                                                         |
+| solid-hotkeys   | plain options object (HIGH); unassigned element variable as target (HIGH)                                                                                                                                                                  |
+| vue-hotkeys     | ref.value instead of the ref (HIGH); provider in the same component (HIGH); nested recorder refs in templates (MEDIUM)                                                                                                                     |
+| svelte-hotkeys  | plain options object (HIGH); destructuring reactive getters (HIGH); hotkeys before setHotkeysContext (HIGH)                                                                                                                                |
+| angular-hotkeys | @HostListener (HIGH); plain options object (HIGH); shared exclusive scope across instances (HIGH); outside an injection context (MEDIUM); plain fields in a root-service callback (MEDIUM)                                                 |
+| lit-hotkeys     | unreleased manager scope (HIGH, also alpine and ember); HotkeyController not added to host (HIGH); @hotkey with standard decorators (MEDIUM); instance state in decorator options (MEDIUM); removeController instead of dispose() (MEDIUM) |
+| alpine-hotkeys  | owner never destroyed (HIGH); createHotkeysScope mistaken for a scope (HIGH); plain options object (HIGH)                                                                                                                                  |
+| ember-hotkeys   | unbound method callback (HIGH); string sequence in a template (MEDIUM); createHotkeysScope mistaken for a scope (HIGH)                                                                                                                     |
+| octane-hotkeys  | ref object as target (HIGH); hooks in loops (MEDIUM)                                                                                                                                                                                       |
 
 ## Tensions
 
@@ -162,7 +162,13 @@ The skills teach agents to use those APIs directly. The core skills hold the fra
 - **Source sync:** the AltGr fix (#193) changed `hotkey-recorder.ts` and the AltGr notes in `docs/guides/sensible-defaults.md`. No skill covers AltGr, so `hotkeys-core` and `app-hotkeys` are unchanged.
 - **Checks:** a TypeScript export listing confirmed every adapter export appears in its skill; `intent validate` passes.
 
-### Batch 1 revision 3 — 2026-11-08 — Angular change detection
+### Batch 1 revision 3 — 2026-11-08 — Lit controller cleanup
+
+- **Source change:** every Lit controller gained `dispose()`, which runs `hostDisconnected()` and removes the controller from its host. `@hotkey` on a subclass override now replaces the parent's hotkeys for that method instead of registering a second time.
+- **Changes:** `lit-hotkeys` gained two pitfalls: remove a controller with `dispose()`, not `removeController`; and decorating an override replaces the parent's hotkeys. `domain_map.yaml` records the `removeController` failure mode.
+- **Checks:** both pitfalls are covered by `packages/lit-hotkeys/tests/lifecycle.test.ts` and `decorators.test.ts`.
+
+### Batch 1 revision 4 — 2026-11-08 — Angular change detection
 
 - **Source sync:** `injectHotkeys` and `injectHotkeyRecorder` now mark the registering component for check after each callback (`src/_zone.ts`), so plain field changes render in OnPush components and zoneless apps. Keys that fire no hotkey still don't run change detection.
 - **Changes:** `angular-hotkeys` gained one pitfall: a service outside any component, such as a root service, has no component to mark, so its hotkeys should change signals. The Angular failure modes in `domain_map.yaml` and the table above list it. `skill_tree.yaml` is unchanged.
