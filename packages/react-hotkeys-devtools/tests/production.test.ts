@@ -5,7 +5,10 @@ import type { Root } from 'react-dom/client'
 
 // No module mocks: these tests check which core each entry really mounts.
 // The no-op core overrides `mount`, so the spy only sees the real core.
-async function load(env: 'production' | 'development', entry: string) {
+async function load(
+  env: 'production' | 'development',
+  entry: 'production' | 'index',
+) {
   vi.stubEnv('NODE_ENV', env)
   vi.resetModules()
   const { HotkeysDevtoolsCore } =

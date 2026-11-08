@@ -5,7 +5,10 @@ import { afterEach, expect, it, vi } from 'vitest'
 // Solid loads after `resetModules`, so the test and panels share one runtime.
 let solid: typeof import('solid-js')
 let web: typeof import('solid-js/web')
-async function load(env: 'production' | 'development', entry: string) {
+async function load(
+  env: 'production' | 'development',
+  entry: 'production' | 'index',
+) {
   vi.stubEnv('NODE_ENV', env)
   vi.resetModules()
   solid = await import('solid-js')
