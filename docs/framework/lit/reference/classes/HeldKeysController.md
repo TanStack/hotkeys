@@ -74,6 +74,23 @@ Array of currently held key names.
 
 ## Methods
 
+### dispose()
+
+```ts
+dispose(): void;
+```
+
+Defined in: [controllers/held-keys.ts:75](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/held-keys.ts#L75)
+
+Releases the controller now and removes it from its host. Use it to
+remove a controller early: Lit's `removeController` alone leaves it active.
+
+#### Returns
+
+`void`
+
+***
+
 ### hostConnected()
 
 ```ts

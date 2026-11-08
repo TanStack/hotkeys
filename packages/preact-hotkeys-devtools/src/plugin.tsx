@@ -1,6 +1,6 @@
 import { createPreactPlugin } from '@tanstack/devtools-utils/preact'
 import { HotkeysDevtoolsPanel } from './PreactHotkeysDevtools'
-import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools'
+import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools/production'
 import type { JSX } from 'preact'
 
 /** A plugin for `TanStackDevtools` from `@tanstack/preact-devtools`. */

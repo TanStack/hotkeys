@@ -1,6 +1,6 @@
 import { createReactPlugin } from '@tanstack/devtools-utils/react'
 import { HotkeysDevtoolsPanel } from './ReactHotkeysDevtools'
-import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools'
+import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools/production'
 import type { ReactElement } from 'react'
 
 /** A plugin for `TanStackDevtools` from `@tanstack/react-devtools`. */

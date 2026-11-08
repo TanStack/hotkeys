@@ -50,6 +50,7 @@ Otherwise, the character the key reports wins, wherever the key sits:
 
 - ASCII letters never fall back, and ASCII symbols fall back only on the digit row or with Shift. On AZERTY, the key in the US `/` position types `+`, so Cmd++ zooms the page instead of firing `Mod+/`. On Dvorak, the key that types `'` does not fire `Q`.
 - Latin letters such as `ü`, `ö`, and `ø` match only themselves when typed on their own. With Control or Command held on a punctuation key they fall back, so German Cmd+ü still fires `Mod+[` (German types `[` with Option).
+- On Windows, Control+Alt works like AltGr, so a Latin letter it types on a letter key matches only itself. Polish Ctrl+Alt+A types `ą` and does not fire `Control+Alt+A`. Symbols and the digit row still fall back, so German Ctrl+Alt+E, which types `€`, fires `Control+Alt+E`, and Danish Ctrl+Alt+2, which types `@`, fires `Control+Alt+2`. Avoid `Control+Alt` with letters and digits on Windows when users type in other languages.
 - Named keys never fall back. With NumLock off, the numpad's 1 key reports `End`, so it fires `End` and not `1`.
 
 When one key press could match several registrations on the same target, an exact match takes priority over a fallback.
