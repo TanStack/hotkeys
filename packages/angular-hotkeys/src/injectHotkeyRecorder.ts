@@ -111,9 +111,18 @@ export function injectHotkeyRecorder(
     return resolved as never
   }
 
+  // Keys sent to the recorder last time. A key that disappears from the
+  // options is sent as `undefined`, which restores the recorder's default
+  // instead of keeping the old value.
+  let syncedKeys: Array<string> = []
+
   // Stable signal to lazy initialize the recorder
   const recorderSignal = computed(() =>
-    untracked(() => new HotkeyRecorder(resolve())),
+    untracked(() => {
+      const initial = resolve()
+      syncedKeys = Object.keys(initial)
+      return new HotkeyRecorder(initial)
+    }),
   )
 
   // Subscribe to recorder state
@@ -130,7 +139,10 @@ export function injectHotkeyRecorder(
 
   // Sync options on every effect run (matches React's sync on render)
   effect(() => {
-    recorderSignal().setOptions(resolve())
+    const next: Record<string, unknown> = { ...resolve() }
+    for (const key of syncedKeys) if (!(key in next)) next[key] = undefined
+    syncedKeys = Object.keys(next)
+    recorderSignal().setOptions(next)
   })
 
   destroyRef.onDestroy(() => {

@@ -127,7 +127,7 @@ export class EditPage {
 }
 ```
 
-If the scope must stay in `Route.providers`, and your app uses Angular 22.2 or later, add [`withAutoCleanupInjectors()`](https://angular.dev/api/router/withAutoCleanupInjectors) to `provideRouter`. The router then destroys a route's injector when its page leaves, and the scope ends with it. This works with the default route reuse strategy. A custom `RouteReuseStrategy` must return `true` from `shouldDestroyInjector`, and the router keeps the injectors of pages it stores.
+If the scope must stay in `Route.providers`, and your app uses Angular 22.2 or later, add [`withAutoCleanupInjectors()`](https://angular.dev/api/router/withAutoCleanupInjectors) to `provideRouter`. The router then destroys a route's injector when its page leaves, and the scope ends with it. This works with the default route reuse strategy. A custom `RouteReuseStrategy` must return `true` from `shouldDestroyInjector`, and must report the pages it stores through `retrieveStoredRouteHandles()`, or the router can destroy a stored page's injector. A stored page keeps its injector, so its scope stays active; turn it off while the page is detached, as in [Pages kept alive by route reuse](#pages-kept-alive-by-route-reuse).
 
 ## Scopes and targets
 

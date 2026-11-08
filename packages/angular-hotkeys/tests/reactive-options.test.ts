@@ -101,3 +101,31 @@ it('updates a recorder when the provider recorder defaults change', () => {
     TestBed.resetTestingModule()
   }
 })
+
+it('clears a recorder option when the provider default is removed', () => {
+  const recorderDefaults = signal<{ ignoreInputs?: boolean }>({
+    ignoreInputs: false,
+  })
+  TestBed.configureTestingModule({
+    providers: [
+      provideZonelessChangeDetection(),
+      provideHotkeys({
+        defaultOptions: () => ({ hotkeyRecorder: recorderDefaults() }),
+      }),
+    ],
+  })
+  const setOptions = vi.spyOn(HotkeyRecorder.prototype, 'setOptions')
+  try {
+    TestBed.runInInjectionContext(() => injectHotkeyRecorder({ onRecord() {} }))
+    TestBed.flushEffects()
+    expect(setOptions.mock.lastCall?.[0].ignoreInputs).toBe(false)
+    recorderDefaults.set({})
+    TestBed.flushEffects()
+    const last = setOptions.mock.lastCall?.[0]
+    expect(last && 'ignoreInputs' in last).toBe(true)
+    expect(last?.ignoreInputs).toBeUndefined()
+  } finally {
+    setOptions.mockRestore()
+    TestBed.resetTestingModule()
+  }
+})
