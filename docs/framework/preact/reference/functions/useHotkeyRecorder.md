@@ -11,7 +11,7 @@ title: useHotkeyRecorder
 function useHotkeyRecorder(options): PreactHotkeyRecorder<HotkeyChord>;
 ```
 
-Defined in: [useHotkeyRecorder.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L69)
+Defined in: [useHotkeyRecorder.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L70)
 
 Preact hook for recording keyboard shortcuts.
 
@@ -21,8 +21,9 @@ chord adds a step; the recording commits on Enter (unless
 `commitKeys: 'none'`), after `idleTimeoutMs`, or when it reaches `maxSteps`,
 and `onRecord` receives a chord (one step) or a sequence.
 
-Escape cancels. Backspace/Delete removes the last step, or calls `onClear`
-when nothing is recorded.
+Escape cancels, and so do Tab and Shift+Tab unless `recordTab` is set.
+Backspace/Delete removes the last step, or calls `onClear` when nothing is
+recorded.
 
 ### Parameters
 
@@ -66,7 +67,7 @@ const recorder = useHotkeyRecorder({
 function useHotkeyRecorder(options): PreactHotkeyRecorder;
 ```
 
-Defined in: [useHotkeyRecorder.ts:72](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L72)
+Defined in: [useHotkeyRecorder.ts:73](https://github.com/TanStack/hotkeys/blob/main/packages/preact-hotkeys/src/useHotkeyRecorder.ts#L73)
 
 Preact hook for recording keyboard shortcuts.
 
@@ -76,8 +77,9 @@ chord adds a step; the recording commits on Enter (unless
 `commitKeys: 'none'`), after `idleTimeoutMs`, or when it reaches `maxSteps`,
 and `onRecord` receives a chord (one step) or a sequence.
 
-Escape cancels. Backspace/Delete removes the last step, or calls `onClear`
-when nothing is recorded.
+Escape cancels, and so do Tab and Shift+Tab unless `recordTab` is set.
+Backspace/Delete removes the last step, or calls `onClear` when nothing is
+recorded.
 
 ### Parameters
 

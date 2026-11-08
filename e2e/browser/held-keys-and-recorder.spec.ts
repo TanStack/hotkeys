@@ -82,6 +82,60 @@ test.describe('recorder', () => {
     expect((await hk.call('recorderState')).recorded).toBe('cleared')
   })
 
+  test('Tab and Shift+Tab cancel and move focus', async ({ page, harness }) => {
+    // Inputs, because WebKit skips buttons when tabbing by default
+    const hk = await harness(
+      '<input id="before"><button id="start">Record</button><input id="after">',
+    )
+    await hk.register('tab', 'Tab')
+    for (const [key, next] of [
+      ['Tab', 'after'],
+      ['Shift+Tab', 'before'],
+    ] as const) {
+      await page.focus('#start')
+      await hk.call('startRecorder')
+      await page.keyboard.press(key)
+      await expect(page.locator(`#${next}`)).toBeFocused()
+      expect(await hk.call('recorderState')).toMatchObject({
+        recorded: 'cancelled',
+        isRecording: false,
+      })
+    }
+    expect(await hk.firedNames()).toEqual([])
+  })
+
+  test('Tab moves focus when cancelling removes the focused control', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness(
+      '<input id="before"><button id="start">Record</button><input id="after">',
+    )
+    await page.focus('#start')
+    await hk.call('startRecorder')
+    // Runs right after the recorder's listener, as an onCancel that unmounts would
+    await page.evaluate(() =>
+      document.addEventListener(
+        'keydown',
+        () => document.getElementById('start')?.remove(),
+        { capture: true, once: true },
+      ),
+    )
+    await page.keyboard.press('Tab')
+    await expect(page.locator('#after')).toBeFocused()
+  })
+
+  test('recordTab records Tab and keeps focus', async ({ page, harness }) => {
+    const hk = await harness(
+      '<button id="start">Record</button><input id="after">',
+    )
+    await page.focus('#start')
+    await hk.call('startRecorder', { recordTab: true })
+    await page.keyboard.press('Tab')
+    await expect(page.locator('#start')).toBeFocused()
+    expect((await hk.call('recorderState')).recorded).toBe('[Tab]')
+  })
+
   test('keys pressed while recording do not fire hotkeys', async ({
     page,
     harness,

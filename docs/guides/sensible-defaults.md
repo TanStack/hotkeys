@@ -24,7 +24,7 @@ This guide describes each default, why it was chosen, and how to change it.
 | Keys another listener prevented | Hotkeys still fire | `ignoreDefaultPrevented` |
 | Time between sequence steps | 1 second | `timeout` |
 | Duplicate registrations | Allowed, with a console warning in development | `conflictBehavior` |
-| Recording | Records key positions; Escape cancels | `recordBy`, recorder options |
+| Recording | Records key positions; Escape, Tab, and Shift+Tab cancel | `recordBy`, `recordTab`, recorder options |
 | Display | Symbols on macOS (`⇧ ⌘ S`), text elsewhere (`Ctrl+Shift+S`) | `formatForDisplay` options |
 
 ## `Mod` follows the platform
@@ -157,6 +157,8 @@ The recorder only skips text fields, so it can record Enter or Space while the b
 Both apply only when a hotkey matches; every other key press is left alone. For a sequence, every step that advances it calls `preventDefault`, so the browser doesn't act on `Mod+K` in `['Mod+K', 'Mod+C']`. Propagation stops only on the last step, so earlier steps still reach other listeners. Set either option to `false` when you want to observe a shortcut without taking it over.
 
 Some browser and operating system shortcuts never reach the page and cannot be overridden. Browsers keep `Mod+T`, `Mod+N`, and `Mod+W` for opening and closing tabs and windows, and the operating system keeps shortcuts such as `Alt+Tab` and `Command+Tab`. Pick other keys for your app.
+
+A `Tab`, `Shift+Tab`, or `F6` hotkey on the document also fires while a button or link has focus, and its `preventDefault` keeps focus from moving. Give it an element `target`, such as an editor or a component that manages focus itself.
 
 ## Hotkeys that can't fire leave the key alone
 
@@ -433,6 +435,7 @@ The hotkey recorder records physical key positions by default (`recordBy: 'code'
 While recording:
 
 - **Escape** cancels.
+- **Tab** and **Shift+Tab** cancel and move focus, so keyboard users can leave the recorder. Set `recordTab: true` to record them instead, and tell users that Escape cancels.
 - **Backspace** or **Delete** removes the last step, or clears an empty recording.
 - **Enter** commits a sequence recording, made with `maxSteps: Infinity`.
 - **Registered hotkeys are paused**, so pressing `Mod+S` to record it does not also save.

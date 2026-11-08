@@ -102,7 +102,7 @@ export interface HotkeyRecorderState {
 export type HotkeyRecorderCommitKeys = 'enter' | 'none'
 
 interface HotkeyRecorderBaseOptions extends RecorderOptions {
-  /** Optional callback when recording is cancelled (Escape pressed) */
+  /** Optional callback when recording is cancelled: Escape, or Tab without `recordTab` */
   onCancel?: () => void
   /**
    * Optional callback when the recording is cleared: Backspace/Delete with no
@@ -115,6 +115,13 @@ interface HotkeyRecorderBaseOptions extends RecorderOptions {
    * inputs passes through normally (Escape still cancels). Defaults to true.
    */
   ignoreInputs?: boolean
+  /**
+   * Whether to record Tab and Shift+Tab. By default they cancel recording and
+   * move focus, so keyboard users can leave the recorder. Tab with Control,
+   * Alt, or Meta isn't affected. When true, tell users that Escape cancels.
+   * Default: false
+   */
+  recordTab?: boolean
 }
 
 /** Options for recording a single chord. This is the default (`maxSteps: 1`). */
@@ -183,7 +190,8 @@ const initialState: HotkeyRecorderState = {
  * `maxSteps`, each chord adds a step; the recording commits on Enter (unless
  * `commitKeys: 'none'`), after `idleTimeoutMs`, or when it reaches `maxSteps`.
  * Backspace/Delete removes the last step, and on an empty recording calls
- * `onClear`. Escape cancels. A one-step result is a chord string.
+ * `onClear`. Escape cancels. Tab and Shift+Tab cancel and move focus unless
+ * `recordTab` is true. A one-step result is a chord string.
  *
  * State Management:
  * - Uses TanStack Store for reactive state management
@@ -318,6 +326,19 @@ export class HotkeyRecorder {
       const normalized = normalizeKeyboardEvent(event, platform)
       if (normalized.isComposing) return
       captureRecordingEvent(event)
+      // Tab and Shift+Tab leave the recorder: the browser moves focus, and
+      // registered hotkeys still skip the press.
+      if (
+        event.key === 'Tab' &&
+        !this.#options.recordTab &&
+        !normalized.ctrl &&
+        !normalized.alt &&
+        !normalized.meta &&
+        !normalized.altGraph
+      ) {
+        this.cancel()
+        return
+      }
       event.preventDefault()
       event.stopPropagation()
       if (event.repeat) return

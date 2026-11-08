@@ -94,11 +94,14 @@ Options can also be a getter, such as `new HotkeyRecorderController(this, () => 
 | A key, with or without modifiers | Records a chord, such as `Mod+[KeyS]` or `[F1]` |
 | Enter | Commits a sequence recording. With `maxSteps: 1` or `commitKeys: 'none'`, records Enter like any other key. |
 | Escape | Cancels the recording and calls `onCancel` |
+| Tab or Shift+Tab, without Control, Alt, or Meta | Cancels the recording and calls `onCancel`, and the browser moves focus as usual. In a text field, moves focus without cancelling. With `recordTab: true`, records Tab like any other key. |
 | Backspace or Delete, without modifiers | Removes the last step. With no steps, stops recording and calls `onClear`. |
 
 Repeats and IME composition never add a step. `onClear` doesn't change anything on its own, so your app decides whether clearing removes a hotkey or restores its default.
 
 By default, the recorder ignores typing in text fields, so other fields on the page keep working while it listens. Escape still cancels. Set `ignoreInputs: false` to record from inside a text field.
+
+Tab and Shift+Tab end the recording, so keyboard users don't get stuck on the recorder ([WCAG 2.1.2](https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap.html)). Set `recordTab: true` to let users bind Tab, for example in an editor. Escape still cancels, so show it while recording, such as "Press Escape to cancel".
 
 ## Validate and check conflicts
 
@@ -236,13 +239,14 @@ class ShortcutSettings extends LitElement {
 | Option | Default | Description |
 | --- | --- | --- |
 | `onRecord` | Required | Called with the recorded hotkey when a recording commits |
-| `onCancel` | None | Called when the user presses Escape or you call `cancelRecording()` |
+| `onCancel` | None | Called when the user presses Escape, Tab, or Shift+Tab, or you call `cancelRecording()` |
 | `onClear` | None | Called when the user presses Backspace or Delete with nothing recorded |
 | `maxSteps` | `1` | `1` records a chord. `Infinity` records a sequence. |
 | `commitKeys` | `'enter'` | With `maxSteps: Infinity`, whether plain Enter commits (`'enter'`) or records as a step (`'none'`) |
 | `idleTimeoutMs` | None | With `maxSteps: Infinity`, commits after this many milliseconds without a new step. The timer starts after the first chord. |
 | `recordBy` | `'code'` | Records the key's position (`'code'`) or the character it types (`'key'`) |
 | `ignoreInputs` | `true` | Lets typing in text fields pass through while recording |
+| `recordTab` | `false` | Records Tab and Shift+Tab instead of letting them cancel and move focus |
 | `validate` | None | Accepts or rejects a recording. See [Reject hotkeys you don't want](#reject-hotkeys-you-dont-want). |
 | `detectConflicts` | `false` | Rejects a recording that collides with a registered hotkey. See [Check for conflicts](#check-for-conflicts). |
 | `onReject` | None | Called with the reason when a recording is rejected |

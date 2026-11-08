@@ -26,7 +26,7 @@
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "f2f0629f6eafe31c5cb923fea5bd260c9afc74d591f57221018a8bae55f513db",
+      "fingerprint": "9b57702b3468b0a54eafb286e0af439f43db5e3a79d8d429bbd0ce67ae51a903",
       "snapshot": {
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "9cc0d3f2a26ee41b3d67f11f8d84c616ae90ab8432e79b3cb7bdef02a31d09ff",
         "docs/framework/angular/quick-start.md": "7cc94e2f2a712f1748357b17784723b327122c43d2051d8d17639adb6af725b6",
@@ -35,14 +35,14 @@
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "73d0c4768121bc54eed662145d552d2d7f93d4d54e072754dc5a9fecfda6b95b",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "4b00cd19f331c334ca11c17f50f41ad3e36b4a575f40ea31e7f6db76bf80db0f",
-        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "232908e432cec34e781d6f35222c2ad2395a9ba99c9922e93d100ee794337287",
+        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "cd0c816187babc38188c5371dc1cb2bcd2ab017eda7d53b2851ea7b35d16e59a",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "e89b404ccc443f00ab26f68e267e2a4fe70e3f2f600d6f5186f77973c8f636ca"
       },
-      "head": "2e59aaf0b14063eb1196f155ca656a3f08d8cbab",
+      "head": "8437d80940ac20a70676daaab75b90141797ff8f",
       "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews. The skill_spec.md conflict kept #241's log entry and this branch's Angular recorder log entry.",
+      "reason": "Merge of main after #242 merged. Pending items changed through #242 (Angular recorder live defaults and route-scope docs), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
       "evidence": [
-        "Changed: packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md, packages/angular-hotkeys/src/injectHotkey.ts, packages/angular-hotkeys/src/injectHotkeys.ts at 2e59aaf0b14063eb1196f155ca656a3f08d8cbab"
+        "Changed: docs/framework/angular/guides/provide-hotkeys-and-scopes.md, packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md, packages/angular-hotkeys/src/hotkeys-provider.ts, packages/angular-hotkeys/src/injectHotkeyRecorder.ts at 8437d80940ac20a70676daaab75b90141797ff8f"
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
@@ -69,16 +69,16 @@
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "bd9c46b35f99d5395e3a3fad22a0ad9b6390c388be0371c66d6b71858eb6cb29",
+      "fingerprint": "18a63d8e7dcfbad57fe96e7a14fe7392c51846cf45711d02832205e1572ea1b3",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "eb1f5087ec449c52b0fe342237c77fa511dee20bdd56b70d609e1a4e5c7ebbc6",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "36f17bd33b5326bd396974ba24e5c06e3ec4218ad25045c0ee4910635f292ea7",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "68182984f4f18acd2f31c427ef4f8cffa02ff54845a0abdd14dd1fc272dc98a2",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "0dc668ed5bcdc50b9ad290847f551d8da35cbb2c1f061ca363aa1bcb78d31b28",
-        "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
+        "packages/hotkeys/skills/app-hotkeys/references/recording.md": "d808080c8c6245063d2ef0ee0d6d316df242ad8ed958d9cc6ff7de0c4dcca68a",
         "packages/hotkeys/src/app-hotkeys.ts": "5ad2e0ca37e21a4a4fbd1eabc9b5bb4981f7530bca1dfd2286a2fa9205793608",
         "packages/hotkeys/src/conflicts.ts": "0459c63dccec1b3706c93552bfcd66243f90ae918c6e7e445fce046fe79cc2ad",
-        "packages/hotkeys/src/hotkey-recorder.ts": "a19c8e64b939faa51b4554e71e71485f4d419539e4c9c287fdbb07955362a3e7",
+        "packages/hotkeys/src/hotkey-recorder.ts": "d0008d3442dec938f91f0b8d0584f1b2d01fa169a143a649f7a5024f1eb5e469",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
         "packages/react-hotkeys/tests/skills/shortcut-settings/grade.tsx": "c3538737712f00d52a4b6290d078a37f4c4d8881b9ce512f205f9e531b982f5e",
         "packages/react-hotkeys/tests/skills/shortcut-settings/mistakes/full-list-storage.tsx": "62d4f4bd79de46fc4900d4f8202c7b16c672060ab66aaead9e7fcd8ea1958c59",
@@ -88,21 +88,20 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
       "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md"
+        "Changed: docs/framework/react/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "01ec481dbb489a23be722da4b3ea83eb6efe3aab37b995fb8f9c7ddb4f498161",
+      "fingerprint": "4154be60844dc8b79e2b4c2757fcd461f5b6413592388b6004c1e97074224362",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/guides/sensible-defaults.md": "26d2b564622899e420f99bbe59a9ec71613157ac8a66af46220e58a2c3397965",
+        "docs/guides/sensible-defaults.md": "d9af1bb74d1bbd74cff5e700540a9a9359544c9503aa51c505bd8b955d44efb2",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
@@ -118,30 +117,30 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "2e59aaf0b14063eb1196f155ca656a3f08d8cbab",
+      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
       "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews. The skill_spec.md conflict kept #241's log entry and this branch's Angular recorder log entry.",
+      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
       "evidence": [
-        "Changed: docs/framework/react/guides/hotkeys.md at 2e59aaf0b14063eb1196f155ca656a3f08d8cbab"
+        "Changed: docs/framework/react/guides/hotkeys.md at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
-      "fingerprint": "2786cc289b2049d7232472bfdb4eebf3b661757d60c0892aef0ab98dbf19de16",
+      "fingerprint": "d7098450b6294cd4577a9b18ca350e6d718e58f8d57154160c4a39193c1b9cf3",
       "snapshot": {
         "docs/framework/lit/guides/app-hotkeys.md": "b001df84eb320a4af7759ab163f837bac0fe3b36014b4b5de9366102073af97b",
         "docs/framework/lit/quick-start.md": "0f1e0a406ae61dc62ea0659b95e734828a1181a591990331f1e8405f637a0094",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "b2e8d9a31ecc0f97bc0c073608a06572ff555cf5f2d7e52316315e4783fdaacd",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
         "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
-        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "69e4018c8375779f0392cf0383f5d3f1faeb14e0dee831a2c0b4dbd6e60cd36d",
+        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "1e255a98935901ca485f8f81fa1166d2b2a0a72777a3c925913e8d3824a2aefa",
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "6f1dd627c166013111da04e1ac708f6dd2cf2523b42a3f56bdde46500208e44d",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef"
       },
-      "head": "2e59aaf0b14063eb1196f155ca656a3f08d8cbab",
+      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
       "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews. The skill_spec.md conflict kept #241's log entry and this branch's Angular recorder log entry.",
+      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
       "evidence": [
-        "Changed: packages/lit-hotkeys/src/controllers/hotkey.ts at 2e59aaf0b14063eb1196f155ca656a3f08d8cbab"
+        "Changed: packages/lit-hotkeys/src/controllers/hotkey.ts at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
       ]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
@@ -156,11 +155,11 @@
         "packages/octane-hotkeys/src/useHotkey.ts": "d75f727e07f145297fb6ebe0ef51289a925e0d3aba95725f1f73a588db50a1f4",
         "packages/octane-hotkeys/src/useHotkeys.ts": "0794266727ccbe6c340bd162828dcf164c42ebeae66a385e309c0b5e707880b9"
       },
-      "head": "2e59aaf0b14063eb1196f155ca656a3f08d8cbab",
+      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
       "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews. The skill_spec.md conflict kept #241's log entry and this branch's Angular recorder log entry.",
+      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
       "evidence": [
-        "Changed: packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md, packages/octane-hotkeys/src/useHotkey.ts, packages/octane-hotkeys/src/useHotkeys.ts at 2e59aaf0b14063eb1196f155ca656a3f08d8cbab"
+        "Changed: packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md, packages/octane-hotkeys/src/useHotkey.ts, packages/octane-hotkeys/src/useHotkeys.ts at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
       ]
     },
     "skill:packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": {
@@ -176,11 +175,11 @@
         "packages/preact-hotkeys/src/useHotkeys.ts": "dd4e288866368082653ef208e6fcddf7937f16c5e7fc301d0afd05e1ab596fae",
         "packages/preact-hotkeys/src/utils.ts": "67b3583a90c020b3a5cc7f3cba6668ef98f37d67455f044fcf17667b2cc6db51"
       },
-      "head": "2e59aaf0b14063eb1196f155ca656a3f08d8cbab",
+      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
       "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews. The skill_spec.md conflict kept #241's log entry and this branch's Angular recorder log entry.",
+      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
       "evidence": [
-        "Changed: packages/preact-hotkeys/src/useHotkey.ts, packages/preact-hotkeys/src/utils.ts at 2e59aaf0b14063eb1196f155ca656a3f08d8cbab"
+        "Changed: packages/preact-hotkeys/src/useHotkey.ts, packages/preact-hotkeys/src/utils.ts at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
       ]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
@@ -213,11 +212,11 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "2e59aaf0b14063eb1196f155ca656a3f08d8cbab",
+      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
       "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews. The skill_spec.md conflict kept #241's log entry and this branch's Angular recorder log entry.",
+      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
       "evidence": [
-        "Changed: packages/react-hotkeys/src/useHotkey.ts, packages/react-hotkeys/src/utils.ts at 2e59aaf0b14063eb1196f155ca656a3f08d8cbab"
+        "Changed: packages/react-hotkeys/src/useHotkey.ts, packages/react-hotkeys/src/utils.ts at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
       ]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
@@ -232,11 +231,11 @@
         "packages/solid-hotkeys/src/createHotkey.ts": "37b41aeec26e1a15eda01dff31fd245487f864e9772c143d95e03bb4289ca4a2",
         "packages/solid-hotkeys/src/createHotkeys.ts": "a3503ed415c6c87fe05153d82f857a7ed7236be6e06007d142615ff7dd7a708f"
       },
-      "head": "2e59aaf0b14063eb1196f155ca656a3f08d8cbab",
+      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
       "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews. The skill_spec.md conflict kept #241's log entry and this branch's Angular recorder log entry.",
+      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
       "evidence": [
-        "Changed: packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md, packages/solid-hotkeys/src/createHotkey.ts, packages/solid-hotkeys/src/createHotkeys.ts at 2e59aaf0b14063eb1196f155ca656a3f08d8cbab"
+        "Changed: packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md, packages/solid-hotkeys/src/createHotkey.ts, packages/solid-hotkeys/src/createHotkeys.ts at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
@@ -275,15 +274,15 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "2e59aaf0b14063eb1196f155ca656a3f08d8cbab",
+      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
       "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews. The skill_spec.md conflict kept #241's log entry and this branch's Angular recorder log entry.",
+      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
       "evidence": [
-        "Changed: packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md, packages/vue-hotkeys/src/useHotkey.ts, packages/vue-hotkeys/src/useHotkeys.ts at 2e59aaf0b14063eb1196f155ca656a3f08d8cbab"
+        "Changed: packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md, packages/vue-hotkeys/src/useHotkey.ts, packages/vue-hotkeys/src/useHotkeys.ts at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "8121ab8c3a6ebae6c90d533a065552bb1cae0758bb79334ab07d4a698112e9c0",
+      "fingerprint": "d8df424f1d46500678707c1000b8587a5a0ae8fd5df0efc822562f20ce1609cb",
       "snapshot": {
         "_artifacts/domain_map.yaml": "5e6e0616c9e4f1d099c37f2c164285d4a649abc6eb888599ac8d750b55ac5b7c",
         "_artifacts/skill_spec.md": "bd8e54eb437cda05e72f24149bf198179d4d2688cbd535b08facb46ae88bf9d5",
@@ -302,7 +301,7 @@
         "docs/framework/preact/quick-start.md": "d9cd9759e454cb4cbb050c189f3dee97d1141238ea30e623e5308dcc7cf29328",
         "docs/framework/react/guides/app-hotkeys.md": "eb1f5087ec449c52b0fe342237c77fa511dee20bdd56b70d609e1a4e5c7ebbc6",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "36f17bd33b5326bd396974ba24e5c06e3ec4218ad25045c0ee4910635f292ea7",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "68182984f4f18acd2f31c427ef4f8cffa02ff54845a0abdd14dd1fc272dc98a2",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
@@ -313,7 +312,7 @@
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
-        "docs/guides/sensible-defaults.md": "26d2b564622899e420f99bbe59a9ec71613157ac8a66af46220e58a2c3397965",
+        "docs/guides/sensible-defaults.md": "d9af1bb74d1bbd74cff5e700540a9a9359544c9503aa51c505bd8b955d44efb2",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "b8a7e9ce42d7a9cfacc9bd405a5f0be43064e81f76616a6f31504ccb32c0d59a",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "69ba6d06582aaf28328e74c12888bcf8b1d89b2ae2a01d7f6a41eb82eef848e3",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4c43866e1e60dbfcdac1c5acb3b5bd1f372d722d47e51cb8922b22f1c372fa45",
@@ -328,7 +327,7 @@
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "73d0c4768121bc54eed662145d552d2d7f93d4d54e072754dc5a9fecfda6b95b",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "4b00cd19f331c334ca11c17f50f41ad3e36b4a575f40ea31e7f6db76bf80db0f",
-        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "232908e432cec34e781d6f35222c2ad2395a9ba99c9922e93d100ee794337287",
+        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "cd0c816187babc38188c5371dc1cb2bcd2ab017eda7d53b2851ea7b35d16e59a",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "e89b404ccc443f00ab26f68e267e2a4fe70e3f2f600d6f5186f77973c8f636ca",
         "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "d2c51c3efe9a55f605f643f657f6da6d46e3b00acaf879f95acdc3d4ade8fabb",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
@@ -340,19 +339,19 @@
         "packages/ember-hotkeys/src/useHotkeyRecorder.ts": "62e88767d073da768bd423268a5687390ac9b0ff7e9a28fd3ccc201bf827f540",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "0dc668ed5bcdc50b9ad290847f551d8da35cbb2c1f061ca363aa1bcb78d31b28",
-        "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
+        "packages/hotkeys/skills/app-hotkeys/references/recording.md": "d808080c8c6245063d2ef0ee0d6d316df242ad8ed958d9cc6ff7de0c4dcca68a",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/app-hotkeys.ts": "5ad2e0ca37e21a4a4fbd1eabc9b5bb4981f7530bca1dfd2286a2fa9205793608",
         "packages/hotkeys/src/conflicts.ts": "0459c63dccec1b3706c93552bfcd66243f90ae918c6e7e445fce046fe79cc2ad",
         "packages/hotkeys/src/hotkey-manager.ts": "340ae1e61d8e08fe56edb0bb73f41434dae03ad15a374c2a0864450b64276443",
-        "packages/hotkeys/src/hotkey-recorder.ts": "a19c8e64b939faa51b4554e71e71485f4d419539e4c9c287fdbb07955362a3e7",
+        "packages/hotkeys/src/hotkey-recorder.ts": "d0008d3442dec938f91f0b8d0584f1b2d01fa169a143a649f7a5024f1eb5e469",
         "packages/hotkeys/src/match.ts": "204f0159ccdd1bfaed96b1b03ad805f7fa9a74c011e70760749d1e0c326b7e8a",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "b2e8d9a31ecc0f97bc0c073608a06572ff555cf5f2d7e52316315e4783fdaacd",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
         "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
-        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "69e4018c8375779f0392cf0383f5d3f1faeb14e0dee831a2c0b4dbd6e60cd36d",
+        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "1e255a98935901ca485f8f81fa1166d2b2a0a72777a3c925913e8d3824a2aefa",
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "6f1dd627c166013111da04e1ac708f6dd2cf2523b42a3f56bdde46500208e44d",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef",
         "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "13f491353cc62049743a352bcf4aa3160e8b5db2913360f6f3686e8c99781ce1",
@@ -415,11 +414,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "2e59aaf0b14063eb1196f155ca656a3f08d8cbab",
+      "head": "8437d80940ac20a70676daaab75b90141797ff8f",
       "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews. The skill_spec.md conflict kept #241's log entry and this branch's Angular recorder log entry.",
+      "reason": "Merge of main after #242 merged. Pending items changed through #242 (Angular recorder live defaults and route-scope docs), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
       "evidence": [
-        "Changed: _artifacts/domain_map.yaml, _artifacts/skill_spec.md, docs/framework/react/guides/hotkeys.md, packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md, packages/angular-hotkeys/src/injectHotkey.ts, packages/angular-hotkeys/src/injectHotkeys.ts, packages/lit-hotkeys/src/controllers/hotkey.ts, packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md, packages/octane-hotkeys/src/useHotkey.ts, packages/octane-hotkeys/src/useHotkeys.ts, packages/preact-hotkeys/src/useHotkey.ts, packages/preact-hotkeys/src/utils.ts, packages/react-hotkeys/src/useHotkey.ts, packages/react-hotkeys/src/utils.ts, packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md, packages/solid-hotkeys/src/createHotkey.ts, packages/solid-hotkeys/src/createHotkeys.ts, packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md, packages/vue-hotkeys/src/useHotkey.ts, packages/vue-hotkeys/src/useHotkeys.ts at 2e59aaf0b14063eb1196f155ca656a3f08d8cbab"
+        "Changed: _artifacts/domain_map.yaml, _artifacts/skill_spec.md, docs/framework/angular/guides/provide-hotkeys-and-scopes.md, packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md, packages/angular-hotkeys/src/hotkeys-provider.ts, packages/angular-hotkeys/src/injectHotkeyRecorder.ts at 8437d80940ac20a70676daaab75b90141797ff8f"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -2726,16 +2725,16 @@
       ]
     },
     "source:packages/react-hotkeys/src/useHotkeyRecorder.ts": {
-      "fingerprint": "7a7f6bf4a37a00461cd27e4a69a155b650d67bb20fa3ed6cd15cbd3c295564df",
+      "fingerprint": "732ae44e9608543089ff1cf7be8f323c0cd7a24833d398a53a3edfcf9192dc94",
       "snapshot": {
-        "packages/react-hotkeys/src/useHotkeyRecorder.ts": "dc5b6cb407bd51d907cc6c841132bc100aaca076e9fe8ee3b99d893f72ab34a5"
+        "packages/react-hotkeys/src/useHotkeyRecorder.ts": "faaf0d34dfa8dbfc81c8e8eaa76081d32677e71da449b1d94a66e25bd3b5f122"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
       "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "reason": "JSDoc now mentions Tab cancelling; the adapter skill does not describe recorder keys, and the app-hotkeys recording reference covers them.",
       "evidence": [
         "packages/react-hotkeys/src/useHotkeyRecorder.ts",
-        "git diff origin/main"
+        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
       ]
     },
     "source:packages/react-hotkeys/src/useHotkeyRegistrations.ts": {
@@ -2862,14 +2861,17 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/react/reference/functions/useHotkeyRecorder.md": {
-      "fingerprint": "e39723cd2cc97d75a61200b53f84f3a800570c507a89390056f37ea12ad72826",
+      "fingerprint": "4b515953187c9f895d2ea5e93f6aaff704e4e93e08838fc27f8645668611a36e",
       "snapshot": {
-        "docs/framework/react/reference/functions/useHotkeyRecorder.md": "b90a20ebcfeba2e07c0c46204a25ee62a9272c3028231f04bf55ce40deaed538"
+        "docs/framework/react/reference/functions/useHotkeyRecorder.md": "b46a1f06d18fe1741ad8766a4b5f600777e43deaaa6743ad369f510d1f59f3c0"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Regenerated reference for recordTab and the recorder comments that now mention Tab; skills already point to the recorder options.",
+      "evidence": [
+        "docs/framework/react/reference/functions/useHotkeyRecorder.md",
+        "packages/hotkeys/src/hotkey-recorder.ts"
+      ]
     },
     "source:docs/framework/react/reference/functions/useHotkeyRegistrations.md": {
       "fingerprint": "d86e34a71dc3e72110750b22e3babb02a308791c5e0545b24a88d6a7d0d0700e",
@@ -3876,14 +3878,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/classes/HotkeyRecorderController.md": {
-      "fingerprint": "9bad9711e733aace7705cd37921baeeeac4804c4c6cdccd101c822176a60ea01",
+      "fingerprint": "888c36361859e96607ef1e7b038d6a93bcfa034dcced0367ddbd63b43c5c5f0c",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyRecorderController.md": "bd62386114b5b55c876c110b737247f629f75c3e72fc72be627cd7ff5c77e83a"
+        "docs/framework/lit/reference/classes/HotkeyRecorderController.md": "82c56199c69f6d8c5ef51c9a6a85aaacf5cfb505042f05b8e7aedeb51ad13456"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "4e7ba19ffd08f5ce37390b0b35db583004277af2",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Merge of main. These items changed through #238 (Windows Ctrl+Alt fallback note) and #239 (Lit override and dispose()), which recorded their own skill and planning reviews; the Lit skill and planning records already describe that work. This branch's recorder Tab change adds nothing they need, and the regenerated Lit recorder reference only shifts line numbers.",
+      "evidence": [
+        "Changed: docs/framework/lit/reference/classes/HotkeyRecorderController.md at 4e7ba19ffd08f5ce37390b0b35db583004277af2"
+      ]
     },
     "source:docs/framework/lit/reference/classes/HotkeyRegistrationsController.md": {
       "fingerprint": "f1e789cd7144d7f7b7420be0b1b16fb20944b61f6fa1f19205462752746393ba",
@@ -4127,14 +4131,17 @@
       ]
     },
     "source:docs/reference/classes/HotkeyRecorder.md": {
-      "fingerprint": "f276c8a5dc77ffa0e82dee2eaf000740e2da5044a67e2fcd81653ee5a55f04b4",
+      "fingerprint": "91faa299e4d750d0901c5a878bc6eeb30671453474dcb8bc93fc4a1582e98713",
       "snapshot": {
-        "docs/reference/classes/HotkeyRecorder.md": "812873f528d7ba5e2f1419dc500fb88ef201bc47216b640597c7d50ec7bf5847"
+        "docs/reference/classes/HotkeyRecorder.md": "01d9cea807ac18b158fca8be2a79b55a580da69a6941656cc38203eb83e9448e"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Regenerated reference for the new recordTab option and the updated onCancel and class comments; skills already point to the recorder options.",
+      "evidence": [
+        "docs/reference/classes/HotkeyRecorder.md",
+        "packages/hotkeys/src/hotkey-recorder.ts"
+      ]
     },
     "source:packages/hotkeys/tests/hotkey-recorder-ssr.test.ts": {
       "fingerprint": "394b648ffc52be332ca1ab001ee62311b653f8162c126029f9856e8728ebdbc4",
@@ -4272,56 +4279,53 @@
       "evidence": ["docs/framework/angular/guides/app-hotkeys.md"]
     },
     "source:docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": {
-      "fingerprint": "7e0596288d970a70636ae068635d61474de0bd698a399b109321c4b73b3cbeb1",
+      "fingerprint": "d5d718a1edf230b9fae5d92c67246d2e5ea421acae0b1900bdece4f2ab011d22",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": "c1e1e90543a44ad1a6d89d382ac99a481a27114630f726ee3b081a609f80e95d"
+        "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": "ab50068c829ca7df9e3530f39fffd0426b8efe2cdce68de5e6f3674d9bd16a30"
       },
-      "head": "9f37d489e293077f4043814e1833d6c97093065d",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Generated typedoc page: line-number shifts in hotkeys-provider.ts source links, plus the new JSDoc notes on injectDefaultHotkeysOptions, HotkeysContextValue.defaultOptions, and provideHotkeys placement. The angular-hotkeys skill already carries the placement pitfall and makes no claim about injectDefaultHotkeysOptions reactivity.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
-        "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts"
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md"
       ]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeysContext.md": {
-      "fingerprint": "d0b6ea5bb106f92c7dc5bf35847b5968682978fd86d378a12ab346a8b1f257ee",
+      "fingerprint": "18c7769c426015a3f39658cf4cd3deeeb5327be58ea004f9b3aeea3f392c4957",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectHotkeysContext.md": "29751d21e662861ec675b30159659c0a76f221afca2d122693a5148bfdd829d6"
+        "docs/framework/angular/reference/functions/injectHotkeysContext.md": "7441a7fa09dd7168fec1dd1b618dbe9de52d99a7a7103fc231c397f65595735a"
       },
-      "head": "9f37d489e293077f4043814e1833d6c97093065d",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Generated typedoc page: line-number shifts in hotkeys-provider.ts source links, plus the new JSDoc notes on injectDefaultHotkeysOptions, HotkeysContextValue.defaultOptions, and provideHotkeys placement. The angular-hotkeys skill already carries the placement pitfall and makes no claim about injectDefaultHotkeysOptions reactivity.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
-        "docs/framework/angular/reference/functions/injectHotkeysContext.md",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts"
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/framework/angular/reference/functions/injectHotkeysContext.md"
       ]
     },
     "source:docs/framework/angular/reference/functions/provideHotkeys.md": {
-      "fingerprint": "3915afef0253f79748ef66d433fb471e692730327be69e476204b23a99d2e449",
+      "fingerprint": "8fc79f3628a5bef7940b5cb76e654e4c03f5bfae364181f859c97b5b130cfb93",
       "snapshot": {
-        "docs/framework/angular/reference/functions/provideHotkeys.md": "e70c266042622ce8421e7e276efc81ec09d6cfeb8ab8efe7429c865221d46bd9"
+        "docs/framework/angular/reference/functions/provideHotkeys.md": "63634d2b3de05022c114db6e6b9c188d9f3486fcf17ac07fd0b24f6de05dbd03"
       },
-      "head": "1d397863b84624141c11e2acf1eb8cb2928b3d2a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Generated typedoc page: hotkeys-provider.ts source line shifts plus the new JSDoc on provideHotkeys placement. The angular-hotkeys skill already carries the placement pitfall.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
-        "docs/framework/angular/reference/functions/provideHotkeys.md",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts"
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/framework/angular/reference/functions/provideHotkeys.md"
       ]
     },
     "source:docs/framework/angular/reference/interfaces/HotkeysContextValue.md": {
-      "fingerprint": "7f474972f06350b595826f7e606dbd09add35c8a5194b8f554d1ba871420b10e",
+      "fingerprint": "5870f46d95ac3186a8525db3d186e0b1da52e0e8a42d6c5aae70e60cdcbbe155",
       "snapshot": {
-        "docs/framework/angular/reference/interfaces/HotkeysContextValue.md": "dbabe549322db16cc4fc2711cbe7d4f36fb03afac74447384d1502a90e827dce"
+        "docs/framework/angular/reference/interfaces/HotkeysContextValue.md": "60f8267f1ab0c67d42111a9d026275aad76a692ee0e1de7f7b2c3854ffcb92b2"
       },
-      "head": "9f37d489e293077f4043814e1833d6c97093065d",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Generated typedoc page: line-number shifts in hotkeys-provider.ts source links, plus the new JSDoc notes on injectDefaultHotkeysOptions, HotkeysContextValue.defaultOptions, and provideHotkeys placement. The angular-hotkeys skill already carries the placement pitfall and makes no claim about injectDefaultHotkeysOptions reactivity.",
-      "evidence": [
-        "docs/framework/angular/reference/interfaces/HotkeysContextValue.md",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts"
-      ]
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/interfaces/HotkeysProviderOptions.md": {
       "fingerprint": "6bc7cd8e86a3c8f967335bfe3bcd1f591dd4bf9bc3f66e9a5433715b3b63eccd",
@@ -4347,30 +4351,24 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/type-aliases/MaybeGetter.md": {
-      "fingerprint": "7436cef78b7e4178ad12f7d98a6382e996da1d94a6d1cf11cb8b51e5341e3b78",
+      "fingerprint": "23a846c7e1131a83d350f871732dda2047d9c1750222b9d3b710141b63bf9120",
       "snapshot": {
-        "docs/framework/angular/reference/type-aliases/MaybeGetter.md": "1f9247cff7cc0b5391421334d7fd759dfa40e129c8328696ff745d4b63a4057f"
+        "docs/framework/angular/reference/type-aliases/MaybeGetter.md": "24eb37ba52a4ce249fa8c55c632eee980f6d332c1bb3226aa13e4122b20de495"
       },
-      "head": "9f37d489e293077f4043814e1833d6c97093065d",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Generated typedoc page: line-number shifts in hotkeys-provider.ts source links, plus the new JSDoc notes on injectDefaultHotkeysOptions, HotkeysContextValue.defaultOptions, and provideHotkeys placement. The angular-hotkeys skill already carries the placement pitfall and makes no claim about injectDefaultHotkeysOptions reactivity.",
-      "evidence": [
-        "docs/framework/angular/reference/type-aliases/MaybeGetter.md",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts"
-      ]
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/variables/HOTKEYS_INJECTION_TOKEN.md": {
-      "fingerprint": "7bd6f3b3e1922fbcb42eb2c0cdc251e6ed1aeeb4abf8aa84c188bfeff12e9858",
+      "fingerprint": "7599264dc1120574b99630ae38b54c59299f08b32ab999be1afc4ff4ede8bbea",
       "snapshot": {
-        "docs/framework/angular/reference/variables/HOTKEYS_INJECTION_TOKEN.md": "1039d4e557dc065b88606c3d74978fdf5bda0fe1d74ff4d1d4f0d428cb13db28"
+        "docs/framework/angular/reference/variables/HOTKEYS_INJECTION_TOKEN.md": "8dd07038c1d2458c39bb8a8ffcbe6720b3225b29258f9616ab312f899f8c35c9"
       },
-      "head": "9f37d489e293077f4043814e1833d6c97093065d",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Generated typedoc page: line-number shifts in hotkeys-provider.ts source links, plus the new JSDoc notes on injectDefaultHotkeysOptions, HotkeysContextValue.defaultOptions, and provideHotkeys placement. The angular-hotkeys skill already carries the placement pitfall and makes no claim about injectDefaultHotkeysOptions reactivity.",
-      "evidence": [
-        "docs/framework/angular/reference/variables/HOTKEYS_INJECTION_TOKEN.md",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts"
-      ]
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/guides/app-hotkeys.md": {
       "fingerprint": "ef8489f19eaa326829e431b7766d3da54d2aee875fde5974e7561ef82f6e12be",
@@ -5016,14 +5014,17 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderOptions.md": {
-      "fingerprint": "e5fa234f33563cb0d8ca47c675d2bd6144519d9e038b605bad79771a0cf032cb",
+      "fingerprint": "2ac67bdc38e62da1c55709443224fb231ee81395e9043cac4657762706e6ca48",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRecorderOptions.md": "b75357b7d30e4ab0e47731926a3676b64ec961c68a538318727cb45130286a5b"
+        "docs/reference/interfaces/HotkeyChordRecorderOptions.md": "06e19f8a86fda7dc9c4486b09d34d37979116ab5972f97239562ba5249807caf"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Regenerated reference for recordTab and the recorder comments that now mention Tab; skills already point to the recorder options.",
+      "evidence": [
+        "docs/reference/interfaces/HotkeyChordRecorderOptions.md",
+        "packages/hotkeys/src/hotkey-recorder.ts"
+      ]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderValidationContext.md": {
       "fingerprint": "5553c470e946c2e08aa2c2fb85c112af029bd0973f40e723f81459a079f18d3b",
@@ -5046,14 +5047,17 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/interfaces/HotkeySequenceRecorderOptions.md": {
-      "fingerprint": "73b6645c833b994c07fd5ad437793f451e6c0c072e244fa29a885d19e28d6331",
+      "fingerprint": "f1961d234417efb2e45235d5bff9d8dc81f768c6f5950fd9c819ee459ac2e672",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRecorderOptions.md": "576515cac70ddfdd824c32f03edeceec360bf2cd77e0985f5d31f5c5a78678da"
+        "docs/reference/interfaces/HotkeySequenceRecorderOptions.md": "e17ee87055adb109ea2488840c7acab349e92fec10b8f84fa29f4d819f6e76bc"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Regenerated reference for recordTab and the recorder comments that now mention Tab; skills already point to the recorder options.",
+      "evidence": [
+        "docs/reference/interfaces/HotkeySequenceRecorderOptions.md",
+        "packages/hotkeys/src/hotkey-recorder.ts"
+      ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRecorderValidationContext.md": {
       "fingerprint": "a8c7716a2198d830c84af1cdfa2c430bd02ef5c52b00fef3e903dd3b9c1d769d",
@@ -5116,14 +5120,17 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderOptions.md": {
-      "fingerprint": "ced9637468042633453595c7c672b9ec5d8002dbec54c5fc940752956a956854",
+      "fingerprint": "4fbcf2cd23bfe321234b63eaa19dfb598e34f78c50b7114e4a4a560d4f619e85",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRecorderOptions.md": "03eab9a05dd982753a85a46f9d4dd4a7b9f5b3ee75290c40be34e7e69c640171"
+        "docs/reference/type-aliases/HotkeyRecorderOptions.md": "2b8112f84f9f676f6aa95a348e944f8c1a209d7c4144e1a4d5f64e36dee66899"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Regenerated reference for the new recordTab option and the updated onCancel and class comments; skills already point to the recorder options.",
+      "evidence": [
+        "docs/reference/type-aliases/HotkeyRecorderOptions.md",
+        "packages/hotkeys/src/hotkey-recorder.ts"
+      ]
     },
     "source:docs/reference/type-aliases/HotkeyRecorderValidationContext.md": {
       "fingerprint": "8d4a2b2926f03d394a2ade486d45f156928c0c6a3e4090c2804a4c5489587c60",
@@ -5536,16 +5543,16 @@
       ]
     },
     "source:packages/preact-hotkeys/src/useHotkeyRecorder.ts": {
-      "fingerprint": "8d4e5c72cab42a2053dcd1d6e2117f2cd5b5629028b1db3433b2c0bc9a3b5003",
+      "fingerprint": "030c78c40f943c73b4d22224c086653859c1cf8869f6dc757005308b6c5b39e7",
       "snapshot": {
-        "packages/preact-hotkeys/src/useHotkeyRecorder.ts": "6e853c7bc05a740a8fde5dc957521b178df73b8ff7e3bda1e48bf09cf78e8890"
+        "packages/preact-hotkeys/src/useHotkeyRecorder.ts": "eff44702074c0a1071bd7e3118e1a05953e9d3c67aec183c631fc37a53ee72be"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
       "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "reason": "JSDoc now mentions Tab cancelling; the adapter skill does not describe recorder keys, and the app-hotkeys recording reference covers them.",
       "evidence": [
         "packages/preact-hotkeys/src/useHotkeyRecorder.ts",
-        "git diff origin/main"
+        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
       ]
     },
     "source:packages/preact-hotkeys/src/useHotkeyRegistrations.ts": {
@@ -6539,16 +6546,14 @@
       "evidence": ["packages/hotkeys/tests/parse.test.ts", "test:lib passes"]
     },
     "source:packages/hotkeys/tests/typed-behavior.test.ts": {
-      "fingerprint": "8f843a82bcb209dee531c8b34ffc746be6cb51074998a5975b3a7cc82199f5b2",
+      "fingerprint": "3fb81f936e9d424c9262778d7e6909758ec2371ad21e49c937895d14b23aad47",
       "snapshot": {
-        "packages/hotkeys/tests/typed-behavior.test.ts": "36390f4330d81f9d40ae077ed0cae071e71b3b398797d42c0e853fd3216f65b2"
+        "packages/hotkeys/tests/typed-behavior.test.ts": "6b175eac93b76d2110809827d13242c3fc3e1bbce9d23dcb1c58ede1cc9f2c07"
       },
-      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
-      "outcome": "no-change",
-      "reason": "Core fix for #229 and its tests; skills don't describe Unidentified or composition matching.",
-      "evidence": [
-        "git diff origin/main shows matching, recorder, and test changes only; no skill text references this behavior."
-      ]
+      "head": "97da894aebb7eb366467c32cf633e3737ea4da40",
+      "outcome": "out-of-scope",
+      "reason": "Tests for Tab leaving the recorder; they describe no guidance.",
+      "evidence": ["packages/hotkeys/tests/typed-behavior.test.ts"]
     },
     "source:packages/hotkeys/tests/unified-hotkeys.test.ts": {
       "fingerprint": "2203e5d97f9f0130343962e0f41fc5c40cbb130e0c7f10244cdb2b8d602fba0b",
@@ -6653,30 +6658,26 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeyRecorder.md": {
-      "fingerprint": "4db53f95449ad317219b6be5aafb4de671a4caed2970572f4b964c905c15f34f",
+      "fingerprint": "17e923bd0eae9a0c1b0dd41816a97cd0a7e1a9c051ec8f1a03f5402bcafc8e76",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectHotkeyRecorder.md": "e3e969350cfb9d543ffdaf853ad65b1a76330a71eb9037f1a81e524f2070e1c8"
+        "docs/framework/angular/reference/functions/injectHotkeyRecorder.md": "00f5f7ad71b37cae847652a095db24b48a119cdefba4f5ca2c4a1ab7627b881d"
       },
-      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
+      "head": "26c92d8fea37ddfe66923e8bc987e7b0262c5887",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: only Defined-in line numbers shift because injectHotkeys.ts and injectHotkeyRecorder.ts gained an import line. No API or JSDoc change.",
+      "reason": "Regenerated Angular injectHotkeyRecorder reference after merging main: only Defined-in line numbers moved, because this branch's recorderTab JSDoc and #237's callback wrapper changed line positions. No skill describes those lines.",
       "evidence": [
-        "docs/framework/angular/reference/functions/injectHotkeyRecorder.md",
-        "git diff origin/main: only Defined-in lines change"
+        "Changed: docs/framework/angular/reference/functions/injectHotkeyRecorder.md at 26c92d8fea37ddfe66923e8bc987e7b0262c5887"
       ]
     },
     "source:docs/framework/angular/reference/interfaces/AngularHotkeyRecorder.md": {
-      "fingerprint": "3d32cf453d7d9eef067d9e14d669c4283a083325354edf3e63818250cbd9316d",
+      "fingerprint": "5f3bf5da4c47c085bdbfa0af937cd414394ba957fad093415bcb1cf0fd546eca",
       "snapshot": {
-        "docs/framework/angular/reference/interfaces/AngularHotkeyRecorder.md": "56ff12083d714db30206f94d9c30fe0eeeecb5985d74b80c9762b98d02007556"
+        "docs/framework/angular/reference/interfaces/AngularHotkeyRecorder.md": "360938c439d0109f6bd687e2a864db722fcb2944e27d7e337aa104f197d7c3f6"
       },
-      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: only Defined-in line numbers shift because injectHotkeys.ts and injectHotkeyRecorder.ts gained an import line. No API or JSDoc change.",
-      "evidence": [
-        "docs/framework/angular/reference/interfaces/AngularHotkeyRecorder.md",
-        "git diff origin/main: only Defined-in lines change"
-      ]
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/ember/reference/classes/onHotkey.md": {
       "fingerprint": "ffe22af1e14096b340219b0cfbc50e6ea066ab28e7da6f0b00fcd71ee73119b5",
@@ -6739,14 +6740,17 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/reference/functions/useHotkeyRecorder.md": {
-      "fingerprint": "15b003489f3a5ddad47568f0c09c56b989071c99468cd4b34e35ea1f83568f95",
+      "fingerprint": "66b5b5f0bed9e97ba80716722646aae93e9bc81020543ba2f66674103af39e4d",
       "snapshot": {
-        "docs/framework/preact/reference/functions/useHotkeyRecorder.md": "a8435546e3afd55db65b0d5db57965bcff8cf255b9408faf1ed8d7828711822a"
+        "docs/framework/preact/reference/functions/useHotkeyRecorder.md": "76eb12525d888cf2ac3f3a5378e79b0d64042eff863d08cb7fbda5f94c8d16f6"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Regenerated reference for recordTab and the recorder comments that now mention Tab; skills already point to the recorder options.",
+      "evidence": [
+        "docs/framework/preact/reference/functions/useHotkeyRecorder.md",
+        "packages/hotkeys/src/hotkey-recorder.ts"
+      ]
     },
     "source:docs/framework/preact/reference/interfaces/PreactHotkeyRecorder.md": {
       "fingerprint": "9be80d35ac27eef7385831d93b303e3bcae40d3388316d3b59827074d1b4fbf1",
@@ -7261,16 +7265,15 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/alpine/guides/custom-hotkey-recording.md": {
-      "fingerprint": "008884caf84929afc3c95f5aaf415e58085306837af6d1b95b46412f17c3b39d",
+      "fingerprint": "60128dda21bb8eed8994af35ab9615dd96cd5849f852ef8fa30bf90b4b9ab209",
       "snapshot": {
-        "docs/framework/alpine/guides/custom-hotkey-recording.md": "323a3a458ea5ef9bfa2ee229fdcb82965294a099eee0fcf691e04e6e47ef2571"
+        "docs/framework/alpine/guides/custom-hotkey-recording.md": "8ec3451cf6bf601f320b7366949cca28f49abbf8ccb07e332aff76bfd5f6014b"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "docs/framework/alpine/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "Changed: docs/framework/alpine/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "source:docs/framework/alpine/guides/sequences.md": {
@@ -7337,17 +7340,14 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeys.md": {
-      "fingerprint": "4d4a59298eb522fd1de5f35561ec94c2f8daede94ea346ec5f9883fb0371264e",
+      "fingerprint": "8a7e13ced27e711f9f0ce8091644deb0e7341139e393b13a924886b56b8edba1",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectHotkeys.md": "19cf898e707bf7d89136e4e88e7e66b73bdb38bb4e80ad346e9789e329b2938e"
+        "docs/framework/angular/reference/functions/injectHotkeys.md": "7012f3466d4b9213dfb45608b41c4c9d8d38de7fc10a71aabc3bcdb6fc8fb694"
       },
-      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: only Defined-in line numbers shift because injectHotkeys.ts and injectHotkeyRecorder.ts gained an import line. No API or JSDoc change.",
-      "evidence": [
-        "docs/framework/angular/reference/functions/injectHotkeys.md",
-        "git diff origin/main: only Defined-in lines change"
-      ]
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/functions/injectKeyHold.md": {
       "fingerprint": "d5ae91fc8ee72c96d09e422544f28432b4b856095ea9f16d24d86851471ee52d",
@@ -7390,17 +7390,14 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/type-aliases/InjectHotkeyDefinition.md": {
-      "fingerprint": "f57390c002076f00e297157be154fcb8344ab0fcd10295011604f6ea86ba161c",
+      "fingerprint": "e703224526223090b625fc922fe882b7320992bdea9fe27f0185a5d05673ee87",
       "snapshot": {
-        "docs/framework/angular/reference/type-aliases/InjectHotkeyDefinition.md": "2e477ea7dee31ac9915ec0ac70b0eebac7c40871e208467cca18acd12681e86d"
+        "docs/framework/angular/reference/type-aliases/InjectHotkeyDefinition.md": "898d58d2d3db9bfe218bff7e04ab94a8f204b287c83d8d09f3fb214fecd4c7f4"
       },
-      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: only Defined-in line numbers shift because injectHotkeys.ts and injectHotkeyRecorder.ts gained an import line. No API or JSDoc change.",
-      "evidence": [
-        "docs/framework/angular/reference/type-aliases/InjectHotkeyDefinition.md",
-        "git diff origin/main: only Defined-in lines change"
-      ]
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/type-aliases/InjectHotkeyOptions.md": {
       "fingerprint": "9432c46de2783d1ee3032734a0e047bd20d7049fd0e093aaeec9bb762e105229",
@@ -7443,16 +7440,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/ember/guides/custom-hotkey-recording.md": {
-      "fingerprint": "22fe20cbb077890ec3294ea7216443e957450b35263656d2c05daa1582f2aa4e",
+      "fingerprint": "e65f02564b5864a604aa96655d7ad5c28f4b3f5f2e2cddd36dc893d63daa4335",
       "snapshot": {
-        "docs/framework/ember/guides/custom-hotkey-recording.md": "390b8dabb9ef7e9ca5db2d2f26656d03ceb71c4af7dc80ff97ed54e8aa55e416"
+        "docs/framework/ember/guides/custom-hotkey-recording.md": "b55a59becb520db6e334983a193d9cb6f32de748478dc803d3784348804f98e4"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "docs/framework/ember/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "Changed: docs/framework/ember/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "source:docs/framework/ember/reference/functions/useHotkeyRecorder.md": {
@@ -7476,16 +7472,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/guides/custom-hotkey-recording.md": {
-      "fingerprint": "9b3607ae195ff5abe6b54d7cbd98b1b083887d6c1f6dc85af44ebe7c6658d76f",
+      "fingerprint": "f7d983a81ffcdfc4869656b308c3688fb5dd37f1f885a7f4b4df3fac36f57b4c",
       "snapshot": {
-        "docs/framework/lit/guides/custom-hotkey-recording.md": "181106e4e6e88c94f61e0383da3eda0235cd4da039ea0f3278378a205bad5e72"
+        "docs/framework/lit/guides/custom-hotkey-recording.md": "6988c0cdbcd062eba546661e2b09914bc1a081963e50a93603f8d972bf504734"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "docs/framework/lit/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "Changed: docs/framework/lit/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "source:docs/framework/lit/reference/functions/hotkey.md": {
@@ -7579,17 +7574,14 @@
       "evidence": ["packages/alpine-hotkeys/tests/reactive-options.test.ts"]
     },
     "source:packages/angular-hotkeys/src/_zone.ts": {
-      "fingerprint": "7d3b304c52cfb1442a2fb2c600435fef77cf4cf5048014670a186e37b03e2396",
+      "fingerprint": "32f40b85f7f4bcdf188e088e061cf4d99c49ed6450147a3dcbb1ad883fa79d27",
       "snapshot": {
-        "packages/angular-hotkeys/src/_zone.ts": "8232fa6d7943510265613962774a0f2f25d258ce1485e4fee12b20c27b653d14"
+        "packages/angular-hotkeys/src/_zone.ts": "f19d61b093d6f0a20a0fc12c3dc95319d3df7317fa2cca8b9471dd80af7a9ea1"
       },
-      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
-      "outcome": "updated",
-      "reason": "New internal injectWrapCallback helper runs callbacks in the zone and marks the component for check. The angular-hotkeys skill was updated in this review for the root-service case.",
-      "evidence": [
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md",
-        "pnpm vitest run in packages/angular-hotkeys: 11 files, 64 tests pass (zone/zoneless x Default/OnPush x field/signal, recorder, root service, unmatched keys)"
-      ]
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
+      "outcome": "no-change",
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/angular-hotkeys/tests/targets.test.ts": {
       "fingerprint": "25343857852fb8aa0acf481e9c83ff623b4c959dc0b84acd5d85088fc2168728",
@@ -7602,17 +7594,14 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/angular-hotkeys/tests/zone.test.ts": {
-      "fingerprint": "4a577af406dfa1ed48faad86de1167be05e1b1f7d1b3fb3eedfe70a906cdfed5",
+      "fingerprint": "069ab777d9760e76595ce82d857763ccd1d817c6410ae9c68ed0da08dcf541d9",
       "snapshot": {
-        "packages/angular-hotkeys/tests/zone.test.ts": "a3883a9be16603d98e2deb4510dad929d2a356d6fdf64c2527fa5192e68ade38"
+        "packages/angular-hotkeys/tests/zone.test.ts": "eb4b3b5337bdfefc34bf34edb781121b0b2f2530c445f86a3d8fc7f2ac480e82"
       },
-      "head": "b0b1c63235b066b92922a2b4f370ddefed059f86",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "Test-only change covering the change detection fix; tests aren't skill guidance.",
-      "evidence": [
-        "packages/angular-hotkeys/tests/zone.test.ts",
-        "pnpm vitest run in packages/angular-hotkeys: 11 files, 64 tests pass (zone/zoneless x Eager/OnPush x field/signal, recorder, root service, unmatched keys)"
-      ]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/src/index.ts": {
       "fingerprint": "0a938f7cd7fd68c1ac2460d1090d6756b4164cbb32dcb3000d98a39f1d7dc9ea",
@@ -11688,16 +11677,15 @@
       "evidence": ["packages/hotkeys/tests/physical-key.test.ts"]
     },
     "source:docs/framework/angular/guides/custom-hotkey-recording.md": {
-      "fingerprint": "2964e07ded5e894acf6e54c57b85a407d62f118e8bab9dc37220bcaa8cf7c0a9",
+      "fingerprint": "abe61899b74ddf18103475457e350bd1ac0ac7277d17bbec1a2102acc6314818",
       "snapshot": {
-        "docs/framework/angular/guides/custom-hotkey-recording.md": "c7a6781543ea7f1ae4db71ea50ee4ba48c7f71065173ce540567c9af835da19d"
+        "docs/framework/angular/guides/custom-hotkey-recording.md": "5d4c4c5dfe3dde906817dbb225c49b8e518bd2e6b53dd04a52c7379ae33efb16"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "docs/framework/angular/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "Changed: docs/framework/angular/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "source:docs/framework/ember/reference/functions/useAppHotkeyList.md": {
@@ -11731,16 +11719,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/guides/custom-hotkey-recording.md": {
-      "fingerprint": "c4df2b18ad9fe335746fc7d9443c24adb586be8f6c1bf2b7376bb36fb64bceaf",
+      "fingerprint": "3c68e562911e3b5db9b9ee558698bbb831ab57523d2120c7b492a06d0f0134a4",
       "snapshot": {
-        "docs/framework/octane/guides/custom-hotkey-recording.md": "315c00e4919462e89adad795a203e94a65df6309d7e054949adea78efd71f5e5"
+        "docs/framework/octane/guides/custom-hotkey-recording.md": "7dfc6fb5f5c589d860006fcb6702c4c9950b2a679ff876912b5622dba3717ae5"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "docs/framework/octane/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "Changed: docs/framework/octane/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "source:docs/framework/octane/reference/functions/useAppHotkeyList.md": {
@@ -11774,42 +11761,39 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/guides/custom-hotkey-recording.md": {
-      "fingerprint": "b789f8eda20da0464a43b508103528871b8730423294d5e4992aa3a1df1cc525",
+      "fingerprint": "75836cc71fc452e03b5b268a3e9af46bbfc46e9cc5a6f6f9d3bd126f08d088ad",
       "snapshot": {
-        "docs/framework/preact/guides/custom-hotkey-recording.md": "bda4a9338e7c2bae6b9cddd9f280539c256eb33c8681e554a68c5e4a55c92c1a"
+        "docs/framework/preact/guides/custom-hotkey-recording.md": "e4060aa298240436ba139a10405cde795689998533d2cb73b5242bc6d92947c2"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "docs/framework/preact/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "Changed: docs/framework/preact/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "source:docs/framework/solid/guides/custom-hotkey-recording.md": {
-      "fingerprint": "9f9282c53207ba277d56615ae80fc4eeb268c6df2a16613c2f8f26dca0fb8f2b",
+      "fingerprint": "d08a301a68dafa2166f60ea9af4a518d7739d072aa58a72d01ae59bc3444bc92",
       "snapshot": {
-        "docs/framework/solid/guides/custom-hotkey-recording.md": "9c10ac347f6fc35f8da9f4491592bab58b8cc9c8481553e61a11e49447f05bbc"
+        "docs/framework/solid/guides/custom-hotkey-recording.md": "e0f19ced4c60033e296f27d0239bed679bf7c6a3965b6897daecb607e1b8f0ac"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "docs/framework/solid/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "Changed: docs/framework/solid/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "source:docs/framework/svelte/guides/custom-hotkey-recording.md": {
-      "fingerprint": "99f56a54625b90ddcde3c482df974e08743b6c8c47f2cb062ca932b0fd9e638d",
+      "fingerprint": "56e98036e3315a4d415b26ede04703054ccc1329437627a6b4c532812a294d5d",
       "snapshot": {
-        "docs/framework/svelte/guides/custom-hotkey-recording.md": "5f5d8e5169431c10c71cda96579013044e5c40a74a9386032f39c1a46aa82ebe"
+        "docs/framework/svelte/guides/custom-hotkey-recording.md": "32357f45672db0b353c211d69a2d965de79b912956e38c985c4afca210d7bcfe"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "docs/framework/svelte/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "Changed: docs/framework/svelte/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "source:docs/framework/svelte/reference/functions/getAppHotkeyList.md": {
@@ -11873,16 +11857,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/guides/custom-hotkey-recording.md": {
-      "fingerprint": "8babc2ec1c93dd89f489b89734bbd0a0e6b3f503df20a488f81ad4f3b775853a",
+      "fingerprint": "57f9db7fcd0094245d20692c81d4b2becea4dc5833da7c9c4dd9bfe1fc12d785",
       "snapshot": {
-        "docs/framework/vue/guides/custom-hotkey-recording.md": "bd076c5e66c6f30f7179b2d313129f6c4989b002afbfd0a4690e3c34ed7fcbc2"
+        "docs/framework/vue/guides/custom-hotkey-recording.md": "0ca276074fa3d595147c370ef6e04c42ad144afb130ef8be8f8306858aec5ac9"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "docs/framework/vue/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "Changed: docs/framework/vue/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "source:docs/framework/vue/reference/functions/useAppHotkeyList.md": {
@@ -16693,15 +16676,16 @@
       "evidence": ["packages/angular-hotkeys-devtools/tsconfig.json"]
     },
     "source:packages/angular-hotkeys/tests/reactive-options.test.ts": {
-      "fingerprint": "5eb3fcb3be532cb4ff467320175a557a8753736d337255d1807f1b1f53e5cbcd",
+      "fingerprint": "5c073dc150dd2848f890173814cbb08aaea82f1af07d98e076eb0615973bf001",
       "snapshot": {
-        "packages/angular-hotkeys/tests/reactive-options.test.ts": "1c5cf8b0e1db0e6f619ad1c860f8097075f3d50932526a4e11c9f0e168bcf23c"
+        "packages/angular-hotkeys/tests/reactive-options.test.ts": "c201bb2e3bbe355d0750d75467815315a0765c7924f99f4e2b7345c43d701210"
       },
-      "head": "8a74d11b07f3149b2d21c70766425442acdb0010",
-      "outcome": "updated",
-      "reason": "The Angular skill and domain_map.yaml now qualify withAutoCleanupInjectors(): a custom reuse strategy must report stored pages through retrieveStoredRouteHandles(), and a stored page keeps its injector and scope, so its scope must be disabled on detach (checked against @angular/router 22.2.5 routeInjectorCleanup). The recorder now clears options removed from provider defaults or getters; the new test covers it. No skill claims anything about removed options.",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "outcome": "no-change",
+      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
       "evidence": [
-        "Changed: packages/angular-hotkeys/tests/reactive-options.test.ts at 8a74d11b07f3149b2d21c70766425442acdb0010"
+        "packages/angular-hotkeys/tests/reactive-options.test.ts",
+        "test:lib passes"
       ]
     },
     "source:packages/ember-hotkeys/src/useKeyHold.ts": {
@@ -17608,18 +17592,25 @@
       "reason": "E2E test infrastructure only: layout fixture probes real key input before each case, and the Docker image matches @playwright/test 1.65.0. No library behavior or guidance changes.",
       "evidence": ["e2e/support/fixtures.ts"]
     },
-    "source:packages/angular-hotkeys/tests/change-detection.test.ts": {
-      "fingerprint": "917cbba2e216e6eab31d28c71e010ce8fff91935ab3fe81c28a11b76f15c3659",
+    "source:e2e/browser/held-keys-and-recorder.spec.ts": {
+      "fingerprint": "1fd0fb7644286581bdd917acf2a21e758516709a4825a2c20ca905b73f72845c",
       "snapshot": {
-        "packages/angular-hotkeys/tests/change-detection.test.ts": "e67ab1dba38e7928e8f56e694bf6b0720ff5bfb9a469e8bee8b213f25e550eda"
+        "e2e/browser/held-keys-and-recorder.spec.ts": "5e158e8e7051c60bb5c86e1a4ae8a39a96820478243128ef52129dce7064b073"
       },
-      "head": "b0b1c63235b066b92922a2b4f370ddefed059f86",
-      "outcome": "no-change",
-      "reason": "Test-only change covering the change detection fix; tests aren't skill guidance.",
-      "evidence": [
-        "packages/angular-hotkeys/tests/change-detection.test.ts",
-        "pnpm vitest run in packages/angular-hotkeys: 11 files, 64 tests pass (zone/zoneless x Eager/OnPush x field/signal, recorder, root service, unmatched keys)"
-      ]
+      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
+      "outcome": "out-of-scope",
+      "reason": "Tests for Tab leaving the recorder; they describe no guidance.",
+      "evidence": ["e2e/browser/held-keys-and-recorder.spec.ts"]
+    },
+    "source:packages/hotkeys/tests/recorder-tab.test.ts": {
+      "fingerprint": "e1f369f88d4f10059dbdc30b86e6299deb17c8f60555718df076cf358f89fb27",
+      "snapshot": {
+        "packages/hotkeys/tests/recorder-tab.test.ts": "c437e8a196abc9db6ba3f7e2fe8e0787b8927626fb5d59cf8cb93a071ad9cc47"
+      },
+      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
+      "outcome": "out-of-scope",
+      "reason": "Tests for Tab leaving the recorder; they describe no guidance.",
+      "evidence": ["packages/hotkeys/tests/recorder-tab.test.ts"]
     }
   }
 }
