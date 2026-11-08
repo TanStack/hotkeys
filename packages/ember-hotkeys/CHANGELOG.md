@@ -1,5 +1,15 @@
 # @tanstack/ember-hotkeys
 
+## 0.10.2
+
+### Patch Changes
+
+- [#233](https://github.com/TanStack/hotkeys/pull/233) [`ef29e7b`](https://github.com/TanStack/hotkeys/commit/ef29e7bc99848712d469d7bc0195db99f25f401b) - Raise dependency floors: `@embroider/addon-shim` to ^1.11.0 in `@tanstack/ember-hotkeys`, and `solid-js` to ^1.9.18 in `@tanstack/hotkeys-devtools`
+
+- [#230](https://github.com/TanStack/hotkeys/pull/230) [`779b8a4`](https://github.com/TanStack/hotkeys/commit/779b8a4a51af526b84bf0e1244431e4e45634114) - `validateHotkey` and the recorder now return reason codes instead of English text, so apps write their own messages. Each error and warning from `validateHotkey` is a `HotkeyIssue` such as `{ reason: 'unknown-modifier', part: 'Ctl' }`, and issues in a sequence carry the index of their `step` instead of a `Step 2:` prefix. A `RecorderRejection` keeps its `reason` but no longer has a built-in `message`. It has a `message` only when your `validate` callback returns one. The `'invalid'` rejection reason is now `'whitespace'`. The devtools panel lists each problem in a hotkey's details, in plain words. Console warnings and thrown errors are now one short line that starts with `[hotkeys]`. App hotkeys no longer warn about saved custom hotkeys with an unknown id or an invalid value; they're still dropped. `setCustomHotkey` with an unknown id no longer warns either. Development warnings no longer throw a `ReferenceError` where `process` is undefined, such as plain ESM loaded from a CDN.
+- Updated dependencies [[`779b8a4`](https://github.com/TanStack/hotkeys/commit/779b8a4a51af526b84bf0e1244431e4e45634114), [`779b8a4`](https://github.com/TanStack/hotkeys/commit/779b8a4a51af526b84bf0e1244431e4e45634114), [`779b8a4`](https://github.com/TanStack/hotkeys/commit/779b8a4a51af526b84bf0e1244431e4e45634114), [`846509d`](https://github.com/TanStack/hotkeys/commit/846509d2366c7c47a00b4f35eb6fdda8d3b43632)]:
+  - @tanstack/hotkeys@0.25.0
+
 ## 0.10.1
 
 ### Patch Changes

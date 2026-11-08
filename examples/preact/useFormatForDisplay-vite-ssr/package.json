@@ -11,7 +11,7 @@
     "test:types": "tsc"
   },
   "dependencies": {
-    "@tanstack/preact-hotkeys": "^0.20.1",
+    "@tanstack/preact-hotkeys": "^0.20.2",
     "preact": "^11.2.0",
     "preact-render-to-string": "^6.8.2"
   },
