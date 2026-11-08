@@ -71,7 +71,7 @@ The skills teach agents to use those APIs directly. The core skills hold the fra
 | solid-hotkeys   | plain options object (HIGH); unassigned element variable as target (HIGH)                                                                                                                  |
 | vue-hotkeys     | ref.value instead of the ref (HIGH); provider in the same component (HIGH); nested recorder refs in templates (MEDIUM)                                                                     |
 | svelte-hotkeys  | plain options object (HIGH); destructuring reactive getters (HIGH); hotkeys before setHotkeysContext (HIGH)                                                                                |
-| angular-hotkeys | @HostListener (HIGH); plain options object (HIGH); shared exclusive scope across instances (HIGH); outside an injection context (MEDIUM)                                                   |
+| angular-hotkeys | @HostListener (HIGH); plain options object (HIGH); shared exclusive scope across instances (HIGH); outside an injection context (MEDIUM); plain fields in a root-service callback (MEDIUM) |
 | lit-hotkeys     | unreleased manager scope (HIGH, also alpine and ember); HotkeyController not added to host (HIGH); @hotkey with standard decorators (MEDIUM); instance state in decorator options (MEDIUM) |
 | alpine-hotkeys  | owner never destroyed (HIGH); createHotkeysScope mistaken for a scope (HIGH); plain options object (HIGH)                                                                                  |
 | ember-hotkeys   | unbound method callback (HIGH); string sequence in a template (MEDIUM); createHotkeysScope mistaken for a scope (HIGH)                                                                     |
@@ -161,3 +161,9 @@ The skills teach agents to use those APIs directly. The core skills hold the fra
 - **Changes:** the short task-to-API table in each of the 10 framework skills became an `## API` table with one row per export, 127 in all. Lit, Alpine, and Ember also list the two core calls they need, `provideAppHotkeys` and `getHotkeyManager().activateScope`; Alpine lists its 12 owner methods separately. Each table ends with a note that the adapter re-exports `@tanstack/hotkeys`. Core functions aren't repeated in each skill.
 - **Source sync:** the AltGr fix (#193) changed `hotkey-recorder.ts` and the AltGr notes in `docs/guides/sensible-defaults.md`. No skill covers AltGr, so `hotkeys-core` and `app-hotkeys` are unchanged.
 - **Checks:** a TypeScript export listing confirmed every adapter export appears in its skill; `intent validate` passes.
+
+### Batch 1 revision 3 — 2026-11-08 — Angular change detection
+
+- **Source sync:** `injectHotkeys` and `injectHotkeyRecorder` now mark the registering component for check after each callback (`src/_zone.ts`), so plain field changes render in OnPush components and zoneless apps. Keys that fire no hotkey still don't run change detection.
+- **Changes:** `angular-hotkeys` gained one pitfall: a root service has no component to mark, so its hotkeys should change signals. The Angular failure modes in `domain_map.yaml` and the table above list it. `skill_tree.yaml` is unchanged.
+- **Checks:** `packages/angular-hotkeys/tests/change-detection.test.ts` and `tests/zone.test.ts` cover zone and zoneless, Default and OnPush, field and signal callbacks, the recorder, and a root service. `intent validate` passes. Not run: fresh-consumer sessions.
