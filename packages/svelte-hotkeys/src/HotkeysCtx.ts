@@ -1,10 +1,10 @@
-import { createContext, onMount } from 'svelte'
 import { publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
   createAppHotkeysStore,
   getHotkeysProviderScopeKey,
   mergeHotkeysProviderDefaults,
 } from '@tanstack/hotkeys/adapter'
+import { createContext, onMount } from 'svelte'
 import { activateScopeWhileMounted } from './internal.svelte.js'
 import type {
   AppHotkeys,
@@ -15,8 +15,8 @@ import type {
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
 import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
-import type { CreateHotkeyCommonOptions } from './createHotkey.svelte.js'
 import type { Snippet } from 'svelte'
+import type { CreateHotkeyCommonOptions } from './createHotkey.svelte.js'
 
 export interface HotkeysProviderOptions {
   /**

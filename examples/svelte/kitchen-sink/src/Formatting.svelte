@@ -1,5 +1,6 @@
 <script lang="ts">
   import { formatForDisplay } from '@tanstack/svelte-hotkeys'
+
   let platform = $state<'mac' | 'windows' | 'linux'>('mac'),
     modifiers = $state(false),
     keys = $state(true)

@@ -1,7 +1,9 @@
 // @vitest-environment happy-dom
-import { afterEach, describe, expect, it, vi } from 'vitest'
+
 import { cleanup, render } from '@solidjs/testing-library'
 import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
+import { createSignal } from 'solid-js'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import {
   createAppHotkeyList,
@@ -9,11 +11,10 @@ import {
   useCustomHotkeys,
 } from '../src/appHotkeys'
 import { createHotkey } from '../src/createHotkey'
-import { createHotkeys } from '../src/createHotkeys'
 import { createHotkeyRecorder } from '../src/createHotkeyRecorder'
-import { createSignal } from 'solid-js'
-import type { JSX } from 'solid-js'
+import { createHotkeys } from '../src/createHotkeys'
 import type { CustomHotkeys, Hotkey } from '@tanstack/hotkeys'
+import type { JSX } from 'solid-js'
 
 const appHotkeys = defineAppHotkeys({
   'doc.save': { hotkey: 'Mod+S', meta: { name: 'Save' } },

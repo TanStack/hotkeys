@@ -1,16 +1,16 @@
-import { For, Show, createEffect, createMemo, createSignal, on } from 'solid-js'
+import { formatForDisplay } from '@tanstack/hotkeys'
 import clsx from 'clsx'
 import { matchSorter } from 'match-sorter'
-import { formatForDisplay } from '@tanstack/hotkeys'
-import { useStyles } from '../styles/use-styles'
+import { For, Show, createEffect, createMemo, createSignal, on } from 'solid-js'
 import { useHotkeysDevtoolsState } from '../HotkeysContextProvider'
-import { effectiveSequenceMatchedSteps } from '../sequence-progress'
 import {
   formatRegistration,
   getBindingKind,
   useRegistrationConflicts,
 } from '../_registrations'
 import { groupByScope, scopeStatusDescriptions } from '../_scopes'
+import { effectiveSequenceMatchedSteps } from '../sequence-progress'
+import { useStyles } from '../styles/use-styles'
 import type {
   AppHotkeyListItem,
   HotkeyRegistrationView,

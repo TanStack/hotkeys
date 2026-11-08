@@ -33,8 +33,8 @@ Before starting, load the `@tanstack/hotkeys#hotkeys-core` skill (`npx @tanstack
 
 ```vue
 <script setup lang="ts">
-import { ref } from 'vue'
 import { formatForDisplay, useHotkey } from '@tanstack/vue-hotkeys'
+import { ref } from 'vue'
 
 const isDirty = ref(false)
 const panel = ref<HTMLDivElement | null>(null)

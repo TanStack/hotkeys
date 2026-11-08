@@ -1,7 +1,7 @@
-import { defineComponent, h, nextTick, ref } from 'vue'
+import { HotkeyManager, KeyStateTracker } from '@tanstack/hotkeys'
 import { mount } from '@vue/test-utils'
 import { afterEach, expect, it } from 'vitest'
-import { HotkeyManager, KeyStateTracker } from '@tanstack/hotkeys'
+import { defineComponent, h, nextTick, ref } from 'vue'
 import { useHotkeyHint } from '../src/useHotkeyHint'
 import type { Hotkey } from '@tanstack/hotkeys'
 

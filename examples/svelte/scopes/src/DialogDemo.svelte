@@ -1,8 +1,8 @@
 <script lang="ts">
   import { HotkeysProvider, createHotkey } from '@tanstack/svelte-hotkeys'
-  import { getActivity } from './activity.svelte'
   import ExclusiveDialog from './ExclusiveDialog.svelte'
   import Key from './Key.svelte'
+  import { getActivity } from './activity.svelte'
   import type { ExclusiveOption } from './activity.svelte'
 
   // `exclusive` suspends every other scope, except the ones it allows.

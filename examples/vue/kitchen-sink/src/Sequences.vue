@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed, inject, ref } from 'vue'
 import {
   formatForDisplay,
   useHotkey,
   useHotkeyRegistrations,
   useHotkeys,
 } from '@tanstack/vue-hotkeys'
+import { computed, inject, ref } from 'vue'
 
 const log = inject<(message: string) => void>('log')!
 const timeout = ref(1000)

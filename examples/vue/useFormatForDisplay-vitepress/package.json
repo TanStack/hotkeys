@@ -6,19 +6,17 @@
     "dev": "vitepress dev --port=3069",
     "build": "vitepress build",
     "preview": "vitepress preview",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint . --fix",
     "test:types": "vue-tsc --noEmit"
   },
   "dependencies": {
     "@tanstack/vue-hotkeys": "^0.21.1",
-    "vue": "^3.5.43"
+    "vue": "^3.5.45"
   },
   "devDependencies": {
-    "@typescript-eslint/parser": "^8.71.0",
     "typescript": "6.0.3",
     "vitepress": "^1.6.4",
-    "vue-eslint-parser": "10.4.1",
     "vue-tsc": "^3.3.14"
   }
 }

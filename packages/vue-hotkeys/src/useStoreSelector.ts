@@ -1,6 +1,6 @@
 import { onScopeDispose, shallowReadonly, shallowRef } from 'vue'
-import type { Ref } from 'vue'
 import type { Store } from '@tanstack/hotkeys/adapter'
+import type { Ref } from 'vue'
 
 /**
  * Subscribes to a store until the effect scope is disposed and returns a ref

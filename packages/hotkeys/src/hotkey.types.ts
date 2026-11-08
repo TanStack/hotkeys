@@ -227,7 +227,8 @@ export type RegisterableHotkeySequence = ReadonlyArray<RegisterableHotkeyChord>
  * written as a string or an object.
  */
 export type RegisterableHotkey =
-  RegisterableHotkeyChord | RegisterableHotkeySequence
+  | RegisterableHotkeyChord
+  | RegisterableHotkeySequence
 
 /** Context passed to a chord's callback. */
 export interface HotkeyChordCallbackContext {
@@ -252,7 +253,8 @@ export interface HotkeySequenceCallbackContext {
  * Narrow with `kind` to read `parsedChord` or `parsedSequence`.
  */
 export type HotkeyCallbackContext =
-  HotkeyChordCallbackContext | HotkeySequenceCallbackContext
+  | HotkeyChordCallbackContext
+  | HotkeySequenceCallbackContext
 
 /**
  * The callback context for a hotkey: chord context for chords (including

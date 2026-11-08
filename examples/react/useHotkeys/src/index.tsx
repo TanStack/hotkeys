@@ -1,3 +1,4 @@
+import { TanStackDevtools } from '@tanstack/react-devtools'
 import {
   HotkeysProvider,
   formatForDisplay,
@@ -6,10 +7,9 @@ import {
   useHotkeys,
   validateHotkey,
 } from '@tanstack/react-hotkeys'
+import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
 import type {
   Hotkey,
   HotkeyIssue,

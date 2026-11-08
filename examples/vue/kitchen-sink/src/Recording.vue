@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { inject, ref } from 'vue'
 import {
   formatForDisplay,
   isHotkeySequence,
   useHotkey,
   useHotkeyRecorder,
 } from '@tanstack/vue-hotkeys'
+import { inject, ref } from 'vue'
 import type {
   Hotkey,
   RecorderKeyMode,
@@ -106,9 +106,7 @@ function resetShortcut() {
       </select></label
     >
     <h3>Single shortcut</h3>
-    <p>
-      <kbd>{{ formatForDisplay(hotkey) }}</kbd> — <code>{{ hotkey }}</code>
-    </p>
+    <p><kbd>{{ formatForDisplay(hotkey) }}</kbd> — <code>{{ hotkey }}</code></p>
     <button
       :disabled="recorder.isRecording.value || seq.isRecording.value"
       @click="recorder.startRecording"

@@ -17,7 +17,6 @@ import {
   mergeHotkeysProviderDefaults,
 } from '@tanstack/hotkeys/adapter'
 import type { Provider, Signal } from '@angular/core'
-import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
 import type {
   AppHotkeys,
   AppHotkeysState,
@@ -27,6 +26,7 @@ import type {
   HotkeyPlatform,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
+import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
 import type { InjectHotkeyCommonOptions } from './injectHotkey'
 
 export interface HotkeysProviderOptions {

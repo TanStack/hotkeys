@@ -1,5 +1,4 @@
-import { For, Show, createSignal } from 'solid-js'
-import { render } from 'solid-js/web'
+import { TanStackDevtools } from '@tanstack/solid-devtools'
 import {
   HotkeysProvider,
   createHotkeyRegistrations,
@@ -7,7 +6,8 @@ import {
   formatForDisplay,
 } from '@tanstack/solid-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
-import { TanStackDevtools } from '@tanstack/solid-devtools'
+import { For, Show, createSignal } from 'solid-js'
+import { render } from 'solid-js/web'
 import type { CreateHotkeyDefinition, Hotkey } from '@tanstack/solid-hotkeys'
 import './index.css'
 

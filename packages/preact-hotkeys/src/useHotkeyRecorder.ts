@@ -1,8 +1,8 @@
-import { useLayoutEffect, useRef, useState } from 'preact/hooks'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { withDefaults } from '@tanstack/hotkeys/adapter'
-import { useSelector } from './_useSelector'
+import { useLayoutEffect, useRef, useState } from 'preact/hooks'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
+import { useSelector } from './_useSelector'
 import type {
   Hotkey,
   HotkeyChord,

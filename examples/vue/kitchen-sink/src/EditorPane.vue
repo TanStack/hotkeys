@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { inject, ref } from 'vue'
 import { formatForDisplay, useHotkeys } from '@tanstack/vue-hotkeys'
+import { inject, ref } from 'vue'
 
 const props = defineProps<{ name: string }>()
 const log = inject<(message: string) => void>('log')!

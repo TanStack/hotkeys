@@ -1,15 +1,15 @@
-import { createContext, render } from 'preact'
-import { createPortal } from 'preact/compat'
-import { useCallback, useContext, useState } from 'preact/hooks'
+import { TanStackDevtools } from '@tanstack/preact-devtools'
 import {
   HotkeysProvider,
   formatForDisplay,
   useHotkey,
 } from '@tanstack/preact-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools'
-import { TanStackDevtools } from '@tanstack/preact-devtools'
-import type { ComponentChildren } from 'preact'
+import { createContext, render } from 'preact'
+import { createPortal } from 'preact/compat'
+import { useCallback, useContext, useState } from 'preact/hooks'
 import type { Hotkey } from '@tanstack/preact-hotkeys'
+import type { ComponentChildren } from 'preact'
 import './index.css'
 
 const plugins = [hotkeysDevtoolsPlugin()]

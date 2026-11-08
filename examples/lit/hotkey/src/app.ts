@@ -1,20 +1,18 @@
-import { LitElement, css, html, unsafeCSS } from 'lit'
-import { createRef, ref } from 'lit/directives/ref.js'
-import { customElement, state } from 'lit/decorators.js'
-
 import {
   HotkeyController,
   formatForDisplay,
   hotkey,
 } from '@tanstack/lit-hotkeys'
-
+import { LitElement, css, html, unsafeCSS } from 'lit'
+import { customElement, state } from 'lit/decorators.js'
+import { createRef, ref } from 'lit/directives/ref.js'
 import appStyles from './index.css?raw'
-import type { Ref } from 'lit/directives/ref.js'
 import type {
   Hotkey,
   HotkeyCallbackContext,
   HotkeyChordCallbackContext,
 } from '@tanstack/lit-hotkeys'
+import type { Ref } from 'lit/directives/ref.js'
 
 @customElement('my-app')
 export class MyApp extends LitElement {
@@ -23,10 +21,7 @@ export class MyApp extends LitElement {
       :host {
         display: block;
         margin: 0;
-        font-family:
-          system-ui,
-          -apple-system,
-          sans-serif;
+        font-family: system-ui, -apple-system, sans-serif;
         background: #f5f5f5;
         color: #333;
         box-sizing: border-box;

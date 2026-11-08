@@ -1,10 +1,10 @@
-import Alpine from 'alpinejs'
 import {
   createHotkeyRecorder,
   createHotkeysScope,
   formatForDisplay,
   hotkeysPlugin,
 } from '@tanstack/alpine-hotkeys'
+import Alpine from 'alpinejs'
 import type {
   AlpineHotkeyRecorder,
   AlpineHotkeyState,

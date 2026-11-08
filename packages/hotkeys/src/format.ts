@@ -1,4 +1,13 @@
 import {
+  assertLogicalKey,
+  codeToLogicalKey,
+  modifierAlias,
+  physicalCodeOf,
+  splitChordParts,
+} from './_keyboard-event'
+import { warnServerPlatform } from './_server'
+import { MODIFIER_ORDER, normalizeKeyName } from './constants'
+import {
   KEY_DISPLAY_SYMBOLS,
   LINUX_MODIFIER_LABELS,
   MAC_MODIFIER_LABELS,
@@ -6,19 +15,10 @@ import {
   PUNCTUATION_KEY_DISPLAY_LABELS,
   WINDOWS_MODIFIER_LABELS,
 } from './display-labels'
-import { MODIFIER_ORDER, normalizeKeyName } from './constants'
-import { warnServerPlatform } from './_server'
-import { detectPlatform } from './platform'
-import {
-  assertLogicalKey,
-  codeToLogicalKey,
-  modifierAlias,
-  physicalCodeOf,
-  splitChordParts,
-} from './_keyboard-event'
 import { normalizeHotkey } from './parse'
-import type { CanonicalModifier } from './key.types'
+import { detectPlatform } from './platform'
 import type { ParsedHotkeyChord, RegisterableHotkeyChord } from './hotkey.types'
+import type { CanonicalModifier } from './key.types'
 
 /**
  * Converts a parsed hotkey back to a string, with each platform modifier
@@ -71,11 +71,14 @@ function formatParsedChord(parsed: ParsedHotkeyChord): string {
  * modifier on its own, a raw object such as `{ key }`, or a parsed hotkey.
  */
 export type DisplayHotkeyChord =
-  RegisterableHotkeyChord | ParsedHotkeyChord | CanonicalModifier
+  | RegisterableHotkeyChord
+  | ParsedHotkeyChord
+  | CanonicalModifier
 
 /** A hotkey to display: a chord or a sequence of chords. */
 export type DisplayHotkey =
-  DisplayHotkeyChord | ReadonlyArray<DisplayHotkeyChord>
+  | DisplayHotkeyChord
+  | ReadonlyArray<DisplayHotkeyChord>
 
 /**
  * Formats a hotkey for display in a user interface.

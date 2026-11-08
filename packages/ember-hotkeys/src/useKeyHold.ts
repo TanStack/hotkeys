@@ -1,7 +1,7 @@
 import { getKeyStateTracker } from '@tanstack/hotkeys'
 import { read, select } from './utils'
-import type { EmberHotkeyState } from './types'
 import type { IndividualKey } from '@tanstack/hotkeys'
+import type { EmberHotkeyState } from './types'
 import type { MaybeGetter } from './utils'
 
 /** Getter arguments can read changing tracked component properties. */

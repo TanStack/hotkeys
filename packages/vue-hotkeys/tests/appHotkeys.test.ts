@@ -1,7 +1,7 @@
-import { defineComponent, h, nextTick, ref } from 'vue'
-import { mount } from '@vue/test-utils'
 import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
+import { mount } from '@vue/test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { defineComponent, h, nextTick, ref } from 'vue'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import {
   useAppHotkeyList,
@@ -9,8 +9,8 @@ import {
   useCustomHotkeys,
 } from '../src/useAppHotkeys'
 import { useHotkey } from '../src/useHotkey'
-import { useHotkeys } from '../src/useHotkeys'
 import { useHotkeyRecorder } from '../src/useHotkeyRecorder'
+import { useHotkeys } from '../src/useHotkeys'
 import type { CustomHotkeys, Hotkey } from '@tanstack/hotkeys'
 
 const appHotkeys = defineAppHotkeys({

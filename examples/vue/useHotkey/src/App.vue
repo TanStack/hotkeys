@@ -374,9 +374,7 @@ useHotkey(
       <main>
         <section class="demo-section">
           <h2>Basic Hotkey</h2>
-          <p>
-            Press <kbd>{{ formatForDisplay('Mod+S') }}</kbd> to trigger
-          </p>
+          <p>Press <kbd>{{ formatForDisplay('Mod+S') }}</kbd> to trigger</p>
           <div class="counter">Save triggered: {{ saveCount }}x</div>
           <pre class="code-block">{{ basicCode }}</pre>
         </section>
@@ -415,21 +413,11 @@ useHotkey(
             character. The other tabs follow logical digits.
           </p>
           <div class="hotkey-grid">
-            <div>
-              <kbd>{{ formatForDisplay('Mod+1') }}</kbd> → Tab 1
-            </div>
-            <div>
-              <kbd>{{ formatForDisplay('Mod+[Digit2]') }}</kbd> → Tab 2
-            </div>
-            <div>
-              <kbd>{{ formatForDisplay('Mod+3') }}</kbd> → Tab 3
-            </div>
-            <div>
-              <kbd>{{ formatForDisplay('Mod+4') }}</kbd> → Tab 4
-            </div>
-            <div>
-              <kbd>{{ formatForDisplay('Mod+5') }}</kbd> → Tab 5
-            </div>
+            <div><kbd>{{ formatForDisplay('Mod+1') }}</kbd> → Tab 1</div>
+            <div><kbd>{{ formatForDisplay('Mod+[Digit2]') }}</kbd> → Tab 2</div>
+            <div><kbd>{{ formatForDisplay('Mod+3') }}</kbd> → Tab 3</div>
+            <div><kbd>{{ formatForDisplay('Mod+4') }}</kbd> → Tab 4</div>
+            <div><kbd>{{ formatForDisplay('Mod+5') }}</kbd> → Tab 5</div>
           </div>
           <div class="counter">Active Tab: {{ activeTab }}</div>
           <pre class="code-block">{{ numberCode }}</pre>
@@ -455,9 +443,7 @@ useHotkey(
             <div>
               <kbd>{{ formatForDisplay('Mod+Home') }}</kbd> — Go to start
             </div>
-            <div>
-              <kbd>{{ formatForDisplay('Mod+End') }}</kbd> — Go to end
-            </div>
+            <div><kbd>{{ formatForDisplay('Mod+End') }}</kbd> — Go to end</div>
             <div>
               <kbd>{{ formatForDisplay('Control+PageUp') }}</kbd> — Previous
               page
@@ -482,15 +468,11 @@ useHotkey(
             <div>
               <kbd>{{ formatForDisplay('Control+F5') }}</kbd> — Hard refresh
             </div>
-            <div>
-              <kbd>{{ formatForDisplay('Mod+F1') }}</kbd> — Help
-            </div>
+            <div><kbd>{{ formatForDisplay('Mod+F1') }}</kbd> — Help</div>
             <div>
               <kbd>{{ formatForDisplay('Shift+F10') }}</kbd> — Context menu
             </div>
-            <div>
-              <kbd>{{ formatForDisplay('F12') }}</kbd> — DevTools
-            </div>
+            <div><kbd>{{ formatForDisplay('F12') }}</kbd> — DevTools</div>
           </div>
           <div class="counter">
             Function keys triggered: {{ functionKeyCount }}x
@@ -505,9 +487,7 @@ useHotkey(
             <div>
               <kbd>{{ formatForDisplay('Mod+Shift+S') }}</kbd> — Save As
             </div>
-            <div>
-              <kbd>{{ formatForDisplay('Mod+Shift+Z') }}</kbd> — Redo
-            </div>
+            <div><kbd>{{ formatForDisplay('Mod+Shift+Z') }}</kbd> — Redo</div>
             <div>
               <kbd>{{ formatForDisplay('Control+Alt+A') }}</kbd> — Special
               action
@@ -552,9 +532,7 @@ useHotkey(
             <div>
               <kbd>{{ formatForDisplay('Shift+Tab') }}</kbd> — Previous field
             </div>
-            <div>
-              <kbd>{{ formatForDisplay('Mod+Space') }}</kbd> — Toggle
-            </div>
+            <div><kbd>{{ formatForDisplay('Mod+Space') }}</kbd> — Toggle</div>
           </div>
           <div class="counter">
             Editing keys triggered: {{ editingKeyCount }}x
@@ -585,9 +563,7 @@ useHotkey(
                   <kbd>{{ formatForDisplay('Mod+B') }}</kbd> — Trigger sidebar
                   action
                 </div>
-                <div>
-                  <kbd>{{ formatForDisplay('Mod+N') }}</kbd> — New item
-                </div>
+                <div><kbd>{{ formatForDisplay('Mod+N') }}</kbd> — New item</div>
               </div>
               <div class="counter">
                 Sidebar shortcuts: {{ sidebarShortcutCount }}x

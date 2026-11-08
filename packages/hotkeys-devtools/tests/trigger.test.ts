@@ -1,5 +1,5 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager } from '@tanstack/hotkeys'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { triggerRegistration } from '../src/_trigger'
 
 afterEach(() => {

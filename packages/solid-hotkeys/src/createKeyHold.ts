@@ -1,5 +1,5 @@
-import { createMemo } from 'solid-js'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
+import { createMemo } from 'solid-js'
 import { useSelector } from './_useSelector'
 import type { IndividualKey } from '@tanstack/hotkeys'
 

@@ -1,7 +1,7 @@
 import { getKeyStateTracker } from '@tanstack/hotkeys'
 import { isServer } from './_server'
-import type { ReactiveController, ReactiveControllerHost } from 'lit'
 import type { IndividualKey } from '@tanstack/hotkeys'
+import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
 /**
  * A Lit ReactiveController that tracks whether a specific key is currently held.

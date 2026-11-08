@@ -1,7 +1,8 @@
 // @vitest-environment happy-dom
+
+import { HotkeyManager, KeyStateTracker } from '@tanstack/hotkeys'
 import { flushSync } from 'svelte'
 import { afterEach, expect, it, vi } from 'vitest'
-import { HotkeyManager, KeyStateTracker } from '@tanstack/hotkeys'
 import { harness } from './hint-harness.svelte'
 
 afterEach(() => {

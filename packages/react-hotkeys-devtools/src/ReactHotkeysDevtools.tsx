@@ -1,8 +1,8 @@
-import { createElement } from 'react'
 import { createReactPanel } from '@tanstack/devtools-utils/react'
 import { HotkeysDevtoolsCore } from '@tanstack/hotkeys-devtools'
-import type { ReactElement } from 'react'
+import { createElement } from 'react'
 import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools'
+import type { ReactElement } from 'react'
 
 export interface HotkeysDevtoolsReactInit extends Partial<HotkeysDevtoolsPanelProps> {}
 

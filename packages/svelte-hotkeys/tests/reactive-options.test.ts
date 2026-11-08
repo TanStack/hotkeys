@@ -1,9 +1,9 @@
-import ReactiveRecorders from './ReactiveRecorders.svelte'
-import type { SvelteHotkeyRecorder } from '../src/createHotkeyRecorder.svelte'
+import { HotkeyManager } from '@tanstack/hotkeys'
 import { flushSync, mount, unmount } from 'svelte'
 import { expect, it, vi } from 'vitest'
-import { HotkeyManager } from '@tanstack/hotkeys'
 import Harness from './ReactiveOptions.svelte'
+import ReactiveRecorders from './ReactiveRecorders.svelte'
+import type { SvelteHotkeyRecorder } from '../src/createHotkeyRecorder.svelte'
 it.each(['local', 'provider'] as const)(
   'updates %s enabled options',
   async (kind) => {

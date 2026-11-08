@@ -1,15 +1,15 @@
-import { useLayoutEffect, useRef } from 'octane'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { withDefaults } from '@tanstack/hotkeys/adapter'
+import { useLayoutEffect, useRef } from 'octane'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import { select, subSlot } from './internal'
-import type { OctaneHotkeyRecorder } from './types'
 import type {
   HotkeyChord,
   HotkeyChordRecorderOptions,
   HotkeyRecorderOptions,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
+import type { OctaneHotkeyRecorder } from './types'
 
 type RecorderActions = Omit<
   OctaneHotkeyRecorder,

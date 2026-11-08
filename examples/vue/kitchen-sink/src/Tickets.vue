@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { inject, ref } from 'vue'
 import { useHotkey } from '@tanstack/vue-hotkeys'
+import { inject, ref } from 'vue'
 import Hint from './Hint.vue'
 
 const log = inject<(message: string) => void>('log')!

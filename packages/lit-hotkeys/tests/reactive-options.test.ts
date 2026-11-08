@@ -1,6 +1,6 @@
-import { afterEach, expect, it, vi } from 'vitest'
-import { LitElement } from 'lit'
 import { HotkeyManager } from '@tanstack/hotkeys'
+import { LitElement } from 'lit'
+import { afterEach, expect, it, vi } from 'vitest'
 import { HotkeyController } from '../src/controllers/hotkey'
 import { HotkeyRecorderController } from '../src/controllers/hotkey-recorder'
 class ReactiveHost extends LitElement {

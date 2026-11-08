@@ -5,5 +5,5 @@
     "types": ["vitepress/client"]
   },
   "include": [".vitepress/**/*.ts", ".vitepress/**/*.vue"],
-  "exclude": ["eslint.config.js", ".vitepress/cache", ".vitepress/dist"]
+  "exclude": [".vitepress/cache", ".vitepress/dist"]
 }

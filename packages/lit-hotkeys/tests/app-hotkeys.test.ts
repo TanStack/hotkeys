@@ -1,10 +1,10 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
-import { LitElement } from 'lit'
 import {
   HotkeyManager,
   defineAppHotkeys,
   provideAppHotkeys,
 } from '@tanstack/hotkeys'
+import { LitElement } from 'lit'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { AppHotkeysController } from '../src/controllers/app-hotkeys'
 import { HotkeyController } from '../src/controllers/hotkey'
 import { HotkeyRecorderController } from '../src/controllers/hotkey-recorder'

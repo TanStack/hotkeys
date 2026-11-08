@@ -1,9 +1,9 @@
-import { createEffect, onCleanup, untrack } from 'solid-js'
-import { delegateEvents } from 'solid-js/web'
 import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
 } from '@tanstack/hotkeys/adapter'
+import { createEffect, onCleanup, untrack } from 'solid-js'
+import { delegateEvents } from 'solid-js/web'
 import {
   useAppHotkeysStoreSource,
   useDefaultHotkeysOptionsSource,
@@ -43,7 +43,8 @@ export function createHotkeys(
     | ReadonlyArray<CreateHotkeyDefinition>
     | (() => ReadonlyArray<CreateHotkeyDefinition>),
   commonOptions:
-    CreateHotkeyCommonOptions | (() => CreateHotkeyCommonOptions) = {},
+    | CreateHotkeyCommonOptions
+    | (() => CreateHotkeyCommonOptions) = {},
 ): void {
   const defaultOptions = useDefaultHotkeysOptionsSource()
   const appHotkeys = useAppHotkeysStoreSource()

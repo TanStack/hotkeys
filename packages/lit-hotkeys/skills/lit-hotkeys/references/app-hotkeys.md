@@ -35,13 +35,13 @@ provideAppHotkeys(appHotkeys, {
 A settings row records with `HotkeyRecorderController`:
 
 ```ts no-check
-import { LitElement, html } from 'lit'
-import { property } from 'lit/decorators.js'
 import {
   AppHotkeysController,
   HotkeyRecorderController,
   formatForDisplay,
 } from '@tanstack/lit-hotkeys'
+import { LitElement, html } from 'lit'
+import { property } from 'lit/decorators.js'
 import type { AppHotkeyId } from '@tanstack/lit-hotkeys'
 
 export class ShortcutRow extends LitElement {

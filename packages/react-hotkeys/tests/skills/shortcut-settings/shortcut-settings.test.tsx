@@ -1,11 +1,11 @@
 // @vitest-environment happy-dom
 import { describe, expect, it } from 'vitest'
-import { gradeSettings } from './grade'
 import * as fixture from './fixture'
-import * as solution from './solution'
-import * as registrationsCheatSheet from './mistakes/registrations-cheat-sheet'
-import * as hotkeyValue from './mistakes/hotkey-value'
+import { gradeSettings } from './grade'
 import * as fullListStorage from './mistakes/full-list-storage'
+import * as hotkeyValue from './mistakes/hotkey-value'
+import * as registrationsCheatSheet from './mistakes/registrations-cheat-sheet'
+import * as solution from './solution'
 import type { SettingsModule } from './grade'
 
 describe('skill task: shortcut settings', () => {

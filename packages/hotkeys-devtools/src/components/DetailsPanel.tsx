@@ -1,21 +1,21 @@
-import { For, Show, createMemo } from 'solid-js'
-import clsx from 'clsx'
 import {
   detectPlatform,
   formatForDisplay,
   normalizeHotkey,
   parseHotkey,
 } from '@tanstack/hotkeys'
-import { useStyles } from '../styles/use-styles'
+import clsx from 'clsx'
+import { For, Show, createMemo } from 'solid-js'
 import { useHotkeysDevtoolsState } from '../HotkeysContextProvider'
-import { effectiveSequenceMatchedSteps } from '../sequence-progress'
-import { getScopeStatus } from '../_scopes'
+import { describeHotkeyIssues } from '../_issues'
 import {
   formatRegistration,
   getBindingKind,
   useRegistrationConflicts,
 } from '../_registrations'
-import { describeHotkeyIssues } from '../_issues'
+import { getScopeStatus } from '../_scopes'
+import { effectiveSequenceMatchedSteps } from '../sequence-progress'
+import { useStyles } from '../styles/use-styles'
 import { ActionButtons } from './ActionButtons'
 import type {
   AppHotkeyListItem,

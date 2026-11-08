@@ -1,17 +1,17 @@
-import { createScope, ownerScopes } from './scope'
-import { createHotkey } from './createHotkey'
-import { createHotkeys } from './createHotkeys'
-import { createHeldKeys } from './createHeldKeys'
-import { createHeldKeyCodes } from './createHeldKeyCodes'
-import { createKeyHold } from './createKeyHold'
-import { createHotkeyHint } from './createHotkeyHint'
-import { createHotkeyRegistrations } from './createHotkeyRegistrations'
-import { createHotkeyScopesState } from './createHotkeyScopesState'
 import {
   createAppHotkeyList,
   createAppHotkeys,
   createCustomHotkeys,
 } from './createAppHotkeys'
+import { createHeldKeyCodes } from './createHeldKeyCodes'
+import { createHeldKeys } from './createHeldKeys'
+import { createHotkey } from './createHotkey'
+import { createHotkeyHint } from './createHotkeyHint'
+import { createHotkeyRegistrations } from './createHotkeyRegistrations'
+import { createHotkeyScopesState } from './createHotkeyScopesState'
+import { createHotkeys } from './createHotkeys'
+import { createKeyHold } from './createKeyHold'
+import { createScope, ownerScopes } from './scope'
 import type { AlpineHotkeys, DefaultHotkeysOptions, MaybeGetter } from './types'
 
 export type { AlpineHotkeys, DefaultHotkeysOptions, MaybeGetter } from './types'

@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { computed, onMounted, reactive, ref } from 'vue'
 import {
   detectPlatform,
   formatForDisplay,
   useHotkeys,
 } from '@tanstack/vue-hotkeys'
+import { computed, onMounted, reactive, ref } from 'vue'
+import HotkeyLabel from './HotkeyLabel.vue'
 import { commands } from './commands'
 import {
   defaultChoices,
@@ -13,7 +14,6 @@ import {
   toFormatCode,
   toFormatOptions,
 } from './format-options'
-import HotkeyLabel from './HotkeyLabel.vue'
 import type { HotkeyPlatform } from '@tanstack/vue-hotkeys'
 import type { FormatChoices } from './format-options'
 

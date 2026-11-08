@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import { computed, onMounted, reactive, ref } from 'vue'
 import {
   detectPlatform,
   useDefaultHotkeysOptions,
   useFormatForDisplay,
   useHotkeys,
 } from '@tanstack/vue-hotkeys'
+import { computed, onMounted, reactive, ref } from 'vue'
 import { commands } from '../commands'
 import {
   defaultChoices,

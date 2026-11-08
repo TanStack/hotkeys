@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
 import { TanStackDevtools } from '@tanstack/vue-devtools'
 import {
   HotkeysProvider,
@@ -8,6 +7,7 @@ import {
   useHotkeys,
 } from '@tanstack/vue-hotkeys'
 import { HotkeysDevtoolsPanel } from '@tanstack/vue-hotkeys-devtools'
+import { computed, ref } from 'vue'
 import type { Hotkey, UseHotkeyDefinition } from '@tanstack/vue-hotkeys'
 
 const plugins = [{ name: 'TanStack Hotkeys', component: HotkeysDevtoolsPanel }]
@@ -203,15 +203,9 @@ const registrations = useHotkeyRegistrations()
           description.
         </p>
         <div class="hotkey-grid">
-          <div>
-            <kbd>{{ fd('Shift+S') }}</kbd> Save ({{ saveCount }})
-          </div>
-          <div>
-            <kbd>{{ fd('Shift+U') }}</kbd> Undo ({{ undoCount }})
-          </div>
-          <div>
-            <kbd>{{ fd('Shift+R') }}</kbd> Redo ({{ redoCount }})
-          </div>
+          <div><kbd>{{ fd('Shift+S') }}</kbd> Save ({{ saveCount }})</div>
+          <div><kbd>{{ fd('Shift+U') }}</kbd> Undo ({{ undoCount }})</div>
+          <div><kbd>{{ fd('Shift+R') }}</kbd> Redo ({{ redoCount }})</div>
         </div>
         <div v-if="log.length > 0" class="log">
           <div v-for="(entry, i) in log" :key="i" class="log-entry">
@@ -247,12 +241,8 @@ useHotkeys([
           </button>
         </div>
         <div class="hotkey-grid">
-          <div>
-            <kbd>{{ fd('Alt+J') }}</kbd> Action A ({{ counts.a }})
-          </div>
-          <div>
-            <kbd>{{ fd('Alt+K') }}</kbd> Action B ({{ counts.b }})
-          </div>
+          <div><kbd>{{ fd('Alt+J') }}</kbd> Action A ({{ counts.a }})</div>
+          <div><kbd>{{ fd('Alt+K') }}</kbd> Action B ({{ counts.b }})</div>
           <div>
             <kbd>{{ fd('Alt+L') }}</kbd> Action C ({{ counts.c }})
             <span class="hint"> (always on)</span>

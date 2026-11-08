@@ -1,6 +1,7 @@
 // @vitest-environment happy-dom
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { HotkeyManager } from '@tanstack/hotkeys'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyController } from '../src/controllers/hotkey'
 import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
@@ -154,11 +155,13 @@ describe('HotkeyController with sequences', () => {
     let capturedThis: unknown
 
     const host = createMockHost()
-    const ctrl = new HotkeyController(host, ['G', 'G'], function (
-      this: unknown,
-    ) {
-      capturedThis = this
-    })
+    const ctrl = new HotkeyController(
+      host,
+      ['G', 'G'],
+      function (this: unknown) {
+        capturedThis = this
+      },
+    )
     host.addController(ctrl)
     ctrl.hostConnected()
 

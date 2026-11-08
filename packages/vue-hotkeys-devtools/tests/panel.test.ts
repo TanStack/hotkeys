@@ -1,5 +1,5 @@
-import { createApp, h, nextTick, ref } from 'vue'
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
+import { createApp, h, nextTick, ref } from 'vue'
 import {
   HotkeysDevtoolsPanel,
   HotkeysDevtoolsPanelNoOp,

@@ -1,7 +1,6 @@
 import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
 import { getAppHotkeysStore, subscribeAppHotkeys } from './_app-hotkeys'
 import { isServer } from './_server'
-import type { ReactiveController, ReactiveControllerHost } from 'lit'
 import type {
   AppHotkey,
   AppHotkeyListItem,
@@ -10,6 +9,7 @@ import type {
   Hotkey,
   RegisteredAppHotkeys,
 } from '@tanstack/hotkeys'
+import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
 function requireStore(): AppHotkeysStore<RegisteredAppHotkeys> {
   const store = getAppHotkeysStore()

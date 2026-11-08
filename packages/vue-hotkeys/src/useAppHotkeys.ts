@@ -1,7 +1,6 @@
 import { computed } from 'vue'
 import { useAppHotkeysStoreSource } from './defaultOptions'
 import { useHotkeyRegistrations } from './useHotkeyRegistrations'
-import type { ComputedRef } from 'vue'
 import type {
   AppHotkey,
   AppHotkeyListItem,
@@ -10,6 +9,7 @@ import type {
   Hotkey,
   RegisteredAppHotkeys,
 } from '@tanstack/hotkeys'
+import type { ComputedRef } from 'vue'
 
 function useRequiredStore(name: string) {
   const source = useAppHotkeysStoreSource()

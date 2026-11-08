@@ -1,4 +1,3 @@
-import { createSubscriber } from 'svelte/reactivity'
 import {
   getHotkeyManager,
   getKeyStateTracker,
@@ -6,6 +5,7 @@ import {
   matchesHeldModifiers,
   resolveAppHotkey,
 } from '@tanstack/hotkeys'
+import { createSubscriber } from 'svelte/reactivity'
 import { getHotkeysContext } from './HotkeysCtx.js'
 import { resolveMaybeGetter } from './internal.svelte.js'
 import type {

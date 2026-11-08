@@ -1,10 +1,3 @@
-import {
-  createContext,
-  createElement,
-  useContext,
-  useLayoutEffect,
-  useRef,
-} from 'octane'
 import { publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
   activateHotkeysProviderScope,
@@ -12,6 +5,13 @@ import {
   getHotkeysProviderScopeKey,
   mergeHotkeysProviderDefaults,
 } from '@tanstack/hotkeys/adapter'
+import {
+  createContext,
+  createElement,
+  useContext,
+  useLayoutEffect,
+  useRef,
+} from 'octane'
 import { subSlot } from './internal'
 import type {
   AppHotkeys,

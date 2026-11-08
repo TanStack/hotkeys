@@ -1,3 +1,4 @@
+import { Header, HeaderLogo, MainPanel } from '@tanstack/devtools-ui'
 import {
   createEffect,
   createMemo,
@@ -5,12 +6,11 @@ import {
   onCleanup,
   onMount,
 } from 'solid-js'
-import { Header, HeaderLogo, MainPanel } from '@tanstack/devtools-ui'
-import { useStyles } from '../styles/use-styles'
 import { useHotkeysDevtoolsState } from '../HotkeysContextProvider'
+import { useStyles } from '../styles/use-styles'
+import { DetailsPanel } from './DetailsPanel'
 import { HeldKeysBar } from './HeldKeysTopbar'
 import { HotkeyList, appHotkeySelectionId } from './HotkeyList'
-import { DetailsPanel } from './DetailsPanel'
 import type { DetailsSelection } from './DetailsPanel'
 
 function readResizeObserverBlockSize(entry: ResizeObserverEntry): number {

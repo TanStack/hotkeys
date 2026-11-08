@@ -18,7 +18,11 @@ import type {
 
 /** A React ref, element, document, or window to listen on. */
 export type UseHotkeyTarget =
-  React.RefObject<HTMLElement | null> | HTMLElement | Document | Window | null
+  | React.RefObject<HTMLElement | null>
+  | HTMLElement
+  | Document
+  | Window
+  | null
 
 /** Options shared by chords and sequences. */
 export type UseHotkeyOptions = AdapterHotkeyOptions<UseHotkeyTarget>

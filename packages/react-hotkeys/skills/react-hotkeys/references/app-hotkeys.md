@@ -19,10 +19,10 @@ declare module '@tanstack/react-hotkeys' {
 ```
 
 ```tsx
-import type { ReactNode } from 'react'
 import { HotkeysProvider } from '@tanstack/react-hotkeys'
-import type { CustomHotkeys } from '@tanstack/react-hotkeys'
 import { appHotkeys } from './app-hotkeys'
+import type { CustomHotkeys } from '@tanstack/react-hotkeys'
+import type { ReactNode } from 'react'
 
 const saved: CustomHotkeys = JSON.parse(localStorage.getItem('hotkeys') ?? '{}')
 

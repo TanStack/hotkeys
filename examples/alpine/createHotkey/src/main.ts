@@ -1,9 +1,9 @@
-import Alpine from 'alpinejs'
 import {
   createHotkeysScope,
   formatForDisplay,
   hotkeysPlugin,
 } from '@tanstack/alpine-hotkeys'
+import Alpine from 'alpinejs'
 import './index.css'
 import type { Hotkey } from '@tanstack/alpine-hotkeys'
 

@@ -1,14 +1,14 @@
-import { For, Show, createContext, createSignal, useContext } from 'solid-js'
-import { Portal, render } from 'solid-js/web'
+import { TanStackDevtools } from '@tanstack/solid-devtools'
 import {
   HotkeysProvider,
   createHotkey,
   formatForDisplay,
 } from '@tanstack/solid-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
-import { TanStackDevtools } from '@tanstack/solid-devtools'
-import type { JSX } from 'solid-js'
+import { For, Show, createContext, createSignal, useContext } from 'solid-js'
+import { Portal, render } from 'solid-js/web'
 import type { Hotkey } from '@tanstack/solid-hotkeys'
+import type { JSX } from 'solid-js'
 import './index.css'
 
 const plugins = [hotkeysDevtoolsPlugin()]

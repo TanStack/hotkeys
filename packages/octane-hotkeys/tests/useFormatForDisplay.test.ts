@@ -1,6 +1,6 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
-import { createRoot, drainPassiveEffects, flushSync, hydrateRoot } from 'octane'
 import { HotkeyManager } from '@tanstack/hotkeys'
+import { createRoot, drainPassiveEffects, flushSync, hydrateRoot } from 'octane'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { FormatLabel, PlatformFixture, platformCapture } from './fixture.tsrx'
 import type { Root } from 'octane'
 
@@ -70,15 +70,15 @@ describe('useFormatForDisplay', () => {
     const onRecoverableError = vi.fn()
     container = document.createElement('div')
     // The server HTML without a platform, from tests/ssr.
-    container.innerHTML = '<kbd>Ctrl+S</kbd>'
-    const kbd = container.firstChild
+    container.innerHTML = '<!--3--><kbd>Ctrl+S</kbd>'
+    const kbd = container.querySelector('kbd')
     document.body.append(container)
     flushSync(() => {
       root = hydrateRoot(container, FormatLabel, {}, { onRecoverableError })
     })
     flush()
     expect(container.textContent).toBe('⌘ S')
-    expect(container.firstChild).toBe(kbd)
+    expect(container.querySelector('kbd')).toBe(kbd)
     expect(onRecoverableError).not.toHaveBeenCalled()
     expect(error).not.toHaveBeenCalled()
   })

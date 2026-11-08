@@ -1,8 +1,8 @@
-import { useLayoutEffect, useRef } from 'preact/hooks'
 import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
 } from '@tanstack/hotkeys/adapter'
+import { useLayoutEffect, useRef } from 'preact/hooks'
 import { useHotkeysContext } from './HotkeysProvider'
 import { useAppHotkeysStoreState } from './_appHotkeysStore'
 import { resolveTarget } from './utils'

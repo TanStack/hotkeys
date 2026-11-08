@@ -1,6 +1,6 @@
 import { createSignal, onCleanup } from 'solid-js'
-import type { Accessor } from 'solid-js'
 import type { Store } from '@tanstack/hotkeys/adapter'
+import type { Accessor } from 'solid-js'
 
 /**
  * Subscribes to a store until the owner is cleaned up and returns an accessor

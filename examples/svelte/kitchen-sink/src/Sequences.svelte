@@ -1,11 +1,12 @@
 <script lang="ts">
-  import { getContext } from 'svelte'
   import {
-    formatForDisplay,
     createHotkey,
     createHotkeys,
+    formatForDisplay,
     getHotkeyRegistrations,
   } from '@tanstack/svelte-hotkeys'
+  import { getContext } from 'svelte'
+
   const log = getContext<(message: string) => void>('log')
   let timeout = $state(1000)
   // An array of chords registers a sequence.

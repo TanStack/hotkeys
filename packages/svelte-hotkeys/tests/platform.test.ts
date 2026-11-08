@@ -1,5 +1,5 @@
-import { flushSync, mount, unmount } from 'svelte'
 import { HotkeyManager } from '@tanstack/hotkeys'
+import { flushSync, mount, unmount } from 'svelte'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import PlatformHarness from './PlatformHarness.svelte'
 import type { SvelteHotkeyRecorder } from '../src/createHotkeyRecorder.svelte'

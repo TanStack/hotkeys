@@ -1,12 +1,11 @@
 <script lang="ts">
-  import { onMount } from 'svelte'
   import {
     createHotkeys,
     detectPlatform,
     getDefaultHotkeysOptions,
     getFormatForDisplay,
   } from '@tanstack/svelte-hotkeys'
-  import type { HotkeyPlatform } from '@tanstack/svelte-hotkeys'
+  import { onMount } from 'svelte'
   import { commands } from './commands'
   import {
     defaultChoices,
@@ -15,6 +14,7 @@
     toFormatCode,
     toFormatOptions,
   } from './format-options'
+  import type { HotkeyPlatform } from '@tanstack/svelte-hotkeys'
   import type { FormatChoices } from './format-options'
 
   interface LogEntry {

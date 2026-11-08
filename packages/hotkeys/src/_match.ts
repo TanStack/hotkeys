@@ -1,4 +1,3 @@
-import { detectPlatform } from './platform'
 import {
   altGraphTypedCharacter,
   codeToLogicalKey,
@@ -9,8 +8,9 @@ import {
   normalizeKeyboardEvent,
 } from './_keyboard-event'
 import { parseHotkey } from './parse'
-import type { KeyboardEventMatch } from './match'
+import { detectPlatform } from './platform'
 import type { HotkeyChord, ParsedHotkeyChord } from './hotkey.types'
+import type { KeyboardEventMatch } from './match'
 
 /** Matches an event and reports the winning candidate and release identity. */
 export function matchKeyboardEvent(

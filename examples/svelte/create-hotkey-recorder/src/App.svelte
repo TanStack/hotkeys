@@ -5,8 +5,8 @@
     formatForDisplay,
     getHotkeyRegistrations,
   } from '@tanstack/svelte-hotkeys'
-  import type { Hotkey } from '@tanstack/svelte-hotkeys'
   import ShortcutListItem from './ShortcutListItem.svelte'
+  import type { Hotkey } from '@tanstack/svelte-hotkeys'
 
   interface Shortcut {
     id: string

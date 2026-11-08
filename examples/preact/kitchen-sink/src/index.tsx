@@ -1,14 +1,4 @@
-import {
-  useCallback,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'preact/hooks'
-import { createContext, render } from 'preact'
-
 import { TanStackDevtools } from '@tanstack/preact-devtools'
-import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools'
 import {
   HotkeysProvider,
   formatForDisplay,
@@ -22,6 +12,15 @@ import {
   useHotkeys,
   useKeyHold,
 } from '@tanstack/preact-hotkeys'
+import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools'
+import { createContext, render } from 'preact'
+import {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'preact/hooks'
 import type {
   Hotkey,
   RecorderKeyMode,

@@ -1,7 +1,7 @@
 import { MODIFIER_KEYS, normalizeKeyName } from './constants'
 import { isHotkeySequence, parseHotkey } from './parse'
-import type { CanonicalModifier } from './key.types'
 import type { RegisterableHotkey } from './hotkey.types'
+import type { CanonicalModifier } from './key.types'
 
 export interface HeldModifierOptions {
   /** Resolve Mod for this platform. Defaults to platform detection. */

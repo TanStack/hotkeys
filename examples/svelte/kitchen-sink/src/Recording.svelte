@@ -1,11 +1,11 @@
 <script lang="ts">
-  import { getContext } from 'svelte'
   import {
-    formatForDisplay,
     createHotkey,
     createHotkeyRecorder,
+    formatForDisplay,
     isHotkeySequence,
   } from '@tanstack/svelte-hotkeys'
+  import { getContext } from 'svelte'
   import type {
     Hotkey,
     RecorderKeyMode,

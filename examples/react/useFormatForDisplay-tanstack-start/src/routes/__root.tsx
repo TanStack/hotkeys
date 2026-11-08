@@ -1,4 +1,6 @@
 /// <reference types="vite/client" />
+
+import { HotkeysProvider, detectPlatform } from '@tanstack/react-hotkeys'
 import {
   HeadContent,
   Outlet,
@@ -7,7 +9,6 @@ import {
 } from '@tanstack/react-router'
 import { createIsomorphicFn } from '@tanstack/react-start'
 import { getRequestHeader } from '@tanstack/react-start/server'
-import { HotkeysProvider, detectPlatform } from '@tanstack/react-hotkeys'
 import stylesUrl from '../styles.css?url'
 import type { ReactNode } from 'react'
 

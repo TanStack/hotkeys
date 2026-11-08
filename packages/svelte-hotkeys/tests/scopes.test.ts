@@ -1,6 +1,6 @@
+import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
 import { flushSync, mount, unmount } from 'svelte'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
 import Harness from './ScopesHarness.svelte'
 import {
   createScopesControls,

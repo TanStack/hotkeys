@@ -3,6 +3,5 @@
   "compilerOptions": {
     "jsx": "preserve"
   },
-  "include": ["src", "src/**/*.vue", "vitest.config.ts", "tests"],
-  "exclude": ["eslint.config.js"]
+  "include": ["src", "src/**/*.vue", "vitest.config.ts", "tests"]
 }

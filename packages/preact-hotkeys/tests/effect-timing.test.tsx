@@ -1,8 +1,9 @@
 // @vitest-environment happy-dom
-import { afterEach, describe, expect, it, vi } from 'vitest'
+
+import { HotkeyManager } from '@tanstack/hotkeys'
 import { act, cleanup, render } from '@testing-library/preact'
 import { useState } from 'preact/hooks'
-import { HotkeyManager } from '@tanstack/hotkeys'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { useHotkey } from '../src/useHotkey'
 
 // Dispatched outside act(), like events from other scripts, so Preact renders

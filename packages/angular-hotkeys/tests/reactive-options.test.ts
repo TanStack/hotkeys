@@ -1,9 +1,9 @@
-import { injectHotkeyRecorder } from '../src/injectHotkeyRecorder'
 import { provideZonelessChangeDetection, signal } from '@angular/core'
 import { TestBed } from '@angular/core/testing'
 import { HotkeyManager } from '@tanstack/hotkeys'
 import { expect, it, vi } from 'vitest'
 import { injectHotkey } from '../src/injectHotkey'
+import { injectHotkeyRecorder } from '../src/injectHotkeyRecorder'
 it('updates a property getter without user setOptions', () => {
   HotkeyManager.resetInstance()
   TestBed.configureTestingModule({

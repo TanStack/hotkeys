@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useHotkey } from '@tanstack/vue-hotkeys'
-import { useActivity } from './activity'
+import { ref } from 'vue'
 import Key from './Key.vue'
+import { useActivity } from './activity'
 
 // In its own scope, so a dialog can allow just this hotkey.
 const { log } = useActivity()

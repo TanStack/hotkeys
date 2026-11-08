@@ -1,7 +1,7 @@
 import { formatForDisplay } from '@tanstack/hotkeys'
 import { scopeDefaults } from './utils'
-import type { EmberHotkeysScope } from './createHotkeysScope'
 import type { DisplayHotkey, FormatDisplayOptions } from '@tanstack/hotkeys'
+import type { EmberHotkeysScope } from './createHotkeysScope'
 
 /**
  * Returns `formatForDisplay` with the scope's `platform` as the default, so

@@ -1,5 +1,5 @@
-import Alpine from 'alpinejs'
 import { createHotkeysScope, hotkeysPlugin } from '@tanstack/alpine-hotkeys'
+import Alpine from 'alpinejs'
 import './index.css'
 
 // Gives every hotkeys scope the app's Alpine instance.

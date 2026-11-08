@@ -4,9 +4,9 @@ import {
   mergeHotkeysProviderDefaults,
   prepareHotkeyDefinitions,
 } from '../src/adapter'
+import { matchesHeldModifiers } from '../src/hint'
 import { HotkeyManager, getHotkeyManager } from '../src/hotkey-manager'
 import { matchesKeyboardEvent } from '../src/match'
-import { matchesHeldModifiers } from '../src/hint'
 import type { HotkeyChordOptions, HotkeySequenceOptions } from '../src'
 
 type AnyOptions = HotkeyChordOptions & HotkeySequenceOptions

@@ -1,11 +1,11 @@
-import { useState } from 'react'
-import { createLazyRoute } from '@tanstack/react-router'
 import {
   HotkeysProvider,
   useAppHotkeyList,
   useAppHotkeys,
   useHotkeys,
 } from '@tanstack/react-hotkeys'
+import { createLazyRoute } from '@tanstack/react-router'
+import { useState } from 'react'
 import { formatHotkey, useActivity } from '../shared'
 
 export const Route = createLazyRoute('/sequences')({

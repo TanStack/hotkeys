@@ -2,8 +2,8 @@ import { computed } from '@angular/core'
 import { getKeyStateTracker } from '@tanstack/hotkeys'
 import { injectSelector } from './_injectSelector'
 import { runOutsideZone } from './_zone'
-import type { IndividualKey } from '@tanstack/hotkeys'
 import type { Signal } from '@angular/core'
+import type { IndividualKey } from '@tanstack/hotkeys'
 
 /**
  * Angular inject-based API that returns a signal that is true when the given key is held.

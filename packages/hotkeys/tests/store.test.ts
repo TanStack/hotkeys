@@ -1,5 +1,5 @@
-import { describe, expect, it, vi } from 'vitest'
 import { Store as TanStackStore } from '@tanstack/store'
+import { describe, expect, it, vi } from 'vitest'
 import { createStore as createHotkeysStore } from '../src/_store'
 import type { Store } from '../src/_store'
 

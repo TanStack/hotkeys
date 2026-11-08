@@ -1,6 +1,7 @@
 // @vitest-environment happy-dom
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyController } from '../src/controllers/hotkey'
 import { HotkeyHintController } from '../src/controllers/hotkey-hint'
 import type { Hotkey } from '@tanstack/hotkeys'

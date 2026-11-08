@@ -5,10 +5,9 @@ import {
   physicalCodeOf,
   splitChordParts,
 } from './_keyboard-event'
-import { MODIFIER_ORDER, normalizeKeyName } from './constants'
 import { chordHasKey } from './_registration'
+import { MODIFIER_ORDER, normalizeKeyName } from './constants'
 import { detectPlatform, resolveModifier } from './platform'
-import type { CanonicalModifier, Key } from './key.types'
 import type {
   Hotkey,
   HotkeyChord,
@@ -19,6 +18,7 @@ import type {
   RegisterableHotkeyChord,
   RegisterableHotkeySequence,
 } from './hotkey.types'
+import type { CanonicalModifier, Key } from './key.types'
 
 type Platform = 'mac' | 'windows' | 'linux'
 

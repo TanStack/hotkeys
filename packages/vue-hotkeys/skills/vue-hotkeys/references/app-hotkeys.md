@@ -22,9 +22,9 @@ declare module '@tanstack/vue-hotkeys' {
 <!-- App.vue -->
 <script setup lang="ts">
 import { HotkeysProvider } from '@tanstack/vue-hotkeys'
-import type { CustomHotkeys } from '@tanstack/vue-hotkeys'
-import { appHotkeys } from './app-hotkeys'
 import AppContent from './AppContent.vue'
+import { appHotkeys } from './app-hotkeys'
+import type { CustomHotkeys } from '@tanstack/vue-hotkeys'
 
 const saved: CustomHotkeys = JSON.parse(localStorage.getItem('hotkeys') ?? '{}')
 const saveHotkeys = (custom: CustomHotkeys) =>
@@ -48,13 +48,13 @@ A settings row records with `useHotkeyRecorder` and saves through `useCustomHotk
 
 ```vue
 <script setup lang="ts">
-import { computed } from 'vue'
 import {
   formatForDisplay,
   useAppHotkeys,
   useCustomHotkeys,
   useHotkeyRecorder,
 } from '@tanstack/vue-hotkeys'
+import { computed } from 'vue'
 import type { AppHotkeyId } from '@tanstack/vue-hotkeys'
 
 const props = defineProps<{ id: AppHotkeyId }>()

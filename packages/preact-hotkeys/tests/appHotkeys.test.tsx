@@ -1,6 +1,7 @@
 // @vitest-environment happy-dom
-import { act, cleanup, renderHook } from '@testing-library/preact'
+
 import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
+import { act, cleanup, renderHook } from '@testing-library/preact'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import {
@@ -36,7 +37,7 @@ function wrapperWith(
     onCustomHotkeysChange?: (custom: CustomHotkeys<typeof appHotkeys>) => void
   } = {},
 ) {
-  return ({ children }: { children: ComponentChildren }) => (
+  return ({ children }: { children?: ComponentChildren }) => (
     <HotkeysProvider
       appHotkeys={appHotkeys}
       defaultOptions={{ hotkey: { platform: 'mac' } }}
@@ -218,7 +219,7 @@ describe('useHotkey with chords and sequences', () => {
         useHotkey(['G', 'G'], () => {})
       },
       {
-        wrapper: ({ children }: { children: ComponentChildren }) => (
+        wrapper: ({ children }: { children?: ComponentChildren }) => (
           <HotkeysProvider
             defaultOptions={{ hotkey: { requireReset: true, timeout: 250 } }}
           >
@@ -280,7 +281,7 @@ describe('HotkeysProvider customHotkeys prop', () => {
     let current = saved
     const onCustomHotkeysChange = vi.fn()
     const view = renderHook(() => useCustomHotkeys(), {
-      wrapper: ({ children }: { children: ComponentChildren }) => (
+      wrapper: ({ children }: { children?: ComponentChildren }) => (
         <HotkeysProvider
           appHotkeys={appHotkeys}
           // A new object on every render, like an inline JSON.parse.

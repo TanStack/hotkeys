@@ -1,7 +1,7 @@
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { createSharedHotkeys } from './effect-root-harness.svelte'
 import { startThenDestroyRoot } from './effect-root-early-destroy.svelte'
+import { createSharedHotkeys } from './effect-root-harness.svelte'
 
 function press(key: string) {
   const code = `Key${key.toUpperCase()}`

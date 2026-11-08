@@ -1,8 +1,9 @@
 /* @refresh reload */
-import { render } from 'solid-js/web'
+
+import { TanStackDevtools } from '@tanstack/solid-devtools'
 import { createKeyHold, HotkeysProvider } from '@tanstack/solid-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
-import { TanStackDevtools } from '@tanstack/solid-devtools'
+import { render } from 'solid-js/web'
 import './index.css'
 
 function App() {

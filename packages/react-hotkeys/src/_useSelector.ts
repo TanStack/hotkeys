@@ -16,19 +16,19 @@ export function useSelector<TState, TSelected>(
     (onChange: () => void) => store.subscribe(onChange).unsubscribe,
     [store],
   )
-  const memo = useRef<{
+  const memoRef = useRef<{
     state: TState
     selector: (state: TState) => TSelected
     selected: TSelected
   }>(null)
   const getSelection = () => {
     const state = store.get()
-    const last = memo.current
+    const last = memoRef.current
     if (last && last.selector === selector && Object.is(last.state, state)) {
       return last.selected
     }
-    memo.current = { state, selector, selected: selector(state) }
-    return memo.current.selected
+    memoRef.current = { state, selector, selected: selector(state) }
+    return memoRef.current.selected
   }
   return useSyncExternalStore(subscribe, getSelection, getSelection)
 }

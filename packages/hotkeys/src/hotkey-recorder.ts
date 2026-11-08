@@ -1,15 +1,15 @@
-import { createStore } from './_store'
-import { findHotkeyConflicts } from './conflicts'
+import { isTypingEvent } from './_event-target'
+import { normalizeKeyboardEvent, splitChordParts } from './_keyboard-event'
+import { chordRejection, hotkeyChordFromKeydown } from './_recorder-chord'
 import {
   beginRecording,
   captureRecordingEvent,
   endRecording,
 } from './_recording-guard'
-import { chordRejection, hotkeyChordFromKeydown } from './_recorder-chord'
-import { normalizeKeyboardEvent, splitChordParts } from './_keyboard-event'
+import { createStore } from './_store'
+import { findHotkeyConflicts } from './conflicts'
 import { isModifierKey, parseHotkey, simplifyHotkey } from './parse'
 import { detectPlatform } from './platform'
-import { isTypingEvent } from './_event-target'
 import type { Store } from './_store'
 import type { HotkeyConflict, HotkeyConflictOptions } from './conflicts'
 import type {
@@ -34,7 +34,11 @@ export type RecorderKeyMode = 'code' | 'key'
  * - `'conflict'`: the recording conflicts with registered hotkeys.
  */
 export type RecorderRejectionReason =
-  'alt-graph' | 'missing-code' | 'whitespace' | 'validation' | 'conflict'
+  | 'alt-graph'
+  | 'missing-code'
+  | 'whitespace'
+  | 'validation'
+  | 'conflict'
 
 export interface RecorderRejection {
   reason: RecorderRejectionReason
@@ -79,7 +83,8 @@ export interface HotkeySequenceRecorderValidationContext {
  * read `parsedChord` or `parsedSequence`.
  */
 export type HotkeyRecorderValidationContext =
-  HotkeyChordRecorderValidationContext | HotkeySequenceRecorderValidationContext
+  | HotkeyChordRecorderValidationContext
+  | HotkeySequenceRecorderValidationContext
 
 /**
  * State interface for the HotkeyRecorder.
@@ -150,7 +155,8 @@ export interface HotkeySequenceRecorderOptions extends HotkeyRecorderBaseOptions
  * a single chord and recording a sequence.
  */
 export type HotkeyRecorderOptions =
-  HotkeyChordRecorderOptions | HotkeySequenceRecorderOptions
+  | HotkeyChordRecorderOptions
+  | HotkeySequenceRecorderOptions
 
 /** Internal view of either options shape. */
 type ResolvedRecorderOptions = HotkeyRecorderBaseOptions & {
@@ -233,7 +239,8 @@ export class HotkeyRecorder {
   )
   constructor(
     options:
-      HotkeySequenceRecorderOptions | (() => HotkeySequenceRecorderOptions),
+      | HotkeySequenceRecorderOptions
+      | (() => HotkeySequenceRecorderOptions),
   )
   constructor(options: HotkeyRecorderOptions | (() => HotkeyRecorderOptions)) {
     this.#optionsSource = options

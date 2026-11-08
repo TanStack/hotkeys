@@ -1,12 +1,13 @@
 // @vitest-environment happy-dom
-import { afterEach, expect, it, vi } from 'vitest'
-import { act, cleanup, renderHook } from '@testing-library/react'
-import React from 'react'
+
 import {
   HotkeyManager,
   KeyStateTracker,
   defineAppHotkeys,
 } from '@tanstack/hotkeys'
+import { act, cleanup, renderHook } from '@testing-library/react'
+import React from 'react'
+import { afterEach, expect, it, vi } from 'vitest'
 import { HotkeysProvider, useHotkey, useHotkeyHint } from '../src'
 import type { ReactNode } from 'react'
 

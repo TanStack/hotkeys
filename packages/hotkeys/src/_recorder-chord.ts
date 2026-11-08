@@ -1,5 +1,5 @@
-import { normalizeKeyName } from './constants'
 import { isCodeName, normalizeKeyboardEvent } from './_keyboard-event'
+import { normalizeKeyName } from './constants'
 import { isModifierKey, normalizeHotkey, parseKeyboardEvent } from './parse'
 import type {
   RecorderKeyMode,

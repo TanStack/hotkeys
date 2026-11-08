@@ -24,9 +24,9 @@
   ],
   "scripts": {
     "clean": "premove ./build ./dist",
-    "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix",
-    "test:eslint": "eslint ./src",
+    "lint": "oxlint ./src",
+    "lint:fix": "oxlint ./src --fix",
+    "test:oxlint": "oxlint ./src",
     "test:lib": "vitest --passWithNoTests",
     "test:lib:dev": "pnpm test:lib --watch",
     "test:types": "tsc",
@@ -61,6 +61,6 @@
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.6",
-    "preact": "^11.0.1"
+    "preact": "^11.2.0"
   }
 }

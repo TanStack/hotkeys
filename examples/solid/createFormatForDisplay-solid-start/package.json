@@ -7,19 +7,19 @@
     "build": "vite build",
     "start": "node .output/server/index.mjs",
     "preview": "vite preview",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint . --fix",
     "test:types": "tsc"
   },
   "dependencies": {
     "@solidjs/router": "^1.0.1",
-    "@solidjs/start": "^2.1.0",
+    "@solidjs/start": "^2.2.1",
     "@tanstack/solid-hotkeys": "^0.21.0",
-    "solid-js": "^1.9.15"
+    "solid-js": "^1.9.18"
   },
   "devDependencies": {
-    "nitro": "^3.0.261029-rc",
+    "nitro": "^3.0.261103-rc",
     "typescript": "6.0.3",
-    "vite": "^8.3.2"
+    "vite": "^8.3.6"
   }
 }

@@ -1,7 +1,7 @@
 // @vitest-environment node
 import { describe, expect, it } from 'vitest'
-import { HotkeyRecorder } from '../src/hotkey-recorder'
 import { isRecordingEvent } from '../src/_recording-guard'
+import { HotkeyRecorder } from '../src/hotkey-recorder'
 
 describe('HotkeyRecorder without a document', () => {
   // Server renders rarely run cleanup, so a started recorder would stay in the
