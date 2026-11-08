@@ -82,7 +82,9 @@ it('updates a recorder when the provider recorder defaults change', () => {
     providers: [
       provideZonelessChangeDetection(),
       provideHotkeys({
-        defaultOptions: () => ({ hotkeyRecorder: { ignoreInputs: ignoreInputs() } }),
+        defaultOptions: () => ({
+          hotkeyRecorder: { ignoreInputs: ignoreInputs() },
+        }),
       }),
     ],
   })
