@@ -21,7 +21,7 @@ A label depends on the user's platform: `Mod+S` is `⌘ S` on macOS and `Ctrl+S`
 ## Format a hotkey
 
 > [!IMPORTANT]
-> `formatForDisplay` is for labels that render only in the browser, or that pass a `platform`. It never reads the provider's `platform`. For labels in a server-rendered app, use `getFormatForDisplay()`. It returns a function with the same options.
+> `formatForDisplay` never reads the provider's `platform`. Use it for labels that render only in the browser, or pass `platform` yourself. In a server-rendered app, or when the provider sets `platform`, use `getFormatForDisplay()` instead. It returns a function with the same options.
 
 ```ts
 import { formatForDisplay } from '@tanstack/svelte-hotkeys'

@@ -5980,13 +5980,13 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/angular/guides/formatting-display.md": {
-      "fingerprint": "5c6d2f892b3a88e5d778e3bade134586fcb87ab26b2b507aab89f98accb2352b",
+      "fingerprint": "17ff1138778c5c860981914950de718b1da06f1ba540b55318eb4bad318c726a",
       "snapshot": {
-        "docs/framework/angular/guides/formatting-display.md": "6d5009fefeb847991e08b8a5f199d50d1683845d87b2d15fc3bfea3fd5ed0b64"
+        "docs/framework/angular/guides/formatting-display.md": "746cdac75527e92b39bc652afb180de5422b0efa3fbfc35c49a32122cd174cc7"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
       "evidence": [
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "docs/framework/angular/guides/formatting-display.md"
@@ -6005,13 +6005,13 @@
       ]
     },
     "source:docs/framework/ember/guides/formatting-display.md": {
-      "fingerprint": "de035e5e6ab2924478eb84bddf2e2b0f91768294d6a327d4517646f34fe59650",
+      "fingerprint": "a473c75f2347650effa25812eb2803abd1da34ce66a58bc6f955b18ea73960c7",
       "snapshot": {
-        "docs/framework/ember/guides/formatting-display.md": "e263dde7782ea7d9fb7275b3a0ca67786dfc1d5a91960a3d70c414e26e645ffc"
+        "docs/framework/ember/guides/formatting-display.md": "f7503ded6f8f60049fc88aec16bb7f67c8cc51c526bfe399eb0768f334787c1e"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
       "evidence": [
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "docs/framework/ember/guides/formatting-display.md"
@@ -6043,13 +6043,13 @@
       ]
     },
     "source:docs/framework/octane/guides/formatting-display.md": {
-      "fingerprint": "8080517ace2172991478486214aefaebd265ddfea2b6fe94a28eb58d2d21536f",
+      "fingerprint": "193cfc8f6f7482193669be977a0ae2507683e8e938c1a91b094b65ca0b38915a",
       "snapshot": {
-        "docs/framework/octane/guides/formatting-display.md": "26200a9a3e7e35ede94eaba4dc25a15e492217b72cd180b729853a6c0402c991"
+        "docs/framework/octane/guides/formatting-display.md": "462fdcb1df3671cf153efa35258ce37fa73f5a114a4f515422e2cce06cda2524"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
       "evidence": [
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "docs/framework/octane/guides/formatting-display.md"
@@ -6068,13 +6068,13 @@
       ]
     },
     "source:docs/framework/preact/guides/formatting-display.md": {
-      "fingerprint": "6367076cb67d7b62babff1eac0e9a5da558241cdf665b33c3af54e9d5c43b981",
+      "fingerprint": "09cc4dacabdfe3544fccfb84974ed98d5cd4819e710e669e7418b10c17cca3e9",
       "snapshot": {
-        "docs/framework/preact/guides/formatting-display.md": "9f548666d8bcf292807b780aabcb9c5890ca992d4a16e0bcc46ad0365851b739"
+        "docs/framework/preact/guides/formatting-display.md": "080467724eb65b1d978a7f1a284af4872a896458867136307d23d5aa04187210"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
       "evidence": [
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "docs/framework/preact/guides/formatting-display.md"
@@ -6093,13 +6093,13 @@
       ]
     },
     "source:docs/framework/react/guides/formatting-display.md": {
-      "fingerprint": "93941b21f1e7109374dd1da9025acf712241cd0aea0fdabc065f815eccaf50da",
+      "fingerprint": "a1ce07f4c442ba844aa978e2aac37e1ad650bfae65ab98bb07ba538255381734",
       "snapshot": {
-        "docs/framework/react/guides/formatting-display.md": "784b0bf4f04420542246fcd1299657b9a44943906c759e63960c1f6b6eabb54d"
+        "docs/framework/react/guides/formatting-display.md": "cbdcb91eb08c7d1b08da2474f579861704e03e8d7c81d053bbf1081ec12f39c0"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
       "evidence": [
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "docs/framework/react/guides/formatting-display.md"
@@ -6116,13 +6116,13 @@
       "evidence": ["docs/framework/react/guides/held-key-state-helpers.md"]
     },
     "source:docs/framework/solid/guides/formatting-display.md": {
-      "fingerprint": "cd18e2bbc346f4bad30b5936c22a36a15f330eca26f2957f88889737abe06fb2",
+      "fingerprint": "97c152893e2825a2208aad98bca16ed6a419be4cbf99e27b1a70076cad25bac1",
       "snapshot": {
-        "docs/framework/solid/guides/formatting-display.md": "fb589819139e85b1ce43c59bbae6ba9283ca79dc3557580b8977cd3c7fa889f9"
+        "docs/framework/solid/guides/formatting-display.md": "ae68da32e33e6023300d5fb3afb2b072e3e8e69b14bc4022bf4bde2e060ebd14"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
       "evidence": [
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "docs/framework/solid/guides/formatting-display.md"
@@ -6141,13 +6141,13 @@
       ]
     },
     "source:docs/framework/svelte/guides/formatting-display.md": {
-      "fingerprint": "9c2e42f644c5e63cc3b8dbd8ffd4887d04ac1062b0a9d11afb656828d28fa775",
+      "fingerprint": "ade6e58a5c2bd393ccb903c8538dfd0a3335a27e69ca9cc10350cd634f645ca0",
       "snapshot": {
-        "docs/framework/svelte/guides/formatting-display.md": "89b464dd8ca19c1c4cf8e2380ad9aedc5ae5fbad141d2f6e6efe0b2b8b1c49ed"
+        "docs/framework/svelte/guides/formatting-display.md": "2a63f0cf59e2684b22f96da57f6c39e70b9f8e25f96f0490f0b6c70288cef9e2"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
       "evidence": [
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "docs/framework/svelte/guides/formatting-display.md"
@@ -6166,13 +6166,13 @@
       ]
     },
     "source:docs/framework/vue/guides/formatting-display.md": {
-      "fingerprint": "3846ae7b4cf1ec27838d15bfcb971ff183094a1ca0cbeeabf31f9cf78cc5db40",
+      "fingerprint": "b08fd6c1584acb2b43693891d098f950f585ac197484f5fb78a0881cc20bc3a8",
       "snapshot": {
-        "docs/framework/vue/guides/formatting-display.md": "b8f4c35645b0eda86ec950a9f2acdcaa3d584cf7b85329f88af4a8fb6d847357"
+        "docs/framework/vue/guides/formatting-display.md": "4a43c52da5a6947d750ba179382efcba2ddca22a5f80f45eb6b8b54a484db50a"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
       "evidence": [
         "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "docs/framework/vue/guides/formatting-display.md"
