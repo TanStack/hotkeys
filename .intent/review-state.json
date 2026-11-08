@@ -126,23 +126,22 @@
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
-      "fingerprint": "813e48131b098cec135404bc3c459bbcb692f3881cd951e03071d75f8d148b1d",
+      "fingerprint": "62d592c303290085fef69e7736d7b7a997b2f8e891f6da64e6d01ad887f68caa",
       "snapshot": {
         "docs/framework/lit/guides/app-hotkeys.md": "b001df84eb320a4af7759ab163f837bac0fe3b36014b4b5de9366102073af97b",
         "docs/framework/lit/quick-start.md": "0f1e0a406ae61dc62ea0659b95e734828a1181a591990331f1e8405f637a0094",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "5690f120148b5314bab1eb13244ae578bd78f55b1b11d8c6637489ca2750d187",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "b2e8d9a31ecc0f97bc0c073608a06572ff555cf5f2d7e52316315e4783fdaacd",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
-        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2a4ea438b8322f0f547dd10af7e94882cc2cfaa58def039c19f976ab9aa14670",
-        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "6c988296c7e85b02953f1392f50ce46be19920b2e0fd1fd8ec613e072d5d4e3b",
-        "packages/lit-hotkeys/src/controllers/hotkey.ts": "c8b8c7fd2379178d5bcc176c5d44c5212f3294206ac35a1e6d5d88df2ac02708",
-        "packages/lit-hotkeys/src/decorators/hotkey.ts": "46c9522a6d617f37826898bfda2b0eba52204fafb5fa895a356603b2ddbf5f01"
+        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
+        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "69e4018c8375779f0392cf0383f5d3f1faeb14e0dee831a2c0b4dbd6e60cd36d",
+        "packages/lit-hotkeys/src/controllers/hotkey.ts": "042ef72211df8490512540d2bdd878f5e3c04bbd1fd46b31e11b27d5a6b18dbb",
+        "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "daea190fb9bc5d8a5a3020c2420ba3648eae9727",
       "outcome": "no-change",
-      "reason": "Code examples changed only in import order (oxfmt sortImports), and the covered sources changed only by formatter output. Guidance and APIs are unchanged.",
+      "reason": "Merge of main. The Lit skill and planning items changed through #239 (Lit override and dispose()), which recorded its own reviews. The skill_spec.md conflict kept both #239's Lit row and log entry and this branch's Angular row and log entry (renumbered as revision 4).",
       "evidence": [
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md",
-        "git diff origin/main: only import lines change"
+        "Changed: packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md, packages/lit-hotkeys/src/controllers/app-hotkeys.ts, packages/lit-hotkeys/src/controllers/hotkey-recorder.ts, packages/lit-hotkeys/src/controllers/hotkey.ts, packages/lit-hotkeys/src/decorators/hotkey.ts at daea190fb9bc5d8a5a3020c2420ba3648eae9727"
       ]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
@@ -289,10 +288,10 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "43c7a0d44d68b19405a65a7fdc4443c5ab5f18b123d993f5740af2b6f822fff5",
+      "fingerprint": "f1054dbdb5ed26af0eb864607bf4a6856d27038f2318898b3813415b4e0439b5",
       "snapshot": {
-        "_artifacts/domain_map.yaml": "252e4ecb04e4ac121cd8d74ee7923a8ffbec452f7bed2cdedc91ee86bc373a7b",
-        "_artifacts/skill_spec.md": "90a0956bf71ae6c743acf9ca456e18aa73d93c6f6ee3306c730e6cf4faff09bc",
+        "_artifacts/domain_map.yaml": "e7a86bd4a0a7a6abe0f77745dcff4123834148e911cfa0f5ba7271917ef99c3a",
+        "_artifacts/skill_spec.md": "acd8c08345c795984dffbb11c5957c4cad561030d1b601fda00b0b64e9ef5b19",
         "_artifacts/skill_tree.yaml": "bff31ee525c55a3e572083903c5b8deb444cd850845ae2dc1e4b886ce2236a12",
         "docs/framework/alpine/guides/app-hotkeys.md": "cdefefaa71aa9c36da99d314ab0279aa791dcf651bb1fd4cebf7263ba661078a",
         "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
@@ -355,12 +354,12 @@
         "packages/hotkeys/src/hotkey-manager.ts": "340ae1e61d8e08fe56edb0bb73f41434dae03ad15a374c2a0864450b64276443",
         "packages/hotkeys/src/hotkey-recorder.ts": "a19c8e64b939faa51b4554e71e71485f4d419539e4c9c287fdbb07955362a3e7",
         "packages/hotkeys/src/match.ts": "204f0159ccdd1bfaed96b1b03ad805f7fa9a74c011e70760749d1e0c326b7e8a",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "5690f120148b5314bab1eb13244ae578bd78f55b1b11d8c6637489ca2750d187",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "b2e8d9a31ecc0f97bc0c073608a06572ff555cf5f2d7e52316315e4783fdaacd",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
-        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2a4ea438b8322f0f547dd10af7e94882cc2cfaa58def039c19f976ab9aa14670",
-        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "6c988296c7e85b02953f1392f50ce46be19920b2e0fd1fd8ec613e072d5d4e3b",
-        "packages/lit-hotkeys/src/controllers/hotkey.ts": "c8b8c7fd2379178d5bcc176c5d44c5212f3294206ac35a1e6d5d88df2ac02708",
-        "packages/lit-hotkeys/src/decorators/hotkey.ts": "46c9522a6d617f37826898bfda2b0eba52204fafb5fa895a356603b2ddbf5f01",
+        "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
+        "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "69e4018c8375779f0392cf0383f5d3f1faeb14e0dee831a2c0b4dbd6e60cd36d",
+        "packages/lit-hotkeys/src/controllers/hotkey.ts": "042ef72211df8490512540d2bdd878f5e3c04bbd1fd46b31e11b27d5a6b18dbb",
+        "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef",
         "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "cae463ad7f9d31b4922a96534db78a83ac768ba38915463a2c8bbfb428d7292e",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "d18e8ffb2503f4dfd4aec75aaa8ec6974c3a9cea6e7174287ec8ea18cc77f101",
@@ -421,11 +420,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "b3e8f6c870734a967881c5b155ddced5c737d5162e6f44e5c095bd2be81fd0e6"
       },
-      "head": "f106cfed7fd650b0b072cd38aaa30dd01dc04e3b",
+      "head": "daea190fb9bc5d8a5a3020c2420ba3648eae9727",
       "outcome": "no-change",
-      "reason": "Two changes: main's Windows Ctrl+Alt letter-fallback note in sensible-defaults.md (already reviewed in #238 as needing no guidance change), and an async callback now marks the component again when its promise settles. The Angular skill's pitfall about services outside a component, the planning records and the core skill stay accurate; none claims anything about async callbacks.",
+      "reason": "Merge of main. The Lit skill and planning items changed through #239 (Lit override and dispose()), which recorded its own reviews. The skill_spec.md conflict kept both #239's Lit row and log entry and this branch's Angular row and log entry (renumbered as revision 4).",
       "evidence": [
-        "Changed: docs/framework/angular/quick-start.md, docs/guides/sensible-defaults.md at f106cfed7fd650b0b072cd38aaa30dd01dc04e3b"
+        "Changed: _artifacts/domain_map.yaml, _artifacts/skill_spec.md, packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md, packages/lit-hotkeys/src/controllers/app-hotkeys.ts, packages/lit-hotkeys/src/controllers/hotkey-recorder.ts, packages/lit-hotkeys/src/controllers/hotkey.ts, packages/lit-hotkeys/src/decorators/hotkey.ts at daea190fb9bc5d8a5a3020c2420ba3648eae9727"
       ]
     },
     "source:.changeset/intent-skills.md": {
