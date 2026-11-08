@@ -69,11 +69,11 @@
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "7608a5f3299241c56eb5e9048220c0696890939a99a9a80ec99d55e8db0d2df2",
+      "fingerprint": "18a63d8e7dcfbad57fe96e7a14fe7392c51846cf45711d02832205e1572ea1b3",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "eb1f5087ec449c52b0fe342237c77fa511dee20bdd56b70d609e1a4e5c7ebbc6",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "b0b68cd7998b4b2cf414311ec6ede2dd3651145f0958a7b2efed2e2b951db0a2",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "68182984f4f18acd2f31c427ef4f8cffa02ff54845a0abdd14dd1fc272dc98a2",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "0dc668ed5bcdc50b9ad290847f551d8da35cbb2c1f061ca363aa1bcb78d31b28",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "d808080c8c6245063d2ef0ee0d6d316df242ad8ed958d9cc6ff7de0c4dcca68a",
         "packages/hotkeys/src/app-hotkeys.ts": "5ad2e0ca37e21a4a4fbd1eabc9b5bb4981f7530bca1dfd2286a2fa9205793608",
@@ -88,13 +88,11 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
-      "outcome": "updated",
-      "reason": "The recording reference says Tab and Shift+Tab cancel and move focus and that recordTab records Tab, matching the recorder, its JSDoc, and the guides options tables.",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
+      "outcome": "no-change",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/references/recording.md",
-        "packages/hotkeys/src/hotkey-recorder.ts",
-        "docs/framework/react/guides/custom-hotkey-recording.md"
+        "Changed: docs/framework/react/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
@@ -289,7 +287,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "fe6ac6178c1b18d31250ba37431279ea5d4638f106bc8785b009098f37459871",
+      "fingerprint": "acf57923a9685a428b3b4a6a7367575e1a476a273dce251bf9e25dc99e0a33fd",
       "snapshot": {
         "_artifacts/domain_map.yaml": "e7a86bd4a0a7a6abe0f77745dcff4123834148e911cfa0f5ba7271917ef99c3a",
         "_artifacts/skill_spec.md": "acd8c08345c795984dffbb11c5957c4cad561030d1b601fda00b0b64e9ef5b19",
@@ -308,7 +306,7 @@
         "docs/framework/preact/quick-start.md": "d9cd9759e454cb4cbb050c189f3dee97d1141238ea30e623e5308dcc7cf29328",
         "docs/framework/react/guides/app-hotkeys.md": "eb1f5087ec449c52b0fe342237c77fa511dee20bdd56b70d609e1a4e5c7ebbc6",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
-        "docs/framework/react/guides/custom-hotkey-recording.md": "b0b68cd7998b4b2cf414311ec6ede2dd3651145f0958a7b2efed2e2b951db0a2",
+        "docs/framework/react/guides/custom-hotkey-recording.md": "68182984f4f18acd2f31c427ef4f8cffa02ff54845a0abdd14dd1fc272dc98a2",
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "03b024ba6a23d6b87a7b99be8a30b54fd5d82ba27e075ba0c00f648c82759e5f",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
@@ -421,11 +419,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "b3e8f6c870734a967881c5b155ddced5c737d5162e6f44e5c095bd2be81fd0e6"
       },
-      "head": "a420ab9f3606db43122a3f74bdeefc4b38fb319a",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
       "outcome": "no-change",
-      "reason": "Merge of main after #237 merged. The pending items changed through #237 (Angular markForCheck), #238 and #239, which recorded their own reviews; this branch's change needs nothing more from them. Any skill_spec.md conflict kept both sides' rows and log entries.",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "Changed: _artifacts/domain_map.yaml, _artifacts/skill_spec.md, docs/framework/angular/quick-start.md, packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md, packages/angular-hotkeys/src/injectHotkeyRecorder.ts, packages/angular-hotkeys/src/injectHotkeys.ts at a420ab9f3606db43122a3f74bdeefc4b38fb319a"
+        "Changed: docs/framework/react/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -7272,16 +7270,15 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/alpine/guides/custom-hotkey-recording.md": {
-      "fingerprint": "ee56d6104fd428a252ace2fbd5bf5e16079e655ac9ea03cae9e74db712c5563a",
+      "fingerprint": "60128dda21bb8eed8994af35ab9615dd96cd5849f852ef8fa30bf90b4b9ab209",
       "snapshot": {
-        "docs/framework/alpine/guides/custom-hotkey-recording.md": "f800a5b7f88f23856a09a53625c6f8b1642e0b377fac2082a2aced663ce9b661"
+        "docs/framework/alpine/guides/custom-hotkey-recording.md": "8ec3451cf6bf601f320b7366949cca28f49abbf8ccb07e332aff76bfd5f6014b"
       },
-      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
-      "outcome": "updated",
-      "reason": "Guide lists Tab and Shift+Tab in the recorder keys table, documents recordTab in the options table, and says onCancel runs on Tab; the app-hotkeys recording reference says the same.",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
+      "outcome": "no-change",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "docs/framework/alpine/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
+        "Changed: docs/framework/alpine/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "source:docs/framework/alpine/guides/sequences.md": {
@@ -7448,16 +7445,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/ember/guides/custom-hotkey-recording.md": {
-      "fingerprint": "8681978dcbfaeeb7f6bd3cc2586f4b6071dd023ab7299d78e4d0d8e0a882d52f",
+      "fingerprint": "e65f02564b5864a604aa96655d7ad5c28f4b3f5f2e2cddd36dc893d63daa4335",
       "snapshot": {
-        "docs/framework/ember/guides/custom-hotkey-recording.md": "7ebd0ceed1e2c05bbf7afb6ffdb440bc716f6929fdb3446bedebc76feb3d5c13"
+        "docs/framework/ember/guides/custom-hotkey-recording.md": "b55a59becb520db6e334983a193d9cb6f32de748478dc803d3784348804f98e4"
       },
-      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
-      "outcome": "updated",
-      "reason": "Guide lists Tab and Shift+Tab in the recorder keys table, documents recordTab in the options table, and says onCancel runs on Tab; the app-hotkeys recording reference says the same.",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
+      "outcome": "no-change",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "docs/framework/ember/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
+        "Changed: docs/framework/ember/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "source:docs/framework/ember/reference/functions/useHotkeyRecorder.md": {
@@ -7481,16 +7477,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/guides/custom-hotkey-recording.md": {
-      "fingerprint": "2ec6bb5437b9dc833e33566086cd79151fbba8a380fbf4651d65a4341d5a4df0",
+      "fingerprint": "f7d983a81ffcdfc4869656b308c3688fb5dd37f1f885a7f4b4df3fac36f57b4c",
       "snapshot": {
-        "docs/framework/lit/guides/custom-hotkey-recording.md": "1bf7ddd2b8fed92a320eac59837f8efe7ddb95b78b17bcb217568949b12d3ded"
+        "docs/framework/lit/guides/custom-hotkey-recording.md": "6988c0cdbcd062eba546661e2b09914bc1a081963e50a93603f8d972bf504734"
       },
-      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
-      "outcome": "updated",
-      "reason": "Guide lists Tab and Shift+Tab in the recorder keys table, documents recordTab in the options table, and says onCancel runs on Tab; the app-hotkeys recording reference says the same.",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
+      "outcome": "no-change",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "docs/framework/lit/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
+        "Changed: docs/framework/lit/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "source:docs/framework/lit/reference/functions/hotkey.md": {
@@ -11687,16 +11682,15 @@
       "evidence": ["packages/hotkeys/tests/physical-key.test.ts"]
     },
     "source:docs/framework/angular/guides/custom-hotkey-recording.md": {
-      "fingerprint": "fd3da1b0dfd6ea7bb10cc95db3179fca587b4bc19b1b0275e687939810f9b7bd",
+      "fingerprint": "abe61899b74ddf18103475457e350bd1ac0ac7277d17bbec1a2102acc6314818",
       "snapshot": {
-        "docs/framework/angular/guides/custom-hotkey-recording.md": "044d7afb2cb158c7a92186864432a21664a4a6d6f3ac09c8ef48ac733eb7f1f0"
+        "docs/framework/angular/guides/custom-hotkey-recording.md": "5d4c4c5dfe3dde906817dbb225c49b8e518bd2e6b53dd04a52c7379ae33efb16"
       },
-      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
-      "outcome": "updated",
-      "reason": "Guide lists Tab and Shift+Tab in the recorder keys table, documents recordTab in the options table, and says onCancel runs on Tab; the app-hotkeys recording reference says the same.",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
+      "outcome": "no-change",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "docs/framework/angular/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
+        "Changed: docs/framework/angular/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "source:docs/framework/ember/reference/functions/useAppHotkeyList.md": {
@@ -11730,16 +11724,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/guides/custom-hotkey-recording.md": {
-      "fingerprint": "b08ca8f504488368d373e1d60532a036bbbcd49431e66787fb16ad86334c3571",
+      "fingerprint": "3c68e562911e3b5db9b9ee558698bbb831ab57523d2120c7b492a06d0f0134a4",
       "snapshot": {
-        "docs/framework/octane/guides/custom-hotkey-recording.md": "25da2f0eb7f07e7fcc2521e37b7d10a3d8e369453b2c69b9df4a121a9e80621b"
+        "docs/framework/octane/guides/custom-hotkey-recording.md": "7dfc6fb5f5c589d860006fcb6702c4c9950b2a679ff876912b5622dba3717ae5"
       },
-      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
-      "outcome": "updated",
-      "reason": "Guide lists Tab and Shift+Tab in the recorder keys table, documents recordTab in the options table, and says onCancel runs on Tab; the app-hotkeys recording reference says the same.",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
+      "outcome": "no-change",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "docs/framework/octane/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
+        "Changed: docs/framework/octane/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "source:docs/framework/octane/reference/functions/useAppHotkeyList.md": {
@@ -11773,42 +11766,39 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/guides/custom-hotkey-recording.md": {
-      "fingerprint": "1165e36e26d025b69aa5eaf29f5cea124370184b7a3410d712d821421c545641",
+      "fingerprint": "75836cc71fc452e03b5b268a3e9af46bbfc46e9cc5a6f6f9d3bd126f08d088ad",
       "snapshot": {
-        "docs/framework/preact/guides/custom-hotkey-recording.md": "e2dbeeb6b2389edc2c0f3d39d4993b3b4907e87b94025b71e7da9990897204f5"
+        "docs/framework/preact/guides/custom-hotkey-recording.md": "e4060aa298240436ba139a10405cde795689998533d2cb73b5242bc6d92947c2"
       },
-      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
-      "outcome": "updated",
-      "reason": "Guide lists Tab and Shift+Tab in the recorder keys table, documents recordTab in the options table, and says onCancel runs on Tab; the app-hotkeys recording reference says the same.",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
+      "outcome": "no-change",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "docs/framework/preact/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
+        "Changed: docs/framework/preact/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "source:docs/framework/solid/guides/custom-hotkey-recording.md": {
-      "fingerprint": "c3437c81749a18abf522b9ddbec108ee4ab834deae0fb393758fba19e108c2ab",
+      "fingerprint": "d08a301a68dafa2166f60ea9af4a518d7739d072aa58a72d01ae59bc3444bc92",
       "snapshot": {
-        "docs/framework/solid/guides/custom-hotkey-recording.md": "017511d1c27ee74fc8e36c0460b22c17ef69ee5e3afacdf30a46dcd7564ae8bd"
+        "docs/framework/solid/guides/custom-hotkey-recording.md": "e0f19ced4c60033e296f27d0239bed679bf7c6a3965b6897daecb607e1b8f0ac"
       },
-      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
-      "outcome": "updated",
-      "reason": "Guide lists Tab and Shift+Tab in the recorder keys table, documents recordTab in the options table, and says onCancel runs on Tab; the app-hotkeys recording reference says the same.",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
+      "outcome": "no-change",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "docs/framework/solid/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
+        "Changed: docs/framework/solid/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "source:docs/framework/svelte/guides/custom-hotkey-recording.md": {
-      "fingerprint": "e878cffd20d4c416d16c73daa8d045ad14b37d6eb6582cbcb3a37c6cef0672be",
+      "fingerprint": "56e98036e3315a4d415b26ede04703054ccc1329437627a6b4c532812a294d5d",
       "snapshot": {
-        "docs/framework/svelte/guides/custom-hotkey-recording.md": "2f721bf26e8d770beeabf6b4605727c662a06959b774c9461e651505de1f2657"
+        "docs/framework/svelte/guides/custom-hotkey-recording.md": "32357f45672db0b353c211d69a2d965de79b912956e38c985c4afca210d7bcfe"
       },
-      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
-      "outcome": "updated",
-      "reason": "Guide lists Tab and Shift+Tab in the recorder keys table, documents recordTab in the options table, and says onCancel runs on Tab; the app-hotkeys recording reference says the same.",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
+      "outcome": "no-change",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "docs/framework/svelte/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
+        "Changed: docs/framework/svelte/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "source:docs/framework/svelte/reference/functions/getAppHotkeyList.md": {
@@ -11872,16 +11862,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/guides/custom-hotkey-recording.md": {
-      "fingerprint": "df3a5db8cf2b9c84908627959cfc37a3a1f2ff3f31153cd597a2655592f1f62f",
+      "fingerprint": "57f9db7fcd0094245d20692c81d4b2becea4dc5833da7c9c4dd9bfe1fc12d785",
       "snapshot": {
-        "docs/framework/vue/guides/custom-hotkey-recording.md": "6c9a421e2898d9fff2f1df505491966db3df6e6f8513484bec1612f43e723689"
+        "docs/framework/vue/guides/custom-hotkey-recording.md": "0ca276074fa3d595147c370ef6e04c42ad144afb130ef8be8f8306858aec5ac9"
       },
-      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
-      "outcome": "updated",
-      "reason": "Guide lists Tab and Shift+Tab in the recorder keys table, documents recordTab in the options table, and says onCancel runs on Tab; the app-hotkeys recording reference says the same.",
+      "head": "e832942ad99362718e3cdbafb05157eea118c638",
+      "outcome": "no-change",
+      "reason": "Guides now say Escape still cancels with recordTab instead of calling it the only way out, and the changeset notes Tab from a text field keeps recording. The app-hotkeys recording reference already says Escape cancels and makes no 'only key' claim; planning records don't cover this wording.",
       "evidence": [
-        "docs/framework/vue/guides/custom-hotkey-recording.md",
-        "packages/hotkeys/skills/app-hotkeys/references/recording.md"
+        "Changed: docs/framework/vue/guides/custom-hotkey-recording.md at e832942ad99362718e3cdbafb05157eea118c638"
       ]
     },
     "source:docs/framework/vue/reference/functions/useAppHotkeyList.md": {
