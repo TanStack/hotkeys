@@ -71,7 +71,7 @@ The skills teach agents to use those APIs directly. The core skills hold the fra
 | solid-hotkeys   | plain options object (HIGH); unassigned element variable as target (HIGH)                                                                                                                                                                  |
 | vue-hotkeys     | ref.value instead of the ref (HIGH); provider in the same component (HIGH); nested recorder refs in templates (MEDIUM)                                                                                                                     |
 | svelte-hotkeys  | plain options object (HIGH); destructuring reactive getters (HIGH); hotkeys before setHotkeysContext (HIGH)                                                                                                                                |
-| angular-hotkeys | @HostListener (HIGH); plain options object (HIGH); shared exclusive scope across instances (HIGH); outside an injection context (MEDIUM)                                                                                                   |
+| angular-hotkeys | @HostListener (HIGH); plain options object (HIGH); shared exclusive scope across instances (HIGH); outside an injection context (MEDIUM); plain fields in a root-service callback (MEDIUM)                                                 |
 | lit-hotkeys     | unreleased manager scope (HIGH, also alpine and ember); HotkeyController not added to host (HIGH); @hotkey with standard decorators (MEDIUM); instance state in decorator options (MEDIUM); removeController instead of dispose() (MEDIUM) |
 | alpine-hotkeys  | owner never destroyed (HIGH); createHotkeysScope mistaken for a scope (HIGH); plain options object (HIGH)                                                                                                                                  |
 | ember-hotkeys   | unbound method callback (HIGH); string sequence in a template (MEDIUM); createHotkeysScope mistaken for a scope (HIGH)                                                                                                                     |
@@ -167,3 +167,9 @@ The skills teach agents to use those APIs directly. The core skills hold the fra
 - **Source change:** every Lit controller gained `dispose()`, which runs `hostDisconnected()` and removes the controller from its host. `@hotkey` on a subclass override now replaces the parent's hotkeys for that method instead of registering a second time.
 - **Changes:** `lit-hotkeys` gained two pitfalls: remove a controller with `dispose()`, not `removeController`; and decorating an override replaces the parent's hotkeys. `domain_map.yaml` records the `removeController` failure mode.
 - **Checks:** both pitfalls are covered by `packages/lit-hotkeys/tests/lifecycle.test.ts` and `decorators.test.ts`.
+
+### Batch 1 revision 4 — 2026-11-08 — Angular change detection
+
+- **Source sync:** `injectHotkeys` and `injectHotkeyRecorder` now mark the registering component for check after each callback (`src/_zone.ts`), so plain field changes render in OnPush components and zoneless apps. Keys that fire no hotkey still don't run change detection.
+- **Changes:** `angular-hotkeys` gained one pitfall: a service outside any component, such as a root service, has no component to mark, so its hotkeys should change signals. The Angular failure modes in `domain_map.yaml` and the table above list it. `skill_tree.yaml` is unchanged.
+- **Checks:** `packages/angular-hotkeys/tests/change-detection.test.ts` and `tests/zone.test.ts` cover zone and zoneless, Default and OnPush, field and signal callbacks, the recorder, and a root service. `intent validate` passes. Not run: fresh-consumer sessions.

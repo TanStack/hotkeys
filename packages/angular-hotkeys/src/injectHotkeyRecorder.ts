@@ -9,6 +9,7 @@ import {
 } from '@angular/core'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { withDefaults } from '@tanstack/hotkeys/adapter'
+import { injectWrapCallback } from './_zone'
 import { injectDefaultHotkeysOptions } from './hotkeys-provider'
 import type { Signal } from '@angular/core'
 import type {
@@ -93,8 +94,10 @@ export function injectHotkeyRecorder(
   const defaultOptions = injectDefaultHotkeysOptions()
   const destroyRef = inject(DestroyRef)
   const zone = inject(NgZone)
+  const wrapCallback = injectWrapCallback()
 
-  // Callbacks run in the zone, so their changes update the view.
+  // Callbacks run in the zone and mark the component for check, so their
+  // changes update the view.
   const resolve = (): HotkeySequenceRecorderOptions => {
     const resolved: Record<string, any> = withDefaults(
       defaultOptions.hotkeyRecorder,
@@ -102,8 +105,7 @@ export function injectHotkeyRecorder(
     )
     for (const key of ['onRecord', 'onCancel', 'onClear', 'onReject']) {
       const callback = resolved[key]
-      if (callback)
-        resolved[key] = (...args: Array<any>) => zone.run(callback, null, args)
+      if (callback) resolved[key] = wrapCallback(callback)
     }
     // Overloads already checked the options; either shape is valid here.
     return resolved as never
