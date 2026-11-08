@@ -1,11 +1,11 @@
-import { useHotkeyRecorder } from '../src/useHotkeyRecorder'
-import { useHotkeys } from '../src/useHotkeys'
+import { HotkeyManager } from '@tanstack/hotkeys'
+import { mount } from '@vue/test-utils'
 import { afterEach, expect, it, vi } from 'vitest'
 import { defineComponent, h, ref, nextTick } from 'vue'
-import { mount } from '@vue/test-utils'
-import { HotkeyManager } from '@tanstack/hotkeys'
-import { useHotkey } from '../src/useHotkey'
 import { HotkeysProvider } from '../src/HotkeysProvider'
+import { useHotkey } from '../src/useHotkey'
+import { useHotkeyRecorder } from '../src/useHotkeyRecorder'
+import { useHotkeys } from '../src/useHotkeys'
 const press = () =>
   document.dispatchEvent(
     new KeyboardEvent('keydown', { key: 'a', bubbles: true }),

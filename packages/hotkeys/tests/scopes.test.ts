@@ -1,15 +1,15 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { HotkeyManager, toHotkeyRegistrationView } from '../src/hotkey-manager'
-import {
-  AppHotkeysStore,
-  defineAppHotkeys,
-  getAppHotkeyRegistrationOptions,
-} from '../src/app-hotkeys'
 import {
   activateHotkeysProviderScope,
   getHotkeysProviderScopeKey,
   mergeHotkeysProviderDefaults,
 } from '../src/adapter'
+import {
+  AppHotkeysStore,
+  defineAppHotkeys,
+  getAppHotkeyRegistrationOptions,
+} from '../src/app-hotkeys'
+import { HotkeyManager, toHotkeyRegistrationView } from '../src/hotkey-manager'
 
 function press(target: EventTarget = document.body, key = 's', code = 'KeyS') {
   target.dispatchEvent(

@@ -8,6 +8,5 @@
     "svelte.config.js",
     "vitest.config.ts",
     "tests"
-  ],
-  "exclude": ["eslint.config.js"]
+  ]
 }

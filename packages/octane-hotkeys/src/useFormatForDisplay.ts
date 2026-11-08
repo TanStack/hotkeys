@@ -1,6 +1,6 @@
-import { useCallback, useSyncExternalStore } from 'octane'
 import { detectPlatform, formatForDisplay } from '@tanstack/hotkeys'
 import { getServerPlatformSnapshot } from '@tanstack/hotkeys/adapter'
+import { useCallback, useSyncExternalStore } from 'octane'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import { subSlot } from './internal'
 import type { DisplayHotkey, FormatDisplayOptions } from '@tanstack/hotkeys'

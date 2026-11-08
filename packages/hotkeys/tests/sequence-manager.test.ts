@@ -1,7 +1,7 @@
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager, toHotkeyRegistrationView } from '../src/hotkey-manager'
-import type { HotkeySequenceRegistrationView } from '../src/hotkey-manager'
 import { createSequenceMatcher } from '../src/match'
+import type { HotkeySequenceRegistrationView } from '../src/hotkey-manager'
 import type { HotkeySequenceOptions as SequenceOptions } from '../src/hotkey-manager'
 
 /** Reads a sequence registration's public view, including match progress. */

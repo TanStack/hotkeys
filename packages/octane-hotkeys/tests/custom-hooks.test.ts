@@ -1,6 +1,6 @@
-import { afterEach, expect, it } from 'vitest'
-import { createRoot, drainPassiveEffects, flushSync } from 'octane'
 import { HotkeyManager } from '@tanstack/hotkeys'
+import { createRoot, drainPassiveEffects, flushSync } from 'octane'
+import { afterEach, expect, it } from 'vitest'
 import { CustomHooksFixture, customHookLog } from './custom-hooks/fixture.tsrx'
 
 afterEach(() => {

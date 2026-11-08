@@ -1,7 +1,7 @@
 import { getHotkeyManager, toHotkeyRegistrationView } from '@tanstack/hotkeys'
 import { useStoreSelector } from './useStoreSelector'
-import type { Ref } from 'vue'
 import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
+import type { Ref } from 'vue'
 
 /**
  * Vue composable that reactively reads every hotkey registration, chords and

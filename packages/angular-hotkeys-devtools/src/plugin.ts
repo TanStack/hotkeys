@@ -2,7 +2,8 @@ import { HotkeysDevtoolsPanel } from './AngularHotkeysDevtools'
 import type { HotkeysDevtoolsAngularInit } from './AngularHotkeysDevtools'
 
 type HotkeysDevtoolsAngularInputs =
-  HotkeysDevtoolsAngularInit | (() => HotkeysDevtoolsAngularInit)
+  | HotkeysDevtoolsAngularInit
+  | (() => HotkeysDevtoolsAngularInit)
 
 /** A plugin for `provideTanStackDevtools` from `@tanstack/angular-devtools`. */
 export interface HotkeysDevtoolsAngularPlugin {

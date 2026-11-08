@@ -4,7 +4,7 @@
     formatForDisplay,
     getHotkeyRegistrations,
   } from '@tanstack/svelte-hotkeys'
-  import type { Hotkey, CreateHotkeyDefinition } from '@tanstack/svelte-hotkeys'
+  import type { CreateHotkeyDefinition, Hotkey } from '@tanstack/svelte-hotkeys'
 
   // Basic demo
   let log = $state<Array<string>>([])

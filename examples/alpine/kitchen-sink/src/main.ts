@@ -1,4 +1,3 @@
-import Alpine from 'alpinejs'
 import {
   createHotkeyRecorder,
   createHotkeysScope,
@@ -6,6 +5,7 @@ import {
   hotkeysPlugin,
   isHotkeySequence,
 } from '@tanstack/alpine-hotkeys'
+import Alpine from 'alpinejs'
 import type {
   AlpineHotkeyRecorder,
   AlpineHotkeyState,

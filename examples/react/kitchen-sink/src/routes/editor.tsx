@@ -1,5 +1,3 @@
-import { useRef, useState } from 'react'
-import { createLazyRoute } from '@tanstack/react-router'
 import {
   HotkeysProvider,
   formatForDisplay,
@@ -7,6 +5,8 @@ import {
   useHotkey,
   useHotkeys,
 } from '@tanstack/react-hotkeys'
+import { createLazyRoute } from '@tanstack/react-router'
+import { useRef, useState } from 'react'
 import { formatHotkey, useActivity } from '../shared'
 
 export const Route = createLazyRoute('/editor')({ component: EditorRoute })

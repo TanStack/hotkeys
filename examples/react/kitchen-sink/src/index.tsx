@@ -1,16 +1,4 @@
-import { useCallback, useState } from 'react'
-import { createRoot } from 'react-dom/client'
-import {
-  Link,
-  Outlet,
-  RouterProvider,
-  createRootRoute,
-  createRoute,
-  createRouter,
-  useNavigate,
-} from '@tanstack/react-router'
 import { TanStackDevtools } from '@tanstack/react-devtools'
-import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
 import {
   HotkeysProvider,
   useAppHotkeyList,
@@ -22,6 +10,18 @@ import {
   useHotkeys,
   useKeyHold,
 } from '@tanstack/react-hotkeys'
+import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
+import {
+  Link,
+  Outlet,
+  RouterProvider,
+  createRootRoute,
+  createRoute,
+  createRouter,
+  useNavigate,
+} from '@tanstack/react-router'
+import { useCallback, useState } from 'react'
+import { createRoot } from 'react-dom/client'
 import { appHotkeys } from './app-hotkeys'
 import { ActivityContext, Hint, Modal, formatHotkey } from './shared'
 import type { CustomHotkeys } from '@tanstack/react-hotkeys'

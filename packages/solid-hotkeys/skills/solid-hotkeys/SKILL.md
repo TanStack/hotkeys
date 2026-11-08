@@ -30,8 +30,8 @@ requires:
 Before starting, load the `@tanstack/hotkeys#hotkeys-core` skill (`npx @tanstack/intent@latest load @tanstack/hotkeys#hotkeys-core`).
 
 ```tsx
-import { createSignal } from 'solid-js'
 import { createHotkey } from '@tanstack/solid-hotkeys'
+import { createSignal } from 'solid-js'
 
 export function Editor() {
   const [isDirty, setIsDirty] = createSignal(false)

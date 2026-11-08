@@ -47,7 +47,8 @@ export function injectHotkeys(
     | ReadonlyArray<InjectHotkeyDefinition>
     | (() => ReadonlyArray<InjectHotkeyDefinition>),
   commonOptions:
-    InjectHotkeyCommonOptions | (() => InjectHotkeyCommonOptions) = {},
+    | InjectHotkeyCommonOptions
+    | (() => InjectHotkeyCommonOptions) = {},
 ): void {
   const context = injectHotkeysContext()
   const zone = inject(NgZone)

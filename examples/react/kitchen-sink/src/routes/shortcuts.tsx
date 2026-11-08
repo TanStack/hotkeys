@@ -1,5 +1,3 @@
-import { useState } from 'react'
-import { createLazyRoute } from '@tanstack/react-router'
 import {
   formatForDisplay,
   isHotkeySequence,
@@ -7,6 +5,8 @@ import {
   useCustomHotkeys,
   useHotkeyRecorder,
 } from '@tanstack/react-hotkeys'
+import { createLazyRoute } from '@tanstack/react-router'
+import { useState } from 'react'
 import { formatHotkey, useActivity } from '../shared'
 import type {
   AppHotkeyId,

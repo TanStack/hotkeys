@@ -1,10 +1,10 @@
+import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
 import { flushSync, mount, unmount } from 'svelte'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
 import Harness from './AppHotkeysHarness.svelte'
 import PropHarness from './CustomHotkeysPropHarness.svelte'
-import type { ChildApi } from './AppHotkeysChild.svelte'
 import type { CustomHotkeys } from '@tanstack/hotkeys'
+import type { ChildApi } from './AppHotkeysChild.svelte'
 
 const appHotkeys = defineAppHotkeys({
   'doc.save': { hotkey: 'Mod+S', meta: { name: 'Save' } },

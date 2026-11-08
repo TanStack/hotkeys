@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { normalizeKeyName } from '../src/constants'
 import { hotkeyChordFromKeydown } from '../src/_recorder-chord'
+import { normalizeKeyName } from '../src/constants'
 import {
   isModifierKey,
   normalizeHotkey,

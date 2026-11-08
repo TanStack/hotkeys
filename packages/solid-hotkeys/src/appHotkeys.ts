@@ -1,6 +1,6 @@
 import { createMemo } from 'solid-js'
-import { useAppHotkeysStoreSource } from './defaultOptions'
 import { createHotkeyRegistrations } from './createHotkeyRegistrations'
+import { useAppHotkeysStoreSource } from './defaultOptions'
 import type {
   AppHotkey,
   AppHotkeyListItem,

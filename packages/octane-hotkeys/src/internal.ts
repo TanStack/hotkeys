@@ -1,5 +1,5 @@
-import { useCallback, useRef, useSyncExternalStore } from 'octane'
 import { createStore } from '@tanstack/hotkeys/adapter'
+import { useCallback, useRef, useSyncExternalStore } from 'octane'
 import type { AppHotkeysState, AppHotkeysStore } from '@tanstack/hotkeys'
 import type { Store } from '@tanstack/hotkeys/adapter'
 

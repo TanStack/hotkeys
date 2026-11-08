@@ -1,7 +1,7 @@
 import { createSolidPlugin } from '@tanstack/devtools-utils/solid'
 import { HotkeysDevtoolsPanel } from './SolidHotkeysDevtools'
-import type { JSX } from 'solid-js'
 import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools'
+import type { JSX } from 'solid-js'
 
 /** A plugin for `TanStackDevtools` from `@tanstack/solid-devtools`. */
 export interface HotkeysDevtoolsSolidPlugin {

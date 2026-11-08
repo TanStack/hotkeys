@@ -1,12 +1,13 @@
 // @vitest-environment node
-import { createSSRApp, defineComponent, h } from 'vue'
-import { renderToString } from 'vue/server-renderer'
+
 import {
   defineAppHotkeys,
   getHotkeyManager,
   getKeyStateTracker,
 } from '@tanstack/hotkeys'
 import { describe, expect, it, vi } from 'vitest'
+import { createSSRApp, defineComponent, h } from 'vue'
+import { renderToString } from 'vue/server-renderer'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import { useFormatForDisplay } from '../src/useFormatForDisplay'
 import { useHeldKeyCodes } from '../src/useHeldKeyCodes'

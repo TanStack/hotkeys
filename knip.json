@@ -1,5 +1,7 @@
 {
   "$schema": "https://unpkg.com/knip@5/schema.json",
+  "ignore": ["**/.output/**"],
+  "ignoreBinaries": ["preview"],
   "ignoreDependencies": ["@faker-js/faker"],
   "ignoreWorkspaces": ["examples/**"],
   "workspaces": {

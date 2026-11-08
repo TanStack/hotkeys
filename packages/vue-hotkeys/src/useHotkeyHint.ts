@@ -1,4 +1,3 @@
-import { computed, toValue } from 'vue'
 import {
   getHotkeyManager,
   getKeyStateTracker,
@@ -6,14 +5,15 @@ import {
   matchesHeldModifiers,
   resolveAppHotkey,
 } from '@tanstack/hotkeys'
+import { computed, toValue } from 'vue'
 import { useAppHotkeysStoreSource } from './defaultOptions'
 import { useStoreSelector } from './useStoreSelector'
-import type { ComputedRef, MaybeRefOrGetter } from 'vue'
 import type {
   AppHotkey,
   HeldModifierOptions,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
+import type { ComputedRef, MaybeRefOrGetter } from 'vue'
 
 /**
  * Returns a computed ref indicating whether held modifiers reveal this shortcut.

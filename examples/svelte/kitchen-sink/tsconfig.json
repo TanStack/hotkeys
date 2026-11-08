@@ -4,6 +4,5 @@
     "moduleResolution": "bundler",
     "types": ["vite/client"]
   },
-  "include": ["src"],
-  "exclude": ["eslint.config.js"]
+  "include": ["src"]
 }

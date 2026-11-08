@@ -30,9 +30,9 @@ requires:
 Before starting, load the `@tanstack/hotkeys#hotkeys-core` skill (`npx @tanstack/intent@latest load @tanstack/hotkeys#hotkeys-core`).
 
 ```ts no-check
+import { HotkeyController, hotkey } from '@tanstack/lit-hotkeys'
 import { LitElement, html } from 'lit'
 import { customElement, state } from 'lit/decorators.js'
-import { HotkeyController, hotkey } from '@tanstack/lit-hotkeys'
 
 @customElement('my-editor')
 export class MyEditor extends LitElement {

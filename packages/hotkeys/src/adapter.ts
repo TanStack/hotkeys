@@ -19,15 +19,6 @@ import {
 // Stateless apart from a once-only dev warning, so a copy per entry is fine.
 import { warnServerPlatform } from './_server'
 import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'
-import type { HotkeyPlatform } from './platform'
-import type {
-  HotkeyCallback,
-  HotkeyChord,
-  HotkeySequence,
-  RegisterableHotkey,
-  RegisterableHotkeyChord,
-  RegisterableHotkeySequence,
-} from './hotkey.types'
 import type {
   ActivateHotkeyScopeOptions,
   HotkeyChordOptions,
@@ -36,6 +27,15 @@ import type {
   HotkeySequenceOptions,
   Target,
 } from './hotkey-manager'
+import type {
+  HotkeyCallback,
+  HotkeyChord,
+  HotkeySequence,
+  RegisterableHotkey,
+  RegisterableHotkeyChord,
+  RegisterableHotkeySequence,
+} from './hotkey.types'
+import type { HotkeyPlatform } from './platform'
 
 export { createAppHotkeysStore } from '@tanstack/hotkeys'
 export { createStore } from './_store'

@@ -1,8 +1,8 @@
 import { getKeyStateTracker } from '@tanstack/hotkeys'
 import { read } from './scope'
+import type { IndividualKey } from '@tanstack/hotkeys'
 import type { HotkeysScope } from './scope'
 import type { MaybeGetter } from './types'
-import type { IndividualKey } from '@tanstack/hotkeys'
 
 export function createKeyHold(
   scope: HotkeysScope,

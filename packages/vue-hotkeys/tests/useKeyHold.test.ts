@@ -1,10 +1,10 @@
-import { defineComponent, h, nextTick, ref } from 'vue'
-import { mount } from '@vue/test-utils'
 import { HotkeyManager, KeyStateTracker } from '@tanstack/hotkeys'
+import { mount } from '@vue/test-utils'
 import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import { defineComponent, h, nextTick, ref } from 'vue'
 import { useKeyHold } from '../src/useKeyHold'
-import type { MaybeRefOrGetter, Ref } from 'vue'
 import type { IndividualKey } from '@tanstack/hotkeys'
+import type { MaybeRefOrGetter, Ref } from 'vue'
 
 const CODES: Record<string, string> = {
   Shift: 'ShiftLeft',

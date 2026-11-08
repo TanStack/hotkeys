@@ -1,6 +1,7 @@
 // @vitest-environment node
-import { describe, expect, it, vi } from 'vitest'
+
 import { getHotkeyManager, getKeyStateTracker } from '@tanstack/hotkeys'
+import { describe, expect, it, vi } from 'vitest'
 import {
   AppHotkeysController,
   HeldKeyCodesController,

@@ -1,14 +1,4 @@
-import {
-  Show,
-  createContext,
-  createSignal,
-  onCleanup,
-  onMount,
-  useContext,
-} from 'solid-js'
-import { Dynamic, render } from 'solid-js/web'
 import { TanStackDevtools } from '@tanstack/solid-devtools'
-import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
 import {
   HotkeysProvider,
   createHeldKeyCodes,
@@ -22,6 +12,16 @@ import {
   formatForDisplay,
   isHotkeySequence,
 } from '@tanstack/solid-hotkeys'
+import { hotkeysDevtoolsPlugin } from '@tanstack/solid-hotkeys-devtools'
+import {
+  Show,
+  createContext,
+  createSignal,
+  onCleanup,
+  onMount,
+  useContext,
+} from 'solid-js'
+import { Dynamic, render } from 'solid-js/web'
 import type {
   Hotkey,
   RecorderKeyMode,

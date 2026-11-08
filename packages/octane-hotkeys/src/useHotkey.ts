@@ -1,5 +1,5 @@
-import { useHotkeys } from './useHotkeys'
 import { splitSlot, subSlot } from './internal'
+import { useHotkeys } from './useHotkeys'
 import type {
   AppHotkey,
   HotkeyCallback,

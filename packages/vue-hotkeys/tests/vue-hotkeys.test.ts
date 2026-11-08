@@ -1,7 +1,7 @@
-import { defineComponent, h, nextTick, ref } from 'vue'
-import { mount } from '@vue/test-utils'
 import { HotkeyManager } from '@tanstack/hotkeys'
+import { mount } from '@vue/test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { defineComponent, h, nextTick, ref } from 'vue'
 import { useHotkey } from '../src/useHotkey'
 import {
   useHotkeyRecorder,

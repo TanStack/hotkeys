@@ -1,23 +1,18 @@
-import { createStore } from './_store'
-import { TargetListeners } from './_target-listeners'
-import { managerRef } from './_manager-ref'
-import { isRecordingEvent } from './_recording-guard'
-import { DEFAULT_SEQUENCE_TIMEOUT, areHotkeysEqual } from './match'
-import { detectPlatform } from './platform'
-import { normalizeKeyName } from './constants'
-import { formatHotkey } from './format'
 import {
-  isHotkeySequence,
-  isModifierKey,
-  parseHotkey,
-  simplifyHotkey,
-} from './parse'
-import { matchKeyboardEvent, parsedChordsEqual } from './_match'
+  closesNativeLayer,
+  getTargetDocument,
+  isDocumentLevel,
+  shouldIgnoreInputEvent,
+  targetHasFocus,
+} from './_event-target'
 import {
   isKeyNameShape,
   keysEqual,
   normalizeKeyboardEvent,
 } from './_keyboard-event'
+import { managerRef } from './_manager-ref'
+import { matchKeyboardEvent, parsedChordsEqual } from './_match'
+import { isRecordingEvent } from './_recording-guard'
 import {
   GLOBAL_SCOPE,
   chordHasKey,
@@ -27,17 +22,20 @@ import {
   handleConflict,
   optionsEqual,
 } from './_registration'
+import { createStore } from './_store'
+import { TargetListeners } from './_target-listeners'
+import { normalizeKeyName } from './constants'
+import { formatHotkey } from './format'
+import { DEFAULT_SEQUENCE_TIMEOUT, areHotkeysEqual } from './match'
 import {
-  closesNativeLayer,
-  getTargetDocument,
-  isDocumentLevel,
-  shouldIgnoreInputEvent,
-  targetHasFocus,
-} from './_event-target'
+  isHotkeySequence,
+  isModifierKey,
+  parseHotkey,
+  simplifyHotkey,
+} from './parse'
+import { detectPlatform } from './platform'
 import type { Store } from './_store'
-import type { KeyboardEventMatch } from './match'
 import type { AppHotkey, AppHotkeysStore } from './app-hotkeys'
-import type { CanonicalModifier } from './key.types'
 import type {
   ConflictBehavior,
   Hotkey,
@@ -52,6 +50,8 @@ import type {
   RegisterableHotkeyChord,
   RegisterableHotkeySequence,
 } from './hotkey.types'
+import type { CanonicalModifier } from './key.types'
+import type { KeyboardEventMatch } from './match'
 
 export type { ConflictBehavior }
 
@@ -208,7 +208,8 @@ export interface HotkeySequenceRegistration extends RegistrationBase<HotkeySeque
 
 /** A registered hotkey in the HotkeyManager. */
 export type HotkeyRegistration =
-  HotkeyChordRegistration | HotkeySequenceRegistration
+  | HotkeyChordRegistration
+  | HotkeySequenceRegistration
 
 /**
  * Whether a registration is on. Focus isn't checked: a registration on an
@@ -253,7 +254,8 @@ export interface HotkeySequenceRegistrationView extends RegistrationViewBase {
  * Narrow with `kind` to read chord- or sequence-specific fields.
  */
 export type HotkeyRegistrationView =
-  HotkeyChordRegistrationView | HotkeySequenceRegistrationView
+  | HotkeyChordRegistrationView
+  | HotkeySequenceRegistrationView
 
 /** Whether a registration can fire now. Without a manager, scopes don't apply. */
 function getRegistrationStatus(

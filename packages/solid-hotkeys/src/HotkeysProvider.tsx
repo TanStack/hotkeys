@@ -1,3 +1,10 @@
+import { publishAppHotkeysStore } from '@tanstack/hotkeys'
+import {
+  activateHotkeysProviderScope,
+  createAppHotkeysStore,
+  getHotkeysProviderScopeKey,
+  mergeHotkeysProviderDefaults,
+} from '@tanstack/hotkeys/adapter'
 import {
   createContext,
   createEffect,
@@ -6,14 +13,6 @@ import {
   onMount,
   useContext,
 } from 'solid-js'
-import { publishAppHotkeysStore } from '@tanstack/hotkeys'
-import {
-  activateHotkeysProviderScope,
-  createAppHotkeysStore,
-  getHotkeysProviderScopeKey,
-  mergeHotkeysProviderDefaults,
-} from '@tanstack/hotkeys/adapter'
-import type { JSX, ParentComponent } from 'solid-js'
 import type {
   AppHotkeys,
   AppHotkeysStore,
@@ -23,6 +22,7 @@ import type {
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
 import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
+import type { JSX, ParentComponent } from 'solid-js'
 import type { CreateHotkeyCommonOptions } from './createHotkey'
 
 export interface HotkeysProviderOptions {

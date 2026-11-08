@@ -3,10 +3,7 @@
 }
 body {
   margin: 0;
-  font-family:
-    system-ui,
-    -apple-system,
-    sans-serif;
+  font-family: system-ui, -apple-system, sans-serif;
   background: #f5f5f5;
   color: #333;
 }

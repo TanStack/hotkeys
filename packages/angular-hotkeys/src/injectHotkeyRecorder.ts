@@ -10,7 +10,6 @@ import {
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { withDefaults } from '@tanstack/hotkeys/adapter'
 import { injectDefaultHotkeysOptions } from './hotkeys-provider'
-import type { Store } from '@tanstack/hotkeys/adapter'
 import type { Signal } from '@angular/core'
 import type {
   Hotkey,
@@ -20,6 +19,7 @@ import type {
   HotkeySequence,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
+import type { Store } from '@tanstack/hotkeys/adapter'
 
 export interface AngularHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
   /** Whether recording is currently active */

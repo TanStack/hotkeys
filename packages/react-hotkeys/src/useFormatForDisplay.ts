@@ -1,7 +1,7 @@
 'use client'
 
-import { useCallback } from 'react'
 import { formatForDisplay } from '@tanstack/hotkeys'
+import { useCallback } from 'react'
 import { usePlatform } from './_usePlatform'
 import type { DisplayHotkey, FormatDisplayOptions } from '@tanstack/hotkeys'
 

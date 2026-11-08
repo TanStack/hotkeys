@@ -1,8 +1,8 @@
-import { useLayoutEffect, useRef } from 'octane'
 import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
 } from '@tanstack/hotkeys/adapter'
+import { useLayoutEffect, useRef } from 'octane'
 import { useHotkeysContext } from './HotkeysProvider'
 import { splitSlot, subSlot, useAppHotkeysStore } from './internal'
 import type { AdapterHotkeyDefinition } from '@tanstack/hotkeys/adapter'

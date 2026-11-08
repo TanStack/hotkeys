@@ -1,8 +1,9 @@
 // @vitest-environment happy-dom
+
+import { HotkeyManager } from '@tanstack/hotkeys'
+import { act, renderHook } from '@testing-library/react'
 import { StrictMode } from 'react'
 import { afterEach, describe, expect, it } from 'vitest'
-import { act, renderHook } from '@testing-library/react'
-import { HotkeyManager } from '@tanstack/hotkeys'
 import { useHotkeyRecorder } from '../src/useHotkeyRecorder'
 
 describe('useHotkeyRecorder', () => {

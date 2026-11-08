@@ -17,6 +17,10 @@ export default defineConfig({
     dir: './',
     watch: false,
     environment: 'happy-dom',
+    // happy-dom 21 leaves iframes empty unless page loading is enabled
+    environmentOptions: {
+      happyDOM: { settings: { enableIframePageLoading: true } },
+    },
     setupFiles: ['./tests/test-setup.ts'],
     globals: true,
   },

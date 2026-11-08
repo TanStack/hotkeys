@@ -71,9 +71,9 @@ No provider is required.
 ## A dialog that owns the keyboard
 
 ```tsx no-check
+import { HotkeysProvider, useHotkey } from '@tanstack/preact-hotkeys'
 import { useId } from 'preact/hooks'
 import type { ComponentChildren } from 'preact'
-import { HotkeysProvider, useHotkey } from '@tanstack/preact-hotkeys'
 
 export function Dialog(props: {
   onClose: () => void

@@ -1,8 +1,8 @@
 import { shallowRef } from 'vue'
 import { useHotkeysContext } from './HotkeysProviderContext'
 import { useStoreSelector } from './useStoreSelector'
-import type { Ref } from 'vue'
 import type { AppHotkeysState, AppHotkeysStore } from '@tanstack/hotkeys'
+import type { Ref } from 'vue'
 
 /** Captures the context once and reads current defaults inside reactive computations. */
 export function useDefaultHotkeysOptionsSource() {

@@ -1,7 +1,7 @@
-import { render } from 'preact'
+import { TanStackDevtools } from '@tanstack/preact-devtools'
 import { HotkeysProvider, useKeyHold } from '@tanstack/preact-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools'
-import { TanStackDevtools } from '@tanstack/preact-devtools'
+import { render } from 'preact'
 import './index.css'
 
 function App() {

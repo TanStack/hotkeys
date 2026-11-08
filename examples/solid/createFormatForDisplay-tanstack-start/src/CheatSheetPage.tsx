@@ -1,10 +1,10 @@
-import { For, Show, createSignal, onMount } from 'solid-js'
 import {
   createFormatForDisplay,
   createHotkeys,
   detectPlatform,
   useHotkeysContext,
 } from '@tanstack/solid-hotkeys'
+import { For, Show, createSignal, onMount } from 'solid-js'
 import { commands } from './commands'
 import {
   defaultChoices,

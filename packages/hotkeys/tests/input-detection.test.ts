@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { HotkeyManager } from '../src/hotkey-manager'
 import { isInputElement } from '../src/_event-target'
+import { HotkeyManager } from '../src/hotkey-manager'
 import type { HotkeyChord, HotkeyOptions } from '../src'
 
 function dispatchKey(

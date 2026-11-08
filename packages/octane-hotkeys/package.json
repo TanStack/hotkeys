@@ -22,9 +22,9 @@
   ],
   "scripts": {
     "clean": "premove ./build ./dist",
-    "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix",
-    "test:eslint": "eslint ./src",
+    "lint": "oxlint ./src",
+    "lint:fix": "oxlint ./src --fix",
+    "test:oxlint": "oxlint ./src",
     "test:lib": "vitest run && vitest run --config vitest.ssr.config.ts",
     "test:lib:dev": "vitest --watch",
     "test:types": "tsrx-tsc --noEmit",
@@ -49,10 +49,10 @@
     "@tanstack/hotkeys": "workspace:*"
   },
   "devDependencies": {
-    "@tsrx/oxc": "0.20.0",
-    "@tsrx/typescript-plugin": "^0.3.138",
-    "octane": "0.12.1",
-    "vite": "^8.3.2"
+    "@tsrx/oxc": "0.23.0",
+    "@tsrx/typescript-plugin": "^0.6.3",
+    "octane": "0.16.7",
+    "vite": "^8.3.6"
   },
   "peerDependencies": {
     "octane": ">=0.12.0"

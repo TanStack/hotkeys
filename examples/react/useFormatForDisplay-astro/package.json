@@ -6,17 +6,17 @@
     "dev": "astro dev --port=3069",
     "build": "astro build",
     "preview": "astro preview",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint . --fix",
     "test:types": "astro check"
   },
   "dependencies": {
-    "@astrojs/node": "^11.1.9",
-    "@astrojs/react": "^7.1.2",
+    "@astrojs/node": "^11.1.11",
+    "@astrojs/react": "^7.1.4",
     "@tanstack/react-hotkeys": "^0.22.0",
-    "astro": "^7.4.4",
-    "react": "^19.3.0",
-    "react-dom": "^19.3.0"
+    "astro": "^7.4.7",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",

@@ -1,6 +1,6 @@
-import { createComponent, mergeProps } from 'solid-js'
 import { createSolidPanel } from '@tanstack/devtools-utils/solid'
 import { HotkeysDevtoolsCore } from '@tanstack/hotkeys-devtools'
+import { createComponent, mergeProps } from 'solid-js'
 import type { ClassType } from '@tanstack/devtools-utils/solid'
 import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools'
 import type { JSX } from 'solid-js'

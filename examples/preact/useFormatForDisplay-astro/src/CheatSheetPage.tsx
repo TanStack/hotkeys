@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'preact/hooks'
 import {
   detectPlatform,
   useDefaultHotkeysOptions,
   useFormatForDisplay,
   useHotkeys,
 } from '@tanstack/preact-hotkeys'
+import { useEffect, useRef, useState } from 'preact/hooks'
 import { commands } from './commands'
 import {
   defaultChoices,

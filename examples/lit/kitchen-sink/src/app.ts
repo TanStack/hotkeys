@@ -1,5 +1,3 @@
-import { LitElement, html } from 'lit'
-import { customElement, property, state } from 'lit/decorators.js'
 import {
   HeldKeyCodesController,
   HeldKeysController,
@@ -12,6 +10,8 @@ import {
   hotkey,
   isHotkeySequence,
 } from '@tanstack/lit-hotkeys'
+import { LitElement, html } from 'lit'
+import { customElement, property, state } from 'lit/decorators.js'
 import type {
   Hotkey,
   RecorderKeyMode,

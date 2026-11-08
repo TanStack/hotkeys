@@ -1,7 +1,7 @@
 import { getHotkeyManager } from '@tanstack/hotkeys'
 import { injectSelector } from './_injectSelector'
-import type { HotkeyScopesState } from '@tanstack/hotkeys'
 import type { Signal } from '@angular/core'
+import type { HotkeyScopesState } from '@tanstack/hotkeys'
 
 /**
  * Angular inject-based API that returns a signal of the hotkey manager's

@@ -7,12 +7,12 @@ import {
 } from '@tanstack/hotkeys'
 import { getAppHotkeysStore, subscribeAppHotkeys } from './_app-hotkeys'
 import { isServer } from './_server'
-import type { ReactiveController, ReactiveControllerHost } from 'lit'
 import type {
   AppHotkey,
   HeldModifierOptions,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
+import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
 /**
  * Modifier hint controller. Getter arguments can read reactive host

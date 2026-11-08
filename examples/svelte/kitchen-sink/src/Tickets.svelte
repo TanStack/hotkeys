@@ -1,7 +1,8 @@
 <script lang="ts">
-  import { getContext } from 'svelte'
   import { createHotkey } from '@tanstack/svelte-hotkeys'
+  import { getContext } from 'svelte'
   import Hint from './Hint.svelte'
+
   const log = getContext<(message: string) => void>('log')
   let count = $state(0),
     enabled = $state(true)

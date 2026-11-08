@@ -1,5 +1,3 @@
-import { createContext } from 'preact'
-import { useContext, useLayoutEffect, useMemo, useState } from 'preact/hooks'
 import { publishAppHotkeysStore } from '@tanstack/hotkeys'
 import {
   activateHotkeysProviderScope,
@@ -7,7 +5,8 @@ import {
   getHotkeysProviderScopeKey,
   mergeHotkeysProviderDefaults,
 } from '@tanstack/hotkeys/adapter'
-import type { ComponentChildren } from 'preact'
+import { createContext } from 'preact'
+import { useContext, useLayoutEffect, useMemo, useState } from 'preact/hooks'
 import type {
   AppHotkeys,
   AppHotkeysStore,
@@ -17,6 +16,7 @@ import type {
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
 import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
+import type { ComponentChildren } from 'preact'
 import type { UseHotkeyCommonOptions } from './useHotkey'
 
 export interface HotkeysProviderOptions {

@@ -1,5 +1,5 @@
-import { renderToString } from 'octane/server'
 import { detectPlatform } from '@tanstack/octane-hotkeys'
+import { renderToString } from 'octane/server'
 import { App } from './App.tsrx'
 
 /** Renders the page for a request's `User-Agent` header. */

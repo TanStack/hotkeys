@@ -28,7 +28,9 @@ describe('useFormatForDisplay on the server', () => {
   it('uses linux and warns without a platform', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => {})
     // The hydration test in useFormatForDisplay.test.ts starts from this HTML.
-    expect(renderToString(FormatLabel, {}).html).toBe('<kbd>Ctrl+S</kbd>')
+    expect(renderToString(FormatLabel, {}).html).toBe(
+      '<!--3--><kbd>Ctrl+S</kbd>',
+    )
     expect(warn).toHaveBeenCalledOnce()
   })
 })

@@ -1,7 +1,7 @@
 import { test as base, expect } from './fixtures'
 import { focusBrowserWindow, press, setLayout } from './x11'
-import type { ObservedKeydown } from './page'
 import type { Page } from '@playwright/test'
+import type { ObservedKeydown } from './page'
 
 /** A layout as setxkbmap takes it: `'no'`, `'us(dvorak)'`, `'tanstack(winno)'`. */
 export type Layout = `${string}` | `${string}(${string})`

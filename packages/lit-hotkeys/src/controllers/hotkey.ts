@@ -4,7 +4,6 @@ import {
 } from '@tanstack/hotkeys/adapter'
 import { getAppHotkeysStore, subscribeAppHotkeys } from './_app-hotkeys'
 import { isServer } from './_server'
-import type { ReactiveController, ReactiveControllerHost } from 'lit'
 import type {
   AppHotkey,
   HotkeyCallback,
@@ -19,6 +18,7 @@ import type {
   AdapterOptionsFor,
   AdapterSequenceOptions,
 } from '@tanstack/hotkeys/adapter'
+import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
 /** The element to listen on. A `null` target skips registration until it is set. */
 export type HotkeyControllerTarget = Target | null

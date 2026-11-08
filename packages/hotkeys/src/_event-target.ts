@@ -1,5 +1,5 @@
-import { normalizeKeyName } from './constants'
 import { codeToLogicalKey } from './_keyboard-event'
+import { normalizeKeyName } from './constants'
 
 type Target = HTMLElement | Document | Window
 

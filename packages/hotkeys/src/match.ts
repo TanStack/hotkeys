@@ -1,10 +1,10 @@
+import { normalizeKeyboardEvent } from './_keyboard-event'
 import { matchKeyboardEvent, parsedChordsEqual } from './_match'
+import { chordHasKey } from './_registration'
+import { normalizeKeyName } from './constants'
 import { formatHotkey } from './format'
 import { isHotkeySequence, isModifierKey, parseHotkey } from './parse'
 import { detectPlatform } from './platform'
-import { chordHasKey } from './_registration'
-import { normalizeKeyName } from './constants'
-import { normalizeKeyboardEvent } from './_keyboard-event'
 import type {
   HotkeyCallback,
   HotkeyChord,

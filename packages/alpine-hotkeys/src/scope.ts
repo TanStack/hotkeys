@@ -1,8 +1,8 @@
 import { getHotkeyManager } from '@tanstack/hotkeys'
 import { subscribePublishedAppHotkeys } from '@tanstack/hotkeys/adapter'
-import type Alpine from 'alpinejs'
 import type { AppHotkeysStore } from '@tanstack/hotkeys'
 import type { Store } from '@tanstack/hotkeys/adapter'
+import type Alpine from 'alpinejs'
 import type { DefaultHotkeysOptions, MaybeGetter } from './types'
 
 type AlpineInstance = typeof Alpine

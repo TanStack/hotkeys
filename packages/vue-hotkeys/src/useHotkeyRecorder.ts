@@ -1,10 +1,9 @@
-import { getCurrentInstance, onScopeDispose, toValue, watch } from 'vue'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { withDefaults } from '@tanstack/hotkeys/adapter'
+import { getCurrentInstance, onScopeDispose, toValue, watch } from 'vue'
 import { useLive } from './_useLive'
 import { useDefaultHotkeysOptionsSource } from './defaultOptions'
 import { useStoreSelector } from './useStoreSelector'
-import type { MaybeRefOrGetter, Ref } from 'vue'
 import type {
   Hotkey,
   HotkeyChord,
@@ -13,6 +12,7 @@ import type {
   HotkeySequence,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
+import type { MaybeRefOrGetter, Ref } from 'vue'
 
 export interface VueHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
   /** Whether recording is currently active */

@@ -1,6 +1,5 @@
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { isServer } from './_server'
-import type { ReactiveController, ReactiveControllerHost } from 'lit'
 import type {
   Hotkey,
   HotkeyChordRecorderOptions,
@@ -8,6 +7,7 @@ import type {
   HotkeySequence,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
+import type { ReactiveController, ReactiveControllerHost } from 'lit'
 
 /**
  * A Lit ReactiveController that records keyboard shortcuts.

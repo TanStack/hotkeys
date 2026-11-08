@@ -1,7 +1,7 @@
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager, toHotkeyRegistrationView } from '../src/hotkey-manager'
-import type { HotkeySequenceRegistrationView } from '../src/hotkey-manager'
 import type { HotkeyChord, HotkeyOptions } from '../src'
+import type { HotkeySequenceRegistrationView } from '../src/hotkey-manager'
 
 function focusControl(markup = '<button>Action</button>') {
   document.body.innerHTML = markup

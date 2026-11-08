@@ -1,5 +1,4 @@
-import React from 'preact/compat'
-import { render } from 'preact'
+import { TanStackDevtools } from '@tanstack/preact-devtools'
 import {
   HotkeysProvider,
   formatForDisplay,
@@ -7,7 +6,8 @@ import {
   useHotkeys,
 } from '@tanstack/preact-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools'
-import { TanStackDevtools } from '@tanstack/preact-devtools'
+import { render } from 'preact'
+import React from 'preact/compat'
 import type { Hotkey, UseHotkeyDefinition } from '@tanstack/preact-hotkeys'
 import './index.css'
 

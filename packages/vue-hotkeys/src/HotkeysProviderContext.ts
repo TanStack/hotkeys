@@ -1,3 +1,10 @@
+import { publishAppHotkeysStore } from '@tanstack/hotkeys'
+import {
+  activateHotkeysProviderScope,
+  createAppHotkeysStore,
+  getHotkeysProviderScopeKey,
+  mergeHotkeysProviderDefaults,
+} from '@tanstack/hotkeys/adapter'
 import {
   computed,
   hasInjectionContext,
@@ -8,15 +15,7 @@ import {
   toValue,
   watch,
 } from 'vue'
-import { publishAppHotkeysStore } from '@tanstack/hotkeys'
-import {
-  activateHotkeysProviderScope,
-  createAppHotkeysStore,
-  getHotkeysProviderScopeKey,
-  mergeHotkeysProviderDefaults,
-} from '@tanstack/hotkeys/adapter'
 import { useLive } from './_useLive'
-import type { InjectionKey, MaybeRefOrGetter } from 'vue'
 import type {
   AppHotkeys,
   AppHotkeysStore,
@@ -26,6 +25,7 @@ import type {
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
 import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
+import type { InjectionKey, MaybeRefOrGetter } from 'vue'
 import type { UseHotkeyCommonOptions } from './useHotkey'
 
 export interface HotkeysProviderOptions {

@@ -1,9 +1,10 @@
 // @vitest-environment happy-dom
-import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
+
 import { render } from '@solidjs/testing-library'
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
-import { createHotkey } from '../src/createHotkey'
 import { Show, createSignal, type Component } from 'solid-js'
+import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
+import { createHotkey } from '../src/createHotkey'
 
 describe('createHotkey', () => {
   beforeEach(() => {

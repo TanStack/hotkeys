@@ -1,12 +1,12 @@
 import { createHotkeys } from './createHotkeys'
 import { read } from './scope'
-import type { HotkeysScope } from './scope'
-import type { AlpineHotkeyCommonOptions, MaybeGetter } from './types'
 import type {
   AppHotkey,
   HotkeyCallback,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
+import type { HotkeysScope } from './scope'
+import type { AlpineHotkeyCommonOptions, MaybeGetter } from './types'
 
 export function createHotkey(
   scope: HotkeysScope,

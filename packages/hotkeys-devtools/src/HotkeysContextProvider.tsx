@@ -1,4 +1,9 @@
 import {
+  HotkeyManager,
+  KeyStateTracker,
+  toHotkeyRegistrationView,
+} from '@tanstack/hotkeys'
+import {
   createContext,
   createEffect,
   createMemo,
@@ -6,19 +11,14 @@ import {
   onCleanup,
   useContext,
 } from 'solid-js'
-import {
-  HotkeyManager,
-  KeyStateTracker,
-  toHotkeyRegistrationView,
-} from '@tanstack/hotkeys'
 import { needsSequenceProgressClock } from './sequence-progress'
-import type { Accessor } from 'solid-js'
 import type {
   AppHotkeyListItem,
   AppHotkeysStore,
   HotkeyRegistrationView,
   HotkeyScopesState,
 } from '@tanstack/hotkeys'
+import type { Accessor } from 'solid-js'
 
 interface HotkeysDevtoolsContextType {
   /** Every registration, chords and sequences. */

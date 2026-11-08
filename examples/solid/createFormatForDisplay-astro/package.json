@@ -6,16 +6,16 @@
     "dev": "astro dev --port=3069",
     "build": "astro build",
     "preview": "astro preview",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "lint": "oxlint .",
+    "lint:fix": "oxlint . --fix",
     "test:types": "astro check"
   },
   "dependencies": {
-    "@astrojs/node": "^11.1.9",
+    "@astrojs/node": "^11.1.11",
     "@astrojs/solid-js": "^7.1.2",
     "@tanstack/solid-hotkeys": "^0.21.0",
-    "astro": "^7.4.4",
-    "solid-js": "^1.9.15"
+    "astro": "^7.4.7",
+    "solid-js": "^1.9.18"
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.12",

@@ -1,8 +1,8 @@
-import { Suspense } from 'solid-js'
-import { getRequestEvent } from 'solid-js/web'
 import { Router } from '@solidjs/router'
 import { FileRoutes } from '@solidjs/start/router'
 import { HotkeysProvider, detectPlatform } from '@tanstack/solid-hotkeys'
+import { Suspense } from 'solid-js'
+import { getRequestEvent } from 'solid-js/web'
 import './styles.css'
 
 export default function App() {

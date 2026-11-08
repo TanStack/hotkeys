@@ -19,10 +19,10 @@ declare module '@tanstack/preact-hotkeys' {
 ```
 
 ```tsx no-check
-import type { ComponentChildren } from 'preact'
 import { HotkeysProvider } from '@tanstack/preact-hotkeys'
-import type { CustomHotkeys } from '@tanstack/preact-hotkeys'
 import { appHotkeys } from './app-hotkeys'
+import type { CustomHotkeys } from '@tanstack/preact-hotkeys'
+import type { ComponentChildren } from 'preact'
 
 const saved: CustomHotkeys = JSON.parse(localStorage.getItem('hotkeys') ?? '{}')
 

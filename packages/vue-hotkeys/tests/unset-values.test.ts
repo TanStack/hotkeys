@@ -1,11 +1,11 @@
+import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
+import { mount } from '@vue/test-utils'
 import { afterEach, expect, it, vi } from 'vitest'
 import { defineComponent, h, nextTick, ref } from 'vue'
-import { mount } from '@vue/test-utils'
-import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
+import { HotkeysProvider } from '../src/HotkeysProvider'
 import { useHotkey } from '../src/useHotkey'
 import { useHotkeyHint } from '../src/useHotkeyHint'
 import { useHotkeys } from '../src/useHotkeys'
-import { HotkeysProvider } from '../src/HotkeysProvider'
 import type { Hotkey } from '@tanstack/hotkeys'
 
 const press = () =>

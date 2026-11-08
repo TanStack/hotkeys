@@ -1,6 +1,6 @@
 import { createStore } from '@tanstack/hotkeys/adapter'
-import { useSelector } from './_useSelector'
 import { useHotkeysContext } from './HotkeysProvider'
+import { useSelector } from './_useSelector'
 import type { AppHotkeysState, AppHotkeysStore } from '@tanstack/hotkeys'
 
 /** Captures the context once and reads current defaults inside reactive computations. */

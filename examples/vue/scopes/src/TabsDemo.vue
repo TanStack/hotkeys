@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { HotkeysProvider, useHotkey } from '@tanstack/vue-hotkeys'
+import { ref } from 'vue'
 import FolderPane from './FolderPane.vue'
 import Key from './Key.vue'
 import ScopeFrame from './ScopeFrame.vue'

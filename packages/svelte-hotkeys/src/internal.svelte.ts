@@ -1,5 +1,5 @@
-import { createSubscriber } from 'svelte/reactivity'
 import { activateHotkeysProviderScope } from '@tanstack/hotkeys/adapter'
+import { createSubscriber } from 'svelte/reactivity'
 import type { AppHotkeysStore } from '@tanstack/hotkeys'
 
 export type MaybeGetter<T> = T | (() => T)

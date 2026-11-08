@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
 import { formatForDisplay } from '@tanstack/vue-hotkeys'
+import { computed, ref } from 'vue'
 
 const platform = ref<'mac' | 'windows' | 'linux'>('mac'),
   modifiers = ref(false),

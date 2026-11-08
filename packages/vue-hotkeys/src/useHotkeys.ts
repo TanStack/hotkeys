@@ -1,14 +1,13 @@
-import { onScopeDispose, toValue, watch } from 'vue'
 import {
   createHotkeyBindings,
   prepareHotkeyDefinitions,
 } from '@tanstack/hotkeys/adapter'
+import { onScopeDispose, toValue, watch } from 'vue'
 import { useLive } from './_useLive'
 import {
   useAppHotkeysStoreSource,
   useDefaultHotkeysOptionsSource,
 } from './defaultOptions'
-import type { MaybeRefOrGetter } from 'vue'
 import type {
   AppHotkey,
   HotkeyCallback,
@@ -20,6 +19,7 @@ import type {
   AdapterCommonOptions,
   AdapterHotkeyDefinition,
 } from '@tanstack/hotkeys/adapter'
+import type { MaybeRefOrGetter } from 'vue'
 import type {
   UseAppHotkeyOptions,
   UseHotkeyChordOptions,

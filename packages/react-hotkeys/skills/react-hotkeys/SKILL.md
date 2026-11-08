@@ -74,9 +74,9 @@ No provider is required. In React Server Components frameworks, call the hooks f
 ## A dialog that owns the keyboard
 
 ```tsx
+import { HotkeysProvider, useHotkey } from '@tanstack/react-hotkeys'
 import { useId } from 'react'
 import type { ReactNode } from 'react'
-import { HotkeysProvider, useHotkey } from '@tanstack/react-hotkeys'
 
 export function Dialog(props: { onClose: () => void; children: ReactNode }) {
   return (

@@ -1,5 +1,5 @@
-import { useCallback } from 'preact/hooks'
 import { formatForDisplay } from '@tanstack/hotkeys'
+import { useCallback } from 'preact/hooks'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
 import type { DisplayHotkey, FormatDisplayOptions } from '@tanstack/hotkeys'
 

@@ -1,6 +1,6 @@
-import { effectScope, nextTick } from 'vue'
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { effectScope, nextTick } from 'vue'
 import { useHeldKeys } from '../src/useHeldKeys'
 import { useHotkey } from '../src/useHotkey'
 import { useHotkeyHint } from '../src/useHotkeyHint'

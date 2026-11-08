@@ -1,5 +1,5 @@
-import type React from 'react'
 import type { Target } from '@tanstack/hotkeys'
+import type React from 'react'
 import type { UseHotkeyTarget } from './useHotkey'
 
 /**

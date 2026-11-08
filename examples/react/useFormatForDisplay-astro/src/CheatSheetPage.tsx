@@ -1,12 +1,12 @@
 'use client'
 
-import { useRef, useState, useSyncExternalStore } from 'react'
 import {
   detectPlatform,
   useFormatForDisplay,
   useHotkeys,
   useHotkeysContext,
 } from '@tanstack/react-hotkeys'
+import { useRef, useState, useSyncExternalStore } from 'react'
 import { commands } from './commands'
 import {
   defaultChoices,

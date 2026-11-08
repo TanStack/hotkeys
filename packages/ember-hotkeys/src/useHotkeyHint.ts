@@ -6,12 +6,12 @@ import {
   resolveAppHotkey,
 } from '@tanstack/hotkeys'
 import { read, select, trackPublishedAppHotkeys } from './utils'
-import type { EmberHotkeyState } from './types'
 import type {
   AppHotkey,
   HeldModifierOptions,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
+import type { EmberHotkeyState } from './types'
 import type { MaybeGetter } from './utils'
 
 /**

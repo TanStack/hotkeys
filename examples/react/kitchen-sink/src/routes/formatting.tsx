@@ -1,6 +1,6 @@
-import { useState } from 'react'
-import { createLazyRoute } from '@tanstack/react-router'
 import { formatForDisplay } from '@tanstack/react-hotkeys'
+import { createLazyRoute } from '@tanstack/react-router'
+import { useState } from 'react'
 
 export const Route = createLazyRoute('/formatting')({ component: Formatting })
 

@@ -35,12 +35,12 @@ The app hotkey methods throw until `provideAppHotkeys` has run. When saved short
 A settings row records with `createHotkeyRecorder` on its owner:
 
 ```ts
-import Alpine from 'alpinejs'
 import {
   createHotkeyRecorder,
   createHotkeysScope,
   formatForDisplay,
 } from '@tanstack/alpine-hotkeys'
+import Alpine from 'alpinejs'
 import type { AppHotkeyId } from '@tanstack/alpine-hotkeys'
 
 Alpine.data('shortcutRow', (id: AppHotkeyId) => {

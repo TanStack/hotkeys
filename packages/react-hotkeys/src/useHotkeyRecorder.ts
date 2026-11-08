@@ -1,10 +1,10 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { withDefaults } from '@tanstack/hotkeys/adapter'
-import { useSelector } from './_useSelector'
+import { useEffect, useRef, useState } from 'react'
 import { useDefaultHotkeysOptions } from './HotkeysProvider'
+import { useSelector } from './_useSelector'
 import type {
   Hotkey,
   HotkeyChord,

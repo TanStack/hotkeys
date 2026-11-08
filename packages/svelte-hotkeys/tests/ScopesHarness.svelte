@@ -1,7 +1,7 @@
 <script lang="ts">
   import HotkeysProvider from '../src/HotkeysProvider.svelte'
-  import Hk from './ScopesHotkey.svelte'
   import AppHk from './ScopesAppHotkeys.svelte'
+  import Hk from './ScopesHotkey.svelte'
   import type { AppHotkeys } from '@tanstack/hotkeys'
   import type { SvelteAppHotkeyList } from '../src/getAppHotkeys.svelte'
   import type { ScopesControls } from './scopes-controls.svelte'

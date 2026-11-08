@@ -1,5 +1,3 @@
-import { createContext, useContext, useEffect, useId, useRef } from 'react'
-import { createPortal } from 'react-dom'
 import {
   HotkeysProvider,
   formatForDisplay,
@@ -7,8 +5,10 @@ import {
   useHotkey,
   useHotkeyHint,
 } from '@tanstack/react-hotkeys'
-import type { ReactNode } from 'react'
+import { createContext, useContext, useEffect, useId, useRef } from 'react'
+import { createPortal } from 'react-dom'
 import type { AppHotkeyId, Hotkey } from '@tanstack/react-hotkeys'
+import type { ReactNode } from 'react'
 
 export const ActivityContext = createContext<(message: string) => void>(
   () => {},

@@ -1,15 +1,15 @@
-import { afterEach, beforeEach, describe, expect, it } from 'vitest'
+import {
+  HotkeyManager,
+  KeyStateTracker,
+  getHotkeyManager,
+} from '@tanstack/hotkeys'
 import {
   createRoot,
   delegateEvents,
   drainPassiveEffects,
   flushSync,
 } from 'octane'
-import {
-  HotkeyManager,
-  KeyStateTracker,
-  getHotkeyManager,
-} from '@tanstack/hotkeys'
+import { afterEach, beforeEach, describe, expect, it } from 'vitest'
 import {
   AppHotkeysFixture,
   Fixture,

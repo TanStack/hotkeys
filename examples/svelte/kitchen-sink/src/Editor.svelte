@@ -1,11 +1,12 @@
 <script lang="ts">
-  import { getContext } from 'svelte'
   import {
-    formatForDisplay,
-    createHotkeyAttachment,
     createHotkey,
+    createHotkeyAttachment,
+    formatForDisplay,
   } from '@tanstack/svelte-hotkeys'
+  import { getContext } from 'svelte'
   import EditorPane from './EditorPane.svelte'
+
   const log = getContext<(message: string) => void>('log')
   let repeat = $state(false),
     count = $state(0),

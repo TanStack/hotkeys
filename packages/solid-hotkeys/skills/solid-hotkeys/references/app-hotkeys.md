@@ -19,10 +19,10 @@ declare module '@tanstack/solid-hotkeys' {
 ```
 
 ```tsx no-check
-import type { JSX } from 'solid-js'
 import { HotkeysProvider } from '@tanstack/solid-hotkeys'
-import type { CustomHotkeys } from '@tanstack/solid-hotkeys'
 import { appHotkeys } from './app-hotkeys'
+import type { CustomHotkeys } from '@tanstack/solid-hotkeys'
+import type { JSX } from 'solid-js'
 
 const saved: CustomHotkeys = JSON.parse(localStorage.getItem('hotkeys') ?? '{}')
 

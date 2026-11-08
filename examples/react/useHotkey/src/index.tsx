@@ -1,12 +1,12 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
+import { TanStackDevtools } from '@tanstack/react-devtools'
 import {
   HotkeysProvider,
   formatForDisplay,
   useHotkey,
 } from '@tanstack/react-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
 import type { Hotkey } from '@tanstack/react-hotkeys'
 import './index.css'
 

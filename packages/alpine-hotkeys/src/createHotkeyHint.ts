@@ -6,13 +6,13 @@ import {
   resolveAppHotkey,
 } from '@tanstack/hotkeys'
 import { read } from './scope'
-import type { HotkeysScope } from './scope'
-import type { MaybeGetter } from './types'
 import type {
   AppHotkey,
   HeldModifierOptions,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
+import type { HotkeysScope } from './scope'
+import type { MaybeGetter } from './types'
 
 export function createHotkeyHint(
   scope: HotkeysScope,

@@ -1,8 +1,6 @@
+import { KeyHoldController } from '@tanstack/lit-hotkeys'
 import { LitElement, css, html, unsafeCSS } from 'lit'
 import { customElement } from 'lit/decorators.js'
-
-import { KeyHoldController } from '@tanstack/lit-hotkeys'
-
 import appStyles from './index.css?raw'
 
 @customElement('my-app')
@@ -12,10 +10,7 @@ export class MyApp extends LitElement {
       :host {
         display: block;
         margin: 0;
-        font-family:
-          system-ui,
-          -apple-system,
-          sans-serif;
+        font-family: system-ui, -apple-system, sans-serif;
         background: #f5f5f5;
         color: #333;
         box-sizing: border-box;

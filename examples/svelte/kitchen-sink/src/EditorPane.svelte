@@ -1,9 +1,10 @@
 <script lang="ts">
-  import { getContext } from 'svelte'
   import {
     createHotkeysAttachment,
     formatForDisplay,
   } from '@tanstack/svelte-hotkeys'
+  import { getContext } from 'svelte'
+
   let { name }: { name: string } = $props()
   const log = getContext<(message: string) => void>('log')
   let text = $state('One shortcut, two independent editors.'),

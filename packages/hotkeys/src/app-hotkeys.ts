@@ -1,24 +1,24 @@
+import { setAppHotkeysStoreFactory } from './_app-hotkeys-factory'
+import { GLOBAL_SCOPE } from './_registration'
+import { createStore } from './_store'
 import { getHotkeyManager } from './hotkey-manager'
 import { areHotkeysEqual } from './match'
-import { detectPlatform } from './platform'
 import { isHotkeySequence, simplifyHotkey } from './parse'
+import { detectPlatform } from './platform'
 import { validateHotkey } from './validate'
-import { GLOBAL_SCOPE } from './_registration'
-import { setAppHotkeysStoreFactory } from './_app-hotkeys-factory'
-import { createStore } from './_store'
 import type { Store } from './_store'
-import type {
-  Hotkey,
-  HotkeyChord,
-  HotkeyMeta,
-  HotkeySequence,
-} from './hotkey.types'
 import type {
   HotkeyChordOptions,
   HotkeyRegistrationStatus,
   HotkeyRegistrationView,
   HotkeySequenceOptions,
 } from './hotkey-manager'
+import type {
+  Hotkey,
+  HotkeyChord,
+  HotkeyMeta,
+  HotkeySequence,
+} from './hotkey.types'
 
 type Platform = 'mac' | 'windows' | 'linux'
 
@@ -75,7 +75,9 @@ export interface AppHotkeyInput {
 export interface AppHotkey<
   TId extends string = string,
   TDefault extends HotkeyChord | HotkeySequence | null =
-    HotkeyChord | HotkeySequence | null,
+    | HotkeyChord
+    | HotkeySequence
+    | null,
 > {
   /** Brand that distinguishes app hotkeys from raw hotkey objects. */
   readonly '~appHotkey': true
@@ -364,7 +366,11 @@ function hotkeysOverlap(
  * - `'unbound'`: no hotkey assigned
  */
 export type AppHotkeyStatus =
-  'active' | 'suspended' | 'disabled' | 'inactive' | 'unbound'
+  | 'active'
+  | 'suspended'
+  | 'disabled'
+  | 'inactive'
+  | 'unbound'
 
 /** One row of an app hotkey cheat sheet. */
 export interface AppHotkeyListItem<T extends AppHotkey = AppHotkey> {

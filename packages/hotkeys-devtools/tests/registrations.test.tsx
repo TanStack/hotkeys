@@ -1,18 +1,18 @@
-import { afterEach, describe, expect, it, vi } from 'vitest'
-import { createSignal } from 'solid-js'
-import { render } from 'solid-js/web'
 import {
   AppHotkeysStore,
   HotkeyManager,
   KeyStateTracker,
   defineAppHotkeys,
 } from '@tanstack/hotkeys'
+import { createSignal } from 'solid-js'
+import { render } from 'solid-js/web'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   HotkeysContextProvider,
   useHotkeysDevtoolsState,
 } from '../src/HotkeysContextProvider'
-import { HotkeyList } from '../src/components/HotkeyList'
 import { DetailsPanel } from '../src/components/DetailsPanel'
+import { HotkeyList } from '../src/components/HotkeyList'
 
 // Stable class names let these tests inspect the real UI without coupling to CSS generation.
 vi.mock('../src/styles/use-styles', () => ({

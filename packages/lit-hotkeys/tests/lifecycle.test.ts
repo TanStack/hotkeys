@@ -1,5 +1,3 @@
-import { afterEach, expect, it, vi } from 'vitest'
-import { LitElement } from 'lit'
 import {
   HotkeyManager,
   KeyStateTracker,
@@ -8,6 +6,8 @@ import {
   getKeyStateTracker,
   provideAppHotkeys,
 } from '@tanstack/hotkeys'
+import { LitElement } from 'lit'
+import { afterEach, expect, it, vi } from 'vitest'
 import { AppHotkeysController } from '../src/controllers/app-hotkeys'
 import { HeldKeyCodesController } from '../src/controllers/held-key-codes'
 import { HeldKeysController } from '../src/controllers/held-keys'

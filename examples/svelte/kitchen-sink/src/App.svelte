@@ -1,21 +1,22 @@
 <script lang="ts">
-  import { onMount, setContext } from 'svelte'
   import {
     HotkeysProvider,
-    createHotkeys,
     createHotkey,
+    createHotkeys,
     formatForDisplay,
-    getHeldKeys,
     getHeldKeyCodesMap,
-    getIsKeyHeld,
+    getHeldKeys,
     getHotkeyRegistrations,
+    getIsKeyHeld,
   } from '@tanstack/svelte-hotkeys'
-  import Tickets from './Tickets.svelte'
+  import { onMount, setContext } from 'svelte'
   import Editor from './Editor.svelte'
-  import Sequences from './Sequences.svelte'
-  import Recording from './Recording.svelte'
   import Formatting from './Formatting.svelte'
   import Hint from './Hint.svelte'
+  import Recording from './Recording.svelte'
+  import Sequences from './Sequences.svelte'
+  import Tickets from './Tickets.svelte'
+
   const pages = [
     { path: '/', name: 'Tickets', component: Tickets, hotkey: 'Alt+[Digit1]' },
     {

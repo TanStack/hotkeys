@@ -1,5 +1,4 @@
 import { HotkeyController } from '../controllers/hotkey'
-import type { ReactiveElement } from 'lit'
 import type {
   AppHotkey,
   HotkeyCallback,
@@ -7,6 +6,7 @@ import type {
   HotkeyCallbackContextFor,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
+import type { ReactiveElement } from 'lit'
 import type {
   AppHotkeyControllerOptions,
   HotkeyControllerCommonOptions,

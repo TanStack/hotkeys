@@ -1,5 +1,5 @@
-import type { RefObject } from 'preact'
 import type { Target } from '@tanstack/hotkeys'
+import type { RefObject } from 'preact'
 import type { UseHotkeyTarget } from './useHotkey'
 
 /**

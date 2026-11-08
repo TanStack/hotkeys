@@ -1,10 +1,10 @@
-import { detectPlatform } from './platform'
-import { isHotkeySequence, parseHotkey } from './parse'
 import { getTargetDocument } from './_event-target'
-import { parsedChordsEqual } from './_match'
-import { matchesKeyboardEvent } from './match'
-import { toHotkeyRegistrationView } from './hotkey-manager'
 import { managerRef } from './_manager-ref'
+import { parsedChordsEqual } from './_match'
+import { toHotkeyRegistrationView } from './hotkey-manager'
+import { matchesKeyboardEvent } from './match'
+import { isHotkeySequence, parseHotkey } from './parse'
+import { detectPlatform } from './platform'
 import type { HotkeyRegistrationView } from './hotkey-manager'
 import type {
   RegisterableHotkey,

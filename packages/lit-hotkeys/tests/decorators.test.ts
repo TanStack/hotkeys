@@ -1,10 +1,10 @@
 import { readFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { afterEach, describe, expect, it } from 'vitest'
-import ts from 'typescript'
-import * as lit from 'lit'
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
+import * as lit from 'lit'
+import ts from 'typescript'
+import { afterEach, describe, expect, it } from 'vitest'
 import * as decorators from '../src/decorators/hotkey'
 import type { LitElement } from 'lit'
 // Type-only, so Vitest never loads the decorator syntax.

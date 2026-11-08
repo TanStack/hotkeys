@@ -1,11 +1,12 @@
 // @vitest-environment happy-dom
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+
+import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
 import { cleanup, fireEvent, render } from '@testing-library/preact'
 import { useRef, useState } from 'preact/hooks'
-import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
+import { act } from 'preact/test-utils'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { useHotkey } from '../src/useHotkey'
 import type { HotkeyCallback } from '@tanstack/hotkeys'
-import { act } from 'preact/test-utils'
 
 function HotkeyTestComponent({
   callback,

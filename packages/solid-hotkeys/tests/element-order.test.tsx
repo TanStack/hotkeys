@@ -1,9 +1,10 @@
 // @vitest-environment happy-dom
-import { afterEach, expect, it } from 'vitest'
+
 import { render } from '@solidjs/testing-library'
-import { clearDelegatedEvents, delegateEvents } from 'solid-js/web'
-import { createSignal } from 'solid-js'
 import { HotkeyManager, getHotkeyManager } from '@tanstack/hotkeys'
+import { createSignal } from 'solid-js'
+import { clearDelegatedEvents, delegateEvents } from 'solid-js/web'
+import { afterEach, expect, it } from 'vitest'
 import { createHotkey } from '../src/createHotkey'
 
 // Solid runs onKeyDown from one listener on the document. A hotkey must run

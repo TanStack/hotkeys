@@ -1,6 +1,5 @@
 <script lang="ts">
   import { setHotkeysContextSource } from './HotkeysCtx.js'
-
   import type { HotkeysProviderProps } from './HotkeysCtx.js'
 
   let {

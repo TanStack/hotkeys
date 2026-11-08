@@ -13,12 +13,15 @@ import type {
   AdapterOptionsFor,
   AdapterSequenceOptions,
 } from '@tanstack/hotkeys/adapter'
-
 import type { RefObject } from 'preact'
 
 /** A Preact ref, element, document, or window to listen on. */
 export type UseHotkeyTarget =
-  RefObject<HTMLElement | null> | HTMLElement | Document | Window | null
+  | RefObject<HTMLElement | null>
+  | HTMLElement
+  | Document
+  | Window
+  | null
 
 /** Options shared by chords and sequences. */
 export type UseHotkeyOptions = AdapterHotkeyOptions<UseHotkeyTarget>

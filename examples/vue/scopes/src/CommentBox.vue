@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref } from 'vue'
 import { useHotkey } from '@tanstack/vue-hotkeys'
+import { ref } from 'vue'
 import { useActivity } from './activity'
 
 const { log } = useActivity()

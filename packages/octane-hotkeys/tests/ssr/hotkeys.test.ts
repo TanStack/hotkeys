@@ -1,6 +1,6 @@
+import { getHotkeyManager } from '@tanstack/hotkeys'
 import { renderToString } from 'octane/server'
 import { describe, expect, it } from 'vitest'
-import { getHotkeyManager } from '@tanstack/hotkeys'
 import { Fixture } from '../fixture.tsrx'
 
 describe('server rendering', () => {

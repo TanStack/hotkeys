@@ -1,8 +1,8 @@
 import { defineComponent } from 'vue'
 import { provideHotkeysContext } from './HotkeysProviderContext'
-import type { PropType } from 'vue'
 import type { AppHotkeys, CustomHotkeys } from '@tanstack/hotkeys'
 import type { HotkeysProviderScopeProps } from '@tanstack/hotkeys/adapter'
+import type { PropType } from 'vue'
 import type { HotkeysProviderOptions } from './HotkeysProviderContext'
 
 /**

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { inject, ref } from 'vue'
 import { formatForDisplay, useHotkey } from '@tanstack/vue-hotkeys'
+import { inject, ref } from 'vue'
 import EditorPane from './EditorPane.vue'
 
 const log = inject<(message: string) => void>('log')!
@@ -41,8 +41,8 @@ useHotkey('Alt+[KeyU]', () => log('Keyup U'), {
     <EditorPane name="Draft" /><EditorPane name="Notes" />
     <label><input type="checkbox" v-model="repeat" /> Allow repeat</label>
     <p>
-      Hold <kbd>{{ formatForDisplay('Alt+[ArrowRight]') }}</kbd
-      >: {{ count }}. Release Alt + U for a keyup event.
+      Hold <kbd>{{ formatForDisplay('Alt+[ArrowRight]') }}</kbd>: {{ count }}.
+      Release Alt + U for a keyup event.
     </p>
     <fieldset ref="scope" tabindex="0">
       <legend>Propagation</legend>

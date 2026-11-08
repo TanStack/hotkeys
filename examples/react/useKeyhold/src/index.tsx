@@ -1,7 +1,7 @@
-import ReactDOM from 'react-dom/client'
+import { TanStackDevtools } from '@tanstack/react-devtools'
 import { HotkeysProvider, useKeyHold } from '@tanstack/react-hotkeys'
 import { hotkeysDevtoolsPlugin } from '@tanstack/react-hotkeys-devtools'
-import { TanStackDevtools } from '@tanstack/react-devtools'
+import ReactDOM from 'react-dom/client'
 import './index.css'
 
 // Created once: a new array on every render remounts the devtools panel

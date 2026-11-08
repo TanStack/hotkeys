@@ -1,7 +1,7 @@
-import { For, Show } from 'solid-js'
 import { detectPlatform, formatForDisplay } from '@tanstack/hotkeys'
-import { useStyles } from '../styles/use-styles'
+import { For, Show } from 'solid-js'
 import { useHotkeysDevtoolsState } from '../HotkeysContextProvider'
+import { useStyles } from '../styles/use-styles'
 
 export function HeldKeysBar() {
   const styles = useStyles()

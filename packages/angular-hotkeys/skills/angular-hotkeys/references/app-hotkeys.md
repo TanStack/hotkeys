@@ -20,8 +20,8 @@ declare module '@tanstack/angular-hotkeys' {
 
 ```ts
 import { provideHotkeys } from '@tanstack/angular-hotkeys'
-import type { CustomHotkeys } from '@tanstack/angular-hotkeys'
 import { appHotkeys } from './app-hotkeys'
+import type { CustomHotkeys } from '@tanstack/angular-hotkeys'
 
 const saved: CustomHotkeys = JSON.parse(localStorage.getItem('hotkeys') ?? '{}')
 

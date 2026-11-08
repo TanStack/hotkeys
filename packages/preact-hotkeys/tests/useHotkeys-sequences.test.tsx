@@ -1,10 +1,11 @@
 // @vitest-environment happy-dom
-import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
-import { cleanup, render } from '@testing-library/preact'
+
 import { HotkeyManager } from '@tanstack/hotkeys'
+import { cleanup, render } from '@testing-library/preact'
+import { act } from 'preact/test-utils'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { useHotkeys } from '../src/useHotkeys'
 import type { UseHotkeyDefinition } from '../src/useHotkeys'
-import { act } from 'preact/test-utils'
 
 function dispatchKey(key: string) {
   document.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true }))

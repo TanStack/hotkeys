@@ -1,5 +1,3 @@
-import { LitElement, css, html, nothing, unsafeCSS } from 'lit'
-import { customElement, state } from 'lit/decorators.js'
 import {
   HeldKeysController,
   HotkeyRecorderController,
@@ -7,6 +5,8 @@ import {
   formatForDisplay,
   getHotkeyManager,
 } from '@tanstack/lit-hotkeys'
+import { LitElement, css, html, nothing, unsafeCSS } from 'lit'
+import { customElement, state } from 'lit/decorators.js'
 import appStyles from './index.css?raw'
 import type {
   Hotkey,
@@ -73,10 +73,7 @@ export class MyApp extends LitElement {
       :host {
         display: block;
         margin: 0;
-        font-family:
-          system-ui,
-          -apple-system,
-          sans-serif;
+        font-family: system-ui, -apple-system, sans-serif;
         background: #f5f5f5;
         color: #333;
         box-sizing: border-box;

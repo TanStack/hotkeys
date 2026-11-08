@@ -6,14 +6,14 @@ import {
 import { HotkeyRecorder } from '@tanstack/hotkeys'
 import { withDefaults } from '@tanstack/hotkeys/adapter'
 import { read, scopeDefaults, select } from './utils'
-import type { EmberHotkeysScope } from './createHotkeysScope'
-import type { EmberHotkeyRecorder } from './types'
 import type {
   HotkeyChord,
   HotkeyChordRecorderOptions,
   HotkeyRecorderOptions,
   HotkeySequenceRecorderOptions,
 } from '@tanstack/hotkeys'
+import type { EmberHotkeysScope } from './createHotkeysScope'
+import type { EmberHotkeyRecorder } from './types'
 import type { MaybeGetter } from './utils'
 
 /**

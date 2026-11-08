@@ -4,6 +4,5 @@
     "jsx": "preserve",
     "types": ["vite/client", "node"]
   },
-  "include": ["src", "server.ts"],
-  "exclude": ["eslint.config.js"]
+  "include": ["src", "server.ts"]
 }

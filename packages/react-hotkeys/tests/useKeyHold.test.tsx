@@ -1,6 +1,6 @@
-import { afterEach, expect, it } from 'vitest'
-import { act, cleanup, renderHook } from '@testing-library/react'
 import { KeyStateTracker } from '@tanstack/hotkeys'
+import { act, cleanup, renderHook } from '@testing-library/react'
+import { afterEach, expect, it } from 'vitest'
 import { useKeyHold } from '../src'
 
 /** Marks a test event as real user input; the tracker ignores synthetic events for recovery. */

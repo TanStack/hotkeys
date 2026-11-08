@@ -1,5 +1,4 @@
 import { useHotkeys } from './useHotkeys'
-import type { MaybeRefOrGetter } from 'vue'
 import type {
   AppHotkey,
   HotkeyCallback,
@@ -15,6 +14,7 @@ import type {
   AdapterOptionsFor,
   AdapterSequenceOptions,
 } from '@tanstack/hotkeys/adapter'
+import type { MaybeRefOrGetter } from 'vue'
 
 /**
  * The element to listen on: a ref, getter, element, or null. A target that

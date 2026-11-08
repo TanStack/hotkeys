@@ -59,7 +59,16 @@ export type LetterKey =
  * Number keys 0-9.
  */
 export type NumberKey =
-  '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7' | '8' | '9'
+  | '0'
+  | '1'
+  | '2'
+  | '3'
+  | '4'
+  | '5'
+  | '6'
+  | '7'
+  | '8'
+  | '9'
 
 /**
  * Function keys F1-F24, supported as both logical keys and physical codes.
@@ -107,7 +116,12 @@ export type NavigationKey =
  * Editing and special keys.
  */
 export type EditingKey =
-  'Enter' | 'Escape' | 'Space' | 'Tab' | 'Backspace' | 'Delete'
+  | 'Enter'
+  | 'Escape'
+  | 'Space'
+  | 'Tab'
+  | 'Backspace'
+  | 'Delete'
 
 /**
  * Printable punctuation glyphs used in keyboard shortcuts. Matching uses the
@@ -149,11 +163,17 @@ export type PunctuationKey =
 
 /** Additional named logical keys, including media, browser, lock, and input-mode keys. */
 export type NamedKey =
-  (typeof SHARED_NAMED_KEYS)[number] | (typeof LOGICAL_ONLY_NAMED_KEYS)[number]
+  | (typeof SHARED_NAMED_KEYS)[number]
+  | (typeof LOGICAL_ONLY_NAMED_KEYS)[number]
 
 /** Supported logical key names other than printable punctuation. */
 export type NonPunctuationKey =
-  LetterKey | NumberKey | EditingKey | NavigationKey | FunctionKey | NamedKey
+  | LetterKey
+  | NumberKey
+  | EditingKey
+  | NavigationKey
+  | FunctionKey
+  | NamedKey
 
 /**
  * Supported physical KeyboardEvent.code names, independent of keyboard layout.

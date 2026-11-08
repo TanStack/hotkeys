@@ -1,7 +1,7 @@
 import { computed, toValue } from 'vue'
 import { useHeldKeys } from './useHeldKeys'
-import type { MaybeRefOrGetter, Ref } from 'vue'
 import type { IndividualKey } from '@tanstack/hotkeys'
+import type { MaybeRefOrGetter, Ref } from 'vue'
 
 /**
  * Vue composable that returns a reactive ref indicating whether a specific key is currently being held.
