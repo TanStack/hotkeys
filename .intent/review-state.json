@@ -2598,15 +2598,16 @@
       "evidence": ["docs/config.json"]
     },
     "source:docs/devtools.md": {
-      "fingerprint": "0d96d99c22bf4ab92be7d2a0db8af69c80cd3d1c7212491ecc532d1749e7553c",
+      "fingerprint": "83ef673fe668d546401bccfcc9ab936b2fc1c9dbb7ec2b7799fbfccb7171c5e4",
       "snapshot": {
-        "docs/devtools.md": "e9970ffe470f99a5e8b80966adc1bcf540534fa8551609753ceff2241b43146c"
+        "docs/devtools.md": "c020da5b836dbf4a2ed2e7317590bbe7da92cf0676d40db4bb349fce135f6657"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "b50789481979bab69a44ce57138643760e3896ba",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Production builds section now shows the Preact /production import instead of saying Preact has none. Skills only point to the default devtools entry for development use and do not cover production entries.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "docs/devtools.md",
+        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md"
       ]
     },
     "source:docs/installation.md": {
@@ -3273,16 +3274,15 @@
       "evidence": ["packages/hotkeys-devtools/src/types.ts"]
     },
     "source:packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx": {
-      "fingerprint": "2c1972e7133c52d2f1247b9e3f4e70f720560739ffc2f770950b3586bcb564f3",
+      "fingerprint": "524845708502113126c095853c61ebb2ff873869b0fa7f6fcff2c1c61bd33c2f",
       "snapshot": {
-        "packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx": "98cd2a3bcdb5d82c9ea851d9190acdd9e653e53a5af18cc77f0ae9758649af6e"
+        "packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx": "6e34ec5a0c7c9e9d2c157c94396ead050d8f256eb773bd6f0eae65e3b7dbd0ba"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "head": "b50789481979bab69a44ce57138643760e3896ba",
+      "outcome": "out-of-scope",
+      "reason": "Devtools panels load the core from @tanstack/hotkeys-devtools/production so their /production entries render the live panel in production builds; Preact gains a /production entry. Default entries still return no-ops outside development. No skill covers devtools production entries.",
       "evidence": [
-        "packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx",
-        "git diff origin/main"
+        "packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx"
       ]
     },
     "source:packages/preact-hotkeys-devtools/src/index.ts": {
@@ -3296,29 +3296,25 @@
       "evidence": ["packages/preact-hotkeys-devtools/src/index.ts"]
     },
     "source:packages/preact-hotkeys-devtools/src/plugin.tsx": {
-      "fingerprint": "ffd8c47db46997e4d80b89c6773752a0f41a1589fe0dab3e580749d3f8d729fa",
+      "fingerprint": "32d201e799a06572d49064c718fb6ab48a1bd79e643933f58954517bbf880398",
       "snapshot": {
-        "packages/preact-hotkeys-devtools/src/plugin.tsx": "eb8c0b5bd0ae928160a2c8420e25bf2c438f71535334710848ad1f3edc4ebde7"
+        "packages/preact-hotkeys-devtools/src/plugin.tsx": "7b0f801afa68b947e1e5638086c026fd954073a335061751e7e7f6dfc33f80d1"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
-      "evidence": [
-        "packages/preact-hotkeys-devtools/src/plugin.tsx",
-        "git diff origin/main"
-      ]
+      "head": "b50789481979bab69a44ce57138643760e3896ba",
+      "outcome": "out-of-scope",
+      "reason": "Devtools panels load the core from @tanstack/hotkeys-devtools/production so their /production entries render the live panel in production builds; Preact gains a /production entry. Default entries still return no-ops outside development. No skill covers devtools production entries.",
+      "evidence": ["packages/preact-hotkeys-devtools/src/plugin.tsx"]
     },
     "source:packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx": {
-      "fingerprint": "f16f8829a583fafa8cee89a9eca6197c5cf1b649efae1c9e50474a7e46fea639",
+      "fingerprint": "b349af67e2b59635d7d47134ca2b86518aafa30cc6a39bec788d409e3d9a5c31",
       "snapshot": {
-        "packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx": "17c8cf0b9d03f40eab0bcbe26d5a2411a959407479439e06c32176e0efbf4ae9"
+        "packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx": "2f1724e786db75bb2a463fd7ea22ae656a104ae0ba683f311405aa2db9a7c9a4"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "head": "b50789481979bab69a44ce57138643760e3896ba",
+      "outcome": "out-of-scope",
+      "reason": "Devtools panels load the core from @tanstack/hotkeys-devtools/production so their /production entries render the live panel in production builds; Preact gains a /production entry. Default entries still return no-ops outside development. No skill covers devtools production entries.",
       "evidence": [
-        "packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx",
-        "git diff origin/main"
+        "packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx"
       ]
     },
     "source:packages/react-hotkeys-devtools/src/index.ts": {
@@ -3332,17 +3328,14 @@
       "evidence": ["packages/react-hotkeys-devtools/src/index.ts"]
     },
     "source:packages/react-hotkeys-devtools/src/plugin.tsx": {
-      "fingerprint": "974d3f900c63de143848011a2107af280b53d70347a90334d13c551d8c1af888",
+      "fingerprint": "2ff473a3326032187f2a0a381b2e9d421648e6c295a8764657f5644e4237bde7",
       "snapshot": {
-        "packages/react-hotkeys-devtools/src/plugin.tsx": "abe1f9970662f50b309a2cf8fd2f00a29f9b4690f3cb03c61af903e00f716ed2"
+        "packages/react-hotkeys-devtools/src/plugin.tsx": "b895db165f842897c8816861b4754f8619ca7ccdccc233a6941144ecbafa83e9"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
-      "evidence": [
-        "packages/react-hotkeys-devtools/src/plugin.tsx",
-        "git diff origin/main"
-      ]
+      "head": "b50789481979bab69a44ce57138643760e3896ba",
+      "outcome": "out-of-scope",
+      "reason": "Devtools panels load the core from @tanstack/hotkeys-devtools/production so their /production entries render the live panel in production builds; Preact gains a /production entry. Default entries still return no-ops outside development. No skill covers devtools production entries.",
+      "evidence": ["packages/react-hotkeys-devtools/src/plugin.tsx"]
     },
     "source:packages/react-hotkeys-devtools/src/production.ts": {
       "fingerprint": "72433872f8045b2b58c9fb707055176561343a14d280d96ff34a5fe63577024d",
@@ -3355,16 +3348,15 @@
       "evidence": ["packages/react-hotkeys-devtools/src/production.ts"]
     },
     "source:packages/solid-hotkeys-devtools/src/SolidHotkeysDevtools.tsx": {
-      "fingerprint": "e570a7bce50f021879da10f6c369008b1adedb0f889e9a539741a96dec25107e",
+      "fingerprint": "71c4dbd7c8f9b8a88f5d3124d7cb4b256782cc91dba760869243a164556547c8",
       "snapshot": {
-        "packages/solid-hotkeys-devtools/src/SolidHotkeysDevtools.tsx": "69399af36415d237d1a89aaa9dbd3f1ae44a4760d37290e59398f7bf8e35d6b1"
+        "packages/solid-hotkeys-devtools/src/SolidHotkeysDevtools.tsx": "b65d646cb55bd599743a4dcc5571e88e96f1b733fb7ea322c16b8c7390bcbffd"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "head": "b50789481979bab69a44ce57138643760e3896ba",
+      "outcome": "out-of-scope",
+      "reason": "Devtools panels load the core from @tanstack/hotkeys-devtools/production so their /production entries render the live panel in production builds; Preact gains a /production entry. Default entries still return no-ops outside development. No skill covers devtools production entries.",
       "evidence": [
-        "packages/solid-hotkeys-devtools/src/SolidHotkeysDevtools.tsx",
-        "git diff origin/main"
+        "packages/solid-hotkeys-devtools/src/SolidHotkeysDevtools.tsx"
       ]
     },
     "source:packages/solid-hotkeys-devtools/src/index.ts": {
@@ -3378,17 +3370,14 @@
       "evidence": ["packages/solid-hotkeys-devtools/src/index.ts"]
     },
     "source:packages/solid-hotkeys-devtools/src/plugin.tsx": {
-      "fingerprint": "b767e4570ae6596a67798f334ab6664a8ee727fd9dcce810f3c66b97d25fd6fb",
+      "fingerprint": "cc7af28cca40b3c7969c104101fca24a0d1eaadf62b365b1fab222e65f337954",
       "snapshot": {
-        "packages/solid-hotkeys-devtools/src/plugin.tsx": "e8cda1f1f60d4b297aff93b8fd54eee26004972ce5d5d8315f19e82ba2e7e8df"
+        "packages/solid-hotkeys-devtools/src/plugin.tsx": "588c011a9f17e08d93e717ad99bb9a4c2facb84c67e23e71d414de11ee28bc91"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
-      "evidence": [
-        "packages/solid-hotkeys-devtools/src/plugin.tsx",
-        "git diff origin/main"
-      ]
+      "head": "b50789481979bab69a44ce57138643760e3896ba",
+      "outcome": "out-of-scope",
+      "reason": "Devtools panels load the core from @tanstack/hotkeys-devtools/production so their /production entries render the live panel in production builds; Preact gains a /production entry. Default entries still return no-ops outside development. No skill covers devtools production entries.",
+      "evidence": ["packages/solid-hotkeys-devtools/src/plugin.tsx"]
     },
     "source:packages/solid-hotkeys-devtools/src/production.ts": {
       "fingerprint": "9fee86a61b2dc189140d22c3f4dfb2f8adf5637200e0507c031c30f53a2578b8",
@@ -3485,17 +3474,14 @@
       "evidence": ["packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts"]
     },
     "source:packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.ts": {
-      "fingerprint": "86cd9041e2274f724820d69a0c44727a878166505e770ecab7d5594487827862",
+      "fingerprint": "ef2b7b03a400af498b22b22a109e8ba202ef9fb2f7f04368fb7814b65a8b191d",
       "snapshot": {
-        "packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.ts": "cfd1efbaad6d3057230978d7f1310d61e6ce26f226e49bbf7c05bb14526f2db6"
+        "packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.ts": "fd0ff50b523ed3ed07f0c6c831cb558a9ef4d5df8899a8f14dacc1ab6d0330fe"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
-      "evidence": [
-        "packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.ts",
-        "git diff origin/main"
-      ]
+      "head": "b50789481979bab69a44ce57138643760e3896ba",
+      "outcome": "out-of-scope",
+      "reason": "Devtools panels load the core from @tanstack/hotkeys-devtools/production so their /production entries render the live panel in production builds; Preact gains a /production entry. Default entries still return no-ops outside development. No skill covers devtools production entries.",
+      "evidence": ["packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.ts"]
     },
     "source:packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.tsx": {
       "fingerprint": "04f0f781b152e9860f048bfb0e62ea53578cff4e87f56544886b489f9adc1f47",
@@ -3538,17 +3524,14 @@
       "evidence": ["packages/vue-hotkeys-devtools/src/production.ts"]
     },
     "source:packages/vue-hotkeys-devtools/tests/panel.test.ts": {
-      "fingerprint": "ba23fe9e22ccf40a0f208e8c443c1ce2a088f47ea448ade63c6a133ca2658fae",
+      "fingerprint": "0d22e7dd863c0643d0033fb7015d962374889008c17d0c1aec1cda885c2cc905",
       "snapshot": {
-        "packages/vue-hotkeys-devtools/tests/panel.test.ts": "d874a606641914be153a31d897038d4771764c46d31d07bc2fe7d5b60a191618"
+        "packages/vue-hotkeys-devtools/tests/panel.test.ts": "040a1f4cfb89e1f7bd5a925a9864fc90ce6fdeba76f83e895c55c167e4a2c0c3"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
-      "evidence": [
-        "packages/vue-hotkeys-devtools/tests/panel.test.ts",
-        "test:lib passes"
-      ]
+      "head": "b50789481979bab69a44ce57138643760e3896ba",
+      "outcome": "out-of-scope",
+      "reason": "Devtools adapter tests: panel tests mock the /production core, and new production tests check which core each entry mounts under NODE_ENV production and development. No skill covers devtools tests.",
+      "evidence": ["packages/vue-hotkeys-devtools/tests/panel.test.ts"]
     },
     "source:packages/vue-hotkeys-devtools/tsconfig.json": {
       "fingerprint": "9ea1e6f12e402e9a4ec59076494b3890f16c3c53d8b75b360776b3721c3a61ed",
@@ -5472,16 +5455,14 @@
       ]
     },
     "source:packages/preact-hotkeys-devtools/tests/panel.test.ts": {
-      "fingerprint": "8a77d89c4b82ffbfc68ba58987a6e93cb76c5efa8781dfed541519945396365d",
+      "fingerprint": "e12ea47f4fd6d46ed8318d21fe7c0eb5ce16dbe9b9b6a0312d85de62c19c937c",
       "snapshot": {
-        "packages/preact-hotkeys-devtools/tests/panel.test.ts": "20ee3b5b4fe6ebfcbe2ba362502cf7482c43991f511c8cd59da61f512d1fda99"
+        "packages/preact-hotkeys-devtools/tests/panel.test.ts": "e70b91871f24f00a60e57c515c37099242665913260cc8d03df5af69bda0e266"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
-      "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
-      "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
-      ]
+      "head": "b50789481979bab69a44ce57138643760e3896ba",
+      "outcome": "out-of-scope",
+      "reason": "Devtools adapter tests: panel tests mock the /production core, and new production tests check which core each entry mounts under NODE_ENV production and development. No skill covers devtools tests.",
+      "evidence": ["packages/preact-hotkeys-devtools/tests/panel.test.ts"]
     },
     "source:packages/preact-hotkeys/src/_appHotkeysStore.ts": {
       "fingerprint": "c9b6b2b8dd27786fb2f7f77e3c4c33a138db0d5c07fe4dda4977b0a6291f2fef",
@@ -17024,16 +17005,16 @@
       "evidence": ["packages/preact-hotkeys-devtools/tsconfig.json"]
     },
     "source:packages/preact-hotkeys-devtools/tsdown.config.ts": {
-      "fingerprint": "9ba3f3cb0542a45dd3243ce055543e850d989a4311e4594a13f412b719240a9f",
+      "fingerprint": "b02164253f97cdba0aef689efb8508219c5f16130ff14014703c5e5914573e86",
       "snapshot": {
-        "packages/preact-hotkeys-devtools/tsdown.config.ts": "e09d799029c8f5b90bb864e63c3813a691a14bf1b7369267e04a1781dca829bc"
+        "packages/preact-hotkeys-devtools/tsdown.config.ts": "5ff2c155ef81eaf1d3262b5879fcab69695d0bd1ffc5c978aed119f3c7971538"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "b50789481979bab69a44ce57138643760e3896ba",
       "outcome": "no-change",
-      "reason": "Build or test config: import order changed by oxfmt only. No behavior change.",
+      "reason": "Build config: adds src/production.ts as an entry for the new Preact /production export. No skill guidance depends on devtools build entries.",
       "evidence": [
         "packages/preact-hotkeys-devtools/tsdown.config.ts",
-        "git diff origin/main: only import lines change"
+        "pnpm test:build (publint --strict) passes"
       ]
     },
     "source:packages/preact-hotkeys-devtools/vitest.config.ts": {
@@ -17587,6 +17568,76 @@
       "outcome": "no-change",
       "reason": "E2E test infrastructure only: layout fixture probes real key input before each case, and the Docker image matches @playwright/test 1.65.0. No library behavior or guidance changes.",
       "evidence": ["e2e/support/fixtures.ts"]
+    },
+    "source:packages/preact-hotkeys-devtools/src/production.ts": {
+      "fingerprint": "69828300ee3d741e879afe8fa1b7a6a8ab49309cffd0b390a2b5ac01001eb06f",
+      "snapshot": {
+        "packages/preact-hotkeys-devtools/src/production.ts": "7c411f96344404ecb811c4dec9f5dcff817da3f36347cd98fe1e9295a92eef92"
+      },
+      "head": "b50789481979bab69a44ce57138643760e3896ba",
+      "outcome": "out-of-scope",
+      "reason": "Devtools panels load the core from @tanstack/hotkeys-devtools/production so their /production entries render the live panel in production builds; Preact gains a /production entry. Default entries still return no-ops outside development. No skill covers devtools production entries.",
+      "evidence": ["packages/preact-hotkeys-devtools/src/production.ts"]
+    },
+    "source:packages/preact-hotkeys-devtools/tests/production.test.ts": {
+      "fingerprint": "19e0964d7675941af04ba61ce4f44870ee3244f593fe0f4ffc3dc6a39aed4ec3",
+      "snapshot": {
+        "packages/preact-hotkeys-devtools/tests/production.test.ts": "64e4288837b01a83fd345d4d7d40f729ed85736a5bb7efe76f99aa0d8aa62a93"
+      },
+      "head": "b50789481979bab69a44ce57138643760e3896ba",
+      "outcome": "out-of-scope",
+      "reason": "Devtools adapter tests: panel tests mock the /production core, and new production tests check which core each entry mounts under NODE_ENV production and development. No skill covers devtools tests.",
+      "evidence": ["packages/preact-hotkeys-devtools/tests/production.test.ts"]
+    },
+    "source:packages/react-hotkeys-devtools/tests/panel.test.ts": {
+      "fingerprint": "c26da35663e94c4bdd6d84ebfbc0c5a193d37916fecc38b5516d5cfc2848c495",
+      "snapshot": {
+        "packages/react-hotkeys-devtools/tests/panel.test.ts": "2341a684788eb4300347fedc794c4c8ac15832cd9acbfb67020f3dc4c31d5221"
+      },
+      "head": "b50789481979bab69a44ce57138643760e3896ba",
+      "outcome": "out-of-scope",
+      "reason": "Devtools adapter tests: panel tests mock the /production core, and new production tests check which core each entry mounts under NODE_ENV production and development. No skill covers devtools tests.",
+      "evidence": ["packages/react-hotkeys-devtools/tests/panel.test.ts"]
+    },
+    "source:packages/react-hotkeys-devtools/tests/production.test.ts": {
+      "fingerprint": "1bbfaf88a5b4bc2a4b00b8782cdcef92d17a2ef2768f57ac34f247a342eca4f6",
+      "snapshot": {
+        "packages/react-hotkeys-devtools/tests/production.test.ts": "237b7feccade5671a76a2d75aa1a1c74e95e1bb8a84bc9a53cf8c49a082cf493"
+      },
+      "head": "b50789481979bab69a44ce57138643760e3896ba",
+      "outcome": "out-of-scope",
+      "reason": "Devtools adapter tests: panel tests mock the /production core, and new production tests check which core each entry mounts under NODE_ENV production and development. No skill covers devtools tests.",
+      "evidence": ["packages/react-hotkeys-devtools/tests/production.test.ts"]
+    },
+    "source:packages/solid-hotkeys-devtools/tests/panel.test.ts": {
+      "fingerprint": "71899b658494bf163292ab8716b1128d05562b0ba96cae7a1099f030766949a1",
+      "snapshot": {
+        "packages/solid-hotkeys-devtools/tests/panel.test.ts": "92497800303f4ff2372e1094bbeb101b9dfaba17db10accbdba1d448b0821e1f"
+      },
+      "head": "b50789481979bab69a44ce57138643760e3896ba",
+      "outcome": "out-of-scope",
+      "reason": "Devtools adapter tests: panel tests mock the /production core, and new production tests check which core each entry mounts under NODE_ENV production and development. No skill covers devtools tests.",
+      "evidence": ["packages/solid-hotkeys-devtools/tests/panel.test.ts"]
+    },
+    "source:packages/solid-hotkeys-devtools/tests/production.test.ts": {
+      "fingerprint": "4a5bb8270d767ec4cf3f1251b7c47626861eba45b6deae0b9dea4d500b1c2c41",
+      "snapshot": {
+        "packages/solid-hotkeys-devtools/tests/production.test.ts": "02c1f5c4ce57246bc4da776a2b7a6f9e5486ecc8a14a70b8a39e38dc8855cf0b"
+      },
+      "head": "b50789481979bab69a44ce57138643760e3896ba",
+      "outcome": "out-of-scope",
+      "reason": "Devtools adapter tests: panel tests mock the /production core, and new production tests check which core each entry mounts under NODE_ENV production and development. No skill covers devtools tests.",
+      "evidence": ["packages/solid-hotkeys-devtools/tests/production.test.ts"]
+    },
+    "source:packages/vue-hotkeys-devtools/tests/production.test.ts": {
+      "fingerprint": "4adcf8a23af604dfde9896136617b56c79913fc8b6d42a98e1111bdf2f12dd3a",
+      "snapshot": {
+        "packages/vue-hotkeys-devtools/tests/production.test.ts": "1c25a90d9b2d04867831d5672b90b1ed43d086ebc76ff1a6a182663b34ab60bc"
+      },
+      "head": "b50789481979bab69a44ce57138643760e3896ba",
+      "outcome": "out-of-scope",
+      "reason": "Devtools adapter tests: panel tests mock the /production core, and new production tests check which core each entry mounts under NODE_ENV production and development. No skill covers devtools tests.",
+      "evidence": ["packages/vue-hotkeys-devtools/tests/production.test.ts"]
     }
   }
 }
