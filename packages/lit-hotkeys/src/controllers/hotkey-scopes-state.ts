@@ -57,4 +57,13 @@ export class HotkeyScopesStateController implements ReactiveController {
     this._unsubscribe?.()
     this._unsubscribe = undefined
   }
+
+  /**
+   * Releases the controller now and removes it from its host. Use it to
+   * remove a controller early: Lit's `removeController` alone leaves it active.
+   */
+  public dispose(): void {
+    this.hostDisconnected()
+    this._host.removeController(this)
+  }
 }

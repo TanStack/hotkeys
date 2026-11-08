@@ -1,10 +1,10 @@
-import { HotkeysDevtoolsCore } from '@tanstack/hotkeys-devtools'
+import { HotkeysDevtoolsCore } from '@tanstack/hotkeys-devtools/production'
 import { defineComponent, h, onMounted, onUnmounted, ref, watch } from 'vue'
 import type {
   HotkeysDevtoolsCoreClass,
   HotkeysDevtoolsPanelProps,
   HotkeysDevtoolsTheme,
-} from '@tanstack/hotkeys-devtools'
+} from '@tanstack/hotkeys-devtools/production'
 import type { DefineComponent, PropType } from 'vue'
 
 export interface HotkeysDevtoolsVueInit extends Partial<HotkeysDevtoolsPanelProps> {}

@@ -70,6 +70,23 @@ The current scope state.
 
 ## Methods
 
+### dispose()
+
+```ts
+dispose(): void;
+```
+
+Defined in: [controllers/hotkey-scopes-state.ts:65](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-scopes-state.ts#L65)
+
+Releases the controller now and removes it from its host. Use it to
+remove a controller early: Lit's `removeController` alone leaves it active.
+
+#### Returns
+
+`void`
+
+***
+
 ### hostConnected()
 
 ```ts

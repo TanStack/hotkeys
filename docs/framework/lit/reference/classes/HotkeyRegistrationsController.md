@@ -71,6 +71,23 @@ Every registration, chords and sequences (public view, no callbacks).
 
 ## Methods
 
+### dispose()
+
+```ts
+dispose(): void;
+```
+
+Defined in: [controllers/hotkey-registrations.ts:66](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey-registrations.ts#L66)
+
+Releases the controller now and removes it from its host. Use it to
+remove a controller early: Lit's `removeController` alone leaves it active.
+
+#### Returns
+
+`void`
+
+***
+
 ### hostConnected()
 
 ```ts
