@@ -7,8 +7,8 @@
   },
   "dependencies": {
     "@tanstack/svelte-devtools": "^0.1.8",
-    "@tanstack/svelte-hotkeys": "0.21.1",
-    "@tanstack/svelte-hotkeys-devtools": "^0.5.2",
+    "@tanstack/svelte-hotkeys": "0.21.2",
+    "@tanstack/svelte-hotkeys-devtools": "^0.5.3",
     "svelte": "^5.57.3"
   },
   "devDependencies": {
