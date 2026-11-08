@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   Injectable,
+  inject,
   provideZonelessChangeDetection,
   signal,
 } from '@angular/core'
@@ -56,6 +57,21 @@ function signalCounter(changeDetection: ChangeDetectionStrategy) {
   return SignalCounter
 }
 
+class AsyncFieldCounter {
+  count = 0
+  constructor() {
+    injectHotkey('K', async () => {
+      await new Promise((resolve) => setTimeout(resolve, 20))
+      this.count++
+    })
+  }
+}
+Component({
+  selector: 'app-async-counter',
+  template: '{{ count }}',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})(AsyncFieldCounter)
+
 class Recorder {
   recorded = ''
   recorder = injectHotkeyRecorder({
@@ -81,11 +97,29 @@ Component({ selector: 'app-do-check', template: '' })(DoCheckCounter)
 
 class Shortcuts {
   calls = 0
+  count = signal(0)
   constructor() {
-    injectHotkeys([{ hotkey: 'K', callback: () => this.calls++ }])
+    injectHotkeys([
+      {
+        hotkey: 'K',
+        callback: () => {
+          this.calls++
+          this.count.update((n) => n + 1)
+        },
+      },
+    ])
   }
 }
 Injectable({ providedIn: 'root' })(Shortcuts)
+
+class ShortcutsView {
+  shortcuts = inject(Shortcuts)
+}
+Component({
+  selector: 'app-shortcuts-view',
+  template: '{{ shortcuts.count() }}',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})(ShortcutsView)
 
 describe('change detection in zoneless apps', () => {
   beforeEach(() => {
@@ -115,6 +149,16 @@ describe('change detection in zoneless apps', () => {
     }
   }
 
+  it('updates an OnPush view when an async callback changes a field after await', async () => {
+    const fixture = TestBed.createComponent(AsyncFieldCounter)
+    await fixture.whenStable()
+    type('k', 'KeyK')
+    await fixture.whenStable()
+    await new Promise((resolve) => setTimeout(resolve, 40))
+    await fixture.whenStable()
+    expect(fixture.nativeElement.textContent).toBe('1')
+  })
+
   it('updates an OnPush view when onRecord changes a field', async () => {
     const fixture = TestBed.createComponent(Recorder)
     await fixture.whenStable()
@@ -141,5 +185,14 @@ describe('change detection in zoneless apps', () => {
     TestBed.tick()
     type('k', 'KeyK')
     expect(shortcuts.calls).toBe(1)
+  })
+
+  it('updates an OnPush view that reads a root-service signal', async () => {
+    const fixture = TestBed.createComponent(ShortcutsView)
+    await fixture.whenStable()
+    expect(fixture.nativeElement.textContent).toBe('0')
+    type('k', 'KeyK')
+    await fixture.whenStable()
+    expect(fixture.nativeElement.textContent).toBe('1')
   })
 })
