@@ -118,8 +118,8 @@ interface HotkeyRecorderBaseOptions extends RecorderOptions {
   /**
    * Whether to record Tab and Shift+Tab. By default they cancel recording and
    * move focus, so keyboard users can leave the recorder. Tab with Control,
-   * Alt, or Meta is always recorded. When true, tell users that Escape
-   * cancels. Default: false
+   * Alt, or Meta isn't affected. When true, tell users that Escape cancels.
+   * Default: false
    */
   recordTab?: boolean
 }

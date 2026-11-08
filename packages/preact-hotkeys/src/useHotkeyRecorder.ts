@@ -38,8 +38,9 @@ export interface PreactHotkeyRecorder<THotkey extends Hotkey = Hotkey> {
  * `commitKeys: 'none'`), after `idleTimeoutMs`, or when it reaches `maxSteps`,
  * and `onRecord` receives a chord (one step) or a sequence.
  *
- * Escape cancels. Backspace/Delete removes the last step, or calls `onClear`
- * when nothing is recorded.
+ * Escape cancels, and so do Tab and Shift+Tab unless `recordTab` is set.
+ * Backspace/Delete removes the last step, or calls `onClear` when nothing is
+ * recorded.
  *
  * @param options - Configuration options for the recorder
  * @returns The recorder state and controls

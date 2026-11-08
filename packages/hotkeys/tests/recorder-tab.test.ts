@@ -78,6 +78,44 @@ describe('Tab while recording', () => {
   })
 
   it.each([
+    ['Alt', { altKey: true }, 'Alt+[Tab]'],
+    ['Meta', { metaKey: true }, 'Mod+[Tab]'],
+  ] as const)('records Tab with %s', (_, flags, expected) => {
+    const onRecord = vi.fn()
+    recorder({ onRecord })
+    expect(tab(flags).defaultPrevented).toBe(true)
+    expect(onRecord).toHaveBeenCalledWith(expected)
+  })
+
+  it('records Windows AltGr+Tab instead of cancelling', () => {
+    const onRecord = vi.fn()
+    const onCancel = vi.fn()
+    recorder({ platform: 'windows', onRecord, onCancel })
+    // Windows reports AltGr as Control+Alt
+    const event = new KeyboardEvent('keydown', {
+      key: 'Tab',
+      code: 'Tab',
+      ctrlKey: true,
+      altKey: true,
+      bubbles: true,
+      cancelable: true,
+    })
+    Object.defineProperty(event, 'getModifierState', {
+      value: (name: string) => name === 'AltGraph',
+    })
+    document.dispatchEvent(event)
+    expect(onCancel).not.toHaveBeenCalled()
+    expect(onRecord).toHaveBeenCalledWith('Mod+Alt+[Tab]')
+  })
+
+  it('cancels on a repeated Tab without preventing it', () => {
+    const onCancel = vi.fn()
+    recorder({ onRecord: vi.fn(), onCancel })
+    expect(tab({ repeat: true }).defaultPrevented).toBe(false)
+    expect(onCancel).toHaveBeenCalledOnce()
+  })
+
+  it.each([
     ['code', '[Tab]'],
     ['key', 'Tab'],
   ] as const)('records Tab by %s with recordTab', (recordBy, expected) => {

@@ -104,6 +104,27 @@ test.describe('recorder', () => {
     expect(await hk.firedNames()).toEqual([])
   })
 
+  test('Tab moves focus when cancelling removes the focused control', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness(
+      '<input id="before"><button id="start">Record</button><input id="after">',
+    )
+    await page.focus('#start')
+    await hk.call('startRecorder')
+    // Runs right after the recorder's listener, as an onCancel that unmounts would
+    await page.evaluate(() =>
+      document.addEventListener(
+        'keydown',
+        () => document.getElementById('start')?.remove(),
+        { capture: true, once: true },
+      ),
+    )
+    await page.keyboard.press('Tab')
+    await expect(page.locator('#after')).toBeFocused()
+  })
+
   test('recordTab records Tab and keeps focus', async ({ page, harness }) => {
     const hk = await harness(
       '<button id="start">Record</button><input id="after">',

@@ -15,8 +15,9 @@ import type { ReactiveController, ReactiveControllerHost } from 'lit'
  * With the default `maxSteps: 1`, the first valid chord is recorded. With a
  * larger `maxSteps`, each chord adds a step; the recording commits on Enter
  * (unless `commitKeys: 'none'`), after `idleTimeoutMs`, or at `maxSteps`, and
- * `onRecord` receives a chord (one step) or a sequence. Escape cancels;
- * Backspace/Delete removes the last step or clears.
+ * `onRecord` receives a chord (one step) or a sequence. Escape cancels, and
+ * so do Tab and Shift+Tab unless `recordTab` is set; Backspace/Delete removes
+ * the last step or clears.
  *
  * @example
  * ```ts
