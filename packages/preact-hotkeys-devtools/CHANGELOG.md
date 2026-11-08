@@ -1,5 +1,13 @@
 # @tanstack/preact-hotkeys-devtools
 
+## 0.13.4
+
+### Patch Changes
+
+- [#236](https://github.com/TanStack/hotkeys/pull/236) [`90d000d`](https://github.com/TanStack/hotkeys/commit/90d000d06162dae0787366c830216c810b8d49bc) - Add a `@tanstack/preact-hotkeys-devtools/production` entry that exports the active `HotkeysDevtoolsPanel` and `hotkeysDevtoolsPlugin`, so Preact apps can include the devtools in a production build, as with the other framework adapters.
+- Updated dependencies []:
+  - @tanstack/hotkeys-devtools@1.9.2
+
 ## 0.13.3
 
 ### Patch Changes

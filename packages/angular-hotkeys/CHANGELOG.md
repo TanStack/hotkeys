@@ -1,5 +1,26 @@
 # @tanstack/angular-hotkeys
 
+## 0.21.4
+
+### Patch Changes
+
+- [#237](https://github.com/TanStack/hotkeys/pull/237) [`23585af`](https://github.com/TanStack/hotkeys/commit/23585af44b87ccdc6989646311d076a534093bf9) - Hotkey and recorder callbacks now mark the registering component for check, as Angular's own event listeners do, so a callback that changes a plain field updates the view in zoneless apps and OnPush components. An `async` callback marks the component again when its promise settles. Keys that fire no hotkey still don't run change detection. A callback registered in a service outside any component, such as a root service, has no component to mark, so it must write signals to update OnPush or zoneless views.
+
+- [#242](https://github.com/TanStack/hotkeys/pull/242) [`f0b6650`](https://github.com/TanStack/hotkeys/commit/f0b66507efaa81904b779ddaf3b6a00ce092b7c7) - `injectHotkeyRecorder` now follows changes to the provider's `hotkeyRecorder` defaults, such as signal-driven `defaultOptions`, instead of keeping the defaults from when it was injected. A default or getter option that is later removed now goes back to the recorder's default instead of keeping its old value. The docs now say to put a scoped `provideHotkeys` in a component's `providers` rather than `Route.providers`, because by default the router keeps a route's injector, and its scope, after navigation.
+
+- [#240](https://github.com/TanStack/hotkeys/pull/240) [`934af6f`](https://github.com/TanStack/hotkeys/commit/934af6f2faa7e99332233a06c9d0086396f4274d) - The recorder no longer traps keyboard users. While recording, Tab and Shift+Tab cancel the recording, call `onCancel`, and move focus as usual. Before, Tab was recorded and its default prevented, so Escape was the only way to leave without a mouse. Registered hotkeys still skip that press, so an app's own `Tab` hotkey can't block focus. Tab with Control, Alt, or Meta is handled as before, and so is Tab from a text field while `ignoreInputs` is on (the default): focus moves, but the recording continues and `onCancel` isn't called. Set the new `recordTab: true` option to record Tab and Shift+Tab as before, for example in an editor, and tell users that Escape cancels.
+
+- [#241](https://github.com/TanStack/hotkeys/pull/241) [`9bb0125`](https://github.com/TanStack/hotkeys/commit/9bb012526313a433bb3598a98056459f99a4ce4f) - A hotkey whose element target isn't there yet now waits for it in every adapter. Before, a target of `undefined` listened on `document`, so the hotkey fired anywhere on the page until its element mounted. `undefined` is what an unset element usually is: a `useRef()` in React or Preact, a `ref()` in Vue, `createSignal<HTMLElement>()` in Solid, or a `viewChild()` value read in an Angular options function. Now a `target` that is `null` or `undefined`, or a ref that is still unset, registers nothing until the element exists. Only an omitted `target` listens on `document`.
+
+  This changes one case: a wrapper that forwards an optional target, such as `{ target: props.target }`, used to listen on `document` while the prop was unset and now waits. Pass `target: document` to listen on the document explicitly.
+
+  Vue: a template ref on a component, such as `useTemplateRef<InstanceType<typeof Panel>>('panel')`, now works as a `target` and listens on the component's root element. Before, it threw `target.addEventListener is not a function`. A component without a single root element registers nothing.
+
+  Octane: `useHotkey` and `useHotkeys` now accept a ref object, such as `useRef<HTMLDivElement | null>(null)`, as `target`, like the React adapter. The hook reads `current` after each render.
+
+- Updated dependencies [[`934af6f`](https://github.com/TanStack/hotkeys/commit/934af6f2faa7e99332233a06c9d0086396f4274d), [`9bb0125`](https://github.com/TanStack/hotkeys/commit/9bb012526313a433bb3598a98056459f99a4ce4f), [`0d28f6a`](https://github.com/TanStack/hotkeys/commit/0d28f6ab5e4b47d86b3f60eb9a5e2cf6a47d0beb)]:
+  - @tanstack/hotkeys@0.26.0
+
 ## 0.21.3
 
 ### Patch Changes
