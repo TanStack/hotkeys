@@ -520,6 +520,13 @@ skills:
         source: src/_zone.ts
         priority: MEDIUM
         status: active
+      - mistake: Providing a scope in Route.providers
+        mechanism: By default, the router keeps a route's environment injector after navigation (withAutoCleanupInjectors(), Angular 22.2+, destroys it when the reuse strategy's shouldDestroyInjector returns true, except for pages the strategy stores, whose scopes must be disabled on detach), so the scope stays active on the next page and an exclusive one suspends every other hotkey.
+        wrong_pattern: "{ path: 'edit', component: EditPage, providers: [provideHotkeys({ scope: 'edit', exclusive: true })] }"
+        correct_pattern: "@Component({ providers: [provideHotkeys({ scope: 'edit', exclusive: true })] }) class EditPage {}"
+        source: src/hotkeys-provider.ts
+        priority: MEDIUM
+        status: active
   - name: lit-hotkeys
     slug: lit-hotkeys
     domain: framework-bindings

@@ -9,7 +9,12 @@ title: injectDefaultHotkeysOptions
 function injectDefaultHotkeysOptions(): HotkeysProviderOptions;
 ```
 
-Defined in: [hotkeys-provider.ts:295](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L295)
+Defined in: [hotkeys-provider.ts:308](https://github.com/TanStack/hotkeys/blob/main/packages/angular-hotkeys/src/hotkeys-provider.ts#L308)
+
+Returns the nearest provider's default options as they are when injected.
+The value doesn't update when signal-driven defaults change. To follow
+changes, keep `injectHotkeysContext()` and read its `defaultOptions` in a
+`computed` or `effect`.
 
 ## Returns
 

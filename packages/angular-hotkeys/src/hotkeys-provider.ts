@@ -86,7 +86,10 @@ export interface ProvideHotkeysOptions {
 }
 
 export interface HotkeysContextValue {
-  /** Merged with every ancestor provider's defaults, including `hotkey.scope`. */
+  /**
+   * Merged with every ancestor provider's defaults, including `hotkey.scope`.
+   * Reading it in a `computed` or `effect` tracks changes to the defaults.
+   */
   readonly defaultOptions: HotkeysProviderOptions
   /** Whether this provider and every ancestor are enabled. */
   readonly enabled: Signal<boolean>
@@ -215,6 +218,10 @@ function createHotkeysContext(
  * component with no hotkeys of its own calls `injectHotkeysContext()` to
  * activate its scope.
  *
+ * Put a scoped provider in a component's `providers`, not `Route.providers`.
+ * By default, the router keeps a route's injector after navigation, so the
+ * scope would stay active.
+ *
  * @example
  * ```ts
  * bootstrapApplication(App, {
@@ -292,6 +299,12 @@ export function injectHotkeysContext(): HotkeysContextValue {
   return inject(HOTKEYS_INJECTION_TOKEN)
 }
 
+/**
+ * Returns the nearest provider's default options as they are when injected.
+ * The value doesn't update when signal-driven defaults change. To follow
+ * changes, keep `injectHotkeysContext()` and read its `defaultOptions` in a
+ * `computed` or `effect`.
+ */
 export function injectDefaultHotkeysOptions(): HotkeysProviderOptions {
   return injectHotkeysContext().defaultOptions
 }

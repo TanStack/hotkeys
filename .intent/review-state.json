@@ -26,23 +26,23 @@
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "4fb99bc356270b74fd8c4194097d13b191380f7ef815b2985633970ab96b5b64",
+      "fingerprint": "f2f0629f6eafe31c5cb923fea5bd260c9afc74d591f57221018a8bae55f513db",
       "snapshot": {
-        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
+        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "9cc0d3f2a26ee41b3d67f11f8d84c616ae90ab8432e79b3cb7bdef02a31d09ff",
         "docs/framework/angular/quick-start.md": "7cc94e2f2a712f1748357b17784723b327122c43d2051d8d17639adb6af725b6",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "5981f4d923223ae465bd3c6e5e722b6534553f260db7aa6859b1466187c9bdfc",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "983bf60ad88b19c38d0c86cbd1de4fe9f7af74be0826026c7120cbfddb8d3cce",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts": "62debc1f800b07a1a82f879aee2ea37c63aaff22d1c80f9c1a5320388e6d00b5",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts": "73d0c4768121bc54eed662145d552d2d7f93d4d54e072754dc5a9fecfda6b95b",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "4b00cd19f331c334ca11c17f50f41ad3e36b4a575f40ea31e7f6db76bf80db0f",
-        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "f6333a571d6726b76eb7c183cf25a777f49615eaca0331a49d91b5b21cc704cd",
+        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "232908e432cec34e781d6f35222c2ad2395a9ba99c9922e93d100ee794337287",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "e89b404ccc443f00ab26f68e267e2a4fe70e3f2f600d6f5186f77973c8f636ca"
       },
-      "head": "9261e1b18c09a6f8d550319a7352f00e18723c42",
+      "head": "2e59aaf0b14063eb1196f155ca656a3f08d8cbab",
       "outcome": "no-change",
-      "reason": "Merge of main after #237 merged. The pending items changed through #237 (Angular markForCheck), #238 and #239, which recorded their own reviews; this branch's change needs nothing more from them. Any skill_spec.md conflict kept both sides' rows and log entries.",
+      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews. The skill_spec.md conflict kept #241's log entry and this branch's Angular recorder log entry.",
       "evidence": [
-        "Changed: docs/framework/angular/quick-start.md, packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md, packages/angular-hotkeys/src/injectHotkeyRecorder.ts, packages/angular-hotkeys/src/injectHotkeys.ts at 9261e1b18c09a6f8d550319a7352f00e18723c42"
+        "Changed: packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md, packages/angular-hotkeys/src/injectHotkey.ts, packages/angular-hotkeys/src/injectHotkeys.ts at 2e59aaf0b14063eb1196f155ca656a3f08d8cbab"
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
@@ -118,11 +118,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "42b2512f6854dcfedf37d737e63b487d06c5964c",
+      "head": "2e59aaf0b14063eb1196f155ca656a3f08d8cbab",
       "outcome": "no-change",
-      "reason": "Merge of main. The skill and planning items changed through #238 and #239 (Lit override and dispose()), which recorded their own reviews. The skill_spec.md conflict kept both: #239's Lit dispose() row and log entry, and this branch's Vue component-ref row and element-target log entry. This branch's Lit guide target note and the regenerated Lit reference line shift need no further skill change.",
+      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews. The skill_spec.md conflict kept #241's log entry and this branch's Angular recorder log entry.",
       "evidence": [
-        "Changed: docs/guides/sensible-defaults.md at 42b2512f6854dcfedf37d737e63b487d06c5964c"
+        "Changed: docs/framework/react/guides/hotkeys.md at 2e59aaf0b14063eb1196f155ca656a3f08d8cbab"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -137,11 +137,11 @@
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "6f1dd627c166013111da04e1ac708f6dd2cf2523b42a3f56bdde46500208e44d",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef"
       },
-      "head": "42b2512f6854dcfedf37d737e63b487d06c5964c",
+      "head": "2e59aaf0b14063eb1196f155ca656a3f08d8cbab",
       "outcome": "no-change",
-      "reason": "Merge of main. The skill and planning items changed through #238 and #239 (Lit override and dispose()), which recorded their own reviews. The skill_spec.md conflict kept both: #239's Lit dispose() row and log entry, and this branch's Vue component-ref row and element-target log entry. This branch's Lit guide target note and the regenerated Lit reference line shift need no further skill change.",
+      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews. The skill_spec.md conflict kept #241's log entry and this branch's Angular recorder log entry.",
       "evidence": [
-        "Changed: packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md, packages/lit-hotkeys/src/controllers/app-hotkeys.ts, packages/lit-hotkeys/src/controllers/hotkey-recorder.ts, packages/lit-hotkeys/src/controllers/hotkey.ts, packages/lit-hotkeys/src/decorators/hotkey.ts at 42b2512f6854dcfedf37d737e63b487d06c5964c"
+        "Changed: packages/lit-hotkeys/src/controllers/hotkey.ts at 2e59aaf0b14063eb1196f155ca656a3f08d8cbab"
       ]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
@@ -156,14 +156,11 @@
         "packages/octane-hotkeys/src/useHotkey.ts": "d75f727e07f145297fb6ebe0ef51289a925e0d3aba95725f1f73a588db50a1f4",
         "packages/octane-hotkeys/src/useHotkeys.ts": "0794266727ccbe6c340bd162828dcf164c42ebeae66a385e309c0b5e707880b9"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
-      "outcome": "updated",
-      "reason": "Octane now accepts ref objects as target. The 'targets are elements, not ref objects' pitfall became a pitfall about refs missing elements that mount later.",
+      "head": "2e59aaf0b14063eb1196f155ca656a3f08d8cbab",
+      "outcome": "no-change",
+      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews. The skill_spec.md conflict kept #241's log entry and this branch's Angular recorder log entry.",
       "evidence": [
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md",
-        "Adapter and core tests for unset targets pass: packages/hotkeys/tests/unset-values.test.ts, react/preact/vue/solid unset-values tests, angular targets.test.ts, octane ref-targets.test.ts",
-        "pnpm exec intent validate packages/octane-hotkeys/skills passes",
-        "Fresh-consumer session not run"
+        "Changed: packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md, packages/octane-hotkeys/src/useHotkey.ts, packages/octane-hotkeys/src/useHotkeys.ts at 2e59aaf0b14063eb1196f155ca656a3f08d8cbab"
       ]
     },
     "skill:packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": {
@@ -179,12 +176,11 @@
         "packages/preact-hotkeys/src/useHotkeys.ts": "dd4e288866368082653ef208e6fcddf7937f16c5e7fc301d0afd05e1ab596fae",
         "packages/preact-hotkeys/src/utils.ts": "67b3583a90c020b3a5cc7f3cba6668ef98f37d67455f044fcf17667b2cc6db51"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "2e59aaf0b14063eb1196f155ca656a3f08d8cbab",
       "outcome": "no-change",
-      "reason": "Same as React: the ref type admits an undefined current and unset refs wait; the skill's ref pitfalls still hold.",
+      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews. The skill_spec.md conflict kept #241's log entry and this branch's Angular recorder log entry.",
       "evidence": [
-        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md",
-        "Adapter and core tests for unset targets pass: packages/hotkeys/tests/unset-values.test.ts, react/preact/vue/solid unset-values tests, angular targets.test.ts, octane ref-targets.test.ts"
+        "Changed: packages/preact-hotkeys/src/useHotkey.ts, packages/preact-hotkeys/src/utils.ts at 2e59aaf0b14063eb1196f155ca656a3f08d8cbab"
       ]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
@@ -217,12 +213,11 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "2e59aaf0b14063eb1196f155ca656a3f08d8cbab",
       "outcome": "no-change",
-      "reason": "The ref type now admits an undefined current and unset refs wait; the skill's 'pass the ref, not ref.current' and 'keep later elements in state' pitfalls still hold.",
+      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews. The skill_spec.md conflict kept #241's log entry and this branch's Angular recorder log entry.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "Adapter and core tests for unset targets pass: packages/hotkeys/tests/unset-values.test.ts, react/preact/vue/solid unset-values tests, angular targets.test.ts, octane ref-targets.test.ts"
+        "Changed: packages/react-hotkeys/src/useHotkey.ts, packages/react-hotkeys/src/utils.ts at 2e59aaf0b14063eb1196f155ca656a3f08d8cbab"
       ]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
@@ -237,14 +232,11 @@
         "packages/solid-hotkeys/src/createHotkey.ts": "37b41aeec26e1a15eda01dff31fd245487f864e9772c143d95e03bb4289ca4a2",
         "packages/solid-hotkeys/src/createHotkeys.ts": "a3503ed415c6c87fe05153d82f857a7ed7236be6e06007d142615ff7dd7a708f"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
-      "outcome": "updated",
-      "reason": "The skill said an undefined target means document. It now says a plain let variable leaves the hotkey waiting, and that null or undefined targets wait.",
+      "head": "2e59aaf0b14063eb1196f155ca656a3f08d8cbab",
+      "outcome": "no-change",
+      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews. The skill_spec.md conflict kept #241's log entry and this branch's Angular recorder log entry.",
       "evidence": [
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md",
-        "Adapter and core tests for unset targets pass: packages/hotkeys/tests/unset-values.test.ts, react/preact/vue/solid unset-values tests, angular targets.test.ts, octane ref-targets.test.ts",
-        "pnpm exec intent validate packages/solid-hotkeys/skills passes",
-        "Fresh-consumer session not run"
+        "Changed: packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md, packages/solid-hotkeys/src/createHotkey.ts, packages/solid-hotkeys/src/createHotkeys.ts at 2e59aaf0b14063eb1196f155ca656a3f08d8cbab"
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
@@ -283,25 +275,22 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "1cb4d010a0a2d55c8fd0140dc2fee8e018c15b00",
-      "outcome": "updated",
-      "reason": "Vue now unwraps a component ref to its root element. Added a pitfall: component refs work as targets, a component without a single root registers nothing, and a root added or swapped later isn't followed.",
+      "head": "2e59aaf0b14063eb1196f155ca656a3f08d8cbab",
+      "outcome": "no-change",
+      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews. The skill_spec.md conflict kept #241's log entry and this branch's Angular recorder log entry.",
       "evidence": [
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md",
-        "Adapter and core tests for unset targets pass: packages/hotkeys/tests/unset-values.test.ts, react/preact/vue/solid unset-values tests, angular targets.test.ts, octane ref-targets.test.ts",
-        "pnpm exec intent validate packages/vue-hotkeys/skills passes",
-        "Fresh-consumer session not run"
+        "Changed: packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md, packages/vue-hotkeys/src/useHotkey.ts, packages/vue-hotkeys/src/useHotkeys.ts at 2e59aaf0b14063eb1196f155ca656a3f08d8cbab"
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "a134a3fbba9cc42e0aa6e51439c881187c0a192b3c1ccafca67ce6e3467c5b1a",
+      "fingerprint": "8121ab8c3a6ebae6c90d533a065552bb1cae0758bb79334ab07d4a698112e9c0",
       "snapshot": {
-        "_artifacts/domain_map.yaml": "184b14602d896d9b4efc4dbe32f2930d0223e8c53452479ffac69a45acbb42b5",
-        "_artifacts/skill_spec.md": "03a184cc2f18b18d5c03a3a2eb535725f7a661da80d80f6af22a6b4c79752c1b",
+        "_artifacts/domain_map.yaml": "5e6e0616c9e4f1d099c37f2c164285d4a649abc6eb888599ac8d750b55ac5b7c",
+        "_artifacts/skill_spec.md": "bd8e54eb437cda05e72f24149bf198179d4d2688cbd535b08facb46ae88bf9d5",
         "_artifacts/skill_tree.yaml": "bff31ee525c55a3e572083903c5b8deb444cd850845ae2dc1e4b886ce2236a12",
         "docs/framework/alpine/guides/app-hotkeys.md": "cdefefaa71aa9c36da99d314ab0279aa791dcf651bb1fd4cebf7263ba661078a",
         "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
-        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
+        "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "9cc0d3f2a26ee41b3d67f11f8d84c616ae90ab8432e79b3cb7bdef02a31d09ff",
         "docs/framework/angular/quick-start.md": "7cc94e2f2a712f1748357b17784723b327122c43d2051d8d17639adb6af725b6",
         "docs/framework/ember/guides/app-hotkeys.md": "c7c52789e2c869e773cb14b25f8a1dc8e5533569211bac45b0f124eb7c260695",
         "docs/framework/ember/quick-start.md": "b68bb08e413da376299f10925ece54685dcccfbeea98af088f1c58b3c5456f37",
@@ -334,12 +323,12 @@
         "packages/alpine-hotkeys/src/hotkeyRecorderPlugin.ts": "8ff86447e513f47002c49ed9f60269d485b0cd65b87277bb52cf2d8286ddbd36",
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "5b2b94b41d520f3beb60d2ceb15081799873c84c0ff244289d9b3698168c0ead",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "5981f4d923223ae465bd3c6e5e722b6534553f260db7aa6859b1466187c9bdfc",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "983bf60ad88b19c38d0c86cbd1de4fe9f7af74be0826026c7120cbfddb8d3cce",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts": "62debc1f800b07a1a82f879aee2ea37c63aaff22d1c80f9c1a5320388e6d00b5",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts": "73d0c4768121bc54eed662145d552d2d7f93d4d54e072754dc5a9fecfda6b95b",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "4b00cd19f331c334ca11c17f50f41ad3e36b4a575f40ea31e7f6db76bf80db0f",
-        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "f6333a571d6726b76eb7c183cf25a777f49615eaca0331a49d91b5b21cc704cd",
+        "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "232908e432cec34e781d6f35222c2ad2395a9ba99c9922e93d100ee794337287",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "e89b404ccc443f00ab26f68e267e2a4fe70e3f2f600d6f5186f77973c8f636ca",
         "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "d2c51c3efe9a55f605f643f657f6da6d46e3b00acaf879f95acdc3d4ade8fabb",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
@@ -426,11 +415,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "9261e1b18c09a6f8d550319a7352f00e18723c42",
+      "head": "2e59aaf0b14063eb1196f155ca656a3f08d8cbab",
       "outcome": "no-change",
-      "reason": "Merge of main after #237 merged. The pending items changed through #237 (Angular markForCheck), #238 and #239, which recorded their own reviews; this branch's change needs nothing more from them. Any skill_spec.md conflict kept both sides' rows and log entries.",
+      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews. The skill_spec.md conflict kept #241's log entry and this branch's Angular recorder log entry.",
       "evidence": [
-        "Changed: _artifacts/domain_map.yaml, _artifacts/skill_spec.md, docs/framework/angular/quick-start.md, packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md, packages/angular-hotkeys/src/injectHotkeyRecorder.ts, packages/angular-hotkeys/src/injectHotkeys.ts at 9261e1b18c09a6f8d550319a7352f00e18723c42"
+        "Changed: _artifacts/domain_map.yaml, _artifacts/skill_spec.md, docs/framework/react/guides/hotkeys.md, packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md, packages/angular-hotkeys/src/injectHotkey.ts, packages/angular-hotkeys/src/injectHotkeys.ts, packages/lit-hotkeys/src/controllers/hotkey.ts, packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md, packages/octane-hotkeys/src/useHotkey.ts, packages/octane-hotkeys/src/useHotkeys.ts, packages/preact-hotkeys/src/useHotkey.ts, packages/preact-hotkeys/src/utils.ts, packages/react-hotkeys/src/useHotkey.ts, packages/react-hotkeys/src/utils.ts, packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md, packages/solid-hotkeys/src/createHotkey.ts, packages/solid-hotkeys/src/createHotkeys.ts, packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md, packages/vue-hotkeys/src/useHotkey.ts, packages/vue-hotkeys/src/useHotkeys.ts at 2e59aaf0b14063eb1196f155ca656a3f08d8cbab"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -1141,76 +1130,95 @@
       ]
     },
     "source:docs/framework/alpine/guides/hotkeys.md": {
-      "fingerprint": "cb915d91b4d5f8134eea7717c711fd11a195ccc1ef9234c13ad405c49c6a0c08",
+      "fingerprint": "f43c3935011d185920b6935e3e613d23c6ce8b5f5bfb070985b86aea05e78dac",
       "snapshot": {
-        "docs/framework/alpine/guides/hotkeys.md": "c509c97989daee86101335f7aa3a635a596ac2cfdae86562ed78192e1b584ed4"
+        "docs/framework/alpine/guides/hotkeys.md": "5d93592c764b83378e1a55e899f768b59995ff46f038495f28aabf4812466c6a"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
-      "outcome": "no-change",
-      "reason": "The alpine targets guide now says null or undefined targets wait and only an omitted target means document; the alpine-hotkeys skill makes no claim about undefined targets.",
-      "evidence": ["docs/framework/alpine/guides/hotkeys.md"]
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "evidence": [
+        "docs/framework/alpine/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/framework/angular/guides/hotkeys.md": {
-      "fingerprint": "83beed3b7db39630e5c4e08fea67d64b15f495f6815ddb14d651c30d9e487ac1",
+      "fingerprint": "0a53716c413a5fe32010b08b69c03196b466a65271f6b1e1e2ecb767e4faeab0",
       "snapshot": {
-        "docs/framework/angular/guides/hotkeys.md": "be3ca41e4d8f23b009c4537355aa32b65991df8eb908a93a643b4a7572efd879"
+        "docs/framework/angular/guides/hotkeys.md": "b566f27a11c568bbafd8832c3598f93f8e062a95d08d9370af326d015f0117f4"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
       "outcome": "updated",
-      "reason": "The angular targets guide now says null or undefined targets wait and only an omitted target means document; the angular-hotkeys skill was updated to match.",
-      "evidence": ["docs/framework/angular/guides/hotkeys.md"]
+      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "evidence": [
+        "docs/framework/angular/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/framework/ember/guides/hotkeys.md": {
-      "fingerprint": "9e41440d0de038d81516c67116e2d2caaa42bfcecab4a7236e186be0954ea514",
+      "fingerprint": "c65857fc901c2d2bcfe781dcb2ab39e683f28abce8da314648ea4bb75d42c8af",
       "snapshot": {
-        "docs/framework/ember/guides/hotkeys.md": "4286bcae7825cf16bd70e35ed8c7943189714bf1e78f6edaac9811dc233f8fe7"
+        "docs/framework/ember/guides/hotkeys.md": "8270526554653a2e084b9f9c948e656963f64dbc194662b531f0f58f94e8f8d4"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
-      "outcome": "no-change",
-      "reason": "The ember targets guide now says null or undefined targets wait and only an omitted target means document; the ember-hotkeys skill makes no claim about undefined targets.",
-      "evidence": ["docs/framework/ember/guides/hotkeys.md"]
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "evidence": [
+        "docs/framework/ember/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/framework/lit/guides/hotkeys.md": {
-      "fingerprint": "71a16b9870bf4eba9228755e12618bcf3313f3a30cef625c306eefef83e8421c",
+      "fingerprint": "bc007e4ad2712c54864f90568d3b9b2c242649274d987a3eaaf45025b51867f9",
       "snapshot": {
-        "docs/framework/lit/guides/hotkeys.md": "fc4f87c8efea487135c8e03e68578208f94cff1b06f6c28dfba1dd384af3170b"
+        "docs/framework/lit/guides/hotkeys.md": "ad1b6193ee96953f35cd093199ae990b8d9df53ee64321185cead6e2dae0daa4"
       },
-      "head": "42b2512f6854dcfedf37d737e63b487d06c5964c",
-      "outcome": "no-change",
-      "reason": "Merge of main. The skill and planning items changed through #238 and #239 (Lit override and dispose()), which recorded their own reviews. The skill_spec.md conflict kept both: #239's Lit dispose() row and log entry, and this branch's Vue component-ref row and element-target log entry. This branch's Lit guide target note and the regenerated Lit reference line shift need no further skill change.",
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
       "evidence": [
-        "Changed: docs/framework/lit/guides/hotkeys.md at 42b2512f6854dcfedf37d737e63b487d06c5964c"
+        "docs/framework/lit/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
       ]
     },
     "source:docs/framework/octane/guides/hotkeys.md": {
-      "fingerprint": "f8a5b67437a2f63194f3b337fb66a28523f8aad40a082d855957ba7822df759d",
+      "fingerprint": "51f317b559534986998090727ab8f9560b0fd28d0616ce97de9af3e0e47b0af7",
       "snapshot": {
-        "docs/framework/octane/guides/hotkeys.md": "7fe4b085ae3857b068feef1d889fd6a99416c5fc76f808c5345f6dcbaa1ee4ff"
+        "docs/framework/octane/guides/hotkeys.md": "3336c2ccaa09b3b34ab170c5ba699f31f8fea34934d5859a6f14768810ed5011"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
       "outcome": "updated",
-      "reason": "The octane targets guide now says null or undefined targets wait and only an omitted target means document; the octane-hotkeys skill was updated to match.",
-      "evidence": ["docs/framework/octane/guides/hotkeys.md"]
+      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "evidence": [
+        "docs/framework/octane/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/framework/preact/guides/hotkeys.md": {
-      "fingerprint": "e43a77f5c3928be598b9ce9b58ed426424bec05050b3f4243f751a3fdb5cda4f",
+      "fingerprint": "57455f09eeacea0be46dd5e67b49429f660622e4aef98bd40adaa2b9db089a6b",
       "snapshot": {
-        "docs/framework/preact/guides/hotkeys.md": "dda0ed9ca4b33680ce76f0831ec29fcdcec41a34b58a8224587a4437c84f7352"
+        "docs/framework/preact/guides/hotkeys.md": "58f57c9c8b363ea50c7a1ee995a34739260d89d445f30291b092f98774f4caa7"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
-      "outcome": "no-change",
-      "reason": "The preact targets guide now says null or undefined targets wait and only an omitted target means document; the preact-hotkeys skill makes no claim about undefined targets.",
-      "evidence": ["docs/framework/preact/guides/hotkeys.md"]
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
+      "outcome": "updated",
+      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "evidence": [
+        "docs/framework/preact/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/framework/solid/guides/hotkeys.md": {
-      "fingerprint": "604ab5bef6f05441933875de951e33c17ad4407bc203ffc86ee3f80219675d45",
+      "fingerprint": "6c25b1324d2e7640afe7f73c96cbc3abc1578e444b28dc4ec0bf7fc2712b9686",
       "snapshot": {
-        "docs/framework/solid/guides/hotkeys.md": "8f59f8a9adf9ce4f229878ba173aa9e60dc4a285f1b322138047660950118a78"
+        "docs/framework/solid/guides/hotkeys.md": "1567cb148cde0095a59cf329c8182f0bd00f585e221af0b9f1419676cabe197e"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
       "outcome": "updated",
-      "reason": "The solid targets guide now says null or undefined targets wait and only an omitted target means document; the solid-hotkeys skill was updated to match.",
-      "evidence": ["docs/framework/solid/guides/hotkeys.md"]
+      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "evidence": [
+        "docs/framework/solid/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/framework/svelte/guides/hotkeys.md": {
       "fingerprint": "5ed5311cc614e9154b016bbe807dbf19447fe4df5ed347d4b37b93541512ac50",
@@ -1226,14 +1234,17 @@
       ]
     },
     "source:docs/framework/vue/guides/hotkeys.md": {
-      "fingerprint": "d58d9aa6d88286996705ede1a60e986033ff4ceaaf6e23a44a46d82d4f47bbe0",
+      "fingerprint": "41b1eb7c12d139be2641cc78beedae9738ca4f86a5694b7aedf4c297aedb0814",
       "snapshot": {
-        "docs/framework/vue/guides/hotkeys.md": "74b81a6bd78ad6d06cc21080dff7dae446067adc5ccb793dd6de0f68585c719b"
+        "docs/framework/vue/guides/hotkeys.md": "388394b68d4460045e9d6dc0c184e7120662511f8f403597d9c4652e00edebcc"
       },
-      "head": "1cb4d010a0a2d55c8fd0140dc2fee8e018c15b00",
+      "head": "b5e429ab26366a9ed188c9e7cd774fb93dbee1f1",
       "outcome": "updated",
-      "reason": "The vue targets guide now says null or undefined targets wait and only an omitted target means document; the vue-hotkeys skill was updated to match.",
-      "evidence": ["docs/framework/vue/guides/hotkeys.md"]
+      "reason": "Documents ignoreDefaultPrevented, component libraries per framework, and keyup chord release; hotkeys-core SKILL.md has the Escape pitfall. Adapter skills defer to core for option behavior.",
+      "evidence": [
+        "docs/framework/vue/guides/hotkeys.md",
+        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+      ]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
       "fingerprint": "b9fa357f78d458615d84a552dc58c16bde5e516f3f0837db9078183c6b135ff5",
@@ -1433,43 +1444,43 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/alpine/reference/interfaces/AlpineCreateHotkey.md": {
-      "fingerprint": "886b678922ca72c92c829c95bc22c7822e5a31a01f629b72faed75004567d070",
+      "fingerprint": "c5216b7baed345e7bd6abad2dab14a03040a56a139e3d7cf5d88ae8d4c24da40",
       "snapshot": {
-        "docs/framework/alpine/reference/interfaces/AlpineCreateHotkey.md": "464fdfd69f67e48d64e45ed8280c78f0e5d4dc7dfc0cb0d69c226ec59e1c90f3"
+        "docs/framework/alpine/reference/interfaces/AlpineCreateHotkey.md": "86612e846ee164b3e85318527f1cd7d5c208aab1237bf96faf359c6fb2cbb1de"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/alpine/reference/interfaces/AlpineCreateHotkeyRecorder.md": {
-      "fingerprint": "cc3a7a6f26dc36cb98403742b28ed0a550cf38d717d0e3891a5e57e819ff57f8",
+      "fingerprint": "724a1009280a235a555314e356017b075d47b71309a18af86ab75f8c6af41d0b",
       "snapshot": {
-        "docs/framework/alpine/reference/interfaces/AlpineCreateHotkeyRecorder.md": "e6d0e177e359e9ff3b6bb3329faa2e623568fb0e2093bde8f6811e99b845488a"
+        "docs/framework/alpine/reference/interfaces/AlpineCreateHotkeyRecorder.md": "835bcb76b29ef6e043d96a2e1ac7dbc74568d75d1fb0af1eed611ae1b06b08ff"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/alpine/reference/interfaces/AlpineCustomHotkeys.md": {
-      "fingerprint": "7a5284986d27c7ff3557b33606f72923c90ca695ab5d16ff36eeb833fe17500a",
+      "fingerprint": "90aed208e4175c092b593a3c9e635bea1bd903fed2828c2a7b0e63e43c46b837",
       "snapshot": {
-        "docs/framework/alpine/reference/interfaces/AlpineCustomHotkeys.md": "d81082dc21e38a6c6e5fcc260472da2eea0a3c60f2a647bd801e2b1771758d3a"
+        "docs/framework/alpine/reference/interfaces/AlpineCustomHotkeys.md": "fe17874931090b7856e0d34214f2ce04216078ce89578a24d33586be70551e0e"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/alpine/reference/interfaces/AlpineHotkeyRecorder.md": {
-      "fingerprint": "14c8eac38d9d5bd9a195c092009301e24d2b223becde8b81769552beb5815ee3",
+      "fingerprint": "d4694ecbfbd8a0de9cc152f00841c23d05e7f07054af89e57df0cd66d698da7b",
       "snapshot": {
-        "docs/framework/alpine/reference/interfaces/AlpineHotkeyRecorder.md": "49bc1abe51ad05d528510aa84d413490bde02be4d57c8c75cd67515d27ab1d84"
+        "docs/framework/alpine/reference/interfaces/AlpineHotkeyRecorder.md": "baec6a8e24700159d60e14e39a3a97b57933da090f8bfb265d22bb4224464221"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/alpine/reference/interfaces/AlpineHotkeyState.md": {
@@ -1483,93 +1494,93 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/alpine/reference/interfaces/AlpineHotkeys.md": {
-      "fingerprint": "35812b4cbb4836906b42bbc32cd393b01cf0e135ee2362541086a25ec1c253fa",
+      "fingerprint": "4a058fd4bef7c6ad77a22da6c8af0d01872dae0526be1bc34ddd308a503a6623",
       "snapshot": {
-        "docs/framework/alpine/reference/interfaces/AlpineHotkeys.md": "1b7c4ade00e01bd97a6505e6775cd07c3976b3f1dd9cbefb4951e5b7b1c9692d"
+        "docs/framework/alpine/reference/interfaces/AlpineHotkeys.md": "606c70b1852179782686a913de9df8e29a287d1e960d10cdb178ef0c99f5be93"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/alpine/reference/interfaces/DefaultHotkeysOptions.md": {
-      "fingerprint": "193440d89bd19f1e26f8731eae2237cbf411f190a759c46ed6c77ff8c56c5a46",
+      "fingerprint": "44a15ed8d20975d3547d7059486370ca1cb7540573efdaefffcd235697807751",
       "snapshot": {
-        "docs/framework/alpine/reference/interfaces/DefaultHotkeysOptions.md": "342546a57b0073572e2efb59c1d9b336eaf89b0fd4b115a6f6ca300790aa8603"
+        "docs/framework/alpine/reference/interfaces/DefaultHotkeysOptions.md": "c8df7ae8b85bd9288912394c0c029b1eda7ffeb199693ad5b4fe1a452faea2bc"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/alpine/reference/interfaces/HotkeyRegistrationsResult.md": {
-      "fingerprint": "a816b3a50e39811eaa962c51a6e4cab8a272cda9937c1785a6895f796d5b28f6",
+      "fingerprint": "75347357278275be9c4fed0ccf557396c808df3eb7d2e27719a74ebe5929f49f",
       "snapshot": {
-        "docs/framework/alpine/reference/interfaces/HotkeyRegistrationsResult.md": "35d0d05204dac46706e5f68c6d75a36af42c65f8a27dad151599e4aec5e836ff"
+        "docs/framework/alpine/reference/interfaces/HotkeyRegistrationsResult.md": "4c61cc4f7a7a570c698d0532826fd5240a7f689338a1a1a463978a55841d341b"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/alpine/reference/type-aliases/AlpineAppHotkeyOptions.md": {
-      "fingerprint": "08d214da9c1ec969bd779b59bd5737bda7a8cf471b9356ed9efb81f4038756e9",
+      "fingerprint": "ff7e35e9cf202751979c4a9e1b1e5248d7c1639e6ccf70ea86db7aa9fe907f75",
       "snapshot": {
-        "docs/framework/alpine/reference/type-aliases/AlpineAppHotkeyOptions.md": "8d3fbcd420cb969d4417ca88003f31143e4aa274367c4f8c4768bf88b04e1ffd"
+        "docs/framework/alpine/reference/type-aliases/AlpineAppHotkeyOptions.md": "f34250bbf7091e80eb97fb84d40ab68c42923d10387e491a72c2d26c2bdbd29a"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/alpine/reference/type-aliases/AlpineHotkeyCommonOptions.md": {
-      "fingerprint": "08bda10e60999ab843e0a23eb5ec60355b4a46998bd73bbc60fadc9387d10b4c",
+      "fingerprint": "04d5376675849c1348b06c543dce1cb4265e5c0795fbf264b786d0be21bf3c54",
       "snapshot": {
-        "docs/framework/alpine/reference/type-aliases/AlpineHotkeyCommonOptions.md": "b93380d1b1b8f94e7e3336e10e2f380e27a1171affc1db2492a7601eaf6ceb2d"
+        "docs/framework/alpine/reference/type-aliases/AlpineHotkeyCommonOptions.md": "f9dd6bd68d07520852f85430cef61fcee030d109dc0e7546c06df25affd0a6c4"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/alpine/reference/type-aliases/AlpineHotkeyDefinition.md": {
-      "fingerprint": "792c17d7128434a62abe40fc03fa033fe29cf2acd1bfacb5d814b5d3b0bbe12c",
+      "fingerprint": "5c28a76ec9277976203db279801054c3af25839aac859d6778a76b05b9c75d18",
       "snapshot": {
-        "docs/framework/alpine/reference/type-aliases/AlpineHotkeyDefinition.md": "49107ad1312f8340cc88720d5dfd2ea6d503d87993640dfc446cb674f6b67b1c"
+        "docs/framework/alpine/reference/type-aliases/AlpineHotkeyDefinition.md": "58b048cbac5c88e6f52eb0ab46d231840e1c46f7ba514a4bb9984cd02468262f"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/alpine/reference/type-aliases/AlpineHotkeyOptionsFor.md": {
-      "fingerprint": "8231d626be9133a1d70727098feb95286f37d50cae1e4bce6be2a2979e747ebd",
+      "fingerprint": "f475212d89f8086c8aa045b6938d3ae43988e919b0566a6f7f5c3475e227bdfb",
       "snapshot": {
-        "docs/framework/alpine/reference/type-aliases/AlpineHotkeyOptionsFor.md": "387baea287a9022e63afbbb50d20d658a6a5c027c024349adadf97c15da28e29"
+        "docs/framework/alpine/reference/type-aliases/AlpineHotkeyOptionsFor.md": "df1ccda020b09ae71bb7eeea05faa2cc5b95ca1c9b31bf75ea082f396570ac1f"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/alpine/reference/type-aliases/AlpineHotkeyTarget.md": {
-      "fingerprint": "638ce98c827f6705e3d86555867856044e49b3ca751fbe304216b8db1803ee8f",
+      "fingerprint": "e548d98f6fc70522a9ac2de0ad0b1f50ef8904afc1b9974cbc13ea9f9d0a0ed6",
       "snapshot": {
-        "docs/framework/alpine/reference/type-aliases/AlpineHotkeyTarget.md": "82ca2fc2de70617742ae29ca8b6100d7d6926ebb975af7805b3a5042f724aa0a"
+        "docs/framework/alpine/reference/type-aliases/AlpineHotkeyTarget.md": "50d12cd065e24006675e0651daed8dab271dc7ac9ff625ed96cc0012bc3005da"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/alpine/reference/type-aliases/MaybeGetter.md": {
-      "fingerprint": "8467f5784e04b8cf39d4ce4c3b8c74c86335d81ef365b03b106ddcfa268d95d4",
+      "fingerprint": "4a4093c22e76dc6ed84406167880a1976ab9570ff04b9be775b5651cee87e3a1",
       "snapshot": {
-        "docs/framework/alpine/reference/type-aliases/MaybeGetter.md": "06dbc36b311c1093a0647271684270f0a1fc01da1ad08307df64cb1801356c80"
+        "docs/framework/alpine/reference/type-aliases/MaybeGetter.md": "b1703b9d77c1adb44dc5c38065a7ece6ed1cb1183a281b6c3fad770767052f72"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/guides/cheat-sheet-ui-helpers.md": {
@@ -1981,14 +1992,14 @@
       "evidence": ["packages/alpine-hotkeys/src/createHotkeyScopesState.ts"]
     },
     "source:packages/alpine-hotkeys/src/types.ts": {
-      "fingerprint": "c6e6d3def0bbd19690ea939c383a22394860f180eccce334ff1a5b00d9a596a0",
+      "fingerprint": "d7bf8ab0a72bdfcbf9b69a8c7b21dd3c5aa542d1151a3294d458be06329a6bc4",
       "snapshot": {
-        "packages/alpine-hotkeys/src/types.ts": "ee2295a160e0aefa86211170f99cb2ecd415bcbcfabb357b03789e6e1bdda173"
+        "packages/alpine-hotkeys/src/types.ts": "feac465c57915acd8383d6b2fdef222593f75501dc6b55d565c026c56a6d629e"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
-      "reason": "JSDoc and comments now say null or undefined targets wait; the Alpine and Ember skills make no claim about undefined targets.",
-      "evidence": ["packages/alpine-hotkeys/src/types.ts"]
+      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
+      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/angular-hotkeys/src/index.ts": {
       "fingerprint": "9a22e9284c0dc24ed6c38a6965ef04f7985d0853aca3da160e80f8696d394ebd",
@@ -2841,13 +2852,13 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/react/reference/functions/useHotkey.md": {
-      "fingerprint": "abf7827c50549251ef4c1e911c3d93a81a0713f78dc724b0168fc6e71be84b02",
+      "fingerprint": "6db05e126b73eef4f11872a9bba656200f984be6b6ebfcb676883acdf26eb358",
       "snapshot": {
-        "docs/framework/react/reference/functions/useHotkey.md": "fa096ad55ba06aff4464a0fb53fe786175fbb3f46520a1002ffe57c666e02f4e"
+        "docs/framework/react/reference/functions/useHotkey.md": "e1cd63bac76f987d6adbc844be01bb27d3ea46de51c6337fd7cf75bdb14b5b93"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/react/reference/functions/useHotkeyRecorder.md": {
@@ -2950,33 +2961,33 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/react/reference/type-aliases/UseAppHotkeyOptions.md": {
-      "fingerprint": "5beb941259287cb87c77c600ff920c7d839302ac0ef0989d8d4150a8f678e3f4",
+      "fingerprint": "f9d534b8a4d7d121bdeacaa3fbe16a5494dc2e906c7ff7d138b1539284a09d4a",
       "snapshot": {
-        "docs/framework/react/reference/type-aliases/UseAppHotkeyOptions.md": "17a28f1157eaa1f9cf3007b6294d854852237909741fb918eaac900339feedfc"
+        "docs/framework/react/reference/type-aliases/UseAppHotkeyOptions.md": "53c46f1ec4ae6aec64fbb3945ee65f9e495d02242a43874f235053032a890b22"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/react/reference/type-aliases/UseHotkeyChordOptions.md": {
-      "fingerprint": "7696593c66e5cfc8efdf32ddd359bd1f2d5fe89882c7ebf46884efa63f760e97",
+      "fingerprint": "c83438d24ae9a09ccd542c01bb521891f157ba124cdc772e9354bdd3cac77b9f",
       "snapshot": {
-        "docs/framework/react/reference/type-aliases/UseHotkeyChordOptions.md": "dd418c65d7eba265fe43ed0e5338543967f008b90f1f3c5036c616f852a23b07"
+        "docs/framework/react/reference/type-aliases/UseHotkeyChordOptions.md": "738abe62b63d327c0080aab02c428527b2a976d7ac520af1cf5348cad63668d3"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/react/reference/type-aliases/UseHotkeyCommonOptions.md": {
-      "fingerprint": "9ead88a720f7e46881bbd8492a218b1bef85ed36d1b0193a3f574e6f75c86af6",
+      "fingerprint": "dcb940a8c2883ace7ac0204240c9006aa776fa01dff7ba9a933c59d2fc14e71f",
       "snapshot": {
-        "docs/framework/react/reference/type-aliases/UseHotkeyCommonOptions.md": "07ced16bc97be65f127e7b38321f2017e2d496de14f72cebd5ceb82d0d1e8164"
+        "docs/framework/react/reference/type-aliases/UseHotkeyCommonOptions.md": "c794d115bf9bdf2e9e39963aa02fdd1f329c6c5b1ba6377b5cdf8de02a349e00"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/react/reference/type-aliases/UseHotkeyDefinition.md": {
@@ -2990,43 +3001,43 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/react/reference/type-aliases/UseHotkeyOptions.md": {
-      "fingerprint": "b76f0ddfa6aa5171e81c997dc63a5d36e20a6cf57a88ee4703f0308b6a09d959",
+      "fingerprint": "030efee56b55269ea53fd799d1505b72b1261d9b8118e7d93c020d75b34d49b7",
       "snapshot": {
-        "docs/framework/react/reference/type-aliases/UseHotkeyOptions.md": "fefe12dcf3f16d4dc60fa8cee937dc3ede02b012de1e7337e45a38bcfaa1778b"
+        "docs/framework/react/reference/type-aliases/UseHotkeyOptions.md": "46a4c4d770601150aca151fa5ffc5cfcffe9e6ee35d3ebb273bfff79460d4de9"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/react/reference/type-aliases/UseHotkeyOptionsFor.md": {
-      "fingerprint": "59760f2214fdbc8784b27b7084a42aa61b6d09fff4a5ad8415d10d0468cffe3e",
+      "fingerprint": "a47a52cb902688b8c1b7c8eb9bb16645aa45e65e7da74cc1228e880c7158206b",
       "snapshot": {
-        "docs/framework/react/reference/type-aliases/UseHotkeyOptionsFor.md": "83a4ea35bf0cdedbb021658e6c1d9f6280fa34dc45df3f0306f1905eb7e1759d"
+        "docs/framework/react/reference/type-aliases/UseHotkeyOptionsFor.md": "cfa4132c3ddbf6b59ed91598e4aed2c7fe71b6ee3221bac4d502a1594cabbf5f"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/react/reference/type-aliases/UseHotkeySequenceOptions.md": {
-      "fingerprint": "39374275efbf290efee1a9cf6d01ca5c801f795e15f8d59db241346f3d6834ca",
+      "fingerprint": "23a82925250e733e4e8d68572cb0087ed276a6f03d8022f107e109c7cb8bae07",
       "snapshot": {
-        "docs/framework/react/reference/type-aliases/UseHotkeySequenceOptions.md": "e2f2aeb2591f5d20b699c991dd1a89f2acbd70d50be2ba3167f1fbe0d80838f6"
+        "docs/framework/react/reference/type-aliases/UseHotkeySequenceOptions.md": "952b352316ea0549bdbd8ec46d4e38e8cf89745f0a8076d46682b06ae6e5db49"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/react/reference/type-aliases/UseHotkeyTarget.md": {
-      "fingerprint": "b45c83d9d1d1bb438df94edec9dd62b16af5ff11fa8ad3dd8daa7e6cdbce8294",
+      "fingerprint": "82ac8c5e5c922efcef674ddc5b4330028d36ab5e23cece00bfe42bafb2a950c0",
       "snapshot": {
-        "docs/framework/react/reference/type-aliases/UseHotkeyTarget.md": "f53da3c80ee84da2f6100def224486ee335a33e7fbd8ed81f5b4f13f080e8eb3"
+        "docs/framework/react/reference/type-aliases/UseHotkeyTarget.md": "921498e5ff0cb9dce061d6316ef9503600b603f1d3433528000457e7c3aa4cac"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/alpine/reference/functions/hotkeysPlugin.md": {
@@ -3855,16 +3866,14 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/classes/HotkeyController.md": {
-      "fingerprint": "51d0338d6ab61e1e59a7eeafbaefa406c76e60621e51ecd7906e7f13ce475a12",
+      "fingerprint": "cc06948f918adc60cae2cd2bf5ab54bbf054ea259ea6069d63e4a35bb3051075",
       "snapshot": {
-        "docs/framework/lit/reference/classes/HotkeyController.md": "d8aecad82ee9d06fe6f94bca272e9dc25b5acf2a689261ced5ef5ad064aaf043"
+        "docs/framework/lit/reference/classes/HotkeyController.md": "97f2376b1e0013467426b5e3ac1706058a350aa439eb23479c85b60fca1a78c4"
       },
-      "head": "42b2512f6854dcfedf37d737e63b487d06c5964c",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Merge of main. The skill and planning items changed through #238 and #239 (Lit override and dispose()), which recorded their own reviews. The skill_spec.md conflict kept both: #239's Lit dispose() row and log entry, and this branch's Vue component-ref row and element-target log entry. This branch's Lit guide target note and the regenerated Lit reference line shift need no further skill change.",
-      "evidence": [
-        "Changed: docs/framework/lit/reference/classes/HotkeyController.md at 42b2512f6854dcfedf37d737e63b487d06c5964c"
-      ]
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/classes/HotkeyRecorderController.md": {
       "fingerprint": "9bad9711e733aace7705cd37921baeeeac4804c4c6cdccd101c822176a60ea01",
@@ -3897,73 +3906,73 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/type-aliases/AppHotkeyControllerOptions.md": {
-      "fingerprint": "fb7aa2f87198f8dae541681175fd1417bea7b3f17b3fc5a45fa5269e1a543c1f",
+      "fingerprint": "95793206b30d728611205a47aee0975e140426ce0c97ac8154cb0ec46252c65f",
       "snapshot": {
-        "docs/framework/lit/reference/type-aliases/AppHotkeyControllerOptions.md": "e60d5384de45327ae71ec3541b47389c05e06636b1bc4fba761f79e0bad1de4f"
+        "docs/framework/lit/reference/type-aliases/AppHotkeyControllerOptions.md": "ffbd961303988d7a9ab4492d24c81e70f7cd9da581952e07879c7cd7a8ced870"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/type-aliases/HotkeyControllerChordOptions.md": {
-      "fingerprint": "44d794baf0316995ff4ce57bd394cdf34d713d9d424b990a13a03596186aecd0",
+      "fingerprint": "33fa28e8c6126105347139b5a515b1b0d87b6c101639d6cf974bbee589844494",
       "snapshot": {
-        "docs/framework/lit/reference/type-aliases/HotkeyControllerChordOptions.md": "167c0c2063540d04f61b87cfdb06811e8733359ff55a7c88c9158642b57f3da2"
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerChordOptions.md": "600d1434b21807ec22111e1089e38310deca53a540561ab892ffd981883d0082"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/type-aliases/HotkeyControllerCommonOptions.md": {
-      "fingerprint": "e54e4db3d7067e48c208bb83e5783243cea2afc2ae48a4a966fadf40b6699055",
+      "fingerprint": "f53d45833cbd041a00f3fa3a7f691a60d449e51a3d1c4edc3f1a1b558f11c214",
       "snapshot": {
-        "docs/framework/lit/reference/type-aliases/HotkeyControllerCommonOptions.md": "864bedea9e49e8c6e4b877d86f36cf2cdd7e848686aa38f77b91a6fc2af5f977"
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerCommonOptions.md": "198214f6893d15a737f2b22f28612669f0c4e2a9b8afad701df65614bada47ce"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/type-aliases/HotkeyControllerOptions.md": {
-      "fingerprint": "f76a3da926b16caa230e1950045b28880b5eb42e3c2807ea881c546673b67cc0",
+      "fingerprint": "ff156b38aa1e68b9359ffcbc8292c0be4a7768d7328d03ff268f52b8a440ece7",
       "snapshot": {
-        "docs/framework/lit/reference/type-aliases/HotkeyControllerOptions.md": "a49c86547e9290286fa2d24b34c360fccd785aaf8369833db52a0b6c80e282ed"
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerOptions.md": "9c7d69cadc1d3717591ae2ab7f7435d8a31d6eae220715fd7a318cb241792edc"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/type-aliases/HotkeyControllerOptionsFor.md": {
-      "fingerprint": "90cf76ff2013369626d5185d8854471b6ad1b5a5232c52d20699109aaf41f2d3",
+      "fingerprint": "7674e8b40fdc642e600cebfd82ad48f79cfc15fa4864702025145f7778d9c872",
       "snapshot": {
-        "docs/framework/lit/reference/type-aliases/HotkeyControllerOptionsFor.md": "2a901dd749063deadbf48ff9007461d03eb98654506edf5b9885d6e47c3fa6e0"
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerOptionsFor.md": "279a9e337e1ad283d519492c76c265daf0a29882b7b956535285bed2f7936d7a"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/type-aliases/HotkeyControllerSequenceOptions.md": {
-      "fingerprint": "d3756ca4f4188e68667e52e7d7b5aca7dec42f800c5a38e58f68f22e75268628",
+      "fingerprint": "dabccb5cbbfbb4b4fe3c9bd75a07389d55b0d61e018fd50697ae3ff6a3f35aa4",
       "snapshot": {
-        "docs/framework/lit/reference/type-aliases/HotkeyControllerSequenceOptions.md": "29a4f51bbfeee30667806dafd4cad5cb457a9f8d1e05bc336586f79e0122251b"
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerSequenceOptions.md": "1c4d8cfe9a91f5bb39f57182a80deb0edde63ac5273a864d05261b7b60abec35"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/lit/reference/type-aliases/HotkeyControllerTarget.md": {
-      "fingerprint": "5669e18f9700cd7db0b7d7571405d3d0b3ba1fc91ca2bc0f0a3737b734af8615",
+      "fingerprint": "c5ad464da1af742cd57b47404b93e0a4ac002b3bc00baf3094d7810d52aa522b",
       "snapshot": {
-        "docs/framework/lit/reference/type-aliases/HotkeyControllerTarget.md": "c96eaeb700d92a7dac6c4c8f2c56e59f53e741f52ec25a9465853e2b5ab7e47f"
+        "docs/framework/lit/reference/type-aliases/HotkeyControllerTarget.md": "4e229da29494ab259709637259ad7dfa698f2b03a28a60e2d9d1979e3a187a49"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/svelte/reference/functions/createHotkeyRecorder.md": {
@@ -4263,53 +4272,56 @@
       "evidence": ["docs/framework/angular/guides/app-hotkeys.md"]
     },
     "source:docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": {
-      "fingerprint": "d5d718a1edf230b9fae5d92c67246d2e5ea421acae0b1900bdece4f2ab011d22",
+      "fingerprint": "7e0596288d970a70636ae068635d61474de0bd698a399b109321c4b73b3cbeb1",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": "ab50068c829ca7df9e3530f39fffd0426b8efe2cdce68de5e6f3674d9bd16a30"
+        "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": "c1e1e90543a44ad1a6d89d382ac99a481a27114630f726ee3b081a609f80e95d"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "head": "9f37d489e293077f4043814e1833d6c97093065d",
       "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "reason": "Generated typedoc page: line-number shifts in hotkeys-provider.ts source links, plus the new JSDoc notes on injectDefaultHotkeysOptions, HotkeysContextValue.defaultOptions, and provideHotkeys placement. The angular-hotkeys skill already carries the placement pitfall and makes no claim about injectDefaultHotkeysOptions reactivity.",
       "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md"
+        "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts"
       ]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeysContext.md": {
-      "fingerprint": "18c7769c426015a3f39658cf4cd3deeeb5327be58ea004f9b3aeea3f392c4957",
+      "fingerprint": "d0b6ea5bb106f92c7dc5bf35847b5968682978fd86d378a12ab346a8b1f257ee",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectHotkeysContext.md": "7441a7fa09dd7168fec1dd1b618dbe9de52d99a7a7103fc231c397f65595735a"
+        "docs/framework/angular/reference/functions/injectHotkeysContext.md": "29751d21e662861ec675b30159659c0a76f221afca2d122693a5148bfdd829d6"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "head": "9f37d489e293077f4043814e1833d6c97093065d",
       "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "reason": "Generated typedoc page: line-number shifts in hotkeys-provider.ts source links, plus the new JSDoc notes on injectDefaultHotkeysOptions, HotkeysContextValue.defaultOptions, and provideHotkeys placement. The angular-hotkeys skill already carries the placement pitfall and makes no claim about injectDefaultHotkeysOptions reactivity.",
       "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "docs/framework/angular/reference/functions/injectHotkeysContext.md"
+        "docs/framework/angular/reference/functions/injectHotkeysContext.md",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts"
       ]
     },
     "source:docs/framework/angular/reference/functions/provideHotkeys.md": {
-      "fingerprint": "8fc79f3628a5bef7940b5cb76e654e4c03f5bfae364181f859c97b5b130cfb93",
+      "fingerprint": "3915afef0253f79748ef66d433fb471e692730327be69e476204b23a99d2e449",
       "snapshot": {
-        "docs/framework/angular/reference/functions/provideHotkeys.md": "63634d2b3de05022c114db6e6b9c188d9f3486fcf17ac07fd0b24f6de05dbd03"
+        "docs/framework/angular/reference/functions/provideHotkeys.md": "e70c266042622ce8421e7e276efc81ec09d6cfeb8ab8efe7429c865221d46bd9"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "head": "1d397863b84624141c11e2acf1eb8cb2928b3d2a",
       "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "reason": "Generated typedoc page: hotkeys-provider.ts source line shifts plus the new JSDoc on provideHotkeys placement. The angular-hotkeys skill already carries the placement pitfall.",
       "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "docs/framework/angular/reference/functions/provideHotkeys.md"
+        "docs/framework/angular/reference/functions/provideHotkeys.md",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts"
       ]
     },
     "source:docs/framework/angular/reference/interfaces/HotkeysContextValue.md": {
-      "fingerprint": "5870f46d95ac3186a8525db3d186e0b1da52e0e8a42d6c5aae70e60cdcbbe155",
+      "fingerprint": "7f474972f06350b595826f7e606dbd09add35c8a5194b8f554d1ba871420b10e",
       "snapshot": {
-        "docs/framework/angular/reference/interfaces/HotkeysContextValue.md": "60f8267f1ab0c67d42111a9d026275aad76a692ee0e1de7f7b2c3854ffcb92b2"
+        "docs/framework/angular/reference/interfaces/HotkeysContextValue.md": "dbabe549322db16cc4fc2711cbe7d4f36fb03afac74447384d1502a90e827dce"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "9f37d489e293077f4043814e1833d6c97093065d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Generated typedoc page: line-number shifts in hotkeys-provider.ts source links, plus the new JSDoc notes on injectDefaultHotkeysOptions, HotkeysContextValue.defaultOptions, and provideHotkeys placement. The angular-hotkeys skill already carries the placement pitfall and makes no claim about injectDefaultHotkeysOptions reactivity.",
+      "evidence": [
+        "docs/framework/angular/reference/interfaces/HotkeysContextValue.md",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts"
+      ]
     },
     "source:docs/framework/angular/reference/interfaces/HotkeysProviderOptions.md": {
       "fingerprint": "6bc7cd8e86a3c8f967335bfe3bcd1f591dd4bf9bc3f66e9a5433715b3b63eccd",
@@ -4335,24 +4347,30 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/type-aliases/MaybeGetter.md": {
-      "fingerprint": "23a846c7e1131a83d350f871732dda2047d9c1750222b9d3b710141b63bf9120",
+      "fingerprint": "7436cef78b7e4178ad12f7d98a6382e996da1d94a6d1cf11cb8b51e5341e3b78",
       "snapshot": {
-        "docs/framework/angular/reference/type-aliases/MaybeGetter.md": "24eb37ba52a4ce249fa8c55c632eee980f6d332c1bb3226aa13e4122b20de495"
+        "docs/framework/angular/reference/type-aliases/MaybeGetter.md": "1f9247cff7cc0b5391421334d7fd759dfa40e129c8328696ff745d4b63a4057f"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "9f37d489e293077f4043814e1833d6c97093065d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Generated typedoc page: line-number shifts in hotkeys-provider.ts source links, plus the new JSDoc notes on injectDefaultHotkeysOptions, HotkeysContextValue.defaultOptions, and provideHotkeys placement. The angular-hotkeys skill already carries the placement pitfall and makes no claim about injectDefaultHotkeysOptions reactivity.",
+      "evidence": [
+        "docs/framework/angular/reference/type-aliases/MaybeGetter.md",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts"
+      ]
     },
     "source:docs/framework/angular/reference/variables/HOTKEYS_INJECTION_TOKEN.md": {
-      "fingerprint": "7599264dc1120574b99630ae38b54c59299f08b32ab999be1afc4ff4ede8bbea",
+      "fingerprint": "7bd6f3b3e1922fbcb42eb2c0cdc251e6ed1aeeb4abf8aa84c188bfeff12e9858",
       "snapshot": {
-        "docs/framework/angular/reference/variables/HOTKEYS_INJECTION_TOKEN.md": "8dd07038c1d2458c39bb8a8ffcbe6720b3225b29258f9616ab312f899f8c35c9"
+        "docs/framework/angular/reference/variables/HOTKEYS_INJECTION_TOKEN.md": "1039d4e557dc065b88606c3d74978fdf5bda0fe1d74ff4d1d4f0d428cb13db28"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "9f37d489e293077f4043814e1833d6c97093065d",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Generated typedoc page: line-number shifts in hotkeys-provider.ts source links, plus the new JSDoc notes on injectDefaultHotkeysOptions, HotkeysContextValue.defaultOptions, and provideHotkeys placement. The angular-hotkeys skill already carries the placement pitfall and makes no claim about injectDefaultHotkeysOptions reactivity.",
+      "evidence": [
+        "docs/framework/angular/reference/variables/HOTKEYS_INJECTION_TOKEN.md",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts"
+      ]
     },
     "source:docs/framework/octane/guides/app-hotkeys.md": {
       "fingerprint": "ef8489f19eaa326829e431b7766d3da54d2aee875fde5974e7561ef82f6e12be",
@@ -4748,13 +4766,13 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/functions/activateHotkeysProviderScope.md": {
-      "fingerprint": "6807c984f89f805e2ea39bcd7c7cbf0452c3ac20aafc12bbaf3d845b6410d396",
+      "fingerprint": "d3dd03417d2483d6925385f6e83ab55f879bc46e89faf80a12bb43d780ffe114",
       "snapshot": {
-        "docs/reference/adapter/functions/activateHotkeysProviderScope.md": "5e447afd2b1ef060b49655d0ca6d6ae72df3b91d64915775153e59fa53203eab"
+        "docs/reference/adapter/functions/activateHotkeysProviderScope.md": "e5f4e25336eee6133c686285cd8522d615a9c416d33395a87f44f2fb8da277d0"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/functions/createAppHotkeysStore.md": {
@@ -4788,43 +4806,43 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/functions/getHotkeysProviderScopeKey.md": {
-      "fingerprint": "6e377783c95dd1e241600f53e40c68afefb1f6779832764a8dff9ab882ef16ed",
+      "fingerprint": "508fc182c9dc24cc55ac2ce0dfbed788373998e4fff9129d864facac4eac2fdc",
       "snapshot": {
-        "docs/reference/adapter/functions/getHotkeysProviderScopeKey.md": "c105f8997ed4df0b4e570354683b9f1731e00d7e4d30c6def8606081d6333edf"
+        "docs/reference/adapter/functions/getHotkeysProviderScopeKey.md": "cb727170c355be728d15a92c1823cb4b6414636b319f43b5a3c02990f8005063"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md": {
-      "fingerprint": "1686b10a913bad5685351f4f3c75e56695526223139b6238aee13bce19045e77",
+      "fingerprint": "5c1fee2151010ba10bafb488661ef02b34f97e770f42bcd1ba757a1c0a0c0791",
       "snapshot": {
-        "docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md": "f7c47740ad7ec27523cc77feae23748de2b24e56f09548cf0c27f0acc0b85fef"
+        "docs/reference/adapter/functions/mergeHotkeysProviderDefaults.md": "9be13ce1289e3cd5ad77bb64aa622f33a19117b475f589cae0b5574fceac966b"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/functions/prepareHotkeyDefinitions.md": {
-      "fingerprint": "d6829ae4b25093998a4a8719715d844d68a840bf3480e745095857743da41dc7",
+      "fingerprint": "5a0a81a4a19a647bac40e724a4d289d577077f24aea4b6208a5ea9a71b8c41c6",
       "snapshot": {
-        "docs/reference/adapter/functions/prepareHotkeyDefinitions.md": "bf815b629e62e638b173b4a529e50d6fe1af25f6fd8794e8987ebd50d5406d27"
+        "docs/reference/adapter/functions/prepareHotkeyDefinitions.md": "d42f8b18d2dab9477522923b80f483800db07d68b3dfdfb2adc683a4f5c1569b"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/functions/subscribePublishedAppHotkeys.md": {
-      "fingerprint": "7f52b63d06fac94286123144e740f57ee0d00f67cc96b0092c4839bf7ef86393",
+      "fingerprint": "e3e508f2d70ffe324e4f26300b05d9ec41c53c1c9dea97cf9acfd81572babd07",
       "snapshot": {
-        "docs/reference/adapter/functions/subscribePublishedAppHotkeys.md": "5168db05e91bcb4a9650b13b0f9be9740d6e55b09e2842ef2dfd76ae28c96d8a"
+        "docs/reference/adapter/functions/subscribePublishedAppHotkeys.md": "7a0dae7d3877b389ceedd9a40632e0e47bb34bbd3c9ac2712dccff1a9a7e7a8e"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/index.md": {
@@ -4838,23 +4856,23 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md": {
-      "fingerprint": "5e2ddb11119ca00403548d23c6f84524c6e94ef7206370590ed38c143317f563",
+      "fingerprint": "da941c1389738dd02f723044c346137b2e4e12412e64eea6f0a148e59b6f0a3d",
       "snapshot": {
-        "docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md": "f5544e8e1d5bbd118a6e81861cd7bf126004cdfb669b52c55857017603aed478"
+        "docs/reference/adapter/interfaces/HotkeysProviderScopeProps.md": "11f905a559950f1a378cf9de435e95af84e59f34a5b12d2dd14af8fdfb47adbe"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md": {
-      "fingerprint": "5e0841382b10c294de5b27aaf839bb6bb93aeea30b7e5ba6740a971bd2d1f51a",
+      "fingerprint": "a42ac484992dc18a7157a0e2c58c339627ed4ab90de87968733f929e90942dc4",
       "snapshot": {
-        "docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md": "e2b4ace8fdfa603f3198f62c2c871bf184f13b2e7dc79f2ae3d5fc34f5e40e6f"
+        "docs/reference/adapter/interfaces/PrepareHotkeyDefinitionsOptions.md": "e2f24a1e15e953252b3ceea04b10e9bdb35ecc91e0f98fd73e6faa1e6ddf3513"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/adapter/type-aliases/AdapterAppHotkeyOptions.md": {
@@ -5279,17 +5297,14 @@
       ]
     },
     "source:packages/hotkeys/src/adapter.ts": {
-      "fingerprint": "8aa5584ee808d3fec6fae3b0bc7ce63cc4ec1e9fbd8e3aa8b10d9938cbde5eaf",
+      "fingerprint": "a9b25e076d8140da239817b2447c4addd220b26f5d7e3db3cc9d81eff461861b",
       "snapshot": {
-        "packages/hotkeys/src/adapter.ts": "012a056436497f7b3da04fbaa916e04b4ff8b81a083d8dff5ead49d68a1c0aa4"
+        "packages/hotkeys/src/adapter.ts": "fc3e06608248921c49102a6528eac17a62f547c4ca0f6dba5287c333aa0d2b18"
       },
-      "head": "1cb4d010a0a2d55c8fd0140dc2fee8e018c15b00",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "prepareHotkeyDefinitions now treats a target set to undefined, or a resolveTarget result of undefined, like null (waits); only an omitted target listens on document. This is the adapter-author entry point, out of the skills' scope; the adapter skills that described the old rule were updated.",
-      "evidence": [
-        "packages/hotkeys/src/adapter.ts",
-        "Adapter and core tests for unset targets pass: packages/hotkeys/tests/unset-values.test.ts, react/preact/vue/solid unset-values tests, angular targets.test.ts, octane ref-targets.test.ts"
-      ]
+      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "evidence": ["packages/hotkeys/src/adapter.ts", "git diff origin/main"]
     },
     "source:packages/hotkeys/src/key-state-tracker.ts": {
       "fingerprint": "e9ffd10007968fd38efe249963aa86dfa3d720e8392cce16897a6b9fcc04f4e8",
@@ -6628,34 +6643,40 @@
       ]
     },
     "source:docs/framework/angular/reference/functions/injectHotkey.md": {
-      "fingerprint": "f05b6cd7bad8ce746657e14af71342b02d55fb3b6cb5b469b344bdb3f24905ae",
+      "fingerprint": "6e39110df15f0273941a7678377e3d2abaf9ccb0cda405a74817b6f70bce98f3",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectHotkey.md": "14268d7fd3f7b45b079ff035aa34e5dd94d263350ab97a982d4ade7e71e8798e"
+        "docs/framework/angular/reference/functions/injectHotkey.md": "715dc781022c5ae790674c34d739d1aa9459c239aa154c5d26b867be85c937de"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeyRecorder.md": {
-      "fingerprint": "0b4543ebe2e4ed7fe47d88c16fe19c2a6175a22ee378b1860a1f538d4135b408",
+      "fingerprint": "4db53f95449ad317219b6be5aafb4de671a4caed2970572f4b964c905c15f34f",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectHotkeyRecorder.md": "217bc9494c74a2f4a1b04c988e7a503de6b07344d3364f71cb1799b823848442"
+        "docs/framework/angular/reference/functions/injectHotkeyRecorder.md": "e3e969350cfb9d543ffdaf853ad65b1a76330a71eb9037f1a81e524f2070e1c8"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Regenerated TypeDoc page: only Defined-in line numbers shift because injectHotkeys.ts and injectHotkeyRecorder.ts gained an import line. No API or JSDoc change.",
+      "evidence": [
+        "docs/framework/angular/reference/functions/injectHotkeyRecorder.md",
+        "git diff origin/main: only Defined-in lines change"
+      ]
     },
     "source:docs/framework/angular/reference/interfaces/AngularHotkeyRecorder.md": {
-      "fingerprint": "5f3bf5da4c47c085bdbfa0af937cd414394ba957fad093415bcb1cf0fd546eca",
+      "fingerprint": "3d32cf453d7d9eef067d9e14d669c4283a083325354edf3e63818250cbd9316d",
       "snapshot": {
-        "docs/framework/angular/reference/interfaces/AngularHotkeyRecorder.md": "360938c439d0109f6bd687e2a864db722fcb2944e27d7e337aa104f197d7c3f6"
+        "docs/framework/angular/reference/interfaces/AngularHotkeyRecorder.md": "56ff12083d714db30206f94d9c30fe0eeeecb5985d74b80c9762b98d02007556"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Regenerated TypeDoc page: only Defined-in line numbers shift because injectHotkeys.ts and injectHotkeyRecorder.ts gained an import line. No API or JSDoc change.",
+      "evidence": [
+        "docs/framework/angular/reference/interfaces/AngularHotkeyRecorder.md",
+        "git diff origin/main: only Defined-in lines change"
+      ]
     },
     "source:docs/framework/ember/reference/classes/onHotkey.md": {
       "fingerprint": "ffe22af1e14096b340219b0cfbc50e6ea066ab28e7da6f0b00fcd71ee73119b5",
@@ -6688,13 +6709,13 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/reference/functions/useHotkey.md": {
-      "fingerprint": "d1be241b1f4dfddc4b3bb584dd7ccbbb53c0cbec7f5105c4456daa7150890fad",
+      "fingerprint": "ab2e60fb141b898d38733a7cd0c94e918947cd97a73909041d3bb784cef5f1a4",
       "snapshot": {
-        "docs/framework/octane/reference/functions/useHotkey.md": "8b0b38c296f2b1bdac5c1e51d264db2f05a9ffd4fdb03de70e4896435579abd5"
+        "docs/framework/octane/reference/functions/useHotkey.md": "1a76dc24b1a1d4566f54deffbbe9552e7d00511914189a5752e378f8f28feafb"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/reference/functions/useHotkeyRecorder.md": {
@@ -6708,13 +6729,13 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/reference/functions/useHotkey.md": {
-      "fingerprint": "b47fcccb9610a0379a89485cff9ed343db0dc8c5f5a043f4de64660208e6d8c1",
+      "fingerprint": "122fb8e3494f3f80829d56329e9a53a5f7a1419bf1aad876ad5b7589b946f68a",
       "snapshot": {
-        "docs/framework/preact/reference/functions/useHotkey.md": "3302cdcbf7394ce8ed57a387c95ce086eb2ca4d3b3dd459d7e7668196c70d9f7"
+        "docs/framework/preact/reference/functions/useHotkey.md": "6a8fa46b23db9867b51bc05ec084281999a56b7c4ae96aafe0464c033449635a"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/reference/functions/useHotkeyRecorder.md": {
@@ -6758,13 +6779,13 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/solid/reference/functions/createHotkeys.md": {
-      "fingerprint": "d36e43da63075524f80b2aea22575dbd6bb567a9688e86a26485a4d3e3b9f1d7",
+      "fingerprint": "31903bd8e4f7dc6d912fccefa39c771e7faefa8274f63abe6099f99f07407194",
       "snapshot": {
-        "docs/framework/solid/reference/functions/createHotkeys.md": "e0ed71d10adef4feb43b6493d2bd8c39bafa7d6693abaa5e109ba0c71c103e18"
+        "docs/framework/solid/reference/functions/createHotkeys.md": "72387b1ca173776d2cde2c5c0c8efd034341d46fbad91070815b6d26bf0b0bb0"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/solid/reference/interfaces/SolidHotkeyRecorder.md": {
@@ -6778,13 +6799,13 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/functions/useHotkey.md": {
-      "fingerprint": "3d510da442934dae2bfb68acb2ff78797511c21134c70a4cdd44f89d6feb1ecd",
+      "fingerprint": "8c6ef38d1c1c91bad1306d4f8ca00dfb6354dc4b6a2a816609900129462c8471",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useHotkey.md": "2a5ea6e69756758448ac8f4ab8ab3f4cc3344a3c2684bff2a903e59fd1c175c3"
+        "docs/framework/vue/reference/functions/useHotkey.md": "539cc86fcb8061863a5180159c4b56016a22eba9e6adf88b8286df9db2531571"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/functions/useHotkeyRecorder.md": {
@@ -6798,13 +6819,13 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/functions/useHotkeys.md": {
-      "fingerprint": "c0234f85293963a3d66075cc673b6df1c011f28a02e574fcb2fea7415980046a",
+      "fingerprint": "00e124a7140f1b93d326bb07fcbe1e0e1a25ce587a803bee84111b12efd7139e",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useHotkeys.md": "bdcb6afb0e1d316ae242e4bd1193fdab46a7877e1755d94ffa1f9712685653fe"
+        "docs/framework/vue/reference/functions/useHotkeys.md": "c07b03833757875a89aca842e1e273c89ab9787522a225d08219324c56505465"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/interfaces/VueHotkeyRecorder.md": {
@@ -7004,13 +7025,13 @@
       ]
     },
     "source:packages/ember-hotkeys/src/bindings.ts": {
-      "fingerprint": "a62a18a84a29a30e2c0a86c2186a6733151345cd17c309030d71b3f0aa9af45e",
+      "fingerprint": "2bab81a2c8a0afaa164ab2836bcdd81651d57fe2b62757d5d9874512adc5a42f",
       "snapshot": {
-        "packages/ember-hotkeys/src/bindings.ts": "89e5b72013cde1feb07375c902626b8ab33eec374296849ea99b720cddfe3b88"
+        "packages/ember-hotkeys/src/bindings.ts": "452910b6ee09501c5733dbe92788af74f543129d2321bb9253be587e71e5ac00"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "5d9d8332ef4fa70cdcb00bb84f43b4a1ada9df02",
       "outcome": "no-change",
-      "reason": "JSDoc and comments now say null or undefined targets wait; the Alpine and Ember skills make no claim about undefined targets.",
+      "reason": "Reviewed with the mapped skills: option merging, nullish hotkeys, null targets, and customHotkeys updates need no guidance beyond the updated react, preact, and app-hotkeys skills.",
       "evidence": ["packages/ember-hotkeys/src/bindings.ts"]
     },
     "source:packages/ember-hotkeys/tests/integration/unset-options.test.gts": {
@@ -7049,16 +7070,16 @@
       ]
     },
     "source:packages/hotkeys/tests/unset-values.test.ts": {
-      "fingerprint": "1fd23ae28f7ae352221a9c170ab824f2e691758e0295e17288244244d106718c",
+      "fingerprint": "ff782d9b1567c2a97b22291857fdf78796ee13857f4dc77e09d86405e47a4d24",
       "snapshot": {
-        "packages/hotkeys/tests/unset-values.test.ts": "b594abae46df38827af58e1288e7de6023fe3a96438fc8533fdad49fffda7700"
+        "packages/hotkeys/tests/unset-values.test.ts": "ddaba8623082f04eb8047fd05a439bf01b951ab8c355136c2a98f77765791904"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regression test for unset element targets; tests aren't covered by skills.",
+      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
       "evidence": [
         "packages/hotkeys/tests/unset-values.test.ts",
-        "Adapter and core tests for unset targets pass: packages/hotkeys/tests/unset-values.test.ts, react/preact/vue/solid unset-values tests, angular targets.test.ts, octane ref-targets.test.ts"
+        "test:lib passes"
       ]
     },
     "source:packages/lit-hotkeys/tests/unset-values.test.ts": {
@@ -7075,29 +7096,29 @@
       ]
     },
     "source:packages/preact-hotkeys/tests/unset-values.test.tsx": {
-      "fingerprint": "a340271a98a6c41518b19a6ba859f83a3bc880cf36e3e25bf9acb8eb27a0416c",
+      "fingerprint": "ebb829356403e9bd4a1afadc496bd027ccca590f19843f481a8133c5b8d47799",
       "snapshot": {
-        "packages/preact-hotkeys/tests/unset-values.test.tsx": "5b9dc44263a124d3f2728dbd806874dff75618878657428f435b2acc112ce973"
+        "packages/preact-hotkeys/tests/unset-values.test.tsx": "dfc00126716dc0b5cd86405157074b41be9edf1610897113a19d2246ac31f863"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regression test for unset element targets; tests aren't covered by skills.",
+      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
       "evidence": [
         "packages/preact-hotkeys/tests/unset-values.test.tsx",
-        "Adapter and core tests for unset targets pass: packages/hotkeys/tests/unset-values.test.ts, react/preact/vue/solid unset-values tests, angular targets.test.ts, octane ref-targets.test.ts"
+        "test:lib passes"
       ]
     },
     "source:packages/react-hotkeys/tests/unset-values.test.tsx": {
-      "fingerprint": "287d573b06250eb973f8e8c9169c87d48ee64defaf9fa7722088fa10276ffebf",
+      "fingerprint": "cb2e64c320d7cb9807ff472c99f8c36032d7a5db0ce54c3bb093c922ff4e6ac3",
       "snapshot": {
-        "packages/react-hotkeys/tests/unset-values.test.tsx": "11c055d2f49d240480a82b2d4bd2cddde55fc830cceefc64a279da852c443fbf"
+        "packages/react-hotkeys/tests/unset-values.test.tsx": "3a072bea66d79dd062816e72a99e8b01d6b67b7d388e4b863595a9da4139a092"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regression test for unset element targets; tests aren't covered by skills.",
+      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
       "evidence": [
         "packages/react-hotkeys/tests/unset-values.test.tsx",
-        "Adapter and core tests for unset targets pass: packages/hotkeys/tests/unset-values.test.ts, react/preact/vue/solid unset-values tests, angular targets.test.ts, octane ref-targets.test.ts"
+        "test:lib passes"
       ]
     },
     "source:packages/solid-hotkeys/tests/appHotkeys.test.tsx": {
@@ -7114,16 +7135,16 @@
       ]
     },
     "source:packages/solid-hotkeys/tests/unset-values.test.tsx": {
-      "fingerprint": "296c812b8e827269b9bd401b674f792749760fe1c9f87b35db3b7bbe478e9bd8",
+      "fingerprint": "00f4f845ccac85853dc4dea9756869a2ae7718af44f0dd4df91a262b698229d4",
       "snapshot": {
-        "packages/solid-hotkeys/tests/unset-values.test.tsx": "d15f223b1b65cae18c244421a97d90601ef8b96e953aaa6e3a06f625d168210a"
+        "packages/solid-hotkeys/tests/unset-values.test.tsx": "ff25054176380b17afb81880173e9410c6f6861f18958eeea42455d02f542b42"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regression test for unset element targets; tests aren't covered by skills.",
+      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
       "evidence": [
         "packages/solid-hotkeys/tests/unset-values.test.tsx",
-        "Adapter and core tests for unset targets pass: packages/hotkeys/tests/unset-values.test.ts, react/preact/vue/solid unset-values tests, angular targets.test.ts, octane ref-targets.test.ts"
+        "test:lib passes"
       ]
     },
     "source:packages/svelte-hotkeys/tests/CustomHotkeysPropHarness.svelte": {
@@ -7197,16 +7218,16 @@
       ]
     },
     "source:packages/vue-hotkeys/tests/unset-values.test.ts": {
-      "fingerprint": "06bef5713c7877dace7c58b00effd6b6b9f33e345c6c1245f20d49ad32e7a459",
+      "fingerprint": "52abc60d175f74d4c3cd5325a4d3b2fe28dc314564c6b8802cbc187d8b76e90c",
       "snapshot": {
-        "packages/vue-hotkeys/tests/unset-values.test.ts": "e5c3007ed0a7613fa9329f8708d6bb1156f2b74b7861cc2e67b357c0ad91aaed"
+        "packages/vue-hotkeys/tests/unset-values.test.ts": "6473601941d1e2fd1cb319b7ad159848a03c0b2397c69f891b822d6b94b726af"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regression test for unset element targets; tests aren't covered by skills.",
+      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
       "evidence": [
         "packages/vue-hotkeys/tests/unset-values.test.ts",
-        "Adapter and core tests for unset targets pass: packages/hotkeys/tests/unset-values.test.ts, react/preact/vue/solid unset-values tests, angular targets.test.ts, octane ref-targets.test.ts"
+        "test:lib passes"
       ]
     },
     "source:packages/hotkeys/src/_target-listeners.ts": {
@@ -7316,15 +7337,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeys.md": {
-      "fingerprint": "2785f29ab283e34701d587fb899b29c900af970cad2e7706c9760e2b3a7e95eb",
+      "fingerprint": "4d4a59298eb522fd1de5f35561ec94c2f8daede94ea346ec5f9883fb0371264e",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectHotkeys.md": "12971a92ba980d60c88f9a2af43a3b8c544687917f637c3f1b4064d2bebcc012"
+        "docs/framework/angular/reference/functions/injectHotkeys.md": "19cf898e707bf7d89136e4e88e7e66b73bdb38bb4e80ad346e9789e329b2938e"
       },
-      "head": "3885b80b25bccd95b9261bc9484fabe3f3432229",
+      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
       "outcome": "no-change",
-      "reason": "Regenerated Angular injectHotkeys reference after merging main: only a Defined-in line number moved. No skill describes it.",
+      "reason": "Regenerated TypeDoc page: only Defined-in line numbers shift because injectHotkeys.ts and injectHotkeyRecorder.ts gained an import line. No API or JSDoc change.",
       "evidence": [
-        "Changed: docs/framework/angular/reference/functions/injectHotkeys.md at 3885b80b25bccd95b9261bc9484fabe3f3432229"
+        "docs/framework/angular/reference/functions/injectHotkeys.md",
+        "git diff origin/main: only Defined-in lines change"
       ]
     },
     "source:docs/framework/angular/reference/functions/injectKeyHold.md": {
@@ -7338,83 +7360,86 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/type-aliases/InjectAppHotkeyOptions.md": {
-      "fingerprint": "a5bb6439343c9cc53fff4b9c9e8384c4848602582316e6daaa6a279c425aa38c",
+      "fingerprint": "f26b14f994363bea7ee7368ab5c2692ff293750f84302c1391f0c61780334a9e",
       "snapshot": {
-        "docs/framework/angular/reference/type-aliases/InjectAppHotkeyOptions.md": "d43cc3c10fbe48a018cd7a696a5ec7388df3c36be5dbad516e87e9704b25a2a9"
-      },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
-      "evidence": ["pnpm generate-docs"]
-    },
-    "source:docs/framework/angular/reference/type-aliases/InjectHotkeyChordOptions.md": {
-      "fingerprint": "2c68e412b2598d16c9361d1425e3fbce47e4fa8e0a15864bb20069087227122a",
-      "snapshot": {
-        "docs/framework/angular/reference/type-aliases/InjectHotkeyChordOptions.md": "625359d22ac274c0cf63a35750ba956fd5a68e63471ba29ab135a3a1112393ea"
-      },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
-      "evidence": ["pnpm generate-docs"]
-    },
-    "source:docs/framework/angular/reference/type-aliases/InjectHotkeyCommonOptions.md": {
-      "fingerprint": "bcca5f0d4cc09d7f30d2278d3a12e806be1957854c90ff00849dc1cbb7e6643c",
-      "snapshot": {
-        "docs/framework/angular/reference/type-aliases/InjectHotkeyCommonOptions.md": "a5cd6dbca7aee3fc56337d698594212fc899728dd3f9ed61db8d92d3a4fe6eef"
-      },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
-      "evidence": ["pnpm generate-docs"]
-    },
-    "source:docs/framework/angular/reference/type-aliases/InjectHotkeyDefinition.md": {
-      "fingerprint": "e703224526223090b625fc922fe882b7320992bdea9fe27f0185a5d05673ee87",
-      "snapshot": {
-        "docs/framework/angular/reference/type-aliases/InjectHotkeyDefinition.md": "898d58d2d3db9bfe218bff7e04ab94a8f204b287c83d8d09f3fb214fecd4c7f4"
+        "docs/framework/angular/reference/type-aliases/InjectAppHotkeyOptions.md": "2729a4bdc0463da9f826f1683dcca88de6a40a5c6e9516992949b56a21c69b67"
       },
       "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
       "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
-    "source:docs/framework/angular/reference/type-aliases/InjectHotkeyOptions.md": {
-      "fingerprint": "7f0285e5a308d0925deba940dd3f063aef1683d4f1af0724956a72616b0c8a30",
+    "source:docs/framework/angular/reference/type-aliases/InjectHotkeyChordOptions.md": {
+      "fingerprint": "6932bc6e2e4c19b5b4cc66186fd454e2ea5edf38c83032083f9fd04995aefbec",
       "snapshot": {
-        "docs/framework/angular/reference/type-aliases/InjectHotkeyOptions.md": "be6cb1ca55ff2c8958bf0d885089d60a75aa2c1e73a463eab4c5fd5ceb55d163"
+        "docs/framework/angular/reference/type-aliases/InjectHotkeyChordOptions.md": "3f36bdcd33ca8cee340fb5ca747db2234b41783fbf9060a45b748bd7a8dd28d6"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "evidence": ["pnpm generate-docs"]
+    },
+    "source:docs/framework/angular/reference/type-aliases/InjectHotkeyCommonOptions.md": {
+      "fingerprint": "128ca9adc117279218da2f773602bb756426cf102b69940fb026068ea7f82dd3",
+      "snapshot": {
+        "docs/framework/angular/reference/type-aliases/InjectHotkeyCommonOptions.md": "5ec995dfcb09495baba8610ece2e2ed11f6c1f707ea6653077ed6fc1a371a394"
+      },
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "outcome": "no-change",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
+      "evidence": ["pnpm generate-docs"]
+    },
+    "source:docs/framework/angular/reference/type-aliases/InjectHotkeyDefinition.md": {
+      "fingerprint": "f57390c002076f00e297157be154fcb8344ab0fcd10295011604f6ea86ba161c",
+      "snapshot": {
+        "docs/framework/angular/reference/type-aliases/InjectHotkeyDefinition.md": "2e477ea7dee31ac9915ec0ac70b0eebac7c40871e208467cca18acd12681e86d"
+      },
+      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
+      "outcome": "no-change",
+      "reason": "Regenerated TypeDoc page: only Defined-in line numbers shift because injectHotkeys.ts and injectHotkeyRecorder.ts gained an import line. No API or JSDoc change.",
+      "evidence": [
+        "docs/framework/angular/reference/type-aliases/InjectHotkeyDefinition.md",
+        "git diff origin/main: only Defined-in lines change"
+      ]
+    },
+    "source:docs/framework/angular/reference/type-aliases/InjectHotkeyOptions.md": {
+      "fingerprint": "9432c46de2783d1ee3032734a0e047bd20d7049fd0e093aaeec9bb762e105229",
+      "snapshot": {
+        "docs/framework/angular/reference/type-aliases/InjectHotkeyOptions.md": "159f462d8283c59c96d5fe1a7c02f8f8c74fa56a42fc7d38c01ff40ccf1868cc"
+      },
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "outcome": "no-change",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/type-aliases/InjectHotkeyOptionsFor.md": {
-      "fingerprint": "8d1c7fc2040dd1ed021a2ed19335d092664ae894289c107e8146f6d581e8edce",
+      "fingerprint": "43dcad63140323eed5e6a7dcc06839dde92346526decf7ca9eb80a0c2b110d61",
       "snapshot": {
-        "docs/framework/angular/reference/type-aliases/InjectHotkeyOptionsFor.md": "913d1ba267d3e83351f5d8cdd7d67a0755f8b35f0069531a6c284d963ad090fc"
+        "docs/framework/angular/reference/type-aliases/InjectHotkeyOptionsFor.md": "635ed8fba8eb340dab6025683a4996ac36cc119cda4e325a2845f8d0cfb6bd2d"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/type-aliases/InjectHotkeySequenceOptions.md": {
-      "fingerprint": "263d525dfe230456a7db4147703510e63e8b2dae02e974476ddcbb67b2ef8a3e",
+      "fingerprint": "2cd224698082e7fb1a716f0fda32a91e4d68fdfd95d425ef1d975b97e80bdbbd",
       "snapshot": {
-        "docs/framework/angular/reference/type-aliases/InjectHotkeySequenceOptions.md": "9f8899b166b3f6253da2a5c346dc2f74f42e598a35771a20ed19c5a83bbdbbcf"
+        "docs/framework/angular/reference/type-aliases/InjectHotkeySequenceOptions.md": "ce438e19e153153c6099e546d031e453fdb3f33925f0896be3b76b8c86523f77"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/type-aliases/InjectHotkeyTarget.md": {
-      "fingerprint": "94579bac0f923e1233a9f45892248bbe97a20f36085bbd1303c2352874666e29",
+      "fingerprint": "39bc58944c1b577a61af006e9314718e9a065dd033d46aac4f7bfc70cd0fe335",
       "snapshot": {
-        "docs/framework/angular/reference/type-aliases/InjectHotkeyTarget.md": "ea25e266a07d34ffd88ca4d2b9681fd0e4a5d30748b33a572b0124199aa621b7"
+        "docs/framework/angular/reference/type-aliases/InjectHotkeyTarget.md": "c9a8f30ee299c6cd29fe12582f0370631a8aa52970494615a986e32910825d24"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/ember/guides/custom-hotkey-recording.md": {
@@ -7554,37 +7579,40 @@
       "evidence": ["packages/alpine-hotkeys/tests/reactive-options.test.ts"]
     },
     "source:packages/angular-hotkeys/src/_zone.ts": {
-      "fingerprint": "32f40b85f7f4bcdf188e088e061cf4d99c49ed6450147a3dcbb1ad883fa79d27",
+      "fingerprint": "7d3b304c52cfb1442a2fb2c600435fef77cf4cf5048014670a186e37b03e2396",
       "snapshot": {
-        "packages/angular-hotkeys/src/_zone.ts": "f19d61b093d6f0a20a0fc12c3dc95319d3df7317fa2cca8b9471dd80af7a9ea1"
+        "packages/angular-hotkeys/src/_zone.ts": "8232fa6d7943510265613962774a0f2f25d258ce1485e4fee12b20c27b653d14"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
-      "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
-    },
-    "source:packages/angular-hotkeys/tests/targets.test.ts": {
-      "fingerprint": "713a01a02bd507a2c0a286ceb6fa64b93202de5cb9dd1e585b16635219f77374",
-      "snapshot": {
-        "packages/angular-hotkeys/tests/targets.test.ts": "921c3e3423b974245baf2e2db981196a046ba2ed8bffdf80f4eb756d8ad2048c"
-      },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
-      "outcome": "no-change",
-      "reason": "Regression test for unset element targets; tests aren't covered by skills.",
+      "head": "14324436d8fbe3d9d490e987dc5003e7f5f29e55",
+      "outcome": "updated",
+      "reason": "New internal injectWrapCallback helper runs callbacks in the zone and marks the component for check. The angular-hotkeys skill was updated in this review for the root-service case.",
       "evidence": [
-        "packages/angular-hotkeys/tests/targets.test.ts",
-        "Adapter and core tests for unset targets pass: packages/hotkeys/tests/unset-values.test.ts, react/preact/vue/solid unset-values tests, angular targets.test.ts, octane ref-targets.test.ts"
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md",
+        "pnpm vitest run in packages/angular-hotkeys: 11 files, 64 tests pass (zone/zoneless x Default/OnPush x field/signal, recorder, root service, unmatched keys)"
       ]
     },
-    "source:packages/angular-hotkeys/tests/zone.test.ts": {
-      "fingerprint": "069ab777d9760e76595ce82d857763ccd1d817c6410ae9c68ed0da08dcf541d9",
+    "source:packages/angular-hotkeys/tests/targets.test.ts": {
+      "fingerprint": "25343857852fb8aa0acf481e9c83ff623b4c959dc0b84acd5d85088fc2168728",
       "snapshot": {
-        "packages/angular-hotkeys/tests/zone.test.ts": "eb4b3b5337bdfefc34bf34edb781121b0b2f2530c445f86a3d8fc7f2ac480e82"
+        "packages/angular-hotkeys/tests/targets.test.ts": "87f00901ca64e83cb64b936b13de54592c1a0e5defb501a4dc1510c4b29c5b95"
       },
       "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
       "outcome": "no-change",
       "reason": "Covered by the skill reviews for the affected adapters in this PR.",
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+    },
+    "source:packages/angular-hotkeys/tests/zone.test.ts": {
+      "fingerprint": "4a577af406dfa1ed48faad86de1167be05e1b1f7d1b3fb3eedfe70a906cdfed5",
+      "snapshot": {
+        "packages/angular-hotkeys/tests/zone.test.ts": "a3883a9be16603d98e2deb4510dad929d2a356d6fdf64c2527fa5192e68ade38"
+      },
+      "head": "b0b1c63235b066b92922a2b4f370ddefed059f86",
+      "outcome": "no-change",
+      "reason": "Test-only change covering the change detection fix; tests aren't skill guidance.",
+      "evidence": [
+        "packages/angular-hotkeys/tests/zone.test.ts",
+        "pnpm vitest run in packages/angular-hotkeys: 11 files, 64 tests pass (zone/zoneless x Eager/OnPush x field/signal, recorder, root service, unmatched keys)"
+      ]
     },
     "source:packages/hotkeys/src/index.ts": {
       "fingerprint": "0a938f7cd7fd68c1ac2460d1090d6756b4164cbb32dcb3000d98a39f1d7dc9ea",
@@ -7816,13 +7844,13 @@
       ]
     },
     "source:packages/alpine-hotkeys/src/createHotkeys.ts": {
-      "fingerprint": "63e698bb9d3a835f68335ebcbf7964cd6e0dedf0906563293ae4f775571eb251",
+      "fingerprint": "9a1ead191cff53a7ac6fa543f2436389ec9bc71e64ee6ab4d5cb46dac8a971aa",
       "snapshot": {
-        "packages/alpine-hotkeys/src/createHotkeys.ts": "8ba97b162a21248eccaa10e6391b071214cb70de9bcb063c194d4aac1ad4a2ef"
+        "packages/alpine-hotkeys/src/createHotkeys.ts": "6c9d29de0a3a78f1310a0a841e88cc0104a94c530216fcfbf43ee180e55a1a22"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "6b4f6c487211c51b9a58d757c4bddb0459747542",
       "outcome": "no-change",
-      "reason": "JSDoc and comments now say null or undefined targets wait; the Alpine and Ember skills make no claim about undefined targets.",
+      "reason": "Implementation, test, or doc-wording change already reflected in the mapped skills.",
       "evidence": ["packages/alpine-hotkeys/src/createHotkeys.ts"]
     },
     "source:docs/framework/angular/reference/functions/injectFormatForDisplay.md": {
@@ -7854,13 +7882,13 @@
       ]
     },
     "source:docs/framework/ember/reference/interfaces/DefaultHotkeysOptions.md": {
-      "fingerprint": "d90fc53115c09a427ffc99e698a0f70ab725feceee924a324c87fe9a09b62bb2",
+      "fingerprint": "cae9240aecc77cb29fa457629e155620852f3bf2c03140726ef632ad34fa836d",
       "snapshot": {
-        "docs/framework/ember/reference/interfaces/DefaultHotkeysOptions.md": "e2fa6e9c36373ff92ec687ae92cacd75f09f4706ab8b1485b786f88eb7d9fd83"
+        "docs/framework/ember/reference/interfaces/DefaultHotkeysOptions.md": "3d2fd63439fb8e0e64fdc1bf77ed5dc7ad4eb6acc00af5663373ccb9909b229b"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/reference/functions/useFormatForDisplay.md": {
@@ -7948,13 +7976,13 @@
       ]
     },
     "source:docs/reference/adapter/functions/getServerPlatformSnapshot.md": {
-      "fingerprint": "07483359159bc60c391e480ecd96d2c6496b71d8cb39d004e26a4ea4b5c5300d",
+      "fingerprint": "716312779f3abfaf6b254e343f34453dc38fbd7b57754d939e857608fe177a19",
       "snapshot": {
-        "docs/reference/adapter/functions/getServerPlatformSnapshot.md": "0ef7b111389a5f40023ca4b68d4cf610e9fe9beaa894563cf74b474ba3b010ce"
+        "docs/reference/adapter/functions/getServerPlatformSnapshot.md": "7a6910cc7590a59a9e8d480661b7327fcf9b8382b828ff16634b5629102958a1"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/detectPlatform.md": {
@@ -8018,13 +8046,13 @@
       "evidence": ["packages/angular-hotkeys/tests/platform.test.ts"]
     },
     "source:packages/ember-hotkeys/src/types.ts": {
-      "fingerprint": "9c8f4d86d800625fa8454ca48d1cf50876515687564a8135c7c7eb49c7a75091",
+      "fingerprint": "3e8fa1132d34be26ac12b81661b3a7939808bd7e891a1fc2edf25331743b8edd",
       "snapshot": {
-        "packages/ember-hotkeys/src/types.ts": "7e22e659cafc5e51328e8c87768b995cbafdd2ffed349f804e63b8d50054c0b3"
+        "packages/ember-hotkeys/src/types.ts": "aca9e556333223a19ed4f559b62cf433bbfa57b7689c44e412938006dc2685a5"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "9a4d70f6102aef3c5be1caf42c4293012fa675fd",
       "outcome": "no-change",
-      "reason": "JSDoc and comments now say null or undefined targets wait; the Alpine and Ember skills make no claim about undefined targets.",
+      "reason": "Platform options now use the exported HotkeyPlatform type, and the changeset lists all user-facing changes; no behavior change.",
       "evidence": ["packages/ember-hotkeys/src/types.ts"]
     },
     "source:packages/ember-hotkeys/src/useFormatForDisplay.ts": {
@@ -11205,23 +11233,23 @@
       "evidence": [".coderabbit.yaml"]
     },
     "source:docs/framework/ember/reference/interfaces/EmberCustomHotkeys.md": {
-      "fingerprint": "7672e11577b83881de9f6c6374572eb538d0bc8f3ab7b5c293013c9e8b41a7e3",
+      "fingerprint": "66fb35bc2a9a1f6e2935b345441302b74791aeb9896b8ae0ac795919befeb5c1",
       "snapshot": {
-        "docs/framework/ember/reference/interfaces/EmberCustomHotkeys.md": "03f57d98ef999085a3831e144b1c2583724cf9f751a2cf9f8de925f41a301bf1"
+        "docs/framework/ember/reference/interfaces/EmberCustomHotkeys.md": "c69dc61265a551e210fa19a4247680d224a5b92523372f32c9a993bf25ab9d22"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/ember/reference/interfaces/EmberHotkeyRecorder.md": {
-      "fingerprint": "6dae63712f099805e8b545eb1bc427055d746aac8f25f908cb98f68a8f266f7b",
+      "fingerprint": "654d7f37d4cb189a6a3e6a867f9c6c1091a7defdd69d04cfc9661b0a93ebde99",
       "snapshot": {
-        "docs/framework/ember/reference/interfaces/EmberHotkeyRecorder.md": "9643ccee08e5498e82cf993bfcfb8023cba7058ce1582afd7ccbda9214e4097e"
+        "docs/framework/ember/reference/interfaces/EmberHotkeyRecorder.md": "7c5b3e3d3bef08c74ebab45f966ea48d5002d54e15d68cb8d3d862b9006b4ca5"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/ember/reference/interfaces/EmberHotkeyState.md": {
@@ -11235,53 +11263,53 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/ember/reference/interfaces/HotkeyRegistrationsResult.md": {
-      "fingerprint": "ef20d0e9e329ae4edc216e866d604934c64d7d92b7749889b6794ece6a80cbef",
+      "fingerprint": "1fc478652a37778503894d2b75270e7a17a0f6170cc9938eb8119a37addb75de",
       "snapshot": {
-        "docs/framework/ember/reference/interfaces/HotkeyRegistrationsResult.md": "2daad493f7df59a1571741a2be66089d1170573f5f03769e70a8ca1301520b23"
+        "docs/framework/ember/reference/interfaces/HotkeyRegistrationsResult.md": "cc2d1113df9e7bdc94892d22e9a966dd25466220e4fb8ae0132d7190bf9633d8"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/ember/reference/type-aliases/EmberAppHotkeyList.md": {
-      "fingerprint": "3672df4ebdb54692c689a13eac63c3184e406dcddda92ddde398622ace64e41e",
+      "fingerprint": "85652253852f406bc3f945ef6c0c40e57752f14514243da374e80573c5bf56af",
       "snapshot": {
-        "docs/framework/ember/reference/type-aliases/EmberAppHotkeyList.md": "dba0289deb12439efae0c2c27da7e8a25790bfde548bf8be9e0f650e9badb20b"
+        "docs/framework/ember/reference/type-aliases/EmberAppHotkeyList.md": "699b8552ff196773c94487f84b5bf4c868706d2c64d0bcdb5abc105c6952e690"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/ember/reference/type-aliases/EmberHotkeyCommonOptions.md": {
-      "fingerprint": "af13f76a75a6d8f39493a58f44ed15b0e442b992ee1b14467dc4f3ef58f1a1be",
+      "fingerprint": "3cfbe52fdc864ab3b4182c4ecbf716c52a6c5aceede21a229355ef5c44aaf4e0",
       "snapshot": {
-        "docs/framework/ember/reference/type-aliases/EmberHotkeyCommonOptions.md": "446fb670e0cb61e6ca33c4f6a8e5c3df7a7f432e33e081e224f8942dc2f206a9"
+        "docs/framework/ember/reference/type-aliases/EmberHotkeyCommonOptions.md": "262999c698c84602af75da92ba9c743654cbe5a6a7c454b25aebf2e6644de1de"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/ember/reference/type-aliases/EmberHotkeyDefinition.md": {
-      "fingerprint": "27218b3ffc210fb4a181be4120a74664ca157f11b464b2a4d0cb8008d27edc71",
+      "fingerprint": "cc67ddecdef9f041dcb0c72286f64d52ff62b684526a7e5dda7906c73d277555",
       "snapshot": {
-        "docs/framework/ember/reference/type-aliases/EmberHotkeyDefinition.md": "23c837dff8eb33b7c519119f4fb7d3e24c553aaf93f8f36022f244bdaa259f2f"
+        "docs/framework/ember/reference/type-aliases/EmberHotkeyDefinition.md": "bb1410c028aeae2015dbb41493caa478b40f0b2ff0b821ff80d3e796eecf50b6"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/ember/reference/type-aliases/EmberHotkeyTarget.md": {
-      "fingerprint": "0ab02113b8e077c6d317a4891f5f9d79ad2fb1f46ee6da37c807a4a46ccda3cc",
+      "fingerprint": "1a3879b0753157a4a5d4bc8409409fd00c6ed637fbdd9b16b44d36ad960eaf2d",
       "snapshot": {
-        "docs/framework/ember/reference/type-aliases/EmberHotkeyTarget.md": "e9b35e07608cffad3b271babf5321e4889c0a10e2c14ebef6581a499650cd7ed"
+        "docs/framework/ember/reference/type-aliases/EmberHotkeyTarget.md": "ff95388ac5c19196def69c8737368bc41cf4c2fb34ead9197234ab9c91944d99"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/solid/reference/type-aliases/CreateHotkeyDefinition.md": {
@@ -12264,33 +12292,33 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/reference/type-aliases/UseAppHotkeyOptions.md": {
-      "fingerprint": "f7c4f1736f42450d0d4c0550d8d449aee784dc5e308da812ee4f0a5dfc051b19",
+      "fingerprint": "8ada15a11498829d9876ad013b30d6df1ad778127a8c91f14e17b92863bc3ad1",
       "snapshot": {
-        "docs/framework/octane/reference/type-aliases/UseAppHotkeyOptions.md": "bfbe48f3ec3605ca18bb555e1a2626c87802b1aa1efa6f932c22a58c5c1cf353"
+        "docs/framework/octane/reference/type-aliases/UseAppHotkeyOptions.md": "249bd78d2412a315aaf11a3ac4a8cf2574ff796106db7318fb1664ab1c5b9438"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/reference/type-aliases/UseHotkeyChordOptions.md": {
-      "fingerprint": "3f5b686e632b53b3a196854daad55cc1b840272ede3fb55b30d9ce90fcae8a91",
+      "fingerprint": "e21efed0af40a5aa97d27013cabdde10bb8ad2855331481b014f3412f0de1657",
       "snapshot": {
-        "docs/framework/octane/reference/type-aliases/UseHotkeyChordOptions.md": "a96378fc6a1be5b0d6b97ce82f47c4e09f4aa9da96b4105f990574e2f2051761"
+        "docs/framework/octane/reference/type-aliases/UseHotkeyChordOptions.md": "e150459f8f5e7b0033e63318e209210c58cb6689b0b9adc6e05b9ddd25dd5202"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/reference/type-aliases/UseHotkeyCommonOptions.md": {
-      "fingerprint": "81ab515b5eb1e5b76e15b2e3f4b560c2adba0b244afbb3b1b5ffa5cd812cc471",
+      "fingerprint": "b9feca1a0683b5d2d2760078e561ae2f554973cad786865d9c6a2262d09d17be",
       "snapshot": {
-        "docs/framework/octane/reference/type-aliases/UseHotkeyCommonOptions.md": "a28f27fa4920305afd2bd7b2ffaf8ecd2182e6d67c11c06162cbdf87a1ff57fe"
+        "docs/framework/octane/reference/type-aliases/UseHotkeyCommonOptions.md": "cc4b9ffbb2eeca9142a7824f248a077bdaedd6ea37a60223af0243f96f20b0a5"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/reference/type-aliases/UseHotkeyDefinition.md": {
@@ -12304,43 +12332,43 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/reference/type-aliases/UseHotkeyOptions.md": {
-      "fingerprint": "aa822b19475988128dd845d3c943cbbf842ae58be7ef4d79c2f04a83b80affa7",
+      "fingerprint": "85f6cf2da76e233194b592fefd7a01ecf10b8c2758b6bf425d9ac80d73dc9d5e",
       "snapshot": {
-        "docs/framework/octane/reference/type-aliases/UseHotkeyOptions.md": "a7b8df4834050311c9aa47d2e9aaa555f17a9c12787232af230701da969cffc2"
+        "docs/framework/octane/reference/type-aliases/UseHotkeyOptions.md": "a4699e342f9e4aeec05e10129bc1edb59d653449c302ee0e191790363b092045"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/reference/type-aliases/UseHotkeyOptionsFor.md": {
-      "fingerprint": "15e41fb99a3efa781ed5883c77ec16a37217491377144422069d29e59fe9bd2a",
+      "fingerprint": "579b3d6781c60650c452024ee33941fcc834a61bf4651303368de264caf6cf36",
       "snapshot": {
-        "docs/framework/octane/reference/type-aliases/UseHotkeyOptionsFor.md": "6f37af2785c904448926f0ad4d53ebb24089cc35ac230058ed196cd97dcb1f5a"
+        "docs/framework/octane/reference/type-aliases/UseHotkeyOptionsFor.md": "a712b873ce48ff066951514f7e9a99576247b133809851abff260cc8bae51e61"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/reference/type-aliases/UseHotkeySequenceOptions.md": {
-      "fingerprint": "d9cdda9bf551d571866e52a50b09205a6eea2d4576329a2f192869e7ee4ee0a3",
+      "fingerprint": "a4c03580313144f77011758ca6d635ecd65548e5716fe08581175d3855013491",
       "snapshot": {
-        "docs/framework/octane/reference/type-aliases/UseHotkeySequenceOptions.md": "da7e6c6a5ca40dca97f792bc7dd842be966eee17b990a2c2083b2d874e987ba6"
+        "docs/framework/octane/reference/type-aliases/UseHotkeySequenceOptions.md": "1458cc188ebdcc056a6d99dbbe6223862ff077164be19b326750415d01e96fd7"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/reference/type-aliases/UseHotkeyTarget.md": {
-      "fingerprint": "4fea06dd84db8b501ceaf42db931adc9bbde164b90efb1df4ad3966cab88bd16",
+      "fingerprint": "2a8fb33d6af66b6713022cd36c07d012b272a3ebbdda5da6bb03aafbdbc47eb8",
       "snapshot": {
-        "docs/framework/octane/reference/type-aliases/UseHotkeyTarget.md": "958a79ebc765804dd7f89eaab5abb884f8e081e8dda3e3069fc5858ea134c87b"
+        "docs/framework/octane/reference/type-aliases/UseHotkeyTarget.md": "9da30ace9f688f9b6afffd7c2aa39b046aeca0e24eee908a78d52eb44887277a"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/reference/functions/useAppHotkeyList.md": {
@@ -12414,33 +12442,33 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/reference/type-aliases/UseAppHotkeyOptions.md": {
-      "fingerprint": "e03423fb556548c38731f11c5e7235dd0fd8c5dad81525849fc9baad664690fa",
+      "fingerprint": "dc3e16b8c12ec7453fcb88928cd8fbfdd954ac063dc189a0fe466dbad76bbc8b",
       "snapshot": {
-        "docs/framework/preact/reference/type-aliases/UseAppHotkeyOptions.md": "2135ee6a9e4fc557223a3322f015cf3db70568ae68fe53af0d9e308c3619c177"
+        "docs/framework/preact/reference/type-aliases/UseAppHotkeyOptions.md": "0857f986d70d068d87e56f3299954e3663b987612eb3e27e72198b6a9bf84438"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/reference/type-aliases/UseHotkeyChordOptions.md": {
-      "fingerprint": "fad4b29cc75ab13370939cc084cf14aae581c47799b1c4e7102fcabd1e0db9e2",
+      "fingerprint": "1817f2326be6f3e938e3a15b557679cffc4024e778170baaea5c20c72d4385e4",
       "snapshot": {
-        "docs/framework/preact/reference/type-aliases/UseHotkeyChordOptions.md": "80f4cffc98ca3cd91df4e9b0eae32e2e1ad80650d623af9c176434223e833f1a"
+        "docs/framework/preact/reference/type-aliases/UseHotkeyChordOptions.md": "57a147bbfc5f290a5cb4cc1b3bab731c6f779e245f5f81568271d2a36e954ff7"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/reference/type-aliases/UseHotkeyCommonOptions.md": {
-      "fingerprint": "a8d2de46454e7540d33518495e31d6197e89663c6c1305acfcaaa7ef5f409eea",
+      "fingerprint": "a0eabd1f32fb1eb4d6793ed729381a43bcdc30a26151f17fea3d1eac94280edd",
       "snapshot": {
-        "docs/framework/preact/reference/type-aliases/UseHotkeyCommonOptions.md": "94b006f59f692f81ab96eec092c974f35ea1057626e879507d5e7bf6768cbfc6"
+        "docs/framework/preact/reference/type-aliases/UseHotkeyCommonOptions.md": "8f59ea8807ab0fc0c48c33926d75c2da5fc13264f76cb52b2093027760db3a0f"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/reference/type-aliases/UseHotkeyDefinition.md": {
@@ -12454,43 +12482,43 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/reference/type-aliases/UseHotkeyOptions.md": {
-      "fingerprint": "3ffa515db7e2fec76c0a69e3a84924a72bc2b22e8d3095e4e0ce2cfd659af60b",
+      "fingerprint": "56ea0bf8159566537348be44ea256c70bf5053b5f68211483dc696b98ffcac57",
       "snapshot": {
-        "docs/framework/preact/reference/type-aliases/UseHotkeyOptions.md": "8659cb8909e42a2a9fbc8fcf20de5ba515f4e4e4d67479a8f663a114b36f3a9a"
+        "docs/framework/preact/reference/type-aliases/UseHotkeyOptions.md": "a2af491839dbae2f13d87d33d02b2461129ad3bd507a49ac9e876da8bf4583dd"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/reference/type-aliases/UseHotkeyOptionsFor.md": {
-      "fingerprint": "432139b55113988ea011fa9ba27070040acdb98fbc583a84b74a415c57a5ac24",
+      "fingerprint": "d3fec14aff076d20792403e58dd41551db49750fb97d1235980ae9dc58606612",
       "snapshot": {
-        "docs/framework/preact/reference/type-aliases/UseHotkeyOptionsFor.md": "66d534c7bcb31cef9ced62187a7dd03629ddd0ee7b03e288dd45799d67d32398"
+        "docs/framework/preact/reference/type-aliases/UseHotkeyOptionsFor.md": "e46a1f7323d57b8f7c432292eace7debe7c9ef0afd2518829ebd90a7623ee80d"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/reference/type-aliases/UseHotkeySequenceOptions.md": {
-      "fingerprint": "80e25f02e676e3d5b1abcd06a63ddf9e6fae4844e8952f47d9ab486c1d9f0dd2",
+      "fingerprint": "d368f3e378f96f100a5757b6043faa17f12cd6921c1f0385fd07f0edb12fa87f",
       "snapshot": {
-        "docs/framework/preact/reference/type-aliases/UseHotkeySequenceOptions.md": "e11244f8de4f1c4022d3025e7f67caae40dd90a46ec5d4b0fa15444f32c2a155"
+        "docs/framework/preact/reference/type-aliases/UseHotkeySequenceOptions.md": "db8899d641efbecb0a3ecbe670c3f18539b200d0d1eb5b8c4a09b94e375d93f7"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/preact/reference/type-aliases/UseHotkeyTarget.md": {
-      "fingerprint": "dd34e9e070f411b9ab1ea7e77328991f52909925061aef931bfec2e4adbd5a76",
+      "fingerprint": "af7455dd224c9f9ce669b33d7922f0ac25cc50c712725171756ca076de45672e",
       "snapshot": {
-        "docs/framework/preact/reference/type-aliases/UseHotkeyTarget.md": "be1b589cdbe0f640e1ae443bd199e67a0a2c244abe287d881267362544e6242e"
+        "docs/framework/preact/reference/type-aliases/UseHotkeyTarget.md": "32dfe26568e50247d21aecf5bbc7dc39658a32846c7961034ab6dc2d5f74cf41"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/solid/reference/functions/createAppHotkeyList.md": {
@@ -12604,13 +12632,13 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/solid/reference/type-aliases/CreateHotkeyTarget.md": {
-      "fingerprint": "6ec053d7afea016fb04ae0744201f27571557c5c02b9bd80117b143c77985e23",
+      "fingerprint": "58d484130e96db1dec0000a77ace6682ebcf6a14dd04484f8b56e4fcbba6595c",
       "snapshot": {
-        "docs/framework/solid/reference/type-aliases/CreateHotkeyTarget.md": "51253ce45f116eec8e2ba6050c785d666dd0d1aaaa464cb589b737483f766c1a"
+        "docs/framework/solid/reference/type-aliases/CreateHotkeyTarget.md": "99346ae4d6cf639bb2f39697d9c0a8de173e73f9425ea3f2bc7df0016a74a3d9"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/svelte/reference/functions/getHeldKeyCodesMap.md": {
@@ -12734,73 +12762,73 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/type-aliases/UseAppHotkeyOptions.md": {
-      "fingerprint": "6f75ef1ab1f5955eb9f625f7e537af62f3a1e1989cac10406d6dbc2577a77028",
+      "fingerprint": "fbd7c29f65519ffa16c241cf28756a3621a6d2ca8ef96528f84b1e443b7ff3a3",
       "snapshot": {
-        "docs/framework/vue/reference/type-aliases/UseAppHotkeyOptions.md": "b61bdc791ebf0010eea6bdc559564da98104676cd1687dbba0cdba462a982a19"
+        "docs/framework/vue/reference/type-aliases/UseAppHotkeyOptions.md": "6a11cabba45457badae35288494a810c4e088b3f51ce307c004e57121854a1e2"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/type-aliases/UseHotkeyChordOptions.md": {
-      "fingerprint": "bb6539ae9f643db7e554e5d00d3281f1c2a177eeccebbd542c3e6d766c9f05ed",
+      "fingerprint": "3351d9d1eb441405d230c1c1542e758dd9dc2a696294ee1d59c77da3bbc4420e",
       "snapshot": {
-        "docs/framework/vue/reference/type-aliases/UseHotkeyChordOptions.md": "a12b49b986af4307d596d3fe8555ffa5139aad285bc4fc6aba56505b7591d785"
+        "docs/framework/vue/reference/type-aliases/UseHotkeyChordOptions.md": "f43dbadb4e6129cf0e15b9143ecfb344d5d8ab6807c5ebaac2b4f95cccafcbb3"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/type-aliases/UseHotkeyCommonOptions.md": {
-      "fingerprint": "ecff5899818c1061a0087409240476d9879434672ff784e51bb3102a34f62305",
+      "fingerprint": "e36dabcb472fe30c866722b1703dcea164eec3ae078ed3cc1d750bbf28397748",
       "snapshot": {
-        "docs/framework/vue/reference/type-aliases/UseHotkeyCommonOptions.md": "2187b72ddf1f4719e4cf80fc923915d3faa421674b6b4272256154d2331dede0"
+        "docs/framework/vue/reference/type-aliases/UseHotkeyCommonOptions.md": "ea84205a6df48168f70889d61b16dfbcde29b44a6cea8189ad636549efb4964c"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/type-aliases/UseHotkeyOptions.md": {
-      "fingerprint": "2f4f631141b8f60f32a7673d479dd33afe8ec5fab73e5e44992eac4570c585d6",
+      "fingerprint": "a40721ed2cb5079c8ef97d68271536e8ed43ba7d7a06655392711accefdbbdac",
       "snapshot": {
-        "docs/framework/vue/reference/type-aliases/UseHotkeyOptions.md": "52bb916b2dfe5bb6768d243cdbd3d6747e839db87fc35aa1ae669995aeda7111"
+        "docs/framework/vue/reference/type-aliases/UseHotkeyOptions.md": "4015cb419215b29659232c4f7f1b93133848f211c3ad92c8249b06c2782f9ba5"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/type-aliases/UseHotkeyOptionsFor.md": {
-      "fingerprint": "8d1a495ed1959ad08bbc5183f4b80292fd6b982a19fc9f4d1cf4ae3eb0e7900b",
+      "fingerprint": "766c7f17cbe257de0d1ba5266490c95fdec22aa9182b00552f13a76e99aaafcf",
       "snapshot": {
-        "docs/framework/vue/reference/type-aliases/UseHotkeyOptionsFor.md": "e9a008d643668986266df560e049ffca38272cebbb86e4e02a3048d722def0cf"
+        "docs/framework/vue/reference/type-aliases/UseHotkeyOptionsFor.md": "d278cefe7f82186b5b691d40d8e5a72d39b5f61e283735a6ce96ac8b61d617df"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/type-aliases/UseHotkeySequenceOptions.md": {
-      "fingerprint": "69934d53961a0d4cc03c6f47a61f8b4557e63f33b1463dfec9d8e47f24ad01f0",
+      "fingerprint": "09088877f6bea7747b8840e761256b7978a98dd588134782ffc7812b5e503d1d",
       "snapshot": {
-        "docs/framework/vue/reference/type-aliases/UseHotkeySequenceOptions.md": "f1a1271effdd4bd81187bc14705933df88bacab1af470047f5ff4364ffa1a113"
+        "docs/framework/vue/reference/type-aliases/UseHotkeySequenceOptions.md": "5a125321700adcca9add93eca937a38a936a44caa869589429cc8b98805224cd"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/type-aliases/UseHotkeyTarget.md": {
-      "fingerprint": "ed71bb21b7dc034392453711f9617e9c52dc12d155ec71b28e0a2b5d8b933fda",
+      "fingerprint": "a49d3b5a24f1a0b5b19a554fa6bbf9feb4e579cfccec239564101a921a49f994",
       "snapshot": {
-        "docs/framework/vue/reference/type-aliases/UseHotkeyTarget.md": "cafe6ba590ddb349c742001e4c5ea9cd3dbd55679b65f7903c5003ed5233992a"
+        "docs/framework/vue/reference/type-aliases/UseHotkeyTarget.md": "daa64f4f5aca6f47d2d2afe5fa857269c534c702c17f365191341b1fb70bf533"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: target JSDoc and types changed for unset element targets, and Defined-in links follow source line shifts.",
+      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/findHotkeyConflicts.md": {
@@ -13898,17 +13926,14 @@
       ]
     },
     "source:examples/lit/hotkey/src/app.ts": {
-      "fingerprint": "b5f652b73cd80b0bf9e971bf886581dfff16c66c75606c4ebeae9901242d5994",
+      "fingerprint": "5c3f6a04dbbe44823959aea0fbd3815fc6d8f52f624700a59fd1bd14126b97d5",
       "snapshot": {
-        "examples/lit/hotkey/src/app.ts": "d0bf5ca193209bd682025469ff1c9374b66f0d370017d8013103ed3834c747ec"
+        "examples/lit/hotkey/src/app.ts": "c39d7a4e54fe429d44b62a28f9d6dfe8a3e91e7bfb6c25c3ac21a3a6f5541f9e"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
       "outcome": "no-change",
-      "reason": "Example drops a now-unneeded `?? null` on element targets; no skill shows that workaround.",
-      "evidence": [
-        "examples/lit/hotkey/src/app.ts",
-        "Angular example ng build passes; Lit example tsc --noEmit passes"
-      ]
+      "reason": "Example: oxfmt import sorting and line wrapping only, lint scripts use oxlint; no behavior change.",
+      "evidence": ["examples/lit/hotkey/src/app.ts", "lint and build pass"]
     },
     "source:examples/lit/hotkey/src/index.css": {
       "fingerprint": "7dc322bdd23daf1d7f399ec6e19be71842e31d2140ed4601af50cb9341acebff",
@@ -16668,16 +16693,15 @@
       "evidence": ["packages/angular-hotkeys-devtools/tsconfig.json"]
     },
     "source:packages/angular-hotkeys/tests/reactive-options.test.ts": {
-      "fingerprint": "5c073dc150dd2848f890173814cbb08aaea82f1af07d98e076eb0615973bf001",
+      "fingerprint": "5eb3fcb3be532cb4ff467320175a557a8753736d337255d1807f1b1f53e5cbcd",
       "snapshot": {
-        "packages/angular-hotkeys/tests/reactive-options.test.ts": "c201bb2e3bbe355d0750d75467815315a0765c7924f99f4e2b7345c43d701210"
+        "packages/angular-hotkeys/tests/reactive-options.test.ts": "1c5cf8b0e1db0e6f619ad1c860f8097075f3d50932526a4e11c9f0e168bcf23c"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
+      "head": "8a74d11b07f3149b2d21c70766425442acdb0010",
+      "outcome": "updated",
+      "reason": "The Angular skill and domain_map.yaml now qualify withAutoCleanupInjectors(): a custom reuse strategy must report stored pages through retrieveStoredRouteHandles(), and a stored page keeps its injector and scope, so its scope must be disabled on detach (checked against @angular/router 22.2.5 routeInjectorCleanup). The recorder now clears options removed from provider defaults or getters; the new test covers it. No skill claims anything about removed options.",
       "evidence": [
-        "packages/angular-hotkeys/tests/reactive-options.test.ts",
-        "test:lib passes"
+        "Changed: packages/angular-hotkeys/tests/reactive-options.test.ts at 8a74d11b07f3149b2d21c70766425442acdb0010"
       ]
     },
     "source:packages/ember-hotkeys/src/useKeyHold.ts": {
@@ -17584,56 +17608,17 @@
       "reason": "E2E test infrastructure only: layout fixture probes real key input before each case, and the Docker image matches @playwright/test 1.65.0. No library behavior or guidance changes.",
       "evidence": ["e2e/support/fixtures.ts"]
     },
-    "source:examples/angular/injectHotkey/src/app/app.component.html": {
-      "fingerprint": "466dd7c508dc3cba72332a57f4e529747ba5e832e95405539cebeec455243e19",
+    "source:packages/angular-hotkeys/tests/change-detection.test.ts": {
+      "fingerprint": "917cbba2e216e6eab31d28c71e010ce8fff91935ab3fe81c28a11b76f15c3659",
       "snapshot": {
-        "examples/angular/injectHotkey/src/app/app.component.html": "9b5200b71099e416eadb44b292f8f4b1d40e556378c1a67f73adc691202cad0d"
+        "packages/angular-hotkeys/tests/change-detection.test.ts": "e67ab1dba38e7928e8f56e694bf6b0720ff5bfb9a469e8bee8b213f25e550eda"
       },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
+      "head": "b0b1c63235b066b92922a2b4f370ddefed059f86",
       "outcome": "no-change",
-      "reason": "Example drops a now-unneeded `?? null` on element targets; no skill shows that workaround.",
+      "reason": "Test-only change covering the change detection fix; tests aren't skill guidance.",
       "evidence": [
-        "examples/angular/injectHotkey/src/app/app.component.html",
-        "Angular example ng build passes; Lit example tsc --noEmit passes"
-      ]
-    },
-    "source:examples/angular/injectHotkey/src/app/app.component.ts": {
-      "fingerprint": "0315359bc35d1fe95437a37b29d7f17dc26991741a156e3c349da33d7cbbd93d",
-      "snapshot": {
-        "examples/angular/injectHotkey/src/app/app.component.ts": "87de875adf981ce207e960a251fe32ac339589b120b13d6f5dfeb76257f3d98d"
-      },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
-      "outcome": "no-change",
-      "reason": "Example drops a now-unneeded `?? null` on element targets; no skill shows that workaround.",
-      "evidence": [
-        "examples/angular/injectHotkey/src/app/app.component.ts",
-        "Angular example ng build passes; Lit example tsc --noEmit passes"
-      ]
-    },
-    "source:packages/octane-hotkeys/tests/ref-targets.test.ts": {
-      "fingerprint": "5fbd09c5ee7b7833026c0be39f4d2a6f016e76617cb03f34aa951ff95f4b2a21",
-      "snapshot": {
-        "packages/octane-hotkeys/tests/ref-targets.test.ts": "46b5015d431c1492a2366413b4f090adf8471756313c749ebade5c7e89976cd1"
-      },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
-      "outcome": "no-change",
-      "reason": "Regression test for unset element targets; tests aren't covered by skills.",
-      "evidence": [
-        "packages/octane-hotkeys/tests/ref-targets.test.ts",
-        "Adapter and core tests for unset targets pass: packages/hotkeys/tests/unset-values.test.ts, react/preact/vue/solid unset-values tests, angular targets.test.ts, octane ref-targets.test.ts"
-      ]
-    },
-    "source:packages/octane-hotkeys/tests/ref-targets.tsrx": {
-      "fingerprint": "89d76a4cf293f76df49affa98e07e1a11c0b9bf415a084b71a2349e438af28e6",
-      "snapshot": {
-        "packages/octane-hotkeys/tests/ref-targets.tsrx": "74afbd12c1a3b4657e999cad6990f75e6aad1600c52b66aa39f691a9070ffd27"
-      },
-      "head": "06ce5e345e6f6f4ad6265c5bb6c8623f5eeea5c1",
-      "outcome": "no-change",
-      "reason": "Regression test for unset element targets; tests aren't covered by skills.",
-      "evidence": [
-        "packages/octane-hotkeys/tests/ref-targets.tsrx",
-        "Adapter and core tests for unset targets pass: packages/hotkeys/tests/unset-values.test.ts, react/preact/vue/solid unset-values tests, angular targets.test.ts, octane ref-targets.test.ts"
+        "packages/angular-hotkeys/tests/change-detection.test.ts",
+        "pnpm vitest run in packages/angular-hotkeys: 11 files, 64 tests pass (zone/zoneless x Eager/OnPush x field/signal, recorder, root service, unmatched keys)"
       ]
     }
   }

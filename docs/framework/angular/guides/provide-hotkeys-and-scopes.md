@@ -100,6 +100,35 @@ export class LoadingOverlay {
 
 Scopes are names, not instances. Two components that provide the `editor` scope share one scope, and it stays active until both are destroyed. Give each region its own name when you need to turn them on and off separately.
 
+### Scopes for a route's page
+
+Put a page's scope in its component's `providers`, not in the route's `providers`. The router creates an injector for `Route.providers` and keeps it after the user navigates away, so a scope provided there stays active on the next page. An exclusive one keeps every other hotkey suspended.
+
+```ts
+// Don't: the 'edit' scope outlives the page
+const routes: Routes = [
+  {
+    path: 'edit',
+    component: EditPage,
+    providers: [provideHotkeys({ scope: 'edit', exclusive: true })],
+  },
+]
+
+// Do: the scope ends when the page component is destroyed
+@Component({
+  selector: 'app-edit-page',
+  providers: [provideHotkeys({ scope: 'edit', exclusive: true })],
+  template: `...`,
+})
+export class EditPage {
+  constructor() {
+    injectHotkey('Escape', () => this.cancel())
+  }
+}
+```
+
+If the scope must stay in `Route.providers`, and your app uses Angular 22.2 or later, add [`withAutoCleanupInjectors()`](https://angular.dev/api/router/withAutoCleanupInjectors) to `provideRouter`. The router then destroys a route's injector when its page leaves, and the scope ends with it. This works with the default route reuse strategy. A custom `RouteReuseStrategy` must return `true` from `shouldDestroyInjector`, and must report the pages it stores through `retrieveStoredRouteHandles()`, or the router can destroy a stored page's injector. A stored page keeps its injector, so its scope stays active; turn it off while the page is detached, as in [Pages kept alive by route reuse](#pages-kept-alive-by-route-reuse).
+
 ## Scopes and targets
 
 A scope and a [target](./hotkeys#hotkey-targets) both limit when a hotkey works, and a hotkey can have both:
