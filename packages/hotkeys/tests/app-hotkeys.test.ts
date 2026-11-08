@@ -365,6 +365,19 @@ describe('AppHotkeysStore.setOptions platform', () => {
     subscription.unsubscribe()
   })
 
+  it('keeps saved hotkeys that only match on the current platform', () => {
+    const store = new AppHotkeysStore(appHotkeys, {
+      customHotkeys: { 'doc.save': 'Mod+G' },
+      platform: 'mac',
+    })
+
+    // Equal to Mod+G on macOS, but not after a switch to Windows
+    store.setOptions({ customHotkeys: { 'doc.save': 'Meta+G' } })
+    store.setOptions({ platform: 'windows' })
+
+    expect(store.appHotkeys['doc.save'].hotkey).toBe('Meta+G')
+  })
+
   it('does not notify when the platform is unchanged or not passed', () => {
     const store = new AppHotkeysStore(appHotkeys, { platform: 'mac' })
     const listener = vi.fn()

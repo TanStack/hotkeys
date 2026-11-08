@@ -125,13 +125,6 @@ export const HotkeysProvider: ParentComponent<HotkeysProviderProps> = (
     if (props.appHotkeys) store?.setAppHotkeys(props.appHotkeys)
   })
 
-  // Apply saved custom hotkeys whose value changes, such as data that loads
-  // after the first render.
-  createEffect(() => {
-    const customHotkeys = props.customHotkeys
-    store?.setOptions({ customHotkeys })
-  })
-
   // Publish the store so devtools can list declared hotkeys.
   onMount(() => {
     if (store) onCleanup(publishAppHotkeysStore(store))
@@ -145,10 +138,13 @@ export const HotkeysProvider: ParentComponent<HotkeysProviderProps> = (
       props.scope,
     ),
   )
+  // Apply the platform and saved custom hotkeys whose value changes, such as
+  // data that loads after the first render. One call applies both together.
   if (store) {
     createEffect(() => {
+      const customHotkeys = props.customHotkeys
       const platform = defaultOptions().platform
-      store.setOptions({ platform })
+      store.setOptions({ customHotkeys, platform })
     })
   }
   // Compared by value, so a new `exclusive` object does not reactivate the

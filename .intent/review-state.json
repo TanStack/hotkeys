@@ -26,24 +26,24 @@
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "15aa19db6ece99a770f82829c77d91586d94d22c77702cc6a043f31f07d032cc",
+      "fingerprint": "927cb913983b72ff7a6f7cdedd049bdee5429ebed51db870177c20f4ef119179",
       "snapshot": {
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "1782701f983bce15c2cf4461969d3cb0eab3753ae7a9f0ffcb81ff708578ac13",
         "docs/framework/angular/quick-start.md": "2eb59bbc55c4845b7d1176becd127d8bc449e88ee93ee52c4cb28df799339ac0",
         "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "d3c806c6d52abe338dfc11a8e7453b93febfa2dbb1767730ec2af436e16f66b8",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts": "99affbcaa511e7286035f6486cfc49b2e3c95256967d107167f6fc4986f20ffc",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts": "62debc1f800b07a1a82f879aee2ea37c63aaff22d1c80f9c1a5320388e6d00b5",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "03ea85098b0ed95e323e8d1e35b61b2683b7bc2d68f67e56e15ce2da92177a6f",
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "5ea65c992dc0bce0fcaf06f2c143080e1b65be788961cb8f23f6ae91e8885311",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "25f100bcc3bf1deb60b9c13a62ba7201b85d8d317be93ba244d9b2f85274bb18"
       },
-      "head": "c516af53ae85e81b08262587232d2adaf91965e8",
-      "outcome": "updated",
-      "reason": "Skills now limit plain formatForDisplay to browser-only labels when no provider or scope sets platform, matching the guides.",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "outcome": "no-change",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md",
-        "docs/framework/react/guides/formatting-display.md"
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md"
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
@@ -70,14 +70,14 @@
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
-      "fingerprint": "9e144460172f5098d5ac6dd7842b3ce27c4feb722c2e358e415d290bcd81f76a",
+      "fingerprint": "bd9c46b35f99d5395e3a3fad22a0ad9b6390c388be0371c66d6b71858eb6cb29",
       "snapshot": {
         "docs/framework/react/guides/app-hotkeys.md": "eb1f5087ec449c52b0fe342237c77fa511dee20bdd56b70d609e1a4e5c7ebbc6",
         "docs/framework/react/guides/cheat-sheet-ui-helpers.md": "d0837c40b740f178c62bfb9661ac0ed29f979bc378d6b6b0f0c417621792a5b4",
         "docs/framework/react/guides/custom-hotkey-recording.md": "36f17bd33b5326bd396974ba24e5c06e3ec4218ad25045c0ee4910635f292ea7",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md": "0dc668ed5bcdc50b9ad290847f551d8da35cbb2c1f061ca363aa1bcb78d31b28",
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "70dfa06d396a49e4a6033ec4f571ccdb9a74a439e989803c6120f219f720b8ad",
-        "packages/hotkeys/src/app-hotkeys.ts": "cfff88da5894a09e7a88aac86fc6b78cdbafeb39553d832a52782ca588d0941e",
+        "packages/hotkeys/src/app-hotkeys.ts": "5ad2e0ca37e21a4a4fbd1eabc9b5bb4981f7530bca1dfd2286a2fa9205793608",
         "packages/hotkeys/src/conflicts.ts": "0459c63dccec1b3706c93552bfcd66243f90ae918c6e7e445fce046fe79cc2ad",
         "packages/hotkeys/src/hotkey-recorder.ts": "a19c8e64b939faa51b4554e71e71485f4d419539e4c9c287fdbb07955362a3e7",
         "packages/react-hotkeys/tests/skills/shortcut-settings/fixture.tsx": "ecc6155241ebccca4ef4cd76e8925b3abeec73e9d88e6906bdf70e4c604788aa",
@@ -89,9 +89,9 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "12bcb588b1ba22c0356cf25315dc90abf3679092",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "AppHotkeysStore.setOptions now notifies once, after applying saved custom hotkeys, when the platform changes too. No guidance changes; the app hotkeys skill makes no claim about notification order.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
         "packages/hotkeys/skills/app-hotkeys/SKILL.md"
@@ -227,71 +227,71 @@
       ]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
-      "fingerprint": "a9672acae247e630b6e6cfeac1ce62b31c20df3cce6bfaf3f7e9a28801c7a073",
+      "fingerprint": "0ed73d29fdd430aa95f59c12d3bccf37a7da8fe53fff9789d93eda2fd4944437",
       "snapshot": {
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
         "docs/framework/solid/quick-start.md": "b9eca3313e57f3a878fc683fd36baabd6b880bbbea18a6aff1fc74e05488ef7f",
         "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "18610c60ad1b27d916d80b9fd4fa57cf246cc244b9a8e34d23ccf76903b898f6",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d6b972c0d90e136e1334850ea1ba428b919d47221026c0fb984f774a436158e5",
-        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "ff22502ee23bb97c66d7345b732533665d951d738645e470dfa9ea9940eb3594",
+        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "8b1eb4e0b6dcc8af8196c3bbf246dda154d94aefbbaf49e7f07e0e1cf5a69808",
         "packages/solid-hotkeys/src/appHotkeys.ts": "fa27dd5582b2629764c9a164b704b3772e267d90b24af8d252818e4f97827d3a",
         "packages/solid-hotkeys/src/createHotkey.ts": "3be9476087da2b53e809ad5ac59b2f791f38cc4d88e2b151258e668a9fc92294",
         "packages/solid-hotkeys/src/createHotkeys.ts": "667785bb3195a4b9195791ebcf79351cd42251898974fe92b2c7ac1ef4e2d0bb"
       },
-      "head": "c516af53ae85e81b08262587232d2adaf91965e8",
-      "outcome": "updated",
-      "reason": "Skills now limit plain formatForDisplay to browser-only labels when no provider or scope sets platform, matching the guides.",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "outcome": "no-change",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md",
-        "docs/framework/react/guides/formatting-display.md"
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md"
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "fdcd7923aa169d7617d97f675931aa53a80efd442f881f46aaf0f2f1a30771ad",
+      "fingerprint": "44fe2f7db6f0d102e2d5125ce15190d898af1352b728e254e84d75aff55602e9",
       "snapshot": {
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "c6886be2d6b94b91f833b542c94d6935e2714f127cba10916078385f4c7b7a9f",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "72d83959df76bbf8c07cd4f3b1e63bf490e4436c03bb17215730a289abd530f7",
-        "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "0f65d9e5d3592fe47d1878b34b8f0b92eea549490341127c56768b0f8a1344a8",
+        "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "833be55b51359560378b1014a0e6718e41a77c55f9b41b79ba964c7f47cf660f",
         "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "fc6dac92966f1f506450526ca87a9d2de715ba36202b09446f9f325503abb906",
         "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "0dcfe7ecbaa7a202fd3be9e88ca24d95cd8965267374ea709435e19a13a4857b",
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "86000611dcf85054f0bbf702f5919f7796297adb342011784ccdba6c4938a175",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "bbde849c4842dfe7050a85c32e4f6fa5b8d55a854af7df8c24774546d2a1eefd"
       },
-      "head": "c516af53ae85e81b08262587232d2adaf91965e8",
-      "outcome": "updated",
-      "reason": "Skills now limit plain formatForDisplay to browser-only labels when no provider or scope sets platform, matching the guides.",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "outcome": "no-change",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md",
-        "docs/framework/react/guides/formatting-display.md"
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"
       ]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
-      "fingerprint": "5e75284837b2cb153a1d3141c584c7747da217f0b379ccd2e36964740a304ee9",
+      "fingerprint": "f42c562c2a64065b3c7c9a5527ecc65e0c89667fe353df101b157216173d8934",
       "snapshot": {
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "561fc92f1eeaf87791544cb34c2ead4013fb92809e213fc7777f2c02bd2f6513",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "772db9ad3bf5ab0388daf44a947abfff769b756b359584a423a91054a238857f",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "566511eecf3a7a69390c6f9adbf47b9ba8d547ebcd9733be117434ca8ca69b1f",
-        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "e0afb290f454330d0fec3dd775beca2fbf941df95e51146351988a62fd802872",
+        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "dcd9049cbfd34a8fdf5cbfbf9e2fa05f123de07acf00319bdaa5f78fb13814c3",
         "packages/vue-hotkeys/src/useAppHotkeys.ts": "7cb397f7d0f77507c5c433dc731a710575b8b91a317aa010f173b8a51bb8abe8",
         "packages/vue-hotkeys/src/useHotkey.ts": "a85b16b0a843c488ad7ef77c864ac82d3e0ff91c1066d9432a8d8a1be345cef5",
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "b3e8f6c870734a967881c5b155ddced5c737d5162e6f44e5c095bd2be81fd0e6"
       },
-      "head": "c516af53ae85e81b08262587232d2adaf91965e8",
-      "outcome": "updated",
-      "reason": "Skills now limit plain formatForDisplay to browser-only labels when no provider or scope sets platform, matching the guides.",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
+      "outcome": "no-change",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md",
-        "docs/framework/react/guides/formatting-display.md"
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md"
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "a2f127519bd6165fe17c5cf8f80914fc159e7f78d50046eb4ecc90522c74b72f",
+      "fingerprint": "819cbe227c44ba3dfd9afd7f8c257679d97dd987d4f44d56bdb31c6396e264f6",
       "snapshot": {
         "_artifacts/domain_map.yaml": "2563ba9b2d472df81206a62b1add175bd3341b9bb99bd51869c305746f2a4a46",
         "_artifacts/skill_spec.md": "58e19f35836571a37984e4435168651a2936dffb48ffe01cc7fddcc0eafea916",
@@ -333,7 +333,7 @@
         "packages/alpine-hotkeys/src/scope.ts": "5b2b94b41d520f3beb60d2ceb15081799873c84c0ff244289d9b3698168c0ead",
         "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "d3c806c6d52abe338dfc11a8e7453b93febfa2dbb1767730ec2af436e16f66b8",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
-        "packages/angular-hotkeys/src/hotkeys-provider.ts": "99affbcaa511e7286035f6486cfc49b2e3c95256967d107167f6fc4986f20ffc",
+        "packages/angular-hotkeys/src/hotkeys-provider.ts": "62debc1f800b07a1a82f879aee2ea37c63aaff22d1c80f9c1a5320388e6d00b5",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "03ea85098b0ed95e323e8d1e35b61b2683b7bc2d68f67e56e15ce2da92177a6f",
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "5ea65c992dc0bce0fcaf06f2c143080e1b65be788961cb8f23f6ae91e8885311",
@@ -352,7 +352,7 @@
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
-        "packages/hotkeys/src/app-hotkeys.ts": "cfff88da5894a09e7a88aac86fc6b78cdbafeb39553d832a52782ca588d0941e",
+        "packages/hotkeys/src/app-hotkeys.ts": "5ad2e0ca37e21a4a4fbd1eabc9b5bb4981f7530bca1dfd2286a2fa9205793608",
         "packages/hotkeys/src/conflicts.ts": "0459c63dccec1b3706c93552bfcd66243f90ae918c6e7e445fce046fe79cc2ad",
         "packages/hotkeys/src/hotkey-manager.ts": "340ae1e61d8e08fe56edb0bb73f41434dae03ad15a374c2a0864450b64276443",
         "packages/hotkeys/src/hotkey-recorder.ts": "a19c8e64b939faa51b4554e71e71485f4d419539e4c9c287fdbb07955362a3e7",
@@ -402,14 +402,14 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1",
         "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "18610c60ad1b27d916d80b9fd4fa57cf246cc244b9a8e34d23ccf76903b898f6",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d6b972c0d90e136e1334850ea1ba428b919d47221026c0fb984f774a436158e5",
-        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "ff22502ee23bb97c66d7345b732533665d951d738645e470dfa9ea9940eb3594",
+        "packages/solid-hotkeys/src/HotkeysProvider.tsx": "8b1eb4e0b6dcc8af8196c3bbf246dda154d94aefbbaf49e7f07e0e1cf5a69808",
         "packages/solid-hotkeys/src/appHotkeys.ts": "fa27dd5582b2629764c9a164b704b3772e267d90b24af8d252818e4f97827d3a",
         "packages/solid-hotkeys/src/createHotkey.ts": "3be9476087da2b53e809ad5ac59b2f791f38cc4d88e2b151258e668a9fc92294",
         "packages/solid-hotkeys/src/createHotkeys.ts": "667785bb3195a4b9195791ebcf79351cd42251898974fe92b2c7ac1ef4e2d0bb",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "c6886be2d6b94b91f833b542c94d6935e2714f127cba10916078385f4c7b7a9f",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "72d83959df76bbf8c07cd4f3b1e63bf490e4436c03bb17215730a289abd530f7",
-        "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "0f65d9e5d3592fe47d1878b34b8f0b92eea549490341127c56768b0f8a1344a8",
+        "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "833be55b51359560378b1014a0e6718e41a77c55f9b41b79ba964c7f47cf660f",
         "packages/svelte-hotkeys/src/createHotkey.svelte.ts": "fc6dac92966f1f506450526ca87a9d2de715ba36202b09446f9f325503abb906",
         "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "0dcfe7ecbaa7a202fd3be9e88ca24d95cd8965267374ea709435e19a13a4857b",
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "86000611dcf85054f0bbf702f5919f7796297adb342011784ccdba6c4938a175",
@@ -417,15 +417,15 @@
         "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "561fc92f1eeaf87791544cb34c2ead4013fb92809e213fc7777f2c02bd2f6513",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "772db9ad3bf5ab0388daf44a947abfff769b756b359584a423a91054a238857f",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "566511eecf3a7a69390c6f9adbf47b9ba8d547ebcd9733be117434ca8ca69b1f",
-        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "e0afb290f454330d0fec3dd775beca2fbf941df95e51146351988a62fd802872",
+        "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "dcd9049cbfd34a8fdf5cbfbf9e2fa05f123de07acf00319bdaa5f78fb13814c3",
         "packages/vue-hotkeys/src/useAppHotkeys.ts": "7cb397f7d0f77507c5c433dc731a710575b8b91a317aa010f173b8a51bb8abe8",
         "packages/vue-hotkeys/src/useHotkey.ts": "a85b16b0a843c488ad7ef77c864ac82d3e0ff91c1066d9432a8d8a1be345cef5",
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "b3e8f6c870734a967881c5b155ddced5c737d5162e6f44e5c095bd2be81fd0e6"
       },
-      "head": "12bcb588b1ba22c0356cf25315dc90abf3679092",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "AppHotkeysStore.setOptions now notifies once, after applying saved custom hotkeys, when the platform changes too. No guidance changes; the app hotkeys skill makes no claim about notification order.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": ["packages/hotkeys/skills/app-hotkeys/SKILL.md", "_artifacts"]
     },
     "source:.changeset/intent-skills.md": {
@@ -2298,13 +2298,13 @@
       ]
     },
     "source:docs/reference/classes/AppHotkeysStore.md": {
-      "fingerprint": "c3c3b41f66b9ead36ec2584ad1f79b0f1b20a9693190147768e2d035262f6867",
+      "fingerprint": "9cb85572879468ebd5c0cc9269fd243038108b1bb7a44424127befd2b12284d4",
       "snapshot": {
-        "docs/reference/classes/AppHotkeysStore.md": "9a547c972fbd4214f836777ead89ec8a4b81f6bca1f9fe337b062e99b28b3e7a"
+        "docs/reference/classes/AppHotkeysStore.md": "38e5263f142171dacc14d604d55be762390e1b31bab45cfab551a85e5461ac68"
       },
-      "head": "12bcb588b1ba22c0356cf25315dc90abf3679092",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "AppHotkeysStore.setOptions now notifies once, after applying saved custom hotkeys, when the platform changes too. No guidance changes; the app hotkeys skill makes no claim about notification order.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
         "docs/reference/classes/AppHotkeysStore.md"
@@ -2321,13 +2321,13 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/getAppHotkeyRegistrationOptions.md": {
-      "fingerprint": "96f4c4078014fcf0b7e3185727b43b694faf43733df455c9946caefe507d44a5",
+      "fingerprint": "99da330d6fc902869cb94cdf78c0c21059579f94d0417e6a298d86bac2c263b5",
       "snapshot": {
-        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "f1f65d78e8cef5b9569cd7f2b96402ef1f5c336d1bd0001b24009f3439f1fd06"
+        "docs/reference/functions/getAppHotkeyRegistrationOptions.md": "5d46d4ba73652b6c79d1daf6edcd046bb866e32c2d16fa6fb3d9f5d69bd41f9d"
       },
-      "head": "12bcb588b1ba22c0356cf25315dc90abf3679092",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "AppHotkeysStore.setOptions now notifies once, after applying saved custom hotkeys, when the platform changes too. No guidance changes; the app hotkeys skill makes no claim about notification order.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
         "docs/reference/functions/getAppHotkeyRegistrationOptions.md"
@@ -2354,39 +2354,39 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/provideAppHotkeys.md": {
-      "fingerprint": "4dbb76c27eff9c6674cb4c09193cb82e2b26137afbc8cbdb73bf92ac742705c2",
+      "fingerprint": "09f93eb10d4537155a183d42eef5c333745c5313d7b7705563ce741527c5922f",
       "snapshot": {
-        "docs/reference/functions/provideAppHotkeys.md": "79117050fdc2fbe219e51f2f0542a0ae3f4dd2e60e952d3aeb984f4c43c93e82"
+        "docs/reference/functions/provideAppHotkeys.md": "a0ad72a7bd32e0c383a1a69af552645f3dfa397f48d1fd1156def3869fb43d79"
       },
-      "head": "12bcb588b1ba22c0356cf25315dc90abf3679092",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "AppHotkeysStore.setOptions now notifies once, after applying saved custom hotkeys, when the platform changes too. No guidance changes; the app hotkeys skill makes no claim about notification order.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
         "docs/reference/functions/provideAppHotkeys.md"
       ]
     },
     "source:docs/reference/functions/publishAppHotkeysStore.md": {
-      "fingerprint": "171a5f7a228243d71f2a94ab3539bfdd7a72e471a9712e07a3c9559e006bbd34",
+      "fingerprint": "7799f860aab52a47c888822d410e424fc1c5d7038e690a2c5fec950a130cebca",
       "snapshot": {
-        "docs/reference/functions/publishAppHotkeysStore.md": "bfba051c3cbe26e5f5967cb43a8111d8fdc381b37b0dd7d833fbf9459dfd885b"
+        "docs/reference/functions/publishAppHotkeysStore.md": "01526ce1022b2d0bdceeaa99c4e8e4fbe53e92c7ce031a00dd8bf878bdf11fc8"
       },
-      "head": "12bcb588b1ba22c0356cf25315dc90abf3679092",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "AppHotkeysStore.setOptions now notifies once, after applying saved custom hotkeys, when the platform changes too. No guidance changes; the app hotkeys skill makes no claim about notification order.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
         "docs/reference/functions/publishAppHotkeysStore.md"
       ]
     },
     "source:docs/reference/functions/resolveAppHotkey.md": {
-      "fingerprint": "bbaf45555904fc0af81ee76f0c05e24611f96b68ce82387899674831bd823635",
+      "fingerprint": "55bace6c04983db952dff0366b9e63b7c769ecddcc32239552a23ca8718f2f21",
       "snapshot": {
-        "docs/reference/functions/resolveAppHotkey.md": "caaa0d6e3a00cf6fc54eaed3acbfb3913e901fb5362effa9926cee3082954077"
+        "docs/reference/functions/resolveAppHotkey.md": "65fb8177d8f3e90644501f250da1ff337397aa46c470aaa2f0b4fe2623ae871f"
       },
-      "head": "12bcb588b1ba22c0356cf25315dc90abf3679092",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "AppHotkeysStore.setOptions now notifies once, after applying saved custom hotkeys, when the platform changes too. No guidance changes; the app hotkeys skill makes no claim about notification order.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
         "docs/reference/functions/resolveAppHotkey.md"
@@ -2413,34 +2413,43 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/interfaces/AppHotkeyListItem.md": {
-      "fingerprint": "716b769423dd6d1582f51e84af75be9514489287826dd6f7d09a3300814901b2",
+      "fingerprint": "1d8f316cbe588b94ea0814c8a9036669d33f31fe22cba9ce5c0bf5cc8ee7b12a",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeyListItem.md": "037ad2fa16d2d3e19c4089a92f07bf1e15ec8a160c265e047b582e10e140d921"
+        "docs/reference/interfaces/AppHotkeyListItem.md": "c67e4d2f0887340e2fdf726f7aed82b2932ee2393afaa69c9d119fd9be219f60"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/reference/interfaces/AppHotkeyListItem.md"
+      ]
     },
     "source:docs/reference/interfaces/AppHotkeysState.md": {
-      "fingerprint": "1b80bb84e3cba7151e31be24ef3cfe91fe8400b6343e371fff9aa7826c219951",
+      "fingerprint": "10c83b3d96a3b41747b3fd958b1bef39a1a281dfec6a5c3c641e3c7a4a5c9aa5",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeysState.md": "26b5d9f5faecfa3793605fd8eee9fa5bc9c1502d9ca99b1cfd32d91ef9a2fec5"
+        "docs/reference/interfaces/AppHotkeysState.md": "8ff23f06e7bd6538d5cd35f602d6dd659cd4c34c619fa17db9a2332a9bde0b57"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/reference/interfaces/AppHotkeysState.md"
+      ]
     },
     "source:docs/reference/interfaces/AppHotkeysStoreOptions.md": {
-      "fingerprint": "604a56a0ddb9f7c8d5af364e583218d32b02f0f841575bbc98bf5105f4e78158",
+      "fingerprint": "11f9d1eb296d6d1fda49f3e9ac1cebbfbcd2c0e43bbe521009a353b819c1d16d",
       "snapshot": {
-        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "c27c8b4152c7997b537e74423992b49cf5d31544a5d829e5cc1d2dbf122738cf"
+        "docs/reference/interfaces/AppHotkeysStoreOptions.md": "b8f45849ecb8d58a732c19ed60e12f4b8620126a2665072e6a2d5a493c7abea3"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/reference/interfaces/AppHotkeysStoreOptions.md"
+      ]
     },
     "source:docs/reference/interfaces/Register.md": {
       "fingerprint": "adb6ef8cb2ac13e70ce294a0e2cd41aa7e8a2e7671bdbfe69c5048558a451641",
@@ -2503,14 +2512,17 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/AppHotkeyStatus.md": {
-      "fingerprint": "139bf5419e2923647d08dd5264b34c1870cf1c1adaf36579aed1b8b991c42b45",
+      "fingerprint": "b49ff730f0da9ca40fe1854d142b5905cbd9b73d7c5556c80f6766cbb8cc26aa",
       "snapshot": {
-        "docs/reference/type-aliases/AppHotkeyStatus.md": "113587f5f32adf34d5de633ae94096a76a3023a45f4a19ca907d63c4d6a01050"
+        "docs/reference/type-aliases/AppHotkeyStatus.md": "4014de2ae42aa3c407a19482714b126b13ee840ebc59d54a8d50e3e1f45f2e25"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "evidence": [
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
+        "docs/reference/type-aliases/AppHotkeyStatus.md"
+      ]
     },
     "source:docs/reference/type-aliases/AppHotkeys.md": {
       "fingerprint": "4b0b44b254e786d98a9bc13ab8986d79269c5a5d6fcfd714225ef1f1eb11eafd",
@@ -3649,30 +3661,28 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "0703bd78a374601237feb67b56184b5034e2326b9cb7cb87c44bee69658629c7",
+      "fingerprint": "50c244cbc262e9ff5124c9c8f1f414684227ca9976ea90b37a9b521bc751b9e1",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md": "913efd32c2dbfb81fd9aad336a801db2c83ef6ed50348e384b2255c09e044f6b"
+        "docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md": "3a163185f9b4626510d8a7331c7a3ec836d3231b60167011cb0a4a2a308530e8"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "App hotkeys now compare on the provider platform, and formatting docs warn against formatForDisplay for server-rendered labels. The skill already says to use the formatter hook on the server and makes no claim about which platform app hotkey checks use.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "docs/framework/vue/reference/functions/useDefaultHotkeysOptions.md"
       ]
     },
     "source:docs/framework/vue/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "862456c4a0711c8541424a33ae5c58e49f8cee9fa23d775a8167fa53cf1b1d6b",
+      "fingerprint": "cbab2efc1626e4de05db80593280ce517049f91ed1574e867e04652317184ee0",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useHotkeysContext.md": "837285163857410f172a3e224deed5fd62aa730d22bd794eeaf12f278c154b9f"
+        "docs/framework/vue/reference/functions/useHotkeysContext.md": "b1c9aef644ae7febdc4c6543d239f598338624d63ac1d95eb3dd6985e343f9b4"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "App hotkeys now compare on the provider platform, and formatting docs warn against formatForDisplay for server-rendered labels. The skill already says to use the formatter hook on the server and makes no claim about which platform app hotkey checks use.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "docs/framework/vue/reference/functions/useHotkeysContext.md"
       ]
     },
@@ -4268,44 +4278,41 @@
       "evidence": ["docs/framework/angular/guides/app-hotkeys.md"]
     },
     "source:docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": {
-      "fingerprint": "62cb356e5b57e30f85c90b433d29d85f17712c3ea190ded715b04ff98754adec",
+      "fingerprint": "d5d718a1edf230b9fae5d92c67246d2e5ea421acae0b1900bdece4f2ab011d22",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": "47ce4ff324090f94c5d5eeb3d5b38d6851902fcb3d8da5e648b52401cc0ace8a"
+        "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md": "ab50068c829ca7df9e3530f39fffd0426b8efe2cdce68de5e6f3674d9bd16a30"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "App hotkeys now compare on the provider platform, and formatting docs warn against formatForDisplay for server-rendered labels. The skill already says to use the formatter hook on the server and makes no claim about which platform app hotkey checks use.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "docs/framework/angular/reference/functions/injectDefaultHotkeysOptions.md"
       ]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeysContext.md": {
-      "fingerprint": "8fc7e74e4d30e7a85f1c403e8a0cc04910302a5f477c8bcbd8171466e128419c",
+      "fingerprint": "18c7769c426015a3f39658cf4cd3deeeb5327be58ea004f9b3aeea3f392c4957",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectHotkeysContext.md": "59d95caff4ca55670407704b461e9a34d5e6b5624cae79c9b754fb313db6d388"
+        "docs/framework/angular/reference/functions/injectHotkeysContext.md": "7441a7fa09dd7168fec1dd1b618dbe9de52d99a7a7103fc231c397f65595735a"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "App hotkeys now compare on the provider platform, and formatting docs warn against formatForDisplay for server-rendered labels. The skill already says to use the formatter hook on the server and makes no claim about which platform app hotkey checks use.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "docs/framework/angular/reference/functions/injectHotkeysContext.md"
       ]
     },
     "source:docs/framework/angular/reference/functions/provideHotkeys.md": {
-      "fingerprint": "30bb8d82281e73bed4dc31271eeeeebdab7e71f96a1afc9b6a0364ac7bd9fd19",
+      "fingerprint": "8fc79f3628a5bef7940b5cb76e654e4c03f5bfae364181f859c97b5b130cfb93",
       "snapshot": {
-        "docs/framework/angular/reference/functions/provideHotkeys.md": "85fa0900f1e051cc2c98cf139ccf9c8190e40611ffa90000d18a657af35e77a9"
+        "docs/framework/angular/reference/functions/provideHotkeys.md": "63634d2b3de05022c114db6e6b9c188d9f3486fcf17ac07fd0b24f6de05dbd03"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "App hotkeys now compare on the provider platform, and formatting docs warn against formatForDisplay for server-rendered labels. The skill already says to use the formatter hook on the server and makes no claim about which platform app hotkey checks use.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
         "docs/framework/angular/reference/functions/provideHotkeys.md"
       ]
     },
@@ -4586,28 +4593,28 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md": {
-      "fingerprint": "f4a9e7dfcabbb07d66541cf74687b9a2e1f8397f4ef97a129e5a7ec968224820",
+      "fingerprint": "d671264203c7526e84834c175b800aa48053b346f326a0b4ad4bd2cd7d9fc6d1",
       "snapshot": {
-        "docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md": "8b75c4102062e1c7685cb421933a5155cd68a1190cd85528060749b6d243f635"
+        "docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md": "376478b69f9db5537e7373584123821bc14d41e0d7202f5e2bdca06b724e33b8"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
         "docs/framework/solid/reference/functions/useDefaultHotkeysOptions.md"
       ]
     },
     "source:docs/framework/solid/reference/functions/useHotkeysContext.md": {
-      "fingerprint": "d0a1480b86d67353246550c069c67d5ed051ea73bfdd645a405c5a975f09befe",
+      "fingerprint": "317e7ca474bf2436e1a6fd1012110188f3b70855405cdfdf7a15df23f3a01a70",
       "snapshot": {
-        "docs/framework/solid/reference/functions/useHotkeysContext.md": "da1b9198e25aa4ffcab4dc6a7e5c6a77710f7d9a913bcf9a04a50036407b62b9"
+        "docs/framework/solid/reference/functions/useHotkeysContext.md": "b82e6ad20a5ac7aaf698e22092aeee901f37b3df32b92f601e66cbdf03d3b116"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "Review fixes: per-framework warning wording, one-sentence quick-start server note, provider JSDoc rewrap, platform passed with customHotkeys in one setOptions call, Svelte platform-change test. Skills already recommend the formatter hook for server-rendered labels and the top-level provider platform in tests.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
+        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
         "docs/framework/solid/reference/functions/useHotkeysContext.md"
       ]
     },
@@ -7041,13 +7048,13 @@
       "evidence": ["packages/hotkeys/src/hint.ts", "git diff origin/main"]
     },
     "source:packages/hotkeys/tests/app-hotkeys.test.ts": {
-      "fingerprint": "60e4ae30f3cbe1d189f28c5857abb02bb77f428c689fabfc765d1b4f8ac9c1ff",
+      "fingerprint": "baec2b617215cc61e57c2ba98019b05aea9495c1100b0f6738d0e24708026936",
       "snapshot": {
-        "packages/hotkeys/tests/app-hotkeys.test.ts": "72e598d8f51a46dc8dd0e5f557a85c06b338b03940088de37625fc35afcb02b7"
+        "packages/hotkeys/tests/app-hotkeys.test.ts": "449583b97f4141e383ffb05d5792b953292d90bdcf0268292694cb2fa4ff3524"
       },
-      "head": "12bcb588b1ba22c0356cf25315dc90abf3679092",
+      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
       "outcome": "no-change",
-      "reason": "AppHotkeysStore.setOptions now notifies once, after applying saved custom hotkeys, when the platform changes too. No guidance changes; the app hotkeys skill makes no claim about notification order.",
+      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
       "evidence": [
         "packages/hotkeys/skills/app-hotkeys/SKILL.md",
         "packages/hotkeys/tests/app-hotkeys.test.ts"

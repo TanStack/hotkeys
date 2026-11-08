@@ -133,13 +133,6 @@ export function provideHotkeysContext(
         if (next) store.setAppHotkeys(next)
       },
     )
-    // Apply saved custom hotkeys whose value changes, such as data that
-    // loads after setup. Deep, so changes made in place are seen too.
-    watch(
-      () => toValue(options.customHotkeys),
-      (customHotkeys) => store.setOptions({ customHotkeys }),
-      { deep: true },
-    )
     // Publish the store so devtools can list declared hotkeys.
     if (typeof document !== 'undefined') {
       onScopeDispose(publishAppHotkeysStore(store))
@@ -162,9 +155,17 @@ export function provideHotkeysContext(
     ),
   )
   if (store) {
+    // Apply the platform and saved custom hotkeys whose value changes, such
+    // as data that loads after setup. Deep, so changes made in place are seen
+    // too. One call applies both together.
     watch(
-      () => defaultOptions.value.platform,
-      (platform) => store.setOptions({ platform }),
+      [
+        () => toValue(options.customHotkeys),
+        () => defaultOptions.value.platform,
+      ],
+      ([customHotkeys, platform]) =>
+        store.setOptions({ customHotkeys, platform }),
+      { deep: true },
     )
   }
   // Compared by value, so a new `exclusive` object does not reactivate the

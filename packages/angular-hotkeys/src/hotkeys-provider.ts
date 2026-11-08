@@ -141,14 +141,6 @@ function createHotkeysContext(
         parent.defaultOptions.platform,
     })
     store = owned
-    // Apply saved custom hotkeys whose value changes, such as data that
-    // loads after the app starts.
-    if (typeof customHotkeys === 'function') {
-      effect(() => {
-        const next = read(customHotkeys)
-        untracked(() => owned.setOptions({ customHotkeys: next }))
-      })
-    }
     const state = signal<AppHotkeysState | null>(store.store.state)
     const subscription = store.store.subscribe(() =>
       state.set(store!.store.state),
@@ -173,9 +165,13 @@ function createHotkeysContext(
   )
   if (store) {
     const owned = store
+    // Apply the platform and saved custom hotkeys whose value changes, such as
+    // data that loads after the app starts. One call applies both together.
     effect(() => {
+      const next =
+        typeof customHotkeys === 'function' ? read(customHotkeys) : undefined
       const platform = defaultOptions().platform
-      untracked(() => owned.setOptions({ platform }))
+      untracked(() => owned.setOptions({ customHotkeys: next, platform }))
     })
   }
   // Compared by value, so a new `exclusive` object does not reactivate the

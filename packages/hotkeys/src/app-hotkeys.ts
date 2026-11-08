@@ -318,23 +318,6 @@ function sameSavedCustomHotkeys(left: unknown, right: unknown): boolean {
   )
 }
 
-/** Whether two sanitized custom hotkeys objects bind the same hotkeys. */
-function sameCustomHotkeys(
-  left: Record<string, Hotkey | null>,
-  right: Record<string, Hotkey | null>,
-  platform: Platform,
-): boolean {
-  const keys = Object.keys(left)
-  return (
-    keys.length === Object.keys(right).length &&
-    keys.every(
-      (key) =>
-        Object.hasOwn(right, key) &&
-        hotkeysEqual(left[key] ?? null, right[key] ?? null, platform),
-    )
-  )
-}
-
 /** Whether two app hotkeys can apply at the same time. */
 function scopesOverlap(a: AppHotkey, b: AppHotkey): boolean {
   const left = a.scope ?? GLOBAL_SCOPE
@@ -488,15 +471,9 @@ export class AppHotkeysStore<T extends AppHotkeys = AppHotkeys> {
     }
     this.#savedCustomHotkeys = copySavedCustomHotkeys(customHotkeys)
     const next = sanitizeCustomHotkeys(this.#declarations, customHotkeys)
-    if (
-      sameCustomHotkeys(
-        next as Record<string, Hotkey | null>,
-        this.store.state.customHotkeys as Record<string, Hotkey | null>,
-        this.#platform,
-      )
-    ) {
-      return false
-    }
+    // Compared exactly, not on the current platform, so a binding such as
+    // Meta+S stays as saved if the platform changes later.
+    if (sameSavedValue(next, this.store.state.customHotkeys)) return false
     this.store.setState(() => ({
       appHotkeys: applyCustomHotkeys(this.#declarations, next),
       customHotkeys: next,
