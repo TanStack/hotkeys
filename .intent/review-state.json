@@ -98,12 +98,12 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "5a09185969cdf40c434dce31222f999c81d80496b1f2f06009512257097797f8",
+      "fingerprint": "414b966e7eff6038566a02019f35ea09b079e934b3f5b0b7f330e73288c0d310",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "03b024ba6a23d6b87a7b99be8a30b54fd5d82ba27e075ba0c00f648c82759e5f",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/guides/sensible-defaults.md": "8b4d1a9d2692f8a7b3f72a6d57ad5ec1edc40fbef83a8fb1c4373b6230a65efd",
+        "docs/guides/sensible-defaults.md": "26d2b564622899e420f99bbe59a9ec71613157ac8a66af46220e58a2c3397965",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
@@ -119,12 +119,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "c6cdba1fa878c3373dca09486fba677f752a4641",
       "outcome": "no-change",
-      "reason": "Code examples changed only in import order (oxfmt sortImports), and the covered sources changed only by formatter output. Guidance and APIs are unchanged.",
+      "reason": "Merge of main: the only new change is #238's Windows Ctrl+Alt letter-fallback bullet in sensible-defaults.md, which #238 already reviewed as needing no skill or planning change. This branch's Lit removeController records are kept.",
       "evidence": [
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "git diff origin/main: only import lines change"
+        "Changed: docs/guides/sensible-defaults.md at c6cdba1fa878c3373dca09486fba677f752a4641"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -294,7 +293,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "bdc4e94f99455dfd6e7ce36b7faee387f9c0fd9ea619d4585f82fbcbc9d55455",
+      "fingerprint": "253359081084d88d0b5cf59004d9ea38afb7df2d4d73800f3bf8f0d46f3abe8f",
       "snapshot": {
         "_artifacts/domain_map.yaml": "dd791b9fa3d82d64f7d890c05380fc452024d4c860085915f9ef35f226e61b39",
         "_artifacts/skill_spec.md": "af65b5a42cbc2b52811445f45c49f2c4656c27613ab152c5c27399e441a12490",
@@ -324,7 +323,7 @@
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
-        "docs/guides/sensible-defaults.md": "8b4d1a9d2692f8a7b3f72a6d57ad5ec1edc40fbef83a8fb1c4373b6230a65efd",
+        "docs/guides/sensible-defaults.md": "26d2b564622899e420f99bbe59a9ec71613157ac8a66af46220e58a2c3397965",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "b8a7e9ce42d7a9cfacc9bd405a5f0be43064e81f76616a6f31504ccb32c0d59a",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "69ba6d06582aaf28328e74c12888bcf8b1d89b2ae2a01d7f6a41eb82eef848e3",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4c43866e1e60dbfcdac1c5acb3b5bd1f372d722d47e51cb8922b22f1c372fa45",
@@ -426,13 +425,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "b3e8f6c870734a967881c5b155ddced5c737d5162e6f44e5c095bd2be81fd0e6"
       },
-      "head": "d7697a1da0bba002ac8491eb6d24e02c45c08e47",
-      "outcome": "updated",
-      "reason": "domain_map.yaml records the removeController failure mode for lit-hotkeys; skill_spec.md adds it to the framework table and logs batch 1 revision 3. skill_tree.yaml is unchanged: the lit-hotkeys description, sources and references still match.",
+      "head": "c6cdba1fa878c3373dca09486fba677f752a4641",
+      "outcome": "no-change",
+      "reason": "Merge of main: the only new change is #238's Windows Ctrl+Alt letter-fallback bullet in sensible-defaults.md, which #238 already reviewed as needing no skill or planning change. This branch's Lit removeController records are kept.",
       "evidence": [
-        "_artifacts/domain_map.yaml",
-        "_artifacts/skill_spec.md",
-        "_artifacts/skill_tree.yaml"
+        "Changed: docs/guides/sensible-defaults.md at c6cdba1fa878c3373dca09486fba677f752a4641"
       ]
     },
     "source:.changeset/intent-skills.md": {
