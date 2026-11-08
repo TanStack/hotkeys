@@ -6665,16 +6665,15 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/angular/reference/functions/injectHotkeyRecorder.md": {
-      "fingerprint": "729a0ecb3a9c6646004ea69fe3364522ee07ac2b0d2d3b5b51f5f18208d21666",
+      "fingerprint": "17e923bd0eae9a0c1b0dd41816a97cd0a7e1a9c051ec8f1a03f5402bcafc8e76",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectHotkeyRecorder.md": "b75d6586e0271ce7273fcc7e1204eefa70d6a9069a328c128fdea7618986a409"
+        "docs/framework/angular/reference/functions/injectHotkeyRecorder.md": "00f5f7ad71b37cae847652a095db24b48a119cdefba4f5ca2c4a1ab7627b881d"
       },
-      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
+      "head": "26c92d8fea37ddfe66923e8bc987e7b0262c5887",
       "outcome": "no-change",
-      "reason": "Regenerated reference for recordTab and the recorder comments that now mention Tab; skills already point to the recorder options.",
+      "reason": "Regenerated Angular injectHotkeyRecorder reference after merging main: only Defined-in line numbers moved, because this branch's recorderTab JSDoc and #237's callback wrapper changed line positions. No skill describes those lines.",
       "evidence": [
-        "docs/framework/angular/reference/functions/injectHotkeyRecorder.md",
-        "packages/hotkeys/src/hotkey-recorder.ts"
+        "Changed: docs/framework/angular/reference/functions/injectHotkeyRecorder.md at 26c92d8fea37ddfe66923e8bc987e7b0262c5887"
       ]
     },
     "source:docs/framework/angular/reference/interfaces/AngularHotkeyRecorder.md": {
