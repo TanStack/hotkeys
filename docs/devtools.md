@@ -327,7 +327,13 @@ This entry point also exports the active `HotkeysDevtoolsPanel` for standalone u
 
 # Preact
 
-The Preact adapter does not currently provide a production entry point.
+To include the devtools in a production build, import from the production entry point:
+
+```tsx
+import { hotkeysDevtoolsPlugin } from '@tanstack/preact-hotkeys-devtools/production'
+```
+
+This entry point also exports the active `HotkeysDevtoolsPanel` for standalone use.
 
 # Solid
 

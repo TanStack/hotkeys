@@ -1,8 +1,8 @@
 import { createSolidPanel } from '@tanstack/devtools-utils/solid'
-import { HotkeysDevtoolsCore } from '@tanstack/hotkeys-devtools'
+import { HotkeysDevtoolsCore } from '@tanstack/hotkeys-devtools/production'
 import { createComponent, mergeProps } from 'solid-js'
 import type { ClassType } from '@tanstack/devtools-utils/solid'
-import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools'
+import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools/production'
 import type { JSX } from 'solid-js'
 
 export interface HotkeysDevtoolsSolidInit extends Partial<HotkeysDevtoolsPanelProps> {}

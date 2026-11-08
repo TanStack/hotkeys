@@ -11,7 +11,7 @@ const core = vi.hoisted(() => ({
   mount: vi.fn(async (_el: HTMLElement, _props: object) => {}),
   unmount: vi.fn(),
 }))
-vi.mock('@tanstack/hotkeys-devtools', () => ({
+vi.mock('@tanstack/hotkeys-devtools/production', () => ({
   HotkeysDevtoolsCore: class {
     mount = core.mount
     unmount = core.unmount
