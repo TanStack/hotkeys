@@ -1,5 +1,13 @@
 # @tanstack/solid-hotkeys-devtools
 
+## 0.13.4
+
+### Patch Changes
+
+- [#236](https://github.com/TanStack/hotkeys/pull/236) [`90d000d`](https://github.com/TanStack/hotkeys/commit/90d000d06162dae0787366c830216c810b8d49bc) - The `/production` entry now renders the devtools panel in production builds. Its panel loaded the core from the root `@tanstack/hotkeys-devtools` entry, which switches to a no-op outside development, so the panel rendered nothing. It now loads the core from `@tanstack/hotkeys-devtools/production`, as the Angular and Svelte adapters do. The default entry still returns no-ops outside development.
+- Updated dependencies []:
+  - @tanstack/hotkeys-devtools@1.9.2
+
 ## 0.13.3
 
 ### Patch Changes

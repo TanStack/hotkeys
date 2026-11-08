@@ -18,8 +18,8 @@
     "@angular/platform-browser-dynamic": "^22.2.5",
     "@angular/router": "^22.2.5",
     "@tanstack/angular-devtools": "^0.0.13",
-    "@tanstack/angular-hotkeys": "^0.21.3",
-    "@tanstack/angular-hotkeys-devtools": "^0.5.3",
+    "@tanstack/angular-hotkeys": "^0.21.4",
+    "@tanstack/angular-hotkeys-devtools": "^0.5.4",
     "rxjs": "~7.8.2",
     "tslib": "^2.9.1",
     "zone.js": "~0.16.3"
