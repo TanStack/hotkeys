@@ -120,7 +120,7 @@ Defined in: [controllers/hotkey.ts:91](https://github.com/TanStack/hotkeys/blob/
 dispose(): void;
 ```
 
-Defined in: [controllers/hotkey.ts:157](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L157)
+Defined in: [controllers/hotkey.ts:160](https://github.com/TanStack/hotkeys/blob/main/packages/lit-hotkeys/src/controllers/hotkey.ts#L160)
 
 Releases the controller now and removes it from its host. Use it to
 remove a controller early: Lit's `removeController` alone leaves it active.
