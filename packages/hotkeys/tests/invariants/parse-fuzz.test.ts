@@ -150,7 +150,7 @@ describe('parsing arbitrary strings', () => {
     )
   })
 
-  it('validation does not depend on the platform, and parsing differs only in how Mod resolves', () => {
+  it('parsing gives the same key or code on every platform', () => {
     fc.assert(
       fc.property(anyString, (input) => {
         const results = PLATFORMS.map((p) => {

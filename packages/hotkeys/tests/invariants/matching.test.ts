@@ -24,7 +24,7 @@ const LITERAL_PREFIXES = MODIFIER_SUBSETS.map((subset) =>
   subset.map((m) => `${m}+`).join(''),
 )
 
-/** Physical codes that match a code that has a conventional logical name. */
+/** Conventional logical names for codes that are not letters or digits. */
 const CODE_NAMES: Record<string, string> = {
   Backquote: '`',
   Backslash: '\\',
