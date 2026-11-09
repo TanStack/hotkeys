@@ -4220,15 +4220,15 @@
       "evidence": ["e2e/layouts/layouts.spec.ts"]
     },
     "source:e2e/support/x11.ts": {
-      "fingerprint": "aa8244ad41a7d4c7d84c9f891ae1047e8677fd381ff6cd5de8dfeb4d42c42340",
+      "fingerprint": "7370c7f839740f87a57670d64c016769c350ee086d46765a4d7005a74f54cc62",
       "snapshot": {
-        "e2e/support/x11.ts": "b92655029d0a9fcad00566c7a3a596a3f5aaeb040cc6131d9121bc58d7a851bb"
+        "e2e/support/x11.ts": "58e0b31ac22a4d6076496c4c586c993987a3c14fda4b410ec30efccc14621039"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
       "evidence": [
-        "Changed: e2e/support/x11.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: e2e/support/x11.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
       ]
     },
     "source:packages/hotkeys/src/_match.ts": {
@@ -7563,15 +7563,15 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:knip.json": {
-      "fingerprint": "e1390612a27d4bcbaa28bbef0e7d68d794cd3a559f38c0e60cb97dc81530169f",
+      "fingerprint": "0456cfebd15126c3cdbc8518061baaed67828fbe294f49189bdbcac8d7c759c7",
       "snapshot": {
-        "knip.json": "be6c5f29b3321eb0a676005597683dc53fed931445bf46fa71db2ab4b99e73bc"
+        "knip.json": "7f920b75c061c751cae4f88b8c2a85528bc82a410fc2b0c9b1a5ed4bf91da1af"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
       "evidence": [
-        "Changed: knip.json at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: knip.json at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
       ]
     },
     "source:packages/alpine-hotkeys/src/index.ts": {
@@ -8265,15 +8265,15 @@
       ]
     },
     "source:packages/solid-hotkeys/vitest.config.ts": {
-      "fingerprint": "13f36fd00bd7127a2bda1d1d9ddbaea27dfcd5e8c87c4376785d967eaa995383",
+      "fingerprint": "e86b38176d7a196dc3c143783c7778e7436570c81cda5ca2e12017d8678cee5e",
       "snapshot": {
-        "packages/solid-hotkeys/vitest.config.ts": "88b8b797ad45497225fa9ced752bcdbc116ef8e6c3bd8aca46a1184e08c5a3e4"
+        "packages/solid-hotkeys/vitest.config.ts": "d6cb57331d8efcbbf81dd521960fe6cc2d94af24d4538ffe4584a6e9391e2c2b"
       },
-      "head": "a9dd5ea3fb8a4d3d660638add1766bc35ef114f6",
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
       "outcome": "no-change",
-      "reason": "Test infrastructure only: shared Vitest setup, coverage config and thresholds, test fingerprints. No library behavior or public API changed, so no skill guidance is affected.",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
       "evidence": [
-        "Changed: packages/solid-hotkeys/vitest.config.ts at a9dd5ea3fb8a4d3d660638add1766bc35ef114f6"
+        "Changed: packages/solid-hotkeys/vitest.config.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
       ]
     },
     "source:packages/svelte-hotkeys/src/getFormatForDisplay.ts": {
@@ -8395,15 +8395,15 @@
       "evidence": ["oxfmt.config.ts", "pnpm format:check passes"]
     },
     "source:e2e/README.md": {
-      "fingerprint": "69212397e068bf54b815e0be74c424572d4bae2cfdfb946a6b33e4eb4dbea03e",
+      "fingerprint": "d09cd13f58211c2e42cea29d1a2b5254ffd2ceeebc7df2bddf2db72743d360dc",
       "snapshot": {
-        "e2e/README.md": "def6627aa4b55d4124d23f4a93f669a0acaf6692827380f69d0d4857d1376c0a"
+        "e2e/README.md": "f8890985669c0f6a06954a8f3e241c67308434b43979b134f76d6646ddf68458"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
       "evidence": [
-        "Changed: e2e/README.md at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: e2e/README.md at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
       ]
     },
     "source:e2e/playwright.ssr.config.ts": {
@@ -16868,15 +16868,15 @@
       "evidence": ["packages/hotkeys-devtools/tsconfig.json"]
     },
     "source:packages/hotkeys-devtools/vitest.config.ts": {
-      "fingerprint": "6dd65126dcf72ca51079020d21a790ffc7e02a0b60cc4b32b111993f9166ffae",
+      "fingerprint": "2476edfcc15201226b6714674d543c2eb6a7ec0cfcbc4de19aa1c483ae265dbd",
       "snapshot": {
-        "packages/hotkeys-devtools/vitest.config.ts": "7986edee9f0b0f928b8308699d484c1af7404485257d9f2434a935b3c6eb1d6a"
+        "packages/hotkeys-devtools/vitest.config.ts": "117bd85d9f754b433b366f95e7c946ba7bcc4017b7e8776af602790c1024bbc7"
       },
-      "head": "a9dd5ea3fb8a4d3d660638add1766bc35ef114f6",
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
       "outcome": "no-change",
-      "reason": "Test infrastructure only: shared Vitest setup, coverage config and thresholds, test fingerprints. No library behavior or public API changed, so no skill guidance is affected.",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
       "evidence": [
-        "Changed: packages/hotkeys-devtools/vitest.config.ts at a9dd5ea3fb8a4d3d660638add1766bc35ef114f6"
+        "Changed: packages/hotkeys-devtools/vitest.config.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
       ]
     },
     "source:packages/hotkeys/eslint.config.js": {
@@ -17152,15 +17152,15 @@
       "evidence": ["packages/preact-hotkeys/tsconfig.json"]
     },
     "source:packages/preact-hotkeys/vitest.config.ts": {
-      "fingerprint": "49be474809b46f4264907367085b513b809a43f386f9e2b3a543bce3cc7e52d0",
+      "fingerprint": "66a47f26320e9d2d9b1334ca8ed379de803edd09292c36de7e3781b84c2c3d5c",
       "snapshot": {
-        "packages/preact-hotkeys/vitest.config.ts": "291f1ff07e36932847df8d725d69f82e82393dab5dd544622fe88a0c2785744c"
+        "packages/preact-hotkeys/vitest.config.ts": "4a89c15563c351f163819d5241af4f1cf87f76a190832cfe7b47df3bdea83215"
       },
-      "head": "a9dd5ea3fb8a4d3d660638add1766bc35ef114f6",
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
       "outcome": "no-change",
-      "reason": "Test infrastructure only: shared Vitest setup, coverage config and thresholds, test fingerprints. No library behavior or public API changed, so no skill guidance is affected.",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
       "evidence": [
-        "Changed: packages/preact-hotkeys/vitest.config.ts at a9dd5ea3fb8a4d3d660638add1766bc35ef114f6"
+        "Changed: packages/preact-hotkeys/vitest.config.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
       ]
     },
     "source:packages/react-hotkeys-devtools/eslint.config.js": {
@@ -17261,15 +17261,15 @@
       "evidence": ["packages/react-hotkeys/tsconfig.json"]
     },
     "source:packages/react-hotkeys/vitest.config.ts": {
-      "fingerprint": "a04b1684e3d139e3d985d2f7c0ce953312566f88e31c44e693a724a6ff9a3552",
+      "fingerprint": "e5748f9c25618753353cb02256a4a701261bc00d021d5155df81abb42ff21f9e",
       "snapshot": {
-        "packages/react-hotkeys/vitest.config.ts": "50511a0dd8edc1fc06be632fd8d01dc619dce71f72ccb3564aa06066d8a76eee"
+        "packages/react-hotkeys/vitest.config.ts": "802e1a29a68d284ae64f4ca9089a4a1176cac68b9953f2d4f73f96219461b91a"
       },
-      "head": "a9dd5ea3fb8a4d3d660638add1766bc35ef114f6",
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
       "outcome": "no-change",
-      "reason": "Test infrastructure only: shared Vitest setup, coverage config and thresholds, test fingerprints. No library behavior or public API changed, so no skill guidance is affected.",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
       "evidence": [
-        "Changed: packages/react-hotkeys/vitest.config.ts at a9dd5ea3fb8a4d3d660638add1766bc35ef114f6"
+        "Changed: packages/react-hotkeys/vitest.config.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
       ]
     },
     "source:packages/solid-hotkeys-devtools/eslint.config.js": {
@@ -17467,15 +17467,15 @@
       "evidence": ["packages/svelte-hotkeys/tsconfig.json"]
     },
     "source:packages/svelte-hotkeys/vitest.config.ts": {
-      "fingerprint": "ca74ee3e55d044174ac4bad205233c97b6f752a31cfd37cf67636b1af62727b1",
+      "fingerprint": "0129660f7376b74afe248420f51965946f546f64590fc67480144ae091e60131",
       "snapshot": {
-        "packages/svelte-hotkeys/vitest.config.ts": "4faa2d94c197955a21e41f80b9539d87722f0147ca169581f9b44dc041babc00"
+        "packages/svelte-hotkeys/vitest.config.ts": "1c08d0366eff7c71437db77a2086d50f5a824be0c1409abea16f79a8d68a246f"
       },
-      "head": "a9dd5ea3fb8a4d3d660638add1766bc35ef114f6",
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
       "outcome": "no-change",
-      "reason": "Test infrastructure only: shared Vitest setup, coverage config and thresholds, test fingerprints. No library behavior or public API changed, so no skill guidance is affected.",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
       "evidence": [
-        "Changed: packages/svelte-hotkeys/vitest.config.ts at a9dd5ea3fb8a4d3d660638add1766bc35ef114f6"
+        "Changed: packages/svelte-hotkeys/vitest.config.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
       ]
     },
     "source:packages/vue-hotkeys-devtools/eslint.config.js": {
@@ -17657,15 +17657,15 @@
       ]
     },
     "source:packages/angular-hotkeys/vitest.config.ts": {
-      "fingerprint": "e01d119268373942d97005360a2e062eb193966603a46f40fb948418f3e24acf",
+      "fingerprint": "aa5ae4c284212c769404379d4c024d9f6690310d992cb91fc914889e7d9d3202",
       "snapshot": {
-        "packages/angular-hotkeys/vitest.config.ts": "052f57839cdcad39da84714704977d64b5948836d6e591a063678ad16a6b54d9"
+        "packages/angular-hotkeys/vitest.config.ts": "a9fa171f771e1163abffb42d176266113bceb3a61830debfd705a4754368b768"
       },
-      "head": "a9dd5ea3fb8a4d3d660638add1766bc35ef114f6",
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
       "outcome": "no-change",
-      "reason": "Test infrastructure only: shared Vitest setup, coverage config and thresholds, test fingerprints. No library behavior or public API changed, so no skill guidance is affected.",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
       "evidence": [
-        "Changed: packages/angular-hotkeys/vitest.config.ts at a9dd5ea3fb8a4d3d660638add1766bc35ef114f6"
+        "Changed: packages/angular-hotkeys/vitest.config.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
       ]
     },
     "source:packages/lit-hotkeys/vitest.config.ts": {
@@ -17969,15 +17969,15 @@
       ]
     },
     "source:.github/workflows/e2e-flaky.yml": {
-      "fingerprint": "d5282ed76ce3075f7b7d12da5f7af06417c3469a417cb90eb41e182bed95392c",
+      "fingerprint": "82ceb27b0ae77feec64d002328cd3cffb9e4f8135fb70303c41d9192d929a5e8",
       "snapshot": {
-        ".github/workflows/e2e-flaky.yml": "dce57b42d6052b4ddbf07902074b9bb003a9d79e20faa7cb750635aaf57f4b1a"
+        ".github/workflows/e2e-flaky.yml": "2ba1c84652ff9ee10fc11160bbb25d79bb81d92d047b5dc0dbf886be589073ee"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
       "evidence": [
-        "Changed: .github/workflows/e2e-flaky.yml at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: .github/workflows/e2e-flaky.yml at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
       ]
     },
     "source:.github/workflows/e2e-platforms.yml": {
@@ -18545,15 +18545,15 @@
       ]
     },
     "source:e2e/playwright.adapters.config.ts": {
-      "fingerprint": "e741f02f10b34b44a3896b424b655ee9357596f7fd80154e524e335f9dff2e35",
+      "fingerprint": "78b6d7f3510be3aec5691c58dfc68dd800ca71d5b34254301eea3293adbeefad",
       "snapshot": {
-        "e2e/playwright.adapters.config.ts": "41415c0e52d8824c675eee9ad70f534765d785206c80585d3a9945fd3441b263"
+        "e2e/playwright.adapters.config.ts": "fef2a172a3792fe2e66697e7a6dfdc39c4321b6b708a59a2e2a7bbd412f08c08"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
       "evidence": [
-        "Changed: e2e/playwright.adapters.config.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: e2e/playwright.adapters.config.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
       ]
     },
     "source:e2e/playwright.config.ts": {
@@ -18926,6 +18926,198 @@
       "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
       "evidence": [
         "Changed: packages/vue-hotkeys-devtools/tests/integration.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+      ]
+    },
+    "source:.github/workflows/nightly.yml": {
+      "fingerprint": "30e63101b1d7e8cad39adfdb37d2eeccd566bfe2db8676949f973fe74b169602",
+      "snapshot": {
+        ".github/workflows/nightly.yml": "7d42d8c99edbaf54b108e0d05557b37276cd70841c03552902271feaf10073fe"
+      },
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "outcome": "no-change",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
+      "evidence": [
+        "Changed: .github/workflows/nightly.yml at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
+      ]
+    },
+    "source:e2e/native/ibus.spec.ts": {
+      "fingerprint": "b478d441328a1b043ab0dddd5acd91f11cac4e061a44d786f02e64b037a2c365",
+      "snapshot": {
+        "e2e/native/ibus.spec.ts": "e191a8d902c36170597d78902084bf5cd4c6c585a938b0a102d1757f4a1ad431"
+      },
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "outcome": "no-change",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
+      "evidence": [
+        "Changed: e2e/native/ibus.spec.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
+      ]
+    },
+    "source:e2e/native/ibus/run.sh": {
+      "fingerprint": "80a14218df44d19b17a365fa3bb2be78e044dc66e089ef826de1facdcbcfde86",
+      "snapshot": {
+        "e2e/native/ibus/run.sh": "8ce10f1953da1fc9bdca4c7fb3e4220d3526b284713fd079de7a5440c1ac8860"
+      },
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "outcome": "no-change",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
+      "evidence": [
+        "Changed: e2e/native/ibus/run.sh at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
+      ]
+    },
+    "source:e2e/native/wayland.spec.ts": {
+      "fingerprint": "43e1eb7bed516d5a5691dd03dd69807747a0bdcf8156c4b284f7d586535ab9fd",
+      "snapshot": {
+        "e2e/native/wayland.spec.ts": "d0a3b61d3dcdad27ae08739d20f3309352c9c8fd9c917e97e58603efed75605c"
+      },
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "outcome": "no-change",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
+      "evidence": [
+        "Changed: e2e/native/wayland.spec.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
+      ]
+    },
+    "source:e2e/native/wayland/run.sh": {
+      "fingerprint": "f97c4366a00d881f8bdf4ae7ec2f6f3f8b6239199b6c3bc373184e918ee1456e",
+      "snapshot": {
+        "e2e/native/wayland/run.sh": "9fc93c07fd4eb3e4c4aa3a993c5143b696d5db13c89f48f06fd112c41e068382"
+      },
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "outcome": "no-change",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
+      "evidence": [
+        "Changed: e2e/native/wayland/run.sh at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
+      ]
+    },
+    "source:e2e/native/wayland/sway.config": {
+      "fingerprint": "04e26db8ce89ee4a4886b0bcbda505e100dece8f1778e79dfdea4464eec53d0e",
+      "snapshot": {
+        "e2e/native/wayland/sway.config": "75b876b154a1f4970c7db1386c3560812c86c8e0b78058215743106be4f9ec88"
+      },
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "outcome": "no-change",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
+      "evidence": [
+        "Changed: e2e/native/wayland/sway.config at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
+      ]
+    },
+    "source:e2e/native/wayland/virtual-keyboard-unstable-v1.xml": {
+      "fingerprint": "921fe12882bf22158baac96fae4d1d6cd79e1d407c6c40933138fade4cbadabe",
+      "snapshot": {
+        "e2e/native/wayland/virtual-keyboard-unstable-v1.xml": "7ad7870003ecd592cae47dc19d277a609b7f18fd7b7be012623cf3225a7294f5"
+      },
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "outcome": "no-change",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
+      "evidence": [
+        "Changed: e2e/native/wayland/virtual-keyboard-unstable-v1.xml at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
+      ]
+    },
+    "source:e2e/native/wayland/vkbd.c": {
+      "fingerprint": "0d63f0647ae52e1ef55b14eaff2cdab7f5c93ccd1cf5a3996a07f9a2613953f6",
+      "snapshot": {
+        "e2e/native/wayland/vkbd.c": "8157df447b0dc46a52adc7d6100a2f4f37e60086abd5f2bdbbc8d27d17e81ad7"
+      },
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "outcome": "no-change",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
+      "evidence": [
+        "Changed: e2e/native/wayland/vkbd.c at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
+      ]
+    },
+    "source:e2e/native/windows.spec.ts": {
+      "fingerprint": "777f427cb80543228156d45a615d5031c59a7140df2f28c6c310940d1889bc44",
+      "snapshot": {
+        "e2e/native/windows.spec.ts": "9d8f7edf9f09033f53ec2841a91f30b6fe5c0d5d6183c5e78d180cd5135f9443"
+      },
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "outcome": "no-change",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
+      "evidence": [
+        "Changed: e2e/native/windows.spec.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
+      ]
+    },
+    "source:e2e/native/windows/SendInput.cs": {
+      "fingerprint": "0e1882d47499efc72d2b1c66e53e7202fe21a659f6ca5d7e348c8c93e46611f4",
+      "snapshot": {
+        "e2e/native/windows/SendInput.cs": "6ba2f91e6636a972af85dcc87b499d264f4dfc255cafe47bf61a9477d4f8adff"
+      },
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "outcome": "no-change",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
+      "evidence": [
+        "Changed: e2e/native/windows/SendInput.cs at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
+      ]
+    },
+    "source:e2e/playwright.native.config.ts": {
+      "fingerprint": "5be6216df8587ff906209e15032ef9d40b454fd9606c3db773bd7abf14c5161a",
+      "snapshot": {
+        "e2e/playwright.native.config.ts": "623a6bcad8f243fe96df94ab91aac0868eaca7f94f2e0eec579a7815e449bc14"
+      },
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "outcome": "no-change",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
+      "evidence": [
+        "Changed: e2e/playwright.native.config.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
+      ]
+    },
+    "source:e2e/scripts/native-report.ts": {
+      "fingerprint": "412613faa42e1339aaab7569ad46aab4c46106f4050af929a2d0638a0c8aa7b7",
+      "snapshot": {
+        "e2e/scripts/native-report.ts": "1c523809c5872c7328d8f5ef21ea51823a9784b68c60843a5fccb0c7408729b5"
+      },
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "outcome": "no-change",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
+      "evidence": [
+        "Changed: e2e/scripts/native-report.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
+      ]
+    },
+    "source:e2e/support/native-ibus.ts": {
+      "fingerprint": "0f9a152e6177e63fd3b81dd59f26a23b98391d89bb084e6e3c5f6780ac19885c",
+      "snapshot": {
+        "e2e/support/native-ibus.ts": "98dd2ae6d08363276d95ae9800591ef4ff82ec95d9f8bcbb32a852c75232fb27"
+      },
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "outcome": "no-change",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
+      "evidence": [
+        "Changed: e2e/support/native-ibus.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
+      ]
+    },
+    "source:e2e/support/native-wayland.ts": {
+      "fingerprint": "bfb8aacf43616eb79dde036a13366a13e70d240c2a6679e77a3a2773f2511d11",
+      "snapshot": {
+        "e2e/support/native-wayland.ts": "0fde985417f4acfde86566222f01854cc8a6fde45fd9aad66b29f97826b2780c"
+      },
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "outcome": "no-change",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
+      "evidence": [
+        "Changed: e2e/support/native-wayland.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
+      ]
+    },
+    "source:e2e/support/native-windows.ts": {
+      "fingerprint": "5aeeced11094ea7e946c1a4b051f7b97a952b089713b6b0a942c63d97c4c79c1",
+      "snapshot": {
+        "e2e/support/native-windows.ts": "a0625444bc53466c37ba9cdcc1207af4a8c115c9633e70b6a2d4ad25a98691d9"
+      },
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "outcome": "no-change",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
+      "evidence": [
+        "Changed: e2e/support/native-windows.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
+      ]
+    },
+    "source:e2e/support/native.ts": {
+      "fingerprint": "6e62d516f112a4ec5ba63a51f3472c54f141f35d4e7d88a3067850faa6911fcc",
+      "snapshot": {
+        "e2e/support/native.ts": "f68dae2387ae73d4f3f633626c5d90814a0331b51bf159a91b252547edfbf2a6"
+      },
+      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "outcome": "no-change",
+      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
+      "evidence": [
+        "Changed: e2e/support/native.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
       ]
     }
   }
