@@ -9,7 +9,7 @@ title: useKeyHold
 function useKeyHold(key): Ref<boolean>;
 ```
 
-Defined in: [useKeyHold.ts:49](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useKeyHold.ts#L49)
+Defined in: [useKeyHold.ts:50](https://github.com/TanStack/hotkeys/blob/main/packages/vue-hotkeys/src/useKeyHold.ts#L50)
 
 Vue composable that returns a reactive ref indicating whether a specific key is currently being held.
 
