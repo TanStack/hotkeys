@@ -4247,15 +4247,15 @@
       ]
     },
     "source:packages/hotkeys/tests/match.test.ts": {
-      "fingerprint": "da79e116ab0011f0e0f2274ef5b0fab9591f4adf7818592fc2ae04f41b3aee4c",
+      "fingerprint": "4cdb6dfb759da8b9330708248cb23d8319fde3d2a818d0dc736f613f1ca53382",
       "snapshot": {
-        "packages/hotkeys/tests/match.test.ts": "7aa6dc97f62102bdb8c4f79b4c8ec5e4e23eeb1ac8b925128de1a2685ccc73ab"
+        "packages/hotkeys/tests/match.test.ts": "952e05ef507d48691a311c64b1ed0e9c8dbc838cbb6282703e491cfc3e458795"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
+      "head": "b3d170a68e0d3b7bbd7174161a4339844ca5b300",
       "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "reason": "Formatting only after the earlier review; skills don't describe these behaviors.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/match.test.ts at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: packages/hotkeys/tests/match.test.ts at b3d170a68e0d3b7bbd7174161a4339844ca5b300"
       ]
     },
     "source:packages/hotkeys/tests/sequence-regressions.test.ts": {
@@ -18550,15 +18550,15 @@
       ]
     },
     "source:e2e/layouts/more-layouts.spec.ts": {
-      "fingerprint": "11512071ff655c8f95db1f595ea1f5f6e7ac2933646dd97eee92b557d5162aef",
+      "fingerprint": "0479353fd02c9a2f6ad89459352b2df1771944d8772f5c355995c303fcf9f4b0",
       "snapshot": {
-        "e2e/layouts/more-layouts.spec.ts": "a7fbb9dec6ee1ef51db37f84ea68dbdf6513d2f154e70ffaf86bf966f7ea572d"
+        "e2e/layouts/more-layouts.spec.ts": "94fc077eb915367df502e2a1e0fb7b29e5a2ac330a40f658ddb6e1d852853ec4"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
+      "head": "b3d170a68e0d3b7bbd7174161a4339844ca5b300",
       "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "reason": "Formatting only after the earlier review; skills don't describe these behaviors.",
       "evidence": [
-        "Changed: e2e/layouts/more-layouts.spec.ts at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: e2e/layouts/more-layouts.spec.ts at b3d170a68e0d3b7bbd7174161a4339844ca5b300"
       ]
     },
     "source:e2e/playwright.adapters.config.ts": {
@@ -18754,15 +18754,15 @@
       ]
     },
     "source:packages/hotkeys/tests/invariants/event-fuzz.test.ts": {
-      "fingerprint": "a0720c63ae6b355342cb27b685ac3dae73a6dd6c2a3e2691a4eba8042587a02c",
+      "fingerprint": "30631b65172be55b9e20ee5715d647c2bfe6c78cdcce17c5e0615ee217548e1d",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/event-fuzz.test.ts": "f9cef4b76710a00e497731d557e8dc8e2f30ea7506904678ab3bd0c27692c5ec"
+        "packages/hotkeys/tests/invariants/event-fuzz.test.ts": "7dfdd7e33c74b37ec82d828a9ae023cf42ece446e7057e876a830137aae41e5c"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
+      "head": "b3d170a68e0d3b7bbd7174161a4339844ca5b300",
       "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "reason": "Formatting only after the earlier review; skills don't describe these behaviors.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/invariants/event-fuzz.test.ts at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: packages/hotkeys/tests/invariants/event-fuzz.test.ts at b3d170a68e0d3b7bbd7174161a4339844ca5b300"
       ]
     },
     "source:packages/hotkeys/tests/invariants/fixtures.ts": {
