@@ -8374,24 +8374,28 @@
       "evidence": ["e2e/README.md"]
     },
     "source:e2e/playwright.ssr.config.ts": {
-      "fingerprint": "1acb192293ee09c9b6638adfbcc838887b777c3083b09d2f6af57840c8d8a952",
+      "fingerprint": "8c34f92dda39a8b81205fa9089794964e8adf061907fdd30ba8725cf30e1deca",
       "snapshot": {
-        "e2e/playwright.ssr.config.ts": "edd429dae6a4f4cec3de5b27463e3b5700b2899f2511b887b9ab5c8b6ceba8aa"
+        "e2e/playwright.ssr.config.ts": "f8f91ae2b20cb9ea9b5d648e1ead977476dd62fdaf0fbb85226cf59f2d3048a5"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "9312bbb0f3897b79c33153e0aecee04da67baea4",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
-      "evidence": ["e2e/playwright.ssr.config.ts"]
+      "reason": "CI workflows and e2e test/config changes only; no library behavior or skill guidance affected",
+      "evidence": [
+        "Changed: e2e/playwright.ssr.config.ts at 9312bbb0f3897b79c33153e0aecee04da67baea4"
+      ]
     },
     "source:e2e/ssr/cheat-sheet.spec.ts": {
-      "fingerprint": "fd769b23a69d9d85ed3a20d6d7e7aa17ab21c2d4de12001b28f1a397afb13609",
+      "fingerprint": "53ac534d788db90a2fc8186d030d70067bf7b803b5ecd32bf6fe9d476078376e",
       "snapshot": {
-        "e2e/ssr/cheat-sheet.spec.ts": "66926c4294fc7e611d2db8a91d57e420895c4b45d9a304d0d656b43e3568b6a9"
+        "e2e/ssr/cheat-sheet.spec.ts": "8021a49894ec00e482dd622cf0923b5fd48a069c8474cfb0865a3ab6be86a8e1"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "9312bbb0f3897b79c33153e0aecee04da67baea4",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
-      "evidence": ["e2e/ssr/cheat-sheet.spec.ts"]
+      "reason": "CI workflows and e2e test/config changes only; no library behavior or skill guidance affected",
+      "evidence": [
+        "Changed: e2e/ssr/cheat-sheet.spec.ts at 9312bbb0f3897b79c33153e0aecee04da67baea4"
+      ]
     },
     "source:e2e/ssr/examples.ts": {
       "fingerprint": "578e1ba40ae95fa5e574862fae5066f757549f7fbc7ed6aeabf8e6cfc8830324",
@@ -17611,6 +17615,66 @@
       "outcome": "out-of-scope",
       "reason": "Tests for Tab leaving the recorder; they describe no guidance.",
       "evidence": ["packages/hotkeys/tests/recorder-tab.test.ts"]
+    },
+    "source:.github/workflows/e2e-flaky.yml": {
+      "fingerprint": "f82027660a192df97fdc294cd6ed008bd7fb74793c877c6e01a02f94bd37cadb",
+      "snapshot": {
+        ".github/workflows/e2e-flaky.yml": "09173c279e146e9e4b8f1db5f67f2fc3d96feb440a91b76514bd4206231b9152"
+      },
+      "head": "9312bbb0f3897b79c33153e0aecee04da67baea4",
+      "outcome": "no-change",
+      "reason": "CI workflows and e2e test/config changes only; no library behavior or skill guidance affected",
+      "evidence": [
+        "Changed: .github/workflows/e2e-flaky.yml at 9312bbb0f3897b79c33153e0aecee04da67baea4"
+      ]
+    },
+    "source:.github/workflows/e2e-platforms.yml": {
+      "fingerprint": "de9c8178a7c71a2d31ad2f5247defaf7c1b3800bcd32aa6e43c696c2ea51a73c",
+      "snapshot": {
+        ".github/workflows/e2e-platforms.yml": "cd0f9691b8f907f0b292ef18b3ac905f43224be8282f1228bdc1da1377886efe"
+      },
+      "head": "9312bbb0f3897b79c33153e0aecee04da67baea4",
+      "outcome": "no-change",
+      "reason": "CI workflows and e2e test/config changes only; no library behavior or skill guidance affected",
+      "evidence": [
+        "Changed: .github/workflows/e2e-platforms.yml at 9312bbb0f3897b79c33153e0aecee04da67baea4"
+      ]
+    },
+    "source:e2e/browser/sequences-and-scopes.spec.ts": {
+      "fingerprint": "715c97cfb84f450dd6591e16bca6ba8d350b203b6bfdcc71f9ad2840ee80a705",
+      "snapshot": {
+        "e2e/browser/sequences-and-scopes.spec.ts": "d7e80f3a2dce015a30f947758c5c540aa13c0411d795691dc1a276054e040c74"
+      },
+      "head": "9312bbb0f3897b79c33153e0aecee04da67baea4",
+      "outcome": "no-change",
+      "reason": "CI workflows and e2e test/config changes only; no library behavior or skill guidance affected",
+      "evidence": [
+        "Changed: e2e/browser/sequences-and-scopes.spec.ts at 9312bbb0f3897b79c33153e0aecee04da67baea4"
+      ]
+    },
+    "source:e2e/playwright.config.ts": {
+      "fingerprint": "edff34a1636d4d92e1b316113980eb5ccb412077702f80a36a4bba7fdcf1d039",
+      "snapshot": {
+        "e2e/playwright.config.ts": "42decbc98bb01c8798ca7c7234e5d4aebf1ccaceef9c242969335a1b788f1473"
+      },
+      "head": "9312bbb0f3897b79c33153e0aecee04da67baea4",
+      "outcome": "no-change",
+      "reason": "CI workflows and e2e test/config changes only; no library behavior or skill guidance affected",
+      "evidence": [
+        "Changed: e2e/playwright.config.ts at 9312bbb0f3897b79c33153e0aecee04da67baea4"
+      ]
+    },
+    "source:e2e/playwright.layouts.config.ts": {
+      "fingerprint": "ee1b83ef3d9d8e1e4a5d06fbfbafcb2d092c99ef35994c837411d00ca04edbd5",
+      "snapshot": {
+        "e2e/playwright.layouts.config.ts": "bb703992491cdcdbaef66857b3b9d1fcc7dd835dc174b77e5c36c7b57aee6e57"
+      },
+      "head": "9312bbb0f3897b79c33153e0aecee04da67baea4",
+      "outcome": "no-change",
+      "reason": "CI workflows and e2e test/config changes only; no library behavior or skill guidance affected",
+      "evidence": [
+        "Changed: e2e/playwright.layouts.config.ts at 9312bbb0f3897b79c33153e0aecee04da67baea4"
+      ]
     }
   }
 }
