@@ -59,4 +59,4 @@ jobs:
       - name: Setup Tools
         uses: TanStack/config/.github/setup@466151b2d479656b38942cd84a0a3dce29d48de3
       - name: Changeset Preview
-        uses: TanStack/config/.github/changeset-preview@466151b2d479656b38942cd84a0a3dce29d48de3 # main
+        uses: TanStack/config/.github/changeset-preview@a041f4eeb8e4d595aee89f8992b20c669288a741 # main
