@@ -55,9 +55,14 @@ To add an example, add it to `ssr/examples.ts` with an unused port and the comma
 These tests switch the X11 keyboard layout with `setxkbmap` and press physical keys with `xdotool`. The browser receives the same events a user's keyboard would produce on that layout. Cases cover AltGr, AZERTY, QWERTZ, Dvorak, Russian, and dead keys.
 
 - **macOS and Windows:** `pnpm test:e2e:layouts:docker` builds `docker/Dockerfile`, starts browsers and a virtual display in a container, and runs the tests on the host against them. Requires Docker.
-- **Linux:** install `xvfb`, `xdotool`, and `x11-xkb-utils`, copy `docker/tanstack.xkb` to `/usr/share/X11/xkb/symbols/tanstack`, and run `xvfb-run -a pnpm test:e2e:layouts`. CI does this.
+- **Linux:** install `xvfb`, `xdotool`, `x11-xkb-utils`, `x11-xserver-utils`, and `xterm`, copy `docker/tanstack.xkb` to `/usr/share/X11/xkb/symbols/tanstack`, and run `xvfb-run -a pnpm test:e2e:layouts`. CI does this.
 
 `tanstack(winno)` is a Norwegian layout that leaves AltGr+F, K, and A empty, as Windows Norwegian does. Linux layouts put a character on almost every AltGr key.
+
+The suite also holds real keys down:
+
+- `key-repeat.spec.ts` holds a key past the auto-repeat delay and checks `event.repeat`, `requireReset`, and sequences.
+- `focus-loss.spec.ts` moves keyboard focus to an xterm while keys are held, releases them there, and checks that no key stays held. Playwright makes pages report focus even when their window doesn't have it. Chromium can turn this off per page; Playwright's Firefox can't, so Firefox never sees the blur.
 
 To add a layout case, add an entry to a `describeLayouts` call: the physical keys pressed, the bindings that must match, and what the event parses and records as. Key names are physical positions, listed in `support/x11.ts`.
 
