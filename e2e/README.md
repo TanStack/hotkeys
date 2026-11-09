@@ -52,7 +52,7 @@ To add an example, add it to `ssr/examples.ts` with an unused port and the comma
 
 ## Keyboard layouts
 
-These tests switch the X11 keyboard layout with `setxkbmap` and press physical keys with `xdotool`. The browser receives the same events a user's keyboard would produce on that layout. Cases cover AltGr, AZERTY, QWERTZ, Dvorak, Russian, and dead keys.
+These tests switch the X11 keyboard layout with `setxkbmap` and press physical keys with `xdotool`. The browser receives the same events a user's keyboard would produce on that layout. Cases cover AltGr, AZERTY, QWERTZ, Dvorak, Russian (alone and with a US group), dead keys, Turkish dotless i, the Czech digit row, the ISO and JIS extra keys (UK, Brazilian ABNT2, Japanese), and the numpad with NumLock on and off.
 
 - **macOS and Windows:** `pnpm test:e2e:layouts:docker` builds `docker/Dockerfile`, starts browsers and a virtual display in a container, and runs the tests on the host against them. Requires Docker.
 - **Linux:** install `xvfb`, `xdotool`, `x11-xkb-utils`, `x11-xserver-utils`, and `xterm`, copy `docker/tanstack.xkb` to `/usr/share/X11/xkb/symbols/tanstack`, and run `xvfb-run -a pnpm test:e2e:layouts`. CI does this.
@@ -64,7 +64,11 @@ The suite also holds real keys down:
 - `key-repeat.spec.ts` holds a key past the auto-repeat delay and checks `event.repeat`, `requireReset`, and sequences.
 - `focus-loss.spec.ts` moves keyboard focus to an xterm while keys are held, releases them there, and checks that no key stays held. Playwright makes pages report focus even when their window doesn't have it. Chromium can turn this off per page; Playwright's Firefox can't, so Firefox never sees the blur.
 
-To add a layout case, add an entry to a `describeLayouts` call: the physical keys pressed, the bindings that must match, and what the event parses and records as. Key names are physical positions, listed in `support/x11.ts`.
+To add a layout case, add an entry to a `describeLayouts` call: the physical keys pressed, the bindings that must match, and what the event parses and records as. Cases can also check the recording with `recordBy: 'key'` and the recorded binding's display label, with and without Chromium's `getLayoutMap()`. Key names are physical positions, listed in `support/x11.ts`.
+
+- For a layout with two groups, such as Russian with US, put the layout under test first (`'ru,us'`). xdotool resets the active group on every press.
+- Pass `numLock: true` to `describeLayouts` to run its cases with NumLock on.
+- Mark a case that shows a suspected library bug with `bug: 'BUG-NNN'`. It's skipped and its name starts with the ID.
 
 ### Not covered
 

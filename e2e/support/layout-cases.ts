@@ -1,5 +1,5 @@
 import { expect, useLayout } from './layout-fixtures'
-import type { Layout } from './layout-fixtures'
+import type { Layout, LayoutOptions } from './layout-fixtures'
 
 /** What one real key press must produce on a layout. */
 export interface LayoutCase {
@@ -11,6 +11,20 @@ export interface LayoutCase {
   parsed: string
   /** What the recorder (physical mode) produces, if checked. */
   recorded?: string | { reject: string }
+  /** What the recorder produces with `recordBy: 'key'`, if checked. */
+  recordedByKey?: string | { reject: string }
+  /** `formatForDisplay(recorded)` on Linux, without a layout map. */
+  label?: string
+  /**
+   * `formatForDisplay(recorded)` with Chromium's `getLayoutMap()`. Firefox has
+   * no layout map, so it's checked on Chromium only.
+   */
+  layoutLabel?: string
+  /**
+   * A suspected library bug this case shows, such as `'BUG-124'`. The case is
+   * skipped and its name starts with the ID. Name the draft in a comment.
+   */
+  bug?: string
 }
 
 /**
@@ -24,14 +38,18 @@ export function describeLayouts(
     bindings: Array<string>
     registered?: Array<string>
     layouts: Record<Layout, Array<LayoutCase>>
-  },
+  } & LayoutOptions,
 ): void {
   const registered = options.registered ?? []
   for (const [layout, cases] of Object.entries(options.layouts)) {
-    const test = useLayout(layout, options.bindings, registered)
+    const test = useLayout(layout, options.bindings, registered, options)
     test.describe(`${title} on ${layout}`, () => {
       for (const expected of cases) {
-        test(expected.keys, async ({ keyboard }) => {
+        const define = expected.bug ? test.skip : test
+        const name = expected.bug
+          ? `${expected.bug}: ${expected.keys}`
+          : expected.keys
+        define(name, async ({ keyboard, page, browserName }) => {
           const { keydown, fired } = await keyboard.press(expected.keys)
           const codePoints = [...keydown.key]
             .map((c) => `U+${c.codePointAt(0)!.toString(16).toUpperCase()}`)
@@ -52,6 +70,36 @@ export function describeLayouts(
             expect(await keyboard.record(expected.keys), event).toEqual(
               expected.recorded,
             )
+          }
+          if (expected.recordedByKey !== undefined) {
+            expect(
+              await keyboard.record(expected.keys, { recordBy: 'key' }),
+              `recordBy: 'key' (${event})`,
+            ).toEqual(expected.recordedByKey)
+          }
+          if (
+            expected.label !== undefined ||
+            expected.layoutLabel !== undefined
+          ) {
+            if (typeof expected.recorded !== 'string') {
+              throw new Error('Labels need a recorded binding')
+            }
+            const binding = expected.recorded
+            const { label, layoutLabel } = await page.evaluate(
+              (b) => window.harness.formatLabels(b),
+              binding,
+            )
+            if (expected.label !== undefined) {
+              expect(label, `label of ${binding}`).toBe(expected.label)
+            }
+            if (
+              expected.layoutLabel !== undefined &&
+              browserName === 'chromium'
+            ) {
+              expect(layoutLabel, `layout map label of ${binding}`).toBe(
+                expected.layoutLabel,
+              )
+            }
           }
         })
       }

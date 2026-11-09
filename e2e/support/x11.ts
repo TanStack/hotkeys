@@ -45,9 +45,30 @@ const KEYCODES = {
   Home: 110,
   End: 115,
   Space: 65,
+  // Keys for the extra layout cases (more-layouts.spec.ts)
+  NumLock: 77,
+  Digit3: 12,
+  Digit4: 13,
+  KeyC: 54,
+  KeyI: 31,
+  Quote: 48,
+  Semicolon: 47,
+  Backslash: 51,
+  BracketLeft: 34,
+  IntlBackslash: 94,
+  IntlRo: 97,
+  IntlYen: 132,
+  Numpad5: 84,
+  Numpad8: 80,
+  NumpadDecimal: 91,
 } as const
 
-/** Switches the keyboard layout, such as `('no')` or `('us', 'dvorak')`. */
+/**
+ * Switches the keyboard layout, such as `('no')` or `('us', 'dvorak')`. A
+ * list such as `'ru,us'` makes one group per layout with the first active.
+ * xdotool resets the xkb group on each press, so the layout under test goes
+ * first.
+ */
 export function setLayout(layout: string, variant?: string): void {
   x11('setxkbmap', layout, ...(variant ? ['-variant', variant] : []))
 }
