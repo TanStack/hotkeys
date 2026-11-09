@@ -17774,6 +17774,162 @@
       "evidence": [
         "Changed: vitest.workspace.ts at a9dd5ea3fb8a4d3d660638add1766bc35ef114f6"
       ]
+    },
+    "source:packages/angular-hotkeys/tests/held-keys.test.ts": {
+      "fingerprint": "0df6c211adeb67122147571a46291e4b2f86421ef6674b22d5db31367a531181",
+      "snapshot": {
+        "packages/angular-hotkeys/tests/held-keys.test.ts": "220288d6572b257d91021391cecab11e25c5e1004fe97d597aea6af818d9038f"
+      },
+      "head": "dfdec2632d943b43ac8ac4987358da7721f706fc",
+      "outcome": "no-change",
+      "reason": "Tests only: new adapter tests for held keys, key hold and registrations. No library behavior or API changed, so no skill guidance changes.",
+      "evidence": [
+        "Changed: packages/angular-hotkeys/tests/held-keys.test.ts at dfdec2632d943b43ac8ac4987358da7721f706fc"
+      ]
+    },
+    "source:packages/angular-hotkeys/tests/hotkey-registrations.test.ts": {
+      "fingerprint": "b6004b74f42f540258bf522df7349db2e50e736cb60571767272eb029a3e8d28",
+      "snapshot": {
+        "packages/angular-hotkeys/tests/hotkey-registrations.test.ts": "13a165ddd0c838be8ae4210d25fc0d16fb8a07fc033bbfd590fd67d85ef73923"
+      },
+      "head": "dfdec2632d943b43ac8ac4987358da7721f706fc",
+      "outcome": "no-change",
+      "reason": "Tests only: new adapter tests for held keys, key hold and registrations. No library behavior or API changed, so no skill guidance changes.",
+      "evidence": [
+        "Changed: packages/angular-hotkeys/tests/hotkey-registrations.test.ts at dfdec2632d943b43ac8ac4987358da7721f706fc"
+      ]
+    },
+    "source:packages/preact-hotkeys/tests/held-keys.test.tsx": {
+      "fingerprint": "80d6beec81239ca147a67df5efa25e93950eb604b7ef21a1be6f4d053ea29d7d",
+      "snapshot": {
+        "packages/preact-hotkeys/tests/held-keys.test.tsx": "501024cd42430a22ca845641925dd39baa4775991c1a089c3a86863c54a3e03f"
+      },
+      "head": "dfdec2632d943b43ac8ac4987358da7721f706fc",
+      "outcome": "no-change",
+      "reason": "Tests only: new adapter tests for held keys, key hold and registrations. No library behavior or API changed, so no skill guidance changes.",
+      "evidence": [
+        "Changed: packages/preact-hotkeys/tests/held-keys.test.tsx at dfdec2632d943b43ac8ac4987358da7721f706fc"
+      ]
+    },
+    "source:packages/preact-hotkeys/tests/hotkey-registrations.test.tsx": {
+      "fingerprint": "abe0738577542c0e058efda7a33cc5a32214fd405143832c7754cf0e987cac4f",
+      "snapshot": {
+        "packages/preact-hotkeys/tests/hotkey-registrations.test.tsx": "21603855a0632c2847a04a778e66b30b9205d8761a50c8d6a3eabb33f10b7c40"
+      },
+      "head": "dfdec2632d943b43ac8ac4987358da7721f706fc",
+      "outcome": "no-change",
+      "reason": "Tests only: new adapter tests for held keys, key hold and registrations. No library behavior or API changed, so no skill guidance changes.",
+      "evidence": [
+        "Changed: packages/preact-hotkeys/tests/hotkey-registrations.test.tsx at dfdec2632d943b43ac8ac4987358da7721f706fc"
+      ]
+    },
+    "source:packages/react-hotkeys/tests/held-keys.test.tsx": {
+      "fingerprint": "d3ddd74a219e357551e1af21770835b8f94010f17cbb810a9d58d9499994c48d",
+      "snapshot": {
+        "packages/react-hotkeys/tests/held-keys.test.tsx": "683f7aeaf5316d87c73884636d7799740269e8b97aac42abd52f24d9cef6a92a"
+      },
+      "head": "dfdec2632d943b43ac8ac4987358da7721f706fc",
+      "outcome": "no-change",
+      "reason": "Tests only: new adapter tests for held keys, key hold and registrations. No library behavior or API changed, so no skill guidance changes.",
+      "evidence": [
+        "Changed: packages/react-hotkeys/tests/held-keys.test.tsx at dfdec2632d943b43ac8ac4987358da7721f706fc"
+      ]
+    },
+    "source:packages/react-hotkeys/tests/hotkey-registrations.test.tsx": {
+      "fingerprint": "4d92cbe42bc206f59210bd3e067ce2656bd2609c13b766e0e58824caf6dacabe",
+      "snapshot": {
+        "packages/react-hotkeys/tests/hotkey-registrations.test.tsx": "be112501f20bf0923c3f5157abba89993f5f4056a9d5d8aa7360ef4974149d4b"
+      },
+      "head": "dfdec2632d943b43ac8ac4987358da7721f706fc",
+      "outcome": "no-change",
+      "reason": "Tests only: new adapter tests for held keys, key hold and registrations. No library behavior or API changed, so no skill guidance changes.",
+      "evidence": [
+        "Changed: packages/react-hotkeys/tests/hotkey-registrations.test.tsx at dfdec2632d943b43ac8ac4987358da7721f706fc"
+      ]
+    },
+    "source:packages/solid-hotkeys/tests/held-keys.test.tsx": {
+      "fingerprint": "d30f12c74004d65fabe7fb62dcadcf905aa88a0cfdc1992edb471c23cc6b6a18",
+      "snapshot": {
+        "packages/solid-hotkeys/tests/held-keys.test.tsx": "1e4a2d8b360c73ec692c078f140f015847cd44e246380df45791e5cdfbc51b0f"
+      },
+      "head": "dfdec2632d943b43ac8ac4987358da7721f706fc",
+      "outcome": "no-change",
+      "reason": "Tests only: new adapter tests for held keys, key hold and registrations. No library behavior or API changed, so no skill guidance changes.",
+      "evidence": [
+        "Changed: packages/solid-hotkeys/tests/held-keys.test.tsx at dfdec2632d943b43ac8ac4987358da7721f706fc"
+      ]
+    },
+    "source:packages/solid-hotkeys/tests/hotkey-registrations.test.tsx": {
+      "fingerprint": "ceac97439989ad4d142768c1157c67c54dbc603031a2a3ccb571483fe1dc554a",
+      "snapshot": {
+        "packages/solid-hotkeys/tests/hotkey-registrations.test.tsx": "0a442d6ae48b20a5f3c0b6d0aa268ddc57764f7a23770e501f83fa8afa8be0df"
+      },
+      "head": "dfdec2632d943b43ac8ac4987358da7721f706fc",
+      "outcome": "no-change",
+      "reason": "Tests only: new adapter tests for held keys, key hold and registrations. No library behavior or API changed, so no skill guidance changes.",
+      "evidence": [
+        "Changed: packages/solid-hotkeys/tests/hotkey-registrations.test.tsx at dfdec2632d943b43ac8ac4987358da7721f706fc"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/HeldKeysView.svelte": {
+      "fingerprint": "7ec29f47094493d0152e30b60e9c74971ab5775842343ad9ee6b2ecb9fc2153b",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/HeldKeysView.svelte": "acf344df69222eba800e1501d9dd99b06b69a966e968d2a6c17f020228270afe"
+      },
+      "head": "dfdec2632d943b43ac8ac4987358da7721f706fc",
+      "outcome": "no-change",
+      "reason": "Tests only: new adapter tests for held keys, key hold and registrations. No library behavior or API changed, so no skill guidance changes.",
+      "evidence": [
+        "Changed: packages/svelte-hotkeys/tests/HeldKeysView.svelte at dfdec2632d943b43ac8ac4987358da7721f706fc"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/HotkeyView.svelte": {
+      "fingerprint": "06bb84ede8a78367f6cf84cfade3e95f6495a3b577f1209db8da1818f3df14b8",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/HotkeyView.svelte": "78c445dc9646b65199d5b1b215a0201c4b7239abd310afcca6fb8887ed625f38"
+      },
+      "head": "dfdec2632d943b43ac8ac4987358da7721f706fc",
+      "outcome": "no-change",
+      "reason": "Tests only: new adapter tests for held keys, key hold and registrations. No library behavior or API changed, so no skill guidance changes.",
+      "evidence": [
+        "Changed: packages/svelte-hotkeys/tests/HotkeyView.svelte at dfdec2632d943b43ac8ac4987358da7721f706fc"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/RegistrationsView.svelte": {
+      "fingerprint": "4af615f1ba57a7e1aaf140cfce868611b9c9bd5d9932b9a30055404a1df77bd1",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/RegistrationsView.svelte": "8aa2ee4a20682fed54f16311b5e3fcbc022dcf08537e4051d3e509d17997cfc7"
+      },
+      "head": "dfdec2632d943b43ac8ac4987358da7721f706fc",
+      "outcome": "no-change",
+      "reason": "Tests only: new adapter tests for held keys, key hold and registrations. No library behavior or API changed, so no skill guidance changes.",
+      "evidence": [
+        "Changed: packages/svelte-hotkeys/tests/RegistrationsView.svelte at dfdec2632d943b43ac8ac4987358da7721f706fc"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/held-keys.test.ts": {
+      "fingerprint": "8aa3a5e7bc013d31c1ec890dc847a1d0f3d307a5098f8289e7578507206113a3",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/held-keys.test.ts": "c489003d13ea2608ed928883bab1ceb7ff773458163f36e4b6379a7464cbef8c"
+      },
+      "head": "dfdec2632d943b43ac8ac4987358da7721f706fc",
+      "outcome": "no-change",
+      "reason": "Tests only: new adapter tests for held keys, key hold and registrations. No library behavior or API changed, so no skill guidance changes.",
+      "evidence": [
+        "Changed: packages/svelte-hotkeys/tests/held-keys.test.ts at dfdec2632d943b43ac8ac4987358da7721f706fc"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/hotkey-registrations.test.ts": {
+      "fingerprint": "3617a64c90bf949130a63ec51f398d7ed64ff8f66ccbb1d39ba70105d84517b9",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/hotkey-registrations.test.ts": "cad21869463a48d0ccbd903f411530569b84602b492d5b2b2a7901f9cb1a07a1"
+      },
+      "head": "dfdec2632d943b43ac8ac4987358da7721f706fc",
+      "outcome": "no-change",
+      "reason": "Tests only: new adapter tests for held keys, key hold and registrations. No library behavior or API changed, so no skill guidance changes.",
+      "evidence": [
+        "Changed: packages/svelte-hotkeys/tests/hotkey-registrations.test.ts at dfdec2632d943b43ac8ac4987358da7721f706fc"
+      ]
     }
   }
 }
