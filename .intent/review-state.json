@@ -4215,14 +4215,16 @@
       "evidence": ["e2e/layouts/layouts.spec.ts"]
     },
     "source:e2e/support/x11.ts": {
-      "fingerprint": "ca063723def3419bfbebd8bf1ce8bf2be1679a2969ad6510e06ce6e96e7483a4",
+      "fingerprint": "7d15546191c9ce9fa4b5975ce110985e65bcbe9c6898a7ab241b135dbc2941be",
       "snapshot": {
-        "e2e/support/x11.ts": "dff9cae03a461282a571f520a1b01b3dcc4d97f7b7bed0865ac8f25897690d67"
+        "e2e/support/x11.ts": "23f30ff16eeaf721f4adc9f5aac8b08df63d33bd01db5882ae600c268eec76dd"
       },
-      "head": "257929f0da34cecc64d5987127147b99e584f4e2",
+      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
       "outcome": "no-change",
-      "reason": "E2E test infrastructure only: layout fixture probes real key input before each case, and the Docker image matches @playwright/test 1.65.0. No library behavior or guidance changes.",
-      "evidence": ["e2e/support/x11.ts"]
+      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "evidence": [
+        "Changed: e2e/support/x11.ts at c77ce868178f916374a51582da87fb3923a3af2b"
+      ]
     },
     "source:packages/hotkeys/src/_match.ts": {
       "fingerprint": "829d440b1b8e8fc776847f62e03fec659fc592a1ab09aa6af53527480cf1bf9e",
@@ -8364,14 +8366,16 @@
       "evidence": ["oxfmt.config.ts", "pnpm format:check passes"]
     },
     "source:e2e/README.md": {
-      "fingerprint": "d08a715a1e080a791a5ff250138ddbe1e708c58d009aae358033e8651793c401",
+      "fingerprint": "7798624bbfe5a3981113538bc7f1255d9d66a1e742e84227f9b2c5fc996364d4",
       "snapshot": {
-        "e2e/README.md": "50cad6318b58608d2f31856042b10e910214910059a438824402c9ae44a0190e"
+        "e2e/README.md": "3a51206d5fbbbf3cc9f56d6d159c181af7e91fcb36e8920a8b2e3b7d7566be16"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
-      "evidence": ["e2e/README.md"]
+      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "evidence": [
+        "Changed: e2e/README.md at c77ce868178f916374a51582da87fb3923a3af2b"
+      ]
     },
     "source:e2e/playwright.ssr.config.ts": {
       "fingerprint": "1acb192293ee09c9b6638adfbcc838887b777c3083b09d2f6af57840c8d8a952",
@@ -17611,6 +17615,198 @@
       "outcome": "out-of-scope",
       "reason": "Tests for Tab leaving the recorder; they describe no guidance.",
       "evidence": ["packages/hotkeys/tests/recorder-tab.test.ts"]
+    },
+    "source:.github/workflows/nightly.yml": {
+      "fingerprint": "bb424c786af7c51609496cfe167e02147397c021b378ff705f847bddc808c454",
+      "snapshot": {
+        ".github/workflows/nightly.yml": "1a69bc1e3996580845cf7b7707ee32bd9e8ad433fd868a5bf7264a7bcf2fb1b3"
+      },
+      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
+      "outcome": "no-change",
+      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "evidence": [
+        "Changed: .github/workflows/nightly.yml at c77ce868178f916374a51582da87fb3923a3af2b"
+      ]
+    },
+    "source:e2e/native/ibus.spec.ts": {
+      "fingerprint": "33aa8a073c7b542fa50f8821fb88932d2e1af44ed8133e73e7500fa23f7c5b05",
+      "snapshot": {
+        "e2e/native/ibus.spec.ts": "20f232fb3b2b7a1d051f166388f0580fc554fa1c0c4d7b0a3fa342285c77c84b"
+      },
+      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
+      "outcome": "no-change",
+      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "evidence": [
+        "Changed: e2e/native/ibus.spec.ts at c77ce868178f916374a51582da87fb3923a3af2b"
+      ]
+    },
+    "source:e2e/native/ibus/run.sh": {
+      "fingerprint": "bcf891d78caf31060cc646e6167301ff16e0a6a0fc3ce2a214c8f13bbcd4008f",
+      "snapshot": {
+        "e2e/native/ibus/run.sh": "47aaef1e0d9f3cb3c268517b40e0a13d5fb19bf374f4dd1d80a06daf43664d4a"
+      },
+      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
+      "outcome": "no-change",
+      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "evidence": [
+        "Changed: e2e/native/ibus/run.sh at c77ce868178f916374a51582da87fb3923a3af2b"
+      ]
+    },
+    "source:e2e/native/wayland.spec.ts": {
+      "fingerprint": "43e1eb7bed516d5a5691dd03dd69807747a0bdcf8156c4b284f7d586535ab9fd",
+      "snapshot": {
+        "e2e/native/wayland.spec.ts": "d0a3b61d3dcdad27ae08739d20f3309352c9c8fd9c917e97e58603efed75605c"
+      },
+      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
+      "outcome": "no-change",
+      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "evidence": [
+        "Changed: e2e/native/wayland.spec.ts at c77ce868178f916374a51582da87fb3923a3af2b"
+      ]
+    },
+    "source:e2e/native/wayland/run.sh": {
+      "fingerprint": "f97c4366a00d881f8bdf4ae7ec2f6f3f8b6239199b6c3bc373184e918ee1456e",
+      "snapshot": {
+        "e2e/native/wayland/run.sh": "9fc93c07fd4eb3e4c4aa3a993c5143b696d5db13c89f48f06fd112c41e068382"
+      },
+      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
+      "outcome": "no-change",
+      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "evidence": [
+        "Changed: e2e/native/wayland/run.sh at c77ce868178f916374a51582da87fb3923a3af2b"
+      ]
+    },
+    "source:e2e/native/wayland/sway.config": {
+      "fingerprint": "04e26db8ce89ee4a4886b0bcbda505e100dece8f1778e79dfdea4464eec53d0e",
+      "snapshot": {
+        "e2e/native/wayland/sway.config": "75b876b154a1f4970c7db1386c3560812c86c8e0b78058215743106be4f9ec88"
+      },
+      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
+      "outcome": "no-change",
+      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "evidence": [
+        "Changed: e2e/native/wayland/sway.config at c77ce868178f916374a51582da87fb3923a3af2b"
+      ]
+    },
+    "source:e2e/native/wayland/virtual-keyboard-unstable-v1.xml": {
+      "fingerprint": "921fe12882bf22158baac96fae4d1d6cd79e1d407c6c40933138fade4cbadabe",
+      "snapshot": {
+        "e2e/native/wayland/virtual-keyboard-unstable-v1.xml": "7ad7870003ecd592cae47dc19d277a609b7f18fd7b7be012623cf3225a7294f5"
+      },
+      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
+      "outcome": "no-change",
+      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "evidence": [
+        "Changed: e2e/native/wayland/virtual-keyboard-unstable-v1.xml at c77ce868178f916374a51582da87fb3923a3af2b"
+      ]
+    },
+    "source:e2e/native/wayland/vkbd.c": {
+      "fingerprint": "0d63f0647ae52e1ef55b14eaff2cdab7f5c93ccd1cf5a3996a07f9a2613953f6",
+      "snapshot": {
+        "e2e/native/wayland/vkbd.c": "8157df447b0dc46a52adc7d6100a2f4f37e60086abd5f2bdbbc8d27d17e81ad7"
+      },
+      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
+      "outcome": "no-change",
+      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "evidence": [
+        "Changed: e2e/native/wayland/vkbd.c at c77ce868178f916374a51582da87fb3923a3af2b"
+      ]
+    },
+    "source:e2e/native/windows.spec.ts": {
+      "fingerprint": "777f427cb80543228156d45a615d5031c59a7140df2f28c6c310940d1889bc44",
+      "snapshot": {
+        "e2e/native/windows.spec.ts": "9d8f7edf9f09033f53ec2841a91f30b6fe5c0d5d6183c5e78d180cd5135f9443"
+      },
+      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
+      "outcome": "no-change",
+      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "evidence": [
+        "Changed: e2e/native/windows.spec.ts at c77ce868178f916374a51582da87fb3923a3af2b"
+      ]
+    },
+    "source:e2e/native/windows/SendInput.cs": {
+      "fingerprint": "0e1882d47499efc72d2b1c66e53e7202fe21a659f6ca5d7e348c8c93e46611f4",
+      "snapshot": {
+        "e2e/native/windows/SendInput.cs": "6ba2f91e6636a972af85dcc87b499d264f4dfc255cafe47bf61a9477d4f8adff"
+      },
+      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
+      "outcome": "no-change",
+      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "evidence": [
+        "Changed: e2e/native/windows/SendInput.cs at c77ce868178f916374a51582da87fb3923a3af2b"
+      ]
+    },
+    "source:e2e/playwright.native.config.ts": {
+      "fingerprint": "7859e3f549517e52a32ab03ef956577bfb969ae5119340213c2b751c5e0999f6",
+      "snapshot": {
+        "e2e/playwright.native.config.ts": "34b1ffe5410972cc91878efc4c2054dc8860c5d956b8ae906de0c240412c068e"
+      },
+      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
+      "outcome": "no-change",
+      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "evidence": [
+        "Changed: e2e/playwright.native.config.ts at c77ce868178f916374a51582da87fb3923a3af2b"
+      ]
+    },
+    "source:e2e/scripts/native-report.ts": {
+      "fingerprint": "412613faa42e1339aaab7569ad46aab4c46106f4050af929a2d0638a0c8aa7b7",
+      "snapshot": {
+        "e2e/scripts/native-report.ts": "1c523809c5872c7328d8f5ef21ea51823a9784b68c60843a5fccb0c7408729b5"
+      },
+      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
+      "outcome": "no-change",
+      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "evidence": [
+        "Changed: e2e/scripts/native-report.ts at c77ce868178f916374a51582da87fb3923a3af2b"
+      ]
+    },
+    "source:e2e/support/native-ibus.ts": {
+      "fingerprint": "4a9a6b13906c24e03686899fefa3a46277e8cee1851671786bbe3571da886f93",
+      "snapshot": {
+        "e2e/support/native-ibus.ts": "0d463c32b6dc39b6a275cce0775d09157eb031ca6f772cb657ff689a74352515"
+      },
+      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
+      "outcome": "no-change",
+      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "evidence": [
+        "Changed: e2e/support/native-ibus.ts at c77ce868178f916374a51582da87fb3923a3af2b"
+      ]
+    },
+    "source:e2e/support/native-wayland.ts": {
+      "fingerprint": "bfb8aacf43616eb79dde036a13366a13e70d240c2a6679e77a3a2773f2511d11",
+      "snapshot": {
+        "e2e/support/native-wayland.ts": "0fde985417f4acfde86566222f01854cc8a6fde45fd9aad66b29f97826b2780c"
+      },
+      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
+      "outcome": "no-change",
+      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "evidence": [
+        "Changed: e2e/support/native-wayland.ts at c77ce868178f916374a51582da87fb3923a3af2b"
+      ]
+    },
+    "source:e2e/support/native-windows.ts": {
+      "fingerprint": "f551c448ee6970090cd2b607dea930311ef0b5d142852db45889c98301a714cf",
+      "snapshot": {
+        "e2e/support/native-windows.ts": "72b98a1e368bc5791284fd58df71b3302239deffc7c58c9359ebe83761f334dc"
+      },
+      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
+      "outcome": "no-change",
+      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "evidence": [
+        "Changed: e2e/support/native-windows.ts at c77ce868178f916374a51582da87fb3923a3af2b"
+      ]
+    },
+    "source:e2e/support/native.ts": {
+      "fingerprint": "efdd8c5f931b576e99169f21e0aa62ddc865de1b70ba7a40f75edb155a2d2bd3",
+      "snapshot": {
+        "e2e/support/native.ts": "99a43766b20b6b3dd46dc890d7dabefeaf37ad82e45fc48c01fa649e33b51b95"
+      },
+      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
+      "outcome": "no-change",
+      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "evidence": [
+        "Changed: e2e/support/native.ts at c77ce868178f916374a51582da87fb3923a3af2b"
+      ]
     }
   }
 }
