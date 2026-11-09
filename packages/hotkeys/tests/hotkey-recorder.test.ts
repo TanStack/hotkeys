@@ -384,12 +384,16 @@ describe('HotkeyRecorder with layouts and registered hotkeys', () => {
     const dotless = keydown({ key: 'ı', code: 'KeyI', target: document })
     expect(onRecord).toHaveBeenLastCalledWith('ı')
     keyup({ key: 'ı', code: 'KeyI', target: document })
-    expect(matchesKeyboardEvent(dotless, 'ı' as HotkeyChord, 'windows')).toBe(true)
+    expect(matchesKeyboardEvent(dotless, 'ı' as HotkeyChord, 'windows')).toBe(
+      true,
+    )
     r.start()
     const dotted = keydown({ key: 'i', code: 'Quote', target: document })
     expect(onRecord).toHaveBeenLastCalledWith('I')
     keyup({ key: 'i', code: 'Quote', target: document })
-    expect(matchesKeyboardEvent(dotted, 'ı' as HotkeyChord, 'windows')).toBe(false)
+    expect(matchesKeyboardEvent(dotted, 'ı' as HotkeyChord, 'windows')).toBe(
+      false,
+    )
     r.start()
     keydown({ key: 'ı', code: 'KeyI', ctrlKey: true, target: document })
     expect(onRecord).toHaveBeenLastCalledWith('Mod+ı')

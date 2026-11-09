@@ -359,9 +359,9 @@ describe('physical display labels', () => {
     ['IntlYen', '¥'],
   ] as const)('labels %s with its keycap legend %s', (code, label) => {
     for (const useSymbols of [true, false]) {
-      expect(formatForDisplay(`[${code}]`, { platform: 'linux', useSymbols })).toBe(
-        label,
-      )
+      expect(
+        formatForDisplay(`[${code}]`, { platform: 'linux', useSymbols }),
+      ).toBe(label)
     }
     expect(formatForDisplay(`Shift+[${code}]`, { platform: 'windows' })).toBe(
       `Shift+${label}`,
@@ -371,11 +371,13 @@ describe('physical display labels', () => {
     )
     // A layout map entry and keyLabels still win
     expect(
-      formatForDisplay(`[${code}]`, { layoutMap: new Map<string, string>([[code, '<']]) }),
+      formatForDisplay(`[${code}]`, {
+        layoutMap: new Map<string, string>([[code, '<']]),
+      }),
     ).toBe('<')
-    expect(formatForDisplay(`[${code}]`, { keyLabels: { [code]: 'ISO' } })).toBe(
-      'ISO',
-    )
+    expect(
+      formatForDisplay(`[${code}]`, { keyLabels: { [code]: 'ISO' } }),
+    ).toBe('ISO')
     // Display only: the hotkey keeps its code
     expect(normalizeHotkey(`[${code}]`)).toBe(`[${code}]`)
   })
@@ -418,9 +420,13 @@ describe('physical display labels', () => {
 describe('Turkish ı labels', () => {
   it('labels ı as ı, not I', () => {
     expect(formatForDisplay(hk('ı'), { platform: 'linux' })).toBe('ı')
-    expect(formatForDisplay(hk('Mod+ı'), { platform: 'windows' })).toBe('Ctrl+ı')
+    expect(formatForDisplay(hk('Mod+ı'), { platform: 'windows' })).toBe(
+      'Ctrl+ı',
+    )
     expect(formatForDisplay({ key: 'ı' }, { platform: 'linux' })).toBe('ı')
-    expect(formatForDisplay(hk('Shift+İ'), { platform: 'linux' })).toBe('Shift+İ')
+    expect(formatForDisplay(hk('Shift+İ'), { platform: 'linux' })).toBe(
+      'Shift+İ',
+    )
   })
 
   it('labels the Turkish I position from the layout map as ı', () => {

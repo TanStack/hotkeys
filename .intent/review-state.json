@@ -96,17 +96,17 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "4154be60844dc8b79e2b4c2757fcd461f5b6413592388b6004c1e97074224362",
+      "fingerprint": "dc3c0589a678d012fbac92b91126336bb6ba5580d7050115f8643389ce020860",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/guides/sensible-defaults.md": "d9af1bb74d1bbd74cff5e700540a9a9359544c9503aa51c505bd8b955d44efb2",
+        "docs/guides/sensible-defaults.md": "ed8eb8ca7091bd651b81d9130422bf84dcca012da1a5a7c975c9a0dfcd8c698a",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/hotkey-manager.ts": "340ae1e61d8e08fe56edb0bb73f41434dae03ad15a374c2a0864450b64276443",
-        "packages/hotkeys/src/match.ts": "204f0159ccdd1bfaed96b1b03ad805f7fa9a74c011e70760749d1e0c326b7e8a",
+        "packages/hotkeys/src/match.ts": "1b22c1eaa08186acfacea0429e4c829fa7e828de0791f86548dcf364fdd20d91",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/grade.tsx": "abb8c54f80f8f64bc55dbf9082ac2275aea03d5626437c3366bd8393463cdb1c",
@@ -117,11 +117,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "Changed: docs/framework/react/guides/hotkeys.md at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
+        "Changed: docs/guides/sensible-defaults.md, packages/hotkeys/src/match.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -282,7 +282,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "d8df424f1d46500678707c1000b8587a5a0ae8fd5df0efc822562f20ce1609cb",
+      "fingerprint": "56f0582582f87dd9357eb3968a93f84b87f24c33e7158723d90be6247cb88dd2",
       "snapshot": {
         "_artifacts/domain_map.yaml": "5e6e0616c9e4f1d099c37f2c164285d4a649abc6eb888599ac8d750b55ac5b7c",
         "_artifacts/skill_spec.md": "bd8e54eb437cda05e72f24149bf198179d4d2688cbd535b08facb46ae88bf9d5",
@@ -312,7 +312,7 @@
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
-        "docs/guides/sensible-defaults.md": "d9af1bb74d1bbd74cff5e700540a9a9359544c9503aa51c505bd8b955d44efb2",
+        "docs/guides/sensible-defaults.md": "ed8eb8ca7091bd651b81d9130422bf84dcca012da1a5a7c975c9a0dfcd8c698a",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "b8a7e9ce42d7a9cfacc9bd405a5f0be43064e81f76616a6f31504ccb32c0d59a",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "69ba6d06582aaf28328e74c12888bcf8b1d89b2ae2a01d7f6a41eb82eef848e3",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4c43866e1e60dbfcdac1c5acb3b5bd1f372d722d47e51cb8922b22f1c372fa45",
@@ -347,7 +347,7 @@
         "packages/hotkeys/src/conflicts.ts": "0459c63dccec1b3706c93552bfcd66243f90ae918c6e7e445fce046fe79cc2ad",
         "packages/hotkeys/src/hotkey-manager.ts": "340ae1e61d8e08fe56edb0bb73f41434dae03ad15a374c2a0864450b64276443",
         "packages/hotkeys/src/hotkey-recorder.ts": "d0008d3442dec938f91f0b8d0584f1b2d01fa169a143a649f7a5024f1eb5e469",
-        "packages/hotkeys/src/match.ts": "204f0159ccdd1bfaed96b1b03ad805f7fa9a74c011e70760749d1e0c326b7e8a",
+        "packages/hotkeys/src/match.ts": "1b22c1eaa08186acfacea0429e4c829fa7e828de0791f86548dcf364fdd20d91",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "b2e8d9a31ecc0f97bc0c073608a06572ff555cf5f2d7e52316315e4783fdaacd",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
         "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
@@ -414,11 +414,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "8437d80940ac20a70676daaab75b90141797ff8f",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Merge of main after #242 merged. Pending items changed through #242 (Angular recorder live defaults and route-scope docs), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "Changed: _artifacts/domain_map.yaml, _artifacts/skill_spec.md, docs/framework/angular/guides/provide-hotkeys-and-scopes.md, packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md, packages/angular-hotkeys/src/hotkeys-provider.ts, packages/angular-hotkeys/src/injectHotkeyRecorder.ts at 8437d80940ac20a70676daaab75b90141797ff8f"
+        "Changed: docs/guides/sensible-defaults.md, packages/hotkeys/src/match.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -4232,25 +4232,27 @@
       ]
     },
     "source:packages/hotkeys/src/_match.ts": {
-      "fingerprint": "829d440b1b8e8fc776847f62e03fec659fc592a1ab09aa6af53527480cf1bf9e",
+      "fingerprint": "0c00753988e7e758edf6d364874c09f9fc273d84680e564d272e8dae8f04294e",
       "snapshot": {
-        "packages/hotkeys/src/_match.ts": "43b149ca561207ca4aa940d05234504dc3bc3948a26980bf957548851538524a"
+        "packages/hotkeys/src/_match.ts": "f746e219662415158099ea441c949d81f1955c2ea6f5dce277ef9f27e49e54d2"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
-      "evidence": ["packages/hotkeys/src/_match.ts", "git diff origin/main"]
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "evidence": [
+        "Changed: packages/hotkeys/src/_match.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+      ]
     },
     "source:packages/hotkeys/tests/match.test.ts": {
-      "fingerprint": "01aaea7b0a1ab290b7c733212414d541feba27d7f5fb1f6e67da77c8e402a63c",
+      "fingerprint": "ee37905d40193aee31e052ae068b070f7d2b48d196c4ae9a08fe081a0906aebd",
       "snapshot": {
-        "packages/hotkeys/tests/match.test.ts": "f8b476ad3af56253dd1ae282e3f7ae7e3e41bd1e0712a4be7c644299af6e70bc"
+        "packages/hotkeys/tests/match.test.ts": "38b559d4158f1ab3c3beda55f5ff0f7acf0c65ac05fe679ad3116c6f0c011ee8"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/match.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: packages/hotkeys/tests/match.test.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:packages/hotkeys/tests/sequence-regressions.test.ts": {
@@ -5804,14 +5806,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/normalizeKeyName.md": {
-      "fingerprint": "ecbca381e243a1d933412f41dcae148e4d97d23fda713923e41cee82be97e85e",
+      "fingerprint": "9e41c9237b59ecc9a3965c14792ca55bb1c17c48a980e47269cbeeaf6f8e9d09",
       "snapshot": {
-        "docs/reference/functions/normalizeKeyName.md": "5e071a98cda64857a2d2d78abcea38a1a06d9ddd478753b8c992f928f1ccac6c"
+        "docs/reference/functions/normalizeKeyName.md": "708947dd9f0a28f6a9837db780c257e413017d0eb3e9097800367ee99c3cb19c"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "evidence": [
+        "Changed: docs/reference/functions/normalizeKeyName.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+      ]
     },
     "source:docs/reference/functions/validateHotkey.md": {
       "fingerprint": "65bb31016249a39dc43d7bc1365d6e4c798c234a3dbdc893a1f44474988d50a4",
@@ -5956,15 +5960,15 @@
       ]
     },
     "source:packages/hotkeys/src/constants.ts": {
-      "fingerprint": "d0dd243fe5d95b222dcda9e1bb77a96b8525f7b6be45559a8d167aaac4c0446a",
+      "fingerprint": "720f098cbe6afad6aacb36721899f18d456d2841ebb7703b06d7f7906e011aa4",
       "snapshot": {
-        "packages/hotkeys/src/constants.ts": "3c0606eba9381d47bad82d9afde2fedc0846aeae1708f284ebb21f94a81525a3"
+        "packages/hotkeys/src/constants.ts": "2339445948dce5cf1dc28363128f6dc4ddf1963ec64df362578e7e4a035c772e"
       },
-      "head": "0a0a2ca93d6e4cc471a8994b6b8ec7354cddd12a",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Source, tests, examples, or regenerated docs for the case-sensitive key names and formatKeyForDisplay change; skill guidance is updated in hotkeys-core.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints show no change for typed hotkeys."
+        "Changed: packages/hotkeys/src/constants.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:packages/hotkeys/tests/key-tables.test.ts": {
@@ -5980,16 +5984,15 @@
       ]
     },
     "source:docs/framework/alpine/guides/formatting-display.md": {
-      "fingerprint": "4b6cabf6d19af958482f572c110311817c6b21cfc0bbdcfd293ab780b6840b94",
+      "fingerprint": "45e9f23c66fc5bd1a7dfad50ada5f0d6e81ed40788d38fff2d4003f325eac866",
       "snapshot": {
-        "docs/framework/alpine/guides/formatting-display.md": "0966bcc4027bd0b98aa22c26dc5e623a6913e6b8c6766643e173f9f4f648ea10"
+        "docs/framework/alpine/guides/formatting-display.md": "db01e938fc3f98ec91e9790fafd16f7e01c9190da16dbb5b821dbeef523a5f5c"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "docs/framework/alpine/guides/formatting-display.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "Changed: docs/framework/alpine/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/alpine/guides/held-key-state-helpers.md": {
@@ -6003,16 +6006,15 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:docs/framework/angular/guides/formatting-display.md": {
-      "fingerprint": "17ff1138778c5c860981914950de718b1da06f1ba540b55318eb4bad318c726a",
+      "fingerprint": "a40b86b2cdfed01cecf90762c06dfab49df0812ed336db1f93620a0b2a321c70",
       "snapshot": {
-        "docs/framework/angular/guides/formatting-display.md": "746cdac75527e92b39bc652afb180de5422b0efa3fbfc35c49a32122cd174cc7"
+        "docs/framework/angular/guides/formatting-display.md": "8989d9320980c051ac36bbc7e6ed00a47b246d5d7f5ce5ef30a907f622d99668"
       },
-      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/angular/guides/formatting-display.md"
+        "Changed: docs/framework/angular/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/angular/guides/held-key-state-helpers.md": {
@@ -6028,16 +6030,15 @@
       ]
     },
     "source:docs/framework/ember/guides/formatting-display.md": {
-      "fingerprint": "a473c75f2347650effa25812eb2803abd1da34ce66a58bc6f955b18ea73960c7",
+      "fingerprint": "aea2191aac2482016a244c290768cfb1599bc4e4ed7331c54ee89d33ba6b0eb3",
       "snapshot": {
-        "docs/framework/ember/guides/formatting-display.md": "f7503ded6f8f60049fc88aec16bb7f67c8cc51c526bfe399eb0768f334787c1e"
+        "docs/framework/ember/guides/formatting-display.md": "45ff674dff5d02d8c7631353d7252b16fecd1ff555a1d6cd5c48bd88c35cf1db"
       },
-      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/ember/guides/formatting-display.md"
+        "Changed: docs/framework/ember/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/ember/guides/held-key-state-helpers.md": {
@@ -6053,29 +6054,27 @@
       ]
     },
     "source:docs/framework/lit/guides/formatting-display.md": {
-      "fingerprint": "35114ce931f7a988432a70a5b078ce45c2381803622969dc318e122f394653ff",
+      "fingerprint": "2f4eb898db10d45229c28b2677ab46095377044b5a5573265177324a46ab97a7",
       "snapshot": {
-        "docs/framework/lit/guides/formatting-display.md": "273283a11ff61848d6911dd7a8aaffbb0d85b85da953b20dbfa981a65df65dc9"
+        "docs/framework/lit/guides/formatting-display.md": "2de3b5bfe1ab9e5d78d92fa7c3509d1781f916c206d50fa65a25cddc83585e83"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides now describe reason codes; covered by the updated core skill pitfall.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "docs/framework/lit/guides/formatting-display.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "Changed: docs/framework/lit/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/octane/guides/formatting-display.md": {
-      "fingerprint": "193cfc8f6f7482193669be977a0ae2507683e8e938c1a91b094b65ca0b38915a",
+      "fingerprint": "2923ba93a1dfd797fc0f5d92f5a0ea535dc75688be1e4fc417e5232f1d7dfc0c",
       "snapshot": {
-        "docs/framework/octane/guides/formatting-display.md": "462fdcb1df3671cf153efa35258ce37fa73f5a114a4f515422e2cce06cda2524"
+        "docs/framework/octane/guides/formatting-display.md": "cd2a0761f6ac1f6fb46bb7f314aaa514ebafc34747757ce0cb32056867c3a0b0"
       },
-      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/octane/guides/formatting-display.md"
+        "Changed: docs/framework/octane/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/octane/guides/held-key-state-helpers.md": {
@@ -6091,16 +6090,15 @@
       ]
     },
     "source:docs/framework/preact/guides/formatting-display.md": {
-      "fingerprint": "09cc4dacabdfe3544fccfb84974ed98d5cd4819e710e669e7418b10c17cca3e9",
+      "fingerprint": "1e64bca6ca90285789bbc760bd929feca1e84dc9d6b7674a4589d7aaaf7a3bd1",
       "snapshot": {
-        "docs/framework/preact/guides/formatting-display.md": "080467724eb65b1d978a7f1a284af4872a896458867136307d23d5aa04187210"
+        "docs/framework/preact/guides/formatting-display.md": "ead8d4dc82ee61d05f286ba84222a2996e0f42a42a9fb81a14f6114b2e0e3aa7"
       },
-      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/preact/guides/formatting-display.md"
+        "Changed: docs/framework/preact/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/preact/guides/held-key-state-helpers.md": {
@@ -6116,16 +6114,15 @@
       ]
     },
     "source:docs/framework/react/guides/formatting-display.md": {
-      "fingerprint": "a1b881293a756031fff3c4605caefb31bb5d5860593a036f290e165ad8dd9ec6",
+      "fingerprint": "6d8dafae6b1c4c1201ab4d237fa00921db9fd81e9ee23910159b26188e33c245",
       "snapshot": {
-        "docs/framework/react/guides/formatting-display.md": "340e003d3b28b60f8c0ab93a7e1ddf5060bdf87c39b50d9744084434eff31b9e"
+        "docs/framework/react/guides/formatting-display.md": "087a39cba187c92d20e2de4c9bbf93d27d68a33e73fdb2508b89017afc786491"
       },
-      "head": "562e3d20b3f440f927f655d694c87585b8c0258b",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "React guide step 2 now notes Server Components pass platform to formatForDisplay. The React skill already covers passing platform.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/react/guides/formatting-display.md"
+        "Changed: docs/framework/react/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/react/guides/held-key-state-helpers.md": {
@@ -6139,16 +6136,15 @@
       "evidence": ["docs/framework/react/guides/held-key-state-helpers.md"]
     },
     "source:docs/framework/solid/guides/formatting-display.md": {
-      "fingerprint": "97c152893e2825a2208aad98bca16ed6a419be4cbf99e27b1a70076cad25bac1",
+      "fingerprint": "18fd170b38aa19c208fcdede2683ccecedcfc9b27c32afb31febb34ced684603",
       "snapshot": {
-        "docs/framework/solid/guides/formatting-display.md": "ae68da32e33e6023300d5fb3afb2b072e3e8e69b14bc4022bf4bde2e060ebd14"
+        "docs/framework/solid/guides/formatting-display.md": "076d14af6f39122fe87d9cbba72a271ae38874b9740727e3e3c7f55d3eba59e7"
       },
-      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/solid/guides/formatting-display.md"
+        "Changed: docs/framework/solid/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/solid/guides/held-key-state-helpers.md": {
@@ -6164,16 +6160,15 @@
       ]
     },
     "source:docs/framework/svelte/guides/formatting-display.md": {
-      "fingerprint": "ade6e58a5c2bd393ccb903c8538dfd0a3335a27e69ca9cc10350cd634f645ca0",
+      "fingerprint": "1a38c99f6ae5e19cb8c1edd10e3d3a572918930db81178f08e0df620232568b8",
       "snapshot": {
-        "docs/framework/svelte/guides/formatting-display.md": "2a63f0cf59e2684b22f96da57f6c39e70b9f8e25f96f0490f0b6c70288cef9e2"
+        "docs/framework/svelte/guides/formatting-display.md": "35af6d3925af4026f5078788165b80566de32584041ef54812cd712a0a1bede6"
       },
-      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/svelte/guides/formatting-display.md"
+        "Changed: docs/framework/svelte/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/svelte/guides/held-key-state-helpers.md": {
@@ -6189,16 +6184,15 @@
       ]
     },
     "source:docs/framework/vue/guides/formatting-display.md": {
-      "fingerprint": "b08fd6c1584acb2b43693891d098f950f585ac197484f5fb78a0881cc20bc3a8",
+      "fingerprint": "120489f2479ae50dcf8946ff09cbe1b75c0b7b7ed84dcf35a5acae6adc72eec4",
       "snapshot": {
-        "docs/framework/vue/guides/formatting-display.md": "4a43c52da5a6947d750ba179382efcba2ddca22a5f80f45eb6b8b54a484db50a"
+        "docs/framework/vue/guides/formatting-display.md": "abd9d3e5fc657ec40231f14e5f46a9a90f3b34e023edef446710198edb361a7a"
       },
-      "head": "0ce85fdb3748fda621fae2092700571c5baf7033",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides now also recommend the formatter hook when the provider sets platform in a browser-only app, and the React guide notes the hook needs a client component while a server component passes platform to formatForDisplay. Skills already recommend the formatter hook and passing platform.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/vue/guides/formatting-display.md"
+        "Changed: docs/framework/vue/guides/formatting-display.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/vue/guides/held-key-state-helpers.md": {
@@ -6214,17 +6208,15 @@
       ]
     },
     "source:docs/reference/functions/formatForDisplay.md": {
-      "fingerprint": "d12ea2fcaa1e2430091866faf45f63e2d5f854413c3bd4ab3bce5c6350509185",
+      "fingerprint": "3710d38d03e659e7c597471fb54a2cb065656b0b94f94d22484e96636668cd08",
       "snapshot": {
-        "docs/reference/functions/formatForDisplay.md": "163470312ee9900576d32dd2ee2d867592389c6b94958650b9c5bcaa131f1113"
+        "docs/reference/functions/formatForDisplay.md": "2a7eee0cbb9613f7547086dc6e19c32b550b822888fd9a6eaf56c1ba86662f9e"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "docs/reference/functions/formatForDisplay.md"
+        "Changed: docs/reference/functions/formatForDisplay.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/reference/functions/formatKeyForDisplay.md": {
@@ -6240,17 +6232,15 @@
       ]
     },
     "source:docs/reference/interfaces/FormatDisplayOptions.md": {
-      "fingerprint": "9fb34673c416536c79b004ca912842468fa630cfe303b9d3429a8f7559f6b019",
+      "fingerprint": "54b23bd4afb67599998f9505e8269562f06a076c24e1947aa12c2992e2aa382d",
       "snapshot": {
-        "docs/reference/interfaces/FormatDisplayOptions.md": "a072fb3f1e10493555e5c5986620bfc2da37c547516997aa3b51024abcd86cb1"
+        "docs/reference/interfaces/FormatDisplayOptions.md": "015d1b2b9ce5aa8aea1ece399c30e0d03c13748e521e115e5c9d3938a90a488c"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "docs/reference/interfaces/FormatDisplayOptions.md"
+        "Changed: docs/reference/interfaces/FormatDisplayOptions.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/reference/type-aliases/DisplayHotkey.md": {
@@ -6515,29 +6505,27 @@
       ]
     },
     "source:packages/hotkeys/src/format.ts": {
-      "fingerprint": "1131aa5cd210c54a346d89cca114d67c1a9d1c50be4e9748da7f5de10d7533d1",
+      "fingerprint": "fa148ba4ad55c48aa71232a2a0c9f2974569ba06783645ccb1645114216cb311",
       "snapshot": {
-        "packages/hotkeys/src/format.ts": "9897596cc39380b15ffd955f6a73e83d7c8bf369e267695b9206c495b0ab4c6b"
+        "packages/hotkeys/src/format.ts": "e272edfea3b629b2cdc6bc7c1c1257a6c897100cb8a7e233087de92862e3e03e"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "packages/hotkeys/src/format.ts"
+        "Changed: packages/hotkeys/src/format.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:packages/hotkeys/tests/format.test.ts": {
-      "fingerprint": "45cb06720009c6f2a0a672684f8236de11e841cc586e6688f00826e782b0db40",
+      "fingerprint": "cec697f1bdff24e3c405a4b3f04b8fc6a312a56f68753cd5bf1b5d4eaee90575",
       "snapshot": {
-        "packages/hotkeys/tests/format.test.ts": "b0a12d4314a06621618236fcfa7b127a3d38a8847788b0ebd009bdd05991260e"
+        "packages/hotkeys/tests/format.test.ts": "120c60145fb3bcafc1ab154b650a6c815bb0a9d4323ec386b65fd22b7781d192"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/format.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: packages/hotkeys/tests/format.test.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:packages/hotkeys/tests/key-coverage.test.ts": {
@@ -6553,27 +6541,27 @@
       ]
     },
     "source:packages/hotkeys/tests/parse.test.ts": {
-      "fingerprint": "3797e829ba273902edca9ad53b17064bb839537636d49367aa8043f2f3e55a35",
+      "fingerprint": "ad851e434cb871de7a3078adf8e76f59549ad9b99c8d0625dde68ab19ef55160",
       "snapshot": {
-        "packages/hotkeys/tests/parse.test.ts": "2571d361fccb12be116f5df775b1b3f6721e2e91a82623f9a37d8bf956f5a216"
+        "packages/hotkeys/tests/parse.test.ts": "1bac07398cbad9cea40bee095da08a98e9843fe0a982e3523e7fa9d39daf9745"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/parse.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: packages/hotkeys/tests/parse.test.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:packages/hotkeys/tests/typed-behavior.test.ts": {
-      "fingerprint": "5974088e2edf7bb81966df965739b82af77d09d3fde8a31227bd4d9985fc442a",
+      "fingerprint": "063fa45066bc1ae2536b9b38c8a294a672b30068413f0cb307835c254966df1a",
       "snapshot": {
-        "packages/hotkeys/tests/typed-behavior.test.ts": "ea3528af7ebf6fd7f1d3e4f3f1cd303802b0bd74f45b43cb1531fcc4391ef77a"
+        "packages/hotkeys/tests/typed-behavior.test.ts": "11cec14ed29ad370e07c7fce34f43f4694fcdf297117065315b393a957c6cbd9"
       },
-      "head": "a9dd5ea3fb8a4d3d660638add1766bc35ef114f6",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Test infrastructure only: shared Vitest setup, coverage config and thresholds, test fingerprints. No library behavior or public API changed, so no skill guidance is affected.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/typed-behavior.test.ts at a9dd5ea3fb8a4d3d660638add1766bc35ef114f6"
+        "Changed: packages/hotkeys/tests/typed-behavior.test.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:packages/hotkeys/tests/unified-hotkeys.test.ts": {
@@ -6907,44 +6895,52 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/areHotkeysEqual.md": {
-      "fingerprint": "ac830ff3c988463a5c237b6ea46866abb8d7b6db05a9c2050caa1cc046e6a53f",
+      "fingerprint": "f44afb3c7be6968b6c837f905032d91a8d391d571caff344c3811826dba69003",
       "snapshot": {
-        "docs/reference/functions/areHotkeysEqual.md": "1fa471128444f0fffee1e68b2cb50e85002f0fc56d0730d0c38e7b19f88b0888"
+        "docs/reference/functions/areHotkeysEqual.md": "fae9aaa654a8afe4ef8a10510b4903c040a0017ccaa886f09556b637795fc953"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "evidence": [
+        "Changed: docs/reference/functions/areHotkeysEqual.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+      ]
     },
     "source:docs/reference/functions/createHotkeyChordHandler.md": {
-      "fingerprint": "871ffffab372351d1ea8cb7f1a5094da6d52733b1ca75209415808c321ca2c88",
+      "fingerprint": "c2a16851cec413d70b2029e9ec53fec9eba0f06b892ddfe52f167c8c5ab60e19",
       "snapshot": {
-        "docs/reference/functions/createHotkeyChordHandler.md": "3258ed4115e574d3bbb41904c8d3d3e4f6b669f328f136e7a960d1706fa02dab"
+        "docs/reference/functions/createHotkeyChordHandler.md": "82689175baa71d8e8f8ddd183da71dd0476b31e5e0aaae8e49aea95bcaedc9ec"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "evidence": [
+        "Changed: docs/reference/functions/createHotkeyChordHandler.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+      ]
     },
     "source:docs/reference/functions/createMultiHotkeyChordHandler.md": {
-      "fingerprint": "877baaf8b883ce2382ec52c3303fca1cb5577bb587742685f3e029ef86699743",
+      "fingerprint": "a5cc0ee9432dbacdc137ce36b2e8e2a5e88e030c79304089c9acfc4225b33973",
       "snapshot": {
-        "docs/reference/functions/createMultiHotkeyChordHandler.md": "84d684e99fafb6c11ba8a846ff37ec05e74a16ffcd62e41dc46f7f122772c4b9"
+        "docs/reference/functions/createMultiHotkeyChordHandler.md": "96072968b4a5fb135b67f15bdd23cabeba2d15c3aa2f6837ed7b7e133664b25d"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "evidence": [
+        "Changed: docs/reference/functions/createMultiHotkeyChordHandler.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+      ]
     },
     "source:docs/reference/functions/createSequenceMatcher.md": {
-      "fingerprint": "c8a0f96644477da63a241e48d0fa42aec29dcab5404d1bfb0ca334d97f35a077",
+      "fingerprint": "a9e095dce75fe1b9aba756d6cdcac92033cca980a95a6eec2f62fc1976b13b95",
       "snapshot": {
-        "docs/reference/functions/createSequenceMatcher.md": "a14b53bd9e859bc9f65dd5352ec66b9498dbd2bbad661d998229ed2bada8befc"
+        "docs/reference/functions/createSequenceMatcher.md": "818d8bddb52f13c2c4c215a93f26e1ad8085fcafe08b754f5d393fcd29cab615"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "evidence": [
+        "Changed: docs/reference/functions/createSequenceMatcher.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+      ]
     },
     "source:docs/reference/functions/matchesHeldModifiers.md": {
       "fingerprint": "58f82a86f7de49977464055d781fdd6f01b61786fb0ac40b4770b32d44ab08c4",
@@ -6957,24 +6953,28 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/matchesKeyboardEvent.md": {
-      "fingerprint": "6f64a1cb1701b885338d6ee20ac78dc49638a380a577a9dd38489022685ff63a",
+      "fingerprint": "a976cf7b913a1f74d8f212cd258512deb6fe0eb48d3d04eb327a9148e7fcb847",
       "snapshot": {
-        "docs/reference/functions/matchesKeyboardEvent.md": "3790baf7fcdff709fa2d714422dd98019b459563fbb4e89803d676732646c152"
+        "docs/reference/functions/matchesKeyboardEvent.md": "b5e099ff32b6317965259c17b15848656c028f8a8842106818a48701176c7168"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "evidence": [
+        "Changed: docs/reference/functions/matchesKeyboardEvent.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+      ]
     },
     "source:docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": {
-      "fingerprint": "854d654fdbb5e2c9bf1274a78baa715803e7291e8d34b4404d16250d5d986535",
+      "fingerprint": "55d186c50d0262c996307836ccdfb7e050553ad636c2049ce9c82016953ae1fd",
       "snapshot": {
-        "docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": "7f2676a5e182b899d3257065ce16b651d7e74b352e94346f3e3acd0e4f2e8edf"
+        "docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": "0c6b97067431af7150514b332ebe0a7ac707b0d5142e81e14044729ed1e4c1c8"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "evidence": [
+        "Changed: docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+      ]
     },
     "source:docs/reference/interfaces/KeyboardEventMatch.md": {
       "fingerprint": "5a413d7c9dab0b36b4f4a649f673f0f543b4b9482cfecdb039139cc40e4cb54b",
@@ -6987,24 +6987,28 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/MultiHotkeyChordHandler.md": {
-      "fingerprint": "8a4b7b55c94f7e66731854785c9f9a2f9d9ed1e556ff49f6c74fe8fc43bd59cc",
+      "fingerprint": "4bfd7440b9fc5cbfee001ffdbebc782dd90a4ad3f21531f1d77d750d6f6005a2",
       "snapshot": {
-        "docs/reference/type-aliases/MultiHotkeyChordHandler.md": "0f28d32d1d76dc5d4fb38874cd5b49c79ada69ae1e9c422b7933f5898b168399"
+        "docs/reference/type-aliases/MultiHotkeyChordHandler.md": "381d3925616d8951741a644956623b7ccff3a7d378ec467dfe958c229b01802b"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "evidence": [
+        "Changed: docs/reference/type-aliases/MultiHotkeyChordHandler.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+      ]
     },
     "source:docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": {
-      "fingerprint": "157cbffa9e83251c2da799c2d077526b46a882b3b7e7163bbc034b0198b0dc94",
+      "fingerprint": "5528d4a088f9ae56eb4abff2465a665f97ced1ee98bf7fc1d470edf0ce55fb5d",
       "snapshot": {
-        "docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": "9874ee1c4006501a2ce9aed8562b39a5a4411641e1a958b2fbe280456cf58ce3"
+        "docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": "6271c4454280260c1d987be0299af41071e344f8fc0d1a150f61db90e92c1311"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "evidence": [
+        "Changed: docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+      ]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyRecorder.ts": {
       "fingerprint": "fa4414336c960632c262b4d13e54de02ef630c600024c1c5349285c4baf9546f",
@@ -7873,31 +7877,27 @@
       "evidence": ["packages/alpine-hotkeys/src/createHotkeys.ts"]
     },
     "source:docs/framework/angular/reference/functions/injectFormatForDisplay.md": {
-      "fingerprint": "1aaf0410ab8b103012f2620eba6fbc27946f159d4135349f3dbdcfde978a31e9",
+      "fingerprint": "12c248057c6974c9543c827221a712c0336f8f28d4e8773b3d5289f6d248b511",
       "snapshot": {
-        "docs/framework/angular/reference/functions/injectFormatForDisplay.md": "0262c3c88403166d945952ba12505b5a476f03cbb43e2db52b52f70c76093a59"
+        "docs/framework/angular/reference/functions/injectFormatForDisplay.md": "63c611509c6020bba3cb774b4f7dcb347f91740b94b8ad240630b4a7eac8c937"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "docs/framework/angular/reference/functions/injectFormatForDisplay.md"
+        "Changed: docs/framework/angular/reference/functions/injectFormatForDisplay.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/ember/reference/functions/useFormatForDisplay.md": {
-      "fingerprint": "9cfe6ecae0d04e32325e81483463006ce733552631387bd1b24dac40649815dc",
+      "fingerprint": "600b6efd9998a02c052b00b8562e1a64ee1d2c88e35588b8e87a5203614b452a",
       "snapshot": {
-        "docs/framework/ember/reference/functions/useFormatForDisplay.md": "25085f989afee3703c4622b68725c4da6686de02aae5a6ad7a2891267989c28d"
+        "docs/framework/ember/reference/functions/useFormatForDisplay.md": "514b910410443a054bb9fde3ee8242773782bc4259f47d0236c10c73093a47b3"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "docs/framework/ember/reference/functions/useFormatForDisplay.md"
+        "Changed: docs/framework/ember/reference/functions/useFormatForDisplay.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/ember/reference/interfaces/DefaultHotkeysOptions.md": {
@@ -7911,87 +7911,75 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/octane/reference/functions/useFormatForDisplay.md": {
-      "fingerprint": "17205fdbc6cfbe0e8dd60361578e0ef2504908ecd5eed79809231b190c609b43",
+      "fingerprint": "3e310853930dacfe07df1b2e5a78a835e5e17bba52473a69a29d34cc53171be1",
       "snapshot": {
-        "docs/framework/octane/reference/functions/useFormatForDisplay.md": "f643bc58a415d91a23c059038243be28c6512334982d1d2237fe160818cdc70e"
+        "docs/framework/octane/reference/functions/useFormatForDisplay.md": "aaca45fab2fe4543758d5b0d713d8deff2608de748dda84f735918a1f3dd0f79"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "docs/framework/octane/reference/functions/useFormatForDisplay.md"
+        "Changed: docs/framework/octane/reference/functions/useFormatForDisplay.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/preact/reference/functions/useFormatForDisplay.md": {
-      "fingerprint": "b9ba246ddf84117262187f0e082cf7c98dd150d8cfa23e922ab8347520759a0c",
+      "fingerprint": "2b3e111f4c4ff16a3600e72e020795c2dac955d9c70d753c299a81c0a3464b51",
       "snapshot": {
-        "docs/framework/preact/reference/functions/useFormatForDisplay.md": "3777eb830445eb016a61e00010aa0847d56cb4a9682d8f6e6ba163c5133bf5d1"
+        "docs/framework/preact/reference/functions/useFormatForDisplay.md": "b73238eabc62c87b162ebc4b6954bfd250affdb9a0f160fc3be559e80c2644ba"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "docs/framework/preact/reference/functions/useFormatForDisplay.md"
+        "Changed: docs/framework/preact/reference/functions/useFormatForDisplay.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/react/reference/functions/useFormatForDisplay.md": {
-      "fingerprint": "07f4e6f24ec540f602dd0e10d91a9bd8c69184e0387d075ca4fd77c88459cf6b",
+      "fingerprint": "f09e5154bf86b02fb60dc3a193a6cdb93e854991959d8a28d017c5ffa8bdb420",
       "snapshot": {
-        "docs/framework/react/reference/functions/useFormatForDisplay.md": "3def7bb3bededb51ee9594209c726fb3d77948343278ae742f0a845d28a98593"
+        "docs/framework/react/reference/functions/useFormatForDisplay.md": "4d7d7a8c70094f81a51d4ce85db9115679c8b11e3657f5de5b86f3079d58ed8c"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "docs/framework/react/reference/functions/useFormatForDisplay.md"
+        "Changed: docs/framework/react/reference/functions/useFormatForDisplay.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/solid/reference/functions/createFormatForDisplay.md": {
-      "fingerprint": "088fb2c14f48712812ae1a1980f70cc740f21b3866dbde6a0677294652188bdc",
+      "fingerprint": "dfc774b9e2667e64a14bb7e54efbc38d8ad02cb17e85654c512b528fb3f6d7da",
       "snapshot": {
-        "docs/framework/solid/reference/functions/createFormatForDisplay.md": "11bc6f80ba2554921015807639ca07cdcef17f37b24cf4b3244b72d883e0803c"
+        "docs/framework/solid/reference/functions/createFormatForDisplay.md": "cb085b3e073e508ba29db981b15bd1522303938c1acc698f0e49272b25cd6ba1"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "docs/framework/solid/reference/functions/createFormatForDisplay.md"
+        "Changed: docs/framework/solid/reference/functions/createFormatForDisplay.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/svelte/reference/functions/getFormatForDisplay.md": {
-      "fingerprint": "6c771d770936eafa07b9fab78b5958f6958ee25c01dc2f0d2f06c354d1dcd955",
+      "fingerprint": "1b4b588bb4ce375c97804c0ceec7d5367c711d71eaa196901b82c6c223e4d1d1",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getFormatForDisplay.md": "165e7bfc7228b319ebf8977519742d8c59f4130833c3eccb13536ce7d77eeac6"
+        "docs/framework/svelte/reference/functions/getFormatForDisplay.md": "b240d46903c79b4a66740cbdc9faf9490a0dd1b3f337a44dc7168b18e3eefd1c"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Guides and formatForDisplay JSDoc now warn more plainly against formatForDisplay for server-rendered labels. Adapter skills already say to use the formatter hook on the server and keep plain formatForDisplay for browser-only labels.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md",
-        "docs/framework/svelte/reference/functions/getFormatForDisplay.md"
+        "Changed: docs/framework/svelte/reference/functions/getFormatForDisplay.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/framework/vue/reference/functions/useFormatForDisplay.md": {
-      "fingerprint": "d95b69bc4eefbe1257d755352d7f2a0a9e74bb669e12bf7652c1d0f977a6a05f",
+      "fingerprint": "711e90220224f76c8eb7087937cf5c467480e5cd69aae25d9cb7effd7a2ac761",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useFormatForDisplay.md": "6477555b1105b379ff8c8aee0fb57d73ab85424cc6637621c72f64af1ac67455"
+        "docs/framework/vue/reference/functions/useFormatForDisplay.md": "f48b5f62fdbfa5def07df494cb4c19306a6d24c2535c1affc22f30571ce81c67"
       },
-      "head": "dd0787918912e5bb9c9210eba21e3c54efbbaa9d",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "App hotkeys now compare on the provider platform, and formatting docs warn against formatForDisplay for server-rendered labels. The skill already says to use the formatter hook on the server and makes no claim about which platform app hotkey checks use.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md",
-        "docs/framework/vue/reference/functions/useFormatForDisplay.md"
+        "Changed: docs/framework/vue/reference/functions/useFormatForDisplay.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:docs/reference/adapter/functions/getServerPlatformSnapshot.md": {
@@ -18533,15 +18521,15 @@
       ]
     },
     "source:e2e/layouts/more-layouts.spec.ts": {
-      "fingerprint": "64b4614a2c73e034d27f2b27dfb6a1b2b855b4aa5e52e433905a2703c00dc542",
+      "fingerprint": "e2c3d3404402a69a0c519da0a97e392c4e63a9549c21ee367ffba6c23bf07660",
       "snapshot": {
-        "e2e/layouts/more-layouts.spec.ts": "9ea76bc181ed7ef561e72b8ae7bed33a673146917e7f253b6c4e4b320ab4de36"
+        "e2e/layouts/more-layouts.spec.ts": "c9eace61a2fc56c86510be3a25bba887a139207700bc43e9f7515f00b6edec17"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "Changed: e2e/layouts/more-layouts.spec.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: e2e/layouts/more-layouts.spec.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:e2e/playwright.adapters.config.ts": {
@@ -18725,15 +18713,15 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-recorder.test.ts": {
-      "fingerprint": "f038dfd5d2be011342ba04e2f800bfc0a93e0566f91cb246f80f7db845a3eb6d",
+      "fingerprint": "3039691df8e12ee47e116ac3ee451ccfcbc68e66598061467c8857f914125001",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-recorder.test.ts": "c6cdc1b12abae1592f9ae7d0611b3a434831cefb2c05a2485c5097c5f872d3d2"
+        "packages/hotkeys/tests/hotkey-recorder.test.ts": "7a7b272f928fb99b6fe489b72adbf9cb828980f8299a5c2a687a8c22df08a7ba"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/hotkey-recorder.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: packages/hotkeys/tests/hotkey-recorder.test.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
       ]
     },
     "source:packages/hotkeys/tests/invariants/event-fuzz.test.ts": {

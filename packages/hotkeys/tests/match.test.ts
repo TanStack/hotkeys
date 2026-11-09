@@ -1008,10 +1008,18 @@ describe('matchesKeyboardEvent', () => {
       createKeyboardEvent('i', { code: 'Quote', ...options })
 
     it('fires ı only on the key that types ı', () => {
-      expect(matchesKeyboardEvent(dotless(), 'ı' as HotkeyChord, 'windows')).toBe(true)
-      expect(matchesKeyboardEvent(dotted(), 'ı' as HotkeyChord, 'windows')).toBe(false)
       expect(
-        matchesKeyboardEvent(createKeyboardEvent('i'), 'ı' as HotkeyChord, 'windows'),
+        matchesKeyboardEvent(dotless(), 'ı' as HotkeyChord, 'windows'),
+      ).toBe(true)
+      expect(
+        matchesKeyboardEvent(dotted(), 'ı' as HotkeyChord, 'windows'),
+      ).toBe(false)
+      expect(
+        matchesKeyboardEvent(
+          createKeyboardEvent('i'),
+          'ı' as HotkeyChord,
+          'windows',
+        ),
       ).toBe(false)
       expect(
         matchesKeyboardEvent(
@@ -1027,7 +1035,11 @@ describe('matchesKeyboardEvent', () => {
         expect(matchesKeyboardEvent(dotless(), 'I', platform)).toBe(true)
         expect(matchesKeyboardEvent(dotted(), 'I', platform)).toBe(true)
         expect(
-          matchesKeyboardEvent(dotless({ ctrlKey: true }), 'Control+I', platform),
+          matchesKeyboardEvent(
+            dotless({ ctrlKey: true }),
+            'Control+I',
+            platform,
+          ),
         ).toBe(true)
       }
       expect(
@@ -1062,19 +1074,23 @@ describe('matchesKeyboardEvent', () => {
         altGraph: true,
       })
       expect(matchesKeyboardEvent(altGr, 'I', 'linux')).toBe(false)
-      expect(matchesKeyboardEvent(altGr, 'ı' as HotkeyChord, 'linux')).toBe(true)
+      expect(matchesKeyboardEvent(altGr, 'ı' as HotkeyChord, 'linux')).toBe(
+        true,
+      )
     })
 
     it('fires İ only on the key that types İ', () => {
       const shiftDotted = dotted({ shiftKey: true })
       Object.defineProperty(shiftDotted, 'key', { value: 'İ' })
-      expect(matchesKeyboardEvent(shiftDotted, 'Shift+İ' as HotkeyChord, 'windows')).toBe(
-        true,
-      )
+      expect(
+        matchesKeyboardEvent(shiftDotted, 'Shift+İ' as HotkeyChord, 'windows'),
+      ).toBe(true)
       expect(matchesKeyboardEvent(shiftDotted, 'Shift+I', 'windows')).toBe(
         false,
       )
-      expect(matchesKeyboardEvent(dotted(), 'İ' as HotkeyChord, 'windows')).toBe(false)
+      expect(
+        matchesKeyboardEvent(dotted(), 'İ' as HotkeyChord, 'windows'),
+      ).toBe(false)
       expect(
         matchesKeyboardEvent(
           createKeyboardEvent('I', { shiftKey: true }),
@@ -1087,7 +1103,9 @@ describe('matchesKeyboardEvent', () => {
     it('keeps ı, I and İ as different hotkeys', () => {
       expect(areHotkeysEqual('ı' as HotkeyChord, 'I', 'windows')).toBe(false)
       expect(areHotkeysEqual('İ' as HotkeyChord, 'I', 'windows')).toBe(false)
-      expect(areHotkeysEqual('ı' as HotkeyChord, 'İ' as HotkeyChord, 'windows')).toBe(false)
+      expect(
+        areHotkeysEqual('ı' as HotkeyChord, 'İ' as HotkeyChord, 'windows'),
+      ).toBe(false)
       expect(areHotkeysEqual('i' as HotkeyChord, 'I', 'windows')).toBe(true)
     })
 
