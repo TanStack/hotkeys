@@ -17619,27 +17619,27 @@
       "evidence": ["packages/hotkeys/tests/recorder-tab.test.ts"]
     },
     "source:.github/workflows/e2e-flaky.yml": {
-      "fingerprint": "f82027660a192df97fdc294cd6ed008bd7fb74793c877c6e01a02f94bd37cadb",
+      "fingerprint": "d5282ed76ce3075f7b7d12da5f7af06417c3469a417cb90eb41e182bed95392c",
       "snapshot": {
-        ".github/workflows/e2e-flaky.yml": "09173c279e146e9e4b8f1db5f67f2fc3d96feb440a91b76514bd4206231b9152"
+        ".github/workflows/e2e-flaky.yml": "dce57b42d6052b4ddbf07902074b9bb003a9d79e20faa7cb750635aaf57f4b1a"
       },
-      "head": "9312bbb0f3897b79c33153e0aecee04da67baea4",
+      "head": "b88f918d09bca8e6bea2ff88b7630b3ac702f7fc",
       "outcome": "no-change",
-      "reason": "CI workflows and e2e test/config changes only; no library behavior or skill guidance affected",
+      "reason": "CI workflow trigger change only; no library behavior or skill guidance affected",
       "evidence": [
-        "Changed: .github/workflows/e2e-flaky.yml at 9312bbb0f3897b79c33153e0aecee04da67baea4"
+        "Changed: .github/workflows/e2e-flaky.yml at b88f918d09bca8e6bea2ff88b7630b3ac702f7fc"
       ]
     },
     "source:.github/workflows/e2e-platforms.yml": {
-      "fingerprint": "de9c8178a7c71a2d31ad2f5247defaf7c1b3800bcd32aa6e43c696c2ea51a73c",
+      "fingerprint": "7ccb70b90e74ac2c5c7b6f453813ae90605482639796b6238857b24cb7c65d1f",
       "snapshot": {
-        ".github/workflows/e2e-platforms.yml": "cd0f9691b8f907f0b292ef18b3ac905f43224be8282f1228bdc1da1377886efe"
+        ".github/workflows/e2e-platforms.yml": "cc5c18d1c521f7076264c39231ce6e0c2131ed273177f0acbf40cba738b0f081"
       },
-      "head": "9312bbb0f3897b79c33153e0aecee04da67baea4",
+      "head": "b88f918d09bca8e6bea2ff88b7630b3ac702f7fc",
       "outcome": "no-change",
-      "reason": "CI workflows and e2e test/config changes only; no library behavior or skill guidance affected",
+      "reason": "CI workflow trigger change only; no library behavior or skill guidance affected",
       "evidence": [
-        "Changed: .github/workflows/e2e-platforms.yml at 9312bbb0f3897b79c33153e0aecee04da67baea4"
+        "Changed: .github/workflows/e2e-platforms.yml at b88f918d09bca8e6bea2ff88b7630b3ac702f7fc"
       ]
     },
     "source:e2e/browser/sequences-and-scopes.spec.ts": {
