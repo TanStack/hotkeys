@@ -5739,14 +5739,16 @@
       ]
     },
     "source:pnpm-workspace.yaml": {
-      "fingerprint": "53b9d34f752c017032367b2556b2b2a5f76c8a6dd49fb342191537acd47558e3",
+      "fingerprint": "ae48f0fe300d77d28790dc847dd4e6f0ceba086afa5cf4df841adddf7f57683f",
       "snapshot": {
-        "pnpm-workspace.yaml": "5b538d787ddaf585a441fb8a3ecbb91b19d21b701e27ae31d234e10271544751"
+        "pnpm-workspace.yaml": "3ff00648a5d76cd3808f906ee829dcd27097d9e388fe03c4529f43f41b42c69c"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
       "outcome": "no-change",
-      "reason": "Tooling and dependency configuration for the oxlint/oxfmt migration and dependency updates. No guidance depends on it.",
-      "evidence": ["pnpm-workspace.yaml"]
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: pnpm-workspace.yaml at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
     },
     "source:docs/framework/ember/reference/classes/useHotkey.md": {
       "fingerprint": "06205124bfa01adfb5c07b4b80a36f11f335239ddfca90faef858643c968330a",
@@ -7534,14 +7536,16 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:knip.json": {
-      "fingerprint": "5b7779e201b11cd3886bdf49d94304d8b2303241e892cf62610cf0bd9a4d10c7",
+      "fingerprint": "ef6f98c9d58d4593f8b3749c0a071c80ea4d3d8d8a0c35be3d63e1e30d78a81e",
       "snapshot": {
-        "knip.json": "352fe91b8bbe91e12b10d9221824bf5e30b0e4a574db3b285087c34c9b7fb049"
+        "knip.json": "8b779c6b796d8d3d424c1ba7256400eabc3f534db21c1664d08062af2821e70f"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
       "outcome": "no-change",
-      "reason": "Tooling and dependency configuration for the oxlint/oxfmt migration and dependency updates. No guidance depends on it.",
-      "evidence": ["knip.json"]
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: knip.json at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
     },
     "source:packages/alpine-hotkeys/src/index.ts": {
       "fingerprint": "e29ddd24dfc499075e7c8c9d6f755fdc8383677c76fa663b60aac2d23ca2da24",
@@ -8344,14 +8348,16 @@
       ]
     },
     "source:.github/workflows/e2e.yml": {
-      "fingerprint": "40a1773bb6bcd076779536096e4de8cc8be6a22b4caadc4a9f45aa7805cc1a62",
+      "fingerprint": "1ec7a8ddfed45983464d4d50aa8516a88ae22c769940a8a44ad8cbe04eb44ce1",
       "snapshot": {
-        ".github/workflows/e2e.yml": "8243fd92b99ca3451a69080e9cb1f26d4f912c6745b8ac990a98352c88a52ac8"
+        ".github/workflows/e2e.yml": "e841e5e514cbaddbbba2b0e3c8af68fef4bbb25c00e2002e61a478e6307b54e9"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
-      "evidence": [".github/workflows/e2e.yml"]
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: .github/workflows/e2e.yml at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
     },
     "source:.prettierignore": {
       "fingerprint": "6b9e10e4e967f462a752ee95fd3fcb4967db2763e3e9228683444db552a4ca05",
@@ -8364,14 +8370,16 @@
       "evidence": ["oxfmt.config.ts", "pnpm format:check passes"]
     },
     "source:e2e/README.md": {
-      "fingerprint": "d08a715a1e080a791a5ff250138ddbe1e708c58d009aae358033e8651793c401",
+      "fingerprint": "2c3bf6c33b1c1714ebf3f7643c505f75e3e619d5f2234add1540632f7bbcf7cf",
       "snapshot": {
-        "e2e/README.md": "50cad6318b58608d2f31856042b10e910214910059a438824402c9ae44a0190e"
+        "e2e/README.md": "5deb1491b525322c54e772397661d542cceb35d5d04e4627436a0c3345ddc247"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
-      "evidence": ["e2e/README.md"]
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/README.md at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
     },
     "source:e2e/playwright.ssr.config.ts": {
       "fingerprint": "1acb192293ee09c9b6638adfbcc838887b777c3083b09d2f6af57840c8d8a952",
@@ -17611,6 +17619,534 @@
       "outcome": "out-of-scope",
       "reason": "Tests for Tab leaving the recorder; they describe no guidance.",
       "evidence": ["packages/hotkeys/tests/recorder-tab.test.ts"]
+    },
+    "source:e2e/adapters/adapters.spec.ts": {
+      "fingerprint": "1cb9ce4f7870b9519088683c7fbf595f6434038b16b31f26886417c741c559b5",
+      "snapshot": {
+        "e2e/adapters/adapters.spec.ts": "5176c2729406a49ac4b81c43dbf8165b98c4af2a8747f48234a68d78db95efad"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/adapters.spec.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps.ts": {
+      "fingerprint": "396b84ceabeba5986907c6edc5f3e1afa2bf1f9a063683b1262ac370d8d61260",
+      "snapshot": {
+        "e2e/adapters/apps.ts": "386dfd6c5cdea42ed445c0a62aecf081dd4676cd68c80ce8976330acb0d685bc"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/alpine/index.html": {
+      "fingerprint": "2d2c7316a4a01bc72a40adb8004500400b6d2b532d30cfdc9042e64a818f852f",
+      "snapshot": {
+        "e2e/adapters/apps/alpine/index.html": "d428d72ffe81ad0b3330a67e3745d7f0f2856e9925ef0e63b0e80b4922d79f95"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/alpine/index.html at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/alpine/src/main.ts": {
+      "fingerprint": "887ddc59bd06889dfeb25164b352f4ce1795e36ec59f2753071db74ccf700bc7",
+      "snapshot": {
+        "e2e/adapters/apps/alpine/src/main.ts": "e6f6496ca71f61fffdbfdaf8b39ca287931cfe1aae1f294bd4bfffbd02bda70f"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/alpine/src/main.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/alpine/vite.config.ts": {
+      "fingerprint": "812c2b3ee26bcd9d2edd12e888acb5dd11475ff31a4976dc132eedfdefd6b276",
+      "snapshot": {
+        "e2e/adapters/apps/alpine/vite.config.ts": "58be3813ad2d75247396b6317a6263c564c6e762bedbf4b03858d2034647afab"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/alpine/vite.config.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/angular/index.html": {
+      "fingerprint": "23e3d6a636d9f6c417e83a11d89d3e5bca4472c5f4e5d6bcceb27c092dc38329",
+      "snapshot": {
+        "e2e/adapters/apps/angular/index.html": "f5d4d777d12a8354c12183e662e6308f7e3930a88d06408dc6eb93a323ec6819"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/angular/index.html at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/angular/src/main.ts": {
+      "fingerprint": "ba3e535146ea38512efe0644843c983fdba02d477431c374f07a4531f1f28bd9",
+      "snapshot": {
+        "e2e/adapters/apps/angular/src/main.ts": "767b2356d20f4173e29ebb640d24312afa54f58451acdb0a0fe67794ba5cebc8"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/angular/src/main.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/angular/vite.config.ts": {
+      "fingerprint": "784b8eb5334ccd515ea1bd621023924d6fa88ad7c8d101e72e49fc619fc91a7f",
+      "snapshot": {
+        "e2e/adapters/apps/angular/vite.config.ts": "66922c0cbf6284b00badc9e30885c01bf8b8fbc676cee78488ebb50e01369e5b"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/angular/vite.config.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/ember/app/app.ts": {
+      "fingerprint": "e6ff38fbf9eaa15c979792c82377e1bc8e6737d47c9089645d7c75f401d63e42",
+      "snapshot": {
+        "e2e/adapters/apps/ember/app/app.ts": "cb3a72c7ee3ef886cb6d92383b15dbddac9345963be7e72ed75c20fd104d1055"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/ember/app/app.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/ember/app/config.ts": {
+      "fingerprint": "66bb72ebfd017df695b9f08957e419eae7138cb871244bc23cca476cf969be2e",
+      "snapshot": {
+        "e2e/adapters/apps/ember/app/config.ts": "5d1aec214618fce6e3e77bd99b9d0fc8e82ab090903109fb2b5916b91e5c7cec"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/ember/app/config.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/ember/app/router.ts": {
+      "fingerprint": "9e5bff5dd4747491ee742a478da978a628af35b4d4fc7d81e70de1b148b579ad",
+      "snapshot": {
+        "e2e/adapters/apps/ember/app/router.ts": "0df653eb310dcf12b7783f4313408049600ea70d155f5a5d51cdd3f28473f395"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/ember/app/router.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/ember/app/templates/application.gts": {
+      "fingerprint": "fb27c4a95c6da25b2c67409e7bf1cb89e7caf0727d0a9a430adfd6f7a8ca8e07",
+      "snapshot": {
+        "e2e/adapters/apps/ember/app/templates/application.gts": "4ba92d5711e722d22d7af279c0222efc5585a8122774f779f9e64433b7a37c40"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/ember/app/templates/application.gts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/ember/babel.config.js": {
+      "fingerprint": "1763e9b651c303c561b662d431ef98f0e81a6d8845d0d0a7615c54b201af75de",
+      "snapshot": {
+        "e2e/adapters/apps/ember/babel.config.js": "86e9c4d3e7139cccfe5cf6a65eac998449e6810d6257c7ea80d430012a1fa068"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/ember/babel.config.js at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/ember/index.html": {
+      "fingerprint": "8295c2ade02df1eac0481ccda407939d6cf2e13ac19d8d284f591e40ba343f1a",
+      "snapshot": {
+        "e2e/adapters/apps/ember/index.html": "de713c8afecb55f803cde61495dbf4731a3b51903e9a5a0238fa5e8bc8f5e3a2"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/ember/index.html at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/ember/vite.config.mjs": {
+      "fingerprint": "534ee89c9b6e7b313b870036f8f70297035f55327a88321f8fccfc6901dd7c6d",
+      "snapshot": {
+        "e2e/adapters/apps/ember/vite.config.mjs": "5a83df742646ac372df7763afffd55a62c5e0e9290a1b05a7f147cb05ee6e8d5"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/ember/vite.config.mjs at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/lit/index.html": {
+      "fingerprint": "2884e96aead7c5f16eb8db49b56b93008669432cbd18de46e832c57bfcdfe5c9",
+      "snapshot": {
+        "e2e/adapters/apps/lit/index.html": "9232523a89470401fb5cfeba26a9b19e0f5adbb23d1b8d93df72d14d46b30566"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/lit/index.html at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/lit/src/main.ts": {
+      "fingerprint": "6edf36616e8db629c6ca3234b3364fdd4363b1a00b0916768c10c61efb42468c",
+      "snapshot": {
+        "e2e/adapters/apps/lit/src/main.ts": "50680c093761983e37bf475db5ea71bbcbb51891f583ccd27b5fa69d4b9f8c6d"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/lit/src/main.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/lit/vite.config.ts": {
+      "fingerprint": "f3d3b5fcb9e868cf94b3b638ea28c59f853f5c3b7dce04fd1cec9b09605cdc0f",
+      "snapshot": {
+        "e2e/adapters/apps/lit/vite.config.ts": "58be3813ad2d75247396b6317a6263c564c6e762bedbf4b03858d2034647afab"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/lit/vite.config.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/octane/index.html": {
+      "fingerprint": "4c6b4d64b508b3a7558ee97e3b961d3abc38a80ef31fda101b0ba99a2e30cfd1",
+      "snapshot": {
+        "e2e/adapters/apps/octane/index.html": "2d3f68dc96c4ed64193a7afbf343079471fe5e48bc7449cbe16e8bd02b9ca98f"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/octane/index.html at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/octane/src/main.tsrx": {
+      "fingerprint": "3d423ee242233a5622d636421bc77699a97edaf143d197172e60ecbbcaa99e4c",
+      "snapshot": {
+        "e2e/adapters/apps/octane/src/main.tsrx": "fcdb2dc7d1f38396db8c641f8f3a975fc22c115538540d88bdaa356fc27c2f64"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/octane/src/main.tsrx at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/octane/vite.config.ts": {
+      "fingerprint": "398c42206a3d5932dbc8505cc36abcf28afe79c60100f8dabab5e6ec4d71aae7",
+      "snapshot": {
+        "e2e/adapters/apps/octane/vite.config.ts": "f86ff64c79bdca31f498e5490d3950706b7b8b33ac969fef192d2d3bbbeb394c"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/octane/vite.config.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/preact/index.html": {
+      "fingerprint": "debfd1e02a38d87e5d8be55fcd368767f8bf17fa6eb41713198cb2df4fd3d6bd",
+      "snapshot": {
+        "e2e/adapters/apps/preact/index.html": "8f82bb953b975956e1a7cfb828e1b32077244b2f428fc9118e021dc471848974"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/preact/index.html at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/preact/src/main.tsx": {
+      "fingerprint": "ea5ee1281531c42b7c3389023d06cf742d4efc734d1334c41a1682df245e7b7f",
+      "snapshot": {
+        "e2e/adapters/apps/preact/src/main.tsx": "1443fd8eec57f33acdf754c9ee3253975664d7eeaddec42e6f3de9ff324809f6"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/preact/src/main.tsx at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/preact/vite.config.ts": {
+      "fingerprint": "e83a8d72b4aa0dbf1f51f1bb744c1d17a179554f7f66ea57a7206f0f52b19180",
+      "snapshot": {
+        "e2e/adapters/apps/preact/vite.config.ts": "11e40eee1557c23937d8d675d8e0f170459c30dad92b60361d6f374335d8d16a"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/preact/vite.config.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/react/index.html": {
+      "fingerprint": "525ced8eb9760fc182e8c84c71c80180509dab83d006be0869475ba85ffbd6ce",
+      "snapshot": {
+        "e2e/adapters/apps/react/index.html": "993eadc2eb2a6497913dd7d63a6c2fbf18cc9068d48bbb1d32de672855678d8f"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/react/index.html at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/react/src/main.tsx": {
+      "fingerprint": "6a48260e8e5a06c4a6ea55d8714ed0a2b619db9c171a63a2c36d0f8ba50efcdd",
+      "snapshot": {
+        "e2e/adapters/apps/react/src/main.tsx": "4d7c23ffd8384abefb40dbe40ac3e57e8e3bdac577630c1a5b9a24d31b06abe6"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/react/src/main.tsx at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/react/vite.config.ts": {
+      "fingerprint": "e75ceff92f0e98a0f4674517abf6afdda4ce8dfe4a92640551d3f254d28cd459",
+      "snapshot": {
+        "e2e/adapters/apps/react/vite.config.ts": "15d3031850ef7bfeee216fd25e3b4f04b9ef87f683ccc6fd7332676ce52dd0ba"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/react/vite.config.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/solid/index.html": {
+      "fingerprint": "3b38dd7e57858913fe5303eb7d3fb2f7cf6f607506a2b9864e9b501c1723b81e",
+      "snapshot": {
+        "e2e/adapters/apps/solid/index.html": "7e6c731cc1aa8feba2a7fb2692f3a8f1a1fbc715b829d0d8d9def379cc850e6b"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/solid/index.html at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/solid/src/main.tsx": {
+      "fingerprint": "c25a69a1df38ad99ab0d1c013f70212a4847a8d5aeb4d12095e08c1b40f0c53c",
+      "snapshot": {
+        "e2e/adapters/apps/solid/src/main.tsx": "1078579982a03b51f67dd1d499d1f53ed663a839d7225c99933170437edea7b1"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/solid/src/main.tsx at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/solid/vite.config.ts": {
+      "fingerprint": "2f1cf506d04820f26dabfca81ba41d49d3efdeb9f0a620e03615d5b0a855516c",
+      "snapshot": {
+        "e2e/adapters/apps/solid/vite.config.ts": "6b8ce733c2bded84e808d28bde05c4848725423832e9c18deadcc8ec7703f210"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/solid/vite.config.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/svelte/index.html": {
+      "fingerprint": "a188d3df79d376d477d559d54160352ab610e3956475dfac5676ad1a588e9bc1",
+      "snapshot": {
+        "e2e/adapters/apps/svelte/index.html": "ea36247c8137ee5f27858d2038325690bfc5d7912de13c221f34d5dd340365cc"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/svelte/index.html at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/svelte/src/App.svelte": {
+      "fingerprint": "aebba29f8652fa65109c55fbeed37e250cf9b30fd598f6695376528cfbe00d24",
+      "snapshot": {
+        "e2e/adapters/apps/svelte/src/App.svelte": "3e2091ec8b8445e63a67b4812e278e47a4eac42cd8a624335fe340b365dfa8ed"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/svelte/src/App.svelte at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/svelte/src/HotkeyHost.svelte": {
+      "fingerprint": "53254a6edb6f35e2911931138dd1554e9ee57d450b42611acab19b9322b48430",
+      "snapshot": {
+        "e2e/adapters/apps/svelte/src/HotkeyHost.svelte": "ab4abb9335fc904cba8b6fae6ec3c760a840d7a92d5616a6a9a4cf593031fe45"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/svelte/src/HotkeyHost.svelte at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/svelte/src/main.ts": {
+      "fingerprint": "9f74328e97aaba0b3a3df11b2989bb2469c9a2737505622deb87c012ed216d4a",
+      "snapshot": {
+        "e2e/adapters/apps/svelte/src/main.ts": "229140e6440c2ac674ed25836760d54eacc5b1588cd91bdd3b2a0d9112fc32dc"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/svelte/src/main.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/svelte/svelte.config.js": {
+      "fingerprint": "e44454c6eec1777a4bc9a6c1514c7d72a605aab3a75f3a529c97270966edbd2d",
+      "snapshot": {
+        "e2e/adapters/apps/svelte/svelte.config.js": "65312970777b42cd299ed716d6b340790dac5833d8c8dc8ba017bf618c68c129"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/svelte/svelte.config.js at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/svelte/vite.config.ts": {
+      "fingerprint": "d5a5633bdcbb40323f26876f373e9dee9737d48eaab54e562f242c4ac0ca409d",
+      "snapshot": {
+        "e2e/adapters/apps/svelte/vite.config.ts": "313bf2e3249bc8cf026fbefc4647f1d74a6dbb6c42baca2f91bf3b725af67ed7"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/svelte/vite.config.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/vue/index.html": {
+      "fingerprint": "cd19eb3087d3500507e20b1b296e4750f93d28d42bf13a79dcbb34f3680734e1",
+      "snapshot": {
+        "e2e/adapters/apps/vue/index.html": "4992d1453d7c25c35b061c619e5f8405a0afc4defae22fafa22e557dce47cbb9"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/vue/index.html at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/vue/src/App.vue": {
+      "fingerprint": "222a8dc54db814482df7ea89191ba7f2d6f39b2f3235697f74f43f33410cb29b",
+      "snapshot": {
+        "e2e/adapters/apps/vue/src/App.vue": "2d7ecc7ba8d19bdcc5bdc0d5d9367fc40e7d6e772404384afcfaba1dc5b16aac"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/vue/src/App.vue at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/vue/src/HotkeyHost.vue": {
+      "fingerprint": "6e4644e06562f6abdfbbeaffc00fffa0f6b6376f5e1cd0095e4860f94d9dc0fc",
+      "snapshot": {
+        "e2e/adapters/apps/vue/src/HotkeyHost.vue": "5c2071212038a7162b60c45d6bc5e99ac0f7d558134c1eab27c5a889b2eaa6b2"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/vue/src/HotkeyHost.vue at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/vue/src/main.ts": {
+      "fingerprint": "dfe4a3923ad153286cb5c733f03815bcda3dba3edce92334a5371a6d8ddfeb55",
+      "snapshot": {
+        "e2e/adapters/apps/vue/src/main.ts": "4979b5b609319255ed32ef19825d6e3164f38fe233af5512c2995633d5f47c2d"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/vue/src/main.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/apps/vue/vite.config.ts": {
+      "fingerprint": "f253a7dc4cc17690ee33316c0a544f86ee47ec544513523ab1d93ee2f7e78c28",
+      "snapshot": {
+        "e2e/adapters/apps/vue/vite.config.ts": "5ea99d0a92e35db764c8bf30c2c01a519eb3d722fe716f7e00e2d49a47374f8e"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/apps/vue/vite.config.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/adapters/shared/fixture.ts": {
+      "fingerprint": "aab2c6e40ab5e62ecaa68dfd387dd0805c973674a9d232b4c0bb05db7bf181a0",
+      "snapshot": {
+        "e2e/adapters/shared/fixture.ts": "ba86d58f768bf7f50715e7fdc58c44ba7cc217d712221d14bbd844bd086289e9"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/adapters/shared/fixture.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/playwright.adapters.config.ts": {
+      "fingerprint": "e741f02f10b34b44a3896b424b655ee9357596f7fd80154e524e335f9dff2e35",
+      "snapshot": {
+        "e2e/playwright.adapters.config.ts": "41415c0e52d8824c675eee9ad70f534765d785206c80585d3a9945fd3441b263"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/playwright.adapters.config.ts at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
+    },
+    "source:e2e/tsconfig.json": {
+      "fingerprint": "794c117d071376f1cd623c6be180c800fc0182111c39ef40687e550832d90fe3",
+      "snapshot": {
+        "e2e/tsconfig.json": "0247f8448b2a0df4ce896a3af8195b51f242b9120c6b8f4223b73b8845b927a0"
+      },
+      "head": "f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69",
+      "outcome": "no-change",
+      "reason": "Test-only change: adds an e2e adapter suite, fixture apps, CI job and workspace/tooling config. No library behavior, public API or skill guidance changes.",
+      "evidence": [
+        "Changed: e2e/tsconfig.json at f7ebc19e8cfedd45241c6827cfb5813d2fd8aa69"
+      ]
     }
   }
 }
