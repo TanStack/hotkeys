@@ -41,7 +41,7 @@ jobs:
       - name: Install X11 Tools
         run: |
           sudo apt-get update
-          sudo apt-get install -y --no-install-recommends xvfb xdotool x11-xkb-utils xkb-data
+          sudo apt-get install -y --no-install-recommends xvfb xdotool x11-xkb-utils x11-xserver-utils xkb-data xterm
           sudo cp e2e/docker/tanstack.xkb /usr/share/X11/xkb/symbols/tanstack
       - name: Install Browsers
         run: pnpm --filter @tanstack/hotkeys-e2e exec playwright install --with-deps chromium firefox

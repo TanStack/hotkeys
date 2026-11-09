@@ -71,7 +71,7 @@ export function useLayout(
  * with Escape, which no layout test uses, and focuses again until one arrives.
  * A press that never arrives would otherwise fail the first test case.
  */
-async function waitForKeyboardInput(
+export async function waitForKeyboardInput(
   page: Page,
   hk: LoadedHarness,
 ): Promise<void> {

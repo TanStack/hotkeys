@@ -1,7 +1,7 @@
 // Real key presses for the keyboard layout tests. Runs xdotool and setxkbmap
 // on the X display the browsers use: locally on Linux (DISPLAY must be set),
 // or inside the Docker container named by E2E_X11_CONTAINER.
-import { execFileSync } from 'node:child_process'
+import { execFileSync, spawn } from 'node:child_process'
 
 const container = process.env.E2E_X11_CONTAINER
 
@@ -9,7 +9,12 @@ function x11(command: string, ...args: Array<string>): string {
   const [file, argv] = container
     ? ['docker', ['exec', container, command, ...args]]
     : [command, args]
-  return execFileSync(file, argv, { encoding: 'utf8', stdio: 'pipe' })
+  return execFileSync(file, argv, {
+    encoding: 'utf8',
+    stdio: 'pipe',
+    // Fail the test instead of hanging it, such as on a window that never opens.
+    timeout: 15_000,
+  })
 }
 
 /**
@@ -29,6 +34,7 @@ const KEYCODES = {
   KeyA: 38,
   KeyE: 26,
   KeyF: 41,
+  KeyG: 42,
   KeyK: 45,
   KeyQ: 24,
   KeyS: 39,
@@ -46,18 +52,93 @@ export function setLayout(layout: string, variant?: string): void {
   x11('setxkbmap', layout, ...(variant ? ['-variant', variant] : []))
 }
 
-/** Holds each key down in order, then releases them in reverse order: `'AltGr+KeyF'`. */
-export function press(combo: string): void {
-  const codes = combo.split('+').map((name) => {
+function keycodes(combo: string): Array<string> {
+  return combo.split('+').map((name) => {
     const code = (KEYCODES as Partial<Record<string, number>>)[name]
     if (code === undefined) throw new Error(`No keycode for ${name}`)
     return String(code)
   })
+}
+
+/** Holds each key down in order, then releases them in reverse order: `'AltGr+KeyF'`. */
+export function press(combo: string): void {
+  const codes = keycodes(combo)
   x11(
     'xdotool',
     ...codes.flatMap((code) => ['keydown', code]),
     ...codes.toReversed().flatMap((code) => ['keyup', code]),
   )
+}
+
+/** Presses each key down in order and leaves them held. */
+export function keyDown(combo: string): void {
+  x11('xdotool', ...keycodes(combo).flatMap((code) => ['keydown', code]))
+}
+
+/** Releases each key in reverse order. */
+export function keyUp(combo: string): void {
+  x11(
+    'xdotool',
+    ...keycodes(combo)
+      .toReversed()
+      .flatMap((code) => ['keyup', code]),
+  )
+}
+
+/**
+ * Sets the X server's key auto-repeat: the delay before the first repeat and
+ * the repeats per second, or `'off'`. Call `resetAutoRepeat` afterwards.
+ */
+export function setAutoRepeat(
+  setting: { delayMs: number; perSecond: number } | 'off',
+): void {
+  if (setting === 'off') x11('xset', 'r', 'off')
+  else {
+    x11('xset', 'r', 'on')
+    x11('xset', 'r', 'rate', String(setting.delayMs), String(setting.perSecond))
+  }
+}
+
+/** Restores the X server's default auto-repeat. */
+export function resetAutoRepeat(): void {
+  x11('xset', 'r', 'on')
+  x11('xset', 'r', 'rate')
+}
+
+/** Gives keyboard focus to an X window and waits until it has it. */
+export function focusWindow(id: string): void {
+  x11('xdotool', 'windowfocus', '--sync', id)
+}
+
+/**
+ * Opens a small xterm in the bottom-right corner, away from the browser
+ * window, and returns its X window id and a function that closes it.
+ * Closing the window that has keyboard focus returns focus to the root
+ * window, so keys go to the window under the pointer again.
+ */
+export function openOtherWindow(): { id: string; close: () => void } {
+  // A unique class finds this window. xterm runs sleep, not a shell, so
+  // nothing types into it or changes it.
+  const windowClass = `HotkeysE2eOther${process.pid}x${Date.now()}`
+  const args = [
+    ...['-class', windowClass, '-geometry', '20x4-0-0'],
+    ...['-e', 'sleep', 'infinity'],
+  ]
+  const child = container
+    ? spawn('docker', ['exec', container, 'xterm', ...args], {
+        stdio: 'ignore',
+      })
+    : spawn('xterm', args, { stdio: 'ignore' })
+  const id = x11('xdotool', 'search', '--sync', '--class', windowClass)
+    .trim()
+    .split('\n')[0]!
+  return {
+    id,
+    close: () => {
+      x11('xdotool', 'windowkill', id)
+      child.kill()
+    },
+  }
 }
 
 /** Without a window manager, X11 keyboard focus follows the pointer. */

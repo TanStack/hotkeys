@@ -4,7 +4,7 @@
 # The Playwright version must match @playwright/test in e2e/package.json.
 FROM mcr.microsoft.com/playwright:v1.65.0-noble
 RUN apt-get update \
-  && apt-get install -y --no-install-recommends xvfb xdotool x11-xkb-utils xkb-data \
+  && apt-get install -y --no-install-recommends xvfb xdotool x11-xkb-utils x11-xserver-utils xkb-data xterm \
   && rm -rf /var/lib/apt/lists/*
 COPY tanstack.xkb /usr/share/X11/xkb/symbols/tanstack
 WORKDIR /server
