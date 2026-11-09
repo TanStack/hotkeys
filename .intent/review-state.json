@@ -4215,15 +4215,15 @@
       "evidence": ["e2e/layouts/layouts.spec.ts"]
     },
     "source:e2e/support/x11.ts": {
-      "fingerprint": "7d15546191c9ce9fa4b5975ce110985e65bcbe9c6898a7ab241b135dbc2941be",
+      "fingerprint": "b22737e4adf29d8e614ae7e8df0d6a32126bf79c8e8b263ee2668076bfa6e650",
       "snapshot": {
-        "e2e/support/x11.ts": "23f30ff16eeaf721f4adc9f5aac8b08df63d33bd01db5882ae600c268eec76dd"
+        "e2e/support/x11.ts": "6d02f4663f6c85455b1eb45c2aba2483b225b500cc0420aba7e2d58a13722aef"
       },
-      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
+      "head": "4840e3f98163e3a82937ce585945b88bcc597e62",
       "outcome": "no-change",
-      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "reason": "E2E test helpers and specs only; no library behavior or skill guidance changes.",
       "evidence": [
-        "Changed: e2e/support/x11.ts at c77ce868178f916374a51582da87fb3923a3af2b"
+        "Changed: e2e/support/x11.ts at 4840e3f98163e3a82937ce585945b88bcc597e62"
       ]
     },
     "source:packages/hotkeys/src/_match.ts": {
@@ -17631,15 +17631,15 @@
       ]
     },
     "source:e2e/native/ibus.spec.ts": {
-      "fingerprint": "8ae653e606048c8bef8145939fc1a5efae1788032a35ea0fb0a08736ac0c42a9",
+      "fingerprint": "b478d441328a1b043ab0dddd5acd91f11cac4e061a44d786f02e64b037a2c365",
       "snapshot": {
-        "e2e/native/ibus.spec.ts": "6ae431fefbfb7a01f05386a16c528f4489317063566ce12192fbbff568ccb0df"
+        "e2e/native/ibus.spec.ts": "e191a8d902c36170597d78902084bf5cd4c6c585a938b0a102d1757f4a1ad431"
       },
-      "head": "40f2701e28be4a3520606308a56c34e3431eba78",
+      "head": "4840e3f98163e3a82937ce585945b88bcc597e62",
       "outcome": "no-change",
-      "reason": "Nightly e2e spec only; no library behavior or skill guidance changes.",
+      "reason": "E2E test helpers and specs only; no library behavior or skill guidance changes.",
       "evidence": [
-        "Changed: e2e/native/ibus.spec.ts at 40f2701e28be4a3520606308a56c34e3431eba78"
+        "Changed: e2e/native/ibus.spec.ts at 4840e3f98163e3a82937ce585945b88bcc597e62"
       ]
     },
     "source:e2e/native/ibus/run.sh": {
