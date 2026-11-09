@@ -5751,24 +5751,28 @@
       ]
     },
     "source:docs/framework/ember/reference/classes/useHotkey.md": {
-      "fingerprint": "06205124bfa01adfb5c07b4b80a36f11f335239ddfca90faef858643c968330a",
+      "fingerprint": "9f52c68f9d48ad5889e49faa5ee199109a997e3947638000527fc77350f81943",
       "snapshot": {
-        "docs/framework/ember/reference/classes/useHotkey.md": "48423d13aa5ab308e93720aabedb51ee7c571a24dede17cd8bc7226329eaa3bb"
+        "docs/framework/ember/reference/classes/useHotkey.md": "1c6ab1b7c7f26f0a17fe4a8547b0f249b0fe1cb6b901b6b1b5f925193fae1b17"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "721c54cde819b326939bf2f15ecd9a570551ff0b",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Regenerated Ember reference pages only change a node_modules path in 'Defined in' lines after the lockfile re-resolved supports-color; no API or guidance change.",
+      "evidence": [
+        "Changed: docs/framework/ember/reference/classes/useHotkey.md at 721c54cde819b326939bf2f15ecd9a570551ff0b"
+      ]
     },
     "source:docs/framework/ember/reference/classes/useHotkeys.md": {
-      "fingerprint": "472f493012e11cb73297474b2f06a9d352652056620847719b753208b1c0d777",
+      "fingerprint": "930d791aa75f2793c2d2f8ef3fc133aa44d3af5a7f0d53a32a791fbc52e57caf",
       "snapshot": {
-        "docs/framework/ember/reference/classes/useHotkeys.md": "c01ed4352b0d60287903ff35b8aca2ea2b6493da0986aa89672f6419fa20fd21"
+        "docs/framework/ember/reference/classes/useHotkeys.md": "32d21321491f4453f375d8aa019829dd19440d4ce69dabcf7c7ed6564c1021cc"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "721c54cde819b326939bf2f15ecd9a570551ff0b",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Regenerated Ember reference pages only change a node_modules path in 'Defined in' lines after the lockfile re-resolved supports-color; no API or guidance change.",
+      "evidence": [
+        "Changed: docs/framework/ember/reference/classes/useHotkeys.md at 721c54cde819b326939bf2f15ecd9a570551ff0b"
+      ]
     },
     "source:docs/reference/functions/assertValidHotkey.md": {
       "fingerprint": "808c58045246f88357957a0c37ed6eacff540c7f39791622081fa665ff6191f5",
