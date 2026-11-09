@@ -538,7 +538,7 @@ intl.describe('Labels for the extra ISO and JIS keys', () => {
         ['[IntlBackslash]', '\\'],
         ['[IntlRo]', '\\'],
         ['[IntlYen]', '¥'],
-      ]) {
+      ] as const) {
         const { label } = await page.evaluate(
           (b) => window.harness.formatLabels(b),
           binding,
