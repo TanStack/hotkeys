@@ -1,6 +1,13 @@
+import { keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
+import { HotkeyManager } from '../src/hotkey-manager'
 import { HotkeyRecorder } from '../src/hotkey-recorder'
-import type { HotkeyChordRecorderOptions } from '../src/hotkey-recorder'
+import { matchesKeyboardEvent } from '../src/match'
+import type {
+  HotkeyChordRecorderOptions,
+  HotkeySequenceRecorderOptions,
+} from '../src/hotkey-recorder'
+import type { HotkeyChord } from '../src/hotkey.types'
 
 // Explicit US-layout fixtures; production recording must never infer a code from a key.
 const fixtureCodes: Record<string, string> = {
@@ -224,3 +231,341 @@ describe.each(['key', 'code', undefined] as const)(
     })
   },
 )
+
+describe.each([1, Infinity])(
+  'HotkeyRecorder (maxSteps: %s) shadow inputs',
+  (maxSteps) => {
+    const multi = maxSteps > 1
+    const createRecorder = (
+      options: Omit<HotkeySequenceRecorderOptions, 'maxSteps'>,
+    ) => {
+      const recorder = new HotkeyRecorder({ ...options, maxSteps })
+      instances.push(recorder)
+      return recorder
+    }
+    afterEach(() => {
+      instances.splice(0).forEach((recorder) => recorder.destroy())
+      window.dispatchEvent(new Event('blur'))
+      HotkeyManager.resetInstance()
+      document.body.replaceChildren()
+    })
+
+    it.each(['key', 'code'] as const)(
+      'ignores typing but allows Escape with recordBy %s',
+      (recordBy) => {
+        const host = document.createElement('div')
+        document.body.append(host)
+        const input = document.createElement('input')
+        host.attachShadow({ mode: 'open' }).append(input)
+        input.focus()
+        const onRecord = vi.fn(),
+          onCancel = vi.fn()
+        const recorder = createRecorder({ recordBy, onRecord, onCancel })
+        recorder.start()
+        expect(
+          keydown({ key: 's', code: 'KeyS', composed: true, target: input })
+            .defaultPrevented,
+        ).toBe(false)
+        expect(onRecord).not.toHaveBeenCalled()
+        expect(recorder.store.state.isRecording).toBe(true)
+        expect(recorder.store.state.steps).toEqual([])
+        keydown({
+          key: 'Escape',
+          code: 'Escape',
+          composed: true,
+          target: input,
+        })
+        expect(onCancel).toHaveBeenCalledOnce()
+        expect(recorder.store.state.isRecording).toBe(false)
+      },
+    )
+
+    it('records inside shadow inputs when ignoreInputs is false', () => {
+      const host = document.createElement('div')
+      document.body.append(host)
+      const input = document.createElement('input')
+      host.attachShadow({ mode: 'open' }).append(input)
+      input.focus()
+      const onRecord = vi.fn()
+      const recorder = createRecorder({ onRecord, ignoreInputs: false })
+      recorder.start()
+      keydown({ key: 's', code: 'KeyS', composed: true, target: input })
+      if (multi) recorder.commit()
+      // One step records as a chord string with either maxSteps.
+      expect(onRecord).toHaveBeenCalledExactlyOnceWith('[KeyS]')
+    })
+
+    it.each(['Ę', '@'])(
+      'replays shifted AltGraph logical recordings of %s',
+      (key) => {
+        const onRecord = vi.fn()
+        const recorder = createRecorder({
+          onRecord,
+          recordBy: 'key',
+          platform: 'windows',
+        })
+        recorder.start()
+        const event = keydown({
+          key,
+          code: 'KeyE',
+          ctrlKey: true,
+          altKey: true,
+          shiftKey: true,
+          altGraph: true,
+          target: document,
+        })
+        if (multi) recorder.commit()
+        const binding = onRecord.mock.calls[0]![0]
+        expect(binding).toBe(`Shift+${key}`)
+        expect(matchesKeyboardEvent(event, binding, 'windows')).toBe(true)
+      },
+    )
+  },
+)
+
+describe('HotkeyRecorder with layouts and registered hotkeys', () => {
+  /** Unlike createRecorder, leaves the platform to each test. */
+  function recorder(options: HotkeyChordRecorderOptions) {
+    const value = new HotkeyRecorder(options)
+    instances.push(value)
+    return value
+  }
+  afterEach(() => {
+    instances.splice(0).forEach((r) => r.destroy())
+    window.dispatchEvent(new Event('blur'))
+    HotkeyManager.resetInstance()
+    document.body.replaceChildren()
+  })
+
+  it.each([
+    ['ß', 'KeyS', { altKey: true }, 'Alt+[KeyS]'],
+    ['™', 'Digit2', { altKey: true }, 'Alt+[Digit2]'],
+    ['Dead', 'KeyE', { altKey: true }, 'Alt+[KeyE]'],
+    ['A', 'KeyQ', { shiftKey: true }, 'Shift+[KeyQ]'],
+    ["'", 'KeyQ', {}, '[KeyQ]'],
+    ['+', 'NumpadAdd', {}, '[NumpadAdd]'],
+  ] as const)(
+    'records and replays %s without layout conversion',
+    (key, code, flags, expected) => {
+      let binding: HotkeyChord | undefined
+      const r = recorder({
+        platform: 'mac',
+        onRecord: (value) => {
+          binding = value
+        },
+      })
+      r.start()
+      keydown({ key, code, ...flags, target: document })
+      expect(binding).toBe(expected)
+      keyup({ key, code, ...flags, target: document })
+      const callback = vi.fn()
+      HotkeyManager.getInstance().register(binding!, callback, {
+        platform: 'mac',
+      })
+      keydown({ key, code, ...flags, target: document })
+      expect(callback).toHaveBeenCalledOnce()
+    },
+  )
+
+  it('preserves shifted layout letters and Unicode in key mode', () => {
+    const onRecord = vi.fn(),
+      r = recorder({ recordBy: 'key', onRecord })
+    r.start()
+    const event = keydown({
+      key: 'A',
+      code: 'KeyQ',
+      shiftKey: true,
+      target: document,
+    })
+    expect(onRecord).toHaveBeenCalledWith('Shift+A')
+    expect(matchesKeyboardEvent(event, onRecord.mock.calls[0]![0])).toBe(true)
+    keyup({ key: 'A', code: 'KeyQ', target: document })
+    r.start()
+    keydown({ key: 'ß', code: 'Minus', target: document })
+    expect(onRecord).toHaveBeenLastCalledWith('ß')
+  })
+  // Chrome on Linux Wayland reports Ctrl+` as key Unidentified (#229)
+  it('records an Unidentified key by code, and skips it in key mode', () => {
+    const onRecord = vi.fn(),
+      r = recorder({ onRecord, platform: 'linux' })
+    r.start()
+    const unidentified = {
+      key: 'Unidentified',
+      code: 'Backquote',
+      ctrlKey: true,
+      target: document,
+    }
+    keydown(unidentified)
+    expect(onRecord).toHaveBeenCalledWith('Mod+[Backquote]')
+
+    const onKeyRecord = vi.fn(),
+      keyMode = recorder({
+        recordBy: 'key',
+        onRecord: onKeyRecord,
+        platform: 'linux',
+      })
+    keyMode.start()
+    keydown(unidentified)
+    expect(onKeyRecord).not.toHaveBeenCalled()
+    expect(keyMode.store.state.isRecording).toBe(true)
+    keydown({ key: 'k', code: 'KeyK', ctrlKey: true, target: document })
+    expect(onKeyRecord).toHaveBeenCalledWith('Mod+K')
+  })
+  it('rejects missing codes and AltGraph while ignoring IME', () => {
+    const onRecord = vi.fn(),
+      onReject = vi.fn(),
+      r = recorder({ onRecord, onReject, platform: 'windows' })
+    r.start()
+    keydown({ key: 's', code: '', target: document })
+    expect(onReject).toHaveBeenLastCalledWith(
+      expect.objectContaining({ reason: 'missing-code' }),
+    )
+    keydown({
+      key: '@',
+      code: 'KeyQ',
+      ctrlKey: true,
+      altKey: true,
+      altGraph: true,
+      target: document,
+    })
+    expect(onReject).toHaveBeenLastCalledWith(
+      expect.objectContaining({ reason: 'alt-graph' }),
+    )
+    keydown({
+      key: 'Process',
+      code: 'KeyA',
+      isComposing: true,
+      target: document,
+    })
+    expect(onReject).toHaveBeenCalledTimes(2)
+    expect(onRecord).not.toHaveBeenCalled()
+    expect(r.store.state.isRecording).toBe(true)
+  })
+  it('suppresses recording keydowns, repeats and releases then allows normal use', () => {
+    const down = vi.fn(),
+      up = vi.fn(),
+      manager = HotkeyManager.getInstance()
+    manager.register('Alt+[KeyS]', down, { platform: 'mac' })
+    manager.register('Alt+[KeyS]', up, {
+      eventType: 'keyup',
+      conflictBehavior: 'allow',
+      platform: 'mac',
+    })
+    const r = recorder({ onRecord: vi.fn(), platform: 'mac' })
+    r.start()
+    const altS = { key: 'ß', code: 'KeyS', altKey: true, target: document }
+    keydown(altS)
+    keydown({ ...altS, repeat: true })
+    keyup(altS)
+    expect(down).not.toHaveBeenCalled()
+    expect(up).not.toHaveBeenCalled()
+    keydown(altS)
+    keyup(altS)
+    expect(down).toHaveBeenCalledOnce()
+    expect(up).toHaveBeenCalledOnce()
+  })
+  it('keeps recording after rejection and clears with only onClear', () => {
+    const onRecord = vi.fn(),
+      onClear = vi.fn(),
+      onReject = vi.fn()
+    const r = recorder({
+      onRecord,
+      onClear,
+      onReject,
+      validate: (_, { parsedChord }) =>
+        parsedChord.modifiers.length > 0 || 'Include a modifier.',
+    })
+    r.start()
+    keydown({ key: 's', code: 'KeyS', target: document })
+    expect(onReject).toHaveBeenCalledWith(
+      expect.objectContaining({
+        reason: 'validation',
+        message: 'Include a modifier.',
+      }),
+    )
+    expect(r.store.state.isRecording).toBe(true)
+    keydown({ key: 'Backspace', code: 'Backspace', target: document })
+    expect(onRecord).not.toHaveBeenCalled()
+    expect(onClear).toHaveBeenCalledOnce()
+    expect(r.store.state.isRecording).toBe(false)
+  })
+  it('rejects without a message when validate returns false', () => {
+    const onReject = vi.fn()
+    const r = recorder({ onRecord: vi.fn(), onReject, validate: () => false })
+    r.start()
+    keydown({ key: 's', code: 'KeyS', target: document })
+    expect(onReject).toHaveBeenCalledWith({
+      reason: 'validation',
+      hotkey: '[KeyS]',
+    })
+  })
+  it('detects physical/logical conflicts from source events and stays active', () => {
+    HotkeyManager.getInstance().register('Alt+S', vi.fn(), { platform: 'mac' })
+    const onReject = vi.fn(),
+      onRecord = vi.fn()
+    const r = recorder({
+      onRecord,
+      onReject,
+      detectConflicts: true,
+      platform: 'mac',
+    })
+    r.start()
+    keydown({ key: 'ß', code: 'KeyS', altKey: true, target: document })
+    expect(onReject).toHaveBeenCalledWith(
+      expect.objectContaining({
+        reason: 'conflict',
+        conflicts: [
+          { registration: expect.objectContaining({ kind: 'chord' }) },
+        ],
+      }),
+    )
+    expect(onRecord).not.toHaveBeenCalled()
+    expect(r.store.state.isRecording).toBe(true)
+  })
+
+  it('releases pre-recording reset latches without firing keyup callbacks', () => {
+    const callback = vi.fn()
+    HotkeyManager.getInstance().register('[KeyS]', callback, {
+      requireReset: true,
+    })
+    keydown({ key: 's', code: 'KeyS', target: document })
+    const r = recorder({ onRecord: vi.fn() })
+    r.start()
+    keyup({ key: 's', code: 'KeyS', target: document })
+    r.cancel()
+    keydown({ key: 's', code: 'KeyS', target: document })
+    expect(callback).toHaveBeenCalledTimes(2)
+  })
+  it('does not carry sequence progress across a recorded chord', () => {
+    const callback = vi.fn()
+    const g = { key: 'g', code: 'KeyG', target: document }
+    const x = { key: 'x', code: 'KeyX', target: document }
+    HotkeyManager.getInstance().register(['[KeyG]', '[KeyG]'], callback)
+    keydown(g)
+    keyup(g)
+    const r = recorder({ onRecord: vi.fn() })
+    r.start()
+    keydown(x)
+    keyup(x)
+    keydown(g)
+    keyup(g)
+    expect(callback).not.toHaveBeenCalled()
+    keydown(g)
+    expect(callback).toHaveBeenCalledOnce()
+  })
+
+  it('ends recording suppression when macOS swallows the main key release', () => {
+    const callback = vi.fn()
+    HotkeyManager.getInstance().register('Mod+[KeyS]', callback, {
+      platform: 'mac',
+    })
+    const r = recorder({ onRecord: vi.fn(), platform: 'mac' })
+    r.start()
+    keydown({ key: 'Meta', code: 'MetaLeft', metaKey: true, target: document })
+    keydown({ key: 's', code: 'KeyS', metaKey: true, target: document })
+    // Command+S may not deliver KeyS's keyup; Command release must end the chord.
+    keyup({ key: 'Meta', code: 'MetaLeft', target: document })
+    keydown({ key: 's', code: 'KeyS', metaKey: true, target: document })
+    expect(callback).toHaveBeenCalledOnce()
+  })
+})

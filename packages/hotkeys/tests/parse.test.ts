@@ -1,6 +1,8 @@
-import { describe, expect, it } from 'vitest'
+import { afterEach, describe, expect, expectTypeOf, it, vi } from 'vitest'
 import { hotkeyChordFromKeydown } from '../src/_recorder-chord'
 import { normalizeKeyName } from '../src/constants'
+import { formatForDisplay, formatHotkey } from '../src/format'
+import { HotkeyManager } from '../src/hotkey-manager'
 import {
   isModifierKey,
   normalizeHotkey,
@@ -8,6 +10,7 @@ import {
   parseKeyboardEvent,
 } from '../src/parse'
 import type { ParsedHotkeyChord } from '../src/hotkey.types'
+import type { LogicalKey } from '../src/key.types'
 
 describe('parseHotkey', () => {
   describe('single keys', () => {
@@ -557,5 +560,42 @@ describe('hotkeyChordFromKeydown', () => {
         'windows',
       ),
     ).toBe(null)
+  })
+})
+
+describe('physical tokens in logical fields', () => {
+  afterEach(() => {
+    HotkeyManager.resetInstance()
+  })
+
+  it('rejects physical tokens in raw and parsed logical fields without changing Unicode support', () => {
+    expectTypeOf<Extract<LogicalKey, `[${string}]`>>().toBeNever()
+    for (const key of ['[KeyS]', ' [Enter] ', '[UnknownCode]']) {
+      const raw = { key, mod: true }
+      expect(() => parseHotkey(raw)).toThrow('code field')
+      expect(() => normalizeHotkey(raw)).toThrow('code field')
+      expect(() => formatForDisplay(raw)).toThrow('code field')
+      const manager = HotkeyManager.getInstance()
+      expect(() => manager.register(raw, vi.fn())).toThrow('code field')
+      expect(manager.registrations.state.size).toBe(0)
+      const parsed: ParsedHotkeyChord = {
+        key,
+        ctrl: false,
+        alt: false,
+        shift: false,
+        meta: false,
+        modifiers: [],
+      }
+      expect(() => formatHotkey(parsed)).toThrow('code field')
+      expect(() => normalizeHotkey(parsed)).toThrow('code field')
+      expect(() => formatForDisplay(parsed)).toThrow('code field')
+    }
+    for (const key of ['[', ']', 'ß', 'Ę', '字', 'é']) {
+      const raw = { key }
+      expect(parseHotkey(normalizeHotkey(raw))).toEqual(parseHotkey(raw))
+    }
+    expect(parseHotkey('Mod+[KeyS]', 'mac')).toEqual(
+      parseHotkey({ code: 'KeyS', mod: true }, 'mac'),
+    )
   })
 })

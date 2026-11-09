@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest'
 import { formatForDisplay, formatHotkey } from '../src/format'
-import { normalizeHotkey } from '../src/parse'
+import { normalizeHotkey, parseHotkey } from '../src/parse'
+import { validateHotkey } from '../src/validate'
 import type { DisplayHotkeyChord } from '../src/format'
 import type {
   HotkeyChord,
@@ -494,5 +495,45 @@ describe('formatForDisplay with single keys', () => {
         keyLabels: { Shift: 'Sh' },
       }),
     ).toBe('⇧')
+  })
+})
+
+describe('literal plus and split symbol options', () => {
+  it('formats literal plus as one token and separates symbol options', () => {
+    expect(
+      formatForDisplay('Control++', { platform: 'windows', parts: true }),
+    ).toEqual(['Ctrl', '+'])
+    expect(
+      formatForDisplay('Control++', {
+        platform: 'windows',
+        separatorToken: ' | ',
+      }),
+    ).toBe('Ctrl | +')
+    expect(
+      formatForDisplay('Shift+ArrowUp', {
+        platform: 'mac',
+        parts: true,
+        useSymbols: { modifiers: false, keys: true },
+      }),
+    ).toEqual(['Shift', '↑'])
+    expect(
+      formatForDisplay('Shift+ArrowUp', {
+        platform: 'mac',
+        useSymbols: { modifiers: true, keys: false },
+      }),
+    ).toBe('⇧ ArrowUp')
+    expect(
+      formatForDisplay({ code: 'KeyQ', alt: true }, { platform: 'mac' }),
+    ).toBe('⌥ Q')
+    expect(
+      formatForDisplay(parseHotkey('Alt+[KeyQ]'), {
+        platform: 'mac',
+        keyLabels: { KeyQ: 'A' },
+        parts: true,
+      }),
+    ).toEqual(['⌥', 'A'])
+    expect(validateHotkey('Control++').valid).toBe(true)
+    expect(validateHotkey('Alt+[KeyQ]').valid).toBe(true)
+    expect(validateHotkey('Alt+[Key Q]').valid).toBe(false)
   })
 })

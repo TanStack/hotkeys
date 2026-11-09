@@ -1,10 +1,13 @@
+import { keydown } from '@tanstack/hotkeys-test-utils'
 import { afterEach, expect, it, vi } from 'vitest'
 import {
   HotkeyManager,
   HotkeyRecorder,
+  areHotkeysEqual,
   createHotkeyChordHandler,
   formatHotkey,
   hasNonModifierKey,
+  matchesKeyboardEvent,
   normalizeHotkey,
   parseHotkey,
   parseKeyboardEvent,
@@ -115,4 +118,20 @@ it('recognizes physical action keys and preserves Escape input defaults', () => 
   )
   expect(callback).toHaveBeenCalledOnce()
   input.remove()
+})
+
+it('retains code identity through raw, string and parsed serialization', () => {
+  for (const code of ['KeyQ', 'Digit2', 'Enter', 'NumpadEnter', 'Slash']) {
+    const raw = { code, alt: true }
+    const string = normalizeHotkey(raw, 'mac')
+    expect(parseHotkey(string).code).toBe(code)
+    expect(parseHotkey(formatHotkey(parseHotkey(raw))).code).toBe(code)
+    expect(areHotkeysEqual(raw, string)).toBe(true)
+  }
+  expect(
+    matchesKeyboardEvent(
+      keydown({ key: 'Enter', code: 'NumpadEnter' }),
+      '[Enter]',
+    ),
+  ).toBe(false)
 })

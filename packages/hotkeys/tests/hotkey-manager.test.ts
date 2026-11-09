@@ -1,3 +1,4 @@
+import { keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager, toHotkeyRegistrationView } from '../src/hotkey-manager'
 
@@ -2203,5 +2204,59 @@ describe('HotkeyManager edge cases', () => {
         }),
       ).toThrow()
     })
+  })
+})
+
+describe('requireReset release tracking', () => {
+  afterEach(() => {
+    window.dispatchEvent(new Event('blur'))
+    HotkeyManager.resetInstance()
+    document.body.replaceChildren()
+  })
+
+  it('releases requireReset after a callback focuses an input', () => {
+    const input = document.createElement('input')
+    document.body.append(input)
+    const callback = vi.fn(() => input.focus())
+    HotkeyManager.getInstance().register('[KeyS]', callback, {
+      requireReset: true,
+    })
+    keydown({ key: 's', code: 'KeyS', composed: true, target: document })
+    keyup({ key: 's', code: 'KeyS', composed: true, target: input })
+    input.blur()
+    keydown({ key: 's', code: 'KeyS', composed: true, target: document })
+    expect(callback).toHaveBeenCalledTimes(2)
+  })
+
+  it('releases requireReset while a registration is disabled', () => {
+    const callback = vi.fn()
+    const handle = HotkeyManager.getInstance().register('[KeyS]', callback, {
+      requireReset: true,
+    })
+    keydown({ key: 's', code: 'KeyS', composed: true, target: document })
+    handle.setOptions({ enabled: false })
+    keyup({ key: 's', code: 'KeyS', composed: true, target: document })
+    handle.setOptions({ enabled: true })
+    keydown({ key: 's', code: 'KeyS', composed: true, target: document })
+    expect(callback).toHaveBeenCalledTimes(2)
+  })
+})
+
+describe('setOptions change detection', () => {
+  afterEach(() => {
+    HotkeyManager.resetInstance()
+  })
+
+  it('skips unchanged options, including fresh equivalent metadata', () => {
+    const manager = HotkeyManager.getInstance()
+    const handle = manager.register('Alt+S', vi.fn(), {
+        meta: { name: 'Save', group: 'Editor' },
+      }),
+      notify = vi.fn()
+    manager.registrations.subscribe(notify)
+    handle.setOptions({ meta: { name: 'Save', group: 'Editor' } })
+    expect(notify).not.toHaveBeenCalled()
+    handle.setOptions({ meta: { name: 'Save', group: 'Other' } })
+    expect(notify).toHaveBeenCalledOnce()
   })
 })
