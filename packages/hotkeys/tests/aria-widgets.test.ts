@@ -42,8 +42,9 @@ describe.each(['hotkey', 'sequence'] as const)('%s in ARIA widgets', (kind) => {
     key: string,
     options: KeyboardEventInit = {},
   ) {
-    if (kind === 'sequence') keydown({ key: 'F2', target: element })
-    return keydown({ key, ...options, target: element })
+    if (kind === 'sequence')
+      keydown({ key: 'F2', composed: true, target: element })
+    return keydown({ key, composed: true, ...options, target: element })
   }
 
   // [markup, focused selector, keys the widget owns, keys it leaves alone]

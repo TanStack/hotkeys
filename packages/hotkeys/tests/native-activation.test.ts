@@ -37,8 +37,14 @@ describe.each(['hotkey', 'sequence'] as const)(
       options: KeyboardEventInit = {},
       type: 'keydown' | 'keyup' = 'keydown',
     ) {
-      if (kind === 'sequence') keyEvent(type, { key: 'g', target: element })
-      return keyEvent(type, { key, ...options, target: element })
+      if (kind === 'sequence')
+        keyEvent(type, { key: 'g', composed: true, target: element })
+      return keyEvent(type, {
+        key,
+        composed: true,
+        ...options,
+        target: element,
+      })
     }
 
     it.each([

@@ -345,7 +345,7 @@ describe('what does not block a hotkey', () => {
     const panel = document.getElementById('panel')!
     const k = register('K', { target: panel })
     // The event starts inside the target, so focus elsewhere doesn't matter
-    keydown({ key: 'k', target: panel })
+    keydown({ key: 'k', composed: true, target: panel })
     expect(k).toHaveBeenCalledOnce()
   })
 
