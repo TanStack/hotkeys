@@ -77,7 +77,7 @@ export interface NativeSession {
 const MODIFIER_KEYS = ['Control', 'Alt', 'AltGraph', 'Shift', 'Meta']
 
 /** JSON lines, one per press. `scripts/native-report.ts` reads them. */
-export const REPORT_PATH =
+const REPORT_PATH =
   process.env.E2E_NATIVE_REPORT ??
   fileURLToPath(new URL('../test-results/native-events.jsonl', import.meta.url))
 

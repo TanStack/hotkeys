@@ -8,7 +8,7 @@ import { lineProcess } from './native'
 import type { NativeKeyboard } from './native'
 
 /** Keyboard layout IDs (KLIDs) by short name. */
-export const WINDOWS_LAYOUTS = {
+const WINDOWS_LAYOUTS = {
   us: '00000409',
   de: '00000407',
   /** Polish (Programmers), the default Polish layout. */
