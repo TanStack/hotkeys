@@ -23,16 +23,31 @@ export interface LayoutKeyboard {
   ) => Promise<unknown>
 }
 
-/** Mounts the harness on Linux, watches `bindings`, and registers `registered`. */
+/** Setup that applies to every case of a `useLayout` call. */
+export interface LayoutOptions {
+  /** Turn NumLock on for each test, and off again afterwards. Default: off. */
+  numLock?: boolean
+}
+
+/**
+ * Mounts the harness on Linux, watches `bindings`, and registers `registered`.
+ * The page has an HTTPS URL, so Chromium's `navigator.keyboard.getLayoutMap()`
+ * works (it needs a secure context).
+ */
 export function useLayout(
   layout: Layout,
   bindings: Array<string>,
   registered: Array<string> = [],
+  { numLock = false }: LayoutOptions = {},
 ) {
   const [, name, variant] = layout.match(/^([^(]+)(?:\((.+)\))?$/)!
   const test = base.extend<{ keyboard: LayoutKeyboard }>({
     keyboard: async ({ page, harness }, use) => {
       setLayout(name!, variant)
+      await page.route(PAGE_URL, (route) =>
+        route.fulfill({ contentType: 'text/html', body: '' }),
+      )
+      await page.goto(PAGE_URL)
       const hk = await harness()
       await hk.call('setPlatform', 'linux')
       await hk.call('observe', bindings)
@@ -40,6 +55,8 @@ export function useLayout(
         await hk.register(binding, binding as never)
       }
       await waitForKeyboardInput(page, hk)
+      // X11 keeps NumLock across tests and pages, so turn it off again after.
+      if (numLock) await toggleNumLock(page, hk, true)
       await use({
         press: async (combo) => {
           await hk.clear()
@@ -60,6 +77,7 @@ export function useLayout(
           return recorded
         },
       })
+      if (numLock) await toggleNumLock(page, hk, false)
     },
   })
   return test
@@ -103,6 +121,26 @@ async function waitForKeyboardInput(
     )
   }
   throw new Error('Real key presses never reached the page')
+}
+
+const PAGE_URL = 'https://hotkeys.test/'
+
+/**
+ * Presses NumLock, then checks the state on an Escape press. Browsers differ
+ * on whether the NumLock keydown itself reports the old or the new state.
+ */
+async function toggleNumLock(
+  page: Page,
+  hk: LoadedHarness,
+  on: boolean,
+): Promise<void> {
+  press('NumLock')
+  await page.waitForTimeout(50)
+  await hk.clear()
+  press('Escape')
+  const { numLock } = await nextKeydown(page)
+  expect(numLock, 'NumLock state after pressing it').toBe(on)
+  await hk.clear()
 }
 
 async function nextKeydown(page: Page): Promise<ObservedKeydown> {
