@@ -109,14 +109,9 @@ test('Escape and Backspace that edit a composition never fire hotkeys', async ({
   await keys.setLayout(ENGINE)
 
   await compose(keys, ['KeyN', 'KeyI', 'KeyH', 'KeyA', 'KeyO', 'Backspace'])
-  // libpinyin takes Escape (keyCode 229) without ending the composition when
-  // ibus runs with no panel, so Space commits it instead.
+  // Escape cancels the composition. The next one reaches the page.
   await compose(keys, ['Escape'])
-  const [commit] = await compose(keys, ['Space'])
-  expect(
-    commit!.events.map((event) => event.type),
-    describe(commit!),
-  ).toContain('compositionend')
   const escape = await keys.press('Escape')
   expect(escape.fired, describe(escape)).toEqual(['Escape'])
+  expect(await keys.page.inputValue('#field')).toBe('')
 })
