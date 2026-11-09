@@ -4215,14 +4215,16 @@
       "evidence": ["e2e/layouts/layouts.spec.ts"]
     },
     "source:e2e/support/x11.ts": {
-      "fingerprint": "ca063723def3419bfbebd8bf1ce8bf2be1679a2969ad6510e06ce6e96e7483a4",
+      "fingerprint": "61fa99c2db35c5c39ecc8424128f0c4b1463443ae672c23cbbc39ba1324d8afd",
       "snapshot": {
-        "e2e/support/x11.ts": "dff9cae03a461282a571f520a1b01b3dcc4d97f7b7bed0865ac8f25897690d67"
+        "e2e/support/x11.ts": "1a919cdb104eadaa4fdde442d5842f1bb268a1de48fb724fd3b94997bd332cc9"
       },
-      "head": "257929f0da34cecc64d5987127147b99e584f4e2",
+      "head": "53d1ab73aca0784ca314ec5f50e745e626e0e596",
       "outcome": "no-change",
-      "reason": "E2E test infrastructure only: layout fixture probes real key input before each case, and the Docker image matches @playwright/test 1.65.0. No library behavior or guidance changes.",
-      "evidence": ["e2e/support/x11.ts"]
+      "reason": "E2E test infrastructure only (layout-suite specs, X11 helpers, Docker image and CI packages); no library API or behavior that skills describe changed.",
+      "evidence": [
+        "Changed: e2e/support/x11.ts at 53d1ab73aca0784ca314ec5f50e745e626e0e596"
+      ]
     },
     "source:packages/hotkeys/src/_match.ts": {
       "fingerprint": "829d440b1b8e8fc776847f62e03fec659fc592a1ab09aa6af53527480cf1bf9e",
@@ -8344,14 +8346,16 @@
       ]
     },
     "source:.github/workflows/e2e.yml": {
-      "fingerprint": "40a1773bb6bcd076779536096e4de8cc8be6a22b4caadc4a9f45aa7805cc1a62",
+      "fingerprint": "ffb3270b60ee533b116cf9634508d22793b2852067ba9ffefecea95fd280930e",
       "snapshot": {
-        ".github/workflows/e2e.yml": "8243fd92b99ca3451a69080e9cb1f26d4f912c6745b8ac990a98352c88a52ac8"
+        ".github/workflows/e2e.yml": "f9caf355e49b90113f2c7c7b3d0e603ec25b56a865fb68114200be9a323c4009"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "53d1ab73aca0784ca314ec5f50e745e626e0e596",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
-      "evidence": [".github/workflows/e2e.yml"]
+      "reason": "E2E test infrastructure only (layout-suite specs, X11 helpers, Docker image and CI packages); no library API or behavior that skills describe changed.",
+      "evidence": [
+        "Changed: .github/workflows/e2e.yml at 53d1ab73aca0784ca314ec5f50e745e626e0e596"
+      ]
     },
     "source:.prettierignore": {
       "fingerprint": "6b9e10e4e967f462a752ee95fd3fcb4967db2763e3e9228683444db552a4ca05",
@@ -8364,14 +8368,16 @@
       "evidence": ["oxfmt.config.ts", "pnpm format:check passes"]
     },
     "source:e2e/README.md": {
-      "fingerprint": "d08a715a1e080a791a5ff250138ddbe1e708c58d009aae358033e8651793c401",
+      "fingerprint": "d0852ea83f27e44f1200c27187c497a90de34beb736fb6e89cf97f5921da36f9",
       "snapshot": {
-        "e2e/README.md": "50cad6318b58608d2f31856042b10e910214910059a438824402c9ae44a0190e"
+        "e2e/README.md": "8b70adbbf35eb4bb43d8570ad7866fb710d91f99d432644b48e01e183cab19cc"
       },
-      "head": "7bae18f9081c2c12bba08eaa5a6294054d4cad03",
+      "head": "53d1ab73aca0784ca314ec5f50e745e626e0e596",
       "outcome": "no-change",
-      "reason": "Server-rendered cheat sheet examples, example links, removed vanilla example, SSR e2e suite, or detectPlatform(null); covered by existing skill text.",
-      "evidence": ["e2e/README.md"]
+      "reason": "E2E test infrastructure only (layout-suite specs, X11 helpers, Docker image and CI packages); no library API or behavior that skills describe changed.",
+      "evidence": [
+        "Changed: e2e/README.md at 53d1ab73aca0784ca314ec5f50e745e626e0e596"
+      ]
     },
     "source:e2e/playwright.ssr.config.ts": {
       "fingerprint": "1acb192293ee09c9b6638adfbcc838887b777c3083b09d2f6af57840c8d8a952",
@@ -13278,14 +13284,16 @@
       ]
     },
     "source:e2e/support/layout-fixtures.ts": {
-      "fingerprint": "f9b1f765118d44c6fa1a7aed0762cfa1fb726f78d0d08a1a10f3d0e14e0450a5",
+      "fingerprint": "77aca3fe58c473a514174a31efd10c8d1fabe07007072697981acc9d8554998a",
       "snapshot": {
-        "e2e/support/layout-fixtures.ts": "feec7e6a8fab37ae7f6347bfc8e65d03077cb308fa011cd88d88af814b754808"
+        "e2e/support/layout-fixtures.ts": "3bbdc798d59ef93ef95d128f163a8f3bf7420f9e44e2f8ebd63f74ce82f173b3"
       },
-      "head": "257929f0da34cecc64d5987127147b99e584f4e2",
+      "head": "53d1ab73aca0784ca314ec5f50e745e626e0e596",
       "outcome": "no-change",
-      "reason": "E2E test infrastructure only: layout fixture probes real key input before each case, and the Docker image matches @playwright/test 1.65.0. No library behavior or guidance changes.",
-      "evidence": ["e2e/support/layout-fixtures.ts"]
+      "reason": "E2E test infrastructure only (layout-suite specs, X11 helpers, Docker image and CI packages); no library API or behavior that skills describe changed.",
+      "evidence": [
+        "Changed: e2e/support/layout-fixtures.ts at 53d1ab73aca0784ca314ec5f50e745e626e0e596"
+      ]
     },
     "source:eslint.config.js": {
       "fingerprint": "df80230eaeda473d317619635cec746a35493c58f2e154d573f6f804933816a8",
@@ -17573,14 +17581,16 @@
       ]
     },
     "source:e2e/docker/Dockerfile": {
-      "fingerprint": "432d499e20a56547e892efb87b48a2731f58b9fb23f4a2a30f5b4ed671457a83",
+      "fingerprint": "c9143dfbe93f735e4d1b8939a4b4cd21e213c93a62c1ce6695d579860f6143fb",
       "snapshot": {
-        "e2e/docker/Dockerfile": "7764d334910ac5dd9908be088b7d89dea97e9b5e1c5f76541963333bfc396a6f"
+        "e2e/docker/Dockerfile": "dccd3f8b111a863211e53c5ebd865df9125b90c0d1612155d931fc0198675312"
       },
-      "head": "257929f0da34cecc64d5987127147b99e584f4e2",
+      "head": "53d1ab73aca0784ca314ec5f50e745e626e0e596",
       "outcome": "no-change",
-      "reason": "E2E test infrastructure only: layout fixture probes real key input before each case, and the Docker image matches @playwright/test 1.65.0. No library behavior or guidance changes.",
-      "evidence": ["e2e/docker/Dockerfile"]
+      "reason": "E2E test infrastructure only (layout-suite specs, X11 helpers, Docker image and CI packages); no library API or behavior that skills describe changed.",
+      "evidence": [
+        "Changed: e2e/docker/Dockerfile at 53d1ab73aca0784ca314ec5f50e745e626e0e596"
+      ]
     },
     "source:e2e/support/fixtures.ts": {
       "fingerprint": "79a05dce774d135c07d8aaa6e5b5495d9251af7317fa3b4a0304a7c4e45126da",
@@ -17611,6 +17621,30 @@
       "outcome": "out-of-scope",
       "reason": "Tests for Tab leaving the recorder; they describe no guidance.",
       "evidence": ["packages/hotkeys/tests/recorder-tab.test.ts"]
+    },
+    "source:e2e/layouts/focus-loss.spec.ts": {
+      "fingerprint": "e9d755ac692b824d8ed4d207ac72a3a59161563cb3c61e879a26ead8647f99ee",
+      "snapshot": {
+        "e2e/layouts/focus-loss.spec.ts": "44a830ac228ce3db913ab61f0fb60adbcd9d8612f7f604ca69a0ac88dfe2ab61"
+      },
+      "head": "53d1ab73aca0784ca314ec5f50e745e626e0e596",
+      "outcome": "no-change",
+      "reason": "E2E test infrastructure only (layout-suite specs, X11 helpers, Docker image and CI packages); no library API or behavior that skills describe changed.",
+      "evidence": [
+        "Changed: e2e/layouts/focus-loss.spec.ts at 53d1ab73aca0784ca314ec5f50e745e626e0e596"
+      ]
+    },
+    "source:e2e/layouts/key-repeat.spec.ts": {
+      "fingerprint": "52f55a15c191dd36baf9c7df2ea9e33fc5276c200ef7e4a4c9be2713a5a58afa",
+      "snapshot": {
+        "e2e/layouts/key-repeat.spec.ts": "4aa8dbca7a8f49195ad54219efb82eea391e292bedf42fc42e1ff5129d90728c"
+      },
+      "head": "53d1ab73aca0784ca314ec5f50e745e626e0e596",
+      "outcome": "no-change",
+      "reason": "E2E test infrastructure only (layout-suite specs, X11 helpers, Docker image and CI packages); no library API or behavior that skills describe changed.",
+      "evidence": [
+        "Changed: e2e/layouts/key-repeat.spec.ts at 53d1ab73aca0784ca314ec5f50e745e626e0e596"
+      ]
     }
   }
 }
