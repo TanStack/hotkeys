@@ -17631,15 +17631,15 @@
       ]
     },
     "source:e2e/native/ibus.spec.ts": {
-      "fingerprint": "b478d441328a1b043ab0dddd5acd91f11cac4e061a44d786f02e64b037a2c365",
+      "fingerprint": "8ae653e606048c8bef8145939fc1a5efae1788032a35ea0fb0a08736ac0c42a9",
       "snapshot": {
-        "e2e/native/ibus.spec.ts": "e191a8d902c36170597d78902084bf5cd4c6c585a938b0a102d1757f4a1ad431"
+        "e2e/native/ibus.spec.ts": "6ae431fefbfb7a01f05386a16c528f4489317063566ce12192fbbff568ccb0df"
       },
-      "head": "cd1113a2503350fe8a2777e79e46d99289700dde",
+      "head": "40f2701e28be4a3520606308a56c34e3431eba78",
       "outcome": "no-change",
-      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "reason": "Nightly e2e spec only; no library behavior or skill guidance changes.",
       "evidence": [
-        "Changed: e2e/native/ibus.spec.ts at cd1113a2503350fe8a2777e79e46d99289700dde"
+        "Changed: e2e/native/ibus.spec.ts at 40f2701e28be4a3520606308a56c34e3431eba78"
       ]
     },
     "source:e2e/native/ibus/run.sh": {
