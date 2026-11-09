@@ -1,8 +1,8 @@
 <script lang="ts">
   import { onMount } from 'svelte'
-  import { getHeldKeyCodesMap } from '../src/getHeldKeyCodesMap.svelte'
-  import { getHeldKeys } from '../src/getHeldKeys.svelte'
-  import { getIsKeyHeld } from '../src/getIsKeyHeld.svelte'
+  import { getHeldKeyCodesMap } from '../../src/getHeldKeyCodesMap.svelte'
+  import { getHeldKeys } from '../../src/getHeldKeys.svelte'
+  import { getIsKeyHeld } from '../../src/getIsKeyHeld.svelte'
   import type { IndividualKey } from '@tanstack/hotkeys'
 
   let {
