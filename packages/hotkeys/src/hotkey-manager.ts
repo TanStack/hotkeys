@@ -1295,8 +1295,11 @@ export class HotkeyManager {
           if (skipped) {
             this.#pendingReleases.set(id, null)
           } else {
-            if (live ? preventDefault : preventDefault === 'always') {
+            if (live && preventDefault) {
               this.#prevent(event)
+            } else if (!live && preventDefault === 'always') {
+              // Like any reserved key, prevented only if no live hotkey handles it
+              reserved = true
             }
             // Recorded even while the hotkey can't fire, so a callback that
             // enables it during this press, such as to end a mode, still

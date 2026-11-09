@@ -2091,6 +2091,21 @@ describe('HotkeyManager edge cases', () => {
       expect(up.defaultPrevented).toBe(true)
     })
 
+    it("lets a live keydown hotkey keep a disabled keyup chord's 'always' from preventing its press", () => {
+      const onKeydown = vi.fn()
+      HotkeyManager.getInstance().register('Escape', vi.fn(), {
+        eventType: 'keyup',
+        enabled: false,
+        preventDefault: 'always',
+      })
+      HotkeyManager.getInstance().register('Escape', onKeydown, {
+        preventDefault: false,
+      })
+      const down = keydown({ key: 'Escape', code: 'Escape', target: document })
+      expect(onKeydown).toHaveBeenCalledTimes(1)
+      expect(down.defaultPrevented).toBe(false)
+    })
+
     it('does not fire on the release of a press another key cancelled', () => {
       const callback = vi.fn()
       HotkeyManager.getInstance().register('Escape', callback, {
