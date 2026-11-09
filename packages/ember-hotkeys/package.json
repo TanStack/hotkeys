@@ -67,6 +67,7 @@
     "@glint/template": "1.11.1",
     "@glint/tsserver-plugin": "2.7.16",
     "@rollup/plugin-babel": "7.1.0",
+    "@tanstack/hotkeys-test-utils": "workspace:*",
     "@types/qunit": "^2.19.14",
     "babel-plugin-ember-template-compilation": "4.0.1",
     "decorator-transforms": "2.4.0",

@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { getHotkeyRegistrations } from '../src/getHotkeyRegistrations.svelte'
+  import { getHotkeyRegistrations } from '../../src/getHotkeyRegistrations.svelte'
   import type { HotkeyRegistrationView } from '@tanstack/hotkeys'
 
   let { onValue }: { onValue: (value: Array<HotkeyRegistrationView>) => void } =

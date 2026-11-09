@@ -21,7 +21,8 @@
         "@ember/runloop",
         "@ember/routing",
         "@embroider/shared-internals",
-        "@glint/tsserver-plugin"
+        "@glint/tsserver-plugin",
+        "@tanstack/hotkeys-test-utils"
       ]
     },
     "packages/octane-hotkeys": {
