@@ -64,6 +64,7 @@
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {
+    "@tanstack/react-hotkeys": "workspace:*",
     "@types/react": "^19.3.0",
     "@vitejs/plugin-react": "^6.2.1",
     "react": "^19.3.1"

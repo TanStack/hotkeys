@@ -61,6 +61,9 @@
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {
-    "@angular/core": "^22.2.5"
+    "@angular/common": "^22.2.5",
+    "@angular/core": "^22.2.5",
+    "@angular/platform-browser-dynamic": "^22.2.5",
+    "@tanstack/angular-hotkeys": "workspace:*"
   }
 }

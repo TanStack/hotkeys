@@ -4117,9 +4117,18 @@ importers:
         specifier: workspace:*
         version: link:../hotkeys-devtools
     devDependencies:
+      '@angular/common':
+        specifier: ^22.2.5
+        version: 22.2.5(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2)
       '@angular/core':
         specifier: ^22.2.5
         version: 22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3)
+      '@angular/platform-browser-dynamic':
+        specifier: ^22.2.5
+        version: 22.2.5(@angular/common@22.2.5(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/compiler@22.2.5)(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3))(@angular/platform-browser@22.2.5(@angular/common@22.2.5(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3))(rxjs@7.8.2))(@angular/core@22.2.5(@angular/compiler@22.2.5)(rxjs@7.8.2)(zone.js@0.16.3)))
+      '@tanstack/angular-hotkeys':
+        specifier: workspace:*
+        version: link:../angular-hotkeys
 
   packages/ember-hotkeys:
     dependencies:
@@ -4294,6 +4303,9 @@ importers:
       '@preact/preset-vite':
         specifier: ^2.10.6
         version: 2.10.6(@babel/core@7.29.7(supports-color@8.1.1))(preact@11.2.0)(rollup@4.68.0)(supports-color@8.1.1)(vite@8.3.6(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@8.1.1))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+      '@tanstack/preact-hotkeys':
+        specifier: workspace:*
+        version: link:../preact-hotkeys
       preact:
         specifier: ^11.2.0
         version: 11.2.0(preact-render-to-string@6.8.2)
@@ -4344,6 +4356,9 @@ importers:
         specifier: '>=18.0.0'
         version: 19.3.1(react@19.3.1)
     devDependencies:
+      '@tanstack/react-hotkeys':
+        specifier: workspace:*
+        version: link:../react-hotkeys
       '@types/react':
         specifier: ^19.3.0
         version: 19.3.0
@@ -4385,6 +4400,9 @@ importers:
         specifier: '>=0.8.14'
         version: 0.8.14(csstype@3.2.3)(solid-js@1.9.18)
     devDependencies:
+      '@tanstack/solid-hotkeys':
+        specifier: workspace:*
+        version: link:../solid-hotkeys
       solid-js:
         specifier: ^1.9.18
         version: 1.9.18
@@ -4435,6 +4453,9 @@ importers:
       '@sveltejs/vite-plugin-svelte':
         specifier: ^7.3.1
         version: 7.3.1(svelte@5.57.3(@typescript-eslint/types@8.72.1))(vite@8.3.6(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))
+      '@tanstack/svelte-hotkeys':
+        specifier: workspace:*
+        version: link:../svelte-hotkeys
       svelte:
         specifier: ^5.57.3
         version: 5.57.3(@typescript-eslint/types@8.72.1)
@@ -4464,6 +4485,9 @@ importers:
         specifier: '>=0.2.28'
         version: 0.2.28(csstype@3.2.3)(solid-js@1.9.18)
     devDependencies:
+      '@tanstack/vue-hotkeys':
+        specifier: workspace:*
+        version: link:../vue-hotkeys
       '@vitejs/plugin-vue':
         specifier: ^6.0.10
         version: 6.0.10(vite@8.3.6(@types/node@26.6.6)(esbuild@0.28.2)(jiti@2.7.0)(less@4.9.1(supports-color@7.2.0))(sass-embedded@1.104.1)(sass@1.104.1)(terser@5.51.2)(yaml@2.9.1))(vue@3.5.45(typescript@6.0.3))
