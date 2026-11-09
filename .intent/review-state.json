@@ -2593,15 +2593,15 @@
       "evidence": ["docs/config.json"]
     },
     "source:docs/devtools.md": {
-      "fingerprint": "0d96d99c22bf4ab92be7d2a0db8af69c80cd3d1c7212491ecc532d1749e7553c",
+      "fingerprint": "f23246ab0c1af1ae9b82ea5e36d4666dac80ec702289a7c3142796bacada787b",
       "snapshot": {
-        "docs/devtools.md": "e9970ffe470f99a5e8b80966adc1bcf540534fa8551609753ceff2241b43146c"
+        "docs/devtools.md": "9e817838e2064225920014cf650f07e3916012acd1e0cbc6b96c28759cff471e"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
+      "head": "cf74033249f49f3f49a8b7cdfec9cb763670bafb",
       "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "reason": "Devtools rendering fixes (row identity, panel remounts); skills only name the devtools entry points and don't cover remounts, the plugins array, or row pulses",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Changed: docs/devtools.md at cf74033249f49f3f49a8b7cdfec9cb763670bafb"
       ]
     },
     "source:docs/installation.md": {
@@ -3275,16 +3275,15 @@
       "evidence": ["packages/hotkeys-devtools/src/types.ts"]
     },
     "source:packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx": {
-      "fingerprint": "2c1972e7133c52d2f1247b9e3f4e70f720560739ffc2f770950b3586bcb564f3",
+      "fingerprint": "b928b04ccf3892531121045d196dc73ebe89d60f11f665d7bd9179d3d68b94b3",
       "snapshot": {
-        "packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx": "98cd2a3bcdb5d82c9ea851d9190acdd9e653e53a5af18cc77f0ae9758649af6e"
+        "packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx": "6fc3dd5499f2b2e310a59f4e07e37fbe0bc269b726f52404d377e909a01e7d39"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "cf74033249f49f3f49a8b7cdfec9cb763670bafb",
       "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "reason": "Devtools rendering fixes (row identity, panel remounts); skills only name the devtools entry points and don't cover remounts, the plugins array, or row pulses",
       "evidence": [
-        "packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx",
-        "git diff origin/main"
+        "Changed: packages/preact-hotkeys-devtools/src/PreactHotkeysDevtools.tsx at cf74033249f49f3f49a8b7cdfec9cb763670bafb"
       ]
     },
     "source:packages/preact-hotkeys-devtools/src/index.ts": {
@@ -3311,16 +3310,15 @@
       ]
     },
     "source:packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx": {
-      "fingerprint": "f16f8829a583fafa8cee89a9eca6197c5cf1b649efae1c9e50474a7e46fea639",
+      "fingerprint": "c13a5343390a279bc43c3b2dfecd7c727245e2b6c3897f79cf3cdcc2bfeb5658",
       "snapshot": {
-        "packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx": "17c8cf0b9d03f40eab0bcbe26d5a2411a959407479439e06c32176e0efbf4ae9"
+        "packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx": "64223ead3e2f31f85ed2355891f81ed55616a3b30dffc8edc33d875c123b23f1"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "cf74033249f49f3f49a8b7cdfec9cb763670bafb",
       "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "reason": "Devtools rendering fixes (row identity, panel remounts); skills only name the devtools entry points and don't cover remounts, the plugins array, or row pulses",
       "evidence": [
-        "packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx",
-        "git diff origin/main"
+        "Changed: packages/react-hotkeys-devtools/src/ReactHotkeysDevtools.tsx at cf74033249f49f3f49a8b7cdfec9cb763670bafb"
       ]
     },
     "source:packages/react-hotkeys-devtools/src/index.ts": {
@@ -16819,16 +16817,15 @@
       ]
     },
     "source:packages/hotkeys-devtools/src/components/HotkeyList.tsx": {
-      "fingerprint": "76b437af2d7919c7e5903107d92ed238450988576850a4b0860d363c756004d3",
+      "fingerprint": "bf580396485e152b2f642a4cba1c735e1fcb90ba230b40b459a5297eb38e0813",
       "snapshot": {
-        "packages/hotkeys-devtools/src/components/HotkeyList.tsx": "31947286ecaca0f0d99aef1b8a5f5bcd29ebe866b9b93a93ffd3ad0b579fc119"
+        "packages/hotkeys-devtools/src/components/HotkeyList.tsx": "c3cffba3a041a41e77b1ecdf42c0e17efaf39916fbe029b46734eed4e2b81e12"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "cf74033249f49f3f49a8b7cdfec9cb763670bafb",
       "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "reason": "Devtools rendering fixes (row identity, panel remounts); skills only name the devtools entry points and don't cover remounts, the plugins array, or row pulses",
       "evidence": [
-        "packages/hotkeys-devtools/src/components/HotkeyList.tsx",
-        "git diff origin/main"
+        "Changed: packages/hotkeys-devtools/src/components/HotkeyList.tsx at cf74033249f49f3f49a8b7cdfec9cb763670bafb"
       ]
     },
     "source:packages/hotkeys-devtools/src/components/Shell.tsx": {
@@ -18653,15 +18650,15 @@
       ]
     },
     "source:packages/hotkeys-devtools/tests/shell.test.tsx": {
-      "fingerprint": "ca4f027755185a83a33ef8649f875bb08413a6335ea5ca24f4c043cea7c5718f",
+      "fingerprint": "849460d68df7d988100aec3179e36827b8182bb226eae7a2405658c900365d69",
       "snapshot": {
-        "packages/hotkeys-devtools/tests/shell.test.tsx": "15fd694f613c96f334647f7718a10ba92e2d66ed7a13f9ec40f3a4215a47c69f"
+        "packages/hotkeys-devtools/tests/shell.test.tsx": "231531a940c1cb2819962633cbcb71278811e9b7f3c24ac953421831b2e33f7a"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "cf74033249f49f3f49a8b7cdfec9cb763670bafb",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "reason": "Devtools rendering fixes (row identity, panel remounts); skills only name the devtools entry points and don't cover remounts, the plugins array, or row pulses",
       "evidence": [
-        "Changed: packages/hotkeys-devtools/tests/shell.test.tsx at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: packages/hotkeys-devtools/tests/shell.test.tsx at cf74033249f49f3f49a8b7cdfec9cb763670bafb"
       ]
     },
     "source:packages/hotkeys/tests/alt-graph.test.ts": {
@@ -18857,27 +18854,27 @@
       ]
     },
     "source:packages/preact-hotkeys-devtools/tests/integration.test.tsx": {
-      "fingerprint": "4ee1c17a561f53d6d673e607c2cc7932194fa18ff8aa6712ad31216279d00364",
+      "fingerprint": "e90fc29117505767b251fb4f51e2e1e91f361102be75f755ac912cf074208b2b",
       "snapshot": {
-        "packages/preact-hotkeys-devtools/tests/integration.test.tsx": "510b5da3f9b7d7b371e5424232fe43e4ef39efee478cc7cb70da4c0aec0554fc"
+        "packages/preact-hotkeys-devtools/tests/integration.test.tsx": "b23f654026f9f24fadce50dfa03173b092d6ae979dedbd8ae84c016520118dde"
       },
-      "head": "c52f4f6f1820c551a1f0ac8e48ea7d39de764d72",
+      "head": "cf74033249f49f3f49a8b7cdfec9cb763670bafb",
       "outcome": "no-change",
-      "reason": "Test wait timeout only; no guidance change.",
+      "reason": "Devtools rendering fixes (row identity, panel remounts); skills only name the devtools entry points and don't cover remounts, the plugins array, or row pulses",
       "evidence": [
-        "Changed: packages/preact-hotkeys-devtools/tests/integration.test.tsx at c52f4f6f1820c551a1f0ac8e48ea7d39de764d72"
+        "Changed: packages/preact-hotkeys-devtools/tests/integration.test.tsx at cf74033249f49f3f49a8b7cdfec9cb763670bafb"
       ]
     },
     "source:packages/react-hotkeys-devtools/tests/integration.test.tsx": {
-      "fingerprint": "86da49f2c33a31fc4110e155e41c50287299558583b6c78e7624b0fa7826811e",
+      "fingerprint": "19849c5e8fac9fcf65c4b23cdc00dbf18dd0f60a8466fb33b51e4f5d85e188ac",
       "snapshot": {
-        "packages/react-hotkeys-devtools/tests/integration.test.tsx": "234894e600ab778ea8e8563f039d6868565073e45ae10a4793e46f48a3a49555"
+        "packages/react-hotkeys-devtools/tests/integration.test.tsx": "d0659124d92d5377ed399e9d87387425e7b0b450192a26f471b2ad967bf4e213"
       },
-      "head": "c52f4f6f1820c551a1f0ac8e48ea7d39de764d72",
+      "head": "cf74033249f49f3f49a8b7cdfec9cb763670bafb",
       "outcome": "no-change",
-      "reason": "Test wait timeout only; no guidance change.",
+      "reason": "Devtools rendering fixes (row identity, panel remounts); skills only name the devtools entry points and don't cover remounts, the plugins array, or row pulses",
       "evidence": [
-        "Changed: packages/react-hotkeys-devtools/tests/integration.test.tsx at c52f4f6f1820c551a1f0ac8e48ea7d39de764d72"
+        "Changed: packages/react-hotkeys-devtools/tests/integration.test.tsx at cf74033249f49f3f49a8b7cdfec9cb763670bafb"
       ]
     },
     "source:packages/solid-hotkeys-devtools/tests/integration.test.tsx": {
