@@ -16,6 +16,7 @@ minimumReleaseAgeExclude:
   - '@tanstack/oxlint-config@0.1.0'
 packages:
   - 'e2e'
+  - 'e2e/adapters/apps/*'
   - 'examples/**/*'
   # Build output can contain its own package.json, such as Analog's server.
   - '!examples/**/dist/**'
