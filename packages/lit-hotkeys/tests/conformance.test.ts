@@ -82,11 +82,6 @@ const harness: ConformanceHarness = {
     'provider-defaults': 'there is no provider for default options',
     format: 'there is no format controller; use core formatForDisplay',
   },
-  knownBugs: {
-    // issues/bugs/BUG-067-key-hold-case-rules-differ-across-adapters.md
-    'key hold > matches named keys case-sensitively like core isKeyHeld':
-      'BUG-067',
-  },
   act: settle,
   async cleanup() {
     for (const container of containers) container.remove()

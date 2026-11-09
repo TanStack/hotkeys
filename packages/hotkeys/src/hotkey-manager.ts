@@ -81,8 +81,10 @@ export interface HotkeyOptions {
   /**
    * The event type to listen for. Defaults to 'keydown'. A 'keyup' chord fires
    * when its key or one of its modifiers is released, whichever comes first,
-   * unless another key was pressed in between. `preventDefault` applies to
-   * its keydown too.
+   * unless another key was pressed in between. It fires only for the release
+   * of a press that matched it, so a release alone, or a key pressed before
+   * its modifiers, doesn't fire it. `preventDefault` applies to its keydown
+   * too.
    */
   eventType?: 'keydown' | 'keyup'
   /**
@@ -1282,7 +1284,6 @@ export class HotkeyManager {
         }
       }
       if (
-        (!live && preventDefault !== 'always') ||
         (firesOn !== eventType && !press) ||
         (ignoresInputs(registration) && shouldIgnoreInputEvent(event, target))
       ) {
@@ -1294,14 +1295,21 @@ export class HotkeyManager {
           if (skipped) {
             this.#pendingReleases.set(id, null)
           } else {
-            if (preventDefault) this.#prevent(event)
-            if (live) this.#pendingReleases.set(id, result)
+            if (live ? preventDefault : preventDefault === 'always') {
+              this.#prevent(event)
+            }
+            // Recorded even while the hotkey can't fire, so a callback that
+            // enables it during this press, such as to end a mode, still
+            // gets the release.
+            this.#pendingReleases.set(id, result)
           }
         }
         continue
       }
-      if (released !== undefined) {
-        // A release that another listener handled ends the press too.
+      if (!live && preventDefault !== 'always') continue
+      if (eventType === 'keyup') {
+        // A keyup chord fires only for the release of a press it matched. A
+        // release that another listener handled ends the press too.
         if (!released || skipped) continue
         if (!result.matched) result = released
       }
