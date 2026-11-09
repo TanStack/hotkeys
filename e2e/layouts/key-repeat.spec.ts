@@ -91,8 +91,11 @@ async function setUp(page: Page, hk: LoadedHarness): Promise<LoadedHarness> {
 async function hold(page: Page, hk: LoadedHarness, combo: string) {
   await hk.clear()
   keyDown(combo)
-  await page.waitForTimeout(HOLD_MS)
-  keyUp(combo)
+  try {
+    await page.waitForTimeout(HOLD_MS)
+  } finally {
+    keyUp(combo)
+  }
   await waitForRelease(page)
   return hk.keydowns()
 }

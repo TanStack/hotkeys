@@ -55,8 +55,10 @@ test.describe('focus moves to another window while keys are held', () => {
             .toBe(false)
           expect(await hk.call('heldKeys'), 'cleared on blur').toEqual([])
         }
-        keyUp(held)
       } finally {
+        // Released while the other window has focus. Also keeps a failed
+        // check from leaving keys held for later tests.
+        keyUp(held)
         other.close()
       }
 
