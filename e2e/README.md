@@ -58,4 +58,6 @@ These tests send key presses through the operating system, in environments the p
 | `wayland-chromium`, `wayland-chrome`                    | Linux, inside `native/wayland/run.sh`                            | `native/wayland/vkbd.c`, a virtual keyboard for headless sway. It uploads a real xkb keymap, so browsers see real `code` values. Browsers run with the Wayland backend and no X display.                                      |
 | `ibus-chromium`, `ibus-firefox`                         | Linux, inside Xvfb, `dbus-run-session`, and `native/ibus/run.sh` | xdotool, with the ibus Chinese pinyin input method (`ibus-libpinyin`) on. Set `E2E_IBUS_ENGINE` to try another engine.                                                                                                        |
 
+Firefox isn't in the Wayland job. Under headless sway it never receives the virtual keyboard's keys, so every test fails before the first press.
+
 Run one environment's projects at a time, for example `pnpm test:e2e:native --project 'windows-*'`. The workflow lists the packages each Linux job installs.
