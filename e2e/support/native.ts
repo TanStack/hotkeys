@@ -17,7 +17,7 @@ import type { HarnessOptions } from './page'
 export interface NativeKeyboard {
   /** Gives the page's window OS keyboard focus. */
   focus: (page: Page) => void | Promise<void>
-  /** Switches the keyboard layout or input method, such as `'de'` or `'anthy'`. */
+  /** Switches the keyboard layout or input method, such as `'de'` or `'libpinyin'`. */
   setLayout: (layout: string) => void | Promise<void>
   /** Holds each key down in order, then releases them in reverse order: `'AltGr+KeyQ'`. */
   press: (combo: string) => void | Promise<void>

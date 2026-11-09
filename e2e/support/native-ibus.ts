@@ -1,6 +1,6 @@
 // X11 driver with an ibus input method for the nightly suite. Keys go through
 // xdotool, as in the layout suite. `setLayout` switches the ibus engine, such
-// as `anthy` (Japanese) or `xkb:us::eng` (no input method).
+// as `libpinyin` (Chinese) or `xkb:us::eng` (no input method).
 // native/ibus/run.sh starts the ibus daemon.
 import { execFileSync } from 'node:child_process'
 import { focusBrowserWindow, press } from './x11'
@@ -26,15 +26,19 @@ export function ibusKeyboard(): NativeKeyboard {
   return {
     focus: () => focusBrowserWindow(),
     setLayout: async (engine) => {
-      // An engine's first switch starts its process and can time out.
-      for (let attempt = 1; ; attempt++) {
+      // `ibus engine libpinyin` switches the engine, then exits 1 with no
+      // message (Ubuntu 24.04, ibus 1.5.29). Trust the engine read back, not
+      // the exit code. The first switch also starts the engine's process.
+      let active = ''
+      for (let attempt = 0; attempt < 20 && active !== engine; attempt++) {
         try {
           ibus('engine', engine)
-          if (ibus('engine') === engine) break
-        } catch (error) {
-          if (attempt === 10) throw error
-        }
-        await sleep(500)
+        } catch {}
+        active = ibus('engine')
+        if (active !== engine) await sleep(250)
+      }
+      if (active !== engine) {
+        throw new Error(`ibus engine is ${active}, not ${engine}`)
       }
       // The browser's input context picks up the engine change asynchronously.
       await sleep(300)
