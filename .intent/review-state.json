@@ -18845,27 +18845,27 @@
       ]
     },
     "source:packages/preact-hotkeys-devtools/tests/integration.test.tsx": {
-      "fingerprint": "e90fc29117505767b251fb4f51e2e1e91f361102be75f755ac912cf074208b2b",
+      "fingerprint": "7edd379af702c9d9a31c5855c97009efd340de970c668107d9c0b6a82308959d",
       "snapshot": {
-        "packages/preact-hotkeys-devtools/tests/integration.test.tsx": "b23f654026f9f24fadce50dfa03173b092d6ae979dedbd8ae84c016520118dde"
+        "packages/preact-hotkeys-devtools/tests/integration.test.tsx": "8ad0fd907a4e890117b9846fb2e5f551ea0fbff40975761495a38cdb1f3efc96"
       },
-      "head": "cf74033249f49f3f49a8b7cdfec9cb763670bafb",
+      "head": "3260d99c6e2b690bae0e3f2476a46bf206bfc2c3",
       "outcome": "no-change",
-      "reason": "Devtools rendering fixes (row identity, panel remounts); skills only name the devtools entry points and don't cover remounts, the plugins array, or row pulses",
+      "reason": "Tests only: render the real TanStackDevtools host with an inline plugins array; no API or behavior change, so skill guidance stays the same.",
       "evidence": [
-        "Changed: packages/preact-hotkeys-devtools/tests/integration.test.tsx at cf74033249f49f3f49a8b7cdfec9cb763670bafb"
+        "Changed: packages/preact-hotkeys-devtools/tests/integration.test.tsx at 3260d99c6e2b690bae0e3f2476a46bf206bfc2c3"
       ]
     },
     "source:packages/react-hotkeys-devtools/tests/integration.test.tsx": {
-      "fingerprint": "19849c5e8fac9fcf65c4b23cdc00dbf18dd0f60a8466fb33b51e4f5d85e188ac",
+      "fingerprint": "1dbba7c9c4e628ce251382f1b2014994e1f5ecc9b2b59813e678aeac6d42ffe0",
       "snapshot": {
-        "packages/react-hotkeys-devtools/tests/integration.test.tsx": "d0659124d92d5377ed399e9d87387425e7b0b450192a26f471b2ad967bf4e213"
+        "packages/react-hotkeys-devtools/tests/integration.test.tsx": "c1a71ff567cc7106b530ab5ff2622513960ddaba5fda5cabee61738a0019a4eb"
       },
-      "head": "cf74033249f49f3f49a8b7cdfec9cb763670bafb",
+      "head": "3260d99c6e2b690bae0e3f2476a46bf206bfc2c3",
       "outcome": "no-change",
-      "reason": "Devtools rendering fixes (row identity, panel remounts); skills only name the devtools entry points and don't cover remounts, the plugins array, or row pulses",
+      "reason": "Tests only: render the real TanStackDevtools host with an inline plugins array; no API or behavior change, so skill guidance stays the same.",
       "evidence": [
-        "Changed: packages/react-hotkeys-devtools/tests/integration.test.tsx at cf74033249f49f3f49a8b7cdfec9cb763670bafb"
+        "Changed: packages/react-hotkeys-devtools/tests/integration.test.tsx at 3260d99c6e2b690bae0e3f2476a46bf206bfc2c3"
       ]
     },
     "source:packages/solid-hotkeys-devtools/tests/integration.test.tsx": {

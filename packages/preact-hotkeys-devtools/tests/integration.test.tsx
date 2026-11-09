@@ -1,3 +1,4 @@
+import { TanStackDevtools } from '@tanstack/preact-devtools'
 import {
   HotkeyManager,
   KeyStateTracker,
@@ -110,6 +111,35 @@ it('keeps dock plugin state when the dock re-renders', async () => {
   act(() => rerender())
   await new Promise((resolve) => setTimeout(resolve, 50))
   expect(host.querySelector('input')).toBe(input)
+})
+
+it('keeps plugin state when an inline plugins array changes in TanStackDevtools', async () => {
+  let rerender!: () => void
+  function App() {
+    const [, setCount] = useState(0)
+    rerender = () => setCount((count) => count + 1)
+    // A new plugins array on every render, as in the docs.
+    return (
+      <TanStackDevtools
+        config={{ defaultOpen: true }}
+        plugins={[hotkeysDevtoolsPlugin()]}
+      />
+    )
+  }
+  act(() => render(<App />, host))
+  // The dock renders the panel into its own container, outside `host`.
+  await vi.waitFor(
+    () => expect(document.querySelector('input')).not.toBeNull(),
+    { timeout: 5_000 },
+  )
+  const input = document.querySelector('input')!
+  input.value = 'save'
+  input.dispatchEvent(new Event('input', { bubbles: true }))
+
+  act(() => rerender())
+  await new Promise((resolve) => setTimeout(resolve, 50))
+  expect(document.querySelector('input')).toBe(input)
+  expect(input.value).toBe('save')
 })
 
 it('remounts the panel when the theme changes', async () => {
