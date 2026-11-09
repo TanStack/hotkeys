@@ -45,8 +45,9 @@ The separator can be customized with `separatorToken`.
 Physical codes use conventional display labels: `[KeyS]` becomes `S` and
 `[Digit2]` becomes `2`. Keys with no US key use their keycap legends:
 `[IntlBackslash]` and `[IntlRo]` become `\` and `[IntlYen]` becomes `¥`.
-These labels do not infer the active keyboard layout or change matching. Supply a resolved `layoutMap` for layout-aware labels;
-`keyLabels` overrides both layout entries and fallback labels.
+These labels do not infer the active keyboard layout or change matching.
+Supply a resolved `layoutMap` for layout-aware labels; `keyLabels`
+overrides both layout entries and fallback labels.
 Sequence steps are formatted individually and joined with `sequenceSeparator`
 (a space by default).
 
@@ -114,8 +115,9 @@ The separator can be customized with `separatorToken`.
 Physical codes use conventional display labels: `[KeyS]` becomes `S` and
 `[Digit2]` becomes `2`. Keys with no US key use their keycap legends:
 `[IntlBackslash]` and `[IntlRo]` become `\` and `[IntlYen]` becomes `¥`.
-These labels do not infer the active keyboard layout or change matching. Supply a resolved `layoutMap` for layout-aware labels;
-`keyLabels` overrides both layout entries and fallback labels.
+These labels do not infer the active keyboard layout or change matching.
+Supply a resolved `layoutMap` for layout-aware labels; `keyLabels`
+overrides both layout entries and fallback labels.
 Sequence steps are formatted individually and joined with `sequenceSeparator`
 (a space by default).
 
@@ -183,8 +185,9 @@ The separator can be customized with `separatorToken`.
 Physical codes use conventional display labels: `[KeyS]` becomes `S` and
 `[Digit2]` becomes `2`. Keys with no US key use their keycap legends:
 `[IntlBackslash]` and `[IntlRo]` become `\` and `[IntlYen]` becomes `¥`.
-These labels do not infer the active keyboard layout or change matching. Supply a resolved `layoutMap` for layout-aware labels;
-`keyLabels` overrides both layout entries and fallback labels.
+These labels do not infer the active keyboard layout or change matching.
+Supply a resolved `layoutMap` for layout-aware labels; `keyLabels`
+overrides both layout entries and fallback labels.
 Sequence steps are formatted individually and joined with `sequenceSeparator`
 (a space by default).
 
@@ -252,8 +255,9 @@ The separator can be customized with `separatorToken`.
 Physical codes use conventional display labels: `[KeyS]` becomes `S` and
 `[Digit2]` becomes `2`. Keys with no US key use their keycap legends:
 `[IntlBackslash]` and `[IntlRo]` become `\` and `[IntlYen]` becomes `¥`.
-These labels do not infer the active keyboard layout or change matching. Supply a resolved `layoutMap` for layout-aware labels;
-`keyLabels` overrides both layout entries and fallback labels.
+These labels do not infer the active keyboard layout or change matching.
+Supply a resolved `layoutMap` for layout-aware labels; `keyLabels`
+overrides both layout entries and fallback labels.
 Sequence steps are formatted individually and joined with `sequenceSeparator`
 (a space by default).
 
