@@ -1,0 +1,116 @@
+name: Nightly
+
+# Real OS-level key input that the per-PR E2E workflow can't run: Windows
+# SendInput layouts, Chrome on Wayland, and an ibus input method. Each job
+# writes the event shapes it saw to its summary. See e2e/README.md.
+on:
+  schedule:
+    - cron: '23 6 * * *'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  windows:
+    name: Windows Real Input
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Setup Tools
+        uses: TanStack/config/.github/setup@466151b2d479656b38942cd84a0a3dce29d48de3
+      - name: Install Browsers
+        run: pnpm --filter @tanstack/hotkeys-e2e exec playwright install chromium firefox
+      - name: Add Keyboard Layouts
+        shell: pwsh
+        run: |
+          # US stays first, so it's the default. The tests switch layouts with
+          # LoadKeyboardLayout; the list makes them available to every app.
+          $list = Get-WinUserLanguageList
+          $list.Add('de-DE')
+          $list.Add('pl-PL')
+          Set-WinUserLanguageList $list -Force
+          Get-WinUserLanguageList | Format-Table LanguageTag, InputMethodTips
+      - name: Run Real Input Tests
+        run: pnpm --filter @tanstack/hotkeys-e2e test:e2e:native --project "windows-*"
+      - name: Write Event Report
+        if: always()
+        shell: bash
+        run: node e2e/scripts/native-report.ts >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload Results
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: windows-results
+          path: e2e/test-results
+          retention-days: 14
+
+  wayland:
+    name: Chrome on Wayland
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Setup Tools
+        uses: TanStack/config/.github/setup@466151b2d479656b38942cd84a0a3dce29d48de3
+      - name: Install Wayland Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends sway libwayland-bin libwayland-dev libxkbcommon-dev xkb-data pkg-config gcc
+      - name: Install Browsers
+        run: pnpm --filter @tanstack/hotkeys-e2e exec playwright install --with-deps chromium firefox
+      - name: Run Real Input Tests
+        run: e2e/native/wayland/run.sh pnpm --filter @tanstack/hotkeys-e2e test:e2e:native --project "wayland-*"
+      - name: Write Event Report
+        if: always()
+        run: |
+          node e2e/scripts/native-report.ts >> "$GITHUB_STEP_SUMMARY"
+          cp e2e/.cache/sway.log e2e/test-results/ 2>/dev/null || true
+      - name: Upload Results
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: wayland-results
+          path: e2e/test-results
+          retention-days: 14
+
+  ibus:
+    name: IME Through ibus
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Setup Tools
+        uses: TanStack/config/.github/setup@466151b2d479656b38942cd84a0a3dce29d48de3
+      - name: Install X11 and ibus
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends xvfb xdotool x11-xkb-utils xkb-data dbus dbus-x11 ibus ibus-gtk3 ibus-gtk4 ibus-anthy
+      - name: Install Browsers
+        run: pnpm --filter @tanstack/hotkeys-e2e exec playwright install --with-deps chromium firefox
+      - name: Run Real Input Tests
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x800x24" dbus-run-session -- e2e/native/ibus/run.sh pnpm --filter @tanstack/hotkeys-e2e test:e2e:native --project "ibus-*"
+      - name: Write Event Report
+        if: always()
+        run: node e2e/scripts/native-report.ts >> "$GITHUB_STEP_SUMMARY"
+      - name: Upload Results
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: ibus-results
+          path: e2e/test-results
+          retention-days: 14

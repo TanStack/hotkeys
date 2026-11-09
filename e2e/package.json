@@ -6,8 +6,9 @@
     "test:e2e": "playwright test",
     "test:e2e:layouts": "playwright test --config playwright.layouts.config.ts",
     "test:e2e:layouts:docker": "node scripts/layouts-docker.ts",
+    "test:e2e:native": "playwright test --config playwright.native.config.ts",
     "test:e2e:ssr": "playwright test --config playwright.ssr.config.ts",
-    "test:oxlint": "oxlint browser layouts ssr support scripts *.config.ts",
+    "test:oxlint": "oxlint browser layouts native ssr support scripts *.config.ts",
     "test:types": "tsc"
   },
   "devDependencies": {

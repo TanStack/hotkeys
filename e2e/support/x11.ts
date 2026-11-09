@@ -16,7 +16,7 @@ function x11(command: string, ...args: Array<string>): string {
  * X11 keycodes, named by physical position (KeyboardEvent.code names, plus
  * AltGr for the right Alt key). The active layout decides what each types.
  */
-const KEYCODES = {
+export const KEYCODES = {
   AltGr: 108,
   Escape: 9,
   Control: 37,
@@ -27,9 +27,13 @@ const KEYCODES = {
   Digit2: 11,
   Digit7: 16,
   KeyA: 38,
+  KeyH: 43,
+  KeyI: 31,
   KeyE: 26,
   KeyF: 41,
   KeyK: 45,
+  KeyN: 57,
+  KeyO: 32,
   KeyQ: 24,
   KeyS: 39,
   KeyY: 29,
@@ -39,6 +43,8 @@ const KEYCODES = {
   Home: 110,
   End: 115,
   Space: 65,
+  Enter: 36,
+  Backspace: 22,
 } as const
 
 /** Switches the keyboard layout, such as `('no')` or `('us', 'dvorak')`. */

@@ -2,11 +2,12 @@
 
 Browser tests for `@tanstack/hotkeys`, run with Playwright against the library source.
 
-| Suite                         | Command                        | Browsers                  | Keys                                            |
-| ----------------------------- | ------------------------------ | ------------------------- | ----------------------------------------------- |
-| Browser behavior (`browser/`) | `pnpm test:e2e`                | Chromium, Firefox, WebKit | Playwright's simulated keyboard                 |
-| Keyboard layouts (`layouts/`) | `pnpm test:e2e:layouts:docker` | Chromium, Firefox         | Real key presses through Linux keyboard layouts |
-| Server rendering (`ssr/`)     | `pnpm test:e2e:ssr`            | Chromium                  | Playwright's simulated keyboard                 |
+| Suite                           | Command                        | Browsers                        | Keys                                            |
+| ------------------------------- | ------------------------------ | ------------------------------- | ----------------------------------------------- |
+| Browser behavior (`browser/`)   | `pnpm test:e2e`                | Chromium, Firefox, WebKit       | Playwright's simulated keyboard                 |
+| Keyboard layouts (`layouts/`)   | `pnpm test:e2e:layouts:docker` | Chromium, Firefox               | Real key presses through Linux keyboard layouts |
+| Server rendering (`ssr/`)       | `pnpm test:e2e:ssr`            | Chromium                        | Playwright's simulated keyboard                 |
+| Real input, nightly (`native/`) | `pnpm test:e2e:native`         | Chromium, Edge, Chrome, Firefox | Real key presses on Windows, Wayland, and ibus  |
 
 Run the commands from the repository root or from `e2e/`. Install browsers once with `pnpm --filter @tanstack/hotkeys-e2e exec playwright install`.
 
@@ -43,6 +44,18 @@ To add a layout case, add an entry to a `describeLayouts` call: the physical key
 
 ### Not covered
 
-- Windows and macOS report some keys differently from Linux. For example, Windows browsers can report AltGr as Control+Alt. The unit tests in `packages/hotkeys/tests` cover those event shapes.
-- IME composition.
+- Windows and macOS report some keys differently from Linux. For example, Windows browsers can report AltGr as Control+Alt. The unit tests in `packages/hotkeys/tests` and the nightly Windows job cover those event shapes.
+- IME composition. The nightly ibus job covers it.
 - Safari. Playwright's WebKit is close to Safari but not the same.
+
+## Real input (nightly)
+
+These tests send key presses through the operating system, in environments the per-PR workflow doesn't have. `.github/workflows/nightly.yml` runs them every night and on manual dispatch. Each job writes the events the browsers reported (`key`, `code`, `keyCode`, modifiers, `getModifierState('AltGraph')`, `isComposing`, composition events) to its job summary, from `test-results/native-events.jsonl`. Run `node scripts/native-report.ts` to print that table locally.
+
+| Projects                                                | Machine                                                          | Keys                                                                                                                                                                                                                          |
+| ------------------------------------------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `windows-chromium`, `windows-msedge`, `windows-firefox` | Windows                                                          | `native/windows/SendInput.cs`, compiled with the .NET Framework `csc.exe` that ships with Windows. It sends scan codes with `SendInput` and switches layouts with `LoadKeyboardLayout`: US, German, and Polish (Programmers). |
+| `wayland-chromium`, `wayland-chrome`, `wayland-firefox` | Linux, inside `native/wayland/run.sh`                            | `native/wayland/vkbd.c`, a virtual keyboard for headless sway. It uploads a real xkb keymap, so browsers see real `code` values. Browsers run with the Wayland backend and no X display.                                      |
+| `ibus-chromium`, `ibus-firefox`                         | Linux, inside Xvfb, `dbus-run-session`, and `native/ibus/run.sh` | xdotool, with the ibus Japanese input method (`ibus-anthy`) on. Set `E2E_IBUS_ENGINE` to try another engine.                                                                                                                  |
+
+Run one environment's projects at a time, for example `pnpm test:e2e:native --project 'windows-*'`. The workflow lists the packages each Linux job installs.
