@@ -17608,15 +17608,15 @@
       "evidence": ["packages/hotkeys/tests/recorder-tab.test.ts"]
     },
     "source:packages/angular-hotkeys-devtools/tests/integration.test.ts": {
-      "fingerprint": "1a833be63c436fcfe646ca9c1f9032bcebe3f58ca237ef2d11693149dbf0e17e",
+      "fingerprint": "b009b6468103be94822637d85e6903ac755d75ed7663a1b98e0b66e92970e8ef",
       "snapshot": {
-        "packages/angular-hotkeys-devtools/tests/integration.test.ts": "ca02014fc8abc5a95726b14d3b5b19dd7c7776bfc773f6ced89cfc7f5976c30b"
+        "packages/angular-hotkeys-devtools/tests/integration.test.ts": "b9b34e267c2fa47afe37865beb8bbbecb3c56c07a7128e37b6f908c0b69c54d3"
       },
-      "head": "a9dd5ea3fb8a4d3d660638add1766bc35ef114f6",
+      "head": "3f2b4c4316f68852ac6862d033a57c06d0e99f0e",
       "outcome": "no-change",
       "reason": "Tests and test-only vitest config for the devtools panel and per-framework devtools integration; no library behavior or public API changes, so skill guidance is unaffected.",
       "evidence": [
-        "Changed: packages/angular-hotkeys-devtools/tests/integration.test.ts at a9dd5ea3fb8a4d3d660638add1766bc35ef114f6"
+        "Changed: packages/angular-hotkeys-devtools/tests/integration.test.ts at 3f2b4c4316f68852ac6862d033a57c06d0e99f0e"
       ]
     },
     "source:packages/angular-hotkeys-devtools/vitest.config.ts": {
@@ -17656,39 +17656,39 @@
       ]
     },
     "source:packages/hotkeys-devtools/tests/shell.test.tsx": {
-      "fingerprint": "c95ab46ba01306432d0a8a73745dbe31538d477b55aedccc52806422b7e68eed",
+      "fingerprint": "ca4f027755185a83a33ef8649f875bb08413a6335ea5ca24f4c043cea7c5718f",
       "snapshot": {
-        "packages/hotkeys-devtools/tests/shell.test.tsx": "368ce1345956e2df7439c00f1dc2417b89ebb96911013c17529a5d25d1ae85d9"
+        "packages/hotkeys-devtools/tests/shell.test.tsx": "15fd694f613c96f334647f7718a10ba92e2d66ed7a13f9ec40f3a4215a47c69f"
       },
-      "head": "a9dd5ea3fb8a4d3d660638add1766bc35ef114f6",
+      "head": "3f2b4c4316f68852ac6862d033a57c06d0e99f0e",
       "outcome": "no-change",
       "reason": "Tests and test-only vitest config for the devtools panel and per-framework devtools integration; no library behavior or public API changes, so skill guidance is unaffected.",
       "evidence": [
-        "Changed: packages/hotkeys-devtools/tests/shell.test.tsx at a9dd5ea3fb8a4d3d660638add1766bc35ef114f6"
+        "Changed: packages/hotkeys-devtools/tests/shell.test.tsx at 3f2b4c4316f68852ac6862d033a57c06d0e99f0e"
       ]
     },
     "source:packages/preact-hotkeys-devtools/tests/integration.test.tsx": {
-      "fingerprint": "cc21c7694459130a40723d146abdcf3e622f8c36acadfff851caa7faf49d13f0",
+      "fingerprint": "83bbbca66d39c54d0b27ef493efb3c7c8578ae80d7e45a545d39d4731b3830f7",
       "snapshot": {
-        "packages/preact-hotkeys-devtools/tests/integration.test.tsx": "b6d2efc01280e5b573aecf712dbc17bb1f70916cf54b1d563b118320ddc8f424"
+        "packages/preact-hotkeys-devtools/tests/integration.test.tsx": "cf54b0b20372f903a54f69c625fccb2fa8a7836846fc3d9961e9ce17dbc026fe"
       },
-      "head": "a9dd5ea3fb8a4d3d660638add1766bc35ef114f6",
+      "head": "3f2b4c4316f68852ac6862d033a57c06d0e99f0e",
       "outcome": "no-change",
       "reason": "Tests and test-only vitest config for the devtools panel and per-framework devtools integration; no library behavior or public API changes, so skill guidance is unaffected.",
       "evidence": [
-        "Changed: packages/preact-hotkeys-devtools/tests/integration.test.tsx at a9dd5ea3fb8a4d3d660638add1766bc35ef114f6"
+        "Changed: packages/preact-hotkeys-devtools/tests/integration.test.tsx at 3f2b4c4316f68852ac6862d033a57c06d0e99f0e"
       ]
     },
     "source:packages/react-hotkeys-devtools/tests/integration.test.tsx": {
-      "fingerprint": "806d0a4a6613b44cc92b7e0c9d6cf3ccf776c5209531216a532b57d7559e4934",
+      "fingerprint": "df4fecaf066d3b0640061065df5b4443c901a3759c823cf8119d354dbfc03e02",
       "snapshot": {
-        "packages/react-hotkeys-devtools/tests/integration.test.tsx": "62ecd99e77495577b353f67e095ada408ea7e7722de93b9fd406179ae69a0c4c"
+        "packages/react-hotkeys-devtools/tests/integration.test.tsx": "b76d01533fcc028fade1c1ad378b3117200762201cf844cdaa7e6fe29cb5d1c3"
       },
-      "head": "a9dd5ea3fb8a4d3d660638add1766bc35ef114f6",
+      "head": "3f2b4c4316f68852ac6862d033a57c06d0e99f0e",
       "outcome": "no-change",
       "reason": "Tests and test-only vitest config for the devtools panel and per-framework devtools integration; no library behavior or public API changes, so skill guidance is unaffected.",
       "evidence": [
-        "Changed: packages/react-hotkeys-devtools/tests/integration.test.tsx at a9dd5ea3fb8a4d3d660638add1766bc35ef114f6"
+        "Changed: packages/react-hotkeys-devtools/tests/integration.test.tsx at 3f2b4c4316f68852ac6862d033a57c06d0e99f0e"
       ]
     },
     "source:packages/solid-hotkeys-devtools/tests/integration.test.tsx": {
