@@ -404,6 +404,28 @@ describe('HotkeyManager', () => {
       expect(callback).toHaveBeenCalledTimes(2)
     })
 
+    // BUG-111: devtools showed hasFired: true until an unrelated change
+    it('notifies subscribers once when a release clears the latch', () => {
+      const manager = HotkeyManager.getInstance()
+      manager.register('K', () => {}, { requireReset: true })
+      manager.register('J', () => {}, { requireReset: true })
+      const seen: Array<Array<boolean>> = []
+      const subscription = manager.registrations.subscribe(() =>
+        seen.push(
+          [...manager.registrations.state.values()].map((r) => r.hasFired),
+        ),
+      )
+      keydown({ key: 'k', code: 'KeyK', target: document })
+      keyup({ key: 'k', code: 'KeyK', target: document })
+      // A release that clears no latch doesn't notify
+      keyup({ key: 'k', code: 'KeyK', target: document })
+      subscription.unsubscribe()
+      expect(seen).toEqual([
+        [true, false],
+        [false, false],
+      ])
+    })
+
     it('should call preventDefault even when requireReset is active and has already fired', () => {
       const manager = HotkeyManager.getInstance()
       const callback = vi.fn()

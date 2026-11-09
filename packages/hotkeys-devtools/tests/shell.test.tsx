@@ -738,8 +738,7 @@ describe('chord details', () => {
     expect(detailRows(ui).hasFired).toBe('true')
   })
 
-  // BUG-111 draft: issues/bugs/BUG-111-require-reset-release-not-published.md
-  it.skip('BUG-111: clears the requireReset latch when the key is released', () => {
+  it('BUG-111: clears the requireReset latch when the key is released', () => {
     HotkeyManager.getInstance().register('K', () => {}, {
       ...options,
       requireReset: true,

@@ -433,6 +433,58 @@ describe('HotkeyRecorder with layouts and registered hotkeys', () => {
     expect(onRecord).not.toHaveBeenCalled()
     expect(r.store.state.isRecording).toBe(true)
   })
+  // BUG-085: AltGr+Home on Linux fires no hotkey, so `Home` can't be recorded
+  it('rejects AltGr that typed nothing new in key mode, and records AltGr characters', () => {
+    const onRecord = vi.fn(),
+      onReject = vi.fn(),
+      r = recorder({ onRecord, onReject, recordBy: 'key', platform: 'linux' })
+    r.start()
+    keydown({ key: 'Home', code: 'Home', altGraph: true, target: document })
+    keydown({ key: 'f', code: 'KeyF', altGraph: true, target: document })
+    expect(onReject).toHaveBeenCalledTimes(2)
+    expect(onReject).toHaveBeenLastCalledWith({ reason: 'alt-graph' })
+    expect(onRecord).not.toHaveBeenCalled()
+    expect(r.store.state.isRecording).toBe(true)
+
+    // The same key without AltGr records
+    keydown({ key: 'Home', code: 'Home', target: document })
+    expect(onRecord).toHaveBeenLastCalledWith('Home')
+
+    keyup({ key: 'Home', code: 'Home', target: document })
+    r.start()
+    keydown({ key: '@', code: 'KeyQ', altGraph: true, target: document })
+    expect(onRecord).toHaveBeenLastCalledWith('@')
+  })
+  // BUG-087: with Control and CapsLock swapped, the CapsLock key reports ControlLeft
+  it('ignores a key on a modifier position in code mode', () => {
+    const onRecord = vi.fn(),
+      onReject = vi.fn(),
+      r = recorder({ onRecord, onReject, platform: 'linux' })
+    r.start()
+    keydown({ key: 'CapsLock', code: 'ControlLeft', target: document })
+    keydown({
+      key: 'A',
+      code: 'AltRight',
+      shiftKey: true,
+      target: document,
+    })
+    expect(onRecord).not.toHaveBeenCalled()
+    expect(onReject).not.toHaveBeenCalled()
+    expect(r.store.state.isRecording).toBe(true)
+    keydown({ key: 'k', code: 'KeyK', ctrlKey: true, target: document })
+    expect(onRecord).toHaveBeenCalledWith('Mod+[KeyK]')
+
+    // Key mode records the key the press typed
+    const onKeyRecord = vi.fn(),
+      keyMode = recorder({
+        onRecord: onKeyRecord,
+        recordBy: 'key',
+        platform: 'linux',
+      })
+    keyMode.start()
+    keydown({ key: 'CapsLock', code: 'ControlLeft', target: document })
+    expect(onKeyRecord).toHaveBeenCalledWith('CapsLock')
+  })
   it('suppresses recording keydowns, repeats and releases then allows normal use', () => {
     const down = vi.fn(),
       up = vi.fn(),

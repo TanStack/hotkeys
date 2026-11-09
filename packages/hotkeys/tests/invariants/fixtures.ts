@@ -411,7 +411,7 @@ export function failureLog() {
 }
 
 // ---------------------------------------------------------------------------
-// Known bugs, excluded from the broad loops and covered by skipped tests
+// AltGr
 // ---------------------------------------------------------------------------
 
 /** Whether AltGr typed a new character, as the docs describe it. */
@@ -421,36 +421,4 @@ export function altGraphTypedCharacter(key: string): boolean {
   // A space is the key's plain value
   if (typed === ' ') return false
   return [...typed].length === 1 && !/^[A-Za-z0-9]$/.test(typed)
-}
-
-/**
- * BUG-085: on Linux, AltGr on a key that types nothing new records the bare
- * key in key mode, which that press never fires.
- */
-export function isBug085(
-  init: EventCase['init'],
-  platform: Platform,
-  recordBy: 'code' | 'key',
-): boolean {
-  return (
-    recordBy === 'key' &&
-    platform === 'linux' &&
-    !!init.altGraph &&
-    !altGraphTypedCharacter(init.key)
-  )
-}
-
-/**
- * BUG-087: a non-modifier key on a modifier position, such as `CapsLock` on
- * `ControlLeft` with Control and CapsLock swapped, records a modifier code in
- * code mode, which registers nothing.
- */
-export function isBug087(
-  init: EventCase['init'],
-  recordBy: 'code' | 'key',
-): boolean {
-  return (
-    recordBy === 'code' &&
-    /^(Control|Shift|Alt|Meta)(Left|Right)$/.test(init.code ?? '')
-  )
 }

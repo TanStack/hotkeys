@@ -507,19 +507,15 @@ describeLayouts('NumLock off', {
 // "Unidentified". Neither should fire the digit.
 const numpad = useLayout('us', NUMPAD_BINDINGS, NUMPAD_REGISTERED)
 numpad.describe('Numpad 5 with NumLock off on us', () => {
-  // BUG-123 (issues/bugs/BUG-123-firefox-numlock-off-numpad5-fires-5.md):
-  // Firefox's "Unidentified" falls back to the position and fires 5.
-  numpad(
-    'BUG-123: Numpad5 fires no digit',
-    async ({ keyboard, browserName }) => {
-      numpad.skip(browserName === 'firefox', 'BUG-123')
+  // BUG-123: Firefox's "Unidentified" used to fall back to the position and
+  // fire 5.
+  numpad('BUG-123: Numpad5 fires no digit', async ({ keyboard }) => {
       const { keydown, fired } = await keyboard.press('Numpad5')
       expect(keydown.code).toBe('Numpad5')
       expect(keydown.matches).not.toContain('5')
       expect(fired).toEqual([])
       expect(await keyboard.record('Numpad5')).toBe('[Numpad5]')
-    },
-  )
+  })
 })
 
 // The extra ISO and JIS keys have no US key, so without a layout map they
