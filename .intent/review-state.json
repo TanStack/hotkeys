@@ -96,12 +96,12 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "26f5fe1195c405ba3f118635ce0d458581dd939f6412715b618e2ce7db5d7e15",
+      "fingerprint": "4dbd29d2a6a82399c669261d7ceb46f649125353c1238ea3782312890e9020be",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/guides/sensible-defaults.md": "a4c6ebd08db7c6bcd4b39f316221004762a9acf43e3d73fc2629b4328a70f220",
+        "docs/guides/sensible-defaults.md": "5862cf272972e2d00517ccc93d417150baf7a232861731458e727d09d0192b6b",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
@@ -117,11 +117,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
+      "head": "753f977c62d0e00ba183501f630a30857ad2bde0",
       "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "reason": "Docs wording only; skills don't describe NumLock or numpad fallback.",
       "evidence": [
-        "Changed: docs/guides/sensible-defaults.md, packages/hotkeys/src/hotkey-manager.ts at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/guides/sensible-defaults.md at 753f977c62d0e00ba183501f630a30857ad2bde0"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -282,7 +282,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "7aa9eb911eab5ebf847dde988494be3b2c481949cd881d3937f238a068811ead",
+      "fingerprint": "3fb59358e5facc11732071e1da6ee7e69a5555eb08af340ed967da851d032c19",
       "snapshot": {
         "_artifacts/domain_map.yaml": "5e6e0616c9e4f1d099c37f2c164285d4a649abc6eb888599ac8d750b55ac5b7c",
         "_artifacts/skill_spec.md": "bd8e54eb437cda05e72f24149bf198179d4d2688cbd535b08facb46ae88bf9d5",
@@ -312,7 +312,7 @@
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
-        "docs/guides/sensible-defaults.md": "a4c6ebd08db7c6bcd4b39f316221004762a9acf43e3d73fc2629b4328a70f220",
+        "docs/guides/sensible-defaults.md": "5862cf272972e2d00517ccc93d417150baf7a232861731458e727d09d0192b6b",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "b8a7e9ce42d7a9cfacc9bd405a5f0be43064e81f76616a6f31504ccb32c0d59a",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "69ba6d06582aaf28328e74c12888bcf8b1d89b2ae2a01d7f6a41eb82eef848e3",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4c43866e1e60dbfcdac1c5acb3b5bd1f372d722d47e51cb8922b22f1c372fa45",
@@ -414,11 +414,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "94c46b484aede9ba8ba080dec99d1bb511877985",
+      "head": "753f977c62d0e00ba183501f630a30857ad2bde0",
       "outcome": "no-change",
-      "reason": "Skills don't describe AltGr recording, modifier-position recording, requireReset notifications, or Unidentified numpad keys. The changed docs (sensible-defaults, recording guides' alt-graph reason) and reference docs were updated directly; skill guidance is unaffected.",
+      "reason": "Docs wording only; skills don't describe NumLock or numpad fallback.",
       "evidence": [
-        "Changed: docs/framework/react/guides/custom-hotkey-recording.md, docs/guides/sensible-defaults.md, packages/hotkeys/src/hotkey-manager.ts, packages/hotkeys/src/hotkey-recorder.ts at 94c46b484aede9ba8ba080dec99d1bb511877985"
+        "Changed: docs/guides/sensible-defaults.md at 753f977c62d0e00ba183501f630a30857ad2bde0"
       ]
     },
     "source:.changeset/intent-skills.md": {
