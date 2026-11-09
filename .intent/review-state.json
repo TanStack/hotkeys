@@ -96,7 +96,7 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "4dbd29d2a6a82399c669261d7ceb46f649125353c1238ea3782312890e9020be",
+      "fingerprint": "c2a4d29147934f12ee7b36f77ab20f162752c86e980eeea8255c6ec5d3684709",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
@@ -106,7 +106,7 @@
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
         "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
         "packages/hotkeys/src/hotkey-manager.ts": "79bfaf12d2d47b454018419fa18e24796b780ad3ab56d974cf57d3672fd4694d",
-        "packages/hotkeys/src/match.ts": "204f0159ccdd1bfaed96b1b03ad805f7fa9a74c011e70760749d1e0c326b7e8a",
+        "packages/hotkeys/src/match.ts": "b8b5eef8a746e91ebcfa4c786170374068f3d0649b8db5eb3e2d93976cfd0ab9",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/grade.tsx": "abb8c54f80f8f64bc55dbf9082ac2275aea03d5626437c3366bd8393463cdb1c",
@@ -117,11 +117,11 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "753f977c62d0e00ba183501f630a30857ad2bde0",
-      "outcome": "no-change",
-      "reason": "Docs wording only; skills don't describe NumLock or numpad fallback.",
+      "head": "3393aa308027f7b6b66e0599db868c9f7502f338",
+      "outcome": "updated",
+      "reason": "matchesKeyboardEvent JSDoc now says Unidentified numpad keys don't fall back to code; reference docs regenerated (the other pages only shift source line links).",
       "evidence": [
-        "Changed: docs/guides/sensible-defaults.md at 753f977c62d0e00ba183501f630a30857ad2bde0"
+        "Changed: packages/hotkeys/src/match.ts at 3393aa308027f7b6b66e0599db868c9f7502f338"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
@@ -282,7 +282,7 @@
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "3fb59358e5facc11732071e1da6ee7e69a5555eb08af340ed967da851d032c19",
+      "fingerprint": "5291d39ed7e23cd25aa8d450253cf34844c1a937796ff722159bf72f38c09294",
       "snapshot": {
         "_artifacts/domain_map.yaml": "5e6e0616c9e4f1d099c37f2c164285d4a649abc6eb888599ac8d750b55ac5b7c",
         "_artifacts/skill_spec.md": "bd8e54eb437cda05e72f24149bf198179d4d2688cbd535b08facb46ae88bf9d5",
@@ -347,7 +347,7 @@
         "packages/hotkeys/src/conflicts.ts": "0459c63dccec1b3706c93552bfcd66243f90ae918c6e7e445fce046fe79cc2ad",
         "packages/hotkeys/src/hotkey-manager.ts": "79bfaf12d2d47b454018419fa18e24796b780ad3ab56d974cf57d3672fd4694d",
         "packages/hotkeys/src/hotkey-recorder.ts": "e9f9538d47995c3bdc5b7fb10407ae50659d54e4d2b84f4d272505c1394ef1bd",
-        "packages/hotkeys/src/match.ts": "204f0159ccdd1bfaed96b1b03ad805f7fa9a74c011e70760749d1e0c326b7e8a",
+        "packages/hotkeys/src/match.ts": "b8b5eef8a746e91ebcfa4c786170374068f3d0649b8db5eb3e2d93976cfd0ab9",
         "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "b2e8d9a31ecc0f97bc0c073608a06572ff555cf5f2d7e52316315e4783fdaacd",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
         "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
@@ -414,11 +414,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "753f977c62d0e00ba183501f630a30857ad2bde0",
-      "outcome": "no-change",
-      "reason": "Docs wording only; skills don't describe NumLock or numpad fallback.",
+      "head": "3393aa308027f7b6b66e0599db868c9f7502f338",
+      "outcome": "updated",
+      "reason": "matchesKeyboardEvent JSDoc now says Unidentified numpad keys don't fall back to code; reference docs regenerated (the other pages only shift source line links).",
       "evidence": [
-        "Changed: docs/guides/sensible-defaults.md at 753f977c62d0e00ba183501f630a30857ad2bde0"
+        "Changed: packages/hotkeys/src/match.ts at 3393aa308027f7b6b66e0599db868c9f7502f338"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -6923,44 +6923,52 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/areHotkeysEqual.md": {
-      "fingerprint": "ac830ff3c988463a5c237b6ea46866abb8d7b6db05a9c2050caa1cc046e6a53f",
+      "fingerprint": "d3d649437fc0e741b681d4b91abeef045a0a94085d61c9df4c4907613ed365b0",
       "snapshot": {
-        "docs/reference/functions/areHotkeysEqual.md": "1fa471128444f0fffee1e68b2cb50e85002f0fc56d0730d0c38e7b19f88b0888"
+        "docs/reference/functions/areHotkeysEqual.md": "971f45560c0b2f9a02e40903d60a7a34a432463829b8904d21927ca39fdf455a"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "3393aa308027f7b6b66e0599db868c9f7502f338",
+      "outcome": "updated",
+      "reason": "matchesKeyboardEvent JSDoc now says Unidentified numpad keys don't fall back to code; reference docs regenerated (the other pages only shift source line links).",
+      "evidence": [
+        "Changed: docs/reference/functions/areHotkeysEqual.md at 3393aa308027f7b6b66e0599db868c9f7502f338"
+      ]
     },
     "source:docs/reference/functions/createHotkeyChordHandler.md": {
-      "fingerprint": "871ffffab372351d1ea8cb7f1a5094da6d52733b1ca75209415808c321ca2c88",
+      "fingerprint": "96fac003d8a65adfb96890edc3521cefe89195cdf16c4afc5411ca23a75d7ed2",
       "snapshot": {
-        "docs/reference/functions/createHotkeyChordHandler.md": "3258ed4115e574d3bbb41904c8d3d3e4f6b669f328f136e7a960d1706fa02dab"
+        "docs/reference/functions/createHotkeyChordHandler.md": "7a266d13860afd874747928c12c54d94961e8567ea6e14fa3c7dd5f2b7f7efa0"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "3393aa308027f7b6b66e0599db868c9f7502f338",
+      "outcome": "updated",
+      "reason": "matchesKeyboardEvent JSDoc now says Unidentified numpad keys don't fall back to code; reference docs regenerated (the other pages only shift source line links).",
+      "evidence": [
+        "Changed: docs/reference/functions/createHotkeyChordHandler.md at 3393aa308027f7b6b66e0599db868c9f7502f338"
+      ]
     },
     "source:docs/reference/functions/createMultiHotkeyChordHandler.md": {
-      "fingerprint": "877baaf8b883ce2382ec52c3303fca1cb5577bb587742685f3e029ef86699743",
+      "fingerprint": "f4de475006f58bee7a9b523f2612c71a0e9015cf4a717d679ee8f3ed02a66c4c",
       "snapshot": {
-        "docs/reference/functions/createMultiHotkeyChordHandler.md": "84d684e99fafb6c11ba8a846ff37ec05e74a16ffcd62e41dc46f7f122772c4b9"
+        "docs/reference/functions/createMultiHotkeyChordHandler.md": "bc92050efd308e635951006fa2e3fd0c02bc351d759bd131978635acfe1949a5"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "3393aa308027f7b6b66e0599db868c9f7502f338",
+      "outcome": "updated",
+      "reason": "matchesKeyboardEvent JSDoc now says Unidentified numpad keys don't fall back to code; reference docs regenerated (the other pages only shift source line links).",
+      "evidence": [
+        "Changed: docs/reference/functions/createMultiHotkeyChordHandler.md at 3393aa308027f7b6b66e0599db868c9f7502f338"
+      ]
     },
     "source:docs/reference/functions/createSequenceMatcher.md": {
-      "fingerprint": "c8a0f96644477da63a241e48d0fa42aec29dcab5404d1bfb0ca334d97f35a077",
+      "fingerprint": "c6c1dc9a20e558f11b5371bfa0e6e8ed99a81aa454fe13182fd63388ad11dfd3",
       "snapshot": {
-        "docs/reference/functions/createSequenceMatcher.md": "a14b53bd9e859bc9f65dd5352ec66b9498dbd2bbad661d998229ed2bada8befc"
+        "docs/reference/functions/createSequenceMatcher.md": "f28a4c5f70373599a924586119bbd4b90e836a44f307d78cdfc6d327c35e8f99"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "3393aa308027f7b6b66e0599db868c9f7502f338",
+      "outcome": "updated",
+      "reason": "matchesKeyboardEvent JSDoc now says Unidentified numpad keys don't fall back to code; reference docs regenerated (the other pages only shift source line links).",
+      "evidence": [
+        "Changed: docs/reference/functions/createSequenceMatcher.md at 3393aa308027f7b6b66e0599db868c9f7502f338"
+      ]
     },
     "source:docs/reference/functions/matchesHeldModifiers.md": {
       "fingerprint": "58f82a86f7de49977464055d781fdd6f01b61786fb0ac40b4770b32d44ab08c4",
@@ -6973,24 +6981,28 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/matchesKeyboardEvent.md": {
-      "fingerprint": "6f64a1cb1701b885338d6ee20ac78dc49638a380a577a9dd38489022685ff63a",
+      "fingerprint": "2c3e3546ede8f7011c9b90c82156c52944b15ac95d7116b657ab3a8e2e08e24e",
       "snapshot": {
-        "docs/reference/functions/matchesKeyboardEvent.md": "3790baf7fcdff709fa2d714422dd98019b459563fbb4e89803d676732646c152"
+        "docs/reference/functions/matchesKeyboardEvent.md": "a8b2eef0236d70524c2e28c36ef342b9fd9db1444743d0b7270191337dd0caed"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "3393aa308027f7b6b66e0599db868c9f7502f338",
+      "outcome": "updated",
+      "reason": "matchesKeyboardEvent JSDoc now says Unidentified numpad keys don't fall back to code; reference docs regenerated (the other pages only shift source line links).",
+      "evidence": [
+        "Changed: docs/reference/functions/matchesKeyboardEvent.md at 3393aa308027f7b6b66e0599db868c9f7502f338"
+      ]
     },
     "source:docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": {
-      "fingerprint": "854d654fdbb5e2c9bf1274a78baa715803e7291e8d34b4404d16250d5d986535",
+      "fingerprint": "bf20e64b80cb0db84b04059785b8c94bcbf0e7aa5fd2468ca906edd55998458a",
       "snapshot": {
-        "docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": "7f2676a5e182b899d3257065ce16b651d7e74b352e94346f3e3acd0e4f2e8edf"
+        "docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md": "4cf52196d0add91ff755ff0f3d8199384631a471c2569a937ac97ccebcd37959"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "3393aa308027f7b6b66e0599db868c9f7502f338",
+      "outcome": "updated",
+      "reason": "matchesKeyboardEvent JSDoc now says Unidentified numpad keys don't fall back to code; reference docs regenerated (the other pages only shift source line links).",
+      "evidence": [
+        "Changed: docs/reference/interfaces/CreateHotkeyChordHandlerOptions.md at 3393aa308027f7b6b66e0599db868c9f7502f338"
+      ]
     },
     "source:docs/reference/interfaces/KeyboardEventMatch.md": {
       "fingerprint": "5a413d7c9dab0b36b4f4a649f673f0f543b4b9482cfecdb039139cc40e4cb54b",
@@ -7003,24 +7015,28 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/MultiHotkeyChordHandler.md": {
-      "fingerprint": "8a4b7b55c94f7e66731854785c9f9a2f9d9ed1e556ff49f6c74fe8fc43bd59cc",
+      "fingerprint": "ebd15f76019b13baf85f6c91ed2bf4376100e73d30a6682f5a9b69eddd658d26",
       "snapshot": {
-        "docs/reference/type-aliases/MultiHotkeyChordHandler.md": "0f28d32d1d76dc5d4fb38874cd5b49c79ada69ae1e9c422b7933f5898b168399"
+        "docs/reference/type-aliases/MultiHotkeyChordHandler.md": "7f3e74332d33e27aaa7c7fed1e69807cfb43259bd3d110e35f22be658d86e76e"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "3393aa308027f7b6b66e0599db868c9f7502f338",
+      "outcome": "updated",
+      "reason": "matchesKeyboardEvent JSDoc now says Unidentified numpad keys don't fall back to code; reference docs regenerated (the other pages only shift source line links).",
+      "evidence": [
+        "Changed: docs/reference/type-aliases/MultiHotkeyChordHandler.md at 3393aa308027f7b6b66e0599db868c9f7502f338"
+      ]
     },
     "source:docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": {
-      "fingerprint": "157cbffa9e83251c2da799c2d077526b46a882b3b7e7163bbc034b0198b0dc94",
+      "fingerprint": "7a25f36ae669d2eb5a267066aae0b923757a20fdf1c754d3e16b8f2b0d4c31db",
       "snapshot": {
-        "docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": "9874ee1c4006501a2ce9aed8562b39a5a4411641e1a958b2fbe280456cf58ce3"
+        "docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md": "21f9f18cbfe799998f30d692c10c54f82ba8518d5507acc10176cfc97146eee2"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "3393aa308027f7b6b66e0599db868c9f7502f338",
+      "outcome": "updated",
+      "reason": "matchesKeyboardEvent JSDoc now says Unidentified numpad keys don't fall back to code; reference docs regenerated (the other pages only shift source line links).",
+      "evidence": [
+        "Changed: docs/reference/variables/DEFAULT_SEQUENCE_TIMEOUT.md at 3393aa308027f7b6b66e0599db868c9f7502f338"
+      ]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyRecorder.ts": {
       "fingerprint": "fa4414336c960632c262b4d13e54de02ef630c600024c1c5349285c4baf9546f",
