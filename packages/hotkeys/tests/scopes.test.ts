@@ -1,3 +1,4 @@
+import { keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   activateHotkeysProviderScope,
@@ -12,18 +13,8 @@ import {
 import { HotkeyManager, toHotkeyRegistrationView } from '../src/hotkey-manager'
 
 function press(target: EventTarget = document.body, key = 's', code = 'KeyS') {
-  target.dispatchEvent(
-    new KeyboardEvent('keydown', {
-      key,
-      code,
-      ctrlKey: true,
-      bubbles: true,
-      cancelable: true,
-    }),
-  )
-  target.dispatchEvent(
-    new KeyboardEvent('keyup', { key, code, bubbles: true, cancelable: true }),
-  )
+  keydown({ key, code, ctrlKey: true, target })
+  keyup({ key, code, target })
 }
 
 const options = { platform: 'windows' as const }
@@ -333,12 +324,8 @@ describe('hotkey scopes', () => {
     const top = vi.fn()
     manager.register(['G', 'G'], top, { ...options, scope: 'list' })
     const tap = () => {
-      document.body.dispatchEvent(
-        new KeyboardEvent('keydown', { key: 'g', code: 'KeyG', bubbles: true }),
-      )
-      document.body.dispatchEvent(
-        new KeyboardEvent('keyup', { key: 'g', code: 'KeyG', bubbles: true }),
-      )
+      keydown({ key: 'g', code: 'KeyG', target: document.body })
+      keyup({ key: 'g', code: 'KeyG', target: document.body })
     }
     tap()
     tap()

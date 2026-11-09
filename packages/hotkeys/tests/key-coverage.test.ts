@@ -1,3 +1,4 @@
+import { keydown } from '@tanstack/hotkeys-test-utils'
 import { expect, expectTypeOf, it } from 'vitest'
 import {
   ALL_KEYS,
@@ -35,7 +36,7 @@ it.each([...FUNCTION_KEYS, ...SHARED_NAMED_KEYS])(
   (key) => {
     const logical: HotkeyChord = `Alt+${key}`
     const physical: HotkeyChord = `Alt+[${key}]`
-    const event = new KeyboardEvent('keydown', { key, code: key, altKey: true })
+    const event = keydown({ key, code: key, altKey: true })
     expect(ALL_KEYS.has(key)).toBe(true)
     expect(normalizeKeyName(key)).toBe(key)
     expect(parseHotkey(logical).key).toBe(key)
@@ -60,7 +61,7 @@ it.each([...FUNCTION_KEYS, ...SHARED_NAMED_KEYS])(
     expect(matchesKeyboardEvent(event, physical, 'mac')).toBe(true)
     expect(
       matchesKeyboardEvent(
-        new KeyboardEvent('keydown', { key, code: 'KeyA', altKey: true }),
+        keydown({ key, code: 'KeyA', altKey: true }),
         physical,
         'windows',
       ),
@@ -85,10 +86,7 @@ it.each(LOGICAL_ONLY_NAMED_KEYS)(
 )
 
 it('keeps differently named logical and physical bindings distinct', () => {
-  const event = new KeyboardEvent('keydown', {
-    key: 'LaunchApplication1',
-    code: 'LaunchApp1',
-  })
+  const event = keydown({ key: 'LaunchApplication1', code: 'LaunchApp1' })
   expect(hotkeyChordFromKeydown(event, 'mac', 'key')).toBe('LaunchApplication1')
   expect(hotkeyChordFromKeydown(event, 'mac', 'code')).toBe('[LaunchApp1]')
   expect(matchesKeyboardEvent(event, 'LaunchApplication1')).toBe(true)

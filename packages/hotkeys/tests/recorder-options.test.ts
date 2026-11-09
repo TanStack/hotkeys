@@ -1,3 +1,4 @@
+import { keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { afterEach, expect, it, vi } from 'vitest'
 import { HotkeyRecorder } from '../src/hotkey-recorder'
 import type {
@@ -11,12 +12,8 @@ afterEach(() => {
   vi.useRealTimers()
 })
 function press(key: string, code: string) {
-  document.dispatchEvent(
-    new KeyboardEvent('keydown', { key, code, bubbles: true }),
-  )
-  document.dispatchEvent(
-    new KeyboardEvent('keyup', { key, code, bubbles: true }),
-  )
+  keydown({ key, code, target: document })
+  keyup({ key, code, target: document })
 }
 
 it('reads current policy and callbacks during a hotkey recording session', () => {

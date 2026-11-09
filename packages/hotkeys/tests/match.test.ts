@@ -1,27 +1,21 @@
+import { keydown } from '@tanstack/hotkeys-test-utils'
 import { describe, expect, it, vi } from 'vitest'
 import {
   createHotkeyChordHandler,
   createMultiHotkeyChordHandler,
   matchesKeyboardEvent,
 } from '../src/match'
+import type { KeyOptions } from '@tanstack/hotkeys-test-utils'
 import type { HotkeyChord } from '../src'
 
 /**
- * Helper to create a mock KeyboardEvent
+ * Creates a keydown event, inferring `code` for US letters and digits when it
+ * isn't given. preventDefault and stopPropagation are spied on.
  */
 function createKeyboardEvent(
   key: string,
-  options: {
-    ctrlKey?: boolean
-    shiftKey?: boolean
-    altKey?: boolean
-    metaKey?: boolean
-    code?: string
-    isComposing?: boolean
-    altGraph?: boolean
-  } = {},
+  options: Omit<KeyOptions, 'key' | 'target'> = {},
 ): KeyboardEvent {
-  // Auto-generate code for letters and digits if not provided
   let code = options.code
   if (code === undefined) {
     if (key.length === 1 && /^[a-zA-Z]$/.test(key)) {
@@ -31,19 +25,10 @@ function createKeyboardEvent(
     }
   }
 
-  return {
-    key,
-    code,
-    ctrlKey: options.ctrlKey ?? false,
-    shiftKey: options.shiftKey ?? false,
-    altKey: options.altKey ?? false,
-    metaKey: options.metaKey ?? false,
-    isComposing: options.isComposing ?? false,
-    getModifierState: (modifier: string) =>
-      modifier === 'AltGraph' && (options.altGraph ?? false),
-    preventDefault: vi.fn(),
-    stopPropagation: vi.fn(),
-  } as unknown as KeyboardEvent
+  const event = keydown({ ...options, key, code })
+  vi.spyOn(event, 'preventDefault')
+  vi.spyOn(event, 'stopPropagation')
+  return event
 }
 
 describe('matchesKeyboardEvent', () => {

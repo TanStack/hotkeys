@@ -1,6 +1,9 @@
-import { describe, expect, it } from 'vitest'
+import { keydown } from '@tanstack/hotkeys-test-utils'
+import { afterEach, describe, expect, expectTypeOf, it, vi } from 'vitest'
 import { hotkeyChordFromKeydown } from '../src/_recorder-chord'
 import { normalizeKeyName } from '../src/constants'
+import { formatForDisplay, formatHotkey } from '../src/format'
+import { HotkeyManager } from '../src/hotkey-manager'
 import {
   isModifierKey,
   normalizeHotkey,
@@ -8,6 +11,7 @@ import {
   parseKeyboardEvent,
 } from '../src/parse'
 import type { ParsedHotkeyChord } from '../src/hotkey.types'
+import type { LogicalKey } from '../src/key.types'
 
 describe('parseHotkey', () => {
   describe('single keys', () => {
@@ -471,11 +475,7 @@ describe('normalizeHotkey', () => {
 
 describe('normalizeHotkey with a keyboard event', () => {
   it('should match hotkeyChordFromKeydown for Cmd+Shift+E on Mac', () => {
-    const event = new KeyboardEvent('keydown', {
-      key: 'e',
-      metaKey: true,
-      shiftKey: true,
-    })
+    const event = keydown({ key: 'e', metaKey: true, shiftKey: true })
     expect(normalizeHotkey(parseKeyboardEvent(event, 'mac'), 'mac')).toBe(
       'Mod+Shift+E',
     )
@@ -485,11 +485,7 @@ describe('normalizeHotkey with a keyboard event', () => {
     expect(
       normalizeHotkey(
         parseKeyboardEvent(
-          new KeyboardEvent('keydown', {
-            key: '!',
-            code: 'Digit1',
-            shiftKey: true,
-          }),
+          keydown({ key: '!', code: 'Digit1', shiftKey: true }),
           'windows',
         ),
         'windows',
@@ -498,11 +494,7 @@ describe('normalizeHotkey with a keyboard event', () => {
     expect(
       normalizeHotkey(
         parseKeyboardEvent(
-          new KeyboardEvent('keydown', {
-            key: '¡',
-            code: 'Digit1',
-            altKey: true,
-          }),
+          keydown({ key: '¡', code: 'Digit1', altKey: true }),
           'mac',
         ),
         'mac',
@@ -513,49 +505,66 @@ describe('normalizeHotkey with a keyboard event', () => {
 
 describe('hotkeyChordFromKeydown', () => {
   it('should return Mod+Shift+E for Cmd+Shift+E on Mac', () => {
-    const event = new KeyboardEvent('keydown', {
-      key: 'e',
-      metaKey: true,
-      shiftKey: true,
-    })
+    const event = keydown({ key: 'e', metaKey: true, shiftKey: true })
     expect(hotkeyChordFromKeydown(event, 'mac', 'key')).toBe('Mod+Shift+E')
   })
 
   it('should return Mod+Shift+S for Ctrl+Shift+S on Windows', () => {
-    const event = new KeyboardEvent('keydown', {
-      key: 's',
-      ctrlKey: true,
-      shiftKey: true,
-    })
+    const event = keydown({ key: 's', ctrlKey: true, shiftKey: true })
     expect(hotkeyChordFromKeydown(event, 'windows', 'key')).toBe('Mod+Shift+S')
   })
 
   it('should return null for modifier-only keydown', () => {
-    const event = new KeyboardEvent('keydown', { key: 'Shift' })
+    const event = keydown({ key: 'Shift' })
     expect(hotkeyChordFromKeydown(event, 'mac', 'key')).toBe(null)
   })
 
   it('should return null during IME composition', () => {
-    const event = new KeyboardEvent('keydown', {
-      key: 'Process',
-      code: 'KeyA',
-      isComposing: true,
-    })
+    const event = keydown({ key: 'Process', code: 'KeyA', isComposing: true })
     expect(hotkeyChordFromKeydown(event, 'windows', 'key')).toBe(null)
   })
 
   it('should return null for OS / Win meta key keydown', () => {
-    expect(
-      hotkeyChordFromKeydown(
-        new KeyboardEvent('keydown', { key: 'OS' }),
-        'windows',
-      ),
-    ).toBe(null)
-    expect(
-      hotkeyChordFromKeydown(
-        new KeyboardEvent('keydown', { key: 'Win' }),
-        'windows',
-      ),
-    ).toBe(null)
+    expect(hotkeyChordFromKeydown(keydown({ key: 'OS' }), 'windows')).toBe(null)
+    expect(hotkeyChordFromKeydown(keydown({ key: 'Win' }), 'windows')).toBe(
+      null,
+    )
+  })
+})
+
+describe('physical tokens in logical fields', () => {
+  afterEach(() => {
+    HotkeyManager.resetInstance()
+  })
+
+  it('rejects physical tokens in raw and parsed logical fields without changing Unicode support', () => {
+    expectTypeOf<Extract<LogicalKey, `[${string}]`>>().toBeNever()
+    for (const key of ['[KeyS]', ' [Enter] ', '[UnknownCode]']) {
+      const raw = { key, mod: true }
+      expect(() => parseHotkey(raw)).toThrow('code field')
+      expect(() => normalizeHotkey(raw)).toThrow('code field')
+      expect(() => formatForDisplay(raw)).toThrow('code field')
+      const manager = HotkeyManager.getInstance()
+      expect(() => manager.register(raw, vi.fn())).toThrow('code field')
+      expect(manager.registrations.state.size).toBe(0)
+      const parsed: ParsedHotkeyChord = {
+        key,
+        ctrl: false,
+        alt: false,
+        shift: false,
+        meta: false,
+        modifiers: [],
+      }
+      expect(() => formatHotkey(parsed)).toThrow('code field')
+      expect(() => normalizeHotkey(parsed)).toThrow('code field')
+      expect(() => formatForDisplay(parsed)).toThrow('code field')
+    }
+    for (const key of ['[', ']', 'ß', 'Ę', '字', 'é']) {
+      const raw = { key }
+      expect(parseHotkey(normalizeHotkey(raw))).toEqual(parseHotkey(raw))
+    }
+    expect(parseHotkey('Mod+[KeyS]', 'mac')).toEqual(
+      parseHotkey({ code: 'KeyS', mod: true }, 'mac'),
+    )
   })
 })

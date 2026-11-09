@@ -1,3 +1,4 @@
+import { keyEvent } from '@tanstack/hotkeys-test-utils'
 /// <reference lib="dom" />
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { KeyStateTracker } from '../src/key-state-tracker'
@@ -18,12 +19,7 @@ function dispatchKey(
   modifiers: KeyboardEventInit = {},
 ): KeyboardEvent {
   const event = trusted(
-    new KeyboardEvent(type, {
-      key,
-      code: code ?? key,
-      bubbles: true,
-      ...modifiers,
-    }),
+    keyEvent(type, { key, code: code ?? key, ...modifiers }),
   )
   document.dispatchEvent(event)
   return event
@@ -468,7 +464,7 @@ describe('KeyStateTracker', () => {
       document.dispatchEvent(
         type === 'mousemove'
           ? new MouseEvent(type, { bubbles: true })
-          : new KeyboardEvent(type, { key: 'a', code: 'KeyA', bubbles: true }),
+          : keyEvent(type, { key: 'a', code: 'KeyA' }),
       )
       expect(tracker.isKeyHeld('Shift')).toBe(true)
     },

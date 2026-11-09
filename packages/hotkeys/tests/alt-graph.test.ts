@@ -1,3 +1,4 @@
+import { keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   HotkeyManager,
@@ -21,26 +22,6 @@ const shapes = [
 
 const windowsShapes = shapes.filter(([, platform]) => platform === 'windows')
 
-function keyEvent(
-  key: string,
-  code: string,
-  flags: KeyboardEventInit = {},
-  altGraph = false,
-  type: 'keydown' | 'keyup' = 'keydown',
-): KeyboardEvent {
-  const event = new KeyboardEvent(type, {
-    key,
-    code,
-    bubbles: true,
-    cancelable: true,
-    ...flags,
-  })
-  Object.defineProperty(event, 'getModifierState', {
-    value: (name: string) => altGraph && name === 'AltGraph',
-  })
-  return event
-}
-
 const recorders: Array<HotkeyRecorder> = []
 function recorder(options: HotkeyChordRecorderOptions) {
   const value = new HotkeyRecorder(options)
@@ -57,7 +38,7 @@ afterEach(() => {
 
 function altGrFor(flags: KeyboardEventInit) {
   return (key: string, code: string, extra: KeyboardEventInit = {}) =>
-    keyEvent(key, code, { ...flags, ...extra }, true)
+    keydown({ key, code, ...flags, ...extra, altGraph: true })
 }
 
 function matchesFor(platform: 'windows' | 'linux') {
@@ -171,8 +152,14 @@ describe.each(windowsShapes)('AltGr held (%s)', (_, platform, flags) => {
     expect(controlAlt).toHaveBeenCalledOnce()
     expect(plain).not.toHaveBeenCalled()
 
-    document.dispatchEvent(keyEvent('f', 'KeyF', flags, true, 'keyup'))
-    document.dispatchEvent(keyEvent('f', 'KeyF'))
+    keyup({
+      key: 'f',
+      code: 'KeyF',
+      ...flags,
+      altGraph: true,
+      target: document,
+    })
+    keydown({ key: 'f', code: 'KeyF', target: document })
     expect(plain).toHaveBeenCalledOnce()
   })
 
@@ -204,7 +191,12 @@ describe('AltGr held on Linux', () => {
   })
 
   it('left Control+Alt still fires Control+Alt chords', () => {
-    const event = keyEvent('Home', 'Home', { ctrlKey: true, altKey: true })
+    const event = keydown({
+      key: 'Home',
+      code: 'Home',
+      ctrlKey: true,
+      altKey: true,
+    })
     expect(matches(event, 'Control+Alt+Home')).toBe(true)
   })
 
@@ -218,7 +210,12 @@ describe('AltGr held on Linux', () => {
 
 describe('Option reporting AltGraph on macOS', () => {
   it('stays a normal Alt modifier', () => {
-    const option = keyEvent('Home', 'Home', { altKey: true }, true)
+    const option = keydown({
+      key: 'Home',
+      code: 'Home',
+      altKey: true,
+      altGraph: true,
+    })
     expect(matchesKeyboardEvent(option, 'Alt+Home', 'mac')).toBe(true)
     expect(matchesKeyboardEvent(option, 'Control+Alt+Home', 'mac')).toBe(false)
   })

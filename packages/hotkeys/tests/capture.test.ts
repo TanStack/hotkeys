@@ -1,3 +1,4 @@
+import { keyEvent, keydown } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager } from '../src/hotkey-manager'
 import { HotkeyRecorder } from '../src/hotkey-recorder'
@@ -19,17 +20,15 @@ afterEach(() => {
 
 function press(
   target: EventTarget,
-  type = 'keydown',
+  type: 'keydown' | 'keyup' = 'keydown',
   key = 's',
   repeat = false,
 ) {
-  const event = new KeyboardEvent(type, {
+  const event = keyEvent(type, {
     key,
     repeat,
     code: `Key${key.toUpperCase()}`,
     ctrlKey: true,
-    bubbles: true,
-    cancelable: true,
   })
   // Vitest exposes a window proxy; Happy DOM's currentTarget is the underlying window.
   const currentTarget = Object.getOwnPropertyDescriptor(
@@ -305,23 +304,9 @@ it.each(['hotkey', 'sequence'] as const)(
         capture: true,
       })
       manager.register(['Control+X', 'Control+A'], fallback, options)
-      document.body.dispatchEvent(
-        new KeyboardEvent('keydown', {
-          key: 'x',
-          code: 'KeyX',
-          ctrlKey: true,
-          bubbles: true,
-        }),
-      )
+      keydown({ key: 'x', code: 'KeyX', ctrlKey: true, target: document.body })
     }
-    document.body.dispatchEvent(
-      new KeyboardEvent('keydown', {
-        key: 'ф',
-        code: 'KeyA',
-        ctrlKey: true,
-        bubbles: true,
-      }),
-    )
+    keydown({ key: 'ф', code: 'KeyA', ctrlKey: true, target: document.body })
     expect(exact).toHaveBeenCalledOnce()
     expect(fallback).toHaveBeenCalledOnce()
   },
