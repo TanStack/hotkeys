@@ -49,6 +49,7 @@
     "@tanstack/hotkeys": "workspace:*"
   },
   "devDependencies": {
+    "@tanstack/hotkeys-test-utils": "workspace:*",
     "@tsrx/oxc": "0.23.0",
     "@tsrx/typescript-plugin": "^0.6.3",
     "octane": "0.16.7",

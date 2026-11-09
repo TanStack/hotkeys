@@ -27,8 +27,9 @@
     "lint": "oxlint ./src",
     "lint:fix": "oxlint ./src --fix",
     "test:oxlint": "oxlint ./src",
-    "test:lib": "vitest --passWithNoTests",
+    "test:lib": "vitest",
     "test:lib:dev": "pnpm test:lib --watch",
+    "test:coverage": "vitest --coverage",
     "test:types": "tsc",
     "build": "tsdown",
     "test:build": "publint --strict && node ../../scripts/verify-package.ts"
@@ -62,6 +63,7 @@
   },
   "devDependencies": {
     "@preact/preset-vite": "^2.10.6",
+    "@tanstack/hotkeys-test-utils": "workspace:*",
     "preact": "^11.2.0"
   }
 }

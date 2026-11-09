@@ -21,6 +21,7 @@ packages:
   - '!examples/**/dist/**'
   - '!examples/**/.output/**'
   - 'packages/*'
+  - 'test-utils'
 packageExtensions:
   # @analogjs/vite-plugin-nitro imports h3 v1 without declaring it, so it
   # resolves the hoisted h3 v2 and fails to load.

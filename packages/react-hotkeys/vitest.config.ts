@@ -9,7 +9,13 @@ export default defineConfig({
     dir: './tests',
     watch: false,
     environment: 'happy-dom',
-    // setupFiles: ['./tests/test-setup.ts'],
+    setupFiles: ['@tanstack/hotkeys-test-utils/setup'],
+    coverage: {
+      provider: 'v8',
+      include: ['src/**'],
+      // About 1 point below current coverage
+      thresholds: { lines: 93, branches: 99, functions: 87, statements: 92 },
+    },
     globals: true,
   },
 })

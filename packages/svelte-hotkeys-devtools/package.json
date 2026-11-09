@@ -27,8 +27,9 @@
     "lint": "oxlint ./src",
     "lint:fix": "oxlint ./src --fix",
     "test:oxlint": "oxlint ./src",
-    "test:lib": "vitest --passWithNoTests",
+    "test:lib": "vitest",
     "test:lib:dev": "pnpm test:lib --watch",
+    "test:coverage": "vitest --coverage",
     "test:types": "tsc",
     "build": "svelte-package --input ./src --output ./dist",
     "test:build": "publint --strict && node ../../scripts/verify-package.ts"
@@ -71,6 +72,7 @@
   "devDependencies": {
     "@sveltejs/package": "^3.0.2",
     "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "@tanstack/hotkeys-test-utils": "workspace:*",
     "svelte": "^5.57.3"
   },
   "module": "dist/index.js",

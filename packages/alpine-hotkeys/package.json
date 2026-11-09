@@ -25,8 +25,9 @@
     "lint": "oxlint ./src",
     "lint:fix": "oxlint ./src --fix",
     "test:oxlint": "oxlint ./src",
-    "test:lib": "vitest --passWithNoTests",
+    "test:lib": "vitest",
     "test:lib:dev": "pnpm test:lib --watch",
+    "test:coverage": "vitest --coverage",
     "test:types": "tsc",
     "build": "tsdown",
     "test:build": "publint --strict && node ../../scripts/verify-package.ts"
@@ -49,6 +50,7 @@
     "@tanstack/hotkeys": "workspace:*"
   },
   "devDependencies": {
+    "@tanstack/hotkeys-test-utils": "workspace:*",
     "@types/alpinejs": "^3.17.0",
     "alpinejs": "^3.17.5"
   },

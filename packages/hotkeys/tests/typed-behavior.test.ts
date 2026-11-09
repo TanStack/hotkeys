@@ -367,8 +367,8 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
       }),
     }).toMatchInlineSnapshot(`
       {
-        "events": "e48d045d4ad761db",
-        "matching": "cd1778e4b46ed2c0",
+        "events": "bf714d5b2ef48387",
+        "matching": "9840dcba4abb0775",
       }
     `)
   })
@@ -444,9 +444,9 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
 
     expect({ recorded, recorders, fired }).toMatchInlineSnapshot(`
       {
-        "fired": "1cb1073fa3d97268",
-        "recorded": "1bdaa84326534fa8",
-        "recorders": "82fe7fe7e89a10f5",
+        "fired": "8a5a2d58a181e823",
+        "recorded": "8de27ec75b6d031d",
+        "recorders": "01e3a3ff961d891c",
       }
     `)
   })

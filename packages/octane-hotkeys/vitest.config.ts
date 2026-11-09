@@ -8,5 +8,6 @@ export default defineConfig({
     exclude: ['**/ssr/**'],
     watch: false,
     environment: 'happy-dom',
+    setupFiles: ['@tanstack/hotkeys-test-utils/setup'],
   },
 })
