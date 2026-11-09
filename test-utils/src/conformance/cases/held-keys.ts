@@ -122,9 +122,7 @@ defineGroup({
       },
     },
     {
-      // issues/bugs/BUG-065-modifier-release-clears-held-letters.md
       title: 'keeps a held letter when a modifier is tapped',
-      bug: 'BUG-065',
       async run({ harness, expect, press, release }) {
         const view = await harness.mountHeldKeys('Shift')
         await press({ key: 'w', code: 'KeyW' })
@@ -164,7 +162,6 @@ defineGroup({
       },
     },
     {
-      // issues/bugs/BUG-067-key-hold-case-rules-differ-across-adapters.md
       title: 'folds the case of a letter like core isKeyHeld',
       async run({ harness, expect, press }) {
         const view = await harness.mountHeldKeys('a' as IndividualKey)
@@ -174,7 +171,6 @@ defineGroup({
       },
     },
     {
-      // issues/bugs/BUG-067-key-hold-case-rules-differ-across-adapters.md
       title: 'matches named keys case-sensitively like core isKeyHeld',
       async run({ harness, expect, press }) {
         const view = await harness.mountHeldKeys('escape' as IndividualKey)

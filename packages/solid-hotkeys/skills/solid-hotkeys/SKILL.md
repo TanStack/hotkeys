@@ -69,7 +69,7 @@ export function Editor() {
 | `createHotkeyRegistrations()`                | Get an accessor listing every registered hotkey with its options, `meta`, and `status` (whether it's enabled and in an active scope).                                                                 |
 | `createHotkeyScopesState()`                  | Get an accessor of the active scopes and the exclusive scope that owns the keyboard.                                                                                                                  |
 | `createHotkeyHint(hotkey, options?)`         | Get an accessor of whether held modifiers should reveal a shortcut's hint. False unless a registration of the hotkey can fire: enabled, in an active scope, and with focus inside its element target. |
-| `createKeyHold(key)`                         | Get an accessor of whether one key is held.                                                                                                                                                           |
+| `createKeyHold(key)`                         | Get an accessor of whether one key is held. Letters match in any case; other names, such as `Shift`, are case-sensitive. |
 | `createHeldKeys()`                           | Get an accessor of every key that's held right now.                                                                                                                                                   |
 | `createHeldKeyCodes()`                       | Get an accessor mapping each held key to its physical `event.code`.                                                                                                                                   |
 
