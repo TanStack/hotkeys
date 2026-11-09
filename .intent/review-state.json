@@ -13282,15 +13282,15 @@
       ]
     },
     "source:e2e/support/layout-fixtures.ts": {
-      "fingerprint": "9e5766a5cc45f2b77e5e9e7d1844945ff3455ab8ce13be27ec90fd45d8132368",
+      "fingerprint": "23662f4456e18bdb8750f0d862864ecdd61e0a283a8a7d653bb752506ee2f5ad",
       "snapshot": {
-        "e2e/support/layout-fixtures.ts": "cca24f41118c1d8489d836597c04d98546aa444b35abd28790a5108eb687d789"
+        "e2e/support/layout-fixtures.ts": "8019cb07c261de12c7704d6d4cce267eee156aba20fd1d76f41d7f55f0ea2079"
       },
-      "head": "a9dd5ea3fb8a4d3d660638add1766bc35ef114f6",
+      "head": "9ae79122b26bc2f538cd232fb03cac0e3a33d74e",
       "outcome": "no-change",
       "reason": "E2E layout tests and their harness only; no skill covers the e2e suite, and no library behavior or API changed",
       "evidence": [
-        "Changed: e2e/support/layout-fixtures.ts at a9dd5ea3fb8a4d3d660638add1766bc35ef114f6"
+        "Changed: e2e/support/layout-fixtures.ts at 9ae79122b26bc2f538cd232fb03cac0e3a33d74e"
       ]
     },
     "source:eslint.config.js": {

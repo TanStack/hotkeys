@@ -25,7 +25,7 @@ export interface LayoutKeyboard {
 
 /** Setup that applies to every case of a `useLayout` call. */
 export interface LayoutOptions {
-  /** Turn NumLock on for each test, and off again afterwards. Default: off. */
+  /** NumLock state for each test. Default: off. */
   numLock?: boolean
 }
 
@@ -54,9 +54,9 @@ export function useLayout(
       for (const binding of registered) {
         await hk.register(binding, binding as never)
       }
-      await waitForKeyboardInput(page, hk)
-      // X11 keeps NumLock across tests and pages, so turn it off again after.
-      if (numLock) await toggleNumLock(page, hk, true)
+      const probe = await waitForKeyboardInput(page, hk)
+      // X11 keeps NumLock across tests, so every test sets the state it needs.
+      if (probe.numLock !== numLock) await toggleNumLock(page, hk, numLock)
       await use({
         press: async (combo) => {
           await hk.clear()
@@ -77,7 +77,6 @@ export function useLayout(
           return recorded
         },
       })
-      if (numLock) await toggleNumLock(page, hk, false)
     },
   })
   return test
@@ -88,11 +87,12 @@ export function useLayout(
  * Right after Chromium starts, it can drop the first press, so this probes
  * with Escape, which no layout test uses, and focuses again until one arrives.
  * A press that never arrives would otherwise fail the first test case.
+ * Returns the probe's keydown.
  */
 async function waitForKeyboardInput(
   page: Page,
   hk: LoadedHarness,
-): Promise<void> {
+): Promise<ObservedKeydown> {
   for (let attempt = 1; attempt <= 5; attempt++) {
     focusBrowserWindow()
     await hk.clear()
@@ -108,8 +108,9 @@ async function waitForKeyboardInput(
     if (arrived) {
       // Let the probe's keyup reach the page before the test presses keys.
       await page.waitForTimeout(50)
+      const [probe] = await hk.keydowns()
       await hk.clear()
-      return
+      return probe!
     }
     const state = await page.evaluate(() => ({
       hasFocus: document.hasFocus(),
