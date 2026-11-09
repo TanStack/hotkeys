@@ -7563,15 +7563,15 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:knip.json": {
-      "fingerprint": "0456cfebd15126c3cdbc8518061baaed67828fbe294f49189bdbcac8d7c759c7",
+      "fingerprint": "a62250a7d92e10c7e1d1e2dec55fd8bd512bda34f117fb463fe113605d706651",
       "snapshot": {
-        "knip.json": "7f920b75c061c751cae4f88b8c2a85528bc82a410fc2b0c9b1a5ed4bf91da1af"
+        "knip.json": "21632fa1e78cb846a87fb00fe37635a6ee7b2521e3543e3f5e7a6db008ab63ea"
       },
-      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
       "outcome": "no-change",
-      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
       "evidence": [
-        "Changed: knip.json at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
+        "Changed: knip.json at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
       ]
     },
     "source:packages/alpine-hotkeys/src/index.ts": {
@@ -17681,15 +17681,15 @@
       ]
     },
     "source:test-utils/README.md": {
-      "fingerprint": "62ee07c04f2d713faa1dbeda2a2af2a81d95bf2fe36702a0324b40419e464c75",
+      "fingerprint": "445cf754541e4d288573fac5a3de322da578b3c5981bba48af24cb0127d009cb",
       "snapshot": {
-        "test-utils/README.md": "e8432608916227d6dc40141739669bafc353af51ad36d408361cb5bf28fa1119"
+        "test-utils/README.md": "6b01e0fb534a0419502adccca4d129ca5afb26c1197220752fdab0d2b4384e65"
       },
-      "head": "a9dd5ea3fb8a4d3d660638add1766bc35ef114f6",
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
       "outcome": "no-change",
-      "reason": "Test infrastructure only: shared Vitest setup, coverage config and thresholds, test fingerprints. No library behavior or public API changed, so no skill guidance is affected.",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
       "evidence": [
-        "Changed: test-utils/README.md at a9dd5ea3fb8a4d3d660638add1766bc35ef114f6"
+        "Changed: test-utils/README.md at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
       ]
     },
     "source:test-utils/src/alt-graph.ts": {
@@ -17861,15 +17861,15 @@
       ]
     },
     "source:packages/react-hotkeys/tests/held-keys.test.tsx": {
-      "fingerprint": "d3ddd74a219e357551e1af21770835b8f94010f17cbb810a9d58d9499994c48d",
+      "fingerprint": "fbdea4d5849b5e89f6a99161098aacf6be981fd67085e515a4feb9eadc06fefb",
       "snapshot": {
-        "packages/react-hotkeys/tests/held-keys.test.tsx": "683f7aeaf5316d87c73884636d7799740269e8b97aac42abd52f24d9cef6a92a"
+        "packages/react-hotkeys/tests/held-keys.test.tsx": "c613d6a54abb5588f4e128edb86ad55e3f0b2c2407d05700ce58eef576144ded"
       },
-      "head": "dfdec2632d943b43ac8ac4987358da7721f706fc",
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
       "outcome": "no-change",
-      "reason": "Tests only: new adapter tests for held keys, key hold and registrations. No library behavior or API changed, so no skill guidance changes.",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
       "evidence": [
-        "Changed: packages/react-hotkeys/tests/held-keys.test.tsx at dfdec2632d943b43ac8ac4987358da7721f706fc"
+        "Changed: packages/react-hotkeys/tests/held-keys.test.tsx at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
       ]
     },
     "source:packages/react-hotkeys/tests/hotkey-registrations.test.tsx": {
@@ -19118,6 +19118,414 @@
       "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
       "evidence": [
         "Changed: e2e/support/native.ts at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
+      ]
+    },
+    "source:packages/alpine-hotkeys/tests/conformance.test.ts": {
+      "fingerprint": "d517d6498fe53f07db2707384084a5a1e522ae177f974880912e12d1072b0826",
+      "snapshot": {
+        "packages/alpine-hotkeys/tests/conformance.test.ts": "b132063506da2f05567bfcdd249175c8274d8afa94bb3ebd381a48da79cd2445"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/alpine-hotkeys/tests/conformance.test.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/angular-hotkeys/tests/conformance.test.ts": {
+      "fingerprint": "120c4da2dcb238d0671871c1b681177161bc967bd3914b14feac360efdc3eb7a",
+      "snapshot": {
+        "packages/angular-hotkeys/tests/conformance.test.ts": "b9d97cc76bc28a7d0c5342c3e0dfba5b6c6cd4e63a91b82ee5afe548238d51cc"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/angular-hotkeys/tests/conformance.test.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/ember-hotkeys/tests/integration/conformance.test.gts": {
+      "fingerprint": "857eafdbf3e3652434dc1b3ac16e3ecd91cd0158a4f94220c2dceaed3b93a1a3",
+      "snapshot": {
+        "packages/ember-hotkeys/tests/integration/conformance.test.gts": "9041dc306bad1c195aa16f920f1d7d6b46ceb8e867220682583b785bc0e193cb"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/ember-hotkeys/tests/integration/conformance.test.gts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/lit-hotkeys/tests/conformance.test.ts": {
+      "fingerprint": "a97109042e2d1c32ab191907fe81c582d38aba8c2cd80a7cb3bbc51f415c8ed5",
+      "snapshot": {
+        "packages/lit-hotkeys/tests/conformance.test.ts": "2001a66ef339e237962f5258099f37ab2f3c86b9dff7439253cad9c6ed5323e4"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/lit-hotkeys/tests/conformance.test.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/octane-hotkeys/tests/conformance.test.ts": {
+      "fingerprint": "23f63f4c1618af8c82ad2b8f7cfc0463a22f3dafa962a6afe1b9d7c10829a120",
+      "snapshot": {
+        "packages/octane-hotkeys/tests/conformance.test.ts": "22731fe00db0ae8be1b8892ad1f048ff585e2453b8e2711400a81f2275b21d6a"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/octane-hotkeys/tests/conformance.test.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/octane-hotkeys/tests/conformance.tsrx": {
+      "fingerprint": "387ba6bc048ef0741138d870b45d763ab4608792ec25e3e210733259a48252b5",
+      "snapshot": {
+        "packages/octane-hotkeys/tests/conformance.tsrx": "72f3cfd9d09241943e087013e5d26af5e02c87dfd80dae2b7e495eface4dde92"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/octane-hotkeys/tests/conformance.tsrx at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/preact-hotkeys/tests/conformance.test.tsx": {
+      "fingerprint": "f363aa5963bc0e767d418cc9a7d131e99e6e209d476a16ee32d4dedf6ebcb2aa",
+      "snapshot": {
+        "packages/preact-hotkeys/tests/conformance.test.tsx": "01852cc1ab76829a9eefd145bec6c14fe335d9df9a51f003a5034200760f54c0"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/preact-hotkeys/tests/conformance.test.tsx at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/react-hotkeys/tests/conformance.test.tsx": {
+      "fingerprint": "28de33e80cb8a9ca999ed68a9acd2847340715c58f7cd0fc48ee3d11e27438dd",
+      "snapshot": {
+        "packages/react-hotkeys/tests/conformance.test.tsx": "e7958d63873a503579807412a9516b6ad34061b2e58d728616a1f9d2ba199262"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/react-hotkeys/tests/conformance.test.tsx at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/solid-hotkeys/tests/conformance.test.tsx": {
+      "fingerprint": "d0d3048b7e04412207f52eaa84bfa0238767d0a3ea8c3faaccece757cea14652",
+      "snapshot": {
+        "packages/solid-hotkeys/tests/conformance.test.tsx": "1a5c9bd11158d0c97ab7b2d63592a7474ef7bb1f64df16c6723923cc1130def3"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/solid-hotkeys/tests/conformance.test.tsx at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/conformance.test.ts": {
+      "fingerprint": "c212146146903c40ca6bd155e324935c20fdabd641d68064f8f19d6b31ffe2c1",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/conformance.test.ts": "2f981da66b53d867dfb76b38e3884a8f5a168b9ef15d9ebb06bc64fe458ddcc2"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/svelte-hotkeys/tests/conformance.test.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/conformance/Format.svelte": {
+      "fingerprint": "2bbaee1629410ce3fa428564dcbbb356f9a0018092548581b9cb56985e385326",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/conformance/Format.svelte": "22380c804391db59cf70e4439101e816648b55832c65cb561109a14c29bc983a"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/svelte-hotkeys/tests/conformance/Format.svelte at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/conformance/HeldKeysView.svelte": {
+      "fingerprint": "579e4da97e254a73a1fc785fc7db60a615cc31fda8ed116e0cd5c077024974cf",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/conformance/HeldKeysView.svelte": "894655d19dce16d92a2f388cb4ca232dd2608fc5a50adb55202b505de42779c8"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/svelte-hotkeys/tests/conformance/HeldKeysView.svelte at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/conformance/Hint.svelte": {
+      "fingerprint": "b841432aaa023ad02114a4e07ab5bda6d79019875783596dca9d27e62adabd47",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/conformance/Hint.svelte": "73dedd1bfb3bad2ab525ff39887f7239e3246c8c688e0250c923f0cc63210c90"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/svelte-hotkeys/tests/conformance/Hint.svelte at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/conformance/HotkeyList.svelte": {
+      "fingerprint": "1fe7076922882502c9b85cef618c28620acfb6cc4a2e509990fd81dcaf1b9047",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/conformance/HotkeyList.svelte": "43d6e224eaa0f33aaedeab6fb062f7af6f6e39e605e3bae7b311e57a2848b711"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/svelte-hotkeys/tests/conformance/HotkeyList.svelte at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/conformance/HotkeyOne.svelte": {
+      "fingerprint": "25b563ec83a8e8fbbeb6971009834e39918e83a208be8a7bddf7ceeb8c123e60",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/conformance/HotkeyOne.svelte": "dc4331500eea73118989f201577a91e04cb4d600cbd1f51e9b812289b3620de5"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/svelte-hotkeys/tests/conformance/HotkeyOne.svelte at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/conformance/Hotkeys.svelte": {
+      "fingerprint": "79a30ea896ea78c132cbe2122431a91b74ad4638dc2306ba458b7d48a6de7d78",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/conformance/Hotkeys.svelte": "7779ab5e0011236c87107cdf7b0a94a86ec6159febbde2a28bed2ba0a63cb793"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/svelte-hotkeys/tests/conformance/Hotkeys.svelte at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/conformance/Provider.svelte": {
+      "fingerprint": "0667b9c52c23dd2164903df5e51431e9fd54f74e0eff554ba2d8e26199dbfdab",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/conformance/Provider.svelte": "c9484c9a162f4292cd2b8e252e49d12aebf77280bc2e5720dad54cb23ebdcf05"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/svelte-hotkeys/tests/conformance/Provider.svelte at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/conformance/Recorder.svelte": {
+      "fingerprint": "73ab14a50b4aa49f014d122c5ce7f84902c5e1f3befead76def9c78ec045afa0",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/conformance/Recorder.svelte": "c84bbf8159d68341313bff42a5f628acc863ea7fcff81b34bb39ac9fcab4264a"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/svelte-hotkeys/tests/conformance/Recorder.svelte at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/conformance/RegistrationsView.svelte": {
+      "fingerprint": "773f1efd994295b78eac9fadc8a339189cac121ff7e76d5fd20616269814a9fd",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/conformance/RegistrationsView.svelte": "186d60bb443ecf60377df17574ddd096dc587bc5c7e71f95ce9871eedb43e298"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/svelte-hotkeys/tests/conformance/RegistrationsView.svelte at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/conformance/Wrap.svelte": {
+      "fingerprint": "c24b4d25915f20645386d1d4c41eac3eea1d061e99e5bcfeb9b89251fc329d73",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/conformance/Wrap.svelte": "a66dd346cccfff4998a38274bd8337731d4f5fd8f46c790203d1ad93c8a0b8c3"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/svelte-hotkeys/tests/conformance/Wrap.svelte at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/svelte-hotkeys/tests/conformance/cell.svelte.ts": {
+      "fingerprint": "cf2a2e7d03249ed510288a87b746dffa6252de84f9cc9cd4e7460c1517a7a82f",
+      "snapshot": {
+        "packages/svelte-hotkeys/tests/conformance/cell.svelte.ts": "2a74a8cf412718a93b1d8bc8be7335a7516eeb444c6fcfd05223170569f206fc"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/svelte-hotkeys/tests/conformance/cell.svelte.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:packages/vue-hotkeys/tests/conformance.test.ts": {
+      "fingerprint": "b6832bb2afd9bc14c4f0a77956781750e05e257d4b0957a152ffb2043e81a423",
+      "snapshot": {
+        "packages/vue-hotkeys/tests/conformance.test.ts": "28885990612fbdc01b769c60ad7a0462ed78c2c23423a4646f946b0f73810333"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: packages/vue-hotkeys/tests/conformance.test.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:test-utils/src/conformance/cases/held-keys.ts": {
+      "fingerprint": "4a9c0997ac34ba624ca8f79aa752a9297d5f27e516dc4c9d6d9dc34995afeb59",
+      "snapshot": {
+        "test-utils/src/conformance/cases/held-keys.ts": "ffebd825fee82ca7f97b920947405e6c3d283d567829c8fb1fab3cd0850568f4"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: test-utils/src/conformance/cases/held-keys.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:test-utils/src/conformance/cases/hotkeys.ts": {
+      "fingerprint": "f425df7536f860bcd7a7a5786abb8c7c8254ac60b9b19f014719331d1476b221",
+      "snapshot": {
+        "test-utils/src/conformance/cases/hotkeys.ts": "be66f3efbf78f7258415928c1d012fc14c37445cd33fafa4a3ba4d353d2c90cd"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: test-utils/src/conformance/cases/hotkeys.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:test-utils/src/conformance/cases/provider.ts": {
+      "fingerprint": "d35da2772f1c4b0813c45d8c7d56ef1deb44dff2808c45cf72c9002373bb8f03",
+      "snapshot": {
+        "test-utils/src/conformance/cases/provider.ts": "786212f17f06ab10d02bb940c6b2e76528e6f7f59b5423bfd2b6ce42e66e1f16"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: test-utils/src/conformance/cases/provider.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:test-utils/src/conformance/cases/recorder-hint-format.ts": {
+      "fingerprint": "929b7851afc7d71e411a53ab23467655bda53338f8887c31f607346b79d18c03",
+      "snapshot": {
+        "test-utils/src/conformance/cases/recorder-hint-format.ts": "e0382c4c9fdccaccdf1a77369d47d0edfd3ea8b6981193dedfcfe0422c17e60f"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: test-utils/src/conformance/cases/recorder-hint-format.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:test-utils/src/conformance/cases/registrations.ts": {
+      "fingerprint": "ed693fa8e56ae994ed9d7413c3c0ed06c11fbdaa6e763d84c88794350de8346d",
+      "snapshot": {
+        "test-utils/src/conformance/cases/registrations.ts": "ef181fb0e8feb5fb2220f2f27b4d168985acfaa39189cfa212079e7003d4c87b"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: test-utils/src/conformance/cases/registrations.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:test-utils/src/conformance/expect.ts": {
+      "fingerprint": "31eb06d3e755f30df0ae6dd61e7a349f118daa82c9bbd8580a6194d41a2dbcf7",
+      "snapshot": {
+        "test-utils/src/conformance/expect.ts": "d89d5f12b1d29ddd0058e6147ad56c6b57d400980d7b5f599a7775968326a524"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: test-utils/src/conformance/expect.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:test-utils/src/conformance/index.ts": {
+      "fingerprint": "d626f6ec27dafe0244d958b0214352904fa83b0d74fcdd334d7c0670fed0f8f9",
+      "snapshot": {
+        "test-utils/src/conformance/index.ts": "3527da5779dbe83daf345c3de7095b1927dbdbf035021ce3fb9f6d054bcb69d5"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: test-utils/src/conformance/index.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:test-utils/src/conformance/keys.ts": {
+      "fingerprint": "520720491aa8752aace9a27de0525f4436be86c0e76eee2a5502ac2e19fe0f71",
+      "snapshot": {
+        "test-utils/src/conformance/keys.ts": "c7cdc396f14ccccab32ad7d542101bfa528e9fc7fc070e6901942bd0dc1d0251"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: test-utils/src/conformance/keys.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:test-utils/src/conformance/suite.ts": {
+      "fingerprint": "d4af5fc385f0105d65db716d8b60bc746a176cd0cdb973ea5fdcb02ab2217af6",
+      "snapshot": {
+        "test-utils/src/conformance/suite.ts": "2771ed8fa69b38ee80f44136f368f4dd83f61d4269fa36cb4dc5d1a8137f59bc"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: test-utils/src/conformance/suite.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:test-utils/src/conformance/types.ts": {
+      "fingerprint": "72b712b069ca0b064605639103cfd3b80ea15758709bb9de37cdd90389e1a2b4",
+      "snapshot": {
+        "test-utils/src/conformance/types.ts": "cabf6b706510f6010a8c4c4f9862f2dc1df81ee667ee49e33819a3e44d8ef895"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: test-utils/src/conformance/types.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:test-utils/src/conformance/vitest.ts": {
+      "fingerprint": "67e75595da8728fc251afdd3b5a4ffd1dd28a3bf937ee52166454f134e3090aa",
+      "snapshot": {
+        "test-utils/src/conformance/vitest.ts": "464df6b7da6ac3b7e4b98a91f8fa2cb8281ac95bc90a2d8f04984d470f1ffde1"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: test-utils/src/conformance/vitest.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+      ]
+    },
+    "source:test-utils/tests/conformance-expect.test.ts": {
+      "fingerprint": "719f182ffcecb150a97693a646f503a35dc4864845cdb96731bc58187baf2feb",
+      "snapshot": {
+        "test-utils/tests/conformance-expect.test.ts": "c4271bc32653200e90d1e65f54f6c309b655cc4c9d7a6fa98ff787f3e003986c"
+      },
+      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
+      "outcome": "no-change",
+      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "evidence": [
+        "Changed: test-utils/tests/conformance-expect.test.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
       ]
     }
   }
