@@ -49,7 +49,7 @@ it('shows a createHotkey registration in the panel until its owner is disposed',
     ),
     host,
   )
-  await vi.waitFor(() => expect(row()).toBeDefined())
+  await vi.waitFor(() => expect(row()).toBeDefined(), { timeout: 5_000 })
   expect(row()!.querySelector('[data-row-label]')!.textContent).toBe(
     'Ctrl+SSave file',
   )

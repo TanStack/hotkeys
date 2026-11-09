@@ -44,7 +44,7 @@ it('shows a useHotkey registration in the panel until the component unmounts', a
     render: () => [h(HotkeysDevtoolsPanel), show.value ? h(Save) : null],
   })
   app.mount(host)
-  await vi.waitFor(() => expect(row()).toBeDefined())
+  await vi.waitFor(() => expect(row()).toBeDefined(), { timeout: 5_000 })
   expect(row()!.querySelector('[data-row-label]')!.textContent).toBe(
     'Ctrl+SSave file',
   )

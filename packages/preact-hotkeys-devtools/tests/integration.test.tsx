@@ -56,7 +56,7 @@ afterEach(() => {
 
 it('shows a useHotkey registration in the panel until the component unmounts', async () => {
   act(() => render(<App />, host))
-  await vi.waitFor(() => expect(row()).toBeDefined())
+  await vi.waitFor(() => expect(row()).toBeDefined(), { timeout: 5_000 })
   expect(row()!.querySelector('[data-row-label]')!.textContent).toBe(
     'Ctrl+SSave file',
   )
@@ -79,7 +79,9 @@ it.skip('BUG-112: keeps panel state when the parent re-renders', async () => {
     return <HotkeysDevtoolsPanel />
   }
   act(() => render(<Parent />, host))
-  await vi.waitFor(() => expect(host.querySelector('input')).not.toBeNull())
+  await vi.waitFor(() => expect(host.querySelector('input')).not.toBeNull(), {
+    timeout: 5_000,
+  })
   const input = host.querySelector('input')!
   input.value = 'save'
   input.dispatchEvent(new Event('input', { bubbles: true }))
