@@ -9,11 +9,14 @@ title: normalizeKeyName
 function normalizeKeyName(key): string;
 ```
 
-Defined in: [constants.ts:248](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L248)
+Defined in: [constants.ts:252](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/constants.ts#L252)
 
 Normalizes a key name from a `KeyboardEvent` or a hotkey: single letters
 become uppercase, and the space character becomes `Space`. Other names are
 returned as written, because key names are case-sensitive.
+
+Turkish dotless `ı` stays `ı`. Its uppercase is ASCII `I`, the uppercase of
+`i`, so uppercasing it would merge two different letters.
 
 ## Parameters
 
@@ -33,6 +36,7 @@ The canonical key name
 
 ```ts
 normalizeKeyName('a') // 'A'
+normalizeKeyName('ı') // 'ı' (Turkish dotless i)
 normalizeKeyName(' ') // 'Space'
 normalizeKeyName('ArrowUp') // 'ArrowUp' (already canonical)
 ```

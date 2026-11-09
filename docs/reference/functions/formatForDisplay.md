@@ -11,7 +11,7 @@ title: formatForDisplay
 function formatForDisplay(hotkey, options): string[][];
 ```
 
-Defined in: [format.ts:131](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L131)
+Defined in: [format.ts:133](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L133)
 
 Formats a hotkey for display in a user interface.
 
@@ -26,9 +26,11 @@ Display ordering does not change the normalized hotkey used for registration.
 On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
 The separator can be customized with `separatorToken`.
 Physical codes use conventional display labels: `[KeyS]` becomes `S` and
-`[Digit2]` becomes `2`. These labels do not infer the active keyboard layout
-or change matching. Supply a resolved `layoutMap` for layout-aware labels;
-`keyLabels` overrides both layout entries and fallback labels.
+`[Digit2]` becomes `2`. Keys with no US key use their keycap legends:
+`[IntlBackslash]` and `[IntlRo]` become `\` and `[IntlYen]` becomes `¥`.
+These labels do not infer the active keyboard layout or change matching.
+Supply a resolved `layoutMap` for layout-aware labels; `keyLabels`
+overrides both layout entries and fallback labels.
 Sequence steps are formatted individually and joined with `sequenceSeparator`
 (a space by default).
 
@@ -83,7 +85,7 @@ formatForDisplay(['G', 'H'])
 function formatForDisplay(hotkey, options): string[];
 ```
 
-Defined in: [format.ts:135](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L135)
+Defined in: [format.ts:137](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L137)
 
 Formats a hotkey for display in a user interface.
 
@@ -98,9 +100,11 @@ Display ordering does not change the normalized hotkey used for registration.
 On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
 The separator can be customized with `separatorToken`.
 Physical codes use conventional display labels: `[KeyS]` becomes `S` and
-`[Digit2]` becomes `2`. These labels do not infer the active keyboard layout
-or change matching. Supply a resolved `layoutMap` for layout-aware labels;
-`keyLabels` overrides both layout entries and fallback labels.
+`[Digit2]` becomes `2`. Keys with no US key use their keycap legends:
+`[IntlBackslash]` and `[IntlRo]` become `\` and `[IntlYen]` becomes `¥`.
+These labels do not infer the active keyboard layout or change matching.
+Supply a resolved `layoutMap` for layout-aware labels; `keyLabels`
+overrides both layout entries and fallback labels.
 Sequence steps are formatted individually and joined with `sequenceSeparator`
 (a space by default).
 
@@ -155,7 +159,7 @@ formatForDisplay(['G', 'H'])
 function formatForDisplay(hotkey, options?): string;
 ```
 
-Defined in: [format.ts:139](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L139)
+Defined in: [format.ts:141](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L141)
 
 Formats a hotkey for display in a user interface.
 
@@ -170,9 +174,11 @@ Display ordering does not change the normalized hotkey used for registration.
 On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
 The separator can be customized with `separatorToken`.
 Physical codes use conventional display labels: `[KeyS]` becomes `S` and
-`[Digit2]` becomes `2`. These labels do not infer the active keyboard layout
-or change matching. Supply a resolved `layoutMap` for layout-aware labels;
-`keyLabels` overrides both layout entries and fallback labels.
+`[Digit2]` becomes `2`. Keys with no US key use their keycap legends:
+`[IntlBackslash]` and `[IntlRo]` become `\` and `[IntlYen]` becomes `¥`.
+These labels do not infer the active keyboard layout or change matching.
+Supply a resolved `layoutMap` for layout-aware labels; `keyLabels`
+overrides both layout entries and fallback labels.
 Sequence steps are formatted individually and joined with `sequenceSeparator`
 (a space by default).
 
@@ -227,7 +233,7 @@ formatForDisplay(['G', 'H'])
 function formatForDisplay(hotkey, options): string | string[] | string[][];
 ```
 
-Defined in: [format.ts:143](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L143)
+Defined in: [format.ts:145](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/format.ts#L145)
 
 Formats a hotkey for display in a user interface.
 
@@ -242,9 +248,11 @@ Display ordering does not change the normalized hotkey used for registration.
 On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
 The separator can be customized with `separatorToken`.
 Physical codes use conventional display labels: `[KeyS]` becomes `S` and
-`[Digit2]` becomes `2`. These labels do not infer the active keyboard layout
-or change matching. Supply a resolved `layoutMap` for layout-aware labels;
-`keyLabels` overrides both layout entries and fallback labels.
+`[Digit2]` becomes `2`. Keys with no US key use their keycap legends:
+`[IntlBackslash]` and `[IntlRo]` become `\` and `[IntlYen]` becomes `¥`.
+These labels do not infer the active keyboard layout or change matching.
+Supply a resolved `layoutMap` for layout-aware labels; `keyLabels`
+overrides both layout entries and fallback labels.
 Sequence steps are formatted individually and joined with `sequenceSeparator`
 (a space by default).
 
