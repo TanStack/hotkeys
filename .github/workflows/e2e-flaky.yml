@@ -7,6 +7,8 @@ on:
     # Mondays at 06:00 UTC
     - cron: '0 6 * * 1'
   workflow_dispatch:
+  # Temporary: validates this workflow from its pull request
+  pull_request:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
