@@ -4185,15 +4185,15 @@
       "evidence": ["e2e/browser/focus.spec.ts"]
     },
     "source:packages/hotkeys/tests/input-detection.test.ts": {
-      "fingerprint": "d3d184300d72485e6672221172110d5076eebf6bd1eecaf22111c3efe0edb24d",
+      "fingerprint": "817e5c72fbdf2ba89dbf58003e7662466b06a716d35f042e6177092ba9e975ad",
       "snapshot": {
-        "packages/hotkeys/tests/input-detection.test.ts": "351fa32c2e088c074a9102b0399a1d8f6174f1923a3dcb3ca4698aba55091ce7"
+        "packages/hotkeys/tests/input-detection.test.ts": "ae2a0b301305485d9c2d0049ca7231e91da2a159e1c05231b44f9fd50d80ff73"
       },
-      "head": "420e42366cff71de912758ef2ab222673523c45a",
+      "head": "fb7dfa0d387c6341473c227c647710ebbf97c581",
       "outcome": "no-change",
       "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/input-detection.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+        "Changed: packages/hotkeys/tests/input-detection.test.ts at fb7dfa0d387c6341473c227c647710ebbf97c581"
       ]
     },
     "source:packages/hotkeys/tests/registration-and-target.test.ts": {
@@ -12092,15 +12092,15 @@
       ]
     },
     "source:packages/hotkeys/tests/native-activation.test.ts": {
-      "fingerprint": "d025a544b0d17cbd5c5cfa33a611c6d928aa55194a68af965b5fd3003c7df246",
+      "fingerprint": "5976360c233d330eed422df0d06e354a8091c2b885776c31390d5a70a6d09833",
       "snapshot": {
-        "packages/hotkeys/tests/native-activation.test.ts": "2b7b81c2a30da23f4df94f53c1f2c3b7f6a16248a9163a1108825e38ff3e6d42"
+        "packages/hotkeys/tests/native-activation.test.ts": "ebd08d095ddb936e798fbcf4cc6acb0de2584a89d1a70ee56cca681b79e83da9"
       },
-      "head": "420e42366cff71de912758ef2ab222673523c45a",
+      "head": "fb7dfa0d387c6341473c227c647710ebbf97c581",
       "outcome": "no-change",
       "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/native-activation.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+        "Changed: packages/hotkeys/tests/native-activation.test.ts at fb7dfa0d387c6341473c227c647710ebbf97c581"
       ]
     },
     "source:docs/framework/angular/reference/functions/injectAppHotkeyList.md": {
@@ -17803,15 +17803,15 @@
       ]
     },
     "source:packages/hotkeys/tests/aria-widgets.test.ts": {
-      "fingerprint": "b9806f1d6a3d24b3615a0410f8fbc2e119f1ad0cf03fc777acf7ce64ca5be1ea",
+      "fingerprint": "1066e586de870097b06cc29c76e1eadd616a1b05138895d4077d2926c7c247af",
       "snapshot": {
-        "packages/hotkeys/tests/aria-widgets.test.ts": "87095a05e53b4d282b2057af77113172cd4e22f57126d05f9f9f0ea3f3ad2236"
+        "packages/hotkeys/tests/aria-widgets.test.ts": "b1d83f9f7269cfda3668aae3955c08e2cbff96166d191469f97966915d414912"
       },
-      "head": "420e42366cff71de912758ef2ab222673523c45a",
+      "head": "fb7dfa0d387c6341473c227c647710ebbf97c581",
       "outcome": "no-change",
       "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/aria-widgets.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+        "Changed: packages/hotkeys/tests/aria-widgets.test.ts at fb7dfa0d387c6341473c227c647710ebbf97c581"
       ]
     },
     "source:packages/hotkeys/tests/conflicts.test.ts": {
