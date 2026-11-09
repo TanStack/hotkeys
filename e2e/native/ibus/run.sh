@@ -12,6 +12,6 @@ for _ in $(seq 1 50); do
   sleep 0.2
 done
 echo "ibus engine: $(ibus engine)"
-ibus list-engine | grep -E 'libpinyin|xkb:us::eng' || true
+ibus list-engine | grep -iE 'pinyin|xkb:us::eng' || echo 'ibus list-engine shows no pinyin engine'
 trap 'ibus exit 2>/dev/null || true' EXIT
 "$@"

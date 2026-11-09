@@ -7,20 +7,35 @@ import { focusBrowserWindow, press } from './x11'
 import type { NativeKeyboard } from './native'
 
 function ibus(...args: Array<string>): string {
-  return execFileSync('ibus', args, { encoding: 'utf8', stdio: 'pipe' }).trim()
+  try {
+    return execFileSync('ibus', args, {
+      encoding: 'utf8',
+      stdio: 'pipe',
+    }).trim()
+  } catch (error) {
+    const { stderr } = error as { stderr?: string }
+    throw new Error(`ibus ${args.join(' ')} failed: ${stderr?.trim()}`)
+  }
 }
+
+const sleep = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
 export function ibusKeyboard(): NativeKeyboard {
   return {
     focus: () => focusBrowserWindow(),
     setLayout: async (engine) => {
-      ibus('engine', engine)
-      const active = ibus('engine')
-      if (active !== engine) {
-        throw new Error(`ibus engine is ${active}, not ${engine}`)
+      // An engine's first switch starts its process and can time out.
+      for (let attempt = 1; ; attempt++) {
+        try {
+          ibus('engine', engine)
+          if (ibus('engine') === engine) break
+        } catch (error) {
+          if (attempt === 10) throw error
+        }
+        await sleep(500)
       }
       // The browser's input context picks up the engine change asynchronously.
-      await new Promise((resolve) => setTimeout(resolve, 300))
+      await sleep(300)
     },
     press: (combo) => press(combo),
     close: () => {},

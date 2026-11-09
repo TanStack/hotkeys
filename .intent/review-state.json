@@ -17641,15 +17641,15 @@
       ]
     },
     "source:e2e/native/ibus/run.sh": {
-      "fingerprint": "8f320bf65fee3d791cd4209ba6e3ba1cced0a33a22de71683d3b95b12e572fcd",
+      "fingerprint": "80a14218df44d19b17a365fa3bb2be78e044dc66e089ef826de1facdcbcfde86",
       "snapshot": {
-        "e2e/native/ibus/run.sh": "f4d7d0265426d7fd1e456cfaca0242e3dc5a3318360957b04748550c1047ad71"
+        "e2e/native/ibus/run.sh": "8ce10f1953da1fc9bdca4c7fb3e4220d3526b284713fd079de7a5440c1ac8860"
       },
-      "head": "cd1113a2503350fe8a2777e79e46d99289700dde",
+      "head": "73ab56c10267cacc4922b56462950b505d4ae9f5",
       "outcome": "no-change",
       "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
       "evidence": [
-        "Changed: e2e/native/ibus/run.sh at cd1113a2503350fe8a2777e79e46d99289700dde"
+        "Changed: e2e/native/ibus/run.sh at 73ab56c10267cacc4922b56462950b505d4ae9f5"
       ]
     },
     "source:e2e/native/wayland.spec.ts": {
@@ -17761,15 +17761,15 @@
       ]
     },
     "source:e2e/support/native-ibus.ts": {
-      "fingerprint": "4a9a6b13906c24e03686899fefa3a46277e8cee1851671786bbe3571da886f93",
+      "fingerprint": "8f60f4623316e25dc2c1ddc9c53bddbe6b9d2e203ea1818aa0b94c6653bd9c1c",
       "snapshot": {
-        "e2e/support/native-ibus.ts": "0d463c32b6dc39b6a275cce0775d09157eb031ca6f772cb657ff689a74352515"
+        "e2e/support/native-ibus.ts": "e928cd23a5993ad1fa30d635bc5ece63652a1f66a50d81cad049925ac043911f"
       },
-      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
+      "head": "73ab56c10267cacc4922b56462950b505d4ae9f5",
       "outcome": "no-change",
       "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
       "evidence": [
-        "Changed: e2e/support/native-ibus.ts at c77ce868178f916374a51582da87fb3923a3af2b"
+        "Changed: e2e/support/native-ibus.ts at 73ab56c10267cacc4922b56462950b505d4ae9f5"
       ]
     },
     "source:e2e/support/native-wayland.ts": {
