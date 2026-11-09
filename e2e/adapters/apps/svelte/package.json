@@ -1,0 +1,16 @@
+{
+  "name": "@tanstack/hotkeys-e2e-app-svelte",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@tanstack/svelte-hotkeys": "workspace:*",
+    "svelte": "^5.57.3"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "vite": "^8.3.6"
+  }
+}
