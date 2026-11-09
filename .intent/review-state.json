@@ -4244,15 +4244,15 @@
       ]
     },
     "source:packages/hotkeys/tests/match.test.ts": {
-      "fingerprint": "ee37905d40193aee31e052ae068b070f7d2b48d196c4ae9a08fe081a0906aebd",
+      "fingerprint": "e198b30d4881018191e869a97e39cd89cca632a6cc2ab4ef6bb88c5112ec2e5b",
       "snapshot": {
-        "packages/hotkeys/tests/match.test.ts": "38b559d4158f1ab3c3beda55f5ff0f7acf0c65ac05fe679ad3116c6f0c011ee8"
+        "packages/hotkeys/tests/match.test.ts": "e8cda248f3256d776cfc2ff7e2902d5af624b78d1875c87d44081892252cd393"
       },
-      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
+      "head": "9c5cc3dd5c1c5e786954da988e4cd604d4d69728",
       "outcome": "no-change",
-      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "reason": "Formatting-only change to the BUG-124/BUG-125 tests; no guidance affected.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/match.test.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+        "Changed: packages/hotkeys/tests/match.test.ts at 9c5cc3dd5c1c5e786954da988e4cd604d4d69728"
       ]
     },
     "source:packages/hotkeys/tests/sequence-regressions.test.ts": {
@@ -6517,15 +6517,15 @@
       ]
     },
     "source:packages/hotkeys/tests/format.test.ts": {
-      "fingerprint": "cec697f1bdff24e3c405a4b3f04b8fc6a312a56f68753cd5bf1b5d4eaee90575",
+      "fingerprint": "1df4eb9255c37e7cd8969198bb6643581e5625cc7e5d0e3309a046e9bad8eff3",
       "snapshot": {
-        "packages/hotkeys/tests/format.test.ts": "120c60145fb3bcafc1ab154b650a6c815bb0a9d4323ec386b65fd22b7781d192"
+        "packages/hotkeys/tests/format.test.ts": "4ebeb1250ec16ba70faf2c2a43c26f16f3312634f0fcadca8ccb736c685c4d52"
       },
-      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
+      "head": "9c5cc3dd5c1c5e786954da988e4cd604d4d69728",
       "outcome": "no-change",
-      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "reason": "Formatting-only change to the BUG-124/BUG-125 tests; no guidance affected.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/format.test.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+        "Changed: packages/hotkeys/tests/format.test.ts at 9c5cc3dd5c1c5e786954da988e4cd604d4d69728"
       ]
     },
     "source:packages/hotkeys/tests/key-coverage.test.ts": {
@@ -18713,15 +18713,15 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-recorder.test.ts": {
-      "fingerprint": "3039691df8e12ee47e116ac3ee451ccfcbc68e66598061467c8857f914125001",
+      "fingerprint": "a3c3c87f9324ab9a85f262b775041e70d8ab5b6596d980d068e3db3d686eb587",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-recorder.test.ts": "7a7b272f928fb99b6fe489b72adbf9cb828980f8299a5c2a687a8c22df08a7ba"
+        "packages/hotkeys/tests/hotkey-recorder.test.ts": "85dc47e699038051fb5bcb0d9d4eaa889e17d14463c64eb1b080263caed91647"
       },
-      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
+      "head": "9c5cc3dd5c1c5e786954da988e4cd604d4d69728",
       "outcome": "no-change",
-      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "reason": "Formatting-only change to the BUG-124/BUG-125 tests; no guidance affected.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/hotkey-recorder.test.ts at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+        "Changed: packages/hotkeys/tests/hotkey-recorder.test.ts at 9c5cc3dd5c1c5e786954da988e4cd604d4d69728"
       ]
     },
     "source:packages/hotkeys/tests/invariants/event-fuzz.test.ts": {
