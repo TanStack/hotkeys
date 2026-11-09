@@ -53,7 +53,7 @@ it('constructs exclusive identities from strings, raw bindings, and events', () 
     parseHotkey('Alt+S'),
     parseHotkey({ key: 'S', alt: true }),
     parseKeyboardEvent(
-      new KeyboardEvent('keydown', { key: 's', code: 'KeyQ', altKey: true }),
+      keydown({ key: 's', code: 'KeyQ', altKey: true }),
       'mac',
     ),
   ]) {
@@ -72,9 +72,7 @@ it('passes only physical identity to recorder validation', () => {
   })
   try {
     recorder.start()
-    document.dispatchEvent(
-      new KeyboardEvent('keydown', { key: 'ß', code: 'KeyS', altKey: true }),
-    )
+    keydown({ key: 'ß', code: 'KeyS', altKey: true, target: document })
     expect(validate.mock.calls[0]?.[1]).toEqual({
       kind: 'chord',
       event: expect.any(KeyboardEvent),
@@ -88,7 +86,7 @@ it('keeps physical identity in standalone handler context', () => {
   const callback = vi.fn()
   createHotkeyChordHandler({ ...modifiers, code: 'KeyS' }, callback, {
     platform: 'mac',
-  })(new KeyboardEvent('keydown', { key: 'ß', code: 'KeyS', altKey: true }))
+  })(keydown({ key: 'ß', code: 'KeyS', altKey: true }))
   expect(callback).toHaveBeenCalledWith(expect.any(KeyboardEvent), {
     kind: 'chord',
     hotkey: 'Alt+[KeyS]',
@@ -109,13 +107,7 @@ it('recognizes physical action keys and preserves Escape input defaults', () => 
   const input = document.createElement('input')
   document.body.appendChild(input)
   input.focus()
-  input.dispatchEvent(
-    new KeyboardEvent('keydown', {
-      key: 'Escape',
-      code: 'Escape',
-      bubbles: true,
-    }),
-  )
+  keydown({ key: 'Escape', code: 'Escape', target: input })
   expect(callback).toHaveBeenCalledOnce()
   input.remove()
 })

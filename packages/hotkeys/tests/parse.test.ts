@@ -1,3 +1,4 @@
+import { keydown } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, expectTypeOf, it, vi } from 'vitest'
 import { hotkeyChordFromKeydown } from '../src/_recorder-chord'
 import { normalizeKeyName } from '../src/constants'
@@ -474,11 +475,7 @@ describe('normalizeHotkey', () => {
 
 describe('normalizeHotkey with a keyboard event', () => {
   it('should match hotkeyChordFromKeydown for Cmd+Shift+E on Mac', () => {
-    const event = new KeyboardEvent('keydown', {
-      key: 'e',
-      metaKey: true,
-      shiftKey: true,
-    })
+    const event = keydown({ key: 'e', metaKey: true, shiftKey: true })
     expect(normalizeHotkey(parseKeyboardEvent(event, 'mac'), 'mac')).toBe(
       'Mod+Shift+E',
     )
@@ -488,11 +485,7 @@ describe('normalizeHotkey with a keyboard event', () => {
     expect(
       normalizeHotkey(
         parseKeyboardEvent(
-          new KeyboardEvent('keydown', {
-            key: '!',
-            code: 'Digit1',
-            shiftKey: true,
-          }),
+          keydown({ key: '!', code: 'Digit1', shiftKey: true }),
           'windows',
         ),
         'windows',
@@ -501,11 +494,7 @@ describe('normalizeHotkey with a keyboard event', () => {
     expect(
       normalizeHotkey(
         parseKeyboardEvent(
-          new KeyboardEvent('keydown', {
-            key: '¡',
-            code: 'Digit1',
-            altKey: true,
-          }),
+          keydown({ key: '¡', code: 'Digit1', altKey: true }),
           'mac',
         ),
         'mac',
@@ -516,50 +505,30 @@ describe('normalizeHotkey with a keyboard event', () => {
 
 describe('hotkeyChordFromKeydown', () => {
   it('should return Mod+Shift+E for Cmd+Shift+E on Mac', () => {
-    const event = new KeyboardEvent('keydown', {
-      key: 'e',
-      metaKey: true,
-      shiftKey: true,
-    })
+    const event = keydown({ key: 'e', metaKey: true, shiftKey: true })
     expect(hotkeyChordFromKeydown(event, 'mac', 'key')).toBe('Mod+Shift+E')
   })
 
   it('should return Mod+Shift+S for Ctrl+Shift+S on Windows', () => {
-    const event = new KeyboardEvent('keydown', {
-      key: 's',
-      ctrlKey: true,
-      shiftKey: true,
-    })
+    const event = keydown({ key: 's', ctrlKey: true, shiftKey: true })
     expect(hotkeyChordFromKeydown(event, 'windows', 'key')).toBe('Mod+Shift+S')
   })
 
   it('should return null for modifier-only keydown', () => {
-    const event = new KeyboardEvent('keydown', { key: 'Shift' })
+    const event = keydown({ key: 'Shift' })
     expect(hotkeyChordFromKeydown(event, 'mac', 'key')).toBe(null)
   })
 
   it('should return null during IME composition', () => {
-    const event = new KeyboardEvent('keydown', {
-      key: 'Process',
-      code: 'KeyA',
-      isComposing: true,
-    })
+    const event = keydown({ key: 'Process', code: 'KeyA', isComposing: true })
     expect(hotkeyChordFromKeydown(event, 'windows', 'key')).toBe(null)
   })
 
   it('should return null for OS / Win meta key keydown', () => {
-    expect(
-      hotkeyChordFromKeydown(
-        new KeyboardEvent('keydown', { key: 'OS' }),
-        'windows',
-      ),
-    ).toBe(null)
-    expect(
-      hotkeyChordFromKeydown(
-        new KeyboardEvent('keydown', { key: 'Win' }),
-        'windows',
-      ),
-    ).toBe(null)
+    expect(hotkeyChordFromKeydown(keydown({ key: 'OS' }), 'windows')).toBe(null)
+    expect(hotkeyChordFromKeydown(keydown({ key: 'Win' }), 'windows')).toBe(
+      null,
+    )
   })
 })
 

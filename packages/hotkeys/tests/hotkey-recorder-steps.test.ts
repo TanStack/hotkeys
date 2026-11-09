@@ -1,4 +1,4 @@
-import { keydown, keyup } from '@tanstack/hotkeys-test-utils'
+import { keyEvent, keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager } from '../src/hotkey-manager'
 import { HotkeyRecorder } from '../src/hotkey-recorder'
@@ -44,15 +44,7 @@ function createKeyboardEvent(
     metaKey?: boolean
   } = {},
 ): KeyboardEvent {
-  return new KeyboardEvent(type, {
-    key,
-    code: fixtureCodes[key],
-    ctrlKey: options.ctrlKey ?? false,
-    shiftKey: options.shiftKey ?? false,
-    altKey: options.altKey ?? false,
-    metaKey: options.metaKey ?? false,
-    bubbles: true,
-  })
+  return keyEvent(type, { ...options, key, code: fixtureCodes[key] })
 }
 
 describe.each(['key', 'code', undefined] as const)(

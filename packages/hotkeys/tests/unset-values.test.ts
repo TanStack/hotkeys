@@ -1,3 +1,4 @@
+import { keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   createHotkeyBindings,
@@ -16,25 +17,19 @@ function pressCtrlS() {
   let reachedWindow = false
   const listener = () => (reachedWindow = true)
   window.addEventListener('keydown', listener)
-  const event = new KeyboardEvent('keydown', {
+  const event = keydown({
     key: 's',
     code: 'KeyS',
     ctrlKey: true,
-    bubbles: true,
-    cancelable: true,
+    target: document.body,
   })
-  document.body.dispatchEvent(event)
   window.removeEventListener('keydown', listener)
   return { defaultPrevented: event.defaultPrevented, reachedWindow }
 }
 
 function press(key: string, init: KeyboardEventInit = {}) {
-  document.dispatchEvent(
-    new KeyboardEvent('keydown', { key, bubbles: true, ...init }),
-  )
-  document.dispatchEvent(
-    new KeyboardEvent('keyup', { key, bubbles: true, ...init }),
-  )
+  keydown({ key, ...init, target: document })
+  keyup({ key, ...init, target: document })
 }
 
 const DEFAULT_RESULT = { defaultPrevented: true, reachedWindow: false }
@@ -276,7 +271,7 @@ describe('empty hotkeys', () => {
     expect(handle.isActive).toBe(false)
     expect(getHotkeyManager().registrations.state.size).toBe(0)
     document.dispatchEvent(new Event('keydown'))
-    document.dispatchEvent(new KeyboardEvent('keydown', { key: '' }))
+    keydown({ key: '', target: document })
     expect(callback).not.toHaveBeenCalled()
   })
 
@@ -287,7 +282,7 @@ describe('empty hotkeys', () => {
     expect(getHotkeyManager().registrations.state.size).toBe(1)
     bindings.update([{ hotkey: '' as never, callback }])
     expect(getHotkeyManager().registrations.state.size).toBe(0)
-    document.dispatchEvent(new KeyboardEvent('keydown', { key: '' }))
+    keydown({ key: '', target: document })
     document.dispatchEvent(new Event('keydown'))
     press('k')
     expect(callback).not.toHaveBeenCalled()
@@ -295,12 +290,7 @@ describe('empty hotkeys', () => {
   })
 
   it('never match a key-less event', () => {
-    expect(
-      matchesKeyboardEvent(
-        new KeyboardEvent('keydown', { key: '' }),
-        '' as never,
-      ),
-    ).toBe(false)
+    expect(matchesKeyboardEvent(keydown({ key: '' }), '' as never)).toBe(false)
   })
 })
 

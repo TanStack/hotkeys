@@ -1091,7 +1091,7 @@ describe('sequence matching regressions', () => {
     for (const [key, code] of [
       ['g', 'KeyG'],
       ['й', 'KeyQ'],
-    ])
+    ] as const)
       keyup({ key, code, target: document })
     expect(exact).toHaveBeenCalledOnce()
     expect(fallback).not.toHaveBeenCalled()

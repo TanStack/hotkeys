@@ -1,5 +1,6 @@
 import { readFileSync } from 'node:fs'
 import { resolve } from 'node:path'
+import { keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { createHotkeyBindings } from '../src/adapter'
 import { HotkeyManager, getHotkeyManager } from '../src/hotkey-manager'
@@ -9,12 +10,8 @@ function press(
   target: EventTarget = document,
   options: KeyboardEventInit = {},
 ) {
-  target.dispatchEvent(
-    new KeyboardEvent('keydown', { key, bubbles: true, ...options }),
-  )
-  target.dispatchEvent(
-    new KeyboardEvent('keyup', { key, bubbles: true, ...options }),
-  )
+  keydown({ key, ...options, target })
+  keyup({ key, ...options, target })
 }
 
 afterEach(() => {
