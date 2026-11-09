@@ -17774,6 +17774,90 @@
       "evidence": [
         "Changed: vitest.workspace.ts at a9dd5ea3fb8a4d3d660638add1766bc35ef114f6"
       ]
+    },
+    "source:packages/hotkeys/tests/invariants/event-fuzz.test.ts": {
+      "fingerprint": "4a966923f79868ccf4201ec867cf467bb3fc9113bd464ee8cd7b01804c150231",
+      "snapshot": {
+        "packages/hotkeys/tests/invariants/event-fuzz.test.ts": "e4f5917a52ab75f225df277935a5d4a2b67d71589f1cce513862828cd17664b6"
+      },
+      "head": "45e1bea3940c04cd8c6295464a4111102ca36ed8",
+      "outcome": "no-change",
+      "reason": "Test-only: new invariant and fast-check suites under packages/hotkeys/tests/invariants. No public API, behavior, docs or skill guidance changes.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/invariants/event-fuzz.test.ts at 45e1bea3940c04cd8c6295464a4111102ca36ed8"
+      ]
+    },
+    "source:packages/hotkeys/tests/invariants/fixtures.ts": {
+      "fingerprint": "260aebe206b1251f0f9af62d3bb7e78f408b240f54ee0203394f0f7faba5fd5f",
+      "snapshot": {
+        "packages/hotkeys/tests/invariants/fixtures.ts": "f9b6221acc6982ac0fc189e08b5b91939a36ae538ce2b4beaef0051e167a3827"
+      },
+      "head": "45e1bea3940c04cd8c6295464a4111102ca36ed8",
+      "outcome": "no-change",
+      "reason": "Test-only: new invariant and fast-check suites under packages/hotkeys/tests/invariants. No public API, behavior, docs or skill guidance changes.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/invariants/fixtures.ts at 45e1bea3940c04cd8c6295464a4111102ca36ed8"
+      ]
+    },
+    "source:packages/hotkeys/tests/invariants/matching.test.ts": {
+      "fingerprint": "3f6a0340781cf23e7b8df679c77fe2bd4c6d284883543455aa4f92cee407ea64",
+      "snapshot": {
+        "packages/hotkeys/tests/invariants/matching.test.ts": "f258c5c9dada03b5eb31300c5ac4ad82d41ea51b745f96fd31aa0097a07bf446"
+      },
+      "head": "45e1bea3940c04cd8c6295464a4111102ca36ed8",
+      "outcome": "no-change",
+      "reason": "Test-only: new invariant and fast-check suites under packages/hotkeys/tests/invariants. No public API, behavior, docs or skill guidance changes.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/invariants/matching.test.ts at 45e1bea3940c04cd8c6295464a4111102ca36ed8"
+      ]
+    },
+    "source:packages/hotkeys/tests/invariants/parse-fuzz.test.ts": {
+      "fingerprint": "6a483ac5fe545596e85a207de707e708f017ad423ad7a178db3f09ee4162fffb",
+      "snapshot": {
+        "packages/hotkeys/tests/invariants/parse-fuzz.test.ts": "0380bc14421ae77d3026e63dff981413c3e90b7a3aaccdad4f61115a7324d17d"
+      },
+      "head": "45e1bea3940c04cd8c6295464a4111102ca36ed8",
+      "outcome": "no-change",
+      "reason": "Test-only: new invariant and fast-check suites under packages/hotkeys/tests/invariants. No public API, behavior, docs or skill guidance changes.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/invariants/parse-fuzz.test.ts at 45e1bea3940c04cd8c6295464a4111102ca36ed8"
+      ]
+    },
+    "source:packages/hotkeys/tests/invariants/recorder-match.test.ts": {
+      "fingerprint": "d4ffa0d36ab83e160369db39a40c2d0a9513342c7c58cf89da3e79837fd04cea",
+      "snapshot": {
+        "packages/hotkeys/tests/invariants/recorder-match.test.ts": "d69c9c3a3dcb08b208605d5343f5b48e2fdc63ca4ffac52f6614cb24462b48d8"
+      },
+      "head": "45e1bea3940c04cd8c6295464a4111102ca36ed8",
+      "outcome": "no-change",
+      "reason": "Test-only: new invariant and fast-check suites under packages/hotkeys/tests/invariants. No public API, behavior, docs or skill guidance changes.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/invariants/recorder-match.test.ts at 45e1bea3940c04cd8c6295464a4111102ca36ed8"
+      ]
+    },
+    "source:packages/hotkeys/tests/invariants/round-trip.test.ts": {
+      "fingerprint": "f80e36e694dd618f7fc4c34def7ed4afdb2b0c22dbef614801e5884832dced36",
+      "snapshot": {
+        "packages/hotkeys/tests/invariants/round-trip.test.ts": "e93693c81fed98e32cf8b73f9f979f4ebac77fa41f2c0231e2952cfcee2f1dd7"
+      },
+      "head": "45e1bea3940c04cd8c6295464a4111102ca36ed8",
+      "outcome": "no-change",
+      "reason": "Test-only: new invariant and fast-check suites under packages/hotkeys/tests/invariants. No public API, behavior, docs or skill guidance changes.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/invariants/round-trip.test.ts at 45e1bea3940c04cd8c6295464a4111102ca36ed8"
+      ]
+    },
+    "source:packages/hotkeys/tests/invariants/sequence-fuzz.test.ts": {
+      "fingerprint": "8b7015d3d6632283b57c872cab384c5b1d80e6782fca2287d18e760ddc11ba52",
+      "snapshot": {
+        "packages/hotkeys/tests/invariants/sequence-fuzz.test.ts": "8ca3f9583c9e1e4d8f0dd80fd92745d93d3c42e10d4c576f9daea8ee19e4f46b"
+      },
+      "head": "45e1bea3940c04cd8c6295464a4111102ca36ed8",
+      "outcome": "no-change",
+      "reason": "Test-only: new invariant and fast-check suites under packages/hotkeys/tests/invariants. No public API, behavior, docs or skill guidance changes.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/invariants/sequence-fuzz.test.ts at 45e1bea3940c04cd8c6295464a4111102ca36ed8"
+      ]
     }
   }
 }
