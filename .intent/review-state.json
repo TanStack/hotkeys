@@ -7536,14 +7536,16 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:knip.json": {
-      "fingerprint": "5b7779e201b11cd3886bdf49d94304d8b2303241e892cf62610cf0bd9a4d10c7",
+      "fingerprint": "dda8bac8b86d2b5fa43070fb0b4f4857cf6957f2b0181d085b1413164e0eb9ee",
       "snapshot": {
-        "knip.json": "352fe91b8bbe91e12b10d9221824bf5e30b0e4a574db3b285087c34c9b7fb049"
+        "knip.json": "3a250900da2d10df95e6f066610e1bde7398965280f3c5ecea1bb9f50a298454"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "a5223d48787df9349504e38fee9e95f0ba64f088",
       "outcome": "no-change",
-      "reason": "Tooling and dependency configuration for the oxlint/oxfmt migration and dependency updates. No guidance depends on it.",
-      "evidence": ["knip.json"]
+      "reason": "knip config only: xterm is a system binary used by the e2e focus-loss helper; no guidance change.",
+      "evidence": [
+        "Changed: knip.json at a5223d48787df9349504e38fee9e95f0ba64f088"
+      ]
     },
     "source:packages/alpine-hotkeys/src/index.ts": {
       "fingerprint": "e29ddd24dfc499075e7c8c9d6f755fdc8383677c76fa663b60aac2d23ca2da24",
