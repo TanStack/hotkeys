@@ -8368,15 +8368,15 @@
       "evidence": ["oxfmt.config.ts", "pnpm format:check passes"]
     },
     "source:e2e/README.md": {
-      "fingerprint": "bde9025f6f94ad7d7f96a597e7c07d55fc786451fee86bffae75b03b05586261",
+      "fingerprint": "b123b64fb83dc65b83957569c2f84342b6b26c32c344371c6c4332e0c6c93a5a",
       "snapshot": {
-        "e2e/README.md": "008638005496726532e1d3529fefa6d616972530852afa327ded5a564931aca8"
+        "e2e/README.md": "a192a93460f94c132ce047c3570057ec67e36cb4cc33c5931effe046a1b02166"
       },
-      "head": "cd1113a2503350fe8a2777e79e46d99289700dde",
+      "head": "cef3bfb20b431af1cacecb85cd7e0dcbce26e4ca",
       "outcome": "no-change",
-      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "reason": "E2E README and nightly workflow trigger only; no library behavior or skill guidance changes.",
       "evidence": [
-        "Changed: e2e/README.md at cd1113a2503350fe8a2777e79e46d99289700dde"
+        "Changed: e2e/README.md at cef3bfb20b431af1cacecb85cd7e0dcbce26e4ca"
       ]
     },
     "source:e2e/playwright.ssr.config.ts": {
@@ -17619,15 +17619,15 @@
       "evidence": ["packages/hotkeys/tests/recorder-tab.test.ts"]
     },
     "source:.github/workflows/nightly.yml": {
-      "fingerprint": "3af29bcac8d8982d89e73a05e66b9f3ee0744c0a6cc4880b9bb8fce0e4f17d58",
+      "fingerprint": "30e63101b1d7e8cad39adfdb37d2eeccd566bfe2db8676949f973fe74b169602",
       "snapshot": {
-        ".github/workflows/nightly.yml": "3b8ae56a9f3751de689caab69038d33c80961017a51d3b67e983de9ba0916087"
+        ".github/workflows/nightly.yml": "7d42d8c99edbaf54b108e0d05557b37276cd70841c03552902271feaf10073fe"
       },
-      "head": "7b78247aeb07b33b8addeb6ab96b1621dbf41bad",
+      "head": "cef3bfb20b431af1cacecb85cd7e0dcbce26e4ca",
       "outcome": "no-change",
-      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "reason": "E2E README and nightly workflow trigger only; no library behavior or skill guidance changes.",
       "evidence": [
-        "Changed: .github/workflows/nightly.yml at 7b78247aeb07b33b8addeb6ab96b1621dbf41bad"
+        "Changed: .github/workflows/nightly.yml at cef3bfb20b431af1cacecb85cd7e0dcbce26e4ca"
       ]
     },
     "source:e2e/native/ibus.spec.ts": {
