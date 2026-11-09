@@ -1,7 +1,16 @@
 import { formatForDisplay } from '@tanstack/hotkeys'
 import clsx from 'clsx'
 import { matchSorter } from 'match-sorter'
-import { For, Show, createEffect, createMemo, createSignal, on } from 'solid-js'
+import {
+  For,
+  Show,
+  createEffect,
+  createMemo,
+  createSignal,
+  on,
+  onCleanup,
+  untrack,
+} from 'solid-js'
 import { useHotkeysDevtoolsState } from '../HotkeysContextProvider'
 import {
   formatRegistration,
@@ -15,6 +24,7 @@ import type {
   AppHotkeyListItem,
   HotkeyRegistrationView,
 } from '@tanstack/hotkeys'
+import type { ScopeGroup } from '../_scopes'
 
 type HotkeyListProps = {
   selectedId: () => string | null
@@ -112,8 +122,8 @@ function RegistrationKeys(props: {
 }
 
 function RegistrationRow(props: {
-  reg: HotkeyRegistrationView
-  appHotkey: () => AppHotkeyListItem | undefined
+  id: string
+  appHotkeyById: () => ReadonlyMap<string, AppHotkeyListItem>
   sequenceProgressNow: () => number
   selectedId: () => string | null
   setSelectedId: (id: string | null) => void
@@ -121,7 +131,13 @@ function RegistrationRow(props: {
   const styles = useStyles()
   const state = useHotkeysDevtoolsState()
 
-  const conflicts = useRegistrationConflicts(() => props.reg)
+  // The list is keyed by id, so this row lives as long as its registration.
+  // Each update makes new view objects; read the current one by id, and keep
+  // the last one while the list removes this row.
+  const liveReg = createMemo<HotkeyRegistrationView>(
+    (prev) => state.registrations().find((r) => r.id === props.id) ?? prev!,
+  )
+  const conflicts = useRegistrationConflicts(liveReg)
   const targetConflicts = () => conflicts().overlapping
   const scopeConflicts = () => conflicts().separate
   const hasTargetConflict = () => targetConflicts().length > 0
@@ -134,12 +150,12 @@ function RegistrationRow(props: {
   const scopeConflictTooltip = () =>
     `Info: ${scopeConflicts().length} related bindings in other scopes or on separate targets`
 
-  const enabled = () => props.reg.options.enabled !== false
+  const enabled = () => liveReg().options.enabled !== false
+  const appHotkey = () => {
+    const id = liveReg().options.appHotkeyId
+    return id === undefined ? undefined : props.appHotkeyById().get(id)
+  }
 
-  // reg is a stable object ref; read live counts and progress from the list.
-  const liveReg = createMemo(
-    () => state.registrations().find((r) => r.id === props.reg.id) ?? props.reg,
-  )
   const triggerCount = () => liveReg().triggerCount
   const matchedSteps = createMemo(() => {
     const reg = liveReg()
@@ -148,31 +164,36 @@ function RegistrationRow(props: {
       : 0
   })
 
-  const [prevCount, setPrevCount] = createSignal(props.reg.triggerCount)
+  const [prevCount, setPrevCount] = createSignal(untrack(triggerCount))
   const [pulsing, setPulsing] = createSignal(false)
+
+  let pulseTimer: ReturnType<typeof setTimeout> | undefined
+  onCleanup(() => clearTimeout(pulseTimer))
 
   createEffect(
     on(triggerCount, (current) => {
       if (current > prevCount()) {
+        // Restart the pulse when it fires again before the last one ends.
+        clearTimeout(pulseTimer)
         setPulsing(true)
-        setTimeout(() => setPulsing(false), 600)
+        pulseTimer = setTimeout(() => setPulsing(false), 600)
       }
       setPrevCount(current)
     }),
   )
 
-  const metaName = () => props.reg.options.meta?.name
-  const rowTooltip = () => buildRowTooltip(props.reg.options.meta)
+  const metaName = () => liveReg().options.meta?.name
+  const rowTooltip = () => buildRowTooltip(liveReg().options.meta)
 
   return (
     <div
       class={clsx(
         styles().hotkeyRow,
-        props.selectedId() === props.reg.id && styles().hotkeyRowSelected,
+        props.selectedId() === props.id && styles().hotkeyRowSelected,
         pulsing() && styles().hotkeyRowTriggered,
         rowTooltip() && styles().tooltip,
       )}
-      onClick={() => props.setSelectedId(props.reg.id)}
+      onClick={() => props.setSelectedId(props.id)}
     >
       <Show when={rowTooltip()}>
         <span class={styles().rowTooltipText} data-tooltip>
@@ -191,16 +212,16 @@ function RegistrationRow(props: {
         <span class={styles().triggerCount}>x{triggerCount()}</span>
       </Show>
       <div class={styles().hotkeyBadges}>
-        <Show when={props.reg.kind === 'sequence'}>
+        <Show when={liveReg().kind === 'sequence'}>
           <span class={clsx(styles().badge, styles().badgeTarget)}>seq</span>
         </Show>
         <span
           class={clsx(styles().badge, styles().badgeTarget)}
           data-binding-kind
         >
-          {getBindingKind(props.reg)}
+          {getBindingKind(liveReg())}
         </span>
-        <Show when={props.appHotkey()?.isCustom}>
+        <Show when={appHotkey()?.isCustom}>
           <span
             class={clsx(styles().badge, styles().badgeCustom, styles().tooltip)}
           >
@@ -249,23 +270,23 @@ function RegistrationRow(props: {
         <span
           class={clsx(
             styles().badge,
-            (props.reg.options.eventType ?? 'keydown') === 'keydown'
+            (liveReg().options.eventType ?? 'keydown') === 'keydown'
               ? styles().badgeKeydown
               : styles().badgeKeyup,
             styles().tooltip,
           )}
         >
-          {props.reg.options.eventType ?? 'keydown'}
+          {liveReg().options.eventType ?? 'keydown'}
           <span class={styles().tooltipText} data-tooltip>
-            Fires on {props.reg.options.eventType ?? 'keydown'} event
+            Fires on {liveReg().options.eventType ?? 'keydown'} event
           </span>
         </span>
         <span
           class={clsx(styles().badge, styles().badgeTarget, styles().tooltip)}
         >
-          {getTargetLabel(props.reg.target)}
+          {getTargetLabel(liveReg().target)}
           <span class={styles().tooltipText} data-tooltip>
-            {getTargetTooltip(props.reg.target)}
+            {getTargetTooltip(liveReg().target)}
           </span>
         </span>
       </div>
@@ -360,6 +381,12 @@ export function HotkeyList(props: HotkeyListProps) {
   const scopeGroups = createMemo(() =>
     groupByScope(filteredRegistrations(), state.scopes()),
   )
+  // Groups and views are new objects on every update. Render by scope name
+  // and registration id so rows keep their DOM nodes and state.
+  const scopeNames = createMemo(() => scopeGroups().map((group) => group.scope))
+  const groupByName = createMemo(
+    () => new Map(scopeGroups().map((group) => [group.scope, group])),
+  )
 
   const filteredAppHotkeys = createMemo(() => {
     const unregistered = state
@@ -402,61 +429,66 @@ export function HotkeyList(props: HotkeyListProps) {
         Hotkeys ({filteredRegistrations().length})
       </div>
       <div class={styles().hotkeyList}>
-        <For each={scopeGroups()}>
-          {(group) => (
-            <div
-              class={clsx(
-                styles().scopeGroup,
-                (group.status === 'suspended' || group.status === 'inactive') &&
-                  styles().scopeGroupDimmed,
-              )}
-            >
-              <div class={styles().scopeHeader}>
-                <span class={styles().scopeName}>
-                  {group.scope}
-                  <span class={styles().scopeNameSuffix}> scope</span>
-                </span>
-                <span class={styles().scopeCount}>
-                  {group.registrations.length}
-                </span>
-                <span
-                  class={clsx(
-                    styles().badge,
-                    styles().tooltip,
-                    group.status === 'exclusive'
-                      ? styles().badgeExclusive
-                      : group.status === 'allowed'
-                        ? styles().badgeInfo
-                        : group.status === 'active'
-                          ? styles().badgeEnabled
-                          : group.status === 'suspended'
-                            ? styles().badgeSuspended
-                            : styles().badgeDisabled,
-                  )}
-                >
-                  {group.status}
-                  <span class={styles().tooltipText} data-tooltip>
-                    {scopeStatusDescriptions[group.status]}
-                  </span>
-                </span>
-              </div>
-              <For each={group.registrations}>
-                {(reg) => (
-                  <RegistrationRow
-                    reg={reg}
-                    appHotkey={() =>
-                      reg.options.appHotkeyId === undefined
-                        ? undefined
-                        : appHotkeyById().get(reg.options.appHotkeyId)
-                    }
-                    sequenceProgressNow={state.sequenceProgressNow}
-                    selectedId={props.selectedId}
-                    setSelectedId={props.setSelectedId}
-                  />
+        <For each={scopeNames()}>
+          {(scope) => {
+            const group = createMemo<ScopeGroup>(
+              (prev) => groupByName().get(scope) ?? prev!,
+            )
+            const ids = createMemo(() =>
+              group().registrations.map((reg) => reg.id),
+            )
+            return (
+              <div
+                class={clsx(
+                  styles().scopeGroup,
+                  (group().status === 'suspended' ||
+                    group().status === 'inactive') &&
+                    styles().scopeGroupDimmed,
                 )}
-              </For>
-            </div>
-          )}
+              >
+                <div class={styles().scopeHeader}>
+                  <span class={styles().scopeName}>
+                    {group().scope}
+                    <span class={styles().scopeNameSuffix}> scope</span>
+                  </span>
+                  <span class={styles().scopeCount}>
+                    {group().registrations.length}
+                  </span>
+                  <span
+                    class={clsx(
+                      styles().badge,
+                      styles().tooltip,
+                      group().status === 'exclusive'
+                        ? styles().badgeExclusive
+                        : group().status === 'allowed'
+                          ? styles().badgeInfo
+                          : group().status === 'active'
+                            ? styles().badgeEnabled
+                            : group().status === 'suspended'
+                              ? styles().badgeSuspended
+                              : styles().badgeDisabled,
+                    )}
+                  >
+                    {group().status}
+                    <span class={styles().tooltipText} data-tooltip>
+                      {scopeStatusDescriptions[group().status]}
+                    </span>
+                  </span>
+                </div>
+                <For each={ids()}>
+                  {(id) => (
+                    <RegistrationRow
+                      id={id}
+                      appHotkeyById={appHotkeyById}
+                      sequenceProgressNow={state.sequenceProgressNow}
+                      selectedId={props.selectedId}
+                      setSelectedId={props.setSelectedId}
+                    />
+                  )}
+                </For>
+              </div>
+            )
+          }}
         </For>
       </div>
 
