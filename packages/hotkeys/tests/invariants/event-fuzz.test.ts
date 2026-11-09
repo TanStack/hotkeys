@@ -8,11 +8,7 @@ import {
   normalizeHotkey,
   parseKeyboardEvent,
 } from '../../src'
-import {
-  KEY_TOKENS,
-  PHYSICAL_CODES,
-  PLATFORMS,
-} from './fixtures'
+import { KEY_TOKENS, PHYSICAL_CODES, PLATFORMS } from './fixtures'
 import type { Hotkey } from '../../src'
 
 // Arbitrary key events: whatever `key` and `code` a browser, extension or

@@ -1280,9 +1280,9 @@ describe('matchesKeyboardEvent', () => {
         ctrlKey: true,
       })
       expect(matchesKeyboardEvent(control5, 'Control+5', 'linux')).toBe(false)
-      expect(
-        matchesKeyboardEvent(control5, 'Control+[Numpad5]', 'linux'),
-      ).toBe(true)
+      expect(matchesKeyboardEvent(control5, 'Control+[Numpad5]', 'linux')).toBe(
+        true,
+      )
 
       const add = createKeyboardEvent('Unidentified', { code: 'NumpadAdd' })
       expect(matchesKeyboardEvent(add, '+', 'linux')).toBe(false)

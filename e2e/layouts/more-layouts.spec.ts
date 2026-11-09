@@ -510,11 +510,11 @@ numpad.describe('Numpad 5 with NumLock off on us', () => {
   // BUG-123: Firefox's "Unidentified" used to fall back to the position and
   // fire 5.
   numpad('BUG-123: Numpad5 fires no digit', async ({ keyboard }) => {
-      const { keydown, fired } = await keyboard.press('Numpad5')
-      expect(keydown.code).toBe('Numpad5')
-      expect(keydown.matches).not.toContain('5')
-      expect(fired).toEqual([])
-      expect(await keyboard.record('Numpad5')).toBe('[Numpad5]')
+    const { keydown, fired } = await keyboard.press('Numpad5')
+    expect(keydown.code).toBe('Numpad5')
+    expect(keydown.matches).not.toContain('5')
+    expect(fired).toEqual([])
+    expect(await keyboard.record('Numpad5')).toBe('[Numpad5]')
   })
 })
 
