@@ -34,6 +34,7 @@
     "test:ci": "pnpm run lint:all && nx run-many --targets=test:sherif,test:knip,test:docs,test:lib,test:types,test:build,build && size-limit",
     "test:docs": "node scripts/verify-links.ts",
     "test:e2e": "pnpm --filter @tanstack/hotkeys-e2e test:e2e",
+    "test:e2e:adapters": "nx run-many --skip-nx-cache --targets=build --projects='@tanstack/hotkeys-e2e-app-*' && pnpm --filter @tanstack/hotkeys-e2e test:e2e:adapters",
     "test:e2e:layouts": "pnpm --filter @tanstack/hotkeys-e2e test:e2e:layouts",
     "test:e2e:layouts:docker": "pnpm --filter @tanstack/hotkeys-e2e test:e2e:layouts:docker",
     "test:e2e:ssr": "nx run-many --skip-nx-cache --targets=build --projects='@tanstack/hotkeys-example-*-format-for-display-*' && pnpm --filter @tanstack/hotkeys-e2e test:e2e:ssr",

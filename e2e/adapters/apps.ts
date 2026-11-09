@@ -3,7 +3,7 @@ import { extname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { test as base, expect } from '@playwright/test'
 import type { Page } from '@playwright/test'
-import type { Fixture, FixtureRegistration } from './apps/shared/fixture'
+import type { Fixture, FixtureRegistration } from './shared/fixture'
 
 /** One run of the adapter specs against an app in `apps/`. */
 export interface AdapterApp {
@@ -83,22 +83,17 @@ function fixtureFor(page: Page) {
     setHotkey: (hotkey: string) => call('setHotkey', hotkey),
     startRecording: () => page.evaluate(() => window.fixture!.startRecording()),
     /** Names logged by callbacks, in order. Clears the log. */
-    takeLog: () =>
-      page.evaluate(() => window.fixture!.log.splice(0)) as Promise<
-        Array<string>
-      >,
+    takeLog: () => page.evaluate(() => window.fixture!.log.splice(0)),
     recorded: () => page.evaluate(() => window.fixture!.recorded),
     /** The key `Mod` resolves to in this page. */
     mod: () => page.evaluate(() => window.fixture!.mod),
-    registrations: (): Promise<Array<FixtureRegistration>> =>
-      page.evaluate(() => window.fixture!.registrations()),
     /** Registrations of one hotkey, such as `K` or `G G`. */
-    registrationsOf: async (hotkey: string) =>
-      (
-        (await page.evaluate(() => window.fixture!.registrations())) as Array<
-          FixtureRegistration
-        >
-      ).filter((registration) => registration.hotkey === hotkey),
+    registrationsOf: async (
+      hotkey: string,
+    ): Promise<Array<FixtureRegistration>> =>
+      (await page.evaluate(() => window.fixture!.registrations())).filter(
+        (registration) => registration.hotkey === hotkey,
+      ),
   }
 }
 

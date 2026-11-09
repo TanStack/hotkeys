@@ -3,7 +3,7 @@
   "ignore": ["**/.output/**"],
   "ignoreBinaries": ["preview"],
   "ignoreDependencies": ["@faker-js/faker"],
-  "ignoreWorkspaces": ["examples/**"],
+  "ignoreWorkspaces": ["examples/**", "e2e/adapters/apps/**"],
   "workspaces": {
     "packages/react-hotkeys": {
       "ignore": []
@@ -26,6 +26,9 @@
     },
     "packages/octane-hotkeys": {
       "ignore": ["tests/custom-hooks/**"]
+    },
+    "e2e": {
+      "ignore": ["adapters/shared/**"]
     }
   }
 }

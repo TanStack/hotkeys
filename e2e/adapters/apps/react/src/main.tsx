@@ -8,7 +8,7 @@ import {
 } from '@tanstack/react-hotkeys'
 import { StrictMode, useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import { exposeFixture, logCall, setRecorded } from '../../shared/fixture'
+import { exposeFixture, logCall, setRecorded } from '../../../shared/fixture'
 import type { Hotkey } from '@tanstack/react-hotkeys'
 
 function HotkeyHost({ hotkey, enabled }: { hotkey: string; enabled: boolean }) {
@@ -26,12 +26,15 @@ function App() {
   const heldKeys = useHeldKeys()
 
   useEffect(() => {
-    exposeFixture({ getHotkeyManager, detectPlatform }, {
-      setShown,
-      setEnabled,
-      setHotkey,
-      startRecording: () => recorder.startRecording(),
-    })
+    exposeFixture(
+      { getHotkeyManager, detectPlatform },
+      {
+        setShown,
+        setEnabled,
+        setHotkey,
+        startRecording: () => recorder.startRecording(),
+      },
+    )
   })
 
   return (

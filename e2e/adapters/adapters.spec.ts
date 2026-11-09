@@ -1,4 +1,4 @@
-import { adapterApps, expect, test as base } from './apps'
+import { adapterApps, test as base, expect } from './apps'
 
 for (const app of adapterApps) {
   // Skips the tests a known adapter bug breaks, named with the bug's ID

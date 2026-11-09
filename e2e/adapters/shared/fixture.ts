@@ -86,13 +86,15 @@ export function exposeFixture(
       return window.fixtureRecorded
     },
     registrations: () =>
-      [...(core.getHotkeyManager() as ManagerLike).registrations.state.values()].map(
-        (registration) => ({
-          hotkey: Array.isArray(registration.hotkey)
-            ? registration.hotkey.join(' ')
-            : registration.hotkey,
-          enabled: registration.options.enabled !== false,
-        }),
-      ),
+      [
+        ...(
+          core.getHotkeyManager() as ManagerLike
+        ).registrations.state.values(),
+      ].map((registration) => ({
+        hotkey: Array.isArray(registration.hotkey)
+          ? registration.hotkey.join(' ')
+          : registration.hotkey,
+        enabled: registration.options.enabled !== false,
+      })),
   }
 }
