@@ -14,7 +14,7 @@ export default defineConfig({
       provider: 'v8',
       include: ['src/**'],
       // About 1 point below current coverage
-      thresholds: { lines: 93, branches: 99, functions: 87, statements: 92 },
+      thresholds: { lines: 96, branches: 99, functions: 94, statements: 96 },
     },
     globals: true,
   },
