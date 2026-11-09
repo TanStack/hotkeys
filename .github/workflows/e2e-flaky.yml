@@ -1,0 +1,52 @@
+name: E2E Flaky Tests
+
+# Runs each browser and keyboard layout test five times to find flaky tests.
+# Every CI run fails on a test that passes only on retry (failOnFlakyTests).
+on:
+  schedule:
+    # Mondays at 06:00 UTC
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  browsers:
+    name: Browsers (repeat 5)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Setup Tools
+        uses: TanStack/config/.github/setup@466151b2d479656b38942cd84a0a3dce29d48de3
+      - name: Install Browsers
+        run: pnpm --filter @tanstack/hotkeys-e2e exec playwright install --with-deps chromium firefox webkit
+      - name: Run Browser Tests
+        run: pnpm test:e2e --repeat-each=5
+
+  keyboard-layouts:
+    name: Keyboard Layouts (repeat 5)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Setup Tools
+        uses: TanStack/config/.github/setup@466151b2d479656b38942cd84a0a3dce29d48de3
+      - name: Install X11 Tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends xvfb xdotool x11-xkb-utils xkb-data
+          sudo cp e2e/docker/tanstack.xkb /usr/share/X11/xkb/symbols/tanstack
+      - name: Install Browsers
+        run: pnpm --filter @tanstack/hotkeys-e2e exec playwright install --with-deps chromium firefox
+      - name: Run Keyboard Layout Tests
+        run: xvfb-run --auto-servernum --server-args="-screen 0 1280x800x24" pnpm test:e2e:layouts --repeat-each=5

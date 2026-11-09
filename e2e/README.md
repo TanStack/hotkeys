@@ -16,6 +16,8 @@ These tests cover how the library behaves in a real page: matching, `preventDefa
 
 Playwright's keyboard sends key events straight to the browser and uses a built-in US layout. It does not go through the operating system, so it cannot test other keyboard layouts, AltGr, or dead keys. Those belong in the keyboard layout suite.
 
+CI runs this suite on Linux for every pull request. After each merge to `main`, it also runs on macOS (Chromium, Firefox, WebKit) and Windows (Chromium, Firefox, Edge). On Windows, Playwright adds an `msedge` project that uses the installed Edge.
+
 Use `hk.mod` for the `Mod` key instead of Playwright's `ControlOrMeta`. Playwright's WebKit reports a Mac user agent on Linux, so the page expects Meta there while `ControlOrMeta` presses Control.
 
 ## Server rendering
@@ -43,6 +45,10 @@ To add a layout case, add an entry to a `describeLayouts` call: the physical key
 
 ### Not covered
 
-- Windows and macOS report some keys differently from Linux. For example, Windows browsers can report AltGr as Control+Alt. The unit tests in `packages/hotkeys/tests` cover those event shapes.
+- Real keyboard layouts on Windows and macOS. Those systems report some keys differently from Linux. For example, Windows browsers can report AltGr as Control+Alt. The unit tests in `packages/hotkeys/tests` cover those event shapes.
 - IME composition.
 - Safari. Playwright's WebKit is close to Safari but not the same.
+
+## Flaky tests
+
+In CI, each suite retries a failed test once and then fails the run if the retry passed, so a flaky test is reported instead of hidden. Every Monday, a scheduled workflow (`e2e-flaky.yml`) runs the browser and keyboard layout suites five times each. Run it on demand from the Actions tab.

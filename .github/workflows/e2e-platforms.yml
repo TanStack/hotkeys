@@ -1,0 +1,48 @@
+name: E2E Platforms
+
+# The browser suite on macOS and Windows. Linux runs it on every pull request
+# in e2e.yml; these runners cost more, so they run after merges to main.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  macos:
+    name: Browsers (macOS)
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Setup Tools
+        uses: TanStack/config/.github/setup@466151b2d479656b38942cd84a0a3dce29d48de3
+      - name: Install Browsers
+        run: pnpm --filter @tanstack/hotkeys-e2e exec playwright install chromium firefox webkit
+      # WebKit on macOS is much closer to Safari than WebKit on Linux.
+      - name: Run Browser Tests
+        run: pnpm --filter @tanstack/hotkeys-e2e exec playwright test --project=chromium --project=firefox --project=webkit
+
+  windows:
+    name: Browsers (Windows)
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+      - name: Setup Tools
+        uses: TanStack/config/.github/setup@466151b2d479656b38942cd84a0a3dce29d48de3
+      # Edge comes with the runner image.
+      - name: Install Browsers
+        run: pnpm --filter @tanstack/hotkeys-e2e exec playwright install chromium firefox
+      - name: Run Browser Tests
+        run: pnpm --filter @tanstack/hotkeys-e2e exec playwright test --project=chromium --project=firefox --project=msedge
