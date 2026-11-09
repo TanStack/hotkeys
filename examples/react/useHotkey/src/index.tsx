@@ -10,7 +10,6 @@ import ReactDOM from 'react-dom/client'
 import type { Hotkey } from '@tanstack/react-hotkeys'
 import './index.css'
 
-// Created once: a new array on every render remounts the devtools panel
 const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
 
 function App() {

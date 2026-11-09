@@ -41,7 +41,6 @@ const rejectionText = ({ reason, message }: RecorderRejection) =>
     conflict: 'This hotkey is already in use.',
   }[reason]
 
-// Created once: a new array on every render remounts the devtools panel
 const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
 
 const ActivityContext = createContext<(message: string) => void>(() => {})

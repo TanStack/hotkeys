@@ -27,7 +27,6 @@ import { ActivityContext, Hint, Modal, formatHotkey } from './shared'
 import type { CustomHotkeys } from '@tanstack/react-hotkeys'
 import './styles.css'
 
-// Created once: a new array on every render remounts the devtools panel
 const devtoolsPlugins = [hotkeysDevtoolsPlugin()]
 
 const pages = [
