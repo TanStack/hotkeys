@@ -1,6 +1,6 @@
-// Real IME composition through ibus under X11. Japanese (anthy) turns romaji
-// into kana: typing k, a, n, a shows かな, Space converts it and Enter commits
-// it. Keys the input method uses must never fire hotkeys, and hotkeys must
+// Real IME composition through ibus under X11. Chinese pinyin (libpinyin)
+// shows typed letters as a composition: n, i, h, a, o shows `nihao`, and Space
+// commits the first candidate, 你好. Keys the input method uses must never fire hotkeys, and hotkeys must
 // work again once composition ends. The report lists each event shape.
 import { expect, useNativeInput } from '../support/native'
 import { ibusKeyboard } from '../support/native-ibus'
@@ -12,7 +12,7 @@ import type {
 
 const test = useNativeInput('ibus', ibusKeyboard)
 
-const ENGINE = process.env.E2E_IBUS_ENGINE ?? 'anthy'
+const ENGINE = process.env.E2E_IBUS_ENGINE ?? 'libpinyin'
 const NO_IME = 'xkb:us::eng'
 
 /** The input fills the page, so a click anywhere focuses it. */
@@ -22,9 +22,11 @@ const BODY =
 // Single keys are ignored in inputs by default. These opt in, so any key the
 // input method passes through would fire.
 const REGISTERED: Array<[string, { ignoreInputs: false }]> = [
-  'K',
-  'A',
   'N',
+  'I',
+  'H',
+  'A',
+  'O',
   'Space',
   'Enter',
   'Escape',
@@ -76,15 +78,14 @@ test('composition keys never fire hotkeys, and hotkeys fire after commit', async
   const keys = await open(session)
   await keys.setLayout(ENGINE)
 
-  const typed = await compose(keys, ['KeyK', 'KeyA', 'KeyN', 'KeyA'])
+  const typed = await compose(keys, ['KeyN', 'KeyI', 'KeyH', 'KeyA', 'KeyO'])
   expect(
     typed.flatMap((result) => result.events).map((event) => event.type),
     'the input method composed text',
   ).toContain('compositionstart')
 
-  // Space converts かな, Enter commits it.
-  await compose(keys, ['Space'])
-  const [commit] = await compose(keys, ['Enter'])
+  // Space commits the first candidate.
+  const [commit] = await compose(keys, ['Space'])
   expect(
     commit!.events.map((event) => event.type),
     describe(commit!),
@@ -107,7 +108,7 @@ test('Escape and Backspace that edit a composition never fire hotkeys', async ({
   const keys = await open(session)
   await keys.setLayout(ENGINE)
 
-  await compose(keys, ['KeyK', 'KeyA', 'KeyN', 'KeyA', 'Backspace'])
+  await compose(keys, ['KeyN', 'KeyI', 'KeyH', 'KeyA', 'KeyO', 'Backspace'])
   // Escape cancels the composition. The next one reaches the page.
   await compose(keys, ['Escape'])
   const escape = await keys.press('Escape')

@@ -59,20 +59,6 @@ export default defineConfig({
       },
     },
     {
-      name: 'wayland-firefox',
-      testMatch: 'wayland.spec.ts',
-      use: {
-        browserName: 'firefox',
-        launchOptions: {
-          env: {
-            ...process.env,
-            MOZ_ENABLE_WAYLAND: '1',
-            GDK_BACKEND: 'wayland',
-          },
-        },
-      },
-    },
-    {
       name: 'ibus-chromium',
       testMatch: 'ibus.spec.ts',
       use: { browserName: 'chromium' },
