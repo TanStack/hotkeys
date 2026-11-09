@@ -17623,27 +17623,27 @@
       "evidence": ["packages/hotkeys/tests/recorder-tab.test.ts"]
     },
     "source:e2e/layouts/focus-loss.spec.ts": {
-      "fingerprint": "e9d755ac692b824d8ed4d207ac72a3a59161563cb3c61e879a26ead8647f99ee",
+      "fingerprint": "c971891033f7e7fffdc225db342216d7dcd55d0f8c67d824e207350cacbb2959",
       "snapshot": {
-        "e2e/layouts/focus-loss.spec.ts": "44a830ac228ce3db913ab61f0fb60adbcd9d8612f7f604ca69a0ac88dfe2ab61"
+        "e2e/layouts/focus-loss.spec.ts": "18bfd202b603e8febb9a202a605a0e2f77855287b6f32ec7fb4ce6aa7d38e73e"
       },
-      "head": "53d1ab73aca0784ca314ec5f50e745e626e0e596",
+      "head": "245559f4c05c705af6809bf4992c370a81ed0260",
       "outcome": "no-change",
       "reason": "E2E test infrastructure only (layout-suite specs, X11 helpers, Docker image and CI packages); no library API or behavior that skills describe changed.",
       "evidence": [
-        "Changed: e2e/layouts/focus-loss.spec.ts at 53d1ab73aca0784ca314ec5f50e745e626e0e596"
+        "Changed: e2e/layouts/focus-loss.spec.ts at 245559f4c05c705af6809bf4992c370a81ed0260"
       ]
     },
     "source:e2e/layouts/key-repeat.spec.ts": {
-      "fingerprint": "52f55a15c191dd36baf9c7df2ea9e33fc5276c200ef7e4a4c9be2713a5a58afa",
+      "fingerprint": "65b67e9ccc6d3dfb13fc66d6a9ef167061cf4e5459faaa1939eb8874599067c7",
       "snapshot": {
-        "e2e/layouts/key-repeat.spec.ts": "4aa8dbca7a8f49195ad54219efb82eea391e292bedf42fc42e1ff5129d90728c"
+        "e2e/layouts/key-repeat.spec.ts": "139540f256ce1ad56a91cbd59eec0f2e6faac445df0f6799b0b396bb6c3d12dc"
       },
-      "head": "53d1ab73aca0784ca314ec5f50e745e626e0e596",
+      "head": "245559f4c05c705af6809bf4992c370a81ed0260",
       "outcome": "no-change",
       "reason": "E2E test infrastructure only (layout-suite specs, X11 helpers, Docker image and CI packages); no library API or behavior that skills describe changed.",
       "evidence": [
-        "Changed: e2e/layouts/key-repeat.spec.ts at 53d1ab73aca0784ca314ec5f50e745e626e0e596"
+        "Changed: e2e/layouts/key-repeat.spec.ts at 245559f4c05c705af6809bf4992c370a81ed0260"
       ]
     }
   }
