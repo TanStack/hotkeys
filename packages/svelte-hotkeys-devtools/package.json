@@ -73,6 +73,7 @@
     "@sveltejs/package": "^3.0.2",
     "@sveltejs/vite-plugin-svelte": "^7.3.1",
     "@tanstack/hotkeys-test-utils": "workspace:*",
+    "@tanstack/svelte-hotkeys": "workspace:*",
     "svelte": "^5.57.3"
   },
   "module": "dist/index.js",
