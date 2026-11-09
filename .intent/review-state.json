@@ -7536,14 +7536,16 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:knip.json": {
-      "fingerprint": "5b7779e201b11cd3886bdf49d94304d8b2303241e892cf62610cf0bd9a4d10c7",
+      "fingerprint": "c9f9ca72c60b54bd05cf9081fddef2e3253afafa1cf1fceb1c06f7c56797b949",
       "snapshot": {
-        "knip.json": "352fe91b8bbe91e12b10d9221824bf5e30b0e4a574db3b285087c34c9b7fb049"
+        "knip.json": "c163f792bd934fbb345f81bdeb9ba5649c7452d3a190ba9e189294ccf56b7b75"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "20b0e9efcc523ed1667be3506b9f9f9afc44f10d",
       "outcome": "no-change",
-      "reason": "Tooling and dependency configuration for the oxlint/oxfmt migration and dependency updates. No guidance depends on it.",
-      "evidence": ["knip.json"]
+      "reason": "Nightly e2e test helpers and knip config only; no library behavior or skill guidance changes.",
+      "evidence": [
+        "Changed: knip.json at 20b0e9efcc523ed1667be3506b9f9f9afc44f10d"
+      ]
     },
     "source:packages/alpine-hotkeys/src/index.ts": {
       "fingerprint": "e29ddd24dfc499075e7c8c9d6f755fdc8383677c76fa663b60aac2d23ca2da24",
@@ -17761,15 +17763,15 @@
       ]
     },
     "source:e2e/support/native-ibus.ts": {
-      "fingerprint": "e7f4e72354edcb8c440f879b4026f1f05dde477bc2778ba253a7d19de5cbb200",
+      "fingerprint": "0f9a152e6177e63fd3b81dd59f26a23b98391d89bb084e6e3c5f6780ac19885c",
       "snapshot": {
-        "e2e/support/native-ibus.ts": "5948f6010b0fe564baf1bca36c9b51dfa812fec82841a10981745bce5f4a5046"
+        "e2e/support/native-ibus.ts": "98dd2ae6d08363276d95ae9800591ef4ff82ec95d9f8bcbb32a852c75232fb27"
       },
-      "head": "7b78247aeb07b33b8addeb6ab96b1621dbf41bad",
+      "head": "20b0e9efcc523ed1667be3506b9f9f9afc44f10d",
       "outcome": "no-change",
-      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "reason": "Nightly e2e test helpers and knip config only; no library behavior or skill guidance changes.",
       "evidence": [
-        "Changed: e2e/support/native-ibus.ts at 7b78247aeb07b33b8addeb6ab96b1621dbf41bad"
+        "Changed: e2e/support/native-ibus.ts at 20b0e9efcc523ed1667be3506b9f9f9afc44f10d"
       ]
     },
     "source:e2e/support/native-wayland.ts": {
@@ -17785,27 +17787,27 @@
       ]
     },
     "source:e2e/support/native-windows.ts": {
-      "fingerprint": "f551c448ee6970090cd2b607dea930311ef0b5d142852db45889c98301a714cf",
+      "fingerprint": "5aeeced11094ea7e946c1a4b051f7b97a952b089713b6b0a942c63d97c4c79c1",
       "snapshot": {
-        "e2e/support/native-windows.ts": "72b98a1e368bc5791284fd58df71b3302239deffc7c58c9359ebe83761f334dc"
+        "e2e/support/native-windows.ts": "a0625444bc53466c37ba9cdcc1207af4a8c115c9633e70b6a2d4ad25a98691d9"
       },
-      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
+      "head": "20b0e9efcc523ed1667be3506b9f9f9afc44f10d",
       "outcome": "no-change",
-      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "reason": "Nightly e2e test helpers and knip config only; no library behavior or skill guidance changes.",
       "evidence": [
-        "Changed: e2e/support/native-windows.ts at c77ce868178f916374a51582da87fb3923a3af2b"
+        "Changed: e2e/support/native-windows.ts at 20b0e9efcc523ed1667be3506b9f9f9afc44f10d"
       ]
     },
     "source:e2e/support/native.ts": {
-      "fingerprint": "efdd8c5f931b576e99169f21e0aa62ddc865de1b70ba7a40f75edb155a2d2bd3",
+      "fingerprint": "6e62d516f112a4ec5ba63a51f3472c54f141f35d4e7d88a3067850faa6911fcc",
       "snapshot": {
-        "e2e/support/native.ts": "99a43766b20b6b3dd46dc890d7dabefeaf37ad82e45fc48c01fa649e33b51b95"
+        "e2e/support/native.ts": "f68dae2387ae73d4f3f633626c5d90814a0331b51bf159a91b252547edfbf2a6"
       },
-      "head": "c77ce868178f916374a51582da87fb3923a3af2b",
+      "head": "20b0e9efcc523ed1667be3506b9f9f9afc44f10d",
       "outcome": "no-change",
-      "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
+      "reason": "Nightly e2e test helpers and knip config only; no library behavior or skill guidance changes.",
       "evidence": [
-        "Changed: e2e/support/native.ts at c77ce868178f916374a51582da87fb3923a3af2b"
+        "Changed: e2e/support/native.ts at 20b0e9efcc523ed1667be3506b9f9f9afc44f10d"
       ]
     }
   }
