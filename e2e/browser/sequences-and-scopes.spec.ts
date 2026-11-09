@@ -14,9 +14,11 @@ test.describe('sequences', () => {
 
   test('does not fire when a step is too late', async ({ page, harness }) => {
     const hk = await harness()
-    await hk.register('top', ['G', 'G'], { timeout: 200 })
+    // The window must cover a page round-trip between the last two presses,
+    // which can take a few hundred milliseconds on a busy CI runner.
+    await hk.register('top', ['G', 'G'], { timeout: 1000 })
     await page.keyboard.press('g')
-    await page.waitForTimeout(400)
+    await page.waitForTimeout(1300)
     await page.keyboard.press('g')
     expect(await hk.firedNames()).toEqual([])
     await page.keyboard.press('g')
