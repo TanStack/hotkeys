@@ -22,13 +22,18 @@ function Save() {
   return null
 }
 
-function App() {
+/** Owns the toggle, so hiding Save doesn't re-render the panel (see BUG-112). */
+function SaveToggle() {
   const [show, setShow] = useState(true)
   showSave = setShow
+  return show ? <Save /> : null
+}
+
+function App() {
   return (
     <>
       <HotkeysDevtoolsPanel />
-      {show && <Save />}
+      <SaveToggle />
     </>
   )
 }
@@ -57,11 +62,12 @@ it('shows a useHotkey registration in the panel until the component unmounts', a
   )
   expect(row()!.textContent).toContain('keyup')
 
+  const panelInput = host.querySelector('input')
   act(() => showSave(false))
   expect(row()).toBeUndefined()
-  // The re-render remounts the panel (BUG-112), so wait for it to come back.
-  await vi.waitFor(() => expect(host.textContent).toContain('Hotkeys (0)'))
-  expect(row()).toBeUndefined()
+  expect(host.textContent).toContain('Hotkeys (0)')
+  // The panel updated in place instead of remounting.
+  expect(host.querySelector('input')).toBe(panelInput)
 })
 
 // BUG-112 draft: issues/bugs/BUG-112-standalone-panel-remounts-on-parent-render.md

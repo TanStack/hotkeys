@@ -141,21 +141,21 @@ describe('devtools shell', () => {
     const store = new AppHotkeysStore(
       defineAppHotkeys({
         'doc.save': {
-          hotkey: 'Mod+S',
+          hotkey: 'F2',
           scope: 'editor',
           meta: { name: 'Save', group: 'File' },
           options: { preventDefault: true },
         },
         'palette.open': { hotkey: null },
       }),
-      { customHotkeys: { 'doc.save': 'Mod+Shift+S' } },
+      { customHotkeys: { 'doc.save': 'F3' } },
     )
     HotkeyManager.getInstance().appHotkeys.setState(() => store)
     const ui = mountPanel()
     const declared = Array.from(ui.querySelectorAll('.hotkeyRowInactive'))
     expect(declared.map(text)).toEqual([
       expect.stringMatching(
-        /^Ctrl\+Shift\+S ?Save ?editor ?custom ?inactive ?Declared but not registered on this page$/,
+        /^F3 ?Save ?editor ?custom ?inactive ?Declared but not registered on this page$/,
       ),
       expect.stringMatching(
         /^Unassigned ?palette\.open ?unbound ?Declared without a hotkey$/,
@@ -167,7 +167,7 @@ describe('devtools shell', () => {
     expect(infoGrid(ui)).toMatchObject({
       'App hotkey': 'doc.save',
       Status: 'inactive',
-      Default: expect.stringContaining('(customized)'),
+      Default: 'F2 (customized)',
       Scope: 'editor',
     })
     expect(detailRows(ui)).toEqual({
@@ -472,9 +472,8 @@ describe('plugin host height', () => {
     const outer = document.createElement('section')
     document.body.append(outer)
     mountPanel(outer)
-    // shellRoot -> ThemeContextProvider output -> container -> outer
-    const target = observers[0]!.targets[0]!
-    expect(target.contains(document.querySelector('.shellRoot'))).toBe(true)
+    // shellRoot -> theme wrapper -> mount container -> outer
+    expect(observers[0]!.targets).toEqual([outer])
   })
 
   it('leaves the height alone without ResizeObserver', () => {
@@ -634,7 +633,7 @@ describe('scope groups', () => {
     expect(groups(ui).map((g) => [g.scope, g.status, g.dimmed])).toEqual([
       ['dialog scope', 'exclusive', false],
       ['editor scope', 'suspended', true],
-      ['global scope', expect.any(String), expect.any(Boolean)],
+      ['global scope', 'suspended', true],
       ['unmounted scope', 'inactive', true],
     ])
 

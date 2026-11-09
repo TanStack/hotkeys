@@ -14,6 +14,7 @@ import { HotkeysDevtoolsPanel } from '../src/AngularHotkeysDevtools'
 
 // No mocks: the real panel reads the manager the adapter registers with.
 let host: HTMLDivElement
+let cleanup: (() => void) | undefined
 
 const row = () =>
   Array.from(host.querySelectorAll('[data-row-label]')).find((label) =>
@@ -27,6 +28,8 @@ beforeAll(() => {
   )
 })
 afterEach(() => {
+  cleanup?.()
+  cleanup = undefined
   TestBed.resetTestingModule()
   host.remove()
   HotkeyManager.resetInstance()
@@ -36,7 +39,7 @@ afterEach(() => {
 it('shows an injectHotkey registration in the panel until its injector is destroyed', async () => {
   host = document.createElement('div')
   document.body.append(host)
-  const cleanup = HotkeysDevtoolsPanel()(() => ({}), host)
+  cleanup = HotkeysDevtoolsPanel()(() => ({}), host)
   TestBed.configureTestingModule({
     providers: [provideZonelessChangeDetection()],
   })
@@ -57,5 +60,4 @@ it('shows an injectHotkey registration in the panel until its injector is destro
   TestBed.resetTestingModule()
   expect(row()).toBeUndefined()
   expect(host.textContent).toContain('Hotkeys (0)')
-  cleanup()
 })
