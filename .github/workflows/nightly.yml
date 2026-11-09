@@ -7,8 +7,6 @@ on:
   schedule:
     - cron: '23 6 * * *'
   workflow_dispatch:
-  # Temporary: validates the jobs from the PR. Remove before merging.
-  pull_request:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
