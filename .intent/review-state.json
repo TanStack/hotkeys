@@ -7971,15 +7971,15 @@
       ]
     },
     "source:docs/framework/vue/reference/functions/useFormatForDisplay.md": {
-      "fingerprint": "711e90220224f76c8eb7087937cf5c467480e5cd69aae25d9cb7effd7a2ac761",
+      "fingerprint": "de61d715c51819ef17bea950512989b8d450c1004bb75b745bc46a5d3d207249",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useFormatForDisplay.md": "f48b5f62fdbfa5def07df494cb4c19306a6d24c2535c1affc22f30571ce81c67"
+        "docs/framework/vue/reference/functions/useFormatForDisplay.md": "470ffd145d9b578d57d55c80a10210cf49fab231b435d73fb205560a0e377c7a"
       },
-      "head": "7992a599adbd2b2be6d855e95d92e27308cd3911",
+      "head": "6305b77f2426b5485111fb39a1f1c460ac0636cf",
       "outcome": "no-change",
-      "reason": "Turkish ı/İ matching and the Intl key fallback labels are layout details below the hotkeys-core skill's level; its 'only letters match in any case' rule still holds, and _artifacts scope the formatter's layout labels out. User docs (sensible-defaults, formatting-display guides) and JSDoc were updated instead.",
+      "reason": "Autofix regenerated a Vue reference page with different line wrapping only.",
       "evidence": [
-        "Changed: docs/framework/vue/reference/functions/useFormatForDisplay.md at 7992a599adbd2b2be6d855e95d92e27308cd3911"
+        "Changed: docs/framework/vue/reference/functions/useFormatForDisplay.md at 6305b77f2426b5485111fb39a1f1c460ac0636cf"
       ]
     },
     "source:docs/reference/adapter/functions/getServerPlatformSnapshot.md": {
