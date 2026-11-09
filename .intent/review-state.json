@@ -18761,15 +18761,15 @@
       ]
     },
     "source:packages/hotkeys/tests/invariants/matching.test.ts": {
-      "fingerprint": "81c81e7b1c91d8a48ffb8668bc5bc5c57b0b2ff30943f1bb2bb274c90a9f28c2",
+      "fingerprint": "d826771d4228d9e35eca399a9b5ad885f15166c3161069d0349eee0f9480f921",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/matching.test.ts": "f655ef6faeccdc93d2cb5d1590558b17cd4f19dd4d5a82362ac2d14ed3f932c3"
+        "packages/hotkeys/tests/invariants/matching.test.ts": "1584c2c66b771348f5d56855b25a9ce3351dc4b7b01d5e3b753ef5c551726842"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "5568c96e8da84bf0dab21508c42fc0e5523d5dc1",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "reason": "Test timeout only; no guidance change.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/invariants/matching.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: packages/hotkeys/tests/invariants/matching.test.ts at 5568c96e8da84bf0dab21508c42fc0e5523d5dc1"
       ]
     },
     "source:packages/hotkeys/tests/invariants/parse-fuzz.test.ts": {
