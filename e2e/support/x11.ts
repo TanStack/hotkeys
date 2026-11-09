@@ -21,7 +21,7 @@ function x11(command: string, ...args: Array<string>): string {
  * X11 keycodes, named by physical position (KeyboardEvent.code names, plus
  * AltGr for the right Alt key). The active layout decides what each types.
  */
-const KEYCODES = {
+export const KEYCODES = {
   AltGr: 108,
   Escape: 9,
   Control: 37,
@@ -32,10 +32,14 @@ const KEYCODES = {
   Digit2: 11,
   Digit7: 16,
   KeyA: 38,
+  KeyH: 43,
+  KeyI: 31,
   KeyE: 26,
   KeyF: 41,
   KeyG: 42,
   KeyK: 45,
+  KeyN: 57,
+  KeyO: 32,
   KeyQ: 24,
   KeyS: 39,
   KeyY: 29,
@@ -50,7 +54,6 @@ const KEYCODES = {
   Digit3: 12,
   Digit4: 13,
   KeyC: 54,
-  KeyI: 31,
   Quote: 48,
   Semicolon: 47,
   Backslash: 51,
@@ -61,6 +64,8 @@ const KEYCODES = {
   Numpad5: 84,
   Numpad8: 80,
   NumpadDecimal: 91,
+  Enter: 36,
+  Backspace: 22,
 } as const
 
 /**
@@ -77,7 +82,9 @@ function keycodes(combo: string): Array<string> {
   return combo.split('+').map((name) => {
     const code = (KEYCODES as Partial<Record<string, number>>)[name]
     if (code === undefined) throw new Error(`No keycode for ${name}`)
-    return String(code)
+    // xdotool reads a single digit as a keysym, so `9` would type "9". Keycode
+    // 9 is Escape on every xkb layout, so send the keysym name instead.
+    return code < 10 ? name : String(code)
   })
 }
 
