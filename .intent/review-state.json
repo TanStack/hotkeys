@@ -17617,15 +17617,15 @@
       "evidence": ["packages/hotkeys/tests/recorder-tab.test.ts"]
     },
     "source:.github/workflows/nightly.yml": {
-      "fingerprint": "eb02f248817580fec4788145287475ebbd12a5bee8471369275db0b913699f9b",
+      "fingerprint": "3af29bcac8d8982d89e73a05e66b9f3ee0744c0a6cc4880b9bb8fce0e4f17d58",
       "snapshot": {
-        ".github/workflows/nightly.yml": "a4ace0b5374c8b2f5fa5535530ff28200a981f41eef5e2a550963ceda7f7cfd0"
+        ".github/workflows/nightly.yml": "3b8ae56a9f3751de689caab69038d33c80961017a51d3b67e983de9ba0916087"
       },
-      "head": "cd1113a2503350fe8a2777e79e46d99289700dde",
+      "head": "7b78247aeb07b33b8addeb6ab96b1621dbf41bad",
       "outcome": "no-change",
       "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
       "evidence": [
-        "Changed: .github/workflows/nightly.yml at cd1113a2503350fe8a2777e79e46d99289700dde"
+        "Changed: .github/workflows/nightly.yml at 7b78247aeb07b33b8addeb6ab96b1621dbf41bad"
       ]
     },
     "source:e2e/native/ibus.spec.ts": {
@@ -17761,15 +17761,15 @@
       ]
     },
     "source:e2e/support/native-ibus.ts": {
-      "fingerprint": "8f60f4623316e25dc2c1ddc9c53bddbe6b9d2e203ea1818aa0b94c6653bd9c1c",
+      "fingerprint": "e7f4e72354edcb8c440f879b4026f1f05dde477bc2778ba253a7d19de5cbb200",
       "snapshot": {
-        "e2e/support/native-ibus.ts": "e928cd23a5993ad1fa30d635bc5ece63652a1f66a50d81cad049925ac043911f"
+        "e2e/support/native-ibus.ts": "5948f6010b0fe564baf1bca36c9b51dfa812fec82841a10981745bce5f4a5046"
       },
-      "head": "73ab56c10267cacc4922b56462950b505d4ae9f5",
+      "head": "7b78247aeb07b33b8addeb6ab96b1621dbf41bad",
       "outcome": "no-change",
       "reason": "CI and e2e test tooling only (nightly real-input jobs); no library API, behavior, or skill guidance changes",
       "evidence": [
-        "Changed: e2e/support/native-ibus.ts at 73ab56c10267cacc4922b56462950b505d4ae9f5"
+        "Changed: e2e/support/native-ibus.ts at 7b78247aeb07b33b8addeb6ab96b1621dbf41bad"
       ]
     },
     "source:e2e/support/native-wayland.ts": {

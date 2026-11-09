@@ -13,8 +13,10 @@ function ibus(...args: Array<string>): string {
       stdio: 'pipe',
     }).trim()
   } catch (error) {
-    const { stderr } = error as { stderr?: string }
-    throw new Error(`ibus ${args.join(' ')} failed: ${stderr?.trim()}`)
+    const { stdout, stderr } = error as { stdout?: string; stderr?: string }
+    throw new Error(
+      `ibus ${args.join(' ')} failed: ${`${stdout ?? ''} ${stderr ?? ''}`.trim()}`,
+    )
   }
 }
 
