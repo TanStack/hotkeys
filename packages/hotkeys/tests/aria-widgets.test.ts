@@ -1,3 +1,4 @@
+import { keydown } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager } from '../src/hotkey-manager'
 import type { HotkeyChord, HotkeyOptions } from '../src'
@@ -10,22 +11,6 @@ function focus(selector: string) {
   const element = document.querySelector<HTMLElement>(selector)!
   element.focus()
   return element
-}
-
-function dispatchKey(
-  element: EventTarget,
-  key: string,
-  options: KeyboardEventInit = {},
-) {
-  const event = new KeyboardEvent('keydown', {
-    key,
-    bubbles: true,
-    cancelable: true,
-    composed: true,
-    ...options,
-  })
-  element.dispatchEvent(event)
-  return event
 }
 
 /** Letter keys are typed lowercase but registered uppercase. */
@@ -57,8 +42,8 @@ describe.each(['hotkey', 'sequence'] as const)('%s in ARIA widgets', (kind) => {
     key: string,
     options: KeyboardEventInit = {},
   ) {
-    if (kind === 'sequence') dispatchKey(element, 'F2')
-    return dispatchKey(element, key, options)
+    if (kind === 'sequence') keydown({ key: 'F2', target: element })
+    return keydown({ key, ...options, target: element })
   }
 
   // [markup, focused selector, keys the widget owns, keys it leaves alone]

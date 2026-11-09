@@ -1,3 +1,4 @@
+import { keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager, HotkeyRecorder } from '../src'
 import type { HotkeySequenceRecorderOptions } from '../src'
@@ -13,18 +14,8 @@ function recorder(
   value.start()
   return value
 }
-function press(key: string, code: string, flags: KeyboardEventInit = {}) {
-  const event = new KeyboardEvent('keydown', {
-    key,
-    code,
-    bubbles: true,
-    cancelable: true,
-    ...flags,
-  })
-  document.dispatchEvent(event)
-  return event
-}
-const tab = (flags: KeyboardEventInit = {}) => press('Tab', 'Tab', flags)
+const tab = (flags: KeyboardEventInit = {}) =>
+  keydown({ key: 'Tab', code: 'Tab', ...flags, target: document })
 
 afterEach(() => {
   instances.splice(0).forEach((r) => r.destroy())
@@ -52,9 +43,7 @@ describe('Tab while recording', () => {
     const listener = vi.fn()
     document.body.addEventListener('keydown', listener)
     recorder({ onRecord: vi.fn() })
-    document.body.dispatchEvent(
-      new KeyboardEvent('keydown', { key: 'Tab', code: 'Tab', bubbles: true }),
-    )
+    keydown({ key: 'Tab', code: 'Tab', target: document.body })
     expect(listener).toHaveBeenCalledOnce()
   })
 
@@ -62,7 +51,7 @@ describe('Tab while recording', () => {
     const onRecord = vi.fn()
     const onCancel = vi.fn()
     const r = recorder({ maxSteps: Infinity, onRecord, onCancel })
-    press('g', 'KeyG')
+    keydown({ key: 'g', code: 'KeyG', target: document })
     expect(r.store.state.steps).toEqual(['[KeyG]'])
     tab()
     expect(onRecord).not.toHaveBeenCalled()
@@ -92,18 +81,14 @@ describe('Tab while recording', () => {
     const onCancel = vi.fn()
     recorder({ platform: 'windows', onRecord, onCancel })
     // Windows reports AltGr as Control+Alt
-    const event = new KeyboardEvent('keydown', {
+    keydown({
       key: 'Tab',
       code: 'Tab',
       ctrlKey: true,
       altKey: true,
-      bubbles: true,
-      cancelable: true,
+      altGraph: true,
+      target: document,
     })
-    Object.defineProperty(event, 'getModifierState', {
-      value: (name: string) => name === 'AltGraph',
-    })
-    document.dispatchEvent(event)
     expect(onCancel).not.toHaveBeenCalled()
     expect(onRecord).toHaveBeenCalledWith('Mod+Alt+[Tab]')
   })
@@ -142,9 +127,7 @@ describe('Tab while recording', () => {
     const event = tab()
     expect(callback).not.toHaveBeenCalled()
     expect(event.defaultPrevented).toBe(false)
-    document.dispatchEvent(
-      new KeyboardEvent('keyup', { key: 'Tab', code: 'Tab', bubbles: true }),
-    )
+    keyup({ key: 'Tab', code: 'Tab', target: document })
     tab()
     expect(callback).toHaveBeenCalledOnce()
   })
@@ -155,14 +138,7 @@ describe('Tab while recording', () => {
     document.body.append(input)
     input.focus()
     const r = recorder({ onRecord: vi.fn(), onCancel })
-    input.dispatchEvent(
-      new KeyboardEvent('keydown', {
-        key: 'Tab',
-        code: 'Tab',
-        bubbles: true,
-        cancelable: true,
-      }),
-    )
+    keydown({ key: 'Tab', code: 'Tab', cancelable: true, target: input })
     expect(onCancel).not.toHaveBeenCalled()
     expect(r.store.state.isRecording).toBe(true)
   })

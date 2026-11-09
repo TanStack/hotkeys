@@ -1,4 +1,4 @@
-import { keydown, keyup } from '@tanstack/hotkeys-test-utils'
+import { keyEvent, keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager, toHotkeyRegistrationView } from '../src/hotkey-manager'
 import { createSequenceMatcher } from '../src/match'
@@ -12,19 +12,6 @@ function sequenceView(id: string): HotkeySequenceRegistrationView {
   return toHotkeyRegistrationView(
     registration!,
   ) as HotkeySequenceRegistrationView
-}
-
-/**
- * Helper to create and dispatch a KeyboardEvent
- */
-function dispatchKey(
-  key: string,
-  options: { eventType?: 'keydown' | 'keyup' } = {},
-): KeyboardEvent {
-  const eventType = options.eventType ?? 'keydown'
-  const event = new KeyboardEvent(eventType, { key, bubbles: true })
-  document.dispatchEvent(event)
-  return event
 }
 
 /**
@@ -46,17 +33,8 @@ function dispatchKeyFromElement(
   // Focus the element so document.activeElement is set
   element.focus()
 
-  const eventType = options.eventType ?? 'keydown'
-  const event = new KeyboardEvent(eventType, {
-    key,
-    ctrlKey: options.ctrlKey ?? false,
-    shiftKey: options.shiftKey ?? false,
-    altKey: options.altKey ?? false,
-    metaKey: options.metaKey ?? false,
-    bubbles: true,
-  })
-  element.dispatchEvent(event)
-  return event
+  const { eventType = 'keydown', ...init } = options
+  return keyEvent(eventType, { key, ...init, target: element })
 }
 
 describe('HotkeyManager', () => {
@@ -110,13 +88,13 @@ describe('HotkeyManager', () => {
         [...manager.registrations.state.values()][0]?.options.enabled,
       ).toBe(false)
 
-      dispatchKey('g')
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
+      keydown({ key: 'g', target: document })
       expect(callback).not.toHaveBeenCalled()
 
       handle.setOptions({ enabled: true })
-      dispatchKey('g')
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
+      keydown({ key: 'g', target: document })
       expect(callback).toHaveBeenCalledTimes(1)
     })
 
@@ -131,8 +109,8 @@ describe('HotkeyManager', () => {
       expect(handle.isActive).toBe(true)
 
       handle.callback = callback2
-      dispatchKey('g')
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
+      keydown({ key: 'g', target: document })
       expect(callback2).toHaveBeenCalledTimes(1)
       expect(callback1).not.toHaveBeenCalled()
 
@@ -156,10 +134,10 @@ describe('HotkeyManager', () => {
 
       manager.register(['G', 'G'], callback)
 
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
       expect(callback).not.toHaveBeenCalled()
 
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
       expect(callback).toHaveBeenCalledTimes(1)
     })
 
@@ -169,12 +147,12 @@ describe('HotkeyManager', () => {
       const handle = manager.register(['G', 'G'], callback)
       const id = handle.id
 
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
       expect(callback).not.toHaveBeenCalled()
       expect(sequenceView(id).matchedStepCount).toBe(1)
       expect(sequenceView(id).partialMatchLastKeyTime).toBeGreaterThan(0)
 
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
       expect(callback).toHaveBeenCalledTimes(1)
       expect(sequenceView(id).matchedStepCount).toBe(0)
     })
@@ -187,13 +165,13 @@ describe('HotkeyManager', () => {
 
       expect(manager.registrations.state.get(id)?.triggerCount).toBe(0)
 
-      dispatchKey('g')
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
+      keydown({ key: 'g', target: document })
       expect(callback).toHaveBeenCalledTimes(1)
       expect(manager.registrations.state.get(id)?.triggerCount).toBe(1)
 
-      dispatchKey('g')
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
+      keydown({ key: 'g', target: document })
       expect(callback).toHaveBeenCalledTimes(2)
       expect(manager.registrations.state.get(id)?.triggerCount).toBe(2)
     })
@@ -204,8 +182,8 @@ describe('HotkeyManager', () => {
 
       manager.register(['D', 'D'], callback)
 
-      dispatchKey('d')
-      dispatchKey('d')
+      keydown({ key: 'd', target: document })
+      keydown({ key: 'd', target: document })
 
       expect(callback).toHaveBeenCalledWith(
         expect.any(KeyboardEvent),
@@ -221,12 +199,12 @@ describe('HotkeyManager', () => {
 
       manager.register(['G', 'G'], callback)
 
-      dispatchKey('g')
-      dispatchKey('x') // Wrong key
-      dispatchKey('g') // Start over
+      keydown({ key: 'g', target: document })
+      keydown({ key: 'x', target: document }) // Wrong key
+      keydown({ key: 'g', target: document }) // Start over
       expect(callback).not.toHaveBeenCalled()
 
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
       expect(callback).toHaveBeenCalledTimes(1)
     })
 
@@ -236,13 +214,13 @@ describe('HotkeyManager', () => {
 
       manager.register(['G', 'G'], callback)
 
-      dispatchKey('g')
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
+      keydown({ key: 'g', target: document })
       expect(callback).toHaveBeenCalledTimes(1)
 
       // Press g g again
-      dispatchKey('g')
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
+      keydown({ key: 'g', target: document })
       expect(callback).toHaveBeenCalledTimes(2)
     })
   })
@@ -254,9 +232,9 @@ describe('HotkeyManager', () => {
 
       manager.register(['G', 'G'], callback, { timeout: 500 })
 
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
       vi.advanceTimersByTime(600) // Exceed timeout
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
 
       expect(callback).not.toHaveBeenCalled()
     })
@@ -267,9 +245,9 @@ describe('HotkeyManager', () => {
 
       manager.register(['G', 'G'], callback, { timeout: 500 })
 
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
       vi.advanceTimersByTime(400) // Within timeout
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
 
       expect(callback).toHaveBeenCalledTimes(1)
     })
@@ -323,20 +301,8 @@ describe('HotkeyManager', () => {
       document.body.appendChild(host)
 
       textarea.focus()
-      textarea.dispatchEvent(
-        new KeyboardEvent('keydown', {
-          key: 'g',
-          bubbles: true,
-          composed: true,
-        }),
-      )
-      textarea.dispatchEvent(
-        new KeyboardEvent('keydown', {
-          key: 'g',
-          bubbles: true,
-          composed: true,
-        }),
-      )
+      keydown({ key: 'g', composed: true, target: textarea })
+      keydown({ key: 'g', composed: true, target: textarea })
 
       expect(callback).not.toHaveBeenCalled()
 
@@ -422,8 +388,8 @@ describe('HotkeyManager', () => {
       manager.register(['G', 'G'], callback)
 
       // dispatch from a non-input element
-      dispatchKey('g')
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
+      keydown({ key: 'g', target: document })
 
       expect(callback).toHaveBeenCalledTimes(1)
     })
@@ -478,10 +444,7 @@ describe('HotkeyManager', () => {
       input.focus()
 
       for (let i = 0; i < 2; i++) {
-        const event = new KeyboardEvent('keydown', {
-          key: 'g',
-          bubbles: true,
-        })
+        const event = keydown({ key: 'g' })
         Object.defineProperty(event, 'target', {
           value: listItem,
           writable: false,
@@ -515,11 +478,7 @@ describe('HotkeyManager', () => {
 
       input.focus()
 
-      const event1 = new KeyboardEvent('keydown', {
-        key: 'k',
-        metaKey: true,
-        bubbles: true,
-      })
+      const event1 = keydown({ key: 'k', metaKey: true })
       Object.defineProperty(event1, 'target', {
         value: listItem,
         writable: false,
@@ -532,10 +491,7 @@ describe('HotkeyManager', () => {
       })
       document.dispatchEvent(event1)
 
-      const event2 = new KeyboardEvent('keydown', {
-        key: 's',
-        bubbles: true,
-      })
+      const event2 = keydown({ key: 's' })
       Object.defineProperty(event2, 'target', {
         value: listItem,
         writable: false,
@@ -578,7 +534,7 @@ describe('HotkeyManager', () => {
 
       input.focus()
       for (let i = 0; i < 2; i++) {
-        const event = new KeyboardEvent('keydown', { key: 'g', bubbles: true })
+        const event = keydown({ key: 'g' })
         Object.defineProperty(event, 'currentTarget', {
           value: container,
           writable: false,
@@ -640,12 +596,12 @@ describe('HotkeyManager', () => {
 
       manager.register(['G', 'G'], callback, { eventType: 'keyup' })
 
-      dispatchKey('g', { eventType: 'keydown' })
-      dispatchKey('g', { eventType: 'keyup' })
+      keydown({ key: 'g', target: document })
+      keyup({ key: 'g', target: document })
       expect(callback).not.toHaveBeenCalled()
 
-      dispatchKey('g', { eventType: 'keydown' })
-      dispatchKey('g', { eventType: 'keyup' })
+      keydown({ key: 'g', target: document })
+      keyup({ key: 'g', target: document })
       expect(callback).toHaveBeenCalledTimes(1)
     })
   })
@@ -660,8 +616,8 @@ describe('HotkeyManager', () => {
       manager.register(['G', 'G'], callback1)
       manager.register(['G', 'G'], callback2)
 
-      dispatchKey('g')
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
+      keydown({ key: 'g', target: document })
 
       expect(callback1).toHaveBeenCalledTimes(1)
       expect(callback2).toHaveBeenCalledTimes(1)
@@ -679,8 +635,8 @@ describe('HotkeyManager', () => {
         manager.register(['G', 'G'], callback, { conflictBehavior: 'error' }),
       ).toThrow(/already registered/)
 
-      dispatchKey('g')
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
+      keydown({ key: 'g', target: document })
       expect(callback).toHaveBeenCalledTimes(1)
     })
 
@@ -692,8 +648,8 @@ describe('HotkeyManager', () => {
       manager.register(['G', 'G'], callback1, { conflictBehavior: 'replace' })
       manager.register(['G', 'G'], callback2, { conflictBehavior: 'replace' })
 
-      dispatchKey('g')
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
+      keydown({ key: 'g', target: document })
 
       expect(callback1).not.toHaveBeenCalled()
       expect(callback2).toHaveBeenCalledTimes(1)
@@ -708,8 +664,8 @@ describe('HotkeyManager', () => {
       manager.register(['G', 'G'], callback1, { conflictBehavior: 'allow' })
       manager.register(['G', 'G'], callback2, { conflictBehavior: 'allow' })
 
-      dispatchKey('g')
-      dispatchKey('g')
+      keydown({ key: 'g', target: document })
+      keydown({ key: 'g', target: document })
 
       expect(callback1).toHaveBeenCalledTimes(1)
       expect(callback2).toHaveBeenCalledTimes(1)
@@ -738,11 +694,11 @@ describe('HotkeyManager', () => {
 
       manager.register(['D', 'I', 'W'], callback)
 
-      dispatchKey('d')
-      dispatchKey('i')
+      keydown({ key: 'd', target: document })
+      keydown({ key: 'i', target: document })
       expect(callback).not.toHaveBeenCalled()
 
-      dispatchKey('w')
+      keydown({ key: 'w', target: document })
       expect(callback).toHaveBeenCalledTimes(1)
     })
   })
@@ -754,18 +710,10 @@ describe('HotkeyManager', () => {
 
       manager.register(['Z', 'Shift+C'], callback)
 
-      dispatchKey('z')
+      keydown({ key: 'z', target: document })
       // Pressing Shift before Shift+C should not reset the sequence
-      document.dispatchEvent(
-        new KeyboardEvent('keydown', { key: 'Shift', bubbles: true }),
-      )
-      document.dispatchEvent(
-        new KeyboardEvent('keydown', {
-          key: 'c',
-          shiftKey: true,
-          bubbles: true,
-        }),
-      )
+      keydown({ key: 'Shift', target: document })
+      keydown({ key: 'c', shiftKey: true, target: document })
 
       expect(callback).toHaveBeenCalledTimes(1)
     })
@@ -776,15 +724,9 @@ describe('HotkeyManager', () => {
 
       manager.register(['Z', 'Shift+C'], callback)
 
-      dispatchKey('z')
-      dispatchKey('x') // Wrong key resets the sequence
-      document.dispatchEvent(
-        new KeyboardEvent('keydown', {
-          key: 'c',
-          shiftKey: true,
-          bubbles: true,
-        }),
-      )
+      keydown({ key: 'z', target: document })
+      keydown({ key: 'x', target: document }) // Wrong key resets the sequence
+      keydown({ key: 'c', shiftKey: true, target: document })
 
       expect(callback).not.toHaveBeenCalled()
     })
@@ -803,11 +745,11 @@ describe('createSequenceMatcher', () => {
   it('should match sequence', () => {
     const matcher = createSequenceMatcher(['G', 'G'])
 
-    const event1 = new KeyboardEvent('keydown', { key: 'g' })
+    const event1 = keydown({ key: 'g' })
     expect(matcher.match(event1)).toBe(false)
     expect(matcher.getProgress()).toBe(1)
 
-    const event2 = new KeyboardEvent('keydown', { key: 'g' })
+    const event2 = keydown({ key: 'g' })
     expect(matcher.match(event2)).toBe(true)
     expect(matcher.getProgress()).toBe(0) // Reset after match
   })
@@ -815,17 +757,17 @@ describe('createSequenceMatcher', () => {
   it('should reset on wrong key', () => {
     const matcher = createSequenceMatcher(['G', 'G'])
 
-    matcher.match(new KeyboardEvent('keydown', { key: 'g' }))
+    matcher.match(keydown({ key: 'g' }))
     expect(matcher.getProgress()).toBe(1)
 
-    matcher.match(new KeyboardEvent('keydown', { key: 'x' }))
+    matcher.match(keydown({ key: 'x' }))
     expect(matcher.getProgress()).toBe(0)
   })
 
   it('should reset manually', () => {
     const matcher = createSequenceMatcher(['G', 'G'])
 
-    matcher.match(new KeyboardEvent('keydown', { key: 'g' }))
+    matcher.match(keydown({ key: 'g' }))
     expect(matcher.getProgress()).toBe(1)
 
     matcher.reset()
@@ -835,12 +777,10 @@ describe('createSequenceMatcher', () => {
   it('should respect timeout', () => {
     const matcher = createSequenceMatcher(['G', 'G'], { timeout: 500 })
 
-    matcher.match(new KeyboardEvent('keydown', { key: 'g' }))
+    matcher.match(keydown({ key: 'g' }))
     vi.advanceTimersByTime(600)
 
-    expect(matcher.match(new KeyboardEvent('keydown', { key: 'g' }))).toBe(
-      false,
-    )
+    expect(matcher.match(keydown({ key: 'g' }))).toBe(false)
     expect(matcher.getProgress()).toBe(1) // Started new sequence
   })
 })
@@ -909,8 +849,8 @@ describe('HotkeyManager hasFired', () => {
 
     manager.register(['G', 'G'], callback)
 
-    dispatchKey('g')
-    dispatchKey('g')
+    keydown({ key: 'g', target: document })
+    keydown({ key: 'g', target: document })
 
     expect(callback).toHaveBeenCalledTimes(1)
 
@@ -930,8 +870,8 @@ describe('HotkeyManager hasFired', () => {
     expect(view.hasFired).toBe(false)
 
     // Trigger sequence
-    dispatchKey('d')
-    dispatchKey('d')
+    keydown({ key: 'd', target: document })
+    keydown({ key: 'd', target: document })
 
     // After trigger
     view = Array.from(manager.registrations.state.values())[0]!
