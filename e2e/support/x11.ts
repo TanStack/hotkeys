@@ -57,7 +57,9 @@ export function press(combo: string): void {
   const codes = combo.split('+').map((name) => {
     const code = (KEYCODES as Partial<Record<string, number>>)[name]
     if (code === undefined) throw new Error(`No keycode for ${name}`)
-    return String(code)
+    // xdotool reads a single digit as a keysym, so `9` would type "9". Keycode
+    // 9 is Escape on every xkb layout, so send the keysym name instead.
+    return code < 10 ? name : String(code)
   })
   x11(
     'xdotool',
