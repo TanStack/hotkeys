@@ -295,6 +295,28 @@ describe('normalizeKeyName', () => {
     expect(normalizeKeyName('f12')).toBe('f12')
     expect(normalizeKeyName('plus')).toBe('plus')
   })
+
+  // BUG-124: toUpperCase turns ı into ASCII I, the uppercase of i
+  it('keeps the Turkish dotless ı and the dotted İ apart from I', () => {
+    expect(normalizeKeyName('ı')).toBe('ı')
+    expect(normalizeKeyName('i')).toBe('I')
+    expect(normalizeKeyName('İ')).toBe('İ')
+  })
+})
+
+describe('Turkish ı and İ in hotkeys', () => {
+  it('parses and normalizes them as written', () => {
+    expect(parseHotkey('ı').key).toBe('ı')
+    expect(parseHotkey('Mod+İ', 'windows').key).toBe('İ')
+    expect(parseHotkey({ key: 'ı', ctrl: true }).key).toBe('ı')
+    expect(normalizeHotkey('Control+ı', 'windows')).toBe('Mod+ı')
+    expect(
+      normalizeHotkey(
+        parseKeyboardEvent(keydown({ key: 'ı', code: 'KeyI' }), 'windows'),
+        'windows',
+      ),
+    ).toBe('ı')
+  })
 })
 
 describe('parseHotkey', () => {

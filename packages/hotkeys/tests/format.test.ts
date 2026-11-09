@@ -352,6 +352,34 @@ describe('physical display labels', () => {
     expect(formatForDisplay('[NumpadMemoryAdd]')).toBe('Numpad Memory Add')
   })
 
+  // BUG-125: these keys have no US key, so they showed their code names
+  it.each([
+    ['IntlBackslash', '\\'],
+    ['IntlRo', '\\'],
+    ['IntlYen', '¥'],
+  ] as const)('labels %s with its keycap legend %s', (code, label) => {
+    for (const useSymbols of [true, false]) {
+      expect(formatForDisplay(`[${code}]`, { platform: 'linux', useSymbols })).toBe(
+        label,
+      )
+    }
+    expect(formatForDisplay(`Shift+[${code}]`, { platform: 'windows' })).toBe(
+      `Shift+${label}`,
+    )
+    expect(formatForDisplay({ code, mod: true }, { platform: 'mac' })).toBe(
+      `⌘ ${label}`,
+    )
+    // A layout map entry and keyLabels still win
+    expect(
+      formatForDisplay(`[${code}]`, { layoutMap: new Map<string, string>([[code, '<']]) }),
+    ).toBe('<')
+    expect(formatForDisplay(`[${code}]`, { keyLabels: { [code]: 'ISO' } })).toBe(
+      'ISO',
+    )
+    // Display only: the hotkey keeps its code
+    expect(normalizeHotkey(`[${code}]`)).toBe(`[${code}]`)
+  })
+
   it('only strips exact letter and digit code patterns', () => {
     // Not valid typed hotkeys: checks how untyped input is displayed
     expect(formatForDisplay('[Keyboard]' as HotkeyChord)).toBe('Keyboard')
@@ -383,6 +411,26 @@ describe('physical display labels', () => {
     expect(formatForDisplay(physical, { platform: 'mac' })).toBe('⌥ Q')
     expect(formatHotkey(physical)).toBe('Alt+[KeyQ]')
     expect(physical).not.toHaveProperty('key')
+  })
+})
+
+// BUG-124: Turkish ı and i are different letters, so they get different labels
+describe('Turkish ı labels', () => {
+  it('labels ı as ı, not I', () => {
+    expect(formatForDisplay(hk('ı'), { platform: 'linux' })).toBe('ı')
+    expect(formatForDisplay(hk('Mod+ı'), { platform: 'windows' })).toBe('Ctrl+ı')
+    expect(formatForDisplay({ key: 'ı' }, { platform: 'linux' })).toBe('ı')
+    expect(formatForDisplay(hk('Shift+İ'), { platform: 'linux' })).toBe('Shift+İ')
+  })
+
+  it('labels the Turkish I position from the layout map as ı', () => {
+    const turkish = new Map([
+      ['KeyI', 'ı'],
+      ['Quote', 'i'],
+    ])
+    expect(formatForDisplay('[KeyI]', { layoutMap: turkish })).toBe('ı')
+    expect(formatForDisplay('[Quote]', { layoutMap: turkish })).toBe('I')
+    expect(formatForDisplay('[KeyI]', { platform: 'linux' })).toBe('I')
   })
 })
 

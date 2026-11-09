@@ -59,6 +59,8 @@ A symbol that needs Shift on some layouts, such as `/` on German QWERTZ (Shift+7
 
 Letters match without regard to case: `S` and `s` are the same binding.
 
+Turkish dotless `ı` and dotted `İ` are letters of their own, not other cases of `I` and `i`. A binding for `ı` fires only on the key that types `ı`, and a binding for `İ` only on the key that types `İ`. `I` fires on the key that types `i`, and also on the key that types `ı`, as in native Windows apps, where that key is the I key. An `ı` binding takes priority there. With `recordBy: 'key'`, the recorder records `ı`, and labels show `ı`.
+
 ### Match a key's position instead
 
 When a shortcut should follow a position rather than a character, such as `W`/`A`/`S`/`D` movement in a game, use a physical binding. Physical bindings match `event.code` exactly and ignore the layout:

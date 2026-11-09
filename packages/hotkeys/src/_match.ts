@@ -49,6 +49,20 @@ export function matchKeyboardEvent(
     return matched('key', implicitShift ? 2 : 3)
   }
 
+  // Turkish `ı` is its own letter, so an `ı` binding never fires on the `i`
+  // key. Its key is Windows' VK_I, though, so `I` also fires there, as in
+  // native Windows apps. An exact `ı` binding outranks it. With Alt, the
+  // position decides instead: macOS Option+Shift+B types `ı` too.
+  if (
+    normalized.key === 'ı' &&
+    parsed.key === 'I' &&
+    !normalized.alt &&
+    !normalized.altGraph &&
+    modifiersMatch(normalized, parsed, false)
+  ) {
+    return matched('key', 2)
+  }
+
   if (!positionStandsIn(normalized, platform)) return noMatch
 
   // With AltGraph held, only a direct key match counts. Never fall back to

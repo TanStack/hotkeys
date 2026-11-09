@@ -30,14 +30,16 @@ describeLayouts('Turkish', {
   registered: ['I', 'Mod+I', 'Shift+İ', 'Ş'],
   layouts: {
     tr: [
+      // "ı" is its own letter, but "I" also fires on its key, as VK_I does
+      // in native Windows apps.
       {
         keys: 'KeyI',
         matches: ['I', 'ı', '[KeyI]'],
-        parsed: 'I',
+        parsed: 'ı',
         recorded: '[KeyI]',
-        recordedByKey: 'I',
+        recordedByKey: 'ı',
         label: 'I',
-        layoutLabel: 'I',
+        layoutLabel: 'ı',
       },
       {
         keys: 'Shift+KeyI',
@@ -45,14 +47,14 @@ describeLayouts('Turkish', {
         parsed: 'Shift+I',
         recorded: 'Shift+[KeyI]',
       },
-      // BUG-124 (issues/bugs/BUG-124-dotless-i-folds-into-i.md): "ı" folds
-      // into "I", so a binding for "ı" fires on the key that types "i".
+      // BUG-124: a binding for "ı" never fires on the key that types "i".
       {
-        bug: 'BUG-124',
         keys: 'Quote',
         matches: ['I', '[Quote]'],
         parsed: 'I',
         recorded: '[Quote]',
+        recordedByKey: 'I',
+        layoutLabel: 'I',
       },
       // Letters need their exact Shift state, so "İ" alone doesn't match.
       {
@@ -65,10 +67,11 @@ describeLayouts('Turkish', {
       {
         keys: 'Control+KeyI',
         matches: ['Mod+I'],
-        parsed: 'Mod+I',
+        parsed: 'Mod+ı',
         recorded: 'Mod+[KeyI]',
+        recordedByKey: 'Mod+ı',
         label: 'Ctrl+I',
-        layoutLabel: 'Ctrl+I',
+        layoutLabel: 'Ctrl+ı',
       },
       {
         keys: 'Control+Quote',
@@ -523,21 +526,24 @@ numpad.describe('Numpad 5 with NumLock off on us', () => {
 })
 
 // The extra ISO and JIS keys have no US key, so without a layout map they
-// have no conventional label.
+// get the keycap legends the UI Events code spec gives.
 const intl = useLayout('gb', [])
 intl.describe('Labels for the extra ISO and JIS keys', () => {
-  // BUG-125 (issues/bugs/BUG-125-intl-key-labels-show-code-names.md): the
-  // label is the code name, such as "IntlBackslash".
-  intl.skip(
+  // BUG-125: the label was the code name, such as "IntlBackslash".
+  intl(
     'BUG-125: IntlBackslash, IntlRo and IntlYen get readable labels',
     async ({ keyboard, page }) => {
       expect(keyboard, 'harness loaded').toBeDefined()
-      for (const binding of ['[IntlBackslash]', '[IntlRo]', '[IntlYen]']) {
+      for (const [binding, expected] of [
+        ['[IntlBackslash]', '\\'],
+        ['[IntlRo]', '\\'],
+        ['[IntlYen]', '¥'],
+      ]) {
         const { label } = await page.evaluate(
           (b) => window.harness.formatLabels(b),
           binding,
         )
-        expect(label, binding).not.toMatch(/^Intl/)
+        expect(label, binding).toBe(expected)
       }
     },
   )

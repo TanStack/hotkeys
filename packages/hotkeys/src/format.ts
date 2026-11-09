@@ -94,8 +94,9 @@ export type DisplayHotkey =
  * On Windows/Linux, uses text (Ctrl+Shift+S) with `+` separators.
  * The separator can be customized with `separatorToken`.
  * Physical codes use conventional display labels: `[KeyS]` becomes `S` and
- * `[Digit2]` becomes `2`. These labels do not infer the active keyboard layout
- * or change matching. Supply a resolved `layoutMap` for layout-aware labels;
+ * `[Digit2]` becomes `2`. Keys with no US key use their keycap legends:
+ * `[IntlBackslash]` and `[IntlRo]` become `\` and `[IntlYen]` becomes `¥`.
+ * These labels do not infer the active keyboard layout or change matching. Supply a resolved `layoutMap` for layout-aware labels;
  * `keyLabels` overrides both layout entries and fallback labels.
  * Sequence steps are formatted individually and joined with `sequenceSeparator`
  * (a space by default).
@@ -215,6 +216,17 @@ function lookup(
   return table && Object.hasOwn(table, name) ? table[name] : undefined
 }
 
+/**
+ * Fallback labels for keys with no US equivalent, from the legends the UI
+ * Events code spec gives: `\` on UK ISO keyboards, and `\` (ろ) and `¥` on
+ * Japanese keyboards. Display only; matching never uses them.
+ */
+const INTL_KEY_LABELS: Readonly<Record<string, string>> = {
+  IntlBackslash: '\\',
+  IntlRo: '\\',
+  IntlYen: '¥',
+}
+
 function formatKey(
   segment: string,
   platform: 'mac' | 'windows' | 'linux',
@@ -243,6 +255,9 @@ function formatKey(
     // Layout entries are logical labels; normalize their case and whitespace names.
     displayKey = normalizeKeyName(mappedKey)
   } else if (code) {
+    // The extra ISO and JIS keys have no US key: use their keycap legends.
+    const intl = lookup(INTL_KEY_LABELS, code)
+    if (intl !== undefined) return intl
     // Numpad keys keep their names (Add, not +) and gain a prefix below.
     displayKey = numpad ? code.slice(6) : (codeToLogicalKey(code) ?? code)
   }

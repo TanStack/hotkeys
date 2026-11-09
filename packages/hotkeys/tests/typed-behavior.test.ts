@@ -324,7 +324,7 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
       }),
     }).toMatchInlineSnapshot(`
       {
-        "formatForDisplay": "e13b2f18c001c58f",
+        "formatForDisplay": "77bc3f4c1acea1b7",
         "formatHotkey": "057f4145f7131f5e",
       }
     `)
@@ -367,8 +367,8 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
       }),
     }).toMatchInlineSnapshot(`
       {
-        "events": "bf714d5b2ef48387",
-        "matching": "9840dcba4abb0775",
+        "events": "50e68c5a2f3fbac9",
+        "matching": "a6d66b90e189076a",
       }
     `)
   })
@@ -445,8 +445,8 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
     expect({ recorded, recorders, fired }).toMatchInlineSnapshot(`
       {
         "fired": "8a5a2d58a181e823",
-        "recorded": "8de27ec75b6d031d",
-        "recorders": "01e3a3ff961d891c",
+        "recorded": "300df415264064a5",
+        "recorders": "b873cd2d34b3dd08",
       }
     `)
   })
@@ -474,7 +474,7 @@ describe('typed hotkeys and real events', { timeout: 120_000 }, () => {
           for (const option of options)
             record(attempt(() => formatForDisplay({ key }, option)))
       }),
-    ).toMatchInlineSnapshot(`"32b3ac7ea1c5cc51"`)
+    ).toMatchInlineSnapshot(`"2b2e959a905dfff0"`)
     expect(formatForDisplay({ key: ' ' }, { platform: 'mac' })).toBe('␣')
     expect(formatForDisplay({ key: '\u00a0' }, { platform: 'mac' })).toBe(
       '\u00a0',

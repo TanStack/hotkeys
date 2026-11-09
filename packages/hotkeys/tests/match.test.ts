@@ -1,6 +1,8 @@
-import { keydown } from '@tanstack/hotkeys-test-utils'
+import { keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { describe, expect, it, vi } from 'vitest'
+import { HotkeyManager } from '../src/hotkey-manager'
 import {
+  areHotkeysEqual,
   createHotkeyChordHandler,
   createMultiHotkeyChordHandler,
   matchesKeyboardEvent,
@@ -995,6 +997,115 @@ describe('matchesKeyboardEvent', () => {
       expect(
         matchesKeyboardEvent(createKeyboardEvent('K'), 'k' as HotkeyChord),
       ).toBe(true)
+    })
+  })
+
+  // BUG-124: on Turkish Q, the I position types ı and the US ' position types i
+  describe('Turkish dotless ı and dotted İ', () => {
+    const dotless = (options: Omit<KeyOptions, 'key' | 'target'> = {}) =>
+      createKeyboardEvent('ı', { code: 'KeyI', ...options })
+    const dotted = (options: Omit<KeyOptions, 'key' | 'target'> = {}) =>
+      createKeyboardEvent('i', { code: 'Quote', ...options })
+
+    it('fires ı only on the key that types ı', () => {
+      expect(matchesKeyboardEvent(dotless(), 'ı' as HotkeyChord, 'windows')).toBe(true)
+      expect(matchesKeyboardEvent(dotted(), 'ı' as HotkeyChord, 'windows')).toBe(false)
+      expect(
+        matchesKeyboardEvent(createKeyboardEvent('i'), 'ı' as HotkeyChord, 'windows'),
+      ).toBe(false)
+      expect(
+        matchesKeyboardEvent(
+          createKeyboardEvent('I', { shiftKey: true }),
+          'Shift+ı' as HotkeyChord,
+          'windows',
+        ),
+      ).toBe(false)
+    })
+
+    it('fires I on the keys that type i and ı, as Windows VK_I does', () => {
+      for (const platform of ['windows', 'mac', 'linux'] as const) {
+        expect(matchesKeyboardEvent(dotless(), 'I', platform)).toBe(true)
+        expect(matchesKeyboardEvent(dotted(), 'I', platform)).toBe(true)
+        expect(
+          matchesKeyboardEvent(dotless({ ctrlKey: true }), 'Control+I', platform),
+        ).toBe(true)
+      }
+      expect(
+        matchesKeyboardEvent(dotless({ ctrlKey: true }), 'Mod+I', 'windows'),
+      ).toBe(true)
+      expect(
+        matchesKeyboardEvent(dotless({ metaKey: true }), 'Mod+I', 'mac'),
+      ).toBe(true)
+      // Modifiers still have to match
+      expect(matchesKeyboardEvent(dotless(), 'Mod+I', 'windows')).toBe(false)
+      expect(
+        matchesKeyboardEvent(dotless({ shiftKey: true }), 'I', 'windows'),
+      ).toBe(false)
+    })
+
+    it('leaves ı typed with Alt to the key position', () => {
+      // macOS Option+Shift+B types ı
+      const optionShiftB = createKeyboardEvent('ı', {
+        code: 'KeyB',
+        altKey: true,
+        shiftKey: true,
+      })
+      expect(matchesKeyboardEvent(optionShiftB, 'Alt+Shift+B', 'mac')).toBe(
+        true,
+      )
+      expect(matchesKeyboardEvent(optionShiftB, 'Alt+Shift+I', 'mac')).toBe(
+        false,
+      )
+      // With AltGr, ı is a typed character, never a shortcut for I
+      const altGr = createKeyboardEvent('ı', {
+        code: 'KeyI',
+        altGraph: true,
+      })
+      expect(matchesKeyboardEvent(altGr, 'I', 'linux')).toBe(false)
+      expect(matchesKeyboardEvent(altGr, 'ı' as HotkeyChord, 'linux')).toBe(true)
+    })
+
+    it('fires İ only on the key that types İ', () => {
+      const shiftDotted = dotted({ shiftKey: true })
+      Object.defineProperty(shiftDotted, 'key', { value: 'İ' })
+      expect(matchesKeyboardEvent(shiftDotted, 'Shift+İ' as HotkeyChord, 'windows')).toBe(
+        true,
+      )
+      expect(matchesKeyboardEvent(shiftDotted, 'Shift+I', 'windows')).toBe(
+        false,
+      )
+      expect(matchesKeyboardEvent(dotted(), 'İ' as HotkeyChord, 'windows')).toBe(false)
+      expect(
+        matchesKeyboardEvent(
+          createKeyboardEvent('I', { shiftKey: true }),
+          'Shift+İ' as HotkeyChord,
+          'windows',
+        ),
+      ).toBe(false)
+    })
+
+    it('keeps ı, I and İ as different hotkeys', () => {
+      expect(areHotkeysEqual('ı' as HotkeyChord, 'I', 'windows')).toBe(false)
+      expect(areHotkeysEqual('İ' as HotkeyChord, 'I', 'windows')).toBe(false)
+      expect(areHotkeysEqual('ı' as HotkeyChord, 'İ' as HotkeyChord, 'windows')).toBe(false)
+      expect(areHotkeysEqual('i' as HotkeyChord, 'I', 'windows')).toBe(true)
+    })
+
+    it('fires an ı registration over an I registration on the ı key', () => {
+      const manager = HotkeyManager.getInstance()
+      const onDotless = vi.fn()
+      const onI = vi.fn()
+      manager.register('I', onI, { platform: 'windows' })
+      manager.register('ı' as HotkeyChord, onDotless, { platform: 'windows' })
+      keydown({ key: 'ı', code: 'KeyI', target: document })
+      keyup({ key: 'ı', code: 'KeyI', target: document })
+      expect(onDotless).toHaveBeenCalledOnce()
+      expect(onI).not.toHaveBeenCalled()
+      keydown({ key: 'i', code: 'Quote', target: document })
+      keyup({ key: 'i', code: 'Quote', target: document })
+      expect(onI).toHaveBeenCalledOnce()
+      expect(onDotless).toHaveBeenCalledOnce()
+      HotkeyManager.resetInstance()
     })
   })
 
