@@ -914,14 +914,16 @@
       "evidence": ["packages/ember-hotkeys/tests/integration/hotkeys.test.gts"]
     },
     "source:packages/hotkeys/tests/scopes.test.ts": {
-      "fingerprint": "ceb4c9e7dc7a39c2e4bcb5192bb8d039e32edf81dbfcde63c1325a78b10727fc",
+      "fingerprint": "edfb909c378529849437198996c4ccc741ed5a7637aa1c6c99c62d83e96d202a",
       "snapshot": {
-        "packages/hotkeys/tests/scopes.test.ts": "a196be87a0bb89f5d254ff4c2e2a363685fed5ae5fc0aa36ff77828355c2d390"
+        "packages/hotkeys/tests/scopes.test.ts": "32e03926cccb97987c079786fe5366764c2cda9cf26ac82a27679f62112bf40c"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
-      "evidence": ["packages/hotkeys/tests/scopes.test.ts", "test:lib passes"]
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/scopes.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+      ]
     },
     "source:packages/lit-hotkeys/src/controllers/hotkey-hint.ts": {
       "fingerprint": "190bd50586e8d5b2696f9cc13125351b8b87448d67a3b795bb33cc3853a63f76",
@@ -1399,15 +1401,15 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "0572f70467f839fe6c01b6d74b58473dcab1fac988f47a242fa9eb513dbb6402",
+      "fingerprint": "de30610ade93d841635019dba928705733f4083dc5cae7ac97c73fa3f7572000",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "1e4e0dcae91590a31e6cbcc1c1968ab0b316863a48bda047f1e18ea9ad7219d7"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "4f95641d01588e72e621bc5212e9d0e4cea13456e992bc144e3e7c0703cb69b9"
       },
-      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
       "outcome": "no-change",
-      "reason": "Core fix for #229 and its tests; skills don't describe Unidentified or composition matching.",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
       "evidence": [
-        "git diff origin/main shows matching, recorder, and test changes only; no skill text references this behavior."
+        "Changed: packages/hotkeys/tests/hotkey-manager.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
       ]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
@@ -4183,16 +4185,15 @@
       "evidence": ["e2e/browser/focus.spec.ts"]
     },
     "source:packages/hotkeys/tests/input-detection.test.ts": {
-      "fingerprint": "ce326a07277672c26a9aa9c86eaa189d03f9a03368c3a75b410597b6269c040c",
+      "fingerprint": "d3d184300d72485e6672221172110d5076eebf6bd1eecaf22111c3efe0edb24d",
       "snapshot": {
-        "packages/hotkeys/tests/input-detection.test.ts": "5beae8d78c132aabe5abedf49cbc70b72f349b7eb78cdfeb5ae9518a4b40d58d"
+        "packages/hotkeys/tests/input-detection.test.ts": "351fa32c2e088c074a9102b0399a1d8f6174f1923a3dcb3ca4698aba55091ce7"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
       "evidence": [
-        "packages/hotkeys/tests/input-detection.test.ts",
-        "test:lib passes"
+        "Changed: packages/hotkeys/tests/input-detection.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
       ]
     },
     "source:packages/hotkeys/tests/registration-and-target.test.ts": {
@@ -4239,27 +4240,27 @@
       "evidence": ["packages/hotkeys/src/_match.ts", "git diff origin/main"]
     },
     "source:packages/hotkeys/tests/match.test.ts": {
-      "fingerprint": "5f18417829bf647e3415501861f8cfb9eeaa2c9e604938b93244393e5f54549a",
+      "fingerprint": "01aaea7b0a1ab290b7c733212414d541feba27d7f5fb1f6e67da77c8e402a63c",
       "snapshot": {
-        "packages/hotkeys/tests/match.test.ts": "8909bd17ac268295343cd11ced72744772778063e5dfa2dcd4d435738ceb743d"
+        "packages/hotkeys/tests/match.test.ts": "f8b476ad3af56253dd1ae282e3f7ae7e3e41bd1e0712a4be7c644299af6e70bc"
       },
-      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
       "outcome": "no-change",
-      "reason": "Core fix for #229 and its tests; skills don't describe Unidentified or composition matching.",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
       "evidence": [
-        "git diff origin/main shows matching, recorder, and test changes only; no skill text references this behavior."
+        "Changed: packages/hotkeys/tests/match.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
       ]
     },
     "source:packages/hotkeys/tests/sequence-regressions.test.ts": {
-      "fingerprint": "6d73559224885f8ba9fca5209d398193962c5136d056b9ae5ab52456c63513ce",
+      "fingerprint": "7fc444c0c86d281425e7a71df8d2acce649d69e855bf0b3b43db276139528489",
       "snapshot": {
-        "packages/hotkeys/tests/sequence-regressions.test.ts": "8284daf4ed3b52befa87f1431cb8df9a7156a5e3b9a26924ef7d6c01de02908f"
+        "packages/hotkeys/tests/sequence-regressions.test.ts": null
       },
-      "head": "7f8e893b9c7e67fcd4c09c9b6868ef40f7525f5a",
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
       "outcome": "no-change",
-      "reason": "An Unidentified key on a modifier code is ignored like a modifier press, as before this PR; no skill describes Unidentified handling.",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
       "evidence": [
-        "grep for Unidentified and composition in packages/*/skills and _artifacts finds no matching guidance."
+        "Changed: packages/hotkeys/tests/sequence-regressions.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
       ]
     },
     "source:.gitignore": {
@@ -5338,14 +5339,16 @@
       "evidence": ["packages/hotkeys/src/validate.ts"]
     },
     "source:packages/hotkeys/tests/adapter.test.ts": {
-      "fingerprint": "01d1dc825dcdbf2902190e057e48e8ea34af39b1817dcdd83340338516f5e1d2",
+      "fingerprint": "ea946782fe269e1a7f2fe166685353f23a14225ce98b71513c076bc348bc8003",
       "snapshot": {
-        "packages/hotkeys/tests/adapter.test.ts": "2bbf96949ecf2576bb5ec4a97e1626444faacdcef20d4391ec663484d2ad1663"
+        "packages/hotkeys/tests/adapter.test.ts": "eb64775afc3795683ab5e82303fc611add0355502b41bc94748e48853a9589ad"
       },
-      "head": "15620fed3d7188c0b6252773904721f0b3d1baa5",
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
       "outcome": "no-change",
-      "reason": "Covered by the updated skill pitfalls (server-rendered labels) or generated reference/test changes.",
-      "evidence": ["packages/hotkeys/tests/adapter.test.ts"]
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/adapter.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+      ]
     },
     "source:packages/hotkeys/tests/production-logs.test.ts": {
       "fingerprint": "c4c0748b7b25d7f99f7c703f76cbbc461993d913e05f154247fcefa0d842a7be",
@@ -6520,36 +6523,40 @@
       ]
     },
     "source:packages/hotkeys/tests/format.test.ts": {
-      "fingerprint": "67429fcce20e209da5bf432f9a0df83ba660673566b2d610e34766dd80eb18f7",
+      "fingerprint": "45cb06720009c6f2a0a672684f8236de11e841cc586e6688f00826e782b0db40",
       "snapshot": {
-        "packages/hotkeys/tests/format.test.ts": "092aa7f6d7df8c63fdc44f8e924a7af913e8d6e410b9c68296399d86fb8d4e00"
+        "packages/hotkeys/tests/format.test.ts": "b0a12d4314a06621618236fcfa7b127a3d38a8847788b0ebd009bdd05991260e"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
       "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+        "Changed: packages/hotkeys/tests/format.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
       ]
     },
     "source:packages/hotkeys/tests/key-coverage.test.ts": {
-      "fingerprint": "e7c88033a3eaa5de6f42330ead831fc7e493bc8c3232ff6a78765cc47215c533",
+      "fingerprint": "59a243dfc9e1c21c89b2421ae85ad2c85358ba95cf0bf0960848738f8c095732",
       "snapshot": {
-        "packages/hotkeys/tests/key-coverage.test.ts": "f806cd8ea87cbcb72f2d31dde81c95093d007ce2c0e3b1af0fffc7b6c0c00e26"
+        "packages/hotkeys/tests/key-coverage.test.ts": "72d2fe0e15563bcd080691922861d030c4adba49b621eb7ec4d7a1bb38484d2e"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "out-of-scope",
-      "reason": "Tests for reason codes and shorter messages; no guidance claim.",
-      "evidence": ["packages/hotkeys/tests/key-coverage.test.ts"]
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
+      "outcome": "no-change",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/key-coverage.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+      ]
     },
     "source:packages/hotkeys/tests/parse.test.ts": {
-      "fingerprint": "ed3809a0b144e9ac5a5cdbe28d45c1b4ccd38e8c1458009a11bb4fa5e9ec3d14",
+      "fingerprint": "3797e829ba273902edca9ad53b17064bb839537636d49367aa8043f2f3e55a35",
       "snapshot": {
-        "packages/hotkeys/tests/parse.test.ts": "cd3dba42f4e36709820fe8c540845b70fef581dd9b5502f2b488bb40cf8d0eeb"
+        "packages/hotkeys/tests/parse.test.ts": "2571d361fccb12be116f5df775b1b3f6721e2e91a82623f9a37d8bf956f5a216"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
-      "evidence": ["packages/hotkeys/tests/parse.test.ts", "test:lib passes"]
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/parse.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+      ]
     },
     "source:packages/hotkeys/tests/typed-behavior.test.ts": {
       "fingerprint": "5974088e2edf7bb81966df965739b82af77d09d3fde8a31227bd4d9985fc442a",
@@ -6564,24 +6571,28 @@
       ]
     },
     "source:packages/hotkeys/tests/unified-hotkeys.test.ts": {
-      "fingerprint": "2203e5d97f9f0130343962e0f41fc5c40cbb130e0c7f10244cdb2b8d602fba0b",
+      "fingerprint": "34f3392b25611b5115e957c5e9298074ea976ab5bd40dd1a70bad56362f723ab",
       "snapshot": {
-        "packages/hotkeys/tests/unified-hotkeys.test.ts": "fead4db73478dd1cb4ffafe6f5ec8fed1a85eac131ce9e777c5ebb0c6650b6fa"
+        "packages/hotkeys/tests/unified-hotkeys.test.ts": "b9f6fa51692503aa0670a76a4bfa3b25cf92b50666452590227cc4ec43ffc708"
       },
-      "head": "6d12d365039f59893aa59930f7f932c0f79e7424",
-      "outcome": "out-of-scope",
-      "reason": "Tests for reason codes and shorter messages; no guidance claim.",
-      "evidence": ["packages/hotkeys/tests/unified-hotkeys.test.ts"]
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
+      "outcome": "no-change",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/unified-hotkeys.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+      ]
     },
     "source:packages/hotkeys/tests/untrusted-input.test.ts": {
-      "fingerprint": "cf604b3076353acc0870d947f4c3989a28d9f81610cf828118381dbeff019ab9",
+      "fingerprint": "6fd91b8b080b00a6dd8910a338e5b694af7b91f0485260fa7f80e81bb2514d50",
       "snapshot": {
-        "packages/hotkeys/tests/untrusted-input.test.ts": "e4bac3ee0c6130727a3015368d017e7457232c6c84e1207edb337a0b77232949"
+        "packages/hotkeys/tests/untrusted-input.test.ts": "605fb07e97be581e3c1e459e58fa2d52d892e3d4770bf8dc55c8125c21f5a23f"
       },
-      "head": "33cb28743ebe6330713fb89c920ce983ed4098d2",
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
       "outcome": "no-change",
-      "reason": "App hotkeys no longer warn about unknown ids or invalid saved hotkeys. No API change.",
-      "evidence": ["packages/hotkeys/tests/untrusted-input.test.ts"]
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/untrusted-input.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+      ]
     },
     "source:packages/hotkeys/tests/validate.test.ts": {
       "fingerprint": "7d21f5e1318ca7477485dd997607b881bbc7593487f82f6a16bca3246f02ff63",
@@ -6631,28 +6642,27 @@
       ]
     },
     "source:packages/hotkeys/tests/parsed-identity.test.ts": {
-      "fingerprint": "d7ca311e2e582dbe207c3f4c2437ff5758f0c1a86d105619d0dd8c541ca5fecb",
+      "fingerprint": "07f500714eb60f63a7c29bcfbef82d2894477c131988b0524391c8e534f21cd5",
       "snapshot": {
-        "packages/hotkeys/tests/parsed-identity.test.ts": "db08e0fbaab7e8b0590a42872637178b460a6294ca9f6fc96fca022da6701211"
+        "packages/hotkeys/tests/parsed-identity.test.ts": "a1cc84d01313ea4c40114ec82af1507041cf83605f5b84862199b6543ba32bdc"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
       "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+        "Changed: packages/hotkeys/tests/parsed-identity.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
       ]
     },
     "source:packages/hotkeys/tests/sequence-manager.test.ts": {
-      "fingerprint": "29599743bf4fa57ea11e32f390e940b7b9fbfe6afca2a0ebc5636b2f7c79d6df",
+      "fingerprint": "10be7a0e08dd0ab487052e600106f97d1379c99fd6682363ef01faf748f0d2c7",
       "snapshot": {
-        "packages/hotkeys/tests/sequence-manager.test.ts": "6afd99fc30a2424e0c8865f73d4043b52e75dd1eec3c2050cd17f3491cafb2bb"
+        "packages/hotkeys/tests/sequence-manager.test.ts": "503a63a3769f557db2e9af111cf30223248bc5182e0cdd176345593029d23b20"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
       "evidence": [
-        "packages/hotkeys/tests/sequence-manager.test.ts",
-        "test:lib passes"
+        "Changed: packages/hotkeys/tests/sequence-manager.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
       ]
     },
     "source:docs/framework/angular/reference/functions/injectHotkey.md": {
@@ -7082,16 +7092,15 @@
       ]
     },
     "source:packages/hotkeys/tests/unset-values.test.ts": {
-      "fingerprint": "ff782d9b1567c2a97b22291857fdf78796ee13857f4dc77e09d86405e47a4d24",
+      "fingerprint": "f928c9450c2f2f916cf639f3cc0a81e3a49effda3b8e90c51002bda9422539ca",
       "snapshot": {
-        "packages/hotkeys/tests/unset-values.test.ts": "ddaba8623082f04eb8047fd05a439bf01b951ab8c355136c2a98f77765791904"
+        "packages/hotkeys/tests/unset-values.test.ts": "00873b507bfa29c59fbb5747189e722dfb0f82484c0fa9ca80709e63affd9428"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
       "evidence": [
-        "packages/hotkeys/tests/unset-values.test.ts",
-        "test:lib passes"
+        "Changed: packages/hotkeys/tests/unset-values.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
       ]
     },
     "source:packages/lit-hotkeys/tests/unset-values.test.ts": {
@@ -7253,24 +7262,28 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/tests/capture.test.ts": {
-      "fingerprint": "e649d334c7f19e96152c65e1d7994fce17d7848b5a1c5163d8094c2ea125c301",
+      "fingerprint": "a050eae4eafa6eb491b890f2d36f370e6cc454ddb5a10ff44f4dad2ae96fb4ab",
       "snapshot": {
-        "packages/hotkeys/tests/capture.test.ts": "4eef0b10fc2211f9ec364553bfe719db52c1751cf20136e3da4ba5d0b339d216"
+        "packages/hotkeys/tests/capture.test.ts": "4481ad90392efec34d98df07fed5958fbae2afc806cc2ba25f92b472a3802963"
       },
-      "head": "40451a50c9d700619a5278201cf09bc4d2b20474",
-      "outcome": "out-of-scope",
-      "reason": "Tests for the edge-case fixes; no skill guidance depends on them.",
-      "evidence": ["packages/hotkeys/tests/capture.test.ts"]
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
+      "outcome": "no-change",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/capture.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+      ]
     },
     "source:packages/hotkeys/tests/key-state-tracker.test.ts": {
-      "fingerprint": "c1f82b296b3bda7c13d80203e6a30b8dd69778787df77acedac9f58006feb903",
+      "fingerprint": "4f18338f43ab0df69f0f7e29e61e6a2c32eabf4ee1abb47df530062741de244e",
       "snapshot": {
-        "packages/hotkeys/tests/key-state-tracker.test.ts": "d2b585d43f8d930d6d45b624864ec6a8c24f5559025ddf3071ce7417c6e192b2"
+        "packages/hotkeys/tests/key-state-tracker.test.ts": "f139016bc4e213e073635ad011d6b8b65118b0aef6e23822c50f341597c89a20"
       },
-      "head": "6bd7da15dfda1f7c7100b38c597e6ed597d96943",
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
       "outcome": "no-change",
-      "reason": "Edge-case fix (empty physical code registers nothing; synthetic contextmenu ignored). Skills describe hotkey usage, which is unchanged.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/key-state-tracker.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+      ]
     },
     "source:docs/framework/alpine/guides/custom-hotkey-recording.md": {
       "fingerprint": "60128dda21bb8eed8994af35ab9615dd96cd5849f852ef8fa30bf90b4b9ab209",
@@ -11328,14 +11341,16 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/tests/delegated-handlers.test.ts": {
-      "fingerprint": "f84036e7ffed35836d86f445350f8bf08984be71dff95ab31c5dd9316aa9b4e7",
+      "fingerprint": "962e0fc04c70c8e6866e477b4c1cd070d0ede5cf51aacd829a714a80962aaf76",
       "snapshot": {
-        "packages/hotkeys/tests/delegated-handlers.test.ts": "6067f55d464c8196fa7a9c59198a3c0be0c8577c243725d7bb6a14fd5d368897"
+        "packages/hotkeys/tests/delegated-handlers.test.ts": "6e1a2e9d4ef6183d1b26bfb570bd65ffff1d9c58bf543ee5a43cdbf6377f03bd"
       },
-      "head": "8261a5916c3cbf01cd5df0a1978203e6e76691e8",
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
       "outcome": "no-change",
-      "reason": "Review fixes: element targets in a closed shadow root listen there, elements outside a document listen at their tree root, and listener reordering skips capture and runs when setOptions turns the option on. No skill change.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/delegated-handlers.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+      ]
     },
     "source:packages/octane-hotkeys/tests/element-order.test.ts": {
       "fingerprint": "9d702a685d4ec148217e6a6b250cd0936f24c37910612a2f5bd2809dd38d6935",
@@ -11550,16 +11565,15 @@
       "evidence": ["e2e/browser/chords.spec.ts"]
     },
     "source:packages/hotkeys/tests/default-prevented.test.ts": {
-      "fingerprint": "fa5662f93d36c52bd35fd0e0a04393ae67b8f3e578e1ff6ffe53627a2cabb229",
+      "fingerprint": "5a3f15cd3c52ac37dc3580a5eead503225100c5bf79d63ba87b61aeb1c146afb",
       "snapshot": {
-        "packages/hotkeys/tests/default-prevented.test.ts": "955f67066df9907fd29f89020a798d109ad4e0bf57f42ae429ef5ccf17c8a260"
+        "packages/hotkeys/tests/default-prevented.test.ts": "12da66e5c90731036adbd04730f121df1f1aed9f15e9bb9fe1519d4368b9e9f1"
       },
-      "head": "030372422c638df511179a26750b62893a9178ce",
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
       "outcome": "no-change",
-      "reason": "Tests, changesets or internal keyup cancellation fix; covered by the core skill.",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
       "evidence": [
-        "packages/hotkeys/tests/default-prevented.test.ts",
-        "packages/hotkeys/skills/hotkeys-core/SKILL.md"
+        "Changed: packages/hotkeys/tests/default-prevented.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
       ]
     },
     "source:e2e/browser/native-overlays.spec.ts": {
@@ -12066,28 +12080,27 @@
       ]
     },
     "source:packages/hotkeys/tests/recording-and-display.test.ts": {
-      "fingerprint": "0bf10c17a960b248dda3fdef520a94bc7b740d13bdb0a1e8ec67802ec8b2fd1d",
+      "fingerprint": "38b5b292f0b5970d80856bdac43e365f06b9a371b85094ee392a944d61b72d22",
       "snapshot": {
-        "packages/hotkeys/tests/recording-and-display.test.ts": "eba8df9d9f7f185035ba2c49c0a1065cd878244aecdafea8ad71bc32483f891d"
+        "packages/hotkeys/tests/recording-and-display.test.ts": null
       },
-      "head": "779b8a4a51af526b84bf0e1244431e4e45634114",
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
       "outcome": "no-change",
-      "reason": "Core fix for #229 and its tests; skills don't describe Unidentified or composition matching.",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
       "evidence": [
-        "git diff origin/main shows matching, recorder, and test changes only; no skill text references this behavior."
+        "Changed: packages/hotkeys/tests/recording-and-display.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
       ]
     },
     "source:packages/hotkeys/tests/native-activation.test.ts": {
-      "fingerprint": "8bfc058b117614eea8ed42115ca1246366f0ee89b7152e7782d5b8a4ce616b08",
+      "fingerprint": "d025a544b0d17cbd5c5cfa33a611c6d928aa55194a68af965b5fd3003c7df246",
       "snapshot": {
-        "packages/hotkeys/tests/native-activation.test.ts": "32fbd2c5d14f2d6f7b5de605b4ee7b0d4f183a7c3b90d6c1a962397305f07511"
+        "packages/hotkeys/tests/native-activation.test.ts": "2b7b81c2a30da23f4df94f53c1f2c3b7f6a16248a9163a1108825e38ff3e6d42"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
       "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
       "evidence": [
-        "packages/hotkeys/tests/native-activation.test.ts",
-        "test:lib passes"
+        "Changed: packages/hotkeys/tests/native-activation.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
       ]
     },
     "source:docs/framework/angular/reference/functions/injectAppHotkeyList.md": {
@@ -17598,14 +17611,16 @@
       "evidence": ["e2e/browser/held-keys-and-recorder.spec.ts"]
     },
     "source:packages/hotkeys/tests/recorder-tab.test.ts": {
-      "fingerprint": "e1f369f88d4f10059dbdc30b86e6299deb17c8f60555718df076cf358f89fb27",
+      "fingerprint": "f61dcf3376cd34ee6868fb4e96a4dbd5abf05c974af3ebdd1b76b30eb2c80484",
       "snapshot": {
-        "packages/hotkeys/tests/recorder-tab.test.ts": "c437e8a196abc9db6ba3f7e2fe8e0787b8927626fb5d59cf8cb93a071ad9cc47"
+        "packages/hotkeys/tests/recorder-tab.test.ts": "6fa89875c5c8ff2900e56314c99d2d62956c1fec325db9787bf419064c7c2d07"
       },
-      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
-      "outcome": "out-of-scope",
-      "reason": "Tests for Tab leaving the recorder; they describe no guidance.",
-      "evidence": ["packages/hotkeys/tests/recorder-tab.test.ts"]
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
+      "outcome": "no-change",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/recorder-tab.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+      ]
     },
     "source:packages/angular-hotkeys-devtools/vitest.config.ts": {
       "fingerprint": "87fff3d60bb88a4a85f725e9b87cb81e81b8d9c30d9f4bfab19c6841ff93d033",
@@ -17773,6 +17788,114 @@
       "reason": "Test infrastructure only: shared Vitest setup, coverage config and thresholds, test fingerprints. No library behavior or public API changed, so no skill guidance is affected.",
       "evidence": [
         "Changed: vitest.workspace.ts at a9dd5ea3fb8a4d3d660638add1766bc35ef114f6"
+      ]
+    },
+    "source:packages/hotkeys/tests/alt-graph.test.ts": {
+      "fingerprint": "d902856182ab3dc96fdfee943f59034b11447b8354f2b3053cd7c015403525c7",
+      "snapshot": {
+        "packages/hotkeys/tests/alt-graph.test.ts": "ddb2254e9976044593b98f8b7a5ade08d422f1c45cfc559eb51f716e8510ed6a"
+      },
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
+      "outcome": "no-change",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/alt-graph.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+      ]
+    },
+    "source:packages/hotkeys/tests/aria-widgets.test.ts": {
+      "fingerprint": "b9806f1d6a3d24b3615a0410f8fbc2e119f1ad0cf03fc777acf7ce64ca5be1ea",
+      "snapshot": {
+        "packages/hotkeys/tests/aria-widgets.test.ts": "87095a05e53b4d282b2057af77113172cd4e22f57126d05f9f9f0ea3f3ad2236"
+      },
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
+      "outcome": "no-change",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/aria-widgets.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+      ]
+    },
+    "source:packages/hotkeys/tests/conflicts.test.ts": {
+      "fingerprint": "f3c4ae1c83b3cc2f986911c43bcd6b25e8c36e93ddfad742fd8d50d139b7923e",
+      "snapshot": {
+        "packages/hotkeys/tests/conflicts.test.ts": "b140c6e8fcadd7373faa7ba6e69689fa13d9cbc5289adeba89a12e2f179aaf0e"
+      },
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
+      "outcome": "no-change",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/conflicts.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+      ]
+    },
+    "source:packages/hotkeys/tests/hint.test.ts": {
+      "fingerprint": "9de404f15b9f5292f9ac1938985946ae268748cb878a7522f3fe4cc894714c92",
+      "snapshot": {
+        "packages/hotkeys/tests/hint.test.ts": "6f0a28a3199713a713dfe10c7d7f2c65c907d6a5f5d1c2d65b8a9085e9e2d476"
+      },
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
+      "outcome": "no-change",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/hint.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+      ]
+    },
+    "source:packages/hotkeys/tests/hotkey-recorder-steps.test.ts": {
+      "fingerprint": "61cd00960dca1ea270ebe45a3faa53ae40c85b4eb5f94066215158f70c3cc784",
+      "snapshot": {
+        "packages/hotkeys/tests/hotkey-recorder-steps.test.ts": "a9e5538031bc84233e54ed5a53ab2bd06b45b065a2179f853256efb083aaf3da"
+      },
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
+      "outcome": "no-change",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/hotkey-recorder-steps.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+      ]
+    },
+    "source:packages/hotkeys/tests/hotkey-recorder.test.ts": {
+      "fingerprint": "f038dfd5d2be011342ba04e2f800bfc0a93e0566f91cb246f80f7db845a3eb6d",
+      "snapshot": {
+        "packages/hotkeys/tests/hotkey-recorder.test.ts": "c6cdc1b12abae1592f9ae7d0611b3a434831cefb2c05a2485c5097c5f872d3d2"
+      },
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
+      "outcome": "no-change",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/hotkey-recorder.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+      ]
+    },
+    "source:packages/hotkeys/tests/recorder-options.test.ts": {
+      "fingerprint": "618ac2def8196d77acf21c5bb616a5257526860f73e6641393e4d10ed74c8dd4",
+      "snapshot": {
+        "packages/hotkeys/tests/recorder-options.test.ts": "d2d53e187a57ffa8ab00e60b31d0017780d04794f54493b8f6fc0eb4c913da70"
+      },
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
+      "outcome": "no-change",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/recorder-options.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+      ]
+    },
+    "source:packages/hotkeys/tests/review-regressions.test.ts": {
+      "fingerprint": "eb4d01411a332b89b31facfd43395a034f24ea68f0e9d818f4c466f0c5e7b129",
+      "snapshot": {
+        "packages/hotkeys/tests/review-regressions.test.ts": null
+      },
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
+      "outcome": "no-change",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/review-regressions.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
+      ]
+    },
+    "source:packages/hotkeys/tests/sequence-ownership.test.ts": {
+      "fingerprint": "774f6fefea49632595634fd4cefd5d2828f19460867b5ab9ba8d6604b50d18a2",
+      "snapshot": {
+        "packages/hotkeys/tests/sequence-ownership.test.ts": "48ee8c64fd15be61ccf95ee95c6cce4e48251ac84a97dfeb1f88efed1b033e55"
+      },
+      "head": "420e42366cff71de912758ef2ab222673523c45a",
+      "outcome": "no-change",
+      "reason": "Test-only reorganization: grab-bag tests moved into per-module files and local event helpers replaced with @tanstack/hotkeys-test-utils. No library behavior, API or skill guidance changed.",
+      "evidence": [
+        "Changed: packages/hotkeys/tests/sequence-ownership.test.ts at 420e42366cff71de912758ef2ab222673523c45a"
       ]
     }
   }
