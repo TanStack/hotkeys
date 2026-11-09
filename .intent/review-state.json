@@ -642,27 +642,27 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "6a2f1a5849a5d782aab92bc39097e0fa9966a67d31779ee4ae78a6c348669465",
+      "fingerprint": "e92612fe93b08804b32a4d3fc8bc3b37561e860b64c7848f86503d5d23d69586",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "b5ff064f1d33ca8d5c015a11af72b4a397609572de3fb4619957ef54674f0839"
+        "docs/reference/classes/HotkeyManager.md": "5894591047efcea0fc1ddacf480daaee149128ee2ea55d9ecbf250a409627bd0"
       },
-      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
-      "outcome": "updated",
-      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "head": "1106c7a3ea46ed5cd1f3a4a34ffdc6f94608c344",
+      "outcome": "no-change",
+      "reason": "Autofix regenerated reference pages; only source line links moved after the hotkey-manager fix.",
       "evidence": [
-        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+        "Changed: docs/reference/classes/HotkeyManager.md at 1106c7a3ea46ed5cd1f3a4a34ffdc6f94608c344"
       ]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "26083e2e0496390b8a5d811b9f66678bb50322432abf10cfe0e136dd42df22ad",
+      "fingerprint": "51af5cab1bed71900a5cfd8c7dd7cc82ab34ff9bca59e88476907704e5f3d605",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "39419cdf3d00164ca9aef42db4c39ac4c2644e264d70e2717ee1a1110eec3518"
+        "docs/reference/functions/getHotkeyManager.md": "f91571833aa07328de0fdf177e7b859a1d49dafc87dfc5478438e1d8a224a752"
       },
-      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
-      "outcome": "updated",
-      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "head": "1106c7a3ea46ed5cd1f3a4a34ffdc6f94608c344",
+      "outcome": "no-change",
+      "reason": "Autofix regenerated reference pages; only source line links moved after the hotkey-manager fix.",
       "evidence": [
-        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+        "Changed: docs/reference/functions/getHotkeyManager.md at 1106c7a3ea46ed5cd1f3a4a34ffdc6f94608c344"
       ]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
