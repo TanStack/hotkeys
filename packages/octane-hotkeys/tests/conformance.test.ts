@@ -56,10 +56,6 @@ function render<P>(component: (props: P) => unknown, props: P) {
 
 const harness: ConformanceHarness = {
   name: 'Octane',
-  knownBugs: {
-    // issues/bugs/BUG-067-key-hold-case-rules-differ-across-adapters.md
-    'key hold > folds the case of a letter like core isKeyHeld': 'BUG-067',
-  },
   act: settle,
   cleanup() {
     for (const unmount of [...mounted]) unmount()

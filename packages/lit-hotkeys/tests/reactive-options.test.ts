@@ -82,14 +82,17 @@ it.each(['hotkey', 'sequence'] as const)(
         ? new HotkeyController(host, 'A', callback, options)
         : new HotkeyController(host, ['A', 'B'], callback, options)
     const registrations = HotkeyManager.getInstance().registrations
+    // A keyup press sends its keydown first: a keyup hotkey fires only for
+    // the release of a press it saw.
     const invoke = (element: HTMLElement, type = 'keydown') => {
-      element.dispatchEvent(
-        new KeyboardEvent(type, { key: 'a', bubbles: true }),
-      )
-      if (kind === 'sequence')
-        element.dispatchEvent(
-          new KeyboardEvent(type, { key: 'b', bubbles: true }),
-        )
+      const types = type === 'keyup' ? ['keydown', 'keyup'] : [type]
+      for (const key of kind === 'sequence' ? ['a', 'b'] : ['a']) {
+        for (const eventType of types) {
+          element.dispatchEvent(
+            new KeyboardEvent(eventType, { key, bubbles: true }),
+          )
+        }
+      }
     }
     host.addController(controller)
     document.body.append(host)

@@ -1,6 +1,6 @@
 import { createPreactPanel } from '@tanstack/devtools-utils/preact'
 import { HotkeysDevtoolsCore } from '@tanstack/hotkeys-devtools/production'
-import { h } from 'preact'
+import { Component, h } from 'preact'
 import type { HotkeysDevtoolsPanelProps } from '@tanstack/hotkeys-devtools/production'
 import type { JSX } from 'preact'
 
@@ -13,8 +13,23 @@ type HotkeysDevtoolsPanelComponent = (
 const panels = createPreactPanel(HotkeysDevtoolsCore)
 
 function withDefaults(
-  Panel: (typeof panels)[number],
+  CorePanel: (typeof panels)[number],
 ): HotkeysDevtoolsPanelComponent {
+  // `CorePanel` remounts the devtools whenever it renders with a new props
+  // object. Skip renders that don't change the props, so the panel keeps its
+  // search, selection and width when the parent re-renders. This avoids
+  // `memo` from `preact/compat`, which changes global Preact options.
+  class Panel extends Component<HotkeysDevtoolsPanelProps> {
+    override shouldComponentUpdate(next: HotkeysDevtoolsPanelProps) {
+      return (
+        next.theme !== this.props.theme ||
+        next.devtoolsOpen !== this.props.devtoolsOpen
+      )
+    }
+    override render() {
+      return h(CorePanel, this.props)
+    }
+  }
   return (props = {}) =>
     h(Panel, {
       ...props,

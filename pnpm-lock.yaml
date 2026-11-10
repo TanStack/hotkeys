@@ -4546,9 +4546,6 @@ importers:
       '@tanstack/hotkeys-devtools':
         specifier: workspace:*
         version: link:../hotkeys-devtools
-      '@tanstack/preact-devtools':
-        specifier: '>=0.10.15'
-        version: 0.10.15(csstype@3.2.3)(preact@11.2.0)(solid-js@1.9.18)
     devDependencies:
       '@preact/preset-vite':
         specifier: ^2.10.6
@@ -4556,6 +4553,9 @@ importers:
       '@tanstack/hotkeys-test-utils':
         specifier: workspace:*
         version: link:../../test-utils
+      '@tanstack/preact-devtools':
+        specifier: 0.10.15
+        version: 0.10.15(csstype@3.2.3)(preact@11.2.0)(solid-js@1.9.18)
       '@tanstack/preact-hotkeys':
         specifier: workspace:*
         version: link:../preact-hotkeys
@@ -4602,9 +4602,6 @@ importers:
       '@tanstack/hotkeys-devtools':
         specifier: workspace:*
         version: link:../hotkeys-devtools
-      '@tanstack/react-devtools':
-        specifier: '>=0.10.14'
-        version: 0.10.14(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(solid-js@1.9.18)
       '@types/react-dom':
         specifier: '>=18.0.0'
         version: 19.3.0(@types/react@19.3.0)
@@ -4615,6 +4612,9 @@ importers:
       '@tanstack/hotkeys-test-utils':
         specifier: workspace:*
         version: link:../../test-utils
+      '@tanstack/react-devtools':
+        specifier: 0.10.14
+        version: 0.10.14(@types/react-dom@19.3.0(@types/react@19.3.0))(@types/react@19.3.0)(csstype@3.2.3)(react-dom@19.3.1(react@19.3.1))(react@19.3.1)(solid-js@1.9.18)
       '@tanstack/react-hotkeys':
         specifier: workspace:*
         version: link:../react-hotkeys
@@ -31994,10 +31994,6 @@ snapshots:
       source-map-js: 1.2.2
 
   powershell-utils@0.2.1: {}
-
-  preact-render-to-string@6.8.2(preact@10.29.8):
-    dependencies:
-      preact: 10.29.8(preact-render-to-string@6.8.2)
 
   preact-render-to-string@6.8.2(preact@11.2.0):
     dependencies:

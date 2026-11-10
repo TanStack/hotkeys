@@ -170,10 +170,6 @@ const harness: ConformanceHarness = {
   unsupported: {
     'provider-scope': 'createHotkeysScope sets defaults but has no hotkey scope; use core activateScope',
   },
-  knownBugs: {
-    // issues/bugs/BUG-067-key-hold-case-rules-differ-across-adapters.md
-    'key hold > folds the case of a letter like core isKeyHeld': 'BUG-067',
-  },
   act: settle,
   async setup() {
     stage = new Stage()
