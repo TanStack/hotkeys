@@ -10,10 +10,6 @@ trustPolicyExclude:
   - 'semver@6.3.1' # Socket score 100; popular npm-maintained latest-6 release.
   - 'ua-parser-js@0.7.41' # Socket score 100; popular, healthy cadence.
 minimumReleaseAge: 1440
-minimumReleaseAgeExclude:
-  # First releases of TanStack's shared Oxc configs: published less than 24 hours ago
-  - '@tanstack/oxfmt-config@0.1.0'
-  - '@tanstack/oxlint-config@0.1.0'
 packages:
   - 'e2e'
   - 'e2e/adapters/apps/*'
@@ -52,8 +48,8 @@ overrides:
   '@emnapi/core': ^1.11.3
   '@emnapi/runtime': ^1.11.3
   # Ember's transforms require Babel 7; these tools also allow Babel 8.
-  '@nullvoxpopuli/ember-build-tooling-utils>@babel/core': '^7.29.7'
-  '@nullvoxpopuli/ember-vite>@babel/core': '^7.29.7'
+  '@nullvoxpopuli/ember-build-tooling-utils>@babel/core': '^7.29.13'
+  '@nullvoxpopuli/ember-vite>@babel/core': '^7.29.13'
   '@tanstack/alpine-hotkeys': 'workspace:*'
   '@tanstack/angular-hotkeys': 'workspace:*'
   '@tanstack/angular-hotkeys-devtools': 'workspace:*'

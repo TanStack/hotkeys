@@ -16,16 +16,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
       - name: Setup Tools
-        uses: TanStack/config/.github/setup@466151b2d479656b38942cd84a0a3dce29d48de3
+        uses: TanStack/config/.github/setup@a041f4eeb8e4d595aee89f8992b20c669288a741 # main
       - name: Fix formatting
         run: pnpm run format
       - name: Regenerate docs
         run: pnpm build:all && pnpm generate-docs
       - name: Apply fixes
-        uses: autofix-ci/action@635ffb0c9798bd160680f18fd73371e355b85f27
+        uses: autofix-ci/action@c5b2d67aa2274e7b5a18224e8171550871fc7e4a # v1.3.4
         with:
           commit-message: 'ci: apply automated fixes'

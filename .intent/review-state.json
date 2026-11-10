@@ -5797,16 +5797,14 @@
       ]
     },
     "source:pnpm-workspace.yaml": {
-      "fingerprint": "0ef4937e2436567d622f37bb5d144f1231df527336feeb04c3fabfcc037b3d54",
+      "fingerprint": "5c23afdc9ad47475ce39da946007777bc20cb20c465bbc06dcb9cb5ba2ad1311",
       "snapshot": {
-        "pnpm-workspace.yaml": "eaa531cfe0875175b7270872f15c430ed501dc204a35bc121ed7325080c637a1"
+        "pnpm-workspace.yaml": "79b34614777b41b3b5e4d323cb7a08c4e96e42bc6a7560754f3caa225d07404a"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
-      "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
-      "evidence": [
-        "Changed: pnpm-workspace.yaml at ce272666d8aae7bebafc02b184b29fcd2e853125"
-      ]
+      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "outcome": "out-of-scope",
+      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
+      "evidence": ["pnpm-workspace.yaml"]
     },
     "source:docs/framework/ember/reference/classes/useHotkey.md": {
       "fingerprint": "9f52c68f9d48ad5889e49faa5ee199109a997e3947638000527fc77350f81943",
@@ -6742,14 +6740,14 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/ember/reference/classes/onHotkey.md": {
-      "fingerprint": "ffe22af1e14096b340219b0cfbc50e6ea066ab28e7da6f0b00fcd71ee73119b5",
+      "fingerprint": "fa2a62ed331dd6c4ca13ae190c0f4b5ef1f0dd3aa9099c95bb0321db3d1ba96e",
       "snapshot": {
-        "docs/framework/ember/reference/classes/onHotkey.md": "707390d4363a085d43d6e24aa977b33c89f923d86f8e7f7601b1d86c279b1d65"
+        "docs/framework/ember/reference/classes/onHotkey.md": "49ced41a013ced2c730007673b04c93dd6d064f39c0744a9e6aad24f34474b58"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc path change from the @babel/core bump in the pnpm store path; no API change.",
+      "evidence": ["docs/framework/ember/reference/classes/onHotkey.md"]
     },
     "source:docs/framework/ember/reference/functions/createHotkeysScope.md": {
       "fingerprint": "4e247c8ee56d070c7888782e8970c300d86db1740d384c8594be9d224ef31a25",
@@ -8408,16 +8406,14 @@
       ]
     },
     "source:.github/workflows/e2e.yml": {
-      "fingerprint": "2b6ec36416c27aa1018c9b7f683621083a87e9c31a5db381ed30a68ab7fa9065",
+      "fingerprint": "ad41efe7b9637b87ccd967d47136b17f6030d593de1cd6a6fa99d67742c75fc8",
       "snapshot": {
-        ".github/workflows/e2e.yml": "24ed4ff6c4bb7e5afeffad3c69f6292a4a89b76b1f38b3222960f806218f0ae0"
+        ".github/workflows/e2e.yml": "ee1f7c14369363539bbfc207680cb7e7e2fe667e18d6b0e176272151c87171ca"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
-      "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
-      "evidence": [
-        "Changed: .github/workflows/e2e.yml at ce272666d8aae7bebafc02b184b29fcd2e853125"
-      ]
+      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "outcome": "out-of-scope",
+      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
+      "evidence": [".github/workflows/e2e.yml"]
     },
     "source:.prettierignore": {
       "fingerprint": "6b9e10e4e967f462a752ee95fd3fcb4967db2763e3e9228683444db552a4ca05",
@@ -12230,14 +12226,14 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/ember/reference/classes/onHotkeys.md": {
-      "fingerprint": "8e38d074e93654c35141e153e08cc0c1c9526d776b250357872f4e56a7022263",
+      "fingerprint": "0c4236483267bd9b2b1e87d95084f5d47dfdfdca95091eda4c6aef90a09928fa",
       "snapshot": {
-        "docs/framework/ember/reference/classes/onHotkeys.md": "059f68dce20dbaa23395cb82f201dd5f696ae9c78c496404f3f8617384b9eab8"
+        "docs/framework/ember/reference/classes/onHotkeys.md": "b695e9b5988f29257f5a8ea43b338535f5e4ad2fb3a3f4bbbcbcd7b7324f75d9"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "outcome": "out-of-scope",
+      "reason": "Generated TypeDoc path change from the @babel/core bump in the pnpm store path; no API change.",
+      "evidence": ["docs/framework/ember/reference/classes/onHotkeys.md"]
     },
     "source:docs/framework/ember/reference/functions/useHeldKeyCodes.md": {
       "fingerprint": "1382137d6047d5e06943504ebd2d35c9ba9d266333577c4335cad9740577c6c6",
@@ -18026,28 +18022,24 @@
       ]
     },
     "source:.github/workflows/e2e-flaky.yml": {
-      "fingerprint": "82ceb27b0ae77feec64d002328cd3cffb9e4f8135fb70303c41d9192d929a5e8",
+      "fingerprint": "c8e0a2cb24bad36161763c3a29eed4f7e74bf2e0988714e459bc606f9697f978",
       "snapshot": {
-        ".github/workflows/e2e-flaky.yml": "2ba1c84652ff9ee10fc11160bbb25d79bb81d92d047b5dc0dbf886be589073ee"
+        ".github/workflows/e2e-flaky.yml": "adb3a987d4ec71d4bdee29fa3a9aab2ff78993bc6607ee3bd6bda72f4d24d1a3"
       },
-      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
-      "outcome": "no-change",
-      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
-      "evidence": [
-        "Changed: .github/workflows/e2e-flaky.yml at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
-      ]
+      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "outcome": "out-of-scope",
+      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
+      "evidence": [".github/workflows/e2e-flaky.yml"]
     },
     "source:.github/workflows/e2e-platforms.yml": {
-      "fingerprint": "7ccb70b90e74ac2c5c7b6f453813ae90605482639796b6238857b24cb7c65d1f",
+      "fingerprint": "407b246f55fdebe1083ee4fbb01e9a6f6f84949b1bab9f0e84625c954a899bb9",
       "snapshot": {
-        ".github/workflows/e2e-platforms.yml": "cc5c18d1c521f7076264c39231ce6e0c2131ed273177f0acbf40cba738b0f081"
+        ".github/workflows/e2e-platforms.yml": "012aa1894bf9568b0397ccac123b22eebbc15ff8e0ec7ac0e47a6c9c21d09b0f"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
-      "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
-      "evidence": [
-        "Changed: .github/workflows/e2e-platforms.yml at ce272666d8aae7bebafc02b184b29fcd2e853125"
-      ]
+      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "outcome": "out-of-scope",
+      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
+      "evidence": [".github/workflows/e2e-platforms.yml"]
     },
     "source:e2e/adapters/adapters.spec.ts": {
       "fingerprint": "fd2592d3c39c58cdfec2a3a3ca9085200414045cd8ca3f22f440e5284dfef679",
@@ -18986,16 +18978,14 @@
       ]
     },
     "source:.github/workflows/nightly.yml": {
-      "fingerprint": "30e63101b1d7e8cad39adfdb37d2eeccd566bfe2db8676949f973fe74b169602",
+      "fingerprint": "bf3e5242cdbb695cbd3c066f29770e6758cbbc7f6930baed766c9c31053004ef",
       "snapshot": {
-        ".github/workflows/nightly.yml": "7d42d8c99edbaf54b108e0d05557b37276cd70841c03552902271feaf10073fe"
+        ".github/workflows/nightly.yml": "3b58c68cdc81080f484604abc71de7cedb95c4639495c881db9269e6b0732a35"
       },
-      "head": "1dbd12f97255d77a8d54f9ba131620e15573f07d",
-      "outcome": "no-change",
-      "reason": "Nightly real-input e2e jobs, e2e/CI config and coverage thresholds only; no API or guidance change.",
-      "evidence": [
-        "Changed: .github/workflows/nightly.yml at 1dbd12f97255d77a8d54f9ba131620e15573f07d"
-      ]
+      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "outcome": "out-of-scope",
+      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
+      "evidence": [".github/workflows/nightly.yml"]
     },
     "source:e2e/native/ibus.spec.ts": {
       "fingerprint": "b478d441328a1b043ab0dddd5acd91f11cac4e061a44d786f02e64b037a2c365",
@@ -19620,6 +19610,56 @@
       "evidence": [
         "Changed: packages/svelte-hotkeys/tests/LateNestedAppHotkeysHarness.svelte at e7cbe578686100589221c8a0b6140496985e6c45"
       ]
+    },
+    "source:.github/renovate.json": {
+      "fingerprint": "e2f5d8ce8c63d661b40cf293d4faa148e0b21435eef557f6ddb1b405088c36e0",
+      "snapshot": {
+        ".github/renovate.json": null
+      },
+      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "outcome": "out-of-scope",
+      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
+      "evidence": [".github/renovate.json"]
+    },
+    "source:.github/workflows/autofix.yml": {
+      "fingerprint": "440647d00462b905e501f540647e34b943f42f180faaa465d50b767add2efd51",
+      "snapshot": {
+        ".github/workflows/autofix.yml": "c9a04a21bcdaf4a2c5906e05be629aae41dccf2fa1d76f81676a00fbd6bcd3bc"
+      },
+      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "outcome": "out-of-scope",
+      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
+      "evidence": [".github/workflows/autofix.yml"]
+    },
+    "source:.github/workflows/pr.yml": {
+      "fingerprint": "5c94176e7de3e9b5408882833103b14ca9762a35bb90ad0c85d334fefb084662",
+      "snapshot": {
+        ".github/workflows/pr.yml": "fabf643836d9243b5dd7ad445ba0025c3b7fcaf1d5e737fa7bb4e069a96ea93e"
+      },
+      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "outcome": "out-of-scope",
+      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
+      "evidence": [".github/workflows/pr.yml"]
+    },
+    "source:.github/workflows/release.yml": {
+      "fingerprint": "86cb3a337d16c7d01cdb7511f2dd3a2aa7074f689897dd4e42f251411560e31a",
+      "snapshot": {
+        ".github/workflows/release.yml": "c04379bbf3a9eb156c2190b385918d4a92cd89a33b927a12d30ec3e12e993b11"
+      },
+      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "outcome": "out-of-scope",
+      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
+      "evidence": [".github/workflows/release.yml"]
+    },
+    "source:.github/workflows/zizmor.yml": {
+      "fingerprint": "57b02f51f1dc89b02cf3f33acff8e5f3c5391bb97b8da216eee0cc8c3df2231d",
+      "snapshot": {
+        ".github/workflows/zizmor.yml": "e34a597fc990b63b2727c0a36ed61bf306c02a3e3bb9f139e3a47d746d797a2f"
+      },
+      "head": "b0efa6a0b8505e8bc98092ec9da06557ef49b0a4",
+      "outcome": "out-of-scope",
+      "reason": "Dependency and CI tooling update (action pins, Renovate config removal, release-age exceptions); does not affect library behavior or skill guidance.",
+      "evidence": [".github/workflows/zizmor.yml"]
     }
   }
 }
