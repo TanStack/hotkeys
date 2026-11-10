@@ -195,7 +195,7 @@ const harness: ConformanceHarness = {
             app.store.setOptions({
               customHotkeys: next.provider.customHotkeys ?? undefined,
             })
-          } else {
+          } else if (!app) {
             app = provide(next.provider)
           }
           sync()

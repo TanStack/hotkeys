@@ -86,7 +86,7 @@ To keep a hotkey registered, and listed in devtools and cheat sheets, but stop i
 
 A hotkey unregisters when the component or reactive scope that created it is cleaned up. Solid knows that scope only while the component is being created, so call `createHotkey` directly in the component, not after an `await` or in a timer. A hotkey created there has no owner, and it keeps firing after the component unmounts.
 
-When the hotkey needs something that loads later, register it right away and read the loaded value in the callback:
+When the hotkey needs something that loads later, register it right away, read the loaded value in the callback, and keep the hotkey disabled until the value is there. A disabled hotkey leaves the key to the browser:
 
 ```tsx
 import { createResource } from 'solid-js'
@@ -95,7 +95,11 @@ import { createHotkey } from '@tanstack/solid-hotkeys'
 function Editor() {
   const [commands] = createResource(loadCommands)
 
-  createHotkey('Mod+S', () => commands()?.save())
+  createHotkey(
+    'Mod+S',
+    () => commands()?.save(),
+    () => ({ enabled: !!commands() }),
+  )
 
   return <textarea />
 }

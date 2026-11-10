@@ -1211,15 +1211,15 @@
       ]
     },
     "source:docs/framework/solid/guides/hotkeys.md": {
-      "fingerprint": "992746497de9564f95eba1d66d5a69338d2474b6ee008f99bc5c1b1ef871c79d",
+      "fingerprint": "a23cb820411548ba7b223c364a38a7e8c7ebd961955a46b8191227d3e5c77b1a",
       "snapshot": {
-        "docs/framework/solid/guides/hotkeys.md": "d40a0c86007721d7cd6e512003fe91ca7edf598a7b365fbed34ac704abb60213"
+        "docs/framework/solid/guides/hotkeys.md": "c9079732570ca490d6a8d0cbfc85078d6a0ef843a07e237cbde5d5e76b95736e"
       },
-      "head": "de86a546e06cbb91c872a1ccf080338a18bdb2da",
+      "head": "63e54fdad498b1f48cf5e0c65b30271d0b4fefb3",
       "outcome": "no-change",
-      "reason": "Review follow-ups to the same bug fixes: Svelte publishes its store once, a hotkey on a shadow host yields Escape to its dialog, docs wording and more tests. No guidance changed",
+      "reason": "Test harness guard and a Solid docs example; no guidance changed",
       "evidence": [
-        "Changed: docs/framework/solid/guides/hotkeys.md at de86a546e06cbb91c872a1ccf080338a18bdb2da"
+        "Changed: docs/framework/solid/guides/hotkeys.md at 63e54fdad498b1f48cf5e0c65b30271d0b4fefb3"
       ]
     },
     "source:docs/framework/svelte/guides/hotkeys.md": {
@@ -19178,15 +19178,15 @@
       ]
     },
     "source:packages/alpine-hotkeys/tests/conformance.test.ts": {
-      "fingerprint": "3f0734b0168f58537f87799124086e44f6edece7d04a07266ce0b25228e7e8b4",
+      "fingerprint": "0cdc7e6f8d3b572482a0def8a93b3e93ff93b79ef07f82e070a33f415c68616f",
       "snapshot": {
-        "packages/alpine-hotkeys/tests/conformance.test.ts": "f61ff38974d750502ac4ef4b5ce233040b5e96e7873e01a60b3829fb1899e06b"
+        "packages/alpine-hotkeys/tests/conformance.test.ts": "2a783ea52664da337524e42b32b385e2402c3f274b9dda5669180925a30e33e6"
       },
-      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "head": "63e54fdad498b1f48cf5e0c65b30271d0b4fefb3",
       "outcome": "no-change",
-      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "reason": "Test harness guard and a Solid docs example; no guidance changed",
       "evidence": [
-        "Changed: packages/alpine-hotkeys/tests/conformance.test.ts at e7cbe578686100589221c8a0b6140496985e6c45"
+        "Changed: packages/alpine-hotkeys/tests/conformance.test.ts at 63e54fdad498b1f48cf5e0c65b30271d0b4fefb3"
       ]
     },
     "source:packages/angular-hotkeys/tests/conformance.test.ts": {
@@ -19202,27 +19202,27 @@
       ]
     },
     "source:packages/ember-hotkeys/tests/integration/conformance.test.gts": {
-      "fingerprint": "1b9bd21e1c7d82057fc6759666022832aa39317eabc5fee5a399551842ff27ae",
+      "fingerprint": "2cc115c9f5c8ca571a2d5a41653c618c8ecde53478c2a5966af729d3ced5cac2",
       "snapshot": {
-        "packages/ember-hotkeys/tests/integration/conformance.test.gts": "c1f5594df615ec68d6ce8d42e57e6954a35d15a1921c7c91bd353987cdbd30de"
+        "packages/ember-hotkeys/tests/integration/conformance.test.gts": "11f49394b4ea9bdfc40db4bfdee5e039e40fed2c62302dd7c5c034488020fa7e"
       },
-      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "head": "63e54fdad498b1f48cf5e0c65b30271d0b4fefb3",
       "outcome": "no-change",
-      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "reason": "Test harness guard and a Solid docs example; no guidance changed",
       "evidence": [
-        "Changed: packages/ember-hotkeys/tests/integration/conformance.test.gts at e7cbe578686100589221c8a0b6140496985e6c45"
+        "Changed: packages/ember-hotkeys/tests/integration/conformance.test.gts at 63e54fdad498b1f48cf5e0c65b30271d0b4fefb3"
       ]
     },
     "source:packages/lit-hotkeys/tests/conformance.test.ts": {
-      "fingerprint": "caee5d6f36a71d19390c8735c3919f3743ef72b79002483aab9a12728753c394",
+      "fingerprint": "97702f10ff4f3b12bc4d5ed3cef95a9d9edab33ba53eaffc1af612fd1edc7140",
       "snapshot": {
-        "packages/lit-hotkeys/tests/conformance.test.ts": "df624a9b7e247f809cd99fe4cc032ca69cd6330078d87204458544af80151113"
+        "packages/lit-hotkeys/tests/conformance.test.ts": "ce84ecea713b2eab56077333b41202952b2d2131371af4c24958d9b1291ce592"
       },
-      "head": "e7cbe578686100589221c8a0b6140496985e6c45",
+      "head": "63e54fdad498b1f48cf5e0c65b30271d0b4fefb3",
       "outcome": "no-change",
-      "reason": "Bug fixes for app hotkeys that arrive after the provider renders, Lit server rendering under the DOM shim, and Escape with dialogs in shadow roots, plus doc corrections. The skills don't describe these cases, so no guidance changed",
+      "reason": "Test harness guard and a Solid docs example; no guidance changed",
       "evidence": [
-        "Changed: packages/lit-hotkeys/tests/conformance.test.ts at e7cbe578686100589221c8a0b6140496985e6c45"
+        "Changed: packages/lit-hotkeys/tests/conformance.test.ts at 63e54fdad498b1f48cf5e0c65b30271d0b4fefb3"
       ]
     },
     "source:packages/octane-hotkeys/tests/conformance.test.ts": {
