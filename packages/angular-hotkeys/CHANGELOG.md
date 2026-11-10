@@ -1,5 +1,12 @@
 # @tanstack/angular-hotkeys
 
+## 0.22.1
+
+### Patch Changes
+
+- Updated dependencies [[`0dddcf4`](https://github.com/TanStack/hotkeys/commit/0dddcf4c2866df98068165bbf9977b0c755a138a), [`0dddcf4`](https://github.com/TanStack/hotkeys/commit/0dddcf4c2866df98068165bbf9977b0c755a138a)]:
+  - @tanstack/hotkeys@0.27.1
+
 ## 0.22.0
 
 ### Minor Changes

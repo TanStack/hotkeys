@@ -1,5 +1,13 @@
 # @tanstack/react-hotkeys
 
+## 0.23.1
+
+### Patch Changes
+
+- [#262](https://github.com/TanStack/hotkeys/pull/262) [`0dddcf4`](https://github.com/TanStack/hotkeys/commit/0dddcf4c2866df98068165bbf9977b0c755a138a) - `HotkeysProvider` now uses `appHotkeys` that arrive after its first render, such as declarations from a lazy import or behind a feature flag. Before, a provider that started without them never created its app hotkeys store, even after they arrived: the user's saved custom hotkeys weren't applied, the app hotkey list and custom hotkey helpers kept throwing, and the devtools listed no declared hotkeys. A component that calls those helpers still has to render after the declarations arrive.
+- Updated dependencies [[`0dddcf4`](https://github.com/TanStack/hotkeys/commit/0dddcf4c2866df98068165bbf9977b0c755a138a), [`0dddcf4`](https://github.com/TanStack/hotkeys/commit/0dddcf4c2866df98068165bbf9977b0c755a138a)]:
+  - @tanstack/hotkeys@0.27.1
+
 ## 0.23.0
 
 ### Minor Changes
