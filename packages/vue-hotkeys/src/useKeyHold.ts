@@ -1,3 +1,4 @@
+import { getKeyStateTracker } from '@tanstack/hotkeys'
 import { computed, toValue } from 'vue'
 import { useHeldKeys } from './useHeldKeys'
 import type { IndividualKey } from '@tanstack/hotkeys'
@@ -49,7 +50,8 @@ import type { MaybeRefOrGetter, Ref } from 'vue'
 export function useKeyHold(key: MaybeRefOrGetter<IndividualKey>): Ref<boolean> {
   const heldKeys = useHeldKeys()
   return computed(() => {
-    const target = toValue(key).toLowerCase()
-    return heldKeys.value.some((heldKey) => heldKey.toLowerCase() === target)
+    // Reading heldKeys reruns this when it changes.
+    void heldKeys.value
+    return getKeyStateTracker().isKeyHeld(toValue(key))
   })
 }

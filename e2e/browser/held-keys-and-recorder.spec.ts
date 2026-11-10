@@ -16,6 +16,24 @@ test.describe('held keys', () => {
     expect(await hk.call('heldKeys')).toEqual([])
   })
 
+  // The tracker counts on the letter's own keyup arriving after a modifier
+  // tap. Only Command on macOS swallows it.
+  test('keeps a held letter while a modifier is tapped', async ({
+    page,
+    harness,
+  }) => {
+    const hk = await harness()
+    await hk.call('heldKeys')
+    await page.keyboard.down('KeyW')
+    for (const modifier of ['Shift', 'Control', 'Alt']) {
+      await page.keyboard.down(modifier)
+      await page.keyboard.up(modifier)
+      expect(await hk.call('heldKeys')).toEqual(['W'])
+    }
+    await page.keyboard.up('KeyW')
+    expect(await hk.call('heldKeys')).toEqual([])
+  })
+
   test('clears held keys when the window loses focus', async ({
     page,
     harness,

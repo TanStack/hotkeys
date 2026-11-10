@@ -37,14 +37,20 @@ describe.each(['hotkey', 'sequence'] as const)(
       options: KeyboardEventInit = {},
       type: 'keydown' | 'keyup' = 'keydown',
     ) {
-      if (kind === 'sequence')
-        keyEvent(type, { key: 'g', composed: true, target: element })
-      return keyEvent(type, {
-        key,
-        composed: true,
-        ...options,
-        target: element,
-      })
+      // A keyup hotkey fires only for the release of a press it saw.
+      const types = type === 'keyup' ? (['keydown', 'keyup'] as const) : [type]
+      let event!: KeyboardEvent
+      for (const step of kind === 'sequence' ? ['g', key] : [key]) {
+        for (const eventType of types) {
+          event = keyEvent(eventType, {
+            key: step,
+            composed: true,
+            ...(step === key ? options : {}),
+            target: element,
+          })
+        }
+      }
+      return event
     }
 
     it.each([

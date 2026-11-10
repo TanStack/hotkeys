@@ -55,6 +55,8 @@ function FileItem(props: { file: File }) {
 }
 ```
 
+Key names follow the same rule as hotkeys: letters match in any case, so `'a'` and `'A'` are the same key, and other names are case-sensitive. Write `'Shift'` and `'Escape'`, not `'shift'` or `'escape'`.
+
 ## Tell left and right modifiers apart
 
 `createHeldKeyCodes` maps each held key to the physical key that's down, from `event.code`:

@@ -141,6 +141,8 @@ describe('HotkeyController', () => {
 
     expect(addSpy).toHaveBeenCalledWith('keyup', expect.any(Function), false)
 
+    dispatchKeydown(document, { key: 'Escape' })
+    expect(callback).not.toHaveBeenCalled()
     dispatchKeyup(document, { key: 'Escape' })
     expect(callback).toHaveBeenCalled()
 

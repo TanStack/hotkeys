@@ -3,11 +3,11 @@
   "baseline": "ad56a4b0dbf3c34d8552eca2cc88c5c7000d520a",
   "items": {
     "skill:packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": {
-      "fingerprint": "bbcf48c10aef7ad583b8e54b52273dccbf1ff3820c0ee9a8cf9be3e294178379",
+      "fingerprint": "8517f362333e894e25467cc9fe5ad7435d02a83bd5643a27331e7942e9e72228",
       "snapshot": {
         "docs/framework/alpine/guides/app-hotkeys.md": "cdefefaa71aa9c36da99d314ab0279aa791dcf651bb1fd4cebf7263ba661078a",
         "docs/framework/alpine/quick-start.md": "763eb650068c1e8ddf8293e3dbc59b99cca17768429f9b6a2a1f6ea1bb2bd36d",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "b8a7e9ce42d7a9cfacc9bd405a5f0be43064e81f76616a6f31504ccb32c0d59a",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "3739778a270f7ffbaac99e6a7b57a34a9d0ddd736340c8cab45c8616da73e823",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "69ba6d06582aaf28328e74c12888bcf8b1d89b2ae2a01d7f6a41eb82eef848e3",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4c43866e1e60dbfcdac1c5acb3b5bd1f372d722d47e51cb8922b22f1c372fa45",
         "packages/alpine-hotkeys/src/createHotkey.ts": "08e400a0a96bcb87e4cb16a45f4c60471aa74110195ec8d66dc83283d2913531",
@@ -17,20 +17,19 @@
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "5b2b94b41d520f3beb60d2ceb15081799873c84c0ff244289d9b3698168c0ead"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Code examples changed only in import order (oxfmt sortImports), and the covered sources changed only by formatter output. Guidance and APIs are unchanged.",
+      "head": "cccec34d9a50549fee8d4b38f74349d8f1db5b13",
+      "outcome": "updated",
+      "reason": "BUG-067: the key-hold row now states core isKeyHeld case rule (letters in any case, other names case-sensitive); pnpm format realigned the table.",
       "evidence": [
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md",
-        "git diff origin/main: only import lines change"
+        "Key-hold helper now calls getKeyStateTracker().isKeyHeld; conformance key hold cases pass in all ten adapters."
       ]
     },
     "skill:packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": {
-      "fingerprint": "9b57702b3468b0a54eafb286e0af439f43db5e3a79d8d429bbd0ce67ae51a903",
+      "fingerprint": "6ba0dfa26a637873bac1e2fd31d0edc2db5ab1c04a50bd5ab2573760486d3fe8",
       "snapshot": {
         "docs/framework/angular/guides/provide-hotkeys-and-scopes.md": "9cc0d3f2a26ee41b3d67f11f8d84c616ae90ab8432e79b3cb7bdef02a31d09ff",
         "docs/framework/angular/quick-start.md": "7cc94e2f2a712f1748357b17784723b327122c43d2051d8d17639adb6af725b6",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "983bf60ad88b19c38d0c86cbd1de4fe9f7af74be0826026c7120cbfddb8d3cce",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "7418b6ea2d0281a448d8ecdb6d8afb4bcfce933317cf20fc4aaeea0d3ed75731",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "73d0c4768121bc54eed662145d552d2d7f93d4d54e072754dc5a9fecfda6b95b",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
@@ -38,19 +37,19 @@
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "cd0c816187babc38188c5371dc1cb2bcd2ab017eda7d53b2851ea7b35d16e59a",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "e89b404ccc443f00ab26f68e267e2a4fe70e3f2f600d6f5186f77973c8f636ca"
       },
-      "head": "8437d80940ac20a70676daaab75b90141797ff8f",
-      "outcome": "no-change",
-      "reason": "Merge of main after #242 merged. Pending items changed through #242 (Angular recorder live defaults and route-scope docs), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
+      "head": "cccec34d9a50549fee8d4b38f74349d8f1db5b13",
+      "outcome": "updated",
+      "reason": "BUG-067: the key-hold row now states core isKeyHeld case rule (letters in any case, other names case-sensitive); pnpm format realigned the table.",
       "evidence": [
-        "Changed: docs/framework/angular/guides/provide-hotkeys-and-scopes.md, packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md, packages/angular-hotkeys/src/hotkeys-provider.ts, packages/angular-hotkeys/src/injectHotkeyRecorder.ts at 8437d80940ac20a70676daaab75b90141797ff8f"
+        "Key-hold helper now calls getKeyStateTracker().isKeyHeld; conformance key hold cases pass in all ten adapters."
       ]
     },
     "skill:packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": {
-      "fingerprint": "b4c0c84cdaaa61e5fa6ed092683a343e4a15d08be4dd67709d971939f32fcada",
+      "fingerprint": "58e648d9847d8aa3836f443690926821e29dd3d02c551bf1dd49fa19ed1df615",
       "snapshot": {
         "docs/framework/ember/guides/app-hotkeys.md": "c7c52789e2c869e773cb14b25f8a1dc8e5533569211bac45b0f124eb7c260695",
         "docs/framework/ember/quick-start.md": "b68bb08e413da376299f10925ece54685dcccfbeea98af088f1c58b3c5456f37",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "d2c51c3efe9a55f605f643f657f6da6d46e3b00acaf879f95acdc3d4ade8fabb",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "6c9497f8565c916f25506582867677979871c0679ab5635a5c4fb92644144087",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "6bcb35cd5de4fc7c87f1dba3f7952998d8c79db0add0af2fc2d3dfc379d0df6d",
         "packages/ember-hotkeys/src/onHotkey.ts": "0cd156d6a90b341d7f1006df47911b3033ba523a68758274c00df7c8cb9dfbff",
@@ -60,12 +59,11 @@
         "packages/ember-hotkeys/src/useHotkeyRecorder.ts": "62e88767d073da768bd423268a5687390ac9b0ff7e9a28fd3ccc201bf827f540",
         "packages/ember-hotkeys/src/useHotkeys.ts": "963345b3720ddefec8677b9b9d9dfa2b6346e22b32f9f2034d406b43e5c5ccf8"
       },
-      "head": "c516af53ae85e81b08262587232d2adaf91965e8",
+      "head": "cccec34d9a50549fee8d4b38f74349d8f1db5b13",
       "outcome": "updated",
-      "reason": "Skills now limit plain formatForDisplay to browser-only labels when no provider or scope sets platform, matching the guides.",
+      "reason": "BUG-067: the key-hold row now states core isKeyHeld case rule (letters in any case, other names case-sensitive); pnpm format realigned the table.",
       "evidence": [
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md",
-        "docs/framework/react/guides/formatting-display.md"
+        "Key-hold helper now calls getKeyStateTracker().isKeyHeld; conformance key hold cases pass in all ten adapters."
       ]
     },
     "skill:packages/hotkeys/skills/app-hotkeys/SKILL.md": {
@@ -96,16 +94,16 @@
       ]
     },
     "skill:packages/hotkeys/skills/hotkeys-core/SKILL.md": {
-      "fingerprint": "4154be60844dc8b79e2b4c2757fcd461f5b6413592388b6004c1e97074224362",
+      "fingerprint": "20357926704a27b7374767f36fde8cd4510393e6edf2063b1e9702c4faf57907",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/guides/hotkeys.md": "b1ec78079ca43c7c5280622d7d1c485594689015431d562451eb3187f2cd21f4",
         "docs/framework/react/guides/sequences.md": "5c892d5d2577bd63a12cd695bf6fc0f4a850400604c33b6c2f6c16fbd82754dc",
-        "docs/guides/sensible-defaults.md": "d9af1bb74d1bbd74cff5e700540a9a9359544c9503aa51c505bd8b955d44efb2",
+        "docs/guides/sensible-defaults.md": "89c1c6f076ac037549bc8416420f50258db3abed9ab05b957b8f929b2d9f69f2",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
-        "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
-        "packages/hotkeys/src/hotkey-manager.ts": "340ae1e61d8e08fe56edb0bb73f41434dae03ad15a374c2a0864450b64276443",
+        "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
+        "packages/hotkeys/src/hotkey-manager.ts": "c35d5d1dadac9d5d44afe4fe9d6f0031281d9a567f32d933896af29109099099",
         "packages/hotkeys/src/match.ts": "204f0159ccdd1bfaed96b1b03ad805f7fa9a74c011e70760749d1e0c326b7e8a",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/editor-shortcuts.test.tsx": "73411ec7c25652244ed31ad4120880dfc08d6e10af959bef04d2df5360769fde",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/fixture.tsx": "613a833bb6412b600925deb4009d16cfbfe7afa9a5dc0b82d1a39b8da8c0230b",
@@ -117,57 +115,57 @@
         "packages/react-hotkeys/tests/skills/editor-shortcuts/solution.tsx": "ec81379bf0e3a9950222cf8525f82f8abefeb6b46339550fd3a8622e61bf4f0d",
         "packages/react-hotkeys/tests/skills/editor-shortcuts/task.md": "9610d80e7add59f0433cbf210562ff8c481dc2c14371ce31c00a329d9ff1fedf"
       },
-      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
+      "head": "d09f8ba77a314db88ebeaf3c2f24f72202230395",
       "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
+      "reason": "Internal preventDefault ordering fix and changeset wording; no guidance change.",
       "evidence": [
-        "Changed: docs/framework/react/guides/hotkeys.md at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
+        "Changed: packages/hotkeys/src/hotkey-manager.ts at d09f8ba77a314db88ebeaf3c2f24f72202230395"
       ]
     },
     "skill:packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": {
-      "fingerprint": "d7098450b6294cd4577a9b18ca350e6d718e58f8d57154160c4a39193c1b9cf3",
+      "fingerprint": "37f6d7ce6c3fac3d64269325899d91958ffe3b5444335375b9b66212b2703276",
       "snapshot": {
         "docs/framework/lit/guides/app-hotkeys.md": "b001df84eb320a4af7759ab163f837bac0fe3b36014b4b5de9366102073af97b",
         "docs/framework/lit/quick-start.md": "0f1e0a406ae61dc62ea0659b95e734828a1181a591990331f1e8405f637a0094",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "b2e8d9a31ecc0f97bc0c073608a06572ff555cf5f2d7e52316315e4783fdaacd",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "742d6cf3d7738cc302fda5d92feca677c6e335643cda28ec282f06aa8573bb1f",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
         "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
         "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "1e255a98935901ca485f8f81fa1166d2b2a0a72777a3c925913e8d3824a2aefa",
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "6f1dd627c166013111da04e1ac708f6dd2cf2523b42a3f56bdde46500208e44d",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef"
       },
-      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
-      "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
+      "head": "cccec34d9a50549fee8d4b38f74349d8f1db5b13",
+      "outcome": "updated",
+      "reason": "BUG-067: the key-hold row now states core isKeyHeld case rule (letters in any case, other names case-sensitive); pnpm format realigned the table.",
       "evidence": [
-        "Changed: packages/lit-hotkeys/src/controllers/hotkey.ts at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
+        "Key-hold helper now calls getKeyStateTracker().isKeyHeld; conformance key hold cases pass in all ten adapters."
       ]
     },
     "skill:packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": {
-      "fingerprint": "fcd5e61546f71b0cf1c3ebe3230fde6446cf83d49d39bfe7d71c4f53b2720890",
+      "fingerprint": "60df690bbb657503f06509f8af98b459b3d88c66ed48aae1d57ba77f8b4cd70d",
       "snapshot": {
         "docs/framework/octane/guides/hotkeys-provider-and-scopes.md": "dc7777e8f789243ba9ebe3eadbd38d29de73e4f21326ef73ee6fe2fc3bd124a4",
         "docs/framework/octane/quick-start.md": "cbb3844d20ea1b3609c444c0614ac910ec9e22811d46d9175baa470738da97f9",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "13f491353cc62049743a352bcf4aa3160e8b5db2913360f6f3686e8c99781ce1",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "43f879c00a5b9203f34fa3ef680eecbb1fac9be93baefd3cb493df938e816abb",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "d18e8ffb2503f4dfd4aec75aaa8ec6974c3a9cea6e7174287ec8ea18cc77f101",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "0fc7d7f72d19fbe3ed5c0d13d8355cc8d1576e0382b631fe128540480edf2993",
         "packages/octane-hotkeys/src/useHotkey.ts": "d75f727e07f145297fb6ebe0ef51289a925e0d3aba95725f1f73a588db50a1f4",
         "packages/octane-hotkeys/src/useHotkeys.ts": "0794266727ccbe6c340bd162828dcf164c42ebeae66a385e309c0b5e707880b9"
       },
-      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
-      "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
+      "head": "cccec34d9a50549fee8d4b38f74349d8f1db5b13",
+      "outcome": "updated",
+      "reason": "BUG-067: the key-hold row now states core isKeyHeld case rule (letters in any case, other names case-sensitive); pnpm format realigned the table.",
       "evidence": [
-        "Changed: packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md, packages/octane-hotkeys/src/useHotkey.ts, packages/octane-hotkeys/src/useHotkeys.ts at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
+        "Key-hold helper now calls getKeyStateTracker().isKeyHeld; conformance key hold cases pass in all ten adapters."
       ]
     },
     "skill:packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": {
-      "fingerprint": "11f9befb38cefc78b4843ae5ce77c5d30f77983ce76c5ce29f2250f654990c14",
+      "fingerprint": "24b5328be2b1b5d7b3ca580ed3a733817ea0f33795283517eae68db2311d6378",
       "snapshot": {
         "docs/framework/preact/guides/hotkeys-provider-and-scopes.md": "a62b9cc8ee9e760ade6513e4c4db26c2dc690effa81d4917e68008b2cdfc8de0",
         "docs/framework/preact/quick-start.md": "d9cd9759e454cb4cbb050c189f3dee97d1141238ea30e623e5308dcc7cf29328",
-        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "6aadaa9d56377608f67bab4afd72947b81faf4de08f3170d1f7e5489f67e7c31",
+        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "cda80442b898967c33ddcc97c5cd6af88c14d0b56644a4ea3a937bada4af3976",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "f1379c2c148231363d89ddc107333ab2e103a3df92d394e6265f2b685685c53e",
         "packages/preact-hotkeys/src/HotkeysProvider.tsx": "6c8a5774e46b86002b1fa1f7766665942ec3e2ff6b3c0da37eb4d8247d316392",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "9c4cc235f7d692d52f2adf308240bd6e5b6741ecdc27cb0a19b3fbaeb728bef3",
@@ -175,19 +173,19 @@
         "packages/preact-hotkeys/src/useHotkeys.ts": "dd4e288866368082653ef208e6fcddf7937f16c5e7fc301d0afd05e1ab596fae",
         "packages/preact-hotkeys/src/utils.ts": "67b3583a90c020b3a5cc7f3cba6668ef98f37d67455f044fcf17667b2cc6db51"
       },
-      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
-      "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
+      "head": "cccec34d9a50549fee8d4b38f74349d8f1db5b13",
+      "outcome": "updated",
+      "reason": "BUG-067: the key-hold row now states core isKeyHeld case rule (letters in any case, other names case-sensitive); pnpm format realigned the table.",
       "evidence": [
-        "Changed: packages/preact-hotkeys/src/useHotkey.ts, packages/preact-hotkeys/src/utils.ts at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
+        "Key-hold helper now calls getKeyStateTracker().isKeyHeld; conformance key hold cases pass in all ten adapters."
       ]
     },
     "skill:packages/react-hotkeys/skills/react-hotkeys/SKILL.md": {
-      "fingerprint": "85ec9a6335582a4dc195c48524d38ec66e4124682f6102dbf3c1651cce0c9516",
+      "fingerprint": "15e267b924a52efc1f6c74c8e5172a5ffb1f5fc059018592a88fd7b79a14ddc8",
       "snapshot": {
         "docs/framework/react/guides/hotkeys-provider-and-scopes.md": "62766f959cd20edbdf48453c782a7bca3429ad9d68f771447c598f108ce80de7",
         "docs/framework/react/quick-start.md": "7e515e89dfac678fcb022668de87537dbb6e7a1297d5e2ee7d29223884eb7c20",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "cd5c824939e6b557a72ebe8ed68c7eac893ab1bc00d94371ddbf76c6f36282c7",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "f1963e2207cf07357fd4b8df8b11e31c2e8e0acd9598985826d750ce5d0ef033",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "daf40fa16fc1b44c0e556f6ab7a791bc875b55a86c408cacce575b4fcb53a07c",
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "7fc1fc155087034182f5447681da9b4dd5309e62cba2c7b2b69afeed3b44c706",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "5b384b0361eabbb7c5faaa3a9083015413f212e9a02aa8234f0747714dd08453",
@@ -212,38 +210,38 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1"
       },
-      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
-      "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
+      "head": "cccec34d9a50549fee8d4b38f74349d8f1db5b13",
+      "outcome": "updated",
+      "reason": "BUG-067: the key-hold row now states core isKeyHeld case rule (letters in any case, other names case-sensitive); pnpm format realigned the table.",
       "evidence": [
-        "Changed: packages/react-hotkeys/src/useHotkey.ts, packages/react-hotkeys/src/utils.ts at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
+        "Key-hold helper now calls getKeyStateTracker().isKeyHeld; conformance key hold cases pass in all ten adapters."
       ]
     },
     "skill:packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": {
-      "fingerprint": "0b4503e60db6f3fb4075adaa725e10fbe98c2d33c78a779cb38c93a449b6dae6",
+      "fingerprint": "3e4d7ee87eade873c16fa52454598ce8124e67585af2b6ae7cb5c53e7547cbe4",
       "snapshot": {
         "docs/framework/solid/guides/hotkeys-provider-and-scopes.md": "4c68bc0acc2a0dfafabf52cb36ac787dc7e197b69c2e9641c1c94ed8cc32f796",
         "docs/framework/solid/quick-start.md": "b9eca3313e57f3a878fc683fd36baabd6b880bbbea18a6aff1fc74e05488ef7f",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "7a4da3465b0282831047aca27567a1e1251e185e22bd009bb1b0c34b4fdc58fe",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "0ab067913fed4751cc96df9163d813dcf6d46335ef5069a313276afa169e5b90",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d6b972c0d90e136e1334850ea1ba428b919d47221026c0fb984f774a436158e5",
         "packages/solid-hotkeys/src/HotkeysProvider.tsx": "8b1eb4e0b6dcc8af8196c3bbf246dda154d94aefbbaf49e7f07e0e1cf5a69808",
         "packages/solid-hotkeys/src/appHotkeys.ts": "fa27dd5582b2629764c9a164b704b3772e267d90b24af8d252818e4f97827d3a",
         "packages/solid-hotkeys/src/createHotkey.ts": "37b41aeec26e1a15eda01dff31fd245487f864e9772c143d95e03bb4289ca4a2",
         "packages/solid-hotkeys/src/createHotkeys.ts": "a3503ed415c6c87fe05153d82f857a7ed7236be6e06007d142615ff7dd7a708f"
       },
-      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
-      "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
+      "head": "cccec34d9a50549fee8d4b38f74349d8f1db5b13",
+      "outcome": "updated",
+      "reason": "BUG-067: the key-hold row now states core isKeyHeld case rule (letters in any case, other names case-sensitive); pnpm format realigned the table.",
       "evidence": [
-        "Changed: packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md, packages/solid-hotkeys/src/createHotkey.ts, packages/solid-hotkeys/src/createHotkeys.ts at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
+        "Key-hold helper now calls getKeyStateTracker().isKeyHeld; conformance key hold cases pass in all ten adapters."
       ]
     },
     "skill:packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": {
-      "fingerprint": "44fe2f7db6f0d102e2d5125ce15190d898af1352b728e254e84d75aff55602e9",
+      "fingerprint": "adaf63d19f44f8ce74242c2cf5649c569ed132bc46a6ae02332e24d943e0751e",
       "snapshot": {
         "docs/framework/svelte/guides/hotkeys-provider-and-scopes.md": "49c87f7d1e0fdcef47d08af80339b26c7e560ea2265e0a5c83983d8b157432fd",
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "c6886be2d6b94b91f833b542c94d6935e2714f127cba10916078385f4c7b7a9f",
+        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "e876f64cf838c38b47c7f46d3a7ea4151d02dde2114d5408165fa0ff3d5a5aba",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "72d83959df76bbf8c07cd4f3b1e63bf490e4436c03bb17215730a289abd530f7",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "833be55b51359560378b1014a0e6718e41a77c55f9b41b79ba964c7f47cf660f",
@@ -252,20 +250,19 @@
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "86000611dcf85054f0bbf702f5919f7796297adb342011784ccdba6c4938a175",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "bbde849c4842dfe7050a85c32e4f6fa5b8d55a854af7df8c24774546d2a1eefd"
       },
-      "head": "42e83ba524cb739afbfa9c8debd25bacd4ae6129",
-      "outcome": "no-change",
-      "reason": "Providers apply platform and saved custom hotkeys in one setOptions call, and saved custom hotkeys are compared exactly. Skills make no claim about effect order or how saved data is compared.",
+      "head": "cccec34d9a50549fee8d4b38f74349d8f1db5b13",
+      "outcome": "updated",
+      "reason": "BUG-067: the key-hold row now states core isKeyHeld case rule (letters in any case, other names case-sensitive); pnpm format realigned the table.",
       "evidence": [
-        "packages/hotkeys/skills/app-hotkeys/SKILL.md",
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md"
+        "Key-hold helper now calls getKeyStateTracker().isKeyHeld; conformance key hold cases pass in all ten adapters."
       ]
     },
     "skill:packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": {
-      "fingerprint": "3c989b2b3cac71a7e1c9a434a03bc59714fcfc4f14043595272e8540427c6313",
+      "fingerprint": "6be2543ed6d4c3f50005d8e3b92058e63806fff8655f4bba63943ab2b98220c1",
       "snapshot": {
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "7397ca11ac3e1460390758d388f603e3cc3189880a6471fe224be4b79420e61a",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "f62f2ec260d406f28e77cbfd64f264ee76ae790fc85322b0a88fd95e616ccc23",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "772db9ad3bf5ab0388daf44a947abfff769b756b359584a423a91054a238857f",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "566511eecf3a7a69390c6f9adbf47b9ba8d547ebcd9733be117434ca8ca69b1f",
         "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "dcd9049cbfd34a8fdf5cbfbf9e2fa05f123de07acf00319bdaa5f78fb13814c3",
@@ -274,15 +271,15 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "bebfa1c2d75449d5ea247a4479becb6c4a5800ac",
-      "outcome": "no-change",
-      "reason": "Merge of main after #241 merged. Pending items changed through #241 (element targets that aren't ready yet), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
+      "head": "cccec34d9a50549fee8d4b38f74349d8f1db5b13",
+      "outcome": "updated",
+      "reason": "BUG-067: the key-hold row now states core isKeyHeld case rule (letters in any case, other names case-sensitive); pnpm format realigned the table.",
       "evidence": [
-        "Changed: packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md, packages/vue-hotkeys/src/useHotkey.ts, packages/vue-hotkeys/src/useHotkeys.ts at bebfa1c2d75449d5ea247a4479becb6c4a5800ac"
+        "Key-hold helper now calls getKeyStateTracker().isKeyHeld; conformance key hold cases pass in all ten adapters."
       ]
     },
     "planning:_artifacts": {
-      "fingerprint": "d8df424f1d46500678707c1000b8587a5a0ae8fd5df0efc822562f20ce1609cb",
+      "fingerprint": "894b9382ea6aab9a585844ece78fe564323352870733bff98682cc1544025791",
       "snapshot": {
         "_artifacts/domain_map.yaml": "5e6e0616c9e4f1d099c37f2c164285d4a649abc6eb888599ac8d750b55ac5b7c",
         "_artifacts/skill_spec.md": "bd8e54eb437cda05e72f24149bf198179d4d2688cbd535b08facb46ae88bf9d5",
@@ -312,8 +309,8 @@
         "docs/framework/svelte/quick-start.md": "df29a1f2b077034861285b22a2dee74ece173358722329b7b2a123a8fd6871b3",
         "docs/framework/vue/guides/hotkeys-provider-and-scopes.md": "e59dc14fa822e884a4a7d775696157aaa0e5a5af47f331075333fd4b8d256180",
         "docs/framework/vue/quick-start.md": "6ca088bcf271dc155decd042f18078177f6e10d9dab3e8a8e914c2d63edded74",
-        "docs/guides/sensible-defaults.md": "d9af1bb74d1bbd74cff5e700540a9a9359544c9503aa51c505bd8b955d44efb2",
-        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "b8a7e9ce42d7a9cfacc9bd405a5f0be43064e81f76616a6f31504ccb32c0d59a",
+        "docs/guides/sensible-defaults.md": "89c1c6f076ac037549bc8416420f50258db3abed9ab05b957b8f929b2d9f69f2",
+        "packages/alpine-hotkeys/skills/alpine-hotkeys/SKILL.md": "3739778a270f7ffbaac99e6a7b57a34a9d0ddd736340c8cab45c8616da73e823",
         "packages/alpine-hotkeys/skills/alpine-hotkeys/references/app-hotkeys.md": "69ba6d06582aaf28328e74c12888bcf8b1d89b2ae2a01d7f6a41eb82eef848e3",
         "packages/alpine-hotkeys/src/createAppHotkeys.ts": "4c43866e1e60dbfcdac1c5acb3b5bd1f372d722d47e51cb8922b22f1c372fa45",
         "packages/alpine-hotkeys/src/createHotkey.ts": "08e400a0a96bcb87e4cb16a45f4c60471aa74110195ec8d66dc83283d2913531",
@@ -322,14 +319,14 @@
         "packages/alpine-hotkeys/src/hotkeyRecorderPlugin.ts": "8ff86447e513f47002c49ed9f60269d485b0cd65b87277bb52cf2d8286ddbd36",
         "packages/alpine-hotkeys/src/hotkeysPlugin.ts": "35ffb8b772a178690d956f3b3a165b577c40d1723e186f5ffdef4a985f7be90b",
         "packages/alpine-hotkeys/src/scope.ts": "5b2b94b41d520f3beb60d2ceb15081799873c84c0ff244289d9b3698168c0ead",
-        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "983bf60ad88b19c38d0c86cbd1de4fe9f7af74be0826026c7120cbfddb8d3cce",
+        "packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md": "7418b6ea2d0281a448d8ecdb6d8afb4bcfce933317cf20fc4aaeea0d3ed75731",
         "packages/angular-hotkeys/skills/angular-hotkeys/references/app-hotkeys.md": "9308af756fccee9b62a73f811c49f85318da93f2f7f8c0d8f035132601cf81e1",
         "packages/angular-hotkeys/src/hotkeys-provider.ts": "73d0c4768121bc54eed662145d552d2d7f93d4d54e072754dc5a9fecfda6b95b",
         "packages/angular-hotkeys/src/injectAppHotkeys.ts": "a08e61be412c1ad9979422f888f01c1c7d41268b2f66ae10f6281e4d8b342ac8",
         "packages/angular-hotkeys/src/injectHotkey.ts": "4b00cd19f331c334ca11c17f50f41ad3e36b4a575f40ea31e7f6db76bf80db0f",
         "packages/angular-hotkeys/src/injectHotkeyRecorder.ts": "cd0c816187babc38188c5371dc1cb2bcd2ab017eda7d53b2851ea7b35d16e59a",
         "packages/angular-hotkeys/src/injectHotkeys.ts": "e89b404ccc443f00ab26f68e267e2a4fe70e3f2f600d6f5186f77973c8f636ca",
-        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "d2c51c3efe9a55f605f643f657f6da6d46e3b00acaf879f95acdc3d4ade8fabb",
+        "packages/ember-hotkeys/skills/ember-hotkeys/SKILL.md": "6c9497f8565c916f25506582867677979871c0679ab5635a5c4fb92644144087",
         "packages/ember-hotkeys/skills/ember-hotkeys/references/app-hotkeys.md": "b6200c97df720970117aefe3d2003817fdf7aa4d869437341e75245dcd0c9602",
         "packages/ember-hotkeys/src/createHotkeysScope.ts": "6bcb35cd5de4fc7c87f1dba3f7952998d8c79db0add0af2fc2d3dfc379d0df6d",
         "packages/ember-hotkeys/src/onHotkey.ts": "0cd156d6a90b341d7f1006df47911b3033ba523a68758274c00df7c8cb9dfbff",
@@ -342,32 +339,32 @@
         "packages/hotkeys/skills/app-hotkeys/references/recording.md": "d808080c8c6245063d2ef0ee0d6d316df242ad8ed958d9cc6ff7de0c4dcca68a",
         "packages/hotkeys/skills/hotkeys-core/SKILL.md": "36fdbb702909359b1ea0f19bd248a05128b3b3d14f25d5c78492883da94d8d71",
         "packages/hotkeys/skills/hotkeys-core/references/scopes.md": "1ae616ff7ce92d9679bbd0752ada572c2060c33ea7e7e638bfcc9d5425ac6bfa",
-        "packages/hotkeys/skills/hotkeys-core/references/testing.md": "823953bccd65b1f2399a9713374effd534a85adabbf25bbadc2c2b89ec327f5a",
+        "packages/hotkeys/skills/hotkeys-core/references/testing.md": "62cffeecc4bc67b71e0cb0f744c7a3bdac12a97e3cbddae6365c67c91ad00645",
         "packages/hotkeys/src/app-hotkeys.ts": "5ad2e0ca37e21a4a4fbd1eabc9b5bb4981f7530bca1dfd2286a2fa9205793608",
         "packages/hotkeys/src/conflicts.ts": "0459c63dccec1b3706c93552bfcd66243f90ae918c6e7e445fce046fe79cc2ad",
-        "packages/hotkeys/src/hotkey-manager.ts": "340ae1e61d8e08fe56edb0bb73f41434dae03ad15a374c2a0864450b64276443",
+        "packages/hotkeys/src/hotkey-manager.ts": "c35d5d1dadac9d5d44afe4fe9d6f0031281d9a567f32d933896af29109099099",
         "packages/hotkeys/src/hotkey-recorder.ts": "d0008d3442dec938f91f0b8d0584f1b2d01fa169a143a649f7a5024f1eb5e469",
         "packages/hotkeys/src/match.ts": "204f0159ccdd1bfaed96b1b03ad805f7fa9a74c011e70760749d1e0c326b7e8a",
-        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "b2e8d9a31ecc0f97bc0c073608a06572ff555cf5f2d7e52316315e4783fdaacd",
+        "packages/lit-hotkeys/skills/lit-hotkeys/SKILL.md": "742d6cf3d7738cc302fda5d92feca677c6e335643cda28ec282f06aa8573bb1f",
         "packages/lit-hotkeys/skills/lit-hotkeys/references/app-hotkeys.md": "7964a40e37fbd325a0ea83a81a4c3c32cea86e35b8f2deaacd5b245628fcb73c",
         "packages/lit-hotkeys/src/controllers/app-hotkeys.ts": "2c6a7dfb4a551b933be11efdf33edea7ebeb0e629db960003472a93d7026c0f2",
         "packages/lit-hotkeys/src/controllers/hotkey-recorder.ts": "1e255a98935901ca485f8f81fa1166d2b2a0a72777a3c925913e8d3824a2aefa",
         "packages/lit-hotkeys/src/controllers/hotkey.ts": "6f1dd627c166013111da04e1ac708f6dd2cf2523b42a3f56bdde46500208e44d",
         "packages/lit-hotkeys/src/decorators/hotkey.ts": "ff03f664004dd013a2cdd984e7587f4f8c3ac651bf98efc9918a8296393d13ef",
-        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "13f491353cc62049743a352bcf4aa3160e8b5db2913360f6f3686e8c99781ce1",
+        "packages/octane-hotkeys/skills/octane-hotkeys/SKILL.md": "43f879c00a5b9203f34fa3ef680eecbb1fac9be93baefd3cb493df938e816abb",
         "packages/octane-hotkeys/skills/octane-hotkeys/references/app-hotkeys.md": "d3fece68756bcaa2cf9d99454b655bf8dd0c0b1e8a8340c5b2cceae37390d523",
         "packages/octane-hotkeys/src/HotkeysProvider.ts": "d18e8ffb2503f4dfd4aec75aaa8ec6974c3a9cea6e7174287ec8ea18cc77f101",
         "packages/octane-hotkeys/src/useAppHotkeys.ts": "0fc7d7f72d19fbe3ed5c0d13d8355cc8d1576e0382b631fe128540480edf2993",
         "packages/octane-hotkeys/src/useHotkey.ts": "d75f727e07f145297fb6ebe0ef51289a925e0d3aba95725f1f73a588db50a1f4",
         "packages/octane-hotkeys/src/useHotkeys.ts": "0794266727ccbe6c340bd162828dcf164c42ebeae66a385e309c0b5e707880b9",
-        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "6aadaa9d56377608f67bab4afd72947b81faf4de08f3170d1f7e5489f67e7c31",
+        "packages/preact-hotkeys/skills/preact-hotkeys/SKILL.md": "cda80442b898967c33ddcc97c5cd6af88c14d0b56644a4ea3a937bada4af3976",
         "packages/preact-hotkeys/skills/preact-hotkeys/references/app-hotkeys.md": "f1379c2c148231363d89ddc107333ab2e103a3df92d394e6265f2b685685c53e",
         "packages/preact-hotkeys/src/HotkeysProvider.tsx": "6c8a5774e46b86002b1fa1f7766665942ec3e2ff6b3c0da37eb4d8247d316392",
         "packages/preact-hotkeys/src/useAppHotkeys.ts": "9c4cc235f7d692d52f2adf308240bd6e5b6741ecdc27cb0a19b3fbaeb728bef3",
         "packages/preact-hotkeys/src/useHotkey.ts": "69d7f274ae7261ebf6386711606511cf4d1199a60e6ed207d11293ce858c9142",
         "packages/preact-hotkeys/src/useHotkeys.ts": "dd4e288866368082653ef208e6fcddf7937f16c5e7fc301d0afd05e1ab596fae",
         "packages/preact-hotkeys/src/utils.ts": "67b3583a90c020b3a5cc7f3cba6668ef98f37d67455f044fcf17667b2cc6db51",
-        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "cd5c824939e6b557a72ebe8ed68c7eac893ab1bc00d94371ddbf76c6f36282c7",
+        "packages/react-hotkeys/skills/react-hotkeys/SKILL.md": "f1963e2207cf07357fd4b8df8b11e31c2e8e0acd9598985826d750ce5d0ef033",
         "packages/react-hotkeys/skills/react-hotkeys/references/app-hotkeys.md": "daf40fa16fc1b44c0e556f6ab7a791bc875b55a86c408cacce575b4fcb53a07c",
         "packages/react-hotkeys/src/HotkeysProvider.tsx": "7fc1fc155087034182f5447681da9b4dd5309e62cba2c7b2b69afeed3b44c706",
         "packages/react-hotkeys/src/useAppHotkeys.ts": "5b384b0361eabbb7c5faaa3a9083015413f212e9a02aa8234f0747714dd08453",
@@ -391,13 +388,13 @@
         "packages/react-hotkeys/tests/skills/shortcut-settings/shortcut-settings.test.tsx": "c6e0204269f0c8ef42ae6832f5b96eb6a3d2df552cc2c21511aa545e0ee4cd24",
         "packages/react-hotkeys/tests/skills/shortcut-settings/solution.tsx": "23a9dd46565c8617361bad3bcf24903c6d2d0c1db8c5e16b66ee5a7bc02fc62b",
         "packages/react-hotkeys/tests/skills/shortcut-settings/task.md": "1104e51ba1cb603b145b5eece30197d2e2936e21b1592ea75004244d49fcadd1",
-        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "7a4da3465b0282831047aca27567a1e1251e185e22bd009bb1b0c34b4fdc58fe",
+        "packages/solid-hotkeys/skills/solid-hotkeys/SKILL.md": "0ab067913fed4751cc96df9163d813dcf6d46335ef5069a313276afa169e5b90",
         "packages/solid-hotkeys/skills/solid-hotkeys/references/app-hotkeys.md": "d6b972c0d90e136e1334850ea1ba428b919d47221026c0fb984f774a436158e5",
         "packages/solid-hotkeys/src/HotkeysProvider.tsx": "8b1eb4e0b6dcc8af8196c3bbf246dda154d94aefbbaf49e7f07e0e1cf5a69808",
         "packages/solid-hotkeys/src/appHotkeys.ts": "fa27dd5582b2629764c9a164b704b3772e267d90b24af8d252818e4f97827d3a",
         "packages/solid-hotkeys/src/createHotkey.ts": "37b41aeec26e1a15eda01dff31fd245487f864e9772c143d95e03bb4289ca4a2",
         "packages/solid-hotkeys/src/createHotkeys.ts": "a3503ed415c6c87fe05153d82f857a7ed7236be6e06007d142615ff7dd7a708f",
-        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "c6886be2d6b94b91f833b542c94d6935e2714f127cba10916078385f4c7b7a9f",
+        "packages/svelte-hotkeys/skills/svelte-hotkeys/SKILL.md": "e876f64cf838c38b47c7f46d3a7ea4151d02dde2114d5408165fa0ff3d5a5aba",
         "packages/svelte-hotkeys/skills/svelte-hotkeys/references/app-hotkeys.md": "fa0dd67192d53cc1a6cacc87b68523a9a2c94ca0c27b90b10a46861643885a2e",
         "packages/svelte-hotkeys/src/HotkeysCtx.ts": "72d83959df76bbf8c07cd4f3b1e63bf490e4436c03bb17215730a289abd530f7",
         "packages/svelte-hotkeys/src/HotkeysProvider.svelte": "833be55b51359560378b1014a0e6718e41a77c55f9b41b79ba964c7f47cf660f",
@@ -405,7 +402,7 @@
         "packages/svelte-hotkeys/src/createHotkeyRecorder.svelte.ts": "0dcfe7ecbaa7a202fd3be9e88ca24d95cd8965267374ea709435e19a13a4857b",
         "packages/svelte-hotkeys/src/createHotkeys.svelte.ts": "86000611dcf85054f0bbf702f5919f7796297adb342011784ccdba6c4938a175",
         "packages/svelte-hotkeys/src/getAppHotkeys.svelte.ts": "bbde849c4842dfe7050a85c32e4f6fa5b8d55a854af7df8c24774546d2a1eefd",
-        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "7397ca11ac3e1460390758d388f603e3cc3189880a6471fe224be4b79420e61a",
+        "packages/vue-hotkeys/skills/vue-hotkeys/SKILL.md": "f62f2ec260d406f28e77cbfd64f264ee76ae790fc85322b0a88fd95e616ccc23",
         "packages/vue-hotkeys/skills/vue-hotkeys/references/app-hotkeys.md": "772db9ad3bf5ab0388daf44a947abfff769b756b359584a423a91054a238857f",
         "packages/vue-hotkeys/src/HotkeysProvider.tsx": "566511eecf3a7a69390c6f9adbf47b9ba8d547ebcd9733be117434ca8ca69b1f",
         "packages/vue-hotkeys/src/HotkeysProviderContext.ts": "dcd9049cbfd34a8fdf5cbfbf9e2fa05f123de07acf00319bdaa5f78fb13814c3",
@@ -414,11 +411,11 @@
         "packages/vue-hotkeys/src/useHotkeyRecorder.ts": "ba0fd338b127bdc09e076923e40ab8c0b60124d15b8b7373b92944746d01acf1",
         "packages/vue-hotkeys/src/useHotkeys.ts": "a01bedb627cd6cad884cf59b2077c33b34289589e6a101fefb5ca1709dabb668"
       },
-      "head": "8437d80940ac20a70676daaab75b90141797ff8f",
+      "head": "d09f8ba77a314db88ebeaf3c2f24f72202230395",
       "outcome": "no-change",
-      "reason": "Merge of main after #242 merged. Pending items changed through #242 (Angular recorder live defaults and route-scope docs), which recorded its own reviews; this branch's recorder Tab change needs nothing more from them. Any regenerated reference page only moved Defined-in line numbers.",
+      "reason": "Internal preventDefault ordering fix and changeset wording; no guidance change.",
       "evidence": [
-        "Changed: _artifacts/domain_map.yaml, _artifacts/skill_spec.md, docs/framework/angular/guides/provide-hotkeys-and-scopes.md, packages/angular-hotkeys/skills/angular-hotkeys/SKILL.md, packages/angular-hotkeys/src/hotkeys-provider.ts, packages/angular-hotkeys/src/injectHotkeyRecorder.ts at 8437d80940ac20a70676daaab75b90141797ff8f"
+        "Changed: packages/hotkeys/src/hotkey-manager.ts at d09f8ba77a314db88ebeaf3c2f24f72202230395"
       ]
     },
     "source:.changeset/intent-skills.md": {
@@ -645,24 +642,28 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/classes/HotkeyManager.md": {
-      "fingerprint": "251d526987c4aaedc545885eedb4dc827cda4ad6b3df01427f08b55d02f891d0",
+      "fingerprint": "e92612fe93b08804b32a4d3fc8bc3b37561e860b64c7848f86503d5d23d69586",
       "snapshot": {
-        "docs/reference/classes/HotkeyManager.md": "1e7603a73da90109d92d23af609893ccebc4145a7d33262e43badf3deeaadee6"
+        "docs/reference/classes/HotkeyManager.md": "5894591047efcea0fc1ddacf480daaee149128ee2ea55d9ecbf250a409627bd0"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "1106c7a3ea46ed5cd1f3a4a34ffdc6f94608c344",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Autofix regenerated reference pages; only source line links moved after the hotkey-manager fix.",
+      "evidence": [
+        "Changed: docs/reference/classes/HotkeyManager.md at 1106c7a3ea46ed5cd1f3a4a34ffdc6f94608c344"
+      ]
     },
     "source:docs/reference/functions/getHotkeyManager.md": {
-      "fingerprint": "bd5ce3c174992feaa31a62840b9190269ef1e7b20a68b3301102460bc902d9fa",
+      "fingerprint": "51af5cab1bed71900a5cfd8c7dd7cc82ab34ff9bca59e88476907704e5f3d605",
       "snapshot": {
-        "docs/reference/functions/getHotkeyManager.md": "27984bc1cccf762848f32dd44b3ff283b4ade3e724021fb6550d397a46800d72"
+        "docs/reference/functions/getHotkeyManager.md": "f91571833aa07328de0fdf177e7b859a1d49dafc87dfc5478438e1d8a224a752"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
+      "head": "1106c7a3ea46ed5cd1f3a4a34ffdc6f94608c344",
       "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "reason": "Autofix regenerated reference pages; only source line links moved after the hotkey-manager fix.",
+      "evidence": [
+        "Changed: docs/reference/functions/getHotkeyManager.md at 1106c7a3ea46ed5cd1f3a4a34ffdc6f94608c344"
+      ]
     },
     "source:examples/alpine/kitchen-sink/index.html": {
       "fingerprint": "cafd21ca3305c89ad47e5c4eee4ce63feed831a2b3524c5b3cd756fee53a2592",
@@ -1248,144 +1249,172 @@
       ]
     },
     "source:docs/reference/functions/toHotkeyRegistrationView.md": {
-      "fingerprint": "b9fa357f78d458615d84a552dc58c16bde5e516f3f0837db9078183c6b135ff5",
+      "fingerprint": "f18c344554c0751d5dbc52dac6d782b33c47c6b4118c5407a1824fe9e626a5d2",
       "snapshot": {
-        "docs/reference/functions/toHotkeyRegistrationView.md": "2a24817f3c6e122715781bc877915b8f9a0bc9701390633340af575598018fa8"
+        "docs/reference/functions/toHotkeyRegistrationView.md": "8fc3faea720b69b37b3b3da8432d6bff1f7d62c935f7730db85a6f224e34e074"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:docs/reference/interfaces/ActivateHotkeyScopeOptions.md": {
-      "fingerprint": "97a2dec6542d836f96f2bf108e4bda728dc7f83dd89d1e8d9ab684aee571e154",
+      "fingerprint": "471b5ff35ceed15ab2379096fd8a86d5d98a52e6407a14d2594e11db6afbe551",
       "snapshot": {
-        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "9fb0f01696e9068da7b36aad9cb0a4485128ef8023a56c559ab73a639285746a"
+        "docs/reference/interfaces/ActivateHotkeyScopeOptions.md": "7e66475fabd9b52b3a5a4cbf74be26450119d28031105ef9d8c109cc0d40ece5"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:docs/reference/interfaces/HotkeyChordOptions.md": {
-      "fingerprint": "de71b6b334cb469e3dd2093cbe87c50b9b15faf85dd09f039dca64f71b1c9ee7",
+      "fingerprint": "a93e244b16a2d5653a0c2532776df0396b5b3b0883673374ce692439e417c1f1",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordOptions.md": "6f0a5827599dad1aac6050ad14a12bbe27ee1d6357527e61c589dcd30f7cc76a"
+        "docs/reference/interfaces/HotkeyChordOptions.md": "bda51733077001fb874bb3a7bdc6157efcc35cb9953efc8fc6caf639bde34df5"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistration.md": {
-      "fingerprint": "00a23dfc95b8bffd244504efa39dd735a14a3fdfe083364ddaac6a53e734cd08",
+      "fingerprint": "f5c8f1e86568f496cb0d56bd0e4f416307f5a98ad265c9bde163d9bdf915c4e2",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistration.md": "48e6155d9612d955467a046593a876336ec618479be49b51390ad900cecc574b"
+        "docs/reference/interfaces/HotkeyChordRegistration.md": "5dfefdc0a50fa1f3152bd840d5dbd69955540d0b3fb47cfd3666beffe21956c6"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:docs/reference/interfaces/HotkeyChordRegistrationView.md": {
-      "fingerprint": "2835d7ace469d26e978c8b51181d720ef20aedc6b9f2ad170fdee0d39d5e592e",
+      "fingerprint": "69afb14255202032c4318bf535598d747ea67f5e84c90f5579d056d11c87b083",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "4c569d44310a6f745abd6d5b1edae3748517b3818a69d3616c5b6c9948b47283"
+        "docs/reference/interfaces/HotkeyChordRegistrationView.md": "02ac6ef9a67d8e02c812ac671d0b88cf6770346a6e3dcb7774d9ed034e7c8d1e"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:docs/reference/interfaces/HotkeyOptions.md": {
-      "fingerprint": "a5c2b8c1ad0297a536794b94311ef83f069f1f6c449d3d77437e755a41146f13",
+      "fingerprint": "ac8a0e3c3b94afc3d999ac075a07143628ced2cc38d7cc1fc0aae08666cb7b9b",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyOptions.md": "4f9790d218cd27c1bbb52716bd4b604b91681ec23d166164f1b2161dad75686e"
+        "docs/reference/interfaces/HotkeyOptions.md": "ca0e99b9a9f164fc1350dbd4e62b004b0266c3f6c202ec29c40542e8f98792d2"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:docs/reference/interfaces/HotkeyRegistrationHandle.md": {
-      "fingerprint": "f1f304f98a07cfc3a607cf0c3eef5945300bbfbfc533c57d3c691245a678867e",
+      "fingerprint": "cef7f0fc8a97f26582675affb8c805e62696189fd5cadb48e9521a2d0e6fff45",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "a099aee79ed5cec6fcddf98668f1348cd8c22e681f27ddd7d8e0cef0e5626542"
+        "docs/reference/interfaces/HotkeyRegistrationHandle.md": "2974d6dce977d3f29ce44c06922d7c6d4ec38ae577d149c20f40f279d44118ac"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:docs/reference/interfaces/HotkeyScopesState.md": {
-      "fingerprint": "8f27f9089951e074b8bc1d8bdc227bcf6edf3f2e0a8df1a17ba7deb01bd0e31a",
+      "fingerprint": "4392a43c4cab032182540dc5e1a3b1553987794042739eb019d790f7770b7f6a",
       "snapshot": {
-        "docs/reference/interfaces/HotkeyScopesState.md": "deb97a27b6d409735940ef629767a7a74970cb44c15a32cab2919e7a0a5f11f2"
+        "docs/reference/interfaces/HotkeyScopesState.md": "cf2e27863cbf1d7cde01cd5c6cee393c87b86c3fe1ee88b6f5faeb414cb18dbf"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:docs/reference/interfaces/HotkeySequenceOptions.md": {
-      "fingerprint": "bc588b9ea0b5d9917e0ef1c63de5e10831069611c63d3549bc678d3bdf65cd32",
+      "fingerprint": "2102b6154ae898935715013e20a433c4049ceff82516211bf9d30a06b43b9ed9",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceOptions.md": "a166c94a6a441ae48f13afc0b55ad0ae081f3a35ac3839e5efc0d02ffaf50ceb"
+        "docs/reference/interfaces/HotkeySequenceOptions.md": "c7e1ba43f23e358570b2f71ad83e66a65f184ef8b9e7742f1807ba26ded59ee1"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistration.md": {
-      "fingerprint": "fc2c8cb37e69a10803430a6a3983b91007ed48c8605a54f0efcd3079720d1b54",
+      "fingerprint": "5f1ba7c9bc1675698db03894bfde4a99f6759d04396cb5b2ad600559e255c0c9",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistration.md": "7b3775c680bbeda3c7d24f469135fa577831033f14141657c146495c7a0c3f68"
+        "docs/reference/interfaces/HotkeySequenceRegistration.md": "834806e9fcba20663a14eb1fd4952f834e91b231d1bb749023f20f3659c94995"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:docs/reference/interfaces/HotkeySequenceRegistrationView.md": {
-      "fingerprint": "d21d2b885e465da97634400f1aa99fa80caa66e0f395b5039d2ee815a6ecc694",
+      "fingerprint": "eb195a1a1d206db6fa6838e58c71d0dbe3b6994b675adb6be11154a9101b2edd",
       "snapshot": {
-        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "703a67e4fe7a343d2719b595c2a42104e62abef5a80c35d458a4c5230f71d404"
+        "docs/reference/interfaces/HotkeySequenceRegistrationView.md": "e451453e3ca46393b91bc0e22fa2c7ec80820d4e96443c8cdac73a1a3110da8c"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:docs/reference/type-aliases/HotkeyOptionsFor.md": {
-      "fingerprint": "3e7d43da18044347fa4fb66327da529ad5144b30d28cc043ac400b540c7604e6",
+      "fingerprint": "fed7cc376123babc00eeb74086a70611d865b68525e8c6658708f5794799f9d6",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyOptionsFor.md": "30412fb5912133ce1117c1aca657d6b6892c4e0c80a915e2f562fdaa9a2ba0d1"
+        "docs/reference/type-aliases/HotkeyOptionsFor.md": "81fa9a1359b144b781fab3cd54f0534858e790f50ca30a26397f08cd38227de6"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:docs/reference/type-aliases/HotkeyRegistration.md": {
-      "fingerprint": "b0c7921148741652467bba42717ade2a8f7fcda2bbb4205b894f767ca3af0156",
+      "fingerprint": "4bfc63b1579b86de8aeb6a21cf4022af452708fc6c7bd91ca8f511170d74ebb7",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistration.md": "90bddd7921f394b777d0f352396115ad68dc04b69d58fe7e15c9a2e9229ae4f0"
+        "docs/reference/type-aliases/HotkeyRegistration.md": "fabdb7ea7b17dcffe2ad60e532136608fbae233a58c4889960a42531d3cccf38"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationView.md": {
-      "fingerprint": "9bcb41f0e56b9f5e6b833fb5e52ec6549b54e17722abccbeabce14c7428133ae",
+      "fingerprint": "609c8c98e275e1dca1ae0fdf14053505e427e32fd1e5c5b333e9faf63b74a807",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationView.md": "8d8b1ed0b39ac6ad6962763b9b03aae8d625289940ad6303ef89ea74bc14c36d"
+        "docs/reference/type-aliases/HotkeyRegistrationView.md": "9d4cd7bfa7e8cedd81ee3fe8592a9a1351e89007516cec32f8ad98ac5e6f9e0c"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:packages/hotkeys-devtools/src/components/DetailsPanel.tsx": {
       "fingerprint": "2a5725926ea2e1eb8075092d690af0dad7bf153a997c27f15dfb8269773c3d70",
@@ -1401,15 +1430,15 @@
       ]
     },
     "source:packages/hotkeys/tests/hotkey-manager.test.ts": {
-      "fingerprint": "de30610ade93d841635019dba928705733f4083dc5cae7ac97c73fa3f7572000",
+      "fingerprint": "0c165c206a20214d60d1373575095280df1f7bec0e41572ddb0a9eb610ac43da",
       "snapshot": {
-        "packages/hotkeys/tests/hotkey-manager.test.ts": "4f95641d01588e72e621bc5212e9d0e4cea13456e992bc144e3e7c0703cb69b9"
+        "packages/hotkeys/tests/hotkey-manager.test.ts": "e51e6feea1d3a77d953614dbd78497f70220697a68baa802e4913b5694de9ed1"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
+      "head": "d09f8ba77a314db88ebeaf3c2f24f72202230395",
       "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "reason": "Internal preventDefault ordering fix and changeset wording; no guidance change.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/hotkey-manager.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Changed: packages/hotkeys/tests/hotkey-manager.test.ts at d09f8ba77a314db88ebeaf3c2f24f72202230395"
       ]
     },
     "source:docs/framework/alpine/guides/cheat-sheet-ui-helpers.md": {
@@ -1973,14 +2002,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/type-aliases/HotkeyRegistrationStatus.md": {
-      "fingerprint": "40961681c73293171164dc485d358407dcb044de15c6f32a0f5c51e82f2968d7",
+      "fingerprint": "0f22797bccd54fc0b1d69f2414a6e6705714403977304c3e4b7767cd77a412ad",
       "snapshot": {
-        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "5440406635d858289cc189b752cc4ead1f35aa5d3bc1cda97fc08e135586199c"
+        "docs/reference/type-aliases/HotkeyRegistrationStatus.md": "4d98e243f8c72bd21973842904b66cb06a34c36a99d60e7bc42f4b69af8d1680"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:packages/alpine-hotkeys/src/createHotkeyScopesState.ts": {
       "fingerprint": "efa0da765d7c23fe56e690ebc774b7ea456a343c908ad8239732d0741f3b64a1",
@@ -2754,15 +2785,15 @@
       ]
     },
     "source:packages/react-hotkeys/src/useKeyHold.ts": {
-      "fingerprint": "4c970fb9c6a105c017b45649a05a7c57675553931f34f7df08980d5972e7769f",
+      "fingerprint": "625d909ed08f6f525a66c4196e0a0bc17a96ef3d967aafd5b6ac6c43cd24110e",
       "snapshot": {
-        "packages/react-hotkeys/src/useKeyHold.ts": "e76910741ccf99ff32883c4a9ec6ea7ca4c7107c77a76f81d3572e59efd47479"
+        "packages/react-hotkeys/src/useKeyHold.ts": "4c9860d5c3e7bc35a56b83012731a892ad3df9a2538ac7ea31533471ef2b0a55"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
-      "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/react-hotkeys/tsdown.config.ts": {
@@ -3477,14 +3508,16 @@
       ]
     },
     "source:packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts": {
-      "fingerprint": "6b3c933a7237a4ffcf8b00a4b2977e4c5e2154af3f33f60b4dedefadb6c9d8e5",
+      "fingerprint": "6d3f521f363b23ca97dbb064e360a2c6c4b67a79aaf7431771623078b4263519",
       "snapshot": {
-        "packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts": "49f2376bc4b2193d54dc4f622ae9e0e7f0032775a89f39edd802f2f802e80bb5"
+        "packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts": "c54b90d63f720299e6690872dc3f3966b8d9aad67302b5993093f4b9b24aaa87"
       },
-      "head": "a61d917542e56c07f1a3d2aa3f6eb951e5150818",
-      "outcome": "no-change",
-      "reason": "Adds .js extensions to relative imports only. Behavior and signatures are unchanged.",
-      "evidence": ["packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:packages/vue-hotkeys-devtools/src/VueHotkeysDevtools.ts": {
       "fingerprint": "86cd9041e2274f724820d69a0c44727a878166505e770ecab7d5594487827862",
@@ -3689,14 +3722,16 @@
       ]
     },
     "source:docs/framework/vue/reference/functions/useKeyHold.md": {
-      "fingerprint": "a66a88ab6bc2a99e83fb048f598aef26be52375792ca397225159ea258e00de9",
+      "fingerprint": "2424528711461290efa466cdd68cf9353a2d4adf4329b27d85445861b759b768",
       "snapshot": {
-        "docs/framework/vue/reference/functions/useKeyHold.md": "c316054e8a99cf175ce8a35cf552298e270f74f11aea8685ba219cdbaeff79fd"
+        "docs/framework/vue/reference/functions/useKeyHold.md": "b8b660372150b459a8689c7702394bb029b50469564ea2dd48d2919301eed74e"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:docs/framework/vue/reference/interfaces/HotkeysProviderOptions.md": {
       "fingerprint": "ce00fcce44d464eb1290d54905a7c104ee50cd85b521b5608b090a36ac8956c3",
@@ -3770,16 +3805,15 @@
       ]
     },
     "source:packages/vue-hotkeys/src/useKeyHold.ts": {
-      "fingerprint": "97a669ba10e6d540f507049f6626842e9a6037c42cf935e2cfa64c47c74b4380",
+      "fingerprint": "1afa5502e5359a0ec90381b4f8c5944f288ee45e286d506fc05a85cd578e464e",
       "snapshot": {
-        "packages/vue-hotkeys/src/useKeyHold.ts": "456540bbfd7e53c5e083909dcc90c6def57087fdcc06a18a5fd0b666a6d5bac3"
+        "packages/vue-hotkeys/src/useKeyHold.ts": "da096cf91adb7c35bf10229c15a34bb6ea85f53c0a427d569ded111afb6bda8e"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "packages/vue-hotkeys/src/useKeyHold.ts",
-        "git diff origin/main"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/vue-hotkeys/src/useStoreSelector.ts": {
@@ -3832,15 +3866,15 @@
       ]
     },
     "source:docs/framework/lit/guides/held-key-state-helpers.md": {
-      "fingerprint": "2b4dd8b60e3a8fe1b65ddc953232a795d684b5340cd4c053b497e08a21dc038b",
+      "fingerprint": "280489e84cb925c5b570e32df04f8a221a0edca5ba02a2f2b56a174a47c9cecf",
       "snapshot": {
-        "docs/framework/lit/guides/held-key-state-helpers.md": "c5d21bc202b34ca0e357f318a894b00999a5efc118b42ed3a4f9845f0229e171"
+        "docs/framework/lit/guides/held-key-state-helpers.md": "b8597d849a2bbf0b42fbab350b750310a0126d1adf877319005c827e0665254c"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
-      "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:docs/framework/lit/reference/classes/AppHotkeysController.md": {
@@ -4076,16 +4110,15 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/lit-hotkeys/src/controllers/key-hold.ts": {
-      "fingerprint": "e166db621ccab212dbb73bc3ccbd84ac8c1667876363b8bc5795b104573464b9",
+      "fingerprint": "9570311f6e6b7e54b2c643200b30f9ce1c75e8ddf01dd32e4b71afa52f45dd5e",
       "snapshot": {
-        "packages/lit-hotkeys/src/controllers/key-hold.ts": "06480d1b8391fd5457aca88f986168af5dd20d19223f2f97ab45d801ba6ea07d"
+        "packages/lit-hotkeys/src/controllers/key-hold.ts": "e70321d6d9b54d45b71c634268d87db882af5d28ffd4c95989b2f9e7940019e9"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "packages/lit-hotkeys/src/controllers/key-hold.ts",
-        "git diff origin/main"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/lit-hotkeys/tests/key-hold.test.ts": {
@@ -4991,14 +5024,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/classes/KeyStateTracker.md": {
-      "fingerprint": "6670895bfe71b01411240ec06cc16ce2fd56b909d82249eca5b1a217630fe4f9",
+      "fingerprint": "ce2ea1981ea78149b9ec8de8257ad9a5665717ae08c3c263696a6aa6dce5c2af",
       "snapshot": {
-        "docs/reference/classes/KeyStateTracker.md": "5db89a51051608fa6e511962016e7fc5c80ecbd039f7f0e4cd9a4e8082edb708"
+        "docs/reference/classes/KeyStateTracker.md": "c1d59abbd63be5777f69109b243df6f51ba0d70211ff29389b7a8d4f5634e7cd"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:docs/reference/functions/checkHotkey.md": {
       "fingerprint": "4b7c3cc31cefbf1f7b3f7ba68f338dd7120a43e14074a0693c94d4ca8546e8c3",
@@ -5011,14 +5046,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/functions/getKeyStateTracker.md": {
-      "fingerprint": "307bb9f1e85914e9afa569880ce926a952d1e16c0adee2324cdc225c6d6beaad",
+      "fingerprint": "03d1cd4690abe616990e628ebb7c33521c9d6cd472218117d472f667346317c9",
       "snapshot": {
-        "docs/reference/functions/getKeyStateTracker.md": "6ccd16f6390e065b8eccf361a7b58852ecd82a809bf2789bd65b90d959360406"
+        "docs/reference/functions/getKeyStateTracker.md": "3aa5234eabed1a1881f65a04e5a40ad83161d945cd50efc5aa8d85bdfe7cab90"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:docs/reference/interfaces/HotkeyChordRecorderOptions.md": {
       "fingerprint": "2ac67bdc38e62da1c55709443224fb231ee81395e9043cac4657762706e6ca48",
@@ -5077,14 +5114,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/reference/interfaces/KeyStateTrackerState.md": {
-      "fingerprint": "7c171100e7f40ae4f30930c006319c451aa6bef5cfba764b5dc2bf6eaf715786",
+      "fingerprint": "2f7f2627a76e706f783dea240bb7178be195cc117e065330257252f410b35ffd",
       "snapshot": {
-        "docs/reference/interfaces/KeyStateTrackerState.md": "d47f93b3c10f4213408dc9a05fa990ba4c088af1a17e8a8588fdacabb7a6d8cc"
+        "docs/reference/interfaces/KeyStateTrackerState.md": "5554f5e50d96ab1eddeacf6a251d249333314b216d595c9ecdf587246ab3499e"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:docs/reference/interfaces/RecorderOptions.md": {
       "fingerprint": "69b0aa1282ef472f123f848d148e8b4c8d6131f362457e49bff27de5445d7334",
@@ -5216,16 +5255,15 @@
       ]
     },
     "source:packages/angular-hotkeys/src/injectKeyHold.ts": {
-      "fingerprint": "5abfd0a6ca84ad53df50bcaf4dc5c00ef86302390d9c4be3a91c963ff668d4e7",
+      "fingerprint": "90c12e53593ec89d5e52c9b7e460324fc0efa2a502a9bd86de5dde701c293ca0",
       "snapshot": {
-        "packages/angular-hotkeys/src/injectKeyHold.ts": "382c856b7db930dc287413b7448c996f50c5dd58a40a6c86d03e09f58417ea44"
+        "packages/angular-hotkeys/src/injectKeyHold.ts": "a675494b213391097b2f3196a43cee0d114f67cbe6847bdbf8ef6c955792a171"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "packages/angular-hotkeys/src/injectKeyHold.ts",
-        "git diff origin/main"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/angular-hotkeys/tsconfig.docs.json": {
@@ -5321,14 +5359,16 @@
       "evidence": ["packages/hotkeys/src/adapter.ts", "git diff origin/main"]
     },
     "source:packages/hotkeys/src/key-state-tracker.ts": {
-      "fingerprint": "e9ffd10007968fd38efe249963aa86dfa3d720e8392cce16897a6b9fcc04f4e8",
+      "fingerprint": "e75e7ef25b982bf96ae4e978e6f9ff27d663e0a886cb52b52750a8992e61c103",
       "snapshot": {
-        "packages/hotkeys/src/key-state-tracker.ts": "a2ffd7f015f7661cc8e3672641ceddea687b54736b47c8d7cea0a66fb6706222"
+        "packages/hotkeys/src/key-state-tracker.ts": "e4fb4ada0c037c0c7d477e800d4a31c717f8ee182e200e94ebb706ce126e575c"
       },
-      "head": "6bd7da15dfda1f7c7100b38c597e6ed597d96943",
-      "outcome": "no-change",
-      "reason": "Edge-case fix (empty physical code registers nothing; synthetic contextmenu ignored). Skills describe hotkey usage, which is unchanged.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:packages/hotkeys/src/validate.ts": {
       "fingerprint": "6af8ee5b18c34f71a878d1577552881156c8d451086015a977ee4cc8cb0dd88d",
@@ -5467,15 +5507,15 @@
       ]
     },
     "source:packages/octane-hotkeys/src/useKeyHold.ts": {
-      "fingerprint": "380fd3dc18467de8ec7b9536e3264570c1e3a9ebb2f0f08a602a1ff2cace63bd",
+      "fingerprint": "b457249a7e65f85db910bb376ca63a42da1576ef5c944e65a0813c95259396eb",
       "snapshot": {
-        "packages/octane-hotkeys/src/useKeyHold.ts": "bdbe902ce9bf7ba9440cbcb361a2348fb5d48fc65d6edee8578b6ee4b6c252f4"
+        "packages/octane-hotkeys/src/useKeyHold.ts": "dae167d98e94bbed2e736396f004463ae43a5043ef79c6528bb54be07dfaefcc"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
-      "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/octane-hotkeys/tsconfig.docs.json": {
@@ -5577,15 +5617,15 @@
       ]
     },
     "source:packages/preact-hotkeys/src/useKeyHold.ts": {
-      "fingerprint": "3cc0de3bb22a3238fe53233d5293401fd7d9bdd48fa6acec91eb70fc76a4edca",
+      "fingerprint": "4f6cb04a792a46046ce27a587fc6e9c5b4fcc7e5cc3bc1e737c03af3c7321543",
       "snapshot": {
-        "packages/preact-hotkeys/src/useKeyHold.ts": "74c85ee75fa8cd5a97f69b32b718c13be82c725d839e041bc7a83c8df5b061c3"
+        "packages/preact-hotkeys/src/useKeyHold.ts": "590a5eb94475b6adb7b53655d24fad4c046de1920da002c23a362a6a1f88d259"
       },
-      "head": "8602ebef6af01c1b563ca61902df0abacdb45c87",
-      "outcome": "no-change",
-      "reason": "Source or generated docs changed without affecting skill guidance (store internals, provider loading, dev-only warnings, regenerated line numbers).",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Reviewed the diff for this file against the skills that reference it."
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/preact-hotkeys/tsconfig.docs.json": {
@@ -5698,16 +5738,15 @@
       ]
     },
     "source:packages/solid-hotkeys/src/createKeyHold.ts": {
-      "fingerprint": "d962a568c144f8d62b296051a8e9f5a1284e8fae0e850282da0ae9036580b20e",
+      "fingerprint": "7f75ab3ac77f8f66c50a4e1c646874fea37fb84f6101150a79093e26779014dc",
       "snapshot": {
-        "packages/solid-hotkeys/src/createKeyHold.ts": "cacd495d4e541b5dd6e02ff9f983795008e4a5eb265537377636221a168debb9"
+        "packages/solid-hotkeys/src/createKeyHold.ts": "84ad717c7eb92e6a53221bd733ca8d4a4f3cb0e9b26a02fce4ae98394157c5f0"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "packages/solid-hotkeys/src/createKeyHold.ts",
-        "git diff origin/main"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/solid-hotkeys/src/defaultOptions.ts": {
@@ -5993,14 +6032,16 @@
       ]
     },
     "source:docs/framework/alpine/guides/held-key-state-helpers.md": {
-      "fingerprint": "276247497a61456184ea3d777b9967aefe841854b30e0a9e185a74685c6ff273",
+      "fingerprint": "3795162375058ea78f60ffe4522a103725986efbe592f32810c9a367b0a06a13",
       "snapshot": {
-        "docs/framework/alpine/guides/held-key-state-helpers.md": "3b31febeeba1ed07dff51b0cd7ac108d135be3f0f52b694efdea8ec721cd0e8c"
+        "docs/framework/alpine/guides/held-key-state-helpers.md": "ceeef2ad32ec186171f76dfabac5108dd1926808c56c9fb02738710167fae15a"
       },
-      "head": "e56edd6b54a755f8bc9a34243d3a497c56560840",
-      "outcome": "no-change",
-      "reason": "Covered by the skill reviews for the affected adapters in this PR.",
-      "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:docs/framework/angular/guides/formatting-display.md": {
       "fingerprint": "17ff1138778c5c860981914950de718b1da06f1ba540b55318eb4bad318c726a",
@@ -6016,15 +6057,15 @@
       ]
     },
     "source:docs/framework/angular/guides/held-key-state-helpers.md": {
-      "fingerprint": "1e4d1fb31501da964c5f40fc725058754af0c22802f08eaf9eb7abbd052a8a99",
+      "fingerprint": "0b6d2403f9c19941948e89adecb45911ca5c42eac88e40afeecc47193b8d090d",
       "snapshot": {
-        "docs/framework/angular/guides/held-key-state-helpers.md": "1fb609defaf57da29b82bf8f66b6196c3bad4a522dd6755ccc27893bc6a8719f"
+        "docs/framework/angular/guides/held-key-state-helpers.md": "4b970774132cfde022b78455650152dbbebd64f35bd561f26a784567cd816a26"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
-      "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:docs/framework/ember/guides/formatting-display.md": {
@@ -6041,15 +6082,15 @@
       ]
     },
     "source:docs/framework/ember/guides/held-key-state-helpers.md": {
-      "fingerprint": "1361fccbe4aeb7c4980a7423dbd08c9110f1ddf6503af0094fd40fecd7293daf",
+      "fingerprint": "23b9f642d0e72d9db53c8d13b7a1b50d67da5403a0ffaff11ca2f0c713d55f58",
       "snapshot": {
-        "docs/framework/ember/guides/held-key-state-helpers.md": "17cf9d6e6075661c70f3fe7969064f868e5ca56113145d2fa2db629bae2b1f35"
+        "docs/framework/ember/guides/held-key-state-helpers.md": "9884abe3daba8d165a63e7257f43094ac255d1eff98c6aad4283b65ebcca2fba"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
-      "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:docs/framework/lit/guides/formatting-display.md": {
@@ -6079,15 +6120,15 @@
       ]
     },
     "source:docs/framework/octane/guides/held-key-state-helpers.md": {
-      "fingerprint": "588b2feb0d439ff8a3222761b7a763804c1e75fd532c548e4329dcd0550b65f0",
+      "fingerprint": "c74d921e456d212496f263d2a5d0758bb9f93b4f855fe0cdd9e0119638efe897",
       "snapshot": {
-        "docs/framework/octane/guides/held-key-state-helpers.md": "4f95c063a8bca02be0d40f97ac4814b4c643ba19f9589451aafe2b435329b444"
+        "docs/framework/octane/guides/held-key-state-helpers.md": "a130944ce9d76242ebce62fa91770374776374313e4de1dfc067c0a732f3266e"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
-      "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:docs/framework/preact/guides/formatting-display.md": {
@@ -6104,15 +6145,15 @@
       ]
     },
     "source:docs/framework/preact/guides/held-key-state-helpers.md": {
-      "fingerprint": "67250b4a593c01f60b2db7e287d39218fbccbe6210015fc6a2898a16364cc20e",
+      "fingerprint": "ad99a394301183a0a9a33ac560b50fba67eeda875c7d19d0f86215e899047428",
       "snapshot": {
-        "docs/framework/preact/guides/held-key-state-helpers.md": "3e5a072950b5026f5e062cb57e054a1fa96d24408920dbc4a69d3a153d7d7a53"
+        "docs/framework/preact/guides/held-key-state-helpers.md": "5e1552e76221d4f3dffba7d28057eec1d17fa72f54a347a6090a84429964cbfa"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
-      "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:docs/framework/react/guides/formatting-display.md": {
@@ -6129,14 +6170,16 @@
       ]
     },
     "source:docs/framework/react/guides/held-key-state-helpers.md": {
-      "fingerprint": "7199d5d535b36b2a90b2fc1ab33a60e8784180d854731ab9b1c292c8663e348c",
+      "fingerprint": "f5650b06f4d81a4f77d218ba2109280a30504ee29ad94a4a6778e008debac10c",
       "snapshot": {
-        "docs/framework/react/guides/held-key-state-helpers.md": "d7c05465bf82640e4bed3230f009e3ba1e06237f321536a827425cc4c2732bb0"
+        "docs/framework/react/guides/held-key-state-helpers.md": "63682e1373555100dc3353dee34fad1903613b39f0ed27667d5492f154a1d8b0"
       },
-      "head": "b13e9407de5f00dcbe2622ed0d8ce9a233af1c00",
-      "outcome": "no-change",
-      "reason": "React guide titles now name React, matching the other frameworks; content unchanged.",
-      "evidence": ["docs/framework/react/guides/held-key-state-helpers.md"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:docs/framework/solid/guides/formatting-display.md": {
       "fingerprint": "97c152893e2825a2208aad98bca16ed6a419be4cbf99e27b1a70076cad25bac1",
@@ -6152,15 +6195,15 @@
       ]
     },
     "source:docs/framework/solid/guides/held-key-state-helpers.md": {
-      "fingerprint": "c2a22771ade6594e827a104263fd2a73403de0f29acfc0872144a7b7442e11b7",
+      "fingerprint": "40d934cf1630ce19d150f1201d4337aaafaf0f41c238b21ccc21cea4076fa744",
       "snapshot": {
-        "docs/framework/solid/guides/held-key-state-helpers.md": "b0581adf0c7a57bd0bf137fcc7ba3c31be95a07247585213d4ac05e0d40da4bf"
+        "docs/framework/solid/guides/held-key-state-helpers.md": "5b29856dfbcd2181a45eb18e3a38e62922ebec50f3ed2dc45e42809429e67295"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
-      "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:docs/framework/svelte/guides/formatting-display.md": {
@@ -6177,15 +6220,15 @@
       ]
     },
     "source:docs/framework/svelte/guides/held-key-state-helpers.md": {
-      "fingerprint": "feefedfc816e009daa8cd8b0eff6cd9a2294e9c0d58314f5893a290b33a52a6f",
+      "fingerprint": "5ad2d8d08545cd60248b9e3ff237e691d465138d5a05c4d593c794cd44086753",
       "snapshot": {
-        "docs/framework/svelte/guides/held-key-state-helpers.md": "4c0f79c78f9c8b181e1c6cdad9cd61004c46210488d759d48eb20c7a1bca0bcb"
+        "docs/framework/svelte/guides/held-key-state-helpers.md": "1930124622955ace2aead94fd1b79a1b625fa4ed2898fdb7116e451b29ca1ac8"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
-      "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:docs/framework/vue/guides/formatting-display.md": {
@@ -6202,15 +6245,15 @@
       ]
     },
     "source:docs/framework/vue/guides/held-key-state-helpers.md": {
-      "fingerprint": "3f5b55abad3370c1ffc5b77c15485b3436052dac6b3b7323e78a5fa1849c4186",
+      "fingerprint": "b00969ddd80db5229e2fdc6a4e06f57388956218e4c3d2eb07602da4fa991dd8",
       "snapshot": {
-        "docs/framework/vue/guides/held-key-state-helpers.md": "e7132d83eabff5c8d14edc74ea78d1a7350bc696deded2fb46df68b277cdea7f"
+        "docs/framework/vue/guides/held-key-state-helpers.md": "d47841a0448151610cac311fea0f14a0e0e3bbbcfddccab72ea49efd8c49075f"
       },
-      "head": "b65962dbc503a7b79601bea91062bfb1a6e7680a",
-      "outcome": "no-change",
-      "reason": "Removes formatKeyForDisplay in favor of typed formatForDisplay input (modifiers and { key }), and moves the devtools-only triggerRegistration into the devtools package; skill guidance updated in hotkeys-core.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Reviewed the diff for this file; typed-behavior fingerprints are unchanged."
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:docs/reference/functions/formatForDisplay.md": {
@@ -7268,27 +7311,27 @@
       "evidence": ["packages/hotkeys/skills/hotkeys-core/SKILL.md"]
     },
     "source:packages/hotkeys/tests/capture.test.ts": {
-      "fingerprint": "a050eae4eafa6eb491b890f2d36f370e6cc454ddb5a10ff44f4dad2ae96fb4ab",
+      "fingerprint": "dcc9532b7f4a8a0187941d747280281b050ae24e03a31023c4ba496cbc47b48b",
       "snapshot": {
-        "packages/hotkeys/tests/capture.test.ts": "4481ad90392efec34d98df07fed5958fbae2afc806cc2ba25f92b472a3802963"
+        "packages/hotkeys/tests/capture.test.ts": "69793fc6d43b3ce2a8ac8eb04eb7453a447f622b314bc3db8a8ed2bf4416e86a"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
-      "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/capture.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/hotkeys/tests/key-state-tracker.test.ts": {
-      "fingerprint": "4f18338f43ab0df69f0f7e29e61e6a2c32eabf4ee1abb47df530062741de244e",
+      "fingerprint": "64a264ee244249789c4fc7d9644b715dde9fcca7bd123ba5aad15316e6ee5918",
       "snapshot": {
-        "packages/hotkeys/tests/key-state-tracker.test.ts": "f139016bc4e213e073635ad011d6b8b65118b0aef6e23822c50f341597c89a20"
+        "packages/hotkeys/tests/key-state-tracker.test.ts": "ea786dd64af862d38a1c58997221f5e85255cc8d41347fcf65b6ea8752c4c6f1"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
-      "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/key-state-tracker.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:docs/framework/alpine/guides/custom-hotkey-recording.md": {
@@ -12110,15 +12153,15 @@
       ]
     },
     "source:packages/hotkeys/tests/native-activation.test.ts": {
-      "fingerprint": "5976360c233d330eed422df0d06e354a8091c2b885776c31390d5a70a6d09833",
+      "fingerprint": "31390b01774512595bc67770b90e80e5bfda8d32e1b6921a40f45f4020884649",
       "snapshot": {
-        "packages/hotkeys/tests/native-activation.test.ts": "ebd08d095ddb936e798fbcf4cc6acb0de2584a89d1a70ee56cca681b79e83da9"
+        "packages/hotkeys/tests/native-activation.test.ts": "4cad26affbafe075c268cc536f328ef9d7f2a09cf2f2cf9060542f039a255fd2"
       },
-      "head": "ce272666d8aae7bebafc02b184b29fcd2e853125",
-      "outcome": "no-change",
-      "reason": "Combined test-coverage branch: tests, test setup, e2e suites, CI workflows and tooling config only. Regenerated reference pages only reorder a union type or change a node_modules path. No API or guidance change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/native-activation.test.ts at ce272666d8aae7bebafc02b184b29fcd2e853125"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:docs/framework/angular/reference/functions/injectAppHotkeyList.md": {
@@ -12692,14 +12735,16 @@
       "evidence": ["pnpm generate-docs"]
     },
     "source:docs/framework/svelte/reference/functions/getIsKeyHeld.md": {
-      "fingerprint": "1971f6ed35524c9b9203bf572b019c6ad5762662d00df256d9975e1668526c01",
+      "fingerprint": "8e4a05cedf09b60f68cf24f0f8148ceec7b7a14b15705c113b8794aa65191a1e",
       "snapshot": {
-        "docs/framework/svelte/reference/functions/getIsKeyHeld.md": "4b238cedac1400f7f0967f9199bcc805179e7aee81599d96cc017f40dc85f8c1"
+        "docs/framework/svelte/reference/functions/getIsKeyHeld.md": "8f02d863c904fb0b73d1ae52cf30ab6f126552fb81f7a8e4637a65dfe5365715"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Regenerated TypeDoc page: @tanstack/typedoc-config 0.3.5 adds the DO NOT EDIT header, and Defined-in links follow source line shifts from formatting.",
-      "evidence": ["pnpm generate-docs"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:docs/framework/svelte/reference/interfaces/SvelteHeldKeyCodesMap.md": {
       "fingerprint": "4ddb2765b3b000fd3da60346cb4487329ecc74a25eb4b9ad2e0590927eb682df",
@@ -16682,16 +16727,15 @@
       ]
     },
     "source:packages/alpine-hotkeys/src/createKeyHold.ts": {
-      "fingerprint": "fdeeb102236de891fcf46979e65ba1d299231c2bc58c653c6f001cac699a369d",
+      "fingerprint": "e8a4c4ec3f27495ee0d1135a9baba292b0fbdcee4e60e3030d1f133ae7721d3e",
       "snapshot": {
-        "packages/alpine-hotkeys/src/createKeyHold.ts": "6e3edbf9a860dbb0747e120b2838f06e902fa12fad1df0903ed39c88b0a2e979"
+        "packages/alpine-hotkeys/src/createKeyHold.ts": "7bda86195f8ccf538a1fabdbf194e798e0af7073748287c41e775541e0148f4d"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "packages/alpine-hotkeys/src/createKeyHold.ts",
-        "git diff origin/main"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/alpine-hotkeys/tsconfig.json": {
@@ -16728,16 +16772,15 @@
       ]
     },
     "source:packages/ember-hotkeys/src/useKeyHold.ts": {
-      "fingerprint": "21d26255cf5ac3eaa39014138f9864699d4945c4461294676e01a02036b246e3",
+      "fingerprint": "6cf59375662099fdcd87aba58ccc8e2803f97480f3da92acd7e42cca0e29a6d8",
       "snapshot": {
-        "packages/ember-hotkeys/src/useKeyHold.ts": "7d7d6f3c9dd4b2d15967a326bf8a9dfffc9b397e03df167c8d05db342c111b27"
+        "packages/ember-hotkeys/src/useKeyHold.ts": "a22803fde8cab6b406ec560055ae6bee857cc65018849bdba22987ee18f73e8d"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Library source: oxfmt import sorting and line wrapping only; no behavior change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "packages/ember-hotkeys/src/useKeyHold.ts",
-        "git diff origin/main"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/ember-hotkeys/tests/test-helper.ts": {
@@ -16945,29 +16988,27 @@
       ]
     },
     "source:packages/lit-hotkeys/tests/hotkey.spec.ts": {
-      "fingerprint": "5ca09d1193eb70be8eabbc9f168c21e3af0a52ebb8c20a9b4b50cffbbe864497",
+      "fingerprint": "d6455b3fe0662a67feb53206ea0d65d85be190f518eac3fad24cffefd612270a",
       "snapshot": {
-        "packages/lit-hotkeys/tests/hotkey.spec.ts": "0a7d91a472ed9f767777906b0c4891239ff5ce3fd00e122a641fefa10fac1f01"
+        "packages/lit-hotkeys/tests/hotkey.spec.ts": "9111160159463c64a679306c4f7863372498893fd49327482dfb8e5daa6b5c01"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "packages/lit-hotkeys/tests/hotkey.spec.ts",
-        "test:lib passes"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/lit-hotkeys/tests/reactive-options.test.ts": {
-      "fingerprint": "21b096e5ba0197bd41294b941c46e74d1a7a1856e5024c1e5be61e901067ade3",
+      "fingerprint": "c6a4c607563e35b74dae988f0528719a4b0658043ef0556e5cf1f98a4708d66c",
       "snapshot": {
-        "packages/lit-hotkeys/tests/reactive-options.test.ts": "8cc11f33d3343cd1df1583eabdcc7253883b8db8d508e68e0ba3b24f42fc93e0"
+        "packages/lit-hotkeys/tests/reactive-options.test.ts": "20bc91f956640a9c67cb6740494a0ed982ae344b0c529592be624ad75dfbb833"
       },
-      "head": "ceb3d5f93b2439d373096ae80c354df1f77b3f3a",
-      "outcome": "no-change",
-      "reason": "Tests only: formatter import order and pragma placement; octane hydration tests use protocol 3 server HTML; Preact wrappers accept optional children.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "packages/lit-hotkeys/tests/reactive-options.test.ts",
-        "test:lib passes"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/lit-hotkeys/tsconfig.json": {
@@ -17623,14 +17664,16 @@
       "evidence": ["e2e/support/fixtures.ts"]
     },
     "source:e2e/browser/held-keys-and-recorder.spec.ts": {
-      "fingerprint": "1fd0fb7644286581bdd917acf2a21e758516709a4825a2c20ca905b73f72845c",
+      "fingerprint": "896558d884354ea966ed56db8dc99fd132cbe3b6fd29e187de77f541b682b4a6",
       "snapshot": {
-        "e2e/browser/held-keys-and-recorder.spec.ts": "5e158e8e7051c60bb5c86e1a4ae8a39a96820478243128ef52129dce7064b073"
+        "e2e/browser/held-keys-and-recorder.spec.ts": "d584fd1926d17a21c0b4bc256ed301ea31eb439b04ca9babe6713d6adb38ab15"
       },
-      "head": "6a951ef2219993e8820168651bdd80961d2c4afc",
-      "outcome": "out-of-scope",
-      "reason": "Tests for Tab leaving the recorder; they describe no guidance.",
-      "evidence": ["e2e/browser/held-keys-and-recorder.spec.ts"]
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
+      "evidence": [
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
+      ]
     },
     "source:packages/hotkeys/tests/recorder-tab.test.ts": {
       "fingerprint": "f61dcf3376cd34ee6868fb4e96a4dbd5abf05c974af3ebdd1b76b30eb2c80484",
@@ -18761,15 +18804,15 @@
       ]
     },
     "source:packages/hotkeys/tests/invariants/matching.test.ts": {
-      "fingerprint": "d826771d4228d9e35eca399a9b5ad885f15166c3161069d0349eee0f9480f921",
+      "fingerprint": "d1fb221fed3c2520ae865c9029a2f4b3a37bad609b2fdfc4ff157cae8830e2ac",
       "snapshot": {
-        "packages/hotkeys/tests/invariants/matching.test.ts": "1584c2c66b771348f5d56855b25a9ce3351dc4b7b01d5e3b753ef5c551726842"
+        "packages/hotkeys/tests/invariants/matching.test.ts": "90c60147cff2ce994256af526f568d854ffe6c5eeed31100732e8fe5bfbe7d40"
       },
-      "head": "5568c96e8da84bf0dab21508c42fc0e5523d5dc1",
-      "outcome": "no-change",
-      "reason": "Test timeout only; no guidance change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Changed: packages/hotkeys/tests/invariants/matching.test.ts at 5568c96e8da84bf0dab21508c42fc0e5523d5dc1"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/hotkeys/tests/invariants/parse-fuzz.test.ts": {
@@ -19121,63 +19164,63 @@
       ]
     },
     "source:packages/alpine-hotkeys/tests/conformance.test.ts": {
-      "fingerprint": "d517d6498fe53f07db2707384084a5a1e522ae177f974880912e12d1072b0826",
+      "fingerprint": "227e71dfd76e28b1304de6dd3ea86f5421fabc6f0805b6e1e184638b573646cf",
       "snapshot": {
-        "packages/alpine-hotkeys/tests/conformance.test.ts": "b132063506da2f05567bfcdd249175c8274d8afa94bb3ebd381a48da79cd2445"
+        "packages/alpine-hotkeys/tests/conformance.test.ts": "26dfe59d04c4cebeb2396c3ef29ac114b229afaf6b6c5bbf8d178cd926437168"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Changed: packages/alpine-hotkeys/tests/conformance.test.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/angular-hotkeys/tests/conformance.test.ts": {
-      "fingerprint": "120c4da2dcb238d0671871c1b681177161bc967bd3914b14feac360efdc3eb7a",
+      "fingerprint": "090be906508be3c67278491913b0d3c1393559c01a9109189d4986b081f212fc",
       "snapshot": {
-        "packages/angular-hotkeys/tests/conformance.test.ts": "b9d97cc76bc28a7d0c5342c3e0dfba5b6c6cd4e63a91b82ee5afe548238d51cc"
+        "packages/angular-hotkeys/tests/conformance.test.ts": "39d8b8ab2b35e1958064c12f72e94ddcbd4b54d3ca27395398b84cddb2b40e34"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Changed: packages/angular-hotkeys/tests/conformance.test.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/ember-hotkeys/tests/integration/conformance.test.gts": {
-      "fingerprint": "857eafdbf3e3652434dc1b3ac16e3ecd91cd0158a4f94220c2dceaed3b93a1a3",
+      "fingerprint": "9305901b8460052f36944b6ce54179157f54bff93d51e14a427c759ddd67db8b",
       "snapshot": {
-        "packages/ember-hotkeys/tests/integration/conformance.test.gts": "9041dc306bad1c195aa16f920f1d7d6b46ceb8e867220682583b785bc0e193cb"
+        "packages/ember-hotkeys/tests/integration/conformance.test.gts": "91ab3fc8c1754d2c24751fb45c8a5334766a7614ec2e05bef6904e86d6b58f33"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Changed: packages/ember-hotkeys/tests/integration/conformance.test.gts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/lit-hotkeys/tests/conformance.test.ts": {
-      "fingerprint": "a97109042e2d1c32ab191907fe81c582d38aba8c2cd80a7cb3bbc51f415c8ed5",
+      "fingerprint": "b025eed2243b946dd92fe15d42cdd7c6fdd140abea41bd591d00a0a7e42e2f96",
       "snapshot": {
-        "packages/lit-hotkeys/tests/conformance.test.ts": "2001a66ef339e237962f5258099f37ab2f3c86b9dff7439253cad9c6ed5323e4"
+        "packages/lit-hotkeys/tests/conformance.test.ts": "43aee0cd7c9d3fd636ce8a0a4ce982390d5e01ec8b2bb240421c23c659ffb234"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Changed: packages/lit-hotkeys/tests/conformance.test.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/octane-hotkeys/tests/conformance.test.ts": {
-      "fingerprint": "23f63f4c1618af8c82ad2b8f7cfc0463a22f3dafa962a6afe1b9d7c10829a120",
+      "fingerprint": "271cdb4260b9a3e4c36b8386be35d8d324aba234ff06176a43f78d1f8b9d8b46",
       "snapshot": {
-        "packages/octane-hotkeys/tests/conformance.test.ts": "22731fe00db0ae8be1b8892ad1f048ff585e2453b8e2711400a81f2275b21d6a"
+        "packages/octane-hotkeys/tests/conformance.test.ts": "122dc9b3ee6e72b30e03b6981fcd6d3aad9b8b6e38cb1c7e76133f74c80ec9f1"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Changed: packages/octane-hotkeys/tests/conformance.test.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/octane-hotkeys/tests/conformance.tsrx": {
@@ -19193,51 +19236,51 @@
       ]
     },
     "source:packages/preact-hotkeys/tests/conformance.test.tsx": {
-      "fingerprint": "f363aa5963bc0e767d418cc9a7d131e99e6e209d476a16ee32d4dedf6ebcb2aa",
+      "fingerprint": "c3b2c8701ff05561e886fdd635edc0ad69ed7b49c39804f315c0ac1ba5fcea7b",
       "snapshot": {
-        "packages/preact-hotkeys/tests/conformance.test.tsx": "01852cc1ab76829a9eefd145bec6c14fe335d9df9a51f003a5034200760f54c0"
+        "packages/preact-hotkeys/tests/conformance.test.tsx": "839f1574eb893317ebaf3cae82cc0aaa7d541ca88c30cfde9c4533f51eba5322"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Changed: packages/preact-hotkeys/tests/conformance.test.tsx at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/react-hotkeys/tests/conformance.test.tsx": {
-      "fingerprint": "28de33e80cb8a9ca999ed68a9acd2847340715c58f7cd0fc48ee3d11e27438dd",
+      "fingerprint": "7c3160c807ff6d2cd3145ec564308b0656754407d017ebfa185ab040834c5176",
       "snapshot": {
-        "packages/react-hotkeys/tests/conformance.test.tsx": "e7958d63873a503579807412a9516b6ad34061b2e58d728616a1f9d2ba199262"
+        "packages/react-hotkeys/tests/conformance.test.tsx": "09afac5a0f06e91c79f092589bb0d6445f4f46bddca85d800f18184f37fefca5"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Changed: packages/react-hotkeys/tests/conformance.test.tsx at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/solid-hotkeys/tests/conformance.test.tsx": {
-      "fingerprint": "d0d3048b7e04412207f52eaa84bfa0238767d0a3ea8c3faaccece757cea14652",
+      "fingerprint": "18d37a6da0afd55228595bb3337d56185d98807acba9e185514d4ad906a0063a",
       "snapshot": {
-        "packages/solid-hotkeys/tests/conformance.test.tsx": "1a5c9bd11158d0c97ab7b2d63592a7474ef7bb1f64df16c6723923cc1130def3"
+        "packages/solid-hotkeys/tests/conformance.test.tsx": "12fe5b25aef1416a2d4fc60c8d770e22aa5566bd24aea6434b719e6d1fbe95e2"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Changed: packages/solid-hotkeys/tests/conformance.test.tsx at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/svelte-hotkeys/tests/conformance.test.ts": {
-      "fingerprint": "c212146146903c40ca6bd155e324935c20fdabd641d68064f8f19d6b31ffe2c1",
+      "fingerprint": "80ac32fa2d8132883144edcc6401120bf1e3b16102580a8e7b951942c29f2c2b",
       "snapshot": {
-        "packages/svelte-hotkeys/tests/conformance.test.ts": "2f981da66b53d867dfb76b38e3884a8f5a168b9ef15d9ebb06bc64fe458ddcc2"
+        "packages/svelte-hotkeys/tests/conformance.test.ts": "87e4cd0914335811fdaa71c34c4c41cc330b4778b075b85606be35339e4c57a9"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Changed: packages/svelte-hotkeys/tests/conformance.test.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:packages/svelte-hotkeys/tests/conformance/Format.svelte": {
@@ -19373,27 +19416,27 @@
       ]
     },
     "source:packages/vue-hotkeys/tests/conformance.test.ts": {
-      "fingerprint": "b6832bb2afd9bc14c4f0a77956781750e05e257d4b0957a152ffb2043e81a423",
+      "fingerprint": "090d41717774ff4e46e9e858f6434ad4b9b3c32428bffe7ef08e8048e6bfc4ed",
       "snapshot": {
-        "packages/vue-hotkeys/tests/conformance.test.ts": "28885990612fbdc01b769c60ad7a0462ed78c2c23423a4646f946b0f73810333"
+        "packages/vue-hotkeys/tests/conformance.test.ts": "bb9d919826bd6ef72cb7dab5122236467b7eb7d9e4e0cbd49573578929aea430"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Changed: packages/vue-hotkeys/tests/conformance.test.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:test-utils/src/conformance/cases/held-keys.ts": {
-      "fingerprint": "4a9c0997ac34ba624ca8f79aa752a9297d5f27e516dc4c9d6d9dc34995afeb59",
+      "fingerprint": "1e32abafbd1b4d9e2382a621f325e522fbc0000cb7c5a9266017cc7d2163337c",
       "snapshot": {
-        "test-utils/src/conformance/cases/held-keys.ts": "ffebd825fee82ca7f97b920947405e6c3d283d567829c8fb1fab3cd0850568f4"
+        "test-utils/src/conformance/cases/held-keys.ts": "b0e402fef39d1119e888f0633c7ec6f986aa52ffc8b629e3be5b43e32b120571"
       },
-      "head": "8fe6e81b5696979beb1c663ce4aac6c7d6696b77",
-      "outcome": "no-change",
-      "reason": "Shared adapter conformance suite: test-utils cases and per-adapter test harnesses only; no API or guidance change.",
+      "head": "c9af55e17bd8c74ff7b12b59f538e50b1fdf8b13",
+      "outcome": "updated",
+      "reason": "BUG-086, BUG-065 and BUG-067 changed keyup hotkey firing, held-key clearing and key-hold case matching; the adapter skills, core testing reference, held-key guides and sensible-defaults guide now state the new rules.",
       "evidence": [
-        "Changed: test-utils/src/conformance/cases/held-keys.ts at 8fe6e81b5696979beb1c663ce4aac6c7d6696b77"
+        "Adapter SKILL.md key-hold rows, docs/framework/*/guides/held-key-state-helpers.md, docs/guides/sensible-defaults.md, hotkeys-core references/testing.md; core, adapter conformance and e2e browser tests pass."
       ]
     },
     "source:test-utils/src/conformance/cases/hotkeys.ts": {
