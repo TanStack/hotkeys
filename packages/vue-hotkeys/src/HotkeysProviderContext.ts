@@ -10,8 +10,8 @@ import {
   hasInjectionContext,
   inject,
   onMounted,
-  onScopeDispose,
   provide,
+  shallowRef,
   toValue,
   watch,
 } from 'vue'
@@ -73,8 +73,9 @@ export interface ProvideHotkeysContextOptions {
   /** See `HotkeysProviderScopeProps['enabled']`. */
   enabled?: MaybeRefOrGetter<HotkeysProviderScopeProps['enabled']>
   /**
-   * Every app hotkey, from `defineAppHotkeys`. Read when the context is
-   * provided; later changes update the declarations.
+   * Every app hotkey, from `defineAppHotkeys`. It can start as `undefined` and
+   * arrive later, such as from a lazy import. Later changes update the
+   * declarations.
    */
   appHotkeys?: MaybeRefOrGetter<AppHotkeys | undefined>
   /**
@@ -112,31 +113,40 @@ export function provideHotkeysContext(
   options: ProvideHotkeysContextOptions = {},
 ) {
   const parent = inject(HotkeysContext, null)
-  const appHotkeys = toValue(options.appHotkeys)
-  const store = appHotkeys
-    ? createAppHotkeysStore(appHotkeys, {
-        customHotkeys: toValue(options.customHotkeys),
-        onCustomHotkeysChange: (custom) =>
-          options.onCustomHotkeysChange?.(custom),
-        // App hotkeys compare hotkeys, such as for conflicts, on this platform.
-        platform:
-          toValue(options.defaultOptions)?.platform ??
-          parent?.defaultOptions.platform,
-      })
-    : null
-
-  if (store) {
-    // Keep declarations current (for example after hot module replacement).
+  const createStore = (appHotkeys: AppHotkeys) =>
+    createAppHotkeysStore(appHotkeys, {
+      customHotkeys: toValue(options.customHotkeys),
+      onCustomHotkeysChange: (custom) =>
+        options.onCustomHotkeysChange?.(custom),
+      // App hotkeys compare hotkeys, such as for conflicts, on this platform.
+      platform:
+        toValue(options.defaultOptions)?.platform ??
+        parent?.defaultOptions.platform,
+    })
+  // Created when app hotkeys first arrive. That can be after setup, such as
+  // when a lazy import loads the declarations.
+  const initial = toValue(options.appHotkeys)
+  const store = shallowRef(initial ? createStore(initial) : null)
+  // Later values update the declarations, such as after hot module
+  // replacement. Sync, so descendants see a new store before they update.
+  watch(
+    () => toValue(options.appHotkeys),
+    (next) => {
+      if (!next) return
+      if (store.value) store.value.setAppHotkeys(next)
+      else store.value = createStore(next)
+    },
+    { flush: 'sync' },
+  )
+  // Publish the store so devtools can list declared hotkeys.
+  if (typeof document !== 'undefined') {
     watch(
-      () => toValue(options.appHotkeys),
-      (next) => {
-        if (next) store.setAppHotkeys(next)
+      store,
+      (created, _, onCleanup) => {
+        if (created) onCleanup(publishAppHotkeysStore(created))
       },
+      { immediate: true, flush: 'sync' },
     )
-    // Publish the store so devtools can list declared hotkeys.
-    if (typeof document !== 'undefined') {
-      onScopeDispose(publishAppHotkeysStore(store))
-    }
   }
 
   // A page cached by <KeepAlive> releases its scope while hidden.
@@ -154,20 +164,15 @@ export function provideHotkeysContext(
       toValue(options.scope),
     ),
   )
-  if (store) {
-    // Apply the platform and saved custom hotkeys whose value changes, such
-    // as data that loads after setup. Deep, so changes made in place are seen
-    // too. One call applies both together.
-    watch(
-      [
-        () => toValue(options.customHotkeys),
-        () => defaultOptions.value.platform,
-      ],
-      ([customHotkeys, platform]) =>
-        store.setOptions({ customHotkeys, platform }),
-      { deep: true },
-    )
-  }
+  // Apply the platform and saved custom hotkeys whose value changes, such as
+  // data that loads after setup. Deep, so changes made in place are seen too.
+  // One call applies both together.
+  watch(
+    [() => toValue(options.customHotkeys), () => defaultOptions.value.platform],
+    ([customHotkeys, platform]) =>
+      store.value?.setOptions({ customHotkeys, platform }),
+    { deep: true },
+  )
   // Compared by value, so a new `exclusive` object does not reactivate the
   // scope and lose its precedence.
   const scopeKey = computed(() =>
@@ -192,7 +197,9 @@ export function provideHotkeysContext(
   })
 
   const contextValue: HotkeysContextValue = {
-    appHotkeysStore: store ?? parent?.appHotkeysStore ?? null,
+    get appHotkeysStore() {
+      return store.value ?? parent?.appHotkeysStore ?? null
+    },
     get defaultOptions() {
       return defaultOptions.value
     },

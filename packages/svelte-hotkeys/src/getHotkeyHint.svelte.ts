@@ -10,6 +10,7 @@ import { getHotkeysContext } from './HotkeysCtx.js'
 import { resolveMaybeGetter } from './internal.svelte.js'
 import type {
   AppHotkey,
+  AppHotkeysStore,
   HeldModifierOptions,
   RegisterableHotkey,
 } from '@tanstack/hotkeys'
@@ -34,12 +35,14 @@ export function getHotkeyHint(
 ): SvelteHotkeyHint {
   const tracker = getKeyStateTracker()
   const manager = getHotkeyManager()
-  const store = getHotkeysContext()?.appHotkeysStore ?? null
+  const context = getHotkeysContext()
+  // Read each time: a provider creates its store when its app hotkeys arrive.
+  const getStore = () => context?.appHotkeysStore ?? null
   // Resolve current reactive arguments without caching a stale hotkey.
   const read = () => {
     const value = resolveMaybeGetter(hotkey)
     const resolved = isAppHotkey(value)
-      ? resolveAppHotkey(value, store).hotkey
+      ? resolveAppHotkey(value, getStore()).hotkey
       : value
     return (
       resolved !== null &&
@@ -53,24 +56,35 @@ export function getHotkeyHint(
   }
   let previous = false
   // Notify Svelte only when visibility changes, not for every unrelated held key.
-  const subscribe = createSubscriber((update) => {
-    previous = read()
-    const check = () => {
-      const next = read()
-      if (next !== previous) {
-        previous = next
-        update()
+  const track = (store: AppHotkeysStore | null) =>
+    createSubscriber((update) => {
+      previous = read()
+      const check = () => {
+        const next = read()
+        if (next !== previous) {
+          previous = next
+          update()
+        }
       }
-    }
-    const keys = tracker.store.subscribe(check)
-    const registrations = manager.registrations.subscribe(check)
-    const custom = store?.store.subscribe(check)
-    return () => {
-      keys.unsubscribe()
-      registrations.unsubscribe()
-      custom?.unsubscribe()
-    }
-  })
+      const keys = tracker.store.subscribe(check)
+      const registrations = manager.registrations.subscribe(check)
+      const custom = store?.store.subscribe(check)
+      return () => {
+        keys.unsubscribe()
+        registrations.unsubscribe()
+        custom?.unsubscribe()
+      }
+    })
+  // One subscriber for each store, so a store that arrives later is tracked.
+  const withoutStore = track(null)
+  const subscribers = new WeakMap<AppHotkeysStore, () => void>()
+  const subscribe = () => {
+    const store = getStore()
+    if (!store) return withoutStore()
+    let tracked = subscribers.get(store)
+    if (!tracked) subscribers.set(store, (tracked = track(store)))
+    tracked()
+  }
   return {
     /** Reads visibility and subscribes the current reactive consumer when needed. */
     get visible() {

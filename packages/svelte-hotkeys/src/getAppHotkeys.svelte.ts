@@ -1,6 +1,6 @@
 import { getHotkeysContext } from './HotkeysCtx.js'
 import { getHotkeyRegistrations } from './getHotkeyRegistrations.svelte.js'
-import { createStoreSubscriber } from './internal.svelte.js'
+import { createAppHotkeysSource } from './internal.svelte.js'
 import type {
   AppHotkey,
   AppHotkeyListItem,
@@ -11,15 +11,20 @@ import type {
 } from '@tanstack/hotkeys'
 
 function requireStore(name: string) {
-  const store = getHotkeysContext()?.appHotkeysStore
-  if (!store) {
+  const source = createAppHotkeysSource(getHotkeysContext())
+  const initial = source.store
+  if (!initial) {
     throw new Error(
       `[hotkeys] ${name} requires a HotkeysProvider with appHotkeys`,
     )
   }
   return {
-    store: store as unknown as AppHotkeysStore<RegisteredAppHotkeys>,
-    subscribe: createStoreSubscriber(store.store),
+    // The nearest provider's store, which changes if a nested provider gets
+    // its app hotkeys later.
+    store: () =>
+      (source.store ??
+        initial) as unknown as AppHotkeysStore<RegisteredAppHotkeys>,
+    subscribe: source.subscribe,
   }
 }
 
@@ -45,7 +50,7 @@ export function getAppHotkeys(): SvelteAppHotkeys {
   return {
     get current() {
       subscribe()
-      return store.appHotkeys
+      return store().appHotkeys
     },
   }
 }
@@ -68,7 +73,7 @@ export function getAppHotkeyList(): SvelteAppHotkeyList {
   return {
     get current() {
       subscribe()
-      return store.getList(registrations.hotkeys)
+      return store().getList(registrations.hotkeys)
     },
   }
 }
@@ -105,11 +110,11 @@ export function getCustomHotkeys(): SvelteCustomHotkeys {
   return {
     get current() {
       subscribe()
-      return store.customHotkeys
+      return store().customHotkeys
     },
-    setCustomHotkey: (id, hotkey) => store.setCustomHotkey(id, hotkey),
-    resetCustomHotkey: (id) => store.resetCustomHotkey(id),
-    resetCustomHotkeys: () => store.resetCustomHotkeys(),
-    findConflicts: (id, hotkey) => store.findConflicts(id, hotkey),
+    setCustomHotkey: (id, hotkey) => store().setCustomHotkey(id, hotkey),
+    resetCustomHotkey: (id) => store().resetCustomHotkey(id),
+    resetCustomHotkeys: () => store().resetCustomHotkeys(),
+    findConflicts: (id, hotkey) => store().findConflicts(id, hotkey),
   }
 }

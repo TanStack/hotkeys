@@ -1,7 +1,7 @@
 import { HotkeyManager, defineAppHotkeys } from '@tanstack/hotkeys'
 import { mount } from '@vue/test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
-import { defineComponent, h, nextTick, ref } from 'vue'
+import { defineComponent, h, nextTick, ref, shallowRef } from 'vue'
 import { HotkeysProvider } from '../src/HotkeysProvider'
 import {
   useAppHotkeyList,
@@ -11,7 +11,7 @@ import {
 import { useHotkey } from '../src/useHotkey'
 import { useHotkeyRecorder } from '../src/useHotkeyRecorder'
 import { useHotkeys } from '../src/useHotkeys'
-import type { CustomHotkeys, Hotkey } from '@tanstack/hotkeys'
+import type { AppHotkeys, CustomHotkeys, Hotkey } from '@tanstack/hotkeys'
 
 const appHotkeys = defineAppHotkeys({
   'doc.save': { hotkey: 'Mod+S', meta: { name: 'Save' } },
@@ -291,6 +291,42 @@ describe('app hotkeys and the provider platform', () => {
     platform.value = 'windows'
     await nextTick()
     expect(list.value[0]!.isCustom).toBe(true)
+    wrapper.unmount()
+  })
+})
+
+describe('a nested provider whose app hotkeys arrive late', () => {
+  it("gets its own store and leaves its parent's alone", async () => {
+    const nestedHotkeys = defineAppHotkeys({ 'file.open': { hotkey: 'Mod+O' } })
+    const nested = shallowRef<AppHotkeys>()
+    const lists: Record<string, ReturnType<typeof useAppHotkeyList>> = {}
+    const List = defineComponent({
+      props: { name: { type: String, required: true } },
+      setup(props) {
+        lists[props.name] = useAppHotkeyList()
+        return () => h('div')
+      },
+    })
+    const wrapper = mount(
+      defineComponent({
+        setup: () => () =>
+          h(HotkeysProvider, { appHotkeys }, () => [
+            h(List, { name: 'root' }),
+            h(HotkeysProvider, { appHotkeys: nested.value }, () =>
+              h(List, { name: 'nested' }),
+            ),
+          ]),
+      }),
+    )
+    const ids = (name: string) =>
+      lists[name]!.value.map((item) => item.appHotkey.id)
+    const rootIds = Object.keys(appHotkeys)
+    // Until its own declarations arrive, it shares its parent's store.
+    expect([ids('root'), ids('nested')]).toEqual([rootIds, rootIds])
+
+    nested.value = nestedHotkeys
+    await nextTick()
+    expect([ids('root'), ids('nested')]).toEqual([rootIds, ['file.open']])
     wrapper.unmount()
   })
 })

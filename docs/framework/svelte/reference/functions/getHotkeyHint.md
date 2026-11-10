@@ -9,7 +9,7 @@ title: getHotkeyHint
 function getHotkeyHint(hotkey, options?): SvelteHotkeyHint;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts:31](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts#L31)
+Defined in: [packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts:32](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getHotkeyHint.svelte.ts#L32)
 
 Returns an object with a reactive `visible` getter indicating whether held
 modifiers reveal this shortcut. The hint shows only while the hotkey can

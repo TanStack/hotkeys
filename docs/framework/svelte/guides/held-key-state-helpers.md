@@ -30,7 +30,7 @@ To label each held key the way hotkeys are labeled, pass it to `formatForDisplay
 
 ## Check whether a key is held
 
-`getIsKeyHeld(key).held` tells you whether one key is held. It updates only when that key is pressed or released:
+`getIsKeyHeld(key).held` tells you whether one key is held. An effect that reads it runs again whenever any key is pressed or released:
 
 ```svelte
 <script lang="ts">

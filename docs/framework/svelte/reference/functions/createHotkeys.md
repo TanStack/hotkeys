@@ -9,7 +9,7 @@ title: createHotkeys
 function createHotkeys(hotkeys, commonOptions?): void;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:131](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L131)
+Defined in: [packages/svelte-hotkeys/src/createHotkeys.svelte.ts:129](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/createHotkeys.svelte.ts#L129)
 
 Svelte function for registering several hotkeys at once on the document:
 chords, sequences, and app hotkeys. Pass getters for reactive values. Use

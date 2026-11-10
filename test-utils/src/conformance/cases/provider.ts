@@ -320,5 +320,34 @@ defineGroup({
         expect(callback.calls).toHaveLength(1)
       },
     },
+    {
+      // Declarations can load after the provider, such as from a lazy import
+      title: 'applies app hotkeys that arrive after the first render',
+      requires: ['late-app-hotkeys'],
+      async run({ harness, expect, press }) {
+        const callback = spy()
+        const customHotkeys = { 'doc.save': 'Mod+E' as const }
+        const view = await harness.mountHotkeys({
+          form: 'single',
+          hotkeys: [{ hotkey: conformanceAppHotkeys['doc.save'], callback }],
+          provider: { customHotkeys },
+        })
+        expect(getHotkeyManager().appHotkeys.state).toBe(null)
+
+        await view.update({
+          provider: { appHotkeys: conformanceAppHotkeys, customHotkeys },
+        })
+        // Published, so the devtools can list the declared hotkeys
+        const published = getHotkeyManager().appHotkeys.state
+        expect(Object.keys(published?.appHotkeys ?? {})).toEqual(
+          Object.keys(conformanceAppHotkeys),
+        )
+        expect(registered().map((reg) => reg.hotkey)).toEqual(['Mod+E'])
+        await press(mod('s'))
+        expect(callback.calls).toHaveLength(0)
+        await press(mod('e'))
+        expect(callback.calls).toHaveLength(1)
+      },
+    },
   ],
 })

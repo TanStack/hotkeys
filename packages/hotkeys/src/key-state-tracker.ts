@@ -105,8 +105,10 @@ export class KeyStateTracker {
    * Sets up the keyboard event listeners.
    */
   #setupListeners(): void {
-    if (typeof document === 'undefined') {
-      return // SSR safety
+    // SSR safety. The listeners go on the window, and some server DOM shims
+    // define a `document` without one.
+    if (typeof window === 'undefined') {
+      return
     }
 
     const onKeydown = (event: KeyboardEvent) => {

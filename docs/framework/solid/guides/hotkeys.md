@@ -82,6 +82,31 @@ A hotkey of `undefined`, `null`, or `''` registers nothing, so a component can t
 
 To keep a hotkey registered, and listed in devtools and cheat sheets, but stop it from firing, set `enabled: false` instead.
 
+### Register after an `await`
+
+A hotkey unregisters when the component or reactive scope that created it is cleaned up. Solid knows that scope only while the component is being created, so call `createHotkey` directly in the component, not after an `await` or in a timer. A hotkey created there has no owner, and it keeps firing after the component unmounts.
+
+When the hotkey needs something that loads later, register it right away, read the loaded value in the callback, and keep the hotkey disabled until the value is there. A disabled hotkey leaves the key to the browser:
+
+```tsx
+import { createResource } from 'solid-js'
+import { createHotkey } from '@tanstack/solid-hotkeys'
+
+function Editor() {
+  const [commands] = createResource(loadCommands)
+
+  createHotkey(
+    'Mod+S',
+    () => commands()?.save(),
+    () => ({ enabled: !!commands() }),
+  )
+
+  return <textarea />
+}
+```
+
+If you must create a hotkey later, capture `getOwner()` while the component is created and make the call inside `runWithOwner`. Skip the call if the component was already cleaned up.
+
 ### Write a chord as a string or an object
 
 Write most chords as strings. Your editor autocompletes them, and TypeScript rejects a string that isn't a valid chord:

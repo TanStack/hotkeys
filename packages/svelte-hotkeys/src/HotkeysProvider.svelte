@@ -13,7 +13,7 @@
     enabled,
   }: HotkeysProviderProps = $props()
 
-  const context = setHotkeysContextSource(() => ({
+  setHotkeysContextSource(() => ({
     defaultOptions,
     appHotkeys,
     customHotkeys,
@@ -22,21 +22,6 @@
     exclusive,
     enabled,
   }))
-
-  // Keep declarations current (for example after hot module replacement).
-  $effect(() => {
-    if (appHotkeys) context.appHotkeysStore?.setAppHotkeys(appHotkeys)
-  })
-
-  // Apply the platform and saved custom hotkeys whose value changes, such as
-  // data that loads after the first render. Only a provider with appHotkeys
-  // owns a store.
-  $effect(() => {
-    const platform = context.defaultOptions.platform
-    if (appHotkeys) {
-      context.appHotkeysStore?.setOptions({ customHotkeys, platform })
-    }
-  })
 </script>
 
 {@render children()}

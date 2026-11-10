@@ -25,10 +25,11 @@ Defined in: [HotkeysProvider.tsx:61](https://github.com/TanStack/hotkeys/blob/ma
 optional appHotkeys?: T;
 ```
 
-Defined in: [HotkeysProvider.tsx:69](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L69)
+Defined in: [HotkeysProvider.tsx:70](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L70)
 
 Every app hotkey, from `defineAppHotkeys`. Listed by `useAppHotkeyList`
-whether or not their components have mounted.
+whether or not their components have mounted. It can start as `undefined`
+and arrive later, such as from a lazy import.
 
 ***
 
@@ -48,7 +49,7 @@ Defined in: [HotkeysProvider.tsx:64](https://github.com/TanStack/hotkeys/blob/ma
 optional customHotkeys?: CustomHotkeys<T> | null;
 ```
 
-Defined in: [HotkeysProvider.tsx:76](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L76)
+Defined in: [HotkeysProvider.tsx:77](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L77)
 
 The user's saved custom hotkeys. When the value changes, such as after
 saved data loads or the user signs in, it replaces the current custom
@@ -63,7 +64,7 @@ ids and invalid entries are ignored.
 optional defaultOptions?: HotkeysProviderOptions;
 ```
 
-Defined in: [HotkeysProvider.tsx:80](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L80)
+Defined in: [HotkeysProvider.tsx:81](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L81)
 
 Merged with the parent provider's defaults.
 
@@ -75,7 +76,7 @@ Merged with the parent provider's defaults.
 optional onCustomHotkeysChange?: (customHotkeys) => void;
 ```
 
-Defined in: [HotkeysProvider.tsx:78](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L78)
+Defined in: [HotkeysProvider.tsx:79](https://github.com/TanStack/hotkeys/blob/main/packages/react-hotkeys/src/HotkeysProvider.tsx#L79)
 
 Called with the custom hotkeys after every change, ready to save.
 

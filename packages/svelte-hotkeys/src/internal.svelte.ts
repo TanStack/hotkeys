@@ -1,6 +1,12 @@
+import { publishAppHotkeysStore } from '@tanstack/hotkeys'
 import { activateHotkeysProviderScope } from '@tanstack/hotkeys/adapter'
 import { createSubscriber } from 'svelte/reactivity'
-import type { AppHotkeysStore } from '@tanstack/hotkeys'
+import type {
+  AppHotkeys,
+  AppHotkeysStore,
+  CustomHotkeys,
+  HotkeyPlatform,
+} from '@tanstack/hotkeys'
 
 export type MaybeGetter<T> = T | (() => T)
 
@@ -27,16 +33,63 @@ export function createStoreSubscriber<TState>(
   })
 }
 
-const noop = () => {}
+/**
+ * The nearest provider's app hotkeys store, read from the context each time.
+ * A provider creates its store when its app hotkeys arrive, which can be after
+ * a hotkey is created. `subscribe` makes the current reactive consumer re-run
+ * when app hotkeys or custom hotkeys change.
+ */
+export function createAppHotkeysSource(
+  context: { readonly appHotkeysStore: AppHotkeysStore | null } | null,
+): { readonly store: AppHotkeysStore | null; subscribe: () => void } {
+  const subscribers = new WeakMap<AppHotkeysStore, () => void>()
+  return {
+    get store() {
+      return context?.appHotkeysStore ?? null
+    },
+    subscribe() {
+      const store = context?.appHotkeysStore
+      if (!store) return
+      let subscribe = subscribers.get(store)
+      if (!subscribe) {
+        subscribe = createStoreSubscriber(store.store)
+        subscribers.set(store, subscribe)
+      }
+      subscribe()
+    },
+  }
+}
 
 /**
- * Returns a function that subscribes the current reactive consumer to an app
- * hotkeys store, so it re-runs when app hotkeys or custom hotkeys change.
+ * Keeps a provider's own app hotkeys store current while the component is
+ * mounted: publishes it for devtools, and applies changed declarations, saved
+ * custom hotkeys and platform.
  */
-export function createAppHotkeysSubscriber(
-  store: AppHotkeysStore | null,
-): () => void {
-  return store ? createStoreSubscriber(store.store) : noop
+export function syncAppHotkeysStore(
+  getStore: () => AppHotkeysStore | null,
+  getOptions: () => {
+    appHotkeys?: AppHotkeys
+    customHotkeys?: CustomHotkeys | null
+    platform?: HotkeyPlatform
+  },
+): void {
+  // Derived, so an effect runs again only when its own value changes, not for
+  // every option the getters read.
+  const store = $derived(getStore())
+  const appHotkeys = $derived(getOptions().appHotkeys)
+  const customHotkeys = $derived(getOptions().customHotkeys)
+  const platform = $derived(getOptions().platform)
+  // Publish the store so devtools can list declared hotkeys.
+  $effect(() => (store ? publishAppHotkeysStore(store) : undefined))
+  // Keep declarations current (for example after hot module replacement).
+  $effect(() => {
+    if (appHotkeys) store?.setAppHotkeys(appHotkeys)
+  })
+  // Apply the platform and saved custom hotkeys whose value changes, such as
+  // data that loads after the first render.
+  $effect(() => {
+    store?.setOptions({ customHotkeys, platform })
+  })
 }
 
 /**

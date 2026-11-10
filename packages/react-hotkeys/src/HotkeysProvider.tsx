@@ -12,7 +12,7 @@ import React, {
   useContext,
   useEffect,
   useMemo,
-  useState,
+  useRef,
 } from 'react'
 import type {
   AppHotkeys,
@@ -64,7 +64,8 @@ export interface HotkeysProviderProps<
   children: ReactNode
   /**
    * Every app hotkey, from `defineAppHotkeys`. Listed by `useAppHotkeyList`
-   * whether or not their components have mounted.
+   * whether or not their components have mounted. It can start as `undefined`
+   * and arrive later, such as from a lazy import.
    */
   appHotkeys?: T
   /**
@@ -132,15 +133,17 @@ export function HotkeysProvider<T extends AppHotkeys = AppHotkeys>({
   const parent = useContext(HotkeysContext) ?? NO_PARENT
   // App hotkeys compare hotkeys, such as for conflicts, on this platform.
   const platform = defaultOptions.platform ?? parent.defaultOptions.platform
-  const [store] = useState(() =>
-    appHotkeys
-      ? createAppHotkeysStore(appHotkeys, {
-          customHotkeys,
-          onCustomHotkeysChange,
-          platform,
-        })
-      : null,
-  )
+  // Created on the first render that has app hotkeys. That can be a later
+  // render, such as after a lazy import loads the declarations.
+  const storeRef = useRef<AppHotkeysStore | null>(null)
+  if (!storeRef.current && appHotkeys) {
+    storeRef.current = createAppHotkeysStore(appHotkeys, {
+      customHotkeys,
+      onCustomHotkeysChange,
+      platform,
+    })
+  }
+  const store = storeRef.current
   const active = parent.enabled && enabled
   // Compared by value, so an inline `exclusive` object does not reactivate
   // the scope, and lose its precedence, on every render.

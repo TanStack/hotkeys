@@ -74,6 +74,8 @@ export type ConformanceFeature =
   | 'provider-defaults'
   /** App hotkeys and custom hotkeys from the provider. */
   | 'app-hotkeys'
+  /** App hotkeys that the provider gets after it first renders. */
+  | 'late-app-hotkeys'
   | 'recorder'
   | 'hint'
   | 'format'

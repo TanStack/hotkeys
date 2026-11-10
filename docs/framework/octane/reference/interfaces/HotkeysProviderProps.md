@@ -19,10 +19,11 @@ Defined in: [HotkeysProvider.ts:61](https://github.com/TanStack/hotkeys/blob/mai
 optional appHotkeys?: Readonly<Record<string, AppHotkey<string, HotkeyChord | HotkeySequence | null>>>;
 ```
 
-Defined in: [HotkeysProvider.ts:69](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L69)
+Defined in: [HotkeysProvider.ts:70](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L70)
 
-Every app hotkey, from `defineAppHotkeys`. Read when the provider first
-renders; listed by `useAppHotkeyList` whether or not they are registered.
+Every app hotkey, from `defineAppHotkeys`. Listed by `useAppHotkeyList`
+whether or not they are registered. It can start as `undefined` and arrive
+later, such as from a lazy import.
 
 ***
 
@@ -44,7 +45,7 @@ optional customHotkeys?:
   | null;
 ```
 
-Defined in: [HotkeysProvider.ts:76](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L76)
+Defined in: [HotkeysProvider.ts:77](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L77)
 
 The user's saved custom hotkeys. When the value changes, such as after
 saved data loads or the user signs in, it replaces the current custom
@@ -71,7 +72,7 @@ Merged with the parent provider's defaults.
 optional onCustomHotkeysChange?: (customHotkeys) => void;
 ```
 
-Defined in: [HotkeysProvider.ts:78](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L78)
+Defined in: [HotkeysProvider.ts:79](https://github.com/TanStack/hotkeys/blob/main/packages/octane-hotkeys/src/HotkeysProvider.ts#L79)
 
 Called with the custom hotkeys after every change, ready to save.
 

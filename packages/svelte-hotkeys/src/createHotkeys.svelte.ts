@@ -4,7 +4,7 @@ import {
 } from '@tanstack/hotkeys/adapter'
 import { getHotkeysContext } from './HotkeysCtx.js'
 import {
-  createAppHotkeysSubscriber,
+  createAppHotkeysSource,
   resolveMaybeGetter,
 } from './internal.svelte.js'
 import type {
@@ -72,9 +72,7 @@ function bindHotkeys(
   element?: HTMLElement,
 ) {
   const context = getHotkeysContext()
-  const subscribeAppHotkeys = createAppHotkeysSubscriber(
-    context?.appHotkeysStore ?? null,
-  )
+  const appHotkeys = createAppHotkeysSource(context)
   const bindings = createHotkeyBindings({ afterDelegatedHandlers: true })
 
   $effect(() => {
@@ -82,7 +80,7 @@ function bindHotkeys(
       return
     }
     // Track app hotkeys so registrations move with custom hotkeys.
-    subscribeAppHotkeys()
+    appHotkeys.subscribe()
     const definitions = resolveMaybeGetter(hotkeys).map(
       (definition) =>
         ({
@@ -95,7 +93,7 @@ function bindHotkeys(
     )
     bindings.update(
       prepareHotkeyDefinitions(definitions, {
-        appHotkeysStore: context?.appHotkeysStore,
+        appHotkeysStore: appHotkeys.store,
         defaults: context?.defaultOptions.hotkey,
         commonOptions: element
           ? { ...resolveMaybeGetter(commonOptions), target: element }

@@ -112,7 +112,7 @@ The browser's `KeyboardLayoutMap` exists only in the browser, and it loads after
 
 ## Format labels in server-rendered apps
 
-The server doesn't know the user's platform. Without one, a label rendered on the server uses `'linux'`, so a Mac user gets `Ctrl+S` in the server's HTML. When Preact hydrates, it replaces the label's text with `⌘ S`, so the label changes in front of the user. Preact doesn't update attributes during hydration, so a label in an attribute, such as a `title`, keeps `Ctrl+S`. To render the right label from the start:
+The server doesn't know the user's platform. Without one, a label rendered on the server uses `'linux'`, so a Mac user gets `Ctrl+S` in the server's HTML. When Preact hydrates, it replaces the label's text with `⌘ S`, so the label changes in front of the user. Preact's `hydrate()` doesn't update attributes, so a label in an attribute, such as a `title`, keeps `Ctrl+S`. To render the right label from the start:
 
 1. Read the request's `User-Agent` header on the server, and pass `detectPlatform(userAgent)` as the provider's `platform`.
 2. Format labels with `useFormatForDisplay()` instead of `formatForDisplay`. `formatForDisplay` doesn't read the provider, so it ignores the platform from step 1.
