@@ -98,11 +98,8 @@ export class KeyHoldController implements ReactiveController {
 
   /** Recomputes the held state and reports whether it changed. */
   private _refresh(): boolean {
-    const key = (
-      typeof this._key === 'function' ? this._key() : this._key
-    ).toLowerCase()
-    const next = getKeyStateTracker().store.state.heldKeys.some(
-      (heldKey) => heldKey.toLowerCase() === key,
+    const next = getKeyStateTracker().isKeyHeld(
+      typeof this._key === 'function' ? this._key() : this._key,
     )
     const changed = next !== this._value
     this._value = next

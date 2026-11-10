@@ -50,14 +50,16 @@ Otherwise, the character the key reports wins, wherever the key sits:
 
 - ASCII letters never fall back, and ASCII symbols fall back only on the digit row or with Shift. On AZERTY, the key in the US `/` position types `+`, so Cmd++ zooms the page instead of firing `Mod+/`. On Dvorak, the key that types `'` does not fire `Q`.
 - Latin letters such as `ü`, `ö`, and `ø` match only themselves when typed on their own. With Control or Command held on a punctuation key they fall back, so German Cmd+ü still fires `Mod+[` (German types `[` with Option).
-- On Windows, Control+Alt works like AltGr, so a Latin letter it types on a letter key matches only itself. Polish Ctrl+Alt+A types `ą` and does not fire `Control+Alt+A`. Symbols and the digit row still fall back, so German Ctrl+Alt+E, which types `€`, fires `Control+Alt+E`, and Danish Ctrl+Alt+2, which types `@`, fires `Control+Alt+2`. Avoid `Control+Alt` with letters and digits on Windows when users type in other languages.
-- Named keys never fall back. With NumLock off, the numpad's 1 key reports `End`, so it fires `End` and not `1`.
+- On Windows, Control+Alt works like AltGr. On a layout with AltGr, browsers report Left Ctrl + Left Alt as AltGr, so a character it types matches only itself. German Ctrl+Alt+E types `€` and fires `€`, not `Control+Alt+E`. Polish Ctrl+Alt+A types `ą` and does not fire `Control+Alt+A`. Avoid `Control+Alt` with letters, digits, and symbols on Windows when users type in other languages.
+- Named keys never fall back. With NumLock off, the numpad's 1 key reports `End`, so it fires `End` and not `1`. Numpad 5 has no navigation key, so with NumLock off it fires no digit, even in Firefox, which reports it as `Unidentified`.
 
 When one key press could match several registrations on the same target, an exact match takes priority over a fallback.
 
 A symbol that needs Shift on some layouts, such as `/` on German QWERTZ (Shift+7), matches when typed on its own. With Command held, macOS browsers report the unshifted character instead (`7`), so `Mod+/` can't match there. Register the per-layout combination as well, such as `Mod+Shift+7`.
 
 Letters match without regard to case: `S` and `s` are the same binding.
+
+Turkish dotless `ı` and dotted `İ` are letters of their own, not other cases of `I` and `i`. A binding for `ı` fires only on the key that types `ı`, and a binding for `İ` only on the key that types `İ`. `I` fires on the key that types `i`, and also on the key that types `ı`, as in native Windows apps, where that key is the I key. An `ı` binding takes priority there. With `recordBy: 'key'`, the recorder records `ı`, and labels show `ı`.
 
 ### Match a key's position instead
 
@@ -197,7 +199,7 @@ Chords fire on `keydown`, when the user presses the key, rather than on release.
 
 For a toggle, such as opening and closing a panel, repeating is usually wrong: holding the key would make the panel flicker. Set `requireReset: true` to fire once per press. Releasing the key or any of its modifiers allows the chord to fire again. So does a new press that isn't an automatic repeat, so a lost keyup, such as the one macOS drops while Command is held, never blocks the chord.
 
-Set `eventType: 'keyup'` to fire on release instead, for example to end a mode that started when a key went down. A keyup chord fires when the user releases its key or one of its modifiers, whichever comes first, unless another key was pressed in between. So `Mod+K` on keyup works on macOS, which sends no keyup for a key released while Command is held. A keyup chord also prevents its keydown, so the browser doesn't act on it, such as opening the Save dialog for `Mod+S`. Set `preventDefault: false` to let the browser act.
+Set `eventType: 'keyup'` to fire on release instead, for example to end a mode that started when a key went down. A keyup chord fires when the user releases its key or one of its modifiers, whichever comes first, unless another key was pressed in between. It fires only for the release of a press that matched it, so a release whose press happened before the page had focus, or a key pressed before its modifiers, doesn't fire it. So `Mod+K` on keyup works on macOS, which sends no keyup for a key released while Command is held. A keyup chord also prevents its keydown, so the browser doesn't act on it, such as opening the Save dialog for `Mod+S`. Set `preventDefault: false` to let the browser act.
 
 ## Listeners attach to the document
 
@@ -440,13 +442,13 @@ While recording:
 - **Enter** commits a sequence recording, made with `maxSteps: Infinity`.
 - **Registered hotkeys are paused**, so pressing `Mod+S` to record it does not also save.
 - **Typing in inputs passes through**, so other fields on the page keep working. Escape still cancels.
-- **AltGr is rejected** for position recordings, because it types characters rather than shortcuts. The exception is AltGr with a key it does not change on Windows, such as AltGr+Home, which records as Control+Alt.
+- **AltGr is rejected** for position recordings, because it types characters rather than shortcuts. The exception is AltGr with a key it does not change on Windows, such as AltGr+Home, which records as Control+Alt. Character recordings (`recordBy: 'key'`) accept the characters AltGr types, but on Linux they reject AltGr with a key it does not change, because that press fires no hotkey.
 
 ## Held keys reset when the window loses focus
 
 Key state tracking marks a key as held on keydown and releases it on keyup. If the window loses focus while a key is down, such as when the user switches apps with Command+Tab, the browser never delivers the keyup. Held keys are therefore cleared when the window loses focus, and when the page is hidden, such as when the user switches tabs. A native context menu also takes the keyup, so opening one, with the ContextMenu key or a right-click, clears every held key except the modifiers the event still reports. A context menu the page shows itself, by calling `preventDefault()` on the `contextmenu` event, keeps focus and clears nothing.
 
-On macOS, the system can also swallow the keyup of a key pressed with Command. Releasing a modifier clears any other keys still marked as held, so no key is stuck.
+On macOS, the system can also swallow the keyup of a key pressed with Command. Releasing Command on macOS clears any other keys still marked as held, so no key is stuck. Other modifiers, and Command on other platforms, keep their keyups, so a key held while Shift, Control, or Alt is tapped stays held.
 
 Some system shortcuts swallow a modifier's own keyup without taking focus from the page, such as Command+Shift+4 for a screenshot on macOS, or the DevTools inspect shortcut. Every keyboard and mouse event reports which modifiers are down, so the next key press, mouse movement, or click releases any modifier it reports as up. Only real user input counts: events that page code dispatches report no modifiers, so the tracker ignores them for this. Until such an event arrives, the modifier stays held, because nothing distinguishes a missed release from a long hold.
 

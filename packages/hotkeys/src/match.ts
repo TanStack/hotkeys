@@ -28,13 +28,16 @@ export interface KeyboardEventMatch {
  * Logical bindings use `event.key`, with a fallback to `code`
  * for letter keys, digit keys (0-9), and punctuation keys when `key` produces special
  * characters (e.g., macOS Option+letter, Shift+number, or Option+punctuation).
- * Letter keys are matched case-insensitively.
+ * Letter keys are matched case-insensitively. Turkish `ı` is its own letter:
+ * an `ı` binding never fires on the `i` key, but `I` fires on the `ı` key.
  *
  * Also handles "dead key" events where `event.key` is `'Dead'` instead of the expected
  * character. This commonly occurs on macOS with Option+letter combinations (e.g., Option+E,
  * Option+I, Option+U, Option+N) and on Windows/Linux with international keyboard layouts.
  * In these cases, `event.code` is used to determine the physical key. An
- * `'Unidentified'` key also falls back to `code`, except on letter keys.
+ * `'Unidentified'` key also falls back to `code`, except on letter and numpad
+ * keys: a numpad key's meaning depends on NumLock, so only `[Numpad5]`-style
+ * physical bindings match it.
  *
  * @param event - The KeyboardEvent to check
  * @param chord - The chord string or parsed chord to match against

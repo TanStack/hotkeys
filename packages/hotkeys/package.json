@@ -31,6 +31,7 @@
     "test:oxlint": "oxlint ./src",
     "test:lib": "vitest",
     "test:lib:dev": "pnpm test:lib --watch",
+    "test:coverage": "vitest --coverage",
     "test:types": "tsc",
     "build": "tsdown",
     "test:build": "publint --strict && node ../../scripts/verify-package.ts"
@@ -51,7 +52,9 @@
     "skills"
   ],
   "devDependencies": {
-    "@tanstack/store": "^0.11.2"
+    "@tanstack/hotkeys-test-utils": "workspace:*",
+    "@tanstack/store": "^0.11.2",
+    "fast-check": "^4.10.2"
   },
   "inlinedDependencies": {
     "@tanstack/store": "0.11.2"

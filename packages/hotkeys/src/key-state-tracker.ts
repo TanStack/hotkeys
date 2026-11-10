@@ -1,5 +1,6 @@
 import { createStore } from './_store'
 import { MODIFIER_KEYS, normalizeKeyName } from './constants'
+import { detectPlatform } from './platform'
 import type { Store } from './_store'
 
 /**
@@ -133,11 +134,13 @@ export class KeyStateTracker {
 
       this.#reconcileModifiers(event)
 
-      // When a modifier key is released, clear any non-modifier keys still
-      // marked as held. On macOS, the OS intercepts modifier+key combos
-      // (e.g. Cmd+S) and swallows the keyup event for the non-modifier key,
-      // leaving it permanently stuck in the held set.
-      if (MODIFIER_KEYS.has(key)) this.#releaseNonModifiers()
+      // macOS swallows the keyup of a key released while Command is held,
+      // such as S after Cmd+S, so releasing Command clears non-modifier keys
+      // that would otherwise stay held. Other modifiers and platforms keep
+      // their keyups, so a key held while Shift is tapped stays held.
+      if (key === 'Meta' && detectPlatform() === 'mac') {
+        this.#releaseNonModifiers()
+      }
 
       this.#syncState()
     }
@@ -259,7 +262,11 @@ export class KeyStateTracker {
   /**
    * Checks if a specific key is currently being held.
    *
-   * @param key - The key name to check (case-insensitive)
+   * Letters match in any case. Other key names are case-sensitive, so
+   * `'escape'` doesn't match `Escape`. Every adapter's key-hold helper uses
+   * this rule.
+   *
+   * @param key - The key name to check, such as `'A'`, `'Shift'`, or `'Escape'`
    * @returns True if the key is currently held
    */
   isKeyHeld(key: string): boolean {

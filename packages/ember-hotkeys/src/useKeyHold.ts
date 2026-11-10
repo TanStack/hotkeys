@@ -9,7 +9,6 @@ export function useKeyHold(
   owner: object,
   key: MaybeGetter<IndividualKey>,
 ): EmberHotkeyState<boolean> {
-  return select(owner, getKeyStateTracker().store, (state) =>
-    state.heldKeys.includes(read(key)),
-  )
+  const tracker = getKeyStateTracker()
+  return select(owner, tracker.store, () => tracker.isKeyHeld(read(key)))
 }

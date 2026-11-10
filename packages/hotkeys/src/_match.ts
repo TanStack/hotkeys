@@ -49,6 +49,20 @@ export function matchKeyboardEvent(
     return matched('key', implicitShift ? 2 : 3)
   }
 
+  // Turkish `ı` is its own letter, so an `ı` binding never fires on the `i`
+  // key. Its key is Windows' VK_I, though, so `I` also fires there, as in
+  // native Windows apps. An exact `ı` binding outranks it. With Alt, the
+  // position decides instead: macOS Option+Shift+B types `ı` too.
+  if (
+    normalized.key === 'ı' &&
+    parsed.key === 'I' &&
+    !normalized.alt &&
+    !normalized.altGraph &&
+    modifiersMatch(normalized, parsed, false)
+  ) {
+    return matched('key', 2)
+  }
+
   if (!positionStandsIn(normalized, platform)) return noMatch
 
   // With AltGraph held, only a direct key match counts. Never fall back to
@@ -80,7 +94,9 @@ export function matchKeyboardEvent(
  * - non-Latin letters and symbols, such as Russian `ы` or macOS Option's `–`
  * - dead keys
  * - `Unidentified` keys, except on letter positions, which layouts such as
- *   AZERTY rearrange. Chrome on Linux Wayland reports Ctrl+` this way.
+ *   AZERTY rearrange, and numpad positions, whose output depends on NumLock.
+ *   Chrome on Linux Wayland reports Ctrl+` this way, and Firefox reports
+ *   numpad 5 with NumLock off this way.
  * - anything on the digit row, where AZERTY types `&` and `é` for 1 and 2
  * - ASCII symbols typed with Shift, such as `!` for Shift+1
  * - Latin letters typed with Alt, such as macOS Option+A typing `å`
@@ -104,7 +120,7 @@ function positionStandsIn(
   }: ReturnType<typeof normalizeKeyboardEvent>,
   platform: 'mac' | 'windows' | 'linux',
 ): boolean {
-  if (key === 'Unidentified') return !code.startsWith('Key')
+  if (key === 'Unidentified') return !/^(Key|Numpad)/.test(code)
   if (key !== 'Dead' && !isPrintableKey(key)) return false
   if (code.startsWith('Digit')) return true
   if (isAsciiLetter(key)) return false

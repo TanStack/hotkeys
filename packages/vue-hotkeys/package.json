@@ -28,8 +28,9 @@
     "lint": "oxlint ./src",
     "lint:fix": "oxlint ./src --fix",
     "test:oxlint": "oxlint ./src",
-    "test:lib": "vitest --passWithNoTests",
+    "test:lib": "vitest",
     "test:lib:dev": "pnpm test:lib --watch",
+    "test:coverage": "vitest --coverage",
     "test:types": "tsc",
     "build": "tsdown",
     "test:build": "publint --strict && node ../../scripts/verify-package.ts"
@@ -52,6 +53,7 @@
     "@tanstack/hotkeys": "workspace:*"
   },
   "devDependencies": {
+    "@tanstack/hotkeys-test-utils": "workspace:*",
     "@vitejs/plugin-vue": "^6.0.10",
     "@vue/test-utils": "^2.5.1",
     "vue": "^3.5.45"

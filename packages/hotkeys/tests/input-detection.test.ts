@@ -1,23 +1,8 @@
+import { keydown } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { isInputElement } from '../src/_event-target'
 import { HotkeyManager } from '../src/hotkey-manager'
 import type { HotkeyChord, HotkeyOptions } from '../src'
-
-function dispatchKey(
-  element: EventTarget,
-  key: string,
-  options: KeyboardEventInit = {},
-) {
-  const event = new KeyboardEvent('keydown', {
-    key,
-    bubbles: true,
-    cancelable: true,
-    composed: true,
-    ...options,
-  })
-  element.dispatchEvent(event)
-  return event
-}
 
 function register(hotkey: HotkeyChord, options: HotkeyOptions = {}) {
   const callback = vi.fn()
@@ -44,7 +29,7 @@ describe('native inputs that are not text fields', () => {
       const input = renderAndFocus(`<input type="${type}">`)
       expect(isInputElement(input)).toBe(false)
       const k = register('K')
-      dispatchKey(input, 'k')
+      keydown({ key: 'k', target: input })
       expect(k).toHaveBeenCalledOnce()
     },
   )
@@ -66,12 +51,12 @@ describe('native inputs that are not text fields', () => {
       const input = renderAndFocus(`<input type="${type}">`)
       for (const key of owned) {
         const callback = register(key)
-        dispatchKey(input, key === 'Space' ? ' ' : key)
+        keydown({ key: key === 'Space' ? ' ' : key, target: input })
         expect(callback, key).not.toHaveBeenCalled()
       }
       for (const key of free) {
         const callback = register(key)
-        dispatchKey(input, key)
+        keydown({ key, target: input })
         expect(callback, key).toHaveBeenCalledOnce()
       }
     },
@@ -81,7 +66,7 @@ describe('native inputs that are not text fields', () => {
     const input = renderAndFocus('<input type="text" readonly>')
     expect(isInputElement(input)).toBe(false)
     const k = register('K')
-    dispatchKey(input, 'k')
+    keydown({ key: 'k', target: input })
     expect(k).toHaveBeenCalledOnce()
   })
 
@@ -90,8 +75,8 @@ describe('native inputs that are not text fields', () => {
     expect(isInputElement(area)).toBe(false)
     const k = register('K')
     const down = register('ArrowDown')
-    dispatchKey(area, 'k')
-    dispatchKey(area, 'ArrowDown')
+    keydown({ key: 'k', target: area })
+    keydown({ key: 'ArrowDown', target: area })
     expect(k).toHaveBeenCalledOnce()
     expect(down).not.toHaveBeenCalled()
   })
@@ -99,7 +84,7 @@ describe('native inputs that are not text fields', () => {
   it('a read-only text input does not keep Up and Down', () => {
     const input = renderAndFocus('<input type="text" readonly>')
     const down = register('ArrowDown')
-    dispatchKey(input, 'ArrowDown')
+    keydown({ key: 'ArrowDown', target: input })
     expect(down).toHaveBeenCalledOnce()
   })
 
@@ -107,8 +92,8 @@ describe('native inputs that are not text fields', () => {
     const input = renderAndFocus('<input type="text" readonly>')
     const home = register('Home')
     const left = register('ArrowLeft')
-    dispatchKey(input, 'Home')
-    dispatchKey(input, 'ArrowLeft')
+    keydown({ key: 'Home', target: input })
+    keydown({ key: 'ArrowLeft', target: input })
     expect(home).not.toHaveBeenCalled()
     expect(left).not.toHaveBeenCalled()
   })
@@ -134,9 +119,9 @@ describe('ARIA text roles', () => {
       const k = register('K')
       const modK = register('Mod+K', { platform: 'linux' })
       const escape = register('Escape')
-      dispatchKey(element, 'k')
-      dispatchKey(element, 'k', { ctrlKey: true })
-      dispatchKey(element, 'Escape')
+      keydown({ key: 'k', target: element })
+      keydown({ key: 'k', ctrlKey: true, target: element })
+      keydown({ key: 'Escape', target: element })
       expect(k).not.toHaveBeenCalled()
       expect(modK).toHaveBeenCalledOnce()
       expect(escape).toHaveBeenCalledOnce()
@@ -157,7 +142,7 @@ describe('ARIA text roles', () => {
       'div',
     )
     const k = register('K', { target: element })
-    dispatchKey(element, 'k')
+    keydown({ key: 'k', target: element })
     expect(k).toHaveBeenCalledOnce()
   })
 })
@@ -193,8 +178,8 @@ describe('custom elements whose contents are hidden', () => {
 
     const k = register('K')
     const modK = register('Mod+K', { platform: 'linux' })
-    dispatchKey(host, 'k')
-    dispatchKey(host, 'k', { ctrlKey: true })
+    keydown({ key: 'k', composed: true, target: host })
+    keydown({ key: 'k', ctrlKey: true, composed: true, target: host })
     expect(k).not.toHaveBeenCalled()
     expect(modK).toHaveBeenCalledOnce()
   })
@@ -205,7 +190,7 @@ describe('custom elements whose contents are hidden', () => {
     const host = document.querySelector<HTMLElement>(tag)!
     host.focus()
     const k = register('K')
-    dispatchKey(host, 'k')
+    keydown({ key: 'k', target: host })
     expect(k).not.toHaveBeenCalled()
   })
 
@@ -215,7 +200,7 @@ describe('custom elements whose contents are hidden', () => {
     const host = document.querySelector<HTMLElement>(tag)!
     host.focus()
     const k = register('K')
-    dispatchKey(host, 'k')
+    keydown({ key: 'k', target: host })
     expect(k).toHaveBeenCalledOnce()
   })
 
@@ -224,7 +209,7 @@ describe('custom elements whose contents are hidden', () => {
     const row = document.querySelector<HTMLElement>('app-row')!
     row.focus()
     const k = register('K')
-    dispatchKey(row, 'k')
+    keydown({ key: 'k', target: row })
     expect(k).toHaveBeenCalledOnce()
   })
 
@@ -239,7 +224,7 @@ describe('custom elements whose contents are hidden', () => {
       .shadowRoot!.querySelector('input')!
     inner.focus()
     const k = register('K')
-    dispatchKey(inner, 'k')
+    keydown({ key: 'k', composed: true, target: inner })
     expect(k).toHaveBeenCalledOnce()
   })
 })
@@ -321,8 +306,8 @@ describe('what does not block a hotkey', () => {
     )
     const space = register('Space')
     const k = register('K')
-    dispatchKey(group, ' ')
-    dispatchKey(group, 'k')
+    keydown({ key: ' ', target: group })
+    keydown({ key: 'k', target: group })
     expect(space).not.toHaveBeenCalled()
     expect(k).toHaveBeenCalledOnce()
   })
@@ -331,9 +316,9 @@ describe('what does not block a hotkey', () => {
     document.body.innerHTML =
       '<map name="m"><area id="with" href="#a"><area id="without"></map>'
     const enter = register('Enter')
-    dispatchKey(document.getElementById('with')!, 'Enter')
+    keydown({ key: 'Enter', target: document.getElementById('with')! })
     expect(enter).not.toHaveBeenCalled()
-    dispatchKey(document.getElementById('without')!, 'Enter')
+    keydown({ key: 'Enter', target: document.getElementById('without')! })
     expect(enter).toHaveBeenCalledOnce()
   })
 
@@ -346,7 +331,7 @@ describe('what does not block a hotkey', () => {
     document.body.innerHTML = `<${tag}></${tag}>`
     const host = document.querySelector<HTMLElement>(tag)!
     const k = register('K', { target: host })
-    dispatchKey(host, 'k')
+    keydown({ key: 'k', composed: true, target: host })
     expect(k).toHaveBeenCalledOnce()
   })
 
@@ -360,7 +345,7 @@ describe('what does not block a hotkey', () => {
     const panel = document.getElementById('panel')!
     const k = register('K', { target: panel })
     // The event starts inside the target, so focus elsewhere doesn't matter
-    dispatchKey(panel, 'k')
+    keydown({ key: 'k', composed: true, target: panel })
     expect(k).toHaveBeenCalledOnce()
   })
 
@@ -370,7 +355,7 @@ describe('what does not block a hotkey', () => {
     document.getElementById('field')!.focus()
     const panel = document.getElementById('panel')!
     const k = register('K', { target: panel })
-    dispatchKey(panel, 'k')
+    keydown({ key: 'k', target: panel })
     expect(k).toHaveBeenCalledOnce()
   })
 
@@ -379,17 +364,17 @@ describe('what does not block a hotkey', () => {
       '<div id="editor" contenteditable="true"><span id="inner"></span></div>'
     const editor = document.getElementById('editor')!
     const k = register('K', { target: editor })
-    dispatchKey(document.getElementById('inner')!, 'k')
+    keydown({ key: 'k', target: document.getElementById('inner')! })
     expect(k).not.toHaveBeenCalled()
   })
 
   it('a key dispatched on the document checks the focused element', () => {
     const input = renderAndFocus('<input type="text">')
     const k = register('K')
-    dispatchKey(document, 'k')
+    keydown({ key: 'k', target: document })
     expect(k).not.toHaveBeenCalled()
     input.blur()
-    dispatchKey(document, 'k')
+    keydown({ key: 'k', target: document })
     expect(k).toHaveBeenCalledOnce()
   })
 
@@ -400,7 +385,7 @@ describe('what does not block a hotkey', () => {
       '<div role="menu"><div role="menuitem" tabindex="0"></div></div>'
     root.querySelector<HTMLElement>('[role="menuitem"]')!.focus()
     const down = register('ArrowDown')
-    dispatchKey(document, 'ArrowDown')
+    keydown({ key: 'ArrowDown', composed: true, target: document })
     expect(down).not.toHaveBeenCalled()
   })
 })
@@ -410,7 +395,7 @@ describe('keys dispatched by tests', () => {
     // Component tests often dispatch keys on a host element such as <app-root>
     document.body.innerHTML = '<app-root></app-root>'
     const k = register('K')
-    dispatchKey(document.querySelector('app-root')!, 'k')
+    keydown({ key: 'k', target: document.querySelector('app-root')! })
     expect(k).toHaveBeenCalledOnce()
   })
 
@@ -420,7 +405,7 @@ describe('keys dispatched by tests', () => {
     document.getElementById('field')!.focus()
     const panel = document.getElementById('panel')!
     const k = register('K', { target: panel })
-    dispatchKey(panel, 'k')
+    keydown({ key: 'k', target: panel })
     expect(k).not.toHaveBeenCalled()
   })
 })
@@ -447,7 +432,7 @@ describe('hotkeys in an iframe', () => {
       const { doc, win, panel } = renderFrame()
       const target = kind === 'document' ? doc : kind === 'window' ? win : panel
       const k = register('K', { target })
-      dispatchKey(kind === 'element' ? panel : doc, 'k')
+      keydown({ key: 'k', target: kind === 'element' ? panel : doc })
       expect(k).not.toHaveBeenCalled()
     },
   )
@@ -539,7 +524,7 @@ describe('the keys each control keeps', () => {
     element.focus()
     for (const key of KEYS) {
       const callback = register((key === 'k' ? 'K' : key) as HotkeyChord)
-      dispatchKey(element, key === 'Space' ? ' ' : key)
+      keydown({ key: key === 'Space' ? ' ' : key, target: element })
       if (kept.includes(key)) expect(callback, key).not.toHaveBeenCalled()
       else expect(callback, key).toHaveBeenCalledOnce()
       HotkeyManager.resetInstance()

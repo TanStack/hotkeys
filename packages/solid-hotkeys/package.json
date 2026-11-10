@@ -28,8 +28,9 @@
     "lint": "oxlint ./src",
     "lint:fix": "oxlint ./src --fix",
     "test:oxlint": "oxlint ./src",
-    "test:lib": "vitest --passWithNoTests",
+    "test:lib": "vitest",
     "test:lib:dev": "pnpm test:lib --watch",
+    "test:coverage": "vitest --coverage",
     "test:types": "tsc",
     "build": "tsdown",
     "test:build": "publint --strict && node ../../scripts/verify-package.ts"
@@ -53,6 +54,7 @@
   },
   "devDependencies": {
     "@solidjs/testing-library": "^0.8.10",
+    "@tanstack/hotkeys-test-utils": "workspace:*",
     "@testing-library/jest-dom": "^7.0.1",
     "solid-js": "^1.9.18",
     "vite-plugin-solid": "^2.11.15"

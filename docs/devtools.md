@@ -105,8 +105,6 @@ function App() {
 }
 ```
 
-Create the `plugins` array outside your component. A new array on every render makes the devtools remount the panel, which clears its search box. Hotkeys state such as `useHeldKeys` re-renders a component on every key press, so this shows up quickly.
-
 The Hotkeys panel appears alongside any other TanStack devtools plugins you have installed.
 
 # Preact
@@ -121,8 +119,6 @@ export function App() {
   return <TanStackDevtools plugins={devtoolsPlugins} />
 }
 ```
-
-Create the `plugins` array outside your component. A new array on every render makes the devtools remount the panel, which clears its search box. Hotkeys state such as `useHeldKeys` re-renders a component on every key press, so this shows up quickly.
 
 The Hotkeys panel appears alongside any other TanStack devtools plugins you have installed.
 

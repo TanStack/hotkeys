@@ -106,7 +106,7 @@ Check all targets instead of overlapping targets. Default: overlapping.
 ### target?
 
 ```ts
-optional target?: HTMLElement | Document | Window;
+optional target?: Window | Document | HTMLElement;
 ```
 
 Defined in: [conflicts.ts:21](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/conflicts.ts#L21)

@@ -27,8 +27,9 @@
     "clean": "premove ./dist ./coverage",
     "test:oxlint": "oxlint ./src",
     "test:eslint": "eslint ./src",
-    "test:lib": "vitest --passWithNoTests",
+    "test:lib": "vitest",
     "test:lib:dev": "pnpm test:lib --watch",
+    "test:coverage": "vitest --coverage",
     "test:types": "tsc",
     "test:build": "publint --strict && node ../../scripts/verify-package.ts",
     "build": "svelte-package --input ./src --output ./dist"
@@ -56,6 +57,7 @@
   "devDependencies": {
     "@sveltejs/package": "^3.0.2",
     "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "@tanstack/hotkeys-test-utils": "workspace:*",
     "@typescript-eslint/parser": "^8.72.1",
     "eslint": "^10.14.0",
     "eslint-plugin-svelte": "^3.24.0",

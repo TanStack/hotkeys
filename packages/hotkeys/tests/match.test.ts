@@ -1,27 +1,23 @@
+import { keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { describe, expect, it, vi } from 'vitest'
+import { HotkeyManager } from '../src/hotkey-manager'
 import {
+  areHotkeysEqual,
   createHotkeyChordHandler,
   createMultiHotkeyChordHandler,
   matchesKeyboardEvent,
 } from '../src/match'
+import type { KeyOptions } from '@tanstack/hotkeys-test-utils'
 import type { HotkeyChord } from '../src'
 
 /**
- * Helper to create a mock KeyboardEvent
+ * Creates a keydown event, inferring `code` for US letters and digits when it
+ * isn't given. preventDefault and stopPropagation are spied on.
  */
 function createKeyboardEvent(
   key: string,
-  options: {
-    ctrlKey?: boolean
-    shiftKey?: boolean
-    altKey?: boolean
-    metaKey?: boolean
-    code?: string
-    isComposing?: boolean
-    altGraph?: boolean
-  } = {},
+  options: Omit<KeyOptions, 'key' | 'target'> = {},
 ): KeyboardEvent {
-  // Auto-generate code for letters and digits if not provided
   let code = options.code
   if (code === undefined) {
     if (key.length === 1 && /^[a-zA-Z]$/.test(key)) {
@@ -31,19 +27,10 @@ function createKeyboardEvent(
     }
   }
 
-  return {
-    key,
-    code,
-    ctrlKey: options.ctrlKey ?? false,
-    shiftKey: options.shiftKey ?? false,
-    altKey: options.altKey ?? false,
-    metaKey: options.metaKey ?? false,
-    isComposing: options.isComposing ?? false,
-    getModifierState: (modifier: string) =>
-      modifier === 'AltGraph' && (options.altGraph ?? false),
-    preventDefault: vi.fn(),
-    stopPropagation: vi.fn(),
-  } as unknown as KeyboardEvent
+  const event = keydown({ ...options, key, code })
+  vi.spyOn(event, 'preventDefault')
+  vi.spyOn(event, 'stopPropagation')
+  return event
 }
 
 describe('matchesKeyboardEvent', () => {
@@ -1013,6 +1000,133 @@ describe('matchesKeyboardEvent', () => {
     })
   })
 
+  // On Turkish Q, the I position types ı and the US ' position types i
+  describe('Turkish dotless ı and dotted İ', () => {
+    const dotless = (options: Omit<KeyOptions, 'key' | 'target'> = {}) =>
+      createKeyboardEvent('ı', { code: 'KeyI', ...options })
+    const dotted = (options: Omit<KeyOptions, 'key' | 'target'> = {}) =>
+      createKeyboardEvent('i', { code: 'Quote', ...options })
+
+    it('fires ı only on the key that types ı', () => {
+      expect(
+        matchesKeyboardEvent(dotless(), 'ı' as HotkeyChord, 'windows'),
+      ).toBe(true)
+      expect(
+        matchesKeyboardEvent(dotted(), 'ı' as HotkeyChord, 'windows'),
+      ).toBe(false)
+      expect(
+        matchesKeyboardEvent(
+          createKeyboardEvent('i'),
+          'ı' as HotkeyChord,
+          'windows',
+        ),
+      ).toBe(false)
+      expect(
+        matchesKeyboardEvent(
+          createKeyboardEvent('I', { shiftKey: true }),
+          'Shift+ı' as HotkeyChord,
+          'windows',
+        ),
+      ).toBe(false)
+    })
+
+    it('fires I on the keys that type i and ı, as Windows VK_I does', () => {
+      for (const platform of ['windows', 'mac', 'linux'] as const) {
+        expect(matchesKeyboardEvent(dotless(), 'I', platform)).toBe(true)
+        expect(matchesKeyboardEvent(dotted(), 'I', platform)).toBe(true)
+        expect(
+          matchesKeyboardEvent(
+            dotless({ ctrlKey: true }),
+            'Control+I',
+            platform,
+          ),
+        ).toBe(true)
+      }
+      expect(
+        matchesKeyboardEvent(dotless({ ctrlKey: true }), 'Mod+I', 'windows'),
+      ).toBe(true)
+      expect(
+        matchesKeyboardEvent(dotless({ metaKey: true }), 'Mod+I', 'mac'),
+      ).toBe(true)
+      // Modifiers still have to match
+      expect(matchesKeyboardEvent(dotless(), 'Mod+I', 'windows')).toBe(false)
+      expect(
+        matchesKeyboardEvent(dotless({ shiftKey: true }), 'I', 'windows'),
+      ).toBe(false)
+    })
+
+    it('leaves ı typed with Alt to the key position', () => {
+      // macOS Option+Shift+B types ı
+      const optionShiftB = createKeyboardEvent('ı', {
+        code: 'KeyB',
+        altKey: true,
+        shiftKey: true,
+      })
+      expect(matchesKeyboardEvent(optionShiftB, 'Alt+Shift+B', 'mac')).toBe(
+        true,
+      )
+      expect(matchesKeyboardEvent(optionShiftB, 'Alt+Shift+I', 'mac')).toBe(
+        false,
+      )
+      // With AltGr, ı is a typed character, never a shortcut for I
+      const altGr = createKeyboardEvent('ı', {
+        code: 'KeyI',
+        altGraph: true,
+      })
+      expect(matchesKeyboardEvent(altGr, 'I', 'linux')).toBe(false)
+      expect(matchesKeyboardEvent(altGr, 'ı' as HotkeyChord, 'linux')).toBe(
+        true,
+      )
+    })
+
+    it('fires İ only on the key that types İ', () => {
+      const shiftDotted = dotted({ shiftKey: true })
+      Object.defineProperty(shiftDotted, 'key', { value: 'İ' })
+      expect(
+        matchesKeyboardEvent(shiftDotted, 'Shift+İ' as HotkeyChord, 'windows'),
+      ).toBe(true)
+      expect(matchesKeyboardEvent(shiftDotted, 'Shift+I', 'windows')).toBe(
+        false,
+      )
+      expect(
+        matchesKeyboardEvent(dotted(), 'İ' as HotkeyChord, 'windows'),
+      ).toBe(false)
+      expect(
+        matchesKeyboardEvent(
+          createKeyboardEvent('I', { shiftKey: true }),
+          'Shift+İ' as HotkeyChord,
+          'windows',
+        ),
+      ).toBe(false)
+    })
+
+    it('keeps ı, I and İ as different hotkeys', () => {
+      expect(areHotkeysEqual('ı' as HotkeyChord, 'I', 'windows')).toBe(false)
+      expect(areHotkeysEqual('İ' as HotkeyChord, 'I', 'windows')).toBe(false)
+      expect(
+        areHotkeysEqual('ı' as HotkeyChord, 'İ' as HotkeyChord, 'windows'),
+      ).toBe(false)
+      expect(areHotkeysEqual('i' as HotkeyChord, 'I', 'windows')).toBe(true)
+    })
+
+    it('fires an ı registration over an I registration on the ı key', () => {
+      const manager = HotkeyManager.getInstance()
+      const onDotless = vi.fn()
+      const onI = vi.fn()
+      manager.register('I', onI, { platform: 'windows' })
+      manager.register('ı' as HotkeyChord, onDotless, { platform: 'windows' })
+      keydown({ key: 'ı', code: 'KeyI', target: document })
+      keyup({ key: 'ı', code: 'KeyI', target: document })
+      expect(onDotless).toHaveBeenCalledOnce()
+      expect(onI).not.toHaveBeenCalled()
+      keydown({ key: 'i', code: 'Quote', target: document })
+      keyup({ key: 'i', code: 'Quote', target: document })
+      expect(onI).toHaveBeenCalledOnce()
+      expect(onDotless).toHaveBeenCalledOnce()
+      HotkeyManager.resetInstance()
+    })
+  })
+
   describe('dead key with punctuation codes', () => {
     it('should match dead key with punctuation code via fallback', () => {
       const event = createKeyboardEvent('Dead', {
@@ -1282,6 +1396,26 @@ describe('matchesKeyboardEvent', () => {
 
       const codeless = createKeyboardEvent('Unidentified', { code: '' })
       expect(matchesKeyboardEvent(codeless, 'A')).toBe(false)
+    })
+
+    // Firefox reports numpad 5 with NumLock off as key Unidentified
+    it('does not match an Unidentified numpad key by its digit or operator', () => {
+      const numpad5 = createKeyboardEvent('Unidentified', { code: 'Numpad5' })
+      expect(matchesKeyboardEvent(numpad5, '5', 'linux')).toBe(false)
+      expect(matchesKeyboardEvent(numpad5, '[Numpad5]', 'linux')).toBe(true)
+
+      const control5 = createKeyboardEvent('Unidentified', {
+        code: 'Numpad5',
+        ctrlKey: true,
+      })
+      expect(matchesKeyboardEvent(control5, 'Control+5', 'linux')).toBe(false)
+      expect(matchesKeyboardEvent(control5, 'Control+[Numpad5]', 'linux')).toBe(
+        true,
+      )
+
+      const add = createKeyboardEvent('Unidentified', { code: 'NumpadAdd' })
+      expect(matchesKeyboardEvent(add, '+', 'linux')).toBe(false)
+      expect(matchesKeyboardEvent(add, '[NumpadAdd]', 'linux')).toBe(true)
     })
 
     it('ignores Unidentified keys with keyCode 229, as Android IMEs send', () => {

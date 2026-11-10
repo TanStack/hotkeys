@@ -5,6 +5,12 @@ import packageJson from './package.json' with { type: 'json' }
 export default defineConfig({
   test: {
     watch: false,
+    coverage: {
+      provider: 'v8',
+      include: ['src/**'],
+      // About 1 point below current coverage
+      thresholds: { lines: 94, branches: 84, functions: 91, statements: 94 },
+    },
     projects: [
       {
         plugins: [solid()],
@@ -13,8 +19,11 @@ export default defineConfig({
           dir: './tests',
           exclude: ['**/*.server.test.tsx'],
           environment: 'happy-dom',
+          setupFiles: [
+            '@tanstack/hotkeys-test-utils/setup',
+            './tests/setup.ts',
+          ],
           globals: true,
-          setupFiles: ['./tests/setup.ts'],
         },
       },
       // Server rendering needs Solid's server build and SSR-compiled JSX.

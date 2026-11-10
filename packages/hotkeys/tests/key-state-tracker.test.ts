@@ -1,3 +1,4 @@
+import { keyEvent } from '@tanstack/hotkeys-test-utils'
 /// <reference lib="dom" />
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { KeyStateTracker } from '../src/key-state-tracker'
@@ -18,15 +19,20 @@ function dispatchKey(
   modifiers: KeyboardEventInit = {},
 ): KeyboardEvent {
   const event = trusted(
-    new KeyboardEvent(type, {
-      key,
-      code: code ?? key,
-      bubbles: true,
-      ...modifiers,
-    }),
+    keyEvent(type, { key, code: code ?? key, ...modifiers }),
   )
   document.dispatchEvent(event)
   return event
+}
+
+/** Makes core platform detection report `platform`. */
+function onPlatform(platform: 'mac' | 'windows' | 'linux') {
+  const userAgent = {
+    mac: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)',
+    windows: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+    linux: 'Mozilla/5.0 (X11; Linux x86_64)',
+  }[platform]
+  vi.stubGlobal('navigator', { platform: '', userAgent })
 }
 
 /** Dispatches a mouse event as real user input. */
@@ -47,6 +53,7 @@ describe('KeyStateTracker', () => {
   afterEach(() => {
     KeyStateTracker.resetInstance()
     vi.restoreAllMocks()
+    vi.unstubAllGlobals()
   })
 
   describe('singleton pattern', () => {
@@ -205,7 +212,8 @@ describe('KeyStateTracker', () => {
       })
     })
 
-    it('should clear non-modifier codes when modifier is released', () => {
+    it('should clear non-modifier codes when Command is released on macOS', () => {
+      onPlatform('mac')
       const tracker = KeyStateTracker.getInstance()
 
       dispatchKey('keydown', 'Meta', 'MetaLeft', { metaKey: true })
@@ -233,8 +241,9 @@ describe('KeyStateTracker', () => {
     })
   })
 
-  describe('modifier release clears stuck non-modifier keys (macOS workaround)', () => {
+  describe('Command release clears stuck non-modifier keys (macOS workaround)', () => {
     it('should clear non-modifier keys when Meta is released (simulates Cmd+S on macOS)', () => {
+      onPlatform('mac')
       const tracker = KeyStateTracker.getInstance()
 
       // Simulate Cmd+S: keydown Meta, keydown S, then only keyup Meta
@@ -251,43 +260,57 @@ describe('KeyStateTracker', () => {
       expect(tracker.getHeldKeys()).toEqual([])
     })
 
-    it('should clear non-modifier keys when Control is released', () => {
-      const tracker = KeyStateTracker.getInstance()
+    it.each(['windows', 'linux'] as const)(
+      'should keep non-modifier keys when Meta is released on %s',
+      (platform) => {
+        onPlatform(platform)
+        const tracker = KeyStateTracker.getInstance()
 
-      dispatchKey('keydown', 'Control', undefined, { ctrlKey: true })
-      dispatchKey('keydown', 'c', undefined, { ctrlKey: true })
-      dispatchKey('keyup', 'Control')
+        dispatchKey('keydown', 'w', 'KeyW')
+        dispatchKey('keydown', 'Meta', 'MetaLeft', { metaKey: true })
+        dispatchKey('keyup', 'Meta', 'MetaLeft')
 
-      expect(tracker.isKeyHeld('Control')).toBe(false)
-      expect(tracker.isKeyHeld('C')).toBe(false)
-      expect(tracker.getHeldKeys()).toEqual([])
+        expect(tracker.getHeldKeys()).toEqual(['W'])
+      },
+    )
+
+    describe.each(['mac', 'windows', 'linux'] as const)('on %s', (platform) => {
+      it.each([
+        ['Shift', 'ShiftLeft', { shiftKey: true }],
+        ['Control', 'ControlLeft', { ctrlKey: true }],
+        ['Alt', 'AltLeft', { altKey: true }],
+      ] as const)(
+        'should keep a held letter when %s is tapped',
+        (modifier, code, flags) => {
+          onPlatform(platform)
+          const tracker = KeyStateTracker.getInstance()
+
+          dispatchKey('keydown', 'w', 'KeyW')
+          dispatchKey('keydown', modifier, code, flags)
+          dispatchKey('keyup', modifier, code)
+
+          expect(tracker.getHeldKeys()).toEqual(['W'])
+          expect(tracker.isKeyHeld('W')).toBe(true)
+          dispatchKey('keyup', 'w', 'KeyW')
+          expect(tracker.getHeldKeys()).toEqual([])
+        },
+      )
     })
 
-    it('should clear non-modifier keys when Alt is released', () => {
+    it('should keep other modifier keys when Command is released', () => {
+      onPlatform('mac')
       const tracker = KeyStateTracker.getInstance()
 
-      dispatchKey('keydown', 'Alt', undefined, { altKey: true })
-      dispatchKey('keydown', 'Tab', undefined, { altKey: true })
-      dispatchKey('keyup', 'Alt')
-
-      expect(tracker.isKeyHeld('Alt')).toBe(false)
-      expect(tracker.isKeyHeld('Tab')).toBe(false)
-      expect(tracker.getHeldKeys()).toEqual([])
-    })
-
-    it('should keep other modifier keys when one modifier is released', () => {
-      const tracker = KeyStateTracker.getInstance()
-
-      // Ctrl+Shift+S — release Ctrl, Shift should remain
-      dispatchKey('keydown', 'Control', undefined, { ctrlKey: true })
+      // Cmd+Shift+S — release Cmd, Shift should remain
+      dispatchKey('keydown', 'Meta', undefined, { metaKey: true })
       dispatchKey('keydown', 'Shift', undefined, {
-        ctrlKey: true,
+        metaKey: true,
         shiftKey: true,
       })
-      dispatchKey('keydown', 's', undefined, { ctrlKey: true, shiftKey: true })
-      dispatchKey('keyup', 'Control', undefined, { shiftKey: true })
+      dispatchKey('keydown', 's', undefined, { metaKey: true, shiftKey: true })
+      dispatchKey('keyup', 'Meta', undefined, { shiftKey: true })
 
-      expect(tracker.isKeyHeld('Control')).toBe(false)
+      expect(tracker.isKeyHeld('Meta')).toBe(false)
       expect(tracker.isKeyHeld('Shift')).toBe(true)
       // S should be cleared (non-modifier)
       expect(tracker.isKeyHeld('S')).toBe(false)
@@ -468,7 +491,7 @@ describe('KeyStateTracker', () => {
       document.dispatchEvent(
         type === 'mousemove'
           ? new MouseEvent(type, { bubbles: true })
-          : new KeyboardEvent(type, { key: 'a', code: 'KeyA', bubbles: true }),
+          : keyEvent(type, { key: 'a', code: 'KeyA' }),
       )
       expect(tracker.isKeyHeld('Shift')).toBe(true)
     },

@@ -8,7 +8,6 @@ export function createKeyHold(
   scope: HotkeysScope,
   key: MaybeGetter<IndividualKey>,
 ) {
-  return scope.select(getKeyStateTracker().store, (state) =>
-    state.heldKeys.includes(read(key)),
-  )
+  const tracker = getKeyStateTracker()
+  return scope.select(tracker.store, () => tracker.isKeyHeld(read(key)))
 }

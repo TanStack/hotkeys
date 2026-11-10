@@ -23,23 +23,40 @@ export interface LayoutKeyboard {
   ) => Promise<unknown>
 }
 
-/** Mounts the harness on Linux, watches `bindings`, and registers `registered`. */
+/** Setup that applies to every case of a `useLayout` call. */
+export interface LayoutOptions {
+  /** NumLock state for each test. Default: off. */
+  numLock?: boolean
+}
+
+/**
+ * Mounts the harness on Linux, watches `bindings`, and registers `registered`.
+ * The page has an HTTPS URL, so Chromium's `navigator.keyboard.getLayoutMap()`
+ * works (it needs a secure context).
+ */
 export function useLayout(
   layout: Layout,
   bindings: Array<string>,
   registered: Array<string> = [],
+  { numLock = false }: LayoutOptions = {},
 ) {
   const [, name, variant] = layout.match(/^([^(]+)(?:\((.+)\))?$/)!
   const test = base.extend<{ keyboard: LayoutKeyboard }>({
     keyboard: async ({ page, harness }, use) => {
       setLayout(name!, variant)
+      await page.route(PAGE_URL, (route) =>
+        route.fulfill({ contentType: 'text/html', body: '' }),
+      )
+      await page.goto(PAGE_URL)
       const hk = await harness()
       await hk.call('setPlatform', 'linux')
       await hk.call('observe', bindings)
       for (const binding of registered) {
         await hk.register(binding, binding as never)
       }
-      await waitForKeyboardInput(page, hk)
+      const probe = await waitForKeyboardInput(page, hk)
+      // X11 keeps NumLock across tests, so every test sets the state it needs.
+      if (probe.numLock !== numLock) await toggleNumLock(page, hk, numLock)
       await use({
         press: async (combo) => {
           await hk.clear()
@@ -70,11 +87,12 @@ export function useLayout(
  * Right after Chromium starts, it can drop the first press, so this probes
  * with Escape, which no layout test uses, and focuses again until one arrives.
  * A press that never arrives would otherwise fail the first test case.
+ * Returns the probe's keydown.
  */
-async function waitForKeyboardInput(
+export async function waitForKeyboardInput(
   page: Page,
   hk: LoadedHarness,
-): Promise<void> {
+): Promise<ObservedKeydown> {
   for (let attempt = 1; attempt <= 5; attempt++) {
     focusBrowserWindow()
     await hk.clear()
@@ -90,8 +108,9 @@ async function waitForKeyboardInput(
     if (arrived) {
       // Let the probe's keyup reach the page before the test presses keys.
       await page.waitForTimeout(50)
+      const [probe] = await hk.keydowns()
       await hk.clear()
-      return
+      return probe!
     }
     const state = await page.evaluate(() => ({
       hasFocus: document.hasFocus(),
@@ -103,6 +122,26 @@ async function waitForKeyboardInput(
     )
   }
   throw new Error('Real key presses never reached the page')
+}
+
+const PAGE_URL = 'https://hotkeys.test/'
+
+/**
+ * Presses NumLock, then checks the state on an Escape press. Browsers differ
+ * on whether the NumLock keydown itself reports the old or the new state.
+ */
+async function toggleNumLock(
+  page: Page,
+  hk: LoadedHarness,
+  on: boolean,
+): Promise<void> {
+  press('NumLock')
+  await page.waitForTimeout(50)
+  await hk.clear()
+  press('Escape')
+  const { numLock } = await nextKeydown(page)
+  expect(numLock, 'NumLock state after pressing it').toBe(on)
+  await hk.clear()
 }
 
 async function nextKeydown(page: Page): Promise<ObservedKeydown> {

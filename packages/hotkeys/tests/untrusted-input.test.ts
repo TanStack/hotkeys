@@ -1,3 +1,4 @@
+import { keyEvent, keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   AppHotkeysStore,
@@ -73,14 +74,7 @@ describe('recording whitespace', () => {
       onReject,
     })
     recorder.start()
-    document.body.dispatchEvent(
-      new KeyboardEvent('keydown', {
-        key,
-        altKey: true,
-        bubbles: true,
-        cancelable: true,
-      }),
-    )
+    keydown({ key, altKey: true, cancelable: true, target: document.body })
     recorder.destroy()
     return { onRecord, onReject }
   }
@@ -142,14 +136,14 @@ describe('hotkeys without a usable key', () => {
 
   // Key presses that the hotkeys above used to match
   function pressAll() {
-    for (const type of ['keydown', 'keyup']) {
+    for (const type of ['keydown', 'keyup'] as const) {
       for (const init of [
         { key: 'k', code: 'KeyK' },
         { key: 'g', code: 'KeyG' },
         { key: 'Shift', code: 'ShiftLeft', shiftKey: type === 'keydown' },
         { key: 'Meta', code: 'MetaLeft', metaKey: type === 'keydown' },
       ]) {
-        document.dispatchEvent(new KeyboardEvent(type, init))
+        keyEvent(type, { ...init, target: document })
       }
     }
   }
@@ -172,15 +166,12 @@ describe('hotkeys without a usable key', () => {
       key: '',
       ctrl: false,
     })
-    const k = new KeyboardEvent('keydown', { key: 'k', code: 'KeyK' })
+    const k = keydown({ key: 'k', code: 'KeyK' })
     expect(matchesKeyboardEvent(k, 'Ctl+K' as never)).toBe(false)
   })
 
   it('a modifier-only chord matches no key press', () => {
-    const shiftUp = new KeyboardEvent('keyup', {
-      key: 'Shift',
-      code: 'ShiftLeft',
-    })
+    const shiftUp = keyup({ key: 'Shift', code: 'ShiftLeft' })
     expect(matchesKeyboardEvent(shiftUp, '[ShiftLeft]' as never)).toBe(false)
     expect(matchesKeyboardEvent(shiftUp, 'Shift' as never)).toBe(false)
   })

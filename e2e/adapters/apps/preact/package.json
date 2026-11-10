@@ -1,0 +1,16 @@
+{
+  "name": "@tanstack/hotkeys-e2e-app-preact",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@tanstack/preact-hotkeys": "workspace:*",
+    "preact": "^11.2.0"
+  },
+  "devDependencies": {
+    "@preact/preset-vite": "^2.10.6",
+    "vite": "^8.3.6"
+  }
+}

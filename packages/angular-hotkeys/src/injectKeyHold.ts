@@ -48,11 +48,8 @@ export function injectKeyHold(
   )
 
   return computed(() => {
-    const resolvedKey = typeof key === 'function' ? key() : key
-    const normalizedKey = resolvedKey.toLowerCase()
-
-    return heldKeysSelector().some(
-      (heldKey) => heldKey.toLowerCase() === normalizedKey,
-    )
+    // Reading the held keys reruns this when they change.
+    heldKeysSelector()
+    return tracker.isKeyHeld(typeof key === 'function' ? key() : key)
   })
 }

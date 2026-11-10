@@ -28,6 +28,8 @@ export interface ObservedKeydown {
   shiftKey: boolean
   metaKey: boolean
   altGraph: boolean
+  /** `getModifierState('NumLock')`. */
+  numLock: boolean
   repeat: boolean
   /** Bindings from `observe()` that `matchesKeyboardEvent` accepts. */
   matches: Array<string>
@@ -41,6 +43,8 @@ export type HarnessOptions = Omit<HotkeyOptions, 'target'> & {
   requireReset?: boolean
   timeout?: number
 }
+
+type FormatLayoutMap = NonNullable<Hotkeys.FormatDisplayOptions['layoutMap']>
 
 const MODIFIER_KEYS = ['Control', 'Alt', 'AltGraph', 'Shift', 'Meta']
 
@@ -66,6 +70,7 @@ function createHarness() {
         shiftKey: event.shiftKey,
         metaKey: event.metaKey,
         altGraph: event.getModifierState('AltGraph'),
+        numLock: event.getModifierState('NumLock'),
         repeat: event.repeat,
         matches: observed.filter((binding) =>
           Hotkeys.matchesKeyboardEvent(
@@ -175,6 +180,29 @@ function createHarness() {
     stopRecorder() {
       recorder?.destroy()
       recorder = undefined
+    },
+    /**
+     * Linux display labels for a binding: `label` with conventional labels,
+     * and `layoutLabel` with the browser's keyboard layout map (Chromium
+     * only; undefined without `navigator.keyboard`).
+     */
+    async formatLabels(binding: string) {
+      const format = (layoutMap?: FormatLayoutMap) =>
+        Hotkeys.formatForDisplay(binding as Hotkeys.Hotkey, {
+          platform: 'linux',
+          ...(layoutMap && { layoutMap }),
+        })
+      const keyboard = (
+        navigator as {
+          keyboard?: { getLayoutMap: () => Promise<FormatLayoutMap> }
+        }
+      ).keyboard
+      return {
+        label: format(),
+        layoutLabel: keyboard
+          ? format(await keyboard.getLayoutMap())
+          : undefined,
+      }
     },
     /** Clears logs between steps of one test. Registrations stay. */
     clear() {

@@ -1,23 +1,6 @@
+import { keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { HotkeyManager } from '../src/hotkey-manager'
-
-function press(
-  target: EventTarget,
-  key: string,
-  code: string,
-  init: KeyboardEventInit = {},
-  type: 'keydown' | 'keyup' = 'keydown',
-) {
-  const event = new KeyboardEvent(type, {
-    key,
-    code,
-    bubbles: true,
-    cancelable: true,
-    ...init,
-  })
-  target.dispatchEvent(event)
-  return event
-}
 
 function widget() {
   const element = document.createElement('div')
@@ -43,7 +26,7 @@ describe('ignoreDefaultPrevented', () => {
       stopPropagation: false,
     })
     manager.register('ArrowDown', fires, { conflictBehavior: 'allow' })
-    press(widget(), 'ArrowDown', 'ArrowDown')
+    keydown({ key: 'ArrowDown', code: 'ArrowDown', target: widget() })
     expect(skips).not.toHaveBeenCalled()
     expect(fires).toHaveBeenCalledOnce()
   })
@@ -56,10 +39,10 @@ describe('ignoreDefaultPrevented', () => {
     HotkeyManager.getInstance().register('Escape', callback, {
       ignoreDefaultPrevented: true,
     })
-    press(document.body, 'Escape', 'Escape')
+    keydown({ key: 'Escape', code: 'Escape', target: document.body })
     document.removeEventListener('keydown', close, { capture: true })
     expect(callback).not.toHaveBeenCalled()
-    press(document.body, 'Escape', 'Escape')
+    keydown({ key: 'Escape', code: 'Escape', target: document.body })
     expect(callback).toHaveBeenCalledOnce()
   })
 
@@ -72,7 +55,7 @@ describe('ignoreDefaultPrevented', () => {
     const outer = vi.fn()
     manager.register('K', inner, { target: element, stopPropagation: false })
     manager.register('K', outer, { ignoreDefaultPrevented: true })
-    press(element, 'k', 'KeyK')
+    keydown({ key: 'k', code: 'KeyK', target: element })
     expect(inner).toHaveBeenCalledOnce()
     expect(outer).toHaveBeenCalledOnce()
   })
@@ -84,8 +67,8 @@ describe('ignoreDefaultPrevented', () => {
     manager.register(['G', 'G'], skips, { ignoreDefaultPrevented: true })
     manager.register(['G', 'G'], fires, { conflictBehavior: 'allow' })
     const element = widget()
-    press(element, 'g', 'KeyG')
-    press(element, 'g', 'KeyG')
+    keydown({ key: 'g', code: 'KeyG', target: element })
+    keydown({ key: 'g', code: 'KeyG', target: element })
     expect(skips).not.toHaveBeenCalled()
     expect(fires).toHaveBeenCalledOnce()
   })
@@ -100,7 +83,7 @@ describe('ignoreDefaultPrevented', () => {
       stopPropagation: false,
     })
     manager.register('Escape', outer, { ignoreDefaultPrevented: true })
-    press(element, 'Escape', 'Escape')
+    keydown({ key: 'Escape', code: 'Escape', target: element })
     expect(inner).toHaveBeenCalledOnce()
     expect(outer).not.toHaveBeenCalled()
   })
@@ -117,7 +100,7 @@ describe('ignoreDefaultPrevented', () => {
       stopPropagation: false,
     })
     manager.register('K', outer, { ignoreDefaultPrevented: true })
-    press(element, 'k', 'KeyK')
+    keydown({ key: 'k', code: 'KeyK', target: element })
     expect(outer).toHaveBeenCalledOnce()
   })
 
@@ -135,12 +118,12 @@ describe('ignoreDefaultPrevented', () => {
         eventType: 'keyup',
         ignoreDefaultPrevented: true,
       })
-      press(document.body, 's', 'KeyS', { ctrlKey: true })
+      keydown({ key: 's', code: 'KeyS', ctrlKey: true, target: document.body })
       document.removeEventListener('keydown', prevent, { capture: true })
-      press(document.body, key, code, init, 'keyup')
+      keyup({ key, code, ...init, target: document.body })
       expect(callback).not.toHaveBeenCalled()
-      press(document.body, 's', 'KeyS', { ctrlKey: true })
-      press(document.body, 's', 'KeyS', { ctrlKey: true }, 'keyup')
+      keydown({ key: 's', code: 'KeyS', ctrlKey: true, target: document.body })
+      keyup({ key: 's', code: 'KeyS', ctrlKey: true, target: document.body })
       expect(callback).toHaveBeenCalledOnce()
     },
   )
@@ -153,11 +136,11 @@ describe('ignoreDefaultPrevented', () => {
       ignoreDefaultPrevented: true,
     })
     const prevent = (event: KeyboardEvent) => event.preventDefault()
-    press(document.body, 'k', 'KeyK', { ctrlKey: true })
+    keydown({ key: 'k', code: 'KeyK', ctrlKey: true, target: document.body })
     document.addEventListener('keyup', prevent, { capture: true })
-    press(document.body, 'k', 'KeyK', { ctrlKey: true }, 'keyup')
+    keyup({ key: 'k', code: 'KeyK', ctrlKey: true, target: document.body })
     document.removeEventListener('keyup', prevent, { capture: true })
-    press(document.body, 'Control', 'ControlLeft', {}, 'keyup')
+    keyup({ key: 'Control', code: 'ControlLeft', target: document.body })
     expect(callback).not.toHaveBeenCalled()
   })
 
@@ -167,10 +150,10 @@ describe('ignoreDefaultPrevented', () => {
     const chord = vi.fn()
     manager.register(['G', 'K'], sequence, { ignoreDefaultPrevented: true })
     manager.register('K', chord)
-    press(document.body, 'g', 'KeyG')
+    keydown({ key: 'g', code: 'KeyG', target: document.body })
     const prevent = (event: KeyboardEvent) => event.preventDefault()
     document.addEventListener('keydown', prevent, { capture: true })
-    press(document.body, 'k', 'KeyK')
+    keydown({ key: 'k', code: 'KeyK', target: document.body })
     document.removeEventListener('keydown', prevent, { capture: true })
     expect(sequence).not.toHaveBeenCalled()
     expect(chord).toHaveBeenCalledOnce()
@@ -184,12 +167,12 @@ describe('ignoreDefaultPrevented', () => {
       ignoreDefaultPrevented: true,
     })
     const prevent = (event: KeyboardEvent) => event.preventDefault()
-    press(document.body, 'k', 'KeyK', { ctrlKey: true })
-    press(document.body, 'x', 'KeyX', { ctrlKey: true })
+    keydown({ key: 'k', code: 'KeyK', ctrlKey: true, target: document.body })
+    keydown({ key: 'x', code: 'KeyX', ctrlKey: true, target: document.body })
     document.addEventListener('keyup', prevent, { capture: true })
-    press(document.body, 'x', 'KeyX', { ctrlKey: true }, 'keyup')
+    keyup({ key: 'x', code: 'KeyX', ctrlKey: true, target: document.body })
     document.removeEventListener('keyup', prevent, { capture: true })
-    press(document.body, 'k', 'KeyK', { ctrlKey: true }, 'keyup')
+    keyup({ key: 'k', code: 'KeyK', ctrlKey: true, target: document.body })
     expect(callback).not.toHaveBeenCalled()
   })
 })

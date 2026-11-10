@@ -9,7 +9,7 @@ title: getIsKeyHeld
 function getIsKeyHeld(key): SvelteHeldKeyState;
 ```
 
-Defined in: [packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts:66](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts#L66)
+Defined in: [packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts:64](https://github.com/TanStack/hotkeys/blob/main/packages/svelte-hotkeys/src/getIsKeyHeld.svelte.ts#L64)
 
 Svelte function that returns reactive access to whether a specific key is currently being held.
 

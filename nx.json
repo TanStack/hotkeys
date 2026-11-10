@@ -31,6 +31,10 @@
       "inputs": ["default", "^production"],
       "outputs": ["{projectRoot}/coverage"]
     },
+    "test:coverage": {
+      "dependsOn": ["^build"],
+      "outputs": ["{projectRoot}/coverage"]
+    },
     "lint": {
       "cache": true,
       "inputs": ["default", "^production", "{workspaceRoot}/oxlint.config.ts"],

@@ -1,3 +1,4 @@
+import { keydown, keyup } from '@tanstack/hotkeys-test-utils'
 import { afterEach, describe, expect, expectTypeOf, it, vi } from 'vitest'
 import {
   HotkeyManager,
@@ -29,12 +30,8 @@ import type {
 } from '../src'
 
 function press(key: string, init: KeyboardEventInit = {}) {
-  document.dispatchEvent(
-    new KeyboardEvent('keydown', { key, bubbles: true, ...init }),
-  )
-  document.dispatchEvent(
-    new KeyboardEvent('keyup', { key, bubbles: true, ...init }),
-  )
+  keydown({ key, ...init, target: document })
+  keyup({ key, ...init, target: document })
 }
 
 afterEach(() => {
@@ -230,8 +227,8 @@ describe('sequence steps written as objects', () => {
       true,
     )
     const matcher = createSequenceMatcher([{ key: 'G' }, { key: 'H' }])
-    matcher.match(new KeyboardEvent('keydown', { key: 'g' }))
-    expect(matcher.match(new KeyboardEvent('keydown', { key: 'h' }))).toBe(true)
+    matcher.match(keydown({ key: 'g' }))
+    expect(matcher.match(keydown({ key: 'h' }))).toBe(true)
   })
 
   it('types object-step sequences as sequences', () => {

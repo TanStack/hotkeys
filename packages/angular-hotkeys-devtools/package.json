@@ -27,8 +27,9 @@
     "lint": "oxlint ./src",
     "lint:fix": "oxlint ./src --fix",
     "test:oxlint": "oxlint ./src",
-    "test:lib": "vitest --passWithNoTests",
+    "test:lib": "vitest",
     "test:lib:dev": "pnpm test:lib --watch",
+    "test:coverage": "vitest --coverage",
     "test:types": "tsc",
     "build": "tsdown",
     "test:build": "publint --strict && node ../../scripts/verify-package.ts"
@@ -61,6 +62,10 @@
     "@tanstack/hotkeys-devtools": "workspace:*"
   },
   "devDependencies": {
-    "@angular/core": "^22.2.5"
+    "@angular/common": "^22.2.5",
+    "@angular/core": "^22.2.5",
+    "@angular/platform-browser-dynamic": "^22.2.5",
+    "@tanstack/angular-hotkeys": "workspace:*",
+    "@tanstack/hotkeys-test-utils": "workspace:*"
   }
 }

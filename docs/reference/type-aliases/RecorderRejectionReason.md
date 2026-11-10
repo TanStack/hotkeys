@@ -9,12 +9,14 @@ title: RecorderRejectionReason
 type RecorderRejectionReason = "alt-graph" | "missing-code" | "whitespace" | "validation" | "conflict";
 ```
 
-Defined in: [hotkey-recorder.ts:36](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L36)
+Defined in: [hotkey-recorder.ts:38](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/hotkey-recorder.ts#L38)
 
 Why the recorder rejected a key press or a recording:
 
-- `'alt-graph'`: AltGr typed a character, which physical recording can't
-  record. Record by key to accept characters.
+- `'alt-graph'`: AltGr was held. Recording by code can't record AltGr
+  presses; record by key to accept the characters AltGr types. Recording by
+  key rejects AltGr that typed nothing new, such as AltGr+Home on Linux,
+  because no hotkey matches that press.
 - `'missing-code'`: the event has no usable physical key code.
 - `'whitespace'`: the key is a whitespace character, which a hotkey can't
   hold.

@@ -1,9 +1,9 @@
 {
   "$schema": "https://unpkg.com/knip@5/schema.json",
   "ignore": ["**/.output/**"],
-  "ignoreBinaries": ["preview"],
+  "ignoreBinaries": ["ibus", "preview", "xterm"],
   "ignoreDependencies": ["@faker-js/faker"],
-  "ignoreWorkspaces": ["examples/**"],
+  "ignoreWorkspaces": ["examples/**", "e2e/adapters/apps/**"],
   "workspaces": {
     "packages/react-hotkeys": {
       "ignore": []
@@ -21,11 +21,15 @@
         "@ember/runloop",
         "@ember/routing",
         "@embroider/shared-internals",
-        "@glint/tsserver-plugin"
+        "@glint/tsserver-plugin",
+        "@tanstack/hotkeys-test-utils"
       ]
     },
     "packages/octane-hotkeys": {
       "ignore": ["tests/custom-hooks/**"]
+    },
+    "e2e": {
+      "ignore": ["adapters/shared/**"]
     }
   }
 }

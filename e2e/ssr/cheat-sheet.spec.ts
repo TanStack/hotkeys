@@ -82,7 +82,7 @@ function recordLabelChanges(): void {
   const isContent = (node: Node) =>
     node.nodeType === Node.ELEMENT_NODE || node.nodeType === Node.TEXT_NODE
 
-  new MutationObserver((records) => {
+  const observer = new MutationObserver((records) => {
     if (document.readyState === 'loading') return
     for (const record of records) {
       if (record.type === 'characterData') {
@@ -104,12 +104,23 @@ function recordLabelChanges(): void {
         )
       }
     }
-  }).observe(document, {
+  })
+  observer.observe(document, {
     subtree: true,
     childList: true,
     characterData: true,
     characterDataOldValue: true,
   })
+  // The parser's last insertions can reach the callback after readyState
+  // leaves 'loading', when parsing ends in the same task. Drop them here,
+  // before any deferred or module script runs.
+  document.addEventListener(
+    'readystatechange',
+    () => {
+      observer.takeRecords()
+    },
+    { once: true },
+  )
 }
 
 for (const example of examples) {
