@@ -1,5 +1,11 @@
 # @tanstack/hotkeys-devtools
 
+## 1.9.5
+
+### Patch Changes
+
+- [#264](https://github.com/TanStack/hotkeys/pull/264) [`e70d4d4`](https://github.com/TanStack/hotkeys/commit/e70d4d43c1e29b80c46ffe6fdd93e3233e470ade) - Raise the `match-sorter` dependency floor to ^8.3.1
+
 ## 1.9.4
 
 ### Patch Changes

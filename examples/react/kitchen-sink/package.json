@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@tanstack/react-devtools": "0.10.14",
-    "@tanstack/react-hotkeys-devtools": "^0.14.6",
+    "@tanstack/react-hotkeys-devtools": "^0.14.7",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.3.0",
