@@ -16,7 +16,7 @@
 #
 # Template variables (replaced by `intent setup`):
 #   @tanstack/hotkeys — e.g. @tanstack/query or my-workspace workspace
-#   683c701dbdc0ee4985c0b09b44fe7c8cad9b7d10 # v0.5.5 — the immutable commit packaged with this Intent release
+#   b9f205d69ba2bec93954508ff76281ae2178062c # v0.5.6 — the immutable commit packaged with this Intent release
 
 name: Check Skills
 
