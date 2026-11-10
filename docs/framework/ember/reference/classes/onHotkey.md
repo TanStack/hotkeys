@@ -29,7 +29,7 @@ optional shortcut.
 new onHotkey(owner, args): OnHotkey;
 ```
 
-Defined in: node\_modules/.pnpm/ember-modifier@4.2.2\_@babel+core@7.29.7\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-modifier/declarations/-private/class-based/modifier.d.ts:26
+Defined in: node\_modules/.pnpm/ember-modifier@4.2.2\_@babel+core@7.29.13\_supports-color@8.1.1\_\_supports-color@8.1.1/node\_modules/ember-modifier/declarations/-private/class-based/modifier.d.ts:26
 
 #### Parameters
 
