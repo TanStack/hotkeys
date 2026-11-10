@@ -1269,6 +1269,26 @@ describe('matchesKeyboardEvent', () => {
       expect(matchesKeyboardEvent(codeless, 'A')).toBe(false)
     })
 
+    // Firefox reports numpad 5 with NumLock off as key Unidentified (BUG-123)
+    it('does not match an Unidentified numpad key by its digit or operator', () => {
+      const numpad5 = createKeyboardEvent('Unidentified', { code: 'Numpad5' })
+      expect(matchesKeyboardEvent(numpad5, '5', 'linux')).toBe(false)
+      expect(matchesKeyboardEvent(numpad5, '[Numpad5]', 'linux')).toBe(true)
+
+      const control5 = createKeyboardEvent('Unidentified', {
+        code: 'Numpad5',
+        ctrlKey: true,
+      })
+      expect(matchesKeyboardEvent(control5, 'Control+5', 'linux')).toBe(false)
+      expect(matchesKeyboardEvent(control5, 'Control+[Numpad5]', 'linux')).toBe(
+        true,
+      )
+
+      const add = createKeyboardEvent('Unidentified', { code: 'NumpadAdd' })
+      expect(matchesKeyboardEvent(add, '+', 'linux')).toBe(false)
+      expect(matchesKeyboardEvent(add, '[NumpadAdd]', 'linux')).toBe(true)
+    })
+
     it('ignores Unidentified keys with keyCode 229, as Android IMEs send', () => {
       const event = {
         ...createKeyboardEvent('Unidentified', { code: 'KeyA' }),

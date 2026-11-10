@@ -13,7 +13,7 @@ function matchesKeyboardEvent(
 ): boolean;
 ```
 
-Defined in: [match.ts:54](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L54)
+Defined in: [match.ts:56](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L56)
 
 Checks if a KeyboardEvent matches a hotkey.
 
@@ -27,7 +27,9 @@ Also handles "dead key" events where `event.key` is `'Dead'` instead of the expe
 character. This commonly occurs on macOS with Option+letter combinations (e.g., Option+E,
 Option+I, Option+U, Option+N) and on Windows/Linux with international keyboard layouts.
 In these cases, `event.code` is used to determine the physical key. An
-`'Unidentified'` key also falls back to `code`, except on letter keys.
+`'Unidentified'` key also falls back to `code`, except on letter and numpad
+keys: a numpad key's meaning depends on NumLock, so only `[Numpad5]`-style
+physical bindings match it.
 
 ## Parameters
 

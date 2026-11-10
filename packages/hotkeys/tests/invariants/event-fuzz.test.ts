@@ -8,13 +8,7 @@ import {
   normalizeHotkey,
   parseKeyboardEvent,
 } from '../../src'
-import {
-  KEY_TOKENS,
-  PHYSICAL_CODES,
-  PLATFORMS,
-  isBug085,
-  isBug087,
-} from './fixtures'
+import { KEY_TOKENS, PHYSICAL_CODES, PLATFORMS } from './fixtures'
 import type { Hotkey } from '../../src'
 
 // Arbitrary key events: whatever `key` and `code` a browser, extension or
@@ -92,8 +86,6 @@ describe('arbitrary key events', () => {
     (recordBy) => {
       fc.assert(
         fc.property(eventInit, platform, (init, p) => {
-          // Known bugs, covered by skipped tests in recorder-match.test.ts
-          fc.pre(!isBug085(init, p, recordBy) && !isBug087(init, recordBy))
           let recorded: Hotkey | undefined
           const recorder = new HotkeyRecorder({
             platform: p,

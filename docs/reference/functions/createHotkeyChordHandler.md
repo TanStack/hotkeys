@@ -13,7 +13,7 @@ function createHotkeyChordHandler(
 ): (event) => void;
 ```
 
-Defined in: [match.ts:97](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L97)
+Defined in: [match.ts:99](https://github.com/TanStack/hotkeys/blob/main/packages/hotkeys/src/match.ts#L99)
 
 Creates a keyboard event handler that calls the callback when the chord
 matches. For sequences, use `createSequenceMatcher`.
