@@ -200,7 +200,8 @@ test.describe('native overlays', () => {
       const root = document
         .getElementById('host')!
         .attachShadow({ mode: 'open' })
-      root.innerHTML = '<dialog><button>OK</button></dialog>'
+      root.innerHTML =
+        '<button id="inside">Inside</button><dialog><button>OK</button></dialog>'
       root.querySelector('dialog')!.showModal()
     })
     await hk.register('host', 'Escape', { target: '#host' })
@@ -213,6 +214,15 @@ test.describe('native overlays', () => {
       ),
     ).toBe(false)
     expect(await hk.firedNames()).toEqual([])
+    // With the dialog closed, the host's hotkey gets Escape from inside it.
+    await page.evaluate(() =>
+      document
+        .getElementById('host')!
+        .shadowRoot!.querySelector<HTMLElement>('#inside')!
+        .focus(),
+    )
+    await page.keyboard.press('Escape')
+    expect(await hk.firedNames()).toEqual(['host'])
   })
 
   test('an open popover in a shadow root closes on Escape while focus is inside it', async ({

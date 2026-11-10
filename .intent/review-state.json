@@ -11630,15 +11630,15 @@
       ]
     },
     "source:e2e/browser/native-overlays.spec.ts": {
-      "fingerprint": "f9fac0fe2d7b41e5f3166525a2712341040c9a99639dee995fe81016ec0ada71",
+      "fingerprint": "2e0fbc32aa6fa329b3f222229f5fea277b23b4b30e2fade336b277bb022541dd",
       "snapshot": {
-        "e2e/browser/native-overlays.spec.ts": "8274c83fd90d608ddc796b3b8b7dacb9dd2b9e3d04265c51ca4adcd417675f75"
+        "e2e/browser/native-overlays.spec.ts": "d90b1c106ba597a37543ff6fa3064defc9a0470d732ce04de292c9b24a787e5b"
       },
-      "head": "de86a546e06cbb91c872a1ccf080338a18bdb2da",
+      "head": "de066eff64352b8f5cc28d8b34eb069329177dbc",
       "outcome": "no-change",
-      "reason": "Review follow-ups to the same bug fixes: Svelte publishes its store once, a hotkey on a shadow host yields Escape to its dialog, docs wording and more tests. No guidance changed",
+      "reason": "Adds a positive control to one browser test; no guidance changed",
       "evidence": [
-        "Changed: e2e/browser/native-overlays.spec.ts at de86a546e06cbb91c872a1ccf080338a18bdb2da"
+        "Changed: e2e/browser/native-overlays.spec.ts at de066eff64352b8f5cc28d8b34eb069329177dbc"
       ]
     },
     "source:docs/reference/functions/hasNonModifierKey.md": {
